@@ -1,24 +1,26 @@
+import { DxcFlex } from "@dxc-technology/halstack-react";
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import ThemeInputWidgetProps from "./types";
 
 const BorderWidthInput = ({
   propertyName,
   propertyValue,
   onChangeCustomTheme,
-}) => {
+}: ThemeInputWidgetProps) => {
   const [value, changeValue] = useState(
-    propertyValue.match(/-?[0-9]+(.[0-9]+)?/g)
+    propertyValue.match(/-?[0-9]+(.[0-9]+)?/g)?.join("")
   );
-  const unitValue =
-    propertyValue.match(/[a-zA-Z]+|%/g) &&
-    propertyValue.match(/[a-zA-Z]+|%/g)[0];
+  const unitValue = useState(
+    propertyValue.match(/[a-zA-Z]+|%/g)?.[0]
+  );
 
   useEffect(() => {
-    changeValue(propertyValue.match(/-?[0-9]+(.[0-9]+)?/g));
+    changeValue(propertyValue.match(/-?[0-9]+(.[0-9]+)?/g)?.join(""));
   }, [propertyValue]);
 
   return (
-    <BorderWidthInputContainer>
+    <DxcFlex alignItems="center">
       <StyledInput
         type="number"
         value={value}
@@ -29,24 +31,30 @@ const BorderWidthInput = ({
         }}
       />
       <StyledLabel> {unitValue}</StyledLabel>
-    </BorderWidthInputContainer>
+    </DxcFlex>
   );
 };
-
-const BorderWidthInputContainer = styled.div`
-  display: flex;
-  align-items: center;
-  font: normal 12px/17px Open Sans;
-`;
 
 const StyledInput = styled.input`
   font: normal 12px/17px Open Sans;
   width: 80px;
+
+  &:focus {
+    border-color: transparent;
+    border-radius: 2px;
+    outline: 2px solid #0095ff;
+  }
 `;
 
 const StyledLabel = styled.span`
   font: normal 12px/17px Open Sans;
   padding-left: 5px;
+
+  &:focus {
+    border-color: transparent;
+    border-radius: 2px;
+    outline: 2px solid #0095ff;
+  }
 `;
 
 export default BorderWidthInput;

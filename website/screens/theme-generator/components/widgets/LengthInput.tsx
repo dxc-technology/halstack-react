@@ -1,5 +1,7 @@
+import { DxcFlex } from "@dxc-technology/halstack-react";
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import ThemeInputWidgetProps from "./types";
 
 const unitOptions = [
   "cm",
@@ -19,25 +21,25 @@ const unitOptions = [
   "%",
 ];
 
-const LengthInput = ({ propertyName, propertyValue, onChangeCustomTheme }) => {
+const LengthInput = ({
+  propertyName,
+  propertyValue,
+  onChangeCustomTheme,
+}: ThemeInputWidgetProps): JSX.Element => {
   const [value, changeValue] = useState(
-    propertyValue.match(/-?[0-9]+(.[0-9]+)?/g)
+    propertyValue.match(/-?[0-9]+(.[0-9]+)?/g)?.join("")
   );
   const [unitValue, changeUnitValue] = useState(
-    propertyValue.match(/[a-zA-Z]+|%/g) &&
-      propertyValue.match(/[a-zA-Z]+|%/g)[0]
+    propertyValue.match(/[a-zA-Z]+|%/g)?.[0]
   );
 
   useEffect(() => {
-    changeValue(propertyValue.match(/-?[0-9]+(.[0-9]+)?/g));
-    changeUnitValue(
-      propertyValue.match(/[a-zA-Z]+|%/g) &&
-        propertyValue.match(/[a-zA-Z]+|%/g)[0]
-    );
+    changeValue(propertyValue.match(/-?[0-9]+(.[0-9]+)?/g)?.join(""));
+    changeUnitValue(propertyValue.match(/[a-zA-Z]+|%/g)?.[0]);
   }, [propertyValue]);
 
   return (
-    <LengthInputContainer>
+    <DxcFlex alignItems="center">
       <StyledInput
         type="number"
         value={value}
@@ -55,23 +57,28 @@ const LengthInput = ({ propertyName, propertyValue, onChangeCustomTheme }) => {
         }}
       >
         {unitOptions.map((unitOption, index) => (
-          <option key={`length-unit-option-${index}`} value={unitOption} selected={unitOption === unitValue}>
+          <option
+            key={`length-unit-option-${index}`}
+            value={unitOption}
+            selected={unitOption === unitValue}
+          >
             {unitOption}
           </option>
         ))}
       </StyledSelect>
-    </LengthInputContainer>
+    </DxcFlex>
   );
 };
-
-const LengthInputContainer = styled.div`
-  display: flex;
-  align-items: center;
-`;
 
 const StyledInput = styled.input`
   font: normal 12px/17px Open Sans;
   width: 80px;
+
+  &:focus {
+    border-color: transparent;
+    border-radius: 2px;
+    outline: 2px solid #0095ff;
+  }
 `;
 
 const StyledSelect = styled.select`
@@ -79,6 +86,12 @@ const StyledSelect = styled.select`
   font: normal 12px/17px Open Sans;
   height: 23px;
   width: 80px;
+
+  &:focus {
+    border-color: transparent;
+    border-radius: 2px;
+    outline: 2px solid #0095ff;
+  }
 `;
 
 export default LengthInput;

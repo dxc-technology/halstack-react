@@ -1,5 +1,7 @@
+import { DxcFlex } from "@dxc-technology/halstack-react";
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import ThemeInputWidgetProps from "./types";
 
 const fontFamilyOptions = [
   "serif",
@@ -13,7 +15,7 @@ const FontFamilyInput = ({
   propertyName,
   propertyValue,
   onChangeCustomTheme,
-}) => {
+}: ThemeInputWidgetProps): JSX.Element => {
   const [value, changeValue] = useState(propertyValue.split(", ")[0]);
   const [unitValue, changeUnitValue] = useState(propertyValue.split(", ")[1]);
 
@@ -23,7 +25,7 @@ const FontFamilyInput = ({
   }, [propertyValue]);
 
   return (
-    <FontFamilyWidgetContainer>
+    <DxcFlex>
       <StyledInput
         type="text"
         value={value}
@@ -49,24 +51,32 @@ const FontFamilyInput = ({
           </option>
         ))}
       </StyledSelect>
-    </FontFamilyWidgetContainer>
+    </DxcFlex>
   );
 };
-
-const FontFamilyWidgetContainer = styled.div`
-  display: flex;
-`;
 
 const StyledInput = styled.input`
   font: normal 12px/17px Open Sans;
   width: 80px;
+
+  &:focus {
+    border-color: transparent;
+    border-radius: 2px;
+    outline: 2px solid #0095ff;
+  }
 `;
 
 const StyledSelect = styled.select`
-  margin-left: 5px;
   font: normal 12px/17px Open Sans;
+  margin-left: 5px;
   height: 23px;
   width: 80px;
+
+  &:focus {
+    border-color: transparent;
+    border-radius: 2px;
+    outline: 2px solid #0095ff;
+  }
 `;
 
 export default FontFamilyInput;
