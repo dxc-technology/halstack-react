@@ -155,53 +155,13 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <Code>pickerOtherMonthDateFontColor</Code>
+                  <Code>pickerCurrentDateColor</Code>
                 </td>
-                <td>Dialog text</td>
+                <td>Dialog title</td>
                 <td>
-                  <Code>color-black</Code>
+                  <Code>color-grey-500</Code>
                 </td>
-                <td>#000000</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>pickerCurrentDateFontColor</Code>
-                </td>
-                <td>Current date</td>
-                <td>
-                  <Code>color-black</Code>
-                </td>
-                <td>#000000</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>pickerCurrentDateBorderColor</Code>
-                </td>
-                <td>Current date</td>
-                <td>
-                  <Code>color-purple-300</Code>
-                </td>
-                <td>#cbacec</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>pickerCurrentYearFontColor</Code>
-                </td>
-                <td>Current year button</td>
-                <td>
-                  <Code>color-purple-700</Code>
-                </td>
-                <td>#5f249f</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>pickerCurrentYearBorderColor</Code>
-                </td>
-                <td>Current year button</td>
-                <td>
-                  <Code>color-purple-300</Code>
-                </td>
-                <td>#cbacec</td>
+                <td>#999999</td>
               </tr>
               <tr>
                 <td>
@@ -212,16 +172,6 @@ const sections = [
                   <Code>color-purple-200</Code>
                 </td>
                 <td>#e5d5f6</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>pickerHoverDateFontColor</Code>
-                </td>
-                <td>Date text:hover</td>
-                <td>
-                  <Code>color-black</Code>
-                </td>
-                <td>#000000</td>
               </tr>
               <tr>
                 <td>
@@ -242,6 +192,16 @@ const sections = [
                   <Code>color-purple-700</Code>
                 </td>
                 <td>#5f249f</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>pickerHoverDateFontColor</Code>
+                </td>
+                <td>Date text:hover</td>
+                <td>
+                  <Code>color-black</Code>
+                </td>
+                <td>#000000</td>
               </tr>
               <tr>
                 <td>
@@ -337,9 +297,9 @@ const sections = [
                   </td>
                   <td>Year selector</td>
                   <td>
-                    <Code>font-scale-02</Code>
+                    <Code>font-scale-03</Code>
                   </td>
-                  <td>0.875rem / 14px</td>
+                  <td>1rem / 16px</td>
                 </tr>
                 <tr>
                   <td>
@@ -347,7 +307,7 @@ const sections = [
                   </td>
                   <td>Current month</td>
                   <td>-</td>
-                  <td>0.875rem / 14px</td>
+                  <td>13px</td>
                 </tr>
                 <tr>
                   <td>
@@ -355,7 +315,7 @@ const sections = [
                   </td>
                   <td>Day</td>
                   <td>-</td>
-                  <td>0.875rem / 14px</td>
+                  <td>13px</td>
                 </tr>
                 <tr>
                   <td>
@@ -363,9 +323,9 @@ const sections = [
                   </td>
                   <td>Year selector</td>
                   <td>
-                    <Code>font-weight-regular</Code>
+                    <Code>font-weight-semibold</Code>
                   </td>
-                  <td>400</td>
+                  <td>600</td>
                 </tr>
                 <tr>
                   <td>
@@ -407,9 +367,9 @@ const sections = [
             <tbody>
               <tr>
                 <td>
-                  <Code>padding-top</Code>
+                  <Code>padding</Code>
                 </td>
-                <td>Date picker container</td>
+                <td>Calendar container</td>
                 <td>
                   <Code>spacing-16</Code>
                 </td>
@@ -419,7 +379,17 @@ const sections = [
                 <td>
                   <Code>padding-left/right</Code>
                 </td>
-                <td>Year picker trigger</td>
+                <td>Month container</td>
+                <td>
+                  <Code>spacing-8</Code>
+                </td>
+                <td>0.5rem / 8px</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>padding-left/right</Code>
+                </td>
+                <td>Year selector</td>
                 <td>
                   <Code>spacing-16</Code>
                 </td>
@@ -427,9 +397,9 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <Code>padding-left/right/bottom</Code>
+                  <Code>padding-top/bottom</Code>
                 </td>
-                <td>Calendar container</td>
+                <td>Separator</td>
                 <td>
                   <Code>spacing-8</Code>
                 </td>
@@ -456,7 +426,7 @@ const sections = [
                   <Code>height/width</Code>
                 </td>
                 <td>Selected date circle</td>
-                <td>36/36px</td>
+                <td>28/28px</td>
               </tr>
               <tr>
                 <td>
@@ -471,20 +441,6 @@ const sections = [
                 </td>
                 <td>Calendar top controls</td>
                 <td>24/24px</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>height/width</Code>
-                </td>
-                <td>Year picker trigger</td>
-                <td>40/172px</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>height/width</Code>
-                </td>
-                <td>Year picker</td>
-                <td>40/80px</td>
               </tr>
             </tbody>
           </DxcTable>

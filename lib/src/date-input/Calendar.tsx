@@ -96,7 +96,9 @@ const Calendar = ({ selectedDate, innerDate, onInnerDateChange, onDaySelect }: C
   }, [dateToFocus]);
 
   useEffect(() => {
-    updateDateToFocus();
+    if (dateToFocus.get("month") !== innerDate.get("month") || dateToFocus.get("year") !== innerDate.get("year")) {
+      updateDateToFocus();
+    }
   }, [innerDate]);
 
   const handleDayKeyboardEvent = (event, date) => {
