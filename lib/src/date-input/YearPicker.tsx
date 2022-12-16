@@ -15,7 +15,9 @@ const yearList = getYearsArray();
 const YearPicker = ({ onYearSelect, selectedDate }: YearPickerPropsType): JSX.Element => {
   const [yearToFocus, setYearToFocus] = useState(selectedDate ? selectedDate.get("year") : dayjs().get("year"));
   useEffect(() => {
-    document.getElementById(`year_${yearToFocus}`)?.focus();
+    const yearToFocusEl = document.getElementById(`year_${yearToFocus}`);
+    yearToFocusEl?.scrollIntoView?.({ block: "nearest", inline: "start" });
+    yearToFocusEl?.focus();
   }, [yearToFocus]);
 
   const handleDayKeyboardEvent = (event) => {
