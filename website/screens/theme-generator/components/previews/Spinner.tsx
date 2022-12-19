@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { DxcSpinner, DxcButton } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
-import ExamplesContainer from "./ExamplesContainer";
+import PreviewContainer from "../PreviewContainer";
 
 const Spinner = () => {
   const [isVisible, changeIsVisible] = useState(false);
@@ -20,7 +20,7 @@ const Spinner = () => {
   };
 
   return (
-    <ExamplesContainer>
+    <PreviewContainer>
       <Mode text="Undeterminate default">
         <DxcSpinner label="Loading..." />
       </Mode>
@@ -34,7 +34,7 @@ const Spinner = () => {
         <DxcButton label="Show Spinner for 3 seconds" onClick={showModal} />
         {isVisible && <DxcSpinner label="Loading..." mode="overlay" />}
       </Mode>
-    </ExamplesContainer>
+    </PreviewContainer>
   );
 };
 

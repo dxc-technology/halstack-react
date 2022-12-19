@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { DxcAlert, DxcButton } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
-import ExamplesContainer from "./ExamplesContainer";
+import PreviewContainer from "../PreviewContainer";
 
 const Alert = () => {
   const [isVisible, changeIsVisible] = useState(false);
@@ -10,7 +10,7 @@ const Alert = () => {
   };
 
   return (
-    <ExamplesContainer>
+    <PreviewContainer>
       <Mode text="Information Alert">
         <DxcAlert
           type="info"
@@ -53,7 +53,7 @@ const Alert = () => {
           />
         )}
       </Mode>
-    </ExamplesContainer>
+    </PreviewContainer>
   );
 };
 

@@ -1,7 +1,7 @@
 import React from "react";
 import { DxcTag } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
-import ExamplesContainer from "./ExamplesContainer";
+import PreviewContainer from "../PreviewContainer";
 
 const iconSVG = (
   <svg viewBox="0 0 24 24" fill="currentColor">
@@ -11,7 +11,7 @@ const iconSVG = (
 );
 
 const Tag = () => (
-  <ExamplesContainer>
+  <PreviewContainer>
     <Mode text="Default">
       <DxcTag icon={iconSVG} label="DXC Technology" />
       <DxcTag
@@ -21,7 +21,7 @@ const Tag = () => (
         labelPosition="before"
       />
     </Mode>
-  </ExamplesContainer>
+  </PreviewContainer>
 );
 
 export default Tag;

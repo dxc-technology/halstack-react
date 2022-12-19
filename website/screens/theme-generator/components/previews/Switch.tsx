@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { DxcSwitch } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
-import ExamplesContainer from "./ExamplesContainer";
+import PreviewContainer from "../PreviewContainer";
 
 const Switch = () => {
   const [checked, changeChecked] = useState(false);
@@ -10,7 +10,7 @@ const Switch = () => {
   };
 
   return (
-    <ExamplesContainer>
+    <PreviewContainer>
       <Mode text="Default">
         <DxcSwitch checked={checked} label="Switch" onChange={onChange} />
       </Mode>
@@ -23,7 +23,7 @@ const Switch = () => {
           disabled
         />
       </Mode>
-    </ExamplesContainer>
+    </PreviewContainer>
   );
 };
 

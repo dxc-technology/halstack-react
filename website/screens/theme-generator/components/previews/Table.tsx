@@ -6,7 +6,7 @@ import {
   DxcButton,
 } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
-import ExamplesContainer from "./ExamplesContainer";
+import PreviewContainer from "../PreviewContainer";
 
 const iconSVG = (
   <svg viewBox="0 0 24 24">
@@ -66,7 +66,7 @@ const Table = () => {
   };
 
   return (
-    <ExamplesContainer>
+    <PreviewContainer>
       <Mode text="Default">
         <DxcTable>
           <tr>
@@ -166,7 +166,7 @@ const Table = () => {
           </DxcTable>
         </Container>
       </Mode>
-    </ExamplesContainer>
+    </PreviewContainer>
   );
 };
 

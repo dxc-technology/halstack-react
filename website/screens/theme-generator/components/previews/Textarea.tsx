@@ -1,10 +1,10 @@
 import React from "react";
 import { DxcTextarea } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
-import ExamplesContainer from "./ExamplesContainer";
+import PreviewContainer from "../PreviewContainer";
 
 const Textarea = () => (
-  <ExamplesContainer>
+  <PreviewContainer>
     <Mode text="Default">
       <DxcTextarea
         label="Regular textarea"
@@ -29,7 +29,7 @@ const Textarea = () => (
         error="Error message."
       />
     </Mode>
-  </ExamplesContainer>
+  </PreviewContainer>
 );
 
 export default Textarea;

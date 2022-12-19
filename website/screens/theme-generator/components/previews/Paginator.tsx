@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { DxcPaginator } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
-import ExamplesContainer from "./ExamplesContainer";
+import PreviewContainer from "../PreviewContainer";
 
 const Paginator = () => {
   const [page, changePage] = useState(1);
@@ -15,7 +15,7 @@ const Paginator = () => {
   };
 
   return (
-    <ExamplesContainer>
+    <PreviewContainer>
       <Mode text="Default">
         <DxcPaginator
           currentPage={page}
@@ -27,7 +27,7 @@ const Paginator = () => {
           onPageChange={goToPageFunc}
         />
       </Mode>
-    </ExamplesContainer>
+    </PreviewContainer>
   );
 };
 

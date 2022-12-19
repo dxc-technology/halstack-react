@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { DxcFlex, DxcTabs } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
 import twitterIcon from "../../images/TwitterIcon";
-import ExamplesContainer from "./ExamplesContainer";
+import PreviewContainer from "../PreviewContainer";
 
 const Tabs = () => {
   const [activeTab, setActiveTab] = useState(0);
@@ -24,7 +24,7 @@ const Tabs = () => {
   };
 
   return (
-    <ExamplesContainer>
+    <PreviewContainer>
       <Mode text="Default with content">
         <DxcFlex direction="column">
           <DxcTabs
@@ -102,57 +102,42 @@ const Tabs = () => {
           ]}
         />
       </Mode>
-      <LargeTabsContainer mode="light">
-        <Title mode="light">With scroll buttons</Title>
-        <DxcTabs
-          activeTabIndex={largeActiveTab}
-          onTabClick={onLargeActiveTab}
-          tabs={[
-            { label: "Tab 1" },
-            { label: "Tab 2" },
-            { label: "Tab 3" },
-            { label: "Tab 4" },
-            { label: "Tab 5" },
-            { label: "Tab 6" },
-            { label: "Tab 7" },
-            { label: "Tab 8" },
-            { label: "Tab 9" },
-            { label: "Tab 10" },
-            { label: "Tab 11" },
-            { label: "Tab 12" },
-            { label: "Tab 13" },
-            { label: "Tab 14" },
-            { label: "Tab 15" },
-            { label: "Tab 16" },
-            { label: "Tab 17" },
-            { label: "Tab 18" },
-            { label: "Tab 19" },
-            { label: "Tab 20" },
-            { label: "Tab 21" },
-            { label: "Tab 22" },
-            { label: "Tab 23" },
-            { label: "Tab 24" },
-            { label: "Tab 25" },
-          ]}
-        />
-      </LargeTabsContainer>
-    </ExamplesContainer>
+      <Mode text="With scroll buttons">
+        <LargeTabsContainer>
+          <DxcTabs
+            activeTabIndex={largeActiveTab}
+            onTabClick={onLargeActiveTab}
+            tabs={[
+              { label: "Tab 1" },
+              { label: "Tab 2" },
+              { label: "Tab 3" },
+              { label: "Tab 4" },
+              { label: "Tab 5" },
+              { label: "Tab 6" },
+              { label: "Tab 7" },
+              { label: "Tab 8" },
+              { label: "Tab 9" },
+              { label: "Tab 10" },
+              { label: "Tab 11" },
+              { label: "Tab 12" },
+              { label: "Tab 13" },
+              { label: "Tab 14" },
+              { label: "Tab 15" },
+              { label: "Tab 16" },
+              { label: "Tab 17" },
+              { label: "Tab 18" },
+              { label: "Tab 19" },
+              { label: "Tab 20" },
+            ]}
+          />
+        </LargeTabsContainer>
+      </Mode>
+    </PreviewContainer>
   );
 };
 
-const LargeTabsContainer = styled.div<{ mode: "light" | "dark" }>`
-  max-width: 1000px;
-  background-color: ${(props) =>
-    props.mode === "dark" ? "#000000" : "#FFFFFF"};
-`;
-
-const Title = styled.div<{ mode: "light" | "dark" }>`
-  font: Bold 12px/17px Open Sans;
-  line-height: 18px;
-  letter-spacing: 1.88px;
-  color: ${(props) => (props.mode === "dark" ? "#FFFFFF" : "#000000")};
-  text-transform: uppercase;
-  margin-bottom: 2.5rem;
+const LargeTabsContainer = styled.div`
+  width: 900px;
 `;
 
 const TabContentContainer = styled.div<{ backgroundColor: string }>`

@@ -1,10 +1,10 @@
 import React from "react";
 import { DxcCard } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
-import ExamplesContainer from "./ExamplesContainer";
+import PreviewContainer from "../PreviewContainer";
 
 const Card = () => (
-  <ExamplesContainer>
+  <PreviewContainer>
     <Mode text="Default">
       <DxcCard
         imageSrc="https://picsum.photos/id/1022/200/300"
@@ -15,7 +15,7 @@ const Card = () => (
         Lorem Ipsum
       </DxcCard>
     </Mode>
-  </ExamplesContainer>
+  </PreviewContainer>
 );
 
 export default Card;

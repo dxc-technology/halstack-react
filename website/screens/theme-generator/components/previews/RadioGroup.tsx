@@ -1,7 +1,7 @@
 import React from "react";
 import { DxcFlex, DxcRadioGroup } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
-import ExamplesContainer from "./ExamplesContainer";
+import PreviewContainer from "../PreviewContainer";
 
 const options = [
   { label: "Option A", value: "A" },
@@ -15,7 +15,7 @@ const single_disabled_options = [
 ];
 
 const RadioGroup = () => (
-  <ExamplesContainer>
+  <PreviewContainer>
     <Mode text="Default">
       <DxcRadioGroup label="Default" defaultValue="A" options={options} />
       <DxcRadioGroup
@@ -64,7 +64,7 @@ const RadioGroup = () => (
         stacking="row"
       />
     </Mode>
-  </ExamplesContainer>
+  </PreviewContainer>
 );
 
 export default RadioGroup;

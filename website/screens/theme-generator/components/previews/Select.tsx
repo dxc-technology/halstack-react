@@ -1,7 +1,7 @@
 import React from "react";
 import { DxcSelect } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
-import ExamplesContainer from "./ExamplesContainer";
+import PreviewContainer from "../PreviewContainer";
 
 const single_options = [
   { label: "Option 01", value: "1" },
@@ -177,7 +177,7 @@ const svg_options = [
 ];
 
 const Select = () => (
-  <ExamplesContainer>
+  <PreviewContainer>
     <Mode text="Default">
       <DxcSelect
         label="Label"
@@ -219,7 +219,7 @@ const Select = () => (
         multiple
       />
     </Mode>
-  </ExamplesContainer>
+  </PreviewContainer>
 );
 
 export default Select;

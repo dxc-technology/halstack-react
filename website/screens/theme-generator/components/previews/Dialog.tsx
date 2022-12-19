@@ -8,7 +8,7 @@ import {
   DxcParagraph,
 } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
-import ExamplesContainer from "./ExamplesContainer";
+import PreviewContainer from "../PreviewContainer";
 
 const errorIcon = (
   <svg
@@ -38,7 +38,7 @@ const Dialog = () => {
   };
 
   return (
-    <ExamplesContainer>
+    <PreviewContainer>
       <Mode text="Default">
         <DxcButton label="Delete" onClick={handleClickDefaultDialog} />
         {isDefaultDialogVisible && (
@@ -105,7 +105,7 @@ const Dialog = () => {
           </DxcDialog>
         )}
       </Mode>
-    </ExamplesContainer>
+    </PreviewContainer>
   );
 };
 

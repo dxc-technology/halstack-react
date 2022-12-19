@@ -3,7 +3,7 @@ import { DxcWizard } from "@dxc-technology/halstack-react";
 
 import Mode from "../Mode";
 import facebookIcon from "../../images/FacebookIcon";
-import ExamplesContainer from "./ExamplesContainer";
+import PreviewContainer from "../PreviewContainer";
 
 const steps = [
   {
@@ -28,14 +28,14 @@ const steps = [
 ];
 
 const Wizard = () => (
-  <ExamplesContainer>
+  <PreviewContainer>
     <Mode text="Default">
       <DxcWizard steps={steps} />
     </Mode>
     <Mode text="Icons">
       <DxcWizard steps={steps} />
     </Mode>
-  </ExamplesContainer>
+  </PreviewContainer>
 );
 
 export default Wizard;

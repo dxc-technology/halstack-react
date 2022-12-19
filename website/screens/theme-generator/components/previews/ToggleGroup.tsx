@@ -4,7 +4,7 @@ import Mode from "../Mode";
 import facebookIcon from "../../images/FacebookIcon";
 import linkedinIcon from "../../images/LinkedinIcon";
 import twitterIcon from "../../images/TwitterIcon";
-import ExamplesContainer from "./ExamplesContainer";
+import PreviewContainer from "../PreviewContainer";
 
 const options = [
   {
@@ -40,7 +40,7 @@ const optionsWithIcons = [
 ];
 
 const ToggleGroup = () => (
-  <ExamplesContainer>
+  <PreviewContainer>
     <Mode text="Default">
       <DxcToggleGroup options={options} />
     </Mode>
@@ -50,7 +50,7 @@ const ToggleGroup = () => (
     <Mode text="Multiple with icons">
       <DxcToggleGroup options={optionsWithIcons} multiple />
     </Mode>
-  </ExamplesContainer>
+  </PreviewContainer>
 );
 
 export default ToggleGroup;

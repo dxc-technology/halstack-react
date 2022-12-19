@@ -1,13 +1,13 @@
 import { DxcFlex } from "@dxc-technology/halstack-react";
 
-type ExamplesContainerProps = {
+type PreviewContainerProps = {
   children: React.ReactNode;
 };
 
-const ExamplesContainer = ({ children }: ExamplesContainerProps) => (
+const PreviewContainer = ({ children }: PreviewContainerProps) => (
   <DxcFlex direction="column" gap="2.5rem">
     {children}
   </DxcFlex>
 );
 
-export default ExamplesContainer;
+export default PreviewContainer;

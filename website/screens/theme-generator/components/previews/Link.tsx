@@ -1,7 +1,7 @@
 import React from "react";
 import { DxcLink, DxcParagraph } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
-import ExamplesContainer from "./ExamplesContainer";
+import PreviewContainer from "../PreviewContainer";
 
 const icon = (
   <svg viewBox="0 0 24 24" enableBackground="new 0 0 24 24" fill="currentColor">
@@ -15,7 +15,7 @@ const icon = (
 );
 
 const Link = () => (
-  <ExamplesContainer>
+  <PreviewContainer>
     <Mode text="Default">
       <DxcParagraph>
         This is a text with a{" "}
@@ -65,7 +65,7 @@ const Link = () => (
         the link.
       </DxcParagraph>
     </Mode>
-  </ExamplesContainer>
+  </PreviewContainer>
 );
 
 export default Link;

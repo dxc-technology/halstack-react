@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { DxcFileInput } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
-import ExamplesContainer from "./ExamplesContainer";
+import PreviewContainer from "../PreviewContainer";
 
 type FileData = {
   file: File;
@@ -20,7 +20,7 @@ const FileInput = () => {
   };
 
   return (
-    <ExamplesContainer>
+    <PreviewContainer>
       <Mode text="Default">
         <DxcFileInput
           label="Multiple file"
@@ -94,7 +94,7 @@ const FileInput = () => {
           callbackFile={callbackFile}
         />
       </Mode>
-    </ExamplesContainer>
+    </PreviewContainer>
   );
 };
 

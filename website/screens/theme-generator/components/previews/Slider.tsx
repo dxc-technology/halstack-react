@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { DxcSlider } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
-import ExamplesContainer from "./ExamplesContainer";
+import PreviewContainer from "../PreviewContainer";
 
 const Slider = () => {
   const [value, changeValue] = useState(0);
@@ -10,7 +10,7 @@ const Slider = () => {
   };
 
   return (
-    <ExamplesContainer>
+    <PreviewContainer>
       <Mode text="Default">
         <DxcSlider
           label="Select a value"
@@ -62,7 +62,7 @@ const Slider = () => {
           onChange={onChange}
         />
       </Mode>
-    </ExamplesContainer>
+    </PreviewContainer>
   );
 };
 

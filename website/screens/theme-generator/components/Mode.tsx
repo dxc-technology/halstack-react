@@ -16,7 +16,7 @@ const Mode = ({ text, mode = "light", children }: ModeProps): JSX.Element => (
 const ModeContainer = styled.div<{ mode: string }>`
   display: flex;
   flex-direction: column;
-  gap: 36px;
+  gap: 2rem;
   background-color: ${(props) =>
     props.mode === "dark" ? "#000000" : "transparent"};
 `;

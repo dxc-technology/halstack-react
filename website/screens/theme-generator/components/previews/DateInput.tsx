@@ -1,10 +1,10 @@
 import React from "react";
 import { DxcDateInput } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
-import ExamplesContainer from "./ExamplesContainer";
+import PreviewContainer from "../PreviewContainer";
 
 const DateInput = () => (
-  <ExamplesContainer>
+  <PreviewContainer>
     <Mode text="Default">
       <DxcDateInput
         label="Format"
@@ -24,7 +24,7 @@ const DateInput = () => (
         disabled
       />
     </Mode>
-  </ExamplesContainer>
+  </PreviewContainer>
 );
 
 export default DateInput;

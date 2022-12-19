@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { DxcButton, DxcProgressBar } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
-import ExamplesContainer from "./ExamplesContainer";
+import PreviewContainer from "../PreviewContainer";
 
 const ProgressBar = () => {
   const [isVisible, changeIsVisible] = useState(false);
@@ -21,7 +21,7 @@ const ProgressBar = () => {
   };
 
   return (
-    <ExamplesContainer>
+    <PreviewContainer>
       <Mode text="Undeterminate default">
         <Container>
           <DxcProgressBar
@@ -55,7 +55,7 @@ const ProgressBar = () => {
           />
         )}
       </Mode>
-    </ExamplesContainer>
+    </PreviewContainer>
   );
 };
 

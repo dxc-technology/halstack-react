@@ -7,7 +7,7 @@ import {
 } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
 import facebookIcon from "../../images/FacebookIcon";
-import ExamplesContainer from "./ExamplesContainer";
+import PreviewContainer from "../PreviewContainer";
 
 const Accordion = () => {
   const [indexAccordion, setIndexAccordion] = useState(0);
@@ -17,7 +17,7 @@ const Accordion = () => {
   };
 
   return (
-    <ExamplesContainer>
+    <PreviewContainer>
       <Mode text="Default">
         <DxcAccordion
           label="Default Accordion"
@@ -74,7 +74,7 @@ const Accordion = () => {
           </DxcAccordionGroup.Accordion>
         </DxcAccordionGroup>
       </Mode>
-    </ExamplesContainer>
+    </PreviewContainer>
   );
 };
 

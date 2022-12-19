@@ -1,7 +1,7 @@
 import React from "react";
 import { DxcChip } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
-import ExamplesContainer from "./ExamplesContainer";
+import PreviewContainer from "../PreviewContainer";
 
 const deleteIcon = (
   <svg height="24" viewBox="0 0 24 24" width="24" fill="currentColor">
@@ -16,7 +16,7 @@ const Chip = () => {
   };
 
   return (
-    <ExamplesContainer>
+    <PreviewContainer>
       <Mode text="Default">
         <DxcChip label="Default chip" margin={{ top: "xsmall" }} />
       </Mode>
@@ -45,7 +45,7 @@ const Chip = () => {
           onClickPrefix={onClick}
         />
       </Mode>
-    </ExamplesContainer>
+    </PreviewContainer>
   );
 };
 

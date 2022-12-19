@@ -1,7 +1,7 @@
 import React from "react";
 import { DxcTextInput } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
-import ExamplesContainer from "./ExamplesContainer";
+import PreviewContainer from "../PreviewContainer";
 
 const countries = [
   "Afghanistan",
@@ -59,7 +59,7 @@ const TextInput = () => {
   };
 
   return (
-    <ExamplesContainer>
+    <PreviewContainer>
       <Mode text="Default">
         <DxcTextInput clearable />
       </Mode>
@@ -116,7 +116,7 @@ const TextInput = () => {
           clearable
         />
       </Mode>
-    </ExamplesContainer>
+    </PreviewContainer>
   );
 };
 

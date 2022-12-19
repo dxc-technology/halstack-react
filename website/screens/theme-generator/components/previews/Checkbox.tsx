@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { DxcCheckbox } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
-import ExamplesContainer from "./ExamplesContainer";
+import PreviewContainer from "../PreviewContainer";
 
 const Checkbox = () => {
   const [checked, changeChecked] = useState(false);
@@ -10,7 +10,7 @@ const Checkbox = () => {
   };
 
   return (
-    <ExamplesContainer>
+    <PreviewContainer>
       <Mode text="Default">
         <DxcCheckbox checked={checked} label="Checkbox" onChange={onChange} />
       </Mode>
@@ -22,7 +22,7 @@ const Checkbox = () => {
         <DxcCheckbox label="Disabled" disabled />
         <DxcCheckbox label="Disabled Checked" checked disabled />
       </Mode>
-    </ExamplesContainer>
+    </PreviewContainer>
   );
 };
 

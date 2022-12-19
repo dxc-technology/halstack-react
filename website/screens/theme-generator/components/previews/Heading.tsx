@@ -1,10 +1,10 @@
 import React from "react";
 import { DxcHeading } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
-import ExamplesContainer from "./ExamplesContainer";
+import PreviewContainer from "../PreviewContainer";
 
 const Heading = () => (
-  <ExamplesContainer>
+  <PreviewContainer>
     <Mode text="Level 1">
       <DxcHeading level={1} text="Title for main section" />
     </Mode>
@@ -23,7 +23,7 @@ const Heading = () => (
         text="Heading to mix with the rest of the headings"
       />
     </Mode>
-  </ExamplesContainer>
+  </PreviewContainer>
 );
 
 export default Heading;

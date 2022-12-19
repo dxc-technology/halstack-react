@@ -2,7 +2,7 @@ import React from "react";
 import { DxcButton } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
 import linkedinIcon from "../../images/LinkedinIcon";
-import ExamplesContainer from "./ExamplesContainer";
+import PreviewContainer from "../PreviewContainer";
 
 const Button = () => {
   const onClick = () => {
@@ -10,7 +10,7 @@ const Button = () => {
   };
 
   return (
-    <ExamplesContainer>
+    <PreviewContainer>
       <Mode text="Primary">
         <DxcButton mode="primary" label="button" />
         <DxcButton
@@ -47,7 +47,7 @@ const Button = () => {
         />
         <DxcButton mode="text" label="button" disabled onClick={onClick} />
       </Mode>
-    </ExamplesContainer>
+    </PreviewContainer>
   );
 };
 
