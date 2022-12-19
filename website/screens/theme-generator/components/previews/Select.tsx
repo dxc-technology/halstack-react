@@ -184,6 +184,7 @@ const Select = () => (
         helperText="Helper text"
         options={single_options}
         placeholder="Choose an option"
+        size="fillParent"
       />
       <DxcSelect
         label="Label"
@@ -191,6 +192,7 @@ const Select = () => (
         options={single_options}
         placeholder="Choose an option"
         disabled
+        size="fillParent"
       />
       <DxcSelect
         label="Label"
@@ -198,6 +200,7 @@ const Select = () => (
         options={single_options}
         error="Error message"
         placeholder="Choose an option"
+        size="fillParent"
       />
     </Mode>
     <Mode text="Searchable and optional">

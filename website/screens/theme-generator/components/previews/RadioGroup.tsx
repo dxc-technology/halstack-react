@@ -30,6 +30,8 @@ const RadioGroup = () => (
         options={options}
         readonly
       />
+    </Mode>
+    <Mode text="Disabled">
       <DxcRadioGroup
         label="Disabled group"
         defaultValue="A"

@@ -46,78 +46,89 @@ const action = {
   ),
 };
 
-const TextInput = () => {
-  const errorCallbackFunc: (value: string) => Promise<string[]> = (): Promise<
-    string[]
-  > => {
-    const result = new Promise<string[]>((resolve, reject) =>
-      setTimeout(() => {
-        reject("err");
-      }, 3000)
-    );
-    return result;
-  };
-
-  return (
-    <PreviewContainer>
-      <Mode text="Default">
-        <DxcTextInput clearable />
-      </Mode>
-      <Mode text="Disabled">
-        <DxcTextInput
-          label="Disabled text input"
-          helperText="Example of helper text"
-          value="Example text"
-          action={action}
-          prefix="Pre"
-          suffix="Suf"
-          disabled
-        />
-      </Mode>
-      <Mode text="Invalid">
-        <DxcTextInput
-          label="Invalid text input"
-          helperText="Example of helper text"
-          placeholder="Placeholder"
-          error="Error message."
-          clearable
-        />
-      </Mode>
-      <Mode text="Action & Optional">
-        <DxcTextInput
-          label="Text input with action and optional"
-          helperText="Example of helper text"
-          placeholder="Placeholder"
-          action={action}
-          optional
-          clearable
-        />
-      </Mode>
-      <Mode text="Prefix & Suffix">
-        <DxcTextInput
-          label="Prefix and suffix text input"
-          prefix="+34"
-          suffix="USD"
-          helperText="Example of helper text"
-          placeholder="Placeholder"
-        />
-      </Mode>
-      <Mode text="Suggestions">
-        <DxcTextInput
-          label="Suggestions text input"
-          placeholder="Placeholder"
-          suggestions={countries}
-          clearable
-        />
-        <DxcTextInput
-          label="Suggestions error text input"
-          placeholder="Placeholder"
-          suggestions={errorCallbackFunc}
-          clearable
-        />
-      </Mode>
-    </PreviewContainer>
+const errorCallbackFunc: (value: string) => Promise<string[]> = (): Promise<
+  string[]
+> => {
+  const result = new Promise<string[]>((resolve, reject) =>
+    setTimeout(() => {
+      reject("err");
+    }, 3000)
   );
+  return result;
 };
+
+const TextInput = () => (
+  <PreviewContainer>
+    <Mode text="Default">
+      <DxcTextInput
+        label="Label"
+        clearable
+        defaultValue="Example text"
+        size="fillParent"
+      />
+      <DxcTextInput
+        label="Invalid text input"
+        placeholder="Placeholder"
+        error="Error message."
+        clearable
+        size="fillParent"
+      />
+    </Mode>
+    <Mode text="Disabled">
+      <DxcTextInput
+        label="Disabled text input"
+        helperText="Helper text"
+        defaultValue="Example text"
+        action={action}
+        prefix="Pre"
+        disabled
+        size="fillParent"
+      />
+      <DxcTextInput
+        label="Disabled text input"
+        placeholder="Placeholder"
+        helperText="Helper text"
+        suffix="Suf"
+        disabled
+        size="fillParent"
+      />
+    </Mode>
+    <Mode text="Action & Optional">
+      <DxcTextInput
+        label="Text input with action and optional"
+        helperText="Example of helper text"
+        placeholder="Placeholder"
+        action={action}
+        optional
+        clearable
+      />
+    </Mode>
+    <Mode text="Prefix & Suffix">
+      <DxcTextInput
+        label="Prefix and suffix text input"
+        prefix="+34"
+        suffix="USD"
+        helperText="Example of helper text"
+        placeholder="Placeholder"
+      />
+    </Mode>
+    <Mode text="Suggestions">
+      <DxcTextInput
+        label="Suggestions text input"
+        placeholder="Placeholder"
+        suggestions={countries}
+        clearable
+        size="fillParent"
+      />
+      <DxcTextInput
+        label="Suggestions error text input"
+        placeholder="Placeholder"
+        suggestions={errorCallbackFunc}
+        clearable
+        size="fillParent"
+      />
+    </Mode>
+  </PreviewContainer>
+);
 
 export default TextInput;
