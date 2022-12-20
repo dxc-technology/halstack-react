@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { DxcSwitch } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
-import PreviewContainer from "../PreviewContainer";
+import PreviewContainer from "./PreviewContainer";
 
 const Switch = () => {
   const [checked, changeChecked] = useState(false);

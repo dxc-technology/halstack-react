@@ -6,7 +6,7 @@ import {
   DxcButton,
 } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
-import PreviewContainer from "../PreviewContainer";
+import PreviewContainer from "./PreviewContainer";
 
 const iconSVG = (
   <svg viewBox="0 0 24 24">

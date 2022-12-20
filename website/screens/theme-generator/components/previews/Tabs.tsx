@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { DxcFlex, DxcTabs } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
 import twitterIcon from "../../images/TwitterIcon";
-import PreviewContainer from "../PreviewContainer";
+import PreviewContainer from "./PreviewContainer";
 
 const Tabs = () => {
   const [activeTab, setActiveTab] = useState(0);

@@ -7,7 +7,7 @@ import {
 } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
 import facebookIcon from "../../images/FacebookIcon";
-import PreviewContainer from "../PreviewContainer";
+import PreviewContainer from "./PreviewContainer";
 
 const Accordion = () => {
   const [indexAccordion, setIndexAccordion] = useState(0);

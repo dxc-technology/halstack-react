@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { DxcAlert, DxcButton } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
-import PreviewContainer from "../PreviewContainer";
+import PreviewContainer from "./PreviewContainer";
 
 const Alert = () => {
   const [isVisible, changeIsVisible] = useState(false);

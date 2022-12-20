@@ -1,7 +1,8 @@
-import { DxcFlex } from "@dxc-technology/halstack-react";
 import React, { useState, useEffect } from "react";
-import styled from "styled-components";
-import ThemeInputWidgetProps from "./types";
+import StyledInput from "./common/StyledInput";
+import StyledSelect from "./common/StyledSelect";
+import ThemeInputWidgetProps from "./common/types";
+import WidgetContainer from "./common/WidgetContainer";
 
 const unitOptions = [
   "cm",
@@ -39,7 +40,7 @@ const LengthInput = ({
   }, [propertyValue]);
 
   return (
-    <DxcFlex alignItems="center">
+    <WidgetContainer>
       <StyledInput
         type="number"
         value={value}
@@ -66,32 +67,8 @@ const LengthInput = ({
           </option>
         ))}
       </StyledSelect>
-    </DxcFlex>
+    </WidgetContainer>
   );
 };
-
-const StyledInput = styled.input`
-  font: normal 12px/17px Open Sans;
-  width: 80px;
-
-  &:focus {
-    border-color: transparent;
-    border-radius: 2px;
-    outline: 2px solid #0095ff;
-  }
-`;
-
-const StyledSelect = styled.select`
-  margin-left: 5px;
-  font: normal 12px/17px Open Sans;
-  height: 23px;
-  width: 80px;
-
-  &:focus {
-    border-color: transparent;
-    border-radius: 2px;
-    outline: 2px solid #0095ff;
-  }
-`;
 
 export default LengthInput;

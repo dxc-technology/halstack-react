@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { DxcFileInput } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
-import PreviewContainer from "../PreviewContainer";
+import PreviewContainer from "./PreviewContainer";
 
 type FileData = {
   file: File;

@@ -1,4 +1,3 @@
-
 type ThemeInputWidgetProps = {
   propertyName: string;
   propertyValue: string;

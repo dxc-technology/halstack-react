@@ -4,7 +4,7 @@ import Mode from "../Mode";
 import facebookIcon from "../../images/FacebookIcon";
 import linkedinIcon from "../../images/LinkedinIcon";
 import twitterIcon from "../../images/TwitterIcon";
-import PreviewContainer from "../PreviewContainer";
+import PreviewContainer from "./PreviewContainer";
 
 const options = [
   {

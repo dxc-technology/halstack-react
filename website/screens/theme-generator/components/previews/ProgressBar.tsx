@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { DxcButton, DxcProgressBar } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
-import PreviewContainer from "../PreviewContainer";
+import PreviewContainer from "./PreviewContainer";
 
 const ProgressBar = () => {
   const [isVisible, changeIsVisible] = useState(false);

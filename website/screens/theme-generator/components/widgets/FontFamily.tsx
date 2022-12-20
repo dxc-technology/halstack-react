@@ -1,7 +1,8 @@
-import { DxcFlex } from "@dxc-technology/halstack-react";
 import React, { useState, useEffect } from "react";
-import styled from "styled-components";
-import ThemeInputWidgetProps from "./types";
+import StyledInput from "./common/StyledInput";
+import StyledSelect from "./common/StyledSelect";
+import ThemeInputWidgetProps from "./common/types";
+import WidgetContainer from "./common/WidgetContainer";
 
 const fontFamilyOptions = [
   "serif",
@@ -25,7 +26,7 @@ const FontFamilyInput = ({
   }, [propertyValue]);
 
   return (
-    <DxcFlex>
+    <WidgetContainer>
       <StyledInput
         type="text"
         value={value}
@@ -46,37 +47,17 @@ const FontFamilyInput = ({
         }}
       >
         {fontFamilyOptions.map((familyOption, index) => (
-          <option key={`font-family-option-${index}`} value={familyOption} selected={familyOption === unitValue}>
+          <option
+            key={`font-family-option-${index}`}
+            value={familyOption}
+            selected={familyOption === unitValue}
+          >
             {familyOption}
           </option>
         ))}
       </StyledSelect>
-    </DxcFlex>
+    </WidgetContainer>
   );
 };
-
-const StyledInput = styled.input`
-  font: normal 12px/17px Open Sans;
-  width: 80px;
-
-  &:focus {
-    border-color: transparent;
-    border-radius: 2px;
-    outline: 2px solid #0095ff;
-  }
-`;
-
-const StyledSelect = styled.select`
-  font: normal 12px/17px Open Sans;
-  margin-left: 5px;
-  height: 23px;
-  width: 80px;
-
-  &:focus {
-    border-color: transparent;
-    border-radius: 2px;
-    outline: 2px solid #0095ff;
-  }
-`;
 
 export default FontFamilyInput;

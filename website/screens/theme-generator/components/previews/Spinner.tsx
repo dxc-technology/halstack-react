@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { DxcSpinner, DxcButton } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
-import PreviewContainer from "../PreviewContainer";
+import PreviewContainer from "./PreviewContainer";
 
 const Spinner = () => {
   const [isVisible, changeIsVisible] = useState(false);

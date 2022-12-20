@@ -1,7 +1,7 @@
 import React from "react";
 import { DxcBox, DxcInset } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
-import PreviewContainer from "../PreviewContainer";
+import PreviewContainer from "./PreviewContainer";
 
 const Box = () => (
   <PreviewContainer>

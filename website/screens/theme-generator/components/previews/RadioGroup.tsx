@@ -1,7 +1,7 @@
 import React from "react";
 import { DxcFlex, DxcRadioGroup } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
-import PreviewContainer from "../PreviewContainer";
+import PreviewContainer from "./PreviewContainer";
 
 const options = [
   { label: "Option A", value: "A" },

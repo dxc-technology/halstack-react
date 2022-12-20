@@ -8,7 +8,7 @@ import {
   DxcParagraph,
 } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
-import PreviewContainer from "../PreviewContainer";
+import PreviewContainer from "./PreviewContainer";
 
 const errorIcon = (
   <svg

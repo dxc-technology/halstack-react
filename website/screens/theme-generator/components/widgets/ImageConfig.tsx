@@ -1,7 +1,7 @@
 import { DxcFlex } from "@dxc-technology/halstack-react";
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import ThemeInputWidgetProps from "./types";
+import ThemeInputWidgetProps from "./common/types";
 
 const ImageConfig = ({
   propertyName,
@@ -26,15 +26,15 @@ const ImageConfig = ({
   }, [propertyValue]);
 
   return (
-    <DxcFlex alignItems="center">
+    <DxcFlex gap="0.25rem">
       <LogoImage src={logoImage} />
-      <UploadInputFile
+      <HiddenInputFile
         type="file"
         name="file"
         accept="image/*"
         onChange={upload}
-      ></UploadInputFile>
-      <UploadButton onClick={clickToUpload}>Choose a file</UploadButton>
+      />
+      <UploadButton onClick={clickToUpload}>Select a file</UploadButton>
     </DxcFlex>
   );
 };
@@ -46,26 +46,14 @@ const LogoImage = styled.img`
   background-color: #d9d9d9;
 `;
 
-const UploadInputFile = styled.input`
-  width: 0.1px;
-  height: 0.1px;
-  opacity: 0;
-  overflow: hidden;
-  position: absolute;
-  z-index: -1;
-
-  &:focus {
-    border-color: transparent;
-    border-radius: 2px;
-    outline: 2px solid #0095ff;
-  }
+const HiddenInputFile = styled.input`
+  display: none;
 `;
 
 const UploadButton = styled.button`
-  margin-left: 10px;
+  flex-grow: 1;
   font: normal 12px/17px Open Sans;
   height: 23px;
-  width: 140px;
 
   &:focus {
     border-color: transparent;

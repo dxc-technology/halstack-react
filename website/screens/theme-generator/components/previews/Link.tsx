@@ -1,7 +1,7 @@
 import React from "react";
 import { DxcLink, DxcParagraph } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
-import PreviewContainer from "../PreviewContainer";
+import PreviewContainer from "./PreviewContainer";
 
 const icon = (
   <svg viewBox="0 0 24 24" enableBackground="new 0 0 24 24" fill="currentColor">

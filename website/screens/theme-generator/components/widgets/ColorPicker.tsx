@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { SketchPicker } from "react-color";
-import ThemeInputWidgetProps from "./types";
+import ThemeInputWidgetProps from "./common/types";
 import * as Popover from "@radix-ui/react-popover";
 
 const colorRange = [
@@ -53,10 +53,10 @@ const ColorPicker = ({
     <Popover.Root open={isPickerVisible}>
       <Popover.Trigger asChild>
         <ColorSample
-          role="color-container"
+          title="Open color picker"
+          aria-label="Open color picker"
           $color={currentColor}
           onClick={showColorPicker}
-          tabIndex={0}
         />
       </Popover.Trigger>
       <Popover.Content
@@ -84,9 +84,9 @@ const ColorSample = styled.button<{ $color: string }>`
   width: 34px;
   height: 16px;
   background: ${(props) => props.$color};
-  cursor: pointer;
   border: 1px solid #707070;
   border-radius: 4px;
+  cursor: pointer;
 
   &:focus {
     border-color: transparent;

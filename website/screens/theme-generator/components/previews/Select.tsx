@@ -1,7 +1,7 @@
 import React from "react";
 import { DxcSelect } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
-import PreviewContainer from "../PreviewContainer";
+import PreviewContainer from "./PreviewContainer";
 
 const single_options = [
   { label: "Option 01", value: "1" },

@@ -14,7 +14,6 @@ import AlphaValueInput from "./widgets/AlphaValueInput";
 import IntegerInput from "./widgets/IntegerInput";
 import TextAlignInput from "./widgets/TextAlignInput";
 import { makeReadable } from "../utils";
-import { DxcFlex } from "@dxc-technology/halstack-react";
 
 type ThemeInputProps = {
   propertyName: string;
@@ -29,7 +28,7 @@ const ThemeInput = ({
   onChangeCustomTheme,
   tokenType,
 }: ThemeInputProps): JSX.Element => (
-  <DxcFlex alignItems="center" justifyContent="flex-start" gap="0.5rem">
+  <ThemeInputContainer>
     <PropertyName>{makeReadable(propertyName)}</PropertyName>
     {(() => {
       switch (tokenType) {
@@ -139,12 +138,17 @@ const ThemeInput = ({
           );
       }
     })()}
-  </DxcFlex>
+  </ThemeInputContainer>
 );
 
-const PropertyName = styled.div`
-  width: 160px;
-  margin-right: 0.25rem;
+const ThemeInputContainer = styled.div`
+  display: grid;
+  column-gap: 0.375rem;
+  grid-template: 1fr / 1fr 1fr;
+`;
+
+const PropertyName = styled.span`
+  align-self: center;
   font: normal 13px Open Sans;
   color: #000000;
   line-height: 14px;

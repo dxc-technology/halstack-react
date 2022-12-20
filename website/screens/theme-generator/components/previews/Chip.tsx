@@ -1,7 +1,7 @@
 import React from "react";
 import { DxcChip } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
-import PreviewContainer from "../PreviewContainer";
+import PreviewContainer from "./PreviewContainer";
 
 const deleteIcon = (
   <svg height="24" viewBox="0 0 24 24" width="24" fill="currentColor">
