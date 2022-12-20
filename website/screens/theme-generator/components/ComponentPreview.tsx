@@ -1,11 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import componentsPreview from "./ComponentsPreviewMap";
-import { capitalizeText } from "../utils";
+import { makeReadableSidenav } from "../utils";
 import { ErrorBoundary } from "react-error-boundary";
 import { useRouter } from "next/router";
 import {
-  DxcInset,
   DxcHeading,
   DxcFlex,
   DxcAlert,
@@ -31,7 +30,7 @@ const ComponentPreview = ({
 
   return (
     <ComponentPreviewContainer>
-      <DxcHeading text={`${capitalizeText(componentId)} component`} level={3} />
+      <DxcHeading text={`${makeReadableSidenav(componentId)} component`} level={3} />
       <ErrorBoundary
         fallbackRender={() => (
           <DxcFlex alignItems="center" justifyContent="center">

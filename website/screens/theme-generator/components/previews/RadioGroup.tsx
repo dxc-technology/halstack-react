@@ -1,5 +1,5 @@
 import React from "react";
-import { DxcFlex, DxcRadioGroup } from "@dxc-technology/halstack-react";
+import { DxcRadioGroup } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
 import PreviewContainer from "./PreviewContainer";
 
