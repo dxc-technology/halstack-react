@@ -65,7 +65,7 @@ const ComponentPreviewContainer = styled.div`
   flex-direction: column;
   flex-grow: 1;
   gap: 2.25rem;
-  margin: 3.5rem 8% 8% 8%;
+  padding: 3.5rem 8% 8% 8%;
   overflow-x: auto;
 
   /* width */
