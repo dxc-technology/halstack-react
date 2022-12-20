@@ -19,7 +19,13 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Disabled" theme="light" level={4} />
-      <DxcDateInput label="Disabled date input" helperText="Help message" defaultValue="06-04-2027" clearable disabled />
+      <DxcDateInput
+        label="Disabled date input"
+        helperText="Help message"
+        defaultValue="06-04-2027"
+        clearable
+        disabled
+      />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Invalid" theme="light" level={4} />
@@ -38,7 +44,13 @@ export const Chromatic = () => (
         </ExampleContainer>
         <ExampleContainer>
           <Title title="Disabled" theme="dark" level={4} />
-          <DxcDateInput label="Disabled Date input" helperText="Help message" defaultValue="06-04-2027" clearable disabled />
+          <DxcDateInput
+            label="Disabled Date input"
+            helperText="Help message"
+            defaultValue="06-04-2027"
+            clearable
+            disabled
+          />
         </ExampleContainer>
         <ExampleContainer>
           <Title title="Invalid" theme="dark" level={4} />
@@ -107,7 +119,6 @@ ShowDatePicker.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const dateBtn = canvas.getByRole("button");
   await userEvent.click(dateBtn);
-  await userEvent.tab();
 };
 
 const YearPicker = () => (
