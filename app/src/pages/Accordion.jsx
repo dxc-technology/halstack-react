@@ -30,8 +30,8 @@ function App() {
         <h4>Light theme - Default Accordion</h4>
         <DxcAccordion label="Accordion" onChange={onChange}>
           <div>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
+            Lorem i psum dolor sit amet, consectetur adipiscing elit.
+            Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.
           </div>
         </DxcAccordion>
       </div>
