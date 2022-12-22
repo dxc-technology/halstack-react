@@ -14,6 +14,7 @@ const yearList = getYearsArray();
 
 const YearPicker = ({ onYearSelect, selectedDate }: YearPickerPropsType): JSX.Element => {
   const [yearToFocus, setYearToFocus] = useState(selectedDate ? selectedDate.get("year") : dayjs().get("year"));
+
   useEffect(() => {
     const yearToFocusEl = document.getElementById(`year_${yearToFocus}`);
     yearToFocusEl?.scrollIntoView?.({ block: "nearest", inline: "start" });
@@ -23,22 +24,10 @@ const YearPicker = ({ onYearSelect, selectedDate }: YearPickerPropsType): JSX.El
   const handleDayKeyboardEvent = (event) => {
     switch (event.key) {
       case "ArrowUp":
-        setYearToFocus((prev) => {
-          if (prev > 1899) {
-            return prev - 1;
-          } else {
-            return prev;
-          }
-        });
+        setYearToFocus((prev) => (prev > 1899 ? prev - 1 : prev));
         break;
       case "ArrowDown":
-        setYearToFocus((prev) => {
-          if (prev < 2100) {
-            return prev + 1;
-          } else {
-            return prev;
-          }
-        });
+        setYearToFocus((prev) => (prev < 2100 ? prev + 1 : prev));
         break;
     }
   };
@@ -67,17 +56,15 @@ const YearPicker = ({ onYearSelect, selectedDate }: YearPickerPropsType): JSX.El
 };
 
 const YearPickerContainer = styled.div`
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   gap: 4px;
   align-items: center;
   overflow-y: scroll;
-  box-sizing: border-box;
   width: ${(props) => props.theme.dateInput.pickerWidth};
   height: 312px;
   padding: 0px 8px 8px 8px;
-  background-color: ${(props) => props.theme.dateInput.pickerBackgroundColor};
-  border-radius: 4px;
 `;
 
 type YearPickerButtonPropsType = { selected: boolean; isCurrentYear: boolean };
@@ -95,20 +82,20 @@ const YearPickerButton = styled.button<YearPickerButtonPropsType>`
   background-color: transparent;
   border: none;
   border-radius: 50px;
-  outline-offset: -2px;
   cursor: pointer;
-  ${(props) =>
-    props.isCurrentYear &&
-    !props.selected &&
-    `border: 1px solid ${props.theme.dateInput.pickerCurrentYearBorderColor}; color: ${props.theme.dateInput.pickerCurrentYearFontColor};`}
+
   ${(props) =>
     props.selected
       ? `font-weight: 400;
-      font-size: 1.5rem;
-      line-height: 33px;
-      color: ${props.theme.dateInput.pickerSelectedDateColor} !important;
-      background-color: ${props.theme.dateInput.pickerSelectedDateBackgroundColor} !important;`
-      : `transparent;`}
+         font-size: 1.5rem;
+         line-height: 33px;
+         color: ${props.theme.dateInput.pickerSelectedDateColor} !important;
+         background-color: ${props.theme.dateInput.pickerSelectedDateBackgroundColor} !important;`
+      : props.isCurrentYear
+      ? `border: 1px solid ${props.theme.dateInput.pickerCurrentYearBorderColor}; 
+         color: ${props.theme.dateInput.pickerCurrentYearFontColor};`
+      : ``}
+
   &:hover {
     font-weight: 400;
     font-size: 1.5rem;
@@ -121,7 +108,7 @@ const YearPickerButton = styled.button<YearPickerButtonPropsType>`
     font-size: 1.5rem;
     line-height: 33px;
     color: ${(props) => props.theme.dateInput.pickerHoverDateFontColor};
-    outline: ${(props) => props.theme.dateInput.pickerFocusColor + " solid 2px"};
+    outline: ${(props) => props.theme.dateInput.pickerFocusColor} solid 2px;
   }
   &:active {
     font-weight: 400;

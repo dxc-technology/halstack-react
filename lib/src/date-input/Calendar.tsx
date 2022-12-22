@@ -10,6 +10,7 @@ const getDays = (innerDate: Dayjs) => {
   const lastMonthNumberOfDays = innerDate.set("month", innerDate.get("month") - 1).endOf("month");
   const firstDayOfMonth = innerDate.startOf("month").day() === 0 ? 6 : innerDate.startOf("month").day() - 1;
   const daysInMonth = firstDayOfMonth + innerDate.daysInMonth();
+
   for (let i = 0; i < 42; i++) {
     if (i < firstDayOfMonth) {
       monthDayCells.push({
@@ -34,16 +35,10 @@ const getDays = (innerDate: Dayjs) => {
   return monthDayCells;
 };
 
-const isDaySelected = (date: { day: number; month: number; year: number }, selectedDate) => {
-  if (
-    selectedDate?.get("month") === date.month &&
-    selectedDate?.get("year") === date.year &&
-    selectedDate?.get("date") === date.day
-  ) {
-    return true;
-  }
-  return false;
-};
+const isDaySelected = (date: { day: number; month: number; year: number }, selectedDate) =>
+  selectedDate?.get("month") === date.month &&
+  selectedDate?.get("year") === date.year &&
+  selectedDate?.get("date") === date.day;
 
 const Calendar = ({ selectedDate, innerDate, onInnerDateChange, onDaySelect }: CalendarPropsType): JSX.Element => {
   const [dateToFocus, setDateToFocus] = useState(
@@ -53,9 +48,7 @@ const Calendar = ({ selectedDate, innerDate, onInnerDateChange, onDaySelect }: C
   );
   const [toFocus, setToFocus] = useState(false);
   const today = dayjs();
-  const dayCells = useMemo(() => {
-    return getDays(innerDate);
-  }, [innerDate]);
+  const dayCells = useMemo(() => getDays(innerDate), [innerDate]);
   const translatedLabels = useTranslatedLabels();
   const weekDays = translatedLabels.calendar.daysShort;
 
@@ -64,7 +57,7 @@ const Calendar = ({ selectedDate, innerDate, onInnerDateChange, onDaySelect }: C
     onDaySelect(newDate);
   };
 
-  const calendarOnBlur = (event?) => {
+  const handleOnBlur = (event) => {
     if (!event?.currentTarget.contains(event.relatedTarget)) {
       updateDateToFocus();
     }
@@ -93,19 +86,20 @@ const Calendar = ({ selectedDate, innerDate, onInnerDateChange, onDaySelect }: C
       document.getElementById(`day_${dateToFocus.get("date")}_month${dateToFocus.get("month")}`)?.focus();
       setToFocus(false);
     }
-  }, [dateToFocus]);
+  }, [dateToFocus, toFocus]);
 
   useEffect(() => {
     if (dateToFocus.get("month") !== innerDate.get("month") || dateToFocus.get("year") !== innerDate.get("year")) {
       updateDateToFocus();
     }
-  }, [innerDate]);
+  }, [innerDate, dateToFocus, selectedDate]);
 
   const handleDayKeyboardEvent = (event, date) => {
     let dateToFocusTemp =
       date.month === innerDate.get("month")
         ? innerDate.set("date", date.day)
         : innerDate.set("date", date.day).set("month", date.month);
+
     switch (event.key) {
       case "PageUp":
         event.preventDefault();
@@ -159,6 +153,7 @@ const Calendar = ({ selectedDate, innerDate, onInnerDateChange, onDaySelect }: C
         break;
     }
   };
+
   return (
     <CalendarContainer>
       <DxcFlex alignItems="center" justifyContent="space-between">
@@ -166,7 +161,7 @@ const Calendar = ({ selectedDate, innerDate, onInnerDateChange, onDaySelect }: C
           <WeekHeaderCell key={weekDay}>{weekDay}</WeekHeaderCell>
         ))}
       </DxcFlex>
-      <DayCellsContainer onBlur={calendarOnBlur}>
+      <DayCellsContainer onBlur={handleOnBlur}>
         {dayCells.map((date, index) =>
           date !== 0 ? (
             <DayCell
@@ -199,14 +194,12 @@ const Calendar = ({ selectedDate, innerDate, onInnerDateChange, onDaySelect }: C
 };
 
 const CalendarContainer = styled.div`
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  box-sizing: border-box;
   padding: 0px 8px 8px 8px;
   width: ${(props) => props.theme.dateInput.pickerWidth};
-  background-color: ${(props) => props.theme.dateInput.pickerBackgroundColor};
-  border-radius: 4px;
 `;
 
 const WeekHeaderCell = styled.span`
@@ -222,12 +215,11 @@ const WeekHeaderCell = styled.span`
 `;
 
 const DayCellsContainer = styled.div`
+  box-sizing: border-box;
   display: flex;
   gap: 4px;
   flex-wrap: wrap;
   justify-content: space-between;
-  box-sizing: border-box;
-  background-color: ${(props) => props.theme.dateInput.pickerBackgroundColor};
 `;
 
 type DayCellPropsType = {
@@ -249,8 +241,9 @@ const DayCell = styled.button<DayCellPropsType>`
   border: none;
   border-radius: 50%;
   cursor: pointer;
+
   &:focus {
-    outline: ${(props) => props.theme.dateInput.pickerFocusColor + " solid 2px"};
+    outline: ${(props) => props.theme.dateInput.pickerFocusColor} solid 2px;
   }
   &:hover {
     background-color: ${(props) =>
@@ -264,6 +257,7 @@ const DayCell = styled.button<DayCellPropsType>`
     background-color: ${(props) => props.theme.dateInput.pickerActiveDateBackgroundColor};
     color: ${(props) => props.theme.dateInput.pickerActiveDateFontColor};
   }
+
   ${(props) =>
     props.isCurrentDay && !props.selected && `border: 1px solid ${props.theme.dateInput.pickerCurrentDateBorderColor};`}
   background-color: ${(props) =>

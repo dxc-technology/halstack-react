@@ -106,14 +106,6 @@ export type DatePickerPropsType = {
    */
   onDateSelect: (date: Dayjs) => void;
   /**
-   * Function called when there is an attempt to close the calendar.
-   */
-  onCloseCalendar: () => void;
-  /**
-   * Function called when there is an attempt to close the calendar using ESC.
-   */
-  onEscCalendar: () => void;
-  /**
    * Id assigned to the date picker.
    */
   id: string;

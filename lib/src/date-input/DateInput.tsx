@@ -11,13 +11,14 @@ import customParseFormat from "dayjs/plugin/customParseFormat";
 import { v4 as uuidv4 } from "uuid";
 dayjs.extend(customParseFormat);
 
-const getValueForPicker = (value, format) => dayjs(value, format.toUpperCase(), true);
 const calendarIcon = (
   <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" fill="currentColor">
     <path d="M0 0h24v24H0z" fill="none" />
     <path d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z" />
   </svg>
 );
+
+const getValueForPicker = (value, format) => dayjs(value, format.toUpperCase(), true);
 
 const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
   (
@@ -51,15 +52,10 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
 
     useLayoutEffect(() => {
       if (!disabled) {
-        let actionButtonRef;
-        if (clearable) {
-          actionButtonRef = dateRef?.current.getElementsByTagName("button")[1];
-        } else {
-          actionButtonRef = dateRef?.current.getElementsByTagName("button")[0];
-        }
-        actionButtonRef?.setAttribute("aria-haspopup", "true");
+        const actionButtonRef = dateRef?.current.querySelector("[title='Open calendar']");
+        actionButtonRef?.setAttribute("aria-haspopup", true);
         actionButtonRef?.setAttribute("role", "combobox");
-        actionButtonRef?.setAttribute("aria-expanded", `${isOpen}`);
+        actionButtonRef?.setAttribute("aria-expanded", isOpen);
         actionButtonRef?.setAttribute("aria-controls", calendarId);
         actionButtonRef?.setAttribute("aria-describedby", calendarId);
       }
@@ -77,6 +73,7 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
             value: newValue,
           });
     };
+
     const handleIOnChange = ({ value: newValue, error: inputError }) => {
       value ?? setInnerValue(newValue);
       const dayjsDate = getValueForPicker(newValue, format);
@@ -106,31 +103,26 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
           })
         : onBlur?.(callbackParams);
     };
+
     const openCalendar = () => {
       setIsOpen(!isOpen);
     };
     const closeCalendar = () => {
       setIsOpen(false);
     };
-    const calendarAction = {
-      onClick: openCalendar,
-      icon: calendarIcon,
-      title: "Open calendar",
-    };
-    const handleEscCalendar = () => {
+
+    const handleDatePickerEscKeydown = (event) => {
+      event.preventDefault();
       closeCalendar();
       dateRef?.current.getElementsByTagName("input")[0].focus();
     };
-    const handleFocusOutside = (event) => {
-      if (event?.target.getAttribute("aria-controls") !== calendarId) {
-        closeCalendar();
-      }
+    const handleDatePickerOnBlur = (event) => {
+      if (!event?.currentTarget.contains(event.relatedTarget)) closeCalendar();
     };
-    window.addEventListener("blur", closeCalendar);
 
     return (
       <ThemeProvider theme={colorsTheme}>
-        <DxcDateInputContainer ref={ref}>
+        <div ref={ref}>
           <Popover.Root open={isOpen}>
             <Popover.Trigger asChild aria-controls={undefined}>
               <DxcTextInput
@@ -140,7 +132,11 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
                 value={value ?? innerValue}
                 helperText={helperText}
                 placeholder={placeholder ? format.toUpperCase() : null}
-                action={calendarAction}
+                action={{
+                  onClick: openCalendar,
+                  icon: calendarIcon,
+                  title: "Open calendar",
+                }}
                 clearable={clearable}
                 disabled={disabled}
                 optional={optional}
@@ -158,19 +154,18 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
               sideOffset={error ? -18 : 2}
               align="end"
               aria-modal={true}
-              onFocusOutside={handleFocusOutside}
+              onBlur={handleDatePickerOnBlur}
+              onEscapeKeyDown={handleDatePickerEscKeydown}
               avoidCollisions={false}
             >
               <DxcDatePicker
                 id={calendarId}
-                onCloseCalendar={closeCalendar}
-                onEscCalendar={handleEscCalendar}
                 onDateSelect={handleCalendarOnClick}
                 date={getValueForPicker(value ?? innerValue, format.toUpperCase())}
               />
             </StyledContent>
           </Popover.Root>
-        </DxcDateInputContainer>
+        </div>
       </ThemeProvider>
     );
   }
@@ -181,7 +176,5 @@ const StyledContent = styled(Popover.Content)`
     outline: none;
   }
 `;
-
-const DxcDateInputContainer = styled.div``;
 
 export default DxcDateInput;

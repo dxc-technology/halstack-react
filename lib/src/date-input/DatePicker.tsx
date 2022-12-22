@@ -1,5 +1,5 @@
 import dayjs, { Dayjs } from "dayjs";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { DatePickerPropsType } from "./types";
 import Calendar from "./Calendar";
@@ -26,43 +26,20 @@ const downCaret = (
   </svg>
 );
 
-const DxcDatePicker = ({
-  date,
-  onDateSelect,
-  onCloseCalendar,
-  onEscCalendar,
-  id,
-}: DatePickerPropsType): JSX.Element => {
+const DxcDatePicker = ({ date, onDateSelect, id }: DatePickerPropsType): JSX.Element => {
   const [innerDate, setInnerDate] = useState(date.isValid() ? date : dayjs());
   const [content, setContent] = useState("calendar");
   const selectedDate = date.isValid() ? date : null;
-  const ref = useRef(null);
   const translatedLabels = useTranslatedLabels();
-
-  const handleKeyboardEvent = (event) => {
-    if (event.key === "Escape") {
-      event.preventDefault();
-      onEscCalendar();
-    }
-  };
-  const handleClickOutside = (event) => {
-    if (ref?.current && !ref?.current.contains(event.target)) {
-      onCloseCalendar();
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutside);
-    document.addEventListener("keydown", handleKeyboardEvent);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-      document.removeEventListener("keydown", handleKeyboardEvent);
-    };
-  }, [onCloseCalendar]);
 
   const handleDateSelect = (date: Dayjs) => {
     setInnerDate(date);
     onDateSelect(date);
+  };
+
+  const handleOnYearSelect = (year) => {
+    setInnerDate(innerDate.set("year", year));
+    setContent("calendar");
   };
 
   const handleMonthChange = (date: Dayjs) => {
@@ -70,7 +47,7 @@ const DxcDatePicker = ({
   };
 
   return (
-    <DatePicker id={id} ref={ref}>
+    <DatePicker id={id}>
       <PickerHeader>
         <HeaderButton
           aria-label={translatedLabels.calendar.previousMonthTitle}
@@ -104,16 +81,7 @@ const DxcDatePicker = ({
           onDaySelect={handleDateSelect}
         />
       )}
-
-      {content === "yearPicker" && (
-        <YearPicker
-          onYearSelect={(year) => {
-            setInnerDate(innerDate.set("year", year));
-            setContent("calendar");
-          }}
-          selectedDate={selectedDate}
-        />
-      )}
+      {content === "yearPicker" && <YearPicker selectedDate={selectedDate} onYearSelect={handleOnYearSelect} />}
     </DatePicker>
   );
 };
@@ -127,12 +95,11 @@ const DatePicker = styled.div`
 `;
 
 const PickerHeader = styled.div`
+  box-sizing: border-box;
   display: flex;
   gap: 8px;
   align-items: center;
   justify-content: space-between;
-  box-sizing: border-box;
-  height: 40px;
   padding: 0px 16px;
 `;
 
@@ -148,8 +115,9 @@ const HeaderButton = styled.button`
   border-radius: 4px;
   border: none;
   cursor: pointer;
+
   &:focus {
-    outline: ${(props) => props.theme.dateInput.pickerFocusColor + " solid 2px"};
+    outline: ${(props) => props.theme.dateInput.pickerFocusColor} solid 2px;
   }
   &:hover {
     background-color: ${(props) => props.theme.dateInput.pickerHoverDateBackgroundColor};
@@ -180,11 +148,12 @@ const HeaderYearTrigger = styled.button`
   border-radius: 4px;
   border: none;
   cursor: pointer;
+
   &:hover {
     background-color: ${(props) => props.theme.dateInput.pickerHoverDateBackgroundColor};
   }
   &:focus {
-    outline: ${(props) => props.theme.dateInput.pickerFocusColor + " solid 2px"};
+    outline: ${(props) => props.theme.dateInput.pickerFocusColor} solid 2px;
   }
   &:active {
     color: ${(props) => props.theme.dateInput.pickerActiveDateFontColor};
