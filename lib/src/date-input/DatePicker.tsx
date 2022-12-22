@@ -123,8 +123,8 @@ const HeaderButton = styled.button`
     background-color: ${(props) => props.theme.dateInput.pickerHoverDateBackgroundColor};
   }
   &:active {
-    background-color: ${(props) => props.theme.dateInput.pickerActiveDateBackgroundColor};
-    color: ${(props) => props.theme.dateInput.pickerActiveDateFontColor};
+    background-color: #4b1c7d;
+    color: #ffffff;
   }
   svg {
     display: inline-block;
@@ -156,8 +156,8 @@ const HeaderYearTrigger = styled.button`
     outline: ${(props) => props.theme.dateInput.pickerFocusColor} solid 2px;
   }
   &:active {
-    color: ${(props) => props.theme.dateInput.pickerActiveDateFontColor};
-    background-color: ${(props) => props.theme.dateInput.pickerActiveDateBackgroundColor};
+    color: #ffffff;
+    background-color: #4b1c7d;
   }
 `;
 

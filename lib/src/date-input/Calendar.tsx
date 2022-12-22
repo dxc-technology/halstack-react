@@ -55,6 +55,7 @@ const Calendar = ({ selectedDate, innerDate, onInnerDateChange, onDaySelect }: C
   const onDateClickHandler = (date: { day: number; month: number; year: number }) => {
     const newDate = innerDate.set("month", date.month).set("date", date.day);
     onDaySelect(newDate);
+    setDateToFocus(newDate);
   };
 
   const handleOnBlur = (event) => {
@@ -254,19 +255,20 @@ const DayCell = styled.button<DayCellPropsType>`
       props.selected ? props.theme.dateInput.pickerSelectedDateColor : props.theme.dateInput.pickerHoverDateFontColor};
   }
   &:active {
-    background-color: ${(props) => props.theme.dateInput.pickerActiveDateBackgroundColor};
-    color: ${(props) => props.theme.dateInput.pickerActiveDateFontColor};
+    background-color: #4b1c7d;
+    color: #ffffff;
   }
 
-  ${(props) =>
-    props.isCurrentDay && !props.selected && `border: 1px solid ${props.theme.dateInput.pickerCurrentDateBorderColor};`}
+  ${(props) => props.isCurrentDay && !props.selected && `border: 1px solid #cbacec;`}
   background-color: ${(props) =>
     props.selected ? props.theme.dateInput.pickerSelectedDateBackgroundColor : "transparent"};
   color: ${(props) =>
     props.selected
       ? props.theme.dateInput.pickerSelectedDateColor
+      : props.isCurrentDay
+      ? props.theme.dateInput.pickerActualDateFontColor
       : !props.actualMonth
-      ? props.theme.dateInput.pickerOtherMonthDateFontColor
+      ? "#999999"
       : props.theme.dateInput.pickerDayFontColor};
 `;
 

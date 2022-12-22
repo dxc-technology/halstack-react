@@ -92,8 +92,8 @@ const YearPickerButton = styled.button<YearPickerButtonPropsType>`
          color: ${props.theme.dateInput.pickerSelectedDateColor} !important;
          background-color: ${props.theme.dateInput.pickerSelectedDateBackgroundColor} !important;`
       : props.isCurrentYear
-      ? `border: 1px solid ${props.theme.dateInput.pickerCurrentYearBorderColor}; 
-         color: ${props.theme.dateInput.pickerCurrentYearFontColor};`
+      ? `border: 1px solid #cbacec; 
+         color: #5f249f;`
       : ``}
 
   &:hover {
@@ -114,8 +114,8 @@ const YearPickerButton = styled.button<YearPickerButtonPropsType>`
     font-weight: 400;
     font-size: 1.5rem;
     line-height: 33px;
-    color: ${(props) => props.theme.dateInput.pickerActiveDateFontColor};
-    background-color: ${(props) => props.theme.dateInput.pickerActiveDateBackgroundColor} !important;
+    color: #ffffff;
+    background-color: #4b1c7d !important;
   }
 `;
 
