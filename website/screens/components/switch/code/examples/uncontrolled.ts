@@ -1,13 +1,30 @@
-import { DxcSwitch, DxcInset } from "@dxc-technology/halstack-react";
+import {
+  DxcSwitch,
+  DxcInset,
+  DxcFlex,
+  DxcButton,
+} from "@dxc-technology/halstack-react";
+import { useRef } from "react";
 
 const code = `() => {
-  const onChange = (newValue) => {
-    console.log(newValue);
+  const switchRef = useRef();
+
+  const handleSubmit = () => {
+    const switchEl = switchRef.current.getElementsByTagName("input")[0];
+    console.log(switchEl.checked ? switchEl.value : "");
   };
 
   return (
     <DxcInset space="2rem">
-      <DxcSwitch label="Bluetooth" defaultChecked={true} onChange={onChange} />
+      <DxcFlex direction="column" gap="2rem">
+        <DxcSwitch
+          label="Bluetooth"
+          defaultChecked={true}
+          ref={switchRef}
+          value="Bluetooth"
+        />
+        <DxcButton label="Submit" type="submit" onClick={handleSubmit} />
+      </DxcFlex>
     </DxcInset>
   );
 }`;
@@ -15,6 +32,9 @@ const code = `() => {
 const scope = {
   DxcSwitch,
   DxcInset,
+  DxcFlex,
+  useRef,
+  DxcButton,
 };
 
 export default { code, scope };

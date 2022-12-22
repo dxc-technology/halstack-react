@@ -1,26 +1,17 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { DxcSwitch, DxcHeading } from "@dxc-technology/halstack-react";
+import { DxcSwitch } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
 
 const Switch = () => {
   const [checked, changeChecked] = useState(false);
-  // const [checkedDark, changeCheckedDark] = useState(false);
 
   const onChange = (newValue) => {
     changeChecked(newValue);
   };
-  // const onChangeDark = (newValue) => {
-  //   changeCheckedDark(newValue);
-  // };
 
   return (
     <SwitchContainer>
-      <DxcHeading
-        text="Light Mode"
-        level={5}
-        margin={{ top: "xsmall", bottom: "xxsmall" }}
-      />
       <Mode text="Default">
         <DxcSwitch
           checked={checked}

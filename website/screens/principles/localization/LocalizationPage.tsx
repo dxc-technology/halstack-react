@@ -39,8 +39,8 @@ const sections = [
     title: "Default labels",
     content: (
       <DxcParagraph>
-        The following lists define the structure of the JSON object containing
-        the different components and the associated labels.
+        The following sections define the structure of the JSON object with the
+        different components and their respective labels.
       </DxcParagraph>
     ),
     subSections: [
@@ -57,7 +57,7 @@ const sections = [
                 <tr>
                   <th>Label Name</th>
                   <th>Default value</th>
-                  <th></th>
+                  <th>Details</th>
                 </tr>
               </thead>
               <tbody>
@@ -107,6 +107,28 @@ const sections = [
               </tbody>
             </DxcTable>
           </>
+        ),
+      },
+      {
+        title: "applicationLayout",
+        content: (
+          <DxcTable>
+            <thead>
+              <tr>
+                <th>Label Name</th>
+                <th>Default value</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <Code>visibilityToggleTitle</Code>
+                </td>
+                <td>Toggle visibility sidenav</td>
+              </tr>
+            </tbody>
+          </DxcTable>
         ),
       },
       {
@@ -243,7 +265,7 @@ const sections = [
               <tr>
                 <th>Label Name</th>
                 <th>Default value</th>
-                <th></th>
+                <th>Details</th>
               </tr>
             </thead>
             <tbody>
@@ -264,7 +286,7 @@ const sections = [
         ),
       },
       {
-        title: "numberInput",
+        title: "header",
         content: (
           <DxcTable>
             <thead>
@@ -272,6 +294,34 @@ const sections = [
                 <th>Label Name</th>
                 <th>Default value</th>
                 <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <Code>closeIcon</Code>
+                </td>
+                <td>Close menu</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>hamburguerTitle</Code>
+                </td>
+                <td>Menu</td>
+              </tr>
+            </tbody>
+          </DxcTable>
+        ),
+      },
+      {
+        title: "numberInput",
+        content: (
+          <DxcTable>
+            <thead>
+              <tr>
+                <th>Label Name</th>
+                <th>Default value</th>
+                <th>Details</th>
               </tr>
             </thead>
             <tbody>
@@ -323,7 +373,7 @@ const sections = [
               <tr>
                 <th>Label Name</th>
                 <th>Default value</th>
-                <th></th>
+                <th>Details</th>
               </tr>
             </thead>
             <tbody>
@@ -331,7 +381,7 @@ const sections = [
                 <td>
                   <Code>itemsPerPageText</Code>
                 </td>
-                <td>Items per page</td>
+                <td>Items per page:</td>
               </tr>
               <tr>
                 <td>
@@ -470,6 +520,34 @@ const sections = [
                   <Code>actionClearSearchTitle</Code>
                 </td>
                 <td>Clear search</td>
+              </tr>
+            </tbody>
+          </DxcTable>
+        ),
+      },
+      {
+        title: "tabs",
+        content: (
+          <DxcTable>
+            <thead>
+              <tr>
+                <th>Label Name</th>
+                <th>Default value</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <Code>scrollLeft</Code>
+                </td>
+                <td>Scroll left</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>scrollRight</Code>
+                </td>
+                <td>Scroll right</td>
               </tr>
             </tbody>
           </DxcTable>

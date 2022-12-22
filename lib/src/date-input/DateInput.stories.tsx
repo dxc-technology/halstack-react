@@ -119,7 +119,6 @@ ShowDatePicker.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const dateBtn = canvas.getByRole("combobox");
   await userEvent.click(dateBtn);
-  await userEvent.tab();
 };
 
 const YearPicker = () => (

@@ -63,4 +63,9 @@ type Props = {
   tabIndex?: number;
 };
 
+/**
+ * Reference to the component.
+ */
+export type RefType = HTMLDivElement;
+
 export default Props;

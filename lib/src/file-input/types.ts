@@ -110,6 +110,25 @@ type FileModeProps = CommonProps & {
   dropAreaLabel?: never;
 };
 
+/**
+ * Reference to the component.
+ */
+export type RefType = HTMLDivElement;
+
 type Props = DropModeProps | FileModeProps;
+
+/**
+ * Single file item preview.
+ */
+export type FileItemProps = {
+  fileName?: string;
+  error?: string;
+  showPreview: boolean;
+  singleFileMode: boolean;
+  preview: string;
+  type: string;
+  onDelete: (fileName: string) => void,
+  tabIndex: number,
+};
 
 export default Props;

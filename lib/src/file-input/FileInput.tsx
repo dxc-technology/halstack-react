@@ -1,4 +1,4 @@
-// @ts-nocheck
+//@ts-nocheck
 import React, { useState, useEffect, useCallback } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { v4 as uuidv4 } from "uuid";
@@ -6,8 +6,8 @@ import { spaces } from "../common/variables.js";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
 import DxcButton from "../button/Button";
+import FileInputPropsType, { RefType } from "./types";
 import FileItem from "./FileItem";
-import FileInputPropsType from "./types";
 
 const audioIcon = (
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
@@ -44,195 +44,199 @@ const getFilePreview = (file) => {
   else return fileIcon;
 };
 
-const DxcFileInput = ({
-  name = "",
-  mode = "file",
-  label = "",
-  buttonLabel,
-  dropAreaLabel,
-  helperText = "",
-  accept,
-  minSize,
-  maxSize,
-  showPreview = false,
-  multiple = true,
-  disabled = false,
-  callbackFile,
-  value,
-  margin,
-  tabIndex = 0,
-}: FileInputPropsType): JSX.Element => {
-  const [isDragging, setIsDragging] = useState(false);
-  const [files, setFiles] = useState([]);
-  const [fileInputId] = useState(`file-input-${uuidv4()}`);
-
-  const colorsTheme = useTheme();
-  const translatedLabels = useTranslatedLabels();
-
-  const checkFileSize = (file) => {
-    if (file.size < minSize) return translatedLabels.fileInput.fileSizeGreaterThanErrorMessage;
-    else if (file.size > maxSize) return translatedLabels.fileInput.fileSizeLessThanErrorMessage;
-  };
-
-  const getFilesToAdd = async (selectedFiles) => {
-    const filesToAdd = await Promise.all(selectedFiles.map((selectedFile) => getFilePreview(selectedFile))).then(
-      (previews) =>
-        selectedFiles.map((file, index) => {
-          const fileInfo = { file, error: checkFileSize(file), preview: previews[index] };
-          return fileInfo;
-        })
-    );
-    return filesToAdd;
-  };
-
-  const addFile = async (selectedFiles) => {
-    if (multiple) {
-      const filesToAdd = await getFilesToAdd(selectedFiles);
-      const finalFiles = [...files, ...filesToAdd];
-      callbackFile?.(finalFiles);
-    } else {
-      const fileToAdd =
-        selectedFiles.length === 1 ? await getFilesToAdd(selectedFiles) : await getFilesToAdd([selectedFiles[0]]);
-      callbackFile?.(fileToAdd);
-    }
-  };
-
-  const selectFiles = (e) => {
-    const selectedFiles = e.target.files;
-    const filesArray = Object.keys(selectedFiles).map((key) => selectedFiles[key]);
-    addFile(filesArray);
-  };
-
-  const onDelete = useCallback(
-    (fileName) => {
-      const filesCopy = [...files];
-      const fileToRemove = filesCopy.find((file) => {
-        return file.file.name === fileName;
-      });
-      const fileIndex = filesCopy.indexOf(fileToRemove);
-      filesCopy.splice(fileIndex, 1);
-      callbackFile?.(filesCopy);
+const DxcFileInput = React.forwardRef<RefType, FileInputPropsType>(
+  (
+    {
+      name = "",
+      mode = "file",
+      label = "",
+      buttonLabel,
+      dropAreaLabel,
+      helperText = "",
+      accept,
+      minSize,
+      maxSize,
+      showPreview = false,
+      multiple = true,
+      disabled = false,
+      callbackFile,
+      value,
+      margin,
+      tabIndex = 0,
     },
-    [files, callbackFile]
-  );
+    ref
+  ): JSX.Element => {
+    const [isDragging, setIsDragging] = useState(false);
+    const [files, setFiles] = useState([]);
+    const [fileInputId] = useState(`file-input-${uuidv4()}`);
 
-  const handleClick = () => {
-    document.getElementById(fileInputId).click();
-  };
-  const handleDrag = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-  };
-  const handleDragIn = (e) => {
-    if (e.dataTransfer.items?.length > 0) setIsDragging(true);
-  };
-  const handleDragOut = (e) => {
-    // only if dragged items leave container (outside, not to childs)
-    if (!e.currentTarget.contains(e.relatedTarget)) setIsDragging(false);
-  };
-  const handleDrop = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setIsDragging(false);
-    const filesObject = e.dataTransfer.files;
-    if (filesObject?.length > 0) {
-      const filesArray = Object.keys(filesObject).map((key) => filesObject[key]);
-      addFile(filesArray);
-    }
-  };
+    const colorsTheme = useTheme();
+    const translatedLabels = useTranslatedLabels();
 
-  useEffect(() => {
-    const getFiles = async () => {
-      if (value) {
-        const valueFiles = await Promise.all(
-          value.map(async (file) => {
-            if (file.preview) {
-              return file;
-            } else {
-              const preview = await getFilePreview(file.file);
-              return { ...file, preview };
-            }
+    const checkFileSize = (file) => {
+      if (file.size < minSize) return translatedLabels.fileInput.fileSizeGreaterThanErrorMessage;
+      else if (file.size > maxSize) return translatedLabels.fileInput.fileSizeLessThanErrorMessage;
+    };
+
+    const getFilesToAdd = async (selectedFiles) => {
+      const filesToAdd = await Promise.all(selectedFiles.map((selectedFile) => getFilePreview(selectedFile))).then(
+        (previews) =>
+          selectedFiles.map((file, index) => {
+            const fileInfo = { file, error: checkFileSize(file), preview: previews[index] };
+            return fileInfo;
           })
-        );
-        setFiles(valueFiles);
+      );
+      return filesToAdd;
+    };
+
+    const addFile = async (selectedFiles) => {
+      if (multiple) {
+        const filesToAdd = await getFilesToAdd(selectedFiles);
+        const finalFiles = [...files, ...filesToAdd];
+        callbackFile?.(finalFiles);
+      } else {
+        const fileToAdd =
+          selectedFiles.length === 1 ? await getFilesToAdd(selectedFiles) : await getFilesToAdd([selectedFiles[0]]);
+        callbackFile?.(fileToAdd);
       }
     };
-    getFiles();
-  }, [value]);
 
-  return (
-    <ThemeProvider theme={colorsTheme.fileInput}>
-      <FileInputContainer margin={margin} name={name}>
-        <Label htmlFor={fileInputId} disabled={disabled}>
-          {label}
-        </Label>
-        <HelperText disabled={disabled}>{helperText}</HelperText>
-        {mode === "file" ? (
-          <FileContainer multiple={multiple} files={files}>
-            <ValueInput
-              id={fileInputId}
-              type="file"
-              accept={accept}
-              multiple={multiple}
-              onChange={selectFiles}
-              name={name}
-              disabled={disabled}
-              readOnly
-              aria-hidden="true"
-            />
-            <DxcButton
-              mode="secondary"
-              label={
-                buttonLabel ??
-                (multiple
-                  ? translatedLabels.fileInput.multipleButtonLabelDefault
-                  : translatedLabels.fileInput.singleButtonLabelDefault)
+    const selectFiles = (e) => {
+      const selectedFiles = e.target.files;
+      const filesArray = Object.keys(selectedFiles).map((key) => selectedFiles[key]);
+      addFile(filesArray);
+    };
+
+    const onDelete = useCallback(
+      (fileName) => {
+        const filesCopy = [...files];
+        const fileToRemove = filesCopy.find((file) => {
+          return file.file.name === fileName;
+        });
+        const fileIndex = filesCopy.indexOf(fileToRemove);
+        filesCopy.splice(fileIndex, 1);
+        callbackFile?.(filesCopy);
+      },
+      [files, callbackFile]
+    );
+
+    const handleClick = () => {
+      document.getElementById(fileInputId).click();
+    };
+    const handleDrag = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+    };
+    const handleDragIn = (e) => {
+      if (e.dataTransfer.items?.length > 0) setIsDragging(true);
+    };
+    const handleDragOut = (e) => {
+      // only if dragged items leave container (outside, not to childs)
+      if (!e.currentTarget.contains(e.relatedTarget)) setIsDragging(false);
+    };
+    const handleDrop = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      setIsDragging(false);
+      const filesObject = e.dataTransfer.files;
+      if (filesObject?.length > 0) {
+        const filesArray = Object.keys(filesObject).map((key) => filesObject[key]);
+        addFile(filesArray);
+      }
+    };
+
+    useEffect(() => {
+      const getFiles = async () => {
+        if (value) {
+          const valueFiles = await Promise.all(
+            value.map(async (file) => {
+              if (file.preview) {
+                return file;
+              } else {
+                const preview = await getFilePreview(file.file);
+                return { ...file, preview };
               }
-              onClick={handleClick}
-              disabled={disabled}
-              size="fitContent"
-              tabIndex={tabIndex}
-            />
-            <FileItemListContainer mode={mode} multiple={multiple} files={files}>
-              {files.map((file) => (
-                <FileItem
-                  mode={mode}
-                  multiple={multiple}
-                  name={file.file.name}
-                  error={file.error}
-                  showPreview={mode === "file" && !multiple ? false : showPreview}
-                  numFiles={files.length}
-                  preview={file.preview}
-                  type={file.file.type}
-                  onDelete={onDelete}
-                  tabIndex={tabIndex}
-                />
-              ))}
-            </FileItemListContainer>
-          </FileContainer>
-        ) : (
-          <Container>
-            <ValueInput
-              id={fileInputId}
-              type="file"
-              accept={accept}
-              multiple={multiple}
-              onChange={selectFiles}
-              name={name}
-              disabled={disabled}
-              readOnly
-              aria-hidden="true"
-            />
-            <DragDropArea
-              isDragging={isDragging}
-              disabled={disabled}
-              mode={mode}
-              onDrop={handleDrop}
-              onDragEnter={handleDragIn}
-              onDragOver={handleDrag}
-              onDragLeave={handleDragOut}
-            >
-              <ButtonContainer mode={mode}>
+            })
+          );
+          setFiles(valueFiles);
+        }
+      };
+      getFiles();
+    }, [value]);
+
+    return (
+      <ThemeProvider theme={colorsTheme.fileInput}>
+        <FileInputContainer margin={margin} name={name} ref={ref}>
+          <Label htmlFor={fileInputId} disabled={disabled}>
+            {label}
+          </Label>
+          <HelperText disabled={disabled}>{helperText}</HelperText>
+          {mode === "file" ? (
+            <FileContainer singleFileMode={!multiple && files.length === 1}>
+              <ValueInput
+                id={fileInputId}
+                type="file"
+                accept={accept}
+                multiple={multiple}
+                onChange={selectFiles}
+                name={name}
+                disabled={disabled}
+                readOnly
+                aria-hidden="true"
+              />
+              <DxcButton
+                mode="secondary"
+                label={
+                  buttonLabel ??
+                  (multiple
+                    ? translatedLabels.fileInput.multipleButtonLabelDefault
+                    : translatedLabels.fileInput.singleButtonLabelDefault)
+                }
+                onClick={handleClick}
+                disabled={disabled}
+                size="fitContent"
+                tabIndex={tabIndex}
+              />
+              {files.length > 0 && (
+                <FileItemListContainer>
+                  {files.map((file, index) => (
+                    <FileItem
+                      fileName={file.file.name}
+                      error={file.error}
+                      singleFileMode={!multiple && files.length === 1}
+                      showPreview={mode === "file" && !multiple ? false : showPreview}
+                      preview={file.preview}
+                      type={file.file.type}
+                      onDelete={onDelete}
+                      tabIndex={tabIndex}
+                      key={`file-${index}`}
+                    />
+                  ))}
+                </FileItemListContainer>
+              )}
+            </FileContainer>
+          ) : (
+            <Container>
+              <ValueInput
+                id={fileInputId}
+                type="file"
+                accept={accept}
+                multiple={multiple}
+                onChange={selectFiles}
+                name={name}
+                disabled={disabled}
+                readOnly
+                aria-hidden="true"
+              />
+              <DragDropArea
+                isDragging={isDragging}
+                disabled={disabled}
+                mode={mode}
+                onDrop={handleDrop}
+                onDragEnter={handleDragIn}
+                onDragOver={handleDrag}
+                onDragLeave={handleDragOut}
+              >
                 <DxcButton
                   mode="secondary"
                   label={buttonLabel ?? translatedLabels.fileInput.dropAreaButtonLabelDefault}
@@ -240,47 +244,49 @@ const DxcFileInput = ({
                   disabled={disabled}
                   size="fitContent"
                 />
-              </ButtonContainer>
-              {mode === "dropzone" ? (
-                <DropzoneLabel disabled={disabled}>
-                  {dropAreaLabel ??
-                    (multiple
-                      ? translatedLabels.fileInput.multipleDropAreaLabelDefault
-                      : translatedLabels.fileInput.singleDropAreaLabelDefault)}
-                </DropzoneLabel>
-              ) : (
-                <FiledropLabel disabled={disabled}>
-                  {dropAreaLabel ??
-                    (multiple
-                      ? translatedLabels.fileInput.multipleDropAreaLabelDefault
-                      : translatedLabels.fileInput.singleDropAreaLabelDefault)}
-                </FiledropLabel>
+                {mode === "dropzone" ? (
+                  <DropzoneLabel disabled={disabled}>
+                    {dropAreaLabel ??
+                      (multiple
+                        ? translatedLabels.fileInput.multipleDropAreaLabelDefault
+                        : translatedLabels.fileInput.singleDropAreaLabelDefault)}
+                  </DropzoneLabel>
+                ) : (
+                  <FiledropLabel disabled={disabled}>
+                    {dropAreaLabel ??
+                      (multiple
+                        ? translatedLabels.fileInput.multipleDropAreaLabelDefault
+                        : translatedLabels.fileInput.singleDropAreaLabelDefault)}
+                  </FiledropLabel>
+                )}
+              </DragDropArea>
+              {files.length > 0 && (
+                <FileItemListContainer>
+                  {files.map((file, index) => (
+                    <FileItem
+                      fileName={file.file.name}
+                      error={file.error}
+                      singleFileMode={false}
+                      showPreview={showPreview}
+                      preview={file.preview}
+                      type={file.file.type}
+                      onDelete={onDelete}
+                      tabIndex={tabIndex}
+                      key={`file-${index}`}
+                    />
+                  ))}
+                </FileItemListContainer>
               )}
-            </DragDropArea>
-            <FileItemListContainer mode={mode} multiple={multiple} files={files}>
-              {files.map((file) => (
-                <FileItem
-                  mode={mode}
-                  multiple={multiple}
-                  name={file.file.name}
-                  error={file.error}
-                  showPreview={showPreview}
-                  numFiles={files.length}
-                  preview={file.preview}
-                  type={file.file.type}
-                  onDelete={onDelete}
-                  tabIndex={tabIndex}
-                />
-              ))}
-            </FileItemListContainer>
-          </Container>
-        )}
-        {files.length === 1 &&
-          files.map((file) => file.error && mode === "file" && !multiple && <ErrorMessage>{file.error}</ErrorMessage>)}
-      </FileInputContainer>
-    </ThemeProvider>
-  );
-};
+            </Container>
+          )}
+          {mode === "file" && !multiple && files.length === 1 && files[0].error && (
+            <ErrorMessage>{files[0].error}</ErrorMessage>
+          )}
+        </FileInputContainer>
+      </ThemeProvider>
+    );
+  }
+);
 
 const FileInputContainer = styled.div`
   display: flex;
@@ -313,12 +319,10 @@ const HelperText = styled.span`
   line-height: ${(props) => props.theme.helperTextLineHeight};
 `;
 
-const FileContainer = styled.div`
+const FileContainer = styled.div<{ singleFileMode: boolean }>`
   display: flex;
   ${(props) =>
-    props.multiple || props.files.length > 1
-      ? "flex-direction: column; row-gap: 0.25rem;"
-      : "flex-direction: row; column-gap: 0.25rem;"}
+    props.singleFileMode ? "flex-direction: row; column-gap: 0.25rem;" : "flex-direction: column; row-gap: 0.25rem;"}
   margin-top: 0.25rem;
 `;
 
@@ -342,18 +346,22 @@ const Container = styled.div`
 const DragDropArea = styled.div`
   box-sizing: border-box;
   display: flex;
-  flex-direction: ${(props) => (props.mode === "filedrop" ? "row" : "column")};
-  ${(props) => props.mode === "dropzone" && "justify-content: center; padding: 1rem;"};
+  ${(props) =>
+    props.mode === "filedrop"
+      ? "flex-direction: row; column-gap: 0.75rem; height: 48px;"
+      : "justify-content: center; flex-direction: column; row-gap: 0.5rem; height: 160px;"}
   align-items: center;
-  height: ${(props) => (props.mode === "filedrop" ? "48px" : "160px")};
   width: 320px;
+  padding: ${(props) =>
+    props.mode === "filedrop"
+      ? `calc(4px - ${props.theme.dropBorderThickness}) 1rem calc(4px - ${props.theme.dropBorderThickness}) calc(4px - ${props.theme.dropBorderThickness})`
+      : "1rem"};
   overflow: hidden;
   box-shadow: 0 0 0 2px transparent;
   border-radius: ${(props) => props.theme.dropBorderRadius};
   border-width: ${(props) => props.theme.dropBorderThickness};
   border-style: ${(props) => props.theme.dropBorderStyle};
   border-color: ${(props) => (props.disabled ? props.theme.disabledDropBorderColor : props.theme.dropBorderColor)};
-
   ${(props) =>
     props.isDragging &&
     `
@@ -361,12 +369,7 @@ const DragDropArea = styled.div`
       border-color: transparent;
       box-shadow: 0 0 0 2px ${props.theme.focusDropBorderColor};
     `}
-
   cursor: ${(props) => props.disabled && "not-allowed"};
-`;
-
-const ButtonContainer = styled.div`
-  ${(props) => props.mode === "filedrop" && "padding: 2px 12px 2px 3px"};
 `;
 
 const DropzoneLabel = styled.div`
@@ -376,7 +379,6 @@ const DropzoneLabel = styled.div`
   text-overflow: ellipsis;
   -webkit-line-clamp: 3;
   text-align: center;
-  margin-top: 0.5rem;
   color: ${(props) => (props.disabled ? props.theme.disabledDropLabelFontColor : props.theme.dropLabelFontColor)};
   font-family: ${(props) => props.theme.dropLabelFontFamily};
   font-size: ${(props) => props.theme.dropLabelFontSize};
@@ -391,7 +393,6 @@ const FiledropLabel = styled.span`
   font-family: ${(props) => props.theme.dropLabelFontFamily};
   font-size: ${(props) => props.theme.dropLabelFontSize};
   font-weight: ${(props) => props.theme.dropLabelFontWeight};
-  margin-right: 1rem;
 `;
 
 const ErrorMessage = styled.div`

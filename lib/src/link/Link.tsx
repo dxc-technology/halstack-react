@@ -42,7 +42,7 @@ const DxcLink = forwardRef(
         <StyledLink
           as={href ? "a" : "button"}
           tabIndex={tabIndex}
-          onClick={!disabled && onClick}
+          onClick={!disabled ? onClick : undefined}
           href={!disabled && href ? href : undefined}
           target={href ? (newWindow ? "_blank" : "_self") : undefined}
           disabled={disabled}

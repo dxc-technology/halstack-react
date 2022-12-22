@@ -33,6 +33,20 @@ const server = setupServer(...handler);
 
 beforeAll(() => {
   server.listen();
+
+  Object.defineProperty(window, "matchMedia", {
+    writable: true,
+    value: jest.fn().mockImplementation((query) => ({
+      matches: false,
+      media: query,
+      onchange: null,
+      addListener: jest.fn(),
+      removeListener: jest.fn(),
+      addEventListener: jest.fn(),
+      removeEventListener: jest.fn(),
+      dispatchEvent: jest.fn(),
+    })),
+  });
 });
 
 afterEach(() => {
@@ -51,14 +65,13 @@ describe("Import advanced theme", () => {
   global.URL.createObjectURL = createObjectMock;
 
   it("Should create download anchor when Export button is clicked", async () => {
-    const { getByText, getAllByRole, findByText } = render(
+    const { getByText, getAllByRole } = render(
       <Router history={history}>
         <Route>
           <ThemeBuilder />
         </Route>
       </Router>
     );
-    await findByText("next");
     act(() => {
       fireEvent.click(getByText("Export"));
     });
@@ -74,18 +87,16 @@ describe("Import advanced theme", () => {
       .spyOn(routeData, "useParams")
       .mockReturnValue({ type: "advancedTheme" });
 
-    const { getByText, getAllByRole, findByText } = render(
+    const { getByText, getAllByRole } = render(
       <Router history={history}>
         <Route>
           <ThemeBuilder />
         </Route>
       </Router>
     );
-    await findByText("next");
     act(() => {
       fireEvent.click(getByText("Export"));
     });
-
     await waitFor(() => {
       const anchors = getAllByRole("link");
       expect(anchors[anchors.length - 1].download).toBe("theme.json");
@@ -100,23 +111,20 @@ describe("Import advanced theme", () => {
       }
     );
 
-    const { getByText, getAllByRole, findByText } = render(
+    const { getByText, getAllByRole } = render(
       <Router history={history}>
         <Route>
           <ThemeBuilder />
         </Route>
       </Router>
     );
-    await findByText("next");
     act(() => {
       fireEvent.click(getByText("Export"));
     });
-
     await waitFor(() => {
       const anchors = getAllByRole("link");
       expect(anchors[anchors.length - 1].download).toBe("theme.json");
     });
-
     expect(createObjectMock).toHaveBeenLastCalledWith(defaultJSONFile);
   });
 
@@ -131,23 +139,20 @@ describe("Import advanced theme", () => {
       }
     );
 
-    const { getByText, getAllByRole, findByText } = render(
+    const { getByText, getAllByRole } = render(
       <Router history={history}>
         <Route>
           <ThemeBuilder />
         </Route>
       </Router>
     );
-    await findByText("next");
     act(() => {
       fireEvent.click(getByText("Export"));
     });
-
     await waitFor(() => {
       const anchors = getAllByRole("link");
       expect(anchors[anchors.length - 1].download).toBe("theme.json");
     });
-
     expect(createObjectMock).toHaveBeenLastCalledWith(advancedJSONFile);
   });
 });

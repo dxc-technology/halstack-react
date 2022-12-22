@@ -573,6 +573,33 @@ const sections = [
         ),
       },
       {
+        title: "Quick Nav",
+        content: (
+          <DxcTable>
+            <thead>
+              <tr>
+                <th>Theme Input</th>
+                <th>Tokens (calculation)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Accent color</td>
+                <td>
+                  <Code>hoverFontColor</Code> (70% of opacity)
+                </td>
+              </tr>
+              <tr>
+                <td>Font color</td>
+                <td>
+                  <Code>fontColor</Code>
+                </td>
+              </tr>
+            </tbody>
+          </DxcTable>
+        ),
+      },
+      {
         title: "Radio Group",
         content: (
           <DxcTable>
@@ -633,9 +660,6 @@ const sections = [
               <tr>
                 <td>Font color</td>
                 <td>
-                  <Code>listOptionFontColor</Code>
-                  <br />
-                  <br />
                   <Code>valueFontColor</Code>
                   <br />
                   <br />
@@ -649,6 +673,12 @@ const sections = [
                   <br />
                   <br />
                   <Code>collapseIndicatorColor</Code>
+                </td>
+              </tr>
+              <tr>
+                <td>Option font color</td>
+                <td>
+                  <Code>listOptionFontColor</Code>
                 </td>
               </tr>
             </tbody>
@@ -779,6 +809,12 @@ const sections = [
                   <br />
                   <Code>disabledCheckedTrackBackgroundColor</Code> (34% of
                   opacity)
+                </td>
+              </tr>
+              <tr>
+                <td>Font color</td>
+                <td>
+                  <Code>labelFontColor</Code>
                 </td>
               </tr>
             </tbody>
@@ -978,11 +1014,8 @@ const sections = [
                 <td>Base color</td>
                 <td>
                   <Code>selectedStepBackgroundColor</Code>
-                </td>
-              </tr>
-              <tr>
-                <td>Font color</td>
-                <td>
+                  <br />
+                  <br />
                   <Code>selectedStepBorderColor</Code>
                 </td>
               </tr>

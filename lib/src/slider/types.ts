@@ -81,4 +81,9 @@ type Props = {
   size?: "medium" | "large" | "fillParent";
 };
 
+/**
+ * Reference to the component.
+ */
+export type RefType = HTMLDivElement;
+
 export default Props;

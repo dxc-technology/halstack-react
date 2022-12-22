@@ -7,6 +7,7 @@ import Example from "@/common/example/Example";
 import controlled from "./examples/controlled";
 import uncontrolled from "./examples/uncontrolled";
 import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
+import StatusTag from "@/common/StatusTag";
 
 const sections = [
   {
@@ -114,6 +115,16 @@ const sections = [
               <Code>0</Code>
             </td>
             <td>Value of the tabindex.</td>
+          </tr>
+          <tr>
+            <td>ref: object</td>
+            <td></td>
+            <td>
+              <DxcFlex gap="0.25rem" direction="column" alignItems="baseline">
+                <StatusTag status="Information">New</StatusTag>
+                Reference to the component.
+              </DxcFlex>
+            </td>
           </tr>
         </tbody>
       </DxcTable>

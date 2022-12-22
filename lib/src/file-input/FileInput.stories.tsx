@@ -9,8 +9,7 @@ export default {
   component: DxcFileInput,
 };
 
-const picPreview =
-  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABmJLR0QA/wD/AP+gvaeTAAAEDklEQVRogdXaXaxcUxQH8J/etloajVT1I9qgCbdIUB8PXPeKBJHgsV5ExAuVivBUgtSDxgNBVMVHxEeRUhIhkpJ40BYhoTShaQglQtA2VR+ttjMe1j45c6cztzNnzszc+09Ocs/Za+39/++zzt5rr7l0D1diA35P14b0bMJgAE+g2uR6FpP7xq4NZCL2YjlOSNdt6VkVj/eNXYu4VhD9G+c3aL8gtVWS7bjEsfhRCFk2ht2yZPNT8hl3WCUIfoZJY9gdhY+T7QM94NUWFmEfDuHCFuyXJNv9OL2LvNrGO2KGn2rD55nks6ErjAog+8B3YXYbfrPwR/Lt+4d/NLYLMrcW8F+efL/DtBJ5tY17EpEvxEbYLgawJfVxXxObRZhbiF2LWCjfE4Y66OeS1Mc/OLnm+Uw8ggP4oYP+j4hHxUy+VEJfL6e+3hTL8/X4RZ7W/FvCGE1xOdZp7wNvhvny9CULtSo+1QMhZWImPpQL+A03YbouCpkqXn8ZqA+jg1iD41P7NF0QMiAy2N0ipDrFWUa/hU9wXp1N6UIuEktsNug3HfY3gD2pr4rYTxrlZ6UJmY3n0mBZ7JYhhDi3ZP1+i6sb2HQsZBJuEEfUqljjV+Ic5QkhzifZylTF+xisae9IyBIRr1nnb+PU1DaoXCHkk5blXfvxGGYoKGQWnhbpdZb/XFNn0w0hGebgBXm4fY/rtClkOn6Wz8j96Vk9uikkw5DRm2JLQrKV4hB2pr+niJznuPI5toRN4rx/u1jZiLfUMqZiBf4Ss7Bb7Bu1WW0v3kgt5mA17i7iPB8vymN1Cy5Obb0W0jFm4Fd5jFbEfjJsggl5UBDeiLvk4bZP/4RcJj76W1p1OE2sXAfFBkgcotYrL0UpghF5BfOkVhzeTQ5rGrRdIXbiVWWxaxNvCG6vHckwq4jsFPXa8YYF8gPYVc2MaisiN/eGVyGsEBy3C86H4d5k8LliFZFeYSq+FlwP218WiJWpIpbY8Y5heeXllNqGdcqriPQKrwrO67MHZwh1ezGvT6SKIKu8VLCYWGareKgPZEZECrS5oP/Dgvtq2Jpuzi6FWmuYh7XyfK5asJ9zk++X5EWARuePsjEZd9SM+afOhBwjz9TtSDeDY3mUgBH526/gFRHnnQhZLD9NejLdvG7sn8yKoj6MtuLSmvaiQibJ8781RNl+V3rwEZaKpGxKQeIZ6sNoD+5s0G87QqYkbksT1yydWpQZDMl/kS16bawb9AN5GK3VfGnvZMwd0qEv+w+ETTgTN4rEcRAninSgVdTP6oE2fFvFf6JIuA1v4XmRkXQVk+UFhGoacKXDJ6eTj72nmGt0DWCbONdkmDBCMgzjK6MrmAtNQCGUvyH2HfXhNmGFZBgRNYD3Ou3ofwlpcfptqgzTAAAAAElFTkSuQmCC";
+const picPreview = "https://cdn.mos.cms.futurecdn.net/CAZ6JXi6huSuN4QGE627NR.jpg"
 
 const file1 = new File(["file1"], "file.pdf", { type: "text/plain" });
 const file2 = new File(["file2"], "file2.mp3", {
@@ -22,7 +21,7 @@ const file3 = new File(["file3"], "file3.png", {
 const file4 = new File(["file4"], "file4file4file4file4file4file4file4file4file4.mp4", {
   type: "video",
 });
-const file5 = new File(["file4"], "file5file5file5file5file5file5file5file5file5.mp4", {
+const file5 = new File(["file5"], "file5file5file5file5file5file5file5file5file5.mp4", {
   type: "video",
 });
 
@@ -54,7 +53,7 @@ const filesExamples = [
     file: file4,
   },
   {
-    error: "Error message error message error message error message",
+    error: "This error message is a multiline paragraph for testing.",
     file: file5,
   },
   {
@@ -70,11 +69,10 @@ export const Chromatic = () => (
     <ExampleContainer pseudoState="pseudo-hover">
       <Title title="Hovered" theme="light" level={4} />
       <FileItem
-        mode="dropzone"
-        multiple={true}
-        name="file"
+        fileName="file"
+        error=""
+        singleFileMode={false}
         showPreview={false}
-        numFiles={1}
         preview={picPreview}
         type="image/png"
         onDelete={() => {}}
@@ -84,11 +82,10 @@ export const Chromatic = () => (
     <ExampleContainer pseudoState="pseudo-focus">
       <Title title="Focused" theme="light" level={4} />
       <FileItem
-        mode="dropzone"
-        multiple={true}
-        name="file"
+        fileName="file"
+        error=""
+        singleFileMode={false}
         showPreview={false}
-        numFiles={1}
         preview={picPreview}
         type="image/png"
         onDelete={() => {}}
@@ -98,11 +95,10 @@ export const Chromatic = () => (
     <ExampleContainer pseudoState="pseudo-active">
       <Title title="Actived" theme="light" level={4} />
       <FileItem
-        mode="dropzone"
-        multiple={true}
-        name="file"
+        fileName="file"
+        error=""
+        singleFileMode={false}
         showPreview={false}
-        numFiles={1}
         preview={picPreview}
         type="image/png"
         onDelete={() => {}}
