@@ -1,3 +1,5 @@
+import { Dayjs } from "dayjs";
+
 type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
 type Margin = {
   top?: Space;
@@ -94,6 +96,61 @@ type Props = {
   tabIndex?: number;
 };
 
+export type DatePickerPropsType = {
+  /**
+   * Initial selected date value. If invalid the actual date will be used instead.
+   */
+  date: Dayjs;
+  /**
+   * Function called when a date is selected.
+   */
+  onDateSelect: (date: Dayjs) => void;
+  /**
+   * Id assigned to the date picker.
+   */
+  id: string;
+};
+
+export type CalendarPropsType = {
+  /**
+   * Initial selected date value. If invalid the actual date will be used instead.
+   */
+  selectedDate: Dayjs;
+  /**
+   * Date showed by the calendar.
+   */
+  innerDate: Dayjs;
+  /**
+   * Function called when the date showned needs to be updated
+   */
+  onInnerDateChange: (date: Dayjs) => void;
+  /**
+   * Function called when a date is selected.
+   */
+  onDaySelect: (date: Dayjs) => void;
+};
+
+export type MonthPickerPropsType = {
+  /**
+   * Initial selected date value. If invalid the actual date will be used instead.
+   */
+  selectedDate: Dayjs;
+  /**
+   * Function called when a month is selected.
+   */
+  onMonthSelect: (month: number) => void;
+};
+
+export type YearPickerPropsType = {
+  /**
+   * Initial selected date value. If invalid the actual date will be used instead.
+   */
+  selectedDate: Dayjs;
+  /**
+   * Function called when a year is selected.
+   */
+  onYearSelect: (year: number) => void;
+};
 /**
  * Reference to the component.
  */
