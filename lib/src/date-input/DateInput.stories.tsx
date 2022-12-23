@@ -109,41 +109,43 @@ export const Chromatic = () => (
 
 const DatePicker = () => (
   <ExampleContainer expanded>
-    <Title title="Show date input" theme="light" level={4} />
-    <DxcDateInput label="Date input" defaultValue="10-06-2023" />
+    <Title title="Show date picker" theme="light" level={4} />
+    <DxcDateInput label="Date input" defaultValue="06-04-2027" />
   </ExampleContainer>
 );
 
 export const ShowDatePicker = DatePicker.bind({});
 ShowDatePicker.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
-  const dateBtn = canvas.getByRole("button");
+  const dateBtn = canvas.getByRole("combobox");
   await userEvent.click(dateBtn);
 };
 
 const YearPicker = () => (
   <ExampleContainer expanded>
-    <Title title="Show date input" theme="light" level={4} />
-    <DxcDateInput label="Date input" defaultValue="10-06-2023" />
+    <Title title="Show year picker" theme="light" level={4} />
+    <DxcDateInput label="Date input" defaultValue="06-04-2027" />
   </ExampleContainer>
 );
 
 export const ShowYearPicker = YearPicker.bind({});
-ShowYearPicker.play = async () => {
-  await fireEvent.click(screen.getByRole("button"));
-  await fireEvent.click(screen.getByText("2023"));
+ShowYearPicker.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  await userEvent.click(canvas.getByRole("combobox"));
+  await fireEvent.click(screen.getByText("April 2027"));
 };
 
 const YearPickerFocus = () => (
   <ExampleContainer expanded>
-    <Title title="Show date input" theme="light" level={4} />
-    <DxcDateInput label="Date input" defaultValue="10-06-2023" />
+    <Title title="Show year picker and focus" theme="light" level={4} />
+    <DxcDateInput label="Date input" defaultValue="06-04-2027" />
   </ExampleContainer>
 );
 
 export const ShowYearPickerFocus = YearPickerFocus.bind({});
-ShowYearPickerFocus.play = async () => {
-  await fireEvent.click(screen.getByRole("button"));
-  await fireEvent.click(screen.getByText("2023"));
-  await screen.getByText("2021").focus();
+ShowYearPickerFocus.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  await userEvent.click(canvas.getByRole("combobox"));
+  await fireEvent.click(screen.getByText("April 2027"));
+  await userEvent.tab();
 };
