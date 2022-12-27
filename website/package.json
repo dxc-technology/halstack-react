@@ -9,13 +9,16 @@
   },
   "dependencies": {
     "@dxc-technology/halstack-react": "0.0.0-e1386cf",
+    "@radix-ui/react-popover": "0.1.6",
     "@types/styled-components": "^5.1.18",
     "axios": "^0.27.2",
     "cross-env": "^7.0.3",
     "next": "12.1.0",
     "raw-loader": "^4.0.2",
     "react": "17.0.2",
+    "react-color": "^2.19.3",
     "react-dom": "17.0.2",
+    "react-error-boundary": "^3.1.4",
     "react-live": "^2.4.1",
     "react-markdown": "^8.0.0",
     "slugify": "^1.6.5",
@@ -24,6 +27,7 @@
   "devDependencies": {
     "@types/node": "17.0.2",
     "@types/react": "17.0.37",
+    "@types/react-color": "^3.0.6",
     "eslint": "8.5.0",
     "eslint-config-next": "12.0.9",
     "typescript": "4.5.4"

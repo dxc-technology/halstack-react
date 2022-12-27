@@ -12,28 +12,39 @@ import "../global-styles.css";
 import { responsiveSizes } from "../screens/common/variables.js";
 import SidenavLogo from "@/common/sidenav/SidenavLogo";
 import { useRouter } from "next/router";
-import { LinksSectionDetails, LinksSections } from "@/common/pagesList";
+import {
+  LinksSectionDetails,
+  LinksSections,
+  themeGeneratorLinks,
+} from "@/common/pagesList";
 import Link from "next/link";
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode;
 };
-
 type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
 };
+type ApplicationLayoutWrapperProps = {
+  condition: boolean;
+  wrapper: (children: React.ReactNode) => JSX.Element;
+  children: ReactNode;
+};
 
-function MyApp({ Component, pageProps }: AppPropsWithLayout) {
+const ApplicationLayoutWrapper = ({
+  condition,
+  wrapper,
+  children,
+}: ApplicationLayoutWrapperProps): JSX.Element => (
+  <>{condition ? wrapper(children) : children}</>
+);
+
+const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
   const getLayout = Component.getLayout || ((page) => page);
-
   const componentWithLayout = getLayout(<Component {...pageProps} />);
 
   const [filter, setFilter] = useState("");
   const { asPath: currentPath } = useRouter();
-
-  const onFilterInputChange = ({ value }: { value: string }) => {
-    setFilter(value);
-  };
 
   const filteredLinks = useMemo(() => {
     const filtered: LinksSectionDetails[] = [];
@@ -47,64 +58,76 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
     });
     return filtered;
   }, [filter]);
+
+  const onFilterInputChange = ({ value }: { value: string }) => {
+    setFilter(value);
+  };
+
   return (
     <>
       <Head>
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
       </Head>
-      <HalstackProvider advancedTheme={{}}>
-        <DxcApplicationLayout
-          visibilityToggleLabel="Menu"
-          sidenav={
-            <DxcApplicationLayout.SideNav title={<SidenavLogo />}>
-              <DxcApplicationLayout.SideNav.Section>
-                <DxcTextInput
-                  placeholder="Search docs"
-                  value={filter}
-                  onChange={onFilterInputChange}
-                  size="fillParent"
-                  clearable
-                  margin={{
-                    top: "small",
-                    bottom: "small",
-                    right: "xsmall",
-                    left: "xsmall",
-                  }}
-                />
-              </DxcApplicationLayout.SideNav.Section>
-              {filteredLinks?.map(({ label, links }) => {
-                return (
-                  <DxcApplicationLayout.SideNav.Section key={label}>
-                    <DxcApplicationLayout.SideNav.Group title={label}>
-                      {links.map(({ label, path }) => (
-                        <Link key={`${label}-${path}`} href={path} passHref>
-                          <DxcApplicationLayout.SideNav.Link
-                            selected={
-                              currentPath.slice(0, -1) === path ||
-                              currentPath.slice(0, -1) ===
-                                path + "/specifications" ||
-                              currentPath.slice(0, -1) === path + "/usage"
-                            }
-                          >
-                            {label}
-                          </DxcApplicationLayout.SideNav.Link>
-                        </Link>
-                      ))}
-                    </DxcApplicationLayout.SideNav.Group>
+      <HalstackProvider>
+        <ApplicationLayoutWrapper
+          condition={!themeGeneratorLinks.includes(currentPath)}
+          wrapper={(children) => (
+            <DxcApplicationLayout
+              visibilityToggleLabel="Menu"
+              sidenav={
+                <DxcApplicationLayout.SideNav title={<SidenavLogo />}>
+                  <DxcApplicationLayout.SideNav.Section>
+                    <DxcTextInput
+                      placeholder="Search docs"
+                      value={filter}
+                      onChange={onFilterInputChange}
+                      size="fillParent"
+                      clearable
+                      margin={{
+                        top: "small",
+                        bottom: "small",
+                        right: "xsmall",
+                        left: "xsmall",
+                      }}
+                    />
                   </DxcApplicationLayout.SideNav.Section>
-                );
-              })}
-            </DxcApplicationLayout.SideNav>
-          }
+                  {filteredLinks?.map(({ label, links }) => {
+                    return (
+                      <DxcApplicationLayout.SideNav.Section key={label}>
+                        <DxcApplicationLayout.SideNav.Group title={label}>
+                          {links.map(({ label, path }) => (
+                            <Link key={`${label}-${path}`} href={path} passHref>
+                              <DxcApplicationLayout.SideNav.Link
+                                selected={
+                                  currentPath.slice(0, -1) === path ||
+                                  currentPath.slice(0, -1) ===
+                                    path + "/specifications" ||
+                                  currentPath.slice(0, -1) === path + "/usage"
+                                }
+                              >
+                                {label}
+                              </DxcApplicationLayout.SideNav.Link>
+                            </Link>
+                          ))}
+                        </DxcApplicationLayout.SideNav.Group>
+                      </DxcApplicationLayout.SideNav.Section>
+                    );
+                  })}
+                </DxcApplicationLayout.SideNav>
+              }
+            >
+              <DxcApplicationLayout.Main>
+                <MainContainer>{children}</MainContainer>
+              </DxcApplicationLayout.Main>
+            </DxcApplicationLayout>
+          )}
         >
-          <DxcApplicationLayout.Main>
-            <MainContainer>{componentWithLayout}</MainContainer>
-          </DxcApplicationLayout.Main>
-        </DxcApplicationLayout>
+          {componentWithLayout}
+        </ApplicationLayoutWrapper>
       </HalstackProvider>
     </>
   );
-}
+};
 
 const MainContainer = styled.div`
   margin: 80px auto;

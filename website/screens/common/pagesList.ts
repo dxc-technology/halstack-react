@@ -13,6 +13,11 @@ type NavigationLinks = {
   nextLink: LinkDetails | null;
 };
 
+export const themeGeneratorLinks = [
+  "/theme-generator/opinionated-theme/",
+  "/theme-generator/advanced-theme/"
+]
+
 const overviewLinks: LinkDetails[] = [
   { label: "Introduction", path: "/overview/introduction" },
 ];
