@@ -831,23 +831,6 @@
     "trackWidth": "length",
     "spaceBetweenLabelSwitch": "length"
   },
-  "tag": {
-    "fontFamily": "fFamily",
-    "fontColor": "color",
-    "fontSize": "length",
-    "fontStyle": "fStyle",
-    "fontWeight": "fWeight",
-    "labelPaddingTop": "length",
-    "labelPaddingBottom": "length",
-    "labelPaddingLeft": "length",
-    "labelPaddingRight": "length",
-    "height": "length",
-    "iconColor": "color",
-    "iconSectionWidth": "length",
-    "iconHeight": "length",
-    "iconWidth": "length",
-    "focusColor": "color"
-  },
   "table": {
     "rowSeparatorThickness": "length",
     "rowSeparatorStyle": "fStyle",
@@ -920,6 +903,23 @@
     "badgeWidthWithNotificationNumber": "length",
     "badgeHeightWithNotificationNumber": "length",
     "badgeRadiusWithNotificationNumber": "length"
+  },
+  "tag": {
+    "fontFamily": "fFamily",
+    "fontColor": "color",
+    "fontSize": "length",
+    "fontStyle": "fStyle",
+    "fontWeight": "fWeight",
+    "labelPaddingTop": "length",
+    "labelPaddingBottom": "length",
+    "labelPaddingLeft": "length",
+    "labelPaddingRight": "length",
+    "height": "length",
+    "iconColor": "color",
+    "iconSectionWidth": "length",
+    "iconHeight": "length",
+    "iconWidth": "length",
+    "focusColor": "color"
   },
   "textarea": {
     "fontFamily": "fFamily",

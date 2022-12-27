@@ -831,23 +831,6 @@
     "trackWidth": "36px",
     "spaceBetweenLabelSwitch": "8px"
   },
-  "tag": {
-    "fontFamily": "Open Sans, sans-serif",
-    "fontColor": "#000000",
-    "fontSize": "0.875rem",
-    "fontStyle": "normal",
-    "fontWeight": "400",
-    "labelPaddingTop": "0px",
-    "labelPaddingBottom": "0px",
-    "labelPaddingLeft": "16px",
-    "labelPaddingRight": "16px",
-    "height": "40px",
-    "iconColor": "#ffffff",
-    "iconSectionWidth": "40px",
-    "iconHeight": "24px",
-    "iconWidth": "24px",
-    "focusColor": "#0095ff"
-  },
   "table": {
     "rowSeparatorThickness": "1px",
     "rowSeparatorStyle": "solid",
@@ -920,6 +903,23 @@
     "badgeWidthWithNotificationNumber": "23px",
     "badgeHeightWithNotificationNumber": "17px",
     "badgeRadiusWithNotificationNumber": "10px"
+  },
+  "tag": {
+    "fontFamily": "Open Sans, sans-serif",
+    "fontColor": "#000000",
+    "fontSize": "0.875rem",
+    "fontStyle": "normal",
+    "fontWeight": "400",
+    "labelPaddingTop": "0px",
+    "labelPaddingBottom": "0px",
+    "labelPaddingLeft": "16px",
+    "labelPaddingRight": "16px",
+    "height": "40px",
+    "iconColor": "#ffffff",
+    "iconSectionWidth": "40px",
+    "iconHeight": "24px",
+    "iconWidth": "24px",
+    "focusColor": "#0095ff"
   },
   "textarea": {
     "fontFamily": "Open Sans, sans-serif",

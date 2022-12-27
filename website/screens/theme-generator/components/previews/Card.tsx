@@ -1,5 +1,5 @@
 import React from "react";
-import { DxcCard } from "@dxc-technology/halstack-react";
+import { DxcCard, DxcInset, DxcParagraph } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
 import PreviewContainer from "./PreviewContainer";
 
@@ -9,10 +9,10 @@ const Card = () => (
       <DxcCard
         imageSrc="https://picsum.photos/id/1022/200/300"
         imageCover={true}
-        margin="small"
-        contentPadding="xsmall"
       >
-        Lorem Ipsum
+        <DxcInset space="1rem">
+          <DxcParagraph>Lorem Ipsum</DxcParagraph>
+        </DxcInset>
       </DxcCard>
     </Mode>
   </PreviewContainer>

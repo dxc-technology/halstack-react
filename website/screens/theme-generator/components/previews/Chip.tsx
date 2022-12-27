@@ -18,7 +18,7 @@ const Chip = () => {
   return (
     <PreviewContainer>
       <Mode text="Default">
-        <DxcChip label="Default chip" margin={{ top: "xsmall" }} />
+        <DxcChip label="Default chip"/>
       </Mode>
       <Mode text="With suffix">
         <DxcChip
