@@ -50,9 +50,9 @@ const sections = [
     ),
   },
   {
-    title: "Datepicker dialog",
+    title: "Date picker dialog",
     content: (
-      <Figure caption="Structure and spacing for date picker calendar pop-up">
+      <Figure caption="Structure and spacing for the date picker pop-up">
         <Image src={datePopupSpecs} alt="Date specifications for picker" />
       </Figure>
     ),
@@ -61,7 +61,7 @@ const sections = [
     title: "States",
     subSections: [
       {
-        title: " Date input",
+        title: "Date input",
         content: (
           <>
             <DxcParagraph>
@@ -69,27 +69,29 @@ const sections = [
               <strong>focus</strong>, <strong>error</strong>, and{" "}
               <strong>disabled</strong>.
             </DxcParagraph>
-            <Figure caption="Examples of date input states">
+            <Figure caption="Examples of the date input states">
               <Image
                 src={dateSpecsStates}
-                alt="Examples of date input states"
+                alt="Examples of the date input states"
               />
             </Figure>
           </>
         ),
       },
       {
-        title: " Date dialog",
+        title: "Date picker dialog",
         content: (
           <>
             <DxcParagraph>
-              States: <strong>enabled</strong>, <strong>hover</strong>,{" "}
-              <strong>focus</strong>, and <strong>selected</strong>.
+              States: <strong>default</strong>, <strong>hover</strong>,{" "}
+              <strong>focus</strong>, <strong>active</strong>,{" "}
+              <strong>selected</strong>, <strong>today</strong> and{" "}
+              <strong>disabled</strong>.
             </DxcParagraph>
-            <Figure caption="Examples of the calendar dialog states">
+            <Figure caption="Examples of a calendar day states">
               <Image
                 src={dateSpecsPopup}
-                alt="Examples of the calendar dialog states"
+                alt="Examples of a calendar day states"
               />
             </Figure>
           </>
@@ -118,335 +120,9 @@ const sections = [
     ),
   },
   {
-    title: "Design tokens",
-    subSections: [
-      {
-        title: "Color",
-        content: (
-          <DxcTable>
-            <thead>
-              <tr>
-                <th>Component token</th>
-                <th>Element</th>
-                <th>Core token</th>
-                <th>Value</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <Code>pickerBackgroundColor</Code>
-                </td>
-                <td>Dialog container</td>
-                <td>
-                  <Code>color-white</Code>
-                </td>
-                <td>#ffffff</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>pickerDayFontColor</Code>
-                </td>
-                <td>Dialog text</td>
-                <td>
-                  <Code>color-black</Code>
-                </td>
-                <td>#000000</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>pickerCurrentDateColor</Code>
-                </td>
-                <td>Dialog title</td>
-                <td>
-                  <Code>color-grey-500</Code>
-                </td>
-                <td>#999999</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>pickerHoverDateBackgroundColor</Code>
-                </td>
-                <td>Container background</td>
-                <td>
-                  <Code>color-purple-200</Code>
-                </td>
-                <td>#e5d5f6</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>pickerSelectedDateColor</Code>
-                </td>
-                <td>Date text:selected</td>
-                <td>
-                  <Code>color-white</Code>
-                </td>
-                <td>#ffffff</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>pickerSelectedDateBackgroundColor</Code>
-                </td>
-                <td>Date background:hover</td>
-                <td>
-                  <Code>color-purple-700</Code>
-                </td>
-                <td>#5f249f</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>pickerHoverDateFontColor</Code>
-                </td>
-                <td>Date text:hover</td>
-                <td>
-                  <Code>color-black</Code>
-                </td>
-                <td>#000000</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>pickerYearFontColor</Code>
-                </td>
-                <td>Year label</td>
-                <td>
-                  <Code>color-black</Code>
-                </td>
-                <td>#000000</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>pickerMonthFontColor</Code>
-                </td>
-                <td>Mont label</td>
-                <td>
-                  <Code>color-black</Code>
-                </td>
-                <td>#000000</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>pickerWeekFontColor</Code>
-                </td>
-                <td>Weekday label</td>
-                <td>
-                  <Code>color-black</Code>
-                </td>
-                <td>#000000</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>pickerMonthArrowsBackgroundColor</Code>
-                </td>
-                <td>Month selection controls</td>
-                <td>
-                  <Code>color-transparent</Code>
-                </td>
-                <td>transparent</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>pickerFocusColor</Code>
-                </td>
-                <td>Focus indicator</td>
-                <td>
-                  <Code>color-blue-600</Code>
-                </td>
-                <td>#0095ff</td>
-              </tr>
-            </tbody>
-          </DxcTable>
-        ),
-      },
-      {
-        title: "Typography",
-        content: (
-          <>
-            <DxcTable>
-              <thead>
-                <tr>
-                  <th>Component token</th>
-                  <th>Element</th>
-                  <th>Core token</th>
-                  <th>Value</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <Code>pickerFontFamily</Code>
-                  </td>
-                  <td>Datepicker dialog</td>
-                  <td>font-family-sans`</td>
-                  <td>&#39;Open Sans&#39;, sans-serif</td>
-                </tr>
-              </tbody>
-            </DxcTable>
-            <DxcTable>
-              <thead>
-                <tr>
-                  <th>Property</th>
-                  <th>Element</th>
-                  <th>Core token</th>
-                  <th>Value</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <Code>font-size</Code>
-                  </td>
-                  <td>Year selector</td>
-                  <td>
-                    <Code>font-scale-03</Code>
-                  </td>
-                  <td>1rem / 16px</td>
-                </tr>
-                <tr>
-                  <td>
-                    <Code>font-size</Code>
-                  </td>
-                  <td>Current month</td>
-                  <td>-</td>
-                  <td>13px</td>
-                </tr>
-                <tr>
-                  <td>
-                    <Code>font-size</Code>
-                  </td>
-                  <td>Day</td>
-                  <td>-</td>
-                  <td>13px</td>
-                </tr>
-                <tr>
-                  <td>
-                    <Code>font-weight</Code>
-                  </td>
-                  <td>Year selector</td>
-                  <td>
-                    <Code>font-weight-semibold</Code>
-                  </td>
-                  <td>600</td>
-                </tr>
-                <tr>
-                  <td>
-                    <Code>font-weight</Code>
-                  </td>
-                  <td>Current month</td>
-                  <td>
-                    <Code>font-weight-regular</Code>
-                  </td>
-                  <td>400</td>
-                </tr>
-                <tr>
-                  <td>
-                    <Code>font-weight</Code>
-                  </td>
-                  <td>Day</td>
-                  <td>
-                    <Code>font-weight-regular</Code>
-                  </td>
-                  <td>400</td>
-                </tr>
-              </tbody>
-            </DxcTable>
-          </>
-        ),
-      },
-      {
-        title: "Spacing",
-        content: (
-          <DxcTable>
-            <thead>
-              <tr>
-                <th>Property</th>
-                <th>Element</th>
-                <th>Core token</th>
-                <th>Value</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <Code>padding</Code>
-                </td>
-                <td>Calendar container</td>
-                <td>
-                  <Code>spacing-16</Code>
-                </td>
-                <td>1rem / 16px</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>padding-left/right</Code>
-                </td>
-                <td>Month container</td>
-                <td>
-                  <Code>spacing-8</Code>
-                </td>
-                <td>0.5rem / 8px</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>padding-left/right</Code>
-                </td>
-                <td>Year selector</td>
-                <td>
-                  <Code>spacing-16</Code>
-                </td>
-                <td>1rem / 16px</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>padding-top/bottom</Code>
-                </td>
-                <td>Separator</td>
-                <td>
-                  <Code>spacing-8</Code>
-                </td>
-                <td>0.5rem / 8px</td>
-              </tr>
-            </tbody>
-          </DxcTable>
-        ),
-      },
-      {
-        title: "Size",
-        content: (
-          <DxcTable>
-            <thead>
-              <tr>
-                <th>Property</th>
-                <th>Element</th>
-                <th>Value</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <Code>height/width</Code>
-                </td>
-                <td>Selected date circle</td>
-                <td>28/28px</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>height/width</Code>
-                </td>
-                <td>Year selection caret</td>
-                <td>24/24px</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>height/width</Code>
-                </td>
-                <td>Calendar top controls</td>
-                <td>24/24px</td>
-              </tr>
-            </tbody>
-          </DxcTable>
-        ),
-      },
-    ],
+    title: "🚧 Design tokens",
+    content:
+      "The design tokens are currently under review and will be added soon.",
   },
   {
     title: "Accessibility",
