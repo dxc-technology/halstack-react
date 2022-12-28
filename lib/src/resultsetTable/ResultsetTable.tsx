@@ -65,7 +65,7 @@ const DxcResultsetTable = ({
   const goToPage = (newPage: number) => {
     changePage(newPage);
   };
-  
+
   const changeSorting = (columnIndex: number) => {
     changePage(1);
     changeSortColumnIndex(columnIndex);
