@@ -560,7 +560,6 @@ ListboxStates.play = async ({ canvasElement }) => {
 export const Searchable = SearchableSelect.bind({});
 Searchable.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
-  await userEvent.click(canvas.getByRole("combobox"));
   await waitFor(async () => {
     userEvent.type(canvas.getByRole("combobox"), "r");
   });
