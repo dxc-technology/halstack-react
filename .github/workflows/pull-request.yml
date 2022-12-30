@@ -22,17 +22,11 @@ jobs:
       - name: Build library
         run: cd lib && npm run build
 
-      - name: Install docs dependencies
-        run: cd docs && npm install
-
       - name: Install website dependencies
         run: cd website && yarn
 
       - name: Test library
         run: cd lib && npm run test
-
-      - name: Build docs
-        run: cd docs && npm run build
 
       - name: Build website
         run: cd website && yarn build
