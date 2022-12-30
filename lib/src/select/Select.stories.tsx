@@ -1,5 +1,5 @@
 import React from "react";
-import { userEvent, within, waitFor } from "@storybook/testing-library";
+import { userEvent, within } from "@storybook/testing-library";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DxcSelect from "./Select";
@@ -560,9 +560,7 @@ ListboxStates.play = async ({ canvasElement }) => {
 export const Searchable = SearchableSelect.bind({});
 Searchable.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
-  await waitFor(async () => {
-    userEvent.type(canvas.getByRole("combobox"), "r");
-  });
+  await userEvent.type(canvas.getByRole("combobox"), "r");
 };
 
 export const SearchableWithValue = SearchValue.bind({});
