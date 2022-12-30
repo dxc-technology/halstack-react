@@ -4,6 +4,7 @@ import DxcButton from "../button/Button";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import { userEvent, within } from "@storybook/testing-library";
+import styled from "styled-components";
 
 export default {
   title: "Resultset Table",
@@ -46,6 +47,24 @@ const columnsSortable = [
   { displayValue: "Id", isSortable: true },
   { displayValue: "Name", isSortable: true },
   { displayValue: "City", isSortable: false },
+];
+
+const longValues = [
+  [
+    { displayValue: "000000000000000001", sortValue: "000000000000000001" },
+    { displayValue: "Peter Larsson González", sortValue: "Peter" },
+    { displayValue: "Miami: The city that never sleeps", sortValue: "Miami" },
+  ],
+  [
+    { displayValue: "002", sortValue: "002" },
+    { displayValue: "Louis", sortValue: "Louis" },
+    { displayValue: "London", sortValue: "London" },
+  ],
+  [
+    { displayValue: "003", sortValue: "003" },
+    { displayValue: "Aida", sortValue: "Aida" },
+    { displayValue: "Wroclaw", sortValue: "Wroclaw" },
+  ],
 ];
 
 const rowsSortable = [
@@ -167,89 +186,95 @@ export const Chromatic = () => (
   <>
     <ExampleContainer>
       <Title title="Sortable table" theme="light" level={4} />
-      <DxcResultsetTable columns={columnsSortable} rows={rowsSortable}></DxcResultsetTable>
+      <DxcResultsetTable columns={columnsSortable} rows={rowsSortable} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With action" theme="light" level={4} />
-      <DxcResultsetTable columns={columns} rows={rowsIcon}></DxcResultsetTable>
+      <DxcResultsetTable columns={columns} rows={rowsIcon} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With items per page option" theme="light" level={4} />
-      <DxcResultsetTable
-        columns={columns}
-        rows={rows}
-        itemsPerPage={2}
-        itemsPerPageOptions={[2, 3]}
-      ></DxcResultsetTable>
+      <DxcResultsetTable columns={columns} rows={rows} itemsPerPage={2} itemsPerPageOptions={[2, 3]} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Scroll resultset table" theme="light" level={4} />
-      <DxcResultsetTable columns={longColumns} rows={longRows}></DxcResultsetTable>
+      <DxcResultsetTable columns={longColumns} rows={longRows} />
+    </ExampleContainer>
+    <ExampleContainer>
+      <SmallContainer>
+        <Title title="Small container and text overflow" theme="light" level={4} />
+        <DxcResultsetTable columns={columnsSortable} rows={longValues} />
+      </SmallContainer>
     </ExampleContainer>
     <Title title="Margins" theme="light" level={2} />
     <ExampleContainer>
       <Title title="Xxsmall" theme="light" level={4} />
-      <DxcResultsetTable columns={columns} rows={rows} margin={"xxsmall"}></DxcResultsetTable>
+      <DxcResultsetTable columns={columns} rows={rows} margin={"xxsmall"} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Xsmall" theme="light" level={4} />
-      <DxcResultsetTable columns={columns} rows={rows} margin={"xsmall"}></DxcResultsetTable>
+      <DxcResultsetTable columns={columns} rows={rows} margin={"xsmall"} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Small" theme="light" level={4} />
-      <DxcResultsetTable columns={columns} rows={rows} margin={"small"}></DxcResultsetTable>
+      <DxcResultsetTable columns={columns} rows={rows} margin={"small"} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Medium" theme="light" level={4} />
-      <DxcResultsetTable columns={columns} rows={rows} margin={"medium"}></DxcResultsetTable>
+      <DxcResultsetTable columns={columns} rows={rows} margin={"medium"} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Large" theme="light" level={4} />
-      <DxcResultsetTable columns={columns} rows={rows} margin={"large"}></DxcResultsetTable>
+      <DxcResultsetTable columns={columns} rows={rows} margin={"large"} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Xlarge" theme="light" level={4} />
-      <DxcResultsetTable columns={columns} rows={rows} margin={"xlarge"}></DxcResultsetTable>
+      <DxcResultsetTable columns={columns} rows={rows} margin={"xlarge"} />
     </ExampleContainer>
-    <ExampleContainer>
+    <ExampleContainer expanded>
       <Title title="Xxlarge" theme="light" level={4} />
-      <DxcResultsetTable columns={columns} rows={rows} margin={"xxlarge"}></DxcResultsetTable>
-      <hr />
+      <DxcResultsetTable columns={columns} rows={rows} margin={"xxlarge"} />
     </ExampleContainer>
   </>
 );
 
+const SmallContainer = styled.div`
+  width: 500px;
+`;
+
 const ResultsetTableAsc = () => (
   <ExampleContainer>
     <Title title="Ascendant sorting" theme="light" level={4} />
-    <DxcResultsetTable columns={columnsSortable} rows={rowsSortable}></DxcResultsetTable>
+    <DxcResultsetTable columns={columnsSortable} rows={rowsSortable} />
   </ExampleContainer>
 );
 
 export const AscendentSorting = ResultsetTableAsc.bind({});
 AscendentSorting.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
-  await userEvent.click(canvas.queryByText("Name"));
+  const idHeader = canvas.getAllByRole("button")[0];
+  await userEvent.click(idHeader);
 };
 
 const ResultsetTableDesc = () => (
   <ExampleContainer>
     <Title title="Descendant sorting" theme="light" level={4} />
-    <DxcResultsetTable columns={columnsSortable} rows={rowsSortable}></DxcResultsetTable>
+    <DxcResultsetTable columns={columnsSortable} rows={rowsSortable} />
   </ExampleContainer>
 );
 
 export const DescendantSorting = ResultsetTableDesc.bind({});
 DescendantSorting.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
-  await userEvent.click(canvas.queryByText("Name"));
-  await userEvent.click(canvas.queryByText("Name"));
+  const nameHeader = canvas.getAllByRole("button")[1];
+  await userEvent.click(nameHeader);
+  await userEvent.click(nameHeader);
 };
 
 const ResultsetTableMiddle = () => (
   <ExampleContainer>
     <Title title="Middle page" theme="light" level={4} />
-    <DxcResultsetTable columns={columns} rows={rows} itemsPerPage={2}></DxcResultsetTable>
+    <DxcResultsetTable columns={columns} rows={rows} itemsPerPage={2} />
   </ExampleContainer>
 );
 
@@ -263,7 +288,7 @@ MiddlePage.play = async ({ canvasElement }) => {
 const ResultsetTableLast = () => (
   <ExampleContainer>
     <Title title="Last page" theme="light" level={4} />
-    <DxcResultsetTable columns={columns} rows={rows} itemsPerPage={2}></DxcResultsetTable>
+    <DxcResultsetTable columns={columns} rows={rows} itemsPerPage={2} />
   </ExampleContainer>
 );
 
