@@ -27,9 +27,9 @@ const downCaret = (
 );
 
 const DxcDatePicker = ({ date, onDateSelect, id }: DatePickerPropsType): JSX.Element => {
-  const [innerDate, setInnerDate] = useState(date.isValid() ? date : dayjs());
+  const [innerDate, setInnerDate] = useState(date?.isValid() ? date : dayjs());
   const [content, setContent] = useState("calendar");
-  const selectedDate = date.isValid() ? date : null;
+  const selectedDate = date?.isValid() ? date : null;
   const translatedLabels = useTranslatedLabels();
 
   const handleDateSelect = (date: Dayjs) => {

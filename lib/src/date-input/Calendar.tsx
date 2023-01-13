@@ -41,13 +41,15 @@ const isDaySelected = (date: { day: number; month: number; year: number }, selec
   selectedDate?.get("date") === date.day;
 
 const Calendar = ({ selectedDate, innerDate, onInnerDateChange, onDaySelect }: CalendarPropsType): JSX.Element => {
+  const today = dayjs();
   const [dateToFocus, setDateToFocus] = useState(
     selectedDate?.get("month") === innerDate.get("month") && selectedDate?.get("year") === innerDate.get("year")
       ? selectedDate
-      : dayjs()
+      : today.get("month") === innerDate.get("month") && today.get("year") === innerDate.get("year")
+      ? today
+      : innerDate.set("date", 1)
   );
   const [toFocus, setToFocus] = useState(false);
-  const today = dayjs();
   const dayCells = useMemo(() => getDays(innerDate), [innerDate]);
   const translatedLabels = useTranslatedLabels();
   const weekDays = translatedLabels.calendar.daysShort;
