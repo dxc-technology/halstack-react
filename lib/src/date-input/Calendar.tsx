@@ -49,7 +49,7 @@ const isDaySelected = (date: { day: number; month: number; year: number }, selec
   selectedDate?.get("date") === date.day;
 
 const Calendar = ({ selectedDate, innerDate, onInnerDateChange, onDaySelect }: CalendarPropsType): JSX.Element => {
-  const today = dayjs();
+  const [today] = useState(dayjs());
   const [dateToFocus, setDateToFocus] = useState(getDateToFocus(selectedDate, innerDate, today));
   const [toFocus, setToFocus] = useState(false);
   const dayCells = useMemo(() => getDays(innerDate), [innerDate]);
@@ -64,12 +64,8 @@ const Calendar = ({ selectedDate, innerDate, onInnerDateChange, onDaySelect }: C
 
   const handleOnBlur = (event) => {
     if (!event?.currentTarget.contains(event.relatedTarget)) {
-      updateDateToFocus();
+      setDateToFocus(getDateToFocus(selectedDate, innerDate, today));
     }
-  };
-
-  const updateDateToFocus = () => {
-    setDateToFocus(getDateToFocus(selectedDate, innerDate, today));
   };
 
   const focusDate = (date: Dayjs) => {
@@ -89,7 +85,7 @@ const Calendar = ({ selectedDate, innerDate, onInnerDateChange, onDaySelect }: C
 
   useEffect(() => {
     if (dateToFocus.get("month") !== innerDate.get("month") || dateToFocus.get("year") !== innerDate.get("year")) {
-      updateDateToFocus();
+      setDateToFocus(getDateToFocus(selectedDate, innerDate, today));
     }
   }, [innerDate, dateToFocus, selectedDate]);
 

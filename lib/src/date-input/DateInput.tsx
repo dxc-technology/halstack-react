@@ -49,7 +49,7 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
     const [dayjsDate, setDayjsDate] = useState(getValueForPicker(value ?? defaultValue ?? "", format));
     const [lastValidYear, setLastValidYear] = useState(
       innerValue || value
-        ? +getValueForPicker(value ?? innerValue, format).format("YY") < 68
+        ? !format.toUpperCase().includes("YYYY") && +getValueForPicker(value ?? innerValue, format).format("YY") < 68
           ? 2000
           : 1900
         : undefined
@@ -59,7 +59,7 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
     const dateRef = useRef(null);
 
     const getDate = (value) => {
-      if (value && format.toUpperCase().includes("YYYY")) return getValueForPicker(value, format);
+      if ((value || value === "") && format.toUpperCase().includes("YYYY")) return getValueForPicker(value, format);
       else {
         let newDate = getValueForPicker(value, format);
         if (!lastValidYear) {
