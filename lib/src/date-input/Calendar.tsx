@@ -35,6 +35,14 @@ const getDays = (innerDate: Dayjs) => {
   return monthDayCells;
 };
 
+const getDateToFocus = (selectedDate, innerDate, today) => {
+  return selectedDate?.get("month") === innerDate.get("month") && selectedDate?.get("year") === innerDate.get("year")
+    ? selectedDate
+    : today.get("month") === innerDate.get("month") && today.get("year") === innerDate.get("year")
+    ? today
+    : innerDate.set("date", 1);
+};
+
 const isDaySelected = (date: { day: number; month: number; year: number }, selectedDate) =>
   selectedDate?.get("month") === date.month &&
   selectedDate?.get("year") === date.year &&
@@ -42,13 +50,7 @@ const isDaySelected = (date: { day: number; month: number; year: number }, selec
 
 const Calendar = ({ selectedDate, innerDate, onInnerDateChange, onDaySelect }: CalendarPropsType): JSX.Element => {
   const today = dayjs();
-  const [dateToFocus, setDateToFocus] = useState(
-    selectedDate?.get("month") === innerDate.get("month") && selectedDate?.get("year") === innerDate.get("year")
-      ? selectedDate
-      : today.get("month") === innerDate.get("month") && today.get("year") === innerDate.get("year")
-      ? today
-      : innerDate.set("date", 1)
-  );
+  const [dateToFocus, setDateToFocus] = useState(getDateToFocus(selectedDate, innerDate, today));
   const [toFocus, setToFocus] = useState(false);
   const dayCells = useMemo(() => getDays(innerDate), [innerDate]);
   const translatedLabels = useTranslatedLabels();
@@ -67,13 +69,7 @@ const Calendar = ({ selectedDate, innerDate, onInnerDateChange, onDaySelect }: C
   };
 
   const updateDateToFocus = () => {
-    if (selectedDate?.get("month") === innerDate.get("month") && selectedDate?.get("year") === innerDate.get("year")) {
-      setDateToFocus(selectedDate);
-    } else if (today.get("month") === innerDate.get("month") && today.get("year") === innerDate.get("year")) {
-      setDateToFocus(today);
-    } else {
-      setDateToFocus(innerDate.set("date", 1));
-    }
+    setDateToFocus(getDateToFocus(selectedDate, innerDate, today));
   };
 
   const focusDate = (date: Dayjs) => {
@@ -212,8 +208,7 @@ const WeekHeaderCell = styled.span`
   width: 36px;
   height: 36px;
   font-family: ${(props) => props.theme.dateInput.pickerFontFamily};
-  font-size: 14px;
-  line-height: 19px;
+  font-size: 0.875rem;
   color: ${(props) => props.theme.dateInput.pickerWeekFontColor};
 `;
 
@@ -240,7 +235,6 @@ const DayCell = styled.button<DayCellPropsType>`
   padding: 0;
   font-size: 0.875rem;
   font-family: ${(props) => props.theme.dateInput.pickerFontFamily};
-  font-weight: 400;
   border: none;
   border-radius: 50%;
   cursor: pointer;

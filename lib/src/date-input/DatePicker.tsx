@@ -1,10 +1,11 @@
 import dayjs, { Dayjs } from "dayjs";
 import React, { useState } from "react";
-import styled from "styled-components";
+import styled, { ThemeProvider } from "styled-components";
 import { DatePickerPropsType } from "./types";
 import Calendar from "./Calendar";
 import YearPicker from "./YearPicker";
 import useTranslatedLabels from "../useTranslatedLabels";
+import useTheme from "../useTheme";
 
 const leftCaret = (
   <svg fill="currentColor" focusable="false" viewBox="0 0 24 24" aria-hidden="true">
@@ -31,6 +32,7 @@ const DxcDatePicker = ({ date, onDateSelect, id }: DatePickerPropsType): JSX.Ele
   const [content, setContent] = useState("calendar");
   const selectedDate = date?.isValid() ? date : null;
   const translatedLabels = useTranslatedLabels();
+  const colorsTheme = useTheme();
 
   const handleDateSelect = (date: Dayjs) => {
     setInnerDate(date);
@@ -47,42 +49,44 @@ const DxcDatePicker = ({ date, onDateSelect, id }: DatePickerPropsType): JSX.Ele
   };
 
   return (
-    <DatePicker id={id}>
-      <PickerHeader>
-        <HeaderButton
-          aria-label={translatedLabels.calendar.previousMonthTitle}
-          title={translatedLabels.calendar.previousMonthTitle}
-          onClick={() => handleMonthChange(innerDate.set("month", innerDate.get("month") - 1))}
-        >
-          {leftCaret}
-        </HeaderButton>
-        <HeaderYearTrigger
-          aria-live="polite"
-          onClick={() => setContent((content) => (content === "yearPicker" ? "calendar" : "yearPicker"))}
-        >
-          <HeaderYearTriggerLabel>
-            {translatedLabels.calendar.months[innerDate.get("month")]} {innerDate.format("YYYY")}
-          </HeaderYearTriggerLabel>
-          {downCaret}
-        </HeaderYearTrigger>
-        <HeaderButton
-          aria-label={translatedLabels.calendar.nextMonthTitle}
-          title={translatedLabels.calendar.nextMonthTitle}
-          onClick={() => handleMonthChange(innerDate.set("month", innerDate.get("month") + 1))}
-        >
-          {rightCaret}
-        </HeaderButton>
-      </PickerHeader>
-      {content === "calendar" && (
-        <Calendar
-          innerDate={innerDate}
-          selectedDate={selectedDate}
-          onInnerDateChange={setInnerDate}
-          onDaySelect={handleDateSelect}
-        />
-      )}
-      {content === "yearPicker" && <YearPicker selectedDate={selectedDate} onYearSelect={handleOnYearSelect} />}
-    </DatePicker>
+    <ThemeProvider theme={colorsTheme}>
+      <DatePicker id={id}>
+        <PickerHeader>
+          <HeaderButton
+            aria-label={translatedLabels.calendar.previousMonthTitle}
+            title={translatedLabels.calendar.previousMonthTitle}
+            onClick={() => handleMonthChange(innerDate.set("month", innerDate.get("month") - 1))}
+          >
+            {leftCaret}
+          </HeaderButton>
+          <HeaderYearTrigger
+            aria-live="polite"
+            onClick={() => setContent((content) => (content === "yearPicker" ? "calendar" : "yearPicker"))}
+          >
+            <HeaderYearTriggerLabel>
+              {translatedLabels.calendar.months[innerDate.get("month")]} {innerDate.format("YYYY")}
+            </HeaderYearTriggerLabel>
+            {downCaret}
+          </HeaderYearTrigger>
+          <HeaderButton
+            aria-label={translatedLabels.calendar.nextMonthTitle}
+            title={translatedLabels.calendar.nextMonthTitle}
+            onClick={() => handleMonthChange(innerDate.set("month", innerDate.get("month") + 1))}
+          >
+            {rightCaret}
+          </HeaderButton>
+        </PickerHeader>
+        {content === "calendar" && (
+          <Calendar
+            innerDate={innerDate}
+            selectedDate={selectedDate}
+            onInnerDateChange={setInnerDate}
+            onDaySelect={handleDateSelect}
+          />
+        )}
+        {content === "yearPicker" && <YearPicker selectedDate={selectedDate} onYearSelect={handleOnYearSelect} />}
+      </DatePicker>
+    </ThemeProvider>
   );
 };
 
@@ -92,6 +96,7 @@ const DatePicker = styled.div`
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   border: 1px solid #bfbfbf;
   border-radius: 4px;
+  width: fit-content;
 `;
 
 const PickerHeader = styled.div`
@@ -129,9 +134,8 @@ const HeaderButton = styled.button`
   svg {
     display: inline-block;
     flex-shrink: 0;
-    width: 1em;
-    height: 1em;
-    font-size: 1.5rem;
+    width: 24px;
+    height: 24px;
     user-select: none;
   }
 `;
@@ -167,8 +171,6 @@ const HeaderYearTriggerLabel = styled.span`
   justify-content: center;
   font-family: ${(props) => props.theme.dateInput.pickerFontFamily};
   font-size: 0.875rem;
-  font-weight: 400;
-  line-height: 19px;
 `;
 
 export default React.memo(DxcDatePicker);

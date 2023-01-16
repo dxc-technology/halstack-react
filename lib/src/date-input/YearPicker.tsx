@@ -1,7 +1,8 @@
 import dayjs from "dayjs";
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
+import styled, { ThemeProvider } from "styled-components";
 import { YearPickerPropsType } from "./types";
+import useTheme from "../useTheme";
 
 const getYearsArray = () => {
   const yearList = [];
@@ -21,6 +22,8 @@ const YearPicker = ({ onYearSelect, selectedDate }: YearPickerPropsType): JSX.El
     yearToFocusEl?.focus();
   }, [yearToFocus]);
 
+  const colorsTheme = useTheme();
+
   const handleDayKeyboardEvent = (event) => {
     switch (event.key) {
       case "ArrowUp":
@@ -33,25 +36,27 @@ const YearPicker = ({ onYearSelect, selectedDate }: YearPickerPropsType): JSX.El
   };
 
   return (
-    <YearPickerContainer>
-      {yearList.map((year) => (
-        <YearPickerButton
-          aria-label={year}
-          key={year}
-          selected={selectedDate?.get("year") === year}
-          aria-selected={selectedDate?.get("year") === year}
-          tabIndex={yearToFocus === year ? 0 : -1}
-          isCurrentYear={dayjs().get("year") === year}
-          onKeyDown={(event) => handleDayKeyboardEvent(event)}
-          id={`year_${year}`}
-          onClick={() => {
-            onYearSelect(year);
-          }}
-        >
-          {year}
-        </YearPickerButton>
-      ))}
-    </YearPickerContainer>
+    <ThemeProvider theme={colorsTheme}>
+      <YearPickerContainer>
+        {yearList.map((year) => (
+          <YearPickerButton
+            aria-label={year}
+            key={year}
+            selected={selectedDate?.get("year") === year}
+            aria-selected={selectedDate?.get("year") === year}
+            tabIndex={yearToFocus === year ? 0 : -1}
+            isCurrentYear={dayjs().get("year") === year}
+            onKeyDown={(event) => handleDayKeyboardEvent(event)}
+            id={`year_${year}`}
+            onClick={() => {
+              onYearSelect(year);
+            }}
+          >
+            {year}
+          </YearPickerButton>
+        ))}
+      </YearPickerContainer>
+    </ThemeProvider>
   );
 };
 
@@ -76,8 +81,7 @@ const YearPickerButton = styled.button<YearPickerButtonPropsType>`
   width: 80px;
   min-height: 40px;
   font-size: 0.875rem;
-  font-weight: 400;
-  line-height: 1.75;
+  line-height: 21px;
   color: ${(props) => props.theme.dateInput.pickerYearFontColor};
   background-color: transparent;
   border: none;
@@ -86,9 +90,8 @@ const YearPickerButton = styled.button<YearPickerButtonPropsType>`
 
   ${(props) =>
     props.selected
-      ? `font-weight: 400;
-         font-size: 1.5rem;
-         line-height: 33px;
+      ? `font-size: 1.5rem;
+         line-height: 36px;
          color: ${props.theme.dateInput.pickerSelectedDateColor} !important;
          background-color: ${props.theme.dateInput.pickerSelectedDateBackgroundColor} !important;`
       : props.isCurrentYear
@@ -97,23 +100,20 @@ const YearPickerButton = styled.button<YearPickerButtonPropsType>`
       : ``}
 
   &:hover {
-    font-weight: 400;
     font-size: 1.5rem;
-    line-height: 33px;
+    line-height: 36px;
     color: ${(props) => props.theme.dateInput.pickerHoverDateFontColor};
     background-color: ${(props) => props.theme.dateInput.pickerHoverDateBackgroundColor};
   }
   &:focus {
-    font-weight: 400;
     font-size: 1.5rem;
-    line-height: 33px;
+    line-height: 36px;
     color: ${(props) => props.theme.dateInput.pickerHoverDateFontColor};
     outline: ${(props) => props.theme.dateInput.pickerFocusColor} solid 2px;
   }
   &:active {
-    font-weight: 400;
     font-size: 1.5rem;
-    line-height: 33px;
+    line-height: 36px;
     color: #ffffff;
     background-color: #4b1c7d !important;
   }

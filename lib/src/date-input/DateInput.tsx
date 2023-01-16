@@ -46,7 +46,7 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
     const [innerValue, setInnerValue] = useState(defaultValue);
     const [isOpen, setIsOpen] = useState(false);
     const [calendarId] = useState(`date-picker-${uuidv4()}`);
-    const [dayjsDate, setDayjsDate] = useState(getValueForPicker(value ?? innerValue ?? "", format));
+    const [dayjsDate, setDayjsDate] = useState(getValueForPicker(value ?? defaultValue ?? "", format));
     const [lastValidYear, setLastValidYear] = useState(
       innerValue || value
         ? +getValueForPicker(value ?? innerValue, format).format("YY") < 68
@@ -58,8 +58,27 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
     const translatedLabels = useTranslatedLabels();
     const dateRef = useRef(null);
 
+    const getDate = (value) => {
+      if (value && format.toUpperCase().includes("YYYY")) return getValueForPicker(value, format);
+      else {
+        let newDate = getValueForPicker(value, format);
+        if (!lastValidYear) {
+          if (+newDate.format("YY") < 68) {
+            setLastValidYear(2000 + +newDate.format("YY"));
+            newDate = newDate.set("year", 2000 + +newDate.format("YY"));
+          } else {
+            setLastValidYear(1900 + +newDate.format("YY"));
+            newDate = newDate.set("year", 1900 + +newDate.format("YY"));
+          }
+        } else {
+          newDate = newDate.set("year", (lastValidYear <= 1999 ? 1900 : 2000) + +newDate.format("YY"));
+        }
+        return newDate;
+      }
+    };
+
     useEffect(() => {
-      if (value) setDayjsDate(getValueForPicker(value, format));
+      if (value || value === "") setDayjsDate(getDate(value));
     }, [value]);
 
     useLayoutEffect(() => {
@@ -77,13 +96,13 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
       const newValue = newDate.format(format.toUpperCase());
       if (!value) {
         setDayjsDate(newDate);
-        setLastValidYear(newDate.get("year"));
+        setInnerValue(newValue);
       }
-      value ?? setInnerValue(newValue);
+      setLastValidYear(newDate.get("year"));
       newDate?.set("day", newDate.get("date")).toJSON()
         ? onChange?.({
             value: newValue,
-            date: newDate,
+            date: newDate.toDate(),
           })
         : onChange?.({
             value: newValue,
@@ -92,7 +111,7 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
 
     const handleIOnChange = ({ value: newValue, error: inputError }) => {
       value ?? setInnerValue(newValue);
-      const newDate = getValueForPicker(newValue, format);
+      const newDate = getDate(newValue);
       const invalidDateMessage =
         newValue !== "" && !newDate.isValid() && translatedLabels.dateInput.invalidDateErrorMessage;
       const callbackParams =
@@ -100,24 +119,11 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
           ? { value: newValue, error: inputError || invalidDateMessage }
           : { value: newValue };
       if (newDate.isValid()) {
+        setDayjsDate(newDate);
         onChange?.({
           ...callbackParams,
           date: newDate.toDate(),
         });
-        if (format.toUpperCase().includes("YYYY")) setDayjsDate(newDate);
-        else {
-          if (!lastValidYear) {
-            if (+newDate.format("YY") < 68) {
-              setLastValidYear(2000 + +newDate.format("YY"));
-              setDayjsDate(newDate.set("year", 2000 + +newDate.format("YY")));
-            } else {
-              setLastValidYear(1900 + +newDate.format("YY"));
-              setDayjsDate(newDate.set("year", 1900 + +newDate.format("YY")));
-            }
-          } else {
-            setDayjsDate(newDate.set("year", (lastValidYear <= 1999 ? 1900 : 2000) + +newDate.format("YY")));
-          }
-        }
       } else {
         onChange?.(callbackParams);
         setLastValidYear((validYear) => dayjsDate?.get("year") ?? validYear);
@@ -125,15 +131,15 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
       }
     };
     const handleIOnBlur = ({ value, error: inputError }) => {
-      const dayjsDate = getValueForPicker(value, format);
-      const invalidDateMessage =
-        value !== "" && !dayjsDate.isValid() && translatedLabels.dateInput.invalidDateErrorMessage;
+      const date = getDate(value);
+      const invalidDateMessage = value !== "" && !date.isValid() && translatedLabels.dateInput.invalidDateErrorMessage;
       const callbackParams =
         inputError || invalidDateMessage ? { value, error: inputError || invalidDateMessage } : { value };
-      dayjsDate.isValid()
+      console.log("blur date: ", date.format(format.toUpperCase()));
+      date.isValid()
         ? onBlur?.({
             ...callbackParams,
-            date: dayjsDate.toDate(),
+            date: date.toDate(),
           })
         : onBlur?.(callbackParams);
     };
