@@ -135,7 +135,6 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
       const invalidDateMessage = value !== "" && !date.isValid() && translatedLabels.dateInput.invalidDateErrorMessage;
       const callbackParams =
         inputError || invalidDateMessage ? { value, error: inputError || invalidDateMessage } : { value };
-      console.log("blur date: ", date.format(format.toUpperCase()));
       date.isValid()
         ? onBlur?.({
             ...callbackParams,
