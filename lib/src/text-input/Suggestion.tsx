@@ -4,10 +4,13 @@ import { SuggestionProps } from "./types";
 
 const transformSpecialChars = (str: string) => {
   const specialChars = "[\\`!@#$%^&*()_+-=[]{};':\"|,.<>/?~]/";
+  const specialCharsRegex = /[\\`!@#$%^&*()_+\-=\[\]{};':"|,.<>\/?~]/;
   let value = str;
-  specialChars.split("").forEach((specialChar) => {
-    if (str.includes(specialChar)) value = value.replace(specialChar, "\\" + specialChar);
-  });
+  if (specialCharsRegex.test(value)) {
+    specialChars.split("").forEach((specialChar) => {
+      if (str.includes(specialChar)) value = value.replace(specialChar, "\\" + specialChar);
+    });
+  }
   return value;
 };
 
@@ -20,9 +23,8 @@ const Suggestion = ({
   visuallyFocused,
   highlighted,
 }: SuggestionProps): JSX.Element => {
-  const format = /[\\`!@#$%^&*()_+\-=\[\]{};':"|,.<>\/?~]/;
-  const special = transformSpecialChars(value);
-  const regEx = new RegExp(format.test(value) ? special : value, "i");
+  const specialChar = transformSpecialChars(value);
+  let regEx = new RegExp(specialChar, "i");
   const matchedWords = suggestion.match(regEx);
   const noMatchedWords = suggestion.replace(regEx, "");
 
