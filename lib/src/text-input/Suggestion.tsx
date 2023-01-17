@@ -2,6 +2,15 @@ import React from "react";
 import styled from "styled-components";
 import { SuggestionProps } from "./types";
 
+const transformSpecialChars = (str: string) => {
+  const specialChars = "[\\`!@#$%^&*()_+-=[]{};':\"|,.<>/?~]/";
+  let value = str;
+  specialChars.split("").forEach((specialChar) => {
+    if (str.includes(specialChar)) value = value.replace(specialChar, "\\" + specialChar);
+  });
+  return value;
+};
+
 const Suggestion = ({
   id,
   value,
@@ -11,7 +20,9 @@ const Suggestion = ({
   visuallyFocused,
   highlighted,
 }: SuggestionProps): JSX.Element => {
-  const regEx = new RegExp(value, "i");
+  const format = /[\\`!@#$%^&*()_+\-=\[\]{};':"|,.<>\/?~]/;
+  const special = transformSpecialChars(value);
+  const regEx = new RegExp(format.test(value) ? special : value, "i");
   const matchedWords = suggestion.match(regEx);
   const noMatchedWords = suggestion.replace(regEx, "");
 

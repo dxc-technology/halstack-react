@@ -61,6 +61,7 @@ const countries = [
   "Dominica",
   "Denmark",
   "Djibouti",
+  "*",
 ];
 
 export const Chromatic = () => (
@@ -308,7 +309,11 @@ const AutosuggestListbox = () => {
       <ExampleContainer>
         <Title title="Autosuggest listbox" theme="light" level={2} />
         <ExampleContainer>
-          <Title title="List dialog uses a Radix Popover to appear over elements with a certain z-index" theme="light" level={3} />
+          <Title
+            title="List dialog uses a Radix Popover to appear over elements with a certain z-index"
+            theme="light"
+            level={3}
+          />
           <div
             style={{
               display: "flex",
