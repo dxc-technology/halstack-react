@@ -202,7 +202,7 @@ const YearPickerIsolated = () => (
   </>
 );
 
-export const ShowYearPickerIsolated = YearPickerIsolated.bind({});
-ShowYearPickerIsolated.parameters = {
+export const ShowIsolatedYearPicker = YearPickerIsolated.bind({});
+ShowIsolatedYearPicker.parameters = {
   date: new Date("1904-04-03"),
 };
