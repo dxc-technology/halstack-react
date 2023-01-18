@@ -199,12 +199,7 @@ const DxcDropdown = ({
               <DropdownTriggerContent>
                 {label && iconPosition === "after" && <DropdownTriggerLabel>{label}</DropdownTriggerLabel>}
                 {icon && (
-                  <DropdownTriggerIcon
-                    label={label}
-                    iconPosition={iconPosition}
-                    disabled={disabled}
-                    role={typeof icon === "string" ? undefined : "img"}
-                  >
+                  <DropdownTriggerIcon disabled={disabled} role={typeof icon === "string" ? undefined : "img"}>
                     {typeof icon === "string" ? <img src={icon} /> : icon}
                   </DropdownTriggerIcon>
                 )}
@@ -328,20 +323,14 @@ const DropdownTriggerLabel = styled.span`
   overflow: hidden;
 `;
 
-type DropdownTriggerIconProps = {
-  iconPosition: "before" | "after";
-  disabled: boolean;
-  label: string;
-};
-const DropdownTriggerIcon = styled.div<DropdownTriggerIconProps>`
-  width: ${(props) => props.theme.buttonIconSize};
-  height: ${(props) => props.theme.buttonIconSize};
+const DropdownTriggerIcon = styled.span<{ disabled: boolean }>`
+  display: flex;
   color: ${(props) => (props.disabled ? props.theme.disabledColor : props.theme.buttonIconColor)};
 
   img,
   svg {
-    height: 100%;
-    width: 100%;
+    width: ${(props) => props.theme.buttonIconSize};
+    height: ${(props) => props.theme.buttonIconSize};
   }
 `;
 

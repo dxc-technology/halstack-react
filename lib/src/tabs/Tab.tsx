@@ -40,7 +40,7 @@ const Tab = forwardRef(
         >
           {tab.icon && (
             <TabIconContainer hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
-              {typeof tab.icon === "string" ? <TabIcon src={tab.icon} /> : tab.icon}
+              {typeof tab.icon === "string" ? <img src={tab.icon} /> : tab.icon}
             </TabIconContainer>
           )}
           <DxcTypography
@@ -163,26 +163,15 @@ const MainLabelContainer = styled.div<MainLabelContainerProps>`
 `;
 
 const TabIconContainer = styled.div<IconProps>`
-  max-height: 22px;
-  max-width: 22px;
+  display: flex;
   margin-bottom: ${(props) => (props.hasLabelAndIcon && props.iconPosition === "top" && "8px") || ""};
   margin-right: ${(props) => (props.hasLabelAndIcon && props.iconPosition === "left" && "12px") || ""};
-  overflow: hidden;
-  display: flex;
-  align-items: center;
+
   img,
   svg {
-    height: 100%;
-    width: 100%;
+    height: 22px;
+    width: 22px;
   }
-`;
-
-const TabIcon = styled.img`
-  width: 100%;
-  display: inline-flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
 `;
 
 export default React.memo(Tab);

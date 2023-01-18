@@ -10,21 +10,34 @@ export default {
 };
 
 const iconSVG = (
-  <svg viewBox="0 0 24 24" fill="currentColor">
-    <path d="M0 0h24v24H0z" fill="none" />
-    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+  <svg
+    version="1.1"
+    id="Capa_1"
+    x="0px"
+    y="0px"
+    width="438.536px"
+    height="438.536px"
+    viewBox="0 0 438.536 438.536"
+    fill="currentColor"
+  >
+    <g>
+      <path
+        d="M414.41,24.123C398.333,8.042,378.963,0,356.315,0H82.228C59.58,0,40.21,8.042,24.126,24.123
+C8.045,40.207,0.003,59.576,0.003,82.225v274.084c0,22.647,8.042,42.018,24.123,58.102c16.084,16.084,35.454,24.126,58.102,24.126
+h274.084c22.648,0,42.018-8.042,58.095-24.126c16.084-16.084,24.126-35.454,24.126-58.102V82.225
+C438.532,59.576,430.49,40.204,414.41,24.123z M373.155,225.548h-49.963V406.84h-74.802V225.548H210.99V163.02h37.401v-37.402
+c0-26.838,6.283-47.107,18.843-60.813c12.559-13.706,33.304-20.555,62.242-20.555h49.963v62.526h-31.401
+c-10.663,0-17.467,1.853-20.417,5.568c-2.949,3.711-4.428,10.23-4.428,19.558v31.119h56.534L373.155,225.548z"
+      />
+    </g>
   </svg>
 );
-
-const TitleComponent = () => {
-  return <DxcSidenav.Title>Dxc technology</DxcSidenav.Title>;
-};
 
 export const Chromatic = () => (
   <>
     <ExampleContainer>
       <Title title="Default sidenav" theme="light" level={4} />
-      <DxcSidenav title={<TitleComponent />}>
+      <DxcSidenav title={<DxcSidenav.Title>Dxc technology</DxcSidenav.Title>}>
         <DxcSidenav.Section>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ullamcorper consectetur mollis. Suspendisse
@@ -41,11 +54,17 @@ export const Chromatic = () => (
           </DxcSidenav.Group>
         </DxcSidenav.Section>
         <DxcSidenav.Section>
-          <DxcSidenav.Group collapsable={true} title="Section Group" icon={iconSVG}>
+          <DxcSidenav.Group
+            collapsable={true}
+            title="Section Group"
+            icon="https://cdn-icons-png.flaticon.com/512/5039/5039041.png"
+          >
             <DxcSidenav.Link selected>Group Link</DxcSidenav.Link>
             <DxcSidenav.Link icon={iconSVG}>Group Link</DxcSidenav.Link>
           </DxcSidenav.Group>
-          <DxcSidenav.Link icon={iconSVG}>Single Link</DxcSidenav.Link>
+          <DxcSidenav.Link icon="https://upload.wikimedia.org/wikipedia/commons/7/73/Flat_tick_icon.svg">
+            Single Link
+          </DxcSidenav.Link>
           <DxcSidenav.Link>Single Link</DxcSidenav.Link>
           <DxcSidenav.Group collapsable={false} title="Section Group">
             <DxcSidenav.Link>Group Link</DxcSidenav.Link>
@@ -55,51 +74,41 @@ export const Chromatic = () => (
         </DxcSidenav.Section>
       </DxcSidenav>
     </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-focus">
+      <Title title="Focused options sidenav" theme="light" level={4} />
+      <DxcSidenav title={<DxcSidenav.Title>Dxc technology</DxcSidenav.Title>}>
+        <DxcSidenav.Section>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ullamcorper consectetur mollis. Suspendisse
+            vitae lacinia libero.
+          </p>
+        </DxcSidenav.Section>
+        <DxcSidenav.Section>
+          <DxcSidenav.Link>Single Link</DxcSidenav.Link>
+          <DxcSidenav.Group collapsable={true} title="Collapsable Group">
+            <DxcSidenav.Link icon="https://cdn-icons-png.flaticon.com/512/5039/5039041.png">Group Link</DxcSidenav.Link>
+          </DxcSidenav.Group>
+        </DxcSidenav.Section>
+        <DxcSidenav.Section>
+          <DxcSidenav.Group collapsable={true} title="Collapsable Group">
+            <DxcSidenav.Link selected icon={iconSVG}>
+              Group Link
+            </DxcSidenav.Link>
+          </DxcSidenav.Group>
+          <DxcSidenav.Group collapsable={false} title="Section Group">
+            <DxcSidenav.Link>Group Link</DxcSidenav.Link>
+          </DxcSidenav.Group>
+        </DxcSidenav.Section>
+      </DxcSidenav>
+    </ExampleContainer>
   </>
-);
-
-export const FocusedSidenav = () => (
-  <ExampleContainer pseudoState="pseudo-focus">
-    <Title title="Default sidenav" theme="light" level={4} />
-    <DxcSidenav title={<TitleComponent />}>
-      <DxcSidenav.Section>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ullamcorper consectetur mollis. Suspendisse vitae
-          lacinia libero.
-        </p>
-      </DxcSidenav.Section>
-      <DxcSidenav.Section>
-        <DxcSidenav.Link>Single Link</DxcSidenav.Link>
-        <DxcSidenav.Link>Single Link</DxcSidenav.Link>
-        <DxcSidenav.Group collapsable={true} title="Collapsable Group">
-          <DxcSidenav.Link>Group Link</DxcSidenav.Link>
-          <DxcSidenav.Link>Group Link</DxcSidenav.Link>
-          <DxcSidenav.Link>Group Link</DxcSidenav.Link>
-          <DxcSidenav.Link>Group Link</DxcSidenav.Link>
-        </DxcSidenav.Group>
-      </DxcSidenav.Section>
-      <DxcSidenav.Section>
-        <DxcSidenav.Group collapsable={true} title="Collapsable Group">
-          <DxcSidenav.Link selected>Group Link</DxcSidenav.Link>
-          <DxcSidenav.Link>Group Link</DxcSidenav.Link>
-        </DxcSidenav.Group>
-        <DxcSidenav.Link>Single Link</DxcSidenav.Link>
-        <DxcSidenav.Link>Single Link</DxcSidenav.Link>
-        <DxcSidenav.Group collapsable={false} title="Section Group">
-          <DxcSidenav.Link>Group Link</DxcSidenav.Link>
-          <DxcSidenav.Link>Group Link</DxcSidenav.Link>
-          <DxcSidenav.Link>Group Link</DxcSidenav.Link>
-        </DxcSidenav.Group>
-      </DxcSidenav.Section>
-    </DxcSidenav>
-  </ExampleContainer>
 );
 
 const CollapsedGroup = () => (
   <>
     <ExampleContainer>
       <Title title="Default sidenav" theme="light" level={4} />
-      <DxcSidenav title={<TitleComponent />}>
+      <DxcSidenav title={<DxcSidenav.Title>Dxc technology</DxcSidenav.Title>}>
         <DxcSidenav.Section>
           <DxcSidenav.Group collapsable={true} title="Collapsable Group" icon={iconSVG}>
             <DxcSidenav.Link>Group Link</DxcSidenav.Link>
@@ -127,7 +136,7 @@ const CollapsedGroup = () => (
 const HoverSidenav = () => (
   <ExampleContainer pseudoState="pseudo-hover">
     <Title title="Default sidenav" theme="light" level={4} />
-    <DxcSidenav title={<TitleComponent />}>
+    <DxcSidenav title={<DxcSidenav.Title>Dxc technology</DxcSidenav.Title>}>
       <DxcSidenav.Section>
         <DxcSidenav.Link>Single Link</DxcSidenav.Link>
         <DxcSidenav.Link>Single Link</DxcSidenav.Link>
