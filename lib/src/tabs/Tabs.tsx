@@ -286,7 +286,7 @@ const Underline = styled.div`
   position: absolute;
   height: ${(props) => props.theme.dividerThickness};
   background-color: ${(props) => props.theme.dividerColor};
-  z-index: 1;
+  z-index: 0;
 `;
 
 const TabsContainer = styled.div<{ margin: Margin | Space }>`
@@ -377,7 +377,7 @@ type ActiveIndicatorProps = {
 const ActiveIndicator = styled.span<ActiveIndicatorProps>`
   left: ${(props) => `${props.tabLeft}px`};
   width: ${(props) => `${props.tabWidth}px`};
-  z-index: 2;
+  z-index: 1;
   background-color: ${(props) => props.theme.selectedUnderlineColor};
   bottom: 0;
   height: ${(props) => props.theme.selectedUnderlineThickness};
@@ -390,7 +390,6 @@ const ActiveIndicator = styled.span<ActiveIndicatorProps>`
 
 const TabsContent = styled.div`
   display: flex;
-  z-index: 1;
   flex: 1 1 auto;
   display: inline-block;
   position: relative;

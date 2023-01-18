@@ -272,7 +272,6 @@ const SliderInput = styled.input<SliderInputPropsType>`
   background-repeat: no-repeat;
   background-size: ${(props) => ((props.value - props.min) * 100) / (props.max - props.min) + "% 100%"};
   border-radius: 5px;
-  z-index: 1;
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
   &::-webkit-slider-runnable-track {
     -webkit-appearance: none;
@@ -436,6 +435,7 @@ const SliderInputContainer = styled.div`
   justify-content: center;
   margin-right: -2px;
   padding-top: 1px;
+  z-index: 0;
 `;
 
 type MarksContainerPropsType = { isFirefox: boolean };
@@ -470,7 +470,7 @@ const TickMark = styled.span<TickMarkPropsType>`
   width: ${(props) => props.theme.tickWidth};
   border-radius: 18px;
   left: ${(props) => `calc(${props.stepPosition} * 100%)`};
-  ${(props) => (!props.disabled ? `z-index: ${props.stepPosition <= props.stepValue ? "0" : "1"}` : ``)};
+  ${(props) => (!props.disabled ? `z-index: ${props.stepPosition <= props.stepValue ? "-1" : "0"}` : ``)};
 `;
 
 const StyledTextInput = styled.div`
