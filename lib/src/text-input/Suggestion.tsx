@@ -3,11 +3,12 @@ import styled from "styled-components";
 import { SuggestionProps } from "./types";
 
 const transformSpecialChars = (str: string) => {
-  const specialChars = "[\\`!@#$%^&*()_+-=[]{};':\"|,.<>/?~]/";
-  const specialCharsRegex = /[\\`!@#$%^&*()_+\-=\[\]{};':"|,.<>\/?~]/;
+  const specialCharsRegex = /[\\*()\[\]{}+?/]/;
   let value = str;
   if (specialCharsRegex.test(value)) {
-    specialChars.split("").forEach((specialChar) => {
+    const regexAsString = specialCharsRegex.toString().split("");
+    const uniqueSpecialChars = regexAsString.filter((item, index) => regexAsString.indexOf(item) === index);
+    uniqueSpecialChars.forEach((specialChar) => {
       if (str.includes(specialChar)) value = value.replace(specialChar, "\\" + specialChar);
     });
   }
