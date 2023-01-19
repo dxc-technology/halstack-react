@@ -286,7 +286,6 @@ const Underline = styled.div`
   position: absolute;
   height: ${(props) => props.theme.dividerThickness};
   background-color: ${(props) => props.theme.dividerColor};
-  z-index: 0;
 `;
 
 const TabsContainer = styled.div<{ margin: Margin | Space }>`
