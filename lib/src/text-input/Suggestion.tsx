@@ -25,7 +25,7 @@ const Suggestion = ({
   highlighted,
 }: SuggestionProps): JSX.Element => {
   const specialChar = transformSpecialChars(value);
-  let regEx = new RegExp(specialChar, "i");
+  const regEx = new RegExp(specialChar, "i");
   const matchedWords = suggestion.match(regEx);
   const noMatchedWords = suggestion.replace(regEx, "");
 
