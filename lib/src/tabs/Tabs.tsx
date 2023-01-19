@@ -377,7 +377,6 @@ type ActiveIndicatorProps = {
 const ActiveIndicator = styled.span<ActiveIndicatorProps>`
   left: ${(props) => `${props.tabLeft}px`};
   width: ${(props) => `${props.tabWidth}px`};
-  z-index: 1;
   background-color: ${(props) => props.theme.selectedUnderlineColor};
   bottom: 0;
   height: ${(props) => props.theme.selectedUnderlineThickness};

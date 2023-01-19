@@ -470,7 +470,7 @@ const TickMark = styled.span<TickMarkPropsType>`
   width: ${(props) => props.theme.tickWidth};
   border-radius: 18px;
   left: ${(props) => `calc(${props.stepPosition} * 100%)`};
-  ${(props) => (!props.disabled ? `z-index: ${props.stepPosition <= props.stepValue ? "-1" : "0"}` : ``)};
+  z-index: ${(props) => `${props.stepPosition <= props.stepValue ? "-1" : "0"}`};
 `;
 
 const StyledTextInput = styled.div`
