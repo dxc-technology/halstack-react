@@ -223,7 +223,6 @@ const BackgroundSpinner = styled.div`
   height: inherit;
   width: inherit;
   position: absolute;
-  z-index: 1;
 `;
 
 const SVGBackground = styled.svg`
@@ -246,7 +245,6 @@ const Spinner = styled.div`
   height: inherit;
   width: inherit;
   position: relative;
-  z-index: 2;
 `;
 
 const SVGSpinner = styled.svg`
