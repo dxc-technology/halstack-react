@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import styled from "styled-components";
 import { SuggestionProps } from "./types";
 
@@ -24,10 +24,10 @@ const Suggestion = ({
   visuallyFocused,
   highlighted,
 }: SuggestionProps): JSX.Element => {
-  const specialChar = transformSpecialChars(value);
-  const regEx = new RegExp(specialChar, "i");
-  const matchedWords = suggestion.match(regEx);
-  const noMatchedWords = suggestion.replace(regEx, "");
+  const matchedSuggestion = useMemo(() => {
+    const regEx = new RegExp(transformSpecialChars(value), "i");
+    return { matchedWords: suggestion.match(regEx), noMatchedWords: suggestion.replace(regEx, "") };
+  }, [value, suggestion]);
 
   return (
     <SuggestionContainer
@@ -42,8 +42,8 @@ const Suggestion = ({
       <StyledSuggestion last={isLast} visuallyFocused={visuallyFocused}>
         {highlighted ? (
           <>
-            <strong>{matchedWords}</strong>
-            {noMatchedWords}
+            <strong>{matchedSuggestion.matchedWords}</strong>
+            {matchedSuggestion.noMatchedWords}
           </>
         ) : (
           suggestion
