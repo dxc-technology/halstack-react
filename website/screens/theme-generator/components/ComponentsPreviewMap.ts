@@ -26,6 +26,9 @@ import TextareaPreview from "./previews/Textarea";
 import SelectPreview from "./previews/Select";
 import RadioGroupPreview from "./previews/RadioGroup";
 import QuickNavPreview from "./previews/QuickNav";
+import SidenavPreview from "./previews/Sidenav";
+import FooterPreview from "./previews/Footer";
+import HeaderPreview from "./previews/Header";
 
 const SampleComponents = [
   {
@@ -69,8 +72,16 @@ const SampleComponents = [
     preview: DropdownPreview,
   },
   {
+    name: "header",
+    preview: HeaderPreview,
+  },
+  {
     name: "fileInput",
     preview: FileInputPreview,
+  },
+  {
+    name: "footer",
+    preview: FooterPreview,
   },
   {
     name: "heading",
@@ -103,6 +114,10 @@ const SampleComponents = [
   {
     name: "select",
     preview: SelectPreview,
+  },
+  {
+    name: "sidenav",
+    preview: SidenavPreview,
   },
   {
     name: "slider",
