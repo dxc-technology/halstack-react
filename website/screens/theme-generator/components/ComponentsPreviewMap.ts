@@ -29,6 +29,8 @@ import QuickNavPreview from "./previews/QuickNav";
 import SidenavPreview from "./previews/Sidenav";
 import FooterPreview from "./previews/Footer";
 import HeaderPreview from "./previews/Header";
+import BulletedListPreview from "./previews/BulletedList";
+import ParagraphPreview from "./previews/Paragraph";
 
 const SampleComponents = [
   {
@@ -42,6 +44,10 @@ const SampleComponents = [
   {
     name: "box",
     preview: BoxPreview,
+  },
+  {
+    name: "bulletedList",
+    preview: BulletedListPreview,
   },
   {
     name: "button",
@@ -98,6 +104,10 @@ const SampleComponents = [
   {
     name: "paginator",
     preview: PaginatorPreview,
+  },
+  {
+    name: "paragraph",
+    preview: ParagraphPreview,
   },
   {
     name: "progressBar",

@@ -108,6 +108,15 @@
     "twoShadowDepthShadowSpread": "length",
     "twoShadowDepthShadowColor": "color"
   },
+  "bulletedList": {
+    "fontColor": "color",
+    "fontColorOnDark": "color",
+    "bulletIconHeight": "length",
+    "bulletIconWidth": "length",
+    "bulletHeight": "length",
+    "bulletWidth": "length",
+    "bulletMarginRight": "length"
+  },
   "button": {
     "labelFontLineHeight": "length",
     "labelLetterSpacing": "length",
@@ -503,6 +512,13 @@
     "marginLeft": "length",
     "pageSelectorMarginRight": "length",
     "pageSelectorMarginLeft": "length"
+  },
+  "paragraph": {
+    "fontColor": "color",
+    "fontColorOnDark": "color",
+    "display": "display",
+    "fontSize": "length",
+    "fontWeight": "fWeight"
   },
   "progressBar": {
     "trackLineColor": "color",

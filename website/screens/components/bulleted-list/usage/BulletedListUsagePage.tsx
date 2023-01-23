@@ -15,10 +15,9 @@ const sections = [
       <>
         <DxcParagraph>
           This component is not a 1-to-1 replacement of the <Code>ul</Code>{" "}
-          <Code>ol</Code>
-          native tags. These native tags have many different use-cases and the
-          Bulleted List only covers one of them: listing text items within a
-          document.
+          <Code>ol</Code> native tags. These native tags have many different
+          use-cases and the Bulleted List only covers one of them: listing text
+          items within a document.
         </DxcParagraph>
         <DxcParagraph>
           Lists can be ordered or unordered. If the order of the list items
