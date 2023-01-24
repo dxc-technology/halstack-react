@@ -8,6 +8,8 @@ import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import { BackgroundColorProvider } from "../BackgroundColorContext";
 import DarkContainer from "../../.storybook/components/DarkSection";
 import dayjs from "dayjs";
+import useTheme from "../useTheme";
+import { ThemeProvider } from "styled-components";
 
 export default {
   title: "Date input",
@@ -111,7 +113,7 @@ export const Chromatic = () => (
 );
 
 const DatePicker = () => (
-  <ExampleContainer expanded>
+  <ExampleContainer>
     <Title title="Show date picker" theme="light" level={4} />
     <DxcDateInput label="Date input" defaultValue="01-12-1995" />
   </ExampleContainer>
@@ -125,7 +127,7 @@ ShowDatePicker.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const dateBtn = canvas.getByRole("combobox");
   await userEvent.click(dateBtn);
-  await fireEvent.keyDown(document.activeElement, {
+  await fireEvent.keyDown(screen.getAllByText("1")[0], {
     key: "ArrowRight",
     code: "ArrowRight",
     keyCode: 39,
@@ -134,7 +136,7 @@ ShowDatePicker.play = async ({ canvasElement }) => {
 };
 
 const YearPickerCalendar = () => (
-  <ExampleContainer expanded>
+  <ExampleContainer>
     <Title title="Show year picker" theme="light" level={4} />
     <DxcDateInput label="Date input" defaultValue="06-04-1950" />
   </ExampleContainer>
@@ -148,7 +150,7 @@ ShowYearPicker.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   await userEvent.click(canvas.getByRole("combobox"));
   await fireEvent.click(screen.getByText("April 1950"));
-  await fireEvent.keyDown(document.activeElement, {
+  await fireEvent.keyDown(screen.getByText("1950"), {
     key: "ArrowUp",
     code: "ArrowUp",
     keyCode: 38,
@@ -156,53 +158,51 @@ ShowYearPicker.play = async ({ canvasElement }) => {
   });
 };
 
-const DatePickerCalendar = () => (
-  <>
-    <ExampleContainer expanded>
-      <Title title="Isolated calendar" theme="light" level={4} />
-      <DxcDatePicker date={dayjs("06-04-1950", "DD-MM-YYYY")} onDateSelect={() => {}} id="test-calendar" />
-    </ExampleContainer>
-    <ExampleContainer expanded pseudoState="pseudo-focus">
-      <Title title="Isolated calendar focused" theme="light" level={4} />
-      <DxcDatePicker date={dayjs("06-04-1950", "DD-MM-YYYY")} onDateSelect={() => {}} id="test-calendar" />
-    </ExampleContainer>
-    <ExampleContainer expanded pseudoState="pseudo-hover">
-      <Title title="Isolated calendar hovered" theme="light" level={4} />
-      <DxcDatePicker date={dayjs("06-04-1950", "DD-MM-YYYY")} onDateSelect={() => {}} id="test-calendar" />
-    </ExampleContainer>
-    <ExampleContainer expanded pseudoState="pseudo-active">
-      <Title title="Isolated calendar actived" theme="light" level={4} />
-      <DxcDatePicker date={dayjs("06-04-1950", "DD-MM-YYYY")} onDateSelect={() => {}} id="test-calendar" />
-    </ExampleContainer>
-  </>
-);
-export const ShowIsolatedCalendar = DatePickerCalendar.bind({});
-ShowIsolatedCalendar.parameters = {
+const DatePickerCalendar = () => {
+  const colorsTheme: any = useTheme();
+  return (
+    <ThemeProvider theme={colorsTheme}>
+      <ExampleContainer pseudoState="pseudo-focus">
+        <Title title="Isolated calendar focused" theme="light" level={4} />
+        <DxcDatePicker date={dayjs("06-04-1950", "DD-MM-YYYY")} onDateSelect={() => {}} id="test-calendar" />
+      </ExampleContainer>
+      <ExampleContainer pseudoState="pseudo-hover">
+        <Title title="Isolated calendar hovered" theme="light" level={4} />
+        <DxcDatePicker date={dayjs("06-04-1950", "DD-MM-YYYY")} onDateSelect={() => {}} id="test-calendar" />
+      </ExampleContainer>
+      <ExampleContainer pseudoState="pseudo-active">
+        <Title title="Isolated calendar actived" theme="light" level={4} />
+        <DxcDatePicker date={dayjs("06-04-1950", "DD-MM-YYYY")} onDateSelect={() => {}} id="test-calendar" />
+      </ExampleContainer>
+    </ThemeProvider>
+  );
+};
+export const DatePickerButtonStates = DatePickerCalendar.bind({});
+DatePickerButtonStates.parameters = {
   date: new Date("1950-04-03"),
 };
 
-const YearPickerIsolated = () => (
-  <>
-    <ExampleContainer expanded>
-      <Title title="Isolated year picker" theme="light" level={4} />
-      <YearPicker selectedDate={dayjs("06-04-1905", "DD-MM-YYYY")} onYearSelect={() => {}} />
-    </ExampleContainer>
-    <ExampleContainer expanded pseudoState="pseudo-focus">
-      <Title title="Isolated year picker focused" theme="light" level={4} />
-      <YearPicker selectedDate={dayjs("06-04-1905", "DD-MM-YYYY")} onYearSelect={() => {}} />
-    </ExampleContainer>
-    <ExampleContainer expanded pseudoState="pseudo-hover">
-      <Title title="Isolated year picker hovered" theme="light" level={4} />
-      <YearPicker selectedDate={dayjs("06-04-1905", "DD-MM-YYYY")} onYearSelect={() => {}} />
-    </ExampleContainer>
-    <ExampleContainer expanded pseudoState="pseudo-active">
-      <Title title="Isolated year picker actived" theme="light" level={4} />
-      <YearPicker selectedDate={dayjs("06-04-1905", "DD-MM-YYYY")} onYearSelect={() => {}} />
-    </ExampleContainer>
-  </>
-);
+const YearPickerIsolated = () => {
+  const colorsTheme: any = useTheme();
+  return (
+    <ThemeProvider theme={colorsTheme}>
+      <ExampleContainer pseudoState="pseudo-focus">
+        <Title title="Isolated year picker focused" theme="light" level={4} />
+        <YearPicker selectedDate={dayjs("06-04-1905", "DD-MM-YYYY")} onYearSelect={() => {}} />
+      </ExampleContainer>
+      <ExampleContainer pseudoState="pseudo-hover">
+        <Title title="Isolated year picker hovered" theme="light" level={4} />
+        <YearPicker selectedDate={dayjs("06-04-1905", "DD-MM-YYYY")} onYearSelect={() => {}} />
+      </ExampleContainer>
+      <ExampleContainer pseudoState="pseudo-active">
+        <Title title="Isolated year picker actived" theme="light" level={4} />
+        <YearPicker selectedDate={dayjs("06-04-1905", "DD-MM-YYYY")} onYearSelect={() => {}} />
+      </ExampleContainer>
+    </ThemeProvider>
+  );
+};
 
-export const ShowIsolatedYearPicker = YearPickerIsolated.bind({});
-ShowIsolatedYearPicker.parameters = {
+export const YearpickerButtonStates = YearPickerIsolated.bind({});
+YearpickerButtonStates.parameters = {
   date: new Date("1904-04-03"),
 };

@@ -51,7 +51,7 @@ const isDaySelected = (date: { day: number; month: number; year: number }, selec
 const Calendar = ({ selectedDate, innerDate, onInnerDateChange, onDaySelect }: CalendarPropsType): JSX.Element => {
   const [today] = useState(dayjs());
   const [dateToFocus, setDateToFocus] = useState(getDateToFocus(selectedDate, innerDate, today));
-  const [toFocus, setToFocus] = useState(false);
+  const [isFocusable, setIsFocusable] = useState(false);
   const dayCells = useMemo(() => getDays(innerDate), [innerDate]);
   const translatedLabels = useTranslatedLabels();
   const weekDays = translatedLabels.calendar.daysShort;
@@ -73,15 +73,15 @@ const Calendar = ({ selectedDate, innerDate, onInnerDateChange, onDaySelect }: C
       onInnerDateChange(date);
     }
     setDateToFocus(date);
-    setToFocus(true);
+    setIsFocusable(true);
   };
 
   useEffect(() => {
-    if (toFocus) {
+    if (isFocusable) {
       document.getElementById(`day_${dateToFocus.get("date")}_month${dateToFocus.get("month")}`)?.focus();
-      setToFocus(false);
+      setIsFocusable(false);
     }
-  }, [dateToFocus, toFocus]);
+  }, [dateToFocus, isFocusable]);
 
   useEffect(() => {
     if (dateToFocus.get("month") !== innerDate.get("month") || dateToFocus.get("year") !== innerDate.get("year")) {
@@ -157,32 +157,28 @@ const Calendar = ({ selectedDate, innerDate, onInnerDateChange, onDaySelect }: C
         ))}
       </DxcFlex>
       <DayCellsContainer onBlur={handleOnBlur}>
-        {dayCells.map((date, index) =>
-          date !== 0 ? (
-            <DayCell
-              onKeyDown={(event) => handleDayKeyboardEvent(event, date)}
-              aria-label={date.day}
-              id={`day_${date.day}_month${date.month}`}
-              key={`day_${index}`}
-              onClick={() => onDateClickHandler(date)}
-              selected={isDaySelected(date, selectedDate)}
-              actualMonth={date.month === innerDate.get("month")}
-              autoFocus={date.day === dateToFocus.get("date") && date.month === dateToFocus.get("month")}
-              aria-selected={isDaySelected(date, selectedDate)}
-              tabIndex={date.day === dateToFocus.get("date") && date.month === dateToFocus.get("month") ? 0 : -1}
-              isCurrentDay={
-                today.get("date") === date.day &&
-                today.get("month") === innerDate.get("month") &&
-                today.get("month") === date.month &&
-                today.get("year") === innerDate.get("year")
-              }
-            >
-              {date.day}
-            </DayCell>
-          ) : (
-            <EmptyDayCell key={`empty_${index}`} />
-          )
-        )}
+        {dayCells.map((date, index) => (
+          <DayCell
+            onKeyDown={(event) => handleDayKeyboardEvent(event, date)}
+            aria-label={date.day}
+            id={`day_${date.day}_month${date.month}`}
+            key={`day_${index}`}
+            onClick={() => onDateClickHandler(date)}
+            selected={isDaySelected(date, selectedDate)}
+            actualMonth={date.month === innerDate.get("month")}
+            autoFocus={date.day === dateToFocus.get("date") && date.month === dateToFocus.get("month")}
+            aria-selected={isDaySelected(date, selectedDate)}
+            tabIndex={date.day === dateToFocus.get("date") && date.month === dateToFocus.get("month") ? 0 : -1}
+            isCurrentDay={
+              today.get("date") === date.day &&
+              today.get("month") === innerDate.get("month") &&
+              today.get("month") === date.month &&
+              today.get("year") === innerDate.get("year")
+            }
+          >
+            {date.day}
+          </DayCell>
+        ))}
       </DayCellsContainer>
     </CalendarContainer>
   );
@@ -262,12 +258,6 @@ const DayCell = styled.button<DayCellPropsType>`
       : !props.actualMonth
       ? "#999999"
       : props.theme.dateInput.pickerDayFontColor};
-`;
-
-const EmptyDayCell = styled.div`
-  display: inline-block;
-  width: 40px;
-  height: 36px;
 `;
 
 export default React.memo(Calendar);

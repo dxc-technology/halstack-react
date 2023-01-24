@@ -5,7 +5,6 @@ import { DatePickerPropsType } from "./types";
 import Calendar from "./Calendar";
 import YearPicker from "./YearPicker";
 import useTranslatedLabels from "../useTranslatedLabels";
-import useTheme from "../useTheme";
 
 const leftCaret = (
   <svg fill="currentColor" focusable="false" viewBox="0 0 24 24" aria-hidden="true">
@@ -32,7 +31,6 @@ const DxcDatePicker = ({ date, onDateSelect, id }: DatePickerPropsType): JSX.Ele
   const [content, setContent] = useState("calendar");
   const selectedDate = date?.isValid() ? date : null;
   const translatedLabels = useTranslatedLabels();
-  const colorsTheme = useTheme();
 
   const handleDateSelect = (date: Dayjs) => {
     setInnerDate(date);
@@ -49,44 +47,42 @@ const DxcDatePicker = ({ date, onDateSelect, id }: DatePickerPropsType): JSX.Ele
   };
 
   return (
-    <ThemeProvider theme={colorsTheme}>
-      <DatePicker id={id}>
-        <PickerHeader>
-          <HeaderButton
-            aria-label={translatedLabels.calendar.previousMonthTitle}
-            title={translatedLabels.calendar.previousMonthTitle}
-            onClick={() => handleMonthChange(innerDate.set("month", innerDate.get("month") - 1))}
-          >
-            {leftCaret}
-          </HeaderButton>
-          <HeaderYearTrigger
-            aria-live="polite"
-            onClick={() => setContent((content) => (content === "yearPicker" ? "calendar" : "yearPicker"))}
-          >
-            <HeaderYearTriggerLabel>
-              {translatedLabels.calendar.months[innerDate.get("month")]} {innerDate.format("YYYY")}
-            </HeaderYearTriggerLabel>
-            {downCaret}
-          </HeaderYearTrigger>
-          <HeaderButton
-            aria-label={translatedLabels.calendar.nextMonthTitle}
-            title={translatedLabels.calendar.nextMonthTitle}
-            onClick={() => handleMonthChange(innerDate.set("month", innerDate.get("month") + 1))}
-          >
-            {rightCaret}
-          </HeaderButton>
-        </PickerHeader>
-        {content === "calendar" && (
-          <Calendar
-            innerDate={innerDate}
-            selectedDate={selectedDate}
-            onInnerDateChange={setInnerDate}
-            onDaySelect={handleDateSelect}
-          />
-        )}
-        {content === "yearPicker" && <YearPicker selectedDate={selectedDate} onYearSelect={handleOnYearSelect} />}
-      </DatePicker>
-    </ThemeProvider>
+    <DatePicker id={id}>
+      <PickerHeader>
+        <HeaderButton
+          aria-label={translatedLabels.calendar.previousMonthTitle}
+          title={translatedLabels.calendar.previousMonthTitle}
+          onClick={() => handleMonthChange(innerDate.set("month", innerDate.get("month") - 1))}
+        >
+          {leftCaret}
+        </HeaderButton>
+        <HeaderYearTrigger
+          aria-live="polite"
+          onClick={() => setContent((content) => (content === "yearPicker" ? "calendar" : "yearPicker"))}
+        >
+          <HeaderYearTriggerLabel>
+            {translatedLabels.calendar.months[innerDate.get("month")]} {innerDate.format("YYYY")}
+          </HeaderYearTriggerLabel>
+          {downCaret}
+        </HeaderYearTrigger>
+        <HeaderButton
+          aria-label={translatedLabels.calendar.nextMonthTitle}
+          title={translatedLabels.calendar.nextMonthTitle}
+          onClick={() => handleMonthChange(innerDate.set("month", innerDate.get("month") + 1))}
+        >
+          {rightCaret}
+        </HeaderButton>
+      </PickerHeader>
+      {content === "calendar" && (
+        <Calendar
+          innerDate={innerDate}
+          selectedDate={selectedDate}
+          onInnerDateChange={setInnerDate}
+          onDaySelect={handleDateSelect}
+        />
+      )}
+      {content === "yearPicker" && <YearPicker selectedDate={selectedDate} onYearSelect={handleOnYearSelect} />}
+    </DatePicker>
   );
 };
 
