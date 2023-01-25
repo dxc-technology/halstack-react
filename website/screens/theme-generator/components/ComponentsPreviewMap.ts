@@ -26,6 +26,11 @@ import TextareaPreview from "./previews/Textarea";
 import SelectPreview from "./previews/Select";
 import RadioGroupPreview from "./previews/RadioGroup";
 import QuickNavPreview from "./previews/QuickNav";
+import SidenavPreview from "./previews/Sidenav";
+import FooterPreview from "./previews/Footer";
+import HeaderPreview from "./previews/Header";
+import BulletedListPreview from "./previews/BulletedList";
+import ParagraphPreview from "./previews/Paragraph";
 
 const SampleComponents = [
   {
@@ -39,6 +44,10 @@ const SampleComponents = [
   {
     name: "box",
     preview: BoxPreview,
+  },
+  {
+    name: "bulletedList",
+    preview: BulletedListPreview,
   },
   {
     name: "button",
@@ -69,8 +78,16 @@ const SampleComponents = [
     preview: DropdownPreview,
   },
   {
+    name: "header",
+    preview: HeaderPreview,
+  },
+  {
     name: "fileInput",
     preview: FileInputPreview,
+  },
+  {
+    name: "footer",
+    preview: FooterPreview,
   },
   {
     name: "heading",
@@ -89,6 +106,10 @@ const SampleComponents = [
     preview: PaginatorPreview,
   },
   {
+    name: "paragraph",
+    preview: ParagraphPreview,
+  },
+  {
     name: "progressBar",
     preview: ProgressBarPreview,
   },
@@ -103,6 +124,10 @@ const SampleComponents = [
   {
     name: "select",
     preview: SelectPreview,
+  },
+  {
+    name: "sidenav",
+    preview: SidenavPreview,
   },
   {
     name: "slider",

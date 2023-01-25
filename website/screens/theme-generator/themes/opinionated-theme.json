@@ -33,7 +33,7 @@
     "baseColor": "#000000",
     "fontColor": "#ffffff",
     "accentColor": "#0095ff",
-    "logo": "/images/dxc_logo.svg"
+    "logo": "/dxc_footer_logo.svg"
   },
   "header": {
     "baseColor": "#ffffff",
@@ -41,8 +41,8 @@
     "fontColor": "#000000",
     "menuBaseColor": "#ffffff",
     "hamburguerColor": "#000000",
-    "logo": "/images/dxc_logo_black.svg",
-    "logoResponsive": "/images/dxc_logo_black.svg",
+    "logo": "/dxc_header_logo.svg",
+    "logoResponsive": "/dxc_header_logo.svg",
     "contentColor": "#000000"
   },
   "paginator": {
@@ -54,13 +54,13 @@
     "baseColor": "#cecece",
     "fontColor": "#000000"
   },
-  "radioGroup": {
-    "baseColor": "#0086e6",
-    "fontColor": "#000000"
-  },
   "quickNav": {
     "fontColor": "#666666",
     "accentColor": "#5f249f"
+  },
+  "radioGroup": {
+    "baseColor": "#0086e6",
+    "fontColor": "#000000"
   },
   "select": {
     "selectedOptionBackgroundColor": "#d9d9d9",
