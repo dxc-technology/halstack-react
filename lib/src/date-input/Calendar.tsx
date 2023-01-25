@@ -48,8 +48,13 @@ const isDaySelected = (date: { day: number; month: number; year: number }, selec
   selectedDate?.get("year") === date.year &&
   selectedDate?.get("date") === date.day;
 
-const Calendar = ({ selectedDate, innerDate, onInnerDateChange, onDaySelect }: CalendarPropsType): JSX.Element => {
-  const [today] = useState(dayjs());
+const Calendar = ({
+  selectedDate,
+  innerDate,
+  onInnerDateChange,
+  onDaySelect,
+  today,
+}: CalendarPropsType): JSX.Element => {
   const [dateToFocus, setDateToFocus] = useState(getDateToFocus(selectedDate, innerDate, today));
   const [isFocusable, setIsFocusable] = useState(false);
   const dayCells = useMemo(() => getDays(innerDate), [innerDate]);

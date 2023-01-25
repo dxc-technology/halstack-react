@@ -12,7 +12,7 @@ const getYearsArray = () => {
 };
 const yearList = getYearsArray();
 
-const YearPicker = ({ onYearSelect, selectedDate }: YearPickerPropsType): JSX.Element => {
+const YearPicker = ({ onYearSelect, selectedDate, today }: YearPickerPropsType): JSX.Element => {
   const [yearToFocus, setYearToFocus] = useState(selectedDate ? selectedDate.get("year") : dayjs().get("year"));
 
   useEffect(() => {
@@ -41,7 +41,7 @@ const YearPicker = ({ onYearSelect, selectedDate }: YearPickerPropsType): JSX.El
           selected={selectedDate?.get("year") === year}
           aria-selected={selectedDate?.get("year") === year}
           tabIndex={yearToFocus === year ? 0 : -1}
-          isCurrentYear={dayjs().get("year") === year}
+          isCurrentYear={today.get("year") === year}
           onKeyDown={(event) => handleDayKeyboardEvent(event)}
           id={`year_${year}`}
           onClick={() => {

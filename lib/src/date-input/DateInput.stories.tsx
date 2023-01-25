@@ -188,21 +188,30 @@ const YearPickerIsolated = () => {
     <ThemeProvider theme={colorsTheme}>
       <ExampleContainer pseudoState="pseudo-focus">
         <Title title="Isolated year picker focused" theme="light" level={4} />
-        <YearPicker selectedDate={dayjs("06-04-1905", "DD-MM-YYYY")} onYearSelect={() => {}} />
+        <YearPicker
+          selectedDate={dayjs("06-04-1905", "DD-MM-YYYY")}
+          onYearSelect={() => {}}
+          today={dayjs("1904-04-03", "YYYY-MM-DD")}
+        />
       </ExampleContainer>
       <ExampleContainer pseudoState="pseudo-hover">
         <Title title="Isolated year picker hovered" theme="light" level={4} />
-        <YearPicker selectedDate={dayjs("06-04-1905", "DD-MM-YYYY")} onYearSelect={() => {}} />
+        <YearPicker
+          selectedDate={dayjs("06-04-1905", "DD-MM-YYYY")}
+          onYearSelect={() => {}}
+          today={dayjs("1904-04-03", "YYYY-MM-DD")}
+        />
       </ExampleContainer>
       <ExampleContainer pseudoState="pseudo-active">
         <Title title="Isolated year picker actived" theme="light" level={4} />
-        <YearPicker selectedDate={dayjs("06-04-1905", "DD-MM-YYYY")} onYearSelect={() => {}} />
+        <YearPicker
+          selectedDate={dayjs("06-04-1905", "DD-MM-YYYY")}
+          onYearSelect={() => {}}
+          today={dayjs("1904-04-03", "YYYY-MM-DD")}
+        />
       </ExampleContainer>
     </ThemeProvider>
   );
 };
 
 export const YearpickerButtonStates = YearPickerIsolated.bind({});
-YearpickerButtonStates.parameters = {
-  date: new Date("1904-04-03"),
-};

@@ -1,6 +1,6 @@
 import dayjs, { Dayjs } from "dayjs";
 import React, { useState } from "react";
-import styled, { ThemeProvider } from "styled-components";
+import styled from "styled-components";
 import { DatePickerPropsType } from "./types";
 import Calendar from "./Calendar";
 import YearPicker from "./YearPicker";
@@ -27,6 +27,7 @@ const downCaret = (
 );
 
 const DxcDatePicker = ({ date, onDateSelect, id }: DatePickerPropsType): JSX.Element => {
+  const [today] = useState(dayjs());
   const [innerDate, setInnerDate] = useState(date?.isValid() ? date : dayjs());
   const [content, setContent] = useState("calendar");
   const selectedDate = date?.isValid() ? date : null;
@@ -79,9 +80,12 @@ const DxcDatePicker = ({ date, onDateSelect, id }: DatePickerPropsType): JSX.Ele
           selectedDate={selectedDate}
           onInnerDateChange={setInnerDate}
           onDaySelect={handleDateSelect}
+          today={today}
         />
       )}
-      {content === "yearPicker" && <YearPicker selectedDate={selectedDate} onYearSelect={handleOnYearSelect} />}
+      {content === "yearPicker" && (
+        <YearPicker selectedDate={selectedDate} onYearSelect={handleOnYearSelect} today={today} />
+      )}
     </DatePicker>
   );
 };
