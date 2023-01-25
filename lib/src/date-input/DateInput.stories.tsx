@@ -3,6 +3,7 @@ import { userEvent, within, fireEvent, screen } from "@storybook/testing-library
 import DxcDateInput from "./DateInput";
 import DxcDatePicker from "./DatePicker";
 import YearPicker from "./YearPicker";
+import Calendar from "./Calendar";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import { BackgroundColorProvider } from "../BackgroundColorContext";
@@ -120,9 +121,6 @@ const DatePicker = () => (
 );
 
 export const ShowDatePicker = DatePicker.bind({});
-ShowDatePicker.parameters = {
-  date: new Date("1995-12-03"),
-};
 ShowDatePicker.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const dateBtn = canvas.getByRole("combobox");
@@ -143,9 +141,6 @@ const YearPickerCalendar = () => (
 );
 
 export const ShowYearPicker = YearPickerCalendar.bind({});
-ShowYearPicker.parameters = {
-  date: new Date("1947-12-03"),
-};
 ShowYearPicker.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   await userEvent.click(canvas.getByRole("combobox"));
@@ -158,7 +153,7 @@ ShowYearPicker.play = async ({ canvasElement }) => {
   });
 };
 
-const DatePickerCalendar = () => {
+export const DatePickerButtonStates = () => {
   const colorsTheme: any = useTheme();
   return (
     <ThemeProvider theme={colorsTheme}>
@@ -177,12 +172,8 @@ const DatePickerCalendar = () => {
     </ThemeProvider>
   );
 };
-export const DatePickerButtonStates = DatePickerCalendar.bind({});
-DatePickerButtonStates.parameters = {
-  date: new Date("1950-04-03"),
-};
 
-const YearPickerIsolated = () => {
+export const YearpickerButtonStates = () => {
   const colorsTheme: any = useTheme();
   return (
     <ThemeProvider theme={colorsTheme}>
@@ -214,4 +205,20 @@ const YearPickerIsolated = () => {
   );
 };
 
-export const YearpickerButtonStates = YearPickerIsolated.bind({});
+export const CalendarWithToday = () => {
+  const colorsTheme: any = useTheme();
+  return (
+    <ThemeProvider theme={colorsTheme}>
+      <ExampleContainer>
+        <Title title="Isolated calendar with today" theme="light" level={4} />
+        <Calendar
+          selectedDate={dayjs("06-04-1904", "DD-MM-YYYY")}
+          today={dayjs("1904-04-03", "YYYY-MM-DD")}
+          onInnerDateChange={() => {}}
+          onDaySelect={() => {}}
+          innerDate={dayjs("06-04-1904", "DD-MM-YYYY")}
+        />
+      </ExampleContainer>
+    </ThemeProvider>
+  );
+};

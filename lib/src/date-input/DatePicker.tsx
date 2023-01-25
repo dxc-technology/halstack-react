@@ -26,8 +26,9 @@ const downCaret = (
   </svg>
 );
 
+const today = dayjs();
+
 const DxcDatePicker = ({ date, onDateSelect, id }: DatePickerPropsType): JSX.Element => {
-  const [today] = useState(dayjs());
   const [innerDate, setInnerDate] = useState(date?.isValid() ? date : dayjs());
   const [content, setContent] = useState("calendar");
   const selectedDate = date?.isValid() ? date : null;
