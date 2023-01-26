@@ -133,11 +133,8 @@ const HeaderButton = styled.button`
     color: #ffffff;
   }
   svg {
-    display: inline-block;
-    flex-shrink: 0;
     width: 24px;
     height: 24px;
-    user-select: none;
   }
 `;
 

@@ -20,6 +20,25 @@ const calendarIcon = (
 
 const getValueForPicker = (value, format) => dayjs(value, format.toUpperCase(), true);
 
+const getDate = (value, format, lastValidYear, setLastValidYear) => {
+  if ((value || value === "") && format.toUpperCase().includes("YYYY")) return getValueForPicker(value, format);
+  else {
+    let newDate = getValueForPicker(value, format);
+    if (!lastValidYear) {
+      if (+newDate.format("YY") < 68) {
+        setLastValidYear(2000 + +newDate.format("YY"));
+        newDate = newDate.set("year", 2000 + +newDate.format("YY"));
+      } else {
+        setLastValidYear(1900 + +newDate.format("YY"));
+        newDate = newDate.set("year", 1900 + +newDate.format("YY"));
+      }
+    } else {
+      newDate = newDate.set("year", (lastValidYear <= 1999 ? 1900 : 2000) + +newDate.format("YY"));
+    }
+    return newDate;
+  }
+};
+
 const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
   (
     {
@@ -58,28 +77,9 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
     const translatedLabels = useTranslatedLabels();
     const dateRef = useRef(null);
 
-    const getDate = (value) => {
-      if ((value || value === "") && format.toUpperCase().includes("YYYY")) return getValueForPicker(value, format);
-      else {
-        let newDate = getValueForPicker(value, format);
-        if (!lastValidYear) {
-          if (+newDate.format("YY") < 68) {
-            setLastValidYear(2000 + +newDate.format("YY"));
-            newDate = newDate.set("year", 2000 + +newDate.format("YY"));
-          } else {
-            setLastValidYear(1900 + +newDate.format("YY"));
-            newDate = newDate.set("year", 1900 + +newDate.format("YY"));
-          }
-        } else {
-          newDate = newDate.set("year", (lastValidYear <= 1999 ? 1900 : 2000) + +newDate.format("YY"));
-        }
-        return newDate;
-      }
-    };
-
     useEffect(() => {
-      if (value || value === "") setDayjsDate(getDate(value));
-    }, [value]);
+      if (value || value === "") setDayjsDate(getDate(value, format, lastValidYear, setLastValidYear));
+    }, [value, format, lastValidYear]);
 
     useLayoutEffect(() => {
       if (!disabled) {
@@ -111,7 +111,7 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
 
     const handleIOnChange = ({ value: newValue, error: inputError }) => {
       value ?? setInnerValue(newValue);
-      const newDate = getDate(newValue);
+      const newDate = getDate(value, format, lastValidYear, setLastValidYear);
       const invalidDateMessage =
         newValue !== "" && !newDate.isValid() && translatedLabels.dateInput.invalidDateErrorMessage;
       const callbackParams =
@@ -131,7 +131,7 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
       }
     };
     const handleIOnBlur = ({ value, error: inputError }) => {
-      const date = getDate(value);
+      const date = getDate(value, format, lastValidYear, setLastValidYear);
       const invalidDateMessage = value !== "" && !date.isValid() && translatedLabels.dateInput.invalidDateErrorMessage;
       const callbackParams =
         inputError || invalidDateMessage ? { value, error: inputError || invalidDateMessage } : { value };

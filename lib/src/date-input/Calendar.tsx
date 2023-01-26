@@ -92,7 +92,7 @@ const Calendar = ({
     if (dateToFocus.get("month") !== innerDate.get("month") || dateToFocus.get("year") !== innerDate.get("year")) {
       setDateToFocus(getDateToFocus(selectedDate, innerDate, today));
     }
-  }, [innerDate, dateToFocus, selectedDate]);
+  }, [innerDate, dateToFocus, selectedDate, today]);
 
   const handleDayKeyboardEvent = (event, date) => {
     let dateToFocusTemp =
