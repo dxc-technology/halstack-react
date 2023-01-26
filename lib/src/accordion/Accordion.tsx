@@ -59,7 +59,7 @@ const DxcAccordion = ({
               <AccordionLabel>
                 {icon && (
                   <IconContainer disabled={disabled}>
-                    {typeof icon === "string" ? <IconImg src={icon} /> : icon}
+                    {typeof icon === "string" ? <img src={icon} /> : icon}
                   </IconContainer>
                 )}
                 <DxcTypography
@@ -193,18 +193,15 @@ const AccordionLabel = styled.span`
 
 const IconContainer = styled.span<{ disabled: boolean }>`
   display: flex;
-  flex-wrap: wrap;
-  align-content: center;
-  height: ${(props) => props.theme.iconSize};
-  width: ${(props) => props.theme.iconSize};
   margin-left: ${(props) => props.theme.iconMarginLeft};
   margin-right: ${(props) => props.theme.iconMarginRigth};
   color: ${(props) => (props.disabled ? props.theme.disabledIconColor : props.theme.iconColor)};
-`;
 
-const IconImg = styled.img`
-  height: ${(props) => props.theme.iconSize};
-  width: ${(props) => props.theme.iconSize};
+  svg,
+  img {
+    height: ${(props) => props.theme.iconSize};
+    width: ${(props) => props.theme.iconSize};
+  }
 `;
 
 const AccordionAssistiveText = styled.span<{ disabled: boolean }>`

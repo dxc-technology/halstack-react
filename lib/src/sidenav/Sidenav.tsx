@@ -2,7 +2,6 @@ import React, { forwardRef, Ref, useMemo, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { responsiveSizes } from "../common/variables.js";
 import { useResponsiveSidenavVisibility } from "../layout/SidenavContext";
-
 import useTheme from "../useTheme";
 import { BackgroundColorProvider } from "../BackgroundColorContext";
 import SidenavPropsType, {
@@ -85,7 +84,7 @@ const Group = ({ children, title, collapsable = false, icon }: SidenavGroupProps
           selectedGroup={selectedGroup}
         >
           <SidenavContent>
-            {typeof icon === "string" ? <SidenavIcon src={icon} /> : icon}
+            {typeof icon === "string" ? <img src={icon} /> : icon}
             {title}
           </SidenavContent>
           {collapsed ? collapsedIcon : collapsableIcon}
@@ -93,7 +92,7 @@ const Group = ({ children, title, collapsable = false, icon }: SidenavGroupProps
       ) : (
         title && (
           <SidenavGroupTitle>
-            {typeof icon === "string" ? <SidenavIcon src={icon} /> : icon}
+            {typeof icon === "string" ? <img src={icon} /> : icon}
             {title}
           </SidenavGroupTitle>
         )
@@ -133,7 +132,7 @@ const Link = forwardRef(
         {...otherProps}
       >
         <SidenavContent>
-          {typeof icon === "string" ? <SidenavIcon src={icon} /> : icon}
+          {typeof icon === "string" ? <img src={icon} /> : icon}
           {children}
         </SidenavContent>
         {newWindow && externalLinkIcon}
@@ -202,31 +201,33 @@ const SidenavGroup = styled.div`
 `;
 
 const SidenavGroupTitle = styled.span`
-  svg {
-    width: 16px;
-    margin-right: 0.5rem;
-  }
   box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   width: 100%;
-
+  padding: 0.5rem 1.2rem;
   font-family: ${(props) => props.theme.groupTitleFontFamily};
   font-style: ${(props) => props.theme.groupTitleFontStyle};
   font-weight: ${(props) => props.theme.groupTitleFontWeight};
   font-size: ${(props) => props.theme.groupTitleFontSize};
   line-height: 18px;
 
-  display: flex;
-  align-items: center;
-  margin: 0px;
-  padding: 0.5rem 1.2rem;
+  img,
+  svg {
+    height: 16px;
+    width: 16px;
+  }
 `;
 
 const SidenavGroupTitleButton = styled.button<{ selectedGroup: boolean }>`
   all: unset;
-  cursor: pointer;
-  justify-content: space-between;
   box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   width: 100%;
+  padding: 0.5rem 1.2rem;
 
   font-family: ${(props) => props.theme.groupTitleFontFamily};
   font-style: ${(props) => props.theme.groupTitleFontStyle};
@@ -234,10 +235,8 @@ const SidenavGroupTitleButton = styled.button<{ selectedGroup: boolean }>`
   font-size: ${(props) => props.theme.groupTitleFontSize};
   line-height: 19px;
 
-  display: flex;
-  align-items: center;
-  margin: 0px;
-  padding: 0.5rem 1.2rem;
+  cursor: pointer;
+
   &:focus-visible {
     outline: 2px solid ${(props) => props.theme.linkFocusColor};
     outline-offset: -2px;
@@ -256,18 +255,23 @@ const SidenavGroupTitleButton = styled.button<{ selectedGroup: boolean }>`
     props.selectedGroup
       ? `color: ${props.theme.groupTitleSelectedFontColor}; background: ${props.theme.groupTitleSelectedBackgroundColor};`
       : `color: ${props.theme.groupTitleFontColor}; background: transparent;`}
+
   svg {
-    width: 18px;
-    height: auto;
+    height: 16px;
+    width: 16px;
   }
 `;
 
 const SidenavLink = styled.a<{ selected: boolean }>`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.5rem 1.2rem;
+  box-shadow: 0 0 0 2px transparent;
   letter-spacing: ${(props) => props.theme.linkFontLetterSpacing};
-
   text-transform: ${(props) => props.theme.linkFontTextTransform};
   text-decoration: ${(props) => props.theme.linkTextDecoration};
-
   font-family: ${(props) => props.theme.linkFontFamily};
   font-style: ${(props) => props.theme.linkFontStyle};
   font-weight: ${(props) => props.theme.linkFontWeight};
@@ -279,19 +283,7 @@ const SidenavLink = styled.a<{ selected: boolean }>`
       ? `color: ${props.theme.linkSelectedFontColor}; background: ${props.theme.linkSelectedBackgroundColor};`
       : `color: ${props.theme.linkFontColor}; background: transparent;`}
 
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  box-shadow: 0 0 0 2px transparent;
-
-  padding: 0.5rem 1.2rem;
-
   cursor: pointer;
-  svg {
-    width: 16px;
-    margin-right: 0.5rem;
-  }
 
   &:hover {
     ${(props) =>
@@ -299,33 +291,33 @@ const SidenavLink = styled.a<{ selected: boolean }>`
         ? `color: ${props.theme.linkSelectedHoverFontColor}; background: ${props.theme.linkSelectedHoverBackgroundColor};`
         : `color: ${props.theme.linkFontColor}; background: ${props.theme.linkHoverBackgroundColor};`}
   }
-
   &:focus {
     outline: 2px solid ${(props) => props.theme.linkFocusColor};
     outline-offset: -2px;
   }
-
   &:active {
     color: #ffffff;
     background: #4d4d4d;
     outline: 2px solid #0095ff;
     outline-offset: -2px;
   }
+
+  svg {
+    height: 16px;
+    width: 16px;
+  }
 `;
 
 const SidenavContent = styled.span`
   display: flex;
   align-items: center;
+  gap: 0.5rem;
 
+  img,
   svg {
+    height: 16px;
     width: 16px;
-    margin-right: 0.5rem;
   }
-`;
-
-const SidenavIcon = styled.img`
-  width: 16px;
-  margin-right: 0.5rem;
 `;
 
 DxcSidenav.Section = Section;

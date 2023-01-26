@@ -71,7 +71,8 @@ const sections = [
               <Code>
                 onClick: function, icon: string | svgIcon, title: string
               </Code>
-              {" }"}.
+              {" }"}. Note that if the icon is an URL (string), the component's
+              color styling tokens will not be applied to the image.
             </td>
           </tr>
           <tr>

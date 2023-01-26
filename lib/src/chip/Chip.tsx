@@ -32,7 +32,7 @@ const DxcChip = ({
             onClick={() => onClickPrefix && !disabled && onClickPrefix()}
             interactuable={typeof onClickPrefix === "function" && !disabled}
           >
-            {typeof prefixIcon === "string" ? <PrefixIconContainer src={prefixIcon} /> : prefixIcon}
+            {typeof prefixIcon === "string" ? <img src={prefixIcon} /> : prefixIcon}
           </IconContainer>
         )}
         {label && <ChipTextContainer disabled={disabled}>{label}</ChipTextContainer>}
@@ -46,7 +46,7 @@ const DxcChip = ({
             onClick={() => onClickSuffix && !disabled && onClickSuffix()}
             interactuable={typeof onClickSuffix === "function" && !disabled}
           >
-            {typeof suffixIcon === "string" ? <SuffixIconContainer src={suffixIcon} /> : suffixIcon}
+            {typeof suffixIcon === "string" ? <img src={suffixIcon} /> : suffixIcon}
           </IconContainer>
         )}
       </StyledDxcChip>
@@ -55,13 +55,9 @@ const DxcChip = ({
 };
 
 const getCursor = (interactuable, disabled) => {
-  if (disabled) {
-    return "cursor:not-allowed;";
-  }
-  if (interactuable) {
-    return "cursor:pointer;";
-  }
-  return "cursor:default; outline:none;";
+  if (disabled) return "cursor: not-allowed;";
+  else if (interactuable) return "cursor: pointer;";
+  else return "cursor: default; outline:none;";
 };
 
 const StyledDxcChip = styled.div`
@@ -104,30 +100,24 @@ const ChipTextContainer = styled.span`
   overflow: hidden;
 `;
 
-const SuffixIconContainer = styled.img``;
-
-const PrefixIconContainer = styled.img``;
-
 const IconContainer = styled.div`
-  color: ${(props) => (props.disabled ? props.theme.disabledIconColor : props.theme.iconColor)};
+  display: flex;
   ${(props) =>
     props.prefixIcon
       ? `margin-right: ${((props.label || props.suffixIcon) && props.theme.iconSpacing) || (props.prefixIcon && "0")};`
       : `margin-left: ${((props.label || props.prefixIcon) && props.theme.iconSpacing) || (props.prefixIcon && "0")};`}
+  color: ${(props) => (props.disabled ? props.theme.disabledIconColor : props.theme.iconColor)};
   ${(props) => getCursor(props.interactuable, props.disabled)}
-  width: ${(props) => props.theme.iconSize};
-  height: ${(props) => props.theme.iconSize};
-  overflow: hidden;
 
-  img,
-  svg {
-    height: 100%;
-    width: 100%;
-  }
   &:focus {
     outline-color: ${(props) => props.theme.focusColor};
     outline-width: 2px;
     ${(props) => props.disabled && "outline: none;"}
+  }
+  img,
+  svg {
+    width: ${(props) => props.theme.iconSize};
+    height: ${(props) => props.theme.iconSize};
   }
 `;
 

@@ -8,7 +8,6 @@ import DxcCheckbox from "../checkbox/Checkbox";
 import DxcTextInput from "../text-input/TextInput";
 import { Option } from "./types";
 
-
 export default {
   title: "Dropdown",
   component: DxcDropdown,
@@ -134,8 +133,17 @@ export const Chromatic = () => (
       <DxcDropdown options={options} onSelectOption={(value) => {}} icon={hamburguerIcon} caretHidden />
     </ExampleContainer>
     <ExampleContainer>
-      <Title title="Large icon" theme="light" level={4} />
+      <Title title="Large icon (SVG)" theme="light" level={4} />
       <DxcDropdown label="Large icon" options={options} onSelectOption={(value) => {}} icon={iconSVGLarge} />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Large icon (image)" theme="light" level={4} />
+      <DxcDropdown
+        label="Large icon"
+        options={options}
+        onSelectOption={(value) => {}}
+        icon="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Hamburger_icon.svg/2048px-Hamburger_icon.svg.png"
+      />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Disabled with icon" theme="light" level={4} />
@@ -242,10 +250,10 @@ const DropdownListStates = () => (
       <Title title="Hovered option" theme="light" level={4} />
       <DropdownMenu
         id="x"
-        dropdownId="dX"
+        dropdownTriggerId="dtx"
         iconsPosition="before"
         visualFocusIndex={-1}
-        optionOnClick={(option) => {}}
+        menuItemOnClick={(value) => {}}
         onKeyDown={(e) => {}}
         options={optionWithIcon}
         styles={{ width: 240 }}
@@ -255,10 +263,10 @@ const DropdownListStates = () => (
       <Title title="Active option" theme="light" level={4} />
       <DropdownMenu
         id="x"
-        dropdownId="dX"
+        dropdownTriggerId="dtx"
         iconsPosition="before"
         visualFocusIndex={-1}
-        optionOnClick={(option) => {}}
+        menuItemOnClick={(value) => {}}
         onKeyDown={(e) => {}}
         options={optionWithIcon}
         styles={{ width: 240 }}
@@ -268,10 +276,10 @@ const DropdownListStates = () => (
       <Title title="Focused option" theme="light" level={4} />
       <DropdownMenu
         id="x"
-        dropdownId="dX"
+        dropdownTriggerId="dtx"
         iconsPosition="before"
         visualFocusIndex={0}
-        optionOnClick={(option) => {}}
+        menuItemOnClick={(value) => {}}
         onKeyDown={(e) => {}}
         options={options}
         styles={{ width: 240 }}
@@ -282,10 +290,10 @@ const DropdownListStates = () => (
       <Title title="Before" theme="light" level={4} />
       <DropdownMenu
         id="x"
-        dropdownId="dX"
+        dropdownTriggerId="dtx"
         iconsPosition="before"
         visualFocusIndex={-1}
-        optionOnClick={(option) => {}}
+        menuItemOnClick={(value) => {}}
         onKeyDown={(e) => {}}
         options={optionsIcon}
         styles={{ width: 240 }}
@@ -293,10 +301,10 @@ const DropdownListStates = () => (
       <Title title="After" theme="light" level={4} />
       <DropdownMenu
         id="x"
-        dropdownId="dX"
+        dropdownTriggerId="dtx"
         iconsPosition="after"
         visualFocusIndex={-1}
-        optionOnClick={(option) => {}}
+        menuItemOnClick={(value) => {}}
         onKeyDown={(e) => {}}
         options={optionsIcon}
         styles={{ width: 240 }}

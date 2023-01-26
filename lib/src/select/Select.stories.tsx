@@ -189,7 +189,29 @@ const url_options = [
       {
         label: "Facebook",
         value: "facebook",
-        icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/2021_Facebook_icon.svg/2048px-2021_Facebook_icon.svg.png",
+        icon: (
+          <svg
+            version="1.1"
+            id="Capa_1"
+            x="0px"
+            y="0px"
+            width="438.536px"
+            height="438.536px"
+            viewBox="0 0 438.536 438.536"
+            fill="#4267B2"
+          >
+            <g>
+              <path
+                d="M414.41,24.123C398.333,8.042,378.963,0,356.315,0H82.228C59.58,0,40.21,8.042,24.126,24.123
+      C8.045,40.207,0.003,59.576,0.003,82.225v274.084c0,22.647,8.042,42.018,24.123,58.102c16.084,16.084,35.454,24.126,58.102,24.126
+      h274.084c22.648,0,42.018-8.042,58.095-24.126c16.084-16.084,24.126-35.454,24.126-58.102V82.225
+      C438.532,59.576,430.49,40.204,414.41,24.123z M373.155,225.548h-49.963V406.84h-74.802V225.548H210.99V163.02h37.401v-37.402
+      c0-26.838,6.283-47.107,18.843-60.813c12.559-13.706,33.304-20.555,62.242-20.555h49.963v62.526h-31.401
+      c-10.663,0-17.467,1.853-20.417,5.568c-2.949,3.711-4.428,10.23-4.428,19.558v31.119h56.534L373.155,225.548z"
+              />
+            </g>
+          </svg>
+        ),
       },
       {
         label: "Pinterest",
@@ -353,16 +375,29 @@ const Select = () => (
 const SelectListbox = () => (
   <>
     <Title title="Listbox" theme="light" level={2} />
-    <Title title="Default with opened listbox" theme="light" level={3} />
     <ExampleContainer>
-      <div style={{ display: "flex", gap: "30px", flexDirection: "column", marginBottom: "80px" }}>
+      <Title
+        title="List dialog uses a Radix Popover to appear over elements with a certain z-index"
+        theme="light"
+        level={3}
+      />
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "20px",
+          height: "150px",
+          width: "min-content",
+          marginBottom: "100px",
+          padding: "20px",
+          border: "1px solid black",
+          borderRadius: "4px",
+          overflow: "auto",
+          zIndex: "1300",
+        }}
+      >
         <DxcSelect label="Label" options={single_options} optional placeholder="Choose an option" />
-        <DxcCheckbox
-          label="You understand the selection and give your consent"
-          onChange={() => {}}
-          labelPosition="after"
-        />
-        <DxcButton label="Submit" onClick={() => {}} size="medium" />
+        <button style={{ zIndex: "1", width: "100px" }}>Submit</button>
       </div>
     </ExampleContainer>
     <Title title="Listbox option states" theme="light" level={3} />
@@ -396,7 +431,6 @@ const SelectListbox = () => (
         searchable={false}
         handleOptionOnClick={() => {}}
         getSelectWidth={() => 360}
-
       />
     </ExampleContainer>
     <ExampleContainer>
@@ -440,6 +474,71 @@ const SelectListbox = () => (
         visualFocusIndex={0}
         lastOptionIndex={3}
         multiple={false}
+        optional={false}
+        optionalItem={{ label: "Empty", value: "" }}
+        searchable={false}
+        handleOptionOnClick={() => {}}
+        getSelectWidth={() => 360}
+      />
+    </ExampleContainer>
+    <Title title="Listbox with icons" theme="light" level={3} />
+    <ExampleContainer>
+      <Title title="Icons (SVGs)" theme="light" level={4} />
+      <Listbox
+        id="x"
+        currentValue="3"
+        options={icon_options}
+        visualFocusIndex={-1}
+        lastOptionIndex={3}
+        multiple={false}
+        optional={false}
+        optionalItem={{ label: "Empty", value: "" }}
+        searchable={false}
+        handleOptionOnClick={() => {}}
+        getSelectWidth={() => 360}
+      />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Icons (Images)" theme="light" level={4} />
+      <Listbox
+        id="x"
+        currentValue="facebook"
+        options={url_options}
+        visualFocusIndex={-1}
+        lastOptionIndex={6}
+        multiple={false}
+        optional={false}
+        optionalItem={{ label: "Empty", value: "" }}
+        searchable={false}
+        handleOptionOnClick={() => {}}
+        getSelectWidth={() => 360}
+      />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Grouped icons (SVGs)" theme="light" level={4} />
+      <Listbox
+        id="x"
+        currentValue={["0", "3"]}
+        options={icon_options_grouped}
+        visualFocusIndex={-1}
+        lastOptionIndex={3}
+        multiple={false}
+        optional={false}
+        optionalItem={{ label: "Empty", value: "" }}
+        searchable={false}
+        handleOptionOnClick={() => {}}
+        getSelectWidth={() => 360}
+      />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Grouped icons (Images)" theme="light" level={4} />
+      <Listbox
+        id="x"
+        currentValue={["facebook", "figma"]}
+        options={url_options}
+        visualFocusIndex={-1}
+        lastOptionIndex={6}
+        multiple={true}
         optional={false}
         optionalItem={{ label: "Empty", value: "" }}
         searchable={false}
@@ -497,18 +596,6 @@ const MultipleGroupedOptionsSelect = () => (
       multiple
       placeholder="Choose an option"
     />
-  </ExampleContainer>
-);
-const RescaledIcons = () => (
-  <ExampleContainer expanded>
-    <Title title="Rescaled icons displayed" theme="light" level={4} />
-    <DxcSelect label="Label" options={url_options} defaultValue="facebook" placeholder="Choose an option" />
-  </ExampleContainer>
-);
-const SelectWithIcons = () => (
-  <ExampleContainer expanded>
-    <Title title="Normal icons displayed" theme="light" level={4} />
-    <DxcSelect label="Label" options={icon_options} defaultValue="3" placeholder="Choose an option" />
   </ExampleContainer>
 );
 const SelectMultipleWithIcons = () => (
@@ -590,34 +677,6 @@ MultipleOptionsDisplayed.play = async ({ canvasElement }) => {
 
 export const MultipleGroupedOptionsDisplayed = MultipleGroupedOptionsSelect.bind({});
 MultipleGroupedOptionsDisplayed.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const select = canvas.getByRole("combobox");
-  await userEvent.click(select);
-};
-
-export const WithIconsDisplayed = SelectWithIcons.bind({});
-WithIconsDisplayed.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const select = canvas.getByRole("combobox");
-  await userEvent.click(select);
-};
-
-export const WithRescaledIconsDisplayed = RescaledIcons.bind({});
-WithRescaledIconsDisplayed.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const select = canvas.getByRole("combobox");
-  await userEvent.click(select);
-};
-
-export const MultipleWithIconsDisplayed = SelectMultipleWithIcons.bind({});
-MultipleWithIconsDisplayed.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const select = canvas.getByRole("combobox");
-  await userEvent.click(select);
-};
-
-export const MultipleGroupedWithIconsDisplayed = MultipleGroupedOptionsSelectWithIcons.bind({});
-MultipleGroupedWithIconsDisplayed.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const select = canvas.getByRole("combobox");
   await userEvent.click(select);

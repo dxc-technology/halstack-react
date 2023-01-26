@@ -36,12 +36,6 @@ const DxcButton = ({
   const colorsTheme = useTheme();
   const backgroundType = useContext(BackgroundColorContext);
 
-  const labelComponent = (
-    <LabelContainer icon={icon} iconPosition={iconPosition}>
-      {label}
-    </LabelContainer>
-  );
-
   return (
     <ThemeProvider theme={colorsTheme.button}>
       <Button
@@ -57,13 +51,21 @@ const DxcButton = ({
           onClick();
         }}
       >
-        {label && iconPosition === "after" && labelComponent}
+        {label && iconPosition === "after" && (
+          <LabelContainer icon={icon} iconPosition={iconPosition}>
+            {label}
+          </LabelContainer>
+        )}
         {icon && (
           <IconContainer label={label} iconPosition={iconPosition}>
-            {typeof icon === "string" ? <ButtonIcon src={icon} /> : icon}
+            {typeof icon === "string" ? <img src={icon} /> : icon}
           </IconContainer>
         )}
-        {label && iconPosition === "before" && labelComponent}
+        {label && iconPosition === "before" && (
+          <LabelContainer icon={icon} iconPosition={iconPosition}>
+            {label}
+          </LabelContainer>
+        )}
       </Button>
     </ThemeProvider>
   );
@@ -303,26 +305,16 @@ type IconPropsType = {
 };
 
 const IconContainer = styled.div<IconPropsType>`
-  max-height: 24px;
-  max-width: 24px;
+  display: flex;
   margin-left: ${(props) =>
     !props.label ? "0px" : (props.iconPosition === "after" && props.label !== "" && "8px") || "8px"};
   margin-right: ${(props) =>
     !props.label ? "0px" : (props.iconPosition === "before" && props.label !== "" && "8px") || "8px"};
-  overflow: hidden;
-  display: flex;
-  img,
-  svg {
-    height: 100%;
-    width: 100%;
-  }
-`;
 
-const ButtonIcon = styled.img`
   img,
   svg {
-    height: 100%;
-    width: 100%;
+    height: 24px;
+    width: 24px;
   }
 `;
 

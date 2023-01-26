@@ -15,6 +15,8 @@ const iconSVG = (
   </svg>
 );
 
+const largeIcon = "https://www.iconpacks.net/icons/1/free-pin-icon-48-thumb.png"
+
 export const Chromatic = () => (
   <>
     <ExampleContainer>
@@ -93,10 +95,10 @@ export const Chromatic = () => (
         <DxcNavTabs.Tab href="#" disabled icon={iconSVG}>
           Tab 2
         </DxcNavTabs.Tab>
-        <DxcNavTabs.Tab href="#" icon={iconSVG}>
+        <DxcNavTabs.Tab href="#" icon={largeIcon}>
           Tab 3
         </DxcNavTabs.Tab>
-        <DxcNavTabs.Tab href="#" icon={iconSVG}>
+        <DxcNavTabs.Tab href="#" icon={largeIcon}>
           Tab 4
         </DxcNavTabs.Tab>
       </DxcNavTabs>
@@ -104,7 +106,7 @@ export const Chromatic = () => (
     <ExampleContainer>
       <Title title="With icon position left" theme="light" level={4} />
       <DxcNavTabs iconPosition="left">
-        <DxcNavTabs.Tab href="#" active icon={iconSVG}>
+        <DxcNavTabs.Tab href="#" active icon={largeIcon}>
           Tab 1
         </DxcNavTabs.Tab>
         <DxcNavTabs.Tab href="#" disabled icon={iconSVG}>
@@ -121,7 +123,7 @@ export const Chromatic = () => (
     <ExampleContainer>
       <Title title="With icon and notification number" theme="light" level={4} />
       <DxcNavTabs>
-        <DxcNavTabs.Tab href="#" active icon={iconSVG} notificationNumber>
+        <DxcNavTabs.Tab href="#" active icon={largeIcon} notificationNumber>
           Tab 1
         </DxcNavTabs.Tab>
         <DxcNavTabs.Tab href="#" disabled icon={iconSVG} notificationNumber={5}>
@@ -130,7 +132,7 @@ export const Chromatic = () => (
         <DxcNavTabs.Tab href="#" icon={iconSVG} notificationNumber={120}>
           Tab 3
         </DxcNavTabs.Tab>
-        <DxcNavTabs.Tab href="#" icon={iconSVG}>
+        <DxcNavTabs.Tab href="#" icon={largeIcon}>
           Tab 4
         </DxcNavTabs.Tab>
       </DxcNavTabs>
@@ -144,7 +146,7 @@ export const Chromatic = () => (
         <DxcNavTabs.Tab href="#" disabled icon={iconSVG} notificationNumber={5}>
           Tab 2
         </DxcNavTabs.Tab>
-        <DxcNavTabs.Tab href="#" icon={iconSVG} notificationNumber={120}>
+        <DxcNavTabs.Tab href="#" icon={largeIcon} notificationNumber={120}>
           Tab 3
         </DxcNavTabs.Tab>
         <DxcNavTabs.Tab href="#" icon={iconSVG}>
