@@ -62,10 +62,10 @@ export const Chromatic = () => (
             <DxcSidenav.Link selected>Group Link</DxcSidenav.Link>
             <DxcSidenav.Link icon={iconSVG}>Group Link</DxcSidenav.Link>
           </DxcSidenav.Group>
-          <DxcSidenav.Link icon="https://upload.wikimedia.org/wikipedia/commons/7/73/Flat_tick_icon.svg">
+          <DxcSidenav.Link icon="https://upload.wikimedia.org/wikipedia/commons/7/73/Flat_tick_icon.svg" newWindow>
             Single Link
           </DxcSidenav.Link>
-          <DxcSidenav.Link>Single Link</DxcSidenav.Link>
+          <DxcSidenav.Link newWindow>Single Link</DxcSidenav.Link>
           <DxcSidenav.Group collapsable={false} title="Section Group">
             <DxcSidenav.Link>Group Link</DxcSidenav.Link>
             <DxcSidenav.Link>Group Link</DxcSidenav.Link>
