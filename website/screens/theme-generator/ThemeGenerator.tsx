@@ -27,7 +27,7 @@ const ThemeGenerator = () => {
   const { asPath } = useRouter();
   const pages = asPath.split("/");
   const type = pages[pages.length - 2];
-  
+
   const [customTheme, setCustomTheme] = useState<IndexedTheme>(
     type === "advanced-theme" ? advancedTheme : opinionatedTheme
   );
@@ -119,24 +119,17 @@ const ThemeGenerator = () => {
             <DxcApplicationLayout.SideNav.Group title="Components">
               {Object.keys(
                 type === "advanced-theme" ? advancedTheme : opinionatedTheme
-              )
-                .filter(
-                  (component) =>
-                    component !== "footer" &&
-                    component !== "header" &&
-                    component !== "sidenav"
-                )
-                .map((component, index) => (
-                  <DxcApplicationLayout.SideNav.Link
-                    key={`componentLink-${index}`}
-                    selected={currentComponent === component}
-                    onClick={() => {
-                      setCurrentComponent(component);
-                    }}
-                  >
-                    {makeReadableSidenav(component)}
-                  </DxcApplicationLayout.SideNav.Link>
-                ))}
+              ).map((component, index) => (
+                <DxcApplicationLayout.SideNav.Link
+                  key={`componentLink-${index}`}
+                  selected={currentComponent === component}
+                  onClick={() => {
+                    setCurrentComponent(component);
+                  }}
+                >
+                  {makeReadableSidenav(component)}
+                </DxcApplicationLayout.SideNav.Link>
+              ))}
             </DxcApplicationLayout.SideNav.Group>
           </DxcApplicationLayout.SideNav.Section>
         </DxcApplicationLayout.SideNav>

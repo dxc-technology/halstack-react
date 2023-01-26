@@ -1,6 +1,19 @@
-import React from "react";
+import React, { useMemo } from "react";
 import styled from "styled-components";
 import { SuggestionProps } from "./types";
+
+const transformSpecialChars = (str: string) => {
+  const specialCharsRegex = /[\\*()\[\]{}+?/]/;
+  let value = str;
+  if (specialCharsRegex.test(value)) {
+    const regexAsString = specialCharsRegex.toString().split("");
+    const uniqueSpecialChars = regexAsString.filter((item, index) => regexAsString.indexOf(item) === index);
+    uniqueSpecialChars.forEach((specialChar) => {
+      if (str.includes(specialChar)) value = value.replace(specialChar, "\\" + specialChar);
+    });
+  }
+  return value;
+};
 
 const Suggestion = ({
   id,
@@ -11,9 +24,10 @@ const Suggestion = ({
   visuallyFocused,
   highlighted,
 }: SuggestionProps): JSX.Element => {
-  const regEx = new RegExp(value, "i");
-  const matchedWords = suggestion.match(regEx);
-  const noMatchedWords = suggestion.replace(regEx, "");
+  const matchedSuggestion = useMemo(() => {
+    const regEx = new RegExp(transformSpecialChars(value), "i");
+    return { matchedWords: suggestion.match(regEx), noMatchedWords: suggestion.replace(regEx, "") };
+  }, [value, suggestion]);
 
   return (
     <SuggestionContainer
@@ -28,8 +42,8 @@ const Suggestion = ({
       <StyledSuggestion last={isLast} visuallyFocused={visuallyFocused}>
         {highlighted ? (
           <>
-            <strong>{matchedWords}</strong>
-            {noMatchedWords}
+            <strong>{matchedSuggestion.matchedWords}</strong>
+            {matchedSuggestion.noMatchedWords}
           </>
         ) : (
           suggestion

@@ -155,7 +155,6 @@ export const Chromatic = () => (
     <ExampleContainer>
       <Title title="Xxlarge margin" theme="light" level={4} />
       <DxcTabs tabs={tabs} margin="xxlarge" />
-      <hr />
     </ExampleContainer>
   </>
 );

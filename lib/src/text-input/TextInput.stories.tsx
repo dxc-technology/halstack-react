@@ -66,6 +66,7 @@ const countries = [
   "Dominica",
   "Denmark",
   "Djibouti",
+  "*",
 ];
 
 export const Chromatic = () => (
