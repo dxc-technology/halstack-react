@@ -74,11 +74,10 @@ const sections = [
                   added by <i>optional</i> prop.
                 </li>
                 <li>
-                  <b>Icon: string | SVGSVGElement</b>: Element used as the icon
-                  that will be placed before the option label. It can be a url
-                  of an image or an inline SVG. If the URL option is the chosen
-                  one, take into account that the component's color styling
-                  tokens will not be applied to the image.
+                  <b>Icon: string | SVGSVGElement</b>: Element used as an icon
+                  for the option. It can be either the URL of an image or an
+                  inline SVG. Note that if the URL is the chosen option, tokens
+                  and CSS styling rules will not be applied to the icon.
                 </li>
               </ul>
               OptionGroup:
@@ -150,11 +149,9 @@ const sections = [
               This function will be called when the user selects an option. An
               object including the new value (or values) and the error (if the
               value selected is not valid) will be passed to this function. An
-              example of this object is:
-              <Code>
-                {"{ "}value: value, error: error{" }"}
-              </Code>
-              . If there is no error, error will not be defined.
+              example of this object is:{" { "}
+              <Code>value: value, error: error</Code> {" }"}. If there is no
+              error, error will not be defined.
             </td>
           </tr>
           <tr>
@@ -164,11 +161,9 @@ const sections = [
               This function will be called when the select loses the focus. An
               object including the value (or values) and the error (if the value
               selected is not valid) will be passed to this function. An example
-              of this object is:{" "}
-              <Code>
-                {"{ "}value: value, error: error{" }"}
-              </Code>
-              . If there is no error, error will not be defined.
+              of this object is:{" { "}
+              <Code>value: value, error: error</Code>
+              {" }"}. If there is no error, error will not be defined.
             </td>
           </tr>
           <tr>
