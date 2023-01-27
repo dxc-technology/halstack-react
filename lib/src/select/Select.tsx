@@ -1,5 +1,5 @@
 // @ts-nocheck
-import React, { useMemo, useRef, useState, useCallback } from "react";
+import React, { useMemo, useRef, useState, useCallback, useEffect } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
@@ -98,6 +98,27 @@ const getSelectedOption = (value, options, multiple, optional, optionalItem) => 
 
 const notOptionalCheck = (value, multiple, optional) => !optional && (multiple ? value.length === 0 : value === "");
 
+const useWidth = (target) => {
+  const [width, setWidth] = useState(0);
+
+  useEffect(() => {
+    if (target != null) {
+      setWidth(target.getBoundingClientRect().width);
+
+      const triggerObserver = new ResizeObserver((entries) => {
+        const rect = entries[0].target.getBoundingClientRect();
+        setWidth(rect?.width);
+      });
+      triggerObserver.observe(target);
+      return () => {
+        triggerObserver.unobserve(target);
+      };
+    }
+  }, [target]);
+
+  return width;
+};
+
 const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
   (
     {
@@ -132,7 +153,8 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
 
     const selectRef = useRef(null);
     const selectSearchInputRef = useRef(null);
-
+    
+    const width = useWidth(selectRef.current);
     const colorsTheme = useTheme();
     const translatedLabels = useTranslatedLabels();
 
@@ -291,11 +313,6 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
       [handleSelectChangeValue, closeOptions, multiple]
     );
 
-    const getSelectWidth = useCallback(() => {
-      const rect = selectRef?.current?.getBoundingClientRect();
-      return rect?.width;
-    }, []);
-
     return (
       <ThemeProvider theme={colorsTheme.select}>
         <SelectContainer margin={margin} size={size} ref={ref}>
@@ -434,7 +451,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
                 optionalItem={optionalItem}
                 searchable={searchable}
                 handleOptionOnClick={handleOptionOnClick}
-                getSelectWidth={getSelectWidth}
+                styles={{ width }}
               />
             </Popover.Content>
           </Popover.Root>

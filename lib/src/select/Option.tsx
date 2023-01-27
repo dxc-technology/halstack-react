@@ -1,7 +1,6 @@
 import React from "react";
-import styled, { ThemeProvider } from "styled-components";
+import styled from "styled-components";
 import { OptionProps } from "../select/types";
-import useTheme from "../useTheme";
 import DxcCheckbox from "../checkbox/Checkbox";
 import selectIcons from "./Icons";
 
@@ -14,47 +13,41 @@ const Option = ({
   isGroupedOption = false,
   isLastOption,
   isSelected,
-}: OptionProps): JSX.Element => {
-  const colorsTheme = useTheme();
-
-  return (
-    <ThemeProvider theme={colorsTheme.select}>
-      <OptionItem
-        id={id}
-        onClick={() => {
-          onClick(option);
-        }}
-        visualFocused={visualFocused}
-        selected={isSelected}
-        role="option"
-        aria-selected={isSelected}
-      >
-        <StyledOption
-          visualFocused={visualFocused}
-          selected={isSelected}
-          last={isLastOption}
+}: OptionProps): JSX.Element => (
+  <OptionItem
+    id={id}
+    onClick={() => {
+      onClick(option);
+    }}
+    visualFocused={visualFocused}
+    selected={isSelected}
+    role="option"
+    aria-selected={isSelected}
+  >
+    <StyledOption
+      visualFocused={visualFocused}
+      selected={isSelected}
+      last={isLastOption}
+      grouped={isGroupedOption}
+      multiple={multiple}
+    >
+      {multiple && <DxcCheckbox checked={isSelected} tabIndex={-1} />}
+      {option.icon && (
+        <OptionIcon
           grouped={isGroupedOption}
           multiple={multiple}
+          role={!(typeof option.icon === "string") ? "img" : undefined}
         >
-          {multiple && <DxcCheckbox checked={isSelected} tabIndex={-1} />}
-          {option.icon && (
-            <OptionIcon
-              grouped={isGroupedOption}
-              multiple={multiple}
-              role={!(typeof option.icon === "string") ? "img" : undefined}
-            >
-              {typeof option.icon === "string" ? <img src={option.icon} /> : option.icon}
-            </OptionIcon>
-          )}
-          <OptionContent grouped={isGroupedOption} hasIcon={option.icon ? true : false} multiple={multiple}>
-            <OptionLabel>{option.label}</OptionLabel>
-            {!multiple && isSelected && <OptionSelectedIndicator>{selectIcons.selected}</OptionSelectedIndicator>}
-          </OptionContent>
-        </StyledOption>
-      </OptionItem>
-    </ThemeProvider>
-  );
-};
+          {typeof option.icon === "string" ? <img src={option.icon} /> : option.icon}
+        </OptionIcon>
+      )}
+      <OptionContent grouped={isGroupedOption} hasIcon={option.icon ? true : false} multiple={multiple}>
+        <OptionLabel>{option.label}</OptionLabel>
+        {!multiple && isSelected && <OptionSelectedIndicator>{selectIcons.selected}</OptionSelectedIndicator>}
+      </OptionContent>
+    </StyledOption>
+  </OptionItem>
+);
 
 type OptionItemProps = {
   visualFocused: boolean;
