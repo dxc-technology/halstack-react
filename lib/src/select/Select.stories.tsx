@@ -386,6 +386,7 @@ const SelectListbox = () => {
         />
         <div
           style={{
+            position: "relative",
             display: "flex",
             flexDirection: "column",
             gap: "20px",
