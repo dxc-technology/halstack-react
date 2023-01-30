@@ -1,4 +1,4 @@
-import dayjs, { Dayjs } from "dayjs";
+import { Dayjs } from "dayjs";
 import React, { useState, useMemo, useEffect } from "react";
 import styled from "styled-components";
 import { CalendarPropsType } from "./types";
@@ -35,19 +35,28 @@ const getDays = (innerDate: Dayjs) => {
   return monthDayCells;
 };
 
+const getDateToFocus = (selectedDate, innerDate, today) => {
+  return selectedDate?.get("month") === innerDate.get("month") && selectedDate?.get("year") === innerDate.get("year")
+    ? selectedDate
+    : today.get("month") === innerDate.get("month") && today.get("year") === innerDate.get("year")
+    ? today
+    : innerDate.set("date", 1);
+};
+
 const isDaySelected = (date: { day: number; month: number; year: number }, selectedDate) =>
   selectedDate?.get("month") === date.month &&
   selectedDate?.get("year") === date.year &&
   selectedDate?.get("date") === date.day;
 
-const Calendar = ({ selectedDate, innerDate, onInnerDateChange, onDaySelect }: CalendarPropsType): JSX.Element => {
-  const [dateToFocus, setDateToFocus] = useState(
-    selectedDate?.get("month") === innerDate.get("month") && selectedDate?.get("year") === innerDate.get("year")
-      ? selectedDate
-      : dayjs()
-  );
-  const [toFocus, setToFocus] = useState(false);
-  const today = dayjs();
+const Calendar = ({
+  selectedDate,
+  innerDate,
+  onInnerDateChange,
+  onDaySelect,
+  today,
+}: CalendarPropsType): JSX.Element => {
+  const [dateToFocus, setDateToFocus] = useState(getDateToFocus(selectedDate, innerDate, today));
+  const [isFocusable, setIsFocusable] = useState(false);
   const dayCells = useMemo(() => getDays(innerDate), [innerDate]);
   const translatedLabels = useTranslatedLabels();
   const weekDays = translatedLabels.calendar.daysShort;
@@ -60,17 +69,7 @@ const Calendar = ({ selectedDate, innerDate, onInnerDateChange, onDaySelect }: C
 
   const handleOnBlur = (event) => {
     if (!event?.currentTarget.contains(event.relatedTarget)) {
-      updateDateToFocus();
-    }
-  };
-
-  const updateDateToFocus = () => {
-    if (selectedDate?.get("month") === innerDate.get("month") && selectedDate?.get("year") === innerDate.get("year")) {
-      setDateToFocus(selectedDate);
-    } else if (today.get("month") === innerDate.get("month") && today.get("year") === innerDate.get("year")) {
-      setDateToFocus(today);
-    } else {
-      setDateToFocus(innerDate.set("date", 1));
+      setDateToFocus(getDateToFocus(selectedDate, innerDate, today));
     }
   };
 
@@ -79,21 +78,21 @@ const Calendar = ({ selectedDate, innerDate, onInnerDateChange, onDaySelect }: C
       onInnerDateChange(date);
     }
     setDateToFocus(date);
-    setToFocus(true);
+    setIsFocusable(true);
   };
 
   useEffect(() => {
-    if (toFocus) {
+    if (isFocusable) {
       document.getElementById(`day_${dateToFocus.get("date")}_month${dateToFocus.get("month")}`)?.focus();
-      setToFocus(false);
+      setIsFocusable(false);
     }
-  }, [dateToFocus, toFocus]);
+  }, [dateToFocus, isFocusable]);
 
   useEffect(() => {
     if (dateToFocus.get("month") !== innerDate.get("month") || dateToFocus.get("year") !== innerDate.get("year")) {
-      updateDateToFocus();
+      setDateToFocus(getDateToFocus(selectedDate, innerDate, today));
     }
-  }, [innerDate, dateToFocus, selectedDate]);
+  }, [innerDate, dateToFocus, selectedDate, today]);
 
   const handleDayKeyboardEvent = (event, date) => {
     let dateToFocusTemp =
@@ -163,32 +162,28 @@ const Calendar = ({ selectedDate, innerDate, onInnerDateChange, onDaySelect }: C
         ))}
       </DxcFlex>
       <DayCellsContainer onBlur={handleOnBlur}>
-        {dayCells.map((date, index) =>
-          date !== 0 ? (
-            <DayCell
-              onKeyDown={(event) => handleDayKeyboardEvent(event, date)}
-              aria-label={date.day}
-              id={`day_${date.day}_month${date.month}`}
-              key={`day_${index}`}
-              onClick={() => onDateClickHandler(date)}
-              selected={isDaySelected(date, selectedDate)}
-              actualMonth={date.month === innerDate.get("month")}
-              autoFocus={date.day === dateToFocus.get("date") && date.month === dateToFocus.get("month")}
-              aria-selected={isDaySelected(date, selectedDate)}
-              tabIndex={date.day === dateToFocus.get("date") && date.month === dateToFocus.get("month") ? 0 : -1}
-              isCurrentDay={
-                today.get("date") === date.day &&
-                today.get("month") === innerDate.get("month") &&
-                today.get("month") === date.month &&
-                today.get("year") === innerDate.get("year")
-              }
-            >
-              {date.day}
-            </DayCell>
-          ) : (
-            <EmptyDayCell key={`empty_${index}`} />
-          )
-        )}
+        {dayCells.map((date, index) => (
+          <DayCell
+            onKeyDown={(event) => handleDayKeyboardEvent(event, date)}
+            aria-label={date.day}
+            id={`day_${date.day}_month${date.month}`}
+            key={`day_${index}`}
+            onClick={() => onDateClickHandler(date)}
+            selected={isDaySelected(date, selectedDate)}
+            actualMonth={date.month === innerDate.get("month")}
+            autoFocus={date.day === dateToFocus.get("date") && date.month === dateToFocus.get("month")}
+            aria-selected={isDaySelected(date, selectedDate)}
+            tabIndex={date.day === dateToFocus.get("date") && date.month === dateToFocus.get("month") ? 0 : -1}
+            isCurrentDay={
+              today.get("date") === date.day &&
+              today.get("month") === innerDate.get("month") &&
+              today.get("month") === date.month &&
+              today.get("year") === innerDate.get("year")
+            }
+          >
+            {date.day}
+          </DayCell>
+        ))}
       </DayCellsContainer>
     </CalendarContainer>
   );
@@ -210,8 +205,7 @@ const WeekHeaderCell = styled.span`
   width: 36px;
   height: 36px;
   font-family: ${(props) => props.theme.dateInput.pickerFontFamily};
-  font-size: 14px;
-  line-height: 19px;
+  font-size: 0.875rem;
   color: ${(props) => props.theme.dateInput.pickerWeekFontColor};
 `;
 
@@ -238,7 +232,6 @@ const DayCell = styled.button<DayCellPropsType>`
   padding: 0;
   font-size: 0.875rem;
   font-family: ${(props) => props.theme.dateInput.pickerFontFamily};
-  font-weight: 400;
   border: none;
   border-radius: 50%;
   cursor: pointer;
@@ -270,12 +263,6 @@ const DayCell = styled.button<DayCellPropsType>`
       : !props.actualMonth
       ? "#999999"
       : props.theme.dateInput.pickerDayFontColor};
-`;
-
-const EmptyDayCell = styled.div`
-  display: inline-block;
-  width: 40px;
-  height: 36px;
 `;
 
 export default React.memo(Calendar);
