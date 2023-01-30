@@ -156,7 +156,7 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
       dateRef?.current.getElementsByTagName("input")[0].focus();
     };
     const handleDatePickerOnBlur = (event) => {
-      if (!event?.currentTarget.contains(event.relatedTarget)) closeCalendar();
+      // if (!event?.currentTarget.contains(event.relatedTarget)) closeCalendar();
     };
 
     return (

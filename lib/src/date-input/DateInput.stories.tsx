@@ -17,7 +17,7 @@ export default {
   component: DxcDateInput,
 };
 
-export const Chromatic = () => (
+const DateInputChromatic = () => (
   <>
     <ExampleContainer>
       <Title title="Complete date input" theme="light" level={4} />
@@ -28,7 +28,7 @@ export const Chromatic = () => (
       <DxcDateInput
         label="Disabled date input"
         helperText="Help message"
-        defaultValue="06-04-2027"
+        defaultValue="06-04-2007"
         clearable
         disabled
       />
@@ -39,7 +39,7 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Relation between icons" theme="light" level={4} />
-      <DxcDateInput label="Error date input" error="Error message." defaultValue="06-04-2027" clearable />
+      <DxcDateInput label="Error date input" error="Error message." defaultValue="06-04-2007" clearable />
     </ExampleContainer>
     <BackgroundColorProvider color="#333333">
       <DarkContainer>
@@ -64,7 +64,7 @@ export const Chromatic = () => (
         </ExampleContainer>
         <ExampleContainer>
           <Title title="Relation between icons" theme="dark" level={4} />
-          <DxcDateInput label="Error date input" defaultValue="06-04-2027" error="Error message." clearable />
+          <DxcDateInput label="Error date input" defaultValue="06-04-2007" error="Error message." clearable />
         </ExampleContainer>
       </DarkContainer>
     </BackgroundColorProvider>
@@ -110,17 +110,46 @@ export const Chromatic = () => (
       <Title title="FillParent size" theme="light" level={4} />
       <DxcDateInput label="FillParent" size="fillParent" />
     </ExampleContainer>
+    <ExampleContainer expanded>
+      <Title title="Year picker" theme="light" level={4} />
+      <DxcDateInput label="Date input" defaultValue="06-04-1905" />
+    </ExampleContainer>
   </>
 );
+
+export const Chromatic = DateInputChromatic.bind({});
+Chromatic.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  await userEvent.click(canvas.getAllByRole("combobox")[canvas.getAllByRole("combobox").length - 1]);
+  await fireEvent.click(screen.getByText("April 1905"));
+};
 
 const DatePickerButtonStates = () => {
   const colorsTheme: any = useTheme();
   return (
     <>
-      <ExampleContainer expanded>
+      <ExampleContainer>
         <Title title="Show date picker over another element with z-index 0" theme="light" level={4} />
-        <DxcDateInput label="From" defaultValue="01-12-1995" />
-        <DxcDateInput label="To" />
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "20px",
+            height: "200px",
+            width: "500px",
+            marginBottom: "250px",
+            padding: "20px",
+            border: "1px solid black",
+            borderRadius: "4px",
+            overflow: "auto",
+            zIndex: "1300",
+            position: "relative",
+          }}
+        >
+          <DxcDateInput label="From" defaultValue="01-12-1995" />
+          <DxcDateInput label="To" />
+          <button style={{ zIndex: "1", width: "100px" }}>Submit</button>
+        </div>
       </ExampleContainer>
       <ThemeProvider theme={colorsTheme}>
         <ExampleContainer pseudoState="pseudo-focus">
@@ -140,21 +169,17 @@ const DatePickerButtonStates = () => {
   );
 };
 
-export const ShowDatePicker = DatePickerButtonStates.bind({});
-ShowDatePicker.play = async ({ canvasElement }) => {
+export const DatePickerStates = DatePickerButtonStates.bind({});
+DatePickerStates.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const dateBtn = canvas.getAllByTitle("Open calendar")[0];
   await userEvent.click(dateBtn);
 };
 
-const YearpickerButtonStates = () => {
+export const YearpickerStates = () => {
   const colorsTheme: any = useTheme();
   return (
     <>
-      <ExampleContainer expanded>
-        <Title title="Show year picker" theme="light" level={4} />
-        <DxcDateInput label="Date input" defaultValue="06-04-1905" />
-      </ExampleContainer>
       <ThemeProvider theme={colorsTheme}>
         <ExampleContainer pseudoState="pseudo-focus">
           <Title title="Isolated year picker focused" theme="light" level={4} />
@@ -183,13 +208,6 @@ const YearpickerButtonStates = () => {
       </ThemeProvider>
     </>
   );
-};
-
-export const ShowYearPicker = YearpickerButtonStates.bind({});
-ShowYearPicker.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  await userEvent.click(canvas.getByRole("combobox"));
-  await fireEvent.click(screen.getByText("April 1905"));
 };
 
 export const DatePickerWithToday = () => {
