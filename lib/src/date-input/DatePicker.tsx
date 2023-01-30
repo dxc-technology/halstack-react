@@ -5,33 +5,7 @@ import { DatePickerPropsType } from "./types";
 import Calendar from "./Calendar";
 import YearPicker from "./YearPicker";
 import useTranslatedLabels from "../useTranslatedLabels";
-
-const leftCaret = (
-  <svg fill="currentColor" focusable="false" viewBox="0 0 24 24" aria-hidden="true">
-    <path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"></path>
-    <path fill="none" d="M0 0h24v24H0V0z"></path>
-  </svg>
-);
-
-const rightCaret = (
-  <svg fill="currentColor" focusable="false" viewBox="0 0 24 24" aria-hidden="true">
-    <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"></path>
-    <path fill="none" d="M0 0h24v24H0V0z"></path>
-  </svg>
-);
-
-const downCaret = (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-    <path d="M7.5 10L12.5 15L17.5 10H7.5Z" fill="currentColor" />
-  </svg>
-);
-
-const upCaret = (
-  <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 0 24 24">
-    <path d="m7 14 5-5 5 5Z" fill="currentColor" />
-  </svg>
-);
-
+import { downCaret, leftCaret, rightCaret, upCaret } from "./Icons";
 const today = dayjs();
 
 const DxcDatePicker = ({ date, onDateSelect, id }: DatePickerPropsType): JSX.Element => {

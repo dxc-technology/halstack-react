@@ -176,7 +176,7 @@ DatePickerStates.play = async ({ canvasElement }) => {
   await userEvent.click(dateBtn);
 };
 
-export const YearpickerStates = () => {
+export const YearPickerStates = () => {
   const colorsTheme: any = useTheme();
   return (
     <>
