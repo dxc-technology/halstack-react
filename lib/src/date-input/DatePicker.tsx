@@ -26,6 +26,12 @@ const downCaret = (
   </svg>
 );
 
+const upCaret = (
+  <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 0 24 24">
+    <path d="m7 14 5-5 5 5Z" fill="currentColor" />
+  </svg>
+);
+
 const today = dayjs();
 
 const DxcDatePicker = ({ date, onDateSelect, id }: DatePickerPropsType): JSX.Element => {
@@ -65,7 +71,7 @@ const DxcDatePicker = ({ date, onDateSelect, id }: DatePickerPropsType): JSX.Ele
           <HeaderYearTriggerLabel>
             {translatedLabels.calendar.months[innerDate.get("month")]} {innerDate.format("YYYY")}
           </HeaderYearTriggerLabel>
-          {downCaret}
+          {content === "yearPicker" ? upCaret : downCaret}
         </HeaderYearTrigger>
         <HeaderButton
           aria-label={translatedLabels.calendar.nextMonthTitle}
