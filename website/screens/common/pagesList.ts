@@ -15,11 +15,17 @@ type NavigationLinks = {
 
 export const themeGeneratorLinks = [
   "/theme-generator/opinionated-theme/",
-  "/theme-generator/advanced-theme/"
-]
+  "/theme-generator/advanced-theme/",
+];
 
 const overviewLinks: LinkDetails[] = [
   { label: "Introduction", path: "/overview/introduction" },
+];
+const utilitiesLinks: LinkDetails[] = [
+  {
+    label: "HalstackProvider",
+    path: "/utilities/halstackProvider/",
+  },
 ];
 
 const principlesLinks: LinkDetails[] = [
@@ -79,6 +85,7 @@ const componentsLinks: LinkDetails[] = [
 export const LinksSections: LinksSectionDetails[] = [
   { label: "Overview", links: overviewLinks },
   { label: "Principles", links: principlesLinks },
+  { label: "Utilities", links: utilitiesLinks },
   { label: "Components", links: componentsLinks },
 ];
 
