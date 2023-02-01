@@ -341,6 +341,7 @@ const AutosuggestListbox = () => {
               borderRadius: "4px",
               overflow: "auto",
               zIndex: "1300",
+              position: "relative",
             }}
           >
             <DxcTextInput
