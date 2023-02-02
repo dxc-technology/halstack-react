@@ -64,7 +64,7 @@ const defaultOptions: Option[] = [
   },
   {
     value: "8",
-    label: "Gearbest",
+    label: "Gearbest shop",
   },
 ];
 const options: Option[] = [
@@ -349,11 +349,20 @@ const DropdownListStates = () => {
   );
 };
 
-const DropdownMenuAlignment = () => (
+const DropdownRightAlignment = () => (
   <ExampleContainer>
-    <Title title="Dropdown collisions on the right boundary" theme="light" level={4} />
+    <Title title="Dropdown collisions on the right boundary (right)" theme="light" level={4} />
     <DxcFlex justifyContent="flex-end">
-      <DxcDropdown label="Default" options={options} onSelectOption={(value) => {}} />
+      <DxcDropdown label="Label" options={options} onSelectOption={(value) => {}} />
+    </DxcFlex>
+  </ExampleContainer>
+);
+
+const DropdownCenterAlignment = () => (
+  <ExampleContainer>
+    <Title title="Dropdown collisions on the right boundary (centered)" theme="light" level={4} />
+    <DxcFlex justifyContent="flex-end">
+      <DxcDropdown label="Label" options={defaultOptions} onSelectOption={(value) => {}} margin="small" />
     </DxcFlex>
   </ExampleContainer>
 );
@@ -371,8 +380,14 @@ DropdownMenuStates.play = async ({ canvasElement }) => {
   await userEvent.click(canvas.getAllByRole("button")[0]);
 };
 
-export const DropdownRightCollision = DropdownMenuAlignment.bind({});
-DropdownRightCollision.play = async ({ canvasElement }) => {
+export const DropdownMenuAlignedRight = DropdownRightAlignment.bind({});
+DropdownMenuAlignedRight.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  await userEvent.click(canvas.getByRole("button"));
+};
+
+export const DropdownMenuAlignedCenter = DropdownCenterAlignment.bind({});
+DropdownMenuAlignedCenter.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   await userEvent.click(canvas.getByRole("button"));
 };

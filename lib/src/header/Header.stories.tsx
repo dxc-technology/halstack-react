@@ -3,6 +3,8 @@ import DxcHeader from "./Header";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import { userEvent, waitFor, within } from "@storybook/testing-library";
+import DxcFlex from "../flex/Flex";
+import DxcLink from "../link/Link";
 
 export default {
   title: "Header",
@@ -16,15 +18,46 @@ const options: any = [
   },
 ];
 
+const options2: any = [
+  {
+    value: 1,
+    label: "Home",
+  },
+  {
+    value: 2,
+    label: "Release notes",
+  },
+  {
+    value: 3,
+    label: "Sign out",
+  },
+];
+
 export const Chromatic = () => (
   <>
     <ExampleContainer>
       <Title title="Default with dropdown" theme="light" level={4} />
-      <DxcHeader content={<DxcHeader.Dropdown options={options} label="Default Dropdown" />} />
+      <DxcHeader
+        content={<DxcHeader.Dropdown options={options} label="Default Dropdown" onSelectOption={() => {}} />}
+      />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Underlined with text" theme="light" level={4} />
       <DxcHeader underlined content={<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras felis.</p>} />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Underlined, dropdown and links" theme="light" level={4} />
+      <DxcHeader
+        content={
+          <DxcFlex alignItems="center" gap="4rem">
+            <DxcLink>Link 1</DxcLink>
+            <DxcLink>Link 2</DxcLink>
+            <DxcLink>Link 3</DxcLink>
+            <DxcHeader.Dropdown options={options2} label="Label" onSelectOption={() => {}} />
+          </DxcFlex>
+        }
+        underlined
+      />
     </ExampleContainer>
     <Title title="Margins" theme="light" level={2} />
     <ExampleContainer>
