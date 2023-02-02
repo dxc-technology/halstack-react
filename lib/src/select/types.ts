@@ -1,3 +1,5 @@
+import React from "react";
+
 type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
 type Margin = {
   top?: Space;
@@ -193,7 +195,7 @@ export type ListboxProps = {
   optionalItem: Option;
   searchable: boolean;
   handleOptionOnClick: (option: Option) => void;
-  getSelectWidth: () => number;
+  styles: React.CSSProperties;
 };
 
 /**
