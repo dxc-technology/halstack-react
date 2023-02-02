@@ -4,8 +4,8 @@ import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DxcSelect from "./Select";
 import Listbox from "./Listbox";
-import DxcButton from "../button/Button";
-import DxcCheckbox from "../checkbox/Checkbox";
+import { ThemeProvider } from "styled-components";
+import useTheme from "../useTheme";
 
 export default {
   title: "Select",
@@ -372,182 +372,188 @@ const Select = () => (
     </ExampleContainer>
   </>
 );
-const SelectListbox = () => (
-  <>
-    <Title title="Listbox" theme="light" level={2} />
-    <ExampleContainer>
-      <Title
-        title="List dialog uses a Radix Popover to appear over elements with a certain z-index"
-        theme="light"
-        level={3}
-      />
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "20px",
-          height: "150px",
-          width: "min-content",
-          marginBottom: "100px",
-          padding: "20px",
-          border: "1px solid black",
-          borderRadius: "4px",
-          overflow: "auto",
-          zIndex: "1300",
-        }}
-      >
-        <DxcSelect label="Label" options={single_options} optional placeholder="Choose an option" />
-        <button style={{ zIndex: "1", width: "100px" }}>Submit</button>
-      </div>
-    </ExampleContainer>
-    <Title title="Listbox option states" theme="light" level={3} />
-    <ExampleContainer pseudoState="pseudo-hover">
-      <Title title="Hovered option" theme="light" level={4} />
-      <Listbox
-        id="x"
-        currentValue=""
-        options={one_option}
-        visualFocusIndex={-1}
-        lastOptionIndex={0}
-        multiple={false}
-        optional={false}
-        optionalItem={{ label: "Empty", value: "" }}
-        searchable={false}
-        handleOptionOnClick={() => {}}
-        getSelectWidth={() => 360}
-      />
-    </ExampleContainer>
-    <ExampleContainer pseudoState="pseudo-active">
-      <Title title="Active option" theme="light" level={4} />
-      <Listbox
-        id="x"
-        currentValue=""
-        options={one_option}
-        visualFocusIndex={-1}
-        lastOptionIndex={0}
-        multiple={false}
-        optional={false}
-        optionalItem={{ label: "Empty", value: "" }}
-        searchable={false}
-        handleOptionOnClick={() => {}}
-        getSelectWidth={() => 360}
-      />
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Focused option" theme="light" level={4} />
-      <Listbox
-        id="x"
-        currentValue=""
-        options={one_option}
-        visualFocusIndex={0}
-        lastOptionIndex={0}
-        multiple={false}
-        optional={false}
-        optionalItem={{ label: "Empty", value: "" }}
-        searchable={false}
-        handleOptionOnClick={() => {}}
-        getSelectWidth={() => 360}
-      />
-    </ExampleContainer>
-    <ExampleContainer pseudoState="pseudo-hover">
-      <Title title="Hovered selected option" theme="light" level={4} />
-      <Listbox
-        id="x"
-        currentValue="1"
-        options={single_options}
-        visualFocusIndex={-1}
-        lastOptionIndex={3}
-        multiple={false}
-        optional={false}
-        optionalItem={{ label: "Empty", value: "" }}
-        searchable={false}
-        handleOptionOnClick={() => {}}
-        getSelectWidth={() => 360}
-      />
-    </ExampleContainer>
-    <ExampleContainer pseudoState="pseudo-active">
-      <Title title="Active selected option" theme="light" level={4} />
-      <Listbox
-        id="x"
-        currentValue="2"
-        options={single_options}
-        visualFocusIndex={0}
-        lastOptionIndex={3}
-        multiple={false}
-        optional={false}
-        optionalItem={{ label: "Empty", value: "" }}
-        searchable={false}
-        handleOptionOnClick={() => {}}
-        getSelectWidth={() => 360}
-      />
-    </ExampleContainer>
-    <Title title="Listbox with icons" theme="light" level={3} />
-    <ExampleContainer>
-      <Title title="Icons (SVGs)" theme="light" level={4} />
-      <Listbox
-        id="x"
-        currentValue="3"
-        options={icon_options}
-        visualFocusIndex={-1}
-        lastOptionIndex={3}
-        multiple={false}
-        optional={false}
-        optionalItem={{ label: "Empty", value: "" }}
-        searchable={false}
-        handleOptionOnClick={() => {}}
-        getSelectWidth={() => 360}
-      />
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Icons (Images)" theme="light" level={4} />
-      <Listbox
-        id="x"
-        currentValue="facebook"
-        options={url_options}
-        visualFocusIndex={-1}
-        lastOptionIndex={6}
-        multiple={false}
-        optional={false}
-        optionalItem={{ label: "Empty", value: "" }}
-        searchable={false}
-        handleOptionOnClick={() => {}}
-        getSelectWidth={() => 360}
-      />
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Grouped icons (SVGs)" theme="light" level={4} />
-      <Listbox
-        id="x"
-        currentValue={["0", "3"]}
-        options={icon_options_grouped}
-        visualFocusIndex={-1}
-        lastOptionIndex={3}
-        multiple={false}
-        optional={false}
-        optionalItem={{ label: "Empty", value: "" }}
-        searchable={false}
-        handleOptionOnClick={() => {}}
-        getSelectWidth={() => 360}
-      />
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Grouped icons (Images)" theme="light" level={4} />
-      <Listbox
-        id="x"
-        currentValue={["facebook", "figma"]}
-        options={url_options}
-        visualFocusIndex={-1}
-        lastOptionIndex={6}
-        multiple={true}
-        optional={false}
-        optionalItem={{ label: "Empty", value: "" }}
-        searchable={false}
-        handleOptionOnClick={() => {}}
-        getSelectWidth={() => 360}
-      />
-    </ExampleContainer>
-  </>
-);
+const SelectListbox = () => {
+  const colorsTheme: any = useTheme();
+
+  return (
+    <ThemeProvider theme={colorsTheme.select}>
+      <Title title="Listbox" theme="light" level={2} />
+      <ExampleContainer>
+        <Title
+          title="List dialog uses a Radix Popover to appear over elements with a certain z-index"
+          theme="light"
+          level={3}
+        />
+        <div
+          style={{
+            position: "relative",
+            display: "flex",
+            flexDirection: "column",
+            gap: "20px",
+            height: "150px",
+            width: "min-content",
+            marginBottom: "100px",
+            padding: "20px",
+            border: "1px solid black",
+            borderRadius: "4px",
+            overflow: "auto",
+            zIndex: "1300",
+          }}
+        >
+          <DxcSelect label="Label" options={single_options} optional placeholder="Choose an option" />
+          <button style={{ zIndex: "1", width: "100px" }}>Submit</button>
+        </div>
+      </ExampleContainer>
+      <Title title="Listbox option states" theme="light" level={3} />
+      <ExampleContainer pseudoState="pseudo-hover">
+        <Title title="Hovered option" theme="light" level={4} />
+        <Listbox
+          id="x"
+          currentValue=""
+          options={one_option}
+          visualFocusIndex={-1}
+          lastOptionIndex={0}
+          multiple={false}
+          optional={false}
+          optionalItem={{ label: "Empty", value: "" }}
+          searchable={false}
+          handleOptionOnClick={() => {}}
+          styles={{ width: 360 }}
+        />
+      </ExampleContainer>
+      <ExampleContainer pseudoState="pseudo-active">
+        <Title title="Active option" theme="light" level={4} />
+        <Listbox
+          id="x"
+          currentValue=""
+          options={one_option}
+          visualFocusIndex={-1}
+          lastOptionIndex={0}
+          multiple={false}
+          optional={false}
+          optionalItem={{ label: "Empty", value: "" }}
+          searchable={false}
+          handleOptionOnClick={() => {}}
+          styles={{ width: 360 }}
+        />
+      </ExampleContainer>
+      <ExampleContainer>
+        <Title title="Focused option" theme="light" level={4} />
+        <Listbox
+          id="x"
+          currentValue=""
+          options={one_option}
+          visualFocusIndex={0}
+          lastOptionIndex={0}
+          multiple={false}
+          optional={false}
+          optionalItem={{ label: "Empty", value: "" }}
+          searchable={false}
+          handleOptionOnClick={() => {}}
+          styles={{ width: 360 }}
+        />
+      </ExampleContainer>
+      <ExampleContainer pseudoState="pseudo-hover">
+        <Title title="Hovered selected option" theme="light" level={4} />
+        <Listbox
+          id="x"
+          currentValue="1"
+          options={single_options}
+          visualFocusIndex={-1}
+          lastOptionIndex={3}
+          multiple={false}
+          optional={false}
+          optionalItem={{ label: "Empty", value: "" }}
+          searchable={false}
+          handleOptionOnClick={() => {}}
+          styles={{ width: 360 }}
+        />
+      </ExampleContainer>
+      <ExampleContainer pseudoState="pseudo-active">
+        <Title title="Active selected option" theme="light" level={4} />
+        <Listbox
+          id="x"
+          currentValue="2"
+          options={single_options}
+          visualFocusIndex={0}
+          lastOptionIndex={3}
+          multiple={false}
+          optional={false}
+          optionalItem={{ label: "Empty", value: "" }}
+          searchable={false}
+          handleOptionOnClick={() => {}}
+          styles={{ width: 360 }}
+        />
+      </ExampleContainer>
+      <Title title="Listbox with icons" theme="light" level={3} />
+      <ExampleContainer>
+        <Title title="Icons (SVGs)" theme="light" level={4} />
+        <Listbox
+          id="x"
+          currentValue="3"
+          options={icon_options}
+          visualFocusIndex={-1}
+          lastOptionIndex={3}
+          multiple={false}
+          optional={false}
+          optionalItem={{ label: "Empty", value: "" }}
+          searchable={false}
+          handleOptionOnClick={() => {}}
+          styles={{ width: 360 }}
+        />
+      </ExampleContainer>
+      <ExampleContainer>
+        <Title title="Icons (Images)" theme="light" level={4} />
+        <Listbox
+          id="x"
+          currentValue="facebook"
+          options={url_options}
+          visualFocusIndex={-1}
+          lastOptionIndex={6}
+          multiple={false}
+          optional={false}
+          optionalItem={{ label: "Empty", value: "" }}
+          searchable={false}
+          handleOptionOnClick={() => {}}
+          styles={{ width: 360 }}
+        />
+      </ExampleContainer>
+      <ExampleContainer>
+        <Title title="Grouped icons (SVGs)" theme="light" level={4} />
+        <Listbox
+          id="x"
+          currentValue={["0", "3"]}
+          options={icon_options_grouped}
+          visualFocusIndex={-1}
+          lastOptionIndex={3}
+          multiple={false}
+          optional={false}
+          optionalItem={{ label: "Empty", value: "" }}
+          searchable={false}
+          handleOptionOnClick={() => {}}
+          styles={{ width: 360 }}
+        />
+      </ExampleContainer>
+      <ExampleContainer>
+        <Title title="Grouped icons (Images)" theme="light" level={4} />
+        <Listbox
+          id="x"
+          currentValue={["facebook", "figma"]}
+          options={url_options}
+          visualFocusIndex={-1}
+          lastOptionIndex={6}
+          multiple={true}
+          optional={false}
+          optionalItem={{ label: "Empty", value: "" }}
+          searchable={false}
+          handleOptionOnClick={() => {}}
+          styles={{ width: 360 }}
+        />
+      </ExampleContainer>
+    </ThemeProvider>
+  );
+};
+
 const SearchableSelect = () => (
   <ExampleContainer expanded>
     <Title title="Searchable select" theme="light" level={4} />
@@ -598,25 +604,6 @@ const MultipleGroupedOptionsSelect = () => (
     />
   </ExampleContainer>
 );
-const SelectMultipleWithIcons = () => (
-  <ExampleContainer expanded>
-    <Title title="Multiple select with icons" theme="light" level={4} />
-    <DxcSelect label="Label" options={icon_options} multiple defaultValue={["1", "3"]} placeholder="Choose an option" />
-  </ExampleContainer>
-);
-const MultipleGroupedOptionsSelectWithIcons = () => (
-  <ExampleContainer expanded>
-    <Title title="Multiple grouped options with icons" theme="light" level={4} />
-    <DxcSelect
-      label="Label"
-      options={icon_options_grouped}
-      multiple
-      defaultValue={["3", "2"]}
-      placeholder="Choose an option"
-    />
-  </ExampleContainer>
-);
-
 const MultipleSearchable = () => (
   <ExampleContainer expanded>
     <Title title="Searchable multiple select with value" theme="light" level={4} />
