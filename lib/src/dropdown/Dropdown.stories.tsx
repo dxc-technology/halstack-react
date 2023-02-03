@@ -344,7 +344,7 @@ const DropdownListStates = () => (
         styles={{ width: 240 }}
       />
     </ExampleContainer>
-    <Title title="Opinionated  theme" theme="light" level={4} />
+    <Title title="Opinionated  theme" theme="light" level={2} />
     <ExampleContainer>
       <Title title="Hovered option" theme="light" level={4} />
       <HalstackProvider theme={opinionatedTheme}>

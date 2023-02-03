@@ -58,7 +58,7 @@ export const Chromatic = () => (
       <Title title="Xxlarge margin" theme="light" level={4} />
       <DxcProgressBar label="Margin xxlarge" margin="xxlarge" value={50} showValue />
     </ExampleContainer>
-    <Title title="Opinionated theme" theme="light" level={4} />
+    <Title title="Opinionated theme" theme="light" level={2} />
     <ExampleContainer>
       <Title title="Label and helper text" theme="light" level={4} />
       <HalstackProvider theme={opinionatedTheme}>

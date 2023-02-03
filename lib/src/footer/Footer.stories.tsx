@@ -197,6 +197,23 @@ export const Chromatic = () => (
       <Title title="Xxlarge margin" theme="light" level={4} />
       <DxcFooter margin="xxlarge"></DxcFooter>
     </ExampleContainer>
+    <Title title="Padding" theme="light" level={2} />
+    <ExampleContainer>
+      <Title title="Xxsmall padding" theme="light" level={4} />
+      <DxcFooter padding="xxsmall"></DxcFooter>
+      <Title title="Xsmall padding" theme="light" level={4} />
+      <DxcFooter padding="xsmall"></DxcFooter>
+      <Title title="Small padding" theme="light" level={4} />
+      <DxcFooter padding="small"></DxcFooter>
+      <Title title="Medium padding" theme="light" level={4} />
+      <DxcFooter padding="medium"></DxcFooter>
+      <Title title="Large padding" theme="light" level={4} />
+      <DxcFooter padding="large"></DxcFooter>
+      <Title title="Xlarge padding" theme="light" level={4} />
+      <DxcFooter padding="xlarge"></DxcFooter>
+      <Title title="Xxlarge padding" theme="light" level={4} />
+      <DxcFooter padding="xxlarge"></DxcFooter>
+    </ExampleContainer>
     <Title title="Opinionated theme" theme="light" level={2} />
     <ExampleContainer>
       <HalstackProvider theme={opinionatedTheme}>

@@ -188,7 +188,7 @@ export const Chromatic = () => (
         size="large"
       />
     </ExampleContainer>
-    <Title title="Opininated theme" theme="light" level={2} />
+    <Title title="Opinionated theme" theme="light" level={2} />
     <ExampleContainer pseudoState="pseudo-hover">
       <Title title="Hovered" theme="light" level={4} />
       <HalstackProvider theme={opinionatedTheme}>

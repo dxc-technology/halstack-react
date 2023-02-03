@@ -281,7 +281,7 @@ export const Chromatic = () => (
         </tr>
       </DxcTable>
     </ExampleContainer>
-    <Title title="Opinionated theme" theme="light" level={4} />
+    <Title title="Opinionated theme" theme="light" level={2} />
     <ExampleContainer>
       <HalstackProvider theme={opinionatedTheme}>
         <DxcTable>

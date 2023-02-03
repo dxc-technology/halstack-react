@@ -187,7 +187,7 @@ const Checkbox = () => (
         <DxcCheckbox label="Very long label to check its overflowing" labelPosition="after" />
       </SmallContainer>
     </ExampleContainer>
-    <Title title="Opinionated theme" theme="light" level={4} />
+    <Title title="Opinionated theme" theme="light" level={2} />
     <ExampleContainer>
       <Title title="Default" theme="light" level={4} />
       <HalstackProvider theme={opinionatedTheme}>

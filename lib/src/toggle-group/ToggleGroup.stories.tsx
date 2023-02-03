@@ -165,7 +165,7 @@ export const Chromatic = () => (
       <Title title="xxLarge" theme="light" level={4} />
       <DxcToggleGroup label="xxLarge margin" options={options} margin="xxlarge" />
     </ExampleContainer>
-    <Title title="Opinionated theme" theme="light" level={4} />
+    <Title title="Opinionated theme" theme="light" level={2} />
     <ExampleContainer>
       <HalstackProvider theme={opinionatedTheme}>
         <Title title="Selected" theme="light" level={4} />

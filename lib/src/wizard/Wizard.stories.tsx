@@ -229,7 +229,7 @@ export const Chromatic = () => (
       <Title title="Xxlarge margin" theme="light" level={4} />
       <DxcWizard mode="vertical" margin="xxlarge" steps={stepWithLabel}></DxcWizard>
     </ExampleContainer>
-    <Title title="Opinionated theme" theme="light" level={3} />
+    <Title title="Opinionated theme" theme="light" level={2} />
     <ExampleContainer>
       <HalstackProvider theme={opinionatedTheme}>
         <DxcWizard defaultCurrentStep={2} steps={stepWithLabelDescription}></DxcWizard>

@@ -537,7 +537,7 @@ export const Chromatic = () => (
         margin="xxlarge"
       />
     </ExampleContainer>
-    <Title title="Opinionated theme" theme="light" level={4} />
+    <Title title="Opinionated theme" theme="light" level={2} />
     <ExampleContainer>
       <HalstackProvider theme={opinionatedTheme}>
         <Title title="Single file" theme="light" level={4} />
