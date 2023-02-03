@@ -272,8 +272,8 @@ CollapseHoverGroup.play = async ({ canvasElement }) => {
   });
 };
 
-export const CollapseHoverGroupHover = HoverSidenavOpinionated.bind({});
-CollapseHoverGroupHover.play = async ({ canvasElement }) => {
+export const CollapseHoverGroupOpinionated = HoverSidenavOpinionated.bind({});
+CollapseHoverGroupOpinionated.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const collapsableGroups = canvas.getAllByText("Collapsable Group");
   collapsableGroups.forEach((group) => {
