@@ -196,6 +196,10 @@ const CalendarContainer = styled.div`
   justify-content: center;
   padding: 0px 8px 8px 8px;
   width: 292px;
+  font-family: ${(props) => props.theme.dateInput.pickerFontFamily};
+  font-size: ${(props) => props.theme.dateInput.pickerFontSize};
+  color: ${(props) => props.theme.dateInput.pickerFontColor};
+  font-weight: ${(props) => props.theme.dateInput.pickerFontWeight};
 `;
 
 const WeekHeaderCell = styled.span`
