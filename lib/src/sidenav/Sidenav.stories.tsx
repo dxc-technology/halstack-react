@@ -112,7 +112,7 @@ export const Chromatic = () => (
         </DxcSidenav.Section>
       </DxcSidenav>
     </ExampleContainer>
-    <Title title="Opinionated theme" theme="light" level={4} />
+    <Title title="Opinionated theme" theme="light" level={2} />
     <ExampleContainer>
       <HalstackProvider theme={opinionatedTheme}>
         <DxcSidenav title={<TitleComponent />}>

@@ -74,7 +74,7 @@ export const Chromatic = () => (
       <Title title="Xxlarge margin" theme="light" level={4} />
       <DxcSpinner margin="xxlarge" mode="small" value="75"></DxcSpinner>
     </ExampleContainer>
-    <Title title="Opinionated theme" theme="light" level={4} />
+    <Title title="Opinionated theme" theme="light" level={2} />
     <ExampleContainer>
       <Title title="With label and value label" theme="light" level={4} />
       <HalstackProvider theme={opinionatedTheme}>

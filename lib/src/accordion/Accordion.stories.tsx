@@ -349,7 +349,7 @@ export const Chromatic = () => (
         </div>
       </DxcAccordion>
     </ExampleContainer>
-    <Title title="Opinionated theme" theme="light" level={4} />
+    <Title title="Opinionated theme" theme="light" level={2} />
     <ExampleContainer>
       <Title title="With assistive text and icon" theme="light" level={4} />
       <HalstackProvider theme={opinionatedTheme}>

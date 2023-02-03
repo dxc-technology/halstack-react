@@ -134,7 +134,7 @@ export const Chromatic = () => (
       <Title title="Xxlarge margin" theme="light" level={4} />
       <DxcChip label="xxlarge" margin="xxlarge" />
     </ExampleContainer>
-    <Title title="Opinionated theme" theme="light" level={4} />
+    <Title title="Opinionated theme" theme="light" level={2} />
     <ExampleContainer>
       <Title title="Chip with prefix and suffix" theme="light" level={4} />
       <HalstackProvider theme={opinionatedTheme}>
