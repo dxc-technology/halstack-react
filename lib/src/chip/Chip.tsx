@@ -109,10 +109,17 @@ const IconContainer = styled.div`
   color: ${(props) => (props.disabled ? props.theme.disabledIconColor : props.theme.iconColor)};
   ${(props) => getCursor(props.interactuable, props.disabled)}
 
+  &:hover {
+    color: ${(props) => !props.disabled && props.theme.hoverIconColor};
+  }
   &:focus {
-    outline-color: ${(props) => props.theme.focusColor};
-    outline-width: 2px;
-    ${(props) => props.disabled && "outline: none;"}
+    outline-color: ${(props) => !props.disabled && props.theme.focusColor};
+    outline-style: ${(props) => !props.disabled && props.theme.focusBorderStyle};
+    outline-width: ${(props) => !props.disabled && props.theme.focusBorderThickness};
+    border-radius: ${(props) => !props.disabled && props.theme.focusBorderRadius};
+  }
+  &:active {
+    color: ${(props) => !props.disabled && props.theme.activeIconColor};
   }
   img,
   svg {

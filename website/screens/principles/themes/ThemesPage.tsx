@@ -124,19 +124,21 @@ const sections = [
                   <Code>iconColor</Code>
                   <br />
                   <br />
-                  <Code>focusBorderColor</Code>
-                  <br />
-                  <br />
-                  <Code>hoverBackgroundColor</Code> (16% of opacity)
+                  <Code>hoverBackgroundColor</Code> (+57% of lightness)
                 </td>
               </tr>
               <tr>
-                <td>Font color</td>
+                <td>Title font color</td>
+                <td>
+                  <br />
+                  <Code>titleLabelFontColor</Code>
+                </td>
+              </tr>
+              <tr>
+                <td>Assistive text font color</td>
                 <td>
                   <Code>assistiveTextFontColor</Code>
                   <br />
-                  <br />
-                  <Code>titleLabelFontColor</Code>
                 </td>
               </tr>
             </tbody>
@@ -267,8 +269,11 @@ const sections = [
                 <td>Font color</td>
                 <td>
                   <Code>fontColor</Code>
-                  <br />
-                  <br />
+                </td>
+              </tr>
+              <tr>
+                <td>Icon color</td>
+                <td>
                   <Code>iconColor</Code>
                 </td>
               </tr>
@@ -323,16 +328,16 @@ const sections = [
                   <Code>buttonBackgroundColor</Code>
                   <br />
                   <br />
-                  <Code>hoverButtonBackgroundColor</Code> (34% of opacity)
+                  <Code>hoverButtonBackgroundColor</Code> (-5% of lightness)
                   <br />
                   <br />
-                  <Code>activeButtonBackgroundColor</Code> (70% of opacity)
+                  <Code>activeButtonBackgroundColor</Code> (-6% of lightness)
                   <br />
                   <br />
-                  <Code>hoverOptionBackgroundColor</Code> (34% of opacity)
+                  <Code>hoverOptionBackgroundColor</Code> (-5% of lightness)
                   <br />
                   <br />
-                  <Code>activeOptionBackgroundColor</Code> (70% of opacity)
+                  <Code>activeOptionBackgroundColor</Code> (-20% of lightness)
                 </td>
               </tr>
               <tr>
@@ -341,10 +346,10 @@ const sections = [
                   <Code>buttonFontColor</Code>
                   <br />
                   <br />
-                  <Code>caretIconColor</Code>
-                  <br />
-                  <br />
                   <Code>buttonIconColor</Code>
+                  <br />
+                  <br />
+                  <Code>caretIconColor</Code>
                 </td>
               </tr>
               <tr>
@@ -476,7 +481,7 @@ const sections = [
                   <Code>hamburguerIconColor</Code>
                   <br />
                   <br />
-                  <Code>hamburguerHoverColor</Code> (16% of opacity)
+                  <Code>hamburguerHoverColor</Code> (+90% of lightness)
                 </td>
               </tr>
               <tr>
@@ -581,7 +586,7 @@ const sections = [
               <tr>
                 <td>Accent color</td>
                 <td>
-                  <Code>hoverFontColor</Code> (70% of opacity)
+                  <Code>hoverFontColor</Code>
                 </td>
               </tr>
               <tr>
@@ -609,6 +614,12 @@ const sections = [
                 <td>Base color</td>
                 <td>
                   <Code>radioInputColor</Code>
+                  <br />
+                  <br />
+                  <Code>hoverRadioInputColor</Code> (-10% lightness)
+                  <br />
+                  <br />
+                  <Code>activeRadioInputColor</Code> (-25% lightness)
                 </td>
               </tr>
               <tr>
@@ -648,7 +659,7 @@ const sections = [
                   lightness)
                   <br />
                   <br />
-                  <Code>selectedActiveListOptionBackgroundColor</Code> (-10% of
+                  <Code>selectedActiveListOptionBackgroundColor</Code> (-15% of
                   lightness)
                 </td>
               </tr>
@@ -664,7 +675,7 @@ const sections = [
                   <Code>helperTextFontColor</Code>
                   <br />
                   <br />
-                  <Code>placeholderFontColor</Code> (50% of opacity)
+                  <Code>placeholderFontColor</Code> (+30% of lightness)
                   <br />
                   <br />
                   <Code>collapseIndicatorColor</Code>
@@ -674,6 +685,12 @@ const sections = [
                 <td>Option font color</td>
                 <td>
                   <Code>listOptionFontColor</Code>
+                </td>
+              </tr>
+              <tr>
+                <td>Hover border color</td>
+                <td>
+                  <Code>hoverInputBorderColor</Code>
                 </td>
               </tr>
             </tbody>
@@ -718,19 +735,22 @@ const sections = [
                   <Code>thumbBackgroundColor</Code>
                   <br />
                   <br />
+                  <Code>focusThumbBackgroundColor</Code>
+                  <br />
+                  <br />
                   <Code>tickBackgroundColor</Code>
                   <br />
                   <br />
                   <Code>trackLineColor</Code>
                   <br />
                   <br />
+                  <Code>totalLineColor</Code>
+                  <br />
+                  <br />
                   <Code>hoverThumbBackgroundColor</Code> (-15% of lightness)
                   <br />
                   <br />
                   <Code>activeThumbBackgroundColor</Code> (-15% of lightness)
-                  <br />
-                  <br />
-                  <Code>totalLineColor</Code> (34% of opacity)
                 </td>
               </tr>
               <tr>
@@ -781,6 +801,21 @@ const sections = [
                   <Code>progressValueFontColor</Code>
                 </td>
               </tr>
+              <tr>
+                <td>Overlay color</td>
+                <td>
+                  <Code>trackCircleColorOverlay</Code>
+                </td>
+              </tr>
+              <tr>
+                <td>Overlay font color</td>
+                <td>
+                  <Code>overlayLabelFontColor</Code>
+                  <br />
+                  <br />
+                  <Code>overlayProgressValueFontColor</Code>
+                </td>
+              </tr>
             </tbody>
           </DxcTable>
         ),
@@ -802,8 +837,8 @@ const sections = [
                   <Code>checkedTrackBackgroundColor</Code>
                   <br />
                   <br />
-                  <Code>disabledCheckedTrackBackgroundColor</Code> (34% of
-                  opacity)
+                  <Code>disabledCheckedTrackBackgroundColor</Code> (+57% of
+                  lightness)
                 </td>
               </tr>
               <tr>
@@ -878,10 +913,10 @@ const sections = [
                   <Code>focusOutline</Code>
                   <br />
                   <br />
-                  <Code>hoverBackgroundColor</Code> (+58% of lightness)
+                  <Code>hoverBackgroundColor</Code> (+57% of lightness)
                   <br />
                   <br />
-                  <Code>pressedBackgroundColor</Code> (+53% of lightness)
+                  <Code>pressedBackgroundColor</Code> (+52% of lightness)
                 </td>
               </tr>
             </tbody>
@@ -923,13 +958,19 @@ const sections = [
                   <Code>activeActionIconColor</Code>
                   <br />
                   <br />
-                  <Code>suffixColor</Code> (50% of opacity)
+                  <Code>suffixColor</Code> (+40% of lightness)
                   <br />
                   <br />
-                  <Code>prefixColor</Code> (50% of opacity)
+                  <Code>prefixColor</Code> (+40% of lightness)
                   <br />
                   <br />
-                  <Code>placeholderFontColor</Code> (50% of opacity)
+                  <Code>placeholderFontColor</Code> (+30% of lightness)
+                </td>
+              </tr>
+              <tr>
+                <td>Hover border color</td>
+                <td>
+                  <Code>hoverBorderColor</Code>
                 </td>
               </tr>
             </tbody>
@@ -964,15 +1005,15 @@ const sections = [
                   <br />
                   <Code>selectedDisabledBackgroundColor</Code> (+57% of
                   lightness)
+                  <br />
+                  <br />
+                  <Code>selectedDisabledFontColor</Code> (+42% of lightness)
                 </td>
               </tr>
               <tr>
                 <td>Selected font color</td>
                 <td>
                   <Code>selectedFontColor</Code>
-                  <br />
-                  <br />
-                  <Code>selectedDisabledFontColor</Code> (+42% of lightness)
                 </td>
               </tr>
               <tr>
@@ -981,7 +1022,8 @@ const sections = [
                   <Code>unselectedBackgroundColor</Code>
                   <br />
                   <br />
-                  <Code>unselectedHoverBackgroundColor</Code> (-8% of lightness)
+                  <Code>unselectedHoverBackgroundColor</Code> (-10% of
+                  lightness)
                 </td>
               </tr>
               <tr>
@@ -1035,16 +1077,16 @@ const sections = [
                   <Code>selectedHelperTextFontColor</Code>
                   <br />
                   <br />
-                  <Code>unvisitedStepBorderColor</Code> (60% of opacity)
+                  <Code>unvisitedStepBorderColor</Code> (+80% of lightness)
                   <br />
                   <br />
-                  <Code>unvisitedStepFontColor</Code> (60% of opacity)
+                  <Code>unvisitedStepFontColor</Code> (+80% of lightness)
                   <br />
                   <br />
-                  <Code>unvisitedLabelFontColor</Code> (60% of opacity)
+                  <Code>unvisitedLabelFontColor</Code> (+80% of lightness)
                   <br />
                   <br />
-                  <Code>unvisitedHelperTextFontColor</Code> (60% of opacity)
+                  <Code>unvisitedHelperTextFontColor</Code> (+80% of lightness)
                 </td>
               </tr>
             </tbody>

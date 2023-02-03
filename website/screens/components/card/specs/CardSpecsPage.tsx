@@ -286,8 +286,8 @@ const sections = [
             <DxcTable>
               <thead>
                 <tr>
-                  <th>margin</th>
-                  <th>value</th>
+                  <th>Margin</th>
+                  <th>Value</th>
                 </tr>
               </thead>
               <tbody>
@@ -350,8 +350,8 @@ const sections = [
             <DxcTable>
               <thead>
                 <tr>
-                  <th>padding</th>
-                  <th>value</th>
+                  <th>Padding</th>
+                  <th>Value</th>
                 </tr>
               </thead>
               <tbody>

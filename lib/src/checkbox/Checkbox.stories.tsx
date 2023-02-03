@@ -5,10 +5,19 @@ import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DarkContainer from "../../.storybook/components/DarkSection";
 import styled from "styled-components";
+import { HalstackProvider } from "../HalstackContext";
 
 export default {
   title: "Checkbox",
   component: DxcCheckbox,
+};
+
+const opinionatedTheme = {
+  checkbox: {
+    baseColor: "#0067b3",
+    checkColor: "#ffffff",
+    fontColor: "#000000",
+  },
 };
 
 const Checkbox = () => (
@@ -177,6 +186,49 @@ const Checkbox = () => (
         <DxcCheckbox label="Very long label to check its overflowing" defaultChecked />
         <DxcCheckbox label="Very long label to check its overflowing" labelPosition="after" />
       </SmallContainer>
+    </ExampleContainer>
+    <Title title="Opinionated theme" theme="light" level={4} />
+    <ExampleContainer>
+      <Title title="Default" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcCheckbox label="Checkbox" />
+      </HalstackProvider>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Checked" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcCheckbox label="Checkbox" defaultChecked />
+      </HalstackProvider>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Disabled" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcCheckbox label="Checkbox" disabled />
+      </HalstackProvider>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Disabled checked" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcCheckbox label="Checkbox" defaultChecked disabled />
+      </HalstackProvider>
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-focus">
+      <Title title="Focused" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcCheckbox label="Focused" />
+      </HalstackProvider>
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-hover">
+      <Title title="Hovered" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcCheckbox label="Hovered" />
+      </HalstackProvider>
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-hover">
+      <Title title="Hovered and checked" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcCheckbox label="Hovered" defaultChecked />
+      </HalstackProvider>
     </ExampleContainer>
   </>
 );

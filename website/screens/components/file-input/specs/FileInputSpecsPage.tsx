@@ -226,7 +226,7 @@ const sections = [
                     </td>
                     <td>File preview</td>
                     <td>
-                      <Code>color-color-grey-100</Code>
+                      <Code>color-grey-100</Code>
                     </td>
                     <td>#f2f2f2</td>
                   </tr>
@@ -353,7 +353,7 @@ const sections = [
                     </td>
                     <td>File item icon:hover</td>
                     <td>
-                      <Code>color-grey-a-100</Code>
+                      <Code>color-grey-100-a</Code>
                     </td>
                     <td>#0000000d</td>
                   </tr>
@@ -373,7 +373,7 @@ const sections = [
                     </td>
                     <td>File item icon:active</td>
                     <td>
-                      <Code>color-grey-a-300</Code>
+                      <Code>color-grey-300-a</Code>
                     </td>
                     <td>#00000033</td>
                   </tr>
@@ -441,7 +441,7 @@ const sections = [
               <tr>
                 <th>Property</th>
                 <th>Element</th>
-                <th>Token</th>
+                <th>Core token</th>
                 <th>Value</th>
               </tr>
             </thead>
@@ -648,7 +648,7 @@ const sections = [
               <tr>
                 <th>Property</th>
                 <th>Element</th>
-                <th>Token</th>
+                <th>Core token</th>
                 <th>Value</th>
               </tr>
             </thead>
@@ -718,9 +718,7 @@ const sections = [
                   <Code>box-shadow</Code>
                 </td>
                 <td>File item icon:focus</td>
-                <td>
-                  <Code>-</Code>
-                </td>
+                <td>-</td>
                 <td>0 0 0 2px</td>
               </tr>
               <tr>
@@ -728,9 +726,7 @@ const sections = [
                   <Code>box-shadow</Code>
                 </td>
                 <td>Drag and drop area:dragover</td>
-                <td>
-                  <Code>-</Code>
-                </td>
+                <td>-</td>
                 <td>0 0 0 2px</td>
               </tr>
             </tbody>

@@ -273,7 +273,7 @@ const sections = [
         ),
       },
       {
-        title: "Margin-top",
+        title: "Margin",
         content: (
           <DxcTable>
             <thead>
@@ -413,12 +413,10 @@ const sections = [
             <tbody>
               <tr>
                 <td>
-                  <Code>min height</Code>
+                  <Code>min-height</Code>
                 </td>
                 <td>Links container</td>
-                <td>
-                  <Code>-</Code>
-                </td>
+                <td>-</td>
                 <td>20px</td>
               </tr>
               <tr>

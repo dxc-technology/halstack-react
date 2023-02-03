@@ -3,6 +3,7 @@ import { userEvent, within } from "@storybook/testing-library";
 import DxcToggleGroup from "./ToggleGroup";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
+import { HalstackProvider } from "../HalstackContext";
 
 export default {
   title: "ToggleGroup",
@@ -89,6 +90,16 @@ const twoOptions = [
     label: "Twitter",
   },
 ];
+
+const opinionatedTheme = {
+  toggleGroup: {
+    selectedBaseColor: "#5f249f",
+    selectedFontColor: "#ffffff",
+    unselectedBaseColor: "#e6e6e6",
+    unselectedFontColor: "#000000",
+  },
+};
+
 export const Chromatic = () => (
   <>
     <ExampleContainer>
@@ -153,6 +164,37 @@ export const Chromatic = () => (
     <ExampleContainer>
       <Title title="xxLarge" theme="light" level={4} />
       <DxcToggleGroup label="xxLarge margin" options={options} margin="xxlarge" />
+    </ExampleContainer>
+    <Title title="Opinionated theme" theme="light" level={4} />
+    <ExampleContainer>
+      <HalstackProvider theme={opinionatedTheme}>
+        <Title title="Selected" theme="light" level={4} />
+        <DxcToggleGroup label="Selected" helperText="HelperText" defaultValue={2} options={options} />
+      </HalstackProvider>
+    </ExampleContainer>
+    <ExampleContainer>
+      <HalstackProvider theme={opinionatedTheme}>
+        <Title title="Icons & label toggle group" theme="light" level={4} />
+        <DxcToggleGroup label="Icons & label" options={optionsWithIconAndLabel} />
+      </HalstackProvider>
+    </ExampleContainer>
+    <ExampleContainer>
+      <HalstackProvider theme={opinionatedTheme}>
+        <Title title="Disabled" theme="light" level={4} />
+        <DxcToggleGroup label="Disabled" defaultValue={2} options={options} disabled />
+      </HalstackProvider>
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-hover">
+      <Title title="Hovered" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcToggleGroup label="Hovered" options={twoOptions} defaultValue={2} />
+      </HalstackProvider>
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-active">
+      <Title title="Actived" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcToggleGroup label="Actived" options={twoOptions} defaultValue={2} />
+      </HalstackProvider>
     </ExampleContainer>
   </>
 );

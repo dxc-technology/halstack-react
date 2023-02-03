@@ -3,6 +3,7 @@ import DxcWizard from "./Wizard";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import { userEvent, within } from "@storybook/testing-library";
+import { HalstackProvider } from "../HalstackContext";
 
 export default {
   title: "Wizard",
@@ -36,6 +37,7 @@ const stepWithLabel = [
     label: "Forth step",
   },
 ];
+
 const stepWithLabelDescription = [
   {
     label: "First step",
@@ -56,6 +58,7 @@ const stepWithLabelDescription = [
     valid: false,
   },
 ];
+
 const stepWithLongDescription = [
   {
     label: "First step",
@@ -73,6 +76,7 @@ const stepWithLongDescription = [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ",
   },
 ];
+
 const stepDisabled = [
   {
     label: "First step",
@@ -98,6 +102,7 @@ const stepDisabled = [
     disabled: true,
   },
 ];
+
 const stepIcons = [
   {
     label: "First step",
@@ -112,6 +117,7 @@ const stepIcons = [
     icon: favoriteSVG,
   },
 ];
+
 const stepLargeIcons = [
   {
     label: "First step",
@@ -126,6 +132,14 @@ const stepLargeIcons = [
     icon: largeIcon,
   },
 ];
+
+const opinionatedTheme = {
+  wizard: {
+    baseColor: "#5f249f",
+    fontColor: "#000000",
+    selectedFontColor: "#ffffff",
+  },
+};
 
 export const Chromatic = () => (
   <>
@@ -214,6 +228,12 @@ export const Chromatic = () => (
     <ExampleContainer>
       <Title title="Xxlarge margin" theme="light" level={4} />
       <DxcWizard mode="vertical" margin="xxlarge" steps={stepWithLabel}></DxcWizard>
+    </ExampleContainer>
+    <Title title="Opinionated theme" theme="light" level={3} />
+    <ExampleContainer>
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcWizard defaultCurrentStep={2} steps={stepWithLabelDescription}></DxcWizard>
+      </HalstackProvider>
     </ExampleContainer>
   </>
 );

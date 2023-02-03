@@ -638,7 +638,7 @@ const sections = [
               <tr>
                 <th>Component token</th>
                 <th>Element</th>
-                <th>Token</th>
+                <th>Core token</th>
                 <th>Value</th>
               </tr>
             </thead>
@@ -835,7 +835,7 @@ const sections = [
               <tr>
                 <th>Property</th>
                 <th>Element</th>
-                <th>Token</th>
+                <th>Core token</th>
                 <th>Value</th>
               </tr>
             </thead>
@@ -885,9 +885,7 @@ const sections = [
                   <Code>box-shadow</Code>
                 </td>
                 <td>Input container:focus</td>
-                <td>
-                  <Code>-</Code>
-                </td>
+                <td>-</td>
                 <td>0 0 0 2px</td>
               </tr>
               <tr>
@@ -895,9 +893,7 @@ const sections = [
                   <Code>box-shadow</Code>
                 </td>
                 <td>Input container:error</td>
-                <td>
-                  <Code>-</Code>
-                </td>
+                <td>-</td>
                 <td>0 0 0 2px</td>
               </tr>
               <tr>
@@ -950,7 +946,7 @@ const sections = [
                 <tr>
                   <th>Property</th>
                   <th>Element</th>
-                  <th>Token</th>
+                  <th>Core token</th>
                   <th>Value</th>
                 </tr>
               </thead>
@@ -1066,8 +1062,8 @@ const sections = [
             <DxcTable>
               <thead>
                 <tr>
-                  <th>margin</th>
-                  <th>value</th>
+                  <th>Margin</th>
+                  <th>Value</th>
                 </tr>
               </thead>
               <tbody>

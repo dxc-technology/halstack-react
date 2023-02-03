@@ -70,6 +70,14 @@ const advancedTheme = {
   },
 };
 
+const opinionatedTheme = {
+  accordion: {
+    accentColor: "#5f249f",
+    titleFontColor: "#000000",
+    assistiveTextFontColor: "#666666",
+  },
+};
+
 export const Chromatic = () => (
   <>
     <Title title="Component anatomy" theme="light" level={2} />
@@ -340,7 +348,48 @@ export const Chromatic = () => (
           lobortis eget.
         </div>
       </DxcAccordion>
-      <hr />
+    </ExampleContainer>
+    <Title title="Opinionated theme" theme="light" level={4} />
+    <ExampleContainer>
+      <Title title="With assistive text and icon" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcAccordion label="Accordion" assistiveText="Assistive text" icon={folderIcon}>
+          Content
+        </DxcAccordion>
+      </HalstackProvider>
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-hover">
+      <Title title="Hovered" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcAccordion label="Hovered">
+          <div>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
+            leo lobortis eget.
+          </div>
+        </DxcAccordion>
+      </HalstackProvider>
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-active">
+      <Title title="Active" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcAccordion label="Active">
+          <div>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
+            leo lobortis eget.
+          </div>
+        </DxcAccordion>
+      </HalstackProvider>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Disabled" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcAccordion label="Disabled" assistiveText="Assistive text" icon={folderIcon} disabled>
+          <div>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
+            leo lobortis eget.
+          </div>
+        </DxcAccordion>
+      </HalstackProvider>
     </ExampleContainer>
   </>
 );

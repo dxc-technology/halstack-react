@@ -27,7 +27,7 @@ const sections = [
                 <td>
                   <Code>font-scale-03</Code>
                 </td>
-                <td>'1rem'</td>
+                <td>1rem</td>
               </tr>
               <tr>
                 <td>
@@ -37,7 +37,7 @@ const sections = [
                 <td>
                   <Code>font-scale-03</Code>
                 </td>
-                <td>'400'</td>
+                <td>400</td>
               </tr>
               <tr>
                 <td>
@@ -47,7 +47,7 @@ const sections = [
                 <td>
                   <Code>color-black</Code>
                 </td>
-                <td>'#000000'</td>
+                <td>#000000</td>
               </tr>
               <tr>
                 <td>
@@ -57,7 +57,7 @@ const sections = [
                 <td>
                   <Code>color-white</Code>
                 </td>
-                <td>'#FFFFFF'</td>
+                <td>#ffffff</td>
               </tr>
             </DxcTable>
           </>

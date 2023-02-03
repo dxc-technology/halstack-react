@@ -7,6 +7,7 @@ import DropdownMenu from "./DropdownMenu";
 import DxcCheckbox from "../checkbox/Checkbox";
 import DxcTextInput from "../text-input/TextInput";
 import { Option } from "./types";
+import { HalstackProvider } from "../HalstackContext";
 
 export default {
   title: "Dropdown",
@@ -83,6 +84,14 @@ const optionWithIcon: Option[] = [
 ];
 
 const optionsIcon: any = options.map((op, i) => ({ ...op, icon: icons[i] }));
+
+const opinionatedTheme = {
+  dropdown: {
+    baseColor: "#ffffff",
+    fontColor: "#000000",
+    optionFontColor: "#000000",
+  },
+};
 
 export const Chromatic = () => (
   <>
@@ -227,6 +236,31 @@ export const Chromatic = () => (
         size="fillParent"
       />
     </ExampleContainer>
+    <Title title="Opinionated theme" theme="light" level={2} />
+    <ExampleContainer>
+      <Title title="Default" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcDropdown label="Default" options={options} onSelectOption={(value) => {}} icon={iconSVG} />
+      </HalstackProvider>
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-hover">
+      <Title title="Hovered" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcDropdown label="Hovered" options={options} onSelectOption={(value) => {}} icon={iconSVG} />
+      </HalstackProvider>
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-focus">
+      <Title title="Focused" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcDropdown label="Focused" options={options} onSelectOption={(value) => {}} icon={iconSVG} />
+      </HalstackProvider>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Disabled" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcDropdown label="Disabled" options={options} onSelectOption={(value) => {}} icon={iconSVG} disabled />
+      </HalstackProvider>
+    </ExampleContainer>
   </>
 );
 
@@ -309,6 +343,52 @@ const DropdownListStates = () => (
         options={optionsIcon}
         styles={{ width: 240 }}
       />
+    </ExampleContainer>
+    <Title title="Opinionated  theme" theme="light" level={4} />
+    <ExampleContainer>
+      <Title title="Hovered option" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DropdownMenu
+          id="x"
+          dropdownTriggerId="dtx"
+          iconsPosition="before"
+          visualFocusIndex={-1}
+          menuItemOnClick={(value) => {}}
+          onKeyDown={(e) => {}}
+          options={optionWithIcon}
+          styles={{ width: 240 }}
+        />
+      </HalstackProvider>
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-active">
+      <Title title="Active option" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DropdownMenu
+          id="x"
+          dropdownTriggerId="dtx"
+          iconsPosition="before"
+          visualFocusIndex={-1}
+          menuItemOnClick={(value) => {}}
+          onKeyDown={(e) => {}}
+          options={optionWithIcon}
+          styles={{ width: 240 }}
+        />
+      </HalstackProvider>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Focused option" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DropdownMenu
+          id="x"
+          dropdownTriggerId="dtx"
+          iconsPosition="before"
+          visualFocusIndex={0}
+          menuItemOnClick={(value) => {}}
+          onKeyDown={(e) => {}}
+          options={options}
+          styles={{ width: 240 }}
+        />
+      </HalstackProvider>
     </ExampleContainer>
   </>
 );

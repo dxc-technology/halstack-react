@@ -5,6 +5,7 @@ import { BackgroundColorProvider } from "../BackgroundColorContext";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DarkContainer from "../../.storybook/components/DarkSection";
+import { HalstackProvider } from "../HalstackContext";
 
 export default {
   title: "Button",
@@ -48,6 +49,14 @@ const smallIcon = (
   </svg>
 );
 
+const opinionatedTheme = {
+  button: {
+    baseColor: "#5f249f",
+    primaryFontColor: "#ffffff",
+    secondaryHoverFontColor: "#ffffff",
+  },
+};
+
 export const Chromatic = () => (
   <>
     <Title title="Primary" theme="light" level={2} />
@@ -69,7 +78,7 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Disabled" theme="light" level={4} />
-      <DxcButton label="Primary disabled" disabled />
+      <DxcButton label="Primary disabled" disabled icon={iconSVG} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With left icon" theme="light" level={4} />
@@ -114,7 +123,7 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Disabled" theme="light" level={4} />
-      <DxcButton mode="secondary" disabled label="Secondary disabled" />
+      <DxcButton mode="secondary" disabled label="Secondary disabled" icon={iconSVG} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With icon" theme="light" level={4} />
@@ -122,7 +131,10 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Only icon (image)" theme="light" level={4} />
-      <DxcButton mode="secondary" icon="https://developer.apple.com/design/human-interface-guidelines/foundations/app-icons/images/icon-and-image-large-icon-settings_2x.png" />
+      <DxcButton
+        mode="secondary"
+        icon="https://developer.apple.com/design/human-interface-guidelines/foundations/app-icons/images/icon-and-image-large-icon-settings_2x.png"
+      />
     </ExampleContainer>
     <Title title="Text" theme="light" level={2} />
     <ExampleContainer>
@@ -143,7 +155,7 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Disabled" theme="light" level={4} />
-      <DxcButton mode="text" label="Text disabled" disabled />
+      <DxcButton mode="text" label="Text disabled" disabled icon={iconSVG} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With icon" theme="light" level={4} />
@@ -151,7 +163,10 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Only icon (image)" theme="light" level={4} />
-      <DxcButton mode="text" icon="https://developer.apple.com/design/human-interface-guidelines/foundations/app-icons/images/icon-and-image-large-icon-settings_2x.png" />
+      <DxcButton
+        mode="text"
+        icon="https://developer.apple.com/design/human-interface-guidelines/foundations/app-icons/images/icon-and-image-large-icon-settings_2x.png"
+      />
     </ExampleContainer>
     <BackgroundColorProvider color="#333333">
       <DarkContainer>
@@ -174,7 +189,7 @@ export const Chromatic = () => (
         </ExampleContainer>
         <ExampleContainer>
           <Title title="Disabled" theme="dark" level={4} />
-          <DxcButton label="Primary disabled" disabled />
+          <DxcButton label="Primary disabled" disabled icon={iconSVG} />
         </ExampleContainer>
         <ExampleContainer>
           <Title title="With icon" theme="dark" level={4} />
@@ -199,7 +214,7 @@ export const Chromatic = () => (
         </ExampleContainer>
         <ExampleContainer>
           <Title title="Disabled" theme="dark" level={4} />
-          <DxcButton mode="secondary" disabled label="Secondary disabled" />
+          <DxcButton mode="secondary" disabled label="Secondary disabled" icon={iconSVG} />
         </ExampleContainer>
         <ExampleContainer>
           <Title title="With icon" theme="dark" level={4} />
@@ -224,7 +239,7 @@ export const Chromatic = () => (
         </ExampleContainer>
         <ExampleContainer>
           <Title title="Disabled" theme="dark" level={4} />
-          <DxcButton mode="text" label="Text disabled" disabled />
+          <DxcButton mode="text" label="Text disabled" disabled icon={iconSVG} />
         </ExampleContainer>
         <ExampleContainer>
           <Title title="With icon" theme="dark" level={4} />
@@ -329,6 +344,82 @@ export const Chromatic = () => (
         <DxcButton label="Button" />
         <DxcButton label="Button" />
       </DxcFlex>
+    </ExampleContainer>
+    <Title title="Opinionated theme" theme="light" level={2} />
+    <Title title="Primary" theme="light" level={3} />
+    <ExampleContainer>
+      <Title title="Enabled" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcButton label="Primary" icon={iconSVG} />
+      </HalstackProvider>
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-hover">
+      <Title title="Hovered" theme="light" level={4} />
+      <DxcButton label="Primary hovered" icon={iconSVG} />
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-focus">
+      <Title title="Focused" theme="light" level={4} />
+      <DxcButton label="Primary focused" icon={iconSVG} />
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-active">
+      <Title title="Actived" theme="light" level={4} />
+      <DxcButton label="Primary actived" icon={iconSVG} />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Disabled" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcButton label="Primary" icon={iconSVG} disabled />
+      </HalstackProvider>
+    </ExampleContainer>
+    <Title title="Secondary" theme="light" level={3} />
+    <ExampleContainer>
+      <Title title="Enabled" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcButton mode="secondary" label="Secondary" icon={iconSVG} />
+      </HalstackProvider>
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-hover">
+      <Title title="Hovered" theme="light" level={4} />
+      <DxcButton mode="secondary" label="Secondary hovered" icon={iconSVG} />
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-focus">
+      <Title title="Focused" theme="light" level={4} />
+      <DxcButton mode="secondary" label="Secondary focused" icon={iconSVG} />
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-active">
+      <Title title="Actived" theme="light" level={4} />
+      <DxcButton mode="secondary" label="Secondary actived" icon={iconSVG} />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Disabled" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcButton mode="secondary" label="Secondary" icon={iconSVG} disabled />
+      </HalstackProvider>
+    </ExampleContainer>
+    <Title title="Text" theme="light" level={3} />
+    <ExampleContainer>
+      <Title title="Enabled" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcButton mode="text" label="Text" icon={iconSVG} />
+      </HalstackProvider>
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-hover">
+      <Title title="Hovered" theme="light" level={4} />
+      <DxcButton mode="text" label="Text hovered" icon={iconSVG} />
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-focus">
+      <Title title="Focused" theme="light" level={4} />
+      <DxcButton mode="text" label="Text focused" icon={iconSVG} />
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-active">
+      <Title title="Actived" theme="light" level={4} />
+      <DxcButton mode="text" label="Text actived" icon={iconSVG} />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Disabled" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcButton mode="text" label="Text disabled" icon={iconSVG} disabled />
+      </HalstackProvider>
     </ExampleContainer>
   </>
 );
