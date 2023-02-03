@@ -114,9 +114,8 @@ const IconContainer = styled.div`
   }
   &:focus {
     outline-color: ${(props) => !props.disabled && props.theme.focusColor};
-    outline-style: ${(props) => !props.disabled && props.theme.focusBorderStyle};
     outline-width: ${(props) => !props.disabled && props.theme.focusBorderThickness};
-    border-radius: ${(props) => !props.disabled && props.theme.focusBorderRadius};
+    ${(props) => props.disabled && "outline: none;"}
   }
   &:active {
     color: ${(props) => !props.disabled && props.theme.activeIconColor};
