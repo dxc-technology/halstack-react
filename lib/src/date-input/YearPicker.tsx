@@ -65,10 +65,6 @@ const YearPickerContainer = styled.div`
   width: 292px;
   height: 312px;
   padding: 2px 8px 8px 8px;
-  font-family: ${(props) => props.theme.dateInput.pickerFontFamily};
-  font-size: ${(props) => props.theme.dateInput.pickerFontSize};
-  color: ${(props) => props.theme.dateInput.pickerFontColor};
-  font-weight: ${(props) => props.theme.dateInput.pickerFontWeight};
 `;
 
 type YearPickerButtonPropsType = { selected: boolean; isCurrentYear: boolean };
@@ -84,6 +80,10 @@ const YearPickerButton = styled.button<YearPickerButtonPropsType>`
   border: none;
   border-radius: 50px;
   cursor: pointer;
+  font-family: ${(props) => props.theme.dateInput.pickerFontFamily};
+  font-size: ${(props) => props.theme.dateInput.pickerFontSize};
+  color: ${(props) => props.theme.dateInput.pickerFontColor};
+  font-weight: ${(props) => props.theme.dateInput.pickerFontWeight};
 
   ${(props) =>
     props.selected

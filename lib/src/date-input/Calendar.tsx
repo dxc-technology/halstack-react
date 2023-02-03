@@ -196,10 +196,6 @@ const CalendarContainer = styled.div`
   justify-content: center;
   padding: 0px 8px 8px 8px;
   width: 292px;
-  font-family: ${(props) => props.theme.dateInput.pickerFontFamily};
-  font-size: ${(props) => props.theme.dateInput.pickerFontSize};
-  color: ${(props) => props.theme.dateInput.pickerFontColor};
-  font-weight: ${(props) => props.theme.dateInput.pickerFontWeight};
 `;
 
 const WeekHeaderCell = styled.span`
@@ -234,6 +230,10 @@ const DayCell = styled.button<DayCellPropsType>`
   border: none;
   border-radius: 50%;
   cursor: pointer;
+  font-family: ${(props) => props.theme.dateInput.pickerFontFamily};
+  font-size: ${(props) => props.theme.dateInput.pickerFontSize};
+  color: ${(props) => props.theme.dateInput.pickerFontColor};
+  font-weight: ${(props) => props.theme.dateInput.pickerFontWeight};
 
   &:focus {
     outline: ${(props) => props.theme.dateInput.pickerFocusColor} solid 2px;
