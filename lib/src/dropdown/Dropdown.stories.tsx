@@ -350,7 +350,7 @@ const DropdownListStates = () => {
 };
 
 const DropdownRightAlignment = () => (
-  <ExampleContainer>
+  <ExampleContainer expanded>
     <Title title="Dropdown collisions on the right boundary (right)" theme="light" level={4} />
     <DxcFlex justifyContent="flex-end">
       <DxcDropdown label="Label" options={options} onSelectOption={(value) => {}} />
@@ -359,7 +359,7 @@ const DropdownRightAlignment = () => (
 );
 
 const DropdownCenterAlignment = () => (
-  <ExampleContainer>
+  <ExampleContainer expanded>
     <Title title="Dropdown collisions on the right boundary (centered)" theme="light" level={4} />
     <DxcFlex justifyContent="flex-end">
       <DxcDropdown label="Label" options={defaultOptions} onSelectOption={(value) => {}} margin="small" />
