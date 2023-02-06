@@ -80,7 +80,7 @@ const sections = [
               applies at the component level.
             </DxcParagraph>
             <DxcAlert type="info" size="fillParent">
-              We recommend using the{" "}
+              We strongly recommend using the{" "}
               <Link href="/theme-generator/opinionated-theme" passHref>
                 <DxcLink>opinionated theme generator</DxcLink>
               </Link>{" "}
