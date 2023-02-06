@@ -9,9 +9,8 @@ import BackgroundColorContext, { BackgroundColorProvider } from "../BackgroundCo
 import HeaderPropsType, { Space, Padding } from "./types";
 
 const closeIcon = (
-  <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
-    <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
-    <path d="M0 0h24v24H0z" fill="none" />
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24" width="24">
+    <path d="M6.4 19 5 17.6l5.6-5.6L5 6.4 6.4 5l5.6 5.6L17.6 5 19 6.4 13.4 12l5.6 5.6-1.4 1.4-5.6-5.6Z" />
   </svg>
 );
 
@@ -127,7 +126,12 @@ const DxcHeader = ({
             <ResponsiveMenu hasVisibility={isMenuVisible}>
               <ResponsiveIconsContainer>
                 <ResponsiveLogoContainer>{headerResponsiveLogo}</ResponsiveLogoContainer>
-                <CloseAction tabIndex={tabIndex} onClick={handleMenu} aria-label={translatedLabels.header.closeIcon}>
+                <CloseAction
+                  tabIndex={tabIndex}
+                  onClick={handleMenu}
+                  aria-label={translatedLabels.header.closeIcon}
+                  title={translatedLabels.header.closeIcon}
+                >
                   {closeIcon}
                 </CloseAction>
               </ResponsiveIconsContainer>
@@ -313,10 +317,10 @@ const ResponsiveIconsContainer = styled.div`
 
 const CloseAction = styled.button`
   display: flex;
-  flex-wrap: wrap;
+  justify-content: center;
   align-content: center;
   padding: 6px;
-  border: 1px solid transparent;
+  border: unset;
   border-radius: 2px;
   background-color: transparent;
   cursor: pointer;
@@ -327,8 +331,8 @@ const CloseAction = styled.button`
   }
 
   svg {
-    height: 36px;
-    width: 36px;
+    height: 24px;
+    width: 24px;
   }
 `;
 
