@@ -11,16 +11,19 @@ import {
   DxcParagraph,
   DxcTable,
   DxcLink,
+  DxcAlert,
+  DxcTypography,
+  DxcBleed,
 } from "@dxc-technology/halstack-react";
 import Link from "next/link";
 const sections = [
   {
-    title: "HalstackProvider",
+    title: "Halstack Provider",
     content: (
       <>
         {" "}
         <DxcParagraph>
-          HalstackProvider is a utility that applies a certain context to its
+          Halstack Provider is a utility that applies a certain context to its
           child components. It can be used to apply this context either to the
           whole application or to particular components.
         </DxcParagraph>
@@ -74,27 +77,29 @@ const sections = [
             passHref
           >
             <DxcLink>Themes section</DxcLink>
-          </Link>{" "}
-          you can apply the opinionated theme strategy to customize the
-          components. We strongly recommend using the{" "}
+          </Link>
+          , you can apply the opinionated theme strategy to customize the
+          components.
+        </DxcParagraph>
+
+        <DxcAlert type="info" size="fillParent">
+          Remember that you can use the{" "}
           <Link href="/theme-generator/opinionated-theme" passHref>
             <DxcLink>opinionated theme generator</DxcLink>
           </Link>{" "}
-          to create the theme object that will be used in the{" "}
-          <Code>HalstackProvider</Code>.
-        </DxcParagraph>
+          to help you create themes.
+        </DxcAlert>
         <DxcParagraph>
-          Here is an example of customizing the colours of a DxcAccordion and a
-          DxcTextInput:
+          Bellow is an example of customizing the colours of a{" "}
+          <Code>DxcAccordion</Code> and a<Code>DxcTextInput</Code>:
         </DxcParagraph>
         <Example example={opinionatedTheme} defaultIsVisible />
 
         <DxcParagraph>
-          As you can see in the example above, we create the{" "}
-          <Code>customTheme</Code> object with as many components as we want to
-          customize and the values we want to customize. Then we pass this
-          object to the <Code>HalstackProvider</Code>, which wraps our
-          components, through its <Code>theme</Code> property.
+          We create a <Code>customTheme</Code> object with as many components as
+          we want and their respective values. Then we pass this object to the{" "}
+          <Code>Halstack Provider</Code>, which wraps our components, through
+          its <Code>theme</Code> property.
         </DxcParagraph>
       </>
     ),
@@ -104,27 +109,32 @@ const sections = [
     content: (
       <>
         <DxcParagraph>
-          If we need a higher level of customisation you need to choose to use
-          the Advanced Theme as explained in the{" "}
+          The advanced strategy is the option to choose when further
+          customization is required, as explained in the{" "}
           <Link
             href="/principles/themes/#opinionated-theme-inputs-list"
             passHref
           >
             <DxcLink>Themes section</DxcLink>
           </Link>{" "}
-          section. We strongly recommend using the{" "}
+          section.
+        </DxcParagraph>
+        <DxcAlert type="info" size="fillParent">
+          Remember that you can use the{" "}
           <Link href="/theme-generator/advanced-theme" passHref>
             <DxcLink>advanced theme generator</DxcLink>
           </Link>{" "}
-          to create the theme object that will be used in the HalstackProvider.
-        </DxcParagraph>
+          to help you create themes
+        </DxcAlert>
+
         <Example example={advancedTheme} defaultIsVisible />
 
         <DxcParagraph>
-          In the example below we have customized some of the DxcAccordion
+          In the example above we have customized some of the{" "}
+          <Code>DxcAccordion</Code>
           tokens. As you can see, it is not necessary to pass all the tokens of
-          the component, only those that change their value with respect to the
-          default theme.
+          the component, only those that you want to change their value with
+          respect to the default theme.
         </DxcParagraph>
       </>
     ),
@@ -134,25 +144,32 @@ const sections = [
     content: (
       <>
         <DxcParagraph>
-          HalstackProvider can be used to translate all the labels that cannot
+          Halstack Provider can be used to translate all the labels that cannot
           be changed by the component properties.
         </DxcParagraph>
-        <DxcParagraph>
+        <DxcAlert type="info" size="fillParent">
           To find out the list of labels that are translatable we should refer
           to the documentation in the{" "}
           <Link href="/principles/localization" passHref>
             <DxcLink>Localization</DxcLink>
           </Link>{" "}
-          section.
-        </DxcParagraph>
+          section
+        </DxcAlert>
         <DxcParagraph>
-          Let's imagine that we want to translate the '(Optional)' label of the
-          components that show it, as well as the error messages of our File
-          Input component (to see the translated error message you should try to
-          add any file on fileinput), we should create an object that will
-          contain an object with the translations of each component.
+          Let's imagine that we want to translate the '(Optional)' label of a
+          DxcTextInput, as well as the error messages of our DxcFileInput
+          component. To do so, we need to create an object with the
+          translations. In this object, you will have as much objects as
+          components you want to translate with the respective translation for
+          their labels.
         </DxcParagraph>
         <Example example={customTranslations} defaultIsVisible />
+        <DxcBleed top="2rem">
+          <DxcTypography fontSize="0.875rem">
+            *(to see the translated error message you should try to add any file
+            on fileinput).
+          </DxcTypography>
+        </DxcBleed>
       </>
     ),
   },

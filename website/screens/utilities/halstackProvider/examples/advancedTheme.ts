@@ -22,7 +22,7 @@ const code = `() => {
   return (
     <HalstackProvider advancedTheme={advancedTheme}>
       <DxcInset space="2rem">
-        <DxcAccordion isExpanded label="Accordion" assistiveText = "Assistive text">
+        <DxcAccordion isExpanded label="Accordion" assistiveText="Assistive text">
           <DxcInset space="2rem">
             <DxcTextInput label="Enter your surname" defaultValue="Harris" />
           </DxcInset>

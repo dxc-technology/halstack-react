@@ -1,4 +1,4 @@
-const bloomTheme = {
+export default {
   accordion: {
     accentColor: "#1b75bb",
     fontColor: "#666666",
@@ -106,4 +106,3 @@ const bloomTheme = {
     selectedFontColor: "#ffffff",
   },
 };
-export default { bloomTheme };

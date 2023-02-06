@@ -89,21 +89,21 @@ const sections = [
             </DxcAlert>
             <DxcParagraph>
               Either through the builder or by creating it from scratch you will
-              need to create an object containing as many objects as components
-              you want to customize. The props of each component are a key-value
+              have to build a theme containing as many objects as components you
+              want to customize. The props of each component are a key-value
               pair where:
-              <DxcBulletedList>
-                <DxcBulletedList.Item>
-                  <strong>key:</strong> Corresponds to the 'Theme input' column
-                  of the tables that you can see in the Opinionated theme input
-                  list section.
-                </DxcBulletedList.Item>
-                <DxcBulletedList.Item>
-                  <strong>value:</strong> The color, must be hexadecimal without
-                  alpha channel.
-                </DxcBulletedList.Item>
-              </DxcBulletedList>
             </DxcParagraph>
+            <DxcBulletedList>
+              <DxcBulletedList.Item>
+                <strong>key:</strong> Corresponds to the 'Theme input' column of
+                the tables that you can see in the Opinionated theme input list
+                section.
+              </DxcBulletedList.Item>
+              <DxcBulletedList.Item>
+                <strong>value:</strong> The color, must be hexadecimal without
+                alpha channel.
+              </DxcBulletedList.Item>
+            </DxcBulletedList>
             <DxcParagraph>
               In the opinionated theme we must take into account that some of
               the colours that affect the component will be calculated based on
@@ -1100,7 +1100,7 @@ const sections = [
                       </tbody>
                     </DxcTable>
                     <DxcParagraph>
-                      Finally here you can see an example of an opinionated
+                      Finally, here you can see an example of an opinionated
                       theme object:
                     </DxcParagraph>
                     <JsonContainer>
@@ -1137,7 +1137,7 @@ const sections = [
               the component level.
             </DxcParagraph>
             <DxcAlert type="info" size="fillParent">
-              We recommend using the{" "}
+              We strongly recommend using the{" "}
               <Link href="/theme-generator/advanced-theme" passHref>
                 <DxcLink>advanced theme generator</DxcLink>
               </Link>{" "}
@@ -1145,9 +1145,9 @@ const sections = [
               scratch.{" "}
             </DxcAlert>
             <DxcParagraph>
-              Here you can see an example of the default advanced theme object
-              (as you can see the number of configurable properties is
-              significantly higher than the previous strategy).
+              Below is an example of a default advanced theme. The number of
+              configurable properties is significantly higher than in the
+              previous strategy.
             </DxcParagraph>
             <JsonContainer>
               <pre>{JSON.stringify(defaultAdvancedTheme, null, " ")}</pre>

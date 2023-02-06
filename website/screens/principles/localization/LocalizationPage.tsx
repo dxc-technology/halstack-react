@@ -21,12 +21,11 @@ const sections = [
       <>
         <DxcParagraph>
           Halstack Design System provides the possibility to translate all the
-          labels, by using the{" "}
+          labels that cannot be changed by the component properties, through the{" "}
           <Link href="/utilities/halstackProvider/#localization" passHref>
-            <DxcLink>HalstackProvider</DxcLink>
+            <DxcLink>Halstack provider</DxcLink>
           </Link>{" "}
-          , that cannot be changed by the component properties, through the
-          Halstack Provider and its property <Code>labels</Code>.
+          and its property <Code>labels</Code>.
         </DxcParagraph>
         <DxcParagraph>
           You will need to create an object with your translations. In this

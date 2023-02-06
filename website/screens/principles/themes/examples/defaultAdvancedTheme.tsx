@@ -1,4 +1,5 @@
-const defaultAdvancedTheme = {
+// const defaultAdvancedTheme =
+export default {
   accordion: {
     backgroundColor: "#ffffff",
     hoverBackgroundColor: "#f2eafa",
@@ -1174,4 +1175,4 @@ const defaultAdvancedTheme = {
   },
 };
 
-export default { defaultAdvancedTheme };
+// export default { defaultAdvancedTheme };
