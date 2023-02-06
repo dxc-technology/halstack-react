@@ -236,7 +236,7 @@ const Dropdown = () => (
     </ExampleContainer>
     <ExampleContainer expanded>
       <Title title="Opened menu" theme="light" level={4} />
-      <DxcDropdown label="Label" options={options} onSelectOption={(value) => {}} />
+      <DxcDropdown label="Label" options={options} onSelectOption={(value) => {}} margin={{ top: "xxlarge" }} />
     </ExampleContainer>
   </>
 );
