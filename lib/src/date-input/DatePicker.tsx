@@ -116,7 +116,7 @@ const HeaderButton = styled.button`
       ${props.theme.dateInput.pickerFocusWidth}`};
   }
   &:active {
-    color: ${(props) => props.theme.dateInput.pickerActiveFontColor};
+    color: ${(props) => props.theme.dateInput.pickerHeaderActiveFontColor};
     background-color: ${(props) => props.theme.dateInput.pickerHeaderActiveBackgroundColor};
   }
   svg {

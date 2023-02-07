@@ -139,7 +139,7 @@ const sections = [
                 <td>
                   <Code>pickerBackgroundColor</Code>
                 </td>
-                <td>date picker container</td>
+                <td>Date picker container</td>
                 <td>
                   <Code>color-white</Code>
                 </td>
@@ -149,7 +149,7 @@ const sections = [
                 <td>
                   <Code>pickerFontColor</Code>
                 </td>
-                <td>date picker container</td>
+                <td>Date picker container</td>
                 <td>
                   <Code>color-black</Code>
                 </td>
@@ -159,17 +159,17 @@ const sections = [
                 <td>
                   <Code>pickerBorderColor</Code>
                 </td>
-                <td>date picker container</td>
+                <td>Date picker container</td>
                 <td>
                   <Code>color-grey-400</Code>
                 </td>
-                <td>#bfbffb</td>
+                <td>#bfbfbf</td>
               </tr>
               <tr>
                 <td>
                   <Code>pickerSelectedBackgroundColor</Code>
                 </td>
-                <td>picker date/year: selected</td>
+                <td>Picker date/year: selected</td>
                 <td>
                   <Code>color-purple-700</Code>
                 </td>
@@ -179,7 +179,7 @@ const sections = [
                 <td>
                   <Code>pickerSelectedFontColor</Code>
                 </td>
-                <td>picker date/year: selected</td>
+                <td>Picker date/year: selected</td>
                 <td>
                   <Code>color-white</Code>
                 </td>
@@ -189,7 +189,7 @@ const sections = [
                 <td>
                   <Code>pickerHoverBackgroundColor</Code>
                 </td>
-                <td>picker date/year: hover</td>
+                <td>Picker date/year: hover</td>
                 <td>
                   <Code>color-purple-200</Code>
                 </td>
@@ -199,7 +199,7 @@ const sections = [
                 <td>
                   <Code>pickerHoverFontColor</Code>
                 </td>
-                <td>picker date/year: active</td>
+                <td>Picker date/year: active</td>
                 <td>
                   <Code>color-black</Code>
                 </td>
@@ -209,7 +209,7 @@ const sections = [
                 <td>
                   <Code>pickerActiveBackgroundColor</Code>
                 </td>
-                <td>picker date/year: active</td>
+                <td>Picker date/year: active</td>
                 <td>
                   <Code>color-purple-800</Code>
                 </td>
@@ -219,7 +219,7 @@ const sections = [
                 <td>
                   <Code>pickerActiveFontColor</Code>
                 </td>
-                <td>picker date/year: active</td>
+                <td>Picker date/year: active</td>
                 <td>
                   <Code>color-white</Code>
                 </td>
@@ -229,7 +229,7 @@ const sections = [
                 <td>
                   <Code>pickerNonCurrentMonthFontColor</Code>
                 </td>
-                <td>picker date: other month</td>
+                <td>Picker date: other month</td>
                 <td>
                   <Code>color-grey-500</Code>
                 </td>
@@ -239,7 +239,7 @@ const sections = [
                 <td>
                   <Code>pickerCurrentDateBorderColor</Code>
                 </td>
-                <td>picker date/year: current</td>
+                <td>Picker date/year: current</td>
                 <td>
                   <Code>color-purple-300</Code>
                 </td>
@@ -249,7 +249,7 @@ const sections = [
                 <td>
                   <Code>pickerCurrentDateFontColor</Code>
                 </td>
-                <td>picker date: current</td>
+                <td>Picker date: current</td>
                 <td>
                   <Code>color-black</Code>
                 </td>
@@ -259,7 +259,7 @@ const sections = [
                 <td>
                   <Code>pickerCurrentYearFontColor</Code>
                 </td>
-                <td>picker year: current</td>
+                <td>Picker year: current</td>
                 <td>
                   <Code>color-purple-700</Code>
                 </td>
@@ -269,19 +269,9 @@ const sections = [
                 <td>
                   <Code>pickerHeaderBackgroundColor</Code>
                 </td>
-                <td>picker header</td>
+                <td>Picker header</td>
                 <td>
-                  <Code>transparent</Code>
-                </td>
-                <td>transparent</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>pickerHeaderBackgroundColor</Code>
-                </td>
-                <td>picker header</td>
-                <td>
-                  <Code>transparent</Code>
+                  <Code>color-transparent</Code>
                 </td>
                 <td>transparent</td>
               </tr>
@@ -289,7 +279,7 @@ const sections = [
                 <td>
                   <Code>pickerHeaderFontColor</Code>
                 </td>
-                <td>picker header</td>
+                <td>Picker header</td>
                 <td>
                   <Code>color-black</Code>
                 </td>
@@ -299,7 +289,7 @@ const sections = [
                 <td>
                   <Code>pickerHeaderHoverBackgroundColor</Code>
                 </td>
-                <td>picker header: hover</td>
+                <td>Picker header: hover</td>
                 <td>
                   <Code>color-purple-200</Code>
                 </td>
@@ -307,9 +297,19 @@ const sections = [
               </tr>
               <tr>
                 <td>
+                  <Code>pickerHeaderHoverFontColor</Code>
+                </td>
+                <td>Picker header: hover</td>
+                <td>
+                  <Code>color-black</Code>
+                </td>
+                <td>#000000</td>
+              </tr>
+              <tr>
+                <td>
                   <Code>pickerHeaderActiveBackgroundColor</Code>
                 </td>
-                <td>picker header: active</td>
+                <td>Picker header: active</td>
                 <td>
                   <Code>color-purple-800</Code>
                 </td>
@@ -319,7 +319,7 @@ const sections = [
                 <td>
                   <Code>pickerHeaderActiveFontColor</Code>
                 </td>
-                <td>picker header: active</td>
+                <td>Picker header: active</td>
                 <td>
                   <Code>color-white</Code>
                 </td>
@@ -329,7 +329,7 @@ const sections = [
                 <td>
                   <Code>pickerFocusColor</Code>
                 </td>
-                <td>date picker container</td>
+                <td>Date picker container</td>
                 <td>
                   <Code>color-blue-600</Code>
                 </td>
@@ -356,7 +356,7 @@ const sections = [
                 <td>
                   <Code>pickerBorderWidth</Code>
                 </td>
-                <td>date picker container</td>
+                <td>Date picker container</td>
                 <td>
                   <Code>border-width-1</Code>
                 </td>
@@ -366,7 +366,7 @@ const sections = [
                 <td>
                   <Code>pickerBorderStyle</Code>
                 </td>
-                <td>date picker container</td>
+                <td>Date picker container</td>
                 <td>
                   <Code>border-style-solid</Code>
                 </td>
@@ -376,7 +376,7 @@ const sections = [
                 <td>
                   <Code>pickerFocusWidth</Code>
                 </td>
-                <td>date picker container: focus</td>
+                <td>Date picker container: focus</td>
                 <td>
                   <Code>border-width-2</Code>
                 </td>
@@ -386,7 +386,7 @@ const sections = [
                 <td>
                   <Code>pickerCurrentDateBorderWidth</Code>
                 </td>
-                <td>picker date/year: current</td>
+                <td>Picker date/year: current</td>
                 <td>
                   <Code>border-width-1</Code>
                 </td>
@@ -413,7 +413,7 @@ const sections = [
                 <td>
                   <Code>pickerFontFamily</Code>
                 </td>
-                <td>date picker container</td>
+                <td>Date picker container</td>
                 <td>
                   <Code>font-family-sans</Code>
                 </td>
@@ -423,7 +423,7 @@ const sections = [
                 <td>
                   <Code>pickerFontSize</Code>
                 </td>
-                <td>date picker container</td>
+                <td>Date picker container</td>
                 <td>
                   <Code>font-scale-02</Code>
                 </td>
@@ -433,7 +433,7 @@ const sections = [
                 <td>
                   <Code>pickerFontWeight</Code>
                 </td>
-                <td>date picker container</td>
+                <td>Date picker container</td>
                 <td>
                   <Code>font-regular</Code>
                 </td>
@@ -443,7 +443,7 @@ const sections = [
                 <td>
                   <Code>pickerInteractedYearFontSize</Code>
                 </td>
-                <td>picker year: selected, hover, active</td>
+                <td>Picker year: selected, hover, active</td>
                 <td>
                   <Code>font-scale-05</Code>
                 </td>
@@ -453,7 +453,7 @@ const sections = [
                 <td>
                   <Code>pickerHeaderFontSize</Code>
                 </td>
-                <td>picker header</td>
+                <td>Picker header</td>
                 <td>
                   <Code>font-scale-02</Code>
                 </td>

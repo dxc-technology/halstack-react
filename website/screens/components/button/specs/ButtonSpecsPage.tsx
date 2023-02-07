@@ -548,7 +548,7 @@ const sections = [
                     </td>
                     <td>Container fill</td>
                     <td>
-                      <Code>transparent</Code>
+                      <Code>color-transparent</Code>
                     </td>
                     <td>transparent</td>
                   </tr>

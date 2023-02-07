@@ -117,7 +117,6 @@ const sections = [
               <tr>
                 <th>Label Name</th>
                 <th>Default value</th>
-                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -139,7 +138,6 @@ const sections = [
               <tr>
                 <th>Label Name</th>
                 <th>Default value</th>
-                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -172,28 +170,6 @@ const sections = [
         ),
       },
       {
-        title: "dateInput",
-        content: (
-          <DxcTable>
-            <thead>
-              <tr>
-                <th>Label Name</th>
-                <th>Default value</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <Code>invalidDateErrorMessage</Code>
-                </td>
-                <td>Invalid date.</td>
-              </tr>
-            </tbody>
-          </DxcTable>
-        ),
-      },
-      {
         title: "calendar",
         content: (
           <DxcTable>
@@ -201,7 +177,6 @@ const sections = [
               <tr>
                 <th>Label Name</th>
                 <th>Default value</th>
-                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -216,21 +191,42 @@ const sections = [
                   <Code>months</Code>
                 </td>
                 <td>
-                  [ January, February, March, April, May, June, July, August,
-                  September, October, November, December ]
+                  [January, February, March, April, May, June, July, August,
+                  September, October, November, December]
                 </td>
               </tr>
               <tr>
                 <td>
                   <Code>previousMonthTitle</Code>
                 </td>
-                <td>previous month</td>
+                <td>Previous month</td>
               </tr>
               <tr>
                 <td>
                   <Code>nextMonthTitle</Code>
                 </td>
-                <td>next month</td>
+                <td>Next month</td>
+              </tr>
+            </tbody>
+          </DxcTable>
+        ),
+      },
+      {
+        title: "dateInput",
+        content: (
+          <DxcTable>
+            <thead>
+              <tr>
+                <th>Label Name</th>
+                <th>Default value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <Code>invalidDateErrorMessage</Code>
+                </td>
+                <td>Invalid date.</td>
               </tr>
             </tbody>
           </DxcTable>
@@ -244,7 +240,6 @@ const sections = [
               <tr>
                 <th>Label Name</th>
                 <th>Default value</th>
-                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -336,7 +331,6 @@ const sections = [
               <tr>
                 <th>Label Name</th>
                 <th>Default value</th>
-                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -470,7 +464,6 @@ const sections = [
               <tr>
                 <th>Label Name</th>
                 <th>Default value</th>
-                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -498,7 +491,6 @@ const sections = [
               <tr>
                 <th>Label Name</th>
                 <th>Default value</th>
-                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -520,7 +512,6 @@ const sections = [
               <tr>
                 <th>Label Name</th>
                 <th>Default value</th>
-                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -542,7 +533,6 @@ const sections = [
               <tr>
                 <th>Label Name</th>
                 <th>Default value</th>
-                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -576,7 +566,6 @@ const sections = [
               <tr>
                 <th>Label Name</th>
                 <th>Default value</th>
-                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -604,7 +593,6 @@ const sections = [
               <tr>
                 <th>Label Name</th>
                 <th>Default value</th>
-                <th></th>
               </tr>
             </thead>
             <tbody>
