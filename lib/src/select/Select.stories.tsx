@@ -245,7 +245,6 @@ const optionsWithEllipsisMedium = [
   { label: "Optiond1234567890123456789012345678901234", value: "1" },
   { label: "Optiond12345678901234567890123456789012345", value: "2" },
   { label: "Option 031111111111111111111111111111222", value: "3" },
-  { label: "Option 03111111111111111111111111111222", value: "4" },
 ];
 
 const Select = () => (
@@ -360,14 +359,14 @@ const Select = () => (
       <Title title="Multiple selection with ellipsis" theme="light" level={4} />
       <DxcSelect label="Label" options={single_options} multiple defaultValue={["1", "2", "3", "4"]} />
       <Title title="Value with ellipsis" theme="light" level={4} />
-      <DxcSelect label="Label" options={optionsWithEllipsisMedium} defaultValue="1" size="medium" />
+      <DxcSelect label="Label" options={optionsWithEllipsisMedium} defaultValue="1" />
       <Title title="Options with ellipsis" theme="light" level={4} />
       <DxcSelect
         label="Label"
         placeholder="Choose an option"
         defaultValue="1"
         options={optionsWithEllipsisMedium}
-        size="medium"
+        margin={{ top: "xxlarge" }}
       />
     </ExampleContainer>
   </>

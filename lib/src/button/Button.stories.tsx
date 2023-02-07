@@ -122,7 +122,10 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Only icon (image)" theme="light" level={4} />
-      <DxcButton mode="secondary" icon="https://developer.apple.com/design/human-interface-guidelines/foundations/app-icons/images/icon-and-image-large-icon-settings_2x.png" />
+      <DxcButton
+        mode="secondary"
+        icon="https://developer.apple.com/design/human-interface-guidelines/foundations/app-icons/images/icon-and-image-large-icon-settings_2x.png"
+      />
     </ExampleContainer>
     <Title title="Text" theme="light" level={2} />
     <ExampleContainer>
@@ -151,7 +154,10 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Only icon (image)" theme="light" level={4} />
-      <DxcButton mode="text" icon="https://developer.apple.com/design/human-interface-guidelines/foundations/app-icons/images/icon-and-image-large-icon-settings_2x.png" />
+      <DxcButton
+        mode="text"
+        icon="https://developer.apple.com/design/human-interface-guidelines/foundations/app-icons/images/icon-and-image-large-icon-settings_2x.png"
+      />
     </ExampleContainer>
     <BackgroundColorProvider color="#333333">
       <DarkContainer>
