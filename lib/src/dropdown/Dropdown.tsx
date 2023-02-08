@@ -28,7 +28,7 @@ const useWidth = (target) => {
   useEffect(() => {
     if (target != null) {
       setWidth(target.getBoundingClientRect().width);
-      
+
       const triggerObserver = new ResizeObserver((entries) => {
         const rect = entries[0].target.getBoundingClientRect();
         setWidth(rect?.width);
@@ -179,7 +179,6 @@ const DxcDropdown = ({
         <Popover.Root open={isOpen}>
           <Popover.Trigger asChild type={undefined}>
             <DropdownTrigger
-              opened={isOpen}
               onClick={handleTriggerOnClick}
               onKeyDown={handleTriggerOnKeyDown}
               onBlur={(event) => {
@@ -205,7 +204,7 @@ const DxcDropdown = ({
                 )}
                 {label && iconPosition === "before" && <DropdownTriggerLabel>{label}</DropdownTriggerLabel>}
               </DropdownTriggerContent>
-              {!caretHidden && <CaretIcon disabled={disabled}>{isOpen ? upArrowIcon : downArrowIcon}</CaretIcon>}
+              {!caretHidden && <CaretIcon disabled={disabled}>{isOpen ? upArrowIcon : downArrowIcon}</CaretIcon>} 
             </DropdownTrigger>
           </Popover.Trigger>
           <Popover.Content sideOffset={1} asChild>
@@ -263,7 +262,6 @@ const DropdownContainer = styled.div<DropdownContainerProps>`
 type DropdownTriggerProps = {
   label: string;
   margin: Space | Margin;
-  opened: boolean;
   size: Size;
 };
 const DropdownTrigger = styled.button<DropdownTriggerProps>`

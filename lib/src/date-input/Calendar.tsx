@@ -195,7 +195,11 @@ const CalendarContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   padding: 0px 8px 8px 8px;
-  width: ${(props) => props.theme.dateInput.pickerWidth};
+  width: 292px;
+  font-family: ${(props) => props.theme.dateInput.pickerFontFamily};
+  font-size: ${(props) => props.theme.dateInput.pickerFontSize};
+  color: ${(props) => props.theme.dateInput.pickerFontColor};
+  font-weight: ${(props) => props.theme.dateInput.pickerFontWeight};
 `;
 
 const WeekHeaderCell = styled.span`
@@ -204,9 +208,6 @@ const WeekHeaderCell = styled.span`
   justify-content: center;
   width: 36px;
   height: 36px;
-  font-family: ${(props) => props.theme.dateInput.pickerFontFamily};
-  font-size: 0.875rem;
-  color: ${(props) => props.theme.dateInput.pickerWeekFontColor};
 `;
 
 const DayCellsContainer = styled.div`
@@ -230,11 +231,13 @@ const DayCell = styled.button<DayCellPropsType>`
   width: 36px;
   height: 36px;
   padding: 0;
-  font-size: 0.875rem;
-  font-family: ${(props) => props.theme.dateInput.pickerFontFamily};
   border: none;
   border-radius: 50%;
   cursor: pointer;
+  font-family: ${(props) => props.theme.dateInput.pickerFontFamily};
+  font-size: ${(props) => props.theme.dateInput.pickerFontSize};
+  color: ${(props) => props.theme.dateInput.pickerFontColor};
+  font-weight: ${(props) => props.theme.dateInput.pickerFontWeight};
 
   &:focus {
     outline: ${(props) => props.theme.dateInput.pickerFocusColor} solid 2px;
@@ -242,27 +245,30 @@ const DayCell = styled.button<DayCellPropsType>`
   &:hover {
     background-color: ${(props) =>
       props.selected
-        ? props.theme.dateInput.pickerSelectedDateBackgroundColor
-        : props.theme.dateInput.pickerHoverDateBackgroundColor};
+        ? props.theme.dateInput.pickerSelectedBackgroundColor
+        : props.theme.dateInput.pickerHoverBackgroundColor};
     color: ${(props) =>
-      props.selected ? props.theme.dateInput.pickerSelectedDateColor : props.theme.dateInput.pickerHoverDateFontColor};
+      props.selected ? props.theme.dateInput.pickerSelectedFontColor : props.theme.dateInput.pickerHoverFontColor};
   }
   &:active {
-    background-color: #4b1c7d;
-    color: #ffffff;
+    background-color: ${(props) => props.theme.dateInput.pickerActiveBackgroundColor};
+    color: ${(props) => props.theme.dateInput.pickerActiveFontColor};
   }
 
-  ${(props) => props.isCurrentDay && !props.selected && `border: 1px solid #cbacec;`}
+  ${(props) =>
+    props.isCurrentDay &&
+    !props.selected &&
+    `border: ${props.theme.dateInput.pickerCurrentDateBorderWidth} solid ${props.theme.dateInput.pickerCurrentDateBorderColor};`}
   background-color: ${(props) =>
-    props.selected ? props.theme.dateInput.pickerSelectedDateBackgroundColor : "transparent"};
+    props.selected ? props.theme.dateInput.pickerSelectedBackgroundColor : "transparent"};
   color: ${(props) =>
     props.selected
-      ? props.theme.dateInput.pickerSelectedDateColor
+      ? props.theme.dateInput.pickerSelectedFontColor
       : props.isCurrentDay
-      ? props.theme.dateInput.pickerActualDateFontColor
+      ? props.theme.dateInput.pickerCurrentDateFontColor
       : !props.actualMonth
-      ? "#999999"
-      : props.theme.dateInput.pickerDayFontColor};
+      ? props.theme.dateInput.pickerNonCurrentMonthFontColor
+      : props.theme.dateInput.pickerFontColor};
 `;
 
 export default React.memo(Calendar);

@@ -104,11 +104,11 @@ const parseTheme = (theme) => {
   chipTokens.iconColor = theme?.chip?.iconColor ?? chipTokens.iconColor;
 
   const dateTokens = componentTokensCopy.dateInput;
-  dateTokens.pickerSelectedDateBackgroundColor =
-    theme?.dateInput?.selectedDateBackgroundColor ?? dateTokens.pickerSelectedDateBackgroundColor;
-  dateTokens.pickerSelectedDateColor = theme?.dateInput?.selectedDateFontColor ?? dateTokens.pickerSelectedDateColor;
-  dateTokens.pickerHoverDateBackgroundColor =
-    setOpacity(theme?.dateInput?.selectedDateBackgroundColor, 0.16) ?? dateTokens.pickerHoverDateBackgroundColor;
+  dateTokens.pickerSelectedBackgroundColor =
+    theme?.dateInput?.selectedDateBackgroundColor ?? dateTokens.pickerSelectedBackgroundColor;
+  dateTokens.pickerSelectedFontColor = theme?.dateInput?.selectedDateFontColor ?? dateTokens.pickerSelectedFontColor;
+  dateTokens.pickerHoverBackgroundColor =
+    setOpacity(theme?.dateInput?.selectedDateBackgroundColor, 0.34) ?? dateTokens.pickerHoverBackgroundColor;
 
   const dropdownTokens = componentTokensCopy.dropdown;
   dropdownTokens.buttonBackgroundColor = theme?.dropdown?.baseColor ?? dropdownTokens.buttonBackgroundColor;
