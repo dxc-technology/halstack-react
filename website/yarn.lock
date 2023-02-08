@@ -124,10 +124,10 @@
     "@babel/helper-validator-identifier" "^7.19.1"
     to-fast-properties "^2.0.0"
 
-"@dxc-technology/halstack-react@0.0.0-0a9608a":
-  version "0.0.0-0a9608a"
-  resolved "https://registry.yarnpkg.com/@dxc-technology/halstack-react/-/halstack-react-0.0.0-0a9608a.tgz#9f81e3c7c394d3b9530e1906efd018ff9df31d69"
-  integrity sha512-c0Nb49RVQs6otC9rMNKNS1fea+R6RYNtqXEHeN2zimNed6ZtdAvUmsIlezdAQecB3/YDQ+DE8ZVgfMB4VUl6pA==
+"@dxc-technology/halstack-react@0.0.0-64fdce7":
+  version "0.0.0-64fdce7"
+  resolved "https://registry.yarnpkg.com/@dxc-technology/halstack-react/-/halstack-react-0.0.0-64fdce7.tgz#6dbb91805b0e47972d3faeb196bc00f5e5a1eb6f"
+  integrity sha512-po3LCc13dq6ht7LIEecFPPWjA8OBu6pDOSMEPXb2rtq9uvLHjuMk61pTY6vqvaq9ZMbnDLSaMvdnzmwfUVpT/A==
   dependencies:
     "@radix-ui/react-popover" "0.1.6"
     "@types/styled-components" "^5.1.24"
@@ -919,9 +919,9 @@ camelize@^1.0.0:
   integrity sha512-dU+Tx2fsypxTgtLoE36npi3UqcjSSMNYfkqgmoEhtZrraP5VWq0K7FkWVTYa8eMPtnU/G2txVsfdCJTn9uzpuQ==
 
 caniuse-lite@^1.0.30001283:
-  version "1.0.30001450"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001450.tgz#022225b91200589196b814b51b1bbe45144cf74f"
-  integrity sha512-qMBmvmQmFXaSxexkjjfMvD5rnDL0+m+dUMZKoDYsGG8iZN29RuYh9eRoMvKsT6uMAWlyUUGDEQGJJYjzCIO9ew==
+  version "1.0.30001451"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001451.tgz#2e197c698fc1373d63e1406d6607ea4617c613f1"
+  integrity sha512-XY7UbUpGRatZzoRft//5xOa69/1iGJRBlrieH6QYrkKLIFn3m7OVEJ81dSrKoy2BnKsdbX5cLrOispZNYo9v2w==
 
 chalk@^2.0.0, chalk@^2.4.1:
   version "2.4.2"
@@ -3326,9 +3326,9 @@ v8-compile-cache@^2.0.3:
   integrity sha512-l8lCEmLcLYZh4nbunNZvQCJc5pv7+RCwa8q/LdUx8u7lsWvPDKmpodJAJNwkAhJC//dFY48KuIEmjtd4RViDrA==
 
 vfile-message@^3.0.0:
-  version "3.1.3"
-  resolved "https://registry.yarnpkg.com/vfile-message/-/vfile-message-3.1.3.tgz#1360c27a99234bebf7bddbbbca67807115e6b0dd"
-  integrity sha512-0yaU+rj2gKAyEk12ffdSbBfjnnj+b1zqTBv3OQCTn8yEB02bsPizwdBPrLJjHnK+cU9EMMcUnNv938XcZIkmdA==
+  version "3.1.4"
+  resolved "https://registry.yarnpkg.com/vfile-message/-/vfile-message-3.1.4.tgz#15a50816ae7d7c2d1fa87090a7f9f96612b59dea"
+  integrity sha512-fa0Z6P8HUrQN4BZaX05SIVXic+7kE3b05PWAtPuYP9QLHsLKYR7/AlLW3NtOrpXRLeawpDLMsVkmk5DG0NXgWw==
   dependencies:
     "@types/unist" "^2.0.0"
     unist-util-stringify-position "^3.0.0"
