@@ -271,6 +271,7 @@ const Dropdown = () => (
       <HalstackProvider theme={opinionatedTheme}>
         <DxcDropdown label="Disabled" options={options} onSelectOption={(value) => {}} icon={iconSVG} disabled />
       </HalstackProvider>
+    </ExampleContainer>
   </>
 );
 
@@ -285,7 +286,7 @@ const DropdownListStates = () => {
           title="List dialog uses a Radix Popover to appear over elements with a certain z-index"
           theme="light"
           level={3}
-        />  
+        />
         <div
           style={{
             position: "relative",
@@ -378,7 +379,6 @@ const DropdownListStates = () => {
           />
         </ExampleContainer>
       </ThemeProvider>
-      </ExampleContainer>
       <Title title="Option states" theme="light" level={3} />
       <ExampleContainer pseudoState="pseudo-hover">
         <Title title="Hovered option" theme="light" level={4} />
