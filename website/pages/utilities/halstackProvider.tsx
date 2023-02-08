@@ -5,7 +5,7 @@ const Index = () => {
   return (
     <>
       <Head>
-        <title>HalstackProvider — Halstack Design System</title>
+        <title>Halstack Provider — Halstack Design System</title>
       </Head>
       <HalstackProviderPage />
     </>

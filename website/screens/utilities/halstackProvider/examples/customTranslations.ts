@@ -3,6 +3,7 @@ import {
   DxcFileInput,
   HalstackProvider,
   DxcInset,
+  DxcFlex,
 } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 
@@ -33,21 +34,21 @@ const code = `() => {
   return (
     <HalstackProvider labels={labels}>
       <DxcInset space="2rem">
-        <DxcTextInput
-          label="Input text"
-          defaultValue="Example text"
-          clearable
-          optional
-        />
-      
-     
-        <DxcFileInput
-          label="Select your files"
-          value={files}
-          callbackFile={callbackFile}
-          minSize={0}
-          maxSize={0}
-        />
+        <DxcFlex gap="2rem">
+          <DxcTextInput
+            label="Input text"
+            defaultValue="Example text"
+            clearable
+            optional
+          />
+          <DxcFileInput
+            label="Select your files"
+            value={files}
+            callbackFile={callbackFile}
+            minSize={0}
+            maxSize={0}
+          />
+          </DxcFlex>
         </DxcInset>
     </HalstackProvider>
   );
@@ -58,6 +59,7 @@ const scope = {
   DxcFileInput,
   HalstackProvider,
   DxcInset,
+  DxcFlex,
   useState,
 };
 

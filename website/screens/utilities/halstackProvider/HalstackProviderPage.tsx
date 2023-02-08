@@ -14,22 +14,11 @@ import {
   DxcAlert,
   DxcTypography,
   DxcBleed,
+  DxcHeading,
 } from "@dxc-technology/halstack-react";
 import Link from "next/link";
+import PageHeading from "@/common/PageHeading";
 const sections = [
-  {
-    title: "Halstack Provider",
-    content: (
-      <>
-        {" "}
-        <DxcParagraph>
-          Halstack Provider is a utility that applies a certain context to its
-          child components. It can be used to apply this context either to the
-          whole application or to particular components.
-        </DxcParagraph>
-      </>
-    ),
-  },
   {
     title: "Props",
     content: (
@@ -40,7 +29,7 @@ const sections = [
           <th>Description</th>
         </tr>
         <tr>
-          <td>theme: object[]</td>
+          <td>theme: object</td>
           <td></td>
           <td>
             Object with a given structure, specified below, for defining the
@@ -48,7 +37,7 @@ const sections = [
           </td>
         </tr>
         <tr>
-          <td>advancedTheme: object[]</td>
+          <td>advancedTheme: object</td>
           <td></td>
           <td>
             Object with a given structure, specified below, for defining the
@@ -56,7 +45,7 @@ const sections = [
           </td>
         </tr>
         <tr>
-          <td>labels:object[]</td>
+          <td>labels:object</td>
           <td></td>
           <td>
             Object with a given structure, specified below, for defining
@@ -90,8 +79,8 @@ const sections = [
           to help you create themes.
         </DxcAlert>
         <DxcParagraph>
-          Bellow is an example of customizing the colours of a{" "}
-          <Code>DxcAccordion</Code> and a<Code>DxcTextInput</Code>:
+          Below is an example of customizing the colours of a{" "}
+          <Code>DxcAccordion</Code> and a <Code>DxcTextInput</Code>:
         </DxcParagraph>
         <Example example={opinionatedTheme} defaultIsVisible />
 
@@ -115,26 +104,24 @@ const sections = [
             href="/principles/themes/#opinionated-theme-inputs-list"
             passHref
           >
-            <DxcLink>Themes section</DxcLink>
-          </Link>{" "}
-          section.
+            <DxcLink>Themes section.</DxcLink>
+          </Link>
         </DxcParagraph>
         <DxcAlert type="info" size="fillParent">
           Remember that you can use the{" "}
           <Link href="/theme-generator/advanced-theme" passHref>
             <DxcLink>advanced theme generator</DxcLink>
           </Link>{" "}
-          to help you create themes
+          to help you create themes.
         </DxcAlert>
 
         <Example example={advancedTheme} defaultIsVisible />
 
         <DxcParagraph>
           In the example above we have customized some of the{" "}
-          <Code>DxcAccordion</Code>
-          tokens. As you can see, it is not necessary to pass all the tokens of
-          the component, only those that you want to change their value with
-          respect to the default theme.
+          <Code>DxcAccordion</Code> tokens. As you can see, it is not necessary
+          to pass all the tokens of the component, only those that you want to
+          change their value with respect to the default theme.
         </DxcParagraph>
       </>
     ),
@@ -153,13 +140,13 @@ const sections = [
           <Link href="/principles/localization" passHref>
             <DxcLink>Localization</DxcLink>
           </Link>{" "}
-          section
+          section.
         </DxcAlert>
         <DxcParagraph>
           Let's imagine that we want to translate the '(Optional)' label of a
           DxcTextInput, as well as the error messages of our DxcFileInput
           component. To do so, we need to create an object with the
-          translations. In this object, you will have as much objects as
+          translations. In this object, you will have as many objects as
           components you want to translate with the respective translation for
           their labels.
         </DxcParagraph>
@@ -167,7 +154,7 @@ const sections = [
         <DxcBleed top="2rem">
           <DxcTypography fontSize="0.875rem">
             *(to see the translated error message you should try to add any file
-            on fileinput).
+            on the DxcFileInput).
           </DxcTypography>
         </DxcBleed>
       </>
@@ -178,6 +165,20 @@ const sections = [
 const HalstackProvider = () => {
   return (
     <DxcFlex direction="column" gap="4rem">
+      <PageHeading>
+        <DxcFlex direction="column" gap="2rem">
+          <DxcHeading
+            level={1}
+            text="Halstack Provider"
+            weight="bold"
+          ></DxcHeading>
+          <DxcParagraph>
+            Halstack Provider is the context provider used for a whole
+            application or an isolated group of components, which defines the
+            custom theme and/or translation labels.
+          </DxcParagraph>
+        </DxcFlex>
+      </PageHeading>
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}

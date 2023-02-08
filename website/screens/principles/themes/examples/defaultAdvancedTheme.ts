@@ -1,4 +1,3 @@
-// const defaultAdvancedTheme =
 export default {
   accordion: {
     backgroundColor: "#ffffff",
@@ -1174,5 +1173,3 @@ export default {
     focusColor: "#0095ff",
   },
 };
-
-// export default { defaultAdvancedTheme };

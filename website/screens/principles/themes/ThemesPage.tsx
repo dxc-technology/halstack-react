@@ -88,10 +88,10 @@ const sections = [
               scratch.{" "}
             </DxcAlert>
             <DxcParagraph>
-              Either through the builder or by creating it from scratch you will
-              have to build a theme containing as many objects as components you
-              want to customize. The props of each component are a key-value
-              pair where:
+              Either through the builder or by creating it from scratch, you
+              will have to build a theme containing as many objects as
+              components you want to customize. The props of each component are
+              a key-value pair where:
             </DxcParagraph>
             <DxcBulletedList>
               <DxcBulletedList.Item>
@@ -1112,7 +1112,7 @@ const sections = [
                         href="/utilities/halstackProvider/#opinionated-theme"
                         passHref
                       >
-                        <DxcLink>HastackProvider section</DxcLink>
+                        <DxcLink>Halstack Provider section</DxcLink>
                       </Link>
                       .
                     </DxcParagraph>
