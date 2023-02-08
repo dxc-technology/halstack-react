@@ -120,9 +120,350 @@ const sections = [
     ),
   },
   {
-    title: "🚧 Design tokens",
-    content:
-      "The design tokens are currently under review and will be added soon.",
+    title: "Design tokens",
+    subSections: [
+      {
+        title: "Color",
+        content: (
+          <DxcTable>
+            <thead>
+              <tr>
+                <th>Component token</th>
+                <th>Element</th>
+                <th>Core token</th>
+                <th>Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <Code>pickerBackgroundColor</Code>
+                </td>
+                <td>Date picker container</td>
+                <td>
+                  <Code>color-white</Code>
+                </td>
+                <td>#ffffff</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>pickerFontColor</Code>
+                </td>
+                <td>Date picker container</td>
+                <td>
+                  <Code>color-black</Code>
+                </td>
+                <td>#000000</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>pickerBorderColor</Code>
+                </td>
+                <td>Date picker container</td>
+                <td>
+                  <Code>color-grey-400</Code>
+                </td>
+                <td>#bfbfbf</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>pickerSelectedBackgroundColor</Code>
+                </td>
+                <td>Picker date/year: selected</td>
+                <td>
+                  <Code>color-purple-700</Code>
+                </td>
+                <td>#5f249f</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>pickerSelectedFontColor</Code>
+                </td>
+                <td>Picker date/year: selected</td>
+                <td>
+                  <Code>color-white</Code>
+                </td>
+                <td>#ffffff</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>pickerHoverBackgroundColor</Code>
+                </td>
+                <td>Picker date/year: hover</td>
+                <td>
+                  <Code>color-purple-200</Code>
+                </td>
+                <td>#e5d5f6</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>pickerHoverFontColor</Code>
+                </td>
+                <td>Picker date/year: active</td>
+                <td>
+                  <Code>color-black</Code>
+                </td>
+                <td>#000000</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>pickerActiveBackgroundColor</Code>
+                </td>
+                <td>Picker date/year: active</td>
+                <td>
+                  <Code>color-purple-800</Code>
+                </td>
+                <td>#4b1c7d</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>pickerActiveFontColor</Code>
+                </td>
+                <td>Picker date/year: active</td>
+                <td>
+                  <Code>color-white</Code>
+                </td>
+                <td>#ffffff</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>pickerNonCurrentMonthFontColor</Code>
+                </td>
+                <td>Picker date: other month</td>
+                <td>
+                  <Code>color-grey-500</Code>
+                </td>
+                <td>#999999</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>pickerCurrentDateBorderColor</Code>
+                </td>
+                <td>Picker date/year: current</td>
+                <td>
+                  <Code>color-purple-300</Code>
+                </td>
+                <td>#cbacec</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>pickerCurrentDateFontColor</Code>
+                </td>
+                <td>Picker date: current</td>
+                <td>
+                  <Code>color-black</Code>
+                </td>
+                <td>#000000</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>pickerCurrentYearFontColor</Code>
+                </td>
+                <td>Picker year: current</td>
+                <td>
+                  <Code>color-purple-700</Code>
+                </td>
+                <td>#5f249f</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>pickerHeaderBackgroundColor</Code>
+                </td>
+                <td>Picker header</td>
+                <td>
+                  <Code>color-transparent</Code>
+                </td>
+                <td>transparent</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>pickerHeaderFontColor</Code>
+                </td>
+                <td>Picker header</td>
+                <td>
+                  <Code>color-black</Code>
+                </td>
+                <td>#000000</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>pickerHeaderHoverBackgroundColor</Code>
+                </td>
+                <td>Picker header: hover</td>
+                <td>
+                  <Code>color-purple-200</Code>
+                </td>
+                <td>#e5d5f6</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>pickerHeaderHoverFontColor</Code>
+                </td>
+                <td>Picker header: hover</td>
+                <td>
+                  <Code>color-black</Code>
+                </td>
+                <td>#000000</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>pickerHeaderActiveBackgroundColor</Code>
+                </td>
+                <td>Picker header: active</td>
+                <td>
+                  <Code>color-purple-800</Code>
+                </td>
+                <td>#4b1c7d</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>pickerHeaderActiveFontColor</Code>
+                </td>
+                <td>Picker header: active</td>
+                <td>
+                  <Code>color-white</Code>
+                </td>
+                <td>#ffffff</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>pickerFocusColor</Code>
+                </td>
+                <td>Date picker container</td>
+                <td>
+                  <Code>color-blue-600</Code>
+                </td>
+                <td>#0095ff</td>
+              </tr>
+            </tbody>
+          </DxcTable>
+        ),
+      },
+      {
+        title: "Border",
+        content: (
+          <DxcTable>
+            <thead>
+              <tr>
+                <th>Component token</th>
+                <th>Element</th>
+                <th>Core token</th>
+                <th>Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <Code>pickerBorderWidth</Code>
+                </td>
+                <td>Date picker container</td>
+                <td>
+                  <Code>border-width-1</Code>
+                </td>
+                <td>1px</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>pickerBorderStyle</Code>
+                </td>
+                <td>Date picker container</td>
+                <td>
+                  <Code>border-style-solid</Code>
+                </td>
+                <td>solid</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>pickerFocusWidth</Code>
+                </td>
+                <td>Date picker container: focus</td>
+                <td>
+                  <Code>border-width-2</Code>
+                </td>
+                <td>2px</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>pickerCurrentDateBorderWidth</Code>
+                </td>
+                <td>Picker date/year: current</td>
+                <td>
+                  <Code>border-width-1</Code>
+                </td>
+                <td>1px</td>
+              </tr>
+            </tbody>
+          </DxcTable>
+        ),
+      },
+      {
+        title: "Typography",
+        content: (
+          <DxcTable>
+            <thead>
+              <tr>
+                <th>Component token</th>
+                <th>Element</th>
+                <th>Core token</th>
+                <th>Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <Code>pickerFontFamily</Code>
+                </td>
+                <td>Date picker container</td>
+                <td>
+                  <Code>font-family-sans</Code>
+                </td>
+                <td>&#39;Open Sans&#39;, sans-serif</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>pickerFontSize</Code>
+                </td>
+                <td>Date picker container</td>
+                <td>
+                  <Code>font-scale-02</Code>
+                </td>
+                <td>0.875rem</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>pickerFontWeight</Code>
+                </td>
+                <td>Date picker container</td>
+                <td>
+                  <Code>font-regular</Code>
+                </td>
+                <td>400</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>pickerInteractedYearFontSize</Code>
+                </td>
+                <td>Picker year: selected, hover, active</td>
+                <td>
+                  <Code>font-scale-05</Code>
+                </td>
+                <td>1.5rem</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>pickerHeaderFontSize</Code>
+                </td>
+                <td>Picker header</td>
+                <td>
+                  <Code>font-scale-02</Code>
+                </td>
+                <td>0.875rem</td>
+              </tr>
+            </tbody>
+          </DxcTable>
+        ),
+      },
+    ],
   },
   {
     title: "Accessibility",

@@ -62,7 +62,7 @@ const YearPickerContainer = styled.div`
   gap: 4px;
   align-items: center;
   overflow-y: scroll;
-  width: ${(props) => props.theme.dateInput.pickerWidth};
+  width: 292px;
   height: 312px;
   padding: 2px 8px 8px 8px;
 `;
@@ -75,40 +75,43 @@ const YearPickerButton = styled.button<YearPickerButtonPropsType>`
   justify-content: center;
   width: 80px;
   min-height: 40px;
-  font-size: 0.875rem;
   line-height: 21px;
-  color: ${(props) => props.theme.dateInput.pickerYearFontColor};
   background-color: transparent;
   border: none;
   border-radius: 50px;
   cursor: pointer;
+  font-family: ${(props) => props.theme.dateInput.pickerFontFamily};
+  font-size: ${(props) => props.theme.dateInput.pickerFontSize};
+  color: ${(props) => props.theme.dateInput.pickerFontColor};
+  font-weight: ${(props) => props.theme.dateInput.pickerFontWeight};
 
   ${(props) =>
     props.selected
-      ? `font-size: 1.5rem;
+      ? `font-size: ${props.theme.dateInput.pickerInteractedYearFontSize};
          line-height: 36px;
-         color: ${props.theme.dateInput.pickerSelectedDateColor} !important;
-         background-color: ${props.theme.dateInput.pickerSelectedDateBackgroundColor} !important;`
+         color: ${props.theme.dateInput.pickerSelectedFontColor} !important;
+         background-color: ${props.theme.dateInput.pickerSelectedBackgroundColor} !important;`
       : props.isCurrentYear
-      ? `border: 1px solid #cbacec; 
-         color: #5f249f;`
+      ? `border: 1px solid ${props.theme.dateInput.pickerCurrentDateBorderColor}; 
+         color: ${props.theme.dateInput.pickerCurrentYearFontColor};`
       : ``}
 
   &:hover, &:focus, &:active {
-    font-size: 1.5rem;
+    font-size: ${(props) => props.theme.dateInput.pickerInteractedYearFontSize};
     line-height: 36px;
   }
   &:hover {
-    color: ${(props) => props.theme.dateInput.pickerHoverDateFontColor};
-    background-color: ${(props) => props.theme.dateInput.pickerHoverDateBackgroundColor};
+    color: ${(props) => props.theme.dateInput.pickerHoverFontColor};
+    background-color: ${(props) => props.theme.dateInput.pickerHoverBackgroundColor};
   }
   &:focus {
-    color: ${(props) => props.theme.dateInput.pickerHoverDateFontColor};
-    outline: ${(props) => props.theme.dateInput.pickerFocusColor} solid 2px;
+    color: ${(props) => props.theme.dateInput.pickerHoverFontColor};
+    outline: ${(props) => `${props.theme.dateInput.pickerFocusColor} solid
+      ${props.theme.dateInput.pickerFocusWidth}`};
   }
   &:active {
-    color: #ffffff;
-    background-color: #4b1c7d !important;
+    color: ${(props) => props.theme.dateInput.pickerActiveFontColor};
+    background-color: ${(props) => props.theme.dateInput.pickerActiveBackgroundColor} !important;
   }
 `;
 
