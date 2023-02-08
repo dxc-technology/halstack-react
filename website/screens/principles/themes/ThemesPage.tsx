@@ -1155,7 +1155,7 @@ const sections = [
             <DxcParagraph>
               More examples can be found in the{" "}
               <Link href="/utilities/halstackProvider/#advanced-theme" passHref>
-                <DxcLink>HastackProvider section</DxcLink>
+                <DxcLink>Halstack Provider section</DxcLink>
               </Link>
               .
             </DxcParagraph>

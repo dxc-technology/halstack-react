@@ -24,7 +24,7 @@ const overviewLinks: LinkDetails[] = [
 const utilitiesLinks: LinkDetails[] = [
   {
     label: "Halstack Provider",
-    path: "/utilities/halstackProvider/",
+    path: "/utilities/halstack-provider",
   },
 ];
 

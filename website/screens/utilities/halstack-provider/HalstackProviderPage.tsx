@@ -45,7 +45,7 @@ const sections = [
           </td>
         </tr>
         <tr>
-          <td>labels:object</td>
+          <td>labels: object</td>
           <td></td>
           <td>
             Object with a given structure, specified below, for defining
