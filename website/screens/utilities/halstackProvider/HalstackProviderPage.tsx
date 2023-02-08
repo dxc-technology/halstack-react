@@ -83,7 +83,6 @@ const sections = [
           <Code>DxcAccordion</Code> and a <Code>DxcTextInput</Code>:
         </DxcParagraph>
         <Example example={opinionatedTheme} defaultIsVisible />
-
         <DxcParagraph>
           We create a <Code>customTheme</Code> object with as many components as
           we want and their respective values. Then we pass this object to the{" "}
@@ -114,9 +113,7 @@ const sections = [
           </Link>{" "}
           to help you create themes.
         </DxcAlert>
-
         <Example example={advancedTheme} defaultIsVisible />
-
         <DxcParagraph>
           In the example above we have customized some of the{" "}
           <Code>DxcAccordion</Code> tokens. As you can see, it is not necessary
