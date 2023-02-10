@@ -24,9 +24,9 @@ const sections = [
         </DxcParagraph>
         <DxcParagraph>
           You will need to create an object with your translations. In this
-          object, you will have as much objects as components you want to
-          translate, using the label from the list we will show below, following
-          the structure you can see in the example.
+          object, you will have as many objects as components you want to
+          translate, using the label from the list we show here below, following
+          the structure of the example.
         </DxcParagraph>
       </>
     ),
