@@ -49,7 +49,7 @@ const defaultOptions: Option[] = [
   },
   {
     value: "4",
-    label: "Wallapop",
+    label: "Vinted",
   },
   {
     value: "5",
