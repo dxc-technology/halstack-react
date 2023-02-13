@@ -49,7 +49,6 @@ const sections = [
         title: "Option list",
         content: (
           <>
-            {" "}
             <DxcParagraph>
               States: <strong>Enabled</strong>, <strong>hover</strong>,{" "}
               <strong>focus</strong> and <strong>selected</strong>.
@@ -74,50 +73,118 @@ const sections = [
           <DxcTable>
             <thead>
               <tr>
-                <th>Token</th>
+                <th>Component Token</th>
+                <th>Element</th>
+                <th>Core token</th>
                 <th>Value</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td>
-                  <Code>backgroundColor</Code>
+                  <Code>buttonBackgroundColor</Code>
                 </td>
-                <td>#FFFFFF</td>
+                <td>Button</td>
+                <td>
+                  <Code>color-white</Code>
+                </td>
+                <td>#ffffff</td>
               </tr>
               <tr>
                 <td>
-                  <Code>fontColor</Code>
+                  <Code>buttonFontColor</Code>
+                </td>
+                <td>Button</td>
+                <td>
+                  <Code>color-black</Code>
                 </td>
                 <td>#000000</td>
               </tr>
               <tr>
                 <td>
-                  <Code>dropdownBackgroundColor</Code>
+                  <Code>hoverButtonBackgroundColor</Code>
                 </td>
-                <td>#FFFFFF</td>
+                <td>Button:hover</td>
+                <td>
+                  <Code>color-grey-100</Code>
+                </td>
+                <td>#f2f2f2</td>
               </tr>
               <tr>
                 <td>
-                  <Code>dropdownFontColor</Code>
+                  <Code>activeButtonBackgroundColor</Code>
+                </td>
+                <td>Button:active</td>
+                <td></td>
+                <td>#d9d9d9</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>buttonIconColor</Code>
+                </td>
+                <td>Icon</td>
+                <td>
+                  <Code>color-black</Code>
                 </td>
                 <td>#000000</td>
               </tr>
               <tr>
                 <td>
-                  <Code>hoverBackgroundOption</Code>
+                  <Code>disabledColor</Code>
                 </td>
-                <td>#F2F2F2</td>
+                <td>Button font:disabled</td>
+                <td>
+                  <Code>color-grey-500</Code>
+                </td>
+                <td>#999999</td>
               </tr>
               <tr>
                 <td>
-                  <Code>hoverBackgroundColor</Code>
+                  <Code>disabledButtonBackgroundColor</Code>
                 </td>
-                <td>#F2F2F2</td>
+                <td>Button:disabled</td>
+                <td>
+                  <Code>color-transparent</Code>
+                </td>
+                <td>transparent</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>optionBackgroundColor</Code>
+                </td>
+                <td>Option</td>
+                <td>
+                  <Code>color-white</Code>
+                </td>
+                <td>#ffffff</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>hoverOptionBackgroundColor</Code>
+                </td>
+                <td>Option:hover</td>
+                <td>
+                  <Code>color-grey-100</Code>
+                </td>
+                <td>#f2f2f2</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>activeOptionBackgroundColor</Code>
+                </td>
+                <td>Option:active</td>
+                <td>
+                  <Code>color-grey-300</Code>
+                </td>
+                <td>#cccccc</td>
               </tr>
               <tr>
                 <td>
                   <Code>scrollBarThumbColor</Code>
+                </td>
+                <td>Scroll thumb</td>
+                <td>
+                  <Code>color-grey-700</Code>
                 </td>
                 <td>#666666</td>
               </tr>
@@ -125,13 +192,19 @@ const sections = [
                 <td>
                   <Code>scrollBarTrackColor</Code>
                 </td>
-                <td>#D9D9D9</td>
+                <td>Scroll track</td>
+                <td></td>
+                <td>#d9d9d9</td>
               </tr>
               <tr>
                 <td>
                   <Code>focusColor</Code>
                 </td>
-                <td>#005FCC</td>
+                <td>Focus</td>
+                <td>
+                  <Code>color-blue-600</Code>
+                </td>
+                <td>#0095ff</td>
               </tr>
             </tbody>
           </DxcTable>
@@ -143,7 +216,7 @@ const sections = [
           <DxcTable>
             <thead>
               <tr>
-                <th>Token</th>
+                <th>Width</th>
                 <th>Value</th>
               </tr>
             </thead>
@@ -188,7 +261,7 @@ const sections = [
           <DxcTable>
             <thead>
               <tr>
-                <th>Token</th>
+                <th>Margin</th>
                 <th>Value</th>
               </tr>
             </thead>

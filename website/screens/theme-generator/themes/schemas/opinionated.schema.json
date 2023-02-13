@@ -1,7 +1,8 @@
 {
   "accordion": {
     "accentColor": "color",
-    "fontColor": "color"
+    "titleFontColor": "color",
+    "assistiveTextFontColor": "color"
   },
   "button": {
     "baseColor": "color",
@@ -15,7 +16,8 @@
   },
   "chip": {
     "baseColor": "color",
-    "fontColor": "color"
+    "fontColor": "color",
+    "iconColor": "color"
   },
   "dateInput": {
     "selectedDateBackgroundColor": "color",
@@ -65,19 +67,23 @@
   "select": {
     "selectedOptionBackgroundColor": "color",
     "fontColor": "color",
-    "optionFontColor": "color"
+    "optionFontColor": "color",
+    "hoverBorderColor": "color"
   },
   "sidenav": {
     "baseColor": "color"
   },
   "slider": {
     "baseColor": "color",
-    "fontColor": "color"
+    "fontColor": "color",
+    "totalLineColor": "color"
   },
   "spinner": {
     "accentColor": "color",
     "baseColor": "color",
-    "fontColor": "color"
+    "fontColor": "color",
+    "overlayColor": "color",
+    "overlayFontColor": "color"
   },
   "switch": {
     "checkedBaseColor": "color",
@@ -85,7 +91,6 @@
   },
   "table": {
     "baseColor": "color",
-    "fontColor": "color",
     "headerFontColor": "color",
     "cellFontColor": "color"
   },
@@ -93,7 +98,8 @@
     "baseColor": "color"
   },
   "textInput": {
-    "fontColor": "color"
+    "fontColor": "color",
+    "hoverBorderColor": "color"
   },
   "toggleGroup": {
     "selectedBaseColor": "color",
