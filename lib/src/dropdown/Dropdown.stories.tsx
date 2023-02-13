@@ -7,8 +7,8 @@ import DropdownMenu from "./DropdownMenu";
 import { Option } from "./types";
 import useTheme from "../useTheme";
 import DxcFlex from "../flex/Flex";
-import { ThemeProvider } from "styled-components";
 import { HalstackProvider } from "../HalstackContext";
+import { ThemeProvider } from "styled-components";
 
 export default {
   title: "Dropdown",
