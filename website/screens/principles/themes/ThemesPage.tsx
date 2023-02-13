@@ -331,7 +331,7 @@ const sections = [
                   <Code>hoverButtonBackgroundColor</Code> (-5% of lightness)
                   <br />
                   <br />
-                  <Code>activeButtonBackgroundColor</Code> (-6% of lightness)
+                  <Code>activeButtonBackgroundColor</Code> (-12% of lightness)
                   <br />
                   <br />
                   <Code>hoverOptionBackgroundColor</Code> (-5% of lightness)
@@ -744,13 +744,16 @@ const sections = [
                   <Code>trackLineColor</Code>
                   <br />
                   <br />
-                  <Code>totalLineColor</Code>
-                  <br />
-                  <br />
                   <Code>hoverThumbBackgroundColor</Code> (-15% of lightness)
                   <br />
                   <br />
                   <Code>activeThumbBackgroundColor</Code> (-15% of lightness)
+                </td>
+              </tr>
+              <tr>
+                <td>Total line color</td>
+                <td>
+                  <Code>totalLineColor</Code>
                 </td>
               </tr>
               <tr>
@@ -1077,16 +1080,16 @@ const sections = [
                   <Code>selectedHelperTextFontColor</Code>
                   <br />
                   <br />
-                  <Code>unvisitedStepBorderColor</Code> (+80% of lightness)
+                  <Code>unvisitedStepBorderColor</Code> (+40% of lightness)
                   <br />
                   <br />
-                  <Code>unvisitedStepFontColor</Code> (+80% of lightness)
+                  <Code>unvisitedStepFontColor</Code> (+40% of lightness)
                   <br />
                   <br />
-                  <Code>unvisitedLabelFontColor</Code> (+80% of lightness)
+                  <Code>unvisitedLabelFontColor</Code> (+40% of lightness)
                   <br />
                   <br />
-                  <Code>unvisitedHelperTextFontColor</Code> (+80% of lightness)
+                  <Code>unvisitedHelperTextFontColor</Code> (+40% of lightness)
                 </td>
               </tr>
             </tbody>

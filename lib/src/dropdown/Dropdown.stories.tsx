@@ -260,6 +260,12 @@ const Dropdown = () => (
         <DxcDropdown label="Hovered" options={options} onSelectOption={(value) => {}} icon={iconSVG} />
       </HalstackProvider>
     </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-active">
+      <Title title="Actived" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcDropdown label="Actived" options={options} onSelectOption={(value) => {}} icon={iconSVG} />
+      </HalstackProvider>
+    </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-focus">
       <Title title="Focused" theme="light" level={4} />
       <HalstackProvider theme={opinionatedTheme}>

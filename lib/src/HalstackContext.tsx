@@ -120,7 +120,7 @@ const parseTheme = (theme) => {
   dropdownTokens.hoverButtonBackgroundColor =
     subLightness(theme?.dropdown?.baseColor, 5) ?? dropdownTokens.hoverButtonBackgroundColor;
   dropdownTokens.activeButtonBackgroundColor =
-    subLightness(theme?.dropdown?.baseColor, 6) ?? dropdownTokens.activeButtonBackgroundColor;
+    subLightness(theme?.dropdown?.baseColor, 12) ?? dropdownTokens.activeButtonBackgroundColor;
   dropdownTokens.hoverOptionBackgroundColor =
     subLightness(theme?.dropdown?.baseColor, 5) ?? dropdownTokens.hoverOptionBackgroundColor;
   dropdownTokens.activeOptionBackgroundColor =
@@ -286,13 +286,13 @@ const parseTheme = (theme) => {
   wizardTokens.visitedHelperTextFontColor = theme?.wizard?.fontColor ?? wizardTokens.visitedHelperTextFontColor;
   wizardTokens.selectedHelperTextFontColor = theme?.wizard?.fontColor ?? wizardTokens.selectedHelperTextFontColor;
   wizardTokens.unvisitedStepBorderColor =
-    addLightness(theme?.wizard?.fontColor, 80) ?? wizardTokens.unvisitedStepBorderColor;
+    addLightness(theme?.wizard?.fontColor, 40) ?? wizardTokens.unvisitedStepBorderColor;
   wizardTokens.unvisitedStepFontColor =
-    addLightness(theme?.wizard?.fontColor, 80) ?? wizardTokens.unvisitedStepFontColor;
+    addLightness(theme?.wizard?.fontColor, 40) ?? wizardTokens.unvisitedStepFontColor;
   wizardTokens.unvisitedLabelFontColor =
-    addLightness(theme?.wizard?.fontColor, 80) ?? wizardTokens.unvisitedLabelFontColor;
+    addLightness(theme?.wizard?.fontColor, 40) ?? wizardTokens.unvisitedLabelFontColor;
   wizardTokens.unvisitedHelperTextFontColor =
-    addLightness(theme?.wizard?.fontColor, 80) ?? wizardTokens.unvisitedHelperTextFontColor;
+    addLightness(theme?.wizard?.fontColor, 40) ?? wizardTokens.unvisitedHelperTextFontColor;
 
   return componentTokensCopy;
 };

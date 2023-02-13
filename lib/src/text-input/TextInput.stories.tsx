@@ -72,8 +72,8 @@ const countries = [
 
 const opinionatedTheme = {
   textInput: {
-    fontColor: "#fabada",
-    hoverBorderColor: "#fabada",
+    fontColor: "#000000",
+    hoverBorderColor: "#a46ede",
   },
 };
 
