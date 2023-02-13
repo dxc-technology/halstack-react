@@ -89,7 +89,7 @@ const sections = [
               <tr>
                 <th>Property</th>
                 <th>Element</th>
-                <th>Token</th>
+                <th>Core token</th>
                 <th>Value</th>
               </tr>
             </thead>

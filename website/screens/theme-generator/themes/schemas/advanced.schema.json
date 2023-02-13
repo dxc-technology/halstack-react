@@ -239,8 +239,13 @@
     "iconSize": "length",
     "iconSpacing": "length",
     "iconColor": "color",
+    "hoverIconColor": "color",
+    "activeIconColor": "color",
     "disabledIconColor": "color",
-    "focusColor": "color"
+    "focusColor": "color",
+    "focusBorderStyle": "bStyle",
+    "focusBorderThickness": "length",
+    "focusBorderRadius": "length"
   },
   "dateInput": {
     "pickerBackgroundColor": "color",
@@ -687,8 +692,6 @@
   },
   "sidenav": {
     "backgroundColor": "color",
-    "arrowContainerColor": "color",
-    "arrowColor": "color",
     "titleFontFamily": "fFamily",
     "titleFontSize": "length",
     "titleFontStyle": "fStyle",

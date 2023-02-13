@@ -67,7 +67,6 @@ const BackgroundProgressBar = styled.div<{ overlay?: boolean }>`
   ${({ overlay, theme }) =>
     overlay
       ? `background-color: ${theme.overlayColor};
-      opacity: 0.8;
       width: 100%;
       justify-content: center;
       height: 100vh;

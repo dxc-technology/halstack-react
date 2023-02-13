@@ -85,8 +85,10 @@ const sections = [
                   <Code>boxShadowColor</Code>
                 </td>
                 <td>Container shadow</td>
-                <td>-</td>
-                <td>rgba(0, 0, 0, 0.2)</td>
+                <td>
+                  <Code>color-grey-300-a</Code>
+                </td>
+                <td>#00000033</td>
               </tr>
               <tr>
                 <td>
@@ -103,20 +105,16 @@ const sections = [
                   <Code>closeIconBackgroundColor</Code>
                 </td>
                 <td>Icon close</td>
-                <td>
-                  <Code>none</Code>
-                </td>
-                <td>none</td>
+                <td>-</td>
+                <td>-</td>
               </tr>
               <tr>
                 <td>
                   <Code>closeIconBorderColor</Code>
                 </td>
                 <td>Icon close</td>
-                <td>
-                  <Code>none</Code>
-                </td>
-                <td>none</td>
+                <td>-</td>
+                <td>-</td>
               </tr>
             </tbody>
           </DxcTable>
@@ -457,7 +455,7 @@ const sections = [
                 </tr>
                 <tr>
                   <td>
-                    <Code>small</Code> 
+                    <Code>small</Code>
                   </td>
                   <td>24px</td>
                 </tr>

@@ -466,9 +466,7 @@ const sections = [
                   <Code>iconSize</Code>
                 </td>
                 <td>Icon</td>
-                <td>
-                  <Code>-</Code>
-                </td>
+                <td>-</td>
                 <td>24x24px</td>
               </tr>
             </tbody>
@@ -485,16 +483,11 @@ const sections = [
               property defines the size of the alert and it can get multiple
               values according to the needs of the application.
             </DxcParagraph>
-            <DxcParagraph>
-              Widths for alert component: <strong>fill content</strong>,{" "}
-              <strong>fit parent</strong>, <strong>small</strong>,{" "}
-              <strong>medium</strong> and <strong>large</strong>.
-            </DxcParagraph>
             <DxcTable>
               <thead>
                 <tr>
-                  <th>Property</th>
-                  <th>value</th>
+                  <th>Width</th>
+                  <th>Value</th>
                 </tr>
               </thead>
               <tbody>
