@@ -247,37 +247,6 @@ const Dropdown = () => (
       <Title title="Opened menu" theme="light" level={4} />
       <DxcDropdown label="Label" options={options} onSelectOption={(value) => {}} margin={{ top: "xxlarge" }} />
     </ExampleContainer>
-    <Title title="Opinionated theme" theme="light" level={2} />
-    <ExampleContainer>
-      <Title title="Default" theme="light" level={4} />
-      <HalstackProvider theme={opinionatedTheme}>
-        <DxcDropdown label="Default" options={options} onSelectOption={(value) => {}} icon={iconSVG} />
-      </HalstackProvider>
-    </ExampleContainer>
-    <ExampleContainer pseudoState="pseudo-hover">
-      <Title title="Hovered" theme="light" level={4} />
-      <HalstackProvider theme={opinionatedTheme}>
-        <DxcDropdown label="Hovered" options={options} onSelectOption={(value) => {}} icon={iconSVG} />
-      </HalstackProvider>
-    </ExampleContainer>
-    <ExampleContainer pseudoState="pseudo-active">
-      <Title title="Actived" theme="light" level={4} />
-      <HalstackProvider theme={opinionatedTheme}>
-        <DxcDropdown label="Actived" options={options} onSelectOption={(value) => {}} icon={iconSVG} />
-      </HalstackProvider>
-    </ExampleContainer>
-    <ExampleContainer pseudoState="pseudo-focus">
-      <Title title="Focused" theme="light" level={4} />
-      <HalstackProvider theme={opinionatedTheme}>
-        <DxcDropdown label="Focused" options={options} onSelectOption={(value) => {}} icon={iconSVG} />
-      </HalstackProvider>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Disabled" theme="light" level={4} />
-      <HalstackProvider theme={opinionatedTheme}>
-        <DxcDropdown label="Disabled" options={options} onSelectOption={(value) => {}} icon={iconSVG} disabled />
-      </HalstackProvider>
-    </ExampleContainer>
   </>
 );
 
@@ -413,6 +382,42 @@ Chromatic.play = async ({ canvasElement }) => {
   const buttonList = canvas.getAllByRole("button");
   await userEvent.click(buttonList[buttonList.length - 1]);
 };
+
+export const OpinionatedTheme = () => (
+  <>
+    <Title title="Opinionated theme" theme="light" level={2} />
+    <ExampleContainer>
+      <Title title="Default" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcDropdown label="Default" options={options} onSelectOption={(value) => {}} icon={iconSVG} />
+      </HalstackProvider>
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-hover">
+      <Title title="Hovered" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcDropdown label="Hovered" options={options} onSelectOption={(value) => {}} icon={iconSVG} />
+      </HalstackProvider>
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-active">
+      <Title title="Actived" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcDropdown label="Actived" options={options} onSelectOption={(value) => {}} icon={iconSVG} />
+      </HalstackProvider>
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-focus">
+      <Title title="Focused" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcDropdown label="Focused" options={options} onSelectOption={(value) => {}} icon={iconSVG} />
+      </HalstackProvider>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Disabled" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcDropdown label="Disabled" options={options} onSelectOption={(value) => {}} icon={iconSVG} disabled />
+      </HalstackProvider>
+    </ExampleContainer>
+  </>
+);
 
 export const DropdownMenuStates = DropdownListStates.bind({});
 DropdownMenuStates.play = async ({ canvasElement }) => {
