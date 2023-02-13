@@ -8,7 +8,6 @@ import { Option } from "./types";
 import useTheme from "../useTheme";
 import { ThemeProvider } from "styled-components";
 import DxcFlex from "../flex/Flex";
-import { HalstackProvider } from "../HalstackContext";
 
 export default {
   title: "Dropdown",
@@ -49,7 +48,7 @@ const defaultOptions: Option[] = [
   },
   {
     value: "4",
-    label: "Vinted",
+    label: "Wallapop",
   },
   {
     value: "5",
@@ -91,14 +90,6 @@ const optionWithIcon: Option[] = [
 ];
 
 const optionsIcon: any = options.map((op, i) => ({ ...op, icon: icons[i] }));
-
-const opinionatedTheme = {
-  dropdown: {
-    baseColor: "#ffffff",
-    fontColor: "#000000",
-    optionFontColor: "#000000",
-  },
-};
 
 const Dropdown = () => (
   <>
@@ -247,37 +238,6 @@ const Dropdown = () => (
       <Title title="Opened menu" theme="light" level={4} />
       <DxcDropdown label="Label" options={options} onSelectOption={(value) => {}} margin={{ top: "xxlarge" }} />
     </ExampleContainer>
-    <Title title="Opinionated theme" theme="light" level={2} />
-    <ExampleContainer>
-      <Title title="Default" theme="light" level={4} />
-      <HalstackProvider theme={opinionatedTheme}>
-        <DxcDropdown label="Default" options={options} onSelectOption={(value) => {}} icon={iconSVG} />
-      </HalstackProvider>
-    </ExampleContainer>
-    <ExampleContainer pseudoState="pseudo-hover">
-      <Title title="Hovered" theme="light" level={4} />
-      <HalstackProvider theme={opinionatedTheme}>
-        <DxcDropdown label="Hovered" options={options} onSelectOption={(value) => {}} icon={iconSVG} />
-      </HalstackProvider>
-    </ExampleContainer>
-    <ExampleContainer pseudoState="pseudo-active">
-      <Title title="Actived" theme="light" level={4} />
-      <HalstackProvider theme={opinionatedTheme}>
-        <DxcDropdown label="Actived" options={options} onSelectOption={(value) => {}} icon={iconSVG} />
-      </HalstackProvider>
-    </ExampleContainer>
-    <ExampleContainer pseudoState="pseudo-focus">
-      <Title title="Focused" theme="light" level={4} />
-      <HalstackProvider theme={opinionatedTheme}>
-        <DxcDropdown label="Focused" options={options} onSelectOption={(value) => {}} icon={iconSVG} />
-      </HalstackProvider>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Disabled" theme="light" level={4} />
-      <HalstackProvider theme={opinionatedTheme}>
-        <DxcDropdown label="Disabled" options={options} onSelectOption={(value) => {}} icon={iconSVG} disabled />
-      </HalstackProvider>
-    </ExampleContainer>
   </>
 );
 
@@ -385,117 +345,6 @@ const DropdownListStates = () => {
           />
         </ExampleContainer>
       </ThemeProvider>
-      <Title title="Option states" theme="light" level={3} />
-      <ExampleContainer pseudoState="pseudo-hover">
-        <Title title="Hovered option" theme="light" level={4} />
-        <DropdownMenu
-          id="x"
-          dropdownTriggerId="dtx"
-          iconsPosition="before"
-          visualFocusIndex={-1}
-          menuItemOnClick={(value) => {}}
-          onKeyDown={(e) => {}}
-          options={optionWithIcon}
-          styles={{ width: 240 }}
-        />
-      </ExampleContainer>
-      <ExampleContainer pseudoState="pseudo-active">
-        <Title title="Active option" theme="light" level={4} />
-        <DropdownMenu
-          id="x"
-          dropdownTriggerId="dtx"
-          iconsPosition="before"
-          visualFocusIndex={-1}
-          menuItemOnClick={(value) => {}}
-          onKeyDown={(e) => {}}
-          options={optionWithIcon}
-          styles={{ width: 240 }}
-        />
-      </ExampleContainer>
-      <ExampleContainer>
-        <Title title="Focused option" theme="light" level={4} />
-        <DropdownMenu
-          id="x"
-          dropdownTriggerId="dtx"
-          iconsPosition="before"
-          visualFocusIndex={0}
-          menuItemOnClick={(value) => {}}
-          onKeyDown={(e) => {}}
-          options={options}
-          styles={{ width: 240 }}
-        />
-      </ExampleContainer>
-      <Title title="Icons" theme="light" level={3} />
-      <ExampleContainer>
-        <Title title="Before" theme="light" level={4} />
-        <DropdownMenu
-          id="x"
-          dropdownTriggerId="dtx"
-          iconsPosition="before"
-          visualFocusIndex={-1}
-          menuItemOnClick={(value) => {}}
-          onKeyDown={(e) => {}}
-          options={optionsIcon}
-          styles={{ width: 240 }}
-        />
-        <Title title="After" theme="light" level={4} />
-        <DropdownMenu
-          id="x"
-          dropdownTriggerId="dtx"
-          iconsPosition="after"
-          visualFocusIndex={-1}
-          menuItemOnClick={(value) => {}}
-          onKeyDown={(e) => {}}
-          options={optionsIcon}
-          styles={{ width: 240 }}
-        />
-      </ExampleContainer>
-      <Title title="Opinionated  theme" theme="light" level={2} />
-      <ExampleContainer>
-        <Title title="Hovered option" theme="light" level={4} />
-        <HalstackProvider theme={opinionatedTheme}>
-          <DropdownMenu
-            id="x"
-            dropdownTriggerId="dtx"
-            iconsPosition="before"
-            visualFocusIndex={-1}
-            menuItemOnClick={(value) => {}}
-            onKeyDown={(e) => {}}
-            options={optionWithIcon}
-            styles={{ width: 240 }}
-          />
-        </HalstackProvider>
-      </ExampleContainer>
-      <ExampleContainer pseudoState="pseudo-active">
-        <Title title="Active option" theme="light" level={4} />
-        <HalstackProvider theme={opinionatedTheme}>
-          <DropdownMenu
-            id="x"
-            dropdownTriggerId="dtx"
-            iconsPosition="before"
-            visualFocusIndex={-1}
-            menuItemOnClick={(value) => {}}
-            onKeyDown={(e) => {}}
-            options={optionWithIcon}
-            styles={{ width: 240 }}
-          />
-        </HalstackProvider>
-      </ExampleContainer>
-      <ExampleContainer>
-        <Title title="Focused option" theme="light" level={4} />
-        <HalstackProvider theme={opinionatedTheme}>
-          <DropdownMenu
-            id="x"
-            dropdownTriggerId="dtx"
-            iconsPosition="before"
-            visualFocusIndex={0}
-            menuItemOnClick={(value) => {}}
-            onKeyDown={(e) => {}}
-            options={options}
-            styles={{ width: 240 }}
-          />
-        </HalstackProvider>
-      </ExampleContainer>
     </>
   );
 };
