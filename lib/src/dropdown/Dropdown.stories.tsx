@@ -6,8 +6,8 @@ import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DropdownMenu from "./DropdownMenu";
 import { Option } from "./types";
 import useTheme from "../useTheme";
-import { ThemeProvider } from "styled-components";
 import DxcFlex from "../flex/Flex";
+import { ThemeProvider } from "styled-components";
 
 export default {
   title: "Dropdown",
