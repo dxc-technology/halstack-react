@@ -1126,19 +1126,20 @@ const sections = [
                             <Code>selectedHelperTextFontColor</Code>
                             <br />
                             <br />
-                            <Code>unvisitedStepBorderColor</Code> (60% of
-                            opacity)
+                            <Code>unvisitedStepBorderColor</Code> (+40% of
+                            lightness)
                             <br />
                             <br />
-                            <Code>unvisitedStepFontColor</Code> (60% of opacity)
+                            <Code>unvisitedStepFontColor</Code> (+40% of
+                            lightness)
                             <br />
                             <br />
-                            <Code>unvisitedLabelFontColor</Code> (60% of
-                            opacity)
+                            <Code>unvisitedLabelFontColor</Code> (+40% of
+                            lightness)
                             <br />
                             <br />
-                            <Code>unvisitedHelperTextFontColor</Code> (60% of
-                            opacity)
+                            <Code>unvisitedHelperTextFontColor</Code> (+40% of
+                            lightness)
                           </td>
                         </tr>
                       </tbody>
