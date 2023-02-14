@@ -161,12 +161,12 @@ const DateInputOpinionatedTheme = () => (
       </HalstackProvider>
     </ExampleContainer>
     <ExampleContainer expanded>
-      <ExampleContainer expanded>
-        <Title title="Year picker" theme="light" level={4} />
-        <HalstackProvider theme={opinionatedTheme}>
-          <DxcDateInput label="Date input" defaultValue="06-04-1905" />
-        </HalstackProvider>
-      </ExampleContainer>
+      <Title title="Year picker" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcDateInput label="Date input" defaultValue="06-04-1905" />
+      </HalstackProvider>
+    </ExampleContainer>
+    <ExampleContainer expanded>
       <Title title="Date picker" theme="light" level={4} />
       <HalstackProvider theme={opinionatedTheme}>
         <DxcDateInput label="Date input" defaultValue="06-04-1905" />
