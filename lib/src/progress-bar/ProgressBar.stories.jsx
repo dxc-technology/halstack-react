@@ -12,7 +12,7 @@ export default {
 const opinionatedTheme = {
   progressBar: {
     accentColor: "#5f249f",
-    baseColor: "#cecece",
+    baseColor: "#e6e6e6",
     fontColor: "#000000",
     overlayColor: "#000000b3",
   },
