@@ -127,7 +127,6 @@ const parseTheme = (theme) => {
     addLightness(theme?.dateInput?.baseColor, 52) ?? dateTokens.pickerHoverBackgroundColor;
   dateTokens.pickerCurrentDateBorderColor =
     addLightness(theme?.dateInput?.baseColor, 42) ?? dateTokens.pickerCurrentDateBorderColor;
-  dateTokens.pickerCurrentYearFontColor = theme?.dateInput?.baseColor ?? dateTokens.pickerCurrentYearFontColor;
   dateTokens.pickerHeaderHoverBackgroundColor =
     addLightness(theme?.dateInput?.baseColor, 52) ?? dateTokens.pickerHeaderHoverBackgroundColor;
 
