@@ -1,8 +1,16 @@
 {
+  "alert": {
+    "baseColor": "color",
+    "accentColor": "color",
+    "overlayColor": "color"
+  },
   "accordion": {
     "accentColor": "color",
     "titleFontColor": "color",
     "assistiveTextFontColor": "color"
+  },
+  "box": {
+    "baseColor": "color"
   },
   "button": {
     "baseColor": "color",
@@ -20,8 +28,13 @@
     "iconColor": "color"
   },
   "dateInput": {
-    "selectedDateBackgroundColor": "color",
-    "selectedDateFontColor": "color"
+    "baseColor": "color",
+    "selectedFontColor": "color"
+  },
+  "dialog": {
+    "baseColor": "color",
+    "closeIconColor": "color",
+    "overlayColor": "color"
   },
   "dropdown": {
     "baseColor": "color",
@@ -45,7 +58,11 @@
     "hamburguerColor": "color",
     "logo": "image",
     "logoResponsive": "image",
-    "contentColor": "color"
+    "contentColor": "color",
+    "overlayColor": "color"
+  },
+  "link": {
+    "baseColor": "color"
   },
   "paginator": {
     "baseColor": "color",
@@ -54,7 +71,8 @@
   "progressBar": {
     "accentColor": "color",
     "baseColor": "color",
-    "fontColor": "color"
+    "fontColor": "color",
+    "overlayColor": "color"
   },
   "quickNav": {
     "fontColor": "color",
@@ -96,6 +114,14 @@
   },
   "tabs": {
     "baseColor": "color"
+  },
+  "tag": {
+    "fontColor": "color",
+    "iconColor": "color"
+  },
+  "textarea": {
+    "fontColor": "#000000",
+    "hoverBorderColor": "#a46ede"
   },
   "textInput": {
     "fontColor": "color",

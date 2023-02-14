@@ -280,7 +280,6 @@
   },
   "dialog": {
     "overlayColor": "color",
-    "overlayOpacity": "alphaValue",
     "backgroundColor": "color",
     "closeIconWidth": "length",
     "closeIconHeight": "length",

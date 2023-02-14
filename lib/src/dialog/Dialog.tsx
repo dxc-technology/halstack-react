@@ -92,7 +92,6 @@ const Overlay = styled.div`
   inset: 0px;
   height: 100%;
   background-color: ${(props) => props.theme.overlayColor};
-  opacity: ${(props) => props.theme.overlayOpacity};
 `;
 
 const Dialog = styled.div<{ isCloseVisible?: boolean }>`

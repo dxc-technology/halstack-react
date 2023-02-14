@@ -11,14 +11,23 @@ import DarkContainer from "../../.storybook/components/DarkSection";
 import dayjs from "dayjs";
 import useTheme from "../useTheme";
 import { ThemeProvider } from "styled-components";
+import { HalstackProvider } from "../HalstackContext";
 
 export default {
   title: "Date input",
   component: DxcDateInput,
 };
 
+const opinionatedTheme = {
+  dateInput: {
+    baseColor: "#5f249f",
+    selectedFontColor: "#ffffff",
+  },
+};
+
 const DateInputChromatic = () => (
   <>
+    <Title title="Date input" theme="light" level={2} />
     <ExampleContainer>
       <Title title="Complete date input" theme="light" level={4} />
       <DxcDateInput label="Date input" helperText="Help message" format="dd/mm/yy" placeholder optional />
@@ -122,6 +131,57 @@ Chromatic.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   await userEvent.click(canvas.getAllByRole("combobox")[canvas.getAllByRole("combobox").length - 1]);
   await fireEvent.click(screen.getByText("April 1905"));
+};
+
+const DateInputOpinionatedTheme = () => (
+  <>
+    <Title title="Opinionated theme" theme="light" level={2} />
+    <ExampleContainer>
+      <Title title="Enabled" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcDateInput
+          label="Date input"
+          helperText="Help message"
+          format="dd/mm/yy"
+          placeholder
+          optional
+          defaultValue="10-10-2022"
+        />
+      </HalstackProvider>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Disabled" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcDateInput label="Date input" helperText="Help message" format="dd/mm/yy" placeholder optional />
+      </HalstackProvider>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Invalid" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcDateInput label="Error date input" error="Error message." placeholder />
+      </HalstackProvider>
+    </ExampleContainer>
+    <ExampleContainer expanded>
+      <ExampleContainer expanded>
+        <Title title="Year picker" theme="light" level={4} />
+        <HalstackProvider theme={opinionatedTheme}>
+          <DxcDateInput label="Date input" defaultValue="06-04-1905" />
+        </HalstackProvider>
+      </ExampleContainer>
+      <Title title="Date picker" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcDateInput label="Date input" defaultValue="06-04-1905" />
+      </HalstackProvider>
+    </ExampleContainer>
+  </>
+);
+
+export const DateInputOpinionated = DateInputOpinionatedTheme.bind({});
+DateInputOpinionated.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  await userEvent.click(canvas.getAllByRole("combobox")[canvas.getAllByRole("combobox").length - 2]);
+  await fireEvent.click(screen.getByText("April 1905"));
+  await userEvent.click(canvas.getAllByRole("combobox")[canvas.getAllByRole("combobox").length - 1]);
 };
 
 const DatePickerButtonStates = () => {
