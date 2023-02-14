@@ -161,12 +161,6 @@ const DateInputOpinionatedTheme = () => (
       </HalstackProvider>
     </ExampleContainer>
     <ExampleContainer expanded>
-      <Title title="Year picker" theme="light" level={4} />
-      <HalstackProvider theme={opinionatedTheme}>
-        <DxcDateInput label="Date input" defaultValue="06-04-1905" />
-      </HalstackProvider>
-    </ExampleContainer>
-    <ExampleContainer expanded>
       <Title title="Date picker" theme="light" level={4} />
       <HalstackProvider theme={opinionatedTheme}>
         <DxcDateInput label="Date input" defaultValue="06-04-1905" />
@@ -178,9 +172,23 @@ const DateInputOpinionatedTheme = () => (
 export const DateInputOpinionated = DateInputOpinionatedTheme.bind({});
 DateInputOpinionated.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
-  await userEvent.click(canvas.getAllByRole("combobox")[canvas.getAllByRole("combobox").length - 2]);
-  await fireEvent.click(screen.getByText("April 1905"));
   await userEvent.click(canvas.getAllByRole("combobox")[canvas.getAllByRole("combobox").length - 1]);
+};
+
+const YearPickerOpinionatedTheme = () => (
+  <ExampleContainer expanded>
+    <Title title="Year picker" theme="light" level={4} />
+    <HalstackProvider theme={opinionatedTheme}>
+      <DxcDateInput label="Date input" defaultValue="06-04-1905" />
+    </HalstackProvider>
+  </ExampleContainer>
+);
+
+export const YearPickerOpinionated = YearPickerOpinionatedTheme.bind({});
+YearPickerOpinionated.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  await userEvent.click(canvas.getByRole("combobox"));
+  await fireEvent.click(screen.getByText("April 1905"));
 };
 
 const DatePickerButtonStates = () => {
