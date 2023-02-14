@@ -11,6 +11,7 @@ import DxcFlex from "../flex/Flex";
 import Suggestions from "./Suggestions";
 import { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme";
+import { HalstackProvider } from "../HalstackContext";
 
 export default {
   title: "Text input",
@@ -27,7 +28,7 @@ const action = {
   ),
 };
 
-const actionLargeIcon = {
+const actionLargeIconSVG = {
   onClick: () => {},
   icon: (
     <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 0 24 24" width="48px" fill="currentColor">
@@ -35,6 +36,11 @@ const actionLargeIcon = {
       <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z" />
     </svg>
   ),
+};
+
+const actionLargeIconURL = {
+  onClick: () => {},
+  icon: "https://iconape.com/wp-content/files/yd/367773/svg/logo-linkedin-logo-icon-png-svg.png",
 };
 
 const country = ["Afghanistan"];
@@ -61,7 +67,15 @@ const countries = [
   "Dominica",
   "Denmark",
   "Djibouti",
+  "*",
 ];
+
+const opinionatedTheme = {
+  textInput: {
+    fontColor: "#000000",
+    hoverBorderColor: "#a46ede",
+  },
+};
 
 export const Chromatic = () => (
   <>
@@ -98,12 +112,21 @@ export const Chromatic = () => (
       <DxcTextInput label="Text input" clearable defaultValue="Text" helperText="Help message" optional />
     </ExampleContainer>
     <ExampleContainer>
-      <Title title="Clearable and large icon action" theme="light" level={4} />
+      <Title title="Clearable and large icon action (SVG)" theme="light" level={4} />
       <DxcTextInput
         label="Text input"
         defaultValue="Text text text text text text text text text text"
         clearable
-        action={actionLargeIcon}
+        action={actionLargeIconSVG}
+      />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Clearable and large icon action (URL)" theme="light" level={4} />
+      <DxcTextInput
+        label="Text input"
+        defaultValue="Text text text text text text text text text text"
+        clearable
+        action={actionLargeIconURL}
       />
     </ExampleContainer>
     <ExampleContainer>
@@ -297,6 +320,66 @@ export const Chromatic = () => (
       <Title title="FillParent size" theme="light" level={4} />
       <DxcTextInput label="FillParent" size="fillParent" />
     </ExampleContainer>
+    <Title title="Opinionated theme" theme="light" level={2} />
+    <ExampleContainer>
+      <HalstackProvider theme={opinionatedTheme}>
+        <ExampleContainer pseudoState="pseudo-hover">
+          <Title title="Hovered input" theme="light" level={4} />
+          <DxcTextInput label="Text input" helperText="Help message" />
+        </ExampleContainer>
+        <ExampleContainer pseudoState="pseudo-focus-within">
+          <Title title="Focused input" theme="light" level={4} />
+          <DxcTextInput label="Text input" helperText="Help message" />
+        </ExampleContainer>
+        <ExampleContainer pseudoState="pseudo-hover">
+          <Title title="Hovered action" theme="light" level={4} />
+          <DxcTextInput label="Text input" helperText="Help message" defaultValue="Text" clearable />
+        </ExampleContainer>
+        <ExampleContainer pseudoState="pseudo-active">
+          <Title title="Actived action" theme="light" level={4} />
+          <DxcTextInput label="Text input" helperText="Help message" action={action} clearable />
+        </ExampleContainer>
+        <ExampleContainer pseudoState="pseudo-focus">
+          <Title title="Focused action" theme="light" level={4} />
+          <DxcTextInput label="Text input" helperText="Help message" action={action} clearable />
+        </ExampleContainer>
+        <ExampleContainer>
+          <Title title="Prefix" theme="light" level={4} />
+          <DxcTextInput label="With prefix" prefix="+34" helperText="Help message" />
+        </ExampleContainer>
+        <ExampleContainer>
+          <Title title="Suffix and action" theme="light" level={4} />
+          <DxcTextInput label="With suffix" helperText="Help message" suffix="USD" action={action} />
+        </ExampleContainer>
+        <ExampleContainer>
+          <Title title="Invalid" theme="light" level={4} />
+          <DxcTextInput
+            label="Error text input"
+            helperText="Help message"
+            error="Error message."
+            defaultValue="Text"
+            clearable
+            optional
+            action={action}
+          />
+        </ExampleContainer>
+        <ExampleContainer>
+          <Title title="Disabled and placeholder" theme="light" level={4} />
+          <DxcTextInput label="Disabled text input" disabled placeholder="Placeholder" prefix="+34" suffix="USD" />
+        </ExampleContainer>
+        <ExampleContainer>
+          <Title title="Disabled, helper text, optional, value and action" theme="light" level={4} />
+          <DxcTextInput
+            label="Disabled text input"
+            helperText="Help message"
+            disabled
+            optional
+            defaultValue="Text"
+            action={action}
+          />
+        </ExampleContainer>
+      </HalstackProvider>
+    </ExampleContainer>
   </>
 );
 
@@ -308,7 +391,11 @@ const AutosuggestListbox = () => {
       <ExampleContainer>
         <Title title="Autosuggest listbox" theme="light" level={2} />
         <ExampleContainer>
-          <Title title="List dialog uses a Radix Popover to appear over elements with a certain z-index" theme="light" level={3} />
+          <Title
+            title="List dialog uses a Radix Popover to appear over elements with a certain z-index"
+            theme="light"
+            level={3}
+          />
           <div
             style={{
               display: "flex",
@@ -322,6 +409,7 @@ const AutosuggestListbox = () => {
               borderRadius: "4px",
               overflow: "auto",
               zIndex: "1300",
+              position: "relative",
             }}
           >
             <DxcTextInput

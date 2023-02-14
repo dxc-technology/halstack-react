@@ -1,6 +1,5 @@
-import React, { useState, useLayoutEffect, useEffect, useRef } from "react";
-import styled, { ThemeProvider } from "styled-components";
-import useTheme from "../useTheme";
+import React, { useLayoutEffect, useRef } from "react";
+import styled from "styled-components";
 import useTranslatedLabels from "../useTranslatedLabels";
 import { ListboxProps } from "./types";
 import Option from "./Option";
@@ -20,14 +19,12 @@ const Listbox = ({
   optionalItem,
   searchable,
   handleOptionOnClick,
-  getSelectWidth,
+  styles,
 }: ListboxProps): JSX.Element => {
-  const colorsTheme = useTheme();
   const translatedLabels = useTranslatedLabels();
   const listboxRef = useRef(null);
-  const [styles, setStyles] = useState(null);
 
-  let globalIndex = optional && !multiple ? 0 : -1; // index for options, starting from 0 to options.length -1
+  let globalIndex = optional && !multiple ? 0 : -1;
   const mapOptionFunc = (option, mapIndex) => {
     if (option.options) {
       const groupId = `group-${mapIndex}`;
@@ -90,60 +87,43 @@ const Listbox = ({
     visualFocusedOptionEl?.scrollIntoView?.({ block: "nearest", inline: "start" });
   }, [visualFocusIndex]);
 
-  const handleResize = () => {
-    setStyles({ width: getSelectWidth() });
-  };
-
-  useLayoutEffect(() => {
-    handleResize();
-  } , [getSelectWidth]);
-  
-  useEffect(() => {
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, [getSelectWidth]);
-
   return (
-    <ThemeProvider theme={colorsTheme.select}>
-      <ListboxContainer
-        id={id}
-        onClick={(event) => {
-          event.stopPropagation();
-        }}
-        onMouseDown={(event) => {
-          event.preventDefault();
-        }}
-        ref={listboxRef}
-        role="listbox"
-        aria-multiselectable={multiple}
-        style={styles}
-      >
-        {searchable && (options.length === 0 || !groupsHaveOptions(options)) ? (
-          <OptionsSystemMessage>
-            <NoMatchesFoundIcon>{selectIcons.searchOff}</NoMatchesFoundIcon>
-            {translatedLabels.select.noMatchesErrorMessage}
-          </OptionsSystemMessage>
-        ) : (
-          optional &&
-          !multiple && (
-            <Option
-              key={`option-${optionalItem.value}`}
-              id={`option-${0}`}
-              option={optionalItem}
-              onClick={handleOptionOnClick}
-              multiple={multiple}
-              visualFocused={visualFocusIndex === 0}
-              isGroupedOption={false}
-              isLastOption={lastOptionIndex === 0}
-              isSelected={multiple ? currentValue.includes(optionalItem.value) : currentValue === optionalItem.value}
-            />
-          )
-        )}
-        {options.map(mapOptionFunc)}
-      </ListboxContainer>
-    </ThemeProvider>
+    <ListboxContainer
+      id={id}
+      onClick={(event) => {
+        event.stopPropagation();
+      }}
+      onMouseDown={(event) => {
+        event.preventDefault();
+      }}
+      ref={listboxRef}
+      role="listbox"
+      aria-multiselectable={multiple}
+      style={styles}
+    >
+      {searchable && (options.length === 0 || !groupsHaveOptions(options)) ? (
+        <OptionsSystemMessage>
+          <NoMatchesFoundIcon>{selectIcons.searchOff}</NoMatchesFoundIcon>
+          {translatedLabels.select.noMatchesErrorMessage}
+        </OptionsSystemMessage>
+      ) : (
+        optional &&
+        !multiple && (
+          <Option
+            key={`option-${optionalItem.value}`}
+            id={`option-${0}`}
+            option={optionalItem}
+            onClick={handleOptionOnClick}
+            multiple={multiple}
+            visualFocused={visualFocusIndex === 0}
+            isGroupedOption={false}
+            isLastOption={lastOptionIndex === 0}
+            isSelected={multiple ? currentValue.includes(optionalItem.value) : currentValue === optionalItem.value}
+          />
+        )
+      )}
+      {options.map(mapOptionFunc)}
+    </ListboxContainer>
   );
 };
 

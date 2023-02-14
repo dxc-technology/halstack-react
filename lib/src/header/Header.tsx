@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useMemo, useContext } from "react";
+import React, { useState, useEffect, useRef, useMemo, useContext, useCallback } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import DxcDropdown from "../dropdown/Dropdown";
 import { dxcLogo } from "./Icons";
@@ -9,9 +9,8 @@ import BackgroundColorContext, { BackgroundColorProvider } from "../BackgroundCo
 import HeaderPropsType, { Space, Padding } from "./types";
 
 const closeIcon = (
-  <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
-    <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
-    <path d="M0 0h24v24H0z" fill="none" />
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24" width="24">
+    <path d="M6.4 19 5 17.6l5.6-5.6L5 6.4 6.4 5l5.6 5.6L17.6 5 19 6.4 13.4 12l5.6 5.6-1.4 1.4-5.6-5.6Z" />
   </svg>
 );
 
@@ -21,15 +20,14 @@ const hamburgerIcon = (
   </svg>
 );
 
-const Dropdown = (props) => {
-  return (
-    <HeaderDropdown>
-      <DxcDropdown {...props} />
-    </HeaderDropdown>
-  );
-};
+const Dropdown = (props) => (
+  <HeaderDropdown>
+    <DxcDropdown {...props} />
+  </HeaderDropdown>
+);
 
 const HeaderDropdown = styled.div`
+  display: flex;
   button {
     background-color: transparent;
     :hover {
@@ -79,9 +77,9 @@ const DxcHeader = ({
   const [isResponsive, setIsResponsive] = useState(false);
   const [isMenuVisible, setIsMenuVisible] = useState(false);
 
-  const handleResize = () => {
+  const handleResize = useCallback(() => {
     setIsResponsive(window.matchMedia(`(max-width: ${responsiveSizes.medium}rem)`).matches);
-  };
+  }, []);
 
   const handleMenu = () => {
     if (isResponsive && !isMenuVisible) {
@@ -105,7 +103,7 @@ const DxcHeader = ({
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, []);
+  }, [handleResize]);
 
   useEffect(() => {
     !isResponsive && setIsMenuVisible(false);
@@ -128,7 +126,12 @@ const DxcHeader = ({
             <ResponsiveMenu hasVisibility={isMenuVisible}>
               <ResponsiveIconsContainer>
                 <ResponsiveLogoContainer>{headerResponsiveLogo}</ResponsiveLogoContainer>
-                <CloseAction tabIndex={tabIndex} onClick={handleMenu} aria-label={translatedLabels.header.closeIcon}>
+                <CloseAction
+                  tabIndex={tabIndex}
+                  onClick={handleMenu}
+                  aria-label={translatedLabels.header.closeIcon}
+                  title={translatedLabels.header.closeIcon}
+                >
                   {closeIcon}
                 </CloseAction>
               </ResponsiveIconsContainer>
@@ -169,6 +172,12 @@ type HeaderContainerProps = {
 };
 
 const HeaderContainer = styled.header<HeaderContainerProps>`
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  min-height: ${(props) => props.theme.minHeight};
   margin-bottom: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   padding: ${(props) =>
     `${props.theme.paddingTop} ${props.theme.paddingRight} ${props.theme.paddingBottom} ${props.theme.paddingLeft}`};
@@ -176,17 +185,10 @@ const HeaderContainer = styled.header<HeaderContainerProps>`
   border-bottom: ${(props) =>
     props.underlined &&
     `${props.theme.underlinedThickness} ${props.theme.underlinedStyle} ${props.theme.underlinedColor}`};
-  min-height: ${(props) => props.theme.minHeight};
-  box-shadow: none;
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-  justify-content: space-between;
-  box-sizing: border-box;
 `;
 
 const LogoAnchor = styled.a<{ interactuable: boolean }>`
-  ${(props) => (props.interactuable ? "cursor: pointer" : "cursor: default; outline:none")};
+  ${(props) => (props.interactuable ? "cursor: pointer" : "cursor: default; outline:none;")};
 `;
 
 const LogoImg = styled.img`
@@ -201,12 +203,11 @@ const LogoContainer = styled.div`
 `;
 
 const ChildContainer = styled.div<{ padding: Space | Padding }>`
-  width: calc(100% - 186px);
   display: flex;
   align-items: center;
-  flex-grow: 1;
-
   justify-content: flex-end;
+  flex-grow: 1;
+  width: calc(100% - 186px);
   padding: ${(props) => (props.padding && typeof props.padding !== "object" ? spaces[props.padding] : "0px")};
   padding-top: ${(props) =>
     props.padding && typeof props.padding === "object" && props.padding.top ? spaces[props.padding.top] : ""};
@@ -224,13 +225,11 @@ type ContentContainerProps = {
 };
 
 const ContentContainer = styled.div<ContentContainerProps>`
-  width: calc(100% - 186px);
   display: flex;
   align-items: center;
   flex-grow: 1;
-  color: ${(props) => (props.backgroundType === "dark" ? props.theme.contentColorOnDark : props.theme.contentColor)};
-
   justify-content: flex-end;
+  width: calc(100% - 186px);
   padding: ${(props) => (props.padding && typeof props.padding !== "object" ? spaces[props.padding] : "0px")};
   padding-top: ${(props) =>
     props.padding && typeof props.padding === "object" && props.padding.top ? spaces[props.padding.top] : ""};
@@ -240,7 +239,9 @@ const ContentContainer = styled.div<ContentContainerProps>`
     props.padding && typeof props.padding === "object" && props.padding.bottom ? spaces[props.padding.bottom] : ""};
   padding-left: ${(props) =>
     props.padding && typeof props.padding === "object" && props.padding.left ? spaces[props.padding.left] : ""};
+  color: ${(props) => (props.backgroundType === "dark" ? props.theme.contentColorOnDark : props.theme.contentColor)};
 `;
+
 const HamburguerTrigger = styled.button`
   display: flex;
   flex-direction: column;
@@ -315,27 +316,31 @@ const ResponsiveIconsContainer = styled.div`
 `;
 
 const CloseAction = styled.button`
-  cursor: pointer;
-  padding: 6px;
-  height: 36px;
-  width: 36px;
-  border: 1px solid transparent;
-  border-radius: 2px;
   display: flex;
-  flex-wrap: wrap;
+  justify-content: center;
   align-content: center;
+  padding: 6px;
+  border: unset;
+  border-radius: 2px;
   background-color: transparent;
+  cursor: pointer;
+
   :focus,
   :focus-visible {
     outline: ${(props) => props.theme.hamburguerFocusColor} auto 1px;
   }
+
+  svg {
+    height: 24px;
+    width: 24px;
+  }
 `;
 
 const MenuContent = styled.div<{ backgroundType: "dark" | "light" }>`
-  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  height: 100%;
   color: ${(props) => (props.backgroundType === "dark" ? props.theme.contentColorOnDark : props.theme.contentColor)};
 `;
 

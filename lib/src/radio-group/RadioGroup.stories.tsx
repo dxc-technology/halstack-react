@@ -2,6 +2,7 @@ import React from "react";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcRadioGroup from "./RadioGroup";
+import { HalstackProvider } from "../HalstackContext";
 
 export default {
   title: "Radio Group",
@@ -19,83 +20,195 @@ const options = [
 
 const single_disabled_options = [{ label: "Option A", value: "A", disabled: true }];
 
+const opinionatedTheme = {
+  radioGroup: {
+    baseColor: "#0086e6",
+    fontColor: "#000000",
+  },
+};
+
 export const Chromatic = () => (
   <>
     <Title title="Radio input states" theme="light" level={2} />
     <ExampleContainer>
       <Title title="Enabled" theme="light" level={4} />
-      <DxcRadioGroup label="Example" defaultValue="A" options={single_option} />
+      <DxcRadioGroup label="Label" helperText="Helper text" defaultValue="A" options={single_option} />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-hover">
       <Title title="Hovered" theme="light" level={4} />
-      <DxcRadioGroup label="Example" defaultValue="A" options={single_option} />
+      <DxcRadioGroup label="Label" helperText="Helper text" defaultValue="A" options={single_option} />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-active">
       <Title title="Active" theme="light" level={4} />
-      <DxcRadioGroup label="Example" defaultValue="A" options={single_option} />
+      <DxcRadioGroup label="Label" helperText="Helper text" defaultValue="A" options={single_option} />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-focus">
       <Title title="Focused" theme="light" level={4} />
-      <DxcRadioGroup label="Example" defaultValue="A" options={single_option} />
+      <DxcRadioGroup label="Label" helperText="Helper text" defaultValue="A" options={single_option} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Disabled" theme="light" level={4} />
-      <DxcRadioGroup label="Example" options={single_disabled_options} defaultValue="A" />
+      <DxcRadioGroup label="Label" helperText="Helper text" options={single_disabled_options} defaultValue="A" />
     </ExampleContainer>
     <Title title="Readonly radio input sub-states" theme="light" level={3} />
     <ExampleContainer>
       <Title title="Enabled" theme="light" level={4} />
-      <DxcRadioGroup label="Example" options={single_option} defaultValue="A" readonly />
+      <DxcRadioGroup label="Label" helperText="Helper text" options={single_option} defaultValue="A" readonly />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-hover">
       <Title title="Hovered" theme="light" level={4} />
-      <DxcRadioGroup label="Example" options={single_option} defaultValue="A" readonly />
+      <DxcRadioGroup label="Label" helperText="Helper text" options={single_option} defaultValue="A" readonly />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-active">
       <Title title="Active" theme="light" level={4} />
-      <DxcRadioGroup label="Example" options={single_option} defaultValue="A" readonly />
+      <DxcRadioGroup label="Label" helperText="Helper text" options={single_option} defaultValue="A" readonly />
     </ExampleContainer>
     <Title title="Error radio input sub-states" theme="light" level={3} />
     <ExampleContainer>
       <Title title="Enabled" theme="light" level={4} />
-      <DxcRadioGroup label="Example" options={single_option} defaultValue="A" error="Error message" />
+      <DxcRadioGroup
+        label="Label"
+        helperText="Helper text"
+        options={single_option}
+        defaultValue="A"
+        error="Error message"
+      />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-hover">
       <Title title="Hovered" theme="light" level={4} />
-      <DxcRadioGroup label="Example" options={single_option} defaultValue="A" readonly error="Error message" />
+      <DxcRadioGroup
+        label="Label"
+        helperText="Helper text"
+        options={single_option}
+        defaultValue="A"
+        readonly
+        error="Error message"
+      />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-active">
       <Title title="Active" theme="light" level={4} />
-      <DxcRadioGroup label="Example" options={single_option} defaultValue="A" readonly error="Error message" />
+      <DxcRadioGroup
+        label="Label"
+        helperText="Helper text"
+        options={single_option}
+        defaultValue="A"
+        readonly
+        error="Error message"
+      />
     </ExampleContainer>
     <Title title="Variants" theme="light" level={2} />
     <ExampleContainer>
       <Title title="Column" theme="light" level={4} />
-      <DxcRadioGroup label="Example" helperText="Helper text" options={options} />
+      <DxcRadioGroup label="Label" helperText="Helper text" options={options} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Row" theme="light" level={4} />
-      <DxcRadioGroup label="Example" helperText="Helper text" options={options} stacking="row" />
+      <DxcRadioGroup label="Label" helperText="Helper text" options={options} stacking="row" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Optional" theme="light" level={4} />
-      <DxcRadioGroup label="Example" optional helperText="Helper text" options={options} stacking="row" />
+      <DxcRadioGroup label="Label" optional helperText="Helper text" options={options} stacking="row" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Disabled" theme="light" level={4} />
-      <DxcRadioGroup label="Example" helperText="Helper text" options={options} disabled />
+      <DxcRadioGroup label="Label" helperText="Helper text" options={options} disabled />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Readonly" theme="light" level={4} />
-      <DxcRadioGroup label="Example" readonly helperText="Helper text" options={options} />
+      <DxcRadioGroup label="Label" readonly helperText="Helper text" options={options} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Error space reserved" theme="light" level={4} />
-      <DxcRadioGroup label="Example" error="" helperText="Helper text" options={options} />
+      <DxcRadioGroup label="Label" error="" helperText="Helper text" options={options} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Error" theme="light" level={4} />
-      <DxcRadioGroup label="Example" error="Error message" helperText="Helper text" options={options} />
+      <DxcRadioGroup label="Label" error="Error message" helperText="Helper text" options={options} />
+    </ExampleContainer>
+    <Title title="Opinionated theme" theme="light" level={2} />
+    <ExampleContainer>
+      <Title title="Enabled" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcRadioGroup label="Label" helperText="Helper text" defaultValue="A" options={single_option} />
+      </HalstackProvider>
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-hover">
+      <Title title="Hovered" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcRadioGroup label="Label" helperText="Helper text" defaultValue="A" options={single_option} />
+      </HalstackProvider>
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-active">
+      <Title title="Active" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcRadioGroup label="Label" helperText="Helper text" defaultValue="A" options={single_option} />
+      </HalstackProvider>
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-focus">
+      <Title title="Focused" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcRadioGroup label="Label" helperText="Helper text" defaultValue="A" options={single_option} />
+      </HalstackProvider>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Disabled" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcRadioGroup label="Label" helperText="Helper text" options={single_disabled_options} defaultValue="A" />
+      </HalstackProvider>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Readonly enabled" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcRadioGroup label="Label" options={single_option} defaultValue="A" readonly />
+      </HalstackProvider>
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-hover">
+      <Title title="Readonly hovered" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcRadioGroup label="Label" options={single_option} defaultValue="A" readonly />
+      </HalstackProvider>
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-active">
+      <Title title="Readonly active" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcRadioGroup label="Label" options={single_option} defaultValue="A" readonly />
+      </HalstackProvider>
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-focus">
+      <Title title="Readonly focused" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcRadioGroup label="Label" options={single_option} defaultValue="A" readonly />
+      </HalstackProvider>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Enabled" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcRadioGroup label="Label" options={single_option} defaultValue="A" error="Error message" />
+      </HalstackProvider>
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-hover">
+      <Title title="Hovered" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcRadioGroup label="Label" options={single_option} defaultValue="A" error="Error message" />
+      </HalstackProvider>
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-active">
+      <Title title="Active" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcRadioGroup label="Label" options={single_option} defaultValue="A" error="Error message" />
+      </HalstackProvider>
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-focus">
+      <Title title="Focused" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcRadioGroup label="Label" options={single_option} defaultValue="A" error="Error message" />
+      </HalstackProvider>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Disabled" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcRadioGroup label="Label" helperText="Helper text" options={options} disabled defaultValue="A" />
+      </HalstackProvider>
     </ExampleContainer>
   </>
 );

@@ -82,9 +82,7 @@ const sections = [
                   <td>
                     <Code>color-black</Code>
                   </td>
-                  <td>
-                    <Code>#000000</Code>
-                  </td>
+                  <td>#000000</td>
                 </tr>
                 <tr>
                   <td>
@@ -94,9 +92,7 @@ const sections = [
                   <td>
                     <Code>color-white</Code>
                   </td>
-                  <td>
-                    <Code>#ffffff</Code>
-                  </td>
+                  <td>#ffffff</td>
                 </tr>
                 <tr>
                   <td>
@@ -106,9 +102,7 @@ const sections = [
                   <td>
                     <Code>color-blue-600</Code>
                   </td>
-                  <td>
-                    <Code>#0095ff</Code>
-                  </td>
+                  <td>#0095ff</td>
                 </tr>
               </tbody>
             </DxcTable>

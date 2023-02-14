@@ -108,7 +108,7 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <Code>focusRadioInputColor</Code>
+                  <Code>focusBorderColor</Code>
                 </td>
                 <td>Radio input:focus</td>
                 <td>
@@ -421,7 +421,7 @@ const sections = [
                 <tr>
                   <th>Property</th>
                   <th>Element</th>
-                  <th>Token</th>
+                  <th>Core token</th>
                   <th>Value</th>
                 </tr>
               </thead>
@@ -635,8 +635,8 @@ const sections = [
             <DxcTable>
               <thead>
                 <tr>
-                  <th>margin</th>
-                  <th>value</th>
+                  <th>Margin</th>
+                  <th>Value</th>
                 </tr>
               </thead>
               <tbody>

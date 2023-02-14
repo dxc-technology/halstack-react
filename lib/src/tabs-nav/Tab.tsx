@@ -50,7 +50,7 @@ const DxcTab = forwardRef(
         >
           {icon && (
             <TabIconContainer iconPosition={iconPosition}>
-              {typeof icon === "string" ? <TabIcon src={icon} /> : icon}
+              {typeof icon === "string" ? <img src={icon} /> : icon}
             </TabIconContainer>
           )}
           <LabelContainer>
@@ -116,23 +116,18 @@ const Tab = styled.a<TabStyleProps>`
   }`}
 `;
 
-const TabIcon = styled.img``;
-
 type TabIconContainerProps = {
   iconPosition?: "top" | "left";
 };
 const TabIconContainer = styled.div<TabIconContainerProps>`
-  max-height: 24px;
-  max-width: 24px;
+  display: flex;
   margin-bottom: ${(props) => props.iconPosition === "top" && "0.375rem"};
   margin-right: ${(props) => props.iconPosition === "left" && "0.625rem"};
-  overflow: hidden;
-  display: flex;
-  align-items: center;
+
   img,
   svg {
-    height: 100%;
-    width: 100%;
+    height: 24px;
+    width: 24px;
   }
 `;
 

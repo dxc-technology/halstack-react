@@ -128,17 +128,10 @@ export type CalendarPropsType = {
    * Function called when a date is selected.
    */
   onDaySelect: (date: Dayjs) => void;
-};
-
-export type MonthPickerPropsType = {
   /**
-   * Initial selected date value. If invalid the actual date will be used instead.
+   * Current date
    */
-  selectedDate: Dayjs;
-  /**
-   * Function called when a month is selected.
-   */
-  onMonthSelect: (month: number) => void;
+  today: Dayjs;
 };
 
 export type YearPickerPropsType = {
@@ -150,6 +143,10 @@ export type YearPickerPropsType = {
    * Function called when a year is selected.
    */
   onYearSelect: (year: number) => void;
+  /**
+   * Current date
+   */
+  today: Dayjs;
 };
 /**
  * Reference to the component.

@@ -1,7 +1,6 @@
 import React from "react";
-import styled, { ThemeProvider } from "styled-components";
+import styled from "styled-components";
 import { OptionProps } from "../select/types";
-import useTheme from "../useTheme";
 import DxcCheckbox from "../checkbox/Checkbox";
 import selectIcons from "./Icons";
 
@@ -14,47 +13,41 @@ const Option = ({
   isGroupedOption = false,
   isLastOption,
   isSelected,
-}: OptionProps): JSX.Element => {
-  const colorsTheme = useTheme();
-
-  return (
-    <ThemeProvider theme={colorsTheme.select}>
-      <OptionItem
-        id={id}
-        onClick={() => {
-          onClick(option);
-        }}
-        visualFocused={visualFocused}
-        selected={isSelected}
-        role="option"
-        aria-selected={isSelected}
-      >
-        <StyledOption
-          visualFocused={visualFocused}
-          selected={isSelected}
-          last={isLastOption}
+}: OptionProps): JSX.Element => (
+  <OptionItem
+    id={id}
+    onClick={() => {
+      onClick(option);
+    }}
+    visualFocused={visualFocused}
+    selected={isSelected}
+    role="option"
+    aria-selected={isSelected}
+  >
+    <StyledOption
+      visualFocused={visualFocused}
+      selected={isSelected}
+      last={isLastOption}
+      grouped={isGroupedOption}
+      multiple={multiple}
+    >
+      {multiple && <DxcCheckbox checked={isSelected} tabIndex={-1} />}
+      {option.icon && (
+        <OptionIcon
           grouped={isGroupedOption}
           multiple={multiple}
+          role={!(typeof option.icon === "string") ? "img" : undefined}
         >
-          {multiple && <DxcCheckbox checked={isSelected} tabIndex={-1} />}
-          {option.icon && (
-            <OptionIcon
-              grouped={isGroupedOption}
-              multiple={multiple}
-              role={!(typeof option.icon === "string") ? "img" : undefined}
-            >
-              {typeof option.icon === "string" ? <OptionIconImg src={option.icon}></OptionIconImg> : option.icon}
-            </OptionIcon>
-          )}
-          <OptionContent grouped={isGroupedOption} hasIcon={option.icon ? true : false} multiple={multiple}>
-            <OptionLabel>{option.label}</OptionLabel>
-            {!multiple && isSelected && <OptionSelectedIndicator>{selectIcons.selected}</OptionSelectedIndicator>}
-          </OptionContent>
-        </StyledOption>
-      </OptionItem>
-    </ThemeProvider>
-  );
-};
+          {typeof option.icon === "string" ? <img src={option.icon} /> : option.icon}
+        </OptionIcon>
+      )}
+      <OptionContent grouped={isGroupedOption} hasIcon={option.icon ? true : false} multiple={multiple}>
+        <OptionLabel>{option.label}</OptionLabel>
+        {!multiple && isSelected && <OptionSelectedIndicator>{selectIcons.selected}</OptionSelectedIndicator>}
+      </OptionContent>
+    </StyledOption>
+  </OptionItem>
+);
 
 type OptionItemProps = {
   visualFocused: boolean;
@@ -106,12 +99,15 @@ type OptionIconProps = {
 };
 const OptionIcon = styled.span<OptionIconProps>`
   display: flex;
-  flex-wrap: wrap;
-  align-content: center;
-  height: 24px;
-  width: 24px;
-  ${(props) => (props.grouped && !props.multiple ? "padding-left: 16px;" : "padding-left: 8px;")}
+  padding: 0.125rem;
+  margin-left: ${(props) => (props.grouped && !props.multiple ? "16px" : "8px")};
   color: ${(props) => props.theme.listOptionIconColor};
+
+  svg,
+  img {
+    height: 20px;
+    width: 20px;
+  }
 `;
 
 type OptionContentProps = {
@@ -122,14 +118,10 @@ type OptionContentProps = {
 const OptionContent = styled.span<OptionContentProps>`
   display: flex;
   justify-content: space-between;
+  gap: 0.25rem;
   width: 100%;
   overflow: hidden;
-  ${(props) => (props.grouped && !props.multiple && !props.hasIcon ? "padding-left: 16px;" : "padding-left: 8px;")}
-`;
-
-const OptionIconImg = styled.img`
-  width: 16px;
-  height: 16px;
+  margin-left: ${(props) => (props.grouped && !props.multiple && !props.hasIcon ? "16px" : "8px")};
 `;
 
 const OptionLabel = styled.span`
@@ -140,10 +132,13 @@ const OptionLabel = styled.span`
 
 const OptionSelectedIndicator = styled.span`
   display: flex;
-  height: 16px;
-  width: 16px;
-  margin-left: 4px;
+  align-items: center;
   color: ${(props) => props.theme.selectedListOptionIconColor};
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
 `;
 
 export default React.memo(Option);

@@ -1,6 +1,5 @@
 import React from "react";
-import styled, { ThemeProvider } from "styled-components";
-import useTheme from "../useTheme";
+import styled from "styled-components";
 import { DropdownMenuItemProps } from "./types";
 
 const DropdownMenuItem = ({
@@ -9,35 +8,29 @@ const DropdownMenuItem = ({
   iconPosition,
   onClick,
   option,
-}: DropdownMenuItemProps): JSX.Element => {
-  const colorsTheme = useTheme();
-
-  return (
-    <ThemeProvider theme={colorsTheme.dropdown}>
-      <DropdownMenuItemContainer
-        visuallyFocused={visuallyFocused}
-        onClick={() => {
-          onClick(option.value);
-        }}
-        id={id}
-        role="menuitem"
-        tabIndex={-1}
+}: DropdownMenuItemProps): JSX.Element => (
+  <DropdownMenuItemContainer
+    visuallyFocused={visuallyFocused}
+    onClick={() => {
+      onClick(option.value);
+    }}
+    id={id}
+    role="menuitem"
+    tabIndex={-1}
+  >
+    {iconPosition === "after" && <DropdownMenuItemLabel>{option.label}</DropdownMenuItemLabel>}
+    {option.icon && (
+      <DropdownMenuItemIcon
+        iconPosition={iconPosition}
+        label={option.label}
+        role={typeof option.icon === "string" ? undefined : "img"}
       >
-        {iconPosition === "after" && <DropdownMenuItemLabel>{option.label}</DropdownMenuItemLabel>}
-        {option.icon && (
-          <DropdownMenuItemIcon
-            iconPosition={iconPosition}
-            label={option.label}
-            role={typeof option.icon === "string" ? undefined : "img"}
-          >
-            {typeof option.icon === "string" ? <img src={option.icon} /> : option.icon}
-          </DropdownMenuItemIcon>
-        )}
-        {iconPosition === "before" && <DropdownMenuItemLabel>{option.label}</DropdownMenuItemLabel>}
-      </DropdownMenuItemContainer>
-    </ThemeProvider>
-  );
-};
+        {typeof option.icon === "string" ? <img src={option.icon} /> : option.icon}
+      </DropdownMenuItemIcon>
+    )}
+    {iconPosition === "before" && <DropdownMenuItemLabel>{option.label}</DropdownMenuItemLabel>}
+  </DropdownMenuItemContainer>
+);
 
 const DropdownMenuItemContainer = styled.li<{ visuallyFocused: boolean }>`
   box-sizing: border-box;
@@ -67,6 +60,7 @@ const DropdownMenuItemLabel = styled.span`
   font-weight: ${(props) => props.theme.optionFontWeight};
   line-height: 1.5rem;
   color: ${(props) => props.theme.optionFontColor};
+  white-space: nowrap;
 `;
 
 type DropdownMenuItemIconProps = {

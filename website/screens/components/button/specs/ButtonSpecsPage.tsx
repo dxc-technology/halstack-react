@@ -178,8 +178,8 @@ const sections = [
                 <DxcTable>
                   <thead>
                     <tr>
-                      <th>width</th>
-                      <th>value</th>
+                      <th>Width</th>
+                      <th>Value</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -221,8 +221,8 @@ const sections = [
                 <DxcTable>
                   <thead>
                     <tr>
-                      <th>height</th>
-                      <th>value</th>
+                      <th>Height</th>
+                      <th>Value</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -244,8 +244,8 @@ const sections = [
                 <DxcTable>
                   <thead>
                     <tr>
-                      <th>margin</th>
-                      <th>value</th>
+                      <th>Margin</th>
+                      <th>Value</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -351,7 +351,7 @@ const sections = [
                   <tr>
                     <th>Component token</th>
                     <th>Element</th>
-                    <th>Token</th>
+                    <th>Core token</th>
                     <th>Value</th>
                   </tr>
                 </thead>
@@ -537,7 +537,7 @@ const sections = [
                   <tr>
                     <th>Component token</th>
                     <th>Element</th>
-                    <th>Token</th>
+                    <th>Core token</th>
                     <th>Value</th>
                   </tr>
                 </thead>
@@ -548,7 +548,7 @@ const sections = [
                     </td>
                     <td>Container fill</td>
                     <td>
-                      <Code>transparent</Code>
+                      <Code>color-transparent</Code>
                     </td>
                     <td>transparent</td>
                   </tr>
@@ -753,7 +753,7 @@ const sections = [
                   <tr>
                     <th>Component token</th>
                     <th>Element</th>
-                    <th>Token</th>
+                    <th>Core token</th>
                     <th>Value</th>
                   </tr>
                 </thead>

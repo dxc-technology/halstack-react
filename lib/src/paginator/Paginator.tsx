@@ -57,7 +57,6 @@ const DxcPaginator = ({
             </TotalItemsContainer>
             {onPageChange && (
               <DxcButton
-                size="small"
                 mode="secondary"
                 disabled={currentPageInternal === 1 || currentPageInternal === 0}
                 icon={firstIcon}
@@ -69,7 +68,6 @@ const DxcPaginator = ({
             )}
             {onPageChange && (
               <DxcButton
-                size="small"
                 mode="secondary"
                 disabled={currentPageInternal === 1 || currentPageInternal === 0}
                 icon={previousIcon}
@@ -79,7 +77,7 @@ const DxcPaginator = ({
                 }}
               />
             )}
-            {(showGoToPage && (
+            {showGoToPage ? (
               <PageToSelectContainer>
                 <GoToLabel>{translatedLabels.paginator.goToPageText} </GoToLabel>
                 <SelectContainer>
@@ -97,12 +95,11 @@ const DxcPaginator = ({
                   />
                 </SelectContainer>
               </PageToSelectContainer>
-            )) || (
-              <TextContainer>{translatedLabels.paginator.pageOfText(currentPageInternal, totalPages)}</TextContainer>
+            ) : (
+              <span>{translatedLabels.paginator.pageOfText(currentPageInternal, totalPages)}</span>
             )}
             {onPageChange && (
               <DxcButton
-                size="small"
                 mode="secondary"
                 disabled={currentPageInternal === totalPages}
                 icon={nextIcon}
@@ -114,7 +111,6 @@ const DxcPaginator = ({
             )}
             {onPageChange && (
               <DxcButton
-                size="small"
                 mode="secondary"
                 disabled={currentPageInternal === totalPages}
                 icon={lastIcon}
@@ -159,13 +155,6 @@ const ItemsPageContainer = styled.span`
   align-items: center;
   margin-right: ${(props) => props.theme.itemsPerPageSelectorMarginRight};
   margin-left: ${(props) => props.theme.itemsPerPageSelectorMarginLeft};
-
-  label {
-    height: 0px;
-  }
-  label + .MuiInput-formControl {
-    margin-top: 0px;
-  }
 `;
 
 const ItemsLabel = styled.span`
@@ -194,14 +183,6 @@ const PageToSelectContainer = styled.span`
   display: flex;
   align-items: center;
   margin-right: 0.5rem;
-
-  label {
-    height: 0px;
-  }
-  label + .MuiInput-formControl {
-    margin-top: 0px;
-  }
 `;
-const TextContainer = styled.span``;
 
 export default DxcPaginator;

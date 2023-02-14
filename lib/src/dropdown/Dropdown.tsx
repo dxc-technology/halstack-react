@@ -28,7 +28,7 @@ const useWidth = (target) => {
   useEffect(() => {
     if (target != null) {
       setWidth(target.getBoundingClientRect().width);
-      
+
       const triggerObserver = new ResizeObserver((entries) => {
         const rect = entries[0].target.getBoundingClientRect();
         setWidth(rect?.width);
@@ -179,7 +179,6 @@ const DxcDropdown = ({
         <Popover.Root open={isOpen}>
           <Popover.Trigger asChild type={undefined}>
             <DropdownTrigger
-              opened={isOpen}
               onClick={handleTriggerOnClick}
               onKeyDown={handleTriggerOnKeyDown}
               onBlur={(event) => {
@@ -199,18 +198,13 @@ const DxcDropdown = ({
               <DropdownTriggerContent>
                 {label && iconPosition === "after" && <DropdownTriggerLabel>{label}</DropdownTriggerLabel>}
                 {icon && (
-                  <DropdownTriggerIcon
-                    label={label}
-                    iconPosition={iconPosition}
-                    disabled={disabled}
-                    role={typeof icon === "string" ? undefined : "img"}
-                  >
+                  <DropdownTriggerIcon disabled={disabled} role={typeof icon === "string" ? undefined : "img"}>
                     {typeof icon === "string" ? <img src={icon} /> : icon}
                   </DropdownTriggerIcon>
                 )}
                 {label && iconPosition === "before" && <DropdownTriggerLabel>{label}</DropdownTriggerLabel>}
               </DropdownTriggerContent>
-              {!caretHidden && <CaretIcon disabled={disabled}>{isOpen ? upArrowIcon : downArrowIcon}</CaretIcon>}
+              {!caretHidden && <CaretIcon disabled={disabled}>{isOpen ? upArrowIcon : downArrowIcon}</CaretIcon>} 
             </DropdownTrigger>
           </Popover.Trigger>
           <Popover.Content sideOffset={1} asChild>
@@ -268,7 +262,6 @@ const DropdownContainer = styled.div<DropdownContainerProps>`
 type DropdownTriggerProps = {
   label: string;
   margin: Space | Margin;
-  opened: boolean;
   size: Size;
 };
 const DropdownTrigger = styled.button<DropdownTriggerProps>`
@@ -328,20 +321,14 @@ const DropdownTriggerLabel = styled.span`
   overflow: hidden;
 `;
 
-type DropdownTriggerIconProps = {
-  iconPosition: "before" | "after";
-  disabled: boolean;
-  label: string;
-};
-const DropdownTriggerIcon = styled.div<DropdownTriggerIconProps>`
-  width: ${(props) => props.theme.buttonIconSize};
-  height: ${(props) => props.theme.buttonIconSize};
+const DropdownTriggerIcon = styled.span<{ disabled: boolean }>`
+  display: flex;
   color: ${(props) => (props.disabled ? props.theme.disabledColor : props.theme.buttonIconColor)};
 
   img,
   svg {
-    height: 100%;
-    width: 100%;
+    width: ${(props) => props.theme.buttonIconSize};
+    height: ${(props) => props.theme.buttonIconSize};
   }
 `;
 

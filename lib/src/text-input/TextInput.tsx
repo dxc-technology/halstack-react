@@ -516,7 +516,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
                 tabIndex={tabIndex}
                 type="button"
               >
-                {typeof action.icon === "string" ? <ActionIcon src={action.icon}></ActionIcon> : action.icon}
+                {typeof action.icon === "string" ? <img src={action.icon} /> : action.icon}
               </Action>
             )}
             {suffix && (
@@ -703,21 +703,15 @@ const Input = styled.input<CommonBackgroundTypeProps>`
   }
 `;
 
-const ActionIcon = styled.img`
-  width: 16px;
-  height: 16px;
-`;
-
 const Action = styled.button<CommonBackgroundTypeProps>`
   display: flex;
-  flex-wrap: wrap;
-  align-content: center;
-  height: 24px;
-  width: 24px;
-  font-size: 1rem;
-  font-family: ${(props) => props.theme.fontFamily};
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
   border: 1px solid transparent;
   border-radius: 2px;
+  width: 24px;
+  height: 24px;
   padding: 3px;
   margin-left: 0.25rem;
   ${(props) => (props.disabled ? `cursor: not-allowed;` : `cursor: pointer;`)}
@@ -788,8 +782,9 @@ const Action = styled.button<CommonBackgroundTypeProps>`
       }
     `}
 
-  svg {
-    line-height: 18px;
+  img, svg {
+    width: 16px;
+    height: 16px;
   }
 `;
 

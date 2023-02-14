@@ -4,10 +4,18 @@ import { BackgroundColorProvider } from "../BackgroundColorContext";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DarkContainer from "../../.storybook/components/DarkSection";
+import { HalstackProvider } from "../HalstackContext";
 
 export default {
   title: "Switch",
   component: DxcSwitch,
+};
+
+const opinionatedTheme = {
+  switch: {
+    checkedBaseColor: "#5f249f",
+    fontColor: "#000000",
+  },
 };
 
 export const Chromatic = () => (
@@ -133,6 +141,31 @@ export const Chromatic = () => (
     <ExampleContainer>
       <Title title="FitContent size" theme="light" level={4} />
       <DxcSwitch label="FitContent" size="fitContent" />
+    </ExampleContainer>
+    <Title title="Opinionated theme" theme="light" level={2} />
+    <ExampleContainer>
+      <Title title="Checked" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcSwitch label="Switch" defaultChecked />
+      </HalstackProvider>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Default" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcSwitch label="Switch" />
+      </HalstackProvider>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Disabled" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcSwitch label="Switch" disabled />
+      </HalstackProvider>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Disabled checked" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcSwitch label="Switch" disabled defaultChecked />
+      </HalstackProvider>
     </ExampleContainer>
   </>
 );
