@@ -27,7 +27,6 @@ const opinionatedTheme = {
 
 const DateInputChromatic = () => (
   <>
-    <Title title="Date input" theme="light" level={2} />
     <ExampleContainer>
       <Title title="Complete date input" theme="light" level={4} />
       <DxcDateInput label="Date input" helperText="Help message" format="dd/mm/yy" placeholder optional />
