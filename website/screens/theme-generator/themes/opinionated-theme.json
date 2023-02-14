@@ -76,7 +76,7 @@
   },
   "quickNav": {
     "fontColor": "#666666",
-    "accentColor": "#9A6BB2"
+    "accentColor": "#9a6bb2"
   },
   "radioGroup": {
     "baseColor": "#0086e6",
@@ -89,7 +89,7 @@
     "hoverBorderColor": "#a46ede"
   },
   "sidenav": {
-    "baseColor": "#F2F2F2"
+    "baseColor": "#f2f2f2"
   },
   "slider": {
     "baseColor": "#0067b3",
