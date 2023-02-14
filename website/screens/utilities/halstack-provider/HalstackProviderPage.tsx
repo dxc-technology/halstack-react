@@ -141,7 +141,8 @@ const sections = [
         </DxcAlert>
         <DxcParagraph>
           Let's imagine that we want to translate the '(Optional)' label of a
-          DxcTextInput, as well as the error messages of our DxcFileInput
+          DxcTextInput, as well as the error messages of our{" "}
+          <Code>DxcFileInput</Code>
           component. To do so, we need to create an object with the
           translations. In this object, you will have as many objects as
           components you want to translate with the respective translation for
@@ -151,7 +152,7 @@ const sections = [
         <DxcBleed top="2rem">
           <DxcTypography fontSize="0.875rem">
             *(to see the translated error message you should try to add any file
-            on the DxcFileInput).
+            on the <Code>DxcFileInput</Code>).
           </DxcTypography>
         </DxcBleed>
       </>
