@@ -313,9 +313,9 @@ ResponsiveHeaderMenuTablet.play = async ({ canvasElement }) => {
 export const ResponsiveHeaderHoverOpinionated = RespHeaderHoverOpinionated.bind({});
 ResponsiveHeaderHoverOpinionated.parameters = {
   viewport: {
-    defaultViewport: "iphonex",
+    defaultViewport: "pixelxl",
   },
-  chromatic: { viewports: [375] },
+  chromatic: { viewports: [720] },
 };
 
 export const ResponsiveHeaderMenuOpinionated = RespHeaderMenuOpinionated.bind({});
