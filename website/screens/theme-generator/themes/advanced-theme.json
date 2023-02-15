@@ -279,7 +279,7 @@
     "pickerHeaderFontSize": "0.875rem"
   },
   "dialog": {
-    "overlayColor": "#000000",
+    "overlayColor": "#000000b3",
     "backgroundColor": "#ffffff",
     "closeIconWidth": "24px",
     "closeIconHeight": "24px",
@@ -295,7 +295,6 @@
     "boxShadowOffsetY": "1px",
     "boxShadowBlur": "3px",
     "boxShadowColor": "#00000033",
-    "overlayOpacity": "0.7",
     "fontFamily": "Open Sans, sans-serif",
     "fontSize": "1rem",
     "fontWeight": "400"

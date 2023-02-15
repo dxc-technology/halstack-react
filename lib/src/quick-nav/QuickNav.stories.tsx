@@ -15,7 +15,7 @@ export default {
 const opinionatedTheme = {
   quickNav: {
     fontColor: "#666666",
-    accentColor: "#9A6BB2",
+    accentColor: "#9a6bb2",
   },
 };
 

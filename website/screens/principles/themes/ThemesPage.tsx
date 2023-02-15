@@ -130,6 +130,42 @@ const sections = [
             ),
             subSections: [
               {
+                title: "Alert",
+                content: (
+                  <DxcTable>
+                    <thead>
+                      <tr>
+                        <th>Theme Input</th>
+                        <th>Tokens (calculation) </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Base color</td>
+                        <td>
+                          <Code>infoBackgroundColor</Code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Accent color</td>
+                        <td>
+                          <Code>infoIconColor</Code>
+                          <br />
+                          <br />
+                          <Code>infoBorderColor</Code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Overlay color</td>
+                        <td>
+                          <Code>overlayColor</Code>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </DxcTable>
+                ),
+              },
+              {
                 title: "Accordion",
                 content: (
                   <DxcTable>
@@ -163,7 +199,27 @@ const sections = [
                         <td>Assistive text font color</td>
                         <td>
                           <Code>assistiveTextFontColor</Code>
-                          <br />
+                        </td>
+                      </tr>
+                    </tbody>
+                  </DxcTable>
+                ),
+              },
+              {
+                title: "Box",
+                content: (
+                  <DxcTable>
+                    <thead>
+                      <tr>
+                        <th>Theme Input</th>
+                        <th>Tokens (calculation) </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Base color</td>
+                        <td>
+                          <Code>backgroundColor</Code>
                         </td>
                       </tr>
                     </tbody>
@@ -323,19 +379,77 @@ const sections = [
                     </thead>
                     <tbody>
                       <tr>
-                        <td>Selected date background color</td>
+                        <td>Base Color</td>
                         <td>
-                          <Code>pickerSelectedDateBackgroundColor</Code>
+                          <Code>pickerSelectedBackgroundColor</Code>
                           <br />
                           <br />
-                          <Code>pickerHoverDateBackgroundColor</Code> (34% of
-                          opacity)
+                          <Code>pickerCurrentYearFontColor</Code>
+                          <br />
+                          <br />
+                          <Code>pickerActiveBackgroundColor</Code> (-8% of
+                          lightness)
+                          <br />
+                          <br />
+                          <Code>pickerHeaderActiveBackgroundColor</Code> (-8% of
+                          lightness)
+                          <br />
+                          <br />
+                          <Code>pickerHoverBackgroundColor</Code> (+52%
+                          lightness)
+                          <br />
+                          <br />
+                          <Code>pickerCurrentDateBorderColor</Code> (+42%
+                          lightness)
+                          <br />
+                          <br />
+                          <Code>pickerHeaderHoverBackgroundColor</Code> (+52%
+                          lightness)
                         </td>
                       </tr>
                       <tr>
-                        <td>Selected date font color</td>
+                        <td>Selected font color</td>
                         <td>
-                          <Code>pickerSelectedDateColor</Code>
+                          <Code>pickerSelectedFontColor</Code>
+                          <br />
+                          <br />
+                          <Code>pickerActiveFontColor</Code>
+                          <br />
+                          <br />
+                          <Code>pickerHeaderActiveFontColor</Code>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </DxcTable>
+                ),
+              },
+              {
+                title: "Dialog",
+                content: (
+                  <DxcTable>
+                    <thead>
+                      <tr>
+                        <th>Theme Input</th>
+                        <th>Tokens (calculation)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Base color</td>
+                        <td>
+                          <Code>backgroundColor</Code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Close icon color</td>
+                        <td>
+                          <Code>closeIconColor</Code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Overlay color</td>
+                        <td>
+                          <Code>overlayColor</Code>
                         </td>
                       </tr>
                     </tbody>
@@ -526,7 +640,7 @@ const sections = [
                         </td>
                       </tr>
                       <tr>
-                        <td>Responsive logo</td>
+                        <td>Logo responsive</td>
                         <td>
                           <Code>logoResponsive</Code>
                         </td>
@@ -535,6 +649,36 @@ const sections = [
                         <td>Content color</td>
                         <td>
                           <Code>contentColor</Code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Overlay color</td>
+                        <td>
+                          <Code>overlayColor</Code>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </DxcTable>
+                ),
+              },
+              {
+                title: "Link",
+                content: (
+                  <DxcTable>
+                    <thead>
+                      <tr>
+                        <th>Theme Input</th>
+                        <th>Tokens (calculation)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Base color</td>
+                        <td>
+                          <Code>visitedFontColor</Code>
+                          <br />
+                          <br />
+                          <Code>visitedUnderlineColor</Code>
                         </td>
                       </tr>
                     </tbody>
@@ -601,6 +745,12 @@ const sections = [
                           <br />
                           <br />
                           <Code>helperTextFontColor</Code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Overlay color</td>
+                        <td>
+                          <Code>overlayColor</Code>
                         </td>
                       </tr>
                     </tbody>
@@ -969,6 +1119,33 @@ const sections = [
                 ),
               },
               {
+                title: "Tag",
+                content: (
+                  <DxcTable>
+                    <thead>
+                      <tr>
+                        <th>Theme Input</th>
+                        <th>Tokens (calculation)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Font color</td>
+                        <td>
+                          <Code>fontColor</Code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Icon color</td>
+                        <td>
+                          <Code>iconColor</Code>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </DxcTable>
+                ),
+              },
+              {
                 title: "Text input",
                 content: (
                   <DxcTable>
@@ -1007,6 +1184,42 @@ const sections = [
                           <br />
                           <br />
                           <Code>prefixColor</Code> (+40% of lightness)
+                          <br />
+                          <br />
+                          <Code>placeholderFontColor</Code> (+30% of lightness)
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Hover border color</td>
+                        <td>
+                          <Code>hoverBorderColor</Code>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </DxcTable>
+                ),
+              },
+              {
+                title: "Textarea",
+                content: (
+                  <DxcTable>
+                    <thead>
+                      <tr>
+                        <th>Theme Input</th>
+                        <th>Tokens (calculation)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Font color</td>
+                        <td>
+                          <Code>labelFontColor</Code>
+                          <br />
+                          <br />
+                          <Code>helperTextFontColor</Code>
+                          <br />
+                          <br />
+                          <Code>valueFontColor</Code>
                           <br />
                           <br />
                           <Code>placeholderFontColor</Code> (+30% of lightness)
@@ -1087,63 +1300,68 @@ const sections = [
               {
                 title: "Wizard",
                 content: (
+                  <DxcTable>
+                    <thead>
+                      <tr>
+                        <th>Theme Input</th>
+                        <th>Tokens (calculation)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Base color</td>
+                        <td>
+                          <Code>selectedStepBackgroundColor</Code>
+                          <br />
+                          <br />
+                          <Code>selectedStepBorderColor</Code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Selected font color</td>
+                        <td>
+                          <Code>selectedStepFontColor</Code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Font color</td>
+                        <td>
+                          <Code>visitedLabelFontColor</Code>
+                          <br />
+                          <br />
+                          <Code>selectedLabelFontColor</Code>
+                          <br />
+                          <br />
+                          <Code>visitedHelperTextFontColor</Code>
+                          <br />
+                          <br />
+                          <Code>selectedHelperTextFontColor</Code>
+                          <br />
+                          <br />
+                          <Code>unvisitedStepBorderColor</Code> (+40% of
+                          lightness)
+                          <br />
+                          <br />
+                          <Code>unvisitedStepFontColor</Code> (+40% of
+                          lightness)
+                          <br />
+                          <br />
+                          <Code>unvisitedLabelFontColor</Code> (+40% of
+                          lightness)
+                          <br />
+                          <br />
+                          <Code>unvisitedHelperTextFontColor</Code> (+40% of
+                          lightness)
+                        </td>
+                      </tr>
+                    </tbody>
+                  </DxcTable>
+                ),
+              },
+              {
+                title: "Example",
+                content: (
                   <>
-                    <DxcTable>
-                      <thead>
-                        <tr>
-                          <th>Theme Input</th>
-                          <th>Tokens (calculation)</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>Base color</td>
-                          <td>
-                            <Code>selectedStepBackgroundColor</Code>
-                            <br />
-                            <br />
-                            <Code>selectedStepBorderColor</Code>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>Selected font color</td>
-                          <td>
-                            <Code>selectedStepFontColor</Code>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>Font color</td>
-                          <td>
-                            <Code>visitedLabelFontColor</Code>
-                            <br />
-                            <br />
-                            <Code>selectedLabelFontColor</Code>
-                            <br />
-                            <br />
-                            <Code>visitedHelperTextFontColor</Code>
-                            <br />
-                            <br />
-                            <Code>selectedHelperTextFontColor</Code>
-                            <br />
-                            <br />
-                            <Code>unvisitedStepBorderColor</Code> (+40% of
-                            lightness)
-                            <br />
-                            <br />
-                            <Code>unvisitedStepFontColor</Code> (+40% of
-                            lightness)
-                            <br />
-                            <br />
-                            <Code>unvisitedLabelFontColor</Code> (+40% of
-                            lightness)
-                            <br />
-                            <br />
-                            <Code>unvisitedHelperTextFontColor</Code> (+40% of
-                            lightness)
-                          </td>
-                        </tr>
-                      </tbody>
-                    </DxcTable>
                     <DxcParagraph>
                       Finally, here you can see an example of an opinionated
                       theme object:

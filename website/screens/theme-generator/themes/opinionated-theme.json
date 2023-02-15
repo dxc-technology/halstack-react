@@ -1,8 +1,16 @@
 {
+  "alert": {
+    "baseColor": "#e6f4ff",
+    "accentColor": "#0067b3",
+    "overlayColor": "#000000b3"
+  },
   "accordion": {
     "accentColor": "#5f249f",
     "titleFontColor": "#000000",
     "assistiveTextFontColor": "#666666"
+  },
+  "box": {
+    "baseColor": "#ffffff"
   },
   "button": {
     "baseColor": "#5f249f",
@@ -20,8 +28,13 @@
     "iconColor": "#4d4d4d"
   },
   "dateInput": {
-    "selectedDateBackgroundColor": "#5f249f",
-    "selectedDateFontColor": "#ffffff"
+    "baseColor": "#5f249f",
+    "selectedFontColor": "#ffffff"
+  },
+  "dialog": {
+    "baseColor": "#ffffff",
+    "closeIconColor": "#000000",
+    "overlayColor": "#000000b3"
   },
   "dropdown": {
     "baseColor": "#ffffff",
@@ -45,7 +58,11 @@
     "hamburguerColor": "#000000",
     "logo": "/dxc_header_logo.svg",
     "logoResponsive": "/dxc_header_logo.svg",
-    "contentColor": "#000000"
+    "contentColor": "#000000",
+    "overlayColor": "#000000b3"
+  },
+  "link": {
+    "baseColor": "#5f249f"
   },
   "paginator": {
     "baseColor": "#f2f2f2",
@@ -53,12 +70,13 @@
   },
   "progressBar": {
     "accentColor": "#5f249f",
-    "baseColor": "#cecece",
-    "fontColor": "#000000"
+    "baseColor": "#e6e6e6",
+    "fontColor": "#000000",
+    "overlayColor": "#000000b3"
   },
   "quickNav": {
     "fontColor": "#666666",
-    "accentColor": "#9A6BB2"
+    "accentColor": "#9a6bb2"
   },
   "radioGroup": {
     "baseColor": "#0086e6",
@@ -71,7 +89,7 @@
     "hoverBorderColor": "#a46ede"
   },
   "sidenav": {
-    "baseColor": "#F2F2F2"
+    "baseColor": "#f2f2f2"
   },
   "slider": {
     "baseColor": "#0067b3",
@@ -96,6 +114,14 @@
   },
   "tabs": {
     "baseColor": "#5f249f"
+  },
+  "tag": {
+    "fontColor": "#000000",
+    "iconColor": "#ffffff"
+  },
+  "textarea": {
+    "fontColor": "#000000",
+    "hoverBorderColor": "#a46ede"
   },
   "textInput": {
     "fontColor": "#000000",
