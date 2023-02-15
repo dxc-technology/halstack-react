@@ -255,20 +255,24 @@ const sections = [
                           <Code>textFontColor</Code>
                           <br />
                           <br />
-                          <Code>primaryHoverBackgroundColor</Code> (-8% of lightness)
+                          <Code>primaryHoverBackgroundColor</Code> (-8% of
+                          lightness)
                           <br />
                           <br />
-                          <Code>primaryActiveBackgroundColor</Code> (-18% of lightness)
+                          <Code>primaryActiveBackgroundColor</Code> (-18% of
+                          lightness)
                           <br />
                           <br />
                           <Code>secondaryActiveBackgroundColor</Code> (-18% of
                           lightness)
                           <br />
                           <br />
-                          <Code>textHoverBackgroundColor</Code> (+57% of lightness)
+                          <Code>textHoverBackgroundColor</Code> (+57% of
+                          lightness)
                           <br />
                           <br />
-                          <Code>textActiveBackgroundColor</Code> (+52% of lightness)
+                          <Code>textActiveBackgroundColor</Code> (+52% of
+                          lightness)
                         </td>
                       </tr>
                       <tr>
@@ -307,7 +311,8 @@ const sections = [
                           <Code>borderColor</Code>
                           <br />
                           <br />
-                          <Code>hoverBackgroundColorChecked</Code> (-15% of lightness)
+                          <Code>hoverBackgroundColorChecked</Code> (-15% of
+                          lightness)
                           <br />
                           <br />
                           <Code>hoverBorderColor</Code> (-15% of lightness)
@@ -382,20 +387,24 @@ const sections = [
                           <Code>pickerCurrentYearFontColor</Code>
                           <br />
                           <br />
-                          <Code>pickerActiveBackgroundColor</Code> (-8% of lightness)
+                          <Code>pickerActiveBackgroundColor</Code> (-8% of
+                          lightness)
                           <br />
                           <br />
                           <Code>pickerHeaderActiveBackgroundColor</Code> (-8% of
                           lightness)
                           <br />
                           <br />
-                          <Code>pickerHoverBackgroundColor</Code> (+52% lightness)
+                          <Code>pickerHoverBackgroundColor</Code> (+52%
+                          lightness)
                           <br />
                           <br />
-                          <Code>pickerCurrentDateBorderColor</Code> (+42% lightness)
+                          <Code>pickerCurrentDateBorderColor</Code> (+42%
+                          lightness)
                           <br />
                           <br />
-                          <Code>pickerHeaderHoverBackgroundColor</Code> (+52% lightness)
+                          <Code>pickerHeaderHoverBackgroundColor</Code> (+52%
+                          lightness)
                         </td>
                       </tr>
                       <tr>
@@ -464,16 +473,20 @@ const sections = [
                           <Code>buttonBackgroundColor</Code>
                           <br />
                           <br />
-                          <Code>hoverButtonBackgroundColor</Code> (-5% of lightness)
+                          <Code>hoverButtonBackgroundColor</Code> (-5% of
+                          lightness)
                           <br />
                           <br />
-                          <Code>activeButtonBackgroundColor</Code> (-12% of lightness)
+                          <Code>activeButtonBackgroundColor</Code> (-12% of
+                          lightness)
                           <br />
                           <br />
-                          <Code>hoverOptionBackgroundColor</Code> (-5% of lightness)
+                          <Code>hoverOptionBackgroundColor</Code> (-5% of
+                          lightness)
                           <br />
                           <br />
-                          <Code>activeOptionBackgroundColor</Code> (-20% of lightness)
+                          <Code>activeOptionBackgroundColor</Code> (-20% of
+                          lightness)
                         </td>
                       </tr>
                       <tr>
@@ -827,12 +840,16 @@ const sections = [
                           <Code>selectedListOptionBackgroundColor</Code>
                           <br />
                           <br />
-                          <Code>selectedHoverListOptionBackgroundColor</Code> (-5% of
-                          lightness)
+                          <Code>
+                            selectedHoverListOptionBackgroundColor
+                          </Code>{" "}
+                          (-5% of lightness)
                           <br />
                           <br />
-                          <Code>selectedActiveListOptionBackgroundColor</Code> (-15% of
-                          lightness)
+                          <Code>
+                            selectedActiveListOptionBackgroundColor
+                          </Code>{" "}
+                          (-15% of lightness)
                         </td>
                       </tr>
                       <tr>
@@ -916,10 +933,12 @@ const sections = [
                           <Code>trackLineColor</Code>
                           <br />
                           <br />
-                          <Code>hoverThumbBackgroundColor</Code> (-15% of lightness)
+                          <Code>hoverThumbBackgroundColor</Code> (-15% of
+                          lightness)
                           <br />
                           <br />
-                          <Code>activeThumbBackgroundColor</Code> (-15% of lightness)
+                          <Code>activeThumbBackgroundColor</Code> (-15% of
+                          lightness)
                         </td>
                       </tr>
                       <tr>
@@ -1012,8 +1031,8 @@ const sections = [
                           <Code>checkedTrackBackgroundColor</Code>
                           <br />
                           <br />
-                          <Code>disabledCheckedTrackBackgroundColor</Code> (+57% of
-                          lightness)
+                          <Code>disabledCheckedTrackBackgroundColor</Code> (+57%
+                          of lightness)
                         </td>
                       </tr>
                       <tr>
@@ -1091,7 +1110,8 @@ const sections = [
                           <Code>hoverBackgroundColor</Code> (+57% of lightness)
                           <br />
                           <br />
-                          <Code>pressedBackgroundColor</Code> (+52% of lightness)
+                          <Code>pressedBackgroundColor</Code> (+52% of
+                          lightness)
                         </td>
                       </tr>
                     </tbody>
@@ -1280,63 +1300,67 @@ const sections = [
               {
                 title: "Wizard",
                 content: (
+                  <DxcTable>
+                    <thead>
+                      <tr>
+                        <th>Theme Input</th>
+                        <th>Tokens (calculation)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Base color</td>
+                        <td>
+                          <Code>selectedStepBackgroundColor</Code>
+                          <br />
+                          <br />
+                          <Code>selectedStepBorderColor</Code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Selected font color</td>
+                        <td>
+                          <Code>selectedStepFontColor</Code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Font color</td>
+                        <td>
+                          <Code>visitedLabelFontColor</Code>
+                          <br />
+                          <br />
+                          <Code>selectedLabelFontColor</Code>
+                          <br />
+                          <br />
+                          <Code>visitedHelperTextFontColor</Code>
+                          <br />
+                          <br />
+                          <Code>selectedHelperTextFontColor</Code>
+                          <br />
+                          <br />
+                          <Code>unvisitedStepBorderColor</Code> (+40% of
+                          lightness)
+                          <br />
+                          <br />
+                          <Code>unvisitedStepFontColor</Code> (+40% of
+                          lightness)
+                          <br />
+                          <br />
+                          <Code>unvisitedLabelFontColor</Code> (+40% of
+                          lightness)
+                          <br />
+                          <br />
+                          <Code>unvisitedHelperTextFontColor</Code> (+40% of
+                          lightness)
+                        </td>
+                      </tr>
+                    </tbody>
+                  </DxcTable>
+                ),
+              },
+              {
+                content: (
                   <>
-                    <DxcTable>
-                      <thead>
-                        <tr>
-                          <th>Theme Input</th>
-                          <th>Tokens (calculation)</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>Base color</td>
-                          <td>
-                            <Code>selectedStepBackgroundColor</Code>
-                            <br />
-                            <br />
-                            <Code>selectedStepBorderColor</Code>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>Selected font color</td>
-                          <td>
-                            <Code>selectedStepFontColor</Code>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>Font color</td>
-                          <td>
-                            <Code>visitedLabelFontColor</Code>
-                            <br />
-                            <br />
-                            <Code>selectedLabelFontColor</Code>
-                            <br />
-                            <br />
-                            <Code>visitedHelperTextFontColor</Code>
-                            <br />
-                            <br />
-                            <Code>selectedHelperTextFontColor</Code>
-                            <br />
-                            <br />
-                            <Code>unvisitedStepBorderColor</Code> (+40% of
-                            lightness)
-                            <br />
-                            <br />
-                            <Code>unvisitedStepFontColor</Code> (+40% of
-                            lightness)
-                            <br />
-                            <br />
-                            <Code>unvisitedLabelFontColor</Code> (+40% of
-                            lightness)
-                            <br />
-                            <br />
-                            <Code>unvisitedHelperTextFontColor</Code> (+40% of
-                            lightness)
-                          </td>
-                        </tr>
-                      </tbody>
-                    </DxcTable>
                     <DxcParagraph>
                       Finally, here you can see an example of an opinionated
                       theme object:
