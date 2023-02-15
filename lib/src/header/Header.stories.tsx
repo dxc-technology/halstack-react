@@ -235,15 +235,6 @@ const RespHeaderMenuTablet = () => (
   </ExampleContainer>
 );
 
-const RespHeaderHoverOpinionated = () => (
-  <ExampleContainer pseudoState="pseudo-hover">
-    <Title title="Responsive hover" theme="light" level={4} />
-    <HalstackProvider theme={opinionatedTheme}>
-      <DxcHeader responsiveContent={(closeHandler) => <p>Lorem ipsum dolor sit amet.</p>} underlined />
-    </HalstackProvider>
-  </ExampleContainer>
-);
-
 const RespHeaderMenuOpinionated = () => (
   <ExampleContainer>
     <Title title="Responsive menu" theme="light" level={4} />
@@ -308,14 +299,6 @@ ResponsiveHeaderMenuTablet.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   await waitFor(() => canvas.findByText("Menu"));
   await userEvent.click(canvas.getByText("Menu"));
-};
-
-export const ResponsiveHeaderHoverOpinionated = RespHeaderHoverOpinionated.bind({});
-ResponsiveHeaderHoverOpinionated.parameters = {
-  viewport: {
-    defaultViewport: "pixelxl",
-  },
-  chromatic: { viewports: [720] },
 };
 
 export const ResponsiveHeaderMenuOpinionated = RespHeaderMenuOpinionated.bind({});
