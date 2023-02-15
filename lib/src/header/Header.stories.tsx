@@ -246,7 +246,7 @@ const RespHeaderHoverOpinionated = () => (
 
 const RespHeaderMenuOpinionated = () => (
   <ExampleContainer>
-    <Title title="Responsive hover" theme="light" level={4} />
+    <Title title="Responsive menu" theme="light" level={4} />
     <HalstackProvider theme={opinionatedTheme}>
       <DxcHeader responsiveContent={(closeHandler) => <p>Lorem ipsum dolor sit amet.</p>} underlined />
     </HalstackProvider>
