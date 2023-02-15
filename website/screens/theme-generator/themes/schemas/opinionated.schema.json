@@ -45,6 +45,9 @@
     "logoResponsive": "image",
     "contentColor": "color"
   },
+  "navTabs": {
+    "baseColor": "color"
+  },
   "paginator": {
     "baseColor": "color",
     "fontColor": "color"

@@ -45,6 +45,9 @@
     "logoResponsive": "/dxc_header_logo.svg",
     "contentColor": "#000000"
   },
+  "navTabs": {
+    "baseColor": "#5f249f"
+  },
   "paginator": {
     "baseColor": "#eeeeee",
     "fontColor": "#000000"

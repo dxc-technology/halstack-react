@@ -267,6 +267,53 @@ const sections = [
     ],
   },
   {
+        title: "Typography",
+        content: (
+          <DxcTable>
+            <thead>
+              <tr>
+                <th>Component token</th>
+                <th>Element</th>
+                <th>Core token</th>
+                <th>Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <Code>titleLabelFontFamily</Code>
+                </td>
+                <td>Title</td>
+                <td>
+                  <Code>font-family-sans</Code>
+                </td>
+                <td>&#39;Open Sans&#39;, sans-serif;</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>titleLabelFontSize</Code>
+                </td>
+                <td>Title</td>
+                <td>
+                  <Code>font-scale-03</Code>
+                </td>
+                <td>16px</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>titleLabelFontWeight</Code>
+                </td>
+                <td>Title</td>
+                <td>
+                  <Code>font-regular</Code>
+                </td>
+                <td>600</td>
+              </tr>
+            </tbody>
+          </DxcTable>
+        ),
+      },
+  {
     title: "Accessibility",
     content: (
       <>
