@@ -1359,6 +1359,7 @@ const sections = [
                 ),
               },
               {
+                title: "Example",
                 content: (
                   <>
                     <DxcParagraph>
