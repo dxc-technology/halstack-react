@@ -18,6 +18,7 @@ import {
 } from "@dxc-technology/halstack-react";
 import Link from "next/link";
 import PageHeading from "@/common/PageHeading";
+
 const sections = [
   {
     title: "Props",
@@ -140,13 +141,12 @@ const sections = [
           section.
         </DxcAlert>
         <DxcParagraph>
-          Let's imagine that we want to translate the '(Optional)' label of a
-          DxcTextInput, as well as the error messages of our{" "}
-          <Code>DxcFileInput</Code>
-          component. To do so, we need to create an object with the
-          translations. In this object, you will have as many objects as
-          components you want to translate with the respective translation for
-          their labels.
+          Let's imagine that we want to translate the '(Optional)' label of a{" "}
+          <Code>DxcTextInput</Code>, as well as the error messages of our{" "}
+          <Code>DxcFileInput</Code> component. To do so, we need to create an
+          object with the translations. In this object, you will have as many
+          objects as components you want to translate with the respective
+          translation for their labels.
         </DxcParagraph>
         <Example example={customTranslations} defaultIsVisible />
         <DxcBleed top="2rem">
