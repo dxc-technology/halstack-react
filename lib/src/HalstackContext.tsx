@@ -277,8 +277,6 @@ const parseTheme = (theme) => {
   tagTokens.fontColor = theme?.tag?.fontColor ?? tagTokens.fontColor;
   tagTokens.iconColor = theme?.tag?.iconColor ?? tagTokens.iconColor;
 
-  const tabsNav = componentTokensCopy.tabsNav;
-
   const textInputTokens = componentTokensCopy.textInput;
   textInputTokens.labelFontColor = theme?.textInput?.fontColor ?? textInputTokens.labelFontColor;
   textInputTokens.helperTextFontColor = theme?.textInput?.fontColor ?? textInputTokens.helperTextFontColor;
