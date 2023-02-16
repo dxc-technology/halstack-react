@@ -2,10 +2,17 @@ import React from "react";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DxcBox from "./Box";
+import { HalstackProvider } from "../HalstackContext";
 
 export default {
   title: "Box ",
   component: DxcBox,
+};
+
+const opinionatedTheme = {
+  box: {
+    baseColor: "#ffffff",
+  },
 };
 
 export const Chromatic = () => (
@@ -127,6 +134,14 @@ export const Chromatic = () => (
     <ExampleContainer>
       <Title title="FitContent" theme="light" level={4} />
       <DxcBox size="fitContent">Box</DxcBox>
+    </ExampleContainer>
+    <Title title="Opinionated theme" theme="light" level={2} />
+    <ExampleContainer>
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcBox display="flex" padding="medium">
+          Box
+        </DxcBox>
+      </HalstackProvider>
     </ExampleContainer>
   </>
 );

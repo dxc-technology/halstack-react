@@ -82,7 +82,7 @@ const sections = [
                   <tr>
                     <th>Component token</th>
                     <th>Element</th>
-                    <th>Token</th>
+                    <th>Core token</th>
                     <th>Value</th>
                   </tr>
                 </thead>
@@ -169,7 +169,7 @@ const sections = [
                   <tr>
                     <th>Component token</th>
                     <th>Element</th>
-                    <th>Token</th>
+                    <th>Core token</th>
                     <th>Value</th>
                   </tr>
                 </thead>

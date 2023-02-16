@@ -99,33 +99,13 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <Code>thumbBackgroundColor</Code>
+                  <Code>checkedThumbBackgroundColor</Code>
                 </td>
-                <td>Thumb</td>
+                <td>Thumb checked</td>
                 <td>
                   <Code>color-white</Code>
                 </td>
                 <td>#ffffff</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>focusThumbBorderColor</Code>
-                </td>
-                <td>Thumb:focus</td>
-                <td>
-                  <Code>color-blue-600</Code>
-                </td>
-                <td>#0095ff</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>uncheckedTrackBackgroundColor</Code>
-                </td>
-                <td>Track unchecked</td>
-                <td>
-                  <Code>color-grey-400</Code>
-                </td>
-                <td>#bfbfbf</td>
               </tr>
               <tr>
                 <td>
@@ -139,13 +119,23 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <Code>disabledUncheckedTrackBackgroundColor</Code>
+                  <Code>uncheckedTrackBackgroundColor</Code>
                 </td>
-                <td>Track:disabled unchecked</td>
+                <td>Track unchecked</td>
                 <td>
-                  <Code>color-grey-100</Code>
+                  <Code>color-grey-400</Code>
                 </td>
-                <td>#f2f2f2</td>
+                <td>#bfbfbf</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>uncheckedThumbBackgroundColor</Code>
+                </td>
+                <td>Thumb unchecked</td>
+                <td>
+                  <Code>color-white</Code>
+                </td>
+                <td>#ffffff</td>
               </tr>
               <tr>
                 <td>
@@ -156,6 +146,56 @@ const sections = [
                   <Code>color-purple-100</Code>
                 </td>
                 <td>#f2eafa</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>disabledUncheckedTrackBackgroundColor</Code>
+                </td>
+                <td>Track:disabled unchecked</td>
+                <td>
+                  <Code>color-grey-100</Code>
+                </td>
+                <td>#f2f2f2</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>disabledCheckedThumbBackgroundColor</Code>
+                </td>
+                <td>Thumb:disabled checked</td>
+                <td>
+                  <Code>color-white</Code>
+                </td>
+                <td>#ffffff</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>disabledUncheckedTrackBackgroundColor</Code>
+                </td>
+                <td>Track:disabled unchecked</td>
+                <td>
+                  <Code>color-grey-100</Code>
+                </td>
+                <td>#f2f2f2</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>disabledUncheckedThumbBackgroundColor</Code>
+                </td>
+                <td>Thumb:disabled unchecked</td>
+                <td>
+                  <Code>color-white</Code>
+                </td>
+                <td>#ffffff</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>thumbFocusColor</Code>
+                </td>
+                <td>Thumb:focus</td>
+                <td>
+                  <Code>color-blue-600</Code>
+                </td>
+                <td>#0095ff</td>
               </tr>
             </tbody>
           </DxcTable>
@@ -397,8 +437,8 @@ const sections = [
             <DxcTable>
               <thead>
                 <tr>
-                  <th>margin</th>
-                  <th>value</th>
+                  <th>Margin</th>
+                  <th>Value</th>
                 </tr>
               </thead>
               <tbody>
@@ -422,7 +462,7 @@ const sections = [
                 </tr>
                 <tr>
                   <td>
-                    <Code>medium</Code> default
+                    <Code>medium</Code>
                   </td>
                   <td>36px</td>
                 </tr>

@@ -1,7 +1,16 @@
 {
+  "alert": {
+    "baseColor": "#e6f4ff",
+    "accentColor": "#0067b3",
+    "overlayColor": "#000000b3"
+  },
   "accordion": {
-    "accentColor": "#6f2c91",
-    "fontColor": "#666666"
+    "accentColor": "#5f249f",
+    "titleFontColor": "#000000",
+    "assistiveTextFontColor": "#666666"
+  },
+  "box": {
+    "baseColor": "#ffffff"
   },
   "button": {
     "baseColor": "#5f249f",
@@ -15,11 +24,17 @@
   },
   "chip": {
     "baseColor": "#e6e6e6",
-    "fontColor": "#000000"
+    "fontColor": "#000000",
+    "iconColor": "#4d4d4d"
   },
   "dateInput": {
-    "selectedDateBackgroundColor": "#6f2c91",
-    "selectedDateFontColor": "#ffffff"
+    "baseColor": "#5f249f",
+    "selectedFontColor": "#ffffff"
+  },
+  "dialog": {
+    "baseColor": "#ffffff",
+    "closeIconColor": "#000000",
+    "overlayColor": "#000000b3"
   },
   "dropdown": {
     "baseColor": "#ffffff",
@@ -43,44 +58,53 @@
     "hamburguerColor": "#000000",
     "logo": "/dxc_header_logo.svg",
     "logoResponsive": "/dxc_header_logo.svg",
-    "contentColor": "#000000"
+    "contentColor": "#000000",
+    "overlayColor": "#000000b3"
+  },
+  "link": {
+    "baseColor": "#5f249f"
   },
   "navTabs": {
     "baseColor": "#5f249f"
   },
   "paginator": {
-    "baseColor": "#eeeeee",
+    "baseColor": "#f2f2f2",
     "fontColor": "#000000"
   },
   "progressBar": {
     "accentColor": "#5f249f",
-    "baseColor": "#cecece",
-    "fontColor": "#000000"
+    "baseColor": "#e6e6e6",
+    "fontColor": "#000000",
+    "overlayColor": "#000000b3"
   },
   "quickNav": {
     "fontColor": "#666666",
-    "accentColor": "#5f249f"
+    "accentColor": "#9a6bb2"
   },
   "radioGroup": {
     "baseColor": "#0086e6",
     "fontColor": "#000000"
   },
   "select": {
-    "selectedOptionBackgroundColor": "#d9d9d9",
+    "selectedOptionBackgroundColor": "#e6f4ff",
     "fontColor": "#000000",
-    "optionFontColor": "#000000"
+    "optionFontColor": "#000000",
+    "hoverBorderColor": "#a46ede"
   },
   "sidenav": {
-    "baseColor": "#F2F2F2"
+    "baseColor": "#f2f2f2"
   },
   "slider": {
     "baseColor": "#0067b3",
-    "fontColor": "#000000"
+    "fontColor": "#000000",
+    "totalLineColor": "#e6e6e6"
   },
   "spinner": {
     "accentColor": "#5f249f",
     "baseColor": "#ffffff",
-    "fontColor": "#000000"
+    "fontColor": "#000000",
+    "overlayColor": "#a46ede",
+    "overlayFontColor": "#ffffff"
   },
   "switch": {
     "checkedBaseColor": "#5f249f",
@@ -94,8 +118,17 @@
   "tabs": {
     "baseColor": "#5f249f"
   },
+  "tag": {
+    "fontColor": "#000000",
+    "iconColor": "#ffffff"
+  },
+  "textarea": {
+    "fontColor": "#000000",
+    "hoverBorderColor": "#a46ede"
+  },
   "textInput": {
-    "fontColor": "#000000"
+    "fontColor": "#000000",
+    "hoverBorderColor": "#a46ede"
   },
   "toggleGroup": {
     "selectedBaseColor": "#5f249f",

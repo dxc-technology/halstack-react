@@ -163,7 +163,7 @@ const sections = [
             <thead>
               <tr>
                 <th>Margin</th>
-                <th>value</th>
+                <th>Value</th>
               </tr>
             </thead>
             <tbody>
@@ -220,7 +220,7 @@ const sections = [
             <thead>
               <tr>
                 <th>Property</th>
-                <th>value</th>
+                <th>Value</th>
               </tr>
             </thead>
             <tbody>

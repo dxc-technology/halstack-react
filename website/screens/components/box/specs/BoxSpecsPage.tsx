@@ -54,7 +54,7 @@ const sections = [
                 <td>
                   <Code>color-transparent</Code>
                 </td>
-                <td>#transparent</td>
+                <td>transparent</td>
               </tr>
               <tr>
                 <td>
@@ -71,7 +71,9 @@ const sections = [
                   <Code>oneShadowDepthShadowColor</Code>
                 </td>
                 <td>Shadow</td>
-                <td>-</td>
+                <td>
+                  <Code>color-grey-300-a</Code>
+                </td>
                 <td>#00000033</td>
               </tr>
               <tr>
@@ -79,7 +81,9 @@ const sections = [
                   <Code>twoShadowDepthShadowColor</Code>
                 </td>
                 <td>Shadow</td>
-                <td>-</td>
+                <td>
+                  <Code>color-grey-300-a</Code>
+                </td>
                 <td>#00000033</td>
               </tr>
             </tbody>
@@ -127,7 +131,7 @@ const sections = [
                 <td>
                   <Code>border-style-none</Code>
                 </td>
-                <td>none</td>
+                <td>-</td>
               </tr>
             </tbody>
           </DxcTable>
@@ -152,7 +156,7 @@ const sections = [
                 </td>
                 <td>Container shadow</td>
                 <td>-</td>
-                <td>none</td>
+                <td>-</td>
               </tr>
               <tr>
                 <td>
@@ -160,7 +164,7 @@ const sections = [
                 </td>
                 <td>Container shadow</td>
                 <td>-</td>
-                <td>none</td>
+                <td>-</td>
               </tr>
               <tr>
                 <td>
@@ -168,7 +172,7 @@ const sections = [
                 </td>
                 <td>Container shadow</td>
                 <td>-</td>
-                <td>none</td>
+                <td>-</td>
               </tr>
               <tr>
                 <td>
@@ -176,7 +180,7 @@ const sections = [
                 </td>
                 <td>Container shadow</td>
                 <td>-</td>
-                <td>none</td>
+                <td>-</td>
               </tr>
               <tr>
                 <td>
@@ -262,7 +266,7 @@ const sections = [
             <DxcTable>
               <thead>
                 <tr>
-                  <th>Property</th>
+                  <th>Width</th>
                   <th>Value</th>
                 </tr>
               </thead>
@@ -309,8 +313,8 @@ const sections = [
             <DxcTable>
               <thead>
                 <tr>
-                  <th>margin</th>
-                  <th>value</th>
+                  <th>Margin</th>
+                  <th>Value</th>
                 </tr>
               </thead>
               <tbody>
@@ -373,8 +377,8 @@ const sections = [
             <DxcTable>
               <thead>
                 <tr>
-                  <th>padding</th>
-                  <th>value</th>
+                  <th>Padding</th>
+                  <th>Value</th>
                 </tr>
               </thead>
               <tbody>
