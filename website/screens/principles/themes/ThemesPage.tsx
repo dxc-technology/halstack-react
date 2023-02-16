@@ -753,6 +753,12 @@ const sections = [
                           <Code>overlayColor</Code>
                         </td>
                       </tr>
+                      <tr>
+                        <td>Overlay font color</td>
+                        <td>
+                          <Code>overlayFontColor</Code>
+                        </td>
+                      </tr>
                     </tbody>
                   </DxcTable>
                 ),
@@ -1318,7 +1324,7 @@ const sections = [
                         </td>
                       </tr>
                       <tr>
-                        <td>Selected font color</td>
+                        <td>Selected step font color</td>
                         <td>
                           <Code>selectedStepFontColor</Code>
                         </td>

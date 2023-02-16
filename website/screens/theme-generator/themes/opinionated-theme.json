@@ -1,13 +1,13 @@
 {
-  "alert": {
-    "baseColor": "#e6f4ff",
-    "accentColor": "#0067b3",
-    "overlayColor": "#000000b3"
-  },
   "accordion": {
     "accentColor": "#5f249f",
     "titleFontColor": "#000000",
     "assistiveTextFontColor": "#666666"
+  },
+  "alert": {
+    "baseColor": "#e6f4ff",
+    "accentColor": "#0067b3",
+    "overlayColor": "#000000b3"
   },
   "box": {
     "baseColor": "#ffffff"
@@ -72,7 +72,8 @@
     "accentColor": "#5f249f",
     "baseColor": "#e6e6e6",
     "fontColor": "#000000",
-    "overlayColor": "#000000b3"
+    "overlayColor": "#000000b3",
+    "overlayFontColor": "#ffffff"
   },
   "quickNav": {
     "fontColor": "#666666",
@@ -136,6 +137,6 @@
   "wizard": {
     "baseColor": "#5f249f",
     "fontColor": "#000000",
-    "selectedFontColor": "#ffffff"
+    "selectedStepFontColor": "#ffffff"
   }
 }
