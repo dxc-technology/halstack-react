@@ -111,6 +111,8 @@ const parseTheme = (theme) => {
   chipTokens.backgroundColor = theme?.chip?.baseColor ?? chipTokens.backgroundColor;
   chipTokens.fontColor = theme?.chip?.fontColor ?? chipTokens.fontColor;
   chipTokens.iconColor = theme?.chip?.iconColor ?? chipTokens.iconColor;
+  chipTokens.hoverIconColor = subLightness(theme?.chip?.iconColor, 10) ?? chipTokens.hoverIconColor;
+  chipTokens.activeIconColor = subLightness(theme?.chip?.iconColor, 30) ?? chipTokens.activeIconColor;
 
   const dateTokens = componentTokensCopy.dateInput;
   dateTokens.pickerSelectedBackgroundColor = theme?.dateInput?.baseColor ?? dateTokens.pickerSelectedBackgroundColor;

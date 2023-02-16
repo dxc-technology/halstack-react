@@ -361,6 +361,12 @@ const sections = [
                         <td>Icon color</td>
                         <td>
                           <Code>iconColor</Code>
+                          <br />
+                          <br />
+                          <Code>hoverIconColor</Code> (+10% lightness)
+                          <br />
+                          <br />
+                          <Code>activeIconColor</Code> (+30% lightness)
                         </td>
                       </tr>
                     </tbody>
