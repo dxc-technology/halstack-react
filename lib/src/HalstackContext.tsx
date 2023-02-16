@@ -111,6 +111,8 @@ const parseTheme = (theme) => {
   chipTokens.backgroundColor = theme?.chip?.baseColor ?? chipTokens.backgroundColor;
   chipTokens.fontColor = theme?.chip?.fontColor ?? chipTokens.fontColor;
   chipTokens.iconColor = theme?.chip?.iconColor ?? chipTokens.iconColor;
+  chipTokens.hoverIconColor = subLightness(theme?.chip?.iconColor, 10) ?? chipTokens.hoverIconColor;
+  chipTokens.activeIconColor = subLightness(theme?.chip?.iconColor, 30) ?? chipTokens.activeIconColor;
 
   const dateTokens = componentTokensCopy.dateInput;
   dateTokens.pickerSelectedBackgroundColor = theme?.dateInput?.baseColor ?? dateTokens.pickerSelectedBackgroundColor;
@@ -193,6 +195,7 @@ const parseTheme = (theme) => {
   progressBarTokens.valueFontColor = theme?.progressBar?.fontColor ?? progressBarTokens.valueFontColor;
   progressBarTokens.helperTextFontColor = theme?.progressBar?.fontColor ?? progressBarTokens.helperTextFontColor;
   progressBarTokens.overlayColor = theme?.progressBar?.overlayColor ?? progressBarTokens.overlayColor;
+  progressBarTokens.overlayFontColor = theme?.progressBar?.overlayFontColor ?? progressBarTokens.overlayFontColor;
 
   const quickNavTokens = componentTokensCopy.quickNav;
   quickNavTokens.fontColor = theme?.quickNav?.fontColor ?? quickNavTokens.fontColor;
@@ -322,7 +325,7 @@ const parseTheme = (theme) => {
 
   const wizardTokens = componentTokensCopy.wizard;
   wizardTokens.selectedStepBackgroundColor = theme?.wizard?.baseColor ?? wizardTokens.selectedStepBackgroundColor;
-  wizardTokens.selectedStepFontColor = theme?.wizard?.selectedFontColor ?? wizardTokens.selectedStepFontColor;
+  wizardTokens.selectedStepFontColor = theme?.wizard?.selectedStepFontColor ?? wizardTokens.selectedStepFontColor;
   wizardTokens.selectedStepBorderColor = theme?.wizard?.baseColor ?? wizardTokens.selectedStepBorderColor;
   wizardTokens.visitedLabelFontColor = theme?.wizard?.fontColor ?? wizardTokens.visitedLabelFontColor;
   wizardTokens.selectedLabelFontColor = theme?.wizard?.fontColor ?? wizardTokens.selectedLabelFontColor;
