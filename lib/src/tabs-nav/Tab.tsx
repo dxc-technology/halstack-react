@@ -56,7 +56,8 @@ const DxcTab = forwardRef(
               {typeof icon === "string" ? <img src={icon} /> : icon}
             </TabIconContainer>
           )}
-            <DxcTypography
+          <LabelContainer>
+          <DxcTypography
             color={
               disabled
                 ? colorsTheme.navTabs.disabledFontColor
@@ -72,12 +73,14 @@ const DxcTab = forwardRef(
             letterSpacing="0.025em"
             lineHeight="1.715em"
           >            {children}
-            {notificationNumber && (
+            
+          </DxcTypography>
+          {notificationNumber && (
               <BadgeContainer>
                 <DxcBadge notificationText={notificationNumber > 99 ? "+99" : notificationNumber} disabled={disabled} />
               </BadgeContainer>
             )}
-          </DxcTypography>
+          </LabelContainer>
         </Tab>
       </TabContainer>
     );
