@@ -75,7 +75,8 @@
     "accentColor": "color",
     "baseColor": "color",
     "fontColor": "color",
-    "overlayColor": "color"
+    "overlayColor": "color",
+    "overlayFontColor": "color"
   },
   "quickNav": {
     "fontColor": "color",
@@ -123,8 +124,8 @@
     "iconColor": "color"
   },
   "textarea": {
-    "fontColor": "#000000",
-    "hoverBorderColor": "#a46ede"
+    "fontColor": "color",
+    "hoverBorderColor": "color"
   },
   "textInput": {
     "fontColor": "color",
@@ -139,6 +140,6 @@
   "wizard": {
     "baseColor": "color",
     "fontColor": "color",
-    "selectedFontColor": "color"
+    "selectedStepFontColor": "color"
   }
 }
