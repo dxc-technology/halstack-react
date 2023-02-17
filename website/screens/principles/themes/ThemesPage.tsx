@@ -361,6 +361,12 @@ const sections = [
                         <td>Icon color</td>
                         <td>
                           <Code>iconColor</Code>
+                          <br />
+                          <br />
+                          <Code>hoverIconColor</Code> (+10% lightness)
+                          <br />
+                          <br />
+                          <Code>activeIconColor</Code> (+30% lightness)
                         </td>
                       </tr>
                     </tbody>
@@ -751,6 +757,12 @@ const sections = [
                         <td>Overlay color</td>
                         <td>
                           <Code>overlayColor</Code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Overlay font color</td>
+                        <td>
+                          <Code>overlayFontColor</Code>
                         </td>
                       </tr>
                     </tbody>
@@ -1318,7 +1330,7 @@ const sections = [
                         </td>
                       </tr>
                       <tr>
-                        <td>Selected font color</td>
+                        <td>Selected step font color</td>
                         <td>
                           <Code>selectedStepFontColor</Code>
                         </td>

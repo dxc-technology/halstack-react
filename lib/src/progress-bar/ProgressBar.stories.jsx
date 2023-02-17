@@ -15,6 +15,7 @@ const opinionatedTheme = {
     baseColor: "#e6e6e6",
     fontColor: "#000000",
     overlayColor: "#000000b3",
+    overlayFontColor: "#ffffff",
   },
 };
 
