@@ -29,3 +29,4 @@ jobs:
           exitOnceUploaded: true
           exitZeroOnChanges: true
           workingDir: lib
+          debug: true
