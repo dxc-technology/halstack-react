@@ -5,10 +5,10 @@ on:
     branches:
       - master
     paths:
-      - 'lib/**'
+      - "lib/**"
   pull_request:
     paths:
-      - 'lib/**'
+      - "lib/**"
 
 jobs:
   chromatic-deployment:
@@ -21,6 +21,11 @@ jobs:
 
       - name: Install lib dependencies
         run: cd lib && npm install
+
+      - name: Install Node.js 14.x
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16.x
 
       - name: Publish to Chromatic
         uses: chromaui/action@v1
