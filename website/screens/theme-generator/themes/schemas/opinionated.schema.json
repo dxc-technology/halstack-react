@@ -64,9 +64,6 @@
   "link": {
     "baseColor": "color"
   },
-  "navTabs": {
-    "baseColor": "color"
-  },
   "paginator": {
     "baseColor": "color",
     "fontColor": "color"

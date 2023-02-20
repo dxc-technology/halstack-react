@@ -281,7 +281,7 @@ const sections = [
             <tbody>
               <tr>
                 <td>
-                  <Code>titleLabelFontFamily</Code>
+                  <Code>fontFamily</Code>
                 </td>
                 <td>Title</td>
                 <td>
@@ -291,17 +291,27 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <Code>titleLabelFontSize</Code>
+                  <Code>fontSize</Code>
                 </td>
                 <td>Title</td>
                 <td>
                   <Code>font-scale-03</Code>
                 </td>
-                <td>16px</td>
+                <td>1rem / 16px</td>
               </tr>
               <tr>
                 <td>
-                  <Code>titleLabelFontWeight</Code>
+                  <Code>fontStyle</Code>
+                </td>
+                <td>Title</td>
+                <td>
+                  <Code>font-normal</Code>
+                </td>
+                <td>normal</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>fontWeight</Code>
                 </td>
                 <td>Title</td>
                 <td>
