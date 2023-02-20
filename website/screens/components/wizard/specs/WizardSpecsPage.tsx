@@ -129,8 +129,8 @@ const sections = [
                 <td>
                   <Code>visitedStepBackgroundColor</Code>
                 </td>
+                <td>Step:visited</td>
                 <td>
-                  Step:visited
                   <Code>color-white</Code>
                 </td>
                 <td>#ffffff</td>
@@ -151,9 +151,9 @@ const sections = [
                 </td>
                 <td>Step:unvisited background</td>
                 <td>
-                  <Code>color-grey-700</Code>
+                  <Code>color-transparent</Code>
                 </td>
-                <td>#666666</td>
+                <td>transparent</td>
               </tr>
               <tr>
                 <td>
@@ -171,7 +171,7 @@ const sections = [
                 </td>
                 <td>Step:visited border</td>
                 <td>
-                  <Code>coor-black</Code>
+                  <Code>color-black</Code>
                 </td>
                 <td>#000000</td>
               </tr>

@@ -27,7 +27,7 @@ const sections = [
               <tr>
                 <th>Component token</th>
                 <th>Element</th>
-                <th>Token</th>
+                <th>Core token</th>
                 <th>Value</th>
               </tr>
             </thead>
@@ -64,7 +64,7 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <Code>fontColor</Code>
+                  <Code>labelFontColor</Code>
                 </td>
                 <td>Label</td>
                 <td>
@@ -74,17 +74,7 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <Code>fontColorOnDark</Code>
-                </td>
-                <td>Label</td>
-                <td>
-                  <Code>color-white</Code>
-                </td>
-                <td>#ffffff</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>fontColor</Code>
+                  <Code>progressValueFontColor</Code>
                 </td>
                 <td>Percentage</td>
                 <td>
@@ -94,13 +84,33 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <Code>overlayColor</Code>
+                  <Code>overlayBackgroundColor</Code>
                 </td>
                 <td>Overlay</td>
                 <td>
                   <Code>color-grey-800-a</Code>
                 </td>
                 <td>#000000b3</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>overlayLabelFontColor</Code>
+                </td>
+                <td>Overlay</td>
+                <td>
+                  <Code>color-white</Code>
+                </td>
+                <td>#ffffff</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>overlayProgressValueFontColor</Code>
+                </td>
+                <td>Overlay</td>
+                <td>
+                  <Code>color-white</Code>
+                </td>
+                <td>#ffffff</td>
               </tr>
             </tbody>
           </DxcTable>
@@ -114,7 +124,7 @@ const sections = [
               <tr>
                 <th>Property</th>
                 <th>Element</th>
-                <th>Token</th>
+                <th>Core token</th>
                 <th>Value</th>
               </tr>
             </thead>
@@ -179,7 +189,7 @@ const sections = [
               <tr>
                 <th>Property</th>
                 <th>Element</th>
-                <th>Token</th>
+                <th>Core token</th>
                 <th>Value</th>
               </tr>
             </thead>
@@ -236,7 +246,7 @@ const sections = [
               <tr>
                 <th>Property</th>
                 <th>Element</th>
-                <th>Token</th>
+                <th>Core token</th>
                 <th>Value</th>
               </tr>
             </thead>

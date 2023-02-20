@@ -2,10 +2,21 @@ import React from "react";
 import DxcSpinner from "./Spinner";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
+import { HalstackProvider } from "../HalstackContext";
 
 export default {
   title: "Spinner",
   component: DxcSpinner,
+};
+
+const opinionatedTheme = {
+  spinner: {
+    accentColor: "#5f249f",
+    baseColor: "#ffffff",
+    fontColor: "#000000",
+    overlayColor: "#a46ede",
+    overlayFontColor: "#ffffff",
+  },
 };
 
 export const Chromatic = () => (
@@ -62,7 +73,13 @@ export const Chromatic = () => (
       <DxcSpinner margin="xlarge" mode="small" value="75"></DxcSpinner>
       <Title title="Xxlarge margin" theme="light" level={4} />
       <DxcSpinner margin="xxlarge" mode="small" value="75"></DxcSpinner>
-      <hr />
+    </ExampleContainer>
+    <Title title="Opinionated theme" theme="light" level={2} />
+    <ExampleContainer>
+      <Title title="With label and value label" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcSpinner label="Label" value="50" showValue></DxcSpinner>
+      </HalstackProvider>
     </ExampleContainer>
   </>
 );
@@ -99,5 +116,14 @@ export const SpinnerOverlayWithValueAndLabel = () => (
   <ExampleContainer>
     <Title title="Mode overlay" theme="light" level={4} />
     <DxcSpinner mode="overlay" label="Label" value="50" showValue></DxcSpinner>
+  </ExampleContainer>
+);
+
+export const SpinnerOverlayWithValueAndLabelOpinionated = () => (
+  <ExampleContainer>
+    <HalstackProvider theme={opinionatedTheme}>
+      <Title title="Mode overlay" theme="light" level={4} />
+      <DxcSpinner mode="overlay" label="Label" value="50" showValue></DxcSpinner>
+    </HalstackProvider>
   </ExampleContainer>
 );

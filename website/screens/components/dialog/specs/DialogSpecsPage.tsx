@@ -85,8 +85,10 @@ const sections = [
                   <Code>boxShadowColor</Code>
                 </td>
                 <td>Container shadow</td>
-                <td>-</td>
-                <td>rgba(0, 0, 0, 0.2)</td>
+                <td>
+                  <Code>color-grey-300-a</Code>
+                </td>
+                <td>#00000033</td>
               </tr>
               <tr>
                 <td>
@@ -103,20 +105,16 @@ const sections = [
                   <Code>closeIconBackgroundColor</Code>
                 </td>
                 <td>Icon close</td>
-                <td>
-                  <Code>none</Code>
-                </td>
-                <td>none</td>
+                <td>-</td>
+                <td>-</td>
               </tr>
               <tr>
                 <td>
                   <Code>closeIconBorderColor</Code>
                 </td>
                 <td>Icon close</td>
-                <td>
-                  <Code>none</Code>
-                </td>
-                <td>none</td>
+                <td>-</td>
+                <td>-</td>
               </tr>
             </tbody>
           </DxcTable>
@@ -376,61 +374,7 @@ const sections = [
           </DxcTable>
         ),
       },
-      {
-        title: "Overlay",
-        content: (
-          <>
-            <DxcTable>
-              <thead>
-                <tr>
-                  <th>Component token</th>
-                  <th>Element</th>
-                  <th>Core token</th>
-                  <th>Value</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <Code>overlayOpacity</Code>
-                  </td>
-                  <td>Overlay</td>
-                  <td>-</td>
-                  <td>0.7</td>
-                </tr>
-              </tbody>
-            </DxcTable>
-            <DxcTable>
-              <thead>
-                <tr>
-                  <th>Property</th>
-                  <th>Element</th>
-                  <th>Core token</th>
-                  <th>Value</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <Code>width</Code>
-                  </td>
-                  <td>Overlay</td>
-                  <td>-</td>
-                  <td>100vw</td>
-                </tr>
-                <tr>
-                  <td>
-                    <Code>height</Code>
-                  </td>
-                  <td>Overlay</td>
-                  <td>-</td>
-                  <td>100vh</td>
-                </tr>
-              </tbody>
-            </DxcTable>
-          </>
-        ),
-      },
+
       {
         title: "Padding",
         content: (
@@ -457,7 +401,7 @@ const sections = [
                 </tr>
                 <tr>
                   <td>
-                    <Code>small</Code> 
+                    <Code>small</Code>
                   </td>
                   <td>24px</td>
                 </tr>

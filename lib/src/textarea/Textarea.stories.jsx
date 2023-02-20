@@ -4,10 +4,18 @@ import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import { BackgroundColorProvider } from "../BackgroundColorContext";
 import DarkContainer from "../../.storybook/components/DarkSection";
+import { HalstackProvider } from "../HalstackContext";
 
 export default {
   title: "Textarea",
   component: DxcTextarea,
+};
+
+const opinionatedTheme = {
+  textarea: {
+    fontColor: "#000000",
+    hoverBorderColor: "#a46ede",
+  },
 };
 
 export const Chromatic = () => (
@@ -151,7 +159,58 @@ export const Chromatic = () => (
     <ExampleContainer>
       <Title title="Xxlarge margin" theme="light" level={4} />
       <DxcTextarea label="Xxlarge" margin="xxlarge" />
-      <hr />
+    </ExampleContainer>
+    <Title title="Opinionated theme" theme="light" level={2} />
+    <ExampleContainer pseudoState="pseudo-hover">
+      <Title title="Hovered" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcTextarea label="Hovered" helperText="Sample text" placeholder="Placeholder" />
+      </HalstackProvider>
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-focus">
+      <Title title="Focused" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcTextarea label="Focused" helperText="Sample text" />
+      </HalstackProvider>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Disabled" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcTextarea
+          label="Disabled"
+          optional
+          helperText="Sample text"
+          placeholder="Enter your text here..."
+          disabled
+        />
+      </HalstackProvider>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Disabled with value" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcTextarea label="Disabled" helperText="Sample text" defaultValue="Example text" disabled />
+      </HalstackProvider>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="With error" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcTextarea
+          label="Textarea with error"
+          helperText="Helper text"
+          placeholder="Enter your text here..."
+          error="Error message."
+        />
+      </HalstackProvider>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Grow manual" theme="light" level={4} />{" "}
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcTextarea
+          label="Manual vertical grow"
+          verticalGrow="manual"
+          defaultValue="Long textttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt"
+        />
+      </HalstackProvider>
     </ExampleContainer>
   </>
 );

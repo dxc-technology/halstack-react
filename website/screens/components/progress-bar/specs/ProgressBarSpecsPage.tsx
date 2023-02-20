@@ -55,7 +55,7 @@ const sections = [
               <tr>
                 <th>Component token</th>
                 <th>Element</th>
-                <th>Token</th>
+                <th>Core token</th>
                 <th>Value</th>
               </tr>
             </thead>
@@ -170,6 +170,16 @@ const sections = [
                 </td>
                 <td>#000000b3</td>
               </tr>
+              <tr>
+                <td>
+                  <Code>overlayFontColor</Code>
+                </td>
+                <td>Overlay font color</td>
+                <td>
+                  <Code>color-white</Code>
+                </td>
+                <td>#ffffff</td>
+              </tr>
             </tbody>
           </DxcTable>
         ),
@@ -182,7 +192,7 @@ const sections = [
               <tr>
                 <th>Property</th>
                 <th>Element</th>
-                <th>Token</th>
+                <th>Core token</th>
                 <th>Value</th>
               </tr>
             </thead>
@@ -231,7 +241,7 @@ const sections = [
               <tr>
                 <th>Property</th>
                 <th>Element</th>
-                <th>Token</th>
+                <th>Core token</th>
                 <th>Value</th>
               </tr>
             </thead>
@@ -328,7 +338,7 @@ const sections = [
               <tr>
                 <th>Property</th>
                 <th>Element</th>
-                <th>Token</th>
+                <th>Core token</th>
                 <th>Value</th>
               </tr>
             </thead>

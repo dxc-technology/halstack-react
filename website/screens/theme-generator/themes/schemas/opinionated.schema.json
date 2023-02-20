@@ -1,7 +1,16 @@
 {
+  "alert": {
+    "baseColor": "color",
+    "accentColor": "color",
+    "overlayColor": "color"
+  },
   "accordion": {
     "accentColor": "color",
-    "fontColor": "color"
+    "titleFontColor": "color",
+    "assistiveTextFontColor": "color"
+  },
+  "box": {
+    "baseColor": "color"
   },
   "button": {
     "baseColor": "color",
@@ -15,11 +24,17 @@
   },
   "chip": {
     "baseColor": "color",
-    "fontColor": "color"
+    "fontColor": "color",
+    "iconColor": "color"
   },
   "dateInput": {
-    "selectedDateBackgroundColor": "color",
-    "selectedDateFontColor": "color"
+    "baseColor": "color",
+    "selectedFontColor": "color"
+  },
+  "dialog": {
+    "baseColor": "color",
+    "closeIconColor": "color",
+    "overlayColor": "color"
   },
   "dropdown": {
     "baseColor": "color",
@@ -43,7 +58,11 @@
     "hamburguerColor": "color",
     "logo": "image",
     "logoResponsive": "image",
-    "contentColor": "color"
+    "contentColor": "color",
+    "overlayColor": "color"
+  },
+  "link": {
+    "baseColor": "color"
   },
   "paginator": {
     "baseColor": "color",
@@ -52,7 +71,9 @@
   "progressBar": {
     "accentColor": "color",
     "baseColor": "color",
-    "fontColor": "color"
+    "fontColor": "color",
+    "overlayColor": "color",
+    "overlayFontColor": "color"
   },
   "quickNav": {
     "fontColor": "color",
@@ -65,19 +86,23 @@
   "select": {
     "selectedOptionBackgroundColor": "color",
     "fontColor": "color",
-    "optionFontColor": "color"
+    "optionFontColor": "color",
+    "hoverBorderColor": "color"
   },
   "sidenav": {
     "baseColor": "color"
   },
   "slider": {
     "baseColor": "color",
-    "fontColor": "color"
+    "fontColor": "color",
+    "totalLineColor": "color"
   },
   "spinner": {
     "accentColor": "color",
     "baseColor": "color",
-    "fontColor": "color"
+    "fontColor": "color",
+    "overlayColor": "color",
+    "overlayFontColor": "color"
   },
   "switch": {
     "checkedBaseColor": "color",
@@ -85,15 +110,23 @@
   },
   "table": {
     "baseColor": "color",
-    "fontColor": "color",
     "headerFontColor": "color",
     "cellFontColor": "color"
   },
   "tabs": {
     "baseColor": "color"
   },
+  "tag": {
+    "fontColor": "color",
+    "iconColor": "color"
+  },
+  "textarea": {
+    "fontColor": "color",
+    "hoverBorderColor": "color"
+  },
   "textInput": {
-    "fontColor": "color"
+    "fontColor": "color",
+    "hoverBorderColor": "color"
   },
   "toggleGroup": {
     "selectedBaseColor": "color",
@@ -104,6 +137,6 @@
   "wizard": {
     "baseColor": "color",
     "fontColor": "color",
-    "selectedFontColor": "color"
+    "selectedStepFontColor": "color"
   }
 }

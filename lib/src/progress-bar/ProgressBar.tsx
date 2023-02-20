@@ -67,7 +67,6 @@ const BackgroundProgressBar = styled.div<{ overlay?: boolean }>`
   ${({ overlay, theme }) =>
     overlay
       ? `background-color: ${theme.overlayColor};
-      opacity: 0.8;
       width: 100%;
       justify-content: center;
       height: 100vh;
@@ -131,7 +130,7 @@ const ProgressBarLabel = styled.div<LabelProps>`
     props.backgroundType === "dark"
       ? props.theme.labelFontColorOnDark
       : props.overlay === true
-      ? "#FFFFFF"
+      ? props.theme.overlayFontColor
       : props.theme.labelFontColor};
   overflow: hidden;
   text-overflow: ellipsis;
@@ -156,7 +155,7 @@ const ProgressBarProgress = styled.div<ProgressProps>`
     props.backgroundType === "dark"
       ? props.theme.valueFontColorOnDark
       : props.overlay === true
-      ? "#FFFFFF"
+      ? props.theme.overlayFontColor
       : props.theme.valueFontColor};
   display: ${(props) =>
     (props.value !== undefined && props.value !== null && props.showValue === true && "block") || "none"};
@@ -173,7 +172,7 @@ const HelperText = styled.span<HelperTextProps>`
     props.backgroundType === "dark"
       ? props.theme.helperTextFontColorOnDark
       : props.overlay === true
-      ? "#FFFFFF"
+      ? props.theme.overlayFontColor
       : props.theme.helperTextFontColor};
   font-family: ${(props) => props.theme.helperTextFontFamily};
   font-size: ${(props) => props.theme.helperTextFontSize};

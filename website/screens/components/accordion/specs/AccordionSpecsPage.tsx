@@ -78,7 +78,7 @@ const sections = [
                 <th>Component token</th>
                 <th>Element</th>
                 <th>Core token</th>
-                <th>Value (HEX)</th>
+                <th>Value</th>
               </tr>
             </thead>
             <tbody>
@@ -540,37 +540,133 @@ const sections = [
                   </td>
                   <td>12px</td>
                 </tr>
+              </tbody>
+            </DxcTable>
+          </>
+        ),
+      },
+      {
+        title: "Margin",
+        content: (
+          <>
+            <DxcParagraph>
+              Margin properties can be applied independently to <Code>top</Code>
+              , <Code>right</Code>, <Code>bottom</Code> and <Code>left</Code>{" "}
+              sides of the card container.
+            </DxcParagraph>
+            <DxcTable>
+              <thead>
+                <tr>
+                  <th>Margin</th>
+                  <th>Value</th>
+                </tr>
+              </thead>
+              <tbody>
                 <tr>
                   <td>
-                    <Code>padding</Code>
+                    <Code>xxsmall</Code>
                   </td>
-                  <td>Custom content</td>
-                  <td>
-                    <DxcLink href="https://github.com/dxc-technology/halstack-style-guide/tree/master/guidelines/principles/spacing#component-spacing-tokens">
-                      Component spacing
-                    </DxcLink>
-                  </td>
-                  <td>
-                    <DxcLink href="https://developer.dxc.com/tools/react/next/#/components/accordion">
-                      [Prop] padding
-                    </DxcLink>
-                  </td>
+                  <td>6px</td>
                 </tr>
                 <tr>
                   <td>
-                    <Code>margin</Code>
+                    <Code>xsmall</Code>
                   </td>
-                  <td>Accordion container</td>
+                  <td>16px</td>
+                </tr>
+                <tr>
                   <td>
-                    <DxcLink href="https://github.com/dxc-technology/halstack-style-guide/tree/master/guidelines/principles/spacing#component-spacing-tokens">
-                      Component spacing
-                    </DxcLink>
+                    <Code>small</Code>
                   </td>
+                  <td>24px</td>
+                </tr>
+                <tr>
                   <td>
-                    <DxcLink href="https://developer.dxc.com/tools/react/next/#/components/accordion">
-                      [Prop] margin
-                    </DxcLink>
+                    <Code>medium</Code>
                   </td>
+                  <td>36px</td>
+                </tr>
+                <tr>
+                  <td>
+                    <Code>large</Code>
+                  </td>
+                  <td>48px</td>
+                </tr>
+                <tr>
+                  <td>
+                    <Code>xlarge</Code>
+                  </td>
+                  <td>64px</td>
+                </tr>
+                <tr>
+                  <td>
+                    <Code>xxlarge</Code>
+                  </td>
+                  <td>100px</td>
+                </tr>
+              </tbody>
+            </DxcTable>
+          </>
+        ),
+      },
+      {
+        title: "Padding",
+        content: (
+          <>
+            <DxcParagraph>
+              Padding properties can be applied independently to{" "}
+              <Code>top</Code>, <Code>right</Code>, <Code>bottom</Code> and{" "}
+              <Code>left</Code> sides of the card container.
+            </DxcParagraph>
+            <DxcTable>
+              <thead>
+                <tr>
+                  <th>Padding</th>
+                  <th>Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <Code>xxsmall</Code>
+                  </td>
+                  <td>6px</td>
+                </tr>
+                <tr>
+                  <td>
+                    <Code>xsmall</Code>
+                  </td>
+                  <td>16px</td>
+                </tr>
+                <tr>
+                  <td>
+                    <Code>small</Code>
+                  </td>
+                  <td>24px</td>
+                </tr>
+                <tr>
+                  <td>
+                    <Code>medium</Code>
+                  </td>
+                  <td>36px</td>
+                </tr>
+                <tr>
+                  <td>
+                    <Code>large</Code>
+                  </td>
+                  <td>48px</td>
+                </tr>
+                <tr>
+                  <td>
+                    <Code>xlarge</Code>
+                  </td>
+                  <td>64px</td>
+                </tr>
+                <tr>
+                  <td>
+                    <Code>xxlarge</Code>
+                  </td>
+                  <td>100px</td>
                 </tr>
               </tbody>
             </DxcTable>

@@ -2,6 +2,7 @@ import React from "react";
 import DxcTabs from "./Tabs";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
+import { HalstackProvider } from "../HalstackContext";
 
 export default {
   title: "Tabs",
@@ -81,6 +82,12 @@ const tabsIcon = tabs.map((tab, index) =>
 
 const tabsNotificationIcon = tabsNotification.map((tab) => ({ ...tab, icon: iconSVG }));
 
+const opinionatedTheme = {
+  tabs: {
+    baseColor: "#5f249f",
+  },
+};
+
 export const Chromatic = () => (
   <>
     <ExampleContainer>
@@ -155,6 +162,37 @@ export const Chromatic = () => (
     <ExampleContainer>
       <Title title="Xxlarge margin" theme="light" level={4} />
       <DxcTabs tabs={tabs} margin="xxlarge" />
+    </ExampleContainer>
+    <Title title="Opinionated theme" theme="light" level={2} />
+    <ExampleContainer>
+      <Title title="With icon and notification" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcTabs tabs={tabsNotificationIcon} />
+      </HalstackProvider>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Disabled" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcTabs activeTabIndex={0} tabs={disabledTabs} />
+      </HalstackProvider>
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-hover">
+      <Title title="Hovered" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcTabs tabs={tabs} />
+      </HalstackProvider>
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-focus">
+      <Title title="Focused" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcTabs tabs={tabs} />
+      </HalstackProvider>
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-active">
+      <Title title="Actived" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcTabs tabs={tabs} />
+      </HalstackProvider>
     </ExampleContainer>
   </>
 );

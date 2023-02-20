@@ -2,10 +2,21 @@ import React from "react";
 import DxcProgressBar from "./ProgressBar";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
+import { HalstackProvider } from "../HalstackContext";
 
 export default {
   title: "ProgressBar",
   component: DxcProgressBar,
+};
+
+const opinionatedTheme = {
+  progressBar: {
+    accentColor: "#5f249f",
+    baseColor: "#e6e6e6",
+    fontColor: "#000000",
+    overlayColor: "#000000b3",
+    overlayFontColor: "#ffffff",
+  },
 };
 
 export const Chromatic = () => (
@@ -46,8 +57,21 @@ export const Chromatic = () => (
       <DxcProgressBar label="Margin xlarge" margin="xlarge" value={50} showValue />
     </ExampleContainer>
     <ExampleContainer>
-      <Title title="XxLarge margin" theme="light" level={4} />
+      <Title title="Xxlarge margin" theme="light" level={4} />
       <DxcProgressBar label="Margin xxlarge" margin="xxlarge" value={50} showValue />
+    </ExampleContainer>
+    <Title title="Opinionated theme" theme="light" level={2} />
+    <ExampleContainer>
+      <Title title="Label and helper text" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcProgressBar label="Loading..." helperText="Helper text" value={24} showValue />
+      </HalstackProvider>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Without default value" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcProgressBar label="Loading..." helperText="Helper text" showValue />
+      </HalstackProvider>
     </ExampleContainer>
   </>
 );
@@ -55,6 +79,15 @@ export const Chromatic = () => (
 export const ProgressBarOverlay = () => (
   <ExampleContainer>
     <Title title="Overlay" theme="dark" level={4} />
-    <DxcProgressBar label="Overlay" helperText="Helper text" overlay={true} showValue value={50} />
+    <DxcProgressBar label="Overlay" helperText="Helper text" overlay showValue value={50} />
+  </ExampleContainer>
+);
+
+export const ProgressBarOverlayOpinionated = () => (
+  <ExampleContainer>
+    <Title title="Overlay" theme="dark" level={4} />
+    <HalstackProvider theme={opinionatedTheme}>
+      <DxcProgressBar label="Overlay" helperText="Helper text" overlay showValue value={50} />
+    </HalstackProvider>
   </ExampleContainer>
 );

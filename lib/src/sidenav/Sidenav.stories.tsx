@@ -3,6 +3,7 @@ import DxcSidenav from "./Sidenav";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import { userEvent, within } from "@storybook/testing-library";
+import { HalstackProvider } from "../HalstackContext";
 
 export default {
   title: "Sidenav",
@@ -32,6 +33,16 @@ c-10.663,0-17.467,1.853-20.417,5.568c-2.949,3.711-4.428,10.23-4.428,19.558v31.11
     </g>
   </svg>
 );
+
+const TitleComponent = () => {
+  return <DxcSidenav.Title>Dxc technology</DxcSidenav.Title>;
+};
+
+const opinionatedTheme = {
+  sidenav: {
+    baseColor: "#f2f2f2",
+  },
+};
 
 export const Chromatic = () => (
   <>
@@ -100,6 +111,41 @@ export const Chromatic = () => (
           </DxcSidenav.Group>
         </DxcSidenav.Section>
       </DxcSidenav>
+    </ExampleContainer>
+    <Title title="Opinionated theme" theme="light" level={2} />
+    <ExampleContainer>
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcSidenav title={<TitleComponent />}>
+          <DxcSidenav.Section>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ullamcorper consectetur mollis. Suspendisse
+              vitae lacinia libero.
+            </p>
+          </DxcSidenav.Section>
+          <DxcSidenav.Section>
+            <DxcSidenav.Link>Single Link</DxcSidenav.Link>
+            <DxcSidenav.Group collapsable={false} title="Single Group" icon={iconSVG}>
+              <DxcSidenav.Link>Group Link</DxcSidenav.Link>
+              <DxcSidenav.Link>Group Link</DxcSidenav.Link>
+              <DxcSidenav.Link>Group Link</DxcSidenav.Link>
+              <DxcSidenav.Link>Group Link</DxcSidenav.Link>
+            </DxcSidenav.Group>
+          </DxcSidenav.Section>
+          <DxcSidenav.Section>
+            <DxcSidenav.Group collapsable={true} title="Section Group" icon={iconSVG}>
+              <DxcSidenav.Link selected>Group Link</DxcSidenav.Link>
+              <DxcSidenav.Link icon={iconSVG}>Group Link</DxcSidenav.Link>
+            </DxcSidenav.Group>
+            <DxcSidenav.Link icon={iconSVG}>Single Link</DxcSidenav.Link>
+            <DxcSidenav.Link>Single Link</DxcSidenav.Link>
+            <DxcSidenav.Group collapsable={false} title="Section Group">
+              <DxcSidenav.Link>Group Link</DxcSidenav.Link>
+              <DxcSidenav.Link>Group Link</DxcSidenav.Link>
+              <DxcSidenav.Link>Group Link</DxcSidenav.Link>
+            </DxcSidenav.Group>
+          </DxcSidenav.Section>
+        </DxcSidenav>
+      </HalstackProvider>
     </ExampleContainer>
   </>
 );
@@ -170,6 +216,44 @@ const HoverSidenav = () => (
   </ExampleContainer>
 );
 
+const HoverSidenavOpinionated = () => (
+  <ExampleContainer pseudoState="pseudo-hover">
+    <Title title="Default sidenav" theme="light" level={4} />
+    <HalstackProvider theme={opinionatedTheme}>
+      <DxcSidenav title={<DxcSidenav.Title>Dxc technology</DxcSidenav.Title>}>
+        <DxcSidenav.Section>
+          <DxcSidenav.Link>Single Link</DxcSidenav.Link>
+          <DxcSidenav.Link>Single Link</DxcSidenav.Link>
+          <DxcSidenav.Group collapsable={true} title="Collapsable Group">
+            <DxcSidenav.Link selected>Group Link</DxcSidenav.Link>
+            <DxcSidenav.Link>Group Link</DxcSidenav.Link>
+            <DxcSidenav.Link>Group Link</DxcSidenav.Link>
+            <DxcSidenav.Link>Group Link</DxcSidenav.Link>
+          </DxcSidenav.Group>
+        </DxcSidenav.Section>
+        <DxcSidenav.Section>
+          <DxcSidenav.Group collapsable={true} title="Not Collapsed Group">
+            <DxcSidenav.Link selected>Group Link</DxcSidenav.Link>
+            <DxcSidenav.Link>Group Link</DxcSidenav.Link>
+          </DxcSidenav.Group>
+          <DxcSidenav.Link>Single Link</DxcSidenav.Link>
+          <DxcSidenav.Link>Single Link</DxcSidenav.Link>
+          <DxcSidenav.Group collapsable={true} title="Collapsable Group">
+            <DxcSidenav.Link>Group Link</DxcSidenav.Link>
+            <DxcSidenav.Link>Group Link</DxcSidenav.Link>
+            <DxcSidenav.Link>Group Link</DxcSidenav.Link>
+          </DxcSidenav.Group>
+          <DxcSidenav.Group collapsable={true} title="Collapsable Group">
+            <DxcSidenav.Link>Group Link</DxcSidenav.Link>
+            <DxcSidenav.Link>Group Link</DxcSidenav.Link>
+            <DxcSidenav.Link>Group Link</DxcSidenav.Link>
+          </DxcSidenav.Group>
+        </DxcSidenav.Section>
+      </DxcSidenav>
+    </HalstackProvider>
+  </ExampleContainer>
+);
+
 export const CollapseGroup = CollapsedGroup.bind({});
 CollapseGroup.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
@@ -181,6 +265,15 @@ CollapseGroup.play = async ({ canvasElement }) => {
 
 export const CollapseHoverGroup = HoverSidenav.bind({});
 CollapseHoverGroup.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  const collapsableGroups = canvas.getAllByText("Collapsable Group");
+  collapsableGroups.forEach((group) => {
+    userEvent.click(group);
+  });
+};
+
+export const CollapseHoverGroupOpinionated = HoverSidenavOpinionated.bind({});
+CollapseHoverGroupOpinionated.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const collapsableGroups = canvas.getAllByText("Collapsable Group");
   collapsableGroups.forEach((group) => {

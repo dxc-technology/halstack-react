@@ -9,7 +9,9 @@ import {
   DxcFlex,
   DxcTable,
   DxcParagraph,
+  DxcLink,
 } from "@dxc-technology/halstack-react";
+import Link from "next/link";
 import translations from "./examples/translations";
 
 const sections = [
@@ -19,8 +21,11 @@ const sections = [
       <>
         <DxcParagraph>
           Halstack Design System provides the possibility to translate all the
-          labels, that cannot be changed by the component properties, through
-          the Halstack Provider and its property <Code>labels</Code>.
+          labels that cannot be changed by the component properties through the{" "}
+          <Link href="/utilities/halstackProvider/#localization" passHref>
+            <DxcLink>Halstack Provider</DxcLink>
+          </Link>{" "}
+          and its property <Code>labels</Code>.
         </DxcParagraph>
         <DxcParagraph>
           You will need to create an object with your translations. In this

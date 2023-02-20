@@ -180,7 +180,7 @@ const sections = [
                     </td>
                     <td>Outline:focus</td>
                     <td>
-                      <Code>color-blue-700</Code>
+                      <Code>color-blue-600</Code>
                     </td>
                     <td>#0095ff</td>
                   </tr>
@@ -479,8 +479,8 @@ const sections = [
             <DxcTable>
               <thead>
                 <tr>
-                  <th>margin</th>
-                  <th>value</th>
+                  <th>Margin</th>
+                  <th>Value</th>
                 </tr>
               </thead>
               <tbody>

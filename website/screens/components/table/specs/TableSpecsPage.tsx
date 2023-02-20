@@ -462,13 +462,17 @@ const sections = [
             </thead>
             <tbody>
               <tr>
-                <td>Width</td>
+                <td>
+                  <Code>width</Code>
+                </td>
                 <td>Sorting action</td>
                 <td>-</td>
                 <td>14px</td>
               </tr>
               <tr>
-                <td>Height</td>
+                <td>
+                  <Code>height</Code>
+                </td>
                 <td>Sorting action</td>
                 <td>-</td>
                 <td>14px</td>

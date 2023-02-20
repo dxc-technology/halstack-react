@@ -151,9 +151,9 @@ const sections = [
                 </td>
                 <td>Thumb:focus</td>
                 <td>
-                  <Code>color-blue-800</Code>
+                  <Code>color-blue-600</Code>
                 </td>
-                <td>#0067b3</td>
+                <td>#0095ff</td>
               </tr>
               <tr>
                 <td>
@@ -177,7 +177,7 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <Code>tickMarkBackgroundColor</Code>
+                  <Code>tickBackgroundColor</Code>
                 </td>
                 <td>Tick</td>
                 <td>
@@ -187,7 +187,7 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <Code>disabledTickMarkBackgroundColor</Code>
+                  <Code>disabledTickBackgroundColor</Code>
                 </td>
                 <td>Tick:disabled</td>
                 <td>
@@ -243,7 +243,7 @@ const sections = [
                 <td>
                   <Code>color-black</Code>
                 </td>
-                <td>#f2f2f2</td>
+                <td>#000000</td>
               </tr>
               <tr>
                 <td>

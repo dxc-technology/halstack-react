@@ -35,7 +35,7 @@ const sections = [
                   <tr>
                     <th>Property</th>
                     <th>Value</th>
-                    <th>Token</th>
+                    <th>Core token</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -103,7 +103,7 @@ const sections = [
                   <tr>
                     <th>Property</th>
                     <th>Value</th>
-                    <th>Token</th>
+                    <th>Core token</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -171,7 +171,7 @@ const sections = [
                   <tr>
                     <th>Property</th>
                     <th>Value</th>
-                    <th>Token</th>
+                    <th>Core token</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -239,7 +239,7 @@ const sections = [
                   <tr>
                     <th>Property</th>
                     <th>Value</th>
-                    <th>Token</th>
+                    <th>Core token</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -307,7 +307,7 @@ const sections = [
                   <tr>
                     <th>Property</th>
                     <th>Value</th>
-                    <th>Token</th>
+                    <th>Core token</th>
                   </tr>
                 </thead>
                 <tbody>

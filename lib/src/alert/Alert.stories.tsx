@@ -2,10 +2,19 @@ import React from "react";
 import DxcAlert from "./Alert";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
+import { HalstackProvider } from "../HalstackContext";
 
 export default {
   title: "Alert",
   component: DxcAlert,
+};
+
+const opinionatedTheme = {
+  alert: {
+    baseColor: "#e6f4ff",
+    accentColor: "#0067b3",
+    overlayColor: "#000000b3",
+  },
 };
 
 export const Chromatic = () => (
@@ -155,6 +164,12 @@ export const Chromatic = () => (
         </div>
       </DxcAlert>
     </ExampleContainer>
+    <Title title="Opinionated theme" theme="light" level={2} />
+    <ExampleContainer>
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcAlert inlineText="Info type alert with inline text." />
+      </HalstackProvider>
+    </ExampleContainer>
   </>
 );
 
@@ -166,5 +181,18 @@ export const ModalAlert = () => (
         lobortis eget.
       </div>
     </DxcAlert>
+  </ExampleContainer>
+);
+
+export const ModalAlertOpinionated = () => (
+  <ExampleContainer>
+    <HalstackProvider theme={opinionatedTheme}>
+      <DxcAlert inlineText="Modal alert." mode="modal" onClose={() => {}}>
+        <div>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo
+          lobortis eget.
+        </div>
+      </DxcAlert>
+    </HalstackProvider>
   </ExampleContainer>
 );
