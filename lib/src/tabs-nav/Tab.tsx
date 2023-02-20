@@ -120,7 +120,7 @@ const Tab = styled.a<TabStyleProps>`
   ${(props) =>
     !props.disabled &&
     `:hover {
-    background: ${props.theme.unselectedBackgroundColor};
+    background: ${props.theme.hoverBackgroundColor};
   }
 
   :focus {
@@ -130,8 +130,6 @@ const Tab = styled.a<TabStyleProps>`
   :active {
     background: ${props.theme.pressedBackgroundColor};
     outline: 2px solid #33aaff};
-    color: ${props.theme.selectedFontColor};
-
   }`}
 `;
 
@@ -147,6 +145,19 @@ const TabIconContainer = styled.div<TabIconContainerProps>`
   svg {
     height: 24px;
     width: 24px;
+    color: ${(props) => props.theme.unselectedIconColor};
+  }
+
+  &[aria-selected="true"] {
+    svg {
+      color: ${(props) => props.theme.selectedIconColor};
+    }
+  }
+
+  &[aria-disabled="true"] {
+    svg {
+      color: ${(props) => props.theme.disabledIconColor};
+    }
   }
 `;
 
