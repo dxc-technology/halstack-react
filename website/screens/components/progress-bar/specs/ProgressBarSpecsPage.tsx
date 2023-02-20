@@ -170,6 +170,16 @@ const sections = [
                 </td>
                 <td>#000000b3</td>
               </tr>
+              <tr>
+                <td>
+                  <Code>overlayFontColor</Code>
+                </td>
+                <td>Overlay font color</td>
+                <td>
+                  <Code>color-white</Code>
+                </td>
+                <td>#ffffff</td>
+              </tr>
             </tbody>
           </DxcTable>
         ),
