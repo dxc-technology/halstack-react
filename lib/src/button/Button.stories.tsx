@@ -59,7 +59,7 @@ const opinionatedTheme = {
 
 export const Chromatic = () => (
   <>
-    <Title title="Primary" theme="light" level={2} />
+    <Title title="Primary button" theme="light" level={2} />
     <ExampleContainer>
       <Title title="Enabled" theme="light" level={4} />
       <DxcButton label="Primary enabled" />
