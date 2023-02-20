@@ -48,7 +48,7 @@ const sections = [
             positioning elements.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            When necessary use 4px to make more fine tuned adjustments.{" "}
+            When necessary use 4px to make more fine tuned adjustments.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
             Whenever possible, make sure that objects line up, both vertically
