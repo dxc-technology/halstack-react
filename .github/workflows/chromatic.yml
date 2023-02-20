@@ -30,9 +30,9 @@ jobs:
 
       - name: Publish to Chromatic
         uses: chromaui/action@v1
-        debug: true
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           exitOnceUploaded: true
           exitZeroOnChanges: true
           workingDir: lib
+          debug: true
