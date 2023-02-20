@@ -119,7 +119,7 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With bigger icon (SVG)" theme="light" level={4} />
-      <DxcAccordion label="Accordion" assistiveText="Assistive text" icon={facebookIcon}>
+      <DxcAccordion label="AccordionTest" assistiveText="Assistive text" icon={facebookIcon}>
         <div>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo
           lobortis eget.
