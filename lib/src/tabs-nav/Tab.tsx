@@ -31,7 +31,7 @@ const DxcTab = forwardRef(
     };
 
     return (
-      <TabContainer active={active} role="tab" aria-selected={active}>
+      <TabContainer active={active} role="tab" aria-selected={active} aria-disabled={disabled}>
         <Tab
           href={!disabled && href ? href : undefined}
           disabled={disabled}
@@ -116,6 +116,23 @@ const Tab = styled.a<TabStyleProps>`
   padding: 0.375rem;
 
   border-radius: 4px;
+  svg {
+    height: 24px;
+    width: 24px;
+    color: ${(props) => props.theme.unselectedIconColor};
+  }
+
+  &[aria-selected="true"] {
+    svg {
+      color: ${(props) => props.theme.selectedIconColor};
+    }
+  }
+
+  &[aria-disabled="true"] {
+    svg {
+      color: ${(props) => props.theme.disabledIconColor};
+    }
+  }
 
   ${(props) =>
     !props.disabled &&
@@ -145,20 +162,8 @@ const TabIconContainer = styled.div<TabIconContainerProps>`
   svg {
     height: 24px;
     width: 24px;
-    color: ${(props) => props.theme.unselectedIconColor};
   }
 
-  &[aria-selected="true"] {
-    svg {
-      color: ${(props) => props.theme.selectedIconColor};
-    }
-  }
-
-  &[aria-disabled="true"] {
-    svg {
-      color: ${(props) => props.theme.disabledIconColor};
-    }
-  }
 `;
 
 const LabelContainer = styled.div`
