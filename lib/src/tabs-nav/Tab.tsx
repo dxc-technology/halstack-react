@@ -92,6 +92,21 @@ type TabContainerProps = {
 };
 const TabContainer = styled.div<TabContainerProps>`
   border-bottom: 2px solid ${(props) => (props.active ? props.theme.selectedUnderlineColor : props.theme.dividerColor)};
+  svg {
+    color: ${(props) => props.theme.unselectedIconColor};
+  }
+
+  &[aria-selected="true"] {
+    svg {
+      color: ${(props) => props.theme.selectedIconColor};
+    }
+  }
+
+  &[aria-disabled="true"] {
+    svg {
+      color: ${(props) => props.theme.disabledIconColor};
+    }
+  }
 `;
 
 type TabStyleProps = {
@@ -116,23 +131,7 @@ const Tab = styled.a<TabStyleProps>`
   padding: 0.375rem;
 
   border-radius: 4px;
-  svg {
-    height: 24px;
-    width: 24px;
-    color: ${(props) => props.theme.unselectedIconColor};
-  }
-
-  &[aria-selected="true"] {
-    svg {
-      color: ${(props) => props.theme.selectedIconColor};
-    }
-  }
-
-  &[aria-disabled="true"] {
-    svg {
-      color: ${(props) => props.theme.disabledIconColor};
-    }
-  }
+  
 
   ${(props) =>
     !props.disabled &&
