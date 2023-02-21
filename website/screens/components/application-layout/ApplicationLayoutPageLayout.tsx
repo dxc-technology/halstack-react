@@ -10,6 +10,7 @@ const ApplicationLayoutPageHeading = ({
 }) => {
   const tabs = [
     { label: "Code", path: "/components/application-layout" },
+    { label: "Usage", path: "/components/application-layout/usage" },
     {
       label: "Specifications",
       path: "/components/application-layout/specifications",
