@@ -3,6 +3,8 @@ import styled from "styled-components";
 import DxcBadge from "../badge/Badge";
 import { NavTabsContext } from "./NavTabs";
 import { TabProps } from "./types";
+import DxcTypography from "../typography/Typography";
+import useTheme from '../useTheme';
 
 const DxcTab = forwardRef(
   (
@@ -12,6 +14,7 @@ const DxcTab = forwardRef(
     const tabRef: React.MutableRefObject<HTMLAnchorElement> = createRef();
 
     const { iconPosition, tabIndex, hasIcons, focusedLabel } = useContext(NavTabsContext);
+    const colorsTheme = useTheme();
 
     useLayoutEffect(() => {
       focusedLabel === children.toString() && tabRef?.current?.focus();
@@ -28,7 +31,7 @@ const DxcTab = forwardRef(
     };
 
     return (
-      <TabContainer active={active} role="tab" aria-selected={active}>
+      <TabContainer active={active} role="tab" aria-selected={active} aria-disabled={disabled}>
         <Tab
           href={!disabled && href ? href : undefined}
           disabled={disabled}
@@ -54,8 +57,25 @@ const DxcTab = forwardRef(
             </TabIconContainer>
           )}
           <LabelContainer>
-            {children}
-            {notificationNumber && (
+          <DxcTypography
+            color={
+              disabled
+                ? colorsTheme.navTabs.disabledFontColor
+                : active
+                ? colorsTheme.navTabs.selectedFontColor
+                : colorsTheme.navTabs.unselectedFontColor
+            }
+            fontFamily={colorsTheme.navTabs.fontFamily}
+            fontSize={colorsTheme.navTabs.fontSize}
+            fontStyle={colorsTheme.navTabs.fontStyle}
+            fontWeight={colorsTheme.navTabs.fontWeight}
+            textAlign="center"
+            letterSpacing="0.025em"
+            lineHeight="1.715em"
+          >            {children}
+            
+          </DxcTypography>
+          {notificationNumber && (
               <BadgeContainer>
                 <DxcBadge notificationText={notificationNumber > 99 ? "+99" : notificationNumber} disabled={disabled} />
               </BadgeContainer>
@@ -71,7 +91,22 @@ type TabContainerProps = {
   active?: boolean;
 };
 const TabContainer = styled.div<TabContainerProps>`
-  border-bottom: 2px solid ${(props) => (props.active ? "#6f2c91" : "#0000001a")};
+  border-bottom: 2px solid ${(props) => (props.active ? props.theme.selectedUnderlineColor : props.theme.dividerColor)};
+  svg {
+    color: ${(props) => props.theme.unselectedIconColor};
+  }
+
+  &[aria-selected="true"] {
+    svg {
+      color: ${(props) => props.theme.selectedIconColor};
+    }
+  }
+
+  &[aria-disabled="true"] {
+    svg {
+      color: ${(props) => props.theme.disabledIconColor};
+    }
+  }
 `;
 
 type TabStyleProps = {
@@ -85,13 +120,10 @@ const Tab = styled.a<TabStyleProps>`
   justify-content: center;
   align-items: center;
 
-  font-family: "Open Sans";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 1rem;
-  color: ${(props) => (props.disabled ? "#0000004D" : "#333333")};
+  
   text-decoration-color: transparent;
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
+  background: ${(props) => (props.theme.selectedBackgroundColor)};
 
   height: ${(props) => (props.hasIcon && props.iconPosition === "top" ? "66px" : "32px")};
   min-width: 164px;
@@ -99,19 +131,20 @@ const Tab = styled.a<TabStyleProps>`
   padding: 0.375rem;
 
   border-radius: 4px;
+  
 
   ${(props) =>
     !props.disabled &&
     `:hover {
-    background: #0000000D;
+    background: ${props.theme.hoverBackgroundColor};
   }
 
   :focus {
-    outline: 2px solid #33aaff};
+    outline: 2px solid ${props.theme.focusOutline};
   }
 
   :active {
-    background: #0000001A;
+    background: ${props.theme.pressedBackgroundColor};
     outline: 2px solid #33aaff};
   }`}
 `;
@@ -129,6 +162,7 @@ const TabIconContainer = styled.div<TabIconContainerProps>`
     height: 24px;
     width: 24px;
   }
+
 `;
 
 const LabelContainer = styled.div`
