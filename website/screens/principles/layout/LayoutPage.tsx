@@ -143,7 +143,7 @@ const sections = [
               popular screen resolutions by device over the past few years to
               help define each breakpoint.
             </DxcParagraph>
-            <Image src={layoutBreakpoints} alt="Layout grid of 8px" />
+            <Image src={layoutBreakpoints} alt="Layout breakpoints" />
           </>
         ),
       },
