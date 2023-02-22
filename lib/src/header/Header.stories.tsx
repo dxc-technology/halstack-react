@@ -76,13 +76,14 @@ const opinionatedTheme = {
               id="path16"
               d="M75.836-76.712a8.975,8.975,0,0,1,2.246-3.9,8.393,8.393,0,0,1,6.058-2.457h9.824v-5.67H84.139a14.611,14.611,0,0,0-10.232,4.221,14.509,14.509,0,0,0-3.076,4.536,11.913,11.913,0,0,0-.973,3.271Zm0,4.325a8.978,8.978,0,0,0,2.246,3.9,8.394,8.394,0,0,0,6.058,2.457h9.824v5.67H84.139A14.611,14.611,0,0,1,73.907-64.58a14.506,14.506,0,0,1-3.076-4.536,11.91,11.91,0,0,1-.973-3.271ZM57.522-69.832l-7.5,9.473H42.581L53.818-74.55,42.581-88.739H50.02l7.5,9.472,7.5-9.472h7.439L61.225-74.55l11.237,14.19H65.023Zm-12.336-6.88a11.935,11.935,0,0,0-.973-3.271,14.515,14.515,0,0,0-3.076-4.536A14.612,14.612,0,0,0,30.9-88.739H21.081v5.67H30.9a8.394,8.394,0,0,1,6.058,2.457,8.978,8.978,0,0,1,2.246,3.9Zm0,4.325a11.932,11.932,0,0,1-.973,3.271,14.511,14.511,0,0,1-3.076,4.536A14.611,14.611,0,0,1,30.9-60.359H21.081v-5.67H30.9a8.4,8.4,0,0,0,6.058-2.457,8.981,8.981,0,0,0,2.246-3.9h5.978"
               transform="translate(-21.049 88.739)"
-              fill="#100f0d"
+              fill="#5f249f"
             />
           </g>
         </g>
       </svg>
     ),
     contentColor: "#000000",
+    overlayColor: "#000000b3",
   },
 };
 
@@ -220,19 +221,26 @@ const RespHeaderHover = () => (
   </ExampleContainer>
 );
 
-const RespHeaderHoverOpinionated = () => (
-  <ExampleContainer pseudoState="pseudo-hover">
-    <Title title="Responsive hover" theme="light" level={4} />
-    <HalstackProvider theme={opinionatedTheme}>
-      <DxcHeader responsiveContent={(closeHandler) => <p>Lorem ipsum dolor sit amet.</p>} underlined />
-    </HalstackProvider>
-  </ExampleContainer>
-);
-
-const RespHeaderMenu = () => (
+const RespHeaderMenuMobile = () => (
   <ExampleContainer>
     <Title title="Responsive menu" theme="light" level={4} />
     <DxcHeader responsiveContent={(closeHandler) => <p>Lorem ipsum dolor sit amet.</p>} underlined />
+  </ExampleContainer>
+);
+
+const RespHeaderMenuTablet = () => (
+  <ExampleContainer>
+    <Title title="Responsive menu" theme="light" level={4} />
+    <DxcHeader responsiveContent={(closeHandler) => <p>Lorem ipsum dolor sit amet.</p>} underlined />
+  </ExampleContainer>
+);
+
+const RespHeaderMenuOpinionated = () => (
+  <ExampleContainer>
+    <Title title="Responsive menu" theme="light" level={4} />
+    <HalstackProvider theme={opinionatedTheme}>
+      <DxcHeader responsiveContent={(closeHandler) => <p>Lorem ipsum dolor sit amet.</p>} underlined />
+    </HalstackProvider>
   </ExampleContainer>
 );
 
@@ -267,26 +275,40 @@ ResponsiveHeaderHover.play = async ({ canvasElement }) => {
   await waitFor(() => canvas.findByText("Menu"));
 };
 
-export const ResponsiveHeaderHoverOpinionated = RespHeaderHoverOpinionated.bind({});
-ResponsiveHeaderHoverOpinionated.parameters = {
+export const ResponsiveHeaderMenuMobile = RespHeaderMenuMobile.bind({});
+ResponsiveHeaderMenuMobile.parameters = {
   viewport: {
     defaultViewport: "iphonex",
   },
   chromatic: { viewports: [375] },
 };
-ResponsiveHeaderHoverOpinionated.play = async ({ canvasElement }) => {
+ResponsiveHeaderMenuMobile.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   await waitFor(() => canvas.findByText("Menu"));
+  await userEvent.click(canvas.getByText("Menu"));
 };
 
-export const ResponsiveHeaderMenu = RespHeaderMenu.bind({});
-ResponsiveHeaderMenu.parameters = {
+export const ResponsiveHeaderMenuTablet = RespHeaderMenuTablet.bind({});
+ResponsiveHeaderMenuTablet.parameters = {
   viewport: {
-    defaultViewport: "iphonex",
+    defaultViewport: "pixelxl",
   },
-  chromatic: { viewports: [375] },
+  chromatic: { viewports: [720] },
 };
-ResponsiveHeaderMenu.play = async ({ canvasElement }) => {
+ResponsiveHeaderMenuTablet.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  await waitFor(() => canvas.findByText("Menu"));
+  await userEvent.click(canvas.getByText("Menu"));
+};
+
+export const ResponsiveHeaderMenuOpinionated = RespHeaderMenuOpinionated.bind({});
+ResponsiveHeaderMenuOpinionated.parameters = {
+  viewport: {
+    defaultViewport: "pixelxl",
+  },
+  chromatic: { viewports: [720] },
+};
+ResponsiveHeaderMenuOpinionated.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   await waitFor(() => canvas.findByText("Menu"));
   await userEvent.click(canvas.getByText("Menu"));

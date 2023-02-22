@@ -374,61 +374,7 @@ const sections = [
           </DxcTable>
         ),
       },
-      {
-        title: "Overlay",
-        content: (
-          <>
-            <DxcTable>
-              <thead>
-                <tr>
-                  <th>Component token</th>
-                  <th>Element</th>
-                  <th>Core token</th>
-                  <th>Value</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <Code>overlayOpacity</Code>
-                  </td>
-                  <td>Overlay</td>
-                  <td>-</td>
-                  <td>0.7</td>
-                </tr>
-              </tbody>
-            </DxcTable>
-            <DxcTable>
-              <thead>
-                <tr>
-                  <th>Property</th>
-                  <th>Element</th>
-                  <th>Core token</th>
-                  <th>Value</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <Code>width</Code>
-                  </td>
-                  <td>Overlay</td>
-                  <td>-</td>
-                  <td>100vw</td>
-                </tr>
-                <tr>
-                  <td>
-                    <Code>height</Code>
-                  </td>
-                  <td>Overlay</td>
-                  <td>-</td>
-                  <td>100vh</td>
-                </tr>
-              </tbody>
-            </DxcTable>
-          </>
-        ),
-      },
+
       {
         title: "Padding",
         content: (

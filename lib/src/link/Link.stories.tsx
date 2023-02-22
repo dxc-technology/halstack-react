@@ -2,6 +2,7 @@ import React from "react";
 import DxcLink from "./Link";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
+import { HalstackProvider } from "../HalstackContext";
 
 export default {
   title: "Link",
@@ -18,6 +19,12 @@ const icon = (
     </g>
   </svg>
 );
+
+const opinionatedTheme = {
+  link: {
+    baseColor: "#5f249f",
+  },
+};
 
 export const Chromatic = () => (
   <>
@@ -188,6 +195,59 @@ export const Chromatic = () => (
       <DxcLink margin="xxlarge" href="https://www.linkedin.com/">
         Test
       </DxcLink>
+    </ExampleContainer>
+    <Title title="Opinionated theme" theme="light" level={2} />
+    <ExampleContainer>
+      <Title title="Disabled" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcLink disabled>Test</DxcLink>
+      </HalstackProvider>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Icon before" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcLink href="https://www.google.com" icon={icon} iconPosition="before">
+          Test
+        </DxcLink>
+      </HalstackProvider>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Disabled" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcLink disabled>Test</DxcLink>
+      </HalstackProvider>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Icon after" theme="light" level={4} />{" "}
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcLink onClick={() => {}} icon={icon} iconPosition="after">
+          Test
+        </DxcLink>
+      </HalstackProvider>
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-hover">
+      <Title title="With link hovered" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcLink onClick={() => {}}>Test</DxcLink>
+      </HalstackProvider>
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-focus">
+      <Title title="With link focused" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcLink onClick={() => {}}>Test</DxcLink>
+      </HalstackProvider>
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-active">
+      <Title title="With link active" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcLink onClick={() => {}}>Test</DxcLink>
+      </HalstackProvider>
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-visited">
+      <HalstackProvider theme={opinionatedTheme}>
+        <Title title="With link visited" theme="light" level={4} />
+        <DxcLink href="https://www.google.com">Test</DxcLink>
+      </HalstackProvider>
     </ExampleContainer>
   </>
 );

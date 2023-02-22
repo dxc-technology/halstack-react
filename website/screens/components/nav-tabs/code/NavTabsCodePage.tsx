@@ -139,7 +139,7 @@ const sections = [
               anchor element which allows it to be used in any React based
               router. For each API is different so here are some examples for{" "}
               <DxcLink
-                href="https://reactrouter.com/docs/en/v6/hooks/use-href"
+                href="https://reactrouter.com/en/main/start/examples"
                 newWindow
               >
                 React Router
@@ -190,7 +190,7 @@ const sections = [
                   the prop <Code>component</Code> is no longer available so it
                   is necessary to use hooks provided by{" "}
                   <DxcLink
-                    href="https://reactrouter.com/docs/en/v6/hooks/use-href"
+                    href="https://reactrouter.com/en/6.8.1/hooks/use-href"
                     newWindow
                   >
                     React Router v6

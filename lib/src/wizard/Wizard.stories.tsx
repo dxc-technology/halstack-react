@@ -137,7 +137,7 @@ const opinionatedTheme = {
   wizard: {
     baseColor: "#5f249f",
     fontColor: "#000000",
-    selectedFontColor: "#ffffff",
+    selectedStepFontColor: "#ffffff",
   },
 };
 
