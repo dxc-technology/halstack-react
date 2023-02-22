@@ -68,7 +68,8 @@ const sections = [
         </tr>
         <tr>
           <td>
-            alignSelf: 'auto' | 'flex-start' | 'flex-end' | 'center' | 'baseline' | 'stretch'
+            alignSelf: 'auto' | 'flex-start' | 'flex-end' | 'center' |
+            'baseline' | 'stretch'
           </td>
           <td>
             <Code>'auto'</Code>
@@ -161,7 +162,7 @@ const sections = [
   },
 ];
 
-const InsetCodePage = () => {
+const FlexCodePage = () => {
   return (
     <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
@@ -175,4 +176,4 @@ const InsetCodePage = () => {
   );
 };
 
-export default InsetCodePage;
+export default FlexCodePage;
