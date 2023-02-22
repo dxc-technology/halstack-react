@@ -146,7 +146,7 @@ export const Chromatic = () => (
       </DxcNavTabs>
     </ExampleContainer>
     <ExampleContainer>
-      <Title title="With icon and notification number" theme="light" level={4} />
+      <Title title="With icon on the left and notification number" theme="light" level={4} />
       <DxcNavTabs iconPosition="left">
         <DxcNavTabs.Tab href="#" active icon={iconSVG} notificationNumber>
           Tab 1
