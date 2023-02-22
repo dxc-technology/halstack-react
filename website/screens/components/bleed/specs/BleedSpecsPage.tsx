@@ -1,9 +1,4 @@
-import {
-  DxcLink,
-  DxcBulletedList,
-  DxcFlex,
-  DxcParagraph,
-} from "@dxc-technology/halstack-react";
+import { DxcFlex, DxcParagraph } from "@dxc-technology/halstack-react";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
@@ -16,11 +11,8 @@ const sections = [
     title: "Specifications",
     content: (
       <>
-        <Figure caption="Design specifications for bleed component">
-          <Image
-            src={bleedSpecsImage}
-            alt="Design specifications for bleed component"
-          />
+        <Figure caption="Bleed design specifications">
+          <Image src={bleedSpecsImage} alt="Bleed design specifications" />
         </Figure>
         <DxcParagraph>
           Negative space varies depending on the REM values and the approach to

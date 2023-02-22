@@ -2,6 +2,7 @@ import { DxcFlex, DxcParagraph } from "@dxc-technology/halstack-react";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import DocFooter from "@/common/DocFooter";
+import Code from "@/common/Code";
 
 const sections = [
   {
@@ -12,7 +13,9 @@ const sections = [
         container. The unit commonly used for the bleed scale is REM, which is a
         measurement unit that refers to the font-size of the root element of a
         document. The following values of REM are commonly used in the design
-        system: 0, 0.125, 0.25, 0.5, 1, 1.5, 2, 3, 4, and 5.
+        system: <Code>0</Code>, <Code>0.125</Code>, <Code>0.25</Code>,{" "}
+        <Code>0.5</Code>, <Code>1</Code>, <Code>1.5</Code>, <Code>2</Code>,{" "}
+        <Code>3</Code>, <Code>4</Code>, and <Code>5</Code>.
       </DxcParagraph>
     ),
   },
@@ -27,7 +30,7 @@ const BleedUsagePage = () => {
           startHeadingLevel={2}
         ></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/button/usage/BleedUsagePage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/bleed/usage/BleedUsagePage.tsx" />
     </DxcFlex>
   );
 };
