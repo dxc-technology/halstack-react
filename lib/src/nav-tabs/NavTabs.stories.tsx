@@ -2,6 +2,7 @@ import React from "react";
 import DxcNavTabs from "./NavTabs";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
+import { HalstackProvider } from "../HalstackContext";
 
 export default {
   title: "NavTabs",
@@ -15,7 +16,14 @@ const iconSVG = (
   </svg>
 );
 
-const largeIcon = "https://www.iconpacks.net/icons/1/free-pin-icon-48-thumb.png"
+const largeIcon = "https://www.iconpacks.net/icons/1/free-pin-icon-48-thumb.png";
+
+const opinionatedTheme = {
+  navTabs: {
+    baseColor: "#666666",
+    accentColor: "#5f249f",
+  },
+};
 
 export const Chromatic = () => (
   <>
@@ -167,6 +175,86 @@ export const Chromatic = () => (
           Tab 3
         </DxcNavTabs.Tab>
       </DxcNavTabs>
+    </ExampleContainer>
+    <Title title="Opinionated theme" theme="light" level={2} />
+    <ExampleContainer>
+      <Title title="Only label" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcNavTabs>
+          <DxcNavTabs.Tab href="#" active>
+            Tab 1
+          </DxcNavTabs.Tab>
+          <DxcNavTabs.Tab href="#" disabled>
+            Tab 2
+          </DxcNavTabs.Tab>
+          <DxcNavTabs.Tab href="#">Tab 3</DxcNavTabs.Tab>
+          <DxcNavTabs.Tab href="#">Tab 4</DxcNavTabs.Tab>
+        </DxcNavTabs>
+      </HalstackProvider>
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-hover">
+      <Title title="Hovered tabs" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcNavTabs>
+          <DxcNavTabs.Tab href="#" active>
+            Tab 1
+          </DxcNavTabs.Tab>
+          <DxcNavTabs.Tab href="#" disabled>
+            Tab 2
+          </DxcNavTabs.Tab>
+          <DxcNavTabs.Tab href="#">Tab 3</DxcNavTabs.Tab>
+          <DxcNavTabs.Tab href="#">Tab 4</DxcNavTabs.Tab>
+        </DxcNavTabs>
+      </HalstackProvider>
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-focus">
+      <Title title="Focused tabs" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcNavTabs>
+          <DxcNavTabs.Tab href="#" active>
+            Tab 1
+          </DxcNavTabs.Tab>
+          <DxcNavTabs.Tab href="#" disabled>
+            Tab 2
+          </DxcNavTabs.Tab>
+          <DxcNavTabs.Tab href="#">Tab 3</DxcNavTabs.Tab>
+          <DxcNavTabs.Tab href="#">Tab 4</DxcNavTabs.Tab>
+        </DxcNavTabs>
+      </HalstackProvider>
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-active">
+      <Title title="Actived tabs" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcNavTabs>
+          <DxcNavTabs.Tab href="#" active>
+            Tab 1
+          </DxcNavTabs.Tab>
+          <DxcNavTabs.Tab href="#" disabled>
+            Tab 2
+          </DxcNavTabs.Tab>
+          <DxcNavTabs.Tab href="#">Tab 3</DxcNavTabs.Tab>
+          <DxcNavTabs.Tab href="#">Tab 4</DxcNavTabs.Tab>
+        </DxcNavTabs>
+      </HalstackProvider>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="With icon and notification number" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcNavTabs>
+          <DxcNavTabs.Tab href="#" active icon={iconSVG} notificationNumber>
+            Tab 1
+          </DxcNavTabs.Tab>
+          <DxcNavTabs.Tab href="#" disabled icon={iconSVG} notificationNumber={5}>
+            Tab 2
+          </DxcNavTabs.Tab>
+          <DxcNavTabs.Tab href="#" icon={iconSVG} notificationNumber={120}>
+            Tab 3
+          </DxcNavTabs.Tab>
+          <DxcNavTabs.Tab href="#" icon={iconSVG}>
+            Tab 4
+          </DxcNavTabs.Tab>
+        </DxcNavTabs>
+      </HalstackProvider>
     </ExampleContainer>
   </>
 );

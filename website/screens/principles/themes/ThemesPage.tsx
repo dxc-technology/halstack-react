@@ -692,6 +692,49 @@ const sections = [
                 ),
               },
               {
+                title: "Nav tabs",
+                content: (
+                  <DxcTable>
+                    <thead>
+                      <tr>
+                        <th>Theme Input</th>
+                        <th>Tokens (calculation)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Base color</td>
+                        <td>
+                          <Code>selectedFontColor</Code>
+                          <br />
+                          <br />
+                          <Code>unselectedFontColor</Code>
+                          <br />
+                          <br />
+                          <Code>selectedIconColor</Code>
+                          <br />
+                          <br />
+                          <Code>unselectedIconColor</Code>
+                          <br />
+                          <br />
+                          <Code>hoverBackgroundColor</Code> (+55% of lightness)
+                          <br />
+                          <br />
+                          <Code>pressedBackgroundColor</Code> (+50% of
+                          lightness)
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Accent color</td>
+                        <td>
+                          <Code>selectedUnderlineColor</Code>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </DxcTable>
+                ),
+              },
+              {
                 title: "Paginator",
                 content: (
                   <DxcTable>

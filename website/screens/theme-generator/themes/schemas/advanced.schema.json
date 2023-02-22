@@ -512,6 +512,25 @@
     "iconSpacing": "length",
     "focusColor": "color"
   },
+  "navTabs": {
+    "selectedBackgroundColor": "color",
+    "unselectedBackgroundColor": "color",
+    "hoverBackgroundColor": "color",
+    "pressedBackgroundColor": "color",
+    "selectedFontColor": "color",
+    "unselectedFontColor": "color",
+    "disabledFontColor": "color",
+    "focusOutline": "color",
+    "selectedUnderlineColor": "color",
+    "dividerColor": "color",
+    "fontFamily": "fFamily",
+    "fontSize": "length",
+    "fontStyle": "fStyle",
+    "fontWeight": "fWeight",
+    "selectedIconColor": "color",
+    "unselectedIconColor": "color",
+    "disabledIconColor": "color"
+  },
   "paginator": {
     "backgroundColor": "color",
     "fontColor": "color",

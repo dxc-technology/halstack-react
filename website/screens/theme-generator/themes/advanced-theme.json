@@ -512,6 +512,25 @@
     "activeUnderlineColor": "#000000",
     "focusColor": "#0095ff"
   },
+  "navTabs": {
+    "selectedBackgroundColor": "#ffffff",
+    "unselectedBackgroundColor": "#ffffff",
+    "hoverBackgroundColor": "#f2f2f2",
+    "pressedBackgroundColor": "#e6e6e6",
+    "selectedFontColor": "#666666",
+    "unselectedFontColor": "#666666",
+    "disabledFontColor": "#999999",
+    "focusOutline": "#0095ff",
+    "selectedUnderlineColor": "#5f249f",
+    "dividerColor": "#bfbfbf",
+    "fontFamily": "Open Sans, sans-serif",
+    "fontSize": "1rem",
+    "fontStyle": "normal",
+    "fontWeight": "400",
+    "selectedIconColor": "#666666",
+    "unselectedIconColor": "#666666",
+    "disabledIconColor": "#999999"
+  },
   "paginator": {
     "backgroundColor": "#f2f2f2",
     "fontColor": "#000000",

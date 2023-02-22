@@ -184,6 +184,17 @@ const parseTheme = (theme) => {
   linkTokens.visitedFontColor = theme?.link?.baseColor ?? linkTokens.visitedFontColor;
   linkTokens.visitedUnderlineColor = theme?.link?.baseColor ?? linkTokens.visitedUnderlineColor;
 
+  const navTabsTokens = componentTokensCopy.navTabs;
+  navTabsTokens.selectedFontColor = theme?.navTabs?.baseColor ?? navTabsTokens.selectedFontColor;
+  navTabsTokens.unselectedFontColor = theme?.navTabs?.baseColor ?? navTabsTokens.selectedFontColor;
+  navTabsTokens.selectedIconColor = theme?.navTabs?.baseColor ?? navTabsTokens.selectedIconColor;
+  navTabsTokens.unselectedIconColor = theme?.navTabs?.baseColor ?? navTabsTokens.selectedIconColor;
+  navTabsTokens.selectedUnderlineColor = theme?.navTabs?.accentColor ?? navTabsTokens.selectedUnderlineColor;
+  navTabsTokens.hoverBackgroundColor =
+    addLightness(theme?.navTabs?.baseColor, 55) ?? navTabsTokens.hoverBackgroundColor;
+  navTabsTokens.pressedBackgroundColor =
+    addLightness(theme?.navTabs?.baseColor, 50) ?? navTabsTokens.pressedBackgroundColor;
+
   const paginatorTokens = componentTokensCopy.paginator;
   paginatorTokens.backgroundColor = theme?.paginator?.baseColor ?? paginatorTokens.backgroundColor;
   paginatorTokens.fontColor = theme?.paginator?.fontColor ?? paginatorTokens.fontColor;
