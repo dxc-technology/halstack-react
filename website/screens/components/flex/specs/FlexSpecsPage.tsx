@@ -13,15 +13,12 @@ const sections = [
     content: (
       <>
         <Figure caption="Flex row design specifications">
-          <Image
-            src={flexRowSpecs}
-            alt="File input row design specifications"
-          />
+          <Image src={flexRowSpecs} alt="Flex row design specifications" />
         </Figure>
         <Figure caption="Flex column design specifications">
           <Image
             src={flexColumnSpecs}
-            alt="File input column design specifications"
+            alt="Flex column design specifications"
           />
         </Figure>
       </>
@@ -38,7 +35,7 @@ const FlexSpecsPage = () => {
           startHeadingLevel={2}
         ></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/file-input/specs/FileInputSpecsPage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/flex/specs/FlexSpecsPage.tsx" />
     </DxcFlex>
   );
 };

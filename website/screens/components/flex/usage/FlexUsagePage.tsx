@@ -28,12 +28,12 @@ const sections = [
             The cross axis runs perpendicular to the main axis.
             <DxcBulletedList type="circle">
               <DxcBulletedList.Item>
-                If the flex-direction (main axis) is set to row or row-reverse
-                the cross axis runs down the columns.
+                If the flex-direction (main axis) is set to <Code>row</Code> or{" "}
+                <Code>row-reverse</Code> the cross axis runs down the columns.
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
-                If the flex-direction is set to column or column-reverse, the
-                cross axis runs down the rows.
+                If the flex-direction is set to <Code>column</Code> or{" "}
+                <Code>column-reverse</Code>, the cross axis runs down the rows.
               </DxcBulletedList.Item>
             </DxcBulletedList>
           </DxcBulletedList.Item>
@@ -42,7 +42,7 @@ const sections = [
     ),
   },
   {
-    title: "Start and End",
+    title: "Start and end",
     content: (
       <>
         <DxcParagraph>
@@ -60,7 +60,7 @@ const sections = [
     ),
   },
   {
-    title: "Flexbox Container",
+    title: "Flexbox container",
     content: (
       <>
         <DxcParagraph>
@@ -69,8 +69,8 @@ const sections = [
         </DxcParagraph>
         <DxcBulletedList>
           <DxcBulletedList.Item>
-            Items display in a row (the flex-direction property&#39;s default is
-            <Code>row</Code>).
+            The items display in a row (the flex-direction property&#39;s
+            default is <Code>row</Code>).
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
             The items start from the start edge of the main axis.
