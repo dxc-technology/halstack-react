@@ -4,7 +4,11 @@ import TabsPageHeading from "@/common/TabsPageLayout";
 import ComponentHeading from "@/common/ComponentHeading";
 
 const BleedPageHeading = ({ children }: { children: React.ReactNode }) => {
-  const tabs = [{ label: "Code", path: "/components/bleed" }];
+  const tabs = [
+    { label: "Code", path: "/components/bleed" },
+    { label: "Usage", path: "/components/bleed/usage" },
+    { label: "Specifications", path: "/components/bleed/specifications" },
+  ];
 
   return (
     <DxcFlex direction="column" gap="3rem">
