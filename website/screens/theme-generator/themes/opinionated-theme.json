@@ -64,6 +64,10 @@
   "link": {
     "baseColor": "#5f249f"
   },
+  "navTabs": {
+    "baseColor": "#666666",
+    "accentColor": "#5f249f"
+  },
   "paginator": {
     "baseColor": "#f2f2f2",
     "fontColor": "#000000"
