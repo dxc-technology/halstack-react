@@ -22,7 +22,7 @@ const sections = [
         <DxcAlert type="warning" size="fillParent">
           The <Code>padding</Code> prop has been deprecated. Consider using
           layout components like the{" "}
-          <Link href="/components/inset/" passHref>
+          <Link href="/components/inset/" passHref legacyBehavior>
             <DxcLink>Inset</DxcLink>
           </Link>{" "}
           for the same purpose.
@@ -120,7 +120,7 @@ const sections = [
           <DxcParagraph>
             Everything between this tags will be displayed as a dropdown. If you
             want to show a{" "}
-            <Link href="/components/dropdown" passHref>
+            <Link href="/components/dropdown" passHref legacyBehavior>
               <DxcLink>DxcDropdown</DxcLink>
             </Link>
             , as a shortcut, you can also use it as a direct child of the

@@ -161,7 +161,7 @@ const sections = [
                 As the DxcLink component, we decided to make our link component
                 in the sidenav just a styled HTML anchor element which allows it
                 to be used in any React based router. You can check the{" "}
-                <Link href={"/components/link/"} passHref>
+                <Link href={"/components/link/"} passHref legacyBehavior>
                   <DxcLink>Link</DxcLink>
                 </Link>{" "}
                 for more information regarding this.

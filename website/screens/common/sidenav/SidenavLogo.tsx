@@ -22,8 +22,8 @@ const SidenavLogo = ({
           <Image
             src={halstackLogo}
             alt="Halstack logo"
-            width="24px"
-            height="24px"
+            width={24}
+            height={24}
           />
           <Title>Halstack</Title>
         </Header>

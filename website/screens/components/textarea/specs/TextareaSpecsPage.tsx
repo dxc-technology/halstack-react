@@ -28,7 +28,7 @@ const sections = [
           The textarea <Code>color</Code>, <Code>typography</Code>,{" "}
           <Code>border</Code>, <Code>width</Code> and <Code>margin</Code>{" "}
           specifications are inherited from the text input, for reference{" "}
-          <Link href="/components/text-input" passHref>
+          <Link href="/components/text-input" passHref legacyBehavior>
             <DxcLink>check the text input component documentation</DxcLink>
           </Link>
           .

@@ -65,6 +65,7 @@ const sections = [
           <Link
             href="/principles/themes/#opinionated-theme-inputs-list"
             passHref
+            legacyBehavior
           >
             <DxcLink>Themes section</DxcLink>
           </Link>
@@ -74,7 +75,11 @@ const sections = [
 
         <DxcAlert type="info" size="fillParent">
           Remember that you can use the{" "}
-          <Link href="/theme-generator/opinionated-theme" passHref>
+          <Link
+            href="/theme-generator/opinionated-theme"
+            passHref
+            legacyBehavior
+          >
             <DxcLink>opinionated theme generator</DxcLink>
           </Link>{" "}
           to help you create themes.
@@ -103,13 +108,14 @@ const sections = [
           <Link
             href="/principles/themes/#opinionated-theme-inputs-list"
             passHref
+            legacyBehavior
           >
             <DxcLink>Themes section.</DxcLink>
           </Link>
         </DxcParagraph>
         <DxcAlert type="info" size="fillParent">
           Remember that you can use the{" "}
-          <Link href="/theme-generator/advanced-theme" passHref>
+          <Link href="/theme-generator/advanced-theme" passHref legacyBehavior>
             <DxcLink>advanced theme generator</DxcLink>
           </Link>{" "}
           to help you create themes.
@@ -135,7 +141,7 @@ const sections = [
         <DxcAlert type="info" size="fillParent">
           To find out the list of labels that are translatable we should refer
           to the documentation in the{" "}
-          <Link href="/principles/localization" passHref>
+          <Link href="/principles/localization" passHref legacyBehavior>
             <DxcLink>Localization</DxcLink>
           </Link>{" "}
           section.

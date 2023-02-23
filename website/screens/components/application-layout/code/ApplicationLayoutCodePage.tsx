@@ -35,7 +35,7 @@ const ApplicationLayoutPropsTable = () => (
           Header of the application layout shown at the top of the screen. It is
           optional and if it is not specified, the default header will be shown.
           Please check the Header documentation{" "}
-          <Link href="/components/header" passHref>
+          <Link href="/components/header" passHref legacyBehavior>
             <DxcLink>here</DxcLink>
           </Link>
           .
@@ -48,7 +48,7 @@ const ApplicationLayoutPropsTable = () => (
           Footer of the application layout shown at the bottom of the screen. It
           is optional and if it is not specified, the default header will be
           shown. Please check the Footer documentation{" "}
-          <Link href="/components/footer" passHref>
+          <Link href="/components/footer" passHref legacyBehavior>
             <DxcLink>here</DxcLink>
           </Link>
           .
@@ -60,7 +60,7 @@ const ApplicationLayoutPropsTable = () => (
         <td>
           Sidenav of the application layout shown at the left side of the
           screen. Please check the Sidenav documentation{" "}
-          <Link href="/components/sidenav" passHref>
+          <Link href="/components/sidenav" passHref legacyBehavior>
             <DxcLink>here</DxcLink>
           </Link>
           .

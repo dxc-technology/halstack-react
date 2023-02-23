@@ -1,0 +1,25 @@
+{
+  "name": "create-turbo-test",
+  "version": "0.0.0",
+  "private": true,
+  "workspaces": [
+    "website",
+    "@dxc-technology/*"
+  ],
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "test:watch": "turbo run test:watch"
+  },
+  "devDependencies": {
+    "prettier": "2.8.4",
+    "turbo": "1.7.4"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "dependencies": {},
+  "packageManager": "yarn@1.22.15"
+}

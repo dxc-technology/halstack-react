@@ -29,7 +29,7 @@ const BorderWidthInput = ({
           onChangeCustomTheme(propertyName, val + unitValue);
         }}
       />
-      <StyledLabel>{unitValue}</StyledLabel>
+      <StyledLabel>{propertyValue.match(/[a-zA-Z]+|%/g)?.[0]}</StyledLabel>
     </WidgetContainer>
   );
 };

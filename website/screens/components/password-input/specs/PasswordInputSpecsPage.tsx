@@ -32,7 +32,11 @@ const sections = [
           <Code>border</Code>, <Code>spacing</Code>, <Code>width</Code> and{" "}
           <Code>margin</Code> specifications are inherited from the text input,
           for reference{" "}
-          <Link href="/components/text-input/specifications" passHref>
+          <Link
+            href="/components/text-input/specifications"
+            passHref
+            legacyBehavior
+          >
             <DxcLink>check the text input component documentation</DxcLink>
           </Link>
           .

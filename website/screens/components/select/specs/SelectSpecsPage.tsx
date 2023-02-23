@@ -936,7 +936,11 @@ const sections = [
           <>
             <DxcParagraph>
               The select component <strong>input</strong> share the{" "}
-              <Link href="/components/text-input/specifications" passHref>
+              <Link
+                href="/components/text-input/specifications"
+                passHref
+                legacyBehavior
+              >
                 <DxcLink>same spacing tokens of the text input</DxcLink>
               </Link>
               .

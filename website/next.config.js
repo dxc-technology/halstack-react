@@ -15,6 +15,7 @@ module.exports = {
     return config;
   },
   reactStrictMode: true,
+  transpilePackages: ["@dxc-technology/halstack-react"],
   assetPrefix: isProd ? `/halstack/${process.env.SITE_VERSION}` : undefined,
   basePath: isProd ? `/halstack/${process.env.SITE_VERSION}` : undefined,
 };

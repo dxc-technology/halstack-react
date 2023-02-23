@@ -30,15 +30,15 @@ const sections = [
       <DxcParagraph>
         Some other components defined in the Design System are used in the table
         component as the{" "}
-        <Link href="/components/checkbox" passHref>
+        <Link href="/components/checkbox" passHref legacyBehavior>
           <DxcLink>checkbox</DxcLink>
         </Link>
         ,{" "}
-        <Link href="/components/button" passHref>
+        <Link href="/components/button" passHref legacyBehavior>
           <DxcLink>button</DxcLink>
         </Link>{" "}
         or{" "}
-        <Link href="/components/select" passHref>
+        <Link href="/components/select" passHref legacyBehavior>
           <DxcLink>select</DxcLink>
         </Link>
         . For concrete specifications about states, please, consider to see the

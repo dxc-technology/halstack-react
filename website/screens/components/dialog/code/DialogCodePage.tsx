@@ -25,7 +25,7 @@ const sections = [
         <DxcAlert type="warning" size="fillParent">
           The <Code>padding</Code> prop has been deprecated. Consider using
           layout components like the{" "}
-          <Link href="/components/inset/" passHref>
+          <Link href="/components/inset/" passHref legacyBehavior>
             <DxcLink>Inset</DxcLink>
           </Link>{" "}
           for the same purpose.

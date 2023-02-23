@@ -96,7 +96,12 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
                       <DxcApplicationLayout.SideNav.Section key={label}>
                         <DxcApplicationLayout.SideNav.Group title={label}>
                           {links.map(({ label, path }) => (
-                            <Link key={`${label}-${path}`} href={path} passHref>
+                            <Link
+                              key={`${label}-${path}`}
+                              href={path}
+                              passHref
+                              legacyBehavior
+                            >
                               <DxcApplicationLayout.SideNav.Link
                                 selected={
                                   currentPath.slice(0, -1) === path ||

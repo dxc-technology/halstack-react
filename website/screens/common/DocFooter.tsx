@@ -1,5 +1,9 @@
 import { useRouter } from "next/router";
-import { DxcTypography, DxcLink, DxcFlex } from "@dxc-technology/halstack-react";
+import {
+  DxcTypography,
+  DxcLink,
+  DxcFlex,
+} from "@dxc-technology/halstack-react";
 import Link from "next/link";
 import { getNavigationLinks } from "./pagesList";
 import styled from "styled-components";
@@ -20,7 +24,7 @@ const DocFooter = ({ githubLink }: { githubLink: string }) => {
             {previousLink && (
               <>
                 <DxcTypography>Previous</DxcTypography>
-                <Link href={previousLink.path} passHref>
+                <Link href={previousLink.path} passHref legacyBehavior>
                   <DxcLink icon={arrowBack}>{previousLink.label}</DxcLink>
                 </Link>
               </>
@@ -30,7 +34,7 @@ const DocFooter = ({ githubLink }: { githubLink: string }) => {
             {nextLink && (
               <>
                 <DxcTypography>Next</DxcTypography>
-                <Link href={nextLink.path} passHref>
+                <Link href={nextLink.path} passHref legacyBehavior>
                   <DxcLink icon={arrowForward} iconPosition="after">
                     {nextLink.label}
                   </DxcLink>

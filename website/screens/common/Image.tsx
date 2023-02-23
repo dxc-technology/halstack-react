@@ -7,9 +7,15 @@ const customLoader = ({ src }: { src: string }) => {
 type ImageProps = {
   src: any;
   alt: string;
-  width?: number | string;
-  height?: number | string;
+  width?: number;
+  height?: number;
 };
 export default function Image(props: ImageProps) {
-  return <NextImage {...props} loader={customLoader} />;
+  return (
+    <NextImage
+      {...props}
+      style={!props.width ? { width: "100%", objectFit: "contain" } : {}}
+      loader={customLoader}
+    />
+  );
 }

@@ -1,3 +1,4 @@
 app/cypress/snapshots/detailed-visual-regression.js/__diff_output__/
 /node_modules
 /dist
+.turbo
