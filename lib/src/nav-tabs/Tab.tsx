@@ -4,7 +4,7 @@ import DxcBadge from "../badge/Badge";
 import { NavTabsContext } from "./NavTabs";
 import { TabProps } from "./types";
 import DxcTypography from "../typography/Typography";
-import useTheme from '../useTheme';
+import useTheme from "../useTheme";
 
 const DxcTab = forwardRef(
   (
@@ -57,25 +57,25 @@ const DxcTab = forwardRef(
             </TabIconContainer>
           )}
           <LabelContainer>
-          <DxcTypography
-            color={
-              disabled
-                ? colorsTheme.navTabs.disabledFontColor
-                : active
-                ? colorsTheme.navTabs.selectedFontColor
-                : colorsTheme.navTabs.unselectedFontColor
-            }
-            fontFamily={colorsTheme.navTabs.fontFamily}
-            fontSize={colorsTheme.navTabs.fontSize}
-            fontStyle={colorsTheme.navTabs.fontStyle}
-            fontWeight={colorsTheme.navTabs.fontWeight}
-            textAlign="center"
-            letterSpacing="0.025em"
-            lineHeight="1.715em"
-          >            {children}
-            
-          </DxcTypography>
-          {notificationNumber && (
+            <DxcTypography
+              color={
+                disabled
+                  ? colorsTheme.navTabs.disabledFontColor
+                  : active
+                  ? colorsTheme.navTabs.selectedFontColor
+                  : colorsTheme.navTabs.unselectedFontColor
+              }
+              fontFamily={colorsTheme.navTabs.fontFamily}
+              fontSize={colorsTheme.navTabs.fontSize}
+              fontStyle={colorsTheme.navTabs.fontStyle}
+              fontWeight={colorsTheme.navTabs.fontWeight}
+              textAlign="center"
+              letterSpacing="0.025em"
+              lineHeight="1.715em"
+            >
+              {children}
+            </DxcTypography>
+            {notificationNumber && (
               <BadgeContainer>
                 <DxcBadge notificationText={notificationNumber > 99 ? "+99" : notificationNumber} disabled={disabled} />
               </BadgeContainer>
@@ -120,10 +120,9 @@ const Tab = styled.a<TabStyleProps>`
   justify-content: center;
   align-items: center;
 
-  
   text-decoration-color: transparent;
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
-  background: ${(props) => (props.theme.selectedBackgroundColor)};
+  background: ${(props) => props.theme.selectedBackgroundColor};
 
   height: ${(props) => (props.hasIcon && props.iconPosition === "top" ? "66px" : "32px")};
   min-width: 164px;
@@ -131,7 +130,6 @@ const Tab = styled.a<TabStyleProps>`
   padding: 0.375rem;
 
   border-radius: 4px;
-  
 
   ${(props) =>
     !props.disabled &&
@@ -162,7 +160,6 @@ const TabIconContainer = styled.div<TabIconContainerProps>`
     height: 24px;
     width: 24px;
   }
-
 `;
 
 const LabelContainer = styled.div`
