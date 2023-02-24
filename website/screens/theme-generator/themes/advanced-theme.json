@@ -285,19 +285,16 @@
     "closeIconHeight": "24px",
     "closeIconTopPosition": "20px",
     "closeIconRightPosition": "20px",
-    "closeIconBackgroundColor": "none",
+    "closeIconBackgroundColor": "transparent",
     "closeIconBorderColor": "none",
     "closeIconColor": "#000000",
     "closeIconBorderThickness": "0px",
     "closeIconBorderStyle": "solid",
-    "closeIconBorderRadius": "0px",
+    "closeIconBorderRadius": "2px",
     "boxShadowOffsetX": "0px",
     "boxShadowOffsetY": "1px",
     "boxShadowBlur": "3px",
-    "boxShadowColor": "#00000033",
-    "fontFamily": "Open Sans, sans-serif",
-    "fontSize": "1rem",
-    "fontWeight": "400"
+    "boxShadowColor": "#00000033"
   },
   "dropdown": {
     "buttonBackgroundColor": "#ffffff",
