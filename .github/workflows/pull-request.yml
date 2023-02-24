@@ -16,17 +16,11 @@ jobs:
           node-version: 14.x
           registry-url: https://registry.npmjs.org/
 
-      - name: Install lib dependencies
-        run: cd lib && npm install
+      - name: Install lib and website dependencies
+        run: yarn
 
-      - name: Build library
-        run: cd lib && npm run build
-
-      - name: Install website dependencies
-        run: cd website && yarn
+      - name: Build library and website
+        run: yarn build
 
       - name: Test library
-        run: cd lib && npm run test
-
-      - name: Build website
-        run: cd website && yarn build
+        run: cd ./@dxc-technology/halstack-react && yarn test

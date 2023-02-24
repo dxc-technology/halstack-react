@@ -6,17 +6,12 @@
       "dependsOn": ["^build"],
       "outputs": [".dist/**", ".next/**"]
     },
-    "lint": {
-      "outputs": []
-    },
     "dev": {
       "cache": false
     },
     "test": {
-      "cache": false
     },
     "test:watch": {
-      "cache": false
     }
   }
 }

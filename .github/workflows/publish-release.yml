@@ -29,16 +29,16 @@ jobs:
           role-skip-session-tagging: true
 
       - name: Install lib dependencies
-        run: cd lib && npm install --omit=dev
+        run: cd ./@dxc-technology/halstack-react && yarn --production
 
       - name: Build library
-        run: cd lib && npm run build
+        run: cd ./@dxc-technology/halstack-react && yarn build
 
       - name: Install website dependencies
         run: cd website && yarn
 
       - name: Test library
-        run: cd lib && npm run test
+        run: cd ./@dxc-technology/halstack-react && yarn test
 
       - name: Publish RELEASE to npm
         run: |

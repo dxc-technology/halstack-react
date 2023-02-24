@@ -5,10 +5,10 @@ on:
     branches:
       - master
     paths:
-      - "lib/**"
+      - "@dxc-technology/halstack-react/**"
   pull_request:
     paths:
-      - "lib/**"
+      - "@dxc-technology/halstack-react/**"
 
 jobs:
   chromatic-deployment:
@@ -20,7 +20,7 @@ jobs:
           fetch-depth: 0
 
       - name: Install lib dependencies
-        run: cd lib && npm install
+        run: cd ./@dxc-technology/halstack-react && yarn
 
       - name: Install Node.js 16.x
         uses: actions/setup-node@v1
@@ -34,4 +34,4 @@ jobs:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           exitOnceUploaded: true
           exitZeroOnChanges: true
-          workingDir: lib
+          workingDir: @dxc-technology/halstack-react
