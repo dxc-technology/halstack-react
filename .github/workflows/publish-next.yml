@@ -3,7 +3,7 @@ name: Publish Next Version
 on:
   push:
     branches:
-      - master
+      - jcheng-turborepo
     paths:
       - "@dxc-technology/halstack-react/**"
 

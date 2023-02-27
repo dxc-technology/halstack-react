@@ -3,7 +3,7 @@ name: "Chromatic"
 on:
   push:
     branches:
-      - master
+      - jcheng-turborepo
     paths:
       - "@dxc-technology/halstack-react/**"
   pull_request:
