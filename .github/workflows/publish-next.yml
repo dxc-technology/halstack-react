@@ -44,13 +44,13 @@ jobs:
       - name: Build website
         run: cd website && SITE_VERSION=turbo yarn build
 
-      - name: Publish NEXT version to npm
-        run: |
-          sed -i "s#\"version\": \"0.0.0\"#\"version\": \"0.0.0-${GITHUB_SHA:0:7}\"#" ./dist/package.json
-          cd dist
-          npm publish --tag next --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
+      # - name: Publish NEXT version to npm
+      #   run: |
+      #     sed -i "s#\"version\": \"0.0.0\"#\"version\": \"0.0.0-${GITHUB_SHA:0:7}\"#" ./dist/package.json
+      #     cd dist
+      #     npm publish --tag next --access public
+      #   env:
+      #     NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
 
       - name: Move NEXT website to S3
         run: |
