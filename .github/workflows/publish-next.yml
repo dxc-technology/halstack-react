@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - jcheng-turborepo
-    paths:
-      - "@dxc-technology/halstack-react/**"
 
 jobs:
   build:
