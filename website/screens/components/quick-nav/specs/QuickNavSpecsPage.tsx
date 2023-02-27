@@ -263,7 +263,7 @@ const sections = [
   },
 ];
 
-const ProgressBarSpecsPage = () => {
+const QuickNavSpecsPage = () => {
   return (
     <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
@@ -277,4 +277,4 @@ const ProgressBarSpecsPage = () => {
   );
 };
 
-export default ProgressBarSpecsPage;
+export default QuickNavSpecsPage;
