@@ -1,0 +1,40 @@
+name: Publish Design system components catalog
+
+on: pull_request
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install Node.js 10.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 10.x
+          registry-url: https://registry.npmjs.org/
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+          role-to-assume: ${{ secrets.AWS_ROLE_SANDBOX }}
+          role-duration-seconds: 3600
+          role-skip-session-tagging: true
+
+      - name: Deleting zip catalog file
+        run: rm -rf catalog.zip
+
+      - name: Zipping catalog folfer
+        uses: montudor/action-zip@v0.1.0
+        with:
+          args: zip -qq -r catalog.zip catalog
+
+      - name: Deploy catalog to S3 Bucket
+        run: |
+          aws s3 rm s3://design.system.components.catalog/catalog/ --recursive
+          aws s3 cp ./catalog/ s3://design.system.components.catalog/catalog / --recursive
