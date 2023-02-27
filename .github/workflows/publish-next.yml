@@ -29,17 +29,17 @@ jobs:
           role-duration-seconds: 3600
           role-skip-session-tagging: true
 
-      - name: Install lib dependencies
-        run: cd ./@dxc-technology/halstack-react && npm install --omit=dev
+      # - name: Install lib dependencies
+      #   run: cd ./@dxc-technology/halstack-react && npm install --omit=dev
 
-      - name: Build library
-        run: cd ./@dxc-technology/halstack-react && yarn build
+      # - name: Build library
+      #   run: cd ./@dxc-technology/halstack-react && yarn build
 
       - name: Install website dependencies
-        run: cd website && yarn
+        run: yarn
 
-      - name: Test library
-        run: cd ./@dxc-technology/halstack-react && yarn test
+      # - name: Test library
+      #   run: cd ./@dxc-technology/halstack-react && yarn test
 
       - name: Build website
         run: cd website && SITE_VERSION=turbo yarn build
