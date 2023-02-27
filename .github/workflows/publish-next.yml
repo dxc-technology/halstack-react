@@ -42,7 +42,7 @@ jobs:
         run: cd ./@dxc-technology/halstack-react && yarn test
 
       - name: Build website
-        run: cd website && SITE_VERSION=next yarn build
+        run: cd website && SITE_VERSION=turbo yarn build
 
       - name: Publish NEXT version to npm
         run: |
