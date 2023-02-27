@@ -30,7 +30,7 @@ jobs:
           role-skip-session-tagging: true
 
       - name: Install lib dependencies
-        run: cd ./@dxc-technology/halstack-react && yarn --production
+        run: cd ./@dxc-technology/halstack-react && npm install --omit=dev
 
       - name: Build library
         run: cd ./@dxc-technology/halstack-react && yarn build
