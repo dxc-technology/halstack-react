@@ -53,6 +53,7 @@ const FileItem = ({
           <DxcFlex gap="0.25rem">
             {error && <ErrorIcon>{errorIcon}</ErrorIcon>}
             <DeleteFileAction
+              type="button"
               onClick={() => {
                 onDelete(fileName);
               }}

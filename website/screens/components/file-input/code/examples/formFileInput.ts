@@ -9,7 +9,8 @@ import { useState } from "react";
 const code = `() => {
   const [files, setFiles] = useState([]);
 
-  const handleSubmit = () => {
+  const handleSubmit = (event) => {
+    event.preventDefault();
     console.log(files.map((file) => file.file.name));
   };
 
@@ -18,16 +19,18 @@ const code = `() => {
   };
 
   return (
-    <DxcInset space="2rem">
-      <DxcFlex direction="column" gap="2rem">
-        <DxcFileInput
-          label="Select your files"
-          value={files}
-          callbackFile={callbackFile}
-        />
-        <DxcButton label="Submit" type="submit" onClick={handleSubmit} />
-      </DxcFlex>
-    </DxcInset>
+    <form onSubmit={handleSubmit}>
+      <DxcInset space="2rem">
+        <DxcFlex direction="column" gap="2rem">
+          <DxcFileInput
+            label="Select your files"
+            value={files}
+            callbackFile={callbackFile}
+          />
+          <input type="submit" value="Submit" />
+        </DxcFlex>
+      </DxcInset>
+    </form>
   );
 }`;
 

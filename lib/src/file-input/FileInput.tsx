@@ -179,7 +179,6 @@ const DxcFileInput = React.forwardRef<RefType, FileInputPropsType>(
                 accept={accept}
                 multiple={multiple}
                 onChange={selectFiles}
-                name={name}
                 disabled={disabled}
                 readOnly
                 aria-hidden="true"
@@ -223,7 +222,6 @@ const DxcFileInput = React.forwardRef<RefType, FileInputPropsType>(
                 accept={accept}
                 multiple={multiple}
                 onChange={selectFiles}
-                name={name}
                 disabled={disabled}
                 readOnly
                 aria-hidden="true"
