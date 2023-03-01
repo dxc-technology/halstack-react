@@ -57,7 +57,7 @@ function App() {
       <DxcButton label="Example" onClick={onClickDialog1} />
       {isDialog1Visible && (
         <DxcDialog isCloseVisible={false} onCloseClick={onClickDialog1}>
-          {/* <DxcFlex direction="column" gap="1.5rem">
+          <DxcFlex direction="column" gap="1.5rem">
             <DxcHeading level={4} text="User form" />
             <DxcTextInput label="Name" />
             <DxcTextarea label="Description" />
@@ -71,7 +71,7 @@ function App() {
                 }}
               />
             </DxcFlex>
-          </DxcFlex> */}
+          </DxcFlex>
         </DxcDialog>
       )}
       {isDialog2Visible && (

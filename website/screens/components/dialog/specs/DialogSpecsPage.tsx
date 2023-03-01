@@ -316,7 +316,7 @@ const sections = [
                 </td>
                 <td>Container</td>
                 <td>-</td>
-                <td>800px</td>
+                <td>696px</td>
               </tr>
               <tr>
                 <td>
