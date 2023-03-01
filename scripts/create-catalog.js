@@ -3,7 +3,7 @@ const fs = require("fs");
 const componentsLinks =
   require("../website/screens/common/pagesList").componentsLinks;
 
-export const setCatalog = () => {
+const setCatalog = () => {
   console.log("creating catalog");
   let catalog = [];
   componentsLinks.forEach((el) => {
