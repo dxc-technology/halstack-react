@@ -12,7 +12,7 @@ const iconSVG = (
 
 const NavTabs = () => (
   <PreviewContainer>
-    <Mode text="Default">
+    <Mode text="Default ">
       <DxcNavTabs>
         <DxcNavTabs.Tab href="#" active>
           Tab 1
