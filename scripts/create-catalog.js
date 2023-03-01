@@ -19,3 +19,5 @@ export const setCatalog = () => {
     console.log("Data written to file");
   });
 };
+
+setCatalog();
