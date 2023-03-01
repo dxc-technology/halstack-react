@@ -37,7 +37,7 @@ const principlesLinks: LinkDetails[] = [
   { label: "Localization", path: "/principles/localization" },
 ];
 
-const componentsLinks: LinkDetails[] = [
+export const componentsLinks: LinkDetails[] = [
   { label: "Accordion", path: "/components/accordion" },
   { label: "Alert", path: "/components/alert" },
   { label: "Application layout", path: "/components/application-layout" },
