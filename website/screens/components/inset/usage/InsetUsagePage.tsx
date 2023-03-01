@@ -10,8 +10,8 @@ const sections = [
     content: (
       <>
         <DxcParagraph>
-          Bleed properties refer to the scale of the spacing used outside a
-          container. The unit commonly used for the bleed scale is REM, which is
+          Inset properties refer to the scale of the spacing used outside a
+          container. The unit commonly used for the inset scale is REM, which is
           a measurement unit that refers to the font-size of the root element of
           a document.
         </DxcParagraph>
@@ -26,7 +26,7 @@ const sections = [
   },
 ];
 
-const BleedUsagePage = () => {
+const InsetUsagePage = () => {
   return (
     <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
@@ -35,9 +35,9 @@ const BleedUsagePage = () => {
           startHeadingLevel={2}
         ></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/bleed/usage/BleedUsagePage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/inset/usage/InsetUsagePage.tsx" />
     </DxcFlex>
   );
 };
 
-export default BleedUsagePage;
+export default InsetUsagePage;
