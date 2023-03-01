@@ -31,6 +31,7 @@ import FooterPreview from "./previews/Footer";
 import HeaderPreview from "./previews/Header";
 import BulletedListPreview from "./previews/BulletedList";
 import ParagraphPreview from "./previews/Paragraph";
+import NavTabsPreview from "./previews/NavTabs";
 
 const SampleComponents = [
   {
@@ -96,6 +97,10 @@ const SampleComponents = [
   {
     name: "link",
     preview: LinkPreview,
+  },
+  {
+    name: "navTabs",
+    preview: NavTabsPreview,
   },
   {
     name: "textarea",
