@@ -3,7 +3,9 @@ name: Publish Next Version
 on:
   push:
     branches:
-      - jcheng-turborepo
+      - master
+    paths:
+      - "./@dxc-technology/**"
 
 jobs:
   build:
@@ -29,30 +31,30 @@ jobs:
           role-duration-seconds: 3600
           role-skip-session-tagging: true
 
-      # - name: Install lib dependencies
-      #   run: cd ./@dxc-technology/halstack-react && npm install --omit=dev
+      - name: Install lib dependencies
+        run: cd ./@dxc-technology/halstack-react && npm install --omit=dev
 
-      # - name: Build library
-      #   run: cd ./@dxc-technology/halstack-react && yarn build
+      - name: Build library
+        run: cd ./@dxc-technology/halstack-react && npm run build
+
+      - name: Test library
+        run: cd ./@dxc-technology/halstack-react && npm run test
 
       - name: Install website dependencies
         run: yarn
 
-      # - name: Test library
-      #   run: cd ./@dxc-technology/halstack-react && yarn test
-
       - name: Build website
-        run: cd website && SITE_VERSION=turbo yarn build
+        run: cd website && SITE_VERSION=next yarn build
 
-      # - name: Publish NEXT version to npm
-      #   run: |
-      #     sed -i "s#\"version\": \"0.0.0\"#\"version\": \"0.0.0-${GITHUB_SHA:0:7}\"#" ./dist/package.json
-      #     cd dist
-      #     npm publish --tag next --access public
-      #   env:
-      #     NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
+      - name: Publish NEXT version to npm
+        run: |
+          sed -i "s#\"version\": \"0.0.0\"#\"version\": \"0.0.0-${GITHUB_SHA:0:7}\"#" ./dist/package.json
+          cd dist
+          npm publish --tag next --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
 
       - name: Move NEXT website to S3
         run: |
-          aws s3 rm s3://design-system-react-cdk-site/halstack/turbo/ --recursive
-          aws s3 cp ./website/out/ s3://design-system-react-cdk-site/halstack/turbo/ --recursive
+          aws s3 rm s3://design-system-react-cdk-site/halstack/next/ --recursive
+          aws s3 cp ./website/out/ s3://design-system-react-cdk-site/halstack/next/ --recursive
