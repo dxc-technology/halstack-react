@@ -1,7 +1,7 @@
 const fs = require("fs");
 
 const componentsLinks =
-  require("website/screens/common/pagesList").componentsLinks;
+  require("../website/screens/common/pagesList").componentsLinks;
 
 const setCatalog = () => {
   let catalog = [];
