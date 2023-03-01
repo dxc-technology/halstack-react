@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
 import DialogPropsType, { Padding, Space } from "./types";
 import { spaces, responsiveSizes } from "../common/variables.js";
@@ -6,6 +6,7 @@ import useTheme from "../useTheme";
 import { BackgroundColorProvider } from "../BackgroundColorContext";
 import useTranslatedLabels from "../useTranslatedLabels";
 import { createPortal } from "react-dom";
+import FocusLock from "../utils/FocusLock";
 
 const closeIcon = (
   <svg role="img" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
@@ -32,42 +33,36 @@ const DxcDialog = ({
   const handleOverlayClick = () => {
     onBackgroundClick?.();
   };
-  const handleOnKeyDown = (event: KeyboardEvent) => {
+  const handleOnKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
     if (event.key === "Escape") {
       event.preventDefault();
       handleClose();
     }
   };
 
-  useEffect(() => {
-    if (isCloseVisible) window.addEventListener("keydown", handleOnKeyDown);
-
-    return () => {
-      window.removeEventListener("keydown", handleOnKeyDown);
-    };
-  }, [isCloseVisible]);
-
   return (
     <ThemeProvider theme={colorsTheme.dialog}>
       <BodyStyle />
       {createPortal(
-        <DialogContainer id="portal-root">
-          {overlay && <Overlay onClick={handleOverlayClick} />}
-          <Dialog role="dialog" aria-modal={overlay} isCloseVisible={isCloseVisible}>
-            <Children padding={padding}>
-              <BackgroundColorProvider color={colorsTheme.dialog.backgroundColor}>{children}</BackgroundColorProvider>
-            </Children>
-            {isCloseVisible && (
-              <CloseIconAction
-                onClick={handleClose}
-                aria-label={translatedLabels.dialog.closeIconAriaLabel}
-                tabIndex={tabIndex}
-              >
-                {closeIcon}
-              </CloseIconAction>
-            )}
-          </Dialog>
-        </DialogContainer>,
+        <FocusLock>
+          <DialogContainer id="portal-root">
+            {overlay && <Overlay onClick={handleOverlayClick} />}
+            <Dialog role="dialog" aria-modal={overlay} isCloseVisible={isCloseVisible} onKeyDown={handleOnKeyDown}>
+              <Children padding={padding}>
+                <BackgroundColorProvider color={colorsTheme.dialog.backgroundColor}>{children}</BackgroundColorProvider>
+              </Children>
+              {isCloseVisible && (
+                <CloseIconAction
+                  onClick={handleClose}
+                  aria-label={translatedLabels.dialog.closeIconAriaLabel}
+                  tabIndex={tabIndex}
+                >
+                  {closeIcon}
+                </CloseIconAction>
+              )}
+            </Dialog>
+          </DialogContainer>
+        </FocusLock>,
         document.body
       )}
     </ThemeProvider>
@@ -109,7 +104,7 @@ const Dialog = styled.div<{ isCloseVisible?: boolean }>`
 
   @media (min-width: ${responsiveSizes.medium}rem) {
     max-width: 80%;
-    min-width: 800px;
+    min-width: 696px;
   }
   @media (max-width: ${responsiveSizes.medium}rem) {
     //mobile phones
@@ -127,6 +122,7 @@ const CloseIconAction = styled.button`
   align-items: center;
   justify-content: center;
   background-color: ${(props) => props.theme.closeIconBackgroundColor};
+  box-shadow: 0 0 0 2px transparent;
   color: ${(props) => props.theme.closeIconColor};
   border-radius: ${(props) => props.theme.closeIconBorderRadius};
   border-width: ${(props) => props.theme.closeIconBorderThickness};
