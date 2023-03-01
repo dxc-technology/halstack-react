@@ -26,6 +26,9 @@ jobs:
           role-duration-seconds: 3600
           role-skip-session-tagging: true
 
+      - name: Execute scripts
+        run: npm run scripts/create-catalog
+
       - name: Deleting zip catalog file
         run: rm -rf catalog.zip
 
