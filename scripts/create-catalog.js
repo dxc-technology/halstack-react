@@ -1,6 +1,7 @@
 const fs = require("fs");
 
-import { componentsLinks } from "../website/screens/common/pagesList";
+const componentsLinks =
+  require("../website/screens/common/pagesList").componentsLinks;
 
 export const setCatalog = () => {
   console.log("creating catalog");
