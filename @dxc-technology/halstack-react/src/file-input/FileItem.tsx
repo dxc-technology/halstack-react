@@ -56,6 +56,7 @@ const FileItem = ({
               onClick={() => {
                 onDelete(fileName);
               }}
+              type="button"
               title={translatedLabels.fileInput.deleteFileActionTitle}
               aria-label={translatedLabels.fileInput.deleteFileActionTitle}
               tabIndex={tabIndex}
