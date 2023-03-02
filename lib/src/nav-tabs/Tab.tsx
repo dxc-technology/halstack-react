@@ -35,6 +35,7 @@ const DxcTab = forwardRef(
         <Tab
           href={!disabled && href ? href : undefined}
           disabled={disabled}
+          active={active}
           iconPosition={iconPosition}
           hasIcon={hasIcons}
           ref={(anchorRef) => {
@@ -112,6 +113,7 @@ const TabContainer = styled.div<TabContainerProps>`
 type TabStyleProps = {
   disabled: boolean;
   hasIcon: boolean;
+  active?: boolean;
   iconPosition: "top" | "left";
 };
 const Tab = styled.a<TabStyleProps>`
@@ -122,7 +124,8 @@ const Tab = styled.a<TabStyleProps>`
 
   text-decoration-color: transparent;
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
-  background: ${(props) => props.theme.selectedBackgroundColor};
+  background: ${(props) =>
+    props.active ? props.theme.selectedBackgroundColor : props.theme.unselectedBackgroundColor};
 
   height: ${(props) => (props.hasIcon && props.iconPosition === "top" ? "66px" : "32px")};
   min-width: 164px;
