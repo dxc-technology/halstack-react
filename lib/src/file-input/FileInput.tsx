@@ -181,7 +181,6 @@ const DxcFileInput = React.forwardRef<RefType, FileInputPropsType>(
                 onChange={selectFiles}
                 disabled={disabled}
                 readOnly
-                aria-hidden="true"
               />
               <DxcButton
                 mode="secondary"
@@ -224,7 +223,6 @@ const DxcFileInput = React.forwardRef<RefType, FileInputPropsType>(
                 onChange={selectFiles}
                 disabled={disabled}
                 readOnly
-                aria-hidden="true"
               />
               <DragDropArea
                 isDragging={isDragging}

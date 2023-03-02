@@ -27,7 +27,7 @@ const code = `() => {
             value={files}
             callbackFile={callbackFile}
           />
-          <input type="submit" value="Submit" />
+          <DxcButton type="submit" label="Submit" />
         </DxcFlex>
       </DxcInset>
     </form>
