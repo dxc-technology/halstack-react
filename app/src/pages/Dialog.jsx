@@ -6,35 +6,15 @@ import {
   DxcFlex,
   DxcHeading,
   DxcParagraph,
-  DxcSelect,
   DxcAlert,
-  DxcCheckbox,
-  DxcToggleGroup,
-  DxcRadioGroup,
-  DxcTag,
   DxcTextarea,
 } from "@dxc-technology/halstack-react";
-import styled from "styled-components";
-
-const options = [
-  { label: "Spain", value: "spain" },
-  { label: "France", value: "france" },
-  { label: "Germany", value: "germany" },
-  { label: "Italy", value: "italy" },
-  { label: "Portugal", value: "portugal" },
-  { label: "United Kingdom", value: "united-kingdom" },
-  { label: "United States", value: "united-states" },
-];
 
 function App() {
   const [isDialog1Visible, setIsDialog1Visible] = useState(false);
   const [isDialog2Visible, setIsDialog2Visible] = useState(false);
   const [isDialog3Visible, setIsDialog3Visible] = useState(false);
-  const [isVisible, changeIsVisible] = useState(false);
-  const [myCurrentStep, setMyCurrentStep] = useState(2);
-  const onStepClick = (i) => {
-    setMyCurrentStep(i);
-  };
+  const [isVisible, changeIsVisible] = useState(true);
 
   const handleVisibility = () => {
     changeIsVisible((isVisible) => !isVisible);
@@ -56,11 +36,21 @@ function App() {
     <DxcFlex gap="1.5rem">
       <DxcButton label="Example" onClick={onClickDialog1} />
       {isDialog1Visible && (
-        <DxcDialog isCloseVisible={false} onCloseClick={onClickDialog1}>
-          <DxcFlex direction="column" gap="1.5rem">
+        <DxcDialog onCloseClick={onClickDialog1}>
+          <DxcFlex direction="column" gap="2rem">
             <DxcHeading level={4} text="User form" />
-            <DxcTextInput label="Name" />
-            <DxcTextarea label="Description" />
+            <DxcFlex direction="column" gap="1rem">
+              {isVisible && (
+                <DxcAlert
+                  type="warning"
+                  inlineText="To be valid, you need to fill every field."
+                  size="fillParent"
+                  onClose={handleVisibility}
+                />
+              )}
+              <DxcTextInput label="Name" size="fillParent" />
+              <DxcTextarea label="Description" size="fillParent" />
+            </DxcFlex>
             <DxcFlex justifyContent="flex-end" gap="0.5rem">
               <DxcButton label="Cancel" mode="text" onClick={onClickDialog1} />
               <DxcButton
@@ -110,18 +100,5 @@ function App() {
     </DxcFlex>
   );
 }
-
-const Input = styled.input`
-  display: none;
-  font-family: Open Sans;
-  font-size: 1rem;
-  padding: 0.5rem;
-  border: 1px solid #999999;
-  border-radius: 2px;
-  :focus {
-    border-color: transparent;
-    outline: 2px solid #0095ff;
-  }
-`;
 
 export default App;

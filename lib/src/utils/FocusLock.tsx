@@ -1,11 +1,10 @@
-import React, { useCallback, useEffect, useRef } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 
 const not = {
   inert: ":not([inert]):not([inert] *)",
   negTabIndex: ':not([tabindex^="-"])',
   disabled: ":not(:disabled):not([aria-disabled='true'])",
 };
-
 const focusableItems = [
   `a[href]${not.inert}${not.negTabIndex}`,
   `area[href]${not.inert}${not.negTabIndex}`,
@@ -45,6 +44,22 @@ const attempFocus = (element: HTMLElement): boolean => {
 };
 
 /**
+ * Custom hook that returns an array of focusable elements inside a container.
+ *
+ * @param ref
+ * @returns
+ */
+const useFocusableElements = (ref: React.MutableRefObject<HTMLDivElement>): HTMLElement[] => {
+  const [focusableElements, setFocusableElements] = useState<HTMLElement[]>([]);
+
+  useEffect(() => {
+    setFocusableElements(getFocusableElements(ref.current));
+  }, []);
+
+  return focusableElements;
+};
+
+/**
  * Traps the focus inside the children of the component. It will focus the first focusable element when the component is mounted.
  * When the focus is on the last focusable element and the user tries to focus the next element, it will focus the first element.
  * When the focus is on the first focusable element and the user tries to focus the previous element, it will focus the last element.
@@ -55,25 +70,29 @@ const attempFocus = (element: HTMLElement): boolean => {
  */
 const FocusLock = ({ children }: { children: React.ReactNode }): JSX.Element => {
   const childrenContainerRef = useRef<HTMLDivElement>();
+  const focusableElements = useFocusableElements(childrenContainerRef);
 
-  const focusFirst = useCallback(() => {
-    const focusableElements = getFocusableElements(childrenContainerRef.current);
-    for (let i = 0; i < focusableElements.length; i++) if (attempFocus(focusableElements[i])) return;
-  }, []);
-
-  const focusLast = useCallback(() => {
-    const focusableElements = getFocusableElements(childrenContainerRef.current);
+  const focusFirst = () => {
+    if (focusableElements.length === 0) childrenContainerRef.current?.focus();
+    else for (let i = 0; i < focusableElements.length; i++) if (attempFocus(focusableElements[i])) return;
+  };
+  const focusLast = () => {
     for (let i = focusableElements.length; i > 0; i--) if (attempFocus(focusableElements[i])) return;
-  }, []);
+  };
+  const focusLock = (event) => {
+    if (event.key === "Tab") focusableElements.length === 0 && event.preventDefault();
+  };
 
   useEffect(() => {
     focusFirst();
-  }, []);
+  }, [focusFirst]);
 
   return (
     <>
       <div onFocus={focusLast} tabIndex={0} />
-      <div ref={childrenContainerRef}>{children}</div>
+      <div onKeyDown={focusLock} ref={childrenContainerRef} tabIndex={0}>
+        {children}
+      </div>
       <div onFocus={focusFirst} tabIndex={0} />
     </>
   );
