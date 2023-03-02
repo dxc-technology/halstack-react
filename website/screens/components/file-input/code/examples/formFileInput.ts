@@ -13,6 +13,7 @@ const code = `() => {
     event.preventDefault();
     console.log(files.map((file) => file.file.name));
   };
+  
   const callbackFile = (files) => {
     setFiles(files);
   };

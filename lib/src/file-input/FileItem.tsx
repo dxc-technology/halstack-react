@@ -53,10 +53,10 @@ const FileItem = ({
           <DxcFlex gap="0.25rem">
             {error && <ErrorIcon>{errorIcon}</ErrorIcon>}
             <DeleteFileAction
-              type="button"
               onClick={() => {
                 onDelete(fileName);
               }}
+              type="button"
               title={translatedLabels.fileInput.deleteFileActionTitle}
               aria-label={translatedLabels.fileInput.deleteFileActionTitle}
               tabIndex={tabIndex}
