@@ -39,5 +39,5 @@ jobs:
 
       - name: Deploy catalog to S3 Bucket
         run: |
-          aws s3 rm s3://design.system.components.catalog/guidelines/catalog --recursive
-          aws s3 cp ./catalog/ s3://design.system.components.catalog/guidelines/catalog --recursive
+          aws s3 rm s3://design.system.components.catalog/catalog --recursive
+          aws s3 cp ./catalog/ s3://design.system.components.catalog/catalog --recursive
