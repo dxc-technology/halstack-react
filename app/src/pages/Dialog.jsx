@@ -12,9 +12,11 @@ import {
 
 function App() {
   const [isDialog1Visible, setIsDialog1Visible] = useState(false);
+  const [nameValue, setNameValue] = useState("");
+  const [descriptionValue, setDescriptionValue] = useState("");
+
   const [isDialog2Visible, setIsDialog2Visible] = useState(false);
-  const [isDialog3Visible, setIsDialog3Visible] = useState(false);
-  const [isVisible, changeIsVisible] = useState(true);
+  const [isVisible, changeIsVisible] = useState(false);
   const [isDisabled, changeIsDisabled] = useState(false);
   const handleDisabled = () => {
     changeIsDisabled((isDisabled) => !isDisabled);
@@ -25,15 +27,9 @@ function App() {
   };
   const onClickDialog1 = () => {
     setIsDialog1Visible(!isDialog1Visible);
-    changeIsVisible(true);
-  };
-  const onClickDialog3 = () => {
-    setIsDialog2Visible(!isDialog2Visible);
-    changeIsVisible(true);
-  };
-  const onClickDialog4 = () => {
-    setIsDialog3Visible(!isDialog3Visible);
-    changeIsVisible(true);
+    changeIsVisible(false);
+    setNameValue("");
+    setDescriptionValue("");
   };
 
   return (
@@ -46,60 +42,71 @@ function App() {
             <DxcFlex direction="column" gap="1rem">
               {isVisible && (
                 <DxcAlert
-                  type="warning"
+                  type="error"
                   inlineText="To be valid, you need to fill every field."
                   size="fillParent"
                   onClose={handleVisibility}
                 />
               )}
-              <DxcTextInput label="Name" size="fillParent" disabled={isDisabled} />
-              <DxcTextarea label="Description" size="fillParent" disabled={isDisabled} />
+              <DxcTextInput
+                label="Name"
+                value={nameValue}
+                onChange={({ value }) => {
+                  setNameValue(value);
+                }}
+                size="fillParent"
+                disabled={isDisabled}
+              />
+              <DxcTextarea
+                label="Description"
+                value={descriptionValue}
+                onChange={({ value }) => {
+                  setDescriptionValue(value);
+                }}
+                size="fillParent"
+                disabled={isDisabled}
+              />
             </DxcFlex>
             <DxcFlex justifyContent="flex-end" gap="0.5rem">
-              <DxcButton label="Disable fields" mode="text" onClick={handleDisabled} />
-              <DxcButton label="Cancel" mode="secondary" onClick={onClickDialog1} />
+              <DxcButton
+                label="Disable fields"
+                mode="text"
+                onClick={handleDisabled}
+              />
+              <DxcButton
+                label="Cancel"
+                mode="secondary"
+                onClick={onClickDialog1}
+              />
               <DxcButton
                 label="Save"
                 onClick={() => {
-                  onClickDialog1();
-                  onClickDialog3();
+                  if (nameValue === "" || nameValue === "")
+                    changeIsVisible(true);
+                  else {
+                    changeIsVisible(false);
+                    setIsDialog1Visible(false);
+                  }
                 }}
               />
             </DxcFlex>
           </DxcFlex>
         </DxcDialog>
       )}
+      <DxcButton
+        label="Empty"
+        onClick={() => {
+          setIsDialog2Visible((isVisible) => !isVisible);
+        }}
+      />
       {isDialog2Visible && (
-        <DxcDialog onCloseClick={onClickDialog3}>
-          <DxcFlex direction="column" gap="1.5rem">
-            <DxcHeading level={4} text="Example title" />
-            <DxcParagraph>Are you sure?</DxcParagraph>
-            <DxcFlex justifyContent="flex-end" gap="0.5rem">
-              <DxcButton
-                label="No"
-                mode="text"
-                onClick={() => {
-                  onClickDialog1();
-                  onClickDialog3();
-                }}
-              />
-              <DxcButton
-                label="Yes"
-                onClick={() => {
-                  onClickDialog3();
-                  onClickDialog4();
-                }}
-              />
-            </DxcFlex>
-          </DxcFlex>
-        </DxcDialog>
-      )}
-      {isDialog3Visible && (
         <DxcDialog
-          onCloseClick={onClickDialog4}
-          onBackgroundClick={onClickDialog4}
+          isCloseVisible={false}
+          onBackgroundClick={() => {
+            setIsDialog2Visible((isVisible) => !isVisible);
+          }}
         >
-          <DxcParagraph>Task completed.</DxcParagraph>
+          <DxcParagraph>Example text</DxcParagraph>
         </DxcDialog>
       )}
     </DxcFlex>
