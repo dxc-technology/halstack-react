@@ -15,6 +15,10 @@ function App() {
   const [isDialog2Visible, setIsDialog2Visible] = useState(false);
   const [isDialog3Visible, setIsDialog3Visible] = useState(false);
   const [isVisible, changeIsVisible] = useState(true);
+  const [isDisabled, changeIsDisabled] = useState(false);
+  const handleDisabled = () => {
+    changeIsDisabled((isDisabled) => !isDisabled);
+  };
 
   const handleVisibility = () => {
     changeIsVisible((isVisible) => !isVisible);
@@ -48,11 +52,12 @@ function App() {
                   onClose={handleVisibility}
                 />
               )}
-              <DxcTextInput label="Name" size="fillParent" />
-              <DxcTextarea label="Description" size="fillParent" />
+              <DxcTextInput label="Name" size="fillParent" disabled={isDisabled} />
+              <DxcTextarea label="Description" size="fillParent" disabled={isDisabled} />
             </DxcFlex>
             <DxcFlex justifyContent="flex-end" gap="0.5rem">
-              <DxcButton label="Cancel" mode="text" onClick={onClickDialog1} />
+              <DxcButton label="Disable fields" mode="text" onClick={handleDisabled} />
+              <DxcButton label="Cancel" mode="secondary" onClick={onClickDialog1} />
               <DxcButton
                 label="Save"
                 onClick={() => {

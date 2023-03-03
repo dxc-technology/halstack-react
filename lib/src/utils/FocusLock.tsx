@@ -72,13 +72,15 @@ const FocusLock = ({ children }: { children: React.ReactNode }): JSX.Element => 
   const childrenContainerRef = useRef<HTMLDivElement>();
   const focusableElements = useFocusableElements(childrenContainerRef);
 
-  const focusFirst = () => {
+  const focusFirst = useCallback(() => {
     if (focusableElements.length === 0) childrenContainerRef.current?.focus();
     else for (let i = 0; i < focusableElements.length; i++) if (attempFocus(focusableElements[i])) return;
-  };
+  }, [focusableElements]);
+
   const focusLast = () => {
     for (let i = focusableElements.length; i > 0; i--) if (attempFocus(focusableElements[i])) return;
   };
+
   const focusLock = (event) => {
     if (event.key === "Tab") focusableElements.length === 0 && event.preventDefault();
   };
