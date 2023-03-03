@@ -1,6 +1,8 @@
 name: Publish Design system components catalog
 
-on: pull_request
+on:
+  release:
+    types: [published]
 
 jobs:
   build:
