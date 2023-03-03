@@ -27,7 +27,7 @@ jobs:
           role-skip-session-tagging: true
 
       - name: Execute script
-        run: node website/scripts/create-catalog.js
+        run: node scripts/create-catalog.js
 
       - name: Deleting zip catalog file
         run: rm -rf catalog.zip
