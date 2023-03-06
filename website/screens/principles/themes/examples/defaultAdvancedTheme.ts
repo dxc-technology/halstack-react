@@ -686,7 +686,7 @@ export default {
     linkMarginRight: "16px",
     linkMarginLeft: "16px",
     linkFocusColor: "#0095ff",
-    scrollBarThumbColor: "#66666626",
+    scrollBarThumbColor: "#0000001a",
     scrollBarTrackColor: "transparent",
   },
   slider: {

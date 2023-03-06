@@ -50,14 +50,14 @@ const sections = [
             <DxcBulletedList type="number">
               <DxcBulletedList.Item>Header</DxcBulletedList.Item>
               <DxcBulletedList.Item>
-                Custom icon (Optional)
+                Custom icon <em>(Optional)</em>
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>Title</DxcBulletedList.Item>
               <DxcBulletedList.Item>
-                Helper text (Optional)
+                Helper text<em>(Optional)</em>
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
-                Caret icon (Expand/collapse)
+                Caret icon <em>(Expand/collapse)</em>
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>Expanded panel</DxcBulletedList.Item>
             </DxcBulletedList>
