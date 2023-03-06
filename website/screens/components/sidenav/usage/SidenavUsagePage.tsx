@@ -17,7 +17,7 @@ const sections = [
       <>
         <DxcBulletedList>
           <DxcBulletedList.Item>
-            se the Sidenav element to improve the discoverability of the
+            Use the sidenav component to improve the discoverability of the
             application, making the navigation links accessible to the users.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
