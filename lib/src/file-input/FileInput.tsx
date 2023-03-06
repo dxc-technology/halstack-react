@@ -105,6 +105,7 @@ const DxcFileInput = React.forwardRef<RefType, FileInputPropsType>(
       const selectedFiles = e.target.files;
       const filesArray = Object.keys(selectedFiles).map((key) => selectedFiles[key]);
       addFile(filesArray);
+      e.target.value = null;
     };
 
     const onDelete = useCallback(

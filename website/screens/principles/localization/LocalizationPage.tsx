@@ -23,7 +23,7 @@ const sections = [
           Halstack Design System provides the possibility to translate all the
           labels that cannot be changed by the component properties through the{" "}
           <Link
-            href="/utilities/halstackProvider/#localization"
+            href="/utilities/halstack-provider/#localization"
             passHref
             legacyBehavior
           >
