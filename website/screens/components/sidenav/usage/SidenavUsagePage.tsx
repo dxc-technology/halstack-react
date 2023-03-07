@@ -23,11 +23,11 @@ const sections = [
           <DxcBulletedList.Item>
             Keep in mind the type of the devices that you are developing for,
             and handle the behavior in a way that doesn&#39;t block or reduce
-            the available space of the main area in the application
+            the available space of the main area in the application.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
             Try to follow and order for the Sidenav content and make use of
-            hierarchy to differentiate between a title and a link
+            hierarchy to differentiate between a title and a link.
           </DxcBulletedList.Item>
         </DxcBulletedList>
       </>
