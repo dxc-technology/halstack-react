@@ -43,6 +43,15 @@ const attempFocus = (element: HTMLElement): boolean => {
 };
 
 /**
+ * @param element: HTMLElement
+ * @returns boolean: true if element is contained inside a Radix Portal, false otherwise. 
+ */
+const radixPortalContains = (activeElement: Element): boolean => {
+  const radixPortals = document.querySelectorAll("[data-radix-portal]");
+  return Array.prototype.slice.call(radixPortals).some((portal) => portal.contains(activeElement));
+};
+
+/**
  * Custom hook that returns an array of focusable elements inside a container.
  * @param ref: React.MutableRefObject<HTMLDivElement>
  * @returns
@@ -66,6 +75,7 @@ const useFocusableElements = (ref: React.MutableRefObject<HTMLDivElement>): HTML
 
   return focusableElements;
 };
+
 
 /**
  * Traps the focus inside the children of the component. It will focus the first focusable element when the component is mounted.
@@ -95,7 +105,8 @@ const FocusLock = ({ children }: { children: React.ReactNode }): JSX.Element => 
   };
 
   useEffect(() => {
-    if (!childrenContainerRef.current?.contains(document.activeElement)) focusFirst();
+    if (!childrenContainerRef.current?.contains(document.activeElement) && !radixPortalContains(document.activeElement))
+      focusFirst();
   }, [focusFirst]);
 
   return (

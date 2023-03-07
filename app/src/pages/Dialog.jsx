@@ -8,7 +8,25 @@ import {
   DxcParagraph,
   DxcAlert,
   DxcTextarea,
+  DxcSelect,
+  DxcDateInput,
+  DxcDropdown,
 } from "@dxc-technology/halstack-react";
+
+const options = [
+  {
+    value: 1,
+    label: "Android",
+  },
+  {
+    value: 2,
+    label: "Windows",
+  },
+  {
+    value: 3,
+    label: "IOS",
+  },
+];
 
 function App() {
   const [isDialog1Visible, setIsDialog1Visible] = useState(false);
@@ -48,6 +66,7 @@ function App() {
                   onClose={handleVisibility}
                 />
               )}
+              <DxcDropdown label="Options" options={options} />
               <DxcTextInput
                 label="Name"
                 value={nameValue}
@@ -56,6 +75,13 @@ function App() {
                 }}
                 size="fillParent"
                 disabled={isDisabled}
+                tabIndex={-1}
+              />
+              <DxcDateInput label="Start date" size="fillParent" />
+              <DxcSelect
+                label="Example select"
+                options={options}
+                size="fillParent"
               />
               <DxcTextarea
                 label="Description"
@@ -102,6 +128,9 @@ function App() {
       {isDialog2Visible && (
         <DxcDialog
           isCloseVisible={false}
+          onCloseClick={() => {
+            setIsDialog2Visible((isVisible) => !isVisible);
+          }}
           onBackgroundClick={() => {
             setIsDialog2Visible((isVisible) => !isVisible);
           }}

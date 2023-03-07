@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useEffect } from "react";
 import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
 import DialogPropsType, { Padding, Space } from "./types";
 import { spaces, responsiveSizes } from "../common/variables.js";
@@ -27,33 +27,42 @@ const DxcDialog = ({
   const colorsTheme = useTheme();
   const translatedLabels = useTranslatedLabels();
 
-  const handleClose = () => {
-    onCloseClick?.();
-  };
-  const handleOverlayClick = () => {
-    onBackgroundClick?.();
-  };
-  const handleOnKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    if (event.key === "Escape") {
-      event.preventDefault();
-      handleClose();
-    }
-  };
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        onCloseClick?.();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [onCloseClick]);
 
   return (
     <ThemeProvider theme={colorsTheme.dialog}>
       <BodyStyle />
       {createPortal(
         <FocusLock>
-          <DialogContainer id="portal-root">
-            {overlay && <Overlay onClick={handleOverlayClick} />}
-            <Dialog role="dialog" aria-modal={overlay} isCloseVisible={isCloseVisible} onKeyDown={handleOnKeyDown}>
+          <DialogContainer>
+            {overlay && (
+              <Overlay
+                onClick={() => {
+                  onBackgroundClick?.();
+                }}
+              />
+            )}
+            <Dialog role="dialog" aria-modal={overlay} isCloseVisible={isCloseVisible}>
               <Children padding={padding}>
                 <BackgroundColorProvider color={colorsTheme.dialog.backgroundColor}>{children}</BackgroundColorProvider>
               </Children>
               {isCloseVisible && (
                 <CloseIconAction
-                  onClick={handleClose}
+                  onClick={() => {
+                    onCloseClick?.();
+                  }}
                   aria-label={translatedLabels.dialog.closeIconAriaLabel}
                   tabIndex={tabIndex}
                 >
