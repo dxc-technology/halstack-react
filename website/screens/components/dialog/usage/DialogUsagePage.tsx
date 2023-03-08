@@ -36,6 +36,12 @@ const sections = [
           Modal dialog boxes should overlay only a portion of the underlying
           page to keep the user oriented within the workflow.
         </DxcBulletedList.Item>
+        <DxcBulletedList.Item>
+          In a dialog, the focus should remain within the modal box until the
+          user completes the required action (if any) or closes it. In addition,
+          and as a general rule, the focus should appear on the first focusable
+          child when the dialog is opened.
+        </DxcBulletedList.Item>
       </DxcBulletedList>
     ),
   },
@@ -59,10 +65,10 @@ const sections = [
             Do not use to display complex or large amounts of data.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            Do not recreate a full app or page in a dialog
+            Do not recreate a full app or page in a dialog.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            Try always to avoid scrolling
+            Try always to avoid scrolling.
           </DxcBulletedList.Item>
         </DxcBulletedList>
       </>
