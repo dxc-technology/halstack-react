@@ -39,7 +39,8 @@ const sections = [
         <DxcBulletedList.Item>
           In a dialog, the focus should remain within the modal box until the
           user completes the required action (if any) or closes it. In addition,
-          the focus should appear on the first focusable child when it opens.
+          and as a general rule, the focus should appear on the first focusable
+          child when the dialog is opened.
         </DxcBulletedList.Item>
       </DxcBulletedList>
     ),
