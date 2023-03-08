@@ -105,6 +105,7 @@ const DxcFileInput = React.forwardRef<RefType, FileInputPropsType>(
       const selectedFiles = e.target.files;
       const filesArray = Object.keys(selectedFiles).map((key) => selectedFiles[key]);
       addFile(filesArray);
+      e.target.value = null;
     };
 
     const onDelete = useCallback(
@@ -179,10 +180,8 @@ const DxcFileInput = React.forwardRef<RefType, FileInputPropsType>(
                 accept={accept}
                 multiple={multiple}
                 onChange={selectFiles}
-                name={name}
                 disabled={disabled}
                 readOnly
-                aria-hidden="true"
               />
               <DxcButton
                 mode="secondary"
@@ -223,10 +222,8 @@ const DxcFileInput = React.forwardRef<RefType, FileInputPropsType>(
                 accept={accept}
                 multiple={multiple}
                 onChange={selectFiles}
-                name={name}
                 disabled={disabled}
                 readOnly
-                aria-hidden="true"
               />
               <DragDropArea
                 isDragging={isDragging}

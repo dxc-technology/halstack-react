@@ -5,7 +5,11 @@ import ComponentHeading from "@/common/ComponentHeading";
 import Link from "next/link";
 
 const SidenavPageHeading = ({ children }: { children: React.ReactNode }) => {
-  const tabs = [{ label: "Code", path: "/components/sidenav" }];
+  const tabs = [
+    { label: "Code", path: "/components/sidenav" },
+    { label: "Usage", path: "/components/sidenav/usage" },
+    { label: "Specifications", path: "/components/sidenav/specifications" },
+  ];
 
   return (
     <DxcFlex direction="column" gap="3rem">
