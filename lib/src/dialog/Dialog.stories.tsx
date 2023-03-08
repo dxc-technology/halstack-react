@@ -300,6 +300,7 @@ const customViewports = {
     },
   },
 };
+
 export const ResponsiveDialog = DefaultDialog.bind({});
 ResponsiveDialog.parameters = {
   viewport: {
