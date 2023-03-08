@@ -291,8 +291,26 @@ export const DialogWithXxlargePadding = () => (
   </ExampleContainer>
 );
 
-export const ResponsiveDialog = RespDialog.bind({});
+const customViewports = {
+  resizedScreen: {
+    name: 'Custom viewport',
+    styles: {
+      width: '720px',
+      height: '900px',
+    },
+  },
+};
+export const ResponsiveDialog = DefaultDialog.bind({});
 ResponsiveDialog.parameters = {
+  viewport: {
+    viewports: customViewports,
+    defaultViewport: "resizedScreen",
+  },
+  chromatic: { viewports: [720] },
+};
+
+export const MobileResponsiveDialog = RespDialog.bind({});
+MobileResponsiveDialog.parameters = {
   viewport: {
     defaultViewport: "iphonex",
   },

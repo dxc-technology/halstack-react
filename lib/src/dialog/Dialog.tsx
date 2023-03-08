@@ -104,19 +104,16 @@ const Overlay = styled.div`
 const Dialog = styled.div<{ isCloseVisible?: boolean }>`
   position: relative;
   box-sizing: border-box;
+  max-width: 80%;
+  min-width: 696px;
+  border-radius: 4px;
   background-color: ${(props) => props.theme.backgroundColor};
   ${(props) => props.isCloseVisible && "min-height: 72px;"}
   box-shadow: ${(props) =>
     `${props.theme.boxShadowOffsetX} ${props.theme.boxShadowOffsetY} ${props.theme.boxShadowBlur} ${props.theme.boxShadowColor}`};
-  border-radius: 4px;
   z-index: 2147483647;
 
-  @media (min-width: ${responsiveSizes.medium}rem) {
-    max-width: 80%;
-    min-width: 696px;
-  }
   @media (max-width: ${responsiveSizes.medium}rem) {
-    //mobile phones
     max-width: 92%;
     min-width: 92%;
   }
