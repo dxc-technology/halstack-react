@@ -457,19 +457,16 @@ export const componentTokens = {
     closeIconHeight: "24px",
     closeIconTopPosition: "20px",
     closeIconRightPosition: "20px",
-    closeIconBackgroundColor: "none",
+    closeIconBackgroundColor: globalTokens.transparent,
     closeIconBorderColor: globalTokens.border_none,
     closeIconColor: globalTokens.hal_black,
     closeIconBorderThickness: globalTokens.border_width_0,
     closeIconBorderStyle: globalTokens.border_solid,
-    closeIconBorderRadius: "0px",
+    closeIconBorderRadius: "2px",
     boxShadowOffsetX: "0px",
     boxShadowOffsetY: "1px",
     boxShadowBlur: "3px",
     boxShadowColor: globalTokens.color_grey_a_300,
-    fontFamily: globalTokens.type_sans,
-    fontSize: globalTokens.type_scale_03,
-    fontWeight: globalTokens.type_regular,
   },
   dropdown: {
     buttonBackgroundColor: globalTokens.hal_white,
@@ -920,7 +917,7 @@ export const componentTokens = {
     linkMarginRight: "16px",
     linkMarginLeft: "16px",
     linkFocusColor: globalTokens.hal_blue_l_50,
-    scrollBarThumbColor: "#66666626",
+    scrollBarThumbColor: globalTokens.color_grey_a_200,
     scrollBarTrackColor: globalTokens.transparent,
   },
   slider: {
@@ -1478,6 +1475,9 @@ export const defaultTranslatedComponentLabels: TranslatedLabelsContextTypes = {
   },
   dateInput: {
     invalidDateErrorMessage: "Invalid date.",
+  },
+  dialog: {
+    closeIconAriaLabel: "Close dialog",
   },
   fileInput: {
     fileSizeGreaterThanErrorMessage: "File size must be greater than min size.",

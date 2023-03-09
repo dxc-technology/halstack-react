@@ -19,6 +19,9 @@ type TranslatedLabelsContextTypes = {
   dateInput: {
     invalidDateErrorMessage: string;
   };
+  dialog: {
+    closeIconAriaLabel: string;
+  };
   fileInput: {
     fileSizeGreaterThanErrorMessage: string;
     fileSizeLessThanErrorMessage: string;
