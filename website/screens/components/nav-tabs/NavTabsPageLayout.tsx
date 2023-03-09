@@ -8,7 +8,11 @@ const NumberInputPageHeading = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const tabs = [{ label: "Code", path: "/components/nav-tabs" }];
+  const tabs = [
+    { label: "Code", path: "/components/nav-tabs" },
+    { label: "Usage", path: "/components/nav-tabs/usage" },
+    { label: "Specifications", path: "/components/nav-tabs/specifications" },
+  ];
 
   return (
     <DxcFlex direction="column" gap="3rem">
@@ -16,7 +20,8 @@ const NumberInputPageHeading = ({
         <DxcFlex direction="column" gap="2rem">
           <ComponentHeading name="Nav Tabs" status="Ready" />
           <DxcParagraph>
-            Nav tabs allow the user to navigate easily.
+            Nav tabs function in the same way as the tab component but are more
+            focused on navigation across pages or links.
           </DxcParagraph>
           <TabsPageHeading tabs={tabs}></TabsPageHeading>
         </DxcFlex>

@@ -7,7 +7,7 @@ const Usage = () => {
   return (
     <>
       <Head>
-        <title>QuickNav Usage — Halstack Design System</title>
+        <title>Quick Nav Usage — Halstack Design System</title>
       </Head>
       <QuickNavUsagePage></QuickNavUsagePage>
     </>
