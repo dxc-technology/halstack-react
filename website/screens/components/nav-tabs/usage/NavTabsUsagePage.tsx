@@ -40,7 +40,7 @@ const sections = [
         <DxcParagraph>
           For general tabs usage, refer to the{" "}
           <DxcLink href="https://developer.dxc.com/halstack/next/components/tabs/usage/">
-            Tabs usage section
+            tabs usage section
           </DxcLink>
           .
         </DxcParagraph>
