@@ -7,7 +7,6 @@ import {
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
-import Figure from "@/common/Figure";
 import Image from "@/common/Image";
 import navTabsNavigation from "./images/navTabs_navigation.png";
 

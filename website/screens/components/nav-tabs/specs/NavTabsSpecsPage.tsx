@@ -1,5 +1,4 @@
 import {
-  DxcLink,
   DxcBulletedList,
   DxcFlex,
   DxcTable,
@@ -11,7 +10,6 @@ import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import Image from "@/common/Image";
 import Code from "@/common/Code";
-import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
 import navTabsSpecs from "./images/navTabs_specs.png";
 import navTabsAnatomy from "./images/navTabs_anatomy.png";
 import navTabsStates from "./images/navTabs_states.png";
