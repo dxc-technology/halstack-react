@@ -1,64 +1,144 @@
 import React, { useState } from "react";
-import { DxcDialog, DxcButton } from "@dxc-technology/halstack-react";
+import {
+  DxcDialog,
+  DxcButton,
+  DxcTextInput,
+  DxcFlex,
+  DxcHeading,
+  DxcParagraph,
+  DxcAlert,
+  DxcTextarea,
+  DxcSelect,
+  DxcDateInput,
+  DxcDropdown,
+} from "@dxc-technology/halstack-react";
+
+const options = [
+  {
+    value: 1,
+    label: "Android",
+  },
+  {
+    value: 2,
+    label: "Windows",
+  },
+  {
+    value: 3,
+    label: "IOS",
+  },
+];
 
 function App() {
   const [isDialog1Visible, setIsDialog1Visible] = useState(false);
-  const [isDialog2Visible, setIsDialog2Visible] = useState(false);
-  const [isDialog3Visible, setIsDialog3Visible] = useState(false);
+  const [nameValue, setNameValue] = useState("");
+  const [descriptionValue, setDescriptionValue] = useState("");
 
+  const [isDialog2Visible, setIsDialog2Visible] = useState(false);
+  const [isVisible, changeIsVisible] = useState(false);
+  const [isDisabled, changeIsDisabled] = useState(false);
+  const handleDisabled = () => {
+    changeIsDisabled((isDisabled) => !isDisabled);
+  };
+
+  const handleVisibility = () => {
+    changeIsVisible((isVisible) => !isVisible);
+  };
   const onClickDialog1 = () => {
     setIsDialog1Visible(!isDialog1Visible);
-  };
-  const onClickDialog2 = () => {
-    setIsDialog2Visible(!isDialog2Visible);
-  };
-  const onClickDialog3 = () => {
-    setIsDialog3Visible(!isDialog3Visible);
+    changeIsVisible(false);
+    setNameValue("");
+    setDescriptionValue("");
   };
 
   return (
-    <div>
-      <DxcButton
-        label="Dialog 1"
-        onClick={onClickDialog1}
-        margin="medium"
-      ></DxcButton>
+    <DxcFlex gap="1.5rem">
+      <DxcButton label="Example" onClick={onClickDialog1} />
       {isDialog1Visible && (
-        <DxcDialog isCloseVisible={true} onCloseClick={onClickDialog1}>
-          Close Icon
+        <DxcDialog onCloseClick={onClickDialog1}>
+          <DxcFlex direction="column" gap="2rem">
+            <DxcHeading level={4} text="User form" />
+            <DxcFlex direction="column" gap="1rem">
+              {isVisible && (
+                <DxcAlert
+                  type="error"
+                  inlineText="To be valid, you need to fill every field."
+                  size="fillParent"
+                  onClose={handleVisibility}
+                />
+              )}
+              <DxcDropdown label="Options" options={options} />
+              <DxcTextInput
+                label="Name"
+                value={nameValue}
+                onChange={({ value }) => {
+                  setNameValue(value);
+                }}
+                size="fillParent"
+                disabled={isDisabled}
+                tabIndex={-1}
+              />
+              <DxcDateInput label="Start date" size="fillParent" />
+              <DxcSelect
+                label="Example select"
+                options={options}
+                size="fillParent"
+              />
+              <DxcTextarea
+                label="Description"
+                value={descriptionValue}
+                onChange={({ value }) => {
+                  setDescriptionValue(value);
+                }}
+                size="fillParent"
+                disabled={isDisabled}
+              />
+            </DxcFlex>
+            <DxcFlex justifyContent="flex-end" gap="0.5rem">
+              <DxcButton
+                label="Disable fields"
+                mode="text"
+                onClick={handleDisabled}
+              />
+              <DxcButton
+                label="Cancel"
+                mode="secondary"
+                onClick={onClickDialog1}
+              />
+              <DxcButton
+                label="Save"
+                onClick={() => {
+                  if (nameValue === "" || nameValue === "")
+                    changeIsVisible(true);
+                  else {
+                    changeIsVisible(false);
+                    setIsDialog1Visible(false);
+                  }
+                }}
+              />
+            </DxcFlex>
+          </DxcFlex>
         </DxcDialog>
       )}
-
       <DxcButton
-        label="Dialog 2"
-        onClick={onClickDialog2}
-        margin="medium"
-      ></DxcButton>
+        label="Empty"
+        onClick={() => {
+          setIsDialog2Visible((isVisible) => !isVisible);
+        }}
+      />
       {isDialog2Visible && (
         <DxcDialog
-          padding="xxlarge"
-          onBackgroundClick={onClickDialog2}
           isCloseVisible={false}
+          onCloseClick={() => {
+            setIsDialog2Visible((isVisible) => !isVisible);
+          }}
+          onBackgroundClick={() => {
+            setIsDialog2Visible((isVisible) => !isVisible);
+          }}
         >
-          Overlay close
+          <DxcParagraph>Example text</DxcParagraph>
         </DxcDialog>
       )}
-
-      <DxcButton
-        label="Dialog 3"
-        onClick={onClickDialog3}
-        margin="medium"
-      ></DxcButton>
-      {isDialog3Visible && (
-        <DxcDialog padding="xxlarge" isCloseVisible={false}>
-          <DxcButton
-            label="Close"
-            onClick={onClickDialog3}
-            margin="small"
-          ></DxcButton>
-        </DxcDialog>
-      )}
-    </div>
+    </DxcFlex>
   );
 }
 

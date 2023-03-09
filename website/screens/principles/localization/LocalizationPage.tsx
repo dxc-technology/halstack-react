@@ -242,6 +242,27 @@ const sections = [
         ),
       },
       {
+        title: "dialog",
+        content: (
+          <DxcTable>
+            <thead>
+              <tr>
+                <th>Label Name</th>
+                <th>Default value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <Code>closeIconAriaLabel</Code>
+                </td>
+                <td>Close dialog</td>
+              </tr>
+            </tbody>
+          </DxcTable>
+        ),
+      },
+      {
         title: "fileInput",
         content: (
           <DxcTable>

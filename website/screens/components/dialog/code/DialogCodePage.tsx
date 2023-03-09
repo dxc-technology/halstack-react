@@ -94,14 +94,21 @@ const sections = [
               <td>
                 <Code>0</Code>
               </td>
-              <td>Value of the tabindex given to the close 'x' button.</td>
+              <td>
+                Value of the tabindex given to the close 'x' button. Note that
+                values greater than 0 are strongly discouraged.
+              </td>
             </tr>
             <tr>
               <td>children: node</td>
               <td></td>
               <td>
-                The area inside the dialog. This area can be used to render
-                custom content.
+                Area within the dialog that can be used to render custom
+                content. We strongly encourage users to not change the{" "}
+                <Code>tabindex</Code> of the inner components or elements. This
+                can lead to unpredictable behaviour for keyboard users,
+                affecting the order of focus and focus locking within the
+                dialog.
               </td>
             </tr>
           </tbody>

@@ -73,10 +73,16 @@ const sections = [
         <Image src={inputAnatomy} alt="Text input anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>Label text</DxcBulletedList.Item>
-          <DxcBulletedList.Item>Helper text (Optional)</DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            Helper text <em>(Optional)</em>
+          </DxcBulletedList.Item>
           <DxcBulletedList.Item>Error indicator</DxcBulletedList.Item>
-          <DxcBulletedList.Item>Clear action (Optional)</DxcBulletedList.Item>
-          <DxcBulletedList.Item>Input action (Optional)</DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            Clear action <em>(Optional)</em>
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            Input action <em>(Optional)</em>
+          </DxcBulletedList.Item>
           <DxcBulletedList.Item>Input container</DxcBulletedList.Item>
           <DxcBulletedList.Item>Placeholder text</DxcBulletedList.Item>
           <DxcBulletedList.Item>Error message</DxcBulletedList.Item>
