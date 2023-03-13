@@ -26,7 +26,7 @@ const sections = [
             different pages.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            The content should follow an organized structure and hierarchy.
+            Text labels should be brief and clearly related to the content.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
             Text labels should be short and have a clear relation to content.

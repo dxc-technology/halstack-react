@@ -59,8 +59,8 @@ const sections = [
     content: (
       <>
         <DxcParagraph>
-          Tabs can get different states based on user interaction. States:{" "}
-          <strong>inactive</strong>, <strong>enabled</strong>,{" "}
+          Tabs can get different states based on user interaction. These states
+          are: <strong>inactive</strong>, <strong>enabled</strong>,{" "}
           <strong>hover</strong>, <strong>pressed</strong>,{" "}
           <strong>focus</strong> and <strong>disabled</strong>.
         </DxcParagraph>
