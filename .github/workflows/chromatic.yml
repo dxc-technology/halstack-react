@@ -5,10 +5,10 @@ on:
     branches:
       - master
     paths:
-      - "**/halstack-react/**"
+      - "@dxc-technology/halstack-react/**"
   pull_request:
     paths:
-      - "**/halstack-react/**"
+      - "@dxc-technology/halstack-react/**"
 
 jobs:
   chromatic-deployment:

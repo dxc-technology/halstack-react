@@ -5,7 +5,7 @@ on:
     branches:
       - master
     paths:
-      - "./@dxc-technology/**"
+      - "@dxc-technology/halstack-react/**"
 
 jobs:
   build:
