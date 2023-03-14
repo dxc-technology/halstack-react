@@ -14,7 +14,11 @@ export default function Image(props: ImageProps) {
   return (
     <NextImage
       {...props}
-      style={!props.width ? { width: "100%", objectFit: "contain" } : {}}
+      style={
+        !props.width
+          ? { width: "auto", height: "auto", objectFit: "contain" }
+          : {}
+      }
       loader={customLoader}
     />
   );
