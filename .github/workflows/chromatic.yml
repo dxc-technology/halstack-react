@@ -1,6 +1,14 @@
 name: "Chromatic"
 
-on: pull_request
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - "@dxc-technology/halstack-react/**"
+  pull_request:
+    paths:
+      - "@dxc-technology/halstack-react/**"
 
 jobs:
   chromatic-deployment:
@@ -26,4 +34,4 @@ jobs:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           exitOnceUploaded: true
           exitZeroOnChanges: true
-          workingDir: @dxc-technology/halstack-react
+          workingDir: ./@dxc-technology/halstack-react
