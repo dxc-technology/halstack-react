@@ -7,7 +7,7 @@ const Specifications = () => {
   return (
     <>
       <Head>
-        <title>QuickNav Specs — Halstack Design System</title>
+        <title>Quick Nav Specs — Halstack Design System</title>
       </Head>
       <QuickNavSpecsPage></QuickNavSpecsPage>
     </>

@@ -7,7 +7,7 @@ const Index = () => {
   return (
     <>
       <Head>
-        <title>QuickNav — Halstack Design System</title>
+        <title>Quick Nav — Halstack Design System</title>
       </Head>
       <QuickNavCodePage></QuickNavCodePage>
     </>
