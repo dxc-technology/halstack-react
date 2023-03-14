@@ -28,10 +28,10 @@ const sections = [
             them.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            Text labels should be brief and clearly related to the content.
+            The content should follow an organized structure and hierarchy.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            Text labels should be short and have a clear relation to content.
+            Text labels should be brief and clearly related to the content.
           </DxcBulletedList.Item>
         </DxcBulletedList>
         <DxcParagraph>
