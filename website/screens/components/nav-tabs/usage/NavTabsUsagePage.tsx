@@ -24,7 +24,8 @@ const sections = [
           <DxcBulletedList.Item>
             Use nav tabs for page or site navigation when dividing content into
             different pages. Please take into account the site navigation as the
-            difference between nav tabs and regular tabs in order to use them.
+            main difference between nav tabs and regular tabs in order to use
+            them.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
             Text labels should be brief and clearly related to the content.
