@@ -1,16 +1,6 @@
 name: "Chromatic"
 
-on:
-  push:
-    branches:
-      - master
-    paths:
-      - "@dxc-technology/halstack-react/**"
-      - "lib/**"
-  pull_request:
-    paths:
-      - "@dxc-technology/halstack-react/**"
-      - "lib/**"
+on: pull_request
 
 jobs:
   chromatic-deployment:
