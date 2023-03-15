@@ -25,7 +25,7 @@ const sections = [
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>
           Use always a minimun padding and always leave enough margin when
-          stacking boxes so the shadows don&#39;t overlap.
+          stacking boxes so the shadows don't overlap.
         </DxcBulletedList.Item>
       </DxcBulletedList>
     ),
@@ -39,10 +39,10 @@ const sections = [
           The <Code>shadow-default</Code> and <Code>shadow-high</Code> variants
           can be used to create clear distictions between sections of content
           without the use of borders or separators, the <Code>no-shadow</Code>{" "}
-          helps in the process of building the layout. Note that when using an
-          application
-          <Code>background-color</Code> different than white, the limits of the
-          box are goig to be clearly visible no matter the variant chosen.
+          helps in the process of building the layout. Note that when an
+          application <Code>background-color</Code> other than white is used,
+          the boundaries of the box will be visible regardless of the variant
+          chosen.
         </DxcParagraph>
       </>
     ),
@@ -51,7 +51,7 @@ const sections = [
     title: "Content",
     content: (
       <DxcParagraph>
-        Any type of content can be place inside the box component.
+        Any type of content can be placed inside the box component.
       </DxcParagraph>
     ),
   },

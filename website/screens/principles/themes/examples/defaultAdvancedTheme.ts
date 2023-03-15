@@ -87,7 +87,6 @@ export default {
   },
   box: {
     backgroundColor: "#ffffff",
-    letterSpacing: "0.025em",
     borderRadius: "4px",
     borderThickness: "0px",
     borderColor: "transparent",
