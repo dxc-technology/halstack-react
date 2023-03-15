@@ -54,7 +54,7 @@ const sections = [
         content: (
           <>
             <DxcParagraph>
-              FormFields labels are common to several components of the design
+              These labels are common to several components of the design
               system.
             </DxcParagraph>
             <DxcTable>

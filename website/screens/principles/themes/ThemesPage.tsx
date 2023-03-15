@@ -1427,7 +1427,7 @@ const sections = [
                     <DxcParagraph>
                       More examples can be found in the{" "}
                       <Link
-                        href="/utilities/halstackProvider/#opinionated-theme"
+                        href="/utilities/halstack-provider/#opinionated-theme"
                         passHref
                       >
                         <DxcLink>Halstack Provider section</DxcLink>
@@ -1472,7 +1472,7 @@ const sections = [
             </JsonContainer>
             <DxcParagraph>
               More examples can be found in the{" "}
-              <Link href="/utilities/halstackProvider/#advanced-theme" passHref>
+              <Link href="/utilities/halstack-provider/#advanced-theme" passHref>
                 <DxcLink>Halstack Provider section</DxcLink>
               </Link>
               .
