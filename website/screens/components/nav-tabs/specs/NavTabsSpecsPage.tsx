@@ -260,6 +260,7 @@ const sections = [
     ],
   },
 ];
+
 const NavTabsSpecsPage = () => {
   return (
     <DxcFlex direction="column" gap="4rem">
