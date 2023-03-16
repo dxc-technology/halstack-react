@@ -13,7 +13,6 @@ import Code from "@/common/Code";
 import navTabsSpecs from "./images/navTabs_specs.png";
 import navTabsAnatomy from "./images/navTabs_anatomy.png";
 import navTabsStates from "./images/navTabs_states.png";
-
 const sections = [
   {
     title: "Specifications",
@@ -193,9 +192,9 @@ const sections = [
                 </td>
                 <td>Separator</td>
                 <td>
-                  <Code>color-grey-400</Code>
+                  <Code>color-grey-200-a</Code>
                 </td>
-                <td>#bfbfbf</td>
+                <td>#0000001a</td>
               </tr>
             </tbody>
           </DxcTable>
@@ -261,7 +260,6 @@ const sections = [
     ],
   },
 ];
-
 const NavTabsSpecsPage = () => {
   return (
     <DxcFlex direction="column" gap="4rem">
@@ -275,5 +273,4 @@ const NavTabsSpecsPage = () => {
     </DxcFlex>
   );
 };
-
 export default NavTabsSpecsPage;
