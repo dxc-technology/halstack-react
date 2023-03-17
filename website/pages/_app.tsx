@@ -63,6 +63,16 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
     setFilter(value);
   };
 
+  const matchPaths = (linkPath: string) => {
+    const pathToBeMatched = currentPath.split("#")[0].slice(0, -1);
+    const desiredPaths = [
+      linkPath,
+      `${linkPath}/specifications`,
+      `${linkPath}/usage`,
+    ];
+    return desiredPaths.includes(pathToBeMatched);
+  };
+
   return (
     <>
       <Head>
@@ -98,12 +108,7 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
                           {links.map(({ label, path }) => (
                             <Link key={`${label}-${path}`} href={path} passHref>
                               <DxcApplicationLayout.SideNav.Link
-                                selected={
-                                  currentPath.slice(0, -1) === path ||
-                                  currentPath.slice(0, -1) ===
-                                    path + "/specifications" ||
-                                  currentPath.slice(0, -1) === path + "/usage"
-                                }
+                                selected={matchPaths(path)}
                               >
                                 {label}
                               </DxcApplicationLayout.SideNav.Link>
