@@ -87,7 +87,6 @@
   },
   "box": {
     "backgroundColor": "color",
-    "letterSpacing": "length",
     "borderRadius": "length",
     "borderThickness": "bWidth",
     "borderStyle": "bStyle",
