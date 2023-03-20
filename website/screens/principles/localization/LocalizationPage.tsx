@@ -22,7 +22,7 @@ const sections = [
         <DxcParagraph>
           Halstack Design System provides the possibility to translate all the
           labels that cannot be changed by the component properties through the{" "}
-          <Link href="/utilities/halstackProvider/#localization" passHref>
+          <Link href="/utilities/halstack-provider/#localization" passHref>
             <DxcLink>Halstack Provider</DxcLink>
           </Link>{" "}
           and its property <Code>labels</Code>.
@@ -54,7 +54,7 @@ const sections = [
         content: (
           <>
             <DxcParagraph>
-              FormFields labels are common to several components of the design
+              These labels are common to several components of the design
               system.
             </DxcParagraph>
             <DxcTable>
@@ -232,6 +232,27 @@ const sections = [
                   <Code>invalidDateErrorMessage</Code>
                 </td>
                 <td>Invalid date.</td>
+              </tr>
+            </tbody>
+          </DxcTable>
+        ),
+      },
+      {
+        title: "dialog",
+        content: (
+          <DxcTable>
+            <thead>
+              <tr>
+                <th>Label Name</th>
+                <th>Default value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <Code>closeIconAriaLabel</Code>
+                </td>
+                <td>Close dialog</td>
               </tr>
             </tbody>
           </DxcTable>

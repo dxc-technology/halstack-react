@@ -87,7 +87,6 @@
   },
   "box": {
     "backgroundColor": "#ffffff",
-    "letterSpacing": "0.025em",
     "borderRadius": "4px",
     "borderThickness": "0px",
     "borderStyle": "none",
@@ -285,19 +284,16 @@
     "closeIconHeight": "24px",
     "closeIconTopPosition": "20px",
     "closeIconRightPosition": "20px",
-    "closeIconBackgroundColor": "none",
+    "closeIconBackgroundColor": "transparent",
     "closeIconBorderColor": "none",
     "closeIconColor": "#000000",
     "closeIconBorderThickness": "0px",
     "closeIconBorderStyle": "solid",
-    "closeIconBorderRadius": "0px",
+    "closeIconBorderRadius": "2px",
     "boxShadowOffsetX": "0px",
     "boxShadowOffsetY": "1px",
     "boxShadowBlur": "3px",
-    "boxShadowColor": "#00000033",
-    "fontFamily": "Open Sans, sans-serif",
-    "fontSize": "1rem",
-    "fontWeight": "400"
+    "boxShadowColor": "#00000033"
   },
   "dropdown": {
     "buttonBackgroundColor": "#ffffff",
@@ -748,7 +744,7 @@
     "linkMarginRight": "16px",
     "linkMarginLeft": "16px",
     "linkFocusColor": "#0095ff",
-    "scrollBarThumbColor": "#66666626",
+    "scrollBarThumbColor": "#0000001a",
     "scrollBarTrackColor": "transparent"
   },
   "slider": {

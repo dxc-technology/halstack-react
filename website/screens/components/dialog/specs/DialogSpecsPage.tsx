@@ -105,8 +105,10 @@ const sections = [
                   <Code>closeIconBackgroundColor</Code>
                 </td>
                 <td>Icon close</td>
-                <td>-</td>
-                <td>-</td>
+                <td>
+                  <Code>color-transparent</Code>
+                </td>
+                <td>transparent</td>
               </tr>
               <tr>
                 <td>
@@ -163,36 +165,6 @@ const sections = [
                 </td>
                 <td>600</td>
               </tr>
-              <tr>
-                <td>
-                  <Code>fontFamily</Code>
-                </td>
-                <td>Content</td>
-                <td>
-                  <Code>font-family-sans</Code>
-                </td>
-                <td>&#39;Open Sans, sans-serif&#39;</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>fontSize</Code>
-                </td>
-                <td>Content</td>
-                <td>
-                  <Code>font-scale-03</Code>
-                </td>
-                <td>1rem / 16px</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>fontWeight</Code>
-                </td>
-                <td>Content</td>
-                <td>
-                  <Code>font-weight-regular</Code>
-                </td>
-                <td>400</td>
-              </tr>
             </tbody>
           </DxcTable>
         ),
@@ -237,9 +209,9 @@ const sections = [
                   </td>
                   <td>Icon close</td>
                   <td>
-                    <Code>border-radius-none</Code>
+                    <Code>border-radius-small</Code>
                   </td>
-                  <td>0</td>
+                  <td>0.125rem / 2px</td>
                 </tr>
               </tbody>
             </DxcTable>
@@ -344,7 +316,7 @@ const sections = [
                 </td>
                 <td>Container</td>
                 <td>-</td>
-                <td>800px</td>
+                <td>696px</td>
               </tr>
               <tr>
                 <td>

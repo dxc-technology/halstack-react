@@ -61,14 +61,14 @@ const sections = [
     content: (
       <>
         <DxcParagraph>
-          As explained in the{" "}
+          As explained on the{" "}
           <Link
-            href="/principles/themes/#opinionated-theme-inputs-list"
+            href="/principles/themes/#different-theming-strategies-opinionated-theme"
             passHref
           >
-            <DxcLink>Themes section</DxcLink>
-          </Link>
-          , you can apply the opinionated theme strategy to customize the
+            <DxcLink>Themes</DxcLink>
+          </Link>{" "}
+          page, you can apply the opinionated theming strategy to customize the
           components.
         </DxcParagraph>
 
@@ -98,14 +98,16 @@ const sections = [
     content: (
       <>
         <DxcParagraph>
-          The advanced strategy is the option to choose when further
-          customization is required, as explained in the{" "}
+          Advanced theming is the option to choose when further customization is
+          required. To find out which use cases are valid for this strategy, you
+          can refer to the{" "}
           <Link
-            href="/principles/themes/#opinionated-theme-inputs-list"
+            href="/principles/themes/#different-theming-strategies-advanced-theme"
             passHref
           >
-            <DxcLink>Themes section.</DxcLink>
-          </Link>
+            <DxcLink>Themes</DxcLink>
+          </Link>{" "}
+          page.
         </DxcParagraph>
         <DxcAlert type="info" size="fillParent">
           Remember that you can use the{" "}

@@ -4,8 +4,9 @@ import QuickNavContainer from "@/common/QuickNavContainer";
 import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
-import errorHandling from "./examples/errorHandling";
 import basicUsage from "./examples/basicUsage";
+import errorHandling from "./examples/errorHandling";
+import formFileInput from "./examples/formFileInput";
 import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
 import StatusTag from "@/common/StatusTag";
 
@@ -139,10 +140,11 @@ const sections = [
             <td>callbackFile: function</td>
             <td></td>
             <td>
-              This function will be called when the user selects or drops a
-              file. The list of files will be sent as a parameter. In this
-              function, the files can be updated or returned as they come. These
-              files must be passed to the value in order to be shown.
+              This function will be called when the user adds or deletes a file.
+              That is, when the file input&#39;s inner value is modified. The
+              list of files will be sent as a parameter. In this function, the
+              files can be updated or returned as they come. These files must be
+              passed to the value in order to be shown.
             </td>
           </tr>
           <tr>
@@ -186,6 +188,10 @@ const sections = [
       {
         title: "Error handling",
         content: <Example example={errorHandling} defaultIsVisible />,
+      },
+      {
+        title: "Inside a form",
+        content: <Example example={formFileInput} defaultIsVisible />,
       },
     ],
   },

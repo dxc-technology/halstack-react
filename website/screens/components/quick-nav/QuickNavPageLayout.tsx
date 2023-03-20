@@ -4,7 +4,11 @@ import TabsPageHeading from "@/common/TabsPageLayout";
 import ComponentHeading from "@/common/ComponentHeading";
 
 const QuickNavPageHeading = ({ children }: { children: React.ReactNode }) => {
-  const tabs = [{ label: "Code", path: "/components/quick-nav" }];
+  const tabs = [
+    { label: "Code", path: "/components/quick-nav" },
+    { label: "Usage", path: "/components/quick-nav/usage" },
+    { label: "Specifications", path: "/components/quick-nav/specifications" },
+  ];
 
   return (
     <DxcFlex direction="column" gap="3rem">

@@ -7,7 +7,7 @@ const Usage = () => {
   return (
     <>
       <Head>
-        <title>FileInput Usage — Halstack Design System</title>
+        <title>File Input Usage — Halstack Design System</title>
       </Head>
       <FileInputUsagePage></FileInputUsagePage>
     </>

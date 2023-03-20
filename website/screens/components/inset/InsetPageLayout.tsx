@@ -4,7 +4,11 @@ import TabsPageHeading from "@/common/TabsPageLayout";
 import ComponentHeading from "@/common/ComponentHeading";
 
 const InsetPageHeading = ({ children }: { children: React.ReactNode }) => {
-  const tabs = [{ label: "Code", path: "/components/inset" }];
+  const tabs = [
+    { label: "Code", path: "/components/inset" },
+    { label: "Usage", path: "/components/inset/usage" },
+    { label: "Specifications", path: "/components/inset/specifications" },
+  ];
 
   return (
     <DxcFlex direction="column" gap="3rem">

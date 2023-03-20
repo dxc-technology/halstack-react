@@ -4,15 +4,13 @@ import {
   DxcButton,
   DxcFlex,
 } from "@dxc-technology/halstack-react";
-import { useState, useRef } from "react";
+import { useState } from "react";
 
 const code = `() => {
-  const fileRef = useRef();
   const [files, setFiles] = useState([]);
 
   const handleSubmit = () => {
-    const fileInput = fileRef.current.getElementsByTagName("input")[0];
-    console.log(Array.from(fileInput.files).map(file => file.name));
+    console.log(files.map((file) => file.file.name));
   };
 
   const callbackFile = (files) => {
@@ -26,7 +24,6 @@ const code = `() => {
           label="Select your files"
           value={files}
           callbackFile={callbackFile}
-          ref={fileRef}
         />
         <DxcButton label="Submit" type="submit" onClick={handleSubmit} />
       </DxcFlex>
@@ -40,7 +37,6 @@ const scope = {
   DxcInset,
   DxcFlex,
   useState,
-  useRef,
 };
 
 export default { code, scope };
