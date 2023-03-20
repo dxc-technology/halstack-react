@@ -22,7 +22,7 @@ const TabsPageLayout = ({ tabs }: TabsPageLayoutProps) => {
           </Link>
         ))}
       </DxcNavTabs>
-      <Space></Space>
+      <Space />
     </TabsContainer>
   );
 };
@@ -34,7 +34,7 @@ const TabsContainer = styled.div`
 `;
 
 const Space = styled.div`
-  border-bottom: 2px solid #0000001a;
+  border-bottom: 2px solid #bfbfbf;
   width: 100%;
 `;
 
