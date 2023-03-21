@@ -35,7 +35,7 @@ const ResultsetTableUsagePage = () => {
           startHeadingLevel={2}
         ></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/accordion/usage/AccordionUsagePage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/resultset-table/usage/ResultsetTableUsagePage.tsx" />
     </DxcFlex>
   );
 };

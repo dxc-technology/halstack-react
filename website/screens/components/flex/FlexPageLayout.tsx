@@ -17,7 +17,10 @@ const FlexPageHeading = ({ children }: { children: React.ReactNode }) => {
           <ComponentHeading name="Flex" status="Ready" />
           <DxcParagraph>
             Flex allows users to build{" "}
-            <DxcLink href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox">
+            <DxcLink
+              newWindow
+              href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox"
+            >
               Flexible Box Module
             </DxcLink>{" "}
             based layouts. It serves as a technical component that abstracts

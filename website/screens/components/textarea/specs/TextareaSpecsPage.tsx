@@ -27,11 +27,12 @@ const sections = [
         <DxcParagraph>
           The textarea <Code>color</Code>, <Code>typography</Code>,{" "}
           <Code>border</Code>, <Code>width</Code> and <Code>margin</Code>{" "}
-          specifications are inherited from the text input, for reference{" "}
+          specifications are inherited from the text input, for reference check
+          the{" "}
           <Link href="/components/text-input" passHref>
-            <DxcLink>check the text input component documentation</DxcLink>
-          </Link>
-          .
+            <DxcLink>text input</DxcLink>
+          </Link>{" "}
+          component documentation.
         </DxcParagraph>
         <DxcParagraph>
           The textarea doesn&#39;t have the following text-input elements,

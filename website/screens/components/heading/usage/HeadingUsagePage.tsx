@@ -16,9 +16,9 @@ const sections = [
     content: (
       <>
         <DxcParagraph>
-          Navigating through the <Code>Headings-H1</Code> and
+          Navigating through the <Code>Headings-H1</Code> and{" "}
           <Code>Headings-H3</Code> give a user an overview of a page and how its
-          content is structured. The <Code>Headings-H4</Code> and
+          content is structured. The <Code>Headings-H4</Code> and{" "}
           <Code>Headings-H5</Code> elements provide a quick understanding of the
           details in each section.
         </DxcParagraph>

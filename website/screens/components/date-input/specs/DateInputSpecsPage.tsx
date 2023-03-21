@@ -30,11 +30,11 @@ const sections = [
           The date input <Code>color</Code>, <Code>typography</Code>,{" "}
           <Code>border</Code>, <Code>spacing</Code>, <Code>width</Code> and{" "}
           <Code>margin</Code> specifications are inherited from the text input,
-          for reference{" "}
+          for reference check{" "}
           <Link href="/components/text-input/specifications" passHref>
-            <DxcLink>check the text input component documentation</DxcLink>
-          </Link>
-          .
+            <DxcLink>text input</DxcLink>
+          </Link>{" "}
+          documentation .
         </DxcParagraph>
         <DxcParagraph>
           The date input doesn&#39;t have the following text input elements or
