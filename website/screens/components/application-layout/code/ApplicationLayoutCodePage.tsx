@@ -168,7 +168,7 @@ const sections = [
   },
 ];
 
-const ButtonCodePage = () => {
+const ApplicationLayoutCodePage = () => {
   return (
     <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
@@ -177,9 +177,9 @@ const ButtonCodePage = () => {
           startHeadingLevel={2}
         ></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/button/Code/ButtonCodePage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/application-layout/code/ApplicationLayoutCodePage.tsx" />
     </DxcFlex>
   );
 };
 
-export default ButtonCodePage;
+export default ApplicationLayoutCodePage;

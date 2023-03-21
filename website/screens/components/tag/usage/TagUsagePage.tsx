@@ -41,7 +41,7 @@ const sections = [
             The icon can be placed before or after.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            The icon background color can be defined with the
+            The icon background color can be defined with the{" "}
             <Code>iconBgColor</Code> component property.
           </DxcBulletedList.Item>
         </DxcBulletedList>

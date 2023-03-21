@@ -44,9 +44,8 @@ const sections = [
               In this example we see how the same <Code>DxcTextInput</Code>{" "}
               component is shown in a different way, in the first case it is
               shown in its onDark version, since we have wrapped the container
-              with the
-              <Code>BackgroundColorProvider</Code> as we explained in the
-              previous paragraph.
+              with the <Code>BackgroundColorProvider</Code> as we explained in
+              the previous paragraph.
             </DxcParagraph>
             <Example example={customUse} defaultIsVisible />
           </>

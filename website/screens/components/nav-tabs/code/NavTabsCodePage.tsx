@@ -190,7 +190,7 @@ const sections = [
                   the prop <Code>component</Code> is no longer available so it
                   is necessary to use hooks provided by{" "}
                   <DxcLink
-                    href="https://reactrouter.com/en/6.8.1/hooks/use-href"
+                    href="https://reactrouter.com/en/main/hooks/use-href"
                     newWindow
                   >
                     React Router v6

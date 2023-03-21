@@ -935,9 +935,10 @@ const sections = [
         content: (
           <>
             <DxcParagraph>
-              The select component <strong>input</strong> share the{" "}
+              The select component <strong>input</strong> share the same spacing
+              tokens as the{" "}
               <Link href="/components/text-input/specifications" passHref>
-                <DxcLink>same spacing tokens of the text input</DxcLink>
+                <DxcLink>text input</DxcLink>
               </Link>
               .
             </DxcParagraph>

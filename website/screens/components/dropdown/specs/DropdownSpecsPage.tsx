@@ -32,7 +32,7 @@ const sections = [
         content: (
           <>
             <DxcParagraph>
-              States: <strong>Enabled</strong>, <strong>hover</strong>,{" "}
+              States: <strong>enabled</strong>, <strong>hover</strong>,{" "}
               <strong>focus</strong>, <strong>active</strong> and{" "}
               <strong>disabled</strong>.
             </DxcParagraph>

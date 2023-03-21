@@ -31,11 +31,11 @@ const sections = [
           The password input <Code>color</Code>, <Code>typography</Code>,{" "}
           <Code>border</Code>, <Code>spacing</Code>, <Code>width</Code> and{" "}
           <Code>margin</Code> specifications are inherited from the text input,
-          for reference{" "}
+          for reference check the{" "}
           <Link href="/components/text-input/specifications" passHref>
-            <DxcLink>check the text input component documentation</DxcLink>
-          </Link>
-          .
+            <DxcLink>text input</DxcLink>
+          </Link>{" "}
+          component documentation.
         </DxcParagraph>
         <DxcParagraph>
           The password input doesn&#39;t have the following text input elements,
