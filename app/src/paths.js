@@ -36,7 +36,7 @@ import FileInput from "./pages/FileInput";
 import QuickNav from "./pages/QuickNav";
 import NavTabs from "./pages/NavTabs";
 
-export default [
+const componentsMap = [
   {
     path: "accordion",
     name: "Accordion",
@@ -223,3 +223,5 @@ export default [
     component: Wizard,
   },
 ];
+
+export default componentsMap;
