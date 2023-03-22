@@ -12,7 +12,7 @@ const setCatalog = () => {
     catalog.push(component);
   });
   const jsonData = JSON.stringify(catalog);
-  fs.writeFile("catalog/catalog.json", jsonData, (err) => {
+  fs.writeFile("../catalog/catalog.json", jsonData, (err) => {
     if (err) throw err;
     console.log("Data written to file");
   });

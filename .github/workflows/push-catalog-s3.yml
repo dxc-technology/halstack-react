@@ -1,8 +1,6 @@
 name: Publish Design system components catalog
 
-on:
-  release:
-    types: [published]
+on: pull_request
 
 jobs:
   build:
@@ -28,7 +26,7 @@ jobs:
           role-duration-seconds: 3600
           role-skip-session-tagging: true
 
-      - name: Execute script
+      - name: Execute script catalog
         run: node scripts/create-catalog.js
 
       - name: Deleting zip catalog file
@@ -41,5 +39,13 @@ jobs:
 
       - name: Deploy catalog to S3 Bucket
         run: |
-          aws s3 rm s3://design.system.components.catalog/guidelines --recursive
-          aws s3 cp ./catalog/ s3://design.system.components.catalog/guidelines --recursive
+          aws s3 rm s3://design.system.components.catalog/guidelines/catalog --recursive
+          aws s3 cp ./catalog/catalog.json s3://design.system.components.catalog/guidelines/catalog --recursive
+
+      - name: Execute script version
+        run: node scripts/create-version.js 8
+
+      - name: Deploy version to S3 Bucket
+        run: |
+          aws s3 rm s3://design.system.components.catalog/guidelines/version --recursive
+          aws s3 cp ./catalog/version.json s3://design.system.components.catalog/guidelines/version --recursive
