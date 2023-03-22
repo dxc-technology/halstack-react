@@ -28,8 +28,8 @@ const sections = [
     content: (
       <>
         <DxcParagraph>
-          Different states are defined in the life cycle of the component:
-          <strong>Unselected enabled</strong>, <strong>unselected hover</strong>
+          Different states are defined in the life cycle of the component:{" "}
+          <strong>unselected enabled</strong>, <strong>unselected hover</strong>
           , <strong>unselected focus</strong>,{" "}
           <strong>unselected active</strong>,{" "}
           <strong>unselected disabled</strong>,{" "}

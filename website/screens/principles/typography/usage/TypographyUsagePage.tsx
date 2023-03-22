@@ -37,18 +37,17 @@ const sections = [
         </DxcParagraph>
         <DxcParagraph>
           A first, lower level layer in which we have the{" "}
-          <Code>DxcTypography</Code>
-          component, with which any typographic combination contemplated within
-          the values defined in the tables shown in the 'Code' tab can be
-          created. It is important to note that this lowest level component
-          should only be considered as an option once the rest of the
-          components, with more specific context for certain use cases, have
-          been discarded.
+          <Code>DxcTypography</Code> component, with which any typographic
+          combination contemplated within the values defined in the tables shown
+          in the 'Code' tab can be created. It is important to note that this
+          lowest level component should only be considered as an option once the
+          rest of the components, with more specific context for certain use
+          cases, have been discarded.
         </DxcParagraph>
         <DxcParagraph>
           Above this first layer we have a second layer that provides a more
-          specific context in which we have three components:
-          <Code>DxcParagraph</Code>,<Code>DxcBulletedList</Code> and{" "}
+          specific context in which we have three components:{" "}
+          <Code>DxcParagraph</Code>, <Code>DxcBulletedList</Code> and{" "}
           <Code>DxcHeading</Code>; these components, that are more focused on
           covering a specific use case in turn, use the first level component
           DxcTypography.

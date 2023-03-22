@@ -122,9 +122,9 @@ const sections = [
             <DxcParagraph>
               So we decided to make our link component just an styled HTML
               anchor element which allows it to be used in any React based
-              router. For each API is different so here are some examples for{" "}
+              router. For each API is different, so here are some examples for{" "}
               <DxcLink
-                href="https://reactrouter.com/docs/en/v6/hooks/use-href"
+                href="https://reactrouter.com/en/main/hooks/use-href"
                 newWindow
               >
                 React Router
@@ -155,7 +155,7 @@ const sections = [
                   >
                     React Router
                   </DxcLink>{" "}
-                  using the prop <Code>component</Code>. Note that this Prop is
+                  using the prop <Code>component</Code>. Note that this prop is
                   not available in v6.
                 </DxcParagraph>
                 <Example example={routerLink} defaultIsVisible />
@@ -177,7 +177,7 @@ const sections = [
                   the prop <Code>component</Code> is no longer available so it
                   is necessary to use hooks provided by{" "}
                   <DxcLink
-                    href="https://reactrouter.com/docs/en/v6/hooks/use-href"
+                    href="https://reactrouter.com/en/main/hooks/use-href"
                     newWindow
                   >
                     React Router v6
