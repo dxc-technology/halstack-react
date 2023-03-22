@@ -29,14 +29,6 @@ jobs:
       - name: Execute script catalog
         run: node scripts/create-catalog.js
 
-      - name: Deleting zip catalog file
-        run: rm -rf catalog.zip
-
-      - name: Zipping catalog folfer
-        uses: montudor/action-zip@v0.1.0
-        with:
-          args: zip -qq -r catalog.zip catalog
-
       - name: Deploy catalog to S3 Bucket
         run: |
           aws s3 rm s3://design.system.components.catalog/guidelines/catalog --recursive
