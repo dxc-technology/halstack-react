@@ -23,7 +23,7 @@ const sections = [
             <Code>'span'</Code>
           </td>
           <td>
-            Determines the HTML tag with which the text is to be rendered (Any
+            Determines the HTML tag with which the text is to be rendered (any
             valid HTML tag).
           </td>
         </tr>
@@ -45,8 +45,8 @@ const sections = [
         </tr>
         <tr>
           <td>
-            fontSize: "3.75rem" | "3rem" | "2rem" | "1.5rem" | "1.25rem" |
-            "1rem" | "0.875rem" | "0.75rem"
+            fontSize: '0.75rem' | '0.875rem' | '1rem' | '1.25rem' | '1.5rem' |
+            '2rem' | '3rem' | '3.75rem'
           </td>
           <td>
             <Code>'1rem'</Code>
@@ -54,14 +54,14 @@ const sections = [
           <td>Specifies the font-size CSS property of the component.</td>
         </tr>
         <tr>
-          <td>fontStile: "italic" | "normal"</td>
+          <td>fontStyle: 'italic' | 'normal'</td>
           <td>
             <Code>'normal'</Code>
           </td>
           <td>Specifies the font-style CSS property of the component.</td>
         </tr>
         <tr>
-          <td>fontWeight: "300" | "400" | "600" | "700" </td>
+          <td>fontWeight: '300' | '400' | '600' | '700' </td>
           <td>
             <Code>'400'</Code>
           </td>
@@ -69,8 +69,8 @@ const sections = [
         </tr>
         <tr>
           <td>
-            letterSpacing: "-0.025em" | "-0.0125em" | "0em" | "0.025em" |
-            "0.05em" | "0.1em"{" "}
+            letterSpacing: '-0.025em' | '-0.0125em' | '0em' | '0.025em' |
+            '0.05em' | '0.1em'
           </td>
           <td>
             <Code>'0em'</Code>
@@ -79,8 +79,8 @@ const sections = [
         </tr>
         <tr>
           <td>
-            lineHeight: "1em" | "1.25em" | "1.365em" | "1.5em" | "1.715em" |
-            "2em"{" "}
+            lineHeight: '1em' | '1.25em' | '1.365em' | '1.5em' | '1.715em' |
+            '2em'
           </td>
           <td>
             <Code>'1.5em'</Code>
@@ -102,14 +102,14 @@ const sections = [
           <td>Color of text.</td>
         </tr>
         <tr>
-          <td>textDecoration: "none" | "underline" | "line-through"</td>
+          <td>textDecoration: 'none' | 'underline' | 'line-through'</td>
           <td>
             <Code>'none'</Code>
           </td>
           <td>Specifies the text-decoration CSS property of the component.</td>
         </tr>
         <tr>
-          <td>textOverflow: "clip" | "ellipsis" | "unset"</td>
+          <td>textOverflow: 'clip' | 'ellipsis' | 'unset'</td>
           <td>
             <Code>'unset'</Code>
           </td>
@@ -117,7 +117,7 @@ const sections = [
         </tr>
         <tr>
           <td>
-            whiteSpace: "normal" | "nowrap" | "pre" | "pre-line" | "pre-wrap"
+            whiteSpace: 'normal' | 'nowrap' | 'pre' | 'pre-line' | 'pre-wrap'
           </td>
           <td>
             <Code>'normal'</Code>
