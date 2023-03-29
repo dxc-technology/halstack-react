@@ -14,7 +14,7 @@ const DateInputPageHeading = ({ children }: { children: React.ReactNode }) => {
     <DxcFlex direction="column" gap="3rem">
       <PageHeading>
         <DxcFlex direction="column" gap="2rem">
-          <ComponentHeading name="Date Input" status="Experimental" />
+          <ComponentHeading name="Date Input" status="Ready" />
           <DxcParagraph>
             A date input is a user interface element where the user can type or
             select a date in a predefined format.
