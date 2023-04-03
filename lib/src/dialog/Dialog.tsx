@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect } from "react";
 import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
 import DialogPropsType, { Padding, Space } from "./types";
-import { spaces, responsiveSizes } from "../common/variables.js";
+import { spaces, responsiveSizes } from "../common/variables";
 import useTheme from "../useTheme";
 import { BackgroundColorProvider } from "../BackgroundColorContext";
 import useTranslatedLabels from "../useTranslatedLabels";

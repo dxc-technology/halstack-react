@@ -3,7 +3,7 @@ import DxcHeader from "../header/Header";
 import DxcFooter from "../footer/Footer";
 import DxcSidenav from "../sidenav/Sidenav";
 import styled from "styled-components";
-import { responsiveSizes } from "../common/variables.js";
+import { responsiveSizes } from "../common/variables";
 import { facebookLogo, linkedinLogo, twitterLogo, hamburgerIcon } from "./Icons";
 import AppLayoutPropsType, { AppLayoutMainPropsType } from "./types";
 import { SidenavContextProvider, useResponsiveSidenavVisibility } from "./SidenavContext";

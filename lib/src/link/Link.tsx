@@ -1,6 +1,6 @@
 import React, { forwardRef, Ref } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import { spaces } from "../common/variables.js";
+import { spaces } from "../common/variables";
 import useTheme from "../useTheme";
 import { Margin, LinkProps, Space } from "./types";
 

@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef, useCallback, useLayoutEffect } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import DropdownPropsType, { Margin, Space, Size } from "./types";
-import { spaces } from "../common/variables.js";
-import { getMargin } from "../common/utils.js";
+import { spaces } from "../common/variables";
+import { getMargin } from "../common/utils";
 import useTheme from "../useTheme";
 import { v4 as uuidv4 } from "uuid";
 import * as Popover from "@radix-ui/react-popover";
@@ -204,7 +204,7 @@ const DxcDropdown = ({
                 )}
                 {label && iconPosition === "before" && <DropdownTriggerLabel>{label}</DropdownTriggerLabel>}
               </DropdownTriggerContent>
-              {!caretHidden && <CaretIcon disabled={disabled}>{isOpen ? upArrowIcon : downArrowIcon}</CaretIcon>} 
+              {!caretHidden && <CaretIcon disabled={disabled}>{isOpen ? upArrowIcon : downArrowIcon}</CaretIcon>}
             </DropdownTrigger>
           </Popover.Trigger>
           <Popover.Content sideOffset={1} asChild>

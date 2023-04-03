@@ -8,7 +8,9 @@ const getColorType = (hexColor) => {
   try {
     if (hexColor) {
       const hslColor = Color(hexColor).hsl();
-      const lightnessColor = hslColor.color[2];
+      // const lightnessColor = hslColor.color[2];
+      // const lightnessColor = hslColor.lightness();
+      const lightnessColor = hslColor.object()[2];
       return lightnessColor <= 30 ? "dark" : "light";
     }
   } catch (e) {

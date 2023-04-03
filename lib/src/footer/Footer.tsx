@@ -1,7 +1,7 @@
 // @ts-nocheck
 import React, { useMemo } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import { spaces, responsiveSizes } from "../common/variables.js";
+import { spaces, responsiveSizes } from "../common/variables";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
 import { BackgroundColorProvider } from "../BackgroundColorContext";

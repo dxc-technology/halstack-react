@@ -1,12 +1,12 @@
 import React, { useState, useMemo, useEffect } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import { spaces } from "../common/variables.js";
+import { spaces } from "../common/variables";
 import DxcTable from "../table/Table";
 import DxcPaginator from "../paginator/Paginator";
 import useTheme from "../useTheme";
 import ResultsetTablePropsType, { Margin, Space } from "./types";
 import icons from "./Icons";
-import { getMargin } from "../common/utils.js";
+import { getMargin } from "../common/utils";
 
 const normalizeSortValue = (sortValue) => (typeof sortValue === "string" ? sortValue.toUpperCase() : sortValue);
 

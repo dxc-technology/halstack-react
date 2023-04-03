@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import { getMargin } from "../common/utils.js";
-import { spaces } from "../common/variables.js";
+import { getMargin } from "../common/utils";
+import { spaces } from "../common/variables";
 import useTheme from "../useTheme";
 import { BackgroundColorProvider } from "../BackgroundColorContext";
 import AccordionPropsType, { Margin, Padding, Space } from "./types";

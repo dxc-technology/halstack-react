@@ -679,8 +679,8 @@ export const componentTokens = {
     focusColor: globalTokens.hal_blue_l_50,
   },
   navTabs: {
-    selectedBackgroundColor: globalTokens.white,
-    unselectedBackgroundColor: globalTokens.white,
+    selectedBackgroundColor: globalTokens.hal_white,
+    unselectedBackgroundColor: globalTokens.hal_white,
     hoverBackgroundColor: globalTokens.hal_grey_l_95,
     pressedBackgroundColor: globalTokens.hal_grey_l_90,
     selectedFontColor: globalTokens.hal_grey_s_40,
@@ -1403,6 +1403,155 @@ export const componentTokens = {
   },
 };
 
+export type AdvancedTheme = typeof componentTokens;
+
+export type OpinionatedTheme = {
+  accordion: {
+    accentColor: string;
+    titleFontColor: string;
+    assistiveTextFontColor: string;
+  };
+  alert: {
+    baseColor: string;
+    accentColor: string;
+    overlayColor: string;
+  };
+  box: {
+    baseColor: string;
+  };
+  button: {
+    baseColor: string;
+    primaryFontColor: string;
+    secondaryHoverFontColor: string;
+  };
+  checkbox: {
+    baseColor: string;
+    checkColor: string;
+    fontColor: string;
+  };
+  chip: {
+    baseColor: string;
+    fontColor: string;
+    iconColor: string;
+  };
+  dateInput: {
+    baseColor: string;
+    selectedFontColor: string;
+  };
+  dialog: {
+    baseColor: string;
+    closeIconColor: string;
+    overlayColor: string;
+  };
+  dropdown: {
+    baseColor: string;
+    fontColor: string;
+    optionFontColor: string;
+  };
+  fileInput: {
+    fontColor: string;
+  };
+  footer: {
+    baseColor: string;
+    fontColor: string;
+    accentColor: string;
+    logo: string;
+  };
+  header: {
+    baseColor: string;
+    accentColor: string;
+    fontColor: string;
+    menuBaseColor: string;
+    hamburguerColor: string;
+    logo: string;
+    logoResponsive: string;
+    contentColor: string;
+    overlayColor: string;
+  };
+  link: {
+    baseColor: string;
+  };
+  navTabs: {
+    baseColor: string;
+    accentColor: string;
+  };
+  paginator: {
+    baseColor: string;
+    fontColor: string;
+  };
+  progressBar: {
+    accentColor: string;
+    baseColor: string;
+    fontColor: string;
+    overlayColor: string;
+    overlayFontColor: string;
+  };
+  quickNav: {
+    fontColor: string;
+    accentColor: string;
+  };
+  radioGroup: {
+    baseColor: string;
+    fontColor: string;
+  };
+  select: {
+    selectedOptionBackgroundColor: string;
+    fontColor: string;
+    optionFontColor: string;
+    hoverBorderColor: string;
+  };
+  sidenav: {
+    baseColor: string;
+  };
+  slider: {
+    baseColor: string;
+    fontColor: string;
+    totalLineColor: string;
+  };
+  spinner: {
+    accentColor: string;
+    baseColor: string;
+    fontColor: string;
+    overlayColor: string;
+    overlayFontColor: string;
+  };
+  switch: {
+    checkedBaseColor: string;
+    fontColor: string;
+  };
+  table: {
+    baseColor: string;
+    headerFontColor: string;
+    cellFontColor: string;
+  };
+  tabs: {
+    baseColor: string;
+  };
+  tag: {
+    fontColor: string;
+    iconColor: string;
+  };
+  textarea: {
+    fontColor: string;
+    hoverBorderColor: string;
+  };
+  textInput: {
+    fontColor: string;
+    hoverBorderColor: string;
+  };
+  toggleGroup: {
+    selectedBaseColor: string;
+    selectedFontColor: string;
+    unselectedBaseColor: string;
+    unselectedFontColor: string;
+  };
+  wizard: {
+    baseColor: string;
+    fontColor: string;
+    selectedStepFontColor: string;
+  };
+};
+
 export const spaces = {
   xxsmall: "6px",
   xsmall: "16px",
@@ -1427,7 +1576,7 @@ export const defaultTranslatedComponentLabels = {
     requiredSelectionErrorMessage: "This field is required. Please, choose an option.",
     requiredValueErrorMessage: "This field is required. Please, enter a value.",
     formatRequestedErrorMessage: "Please match the format requested.",
-    lengthErrorMessage: (minLength, maxLength) => `Min length ${minLength}, max length ${maxLength}.`,
+    lengthErrorMessage: (minLength?: number, maxLength?: number) => `Min length ${minLength}, max length ${maxLength}.`,
     logoAlternativeText: "Logo",
   },
   applicationLayout: {
@@ -1456,24 +1605,24 @@ export const defaultTranslatedComponentLabels = {
     deleteFileActionTitle: "Remove file",
   },
   footer: {
-    copyrightText: (year) => `© DXC Technology ${year}. All rights reserved.`,
+    copyrightText: (year: number) => `© DXC Technology ${year}. All rights reserved.`,
   },
   header: {
     closeIcon: "Close menu",
     hamburguerTitle: "Menu",
   },
   numberInput: {
-    valueGreaterThanOrEqualToErrorMessage: (value) => `Value must be greater than or equal to ${value}.`,
-    valueLessThanOrEqualToErrorMessage: (value) => `Value must be less than or equal to ${value}.`,
+    valueGreaterThanOrEqualToErrorMessage: (value: number) => `Value must be greater than or equal to ${value}.`,
+    valueLessThanOrEqualToErrorMessage: (value: number) => `Value must be less than or equal to ${value}.`,
     decrementValueTitle: "Decrement value",
     incrementValueTitle: "Increment value",
   },
   paginator: {
     itemsPerPageText: "Items per page: ",
-    minToMaxOfText: (minNumberOfItems, maxNumberOfItems, totalItems) =>
+    minToMaxOfText: (minNumberOfItems: number, maxNumberOfItems: number, totalItems: number) =>
       `${minNumberOfItems} to ${maxNumberOfItems} of ${totalItems}`,
     goToPageText: "Go to page:",
-    pageOfText: (pageNumber, totalPagesNumber) => `Page: ${pageNumber} of ${totalPagesNumber}`,
+    pageOfText: (pageNumber: number, totalPagesNumber: number) => `Page: ${pageNumber} of ${totalPagesNumber}`,
   },
   passwordInput: {
     inputShowPasswordTitle: "Show password",
@@ -1519,3 +1668,5 @@ export const defaultTranslatedComponentLabels = {
     nextMonthTitle: "Next month",
   },
 };
+
+export type TranslatedLabels = typeof defaultTranslatedComponentLabels;
