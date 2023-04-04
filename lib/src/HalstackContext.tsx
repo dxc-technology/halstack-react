@@ -17,10 +17,7 @@ const addLightness = (newLightness: number, hexColor?: string) => {
     if (hexColor) {
       const color = Color(hexColor);
       const hslColor = color.hsl();
-      // const lightnessColor = hslColor.color[2];
-      // const lightnessColor = hslColor.lightness();
-      const lightnessColor = hslColor.object()[2];
-
+      const lightnessColor = hslColor.lightness();
       return hslColor.lightness(lightnessColor + newLightness).hex();
     }
   } catch (e) {
@@ -33,9 +30,7 @@ const subLightness = (newLightness: number, hexColor?: string) => {
     if (hexColor) {
       const color = Color(hexColor);
       const hslColor = color.hsl();
-      // const lightnessColor = hslColor.color[2];
-      // const lightnessColor = hslColor.lightness();
-      const lightnessColor = hslColor.object()[2];
+      const lightnessColor = hslColor.lightness();
       return hslColor.lightness(lightnessColor - newLightness).hex();
     }
   } catch (e) {
