@@ -1,7 +1,5 @@
-// @ts-nocheck
 import React, { useContext } from "react";
 import styled, { ThemeProvider } from "styled-components";
-
 import { spaces } from "../common/variables.js";
 import useTheme from "../useTheme";
 import BackgroundColorContext from "../BackgroundColorContext";
@@ -20,9 +18,9 @@ const DxcSpinner = ({
   return (
     <ThemeProvider theme={colorsTheme.spinner}>
       <DXCSpinner margin={margin} mode={mode}>
-        <SpinnerContainer backgroundType={backgroundType} mode={mode}>
+        <SpinnerContainer mode={mode}>
           {mode === "overlay" && <BackOverlay></BackOverlay>}
-          <BackgroundSpinner mode={mode}>
+          <BackgroundSpinner>
             {mode !== "small" && (
               <SVGBackground viewBox="0 0 140 140">
                 <CircleBackground cx="70" cy="70" r="65" mode={mode}></CircleBackground>
@@ -36,7 +34,7 @@ const DxcSpinner = ({
           </BackgroundSpinner>
 
           {value >= 0 && value <= 100 ? (
-            <Spinner role="progressbar" mode={mode}>
+            <Spinner role="progressbar">
               {mode !== "small" && (
                 <SVGSpinner viewBox="0 0 140 140" isDeterminated={true}>
                   <CircleSpinner
@@ -46,8 +44,7 @@ const DxcSpinner = ({
                     backgroundType={backgroundType}
                     mode={mode}
                     isDeterminated={true}
-                    value={value}
-                  ></CircleSpinner>
+                  />
                 </SVGSpinner>
               )}
               {mode === "small" && (
@@ -59,13 +56,12 @@ const DxcSpinner = ({
                     backgroundType={backgroundType}
                     mode={mode}
                     isDeterminated={true}
-                    value={value}
                   ></CircleSpinner>
                 </SVGSpinner>
               )}
             </Spinner>
           ) : (
-            <Spinner role="progressbar" mode={mode}>
+            <Spinner role="progressbar">
               {mode !== "small" && (
                 <SVGSpinner viewBox="0 0 140 140" isDeterminated={false}>
                   <CircleSpinner
@@ -93,7 +89,7 @@ const DxcSpinner = ({
             </Spinner>
           )}
           {mode !== "small" && (
-            <LabelsContainer label={label} value={value} showValue={showValue}>
+            <LabelsContainer>
               <SpinnerLabel backgroundType={backgroundType} mode={mode}>
                 {label}
               </SpinnerLabel>
@@ -117,7 +113,7 @@ const determinatedValue = (props, strokeDashArray) => {
   }
   return val;
 };
-const DXCSpinner = styled.div`
+const DXCSpinner = styled.div<SpinnerPropsType>`
   height: ${(props) => (props.mode === "overlay" ? "100vh" : "")};
   width: ${(props) => (props.mode === "overlay" ? "100vw" : "")};
   display: ${(props) => (props.mode === "overlay" ? "flex" : "")};
@@ -156,7 +152,7 @@ const DXCSpinner = styled.div`
       : ""};
 `;
 
-const SpinnerContainer = styled.div`
+const SpinnerContainer = styled.div<{ mode: "large" | "small" | "overlay" }>`
   align-items: center;
   display: flex;
   height: ${(props) => (props.mode === "small" ? "16px" : "140px")};
@@ -247,7 +243,7 @@ const Spinner = styled.div`
   position: relative;
 `;
 
-const SVGSpinner = styled.svg`
+const SVGSpinner = styled.svg<{ isDeterminated: boolean }>`
   height: inherit;
   width: inherit;
   transform: rotate(-90deg);
@@ -258,7 +254,7 @@ const SVGSpinner = styled.svg`
   animation: ${(props) => (!props.isDeterminated ? "1.4s linear infinite both spinner-svg" : "")};
 `;
 
-const CircleSpinner = styled.circle`
+const CircleSpinner = styled.circle<{ backgroundType: "dark" | "light"; isDeterminated: boolean }>`
   fill: transparent;
   stroke-linecap: initial;
   vector-effect: non-scaling-stroke;
@@ -291,7 +287,7 @@ const LabelsContainer = styled.div`
   width: 110px;
 `;
 
-const SpinnerLabel = styled.p`
+const SpinnerLabel = styled.p<{ backgroundType: "dark" | "light"; mode: "large" | "small" | "overlay" }>`
   margin: 0;
   width: 100%;
   white-space: nowrap;
@@ -314,13 +310,13 @@ const SpinnerLabel = styled.p`
     props.mode === "overlay" ? props.theme.overlayLabelLetterSpacing : props.theme.labelLetterSpacing};
 `;
 
-const SpinnerProgress = styled.p`
+const SpinnerProgress = styled.p<SpinnerPropsType & { backgroundType: "dark" | "light" }>`
   margin: 0;
   width: 100%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  display: ${(props) => (props.value !== "" && props.showValue === true && "block") || "none"};
+  display: ${(props) => (props.value && props.showValue === true && "block") || "none"};
   font-family: ${(props) =>
     props.mode === "overlay" ? props.theme.overlayProgressValueFontFamily : props.theme.progressValueFontFamily};
   font-weight: ${(props) =>
