@@ -4,8 +4,8 @@ import { getMargin } from "../common/utils";
 import { spaces } from "../common/variables";
 import useTheme from "../useTheme";
 import { BackgroundColorProvider } from "../BackgroundColorContext";
+import BaseTypography from "../utils/BaseTypography";
 import AccordionPropsType, { Margin, Padding, Space } from "./types";
-import DxcTypography from "../typography/Typography";
 import { v4 as uuidv4 } from "uuid";
 
 const expandLess = (
@@ -62,7 +62,7 @@ const DxcAccordion = ({
                     {typeof icon === "string" ? <img src={icon} /> : icon}
                   </IconContainer>
                 )}
-                <DxcTypography
+                <BaseTypography
                   color={
                     disabled
                       ? colorsTheme.accordion.disabledTitleLabelFontColor
@@ -75,11 +75,11 @@ const DxcAccordion = ({
                   lineHeight="1.5em"
                 >
                   {label}
-                </DxcTypography>
+                </BaseTypography>
               </AccordionLabel>
               {assistiveText && (
                 <AccordionAssistiveText disabled={disabled}>
-                  <DxcTypography
+                  <BaseTypography
                     color={
                       disabled
                         ? colorsTheme.accordion.disabledAssistiveTextFontColor
@@ -93,7 +93,7 @@ const DxcAccordion = ({
                     lineHeight="1.5em"
                   >
                     {assistiveText}
-                  </DxcTypography>
+                  </BaseTypography>
                 </AccordionAssistiveText>
               )}
             </AccordionInfo>

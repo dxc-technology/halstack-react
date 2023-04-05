@@ -9,8 +9,8 @@ import {
   defaultTranslatedComponentLabels,
 } from "./common/variables";
 
-const HalstackContext = React.createContext<Partial<AdvancedTheme> | null>(null);
-const HalstackLanguageContext = React.createContext<Partial<TranslatedLabels> | null>(null);
+const HalstackContext = React.createContext<DeepPartial<AdvancedTheme> | null>(null);
+const HalstackLanguageContext = React.createContext<DeepPartial<TranslatedLabels> | null>(null);
 
 const addLightness = (newLightness: number, hexColor?: string) => {
   try {
@@ -38,7 +38,7 @@ const subLightness = (newLightness: number, hexColor?: string) => {
   }
 };
 
-const parseAdvancedTheme = (advancedTheme: Partial<AdvancedTheme>): AdvancedTheme => {
+const parseAdvancedTheme = (advancedTheme: DeepPartial<AdvancedTheme>): AdvancedTheme => {
   const allTokensCopy = JSON.parse(JSON.stringify(componentTokens));
   Object.keys(allTokensCopy).map(function (component) {
     if (advancedTheme[component]) {
@@ -52,7 +52,7 @@ const parseAdvancedTheme = (advancedTheme: Partial<AdvancedTheme>): AdvancedThem
   return allTokensCopy;
 };
 
-const parseTheme = (theme: Partial<OpinionatedTheme>): AdvancedTheme => {
+const parseTheme = (theme: DeepPartial<OpinionatedTheme>): AdvancedTheme => {
   const componentTokensCopy = JSON.parse(JSON.stringify(componentTokens));
 
   const alertTokens = componentTokensCopy.alert;
@@ -348,7 +348,7 @@ const parseTheme = (theme: Partial<OpinionatedTheme>): AdvancedTheme => {
   return componentTokensCopy;
 };
 
-const parseLabels = (labels: Partial<TranslatedLabels>): TranslatedLabels => {
+const parseLabels = (labels: DeepPartial<TranslatedLabels>): TranslatedLabels => {
   const parsedLabels = { ...defaultTranslatedComponentLabels };
   Object.keys(labels).map((component) => {
     if (parsedLabels[component]) {
@@ -362,10 +362,17 @@ const parseLabels = (labels: Partial<TranslatedLabels>): TranslatedLabels => {
   return parsedLabels;
 };
 
+/**
+ * This type is used to allow partial themes and labels objects to be passed to the HalstackProvider.
+ * This is an extension of the already extisting Partial type, which only allows one level of partiality.
+ */
+type DeepPartial<T> = {
+  [P in keyof T]?: Partial<T[P]>;
+};
 type HalstackProviderPropsType = {
-  theme?: Partial<OpinionatedTheme>;
-  advancedTheme?: Partial<AdvancedTheme>;
-  labels?: TranslatedLabels;
+  theme?: DeepPartial<OpinionatedTheme>;
+  advancedTheme?: DeepPartial<AdvancedTheme>;
+  labels?: DeepPartial<TranslatedLabels>;
   children: React.ReactNode;
 };
 const HalstackProvider = ({ theme, advancedTheme, labels, children }: HalstackProviderPropsType): JSX.Element => {
