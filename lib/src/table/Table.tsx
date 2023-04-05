@@ -1,7 +1,5 @@
-// @ts-nocheck
 import React from "react";
 import styled, { ThemeProvider } from "styled-components";
-
 import { spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
 import useTheme from "../useTheme";
@@ -26,7 +24,7 @@ const calculateWidth = (margin) => {
   return `calc(100% - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`;
 };
 
-const DxcTableContainer = styled.div`
+const DxcTableContainer = styled.div<TablePropsType>`
   width: ${(props) => calculateWidth(props.margin)};
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
