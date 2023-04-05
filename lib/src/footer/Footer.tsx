@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useMemo } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { spaces, responsiveSizes } from "../common/variables.js";
@@ -48,7 +47,7 @@ const DxcFooter = ({
       <BottomLink tabIndex={tabIndex} href={link && link.href ? link.href : ""}>
         {link && link.text ? link.text : ""}
       </BottomLink>
-      <Point index={index}>·</Point>
+      <Point>·</Point>
     </span>
   ));
 
@@ -73,13 +72,12 @@ const DxcFooter = ({
   );
 };
 
-const FooterContainer = styled.footer`
+const FooterContainer = styled.footer<FooterPropsType>`
   @media (min-width: ${responsiveSizes.small}rem) {
     padding: 24px 36px 24px 36px;
   }
 
   @media (max-width: ${responsiveSizes.small}rem) {
-    //mobile phones
     padding: 20px;
   }
 
@@ -110,7 +108,6 @@ const FooterFooter = styled.div`
   }
 
   @media (max-width: ${responsiveSizes.small}rem) {
-    //mobile phones
     flex-direction: column;
     align-items: center;
   }
@@ -130,7 +127,6 @@ const BottomLinks = styled.div`
   }
 
   @media (max-width: ${responsiveSizes.small}rem) {
-    //mobile phones
     max-width: 100%;
     width: 100%;
   }
@@ -141,7 +137,7 @@ const BottomLinks = styled.div`
   align-self: center;
 `;
 
-const ChildComponents = styled.div`
+const ChildComponents = styled.div<FooterPropsType>`
   min-height: 16px;
   padding: ${(props) => (props.padding && typeof props.padding !== "object" ? spaces[props.padding] : "0px")};
   padding-top: ${(props) =>
@@ -168,7 +164,6 @@ const Copyright = styled.div`
   }
 
   @media (max-width: ${responsiveSizes.small}rem) {
-    //mobile phones
     max-width: 100%;
     width: 100%;
     text-align: left;
@@ -192,7 +187,7 @@ const SocialLinkContainer = styled.div`
   align-self: center;
 `;
 
-const SocialAnchor = styled.a`
+const SocialAnchor = styled.a<{ index: number }>`
   & {
     display: inline-flex;
     margin-left: ${(props) => (props.index === 0 ? "0px" : props.theme.socialLinksGutter)};
