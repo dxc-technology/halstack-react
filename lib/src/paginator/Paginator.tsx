@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React from "react";
 import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme";
@@ -34,7 +33,7 @@ const DxcPaginator = ({
   return (
     <ThemeProvider theme={colorsTheme.paginator}>
       <BackgroundColorProvider color={colorsTheme.paginator.backgroundColor}>
-        <DxcPaginatorContainer disabled={currentPageInternal === 1}>
+        <DxcPaginatorContainer>
           <LabelsContainer>
             {itemsPerPageOptions && (
               <ItemsPageContainer>
