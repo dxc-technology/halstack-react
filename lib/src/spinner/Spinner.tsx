@@ -44,6 +44,7 @@ const DxcSpinner = ({
                     backgroundType={backgroundType}
                     mode={mode}
                     isDeterminated={true}
+                    value={value}
                   />
                 </SVGSpinner>
               )}
@@ -56,6 +57,7 @@ const DxcSpinner = ({
                     backgroundType={backgroundType}
                     mode={mode}
                     isDeterminated={true}
+                    value={value}
                   ></CircleSpinner>
                 </SVGSpinner>
               )}
@@ -71,6 +73,7 @@ const DxcSpinner = ({
                     backgroundType={backgroundType}
                     mode={mode}
                     isDeterminated={false}
+                    value={value}
                   ></CircleSpinner>
                 </SVGSpinner>
               )}
@@ -83,6 +86,7 @@ const DxcSpinner = ({
                     backgroundType={backgroundType}
                     mode={mode}
                     isDeterminated={false}
+                    value={value}
                   ></CircleSpinner>
                 </SVGSpinner>
               )}
@@ -94,7 +98,7 @@ const DxcSpinner = ({
                 {label}
               </SpinnerLabel>
               {(value || value === 0) && showValue && (
-                <SpinnerProgress backgroundType={backgroundType} mode={mode} showValue={showValue}>
+                <SpinnerProgress value={value} backgroundType={backgroundType} mode={mode} showValue={showValue}>
                   {value}%
                 </SpinnerProgress>
               )}
@@ -254,7 +258,7 @@ const SVGSpinner = styled.svg<{ isDeterminated: boolean }>`
   animation: ${(props) => (!props.isDeterminated ? "1.4s linear infinite both spinner-svg" : "")};
 `;
 
-const CircleSpinner = styled.circle<{ backgroundType: "dark" | "light"; isDeterminated: boolean }>`
+const CircleSpinner = styled.circle<{ value: number; backgroundType: "dark" | "light"; isDeterminated: boolean }>`
   fill: transparent;
   stroke-linecap: initial;
   vector-effect: non-scaling-stroke;
