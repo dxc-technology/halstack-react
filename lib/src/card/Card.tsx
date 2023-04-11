@@ -71,7 +71,7 @@ const StyledDxcCard = styled.div<CardPropsType & { hasAction: (() => void) | str
   }`}
 `;
 
-const CardContainer = styled.div<{ hasAction: (() => void) | string }>`
+const CardContainer = styled.div<{ hasAction: (() => void) | string; imagePosition: "before" | "after" }>`
   display: inline-flex;
   height: ${(props) => props.theme.height};
   width: ${(props) => props.theme.width};
