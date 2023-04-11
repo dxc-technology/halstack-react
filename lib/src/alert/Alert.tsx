@@ -121,7 +121,7 @@ const calculateWidth = (margin, size) =>
     ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
     : sizes[size];
 
-const AlertModal = styled.div<{ mode?: "inline" | "modal" }>`
+const AlertModal = styled.div<{ mode: "inline" | "modal" }>`
   font-size: ${(props) => props.theme.fontSizeBase};
   width: ${(props) => (props.mode === "modal" ? "100%" : "")};
   height: ${(props) => (props.mode === "modal" ? "100%" : "")};
