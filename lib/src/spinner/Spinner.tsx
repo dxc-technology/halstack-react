@@ -57,6 +57,7 @@ const DxcSpinner = ({
                     backgroundType={backgroundType}
                     mode={mode}
                     isDeterminated={true}
+                    value={value}
                   ></CircleSpinner>
                 </SVGSpinner>
               )}
@@ -85,6 +86,7 @@ const DxcSpinner = ({
                     backgroundType={backgroundType}
                     mode={mode}
                     isDeterminated={false}
+                    value={value}
                   ></CircleSpinner>
                 </SVGSpinner>
               )}
