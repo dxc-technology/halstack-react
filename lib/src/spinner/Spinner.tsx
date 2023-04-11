@@ -57,7 +57,6 @@ const DxcSpinner = ({
                     backgroundType={backgroundType}
                     mode={mode}
                     isDeterminated={true}
-                    value={value}
                   ></CircleSpinner>
                 </SVGSpinner>
               )}
@@ -86,7 +85,6 @@ const DxcSpinner = ({
                     backgroundType={backgroundType}
                     mode={mode}
                     isDeterminated={false}
-                    value={value}
                   ></CircleSpinner>
                 </SVGSpinner>
               )}
@@ -258,7 +256,7 @@ const SVGSpinner = styled.svg<{ isDeterminated: boolean }>`
   animation: ${(props) => (!props.isDeterminated ? "1.4s linear infinite both spinner-svg" : "")};
 `;
 
-const CircleSpinner = styled.circle<{ value: number; backgroundType: "dark" | "light"; isDeterminated: boolean }>`
+const CircleSpinner = styled.circle<SpinnerPropsType & { backgroundType: "dark" | "light"; isDeterminated: boolean }>`
   fill: transparent;
   stroke-linecap: initial;
   vector-effect: non-scaling-stroke;
