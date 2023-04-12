@@ -53,7 +53,7 @@ const parseAdvancedTheme = (advancedTheme: DeepPartial<AdvancedTheme>): Advanced
 };
 
 const parseTheme = (theme: DeepPartial<OpinionatedTheme>): AdvancedTheme => {
-  const componentTokensCopy = JSON.parse(JSON.stringify(componentTokens));
+  const componentTokensCopy: AdvancedTheme = JSON.parse(JSON.stringify(componentTokens));
 
   const alertTokens = componentTokensCopy.alert;
   alertTokens.infoBackgroundColor = theme?.alert?.baseColor ?? alertTokens.infoBackgroundColor;
@@ -349,7 +349,8 @@ const parseTheme = (theme: DeepPartial<OpinionatedTheme>): AdvancedTheme => {
 };
 
 const parseLabels = (labels: DeepPartial<TranslatedLabels>): TranslatedLabels => {
-  const parsedLabels = { ...defaultTranslatedComponentLabels };
+  const parsedLabels = JSON.parse(JSON.stringify(defaultTranslatedComponentLabels));
+
   Object.keys(labels).map((component) => {
     if (parsedLabels[component]) {
       Object.keys(parsedLabels[component]).map((label) => {
