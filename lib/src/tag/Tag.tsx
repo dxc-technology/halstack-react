@@ -1,11 +1,10 @@
-// @ts-nocheck
 import React, { useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables.js";
 import useTheme from "../useTheme";
 import { getMargin } from "../common/utils.js";
 import DxcBox from "../box/Box";
-import TagPropsType from "./types";
+import TagPropsType, { Space, Margin } from "./types";
 
 const DxcTag = ({
   icon,
@@ -27,7 +26,7 @@ const DxcTag = ({
 
   const tagContent = (
     <DxcBox size={size} shadowDepth={(isHovered && (onClick || linkHref) && 2) || 1}>
-      <TagContent labelPosition={labelPosition}>
+      <TagContent>
         {labelPosition === "before" && size !== "small" && label && <TagLabel>{label}</TagLabel>}
         {icon && (
           <IconContainer iconBgColor={iconBgColor}>
@@ -76,14 +75,21 @@ const calculateWidth = (margin, size) =>
     ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
     : sizes[size];
 
-const StyledDxcTag = styled.div`
+type StyledDxcTagTypes = {
+  margin: Space | Margin;
+  size?: "small" | "medium" | "large" | "fillParent" | "fitContent";
+  hasAction: (() => void) | string;
+};
+
+const StyledDxcTag = styled.div<StyledDxcTagTypes>`
   display: inline-flex;
   cursor: ${({ hasAction }) => (hasAction && "pointer") || "unset"};
   margin: ${({ margin }) => (margin && typeof margin !== "object" ? spaces[margin] : "0px")};
-  margin-top: ${({ margin }) => (margin && margin.top ? spaces[margin.top] : "")};
-  margin-right: ${({ margin }) => (margin && margin.right ? spaces[margin.right] : "")};
-  margin-bottom: ${({ margin }) => (margin && margin.bottom ? spaces[margin.bottom] : "")};
-  margin-left: ${({ margin }) => (margin && margin.left ? spaces[margin.left] : "")};
+  margin-top: ${({ margin }) => (margin && typeof margin === "object" && margin.top ? spaces[margin.top] : "")};
+  margin-right: ${({ margin }) => (margin && typeof margin === "object" && margin.right ? spaces[margin.right] : "")};
+  margin-bottom: ${({ margin }) =>
+    margin && typeof margin === "object" && margin.bottom ? spaces[margin.bottom] : ""};
+  margin-left: ${({ margin }) => (margin && typeof margin === "object" && margin.left ? spaces[margin.left] : "")};
   width: ${(props) => calculateWidth(props.margin, props.size)};
   height: ${(props) => props.theme.height};
 `;
@@ -118,7 +124,7 @@ const StyledButton = styled.button`
   }
 `;
 
-const IconContainer = styled.div`
+const IconContainer = styled.div<{ iconBgColor: string }>`
   display: inline-flex;
   background: ${({ iconBgColor }) => iconBgColor};
   width: ${(props) => props.theme.iconSectionWidth};

@@ -1,4 +1,3 @@
-//@ts-nocheck
 import React, { useState, useEffect, useCallback } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { v4 as uuidv4 } from "uuid";
@@ -6,7 +5,7 @@ import { spaces } from "../common/variables.js";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
 import DxcButton from "../button/Button";
-import FileInputPropsType, { RefType } from "./types";
+import FileInputPropsType, { RefType, Space, Margin } from "./types";
 import FileItem from "./FileItem";
 
 const audioIcon = (
@@ -285,7 +284,7 @@ const DxcFileInput = React.forwardRef<RefType, FileInputPropsType>(
   }
 );
 
-const FileInputContainer = styled.div`
+const FileInputContainer = styled.div<{ margin: Space | Margin; name: string }>`
   display: flex;
   flex-direction: column;
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
@@ -300,7 +299,7 @@ const FileInputContainer = styled.div`
   width: fit-content;
 `;
 
-const Label = styled.label`
+const Label = styled.label<{ disabled: boolean }>`
   color: ${(props) => (props.disabled ? props.theme.disabledLabelFontColor : props.theme.labelFontColor)};
   font-family: ${(props) => props.theme.labelFontFamily};
   font-size: ${(props) => props.theme.labelFontSize};
@@ -308,7 +307,7 @@ const Label = styled.label`
   line-height: ${(props) => props.theme.labelLineHeight};
 `;
 
-const HelperText = styled.span`
+const HelperText = styled.span<{ disabled: boolean }>`
   color: ${(props) => (props.disabled ? props.theme.disabledHelperTextFontcolor : props.theme.helperTextFontColor)};
   font-family: ${(props) => props.theme.helperTextFontFamily};
   font-size: ${(props) => props.theme.helperTextFontSize};
@@ -340,7 +339,7 @@ const Container = styled.div`
   margin-top: 0.25rem;
 `;
 
-const DragDropArea = styled.div`
+const DragDropArea = styled.div<{ disabled: boolean; mode: "file" | "filedrop" | "dropzone"; isDragging: boolean }>`
   box-sizing: border-box;
   display: flex;
   ${(props) =>
@@ -369,7 +368,7 @@ const DragDropArea = styled.div`
   cursor: ${(props) => props.disabled && "not-allowed"};
 `;
 
-const DropzoneLabel = styled.div`
+const DropzoneLabel = styled.div<{ disabled: boolean }>`
   display: -webkit-box;
   -webkit-box-orient: vertical;
   overflow: hidden;
@@ -382,7 +381,7 @@ const DropzoneLabel = styled.div`
   font-weight: ${(props) => props.theme.dropLabelFontWeight};
 `;
 
-const FiledropLabel = styled.span`
+const FiledropLabel = styled.span<{ disabled: boolean }>`
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
