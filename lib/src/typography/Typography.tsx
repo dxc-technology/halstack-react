@@ -5,12 +5,11 @@ import TypographyPropsTypes from "./types";
 const DxcTypography = ({ textOverflow, whiteSpace, children, ...props }: TypographyPropsTypes): JSX.Element => (
   <BaseTypography
     textOverflow={textOverflow}
-    whiteSpace={whiteSpace !== "normal" ? whiteSpace : textOverflow !== "unset" ? "nowrap" : "normal"}
-    overflow={textOverflow !== "unset" ? "hidden" : "visible"}
+    whiteSpace={whiteSpace == null && textOverflow != null && textOverflow !== "unset" ? "nowrap" : whiteSpace}
     {...props}
   >
     {children}
-    </BaseTypography>
+  </BaseTypography>
 );
 
 export default DxcTypography;

@@ -15,7 +15,6 @@ type TypographyContextProps = {
   textDecoration?: string;
   textOverflow?: string;
   whiteSpace?: string;
-  overflow?: string;
 };
 
 const TypographyContext = React.createContext<TypographyContextProps | null>(null);
@@ -38,7 +37,6 @@ const BaseTypography = ({
   textDecoration,
   textOverflow,
   whiteSpace,
-  overflow,
   children,
 }: BaseTypographyProps): JSX.Element => {
   const componentContext = useContext(TypographyContext);
@@ -58,7 +56,6 @@ const BaseTypography = ({
       textDecoration: textDecoration ?? componentContext?.textDecoration ?? "none",
       textOverflow: textOverflow ?? componentContext?.textOverflow ?? "unset",
       whiteSpace: whiteSpace ?? componentContext?.whiteSpace ?? "normal",
-      overflow: overflow ?? componentContext?.overflow ?? "visible",
     }),
     [
       as,
@@ -74,7 +71,6 @@ const BaseTypography = ({
       textDecoration,
       textOverflow,
       whiteSpace,
-      overflow,
     ]
   );
 
@@ -98,7 +94,7 @@ const StyledTypography = styled.span<BaseTypographyProps>`
   text-decoration: ${({ textDecoration }) => textDecoration};
   text-overflow: ${({ textOverflow }) => textOverflow};
   white-space: ${({ whiteSpace }) => whiteSpace};
-  overflow: ${({ overflow }) => overflow};
+  overflow: ${({ textOverflow }) => textOverflow !== "unset" ? "hidden" : "visible"};
   margin: 0;
 `;
 
