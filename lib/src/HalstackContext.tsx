@@ -222,7 +222,7 @@ const parseTheme = (theme: DeepPartial<OpinionatedTheme>): AdvancedTheme => {
   selectTokens.valueFontColor = theme?.select?.fontColor ?? selectTokens.valueFontColor;
   selectTokens.labelFontColor = theme?.select?.fontColor ?? selectTokens.labelFontColor;
   selectTokens.helperTextFontColor = theme?.select?.fontColor ?? selectTokens.helperTextFontColor;
-  selectTokens.listOptionFontColor = theme?.select?.optionFontColor ?? selectTokens.optionFontColor;
+  selectTokens.listOptionFontColor = theme?.select?.optionFontColor ?? selectTokens.listOptionFontColor;
   selectTokens.placeholderFontColor = addLightness(30, theme?.select?.fontColor) ?? selectTokens.placeholderFontColor;
   selectTokens.collapseIndicatorColor = theme?.select?.fontColor ?? selectTokens.collapseIndicatorColor;
   selectTokens.hoverInputBorderColor = theme?.select?.hoverBorderColor ?? selectTokens.hoverInputBorderColor;
@@ -309,7 +309,7 @@ const parseTheme = (theme: DeepPartial<OpinionatedTheme>): AdvancedTheme => {
 
   const toggleGroupTokens = componentTokensCopy.toggleGroup;
   toggleGroupTokens.selectedBackgroundColor =
-    theme?.toggleGroup?.selectedBaseColor ?? buttonTokens.selectedBackgroundColor;
+    theme?.toggleGroup?.selectedBaseColor ?? toggleGroupTokens.selectedBackgroundColor;
   toggleGroupTokens.selectedFontColor = theme?.toggleGroup?.selectedFontColor ?? toggleGroupTokens.selectedFontColor;
   toggleGroupTokens.unselectedBackgroundColor =
     theme?.toggleGroup?.unselectedBaseColor ?? toggleGroupTokens.unselectedBackgroundColor;
@@ -318,7 +318,7 @@ const parseTheme = (theme: DeepPartial<OpinionatedTheme>): AdvancedTheme => {
   toggleGroupTokens.unselectedFontColor =
     theme?.toggleGroup?.unselectedFontColor ?? toggleGroupTokens.unselectedFontColor;
   toggleGroupTokens.selectedHoverBackgroundColor =
-    subLightness(8, theme?.toggleGroup?.selectedBaseColor) ?? buttonTokens.selectedHoverBackgroundColor;
+    subLightness(8, theme?.toggleGroup?.selectedBaseColor) ?? toggleGroupTokens.selectedHoverBackgroundColor;
   toggleGroupTokens.selectedActiveBackgroundColor =
     subLightness(18, theme?.toggleGroup?.selectedBaseColor) ?? toggleGroupTokens.selectedActiveBackgroundColor;
   toggleGroupTokens.selectedDisabledBackgroundColor =
