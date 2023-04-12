@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useContext, useRef, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { getMargin } from "../common/utils.js";
@@ -150,7 +149,7 @@ const calculateWidth = (margin, size) =>
     ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
     : sizes[size];
 
-const TextareaContainer = styled.div`
+const TextareaContainer = styled.div<TextareaPropsType>`
   display: flex;
   flex-direction: column;
 
@@ -166,7 +165,7 @@ const TextareaContainer = styled.div`
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
 `;
 
-const Label = styled.label`
+const Label = styled.label<{ disabled: boolean; helperText: string; backgroundType: "dark" | "light" }>`
   color: ${(props) =>
     props.disabled
       ? props.backgroundType === "dark"
@@ -188,7 +187,7 @@ const OptionalLabel = styled.span`
   font-weight: ${(props) => props.theme.optionalLabelFontWeight};
 `;
 
-const HelperText = styled.span`
+const HelperText = styled.span<{ disabled: boolean; backgroundType: "dark" | "light" }>`
   color: ${(props) =>
     props.disabled
       ? props.backgroundType === "dark"
@@ -206,7 +205,7 @@ const HelperText = styled.span`
   margin-bottom: 0.25rem;
 `;
 
-const Textarea = styled.textarea`
+const Textarea = styled.textarea<TextareaPropsType & { backgroundType: "dark" | "light" }>`
   ${(props) => {
     if (props.verticalGrow === "none") return "resize: none;";
     else if (props.verticalGrow === "auto") return `resize: none; overflow: hidden;`;
@@ -305,7 +304,7 @@ const Textarea = styled.textarea`
   }
 `;
 
-const Error = styled.span`
+const Error = styled.span<{ backgroundType: "dark" | "light" }>`
   color: ${(props) =>
     props.backgroundType === "dark" ? props.theme.errorMessageColorOnDark : props.theme.errorMessageColor};
   font-family: ${(props) => props.theme.fontFamily};
