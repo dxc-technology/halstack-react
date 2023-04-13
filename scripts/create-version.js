@@ -8,7 +8,6 @@ const setVersion = () => {
   const jsonData = JSON.stringify(object);
   fs.writeFile("catalog/version/version.json", jsonData, (err) => {
     if (err) throw err;
-    console.log("Data written to file");
   });
 };
 

@@ -14,7 +14,6 @@ const setCatalog = () => {
   const jsonData = JSON.stringify(catalog);
   fs.writeFile("catalog/components/catalog.json", jsonData, (err) => {
     if (err) throw err;
-    console.log("Data written to file");
   });
 };
 
