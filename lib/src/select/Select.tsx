@@ -60,9 +60,9 @@ const getSelectedOption = (value, options, multiple, optional, optionalItem) => 
       options.forEach((option) => {
         if (option.options) {
           option.options.forEach((singleOption) => {
-            if (value.includes(singleOption.value)) selectedOption.push(singleOption);
+            if (value.includes(singleOption.value) && Array.isArray(selectedOption)) selectedOption.push(singleOption);
           });
-        } else if (value.includes(option.value)) selectedOption.push(option);
+        } else if (value.includes(option.value) && Array.isArray(selectedOption)) selectedOption.push(option);
       });
     }
   } else {
@@ -184,8 +184,15 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
 
       if (multiple) {
         if ((value ?? innerValue).includes(newOption.value))
-          newValue = (value ?? innerValue).filter((optionVal) => optionVal !== newOption.value);
-        else newValue = [...(value ?? innerValue), newOption.value];
+          newValue = (
+            (value && Array.isArray(value) && value) ??
+            (innerValue && Array.isArray(innerValue) && innerValue)
+          ).filter((optionVal) => optionVal !== newOption.value);
+        else
+          newValue = [
+            ...((value && Array.isArray(value) && value) ?? (innerValue && Array.isArray(innerValue) && innerValue)),
+            newOption.value,
+          ];
       } else newValue = newOption.value;
 
       value ?? setInnerValue(newValue);
@@ -352,7 +359,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
                 aria-errormessage={error ? errorId : undefined}
                 aria-required={!disabled && !optional}
               >
-                {multiple && selectedOption.length > 0 && (
+                {multiple && Array.isArray(selectedOption) && selectedOption.length > 0 && (
                   <SelectionIndicator>
                     <SelectionNumber disabled={disabled}>{selectedOption.length}</SelectionNumber>
                     <ClearOptionsAction
@@ -374,7 +381,14 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
                   <ValueInput
                     name={name}
                     disabled={disabled}
-                    value={multiple ? (value ?? innerValue).join(",") : value ?? innerValue}
+                    value={
+                      multiple
+                        ? (
+                            (value && Array.isArray(value) && value) ??
+                            (innerValue && Array.isArray(innerValue) && innerValue)
+                          ).join(",")
+                        : value ?? innerValue
+                    }
                     readOnly
                     aria-hidden="true"
                   />
@@ -396,9 +410,9 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
                         atBackground={(value ?? innerValue).length === 0 || (searchable && isOpen)}
                       >
                         <SelectedOptionLabel>
-                          {selectedOption.map((option) => option.label).join(", ")}
+                          {Array.isArray(selectedOption) && selectedOption.map((option) => option.label).join(", ")}
                         </SelectedOptionLabel>
-                        {selectedOption.length === 0 && placeholder}
+                        {Array.isArray(selectedOption) && selectedOption.length === 0 && placeholder}
                       </SelectedOption>
                     ) : (
                       <SelectedOption

@@ -1,10 +1,12 @@
-//@ts-nocheck
 import React, { useContext } from "react";
 import styled from "styled-components";
-import TypographyPropsTypes from "./types";
-import TypographyContextPropTypes from "./types";
+import TypographyPropsTypes, { TypographyContextValue, TypographyProviderProps } from "./types";
 
-const TypographyContext = React.createContext<TypographyContextPropTypes | null>(null);
+const TypographyContext = React.createContext<TypographyContextValue | null>(null);
+
+const TypographyContextProvider = ({ children, value }: TypographyProviderProps) => {
+  return <TypographyContext.Provider value={value}>{children}</TypographyContext.Provider>;
+};
 
 const Typography = ({
   as,
@@ -37,8 +39,9 @@ const Typography = ({
   const textDecorationValue = textDecoration ?? (componentContext?.textDecoration || "none");
   const textOverflowValue = textOverflow ?? (componentContext?.textOverflow || "unset");
   const whiteSpaceValue = whiteSpace ?? (componentContext?.whiteSpace || "normal");
+
   return (
-    <TypographyContext.Provider
+    <TypographyContextProvider
       value={{
         as: asValue,
         display: displayValue,
@@ -72,7 +75,7 @@ const Typography = ({
       >
         {children}
       </StyledTypography>
-    </TypographyContext.Provider>
+    </TypographyContextProvider>
   );
 };
 
