@@ -1,4 +1,3 @@
-//@ts-nocheck
 import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from "react-live";
@@ -175,10 +174,7 @@ const LiveEditorContainer = styled.div`
   }
 `;
 
-type CodeActionsContainerProps = {
-  isCodeVisible: boolean;
-};
-const CodeActionsContainer = styled.div<CodeActionsContainerProps>`
+const CodeActionsContainer = styled.div<{ isCodeVisible: boolean }>`
   display: flex;
   column-gap: 0.5rem;
   justify-content: flex-end;

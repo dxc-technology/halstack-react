@@ -69,6 +69,21 @@ const firstDisabledTabs: any = [
   },
 ];
 
+const sampleTabsWithBadge = [
+  {
+    label: "Tab-1",
+    notificationNumber: 10,
+  },
+  {
+    label: "Tab-2",
+    notificationNumber: 20,
+  },
+  {
+    label: "Tab-3",
+    notificationNumber: 101,
+  },
+];
+
 const tabsNotification = tabs.map((tab, index) => ({
   ...tab,
   notificationNumber: (index === 0 && true) || (index === 1 && 5) || (index === 2 && 200),
@@ -92,7 +107,7 @@ export const Chromatic = () => (
   <>
     <ExampleContainer>
       <Title title="Only label" theme="light" level={4} />
-      <DxcTabs tabs={tabs} />
+      <DxcTabs tabs={sampleTabsWithBadge} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Disabled tabs" theme="light" level={4} />
