@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import { spaces } from "../common/variables.js";
+import { spaces } from "../common/variables";
 import useTheme from "../useTheme";
 import BackgroundColorContext, { BackgroundColorsType } from "../BackgroundColorContext";
 import ProgressBarPropsType from "./types";

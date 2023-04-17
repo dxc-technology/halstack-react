@@ -2,9 +2,9 @@ import React, { useContext, useEffect, useRef, useState, useCallback } from "rea
 import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
-import { spaces } from "../common/variables.js";
-import { getMargin } from "../common/utils.js";
-import BackgroundColorContext, { BackgroundColorsType } from "../BackgroundColorContext";
+import { spaces } from "../common/variables";
+import { getMargin } from "../common/utils";
+import BackgroundColorContext, { BackgroundColors } from "../BackgroundColorContext";
 import NumberInputContext from "../number-input/NumberInputContext";
 import TextInputPropsType, { AutosuggestWrapperProps, RefType } from "./types";
 import Suggestions from "./Suggestions";

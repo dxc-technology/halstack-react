@@ -3,7 +3,7 @@ import styled from "styled-components";
 import DxcBadge from "../badge/Badge";
 import { NavTabsContext } from "./NavTabs";
 import { TabProps, NavTabsProps } from "./types";
-import DxcTypography from "../typography/Typography";
+import BaseTypography from "../utils/BaseTypography";
 import useTheme from "../useTheme";
 
 const DxcTab = forwardRef(
@@ -58,7 +58,7 @@ const DxcTab = forwardRef(
             </TabIconContainer>
           )}
           <LabelContainer>
-            <DxcTypography
+            <BaseTypography
               color={
                 disabled
                   ? colorsTheme.navTabs.disabledFontColor
@@ -75,7 +75,7 @@ const DxcTab = forwardRef(
               lineHeight="1.715em"
             >
               {children}
-            </DxcTypography>
+            </BaseTypography>
             {notificationNumber && (
               <BadgeContainer>
                 <DxcBadge
@@ -122,29 +122,30 @@ const Tab = styled.a<{
   flex-direction: ${(props) => (props.hasIcon && props.iconPosition === "top" ? "column" : "row")};
   justify-content: center;
   align-items: center;
-  text-decoration-color: transparent;
-  cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
-  background: ${(props) =>
-    props.active ? props.theme.selectedBackgroundColor : props.theme.unselectedBackgroundColor};
   height: ${(props) => (props.hasIcon && props.iconPosition === "top" ? "66px" : "32px")};
   min-width: 164px;
   margin: 0.5rem;
   padding: 0.375rem;
   border-radius: 4px;
+  background: ${(props) =>
+    props.active ? props.theme.selectedBackgroundColor : props.theme.unselectedBackgroundColor};
+  text-decoration-color: transparent;
+  cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
+
   ${(props) =>
     !props.disabled &&
-    `:hover {
-    background: ${props.theme.hoverBackgroundColor};
-  }
-
-  :focus {
-    outline: 2px solid ${props.theme.focusOutline};
-  }
-
-  :active {
-    background: ${props.theme.pressedBackgroundColor};
-    outline: 2px solid #33aaff};
-  }`}
+    `
+      :hover {
+        background: ${props.theme.hoverBackgroundColor};
+      }
+      :focus {
+        outline: 2px solid ${props.theme.focusOutline};
+      }
+      :active {
+        background: ${props.theme.pressedBackgroundColor};
+        outline: 2px solid #33aaff};
+      }
+  `}
 `;
 
 const TabIconContainer = styled.div<{ iconPosition: NavTabsProps["iconPosition"] }>`

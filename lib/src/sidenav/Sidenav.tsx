@@ -1,6 +1,6 @@
 import React, { forwardRef, Ref, useMemo, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import { responsiveSizes } from "../common/variables.js";
+import { responsiveSizes } from "../common/variables";
 import { useResponsiveSidenavVisibility } from "../layout/SidenavContext";
 import useTheme from "../useTheme";
 import { BackgroundColorProvider } from "../BackgroundColorContext";

@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { componentTokens } from "./common/variables.js";
+import { componentTokens } from "./common/variables";
 import HalstackContext from "./HalstackContext";
 
 const useTheme = () => {

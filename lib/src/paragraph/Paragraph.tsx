@@ -1,13 +1,14 @@
 import React, { useContext } from "react";
-import DxcTypography from "../typography/Typography";
 import BackgroundColorContext from "../BackgroundColorContext";
 import useTheme from "../useTheme";
+import BaseTypography from "../utils/BaseTypography";
 
-const Paragraph = ({ children }: { children: React.ReactNode }): JSX.Element => {
+const DxcParagraph = ({ children }: { children: React.ReactNode }): JSX.Element => {
   const colorsTheme = useTheme();
   const backgroundType = useContext(BackgroundColorContext);
+
   return (
-    <DxcTypography
+    <BaseTypography
       as="p"
       display={colorsTheme.paragraph.display}
       fontSize={colorsTheme.paragraph.fontSize}
@@ -19,8 +20,8 @@ const Paragraph = ({ children }: { children: React.ReactNode }): JSX.Element => 
       }
     >
       {children}
-    </DxcTypography>
+    </BaseTypography>
   );
 };
 
-export default Paragraph;
+export default DxcParagraph;
