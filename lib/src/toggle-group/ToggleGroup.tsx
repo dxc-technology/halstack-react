@@ -1,10 +1,10 @@
-// @ts-nocheck
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { v4 as uuidv4 } from "uuid";
 import { spaces } from "../common/variables.js";
 import useTheme from "../useTheme";
-import ToogleGroupPropsType from "./types";
+import ToogleGroupPropsType, { OptionLabel } from "./types";
+import BackgroundColorContext, { BackgroundColorsType } from "../BackgroundColorContext";
 
 const DxcToggleGroup = ({
   label,
@@ -21,6 +21,8 @@ const DxcToggleGroup = ({
   const colorsTheme = useTheme();
   const [selectedValue, setSelectedValue] = useState(defaultValue ?? (multiple ? [] : -1));
   const [toggleGroupId] = useState(`toggle-group-${uuidv4()}`);
+
+  const backgroundType = useContext(BackgroundColorContext);
 
   const handleToggleChange = (selectedOption) => {
     let newSelectedOptions;
@@ -54,7 +56,7 @@ const DxcToggleGroup = ({
   };
   return (
     <ThemeProvider theme={colorsTheme.toggleGroup}>
-      <ToggleGroup margin={margin} disabled={disabled}>
+      <ToggleGroup margin={margin}>
         <Label htmlFor={toggleGroupId} disabled={disabled}>
           {label}
         </Label>
@@ -72,6 +74,7 @@ const DxcToggleGroup = ({
                   : option.value === selectedValue
               }
               role={multiple ? "switch" : "radio"}
+              backgroundType={backgroundType}
               aria-checked={
                 multiple
                   ? value
@@ -83,7 +86,6 @@ const DxcToggleGroup = ({
               }
               tabIndex={!disabled ? tabIndex : -1}
               onClick={() => !disabled && handleToggleChange(option.value)}
-              isFirst={i === 0}
               isLast={i === options.length - 1}
               isIcon={option.icon}
               optionLabel={option.label}
@@ -109,7 +111,7 @@ const DxcToggleGroup = ({
   );
 };
 
-const Label = styled.label`
+const Label = styled.label<{ disabled: ToogleGroupPropsType["disabled"] }>`
   color: ${(props) => (props.disabled ? props.theme.disabledLabelFontColor : props.theme.labelFontColor)};
   font-family: ${(props) => props.theme.labelFontFamily};
   font-size: ${(props) => props.theme.labelFontSize};
@@ -118,7 +120,7 @@ const Label = styled.label`
   line-height: ${(props) => props.theme.labelLineHeight};
 `;
 
-const HelperText = styled.span`
+const HelperText = styled.span<{ disabled: ToogleGroupPropsType["disabled"] }>`
   color: ${(props) => (props.disabled ? props.theme.disabledHelperTextFontcolor : props.theme.helperTextFontColor)};
   font-family: ${(props) => props.theme.helperTextFontFamily};
   font-size: ${(props) => props.theme.helperTextFontSize};
@@ -127,7 +129,7 @@ const HelperText = styled.span`
   line-height: ${(props) => props.theme.helperTextLineHeight};
 `;
 
-const ToggleGroup = styled.div`
+const ToggleGroup = styled.div<{ margin: ToogleGroupPropsType["margin"] }>`
   display: inline-flex;
   flex-direction: column;
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
@@ -156,7 +158,14 @@ const OptionsContainer = styled.div`
   margin-top: ${(props) => props.theme.containerMarginTop};
 `;
 
-const ToggleContainer = styled.div`
+const ToggleContainer = styled.div<{
+  selected: boolean;
+  disabled: ToogleGroupPropsType["disabled"];
+  isLast: boolean;
+  isIcon: OptionLabel["icon"];
+  optionLabel: OptionLabel["label"];
+  backgroundType: BackgroundColorsType;
+}>`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -231,7 +240,7 @@ const OptionContent = styled.div`
 
 const Icon = styled.img``;
 
-const IconContainer = styled.div`
+const IconContainer = styled.div<{ optionLabel: OptionLabel["label"] }>`
   margin-right: ${(props) => props.optionLabel && props.theme.iconMarginRight};
   height: 24px;
   width: 24px;

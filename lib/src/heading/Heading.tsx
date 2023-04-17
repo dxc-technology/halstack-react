@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables.js";
@@ -41,7 +40,7 @@ const DxcHeading = ({ level = 1, text = "", as, weight, margin }: HeadingPropsTy
   );
 };
 
-const HeadingContainer = styled.div`
+const HeadingContainer = styled.div<{ margin: HeadingPropsType["margin"] }>`
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
@@ -53,7 +52,7 @@ const HeadingContainer = styled.div`
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
 `;
 
-const HeadingLevel1 = styled.h1`
+const HeadingLevel1 = styled.h1<{ weight: HeadingPropsType["weight"] }>`
   font-family: ${(props) => props.theme.level1FontFamily};
   font-style: ${(props) => props.theme.level1FontStyle};
   font-size: ${(props) => props.theme.level1FontSize};
@@ -71,7 +70,7 @@ const HeadingLevel1 = styled.h1`
   margin: 0;
 `;
 
-const HeadingLevel2 = styled.h2`
+const HeadingLevel2 = styled.h2<{ weight: HeadingPropsType["weight"] }>`
   font-family: ${(props) => props.theme.level2FontFamily};
   font-style: ${(props) => props.theme.level2FontStyle};
   font-size: ${(props) => props.theme.level2FontSize};
@@ -89,7 +88,7 @@ const HeadingLevel2 = styled.h2`
   margin: 0;
 `;
 
-const HeadingLevel3 = styled.h3`
+const HeadingLevel3 = styled.h3<{ weight: HeadingPropsType["weight"] }>`
   font-family: ${(props) => props.theme.level3FontFamily};
   font-style: ${(props) => props.theme.level3FontStyle};
   font-size: ${(props) => props.theme.level3FontSize};
@@ -107,7 +106,7 @@ const HeadingLevel3 = styled.h3`
   margin: 0;
 `;
 
-const HeadingLevel4 = styled.h4`
+const HeadingLevel4 = styled.h4<{ weight: HeadingPropsType["weight"] }>`
   font-family: ${(props) => props.theme.level4FontFamily};
   font-style: ${(props) => props.theme.level4FontStyle};
   font-size: ${(props) => props.theme.level4FontSize};
@@ -125,7 +124,7 @@ const HeadingLevel4 = styled.h4`
   margin: 0;
 `;
 
-const HeadingLevel5 = styled.h5`
+const HeadingLevel5 = styled.h5<{ weight: HeadingPropsType["weight"] }>`
   font-family: ${(props) => props.theme.level5FontFamily};
   font-style: ${(props) => props.theme.level5FontStyle};
   font-size: ${(props) => props.theme.level5FontSize};

@@ -5,8 +5,8 @@ import { getMargin } from "../common/utils.js";
 import { v4 as uuidv4 } from "uuid";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
-import BackgroundColorContext from "../BackgroundColorContext";
-import CheckboxPropsType, { Margin, Space, RefType } from "./types";
+import BackgroundColorContext, { BackgroundColorsType } from "../BackgroundColorContext";
+import CheckboxPropsType, { RefType } from "./types";
 
 const checkedIcon = (
   <svg fill="currentColor" focusable="false" aria-hidden="true" viewBox="0 0 24 24">
@@ -176,11 +176,7 @@ const getEnabledColor = (props, element) => {
   }
 };
 
-type LabelContainerPropsType = {
-  disabled: boolean;
-  backgroundType: "dark" | "light";
-};
-const LabelContainer = styled.span<LabelContainerPropsType>`
+const LabelContainer = styled.span<{ disabled: CheckboxPropsType["disabled"]; backgroundType: BackgroundColorsType }>`
   color: ${(props) => (props.disabled ? getDisabledColor(props, "label") : getEnabledColor(props, "label"))};
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.fontSize};
@@ -199,12 +195,11 @@ const CheckboxContainer = styled.span`
   width: 24px;
 `;
 
-type CheckboxInputPropsType = {
-  backgroundType: "dark" | "light";
-  checked: boolean;
-  disabled: boolean;
-};
-const Checkbox = styled.span<CheckboxInputPropsType>`
+const Checkbox = styled.span<{
+  checked: CheckboxPropsType["checked"];
+  disabled: CheckboxPropsType["disabled"];
+  backgroundType: BackgroundColorsType;
+}>`
   position: relative;
   box-sizing: border-box;
   display: flex;
@@ -236,14 +231,13 @@ const Checkbox = styled.span<CheckboxInputPropsType>`
   ${(props) => props.disabled && "pointer-events: none;"}
 `;
 
-type MainContainerPropsType = {
-  margin?: Space | Margin;
-  size: "small" | "medium" | "large" | "fillParent" | "fitContent";
-  disabled: boolean;
-  checked: boolean;
-  backgroundType: "dark" | "light";
-};
-const MainContainer = styled.div<MainContainerPropsType>`
+const MainContainer = styled.div<{
+  margin: CheckboxPropsType["margin"];
+  size: CheckboxPropsType["size"];
+  disabled: CheckboxPropsType["disabled"];
+  checked: CheckboxPropsType["checked"];
+  backgroundType: BackgroundColorsType;
+}>`
   display: inline-flex;
   align-items: center;
   gap: ${(props) => props.theme.checkLabelSpacing};
@@ -257,7 +251,6 @@ const MainContainer = styled.div<MainContainerPropsType>`
     props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
   margin-left: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
-
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
 
   &:hover ${Checkbox} {

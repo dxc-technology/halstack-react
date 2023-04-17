@@ -4,7 +4,7 @@ import DxcFlex from "../flex/Flex";
 import DxcTypography from "../typography/Typography";
 import BulletedListPropsType, { BulletedListItemPropsType } from "./types";
 import useTheme from "../useTheme";
-import BackgroundColorContext from "../BackgroundColorContext";
+import BackgroundColorContext, { BackgroundColorsType } from "../BackgroundColorContext";
 
 const BulletedListItem = ({ children }: BulletedListItemPropsType): JSX.Element => {
   return <>{children}</>;
@@ -80,7 +80,7 @@ const ListContainer = styled.div`
   }
 `;
 
-const Bullet = styled.div<BulletedListPropsType>`
+const Bullet = styled.div`
   display: flex;
   align-self: flex-start;
   align-items: center;
@@ -93,11 +93,7 @@ const GeneralContent = styled.div`
   align-items: center;
 `;
 
-type IconPropsType = {
-  backgroundType?: "light" | "dark";
-};
-
-const Icon = styled.div<IconPropsType>`
+const Icon = styled.div<{ backgroundType: BackgroundColorsType }>`
   height: 1.5rem;
   width: auto;
   margin-right: ${(props) => props.theme.bulletMarginRight};
@@ -119,11 +115,7 @@ const Number = styled.div`
   min-width: 0;
 `;
 
-type ItemPropsType = {
-  backgroundType?: "light" | "dark";
-};
-
-const Square = styled.div<ItemPropsType>`
+const Square = styled.div<{ backgroundType: BackgroundColorsType }>`
   background-color: ${(props) =>
     props.backgroundType && props.backgroundType === "dark" ? props.theme.fontColorOnDark : props.theme.fontColor};
   height: ${(props) => props.theme.bulletHeight};
@@ -131,7 +123,7 @@ const Square = styled.div<ItemPropsType>`
   margin-right: ${(props) => props.theme.bulletMarginRight};
 `;
 
-const Circle = styled.div<ItemPropsType>`
+const Circle = styled.div<{ backgroundType: BackgroundColorsType }>`
   height: ${(props) => props.theme.bulletHeight};
   width: ${(props) => props.theme.bulletWidth};
   border-radius: 50%;
@@ -141,7 +133,7 @@ const Circle = styled.div<ItemPropsType>`
   margin-right: ${(props) => props.theme.bulletMarginRight};
 `;
 
-const Disc = styled.div<ItemPropsType>`
+const Disc = styled.div<{ backgroundType: BackgroundColorsType }>`
   background-color: ${(props) =>
     props.backgroundType && props.backgroundType === "dark" ? props.theme.fontColorOnDark : props.theme.fontColor};
   height: ${(props) => props.theme.bulletHeight};

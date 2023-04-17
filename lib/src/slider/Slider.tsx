@@ -4,8 +4,8 @@ import DxcTextInput from "../text-input/TextInput";
 import { spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
 import useTheme from "../useTheme";
-import BackgroundColorContext from "../BackgroundColorContext";
-import SliderPropsType, { Margin, Space, RefType } from "./types";
+import BackgroundColorContext, { BackgroundColorsType } from "../BackgroundColorContext";
+import SliderPropsType, { RefType } from "./types";
 import { v4 as uuidv4 } from "uuid";
 
 const DxcSlider = React.forwardRef<RefType, SliderPropsType>(
@@ -184,9 +184,7 @@ const getFireFoxStyles = () => {
   margin-right: 3px;`;
 };
 
-type ContainerPropsType = { margin: Margin | Space; size: "medium" | "large" | "fillParent" };
-
-const Container = styled.div<ContainerPropsType>`
+const Container = styled.div<{ margin: SliderPropsType["margin"]; size: SliderPropsType["size"] }>`
   display: flex;
   flex-direction: column;
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
@@ -201,9 +199,7 @@ const Container = styled.div<ContainerPropsType>`
   width: ${(props) => calculateWidth(props.margin, props.size)};
 `;
 
-type LabelPropsType = { disabled: boolean; backgroundType: "dark" | "light" };
-
-const Label = styled.label<LabelPropsType>`
+const Label = styled.label<{ disabled: SliderPropsType["disabled"]; backgroundType: BackgroundColorsType }>`
   color: ${(props) =>
     props.disabled
       ? props.backgroundType === "dark"
@@ -220,7 +216,7 @@ const Label = styled.label<LabelPropsType>`
   line-height: ${(props) => props.theme.labelLineHeight};
 `;
 
-const HelperText = styled.span<LabelPropsType>`
+const HelperText = styled.span<{ disabled: SliderPropsType["disabled"]; backgroundType: BackgroundColorsType }>`
   color: ${(props) =>
     props.disabled
       ? props.backgroundType === "dark"
@@ -237,16 +233,14 @@ const HelperText = styled.span<LabelPropsType>`
   line-height: ${(props) => props.theme.helperTextLineHeight};
 `;
 
-type SliderInputPropsType = {
-  disabled: boolean;
-  backgroundType: "dark" | "light";
-  value: number;
-  min: number;
-  max: number;
-  marks: boolean;
-};
-
-const SliderInput = styled.input<SliderInputPropsType>`
+const SliderInput = styled.input<{
+  disabled: SliderPropsType["disabled"];
+  value: SliderPropsType["value"];
+  min: SliderPropsType["minValue"];
+  max: SliderPropsType["maxValue"];
+  marks: SliderPropsType["marks"];
+  backgroundType: BackgroundColorsType;
+}>`
   width: 100%;
   min-width: 240px;
   height: ${(props) => props.theme.trackLineThickness};
@@ -402,7 +396,10 @@ const SliderContainer = styled.div`
   align-items: center;
 `;
 
-const LimitLabelContainer = styled.span<LabelPropsType>`
+const LimitLabelContainer = styled.span<{
+  disabled: SliderPropsType["disabled"];
+  backgroundType: BackgroundColorsType;
+}>`
   color: ${(props) =>
     props.disabled
       ? props.theme.disabledLimitValuesFontColor
@@ -438,9 +435,7 @@ const SliderInputContainer = styled.div`
   z-index: 0;
 `;
 
-type MarksContainerPropsType = { isFirefox: boolean };
-
-const MarksContainer = styled.div<MarksContainerPropsType>`
+const MarksContainer = styled.div<{ isFirefox: boolean }>`
   ${(props) => (props.isFirefox ? getFireFoxStyles() : getChromeStyles())}
   position: absolute;
   pointer-events: none;
@@ -456,7 +451,12 @@ type TickMarkPropsType = {
   stepValue: number;
 };
 
-const TickMark = styled.span<TickMarkPropsType>`
+const TickMark = styled.span<{
+  stepPosition: SliderPropsType["step"];
+  disabled: SliderPropsType["disabled"];
+  backgroundType: BackgroundColorsType;
+  stepValue: SliderPropsType["step"];
+}>`
   position: absolute;
   background: ${(props) =>
     props.disabled

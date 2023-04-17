@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables.js";
 import useTheme from "../useTheme";
-import WizardPropsType, { Margin, Mode, Space } from "./types";
+import WizardPropsType, { Mode, Step } from "./types";
 
 const icons = {
   validIcon: (
@@ -125,17 +125,12 @@ const DxcWizard = ({
   );
 };
 
-type StepsContainerProps = {
-  mode: Mode;
-  margin: Space | Margin;
-};
-const StepsContainer = styled.div<StepsContainerProps>`
+const StepsContainer = styled.div<{ mode: WizardPropsType["mode"]; margin: WizardPropsType["margin"] }>`
   display: flex;
   flex-direction: ${(props) => (props.mode === "vertical" ? "column" : "row")};
   justify-content: center;
   ${(props) => props.mode === "vertical" && "height: 500px"};
   font-family: ${(props) => props.theme.fontFamily};
-
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
@@ -147,11 +142,7 @@ const StepsContainer = styled.div<StepsContainerProps>`
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
 `;
 
-type StepContainerProps = {
-  mode: Mode;
-  lastStep: boolean;
-};
-const StepContainer = styled.div<StepContainerProps>`
+const StepContainer = styled.div<{ mode: WizardPropsType["mode"]; lastStep: boolean }>`
   display: inline-flex;
   ${(props) => props.mode !== "vertical" && "align-items: center;"}
   flex-grow: ${(props) => (props.lastStep ? "0" : "1")};
@@ -159,12 +150,12 @@ const StepContainer = styled.div<StepContainerProps>`
   ${(props) => props.mode === "vertical" && "width: fit-content;"}
 `;
 
-type StepProps = {
-  mode: Mode;
+const Step = styled.button<{
+  mode: WizardPropsType["mode"];
+  disabled: Step["disabled"];
   first: boolean;
   last: boolean;
-};
-const Step = styled.button<StepProps>`
+}>`
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -201,12 +192,7 @@ const StepHeader = styled.div<{ validityIcon: boolean }>`
   ${(props) => props.validityIcon && "padding-bottom: 4px;"}
 `;
 
-type StateProps = {
-  current: boolean;
-  visited: boolean;
-  disabled: boolean;
-};
-const IconContainer = styled.div<StateProps>`
+const IconContainer = styled.div<{ current: boolean; visited: boolean; disabled: Step["disabled"] }>`
   width: ${(props) =>
     props.disabled
       ? props.theme.disabledStepWidth
@@ -303,7 +289,7 @@ const InfoContainer = styled.div`
   margin-left: 12px;
 `;
 
-const Label = styled.p<StateProps>`
+const Label = styled.p<{ current: boolean; visited: boolean; disabled: Step["disabled"] }>`
   text-align: ${(props) => props.theme.labelTextAlign};
   font-family: ${(props) => props.theme.labelFontFamily};
   font-size: ${(props) => props.theme.labelFontSize};
@@ -324,7 +310,7 @@ const Label = styled.p<StateProps>`
   margin: 0;
 `;
 
-const Description = styled.p<StateProps>`
+const Description = styled.p<{ current: boolean; visited: boolean; disabled: Step["disabled"] }>`
   text-align: ${(props) => props.theme.helperTextTextAlign};
   font-family: ${(props) => props.theme.helperTextFontFamily};
   font-size: ${(props) => props.theme.helperTextFontSize};

@@ -4,7 +4,7 @@ import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
 import { spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
-import BackgroundColorContext from "../BackgroundColorContext";
+import BackgroundColorContext, { BackgroundColorsType } from "../BackgroundColorContext";
 import NumberInputContext from "../number-input/NumberInputContext";
 import TextInputPropsType, { AutosuggestWrapperProps, RefType } from "./types";
 import Suggestions from "./Suggestions";
@@ -536,18 +536,10 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
   }
 );
 
-type CommonBackgroundTypeProps = {
-  backgroundType: "dark" | "light";
-};
-type CommonDisabledBackgroundTypeProps = CommonBackgroundTypeProps & {
-  disabled: boolean;
-};
-
-const TextInputContainer = styled.div<TextInputPropsType>`
+const TextInputContainer = styled.div<{ margin: TextInputPropsType["margin"]; size: TextInputPropsType["size"] }>`
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-
   width: ${(props) => calculateWidth(props.margin, props.size)};
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
@@ -560,7 +552,11 @@ const TextInputContainer = styled.div<TextInputPropsType>`
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
 `;
 
-const Label = styled.label<CommonDisabledBackgroundTypeProps & { hasHelperText: boolean }>`
+const Label = styled.label<{
+  disabled: TextInputPropsType["disabled"];
+  backgroundType: BackgroundColorsType;
+  hasHelperText: boolean;
+}>`
   color: ${(props) =>
     props.disabled
       ? props.backgroundType === "dark"
@@ -582,7 +578,7 @@ const OptionalLabel = styled.span`
   font-weight: ${(props) => props.theme.optionalLabelFontWeight};
 `;
 
-const HelperText = styled.span<CommonDisabledBackgroundTypeProps>`
+const HelperText = styled.span<{ disabled: TextInputPropsType["disabled"]; backgroundType: BackgroundColorsType }>`
   color: ${(props) =>
     props.disabled
       ? props.backgroundType === "dark"
@@ -600,7 +596,11 @@ const HelperText = styled.span<CommonDisabledBackgroundTypeProps>`
   margin-bottom: 0.25rem;
 `;
 
-const InputContainer = styled.div<CommonDisabledBackgroundTypeProps & { error: boolean }>`
+const InputContainer = styled.div<{
+  disabled: TextInputPropsType["disabled"];
+  error: boolean;
+  backgroundType: BackgroundColorsType;
+}>`
   display: flex;
   position: relative;
   align-items: center;
@@ -664,7 +664,7 @@ const InputContainer = styled.div<CommonDisabledBackgroundTypeProps & { error: b
     `};
 `;
 
-const Input = styled.input<CommonBackgroundTypeProps>`
+const Input = styled.input<{ backgroundType: BackgroundColorsType }>`
   height: calc(2.5rem - 2px);
   width: 100%;
   background: none;
@@ -703,7 +703,7 @@ const Input = styled.input<CommonBackgroundTypeProps>`
   }
 `;
 
-const Action = styled.button<CommonBackgroundTypeProps>`
+const Action = styled.button<{ backgroundType: BackgroundColorsType }>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -788,7 +788,7 @@ const Action = styled.button<CommonBackgroundTypeProps>`
   }
 `;
 
-const Prefix = styled.span<CommonDisabledBackgroundTypeProps>`
+const Prefix = styled.span<{ disabled: TextInputPropsType["disabled"]; backgroundType: BackgroundColorsType }>`
   height: 1.5rem;
   line-height: 1.5rem;
   margin-left: 0.25rem;
@@ -808,7 +808,7 @@ const Prefix = styled.span<CommonDisabledBackgroundTypeProps>`
   pointer-events: none;
 `;
 
-const Suffix = styled.span<CommonDisabledBackgroundTypeProps>`
+const Suffix = styled.span<{ disabled: TextInputPropsType["disabled"]; backgroundType: BackgroundColorsType }>`
   height: 1.5rem;
   line-height: 1.5rem;
   margin: 0 0.25rem;
@@ -828,7 +828,7 @@ const Suffix = styled.span<CommonDisabledBackgroundTypeProps>`
   pointer-events: none;
 `;
 
-const ErrorIcon = styled.span<CommonBackgroundTypeProps>`
+const ErrorIcon = styled.span<{ backgroundType: BackgroundColorsType }>`
   display: flex;
   flex-wrap: wrap;
   align-content: center;
@@ -845,7 +845,7 @@ const ErrorIcon = styled.span<CommonBackgroundTypeProps>`
   }
 `;
 
-const Error = styled.span<CommonBackgroundTypeProps>`
+const Error = styled.span<{ backgroundType: BackgroundColorsType }>`
   min-height: 1.5em;
   color: ${(props) =>
     props.backgroundType === "dark" ? props.theme.errorMessageColorOnDark : props.theme.errorMessageColor};

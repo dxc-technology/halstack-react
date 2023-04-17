@@ -1,6 +1,6 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useEffect } from "react";
 import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
-import DialogPropsType, { Padding, Space } from "./types";
+import DialogPropsType from "./types";
 import { spaces, responsiveSizes } from "../common/variables.js";
 import useTheme from "../useTheme";
 import { BackgroundColorProvider } from "../BackgroundColorContext";
@@ -101,7 +101,7 @@ const Overlay = styled.div`
   background-color: ${(props) => props.theme.overlayColor};
 `;
 
-const Dialog = styled.div<{ isCloseVisible?: boolean }>`
+const Dialog = styled.div<{ isCloseVisible: DialogPropsType["isCloseVisible"] }>`
   position: relative;
   box-sizing: border-box;
   max-width: 80%;
@@ -153,7 +153,7 @@ const CloseIconAction = styled.button`
   }
 `;
 
-const Children = styled.div<{ padding: Padding | Space }>`
+const Children = styled.div<{ padding: DialogPropsType["padding"] }>`
   padding: ${(props) => (props.padding && typeof props.padding !== "object" ? spaces[props.padding] : spaces["small"])};
   padding-top: ${(props) =>
     props.padding && typeof props.padding === "object" && props.padding.top ? spaces[props.padding.top] : ""};

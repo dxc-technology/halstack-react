@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables.js";
 import useTheme from "../useTheme";
-import BackgroundColorContext from "../BackgroundColorContext";
+import BackgroundColorContext, { BackgroundColorsType } from "../BackgroundColorContext";
 import SpinnerPropsType from "./types";
 
 const DxcSpinner = ({
@@ -117,7 +117,7 @@ const determinatedValue = (props, strokeDashArray) => {
   }
   return val;
 };
-const DXCSpinner = styled.div<SpinnerPropsType>`
+const DXCSpinner = styled.div<{ mode: SpinnerPropsType["mode"]; margin: SpinnerPropsType["margin"] }>`
   height: ${(props) => (props.mode === "overlay" ? "100vh" : "")};
   width: ${(props) => (props.mode === "overlay" ? "100vw" : "")};
   display: ${(props) => (props.mode === "overlay" ? "flex" : "")};
@@ -156,7 +156,7 @@ const DXCSpinner = styled.div<SpinnerPropsType>`
       : ""};
 `;
 
-const SpinnerContainer = styled.div<{ mode: "large" | "small" | "overlay" }>`
+const SpinnerContainer = styled.div<{ mode: SpinnerPropsType["mode"] }>`
   align-items: center;
   display: flex;
   height: ${(props) => (props.mode === "small" ? "16px" : "140px")};
@@ -230,7 +230,7 @@ const SVGBackground = styled.svg`
   width: inherit;
 `;
 
-const CircleBackground = styled.circle`
+const CircleBackground = styled.circle<{ mode: SpinnerPropsType["mode"] }>`
   animation: none;
   fill: transparent;
   stroke: ${(props) => `${props.theme.totalCircleColor}`};
@@ -258,7 +258,11 @@ const SVGSpinner = styled.svg<{ isDeterminated: boolean }>`
   animation: ${(props) => (!props.isDeterminated ? "1.4s linear infinite both spinner-svg" : "")};
 `;
 
-const CircleSpinner = styled.circle<SpinnerPropsType & { backgroundType: "dark" | "light"; isDeterminated: boolean }>`
+const CircleSpinner = styled.circle<{
+  value: SpinnerPropsType["value"];
+  backgroundType: BackgroundColorsType;
+  isDeterminated: boolean;
+}>`
   fill: transparent;
   stroke-linecap: initial;
   vector-effect: non-scaling-stroke;
@@ -291,7 +295,7 @@ const LabelsContainer = styled.div`
   width: 110px;
 `;
 
-const SpinnerLabel = styled.p<{ backgroundType: "dark" | "light"; mode: "large" | "small" | "overlay" }>`
+const SpinnerLabel = styled.p<{ mode: SpinnerPropsType["mode"]; backgroundType: BackgroundColorsType }>`
   margin: 0;
   width: 100%;
   white-space: nowrap;
@@ -314,7 +318,12 @@ const SpinnerLabel = styled.p<{ backgroundType: "dark" | "light"; mode: "large" 
     props.mode === "overlay" ? props.theme.overlayLabelLetterSpacing : props.theme.labelLetterSpacing};
 `;
 
-const SpinnerProgress = styled.p<SpinnerPropsType & { backgroundType: "dark" | "light" }>`
+const SpinnerProgress = styled.p<{
+  value: SpinnerPropsType["value"];
+  showValue: SpinnerPropsType["showValue"];
+  mode: SpinnerPropsType["mode"];
+  backgroundType: BackgroundColorsType;
+}>`
   margin: 0;
   width: 100%;
   white-space: nowrap;

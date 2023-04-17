@@ -121,7 +121,7 @@ const calculateWidth = (margin, size) =>
     ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
     : sizes[size];
 
-const AlertModal = styled.div<{ mode: "inline" | "modal" }>`
+const AlertModal = styled.div<{ mode: AlertPropsType["mode"] }>`
   font-size: ${(props) => props.theme.fontSizeBase};
   width: ${(props) => (props.mode === "modal" ? "100%" : "")};
   height: ${(props) => (props.mode === "modal" ? "100%" : "")};
@@ -134,7 +134,7 @@ const AlertModal = styled.div<{ mode: "inline" | "modal" }>`
   z-index: ${(props) => (props.mode === "modal" ? "1200" : "")};
 `;
 
-const OverlayContainer = styled.div<{ mode: "inline" | "modal" }>`
+const OverlayContainer = styled.div<{ mode: AlertPropsType["mode"] }>`
   background-color: ${(props) => (props.mode === "modal" ? `${props.theme.overlayColor}` : "transparent")};
   position: ${(props) => (props.mode === "modal" ? "fixed" : "")};
   top: ${(props) => (props.mode === "modal" ? "0" : "")};
@@ -143,7 +143,12 @@ const OverlayContainer = styled.div<{ mode: "inline" | "modal" }>`
   right: ${(props) => (props.mode === "modal" ? "0" : "")};
 `;
 
-const AlertContainer = styled.div<AlertPropsType>`
+const AlertContainer = styled.div<{
+  margin: AlertPropsType["margin"];
+  size: AlertPropsType["size"];
+  type: AlertPropsType["type"];
+  mode: AlertPropsType["mode"];
+}>`
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
@@ -216,7 +221,7 @@ const AlertInlineText = styled.div`
   color: ${(props) => props.theme.inlineTextFontColor};
 `;
 
-const AlertIcon = styled.span<{ type: "info" | "confirm" | "warning" | "error" }>`
+const AlertIcon = styled.span<{ type: AlertPropsType["type"] }>`
   display: flex;
   flex-wrap: wrap;
   align-content: center;

@@ -23,7 +23,7 @@ type OptionIcon = OptionCommons & {
    */
   icon: string | SVG;
 };
-type OptionLabel = OptionCommons & {
+export type OptionLabel = OptionCommons & {
   /**
    * String with the option display value.
    */

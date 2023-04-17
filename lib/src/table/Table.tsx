@@ -24,7 +24,7 @@ const calculateWidth = (margin) => {
   return `calc(100% - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`;
 };
 
-const DxcTableContainer = styled.div<TablePropsType>`
+const DxcTableContainer = styled.div<{ margin: TablePropsType["margin"] }>`
   width: ${(props) => calculateWidth(props.margin)};
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>

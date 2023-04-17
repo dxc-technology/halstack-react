@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useLayoutEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import useTranslatedLabels from "../useTranslatedLabels";
-import BackgroundColorContext from "../BackgroundColorContext";
+import BackgroundColorContext, { BackgroundColorsType } from "../BackgroundColorContext";
 import Suggestion from "./Suggestion";
 import { SuggestionsProps } from "./types";
 import icons from "./Icons";
@@ -82,7 +82,7 @@ const Suggestions = ({
   );
 };
 
-const SuggestionsContainer = styled.ul<{ backgroundType: "dark" | "light"; error: boolean }>`
+const SuggestionsContainer = styled.ul<{ backgroundType: BackgroundColorsType; error: boolean }>`
   box-sizing: border-box;
   max-height: 304px;
   overflow-y: auto;
@@ -114,7 +114,7 @@ const SuggestionsSystemMessage = styled.span`
   line-height: 1.715em;
 `;
 
-const SuggestionsErrorIcon = styled.span<{ backgroundType: "dark" | "light" }>`
+const SuggestionsErrorIcon = styled.span<{ backgroundType: BackgroundColorsType }>`
   display: flex;
   flex-wrap: wrap;
   align-content: center;

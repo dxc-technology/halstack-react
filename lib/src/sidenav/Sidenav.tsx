@@ -141,7 +141,7 @@ const Link = forwardRef(
   }
 );
 
-const SidenavContainer = styled.div<SidenavPropsType>`
+const SidenavContainer = styled.div`
   display: flex;
   flex-direction: column;
   background-color: ${(props) => props.theme.backgroundColor};
@@ -262,7 +262,7 @@ const SidenavGroupTitleButton = styled.button<{ selectedGroup: boolean }>`
   }
 `;
 
-const SidenavLink = styled.a<{ selected: boolean }>`
+const SidenavLink = styled.a<{ selected: SidenavLinkPropsType["selected"] }>`
   display: flex;
   align-items: center;
   justify-content: space-between;

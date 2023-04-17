@@ -56,7 +56,7 @@ const getCursor = (interactuable, disabled) => {
   else return "cursor: default; outline:none;";
 };
 
-const StyledDxcChip = styled.div<ChipPropsType>`
+const StyledDxcChip = styled.div<{ margin: ChipPropsType["margin"]; disabled: ChipPropsType["disabled"] }>`
   display: inline-flex;
   align-items: center;
   min-height: 40px;
@@ -84,7 +84,7 @@ const StyledDxcChip = styled.div<ChipPropsType>`
   cursor: ${({ disabled }) => disabled && "not-allowed"};
 `;
 
-const ChipTextContainer = styled.span<{ disabled: boolean }>`
+const ChipTextContainer = styled.span<{ disabled: ChipPropsType["disabled"] }>`
   font-size: ${(props) => props.theme.fontSize};
   font-family: ${(props) => props.theme.fontFamily};
   font-weight: ${(props) => props.theme.fontWeight};
@@ -96,7 +96,13 @@ const ChipTextContainer = styled.span<{ disabled: boolean }>`
   overflow: hidden;
 `;
 
-const IconContainer = styled.div<ChipPropsType & { interactuable: boolean }>`
+const IconContainer = styled.div<{
+  prefixIcon?: ChipPropsType["prefixIcon"];
+  label: ChipPropsType["label"];
+  suffixIcon?: ChipPropsType["suffixIcon"];
+  disabled: ChipPropsType["disabled"];
+  interactuable: boolean;
+}>`
   display: flex;
   ${(props) =>
     props.prefixIcon

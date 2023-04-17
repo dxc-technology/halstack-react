@@ -72,7 +72,7 @@ const DxcFooter = ({
   );
 };
 
-const FooterContainer = styled.footer<FooterPropsType>`
+const FooterContainer = styled.footer<{ margin: FooterPropsType["margin"] }>`
   @media (min-width: ${responsiveSizes.small}rem) {
     padding: 24px 36px 24px 36px;
   }
@@ -137,7 +137,7 @@ const BottomLinks = styled.div`
   align-self: center;
 `;
 
-const ChildComponents = styled.div<FooterPropsType>`
+const ChildComponents = styled.div<{ padding: FooterPropsType["padding"] }>`
   min-height: 16px;
   padding: ${(props) => (props.padding && typeof props.padding !== "object" ? spaces[props.padding] : "0px")};
   padding-top: ${(props) =>

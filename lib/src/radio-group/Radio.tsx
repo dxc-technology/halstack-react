@@ -67,9 +67,9 @@ const DxcRadio = ({
 };
 
 type CommonStylingProps = {
-  error?: string;
-  disabled: boolean;
-  readonly: boolean;
+  error: RadioProps["error"];
+  disabled: RadioProps["disabled"];
+  readonly: RadioProps["readonly"];
 };
 const getRadioInputStateColor = (props: CommonStylingProps & { theme: any }, state: "enabled" | "hover" | "active") => {
   switch (state) {
@@ -132,10 +132,7 @@ const Dot = styled.span<CommonStylingProps>`
   background-color: ${(props) => getRadioInputStateColor(props, "enabled")};
 `;
 
-type LabelProps = {
-  disabled: boolean;
-};
-const Label = styled.span<LabelProps>`
+const Label = styled.span<{ disabled: RadioProps["disabled"] }>`
   margin-left: ${(props) => props.theme.radioInputLabelMargin};
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.radioInputLabelFontSize};

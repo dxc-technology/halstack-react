@@ -39,7 +39,7 @@ const Suggestion = ({
       role="option"
       aria-selected={visuallyFocused ? true : undefined}
     >
-      <StyledSuggestion last={isLast} visuallyFocused={visuallyFocused}>
+      <StyledSuggestion isLast={isLast} visuallyFocused={visuallyFocused}>
         {highlighted ? (
           <>
             <strong>{matchedSuggestion.matchedWords}</strong>
@@ -54,7 +54,7 @@ const Suggestion = ({
 };
 
 const SuggestionContainer = styled.li<{
-  visuallyFocused: boolean;
+  visuallyFocused: SuggestionProps["visuallyFocused"];
 }>`
   display: flex;
   padding: 0 0.5rem;
@@ -72,8 +72,8 @@ const SuggestionContainer = styled.li<{
 `;
 
 const StyledSuggestion = styled.span<{
-  visuallyFocused: boolean;
-  last: boolean;
+  visuallyFocused: SuggestionProps["visuallyFocused"];
+  isLast: SuggestionProps["isLast"];
 }>`
   width: 100%;
   overflow: hidden;
@@ -81,7 +81,7 @@ const StyledSuggestion = styled.span<{
   white-space: nowrap;
   padding: 0.25rem 0.5rem 0.188rem 0.5rem;
   ${(props) =>
-    props.last || props.visuallyFocused
+    props.isLast || props.visuallyFocused
       ? `border-bottom: 1px solid transparent`
       : `border-bottom: 1px solid ${props.theme.listOptionDividerColor}`};
 `;

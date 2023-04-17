@@ -71,7 +71,11 @@ const FileItem = ({
   );
 };
 
-const MainContainer = styled.div<{ error: string; singleFileMode: boolean; showPreview: boolean }>`
+const MainContainer = styled.div<{
+  error: FileItemProps["error"];
+  singleFileMode: FileItemProps["singleFileMode"];
+  showPreview: FileItemProps["showPreview"];
+}>`
   box-sizing: border-box;
   display: flex;
   justify-content: center;
@@ -95,7 +99,7 @@ const ImagePreview = styled.img`
   object-fit: contain;
 `;
 
-const IconPreview = styled.span<{ error: string }>`
+const IconPreview = styled.span<{ error: FileItemProps["error"] }>`
   box-sizing: border-box;
   display: flex;
   align-items: center;

@@ -4,7 +4,7 @@ import { getMargin } from "../common/utils.js";
 import { spaces } from "../common/variables.js";
 import useTheme from "../useTheme";
 import { BackgroundColorProvider } from "../BackgroundColorContext";
-import AccordionPropsType, { Margin, Padding, Space } from "./types";
+import AccordionPropsType from "./types";
 import DxcTypography from "../typography/Typography";
 import { v4 as uuidv4 } from "uuid";
 
@@ -44,7 +44,7 @@ const DxcAccordion = ({
 
   return (
     <ThemeProvider theme={colorsTheme.accordion}>
-      <AccordionContainer isExpanded={isExpanded ?? innerIsExpanded} padding={padding} margin={margin}>
+      <AccordionContainer isExpanded={isExpanded ?? innerIsExpanded} margin={margin}>
         <AccordionHeader>
           <AccordionTrigger
             id={`accordion-${id}`}
@@ -55,7 +55,7 @@ const DxcAccordion = ({
             aria-controls={`accordion-panel-${id}`}
             isExpanded={isExpanded ?? innerIsExpanded}
           >
-            <AccordionInfo disabled={disabled}>
+            <AccordionInfo>
               <AccordionLabel>
                 {icon && (
                   <IconContainer disabled={disabled}>
@@ -78,7 +78,7 @@ const DxcAccordion = ({
                 </DxcTypography>
               </AccordionLabel>
               {assistiveText && (
-                <AccordionAssistiveText disabled={disabled}>
+                <AccordionAssistiveText>
                   <DxcTypography
                     color={
                       disabled
@@ -119,12 +119,10 @@ const DxcAccordion = ({
 
 const calculateWidth = (margin) => `calc(100% - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`;
 
-type AccordionContainerProps = {
-  isExpanded: boolean;
-  margin: Space | Margin;
-  padding: Space | Padding;
-};
-const AccordionContainer = styled.div<AccordionContainerProps>`
+const AccordionContainer = styled.div<{
+  isExpanded: AccordionPropsType["isExpanded"];
+  margin: AccordionPropsType["margin"];
+}>`
   display: flex;
   flex-direction: column;
   background-color: ${(props) => props.theme.backgroundColor};
@@ -152,7 +150,10 @@ const AccordionHeader = styled.h3`
   margin: 0;
 `;
 
-const AccordionTrigger = styled.button<{ isExpanded: boolean }>`
+const AccordionTrigger = styled.button<{
+  isExpanded: AccordionPropsType["isExpanded"];
+  disabled: AccordionPropsType["disabled"];
+}>`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -177,7 +178,7 @@ const AccordionTrigger = styled.button<{ isExpanded: boolean }>`
   }
 `;
 
-const AccordionInfo = styled.span<{ disabled: boolean }>`
+const AccordionInfo = styled.span`
   display: inline-flex;
   justify-content: space-between;
   width: 100%;
@@ -191,7 +192,7 @@ const AccordionLabel = styled.span`
   padding-left: ${(props) => props.theme.titleLabelPaddingLeft};
 `;
 
-const IconContainer = styled.span<{ disabled: boolean }>`
+const IconContainer = styled.span<{ disabled: AccordionPropsType["disabled"] }>`
   display: flex;
   margin-left: ${(props) => props.theme.iconMarginLeft};
   margin-right: ${(props) => props.theme.iconMarginRigth};
@@ -204,20 +205,20 @@ const IconContainer = styled.span<{ disabled: boolean }>`
   }
 `;
 
-const AccordionAssistiveText = styled.span<{ disabled: boolean }>`
+const AccordionAssistiveText = styled.span`
   min-width: ${(props) => props.theme.assistiveTextMinWidth};
   padding-left: ${(props) => props.theme.assistiveTextPaddingLeft};
   padding-right: ${(props) => props.theme.assistiveTextPaddingRight};
 `;
 
-const CollapseIndicator = styled.span<{ disabled: boolean }>`
+const CollapseIndicator = styled.span<{ disabled: AccordionPropsType["disabled"] }>`
   display: flex;
   flex-wrap: wrap;
   align-content: center;
   color: ${(props) => (props.disabled ? props.theme.disabledArrowColor : props.theme.arrowColor)};
 `;
 
-const AccordionPanel = styled.div<{ padding: Space | Padding }>`
+const AccordionPanel = styled.div<{ padding: AccordionPropsType["padding"] }>`
   border-bottom-left-radius: ${(props) => props.theme.borderRadius};
   border-bottom-right-radius: ${(props) => props.theme.borderRadius};
   padding: ${(props) => (props.padding && typeof props.padding !== "object" ? spaces[props.padding] : "0px")};

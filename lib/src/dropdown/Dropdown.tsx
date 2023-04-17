@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback, useLayoutEffect } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import DropdownPropsType, { Margin, Space, Size } from "./types";
+import DropdownPropsType from "./types";
 import { spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
 import useTheme from "../useTheme";
@@ -204,7 +204,7 @@ const DxcDropdown = ({
                 )}
                 {label && iconPosition === "before" && <DropdownTriggerLabel>{label}</DropdownTriggerLabel>}
               </DropdownTriggerContent>
-              {!caretHidden && <CaretIcon disabled={disabled}>{isOpen ? upArrowIcon : downArrowIcon}</CaretIcon>} 
+              {!caretHidden && <CaretIcon disabled={disabled}>{isOpen ? upArrowIcon : downArrowIcon}</CaretIcon>}
             </DropdownTrigger>
           </Popover.Trigger>
           <Popover.Content sideOffset={1} asChild>
@@ -239,11 +239,7 @@ const calculateWidth = (margin, size) =>
     ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
     : sizes[size];
 
-type DropdownContainerProps = {
-  margin: Space | Margin;
-  size: Size;
-};
-const DropdownContainer = styled.div<DropdownContainerProps>`
+const DropdownContainer = styled.div<{ margin: DropdownPropsType["margin"]; size: DropdownPropsType["size"] }>`
   display: inline-block;
   width: ${(props) => calculateWidth(props.margin, props.size)};
   text-overflow: ellipsis;
@@ -259,12 +255,11 @@ const DropdownContainer = styled.div<DropdownContainerProps>`
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
 `;
 
-type DropdownTriggerProps = {
-  label: string;
-  margin: Space | Margin;
-  size: Size;
-};
-const DropdownTrigger = styled.button<DropdownTriggerProps>`
+const DropdownTrigger = styled.button<{
+  label: DropdownPropsType["label"];
+  margin: DropdownPropsType["margin"];
+  size: DropdownPropsType["size"];
+}>`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -321,7 +316,7 @@ const DropdownTriggerLabel = styled.span`
   overflow: hidden;
 `;
 
-const DropdownTriggerIcon = styled.span<{ disabled: boolean }>`
+const DropdownTriggerIcon = styled.span<{ disabled: DropdownPropsType["disabled"] }>`
   display: flex;
   color: ${(props) => (props.disabled ? props.theme.disabledColor : props.theme.buttonIconColor)};
 
@@ -332,7 +327,7 @@ const DropdownTriggerIcon = styled.span<{ disabled: boolean }>`
   }
 `;
 
-const CaretIcon = styled.span<{ disabled: boolean }>`
+const CaretIcon = styled.span<{ disabled: DropdownPropsType["disabled"] }>`
   display: flex;
   color: ${(props) => (props.disabled ? props.theme.disabledColor : props.theme.caretIconColor)};
 
