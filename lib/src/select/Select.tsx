@@ -153,7 +153,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
 
     const selectRef = useRef(null);
     const selectSearchInputRef = useRef(null);
-    
+
     const width = useWidth(selectRef.current);
     const colorsTheme = useTheme();
     const translatedLabels = useTranslatedLabels();
@@ -478,7 +478,7 @@ const calculateWidth = (margin, size) =>
     ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
     : sizes[size];
 
-const SelectContainer = styled.div`
+const SelectContainer = styled.div<{ margin: SelectPropsType["margin"]; size: SelectPropsType["size"] }>`
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
@@ -495,7 +495,7 @@ const SelectContainer = styled.div`
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
 `;
 
-const Label = styled.span`
+const Label = styled.span<{ disabled: SelectPropsType["disabled"]; helperText: SelectPropsType["helperText"] }>`
   color: ${(props) => (props.disabled ? props.theme.disabledColor : props.theme.labelFontColor)};
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.labelFontSize};
@@ -510,7 +510,7 @@ const OptionalLabel = styled.span`
   font-weight: ${(props) => props.theme.optionalLabelFontWeight};
 `;
 
-const HelperText = styled.span`
+const HelperText = styled.span<{ disabled: SelectPropsType["disabled"] }>`
   color: ${(props) => (props.disabled ? props.theme.disabledColor : props.theme.helperTextFontColor)};
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.helperTextFontSize};
@@ -520,7 +520,7 @@ const HelperText = styled.span`
   margin-bottom: 0.25rem;
 `;
 
-const Select = styled.div`
+const Select = styled.div<{ disabled: SelectPropsType["disabled"]; error: SelectPropsType["error"] }>`
   display: flex;
   position: relative;
   align-items: center;
@@ -562,7 +562,7 @@ const SelectionIndicator = styled.span`
   width: 46px;
 `;
 
-const SelectionNumber = styled.span`
+const SelectionNumber = styled.span<{ disabled: SelectPropsType["disabled"] }>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -619,7 +619,7 @@ const SearchableValueContainer = styled.div`
   width: 100%;
 `;
 
-const SelectedOption = styled.span`
+const SelectedOption = styled.span<{ disabled: SelectPropsType["disabled"]; atBackground: boolean }>`
   grid-area: 1 / 1 / 1 / 1;
   display: inline-flex;
   align-items: center;
@@ -692,7 +692,7 @@ const Error = styled.span`
   margin-top: 0.25rem;
 `;
 
-const CollapseIndicator = styled.span`
+const CollapseIndicator = styled.span<{ disabled: SelectPropsType["disabled"] }>`
   display: flex;
   flex-wrap: wrap;
   align-content: center;

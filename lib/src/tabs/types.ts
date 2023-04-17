@@ -1,5 +1,5 @@
-export type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
-export type Margin = {
+type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
+type Margin = {
   top?: Space;
   bottom?: Space;
   left?: Space;
@@ -7,7 +7,7 @@ export type Margin = {
 };
 type SVG = React.ReactNode & React.SVGProps<SVGSVGElement>;
 
-type TabCommonProps = {
+export type TabCommonProps = {
   /**
    * Whether the tab is disabled or not.
    */
