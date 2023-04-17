@@ -554,7 +554,7 @@ const TextInputContainer = styled.div<{ margin: TextInputPropsType["margin"]; si
 
 const Label = styled.label<{
   disabled: TextInputPropsType["disabled"];
-  backgroundType: BackgroundColorsType;
+  backgroundType: BackgroundColors;
   hasHelperText: boolean;
 }>`
   color: ${(props) =>
@@ -578,7 +578,7 @@ const OptionalLabel = styled.span`
   font-weight: ${(props) => props.theme.optionalLabelFontWeight};
 `;
 
-const HelperText = styled.span<{ disabled: TextInputPropsType["disabled"]; backgroundType: BackgroundColorsType }>`
+const HelperText = styled.span<{ disabled: TextInputPropsType["disabled"]; backgroundType: BackgroundColors }>`
   color: ${(props) =>
     props.disabled
       ? props.backgroundType === "dark"
@@ -599,7 +599,7 @@ const HelperText = styled.span<{ disabled: TextInputPropsType["disabled"]; backg
 const InputContainer = styled.div<{
   disabled: TextInputPropsType["disabled"];
   error: boolean;
-  backgroundType: BackgroundColorsType;
+  backgroundType: BackgroundColors;
 }>`
   display: flex;
   position: relative;
@@ -664,7 +664,7 @@ const InputContainer = styled.div<{
     `};
 `;
 
-const Input = styled.input<{ backgroundType: BackgroundColorsType }>`
+const Input = styled.input<{ backgroundType: BackgroundColors }>`
   height: calc(2.5rem - 2px);
   width: 100%;
   background: none;
@@ -703,7 +703,7 @@ const Input = styled.input<{ backgroundType: BackgroundColorsType }>`
   }
 `;
 
-const Action = styled.button<{ backgroundType: BackgroundColorsType }>`
+const Action = styled.button<{ backgroundType: BackgroundColors }>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -788,7 +788,7 @@ const Action = styled.button<{ backgroundType: BackgroundColorsType }>`
   }
 `;
 
-const Prefix = styled.span<{ disabled: TextInputPropsType["disabled"]; backgroundType: BackgroundColorsType }>`
+const Prefix = styled.span<{ disabled: TextInputPropsType["disabled"]; backgroundType: BackgroundColors }>`
   height: 1.5rem;
   line-height: 1.5rem;
   margin-left: 0.25rem;
@@ -808,7 +808,7 @@ const Prefix = styled.span<{ disabled: TextInputPropsType["disabled"]; backgroun
   pointer-events: none;
 `;
 
-const Suffix = styled.span<{ disabled: TextInputPropsType["disabled"]; backgroundType: BackgroundColorsType }>`
+const Suffix = styled.span<{ disabled: TextInputPropsType["disabled"]; backgroundType: BackgroundColors }>`
   height: 1.5rem;
   line-height: 1.5rem;
   margin: 0 0.25rem;
@@ -828,7 +828,7 @@ const Suffix = styled.span<{ disabled: TextInputPropsType["disabled"]; backgroun
   pointer-events: none;
 `;
 
-const ErrorIcon = styled.span<{ backgroundType: BackgroundColorsType }>`
+const ErrorIcon = styled.span<{ backgroundType: BackgroundColors }>`
   display: flex;
   flex-wrap: wrap;
   align-content: center;
@@ -845,7 +845,7 @@ const ErrorIcon = styled.span<{ backgroundType: BackgroundColorsType }>`
   }
 `;
 
-const Error = styled.span<{ backgroundType: BackgroundColorsType }>`
+const Error = styled.span<{ backgroundType: BackgroundColors }>`
   min-height: 1.5em;
   color: ${(props) =>
     props.backgroundType === "dark" ? props.theme.errorMessageColorOnDark : props.theme.errorMessageColor};

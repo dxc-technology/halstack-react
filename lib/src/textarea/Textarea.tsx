@@ -5,7 +5,7 @@ import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
 import { spaces } from "../common/variables";
 import { v4 as uuidv4 } from "uuid";
-import BackgroundColorContext, { BackgroundColorsType } from "../BackgroundColorContext";
+import BackgroundColorContext, { BackgroundColors } from "../BackgroundColorContext";
 import { useLayoutEffect } from "react";
 import TextareaPropsType, { RefType } from "./types";
 
@@ -170,7 +170,7 @@ const TextareaContainer = styled.div<{
 const Label = styled.label<{
   disabled: TextareaPropsType["disabled"];
   helperText: TextareaPropsType["helperText"];
-  backgroundType: BackgroundColorsType;
+  backgroundType: BackgroundColors;
 }>`
   color: ${(props) =>
     props.disabled
@@ -193,7 +193,7 @@ const OptionalLabel = styled.span`
   font-weight: ${(props) => props.theme.optionalLabelFontWeight};
 `;
 
-const HelperText = styled.span<{ disabled: TextareaPropsType["disabled"]; backgroundType: BackgroundColorsType }>`
+const HelperText = styled.span<{ disabled: TextareaPropsType["disabled"]; backgroundType: BackgroundColors }>`
   color: ${(props) =>
     props.disabled
       ? props.backgroundType === "dark"
@@ -213,7 +213,7 @@ const HelperText = styled.span<{ disabled: TextareaPropsType["disabled"]; backgr
 
 const Textarea = styled.textarea<{
   verticalGrow: TextareaPropsType["verticalGrow"];
-  backgroundType: BackgroundColorsType;
+  backgroundType: BackgroundColors;
   error: TextareaPropsType["error"];
 }>`
   ${(props) => {
@@ -314,7 +314,7 @@ const Textarea = styled.textarea<{
   }
 `;
 
-const Error = styled.span<{ backgroundType: BackgroundColorsType }>`
+const Error = styled.span<{ backgroundType: BackgroundColors }>`
   color: ${(props) =>
     props.backgroundType === "dark" ? props.theme.errorMessageColorOnDark : props.theme.errorMessageColor};
   font-family: ${(props) => props.theme.fontFamily};

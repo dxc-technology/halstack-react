@@ -5,7 +5,7 @@ import { spaces } from "../common/variables";
 import { getMargin } from "../common/utils";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
-import BackgroundColorContext, { BackgroundColorsType } from "../BackgroundColorContext";
+import BackgroundColorContext, { BackgroundColors } from "../BackgroundColorContext";
 import SwitchPropsType, { RefType } from "./types";
 
 const DxcSwitch = React.forwardRef<RefType, SwitchPropsType>(
@@ -213,7 +213,7 @@ const LabelContainer = styled.span<{
   labelPosition: SwitchPropsType["labelPosition"];
   disabled: SwitchPropsType["disabled"];
   label: SwitchPropsType["label"];
-  backgroundType: BackgroundColorsType;
+  backgroundType: BackgroundColors;
 }>`
   overflow: hidden;
   text-overflow: ellipsis;
@@ -247,7 +247,7 @@ const ValueInput = styled.input`
   display: none;
 `;
 
-const SwitchTrack = styled.span<{ disabled: SwitchPropsType["disabled"]; backgroundType: BackgroundColorsType }>`
+const SwitchTrack = styled.span<{ disabled: SwitchPropsType["disabled"]; backgroundType: BackgroundColors }>`
   border-radius: 15px;
   width: ${(props) => props.theme.trackWidth};
   height: ${(props) => props.theme.trackHeight};

@@ -5,7 +5,7 @@ import { getMargin } from "../common/utils";
 import { v4 as uuidv4 } from "uuid";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
-import BackgroundColorContext, { BackgroundColorsType } from "../BackgroundColorContext";
+import BackgroundColorContext, { BackgroundColors } from "../BackgroundColorContext";
 import CheckboxPropsType, { RefType } from "./types";
 
 const checkedIcon = (
@@ -176,7 +176,7 @@ const getEnabledColor = (props, element) => {
   }
 };
 
-const LabelContainer = styled.span<{ disabled: CheckboxPropsType["disabled"]; backgroundType: BackgroundColorsType }>`
+const LabelContainer = styled.span<{ disabled: CheckboxPropsType["disabled"]; backgroundType: BackgroundColors }>`
   color: ${(props) => (props.disabled ? getDisabledColor(props, "label") : getEnabledColor(props, "label"))};
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.fontSize};
@@ -198,7 +198,7 @@ const CheckboxContainer = styled.span`
 const Checkbox = styled.span<{
   checked: CheckboxPropsType["checked"];
   disabled: CheckboxPropsType["disabled"];
-  backgroundType: BackgroundColorsType;
+  backgroundType: BackgroundColors;
 }>`
   position: relative;
   box-sizing: border-box;
@@ -236,7 +236,7 @@ const MainContainer = styled.div<{
   size: CheckboxPropsType["size"];
   disabled: CheckboxPropsType["disabled"];
   checked: CheckboxPropsType["checked"];
-  backgroundType: BackgroundColorsType;
+  backgroundType: BackgroundColors;
 }>`
   display: inline-flex;
   align-items: center;

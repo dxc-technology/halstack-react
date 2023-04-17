@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 import { spaces } from "../common/variables";
 import useTheme from "../useTheme";
 import ToogleGroupPropsType, { OptionLabel } from "./types";
-import BackgroundColorContext, { BackgroundColorsType } from "../BackgroundColorContext";
+import BackgroundColorContext, { BackgroundColors } from "../BackgroundColorContext";
 
 const DxcToggleGroup = ({
   label,
@@ -164,7 +164,7 @@ const ToggleContainer = styled.div<{
   isLast: boolean;
   isIcon: OptionLabel["icon"];
   optionLabel: OptionLabel["label"];
-  backgroundType: BackgroundColorsType;
+  backgroundType: BackgroundColors;
 }>`
   display: flex;
   flex-direction: column;

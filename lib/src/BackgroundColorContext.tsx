@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import Color from "color";
 
-type BackgroundColors = "dark" | "light";
+export type BackgroundColors = "dark" | "light";
 const BackgroundColorContext = React.createContext<BackgroundColors | null>(null);
 
 const getColorType = (hexColor: string): BackgroundColors => {

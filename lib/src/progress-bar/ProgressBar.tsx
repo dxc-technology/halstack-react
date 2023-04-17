@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables";
 import useTheme from "../useTheme";
-import BackgroundColorContext, { BackgroundColorsType } from "../BackgroundColorContext";
+import BackgroundColorContext, { BackgroundColors } from "../BackgroundColorContext";
 import ProgressBarPropsType from "./types";
 
 const DxcProgressBar = ({
@@ -113,7 +113,7 @@ const InfoProgressBar = styled.div`
   justify-content: space-between;
 `;
 
-const ProgressBarLabel = styled.div<{ backgroundType: BackgroundColorsType; overlay: ProgressBarPropsType["overlay"] }>`
+const ProgressBarLabel = styled.div<{ backgroundType: BackgroundColors; overlay: ProgressBarPropsType["overlay"] }>`
   font-family: ${(props) => props.theme.labelFontFamily};
   font-style: ${(props) => props.theme.labelFontStyle};
   font-size: ${(props) => props.theme.labelFontSize};
@@ -132,7 +132,7 @@ const ProgressBarLabel = styled.div<{ backgroundType: BackgroundColorsType; over
 `;
 
 const ProgressBarProgress = styled.div<{
-  backgroundType: BackgroundColorsType;
+  backgroundType: BackgroundColors;
   overlay: ProgressBarPropsType["overlay"];
   showValue: ProgressBarPropsType["showValue"];
   value: ProgressBarPropsType["value"];
@@ -153,7 +153,7 @@ const ProgressBarProgress = styled.div<{
   flex-shrink: 0;
 `;
 
-const HelperText = styled.span<{ backgroundType: BackgroundColorsType; overlay: ProgressBarPropsType["overlay"] }>`
+const HelperText = styled.span<{ backgroundType: BackgroundColors; overlay: ProgressBarPropsType["overlay"] }>`
   color: ${(props) =>
     props.backgroundType === "dark"
       ? props.theme.helperTextFontColorOnDark
@@ -177,7 +177,7 @@ const LinearProgress = styled.div<{ helperText: ProgressBarPropsType["helperText
 `;
 
 const LinearProgressBar = styled.span<{
-  backgroundType: BackgroundColorsType;
+  backgroundType: BackgroundColors;
   variant: "determinate" | "indeterminate";
   value: ProgressBarPropsType["value"];
   container: string;

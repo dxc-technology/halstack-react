@@ -3,7 +3,7 @@ import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables";
 import { getMargin } from "../common/utils";
 import useTheme from "../useTheme";
-import BackgroundColorContext, { BackgroundColorsType } from "../BackgroundColorContext";
+import BackgroundColorContext, { BackgroundColors } from "../BackgroundColorContext";
 import ButtonPropsType from "./types";
 
 const sizes = {
@@ -75,7 +75,7 @@ const Button = styled.button<{
   mode: ButtonPropsType["mode"];
   margin: ButtonPropsType["margin"];
   size: ButtonPropsType["size"];
-  backgroundType: BackgroundColorsType;
+  backgroundType: BackgroundColors;
 }>`
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>

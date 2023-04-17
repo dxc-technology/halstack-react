@@ -5,7 +5,7 @@ import { dxcLogo } from "./Icons";
 import { spaces, responsiveSizes } from "../common/variables";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
-import BackgroundColorContext, { BackgroundColorProvider, BackgroundColorsType } from "../BackgroundColorContext";
+import BackgroundColorContext, { BackgroundColorProvider, BackgroundColors } from "../BackgroundColorContext";
 import HeaderPropsType from "./types";
 
 const closeIcon = (
@@ -214,7 +214,7 @@ const ChildContainer = styled.div<{ padding: HeaderPropsType["padding"] }>`
     props.padding && typeof props.padding === "object" && props.padding.left ? spaces[props.padding.left] : ""};
 `;
 
-const ContentContainer = styled.div<{ padding: HeaderPropsType["padding"]; backgroundType: BackgroundColorsType }>`
+const ContentContainer = styled.div<{ padding: HeaderPropsType["padding"]; backgroundType: BackgroundColors }>`
   display: flex;
   align-items: center;
   flex-grow: 1;
@@ -324,7 +324,7 @@ const CloseAction = styled.button`
   }
 `;
 
-const MenuContent = styled.div<{ backgroundType: BackgroundColorsType }>`
+const MenuContent = styled.div<{ backgroundType: BackgroundColors }>`
   display: flex;
   flex-direction: column;
   align-items: flex-start;

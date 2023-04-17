@@ -260,7 +260,7 @@ const SVGSpinner = styled.svg<{ isDeterminated: boolean }>`
 
 const CircleSpinner = styled.circle<{
   value: SpinnerPropsType["value"];
-  backgroundType: BackgroundColorsType;
+  backgroundType: BackgroundColors;
   isDeterminated: boolean;
 }>`
   fill: transparent;
@@ -295,7 +295,7 @@ const LabelsContainer = styled.div`
   width: 110px;
 `;
 
-const SpinnerLabel = styled.p<{ mode: SpinnerPropsType["mode"]; backgroundType: BackgroundColorsType }>`
+const SpinnerLabel = styled.p<{ mode: SpinnerPropsType["mode"]; backgroundType: BackgroundColors }>`
   margin: 0;
   width: 100%;
   white-space: nowrap;
@@ -322,7 +322,7 @@ const SpinnerProgress = styled.p<{
   value: SpinnerPropsType["value"];
   showValue: SpinnerPropsType["showValue"];
   mode: SpinnerPropsType["mode"];
-  backgroundType: BackgroundColorsType;
+  backgroundType: BackgroundColors;
 }>`
   margin: 0;
   width: 100%;

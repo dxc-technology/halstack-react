@@ -4,7 +4,7 @@ import DxcTextInput from "../text-input/TextInput";
 import { spaces } from "../common/variables";
 import { getMargin } from "../common/utils";
 import useTheme from "../useTheme";
-import BackgroundColorContext, { BackgroundColorsType } from "../BackgroundColorContext";
+import BackgroundColorContext, { BackgroundColors } from "../BackgroundColorContext";
 import SliderPropsType, { RefType } from "./types";
 import { v4 as uuidv4 } from "uuid";
 
@@ -199,7 +199,7 @@ const Container = styled.div<{ margin: SliderPropsType["margin"]; size: SliderPr
   width: ${(props) => calculateWidth(props.margin, props.size)};
 `;
 
-const Label = styled.label<{ disabled: SliderPropsType["disabled"]; backgroundType: BackgroundColorsType }>`
+const Label = styled.label<{ disabled: SliderPropsType["disabled"]; backgroundType: BackgroundColors }>`
   color: ${(props) =>
     props.disabled
       ? props.backgroundType === "dark"
@@ -216,7 +216,7 @@ const Label = styled.label<{ disabled: SliderPropsType["disabled"]; backgroundTy
   line-height: ${(props) => props.theme.labelLineHeight};
 `;
 
-const HelperText = styled.span<{ disabled: SliderPropsType["disabled"]; backgroundType: BackgroundColorsType }>`
+const HelperText = styled.span<{ disabled: SliderPropsType["disabled"]; backgroundType: BackgroundColors }>`
   color: ${(props) =>
     props.disabled
       ? props.backgroundType === "dark"
@@ -239,7 +239,7 @@ const SliderInput = styled.input<{
   min: SliderPropsType["minValue"];
   max: SliderPropsType["maxValue"];
   marks: SliderPropsType["marks"];
-  backgroundType: BackgroundColorsType;
+  backgroundType: BackgroundColors;
 }>`
   width: 100%;
   min-width: 240px;
@@ -398,7 +398,7 @@ const SliderContainer = styled.div`
 
 const LimitLabelContainer = styled.span<{
   disabled: SliderPropsType["disabled"];
-  backgroundType: BackgroundColorsType;
+  backgroundType: BackgroundColors;
 }>`
   color: ${(props) =>
     props.disabled
@@ -454,7 +454,7 @@ type TickMarkPropsType = {
 const TickMark = styled.span<{
   stepPosition: SliderPropsType["step"];
   disabled: SliderPropsType["disabled"];
-  backgroundType: BackgroundColorsType;
+  backgroundType: BackgroundColors;
   stepValue: SliderPropsType["step"];
 }>`
   position: absolute;
