@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables.js";
 import useTheme from "../useTheme";
-import WizardPropsType, { Mode, Step } from "./types";
+import WizardPropsType, { Mode, StepProps } from "./types";
 
 const icons = {
   validIcon: (
@@ -152,7 +152,7 @@ const StepContainer = styled.div<{ mode: WizardPropsType["mode"]; lastStep: bool
 
 const Step = styled.button<{
   mode: WizardPropsType["mode"];
-  disabled: Step["disabled"];
+  disabled: StepProps["disabled"];
   first: boolean;
   last: boolean;
 }>`
@@ -192,7 +192,7 @@ const StepHeader = styled.div<{ validityIcon: boolean }>`
   ${(props) => props.validityIcon && "padding-bottom: 4px;"}
 `;
 
-const IconContainer = styled.div<{ current: boolean; visited: boolean; disabled: Step["disabled"] }>`
+const IconContainer = styled.div<{ current: boolean; visited: boolean; disabled: StepProps["disabled"] }>`
   width: ${(props) =>
     props.disabled
       ? props.theme.disabledStepWidth
@@ -289,7 +289,7 @@ const InfoContainer = styled.div`
   margin-left: 12px;
 `;
 
-const Label = styled.p<{ current: boolean; visited: boolean; disabled: Step["disabled"] }>`
+const Label = styled.p<{ current: boolean; visited: boolean; disabled: StepProps["disabled"] }>`
   text-align: ${(props) => props.theme.labelTextAlign};
   font-family: ${(props) => props.theme.labelFontFamily};
   font-size: ${(props) => props.theme.labelFontSize};
@@ -310,7 +310,7 @@ const Label = styled.p<{ current: boolean; visited: boolean; disabled: Step["dis
   margin: 0;
 `;
 
-const Description = styled.p<{ current: boolean; visited: boolean; disabled: Step["disabled"] }>`
+const Description = styled.p<{ current: boolean; visited: boolean; disabled: StepProps["disabled"] }>`
   text-align: ${(props) => props.theme.helperTextTextAlign};
   font-family: ${(props) => props.theme.helperTextFontFamily};
   font-size: ${(props) => props.theme.helperTextFontSize};
