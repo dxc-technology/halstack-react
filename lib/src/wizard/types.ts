@@ -6,7 +6,7 @@ type Margin = {
   right?: Space;
 };
 type SVG = React.ReactNode & React.SVGProps<SVGSVGElement>;
-export type Step = {
+export type StepProps = {
   /**
    * Step label.
    */
@@ -51,7 +51,7 @@ type Props = {
   /**
    * An array of objects representing the steps.
    */
-  steps: Step[];
+  steps: StepProps[];
   /**
    * Size of the margin to be applied to the component ('xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge').
    * You can pass an object with 'top', 'bottom', 'left' and 'right' properties in order to specify different margin sizes.
