@@ -40,9 +40,10 @@ const subLightness = (newLightness: number, hexColor?: string) => {
 
 const parseAdvancedTheme = (advancedTheme: DeepPartial<AdvancedTheme>): AdvancedTheme => {
   const allTokensCopy = JSON.parse(JSON.stringify(componentTokens));
-  Object.keys(allTokensCopy).map(function (component) {
+
+  Object.keys(allTokensCopy).map((component) => {
     if (advancedTheme[component]) {
-      Object.keys(advancedTheme[component]).map(function (objectKey) {
+      Object.keys(advancedTheme[component]).map((objectKey) => {
         if (advancedTheme[component][objectKey]) {
           allTokensCopy[component][objectKey] = advancedTheme[component][objectKey];
         }
@@ -354,7 +355,7 @@ const parseLabels = (labels: DeepPartial<TranslatedLabels>): TranslatedLabels =>
   Object.keys(labels).map((component) => {
     if (parsedLabels[component]) {
       Object.keys(parsedLabels[component]).map((label) => {
-        if (labels[component][label] && labels[component]![label]) {
+        if (labels[component][label]) {
           parsedLabels[component][label] = labels[component][label];
         }
       });
