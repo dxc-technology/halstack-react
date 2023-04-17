@@ -2,7 +2,7 @@ import React, { forwardRef, Ref } from "react";
 import styled from "styled-components";
 import { TabProps } from "./types";
 import DxcBadge from "../badge/Badge";
-import DxcTypography from "../typography/Typography";
+import BaseTypography from "../utils/BaseTypography";
 import useTheme from "../useTheme";
 
 const Tab = forwardRef(
@@ -43,7 +43,7 @@ const Tab = forwardRef(
               {typeof tab.icon === "string" ? <img src={tab.icon} /> : tab.icon}
             </TabIconContainer>
           )}
-          <DxcTypography
+          <BaseTypography
             color={
               tab.isDisabled
                 ? colorsTheme.tabs.disabledFontColor
@@ -60,7 +60,7 @@ const Tab = forwardRef(
             lineHeight="1.715em"
           >
             {tab.label}
-          </DxcTypography>
+          </BaseTypography>
         </MainLabelContainer>
         {tab.notificationNumber && tab.notificationNumber && (
           <BadgeContainer hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
@@ -97,21 +97,19 @@ const TabContainer = styled.button<IconProps>`
   min-height: ${(props) =>
     ((!props.hasLabelAndIcon || (props.hasLabelAndIcon && props.iconPosition !== "top")) && "47px") || "71px"};
   background-color: ${(props) => props.theme.unselectedBackgroundColor};
-  svg {
-    color: ${(props) => props.theme.unselectedIconColor};
-  }
 
   &:hover {
     background-color: ${(props) => `${props.theme.hoverBackgroundColor} !important`};
   }
-
   &:active {
     background-color: ${(props) => `${props.theme.pressedBackgroundColor} !important`};
   }
-
   &:focus {
     outline: ${(props) => props.theme.focusOutline} solid 1px;
     outline-offset: -1px;
+  }
+  svg {
+    color: ${(props) => props.theme.unselectedIconColor};
   }
 
   &[aria-selected="true"] {

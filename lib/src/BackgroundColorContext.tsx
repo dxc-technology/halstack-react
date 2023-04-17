@@ -1,14 +1,14 @@
 import React, { useMemo } from "react";
 import Color from "color";
 
-type BackgroundColorContext = "dark" | "light";
-const BackgroundColorContext = React.createContext<BackgroundColorContext | null>(null);
+type BackgroundColors = "dark" | "light";
+const BackgroundColorContext = React.createContext<BackgroundColors | null>(null);
 
-const getColorType = (hexColor) => {
+const getColorType = (hexColor: string): BackgroundColors => {
   try {
     if (hexColor) {
       const hslColor = Color(hexColor).hsl();
-      const lightnessColor = hslColor.color[2];
+      const lightnessColor = hslColor.lightness();
       return lightnessColor <= 30 ? "dark" : "light";
     }
   } catch (e) {

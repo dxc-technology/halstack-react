@@ -1,8 +1,8 @@
 import React, { createContext, useCallback, useContext, useMemo, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import DxcAccordion from "../accordion/Accordion";
-import { getMargin } from "../common/utils.js";
-import { spaces } from "../common/variables.js";
+import { getMargin } from "../common/utils";
+import { spaces } from "../common/variables";
 import useTheme from "../useTheme";
 import AccordionGroupPropsType, {
   AccordionGroupAccordionContextProps,

@@ -1,10 +1,10 @@
 // @ts-nocheck
 import React, { useContext, useRef, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import { getMargin } from "../common/utils.js";
+import { getMargin } from "../common/utils";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
-import { spaces } from "../common/variables.js";
+import { spaces } from "../common/variables";
 import { v4 as uuidv4 } from "uuid";
 import BackgroundColorContext from "../BackgroundColorContext";
 import { useLayoutEffect } from "react";
