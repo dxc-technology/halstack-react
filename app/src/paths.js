@@ -35,6 +35,7 @@ import Select from "./pages/Select";
 import FileInput from "./pages/FileInput";
 import QuickNav from "./pages/QuickNav";
 import NavTabs from "./pages/NavTabs";
+import Grid from "./pages/Grid";
 
 const componentsMap = [
   {
@@ -111,6 +112,11 @@ const componentsMap = [
     path: "footer",
     name: "Footer",
     component: Footer,
+  },
+  {
+    path: "grid",
+    name: "Grid",
+    component: Grid,
   },
   {
     path: "header",

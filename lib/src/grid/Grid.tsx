@@ -2,10 +2,10 @@ import React from "react";
 import styled from "styled-components";
 import GridPropsType from "./types";
 
-const DxcGrid = styled.div<GridPropsType>`
-  display: grid;
+const DxcGrid = (props: GridPropsType): JSX.Element => <Grid {...props} />;
 
-  // Grid container
+const Grid = styled.div<GridPropsType>`
+  display: grid;
   ${({ templateColumns }) => templateColumns && `grid-template-columns: ${templateColumns.join(" ")};`}
   ${({ templateRows }) => templateRows && `grid-template-rows: ${templateRows.join(" ")};`}
   ${({ templateAreas }) => templateAreas && `grid-template-areas: ${templateAreas.map((row) => `"${row}"`).join(" ")};`}
@@ -23,8 +23,6 @@ const DxcGrid = styled.div<GridPropsType>`
     `place-content: ${
       typeof placeContent === "string" ? placeContent : `${placeContent.alignContent} ${placeContent.justifyContent}`
     };`}
-
-  // Grid item
   ${({ column }) =>
     column &&
     `grid-column: ${
