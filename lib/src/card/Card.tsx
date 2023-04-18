@@ -82,9 +82,13 @@ const CardContainer = styled.div<{ hasAction: (() => void) | string }>`
 
 const TagImage = styled.img<{ imagePadding: CardPropsType["imagePadding"]; imageCover: CardPropsType["imageCover"] }>`
   height: ${({ imagePadding }) =>
-    !imagePadding ? "100%" : `calc(100% - ${spaces[imagePadding]} - ${spaces[imagePadding]})`};
+    !imagePadding
+      ? "100%"
+      : typeof imagePadding !== "object" && `calc(100% - ${spaces[imagePadding]} - ${spaces[imagePadding]})`};
   width: ${({ imagePadding }) =>
-    !imagePadding ? "100%" : `calc(100% - ${spaces[imagePadding]} - ${spaces[imagePadding]})`};
+    !imagePadding
+      ? "100%"
+      : typeof imagePadding !== "object" && `calc(100% - ${spaces[imagePadding]} - ${spaces[imagePadding]})`};
   object-fit: ${({ imageCover }) => (imageCover ? "cover" : "contain")};
 `;
 
