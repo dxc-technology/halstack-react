@@ -13,8 +13,8 @@ type Props = {
   gap?: Spaces | Gap;
   placeContent?:
     | {
-        alignContent: "start" | "end" | "center" | "stretch" | "space-between" | "space-around" | "space-evenly";
-        justifyContent: "start" | "end" | "center" | "stretch" | "space-between" | "space-around" | "space-evenly";
+        alignContent?: "start" | "end" | "center" | "stretch" | "space-between" | "space-around" | "space-evenly";
+        justifyContent?: "start" | "end" | "center" | "stretch" | "space-between" | "space-around" | "space-evenly";
       }
     | "start"
     | "end"
@@ -25,8 +25,8 @@ type Props = {
     | "space-evenly";
   placeItems?:
     | {
-        alignItems: "start" | "end" | "center" | "stretch" | "baseline";
-        justifyItems: "start" | "end" | "center" | "stretch";
+        alignItems?: "start" | "end" | "center" | "stretch" | "baseline";
+        justifyItems?: "start" | "end" | "center" | "stretch";
       }
     | "start"
     | "end"
