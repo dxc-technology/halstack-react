@@ -4,12 +4,22 @@ import GridPropsType from "./types";
 
 const DxcGrid = (props: GridPropsType): JSX.Element => <Grid {...props} />;
 
+const getGap = (gap: GridPropsType["gap"]) => {
+  if (typeof gap === "string") return `gap: ${gap};`;
+  else {
+    let res = "";
+    if (gap.rowGap) res += `row-gap: ${gap.rowGap};`;
+    if (gap.columnGap) res += ` column-gap: ${gap.columnGap};`;
+    return res;
+  }
+};
+
 const Grid = styled.div<GridPropsType>`
   display: grid;
   ${({ templateColumns }) => templateColumns && `grid-template-columns: ${templateColumns.join(" ")};`}
   ${({ templateRows }) => templateRows && `grid-template-rows: ${templateRows.join(" ")};`}
   ${({ templateAreas }) => templateAreas && `grid-template-areas: ${templateAreas.map((row) => `"${row}"`).join(" ")};`}
-  ${({ gap }) => gap && `gap: ${typeof gap === "string" ? gap : `${gap.rowGap} ${gap.columnGap}`};`}
+  ${({ gap }) => gap != null && getGap(gap)}
   ${({ autoColumns }) => autoColumns && `grid-auto-columns: ${autoColumns};`}
   ${({ autoRows }) => autoRows && `grid-auto-rows: ${autoRows};`}
   ${({ autoFlow }) => autoFlow && `grid-auto-flow: ${autoFlow};`}
@@ -30,7 +40,7 @@ const Grid = styled.div<GridPropsType>`
     };`}
   ${({ row }) =>
     row && `grid-row: ${typeof row === "string" || typeof row === "number" ? row : `${row.start} / ${row.end};`};`}
-  ${({ area }) => area && `grid-area: ${area};`}
+  ${({ areaName }) => areaName && `grid-area: ${areaName};`}
   ${({ placeSelf }) =>
     placeSelf &&
     `place-self: ${typeof placeSelf === "string" ? placeSelf : `${placeSelf.alignSelf} ${placeSelf.justifySelf}`};`}

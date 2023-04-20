@@ -13,22 +13,28 @@ export const Chromatic = () => (
   <>
     <Title title="Template areas layout" level={4} />
     <Container height="300px">
+      <DxcGrid placeItems="center">
+        <ColoredContainer color="lightyellow">Centered div</ColoredContainer>
+      </DxcGrid>
+    </Container>
+    <Title title="Template areas layout" level={4} />
+    <Container height="300px">
       <DxcGrid
         templateColumns={["repeat(4, 1fr)"]}
         templateRows={["auto"]}
-        templateAreas={["header header header header", "sidenav . main main", "footer footer footer footer"]}
-        gap="0.5rem"
+        templateAreas={["header header header header", "sidenav main main main", "sidenav footer footer footer"]}
+        gap={{ rowGap: "0.5rem", columnGap: "1rem" }}
       >
-        <DxcGrid area="header">
+        <DxcGrid areaName="header">
           <Placeholder />
         </DxcGrid>
-        <DxcGrid area="main">
+        <DxcGrid areaName="main">
           <Placeholder />
         </DxcGrid>
-        <DxcGrid area="sidenav">
+        <DxcGrid areaName="sidenav">
           <Placeholder />
         </DxcGrid>
-        <DxcGrid area="footer">
+        <DxcGrid areaName="footer">
           <Placeholder />
         </DxcGrid>
       </DxcGrid>
