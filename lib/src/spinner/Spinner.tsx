@@ -32,7 +32,6 @@ const DxcSpinner = ({
               </SVGBackground>
             )}
           </BackgroundSpinner>
-
           {value >= 0 && value <= 100 ? (
             <Spinner role="progressbar">
               {mode !== "small" && (
@@ -110,10 +109,10 @@ const DxcSpinner = ({
   );
 };
 
-const determinatedValue = (props, strokeDashArray) => {
+const determinatedValue = (value, strokeDashArray) => {
   let val = 0;
-  if (props.value >= 0 && props.value <= 100) {
-    val = strokeDashArray * (1 - props.value / 100);
+  if (value >= 0 && value <= 100) {
+    val = strokeDashArray * (1 - value / 100);
   }
   return val;
 };
@@ -282,8 +281,8 @@ const CircleSpinner = styled.circle<{
   stroke-dashoffset: ${(props) =>
     props.isDeterminated
       ? props.mode !== "small"
-        ? determinatedValue(props, 409)
-        : determinatedValue(props, 38)
+        ? determinatedValue(props.value, 409)
+        : determinatedValue(props.value, 38)
       : ""};
 `;
 

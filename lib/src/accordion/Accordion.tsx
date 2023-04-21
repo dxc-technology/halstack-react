@@ -152,7 +152,6 @@ const AccordionHeader = styled.h3`
 
 const AccordionTrigger = styled.button<{
   isExpanded: AccordionPropsType["isExpanded"];
-  disabled: AccordionPropsType["disabled"];
 }>`
   display: flex;
   justify-content: space-between;

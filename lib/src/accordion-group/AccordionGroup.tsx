@@ -36,7 +36,7 @@ const DxcAccordionGroup = ({
   const colorsTheme = useTheme();
   const [innerIndexActive, setInnerIndexActive] = useState(defaultIndexActive ?? -1);
   const handlerActiveChange = useCallback(
-    (index) => {
+    (index: number) => {
       indexActive ?? setInnerIndexActive((prev) => (index === prev ? -1 : index));
       !disabled && onActiveChange?.(index);
     },

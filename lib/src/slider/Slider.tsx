@@ -124,7 +124,6 @@ const DxcSlider = React.forwardRef<RefType, SliderPropsType>(
                 min={minValue}
                 max={maxValue}
                 step={step}
-                marks={marks}
                 disabled={disabled}
                 aria-labelledby={labelId}
                 aria-orientation="horizontal"
@@ -238,7 +237,6 @@ const SliderInput = styled.input<{
   value: SliderPropsType["value"];
   min: SliderPropsType["minValue"];
   max: SliderPropsType["maxValue"];
-  marks: SliderPropsType["marks"];
   backgroundType: BackgroundColors;
 }>`
   width: 100%;
@@ -444,18 +442,11 @@ const MarksContainer = styled.div<{ isFirefox: boolean }>`
   align-items: center;
 `;
 
-type TickMarkPropsType = {
-  stepPosition: number;
-  disabled: boolean;
-  backgroundType: "dark" | "light";
-  stepValue: number;
-};
-
 const TickMark = styled.span<{
-  stepPosition: SliderPropsType["step"];
+  stepPosition: number;
   disabled: SliderPropsType["disabled"];
   backgroundType: BackgroundColors;
-  stepValue: SliderPropsType["step"];
+  stepValue: SliderPropsType["value"];
 }>`
   position: absolute;
   background: ${(props) =>

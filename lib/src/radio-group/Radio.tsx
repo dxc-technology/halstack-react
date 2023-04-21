@@ -3,6 +3,7 @@ import styled, { ThemeProvider } from "styled-components";
 import { RadioProps } from "./types";
 import { v4 as uuidv4 } from "uuid";
 import useTheme from "../useTheme";
+import { AdvancedTheme } from "../common/variables";
 
 const DxcRadio = ({
   label,
@@ -71,7 +72,10 @@ type CommonStylingProps = {
   disabled: RadioProps["disabled"];
   readonly: RadioProps["readonly"];
 };
-const getRadioInputStateColor = (props: CommonStylingProps & { theme: any }, state: "enabled" | "hover" | "active") => {
+const getRadioInputStateColor = (
+  props: CommonStylingProps & { theme: AdvancedTheme["radioGroup"] },
+  state: "enabled" | "hover" | "active"
+) => {
   switch (state) {
     case "enabled":
       return props.disabled

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables";
 import useTheme from "../useTheme";
-import WizardPropsType, { Mode, StepProps } from "./types";
+import WizardPropsType, { StepProps } from "./types";
 
 const icons = {
   validIcon: (
@@ -331,7 +331,7 @@ const Description = styled.p<{ current: boolean; visited: boolean; disabled: Ste
   margin: 0;
 `;
 
-const StepSeparator = styled.div<{ mode: Mode }>`
+const StepSeparator = styled.div<{ mode: WizardPropsType["mode"] }>`
   ${(props) => (props.mode === "horizontal" ? "height: 0;" : "width: 0;")};
   ${(props) => props.mode === "vertical" && "margin: 0 18px;"}
   border: ${(props) =>

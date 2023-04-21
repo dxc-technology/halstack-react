@@ -20,7 +20,7 @@ const hamburgerIcon = (
   </svg>
 );
 
-const Dropdown = (props) => (
+const Dropdown = (props: React.ComponentProps<typeof DxcDropdown>) => (
   <HeaderDropdown>
     <DxcDropdown {...props} />
   </HeaderDropdown>

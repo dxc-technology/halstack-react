@@ -1,6 +1,6 @@
 import React, { forwardRef, Ref } from "react";
 import styled from "styled-components";
-import { TabProps, TabCommonProps } from "./types";
+import { TabProps } from "./types";
 import DxcBadge from "../badge/Badge";
 import BaseTypography from "../utils/BaseTypography";
 import useTheme from "../useTheme";
@@ -34,7 +34,7 @@ const Tab = forwardRef(
         }}
       >
         <MainLabelContainer
-          hasBadge={tab.notificationNumber}
+          notificationNumber={tab.notificationNumber}
           hasLabelAndIcon={hasLabelAndIcon}
           iconPosition={iconPosition}
         >
@@ -62,7 +62,7 @@ const Tab = forwardRef(
             {tab.label}
           </BaseTypography>
         </MainLabelContainer>
-        {tab.notificationNumber && tab.notificationNumber && (
+        {tab.notificationNumber && (
           <BadgeContainer hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
             <DxcBadge
               notificationText={
@@ -150,7 +150,7 @@ const BadgeContainer = styled.div<{
 `;
 
 const MainLabelContainer = styled.div<{
-  hasBadge: TabCommonProps["notificationNumber"];
+  notificationNumber: TabProps["tab"]["notificationNumber"];
   hasLabelAndIcon: TabProps["hasLabelAndIcon"];
   iconPosition: TabProps["iconPosition"];
 }>`
@@ -158,8 +158,8 @@ const MainLabelContainer = styled.div<{
   flex-direction: ${(props) => (props.hasLabelAndIcon && props.iconPosition === "top" && "column") || "row"};
   align-items: center;
   margin-left: ${(props) =>
-    props.hasBadge
-      ? typeof props.hasBadge === "number"
+    props.notificationNumber
+      ? typeof props.notificationNumber === "number"
         ? `calc(${props.theme.badgeWidthWithNotificationNumber} + 12px)`
         : `calc(${props.theme.badgeWidth} + 12px)`
       : "unset"};

@@ -220,7 +220,6 @@ const DxcTabs = ({
         <Tabs hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
           <ScrollIndicator
             onClick={scrollLeft}
-            scrollLeftEnabled={scrollLeftEnabled}
             enabled={enabledIndicator}
             aria-disabled={!scrollLeftEnabled}
             aria-label={translatedLabels.tabs.scrollLeft}
@@ -264,7 +263,6 @@ const DxcTabs = ({
           </TabsContent>
           <ScrollIndicator
             onClick={scrollRight}
-            scrollRightEnabled={scrollRightEnabled}
             enabled={enabledIndicator}
             aria-disabled={!scrollRightEnabled}
             aria-label={translatedLabels.tabs.scrollRight}
@@ -313,8 +311,6 @@ const Tabs = styled.div<{ hasLabelAndIcon: boolean; iconPosition: TabsPropsType[
 
 const ScrollIndicator = styled.button<{
   enabled: boolean;
-  scrollLeftEnabled?: boolean;
-  scrollRightEnabled?: boolean;
   minHeightTabs: number;
 }>`
   display: ${(props) => (props.enabled ? "flex" : "none")};

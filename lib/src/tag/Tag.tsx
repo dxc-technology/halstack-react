@@ -78,7 +78,7 @@ const calculateWidth = (margin, size) =>
 const StyledDxcTag = styled.div<{
   margin: TagPropsType["margin"];
   size: TagPropsType["size"];
-  hasAction: (() => void) | string;
+  hasAction: TagPropsType["onClick"] | TagPropsType["linkHref"];
 }>`
   display: inline-flex;
   cursor: ${({ hasAction }) => (hasAction && "pointer") || "unset"};

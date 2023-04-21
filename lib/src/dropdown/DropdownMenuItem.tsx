@@ -20,7 +20,7 @@ const DropdownMenuItem = ({
   >
     {iconPosition === "after" && <DropdownMenuItemLabel>{option.label}</DropdownMenuItemLabel>}
     {option.icon && (
-      <DropdownMenuItemIcon iconPosition={iconPosition} role={typeof option.icon === "string" ? undefined : "img"}>
+      <DropdownMenuItemIcon role={typeof option.icon === "string" ? undefined : "img"}>
         {typeof option.icon === "string" ? <img src={option.icon} /> : option.icon}
       </DropdownMenuItemIcon>
     )}
@@ -59,9 +59,7 @@ const DropdownMenuItemLabel = styled.span`
   white-space: nowrap;
 `;
 
-const DropdownMenuItemIcon = styled.div<{
-  iconPosition: DropdownMenuItemProps["iconPosition"];
-}>`
+const DropdownMenuItemIcon = styled.div`
   display: flex;
   color: ${(props) => props.theme.optionIconColor};
 

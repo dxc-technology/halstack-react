@@ -53,7 +53,10 @@ const DxcCard = ({
   );
 };
 
-const StyledDxcCard = styled.div<{ margin: CardPropsType["margin"]; hasAction: (() => void) | string }>`
+const StyledDxcCard = styled.div<{
+  margin: CardPropsType["margin"];
+  hasAction: CardPropsType["onClick"] | CardPropsType["linkHref"];
+}>`
   display: inline-flex;
   cursor: ${({ hasAction }) => (hasAction && "pointer") || "unset"};
   outline: ${({ hasAction }) => !hasAction && "none"};
@@ -71,7 +74,7 @@ const StyledDxcCard = styled.div<{ margin: CardPropsType["margin"]; hasAction: (
   }`}
 `;
 
-const CardContainer = styled.div<{ hasAction: (() => void) | string }>`
+const CardContainer = styled.div<{ hasAction: CardPropsType["onClick"] | CardPropsType["linkHref"] }>`
   display: inline-flex;
   height: ${(props) => props.theme.height};
   width: ${(props) => props.theme.width};

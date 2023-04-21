@@ -7,7 +7,7 @@ type Margin = {
 };
 type SVG = React.ReactNode & React.SVGProps<SVGSVGElement>;
 
-export type TabCommonProps = {
+type TabCommonProps = {
   /**
    * Whether the tab is disabled or not.
    */

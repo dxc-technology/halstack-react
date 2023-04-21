@@ -284,7 +284,7 @@ const DxcFileInput = React.forwardRef<RefType, FileInputPropsType>(
   }
 );
 
-const FileInputContainer = styled.div<{ margin: FileInputPropsType["margin"]; name: FileInputPropsType["name"] }>`
+const FileInputContainer = styled.div<{ margin: FileInputPropsType["margin"] }>`
   display: flex;
   flex-direction: column;
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
