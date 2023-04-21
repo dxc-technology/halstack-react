@@ -6,12 +6,11 @@ const DxcGrid = (props: GridPropsType): JSX.Element => <Grid {...props} />;
 
 const getGap = (gap: GridPropsType["gap"]) => {
   if (typeof gap === "string") return `gap: ${gap};`;
-  else {
-    let res = "";
-    if (gap.rowGap) res += `row-gap: ${gap.rowGap};`;
-    if (gap.columnGap) res += ` column-gap: ${gap.columnGap};`;
-    return res;
-  }
+
+  let res = "";
+  if (gap.rowGap != null) res += `row-gap: ${gap.rowGap};`;
+  if (gap.columnGap != null) res += ` column-gap: ${gap.columnGap};`;
+  return res;
 };
 
 const Grid = styled.div<GridPropsType>`

@@ -17,7 +17,8 @@ type Props = {
           | "stretch"
           | "space-between"
           | "space-around"
-          | "space-evenly";
+          | "space-evenly"
+          | "baseline";
         justifyContent?:
           | "normal"
           | "start"
@@ -26,7 +27,8 @@ type Props = {
           | "stretch"
           | "space-between"
           | "space-around"
-          | "space-evenly";
+          | "space-evenly"
+          | "baseline";
       }
     | "normal"
     | "start"
@@ -35,11 +37,12 @@ type Props = {
     | "stretch"
     | "space-between"
     | "space-around"
-    | "space-evenly";
+    | "space-evenly"
+    | "baseline";
   placeItems?:
     | {
         alignItems?: "normal" | "start" | "end" | "center" | "stretch" | "baseline";
-        justifyItems?: "normal" | "start" | "end" | "center" | "stretch";
+        justifyItems?: "normal" | "start" | "end" | "center" | "stretch" | "baseline";
       }
     | "normal"
     | "start"
@@ -56,14 +59,14 @@ type Props = {
   placeSelf?:
     | {
         alignSelf?: "auto" | "start" | "end" | "center" | "stretch" | "baseline";
-        justifySelf?: "auto" | "start" | "end" | "center" | "stretch";
+        justifySelf?: "auto" | "start" | "end" | "center" | "stretch" | "baseline";
       }
     | "auto"
     | "start"
     | "end"
     | "center"
-    | "stretch";
-    
+    | "stretch"
+    | "baseline";
   as?: keyof HTMLElementTagNameMap;
   children: React.ReactNode;
 };
