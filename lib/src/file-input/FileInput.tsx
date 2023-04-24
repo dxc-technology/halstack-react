@@ -166,7 +166,7 @@ const DxcFileInput = React.forwardRef<RefType, FileInputPropsType>(
 
     return (
       <ThemeProvider theme={colorsTheme.fileInput}>
-        <FileInputContainer margin={margin} name={name} ref={ref}>
+        <FileInputContainer margin={margin} ref={ref}>
           <Label htmlFor={fileInputId} disabled={disabled}>
             {label}
           </Label>
@@ -284,7 +284,7 @@ const DxcFileInput = React.forwardRef<RefType, FileInputPropsType>(
   }
 );
 
-const FileInputContainer = styled.div<{ margin: FileInputPropsType["margin"]; name: FileInputPropsType["name"] }>`
+const FileInputContainer = styled.div<{ margin: FileInputPropsType["margin"] }>`
   display: flex;
   flex-direction: column;
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};

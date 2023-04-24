@@ -109,7 +109,7 @@ const DxcSpinner = ({
   );
 };
 
-const determinatedValue = (value, strokeDashArray) => {
+const determinatedValue = (value: SpinnerPropsType["value"], strokeDashArray:number) => {
   let val = 0;
   if (value >= 0 && value <= 100) {
     val = strokeDashArray * (1 - value / 100);

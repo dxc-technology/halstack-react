@@ -28,13 +28,12 @@ export type StepProps = {
    */
   valid?: boolean;
 };
-export type Mode = "horizontal" | "vertical";
 
 type Props = {
   /**
    * The wizard can be showed in horizontal or vertical.
    */
-  mode?: Mode;
+  mode?: "horizontal" | "vertical";
   /**
    * Initially selected step, only when it is uncontrolled.
    */
