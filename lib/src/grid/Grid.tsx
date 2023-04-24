@@ -1,37 +1,32 @@
 import React from "react";
 import styled from "styled-components";
-import GridPropsType from "./types";
+import GridPropsType, { GridItemProps } from "./types";
 
 const DxcGrid = (props: GridPropsType): JSX.Element => <Grid {...props} />;
-
-const getGap = (gap: GridPropsType["gap"]) => {
-  if (typeof gap === "string") return `gap: ${gap};`;
-
-  let res = "";
-  if (gap.rowGap != null) res += `row-gap: ${gap.rowGap};`;
-  if (gap.columnGap != null) res += ` column-gap: ${gap.columnGap};`;
-  return res;
-};
 
 const Grid = styled.div<GridPropsType>`
   display: grid;
   ${({ templateColumns }) => templateColumns && `grid-template-columns: ${templateColumns.join(" ")};`}
   ${({ templateRows }) => templateRows && `grid-template-rows: ${templateRows.join(" ")};`}
   ${({ templateAreas }) => templateAreas && `grid-template-areas: ${templateAreas.map((row) => `"${row}"`).join(" ")};`}
-  ${({ gap }) => gap != null && getGap(gap)}
   ${({ autoColumns }) => autoColumns && `grid-auto-columns: ${autoColumns};`}
   ${({ autoRows }) => autoRows && `grid-auto-rows: ${autoRows};`}
   ${({ autoFlow }) => autoFlow && `grid-auto-flow: ${autoFlow};`}
+  ${({ gap }) =>
+    gap != null &&
+    (typeof gap === "string" ? `gap: ${gap};` : `row-gap: ${gap.rowGap ?? ""}; column-gap: ${gap.columnGap ?? ""};`)}
   ${({ placeItems }) =>
     placeItems &&
-    `place-items: ${
-      typeof placeItems === "string" ? placeItems : `${placeItems.alignItems} ${placeItems.justifyItems}`
-    };`}
+    (typeof placeItems === "string"
+      ? `place-items: ${placeItems}`
+      : `align-items: ${placeItems.alignItems ?? ""}; justify-items: ${placeItems.justifyItems ?? ""};`)}
   ${({ placeContent }) =>
     placeContent &&
-    `place-content: ${
-      typeof placeContent === "string" ? placeContent : `${placeContent.alignContent} ${placeContent.justifyContent}`
-    };`}
+    (typeof placeContent === "string"
+      ? `place-content: ${placeContent}`
+      : `align-content: ${placeContent.alignContent ?? ""}; justify-content: ${placeContent.justifyContent ?? ""};`)}
+      
+  ${({ areaName }) => areaName && `grid-area: ${areaName};`}
   ${({ column }) =>
     column &&
     `grid-column: ${
@@ -39,10 +34,28 @@ const Grid = styled.div<GridPropsType>`
     };`}
   ${({ row }) =>
     row && `grid-row: ${typeof row === "string" || typeof row === "number" ? row : `${row.start} / ${row.end};`};`}
-  ${({ areaName }) => areaName && `grid-area: ${areaName};`}
   ${({ placeSelf }) =>
     placeSelf &&
-    `place-self: ${typeof placeSelf === "string" ? placeSelf : `${placeSelf.alignSelf} ${placeSelf.justifySelf}`};`}
+    (typeof placeSelf === "string"
+      ? `place-self: ${placeSelf}`
+      : `align-self: ${placeSelf.alignSelf ?? ""}; justify-self: ${placeSelf.justifySelf ?? ""};`)}
 `;
 
+const GridItem = styled.div<GridItemProps>`
+  ${({ areaName }) => areaName && `grid-area: ${areaName};`}
+  ${({ column }) =>
+    column &&
+    `grid-column: ${
+      typeof column === "string" || typeof column === "number" ? column : `${column.start} / ${column.end};`
+    };`}
+  ${({ row }) =>
+    row && `grid-row: ${typeof row === "string" || typeof row === "number" ? row : `${row.start} / ${row.end};`};`}
+  ${({ placeSelf }) =>
+    placeSelf &&
+    (typeof placeSelf === "string"
+      ? `place-self: ${placeSelf}`
+      : `align-self: ${placeSelf.alignSelf ?? ""}; justify-self: ${placeSelf.justifySelf ?? ""};`)}
+`;
+
+DxcGrid.GridItem = GridItem;
 export default DxcGrid;

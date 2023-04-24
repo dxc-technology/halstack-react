@@ -2,7 +2,26 @@ type Spaces = "0rem" | "0.125rem" | "0.25rem" | "0.5rem" | "1rem" | "1.5rem" | "
 type Gap = { rowGap?: Spaces; columnGap?: Spaces };
 type GridCell = { start: number | string; end: number | string };
 
-type Props = {
+export type GridItemProps = {
+  areaName?: string;
+  column?: number | string | GridCell;
+  row?: number | string | GridCell;
+  placeSelf?:
+    | {
+        alignSelf?: "auto" | "start" | "end" | "center" | "stretch" | "baseline";
+        justifySelf?: "auto" | "start" | "end" | "center" | "stretch" | "baseline";
+      }
+    | "auto"
+    | "start"
+    | "end"
+    | "center"
+    | "stretch"
+    | "baseline";
+  as?: keyof HTMLElementTagNameMap;
+  children: React.ReactNode;
+};
+
+type Props = GridItemProps & {
   autoColumns?: string;
   autoRows?: string;
   autoFlow?: "row" | "column" | "row dense" | "column dense";
@@ -53,22 +72,6 @@ type Props = {
   templateAreas?: string[];
   templateColumns?: string[];
   templateRows?: string[];
-  areaName?: string;
-  column?: number | string | GridCell;
-  row?: number | string | GridCell;
-  placeSelf?:
-    | {
-        alignSelf?: "auto" | "start" | "end" | "center" | "stretch" | "baseline";
-        justifySelf?: "auto" | "start" | "end" | "center" | "stretch" | "baseline";
-      }
-    | "auto"
-    | "start"
-    | "end"
-    | "center"
-    | "stretch"
-    | "baseline";
-  as?: keyof HTMLElementTagNameMap;
-  children: React.ReactNode;
 };
 
 export default Props;
