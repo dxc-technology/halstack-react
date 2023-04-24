@@ -3,6 +3,7 @@ import styled, { ThemeProvider } from "styled-components";
 import { RadioProps } from "./types";
 import { v4 as uuidv4 } from "uuid";
 import useTheme from "../useTheme";
+import { AdvancedTheme } from "../common/variables";
 
 const DxcRadio = ({
   label,
@@ -67,11 +68,14 @@ const DxcRadio = ({
 };
 
 type CommonStylingProps = {
-  error?: string;
-  disabled: boolean;
-  readonly: boolean;
+  error: RadioProps["error"];
+  disabled: RadioProps["disabled"];
+  readonly: RadioProps["readonly"];
 };
-const getRadioInputStateColor = (props: CommonStylingProps & { theme: any }, state: "enabled" | "hover" | "active") => {
+const getRadioInputStateColor = (
+  props: CommonStylingProps & { theme: AdvancedTheme["radioGroup"] },
+  state: "enabled" | "hover" | "active"
+) => {
   switch (state) {
     case "enabled":
       return props.disabled
@@ -132,10 +136,7 @@ const Dot = styled.span<CommonStylingProps>`
   background-color: ${(props) => getRadioInputStateColor(props, "enabled")};
 `;
 
-type LabelProps = {
-  disabled: boolean;
-};
-const Label = styled.span<LabelProps>`
+const Label = styled.span<{ disabled: RadioProps["disabled"] }>`
   margin-left: ${(props) => props.theme.radioInputLabelMargin};
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.radioInputLabelFontSize};

@@ -49,11 +49,7 @@ const Option = ({
   </OptionItem>
 );
 
-type OptionItemProps = {
-  visualFocused: boolean;
-  selected: boolean;
-};
-const OptionItem = styled.li<OptionItemProps>`
+const OptionItem = styled.li<{ visualFocused: OptionProps["visualFocused"]; selected: OptionProps["isSelected"] }>`
   padding: 0 0.5rem;
   box-shadow: inset 0 0 0 2px transparent;
   ${(props) => props.visualFocused && `box-shadow: inset 0 0 0 2px ${props.theme.focusListOptionBorderColor};`}
@@ -75,14 +71,13 @@ const OptionItem = styled.li<OptionItemProps>`
   }
 `;
 
-type StyledOptionProps = {
-  grouped: boolean;
-  multiple: boolean;
-  visualFocused: boolean;
-  selected: boolean;
-  last: boolean;
-};
-const StyledOption = styled.span<StyledOptionProps>`
+const StyledOption = styled.span<{
+  grouped: OptionProps["isGroupedOption"];
+  multiple: OptionProps["multiple"];
+  visualFocused: OptionProps["visualFocused"];
+  selected: OptionProps["isSelected"];
+  last: OptionProps["isLastOption"];
+}>`
   display: flex;
   padding: 0.25rem 0.5rem 0.188rem 0;
   min-height: 24px;
@@ -93,11 +88,7 @@ const StyledOption = styled.span<StyledOptionProps>`
       : `border-bottom: 1px solid ${props.theme.listOptionDividerColor}`};
 `;
 
-type OptionIconProps = {
-  grouped: boolean;
-  multiple: boolean;
-};
-const OptionIcon = styled.span<OptionIconProps>`
+const OptionIcon = styled.span<{ grouped: OptionProps["isGroupedOption"]; multiple: OptionProps["multiple"] }>`
   display: flex;
   padding: 0.125rem;
   margin-left: ${(props) => (props.grouped && !props.multiple ? "16px" : "8px")};
@@ -110,12 +101,11 @@ const OptionIcon = styled.span<OptionIconProps>`
   }
 `;
 
-type OptionContentProps = {
-  grouped: boolean;
-  multiple: boolean;
+const OptionContent = styled.span<{
+  grouped: OptionProps["isGroupedOption"];
+  multiple: OptionProps["multiple"];
   hasIcon: boolean;
-};
-const OptionContent = styled.span<OptionContentProps>`
+}>`
   display: flex;
   justify-content: space-between;
   gap: 0.25rem;

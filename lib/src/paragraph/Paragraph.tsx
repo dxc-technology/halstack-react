@@ -3,11 +3,7 @@ import BackgroundColorContext from "../BackgroundColorContext";
 import useTheme from "../useTheme";
 import BaseTypography from "../utils/BaseTypography";
 
-type ParagraphPropsType = {
-  children: React.ReactNode;
-};
-
-const DxcParagraph = ({ children }: ParagraphPropsType): JSX.Element => {
+const DxcParagraph = ({ children }: { children: React.ReactNode }): JSX.Element => {
   const colorsTheme = useTheme();
   const backgroundType = useContext(BackgroundColorContext);
 

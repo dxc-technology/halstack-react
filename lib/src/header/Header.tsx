@@ -5,8 +5,8 @@ import { dxcLogo } from "./Icons";
 import { spaces, responsiveSizes } from "../common/variables";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
-import BackgroundColorContext, { BackgroundColorProvider } from "../BackgroundColorContext";
-import HeaderPropsType, { Space, Padding } from "./types";
+import BackgroundColorContext, { BackgroundColorProvider, BackgroundColors } from "../BackgroundColorContext";
+import HeaderPropsType from "./types";
 
 const closeIcon = (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24" width="24">
@@ -20,7 +20,7 @@ const hamburgerIcon = (
   </svg>
 );
 
-const Dropdown = (props) => (
+const Dropdown = (props: React.ComponentProps<typeof DxcDropdown>) => (
   <HeaderDropdown>
     <DxcDropdown {...props} />
   </HeaderDropdown>
@@ -44,10 +44,10 @@ const getLogoElement = (themeInput, logoLabel) => {
 
 type ContentProps = {
   isResponsive: boolean;
-  responsiveContent: (closeHandler: () => void) => React.ReactNode;
+  responsiveContent: HeaderPropsType["responsiveContent"];
   handleMenu: () => void;
-  padding: Padding | Space;
-  content: React.ReactNode;
+  padding: HeaderPropsType["padding"];
+  content: HeaderPropsType["content"];
 };
 
 const Content = ({ isResponsive, responsiveContent, handleMenu, padding, content }: ContentProps) => {
@@ -166,12 +166,7 @@ const DxcHeader = ({
 
 DxcHeader.Dropdown = Dropdown;
 
-type HeaderContainerProps = {
-  margin: Padding | Space;
-  underlined: boolean;
-};
-
-const HeaderContainer = styled.header<HeaderContainerProps>`
+const HeaderContainer = styled.header<{ margin: HeaderPropsType["margin"]; underlined: HeaderPropsType["underlined"] }>`
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
@@ -202,7 +197,7 @@ const LogoContainer = styled.div`
   vertical-align: middle;
 `;
 
-const ChildContainer = styled.div<{ padding: Space | Padding }>`
+const ChildContainer = styled.div<{ padding: HeaderPropsType["padding"] }>`
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -219,12 +214,7 @@ const ChildContainer = styled.div<{ padding: Space | Padding }>`
     props.padding && typeof props.padding === "object" && props.padding.left ? spaces[props.padding.left] : ""};
 `;
 
-type ContentContainerProps = {
-  padding: Space | Padding;
-  backgroundType: "dark" | "light";
-};
-
-const ContentContainer = styled.div<ContentContainerProps>`
+const ContentContainer = styled.div<{ padding: HeaderPropsType["padding"]; backgroundType: BackgroundColors }>`
   display: flex;
   align-items: center;
   flex-grow: 1;
@@ -284,12 +274,10 @@ const ResponsiveMenu = styled.div<{ hasVisibility: boolean }>`
   z-index: ${(props) => props.theme.menuZindex};
 
   @media (max-width: ${responsiveSizes.large}rem) and (min-width: ${responsiveSizes.small}rem) {
-    //tablet
     width: ${(props) => props.theme.menuTabletWidth};
   }
 
   @media (not((max-width: ${responsiveSizes.large}rem) and (min-width: ${responsiveSizes.small}rem))) {
-    //mobile phones
     width: ${(props) => props.theme.menuMobileWidth};
   }
 
@@ -336,7 +324,7 @@ const CloseAction = styled.button`
   }
 `;
 
-const MenuContent = styled.div<{ backgroundType: "dark" | "light" }>`
+const MenuContent = styled.div<{ backgroundType: BackgroundColors }>`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -356,7 +344,6 @@ const Overlay = styled.div<{ hasVisibility: boolean }>`
   opacity: ${(props) => (props.hasVisibility ? "1" : "0")};
 
   @media (max-width: ${responsiveSizes.small}rem) {
-    //mobile phones
     display: none;
   }
 

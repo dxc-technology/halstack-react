@@ -120,12 +120,7 @@ const DxcApplicationLayout = ({
   );
 };
 
-type ApplicationLayoutContainerProps = {
-  isSidenavVisible: boolean;
-  hasSidenav: boolean;
-};
-
-const ApplicationLayoutContainer = styled.div<ApplicationLayoutContainerProps>`
+const ApplicationLayoutContainer = styled.div<{ isSidenavVisible: boolean; hasSidenav: boolean }>`
   position: absolute;
   top: 64px;
   bottom: 0;

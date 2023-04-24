@@ -1,11 +1,11 @@
-export type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
-export type Margin = {
+type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
+type Margin = {
   top?: Space;
   bottom?: Space;
   left?: Space;
   right?: Space;
 };
-export type Padding = {
+type Padding = {
   top?: Space;
   bottom?: Space;
   left?: Space;

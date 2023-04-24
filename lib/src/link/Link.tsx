@@ -2,7 +2,7 @@ import React, { forwardRef, Ref } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables";
 import useTheme from "../useTheme";
-import { Margin, LinkProps, Space } from "./types";
+import { LinkProps } from "./types";
 
 const LinkContent = React.memo(({ iconPosition, icon, children }: LinkProps): JSX.Element => {
   return (
@@ -58,15 +58,13 @@ const DxcLink = forwardRef(
   }
 );
 
-type StyledLinkProps = {
-  margin?: Space | Margin;
-  disabled?: boolean;
-  inheritColor?: boolean;
-};
-const StyledLink = styled.div<StyledLinkProps>`
+const StyledLink = styled.div<{
+  margin: LinkProps["margin"];
+  disabled: LinkProps["disabled"];
+  inheritColor: LinkProps["inheritColor"];
+}>`
   display: inline-flex;
   align-items: baseline;
-
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
@@ -76,7 +74,6 @@ const StyledLink = styled.div<StyledLinkProps>`
     props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
   margin-left: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
-
   background: none;
   border: none;
   padding: 0;
@@ -87,7 +84,6 @@ const StyledLink = styled.div<StyledLinkProps>`
   font-family: ${(props) => props.theme.fontFamily};
   text-decoration-color: transparent;
   width: fit-content;
-
   ${(props) =>
     `padding-bottom: ${props.theme.underlineSpacing};
      border-bottom: ${props.theme.underlineThickness} ${props.theme.underlineStyle} transparent;`}
@@ -95,7 +91,6 @@ const StyledLink = styled.div<StyledLinkProps>`
   color: ${(props) =>
     props.inheritColor ? "inherit" : !props.disabled ? props.theme.fontColor : props.theme.disabledColor};
   ${(props) => (props.disabled ? "pointer-events: none;" : "")}
-
   &:visited {
     color: ${(props) => (!props.inheritColor && !props.disabled ? props.theme.visitedFontColor : "")};
     &:hover {
@@ -124,10 +119,7 @@ const StyledLink = styled.div<StyledLinkProps>`
 
 const LinkIcon = styled.img``;
 
-type LinkIconContainerProps = {
-  iconPosition?: "before" | "after";
-};
-const LinkIconContainer = styled.div<LinkIconContainerProps>`
+const LinkIconContainer = styled.div<{ iconPosition: LinkProps["iconPosition"] }>`
   width: ${(props) => props.theme.iconSize};
   height: ${(props) => props.theme.iconSize};
   ${(props) => `${props.iconPosition === "before" ? "margin-right" : "margin-left"}: ${props.theme.iconSpacing}`};

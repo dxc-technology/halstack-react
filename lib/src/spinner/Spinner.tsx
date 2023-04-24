@@ -1,10 +1,8 @@
-// @ts-nocheck
 import React, { useContext } from "react";
 import styled, { ThemeProvider } from "styled-components";
-
 import { spaces } from "../common/variables";
 import useTheme from "../useTheme";
-import BackgroundColorContext from "../BackgroundColorContext";
+import BackgroundColorContext, { BackgroundColors } from "../BackgroundColorContext";
 import SpinnerPropsType from "./types";
 
 const DxcSpinner = ({
@@ -20,9 +18,9 @@ const DxcSpinner = ({
   return (
     <ThemeProvider theme={colorsTheme.spinner}>
       <DXCSpinner margin={margin} mode={mode}>
-        <SpinnerContainer backgroundType={backgroundType} mode={mode}>
+        <SpinnerContainer mode={mode}>
           {mode === "overlay" && <BackOverlay></BackOverlay>}
-          <BackgroundSpinner mode={mode}>
+          <BackgroundSpinner>
             {mode !== "small" && (
               <SVGBackground viewBox="0 0 140 140">
                 <CircleBackground cx="70" cy="70" r="65" mode={mode}></CircleBackground>
@@ -34,9 +32,8 @@ const DxcSpinner = ({
               </SVGBackground>
             )}
           </BackgroundSpinner>
-
           {value >= 0 && value <= 100 ? (
-            <Spinner role="progressbar" mode={mode}>
+            <Spinner role="progressbar">
               {mode !== "small" && (
                 <SVGSpinner viewBox="0 0 140 140" isDeterminated={true}>
                   <CircleSpinner
@@ -47,7 +44,7 @@ const DxcSpinner = ({
                     mode={mode}
                     isDeterminated={true}
                     value={value}
-                  ></CircleSpinner>
+                  />
                 </SVGSpinner>
               )}
               {mode === "small" && (
@@ -65,7 +62,7 @@ const DxcSpinner = ({
               )}
             </Spinner>
           ) : (
-            <Spinner role="progressbar" mode={mode}>
+            <Spinner role="progressbar">
               {mode !== "small" && (
                 <SVGSpinner viewBox="0 0 140 140" isDeterminated={false}>
                   <CircleSpinner
@@ -75,6 +72,7 @@ const DxcSpinner = ({
                     backgroundType={backgroundType}
                     mode={mode}
                     isDeterminated={false}
+                    value={value}
                   ></CircleSpinner>
                 </SVGSpinner>
               )}
@@ -87,18 +85,19 @@ const DxcSpinner = ({
                     backgroundType={backgroundType}
                     mode={mode}
                     isDeterminated={false}
+                    value={value}
                   ></CircleSpinner>
                 </SVGSpinner>
               )}
             </Spinner>
           )}
           {mode !== "small" && (
-            <LabelsContainer label={label} value={value} showValue={showValue}>
+            <LabelsContainer>
               <SpinnerLabel backgroundType={backgroundType} mode={mode}>
                 {label}
               </SpinnerLabel>
               {(value || value === 0) && showValue && (
-                <SpinnerProgress backgroundType={backgroundType} mode={mode} showValue={showValue}>
+                <SpinnerProgress value={value} backgroundType={backgroundType} mode={mode} showValue={showValue}>
                   {value}%
                 </SpinnerProgress>
               )}
@@ -110,14 +109,14 @@ const DxcSpinner = ({
   );
 };
 
-const determinatedValue = (props, strokeDashArray) => {
+const determinatedValue = (value: SpinnerPropsType["value"], strokeDashArray:number) => {
   let val = 0;
-  if (props.value >= 0 && props.value <= 100) {
-    val = strokeDashArray * (1 - props.value / 100);
+  if (value >= 0 && value <= 100) {
+    val = strokeDashArray * (1 - value / 100);
   }
   return val;
 };
-const DXCSpinner = styled.div`
+const DXCSpinner = styled.div<{ mode: SpinnerPropsType["mode"]; margin: SpinnerPropsType["margin"] }>`
   height: ${(props) => (props.mode === "overlay" ? "100vh" : "")};
   width: ${(props) => (props.mode === "overlay" ? "100vw" : "")};
   display: ${(props) => (props.mode === "overlay" ? "flex" : "")};
@@ -156,7 +155,7 @@ const DXCSpinner = styled.div`
       : ""};
 `;
 
-const SpinnerContainer = styled.div`
+const SpinnerContainer = styled.div<{ mode: SpinnerPropsType["mode"] }>`
   align-items: center;
   display: flex;
   height: ${(props) => (props.mode === "small" ? "16px" : "140px")};
@@ -230,7 +229,7 @@ const SVGBackground = styled.svg`
   width: inherit;
 `;
 
-const CircleBackground = styled.circle`
+const CircleBackground = styled.circle<{ mode: SpinnerPropsType["mode"] }>`
   animation: none;
   fill: transparent;
   stroke: ${(props) => `${props.theme.totalCircleColor}`};
@@ -247,7 +246,7 @@ const Spinner = styled.div`
   position: relative;
 `;
 
-const SVGSpinner = styled.svg`
+const SVGSpinner = styled.svg<{ isDeterminated: boolean }>`
   height: inherit;
   width: inherit;
   transform: rotate(-90deg);
@@ -258,7 +257,11 @@ const SVGSpinner = styled.svg`
   animation: ${(props) => (!props.isDeterminated ? "1.4s linear infinite both spinner-svg" : "")};
 `;
 
-const CircleSpinner = styled.circle`
+const CircleSpinner = styled.circle<{
+  value: SpinnerPropsType["value"];
+  backgroundType: BackgroundColors;
+  isDeterminated: boolean;
+}>`
   fill: transparent;
   stroke-linecap: initial;
   vector-effect: non-scaling-stroke;
@@ -278,8 +281,8 @@ const CircleSpinner = styled.circle`
   stroke-dashoffset: ${(props) =>
     props.isDeterminated
       ? props.mode !== "small"
-        ? determinatedValue(props, 409)
-        : determinatedValue(props, 38)
+        ? determinatedValue(props.value, 409)
+        : determinatedValue(props.value, 38)
       : ""};
 `;
 
@@ -291,7 +294,7 @@ const LabelsContainer = styled.div`
   width: 110px;
 `;
 
-const SpinnerLabel = styled.p`
+const SpinnerLabel = styled.p<{ mode: SpinnerPropsType["mode"]; backgroundType: BackgroundColors }>`
   margin: 0;
   width: 100%;
   white-space: nowrap;
@@ -314,13 +317,18 @@ const SpinnerLabel = styled.p`
     props.mode === "overlay" ? props.theme.overlayLabelLetterSpacing : props.theme.labelLetterSpacing};
 `;
 
-const SpinnerProgress = styled.p`
+const SpinnerProgress = styled.p<{
+  value: SpinnerPropsType["value"];
+  showValue: SpinnerPropsType["showValue"];
+  mode: SpinnerPropsType["mode"];
+  backgroundType: BackgroundColors;
+}>`
   margin: 0;
   width: 100%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  display: ${(props) => (props.value !== "" && props.showValue === true && "block") || "none"};
+  display: ${(props) => (props.value && props.showValue === true && "block") || "none"};
   font-family: ${(props) =>
     props.mode === "overlay" ? props.theme.overlayProgressValueFontFamily : props.theme.progressValueFontFamily};
   font-weight: ${(props) =>

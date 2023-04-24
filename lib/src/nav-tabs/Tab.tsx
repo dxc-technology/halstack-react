@@ -2,7 +2,7 @@ import React, { useLayoutEffect, createRef, forwardRef, Ref, useContext } from "
 import styled from "styled-components";
 import DxcBadge from "../badge/Badge";
 import { NavTabsContext } from "./NavTabs";
-import { TabProps } from "./types";
+import { TabProps, NavTabsProps } from "./types";
 import BaseTypography from "../utils/BaseTypography";
 import useTheme from "../useTheme";
 
@@ -78,7 +78,12 @@ const DxcTab = forwardRef(
             </BaseTypography>
             {notificationNumber && (
               <BadgeContainer>
-                <DxcBadge notificationText={notificationNumber > 99 ? "+99" : notificationNumber} disabled={disabled} />
+                <DxcBadge
+                  notificationText={
+                    typeof notificationNumber === "number" && notificationNumber > 99 ? "+99" : notificationNumber
+                  }
+                  disabled={disabled}
+                />
               </BadgeContainer>
             )}
           </LabelContainer>
@@ -88,10 +93,7 @@ const DxcTab = forwardRef(
   }
 );
 
-type TabContainerProps = {
-  active?: boolean;
-};
-const TabContainer = styled.div<TabContainerProps>`
+const TabContainer = styled.div<{ active: TabProps["active"] }>`
   border-bottom: 2px solid ${(props) => (props.active ? props.theme.selectedUnderlineColor : props.theme.dividerColor)};
   svg {
     color: ${(props) => props.theme.unselectedIconColor};
@@ -110,13 +112,12 @@ const TabContainer = styled.div<TabContainerProps>`
   }
 `;
 
-type TabStyleProps = {
-  disabled: boolean;
+const Tab = styled.a<{
+  disabled: TabProps["disabled"];
+  active: TabProps["active"];
   hasIcon: boolean;
-  active?: boolean;
-  iconPosition: "top" | "left";
-};
-const Tab = styled.a<TabStyleProps>`
+  iconPosition: NavTabsProps["iconPosition"];
+}>`
   display: flex;
   flex-direction: ${(props) => (props.hasIcon && props.iconPosition === "top" ? "column" : "row")};
   justify-content: center;
@@ -147,10 +148,7 @@ const Tab = styled.a<TabStyleProps>`
   `}
 `;
 
-type TabIconContainerProps = {
-  iconPosition?: "top" | "left";
-};
-const TabIconContainer = styled.div<TabIconContainerProps>`
+const TabIconContainer = styled.div<{ iconPosition: NavTabsProps["iconPosition"] }>`
   display: flex;
   margin-bottom: ${(props) => props.iconPosition === "top" && "0.375rem"};
   margin-right: ${(props) => props.iconPosition === "left" && "0.625rem"};

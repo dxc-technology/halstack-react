@@ -1,6 +1,5 @@
 import React from "react";
 import { DxcCard } from "@dxc-technology/halstack-react";
-import iceCream from "../images/ice-cream.jpg";
 import twitterIcon from "../images/twitter.svg";
 
 function App() {
@@ -8,15 +7,19 @@ function App() {
     <div>
       <div className="img-test-case" id="imageCover">
         <h4>Image Background Cover</h4>
-        <DxcCard imageSrc={iceCream} imageCover />
+        <DxcCard imageSrc="https://picsum.photos/id/1022/200/300" imageCover />
       </div>
       <div className="img-test-case" id="imagePosition-after">
         <h4>Image Position After</h4>
-        <DxcCard imageSrc={iceCream} imageCover imagePosition="after" />
+        <DxcCard
+          imageSrc="https://picsum.photos/id/1022/200/300"
+          imageCover
+          imagePosition="after"
+        />
       </div>
       <div className="img-test-case" id="content-overflow">
         <h4>Content Overflow</h4>
-        <DxcCard imageSrc={iceCream} imageCover>
+        <DxcCard imageSrc="https://picsum.photos/id/1022/200/300" imageCover>
           Loremipsumdolorsitametconsecteturadipiscingelitseddoeiusmodtemporincididunt
           ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
           nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
@@ -146,7 +149,11 @@ function App() {
           </div>
         </DxcCard>
         <h5>medium content padding with image</h5>
-        <DxcCard imageSrc={iceCream} imageCover contentPadding="medium">
+        <DxcCard
+          imageSrc="https://picsum.photos/id/1022/200/300"
+          imageCover
+          contentPadding="medium"
+        >
           <div>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
             malesuada lacus ex, sit amet blandit leo lobortis eget.
@@ -154,7 +161,7 @@ function App() {
         </DxcCard>
         <h5>xlarge content padding with image</h5>
         <DxcCard
-          imageSrc={iceCream}
+          imageSrc="https://picsum.photos/id/1022/200/300"
           imagePadding="small"
           imageCover
           contentPadding="xlarge"

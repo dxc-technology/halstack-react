@@ -1,9 +1,7 @@
-// @ts-nocheck
 import React, { useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables";
 import useTheme from "../useTheme";
-
 import DxcBox from "../box/Box";
 import CardPropsType from "./types";
 
@@ -27,7 +25,7 @@ const DxcCard = ({
 
   const imageComponent = (
     <ImageContainer imageBgColor={imageBgColor}>
-      <TagImage imagePadding={imagePadding} cover={imageCover} src={imageSrc}></TagImage>
+      <TagImage imagePadding={imagePadding} imageCover={imageCover} src={imageSrc}></TagImage>
     </ImageContainer>
   );
 
@@ -44,7 +42,7 @@ const DxcCard = ({
     >
       <DxcBox shadowDepth={!outlined ? 0 : isHovered && (onClick || linkHref) ? 2 : 1}>
         <ThemeProvider theme={colorsTheme.card}>
-          <CardContainer hasAction={onClick || linkHref} imagePosition={imagePosition}>
+          <CardContainer hasAction={onClick || linkHref}>
             {imageSrc && imagePosition === "before" && imageComponent}
             <CardContent contentPadding={contentPadding}>{children}</CardContent>
             {imageSrc && imagePosition === "after" && imageComponent}
@@ -55,17 +53,20 @@ const DxcCard = ({
   );
 };
 
-const StyledDxcCard = styled.div`
+const StyledDxcCard = styled.div<{
+  margin: CardPropsType["margin"];
+  hasAction: CardPropsType["onClick"] | CardPropsType["linkHref"];
+}>`
   display: inline-flex;
   cursor: ${({ hasAction }) => (hasAction && "pointer") || "unset"};
   outline: ${({ hasAction }) => !hasAction && "none"};
   margin: ${({ margin }) => (margin && typeof margin !== "object" ? spaces[margin] : "0px")};
-  margin-top: ${({ margin }) => (margin && margin.top ? spaces[margin.top] : "")};
-  margin-right: ${({ margin }) => (margin && margin.right ? spaces[margin.right] : "")};
-  margin-bottom: ${({ margin }) => (margin && margin.bottom ? spaces[margin.bottom] : "")};
-  margin-left: ${({ margin }) => (margin && margin.left ? spaces[margin.left] : "")};
+  margin-top: ${({ margin }) => (margin && typeof margin === "object" && margin.top ? spaces[margin.top] : "")};
+  margin-right: ${({ margin }) => (margin && typeof margin === "object" && margin.right ? spaces[margin.right] : "")};
+  margin-bottom: ${({ margin }) =>
+    margin && typeof margin === "object" && margin.bottom ? spaces[margin.bottom] : ""};
+  margin-left: ${({ margin }) => (margin && typeof margin === "object" && margin.left ? spaces[margin.left] : "")};
   text-decoration: none;
-
   ${({ hasAction }) =>
     hasAction &&
     `:focus {
@@ -73,7 +74,7 @@ const StyledDxcCard = styled.div`
   }`}
 `;
 
-const CardContainer = styled.div`
+const CardContainer = styled.div<{ hasAction: CardPropsType["onClick"] | CardPropsType["linkHref"] }>`
   display: inline-flex;
   height: ${(props) => props.theme.height};
   width: ${(props) => props.theme.width};
@@ -82,15 +83,19 @@ const CardContainer = styled.div`
   }
 `;
 
-const TagImage = styled.img`
+const TagImage = styled.img<{ imagePadding: CardPropsType["imagePadding"]; imageCover: CardPropsType["imageCover"] }>`
   height: ${({ imagePadding }) =>
-    !imagePadding ? "100%" : `calc(100% - ${spaces[imagePadding]} - ${spaces[imagePadding]})`};
+    !imagePadding
+      ? "100%"
+      : typeof imagePadding !== "object" && `calc(100% - ${spaces[imagePadding]} - ${spaces[imagePadding]})`};
   width: ${({ imagePadding }) =>
-    !imagePadding ? "100%" : `calc(100% - ${spaces[imagePadding]} - ${spaces[imagePadding]})`};
-  object-fit: ${({ cover }) => (cover ? "cover" : "contain")};
+    !imagePadding
+      ? "100%"
+      : typeof imagePadding !== "object" && `calc(100% - ${spaces[imagePadding]} - ${spaces[imagePadding]})`};
+  object-fit: ${({ imageCover }) => (imageCover ? "cover" : "contain")};
 `;
 
-const ImageContainer = styled.div`
+const ImageContainer = styled.div<{ imageBgColor: CardPropsType["imageBgColor"] }>`
   width: 35%;
   height: 100%;
   flex-shrink: 0;
@@ -100,7 +105,7 @@ const ImageContainer = styled.div`
   display: inline-flex;
 `;
 
-const CardContent = styled.div`
+const CardContent = styled.div<{ contentPadding: CardPropsType["contentPadding"] }>`
   flex-grow: 1;
   padding: ${({ contentPadding }) =>
     contentPadding && typeof contentPadding !== "object" ? spaces[contentPadding] : "0px"};
