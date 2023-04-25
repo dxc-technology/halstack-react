@@ -1,6 +1,6 @@
 import React, { forwardRef, Ref, useMemo, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import { responsiveSizes } from "../common/variables.js";
+import { responsiveSizes } from "../common/variables";
 import { useResponsiveSidenavVisibility } from "../layout/SidenavContext";
 import useTheme from "../useTheme";
 import { BackgroundColorProvider } from "../BackgroundColorContext";
@@ -141,7 +141,7 @@ const Link = forwardRef(
   }
 );
 
-const SidenavContainer = styled.div<SidenavPropsType>`
+const SidenavContainer = styled.div`
   display: flex;
   flex-direction: column;
   background-color: ${(props) => props.theme.backgroundColor};
@@ -262,7 +262,7 @@ const SidenavGroupTitleButton = styled.button<{ selectedGroup: boolean }>`
   }
 `;
 
-const SidenavLink = styled.a<{ selected: boolean }>`
+const SidenavLink = styled.a<{ selected: SidenavLinkPropsType["selected"] }>`
   display: flex;
   align-items: center;
   justify-content: space-between;

@@ -175,10 +175,7 @@ const LiveEditorContainer = styled.div`
   }
 `;
 
-type CodeActionsContainerProps = {
-  isCodeVisible: boolean;
-};
-const CodeActionsContainer = styled.div<CodeActionsContainerProps>`
+const CodeActionsContainer = styled.div<{ isCodeVisible: boolean }>`
   display: flex;
   column-gap: 0.5rem;
   justify-content: flex-end;

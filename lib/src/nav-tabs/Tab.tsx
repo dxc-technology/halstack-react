@@ -2,8 +2,8 @@ import React, { useLayoutEffect, createRef, forwardRef, Ref, useContext } from "
 import styled from "styled-components";
 import DxcBadge from "../badge/Badge";
 import { NavTabsContext } from "./NavTabs";
-import { TabProps } from "./types";
-import DxcTypography from "../typography/Typography";
+import { TabProps, NavTabsProps } from "./types";
+import BaseTypography from "../utils/BaseTypography";
 import useTheme from "../useTheme";
 
 const DxcTab = forwardRef(
@@ -58,7 +58,7 @@ const DxcTab = forwardRef(
             </TabIconContainer>
           )}
           <LabelContainer>
-            <DxcTypography
+            <BaseTypography
               color={
                 disabled
                   ? colorsTheme.navTabs.disabledFontColor
@@ -75,10 +75,15 @@ const DxcTab = forwardRef(
               lineHeight="1.715em"
             >
               {children}
-            </DxcTypography>
+            </BaseTypography>
             {notificationNumber && (
               <BadgeContainer>
-                <DxcBadge notificationText={notificationNumber > 99 ? "+99" : notificationNumber} disabled={disabled} />
+                <DxcBadge
+                  notificationText={
+                    typeof notificationNumber === "number" && notificationNumber > 99 ? "+99" : notificationNumber
+                  }
+                  disabled={disabled}
+                />
               </BadgeContainer>
             )}
           </LabelContainer>
@@ -88,10 +93,7 @@ const DxcTab = forwardRef(
   }
 );
 
-type TabContainerProps = {
-  active?: boolean;
-};
-const TabContainer = styled.div<TabContainerProps>`
+const TabContainer = styled.div<{ active: TabProps["active"] }>`
   border-bottom: 2px solid ${(props) => (props.active ? props.theme.selectedUnderlineColor : props.theme.dividerColor)};
   svg {
     color: ${(props) => props.theme.unselectedIconColor};
@@ -110,50 +112,43 @@ const TabContainer = styled.div<TabContainerProps>`
   }
 `;
 
-type TabStyleProps = {
-  disabled: boolean;
+const Tab = styled.a<{
+  disabled: TabProps["disabled"];
+  active: TabProps["active"];
   hasIcon: boolean;
-  active?: boolean;
-  iconPosition: "top" | "left";
-};
-const Tab = styled.a<TabStyleProps>`
+  iconPosition: NavTabsProps["iconPosition"];
+}>`
   display: flex;
   flex-direction: ${(props) => (props.hasIcon && props.iconPosition === "top" ? "column" : "row")};
   justify-content: center;
   align-items: center;
-
-  text-decoration-color: transparent;
-  cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
-  background: ${(props) =>
-    props.active ? props.theme.selectedBackgroundColor : props.theme.unselectedBackgroundColor};
-
   height: ${(props) => (props.hasIcon && props.iconPosition === "top" ? "66px" : "32px")};
   min-width: 164px;
   margin: 0.5rem;
   padding: 0.375rem;
-
   border-radius: 4px;
+  background: ${(props) =>
+    props.active ? props.theme.selectedBackgroundColor : props.theme.unselectedBackgroundColor};
+  text-decoration-color: transparent;
+  cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
 
   ${(props) =>
     !props.disabled &&
-    `:hover {
-    background: ${props.theme.hoverBackgroundColor};
-  }
-
-  :focus {
-    outline: 2px solid ${props.theme.focusOutline};
-  }
-
-  :active {
-    background: ${props.theme.pressedBackgroundColor};
-    outline: 2px solid #33aaff};
-  }`}
+    `
+      :hover {
+        background: ${props.theme.hoverBackgroundColor};
+      }
+      :focus {
+        outline: 2px solid ${props.theme.focusOutline};
+      }
+      :active {
+        background: ${props.theme.pressedBackgroundColor};
+        outline: 2px solid #33aaff};
+      }
+  `}
 `;
 
-type TabIconContainerProps = {
-  iconPosition?: "top" | "left";
-};
-const TabIconContainer = styled.div<TabIconContainerProps>`
+const TabIconContainer = styled.div<{ iconPosition: NavTabsProps["iconPosition"] }>`
   display: flex;
   margin-bottom: ${(props) => props.iconPosition === "top" && "0.375rem"};
   margin-right: ${(props) => props.iconPosition === "left" && "0.625rem"};

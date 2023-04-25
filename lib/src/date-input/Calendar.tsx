@@ -218,13 +218,11 @@ const DayCellsContainer = styled.div`
   justify-content: space-between;
 `;
 
-type DayCellPropsType = {
-  selected?: boolean;
+const DayCell = styled.button<{
+  selected: boolean;
   actualMonth: boolean;
   isCurrentDay: boolean;
-};
-
-const DayCell = styled.button<DayCellPropsType>`
+}>`
   display: inline-flex;
   justify-content: center;
   align-items: center;

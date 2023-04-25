@@ -1,12 +1,12 @@
 import React, { useState, useContext, useRef } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { v4 as uuidv4 } from "uuid";
-import { spaces } from "../common/variables.js";
-import { getMargin } from "../common/utils.js";
+import { spaces } from "../common/variables";
+import { getMargin } from "../common/utils";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
-import BackgroundColorContext from "../BackgroundColorContext";
-import SwitchPropsType, { Space, Margin, RefType } from "./types";
+import BackgroundColorContext, { BackgroundColors } from "../BackgroundColorContext";
+import SwitchPropsType, { RefType } from "./types";
 
 const DxcSwitch = React.forwardRef<RefType, SwitchPropsType>(
   (
@@ -187,13 +187,11 @@ const getNotDisabledColor = (props, element, subelement?) => {
   }
 };
 
-type SwitchContainerProps = {
-  margin: Margin | Space;
-  size: "small" | "medium" | "large" | "fillParent" | "fitContent";
-  disabled: boolean;
-};
-
-const SwitchContainer = styled.div<SwitchContainerProps>`
+const SwitchContainer = styled.div<{
+  margin: SwitchPropsType["margin"];
+  size: SwitchPropsType["size"];
+  disabled: SwitchPropsType["disabled"];
+}>`
   display: inline-flex;
   align-items: center;
   width: ${(props) => calculateWidth(props.margin, props.size)};
@@ -211,14 +209,12 @@ const SwitchContainer = styled.div<SwitchContainerProps>`
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
 `;
 
-type LabelProps = {
-  backgroundType: "dark" | "light";
-  labelPosition: "after" | "before";
-  disabled: boolean;
-  label: string;
-};
-
-const LabelContainer = styled.span<LabelProps>`
+const LabelContainer = styled.span<{
+  labelPosition: SwitchPropsType["labelPosition"];
+  disabled: SwitchPropsType["disabled"];
+  label: SwitchPropsType["label"];
+  backgroundType: BackgroundColors;
+}>`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -251,12 +247,7 @@ const ValueInput = styled.input`
   display: none;
 `;
 
-type SwitchTrackProps = {
-  backgroundType: "dark" | "light";
-  disabled: boolean;
-};
-
-const SwitchTrack = styled.span<SwitchTrackProps>`
+const SwitchTrack = styled.span<{ disabled: SwitchPropsType["disabled"]; backgroundType: BackgroundColors }>`
   border-radius: 15px;
   width: ${(props) => props.theme.trackWidth};
   height: ${(props) => props.theme.trackHeight};

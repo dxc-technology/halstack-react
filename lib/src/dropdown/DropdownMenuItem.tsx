@@ -20,11 +20,7 @@ const DropdownMenuItem = ({
   >
     {iconPosition === "after" && <DropdownMenuItemLabel>{option.label}</DropdownMenuItemLabel>}
     {option.icon && (
-      <DropdownMenuItemIcon
-        iconPosition={iconPosition}
-        label={option.label}
-        role={typeof option.icon === "string" ? undefined : "img"}
-      >
+      <DropdownMenuItemIcon role={typeof option.icon === "string" ? undefined : "img"}>
         {typeof option.icon === "string" ? <img src={option.icon} /> : option.icon}
       </DropdownMenuItemIcon>
     )}
@@ -32,7 +28,7 @@ const DropdownMenuItem = ({
   </DropdownMenuItemContainer>
 );
 
-const DropdownMenuItemContainer = styled.li<{ visuallyFocused: boolean }>`
+const DropdownMenuItemContainer = styled.li<{ visuallyFocused: DropdownMenuItemProps["visuallyFocused"] }>`
   box-sizing: border-box;
   display: flex;
   align-items: center;
@@ -63,11 +59,7 @@ const DropdownMenuItemLabel = styled.span`
   white-space: nowrap;
 `;
 
-type DropdownMenuItemIconProps = {
-  iconPosition: "before" | "after";
-  label: string;
-};
-const DropdownMenuItemIcon = styled.div<DropdownMenuItemIconProps>`
+const DropdownMenuItemIcon = styled.div`
   display: flex;
   color: ${(props) => props.theme.optionIconColor};
 

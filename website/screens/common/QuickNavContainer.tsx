@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { DxcFlex, DxcQuickNav } from "@dxc-technology/halstack-react";
 import Section from "./Section";
-import { responsiveSizes } from "../common/variables.js";
+import { responsiveSizes } from "../common/variables";
 
 type QuickNavContainerTypes = {
   title?: string;

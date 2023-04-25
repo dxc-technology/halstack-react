@@ -689,15 +689,15 @@ function Tabs() {
           tabs={[
             {
               label: "Tab 1",
-              notificationNumber: "100",
+              notificationNumber: 100,
             },
             {
               label: "Tab 2",
-              notificationNumber: "20",
+              notificationNumber: 20,
             },
             {
               label: "Tab 3",
-              notificationNumber: "30",
+              notificationNumber: 30,
             },
           ]}
         />
@@ -712,11 +712,11 @@ function Tabs() {
             {
               label: "LinkedIn",
               icon: linkedinSVG,
-              notificationNumber: "10",
+              notificationNumber: 10,
             },
             {
               label: "Facebook",
-              notificationNumber: "200",
+              notificationNumber: 200,
               icon: (
                 <svg
                   x="0px"
@@ -742,7 +742,7 @@ function Tabs() {
             {
               label: "Twitter",
               icon: <img src={twitterIcon} alt="Twitter" />,
-              notificationNumber: "30",
+              notificationNumber: 30,
             },
           ]}
         />
@@ -760,7 +760,7 @@ function Tabs() {
             },
             {
               label: "Facebook",
-              notificationNumber: "10",
+              notificationNumber: 10,
               icon: (
                 <svg
                   x="0px"
@@ -785,7 +785,7 @@ function Tabs() {
             },
             {
               label: "Twitter",
-              notificationNumber: "20",
+              notificationNumber: 20,
               icon: <img src={twitterIcon} alt="Twitter" />,
             },
           ]}

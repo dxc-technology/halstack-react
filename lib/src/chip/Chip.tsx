@@ -1,9 +1,7 @@
-// @ts-nocheck
 import React from "react";
 import styled, { ThemeProvider } from "styled-components";
-import { spaces } from "../common/variables.js";
-
-import { getMargin } from "../common/utils.js";
+import { spaces } from "../common/variables";
+import { getMargin } from "../common/utils";
 import useTheme from "../useTheme";
 import ChipPropsType from "./types";
 
@@ -27,7 +25,6 @@ const DxcChip = ({
             disabled={disabled}
             prefixIcon
             label={label}
-            mode="prefix"
             tabIndex={typeof onClickPrefix === "function" && !disabled ? tabIndex : -1}
             onClick={() => onClickPrefix && !disabled && onClickPrefix()}
             interactuable={typeof onClickPrefix === "function" && !disabled}
@@ -40,7 +37,6 @@ const DxcChip = ({
           <IconContainer
             disabled={disabled}
             suffixIcon
-            mode="suffix"
             label={label}
             tabIndex={typeof onClickSuffix === "function" && !disabled ? tabIndex : -1}
             onClick={() => onClickSuffix && !disabled && onClickSuffix()}
@@ -60,7 +56,7 @@ const getCursor = (interactuable, disabled) => {
   else return "cursor: default; outline:none;";
 };
 
-const StyledDxcChip = styled.div`
+const StyledDxcChip = styled.div<{ margin: ChipPropsType["margin"]; disabled: ChipPropsType["disabled"] }>`
   display: inline-flex;
   align-items: center;
   min-height: 40px;
@@ -88,7 +84,7 @@ const StyledDxcChip = styled.div`
   cursor: ${({ disabled }) => disabled && "not-allowed"};
 `;
 
-const ChipTextContainer = styled.span`
+const ChipTextContainer = styled.span<{ disabled: ChipPropsType["disabled"] }>`
   font-size: ${(props) => props.theme.fontSize};
   font-family: ${(props) => props.theme.fontFamily};
   font-weight: ${(props) => props.theme.fontWeight};
@@ -100,7 +96,13 @@ const ChipTextContainer = styled.span`
   overflow: hidden;
 `;
 
-const IconContainer = styled.div`
+const IconContainer = styled.div<{
+  prefixIcon?: ChipPropsType["prefixIcon"];
+  label: ChipPropsType["label"];
+  suffixIcon?: ChipPropsType["suffixIcon"];
+  disabled: ChipPropsType["disabled"];
+  interactuable: boolean;
+}>`
   display: flex;
   ${(props) =>
     props.prefixIcon

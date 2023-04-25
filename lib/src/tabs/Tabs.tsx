@@ -1,10 +1,10 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import { spaces } from "../common/variables.js";
+import { spaces } from "../common/variables";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
 import Tab from "./Tab";
-import TabsPropsType, { Margin, Space } from "./types";
+import TabsPropsType from "./types";
 
 const arrowIcons = {
   left: (
@@ -220,7 +220,6 @@ const DxcTabs = ({
         <Tabs hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
           <ScrollIndicator
             onClick={scrollLeft}
-            scrollLeftEnabled={scrollLeftEnabled}
             enabled={enabledIndicator}
             aria-disabled={!scrollLeftEnabled}
             aria-label={translatedLabels.tabs.scrollLeft}
@@ -264,7 +263,6 @@ const DxcTabs = ({
           </TabsContent>
           <ScrollIndicator
             onClick={scrollRight}
-            scrollRightEnabled={scrollRightEnabled}
             enabled={enabledIndicator}
             aria-disabled={!scrollRightEnabled}
             aria-label={translatedLabels.tabs.scrollRight}
@@ -288,7 +286,7 @@ const Underline = styled.div`
   background-color: ${(props) => props.theme.dividerColor};
 `;
 
-const TabsContainer = styled.div<{ margin: Margin | Space }>`
+const TabsContainer = styled.div<{ margin: TabsPropsType["margin"] }>`
   position: relative;
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
@@ -301,12 +299,7 @@ const TabsContainer = styled.div<{ margin: Margin | Space }>`
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
 `;
 
-type IconProps = {
-  hasLabelAndIcon: boolean;
-  iconPosition: "top" | "left";
-};
-
-const Tabs = styled.div<IconProps>`
+const Tabs = styled.div<{ hasLabelAndIcon: boolean; iconPosition: TabsPropsType["iconPosition"] }>`
   min-height: ${(props) =>
     ((!props.hasLabelAndIcon || (props.hasLabelAndIcon && props.iconPosition !== "top")) && "48px") || "72px"};
   height: ${(props) =>
@@ -316,14 +309,10 @@ const Tabs = styled.div<IconProps>`
   background-color: ${(props) => props.theme.unselectedBackgroundColor};
 `;
 
-type ScrollIndicatorProps = {
+const ScrollIndicator = styled.button<{
   enabled: boolean;
-  scrollLeftEnabled?: boolean;
-  scrollRightEnabled?: boolean;
   minHeightTabs: number;
-};
-
-const ScrollIndicator = styled.button<ScrollIndicatorProps>`
+}>`
   display: ${(props) => (props.enabled ? "flex" : "none")};
   background-color: #ffffff;
   font-size: 1.25rem;
@@ -368,12 +357,7 @@ const ScrollIndicator = styled.button<ScrollIndicatorProps>`
   }
 `;
 
-type ActiveIndicatorProps = {
-  tabLeft: number;
-  tabWidth: number;
-};
-
-const ActiveIndicator = styled.span<ActiveIndicatorProps>`
+const ActiveIndicator = styled.span<{ tabLeft: number; tabWidth: number }>`
   left: ${(props) => `${props.tabLeft}px`};
   width: ${(props) => `${props.tabWidth}px`};
   background-color: ${(props) => props.theme.selectedUnderlineColor};
@@ -403,12 +387,7 @@ const TabList = styled.div<{ minHeightTabs: number }>`
   min-height: ${(props) => props.minHeightTabs}px;
 `;
 
-type TabsContentScrollProps = {
-  translateScroll: number;
-  enabled: boolean;
-};
-
-const TabsContentScroll = styled.div<TabsContentScrollProps>`
+const TabsContentScroll = styled.div<{ translateScroll: number; enabled: boolean }>`
   display: flex;
   ${(props) => (props.enabled ? `transform: translateX(${props.translateScroll}px)` : `transform: translateX(0px)`)};
   transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;

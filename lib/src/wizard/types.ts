@@ -1,12 +1,12 @@
-export type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
-export type Margin = {
+type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
+type Margin = {
   top?: Space;
   bottom?: Space;
   left?: Space;
   right?: Space;
 };
 type SVG = React.ReactNode & React.SVGProps<SVGSVGElement>;
-type Step = {
+export type StepProps = {
   /**
    * Step label.
    */
@@ -28,13 +28,12 @@ type Step = {
    */
   valid?: boolean;
 };
-export type Mode = "horizontal" | "vertical";
 
 type Props = {
   /**
    * The wizard can be showed in horizontal or vertical.
    */
-  mode?: Mode;
+  mode?: "horizontal" | "vertical";
   /**
    * Initially selected step, only when it is uncontrolled.
    */
@@ -51,7 +50,7 @@ type Props = {
   /**
    * An array of objects representing the steps.
    */
-  steps: Step[];
+  steps: StepProps[];
   /**
    * Size of the margin to be applied to the component ('xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge').
    * You can pass an object with 'top', 'bottom', 'left' and 'right' properties in order to specify different margin sizes.

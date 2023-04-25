@@ -2,7 +2,7 @@ import React, { forwardRef, Ref } from "react";
 import styled from "styled-components";
 import { TabProps } from "./types";
 import DxcBadge from "../badge/Badge";
-import DxcTypography from "../typography/Typography";
+import BaseTypography from "../utils/BaseTypography";
 import useTheme from "../useTheme";
 
 const Tab = forwardRef(
@@ -34,7 +34,7 @@ const Tab = forwardRef(
         }}
       >
         <MainLabelContainer
-          hasBadge={tab.notificationNumber}
+          notificationNumber={tab.notificationNumber}
           hasLabelAndIcon={hasLabelAndIcon}
           iconPosition={iconPosition}
         >
@@ -43,7 +43,7 @@ const Tab = forwardRef(
               {typeof tab.icon === "string" ? <img src={tab.icon} /> : tab.icon}
             </TabIconContainer>
           )}
-          <DxcTypography
+          <BaseTypography
             color={
               tab.isDisabled
                 ? colorsTheme.tabs.disabledFontColor
@@ -60,11 +60,17 @@ const Tab = forwardRef(
             lineHeight="1.715em"
           >
             {tab.label}
-          </DxcTypography>
+          </BaseTypography>
         </MainLabelContainer>
-        {tab.notificationNumber && tab.notificationNumber && (
+        {tab.notificationNumber && (
           <BadgeContainer hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
-            <DxcBadge notificationText={tab.notificationNumber > 99 ? "+99" : tab.notificationNumber} />
+            <DxcBadge
+              notificationText={
+                typeof tab.notificationNumber === "number" && tab.notificationNumber > 99
+                  ? "+99"
+                  : tab.notificationNumber
+              }
+            />
           </BadgeContainer>
         )}
       </TabContainer>
@@ -72,12 +78,10 @@ const Tab = forwardRef(
   }
 );
 
-type IconProps = {
-  hasLabelAndIcon: boolean;
-  iconPosition: "top" | "left";
-};
-
-const TabContainer = styled.button<IconProps>`
+const TabContainer = styled.button<{
+  hasLabelAndIcon: TabProps["hasLabelAndIcon"];
+  iconPosition: TabProps["iconPosition"];
+}>`
   text-transform: ${(props) => props.theme.fontTextTransform};
   overflow: hidden;
   flex-shrink: 0;
@@ -97,21 +101,19 @@ const TabContainer = styled.button<IconProps>`
   min-height: ${(props) =>
     ((!props.hasLabelAndIcon || (props.hasLabelAndIcon && props.iconPosition !== "top")) && "47px") || "71px"};
   background-color: ${(props) => props.theme.unselectedBackgroundColor};
-  svg {
-    color: ${(props) => props.theme.unselectedIconColor};
-  }
 
   &:hover {
     background-color: ${(props) => `${props.theme.hoverBackgroundColor} !important`};
   }
-
   &:active {
     background-color: ${(props) => `${props.theme.pressedBackgroundColor} !important`};
   }
-
   &:focus {
     outline: ${(props) => props.theme.focusOutline} solid 1px;
     outline-offset: -1px;
+  }
+  svg {
+    color: ${(props) => props.theme.unselectedIconColor};
   }
 
   &[aria-selected="true"] {
@@ -137,32 +139,36 @@ const TabContainer = styled.button<IconProps>`
   }
 `;
 
-const BadgeContainer = styled.div<IconProps>`
+const BadgeContainer = styled.div<{
+  hasLabelAndIcon: TabProps["hasLabelAndIcon"];
+  iconPosition: TabProps["iconPosition"];
+}>`
   margin-left: 12px;
   height: 100%;
   display: flex;
   align-items: ${(props) => (props.hasLabelAndIcon && props.iconPosition === "top" ? "flex-start" : "center")};
 `;
 
-type MainLabelContainerProps = {
-  hasBadge: number | boolean;
-  hasLabelAndIcon: boolean;
-  iconPosition: "top" | "left";
-};
-
-const MainLabelContainer = styled.div<MainLabelContainerProps>`
+const MainLabelContainer = styled.div<{
+  notificationNumber: TabProps["tab"]["notificationNumber"];
+  hasLabelAndIcon: TabProps["hasLabelAndIcon"];
+  iconPosition: TabProps["iconPosition"];
+}>`
   display: flex;
   flex-direction: ${(props) => (props.hasLabelAndIcon && props.iconPosition === "top" && "column") || "row"};
   align-items: center;
   margin-left: ${(props) =>
-    props.hasBadge
-      ? typeof props.hasBadge === "number"
+    props.notificationNumber
+      ? typeof props.notificationNumber === "number"
         ? `calc(${props.theme.badgeWidthWithNotificationNumber} + 12px)`
         : `calc(${props.theme.badgeWidth} + 12px)`
       : "unset"};
 `;
 
-const TabIconContainer = styled.div<IconProps>`
+const TabIconContainer = styled.div<{
+  hasLabelAndIcon: TabProps["hasLabelAndIcon"];
+  iconPosition: TabProps["iconPosition"];
+}>`
   display: flex;
   margin-bottom: ${(props) => (props.hasLabelAndIcon && props.iconPosition === "top" && "8px") || ""};
   margin-right: ${(props) => (props.hasLabelAndIcon && props.iconPosition === "left" && "12px") || ""};

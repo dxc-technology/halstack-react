@@ -3,9 +3,9 @@ import React, { useMemo, useRef, useState, useCallback, useEffect } from "react"
 import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
-import { spaces } from "../common/variables.js";
+import { spaces } from "../common/variables";
 import { v4 as uuidv4 } from "uuid";
-import { getMargin } from "../common/utils.js";
+import { getMargin } from "../common/utils";
 import SelectPropsType, { RefType } from "./types";
 import selectIcons from "./Icons";
 import Listbox from "./Listbox";
@@ -60,9 +60,9 @@ const getSelectedOption = (value, options, multiple, optional, optionalItem) => 
       options.forEach((option) => {
         if (option.options) {
           option.options.forEach((singleOption) => {
-            if (value.includes(singleOption.value)) selectedOption.push(singleOption);
+            if (value.includes(singleOption.value) && Array.isArray(selectedOption)) selectedOption.push(singleOption);
           });
-        } else if (value.includes(option.value)) selectedOption.push(option);
+        } else if (value.includes(option.value) && Array.isArray(selectedOption)) selectedOption.push(option);
       });
     }
   } else {
@@ -153,7 +153,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
 
     const selectRef = useRef(null);
     const selectSearchInputRef = useRef(null);
-    
+
     const width = useWidth(selectRef.current);
     const colorsTheme = useTheme();
     const translatedLabels = useTranslatedLabels();
@@ -184,8 +184,15 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
 
       if (multiple) {
         if ((value ?? innerValue).includes(newOption.value))
-          newValue = (value ?? innerValue).filter((optionVal) => optionVal !== newOption.value);
-        else newValue = [...(value ?? innerValue), newOption.value];
+          newValue = (
+            (value && Array.isArray(value) && value) ??
+            (innerValue && Array.isArray(innerValue) && innerValue)
+          ).filter((optionVal) => optionVal !== newOption.value);
+        else
+          newValue = [
+            ...((value && Array.isArray(value) && value) ?? (innerValue && Array.isArray(innerValue) && innerValue)),
+            newOption.value,
+          ];
       } else newValue = newOption.value;
 
       value ?? setInnerValue(newValue);
@@ -352,7 +359,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
                 aria-errormessage={error ? errorId : undefined}
                 aria-required={!disabled && !optional}
               >
-                {multiple && selectedOption.length > 0 && (
+                {multiple && Array.isArray(selectedOption) && selectedOption.length > 0 && (
                   <SelectionIndicator>
                     <SelectionNumber disabled={disabled}>{selectedOption.length}</SelectionNumber>
                     <ClearOptionsAction
@@ -374,7 +381,14 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
                   <ValueInput
                     name={name}
                     disabled={disabled}
-                    value={multiple ? (value ?? innerValue).join(",") : value ?? innerValue}
+                    value={
+                      multiple
+                        ? (
+                            (value && Array.isArray(value) && value) ??
+                            (innerValue && Array.isArray(innerValue) && innerValue)
+                          ).join(",")
+                        : value ?? innerValue
+                    }
                     readOnly
                     aria-hidden="true"
                   />
@@ -396,9 +410,9 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
                         atBackground={(value ?? innerValue).length === 0 || (searchable && isOpen)}
                       >
                         <SelectedOptionLabel>
-                          {selectedOption.map((option) => option.label).join(", ")}
+                          {Array.isArray(selectedOption) && selectedOption.map((option) => option.label).join(", ")}
                         </SelectedOptionLabel>
-                        {selectedOption.length === 0 && placeholder}
+                        {Array.isArray(selectedOption) && selectedOption.length === 0 && placeholder}
                       </SelectedOption>
                     ) : (
                       <SelectedOption
@@ -478,7 +492,7 @@ const calculateWidth = (margin, size) =>
     ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
     : sizes[size];
 
-const SelectContainer = styled.div`
+const SelectContainer = styled.div<{ margin: SelectPropsType["margin"]; size: SelectPropsType["size"] }>`
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
@@ -495,7 +509,7 @@ const SelectContainer = styled.div`
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
 `;
 
-const Label = styled.span`
+const Label = styled.span<{ disabled: SelectPropsType["disabled"]; helperText: SelectPropsType["helperText"] }>`
   color: ${(props) => (props.disabled ? props.theme.disabledColor : props.theme.labelFontColor)};
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.labelFontSize};
@@ -510,7 +524,7 @@ const OptionalLabel = styled.span`
   font-weight: ${(props) => props.theme.optionalLabelFontWeight};
 `;
 
-const HelperText = styled.span`
+const HelperText = styled.span<{ disabled: SelectPropsType["disabled"] }>`
   color: ${(props) => (props.disabled ? props.theme.disabledColor : props.theme.helperTextFontColor)};
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.helperTextFontSize};
@@ -520,7 +534,7 @@ const HelperText = styled.span`
   margin-bottom: 0.25rem;
 `;
 
-const Select = styled.div`
+const Select = styled.div<{ disabled: SelectPropsType["disabled"]; error: SelectPropsType["error"] }>`
   display: flex;
   position: relative;
   align-items: center;
@@ -562,7 +576,7 @@ const SelectionIndicator = styled.span`
   width: 46px;
 `;
 
-const SelectionNumber = styled.span`
+const SelectionNumber = styled.span<{ disabled: SelectPropsType["disabled"] }>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -619,7 +633,7 @@ const SearchableValueContainer = styled.div`
   width: 100%;
 `;
 
-const SelectedOption = styled.span`
+const SelectedOption = styled.span<{ disabled: SelectPropsType["disabled"]; atBackground: boolean }>`
   grid-area: 1 / 1 / 1 / 1;
   display: inline-flex;
   align-items: center;
@@ -692,7 +706,7 @@ const Error = styled.span`
   margin-top: 0.25rem;
 `;
 
-const CollapseIndicator = styled.span`
+const CollapseIndicator = styled.span<{ disabled: SelectPropsType["disabled"] }>`
   display: flex;
   flex-wrap: wrap;
   align-content: center;

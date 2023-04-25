@@ -1,8 +1,7 @@
-// @ts-nocheck
 import React from "react";
 import styled, { ThemeProvider } from "styled-components";
-import { spaces } from "../common/variables.js";
-import { getMargin } from "../common/utils.js";
+import { spaces } from "../common/variables";
+import { getMargin } from "../common/utils";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
 import { BackgroundColorProvider } from "../BackgroundColorContext";
@@ -79,7 +78,7 @@ const DxcAlert = ({
                 (type === "error" && alertIcons.error)}
             </AlertIcon>
             <AlertText>
-              <AlertTitle type={type}>{getTypeText()}</AlertTitle>
+              <AlertTitle>{getTypeText()}</AlertTitle>
               {inlineText && inlineText !== "" && "-"}
               <AlertInlineText>{inlineText}</AlertInlineText>
             </AlertText>
@@ -122,7 +121,7 @@ const calculateWidth = (margin, size) =>
     ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
     : sizes[size];
 
-const AlertModal = styled.div`
+const AlertModal = styled.div<{ mode: AlertPropsType["mode"] }>`
   font-size: ${(props) => props.theme.fontSizeBase};
   width: ${(props) => (props.mode === "modal" ? "100%" : "")};
   height: ${(props) => (props.mode === "modal" ? "100%" : "")};
@@ -135,7 +134,7 @@ const AlertModal = styled.div`
   z-index: ${(props) => (props.mode === "modal" ? "1200" : "")};
 `;
 
-const OverlayContainer = styled.div`
+const OverlayContainer = styled.div<{ mode: AlertPropsType["mode"] }>`
   background-color: ${(props) => (props.mode === "modal" ? `${props.theme.overlayColor}` : "transparent")};
   position: ${(props) => (props.mode === "modal" ? "fixed" : "")};
   top: ${(props) => (props.mode === "modal" ? "0" : "")};
@@ -144,7 +143,12 @@ const OverlayContainer = styled.div`
   right: ${(props) => (props.mode === "modal" ? "0" : "")};
 `;
 
-const AlertContainer = styled.div`
+const AlertContainer = styled.div<{
+  margin: AlertPropsType["margin"];
+  size: AlertPropsType["size"];
+  type: AlertPropsType["type"];
+  mode: AlertPropsType["mode"];
+}>`
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
@@ -217,7 +221,7 @@ const AlertInlineText = styled.div`
   color: ${(props) => props.theme.inlineTextFontColor};
 `;
 
-const AlertIcon = styled.span`
+const AlertIcon = styled.span<{ type: AlertPropsType["type"] }>`
   display: flex;
   flex-wrap: wrap;
   align-content: center;

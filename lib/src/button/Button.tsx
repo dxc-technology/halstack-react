@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import { spaces } from "../common/variables.js";
-import { getMargin } from "../common/utils.js";
+import { spaces } from "../common/variables";
+import { getMargin } from "../common/utils";
 import useTheme from "../useTheme";
-import BackgroundColorContext from "../BackgroundColorContext";
-import ButtonPropsType, { Space, Margin, SVG } from "./types";
+import BackgroundColorContext, { BackgroundColors } from "../BackgroundColorContext";
+import ButtonPropsType from "./types";
 
 const sizes = {
   small: "42px",
@@ -71,14 +71,12 @@ const DxcButton = ({
   );
 };
 
-type ButtonProps = {
-  mode: "primary" | "secondary" | "text";
-  margin?: Space | Margin;
-  size: "small" | "medium" | "large" | "fillParent" | "fitContent";
-  backgroundType: "dark" | "light";
-};
-
-const Button = styled.button<ButtonProps>`
+const Button = styled.button<{
+  mode: ButtonPropsType["mode"];
+  margin: ButtonPropsType["margin"];
+  size: ButtonPropsType["size"];
+  backgroundType: BackgroundColors;
+}>`
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
@@ -283,12 +281,7 @@ const Button = styled.button<ButtonProps>`
   }}
 `;
 
-type LabelPropsType = {
-  iconPosition: "before" | "after";
-  icon?: string | SVG;
-};
-
-const LabelContainer = styled.span<LabelPropsType>`
+const LabelContainer = styled.span<{ iconPosition: ButtonPropsType["iconPosition"]; icon: ButtonPropsType["icon"] }>`
   line-height: ${(props) => props.theme.labelFontLineHeight};
   font-size: ${(props) => props.theme.fontSize};
   text-overflow: ellipsis;
@@ -299,12 +292,7 @@ const LabelContainer = styled.span<LabelPropsType>`
   margin-left: ${(props) => (!props.icon || props.iconPosition === "after" ? "8px" : "0px")};
 `;
 
-type IconPropsType = {
-  label?: string;
-  iconPosition: "before" | "after";
-};
-
-const IconContainer = styled.div<IconPropsType>`
+const IconContainer = styled.div<{ label: ButtonPropsType["label"]; iconPosition: ButtonPropsType["iconPosition"] }>`
   display: flex;
   margin-left: ${(props) =>
     !props.label ? "0px" : (props.iconPosition === "after" && props.label !== "" && "8px") || "8px"};

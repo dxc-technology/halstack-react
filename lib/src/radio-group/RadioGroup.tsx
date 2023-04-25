@@ -142,13 +142,7 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
             aria-readonly={readonly}
             aria-orientation={stacking === "column" ? "vertical" : "horizontal"}
           >
-            <ValueInput
-              name={name}
-              disabled={disabled}
-              value={value ?? innerValue ?? ""}
-              readOnly
-              aria-hidden="true"
-            />
+            <ValueInput name={name} disabled={disabled} value={value ?? innerValue ?? ""} readOnly aria-hidden="true" />
             {innerOptions.map((option, index) => (
               <DxcRadio
                 key={`radio-${index}`}
@@ -183,11 +177,7 @@ const RadioGroupContainer = styled.div`
   box-sizing: border-box;
 `;
 
-type LabelProps = {
-  helperText?: string;
-  disabled?: boolean;
-};
-const Label = styled.span<LabelProps>`
+const Label = styled.span<{ helperText: RadioGroupPropsType["helperText"]; disabled: RadioGroupPropsType["disabled"] }>`
   color: ${(props) => (props.disabled ? props.theme.disabledLabelFontColor : props.theme.labelFontColor)};
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.labelFontSize};
@@ -201,10 +191,7 @@ const OptionalLabel = styled.span`
   font-weight: ${(props) => props.theme.optionalLabelFontWeight};
 `;
 
-type HelperTextProps = {
-  disabled?: boolean;
-};
-const HelperText = styled.span<HelperTextProps>`
+const HelperText = styled.span<{ disabled: RadioGroupPropsType["disabled"] }>`
   color: ${(props) => (props.disabled ? props.theme.disabledHelperTextFontColor : props.theme.helperTextFontColor)};
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.helperTextFontSize};
@@ -214,10 +201,7 @@ const HelperText = styled.span<HelperTextProps>`
   margin-bottom: ${(props) => props.theme.groupLabelMargin};
 `;
 
-type RadioGroupProps = {
-  stacking: "row" | "column";
-};
-const RadioGroup = styled.div<RadioGroupProps>`
+const RadioGroup = styled.div<{ stacking: RadioGroupPropsType["stacking"] }>`
   display: flex;
   flex-wrap: wrap;
   flex-direction: ${(props) => props.stacking};

@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import slugify from "slugify";
 import { DxcHeading } from "@dxc-technology/halstack-react";
-import { responsiveSizes } from "../common/variables.js";
+import { responsiveSizes } from "../common/variables";
 
 type HeadingLinkProps = {
   children: string;
