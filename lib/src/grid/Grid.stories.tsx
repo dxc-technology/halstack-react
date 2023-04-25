@@ -153,7 +153,7 @@ export const Chromatic = () => (
         <DxcGrid.GridItem row={3}>
           <ColoredContainer height="50px">4</ColoredContainer>
         </DxcGrid.GridItem>
-        <DxcGrid.GridItem row={{ start: 1, end: 2 }} column={{ start: 5, end: 7 }}>
+        <DxcGrid.GridItem row={{ start: 1, end: 2 }} column={{ start: 5, end: "span 2" }}>
           <ColoredContainer height="50px">2</ColoredContainer>
         </DxcGrid.GridItem>
       </DxcGrid>
