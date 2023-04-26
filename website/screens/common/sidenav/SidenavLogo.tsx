@@ -14,7 +14,7 @@ const SidenavLogo = ({
   const { basePath } = useRouter();
   const pathVersion = basePath.split("/")[2];
   const isDev = process.env.NODE_ENV === "development";
-  const siteVersion =
+  const halstackVersion =
     pjson.dependencies["@dxc-technology/halstack-react"].version;
 
   return (
@@ -36,7 +36,7 @@ const SidenavLogo = ({
           ? "dev"
           : isNaN(parseInt(pathVersion))
           ? "next"
-          : `v${siteVersion}`}
+          : `v${halstackVersion}`}
       </StatusTag>
     </SidenavLogoContainer>
   );
