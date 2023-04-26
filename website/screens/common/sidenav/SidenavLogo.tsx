@@ -6,10 +6,10 @@ import React from "react";
 import { useRouter } from "next/router";
 import pjson from "../../../package-lock.json";
 
-type SidenavLogoProps = { version?: string };
+type SidenavLogoProps = { subtitle?: string };
 
 const SidenavLogo = ({
-  version = "Design System",
+  subtitle = "Design System",
 }: SidenavLogoProps): JSX.Element => {
   const { basePath } = useRouter();
   const pathVersion = basePath.split("/")[2];
@@ -29,7 +29,7 @@ const SidenavLogo = ({
           />
           <Title>Halstack</Title>
         </Header>
-        <Subtitle>{version}</Subtitle>
+        <Subtitle>{subtitle}</Subtitle>
       </LogoContainer>
       <StatusTag>
         {isDev

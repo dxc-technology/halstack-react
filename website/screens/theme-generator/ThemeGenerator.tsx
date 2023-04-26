@@ -71,7 +71,7 @@ const ThemeGenerator = () => {
                   </li>
                 </Breadcrumbs>
               </DxcTypography>
-              <SidenavLogo version="Theme Generator" />
+              <SidenavLogo subtitle="Theme Generator" />
             </DxcFlex>
           }
         >
