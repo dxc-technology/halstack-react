@@ -4,16 +4,18 @@ import halstackLogo from "@/common/images/halstack_logo.svg";
 import StatusTag from "@/common/StatusTag";
 import React from "react";
 import { useRouter } from "next/router";
+import pjson from "../../../package-lock.json";
 
-type SidenavLogoProps = {
-  version?: string;
-};
+type SidenavLogoProps = { version?: string };
 
 const SidenavLogo = ({
   version = "Design System",
 }: SidenavLogoProps): JSX.Element => {
   const { basePath } = useRouter();
-  const siteVersion = basePath.split("/")[2];
+  const pathVersion = basePath.split("/")[2];
+  const isDev = process.env.NODE_ENV === "development";
+  const siteVersion =
+    pjson.dependencies["@dxc-technology/halstack-react"].version;
 
   return (
     <SidenavLogoContainer>
@@ -30,11 +32,11 @@ const SidenavLogo = ({
         <Subtitle>{version}</Subtitle>
       </LogoContainer>
       <StatusTag>
-        {basePath
-          ? isNaN(parseInt(siteVersion))
-            ? siteVersion
-            : `v${siteVersion}.0.0`
-          : "dev"}
+        {isDev
+          ? "dev"
+          : isNaN(parseInt(pathVersion))
+          ? "next"
+          : `v${siteVersion}`}
       </StatusTag>
     </SidenavLogoContainer>
   );
