@@ -132,17 +132,16 @@
     "@babel/helper-validator-identifier" "^7.19.1"
     to-fast-properties "^2.0.0"
 
-"@dxc-technology/halstack-react@9.0.0":
-  version "9.0.0"
-  resolved "https://registry.yarnpkg.com/@dxc-technology/halstack-react/-/halstack-react-9.0.0.tgz#8753c8b4deee78ff989b550b4ed2eb09a42fa0b6"
-  integrity sha512-PGoIds9MPy4O6N6GB4yN+QLYuYcJyOW/GYxJFLanY/9bhp1a9A9fjXjrAdAKGdAVMkR4m9d74kAT+lT6RaIURg==
+"@dxc-technology/halstack-react@^9.0.1":
+  version "9.0.1"
+  resolved "https://registry.yarnpkg.com/@dxc-technology/halstack-react/-/halstack-react-9.0.1.tgz#9e8a3edadedcb300263f5813c59de6e9b77589b6"
+  integrity sha512-M4YvKS3sqWP8BvkyxSmmhUhXYcj29sTDqphg43ADK27lAPktk7y2938pw0qQA2YnCv+lF+qszqvOo2/0T7f2Fw==
   dependencies:
     "@radix-ui/react-popover" "0.1.6"
     "@types/styled-components" "^5.1.24"
     "@types/uuid" "^8.3.4"
     color "^3.1.3"
     dayjs "^1.11.1"
-    rgb-hex "^3.0.0"
     slugify "^1.6.5"
     uuid "^8.3.2"
 
@@ -2803,11 +2802,6 @@ reusify@^1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/reusify/-/reusify-1.0.4.tgz#90da382b1e126efc02146e90845a88db12925d76"
   integrity sha512-U9nH88a3fc/ekCF1l0/UP1IosiuIjyTh7hBvXVMHYgVcfGvt897Xguj2UOLDeI5BG2m7/uwyaLVT6fbtCwTyzw==
-
-rgb-hex@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/rgb-hex/-/rgb-hex-3.0.0.tgz#eab0168cc1279563b18a14605315389142e2e487"
-  integrity sha512-8h7ZcwxCBDKvchSWbWngJuSCqJGQ6nDuLLg+QcRyQDbX9jMWt+PpPeXAhSla0GOooEomk3lCprUpGkMdsLjKyg==
 
 rimraf@^3.0.2:
   version "3.0.2"

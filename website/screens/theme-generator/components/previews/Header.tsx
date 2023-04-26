@@ -1,6 +1,7 @@
 import React from "react";
 import {
   DxcApplicationLayout,
+  DxcDropdown,
   DxcFlex,
   DxcLink,
   DxcParagraph,
@@ -8,17 +9,19 @@ import {
 import Mode from "../Mode";
 import PreviewContainer from "./PreviewContainer";
 
-const options = [
+type dropdownTypes = React.ComponentProps<typeof DxcDropdown>;
+
+const options: dropdownTypes["options"] = [
   {
-    value: 1,
+    value: "1",
     label: "Home",
   },
   {
-    value: 2,
+    value: "2",
     label: "Settings",
   },
   {
-    value: 3,
+    value: "3",
     label: "Log out",
   },
 ];
