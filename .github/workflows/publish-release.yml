@@ -1,6 +1,8 @@
 name: Publish Release
 
-on: pull_request
+on:
+  release:
+    types: [published]
 
 jobs:
   build:
@@ -26,11 +28,31 @@ jobs:
           role-duration-seconds: 3600
           role-skip-session-tagging: true
 
+      - name: Install lib dependencies
+        run: cd lib && npm install --omit=dev
+
+      - name: Build library
+        run: cd lib && npm run build
+
       - name: Install website dependencies
         run: cd website && yarn
+
+      - name: Test library
+        run: cd lib && npm run test
+
+      - name: Publish RELEASE to npm
+        run: |
+          sed -i "s#\"version\": \"0.0.0\"#\"version\": \"${TAG_NAME}\"#" ./dist/package.json
+          cd dist
+          npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
+          TAG_NAME: ${{ github.event.release.tag_name }}
 
       - name: Install scripts dependencies
         run: cd scripts && npm install
 
       - name: Move RELEASE website to S3
-        run: node scripts/release-website.js 9.0.0
+        run: node scripts/release-website.js $TAG_NAME
+        env:
+          TAG_NAME: ${{ github.event.release.tag_name }}
