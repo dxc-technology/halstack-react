@@ -14,8 +14,8 @@ type PlaceContentValues =
   | "space-evenly"
   | "baseline";
 type PlaceItemsValues = "normal" | "start" | "end" | "center" | "stretch" | "baseline";
-type PlaceObject<Type, S extends string> = {
-  [Property in keyof Type as `${string & Property}${Capitalize<string & S>}`]: Type[Property];
+type PlaceObject<Type, Suffix extends string> = {
+  [Property in keyof Type as `${string & Property}${Capitalize<string & Suffix>}`]: Type[Property];
 };
 type PlaceGeneric<PlaceValues, Element extends string> =
   | PlaceObject<{ justify?: PlaceValues; align: PlaceValues }, Element>
