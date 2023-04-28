@@ -15,15 +15,15 @@ import {
 
 const options = [
   {
-    value: 1,
+    value: "1",
     label: "Android",
   },
   {
-    value: 2,
+    value: "2",
     label: "Windows",
   },
   {
-    value: 3,
+    value: "3",
     label: "IOS",
   },
 ];

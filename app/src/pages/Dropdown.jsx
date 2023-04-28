@@ -111,31 +111,31 @@ function App() {
   };
   const optionsWithoutIcon = [
     {
-      value: 1,
+      value: "1",
       label: "Facebook",
     },
     {
-      value: 2,
+      value: "2",
       label: "Twitter",
     },
     {
-      value: 3,
+      value: "3",
       label: "Linkedin",
     },
   ];
   const optionsWithIcon = [
     {
-      value: 1,
+      value: "1",
       label: "Facebook",
       icon: <p>This is a test</p>,
     },
     {
-      value: 2,
+      value: "2",
       label: "Linkedin",
       icon: linkedinSVG,
     },
     {
-      value: 3,
+      value: "3",
       label: "Twitter",
       icon: twitterSVG,
     },
