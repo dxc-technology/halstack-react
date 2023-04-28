@@ -39,6 +39,7 @@ import DxcFlex from "./flex/Flex";
 import DxcTypography from "./typography/Typography";
 import DxcParagraph from "./paragraph/Paragraph";
 import DxcBulletedList from "./bulleted-list/BulletedList";
+import DxcGrid from "./grid/Grid";
 
 import HalstackContext, { HalstackProvider, HalstackLanguageContext } from "./HalstackContext";
 import { BackgroundColorProvider } from "./BackgroundColorContext";
@@ -89,4 +90,5 @@ export {
   DxcTypography,
   DxcParagraph,
   DxcBulletedList,
+  DxcGrid,
 };
