@@ -10,6 +10,8 @@ import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import Example from "@/common/example/Example";
 import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
+import basic from "./examples/basic";
+import layout from "./examples/layout";
 
 const sections = [
   {
@@ -158,7 +160,7 @@ const sections = [
           <td>
             <Code>'div'</Code>
           </td>
-          <td>Sets the a custom HTML tag.</td>
+          <td>Sets a custom HTML tag.</td>
         </tr>
         <tr>
           <td>children: node</td>
@@ -208,9 +210,9 @@ const sections = [
               <td>areaName: string</td>
               <td></td>
               <td>
-                Name or tag corresponding to an area defined with{" "}
-                <Code>grid-template-areas</Code> at the parent{" "}
-                <Code>DxcGrid</Code>.
+                Sets the name of an item so that it can be referenced by a
+                template created with the <Code>grid-template-areas</Code>{" "}
+                property.
               </td>
             </tr>
             <tr>
@@ -278,18 +280,16 @@ const sections = [
     ],
   },
   {
-    title: "🚧 Examples",
-    content: (
-      <DxcParagraph>
-        Currently under development. More examples will be available soon,
-        thanks for the patience.
-      </DxcParagraph>
-    ) ,
+    title: "Examples",
     subSections: [
-      // {
-      //   title: "Direction and alignment",
-      //   content: <Example example={basic} defaultIsVisible />,
-      // },
+      {
+        title: "Basic use",
+        content: <Example example={basic} defaultIsVisible />,
+      },
+      {
+        title: "Halstack Application Layout",
+        content: <Example example={layout} defaultIsVisible />,
+      },
     ],
   },
 ];
