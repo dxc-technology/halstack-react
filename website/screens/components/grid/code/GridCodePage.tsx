@@ -283,11 +283,11 @@ const sections = [
     title: "Examples",
     subSections: [
       {
-        title: "Basic use",
+        title: "Basic usage",
         content: <Example example={basic} defaultIsVisible />,
       },
       {
-        title: "Halstack Application Layout",
+        title: "Building an application layout",
         content: <Example example={layout} defaultIsVisible />,
       },
     ],
