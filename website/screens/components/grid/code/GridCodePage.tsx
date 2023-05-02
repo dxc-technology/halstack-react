@@ -40,6 +40,22 @@ const sections = [
           </td>
         </tr>
         <tr>
+          <td>autoFlow: 'row' | 'column' | 'row dense' | 'column dense'</td>
+          <td>
+            <Code>'row'</Code>
+          </td>
+          <td>
+            Sets the <Code>grid-auto-flow</Code> CSS property. See{" "}
+            <DxcLink
+              newWindow
+              href="https://developer.mozilla.org/en-US/docs/Web/CSS/grid-auto-flow"
+            >
+              MDN
+            </DxcLink>{" "}
+            for further information.
+          </td>
+        </tr>
+        <tr>
           <td>autoRows: string</td>
           <td>
             <Code>'auto'</Code>
