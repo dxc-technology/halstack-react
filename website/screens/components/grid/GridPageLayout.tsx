@@ -12,14 +12,16 @@ const GridPageHeading = ({ children }: { children: React.ReactNode }) => {
         <DxcFlex direction="column" gap="2rem">
           <ComponentHeading name="Grid" status="Experimental" />
           <DxcParagraph>
-            Grid allows users to build{" "}
+            Grid allows users to build applications based on{" "}
             <DxcLink
               newWindow
               href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout"
             >
               CSS Grid Layout
-            </DxcLink>{" "}
-            based layouts.
+            </DxcLink>
+            . It is a technical component that abstracts users from
+            working directly with CSS Grid properties and allows them to write
+            more consistent and semantic layouts.
           </DxcParagraph>
           <TabsPageHeading tabs={tabs}></TabsPageHeading>
         </DxcFlex>

@@ -1,7 +1,12 @@
 import styled from "styled-components";
 
-const ColoredContainer = styled.div<{ color?: string; width?: string; height?: string }>`
+/**
+ * Styled component used in the examples of the layout components:
+ * Bleed, Flex, Grid and Inset
+ */
+const Placeholder = styled.div<{ color?: string; width?: string; height?: string }>`
   box-sizing: border-box;
+  text-align: center;
   ${({ width }) => width && `width: ${width}`};
   ${({ height }) => height && `height: ${height}`};
   padding: 1rem;
@@ -9,9 +14,9 @@ const ColoredContainer = styled.div<{ color?: string; width?: string; height?: s
   border-radius: 0.5rem;
   background-color: ${({ color }) => color ?? "#e5d5f6"};
   font-family: Open Sans, sans-serif;
-  font-size: 1.5rem;
+  font-size: 1.125rem;
   font-weight: bold;
-  color: #a46ede;
+  color: #7D2FD0;
 `;
 
-export default ColoredContainer;
+export default Placeholder;
