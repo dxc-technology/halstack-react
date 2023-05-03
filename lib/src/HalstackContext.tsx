@@ -350,8 +350,7 @@ const parseTheme = (theme: DeepPartial<OpinionatedTheme>): AdvancedTheme => {
 };
 
 const parseLabels = (labels: DeepPartial<TranslatedLabels>): TranslatedLabels => {
-  const parsedLabels = JSON.parse(JSON.stringify(defaultTranslatedComponentLabels));
-
+  const parsedLabels = defaultTranslatedComponentLabels;
   Object.keys(labels).map((component) => {
     if (parsedLabels[component]) {
       Object.keys(parsedLabels[component]).map((label) => {

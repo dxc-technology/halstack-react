@@ -24,8 +24,8 @@ const code = `() => {
       clearFieldActionTitle: "Limpiar",
     },
     paginator: {
-      itemsPerPageText: " Número de elementos",
-      pageOfText: (a, b) => \`Pagina: \${a} de \${b}\`,
+      itemsPerPageText: "Número de elementos: ",
+      pageOfText: (a, b) => \`Página: \${a} de \${b}\`,
     },
   };
 
