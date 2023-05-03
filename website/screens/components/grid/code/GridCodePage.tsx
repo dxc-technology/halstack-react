@@ -286,7 +286,7 @@ const sections = [
               <td>Sets the a custom HTML tag.</td>
             </tr>
             <tr>
-              <td>children: ReactNode</td>
+              <td>children: node</td>
               <td></td>
               <td>Custom content inside the grid container.</td>
             </tr>
@@ -310,7 +310,7 @@ const sections = [
   },
 ];
 
-const FlexCodePage = () => {
+const GridCodePage = () => {
   return (
     <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
@@ -319,9 +319,9 @@ const FlexCodePage = () => {
           startHeadingLevel={2}
         ></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/flex/code/FlexCodePage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/grid/code/GridCodePage.tsx" />
     </DxcFlex>
   );
 };
 
-export default FlexCodePage;
+export default GridCodePage;
