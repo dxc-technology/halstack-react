@@ -131,7 +131,7 @@ export const Chromatic = () => (
       <DxcAccordion
         label="Accordion"
         assistiveText="Assistive text"
-        icon="https://developer.apple.com/design/human-interface-guidelines/foundations/app-icons/images/icon-and-image-large-icon-settings_2x.png"
+        icon="https://www.freepnglogos.com/uploads/facebook-logo-design-1.png"
       >
         <div>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo
