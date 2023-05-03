@@ -98,7 +98,7 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Big icon (image)" theme="light" level={4} />
-      <DxcButton icon="https://developer.apple.com/design/human-interface-guidelines/foundations/app-icons/images/icon-and-image-large-icon-settings_2x.png" />
+      <DxcButton icon="https://www.freepnglogos.com/uploads/facebook-logo-design-1.png" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Small icon" theme="light" level={4} />
