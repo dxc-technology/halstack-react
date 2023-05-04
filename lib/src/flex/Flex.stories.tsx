@@ -51,16 +51,16 @@ export const Chromatic = () => (
     <Container height="75px">
       <DxcFlex basis="100%">
         <DxcFlex order={3} grow={1} alignSelf="flex-end">
-          <Placeholder width="100%">order 3, grow 1, align self end</Placeholder>
+          <Placeholder width="100%" minWidth="0">order 3, grow 1, align self end</Placeholder>
         </DxcFlex>
         <DxcFlex order={-1} grow={4}>
-          <Placeholder width="100%">order -1, grow 4</Placeholder>
+          <Placeholder width="100%" minWidth="0">order -1, grow 4</Placeholder>
         </DxcFlex>
         <DxcFlex order={5} grow={1}>
-          <Placeholder width="100%">order 5, grow 1</Placeholder>
+          <Placeholder width="100%" minWidth="0">order 5, grow 1</Placeholder>
         </DxcFlex>
         <DxcFlex order={2} grow={2}>
-          <Placeholder width="100%">order 2. grow 2</Placeholder>
+          <Placeholder width="100%" minWidth="0">order 2. grow 2</Placeholder>
         </DxcFlex>
       </DxcFlex>
     </Container>
@@ -68,13 +68,13 @@ export const Chromatic = () => (
     <Container>
       <DxcFlex basis="600px">
         <DxcFlex shrink={4} basis="400px">
-          <Placeholder width="100%">shrink 4</Placeholder>
+          <Placeholder width="100%" minWidth="0">shrink 4</Placeholder>
         </DxcFlex>
         <DxcFlex shrink={2} basis="400px">
-          <Placeholder width="100%">shrink 2</Placeholder>
+          <Placeholder width="100%" minWidth="0">shrink 2</Placeholder>
         </DxcFlex>
         <DxcFlex shrink={1} basis="400px">
-          <Placeholder width="100%">shrink 1</Placeholder>
+          <Placeholder width="100%" minWidth="0">shrink 1</Placeholder>
         </DxcFlex>
       </DxcFlex>
     </Container>
@@ -90,7 +90,7 @@ const Container = styled.div<{ height?: string }>`
 
 const Placeholder = styled.div<{ minWidth?: string, width?: string }>`
   height: 40px;
-  min-width: ${({ minWidth }) => minWidth || "200px"};
+  min-width: ${({ minWidth }) => minWidth ?? "200px"};
   width: ${({ width }) => width};
   border: 1px solid #a46ede;
   border-radius: 0.5rem;
