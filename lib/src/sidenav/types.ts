@@ -2,13 +2,13 @@ type SVG = React.ReactNode & React.SVGProps<SVGSVGElement>;
 
 type SidenavPropsType = {
   /**
-   * The area inside the sidenav. This area can be used to render the content inside the sidenav.
-   */
-  children: React.ReactNode;
-  /**
    * The area assigned to render the sidenav title. It is highly recommended to use the sidenav title.
    */
   title?: React.ReactNode;
+  /**
+   * The area inside the sidenav. This area can be used to render the content inside the sidenav.
+   */
+  children: React.ReactNode;
 };
 
 export type SidenavTitlePropsType = {
@@ -27,10 +27,6 @@ export type SidenavSectionPropsType = {
 
 export type SidenavGroupPropsType = {
   /**
-   * The area inside the sidenav group. This area can be used to render sidenav links.
-   */
-  children: React.ReactNode;
-  /**
    * The title of the sidenav group.
    */
   title?: string;
@@ -42,6 +38,10 @@ export type SidenavGroupPropsType = {
    * The icon to be displayed next to the title of the group.
    */
   icon?: string | SVG;
+  /**
+   * The area inside the sidenav group. This area can be used to render sidenav links.
+   */
+  children: React.ReactNode;
 };
 
 export type SidenavLinkPropsType = {
@@ -66,13 +66,13 @@ export type SidenavLinkPropsType = {
    */
   selected?: boolean;
   /**
-   * The area inside the sidenav link.
-   */
-  children: string;
-  /**
    * This function will be called when the user clicks the link.
    */
-  onClick?: ($event) => void;
+  onClick?: ($event: React.MouseEvent<HTMLAnchorElement>) => void;
+  /**
+   * The area inside the sidenav link.
+   */
+  children: React.ReactNode;
 };
 
 export default SidenavPropsType;

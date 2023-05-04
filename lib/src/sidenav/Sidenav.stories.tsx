@@ -205,7 +205,6 @@ const HoverSidenav = () => (
           <DxcSidenav.Link>Group Link</DxcSidenav.Link>
           <DxcSidenav.Link>Group Link</DxcSidenav.Link>
         </DxcSidenav.Group>
-
         <DxcSidenav.Group collapsable={true} title="Collapsable Group">
           <DxcSidenav.Link>Group Link</DxcSidenav.Link>
           <DxcSidenav.Link>Group Link</DxcSidenav.Link>

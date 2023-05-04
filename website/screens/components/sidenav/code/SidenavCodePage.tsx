@@ -22,19 +22,19 @@ const sections = [
           <HeaderDescriptionCell>Description</HeaderDescriptionCell>
         </tr>
         <tr>
-          <td>children: node</td>
-          <td></td>
-          <td>
-            The area inside the sidenav. The content will be placed inside a
-            stack with a divider between each element.
-          </td>
-        </tr>
-        <tr>
           <td>title: node</td>
           <td></td>
           <td>
             The area assigned to render the title. It is highly recommended to
             use the sidenav title.
+          </td>
+        </tr>
+        <tr>
+          <td>children: node</td>
+          <td></td>
+          <td>
+            The area inside the sidenav. The content will be placed inside a
+            stack with a divider between each element.
           </td>
         </tr>
       </DxcTable>
@@ -44,7 +44,8 @@ const sections = [
         title: "DxcSidenav.Title",
         content: (
           <DxcParagraph>
-            The title should be only used in the sidenav title prop.
+            This compound component should only be used inside the{" "}
+            <Code>title</Code> prop.
           </DxcParagraph>
         ),
         subSections: [
@@ -74,9 +75,10 @@ const sections = [
         title: "DxcSidenav.Section",
         content: (
           <DxcParagraph>
-            This must be defined as children of the Sidenav. It helps to
-            separate groups and links into different agroupations. It has the
-            following props:
+            Sections must be defined as direct children of the{" "}
+            <Code>DxcSidenav</Code> and serve to group links, groups and/or
+            custom content into different and distinguishable parts of the
+            component.
           </DxcParagraph>
         ),
         subSections: [
@@ -104,9 +106,10 @@ const sections = [
             title: "DxcSidenav.Group",
             content: (
               <DxcParagraph>
-                Even though any children are accepted in the group we recommend
-                using only the DxcSidenav.Link or any react based router with
-                the DxcSidenav.Link.
+                Even though any children are accepted in a group, we recommend
+                using only the <Code>DxcSidenav.Link</Code> or any react-based
+                router complemented with this one as links to the different
+                pages.
               </DxcParagraph>
             ),
             subSections: [
@@ -118,14 +121,6 @@ const sections = [
                       <th>Name</th>
                       <th>Default</th>
                       <HeaderDescriptionCell>Description</HeaderDescriptionCell>
-                    </tr>
-                    <tr>
-                      <td>children: node</td>
-                      <td></td>
-                      <td>
-                        The area inside the sidenav group. This area can be used
-                        to render sidenav links.
-                      </td>
                     </tr>
                     <tr>
                       <td>title: string</td>
@@ -149,6 +144,14 @@ const sections = [
                         The icon to be displayed next to the title of the group.
                       </td>
                     </tr>
+                    <tr>
+                      <td>children: node</td>
+                      <td></td>
+                      <td>
+                        The area inside the sidenav group. This area can be used
+                        to render sidenav links.
+                      </td>
+                    </tr>
                   </DxcTable>
                 ),
               },
@@ -158,9 +161,9 @@ const sections = [
             title: "DxcSidenav.Link",
             content: (
               <DxcParagraph>
-                As the DxcLink component, we decided to make our link component
-                in the sidenav just a styled HTML anchor element which allows it
-                to be used in any React based router. You can check the{" "}
+                As with the <Code>DxcLink</Code> component, we decided to make
+                our Sidenav link component a styled HTML anchor that can be used
+                with any React-based router. You can check the{" "}
                 <Link href={"/components/link/"} passHref>
                   <DxcLink>Link</DxcLink>
                 </Link>{" "}
@@ -176,13 +179,6 @@ const sections = [
                       <th>Name</th>
                       <th>Default</th>
                       <HeaderDescriptionCell>Description</HeaderDescriptionCell>
-                    </tr>
-                    <tr>
-                      <td>tabIndex: number</td>
-                      <td>
-                        <Code>0</Code>
-                      </td>
-                      <td>Value of the tabindex.</td>
                     </tr>
                     <tr>
                       <td>href: string</td>
@@ -214,17 +210,24 @@ const sections = [
                       <td>If true, the link will be marked as selected.</td>
                     </tr>
                     <tr>
-                      <td>children: string</td>
-                      <td></td>
-                      <td>The area inside the sidenav link.</td>
-                    </tr>
-                    <tr>
                       <td>onClick: function</td>
                       <td></td>
                       <td>
                         This function will be called when the user clicks the
                         link and the event will be passed to this function.
                       </td>
+                    </tr>
+                    <tr>
+                      <td>tabIndex: number</td>
+                      <td>
+                        <Code>0</Code>
+                      </td>
+                      <td>Value of the tabindex.</td>
+                    </tr>
+                    <tr>
+                      <td>children: node</td>
+                      <td></td>
+                      <td>The area inside the sidenav link.</td>
                     </tr>
                   </DxcTable>
                 ),

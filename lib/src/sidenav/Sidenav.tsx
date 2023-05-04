@@ -1,4 +1,4 @@
-import React, { forwardRef, Ref, useMemo, useState } from "react";
+import React, { forwardRef, useMemo, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { responsiveSizes } from "../common/variables";
 import { useResponsiveSidenavVisibility } from "../layout/SidenavContext";
@@ -12,30 +12,11 @@ import SidenavPropsType, {
 } from "./types.js";
 import DxcFlex from "../flex/Flex";
 import DxcBleed from "../bleed/Bleed";
+import icons from "./Icons";
 
-const collapsedIcon = (
-  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
-    <path d="M0 0h24v24H0z" fill="none" />
-    <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z" />
-  </svg>
-);
-
-const collapsableIcon = (
-  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
-    <path d="M0 0h24v24H0z" fill="none" />
-    <path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z" />
-  </svg>
-);
-
-const externalLinkIcon = (
-  <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" fill="currentColor">
-    <path d="M0 0h24v24H0z" fill="none" />
-    <path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z" />
-  </svg>
-);
-
-const DxcSidenav = ({ children, title }: SidenavPropsType): JSX.Element => {
+const DxcSidenav = ({ title, children }: SidenavPropsType): JSX.Element => {
   const colorsTheme = useTheme();
+
   return (
     <ThemeProvider theme={colorsTheme.sidenav}>
       <SidenavContainer>
@@ -69,25 +50,25 @@ const Section = ({ children }: SidenavSectionPropsType): JSX.Element => (
   </DxcBleed>
 );
 
-const Group = ({ children, title, collapsable = false, icon }: SidenavGroupPropsType): JSX.Element => {
+const Group = ({ title, collapsable = false, icon, children }: SidenavGroupPropsType): JSX.Element => {
   const [collapsed, setCollapsed] = useState(false);
   const selectedGroup = useMemo(() => {
     return collapsed ? React.Children.toArray(children).some((child) => child["props"]?.selected) : false;
   }, [collapsed, children]);
+
   return (
     <SidenavGroup>
       {collapsable && title ? (
         <SidenavGroupTitleButton
-          role="button"
           aria-expanded={!collapsed}
           onClick={() => setCollapsed(!collapsed)}
           selectedGroup={selectedGroup}
         >
-          <SidenavContent>
+          <DxcFlex alignItems="center" gap="0.5rem">
             {typeof icon === "string" ? <img src={icon} /> : icon}
             {title}
-          </SidenavContent>
-          {collapsed ? collapsedIcon : collapsableIcon}
+          </DxcFlex>
+          {collapsed ? icons.collapsedIcon : icons.collapsableIcon}
         </SidenavGroupTitleButton>
       ) : (
         title && (
@@ -102,25 +83,17 @@ const Group = ({ children, title, collapsable = false, icon }: SidenavGroupProps
   );
 };
 
-const Link = forwardRef(
+const Link = forwardRef<HTMLAnchorElement, SidenavLinkPropsType>(
   (
-    {
-      href,
-      children,
-      newWindow = false,
-      selected = false,
-      icon,
-      tabIndex = 0,
-      onClick,
-      ...otherProps
-    }: SidenavLinkPropsType,
-    ref: Ref<HTMLAnchorElement>
+    { href, newWindow = false, selected = false, icon, onClick, tabIndex = 0, children, ...otherProps },
+    ref
   ): JSX.Element => {
     const setIsSidenavVisibleResponsive = useResponsiveSidenavVisibility();
-    const handleClick = ($event) => {
+    const handleClick = ($event: React.MouseEvent<HTMLAnchorElement>) => {
       onClick?.($event);
       setIsSidenavVisibleResponsive?.(false);
     };
+
     return (
       <SidenavLink
         selected={selected}
@@ -131,11 +104,11 @@ const Link = forwardRef(
         onClick={handleClick}
         {...otherProps}
       >
-        <SidenavContent>
+        <DxcFlex alignItems="center" gap="0.5rem">
           {typeof icon === "string" ? <img src={icon} /> : icon}
           {children}
-        </SidenavContent>
-        {newWindow && externalLinkIcon}
+        </DxcFlex>
+        {newWindow && icons.externalLinkIcon}
       </SidenavLink>
     );
   }
@@ -170,21 +143,16 @@ const SidenavContainer = styled.div`
 `;
 
 const SidenavTitle = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1.2rem;
   font-family: ${(props) => props.theme.titleFontFamily};
   font-style: ${(props) => props.theme.titleFontStyle};
   font-weight: ${(props) => props.theme.titleFontWeight};
   font-size: ${(props) => props.theme.titleFontSize};
-  line-height: 27px;
-  display: flex;
-  align-items: center;
   color: ${(props) => props.theme.titleFontColor};
   text-transform: ${(props) => props.theme.titleFontTextTransform};
   letter-spacing: ${(props) => props.theme.titleFontLetterSpacing};
-  padding: 0.5rem 1.2rem;
-
-  svg {
-    margin-right: 0.5rem;
-  }
 `;
 
 const Divider = styled.div`
@@ -211,7 +179,6 @@ const SidenavGroupTitle = styled.span`
   font-style: ${(props) => props.theme.groupTitleFontStyle};
   font-weight: ${(props) => props.theme.groupTitleFontWeight};
   font-size: ${(props) => props.theme.groupTitleFontSize};
-  line-height: 18px;
 
   img,
   svg {
@@ -228,14 +195,16 @@ const SidenavGroupTitleButton = styled.button<{ selectedGroup: boolean }>`
   justify-content: space-between;
   width: 100%;
   padding: 0.5rem 1.2rem;
-
   font-family: ${(props) => props.theme.groupTitleFontFamily};
   font-style: ${(props) => props.theme.groupTitleFontStyle};
   font-weight: ${(props) => props.theme.groupTitleFontWeight};
   font-size: ${(props) => props.theme.groupTitleFontSize};
-  line-height: 19px;
-
   cursor: pointer;
+  
+  ${(props) =>
+    props.selectedGroup
+      ? `color: ${props.theme.groupTitleSelectedFontColor}; background-color: ${props.theme.groupTitleSelectedBackgroundColor};`
+      : `color: ${props.theme.groupTitleFontColor}; background-color: transparent;`}
 
   &:focus-visible {
     outline: 2px solid ${(props) => props.theme.linkFocusColor};
@@ -244,18 +213,15 @@ const SidenavGroupTitleButton = styled.button<{ selectedGroup: boolean }>`
   &:hover {
     ${(props) =>
       props.selectedGroup
-        ? `color: ${props.theme.groupTitleSelectedHoverFontColor}; background: ${props.theme.groupTitleSelectedHoverBackgroundColor};`
-        : `color: ${props.theme.groupTitleFontColor}; background: ${props.theme.groupTitleHoverBackgroundColor};`}
+        ? `color: ${props.theme.groupTitleSelectedHoverFontColor}; background-color: ${props.theme.groupTitleSelectedHoverBackgroundColor};`
+        : `color: ${props.theme.groupTitleFontColor}; background-color: ${props.theme.groupTitleHoverBackgroundColor};`}
   }
   &:active {
-    background-color: ${(props) => props.theme.groupTitleActiveBackgroundColor};
-    color: ${(props) => props.theme.groupTitleFontColor};
+    background-color: ${(props) => props.selectedGroup ? "#4d4d4d" : props.theme.groupTitleActiveBackgroundColor};
+    color: ${(props) => props.selectedGroup ? "#ffffff" : props.theme.groupTitleFontColor};
   }
-  ${(props) =>
-    props.selectedGroup
-      ? `color: ${props.theme.groupTitleSelectedFontColor}; background: ${props.theme.groupTitleSelectedBackgroundColor};`
-      : `color: ${props.theme.groupTitleFontColor}; background: transparent;`}
 
+  img,
   svg {
     height: 16px;
     width: 16px;
@@ -276,20 +242,18 @@ const SidenavLink = styled.a<{ selected: SidenavLinkPropsType["selected"] }>`
   font-style: ${(props) => props.theme.linkFontStyle};
   font-weight: ${(props) => props.theme.linkFontWeight};
   font-size: ${(props) => props.theme.linkFontSize};
-  line-height: 19px;
+  cursor: pointer;
 
   ${(props) =>
     props.selected
-      ? `color: ${props.theme.linkSelectedFontColor}; background: ${props.theme.linkSelectedBackgroundColor};`
-      : `color: ${props.theme.linkFontColor}; background: transparent;`}
-
-  cursor: pointer;
+      ? `color: ${props.theme.linkSelectedFontColor}; background-color: ${props.theme.linkSelectedBackgroundColor};`
+      : `color: ${props.theme.linkFontColor}; background-color: transparent;`}
 
   &:hover {
     ${(props) =>
       props.selected
-        ? `color: ${props.theme.linkSelectedHoverFontColor}; background: ${props.theme.linkSelectedHoverBackgroundColor};`
-        : `color: ${props.theme.linkFontColor}; background: ${props.theme.linkHoverBackgroundColor};`}
+        ? `color: ${props.theme.linkSelectedHoverFontColor}; background-color: ${props.theme.linkSelectedHoverBackgroundColor};`
+        : `color: ${props.theme.linkFontColor}; background-color: ${props.theme.linkHoverBackgroundColor};`}
   }
   &:focus {
     outline: 2px solid ${(props) => props.theme.linkFocusColor};
@@ -297,21 +261,10 @@ const SidenavLink = styled.a<{ selected: SidenavLinkPropsType["selected"] }>`
   }
   &:active {
     color: #ffffff;
-    background: #4d4d4d;
+    background-color: #4d4d4d;
     outline: 2px solid #0095ff;
     outline-offset: -2px;
   }
-
-  svg {
-    height: 16px;
-    width: 16px;
-  }
-`;
-
-const SidenavContent = styled.span`
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
 
   img,
   svg {
