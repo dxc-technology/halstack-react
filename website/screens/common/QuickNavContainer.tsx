@@ -84,9 +84,10 @@ const ContentContainer = styled.div`
 const QuickNavContainer = styled.div`
   position: sticky;
   margin-left: 24px;
-  max-width: 300px;
+  max-width: 296px;
   top: calc(64px + 24px);
   max-height: calc(100vh - 64px);
+
   ::-webkit-scrollbar {
     width: 2px;
   }
@@ -101,6 +102,9 @@ const QuickNavContainer = styled.div`
 
   @media (max-width: ${responsiveSizes.laptop}px) {
     display: none;
+  }
+  @media (max-width: ${responsiveSizes.desktop}px) and (min-width: ${responsiveSizes.laptop}px) {
+    max-width: 176px;
   }
 `;
 

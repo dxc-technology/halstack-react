@@ -133,7 +133,7 @@ const sections = [
           </td>
         </tr>
         <tr>
-          <td>as: ElementType</td>
+          <td>as: keyof HTMLElementTagNameMap</td>
           <td>
             <Code>'div'</Code>
           </td>

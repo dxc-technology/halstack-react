@@ -23,18 +23,19 @@ const sections = [
     content: (
       <>
         <DxcParagraph>
-          Halstack provide multiple components in order to achieve layout
-          consistency and an easy way to arrange elements in the UI. The{" "}
+          Halstack provides multiple components to achieve layout consistency
+          and an easy way to arrange elements in the UI. The{" "}
           <Link href="/components/application-layout/" passHref>
             <DxcLink>application layout</DxcLink>
           </Link>{" "}
-          is the base component that wraps any application built with halstack.
+          is the base that wraps any application built with Halstack.
           In addition, all of the components listed below can be used within
           each other to create a wide variety of standard layouts:
         </DxcParagraph>
         <DxcBulletedList>
-          <DxcBulletedList.Item>Flex</DxcBulletedList.Item>
           <DxcBulletedList.Item>Bleed</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Flex</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Grid</DxcBulletedList.Item>
           <DxcBulletedList.Item>Inset</DxcBulletedList.Item>
         </DxcBulletedList>
       </>
