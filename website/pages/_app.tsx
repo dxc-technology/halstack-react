@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { ReactElement, ReactNode, useMemo, useState } from "react";
 import type { NextPage } from "next";
 import type { AppProps } from "next/app";
@@ -18,6 +19,7 @@ import {
   themeGeneratorLinks,
 } from "@/common/pagesList";
 import Link from "next/link";
+import StatusTag from "@/common/StatusTag";
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -105,12 +107,17 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
                     return (
                       <DxcApplicationLayout.SideNav.Section key={label}>
                         <DxcApplicationLayout.SideNav.Group title={label}>
-                          {links.map(({ label, path }) => (
+                          {links.map(({ label, path, status }) => (
                             <Link key={`${label}-${path}`} href={path} passHref>
                               <DxcApplicationLayout.SideNav.Link
                                 selected={matchPaths(path)}
                               >
                                 {label}
+                                {status !== "Ready" && (
+                                  <StatusTag status={status}>
+                                    {status}
+                                  </StatusTag>
+                                )}
                               </DxcApplicationLayout.SideNav.Link>
                             </Link>
                           ))}
