@@ -1,6 +1,9 @@
+type ComponentStatus = "Ready" | "Deprecated" | "Experimental";
+
 export type LinkDetails = {
   label: string;
   path: string;
+  status: ComponentStatus;
 };
 
 export type LinksSectionDetails = {
@@ -19,68 +22,69 @@ export const themeGeneratorLinks = [
 ];
 
 const overviewLinks: LinkDetails[] = [
-  { label: "Introduction", path: "/overview/introduction" },
+  { label: "Introduction", path: "/overview/introduction", status: "Ready" },
 ];
 const utilitiesLinks: LinkDetails[] = [
   {
     label: "Halstack Provider",
     path: "/utilities/halstack-provider",
+    status: "Ready",
   },
 ];
 
 const principlesLinks: LinkDetails[] = [
-  { label: "Color", path: "/principles/color" },
-  { label: "Spacing", path: "/principles/spacing" },
-  { label: "Typography", path: "/principles/typography" },
-  { label: "Layout", path: "/principles/layout" },
-  { label: "Themes", path: "/principles/themes" },
-  { label: "Localization", path: "/principles/localization" },
+  { label: "Color", path: "/principles/color", status: "Ready" },
+  { label: "Spacing", path: "/principles/spacing", status: "Ready" },
+  { label: "Typography", path: "/principles/typography", status: "Ready" },
+  { label: "Layout", path: "/principles/layout", status: "Ready" },
+  { label: "Themes", path: "/principles/themes", status: "Ready" },
+  { label: "Localization", path: "/principles/localization", status: "Ready" },
 ];
 
 const componentsLinks: LinkDetails[] = [
-  { label: "Accordion", path: "/components/accordion" },
-  { label: "Alert", path: "/components/alert" },
-  { label: "Application layout", path: "/components/application-layout" },
-  { label: "Bleed", path: "/components/bleed" },
-  { label: "Box", path: "/components/box" },
-  { label: "Bulleted List", path: "/components/bulleted-list" },
-  { label: "Button", path: "/components/button" },
-  { label: "Card", path: "/components/card" },
-  { label: "Checkbox", path: "/components/checkbox" },
-  { label: "Chip", path: "/components/chip" },
-  { label: "Date Input", path: "/components/date-input" },
-  { label: "Dialog", path: "/components/dialog" },
-  { label: "Dropdown", path: "/components/dropdown" },
-  { label: "File Input", path: "/components/file-input" },
-  { label: "Flex", path: "/components/flex" },
-  { label: "Footer", path: "/components/footer" },
-  { label: "Grid", path: "/components/grid" },
-  { label: "Header", path: "/components/header" },
-  { label: "Heading", path: "/components/heading" },
-  { label: "Inset", path: "/components/inset" },
-  { label: "Link", path: "/components/link" },
-  { label: "Nav Tabs", path: "/components/nav-tabs" },
-  { label: "Number Input", path: "/components/number-input" },
-  { label: "Paginator", path: "/components/paginator" },
-  { label: "Paragraph", path: "/components/paragraph" },
-  { label: "Password Input", path: "/components/password-input" },
-  { label: "Progress Bar", path: "/components/progress-bar" },
-  { label: "Quick Nav", path: "/components/quick-nav" },
-  { label: "Radio Group", path: "/components/radio-group" },
-  { label: "Resultset Table", path: "/components/resultset-table" },
-  { label: "Select", path: "/components/select" },
-  { label: "Sidenav", path: "/components/sidenav" },
-  { label: "Slider", path: "/components/slider" },
-  { label: "Spinner", path: "/components/spinner" },
-  { label: "Switch", path: "/components/switch" },
-  { label: "Table", path: "/components/table" },
-  { label: "Tabs", path: "/components/tabs" },
-  { label: "Tag", path: "/components/tag" },
-  { label: "Text Input", path: "/components/text-input" },
-  { label: "Textarea", path: "/components/textarea" },
-  { label: "Toggle Group", path: "/components/toggle-group" },
-  { label: "Typography", path: "/components/typography" },
-  { label: "Wizard", path: "/components/wizard" },
+  { label: "Accordion", path: "/components/accordion", status: "Ready" },
+  { label: "Alert", path: "/components/alert", status: "Ready" },
+  { label: "Application layout", path: "/components/application-layout", status: "Ready" },
+  { label: "Bleed", path: "/components/bleed", status: "Ready" },
+  { label: "Box", path: "/components/box", status: "Ready" },
+  { label: "Bulleted List", path: "/components/bulleted-list", status: "Ready" },
+  { label: "Button", path: "/components/button", status: "Ready" },
+  { label: "Card", path: "/components/card", status: "Ready" },
+  { label: "Checkbox", path: "/components/checkbox", status: "Ready" },
+  { label: "Chip", path: "/components/chip", status: "Ready" },
+  { label: "Date Input", path: "/components/date-input", status: "Ready" },
+  { label: "Dialog", path: "/components/dialog", status: "Ready" },
+  { label: "Dropdown", path: "/components/dropdown", status: "Ready" },
+  { label: "File Input", path: "/components/file-input", status: "Ready" },
+  { label: "Flex", path: "/components/flex", status: "Ready" },
+  { label: "Footer", path: "/components/footer", status: "Ready" },
+  { label: "Grid", path: "/components/grid", status: "Experimental" },
+  { label: "Header", path: "/components/header", status: "Ready" },
+  { label: "Heading", path: "/components/heading", status: "Ready" },
+  { label: "Inset", path: "/components/inset", status: "Ready" },
+  { label: "Link", path: "/components/link", status: "Ready" },
+  { label: "Nav Tabs", path: "/components/nav-tabs", status: "Ready" },
+  { label: "Number Input", path: "/components/number-input", status: "Ready" },
+  { label: "Paginator", path: "/components/paginator", status: "Ready" },
+  { label: "Paragraph", path: "/components/paragraph", status: "Ready" },
+  { label: "Password Input", path: "/components/password-input", status: "Ready" },
+  { label: "Progress Bar", path: "/components/progress-bar", status: "Ready" },
+  { label: "Quick Nav", path: "/components/quick-nav", status: "Ready" },
+  { label: "Radio Group", path: "/components/radio-group", status: "Ready" },
+  { label: "Resultset Table", path: "/components/resultset-table", status: "Ready" },
+  { label: "Select", path: "/components/select", status: "Ready" },
+  { label: "Sidenav", path: "/components/sidenav", status: "Ready" },
+  { label: "Slider", path: "/components/slider", status: "Ready" },
+  { label: "Spinner", path: "/components/spinner", status: "Ready" },
+  { label: "Switch", path: "/components/switch", status: "Ready" },
+  { label: "Table", path: "/components/table", status: "Ready" },
+  { label: "Tabs", path: "/components/tabs", status: "Ready" },
+  { label: "Tag", path: "/components/tag", status: "Ready" },
+  { label: "Text Input", path: "/components/text-input", status: "Ready" },
+  { label: "Textarea", path: "/components/textarea", status: "Ready" },
+  { label: "Toggle Group", path: "/components/toggle-group", status: "Ready" },
+  { label: "Typography", path: "/components/typography", status: "Ready" },
+  { label: "Wizard", path: "/components/wizard", status: "Ready" },
 ];
 
 export const LinksSections: LinksSectionDetails[] = [

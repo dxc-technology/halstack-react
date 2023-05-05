@@ -14,7 +14,7 @@ const TabsPageHeading = ({ children }: { children: React.ReactNode }) => {
     <DxcFlex direction="column" gap="3rem">
       <PageHeading>
         <DxcFlex direction="column" gap="2rem">
-          <ComponentHeading name="Tabs" status="Ready" />
+          <ComponentHeading name="Tabs" />
           <DxcParagraph>
             Tabs allow the user to interact across the sections to switch from
             one set of content to another, making the transition easily from one

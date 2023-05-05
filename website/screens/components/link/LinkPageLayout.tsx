@@ -14,7 +14,7 @@ const LinkPageHeading = ({ children }: { children: React.ReactNode }) => {
     <DxcFlex direction="column" gap="3rem">
       <PageHeading>
         <DxcFlex direction="column" gap="2rem">
-          <ComponentHeading name="Link" status="Ready" />
+          <ComponentHeading name="Link" />
           <DxcParagraph>
             Links are used as navigational elements. They may appear isolated,
             inside a sentence or paragraph or following the content.

@@ -14,7 +14,7 @@ const BoxPageHeading = ({ children }: { children: React.ReactNode }) => {
     <DxcFlex direction="column" gap="3rem">
       <PageHeading>
         <DxcFlex direction="column" gap="2rem">
-          <ComponentHeading name="Box" status="Ready" />
+          <ComponentHeading name="Box" />
           <DxcParagraph>
             There are different ways to organise the content on the webpage to
             facilitate the user according to his nature of interaction with the

@@ -14,7 +14,7 @@ const TablePageHeading = ({ children }: { children: React.ReactNode }) => {
     <DxcFlex direction="column" gap="3rem">
       <PageHeading>
         <DxcFlex direction="column" gap="2rem">
-          <ComponentHeading name="Table" status="Ready" />
+          <ComponentHeading name="Table" />
           <DxcParagraph>
             Data table is a component with a high rate of usage within the
             applications. It allows to show the user a big amount of information
