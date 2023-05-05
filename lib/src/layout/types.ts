@@ -1,12 +1,3 @@
-type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
-
-type Padding = {
-  top?: Space;
-  bottom?: Space;
-  left?: Space;
-  right?: Space;
-};
-
 type ChildrenType = AppLayoutMainPropsType | AppLayoutSidenavPropsType;
 
 export type AppLayoutMainPropsType = {

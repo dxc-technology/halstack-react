@@ -1,4 +1,4 @@
-import React, { forwardRef, useMemo, useState } from "react";
+import React, { forwardRef, useContext, useEffect, useMemo, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { responsiveSizes } from "../common/variables";
 import { useResponsiveSidenavVisibility } from "../layout/SidenavContext";
@@ -50,36 +50,41 @@ const Section = ({ children }: SidenavSectionPropsType): JSX.Element => (
   </DxcBleed>
 );
 
+const GroupContext = React.createContext<{
+  isGrouped: boolean;
+  changeIsGroupSelected?: React.Dispatch<React.SetStateAction<boolean>>;
+}>({ isGrouped: false });
 const Group = ({ title, collapsable = false, icon, children }: SidenavGroupPropsType): JSX.Element => {
   const [collapsed, setCollapsed] = useState(false);
-  const selectedGroup = useMemo(() => {
-    return collapsed ? React.Children.toArray(children).some((child) => child["props"]?.selected) : false;
-  }, [collapsed, children]);
+  const [isSelected, changeIsSelected] = useState(false);
+  const contextValue = useMemo(() => ({ isGrouped: true, changeIsGroupSelected: changeIsSelected }), []);
 
   return (
-    <SidenavGroup>
-      {collapsable && title ? (
-        <SidenavGroupTitleButton
-          aria-expanded={!collapsed}
-          onClick={() => setCollapsed(!collapsed)}
-          selectedGroup={selectedGroup}
-        >
-          <DxcFlex alignItems="center" gap="0.5rem">
-            {typeof icon === "string" ? <img src={icon} /> : icon}
-            {title}
-          </DxcFlex>
-          {collapsed ? icons.collapsedIcon : icons.collapsableIcon}
-        </SidenavGroupTitleButton>
-      ) : (
-        title && (
-          <SidenavGroupTitle>
-            {typeof icon === "string" ? <img src={icon} /> : icon}
-            {title}
-          </SidenavGroupTitle>
-        )
-      )}
-      {!collapsed && children}
-    </SidenavGroup>
+    <GroupContext.Provider value={contextValue}>
+      <SidenavGroup>
+        {collapsable && title ? (
+          <SidenavGroupTitleButton
+            aria-expanded={!collapsed}
+            onClick={() => setCollapsed(!collapsed)}
+            selectedGroup={collapsed && isSelected}
+          >
+            <DxcFlex alignItems="center" gap="0.5rem">
+              {typeof icon === "string" ? <img src={icon} /> : icon}
+              {title}
+            </DxcFlex>
+            {collapsed ? icons.collapsedIcon : icons.collapsableIcon}
+          </SidenavGroupTitleButton>
+        ) : (
+          title && (
+            <SidenavGroupTitle>
+              {typeof icon === "string" ? <img src={icon} /> : icon}
+              {title}
+            </SidenavGroupTitle>
+          )
+        )}
+        {!collapsed && children}
+      </SidenavGroup>
+    </GroupContext.Provider>
   );
 };
 
@@ -93,6 +98,11 @@ const Link = forwardRef<HTMLAnchorElement, SidenavLinkPropsType>(
       onClick?.($event);
       setIsSidenavVisibleResponsive?.(false);
     };
+    const { isGrouped, changeIsGroupSelected } = useContext(GroupContext);
+
+    useEffect(() => {
+      isGrouped && changeIsGroupSelected?.((isGroupSelected) => (!isGroupSelected ? selected : isGroupSelected));
+    }, [selected]);
 
     return (
       <SidenavLink
@@ -115,10 +125,10 @@ const Link = forwardRef<HTMLAnchorElement, SidenavLinkPropsType>(
 );
 
 const SidenavContainer = styled.div`
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   background-color: ${(props) => props.theme.backgroundColor};
-  box-sizing: border-box;
   width: 280px;
   @media (max-width: ${responsiveSizes.medium}rem) {
     width: 100vw;
@@ -173,7 +183,6 @@ const SidenavGroupTitle = styled.span`
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  width: 100%;
   padding: 0.5rem 1.2rem;
   font-family: ${(props) => props.theme.groupTitleFontFamily};
   font-style: ${(props) => props.theme.groupTitleFontStyle};
@@ -200,7 +209,7 @@ const SidenavGroupTitleButton = styled.button<{ selectedGroup: boolean }>`
   font-weight: ${(props) => props.theme.groupTitleFontWeight};
   font-size: ${(props) => props.theme.groupTitleFontSize};
   cursor: pointer;
-  
+
   ${(props) =>
     props.selectedGroup
       ? `color: ${props.theme.groupTitleSelectedFontColor}; background-color: ${props.theme.groupTitleSelectedBackgroundColor};`
@@ -217,8 +226,8 @@ const SidenavGroupTitleButton = styled.button<{ selectedGroup: boolean }>`
         : `color: ${props.theme.groupTitleFontColor}; background-color: ${props.theme.groupTitleHoverBackgroundColor};`}
   }
   &:active {
-    background-color: ${(props) => props.selectedGroup ? "#4d4d4d" : props.theme.groupTitleActiveBackgroundColor};
-    color: ${(props) => props.selectedGroup ? "#ffffff" : props.theme.groupTitleFontColor};
+    background-color: ${(props) => (props.selectedGroup ? "#4d4d4d" : props.theme.groupTitleActiveBackgroundColor)};
+    color: ${(props) => (props.selectedGroup ? "#ffffff" : props.theme.groupTitleFontColor)};
   }
 
   img,
