@@ -133,7 +133,6 @@ const SidenavContainer = styled.div`
   @media (max-width: ${responsiveSizes.medium}rem) {
     width: 100vw;
   }
-
   height: 100%;
   padding: 2rem 1rem;
 
