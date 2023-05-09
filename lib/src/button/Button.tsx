@@ -42,7 +42,6 @@ const DxcButton = ({
         type={type}
         mode={mode !== "primary" && mode !== "secondary" && mode !== "text" ? "primary" : mode}
         disabled={disabled}
-        aria-disabled={disabled}
         tabIndex={disabled ? -1 : tabIndex}
         backgroundType={backgroundType}
         size={size}

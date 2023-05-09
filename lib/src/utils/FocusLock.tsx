@@ -3,7 +3,7 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 const not = {
   inert: ":not([inert]):not([inert] *)",
   negTabIndex: ':not([tabindex^="-"])',
-  disabled: ":not(:disabled):not([aria-disabled='true'])",
+  disabled: ":not(:disabled)",
 };
 const focusableQuery = [
   `a[href]${not.inert}${not.negTabIndex}`,
