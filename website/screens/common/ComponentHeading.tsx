@@ -1,4 +1,4 @@
-import { DxcHeading, DxcFlex } from "@dxc-technology/halstack-react";
+import { DxcHeading } from "@dxc-technology/halstack-react";
 import React from "react";
 
 type ComponentHeadingProps = {
