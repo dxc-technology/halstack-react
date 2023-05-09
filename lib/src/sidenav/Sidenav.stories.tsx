@@ -114,33 +114,6 @@ export const Chromatic = () => (
         </DxcSidenav.Section>
       </DxcSidenav>
     </ExampleContainer>
-    <ExampleContainer pseudoState="pseudo-active">
-      <Title title="Active options sidenav" theme="light" level={4} />
-      <DxcSidenav title={<DxcSidenav.Title>Dxc technology</DxcSidenav.Title>}>
-        <DxcSidenav.Section>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ullamcorper consectetur mollis. Suspendisse
-            vitae lacinia libero.
-          </p>
-        </DxcSidenav.Section>
-        <DxcSidenav.Section>
-          <DxcSidenav.Link>Single Link</DxcSidenav.Link>
-          <DxcSidenav.Group collapsable={true} title="Collapsable Group">
-            <DxcSidenav.Link icon="https://cdn-icons-png.flaticon.com/512/5039/5039041.png">Group Link</DxcSidenav.Link>
-          </DxcSidenav.Group>
-        </DxcSidenav.Section>
-        <DxcSidenav.Section>
-          <DxcSidenav.Group collapsable={true} title="Collapsable Group">
-            <DxcSidenav.Link selected icon={iconSVG}>
-              Group Link
-            </DxcSidenav.Link>
-          </DxcSidenav.Group>
-          <DxcSidenav.Group collapsable={false} title="Section Group">
-            <DxcSidenav.Link>Group Link</DxcSidenav.Link>
-          </DxcSidenav.Group>
-        </DxcSidenav.Section>
-      </DxcSidenav>
-    </ExampleContainer>
     <Title title="Opinionated theme" theme="light" level={2} />
     <ExampleContainer>
       <HalstackProvider theme={opinionatedTheme}>
