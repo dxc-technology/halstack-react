@@ -56,7 +56,7 @@ const Dialog = () => {
                   Are you sure you want to delete the 3 selected documents?
                 </DxcParagraph>
               </DxcFlex>
-              <DxcFlex justifyContent="flex-end" gap="0.75rem">
+              <DxcFlex justifyContent="flex-end" gap="1rem">
                 <DxcButton
                   label="Cancel"
                   onClick={handleClickDefaultDialog}
@@ -82,7 +82,7 @@ const Dialog = () => {
                 <DxcTextInput label="Last name" />
                 <DxcTextInput label="Address" size="fillParent" />
               </DxcFlex>
-              <DxcFlex justifyContent="center" gap="0.75rem">
+              <DxcFlex justifyContent="center" gap="1rem">
                 <DxcButton
                   label="Cancel"
                   onClick={handleClickBackground}

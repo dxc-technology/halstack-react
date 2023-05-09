@@ -339,7 +339,7 @@ export const Chromatic = () => (
     </ExampleContainer>
     <Title title="Inside a flex" theme="light" level={2} />
     <ExampleContainer>
-      <DxcFlex direction="column" gap="0.75rem">
+      <DxcFlex direction="column" gap="1rem">
         <DxcButton label="Button" />
         <DxcButton label="Button" />
         <DxcButton label="Button" />

@@ -5,7 +5,7 @@ type PreviewContainerProps = {
 };
 
 const PreviewContainer = ({ children }: PreviewContainerProps) => (
-  <DxcFlex direction="column" gap="2.5rem">
+  <DxcFlex direction="column" gap="3rem">
     {children}
   </DxcFlex>
 );

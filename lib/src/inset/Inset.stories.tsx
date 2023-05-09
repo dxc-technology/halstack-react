@@ -205,7 +205,7 @@ export const Chromatic = () => (
     </Container>
     <Title title="Inside a flex column" level={4} />
     <Container>
-      <DxcFlex direction="column" gap="0.75rem">
+      <DxcFlex direction="column" gap="1rem">
         <Placeholder></Placeholder>
         <DxcInset top="0.25rem" right="1.5rem" bottom="2rem" left="4rem">
           <Placeholder></Placeholder>

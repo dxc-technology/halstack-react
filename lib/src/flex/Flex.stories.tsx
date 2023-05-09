@@ -22,7 +22,7 @@ export const Chromatic = () => (
     </Container>
     <Title title="Direction column, wrap, justify content end, align items center and gap" level={4} />
     <Container>
-      <DxcFlex direction="column" wrap="wrap" justifyContent="end" alignItems="center" gap="20px">
+      <DxcFlex direction="column" wrap="wrap" justifyContent="end" alignItems="center" gap="1.5rem">
         <Placeholder />
         <Placeholder minWidth="100px" />
         <Placeholder />
@@ -32,7 +32,7 @@ export const Chromatic = () => (
     </Container>
     <Title title="Wrap with align content space between, row and column gaps, and as a span" level={4} />
     <Container height="250px">
-      <DxcFlex wrap="wrap" alignContent="space-between" as="span" gap={{ rowGap: "10px", columnGap: "20px" }}>
+      <DxcFlex wrap="wrap" alignContent="space-between" as="span" gap={{ rowGap: "0.5rem", columnGap: "1.5rem" }}>
         <Placeholder />
         <Placeholder />
         <Placeholder />
@@ -51,16 +51,24 @@ export const Chromatic = () => (
     <Container height="75px">
       <DxcFlex basis="100%">
         <DxcFlex order={3} grow={1} alignSelf="flex-end">
-          <Placeholder width="100%" minWidth="0">order 3, grow 1, align self end</Placeholder>
+          <Placeholder width="100%" minWidth="0">
+            order 3, grow 1, align self end
+          </Placeholder>
         </DxcFlex>
         <DxcFlex order={-1} grow={4}>
-          <Placeholder width="100%" minWidth="0">order -1, grow 4</Placeholder>
+          <Placeholder width="100%" minWidth="0">
+            order -1, grow 4
+          </Placeholder>
         </DxcFlex>
         <DxcFlex order={5} grow={1}>
-          <Placeholder width="100%" minWidth="0">order 5, grow 1</Placeholder>
+          <Placeholder width="100%" minWidth="0">
+            order 5, grow 1
+          </Placeholder>
         </DxcFlex>
         <DxcFlex order={2} grow={2}>
-          <Placeholder width="100%" minWidth="0">order 2. grow 2</Placeholder>
+          <Placeholder width="100%" minWidth="0">
+            order 2. grow 2
+          </Placeholder>
         </DxcFlex>
       </DxcFlex>
     </Container>
@@ -68,13 +76,19 @@ export const Chromatic = () => (
     <Container>
       <DxcFlex basis="600px">
         <DxcFlex shrink={4} basis="400px">
-          <Placeholder width="100%" minWidth="0">shrink 4</Placeholder>
+          <Placeholder width="100%" minWidth="0">
+            shrink 4
+          </Placeholder>
         </DxcFlex>
         <DxcFlex shrink={2} basis="400px">
-          <Placeholder width="100%" minWidth="0">shrink 2</Placeholder>
+          <Placeholder width="100%" minWidth="0">
+            shrink 2
+          </Placeholder>
         </DxcFlex>
         <DxcFlex shrink={1} basis="400px">
-          <Placeholder width="100%" minWidth="0">shrink 1</Placeholder>
+          <Placeholder width="100%" minWidth="0">
+            shrink 1
+          </Placeholder>
         </DxcFlex>
       </DxcFlex>
     </Container>
@@ -88,7 +102,7 @@ const Container = styled.div<{ height?: string }>`
   ${({ height }) => (height ? `height: ${height}` : "max-height: 150px")};
 `;
 
-const Placeholder = styled.div<{ minWidth?: string, width?: string }>`
+const Placeholder = styled.div<{ minWidth?: string; width?: string }>`
   height: 40px;
   min-width: ${({ minWidth }) => minWidth ?? "200px"};
   width: ${({ width }) => width};

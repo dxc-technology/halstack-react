@@ -5,7 +5,7 @@ import FlexPropsType, { StyledProps } from "./types";
 const DxcFlex = ({
   direction = "row",
   wrap = "nowrap",
-  gap = "0",
+  gap = "0rem",
   order = 0,
   grow = 0,
   shrink = 1,
