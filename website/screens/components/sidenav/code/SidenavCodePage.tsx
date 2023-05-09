@@ -133,8 +133,10 @@ const sections = [
                 <Code>false</Code>
               </td>
               <td>
-                If true the sidenav group title will be considered a button and
-                the group will be collapsable.
+                If true the sidenav group title will be a button and the group
+                will become collapsable. In addition, if it appears collapsed
+                and contains the currently selected link, the group title will
+                also be marked as selected.
               </td>
             </tr>
             <tr>
@@ -203,7 +205,13 @@ const sections = [
               <td>
                 <Code>false</Code>
               </td>
-              <td>If true, the link will be marked as selected.</td>
+              <td>
+                If true, the link will be marked as selected. In that case, if
+                it is contained within a collapsed group, and consequently, the
+                currently selected link is not visible, the group title will
+                appear as selected too. This feature may not be available when
+                using external links.
+              </td>
             </tr>
             <tr>
               <td>onClick: function</td>
