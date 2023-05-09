@@ -225,5 +225,6 @@ const Placeholder = styled.div`
   min-height: 40px;
   min-width: 120px;
   border: 1px solid #a46ede;
+  border-radius: 0.5rem;
   background-color: #e5d5f6;
 `;
