@@ -214,7 +214,7 @@ const SidenavGroupTitleButton = styled.button<{ selectedGroup: boolean }>`
       ? `color: ${props.theme.groupTitleSelectedFontColor}; background-color: ${props.theme.groupTitleSelectedBackgroundColor};`
       : `color: ${props.theme.groupTitleFontColor}; background-color: transparent;`}
 
-  &:focus-visible {
+  &:focus, &:focus-visible {
     outline: 2px solid ${(props) => props.theme.linkFocusColor};
     outline-offset: -2px;
   }
@@ -257,15 +257,15 @@ const SidenavLink = styled.a<{ selected: SidenavLinkPropsType["selected"] }>`
       ? `color: ${props.theme.linkSelectedFontColor}; background-color: ${props.theme.linkSelectedBackgroundColor};`
       : `color: ${props.theme.linkFontColor}; background-color: transparent;`}
 
+  &:focus, &:focus-visible {
+    outline: 2px solid ${(props) => props.theme.linkFocusColor};
+    outline-offset: -2px;
+  }
   &:hover {
     ${(props) =>
       props.selected
         ? `color: ${props.theme.linkSelectedHoverFontColor}; background-color: ${props.theme.linkSelectedHoverBackgroundColor};`
         : `color: ${props.theme.linkFontColor}; background-color: ${props.theme.linkHoverBackgroundColor};`}
-  }
-  &:focus {
-    outline: 2px solid ${(props) => props.theme.linkFocusColor};
-    outline-offset: -2px;
   }
   &:active {
     color: #ffffff;

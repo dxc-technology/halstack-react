@@ -268,16 +268,12 @@ export const CollapsedHoverGroup = HoveredGroupSidenav.bind({});
 CollapsedHoverGroup.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const collapsableGroups = canvas.getAllByText("Collapsable Group");
-  collapsableGroups.forEach((group) => {
-    userEvent.click(group);
-  });
+  userEvent.click(collapsableGroups[0]);
 };
 
 export const CollapsedActiveGroup = ActiveGroupSidenav.bind({});
 CollapsedActiveGroup.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const collapsableGroups = canvas.getAllByText("Collapsable Group");
-  collapsableGroups.forEach((group) => {
-    userEvent.click(group);
-  });
+  userEvent.click(collapsableGroups[0]);
 };
