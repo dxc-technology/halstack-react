@@ -50,17 +50,13 @@ const Section = ({ children }: SidenavSectionPropsType): JSX.Element => (
   </DxcBleed>
 );
 
-const GroupContext = React.createContext<{
-  isGrouped: boolean;
-  changeIsGroupSelected?: React.Dispatch<React.SetStateAction<boolean>>;
-}>({ isGrouped: false });
+const GroupContext = React.createContext<React.Dispatch<React.SetStateAction<boolean>> | null>(null);
 const Group = ({ title, collapsable = false, icon, children }: SidenavGroupPropsType): JSX.Element => {
   const [collapsed, setCollapsed] = useState(false);
   const [isSelected, changeIsSelected] = useState(false);
-  const contextValue = useMemo(() => ({ isGrouped: true, changeIsGroupSelected: changeIsSelected }), []);
 
   return (
-    <GroupContext.Provider value={contextValue}>
+    <GroupContext.Provider value={changeIsSelected}>
       <SidenavGroup>
         {collapsable && title ? (
           <SidenavGroupTitleButton
@@ -93,16 +89,16 @@ const Link = forwardRef<HTMLAnchorElement, SidenavLinkPropsType>(
     { href, newWindow = false, selected = false, icon, onClick, tabIndex = 0, children, ...otherProps },
     ref
   ): JSX.Element => {
+    const changeIsGroupSelected = useContext(GroupContext);
     const setIsSidenavVisibleResponsive = useResponsiveSidenavVisibility();
     const handleClick = ($event: React.MouseEvent<HTMLAnchorElement>) => {
       onClick?.($event);
       setIsSidenavVisibleResponsive?.(false);
     };
-    const { isGrouped, changeIsGroupSelected } = useContext(GroupContext);
 
     useEffect(() => {
-      isGrouped && changeIsGroupSelected?.((isGroupSelected) => (!isGroupSelected ? selected : isGroupSelected));
-    }, [selected]);
+      changeIsGroupSelected?.((isGroupSelected) => (!isGroupSelected ? selected : isGroupSelected));
+    }, [selected, changeIsGroupSelected]);
 
     return (
       <SidenavLink

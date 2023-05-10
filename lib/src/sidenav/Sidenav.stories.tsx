@@ -167,10 +167,10 @@ const CollapsedGroupSidenav = () => (
         </DxcSidenav.Section>
         <DxcSidenav.Section>
           <DxcSidenav.Group collapsable={true} title="Collapsable Group">
-            <DxcSidenav.Link selected>Group Link</DxcSidenav.Link>
             <DxcSidenav.Link>Group Link</DxcSidenav.Link>
+            <DxcSidenav.Link selected>Group Link</DxcSidenav.Link>
           </DxcSidenav.Group>
-          <DxcSidenav.Group collapsable={false} title="Section Group">
+          <DxcSidenav.Group collapsable={true} title="Section Group">
             <DxcSidenav.Link>Group Link</DxcSidenav.Link>
             <DxcSidenav.Link>Group Link</DxcSidenav.Link>
             <DxcSidenav.Link>Group Link</DxcSidenav.Link>
@@ -266,7 +266,7 @@ export const CollapsedHoverGroup = HoveredGroupSidenav.bind({});
 CollapsedHoverGroup.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const collapsableGroups = canvas.getAllByText("Collapsable Group");
-  // userEvent.click(collapsableGroups[0]);
+  userEvent.click(collapsableGroups[0]);
 };
 
 export const CollapsedActiveGroup = ActiveGroupSidenav.bind({});
