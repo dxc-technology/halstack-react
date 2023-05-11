@@ -136,8 +136,7 @@ const sections = [
                 If true the sidenav group title will be a button and the group
                 will become collapsable. In addition, if it appears collapsed
                 and contains the currently selected link, the group title will
-                also be marked as selected. This feature may not be available
-                when used together with other React-based routers.
+                also be marked as selected.
               </td>
             </tr>
             <tr>
@@ -207,12 +206,10 @@ const sections = [
                 <Code>false</Code>
               </td>
               <td>
-                If true, the link will be marked as selected. In that case, if
-                it is contained within a collapsed group, and consequently, the
-                currently selected link is not visible, the group title will
-                appear as selected too. This feature may not be available when
-                using external links. This feature may not be available when
-                used together with other React-based routers.
+                If true, the link will be marked as selected. Moreover, in that
+                same case, if it is contained within a collapsed group, and
+                consequently, the currently selected link is not visible, the
+                group title will appear as selected too.
               </td>
             </tr>
             <tr>
