@@ -23,14 +23,7 @@ const DxcSidenav = ({ title, children }: SidenavPropsType): JSX.Element => {
         <BackgroundColorProvider color={colorsTheme.sidenav.backgroundColor}>
           {title}
           <DxcFlex direction="column" gap="1rem">
-            {React.Children.map(children, (child, index) => {
-              return (
-                <>
-                  {child}
-                  {index !== React.Children.count(children) - 1 && <Divider />}
-                </>
-              );
-            })}
+            {children}
           </DxcFlex>
         </BackgroundColorProvider>
       </SidenavContainer>
@@ -45,9 +38,12 @@ const Title = ({ children }: SidenavTitlePropsType): JSX.Element => (
 );
 
 const Section = ({ children }: SidenavSectionPropsType): JSX.Element => (
-  <DxcBleed horizontal="1rem">
-    <DxcFlex direction="column">{children}</DxcFlex>
-  </DxcBleed>
+  <>
+    <DxcBleed horizontal="1rem">
+      <DxcFlex direction="column">{children}</DxcFlex>
+    </DxcBleed>
+    <Divider />
+  </>
 );
 
 const GroupContext = React.createContext<React.Dispatch<React.SetStateAction<boolean>> | null>(null);
@@ -164,6 +160,10 @@ const Divider = styled.div`
   width: 100%;
   height: 1px;
   background-color: #999999;
+
+  &:last-child {
+    display: none;
+  }
 `;
 
 const SidenavGroup = styled.div`
@@ -221,8 +221,8 @@ const SidenavGroupTitleButton = styled.button<{ selectedGroup: boolean }>`
         : `color: ${props.theme.groupTitleFontColor}; background-color: ${props.theme.groupTitleHoverBackgroundColor};`}
   }
   &:active {
-    background-color: ${(props) => (props.selectedGroup ? "#4d4d4d" : props.theme.groupTitleActiveBackgroundColor)};
-    color: ${(props) => (props.selectedGroup ? "#ffffff" : props.theme.groupTitleFontColor)};
+    background-color: ${(props) => props.theme.groupTitleActiveBackgroundColor};
+    color: ${(props) => props.theme.groupTitleFontColor};
   }
 
   img,
