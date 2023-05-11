@@ -15,6 +15,7 @@
   { "key": "file-input", "name": "File Input" },
   { "key": "flex", "name": "Flex" },
   { "key": "footer", "name": "Footer" },
+  { "key": "grid", "name": "Grid" },
   { "key": "header", "name": "Header" },
   { "key": "heading", "name": "Heading" },
   { "key": "inset", "name": "Inset" },
