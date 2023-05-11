@@ -1,12 +1,12 @@
-export type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
-export type Size = {
+type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
+type Size = {
   top?: Space;
   bottom?: Space;
   left?: Space;
   right?: Space;
 };
 
-export type Props = {
+type Props = {
   /**
    * Text to be placed above the progress bar.
    */
@@ -35,3 +35,5 @@ export type Props = {
    */
   margin?: Space | Size;
 };
+
+export default Props;

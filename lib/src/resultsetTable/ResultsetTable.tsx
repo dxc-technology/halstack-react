@@ -1,12 +1,12 @@
 import React, { useState, useMemo, useEffect } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import { spaces } from "../common/variables.js";
+import { spaces } from "../common/variables";
 import DxcTable from "../table/Table";
 import DxcPaginator from "../paginator/Paginator";
 import useTheme from "../useTheme";
-import ResultsetTablePropsType, { Margin, Space } from "./types";
+import ResultsetTablePropsType, { Column } from "./types";
 import icons from "./Icons";
-import { getMargin } from "../common/utils.js";
+import { getMargin } from "../common/utils";
 
 const normalizeSortValue = (sortValue) => (typeof sortValue === "string" ? sortValue.toUpperCase() : sortValue);
 
@@ -144,7 +144,7 @@ const DxcResultsetTable = ({
 
 const calculateWidth = (margin) => `calc(100% - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`;
 
-const DxcResultsetTableContainer = styled.div<{ margin: Space | Margin }>`
+const DxcResultsetTableContainer = styled.div<{ margin: ResultsetTablePropsType["margin"] }>`
   width: ${(props) => calculateWidth(props.margin)};
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
@@ -157,7 +157,7 @@ const DxcResultsetTableContainer = styled.div<{ margin: Space | Margin }>`
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
 `;
 
-const HeaderContainer = styled.span<{ isSortable: boolean }>`
+const HeaderContainer = styled.span<{ isSortable: Column["isSortable"] }>`
   display: flex;
   align-items: center;
   justify-content: ${(props) =>

@@ -1,11 +1,11 @@
-export type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
-export type Margin = {
+type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
+type Margin = {
   top?: Space;
   bottom?: Space;
   left?: Space;
   right?: Space;
 };
-export type Size = "small" | "medium" | "large" | "fillParent" | "fitContent";
+type Size = "small" | "medium" | "large" | "fillParent" | "fitContent";
 type SVG = React.ReactNode & React.SVGProps<SVGSVGElement>;
 
 export type Option = {
@@ -89,7 +89,7 @@ export type DropdownMenuProps = {
   onKeyDown: (event: React.KeyboardEvent<HTMLUListElement>) => void;
   options: Option[];
   styles: { width: number };
-}
+};
 
 export type DropdownMenuItemProps = {
   id: string;
@@ -97,6 +97,6 @@ export type DropdownMenuItemProps = {
   iconPosition: "before" | "after";
   onClick: (value: string) => void;
   option: Option;
-}
+};
 
 export default Props;

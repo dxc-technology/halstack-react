@@ -1,18 +1,23 @@
 import React, { useMemo } from "react";
 import Color from "color";
-import rgbHex from "rgb-hex";
 import styled from "styled-components";
-import { componentTokens, defaultTranslatedComponentLabels } from "./common/variables.js";
+import {
+  AdvancedTheme,
+  OpinionatedTheme,
+  TranslatedLabels,
+  componentTokens,
+  defaultTranslatedComponentLabels,
+} from "./common/variables";
 
-const HalstackContext = React.createContext<object | null>(null);
-const HalstackLanguageContext = React.createContext<object | null>(null);
+const HalstackContext = React.createContext<DeepPartial<AdvancedTheme> | null>(null);
+const HalstackLanguageContext = React.createContext<DeepPartial<TranslatedLabels> | null>(null);
 
-const addLightness = (hexColor, newLightness) => {
+const addLightness = (newLightness: number, hexColor?: string) => {
   try {
     if (hexColor) {
       const color = Color(hexColor);
       const hslColor = color.hsl();
-      const lightnessColor = hslColor.color[2];
+      const lightnessColor = hslColor.lightness();
       return hslColor.lightness(lightnessColor + newLightness).hex();
     }
   } catch (e) {
@@ -20,12 +25,12 @@ const addLightness = (hexColor, newLightness) => {
   }
 };
 
-const subLightness = (hexColor, newLightness) => {
+const subLightness = (newLightness: number, hexColor?: string) => {
   try {
     if (hexColor) {
       const color = Color(hexColor);
       const hslColor = color.hsl();
-      const lightnessColor = hslColor.color[2];
+      const lightnessColor = hslColor.lightness();
       return hslColor.lightness(lightnessColor - newLightness).hex();
     }
   } catch (e) {
@@ -33,22 +38,12 @@ const subLightness = (hexColor, newLightness) => {
   }
 };
 
-const setOpacity = (hexColor, newOpacity) => {
-  try {
-    if (hexColor) {
-      const color = Color(hexColor);
-      return "#" + rgbHex(color.color[0], color.color[1], color.color[2], newOpacity);
-    }
-  } catch (e) {
-    return null;
-  }
-};
-
-const parseAdvancedTheme = (advancedTheme) => {
+const parseAdvancedTheme = (advancedTheme: DeepPartial<AdvancedTheme>): AdvancedTheme => {
   const allTokensCopy = JSON.parse(JSON.stringify(componentTokens));
-  Object.keys(allTokensCopy).map(function (component) {
+
+  Object.keys(allTokensCopy).map((component) => {
     if (advancedTheme[component]) {
-      Object.keys(advancedTheme[component]).map(function (objectKey) {
+      Object.keys(advancedTheme[component]).map((objectKey) => {
         if (advancedTheme[component][objectKey]) {
           allTokensCopy[component][objectKey] = advancedTheme[component][objectKey];
         }
@@ -58,8 +53,8 @@ const parseAdvancedTheme = (advancedTheme) => {
   return allTokensCopy;
 };
 
-const parseTheme = (theme) => {
-  const componentTokensCopy = JSON.parse(JSON.stringify(componentTokens));
+const parseTheme = (theme: DeepPartial<OpinionatedTheme>): AdvancedTheme => {
+  const componentTokensCopy: AdvancedTheme = JSON.parse(JSON.stringify(componentTokens));
 
   const alertTokens = componentTokensCopy.alert;
   alertTokens.infoBackgroundColor = theme?.alert?.baseColor ?? alertTokens.infoBackgroundColor;
@@ -74,7 +69,7 @@ const parseTheme = (theme) => {
   accordionTokens.arrowColor = theme?.accordion?.accentColor ?? accordionTokens.arrowColor;
   accordionTokens.iconColor = theme?.accordion?.accentColor ?? accordionTokens.iconColor;
   accordionTokens.hoverBackgroundColor =
-    addLightness(theme?.accordion?.accentColor, 57) ?? accordionTokens.hoverBackgroundColor;
+    addLightness(57, theme?.accordion?.accentColor) ?? accordionTokens.hoverBackgroundColor;
 
   const boxTokens = componentTokensCopy.box;
   boxTokens.backgroundColor = theme?.box?.baseColor ?? boxTokens.backgroundColor;
@@ -88,15 +83,15 @@ const parseTheme = (theme) => {
   buttonTokens.secondaryHoverBackgroundColor = theme?.button?.baseColor ?? buttonTokens.secondaryHoverBackgroundColor;
   buttonTokens.textFontColor = theme?.button?.baseColor ?? buttonTokens.textFontColor;
   buttonTokens.primaryHoverBackgroundColor =
-    subLightness(theme?.button?.baseColor, 8) ?? buttonTokens.primaryHoverBackgroundColor;
+    subLightness(8, theme?.button?.baseColor) ?? buttonTokens.primaryHoverBackgroundColor;
   buttonTokens.primaryActiveBackgroundColor =
-    subLightness(theme?.button?.baseColor, 18) ?? buttonTokens.primaryActiveBackgroundColor;
+    subLightness(18, theme?.button?.baseColor) ?? buttonTokens.primaryActiveBackgroundColor;
   buttonTokens.secondaryActiveBackgroundColor =
-    subLightness(theme?.button?.baseColor, 18) ?? buttonTokens.secondaryActiveBackgroundColor;
+    subLightness(18, theme?.button?.baseColor) ?? buttonTokens.secondaryActiveBackgroundColor;
   buttonTokens.textHoverBackgroundColor =
-    addLightness(theme?.button?.baseColor, 57) ?? buttonTokens.textHoverBackgroundColor;
+    addLightness(57, theme?.button?.baseColor) ?? buttonTokens.textHoverBackgroundColor;
   buttonTokens.textActiveBackgroundColor =
-    addLightness(theme?.button?.baseColor, 52) ?? buttonTokens.textActiveBackgroundColor;
+    addLightness(52, theme?.button?.baseColor) ?? buttonTokens.textActiveBackgroundColor;
 
   const checkboxTokens = componentTokensCopy.checkbox;
   checkboxTokens.backgroundColorChecked = theme?.checkbox?.baseColor ?? checkboxTokens.backgroundColorChecked;
@@ -104,33 +99,33 @@ const parseTheme = (theme) => {
   checkboxTokens.checkColor = theme?.checkbox?.checkColor ?? checkboxTokens.checkColor;
   checkboxTokens.fontColor = theme?.checkbox?.fontColor ?? checkboxTokens.fontColor;
   checkboxTokens.hoverBackgroundColorChecked =
-    subLightness(theme?.checkbox?.baseColor, 15) ?? checkboxTokens.hoverBackgroundColorChecked;
-  checkboxTokens.hoverBorderColor = subLightness(theme?.checkbox?.baseColor, 15) ?? checkboxTokens.hoverBorderColor;
+    subLightness(15, theme?.checkbox?.baseColor) ?? checkboxTokens.hoverBackgroundColorChecked;
+  checkboxTokens.hoverBorderColor = subLightness(15, theme?.checkbox?.baseColor) ?? checkboxTokens.hoverBorderColor;
 
   const chipTokens = componentTokensCopy.chip;
   chipTokens.backgroundColor = theme?.chip?.baseColor ?? chipTokens.backgroundColor;
   chipTokens.fontColor = theme?.chip?.fontColor ?? chipTokens.fontColor;
   chipTokens.iconColor = theme?.chip?.iconColor ?? chipTokens.iconColor;
-  chipTokens.hoverIconColor = subLightness(theme?.chip?.iconColor, 10) ?? chipTokens.hoverIconColor;
-  chipTokens.activeIconColor = subLightness(theme?.chip?.iconColor, 30) ?? chipTokens.activeIconColor;
+  chipTokens.hoverIconColor = subLightness(10, theme?.chip?.iconColor) ?? chipTokens.hoverIconColor;
+  chipTokens.activeIconColor = subLightness(30, theme?.chip?.iconColor) ?? chipTokens.activeIconColor;
 
   const dateTokens = componentTokensCopy.dateInput;
   dateTokens.pickerSelectedBackgroundColor = theme?.dateInput?.baseColor ?? dateTokens.pickerSelectedBackgroundColor;
   dateTokens.pickerSelectedFontColor = theme?.dateInput?.selectedFontColor ?? dateTokens.pickerSelectedFontColor;
   dateTokens.pickerActiveBackgroundColor =
-    subLightness(theme?.dateInput?.baseColor, 8) ?? dateTokens.pickerActiveBackgroundColor;
+    subLightness(8, theme?.dateInput?.baseColor) ?? dateTokens.pickerActiveBackgroundColor;
   dateTokens.pickerActiveFontColor = theme?.dateInput?.selectedFontColor ?? dateTokens.pickerActiveFontColor;
   dateTokens.pickerCurrentYearFontColor = theme?.dateInput?.baseColor ?? dateTokens.pickerCurrentYearFontColor;
   dateTokens.pickerHeaderActiveBackgroundColor =
-    subLightness(theme?.dateInput?.baseColor, 8) ?? dateTokens.pickerHeaderActiveBackgroundColor;
+    subLightness(8, theme?.dateInput?.baseColor) ?? dateTokens.pickerHeaderActiveBackgroundColor;
   dateTokens.pickerHeaderActiveFontColor =
     theme?.dateInput?.selectedFontColor ?? dateTokens.pickerHeaderActiveFontColor;
   dateTokens.pickerHoverBackgroundColor =
-    addLightness(theme?.dateInput?.baseColor, 52) ?? dateTokens.pickerHoverBackgroundColor;
+    addLightness(52, theme?.dateInput?.baseColor) ?? dateTokens.pickerHoverBackgroundColor;
   dateTokens.pickerCurrentDateBorderColor =
-    addLightness(theme?.dateInput?.baseColor, 42) ?? dateTokens.pickerCurrentDateBorderColor;
+    addLightness(42, theme?.dateInput?.baseColor) ?? dateTokens.pickerCurrentDateBorderColor;
   dateTokens.pickerHeaderHoverBackgroundColor =
-    addLightness(theme?.dateInput?.baseColor, 52) ?? dateTokens.pickerHeaderHoverBackgroundColor;
+    addLightness(52, theme?.dateInput?.baseColor) ?? dateTokens.pickerHeaderHoverBackgroundColor;
 
   const dialogTokens = componentTokensCopy.dialog;
   dialogTokens.backgroundColor = theme?.dialog?.baseColor ?? dialogTokens.backgroundColor;
@@ -145,13 +140,13 @@ const parseTheme = (theme) => {
   dropdownTokens.optionFontColor = theme?.dropdown?.optionFontColor ?? dropdownTokens.optionFontColor;
   dropdownTokens.optionIconColor = theme?.dropdown?.optionFontColor ?? dropdownTokens.optionIconColor;
   dropdownTokens.hoverButtonBackgroundColor =
-    subLightness(theme?.dropdown?.baseColor, 5) ?? dropdownTokens.hoverButtonBackgroundColor;
+    subLightness(5, theme?.dropdown?.baseColor) ?? dropdownTokens.hoverButtonBackgroundColor;
   dropdownTokens.activeButtonBackgroundColor =
-    subLightness(theme?.dropdown?.baseColor, 12) ?? dropdownTokens.activeButtonBackgroundColor;
+    subLightness(12, theme?.dropdown?.baseColor) ?? dropdownTokens.activeButtonBackgroundColor;
   dropdownTokens.hoverOptionBackgroundColor =
-    subLightness(theme?.dropdown?.baseColor, 5) ?? dropdownTokens.hoverOptionBackgroundColor;
+    subLightness(5, theme?.dropdown?.baseColor) ?? dropdownTokens.hoverOptionBackgroundColor;
   dropdownTokens.activeOptionBackgroundColor =
-    subLightness(theme?.dropdown?.baseColor, 20) ?? dropdownTokens.activeOptionBackgroundColor;
+    subLightness(20, theme?.dropdown?.baseColor) ?? dropdownTokens.activeOptionBackgroundColor;
 
   const fileInputTokens = componentTokensCopy.fileInput;
   fileInputTokens.labelFontColor = theme?.fileInput?.fontColor ?? fileInputTokens.labelFontColor;
@@ -174,7 +169,7 @@ const parseTheme = (theme) => {
   headerTokens.hamburguerFontColor = theme?.header?.fontColor ?? headerTokens.hamburguerFontColor;
   headerTokens.hamburguerIconColor = theme?.header?.hamburguerColor ?? headerTokens.hamburguerIconColor;
   headerTokens.hamburguerHoverColor =
-    addLightness(theme?.header?.hamburguerColor, 90) ?? headerTokens.hamburguerHoverColor;
+    addLightness(90, theme?.header?.hamburguerColor) ?? headerTokens.hamburguerHoverColor;
   headerTokens.logo = theme?.header?.logo ?? headerTokens.logo;
   headerTokens.logoResponsive = theme?.header?.logoResponsive ?? headerTokens.logoResponsive;
   headerTokens.contentColor = theme?.header?.contentColor ?? headerTokens.contentColor;
@@ -191,9 +186,9 @@ const parseTheme = (theme) => {
   navTabsTokens.unselectedIconColor = theme?.navTabs?.baseColor ?? navTabsTokens.selectedIconColor;
   navTabsTokens.selectedUnderlineColor = theme?.navTabs?.accentColor ?? navTabsTokens.selectedUnderlineColor;
   navTabsTokens.hoverBackgroundColor =
-    addLightness(theme?.navTabs?.baseColor, 55) ?? navTabsTokens.hoverBackgroundColor;
+    addLightness(55, theme?.navTabs?.baseColor) ?? navTabsTokens.hoverBackgroundColor;
   navTabsTokens.pressedBackgroundColor =
-    addLightness(theme?.navTabs?.baseColor, 50) ?? navTabsTokens.pressedBackgroundColor;
+    addLightness(50, theme?.navTabs?.baseColor) ?? navTabsTokens.pressedBackgroundColor;
 
   const paginatorTokens = componentTokensCopy.paginator;
   paginatorTokens.backgroundColor = theme?.paginator?.baseColor ?? paginatorTokens.backgroundColor;
@@ -218,9 +213,9 @@ const parseTheme = (theme) => {
   radioGroupTokens.helperTextFontColor = theme?.radioGroup?.fontColor ?? radioGroupTokens.helperTextFontColor;
   radioGroupTokens.radioInputLabelFontColor = theme?.radioGroup?.fontColor ?? radioGroupTokens.radioInputLabelFontColor;
   radioGroupTokens.hoverRadioInputColor =
-    subLightness(theme?.radioGroup?.baseColor, 10) ?? radioGroupTokens.radioInputColor;
+    subLightness(10, theme?.radioGroup?.baseColor) ?? radioGroupTokens.radioInputColor;
   radioGroupTokens.activeRadioInputColor =
-    subLightness(theme?.radioGroup?.baseColor, 25) ?? radioGroupTokens.radioInputColor;
+    subLightness(25, theme?.radioGroup?.baseColor) ?? radioGroupTokens.radioInputColor;
 
   const selectTokens = componentTokensCopy.select;
   selectTokens.selectedListOptionBackgroundColor =
@@ -229,14 +224,14 @@ const parseTheme = (theme) => {
   selectTokens.labelFontColor = theme?.select?.fontColor ?? selectTokens.labelFontColor;
   selectTokens.helperTextFontColor = theme?.select?.fontColor ?? selectTokens.helperTextFontColor;
   selectTokens.listOptionFontColor = theme?.select?.optionFontColor ?? selectTokens.listOptionFontColor;
-  selectTokens.placeholderFontColor = addLightness(theme?.select?.fontColor, 30) ?? selectTokens.placeholderFontColor;
+  selectTokens.placeholderFontColor = addLightness(30, theme?.select?.fontColor) ?? selectTokens.placeholderFontColor;
   selectTokens.collapseIndicatorColor = theme?.select?.fontColor ?? selectTokens.collapseIndicatorColor;
   selectTokens.hoverInputBorderColor = theme?.select?.hoverBorderColor ?? selectTokens.hoverInputBorderColor;
   selectTokens.selectedHoverListOptionBackgroundColor =
-    subLightness(theme?.select?.selectedOptionBackgroundColor, 5) ??
+    subLightness(5, theme?.select?.selectedOptionBackgroundColor) ??
     selectTokens.selectedHoverListOptionBackgroundColor;
   selectTokens.selectedActiveListOptionBackgroundColor =
-    subLightness(theme?.select?.selectedOptionBackgroundColor, 15) ??
+    subLightness(15, theme?.select?.selectedOptionBackgroundColor) ??
     selectTokens.selectedActiveListOptionBackgroundColor;
 
   const sideNavTokens = componentTokensCopy.sidenav;
@@ -252,9 +247,9 @@ const parseTheme = (theme) => {
   sliderTokens.trackLineColor = theme?.slider?.baseColor ?? sliderTokens.trackLineColor;
   sliderTokens.totalLineColor = theme?.slider?.totalLineColor ?? sliderTokens.totalLineColor;
   sliderTokens.hoverThumbBackgroundColor =
-    subLightness(theme?.slider?.baseColor, 15) ?? sliderTokens.thumbBackgroundColor;
+    subLightness(15, theme?.slider?.baseColor) ?? sliderTokens.thumbBackgroundColor;
   sliderTokens.activeThumbBackgroundColor =
-    subLightness(theme?.slider?.baseColor, 15) ?? sliderTokens.thumbBackgroundColor;
+    subLightness(15, theme?.slider?.baseColor) ?? sliderTokens.thumbBackgroundColor;
 
   const spinnerTokens = componentTokensCopy.spinner;
   spinnerTokens.trackCircleColor = theme?.spinner?.accentColor ?? spinnerTokens.trackCircleColor;
@@ -271,7 +266,7 @@ const parseTheme = (theme) => {
     theme?.switch?.checkedBaseColor ?? switchTokens.checkedTrackBackgroundColor;
   switchTokens.labelFontColor = theme?.switch?.fontColor ?? switchTokens.labelFontColor;
   switchTokens.disabledCheckedTrackBackgroundColor =
-    addLightness(theme?.switch?.checkedBaseColor, 57) ?? switchTokens.disabledCheckedTrackBackgroundColor;
+    addLightness(57, theme?.switch?.checkedBaseColor) ?? switchTokens.disabledCheckedTrackBackgroundColor;
 
   const tableTokens = componentTokensCopy.table;
   tableTokens.headerBackgroundColor = theme?.table?.baseColor ?? tableTokens.headerBackgroundColor;
@@ -284,8 +279,8 @@ const parseTheme = (theme) => {
   tabsTokens.selectedIconColor = theme?.tabs?.baseColor ?? tabsTokens.selectedIconColor;
   tabsTokens.selectedUnderlineColor = theme?.tabs?.baseColor ?? tabsTokens.selectedUnderlineColor;
   tabsTokens.focusOutline = theme?.tabs?.baseColor ?? tabsTokens.focusOutline;
-  tabsTokens.hoverBackgroundColor = addLightness(theme?.tabs?.baseColor, 57) ?? tabsTokens.hoverBackgroundColor;
-  tabsTokens.pressedBackgroundColor = addLightness(theme?.tabs?.baseColor, 52) ?? tabsTokens.pressedBackgroundColor;
+  tabsTokens.hoverBackgroundColor = addLightness(57, theme?.tabs?.baseColor) ?? tabsTokens.hoverBackgroundColor;
+  tabsTokens.pressedBackgroundColor = addLightness(52, theme?.tabs?.baseColor) ?? tabsTokens.pressedBackgroundColor;
 
   const tagTokens = componentTokensCopy.tag;
   tagTokens.fontColor = theme?.tag?.fontColor ?? tagTokens.fontColor;
@@ -300,10 +295,10 @@ const parseTheme = (theme) => {
   textInputTokens.focusActionIconColor = theme?.textInput?.fontColor ?? textInputTokens.focusActionIconColor;
   textInputTokens.activeActionIconColor = theme?.textInput?.fontColor ?? textInputTokens.activeActionIconColor;
   textInputTokens.hoverBorderColor = theme?.textInput?.hoverBorderColor ?? textInputTokens.hoverBorderColor;
-  textInputTokens.suffixColor = addLightness(theme?.textInput?.fontColor, 40) ?? textInputTokens.suffixColor;
-  textInputTokens.prefixColor = addLightness(theme?.textInput?.fontColor, 40) ?? textInputTokens.prefixColor;
+  textInputTokens.suffixColor = addLightness(40, theme?.textInput?.fontColor) ?? textInputTokens.suffixColor;
+  textInputTokens.prefixColor = addLightness(40, theme?.textInput?.fontColor) ?? textInputTokens.prefixColor;
   textInputTokens.placeholderFontColor =
-    addLightness(theme?.textInput?.fontColor, 30) ?? textInputTokens.placeholderFontColor;
+    addLightness(30, theme?.textInput?.fontColor) ?? textInputTokens.placeholderFontColor;
 
   const textareaTokens = componentTokensCopy.textarea;
   textareaTokens.labelFontColor = theme?.textarea?.fontColor ?? textareaTokens.labelFontColor;
@@ -311,7 +306,7 @@ const parseTheme = (theme) => {
   textareaTokens.valueFontColor = theme?.textarea?.fontColor ?? textareaTokens.valueFontColor;
   textareaTokens.hoverBorderColor = theme?.textarea?.hoverBorderColor ?? textareaTokens.hoverBorderColor;
   textareaTokens.placeholderFontColor =
-    addLightness(theme?.textarea?.fontColor, 30) ?? textareaTokens.placeholderFontColor;
+    addLightness(30, theme?.textarea?.fontColor) ?? textareaTokens.placeholderFontColor;
 
   const toggleGroupTokens = componentTokensCopy.toggleGroup;
   toggleGroupTokens.selectedBackgroundColor =
@@ -324,15 +319,15 @@ const parseTheme = (theme) => {
   toggleGroupTokens.unselectedFontColor =
     theme?.toggleGroup?.unselectedFontColor ?? toggleGroupTokens.unselectedFontColor;
   toggleGroupTokens.selectedHoverBackgroundColor =
-    subLightness(theme?.toggleGroup?.selectedBaseColor, 8) ?? toggleGroupTokens.selectedHoverBackgroundColor;
+    subLightness(8, theme?.toggleGroup?.selectedBaseColor) ?? toggleGroupTokens.selectedHoverBackgroundColor;
   toggleGroupTokens.selectedActiveBackgroundColor =
-    subLightness(theme?.toggleGroup?.selectedBaseColor, 18) ?? toggleGroupTokens.selectedActiveBackgroundColor;
+    subLightness(18, theme?.toggleGroup?.selectedBaseColor) ?? toggleGroupTokens.selectedActiveBackgroundColor;
   toggleGroupTokens.selectedDisabledBackgroundColor =
-    addLightness(theme?.toggleGroup?.selectedBaseColor, 57) ?? toggleGroupTokens.selectedDisabledBackgroundColor;
+    addLightness(57, theme?.toggleGroup?.selectedBaseColor) ?? toggleGroupTokens.selectedDisabledBackgroundColor;
   toggleGroupTokens.selectedDisabledFontColor =
-    addLightness(theme?.toggleGroup?.selectedBaseColor, 42) ?? toggleGroupTokens.selectedDisabledFontColor;
+    addLightness(42, theme?.toggleGroup?.selectedBaseColor) ?? toggleGroupTokens.selectedDisabledFontColor;
   toggleGroupTokens.unselectedHoverBackgroundColor =
-    subLightness(theme?.toggleGroup?.unselectedBaseColor, 10) ?? toggleGroupTokens.unselectedHoverBackgroundColor;
+    subLightness(10, theme?.toggleGroup?.unselectedBaseColor) ?? toggleGroupTokens.unselectedHoverBackgroundColor;
 
   const wizardTokens = componentTokensCopy.wizard;
   wizardTokens.selectedStepBackgroundColor = theme?.wizard?.baseColor ?? wizardTokens.selectedStepBackgroundColor;
@@ -343,18 +338,18 @@ const parseTheme = (theme) => {
   wizardTokens.visitedHelperTextFontColor = theme?.wizard?.fontColor ?? wizardTokens.visitedHelperTextFontColor;
   wizardTokens.selectedHelperTextFontColor = theme?.wizard?.fontColor ?? wizardTokens.selectedHelperTextFontColor;
   wizardTokens.unvisitedStepBorderColor =
-    addLightness(theme?.wizard?.fontColor, 40) ?? wizardTokens.unvisitedStepBorderColor;
+    addLightness(40, theme?.wizard?.fontColor) ?? wizardTokens.unvisitedStepBorderColor;
   wizardTokens.unvisitedStepFontColor =
-    addLightness(theme?.wizard?.fontColor, 40) ?? wizardTokens.unvisitedStepFontColor;
+    addLightness(40, theme?.wizard?.fontColor) ?? wizardTokens.unvisitedStepFontColor;
   wizardTokens.unvisitedLabelFontColor =
-    addLightness(theme?.wizard?.fontColor, 40) ?? wizardTokens.unvisitedLabelFontColor;
+    addLightness(40, theme?.wizard?.fontColor) ?? wizardTokens.unvisitedLabelFontColor;
   wizardTokens.unvisitedHelperTextFontColor =
-    addLightness(theme?.wizard?.fontColor, 40) ?? wizardTokens.unvisitedHelperTextFontColor;
+    addLightness(40, theme?.wizard?.fontColor) ?? wizardTokens.unvisitedHelperTextFontColor;
 
   return componentTokensCopy;
 };
 
-const parseLabels = (labels) => {
+const parseLabels = (labels: DeepPartial<TranslatedLabels>): TranslatedLabels => {
   const parsedLabels = defaultTranslatedComponentLabels;
   Object.keys(labels).map((component) => {
     if (parsedLabels[component]) {
@@ -368,18 +363,25 @@ const parseLabels = (labels) => {
   return parsedLabels;
 };
 
+/**
+ * This type is used to allow partial themes and labels objects to be passed to the HalstackProvider.
+ * This is an extension of the already extisting Partial type, which only allows one level of partiality.
+ */
+type DeepPartial<T> = {
+  [P in keyof T]?: Partial<T[P]>;
+};
 type HalstackProviderPropsType = {
-  theme?: object;
-  advancedTheme?: object;
-  labels?: object;
+  theme?: DeepPartial<OpinionatedTheme>;
+  advancedTheme?: DeepPartial<AdvancedTheme>;
+  labels?: DeepPartial<TranslatedLabels>;
   children: React.ReactNode;
 };
 const HalstackProvider = ({ theme, advancedTheme, labels, children }: HalstackProviderPropsType): JSX.Element => {
   const parsedTheme = useMemo(
-    () => (theme && parseTheme(theme)) || (advancedTheme && parseAdvancedTheme(advancedTheme)),
+    () => (theme ? parseTheme(theme) : advancedTheme ? parseAdvancedTheme(advancedTheme) : componentTokens),
     [theme, advancedTheme]
   );
-  const parsedLabels = useMemo(() => (labels && parseLabels(labels)) || defaultTranslatedComponentLabels, [labels]);
+  const parsedLabels = useMemo(() => (labels ? parseLabels(labels) : defaultTranslatedComponentLabels), [labels]);
 
   return (
     <Halstack>

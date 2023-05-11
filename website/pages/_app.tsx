@@ -9,7 +9,7 @@ import {
   HalstackProvider,
 } from "@dxc-technology/halstack-react";
 import "../global-styles.css";
-import { responsiveSizes } from "../screens/common/variables.js";
+import { responsiveSizes } from "../screens/common/variables";
 import SidenavLogo from "@/common/sidenav/SidenavLogo";
 import { useRouter } from "next/router";
 import {

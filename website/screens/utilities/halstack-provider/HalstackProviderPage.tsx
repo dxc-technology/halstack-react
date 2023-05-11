@@ -30,7 +30,7 @@ const sections = [
           <th>Description</th>
         </tr>
         <tr>
-          <td>theme: object</td>
+          <td>theme: OpinionatedTheme</td>
           <td></td>
           <td>
             Object with a given structure, specified below, for defining the
@@ -38,7 +38,7 @@ const sections = [
           </td>
         </tr>
         <tr>
-          <td>advancedTheme: object</td>
+          <td>advancedTheme: AdvancedTheme</td>
           <td></td>
           <td>
             Object with a given structure, specified below, for defining the
@@ -46,7 +46,7 @@ const sections = [
           </td>
         </tr>
         <tr>
-          <td>labels: object</td>
+          <td>labels: TranslatedLabels</td>
           <td></td>
           <td>
             Object with a given structure, specified below, for defining
@@ -71,7 +71,6 @@ const sections = [
           page, you can apply the opinionated theming strategy to customize the
           components.
         </DxcParagraph>
-
         <DxcAlert type="info" size="fillParent">
           Remember that you can use the{" "}
           <Link href="/theme-generator/opinionated-theme" passHref>

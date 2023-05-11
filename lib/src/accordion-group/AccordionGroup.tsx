@@ -1,15 +1,10 @@
 import React, { createContext, useCallback, useContext, useMemo, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import DxcAccordion from "../accordion/Accordion";
-import { getMargin } from "../common/utils.js";
-import { spaces } from "../common/variables.js";
+import { getMargin } from "../common/utils";
+import { spaces } from "../common/variables";
 import useTheme from "../useTheme";
-import AccordionGroupPropsType, {
-  AccordionGroupAccordionContextProps,
-  AccordionPropsType,
-  Margin,
-  Space,
-} from "./types";
+import AccordionGroupPropsType, { AccordionGroupAccordionContextProps, AccordionPropsType } from "./types";
 
 const AccordionGroupAccordionContext = createContext<AccordionGroupAccordionContextProps | null>(null);
 
@@ -41,7 +36,7 @@ const DxcAccordionGroup = ({
   const colorsTheme = useTheme();
   const [innerIndexActive, setInnerIndexActive] = useState(defaultIndexActive ?? -1);
   const handlerActiveChange = useCallback(
-    (index) => {
+    (index: number) => {
       indexActive ?? setInnerIndexActive((prev) => (index === prev ? -1 : index));
       !disabled && onActiveChange?.(index);
     },
@@ -71,11 +66,10 @@ DxcAccordionGroup.Accordion = AccordionGroupAccordion;
 
 const calculateWidth = (margin) => `calc(100% - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`;
 
-type AccordionGroupContainerProps = {
-  margin: Space | Margin;
-  disabled: boolean;
-};
-const AccordionGroupContainer = styled.div<AccordionGroupContainerProps>`
+const AccordionGroupContainer = styled.div<{
+  margin: AccordionGroupPropsType["margin"];
+  disabled: AccordionGroupPropsType["disabled"];
+}>`
   width: ${(props) => calculateWidth(props.margin)};
   margin: ${({ margin }) => (margin && typeof margin !== "object" ? spaces[margin] : "0px")};
   margin-top: ${({ margin }) => (margin && typeof margin === "object" && margin.top ? spaces[margin.top] : "")};

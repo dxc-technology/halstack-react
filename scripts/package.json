@@ -8,6 +8,6 @@
     "url": "https://dxc.com"
   },
   "dependencies": {
-    "aws-sdk": "^2.718.0"
+    "aws-sdk": "^2.1369.0"
   }
 }

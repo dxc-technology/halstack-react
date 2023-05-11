@@ -1,15 +1,15 @@
 import { DxcInset, DxcFlex } from "@dxc-technology/halstack-react";
-import Placeholder from "./Placeholder";
+import Placeholder from "@/common/Placeholder";
 
 const code = `() => {
   return (
     <DxcInset space="2rem">
       <DxcFlex direction="column" gap="2rem">
-        <Placeholder height="large" />
+        <Placeholder height="50px" />
         <DxcInset space="1rem">
-          <Placeholder height="large" />
+          <Placeholder height="50px" />
         </DxcInset>
-        <Placeholder height="large" />
+        <Placeholder height="50px" />
       </DxcFlex>
     </DxcInset>
   );

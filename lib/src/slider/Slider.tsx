@@ -1,11 +1,11 @@
 import React, { useState, useMemo, useContext } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import DxcTextInput from "../text-input/TextInput";
-import { spaces } from "../common/variables.js";
-import { getMargin } from "../common/utils.js";
+import { spaces } from "../common/variables";
+import { getMargin } from "../common/utils";
 import useTheme from "../useTheme";
-import BackgroundColorContext from "../BackgroundColorContext";
-import SliderPropsType, { Margin, Space, RefType } from "./types";
+import BackgroundColorContext, { BackgroundColors } from "../BackgroundColorContext";
+import SliderPropsType, { RefType } from "./types";
 import { v4 as uuidv4 } from "uuid";
 
 const DxcSlider = React.forwardRef<RefType, SliderPropsType>(
@@ -124,7 +124,6 @@ const DxcSlider = React.forwardRef<RefType, SliderPropsType>(
                 min={minValue}
                 max={maxValue}
                 step={step}
-                marks={marks}
                 disabled={disabled}
                 aria-labelledby={labelId}
                 aria-orientation="horizontal"
@@ -184,9 +183,7 @@ const getFireFoxStyles = () => {
   margin-right: 3px;`;
 };
 
-type ContainerPropsType = { margin: Margin | Space; size: "medium" | "large" | "fillParent" };
-
-const Container = styled.div<ContainerPropsType>`
+const Container = styled.div<{ margin: SliderPropsType["margin"]; size: SliderPropsType["size"] }>`
   display: flex;
   flex-direction: column;
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
@@ -201,9 +198,7 @@ const Container = styled.div<ContainerPropsType>`
   width: ${(props) => calculateWidth(props.margin, props.size)};
 `;
 
-type LabelPropsType = { disabled: boolean; backgroundType: "dark" | "light" };
-
-const Label = styled.label<LabelPropsType>`
+const Label = styled.label<{ disabled: SliderPropsType["disabled"]; backgroundType: BackgroundColors }>`
   color: ${(props) =>
     props.disabled
       ? props.backgroundType === "dark"
@@ -220,7 +215,7 @@ const Label = styled.label<LabelPropsType>`
   line-height: ${(props) => props.theme.labelLineHeight};
 `;
 
-const HelperText = styled.span<LabelPropsType>`
+const HelperText = styled.span<{ disabled: SliderPropsType["disabled"]; backgroundType: BackgroundColors }>`
   color: ${(props) =>
     props.disabled
       ? props.backgroundType === "dark"
@@ -237,16 +232,13 @@ const HelperText = styled.span<LabelPropsType>`
   line-height: ${(props) => props.theme.helperTextLineHeight};
 `;
 
-type SliderInputPropsType = {
-  disabled: boolean;
-  backgroundType: "dark" | "light";
-  value: number;
-  min: number;
-  max: number;
-  marks: boolean;
-};
-
-const SliderInput = styled.input<SliderInputPropsType>`
+const SliderInput = styled.input<{
+  disabled: SliderPropsType["disabled"];
+  value: SliderPropsType["value"];
+  min: SliderPropsType["minValue"];
+  max: SliderPropsType["maxValue"];
+  backgroundType: BackgroundColors;
+}>`
   width: 100%;
   min-width: 240px;
   height: ${(props) => props.theme.trackLineThickness};
@@ -402,7 +394,10 @@ const SliderContainer = styled.div`
   align-items: center;
 `;
 
-const LimitLabelContainer = styled.span<LabelPropsType>`
+const LimitLabelContainer = styled.span<{
+  disabled: SliderPropsType["disabled"];
+  backgroundType: BackgroundColors;
+}>`
   color: ${(props) =>
     props.disabled
       ? props.theme.disabledLimitValuesFontColor
@@ -438,9 +433,7 @@ const SliderInputContainer = styled.div`
   z-index: 0;
 `;
 
-type MarksContainerPropsType = { isFirefox: boolean };
-
-const MarksContainer = styled.div<MarksContainerPropsType>`
+const MarksContainer = styled.div<{ isFirefox: boolean }>`
   ${(props) => (props.isFirefox ? getFireFoxStyles() : getChromeStyles())}
   position: absolute;
   pointer-events: none;
@@ -449,14 +442,12 @@ const MarksContainer = styled.div<MarksContainerPropsType>`
   align-items: center;
 `;
 
-type TickMarkPropsType = {
+const TickMark = styled.span<{
   stepPosition: number;
-  disabled: boolean;
-  backgroundType: "dark" | "light";
-  stepValue: number;
-};
-
-const TickMark = styled.span<TickMarkPropsType>`
+  disabled: SliderPropsType["disabled"];
+  backgroundType: BackgroundColors;
+  stepValue: SliderPropsType["value"];
+}>`
   position: absolute;
   background: ${(props) =>
     props.disabled

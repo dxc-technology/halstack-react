@@ -14,7 +14,10 @@ const DxcBadge = ({ notificationText, disabled }: BadgePropsType): JSX.Element =
   );
 };
 
-const StyledDxcBadge = styled.div<BadgePropsType>`
+const StyledDxcBadge = styled.div<{
+  notificationText: BadgePropsType["notificationText"];
+  disabled: BadgePropsType["disabled"];
+}>`
   background-color: ${(props) =>
     props.disabled ? props.theme.disabledBadgeBackgroundColor : props.theme.badgeBackgroundColor};
   font-family: ${(props) => props.theme.badgeFontFamily};

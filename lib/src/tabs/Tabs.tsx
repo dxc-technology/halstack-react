@@ -1,10 +1,10 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import { spaces } from "../common/variables.js";
+import { spaces } from "../common/variables";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
 import Tab from "./Tab";
-import TabsPropsType, { Margin, Space } from "./types";
+import TabsPropsType from "./types";
 
 const arrowIcons = {
   left: (
@@ -102,7 +102,7 @@ const DxcTabs = ({
 
   const scrollLeft = () => {
     const scrollWidth = refTabList?.current?.offsetWidth * 0.75;
-    let moveX;
+    let moveX = 0;
     if (countClick <= scrollWidth) {
       moveX = 0;
       setScrollLeftEnabled(false);
@@ -118,7 +118,7 @@ const DxcTabs = ({
 
   const scrollRight = () => {
     const scrollWidth = refTabList?.current?.offsetWidth * 0.75;
-    let moveX;
+    let moveX = 0;
     if (countClick + scrollWidth + refTabList?.current?.offsetWidth >= totalTabsWidth) {
       moveX = totalTabsWidth - refTabList?.current?.offsetWidth;
       setScrollRightEnabled(false);
@@ -220,9 +220,8 @@ const DxcTabs = ({
         <Tabs hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
           <ScrollIndicator
             onClick={scrollLeft}
-            scrollLeftEnabled={scrollLeftEnabled}
             enabled={enabledIndicator}
-            aria-disabled={!scrollLeftEnabled}
+            disabled={!scrollLeftEnabled}
             aria-label={translatedLabels.tabs.scrollLeft}
             tabIndex={scrollLeftEnabled ? tabIndex : -1}
             minHeightTabs={minHeightTabs}
@@ -252,21 +251,20 @@ const DxcTabs = ({
                     onMouseLeave={() => {
                       onTabHover?.(null);
                     }}
-                  ></Tab>
+                  />
                 ))}
               </TabList>
               <ActiveIndicator
                 tabWidth={activeIndicatorWidth}
                 tabLeft={activeIndicatorLeft}
                 aria-disabled={isActiveIndicatorDisabled}
-              ></ActiveIndicator>
+              />
             </TabsContentScroll>
           </TabsContent>
           <ScrollIndicator
             onClick={scrollRight}
-            scrollRightEnabled={scrollRightEnabled}
             enabled={enabledIndicator}
-            aria-disabled={!scrollRightEnabled}
+            disabled={!scrollRightEnabled}
             aria-label={translatedLabels.tabs.scrollRight}
             tabIndex={scrollRightEnabled ? tabIndex : -1}
             minHeightTabs={minHeightTabs}
@@ -280,15 +278,15 @@ const DxcTabs = ({
 };
 
 const Underline = styled.div`
+  position: absolute;
   left: 0;
   bottom: 0;
   width: 100%;
-  position: absolute;
   height: ${(props) => props.theme.dividerThickness};
   background-color: ${(props) => props.theme.dividerColor};
 `;
 
-const TabsContainer = styled.div<{ margin: Margin | Space }>`
+const TabsContainer = styled.div<{ margin: TabsPropsType["margin"] }>`
   position: relative;
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
@@ -301,12 +299,7 @@ const TabsContainer = styled.div<{ margin: Margin | Space }>`
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
 `;
 
-type IconProps = {
-  hasLabelAndIcon: boolean;
-  iconPosition: "top" | "left";
-};
-
-const Tabs = styled.div<IconProps>`
+const Tabs = styled.div<{ hasLabelAndIcon: boolean; iconPosition: TabsPropsType["iconPosition"] }>`
   min-height: ${(props) =>
     ((!props.hasLabelAndIcon || (props.hasLabelAndIcon && props.iconPosition !== "top")) && "48px") || "72px"};
   height: ${(props) =>
@@ -316,25 +309,21 @@ const Tabs = styled.div<IconProps>`
   background-color: ${(props) => props.theme.unselectedBackgroundColor};
 `;
 
-type ScrollIndicatorProps = {
+const ScrollIndicator = styled.button<{
   enabled: boolean;
-  scrollLeftEnabled?: boolean;
-  scrollRightEnabled?: boolean;
   minHeightTabs: number;
-};
-
-const ScrollIndicator = styled.button<ScrollIndicatorProps>`
+}>`
+  box-sizing: border-box;
   display: ${(props) => (props.enabled ? "flex" : "none")};
-  background-color: #ffffff;
-  font-size: 1.25rem;
+  justify-content: center;
   min-width: ${(props) => props.theme.scrollButtonsWidth};
   height: ${(props) => props.minHeightTabs - 1}px;
   padding: 0;
-  justify-content: center;
-  cursor: pointer;
-  border-bottom: solid ${(props) => props.theme.dividerThickness} ${(props) => props.theme.dividerColor};
-  box-sizing: border-box;
   border: none;
+  background-color: #ffffff;
+  font-size: 1.25rem;
+  cursor: pointer;
+
   &:hover {
     background-color: ${(props) => `${props.theme.hoverBackgroundColor} !important`};
   }
@@ -345,15 +334,7 @@ const ScrollIndicator = styled.button<ScrollIndicatorProps>`
   &:active {
     background-color: ${(props) => `${props.theme.pressedBackgroundColor} !important`};
   }
-  svg {
-    height: 20px;
-    width: 20px;
-    align-self: center;
-    fill: ${(props) => props.theme.unselectedFontColor};
-    visibility: visible;
-  }
-  &[aria-disabled="true"] {
-    pointer-events: none;
+  &:disabled {
     cursor: default;
     svg {
       visibility: hidden;
@@ -366,20 +347,22 @@ const ScrollIndicator = styled.button<ScrollIndicatorProps>`
       background-color: transparent !important;
     }
   }
+
+  svg {
+    align-self: center;
+    height: 20px;
+    width: 20px;
+    fill: ${(props) => props.theme.unselectedFontColor};
+  }
 `;
 
-type ActiveIndicatorProps = {
-  tabLeft: number;
-  tabWidth: number;
-};
-
-const ActiveIndicator = styled.span<ActiveIndicatorProps>`
+const ActiveIndicator = styled.span<{ tabLeft: number; tabWidth: number }>`
+  position: absolute;
+  bottom: 0;
   left: ${(props) => `${props.tabLeft}px`};
   width: ${(props) => `${props.tabWidth}px`};
-  background-color: ${(props) => props.theme.selectedUnderlineColor};
-  bottom: 0;
   height: ${(props) => props.theme.selectedUnderlineThickness};
-  position: absolute;
+  background-color: ${(props) => props.theme.selectedUnderlineColor};
   &[aria-disabled="true"] {
     background-color: ${(props) => props.theme.disabledFontColor};
     display: none;
@@ -387,7 +370,6 @@ const ActiveIndicator = styled.span<ActiveIndicatorProps>`
 `;
 
 const TabsContent = styled.div`
-  display: flex;
   flex: 1 1 auto;
   display: inline-block;
   position: relative;
@@ -403,12 +385,7 @@ const TabList = styled.div<{ minHeightTabs: number }>`
   min-height: ${(props) => props.minHeightTabs}px;
 `;
 
-type TabsContentScrollProps = {
-  translateScroll: number;
-  enabled: boolean;
-};
-
-const TabsContentScroll = styled.div<TabsContentScrollProps>`
+const TabsContentScroll = styled.div<{ translateScroll: number; enabled: boolean }>`
   display: flex;
   ${(props) => (props.enabled ? `transform: translateX(${props.translateScroll}px)` : `transform: translateX(0px)`)};
   transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;

@@ -67,9 +67,7 @@ const YearPickerContainer = styled.div`
   padding: 2px 8px 8px 8px;
 `;
 
-type YearPickerButtonPropsType = { selected: boolean; isCurrentYear: boolean };
-
-const YearPickerButton = styled.button<YearPickerButtonPropsType>`
+const YearPickerButton = styled.button<{ selected: boolean; isCurrentYear: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
