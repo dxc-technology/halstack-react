@@ -5,7 +5,7 @@ type CommonProps = {
   /**
    * Sets the justify-content CSS property.
    *
-   * See MDN: https://developer.mozilla.org/es/docs/Web/CSS/justify-content
+   * See MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/justify-content
    */
   justifyContent?:
     | "flex-start"
@@ -21,7 +21,7 @@ type CommonProps = {
   /**
    * Sets the align-items CSS property.
    *
-   * See MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/align-items
+   * See MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/align-items"
    */
   alignItems?:
     | "stretch"
@@ -36,7 +36,7 @@ type CommonProps = {
   /**
    * Sets the align-content CSS property.
    *
-   * See MDN: https://developer.mozilla.org/es/docs/Web/CSS/align-content
+   * See MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/align-content
    */
   alignContent?:
     | "normal"
@@ -52,7 +52,7 @@ type CommonProps = {
   /**
    * Sets the align-self CSS property.
    *
-   * See MDN: https://developer.mozilla.org/es/docs/Web/CSS/align-self
+   * See MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/align-self
    */
   alignSelf?: "auto" | "flex-start" | "flex-end" | "center" | "baseline" | "stretch";
 };
@@ -61,13 +61,13 @@ type Props = CommonProps & {
   /**
    * Sets the flex-direction CSS property.
    *
-   * See MDN: https://developer.mozilla.org/es/docs/Web/CSS/flex-direction
+   * See MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/flex-direction
    */
   direction?: "row" | "row-reverse" | "column" | "column-reverse";
   /**
    * Sets the flex-wrap CSS property.
    *
-   * See MDN: https://developer.mozilla.org/es/docs/Web/CSS/flex-wrap
+   * See MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/flex-wrap
    */
   wrap?: "nowrap" | "wrap" | "wrap-reverse";
   /**
@@ -85,19 +85,19 @@ type Props = CommonProps & {
   /**
    * Sets the flex-grow CSS property.
    *
-   * See MDN: https://developer.mozilla.org/es/docs/Web/CSS/flex-grow
+   * See MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/flex-grow
    */
   grow?: number;
   /**
    * Sets the flex-shrink CSS property.
    *
-   * See MDN: https://developer.mozilla.org/es/docs/Web/CSS/flex-shrink
+   * See MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/flex-shrink
    */
   shrink?: number;
   /**
    * Sets the flex-basis CSS property.
    *
-   * See MDN: https://developer.mozilla.org/es/docs/Web/CSS/flex-basis
+   * See MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/flex-basis
    */
   basis?: string;
   /**
@@ -111,47 +111,12 @@ type Props = CommonProps & {
 };
 
 export type StyledProps = CommonProps & {
-  /**
-   * Sets the flex-direction CSS property.
-   *
-   * See MDN: https://developer.mozilla.org/es/docs/Web/CSS/flex-direction
-   */
   $direction?: "row" | "row-reverse" | "column" | "column-reverse";
-  /**
-   * Sets the flex-wrap CSS property.
-   *
-   * See MDN: https://developer.mozilla.org/es/docs/Web/CSS/flex-wrap
-   */
   $wrap?: "nowrap" | "wrap" | "wrap-reverse";
-  /**
-   * Sets the gap CSS property.
-   *
-   * See MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/gap
-   */
   $gap?: Spaces | Gap;
-  /**
-   * Sets the order CSS property.
-   *
-   * See MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/order
-   */
   $order?: number;
-  /**
-   * Sets the flex-grow CSS property.
-   *
-   * See MDN: https://developer.mozilla.org/es/docs/Web/CSS/flex-grow
-   */
   $grow?: number;
-  /**
-   * Sets the flex-shrink CSS property.
-   *
-   * See MDN: https://developer.mozilla.org/es/docs/Web/CSS/flex-shrink
-   */
   $shrink?: number;
-  /**
-   * Sets the flex-basis CSS property.
-   *
-   * See MDN: https://developer.mozilla.org/es/docs/Web/CSS/flex-basis
-   */
   $basis?: string;
 };
 

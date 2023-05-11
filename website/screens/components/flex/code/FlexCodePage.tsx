@@ -29,7 +29,7 @@ const sections = [
             Sets <Code>flex-direction</Code> CSS property. See{" "}
             <DxcLink
               newWindow
-              href="https://developer.mozilla.org/es/docs/Web/CSS/flex-direction"
+              href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-direction"
             >
               MDN
             </DxcLink>{" "}
@@ -49,7 +49,7 @@ const sections = [
             Sets <Code>justify-content</Code> CSS property. See{" "}
             <DxcLink
               newWindow
-              href="https://developer.mozilla.org/es/docs/Web/CSS/justify-content"
+              href="https://developer.mozilla.org/en-US/docs/Web/CSS/justify-content"
             >
               MDN
             </DxcLink>{" "}
@@ -87,7 +87,7 @@ const sections = [
             Sets <Code>align-content</Code> CSS property. See{" "}
             <DxcLink
               newWindow
-              href="https://developer.mozilla.org/es/docs/Web/CSS/align-content"
+              href="https://developer.mozilla.org/en-US/docs/Web/CSS/align-content"
             >
               MDN
             </DxcLink>{" "}
@@ -106,7 +106,7 @@ const sections = [
             Sets <Code>align-self</Code> CSS property. See{" "}
             <DxcLink
               newWindow
-              href="https://developer.mozilla.org/es/docs/Web/CSS/align-self"
+              href="https://developer.mozilla.org/en-US/docs/Web/CSS/align-self"
             >
               MDN
             </DxcLink>{" "}
@@ -122,7 +122,7 @@ const sections = [
             Sets <Code>flex-wrap</Code> CSS property. See{" "}
             <DxcLink
               newWindow
-              href="https://developer.mozilla.org/es/docs/Web/CSS/flex-wrap"
+              href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-wrap"
             >
               MDN
             </DxcLink>{" "}
@@ -157,7 +157,7 @@ const sections = [
             Sets <Code>flex-grow</Code> CSS property. See{" "}
             <DxcLink
               newWindow
-              href="https://developer.mozilla.org/es/docs/Web/CSS/flex-grow"
+              href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-grow"
             >
               MDN
             </DxcLink>{" "}
@@ -173,7 +173,7 @@ const sections = [
             Sets <Code>flex-shrink</Code> CSS property. See{" "}
             <DxcLink
               newWindow
-              href="https://developer.mozilla.org/es/docs/Web/CSS/flex-shrink"
+              href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-shrink"
             >
               MDN
             </DxcLink>{" "}
@@ -189,7 +189,7 @@ const sections = [
             Sets <Code>order</Code> CSS property. See{" "}
             <DxcLink
               newWindow
-              href="https://developer.mozilla.org/es/docs/Web/CSS/order"
+              href="https://developer.mozilla.org/en-US/docs/Web/CSS/order"
             >
               MDN
             </DxcLink>{" "}
@@ -205,7 +205,7 @@ const sections = [
             Sets <Code>flex-basis</Code> CSS property. See{" "}
             <DxcLink
               newWindow
-              href="https://developer.mozilla.org/es/docs/Web/CSS/flex-basis"
+              href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-basis"
             >
               MDN
             </DxcLink>{" "}
