@@ -4,7 +4,7 @@ import DxcSelect from "../select/Select";
 import DxcInset from "../inset/Inset";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
-import { fireEvent, userEvent, within } from "@storybook/testing-library";
+import { userEvent, within } from "@storybook/testing-library";
 import { HalstackProvider } from "../HalstackContext";
 
 export default {
@@ -260,7 +260,7 @@ CollapsableGroup.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const collapsableGroups = canvas.getAllByText("Collapsed Group");
   collapsableGroups.forEach((group) => {
-    fireEvent.click(group);
+    userEvent.click(group);
   });
 };
 
@@ -268,9 +268,11 @@ export const CollapsedHoverGroup = HoveredGroupSidenav.bind({});
 CollapsedHoverGroup.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const collapsableGroups = canvas.getAllByText("Collapsed Group");
-  collapsableGroups.forEach((group) => {
-    fireEvent.click(group);
-  });
+  userEvent.click(collapsableGroups[0]);
+  setTimeout(() => {
+    userEvent.click(collapsableGroups[1]);
+    userEvent.click(collapsableGroups[2]);
+  }, 1000);
 };
 
 export const CollapsedActiveGroup = ActiveGroupSidenav.bind({});
