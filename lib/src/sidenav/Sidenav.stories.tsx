@@ -265,15 +265,13 @@ CollapsableGroup.play = async ({ canvasElement }) => {
 };
 
 export const CollapsedHoverGroup = HoveredGroupSidenav.bind({});
-CollapsedHoverGroup.parameters = {
-  chromatic: { delay: 500 },
-};
 CollapsedHoverGroup.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const collapsableGroups = canvas.getAllByText("Collapsed Group");
   collapsableGroups.forEach((group) => {
     userEvent.click(group);
   });
+  await new Promise((resolve) => setTimeout(resolve, 3000));
 };
 
 export const CollapsedActiveGroup = ActiveGroupSidenav.bind({});
