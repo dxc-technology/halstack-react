@@ -15,6 +15,7 @@ exports.componentsList = [
   { label: "File Input", path: "/components/file-input" },
   { label: "Flex", path: "/components/flex" },
   { label: "Footer", path: "/components/footer" },
+  { label: "Grid", path: "/components/grid" },
   { label: "Header", path: "/components/header" },
   { label: "Heading", path: "/components/heading" },
   { label: "Inset", path: "/components/inset" },
