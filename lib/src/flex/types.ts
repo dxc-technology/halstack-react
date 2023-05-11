@@ -21,7 +21,7 @@ type CommonProps = {
   /**
    * Sets the align-items CSS property.
    *
-   * See MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/align-items"
+   * See MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/align-items
    */
   alignItems?:
     | "stretch"
