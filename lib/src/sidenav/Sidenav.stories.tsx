@@ -266,12 +266,7 @@ CollapsableGroup.play = async ({ canvasElement }) => {
 
 export const CollapsedHoverGroup = HoveredGroupSidenav.bind({});
 CollapsedHoverGroup.parameters = {
-  args: {
-    with: "props",
-  },
-  parameters: {
-    chromatic: { delay: 500 },
-  },
+  chromatic: { delay: 500 },
 };
 CollapsedHoverGroup.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
