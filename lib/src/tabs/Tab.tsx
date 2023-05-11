@@ -18,7 +18,6 @@ const Tab = forwardRef(
         type="button"
         tabIndex={tabIndex}
         disabled={tab.isDisabled}
-        aria-disabled={tab.isDisabled}
         aria-selected={active}
         hasLabelAndIcon={hasLabelAndIcon}
         iconPosition={iconPosition}
@@ -124,15 +123,16 @@ const TabContainer = styled.button<{
     opacity: 1;
   }
 
-  &[aria-disabled="true"] {
+  &:disabled {
     background-color: ${(props) => props.theme.unselectedBackgroundColor} !important;
     cursor: not-allowed !important;
     pointer-events: all;
     font-style: ${(props) => props.theme.disabledFontStyle};
+    outline: none !important;
+
     svg {
       color: ${(props) => props.theme.disabledIconColor};
     }
-    outline: none !important;
     > div {
       opacity: 0.5;
     }
