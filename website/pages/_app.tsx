@@ -1,4 +1,3 @@
-//@ts-nocheck
 import { ReactElement, ReactNode, useMemo, useState } from "react";
 import type { NextPage } from "next";
 import type { AppProps } from "next/app";
