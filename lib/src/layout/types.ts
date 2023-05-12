@@ -1,5 +1,3 @@
-type ChildrenType = AppLayoutMainPropsType | AppLayoutSidenavPropsType;
-
 export type AppLayoutMainPropsType = {
   /**
    * Everything between the tags will be displayed as the content of the main part of the application.
@@ -37,9 +35,9 @@ type AppLayoutPropsType = {
    */
   footer?: React.ReactNode;
   /**
-   * The area inside the sidenav. This area can be used to render custom content.
+   * Use the DxcApplicationLayout.Main provided to render main content.
    */
-  children: React.ReactElement<ChildrenType> | React.ReactElement<ChildrenType>[];
+  children: React.ReactElement<AppLayoutMainPropsType>;
 };
 
 export default AppLayoutPropsType;

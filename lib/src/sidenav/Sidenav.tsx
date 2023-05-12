@@ -23,7 +23,14 @@ const DxcSidenav = ({ title, children }: SidenavPropsType): JSX.Element => {
         <BackgroundColorProvider color={colorsTheme.sidenav.backgroundColor}>
           {title}
           <DxcFlex direction="column" gap="1rem">
-            {children}
+            {React.Children.map(children, (child, index) => {
+              return (
+                <>
+                  {child}
+                  {index !== React.Children.count(children) - 1 && <Divider />}
+                </>
+              );
+            })}
           </DxcFlex>
         </BackgroundColorProvider>
       </SidenavContainer>
@@ -38,12 +45,9 @@ const Title = ({ children }: SidenavTitlePropsType): JSX.Element => (
 );
 
 const Section = ({ children }: SidenavSectionPropsType): JSX.Element => (
-  <>
-    <DxcBleed horizontal="1rem">
-      <DxcFlex direction="column">{children}</DxcFlex>
-    </DxcBleed>
-    <Divider />
-  </>
+  <DxcBleed horizontal="1rem">
+    <DxcFlex direction="column">{children}</DxcFlex>
+  </DxcBleed>
 );
 
 const GroupContext = React.createContext<React.Dispatch<React.SetStateAction<boolean>> | null>(null);
@@ -160,10 +164,6 @@ const Divider = styled.div`
   width: 100%;
   height: 1px;
   background-color: #999999;
-
-  &:last-child {
-    display: none;
-  }
 `;
 
 const SidenavGroup = styled.div`
