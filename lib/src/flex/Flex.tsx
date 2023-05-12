@@ -42,7 +42,12 @@ const Flex = styled.div<StyledProps>`
     align-items: ${alignItems};
     align-content: ${alignContent};
     align-self: ${alignSelf};
-    gap: ${typeof props.$gap === "object" ? `${props.$gap.rowGap} ${props.$gap.columnGap}` : props.$gap};
+    gap: ${
+      props.$gap != null &&
+      (typeof props.$gap === "string"
+        ? `gap: ${props.$gap};`
+        : `row-gap: ${props.$gap.rowGap ?? ""}; column-gap: ${props.$gap.columnGap ?? ""};`)
+    }
     order: ${props.$order};
     flex-grow: ${props.$grow};
     flex-shrink: ${props.$shrink};
