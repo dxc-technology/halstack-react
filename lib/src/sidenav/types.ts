@@ -2,13 +2,13 @@ type SVG = React.ReactNode & React.SVGProps<SVGSVGElement>;
 
 type SidenavPropsType = {
   /**
-   * The area inside the sidenav. This area can be used to render the content inside the sidenav.
-   */
-  children: React.ReactNode;
-  /**
    * The area assigned to render the sidenav title. It is highly recommended to use the sidenav title.
    */
   title?: React.ReactNode;
+  /**
+   * The area inside the sidenav. This area can be used to render the content inside the sidenav.
+   */
+  children: React.ReactNode;
 };
 
 export type SidenavTitlePropsType = {
@@ -27,28 +27,25 @@ export type SidenavSectionPropsType = {
 
 export type SidenavGroupPropsType = {
   /**
-   * The area inside the sidenav group. This area can be used to render sidenav links.
-   */
-  children: React.ReactNode;
-  /**
    * The title of the sidenav group.
    */
   title?: string;
   /**
-   * If true the sidenav group title will be considered a button and the group will be collapsable.
+   * If true, the sidenav group will be a button that will allow you to collapse the links contained within it.
+   * In addition, if it's collapsed and contains the currently selected link, the group title will also be marked as selected.
    */
   collapsable?: boolean;
   /**
    * The icon to be displayed next to the title of the group.
    */
   icon?: string | SVG;
+  /**
+   * The area inside the sidenav group. This area can be used to render sidenav links.
+   */
+  children: React.ReactNode;
 };
 
 export type SidenavLinkPropsType = {
-  /**
-   * Value of the tabindex.
-   */
-  tabIndex?: number;
   /**
    * Page to be opened when the user clicks on the link.
    */
@@ -62,17 +59,23 @@ export type SidenavLinkPropsType = {
    */
   icon?: string | SVG;
   /**
-   * If true, the link will be marked as selected. This can also affect the group if it is closed to indicate that one of its links is selected.
+   * If true, the link will be marked as selected. Moreover, in that same case, 
+   * if it is contained within a collapsed group, and consequently, the currently selected link is not visible, 
+   * the group title will appear as selected too.
    */
   selected?: boolean;
   /**
+   * This function will be called when the user clicks the link and the event will be passed to this function.
+   */
+  onClick?: ($event: React.MouseEvent<HTMLAnchorElement>) => void;
+  /**
+   * Value of the tabindex.
+   */
+  tabIndex?: number;
+  /**
    * The area inside the sidenav link.
    */
-  children: string;
-  /**
-   * This function will be called when the user clicks the link.
-   */
-  onClick?: ($event) => void;
+  children: React.ReactNode;
 };
 
 export default SidenavPropsType;
