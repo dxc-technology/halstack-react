@@ -32,10 +32,7 @@ const sections = [
         <tr>
           <td>children: node</td>
           <td></td>
-          <td>
-            The area inside the sidenav. The content will be placed inside a
-            stack with a divider between each element.
-          </td>
+          <td>The area inside the sidenav.</td>
         </tr>
       </DxcTable>
     ),
@@ -78,6 +75,7 @@ const sections = [
         Sections must be defined as direct children of the{" "}
         <Code>DxcSidenav</Code> and serve to group links, groups and/or custom
         content into different and distinguishable parts of the component.
+        Consecutive sections are separated by a divider.
       </DxcParagraph>
     ),
     subSections: [
@@ -94,8 +92,7 @@ const sections = [
               <td>children: node</td>
               <td></td>
               <td>
-                The area inside the sidenav section. This area can be used to
-                render sidenav groups, links and custom content.
+                The area inside the sidenav section.
               </td>
             </tr>
           </DxcTable>
