@@ -125,10 +125,10 @@
     "@babel/helper-validator-identifier" "^7.19.1"
     to-fast-properties "^2.0.0"
 
-"@dxc-technology/halstack-react@0.0.0-abf35d9":
-  version "0.0.0-abf35d9"
-  resolved "https://registry.yarnpkg.com/@dxc-technology/halstack-react/-/halstack-react-0.0.0-abf35d9.tgz#47e4c195d2ab1294686aee24d8bae023040c31f5"
-  integrity sha512-kkxHm/SQX9c9fYSdrqfxvPLGze4L+muo9G4Nzy/MU7+3bOU7Lo4iXqm+gj3nHKxPe846STnZ66dQtVH1kTb7iw==
+"@dxc-technology/halstack-react@0.0.0-22b474c":
+  version "0.0.0-22b474c"
+  resolved "https://registry.yarnpkg.com/@dxc-technology/halstack-react/-/halstack-react-0.0.0-22b474c.tgz#ff946a803850aa932af5a074f1850d11bc1cdb13"
+  integrity sha512-U0LeJxzQhhncja1YuiveTLwCDmzRyQ8xoEzqShLuBz1GNnow1M18kyqvBn+zU0sXm4nfle5hxFVipoRxkPZBfQ==
   dependencies:
     "@radix-ui/react-popover" "0.1.6"
     "@types/styled-components" "^5.1.24"

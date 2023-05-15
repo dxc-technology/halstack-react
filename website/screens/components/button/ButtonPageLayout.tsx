@@ -14,7 +14,7 @@ const ButtonPageHeading = ({ children }: { children: React.ReactNode }) => {
     <DxcFlex direction="column" gap="3rem">
       <PageHeading>
         <DxcFlex direction="column" gap="2rem">
-          <ComponentHeading name="Button" status="Ready" />
+          <ComponentHeading name="Button" />
           <DxcParagraph>
             Buttons are basic interface elements that initialize an action or
             function when the user interacts with them. The appearance of the

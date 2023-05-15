@@ -14,7 +14,7 @@ const SwitchPageHeading = ({ children }: { children: React.ReactNode }) => {
     <DxcFlex direction="column" gap="3rem">
       <PageHeading>
         <DxcFlex direction="column" gap="2rem">
-          <ComponentHeading name="Switch" status="Ready" />
+          <ComponentHeading name="Switch" />
           <DxcParagraph>
             Switch toggles are elements that can get two simple states, each of
             them has an impact on the system and it can be switched on or off,

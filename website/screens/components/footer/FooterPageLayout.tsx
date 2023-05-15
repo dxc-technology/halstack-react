@@ -15,7 +15,7 @@ const FooterPageHeading = ({ children }: { children: React.ReactNode }) => {
     <DxcFlex direction="column" gap="3rem">
       <PageHeading>
         <DxcFlex direction="column" gap="2rem">
-          <ComponentHeading name="Footer" status="Ready" />
+          <ComponentHeading name="Footer" />
           <DxcParagraph>
             Footers are a secondary element in a web page because they usually
             appear at the bottom and it is the last thing that the user

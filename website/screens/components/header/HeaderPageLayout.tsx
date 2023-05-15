@@ -15,7 +15,7 @@ const HeaderPageHeading = ({ children }: { children: React.ReactNode }) => {
     <DxcFlex direction="column" gap="3rem">
       <PageHeading>
         <DxcFlex direction="column" gap="2rem">
-          <ComponentHeading name="Header" status="Ready" />
+          <ComponentHeading name="Header" />
           <DxcParagraph>
             The header is an important component in the interface, it is the
             area dedicated for the navigation across the application and helps
