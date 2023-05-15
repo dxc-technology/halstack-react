@@ -21,7 +21,7 @@ const ProgressBarPageHeading = ({
     <DxcFlex direction="column" gap="3rem">
       <PageHeading>
         <DxcFlex direction="column" gap="2rem">
-          <ComponentHeading name="Progress Bar" status="Ready" />
+          <ComponentHeading name="Progress Bar" />
           <DxcParagraph>
             Progress indicators offer visibility of system status to the user,
             giving feedback to indicate that the application is taking some time

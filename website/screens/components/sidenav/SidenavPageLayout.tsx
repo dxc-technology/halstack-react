@@ -15,7 +15,7 @@ const SidenavPageHeading = ({ children }: { children: React.ReactNode }) => {
     <DxcFlex direction="column" gap="3rem">
       <PageHeading>
         <DxcFlex direction="column" gap="2rem">
-          <ComponentHeading name="Sidenav" status="Ready" />
+          <ComponentHeading name="Sidenav" />
           <DxcParagraph>
             The sidenav component is part of the layout of the application and
             it makes easier to divide the main screen into two different areas.

@@ -10,7 +10,7 @@ const GridPageHeading = ({ children }: { children: React.ReactNode }) => {
     <DxcFlex direction="column" gap="3rem">
       <PageHeading>
         <DxcFlex direction="column" gap="2rem">
-          <ComponentHeading name="Grid" status="Experimental" />
+          <ComponentHeading name="Grid" />
           <DxcParagraph>
             Grid allows users to build applications based on{" "}
             <DxcLink

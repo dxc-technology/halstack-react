@@ -21,7 +21,7 @@ const PasswordInputPageHeading = ({
     <DxcFlex direction="column" gap="3rem">
       <PageHeading>
         <DxcFlex direction="column" gap="2rem">
-          <ComponentHeading name="Password Input" status="Ready" />
+          <ComponentHeading name="Password Input" />
           <DxcParagraph>
             The password input component is very much like the text input, with
             the difference that their value is obscured by default (by replacing

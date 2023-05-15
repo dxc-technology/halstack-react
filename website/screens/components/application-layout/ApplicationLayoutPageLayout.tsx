@@ -21,7 +21,7 @@ const ApplicationLayoutPageHeading = ({
     <DxcFlex direction="column" gap="3rem">
       <PageHeading>
         <DxcFlex direction="column" gap="2rem">
-          <ComponentHeading name="Application layout" status="Ready" />
+          <ComponentHeading name="Application layout" />
           <DxcParagraph>
             The application layout provides a base UI wrapper for any
             application built with Halstack.

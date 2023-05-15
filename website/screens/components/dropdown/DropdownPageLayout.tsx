@@ -14,7 +14,7 @@ const DropdownPageHeading = ({ children }: { children: React.ReactNode }) => {
     <DxcFlex direction="column" gap="3rem">
       <PageHeading>
         <DxcFlex direction="column" gap="2rem">
-          <ComponentHeading name="Dropdown" status="Ready" />
+          <ComponentHeading name="Dropdown" />
           <DxcParagraph>
             The use of dropdowns has its advantages but it depends on the screen
             support. Dropdowns are a standard widget, so the users know how to

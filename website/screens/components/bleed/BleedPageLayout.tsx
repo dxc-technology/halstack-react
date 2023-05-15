@@ -14,7 +14,7 @@ const BleedPageHeading = ({ children }: { children: React.ReactNode }) => {
     <DxcFlex direction="column" gap="3rem">
       <PageHeading>
         <DxcFlex direction="column" gap="2rem">
-          <ComponentHeading name="Bleed" status="Ready" />
+          <ComponentHeading name="Bleed"  />
           <DxcParagraph>
             Bleed layout applies negative spacing scale to its child nodes.
           </DxcParagraph>

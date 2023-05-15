@@ -14,7 +14,7 @@ const CardPageHeading = ({ children }: { children: React.ReactNode }) => {
     <DxcFlex direction="column" gap="3rem">
       <PageHeading>
         <DxcFlex direction="column" gap="2rem">
-          <ComponentHeading name="Card" status="Ready" />
+          <ComponentHeading name="Card" />
           <DxcParagraph>
             Cards are a container of information, actions and data with a
             hierarchy to make easy scanning the content. A card can be defined

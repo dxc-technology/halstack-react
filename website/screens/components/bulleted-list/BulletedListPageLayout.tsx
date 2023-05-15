@@ -20,7 +20,7 @@ const BulletedListPageHeading = ({
     <DxcFlex direction="column" gap="3rem">
       <PageHeading>
         <DxcFlex direction="column" gap="2rem">
-          <ComponentHeading name="Bulleted List" status="Ready" />
+          <ComponentHeading name="Bulleted List" />
           <DxcParagraph>
             Bulleted list are used to display text items in a bulleted format.
           </DxcParagraph>

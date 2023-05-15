@@ -119,12 +119,7 @@ const sections = [
           <tr>
             <td>ref: object</td>
             <td></td>
-            <td>
-              <DxcFlex gap="0.25rem" direction="column" alignItems="baseline">
-                <StatusTag status="Information">New</StatusTag>
-                Reference to the component.
-              </DxcFlex>
-            </td>
+            <td>Reference to the component.</td>
           </tr>
         </tbody>
       </DxcTable>

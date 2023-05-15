@@ -18,7 +18,7 @@ const NumberInputPageHeading = ({
     <DxcFlex direction="column" gap="3rem">
       <PageHeading>
         <DxcFlex direction="column" gap="2rem">
-          <ComponentHeading name="Nav Tabs" status="Ready" />
+          <ComponentHeading name="Nav Tabs" />
           <DxcParagraph>
             Nav tabs function in the same way as the tab component but are more
             focused on navigation across pages or links.

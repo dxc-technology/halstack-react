@@ -14,7 +14,7 @@ const QuickNavPageHeading = ({ children }: { children: React.ReactNode }) => {
     <DxcFlex direction="column" gap="3rem">
       <PageHeading>
         <DxcFlex direction="column" gap="2rem">
-          <ComponentHeading name="Quick Nav" status="Ready" />
+          <ComponentHeading name="Quick Nav" />
           <DxcParagraph>
             The quick nav component allows navigation inside a page. It renders
             the links according to the headings of the content in order to

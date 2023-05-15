@@ -21,7 +21,7 @@ const ToggleGroupPageHeading = ({
     <DxcFlex direction="column" gap="3rem">
       <PageHeading>
         <DxcFlex direction="column" gap="2rem">
-          <ComponentHeading name="Toggle Group" status="Ready" />
+          <ComponentHeading name="Toggle Group" />
           <DxcParagraph>
             Toggle buttons can be used to put together related options that
             share a common attribute modification. It allows the user to switch

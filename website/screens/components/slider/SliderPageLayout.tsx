@@ -14,7 +14,7 @@ const SliderPageHeading = ({ children }: { children: React.ReactNode }) => {
     <DxcFlex direction="column" gap="3rem">
       <PageHeading>
         <DxcFlex direction="column" gap="2rem">
-          <ComponentHeading name="Slider" status="Ready" />
+          <ComponentHeading name="Slider" />
           <DxcParagraph>
             Slider control allows users to select a specific value or a range of
             values from a set. Usually, slider presents a relatively large

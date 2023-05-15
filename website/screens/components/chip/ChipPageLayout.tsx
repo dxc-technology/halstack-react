@@ -14,7 +14,7 @@ const ChipPageHeading = ({ children }: { children: React.ReactNode }) => {
     <DxcFlex direction="column" gap="3rem">
       <PageHeading>
         <DxcFlex direction="column" gap="2rem">
-          <ComponentHeading name="Chip" status="Ready" />
+          <ComponentHeading name="Chip" />
           <DxcParagraph>
             Chips are elements that represent status, complementary information,
             or association between elements.
