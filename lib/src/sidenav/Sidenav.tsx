@@ -221,8 +221,8 @@ const SidenavGroupTitleButton = styled.button<{ selectedGroup: boolean }>`
         : `color: ${props.theme.groupTitleFontColor}; background-color: ${props.theme.groupTitleHoverBackgroundColor};`}
   }
   &:active {
-    background-color: ${(props) => props.theme.groupTitleActiveBackgroundColor};
-    color: ${(props) => props.theme.groupTitleFontColor};
+    color: #fff;
+    background-color: ${(props) => (props.selectedGroup ? "#333" : props.theme.groupTitleActiveBackgroundColor)};
   }
 
   img,
@@ -264,8 +264,8 @@ const SidenavLink = styled.a<{ selected: SidenavLinkPropsType["selected"] }>`
         : `color: ${props.theme.linkFontColor}; background-color: ${props.theme.linkHoverBackgroundColor};`}
   }
   &:active {
-    color: #ffffff;
-    background-color: #4d4d4d;
+    color: #fff;
+    background-color: ${(props) => (props.selected ? "#333" : "#4d4d4d")};
     outline: 2px solid #0095ff;
     outline-offset: -2px;
   }
