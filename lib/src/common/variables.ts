@@ -133,8 +133,6 @@ export const globalTokens = {
   type_leading_loose_01: "1.715em",
   type_leading_loose_02: "2em",
 
-  fontSize10: "10px",
-
   // Spacing
   spacing_00: "0rem",
   spacing_01: "0.125rem",
