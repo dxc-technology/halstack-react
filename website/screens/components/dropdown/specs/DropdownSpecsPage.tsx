@@ -115,8 +115,10 @@ const sections = [
                   <Code>activeButtonBackgroundColor</Code>
                 </td>
                 <td>Button:active</td>
-                <td></td>
-                <td>#d9d9d9</td>
+                <td>
+                  <Code>color-grey-300</Code>
+                </td>
+                <td>#cccccc</td>
               </tr>
               <tr>
                 <td>
@@ -193,8 +195,10 @@ const sections = [
                   <Code>scrollBarTrackColor</Code>
                 </td>
                 <td>Scroll track</td>
-                <td></td>
-                <td>#d9d9d9</td>
+                <td>
+                  <Code>color-grey-300</Code>
+                </td>
+                <td>#cccccc</td>
               </tr>
               <tr>
                 <td>

@@ -492,7 +492,7 @@
     "fontColor": "color",
     "visitedFontColor": "color",
     "visitedUnderlineColor": "color",
-    "disabledColor": "color",
+    "disabledFontColor": "color",
     "hoverFontColor": "color",
     "hoverUnderlineColor": "color",
     "activeFontColor": "color",
