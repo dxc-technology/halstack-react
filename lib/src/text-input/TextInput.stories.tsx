@@ -522,7 +522,7 @@ const DarkAutosuggestListbox = () => {
           <Title title="Dark theme" theme="dark" level={2} />
           <ExampleContainer>
             <Title title="Default with opened suggestions" theme="dark" level={3} />
-            <DxcFlex direction="column" gap="80px">
+            <DxcFlex direction="column" gap="5rem">
               <DxcTextInput label="Label" suggestions={countries} optional placeholder="Choose an option" />
               <DxcCheckbox
                 label="You understand the selection and give your consent"

@@ -1,4 +1,4 @@
-import { DxcFlex, DxcTable } from "@dxc-technology/halstack-react";
+import { DxcFlex, DxcTable, DxcLink } from "@dxc-technology/halstack-react";
 import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
@@ -26,7 +26,14 @@ const sections = [
             <Code>'row'</Code>
           </td>
           <td>
-            Sets <Code>flex-direction</Code> CSS property.
+            Sets <Code>flex-direction</Code> CSS property. See{" "}
+            <DxcLink
+              newWindow
+              href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-direction"
+            >
+              MDN
+            </DxcLink>{" "}
+            for further information.
           </td>
         </tr>
         <tr>
@@ -39,7 +46,14 @@ const sections = [
             <Code>'flex-start'</Code>
           </td>
           <td>
-            Sets <Code>justify-content</Code> CSS property.
+            Sets <Code>justify-content</Code> CSS property. See{" "}
+            <DxcLink
+              newWindow
+              href="https://developer.mozilla.org/en-US/docs/Web/CSS/justify-content"
+            >
+              MDN
+            </DxcLink>{" "}
+            for further information.
           </td>
         </tr>
         <tr>
@@ -51,7 +65,14 @@ const sections = [
             <Code>'stretch'</Code>
           </td>
           <td>
-            Sets <Code>align-items</Code> CSS property.
+            Sets <Code>align-items</Code> CSS property. See{" "}
+            <DxcLink
+              newWindow
+              href="https://developer.mozilla.org/en-US/docs/Web/CSS/align-items"
+            >
+              MDN
+            </DxcLink>{" "}
+            for further information.
           </td>
         </tr>
         <tr>
@@ -63,7 +84,14 @@ const sections = [
             <Code>'normal'</Code>
           </td>
           <td>
-            Sets <Code>align-content</Code> CSS property.
+            Sets <Code>align-content</Code> CSS property. See{" "}
+            <DxcLink
+              newWindow
+              href="https://developer.mozilla.org/en-US/docs/Web/CSS/align-content"
+            >
+              MDN
+            </DxcLink>{" "}
+            for further information.
           </td>
         </tr>
         <tr>
@@ -75,7 +103,14 @@ const sections = [
             <Code>'auto'</Code>
           </td>
           <td>
-            Sets <Code>align-self</Code> CSS property.
+            Sets <Code>align-self</Code> CSS property. See{" "}
+            <DxcLink
+              newWindow
+              href="https://developer.mozilla.org/en-US/docs/Web/CSS/align-self"
+            >
+              MDN
+            </DxcLink>{" "}
+            for further information.
           </td>
         </tr>
         <tr>
@@ -84,16 +119,33 @@ const sections = [
             <Code>'nowrap'</Code>
           </td>
           <td>
-            Sets <Code>flex-wrap</Code> CSS property.
+            Sets <Code>flex-wrap</Code> CSS property. See{" "}
+            <DxcLink
+              newWindow
+              href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-wrap"
+            >
+              MDN
+            </DxcLink>{" "}
+            for further information.
           </td>
         </tr>
         <tr>
-          <td>gap: string | Gap</td>
           <td>
-            <Code>'0'</Code>
+            gap: '0rem' | '0.125rem' | '0.25rem' | '0.5rem' | '1rem' | '1.5rem'
+            | '2rem' | '3rem' | '4rem' | '5rem' | Gap
           </td>
           <td>
-            Sets <Code>gap</Code> CSS property.
+            <Code>'0rem'</Code>
+          </td>
+          <td>
+            Sets <Code>gap</Code> CSS property. See{" "}
+            <DxcLink
+              newWindow
+              href="https://developer.mozilla.org/en-US/docs/Web/CSS/gap"
+            >
+              MDN
+            </DxcLink>{" "}
+            for further information.
           </td>
         </tr>
         <tr>
@@ -102,7 +154,14 @@ const sections = [
             <Code>0</Code>
           </td>
           <td>
-            Sets <Code>flex-grow</Code> CSS property.
+            Sets <Code>flex-grow</Code> CSS property. See{" "}
+            <DxcLink
+              newWindow
+              href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-grow"
+            >
+              MDN
+            </DxcLink>{" "}
+            for further information.
           </td>
         </tr>
         <tr>
@@ -111,7 +170,14 @@ const sections = [
             <Code>1</Code>
           </td>
           <td>
-            Sets <Code>flex-shrink</Code> CSS property.
+            Sets <Code>flex-shrink</Code> CSS property. See{" "}
+            <DxcLink
+              newWindow
+              href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-shrink"
+            >
+              MDN
+            </DxcLink>{" "}
+            for further information.
           </td>
         </tr>
         <tr>
@@ -120,7 +186,14 @@ const sections = [
             <Code>0</Code>
           </td>
           <td>
-            Sets <Code>order</Code> CSS property.
+            Sets <Code>order</Code> CSS property. See{" "}
+            <DxcLink
+              newWindow
+              href="https://developer.mozilla.org/en-US/docs/Web/CSS/order"
+            >
+              MDN
+            </DxcLink>{" "}
+            for further information.
           </td>
         </tr>
         <tr>
@@ -129,7 +202,14 @@ const sections = [
             <Code>'auto'</Code>
           </td>
           <td>
-            Sets <Code>flex-basis</Code> CSS property.
+            Sets <Code>flex-basis</Code> CSS property. See{" "}
+            <DxcLink
+              newWindow
+              href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-basis"
+            >
+              MDN
+            </DxcLink>{" "}
+            for further information.
           </td>
         </tr>
         <tr>
