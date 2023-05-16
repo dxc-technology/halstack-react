@@ -92,7 +92,8 @@ const sections = [
               <td>children: node</td>
               <td></td>
               <td>
-                The area inside the sidenav section.
+                The area inside the sidenav section. Child items will be stacked
+                inside a flex container.
               </td>
             </tr>
           </DxcTable>

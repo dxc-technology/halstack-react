@@ -39,7 +39,9 @@ const Title = ({ children }: SidenavTitlePropsType): JSX.Element => (
 
 const Section = ({ children }: SidenavSectionPropsType): JSX.Element => (
   <>
-    <DxcBleed horizontal="1rem">{children}</DxcBleed>
+    <DxcBleed horizontal="1rem">
+      <DxcFlex direction="column">{children}</DxcFlex>
+    </DxcBleed>
     <Divider />
   </>
 );
