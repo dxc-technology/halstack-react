@@ -36,6 +36,7 @@ const CORE_TOKENS = {
   color_purple_100: "#f2eafa",
   color_purple_200: "#e5d5f6",
   color_purple_300: "#cbacec",
+  color_purple_400: "#b182e3",
   color_purple_500: "#a46ede",
   color_purple_600: "#7d2fd0",
   color_purple_700: "#5f249f",
