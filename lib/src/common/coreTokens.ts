@@ -172,7 +172,6 @@ const CORE_TOKENS = {
   border_radius_small: "0.125rem",
   border_radius_medium: "0.25rem",
   border_radius_large: "0.375rem",
-  border_radius_full: "9999px",
   border_solid: "solid",
   border_dashed: "dashed",
   border_none: "none",
