@@ -1,7 +1,3 @@
-/**
- * Color core tokens
- * https://developer.dxc.com/halstack/9/principles/color/usage/#color-tokens-core-color-tokens
- */
 const CORE_TOKENS = {
   inherit: "inherit",
 
