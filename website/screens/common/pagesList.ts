@@ -23,6 +23,7 @@ export const themeGeneratorLinks = [
 
 const overviewLinks: LinkDetails[] = [
   { label: "Introduction", path: "/overview/introduction", status: "Ready" },
+  { label: "Releases", path: "/overview/releases", status: "Experimental" },
 ];
 const utilitiesLinks: LinkDetails[] = [
   {
@@ -44,10 +45,18 @@ const principlesLinks: LinkDetails[] = [
 const componentsLinks: LinkDetails[] = [
   { label: "Accordion", path: "/components/accordion", status: "Ready" },
   { label: "Alert", path: "/components/alert", status: "Ready" },
-  { label: "Application layout", path: "/components/application-layout", status: "Ready" },
+  {
+    label: "Application layout",
+    path: "/components/application-layout",
+    status: "Ready",
+  },
   { label: "Bleed", path: "/components/bleed", status: "Ready" },
   { label: "Box", path: "/components/box", status: "Ready" },
-  { label: "Bulleted List", path: "/components/bulleted-list", status: "Ready" },
+  {
+    label: "Bulleted List",
+    path: "/components/bulleted-list",
+    status: "Ready",
+  },
   { label: "Button", path: "/components/button", status: "Ready" },
   { label: "Card", path: "/components/card", status: "Ready" },
   { label: "Checkbox", path: "/components/checkbox", status: "Ready" },
@@ -67,11 +76,19 @@ const componentsLinks: LinkDetails[] = [
   { label: "Number Input", path: "/components/number-input", status: "Ready" },
   { label: "Paginator", path: "/components/paginator", status: "Ready" },
   { label: "Paragraph", path: "/components/paragraph", status: "Ready" },
-  { label: "Password Input", path: "/components/password-input", status: "Ready" },
+  {
+    label: "Password Input",
+    path: "/components/password-input",
+    status: "Ready",
+  },
   { label: "Progress Bar", path: "/components/progress-bar", status: "Ready" },
   { label: "Quick Nav", path: "/components/quick-nav", status: "Ready" },
   { label: "Radio Group", path: "/components/radio-group", status: "Ready" },
-  { label: "Resultset Table", path: "/components/resultset-table", status: "Ready" },
+  {
+    label: "Resultset Table",
+    path: "/components/resultset-table",
+    status: "Ready",
+  },
   { label: "Select", path: "/components/select", status: "Ready" },
   { label: "Sidenav", path: "/components/sidenav", status: "Ready" },
   { label: "Slider", path: "/components/slider", status: "Ready" },

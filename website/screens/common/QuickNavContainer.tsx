@@ -59,10 +59,7 @@ const DxcQuickNavContainer = ({
         </DxcFlex>
       </ContentContainer>
       <QuickNavContainer>
-        <DxcQuickNav
-          title={title}
-          links={getSubSectionsLinks(sections)}
-        ></DxcQuickNav>
+        <DxcQuickNav title={title} links={getSubSectionsLinks(sections)} />
       </QuickNavContainer>
     </Container>
   );
