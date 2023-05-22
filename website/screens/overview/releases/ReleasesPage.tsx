@@ -1,129 +1,71 @@
 import {
-  DxcLink,
   DxcHeading,
   DxcParagraph,
-  DxcBulletedList,
   DxcFlex,
+  DxcSpinner,
+  DxcGrid,
 } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import PageHeading from "@/common/PageHeading";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
-import StatusTag from "@/common/StatusTag";
+import { useEffect, useState } from "react";
+import HalstackMarkdownParser from "@/common/HalstackMarkdownParser";
 
-const sections = [
-  {
-    title: "9.1.0",
-    content: (
-      <DxcFlex>
-        <StatusTag status="Ready">Latest</StatusTag>
-      </DxcFlex>
-    ),
-    subSections: [
-      {
-        title: "🐛 Patches",
-        content: (
-          <DxcBulletedList>
-            <DxcBulletedList.Item>
-              Sidenav. children prop type changed from string to
-              React.ReactNode. Several styling improvements.{" "}
-              <DxcLink
-                href="https://github.com/dxc-technology/halstack-react/pull/1596"
-                newWindow
-              >
-                #1596
-              </DxcLink>
-            </DxcBulletedList.Item>
-            <DxcBulletedList.Item>
-              Focus Lock issue in Jest fixed.{" "}
-              <DxcLink
-                href="https://github.com/dxc-technology/halstack-react/pull/1595"
-                newWindow
-              >
-                #1595
-              </DxcLink>
-            </DxcBulletedList.Item>
-            <DxcBulletedList.Item>
-              aria-disabled removed from unnecessary components.{" "}
-              <DxcLink
-                href="https://github.com/dxc-technology/halstack-react/pull/1595"
-                newWindow
-              >
-                #1595
-              </DxcLink>
-            </DxcBulletedList.Item>
-          </DxcBulletedList>
-        ),
-      },
-      {
-        title: "✨ New features",
-        content: (
-          <DxcBulletedList>
-            <DxcBulletedList.Item>
-              New Grid component added.{" "}
-              <DxcLink
-                href="https://github.com/dxc-technology/halstack-react/pull/1571"
-                newWindow
-              >
-                #1571
-              </DxcLink>{" "}
-              <DxcLink
-                href="https://github.com/dxc-technology/halstack-react/pull/1582"
-                newWindow
-              >
-                #1582
-              </DxcLink>
-            </DxcBulletedList.Item>
-            <DxcBulletedList.Item>
-              New design for the pages' status tag in Halstack site.{" "}
-              <DxcLink
-                href="https://github.com/dxc-technology/halstack-react/pull/1591"
-                newWindow
-              >
-                #1591
-              </DxcLink>
-            </DxcBulletedList.Item>
-          </DxcBulletedList>
-        ),
-      },
-    ],
-  },
-  {
-    title: "9.0.1",
-    content: (
-      <DxcParagraph>No changelog available for the moment.</DxcParagraph>
-    ),
-  },
-  {
-    title: "9.0.0",
-    content: (
-      <DxcParagraph>No changelog available for the moment.</DxcParagraph>
-    ),
-  },
-  {
-    title: "8.0.0",
-    content: (
-      <DxcParagraph>No changelog available for the moment.</DxcParagraph>
-    ),
-  },
-  {
-    title: "7.0.0",
-    content: (
-      <DxcParagraph>No changelog available for the moment.</DxcParagraph>
-    ),
-  },
-];
+type Release = {
+  name: string;
+  body: string;
+};
+
+const getSections = (releases: Release[]) => {
+  let sections: { title: string; content: React.ReactNode }[] = [];
+  releases?.forEach((release) => {
+    sections?.push({
+      title: release.name,
+      content: <HalstackMarkdownParser markdown={release.body} />,
+    });
+  });
+  return sections;
+};
 
 const Releases = () => {
+  const [releases, setReleases] = useState<Release[]>();
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    setIsLoading(true);
+    const fetchVersions = async () => {
+      const response = await fetch(
+        "https://api.github.com/repos/dxc-technology/halstack-react/releases"
+      );
+      const releases: Release[] = await response.json();
+      setReleases(releases);
+      setIsLoading(false);
+    };
+
+    fetchVersions();
+  }, []);
+
   return (
     <DxcFlex direction="column" gap="4rem">
       <PageHeading>
         <DxcFlex direction="column" gap="2rem">
-          <DxcHeading level={1} text="⚠️ Releases" weight="bold" />
+          <DxcHeading level={1} text="Releases" weight="bold" />
         </DxcFlex>
       </PageHeading>
       <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2} />
+        {isLoading ? (
+          <DxcGrid placeItems="center">
+            <DxcSpinner label="Loading..." mode="large" />
+          </DxcGrid>
+        ) : releases ? (
+          <QuickNavContainer
+            sections={getSections(releases)}
+            startHeadingLevel={2}
+          />
+        ) : (
+          <DxcParagraph>No releases available for the moment.</DxcParagraph>
+        )}
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/overview/releases/ReleasesPage.tsx" />
     </DxcFlex>
