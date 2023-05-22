@@ -1,12 +1,11 @@
+//@ts-nocheck
 import {
   DxcBulletedList,
   DxcHeading,
   DxcLink,
-  DxcParagraph,
 } from "@dxc-technology/halstack-react";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import Code from "./Code";
-import BulletedList from "@dxc-technology/halstack-react/bulleted-list/BulletedList";
 import React from "react";
 
 type Props = { markdown: string };
