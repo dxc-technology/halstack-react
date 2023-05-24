@@ -1,4 +1,4 @@
-//@ts-nocheck
+
 import {
   DxcBulletedList,
   DxcHeading,
@@ -15,11 +15,11 @@ const HalstackMarkdownParser = ({ markdown }: Props) => (
     components={{
       a: ({ href, children }) => (
         <DxcLink href={href} newWindow>
-          {children}
+          {children as string}
         </DxcLink>
       ),
       code: ({ children }) => <Code>{children}</Code>,
-      h3: ({ children }) => <DxcHeading level={4} text={children} />,
+      h3: ({ children }) => <DxcHeading level={4} text={children as string} />,
       ul: ({ children }) => (
         <DxcBulletedList>
           {React.Children.map(children, (child) =>
