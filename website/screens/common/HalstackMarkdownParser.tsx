@@ -9,27 +9,26 @@ import Code from "./Code";
 import React from "react";
 
 type Props = { markdown: string };
+
 const HalstackMarkdownParser = ({ markdown }: Props) => (
   <ReactMarkdown
     components={{
-      h3: ({ children }) => <DxcHeading level={3} text={children} />,
-      code: ({ children }) => <Code>{children}</Code>,
-      ul: ({ children }) => {
-        return (
-          <DxcBulletedList>
-            {React.Children.map(children, (child) =>
-              child !== "\n" ? child : undefined
-            )}
-          </DxcBulletedList>
-        );
-      },
-      li: ({ children }) => (
-        <DxcBulletedList.Item>{children}</DxcBulletedList.Item>
-      ),
       a: ({ href, children }) => (
         <DxcLink href={href} newWindow>
           {children}
         </DxcLink>
+      ),
+      code: ({ children }) => <Code>{children}</Code>,
+      h3: ({ children }) => <DxcHeading level={4} text={children} />,
+      ul: ({ children }) => (
+        <DxcBulletedList>
+          {React.Children.map(children, (child) =>
+            child !== "\n" ? child : undefined
+          )}
+        </DxcBulletedList>
+      ),
+      li: ({ children }) => (
+        <DxcBulletedList.Item>{children}</DxcBulletedList.Item>
       ),
     }}
   >
