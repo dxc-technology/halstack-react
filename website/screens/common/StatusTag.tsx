@@ -2,8 +2,12 @@ import styled from "styled-components";
 
 type StatusTagProps = {
   status?: "Deprecated" | "Experimental" | "Information" | "Ready";
+  children: React.ReactNode;
 };
-const StatusTag = styled.div<StatusTagProps>`
+
+const StatusTag = (props: StatusTagProps) => <StyledStatusTag {...props} />;
+
+const StyledStatusTag = styled.div<StatusTagProps>`
   box-sizing: border-box;
   border-radius: 0.5rem;
   padding: 3px 6px;

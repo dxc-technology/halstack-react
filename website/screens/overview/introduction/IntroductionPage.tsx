@@ -209,17 +209,8 @@ const sections = [
         </DxcBulletedList>
         <DxcParagraph>
           <em>
-            Please note that these sites are discontinued and not be updated
-            anymore.
+            Please note that these sites are discontinued and no longer supported.
           </em>
-        </DxcParagraph>
-        <DxcParagraph>
-          The latest development site can be accessed through this{" "}
-          <DxcLink href="https://developer.dxc.com/halstack/next/" newWindow>
-            link
-          </DxcLink>
-          . Please note that this version can include bugs. For a more stable
-          experience check the latest release available.
         </DxcParagraph>
       </>
     ),

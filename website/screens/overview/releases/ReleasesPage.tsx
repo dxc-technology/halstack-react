@@ -11,9 +11,9 @@ import QuickNavContainer from "@/common/QuickNavContainer";
 import PageHeading from "@/common/PageHeading";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
-import { useEffect, useState } from "react";
 import HalstackMarkdownParser from "@/common/HalstackMarkdownParser";
 import Link from "next/link";
+import Code from "@/common/Code";
 
 type Section = {
   title: string;
@@ -34,7 +34,7 @@ const sections = [
     content: (
       <>
         <DxcParagraph>
-          Every major version of Halstack is collected below:
+          Every major release of Halstack is collected below:
         </DxcParagraph>
         <DxcBulletedList>
           <DxcBulletedList.Item>
@@ -57,20 +57,39 @@ const sections = [
               Halstack 6
             </DxcLink>
           </DxcBulletedList.Item>
-          <DxcBulletedList.Item>
-            To check Halstack 5 and older, you must access{" "}
-            <Link
-              href="/overview/introduction/#legacy-documentation-sites"
-              passHref
-            >
-              <DxcLink>Halstack's legacy sites</DxcLink>
-            </Link>{" "}
-            (remember that these sites are not maintained any more and do not
-            contain the latest features of Halstack).
-          </DxcBulletedList.Item>
         </DxcBulletedList>
+        <DxcParagraph>
+          All the other previous versions, such as Halstack 5 or Halstack 4, are
+          still available on the{" "}
+          <Link
+            href="/overview/introduction/#legacy-documentation-sites"
+            passHref
+          >
+            <DxcLink>legacy sites</DxcLink>
+          </Link>
+          . But remember, these versions are no longer supported. Their use is{" "}
+          <strong>not recommended</strong>.
+        </DxcParagraph>
       </>
     ),
+    subSections: [
+      {
+        title: "Next version",
+        content: (
+          <DxcParagraph>
+            To check the latest features under development by the Halstack team,
+            you can access the <Code>next</Code> version of the documentation
+            throw this{" "}
+            <DxcLink href="https://developer.dxc.com/halstack/next/">
+              link
+            </DxcLink>
+            . Please note that this version is unstable and may contain minor
+            bugs. For a better experience with Halstack, we recommend, if
+            possible, always using the latest release available.
+          </DxcParagraph>
+        ),
+      },
+    ],
   },
 ];
 
@@ -100,54 +119,31 @@ const getRelasesPageSections = (releases: Release[]) => {
   return [...sections, section];
 };
 
-const Releases = () => {
-  const [releases, setReleases] = useState<Release[]>();
-  const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    setIsLoading(true);
-    const fetchVersions = async () => {
-      const response = await fetch(
-        "https://api.github.com/repos/dxc-technology/halstack-react/releases"
-      );
-      const releases: Release[] = await response.json();
-      setReleases(releases);
-      setIsLoading(false);
-    };
-
-    fetchVersions();
-  }, []);
-
-  return (
-    <DxcFlex direction="column" gap="4rem">
-      <PageHeading>
-        <DxcFlex direction="column" gap="2rem">
-          <DxcHeading level={1} text="Releases" weight="bold" />
-          <DxcParagraph>
-            Access all the major releases of the Halstack React library and see
-            the changelog of every version available.
-          </DxcParagraph>
-        </DxcFlex>
-      </PageHeading>
-      <QuickNavContainerLayout>
-        {isLoading ? (
-          <DxcGrid placeItems="center">
-            <DxcSpinner label="Loading..." mode="large" />
-          </DxcGrid>
-        ) : releases ? (
-          <QuickNavContainer
-            sections={getRelasesPageSections(releases)}
-            startHeadingLevel={2}
-          />
-        ) : (
-          <DxcParagraph>
-            The releases are not available at the moment.
-          </DxcParagraph>
-        )}
-      </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/overview/releases/ReleasesPage.tsx" />
-    </DxcFlex>
-  );
-};
+const Releases = ({ releases }: { releases: Release[] }) => (
+  <DxcFlex direction="column" gap="4rem">
+    <PageHeading>
+      <DxcFlex direction="column" gap="2rem">
+        <DxcHeading level={1} text="Releases" weight="bold" />
+        <DxcParagraph>
+          Access all the major releases of the Halstack React library and see
+          the changelog of every version available.
+        </DxcParagraph>
+      </DxcFlex>
+    </PageHeading>
+    <QuickNavContainerLayout>
+      {releases ? (
+        <QuickNavContainer
+          sections={getRelasesPageSections(releases)}
+          startHeadingLevel={2}
+        />
+      ) : (
+        <DxcParagraph>
+          The releases are not available at the moment.
+        </DxcParagraph>
+      )}
+    </QuickNavContainerLayout>
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/overview/releases/ReleasesPage.tsx" />
+  </DxcFlex>
+);
 
 export default Releases;
