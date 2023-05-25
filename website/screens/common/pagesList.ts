@@ -23,7 +23,7 @@ export const themeGeneratorLinks = [
 
 const overviewLinks: LinkDetails[] = [
   { label: "Introduction", path: "/overview/introduction", status: "Ready" },
-  { label: "Releases", path: "/overview/releases", status: "Experimental" },
+  { label: "Releases", path: "/overview/releases", status: "Ready" },
 ];
 const utilitiesLinks: LinkDetails[] = [
   {

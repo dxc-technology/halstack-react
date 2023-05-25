@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { DxcFlex, DxcQuickNav } from "@dxc-technology/halstack-react";
+import { DxcFlex, DxcGrid, DxcQuickNav } from "@dxc-technology/halstack-react";
 import Section from "./Section";
 import { responsiveSizes } from "../common/variables";
 
@@ -38,71 +38,40 @@ const getSubSectionsLinks = (sections: SectionType[]) => {
 };
 
 const DxcQuickNavContainer = ({
-  title = "On this page",
+  title,
   sections,
   startHeadingLevel = 1,
-}: QuickNavContainerTypes): JSX.Element => {
-  return (
-    <Container>
-      <ContentContainer>
-        <DxcFlex direction="column" gap="3rem">
-          {sections.map((section) => (
-            <Section
-              title={section.title}
-              subSections={section.subSections}
-              level={startHeadingLevel}
-              key={`section-${section.title}`}
-            >
-              {section.content}
-            </Section>
-          ))}
-        </DxcFlex>
-      </ContentContainer>
-      <QuickNavContainer>
-        <DxcQuickNav title={title} links={getSubSectionsLinks(sections)} />
-      </QuickNavContainer>
-    </Container>
-  );
-};
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-`;
-
-const ContentContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  max-width: 800px;
-`;
+}: QuickNavContainerTypes): JSX.Element => (
+  <DxcGrid templateColumns={["15fr", "5fr"]}>
+    <DxcFlex direction="column" gap="3rem">
+      {sections.map((section) => (
+        <Section
+          title={section.title}
+          subSections={section.subSections}
+          level={startHeadingLevel}
+          key={`section-${section.title}`}
+        >
+          {section.content}
+        </Section>
+      ))}
+    </DxcFlex>
+    <QuickNavContainer>
+      <DxcQuickNav title={title} links={getSubSectionsLinks(sections)} />
+    </QuickNavContainer>
+  </DxcGrid>
+);
 
 const QuickNavContainer = styled.div`
   position: sticky;
-  margin-left: 24px;
-  max-width: 296px;
   top: calc(64px + 24px);
-  max-height: calc(100vh - 64px);
-
+  max-height: 568px;
+  margin-left: 24px;
   overflow-y: auto;
-  ::-webkit-scrollbar {
-    width: 2px;
-  }
-  ::-webkit-scrollbar-track {
-    background-color: #d9d9d9;
-    border-radius: 3px;
-  }
-  ::-webkit-scrollbar-thumb {
-    background-color: #66666626;
-    border-radius: 3px;
-  }
 
   @media (max-width: ${responsiveSizes.laptop}px) {
     display: none;
   }
-  @media (max-width: ${responsiveSizes.desktop}px) and (min-width: ${responsiveSizes.laptop}px) {
-    max-width: 176px;
+  @media (max-height: 656px) {
     max-height: calc(100vh - 112px);
   }
 `;
