@@ -22,26 +22,26 @@ type LinkType = {
   links?: LinkType[];
 };
 
+const getSubSectionsLinks = (sections: SectionType[]) => {
+  const linksList: LinkType[] = [];
+  sections.map((section) => {
+    if (section.subSections) {
+      linksList.push({
+        label: section.title,
+        links: getSubSectionsLinks(section.subSections),
+      });
+    } else {
+      linksList.push({ label: section.title });
+    }
+  });
+  return linksList;
+};
+
 const DxcQuickNavContainer = ({
-  title,
+  title = "On this page",
   sections,
   startHeadingLevel = 1,
 }: QuickNavContainerTypes): JSX.Element => {
-  const getSubSectionsLinks = (sections: SectionType[]) => {
-    const linksList: LinkType[] = [];
-    sections.map((section) => {
-      if (section.subSections) {
-        linksList.push({
-          label: section.title,
-          links: getSubSectionsLinks(section.subSections),
-        });
-      } else {
-        linksList.push({ label: section.title });
-      }
-    });
-    return linksList;
-  };
-
   return (
     <Container>
       <ContentContainer>
@@ -85,6 +85,7 @@ const QuickNavContainer = styled.div`
   top: calc(64px + 24px);
   max-height: calc(100vh - 64px);
 
+  overflow-y: auto;
   ::-webkit-scrollbar {
     width: 2px;
   }
@@ -102,6 +103,7 @@ const QuickNavContainer = styled.div`
   }
   @media (max-width: ${responsiveSizes.desktop}px) and (min-width: ${responsiveSizes.laptop}px) {
     max-width: 176px;
+    max-height: calc(100vh - 112px);
   }
 `;
 

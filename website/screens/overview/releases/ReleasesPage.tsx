@@ -131,16 +131,10 @@ const Releases = ({ releases }: { releases: Release[] }) => (
       </DxcFlex>
     </PageHeading>
     <QuickNavContainerLayout>
-      {releases ? (
-        <QuickNavContainer
-          sections={getRelasesPageSections(releases)}
-          startHeadingLevel={2}
-        />
-      ) : (
-        <DxcParagraph>
-          The releases are not available at the moment.
-        </DxcParagraph>
-      )}
+      <QuickNavContainer
+        sections={getRelasesPageSections(releases)}
+        startHeadingLevel={2}
+      />
     </QuickNavContainerLayout>
     <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/overview/releases/ReleasesPage.tsx" />
   </DxcFlex>
