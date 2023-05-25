@@ -70,9 +70,9 @@ const sections = [
                 </td>
                 <td>Link</td>
                 <td>
-                  <Code>color-purple-d-70</Code>
+                  <Code>color-purple-600</Code>
                 </td>
-                <td>#9a6bb2</td>
+                <td>#7d2fd0</td>
               </tr>
               <tr>
                 <td>
