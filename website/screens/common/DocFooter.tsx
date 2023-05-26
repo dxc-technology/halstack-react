@@ -21,10 +21,10 @@ const DocFooter = ({ githubLink }: { githubLink: string }) => {
           </DxcLink>
           <DxcLink
             icon={githubIcon}
-            href="https://github.com/dxc-technology/halstack-react/issues/new?assignees=&labels=&projects=&template=bug_report.md"
+            href="https://github.com/dxc-technology/halstack-react/issues/new/choose"
             newWindow
           >
-            Report a bug on GitHub
+            Report an issue on GitHub
           </DxcLink>
         </DxcFlex>
         <Separator />
