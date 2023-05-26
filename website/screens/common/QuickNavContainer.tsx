@@ -42,7 +42,7 @@ const DxcQuickNavContainer = ({
   sections,
   startHeadingLevel = 1,
 }: QuickNavContainerTypes): JSX.Element => (
-  <DxcGrid templateColumns={["15fr", "5fr"]}>
+  <DxcGrid templateColumns={["15fr", "5fr"]} gap="1.5rem">
     <DxcFlex direction="column" gap="3rem">
       {sections.map((section) => (
         <Section
@@ -65,7 +65,6 @@ const QuickNavContainer = styled.div`
   position: sticky;
   top: calc(64px + 24px);
   max-height: 568px;
-  margin-left: 24px;
   overflow-y: auto;
 
   @media (max-width: ${responsiveSizes.laptop}px) {
