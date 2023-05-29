@@ -209,7 +209,8 @@ const sections = [
         </DxcBulletedList>
         <DxcParagraph>
           <em>
-            Please note that these sites are discontinued and no longer supported.
+            Please note that these sites are discontinued and no longer
+            supported.
           </em>
         </DxcParagraph>
       </>

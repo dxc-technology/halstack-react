@@ -67,8 +67,8 @@ const sections = [
           >
             <DxcLink>legacy sites</DxcLink>
           </Link>
-          . But remember, these sites are no longer supported. Their use is{" "}
-          <strong>not recommended</strong>.
+          . But remember, these sites are no longer maintained. Consider
+          upgrading if you are currently using one of them.
         </DxcParagraph>
       </>
     ),
