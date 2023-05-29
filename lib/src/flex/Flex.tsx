@@ -5,7 +5,7 @@ import FlexPropsType, { StyledProps } from "./types";
 const DxcFlex = ({
   direction = "row",
   wrap = "nowrap",
-  gap = "0",
+  gap = "0rem",
   order = 0,
   grow = 0,
   shrink = 1,
@@ -42,7 +42,9 @@ const Flex = styled.div<StyledProps>`
     align-items: ${alignItems};
     align-content: ${alignContent};
     align-self: ${alignSelf};
-    gap: ${typeof props.$gap === "object" ? `${props.$gap.rowGap} ${props.$gap.columnGap}` : props.$gap};
+    gap: ${props.$gap != null && typeof props.$gap === "string" ? props.$gap ?? "" : ""}}
+    row-gap: ${props.$gap != null && typeof props.$gap === "object" ? props.$gap.rowGap ?? "" : ""}}
+    column-gap: ${props.$gap != null && typeof props.$gap === "object" ? props.$gap.columnGap ?? "" : ""}}
     order: ${props.$order};
     flex-grow: ${props.$grow};
     flex-shrink: ${props.$shrink};

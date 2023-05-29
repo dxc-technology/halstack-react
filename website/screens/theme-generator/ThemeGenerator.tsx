@@ -79,7 +79,7 @@ const ThemeGenerator = () => {
             <DxcInset space="1rem" top="2rem">
               <DxcFlex direction="column" gap="0.5rem">
                 <DxcHeading text="Global Theme Actions" level={3} />
-                <DxcFlex direction="column" gap="0.375rem">
+                <DxcFlex direction="column" gap="0.25rem">
                   <DxcButton
                     mode="text"
                     label="Reset"

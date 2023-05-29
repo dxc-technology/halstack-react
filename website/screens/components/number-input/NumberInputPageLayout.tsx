@@ -21,7 +21,7 @@ const NumberInputPageHeading = ({
     <DxcFlex direction="column" gap="3rem">
       <PageHeading>
         <DxcFlex direction="column" gap="2rem">
-          <ComponentHeading name="Number Input" status="Ready" />
+          <ComponentHeading name="Number Input" />
           <DxcParagraph>
             The number input is a text input component that only allows
             numerical values and it has controls for incrementing or

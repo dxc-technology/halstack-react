@@ -14,7 +14,7 @@ const DialogPageHeading = ({ children }: { children: React.ReactNode }) => {
     <DxcFlex direction="column" gap="3rem">
       <PageHeading>
         <DxcFlex direction="column" gap="2rem">
-          <ComponentHeading name="Dialog" status="Ready" />
+          <ComponentHeading name="Dialog" />
           <DxcParagraph>
             A modal dialog is a message box or child window that requires user
             interaction before returning to the parent window. These boxes

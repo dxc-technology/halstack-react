@@ -14,7 +14,7 @@ const HeadingPageHeading = ({ children }: { children: React.ReactNode }) => {
     <DxcFlex direction="column" gap="3rem">
       <PageHeading>
         <DxcFlex direction="column" gap="2rem">
-          <ComponentHeading name="Heading" status="Ready" />
+          <ComponentHeading name="Heading" />
           <DxcParagraph>
             Heading component is an essential element that contributes to define
             a great hierarchy within the application. It helps to give semantic

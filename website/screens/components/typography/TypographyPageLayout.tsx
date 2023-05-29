@@ -14,7 +14,7 @@ const TypographyPageHeading = ({ children }: { children: React.ReactNode }) => {
     <DxcFlex direction="column" gap="3rem">
       <PageHeading>
         <DxcFlex direction="column" gap="2rem">
-          <ComponentHeading name="Typography" status="Ready" />
+          <ComponentHeading name="Typography" />
           <DxcAlert type="warning" size="fillParent">
             Use this component only if all other Halstack Design System
             components for adding text DO NOT meet your requirements. This

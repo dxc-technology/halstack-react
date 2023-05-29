@@ -89,7 +89,7 @@ const StyledLink = styled.div<{
      border-bottom: ${props.theme.underlineThickness} ${props.theme.underlineStyle} transparent;`}
   ${(props) => props.disabled && "cursor: default;"}
   color: ${(props) =>
-    props.inheritColor ? "inherit" : !props.disabled ? props.theme.fontColor : props.theme.disabledColor};
+    props.inheritColor ? "inherit" : !props.disabled ? props.theme.fontColor : props.theme.disabledFontColor};
   ${(props) => (props.disabled ? "pointer-events: none;" : "")}
   &:visited {
     color: ${(props) => (!props.inheritColor && !props.disabled ? props.theme.visitedFontColor : "")};

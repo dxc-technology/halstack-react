@@ -14,7 +14,7 @@ const FlexPageHeading = ({ children }: { children: React.ReactNode }) => {
     <DxcFlex direction="column" gap="3rem">
       <PageHeading>
         <DxcFlex direction="column" gap="2rem">
-          <ComponentHeading name="Flex" status="Ready" />
+          <ComponentHeading name="Flex" />
           <DxcParagraph>
             Flex allows users to build{" "}
             <DxcLink

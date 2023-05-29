@@ -133,7 +133,7 @@ export const Chromatic = () => (
       <Title title="Only icon (image)" theme="light" level={4} />
       <DxcButton
         mode="secondary"
-        icon="https://developer.apple.com/design/human-interface-guidelines/foundations/app-icons/images/icon-and-image-large-icon-settings_2x.png"
+        icon="https://www.freepnglogos.com/uploads/facebook-logo-design-1.png"
       />
     </ExampleContainer>
     <Title title="Text" theme="light" level={2} />
@@ -339,7 +339,7 @@ export const Chromatic = () => (
     </ExampleContainer>
     <Title title="Inside a flex" theme="light" level={2} />
     <ExampleContainer>
-      <DxcFlex direction="column" gap="0.75rem">
+      <DxcFlex direction="column" gap="1rem">
         <DxcButton label="Button" />
         <DxcButton label="Button" />
         <DxcButton label="Button" />

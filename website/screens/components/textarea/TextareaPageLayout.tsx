@@ -14,7 +14,7 @@ const TextareaPageHeading = ({ children }: { children: React.ReactNode }) => {
     <DxcFlex direction="column" gap="3rem">
       <PageHeading>
         <DxcFlex direction="column" gap="2rem">
-          <ComponentHeading name="Textarea" status="Ready" />
+          <ComponentHeading name="Textarea" />
           <DxcParagraph>
             A textarea allows the users enter a multi-line, free-form text.
           </DxcParagraph>

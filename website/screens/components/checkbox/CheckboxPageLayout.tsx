@@ -14,7 +14,7 @@ const CheckboxPageHeading = ({ children }: { children: React.ReactNode }) => {
     <DxcFlex direction="column" gap="3rem">
       <PageHeading>
         <DxcFlex direction="column" gap="2rem">
-          <ComponentHeading name="Checkbox" status="Ready" />
+          <ComponentHeading name="Checkbox" />
           <DxcParagraph>
             Checkboxes are inputs that offer to the user the possibility to
             select one or more options from a range of attributes.
