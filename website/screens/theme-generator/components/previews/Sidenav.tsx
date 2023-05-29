@@ -31,7 +31,7 @@ const Sidenav = () => (
             collapsable
             icon={icon}
           >
-            <DxcApplicationLayout.SideNav.Link>
+            <DxcApplicationLayout.SideNav.Link selected>
               Lorem ipsum
             </DxcApplicationLayout.SideNav.Link>
             <DxcApplicationLayout.SideNav.Link>

@@ -23,14 +23,7 @@ const DxcSidenav = ({ title, children }: SidenavPropsType): JSX.Element => {
         <BackgroundColorProvider color={colorsTheme.sidenav.backgroundColor}>
           {title}
           <DxcFlex direction="column" gap="1rem">
-            {React.Children.map(children, (child, index) => {
-              return (
-                <>
-                  {child}
-                  {index !== React.Children.count(children) - 1 && <Divider />}
-                </>
-              );
-            })}
+            {children}
           </DxcFlex>
         </BackgroundColorProvider>
       </SidenavContainer>
@@ -45,9 +38,12 @@ const Title = ({ children }: SidenavTitlePropsType): JSX.Element => (
 );
 
 const Section = ({ children }: SidenavSectionPropsType): JSX.Element => (
-  <DxcBleed horizontal="1rem">
-    <DxcFlex direction="column">{children}</DxcFlex>
-  </DxcBleed>
+  <>
+    <DxcBleed horizontal="1rem">
+      <DxcFlex direction="column">{children}</DxcFlex>
+    </DxcBleed>
+    <Divider />
+  </>
 );
 
 const GroupContext = React.createContext<React.Dispatch<React.SetStateAction<boolean>> | null>(null);
@@ -124,13 +120,12 @@ const SidenavContainer = styled.div`
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  background-color: ${(props) => props.theme.backgroundColor};
   width: 280px;
   @media (max-width: ${responsiveSizes.medium}rem) {
     width: 100vw;
   }
-  height: 100%;
   padding: 2rem 1rem;
+  background-color: ${(props) => props.theme.backgroundColor};
 
   overflow-y: auto;
   overflow-x: hidden;
@@ -156,18 +151,21 @@ const SidenavTitle = styled.div`
   font-weight: ${(props) => props.theme.titleFontWeight};
   font-size: ${(props) => props.theme.titleFontSize};
   color: ${(props) => props.theme.titleFontColor};
-  text-transform: ${(props) => props.theme.titleFontTextTransform};
   letter-spacing: ${(props) => props.theme.titleFontLetterSpacing};
+  text-transform: ${(props) => props.theme.titleFontTextTransform};
 `;
 
 const Divider = styled.div`
   width: 100%;
   height: 1px;
   background-color: #999999;
+
+  &:last-child {
+    display: none;
+  }
 `;
 
 const SidenavGroup = styled.div`
-  width: 100%;
   a {
     padding: 0.5rem 1.2rem 0.5rem 2.25rem;
   }
@@ -221,8 +219,8 @@ const SidenavGroupTitleButton = styled.button<{ selectedGroup: boolean }>`
         : `color: ${props.theme.groupTitleFontColor}; background-color: ${props.theme.groupTitleHoverBackgroundColor};`}
   }
   &:active {
-    background-color: ${(props) => props.theme.groupTitleActiveBackgroundColor};
-    color: ${(props) => props.theme.groupTitleFontColor};
+    color: #fff;
+    background-color: ${(props) => (props.selectedGroup ? "#333" : props.theme.groupTitleActiveBackgroundColor)};
   }
 
   img,
@@ -239,13 +237,13 @@ const SidenavLink = styled.a<{ selected: SidenavLinkPropsType["selected"] }>`
   gap: 0.5rem;
   padding: 0.5rem 1.2rem;
   box-shadow: 0 0 0 2px transparent;
-  letter-spacing: ${(props) => props.theme.linkFontLetterSpacing};
-  text-transform: ${(props) => props.theme.linkFontTextTransform};
-  text-decoration: ${(props) => props.theme.linkTextDecoration};
   font-family: ${(props) => props.theme.linkFontFamily};
   font-style: ${(props) => props.theme.linkFontStyle};
   font-weight: ${(props) => props.theme.linkFontWeight};
   font-size: ${(props) => props.theme.linkFontSize};
+  letter-spacing: ${(props) => props.theme.linkFontLetterSpacing};
+  text-transform: ${(props) => props.theme.linkFontTextTransform};
+  text-decoration: ${(props) => props.theme.linkTextDecoration};
   cursor: pointer;
 
   ${(props) =>
@@ -264,8 +262,8 @@ const SidenavLink = styled.a<{ selected: SidenavLinkPropsType["selected"] }>`
         : `color: ${props.theme.linkFontColor}; background-color: ${props.theme.linkHoverBackgroundColor};`}
   }
   &:active {
-    color: #ffffff;
-    background-color: #4d4d4d;
+    color: #fff;
+    background-color: ${(props) => (props.selected ? "#333" : "#4d4d4d")};
     outline: 2px solid #0095ff;
     outline-offset: -2px;
   }
