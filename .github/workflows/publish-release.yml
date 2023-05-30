@@ -56,3 +56,11 @@ jobs:
         run: node scripts/release-website.js $TAG_NAME
         env:
           TAG_NAME: ${{ github.event.release.tag_name }}
+
+      - name: Execute script version
+        run: node scripts/create-version.js $TAG_NAME
+
+      - name: Deploy version to S3 Bucket
+        run: |
+          aws s3 rm s3://design.system.components.catalog/guidelines/version --recursive
+          aws s3 cp ./catalog/version/ s3://design.system.components.catalog/guidelines/version --recursive
