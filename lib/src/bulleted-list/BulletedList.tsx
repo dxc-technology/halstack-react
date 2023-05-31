@@ -95,7 +95,7 @@ const GeneralContent = styled.div`
   align-items: center;
 `;
 
-const Icon = styled.span<{ backgroundType: BackgroundColors }>`
+const Icon = styled.div<{ backgroundType: BackgroundColors }>`
   height: 1.5rem;
   width: auto;
   margin-right: ${(props) => props.theme.bulletMarginRight};
