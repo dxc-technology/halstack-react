@@ -20,8 +20,14 @@ const icon = (
 export const Chromatic = () => (
   <>
     <ExampleContainer>
-      <Title title="Icon list" level={4} />
+      <Title title="Icon list (SVG)" level={4} />
       <DxcBulletedList type="icon" icon={icon}>
+        <DxcBulletedList.Item>Code</DxcBulletedList.Item>
+        <DxcBulletedList.Item>Usage</DxcBulletedList.Item>
+        <DxcBulletedList.Item>Specifications</DxcBulletedList.Item>
+      </DxcBulletedList>
+      <Title title="Icon list (path)" level={4} />
+      <DxcBulletedList type="icon" icon="https://upload.wikimedia.org/wikipedia/commons/e/e0/Check_green_icon.svg">
         <DxcBulletedList.Item>Code</DxcBulletedList.Item>
         <DxcBulletedList.Item>Usage</DxcBulletedList.Item>
         <DxcBulletedList.Item>Specifications</DxcBulletedList.Item>

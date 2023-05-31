@@ -44,7 +44,9 @@ const DxcBulletedList = ({ children, type = "disc", icon = "" }: BulletedListPro
                     </Bullet>
                   ) : type === "icon" ? (
                     <Bullet>
-                      <Icon backgroundType={backgroundType}>{icon}</Icon>
+                      <Icon backgroundType={backgroundType}>
+                        {typeof icon === "string" ? <img src={icon} /> : icon}
+                      </Icon>
                     </Bullet>
                   ) : (
                     <Bullet>
@@ -93,14 +95,15 @@ const GeneralContent = styled.div`
   align-items: center;
 `;
 
-const Icon = styled.div<{ backgroundType: BackgroundColors }>`
+const Icon = styled.span<{ backgroundType: BackgroundColors }>`
   height: 1.5rem;
   width: auto;
   margin-right: ${(props) => props.theme.bulletMarginRight};
   align-content: center;
   color: ${(props) =>
     props.backgroundType && props.backgroundType === "dark" ? props.theme.fontColorOnDark : props.theme.fontColor};
-  & > svg {
+  svg,
+  img {
     height: ${(props) => props.theme.bulletIconHeight};
     width: ${(props) => props.theme.bulletIconWidth};
   }
