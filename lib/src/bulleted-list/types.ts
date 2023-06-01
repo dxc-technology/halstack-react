@@ -21,6 +21,10 @@ type OtherProps = {
    */
   type?: "disc" | "circle" | "square" | "number";
   /**
+   * Icon to display as bullet.
+   */
+  icon?: never;
+  /**
    * Text to be shown in the list.
    */
   children: React.ReactNode;
