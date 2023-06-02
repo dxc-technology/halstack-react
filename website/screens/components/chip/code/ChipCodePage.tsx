@@ -29,22 +29,36 @@ const sections = [
           <tr>
             <td>prefixIcon: node | string</td>
             <td></td>
-            <td>Element used as icon to be placed before the chip label.</td>
+            <td>
+              Element used as icon, placed before the chip label. Note that if
+              the passed value is an URL (string), the component's color styling
+              tokens will not be applied to the image.
+            </td>
           </tr>
           <tr>
             <td>suffixIcon: node | string</td>
             <td></td>
-            <td>Element used as icon to be placed after the chip label.</td>
+            <td>
+              Element used as icon, placed after the chip label. Note that if
+              the passed value is an URL (string), the component's color styling
+              tokens will not be applied to the image.
+            </td>
           </tr>
           <tr>
             <td>onClickPrefix: function</td>
             <td></td>
-            <td>This function will be called when the prefix is clicked.</td>
+            <td>
+              If defined, the prefix icon will be considered a button element.
+              This function will be called when it is clicked.
+            </td>
           </tr>
           <tr>
             <td>onClickSuffix: function</td>
             <td></td>
-            <td>This function will be called when the suffix is clicked.</td>
+            <td>
+              If defined, the suffix icon will be considered a button element.
+              This function will be called when it is clicked.
+            </td>
           </tr>
           <tr>
             <td>disabled: boolean</td>

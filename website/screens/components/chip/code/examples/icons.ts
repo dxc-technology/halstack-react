@@ -3,26 +3,22 @@ import { DxcChip, DxcInset } from "@dxc-technology/halstack-react";
 const code = `() => {
   const icon = (
     <svg
-      x="0px"
-      y="0px"
-      width="24px"
-      height="24px"
-      viewBox="0 0 24 24"
-      enableBackground="new 0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      height="48"
+      viewBox="0 -960 960 960"
+      width="48"
       fill="currentColor"
     >
-      <g id="Bounding_Box">
-        <rect fill="none" width="24" height="24" />
-      </g>
-      <g id="Master">
-        <path d="M19,9.3V4h-3v2.6L12,3L2,12h3v8h5v-6h4v6h5v-8h3L19,9.3z M10,10c0-1.1,0.9-2,2-2s2,0.9,2,2H10z" />
-      </g>
+      <path d="m330-288 150-150 150 150 42-42-150-150 150-150-42-42-150 150-150-150-42 42 150 150-150 150 42 42ZM480-80q-82 0-155-31.5t-127.5-86Q143-252 111.5-325T80-480q0-83 31.5-156t86-127Q252-817 325-848.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 82-31.5 155T763-197.5q-54 54.5-127 86T480-80Z" />
     </svg>
   );
+  const onClickSuffix = () => {
+    console.log("Copied.");
+  };
 
   return (
     <DxcInset space="2rem">
-      <DxcChip label="Home" prefixIcon={icon}/>
+      <DxcChip label="Home" suffixIcon={icon} onClickSuffix={onClickSuffix} />
     </DxcInset>
   );
 }`;
