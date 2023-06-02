@@ -102,9 +102,9 @@ const sections = [
                 </td>
                 <td>Group title background:active</td>
                 <td>
-                  <Code>color-grey-300</Code>
+                  <Code>color-grey-800</Code>
                 </td>
-                <td>#cccccc</td>
+                <td>#4d4d4d</td>
               </tr>
               <tr>
                 <td>
@@ -142,9 +142,9 @@ const sections = [
                 </td>
                 <td>Group title background:selected hover</td>
                 <td>
-                  <Code>color-grey-600</Code>
+                  <Code>color-grey-900</Code>
                 </td>
-                <td>#808080</td>
+                <td>#333333</td>
               </tr>
               <tr>
                 <td>
@@ -202,9 +202,9 @@ const sections = [
                 </td>
                 <td>Link background:selected hover</td>
                 <td>
-                  <Code>color-grey-600</Code>
+                  <Code>color-grey-900</Code>
                 </td>
-                <td>#808080</td>
+                <td>#333333</td>
               </tr>
               <tr>
                 <td>

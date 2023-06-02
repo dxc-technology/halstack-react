@@ -1,12 +1,42 @@
-type SVG = React.ReactNode & (React.SVGProps<SVGSVGElement> | React.FunctionComponent<React.SVGProps<SVGSVGElement>>);
+type SVG = React.ReactNode & React.SVGProps<SVGSVGElement>;
 
-type Props = {
+type IconProps = {
+  /**
+   * Defines the style of the bullet point in the list.
+   */
+  type: "icon";
+  /**
+   * Icon to display as bullet.
+   */
+  icon: string | SVG;
+  /**
+   * Text to be shown in the list.
+   */
   children: React.ReactNode;
-  type?: "disc" | "circle" | "square" | "number" | "icon";
-  icon?: string | SVG;
 };
+
+type OtherProps = {
+  /**
+   * Defines the style of the bullet point in the list.
+   */
+  type?: "disc" | "circle" | "square" | "number";
+  /**
+   * Icon to display as bullet.
+   */
+  icon?: never;
+  /**
+   * Text to be shown in the list.
+   */
+  children: React.ReactNode;
+};
+
+type Props = IconProps | OtherProps;
+
 export default Props;
 
 export type BulletedListItemPropsType = {
+  /**
+   * Text to be shown in the list.
+   */
   children?: React.ReactNode;
 };

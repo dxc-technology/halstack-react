@@ -42,7 +42,6 @@ const DropdownMenuContainer = styled.ul`
   box-sizing: border-box;
   max-height: 230px;
   min-width: min-content;
-  overflow-y: auto;
   padding: 0;
   margin: 0;
   background-color: ${(props) => props.theme.optionBackgroundColor};
@@ -54,6 +53,20 @@ const DropdownMenuContainer = styled.ul`
   border-top-left-radius: 0;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   outline: none;
+
+  overflow-y: auto;
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: ${(props) => props.theme.scrollBarThumbColor};
+    border-radius: 6px;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: ${(props) => props.theme.scrollBarTrackColor};
+    border-radius: 6px;
+  }
 `;
 
 export default React.memo(DropdownMenu);
