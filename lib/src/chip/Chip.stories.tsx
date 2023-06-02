@@ -204,11 +204,11 @@ const ChipSuffixFocused = () => (
 );
 
 export const PrefixFocused = ChipPrefixFocused.bind({});
-PrefixFocused.play = async ({ canvasElement }) => {
+PrefixFocused.play = async () => {
   await userEvent.tab();
 };
 
 export const SuffixFocused = ChipSuffixFocused.bind({});
-SuffixFocused.play = async ({ canvasElement }) => {
+SuffixFocused.play = async () => {
   await userEvent.tab();
 };
