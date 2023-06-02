@@ -81,29 +81,37 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Chip with ellipsis" theme="light" level={4} />
-      <DxcChip label="With ellipsis asdfasdf asdf asdfasdf asdf asdfasdf asdfasdf asdf asdf adfasrfasf afsdg afgasfg asdf asdf asdf asdf asdf asdf asdf  afdg asfg asdfg asdf asdf asdf asdfasdf asd fas df asd asdf asdf asdfasd fg ssssssssssss ssss" />
+      <div style={{ width: "200px" }}>
+        <DxcChip label="With ellipsis asdfasdf asdf asdfasdf asdf asdfasdf asdfasdf asdf asdf adfasrfasf afsdg afgasfg asdf asdf asdf asdf asdf asdf asdf  afdg asfg asdfg asdf asdf asdf asdfasdf asd fas df asd asdf asdf asdfasd fg ssssssssssss ssss" />
+      </div>
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Chip with ellipsis and suffix" theme="light" level={4} />
-      <DxcChip
-        suffixIcon={iconSVG}
-        label="With ellipsis asdfasdf asdf asdfasdf asdf asdfasdf asdfasdf asdf asdf adfasrfasf afsdg afgasfg asdf asdf asdf asdf asdf asdf asdf  afdg asfg asdfg asdf asdf asdf asdfasdf asd fas df asd asdf asdf asdfasd fgsss"
-      />
+      <div style={{ width: "200px" }}>
+        <DxcChip
+          suffixIcon={iconSVG}
+          label="With ellipsis asdfasdf asdf asdfasdf asdf asdfasdf asdfasdf asdf asdf adfasrfasf afsdg afgasfg asdf asdf asdf asdf asdf asdf asdf  afdg asfg asdfg asdf asdf asdf asdfasdf asd fas df asd asdf asdf asdfasd fgsss"
+        />
+      </div>
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Chip with ellipsis and prefix" theme="light" level={4} />
-      <DxcChip
-        prefixIcon={iconSVG}
-        label="With ellipsis asdfasdf asdf asdfasdf asdf asdfasdf asdfasdf asdf asdf adfasrfasf afsdg afgasfg asdf asdf asdf asdf asdf asdf asdf  afdg asfg asdfg asdf asdf asdf asdfasdf asd fas df asd asdf asdf asdfasd fgsss"
-      />
+      <div style={{ width: "200px" }}>
+        <DxcChip
+          prefixIcon={iconSVG}
+          label="With ellipsis asdfasdf asdf asdfasdf asdf asdfasdf asdfasdf asdf asdf adfasrfasf afsdg afgasfg asdf asdf asdf asdf asdf asdf asdf  afdg asfg asdfg asdf asdf asdf asdfasdf asd fas df asd asdf asdf asdfasd fgsss"
+        />
+      </div>
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Chip with ellipsis, suffix and prefix" theme="light" level={4} />
-      <DxcChip
-        prefixIcon={iconSVG}
-        suffixIcon={iconSVG}
-        label="With ellipsis asdfasdf asdf asdfasdf asdf asdfasdf asdfasdf asdf asdf adfasrfasf afsdg afgasfg asdf asdf asdf asdf asdf asdf asdf  afdg asfg asdfg asdf asdf asdf asdfasdf asd fas df asd asdf asdf asdfasdf"
-      />
+      <div style={{ width: "200px" }}>
+        <DxcChip
+          prefixIcon={iconSVG}
+          suffixIcon={iconSVG}
+          label="With ellipsis asdfasdf asdf asdfasdf asdf asdfasdf asdfasdf asdf asdf adfasrfasf afsdg afgasfg asdf asdf asdf asdf asdf asdf asdf  afdg asfg asdfg asdf asdf asdf asdfasdf asd fas df asd asdf asdf asdfasdf"
+        />
+      </div>
     </ExampleContainer>
     <Title title="Margins" theme="light" level={2} />
     <ExampleContainer>
@@ -191,7 +199,7 @@ const ChipPrefixFocused = () => (
 const ChipSuffixFocused = () => (
   <ExampleContainer>
     <Title title="Chip with suffix" theme="light" level={4} />
-    <DxcChip label="Chip with suffix" suffixIcon={iconSVG} onClickSuffix={() => {}} />
+    <DxcChip label="Chip with suffix" suffixIcon="https://icons-for-free.com/download-icon-close+icon-1320184117228553763_512.png" onClickSuffix={() => {}} />
   </ExampleContainer>
 );
 

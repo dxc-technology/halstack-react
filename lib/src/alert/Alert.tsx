@@ -274,10 +274,7 @@ const AlertCloseAction = styled.button`
   &:hover {
     background-color: ${(props) => props.theme.hoverActionBackgroundColor};
   }
-  &:focus {
-    outline: none;
-    box-shadow: 0 0 0 2px ${(props) => props.theme.focusActionBorderColor};
-  }
+  &:focus,
   &:focus-visible {
     outline: none;
     box-shadow: 0 0 0 2px ${(props) => props.theme.focusActionBorderColor};
