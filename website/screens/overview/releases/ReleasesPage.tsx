@@ -2,8 +2,6 @@ import {
   DxcHeading,
   DxcParagraph,
   DxcFlex,
-  DxcSpinner,
-  DxcGrid,
   DxcLink,
   DxcBulletedList,
 } from "@dxc-technology/halstack-react";
@@ -79,7 +77,7 @@ const sections = [
           <DxcParagraph>
             To check the latest features under development by the Halstack team,
             you can access the <Code>next</Code> version of the documentation
-            throw this{" "}
+            through this{" "}
             <DxcLink href="https://developer.dxc.com/halstack/next/">
               link
             </DxcLink>
