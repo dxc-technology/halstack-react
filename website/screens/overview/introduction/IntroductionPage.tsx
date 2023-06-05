@@ -9,10 +9,8 @@ import QuickNavContainer from "@/common/QuickNavContainer";
 import PageHeading from "@/common/PageHeading";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
-import { useEffect, useState } from "react";
-import axios from "axios";
 
-const sections = (currentVersion: number) => [
+const sections = [
   {
     title: "What is Halstack",
     content: (
@@ -28,14 +26,14 @@ const sections = (currentVersion: number) => [
         title: "A tool for designers",
         content: (
           <DxcParagraph>
-            Halstack&#39;s first goal is to provide Product Designers with
+            Halstack's first goal is to provide Product Designers with
             pre-created designs for the most common use-cases they will face
-            during the product design stage. Using Halstack, they don&#39;t need
-            to reinvent the wheel looking for a solution to these mundane
-            problems, and can focus on adding business value. Also, by
-            centralizing these efforts in a Design System team, we can pay the
-            right amount of attention to aspects as important as usability,
-            accessibility, or consistency.
+            during the product design stage. Using Halstack, they don't need to
+            reinvent the wheel looking for a solution to these mundane problems,
+            and can focus on adding business value. Also, by centralizing these
+            efforts in a Design System team, we can pay the right amount of
+            attention to aspects as important as usability, accessibility, or
+            consistency.
           </DxcParagraph>
         ),
       },
@@ -43,7 +41,7 @@ const sections = (currentVersion: number) => [
         title: "A tool for developers",
         content: (
           <DxcParagraph>
-            Halstack&#39;s second goal is to simplify the handoff process from
+            Halstack's second goal is to simplify the handoff process from
             designers to developers, and facilitate the development of the
             components and patterns that already exist as part of the Design
             System. This way, we speed up the development process and minimize
@@ -88,7 +86,7 @@ const sections = (currentVersion: number) => [
               Halstack will not get into business-specific elements even if they
               are reusable. For example, Halstack might provide guidelines on
               using forms within the context of digital applications. Still, it
-              doesn&#39;t get into the specifics of designing a form for an
+              doesn't get into the specifics of designing a form for an
               insurance quote application.
             </DxcParagraph>
             <DxcParagraph>
@@ -98,7 +96,7 @@ const sections = (currentVersion: number) => [
               into the business semantics.
             </DxcParagraph>
             <DxcParagraph>
-              Although it doesn&#39;t get into the business domain, Halstack is
+              Although it doesn't get into the business domain, Halstack is
               currently used for the most part by insurance applications. For
               this reason, many of the decisions taken and the patterns observed
               might be influenced by this reality.
@@ -174,8 +172,8 @@ const sections = (currentVersion: number) => [
           Some Design Systems decide to organize their documentation following a
           development-centric approach, mimicking the structure of the
           development libraries. That is not the case for Halstack. Since the
-          design process starts with designs, the Halstack documentation
-          site&#39;s main navigation structure follows a design-first approach.
+          design process starts with designs, the Halstack documentation site's
+          main navigation structure follows a design-first approach.
         </DxcParagraph>
         <DxcParagraph>
           Content is always presented and arranged by design elements. Each
@@ -188,46 +186,32 @@ const sections = (currentVersion: number) => [
     ),
   },
   {
-    title: "Previous documentation sites",
+    title: "Legacy documentation sites",
     content: (
       <>
         <DxcParagraph>
-          This site is new and comes to replace the existing one. However, the
-          old documentation is still available through the following links for
-          consultation:
+          Although this is the current and only documentation we recommend
+          reading while using Halstack Design System, the old site is still
+          available through the following links for consulting legacy features
+          and components:
         </DxcParagraph>
         <DxcBulletedList>
           <DxcBulletedList.Item>
             <DxcLink href="https://developer.dxc.com/tools/react" newWindow>
-              React CDK
+              Previous React documentation
             </DxcLink>
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
             <DxcLink href="https://developer.dxc.com/tools/angular" newWindow>
-              Angular CDK
+              Previous Angular documentation
             </DxcLink>
           </DxcBulletedList.Item>
         </DxcBulletedList>
         <DxcParagraph>
           <em>
-            Please note that these sites are discontinued and may not be updated
-            anymore.
+            Please note that these sites are discontinued and no longer
+            supported.
           </em>
-        </DxcParagraph>
-        <DxcParagraph>
-          The latest development site can be accessed through this{" "}
-          <DxcLink href="https://developer.dxc.com/halstack/next/" newWindow>
-            link
-          </DxcLink>
-          . Please note that this version can include bugs. For a more stable
-          experience check the latest release that is available{" "}
-          <DxcLink
-            href={`https://developer.dxc.com/halstack/${currentVersion}/`}
-            newWindow
-          >
-            here
-          </DxcLink>
-          .
         </DxcParagraph>
       </>
     ),
@@ -235,22 +219,6 @@ const sections = (currentVersion: number) => [
 ];
 
 const Introduction = () => {
-  const [currentVersion, setCurrentVersion] = useState(0);
-
-  useEffect(() => {
-    const fetchVersions = async () => {
-      const versionsResp = await axios({
-        method: "get",
-        url: "https://developer.dxc.com/halstack/versions.json",
-      });
-      setCurrentVersion(
-        versionsResp.data.find((v: any) => v.current).versionNumber
-      );
-    };
-
-    fetchVersions();
-  }, []);
-
   return (
     <DxcFlex direction="column" gap="4rem">
       <PageHeading>
@@ -259,10 +227,7 @@ const Introduction = () => {
         </DxcFlex>
       </PageHeading>
       <QuickNavContainerLayout>
-        <QuickNavContainer
-          sections={sections(currentVersion)}
-          startHeadingLevel={2}
-        ></QuickNavContainer>
+        <QuickNavContainer sections={sections} startHeadingLevel={2} />
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/overview/introduction/IntroductionPage.tsx" />
     </DxcFlex>

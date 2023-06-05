@@ -3,7 +3,7 @@ import styled, { ThemeProvider } from "styled-components";
 import { v4 as uuidv4 } from "uuid";
 import { spaces } from "../common/variables";
 import useTheme from "../useTheme";
-import ToogleGroupPropsType, { OptionLabel } from "./types";
+import ToggleGroupPropsType, { OptionLabel } from "./types";
 import BackgroundColorContext, { BackgroundColors } from "../BackgroundColorContext";
 
 const DxcToggleGroup = ({
@@ -17,7 +17,7 @@ const DxcToggleGroup = ({
   margin,
   multiple = false,
   tabIndex = 0,
-}: ToogleGroupPropsType): JSX.Element => {
+}: ToggleGroupPropsType): JSX.Element => {
   const colorsTheme = useTheme();
   const [selectedValue, setSelectedValue] = useState(defaultValue ?? (multiple ? [] : -1));
   const [toggleGroupId] = useState(`toggle-group-${uuidv4()}`);
@@ -111,7 +111,7 @@ const DxcToggleGroup = ({
   );
 };
 
-const Label = styled.label<{ disabled: ToogleGroupPropsType["disabled"] }>`
+const Label = styled.label<{ disabled: ToggleGroupPropsType["disabled"] }>`
   color: ${(props) => (props.disabled ? props.theme.disabledLabelFontColor : props.theme.labelFontColor)};
   font-family: ${(props) => props.theme.labelFontFamily};
   font-size: ${(props) => props.theme.labelFontSize};
@@ -120,7 +120,7 @@ const Label = styled.label<{ disabled: ToogleGroupPropsType["disabled"] }>`
   line-height: ${(props) => props.theme.labelLineHeight};
 `;
 
-const HelperText = styled.span<{ disabled: ToogleGroupPropsType["disabled"] }>`
+const HelperText = styled.span<{ disabled: ToggleGroupPropsType["disabled"] }>`
   color: ${(props) => (props.disabled ? props.theme.disabledHelperTextFontcolor : props.theme.helperTextFontColor)};
   font-family: ${(props) => props.theme.helperTextFontFamily};
   font-size: ${(props) => props.theme.helperTextFontSize};
@@ -129,7 +129,7 @@ const HelperText = styled.span<{ disabled: ToogleGroupPropsType["disabled"] }>`
   line-height: ${(props) => props.theme.helperTextLineHeight};
 `;
 
-const ToggleGroup = styled.div<{ margin: ToogleGroupPropsType["margin"] }>`
+const ToggleGroup = styled.div<{ margin: ToggleGroupPropsType["margin"] }>`
   display: inline-flex;
   flex-direction: column;
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
@@ -160,7 +160,7 @@ const OptionsContainer = styled.div`
 
 const ToggleContainer = styled.div<{
   selected: boolean;
-  disabled: ToogleGroupPropsType["disabled"];
+  disabled: ToggleGroupPropsType["disabled"];
   isLast: boolean;
   isIcon: OptionLabel["icon"];
   optionLabel: OptionLabel["label"];

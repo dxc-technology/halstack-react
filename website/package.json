@@ -8,7 +8,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@dxc-technology/halstack-react": "9.1.0",
+    "@dxc-technology/halstack-react": "0.0.0-c83579c",
     "@radix-ui/react-popover": "0.1.6",
     "@types/styled-components": "^5.1.18",
     "axios": "^0.27.2",
@@ -20,7 +20,7 @@
     "react-dom": "17.0.2",
     "react-error-boundary": "^3.1.4",
     "react-live": "^2.4.1",
-    "react-markdown": "^8.0.0",
+    "react-markdown": "^8.0.7",
     "slugify": "^1.6.5",
     "styled-components": "^5.3.3"
   },

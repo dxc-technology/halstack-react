@@ -1,5 +1,9 @@
 import { useRouter } from "next/router";
-import { DxcTypography, DxcLink, DxcFlex } from "@dxc-technology/halstack-react";
+import {
+  DxcTypography,
+  DxcLink,
+  DxcFlex,
+} from "@dxc-technology/halstack-react";
 import Link from "next/link";
 import { getNavigationLinks } from "./pagesList";
 import styled from "styled-components";
@@ -11,9 +15,18 @@ const DocFooter = ({ githubLink }: { githubLink: string }) => {
   return (
     <DocFooterContainer>
       <DxcFlex direction="column" gap="2rem">
-        <DxcLink icon={githubIcon} href={githubLink} newWindow>
-          Edit this page on GitHub
-        </DxcLink>
+        <DxcFlex gap="2rem">
+          <DxcLink icon={githubIcon} href={githubLink} newWindow>
+            Edit this page on GitHub
+          </DxcLink>
+          <DxcLink
+            icon={githubIcon}
+            href="https://github.com/dxc-technology/halstack-react/issues/new/choose"
+            newWindow
+          >
+            Report an issue on GitHub
+          </DxcLink>
+        </DxcFlex>
         <Separator />
         <DxcFlex justifyContent="space-between">
           <DxcFlex direction="column" gap="1rem">
