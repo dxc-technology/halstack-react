@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { DxcFlex, DxcGrid, DxcQuickNav } from "@dxc-technology/halstack-react";
+import { DxcGrid, DxcQuickNav } from "@dxc-technology/halstack-react";
 import Section from "./Section";
 import { responsiveSizes } from "../common/variables";
 
@@ -42,8 +42,8 @@ const DxcQuickNavContainer = ({
   sections,
   startHeadingLevel = 1,
 }: QuickNavContainerTypes): JSX.Element => (
-  <DxcGrid templateColumns={["15fr", "5fr"]} gap="1.5rem">
-    <DxcFlex direction="column" gap="3rem">
+  <MainContainer>
+    <DxcGrid gap="3rem">
       {sections.map((section) => (
         <Section
           title={section.title}
@@ -54,17 +54,28 @@ const DxcQuickNavContainer = ({
           {section.content}
         </Section>
       ))}
-    </DxcFlex>
+    </DxcGrid>
     <QuickNavContainer>
       <DxcQuickNav title={title} links={getSubSectionsLinks(sections)} />
     </QuickNavContainer>
-  </DxcGrid>
+  </MainContainer>
 );
+
+const MainContainer = styled.div`
+  display: grid;
+  grid-template-columns: 15fr 5fr;
+  gap: 1.5rem;
+
+  @media (max-width: ${responsiveSizes.laptop}px) {
+    grid-template-columns: 1fr;
+  }
+`;
 
 const QuickNavContainer = styled.div`
   position: sticky;
   top: calc(64px + 24px);
   max-height: 568px;
+  overflow-x: hidden;
   overflow-y: auto;
 
   @media (max-width: ${responsiveSizes.laptop}px) {
