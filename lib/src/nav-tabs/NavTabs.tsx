@@ -1,20 +1,19 @@
 import React, { useState, ReactElement, createContext, useMemo } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme";
-import { NavTabsContextProps, NavTabsProps } from "./types";
+import NavTabsPropsType, { NavTabsContextProps } from "./types";
 import DxcTab from "./Tab";
 
 export const NavTabsContext = createContext<NavTabsContextProps | null>(null);
 
-const getPropInChild = (child, propName) => {
-  return child.props
+const getPropInChild = (child, propName) =>
+  child.props
     ? child.props[propName]
       ? child.props[propName]
       : child.props.children
       ? getPropInChild(child.props.children, propName)
       : undefined
     : undefined;
-};
 
 const getLabelFromTab = (child) => {
   if (typeof child === "string") {
@@ -42,35 +41,34 @@ const getNextTabIndex = (array, initialIndex): number => {
   return index;
 };
 
-const DxcNavTabs = ({ iconPosition = "top", tabIndex = 0, children }: NavTabsProps): JSX.Element => {
+const DxcNavTabs = ({ iconPosition = "top", tabIndex = 0, children }: NavTabsPropsType): JSX.Element => {
+  const [innerFocusIndex, setInnerFocusIndex] = useState(null);
   const colorsTheme = useTheme();
-
-  const [innerFocus, setInnerFocus] = useState(null);
 
   const contextValue = useMemo(
     () => ({
       iconPosition,
       tabIndex,
-      hasIcons: React.Children.toArray(children).some((child: ReactElement) => getPropInChild(child, "icon")),
-      focusedLabel: innerFocus === null ? undefined : getLabelFromTab(children[innerFocus]),
+      focusedLabel: innerFocusIndex === null ? undefined : getLabelFromTab(children[innerFocusIndex]),
     }),
-    [iconPosition, tabIndex, innerFocus]
+    [iconPosition, tabIndex, innerFocusIndex]
   );
 
   const handleOnKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
     const activeTab = React.Children.toArray(children).findIndex((child: ReactElement) =>
       getPropInChild(child, "active")
     );
+    
     switch (event.key) {
       case "Left":
       case "ArrowLeft":
         event.preventDefault();
-        setInnerFocus(getPreviousTabIndex(children, innerFocus === null ? activeTab : innerFocus));
+        setInnerFocusIndex(getPreviousTabIndex(children, innerFocusIndex === null ? activeTab : innerFocusIndex));
         break;
       case "Right":
       case "ArrowRight":
         event.preventDefault();
-        setInnerFocus(getNextTabIndex(children, innerFocus === null ? activeTab : innerFocus));
+        setInnerFocusIndex(getNextTabIndex(children, innerFocusIndex === null ? activeTab : innerFocusIndex));
         break;
     }
   };

@@ -5,7 +5,7 @@ import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import { HalstackProvider } from "../HalstackContext";
 
 export default {
-  title: "NavTabs",
+  title: "Nav tabs",
   component: DxcNavTabs,
 };
 
@@ -165,6 +165,20 @@ export const Chromatic = () => (
     <ExampleContainer>
       <Title title="With long label" theme="light" level={4} />
       <DxcNavTabs>
+        <DxcNavTabs.Tab href="#" active>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit
+        </DxcNavTabs.Tab>
+        <DxcNavTabs.Tab href="#" icon={iconSVG} disabled notificationNumber={3}>
+          Tab 2
+        </DxcNavTabs.Tab>
+        <DxcNavTabs.Tab href="#" icon={iconSVG}>
+          Tab 3
+        </DxcNavTabs.Tab>
+      </DxcNavTabs>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="With long label and left icon alignment" theme="light" level={4} />
+      <DxcNavTabs iconPosition="left">
         <DxcNavTabs.Tab href="#" active>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit
         </DxcNavTabs.Tab>

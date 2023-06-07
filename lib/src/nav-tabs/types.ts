@@ -1,5 +1,11 @@
 type SVG = React.ReactNode & React.SVGProps<SVGSVGElement>;
 
+export type NavTabsContextProps = {
+  iconPosition: "top" | "left";
+  tabIndex: number;
+  focusedLabel: string;
+};
+
 export type TabProps = {
   /**
    * Whether the tab is active or not.
@@ -31,7 +37,7 @@ export type TabProps = {
   children: string;
 };
 
-export type NavTabsProps = {
+type Props = {
   /**
    * Whether the icon should appear above or to the left of the label.
    */
@@ -46,9 +52,4 @@ export type NavTabsProps = {
   children: React.ReactNode;
 };
 
-export type NavTabsContextProps = {
-  iconPosition: "top" | "left";
-  tabIndex: number;
-  hasIcons: boolean;
-  focusedLabel: string;
-};
+export default Props;
