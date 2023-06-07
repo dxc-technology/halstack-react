@@ -1,23 +1,22 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 
 const not = {
-  inert: ":not([inert]):not([inert] *)",
   negTabIndex: ':not([tabindex^="-"])',
   disabled: ":not(:disabled)",
 };
 const focusableQuery = [
-  `a[href]${not.inert}${not.negTabIndex}`,
-  `area[href]${not.inert}${not.negTabIndex}`,
-  `input:not([type="hidden"])${not.inert}${not.negTabIndex}${not.disabled}`,
-  `select${not.inert}${not.negTabIndex}${not.disabled}`,
-  `textarea${not.inert}${not.negTabIndex}${not.disabled}`,
-  `button${not.inert}${not.negTabIndex}${not.disabled}`,
-  `details${not.inert} > summary:first-of-type${not.negTabIndex}`,
-  `iframe${not.inert}${not.negTabIndex}`,
-  `audio[controls]${not.inert}${not.negTabIndex}`,
-  `video[controls]${not.inert}${not.negTabIndex}`,
-  `[contenteditable]${not.inert}${not.negTabIndex}`,
-  `[tabindex]${not.inert}${not.negTabIndex}${not.disabled}`,
+  `a[href]${not.negTabIndex}`,
+  `area[href]${not.negTabIndex}`,
+  `input:not([type="hidden"])${not.negTabIndex}${not.disabled}`,
+  `select${not.negTabIndex}${not.disabled}`,
+  `textarea${not.negTabIndex}${not.disabled}`,
+  `button${not.negTabIndex}${not.disabled}`,
+  `details > summary:first-of-type${not.negTabIndex}`,
+  `iframe${not.negTabIndex}`,
+  `audio[controls]${not.negTabIndex}`,
+  `video[controls]${not.negTabIndex}`,
+  `[contenteditable]${not.negTabIndex}`,
+  `[tabindex]${not.negTabIndex}${not.disabled}`,
 ].join(",");
 
 const getFocusableElements = (container: HTMLElement): HTMLElement[] =>
@@ -44,7 +43,7 @@ const attempFocus = (element: HTMLElement): boolean => {
 
 /**
  * @param element: HTMLElement
- * @returns boolean: true if element is contained inside a Radix Portal, false otherwise. 
+ * @returns boolean: true if element is contained inside a Radix Portal, false otherwise.
  */
 const radixPortalContains = (activeElement: Element): boolean => {
   const radixPortals = document.querySelectorAll("[data-radix-portal]");
@@ -75,7 +74,6 @@ const useFocusableElements = (ref: React.MutableRefObject<HTMLDivElement>): HTML
 
   return focusableElements;
 };
-
 
 /**
  * Traps the focus inside the children of the component. It will focus the first focusable element when the component is mounted.
