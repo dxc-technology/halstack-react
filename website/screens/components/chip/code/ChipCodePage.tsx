@@ -31,8 +31,10 @@ const sections = [
             <td></td>
             <td>
               Element used as icon, placed before the chip label. Note that if
-              the passed value is an URL (string), the component's color styling
-              tokens will not be applied to the image.
+              the passed value is an URL (string), the color styling tokens will
+              not be applied to the image. For the icon to display correctly, an
+              SVG must be provided to the prop inheriting the component's
+              styles.
             </td>
           </tr>
           <tr>
@@ -40,8 +42,10 @@ const sections = [
             <td></td>
             <td>
               Element used as icon, placed after the chip label. Note that if
-              the passed value is an URL (string), the component's color styling
-              tokens will not be applied to the image.
+              the passed value is an URL (string), the color styling tokens will
+              not be applied to the image. For the icon to display correctly, an
+              SVG must be provided to the prop inheriting the component's
+              styles.
             </td>
           </tr>
           <tr>
