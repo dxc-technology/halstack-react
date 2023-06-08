@@ -25,8 +25,9 @@ const DxcProgressBar = ({
 
   return (
     <ThemeProvider theme={colorsTheme.progressBar}>
-      <BackgroundProgressBar overlay={overlay}>
-        <ProgressBarContainer overlay={overlay} margin={margin}>
+      <ProgressBarModal overlay={overlay}>
+        {overlay === true && <OverlayContainer overlay={overlay} />}
+        <ProgressBarContainer margin={margin} overlay={overlay}>
           <InfoProgressBar>
             <ProgressBarLabel overlay={overlay} backgroundType={backgroundType} aria-label={label || undefined}>
               {label}
@@ -58,31 +59,29 @@ const DxcProgressBar = ({
             </HelperText>
           )}
         </ProgressBarContainer>
-      </BackgroundProgressBar>
+      </ProgressBarModal>
     </ThemeProvider>
   );
 };
 
-const BackgroundProgressBar = styled.div<{ overlay: ProgressBarPropsType["overlay"] }>`
-  ${({ overlay, theme }) =>
-    overlay
-      ? `background-color: ${theme.overlayColor};
-      width: 100%;
-      justify-content: center;
-      height: 100vh;
-      align-items: center;
-      max-width: 100%;
-      position: fixed;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      z-index: 1300;`
-      : `background-color: "transparent";`}
-  display: flex;
-  flex-wrap: wrap;
-  min-width: 100px;
-  width: 100%;
+const ProgressBarModal = styled.div<{
+  overlay: ProgressBarPropsType["overlay"];
+}>`
+  width: ${(props) => (props.overlay === true && "100%") || ""};
+  height: ${(props) => (props.overlay === true && "100%") || ""};
+  justify-content: ${(props) => (props.overlay === true ? "center" : "")};
+  align-items: ${(props) => (props.overlay === true ? "center" : "")};
+  inset: ${(props) => (props.overlay === true ? "0" : "")};
+  position: ${(props) => (props.overlay === true ? "fixed" : "")};
+  display: ${(props) => (props.overlay === true ? "flex" : "")};
+`;
+
+const OverlayContainer = styled.div<{
+  overlay: ProgressBarPropsType["overlay"];
+}>`
+  background-color: ${(props) => props.theme.overlayColor};
+  position: fixed;
+  inset: 0;
 `;
 
 const ProgressBarContainer = styled.div<{
