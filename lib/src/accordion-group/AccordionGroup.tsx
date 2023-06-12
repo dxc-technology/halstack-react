@@ -1,29 +1,12 @@
-import React, { createContext, useCallback, useContext, useMemo, useState } from "react";
+import React, { createContext, useCallback, useMemo, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import DxcAccordion from "../accordion/Accordion";
 import { getMargin } from "../common/utils";
 import { spaces } from "../common/variables";
 import useTheme from "../useTheme";
-import AccordionGroupPropsType, { AccordionGroupAccordionContextProps, AccordionPropsType } from "./types";
+import AccordionGroupAccordion from "./AccordionGroupAccordion";
+import AccordionGroupPropsType, { AccordionGroupAccordionContextProps } from "./types";
 
-const AccordionGroupAccordionContext = createContext<AccordionGroupAccordionContextProps | null>(null);
-
-const AccordionGroupAccordion = ({ ...childProps }: AccordionPropsType): JSX.Element => {
-  const { activeIndex, handlerActiveChange, disabled, index } = useContext(AccordionGroupAccordionContext);
-
-  return (
-    <DxcAccordion
-      isExpanded={activeIndex === index}
-      onChange={() => {
-        handlerActiveChange(index);
-      }}
-      disabled={disabled}
-      {...childProps}
-    >
-      {childProps.children}
-    </DxcAccordion>
-  );
-};
+export const AccordionGroupAccordionContext = createContext<AccordionGroupAccordionContextProps | null>(null);
 
 const DxcAccordionGroup = ({
   defaultIndexActive,
@@ -35,6 +18,7 @@ const DxcAccordionGroup = ({
 }: AccordionGroupPropsType): JSX.Element => {
   const colorsTheme = useTheme();
   const [innerIndexActive, setInnerIndexActive] = useState(defaultIndexActive ?? -1);
+
   const handlerActiveChange = useCallback(
     (index: number) => {
       indexActive ?? setInnerIndexActive((prev) => (index === prev ? -1 : index));
@@ -64,7 +48,8 @@ const DxcAccordionGroup = ({
 
 DxcAccordionGroup.Accordion = AccordionGroupAccordion;
 
-const calculateWidth = (margin) => `calc(100% - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`;
+const calculateWidth = (margin: AccordionGroupPropsType["margin"]) =>
+  `calc(100% - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`;
 
 const AccordionGroupContainer = styled.div<{
   margin: AccordionGroupPropsType["margin"];
