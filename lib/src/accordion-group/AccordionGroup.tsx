@@ -1,4 +1,4 @@
-import React, { createContext, useCallback, useMemo, useState } from "react";
+import React, { Children, createContext, useCallback, useMemo, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { getMargin } from "../common/utils";
 import { spaces } from "../common/variables";
@@ -34,13 +34,11 @@ const DxcAccordionGroup = ({
   return (
     <ThemeProvider theme={colorsTheme.accordion}>
       <AccordionGroupContainer margin={margin} disabled={disabled}>
-        {(Array.isArray(children) ? children : [children])
-          .filter((child) => child.type === AccordionGroupAccordion)
-          .map((accordion, index) => (
-            <AccordionGroupAccordionContext.Provider key={`accordion-${index}`} value={{ index, ...contextValue }}>
-              {accordion}
-            </AccordionGroupAccordionContext.Provider>
-          ))}
+        {Children.map(children, (accordion, index) => (
+          <AccordionGroupAccordionContext.Provider key={`accordion-${index}`} value={{ index, ...contextValue }}>
+            {accordion}
+          </AccordionGroupAccordionContext.Provider>
+        ))}
       </AccordionGroupContainer>
     </ThemeProvider>
   );
