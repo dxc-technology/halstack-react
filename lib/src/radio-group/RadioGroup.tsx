@@ -151,7 +151,7 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
             aria-readonly={readonly}
             aria-orientation={stacking === "column" ? "vertical" : "horizontal"}
           >
-            <ValueInput name={name} disabled={disabled} value={value ?? innerValue ?? ""} readOnly aria-hidden="true" />
+            <ValueInput name={name} disabled={disabled} value={value ?? innerValue ?? ""} readOnly />
             {innerOptions.map((option, index) => (
               <DxcRadio
                 key={`radio-${index}`}
@@ -181,9 +181,9 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
 );
 
 const RadioGroupContainer = styled.div`
+  box-sizing: border-box;
   display: inline-flex;
   flex-direction: column;
-  box-sizing: border-box;
 `;
 
 const Label = styled.span<{ helperText: RadioGroupPropsType["helperText"]; disabled: RadioGroupPropsType["disabled"] }>`
