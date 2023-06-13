@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { RadioProps } from "./types";
 import { v4 as uuidv4 } from "uuid";
@@ -25,7 +25,7 @@ const DxcRadio = ({
   };
 
   const [firstUpdate, setFirstUpdate] = useState(true);
-  useLayoutEffect(() => {
+  useEffect(() => {
     // Don't apply in the first render
     if (firstUpdate) {
       setFirstUpdate(false);

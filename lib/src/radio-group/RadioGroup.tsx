@@ -42,12 +42,21 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
     const colorsTheme = useTheme();
     const translatedLabels = useTranslatedLabels();
 
-    const optionalItem = {
-      label: optionalItemLabel || translatedLabels.radioGroup.optionalItemLabelDefault,
-      value: "",
-      disabled,
-    };
-    const innerOptions = useMemo(() => (optional ? [...options, optionalItem] : options), [optional, options]);
+    const innerOptions = useMemo(
+      () =>
+        optional
+          ? [
+              ...options,
+              {
+                label: optionalItemLabel ?? translatedLabels.radioGroup.optionalItemLabelDefault,
+                value: "",
+                disabled,
+              },
+            ]
+          : options,
+      [optional, options, optionalItemLabel, translatedLabels]
+    );
+
     const [currentFocusIndex, setCurrentFocusIndex] = useState(getInitialFocusIndex(innerOptions, value ?? innerValue));
 
     const handleOnChange = useCallback(
