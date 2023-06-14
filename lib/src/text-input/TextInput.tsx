@@ -738,17 +738,7 @@ const Action = styled.button<{ backgroundType: BackgroundColors }>`
   ${(props) =>
     !props.disabled &&
     `
-      &:focus {
-        outline: none;
-        box-shadow: 0 0 0 2px ${
-          props.backgroundType === "dark"
-            ? props.theme.focusActionBorderColorOnDark
-            : props.theme.focusActionBorderColor
-        };
-        color: ${
-          props.backgroundType === "dark" ? props.theme.focusActionIconColorOnDark : props.theme.focusActionIconColor
-        };
-      }
+      &:focus, 
       &:focus-visible {
         outline: none;
         box-shadow: 0 0 0 2px ${

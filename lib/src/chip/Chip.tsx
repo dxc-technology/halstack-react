@@ -19,59 +19,56 @@ const DxcChip = ({
 
   return (
     <ThemeProvider theme={colorsTheme.chip}>
-      <StyledDxcChip disabled={disabled} margin={margin}>
+      <Chip disabled={disabled} margin={margin}>
         {prefixIcon && (
           <IconContainer
+            role={typeof onClickPrefix === "function" ? "button" : undefined}
             disabled={disabled}
-            prefixIcon
-            label={label}
+            interactuable={typeof onClickPrefix === "function" && !disabled}
             tabIndex={typeof onClickPrefix === "function" && !disabled ? tabIndex : -1}
             onClick={() => onClickPrefix && !disabled && onClickPrefix()}
-            interactuable={typeof onClickPrefix === "function" && !disabled}
           >
             {typeof prefixIcon === "string" ? <img src={prefixIcon} /> : prefixIcon}
           </IconContainer>
         )}
-        {label && <ChipTextContainer disabled={disabled}>{label}</ChipTextContainer>}
+        {label && <LabelContainer disabled={disabled}>{label}</LabelContainer>}
         {suffixIcon && (
           <IconContainer
+            role={typeof onClickSuffix === "function" ? "button" : undefined}
             disabled={disabled}
-            suffixIcon
-            label={label}
-            tabIndex={typeof onClickSuffix === "function" && !disabled ? tabIndex : -1}
-            onClick={() => onClickSuffix && !disabled && onClickSuffix()}
             interactuable={typeof onClickSuffix === "function" && !disabled}
+            tabIndex={typeof onClickSuffix === "function" && !disabled ? tabIndex : -1}
+            onClick={() => !disabled && onClickSuffix?.()}
           >
             {typeof suffixIcon === "string" ? <img src={suffixIcon} /> : suffixIcon}
           </IconContainer>
         )}
-      </StyledDxcChip>
+      </Chip>
     </ThemeProvider>
   );
 };
 
-const getCursor = (interactuable, disabled) => {
-  if (disabled) return "cursor: not-allowed;";
-  else if (interactuable) return "cursor: pointer;";
-  else return "cursor: default; outline:none;";
-};
+const calculateWidth = (margin: ChipPropsType["margin"]) =>
+  `calc(100% - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`;
 
-const StyledDxcChip = styled.div<{ margin: ChipPropsType["margin"]; disabled: ChipPropsType["disabled"] }>`
+const Chip = styled.div<{ margin: ChipPropsType["margin"]; disabled: ChipPropsType["disabled"] }>`
+  box-sizing: border-box;
   display: inline-flex;
   align-items: center;
+  gap: ${(props) => props.theme.iconSpacing};
   min-height: 40px;
-  max-width: ${({ margin }) => `calc(100% - 40px - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`};
+  max-width: ${(props) => calculateWidth(props.margin)};
   background-color: ${(props) =>
     (props.disabled && props.theme.disabledBackgroundColor) || props.theme.backgroundColor};
   border-radius: ${(props) => props.theme.borderRadius};
   border-width: ${(props) => props.theme.borderThickness};
   border-style: ${(props) => props.theme.borderStyle};
   border-color: ${(props) => props.theme.borderColor};
+
   padding-top: ${(props) => props.theme.contentPaddingTop};
   padding-bottom: ${(props) => props.theme.contentPaddingBottom};
   padding-left: ${(props) => props.theme.contentPaddingLeft};
   padding-right: ${(props) => props.theme.contentPaddingRight};
-
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
@@ -84,44 +81,41 @@ const StyledDxcChip = styled.div<{ margin: ChipPropsType["margin"]; disabled: Ch
   cursor: ${({ disabled }) => disabled && "not-allowed"};
 `;
 
-const ChipTextContainer = styled.span<{ disabled: ChipPropsType["disabled"] }>`
+const LabelContainer = styled.span<{ disabled: ChipPropsType["disabled"] }>`
   font-size: ${(props) => props.theme.fontSize};
   font-family: ${(props) => props.theme.fontFamily};
   font-weight: ${(props) => props.theme.fontWeight};
   font-style: ${(props) => props.theme.fontStyle};
   color: ${(props) => (props.disabled ? props.theme.disabledFontColor : props.theme.fontColor)};
-  cursor: ${({ disabled }) => (disabled && "not-allowed") || "default"};
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
 `;
 
 const IconContainer = styled.div<{
-  prefixIcon?: ChipPropsType["prefixIcon"];
-  label: ChipPropsType["label"];
-  suffixIcon?: ChipPropsType["suffixIcon"];
   disabled: ChipPropsType["disabled"];
   interactuable: boolean;
 }>`
   display: flex;
-  ${(props) =>
-    props.prefixIcon
-      ? `margin-right: ${((props.label || props.suffixIcon) && props.theme.iconSpacing) || (props.prefixIcon && "0")};`
-      : `margin-left: ${((props.label || props.prefixIcon) && props.theme.iconSpacing) || (props.prefixIcon && "0")};`}
+  border-radius: 0.25rem;
   color: ${(props) => (props.disabled ? props.theme.disabledIconColor : props.theme.iconColor)};
-  ${(props) => getCursor(props.interactuable, props.disabled)}
+  ${({ interactuable }) => interactuable && "cursor: pointer;"}
 
-  &:hover {
-    color: ${(props) => !props.disabled && props.theme.hoverIconColor};
-  }
-  &:focus {
-    outline-color: ${(props) => !props.disabled && props.theme.focusColor};
-    outline-width: ${(props) => !props.disabled && props.theme.focusBorderThickness};
-    ${(props) => props.disabled && "outline: none;"}
-  }
-  &:active {
-    color: ${(props) => !props.disabled && props.theme.activeIconColor};
-  }
+  ${(props) =>
+    props.interactuable &&
+    `
+      &:hover {
+        color: ${props.theme.hoverIconColor};
+      }
+      &:focus,
+      &:focus-visible {
+        outline: ${props.theme.focusBorderThickness} solid ${props.theme.focusColor};
+      }
+      &:active {
+        color: ${props.theme.activeIconColor};
+      }
+    `}
+
   img,
   svg {
     width: ${(props) => props.theme.iconSize};

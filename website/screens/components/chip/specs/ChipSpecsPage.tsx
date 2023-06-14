@@ -109,7 +109,7 @@ const sections = [
                   </tr>
                   <tr>
                     <td>
-                      <Code>fontcolor</Code>
+                      <Code>fontColor</Code>
                     </td>
                     <td>Label</td>
                     <td>
