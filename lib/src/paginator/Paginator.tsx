@@ -18,7 +18,7 @@ const DxcPaginator = ({
   itemsPerPageFunction,
   tabIndex = 0,
 }: PaginatorPropsType): JSX.Element => {
-  const totalPages = Math.ceil(totalItems / itemsPerPage);
+  const totalPages = itemsPerPage > 0 && Math.ceil(totalItems / itemsPerPage);
   const currentPageInternal = currentPage === -1 ? totalPages : currentPage;
   const minItemsPerPage =
     currentPageInternal === 1 || currentPageInternal === 0
