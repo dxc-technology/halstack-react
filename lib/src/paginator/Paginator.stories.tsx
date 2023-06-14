@@ -67,6 +67,10 @@ export const Chromatic = () => (
         showGoToPage
       />
     </ExampleContainer>
+    <ExampleContainer>
+      <Title title="itemsPerPage is 0 and showGoToPage is true" theme="light" level={4} />
+      <DxcPaginator itemsPerPage={0} itemsPerPageOptions={[5, 10, 15]} totalItems={27} showGoToPage />
+    </ExampleContainer>
     <Title title="Opinionated theme" theme="light" level={2} />
     <ExampleContainer>
       <HalstackProvider theme={opinionatedTheme}>
