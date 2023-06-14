@@ -73,7 +73,6 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
       // If the radio group loses the focus to an element not contained inside it...
       if (!event.currentTarget.contains(event.relatedTarget as Node)) {
         setFirstTimeFocus(true);
-
         const currentValue = value ?? innerValue;
         !optional && !Boolean(currentValue)
           ? onBlur?.({ value: currentValue, error: translatedLabels.formFields.requiredSelectionErrorMessage })
