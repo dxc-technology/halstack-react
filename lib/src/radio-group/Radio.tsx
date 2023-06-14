@@ -1,9 +1,10 @@
-import React, { useLayoutEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { RadioProps } from "./types";
 import { v4 as uuidv4 } from "uuid";
 import useTheme from "../useTheme";
 import { AdvancedTheme } from "../common/variables";
+import DxcFlex from "../flex/Flex";
 
 const DxcRadio = ({
   label,
@@ -25,7 +26,7 @@ const DxcRadio = ({
   };
 
   const [firstUpdate, setFirstUpdate] = useState(true);
-  useLayoutEffect(() => {
+  useEffect(() => {
     // Don't apply in the first render
     if (firstUpdate) {
       setFirstUpdate(false);
@@ -36,7 +37,7 @@ const DxcRadio = ({
 
   return (
     <ThemeProvider theme={colorsTheme.radioGroup}>
-      <RadioMainContainer>
+      <DxcFlex>
         <RadioContainer
           error={error}
           disabled={disabled}
@@ -62,7 +63,7 @@ const DxcRadio = ({
             {label}
           </Label>
         </RadioContainer>
-      </RadioMainContainer>
+      </DxcFlex>
     </ThemeProvider>
   );
 };
@@ -99,10 +100,6 @@ const getRadioInputStateColor = (
         : props.theme.activeRadioInputColor;
   }
 };
-
-const RadioMainContainer = styled.div`
-  display: flex;
-`;
 
 const RadioInputContainer = styled.span`
   display: flex;
