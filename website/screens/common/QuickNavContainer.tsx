@@ -1,20 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 import { DxcGrid, DxcQuickNav } from "@dxc-technology/halstack-react";
-import Section from "./Section";
+import Section, { SectionType } from "./Section";
 import { responsiveSizes } from "../common/variables";
 
 type QuickNavContainerTypes = {
   title?: string;
   sections: SectionType[];
   startHeadingLevel?: 1 | 2 | 3 | 4 | 5;
-};
-
-type SectionType = {
-  title: string;
-  level?: 1 | 2 | 3 | 4 | 5;
-  content?: React.ReactNode;
-  subSections?: SectionType[];
 };
 
 type LinkType = {
@@ -43,16 +36,15 @@ const DxcQuickNavContainer = ({
   startHeadingLevel = 1,
 }: QuickNavContainerTypes): JSX.Element => (
   <MainContainer>
-    <DxcGrid gap="3rem">
+    <DxcGrid gap="3rem" templateColumns={["100%"]}>
       {sections.map((section) => (
         <Section
-          title={section.title}
-          subSections={section.subSections}
-          level={startHeadingLevel}
           key={`section-${section.title}`}
-        >
-          {section.content}
-        </Section>
+          title={section.title}
+          level={startHeadingLevel}
+          subSections={section.subSections}
+          content={section.content}
+        />
       ))}
     </DxcGrid>
     <QuickNavContainer>
@@ -67,7 +59,7 @@ const MainContainer = styled.div`
   gap: 1.5rem;
 
   @media (max-width: ${responsiveSizes.laptop}px) {
-    grid-template-columns: 1fr;
+    grid-template-columns: 100%;
   }
 `;
 

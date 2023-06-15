@@ -144,12 +144,11 @@ const MainContainer = styled.div`
   margin: 80px auto;
   max-width: 1124px;
 
-  @media (max-width: ${responsiveSizes.laptop}px) {
-    margin: 80px 32px;
-  }
-
   @media (max-width: ${responsiveSizes.desktop}px) {
     margin: 80px 5%;
+  }
+  @media (max-width: ${responsiveSizes.laptop}px) {
+    margin: 80px 32px;
   }
 `;
 
