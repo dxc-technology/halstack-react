@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { DxcGrid, DxcQuickNav } from "@dxc-technology/halstack-react";
+import { DxcFlex, DxcQuickNav } from "@dxc-technology/halstack-react";
 import Section, { SectionType } from "./Section";
 import { responsiveSizes } from "../common/variables";
 
@@ -36,7 +36,7 @@ const DxcQuickNavContainer = ({
   startHeadingLevel = 1,
 }: QuickNavContainerTypes): JSX.Element => (
   <MainContainer>
-    <DxcGrid gap="3rem" templateColumns={["100%"]}>
+    <DxcFlex direction="column" gap="3rem" grow={1}>
       {sections.map((section) => (
         <Section
           key={`section-${section.title}`}
@@ -46,7 +46,7 @@ const DxcQuickNavContainer = ({
           content={section.content}
         />
       ))}
-    </DxcGrid>
+    </DxcFlex>
     <QuickNavContainer>
       <DxcQuickNav title={title} links={getSubSectionsLinks(sections)} />
     </QuickNavContainer>

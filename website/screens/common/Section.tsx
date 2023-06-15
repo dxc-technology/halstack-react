@@ -8,7 +8,7 @@ export type SectionType = {
   title: string;
   level?: LevelEnum;
   subSections?: SectionType[];
-  content: React.ReactNode;
+  content?: React.ReactNode;
   navSubtitle?: string;
 };
 
