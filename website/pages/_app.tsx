@@ -141,12 +141,10 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
 };
 
 const MainContainer = styled.div`
-  margin: 80px auto;
+  margin: 80px 0;
   max-width: 1124px;
+  margin-inline: max(5%, 50% - 1124px/2);
 
-  @media (max-width: ${responsiveSizes.desktop}px) {
-    margin: 80px 5%;
-  }
   @media (max-width: ${responsiveSizes.laptop}px) {
     margin: 80px 32px;
   }
