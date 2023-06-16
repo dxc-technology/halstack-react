@@ -32,7 +32,7 @@ export type TabProps = {
    */
   notificationNumber?: boolean | number;
   /**
-   * Content of the tab.
+   * Contains one or more DxcNavTabs.Tab.
    */
   children: string;
 };

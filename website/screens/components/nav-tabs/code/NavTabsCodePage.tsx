@@ -18,100 +18,113 @@ import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
 const sections = [
   {
     title: "Props",
+    content: (
+      <DxcTable>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Default</th>
+            <HeaderDescriptionCell>Description</HeaderDescriptionCell>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>iconPosition: 'top' | 'left'</td>
+            <td>
+              <Code>'top'</Code>
+            </td>
+            <td>
+              Whether the icon should appear above or to the left of the label.
+            </td>
+          </tr>
+          <tr>
+            <td>tabIndex: number</td>
+            <td>
+              <Code>0</Code>
+            </td>
+            <td>Value of the tabindex for each tab.</td>
+          </tr>
+          <tr>
+            <td>children: node</td>
+            <td></td>
+            <td>
+              Contains one or more <Code>DxcNavTabs.Tab</Code>.
+            </td>
+          </tr>
+        </tbody>
+      </DxcTable>
+    ),
     subSections: [
-      {
-        title: "DxcNavTabs",
-        content: (
-          <DxcTable>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Default</th>
-                <HeaderDescriptionCell>Description</HeaderDescriptionCell>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>iconPosition: 'top' | 'left'</td>
-                <td>
-                  <Code>'top'</Code>
-                </td>
-                <td>
-                  Whether the icon should appear above or to the left of the
-                  label.
-                </td>
-              </tr>
-              <tr>
-                <td>tabIndex: number</td>
-                <td>
-                  <Code>0</Code>
-                </td>
-                <td>Value of the tabindex for each tab.</td>
-              </tr>
-            </tbody>
-          </DxcTable>
-        ),
-      },
       {
         title: "DxcNavTabs.Tab",
         content: (
-          <DxcTable>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Default</th>
-                <HeaderDescriptionCell>Description</HeaderDescriptionCell>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>active: boolean</td>
-                <td>
-                  <Code>false</Code>
-                </td>
-                <td>Whether the tab is active or not.</td>
-              </tr>
-              <tr>
-                <td>disabled: boolean</td>
-                <td>
-                  <Code>false</Code>
-                </td>
-                <td>Whether the tab is disabled or not.</td>
-              </tr>
-              <tr>
-                <td>href: string</td>
-                <td></td>
-                <td>Page to be opened when the user clicks on the tab.</td>
-              </tr>
-              <tr>
-                <td>icon: node | string</td>
-                <td></td>
-                <td>
-                  Element or path used as the icon that will be displayed in the
-                  tab.
-                </td>
-              </tr>
-              <tr>
-                <td>notificationNumber: boolean | number</td>
-                <td>
-                  <Code>false</Code>
-                </td>
-                <td>
-                  If the value is 'true', an empty badge will appear. If it is
-                  'false', no badge will appear. If a number is put it will be
-                  shown as the label of the notification in the tab, taking into
-                  account that if that number is greater than 99, it will appear
-                  as '+99' in the badge.
-                </td>
-              </tr>
-              <tr>
-                <td>children: string</td>
-                <td></td>
-                <td>Content of the tab.</td>
-              </tr>
-            </tbody>
-          </DxcTable>
+          <DxcParagraph>
+            Single tab, part of the set of Navigation Tabs.
+          </DxcParagraph>
         ),
+        subSections: [
+          {
+            title: "Props",
+            content: (
+              <DxcTable>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Default</th>
+                    <HeaderDescriptionCell>Description</HeaderDescriptionCell>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>active: boolean</td>
+                    <td>
+                      <Code>false</Code>
+                    </td>
+                    <td>Whether the tab is active or not.</td>
+                  </tr>
+                  <tr>
+                    <td>disabled: boolean</td>
+                    <td>
+                      <Code>false</Code>
+                    </td>
+                    <td>Whether the tab is disabled or not.</td>
+                  </tr>
+                  <tr>
+                    <td>href: string</td>
+                    <td></td>
+                    <td>Page to be opened when the user clicks on the tab.</td>
+                  </tr>
+                  <tr>
+                    <td>icon: node | string</td>
+                    <td></td>
+                    <td>
+                      Element or path used as the icon that will be displayed in
+                      the tab.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>notificationNumber: boolean | number</td>
+                    <td>
+                      <Code>false</Code>
+                    </td>
+                    <td>
+                      If the value is 'true', an empty badge will appear. If it
+                      is 'false', no badge will appear. If a number is put it
+                      will be shown as the label of the notification in the tab,
+                      taking into account that if that number is greater than
+                      99, it will appear as '+99' in the badge.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>children: string</td>
+                    <td></td>
+                    <td>Text label of the tab.</td>
+                  </tr>
+                </tbody>
+              </DxcTable>
+            ),
+          },
+        ],
       },
     ],
   },
