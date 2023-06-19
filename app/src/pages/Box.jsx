@@ -69,39 +69,25 @@ function App() {
         </div>
         <h4>Paddings</h4>
         <div className="test-case" id="padding-xxsmall">
-          <DxcBox size="medium" padding="xxsmall">
-            xxSmall padding box
-          </DxcBox>
+          <DxcBox size="medium">xxSmall padding box</DxcBox>
         </div>
         <div className="test-case" id="padding-xsmall">
-          <DxcBox size="medium" padding="xsmall">
-            xSmall padding box
-          </DxcBox>
+          <DxcBox size="medium">xSmall padding box</DxcBox>
         </div>
         <div className="test-case" id="padding-small">
-          <DxcBox size="medium" padding="small">
-            Small padding box
-          </DxcBox>
+          <DxcBox size="medium">Small padding box</DxcBox>
         </div>
         <div className="test-case" id="padding-medium">
-          <DxcBox size="medium" padding="medium">
-            Medium padding box
-          </DxcBox>
+          <DxcBox size="medium">Medium padding box</DxcBox>
         </div>
         <div className="test-case" id="padding-large">
-          <DxcBox size="medium" padding="large">
-            Large padding box
-          </DxcBox>
+          <DxcBox size="medium">Large padding box</DxcBox>
         </div>
         <div className="test-case" id="padding-xlarge">
-          <DxcBox size="medium" padding="xlarge">
-            xLarge padding box
-          </DxcBox>
+          <DxcBox size="medium">xLarge padding box</DxcBox>
         </div>
         <div className="test-case" id="padding-xxlarge">
-          <DxcBox size="medium" padding="xxlarge">
-            xxLarge padding box
-          </DxcBox>
+          <DxcBox size="medium">xxLarge padding box</DxcBox>
         </div>
         <h4>Shadow Depth</h4>
         <div className="test-case" id="shadowDepth-0">
@@ -120,37 +106,18 @@ function App() {
           </DxcBox>
         </div>
         <h4>Examples</h4>
-        <DxcBox
-          margin="medium"
-          padding="medium"
-          shadowDepth={1}
-          display="block"
-          size="medium"
-        >
+        <DxcBox margin="medium" shadowDepth={1} display="block" size="medium">
           Hola que tal
         </DxcBox>
-        <DxcBox
-          margin="medium"
-          padding="medium"
-          shadowDepth={1}
-          display="block"
-          size="large"
-        >
+        <DxcBox margin="medium" shadowDepth={1} display="block" size="large">
           Hola que tal
         </DxcBox>
-        <DxcBox
-          margin="medium"
-          padding="medium"
-          shadowDepth={1}
-          display="block"
-          size="small"
-        >
+        <DxcBox margin="medium" shadowDepth={1} display="block" size="small">
           Hola que tal
         </DxcBox>
         <div style={{ width: "250px" }}>
           <DxcBox
             margin="medium"
-            padding="medium"
             shadowDepth={1}
             display="block"
             size="fillParent"
