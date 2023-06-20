@@ -30,7 +30,6 @@ const DxcAccordion = ({
   onChange,
   children,
   margin,
-  padding,
   tabIndex = 0,
 }: AccordionPropsType): JSX.Element => {
   const [id] = useState(uuidv4());
@@ -103,12 +102,7 @@ const DxcAccordion = ({
           </AccordionTrigger>
         </AccordionHeader>
         {(isExpanded ?? innerIsExpanded) && (
-          <AccordionPanel
-            id={`accordion-panel-${id}`}
-            role="region"
-            aria-labelledby={`accordion-${id}`}
-            padding={padding}
-          >
+          <AccordionPanel id={`accordion-panel-${id}`} role="region" aria-labelledby={`accordion-${id}`}>
             <BackgroundColorProvider color={colorsTheme.accordion.backgroundColor}>{children}</BackgroundColorProvider>
           </AccordionPanel>
         )}
@@ -117,7 +111,8 @@ const DxcAccordion = ({
   );
 };
 
-const calculateWidth = (margin) => `calc(100% - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`;
+const calculateWidth = (margin: AccordionPropsType["margin"]) =>
+  `calc(100% - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`;
 
 const AccordionContainer = styled.div<{
   isExpanded: AccordionPropsType["isExpanded"];
@@ -217,18 +212,9 @@ const CollapseIndicator = styled.span<{ disabled: AccordionPropsType["disabled"]
   color: ${(props) => (props.disabled ? props.theme.disabledArrowColor : props.theme.arrowColor)};
 `;
 
-const AccordionPanel = styled.div<{ padding: AccordionPropsType["padding"] }>`
+const AccordionPanel = styled.div`
   border-bottom-left-radius: ${(props) => props.theme.borderRadius};
   border-bottom-right-radius: ${(props) => props.theme.borderRadius};
-  padding: ${(props) => (props.padding && typeof props.padding !== "object" ? spaces[props.padding] : "0px")};
-  padding-top: ${(props) =>
-    props.padding && typeof props.padding === "object" && props.padding.top ? spaces[props.padding.top] : ""};
-  padding-right: ${(props) =>
-    props.padding && typeof props.padding === "object" && props.padding.right ? spaces[props.padding.right] : ""};
-  padding-bottom: ${(props) =>
-    props.padding && typeof props.padding === "object" && props.padding.bottom ? spaces[props.padding.bottom] : ""};
-  padding-left: ${(props) =>
-    props.padding && typeof props.padding === "object" && props.padding.left ? spaces[props.padding.left] : ""};
 `;
 
 export default DxcAccordion;

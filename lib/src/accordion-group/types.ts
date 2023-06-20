@@ -5,12 +5,6 @@ type Margin = {
   left?: Space;
   right?: Space;
 };
-type Padding = {
-  top?: Space;
-  bottom?: Space;
-  left?: Space;
-  right?: Space;
-};
 type SVG = React.ReactNode & React.SVGProps<SVGSVGElement>;
 
 export type AccordionPropsType = {
@@ -30,12 +24,6 @@ export type AccordionPropsType = {
    * If true, the component will be disabled.
    */
   disabled?: boolean;
-  /**
-   * @deprecated This prop will be removed shortly, consider using the Inset component for this purpose.
-   * Size of the padding to be applied to the custom area ('xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge').
-   * You can pass an object with 'top', 'bottom', 'left' and 'right' properties in order to specify different padding sizes.
-   */
-  padding?: Space | Padding;
   /**
    * The expanded panel of the accordion. This area can be used to render
    * custom content.
