@@ -2,8 +2,6 @@ import {
   DxcParagraph,
   DxcFlex,
   DxcTable,
-  DxcAlert,
-  DxcLink,
 } from "@dxc-technology/halstack-react";
 import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
@@ -14,106 +12,77 @@ import basicUsage from "./examples/basicUsage";
 import withContent from "./examples/withContent";
 import backgroundClick from "./examples/backgroundClick";
 import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
-import StatusTag from "@/common/StatusTag";
-import Link from "next/link";
 
 const sections = [
   {
     title: "Props",
     content: (
-      <>
-        <DxcAlert type="warning" size="fillParent">
-          The <Code>padding</Code> prop has been deprecated. Consider using
-          layout components like the{" "}
-          <Link href="/components/inset/" passHref>
-            <DxcLink>Inset</DxcLink>
-          </Link>{" "}
-          for the same purpose.
-        </DxcAlert>
-        <DxcTable>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Default</th>
-              <HeaderDescriptionCell>Description</HeaderDescriptionCell>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>isCloseVisible: boolean</td>
-              <td>
-                <Code>true</Code>
-              </td>
-              <td>If true, the close 'x' button will be visible.</td>
-            </tr>
-            <tr>
-              <td>onCloseClick: function</td>
-              <td></td>
-              <td>
-                This function will be called when the user clicks the close 'x'
-                button. The responsibility of hiding the dialog lies with the
-                user.
-              </td>
-            </tr>
-            <tr>
-              <td>onBackgroundClick: function</td>
-              <td></td>
-              <td>
-                This function will be called when the user clicks background.
-                The responsibility of hiding the dialog lies with the user.
-              </td>
-            </tr>
-            <tr>
-              <td>overlay: boolean</td>
-              <td>
-                <Code>true</Code>
-              </td>
-              <td>
-                If true, the dialog will be displayed over a darker background
-                that covers the content behind.
-              </td>
-            </tr>
-            <tr>
-              <td>padding: string | object</td>
-              <td>
-                <Code>'small'</Code>
-              </td>
-              <td>
-                <DxcFlex gap="0.25rem" direction="column" alignItems="baseline">
-                  <StatusTag status="Deprecated">Deprecated</StatusTag>
-                  Size of the padding to be applied to the component ('xxsmall'
-                  | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' |
-                  'xxlarge'). You can pass an object with 'top', 'bottom',
-                  'left' and 'right' properties in order to specify different
-                  padding sizes.
-                </DxcFlex>
-              </td>
-            </tr>
-            <tr>
-              <td>tabIndex: number</td>
-              <td>
-                <Code>0</Code>
-              </td>
-              <td>
-                Value of the tabindex given to the close 'x' button. Note that
-                values greater than 0 are strongly discouraged.
-              </td>
-            </tr>
-            <tr>
-              <td>children: node</td>
-              <td></td>
-              <td>
-                Area within the dialog that can be used to render custom
-                content. We strongly encourage users to not change the{" "}
-                <Code>tabindex</Code> of the inner components or elements. This
-                can lead to unpredictable behaviour for keyboard users,
-                affecting the order of focus and focus locking within the
-                dialog.
-              </td>
-            </tr>
-          </tbody>
-        </DxcTable>
-      </>
+      <DxcTable>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Default</th>
+            <HeaderDescriptionCell>Description</HeaderDescriptionCell>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>isCloseVisible: boolean</td>
+            <td>
+              <Code>true</Code>
+            </td>
+            <td>If true, the close 'x' button will be visible.</td>
+          </tr>
+          <tr>
+            <td>onCloseClick: function</td>
+            <td></td>
+            <td>
+              This function will be called when the user clicks the close 'x'
+              button. The responsibility of hiding the dialog lies with the
+              user.
+            </td>
+          </tr>
+          <tr>
+            <td>onBackgroundClick: function</td>
+            <td></td>
+            <td>
+              This function will be called when the user clicks background. The
+              responsibility of hiding the dialog lies with the user.
+            </td>
+          </tr>
+          <tr>
+            <td>overlay: boolean</td>
+            <td>
+              <Code>true</Code>
+            </td>
+            <td>
+              If true, the dialog will be displayed over a darker background
+              that covers the content behind.
+            </td>
+          </tr>
+          <tr>
+            <td>tabIndex: number</td>
+            <td>
+              <Code>0</Code>
+            </td>
+            <td>
+              Value of the tabindex given to the close 'x' button. Note that
+              values greater than 0 are strongly discouraged.
+            </td>
+          </tr>
+          <tr>
+            <td>children: node</td>
+            <td></td>
+            <td>
+              Area within the dialog that can be used to render custom content.
+              We strongly encourage users to not change the{" "}
+              <Code>tabindex</Code> of the inner components or elements. This
+              can lead to unpredictable behaviour for keyboard users, affecting
+              the order of focus and focus locking within the dialog.
+            </td>
+          </tr>
+        </tbody>
+      </DxcTable>
     ),
   },
   {
