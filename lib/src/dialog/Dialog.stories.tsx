@@ -28,29 +28,7 @@ export const DefaultDialog = () => (
   <ExampleContainer expanded={true}>
     <Title title="Default dialog" theme="light" level={4} />
     <DxcDialog>
-      <DxcFlex direction="column" gap="1rem">
-        <DxcHeading level={4} text="Example title" />
-        <DxcParagraph>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi egestas luctus porttitor. Donec massa magna,
-          placerat sit amet felis eget, venenatis fringilla ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing
-          elit. Donec congue laoreet orci, nec elementum dolor consequat quis. Curabitur rhoncus justo sed dapibus
-          tincidunt. Vestibulum cursus ut risus sit amet congue. Nunc luctus, urna ullamcorper facilisis Jia Le, risus
-          eros aliquam erat, ut efficitur ante neque id odio. Nam orci leo, dignissim sit amet dolor ut, congue gravida
-          enim. Donec rhoncus aliquam nisl, ac cursus enim bibendum vitae. Nunc sit amet elit ornare, malesuada urna eu,
-          fringilla mauris. Vivamus bibendum turpis est, id elementum purus euismod sit amet. Etiam sit amet maximus
-          augue. Vivamus erat sapien, ultricies fringilla tellus id, condimentum blandit justo. Praesent quis nunc
-          dignissim, pharetra neque molestie, molestie lectus.
-        </DxcParagraph>
-      </DxcFlex>
-    </DxcDialog>
-  </ExampleContainer>
-);
-
-export const DefaultDialogOpinionated = () => (
-  <ExampleContainer expanded={true}>
-    <Title title="Default dialog" theme="light" level={4} />
-    <HalstackProvider theme={opinionatedTheme}>
-      <DxcDialog>
+      <DxcInset space="2rem">
         <DxcFlex direction="column" gap="1rem">
           <DxcHeading level={4} text="Example title" />
           <DxcParagraph>
@@ -65,6 +43,32 @@ export const DefaultDialogOpinionated = () => (
             Praesent quis nunc dignissim, pharetra neque molestie, molestie lectus.
           </DxcParagraph>
         </DxcFlex>
+      </DxcInset>
+    </DxcDialog>
+  </ExampleContainer>
+);
+
+export const DefaultDialogOpinionated = () => (
+  <ExampleContainer expanded={true}>
+    <Title title="Default dialog" theme="light" level={4} />
+    <HalstackProvider theme={opinionatedTheme}>
+      <DxcDialog>
+        <DxcInset space="2rem">
+          <DxcFlex direction="column" gap="1rem">
+            <DxcHeading level={4} text="Example title" />
+            <DxcParagraph>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi egestas luctus porttitor. Donec massa
+              magna, placerat sit amet felis eget, venenatis fringilla ipsum. Lorem ipsum dolor sit amet, consectetur
+              adipiscing elit. Donec congue laoreet orci, nec elementum dolor consequat quis. Curabitur rhoncus justo
+              sed dapibus tincidunt. Vestibulum cursus ut risus sit amet congue. Nunc luctus, urna ullamcorper facilisis
+              Jia Le, risus eros aliquam erat, ut efficitur ante neque id odio. Nam orci leo, dignissim sit amet dolor
+              ut, congue gravida enim. Donec rhoncus aliquam nisl, ac cursus enim bibendum vitae. Nunc sit amet elit
+              ornare, malesuada urna eu, fringilla mauris. Vivamus bibendum turpis est, id elementum purus euismod sit
+              amet. Etiam sit amet maximus augue. Vivamus erat sapien, ultricies fringilla tellus id, condimentum
+              blandit justo. Praesent quis nunc dignissim, pharetra neque molestie, molestie lectus.
+            </DxcParagraph>
+          </DxcFlex>
+        </DxcInset>
       </DxcDialog>
     </HalstackProvider>
   </ExampleContainer>
@@ -74,7 +78,7 @@ export const DialogWithInputs = () => (
   <ExampleContainer expanded={true}>
     <Title title="Dialog with inputs" theme="light" level={4} />
     <DxcDialog>
-      <DxcInset bottom="1rem">
+      <DxcInset space="2rem">
         <DxcFlex gap="2rem" direction="column">
           <DxcHeading level={4} text="Example form" />
           <DxcFlex gap="1rem" direction="column">
@@ -101,7 +105,7 @@ const RespDialog = () => (
   <ExampleContainer expanded={true}>
     <Title title="Responsive dialog" theme="light" level={4} />
     <DxcDialog>
-      <DxcInset bottom="1rem">
+      <DxcInset space="2rem">
         <DxcFlex gap="2rem" direction="column">
           <DxcHeading level={4} text="Example form" />
           <DxcFlex gap="1rem" direction="column">
@@ -122,8 +126,31 @@ export const DialogWithoutOverlay = () => (
   <ExampleContainer expanded={true}>
     <Title title="Dialog Without Overlay" theme="light" level={4} />
     <DxcDialog overlay={false}>
-      <DxcFlex direction="column" gap="1rem">
-        <DxcHeading level={4} text="Example title" />
+      <DxcInset space="2rem">
+        <DxcFlex direction="column" gap="1rem">
+          <DxcHeading level={4} text="Example title" />
+          <DxcParagraph>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi egestas luctus porttitor. Donec massa magna,
+            placerat sit amet felis eget, venenatis fringilla ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing
+            elit. Donec congue laoreet orci, nec elementum dolor consequat quis. Curabitur rhoncus justo sed dapibus
+            tincidunt. Vestibulum cursus ut risus sit amet congue. Nunc luctus, urna ullamcorper facilisis Jia Le, risus
+            eros aliquam erat, ut efficitur ante neque id odio. Nam orci leo, dignissim sit amet dolor ut, congue
+            gravida enim. Donec rhoncus aliquam nisl, ac cursus enim bibendum vitae. Nunc sit amet elit ornare,
+            malesuada urna eu, fringilla mauris. Vivamus bibendum turpis est, id elementum purus euismod sit amet. Etiam
+            sit amet maximus augue. Vivamus erat sapien, ultricies fringilla tellus id, condimentum blandit justo.
+            Praesent quis nunc dignissim, pharetra neque molestie, molestie lectus.
+          </DxcParagraph>
+        </DxcFlex>
+      </DxcInset>
+    </DxcDialog>
+  </ExampleContainer>
+);
+
+export const DialogCloseVisibleFalse = () => (
+  <ExampleContainer expanded={true}>
+    <Title title="Dialog Close Visible" theme="dark" level={4} />
+    <DxcDialog isCloseVisible={false}>
+      <DxcInset space="2rem">
         <DxcParagraph>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi egestas luctus porttitor. Donec massa magna,
           placerat sit amet felis eget, venenatis fringilla ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing
@@ -135,26 +162,7 @@ export const DialogWithoutOverlay = () => (
           augue. Vivamus erat sapien, ultricies fringilla tellus id, condimentum blandit justo. Praesent quis nunc
           dignissim, pharetra neque molestie, molestie lectus.
         </DxcParagraph>
-      </DxcFlex>
-    </DxcDialog>
-  </ExampleContainer>
-);
-
-export const DialogCloseVisibleFalse = () => (
-  <ExampleContainer expanded={true}>
-    <Title title="Dialog Close Visible" theme="dark" level={4} />
-    <DxcDialog isCloseVisible={false}>
-      <DxcParagraph>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi egestas luctus porttitor. Donec massa magna,
-        placerat sit amet felis eget, venenatis fringilla ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing
-        elit. Donec congue laoreet orci, nec elementum dolor consequat quis. Curabitur rhoncus justo sed dapibus
-        tincidunt. Vestibulum cursus ut risus sit amet congue. Nunc luctus, urna ullamcorper facilisis Jia Le, risus
-        eros aliquam erat, ut efficitur ante neque id odio. Nam orci leo, dignissim sit amet dolor ut, congue gravida
-        enim. Donec rhoncus aliquam nisl, ac cursus enim bibendum vitae. Nunc sit amet elit ornare, malesuada urna eu,
-        fringilla mauris. Vivamus bibendum turpis est, id elementum purus euismod sit amet. Etiam sit amet maximus
-        augue. Vivamus erat sapien, ultricies fringilla tellus id, condimentum blandit justo. Praesent quis nunc
-        dignissim, pharetra neque molestie, molestie lectus.
-      </DxcParagraph>
+      </DxcInset>
     </DxcDialog>
   </ExampleContainer>
 );
