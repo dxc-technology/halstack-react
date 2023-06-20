@@ -1,30 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import slugify from "slugify";
-import { DxcHeading } from "@dxc-technology/halstack-react";
+import { DxcBleed, DxcHeading } from "@dxc-technology/halstack-react";
 import { responsiveSizes } from "../common/variables";
-
-type HeadingLinkProps = {
-  children: string;
-  level?: 1 | 2 | 3 | 4 | 5;
-  as?: "h1" | "h2" | "h3" | "h4" | "h5";
-  navSubtitle?: string;
-};
-
-function HeadingLink({ children, level, as, navSubtitle }: HeadingLinkProps) {
-  const elementId = slugify(navSubtitle ?? children, { lower: true });
-  return (
-    <HeadingLinkContainer id={elementId}>
-      <HeadingAnchor href={`#${elementId}`}>{linkIcon}</HeadingAnchor>
-      <DxcHeading
-        weight="bold"
-        text={children}
-        level={level}
-        as={as}
-      ></DxcHeading>
-    </HeadingLinkContainer>
-  );
-}
 
 const linkIcon = (
   <svg
@@ -42,16 +20,44 @@ const linkIcon = (
   </svg>
 );
 
+type HeadingLinkProps = {
+  children: string;
+  level?: 1 | 2 | 3 | 4 | 5;
+  as?: "h1" | "h2" | "h3" | "h4" | "h5";
+  navSubtitle?: string;
+};
+
+const HeadingLink = ({
+  children,
+  level,
+  as,
+  navSubtitle,
+}: HeadingLinkProps) => {
+  const elementId = slugify(navSubtitle ?? children, { lower: true });
+  return (
+    <HeadingLinkContainer id={elementId}>
+      <DxcBleed left="2rem">
+        <HeadingAnchor href={`#${elementId}`}>{linkIcon}</HeadingAnchor>
+      </DxcBleed>
+      <DxcHeading weight="bold" text={children} level={level} as={as} />
+    </HeadingLinkContainer>
+  );
+};
+
 const HeadingLinkContainer = styled.div`
   display: flex;
   align-items: center;
   scroll-margin-top: 64px;
+
   &:hover svg {
     opacity: 0.5;
   }
 
   @media (max-width: ${responsiveSizes.tablet}px) {
     word-break: break-word;
+  }
+  @media (max-width: 45rem) {
+    scroll-margin-top: 116px;
   }
 `;
 
@@ -61,8 +67,8 @@ const HeadingAnchor = styled.a`
   display: inline-flex;
   align-items: center;
   padding: 8px;
-  margin-left: -32px;
-  & svg {
+
+  svg {
     width: 16px;
     height: 16px;
     opacity: 0;
