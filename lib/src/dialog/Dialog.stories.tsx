@@ -78,7 +78,7 @@ export const DialogWithInputs = () => (
   <ExampleContainer expanded={true}>
     <Title title="Dialog with inputs" theme="light" level={4} />
     <DxcDialog>
-      <DxcInset horizontal="1.5rem" top="1.5rem" bottom="1rem">
+      <DxcInset space="1.5rem">
         <DxcFlex gap="2rem" direction="column">
           <DxcHeading level={4} text="Example form" />
           <DxcFlex gap="1rem" direction="column">
@@ -105,7 +105,7 @@ const RespDialog = () => (
   <ExampleContainer expanded={true}>
     <Title title="Responsive dialog" theme="light" level={4} />
     <DxcDialog>
-      <DxcInset horizontal="1.5rem" top="1.5rem" bottom="1rem">
+      <DxcInset space="1.5rem">
         <DxcFlex gap="2rem" direction="column">
           <DxcHeading level={4} text="Example form" />
           <DxcFlex gap="1rem" direction="column">
