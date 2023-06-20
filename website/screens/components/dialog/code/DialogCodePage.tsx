@@ -2,8 +2,6 @@ import {
   DxcParagraph,
   DxcFlex,
   DxcTable,
-  DxcAlert,
-  DxcLink,
 } from "@dxc-technology/halstack-react";
 import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
@@ -14,8 +12,6 @@ import basicUsage from "./examples/basicUsage";
 import withContent from "./examples/withContent";
 import backgroundClick from "./examples/backgroundClick";
 import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
-import StatusTag from "@/common/StatusTag";
-import Link from "next/link";
 
 const sections = [
   {

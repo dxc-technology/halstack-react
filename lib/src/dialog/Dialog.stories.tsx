@@ -12,7 +12,7 @@ import DxcParagraph from "../paragraph/Paragraph";
 import DxcAlert from "../alert/Alert";
 
 export default {
-  title: "Dialog ",
+  title: "Dialog",
   component: DxcDialog,
 };
 
