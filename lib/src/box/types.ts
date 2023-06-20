@@ -5,12 +5,6 @@ type Margin = {
   left?: Space;
   right?: Space;
 };
-type Padding = {
-  top?: Space;
-  bottom?: Space;
-  left?: Space;
-  right?: Space;
-};
 
 type Props = {
   /**

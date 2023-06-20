@@ -1,7 +1,5 @@
 import {
-  DxcAlert,
   DxcFlex,
-  DxcLink,
   DxcTable,
 } from "@dxc-technology/halstack-react";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
@@ -11,8 +9,6 @@ import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import basicUsage from "./examples/basicUsage";
 import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
-import StatusTag from "@/common/StatusTag";
-import Link from "next/link";
 
 const sections = [
   {
