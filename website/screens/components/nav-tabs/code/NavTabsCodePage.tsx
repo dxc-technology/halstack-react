@@ -18,42 +18,53 @@ import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
 const sections = [
   {
     title: "Props",
+    content: (
+      <DxcTable>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Default</th>
+            <HeaderDescriptionCell>Description</HeaderDescriptionCell>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>iconPosition: 'top' | 'left'</td>
+            <td>
+              <Code>'top'</Code>
+            </td>
+            <td>
+              Whether the icon should appear above or to the left of the label.
+            </td>
+          </tr>
+          <tr>
+            <td>tabIndex: number</td>
+            <td>
+              <Code>0</Code>
+            </td>
+            <td>Value of the tabindex for each tab.</td>
+          </tr>
+          <tr>
+            <td>children: node</td>
+            <td></td>
+            <td>
+              Contains one or more <Code>DxcNavTabs.Tab</Code>.
+            </td>
+          </tr>
+        </tbody>
+      </DxcTable>
+    ),
+  },
+  {
+    title: "DxcNavTabs.Tab",
+    content: (
+      <DxcParagraph>
+        Single tab, part of the set of Navigation Tabs.
+      </DxcParagraph>
+    ),
     subSections: [
       {
-        title: "DxcNavTabs",
-        content: (
-          <DxcTable>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Default</th>
-                <HeaderDescriptionCell>Description</HeaderDescriptionCell>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>iconPosition: 'top' | 'left'</td>
-                <td>
-                  <Code>'top'</Code>
-                </td>
-                <td>
-                  Whether the icon should appear above or to the left of the
-                  label.
-                </td>
-              </tr>
-              <tr>
-                <td>tabIndex: number</td>
-                <td>
-                  <Code>0</Code>
-                </td>
-                <td>Value of the tabindex for each tab.</td>
-              </tr>
-            </tbody>
-          </DxcTable>
-        ),
-      },
-      {
-        title: "DxcNavTabs.Tab",
+        title: "Props",
         content: (
           <DxcTable>
             <thead>
@@ -107,7 +118,7 @@ const sections = [
               <tr>
                 <td>children: string</td>
                 <td></td>
-                <td>Content of the tab.</td>
+                <td>Text label of the tab.</td>
               </tr>
             </tbody>
           </DxcTable>
