@@ -14,48 +14,46 @@ const DxcCard = ({
   onClick,
   imageCover = false,
   margin,
-  contentPadding,
   tabIndex = 0,
   outlined = true,
   children,
 }: CardPropsType): JSX.Element => {
   const colorsTheme = useTheme();
-
   const [isHovered, changeIsHovered] = useState(false);
 
-  const imageComponent = (
-    <ImageContainer imageBgColor={imageBgColor}>
-      <TagImage imagePadding={imagePadding} imageCover={imageCover} src={imageSrc}></TagImage>
-    </ImageContainer>
-  );
-
   return (
-    <StyledDxcCard
+    <Card
+      hasAction={onClick || linkHref ? true : false}
       margin={margin}
       onMouseEnter={() => changeIsHovered(true)}
       onMouseLeave={() => changeIsHovered(false)}
       onClick={onClick}
-      hasAction={onClick || linkHref}
       tabIndex={onClick || linkHref ? tabIndex : -1}
       as={linkHref && "a"}
       href={linkHref}
     >
       <DxcBox shadowDepth={!outlined ? 0 : isHovered && (onClick || linkHref) ? 2 : 1}>
         <ThemeProvider theme={colorsTheme.card}>
-          <CardContainer hasAction={onClick || linkHref}>
-            {imageSrc && imagePosition === "before" && imageComponent}
-            <CardContent contentPadding={contentPadding}>{children}</CardContent>
-            {imageSrc && imagePosition === "after" && imageComponent}
+          <CardContainer
+            hasAction={onClick || linkHref ? true : false}
+            imagePosition={imageSrc ? imagePosition : "none"}
+          >
+            {imageSrc && (
+              <ImageContainer imageBgColor={imageBgColor}>
+                <TagImage imagePadding={imagePadding} imageCover={imageCover} src={imageSrc} />
+              </ImageContainer>
+            )}
+            <CardContent>{children}</CardContent>
           </CardContainer>
         </ThemeProvider>
       </DxcBox>
-    </StyledDxcCard>
+    </Card>
   );
 };
 
-const StyledDxcCard = styled.div<{
+const Card = styled.div<{
+  hasAction: boolean;
   margin: CardPropsType["margin"];
-  hasAction: CardPropsType["onClick"] | CardPropsType["linkHref"];
 }>`
   display: inline-flex;
   cursor: ${({ hasAction }) => (hasAction && "pointer") || "unset"};
@@ -70,12 +68,16 @@ const StyledDxcCard = styled.div<{
   ${({ hasAction }) =>
     hasAction &&
     `:focus {
-    outline: #0095ff auto 1px;
-  }`}
+      outline: #0095ff auto 1px;
+    }`}
 `;
 
-const CardContainer = styled.div<{ hasAction: CardPropsType["onClick"] | CardPropsType["linkHref"] }>`
+const CardContainer = styled.div<{
+  hasAction: boolean;
+  imagePosition: CardPropsType["imagePosition"] | "none";
+}>`
   display: inline-flex;
+  flex-direction: ${(props) => (props.imagePosition === "after" ? "row-reverse" : "row")};
   height: ${(props) => props.theme.height};
   width: ${(props) => props.theme.width};
   &:hover {
@@ -96,27 +98,17 @@ const TagImage = styled.img<{ imagePadding: CardPropsType["imagePadding"]; image
 `;
 
 const ImageContainer = styled.div<{ imageBgColor: CardPropsType["imageBgColor"] }>`
-  width: 35%;
-  height: 100%;
-  flex-shrink: 0;
-  background: ${({ imageBgColor }) => imageBgColor};
+  display: inline-flex;
   justify-content: center;
   align-items: center;
-  display: inline-flex;
+  flex-shrink: 0;
+  width: 35%;
+  height: 100%;
+  background-color: ${({ imageBgColor }) => imageBgColor};
 `;
 
-const CardContent = styled.div<{ contentPadding: CardPropsType["contentPadding"] }>`
+const CardContent = styled.div`
   flex-grow: 1;
-  padding: ${({ contentPadding }) =>
-    contentPadding && typeof contentPadding !== "object" ? spaces[contentPadding] : "0px"};
-  padding-top: ${({ contentPadding }) =>
-    contentPadding && typeof contentPadding === "object" && contentPadding.top ? spaces[contentPadding.top] : ""};
-  padding-right: ${({ contentPadding }) =>
-    contentPadding && typeof contentPadding === "object" && contentPadding.right ? spaces[contentPadding.right] : ""};
-  padding-bottom: ${({ contentPadding }) =>
-    contentPadding && typeof contentPadding === "object" && contentPadding.bottom ? spaces[contentPadding.bottom] : ""};
-  padding-left: ${({ contentPadding }) =>
-    contentPadding && typeof contentPadding === "object" && contentPadding.left ? spaces[contentPadding.left] : ""};
   overflow: hidden;
 `;
 

@@ -66,7 +66,6 @@ function App() {
         <h4>xxlarge imagePadding</h4>
         <DxcCard imageSrc={twitterIcon} imagePadding="xxlarge" />
       </div>
-
       <h4>Margins</h4>
       <div className="test-case" id="xxsmall-margin">
         <h4>xxsmall margin</h4>
@@ -95,84 +94,6 @@ function App() {
       <div className="test-case" id="xxlarge-margin">
         <h4>xxlarge margin</h4>
         <DxcCard margin="xxlarge" />
-      </div>
-
-      <h4>Content Paddings</h4>
-      <div className="test-case" id="xxsmall-padding">
-        <h5>xxsmall content padding</h5>
-        <DxcCard contentPadding="xxsmall">
-          <div>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
-          </div>
-        </DxcCard>
-        <h5>xsmall content padding</h5>
-        <DxcCard contentPadding="xsmall">
-          <div>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
-          </div>
-        </DxcCard>
-        <h5>small content padding</h5>
-        <DxcCard contentPadding="small">
-          <div>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
-          </div>
-        </DxcCard>
-        <h5>medium content padding</h5>
-        <DxcCard contentPadding="medium">
-          <div>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
-          </div>
-        </DxcCard>
-        <h5>large content padding</h5>
-        <DxcCard contentPadding="large">
-          <div>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
-          </div>
-        </DxcCard>
-        <h5>xlarge content padding</h5>
-        <DxcCard contentPadding="xlarge">
-          <div>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
-          </div>
-        </DxcCard>
-        <h5>xxlarge content padding</h5>
-        <DxcCard contentPadding="xxlarge">
-          <div>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
-          </div>
-        </DxcCard>
-        <h5>medium content padding with image</h5>
-        <DxcCard
-          imageSrc="https://picsum.photos/id/1022/200/300"
-          imageCover
-          contentPadding="medium"
-        >
-          <div>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
-          </div>
-        </DxcCard>
-        <h5>xlarge content padding with image</h5>
-        <DxcCard
-          imageSrc="https://picsum.photos/id/1022/200/300"
-          imagePadding="small"
-          imageCover
-          contentPadding="xlarge"
-          imagePosition="after"
-          imageBgColor="#fabada"
-        >
-          <div>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
-          </div>
-        </DxcCard>
       </div>
     </div>
   );
