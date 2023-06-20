@@ -1,10 +1,4 @@
 type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
-type Padding = {
-  top?: Space;
-  bottom?: Space;
-  left?: Space;
-  right?: Space;
-};
 
 type Props = {
   /**
@@ -31,14 +25,6 @@ type Props = {
    * ('xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge').
    */
   margin?: Space;
-  /**
-   * @deprecated This prop will be removed shortly, consider using the Inset component for this purpose.
-   * Size of the padding to be applied to the custom area of the component
-   * ('xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge').
-   * You can pass an object with 'top', 'bottom', 'left' and 'right' properties in
-   * order to specify different padding sizes.
-   */
-  padding?: Space | Padding;
   /**
    * Value of the tabindex for all interactuable elements, except those inside the
    * custom area.

@@ -149,35 +149,6 @@ export const Chromatic = () => (
       <DxcHeader underlined margin="xxlarge" />
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras felis.</p>
     </ExampleContainer>
-    <Title title="Paddings" theme="light" level={2} />
-    <ExampleContainer>
-      <Title title="Xxsmall padding" theme="light" level={4} />
-      <DxcHeader underlined padding="xxsmall" />
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Xsmall padding" theme="light" level={4} />
-      <DxcHeader underlined padding="xsmall" />
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Small padding" theme="light" level={4} />
-      <DxcHeader underlined padding="small" />
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Medium padding" theme="light" level={4} />
-      <DxcHeader underlined padding="medium" />
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Large padding" theme="light" level={4} />
-      <DxcHeader underlined padding="large" />
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Xlarge padding" theme="light" level={4} />
-      <DxcHeader underlined padding="xlarge" />
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Xxlarge padding" theme="light" level={4} />
-      <DxcHeader underlined padding="xxlarge" />
-    </ExampleContainer>
     <Title title="Opinionated theme" theme="light" level={2} />
     <ExampleContainer>
       <HalstackProvider theme={opinionatedTheme}>
