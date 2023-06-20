@@ -1,8 +1,9 @@
-import React, { useLayoutEffect, createRef, forwardRef, Ref, useContext } from "react";
+import React, { useEffect, forwardRef, Ref, useContext, useRef } from "react";
 import styled from "styled-components";
 import DxcBadge from "../badge/Badge";
+import DxcFlex from "../flex/Flex";
 import { NavTabsContext } from "./NavTabs";
-import { TabProps, NavTabsProps } from "./types";
+import NavTabsPropsType, { TabProps } from "./types";
 import BaseTypography from "../utils/BaseTypography";
 import useTheme from "../useTheme";
 
@@ -11,12 +12,11 @@ const DxcTab = forwardRef(
     { href, active = false, icon, disabled = false, notificationNumber = false, children, ...otherProps }: TabProps,
     ref: Ref<HTMLAnchorElement>
   ): JSX.Element => {
-    const tabRef: React.MutableRefObject<HTMLAnchorElement> = createRef();
-
-    const { iconPosition, tabIndex, hasIcons, focusedLabel } = useContext(NavTabsContext);
+    const tabRef = useRef<HTMLAnchorElement>();
     const colorsTheme = useTheme();
+    const { iconPosition, tabIndex, focusedLabel } = useContext(NavTabsContext);
 
-    useLayoutEffect(() => {
+    useEffect(() => {
       focusedLabel === children.toString() && tabRef?.current?.focus();
     }, [focusedLabel]);
 
@@ -24,8 +24,8 @@ const DxcTab = forwardRef(
       switch (event.key) {
         case " ":
         case "Enter":
-          tabRef?.current?.click();
           event.preventDefault();
+          tabRef?.current?.click();
           break;
       }
     };
@@ -33,19 +33,17 @@ const DxcTab = forwardRef(
     return (
       <TabContainer active={active} role="tab" aria-selected={active} aria-disabled={disabled}>
         <Tab
-          href={!disabled && href ? href : undefined}
+          href={!disabled ? href : undefined}
           disabled={disabled}
           active={active}
           iconPosition={iconPosition}
-          hasIcon={hasIcons}
+          hasIcon={icon != null ? true : false}
           ref={(anchorRef) => {
             tabRef.current = anchorRef;
 
             if (ref) {
               if (typeof ref === "function") ref(anchorRef);
-              else {
-                (ref as React.MutableRefObject<HTMLAnchorElement | null>).current = anchorRef;
-              }
+              else (ref as React.MutableRefObject<HTMLAnchorElement | null>).current = anchorRef;
             }
           }}
           onKeyDown={handleOnKeyDown}
@@ -57,7 +55,7 @@ const DxcTab = forwardRef(
               {typeof icon === "string" ? <img src={icon} /> : icon}
             </TabIconContainer>
           )}
-          <LabelContainer>
+          <DxcFlex alignItems="center" gap="0.5rem">
             <BaseTypography
               color={
                 disabled
@@ -77,16 +75,14 @@ const DxcTab = forwardRef(
               {children}
             </BaseTypography>
             {notificationNumber && (
-              <BadgeContainer>
-                <DxcBadge
-                  notificationText={
-                    typeof notificationNumber === "number" && notificationNumber > 99 ? "+99" : notificationNumber
-                  }
-                  disabled={disabled}
-                />
-              </BadgeContainer>
+              <DxcBadge
+                notificationText={
+                  typeof notificationNumber === "number" && notificationNumber > 99 ? "+99" : notificationNumber
+                }
+                disabled={disabled}
+              />
             )}
-          </LabelContainer>
+          </DxcFlex>
         </Tab>
       </TabContainer>
     );
@@ -94,17 +90,18 @@ const DxcTab = forwardRef(
 );
 
 const TabContainer = styled.div<{ active: TabProps["active"] }>`
+  align-items: stretch;
   border-bottom: 2px solid ${(props) => (props.active ? props.theme.selectedUnderlineColor : props.theme.dividerColor)};
+  padding: 0.5rem;
+
   svg {
     color: ${(props) => props.theme.unselectedIconColor};
   }
-
   &[aria-selected="true"] {
     svg {
       color: ${(props) => props.theme.selectedIconColor};
     }
   }
-
   &[aria-disabled="true"] {
     svg {
       color: ${(props) => props.theme.disabledIconColor};
@@ -116,15 +113,17 @@ const Tab = styled.a<{
   disabled: TabProps["disabled"];
   active: TabProps["active"];
   hasIcon: boolean;
-  iconPosition: NavTabsProps["iconPosition"];
+  iconPosition: NavTabsPropsType["iconPosition"];
 }>`
+  box-sizing: border-box;
   display: flex;
   flex-direction: ${(props) => (props.hasIcon && props.iconPosition === "top" ? "column" : "row")};
   justify-content: center;
   align-items: center;
-  height: ${(props) => (props.hasIcon && props.iconPosition === "top" ? "66px" : "32px")};
-  min-width: 164px;
-  margin: 0.5rem;
+  gap: ${(props) => (props.hasIcon && props.iconPosition === "top" ? "0.375rem" : "0.625rem")};
+  height: ${(props) => (props.hasIcon && props.iconPosition === "top" ? "78px" : "100%")};
+  min-width: 176px;
+  min-height: 44px;
   padding: 0.375rem;
   border-radius: 4px;
   background: ${(props) =>
@@ -148,25 +147,14 @@ const Tab = styled.a<{
   `}
 `;
 
-const TabIconContainer = styled.div<{ iconPosition: NavTabsProps["iconPosition"] }>`
+const TabIconContainer = styled.div<{ iconPosition: NavTabsPropsType["iconPosition"] }>`
   display: flex;
-  margin-bottom: ${(props) => props.iconPosition === "top" && "0.375rem"};
-  margin-right: ${(props) => props.iconPosition === "left" && "0.625rem"};
 
   img,
   svg {
     height: 24px;
     width: 24px;
   }
-`;
-
-const LabelContainer = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-const BadgeContainer = styled.div`
-  margin-left: 0.5rem;
 `;
 
 export default DxcTab;
