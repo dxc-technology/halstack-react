@@ -3,7 +3,6 @@ import {
   DxcTable,
   DxcParagraph,
   DxcLink,
-  DxcAlert,
 } from "@dxc-technology/halstack-react";
 import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
@@ -12,7 +11,6 @@ import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import Link from "next/link";
 import React from "react";
 import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
-import StatusTag from "@/common/StatusTag";
 
 const sections = [
   {
