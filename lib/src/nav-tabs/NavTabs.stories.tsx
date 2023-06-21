@@ -176,6 +176,20 @@ export const Chromatic = () => (
         </DxcNavTabs.Tab>
       </DxcNavTabs>
     </ExampleContainer>
+    <ExampleContainer>
+      <Title title="With long label and left icon alignment" theme="light" level={4} />
+      <DxcNavTabs iconPosition="left">
+        <DxcNavTabs.Tab href="#" active>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit
+        </DxcNavTabs.Tab>
+        <DxcNavTabs.Tab href="#" icon={iconSVG} disabled notificationNumber={3}>
+          Tab 2
+        </DxcNavTabs.Tab>
+        <DxcNavTabs.Tab href="#" icon={iconSVG}>
+          Tab 3
+        </DxcNavTabs.Tab>
+      </DxcNavTabs>
+    </ExampleContainer>
     <Title title="Opinionated theme" theme="light" level={2} />
     <ExampleContainer>
       <Title title="Only label" theme="light" level={4} />
