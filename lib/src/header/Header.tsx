@@ -46,18 +46,15 @@ type ContentProps = {
   isResponsive: boolean;
   responsiveContent: HeaderPropsType["responsiveContent"];
   handleMenu: () => void;
-  padding: HeaderPropsType["padding"];
   content: HeaderPropsType["content"];
 };
 
-const Content = ({ isResponsive, responsiveContent, handleMenu, padding, content }: ContentProps) => {
+const Content = ({ isResponsive, responsiveContent, handleMenu, content }: ContentProps) => {
   const backgroundType = useContext(BackgroundColorContext);
   return isResponsive ? (
     <MenuContent backgroundType={backgroundType}>{responsiveContent(handleMenu)}</MenuContent>
   ) : (
-    <ContentContainer padding={padding} backgroundType={backgroundType}>
-      {content}
-    </ContentContainer>
+    <ContentContainer backgroundType={backgroundType}>{content}</ContentContainer>
   );
 };
 
@@ -67,7 +64,6 @@ const DxcHeader = ({
   responsiveContent,
   onClick,
   margin,
-  padding,
   tabIndex = 0,
 }: HeaderPropsType): JSX.Element => {
   const colorsTheme = useTheme();
@@ -117,7 +113,7 @@ const DxcHeader = ({
         </LogoAnchor>
         {isResponsive && responsiveContent && (
           <MainContainer>
-            <ChildContainer padding={padding}>
+            <ChildContainer>
               <HamburguerTrigger tabIndex={tabIndex} onClick={handleMenu}>
                 {hamburgerIcon}
                 {translatedLabels.header.hamburguerTitle}
@@ -140,7 +136,6 @@ const DxcHeader = ({
                   isResponsive={isResponsive}
                   responsiveContent={responsiveContent}
                   handleMenu={handleMenu}
-                  padding={padding}
                   content={content}
                 />
               </BackgroundColorProvider>
@@ -154,7 +149,6 @@ const DxcHeader = ({
               isResponsive={isResponsive}
               responsiveContent={responsiveContent}
               handleMenu={handleMenu}
-              padding={padding}
               content={content}
             />
           </BackgroundColorProvider>
@@ -197,38 +191,20 @@ const LogoContainer = styled.div`
   vertical-align: middle;
 `;
 
-const ChildContainer = styled.div<{ padding: HeaderPropsType["padding"] }>`
+const ChildContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
   flex-grow: 1;
   width: calc(100% - 186px);
-  padding: ${(props) => (props.padding && typeof props.padding !== "object" ? spaces[props.padding] : "0px")};
-  padding-top: ${(props) =>
-    props.padding && typeof props.padding === "object" && props.padding.top ? spaces[props.padding.top] : ""};
-  padding-right: ${(props) =>
-    props.padding && typeof props.padding === "object" && props.padding.right ? spaces[props.padding.right] : ""};
-  padding-bottom: ${(props) =>
-    props.padding && typeof props.padding === "object" && props.padding.bottom ? spaces[props.padding.bottom] : ""};
-  padding-left: ${(props) =>
-    props.padding && typeof props.padding === "object" && props.padding.left ? spaces[props.padding.left] : ""};
 `;
 
-const ContentContainer = styled.div<{ padding: HeaderPropsType["padding"]; backgroundType: BackgroundColors }>`
+const ContentContainer = styled.div<{ backgroundType: BackgroundColors }>`
   display: flex;
   align-items: center;
   flex-grow: 1;
   justify-content: flex-end;
   width: calc(100% - 186px);
-  padding: ${(props) => (props.padding && typeof props.padding !== "object" ? spaces[props.padding] : "0px")};
-  padding-top: ${(props) =>
-    props.padding && typeof props.padding === "object" && props.padding.top ? spaces[props.padding.top] : ""};
-  padding-right: ${(props) =>
-    props.padding && typeof props.padding === "object" && props.padding.right ? spaces[props.padding.right] : ""};
-  padding-bottom: ${(props) =>
-    props.padding && typeof props.padding === "object" && props.padding.bottom ? spaces[props.padding.bottom] : ""};
-  padding-left: ${(props) =>
-    props.padding && typeof props.padding === "object" && props.padding.left ? spaces[props.padding.left] : ""};
   color: ${(props) => (props.backgroundType === "dark" ? props.theme.contentColorOnDark : props.theme.contentColor)};
 `;
 
