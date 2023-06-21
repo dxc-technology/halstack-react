@@ -171,8 +171,10 @@ export const ResponsiveHeader = () => (
   <ExampleContainer>
     <Title title="Responsive" theme="light" level={4} />
     <DxcHeader
-      content={<DxcHeader.Dropdown options={options} label="Default Dropdown" />}
-      responsiveContent={(closeHandler) => <DxcHeader.Dropdown options={options} label="Default Dropdown" />}
+      content={<DxcHeader.Dropdown options={options} label="Default Dropdown" onSelectOption={() => {}} />}
+      responsiveContent={(closeHandler) => (
+        <DxcHeader.Dropdown options={options} label="Default Dropdown" onSelectOption={() => {}} />
+      )}
       underlined
     />
   </ExampleContainer>
