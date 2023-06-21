@@ -51,7 +51,7 @@ type Props = {
    */
   tabIndex?: number;
   /**
-   * Whether the card must be outlined.
+   * Determines whether or not the component should have an outline.
    */
   outlined?: boolean;
   /**
