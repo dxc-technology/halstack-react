@@ -67,28 +67,6 @@ function App() {
             xxLarge margin box
           </DxcBox>
         </div>
-        <h4>Paddings</h4>
-        <div className="test-case" id="padding-xxsmall">
-          <DxcBox size="medium">xxSmall padding box</DxcBox>
-        </div>
-        <div className="test-case" id="padding-xsmall">
-          <DxcBox size="medium">xSmall padding box</DxcBox>
-        </div>
-        <div className="test-case" id="padding-small">
-          <DxcBox size="medium">Small padding box</DxcBox>
-        </div>
-        <div className="test-case" id="padding-medium">
-          <DxcBox size="medium">Medium padding box</DxcBox>
-        </div>
-        <div className="test-case" id="padding-large">
-          <DxcBox size="medium">Large padding box</DxcBox>
-        </div>
-        <div className="test-case" id="padding-xlarge">
-          <DxcBox size="medium">xLarge padding box</DxcBox>
-        </div>
-        <div className="test-case" id="padding-xxlarge">
-          <DxcBox size="medium">xxLarge padding box</DxcBox>
-        </div>
         <h4>Shadow Depth</h4>
         <div className="test-case" id="shadowDepth-0">
           <DxcBox size="medium" margin="medium" shadowDepth={0}>
