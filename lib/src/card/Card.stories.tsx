@@ -106,35 +106,6 @@ const Card = () => (
         Xxlarge
       </DxcCard>
     </ExampleContainer>
-    <Title title="Content padding" theme="light" level={2} />
-    <ExampleContainer>
-      <Title title="Xxsmall" theme="light" level={4} />
-      <DxcCard contentPadding="xxsmall">Xxsmall</DxcCard>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Xsmall" theme="light" level={4} />
-      <DxcCard contentPadding="xsmall">Xsmall</DxcCard>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Small" theme="light" level={4} />
-      <DxcCard contentPadding="small">Small</DxcCard>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Medium" theme="light" level={4} />
-      <DxcCard contentPadding="medium">Medium</DxcCard>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Large" theme="light" level={4} />
-      <DxcCard contentPadding="large">Large</DxcCard>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Xlarge" theme="light" level={4} />
-      <DxcCard contentPadding="xlarge">Xlarge</DxcCard>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Xxlarge" theme="light" level={4} />
-      <DxcCard contentPadding="xxlarge">Xxlarge</DxcCard>
-    </ExampleContainer>
     <Title title="Margin" theme="light" level={2} />
     <ExampleContainer>
       <Title title="Xxsmall" theme="light" level={4} />

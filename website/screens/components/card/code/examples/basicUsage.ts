@@ -1,4 +1,5 @@
 import { DxcInset, DxcCard } from "@dxc-technology/halstack-react";
+
 const code = `() => {
   return (
     <DxcInset space="2rem">
