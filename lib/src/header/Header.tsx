@@ -168,6 +168,8 @@ const HeaderContainer = styled.header<{ margin: HeaderPropsType["margin"]; under
   justify-content: space-between;
   min-height: ${(props) => props.theme.minHeight};
   margin-bottom: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
+  padding: ${(props) =>
+    `${props.theme.paddingTop} ${props.theme.paddingRight} ${props.theme.paddingBottom} ${props.theme.paddingLeft}`};
   background-color: ${(props) => props.theme.backgroundColor};
   border-bottom: ${(props) =>
     props.underlined &&
