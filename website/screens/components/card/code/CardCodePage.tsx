@@ -99,7 +99,9 @@ const sections = [
             <td>
               <Code>true</Code>
             </td>
-            <td>Whether the card must be outlined.</td>
+            <td>
+              Determines whether or not the component should have an outline.
+            </td>
           </tr>
           <tr>
             <td>children: node</td>
