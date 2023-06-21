@@ -16,9 +16,9 @@ const code = `() => {
       assistiveTextFontWeight: "400",
       assistiveTextLetterSpacing: "-0.0125em",
       assistiveTextFontColor: "#f6fa06",
-
     },
   };
+  
   return (
     <HalstackProvider advancedTheme={advancedTheme}>
       <DxcInset space="2rem">

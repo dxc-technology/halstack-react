@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
 import DialogPropsType from "./types";
-import { spaces, responsiveSizes } from "../common/variables";
+import { responsiveSizes } from "../common/variables";
 import useTheme from "../useTheme";
 import { BackgroundColorProvider } from "../BackgroundColorContext";
 import useTranslatedLabels from "../useTranslatedLabels";
@@ -21,7 +21,6 @@ const DxcDialog = ({
   children,
   overlay = true,
   onBackgroundClick,
-  padding = "small",
   tabIndex = 0,
 }: DialogPropsType): JSX.Element => {
   const colorsTheme = useTheme();
@@ -55,9 +54,7 @@ const DxcDialog = ({
               />
             )}
             <Dialog role="dialog" aria-modal={overlay} isCloseVisible={isCloseVisible}>
-              <Children padding={padding}>
-                <BackgroundColorProvider color={colorsTheme.dialog.backgroundColor}>{children}</BackgroundColorProvider>
-              </Children>
+              <BackgroundColorProvider color={colorsTheme.dialog.backgroundColor}>{children}</BackgroundColorProvider>
               {isCloseVisible && (
                 <CloseIconAction
                   onClick={() => {
@@ -151,18 +148,6 @@ const CloseIconAction = styled.button`
     width: ${(props) => props.theme.closeIconWidth};
     height: ${(props) => props.theme.closeIconHeight};
   }
-`;
-
-const Children = styled.div<{ padding: DialogPropsType["padding"] }>`
-  padding: ${(props) => (props.padding && typeof props.padding !== "object" ? spaces[props.padding] : spaces["small"])};
-  padding-top: ${(props) =>
-    props.padding && typeof props.padding === "object" && props.padding.top ? spaces[props.padding.top] : ""};
-  padding-right: ${(props) =>
-    props.padding && typeof props.padding === "object" && props.padding.right ? spaces[props.padding.right] : ""};
-  padding-bottom: ${(props) =>
-    props.padding && typeof props.padding === "object" && props.padding.bottom ? spaces[props.padding.bottom] : ""};
-  padding-left: ${(props) =>
-    props.padding && typeof props.padding === "object" && props.padding.left ? spaces[props.padding.left] : ""};
 `;
 
 export default DxcDialog;
