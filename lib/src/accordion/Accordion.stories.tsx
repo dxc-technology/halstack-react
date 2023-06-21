@@ -179,111 +179,13 @@ export const Chromatic = () => (
     <ExampleContainer>
       <Title title="Background color provider over accordion content" theme="light" level={4} />
       <HalstackProvider advancedTheme={advancedTheme}>
-        <DxcAccordion
-          label="Dark Accordion"
-          defaultIsExpanded
-          assistiveText="Assistive text"
-          icon={folderIcon}
-          padding="medium"
-        >
-          <div style={{ display: "flex", flexDirection: "column", gap: "36px" }}>
+        <DxcAccordion label="Dark Accordion" defaultIsExpanded assistiveText="Assistive text" icon={folderIcon}>
+          <div style={{ display: "flex", flexDirection: "column", gap: "36px", padding: "36px" }}>
             <DxcTextInput label="Label" helperText="HelperText" placeholder="Placeholder" size="fillParent" />
             <DxcButton label="Submit" size="medium" />
           </div>
         </DxcAccordion>
       </HalstackProvider>
-    </ExampleContainer>
-    <Title title="Paddings" theme="light" level={2} />
-    <ExampleContainer>
-      <Title title="Xxsmall padding" theme="light" level={4} />
-      <DxcAccordion label="Xxsmall padding" defaultIsExpanded padding="xxsmall">
-        <div>
-          <DxcHeading level={5} text="Content header" margin={{ bottom: "xxsmall" }} />
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-          magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-          est laborum.
-        </div>
-      </DxcAccordion>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Xsmall padding" theme="light" level={4} />
-      <DxcAccordion label="Xsmall padding" defaultIsExpanded padding="xsmall">
-        <div>
-          <DxcHeading level={5} text="Content header" margin={{ bottom: "xxsmall" }} />
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-          magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-          est laborum.
-        </div>
-      </DxcAccordion>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Small padding" theme="light" level={4} />
-      <DxcAccordion label="Small padding" defaultIsExpanded padding="small">
-        <div>
-          <DxcHeading level={5} text="Content header" margin={{ bottom: "xxsmall" }} />
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-          magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-          est laborum.
-        </div>
-      </DxcAccordion>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Medium padding" theme="light" level={4} />
-      <DxcAccordion label="Medium padding" defaultIsExpanded padding="medium">
-        <div>
-          <DxcHeading level={5} text="Content header" margin={{ bottom: "xxsmall" }} />
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-          magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-          est laborum.
-        </div>
-      </DxcAccordion>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Large padding" theme="light" level={4} />
-      <DxcAccordion label="Large padding" defaultIsExpanded padding="large">
-        <div>
-          <DxcHeading level={5} text="Content header" margin={{ bottom: "xxsmall" }} />
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-          magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-          est laborum.
-        </div>
-      </DxcAccordion>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Xlarge padding" theme="light" level={4} />
-      <DxcAccordion label="Xlarge padding" defaultIsExpanded padding="xlarge">
-        <div>
-          <DxcHeading level={5} text="Content header" margin={{ bottom: "xxsmall" }} />
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-          magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-          est laborum.
-        </div>
-      </DxcAccordion>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Xxlarge padding" theme="light" level={4} />
-      <DxcAccordion label="Xxlarge padding" defaultIsExpanded padding="xxlarge">
-        <div>
-          <DxcHeading level={5} text="Content header" margin={{ bottom: "xxsmall" }} />
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-          magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-          est laborum.
-        </div>
-      </DxcAccordion>
     </ExampleContainer>
     <Title title="Margins" theme="light" level={2} />
     <ExampleContainer>

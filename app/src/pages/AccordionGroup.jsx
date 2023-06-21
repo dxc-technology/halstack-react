@@ -22,14 +22,14 @@ function App() {
       <div className="test-case" id="light-theme-default">
         <h4>Accordion Group Uncontrolled</h4>
         <DxcAccordionGroup>
-          <DxcAccordionGroup.Accordion label="Accordion1" padding="medium">
+          <DxcAccordionGroup.Accordion label="Accordion1">
             <div>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
               eget.
             </div>
           </DxcAccordionGroup.Accordion>
-          <DxcAccordionGroup.Accordion label="Accordion2" padding="medium">
+          <DxcAccordionGroup.Accordion label="Accordion2">
             <div>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
@@ -41,7 +41,7 @@ function App() {
       <div className="test-case" id="accordion-group-one-children">
         <h4>Accordion Group with one children</h4>
         <DxcAccordionGroup>
-          <DxcAccordionGroup.Accordion label="Accordion1" padding="medium">
+          <DxcAccordionGroup.Accordion label="Accordion1">
             <div>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
@@ -54,21 +54,21 @@ function App() {
         <h4>Accordion Group Uncontrolled with undefined ActiveIndex</h4>
 
         <DxcAccordionGroup indexActive={undefined} margin="medium">
-          <DxcAccordionGroup.Accordion label="Accordion3" padding="medium">
+          <DxcAccordionGroup.Accordion label="Accordion3">
             <div>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
               eget.
             </div>
           </DxcAccordionGroup.Accordion>
-          <DxcAccordionGroup.Accordion label="Accordion4" padding="medium">
+          <DxcAccordionGroup.Accordion label="Accordion4">
             <div>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
               eget.
             </div>
           </DxcAccordionGroup.Accordion>
-          <DxcAccordionGroup.Accordion label="Accordion5" padding="medium">
+          <DxcAccordionGroup.Accordion label="Accordion5">
             <div>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
@@ -87,7 +87,7 @@ function App() {
         >
           <DxcAccordionGroup.Accordion
             label="Accordion6"
-            padding="medium"
+           
             margin="large"
           >
             <div>
@@ -96,7 +96,7 @@ function App() {
               eget.
             </div>
           </DxcAccordionGroup.Accordion>
-          <DxcAccordionGroup.Accordion label="Accordion7" padding="medium">
+          <DxcAccordionGroup.Accordion label="Accordion7">
             <div>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
@@ -109,7 +109,7 @@ function App() {
         <h4>Accordion Group Controlled with static index active</h4>
 
         <DxcAccordionGroup margin="xlarge" indexActive={0}>
-          <DxcAccordionGroup.Accordion label="Accordion8" padding="medium">
+          <DxcAccordionGroup.Accordion label="Accordion8">
             <div>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
@@ -118,7 +118,7 @@ function App() {
           </DxcAccordionGroup.Accordion>
           <DxcAccordionGroup.Accordion
             label="Accordion9"
-            padding="medium"
+           
             disabled
           >
             <div>
@@ -138,14 +138,14 @@ function App() {
           indexActive={null}
           onActiveChange={onActiveChange}
         >
-          <DxcAccordionGroup.Accordion label="Accordion10" padding="medium">
+          <DxcAccordionGroup.Accordion label="Accordion10">
             <div>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
               eget.
             </div>
           </DxcAccordionGroup.Accordion>
-          <DxcAccordionGroup.Accordion label="Accordion11" padding="medium">
+          <DxcAccordionGroup.Accordion label="Accordion11">
             <div>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
@@ -158,14 +158,14 @@ function App() {
         <h4>Accordion Group Uncontrolled with funtion onActiveChange</h4>
 
         <DxcAccordionGroup onActiveChange={onActiveChange}>
-          <DxcAccordionGroup.Accordion label="Accordion12" padding="medium">
+          <DxcAccordionGroup.Accordion label="Accordion12">
             <div>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
               eget.
             </div>
           </DxcAccordionGroup.Accordion>
-          <DxcAccordionGroup.Accordion label="Accordion13" padding="medium">
+          <DxcAccordionGroup.Accordion label="Accordion13">
             <div>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
@@ -177,14 +177,14 @@ function App() {
       <div className="test-case" id="light-theme-default">
         <h4>Disabled Accordion Group</h4>
         <DxcAccordionGroup onActiveChange={onActiveChange} disabled={true}>
-          <DxcAccordionGroup.Accordion label="Accordion14" padding="medium">
+          <DxcAccordionGroup.Accordion label="Accordion14">
             <div>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
               eget.
             </div>
           </DxcAccordionGroup.Accordion>
-          <DxcAccordionGroup.Accordion label="Accordion15" padding="medium">
+          <DxcAccordionGroup.Accordion label="Accordion15">
             <div>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
@@ -205,7 +205,7 @@ function App() {
                   eget.
                 </div>
               </DxcAccordionGroup.Accordion>
-              <DxcAccordionGroup.Accordion label="Accordion18" padding="medium">
+              <DxcAccordionGroup.Accordion label="Accordion18">
                 <div>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                   Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
@@ -214,7 +214,7 @@ function App() {
               </DxcAccordionGroup.Accordion>
             </DxcAccordionGroup>
           </DxcAccordionGroup.Accordion>
-          <DxcAccordionGroup.Accordion label="Accordion18" padding="medium">
+          <DxcAccordionGroup.Accordion label="Accordion18">
             <DxcAccordion label="Accordion">
               <div>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
