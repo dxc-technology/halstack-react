@@ -11,16 +11,15 @@ const DxcBox = ({
   display = "inline-flex",
   children,
   margin,
-  padding,
   size = "fitContent",
 }: BoxPropsType): JSX.Element => {
   const colorsTheme = useTheme();
 
   return (
     <ThemeProvider theme={colorsTheme.box}>
-      <StyledDxcBox shadowDepth={shadowDepth} display={display} margin={margin} padding={padding} size={size}>
+      <Box shadowDepth={shadowDepth} display={display} margin={margin} size={size}>
         <BackgroundColorProvider color={colorsTheme.box.backgroundColor}>{children}</BackgroundColorProvider>
-      </StyledDxcBox>
+      </Box>
     </ThemeProvider>
   );
 };
@@ -33,22 +32,19 @@ const sizes = {
   fitContent: "fit-content",
 };
 
-const calculateWidth = (margin, size, padding) => {
-  if (size === "fillParent") {
-    return `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")} -
-    ${getMargin(padding, "left")} - ${getMargin(padding, "right")})`;
-  }
-  return sizes[size];
-};
+const calculateWidth = (margin: BoxPropsType["margin"], size: BoxPropsType["size"]) =>
+  size === "fillParent"
+    ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
+    : sizes[size];
 
-const StyledDxcBox = styled.div<BoxPropsType>`
+const Box = styled.div<BoxPropsType>`
   display: ${(props) => props.display};
   border-radius: ${(props) => props.theme.borderRadius};
   border-width: ${(props) => props.theme.borderThickness};
   border-style: ${(props) => props.theme.borderStyle};
   border-color: ${(props) => props.theme.borderColor};
   overflow: hidden;
-  width: ${(props) => calculateWidth(props.margin, props.size, props.padding)};
+  width: ${(props) => calculateWidth(props.margin, props.size)};
   background-color: ${(props) => props.theme.backgroundColor};
   box-shadow: ${(props) =>
     props.shadowDepth === 1
@@ -66,16 +62,6 @@ const StyledDxcBox = styled.div<BoxPropsType>`
     props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
   margin-left: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
-
-  padding: ${({ padding }) => (padding && typeof padding !== "object" ? spaces[padding] : "0px")};
-  padding-top: ${(props) =>
-    props.padding && typeof props.padding === "object" && props.padding.top ? spaces[props.padding.top] : ""};
-  padding-right: ${(props) =>
-    props.padding && typeof props.padding === "object" && props.padding.right ? spaces[props.padding.right] : ""};
-  padding-bottom: ${(props) =>
-    props.padding && typeof props.padding === "object" && props.padding.bottom ? spaces[props.padding.bottom] : ""};
-  padding-left: ${(props) =>
-    props.padding && typeof props.padding === "object" && props.padding.left ? spaces[props.padding.left] : ""};
 `;
 
 export default DxcBox;
