@@ -12,7 +12,6 @@ const DxcFooter = ({
   bottomLinks,
   copyright,
   children,
-  padding,
   margin,
   tabIndex = 0,
 }: FooterPropsType): JSX.Element => {
@@ -59,7 +58,7 @@ const DxcFooter = ({
           <SocialLinkContainer>{socialLink}</SocialLinkContainer>
         </FooterHeader>
         <div>
-          <ChildComponents padding={padding}>
+          <ChildComponents>
             <BackgroundColorProvider color={colorsTheme.footer.backgroundColor}>{children}</BackgroundColorProvider>
           </ChildComponents>
           <FooterFooter className="footerFooter">
@@ -137,17 +136,8 @@ const BottomLinks = styled.div`
   align-self: center;
 `;
 
-const ChildComponents = styled.div<{ padding: FooterPropsType["padding"] }>`
+const ChildComponents = styled.div`
   min-height: 16px;
-  padding: ${(props) => (props.padding && typeof props.padding !== "object" ? spaces[props.padding] : "0px")};
-  padding-top: ${(props) =>
-    props.padding && typeof props.padding === "object" && props.padding.top ? spaces[props.padding.top] : ""};
-  padding-right: ${(props) =>
-    props.padding && typeof props.padding === "object" && props.padding.right ? spaces[props.padding.right] : ""};
-  padding-bottom: ${(props) =>
-    props.padding && typeof props.padding === "object" && props.padding.bottom ? spaces[props.padding.bottom] : ""};
-  padding-left: ${(props) =>
-    props.padding && typeof props.padding === "object" && props.padding.left ? spaces[props.padding.left] : ""};
   overflow: hidden;
 `;
 
