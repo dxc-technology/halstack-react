@@ -24,8 +24,9 @@ const sections = [
           same page.
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>
-          Use always a minimun padding and always leave enough margin when
-          stacking boxes so the shadows don't overlap.
+          Set always a minimum padding among the content and the box border.
+          Also, try to leave enough margin when stacking boxes so the shadows
+          don't overlap.
         </DxcBulletedList.Item>
       </DxcBulletedList>
     ),
