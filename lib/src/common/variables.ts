@@ -1237,8 +1237,6 @@ export const componentTokens = {
 
 export type AdvancedTheme = typeof componentTokens;
 
-type SVG = React.ReactNode & React.SVGProps<SVGSVGElement>;
-
 export type OpinionatedTheme = {
   accordion: {
     accentColor: string;
@@ -1289,7 +1287,7 @@ export type OpinionatedTheme = {
     baseColor: string;
     fontColor: string;
     accentColor: string;
-    logo: string | SVG;
+    logo: string;
   };
   header: {
     baseColor: string;
