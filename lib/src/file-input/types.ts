@@ -22,7 +22,7 @@ type FileData = {
 
 type CommonProps = {
   /**
-   * Name attribute.
+   * @deprecated Name attribute.
    */
   name?: string;
   /**
