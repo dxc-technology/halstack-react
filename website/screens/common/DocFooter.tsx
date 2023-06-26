@@ -52,35 +52,27 @@ const arrowBack = (
   </svg>
 );
 
-const gitHubIcon = (
+const reportIssueIcon = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="24"
-    height="24"
+    height="24px"
     viewBox="0 0 24 24"
+    width="24px"
     fill="currentColor"
   >
-    <g
-      id="Group_4275"
-      data-name="Group 4275"
-      transform="translate(-670.003 -820.294)"
-    >
-      <g id="Group_4276" data-name="Group 4276">
-        <rect
-          id="Rectangle_2690"
-          data-name="Rectangle 2690"
-          width="24"
-          height="24"
-          transform="translate(670.003 820.294)"
-          fill="none"
-        />
-        <path
-          id="Octicons-mark-github"
-          d="M10,0A10,10,0,0,0,6.837,19.487c.5.087.688-.213.688-.475,0-.237-.012-1.025-.012-1.863C5,17.612,4.35,16.537,4.15,15.975a3.636,3.636,0,0,0-1.025-1.412c-.35-.187-.85-.65-.012-.662A2,2,0,0,1,4.65,14.925a2.137,2.137,0,0,0,2.912.825A2.1,2.1,0,0,1,8.2,14.412c-2.225-.25-4.55-1.112-4.55-4.937A3.892,3.892,0,0,1,4.675,6.787a3.593,3.593,0,0,1,.1-2.65s.837-.262,2.75,1.025a9.428,9.428,0,0,1,5,0c1.913-1.3,2.75-1.025,2.75-1.025a3.593,3.593,0,0,1,.1,2.65A3.869,3.869,0,0,1,16.4,9.475c0,3.837-2.337,4.688-4.562,4.937a2.368,2.368,0,0,1,.675,1.85c0,1.337-.013,2.412-.013,2.75,0,.262.188.575.688.475A10.005,10.005,0,0,0,10,0Z"
-          transform="translate(672.003 822.541)"
-        />
-      </g>
-    </g>
+    <path d="M11 15h2v2h-2v-2zm0-8h2v6h-2V7zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z" />
+  </svg>
+);
+
+const editIcon = (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    height="48"
+    viewBox="0 -960 960 960"
+    width="48"
+    fill="currentColor"
+  >
+    <path d="M180-180h44l443-443-44-44-443 443v44Zm614-486L666-794l42-42q17-17 42-17t42 17l44 44q17 17 17 42t-17 42l-42 42Zm-42 42L248-120H120v-128l504-504 128 128Zm-107-21-22-22 44 44-22-22Z" />
   </svg>
 );
 
@@ -92,11 +84,11 @@ const DocFooter = ({ githubLink }: { githubLink: string }) => {
     <DocFooterContainer>
       <DxcFlex direction="column" gap="2rem">
         <DxcFlex gap="2rem">
-          <DxcLink icon={gitHubIcon} href={githubLink} newWindow>
+          <DxcLink icon={editIcon} href={githubLink} newWindow>
             Edit this page on GitHub
           </DxcLink>
           <DxcLink
-            icon={gitHubIcon}
+            icon={reportIssueIcon}
             href="https://github.com/dxc-technology/halstack-react/issues/new/choose"
             newWindow
           >
