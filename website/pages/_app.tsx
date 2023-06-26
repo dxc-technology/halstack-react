@@ -102,28 +102,32 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
                       }}
                     />
                   </DxcApplicationLayout.SideNav.Section>
-                  {filteredLinks?.map(({ label, links }) => {
-                    return (
-                      <DxcApplicationLayout.SideNav.Section key={label}>
-                        <DxcApplicationLayout.SideNav.Group title={label}>
-                          {links.map(({ label, path, status }) => (
-                            <Link key={`${label}-${path}`} href={path} passHref>
-                              <DxcApplicationLayout.SideNav.Link
-                                selected={matchPaths(path)}
-                              >
-                                {label}
-                                {status !== "Ready" && (
-                                  <StatusTag status={status}>
-                                    {status}
-                                  </StatusTag>
-                                )}
-                              </DxcApplicationLayout.SideNav.Link>
-                            </Link>
-                          ))}
-                        </DxcApplicationLayout.SideNav.Group>
-                      </DxcApplicationLayout.SideNav.Section>
-                    );
-                  })}
+                  {filteredLinks?.map(({ label, links }) => (
+                    <DxcApplicationLayout.SideNav.Section key={label}>
+                      <DxcApplicationLayout.SideNav.Group title={label}>
+                        {links.map(({ label, path, status }) => (
+                          <Link key={`${label}-${path}`} href={path} passHref>
+                            <DxcApplicationLayout.SideNav.Link
+                              selected={matchPaths(path)}
+                            >
+                              {label}
+                              {status !== "Ready" && (
+                                <StatusTag status={status}>{status}</StatusTag>
+                              )}
+                            </DxcApplicationLayout.SideNav.Link>
+                          </Link>
+                        ))}
+                      </DxcApplicationLayout.SideNav.Group>
+                    </DxcApplicationLayout.SideNav.Section>
+                  ))}
+                  <DxcApplicationLayout.SideNav.Section>
+                    <DxcApplicationLayout.SideNav.Link
+                      href="https://github.com/dxc-technology/halstack-react"
+                      newWindow
+                    >
+                      GitHub
+                    </DxcApplicationLayout.SideNav.Link>
+                  </DxcApplicationLayout.SideNav.Section>
                 </DxcApplicationLayout.SideNav>
               }
             >

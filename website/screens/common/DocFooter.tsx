@@ -8,55 +8,6 @@ import Link from "next/link";
 import { getNavigationLinks } from "./pagesList";
 import styled from "styled-components";
 
-const DocFooter = ({ githubLink }: { githubLink: string }) => {
-  const { pathname } = useRouter();
-  const { previousLink, nextLink } = getNavigationLinks(pathname);
-
-  return (
-    <DocFooterContainer>
-      <DxcFlex direction="column" gap="2rem">
-        <DxcFlex gap="2rem">
-          <DxcLink icon={githubIcon} href={githubLink} newWindow>
-            Edit this page on GitHub
-          </DxcLink>
-          <DxcLink
-            icon={githubIcon}
-            href="https://github.com/dxc-technology/halstack-react/issues/new/choose"
-            newWindow
-          >
-            Report an issue on GitHub
-          </DxcLink>
-        </DxcFlex>
-        <Separator />
-        <DxcFlex justifyContent="space-between">
-          <DxcFlex direction="column" gap="1rem">
-            {previousLink && (
-              <>
-                <DxcTypography>Previous</DxcTypography>
-                <Link href={previousLink.path} passHref>
-                  <DxcLink icon={arrowBack}>{previousLink.label}</DxcLink>
-                </Link>
-              </>
-            )}
-          </DxcFlex>
-          <DxcFlex direction="column" alignItems="flex-end" gap="1rem">
-            {nextLink && (
-              <>
-                <DxcTypography>Next</DxcTypography>
-                <Link href={nextLink.path} passHref>
-                  <DxcLink icon={arrowForward} iconPosition="after">
-                    {nextLink.label}
-                  </DxcLink>
-                </Link>
-              </>
-            )}
-          </DxcFlex>
-        </DxcFlex>
-      </DxcFlex>
-    </DocFooterContainer>
-  );
-};
-
 const arrowForward = (
   <svg
     id="arrow_forward_black_24dp"
@@ -101,7 +52,7 @@ const arrowBack = (
   </svg>
 );
 
-const githubIcon = (
+const gitHubIcon = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="24"
@@ -132,6 +83,55 @@ const githubIcon = (
     </g>
   </svg>
 );
+
+const DocFooter = ({ githubLink }: { githubLink: string }) => {
+  const { pathname } = useRouter();
+  const { previousLink, nextLink } = getNavigationLinks(pathname);
+
+  return (
+    <DocFooterContainer>
+      <DxcFlex direction="column" gap="2rem">
+        <DxcFlex gap="2rem">
+          <DxcLink icon={gitHubIcon} href={githubLink} newWindow>
+            Edit this page on GitHub
+          </DxcLink>
+          <DxcLink
+            icon={gitHubIcon}
+            href="https://github.com/dxc-technology/halstack-react/issues/new/choose"
+            newWindow
+          >
+            Report an issue on GitHub
+          </DxcLink>
+        </DxcFlex>
+        <Separator />
+        <DxcFlex justifyContent="space-between">
+          <DxcFlex direction="column" gap="1rem">
+            {previousLink && (
+              <>
+                <DxcTypography>Previous</DxcTypography>
+                <Link href={previousLink.path} passHref>
+                  <DxcLink icon={arrowBack}>{previousLink.label}</DxcLink>
+                </Link>
+              </>
+            )}
+          </DxcFlex>
+          <DxcFlex direction="column" alignItems="flex-end" gap="1rem">
+            {nextLink && (
+              <>
+                <DxcTypography>Next</DxcTypography>
+                <Link href={nextLink.path} passHref>
+                  <DxcLink icon={arrowForward} iconPosition="after">
+                    {nextLink.label}
+                  </DxcLink>
+                </Link>
+              </>
+            )}
+          </DxcFlex>
+        </DxcFlex>
+      </DxcFlex>
+    </DocFooterContainer>
+  );
+};
 
 const DocFooterContainer = styled.div`
   max-width: 800px;
