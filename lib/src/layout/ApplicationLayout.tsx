@@ -212,8 +212,9 @@ const MainContainer = styled.div`
   width: 100%;
 `;
 
-const MainContentContainer = styled.div`
+const MainContentContainer = styled.main`
   flex: 1;
+  background-color: #fff;
 `;
 
 DxcApplicationLayout.Header = DxcHeader;
