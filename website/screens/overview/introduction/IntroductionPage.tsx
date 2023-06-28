@@ -139,10 +139,12 @@ const sections = [
           <DxcParagraph>
             In the past, we used to rely on Adobe XD for our Design UI Kit. But
             we recently decided to migrate all the assets to{" "}
-            <DxcLink href="https://www.uxpin.com/">UXPin</DxcLink> to start a
-            new and exciting journey. This decision brings, in addition to the
-            well-known image-based classic design library, a new feature, the
-            prototyping library.
+            <DxcLink href="https://www.uxpin.com/" newWindow>
+              UXPin
+            </DxcLink>{" "}
+            to start a new and exciting journey. This decision brings, in
+            addition to the well-known image-based classic design library, a new
+            feature, the prototyping library.
           </DxcParagraph>
         ),
         subSections: [
@@ -164,7 +166,7 @@ const sections = [
                 The prototyping library is a Halstack CDK component-based design
                 library for fast prototyping, reducing the gap between designers
                 and developers. Also,{" "}
-                <DxcLink href="https://www.uxpin.com/merge">
+                <DxcLink href="https://www.uxpin.com/merge" newWindow>
                   UXPin Merge
                 </DxcLink>{" "}
                 is a low-code solution that can be leveraged to generate React
