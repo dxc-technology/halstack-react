@@ -5,13 +5,16 @@ module.exports = {
   images: {
     loader: "custom",
   },
+  i18n: {
+    locales: ["en"],
+    defaultLocale: "en",
+  },
   trailingSlash: true,
   webpack: (config) => {
     config.module.rules.push({
       test: /\.md$/,
       use: "raw-loader",
     });
-
     return config;
   },
   reactStrictMode: true,
