@@ -11,6 +11,7 @@ module.exports = {
       test: /\.md$/,
       use: "raw-loader",
     });
+
     return config;
   },
   reactStrictMode: true,
