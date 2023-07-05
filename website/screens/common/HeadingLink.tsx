@@ -38,8 +38,9 @@ const HeadingLink = ({
     <HeadingLinkContainer id={elementId}>
       <DxcBleed left="2rem">
         <HeadingAnchor
-          title={`Go to '${children}'`}
           href={`#${elementId}`}
+          title={`Go to '${children}'`}
+          aria-label={`Go to the section '${children}'`}
         >
           {linkIcon}
         </HeadingAnchor>
