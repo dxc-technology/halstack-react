@@ -9,6 +9,8 @@ const StatusTag = (props: StatusTagProps) => <StyledStatusTag {...props} />;
 
 const StyledStatusTag = styled.div<StatusTagProps>`
   box-sizing: border-box;
+  display: inline-block;
+  width: fit-content;
   border-radius: 0.5rem;
   padding: 3px 6px;
   font-size: 0.75rem;

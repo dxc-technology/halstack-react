@@ -1,5 +1,6 @@
 import {
   DxcFlex,
+  DxcParagraph,
   DxcTable,
 } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
@@ -7,6 +8,7 @@ import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
 import Code from "@/common/Code";
 import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
+import StatusTag from "@/common/StatusTag";
 
 const sections = [
   {
@@ -36,6 +38,11 @@ const sections = [
                 </li>
                 <li>
                   <b>href</b>: URL of the page the link goes to.
+                </li>
+                <li>
+                  <StatusTag status="Information">New</StatusTag> <b>title</b>:
+                  Value for the <abbr>HTML</abbr> properties <Code>title</Code>{" "}
+                  and <Code>aria-label</Code>.
                 </li>
               </ul>
             </td>

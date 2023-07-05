@@ -17,7 +17,7 @@ type SocialLink = {
    */
   logo: string | SVG;
   /**
-   * 
+   * Value for the HTML properties title and aria-label.
    */
   title: string;
 };
