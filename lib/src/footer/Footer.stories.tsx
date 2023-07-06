@@ -112,6 +112,14 @@ export const Chromatic = () => (
         </div>
       </DxcFooter>
     </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-focus">
+      <Title title="Focused bottom and social links" theme="light" level={4} />
+      <DxcFooter copyright="Copyright" socialLinks={social} bottomLinks={bottom}>
+        <div>
+          <a href="https://www.linkedin.com/company/dxctechnology">Linkedin</a>
+        </div>
+      </DxcFooter>
+    </ExampleContainer>
     <Title title="Margins" theme="light" level={2} />
     <ExampleContainer>
       <Title title="Xxsmall margin" theme="light" level={4} />
