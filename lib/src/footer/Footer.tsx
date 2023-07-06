@@ -57,9 +57,11 @@ const DxcFooter = ({
         <BottomContainer>
           <BottomLinks>
             {bottomLinks?.map((link, index) => (
-              <BottomLink href={link.href} tabIndex={tabIndex} key={`bottom${index}${link.text}`}>
-                {link.text}
-              </BottomLink>
+              <span key={`bottom${index}${link.text}`}>
+                <BottomLink href={link.href} tabIndex={tabIndex}>
+                  {link.text}
+                </BottomLink>
+              </span>
             ))}
           </BottomLinks>
           <Copyright>{copyright || translatedLabels.footer.copyrightText(new Date().getFullYear())}</Copyright>
@@ -171,17 +173,17 @@ const BottomLinks = styled.div`
   flex-wrap: wrap;
   align-self: center;
   padding-top: ${(props) => props.theme.bottomLinksDividerSpacing};
+  color: #fff;
 
   @media (min-width: ${responsiveSizes.small}rem) {
     max-width: 60%;
   }
-
   @media (max-width: ${responsiveSizes.small}rem) {
     max-width: 100%;
     width: 100%;
   }
 
-  & a:not(:first-child):before {
+  & > span:not(:first-child):before {
     content: "·";
     padding: 0 0.5rem;
   }
@@ -194,6 +196,11 @@ const BottomLink = styled.a`
   font-size: ${(props) => props.theme.bottomLinksFontSize};
   font-style: ${(props) => props.theme.bottomLinksFontStyle};
   font-weight: ${(props) => props.theme.bottomLinksFontWeight};
+  border-radius: 2px;
+
+  &:focus {
+    outline: 2px solid #0095ff;
+  }
 `;
 
 export default DxcFooter;
