@@ -7,6 +7,7 @@ import Example from "@/common/example/Example";
 import basicUsage from "./examples/basicUsage";
 import icons from "./examples/icons";
 import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
+import StatusTag from "@/common/StatusTag";
 
 const sections = [
   {
@@ -22,6 +23,11 @@ const sections = [
         </thead>
         <tbody>
           <tr>
+            <td>label: string</td>
+            <td></td>
+            <td>Text to be placed in the button.</td>
+          </tr>
+          <tr>
             <td>mode: 'primary' | 'secondary' | 'text'</td>
             <td>
               <Code>'primary'</Code>
@@ -29,16 +35,23 @@ const sections = [
             <td>The available button modes.</td>
           </tr>
           <tr>
+            <td>
+              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                <StatusTag status="Information">New</StatusTag>title: string
+              </DxcFlex>
+            </td>
+            <td></td>
+            <td>
+              Value for the <abbr>HTML</abbr> properties <Code>title</Code> and{" "}
+              <Code>aria-label</Code>.
+            </td>
+          </tr>
+          <tr>
             <td>type: 'button' | 'reset' | 'submit'</td>
             <td>
               <Code>'button'</Code>
             </td>
             <td>'type' html prop of the button.</td>
-          </tr>
-          <tr>
-            <td>label: string</td>
-            <td></td>
-            <td>Text to be placed in the button.</td>
           </tr>
           <tr>
             <td>icon: node | string</td>

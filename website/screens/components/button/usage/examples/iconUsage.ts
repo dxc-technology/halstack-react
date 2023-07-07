@@ -1,8 +1,4 @@
-import {
-  DxcButton,
-  DxcFlex,
-  DxcInset,
-} from "@dxc-technology/halstack-react";
+import { DxcButton, DxcFlex, DxcInset } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   const icon = (
@@ -35,7 +31,7 @@ const code = `() => {
             iconPosition="after"
             icon={icon}
           />
-          <DxcButton icon={icon} />
+          <DxcButton icon={icon} title="Go home" />
         </DxcFlex>
         <DxcFlex justifyContent="space-evenly">
           <DxcButton
@@ -51,7 +47,7 @@ const code = `() => {
             iconPosition="after"
             icon={icon}
           />
-          <DxcButton mode="secondary" icon={icon} />
+          <DxcButton mode="secondary" icon={icon} title="Go home" />
         </DxcFlex>
         <DxcFlex justifyContent="space-evenly">
           <DxcButton label="Text" mode="text" size="large" icon={icon} />
@@ -62,7 +58,7 @@ const code = `() => {
             iconPosition="after"
             icon={icon}
           />
-          <DxcButton mode="text" icon={icon} />
+          <DxcButton mode="text" icon={icon} title="Go home" />
         </DxcFlex>
       </DxcFlex>
     </DxcInset>

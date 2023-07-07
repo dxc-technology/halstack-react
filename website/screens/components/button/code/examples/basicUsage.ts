@@ -3,7 +3,7 @@ import { DxcButton, DxcInset } from "@dxc-technology/halstack-react";
 const code = `() => {
   return (
     <DxcInset space="2rem">
-      <DxcButton label="Button" />
+      <DxcButton label="Submit" />
     </DxcInset>
   );
 }`;

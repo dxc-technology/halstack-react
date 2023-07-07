@@ -25,6 +25,10 @@ type Props = {
    */
   iconPosition?: "before" | "after";
   /**
+   * Value for the HTML properties title and aria-label.
+   */
+  title?: string;
+  /**
    * 'type' html prop of the button.
    */
   type?: "button" | "reset" | "submit";

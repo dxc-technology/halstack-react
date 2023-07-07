@@ -69,102 +69,58 @@ const sections = [
           {
             title: "Spacing",
             content: (
-              <>
-                <DxcTable>
-                  <thead>
-                    <tr>
-                      <th>Component token</th>
-                      <th>Element</th>
-                      <th>Core token</th>
-                      <th>Value</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>
-                        <Code>paddingLeft</Code>
-                      </td>
-                      <td>Container</td>
-                      <td>
-                        <Code>spacing-03</Code>
-                      </td>
-                      <td>0.5rem / 8px</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <Code>paddingRight</Code>
-                      </td>
-                      <td>Container</td>
-                      <td>
-                        <Code>spacing-03</Code>
-                      </td>
-                      <td>0.5rem / 8px</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <Code>paddingTop</Code>
-                      </td>
-                      <td>Container</td>
-                      <td>
-                        <Code>spacing-03</Code>
-                      </td>
-                      <td>0.5rem / 8px</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <Code>paddingBottom</Code>
-                      </td>
-                      <td>Container</td>
-                      <td>
-                        <Code>spacing-03</Code>
-                      </td>
-                      <td>0.5rem / 8px</td>
-                    </tr>
-                  </tbody>
-                </DxcTable>
-                <DxcTable>
-                  <thead>
-                    <tr>
-                      <th>Property</th>
-                      <th>Element</th>
-                      <th>Core token</th>
-                      <th>Value</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>
-                        <Code>margin-right</Code>
-                      </td>
-                      <td>Label</td>
-                      <td>
-                        <Code>spacing-03</Code>
-                      </td>
-                      <td>0.5rem / 8px</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <Code>margin-left</Code>
-                      </td>
-                      <td>Label</td>
-                      <td>
-                        <Code>spacing-03</Code>
-                      </td>
-                      <td>0.5rem / 8px</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <Code>margin-left</Code>
-                      </td>
-                      <td>Icon</td>
-                      <td>
-                        <Code>spacing-03</Code>
-                      </td>
-                      <td>0.5rem / 8px</td>
-                    </tr>
-                  </tbody>
-                </DxcTable>
-              </>
+              <DxcTable>
+                <thead>
+                  <tr>
+                    <th>Component token</th>
+                    <th>Element</th>
+                    <th>Core token</th>
+                    <th>Value</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <Code>paddingLeft</Code>
+                    </td>
+                    <td>Container</td>
+                    <td>
+                      <Code>spacing-03</Code>
+                    </td>
+                    <td>0.5rem / 8px</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>paddingRight</Code>
+                    </td>
+                    <td>Container</td>
+                    <td>
+                      <Code>spacing-03</Code>
+                    </td>
+                    <td>0.5rem / 8px</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>paddingTop</Code>
+                    </td>
+                    <td>Container</td>
+                    <td>
+                      <Code>spacing-03</Code>
+                    </td>
+                    <td>0.5rem / 8px</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>paddingBottom</Code>
+                    </td>
+                    <td>Container</td>
+                    <td>
+                      <Code>spacing-03</Code>
+                    </td>
+                    <td>0.5rem / 8px</td>
+                  </tr>
+                </tbody>
+              </DxcTable>
             ),
           },
           {
@@ -953,12 +909,12 @@ const sections = [
           </DxcLink>
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>
-          WAI-ARIA Authoring Practices 1.2 -{" "}
+          WAI-ARIA Authoring Practices Guide (APG) -{" "}
           <DxcLink
-            href="https://www.w3.org/TR/wai-aria-practices-1.2/#button"
+            href="https://www.w3.org/WAI/ARIA/apg/patterns/button/"
             newWindow
           >
-            Button Design Pattern
+            Button Pattern
           </DxcLink>
         </DxcBulletedList.Item>
       </DxcBulletedList>

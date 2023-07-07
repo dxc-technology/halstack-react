@@ -11,6 +11,7 @@ import Example from "@/common/example/Example";
 import variants from "./examples/variants";
 import icons from "./examples/iconUsage";
 import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
+import Code from "@/common/Code";
 
 const sections = [
   {
@@ -63,7 +64,7 @@ const sections = [
               <td>
                 For the principal call to action on the page; primary buttons
                 should only appear once per screen (not including the
-                application header or in a modal dialog)
+                application header or in a modal dialog).
               </td>
             </tr>
             <tr>
@@ -71,14 +72,14 @@ const sections = [
               <td>
                 For less prominent actions; secondary buttons can be used in
                 isolation or paired with a primary button when there are
-                multiple calls to action
+                multiple calls to action.
               </td>
             </tr>
             <tr>
               <td>Text</td>
               <td>
                 For the least pronounced actions; often used in conjunction with
-                a primary button (e.g. cancel in a modal dialog)
+                a primary button (e.g. cancel in a modal dialog).
               </td>
             </tr>
           </tbody>
@@ -91,15 +92,15 @@ const sections = [
     content: (
       <>
         <DxcParagraph>
-          Any icon can be used in Halstack Design System, so it is apt to the
-          user to choose between one of the multiple options that are offered
-          through internet but it is recommended to use the same library of
-          icons along the application to keeping concistency.
+          Any icon can be used in Halstack Design System, so it is up to the
+          user to choose which one suits its use case better. But, it is
+          recommended to use the same library of icons throughout the
+          application to keep consistency.
         </DxcParagraph>
         <DxcBulletedList>
           <DxcBulletedList.Item>
-            Icon can go before or after the text with a separation of 8 pixels
-            respecting the main button&#39;s text.
+            The icon can go before or after the text with a separation of 8
+            pixels respecting the main button's text.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
             Do not use icons mainly for visual interest, the glyph must add
@@ -108,7 +109,13 @@ const sections = [
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
             A button with an icon and no text is also allowed in the design
-            system.
+            system. In such a situation and in order to preserve the
+            accessibility of the button, the use of the <Code>title</Code> prop
+            is mandatory.
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            Try to limit the use of icon-only buttons. Whenever possible, the
+            icon should be accompanied by a label.
           </DxcBulletedList.Item>
         </DxcBulletedList>
         <Example example={icons} />
