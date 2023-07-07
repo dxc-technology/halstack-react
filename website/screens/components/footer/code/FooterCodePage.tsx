@@ -41,8 +41,9 @@ const sections = [
                 </li>
                 <li>
                   <StatusTag status="Information">New</StatusTag> <b>title</b>:
-                  Value for the <abbr>HTML</abbr> properties <Code>title</Code>{" "}
-                  and <Code>aria-label</Code>.
+                  Text representing advisory information related to the social
+                  link. Under the hood, it also serves as an accessible label
+                  for the icon.
                 </li>
               </ul>
             </td>
