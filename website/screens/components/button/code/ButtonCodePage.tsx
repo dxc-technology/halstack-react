@@ -1,4 +1,4 @@
-import { DxcFlex, DxcTable } from "@dxc-technology/halstack-react";
+import { DxcFlex, DxcLink, DxcTable } from "@dxc-technology/halstack-react";
 import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
@@ -42,8 +42,9 @@ const sections = [
             </td>
             <td></td>
             <td>
-              Value for the <abbr>HTML</abbr> properties <Code>title</Code> and{" "}
-              <Code>aria-label</Code>.
+              Text representing advisory information related to the button's
+              action. Under the hood, this prop also serves as an accessible
+              label for the component.
             </td>
           </tr>
           <tr>
@@ -51,7 +52,17 @@ const sections = [
             <td>
               <Code>'button'</Code>
             </td>
-            <td>'type' html prop of the button.</td>
+            <td>
+              Sets the <Code>type</Code> attribute of the <abbr>HTML</abbr>{" "}
+              button element. See{" "}
+              <DxcLink
+                newWindow
+                href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#attributes"
+              >
+                MDN
+              </DxcLink>{" "}
+              for further information.
+            </td>
           </tr>
           <tr>
             <td>icon: node | string</td>

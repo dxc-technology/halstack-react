@@ -114,6 +114,12 @@ const sections = [
             is mandatory.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
+            The <Code>title</Code> prop offers a contextual bubble with missing
+            information necessary to clarify the action performed by the button.
+            It also provides an accessible gateway when no regular label can be
+            specified.
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
             Try to limit the use of icon-only buttons. Whenever possible, the
             icon should be accompanied by a label.
           </DxcBulletedList.Item>
