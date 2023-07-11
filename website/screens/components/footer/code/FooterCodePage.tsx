@@ -1,12 +1,10 @@
-import {
-  DxcFlex,
-  DxcTable,
-} from "@dxc-technology/halstack-react";
+import { DxcFlex, DxcTable } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
 import Code from "@/common/Code";
 import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
+import StatusTag from "@/common/StatusTag";
 
 const sections = [
   {
@@ -36,6 +34,12 @@ const sections = [
                 </li>
                 <li>
                   <b>href</b>: URL of the page the link goes to.
+                </li>
+                <li>
+                  <StatusTag status="Information">New</StatusTag> <b>title</b>:
+                  Text representing advisory information related to the social
+                  link. Under the hood, it also serves as an accessible label
+                  for the icon.
                 </li>
               </ul>
             </td>
