@@ -6,6 +6,7 @@ import useTranslatedLabels from "../useTranslatedLabels";
 import { BackgroundColorProvider } from "../BackgroundColorContext";
 import { dxcLogo } from "./Icons";
 import FooterPropsType from "./types";
+import DxcFlex from "../flex/Flex";
 
 const DxcFooter = ({
   socialLinks,
@@ -23,81 +24,72 @@ const DxcFooter = ({
       return dxcLogo;
     }
     if (typeof colorsTheme.footer.logo === "string") {
-      return <LogoImg alt={translatedLabels.formFields.logoAlternativeText} src={colorsTheme.footer.logo}></LogoImg>;
+      return <LogoImg alt={translatedLabels.formFields.logoAlternativeText} src={colorsTheme.footer.logo} />;
     }
     return colorsTheme.footer.logo;
-  }, [colorsTheme.footer.logo]);
-
-  const socialLink = socialLinks?.map((link, index) => (
-    <SocialAnchor
-      tabIndex={tabIndex}
-      key={`social${index}${link.href}`}
-      index={index}
-      href={link && link.href ? link.href : ""}
-    >
-      <SocialIconContainer>
-        {typeof link.logo === "string" ? <SocialIconImg src={link.logo} /> : link.logo}
-      </SocialIconContainer>
-    </SocialAnchor>
-  ));
-
-  const bottomLink = bottomLinks?.map((link, index) => (
-    <span key={`bottom${index}${link.text}`}>
-      <BottomLink tabIndex={tabIndex} href={link && link.href ? link.href : ""}>
-        {link && link.text ? link.text : ""}
-      </BottomLink>
-      <Point>·</Point>
-    </span>
-  ));
+  }, [colorsTheme]);
 
   return (
     <ThemeProvider theme={colorsTheme.footer}>
       <FooterContainer margin={margin}>
-        <FooterHeader>
+        <DxcFlex justifyContent="space-between" alignItems="center" wrap="wrap" gap="1.5rem">
           <LogoContainer>{footerLogo}</LogoContainer>
-          <SocialLinkContainer>{socialLink}</SocialLinkContainer>
-        </FooterHeader>
-        <div>
-          <ChildComponents>
-            <BackgroundColorProvider color={colorsTheme.footer.backgroundColor}>{children}</BackgroundColorProvider>
-          </ChildComponents>
-          <FooterFooter className="footerFooter">
-            <BottomLinks>{bottomLink}</BottomLinks>
-            <Copyright>{copyright || translatedLabels.footer.copyrightText(new Date().getFullYear())}</Copyright>
-          </FooterFooter>
-        </div>
+          <DxcFlex>
+            {socialLinks?.map((link, index) => (
+              <SocialAnchor
+                href={link.href}
+                tabIndex={tabIndex}
+                title={link.title}
+                aria-label={link.title}
+                key={`social${index}${link.href}`}
+                index={index}
+              >
+                <SocialIconContainer>
+                  {typeof link.logo === "string" ? <img src={link.logo} /> : link.logo}
+                </SocialIconContainer>
+              </SocialAnchor>
+            ))}
+          </DxcFlex>
+        </DxcFlex>
+        <ChildComponents>
+          <BackgroundColorProvider color={colorsTheme.footer.backgroundColor}>{children}</BackgroundColorProvider>
+        </ChildComponents>
+        <BottomContainer>
+          <BottomLinks>
+            {bottomLinks?.map((link, index) => (
+              <span key={`bottom${index}${link.text}`}>
+                <BottomLink href={link.href} tabIndex={tabIndex}>
+                  {link.text}
+                </BottomLink>
+              </span>
+            ))}
+          </BottomLinks>
+          <Copyright>{copyright || translatedLabels.footer.copyrightText(new Date().getFullYear())}</Copyright>
+        </BottomContainer>
       </FooterContainer>
     </ThemeProvider>
   );
 };
 
 const FooterContainer = styled.footer<{ margin: FooterPropsType["margin"] }>`
-  @media (min-width: ${responsiveSizes.small}rem) {
-    padding: 24px 36px 24px 36px;
-  }
-
-  @media (max-width: ${responsiveSizes.small}rem) {
-    padding: 20px;
-  }
-
-  background-color: ${(props) => props.theme.backgroundColor};
-  margin-top: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
-  width: 100%;
   box-sizing: border-box;
-  min-height: ${(props) => props.theme.height};
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  width: 100%;
+  min-height: ${(props) => props.theme.height};
+  margin-top: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
+  background-color: ${(props) => props.theme.backgroundColor};
+
+  @media (min-width: ${responsiveSizes.small}rem) {
+    padding: 24px 36px 24px 36px;
+  }
+  @media (max-width: ${responsiveSizes.small}rem) {
+    padding: 20px;
+  }
 `;
 
-const FooterHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  row-gap: 24px;
-`;
-
-const FooterFooter = styled.div`
+const BottomContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
@@ -105,7 +97,6 @@ const FooterFooter = styled.div`
   @media (min-width: ${responsiveSizes.small}rem) {
     flex-direction: row;
   }
-
   @media (max-width: ${responsiveSizes.small}rem) {
     flex-direction: column;
     align-items: center;
@@ -116,32 +107,13 @@ const FooterFooter = styled.div`
   margin-top: 16px;
 `;
 
-const BottomLinks = styled.div`
-  padding-top: ${(props) => props.theme.bottomLinksDividerSpacing};
-  display: inline-flex;
-  flex-wrap: wrap;
-
-  @media (min-width: ${responsiveSizes.small}rem) {
-    max-width: 60%;
-  }
-
-  @media (max-width: ${responsiveSizes.small}rem) {
-    max-width: 100%;
-    width: 100%;
-  }
-
-  & > span:last-child span {
-    display: none;
-  }
-  align-self: center;
-`;
-
 const ChildComponents = styled.div`
   min-height: 16px;
   overflow: hidden;
 `;
 
 const Copyright = styled.div`
+  padding-top: ${(props) => props.theme.bottomLinksDividerSpacing};
   font-family: ${(props) => props.theme.copyrightFontFamily};
   font-size: ${(props) => props.theme.copyrightFontSize};
   font-style: ${(props) => props.theme.copyrightFontStyle};
@@ -158,11 +130,9 @@ const Copyright = styled.div`
     width: 100%;
     text-align: left;
   }
-
-  padding-top: ${(props) => props.theme.bottomLinksDividerSpacing};
 `;
 
-const LogoContainer = styled.div`
+const LogoContainer = styled.span`
   max-height: ${(props) => props.theme.logoHeight};
   width: ${(props) => props.theme.logoWidth};
 `;
@@ -172,29 +142,25 @@ const LogoImg = styled.img`
   width: ${(props) => props.theme.logoWidth};
 `;
 
-const SocialLinkContainer = styled.div`
-  display: flex;
-  align-self: center;
-`;
-
 const SocialAnchor = styled.a<{ index: number }>`
-  & {
-    display: inline-flex;
-    margin-left: ${(props) => (props.index === 0 ? "0px" : props.theme.socialLinksGutter)};
+  display: inline-flex;
+  margin-left: ${(props) => (props.index === 0 ? "0px" : props.theme.socialLinksGutter)};
+  border-radius: 4px;
+
+  &:focus {
+    outline: 2px solid #0095ff;
+    outline-offset: 2px;
   }
 `;
-
-const SocialIconImg = styled.img``;
 
 const SocialIconContainer = styled.div`
-  & {
-    display: inline-flex;
-    height: ${(props) => props.theme.socialLinksSize};
-    width: ${(props) => props.theme.socialLinksSize};
-    color: ${(props) => props.theme.socialLinksColor};
-  }
-
+  display: flex;
+  align-items: center;
+  height: ${(props) => props.theme.socialLinksSize};
+  width: ${(props) => props.theme.socialLinksSize};
+  color: ${(props) => props.theme.socialLinksColor};
   overflow: hidden;
+
   img,
   svg {
     height: 100%;
@@ -202,9 +168,25 @@ const SocialIconContainer = styled.div`
   }
 `;
 
-const Point = styled.span`
-  margin: 0px 10px;
-  color: ${(props) => props.theme.bottomLinksFontColor};
+const BottomLinks = styled.div`
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-self: center;
+  padding-top: ${(props) => props.theme.bottomLinksDividerSpacing};
+  color: #fff;
+
+  @media (min-width: ${responsiveSizes.small}rem) {
+    max-width: 60%;
+  }
+  @media (max-width: ${responsiveSizes.small}rem) {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  & > span:not(:first-child):before {
+    content: "·";
+    padding: 0 0.5rem;
+  }
 `;
 
 const BottomLink = styled.a`
@@ -214,6 +196,11 @@ const BottomLink = styled.a`
   font-size: ${(props) => props.theme.bottomLinksFontSize};
   font-style: ${(props) => props.theme.bottomLinksFontStyle};
   font-weight: ${(props) => props.theme.bottomLinksFontWeight};
+  border-radius: 2px;
+
+  &:focus {
+    outline: 2px solid #0095ff;
+  }
 `;
 
 export default DxcFooter;
