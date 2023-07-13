@@ -18,7 +18,7 @@ const sections = [
         Halstack is an Open Source Design System built and maintained by DXC
         Technology with the purpose of providing all the necessary tools for
         designing and implementing accessible, intuitive and consistent User
-        Experiences with Adobe XD and React.
+        Experiences with UXPin and React.
       </DxcParagraph>
     ),
     subSections: [
