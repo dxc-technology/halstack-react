@@ -26,6 +26,7 @@ const social = [
         </g>
       </svg>
     ),
+    title: "Linkedin",
   },
   {
     href: "https://twitter.com/dxctechnology",
@@ -37,6 +38,7 @@ const social = [
         />
       </svg>
     ),
+    title: "Twitter",
   },
   {
     href: "https://www.facebook.com/DXCTechnology/",
@@ -63,6 +65,7 @@ const social = [
         </g>
       </svg>
     ),
+    title: "Facebook",
   },
 ];
 
@@ -103,6 +106,14 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With children, copyright, bottom links and social links" theme="light" level={4} />
+      <DxcFooter copyright="Copyright" socialLinks={social} bottomLinks={bottom}>
+        <div>
+          <a href="https://www.linkedin.com/company/dxctechnology">Linkedin</a>
+        </div>
+      </DxcFooter>
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-focus">
+      <Title title="Focused bottom and social links" theme="light" level={4} />
       <DxcFooter copyright="Copyright" socialLinks={social} bottomLinks={bottom}>
         <div>
           <a href="https://www.linkedin.com/company/dxctechnology">Linkedin</a>

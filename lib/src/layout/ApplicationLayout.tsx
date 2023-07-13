@@ -34,14 +34,17 @@ const defaultFooter = () => (
       {
         href: "https://www.linkedin.com/company/dxctechnology",
         logo: linkedinLogo,
+        title: "Linkedin",
       },
       {
         href: "https://twitter.com/dxctechnology",
         logo: twitterLogo,
+        title: "Twitter",
       },
       {
         href: "https://www.facebook.com/DXCTechnology/",
         logo: facebookLogo,
+        title: "Facebook",
       },
     ]}
   />
