@@ -9,23 +9,28 @@ type SVG = React.ReactNode & React.SVGProps<SVGSVGElement>;
 
 type SocialLink = {
   /**
+   * URL of the page the link goes to.
+   */
+  href: string;
+  /**
    * Element used as the icon for the link.
    */
   logo: string | SVG;
   /**
+   * Value for the HTML properties title and aria-label.
+   */
+  title: string;
+};
+
+type BottomLink = {
+  /**
    * URL of the page the link goes to.
    */
   href: string;
-};
-type BottomLink = {
   /**
    * Text for the link.
    */
   text: string;
-  /**
-   * URL of the page the link goes to.
-   */
-  href: string;
 };
 
 type FooterPropsType = {
