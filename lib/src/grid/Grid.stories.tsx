@@ -56,16 +56,16 @@ export const Chromatic = () => (
     <Title title="Place self" level={4} />
     <ExampleContainer>
       <DxcGrid templateRows={["repeat(3, 100px)"]}>
-        <DxcGrid.GridItem placeSelf="center">
+        <DxcGrid.Item placeSelf="center">
           <ColoredContainer height="50px" width="50px" />
-        </DxcGrid.GridItem>
-        <DxcGrid.GridItem placeSelf={{ alignSelf: "end" }}>
+        </DxcGrid.Item>
+        <DxcGrid.Item placeSelf={{ alignSelf: "end" }}>
           <ColoredContainer height="40px" width="40px" />
           <ColoredContainer height="30px" width="30px" />
-        </DxcGrid.GridItem>
-        <DxcGrid.GridItem placeSelf={{ alignSelf: "center", justifySelf: "end" }}>
+        </DxcGrid.Item>
+        <DxcGrid.Item placeSelf={{ alignSelf: "center", justifySelf: "end" }}>
           <ColoredContainer height="50px" width="50px" />
-        </DxcGrid.GridItem>
+        </DxcGrid.Item>
       </DxcGrid>
     </ExampleContainer>
     <Title title="Halstack layout using template areas" level={4} />
@@ -76,33 +76,33 @@ export const Chromatic = () => (
         templateAreas={["header header header header", "sidenav main main main", "sidenav footer footer footer"]}
         gap={{ rowGap: "0.5rem", columnGap: "1rem" }}
       >
-        <DxcGrid.GridItem areaName="header" as="header">
+        <DxcGrid.Item areaName="header" as="header">
           <ColoredContainer height="100%" />
-        </DxcGrid.GridItem>
-        <DxcGrid.GridItem areaName="main" as="main">
+        </DxcGrid.Item>
+        <DxcGrid.Item areaName="main" as="main">
           <ColoredContainer height="100%" />
-        </DxcGrid.GridItem>
-        <DxcGrid.GridItem areaName="sidenav" as="nav">
+        </DxcGrid.Item>
+        <DxcGrid.Item areaName="sidenav" as="nav">
           <ColoredContainer height="100%" />
-        </DxcGrid.GridItem>
-        <DxcGrid.GridItem areaName="footer" as="footer">
+        </DxcGrid.Item>
+        <DxcGrid.Item areaName="footer" as="footer">
           <ColoredContainer height="100%" />
-        </DxcGrid.GridItem>
+        </DxcGrid.Item>
       </DxcGrid>
     </ExampleContainer>
     <Title title="Template rows and columns with flexible sizes" level={4} />
     <ExampleContainer>
       <DxcGrid templateColumns={["1fr", "1fr", "1fr"]} templateRows={["1fr", "3fr", "1fr"]} gap="0.5rem">
-        <DxcGrid.GridItem column={{ start: 1, end: -1 }}>
+        <DxcGrid.Item column={{ start: 1, end: -1 }}>
           <ColoredContainer color="yellow" height="100%">
             Header
           </ColoredContainer>
-        </DxcGrid.GridItem>
-        <DxcGrid.GridItem column={1}>
+        </DxcGrid.Item>
+        <DxcGrid.Item column={1}>
           <ColoredContainer color="lightcyan" height="100%">
             Sidenav
           </ColoredContainer>
-        </DxcGrid.GridItem>
+        </DxcGrid.Item>
         <DxcGrid
           column={{ start: 2, end: -1 }}
           templateRows={["repeat(4, 1fr)"]}
@@ -118,11 +118,11 @@ export const Chromatic = () => (
           <ColoredContainer />
           <ColoredContainer />
         </DxcGrid>
-        <DxcGrid.GridItem column={{ start: 1, end: -1 }}>
+        <DxcGrid.Item column={{ start: 1, end: -1 }}>
           <ColoredContainer color="black" height="100%">
             Footer
           </ColoredContainer>
-        </DxcGrid.GridItem>
+        </DxcGrid.Item>
       </DxcGrid>
     </ExampleContainer>
     <Title title="Overlapping" level={4} />
@@ -141,53 +141,53 @@ export const Chromatic = () => (
     <Title title="Implicit rows and columns" level={4} />
     <ExampleContainer>
       <DxcGrid templateColumns={["50px"]} templateRows={["50px", "50px"]} autoRows="50px" autoColumns="50px">
-        <DxcGrid.GridItem>
+        <DxcGrid.Item>
           <ColoredContainer height="50px">1</ColoredContainer>
-        </DxcGrid.GridItem>
-        <DxcGrid.GridItem row={2}>
+        </DxcGrid.Item>
+        <DxcGrid.Item row={2}>
           <ColoredContainer height="50px">3</ColoredContainer>
-        </DxcGrid.GridItem>
-        <DxcGrid.GridItem row={6} column={1}>
+        </DxcGrid.Item>
+        <DxcGrid.Item row={6} column={1}>
           <ColoredContainer height="50px">5</ColoredContainer>
-        </DxcGrid.GridItem>
-        <DxcGrid.GridItem row={3}>
+        </DxcGrid.Item>
+        <DxcGrid.Item row={3}>
           <ColoredContainer height="50px">4</ColoredContainer>
-        </DxcGrid.GridItem>
-        <DxcGrid.GridItem row={{ start: 1, end: 2 }} column={{ start: 5, end: "span 2" }}>
+        </DxcGrid.Item>
+        <DxcGrid.Item row={{ start: 1, end: 2 }} column={{ start: 5, end: "span 2" }}>
           <ColoredContainer height="50px">2</ColoredContainer>
-        </DxcGrid.GridItem>
+        </DxcGrid.Item>
       </DxcGrid>
     </ExampleContainer>
     <Title title="Autoflow 'row' (default)" level={4} />
     <ExampleContainer>
       <DxcGrid templateColumns={["repeat(5, 1fr)"]} templateRows={["1fr", "1fr"]} autoFlow="row" autoColumns="1fr">
-        <DxcGrid.GridItem row={{ start: 1, end: "span 2" }} column={1}>
+        <DxcGrid.Item row={{ start: 1, end: "span 2" }} column={1}>
           <ColoredContainer height="100%">1</ColoredContainer>
-        </DxcGrid.GridItem>
+        </DxcGrid.Item>
         <ColoredContainer color="lightyellow">2</ColoredContainer>
         <ColoredContainer color="lightcyan">3</ColoredContainer>
         <ColoredContainer color="lightgreen">4</ColoredContainer>
-        <DxcGrid.GridItem row={{ start: 1, end: -1 }} column={-2}>
+        <DxcGrid.Item row={{ start: 1, end: -1 }} column={-2}>
           <ColoredContainer color="lightpink" height="100%">
             5
           </ColoredContainer>
-        </DxcGrid.GridItem>
+        </DxcGrid.Item>
       </DxcGrid>
     </ExampleContainer>
     <Title title="Autoflow 'column'" level={4} />
     <ExampleContainer>
       <DxcGrid templateColumns={["repeat(5, 1fr)"]} templateRows={["1fr", "1fr"]} autoFlow="column" autoColumns="1fr">
-        <DxcGrid.GridItem row={{ start: 1, end: -1 }} column={1}>
+        <DxcGrid.Item row={{ start: 1, end: -1 }} column={1}>
           <ColoredContainer height="100%">1</ColoredContainer>
-        </DxcGrid.GridItem>
+        </DxcGrid.Item>
         <ColoredContainer color="lightyellow">2</ColoredContainer>
         <ColoredContainer color="lightcyan">3</ColoredContainer>
         <ColoredContainer color="lightgreen">4</ColoredContainer>
-        <DxcGrid.GridItem row={{ start: 1, end: -1 }} column={-2}>
+        <DxcGrid.Item row={{ start: 1, end: -1 }} column={-2}>
           <ColoredContainer color="lightpink" height="100%">
             5
           </ColoredContainer>
-        </DxcGrid.GridItem>
+        </DxcGrid.Item>
       </DxcGrid>
     </ExampleContainer>
   </>

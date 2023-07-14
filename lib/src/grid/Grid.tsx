@@ -57,5 +57,5 @@ const GridItem = styled.div<GridItemProps>`
       : `align-self: ${placeSelf.alignSelf ?? ""}; justify-self: ${placeSelf.justifySelf ?? ""};`)}
 `;
 
-DxcGrid.GridItem = GridItem;
+DxcGrid.Item = GridItem;
 export default DxcGrid;

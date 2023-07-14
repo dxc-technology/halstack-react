@@ -19,7 +19,7 @@ const CORE_TOKENS = {
   color_grey_700: "#666666",
   color_grey_800: "#4d4d4d",
   color_grey_900: "#333333",
-  // Trasparent variants
+  // Transparent variants
   color_grey_50_a: "#00000005",
   color_grey_100_a: "#0000000d",
   color_grey_200_a: "#0000001a",
