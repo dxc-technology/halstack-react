@@ -187,7 +187,7 @@ const sections = [
     ),
   },
   {
-    title: "DxcGrid.GridItem",
+    title: "DxcGrid.Item",
     content: (
       <>
         <DxcParagraph>
@@ -199,14 +199,14 @@ const sections = [
         </DxcParagraph>
         <DxcParagraph>
           In case you are building a complex Grid layout with several nested
-          grid containers, <Code>DxcGrid.GridItem</Code> becomes very limited
+          grid containers, <Code>DxcGrid.Item</Code> becomes very limited
           and therefore, you will have to wrap the children with{" "}
           <Code>DxcGrid</Code>.
         </DxcParagraph>
         <DxcParagraph>
           So, to fulfil that scenario,{" "}
           <strong>
-            all the <Code>DxcGrid.GridItem</Code>'s props are also available in{" "}
+            all the <Code>DxcGrid.Item</Code>'s props are also available in{" "}
             <Code>DxcGrid</Code>.
           </strong>
         </DxcParagraph>
