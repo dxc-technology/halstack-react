@@ -3,7 +3,7 @@ import React, { useState, useMemo, useEffect } from "react";
 import styled from "styled-components";
 import { CalendarPropsType } from "./types";
 import useTranslatedLabels from "../useTranslatedLabels";
-import { DxcFlex } from "../main";
+import DxcFlex from "../flex/Flex";
 
 const getDays = (innerDate: Dayjs) => {
   const monthDayCells = [];

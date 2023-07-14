@@ -1,6 +1,6 @@
 import React from "react";
 import styled, { ThemeProvider } from "styled-components";
-import { DxcFlex } from "../main";
+import DxcFlex from "../flex/Flex";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
 import { FileItemProps } from "./types";

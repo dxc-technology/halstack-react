@@ -20,7 +20,6 @@ type BackgroundColorProviderPropsType = {
   color: string;
   children: React.ReactNode;
 };
-
 const BackgroundColorProvider = ({ color, children }: BackgroundColorProviderPropsType): JSX.Element => {
   const colorType = useMemo(() => getColorType(color), [color]);
   return <BackgroundColorContext.Provider value={colorType}>{children}</BackgroundColorContext.Provider>;
