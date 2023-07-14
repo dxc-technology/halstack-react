@@ -81,14 +81,17 @@ const bottom = [
   {
     href: "https://www.linkedin.com/company/dxctechnology",
     text: "Linkedin",
+    title: "Linkedin",
   },
   {
     href: "https://twitter.com/dxctechnology",
     text: "Twitter",
+    title: "Twitter",
   },
   {
     href: "https://www.facebook.com/DXCTechnology/",
     text: "Facebook",
+    title: "Facebook",
   },
 ];
 
