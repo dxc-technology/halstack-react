@@ -37,7 +37,7 @@ const social = [
         </g>
       </svg>
     ),
-    text: "Linkedin",
+    title: "Linkedin",
   },
   {
     href: "https://twitter.com/dxctechnology",
