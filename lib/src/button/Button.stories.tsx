@@ -165,7 +165,7 @@ export const Chromatic = () => (
       <Title title="Only icon (image)" theme="light" level={4} />
       <DxcButton
         mode="text"
-        icon="https://developer.apple.com/design/human-interface-guidelines/foundations/app-icons/images/icon-and-image-large-icon-settings_2x.png"
+        icon="https://www.freepnglogos.com/uploads/facebook-logo-design-1.png"
       />
     </ExampleContainer>
     <BackgroundColorProvider color="#333333">

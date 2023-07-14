@@ -1,4 +1,4 @@
-import { DxcFlex, DxcTable } from "@dxc-technology/halstack-react";
+import { DxcFlex, DxcLink, DxcTable } from "@dxc-technology/halstack-react";
 import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
@@ -7,6 +7,7 @@ import Example from "@/common/example/Example";
 import basicUsage from "./examples/basicUsage";
 import icons from "./examples/icons";
 import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
+import StatusTag from "@/common/StatusTag";
 
 const sections = [
   {
@@ -22,6 +23,11 @@ const sections = [
         </thead>
         <tbody>
           <tr>
+            <td>label: string</td>
+            <td></td>
+            <td>Text to be placed in the button.</td>
+          </tr>
+          <tr>
             <td>mode: 'primary' | 'secondary' | 'text'</td>
             <td>
               <Code>'primary'</Code>
@@ -29,16 +35,34 @@ const sections = [
             <td>The available button modes.</td>
           </tr>
           <tr>
+            <td>
+              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                <StatusTag status="Information">New</StatusTag>title: string
+              </DxcFlex>
+            </td>
+            <td></td>
+            <td>
+              Text representing advisory information related to the button's
+              action. Under the hood, this prop also serves as an accessible
+              label for the component.
+            </td>
+          </tr>
+          <tr>
             <td>type: 'button' | 'reset' | 'submit'</td>
             <td>
               <Code>'button'</Code>
             </td>
-            <td>'type' html prop of the button.</td>
-          </tr>
-          <tr>
-            <td>label: string</td>
-            <td></td>
-            <td>Text to be placed in the button.</td>
+            <td>
+              Sets the <Code>type</Code> attribute of the <abbr>HTML</abbr>{" "}
+              button element. See{" "}
+              <DxcLink
+                newWindow
+                href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#attributes"
+              >
+                MDN
+              </DxcLink>{" "}
+              for further information.
+            </td>
           </tr>
           <tr>
             <td>icon: node | string</td>
