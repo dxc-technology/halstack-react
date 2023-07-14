@@ -14,21 +14,21 @@ const code = `() => {
           "sidenav footer footer footer",
         ]}
       >
-        <DxcGrid.GridItem areaName="header" as="header">
+        <DxcGrid.Item areaName="header" as="header">
           <Placeholder height="100%" />
-        </DxcGrid.GridItem>
+        </DxcGrid.Item>
         <DxcGrid templateColumns={["repeat(4, 1fr)"]} gap="0.25rem" areaName="main" as="main">
           <Placeholder />
           <Placeholder />
           <Placeholder />
           <Placeholder />
         </DxcGrid>
-        <DxcGrid.GridItem areaName="sidenav" as="nav">
+        <DxcGrid.Item areaName="sidenav" as="nav">
           <Placeholder height="100%" />
-        </DxcGrid.GridItem>
-        <DxcGrid.GridItem areaName="footer" as="footer">
+        </DxcGrid.Item>
+        <DxcGrid.Item areaName="footer" as="footer">
           <Placeholder height="100%" />
-        </DxcGrid.GridItem>
+        </DxcGrid.Item>
       </DxcGrid>
     </DxcInset>
   );
