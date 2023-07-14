@@ -37,6 +37,7 @@ const social = [
         </g>
       </svg>
     ),
+    text: "Linkedin",
   },
   {
     href: "https://twitter.com/dxctechnology",
@@ -48,6 +49,7 @@ const social = [
         />
       </svg>
     ),
+    title: "Twitter",
   },
   {
     href: "https://www.facebook.com/DXCTechnology/",
@@ -74,6 +76,7 @@ const social = [
         </g>
       </svg>
     ),
+    title: "Facebook",
   },
 ];
 
@@ -81,17 +84,14 @@ const bottom = [
   {
     href: "https://www.linkedin.com/company/dxctechnology",
     text: "Linkedin",
-    title: "Linkedin",
   },
   {
     href: "https://twitter.com/dxctechnology",
     text: "Twitter",
-    title: "Twitter",
   },
   {
     href: "https://www.facebook.com/DXCTechnology/",
     text: "Facebook",
-    title: "Facebook",
   },
 ];
 
