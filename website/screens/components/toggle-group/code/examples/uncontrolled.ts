@@ -26,7 +26,7 @@ const code = `() => {
         defaultValue={2}
         options={options}
         onChange={onChange}
-      ></DxcToggleGroup>
+      />
     </DxcInset>
   );
 }`;

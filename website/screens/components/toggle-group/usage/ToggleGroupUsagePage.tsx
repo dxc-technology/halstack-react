@@ -8,6 +8,8 @@ import DocFooter from "@/common/DocFooter";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import Example from "@/common/example/Example";
 import variants from "./examples/variants";
+import icons from "./examples/icons";
+import Code from "@/common/Code";
 
 const sections = [
   {
@@ -43,13 +45,37 @@ const sections = [
   {
     title: "Icon usage",
     content: (
-      <DxcParagraph>
-        Inside the toggle button, it is possible to use icons to represent
-        recognizable actions. The specifications for icon usage differs a little
-        bit in relation to text usage. The size of the icons should be 24 by 24
-        pixels, it must be centered respecting to the box that contains it
-        vertically and horizontally.{" "}
-      </DxcParagraph>
+      <>
+        <DxcParagraph>
+          Icons can be used to add information and clarify the action performed
+          by each button in the toggle group. Do not use icons primarily for
+          visual interest.
+        </DxcParagraph>
+        <DxcBulletedList>
+          <DxcBulletedList.Item>
+            The size of the icons is 24 by 24 pixels. They must be aligned
+            vertically and horizontally with respect to the corresponding toggle
+            button box.
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            A group of icon-only toggle buttons is a valid use case and allowed
+            in the design system. In such a situation and in order to preserve
+            the accessibility of the component, the use of the title prop is
+            mandatory.
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            The <Code>title</Code> prop offers a contextual bubble with missing
+            information necessary to clarify the action performed by each toggle
+            button. It also provides an accessible gateway when no regular label
+            can be specified.
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            Try to limit the use of icon-only toggle groups. Whenever possible, the
+            icon should be accompanied by a label.
+          </DxcBulletedList.Item>
+        </DxcBulletedList>
+        <Example example={icons} />
+      </>
     ),
   },
 ];

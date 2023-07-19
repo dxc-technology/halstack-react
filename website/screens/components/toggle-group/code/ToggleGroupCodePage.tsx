@@ -6,8 +6,8 @@ import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import controlled from "./examples/controlled";
 import uncontrolled from "./examples/uncontrolled";
-import icons from "./examples/icons";
 import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
+import StatusTag from "@/common/StatusTag";
 
 const sections = [
   {
@@ -95,6 +95,12 @@ const sections = [
                 <li>
                   <b>icon</b>: Element or path used as the icon of an option.
                 </li>
+                <li>
+                  <StatusTag status="Information">New</StatusTag> <b>title</b>:
+                  Text representing advisory information related to an option.
+                  Under the hood, it also serves as an accessible label for the
+                  icon.
+                </li>
               </ul>
             </td>
           </tr>
@@ -129,10 +135,6 @@ const sections = [
       {
         title: "Uncontrolled",
         content: <Example example={uncontrolled} defaultIsVisible />,
-      },
-      {
-        title: "Icons",
-        content: <Example example={icons} defaultIsVisible />,
       },
     ],
   },

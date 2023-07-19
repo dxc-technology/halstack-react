@@ -5,6 +5,7 @@ import { spaces } from "../common/variables";
 import useTheme from "../useTheme";
 import ToggleGroupPropsType, { OptionLabel } from "./types";
 import BackgroundColorContext, { BackgroundColors } from "../BackgroundColorContext";
+import DxcFlex from "../flex/Flex";
 
 const DxcToggleGroup = ({
   label,
@@ -18,10 +19,10 @@ const DxcToggleGroup = ({
   multiple = false,
   tabIndex = 0,
 }: ToggleGroupPropsType): JSX.Element => {
-  const colorsTheme = useTheme();
+  const [toggleGroupLabelId] = useState(`label-toggle-group-${uuidv4()}`);
   const [selectedValue, setSelectedValue] = useState(defaultValue ?? (multiple ? [] : -1));
-  const [toggleGroupId] = useState(`toggle-group-${uuidv4()}`);
 
+  const colorsTheme = useTheme();
   const backgroundType = useContext(BackgroundColorContext);
 
   const handleToggleChange = (selectedOption) => {
@@ -49,21 +50,48 @@ const DxcToggleGroup = ({
     onChange?.(multiple ? newSelectedOptions : selectedOption);
   };
 
-  const handleKeyPress = (event, optionValue) => {
-    event.preventDefault();
-    if (!disabled && (event.nativeEvent.code === "Enter" || event.nativeEvent.code === "Space"))
-      handleToggleChange(optionValue);
+  const handleOnKeyDown = (event, optionValue) => {
+    switch (event.key) {
+      case "Enter":
+      case " ":
+        event.preventDefault();
+        handleToggleChange(optionValue);
+    }
   };
+
   return (
     <ThemeProvider theme={colorsTheme.toggleGroup}>
       <ToggleGroup margin={margin}>
-        <Label htmlFor={toggleGroupId} disabled={disabled}>
+        <Label id={toggleGroupLabelId} disabled={disabled}>
           {label}
         </Label>
         <HelperText disabled={disabled}>{helperText}</HelperText>
-        <OptionsContainer id={toggleGroupId} role={multiple ? "group" : "radiogroup"}>
+        <OptionsContainer aria-labelledby={toggleGroupLabelId}>
           {options.map((option, i) => (
-            <ToggleContainer
+            <ToggleButton
+              key={`toggle-${i}-${option.label}`}
+              aria-label={option.title}
+              aria-pressed={
+                multiple
+                  ? value
+                    ? Array.isArray(value) && value.includes(option.value)
+                    : Array.isArray(selectedValue) && selectedValue.includes(option.value)
+                  : value
+                  ? option.value === value
+                  : option.value === selectedValue
+              }
+              disabled={disabled}
+              onClick={() => {
+                handleToggleChange(option.value);
+              }}
+              onKeyDown={(event) => {
+                handleOnKeyDown(event, option.value);
+              }}
+              tabIndex={!disabled ? tabIndex : -1}
+              title={option.title}
+              backgroundType={backgroundType}
+              hasIcon={option.icon}
+              optionLabel={option.label}
               selected={
                 multiple
                   ? value
@@ -73,43 +101,36 @@ const DxcToggleGroup = ({
                   ? option.value === value
                   : option.value === selectedValue
               }
-              role={multiple ? "switch" : "radio"}
-              backgroundType={backgroundType}
-              aria-checked={
-                multiple
-                  ? value
-                    ? Array.isArray(value) && value.includes(option.value)
-                    : Array.isArray(selectedValue) && selectedValue.includes(option.value)
-                  : value
-                  ? option.value === value
-                  : option.value === selectedValue
-              }
-              tabIndex={!disabled ? tabIndex : -1}
-              onClick={() => !disabled && handleToggleChange(option.value)}
-              isLast={i === options.length - 1}
-              isIcon={option.icon}
-              optionLabel={option.label}
-              disabled={disabled}
-              onKeyPress={(event) => {
-                handleKeyPress(event, option.value);
-              }}
-              key={`toggle-${i}-${option.label}`}
             >
-              <OptionContent>
+              <DxcFlex alignItems="center">
                 {option.icon && (
                   <IconContainer optionLabel={option.label}>
-                    {typeof option.icon === "string" ? <Icon src={option.icon} /> : option.icon}
+                    {typeof option.icon === "string" ? <img src={option.icon} /> : option.icon}
                   </IconContainer>
                 )}
                 {option.label && <LabelContainer>{option.label}</LabelContainer>}
-              </OptionContent>
-            </ToggleContainer>
+              </DxcFlex>
+            </ToggleButton>
           ))}
         </OptionsContainer>
       </ToggleGroup>
     </ThemeProvider>
   );
 };
+
+const ToggleGroup = styled.div<{ margin: ToggleGroupPropsType["margin"] }>`
+  display: inline-flex;
+  flex-direction: column;
+  margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
+  margin-top: ${(props) =>
+    props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
+  margin-right: ${(props) =>
+    props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
+  margin-bottom: ${(props) =>
+    props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
+  margin-left: ${(props) =>
+    props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
+`;
 
 const Label = styled.label<{ disabled: ToggleGroupPropsType["disabled"] }>`
   color: ${(props) => (props.disabled ? props.theme.disabledLabelFontColor : props.theme.labelFontColor)};
@@ -129,100 +150,68 @@ const HelperText = styled.span<{ disabled: ToggleGroupPropsType["disabled"] }>`
   line-height: ${(props) => props.theme.helperTextLineHeight};
 `;
 
-const ToggleGroup = styled.div<{ margin: ToggleGroupPropsType["margin"] }>`
-  display: inline-flex;
-  flex-direction: column;
-  margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
-  margin-top: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
-  margin-right: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
-  margin-bottom: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
-  margin-left: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
-`;
-
 const OptionsContainer = styled.div`
   display: flex;
-  flex-direction: row;
+  gap: 0.25rem;
   width: max-content;
-  opacity: 1;
   height: calc(48px - 4px - 4px);
+  padding: 0.25rem;
   border-width: ${(props) => props.theme.containerBorderThickness};
   border-style: ${(props) => props.theme.containerBorderStyle};
   border-radius: ${(props) => props.theme.containerBorderRadius};
   border-color: ${(props) => props.theme.containerBorderColor};
-  background-color: ${(props) => props.theme.containerBackgroundColor};
-  padding: 4px;
   margin-top: ${(props) => props.theme.containerMarginTop};
+  background-color: ${(props) => props.theme.containerBackgroundColor};
 `;
 
-const ToggleContainer = styled.div<{
+const ToggleButton = styled.button<{
   selected: boolean;
-  disabled: ToggleGroupPropsType["disabled"];
-  isLast: boolean;
-  isIcon: OptionLabel["icon"];
+  hasIcon: OptionLabel["icon"];
   optionLabel: OptionLabel["label"];
   backgroundType: BackgroundColors;
 }>`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-right: ${(props) => !props.isLast && "4px"};
+  padding-left: ${(props) =>
+    (props.optionLabel && props.hasIcon) || (props.optionLabel && !props.hasIcon)
+      ? props.theme.labelPaddingLeft
+      : props.theme.iconPaddingLeft};
+  padding-right: ${(props) =>
+    (props.optionLabel && props.hasIcon) || (props.optionLabel && !props.hasIcon)
+      ? props.theme.labelPaddingRight
+      : props.theme.iconPaddingRight};
+  border-width: ${(props) => props.theme.optionBorderThickness};
+  border-style: ${(props) => props.theme.optionBorderStyle};
+  border-radius: ${(props) => props.theme.optionBorderRadius};
+  background-color: ${(props) =>
+    props.selected ? props.theme.selectedBackgroundColor : props.theme.unselectedBackgroundColor};
+  color: ${(props) => (props.selected ? props.theme.selectedFontColor : props.theme.unselectedFontColor)};
+  cursor: pointer;
 
-  ${(props) => `
-    background-color: ${
-      props.selected
-        ? props.disabled
-          ? props.theme.selectedDisabledBackgroundColor
-          : props.theme.selectedBackgroundColor
-        : props.disabled
-        ? props.theme.unselectedDisabledBackgroundColor
-        : props.theme.unselectedBackgroundColor
-    };
-    border-width: ${props.theme.optionBorderThickness};
-    border-style: ${props.theme.optionBorderStyle};
-    border-radius: ${props.theme.optionBorderRadius};
-    padding-left: ${
-      (props.optionLabel && props.isIcon) || (props.optionLabel && !props.isIcon)
-        ? props.theme.labelPaddingLeft
-        : props.theme.iconPaddingLeft
-    };
-    padding-right: ${
-      (props.optionLabel && props.isIcon) || (props.optionLabel && !props.isIcon)
-        ? props.theme.labelPaddingRight
-        : props.theme.iconPaddingRight
-    };
-    ${
-      !props.disabled
-        ? `:hover {
-          background-color: ${
-            props.selected ? props.theme.selectedHoverBackgroundColor : props.theme.unselectedHoverBackgroundColor
-          };
-        }
-        :active {
-          background-color: ${
-            props.selected ? props.theme.selectedActiveBackgroundColor : props.theme.unselectedActiveBackgroundColor
-          };
-          color: #ffffff;
-        }        
-        :focus {
-          border-color: transparent;
-          box-shadow: 0 0 0 ${props.theme.optionFocusBorderThickness} ${
-            props.backgroundType === "dark" ? props.theme.focusColorOnDark : props.theme.focusColor
-          };
-        }
-        &:focus-visible {
-          outline: none;
-        }
-        cursor: pointer;
-        color: ${props.selected ? props.theme.selectedFontColor : props.theme.unselectedFontColor};
-`
-        : `color: ${props.selected ? props.theme.selectedDisabledFontColor : props.theme.unselectedDisabledFontColor};
-        cursor: not-allowed;`
-    }
-  `}
+  &:hover {
+    background-color: ${(props) =>
+      props.selected ? props.theme.selectedHoverBackgroundColor : props.theme.unselectedHoverBackgroundColor};
+  }
+  &:active {
+    background-color: ${(props) =>
+      props.selected ? props.theme.selectedActiveBackgroundColor : props.theme.unselectedActiveBackgroundColor};
+    color: #ffffff;
+  }
+  &:focus {
+    outline: none;
+    box-shadow: ${(props) =>
+      `0 0 0 ${props.theme.optionFocusBorderThickness} ${
+        props.backgroundType === "dark" ? props.theme.focusColorOnDark : props.theme.focusColor
+      }`};
+  }
+  &:disabled {
+    background-color: ${(props) =>
+      props.selected ? props.theme.selectedDisabledBackgroundColor : props.theme.unselectedDisabledBackgroundColor};
+    color: ${(props) =>
+      props.selected ? props.theme.selectedDisabledFontColor : props.theme.unselectedDisabledFontColor};
+    cursor: not-allowed;
+  }
 `;
 
 const LabelContainer = styled.span`
@@ -232,24 +221,18 @@ const LabelContainer = styled.span`
   font-weight: ${(props) => props.theme.optionLabelFontWeight};
 `;
 
-const OptionContent = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-`;
-
-const Icon = styled.img``;
-
 const IconContainer = styled.div<{ optionLabel: OptionLabel["label"] }>`
-  margin-right: ${(props) => props.optionLabel && props.theme.iconMarginRight};
+  display: flex;
   height: 24px;
   width: 24px;
+  margin-right: ${(props) => props.optionLabel && props.theme.iconMarginRight};
   overflow: hidden;
-  display: flex;
+
   img,
   svg {
     height: 100%;
     width: 100%;
   }
 `;
+
 export default DxcToggleGroup;
