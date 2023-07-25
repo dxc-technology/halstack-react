@@ -36,7 +36,7 @@ const DxcQuickNavContainer = ({
   startHeadingLevel = 1,
 }: QuickNavContainerTypes): JSX.Element => (
   <MainContainer>
-    <DxcFlex direction="column" gap="3rem" grow={1}>
+    <DxcFlex direction="column" gap="3rem">
       {sections.map((section) => (
         <Section
           key={`section-${section.title}`}
@@ -55,11 +55,13 @@ const DxcQuickNavContainer = ({
 
 const MainContainer = styled.div`
   display: grid;
-  grid-template-columns: 15fr 5fr;
-  gap: 1.5rem;
+  grid-template-columns: 800px 1fr;
 
+  @media (max-width: ${responsiveSizes.desktop}px) {
+    grid-template-columns: 75% 25%;
+  }
   @media (max-width: ${responsiveSizes.laptop}px) {
-    grid-template-columns: 100%;
+    grid-template-columns: minmax(0, 1fr);
   }
 `;
 
@@ -67,6 +69,7 @@ const QuickNavContainer = styled.div`
   position: sticky;
   top: calc(64px + 24px);
   max-height: 568px;
+  margin-left: 1.5rem;
   overflow-x: hidden;
   overflow-y: auto;
 
