@@ -53,14 +53,17 @@ const optionsWithIcon = [
   {
     value: 1,
     icon: wifiSVG,
+    title: "WiFi connection",
   },
   {
     value: 2,
     icon: ethernetSVG,
+    title: "Ethernet connection",
   },
   {
     value: 3,
     icon: gMobileSVG,
+    title: "3G Mobile data connection",
   },
 ];
 const optionsWithIconAndLabel = [

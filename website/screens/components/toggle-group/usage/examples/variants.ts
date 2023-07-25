@@ -18,13 +18,13 @@ const code = `() => {
 
   const options2 = [
     {
-        value: 1,
-        label: "Option 01",
-      },
-      {
-        value: 2,
-        label: "Option 02",
-      },
+      value: 1,
+      label: "Option 01",
+    },
+    {
+      value: 2,
+      label: "Option 02",
+    },
     {
       value: 3,
       label: "Option 02",
@@ -33,20 +33,20 @@ const code = `() => {
 
   return (
     <DxcInset space="2rem">
-      <DxcFlex justifyContent="space-between">
+      <DxcFlex justifyContent="space-between" gap="1rem">
         <DxcToggleGroup
           label="Single selection"
           helperText="Mutually exclusive options"
-          defaultValue={2}  
+          defaultValue={1}
           options={options1}
-        ></DxcToggleGroup>
+        />
         <DxcToggleGroup
           label="Multiple selection"
           helperText="Mutually inclusive options"
           options={options2}
-          defaultValue={[1, 2]}  
+          defaultValue={[1, 2]}
           multiple
-        ></DxcToggleGroup>
+        />
       </DxcFlex>
     </DxcInset>
   );

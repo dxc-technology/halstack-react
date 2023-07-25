@@ -7,23 +7,22 @@ type Margin = {
 };
 type SVG = React.ReactNode & React.SVGProps<SVGSVGElement>;
 
-type OptionCommons = {
-  /**
-   * Number with the option inner value.
-   */
-  value: number;
-};
-type OptionIcon = OptionCommons & {
+type OptionIcon = {
   /**
    * String with the option display value.
    */
-  label?: string;
+  label?: never;
   /**
    * Element used as the icon. Icon and label can't be used at same time.
    */
   icon: string | SVG;
+  /**
+   * Value for the HTML properties title and aria-label.
+   * When a label is defined, this prop can not be use.
+   */
+  title: string;
 };
-export type OptionLabel = OptionCommons & {
+export type OptionLabel = {
   /**
    * String with the option display value.
    */
@@ -32,8 +31,18 @@ export type OptionLabel = OptionCommons & {
    * Element used as the icon. Icon and label can't be used at same time.
    */
   icon?: string | SVG;
+  /**
+   * Value for the HTML properties title and aria-label.
+   * When a label is defined, this prop can not be use.
+   */
+  title?: never;
 };
-type Option = OptionIcon | OptionLabel;
+type Option = {
+  /**
+   * Number with the option inner value.
+   */
+  value: number;
+} & (OptionIcon | OptionLabel);
 
 type CommonProps = {
   /**
@@ -63,7 +72,7 @@ type CommonProps = {
   tabIndex?: number;
 };
 
-type SingleSelectionToggle = CommonProps & {
+type SingleSelectionToggleGroup = CommonProps & {
   /**
    * If true, the toggle group will support multiple selection. In that case, value must be an array of numbers with the keys of the selected values.
    */
@@ -83,7 +92,7 @@ type SingleSelectionToggle = CommonProps & {
    */
   onChange?: (optionIndex: number) => void;
 };
-type MultipleSelectionToggle = CommonProps & {
+type MultipleSelectionToggleGroup = CommonProps & {
   /**
    * If true, the toggle group will support multiple selection. In that case, value must be an array of numbers with the keys of the selected values.
    */
@@ -103,6 +112,6 @@ type MultipleSelectionToggle = CommonProps & {
    */
   onChange?: (optionIndex: number[]) => void;
 };
-type Props = SingleSelectionToggle | MultipleSelectionToggle;
+type Props = SingleSelectionToggleGroup | MultipleSelectionToggleGroup;
 
 export default Props;
