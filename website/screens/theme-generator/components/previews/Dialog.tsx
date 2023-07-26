@@ -44,27 +44,32 @@ const Dialog = () => {
         <DxcButton label="Delete" onClick={handleClickDefaultDialog} />
         {isDefaultDialogVisible && (
           <DxcDialog onCloseClick={handleClickDefaultDialog}>
-            <DxcFlex direction="column" gap="4rem">
-              <DxcFlex direction="column" gap="1rem">
-                <DxcFlex alignContent="center" gap="1rem">
-                  <DxcFlex wrap="wrap" alignContent="center">
-                    {errorIcon}
+            <DxcInset space="1.5rem">
+              <DxcFlex direction="column" gap="4rem">
+                <DxcFlex direction="column" gap="1rem">
+                  <DxcFlex alignContent="center" gap="1rem">
+                    <DxcFlex wrap="wrap" alignContent="center">
+                      {errorIcon}
+                    </DxcFlex>
+                    <DxcHeading level={5} text="Delete document" />
                   </DxcFlex>
-                  <DxcHeading level={5} text="Delete document" />
+                  <DxcParagraph>
+                    Are you sure you want to delete the 3 selected documents?
+                  </DxcParagraph>
                 </DxcFlex>
-                <DxcParagraph>
-                  Are you sure you want to delete the 3 selected documents?
-                </DxcParagraph>
+                <DxcFlex justifyContent="flex-end" gap="1rem">
+                  <DxcButton
+                    label="Cancel"
+                    onClick={handleClickDefaultDialog}
+                    mode="text"
+                  />
+                  <DxcButton
+                    label="Delete"
+                    onClick={handleClickDefaultDialog}
+                  />
+                </DxcFlex>
               </DxcFlex>
-              <DxcFlex justifyContent="flex-end" gap="1rem">
-                <DxcButton
-                  label="Cancel"
-                  onClick={handleClickDefaultDialog}
-                  mode="text"
-                />
-                <DxcButton label="Delete" onClick={handleClickDefaultDialog} />
-              </DxcFlex>
-            </DxcFlex>
+            </DxcInset>
           </DxcDialog>
         )}
       </Mode>
@@ -75,22 +80,27 @@ const Dialog = () => {
         />
         {isModalDialogVisible && (
           <DxcDialog onBackgroundClick={handleClickBackground}>
-            <DxcFlex direction="column" gap="4rem">
-              <DxcFlex direction="column" gap="1.5rem">
-                <DxcHeading level={4} text="Account information" />
-                <DxcTextInput label="Name" />
-                <DxcTextInput label="Last name" />
-                <DxcTextInput label="Address" size="fillParent" />
+            <DxcInset space="1.5rem">
+              <DxcFlex direction="column" gap="4rem">
+                <DxcFlex direction="column" gap="1.5rem">
+                  <DxcHeading level={4} text="Account information" />
+                  <DxcTextInput label="Name" />
+                  <DxcTextInput label="Last name" />
+                  <DxcTextInput label="Address" size="fillParent" />
+                </DxcFlex>
+                <DxcFlex justifyContent="center" gap="1rem">
+                  <DxcButton
+                    label="Cancel"
+                    onClick={handleClickBackground}
+                    mode="text"
+                  />
+                  <DxcButton
+                    label="Add client"
+                    onClick={handleClickBackground}
+                  />
+                </DxcFlex>
               </DxcFlex>
-              <DxcFlex justifyContent="center" gap="1rem">
-                <DxcButton
-                  label="Cancel"
-                  onClick={handleClickBackground}
-                  mode="text"
-                />
-                <DxcButton label="Add client" onClick={handleClickBackground} />
-              </DxcFlex>
-            </DxcFlex>
+            </DxcInset>
           </DxcDialog>
         )}
       </Mode>
@@ -102,9 +112,11 @@ const Dialog = () => {
             onCloseClick={handleClickNoOverlay}
             overlay={false}
           >
-            <DxcParagraph>
-              An example of Dialog without overlay (darker background).
-            </DxcParagraph>
+            <DxcInset space="1.5rem">
+              <DxcParagraph>
+                An example of Dialog without overlay (darker background).
+              </DxcParagraph>
+            </DxcInset>
           </DxcDialog>
         )}
       </Mode>
