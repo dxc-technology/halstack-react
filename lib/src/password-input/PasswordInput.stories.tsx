@@ -105,6 +105,7 @@ const Password = () => (
     <DxcPasswordInput label="Password input" value="Password" />
   </ExampleContainer>
 );
+
 const PasswordDark = () => (
   <BackgroundColorProvider color="#333333">
     <DarkContainer>
