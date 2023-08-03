@@ -5,7 +5,7 @@ import useTranslatedLabels from "../useTranslatedLabels";
 import { spaces } from "../common/variables";
 import { getMargin } from "../common/utils";
 import BackgroundColorContext, { BackgroundColors } from "../BackgroundColorContext";
-import NumberInputContext from "../number-input/NumberInputContext";
+import { NumberInputContext } from "../number-input/NumberInput";
 import TextInputPropsType, { AutosuggestWrapperProps, RefType } from "./types";
 import Suggestions from "./Suggestions";
 import * as Popover from "@radix-ui/react-popover";
