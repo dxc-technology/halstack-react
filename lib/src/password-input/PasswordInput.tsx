@@ -41,21 +41,16 @@ const DxcPasswordInput = React.forwardRef<RefType, PasswordInputPropsType>(
     const { passwordInput } = useTranslatedLabels();
 
     useEffect(() => {
-      setInputType("password", inputRef?.current);
-      setAriaAttributes("false", passwordInput.inputShowPasswordTitle, inputRef?.current);
-    }, [passwordInput]);
-
-    const viewPassword = () => {
-      setIsPasswordVisible(true);
-      setInputType("text", inputRef?.current);
-      setAriaAttributes("true", passwordInput.inputHidePasswordTitle, inputRef?.current);
-    };
-
-    const hidePassword = () => {
-      setIsPasswordVisible(false);
-      setInputType("password", inputRef?.current);
-      setAriaAttributes("false", passwordInput.inputShowPasswordTitle, inputRef?.current);
-    };
+      (() => {
+        if (isPasswordVisible) {
+          setInputType("text", inputRef.current);
+          setAriaAttributes("true", passwordInput.inputHidePasswordTitle, inputRef.current);
+        } else {
+          setInputType("password", inputRef.current);
+          setAriaAttributes("false", passwordInput.inputShowPasswordTitle, inputRef.current);
+        }
+      })();
+    }, [isPasswordVisible, passwordInput]);
 
     return (
       <PasswordInput ref={ref}>
@@ -65,7 +60,9 @@ const DxcPasswordInput = React.forwardRef<RefType, PasswordInputPropsType>(
           value={value}
           helperText={helperText}
           action={{
-            onClick: isPasswordVisible ? hidePassword : viewPassword,
+            onClick: () => {
+              setIsPasswordVisible((isPasswordVisible) => !isPasswordVisible);
+            },
             icon: isPasswordVisible ? icons.hidePassword : icons.showPassword,
             title: isPasswordVisible ? passwordInput.inputHidePasswordTitle : passwordInput.inputShowPasswordTitle,
           }}
