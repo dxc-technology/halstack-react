@@ -22,20 +22,19 @@ const TabsPageLayout = ({ tabs }: TabsPageLayoutProps) => {
           </Link>
         ))}
       </DxcNavTabs>
-      <Space />
+      <Divider />
     </TabsContainer>
   );
 };
 
 const TabsContainer = styled.div`
-  display: flex;
-  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, min-content) 1fr;
   overflow-x: auto;
 `;
 
-const Space = styled.div`
+const Divider = styled.span`
   border-bottom: 2px solid #bfbfbf;
-  width: 100%;
 `;
 
 export default TabsPageLayout;

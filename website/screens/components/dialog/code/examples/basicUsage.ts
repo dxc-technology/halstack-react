@@ -13,10 +13,12 @@ const code = `() => {
 
   return (
     <DxcInset space="2rem">
-      <DxcButton label="Enter your data" onClick={handleClick}></DxcButton>
+      <DxcButton label="Enter your data" onClick={handleClick} />
       {isDialogVisible && (
         <DxcDialog onCloseClick={handleClick}>
-          Please enter your personal information.
+          <DxcInset space="1.5rem">
+            Please enter your personal information.
+          </DxcInset>
         </DxcDialog>
       )}
     </DxcInset>

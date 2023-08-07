@@ -5,23 +5,17 @@ import {
   DxcTextarea,
   DxcHeading,
   DxcFlex,
-  DxcInset,
 } from "@dxc-technology/halstack-react";
 import { deepMerge } from "./utils";
-import ImportDialogProps, {
-  IndexedThemeInput,
-  IndexedTheme,
-} from "./types";
+import ImportDialogProps, { IndexedThemeInput, IndexedTheme } from "./types";
+import styled from "styled-components";
 
 const isArrayIncluded = (object1: {}, object2: {}) =>
   Object.keys(object1).every((element) =>
     Object.keys(object2).includes(element)
   );
 
-const validateInputTheme = (
-  json: string,
-  customThemeSchema: IndexedTheme
-) => {
+const validateInputTheme = (json: string, customThemeSchema: IndexedTheme) => {
   let inputTheme: IndexedThemeInput = {};
   let errMessage = "";
 
@@ -81,31 +75,43 @@ const ImportDialog = ({
 
   return (
     <DxcDialog isCloseVisible={false} onBackgroundClick={closeDialog}>
-      <DxcInset space="1rem">
-        <DxcFlex direction="column" gap="1.5rem">
-          <DxcHeading text="Import theme" level={2} weight="normal" />
-          <DxcTextarea
-            placeholder="Paste your theme here..."
-            value={value}
-            onChange={onChange}
-            rows={24}
-            error={validationErrorMessage}
-            size="fillParent"
-            verticalGrow="none"
+      <ImportDialogContainer>
+        <DxcHeading text="Import theme" level={2} weight="normal" />
+        <DxcTextarea
+          placeholder="Paste your theme here..."
+          value={value}
+          onChange={onChange}
+          error={validationErrorMessage}
+          size="fillParent"
+          verticalGrow="none"
+        />
+        <DxcFlex justifyContent="flex-end" gap="0.5rem">
+          <DxcButton mode="text" label="Cancel" onClick={closeDialog} />
+          <DxcButton
+            mode="primary"
+            label="Import"
+            onClick={validate}
+            disabled={validationErrorMessage !== "" || value === ""}
           />
-          <DxcFlex alignItems="center" justifyContent="right" gap="0.5rem">
-            <DxcButton mode="text" label="Cancel" onClick={closeDialog} />
-            <DxcButton
-              mode="primary"
-              label="Import"
-              onClick={validate}
-              disabled={validationErrorMessage !== "" || value === ""}
-            />
-          </DxcFlex>
         </DxcFlex>
-      </DxcInset>
+      </ImportDialogContainer>
     </DxcDialog>
   );
 };
+
+const ImportDialogContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 2rem;
+  height: 80vh;
+
+  div:nth-child(2) {
+    height: 100%;
+  }
+  > div > textarea {
+    flex-grow: 1;
+  }
+`;
 
 export default ImportDialog;
