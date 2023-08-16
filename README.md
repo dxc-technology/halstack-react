@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://developer.dxc.com/halstack/">
-    <img src="website/screens/common/images/halstack_logo.svg" style="width:12vw" alt="Halstack Design System logo" />
+    <img src="website/screens/common/images/halstack_logo.svg" alt="Halstack Design System logo" />
   </a>
 </p>
 
@@ -74,20 +74,6 @@ npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result. The page auto-updates as you edit the file.
-
-## Storybook
-
-Contained in the `lib` folder.
-
-```bash
-cd lib
-```
-
-Run storybook.
-
-```bash
-npm run storybook
-```
 
 ## Thanks
 

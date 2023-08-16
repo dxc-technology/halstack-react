@@ -75,3 +75,17 @@ or run only those of a specific component
 ```bash
 npm test Select.test.js
 ```
+
+## Storybook
+
+Contained in the `lib` folder.
+
+```bash
+cd lib
+```
+
+Run storybook.
+
+```bash
+npm run storybook
+```
