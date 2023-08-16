@@ -1,24 +1,18 @@
-# Halstack React CDK
+# Halstack React library
 
-Halstack React CDK is a npm library of reusable React components, made with the purpose of helping React developers with the task of implementing User Interfaces following the DXC Design Guidelines.
+`@dxc-technology/halstack-react` is a npm library of reusable React components, made with the purpose of helping React developers with the task of implementing User Interfaces following the DXC Halstack Design Guidelines.
 
-- It increases visual and behavioral consistency across the applications using the library.
+- It increases visual and behavioural consistency across the applications using the library.
 
-- It cuts down development efforts, taking the responsability of following the Design Guidelines away from the developer, and allowing him to focus on providing business value.
+- It cuts down development efforts, taking the responsibility of following the Design Guidelines away from the developer, and allowing him to focus on providing business value.
 
-## Usage
+## Before start working
 
-Halstack React CDK is a set of reusable components distributed as a npm library. See the [documentation site](https://developer.dxc.com/halstack/) for details on how to use it.
-
-## Contributing
-
-Before opening new issues or pull requests, please refer to [CONTRIBUTING.MD](https://github.com/dxc-technology/halstack-react/blob/master/CONTRIBUTING.md).
+Remember to read carefully [the documentation site](https://developer.dxc.com/halstack/) before trying to modify any Halstack pattern.
 
 ## Development Setup
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
-
-The project is divided in two main folders. One is for the actual library, and the other one is a React application using the library.
 
 ### Library
 
@@ -62,4 +56,22 @@ npm start # runs create-react-app dev server
 
 Now, anytime you make a change to the library or the app, `create-react-app` will live-reload your local dev server so you can iterate on your component in real-time.
 
-## Running tests
+## Testing
+
+Contained in the `lib` folder.
+
+```bash
+cd lib
+```
+
+Launch all the tests
+
+```bash
+npm test
+```
+
+or run only those of a specific component
+
+```bash
+npm test Select.test.js
+```
