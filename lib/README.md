@@ -1,6 +1,6 @@
 # Halstack React library
 
-`@dxc-technology/halstack-react` is a npm library of reusable React components, made with the purpose of helping React developers with the task of implementing User Interfaces following the DXC Halstack Design Guidelines.
+`@dxc-technology/halstack-react` is an npm library of reusable React components, made to help React developers with the task of implementing User Interfaces following the DXC Halstack Design Guidelines.
 
 - It increases visual and behavioural consistency across the applications using the library.
 
@@ -8,7 +8,7 @@
 
 ## Before start working
 
-Remember to read carefully [the documentation site](https://developer.dxc.com/halstack/) before trying to modify any Halstack pattern.
+Remember to read [the documentation site](https://developer.dxc.com/halstack/) carefully before trying to modify any Halstack implementation.
 
 ## Development Setup
 

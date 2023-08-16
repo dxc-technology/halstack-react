@@ -18,7 +18,7 @@ npm i @dxc-technology/halstack-react
 
 ## Where to start
 
-Learn more about Halstack and how to use our principles and patterns in the [official documentation site](https://developer.dxc.com/halstack/).
+Learn everything you need to know about Halstack principles and components on the [official documentation site](https://developer.dxc.com/halstack/).
 
 ## Contributing
 
