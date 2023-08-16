@@ -5,7 +5,7 @@ import useTranslatedLabels from "../useTranslatedLabels";
 import { spaces } from "../common/variables";
 import { getMargin } from "../common/utils";
 import BackgroundColorContext, { BackgroundColors } from "../BackgroundColorContext";
-import NumberInputContext from "../number-input/NumberInputContext";
+import { NumberInputContext } from "../number-input/NumberInput";
 import TextInputPropsType, { AutosuggestWrapperProps, RefType } from "./types";
 import Suggestions from "./Suggestions";
 import * as Popover from "@radix-ui/react-popover";
@@ -44,17 +44,18 @@ const makeCancelable = (promise) => {
   };
 };
 
-const hasSuggestions = (suggestions) => typeof suggestions === "function" || suggestions?.length > 0;
+const hasSuggestions = (suggestions: TextInputPropsType["suggestions"]) =>
+  typeof suggestions === "function" || suggestions?.length > 0;
 
-const isNotOptional = (value, optional) => value === "" && !optional;
+const isRequired = (value: string, optional: boolean) => value === "" && !optional;
 
-const isLengthIncorrect = (value, minLength, maxLength) =>
-  value && minLength && maxLength && (value.length < minLength || value.length > maxLength);
+const isLengthIncorrect = (value: string, minLength: number, maxLength: number) =>
+  value != null && (value.length < minLength || value.length > maxLength);
 
-const isNumberIncorrect = (value, minNumber, maxNumber) =>
-  (minNumber && parseInt(value) < minNumber) || (maxNumber && parseInt(value) > maxNumber);
+const isNumberIncorrect = (value: number, minNumber: number, maxNumber: number) =>
+  value < minNumber || value > maxNumber;
 
-const patternMissmatch = (pattern, value) => pattern && !new RegExp(pattern).test(value);
+const patternMismatch = (pattern: string, value: string) => pattern != null && !new RegExp(pattern).test(value);
 
 const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
   (
@@ -104,10 +105,10 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
     const backgroundType = useContext(BackgroundColorContext);
     const numberInputContext = useContext(NumberInputContext);
 
-    const getNumberErrorMessage = (value) => {
-      if (numberInputContext?.minNumber && parseInt(value) < numberInputContext?.minNumber)
+    const getNumberErrorMessage = (value: number) => {
+      if (value < numberInputContext?.minNumber)
         return translatedLabels.numberInput.valueGreaterThanOrEqualToErrorMessage(numberInputContext.minNumber);
-      else if (numberInputContext?.maxNumber && parseInt(value) > numberInputContext?.maxNumber)
+      else if (value > numberInputContext?.maxNumber)
         return translatedLabels.numberInput.valueLessThanOrEqualToErrorMessage(numberInputContext.maxNumber);
     };
 
@@ -127,53 +128,59 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
       }
     };
 
-    const changeValue = (newValue) => {
-      value ?? setInnerValue(newValue);
-      const changedValue = typeof newValue === "number" ? newValue.toString() : newValue;
+    const changeValue = (newValue: number | string) => {
+      const formattedValue = typeof newValue === "number" ? newValue.toString() : newValue;
+      value ?? setInnerValue(formattedValue);
 
-      if (isNotOptional(newValue, optional))
-        onChange?.({ value: changedValue, error: translatedLabels.formFields.requiredValueErrorMessage });
-      else if (isLengthIncorrect(newValue, minLength, maxLength))
+      if (isRequired(formattedValue, optional))
+        onChange?.({ value: formattedValue, error: translatedLabels.formFields.requiredValueErrorMessage });
+      else if (isLengthIncorrect(formattedValue, minLength, maxLength))
         onChange?.({
-          value: changedValue,
+          value: formattedValue,
           error: translatedLabels.formFields.lengthErrorMessage(minLength, maxLength),
         });
-      else if (patternMissmatch(pattern, newValue))
-        onChange?.({ value: changedValue, error: translatedLabels.formFields.formatRequestedErrorMessage });
-      else if (isNumberIncorrect(newValue, numberInputContext?.minNumber, numberInputContext?.maxNumber))
-        onChange?.({ value: changedValue, error: getNumberErrorMessage(newValue) });
-      else onChange?.({ value: changedValue });
+      else if (patternMismatch(pattern, formattedValue))
+        onChange?.({ value: formattedValue, error: translatedLabels.formFields.formatRequestedErrorMessage });
+      else if (
+        numberInputContext?.typeNumber === "number" &&
+        isNumberIncorrect(Number(newValue), numberInputContext?.minNumber, numberInputContext?.maxNumber)
+      )
+        onChange?.({ value: formattedValue, error: getNumberErrorMessage(Number(newValue)) });
+      else onChange?.({ value: formattedValue });
     };
 
     const handleInputContainerOnClick = () => {
       document.activeElement !== actionRef.current && inputRef.current.focus();
     };
-    const handleInputContainerOnMouseDown = (event) => {
+    const handleInputContainerOnMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
       // Avoid input to lose the focus when the container is pressed
       document.activeElement === inputRef.current && event.preventDefault();
     };
 
-    const handleInputOnChange = (event) => {
+    const handleInputOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       openSuggestions();
       changeValue(event.target.value);
     };
-    const handleInputOnBlur = (event) => {
+    const handleInputOnBlur = (event: React.FocusEvent<HTMLInputElement>) => {
       closeSuggestions();
 
-      if (isNotOptional(event.target.value, optional))
+      if (isRequired(event.target.value, optional))
         onBlur?.({ value: event.target.value, error: translatedLabels.formFields.requiredValueErrorMessage });
       else if (isLengthIncorrect(event.target.value, minLength, maxLength))
         onBlur?.({
           value: event.target.value,
           error: translatedLabels.formFields.lengthErrorMessage(minLength, maxLength),
         });
-      else if (patternMissmatch(pattern, event.target.value))
+      else if (patternMismatch(pattern, event.target.value))
         onBlur?.({ value: event.target.value, error: translatedLabels.formFields.formatRequestedErrorMessage });
-      else if (isNumberIncorrect(event.target.value, numberInputContext?.minNumber, numberInputContext?.maxNumber))
-        onBlur?.({ value: event.target.value, error: getNumberErrorMessage(event.target.value) });
+      else if (
+        numberInputContext?.typeNumber === "number" &&
+        isNumberIncorrect(Number(event.target.value), numberInputContext?.minNumber, numberInputContext?.maxNumber)
+      )
+        onBlur?.({ value: event.target.value, error: getNumberErrorMessage(Number(event.target.value)) });
       else onBlur?.({ value: event.target.value });
     };
-    const handleInputOnKeyDown = (event) => {
+    const handleInputOnKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
       switch (event.key) {
         case "Down":
         case "ArrowDown":
@@ -240,70 +247,44 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
       inputRef.current.focus();
     };
 
-    const setNumberProps = (type, min, max, step) => {
-      type && inputRef?.current?.setAttribute("type", type);
+    const setNumberProps = (type: string, min: number, max: number, step: number) => {
       min && inputRef?.current?.setAttribute("min", min);
       max && inputRef?.current?.setAttribute("max", max);
-      step && inputRef?.current?.setAttribute("step", step);
+      inputRef?.current?.setAttribute("step", step);
+      inputRef?.current?.setAttribute("type", type);
     };
     const decrementNumber = () => {
-      const numberValue = value ?? innerValue;
-      if (numberInputContext?.minNumber && parseInt(numberValue) < numberInputContext?.minNumber) {
-        changeValue(parseInt(numberValue));
-      } else if (numberInputContext?.maxNumber && parseInt(numberValue) > numberInputContext?.maxNumber) {
-        changeValue(numberInputContext?.maxNumber);
-      } else if (
-        numberInputContext?.minNumber &&
-        (parseInt(numberValue) === numberInputContext?.minNumber ||
-          numberValue === "" ||
-          (numberInputContext?.stepNumber &&
-            parseInt(numberValue) - numberInputContext?.stepNumber < numberInputContext?.minNumber))
-      ) {
-        changeValue(numberInputContext?.minNumber);
-      } else if (
-        (numberInputContext?.stepNumber &&
-          numberInputContext?.minNumber &&
-          parseInt(numberValue) - numberInputContext?.stepNumber >= numberInputContext?.minNumber) ||
-        (numberInputContext?.stepNumber && numberValue !== "")
-      ) {
-        changeValue(parseInt(numberValue) - numberInputContext?.stepNumber);
-      } else if (numberInputContext?.stepNumber && numberValue == "") {
-        changeValue(-numberInputContext?.stepNumber);
-      } else if (numberValue === "") {
-        changeValue(-1);
+      const currentValue = value ?? innerValue;
+      const numberValue = Number(currentValue);
+      const steppedValue = Math.round((numberValue - numberInputContext?.stepNumber + Number.EPSILON) * 100) / 100;
+
+      if (currentValue !== "") {
+        if (numberValue < numberInputContext?.minNumber || steppedValue < numberInputContext?.minNumber)
+          changeValue(numberValue);
+        else if (numberValue > numberInputContext?.maxNumber) changeValue(numberInputContext?.maxNumber);
+        else if (numberValue === numberInputContext?.minNumber) changeValue(numberInputContext?.minNumber);
+        else changeValue(steppedValue);
       } else {
-        changeValue(parseInt(numberValue) - 1);
+        if (numberInputContext?.minNumber >= 0) changeValue(numberInputContext?.minNumber);
+        else if (numberInputContext?.maxNumber < 0) changeValue(numberInputContext?.maxNumber);
+        else changeValue(-numberInputContext.stepNumber);
       }
     };
     const incrementNumber = () => {
-      const numberValue = value ?? innerValue;
-      if (numberInputContext?.maxNumber && parseInt(numberValue) > numberInputContext?.maxNumber) {
-        changeValue(parseInt(numberValue));
-      } else if (
-        numberInputContext?.minNumber &&
-        (parseInt(numberValue) < numberInputContext?.minNumber || numberValue === "")
-      ) {
-        changeValue(numberInputContext?.minNumber);
-      } else if (
-        numberInputContext?.maxNumber &&
-        (parseInt(numberValue) === numberInputContext?.maxNumber ||
-          (numberInputContext?.stepNumber &&
-            parseInt(numberValue) + numberInputContext?.stepNumber > numberInputContext?.maxNumber))
-      ) {
-        changeValue(numberInputContext?.maxNumber);
-      } else if (
-        (numberInputContext?.stepNumber &&
-          numberInputContext?.maxNumber &&
-          parseInt(numberValue) + numberInputContext?.stepNumber <= numberInputContext?.maxNumber) ||
-        (numberInputContext?.stepNumber && numberValue !== "")
-      ) {
-        changeValue(parseInt(numberValue) + numberInputContext?.stepNumber);
-      } else if (numberInputContext?.stepNumber && numberValue == "") {
-        changeValue(numberInputContext?.stepNumber);
-      } else if (numberValue === "") {
-        changeValue(1);
+      const currentValue = value ?? innerValue;
+      const numberValue = Number(currentValue);
+      const steppedValue = Math.round((numberValue + numberInputContext?.stepNumber + Number.EPSILON) * 100) / 100;
+
+      if (currentValue !== "") {
+        if (numberValue > numberInputContext?.maxNumber || steppedValue > numberInputContext?.maxNumber)
+          changeValue(numberValue);
+        else if (numberValue < numberInputContext?.minNumber) changeValue(numberInputContext?.minNumber);
+        else if (numberValue === numberInputContext?.maxNumber) changeValue(numberInputContext?.maxNumber);
+        else changeValue(steppedValue);
       } else {
-        changeValue(parseInt(numberValue) + 1);
+        if (numberInputContext?.minNumber > 0) changeValue(numberInputContext?.minNumber);
+        else if (numberInputContext?.maxNumber <= 0) changeValue(numberInputContext?.maxNumber);
+        else changeValue(numberInputContext.stepNumber);
       }
     };
 
@@ -337,7 +318,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
         changeVisualFocusIndex(-1);
       }
 
-      numberInputContext?.typeNumber === "number" &&
+      numberInputContext != null &&
         setNumberProps(
           numberInputContext.typeNumber,
           numberInputContext.minNumber,
@@ -455,15 +436,15 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
             )}
             {!disabled && clearable && (value ?? innerValue).length > 0 && (
               <Action
+                aria-label={translatedLabels.textInput.clearFieldActionTitle}
                 onClick={handleClearActionOnClick}
                 onMouseDown={(event) => {
                   event.stopPropagation();
                 }}
-                backgroundType={backgroundType}
                 tabIndex={tabIndex}
                 title={translatedLabels.textInput.clearFieldActionTitle}
-                aria-label={translatedLabels.textInput.clearFieldActionTitle}
                 type="button"
+                backgroundType={backgroundType}
               >
                 {icons.clear}
               </Action>
@@ -471,32 +452,32 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
             {numberInputContext?.typeNumber === "number" && (
               <>
                 <Action
-                  ref={actionRef}
+                  aria-label={translatedLabels.numberInput.decrementValueTitle}
                   disabled={disabled}
                   onClick={handleDecrementActionOnClick}
                   onMouseDown={(event) => {
                     event.stopPropagation();
                   }}
-                  backgroundType={backgroundType}
+                  ref={actionRef}
                   tabIndex={tabIndex}
                   title={translatedLabels.numberInput.decrementValueTitle}
-                  aria-label={translatedLabels.numberInput.decrementValueTitle}
                   type="button"
+                  backgroundType={backgroundType}
                 >
                   {icons.decrement}
                 </Action>
                 <Action
-                  ref={actionRef}
+                  aria-label={translatedLabels.numberInput.incrementValueTitle}
                   disabled={disabled}
                   onClick={handleIncrementActionOnClick}
                   onMouseDown={(event) => {
                     event.stopPropagation();
                   }}
-                  backgroundType={backgroundType}
+                  ref={actionRef}
                   tabIndex={tabIndex}
                   title={translatedLabels.numberInput.incrementValueTitle}
-                  aria-label={translatedLabels.numberInput.incrementValueTitle}
                   type="button"
+                  backgroundType={backgroundType}
                 >
                   {icons.increment}
                 </Action>
@@ -504,17 +485,17 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
             )}
             {action && (
               <Action
-                ref={actionRef}
+                aria-label={action.title}
                 disabled={disabled}
                 onClick={action.onClick}
                 onMouseDown={(event) => {
                   event.stopPropagation();
                 }}
-                title={action.title}
-                aria-label={action.title}
-                backgroundType={backgroundType}
+                ref={actionRef}
                 tabIndex={tabIndex}
+                title={action.title}
                 type="button"
+                backgroundType={backgroundType}
               >
                 {typeof action.icon === "string" ? <img src={action.icon} /> : action.icon}
               </Action>
@@ -537,9 +518,9 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
 );
 
 const TextInputContainer = styled.div<{ margin: TextInputPropsType["margin"]; size: TextInputPropsType["size"] }>`
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  box-sizing: border-box;
   width: ${(props) => calculateWidth(props.margin, props.size)};
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
@@ -601,8 +582,8 @@ const InputContainer = styled.div<{
   error: boolean;
   backgroundType: BackgroundColors;
 }>`
-  display: flex;
   position: relative;
+  display: flex;
   align-items: center;
   height: calc(2.5rem - 2px);
   padding: 0 0.5rem;
