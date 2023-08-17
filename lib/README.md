@@ -1,4 +1,4 @@
-# Halstack React library
+<h1 align="center">Halstack React library</h1>
 
 `@dxc-technology/halstack-react` is an npm library of reusable React components, made to help React developers with the task of implementing User Interfaces following the DXC Halstack Design Guidelines.
 
@@ -22,13 +22,13 @@ Contained in the `lib` folder.
 cd lib
 ```
 
-Install the library dependencies.
+Install the library dependencies:
 
 ```bash
 npm install
 ```
 
-Run the build process into `dist` folder, detecting and automatically building changes in src.
+Run the build process into `dist` folder, detecting and automatically building changes in src:
 
 ```bash
 npm run build:watch #'npm run build' if there is no need to watch for changes
@@ -42,13 +42,13 @@ Contained in the `app` folder.
 cd app # from the root folder
 ```
 
-Install the application dependencies. The Halstack React CDK dependency is linked to the local `lib` folder. This one must have been previously built.
+Install the application dependencies. The Halstack React library dependency is linked to the local `lib` folder. This one must have been previously built:
 
 ```bash
 npm install
 ```
 
-Start the application.
+Start the application:
 
 ```bash
 npm start # runs create-react-app dev server
@@ -56,7 +56,7 @@ npm start # runs create-react-app dev server
 
 Now, anytime you make a change to the library or the app, `create-react-app` will live-reload your local dev server so you can iterate on your component in real-time.
 
-## Testing
+### Running tests
 
 Contained in the `lib` folder.
 
@@ -64,19 +64,19 @@ Contained in the `lib` folder.
 cd lib
 ```
 
-Launch all the tests
+Launch all the tests:
 
 ```bash
 npm test
 ```
 
-or run only those of a specific component
+Or run only those of a specific component:
 
 ```bash
-npm test Select.test.js
+npm test Button.test.js
 ```
 
-## Storybook
+### Storybook
 
 Contained in the `lib` folder.
 
@@ -84,7 +84,7 @@ Contained in the `lib` folder.
 cd lib
 ```
 
-Run storybook.
+Run storybook:
 
 ```bash
 npm run storybook
