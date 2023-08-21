@@ -11,8 +11,8 @@ Include steps to reproduce the behaviour.
 
 Example:
 
-1. Create a new React App using `create-react-app`.
-2. Install the `@dxc-technology\halstack-react` dependencies and run the app.
+1. Create a new React app using Vite.
+2. Install `@dxc-technology\halstack-react` package.
 3. Click on '...'.
 4. Scroll down to '...'.
 5. See the error.

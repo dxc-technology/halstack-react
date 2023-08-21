@@ -1,81 +1,44 @@
-# Halstack React CDK 
+<p align="center">
+  <a href="https://developer.dxc.com/halstack/">
+    <img src="website/screens/common/images/halstack_logo.svg" alt="Halstack Design System logo" />
+  </a>
+</p>
 
-Halstack React CDK is a npm library of reusable React components, made with the purpose of helping React developers with the task of implementing User Interfaces following the DXC Design Guidelines.
+<h1 align="center">Halstack Design System</h1>
 
-- It increases visual and behavioral consistency across the applications using the library.
+Halstack is an Open Source Design System built and maintained by DXC Technology with the purpose of providing all the necessary tools for designing and implementing accessible, intuitive and consistent User Experiences with React.
 
-- It cuts down development efforts, taking the responsability of following the Design Guidelines away from the developer, and allowing him to focus on providing business value.
+## How to start
 
-## Usage
+You can start using Halstack right now:
 
-Halstack React CDK is a set of reusable components distributed as a npm library. See the [documentation site](https://developer.dxc.com/halstack/) for details on how to use it.
+```bash
+npm i @dxc-technology/halstack-react
+```
+
+### Usage
+
+```jsx
+import React from "react";
+import { DxcButton, DxcTextInput } from "@dxc-technology/halstack-react";
+
+const App = () => (
+  <>
+    <DxcTextInput label="Enter your name" />
+    <DxcButton label="Submit" type="submit" />
+  </>
+);
+```
+
+## Where to start
+
+Learn everything you need to know about Halstack principles and components on the [official documentation site](https://developer.dxc.com/halstack/).
 
 ## Contributing
 
-Before opening new issues or pull requests, please refer to [CONTRIBUTING.MD](https://github.com/dxc-technology/halstack-react/blob/master/CONTRIBUTING.md).
+Any feedback is always welcome in Halstack!
 
-## Development Setup
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. 
-
-
-The project is divided in two main folders. One is for the actual library, and the other one is a React application using the library.
-
-### Library
-
-Contained in the `lib` folder.
-
-```bash
-cd lib
-```
-
-Install the library dependencies.
-
-```bash
-npm install
-```
-
-Run the build process into `dist` folder, detecting and automatically building changes in src. 
-
-```bash
-npm run build:watch #'npm run build' if there is no need to watch for changes
-```
-
-### Example Application
-
-Contained in the `app` folder.
-
-```bash
-cd app # from the root folder
-```
-
-Install the application dependencies. The Halstack React CDK dependency is linked to the local `lib` folder. This one must have been previously built.
-
-```bash
-npm install
-```
-
-Start the application.
-
-```bash
-npm start # runs create-react-app dev server
-```
-
-Now, anytime you make a change to the library or the app, `create-react-app` will live-reload your local dev server so you can iterate on your component in real-time.
-
-## Storybook
-
-Contained in the `lib` folder.
-
-```bash
-cd lib
-```
-
-Run storybook.
-
-```bash
-npm run storybook
-```
+Before opening a new issue, pull request or discussion, please read carefully and respect our [contribution guidelines](https://github.com/dxc-technology/halstack-react/wiki/Contributing).
 
 ## Thanks
 
