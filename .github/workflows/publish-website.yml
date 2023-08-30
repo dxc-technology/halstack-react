@@ -5,7 +5,7 @@ on:
     branches:
       - aef-actions
     paths:
-      - "website/**"
+      - "*/**"
 
 jobs:
   build:
