@@ -40,6 +40,7 @@ import DxcTypography from "./typography/Typography";
 import DxcParagraph from "./paragraph/Paragraph";
 import DxcBulletedList from "./bulleted-list/BulletedList";
 import DxcGrid from "./grid/Grid";
+import DxcImage from "./image/Image";
 
 import HalstackContext, { HalstackProvider, HalstackLanguageContext } from "./HalstackContext";
 import { BackgroundColorProvider } from "./BackgroundColorContext";
@@ -91,4 +92,5 @@ export {
   DxcParagraph,
   DxcBulletedList,
   DxcGrid,
+  DxcImage,
 };
