@@ -1,9 +1,9 @@
 type Props = {
+  alt: string;
   caption?: string;
+  lazyLoading?: boolean;
   src: string;
   srcSet?: string;
-  alt: string;
-  lazyLoading?: boolean;
   width?: string;
   height?: string;
   objectFit?: "contain" | "cover" | "fill" | "none" | "scale-down";

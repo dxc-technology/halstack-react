@@ -79,5 +79,16 @@ export const Chromatic = () => (
         </DxcParagraph>
       </DxcFlex>
     </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Object position and Object fit" theme="light" level={4} />
+      <DxcImage
+        alt="Moon pic"
+        caption="Picture of the moon."
+        width="250px"
+        src="https://interactive-examples.mdn.mozilla.net/media/examples/moon.jpg"
+        objectPosition="right top"
+        objectFit="none"
+      />
+    </ExampleContainer>
   </>
 );
