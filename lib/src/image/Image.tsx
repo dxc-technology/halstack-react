@@ -14,6 +14,7 @@ const DxcImage = ({
   lazyLoading = false,
   src,
   srcSet,
+  sizes,
   width,
   height,
   objectFit,
@@ -38,16 +39,17 @@ const DxcImage = ({
       >
         <img
           alt={alt}
-          loading={lazyLoading ? "lazy" : "eager"}
+          loading={lazyLoading ? "lazy" : undefined}
           onLoad={onLoad}
           onError={onError}
           src={src}
           srcSet={srcSet}
+          sizes={sizes}
           style={{
-            width,
-            height,
             objectFit,
             objectPosition,
+            width,
+            height,
           }}
         />
       </CaptionWrapper>
@@ -56,8 +58,10 @@ const DxcImage = ({
 };
 
 const Figure = styled.figure`
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 1rem;
+  width: fit-content;
   margin: 0;
   padding: 0;
 `;

@@ -17,7 +17,6 @@ export const Chromatic = () => (
       <DxcImage
         alt="Example image"
         width="100%"
-        height="100%"
         src="https://images.ctfassets.net/hrltx12pl8hq/5596z2BCR9KmT1KeRBrOQa/4070fd4e2f1a13f71c2c46afeb18e41c/shutterstock_451077043-hero1.jpg"
       />
     </ExampleContainer>
@@ -80,7 +79,7 @@ export const Chromatic = () => (
       </DxcFlex>
     </ExampleContainer>
     <ExampleContainer>
-      <Title title="Object position and Object fit" theme="light" level={4} />
+      <Title title="Object position" theme="light" level={4} />
       <DxcImage
         alt="Moon pic"
         caption="Picture of the moon."
@@ -89,6 +88,42 @@ export const Chromatic = () => (
         objectPosition="right top"
         objectFit="none"
       />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Object fit: contain" theme="light" level={4} />
+      <div style={{ display: "flex", width: "fit-content", border: "1px solid #000", padding: "0.5rem" }}>
+        <DxcImage
+          alt="Dog pic"
+          src="https://cc-prod.scene7.com/is/image/CCProdAuthor/What-is-Stock-Photography_P1_mobile?$pjpeg$&jpegSize=200&wid=720"
+          width="200px"
+          height="200px"
+          objectFit="contain"
+          caption="Pretty dog."
+        />
+      </div>
+    </ExampleContainer>
+
+    <ExampleContainer>
+      <Title title="Object fit: cover" theme="light" level={4} />
+      <div style={{ width: "75%", height: "300px" }}>
+        <DxcImage
+          alt="Spaceship pic"
+          src="https://media.istockphoto.com/id/1344443930/es/foto/lanzamiento-de-cohetes-del-transbordador-espacial-en-el-cielo-y-nubes-al-espacio-exterior.jpg?s=612x612&w=0&k=20&c=CO2A96GnnWvJsgZuj9WfYCVIBVzicnQDfnzwD1nomN0="
+          objectFit="cover"
+          width="50%"
+          height="100%"
+          objectPosition="0px 0px"
+        />
+        <DxcImage
+          alt="Spaceship pic"
+          src="https://media.istockphoto.com/id/1344443930/es/foto/lanzamiento-de-cohetes-del-transbordador-espacial-en-el-cielo-y-nubes-al-espacio-exterior.jpg?s=612x612&w=0&k=20&c=CO2A96GnnWvJsgZuj9WfYCVIBVzicnQDfnzwD1nomN0="
+          objectFit="cover"
+          width="50%"
+          height="100%"
+          objectPosition="0px 0px"
+
+        />
+      </div>
     </ExampleContainer>
   </>
 );

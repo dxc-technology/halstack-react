@@ -25,14 +25,23 @@ const sections = [
           <td>alt: string</td>
           <td></td>
           <td>
-            Sets the HTML <Code>alt</Code> property of the Image element. See{" "}
+            Alternative text description displayed when the specified image is not loaded.
+            See{" "}
             <DxcLink
               newWindow
               href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/alt"
             >
               MDN
             </DxcLink>{" "}
-            for further information.
+            and the{" "}
+            <DxcLink
+              newWindow
+              href="https://www.w3.org/WAI/tutorials/images/decision-tree/"
+            >
+              alt decision tree
+            </DxcLink>{" "}
+            of W3C for further information. This prop is{" "}
+            <strong>required</strong>.
           </td>
         </tr>
         <tr>
@@ -46,7 +55,9 @@ const sections = [
         </tr>
         <tr>
           <td>lazyLoading: boolean</td>
-          <td>false</td>
+          <td>
+            <Code>false</Code>
+          </td>
           <td>
             If true, the image will be loaded only when it is visible on the
             screen (lazy loading). Otherwise and by default, the image will be
@@ -57,7 +68,7 @@ const sections = [
           <td>src: string</td>
           <td></td>
           <td>
-            URL of the image. It is required and must be valid.
+            URL of the image. This prop is <strong>required</strong> and must be valid.
           </td>
         </tr>
         <tr>
@@ -68,7 +79,24 @@ const sections = [
             possible images for the user agent to use. See{" "}
             <DxcLink
               newWindow
-              href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img"
+              href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/srcset"
+            >
+              MDN
+            </DxcLink>{" "}
+            for further information.
+          </td>
+        </tr>
+        <tr>
+          <td>sizes: string</td>
+          <td></td>
+          <td>
+            One or more strings separated by commas, indicating a set of source
+            sizes. If the <Code>srcSet</Code> attribute is absent or contains
+            no values with a width descriptor, then this attribute has no
+            effect. See{" "}
+            <DxcLink
+              newWindow
+              href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/sizes"
             >
               MDN
             </DxcLink>{" "}
@@ -78,12 +106,12 @@ const sections = [
         <tr>
           <td>width: string</td>
           <td></td>
-          <td>Sets the width of the image.</td>
+          <td>Sets the rendered width of the image.</td>
         </tr>
         <tr>
           <td>height: string</td>
           <td></td>
-          <td>Sets the height of the image.</td>
+          <td>Sets the rendered height of the image.</td>
         </tr>
         <tr>
           <td>
@@ -93,7 +121,7 @@ const sections = [
             <Code>'fill'</Code>
           </td>
           <td>
-            Sets the value of the CSS <Code>object-fit</Code> property. See{" "}
+            Sets the <Code>object-fit</Code> CSS property. See{" "}
             <DxcLink
               newWindow
               href="https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit"
@@ -109,7 +137,7 @@ const sections = [
             <Code>'50% 50%'</Code>
           </td>
           <td>
-            Sets the value of the CSS <Code>object-position</Code> property. See{" "}
+            Sets the <Code>object-position</Code> CSS property. See{" "}
             <DxcLink
               newWindow
               href="https://developer.mozilla.org/en-US/docs/Web/CSS/object-position"
@@ -120,12 +148,12 @@ const sections = [
           </td>
         </tr>
         <tr>
-          <td>onLoad: React.ReactEventHandler</td>
+          <td>onLoad: ReactEventHandler</td>
           <td></td>
           <td>This function will be called when the image is loaded.</td>
         </tr>
         <tr>
-          <td>onError: React.ReactEventHandler</td>
+          <td>onError: ReactEventHandler</td>
           <td></td>
           <td>This function will be called when the image fails to load.</td>
         </tr>
@@ -133,7 +161,7 @@ const sections = [
     ),
   },
   {
-    title: "⚠️ Examples",
+    title: "🚧 Examples",
     content: (
       <DxcParagraph>
         The code examples are under construction and will be available soon.
