@@ -102,7 +102,6 @@ export const Chromatic = () => (
         />
       </div>
     </ExampleContainer>
-
     <ExampleContainer>
       <Title title="Object fit: cover" theme="light" level={4} />
       <div style={{ width: "75%", height: "300px" }}>
@@ -121,7 +120,6 @@ export const Chromatic = () => (
           width="50%"
           height="100%"
           objectPosition="0px 0px"
-
         />
       </div>
     </ExampleContainer>
