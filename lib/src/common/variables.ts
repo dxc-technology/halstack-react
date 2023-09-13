@@ -490,6 +490,9 @@ export const componentTokens = {
     level5LineHeight: CORE_TOKENS.type_leading_normal,
     level5LetterSpacing: CORE_TOKENS.type_spacing_wide_01,
   },
+  image: {
+    captionFontColor: CORE_TOKENS.color_grey_900,
+  },
   link: {
     fontColor: CORE_TOKENS.color_blue_800,
     fontFamily: CORE_TOKENS.inherit,

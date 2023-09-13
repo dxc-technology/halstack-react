@@ -7,7 +7,7 @@ const Usage = () => {
   return (
     <>
       <Head>
-        <title>Flex Usage— Halstack Design System</title>
+        <title>Flex Usage — Halstack Design System</title>
       </Head>
       <FlexUsagePage></FlexUsagePage>
     </>

@@ -26,6 +26,7 @@ exports.componentsList = [
   { label: "Grid", path: "/components/grid", status: "Experimental" },
   { label: "Header", path: "/components/header", status: "Ready" },
   { label: "Heading", path: "/components/heading", status: "Ready" },
+  { label: "Image", path: "/components/image", status: "Experimental" },
   { label: "Inset", path: "/components/inset", status: "Ready" },
   { label: "Link", path: "/components/link", status: "Ready" },
   { label: "Nav Tabs", path: "/components/nav-tabs", status: "Ready" },
