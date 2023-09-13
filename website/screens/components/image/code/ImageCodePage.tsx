@@ -170,7 +170,7 @@ const sections = [
   },
 ];
 
-const FlexCodePage = () => {
+const ImageCodePage = () => {
   return (
     <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
@@ -184,4 +184,4 @@ const FlexCodePage = () => {
   );
 };
 
-export default FlexCodePage;
+export default ImageCodePage;
