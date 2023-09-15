@@ -492,6 +492,11 @@ export const componentTokens = {
   },
   image: {
     captionFontColor: CORE_TOKENS.color_grey_900,
+    captionFontFamily: CORE_TOKENS.font_family_sans,
+    captionFontSize: CORE_TOKENS.font_scale_02,
+    captionFontStyle: CORE_TOKENS.font_style_normal,
+    captionFontWeight: CORE_TOKENS.font_weight_regular,
+    captionLineHeight: CORE_TOKENS.font_leading_normal,
   },
   link: {
     fontColor: CORE_TOKENS.color_blue_800,

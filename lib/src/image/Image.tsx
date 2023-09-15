@@ -31,7 +31,15 @@ const DxcImage = ({
         wrapper={(children: React.ReactNode) => (
           <Figure>
             {children}
-            <BaseTypography as="figcaption" color={colorsTheme.image.captionFontColor} fontSize="0.875rem">
+            <BaseTypography
+              as="figcaption"
+              color={colorsTheme.image.captionFontColor}
+              fontFamily={colorsTheme.image.captionFontFamily}
+              fontSize={colorsTheme.image.captionFontSize}
+              fontStyle={colorsTheme.image.captionFontStyle}
+              fontWeight={colorsTheme.image.captionFontWeight}
+              lineHeight={colorsTheme.image.captionLineHeight}
+            >
               {caption}
             </BaseTypography>
           </Figure>

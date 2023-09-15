@@ -2,7 +2,6 @@ import {
   DxcFlex,
   DxcTable,
   DxcLink,
-  DxcParagraph,
 } from "@dxc-technology/halstack-react";
 import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
@@ -10,6 +9,7 @@ import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import Example from "@/common/example/Example";
 import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
+import basic from "./examples/basicUsage";
 
 const sections = [
   {
@@ -161,12 +161,13 @@ const sections = [
     ),
   },
   {
-    title: "🚧 Examples",
-    content: (
-      <DxcParagraph>
-        The code examples are under construction and will be available soon.
-      </DxcParagraph>
-    ),
+    title: "Examples",
+    subSections: [
+      {
+        title: "Basic usage",
+        content: <Example example={basic} defaultIsVisible />,
+      },
+    ],
   },
 ];
 
