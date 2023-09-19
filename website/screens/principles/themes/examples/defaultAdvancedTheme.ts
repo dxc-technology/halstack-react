@@ -451,6 +451,14 @@ export default {
     contentColor: "#000000",
     contentColorOnDark: "#ffffff",
   },
+  image: {
+    captionFontColor: "#333333",
+    captionFontFamily: "Open Sans, sans-serif",
+    captionFontSize: "0.875rem",
+    captionFontStyle: "normal",
+    captionFontWeight: "400",
+    captionLineHeight: "1.5em",
+  },
   heading: {
     level1FontColor: "inherit",
     level1FontFamily: "Open Sans, sans-serif",

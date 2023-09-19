@@ -488,6 +488,14 @@
     "level5LineHeight": "length",
     "level5LetterSpacing": "length"
   },
+  "image": {
+    "captionFontColor": "color",
+    "captionFontFamily": "fFamily",
+    "captionFontSize": "length",
+    "captionFontStyle": "fStyle",
+    "captionFontWeight": "fWeight",
+    "captionLineHeight": "length"
+  },
   "link": {
     "fontColor": "color",
     "visitedFontColor": "color",
