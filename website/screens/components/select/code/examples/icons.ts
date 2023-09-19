@@ -11,9 +11,9 @@ const code = `() => {
           icon: "https://cdn.pixabay.com/photo/2021/06/15/12/17/instagram-6338401_960_720.png",
         },
         {
-          label: "Twitter",
-          value: "twitter",
-          icon: "https://www.iconpacks.net/icons/2/free-twitter-logo-icon-2429-thumb.png",
+          label: "X",
+          value: "x",
+          icon: "https://static.dezeen.com/uploads/2023/07/x-logo-twitter-elon-musk_dezeen_2364_col_0.jpg",
         },
         {
           label: "Facebook",

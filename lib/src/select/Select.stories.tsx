@@ -188,9 +188,9 @@ const url_options = [
         icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/800px-Instagram_logo_2016.svg.png",
       },
       {
-        label: "Twitter",
-        value: "twitter",
-        icon: "https://cdn.computerhoy.com/sites/navi.axelspringer.es/public/styles/480/public/media/image/2013/08/17981-logo-twitter.png?itok=dElA6iAV",
+        label: "X",
+        value: "x",
+        icon: "https://static.dezeen.com/uploads/2023/07/x-logo-twitter-elon-musk_dezeen_2364_col_0.jpg",
       },
       {
         label: "Facebook",

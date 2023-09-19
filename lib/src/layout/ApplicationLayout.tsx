@@ -4,7 +4,7 @@ import DxcFooter from "../footer/Footer";
 import DxcSidenav from "../sidenav/Sidenav";
 import styled from "styled-components";
 import { responsiveSizes } from "../common/variables";
-import { facebookLogo, linkedinLogo, twitterLogo, hamburgerIcon } from "./Icons";
+import layoutIcons from "./Icons";
 import AppLayoutPropsType, { AppLayoutMainPropsType } from "./types";
 import { SidenavContextProvider, useResponsiveSidenavVisibility } from "./SidenavContext";
 import useTranslatedLabels from "../useTranslatedLabels";
@@ -22,8 +22,8 @@ const defaultFooter = () => (
         text: "Linkedin",
       },
       {
-        href: "https://twitter.com/dxctechnology",
-        text: "Twitter",
+        href: "https://x.com/dxctechnology",
+        text: "X",
       },
       {
         href: "https://www.facebook.com/DXCTechnology/",
@@ -33,17 +33,17 @@ const defaultFooter = () => (
     socialLinks={[
       {
         href: "https://www.linkedin.com/company/dxctechnology",
-        logo: linkedinLogo,
+        logo: layoutIcons.linkedinLogo,
         title: "Linkedin",
       },
       {
-        href: "https://twitter.com/dxctechnology",
-        logo: twitterLogo,
-        title: "Twitter",
+        href: "https://x.com/dxctechnology",
+        logo: layoutIcons.xLogo,
+        title: "X",
       },
       {
         href: "https://www.facebook.com/DXCTechnology/",
-        logo: facebookLogo,
+        logo: layoutIcons.facebookLogo,
         title: "Facebook",
       },
     ]}
@@ -77,7 +77,7 @@ const DxcApplicationLayout = ({
     setIsSidenavVisibleResponsive((isSidenavVisibleResponsive) => !isSidenavVisibleResponsive);
   };
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => {
@@ -103,7 +103,7 @@ const DxcApplicationLayout = ({
             aria-label={visibilityToggleLabel ? undefined : translatedLabels.applicationLayout.visibilityToggleTitle}
             title={translatedLabels.applicationLayout.visibilityToggleTitle}
           >
-            {hamburgerIcon}
+            {layoutIcons.hamburgerIcon}
             {visibilityToggleLabel}
           </HamburgerTrigger>
         </VisibilityToggle>
@@ -175,6 +175,7 @@ const HamburgerTrigger = styled.button`
   font-size: 14px;
   color: #000;
   cursor: pointer;
+
   :active {
     background-color: #cccccc;
   }

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { DxcFlex, DxcTabs } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
-import twitterIcon from "../../images/TwitterIcon";
+import xIcon from "../../images/XIcon";
 import PreviewContainer from "./PreviewContainer";
 
 const Tabs = () => {
@@ -59,7 +59,7 @@ const Tabs = () => {
             },
             {
               label: "Tab 2",
-              icon: twitterIcon,
+              icon: xIcon,
               isDisabled: true,
             },
             {
@@ -75,27 +75,27 @@ const Tabs = () => {
           tabs={[
             {
               label: "Tab 1",
-              icon: twitterIcon,
+              icon: xIcon,
               notificationNumber: 30,
             },
             {
               label: "Tab 2",
-              icon: twitterIcon,
+              icon: xIcon,
               notificationNumber: 152,
             },
             {
               label: "Tab 3",
-              icon: twitterIcon,
+              icon: xIcon,
               notificationNumber: true,
             },
             {
               label: "Tab 4",
-              icon: twitterIcon,
+              icon: xIcon,
               notificationNumber: false,
             },
             {
               label: "Tab 5",
-              icon: twitterIcon,
+              icon: xIcon,
               isDisabled: true,
               notificationNumber: true,
             },

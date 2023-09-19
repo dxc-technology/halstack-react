@@ -42,7 +42,7 @@ const options = [
   },
   {
     value: 2,
-    label: "Twitter",
+    label: "X",
   },
   {
     value: 3,
@@ -90,7 +90,7 @@ const twoOptions = [
   },
   {
     value: 2,
-    label: "Twitter",
+    label: "X",
   },
 ];
 
@@ -212,7 +212,7 @@ ToggleGroupSelectedActived.play = async ({ canvasElement }) => {
 export const ToggleGroupUnselectedActived = OptionSelected.bind({});
 ToggleGroupUnselectedActived.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
-  const option = canvas.getByText("Twitter");
+  const option = canvas.getByText("X");
   await userEvent.click(option);
   userEvent.tab();
 };

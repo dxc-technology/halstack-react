@@ -11,7 +11,7 @@ const code = `() => {
     },
     {
       value: 2,
-      label: "Twitter",
+      label: "X",
     },
     {
       value: 3,
