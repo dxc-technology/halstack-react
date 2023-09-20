@@ -488,6 +488,14 @@
     "level5LineHeight": "1.5em",
     "level5LetterSpacing": "0.025em"
   },
+  "image": {
+    "captionFontColor": "#333333",
+    "captionFontFamily": "Open Sans, sans-serif",
+    "captionFontSize": "0.875rem",
+    "captionFontStyle": "normal",
+    "captionFontWeight": "400",
+    "captionLineHeight": "1.5em"
+  },
   "link": {
     "fontColor": "#0067b3",
     "fontFamily": "inherit",
