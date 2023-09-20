@@ -189,16 +189,20 @@ const sections = [
   {
     title: "DxcGrid.Item",
     content: (
-      <DxcParagraph>
-        Compound component representing a child of a grid container. It provides
-        specific placement controls of how individual items stack or align
-        within the grid.{" "}
-        <strong>
-          Every <Code>DxcGrid.Item</Code>'s prop is also available in{" "}
-          <Code>DxcGrid</Code>
-        </strong>{" "}
-        to facilitate the nesting grid containers.
-      </DxcParagraph>
+      <>
+        <DxcParagraph>
+          Compound component representing a child of a grid container. It
+          provides specific placement controls of how individual items stack or
+          align within the grid.
+        </DxcParagraph>
+        <DxcParagraph>
+          <strong>
+            Every <Code>DxcGrid.Item</Code>'s prop is also available in{" "}
+            <Code>DxcGrid</Code>
+          </strong>{" "}
+          to facilitate the nesting of grid containers.
+        </DxcParagraph>
+      </>
     ),
     subSections: [
       {

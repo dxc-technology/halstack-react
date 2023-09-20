@@ -43,8 +43,8 @@ const sections = [
           within a grid and assign them names.{" "}
           <Code>grid-template-columns</Code> defines the line names and track
           sizing functions of the grid columns while{" "}
-          <Code>grid-template-rows</Code>
-          defines the line names and track sizing functions of the grid columns.
+          <Code>grid-template-rows</Code> defines the line names and track
+          sizing functions of the grid columns.
         </DxcParagraph>
       </>
     ),
@@ -54,13 +54,10 @@ const sections = [
     content: (
       <>
         <DxcParagraph>
-          The Grid items are direct descendants of a grid container. Represented
-          by <Code>DxcGrid.Item</Code>, this compound component should be used
-          when the decision to follow the Grid layout pattern is assumed only
-          for the parent container. If the inner layout of a grid item does not
-          make this same compromise and only features props related to the
-          parent container, then that grid item should be wrapped with this
-          component.
+          The Grid items are direct descendants of a grid container. They are
+          represented by the <Code>DxcGrid.Item</Code> tag and should be used
+          when the decision to follow the Grid layout pattern is assumed only by
+          the parent container.
         </DxcParagraph>
         <DxcParagraph>
           In case you are building a complex Grid layout with several nested
