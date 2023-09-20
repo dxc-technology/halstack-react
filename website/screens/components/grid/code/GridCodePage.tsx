@@ -191,24 +191,16 @@ const sections = [
     content: (
       <>
         <DxcParagraph>
-          This compound component should be used when the decision to follow the
-          Grid layout pattern is assumed only for the parent container. If the
-          inner layout of a grid item does not make this same compromise and
-          only features props related to the parent container, then that grid
-          item should be wrapped with this component.
+          Compound component representing a child of a grid container. It
+          provides specific placement controls of how individual items stack or
+          align within the grid.
         </DxcParagraph>
         <DxcParagraph>
-          In case you are building a complex Grid layout with several nested
-          grid containers, <Code>DxcGrid.Item</Code> becomes very limited
-          and therefore, you will have to wrap the children with{" "}
-          <Code>DxcGrid</Code>.
-        </DxcParagraph>
-        <DxcParagraph>
-          So, to fulfil that scenario,{" "}
           <strong>
-            all the <Code>DxcGrid.Item</Code>'s props are also available in{" "}
-            <Code>DxcGrid</Code>.
-          </strong>
+            Every <Code>DxcGrid.Item</Code>'s prop is also available in{" "}
+            <Code>DxcGrid</Code>
+          </strong>{" "}
+          to facilitate the nesting of grid containers.
         </DxcParagraph>
       </>
     ),

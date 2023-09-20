@@ -4,7 +4,11 @@ import TabsPageHeading from "@/common/TabsPageLayout";
 import ComponentHeading from "@/common/ComponentHeading";
 
 const GridPageHeading = ({ children }: { children: React.ReactNode }) => {
-  const tabs = [{ label: "Code", path: "/components/grid" }];
+  const tabs = [
+    { label: "Code", path: "/components/grid" },
+    { label: "Usage", path: "/components/grid/usage" },
+    { label: "Specifications", path: "/components/grid/specifications" },
+  ];
 
   return (
     <DxcFlex direction="column" gap="3rem">
@@ -19,9 +23,9 @@ const GridPageHeading = ({ children }: { children: React.ReactNode }) => {
             >
               CSS Grid Layout
             </DxcLink>
-            . It is a technical component that abstracts users from
-            working directly with CSS Grid properties and allows them to write
-            more consistent and semantic layouts.
+            . It is a technical component that abstracts users from working
+            directly with CSS Grid properties and allows them to write more
+            consistent and semantic layouts.
           </DxcParagraph>
           <TabsPageHeading tabs={tabs}></TabsPageHeading>
         </DxcFlex>
