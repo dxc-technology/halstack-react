@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { getMargin } from "../common/utils";
 import useTheme from "../useTheme";
@@ -6,7 +6,6 @@ import useTranslatedLabels from "../useTranslatedLabels";
 import { spaces } from "../common/variables";
 import { v4 as uuidv4 } from "uuid";
 import BackgroundColorContext, { BackgroundColors } from "../BackgroundColorContext";
-import { useLayoutEffect } from "react";
 import TextareaPropsType, { RefType } from "./types";
 
 const patternMatch = (pattern, value) => new RegExp(pattern).test(value);
@@ -21,6 +20,7 @@ const DxcTextarea = React.forwardRef<RefType, TextareaPropsType>(
       helperText,
       placeholder = "",
       disabled = false,
+      readOnly = false,
       optional = false,
       verticalGrow = "auto",
       rows = 4,
@@ -81,7 +81,7 @@ const DxcTextarea = React.forwardRef<RefType, TextareaPropsType>(
       changeValue(event.target.value);
     };
 
-    useLayoutEffect(() => {
+    useEffect(() => {
       if (verticalGrow === "auto") {
         const textareaLineHeight = parseInt(window.getComputedStyle(textareaRef.current)["line-height"]);
         const textareaPaddingTopBottom = parseInt(window.getComputedStyle(textareaRef.current)["padding-top"]) * 2;
@@ -114,6 +114,7 @@ const DxcTextarea = React.forwardRef<RefType, TextareaPropsType>(
             onChange={handleTOnChange}
             onBlur={handleTOnBlur}
             disabled={disabled}
+            readOnly={readOnly}
             error={error}
             minLength={minLength}
             maxLength={maxLength}
@@ -215,12 +216,13 @@ const Textarea = styled.textarea<{
   backgroundType: BackgroundColors;
   error: TextareaPropsType["error"];
 }>`
-  ${(props) => {
-    if (props.verticalGrow === "none") return "resize: none;";
-    else if (props.verticalGrow === "auto") return `resize: none; overflow: hidden;`;
-    else if (props.verticalGrow === "manual") return "resize: vertical;";
+  ${({ verticalGrow }) => {
+    if (verticalGrow === "none") return "resize: none;";
+    else if (verticalGrow === "auto") return `resize: none; overflow: hidden;`;
+    else if (verticalGrow === "manual") return "resize: vertical;";
     else return `resize: none;`;
   }};
+
   ${(props) => {
     if (props.disabled)
       return props.backgroundType === "dark"
@@ -238,26 +240,30 @@ const Textarea = styled.textarea<{
         return props.backgroundType === "dark"
           ? props.theme.disabledBorderColorOnDark
           : props.theme.disabledBorderColor;
+      else if (props.error) return "transparent";
+      else if (props.readOnly) return props.theme.readOnlyBorderColor;
       else
         return props.backgroundType === "dark" ? props.theme.enabledBorderColorOnDark : props.theme.enabledBorderColor;
     }};
+
   ${(props) =>
     props.error &&
     !props.disabled &&
-    `border-color: transparent;
-     box-shadow: 0 0 0 2px ${
-       props.backgroundType === "dark" ? props.theme.errorBorderColorOnDark : props.theme.errorBorderColor
-     };
+    `box-shadow: 0 0 0 2px ${
+      props.backgroundType === "dark" ? props.theme.errorBorderColorOnDark : props.theme.errorBorderColor
+    };
   `}
 
-  ${(props) => props.disabled && "cursor: not-allowed;"};
   ${(props) =>
     !props.disabled &&
     `
+      cursor: not-allowed;
       &:hover {
         border-color: ${
           props.error
             ? "transparent"
+            : props.readOnly
+            ? props.theme.hoverReadOnlyBorderColor
             : props.backgroundType === "dark"
             ? props.theme.hoverBorderColorOnDark
             : props.theme.hoverBorderColor
@@ -271,14 +277,7 @@ const Textarea = styled.textarea<{
           };`
         }
       }
-      &:focus {
-        outline: none;
-        border-color: transparent;
-        box-shadow: 0 0 0 2px ${
-          props.backgroundType === "dark" ? props.theme.focusBorderColorOnDark : props.theme.focusBorderColor
-        };
-      }
-      &:focus-within {
+      &:focus, &:focus-within {
         outline: none;
         border-color: transparent;
         box-shadow: 0 0 0 2px ${

@@ -8,6 +8,7 @@ import controlled from "./examples/controlled";
 import uncontrolled from "./examples/uncontrolled";
 import errorHandling from "./examples/errorHandling";
 import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
+import StatusTag from "@/common/StatusTag";
 
 const sections = [
   {
@@ -63,6 +64,21 @@ const sections = [
               <Code>false</Code>
             </td>
             <td>If true, the component will be disabled.</td>
+          </tr>
+          <tr>
+            <td>
+              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                <StatusTag status="Information">New</StatusTag>readOnly:
+                boolean
+              </DxcFlex>
+            </td>
+            <td>
+              <Code>false</Code>
+            </td>
+            <td>
+              If true, the component will be not mutable, meaning the user can
+              not edit the control.
+            </td>
           </tr>
           <tr>
             <td>optional: boolean</td>

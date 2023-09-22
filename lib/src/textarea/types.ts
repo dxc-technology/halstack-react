@@ -36,6 +36,10 @@ type Props = {
    */
   disabled?: boolean;
   /**
+   * If true, the component will be not mutable, meaning the user can not edit the control.
+   */
+  readOnly?: boolean;
+  /**
    * If true, the textarea will be optional, showing '(Optional)'
    * next to the label. Otherwise, the field will be considered required
    * and an error will be passed as a parameter to the OnBlur and onChange functions
@@ -59,7 +63,7 @@ type Props = {
    * entered is not valid) will be passed to this function.
    * If there is no error, error will not be defined.
    */
-  onChange?: (val: { value: string; error?: string}) => void;
+  onChange?: (val: { value: string; error?: string }) => void;
   /**
    * This function will be called when the textarea loses the focus. An
    * object including the textarea value and the error (if the value entered
@@ -68,11 +72,11 @@ type Props = {
    */
   onBlur?: (val: { value: string; error?: string }) => void;
   /**
-   * If it is a defined value and also a truthy string, the component will 
-   * change its appearance, showing the error below the textarea. If the 
+   * If it is a defined value and also a truthy string, the component will
+   * change its appearance, showing the error below the textarea. If the
    * defined value is an empty string, it will reserve a space below the
-   * component for a future error, but it would not change its look. In 
-   * case of being undefined or null, both the appearance and the space for 
+   * component for a future error, but it would not change its look. In
+   * case of being undefined or null, both the appearance and the space for
    * the error message would not be modified.
    */
   error?: string;
