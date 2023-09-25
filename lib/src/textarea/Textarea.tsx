@@ -255,10 +255,8 @@ const Textarea = styled.textarea<{
   `}
 
   ${(props) =>
-    !props.disabled &&
-    `
-      cursor: not-allowed;
-      &:hover {
+    !props.disabled
+      ? `&:hover {
         border-color: ${
           props.error
             ? "transparent"
@@ -283,8 +281,8 @@ const Textarea = styled.textarea<{
         box-shadow: 0 0 0 2px ${
           props.backgroundType === "dark" ? props.theme.focusBorderColorOnDark : props.theme.focusBorderColor
         };
-      }
-    `};
+      }`
+      : "cursor: not-allowed;"};
 
   color: ${(props) =>
     props.disabled
