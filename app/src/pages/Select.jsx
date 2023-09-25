@@ -242,9 +242,9 @@ function App() {
           icon: "https://cdn.icon-icons.com/icons2/2518/PNG/512/brand_instagram_icon_151534.png",
         },
         {
-          label: "Twitter",
+          label: "LinkedIn",
           value: "2",
-          icon: "https://cdn-icons-png.flaticon.com/512/81/81609.png",
+          icon: "https://iconape.com/wp-content/files/yd/367773/svg/logo-linkedin-logo-icon-png-svg.png",
         },
         {
           label: "Facebook",

@@ -4,7 +4,7 @@ import {
   HalstackProvider,
 } from "@dxc-technology/halstack-react";
 import { useState } from "react";
-import twitterPath from "../images/twitter-black.svg";
+import XIcon from "../images/x.svg";
 
 const colors = {
   toggleGroup: {
@@ -79,7 +79,7 @@ function App() {
     },
     {
       value: 3,
-      icon: <img src={twitterPath} alt="Twitter" />,
+      icon: <img src={XIcon} alt="X" />,
     },
   ];
 
@@ -109,8 +109,8 @@ function App() {
     },
     {
       value: 3,
-      label: "Ebay",
-      icon: <img src={twitterPath} alt="Twitter" />,
+      label: "X",
+      icon: <img src={XIcon} alt="X" />,
     },
   ];
 

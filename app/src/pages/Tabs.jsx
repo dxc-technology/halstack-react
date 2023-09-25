@@ -6,7 +6,7 @@ import {
   HalstackProvider,
   HalstackContext,
 } from "@dxc-technology/halstack-react";
-import twitterIcon from "../images/twitter-black.svg";
+import XIcon from "../images/x.svg";
 
 const linkedinSVG = (
   <img
@@ -224,8 +224,8 @@ function Tabs() {
               ),
             },
             {
-              label: "Twitter",
-              icon: <img src={twitterIcon} alt="Twitter" />,
+              label: "X",
+              icon: <img src={XIcon} alt="X" />,
             },
           ]}
         />
@@ -266,8 +266,8 @@ function Tabs() {
               ),
             },
             {
-              label: "Twitter",
-              icon: <img src={twitterIcon} alt="Twitter" />,
+              label: "X",
+              icon: <img src={XIcon} alt="X" />,
             },
           ]}
         />
@@ -740,8 +740,8 @@ function Tabs() {
               ),
             },
             {
-              label: "Twitter",
-              icon: <img src={twitterIcon} alt="Twitter" />,
+              label: "X",
+              icon: <img src={XIcon} alt="X" />,
               notificationNumber: 30,
             },
           ]}
@@ -784,9 +784,9 @@ function Tabs() {
               ),
             },
             {
-              label: "Twitter",
+              label: "X",
               notificationNumber: 20,
-              icon: <img src={twitterIcon} alt="Twitter" />,
+              icon: <img src={XIcon} alt="X" />,
             },
           ]}
         />
@@ -849,8 +849,8 @@ function Tabs() {
                 ),
               },
               {
-                label: "Twitter",
-                icon: <img src={twitterIcon} alt="Twitter" />,
+                label: "X",
+                icon: <img src={XIcon} alt="X" />,
               },
             ]}
           />

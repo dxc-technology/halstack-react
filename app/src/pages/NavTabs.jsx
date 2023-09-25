@@ -1,6 +1,6 @@
 import React from "react";
 import { DxcNavTabs } from "@dxc-technology/halstack-react";
-import twitterIcon from "../images/twitter-black.svg";
+import XIcon from "../images/x.svg";
 import { Link as RouterLink } from "react-router-dom";
 
 const linkedinSVG = (
@@ -45,11 +45,7 @@ function NavTabs() {
           <DxcNavTabs.Tab href="/test3" notificationNumber>
             Tab 3
           </DxcNavTabs.Tab>
-          <DxcNavTabs.Tab
-            href="/test5"
-            notificationNumber={100}
-            icon={twitterIcon}
-          >
+          <DxcNavTabs.Tab href="/test5" notificationNumber={100} icon={XIcon}>
             Tab 4
           </DxcNavTabs.Tab>
           <DxcNavTabs.Tab href="/test6" icon={linkedinSVG}>
@@ -69,7 +65,7 @@ function NavTabs() {
           <DxcNavTabs.Tab href="#" notificationNumber>
             Tab 3
           </DxcNavTabs.Tab>
-          <DxcNavTabs.Tab href="#" notificationNumber={100} icon={twitterIcon}>
+          <DxcNavTabs.Tab href="#" notificationNumber={100} icon={XIcon}>
             Tab 4
           </DxcNavTabs.Tab>
           <DxcNavTabs.Tab href="#" icon={linkedinSVG}>
@@ -80,7 +76,7 @@ function NavTabs() {
       <div className="test-case" id="max-size">
         <h4>Long label</h4>
         <DxcNavTabs>
-          <DxcNavTabs.Tab href="#" icon={twitterIcon}>
+          <DxcNavTabs.Tab href="#" icon={XIcon}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit
           </DxcNavTabs.Tab>
           <DxcNavTabs.Tab href="#" icon={linkedinSVG} active>
@@ -91,7 +87,7 @@ function NavTabs() {
       <div className="test-case" id="max-size-icon-left">
         <h4>Long label icon left</h4>
         <DxcNavTabs iconPosition="left">
-          <DxcNavTabs.Tab href="#" icon={twitterIcon}>
+          <DxcNavTabs.Tab href="#" icon={XIcon}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit
           </DxcNavTabs.Tab>
           <DxcNavTabs.Tab href="#" icon={linkedinSVG} active>
@@ -115,7 +111,7 @@ function NavTabs() {
             to="/test"
             component={DxcNavTabs.Tab}
             notificationNumber={100}
-            icon={twitterIcon}
+            icon={XIcon}
           >
             Tab 4
           </RouterLink>
@@ -137,7 +133,7 @@ function NavTabs() {
             to="/test"
             component={DxcNavTabs.Tab}
             notificationNumber={100}
-            icon={twitterIcon}
+            icon={XIcon}
           >
             Tab 4
           </RouterLink>
