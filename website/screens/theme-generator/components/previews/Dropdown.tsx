@@ -3,7 +3,7 @@ import { DxcDropdown } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
 import facebookIcon from "../../images/FacebookIcon";
 import linkedinIcon from "../../images/LinkedinIcon";
-import twitterIcon from "../../images/TwitterIcon";
+import xIcon from "../../images/XIcon";
 import PreviewContainer from "./PreviewContainer";
 
 const options = [
@@ -29,8 +29,8 @@ const iconOptions = [
   },
   {
     value: "2",
-    label: "Twitter",
-    icon: twitterIcon,
+    label: "X",
+    icon: xIcon,
   },
   {
     value: "3",

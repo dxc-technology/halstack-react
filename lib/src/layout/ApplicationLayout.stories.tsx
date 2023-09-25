@@ -4,7 +4,7 @@ import Title from "../../.storybook/components/Title";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 
 export default {
-  title: "Application Layout ",
+  title: "Application Layout",
   component: DxcApplicationLayout,
   parameters: {
     viewport: {

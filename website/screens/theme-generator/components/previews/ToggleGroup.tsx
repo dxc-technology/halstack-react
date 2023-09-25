@@ -3,7 +3,7 @@ import { DxcToggleGroup } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
 import facebookIcon from "../../images/FacebookIcon";
 import linkedinIcon from "../../images/LinkedinIcon";
-import twitterIcon from "../../images/TwitterIcon";
+import xIcon from "../../images/XIcon";
 import PreviewContainer from "./PreviewContainer";
 
 const options = [
@@ -13,7 +13,7 @@ const options = [
   },
   {
     value: 2,
-    label: "Twitter",
+    label: "X",
   },
   {
     value: 3,
@@ -34,8 +34,8 @@ const optionsWithIcons = [
   },
   {
     value: 3,
-    label: "Twitter",
-    icon: twitterIcon,
+    label: "X",
+    icon: xIcon,
   },
 ];
 
