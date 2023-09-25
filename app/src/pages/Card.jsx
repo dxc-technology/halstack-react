@@ -1,6 +1,6 @@
 import React from "react";
 import { DxcCard } from "@dxc-technology/halstack-react";
-import twitterIcon from "../images/twitter.svg";
+import XIcon from "../images/x.svg";
 
 function App() {
   return (
@@ -33,38 +33,38 @@ function App() {
         <h4>Image Background Color</h4>
         <DxcCard
           imageBgColor="#6B4187"
-          imageSrc={twitterIcon}
+          imageSrc={XIcon}
           imagePadding="xxlarge"
         />
       </div>
       <h4>Image Paddings</h4>
       <div className="test-case" id="xxsmall-imagePadding">
         <h4>xxsmall imagePadding</h4>
-        <DxcCard imageSrc={twitterIcon} imagePadding="xxsmall" />
+        <DxcCard imageSrc={XIcon} imagePadding="xxsmall" />
       </div>
       <div className="test-case" id="xsmall-imagePadding">
         <h4>xsmall imagePadding</h4>
-        <DxcCard imageSrc={twitterIcon} imagePadding="xsmall" />
+        <DxcCard imageSrc={XIcon} imagePadding="xsmall" />
       </div>
       <div className="test-case" id="small-imagePadding">
         <h4>small imagePadding</h4>
-        <DxcCard imageSrc={twitterIcon} imagePadding="small" />
+        <DxcCard imageSrc={XIcon} imagePadding="small" />
       </div>
       <div className="test-case" id="medium-imagePadding">
         <h4>medium imagePadding</h4>
-        <DxcCard imageSrc={twitterIcon} imagePadding="medium" />
+        <DxcCard imageSrc={XIcon} imagePadding="medium" />
       </div>
       <div className="test-case" id="large-imagePadding">
         <h4>large imagePadding</h4>
-        <DxcCard imageSrc={twitterIcon} imagePadding="large" />
+        <DxcCard imageSrc={XIcon} imagePadding="large" />
       </div>
       <div className="test-case" id="xlarge-imagePadding">
         <h4>xlarge imagePadding</h4>
-        <DxcCard imageSrc={twitterIcon} imagePadding="xlarge" />
+        <DxcCard imageSrc={XIcon} imagePadding="xlarge" />
       </div>
       <div className="test-case" id="xxlarge-imagePadding">
         <h4>xxlarge imagePadding</h4>
-        <DxcCard imageSrc={twitterIcon} imagePadding="xxlarge" />
+        <DxcCard imageSrc={XIcon} imagePadding="xxlarge" />
       </div>
       <h4>Margins</h4>
       <div className="test-case" id="xxsmall-margin">
