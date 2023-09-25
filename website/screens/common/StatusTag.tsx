@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 type StatusTagProps = {
-  status: "Deprecated" | "Experimental" | "Information" | "Ready";
+  status?: "Deprecated" | "Experimental" | "Information" | "Ready";
   children: React.ReactNode;
 };
 
