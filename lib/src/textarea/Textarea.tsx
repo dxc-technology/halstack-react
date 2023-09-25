@@ -122,9 +122,9 @@ const DxcTextarea = React.forwardRef<RefType, TextareaPropsType>(
             backgroundType={backgroundType}
             ref={textareaRef}
             tabIndex={tabIndex}
-            aria-invalid={error ? "true" : "false"}
+            aria-invalid={error ? true : false}
             aria-errormessage={error ? errorId : undefined}
-            aria-required={optional ? "false" : "true"}
+            aria-required={!disabled && !optional}
           />
           {!disabled && typeof error === "string" && (
             <Error id={errorId} backgroundType={backgroundType} aria-live={error ? "assertive" : "off"}>
