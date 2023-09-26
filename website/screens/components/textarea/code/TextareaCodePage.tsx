@@ -76,8 +76,7 @@ const sections = [
               <Code>false</Code>
             </td>
             <td>
-              If true, the component will be not mutable, meaning the user can
-              not edit the control.
+              If true, the component will not be mutable, meaning the user can not edit the control.
             </td>
           </tr>
           <tr>
