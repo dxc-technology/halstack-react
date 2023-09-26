@@ -42,6 +42,16 @@ const DateInputChromatic = () => (
       />
     </ExampleContainer>
     <ExampleContainer>
+      <Title title="Read only" theme="light" level={4} />
+      <DxcDateInput
+        label="Example label"
+        helperText="Help message"
+        defaultValue="06-04-2007"
+        clearable
+        readOnly
+      />
+    </ExampleContainer>
+    <ExampleContainer>
       <Title title="Invalid" theme="light" level={4} />
       <DxcDateInput label="Error date input" error="Error message." placeholder />
     </ExampleContainer>
