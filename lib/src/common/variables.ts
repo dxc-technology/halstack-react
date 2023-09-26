@@ -1051,6 +1051,8 @@ export const componentTokens = {
     disabledBorderColorOnDark: CORE_TOKENS.color_grey_500,
     disabledContainerFillColor: CORE_TOKENS.color_grey_100,
     disabledContainerFillColorOnDark: CORE_TOKENS.color_grey_700,
+    readOnlyBorderColor: CORE_TOKENS.color_grey_500,
+    hoverReadOnlyBorderColor: CORE_TOKENS.color_grey_600,
     errorBorderColor: CORE_TOKENS.color_red_700,
     errorBorderColorOnDark: CORE_TOKENS.color_red_500,
     hoverErrorBorderColor: CORE_TOKENS.color_red_600,

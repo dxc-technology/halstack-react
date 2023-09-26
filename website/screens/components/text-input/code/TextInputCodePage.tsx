@@ -10,6 +10,7 @@ import action from "./examples/action";
 import functionSuggestions from "./examples/functionSuggestions";
 import errorHandling from "./examples/errorHandling";
 import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
+import StatusTag from "@/common/StatusTag";
 
 const sections = [
   {
@@ -102,6 +103,20 @@ const sections = [
               will be considered required and an error will be passed as a
               parameter to the OnBlur and onChange functions when it has not
               been filled.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                <StatusTag status="Information">New</StatusTag>readOnly: boolean
+              </DxcFlex>
+            </td>
+            <td>
+              <Code>false</Code>
+            </td>
+            <td>
+              If true, the component will not be mutable, meaning the user can
+              not edit the control.
             </td>
           </tr>
           <tr>
