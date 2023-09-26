@@ -66,21 +66,6 @@ const sections = [
             <td>If true, the component will be disabled.</td>
           </tr>
           <tr>
-            <td>
-              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                <StatusTag status="Information">New</StatusTag>readOnly:
-                boolean
-              </DxcFlex>
-            </td>
-            <td>
-              <Code>false</Code>
-            </td>
-            <td>
-              If true, the component will be not mutable, meaning the user can
-              not edit the control.
-            </td>
-          </tr>
-          <tr>
             <td>optional: boolean</td>
             <td>
               <Code>false</Code>
@@ -91,6 +76,20 @@ const sections = [
               will be considered required and an error will be passed as a
               parameter to the OnBlur and onChange functions when it has not
               been filled.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                <StatusTag status="Information">New</StatusTag>readOnly:
+                boolean
+              </DxcFlex>
+            </td>
+            <td>
+              <Code>false</Code>
+            </td>
+            <td>
+              If true, the component will not be mutable, meaning the user can not edit the control.
             </td>
           </tr>
           <tr>
