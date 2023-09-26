@@ -64,7 +64,15 @@ const DxcTextarea = React.forwardRef<RefType, TextareaPropsType>(
       else onChange?.({ value: newValue });
     };
 
-    const handleTOnBlur = (event) => {
+    const autoVerticalGrow = () => {
+      const textareaLineHeight = parseInt(window.getComputedStyle(textareaRef.current)["line-height"]);
+      const textareaPaddingTopBottom = parseInt(window.getComputedStyle(textareaRef.current)["padding-top"]) * 2;
+      textareaRef.current.style.height = `${textareaLineHeight * rows}px`;
+      const newHeight = textareaRef.current.scrollHeight - textareaPaddingTopBottom;
+      textareaRef.current.style.height = `${newHeight}px`;
+    };
+
+    const handleOnBlur = (event) => {
       if (isNotOptional(event.target.value))
         onBlur?.({ value: event.target.value, error: translatedLabels.formFields.requiredValueErrorMessage });
       else if (isLengthIncorrect(event.target.value))
@@ -77,19 +85,10 @@ const DxcTextarea = React.forwardRef<RefType, TextareaPropsType>(
       else onBlur?.({ value: event.target.value });
     };
 
-    const handleTOnChange = (event) => {
+    const handleOnChange = (event) => {
       changeValue(event.target.value);
+      verticalGrow === "auto" && autoVerticalGrow();
     };
-
-    useEffect(() => {
-      if (verticalGrow === "auto") {
-        const textareaLineHeight = parseInt(window.getComputedStyle(textareaRef.current)["line-height"]);
-        const textareaPaddingTopBottom = parseInt(window.getComputedStyle(textareaRef.current)["padding-top"]) * 2;
-        textareaRef.current.style.height = `${textareaLineHeight * rows}px`;
-        const newHeight = textareaRef.current.scrollHeight - textareaPaddingTopBottom;
-        textareaRef.current.style.height = `${newHeight}px`;
-      }
-    }, [value, verticalGrow, rows, innerValue]);
 
     return (
       <ThemeProvider theme={colorsTheme.textarea}>
@@ -111,8 +110,8 @@ const DxcTextarea = React.forwardRef<RefType, TextareaPropsType>(
             placeholder={placeholder}
             verticalGrow={verticalGrow}
             rows={rows}
-            onChange={handleTOnChange}
-            onBlur={handleTOnBlur}
+            onChange={handleOnChange}
+            onBlur={handleOnBlur}
             disabled={disabled}
             readOnly={readOnly}
             error={error}
