@@ -86,6 +86,20 @@ const sections = [
             </td>
           </tr>
           <tr>
+            <td>
+              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                <StatusTag status="Information">New</StatusTag>readOnly: boolean
+              </DxcFlex>
+            </td>
+            <td>
+              <Code>false</Code>
+            </td>
+            <td>
+              If true, the component will not be mutable, meaning the user can
+              not edit the control.
+            </td>
+          </tr>
+          <tr>
             <td>onChange: function</td>
             <td></td>
             <td>

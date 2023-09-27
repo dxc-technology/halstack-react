@@ -38,6 +38,22 @@ const Checkbox = () => (
       <Title title="Disabled, checked and optional" theme="light" level={4} />
       <DxcCheckbox label="Checkbox" disabled defaultChecked optional />
     </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Read-only" theme="light" level={4} />
+      <DxcCheckbox label="Checkbox" readOnly />
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-hover">
+      <Title title="Hovered read-only" theme="light" level={4} />
+      <DxcCheckbox label="Checkbox" readOnly />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Read-only, checked and optional" theme="light" level={4} />
+      <DxcCheckbox label="Checkbox" readOnly defaultChecked optional />
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-hover">
+      <Title title="Hovered read-only and checked" theme="light" level={4} />
+      <DxcCheckbox label="Checkbox" readOnly defaultChecked optional />
+    </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-focus">
       <Title title="Focused" theme="light" level={4} />
       <DxcCheckbox label="Focused" />
