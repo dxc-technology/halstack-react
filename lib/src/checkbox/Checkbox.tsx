@@ -98,6 +98,7 @@ const DxcCheckbox = React.forwardRef<RefType, CheckboxPropsType>(
               tabIndex={disabled ? -1 : tabIndex}
               aria-checked={checked ?? innerChecked}
               aria-disabled={disabled}
+              aria-readonly={readOnly}
               aria-required={!disabled && !optional}
               aria-labelledby={labelId}
               backgroundType={backgroundType}
@@ -273,7 +274,7 @@ const MainContainer = styled.div<{
     props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
   margin-left: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
-  cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
+  cursor: ${(props) => (props.disabled ? "not-allowed" : props.readOnly ? "default" : "pointer")};
 
   &:hover ${Checkbox} {
     border: 2px solid
