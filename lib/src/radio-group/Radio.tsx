@@ -13,7 +13,7 @@ const DxcRadio = ({
   error,
   disabled,
   focused,
-  readonly,
+  readOnly,
   tabIndex,
 }: RadioProps): JSX.Element => {
   const [radioLabelId] = useState(`radio-${uuidv4()}`);
@@ -41,14 +41,14 @@ const DxcRadio = ({
         <RadioContainer
           error={error}
           disabled={disabled}
-          readonly={readonly}
+          readOnly={readOnly}
           onClick={disabled ? undefined : handleOnClick}
         >
           <RadioInputContainer>
             <RadioInput
               error={error}
               disabled={disabled}
-              readonly={readonly}
+              readOnly={readOnly}
               role="radio"
               aria-checked={checked}
               aria-disabled={disabled}
@@ -56,7 +56,7 @@ const DxcRadio = ({
               tabIndex={disabled ? -1 : focused ? tabIndex : -1}
               ref={ref}
             >
-              {checked && <Dot disabled={disabled} readonly={readonly} error={error} />}
+              {checked && <Dot disabled={disabled} readOnly={readOnly} error={error} />}
             </RadioInput>
           </RadioInputContainer>
           <Label id={radioLabelId} disabled={disabled}>
@@ -71,7 +71,7 @@ const DxcRadio = ({
 type CommonStylingProps = {
   error: RadioProps["error"];
   disabled: RadioProps["disabled"];
-  readonly: RadioProps["readonly"];
+  readOnly: RadioProps["readOnly"];
 };
 const getRadioInputStateColor = (
   props: CommonStylingProps & { theme: AdvancedTheme["radioGroup"] },
@@ -83,20 +83,20 @@ const getRadioInputStateColor = (
         ? props.theme.disabledRadioInputColor
         : props.error
         ? props.theme.errorRadioInputColor
-        : props.readonly
-        ? props.theme.readonlyRadioInputColor
+        : props.readOnly
+        ? props.theme.readOnlyRadioInputColor
         : props.theme.radioInputColor;
     case "hover":
       return props.error
         ? props.theme.hoverErrorRadioInputColor
-        : props.readonly
-        ? props.theme.hoverReadonlyRadioInputColor
+        : props.readOnly
+        ? props.theme.hoverReadOnlyRadioInputColor
         : props.theme.hoverRadioInputColor;
     case "active":
       return props.error
         ? props.theme.activeErrorRadioInputColor
-        : props.readonly
-        ? props.theme.activeReadonlyRadioInputColor
+        : props.readOnly
+        ? props.theme.activeReadOnlyRadioInputColor
         : props.theme.activeRadioInputColor;
   }
 };
@@ -149,7 +149,7 @@ const Label = styled.span<{ disabled: RadioProps["disabled"] }>`
 const RadioContainer = styled.span<CommonStylingProps>`
   display: inline-flex;
   align-items: center;
-  cursor: ${(props) => (props.disabled ? "not-allowed" : props.readonly ? "default" : "pointer")};
+  cursor: ${(props) => (props.disabled ? "not-allowed" : props.readOnly ? "default" : "pointer")};
 
   &:hover {
     ${RadioInput} {
