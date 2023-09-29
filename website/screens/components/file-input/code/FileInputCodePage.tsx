@@ -1,9 +1,4 @@
-import {
-  DxcFlex,
-  DxcTable,
-  DxcLink,
-  DxcGrid,
-} from "@dxc-technology/halstack-react";
+import { DxcFlex, DxcTable, DxcLink } from "@dxc-technology/halstack-react";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import Code from "@/common/Code";
@@ -29,14 +24,14 @@ const sections = [
         </thead>
         <tbody>
           <tr>
-            <td>name: string</td>
-            <td></td>
             <td>
-              <DxcGrid gap="0.25rem" placeItems="start">
-                <StatusTag status="Deprecated">Deprecated</StatusTag>
-                Name attribute.
-              </DxcGrid>
+              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                <StatusTag status="Deprecated">Deprecated</StatusTag>name:
+                string
+              </DxcFlex>
             </td>
+            <td></td>
+            <td>Name attribute.</td>
           </tr>
           <tr>
             <td>mode: 'file' | 'filedrop' | 'dropzone'</td>
