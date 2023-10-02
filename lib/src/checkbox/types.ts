@@ -42,6 +42,10 @@ type Props = {
    */
   optional?: boolean;
   /**
+   * If true, the component will not be mutable, meaning the user can not edit the control.
+   */
+  readOnly?: boolean;
+  /**
    * This function will be called when the user clicks the checkbox.
    * The new value will be passed as a parameter.
    */
