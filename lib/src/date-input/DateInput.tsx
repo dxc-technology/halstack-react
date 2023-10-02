@@ -45,6 +45,7 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
       placeholder = false,
       clearable,
       disabled,
+      readOnly,
       optional,
       onChange,
       onBlur,
@@ -75,7 +76,7 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
       if (value || value === "") setDayjsDate(getDate(value, format, lastValidYear, setLastValidYear));
     }, [value, format, lastValidYear]);
 
-    useLayoutEffect(() => {
+    useEffect(() => {
       if (!disabled) {
         const actionButtonRef = dateRef?.current.querySelector("[title='Open calendar']");
         actionButtonRef?.setAttribute("aria-haspopup", true);
@@ -103,7 +104,7 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
           });
     };
 
-    const handleIOnChange = ({ value: newValue, error: inputError }) => {
+    const handleOnChange = ({ value: newValue, error: inputError }) => {
       value ?? setInnerValue(newValue);
       const newDate = getDate(newValue, format, lastValidYear, setLastValidYear);
       const invalidDateMessage =
@@ -124,7 +125,7 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
         setDayjsDate(null);
       }
     };
-    const handleIOnBlur = ({ value, error: inputError }) => {
+    const handleOnBlur = ({ value, error: inputError }) => {
       const date = getDate(value, format, lastValidYear, setLastValidYear);
       const invalidDateMessage = value !== "" && !date.isValid() && translatedLabels.dateInput.invalidDateErrorMessage;
       const callbackParams =
@@ -172,9 +173,10 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
                 }}
                 clearable={clearable}
                 disabled={disabled}
+                readOnly={readOnly}
                 optional={optional}
-                onChange={handleIOnChange}
-                onBlur={handleIOnBlur}
+                onChange={handleOnChange}
+                onBlur={handleOnBlur}
                 error={error}
                 autocomplete={autocomplete}
                 margin={margin}

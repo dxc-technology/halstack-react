@@ -69,6 +69,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
       action,
       clearable = false,
       disabled = false,
+      readOnly = false,
       optional = false,
       prefix = "",
       suffix = "",
@@ -348,6 +349,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
           <InputContainer
             error={error ? true : false}
             disabled={disabled}
+            readOnly={readOnly}
             backgroundType={backgroundType}
             onClick={handleInputContainerOnClick}
             onMouseDown={handleInputContainerOnMouseDown}
@@ -406,6 +408,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
                   event.stopPropagation();
                 }}
                 disabled={disabled}
+                readOnly={readOnly}
                 ref={inputRef}
                 backgroundType={backgroundType}
                 pattern={pattern}
@@ -426,7 +429,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
                 }
                 aria-invalid={error ? true : false}
                 aria-errormessage={error ? errorId : undefined}
-                aria-required={optional ? false : true}
+                aria-required={!disabled && !optional}
               />
             </AutosuggestWrapper>
             {!disabled && error && (
@@ -434,7 +437,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
                 {icons.error}
               </ErrorIcon>
             )}
-            {!disabled && clearable && (value ?? innerValue).length > 0 && (
+            {!disabled && !readOnly && clearable && (value ?? innerValue).length > 0 && (
               <Action
                 aria-label={translatedLabels.textInput.clearFieldActionTitle}
                 onClick={handleClearActionOnClick}
@@ -487,7 +490,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
               <Action
                 aria-label={action.title}
                 disabled={disabled}
-                onClick={action.onClick}
+                onClick={!readOnly ? action.onClick : undefined}
                 onMouseDown={(event) => {
                   event.stopPropagation();
                 }}
@@ -579,6 +582,7 @@ const HelperText = styled.span<{ disabled: TextInputPropsType["disabled"]; backg
 
 const InputContainer = styled.div<{
   disabled: TextInputPropsType["disabled"];
+  readOnly: TextInputPropsType["readOnly"];
   error: boolean;
   backgroundType: BackgroundColors;
 }>`
@@ -602,6 +606,7 @@ const InputContainer = styled.div<{
         return props.backgroundType === "dark"
           ? props.theme.disabledBorderColorOnDark
           : props.theme.disabledBorderColor;
+      else if (props.readOnly) return props.theme.readOnlyBorderColor;
       else
         return props.backgroundType === "dark" ? props.theme.enabledBorderColorOnDark : props.theme.enabledBorderColor;
     }};
@@ -613,15 +618,16 @@ const InputContainer = styled.div<{
        props.backgroundType === "dark" ? props.theme.errorBorderColorOnDark : props.theme.errorBorderColor
      };
   `}
-  ${(props) => props.disabled && "cursor: not-allowed;"};
 
   ${(props) =>
-    !props.disabled &&
-    `
+    !props.disabled
+      ? `
       &:hover {
         border-color: ${
           props.error
             ? "transparent"
+            : props.readOnly
+            ? props.theme.hoverReadOnlyBorderColor
             : props.backgroundType === "dark"
             ? props.theme.hoverBorderColorOnDark
             : props.theme.hoverBorderColor
@@ -642,7 +648,8 @@ const InputContainer = styled.div<{
           props.backgroundType === "dark" ? props.theme.focusBorderColorOnDark : props.theme.focusBorderColor
         };
       }
-    `};
+    `
+      : "cursor: not-allowed;"};
 `;
 
 const Input = styled.input<{ backgroundType: BackgroundColors }>`

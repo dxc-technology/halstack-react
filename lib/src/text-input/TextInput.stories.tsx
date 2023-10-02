@@ -186,6 +186,45 @@ export const Chromatic = () => (
         action={action}
       />
     </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Read only" theme="light" level={4} />
+      <DxcTextInput
+        label="Example label"
+        helperText="Help message"
+        clearable
+        readOnly
+        optional
+        prefix="+34"
+        defaultValue="Text"
+        action={action}
+      />
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-hover">
+      <Title title="Hovered read only" theme="light" level={4} />
+      <DxcTextInput
+        label="Example label"
+        helperText="Help message"
+        clearable
+        readOnly
+        optional
+        prefix="+34"
+        defaultValue="Text"
+        action={action}
+      />
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-active">
+      <Title title="Active read only" theme="light" level={4} />
+      <DxcTextInput
+        label="Example label"
+        helperText="Help message"
+        clearable
+        readOnly
+        optional
+        prefix="+34"
+        defaultValue="Text"
+        action={action}
+      />
+    </ExampleContainer>
     <BackgroundColorProvider color="#333333">
       <DarkContainer>
         <Title title="Dark theme" theme="dark" level={2} />

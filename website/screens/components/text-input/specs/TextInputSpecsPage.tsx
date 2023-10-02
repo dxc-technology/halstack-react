@@ -308,7 +308,7 @@ const sections = [
                     <td>
                       <Code>hoverErrorBorderColor</Code>
                     </td>
-                    <td>Border:hover on error</td>
+                    <td>Border:error:hover</td>
                     <td>
                       <Code>color-red-600</Code>
                     </td>
@@ -323,6 +323,26 @@ const sections = [
                       <Code>color-grey-500</Code>
                     </td>
                     <td>#999999</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>readOnlyBorderColor</Code>
+                    </td>
+                    <td>Border:readonly</td>
+                    <td>
+                      <Code>color-grey-500</Code>
+                    </td>
+                    <td>#999999</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>hoverReadOnlyBorderColor</Code>
+                    </td>
+                    <td>Border:readonly:hover</td>
+                    <td>
+                      <Code>color-grey-600</Code>
+                    </td>
+                    <td>#808080</td>
                   </tr>
                   <tr>
                     <td>

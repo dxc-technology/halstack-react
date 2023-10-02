@@ -46,6 +46,10 @@ type Props = {
    */
   disabled?: boolean;
   /**
+   * If true, the component will not be mutable, meaning the user can not edit the control.
+   */
+  readOnly?: boolean;
+  /**
    * If true, the date will be optional, showing '(Optional)'
    * next to the label. Otherwise, the field will be considered required and an error will be
    * passed as a parameter to the OnBlur and onChange functions when it has
