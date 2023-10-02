@@ -110,11 +110,14 @@ const sections = [
             <td>Label of the optional radio input.</td>
           </tr>
           <tr>
-            <td>readonly: boolean</td>
+            <td>readOnly: boolean</td>
             <td>
               <Code>false</Code>
             </td>
-            <td>If true, the component will be marked as readonly.</td>
+            <td>
+              If true, the component will not be mutable, meaning the user can
+              not edit the control.
+            </td>
           </tr>
           <tr>
             <td>stacking: "row" | "column"</td>

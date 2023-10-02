@@ -53,15 +53,15 @@ export const Chromatic = () => (
     <Title title="Readonly radio input sub-states" theme="light" level={3} />
     <ExampleContainer>
       <Title title="Enabled" theme="light" level={4} />
-      <DxcRadioGroup label="Label" helperText="Helper text" options={single_option} defaultValue="A" readonly />
+      <DxcRadioGroup label="Label" helperText="Helper text" options={single_option} defaultValue="A" readOnly />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-hover">
       <Title title="Hovered" theme="light" level={4} />
-      <DxcRadioGroup label="Label" helperText="Helper text" options={single_option} defaultValue="A" readonly />
+      <DxcRadioGroup label="Label" helperText="Helper text" options={single_option} defaultValue="A" readOnly />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-active">
       <Title title="Active" theme="light" level={4} />
-      <DxcRadioGroup label="Label" helperText="Helper text" options={single_option} defaultValue="A" readonly />
+      <DxcRadioGroup label="Label" helperText="Helper text" options={single_option} defaultValue="A" readOnly />
     </ExampleContainer>
     <Title title="Error radio input sub-states" theme="light" level={3} />
     <ExampleContainer>
@@ -81,7 +81,7 @@ export const Chromatic = () => (
         helperText="Helper text"
         options={single_option}
         defaultValue="A"
-        readonly
+        readOnly
         error="Error message"
       />
     </ExampleContainer>
@@ -92,7 +92,7 @@ export const Chromatic = () => (
         helperText="Helper text"
         options={single_option}
         defaultValue="A"
-        readonly
+        readOnly
         error="Error message"
       />
     </ExampleContainer>
@@ -115,7 +115,7 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Readonly" theme="light" level={4} />
-      <DxcRadioGroup label="Label" readonly helperText="Helper text" options={options} />
+      <DxcRadioGroup label="Label" readOnly helperText="Helper text" options={options} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Error space reserved" theme="light" level={4} />
@@ -159,25 +159,25 @@ export const Chromatic = () => (
     <ExampleContainer>
       <Title title="Readonly enabled" theme="light" level={4} />
       <HalstackProvider theme={opinionatedTheme}>
-        <DxcRadioGroup label="Label" options={single_option} defaultValue="A" readonly />
+        <DxcRadioGroup label="Label" options={single_option} defaultValue="A" readOnly />
       </HalstackProvider>
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-hover">
       <Title title="Readonly hovered" theme="light" level={4} />
       <HalstackProvider theme={opinionatedTheme}>
-        <DxcRadioGroup label="Label" options={single_option} defaultValue="A" readonly />
+        <DxcRadioGroup label="Label" options={single_option} defaultValue="A" readOnly />
       </HalstackProvider>
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-active">
       <Title title="Readonly active" theme="light" level={4} />
       <HalstackProvider theme={opinionatedTheme}>
-        <DxcRadioGroup label="Label" options={single_option} defaultValue="A" readonly />
+        <DxcRadioGroup label="Label" options={single_option} defaultValue="A" readOnly />
       </HalstackProvider>
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-focus">
       <Title title="Readonly focused" theme="light" level={4} />
       <HalstackProvider theme={opinionatedTheme}>
-        <DxcRadioGroup label="Label" options={single_option} defaultValue="A" readonly />
+        <DxcRadioGroup label="Label" options={single_option} defaultValue="A" readOnly />
       </HalstackProvider>
     </ExampleContainer>
     <ExampleContainer>

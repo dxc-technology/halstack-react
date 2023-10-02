@@ -21,7 +21,7 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
       disabled = false,
       optional = false,
       optionalItemLabel,
-      readonly = false,
+      readOnly = false,
       stacking = "column",
       defaultValue,
       value,
@@ -62,7 +62,7 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
     const handleOnChange = useCallback(
       (newValue: string) => {
         const currentValue = value ?? innerValue;
-        if (newValue !== currentValue && !readonly) {
+        if (newValue !== currentValue && !readOnly) {
           value ?? setInnerValue(newValue);
           onChange?.(newValue);
         }
@@ -146,8 +146,8 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
             aria-labelledby={radioGroupLabelId}
             aria-invalid={error ? true : false}
             aria-errormessage={error ? errorId : undefined}
-            aria-required={!disabled && !readonly && !optional}
-            aria-readonly={readonly}
+            aria-required={!disabled && !readOnly && !optional}
+            aria-readOnly={readOnly}
             aria-orientation={stacking === "column" ? "vertical" : "horizontal"}
           >
             <ValueInput name={name} disabled={disabled} value={value ?? innerValue ?? ""} readOnly />
@@ -163,7 +163,7 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
                 error={error}
                 disabled={option.disabled || disabled}
                 focused={currentFocusIndex === index}
-                readonly={readonly}
+                readOnly={readOnly}
                 tabIndex={tabIndex}
               />
             ))}

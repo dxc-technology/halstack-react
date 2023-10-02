@@ -50,9 +50,9 @@ type RadioGroupProps = {
    */
   optionalItemLabel?: string;
   /**
-   * If true, the component will be marked as readonly.
+   * If true, the component will not be mutable, meaning the user can not edit the control.
    */
-  readonly?: boolean;
+  readOnly?: boolean;
   /**
    * Sets the orientation of the options within the radio group.
    */
@@ -108,7 +108,7 @@ export type RadioProps = {
   error?: string;
   disabled: boolean;
   focused: boolean;
-  readonly: boolean;
+  readOnly: boolean;
   tabIndex: number;
 };
 

@@ -44,7 +44,7 @@ const sections = [
         <DxcParagraph>
           The following states are defined in the life cycle of the component:{" "}
           <strong>enabled</strong>, <strong>error</strong>,{" "}
-          <strong>readonly</strong> and <strong>disabled</strong>.
+          <strong>readOnly</strong> and <strong>disabled</strong>.
         </DxcParagraph>
         <Figure caption="Radio group states">
           <Image src={radioGroupStates} alt="Radio group states" />
@@ -168,7 +168,7 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <Code>readonlyRadioInputColor</Code>
+                  <Code>readOnlyRadioInputColor</Code>
                 </td>
                 <td>Radio input:readonly</td>
                 <td>
@@ -178,7 +178,7 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <Code>hoverReadonlyRadioInputColor</Code>
+                  <Code>hoverReadOnlyRadioInputColor</Code>
                 </td>
                 <td>Radio input:readonly:hover</td>
                 <td>
@@ -188,7 +188,7 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <Code>activeReadonlyRadioInputColor</Code>
+                  <Code>activeReadOnlyRadioInputColor</Code>
                 </td>
                 <td>Radio input:readonly:active</td>
                 <td>
