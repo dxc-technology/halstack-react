@@ -457,6 +457,7 @@ const AutosuggestListbox = () => {
               optional
               placeholder="Choose an option"
               size="fillParent"
+              readOnly
             />
             <button style={{ zIndex: "1", width: "100px" }}>Submit</button>
           </div>

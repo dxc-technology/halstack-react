@@ -47,6 +47,8 @@ type Props = {
   disabled?: boolean;
   /**
    * If true, the component will not be mutable, meaning the user can not edit the control.
+   * The date picker cannot be opened either. In addition, the clear action will not be displayed 
+   * even if the flag is set to true.
    */
   readOnly?: boolean;
   /**

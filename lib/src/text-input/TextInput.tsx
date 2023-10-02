@@ -186,9 +186,9 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
         case "Down":
         case "ArrowDown":
           event.preventDefault();
-          if (numberInputContext?.typeNumber === "number") {
+          if (numberInputContext?.typeNumber === "number")
             decrementNumber();
-          } else {
+          else {
             openSuggestions();
             if (!isAutosuggestError && !isSearching && filteredSuggestions.length > 0) {
               changeVisualFocusIndex((visualFocusedSuggIndex) => {
@@ -201,9 +201,9 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
         case "Up":
         case "ArrowUp":
           event.preventDefault();
-          if (numberInputContext?.typeNumber === "number") {
+          if (numberInputContext?.typeNumber === "number")
             incrementNumber();
-          } else {
+          else {
             openSuggestions();
             if (!isAutosuggestError && !isSearching && filteredSuggestions.length > 0) {
               changeVisualFocusIndex((visualFocusedSuggIndex) => {
@@ -402,8 +402,8 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
                 placeholder={placeholder}
                 onBlur={handleInputOnBlur}
                 onChange={handleInputOnChange}
-                onFocus={openSuggestions}
-                onKeyDown={handleInputOnKeyDown}
+                onFocus={!readOnly ? openSuggestions : undefined}
+                onKeyDown={!readOnly ? handleInputOnKeyDown : undefined}
                 onMouseDown={(event) => {
                   event.stopPropagation();
                 }}
@@ -457,7 +457,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
                 <Action
                   aria-label={translatedLabels.numberInput.decrementValueTitle}
                   disabled={disabled}
-                  onClick={handleDecrementActionOnClick}
+                  onClick={!readOnly ? handleDecrementActionOnClick : undefined}
                   onMouseDown={(event) => {
                     event.stopPropagation();
                   }}
@@ -472,7 +472,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
                 <Action
                   aria-label={translatedLabels.numberInput.incrementValueTitle}
                   disabled={disabled}
-                  onClick={handleIncrementActionOnClick}
+                  onClick={!readOnly ? handleIncrementActionOnClick : undefined}
                   onMouseDown={(event) => {
                     event.stopPropagation();
                   }}

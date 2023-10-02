@@ -43,6 +43,12 @@ type Props = {
    */
   optional?: boolean;
   /**
+   * If true, the component will not be mutable, meaning the user can
+   * not edit the control. The value won't change when pressing on the
+   * up or down arrows and neither on the spin buttons.
+   */
+  readOnly?: boolean;
+  /**
    * Prefix to be placed before the number value.
    */
   prefix?: string;
