@@ -8,7 +8,6 @@ import controlled from "./examples/controlled";
 import uncontrolled from "./examples/uncontrolled";
 import formatLabel from "./examples/formatLabel";
 import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
-import StatusTag from "@/common/StatusTag";
 
 const sections = [
   {

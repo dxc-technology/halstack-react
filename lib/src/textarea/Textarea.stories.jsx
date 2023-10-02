@@ -44,6 +44,14 @@ export const Chromatic = () => (
         <DxcTextarea label="Disabled" defaultValue="Example text" disabled />
       </ExampleContainer>
       <ExampleContainer>
+        <Title title="Read only" theme="light" level={4} />
+        <DxcTextarea label="Label" readOnly defaultValue="Example text" verticalGrow="manual" />
+      </ExampleContainer>
+      <ExampleContainer pseudoState="pseudo-hover">
+        <Title title="Hovered read only" theme="light" level={4} />
+        <DxcTextarea label="Label" readOnly defaultValue="Example text" verticalGrow="manual" />
+      </ExampleContainer>
+      <ExampleContainer>
         <Title title="With error" theme="light" level={4} />
         <DxcTextarea
           label="Textarea with error"
