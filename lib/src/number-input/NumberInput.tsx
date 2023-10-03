@@ -23,6 +23,7 @@ const DxcNumberInput = React.forwardRef<RefType, NumberInputPropsType>(
       placeholder,
       disabled,
       optional,
+      readOnly,
       prefix,
       suffix,
       min,
@@ -49,6 +50,7 @@ const DxcNumberInput = React.forwardRef<RefType, NumberInputPropsType>(
           placeholder={placeholder}
           disabled={disabled}
           optional={optional}
+          readOnly={readOnly}
           prefix={prefix}
           suffix={suffix}
           error={error}

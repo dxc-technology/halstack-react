@@ -33,6 +33,39 @@ export const Chromatic = () => (
       <DxcNumberInput label="Disabled number input" helperText="Help message" disabled optional defaultValue="10" />
     </ExampleContainer>
     <ExampleContainer>
+      <Title title="Read only" theme="light" level={4} />
+      <DxcNumberInput
+        label="Example label"
+        helperText="Help message"
+        readOnly
+        optional
+        prefix="€"
+        defaultValue="33"
+      />
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-hover">
+      <Title title="Hovered read only" theme="light" level={4} />
+      <DxcNumberInput
+        label="Example label"
+        helperText="Help message"
+        readOnly
+        optional
+        prefix="€"
+        defaultValue="1"
+      />
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-active">
+      <Title title="Active read only" theme="light" level={4} />
+      <DxcNumberInput
+        label="Example label"
+        helperText="Help message"
+        readOnly
+        optional
+        prefix="€"
+        placeholder="Placeholder"
+      />
+    </ExampleContainer>
+    <ExampleContainer>
       <Title title="Prefix" theme="light" level={4} />
       <DxcNumberInput label="With prefix" prefix="+34" />
     </ExampleContainer>
@@ -42,7 +75,13 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Invalid" theme="light" level={4} />
-      <DxcNumberInput label="Error number input" helperText="Help message" error="Error message." defaultValue="23" optional />
+      <DxcNumberInput
+        label="Error number input"
+        helperText="Help message"
+        error="Error message."
+        defaultValue="23"
+        optional
+      />
     </ExampleContainer>
     <BackgroundColorProvider color="#333333">
       <DarkContainer>
@@ -61,7 +100,13 @@ export const Chromatic = () => (
         </ExampleContainer>
         <ExampleContainer>
           <Title title="Disabled, helper text, optional and value" theme="dark" level={4} />
-          <DxcNumberInput label="Disabled number input" helperText="Help message" disabled optional defaultValue="1232454" />
+          <DxcNumberInput
+            label="Disabled number input"
+            helperText="Help message"
+            disabled
+            optional
+            defaultValue="1232454"
+          />
         </ExampleContainer>
       </DarkContainer>
     </BackgroundColorProvider>
