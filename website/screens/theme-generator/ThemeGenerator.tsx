@@ -10,8 +10,8 @@ import {
 } from "@dxc-technology/halstack-react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import opinionatedTheme from "./themes/opinionated-theme.json";
-import advancedTheme from "./themes/advanced-theme.json";
+import opinionatedTheme from "@/common/themes/opinionated-theme.json";
+import advancedTheme from "@/common/themes/advanced-theme.json";
 import ComponentPreview from "./components/ComponentPreview";
 import { downloadFile, makeReadableSidenav } from "./utils";
 import ThemeInputsConfig from "./components/ThemeInputsConfig";
