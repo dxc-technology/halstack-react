@@ -7,7 +7,7 @@ const Textarea = () => (
   <PreviewContainer>
     <Mode text="Default">
       <DxcTextarea
-        label="Regular textarea"
+        label="Label text"
         helperText="Example of helper text"
         optional
         verticalGrow="manual"
@@ -15,7 +15,7 @@ const Textarea = () => (
     </Mode>
     <Mode text="Disabled">
       <DxcTextarea
-        label="Disabled textarea"
+        label="Label text"
         helperText="Example of helper text"
         placeholder="Placeholder"
         disabled
@@ -23,10 +23,19 @@ const Textarea = () => (
     </Mode>
     <Mode text="Invalid">
       <DxcTextarea
-        label="Invalid textarea"
+        label="Label text"
         helperText="Example of helper text"
         placeholder="Placeholder"
         error="Error message."
+      />
+    </Mode>
+    <Mode text="Read-only">
+      <DxcTextarea
+        label="Label text"
+        helperText="Example of helper text"
+        defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        placeholder="Placeholder"
+        readOnly
       />
     </Mode>
   </PreviewContainer>
