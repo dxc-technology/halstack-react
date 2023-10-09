@@ -14,16 +14,6 @@ const DateInput = () => (
         clearable
       />
     </Mode>
-    <Mode text="Disabled">
-      <DxcDateInput
-        label="Format"
-        helperText="Example of helper text"
-        format="MM/dd/yyyy"
-        placeholder
-        clearable
-        disabled
-      />
-    </Mode>
   </PreviewContainer>
 );
 

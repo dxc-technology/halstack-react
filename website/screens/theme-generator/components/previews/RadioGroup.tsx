@@ -16,7 +16,7 @@ const single_disabled_options = [
 
 const RadioGroup = () => (
   <PreviewContainer>
-    <Mode text="Default">
+    <Mode text="States">
       <DxcRadioGroup label="Default" defaultValue="A" options={options} />
       <DxcRadioGroup
         label="Error"
@@ -25,10 +25,10 @@ const RadioGroup = () => (
         error="Error message"
       />
       <DxcRadioGroup
-        label="Readonly"
+        label="Read-only"
         defaultValue="A"
         options={options}
-        readonly
+        readOnly
       />
     </Mode>
     <Mode text="Disabled">
@@ -46,7 +46,7 @@ const RadioGroup = () => (
     </Mode>
     <Mode text="Optional">
       <DxcRadioGroup
-        label="Optional"
+        label="Label text"
         helperText="Adds a predefined option whose value is the empty string"
         options={options}
         optional

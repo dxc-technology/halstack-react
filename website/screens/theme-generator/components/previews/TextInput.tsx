@@ -59,24 +59,30 @@ const errorCallbackFunc: (value: string) => Promise<string[]> = (): Promise<
 
 const TextInput = () => (
   <PreviewContainer>
-    <Mode text="Default">
+    <Mode text="States">
       <DxcTextInput
-        label="Label"
+        label="Default"
         clearable
         defaultValue="Example text"
         size="fillParent"
       />
       <DxcTextInput
-        label="Invalid text input"
+        label="Error"
         placeholder="Placeholder"
         error="Error message."
         clearable
         size="fillParent"
       />
+      <DxcTextInput
+        label="Read-only"
+        defaultValue="Example text"
+        readOnly
+        size="fillParent"
+      />
     </Mode>
     <Mode text="Disabled">
       <DxcTextInput
-        label="Disabled text input"
+        label="Label text"
         helperText="Helper text"
         defaultValue="Example text"
         action={action}
@@ -85,7 +91,7 @@ const TextInput = () => (
         size="fillParent"
       />
       <DxcTextInput
-        label="Disabled text input"
+        label="Label text"
         placeholder="Placeholder"
         helperText="Helper text"
         suffix="Suf"
@@ -95,7 +101,7 @@ const TextInput = () => (
     </Mode>
     <Mode text="Action & Optional">
       <DxcTextInput
-        label="Text input with action and optional"
+        label="Label text"
         helperText="Example of helper text"
         placeholder="Placeholder"
         action={action}
@@ -105,7 +111,7 @@ const TextInput = () => (
     </Mode>
     <Mode text="Prefix & Suffix">
       <DxcTextInput
-        label="Prefix and suffix text input"
+        label="Label text"
         prefix="+34"
         suffix="USD"
         helperText="Example of helper text"
@@ -114,14 +120,14 @@ const TextInput = () => (
     </Mode>
     <Mode text="Suggestions">
       <DxcTextInput
-        label="Suggestions text input"
+        label="Label text"
         placeholder="Placeholder"
         suggestions={countries}
         clearable
         size="fillParent"
       />
       <DxcTextInput
-        label="Suggestions error text input"
+        label="Label text"
         placeholder="Placeholder"
         suggestions={errorCallbackFunc}
         clearable
