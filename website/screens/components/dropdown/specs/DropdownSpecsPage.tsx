@@ -19,8 +19,8 @@ const sections = [
   {
     title: "Specifications",
     content: (
-      <Figure caption="Dropdown component specifications">
-        <Image src={specsImage} alt="Dropdown component specifications" />
+      <Figure caption="Dropdown design specifications">
+        <Image src={specsImage} alt="Dropdown design specifications" />
       </Figure>
     ),
   },
@@ -36,11 +36,8 @@ const sections = [
               <strong>focus</strong>, <strong>active</strong> and{" "}
               <strong>disabled</strong>.
             </DxcParagraph>
-            <Figure caption="Example of the dropdown component states">
-              <Image
-                src={statesImage}
-                alt="Example of the dropdown component states"
-              />
+            <Figure caption="Dropdown button states">
+              <Image src={statesImage} alt="Dropdown button states" />
             </Figure>
           </>
         ),
@@ -53,11 +50,8 @@ const sections = [
               States: <strong>Enabled</strong>, <strong>hover</strong>,{" "}
               <strong>focus</strong> and <strong>selected</strong>.
             </DxcParagraph>
-            <Figure caption="Example of the option list states">
-              <Image
-                src={optionListStatesImage}
-                alt="Example of the option list states"
-              />
+            <Figure caption="Option list states">
+              <Image src={optionListStatesImage} alt="Option list states" />
             </Figure>
           </>
         ),

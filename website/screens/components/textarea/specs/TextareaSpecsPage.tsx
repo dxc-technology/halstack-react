@@ -21,8 +21,8 @@ const sections = [
     title: "Specifications",
     content: (
       <>
-        <Figure caption="Component design specifications">
-          <Image src={specsImage} alt="Component design specifications" />
+        <Figure caption="Textarea design specifications">
+          <Image src={specsImage} alt="Textarea design specifications" />
         </Figure>
         <DxcParagraph>
           The textarea <Code>color</Code>, <Code>typography</Code>,{" "}
@@ -55,8 +55,8 @@ const sections = [
           <strong>focus</strong>, <strong>error</strong> and{" "}
           <strong>disabled</strong>.
         </DxcParagraph>
-        <Figure caption="Textarea component states example">
-          <Image src={statesImage} alt="Textarea component states example" />
+        <Figure caption="Textarea states">
+          <Image src={statesImage} alt="Textarea states" />
         </Figure>
       </>
     ),
@@ -65,7 +65,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image src={anatomyImage} alt="Anatomy image" />
+        <Image src={anatomyImage} alt="Textarea anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>Label</DxcBulletedList.Item>
           <DxcBulletedList.Item>

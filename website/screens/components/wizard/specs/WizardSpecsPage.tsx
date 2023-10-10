@@ -21,13 +21,13 @@ const sections = [
     title: "Specifications",
     content: (
       <>
-        <Figure caption="Wizard step specifications">
-          <Image src={stepperImage} alt="Wizard step specifications" />
+        <Figure caption="Wizard step design specifications">
+          <Image src={stepperImage} alt="Wizard step design specifications" />
         </Figure>
-        <Figure caption="Wizard variants spacing specifications">
+        <Figure caption="Wizard variants design specifications">
           <Image
             src={spacingImage}
-            alt="Wizard variants spacing specifications"
+            alt="Wizard variants design specifications"
           />
         </Figure>
       </>
@@ -42,8 +42,8 @@ const sections = [
           <strong>selected</strong>, <strong>unvisited</strong> and{" "}
           <strong>disabled</strong>.
         </DxcParagraph>
-        <Figure caption="Example of the wizard step states">
-          <Image src={statesImage} alt="Example of the wizard step states" />
+        <Figure caption="Wizard states">
+          <Image src={statesImage} alt="Wizard states" />
         </Figure>
       </>
     ),
@@ -52,9 +52,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Figure caption="Wizard component anatomy">
-          <Image src={anatomyImage} alt="Wizard component anatomy" />
-        </Figure>
+        <Image src={anatomyImage} alt="Wizard anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>Step</DxcBulletedList.Item>
           <DxcBulletedList.Item>Label</DxcBulletedList.Item>

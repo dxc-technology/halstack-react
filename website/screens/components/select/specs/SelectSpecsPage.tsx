@@ -23,8 +23,8 @@ const sections = [
   {
     title: "Specifications",
     content: (
-      <Figure caption="Component design specifications">
-        <Image src={selectSpecs} alt="Select specifications" />
+      <Figure caption="Select design specifications">
+        <Image src={selectSpecs} alt="Select design specifications" />
       </Figure>
     ),
   },
@@ -42,7 +42,9 @@ const sections = [
               <strong>focus</strong>, <strong>active</strong>,{" "}
               <strong>error</strong> and <strong>disabled</strong>:
             </DxcParagraph>
-            <Image src={selectSingleSpecsStates} alt="Select states" />
+            <Figure caption="Select states">
+              <Image src={selectSingleSpecsStates} alt="Select states" />
+            </Figure>
           </>
         ),
       },
@@ -53,10 +55,12 @@ const sections = [
             <DxcParagraph>
               Allows the user to select more than one option from the list.
             </DxcParagraph>
-            <Image
-              src={selectMultipleSpecsStates}
-              alt="Select multiple option"
-            />
+            <Figure caption="Multiple selection states">
+              <Image
+                src={selectMultipleSpecsStates}
+                alt="Multiple selection select states"
+              />
+            </Figure>
           </>
         ),
       },
@@ -73,10 +77,10 @@ const sections = [
           {
             title: "Single",
             content: (
-              <Figure caption="List option element states for single select.">
+              <Figure caption="Single select states">
                 <Image
                   src={selectSingleOptionState}
-                  alt="List option element states for select single"
+                  alt="Single select states"
                 />
               </Figure>
             ),
@@ -84,10 +88,10 @@ const sections = [
           {
             title: "Multiple",
             content: (
-              <Figure caption="List option element states for select multiple.">
+              <Figure caption="Multiple select states">
                 <Image
                   src={selectMultipleOptionState}
-                  alt="List option element states for select multiple"
+                  alt="Multiple select states"
                 />
               </Figure>
             ),

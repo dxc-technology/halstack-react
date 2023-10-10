@@ -18,11 +18,8 @@ const sections = [
   {
     title: "Specifications",
     content: (
-      <Figure caption="Design specification for the tag component">
-        <Image
-          src={specsImage}
-          alt="Design specification for the tag component"
-        />
+      <Figure caption="Tag design specifications">
+        <Image src={specsImage} alt="Tag design specifications" />
       </Figure>
     ),
   },
@@ -30,8 +27,8 @@ const sections = [
     title: "States",
     content: (
       <>
-        <Figure caption="Component tag states">
-          <Image src={statesImage} alt="Component tag states" />
+        <Figure caption="Tag states">
+          <Image src={statesImage} alt="Tag states" />
         </Figure>
         <DxcParagraph>
           Also, this component is static, which means that there is only one
@@ -48,7 +45,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image src={anatomyImage} alt="Component tag anatomy" />
+        <Image src={anatomyImage} alt="Tag anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>Icon</DxcBulletedList.Item>
           <DxcBulletedList.Item>Label</DxcBulletedList.Item>

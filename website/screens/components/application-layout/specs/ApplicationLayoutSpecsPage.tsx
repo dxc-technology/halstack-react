@@ -1,5 +1,4 @@
 import {
-  DxcLink,
   DxcBulletedList,
   DxcParagraph,
   DxcFlex,

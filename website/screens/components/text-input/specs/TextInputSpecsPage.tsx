@@ -23,16 +23,13 @@ const sections = [
     title: "Specifications",
     content: (
       <>
-        <Figure caption="Specifications for text input component">
-          <Image
-            src={inputSpecs}
-            alt="Specifications for text input component"
-          />
+        <Figure caption="Text input design specifications">
+          <Image src={inputSpecs} alt="Text input design specifications" />
         </Figure>
-        <Figure caption="Specifications for autosuggest text input component">
+        <Figure caption="Autosuggest text input design specifications">
           <Image
             src={autosuggestSpecs}
-            alt="Specifications for autosuggest text input component"
+            alt="Autosuggest text input design specifications"
           />
         </Figure>
       </>
@@ -47,21 +44,15 @@ const sections = [
           <strong>focus</strong>, <strong>error</strong> and{" "}
           <strong>disabled</strong>.
         </DxcParagraph>
-        <Figure caption="Example of the text input component states">
-          <Image
-            src={inputStates}
-            alt="Example of the text input component states"
-          />
+        <Figure caption="Text input states">
+          <Image src={inputStates} alt="Text input states" />
         </Figure>
         <DxcParagraph>
           List option states: <strong>enabled</strong>, <strong>hover</strong>,{" "}
           <strong>active</strong> and <strong>system</strong>.
         </DxcParagraph>
-        <Figure caption="List option states examples">
-          <Image
-            src={autosuggestStatesListItem}
-            alt="List option states examples"
-          />
+        <Figure caption="List option states">
+          <Image src={autosuggestStatesListItem} alt="List option states" />
         </Figure>
       </>
     ),

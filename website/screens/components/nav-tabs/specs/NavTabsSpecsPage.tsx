@@ -33,7 +33,9 @@ const sections = [
           <strong>focus</strong>, <strong>active</strong> and{" "}
           <strong>disabled</strong>.
         </DxcParagraph>
-        <Image src={navTabsStates} alt="image" />
+        <Figure caption="Nav tabs states">
+          <Image src={navTabsStates} alt="Nav tabs states" />
+        </Figure>
       </>
     ),
   },
@@ -41,7 +43,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image src={navTabsAnatomy} alt="image" />
+        <Image src={navTabsAnatomy} alt="Nav tabs anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>Container</DxcBulletedList.Item>
           <DxcBulletedList.Item>Default text label</DxcBulletedList.Item>

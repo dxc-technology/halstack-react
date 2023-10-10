@@ -112,7 +112,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image src={fileInputAnatomy} alt="Component file input anatomy" />
+        <Image src={fileInputAnatomy} alt="File input anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>Label</DxcBulletedList.Item>
           <DxcBulletedList.Item>Drag and drop area</DxcBulletedList.Item>
@@ -137,10 +137,10 @@ const sections = [
           more feedback to the user rather than the name of the file, preventing
           errors loading content.
         </DxcParagraph>
-        <Figure caption="File item with preview example">
+        <Figure caption="File item with preview">
           <Image
             src={fileInputFileFileItemPreview}
-            alt="File item with preview example"
+            alt="File item with preview"
           />
         </Figure>
       </>
@@ -155,8 +155,8 @@ const sections = [
           accommodate any layout restriction, the variant file displays the file
           name in the same row instead of growing vertically.
         </DxcParagraph>
-        <Figure caption="Variant file single">
-          <Image src={fileInputFileSingleFile} alt="Variant file single" />
+        <Figure caption="File variant">
+          <Image src={fileInputFileSingleFile} alt="File variant" />
         </Figure>
       </>
     ),

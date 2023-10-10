@@ -18,11 +18,8 @@ const sections = [
   {
     title: "Specifications",
     content: (
-      <Figure caption="Design specifications for dialog component">
-        <Image
-          src={dialogSpecsImage}
-          alt="Design specifications for dialog component"
-        />
+      <Figure caption="Dialog design specifications">
+        <Image src={dialogSpecsImage} alt="Dialog design specifications" />
       </Figure>
     ),
   },
@@ -30,10 +27,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image
-          src={dialogAnatomyImage}
-          alt="Design specifications for dialog component"
-        />
+        <Image src={dialogAnatomyImage} alt="Dialog anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>Dialog container</DxcBulletedList.Item>
           <DxcBulletedList.Item>Title</DxcBulletedList.Item>

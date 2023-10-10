@@ -31,8 +31,8 @@ const sections = [
           Component states: <strong>enabled</strong>, <strong>hover</strong> and{" "}
           <strong>focus</strong>.
         </DxcParagraph>
-        <Figure caption="Card component states">
-          <Image src={statesImage} alt="Card component states" />
+        <Figure caption="Card states">
+          <Image src={statesImage} alt="Card states" />
         </Figure>
       </>
     ),

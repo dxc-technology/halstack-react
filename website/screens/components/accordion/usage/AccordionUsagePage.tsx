@@ -206,7 +206,10 @@ const sections = [
         </DxcParagraph>
         <DxcParagraph>
           <Figure caption="Component placement examples">
-            <Image src={accordionMultiExpand} alt="image" />
+            <Image
+              src={accordionMultiExpand}
+              alt="Component placement examples"
+            />
           </Figure>
         </DxcParagraph>
         <DxcParagraph>

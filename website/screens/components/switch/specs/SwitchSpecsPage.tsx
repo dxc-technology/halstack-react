@@ -23,8 +23,11 @@ const sections = [
         <Figure caption="Switch design specifications">
           <Image src={specsImage} alt="Switch design specifications" />
         </Figure>
-        <Figure caption="Switch stacking specifications">
-          <Image src={stackingImage} alt="Switch stacking specifications" />
+        <Figure caption="Switch stacking design specifications">
+          <Image
+            src={stackingImage}
+            alt="Switch stacking design specifications"
+          />
         </Figure>
       </>
     ),
@@ -40,8 +43,8 @@ const sections = [
           <strong>selected enabled</strong>, <strong>selected focus</strong> and{" "}
           <strong>selected disabled</strong>.
         </DxcParagraph>
-        <Figure caption="Switch component states">
-          <Image src={statesImage} alt="Switch component states" />
+        <Figure caption="Switch states">
+          <Image src={statesImage} alt="Switch states" />
         </Figure>
       </>
     ),
@@ -50,9 +53,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Figure caption="Switch component anatomy">
-          <Image src={anatomyImage} alt="Switch component anatomy" />
-        </Figure>
+        <Image src={anatomyImage} alt="Switch anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>Label</DxcBulletedList.Item>
           <DxcBulletedList.Item>Thumb</DxcBulletedList.Item>

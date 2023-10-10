@@ -25,7 +25,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image src={anatomyImage} alt="Component anatomy" />
+        <Image src={anatomyImage} alt="Quick nav anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
             Title <em>(Optional)</em>

@@ -23,17 +23,30 @@ import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
 const sections = [
   {
     title: "Min / Max width",
-    content: <Image src={specsImage} alt="image" />,
+    content: (
+      <Figure caption="48px height fixed tabs design specifications">
+        <Image
+          src={specsImage}
+          alt="48px height fixed tabs design specifications"
+        />
+      </Figure>
+    ),
   },
   {
     title: "Fixed tabs",
     content: (
       <>
-        <Figure caption="48px height fixed tabs.">
-          <Image src={specsFixed} alt="image" />
+        <Figure caption="48px height fixed tabs design specifications">
+          <Image
+            src={specsFixed}
+            alt="48px height fixed tabs design specifications"
+          />
         </Figure>
-        <Figure caption="72px height fixed tabs.">
-          <Image src={specsFixed72} alt="image" />
+        <Figure caption="72px height fixed tabs design specifications">
+          <Image
+            src={specsFixed72}
+            alt="72px height fixed tabs design specifications"
+          />
         </Figure>
       </>
     ),
@@ -41,17 +54,29 @@ const sections = [
   {
     title: "Scrollable tabs",
     content: (
-      <Figure caption="Use a scroll indicator in scrollable tabs.">
-        <Image src={specsScrollable} alt="image" />
-      </Figure>
+      <>
+        <DxcParagraph>
+          Tabs are horizontally scrollable when they are wider that screen, by
+          using the scroll indicator.
+        </DxcParagraph>
+        <Figure caption="Scrollable tabs">
+          <Image src={specsScrollable} alt="Scrollable tabs" />
+        </Figure>
+      </>
     ),
   },
   {
     title: "Notification tabs",
     content: (
-      <Figure caption="Notification badges are always positioned aligned with label/icon in 48px tab container and at top right of the 72px tab container.">
-        <Image src={specsNotification} alt="image" />
-      </Figure>
+      <>
+        <DxcParagraph>
+          Notification badges are always positioned aligned with label or icon
+          in 48px tab container and at top right of the 72px tab container.
+        </DxcParagraph>
+        <Figure caption="Notification tabs">
+          <Image src={specsNotification} alt="Notification tabs" />
+        </Figure>
+      </>
     ),
   },
   {
@@ -64,7 +89,9 @@ const sections = [
           <strong>hover</strong>, <strong>pressed</strong>,{" "}
           <strong>focus</strong> and <strong>disabled</strong>.
         </DxcParagraph>
-        <Image src={statesTabs} alt="image" />
+        <Figure caption="Tab states">
+          <Image src={statesTabs} alt="Tab states" />
+        </Figure>
       </>
     ),
   },
@@ -72,7 +99,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image src={specsAnatomy} alt="image" />
+        <Image src={specsAnatomy} alt="Tabs anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>Container</DxcBulletedList.Item>
           <DxcBulletedList.Item>

@@ -20,8 +20,8 @@ const sections = [
   {
     title: "Specifications",
     content: (
-      <Figure caption="Component design specifications">
-        <Image src={radioGroupSpecs} alt="Component design specifications" />
+      <Figure caption="Radio group design specifications">
+        <Image src={radioGroupSpecs} alt="Radio group design specifications" />
       </Figure>
     ),
   },
@@ -39,7 +39,7 @@ const sections = [
           .
         </DxcParagraph>
         <Figure caption="Radio button states">
-          <Image src={radioGroupBaseStates} alt="Radio button input states" />
+          <Image src={radioGroupBaseStates} alt="Radio button states" />
         </Figure>
         <DxcParagraph>
           The following states are defined in the life cycle of the component:{" "}
@@ -55,19 +55,16 @@ const sections = [
   {
     title: "Anatomy",
     content: (
-      <Figure
-        caption={
-          <DxcBulletedList type="number">
-            <DxcBulletedList.Item>Label</DxcBulletedList.Item>
-            <DxcBulletedList.Item>Helper text</DxcBulletedList.Item>
-            <DxcBulletedList.Item>Radio input</DxcBulletedList.Item>
-            <DxcBulletedList.Item>Radio input label</DxcBulletedList.Item>
-            <DxcBulletedList.Item>Error message</DxcBulletedList.Item>
-          </DxcBulletedList>
-        }
-      >
-        <Image src={radioGroupAnatomy} alt="Radio button component anatomy" />
-      </Figure>
+      <>
+        <Image src={radioGroupAnatomy} alt="Radio group anatomy" />
+        <DxcBulletedList type="number">
+          <DxcBulletedList.Item>Label</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Helper text</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Radio input</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Radio input label</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Error message</DxcBulletedList.Item>
+        </DxcBulletedList>
+      </>
     ),
   },
   {

@@ -18,7 +18,7 @@ const sections = [
   {
     title: "Specifications",
     content: (
-      <Figure caption="Toggle design specifications">
+      <Figure caption="Toggle group design specifications">
         <Image src={toggleGroupSpecs} alt="Toggle design specifications" />
       </Figure>
     ),
@@ -37,8 +37,8 @@ const sections = [
           <strong>selected focus</strong>, <strong>selected active</strong> and{" "}
           <strong>selected disabled</strong>
         </DxcParagraph>
-        <Figure caption="Toggle button states example">
-          <Image src={toggleGroupStates} alt="Toggle button states example" />
+        <Figure caption="Toggle button states">
+          <Image src={toggleGroupStates} alt="Toggle button states" />
         </Figure>
       </>
     ),
@@ -47,7 +47,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image src={toggleGroupAnatomy} alt="Toggle design specifications" />
+        <Image src={toggleGroupAnatomy} alt="Toggle group anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>Label</DxcBulletedList.Item>
           <DxcBulletedList.Item>Helper text</DxcBulletedList.Item>

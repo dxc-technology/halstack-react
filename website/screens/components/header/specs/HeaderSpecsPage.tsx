@@ -26,9 +26,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Figure caption="Header distribution example">
-          <Image src={headerAnatomy} alt="Header distribution example" />
-        </Figure>
+        <Image src={headerAnatomy} alt="Header anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>Brand image</DxcBulletedList.Item>
           <DxcBulletedList.Item>Application name</DxcBulletedList.Item>
