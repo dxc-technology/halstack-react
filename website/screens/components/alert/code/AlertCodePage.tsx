@@ -5,8 +5,7 @@ import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import basicUsage from "./examples/basicUsage";
 import modal from "./examples/modal";
 import Example from "@/common/example/Example";
-import Code from "@/common/Code";
-import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
+import TableCode from "@/common/TableCode";
 
 const sections = [
   {
@@ -16,22 +15,26 @@ const sections = [
         <thead>
           <tr>
             <th>Name</th>
+            <th>Type</th>
+            <th>Description</th>
             <th>Default</th>
-            <HeaderDescriptionCell>Description</HeaderDescriptionCell>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>type: 'info' | 'confirm' | 'warning' | 'error'</td>
+            <td>type</td>
             <td>
-              <Code>'info'</Code>
+              <TableCode>'info' | 'confirm' | 'warning' | 'error'</TableCode>
             </td>
             <td>Uses on of the available alert types.</td>
+            <td>
+              <TableCode>'info'</TableCode>
+            </td>
           </tr>
           <tr>
-            <td>mode: 'inline' | 'modal'</td>
+            <td>mode</td>
             <td>
-              <Code>'inline'</Code>
+              <TableCode>'inline' | 'modal'</TableCode>
             </td>
             <td>
               Uses on of the available alert modes:
@@ -46,63 +49,85 @@ const sections = [
                   <strong>modal:</strong> The alert will be displayed in the
                   middle of the screen with an overlay layer behind. The onClose
                   function will be executed when the X button or the overlay is
-                  clicked. The user has the responsibility of hidding the modal
+                  clicked. The user has the responsibility of hiding the modal
                   in the onClose function, otherwise the modal will remain
                   visible.
                 </li>
               </ul>
             </td>
-          </tr>
-          <tr>
-            <td>inlineText: string</td>
-            <td></td>
             <td>
-              Text to display after icon and alert type and before content.
+              <TableCode>'inline'</TableCode>
             </td>
           </tr>
           <tr>
-            <td>onClose: function</td>
-            <td></td>
+            <td>inlineText</td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
+            <td>
+              Text to display after icon and alert type and before content.
+            </td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>onClose</td>
+            <td>
+              <TableCode>{"() => void"}</TableCode>
+            </td>
             <td>
               This function will be called when the user clicks the close
               button. If there is no function we should close the alert by
               default.
             </td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>children: node</td>
-            <td></td>
+            <td>children</td>
+            <td>
+              <TableCode>React.ReactNode</TableCode>
+            </td>
             <td>
               The details section of the alert. Can be used to render custom
               content in this area.
             </td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>margin: string | object</td>
-            <td></td>
+            <td>margin</td>
             <td>
-              Size of the margin to be applied to the component ('xxsmall' |
-              'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge').
-              You can pass an object with 'top', 'bottom', 'left' and 'right'
-              properties in order to specify different margin sizes.
+              <TableCode>
+                'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' |
+                'xxlarge' | Margin
+              </TableCode>
+            </td>
+            <td>
+              Size of the margin to be applied to the component. You can pass an
+              object with 'top', 'bottom', 'left' and 'right' properties in
+              order to specify different margin sizes.
+            </td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>size</td>
+            <td>
+              <TableCode>
+                'small' | 'medium' | 'large' | 'fillParent' | 'fitContent'
+              </TableCode>
+            </td>
+            <td>Size of the component.</td>
+            <td>
+              <TableCode>'fitContent'</TableCode>
             </td>
           </tr>
           <tr>
-            <td>size: string</td>
+            <td>tabIndex</td>
             <td>
-              <Code>'fitContent'</Code>
-            </td>
-            <td>
-              Size of the component ('small' | 'medium' | 'large' | 'fillParent'
-              | 'fitContent').
-            </td>
-          </tr>
-          <tr>
-            <td>tabIndex: number</td>
-            <td>
-              <Code>0</Code>
+              <TableCode>number</TableCode>
             </td>
             <td>Tabindex value given to the close button.</td>
+            <td>
+              <TableCode>0</TableCode>
+            </td>
           </tr>
         </tbody>
       </DxcTable>
