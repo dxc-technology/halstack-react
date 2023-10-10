@@ -17,7 +17,7 @@ type Props = {
    *              There is no overlay layer. Position should be decided by the user.
    *    'modal':  The alert will be displayed in the middle of the screen with an overlay layer behind. 
    *              The onClose function will be executed when the X button or the overlay is clicked. d
-   *              The user has the responsibility of hidding the modal in the onClose function, otherwise the modal will remain visible.
+   *              The user has the responsibility of hiding the modal in the onClose function, otherwise the modal will remain visible.
    */
   mode?: "inline" | "modal";
   /**
