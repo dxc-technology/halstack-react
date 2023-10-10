@@ -1,15 +1,12 @@
-import {
-  DxcFlex,
-  DxcTable,
-  DxcLink,
-} from "@dxc-technology/halstack-react";
+import { DxcFlex, DxcTable, DxcLink } from "@dxc-technology/halstack-react";
 import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import Example from "@/common/example/Example";
-import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
 import basic from "./examples/basicUsage";
+import StatusTag from "@/common/StatusTag";
+import TableCode from "@/common/TableCode";
 
 const sections = [
   {
@@ -18,15 +15,22 @@ const sections = [
       <DxcTable>
         <tr>
           <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
           <th>Default</th>
-          <HeaderDescriptionCell>Description</HeaderDescriptionCell>
         </tr>
         <tr>
-          <td>alt: string</td>
-          <td></td>
           <td>
-            Alternative text description displayed when the specified image is not loaded.
-            See{" "}
+            <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+              <StatusTag status="Required">Required</StatusTag>alt
+            </DxcFlex>
+          </td>
+          <td>
+            <TableCode>string</TableCode>
+          </td>
+          <td>
+            Alternative text description displayed when the specified image is
+            not loaded. See{" "}
             <DxcLink
               newWindow
               href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/alt"
@@ -40,40 +44,53 @@ const sections = [
             >
               alt decision tree
             </DxcLink>{" "}
-            of W3C for further information. This prop is{" "}
-            <strong>required</strong>.
+            of W3C for further information.
           </td>
+          <td>-</td>
         </tr>
         <tr>
-          <td>caption: string</td>
-          <td></td>
+          <td>caption</td>
+          <td>
+            <TableCode>string</TableCode>
+          </td>
           <td>
             Image legend with a descriptive purpose. It is placed below the
             image and is complementary to the <Code>alt</Code> attribute, which
             is required regardless of the presence of the caption or not.
           </td>
+          <td>-</td>
         </tr>
         <tr>
-          <td>lazyLoading: boolean</td>
+          <td>lazyLoading</td>
           <td>
-            <Code>false</Code>
+            <TableCode>boolean</TableCode>
           </td>
           <td>
             If true, the image will be loaded only when it is visible on the
             screen (lazy loading). Otherwise and by default, the image will be
             loaded as soon as the component is mounted (eager loading).
           </td>
-        </tr>
-        <tr>
-          <td>src: string</td>
-          <td></td>
           <td>
-            URL of the image. This prop is <strong>required</strong> and must be valid.
+            <TableCode>false</TableCode>
           </td>
         </tr>
         <tr>
-          <td>srcSet: string</td>
-          <td></td>
+          <td>
+            <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+              <StatusTag status="Required">Required</StatusTag>src
+            </DxcFlex>
+          </td>
+          <td>
+            <TableCode>string</TableCode>
+          </td>
+          <td>URL of the image.</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>srcSet</td>
+          <td>
+            <TableCode>string</TableCode>
+          </td>
           <td>
             List of one or more strings separated by commas indicating a set of
             possible images for the user agent to use. See{" "}
@@ -85,15 +102,18 @@ const sections = [
             </DxcLink>{" "}
             for further information.
           </td>
+          <td>-</td>
         </tr>
         <tr>
-          <td>sizes: string</td>
-          <td></td>
+          <td>sizes</td>
+          <td>
+            <TableCode>string</TableCode>
+          </td>
           <td>
             One or more strings separated by commas, indicating a set of source
-            sizes. If the <Code>srcSet</Code> attribute is absent or contains
-            no values with a width descriptor, then this attribute has no
-            effect. See{" "}
+            sizes. If the <Code>srcSet</Code> attribute is absent or contains no
+            values with a width descriptor, then this attribute has no effect.
+            See{" "}
             <DxcLink
               newWindow
               href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/sizes"
@@ -102,23 +122,30 @@ const sections = [
             </DxcLink>{" "}
             for further information.
           </td>
+          <td>-</td>
         </tr>
         <tr>
-          <td>width: string</td>
-          <td></td>
-          <td>Sets the rendered width of the image.</td>
-        </tr>
-        <tr>
-          <td>height: string</td>
-          <td></td>
-          <td>Sets the rendered height of the image.</td>
-        </tr>
-        <tr>
+          <td>width</td>
           <td>
-            objectFit: 'contain' | 'cover' | 'fill' | 'none' | 'scale-down'
+            <TableCode>string</TableCode>
           </td>
+          <td>Sets the rendered width of the image.</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>height</td>
           <td>
-            <Code>'fill'</Code>
+            <TableCode>string</TableCode>
+          </td>
+          <td>Sets the rendered height of the image.</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>objectFit</td>
+          <td>
+            <TableCode>
+              'contain' | 'cover' | 'fill' | 'none' | 'scale-down'
+            </TableCode>
           </td>
           <td>
             Sets the <Code>object-fit</Code> CSS property. See{" "}
@@ -130,11 +157,14 @@ const sections = [
             </DxcLink>{" "}
             for further information.
           </td>
+          <td>
+            <TableCode>'fill'</TableCode>
+          </td>
         </tr>
         <tr>
-          <td>objectPosition: string</td>
+          <td>objectPosition</td>
           <td>
-            <Code>'50% 50%'</Code>
+            <TableCode>string</TableCode>
           </td>
           <td>
             Sets the <Code>object-position</Code> CSS property. See{" "}
@@ -146,16 +176,29 @@ const sections = [
             </DxcLink>{" "}
             for further information.
           </td>
+          <td>
+            <TableCode>'50% 50%'</TableCode>
+          </td>
         </tr>
         <tr>
-          <td>onLoad: ReactEventHandler</td>
-          <td></td>
+          <td>onLoad</td>
+          <td>
+            <TableCode>
+              {"React.ReactEventHandler <HTMLImageElement>"}
+            </TableCode>
+          </td>
           <td>This function will be called when the image is loaded.</td>
+          <td>-</td>
         </tr>
         <tr>
-          <td>onError: ReactEventHandler</td>
-          <td></td>
+          <td>onError</td>
+          <td>
+            <TableCode>
+              {"React.ReactEventHandler <HTMLImageElement>"}
+            </TableCode>
+          </td>
           <td>This function will be called when the image fails to load.</td>
+          <td>-</td>
         </tr>
       </DxcTable>
     ),
