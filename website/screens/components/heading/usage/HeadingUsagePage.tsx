@@ -4,6 +4,7 @@ import {
   DxcParagraph,
 } from "@dxc-technology/halstack-react";
 import DocFooter from "@/common/DocFooter";
+import Figure from "@/common/Figure";
 import Image from "@/common/Image";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
@@ -28,7 +29,9 @@ const sections = [
           The font size goes from 32 pixels for the <Code>&lt;h1&gt;</Code>{" "}
           heading to 14 pixels for the <Code>&lt;h5&gt;</Code> level.
         </DxcParagraph>
-        <Image src={headingScale} alt="Variations of the heading" />
+        <Figure caption="Heading variations">
+          <Image src={headingScale} alt="Heading variations" />
+        </Figure>
         <DxcParagraph>
           There are several scenarios where the use of heading is just right
           when we are talking about the title for a section, header of a table,

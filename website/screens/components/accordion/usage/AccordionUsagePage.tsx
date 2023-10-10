@@ -78,11 +78,8 @@ const sections = [
               Accordions can be placed with main page content or placed inside
               of a container such as a side panel or tile.
             </DxcParagraph>
-            <Figure caption="Component placement examples">
-              <Image
-                src={accordionPlacement}
-                alt="Component placement examples"
-              />
+            <Figure caption="Accordion placement">
+              <Image src={accordionPlacement} alt="Accordion placement" />
             </Figure>
           </>
         ),
@@ -96,21 +93,21 @@ const sections = [
               header. This allows for the title on the start side to align with
               other type elements in the layout.
             </DxcParagraph>
-            <Image
-              src={accordionAlignment}
-              alt="Component elements alignment"
-            />
-            <DxcParagraph>
-              <em>
-                <strong>Left</strong>. Place chevron icon at the end of the
-                accordion header.
-              </em>
-            </DxcParagraph>
-            <DxcParagraph>
-              <em>
-                <strong>Right</strong>. Don’t place caret icon on the left.
-              </em>
-            </DxcParagraph>
+            <Figure
+              caption={
+                <>
+                  <DxcParagraph>
+                    <strong>Left</strong>. Place chevron icon at the end of the
+                    accordion header.
+                  </DxcParagraph>
+                  <DxcParagraph>
+                    <strong>Right</strong>. Don’t place caret icon on the left.
+                  </DxcParagraph>
+                </>
+              }
+            >
+              <Image src={accordionAlignment} alt="Accordion alignment" />
+            </Figure>
           </>
         ),
       },
@@ -205,11 +202,8 @@ const sections = [
           </em>
         </DxcParagraph>
         <DxcParagraph>
-          <Figure caption="Component placement examples">
-            <Image
-              src={accordionMultiExpand}
-              alt="Component placement examples"
-            />
+          <Figure caption="Accordion group placement">
+            <Image src={accordionMultiExpand} alt="Accordion group placement" />
           </Figure>
         </DxcParagraph>
         <DxcParagraph>

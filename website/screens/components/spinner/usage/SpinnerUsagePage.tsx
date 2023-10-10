@@ -45,8 +45,8 @@ const sections = [
           the size or the position: <strong>large</strong>,{" "}
           <strong>small</strong> and <strong>overlay</strong>.
         </DxcParagraph>
-        <Figure caption="Spinner component variants">
-          <Image src={variantsImage} alt="Spinner component variants" />
+        <Figure caption="Spinner variants">
+          <Image src={variantsImage} alt="Spinner variants" />
         </Figure>
       </>
     ),

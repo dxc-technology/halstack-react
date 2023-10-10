@@ -159,7 +159,7 @@ const sections = [
                 <DxcParagraph>
                   <strong>Panel navigation</strong>
                 </DxcParagraph>
-                <Figure caption="When used for panel navigation tabs are placed in the top of the panel using all available width.">
+                <Figure caption="Panel navigation tabs are placed in the top of the panel using all available width">
                   <Image src={panelNavigation} alt="Mobile panel nagivation" />
                 </Figure>
               </>
@@ -227,10 +227,7 @@ const sections = [
               Avoid to use all caps for tab labels. ALL CAPS is rarely a good
               idea because it&#39;s harder to read.
             </DxcParagraph>
-            <Figure
-              caption="Is recommended to use sentence-case capitalization and semibold
-            style for tab labels."
-            >
+            <Figure caption="The sentence-case capitalization and semibold use is recommended style for tab labels">
               <Image src={typographyUsageTabImage} alt="Typography" />
             </Figure>
           </>
@@ -259,7 +256,7 @@ const sections = [
               that is associated with that specific tab, while the tabs keep
               fixed at the top of the container.
             </DxcParagraph>
-            <Figure caption="Do not use main navigation if they only affect an specific panel.">
+            <Figure caption="Do not use main navigation if they only affect an specific panel">
               <Image src={tabsPanelBehavior} alt="Panel navigation" />
             </Figure>
             <Figure

@@ -7,6 +7,7 @@ import {
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
+import Figure from "@/common/Figure";
 import Image from "@/common/Image";
 import navTabsNavigation from "./images/navTabs_navigation.png";
 
@@ -50,10 +51,14 @@ const sections = [
       <>
         <DxcParagraph>
           Nav tabs can be used both to navigate within a page as well as to
-          external pages and links. The image below illustrates that a
-          combination of internal and external links can be used together:
+          external pages and links.
         </DxcParagraph>
-        <Image src={navTabsNavigation} alt="Nav tabs navigation" />
+        <Figure caption="Nav tabs navigation combination of internal and external links">
+          <Image
+            src={navTabsNavigation}
+            alt="Nav tabs navigation combination of internal and external links"
+          />
+        </Figure>
       </>
     ),
   },
