@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 type StatusTagProps = {
-  status?: "Deprecated" | "Experimental" | "Information" | "Ready";
+  status?: "Deprecated" | "Experimental" | "Information" | "Ready" | "Required";
   children: React.ReactNode;
 };
 
@@ -24,6 +24,8 @@ const StyledStatusTag = styled.div<StatusTagProps>`
       ? "#947705"
       : props.status === "Information"
       ? "#003C66"
+      : props.status === "Required"
+      ? "#915108"
       : "#321353"};
   background-color: ${(props) =>
     props.status === "Ready"
@@ -32,6 +34,8 @@ const StyledStatusTag = styled.div<StatusTagProps>`
       ? "#FBE89D"
       : props.status === "Information"
       ? "#CCEAFF"
+      : props.status === "Required"
+      ? "#FCE7CF"
       : "#E5D5F6"};
 `;
 
