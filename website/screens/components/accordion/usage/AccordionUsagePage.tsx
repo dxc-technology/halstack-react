@@ -150,19 +150,22 @@ const sections = [
             </DxcBulletedList>
           </DxcFlex>
         </DxcBulletedList>
-        <Image src={accordionTriggers} alt="Accordion trigger usage" />
-        <DxcParagraph>
-          <em>
-            <strong>Left</strong>. Trigger collapsed and expanded states when
-            clicking on either the header or icon.
-          </em>
-        </DxcParagraph>
-        <DxcParagraph>
-          <em>
-            <strong>Right</strong>. Leave the header without caret or use a
-            button to trigger the expand/collapse action.
-          </em>
-        </DxcParagraph>
+        <Figure
+          caption={
+            <>
+              <DxcParagraph>
+                <strong>Left</strong>. Trigger collapsed and expanded states
+                when clicking on either the header or icon.
+              </DxcParagraph>
+              <DxcParagraph>
+                <strong>Right</strong>. Leave the header without caret or use a
+                button to trigger the expand/collapse action.
+              </DxcParagraph>
+            </>
+          }
+        >
+          <Image src={accordionTriggers} alt="Accordion trigger usage" />
+        </Figure>
       </>
     ),
     subSections: [
@@ -224,19 +227,22 @@ const sections = [
           and every custom feature that can be supported inside the element
           container.
         </DxcParagraph>
-        <Image src={accordionContent} alt="Nesting and icon usage examples" />
-        <DxcParagraph>
-          <em>
-            <strong>Left</strong>. Nesting is allowed. Use in parent accordion
-            Open Sans Semibold.
-          </em>
-        </DxcParagraph>
-        <DxcParagraph>
-          <em>
-            <strong>Right</strong>. Icons can be used as a complement to the
-            header label.
-          </em>
-        </DxcParagraph>
+        <Figure
+          caption={
+            <>
+              <DxcParagraph>
+                <strong>Left</strong>. Nesting is allowed. Use in parent
+                accordion Open Sans Semibold.
+              </DxcParagraph>
+              <DxcParagraph>
+                <strong>Right</strong>. Icons can be used as a complement to the
+                header label.
+              </DxcParagraph>
+            </>
+          }
+        >
+          <Image src={accordionContent} alt="Nesting and icon usage examples" />
+        </Figure>
       </>
     ),
   },
