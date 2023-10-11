@@ -19,11 +19,8 @@ const sections = [
   {
     title: "Specifications",
     content: (
-      <Figure caption="Design specifications for button component">
-        <Image
-          src={buttonSpecsImage}
-          alt="Design specifications for button component"
-        />
+      <Figure caption="Button design specifications">
+        <Image src={buttonSpecsImage} alt="Button design specifications" />
       </Figure>
     ),
   },
@@ -41,8 +38,8 @@ const sections = [
           <strong>focus</strong>, <strong>active</strong> and{" "}
           <strong>disabled</strong>.
         </DxcParagraph>
-        <Figure caption="Button component states">
-          <Image src={buttonStatesImage} alt="Button component states" />
+        <Figure caption="Button states">
+          <Image src={buttonStatesImage} alt="Button states" />
         </Figure>
       </>
     ),

@@ -19,8 +19,8 @@ const sections = [
   {
     title: "Specifications",
     content: (
-      <Figure caption="Table design specifications">
-        <Image src={specsImage} alt="Table design specifications" />
+      <Figure caption="Resultset table design specifications">
+        <Image src={specsImage} alt="Resultset table design specifications" />
       </Figure>
     ),
   },
@@ -51,7 +51,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image src={anatomyImage} alt="Table component anatomy" />
+        <Image src={anatomyImage} alt="Resultset table anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>Header</DxcBulletedList.Item>
           <DxcBulletedList.Item>Header title</DxcBulletedList.Item>

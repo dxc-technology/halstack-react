@@ -19,8 +19,8 @@ const sections = [
   {
     title: "Specifications",
     content: (
-      <Figure caption="Component design specifications">
-        <Image src={accordionSpecs} alt="Component design specifications" />
+      <Figure caption="Accordion design specifications">
+        <Image src={accordionSpecs} alt="Accordion design specifications" />
       </Figure>
     ),
   },
@@ -33,8 +33,8 @@ const sections = [
           interaction. States: <strong>enabled</strong>, <strong>hover</strong>,{" "}
           <strong>focus</strong> and <strong>disabled</strong>.
         </DxcParagraph>
-        <Figure caption="Accordion component states">
-          <Image src={accordionStates} alt="Accordion component states" />
+        <Figure caption="Accordion states">
+          <Image src={accordionStates} alt="Accordion states" />
         </Figure>
       </>
     ),

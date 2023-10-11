@@ -21,11 +21,8 @@ const sections = [
     title: "Specifications",
     content: (
       <>
-        <Figure caption="Design specifications of the number input component">
-          <Image
-            src={numberSpecs}
-            alt="Design specifications of the number input component"
-          />
+        <Figure caption="Number input design specifications">
+          <Image src={numberSpecs} alt="Number input design specifications" />
         </Figure>
         <DxcParagraph>
           The number input <Code>color</Code>, <Code>typography</Code>,{" "}
@@ -52,8 +49,8 @@ const sections = [
               <strong>focus</strong>, <strong>error</strong> and{" "}
               <strong>disabled</strong>.
             </DxcParagraph>
-            <Figure caption="Input states example">
-              <Image src={numberInputSpecs} alt="Input states example" />
+            <Figure caption="Number input states">
+              <Image src={numberInputSpecs} alt="Number input states" />
             </Figure>
           </>
         ),
@@ -67,8 +64,8 @@ const sections = [
               <strong>focus</strong>, <strong>active</strong> and{" "}
               <strong>disabled</strong>.
             </DxcParagraph>
-            <Figure caption="Spin button states example">
-              <Image src={numberInputStates} alt="Spin button states example" />
+            <Figure caption="Spin button states">
+              <Image src={numberInputStates} alt="Spin button states" />
             </Figure>
           </>
         ),
@@ -79,10 +76,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image
-          src={numberAnatomy}
-          alt="Anatomy of the number input component"
-        />
+        <Image src={numberAnatomy} alt="Number input anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>Label</DxcBulletedList.Item>
           <DxcBulletedList.Item>

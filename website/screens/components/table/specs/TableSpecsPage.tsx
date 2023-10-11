@@ -52,7 +52,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image src={anatomyImage} alt="Table component anatomy" />
+        <Image src={anatomyImage} alt="Table anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>Header</DxcBulletedList.Item>
           <DxcBulletedList.Item>Header title</DxcBulletedList.Item>

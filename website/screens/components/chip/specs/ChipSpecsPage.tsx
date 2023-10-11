@@ -19,8 +19,8 @@ const sections = [
   {
     title: "Specifications",
     content: (
-      <Figure caption="Component chip design specifications">
-        <Image src={specsImage} alt="Component chip design specifications" />
+      <Figure caption="Chip design specifications">
+        <Image src={specsImage} alt="Chip design specifications" />
       </Figure>
     ),
   },
@@ -32,8 +32,8 @@ const sections = [
           The chip component container states are <strong>enabled</strong> and{" "}
           <strong>disabled</strong>:
         </DxcParagraph>
-        <Figure caption="Chip container states">
-          <Image src={statesImage} alt="Chip container states" />
+        <Figure caption="Chip states">
+          <Image src={statesImage} alt="Chip states" />
         </Figure>
         <DxcParagraph>
           The chip action item has the following states:{" "}
@@ -54,7 +54,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image src={anatomyImage} alt="Component anatomy" />
+        <Image src={anatomyImage} alt="Chip anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>Container</DxcBulletedList.Item>
           <DxcBulletedList.Item>

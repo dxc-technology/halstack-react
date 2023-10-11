@@ -17,8 +17,8 @@ const sections = [
   {
     title: "Specifications",
     content: (
-      <Figure caption="Component design specifications">
-        <Image src={specsImage} alt="Component design specifications" />
+      <Figure caption="Progress bar design specifications">
+        <Image src={specsImage} alt="Progress bar design specifications" />
       </Figure>
     ),
   },
@@ -27,7 +27,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image src={anatomyImage} alt="Component anatomy" />
+        <Image src={anatomyImage} alt="Progress bar anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
             Label <em>(Optional)</em>

@@ -83,10 +83,10 @@ const sections = [
                   Clear actions allow user to remove the content of the text
                   input.
                 </DxcParagraph>
-                <Figure caption="Example of text input with a clear content action button">
+                <Figure caption="Text input with a clear content action button">
                   <Image
                     src={inputActionsClearImage}
-                    alt="Example of text input with a clear content action button"
+                    alt="Text input with a clear content action button"
                   />
                 </Figure>
               </>
@@ -99,10 +99,10 @@ const sections = [
                 <DxcParagraph>
                   Text inputs can have an additional custom action.
                 </DxcParagraph>
-                <Figure caption="Example of text input with an additional action">
+                <Figure caption="Text input with an additional action">
                   <Image
                     src={inputActionsCustom}
-                    alt="Example of text input with an additional action"
+                    alt="Text input with an additional action"
                   />
                 </Figure>
               </>

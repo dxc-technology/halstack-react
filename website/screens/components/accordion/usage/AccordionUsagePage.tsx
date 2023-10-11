@@ -78,11 +78,8 @@ const sections = [
               Accordions can be placed with main page content or placed inside
               of a container such as a side panel or tile.
             </DxcParagraph>
-            <Figure caption="Component placement examples">
-              <Image
-                src={accordionPlacement}
-                alt="Component placement examples"
-              />
+            <Figure caption="Accordion placement">
+              <Image src={accordionPlacement} alt="Accordion placement" />
             </Figure>
           </>
         ),
@@ -96,21 +93,21 @@ const sections = [
               header. This allows for the title on the start side to align with
               other type elements in the layout.
             </DxcParagraph>
-            <Image
-              src={accordionAlignment}
-              alt="Component elements alignment"
-            />
-            <DxcParagraph>
-              <em>
-                <strong>Left</strong>. Place chevron icon at the end of the
-                accordion header.
-              </em>
-            </DxcParagraph>
-            <DxcParagraph>
-              <em>
-                <strong>Right</strong>. Don’t place caret icon on the left.
-              </em>
-            </DxcParagraph>
+            <Figure
+              caption={
+                <>
+                  <DxcParagraph>
+                    <strong>Left</strong>. Place chevron icon at the end of the
+                    accordion header.
+                  </DxcParagraph>
+                  <DxcParagraph>
+                    <strong>Right</strong>. Don’t place caret icon on the left.
+                  </DxcParagraph>
+                </>
+              }
+            >
+              <Image src={accordionAlignment} alt="Accordion alignment" />
+            </Figure>
           </>
         ),
       },
@@ -153,19 +150,22 @@ const sections = [
             </DxcBulletedList>
           </DxcFlex>
         </DxcBulletedList>
-        <Image src={accordionTriggers} alt="Accordion trigger usage" />
-        <DxcParagraph>
-          <em>
-            <strong>Left</strong>. Trigger collapsed and expanded states when
-            clicking on either the header or icon.
-          </em>
-        </DxcParagraph>
-        <DxcParagraph>
-          <em>
-            <strong>Right</strong>. Leave the header without caret or use a
-            button to trigger the expand/collapse action.
-          </em>
-        </DxcParagraph>
+        <Figure
+          caption={
+            <>
+              <DxcParagraph>
+                <strong>Left</strong>. Trigger collapsed and expanded states
+                when clicking on either the header or icon.
+              </DxcParagraph>
+              <DxcParagraph>
+                <strong>Right</strong>. Leave the header without caret or use a
+                button to trigger the expand/collapse action.
+              </DxcParagraph>
+            </>
+          }
+        >
+          <Image src={accordionTriggers} alt="Accordion trigger usage" />
+        </Figure>
       </>
     ),
     subSections: [
@@ -205,8 +205,8 @@ const sections = [
           </em>
         </DxcParagraph>
         <DxcParagraph>
-          <Figure caption="Component placement examples">
-            <Image src={accordionMultiExpand} alt="image" />
+          <Figure caption="Accordion group placement">
+            <Image src={accordionMultiExpand} alt="Accordion group placement" />
           </Figure>
         </DxcParagraph>
         <DxcParagraph>
@@ -227,19 +227,22 @@ const sections = [
           and every custom feature that can be supported inside the element
           container.
         </DxcParagraph>
-        <Image src={accordionContent} alt="Nesting and icon usage examples" />
-        <DxcParagraph>
-          <em>
-            <strong>Left</strong>. Nesting is allowed. Use in parent accordion
-            Open Sans Semibold.
-          </em>
-        </DxcParagraph>
-        <DxcParagraph>
-          <em>
-            <strong>Right</strong>. Icons can be used as a complement to the
-            header label.
-          </em>
-        </DxcParagraph>
+        <Figure
+          caption={
+            <>
+              <DxcParagraph>
+                <strong>Left</strong>. Nesting is allowed. Use in parent
+                accordion Open Sans Semibold.
+              </DxcParagraph>
+              <DxcParagraph>
+                <strong>Right</strong>. Icons can be used as a complement to the
+                header label.
+              </DxcParagraph>
+            </>
+          }
+        >
+          <Image src={accordionContent} alt="Nesting and icon usage examples" />
+        </Figure>
       </>
     ),
   },

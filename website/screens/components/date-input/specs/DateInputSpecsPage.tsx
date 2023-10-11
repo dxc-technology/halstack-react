@@ -52,8 +52,8 @@ const sections = [
   {
     title: "Date picker dialog",
     content: (
-      <Figure caption="Structure and spacing for the date picker pop-up">
-        <Image src={datePopupSpecs} alt="Date specifications for picker" />
+      <Figure caption="Date picker design specifications">
+        <Image src={datePopupSpecs} alt="Date picker design specifications" />
       </Figure>
     ),
   },
@@ -69,11 +69,8 @@ const sections = [
               <strong>focus</strong>, <strong>error</strong>, and{" "}
               <strong>disabled</strong>.
             </DxcParagraph>
-            <Figure caption="Examples of the date input states">
-              <Image
-                src={dateSpecsStates}
-                alt="Examples of the date input states"
-              />
+            <Figure caption="Date input states">
+              <Image src={dateSpecsStates} alt="Date input states" />
             </Figure>
           </>
         ),
@@ -88,11 +85,8 @@ const sections = [
               <strong>selected</strong>, <strong>today</strong> and{" "}
               <strong>disabled</strong>.
             </DxcParagraph>
-            <Figure caption="Examples of a calendar day states">
-              <Image
-                src={dateSpecsPopup}
-                alt="Examples of a calendar day states"
-              />
+            <Figure caption="Calendar day states">
+              <Image src={dateSpecsPopup} alt="Calendar day states" />
             </Figure>
           </>
         ),
@@ -103,7 +97,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image src={dateSpecsAnatomy} alt="Component anatomy example" />
+        <Image src={dateSpecsAnatomy} alt="Date input anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>Label</DxcBulletedList.Item>
           <DxcBulletedList.Item>

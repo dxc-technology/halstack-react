@@ -7,22 +7,21 @@ import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import gridAutoFlowSpecs from "./images/grid-autoFlow-specs.png";
 import gridTemplateSpecs from "./images/grid-templates-specs.png";
 
-
 const sections = [
   {
     title: "Specifications",
     content: (
       <>
-        <Figure caption="Grid Auto-Flow: Rows, Columns, Rows-Dense">
+        <Figure caption="Grid auto-flow: row, column and row dense design specifications">
           <Image
             src={gridAutoFlowSpecs}
-            alt="Grid Auto-Flow: Rows, Columns, Rows-Dense"
+            alt="Grid auto-flow: row, column and rows dense design specifications"
           />
         </Figure>
-        <Figure caption="Grid Templates: Areas, Rows, Columns">
+        <Figure caption="Grid template: areas, rows and columns design specifications">
           <Image
             src={gridTemplateSpecs}
-            alt="Grid Templates: Areas, Rows, Columns"
+            alt="Grid template: areas, rows and columns design specifications"
           />
         </Figure>
       </>

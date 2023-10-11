@@ -19,8 +19,8 @@ const sections = [
   {
     title: "Specifications",
     content: (
-      <Figure caption="Component design specifications">
-        <Image src={AlertSpecsImage} alt="Component design specifications" />
+      <Figure caption="Alert design specifications">
+        <Image src={AlertSpecsImage} alt="Alert design specifications" />
       </Figure>
     ),
   },
@@ -33,8 +33,8 @@ const sections = [
           <strong>enabled</strong>, <strong>hover</strong>,{" "}
           <strong>focus</strong>, and <strong>active</strong>.
         </DxcParagraph>
-        <Figure caption="Alert action specs">
-          <Image src={AlertStatesImage} alt="Alert action specs" />
+        <Figure caption="Alert states">
+          <Image src={AlertStatesImage} alt="Alert states" />
         </Figure>
       </>
     ),

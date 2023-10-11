@@ -94,7 +94,7 @@ const sections = [
                 </>
               }
             >
-              <Image src={tabsPlacement} alt="image" />
+              <Image src={tabsPlacement} alt="Placement" />
             </Figure>
           </>
         ),
@@ -120,8 +120,11 @@ const sections = [
                   panel using all available width. Scrollable tabs are allowed
                   when there is not enough space available.
                 </DxcParagraph>
-                <Figure caption="Using scrollable tabs for panel navigation.">
-                  <Image src={scrollablePanelNavigation} alt="image" />
+                <Figure caption="Using scrollable tabs for panel navigation">
+                  <Image
+                    src={scrollablePanelNavigation}
+                    alt="Using scrollable tabs for panel navigation"
+                  />
                 </Figure>
               </>
             ),
@@ -151,13 +154,13 @@ const sections = [
                     </>
                   }
                 >
-                  <Image src={mobileNavigation} alt="image" />
+                  <Image src={mobileNavigation} alt="Mobile main navigation" />
                 </Figure>
                 <DxcParagraph>
                   <strong>Panel navigation</strong>
                 </DxcParagraph>
-                <Figure caption="When used for panel navigation tabs are placed in the top of the panel using all available width.">
-                  <Image src={panelNavigation} alt="image" />
+                <Figure caption="Panel navigation tabs are placed in the top of the panel using all available width">
+                  <Image src={panelNavigation} alt="Mobile panel nagivation" />
                 </Figure>
               </>
             ),
@@ -182,7 +185,7 @@ const sections = [
                 </>
               }
             >
-              <Image src={tabsAlignment} alt="image" />
+              <Image src={tabsAlignment} alt="Alignment" />
             </Figure>
           </>
         ),
@@ -211,7 +214,7 @@ const sections = [
             </>
           }
         >
-          <Image src={contentUsageTabImage} alt="image" />
+          <Image src={contentUsageTabImage} alt="Tabs content" />
         </Figure>
       </>
     ),
@@ -224,11 +227,8 @@ const sections = [
               Avoid to use all caps for tab labels. ALL CAPS is rarely a good
               idea because it&#39;s harder to read.
             </DxcParagraph>
-            <Figure
-              caption="Is recommended to use sentence-case capitalization and semibold
-            style for tab labels."
-            >
-              <Image alt="image" src={typographyUsageTabImage} />
+            <Figure caption="The sentence-case capitalization and semibold use is recommended style for tab labels">
+              <Image src={typographyUsageTabImage} alt="Typography" />
             </Figure>
           </>
         ),
@@ -256,8 +256,8 @@ const sections = [
               that is associated with that specific tab, while the tabs keep
               fixed at the top of the container.
             </DxcParagraph>
-            <Figure caption="Do not use main navigation if they only affect an specific panel.">
-              <Image src={tabsPanelBehavior} alt="image" />
+            <Figure caption="Do not use main navigation if they only affect an specific panel">
+              <Image src={tabsPanelBehavior} alt="Panel navigation" />
             </Figure>
             <Figure
               caption={
@@ -273,7 +273,7 @@ const sections = [
                 </>
               }
             >
-              <Image src={tabsScrollablePanelBehavior} alt="image" />
+              <Image src={tabsScrollablePanelBehavior} alt="Scrollable panel" />
             </Figure>
           </>
         ),

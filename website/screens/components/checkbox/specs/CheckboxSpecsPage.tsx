@@ -19,8 +19,8 @@ const sections = [
   {
     title: "Specifications",
     content: (
-      <Figure caption="Component design specifications">
-        <Image src={checkboxSpecs} alt="Component design specifications" />
+      <Figure caption="Checkbox design specifications">
+        <Image src={checkboxSpecs} alt="Checkbox design specifications" />
       </Figure>
     ),
   },
@@ -37,8 +37,8 @@ const sections = [
           <strong>selected focus</strong> and{" "}
           <strong>selected disabled.</strong>
         </DxcParagraph>
-        <Figure caption="Checkbox component states.">
-          <Image src={checkboxStates} alt="Checkbox component states." />
+        <Figure caption="Checkbox states">
+          <Image src={checkboxStates} alt="Checkbox states" />
         </Figure>
       </>
     ),

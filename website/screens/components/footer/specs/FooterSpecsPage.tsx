@@ -17,8 +17,8 @@ const sections = [
   {
     title: "Specifications",
     content: (
-      <Figure caption="Footer component design specs">
-        <Image src={footerSpecs} alt="Footer component design specs" />
+      <Figure caption="Footer design specifications">
+        <Image src={footerSpecs} alt="Footer design specifications" />
       </Figure>
     ),
   },

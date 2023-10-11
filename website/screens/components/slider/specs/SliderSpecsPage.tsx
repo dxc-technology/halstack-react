@@ -19,8 +19,8 @@ const sections = [
   {
     title: "Specifications",
     content: (
-      <Figure caption="Slider Specifications">
-        <Image alt="Slider Specifications" src={sliderSpecs} />
+      <Figure caption="Slider design specifications">
+        <Image alt="Slider design specifications" src={sliderSpecs} />
       </Figure>
     ),
   },
@@ -34,11 +34,8 @@ const sections = [
           <strong>focus</strong>, <strong>active</strong> and{" "}
           <strong>disabled</strong>.
         </DxcParagraph>
-        <Figure caption="Slider component different states example">
-          <Image
-            src={sliderStates}
-            alt="Slider component different states example"
-          />
+        <Figure caption="Slider states">
+          <Image src={sliderStates} alt="Slider states" />
         </Figure>
       </>
     ),
@@ -48,7 +45,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image src={sliderAnatomy} alt="Slider Anatomy" />
+        <Image src={sliderAnatomy} alt="Slider anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>Label</DxcBulletedList.Item>
           <DxcBulletedList.Item>Helper text</DxcBulletedList.Item>

@@ -21,10 +21,10 @@ const sections = [
     title: "Specifications",
     content: (
       <>
-        <Figure caption="Password input component specifications">
+        <Figure caption="Password input design specifications">
           <Image
             src={passwordInputSpecs}
-            alt="Password input component specifications"
+            alt="Password input design specifications"
           />
         </Figure>
         <DxcParagraph>
@@ -60,11 +60,8 @@ const sections = [
           <strong>focus</strong>, <strong>error</strong> and{" "}
           <strong>disabled</strong>.
         </DxcParagraph>
-        <Figure caption="Password input component states">
-          <Image
-            src={passworsInputStates}
-            alt="Password input component states"
-          />
+        <Figure caption="Password input states">
+          <Image src={passworsInputStates} alt="Password input states" />
         </Figure>
       </>
     ),
@@ -74,7 +71,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image src={passwordInputAnatomy} alt="Component anatomy example" />
+        <Image src={passwordInputAnatomy} alt="Password input anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>Label</DxcBulletedList.Item>
           <DxcBulletedList.Item>
