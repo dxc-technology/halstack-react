@@ -17,7 +17,7 @@ import DxcPaginator from "./paginator/Paginator";
 import DxcWizard from "./wizard/Wizard";
 import DxcLink from "./link/Link";
 import DxcHeading from "./heading/Heading";
-import DxcResultsetTable from "./resultsetTable/ResultsetTable";
+import DxcResultsetTable from "./resultset-table/ResultsetTable";
 import DxcChip from "./chip/Chip";
 import DxcApplicationLayout from "./layout/ApplicationLayout";
 import DxcToggleGroup from "./toggle-group/ToggleGroup";
