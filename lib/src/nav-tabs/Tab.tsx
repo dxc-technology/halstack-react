@@ -129,6 +129,7 @@ const Tab = styled.a<{
   background: ${(props) =>
     props.active ? props.theme.selectedBackgroundColor : props.theme.unselectedBackgroundColor};
   text-decoration-color: transparent;
+  text-decoration-line: none;
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
 
   ${(props) =>
