@@ -109,7 +109,7 @@ const IconContainer = styled.div<{
       }
       &:focus,
       &:focus-visible {
-        outline: ${props.theme.focusBorderThickness} solid ${props.theme.focusColor};
+        outline: ${props.theme.focusBorderThickness} ${props.theme.focusBorderStyle} ${props.theme.focusColor};
       }
       &:active {
         color: ${props.theme.activeIconColor};
