@@ -6,6 +6,7 @@ import basicUsage from "./examples/basicUsage";
 import modal from "./examples/modal";
 import Example from "@/common/example/Example";
 import TableCode from "@/common/TableCode";
+import Code from "@/common/Code";
 
 const sections = [
   {
@@ -124,7 +125,9 @@ const sections = [
             <td>
               <TableCode>number</TableCode>
             </td>
-            <td>Tabindex value given to the close button.</td>
+            <td>
+              Value of the <Code>tabindex</Code> attribute of the close action.
+            </td>
             <td>
               <TableCode>0</TableCode>
             </td>

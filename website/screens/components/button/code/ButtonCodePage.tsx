@@ -152,7 +152,9 @@ const sections = [
             <td>
               <TableCode>number</TableCode>
             </td>
-            <td>Value of the tabindex attribute.</td>
+            <td>
+              Value of the <Code>tabindex</Code> attribute.
+            </td>
             <td>0</td>
           </tr>
         </tbody>

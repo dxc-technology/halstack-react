@@ -14,6 +14,7 @@ import controlledAccordionGroup from "./examples/controlledAccordionGroup";
 import uncontrolledAccordionGroup from "./examples/uncontrolledAccordionGroup";
 import TableCode from "@/common/TableCode";
 import StatusTag from "@/common/StatusTag";
+import Code from "@/common/Code";
 
 const sections = [
   {
@@ -140,7 +141,9 @@ const sections = [
             <td>
               <TableCode>number</TableCode>
             </td>
-            <td>Value of the tabindex.</td>
+            <td>
+              Value of the <Code>tabindex</Code> attribute.
+            </td>
             <td>
               <TableCode>0</TableCode>
             </td>
