@@ -65,7 +65,7 @@ const sections = [
             <td>icon</td>
             <td>
               <TableCode>
-                string | {"React.ReactNode & React.SVGProps <SVGSVGElement>"}
+                string | {"(React.ReactNode & React.SVGProps<SVGSVGElement>)"}
               </TableCode>
             </td>
             <td>
@@ -136,7 +136,7 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
-            <td>tabIndex: number</td>
+            <td>tabIndex</td>
             <td>
               <TableCode>number</TableCode>
             </td>

@@ -1,14 +1,11 @@
-import {
-  DxcFlex,
-  DxcTable,
-} from "@dxc-technology/halstack-react";
+import { DxcFlex, DxcTable } from "@dxc-technology/halstack-react";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import QuickNavContainer from "@/common/QuickNavContainer";
-import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import basicUsage from "./examples/basicUsage";
-import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
+import TableCode from "@/common/TableCode";
+import StatusTag from "@/common/StatusTag";
 
 const sections = [
   {
@@ -18,48 +15,69 @@ const sections = [
         <thead>
           <tr>
             <th>Name</th>
+            <th>Type</th>
+            <th>Description</th>
             <th>Default</th>
-            <HeaderDescriptionCell>Description</HeaderDescriptionCell>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>shadowDepth: 0 | 1 | 2</td>
+            <td>shadowDepth</td>
             <td>
-              <Code>2</Code>
+              <TableCode>0 | 1 | 2</TableCode>
             </td>
             <td>The size of the shadow to be displayed around the box.</td>
+            <td>
+              <TableCode>2</TableCode>
+            </td>
           </tr>
           <tr>
-            <td>display: string</td>
+            <td>display</td>
             <td>
-              <Code>'inline-flex'</Code>
+              <TableCode>string</TableCode>
             </td>
             <td>Changes the display CSS property of the box div.</td>
+            <td>
+              <TableCode>'inline-flex'</TableCode>
+            </td>
           </tr>
           <tr>
-            <td>children: node</td>
-            <td></td>
+            <td>
+              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                <StatusTag status="Required">Required</StatusTag>children
+              </DxcFlex>
+            </td>
+            <td>
+              <TableCode>React.ReactNode</TableCode>
+            </td>
             <td>Custom content that will be placed in the box component.</td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>margin: string | object</td>
-            <td></td>
+            <td>margin</td>
             <td>
-              Size of the margin to be applied to the component ('xxsmall' |
-              'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge').
-              You can pass an object with 'top', 'bottom', 'left' and 'right'
-              properties in order to specify different margin sizes.
+              <TableCode>
+                'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' |
+                'xxlarge' | Margin
+              </TableCode>
             </td>
+            <td>
+              Size of the margin to be applied to the component. You can pass an
+              object with 'top', 'bottom', 'left' and 'right' properties in
+              order to specify different margin sizes.
+            </td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>size: string</td>
+            <td>size</td>
             <td>
-              <Code>'fitContent'</Code>
+              <TableCode>
+                'small' | 'medium' | 'large' | 'fillParent' | 'fitContent'
+              </TableCode>
             </td>
+            <td>Size of the component.</td>
             <td>
-              Size of the component ('small' | 'medium' | 'large' |
-              'fillParent'| 'fitContent').
+              <TableCode>'fitContent'</TableCode>
             </td>
           </tr>
         </tbody>
