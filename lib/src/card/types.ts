@@ -47,7 +47,7 @@ type Props = {
    */
   margin?: Space | Size;
   /**
-   * Value of the tabindex given when there is an href.
+   * Value of the tabindex attribute, applied when the component is clickable.
    */
   tabIndex?: number;
   /**

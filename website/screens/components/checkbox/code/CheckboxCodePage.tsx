@@ -7,6 +7,7 @@ import controlled from "./examples/controlled";
 import uncontrolled from "./examples/uncontrolled";
 import StatusTag from "@/common/StatusTag";
 import TableCode from "@/common/TableCode";
+import Code from "@/common/Code";
 
 const sections = [
   {
@@ -104,8 +105,8 @@ const sections = [
               <TableCode>boolean</TableCode>
             </td>
             <td>
-              If true, the component will display the text '(Optional)' next
-              to the label.
+              If true, the component will display the text '(Optional)' next to
+              the label.
             </td>
             <td>
               <TableCode>false</TableCode>
@@ -171,7 +172,9 @@ const sections = [
             <td>
               <TableCode>number</TableCode>
             </td>
-            <td>Value of the tabindex.</td>
+            <td>
+              Value of the <Code>tabindex</Code> attribute.
+            </td>
             <td>
               <TableCode>0</TableCode>
             </td>
