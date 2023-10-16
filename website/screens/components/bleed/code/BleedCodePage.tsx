@@ -1,12 +1,12 @@
 import { DxcFlex, DxcTable } from "@dxc-technology/halstack-react";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import QuickNavContainer from "@/common/QuickNavContainer";
-import Code from "@/common/Code";
+import TableCode from "@/common/TableCode";
 import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import basicUsage from "./examples/basicUsage";
-import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
 import customSizes from "./examples/customSides";
+import StatusTag from "@/common/StatusTag";
 
 const sections = [
   {
@@ -15,83 +15,112 @@ const sections = [
       <DxcTable>
         <tr>
           <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
           <th>Default</th>
-          <HeaderDescriptionCell>Description</HeaderDescriptionCell>
         </tr>
         <tr>
+          <td>space</td>
           <td>
-            space: '0rem' | '0.125rem' | '0.25rem' | '0.5rem' | '1rem' |
-            '1.5rem' | '2rem' | '3rem' | '4rem' | '5rem'
-          </td>
-          <td>
-            <Code>'0rem'</Code>
+            <TableCode>
+              '0rem' | '0.125rem' | '0.25rem' | '0.5rem' | '1rem' | '1.5rem' |
+              '2rem' | '3rem' | '4rem' | '5rem'
+            </TableCode>
           </td>
           <td>Applies the spacing scale to all sides.</td>
+          <td>
+            <TableCode>'0rem'</TableCode>
+          </td>
         </tr>
         <tr>
+          <td>horizontal</td>
           <td>
-            horizontal: '0rem' | '0.125rem' | '0.25rem' | '0.5rem' | '1rem' |
-            '1.5rem' | '2rem' | '3rem' | '4rem' | '5rem'
-          </td>
-          <td>
-            <Code>'0rem'</Code>
+            <TableCode>
+              '0rem' | '0.125rem' | '0.25rem' | '0.5rem' | '1rem' | '1.5rem' |
+              '2rem' | '3rem' | '4rem' | '5rem'
+            </TableCode>
           </td>
           <td>Applies the spacing scale to the left and right sides.</td>
+          <td>
+            <TableCode>'0rem'</TableCode>
+          </td>
         </tr>
         <tr>
+          <td>vertical</td>
           <td>
-            vertical: '0rem' | '0.125rem' | '0.25rem' | '0.5rem' | '1rem' |
-            '1.5rem' | '2rem' | '3rem' | '4rem' | '5rem'
-          </td>
-          <td>
-            <Code>'0rem'</Code>
+            <TableCode>
+              '0rem' | '0.125rem' | '0.25rem' | '0.5rem' | '1rem' | '1.5rem' |
+              '2rem' | '3rem' | '4rem' | '5rem'
+            </TableCode>
           </td>
           <td>Applies the spacing scale to the top and bottom sides.</td>
+          <td>
+            <TableCode>'0rem'</TableCode>
+          </td>
         </tr>
         <tr>
+          <td>top</td>
           <td>
-            top: '0rem' | '0.125rem' | '0.25rem' | '0.5rem' | '1rem' | '1.5rem'
-            | '2rem' | '3rem' | '4rem' | '5rem'
-          </td>
-          <td>
-            <Code>'0rem'</Code>
+            <TableCode>
+              '0rem' | '0.125rem' | '0.25rem' | '0.5rem' | '1rem' | '1.5rem' |
+              '2rem' | '3rem' | '4rem' | '5rem'
+            </TableCode>
           </td>
           <td>Applies the spacing scale to the top side.</td>
+          <td>
+            <TableCode>'0rem'</TableCode>
+          </td>
         </tr>
         <tr>
+          <td>right</td>
           <td>
-            right: '0rem' | '0.125rem' | '0.25rem' | '0.5rem' | '1rem' |
-            '1.5rem' | '2rem' | '3rem' | '4rem' | '5rem'
-          </td>
-          <td>
-            <Code>'0rem'</Code>
+            <TableCode>
+              '0rem' | '0.125rem' | '0.25rem' | '0.5rem' | '1rem' | '1.5rem' |
+              '2rem' | '3rem' | '4rem' | '5rem'
+            </TableCode>
           </td>
           <td>Applies the spacing scale to the right side.</td>
+          <td>
+            <TableCode>'0rem'</TableCode>
+          </td>
         </tr>
         <tr>
+          <td>bottom</td>
           <td>
-            bottom: '0rem' | '0.125rem' | '0.25rem' | '0.5rem' | '1rem' |
-            '1.5rem' | '2rem' | '3rem' | '4rem' | '5rem'
-          </td>
-          <td>
-            <Code>'0rem'</Code>
+            <TableCode>
+              '0rem' | '0.125rem' | '0.25rem' | '0.5rem' | '1rem' | '1.5rem' |
+              '2rem' | '3rem' | '4rem' | '5rem'
+            </TableCode>
           </td>
           <td>Applies the spacing scale to the bottom side.</td>
+          <td>
+            <TableCode>'0rem'</TableCode>
+          </td>
         </tr>
         <tr>
+          <td>left</td>
           <td>
-            left: '0rem' | '0.125rem' | '0.25rem' | '0.5rem' | '1rem' | '1.5rem'
-            | '2rem' | '3rem' | '4rem' | '5rem'
-          </td>
-          <td>
-            <Code>'0rem'</Code>
+            <TableCode>
+              '0rem' | '0.125rem' | '0.25rem' | '0.5rem' | '1rem' | '1.5rem' |
+              '2rem' | '3rem' | '4rem' | '5rem'
+            </TableCode>
           </td>
           <td>Applies the spacing scale to the left side.</td>
+          <td>
+            <TableCode>'0rem'</TableCode>
+          </td>
         </tr>
         <tr>
-          <td>children: node</td>
-          <td></td>
+          <td>
+            <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+              <StatusTag status="Required">Required</StatusTag>children
+            </DxcFlex>
+          </td>
+          <td>
+            <TableCode>React.ReactNode</TableCode>
+          </td>
           <td>Custom content inside the bleed.</td>
+          <td>-</td>
         </tr>
       </DxcTable>
     ),
@@ -111,7 +140,7 @@ const sections = [
   },
 ];
 
-const BleedCodePage = () => {
+const BleedTableCodePage = () => {
   return (
     <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
@@ -120,9 +149,9 @@ const BleedCodePage = () => {
           startHeadingLevel={2}
         ></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/bleed/code/BleedCodePage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/bleed/TableCode/BleedTableCodePage.tsx" />
     </DxcFlex>
   );
 };
 
-export default BleedCodePage;
+export default BleedTableCodePage;
