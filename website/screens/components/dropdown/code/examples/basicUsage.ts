@@ -25,7 +25,7 @@ const code = `() => {
         label="Select platform"
         options={options}
         onSelectOption={selectOption}
-      ></DxcDropdown>
+      />
     </DxcInset>
   );
 }`;

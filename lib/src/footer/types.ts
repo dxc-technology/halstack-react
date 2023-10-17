@@ -45,23 +45,23 @@ type FooterPropsType = {
    */
   bottomLinks?: BottomLink[];
   /**
+   * The text that will be displayed as copyright disclaimer.
+   */
+  copyright?: string;
+  /**
    * The center section of the footer. Can be used to render custom
    * content in this area.
    */
   children?: React.ReactNode;
   /**
-   * The text that will be displayed as copyright disclaimer.
-   */
-  copyright?: string;
-  /**
-   * Value of the tabindex for all interactuable elements, except those
-   * inside the custom area.
-   */
-  tabIndex?: number;
-  /**
    * Size of the top margin to be applied to the footer.
    */
   margin?: Space | Size;
+  /**
+   * Value of the tabindex for all interactive elements, except those
+   * inside the custom area.
+   */
+  tabIndex?: number;
 };
 
 export default FooterPropsType;

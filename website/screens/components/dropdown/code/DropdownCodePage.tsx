@@ -6,7 +6,8 @@ import Code from "@/common/Code";
 import Example from "@/common/example/Example";
 import basicUsage from "./examples/basicUsage";
 import icons from "./examples/icons";
-import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
+import TableCode from "@/common/TableCode";
+import StatusTag from "@/common/StatusTag";
 
 const sections = [
   {
@@ -17,14 +18,25 @@ const sections = [
           <thead>
             <tr>
               <th>Name</th>
+              <th>Type</th>
+              <th>Description</th>
               <th>Default</th>
-              <HeaderDescriptionCell>Description</HeaderDescriptionCell>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>options: object[]</td>
-              <td></td>
+              <td>
+                <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                  <StatusTag status="Required">Required</StatusTag>options
+                </DxcFlex>
+              </td>
+              <td>
+                <TableCode>
+                  {
+                    "{ label?: string; icon: string | (React.ReactNode & React.SVGProps <SVGSVGElement>), value: string }[]"
+                  }
+                </TableCode>
+              </td>
               <td>
                 An array of objects representing the options. Each object has
                 the following properties:
@@ -41,96 +53,141 @@ const sections = [
                   </li>
                 </ul>
               </td>
+              <td>-</td>
             </tr>
             <tr>
-              <td>optionsIconPosition: 'before' | 'after'</td>
+              <td>optionsIconPosition</td>
               <td>
-                <Code>'before'</Code>
+                <TableCode>'before' | 'after'</TableCode>
               </td>
               <td>
                 In case options include icons, whether the icon should appear
                 after or before the label.
               </td>
+              <td>
+                <TableCode>'before'</TableCode>
+              </td>
             </tr>
             <tr>
-              <td>icon: node | string</td>
-              <td></td>
+              <td>icon</td>
+              <td>
+                <TableCode>
+                  string |{" "}
+                  {"(React.ReactNode & React.SVGProps <SVGSVGElement>)"}
+                </TableCode>
+              </td>
               <td>
                 Element or path used as the icon that will be placed next to the
                 dropdown label.
               </td>
+              <td>-</td>
             </tr>
             <tr>
-              <td>iconPosition: 'before' | 'after'</td>
+              <td>iconPosition</td>
               <td>
-                <Code>'before'</Code>
+                <TableCode>'before' | 'after'</TableCode>
               </td>
               <td>Whether the icon should appear after or before the label.</td>
-            </tr>
-            <tr>
-              <td>label: string</td>
-              <td></td>
-              <td>Text to be placed within the dropdown.</td>
-            </tr>
-            <tr>
-              <td>caretHidden: boolean</td>
               <td>
-                <Code>false</Code>
+                <TableCode>'before'</TableCode>
+              </td>
+            </tr>
+            <tr>
+              <td>label</td>
+              <td>
+                <TableCode>string</TableCode>
+              </td>
+              <td>Text to be placed within the dropdown.</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td>caretHidden</td>
+              <td>
+                <TableCode>boolean</TableCode>
               </td>
               <td>
                 Whether the arrow next to the label must be displayed or not.
               </td>
+              <td>
+                <TableCode>false</TableCode>
+              </td>
             </tr>
             <tr>
-              <td>disabled: boolean</td>
+              <td>disabled</td>
               <td>
-                <Code>false</Code>
+                <TableCode>boolean</TableCode>
               </td>
               <td>If true, the component will be disabled.</td>
+              <td>
+                <TableCode>false</TableCode>
+              </td>
             </tr>
             <tr>
-              <td>expandOnHover: boolean</td>
+              <td>expandOnHover</td>
               <td>
-                <Code>false</Code>
+                <TableCode>boolean</TableCode>
               </td>
               <td>
                 If true, the options are showed when the dropdown is hover.
               </td>
+              <td>
+                <TableCode>false</TableCode>
+              </td>
             </tr>
             <tr>
-              <td>onSelectOption: function</td>
-              <td></td>
+              <td>
+                <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                  <StatusTag status="Required">Required</StatusTag>
+                  onSelectOption
+                </DxcFlex>
+              </td>
+              <td>
+                <TableCode>{"(value: string) => void"}</TableCode>
+              </td>
               <td>
                 This function will be called every time the selection changes.
                 The value of the selected option will be passed as a parameter.
               </td>
+              <td>-</td>
             </tr>
             <tr>
-              <td>margin: string | object</td>
-              <td></td>
+              <td>margin</td>
               <td>
-                Size of the margin to be applied to the component ('xxsmall' |
-                'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge').
-                You can pass an object with 'top', 'bottom', 'left' and 'right'
-                properties in order to specify different margin sizes.
+                <TableCode>
+                  'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge'
+                  | 'xxlarge' | Margin
+                </TableCode>
+              </td>
+              <td>
+                Size of the margin to be applied to the component. You can pass
+                an object with 'top', 'bottom', 'left' and 'right' properties in
+                order to specify different margin sizes.
+              </td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td>size</td>
+              <td>
+                <TableCode>
+                  'small' | 'medium' | 'large' | 'fillParent' | 'fitContent'
+                </TableCode>
+              </td>
+              <td>Size of the component.</td>
+              <td>
+                <TableCode>'fitContent'</TableCode>
               </td>
             </tr>
             <tr>
-              <td>size: string</td>
+              <td>tabIndex</td>
               <td>
-                <Code>'fitContent'</Code>
+                <TableCode>number</TableCode>
               </td>
               <td>
-                Size of the component ('small' | 'medium' | 'large' |
-                'fitContent' | 'fillParent' ).
+                Value of the <Code>tabindex</Code> attribute.
               </td>
-            </tr>
-            <tr>
-              <td>tabIndex: number</td>
               <td>
-                <Code>0</Code>
+                <TableCode>0</TableCode>
               </td>
-              <td>Value of the tabindex.</td>
             </tr>
           </tbody>
         </DxcTable>
