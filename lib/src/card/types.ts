@@ -47,7 +47,7 @@ type Props = {
    */
   margin?: Space | Size;
   /**
-   * Value of the tabindex attribute, applied when the component is clickable.
+   * Value of the tabindex attribute applied when the component is clickable.
    */
   tabIndex?: number;
   /**
@@ -55,7 +55,7 @@ type Props = {
    */
   outlined?: boolean;
   /**
-   * Custom content that will be placed in the card component.
+   * Custom content that will be placed inside the component.
    */
   children?: React.ReactNode;
 };

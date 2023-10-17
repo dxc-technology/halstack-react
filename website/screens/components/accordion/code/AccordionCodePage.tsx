@@ -66,7 +66,7 @@ const sections = [
             <td>icon</td>
             <td>
               <TableCode>
-                string | {"(React.ReactNode & React.SVGProps<SVGSVGElement>)"}
+                string | {"(React.ReactNode & React.SVGProps <SVGSVGElement>)"}
               </TableCode>
             </td>
             <td>
