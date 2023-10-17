@@ -3,8 +3,8 @@ import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
 import Code from "@/common/Code";
-import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
 import StatusTag from "@/common/StatusTag";
+import TableCode from "@/common/TableCode";
 
 const sections = [
   {
@@ -14,24 +14,24 @@ const sections = [
         <thead>
           <tr>
             <th>Name</th>
+            <th>Type</th>
+            <th>Description</th>
             <th>Default</th>
-            <HeaderDescriptionCell>Description</HeaderDescriptionCell>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>socialLinks: object[]</td>
+            <td>socialLinks</td>
             <td>
-              <Code>[]</Code>
+              <TableCode>
+                {`{ href: string; title: string; logo: string | (React.ReactNode & React.SVGProps <SVGSVGElement>); }[]`}
+              </TableCode>
             </td>
             <td>
               An array of objects representing the links that will be rendered
               as icons at the top-right side of the footer. Each object has the
               following properties:
               <ul>
-                <li>
-                  <b>logo</b>: Element or path used as the icon for the link.
-                </li>
                 <li>
                   <b>href</b>: URL of the page the link goes to.
                 </li>
@@ -41,13 +41,17 @@ const sections = [
                   link. Under the hood, it also serves as an accessible label
                   for the icon.
                 </li>
+                <li>
+                  <b>logo</b>: Element or path used as the icon for the link.
+                </li>
               </ul>
             </td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>bottomLinks: object[]</td>
+            <td>bottomLinks</td>
             <td>
-              <Code>[]</Code>
+              <TableCode>{"{ href: string; text: string; }[]"}</TableCode>
             </td>
             <td>
               An array of objects representing the links that will be rendered
@@ -62,36 +66,49 @@ const sections = [
                 </li>
               </ul>
             </td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>copyright: string</td>
-            <td></td>
+            <td>copyright</td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
             <td>The text that will be displayed as copyright disclaimer.</td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>children: node</td>
-            <td></td>
+            <td>children</td>
+            <td>
+              <TableCode>React.ReactNode</TableCode>
+            </td>
             <td>
               The center section of the footer. Can be used to render custom
               content in this area.
             </td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>margin: string</td>
-            <td></td>
+            <td>margin</td>
             <td>
-              Size of the top margin to be applied to the footer ('xxsmall' |
-              'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge').
+              <TableCode>
+                'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' |
+                'xxlarge'
+              </TableCode>
             </td>
+            <td>Size of the top margin to be applied to the footer.</td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>tabIndex: number</td>
+            <td>tabIndex</td>
             <td>
-              <Code>0</Code>
+              <TableCode>number</TableCode>
             </td>
             <td>
-              Value of the tabindex for all interactuable elements, except those
-              inside the custom area.
+              Value of the <Code>tabindex</Code> for all interactive elements,
+              except those inside the custom area.
+            </td>
+            <td>
+              <TableCode>0</TableCode>
             </td>
           </tr>
         </tbody>
