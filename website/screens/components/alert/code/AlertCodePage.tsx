@@ -126,7 +126,7 @@ const sections = [
               <TableCode>number</TableCode>
             </td>
             <td>
-              Value of the <Code>tabindex</Code> attribute of the close action.
+              Value of the <Code>tabindex</Code> attribute applied to the close button.
             </td>
             <td>
               <TableCode>0</TableCode>

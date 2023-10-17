@@ -120,10 +120,7 @@ const sections = [
             <td>
               <TableCode>React.ReactNode</TableCode>
             </td>
-            <td>
-              The details section of the alert. Can be used to render custom
-              content in this area.
-            </td>
+            <td>Custom content that will be placed inside the component.</td>
             <td>-</td>
           </tr>
           <tr>
@@ -147,7 +144,7 @@ const sections = [
               <TableCode>number</TableCode>
             </td>
             <td>
-              Value of the <Code>tabindex</Code> attribute, applied when the
+              Value of the <Code>tabindex</Code> attribute applied when the
               component is clickable.
             </td>
             <td>

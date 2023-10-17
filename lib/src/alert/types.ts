@@ -13,9 +13,9 @@ type Props = {
   type?: "info" | "confirm" | "warning" | "error";
   /**
    * Uses on of the available alert modes:
-   *    'inline': If onClose function is received, close button will be visible and the function will be executed when it's clicked. 
+   *    'inline': If onClose function is received, close button will be visible and the function will be executed when it's clicked.
    *              There is no overlay layer. Position should be decided by the user.
-   *    'modal':  The alert will be displayed in the middle of the screen with an overlay layer behind. 
+   *    'modal':  The alert will be displayed in the middle of the screen with an overlay layer behind.
    *              The onClose function will be executed when the X button or the overlay is clicked. d
    *              The user has the responsibility of hiding the modal in the onClose function, otherwise the modal will remain visible.
    */
@@ -33,7 +33,7 @@ type Props = {
    */
   children?: React.ReactNode;
   /**
-   * Size of the margin to be applied to the component ('xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge'). 
+   * Size of the margin to be applied to the component ('xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge').
    * You can pass an object with 'top', 'bottom', 'left' and 'right' properties in order to specify different margin sizes.
    */
   margin?: Space | Margin;
@@ -42,7 +42,7 @@ type Props = {
    */
   size?: "small" | "medium" | "large" | "fillParent" | "fitContent";
   /**
-   * Tabindex value given to the close button.
+   * Value of the tabindex attribute applied to the close button.
    */
   tabIndex?: number;
 };
