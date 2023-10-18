@@ -19,7 +19,7 @@ type RadioGroupProps = {
   /**
    * Text to be placed above the radio group.
    */
-  label: string;
+  label?: string;
   /**
    * Name attribute of the input element. This attribute will allow users
    * to find the component's value during the submit event.
