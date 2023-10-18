@@ -14,7 +14,8 @@ import basicUsage from "./examples/basicUsage";
 import routerLink from "./examples/routerLink";
 import routerLink6 from "./examples/routerLink6";
 import icons from "./examples/icons";
-import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
+import TableCode from "@/common/TableCode";
+import StatusTag from "@/common/StatusTag";
 
 const sections = [
   {
@@ -24,81 +25,122 @@ const sections = [
         <thead>
           <tr>
             <th>Name</th>
+            <th>Type</th>
+            <th>Description</th>
             <th>Default</th>
-            <HeaderDescriptionCell>Description</HeaderDescriptionCell>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>disabled: boolean</td>
+            <td>disabled</td>
             <td>
-              <Code>false</Code>
+              <TableCode>boolean</TableCode>
             </td>
             <td>If true, the link is disabled.</td>
+            <td>
+              <TableCode>false</TableCode>
+            </td>
           </tr>
           <tr>
-            <td>inheritColor: boolean</td>
+            <td>inheritColor</td>
             <td>
-              <Code>false</Code>
+              <TableCode>boolean</TableCode>
             </td>
             <td>If true, the color is inherited from parent.</td>
+            <td>
+              <TableCode>false</TableCode>
+            </td>
           </tr>
           <tr>
-            <td>icon: node | string</td>
-            <td></td>
+            <td>icon</td>
+            <td>
+              <TableCode>
+                string | {"(React.ReactNode & React.SVGProps <SVGSVGElement>)"}
+              </TableCode>
+            </td>
             <td>
               Element or path used as the icon that will be placed next to the
               link text.
             </td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>iconPosition: 'before' | 'after'</td>
+            <td>iconPosition</td>
             <td>
-              <Code>'before'</Code>
+              <TableCode>'before' | 'after'</TableCode>
             </td>
             <td>Indicates the position of the icon in the component.</td>
-          </tr>
-          <tr>
-            <td>href: string</td>
-            <td></td>
-            <td>Page to be opened when the user clicks on the link.</td>
-          </tr>
-          <tr>
-            <td>newWindow: boolean</td>
             <td>
-              <Code>false</Code>
+              <TableCode>'before'</TableCode>
+            </td>
+          </tr>
+          <tr>
+            <td>href</td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
+            <td>Page to be opened when the user clicks on the link.</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>newWindow</td>
+            <td>
+              <TableCode>boolean</TableCode>
             </td>
             <td>If true, the page is opened in a new browser tab.</td>
+            <td>
+              <TableCode>false</TableCode>
+            </td>
           </tr>
           <tr>
-            <td>onClick: function</td>
-            <td></td>
+            <td>onClick</td>
+            <td>
+              <TableCode>{"() => void"}</TableCode>
+            </td>
             <td>
               If defined, the link will be displayed as a button. This function
               will be called when the user clicks the link.
             </td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>children: string</td>
-            <td></td>
-            <td>Content of the link.</td>
-          </tr>
-          <tr>
-            <td>margin: string | object</td>
-            <td></td>
             <td>
-              Size of the margin to be applied to the component ('xxsmall' |
-              'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge').
-              You can pass an object with 'top', 'bottom', 'left' and 'right'
-              properties in order to specify different margin sizes.
+              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                <StatusTag status="Required">Required</StatusTag>children
+              </DxcFlex>
             </td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
+            <td>Text of the link.</td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>tabIndex: number</td>
+            <td>margin</td>
             <td>
-              <Code>0</Code>
+              <TableCode>
+                'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' |
+                'xxlarge' | Margin
+              </TableCode>
             </td>
-            <td>Value of the tabindex.</td>
+            <td>
+              Size of the margin to be applied to the component. You can pass an
+              object with 'top', 'bottom', 'left' and 'right' properties in
+              order to specify different margin sizes.
+            </td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>tabIndex</td>
+            <td>
+              <TableCode>number</TableCode>
+            </td>
+            <td>
+              Value of the <Code>tabindex</Code> attribute.
+            </td>
+            <td>
+              <TableCode>0</TableCode>
+            </td>
           </tr>
         </tbody>
       </DxcTable>

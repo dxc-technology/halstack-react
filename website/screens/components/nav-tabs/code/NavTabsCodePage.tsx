@@ -13,7 +13,8 @@ import basicUsage from "./examples/basicUsage";
 import routerLink from "./examples/routerLink";
 import routerLinkV6 from "./examples/routerLinkV6";
 import nextLink from "./examples/nextLink";
-import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
+import TableCode from "@/common/TableCode";
+import StatusTag from "@/common/StatusTag";
 
 const sections = [
   {
@@ -23,32 +24,48 @@ const sections = [
         <thead>
           <tr>
             <th>Name</th>
+            <th>Type</th>
+            <th>Description</th>
             <th>Default</th>
-            <HeaderDescriptionCell>Description</HeaderDescriptionCell>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>iconPosition: 'top' | 'left'</td>
+            <td>iconPosition</td>
             <td>
-              <Code>'top'</Code>
+              <TableCode>'top' | 'left'</TableCode>
             </td>
             <td>
               Whether the icon should appear above or to the left of the label.
             </td>
-          </tr>
-          <tr>
-            <td>tabIndex: number</td>
             <td>
-              <Code>0</Code>
+              <TableCode>'top'</TableCode>
             </td>
-            <td>Value of the tabindex for each tab.</td>
           </tr>
           <tr>
-            <td>children: node</td>
-            <td></td>
+            <td>
+              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                <StatusTag status="Required">Required</StatusTag>children
+              </DxcFlex>
+            </td>
+            <td>
+              <TableCode>React.ReactNode</TableCode>
+            </td>
             <td>
               Contains one or more <Code>DxcNavTabs.Tab</Code>.
+            </td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>tabIndex</td>
+            <td>
+              <TableCode>number</TableCode>
+            </td>
+            <td>
+              Value of the <Code>tabindex</Code> attribute applied to each tab.
+            </td>
+            <td>
+              <TableCode>0</TableCode>
             </td>
           </tr>
         </tbody>
@@ -70,42 +87,58 @@ const sections = [
             <thead>
               <tr>
                 <th>Name</th>
+                <th>Type</th>
+                <th>Description</th>
                 <th>Default</th>
-                <HeaderDescriptionCell>Description</HeaderDescriptionCell>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>active: boolean</td>
+                <td>active</td>
                 <td>
-                  <Code>false</Code>
+                  <TableCode>boolean</TableCode>
                 </td>
                 <td>Whether the tab is active or not.</td>
+                <td>
+                  <TableCode>false</TableCode>
+                </td>
               </tr>
               <tr>
-                <td>disabled: boolean</td>
+                <td>disabled</td>
                 <td>
-                  <Code>false</Code>
+                  <TableCode>boolean</TableCode>
                 </td>
                 <td>Whether the tab is disabled or not.</td>
+                <td>
+                  <TableCode>false</TableCode>
+                </td>
               </tr>
               <tr>
-                <td>href: string</td>
-                <td></td>
+                <td>href</td>
+                <td>
+                  <TableCode>string</TableCode>
+                </td>
                 <td>Page to be opened when the user clicks on the tab.</td>
+                <td>-</td>
               </tr>
               <tr>
-                <td>icon: node | string</td>
-                <td></td>
+                <td>icon</td>
+                <td>
+                  <TableCode>
+                    string |{" "}
+                    {"(React.ReactNode & React.SVGProps <SVGSVGElement>)"}
+                  </TableCode>
+                </td>
                 <td>
                   Element or path used as the icon that will be displayed in the
                   tab.
                 </td>
+                <td>-</td>
               </tr>
               <tr>
-                <td>notificationNumber: boolean | number</td>
+                <td>notificationNumber</td>
                 <td>
-                  <Code>false</Code>
+                  <TableCode>boolean | number</TableCode>
                 </td>
                 <td>
                   If the value is 'true', an empty badge will appear. If it is
@@ -114,11 +147,25 @@ const sections = [
                   account that if that number is greater than 99, it will appear
                   as '+99' in the badge.
                 </td>
+                <td>
+                  <TableCode>false</TableCode>
+                </td>
               </tr>
               <tr>
-                <td>children: string</td>
-                <td></td>
-                <td>Text label of the tab.</td>
+                <td>
+                  <DxcFlex
+                    direction="column"
+                    gap="0.25rem"
+                    alignItems="baseline"
+                  >
+                    <StatusTag status="Required">Required</StatusTag>children
+                  </DxcFlex>
+                </td>
+                <td>
+                  <TableCode>string</TableCode>
+                </td>
+                <td>Tab text label.</td>
+                <td>-</td>
               </tr>
             </tbody>
           </DxcTable>

@@ -9,13 +9,17 @@ type SVG = React.ReactNode & React.SVGProps<SVGSVGElement>;
 
 export type LinkProps = {
   /**
+   * If true, the link is disabled.
+   */
+  disabled?: boolean;
+  /**
    * If true, the color is inherited from parent.
    */
   inheritColor?: boolean;
   /**
-   * If true, the link is disabled.
+   * Element or path used as the icon that will be placed next to the link text.
    */
-  disabled?: boolean;
+  icon?: string | SVG;
   /**
    * Indicates the position of the icon in the component.
    */
@@ -34,6 +38,10 @@ export type LinkProps = {
    */
   onClick?: () => void;
   /**
+   * Text of the link.
+   */
+  children: string;
+  /**
    * Size of the margin to be applied to the component ('xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge').
    * You can pass an object with 'top', 'bottom', 'left' and 'right' properties in order to specify different margin sizes.
    */
@@ -42,12 +50,4 @@ export type LinkProps = {
    * Value of the tabindex.
    */
   tabIndex?: number;
-  /**
-   * Content of the link.
-   */
-  children: string;
-  /**
-   * Element or path used as the icon that will be placed next to the link text.
-   */
-  icon?: string | SVG;
 };

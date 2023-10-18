@@ -18,7 +18,7 @@ type Props = {
    */
   value?: string;
   /**
-   * Text to be placed above the date.
+   * Text to be placed above the date input.
    */
   label?: string;
   /**
