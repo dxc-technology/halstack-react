@@ -10,7 +10,7 @@ import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import Link from "next/link";
 import React from "react";
-import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
+import TableCode from "@/common/TableCode";
 
 const sections = [
   {
@@ -20,62 +20,83 @@ const sections = [
         <thead>
           <tr>
             <th>Name</th>
+            <th>Type</th>
+            <th>Description</th>
             <th>Default</th>
-            <HeaderDescriptionCell>Description</HeaderDescriptionCell>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>underlined: boolean</td>
+            <td>underlined</td>
             <td>
-              <Code>false</Code>
+              <TableCode>boolean</TableCode>
             </td>
             <td>
-              Wether a contrast line should appear at the bottom of the header.
+              Whether a contrast line should appear at the bottom of the header.
+            </td>
+            <td>
+              <TableCode>false</TableCode>
             </td>
           </tr>
           <tr>
-            <td>content: node</td>
-            <td></td>
+            <td>content</td>
+            <td>
+              <TableCode>React.ReactNode</TableCode>
+            </td>
             <td>
               Content showed in the header. Take into account that the component
               applies styles for the first child in the content, so we recommend
               the use of React.Fragment to be applied correctly. Otherwise, the
               styles can be modified.
             </td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>responsiveContent: function</td>
-            <td></td>
+            <td>responsiveContent</td>
+            <td>
+              <TableCode>
+                {"(closeHandler: () => void) => React.ReactNode"}
+              </TableCode>
+            </td>
             <td>
               Content showed in responsive version. It receives the close menu
               handler that can be used to add that functionality when a element
               is clicked.
             </td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>onClick: function</td>
-            <td></td>
+            <td>onClick</td>
+            <td>
+              <TableCode>{"() => void"}</TableCode>
+            </td>
             <td>
               This function will be called when the user clicks the header logo.
             </td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>margin: string</td>
-            <td></td>
+            <td>margin</td>
             <td>
-              Size of the bottom margin to be applied to the header ('xxsmall' |
-              'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge').
+              <TableCode>
+                'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' |
+                'xxlarge'
+              </TableCode>
             </td>
+            <td>Size of the bottom margin to be applied to the header.</td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>tabIndex: number</td>
+            <td>tabIndex</td>
             <td>
-              <Code>0</Code>
+              <TableCode>number</TableCode>
             </td>
             <td>
-              Value of the tabindex for all interactuable elements, except those
+              Value of the tabindex for all interactive elements, except those
               inside the custom area.
+            </td>
+            <td>
+              <TableCode>0</TableCode>
             </td>
           </tr>
         </tbody>

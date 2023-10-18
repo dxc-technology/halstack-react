@@ -1,8 +1,6 @@
-type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
-
 type Props = {
   /**
-   * Wether a contrast line should appear at the bottom of the header.
+   * Whether a contrast line should appear at the bottom of the header.
    */
   underlined?: boolean;
   /**
@@ -21,12 +19,11 @@ type Props = {
    */
   onClick?: () => void;
   /**
-   * Size of the bottom margin to be applied to the header
-   * ('xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge').
+   * Size of the bottom margin to be applied to the header.
    */
-  margin?: Space;
+  margin?: "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
   /**
-   * Value of the tabindex for all interactuable elements, except those inside the
+   * Value of the tabindex for all interactive elements, except those inside the
    * custom area.
    */
   tabIndex?: number;
