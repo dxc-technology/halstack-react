@@ -5,7 +5,8 @@ import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import Code from "@/common/Code";
 import basicUsage from "./examples/basicUsage";
-import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
+import TableCode from "@/common/TableCode";
+import StatusTag from "@/common/StatusTag";
 
 const sections = [
   {
@@ -16,15 +17,16 @@ const sections = [
           <thead>
             <tr>
               <th>Name</th>
+              <th>Type</th>
+              <th>Description</th>
               <th>Default</th>
-              <HeaderDescriptionCell>Description</HeaderDescriptionCell>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>level: number</td>
+              <td>level</td>
               <td>
-                <Code>1</Code>
+                <TableCode>1 | 2 | 3 | 4 | 5</TableCode>
               </td>
               <td>
                 Defines the heading level from 1 to 5. The styles of the heading
@@ -33,31 +35,52 @@ const sections = [
                 specified, the html tag of the heading is the one specified in
                 the 'level' prop.
               </td>
-            </tr>
-            <tr>
-              <td>text: string</td>
-              <td></td>
-              <td>Heading text.</td>
-            </tr>
-            <tr>
-              <td>as: 'h1' | 'h2' | 'h3' | 'h4'| 'h5' </td>
-              <td></td>
-              <td>Specifies the html tag of the heading.</td>
-            </tr>
-            <tr>
-              <td>weight: 'light' | 'normal' | 'bold'</td>
-              <td></td>
-              <td>Modifies the default weight of the heading.</td>
-            </tr>
-            <tr>
-              <td>margin: string | object</td>
-              <td></td>
               <td>
-                Size of the margin to be applied to the component ('xxsmall' |
-                'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge').
-                You can pass an object with 'top', 'bottom', 'left' and 'right'
-                properties in order to specify different margin sizes.
+                <TableCode>1</TableCode>
               </td>
+            </tr>
+            <tr>
+              <td>
+                <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                  <StatusTag status="Required">Required</StatusTag>text
+                </DxcFlex>
+              </td>
+              <td>
+                <TableCode>string</TableCode>
+              </td>
+              <td>Heading text.</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td>weight</td>
+              <td>
+                <TableCode>'light' | 'normal' | 'bold'</TableCode>
+              </td>
+              <td>Modifies the default weight of the heading.</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td>as</td>
+              <td>
+                <TableCode>'h1' | 'h2' | 'h3' | 'h4'| 'h5'</TableCode>
+              </td>
+              <td>Specifies the HTML tag of the heading.</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td>margin</td>
+              <td>
+                <TableCode>
+                  'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge'
+                  | 'xxlarge' | Margin
+                </TableCode>
+              </td>
+              <td>
+                Size of the margin to be applied to the component. You can pass
+                an object with 'top', 'bottom', 'left' and 'right' properties in
+                order to specify different margin sizes.
+              </td>
+              <td>-</td>
             </tr>
           </tbody>
         </DxcTable>

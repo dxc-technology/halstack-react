@@ -18,13 +18,13 @@ type Props = {
    */
   text: string;
   /**
-   * Specifies the html tag of the heading.
-   */
-  as?: "h1" | "h2" | "h3" | "h4" | "h5";
-  /**
    * Modifies the default weight of the heading.
    */
   weight?: "light" | "normal" | "bold";
+  /**
+   * Specifies the HTML tag of the heading.
+   */
+  as?: "h1" | "h2" | "h3" | "h4" | "h5";
   /**
    * Size of the margin to be applied to the component ('xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge').
    * You can pass an object with 'top', 'bottom', 'left' and 'right' properties in order to specify different margin sizes.
