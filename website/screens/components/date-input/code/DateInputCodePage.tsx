@@ -56,7 +56,7 @@ const sections = [
             <td>
               <TableCode>string</TableCode>
             </td>
-            <td>Text to be placed above the date.</td>
+            <td>Text to be placed above the date input.</td>
             <td>-</td>
           </tr>
           <tr>
