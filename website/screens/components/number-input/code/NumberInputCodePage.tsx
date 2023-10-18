@@ -253,6 +253,7 @@ const sections = [
               object with 'top', 'bottom', 'left' and 'right' properties in
               order to specify different margin sizes.
             </td>
+            <td>-</td>
           </tr>
           <tr>
             <td>size</td>

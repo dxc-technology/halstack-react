@@ -1,11 +1,9 @@
 import { DxcFlex, DxcTable } from "@dxc-technology/halstack-react";
-import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import Example from "@/common/example/Example";
 import basicUsage from "./examples/basicUsage";
-import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
 import customSides from "./examples/customSides";
 import TableCode from "@/common/TableCode";
 import StatusTag from "@/common/StatusTag";
