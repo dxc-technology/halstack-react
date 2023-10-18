@@ -9,7 +9,6 @@ import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import Example from "@/common/example/Example";
-import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
 import basic from "./examples/basic";
 import layout from "./examples/layout";
 import TableCode from "@/common/TableCode";

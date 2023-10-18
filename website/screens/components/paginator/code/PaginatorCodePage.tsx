@@ -9,7 +9,7 @@ import {
   DxcParagraph,
 } from "@dxc-technology/halstack-react";
 import itemsPerPage from "./examples/itemsPerPage";
-import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
+import TableCode from "@/common/TableCode";
 
 const sections = [
   {
@@ -19,76 +19,101 @@ const sections = [
         <thead>
           <tr>
             <th>Name</th>
+            <th>Type</th>
+            <th>Description</th>
             <th>Default</th>
-            <HeaderDescriptionCell>Description</HeaderDescriptionCell>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>currentPage: number</td>
+            <td>currentPage</td>
             <td>
-              <Code>1</Code>
+              <TableCode>number</TableCode>
             </td>
             <td>Number of the current selected page.</td>
+            <td>
+              <TableCode>1</TableCode>
+            </td>
           </tr>
           <tr>
-            <td>itemsPerPage: number</td>
+            <td>itemsPerPage</td>
             <td>
-              <Code>5</Code>
+              <TableCode>number</TableCode>
             </td>
             <td>Number of items per page.</td>
+            <td>
+              <TableCode>5</TableCode>
+            </td>
           </tr>
           <tr>
-            <td>itemsPerPageOptions: number[]</td>
+            <td>itemsPerPageOptions</td>
             <td>
-              <Code>[]</Code>
+              <TableCode>number[]</TableCode>
             </td>
             <td>
               An array of numbers representing the items per page options. If
               undefined, the select with items per page options will not be
               displayed.
             </td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>itemsPerPageFunction: function</td>
-            <td></td>
+            <td>itemsPerPageFunction</td>
+            <td>
+              <TableCode>{"(itemsPerPage: number) => void"}</TableCode>
+            </td>
             <td>
               This function will be called when the user selects an item per
               page option.
             </td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>totalItems: number</td>
+            <td>totalItems</td>
             <td>
-              <Code>1</Code>
+              <TableCode>number</TableCode>
             </td>
             <td>Total number of items in the pages.</td>
+            <td>
+              <TableCode>1</TableCode>
+            </td>
           </tr>
           <tr>
-            <td>showGoToPage: boolean</td>
+            <td>showGoToPage</td>
             <td>
-              <Code>false</Code>
+              <TableCode>boolean</TableCode>
             </td>
             <td>
               If true, a select will be displayed with the page numbers to move
               through them
             </td>
+            <td>
+              <TableCode>false</TableCode>
+            </td>
           </tr>
           <tr>
-            <td>onPageChange: function</td>
-            <td></td>
+            <td>onPageChange</td>
+            <td>
+              <TableCode>{"(page: number) => void"}</TableCode>
+            </td>
             <td>
               This function will be called when the user clicks on any of the
               button to change pages. The page number will be passed as a
               parameter to this function.
             </td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>tabIndex: number</td>
+            <td>tabIndex</td>
             <td>
-              <Code>0</Code>
+              <TableCode>number</TableCode>
             </td>
-            <td>Value of the tabindex.</td>
+            <td>
+              Value of the <Code>tabindex</Code> attribute.
+            </td>
+            <td>
+              <TableCode>0</TableCode>
+            </td>
           </tr>
         </tbody>
       </DxcTable>

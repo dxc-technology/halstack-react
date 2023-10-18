@@ -7,7 +7,7 @@ import { DxcFlex, DxcTable } from "@dxc-technology/halstack-react";
 import controlled from "./examples/controlled";
 import errorHandling from "./examples/errorHandling";
 import uncontrolled from "./examples/uncontrolled";
-import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
+import TableCode from "@/common/TableCode";
 
 const sections = [
   {
@@ -17,72 +17,96 @@ const sections = [
         <thead>
           <tr>
             <th>Name</th>
+            <th>Type</th>
+            <th>Description</th>
             <th>Default</th>
-            <HeaderDescriptionCell>Description</HeaderDescriptionCell>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>value: string</td>
-            <td></td>
+            <td>value</td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
             <td>
               Value of the input element. If undefined, the component will be
               uncontrolled and the value will be managed internally by the
               component.
             </td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>label: string</td>
-            <td></td>
-            <td>Text to be placed above the password.</td>
-          </tr>
-          <tr>
-            <td>name: string</td>
-            <td></td>
-            <td>Name attribute of the input element.</td>
-          </tr>
-          <tr>
-            <td>helperText: string</td>
-            <td></td>
-            <td>Helper text to be placed above the password.</td>
-          </tr>
-          <tr>
-            <td>clearable: boolean</td>
+            <td>label</td>
             <td>
-              <Code>false</Code>
+              <TableCode>string</TableCode>
+            </td>
+            <td>Text to be placed above the password input.</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>name</td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
+            <td>Name attribute of the input element.</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>helperText</td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
+            <td>Helper text to be placed above the password.</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>clearable</td>
+            <td>
+              <TableCode>boolean</TableCode>
             </td>
             <td>
               If true, the password input will have an action to clear the
               entered value.
             </td>
+            <td>
+              <TableCode>false</TableCode>
+            </td>
           </tr>
           <tr>
-            <td>onChange: function</td>
-            <td></td>
+            <td>onChange</td>
+            <td>
+              <TableCode>
+                {"(val: { value: string; error?: string }) => void"}
+              </TableCode>
+            </td>
             <td>
               This function will be called when the user types within the input
               element of the component. An object including the current value
               and the error (if the value entered is not valid) will be passed
-              to this function. An example of this object is: {"{ "}
-              <Code>value: value, error: error</Code>
-              {" }"}. If there is no error, error will not be defined.
+              to this function. If there is no error, error will not be defined.
             </td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>onBlur: function</td>
-            <td></td>
+            <td>onBlur</td>
+            <td>
+              <TableCode>
+                {"(val: { value: string; error?: string }) => void"}
+              </TableCode>
+            </td>
             <td>
               This function will be called when the input element loses the
               focus. An object including the input value and the error (if the
-              value entered is not valid) will be passed to this function. An
-              example of this object is: {"{ "}
-              <Code>value: value, error: error</Code>
-              {" }"}. If there is no error, error will not be defined.
+              value entered is not valid) will be passed to this function. If
+              there is no error, error will not be defined.
             </td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>error: string</td>
-            <td></td>
+            <td>error</td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
             <td>
               If it is a defined value and also a truthy string, the component
               will change its appearance, showing the error below the password
@@ -92,10 +116,13 @@ const sections = [
               both the appearance and the space for the error message would not
               be modified.
             </td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>pattern: string</td>
-            <td></td>
+            <td>pattern</td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
             <td>
               Regular expression that defines the valid format allowed by the
               password input. This will be checked both when the input element
@@ -105,12 +132,15 @@ const sections = [
               that this value does not match the pattern. If the pattern is met,
               the error parameter of both events will not be defined.
             </td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>minLength: number</td>
-            <td></td>
+            <td>minLength</td>
             <td>
-              Specifies the minimun length allowed by the input. This will be
+              <TableCode>number</TableCode>
+            </td>
+            <td>
+              Specifies the minimum length allowed by the input. This will be
               checked both when the input element loses the focus and while
               typing within it. If the string entered does not comply the
               minimum length, the onBlur and onChange functions will be called
@@ -119,10 +149,13 @@ const sections = [
               length is reached, the error parameter of both events will not be
               defined.
             </td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>maxLength: number</td>
-            <td></td>
+            <td>maxLength</td>
+            <td>
+              <TableCode>number</TableCode>
+            </td>
             <td>
               Specifies the maximum length allowed by the input. This will be
               checked both when the input element loses the focus and while
@@ -133,51 +166,68 @@ const sections = [
               length is reached, the error parameter of both events will not be
               defined.
             </td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>autocomplete: string</td>
+            <td>autocomplete</td>
             <td>
-              <Code>'off'</Code>
+              <TableCode>string</TableCode>
             </td>
             <td>
               HTML autocomplete attribute. Lets the user specify if any
               permission the user agent has to provide automated assistance in
               filling out the input value. Its value must be one of all the
               possible values of the HTML autocomplete attribute: 'on', 'off',
-              'email', 'username', 'new-password', ...
+              'email', 'username', 'new-password', etc.
+            </td>
+            <td>
+              <TableCode>'off'</TableCode>
             </td>
           </tr>
           <tr>
-            <td>margin: string | object</td>
-            <td></td>
+            <td>margin</td>
             <td>
-              Size of the margin to be applied to the component ('xxsmall' |
-              'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge').
-              You can pass an object with 'top', 'bottom', 'left' and 'right'
-              properties in order to specify different margin sizes.
+              <TableCode>
+                'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' |
+                'xxlarge' | Margin
+              </TableCode>
+            </td>
+            <td>
+              Size of the margin to be applied to the component. You can pass an
+              object with 'top', 'bottom', 'left' and 'right' properties in
+              order to specify different margin sizes.
+            </td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>size</td>
+            <td>
+              <TableCode>'small' | 'medium' | 'large' | 'fillParent'</TableCode>
+            </td>
+            <td>Size of the component.</td>
+            <td>
+              <TableCode>'medium'</TableCode>
             </td>
           </tr>
           <tr>
-            <td>size: string</td>
+            <td>tabIndex</td>
             <td>
-              <Code>'medium'</Code>
+              <TableCode>number</TableCode>
             </td>
             <td>
-              Size of the component ('small' | 'medium' | 'large' |
-              'fillParent').
+              Value of the <Code>tabindex</Code> attribute.
+            </td>
+            <td>
+              <TableCode>0</TableCode>
             </td>
           </tr>
           <tr>
-            <td>tabIndex: number</td>
+            <td>ref</td>
             <td>
-              <Code>0</Code>
+              <TableCode>{"React.Ref <HTMLDivElement>"}</TableCode>
             </td>
-            <td>Value of the tabindex attribute.</td>
-          </tr>
-          <tr>
-            <td>ref: object</td>
-            <td></td>
             <td>Reference to the component.</td>
+            <td>-</td>
           </tr>
         </tbody>
       </DxcTable>
