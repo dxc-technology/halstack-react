@@ -6,7 +6,7 @@ import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import basicUsage from "./examples/basicUsage";
 import icons from "./examples/icons";
-import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
+import TableCode from "@/common/TableCode";
 
 const sections = [
   {
@@ -16,88 +16,125 @@ const sections = [
         <thead>
           <tr>
             <th>Name</th>
+            <th>Type</th>
+            <th>Description</th>
             <th>Default</th>
-            <HeaderDescriptionCell>Description</HeaderDescriptionCell>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>label: string</td>
-            <td></td>
+            <td>label</td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
             <td>Text to be placed next inside the tag.</td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>labelPosition: 'before' | 'after'</td>
+            <td>labelPosition</td>
             <td>
-              <Code>'after'</Code>
+              <TableCode>'before' | 'after'</TableCode>
             </td>
             <td>Whether the label should appear after or before the icon.</td>
+            <td>
+              <TableCode>'after'</TableCode>
+            </td>
           </tr>
           <tr>
-            <td>icon: node | string</td>
-            <td></td>
+            <td>icon</td>
+            <td>
+                <TableCode>
+                  string |{" "}
+                  {"(React.ReactNode & React.SVGProps <SVGSVGElement>)"}
+                </TableCode>
+              </td>
             <td>
               Element or path used as the icon that will be placed next to the
               label.
             </td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>iconBgColor: string</td>
+            <td>iconBgColor</td>
             <td>
-              <Code>'#5f249f'</Code>
+              <TableCode>string</TableCode>
             </td>
             <td>Background color of the icon section of the tag.</td>
+            <td>
+              <TableCode>'#5f249f'</TableCode>
+            </td>
           </tr>
           <tr>
-            <td>linkHref: string</td>
-            <td></td>
+            <td>linkHref</td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
             <td>
               If defined, the tag will be displayed as an anchor, using this
               prop as "href". Component will show some visual feedback on hover.
             </td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>newWindow: boolean</td>
+            <td>newWindow</td>
             <td>
-              <Code>false</Code>
+              <TableCode>boolean</TableCode>
             </td>
             <td>If true, the page is opened in a new browser tab.</td>
+            <td>
+              <TableCode>false</TableCode>
+            </td>
           </tr>
           <tr>
-            <td>onClick: function</td>
-            <td></td>
+            <td>onClick</td>
+            <td>
+              <TableCode>{"() => void"}</TableCode>
+            </td>
             <td>
               If defined, the tag will be displayed as a button. This function
               will be called when the user clicks the tag. Component will show
               some visual feedback on hover.
             </td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>margin: string | object</td>
-            <td></td>
+            <td>margin</td>
             <td>
-              Size of the margin to be applied to the component ('xxsmall' |
-              'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge').
-              You can pass an object with 'top', 'bottom', 'left' and 'right'
-              properties in order to specify different margin sizes.
+              <TableCode>
+                'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' |
+                'xxlarge' | Margin
+              </TableCode>
+            </td>
+            <td>
+              Size of the margin to be applied to the component. You can pass an
+              object with 'top', 'bottom', 'left' and 'right' properties in
+              order to specify different margin sizes.
+            </td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>size</td>
+            <td>
+              <TableCode>
+                'small' | 'medium' | 'large' | 'fillParent' | 'fitContent'
+              </TableCode>
+            </td>
+            <td>Size of the component.</td>
+            <td>
+              <TableCode>'fitContent'</TableCode>
             </td>
           </tr>
           <tr>
-            <td>size: string</td>
+            <td>tabIndex</td>
             <td>
-              <Code>'fitContent'</Code>
+              <TableCode>number</TableCode>
             </td>
             <td>
-              Size of the component ('small' | 'medium' | 'large' | 'fillParent'
-              | 'fitContent').
+              Value of the <Code>tabindex</Code> attribute.
             </td>
-          </tr>
-          <tr>
-            <td>tabIndex: number</td>
             <td>
-              <Code>0</Code>
+              <TableCode>0</TableCode>
             </td>
-            <td>Value of the tabindex attribute.</td>
           </tr>
         </tbody>
       </DxcTable>

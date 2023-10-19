@@ -57,14 +57,6 @@ export type TabProps = {
 
 type Props = {
   /**
-   * An array of objects representing the tabs.
-   */
-  tabs: (TabLabelProps | TabIconProps)[];
-  /**
-   * Whether the icon should appear above or to the left of the label.
-   */
-  iconPosition?: "top" | "left";
-  /**
    * Initially active tab, only when it is uncontrolled.
    */
   defaultActiveTabIndex?: number;
@@ -74,22 +66,30 @@ type Props = {
    */
   activeTabIndex?: number;
   /**
+   * An array of objects representing the tabs.
+   */
+  tabs: (TabLabelProps | TabIconProps)[];
+  /**
+   * Whether the icon should appear above or to the left of the label.
+   */
+  iconPosition?: "top" | "left";
+  /**
    * This function will be called when the user clicks on a tab. The index of the
    * clicked tab will be passed as a parameter.
    */
-  onTabClick?: (tabIndex: number) => void;
+  onTabClick?: (index: number) => void;
   /**
    * This function will be called when the user hovers a tab.The index of the
    * hovered tab will be passed as a parameter.
    */
-  onTabHover?: (tabIndex: number) => void;
+  onTabHover?: (index: number) => void;
   /**
    * Size of the margin to be applied to the component ('xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge').
    * You can pass an object with 'top', 'bottom', 'left' and 'right' properties in order to specify different margin sizes.
    */
   margin?: Space | Margin;
   /**
-   * Value of the tabindex for each tab.
+   * Value of the tabindex attribute applied to each tab.
    */
   tabIndex?: number;
 };
