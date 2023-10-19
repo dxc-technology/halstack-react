@@ -7,7 +7,7 @@ import Code from "@/common/Code";
 import controlled from "./examples/controlled";
 import uncontrolled from "./examples/uncontrolled";
 import formatLabel from "./examples/formatLabel";
-import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
+import TableCode from "@/common/TableCode";
 
 const sections = [
   {
@@ -17,155 +17,210 @@ const sections = [
         <thead>
           <tr>
             <th>Name</th>
+            <th>Type</th>
+            <th>Description</th>
             <th>Default</th>
-            <HeaderDescriptionCell>Description</HeaderDescriptionCell>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>defaultValue: number</td>
-            <td></td>
+            <td>defaultValue</td>
+            <td>
+              <TableCode>number</TableCode>
+            </td>
             <td>Initial value of the slider, only when it is uncontrolled.</td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>value: number</td>
-            <td></td>
+            <td>value</td>
+            <td>
+              <TableCode>number</TableCode>
+            </td>
             <td>
               The selected value. If undefined, the component will be
               uncontrolled and the value will be managed internally by the
               component.
             </td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>label: string</td>
-            <td></td>
-            <td>Text to be placed above the slider.</td>
-          </tr>
-          <tr>
-            <td>name: string</td>
-            <td></td>
-            <td>Name attribute of the input element.</td>
-          </tr>
-          <tr>
-            <td>helperText: string</td>
-            <td></td>
-            <td>Helper text to be placed above the slider.</td>
-          </tr>
-          <tr>
-            <td>minValue: number</td>
+            <td>label</td>
             <td>
-              <Code>0</Code>
+              <TableCode>string</TableCode>
+            </td>
+            <td>Text to be placed above the slider.</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>name</td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
+            <td>Name attribute of the input element.</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>helperText</td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
+            <td>Helper text to be placed above the slider.</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>minValue</td>
+            <td>
+              <TableCode>number</TableCode>
             </td>
             <td>The minimum value available for selection.</td>
+            <td>
+              <TableCode>0</TableCode>
+            </td>
           </tr>
           <tr>
-            <td>maxValue: number</td>
+            <td>maxValue</td>
             <td>
-              <Code>100</Code>
+              <TableCode>number</TableCode>
             </td>
             <td>The maximum value available for selection.</td>
+            <td>
+              <TableCode>100</TableCode>
+            </td>
           </tr>
           <tr>
-            <td>step: number</td>
+            <td>step</td>
             <td>
-              <Code>1</Code>
+              <TableCode>number</TableCode>
             </td>
             <td>The step interval between values available for selection.</td>
+            <td>
+              <TableCode>1</TableCode>
+            </td>
           </tr>
           <tr>
-            <td>showLimitsValues: boolean</td>
+            <td>showLimitsValues</td>
             <td>
-              <Code>false</Code>
+              <TableCode>boolean</TableCode>
             </td>
             <td>
               Whether the min/max value labels should be displayed next to the
               slider.
             </td>
+            <td>
+              <TableCode>false</TableCode>
+            </td>
           </tr>
           <tr>
-            <td>showInput: boolean</td>
+            <td>showInput</td>
             <td>
-              <Code>false</Code>
+              <TableCode>boolean</TableCode>
             </td>
             <td>
               Whether the input element for displaying/controlling the slider
               value should be displayed next to the slider.
             </td>
+            <td>
+              <TableCode>false</TableCode>
+            </td>
           </tr>
           <tr>
-            <td>disabled: boolean</td>
+            <td>disabled</td>
             <td>
-              <Code>false</Code>
+              <TableCode>boolean</TableCode>
             </td>
             <td>If true, the component will be disabled.</td>
+            <td>
+              <TableCode>false</TableCode>
+            </td>
           </tr>
           <tr>
-            <td>marks: boolean</td>
+            <td>marks</td>
             <td>
-              <Code>false</Code>
+              <TableCode>boolean</TableCode>
             </td>
             <td>Whether the marks between each step should be shown or not.</td>
+            <td>
+              <TableCode>false</TableCode>
+            </td>
           </tr>
           <tr>
-            <td>onChange: function</td>
-            <td></td>
+            <td>onChange</td>
+            <td>
+              <TableCode>{"(value: number) => void"}</TableCode>
+            </td>
             <td>
               This function will be called when the slider changes its value, as
               it&#39;s being dragged. The new value will be passed as a
               parameter when this function is executed.
             </td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>onDragEnd: function</td>
-            <td></td>
+            <td>onDragEnd</td>
+            <td>
+              <TableCode>{"(value: number) => void"}</TableCode>
+            </td>
             <td>
               This function will be called when the slider changes its value,
               but only when the thumb is released. The new value will be passed
               as a parameter when this function is executed.
             </td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>labelFormatCallback: function</td>
-            <td></td>
+            <td>labelFormatCallback</td>
+            <td>
+              <TableCode>{"(value: number) => string"}</TableCode>
+            </td>
             <td>
               This function will be used to format the labels displayed next to
               the slider. The value will be passed as parameter and the function
               must return the formatted value.
             </td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>margin: string | object</td>
-            <td></td>
+            <td>margin</td>
             <td>
-              Size of the margin to be applied to the component
-              (&#39;xxsmall&#39; | &#39;xsmall&#39; | &#39;small&#39; |
-              &#39;medium&#39; | &#39;large&#39; | &#39;xlarge&#39; |
-              &#39;xxlarge&#39;). You can pass an object with &#39;top&#39;,
-              &#39;bottom&#39;, &#39;left&#39; and &#39;right&#39; properties in
+              <TableCode>
+                'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' |
+                'xxlarge' | Margin
+              </TableCode>
+            </td>
+            <td>
+              Size of the margin to be applied to the component. You can pass an
+              object with 'top', 'bottom', 'left' and 'right' properties in
               order to specify different margin sizes.
             </td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>size: string</td>
+            <td>size</td>
             <td>
-              <Code>&#39;fillParent&#39;</Code>
+              <TableCode>'medium' | 'large' | 'fillParent'</TableCode>
             </td>
+            <td>Size of the component.</td>
             <td>
-              Size of the component (&#39;medium&#39; | &#39;large&#39; |
-              &#39;fillParent&#39;).
+              <TableCode>'fillParent'</TableCode>
             </td>
           </tr>
           <tr>
-            <td>tabIndex: number</td>
+            <td>tabIndex</td>
             <td>
-              <Code>0</Code>
+              <TableCode>number</TableCode>
             </td>
-            <td>Value of the tabindex attribute.</td>
+            <td>Value of the <Code>tabindex</Code> attribute.</td>
+            <td>
+              <TableCode>0</TableCode>
+            </td>
           </tr>
           <tr>
-            <td>ref: object</td>
-            <td></td>
+            <td>ref</td>
+            <td>
+              <TableCode>{"React.Ref <HTMLDivElement>"}</TableCode>
+            </td>
             <td>Reference to the component.</td>
+            <td>-</td>
           </tr>
         </tbody>
       </DxcTable>

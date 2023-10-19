@@ -48,9 +48,8 @@ type CommonProps = {
    * Name attribute of the input element. This attribute will allow users
    * to find the component's value during the submit event. In this event,
    * the component's value will always be a regular string, for both single
-   * and multiple selection modes, been in the first one a single option
-   * value and in the multiple variant more than one option value,
-   * separated by commas.
+   * and multiple selection modes, being a single option value in the first case 
+   * and more than one value when multiple selection is available, separated by commas.
    */
   name?: string;
   /**
