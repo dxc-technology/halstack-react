@@ -33,7 +33,7 @@ const sections = [
               <td>
                 <TableCode>
                   {
-                    "{ label?: string; icon: string | (React.ReactNode & React.SVGProps <SVGSVGElement>), value: string }[]"
+                    "{ label?: string; icon: string | (React.ReactNode & React.SVGProps <SVGSVGElement>); value: string }[]"
                   }
                 </TableCode>
               </td>

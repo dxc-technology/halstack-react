@@ -6,6 +6,8 @@ import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import { DxcFlex, DxcTable } from "@dxc-technology/halstack-react";
 import basicUsage from "./examples/basicUsage";
 import nestedTexts from "./examples/nestedTexts";
+import TableCode from "@/common/TableCode";
+import StatusTag from "@/common/StatusTag";
 
 const sections = [
   {
@@ -14,120 +16,165 @@ const sections = [
       <DxcTable>
         <tr>
           <th>Name</th>
-          <th>Default</th>
+          <th>Type</th>
           <th>Description</th>
+          <th>Default</th>
         </tr>
         <tr>
-          <td>as: keyof HTMLElementTagNameMap</td>
+          <td>as</td>
           <td>
-            <Code>'span'</Code>
+            <TableCode>keyof HTMLElementTagNameMap</TableCode>
           </td>
           <td>
             Determines the HTML tag with which the text is to be rendered (any
             valid HTML tag).
           </td>
+          <td>
+            <TableCode>'span'</TableCode>
+          </td>
         </tr>
         <tr>
-          <td>display: 'inline' | 'block'</td>
+          <td>display</td>
           <td>
-            <Code>'inline'</Code>
+            <TableCode>'inline' | 'block'</TableCode>
           </td>
           <td>Specifies the display CSS property of the component.</td>
+          <td>
+            <TableCode>'inline'</TableCode>
+          </td>
         </tr>
         <tr>
+          <td>fontFamily</td>
           <td>
-            fontFamily: 'Open Sans, sans-serif' | 'Source Code Pro, monospace'
-          </td>
-          <td>
-            <Code>'Open Sans, sans-serif'</Code>
+            <TableCode>
+              'Open Sans, sans-serif' | 'Source Code Pro, monospace'
+            </TableCode>
           </td>
           <td>Specifies the font-family CSS property of the component.</td>
+          <td>
+            <TableCode>'Open Sans, sans-serif'</TableCode>
+          </td>
         </tr>
         <tr>
+          <td>fontSize</td>
           <td>
-            fontSize: '0.75rem' | '0.875rem' | '1rem' | '1.25rem' | '1.5rem' |
-            '2rem' | '3rem' | '3.75rem'
-          </td>
-          <td>
-            <Code>'1rem'</Code>
+            <TableCode>
+              '0.75rem' | '0.875rem' | '1rem' | '1.25rem' | '1.5rem' | '2rem' |
+              '3rem' | '3.75rem'
+            </TableCode>
           </td>
           <td>Specifies the font-size CSS property of the component.</td>
+          <td>
+            <TableCode>'1rem'</TableCode>
+          </td>
         </tr>
         <tr>
-          <td>fontStyle: 'italic' | 'normal'</td>
+          <td>fontStyle</td>
           <td>
-            <Code>'normal'</Code>
+            <TableCode>'normal' | 'italic'</TableCode>
           </td>
           <td>Specifies the font-style CSS property of the component.</td>
+          <td>
+            <TableCode>'normal'</TableCode>
+          </td>
         </tr>
         <tr>
-          <td>fontWeight: '300' | '400' | '600' | '700' </td>
+          <td>fontWeight</td>
           <td>
-            <Code>'400'</Code>
+            <TableCode>'300' | '400' | '600' | '700'</TableCode>
           </td>
           <td>Specifies the font-weight CSS property of the component.</td>
+          <td>
+            <TableCode>'400'</TableCode>
+          </td>
         </tr>
         <tr>
+          <td>letterSpacing</td>
           <td>
-            letterSpacing: '-0.025em' | '-0.0125em' | '0em' | '0.025em' |
-            '0.05em' | '0.1em'
-          </td>
-          <td>
-            <Code>'0em'</Code>
+            <TableCode>
+              '-0.025em' | '-0.0125em' | '0em' | '0.025em' | '0.05em' | '0.1em'
+            </TableCode>
           </td>
           <td>Specifies the letter-spacing CSS property of the component.</td>
+          <td>
+            <TableCode>'0em'</TableCode>
+          </td>
         </tr>
         <tr>
+          <td>lineHeight</td>
           <td>
-            lineHeight: '1em' | '1.25em' | '1.365em' | '1.5em' | '1.715em' |
-            '2em'
-          </td>
-          <td>
-            <Code>'1.5em'</Code>
+            <TableCode>
+              '1em' | '1.25em' | '1.365em' | '1.5em' | '1.715em' | '2em'
+            </TableCode>
           </td>
           <td>Specifies the line-height CSS property of the component.</td>
+          <td>
+            <TableCode>'1.5em'</TableCode>
+          </td>
         </tr>
         <tr>
-          <td>textAlign: 'left' | 'center' | 'right' </td>
+          <td>textAlign</td>
           <td>
-            <Code>'left'</Code>
+            <TableCode>'left' | 'center' | 'right'</TableCode>
           </td>
           <td>Specifies the text-align CSS property of the component.</td>
-        </tr>
-        <tr>
-          <td>color: string</td>
           <td>
-            <Code>'#000000'</Code>
+            <TableCode>'left'</TableCode>
           </td>
-          <td>Color of text.</td>
         </tr>
         <tr>
-          <td>textDecoration: 'none' | 'underline' | 'line-through'</td>
+          <td>color</td>
           <td>
-            <Code>'none'</Code>
+            <TableCode>string</TableCode>
+          </td>
+          <td>Color of the text.</td>
+          <td>
+            <TableCode>'#000000'</TableCode>
+          </td>
+        </tr>
+        <tr>
+          <td>textDecoration</td>
+          <td>
+            <TableCode>'none' | 'underline' | 'line-through'</TableCode>
           </td>
           <td>Specifies the text-decoration CSS property of the component.</td>
+          <td>
+            <TableCode>'none'</TableCode>
+          </td>
         </tr>
         <tr>
-          <td>textOverflow: 'clip' | 'ellipsis' | 'unset'</td>
+          <td>textOverflow</td>
           <td>
-            <Code>'unset'</Code>
+            <TableCode>'clip' | 'ellipsis' | 'unset'</TableCode>
           </td>
           <td>Specifies the text-overflow CSS property of the component.</td>
+          <td>
+            <TableCode>'unset'</TableCode>
+          </td>
         </tr>
         <tr>
+          <td>whiteSpace</td>
           <td>
-            whiteSpace: 'normal' | 'nowrap' | 'pre' | 'pre-line' | 'pre-wrap'
-          </td>
-          <td>
-            <Code>'normal'</Code>
+            <TableCode>
+              'normal' | 'nowrap' | 'pre' | 'pre-line' | 'pre-wrap'
+            </TableCode>
           </td>
           <td>Specifies the white-space CSS property of the component.</td>
+          <td>
+            <TableCode>'normal'</TableCode>
+          </td>
         </tr>
         <tr>
-          <td>children: node</td>
-          <td></td>
-          <td></td>
+          <td>
+            <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+              <StatusTag status="Required">Required</StatusTag>children
+            </DxcFlex>
+          </td>
+          <td>
+            <TableCode>React.ReactNode</TableCode>
+          </td>
+          <td>Custom text.</td>
+          <td>-</td>
         </tr>
       </DxcTable>
     ),
