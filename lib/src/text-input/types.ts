@@ -13,11 +13,13 @@ type Action = {
    */
   onClick: () => void;
   /**
-   * Icon to be shown in the action.
+   * Icon to be placed in the action..
    */
   icon: string | SVG;
   /**
-   * Title of the action.
+   * Text representing advisory information related
+   * to the button's action. Under the hood, this prop also serves
+   * as an accessible label for the component.
    */
   title?: string;
 };
@@ -48,8 +50,7 @@ type Props = {
    */
   placeholder?: string;
   /**
-   * Action to be shown in the input. This is an object composed of an onClick function and an icon,
-   * being the latter either an inline svg or a URL to the image.
+   * Action to be shown in the input.
    */
   action?: Action;
   /**
@@ -107,8 +108,9 @@ type Props = {
   /**
    * These are the options to be displayed as suggestions. It can be either an array or a function:
    *    - Array:    Array of options that will be filtered by the component.
-   *    - Function: This function will be called when the user changes the value, we will send as a parameter the new value;
-   *                apart from that this function should return one promise on which we should make 'then' to get the suggestions filtered.
+   *    - Function: This function will be called when the user changes the value.
+   *                It will receive the new value as a parameter and should return a promise
+   *                that resolves to an array with the filtered options.
    */
   suggestions?: string[] | ((value: string) => Promise<string[]>);
   /**
@@ -122,7 +124,7 @@ type Props = {
    */
   pattern?: string;
   /**
-   * Specifies the minimun length allowed by the input.
+   * Specifies the minimum length allowed by the input.
    * This will be checked both when the input element loses the
    * focus and while typing within it. If the string entered does not
    * comply the minimum length, the onBlur and onChange functions will be called

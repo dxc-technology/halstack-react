@@ -43,11 +43,10 @@ const sections = [
           <tr>
             <td>icon</td>
             <td>
-                <TableCode>
-                  string |{" "}
-                  {"(React.ReactNode & React.SVGProps <SVGSVGElement>)"}
-                </TableCode>
-              </td>
+              <TableCode>
+                string | {"(React.ReactNode & React.SVGProps <SVGSVGElement>)"}
+              </TableCode>
+            </td>
             <td>
               Element or path used as the icon that will be placed next to the
               label.

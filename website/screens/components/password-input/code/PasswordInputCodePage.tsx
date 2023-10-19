@@ -3,7 +3,7 @@ import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
-import { DxcFlex, DxcTable } from "@dxc-technology/halstack-react";
+import { DxcFlex, DxcLink, DxcTable } from "@dxc-technology/halstack-react";
 import controlled from "./examples/controlled";
 import errorHandling from "./examples/errorHandling";
 import uncontrolled from "./examples/uncontrolled";
@@ -174,11 +174,14 @@ const sections = [
               <TableCode>string</TableCode>
             </td>
             <td>
-              HTML autocomplete attribute. Lets the user specify if any
-              permission the user agent has to provide automated assistance in
-              filling out the input value. Its value must be one of all the
-              possible values of the HTML autocomplete attribute: 'on', 'off',
-              'email', 'username', 'new-password', etc.
+              HTML <Code>autocomplete</Code> attribute. Lets the user specify if
+              any permission the user agent has to provide automated assistance
+              in filling out the input value. Its value must be one of all the
+              possible values of the HTML autocomplete attribute. See{" "}
+              <DxcLink href="https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete">
+                MDN
+              </DxcLink>{" "}
+              for further information.
             </td>
             <td>
               <TableCode>'off'</TableCode>

@@ -9,8 +9,8 @@ import uncontrolled from "./examples/uncontrolled";
 import action from "./examples/action";
 import functionSuggestions from "./examples/functionSuggestions";
 import errorHandling from "./examples/errorHandling";
-import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
 import StatusTag from "@/common/StatusTag";
+import TableCode from "@/common/TableCode";
 
 const sections = [
   {
@@ -20,99 +20,143 @@ const sections = [
         <thead>
           <tr>
             <th>Name</th>
+            <th>Type</th>
+            <th>Description</th>
             <th>Default</th>
-            <HeaderDescriptionCell>Description</HeaderDescriptionCell>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>defaultValue: string</td>
-            <td></td>
+            <td>defaultValue</td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
             <td>Initial value of the input, only when it is uncontrolled.</td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>value: string</td>
-            <td> </td>
+            <td>value</td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
             <td>
               Value of the input. If undefined, the component will be
               uncontrolled and the value will be managed internally by the
               component.
             </td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>label: string</td>
-            <td></td>
+            <td>label</td>
             <td>
-              Text to be placed above the input. This label will be used as the
-              aria-label attribute of the list of suggestions.
+              <TableCode>string</TableCode>
             </td>
+            <td>
+              Text to be placed above the input. Under the hood, this prop also
+              serves as an accessible label for the list of suggestions.
+            </td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>name: string</td>
-            <td></td>
+            <td>name</td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
             <td>Name attribute of the input element.</td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>helperText: string</td>
-            <td></td>
-            <td>Helper text to be placed above the input.</td>
-          </tr>
-          <tr>
-            <td>placeholder: string</td>
-            <td></td>
-            <td>Text to be put as placeholder of the input.</td>
-          </tr>
-          <tr>
-            <td>action: object</td>
-            <td></td>
+            <td>helperText</td>
             <td>
-              Action to be shown in the input. This is an object composed of an
-              onClick function and an icon, being the latter either an inline
-              svg or a URL to the image. An example of this object is: {"{ "}
-              <Code>
-                onClick: function, icon: string | svgIcon, title: string
-              </Code>
-              {" }"}. Note that if the icon is an URL (string), the component's
-              color styling tokens will not be applied to the image.
+              <TableCode>string</TableCode>
             </td>
+            <td>Helper text to be placed above the input.</td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>clearable: boolean</td>
+            <td>placeholder</td>
             <td>
-              <Code>false</Code>
+              <TableCode>string</TableCode>
+            </td>
+            <td>Text to be put as placeholder of the input.</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>action</td>
+            <td>
+              <TableCode>
+                {
+                  "{ icon: string | (React.ReactNode & React.SVGProps <SVGSVGElement>); onClick: () => void; title?: string }"
+                }
+              </TableCode>
+            </td>
+            <td>
+              Action to be shown in the input. It has the following properties:
+              <ul>
+                <li>
+                  <b>icon</b>: Icon to be placed in the action. It can be either
+                  a URL (string) or a SVG component.
+                </li>
+                <li>
+                  <b>onClick</b>: Function to be called when the action button
+                  is clicked.
+                </li>
+                <li>
+                  <b>title</b>: Text representing advisory information related
+                  to the button's action. Under the hood, this prop also serves
+                  as an accessible label for the component.
+                </li>
+              </ul>
+              Note that if the icon is an URL (string), the component's color
+              styling tokens will not be applied to the image.
+            </td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>clearable</td>
+            <td>
+              <TableCode>boolean</TableCode>
             </td>
             <td>
               If true, the input will have an action to clear the entered value.
             </td>
+            <td>
+              <TableCode>false</TableCode>
+            </td>
           </tr>
           <tr>
-            <td>disabled: boolean</td>
+            <td>disabled</td>
             <td>
-              <Code>false</Code>
+              <TableCode>boolean</TableCode>
             </td>
             <td>If true, the component will be disabled.</td>
+            <td>
+              <TableCode>false</TableCode>
+            </td>
           </tr>
           <tr>
-            <td>optional: boolean</td>
+            <td>optional</td>
             <td>
-              <Code>false</Code>
+              <TableCode>boolean</TableCode>
             </td>
             <td>
-              If true, the input will be optional, showing{" "}
-              <Code>(Optional)</Code> next to the label. Otherwise, the field
-              will be considered required and an error will be passed as a
-              parameter to the OnBlur and onChange functions when it has not
-              been filled.
+              If true, the input will be optional, showing '(Optional)' next to
+              the label. Otherwise, the field will be considered required and an
+              error will be passed as a parameter to the OnBlur and onChange
+              functions when it has not been filled.
+            </td>
+            <td>
+              <TableCode>false</TableCode>
             </td>
           </tr>
           <tr>
             <td>
               <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                <StatusTag status="Information">New</StatusTag>readOnly: boolean
+                <StatusTag status="Information">New</StatusTag>readOnly
               </DxcFlex>
             </td>
             <td>
-              <Code>false</Code>
+              <TableCode>boolean</TableCode>
             </td>
             <td>
               If true, the component will not be mutable, meaning the user can
@@ -120,44 +164,61 @@ const sections = [
               displayed even if the flag is set to true and the custom action
               will not execute its onClick event.
             </td>
+            <td>
+              <TableCode>false</TableCode>
+            </td>
           </tr>
           <tr>
-            <td>prefix: string</td>
-            <td></td>
+            <td>prefix</td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
             <td>Prefix to be placed before the input value.</td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>suffix: string</td>
-            <td></td>
+            <td>suffix</td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
             <td>Suffix to be placed after the input value.</td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>onChange: function</td>
-            <td></td>
+            <td>onChange</td>
+            <td>
+              <TableCode>
+                {"(val: { value: string; error?: string }) => void"}
+              </TableCode>
+            </td>
             <td>
               This function will be called when the user types within the input
               element of the component. An object including the current value
               and the error (if the value entered is not valid) will be passed
-              to this function. An example of this object is: {"{ "}
-              <Code>value: value, error: error</Code>
-              {" }"}. If there is no error, error will not be defined.
+              to this function. If there is no error, error will not be defined.
             </td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>onBlur: function</td>
-            <td></td>
+            <td>onBlur</td>
+            <td>
+              <TableCode>
+                {"(val: { value: string; error?: string }) => void"}
+              </TableCode>
+            </td>
             <td>
               This function will be called when the input element loses the
               focus. An object including the input value and the error (if the
-              value entered is not valid) will be passed to this function. An
-              example of this object is: {"{ "}
-              <Code>value: value, error: error</Code>
-              {" }"}. If there is no error, error will not be defined.
+              value entered is not valid) will be passed to this function. If
+              there is no error, error will not be defined.
             </td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>error: string</td>
-            <td></td>
+            <td>error</td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
             <td>
               If it is a defined value and also a truthy string, the component
               will change its appearance, showing the error below the input
@@ -167,30 +228,38 @@ const sections = [
               both the appearance and the space for the error message would not
               be modified.
             </td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>suggestions: Array | function</td>
-            <td></td>
+            <td>suggestions</td>
+            <td>
+              <TableCode>
+                {"string[] | ((value: string) => Promise <string[]>)"}
+              </TableCode>
+            </td>
             <td>
               These are the options to be displayed as suggestions. It can be
               either an array or a function:
               <ul>
                 <li>
-                  <b>Array</b>: Array of options that will be filtered by the
-                  component.
+                  <b>Array</b>: List of options that will be filtered by the
+                  user's input.
                 </li>
                 <li>
                   <b>Function</b>: This function will be called when the user
-                  changes the value, we will send as a parameter the new value;
-                  apart from that this function should return one promise on
-                  which we should make 'then' to get the suggestions filtered.
+                  changes the value. It will receive the new value as a
+                  parameter and should return a promise that resolves to an
+                  array with the filtered options.
                 </li>
               </ul>
             </td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>pattern: string</td>
-            <td></td>
+            <td>pattern</td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
             <td>
               Regular expression that defines the valid format allowed by the
               input. This will be checked both when the input element loses the
@@ -200,12 +269,15 @@ const sections = [
               this value does not match the pattern. If the pattern is met, the
               error parameter of both events will not be defined.
             </td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>minLength: number</td>
-            <td></td>
+            <td>minLength</td>
             <td>
-              Specifies the minimun length allowed by the input. This will be
+              <TableCode>number</TableCode>
+            </td>
+            <td>
+              Specifies the minimum length allowed by the input. This will be
               checked both when the input element loses the focus and while
               typing within it. If the string entered does not comply the
               minimum length, the onBlur and onChange functions will be called
@@ -214,10 +286,13 @@ const sections = [
               length is reached, the error parameter of both events will not be
               defined.
             </td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>maxLength: number</td>
-            <td></td>
+            <td>maxLength</td>
+            <td>
+              <TableCode>number</TableCode>
+            </td>
             <td>
               Specifies the maximum length allowed by the input. This will be
               checked both when the input element loses the focus and while
@@ -228,55 +303,71 @@ const sections = [
               length is reached, the error parameter of both events will not be
               defined.
             </td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>autocomplete: string</td>
+            <td>autocomplete</td>
             <td>
-              <Code>'off'</Code>
+              <TableCode>string</TableCode>
             </td>
             <td>
-              HTML autocomplete attribute. Lets the user specify if any
-              permission the user agent has to provide automated assistance in
-              filling out the input value. Its value must be one of all the
-              possible values of the HTML autocomplete attribute. Please check
-              the documentation{" "}
+              HTML <Code>autocomplete</Code> attribute. Lets the user specify if
+              any permission the user agent has to provide automated assistance
+              in filling out the input value. Its value must be one of all the
+              possible values of the HTML autocomplete attribute. See{" "}
               <DxcLink href="https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete">
-                here
-              </DxcLink>
-              .
+                MDN
+              </DxcLink>{" "}
+              for further information.
+            </td>
+            <td>
+              <TableCode>'off'</TableCode>
             </td>
           </tr>
           <tr>
-            <td>margin: string | object</td>
-            <td></td>
+            <td>margin</td>
             <td>
-              Size of the margin to be applied to the component ('xxsmall' |
-              'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge').
-              You can pass an object with 'top', 'bottom', 'left' and 'right'
-              properties in order to specify different margin sizes.
+              <TableCode>
+                'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' |
+                'xxlarge' | Margin
+              </TableCode>
+            </td>
+            <td>
+              Size of the margin to be applied to the component. You can pass an
+              object with 'top', 'bottom', 'left' and 'right' properties in
+              order to specify different margin sizes.
+            </td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>size</td>
+            <td>
+              <TableCode>'small' | 'medium' | 'large' | 'fillParent'</TableCode>
+            </td>
+            <td>Size of the component.</td>
+            <td>
+              <TableCode>'medium'</TableCode>
             </td>
           </tr>
           <tr>
-            <td>size: string</td>
+            <td>tabIndex</td>
             <td>
-              <Code>'medium'</Code>
+              <TableCode>number</TableCode>
             </td>
             <td>
-              Size of the component ('small' | 'medium' | 'large' |
-              'fillParent').
+              Value of the <Code>tabindex</Code> attribute.
+            </td>
+            <td>
+              <TableCode>0</TableCode>
             </td>
           </tr>
           <tr>
-            <td>tabIndex: number</td>
+            <td>ref</td>
             <td>
-              <Code>0</Code>
+              <TableCode>{"React.Ref <HTMLDivElement>"}</TableCode>
             </td>
-            <td>Value of the tabindex attribute.</td>
-          </tr>
-          <tr>
-            <td>ref: object</td>
-            <td></td>
             <td>Reference to the component.</td>
+            <td>-</td>
           </tr>
         </tbody>
       </DxcTable>
