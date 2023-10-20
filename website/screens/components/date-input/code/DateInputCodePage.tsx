@@ -182,7 +182,7 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
-            <td>onBlur: function</td>
+            <td>onBlur</td>
             <td>
               <TableCode>
                 {
