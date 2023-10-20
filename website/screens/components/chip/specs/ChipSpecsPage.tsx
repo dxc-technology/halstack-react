@@ -73,182 +73,120 @@ const sections = [
     subSections: [
       {
         title: "Color",
-        subSections: [
-          {
-            title: "On-light",
-            content: (
-              <DxcTable>
-                <thead>
-                  <tr>
-                    <th>Component token</th>
-                    <th>Element</th>
-                    <th>Core token</th>
-                    <th>Value</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>
-                      <Code>backgroundColor</Code>
-                    </td>
-                    <td>Chip container</td>
-                    <td>
-                      <Code>color-grey-200</Code>
-                    </td>
-                    <td>#e6e6e6</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <Code>disabledBackgroundColor</Code>
-                    </td>
-                    <td>Chip container:disabled</td>
-                    <td>
-                      <Code>color-grey-100</Code>
-                    </td>
-                    <td>#f2f2f2</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <Code>fontColor</Code>
-                    </td>
-                    <td>Label</td>
-                    <td>
-                      <Code>color-black</Code>
-                    </td>
-                    <td>#000000</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <Code>disabledFontcolor</Code>
-                    </td>
-                    <td>Label:disabled</td>
-                    <td>
-                      <Code>color-grey-500</Code>
-                    </td>
-                    <td>#999999</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <Code>focusColor</Code>
-                    </td>
-                    <td>Focus outline</td>
-                    <td>
-                      <Code>color-blue-600</Code>
-                    </td>
-                    <td>#0095ff</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <Code>iconColor</Code>
-                    </td>
-                    <td>Icon</td>
-                    <td>
-                      <Code>color-black</Code>
-                    </td>
-                    <td>#000000</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <Code>disabledIconColor</Code>
-                    </td>
-                    <td>Icon:disabled</td>
-                    <td>
-                      <Code>color-grey-500</Code>
-                    </td>
-                    <td>#999999</td>
-                  </tr>
-                </tbody>
-              </DxcTable>
-            ),
-          },
-          {
-            title: "On-dark",
-            content: (
-              <DxcTable>
-                <thead>
-                  <tr>
-                    <th>Component token</th>
-                    <th>Element</th>
-                    <th>Core token</th>
-                    <th>Value</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>
-                      <Code>backgroundColorOnDark</Code>
-                    </td>
-                    <td>Chip container</td>
-                    <td>
-                      <Code>color-grey-700</Code>
-                    </td>
-                    <td>#666666</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <Code>disabledBackgroundColorOnDark</Code>
-                    </td>
-                    <td>Chip container:disabled</td>
-                    <td>
-                      <Code>color-grey-800</Code>
-                    </td>
-                    <td>#4d4d4d</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <Code>fontcolorOnDark</Code>
-                    </td>
-                    <td>Label</td>
-                    <td>
-                      <Code>color-white</Code>
-                    </td>
-                    <td>#ffffff</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <Code>disabledfontcolorOnDark</Code>
-                    </td>
-                    <td>Label:disabled</td>
-                    <td>
-                      <Code>color-grey-500</Code>
-                    </td>
-                    <td>#999999</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <Code>focusColorOnDark</Code>
-                    </td>
-                    <td>Focus outline</td>
-                    <td>
-                      <Code>color-blue-600</Code>
-                    </td>
-                    <td>#0095ff</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <Code>iconColorOnDark</Code>
-                    </td>
-                    <td>Icon</td>
-                    <td>
-                      <Code>color-white</Code>
-                    </td>
-                    <td>#ffffff</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <Code>iconColorOnDark</Code>
-                    </td>
-                    <td>Icon:disabled</td>
-                    <td>
-                      <Code>color-grey-500</Code>
-                    </td>
-                    <td>#999999</td>
-                  </tr>
-                </tbody>
-              </DxcTable>
-            ),
-          },
-        ],
+        content: (
+          <DxcTable>
+            <thead>
+              <tr>
+                <th>Component token</th>
+                <th>Element</th>
+                <th>Core token</th>
+                <th>Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <Code>activeIconColor</Code>
+                </td>
+                <td>Container:active</td>
+                <td>
+                  <Code>color-black</Code>
+                </td>
+                <td>#000000</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>backgroundColor</Code>
+                </td>
+                <td>Container</td>
+                <td>
+                  <Code>color-grey-200</Code>
+                </td>
+                <td>#e6e6e6</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>borderColor</Code>
+                </td>
+                <td>Container:border</td>
+                <td>
+                  <Code>color-transparent</Code>
+                </td>
+                <td>transparent</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>disabledBackgroundColor</Code>
+                </td>
+                <td>Container:disabled</td>
+                <td>
+                  <Code>color-grey-100</Code>
+                </td>
+                <td>#f2f2f2</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>disabledFontcolor</Code>
+                </td>
+                <td>Label:disabled</td>
+                <td>
+                  <Code>color-grey-500</Code>
+                </td>
+                <td>#999999</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>disabledIconColor</Code>
+                </td>
+                <td>Icon:disabled</td>
+                <td>
+                  <Code>color-grey-500</Code>
+                </td>
+                <td>#999999</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>focusColor</Code>
+                </td>
+                <td>Focus outline</td>
+                <td>
+                  <Code>color-blue-600</Code>
+                </td>
+                <td>#0095ff</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>fontColor</Code>
+                </td>
+                <td>Label</td>
+                <td>
+                  <Code>color-black</Code>
+                </td>
+                <td>#000000</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>hoverIconColor</Code>
+                </td>
+                <td>Container:hover</td>
+                <td>
+                  <Code>color-grey-900</Code>
+                </td>
+                <td>#333333</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>iconColor</Code>
+                </td>
+                <td>Icon</td>
+                <td>
+                  <Code>color-grey-800</Code>
+                </td>
+                <td>#4d4d4d</td>
+              </tr>
+            </tbody>
+          </DxcTable>
+        ),
       },
       {
         title: "Typography",
@@ -322,39 +260,49 @@ const sections = [
             <tbody>
               <tr>
                 <td>
-                  <Code>labelMarginLeft</Code>
-                </td>
-                <td>Label</td>
-                <td>
-                  <Code>spacing-8</Code>
-                </td>
-                <td>0.5rem / 8px</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>labelMarginRight</Code>
-                </td>
-                <td>Label</td>
-                <td>
-                  <Code>spacing-8</Code>
-                </td>
-                <td>0.5rem / 8px</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>containerPaddingLeft</Code>
+                  <Code>contentPaddingLeft</Code>
                 </td>
                 <td>Container</td>
                 <td>
-                  <Code>spacing-8</Code>
+                  <Code>spacing-16</Code>
                 </td>
-                <td>0.5rem / 8px</td>
+                <td>1rem / 16px</td>
               </tr>
               <tr>
                 <td>
-                  <Code>containerPaddingRight</Code>
+                  <Code>contentPaddingRight</Code>
                 </td>
                 <td>Container</td>
+                <td>
+                  <Code>spacing-16</Code>
+                </td>
+                <td>1rem / 16px</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>contentPaddingTop</Code>
+                </td>
+                <td>Container</td>
+                <td>
+                  <Code>spacing-0</Code>
+                </td>
+                <td>0</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>contentPaddingBottom</Code>
+                </td>
+                <td>Container</td>
+                <td>
+                  <Code>spacing-0</Code>
+                </td>
+                <td>0</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>iconSpacing</Code>
+                </td>
+                <td>Icon</td>
                 <td>
                   <Code>spacing-8</Code>
                 </td>
