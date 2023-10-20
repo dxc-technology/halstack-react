@@ -7,7 +7,8 @@ import Example from "@/common/example/Example";
 import controlled from "./examples/controlled";
 import uncontrolled from "./examples/uncontrolled";
 import icons from "./examples/icons";
-import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
+import TableCode from "@/common/TableCode";
+import StatusTag from "@/common/StatusTag";
 
 const sections = [
   {
@@ -17,88 +18,120 @@ const sections = [
         <thead>
           <tr>
             <th>Name</th>
+            <th>Type</th>
+            <th>Description</th>
             <th>Default</th>
-            <HeaderDescriptionCell>Description</HeaderDescriptionCell>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>mode: 'horizontal' | 'vertical'</td>
+            <td>defaultCurrentStep</td>
             <td>
-              <Code>'horizontal'</Code>
+              <TableCode>number</TableCode>
             </td>
-            <td>The wizard can be showed in horizontal or vertical.</td>
-          </tr>
-          <tr>
-            <td>defaultCurrentStep: number</td>
-            <td></td>
             <td>Initially selected step, only when it is uncontrolled.</td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>currentStep: number</td>
+            <td>currentStep</td>
             <td>
-              <Code>0</Code>
+              <TableCode>number</TableCode>
             </td>
             <td>
               Defines which step is marked as the current. The numeration starts
               at 0. If undefined, the component will be uncontrolled and the
               step will be managed internally by the component.
             </td>
-          </tr>
-          <tr>
-            <td>onStepClick: function</td>
-            <td></td>
             <td>
-              This function will be called when the user clicks a step. The step
-              number will be passed as a parameter.
+              <TableCode>0</TableCode>
             </td>
           </tr>
           <tr>
-            <td>steps: object[]</td>
+            <td>mode</td>
             <td>
-              <Code>[]</Code>
+              <TableCode>'horizontal' | 'vertical'</TableCode>
+            </td>
+            <td>The wizard can be showed in horizontal or vertical.</td>
+            <td>
+              <TableCode>'horizontal'</TableCode>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                <StatusTag status="Required">Required</StatusTag>steps
+              </DxcFlex>
+            </td>
+            <td>
+              <TableCode>
+                {
+                  "{ label: string; description?: string; icon?: string | (React.ReactNode & React.SVGProps <SVGSVGElement>); disabled?: boolean; valid?: boolean; }[]"
+                }
+              </TableCode>
             </td>
             <td>
               An array of objects representing the steps. Each of them has the
               following properties:
               <ul>
                 <li>
-                  <b>Label: string</b>: Step label.
+                  <b>label</b>: Step label.
                 </li>
                 <li>
-                  <b>Description: string</b>: Description that will be placed
-                  next to the step.
+                  <b>description</b>: Description that will be placed next to
+                  the step.
                 </li>
                 <li>
-                  <b>Icon: string | SVGSVGElement</b>: Element or path used as
-                  the icon displayed in the step.
+                  <b>icon</b>: Element or path used as the icon displayed in the
+                  step.
                 </li>
                 <li>
-                  <b>Disabled: boolean</b>: Whether the step is disabled or not.
+                  <b>disabled</b>: Whether the step is disabled or not.
                 </li>
                 <li>
-                  <b>Valid: boolean</b>: Whether the step is valid or not.
+                  <b>valid</b>: Whether the step is valid or not.
                 </li>
               </ul>
             </td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>margin: string | object</td>
-            <td></td>
+            <td>onStepClick</td>
             <td>
-              Size of the margin to be applied to the component ('xxsmall' |
-              'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge').
-              You can pass an object with 'top', 'bottom', 'left' and 'right'
-              properties in order to specify different margin sizes.
+              <TableCode>
+                {"(currentStep: number) => void"}
+              </TableCode>
             </td>
+            <td>
+              This function will be called when the user clicks a step. The step
+              number will be passed as a parameter.
+            </td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>tabIndex: number</td>
+            <td>margin</td>
             <td>
-              <Code>0</Code>
+              <TableCode>
+                'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' |
+                'xxlarge' | Margin
+              </TableCode>
             </td>
             <td>
-              Value of the tabindex attribute that is given to all the steps.
+              Size of the margin to be applied to the component. You can pass an
+              object with 'top', 'bottom', 'left' and 'right' properties in
+              order to specify different margin sizes.
+            </td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>tabIndex</td>
+            <td>
+              <TableCode>number</TableCode>
+            </td>
+            <td>
+              Value of the <Code>tabindex</Code> attribute.
+            </td>
+            <td>
+              <TableCode>0</TableCode>
             </td>
           </tr>
         </tbody>
