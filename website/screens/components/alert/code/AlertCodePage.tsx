@@ -27,7 +27,7 @@ const sections = [
             <td>
               <TableCode>'info' | 'confirm' | 'warning' | 'error'</TableCode>
             </td>
-            <td>Uses on of the available alert types.</td>
+            <td>Uses one of the available alert types.</td>
             <td>
               <TableCode>'info'</TableCode>
             </td>
@@ -38,16 +38,16 @@ const sections = [
               <TableCode>'inline' | 'modal'</TableCode>
             </td>
             <td>
-              Uses on of the available alert modes:
+              Uses one of the available alert modes:
               <ul>
                 <li>
-                  <strong>inline:</strong> If onClose function is received,
+                  <b>inline:</b> If onClose function is received,
                   close button will be visible and the function will be executed
                   when it's clicked. There is no overlay layer. Position should
                   be decided by the user.
                 </li>
                 <li>
-                  <strong>modal:</strong> The alert will be displayed in the
+                  <b>modal:</b> The alert will be displayed in the
                   middle of the screen with an overlay layer behind. The onClose
                   function will be executed when the X button or the overlay is
                   clicked. The user has the responsibility of hiding the modal
