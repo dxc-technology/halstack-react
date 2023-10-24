@@ -155,7 +155,9 @@ const sections = [
             <td>
               Value of the <Code>tabindex</Code> attribute.
             </td>
-            <td>0</td>
+            <td>
+              <TableCode>0</TableCode>
+            </td>
           </tr>
         </tbody>
       </DxcTable>
