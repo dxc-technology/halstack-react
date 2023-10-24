@@ -302,10 +302,7 @@ const sections = [
             <tr>
               <td>column</td>
               <td>
-                <TableCode>
-                  number | string |{" "}
-                  {"{ start: number | string; end: number | string }"}
-                </TableCode>
+                <TableCode>number | string | GridCell</TableCode>
               </td>
               <td>
                 Sets the <Code>grid-column</Code> CSS property. See{" "}
@@ -315,17 +312,23 @@ const sections = [
                 >
                   MDN
                 </DxcLink>{" "}
-                for further information.
+                for further information. It can be either a value from the range
+                or an object with the following properties:
+                <ul>
+                  <li>
+                    <b>start</b>: starting position within the grid column.
+                  </li>
+                  <li>
+                    <b>end</b>: ending position within the grid column.
+                  </li>
+                </ul>
               </td>
               <td>-</td>
             </tr>
             <tr>
               <td>row</td>
               <td>
-                <TableCode>
-                  number | string |{" "}
-                  {"{ start: number | string; end: number | string }"}
-                </TableCode>
+                <TableCode>number | string | GridCell</TableCode>
               </td>
               <td>
                 Sets the <Code>grid-row</Code> CSS property. See{" "}
@@ -335,7 +338,16 @@ const sections = [
                 >
                   MDN
                 </DxcLink>{" "}
-                for further information.
+                for further information. It can be either a value from the range
+                or an object with the following properties:
+                <ul>
+                  <li>
+                    <b>start</b>: starting position within the grid row.
+                  </li>
+                  <li>
+                    <b>end</b>: ending position within the grid row.
+                  </li>
+                </ul>
               </td>
               <td>-</td>
             </tr>
