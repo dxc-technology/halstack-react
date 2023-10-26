@@ -208,7 +208,7 @@ const DxcDropdown = ({
             </DropdownTrigger>
           </Popover.Trigger>
           <Popover.Portal>
-            <Popover.Content sideOffset={1} style={{ zIndex: "2147483647" }}>
+            <Popover.Content asChild sideOffset={1}>
               <DropdownMenu
                 id={menuId}
                 dropdownTriggerId={triggerId}
@@ -217,7 +217,7 @@ const DxcDropdown = ({
                 visualFocusIndex={visualFocusIndex}
                 menuItemOnClick={handleMenuItemOnClick}
                 onKeyDown={handleMenuOnKeyDown}
-                styles={{ width }}
+                styles={{ width, zIndex: "2147483647" }}
                 ref={menuRef}
               />
             </Popover.Content>
