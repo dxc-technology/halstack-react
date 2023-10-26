@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useLayoutEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import styled from "styled-components";
 import useTranslatedLabels from "../useTranslatedLabels";
 import BackgroundColorContext, { BackgroundColors } from "../BackgroundColorContext";
@@ -15,32 +15,16 @@ const Suggestions = ({
   searchHasErrors,
   isSearching,
   suggestionOnClick,
-  getTextInputWidth,
+  styles,
 }: SuggestionsProps): JSX.Element => {
   const translatedLabels = useTranslatedLabels();
   const backgroundType = useContext(BackgroundColorContext);
   const listboxRef = useRef(null);
-  const [styles, setStyles] = useState(null);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const visualFocusedOptionEl = listboxRef?.current?.querySelectorAll("[role='option']")[visualFocusIndex];
     visualFocusedOptionEl?.scrollIntoView?.({ block: "nearest", inline: "start" });
   }, [visualFocusIndex]);
-
-  const handleResize = () => {
-    setStyles({ width: getTextInputWidth() });
-  };
-
-  useLayoutEffect(() => {
-    handleResize();
-  }, [getTextInputWidth]);
-
-  useEffect(() => {
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, [getTextInputWidth]);
 
   return (
     <SuggestionsContainer

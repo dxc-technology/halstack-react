@@ -59,23 +59,26 @@ const ColorPicker = ({
           onClick={showColorPicker}
         />
       </Popover.Trigger>
-      <Popover.Content
-        sideOffset={1}
-        onInteractOutside={closeColorPicker}
-        onEscapeKeyDown={closeColorPicker}
-      >
-        <SketchPicker
-          color={currentColor}
-          onChange={(color) => {
-            setCurrentColor(color.hex);
-          }}
-          onChangeComplete={(color) => {
-            onChangeCustomTheme(propertyName, color.hex);
-          }}
-          disableAlpha={true}
-          presetColors={presetColors}
-        />
-      </Popover.Content>
+      <Popover.Portal>
+        <Popover.Content
+          sideOffset={1}
+          style={{ zIndex: "2147483647" }}
+          onInteractOutside={closeColorPicker}
+          onEscapeKeyDown={closeColorPicker}
+        >
+          <SketchPicker
+            color={currentColor}
+            onChange={(color) => {
+              setCurrentColor(color.hex);
+            }}
+            onChangeComplete={(color) => {
+              onChangeCustomTheme(propertyName, color.hex);
+            }}
+            disableAlpha={true}
+            presetColors={presetColors}
+          />
+        </Popover.Content>
+      </Popover.Portal>
     </Popover.Root>
   );
 };

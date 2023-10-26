@@ -473,7 +473,7 @@ const AutosuggestListbox = () => {
             searchHasErrors={false}
             isSearching={false}
             suggestionOnClick={() => {}}
-            getTextInputWidth={() => 350}
+            styles={{ width: 350 }}
           />
         </ExampleContainer>
         <ExampleContainer pseudoState="pseudo-active">
@@ -487,7 +487,7 @@ const AutosuggestListbox = () => {
             searchHasErrors={false}
             isSearching={false}
             suggestionOnClick={(suggestion) => {}}
-            getTextInputWidth={() => 350}
+            styles={{ width: 350 }}
           />
         </ExampleContainer>
         <ExampleContainer>
@@ -501,7 +501,7 @@ const AutosuggestListbox = () => {
             searchHasErrors={false}
             isSearching={false}
             suggestionOnClick={(suggestion) => {}}
-            getTextInputWidth={() => 350}
+            styles={{ width: 350 }}
           />
         </ExampleContainer>
         <ExampleContainer>
@@ -515,7 +515,7 @@ const AutosuggestListbox = () => {
             searchHasErrors={false}
             isSearching={false}
             suggestionOnClick={(suggestion) => {}}
-            getTextInputWidth={() => 350}
+            styles={{ width: 350 }}
           />
         </ExampleContainer>
       </ExampleContainer>
@@ -530,7 +530,7 @@ const AutosuggestListbox = () => {
           searchHasErrors={true}
           isSearching={false}
           suggestionOnClick={(suggestion) => {}}
-          getTextInputWidth={() => 350}
+          styles={{ width: 350 }}
         />
       </ExampleContainer>
       <ExampleContainer>
@@ -544,7 +544,7 @@ const AutosuggestListbox = () => {
           searchHasErrors={false}
           isSearching={true}
           suggestionOnClick={(suggestion) => {}}
-          getTextInputWidth={() => 350}
+          styles={{ width: 350 }}
         />
       </ExampleContainer>
     </ThemeProvider>
@@ -583,7 +583,7 @@ const DarkAutosuggestListbox = () => {
                 searchHasErrors={true}
                 isSearching={false}
                 suggestionOnClick={(suggestion) => {}}
-                getTextInputWidth={() => 350}
+                styles={{ width: 350 }}
               />
             </div>
           </ExampleContainer>

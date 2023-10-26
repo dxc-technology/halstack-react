@@ -185,16 +185,18 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
                 ref={dateRef}
               />
             </Popover.Trigger>
-            <StyledContent
-              sideOffset={error ? -18 : 2}
-              align="end"
-              aria-modal={true}
-              onBlur={handleDatePickerOnBlur}
-              onEscapeKeyDown={handleDatePickerEscKeydown}
-              avoidCollisions={false}
-            >
-              <DxcDatePicker id={calendarId} onDateSelect={handleCalendarOnClick} date={dayjsDate} />
-            </StyledContent>
+            <Popover.Portal>
+              <StyledPopoverContent
+                sideOffset={error ? -18 : 2}
+                align="end"
+                aria-modal={true}
+                onBlur={handleDatePickerOnBlur}
+                onEscapeKeyDown={handleDatePickerEscKeydown}
+                avoidCollisions={false}
+              >
+                <DxcDatePicker id={calendarId} onDateSelect={handleCalendarOnClick} date={dayjsDate} />
+              </StyledPopoverContent>
+            </Popover.Portal>
           </Popover.Root>
         </div>
       </ThemeProvider>
@@ -202,7 +204,8 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
   }
 );
 
-const StyledContent = styled(Popover.Content)`
+const StyledPopoverContent = styled(Popover.Content)`
+  z-index: 2147483647;
   &:focus-visible {
     outline: none;
   }
