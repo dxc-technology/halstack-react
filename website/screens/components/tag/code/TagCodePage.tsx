@@ -70,7 +70,8 @@ const sections = [
             </td>
             <td>
               If defined, the tag will be displayed as an anchor, using this
-              prop as "href". Component will show some visual feedback on hover.
+              prop as its <Code>href</Code>. The component will also show some
+              visual feedback when it is hovered.
             </td>
             <td>-</td>
           </tr>
@@ -79,7 +80,7 @@ const sections = [
             <td>
               <TableCode>boolean</TableCode>
             </td>
-            <td>If true, the page is opened in a new browser tab.</td>
+            <td>If true, the page will be opened in a new browser tab.</td>
             <td>
               <TableCode>false</TableCode>
             </td>
@@ -91,8 +92,8 @@ const sections = [
             </td>
             <td>
               If defined, the tag will be displayed as a button. This function
-              will be called when the user clicks the tag. Component will show
-              some visual feedback on hover.
+              will be called when the user clicks the tag. The component will
+              show some visual feedback when hovered.
             </td>
             <td>-</td>
           </tr>

@@ -141,11 +141,11 @@ const sections = [
                   <TableCode>boolean | number</TableCode>
                 </td>
                 <td>
-                  If the value is 'true', an empty badge will appear. If it is
-                  'false', no badge will appear. If a number is put it will be
-                  shown as the label of the notification in the tab, taking into
-                  account that if that number is greater than 99, it will appear
-                  as '+99' in the badge.
+                  If true, an empty badge will appear. If false, no badge will
+                  appear. If a number is specified, the component will display a
+                  badge with the value as its label. Take into account that if
+                  that number is greater than 99, it will appear as '+99' in the
+                  badge.
                 </td>
                 <td>
                   <TableCode>false</TableCode>
@@ -164,7 +164,7 @@ const sections = [
                 <td>
                   <TableCode>string</TableCode>
                 </td>
-                <td>Tab text label.</td>
+                <td>Tab label text.</td>
                 <td>-</td>
               </tr>
             </tbody>

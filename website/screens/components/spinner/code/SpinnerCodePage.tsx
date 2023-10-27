@@ -34,7 +34,7 @@ const sections = [
             <td>
               <TableCode>'large' | 'small' | 'overlay' </TableCode>
             </td>
-            <td>The spinner can have overlay or small or large size.</td>
+            <td>The different variants of the components.</td>
             <td>
               <TableCode>'large'</TableCode>
             </td>
