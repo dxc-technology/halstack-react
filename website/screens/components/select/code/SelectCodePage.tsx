@@ -76,7 +76,11 @@ const sections = [
               </DxcFlex>
             </td>
             <td>
-              <TableCode>Option[] | OptionGroup[]</TableCode>
+              <TableCode>
+                {
+                  "({ label: string, value: string, icon: (string | React.ReactNode & React.SVGProps <SVGSVGElement>) })[] | ({ label: string, options: Option[] })[]"
+                }
+              </TableCode>
             </td>
             <td>
               An array of objects representing the selectable options. Each
@@ -86,34 +90,30 @@ const sections = [
               <strong>Option</strong>
               <ul>
                 <li>
-                  <b>label: string</b>: Label of the option to be shown in the
-                  select's listbox.
+                  <b>label</b>: Label of the option to be shown in the select's
+                  listbox.
                 </li>
                 <li>
-                  <b>value: string</b>: Value of the option. It should be unique
-                  and not an empty string, which is reserved to the empty option
-                  added by <Code>optional</Code> prop.
+                  <b>value</b>: Value of the option. It should be unique and not
+                  an empty string, which is reserved to the empty option added
+                  by <Code>optional</Code> prop.
                 </li>
                 <li>
-                  <b>
-                    icon: string |{" "}
-                    {"(React.ReactNode & React.SVGProps <SVGSVGElement>)"}
-                  </b>
-                  : Element used as an icon for the option. It can be either the
-                  URL of an image or an inline SVG. Note that if the URL is the
-                  chosen option, tokens and CSS styling rules will not be
-                  applied to the icon.
+                  <b>icon</b>: Element used as an icon for the option. It can be
+                  either the URL of an image or an inline SVG. Note that if the
+                  URL is the chosen option, tokens and CSS styling rules will
+                  not be applied to the icon.
                 </li>
               </ul>
-              <strong>OptionGroup</strong>
+              <strong>Grouped options</strong>
               <br />
               <ul>
                 <li>
-                  <b>label: string</b>: Label of the group to be shown in the
-                  select's listbox.
+                  <b>label</b>: Label of the group to be shown in the select's
+                  listbox.
                 </li>
                 <li>
-                  <b>options: Option[]</b>: List of the grouped options.
+                  <b>options</b>: List of <Code>Option</Code> instances.
                 </li>
               </ul>
             </td>
@@ -179,15 +179,17 @@ const sections = [
               the label and adding a default first option with an empty string
               as value and the placeholder (if defined) as its label. Otherwise,
               the field will be considered required and an error will be passed
-              as a parameter to the OnBlur and onChange functions if an option
-              wasn't selected.
+              as a parameter to the <Code>onBlur</Code> and{" "}
+              <Code>onChange</Code> functions if an option wasn't selected.
             </td>
             <td>
               <TableCode>false</TableCode>
             </td>
           </tr>
           <tr>
-            <td>onChange</td>
+            <td>
+              <Code>onChange</Code>
+            </td>
             <td>
               <TableCode>
                 {"(val: { value: string | string[]; error?: string }) => void"}
@@ -197,7 +199,7 @@ const sections = [
               This function will be called when the user selects an option. An
               object including the new value (or values) and the error (if the
               value selected is not valid) will be passed to this function. If
-              there is no error, error will not be defined.
+              there is no error, <Code>error</Code> will not be defined.
             </td>
             <td>-</td>
           </tr>
@@ -212,7 +214,7 @@ const sections = [
               This function will be called when the select loses the focus. An
               object including the value (or values) and the error (if the value
               selected is not valid) will be passed to this function. If there
-              is no error, error will not be defined.
+              is no error, <Code>error</Code> will not be defined.
             </td>
             <td>-</td>
           </tr>

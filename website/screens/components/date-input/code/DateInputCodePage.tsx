@@ -96,9 +96,9 @@ const sections = [
             <td>
               The format in which the date value will be displayed. User must
               follow this format when editing the value or it will be considered
-              as an invalid date. In this case, the onBlur and onChange
-              functions will be called with an internal error as a parameter
-              reporting the situation.
+              as an invalid date. In this case, the <Code>onBlur</Code> and{" "}
+              <Code>onChange</Code> functions will be called with an internal
+              error as a parameter reporting the situation.
             </td>
             <td>
               <TableCode>'dd-MM-yyyy'</TableCode>
@@ -136,8 +136,8 @@ const sections = [
               If true, the date will be optional, showing the text '(Optional)'
               next to the label. Otherwise, the field will be considered
               required and an error will be passed as a parameter to the{" "}
-              <Code>onBlur</Code> and <Code>onChange</Code>
-              functions when it has not been filled.
+              <Code>onBlur</Code> and <Code>onChange</Code> functions when it
+              has not been filled.
             </td>
             <td>
               <TableCode>false</TableCode>

@@ -97,7 +97,8 @@ const sections = [
               If true, the number will be optional, showing the text
               '(Optional)' next to the label. Otherwise, the field will be
               considered required and an error will be passed as a parameter to
-              the OnBlur and onChange functions when it has not been filled.
+              the <Code>onBlur</Code> and <Code>onChange</Code> functions when
+              it has not been filled.
             </td>
             <td>
               <TableCode>false</TableCode>
@@ -144,10 +145,11 @@ const sections = [
             </td>
             <td>
               Minimum value allowed by the number input. If the typed value by
-              the user is lower than min, the onBlur and onChange functions will
-              be called with the current value and an internal error informing
-              that the current value is not correct. If a valid state is
-              reached, the error parameter will not be defined in both events.
+              the user is lower than min, the <Code>onBlur</Code> and{" "}
+              <Code>onChange</Code> functions will be called with the current
+              value and an internal error informing that the current value is
+              not correct. If a valid state is reached, the error parameter will
+              not be defined in both events.
             </td>
             <td>-</td>
           </tr>
@@ -158,10 +160,11 @@ const sections = [
             </td>
             <td>
               Maximum value allowed by the number input. If the typed value by
-              the user surpasses max, the onBlur and onChange functions will be
-              called with the current value and an internal error informing that
-              the current value is not correct. If a valid state is reached, the
-              error parameter will not be defined in both events.
+              the user surpasses max, the <Code>onBlur</Code> and{" "}
+              <Code>onChange</Code> functions will be called with the current
+              value and an internal error informing that the current value is
+              not correct. If a valid state is reached, the error parameter will
+              not be defined in both events.
             </td>
             <td>-</td>
           </tr>
@@ -189,7 +192,8 @@ const sections = [
               This function will be called when the user types within the input
               element of the component. An object including the current value
               and the error (if the value entered is not valid) will be passed
-              to this function. If there is no error, error will not be defined.
+              to this function. If there is no error, <Code>error</Code> will
+              not be defined.
             </td>
             <td>-</td>
           </tr>
@@ -204,7 +208,7 @@ const sections = [
               This function will be called when the input element loses the
               focus. An object including the input value and the error (if the
               value entered is not valid) will be passed to this function. If
-              there is no error, error will not be defined.
+              there is no error, <Code>error</Code> will not be defined.
             </td>
             <td>-</td>
           </tr>

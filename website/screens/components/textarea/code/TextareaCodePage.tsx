@@ -95,8 +95,8 @@ const sections = [
             <td>
               If true, the textarea will be optional, showing '(Optional)' next
               to the label. Otherwise, the field will be considered required and
-              an error will be passed as a parameter to the OnBlur and onChange
-              functions when it has not been filled.
+              an error will be passed as a parameter to the <Code>onBlur</Code>{" "}
+              and <Code>onChange</Code> functions when it has not been filled.
             </td>
             <td>
               <TableCode>false</TableCode>
@@ -166,7 +166,7 @@ const sections = [
               This function will be called when the user types within the
               textarea. An object including the current value and the error (if
               the value entered is not valid) will be passed to this function.
-              If there is no error, error will not be defined.
+              If there is no error, <Code>error</Code> will not be defined.
             </td>
             <td>-</td>
           </tr>
@@ -181,7 +181,7 @@ const sections = [
               This function will be called when the textarea loses the focus. An
               object including the textarea value and the error (if the value
               entered is not valid) will be passed to this function. If there is
-              no error, error will not be defined.
+              no error, <Code>error</Code> will not be defined.
             </td>
             <td>-</td>
           </tr>
@@ -209,10 +209,11 @@ const sections = [
               Regular expression that defines the valid format allowed by the
               textarea. This will be checked both when the textarea loses the
               focus and while typing within it. If the string entered does not
-              match the pattern, the onBlur and onChange functions will be
-              called with the current value and an internal error informing that
-              this value does not match the pattern. If the pattern is met, the
-              error parameter of both events will not be defined.
+              match the pattern, the <Code>onBlur</Code> and{" "}
+              <Code>onChange</Code> functions will be called with the current
+              value and an internal error informing that this value does not
+              match the pattern. If the pattern is met, the error parameter of
+              both events will not be defined.
             </td>
             <td>-</td>
           </tr>
@@ -225,11 +226,11 @@ const sections = [
               Specifies the minimum length allowed by the textarea. This will be
               checked both when the input element loses the focus and while
               typing within it. If the string entered does not comply the
-              minimum length, the onBlur and onChange functions will be called
-              with the current value and an internal error informing that the
-              value length does not comply the specified range. If a valid
-              length is reached, the error parameter of both events will not be
-              defined.
+              minimum length, the <Code>onBlur</Code> and <Code>onChange</Code>{" "}
+              functions will be called with the current value and an internal
+              error informing that the value length does not comply the
+              specified range. If a valid length is reached, the error parameter
+              of both events will not be defined.
             </td>
             <td>-</td>
           </tr>
@@ -242,11 +243,11 @@ const sections = [
               Specifies the maximum length allowed by the textarea. This will be
               checked both when the input element loses the focus and while
               typing within it. If the string entered does not comply the
-              maximum length, the onBlur and onChange functions will be called
-              with the current value and an internal error informing that the
-              value length does not comply the specified range. If a valid
-              length is reached, the error parameter of both events will not be
-              defined.
+              maximum length, the <Code>onBlur</Code> and <Code>onChange</Code>{" "}
+              functions will be called with the current value and an internal
+              error informing that the value length does not comply the
+              specified range. If a valid length is reached, the error parameter
+              of both events will not be defined.
             </td>
             <td>-</td>
           </tr>

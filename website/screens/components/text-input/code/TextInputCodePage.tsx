@@ -142,8 +142,8 @@ const sections = [
             <td>
               If true, the input will be optional, showing '(Optional)' next to
               the label. Otherwise, the field will be considered required and an
-              error will be passed as a parameter to the OnBlur and onChange
-              functions when it has not been filled.
+              error will be passed as a parameter to the <Code>onBlur</Code> and{" "}
+              <Code>onChange</Code> functions when it has not been filled.
             </td>
             <td>
               <TableCode>false</TableCode>
@@ -162,7 +162,7 @@ const sections = [
               If true, the component will not be mutable, meaning the user can
               not edit the control. In addition, the clear action will not be
               displayed even if the flag is set to true and the custom action
-              will not execute its onClick event.
+              will not execute its <Code>onClick</Code> event.
             </td>
             <td>
               <TableCode>false</TableCode>
@@ -195,7 +195,8 @@ const sections = [
               This function will be called when the user types within the input
               element of the component. An object including the current value
               and the error (if the value entered is not valid) will be passed
-              to this function. If there is no error, error will not be defined.
+              to this function. If there is no error, <Code>error</Code> will
+              not be defined.
             </td>
             <td>-</td>
           </tr>
@@ -210,7 +211,7 @@ const sections = [
               This function will be called when the input element loses the
               focus. An object including the input value and the error (if the
               value entered is not valid) will be passed to this function. If
-              there is no error, error will not be defined.
+              there is no error, <Code>error</Code> will not be defined.
             </td>
             <td>-</td>
           </tr>
@@ -264,10 +265,11 @@ const sections = [
               Regular expression that defines the valid format allowed by the
               input. This will be checked both when the input element loses the
               focus and while typing within it. If the string entered does not
-              match the pattern, the onBlur and onChange functions will be
-              called with the current value and an internal error informing that
-              this value does not match the pattern. If the pattern is met, the
-              error parameter of both events will not be defined.
+              match the pattern, the <Code>onBlur</Code> and{" "}
+              <Code>onChange</Code> functions will be called with the current
+              value and an internal error informing that this value does not
+              match the pattern. If the pattern is met, the error parameter of
+              both events will not be defined.
             </td>
             <td>-</td>
           </tr>
@@ -280,11 +282,11 @@ const sections = [
               Specifies the minimum length allowed by the input. This will be
               checked both when the input element loses the focus and while
               typing within it. If the string entered does not comply the
-              minimum length, the onBlur and onChange functions will be called
-              with the current value and an internal error informing that the
-              value length does not comply the specified range. If a valid
-              length is reached, the error parameter of both events will not be
-              defined.
+              minimum length, the <Code>onBlur</Code> and <Code>onChange</Code>{" "}
+              functions will be called with the current value and an internal
+              error informing that the value length does not comply the
+              specified range. If a valid length is reached, the error parameter
+              of both events will not be defined.
             </td>
             <td>-</td>
           </tr>
@@ -297,11 +299,11 @@ const sections = [
               Specifies the maximum length allowed by the input. This will be
               checked both when the input element loses the focus and while
               typing within it. If the string entered does not comply the
-              maximum length, the onBlur and onChange functions will be called
-              with the current value and an internal error informing that the
-              value length does not comply the specified range. If a valid
-              length is reached, the error parameter of both events will not be
-              defined.
+              maximum length, the <Code>onBlur</Code> and <Code>onChange</Code>{" "}
+              functions will be called with the current value and an internal
+              error informing that the value length does not comply the
+              specified range. If a valid length is reached, the error parameter
+              of both events will not be defined.
             </td>
             <td>-</td>
           </tr>
