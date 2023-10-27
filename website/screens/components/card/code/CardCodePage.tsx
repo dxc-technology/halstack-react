@@ -38,7 +38,7 @@ const sections = [
             <td>
               <TableCode>string</TableCode>
             </td>
-            <td>Color of the image background.</td>
+            <td>Color of the background image.</td>
             <td>
               <TableCode>'black'</TableCode>
             </td>
@@ -53,8 +53,8 @@ const sections = [
             </td>
             <td>
               Size of the padding to be applied to the image section of the
-              component. You can pass an object with `top`, `bottom`, `left` and
-              `right` properties in order to specify different padding sizes.
+              component. You can pass an object with 'top', 'bottom', 'left' and
+              'right' properties in order to specify different padding sizes.
             </td>
             <td>-</td>
           </tr>
@@ -63,7 +63,7 @@ const sections = [
             <td>
               <TableCode>'after' | 'before'</TableCode>
             </td>
-            <td>Whether the image should appear in relation to the content.</td>
+            <td>Where the image should appear in relation to the content.</td>
             <td>
               <TableCode>'before'</TableCode>
             </td>
@@ -75,7 +75,8 @@ const sections = [
             </td>
             <td>
               If defined, the card will be displayed as an anchor, using this
-              prop as `href`. Component will show some visual feedback on hover.
+              prop as <Code>href</Code>. The component will display visual
+              information on mouse-over.
             </td>
             <td>-</td>
           </tr>
@@ -96,7 +97,7 @@ const sections = [
               <TableCode>boolean</TableCode>
             </td>
             <td>
-              Whether the image must cover the whole image area of the card.
+              Whether the image must cover the its whole area of the card.
             </td>
             <td>
               <TableCode>false</TableCode>

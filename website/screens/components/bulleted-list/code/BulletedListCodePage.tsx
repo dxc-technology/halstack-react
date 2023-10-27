@@ -49,7 +49,7 @@ const sections = [
                     {"(React.ReactNode & React.SVGProps<SVGSVGElement>)"}
                   </TableCode>
                 </td>
-                <td>Icon to display as bullet.</td>
+                <td>Icon to be displayed as the bullet.</td>
                 <td>-</td>
               </tr>
             </tbody>

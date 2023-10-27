@@ -128,7 +128,7 @@ const sections = [
               '(Optional)' next to the label and adding a default last option
               with an empty string as value. Otherwise, the field will be
               considered required and an error will be passed as a parameter to
-              the OnBlur functions if an option wasn't selected.
+              the <Code>onBlur</Code> function if an option wasn't selected.
             </td>
             <td>
               <TableCode>false</TableCode>

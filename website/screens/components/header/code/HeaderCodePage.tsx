@@ -10,6 +10,7 @@ import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import Link from "next/link";
 import React from "react";
 import TableCode from "@/common/TableCode";
+import Code from "@/common/Code";
 
 const sections = [
   {
@@ -45,8 +46,8 @@ const sections = [
             <td>
               Content showed in the header. Take into account that the component
               applies styles for the first child in the content, so we recommend
-              the use of React.Fragment to be applied correctly. Otherwise, the
-              styles can be modified.
+              the use of <Code>React.Fragment</Code> to be applied correctly.
+              Otherwise, the styles can be modified.
             </td>
             <td>-</td>
           </tr>

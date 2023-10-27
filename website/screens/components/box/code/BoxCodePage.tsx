@@ -6,6 +6,7 @@ import Example from "@/common/example/Example";
 import basicUsage from "./examples/basicUsage";
 import TableCode from "@/common/TableCode";
 import StatusTag from "@/common/StatusTag";
+import Code from "@/common/Code";
 
 const sections = [
   {
@@ -36,7 +37,9 @@ const sections = [
             <td>
               <TableCode>string</TableCode>
             </td>
-            <td>Changes the display CSS property of the box div.</td>
+            <td>
+              Changes the CSS <Code>display</Code> property of the container.
+            </td>
             <td>
               <TableCode>'inline-flex'</TableCode>
             </td>

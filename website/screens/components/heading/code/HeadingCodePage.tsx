@@ -6,6 +6,7 @@ import Example from "@/common/example/Example";
 import basicUsage from "./examples/basicUsage";
 import TableCode from "@/common/TableCode";
 import StatusTag from "@/common/StatusTag";
+import Code from "@/common/Code";
 
 const sections = [
   {
@@ -29,10 +30,11 @@ const sections = [
               </td>
               <td>
                 Defines the heading level from 1 to 5. The styles of the heading
-                are applied according to the level. The html tag of the heading
-                will be the one specified in the 'as' prop. If 'as' is not
-                specified, the html tag of the heading is the one specified in
-                the 'level' prop.
+                are applied according to the level. The HTML tag of the heading
+                will be the one specified in the <Code>as</Code> prop. If no{" "}
+                <Code>as</Code> prop is provided, the tag of the heading is the
+                the one corresponding to the value of the <Code>level</Code>{" "}
+                prop (for example, level 1 will render an <Code>h1</Code> tag).
               </td>
               <td>
                 <TableCode>1</TableCode>

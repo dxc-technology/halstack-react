@@ -88,8 +88,8 @@ const sections = [
             </td>
             <td>
               The file types that the component accepts. Its value must be one
-              of all the possible values of the HTML file input's accept
-              attribute. Please check the documentation{" "}
+              of all the possible values of the HTML file input's{" "}
+              <Code>accept</Code> attribute. Please check the documentation{" "}
               <DxcLink href="https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/accept">
                 here
               </DxcLink>
@@ -104,7 +104,7 @@ const sections = [
             </td>
             <td>
               The minimum file size (in bytes) allowed. If the size of the file
-              does not comply the minSize, the file will have an error.
+              does not comply this value, the file will have an error.
             </td>
             <td>-</td>
           </tr>
@@ -115,7 +115,7 @@ const sections = [
             </td>
             <td>
               The maximum file size (in bytes) allowed. If the size of the file
-              does not comply the maxSize, the file will have an error.
+              does not comply this value, the file will have an error.
             </td>
             <td>-</td>
           </tr>

@@ -55,9 +55,9 @@ const sections = [
               <TableCode>string</TableCode>
             </td>
             <td>
-              Will be passed to the value attribute of the html input element.
-              When inside a form, this value will be only submitted if the
-              checkbox is checked.
+              Will be passed to the <Code>value</Code> attribute of the HTML
+              input element. When inside a form, this value will be only
+              submitted if the checkbox is checked.
             </td>
             <td>-</td>
           </tr>

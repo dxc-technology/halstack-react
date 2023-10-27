@@ -41,18 +41,18 @@ const sections = [
               Uses one of the available alert modes:
               <ul>
                 <li>
-                  <b>inline:</b> If onClose function is received,
+                  <b>inline:</b> If an <Code>onClose</Code> prop is received,
                   close button will be visible and the function will be executed
                   when it's clicked. There is no overlay layer. Position should
                   be decided by the user.
                 </li>
                 <li>
-                  <b>modal:</b> The alert will be displayed in the
-                  middle of the screen with an overlay layer behind. The onClose
+                  <b>modal:</b> The alert will be displayed in the middle of the
+                  screen with an overlay layer behind. The <Code>onClose</Code>{" "}
                   function will be executed when the X button or the overlay is
                   clicked. The user has the responsibility of hiding the modal
-                  in the onClose function, otherwise the modal will remain
-                  visible.
+                  in the <Code>onClose</Code> event, otherwise the modal will
+                  remain visible.
                 </li>
               </ul>
             </td>
@@ -66,7 +66,7 @@ const sections = [
               <TableCode>string</TableCode>
             </td>
             <td>
-              Text to display after icon and alert type and before content.
+              Message of the alert.
             </td>
             <td>-</td>
           </tr>
@@ -126,7 +126,8 @@ const sections = [
               <TableCode>number</TableCode>
             </td>
             <td>
-              Value of the <Code>tabindex</Code> attribute applied to the close button.
+              Value of the <Code>tabindex</Code> attribute applied to the close
+              button.
             </td>
             <td>
               <TableCode>0</TableCode>

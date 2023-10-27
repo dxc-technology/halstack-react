@@ -10,6 +10,7 @@ import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import Link from "next/link";
 import TableCode from "@/common/TableCode";
 import StatusTag from "@/common/StatusTag";
+import Code from "@/common/Code";
 
 const ApplicationLayoutPropsTable = () => (
   <DxcTable>
@@ -91,7 +92,7 @@ const ApplicationLayoutPropsTable = () => (
           <TableCode>React.ReactNode</TableCode>
         </td>
         <td>
-          Use the DxcApplicationLayout.Main provided to render main content.
+          Use the <Code>DxcApplicationLayout.Main</Code> provided to render main content.
         </td>
         <td>-</td>
       </tr>
