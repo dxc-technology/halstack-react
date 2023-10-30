@@ -47,7 +47,7 @@ const sections = [
           <tr>
             <td>
               <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                <StatusTag status="Required">Required</StatusTag>options
+                <StatusTag status="Required">Required</StatusTag>tabs
               </DxcFlex>
             </td>
             <td>
