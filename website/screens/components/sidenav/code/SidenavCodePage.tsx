@@ -2,6 +2,8 @@ import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
+import StatusTag from "@/common/StatusTag";
+import TableCode from "@/common/TableCode";
 import {
   DxcLink,
   DxcFlex,
@@ -9,7 +11,6 @@ import {
   DxcParagraph,
 } from "@dxc-technology/halstack-react";
 import Link from "next/link";
-import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
 
 const sections = [
   {
@@ -18,21 +19,32 @@ const sections = [
       <DxcTable>
         <tr>
           <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
           <th>Default</th>
-          <HeaderDescriptionCell>Description</HeaderDescriptionCell>
         </tr>
         <tr>
-          <td>title: node</td>
-          <td></td>
+          <td>title</td>
+          <td>
+            <TableCode>React.ReactNode</TableCode>
+          </td>
           <td>
             The area assigned to render the title. It is highly recommended to
             use the sidenav title.
           </td>
+          <td>-</td>
         </tr>
         <tr>
-          <td>children: node</td>
-          <td></td>
+          <td>
+            <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+              <StatusTag status="Required">Required</StatusTag>children
+            </DxcFlex>
+          </td>
+          <td>
+            <TableCode>React.ReactNode</TableCode>
+          </td>
           <td>The area inside the sidenav.</td>
+          <td>-</td>
         </tr>
       </DxcTable>
     ),
@@ -52,16 +64,25 @@ const sections = [
           <DxcTable>
             <tr>
               <th>Name</th>
+              <th>Type</th>
+              <th>Description</th>
               <th>Default</th>
-              <HeaderDescriptionCell>Description</HeaderDescriptionCell>
             </tr>
             <tr>
-              <td>children: node</td>
-              <td></td>
+              <td>
+                {" "}
+                <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                  <StatusTag status="Required">Required</StatusTag>children
+                </DxcFlex>
+              </td>
+              <td>
+                <TableCode>React.ReactNode</TableCode>
+              </td>
               <td>
                 The area inside the sidenav title. This area can be used to
                 render custom content.
               </td>
+              <td>-</td>
             </tr>
           </DxcTable>
         ),
@@ -85,16 +106,25 @@ const sections = [
           <DxcTable>
             <tr>
               <th>Name</th>
+              <th>Type</th>
+              <th>Description</th>
               <th>Default</th>
-              <HeaderDescriptionCell>Description</HeaderDescriptionCell>
             </tr>
             <tr>
-              <td>children: node</td>
-              <td></td>
+              <td>
+                {" "}
+                <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                  <StatusTag status="Required">Required</StatusTag>children
+                </DxcFlex>
+              </td>
+              <td>
+                <TableCode>React.ReactNode</TableCode>
+              </td>
               <td>
                 The area inside the sidenav section. Child items will be stacked
                 inside a flex container.
               </td>
+              <td>-</td>
             </tr>
           </DxcTable>
         ),
@@ -117,18 +147,22 @@ const sections = [
           <DxcTable>
             <tr>
               <th>Name</th>
+              <th>Type</th>
+              <th>Description</th>
               <th>Default</th>
-              <HeaderDescriptionCell>Description</HeaderDescriptionCell>
             </tr>
             <tr>
-              <td>title: string</td>
-              <td></td>
-              <td>The title of the sidenav group.</td>
-            </tr>
-            <tr>
-              <td>collapsable: boolean</td>
+              <td>title</td>
               <td>
-                <Code>false</Code>
+                <TableCode>string</TableCode>
+              </td>
+              <td>The title of the sidenav group.</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td>collapsable</td>
+              <td>
+                <TableCode>boolean</TableCode>
               </td>
               <td>
                 If true, the sidenav group will be a button that will allow you
@@ -136,19 +170,35 @@ const sections = [
                 collapsed and contains the currently selected link, the group
                 title will also be marked as selected.
               </td>
+              <td>
+                <TableCode>false</TableCode>
+              </td>
             </tr>
             <tr>
-              <td>icon: SVG | string</td>
-              <td></td>
+              <td>icon</td>
+              <td>
+                <TableCode>
+                  string |{" "}
+                  {"(React.ReactNode & React.SVGProps <SVGSVGElement>)"}
+                </TableCode>
+              </td>
               <td>The icon to be displayed next to the title of the group.</td>
+              <td>-</td>
             </tr>
             <tr>
-              <td>children: node</td>
-              <td></td>
+              <td>
+                <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                  <StatusTag status="Required">Required</StatusTag>children
+                </DxcFlex>
+              </td>
+              <td>
+                <TableCode>React.ReactNode</TableCode>
+              </td>
               <td>
                 The area inside the sidenav group. This area can be used to
                 render sidenav links.
               </td>
+              <td>-</td>
             </tr>
           </DxcTable>
         ),
@@ -175,33 +225,46 @@ const sections = [
           <DxcTable>
             <tr>
               <th>Name</th>
+              <th>Type</th>
+              <th>Description</th>
               <th>Default</th>
-              <HeaderDescriptionCell>Description</HeaderDescriptionCell>
             </tr>
             <tr>
-              <td>href: string</td>
-              <td></td>
-              <td>Page to be opened when the user clicks on the link.</td>
-            </tr>
-            <tr>
-              <td>newWindow: boolean</td>
+              <td>href</td>
               <td>
-                <Code>false</Code>
+                <TableCode>string</TableCode>
+              </td>
+              <td>Page to be opened when the user clicks on the link.</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td>newWindow</td>
+              <td>
+                <TableCode>boolean</TableCode>
               </td>
               <td>If true, the page is opened in a new browser tab.</td>
+              <td>
+                <TableCode>false</TableCode>
+              </td>
             </tr>
             <tr>
-              <td>icon: SVG | string</td>
-              <td></td>
+              <td>icon</td>
+              <td>
+                <TableCode>
+                  string |{" "}
+                  {"(React.ReactNode & React.SVGProps <SVGSVGElement>)"}
+                </TableCode>
+              </td>
               <td>
                 Element or path used as the icon that will be placed to the left
                 of the link text.
               </td>
+              <td>-</td>
             </tr>
             <tr>
-              <td>selected: boolean</td>
+              <td>selected</td>
               <td>
-                <Code>false</Code>
+                <TableCode>boolean</TableCode>
               </td>
               <td>
                 If true, the link will be marked as selected. Moreover, in that
@@ -209,26 +272,44 @@ const sections = [
                 consequently, the currently selected link is not visible, the
                 group title will appear as selected too.
               </td>
+              <td>
+                <TableCode>false</TableCode>
+              </td>
             </tr>
             <tr>
-              <td>onClick: function</td>
-              <td></td>
+              <td>onClick</td>
+              <td>
+                <TableCode>{"(event: React.MouseEvent <HTMLAnchorElement>) => void"}</TableCode>
+              </td>
               <td>
                 This function will be called when the user clicks the link and
                 the event will be passed to this function.
               </td>
+              <td>-</td>
             </tr>
             <tr>
-              <td>tabIndex: number</td>
               <td>
-                <Code>0</Code>
+                <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                  <StatusTag status="Required">Required</StatusTag>children
+                </DxcFlex>
               </td>
-              <td>Value of the tabindex.</td>
+              <td>
+                <TableCode>React.ReactNode</TableCode>
+              </td>
+              <td>The area inside the sidenav link.</td>
+              <td>-</td>
             </tr>
             <tr>
-              <td>children: node</td>
-              <td></td>
-              <td>The area inside the sidenav link.</td>
+              <td>tabIndex</td>
+              <td>
+                <TableCode>number</TableCode>
+              </td>
+              <td>
+                Value of the <Code>tabindex</Code> attribute.
+              </td>
+              <td>
+                <TableCode>0</TableCode>
+              </td>
             </tr>
           </DxcTable>
         ),

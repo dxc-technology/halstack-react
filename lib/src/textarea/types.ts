@@ -91,7 +91,7 @@ type Props = {
    */
   pattern?: string;
   /**
-   * Specifies the minimun length allowed by the textarea.
+   * Specifies the minimum length allowed by the textarea.
    * This will be checked both when the textarea loses the
    * focus and while typing within it. If the string entered does not
    * comply the minimum length, the onBlur and onChange functions will be called

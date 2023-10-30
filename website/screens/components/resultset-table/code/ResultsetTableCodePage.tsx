@@ -6,7 +6,8 @@ import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import basicUsage from "./examples/basicUsage";
 import sortable from "./examples/sortable";
-import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
+import TableCode from "@/common/TableCode";
+import StatusTag from "@/common/StatusTag";
 
 const sections = [
   {
@@ -16,15 +17,22 @@ const sections = [
         <thead>
           <tr>
             <th>Name</th>
+            <th>Type</th>
+            <th>Description</th>
             <th>Default</th>
-            <HeaderDescriptionCell>Description</HeaderDescriptionCell>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>columns: object[]</td>
             <td>
-              <Code>[]</Code>
+              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                <StatusTag status="Required">Required</StatusTag>columns
+              </DxcFlex>
+            </td>
+            <td>
+              <TableCode>
+                {"{ displayValue: React.ReactNode; isSortable?: boolean; }[]"}
+              </TableCode>
             </td>
             <td>
               An array of objects representing the columns of the table. Each
@@ -39,11 +47,18 @@ const sections = [
                 </li>
               </ul>
             </td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>rows: object[]</td>
             <td>
-              <Code>[]</Code>
+              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                <StatusTag status="Required">Required</StatusTag>rows
+              </DxcFlex>
+            </td>
+            <td>
+              <TableCode>
+                {"{ displayValue: React.ReactNode; sortValue?: string; }[]"}
+              </TableCode>
             </td>
             <td>
               An array of objects representing the rows of the table, you will
@@ -60,56 +75,78 @@ const sections = [
                 </li>
               </ul>
             </td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>showGoToPage: boolean</td>
+            <td>showGoToPage</td>
             <td>
-              <Code>true</Code>
+              <TableCode>boolean</TableCode>
             </td>
             <td>
               If true, a select component for navigation between pages will be
               displayed.
             </td>
+            <td>
+              <TableCode>true</TableCode>
+            </td>
           </tr>
           <tr>
-            <td>itemsPerPage: number</td>
+            <td>itemsPerPage</td>
             <td>
-              <Code>5</Code>
+              <TableCode>number</TableCode>
             </td>
             <td>Number of items per page.</td>
+            <td>
+              <TableCode>5</TableCode>
+            </td>
           </tr>
           <tr>
-            <td>itemsPerPageOptions: number[]</td>
+            <td>itemsPerPageOptions</td>
             <td>
-              <Code>[]</Code>
+              <TableCode>number[]</TableCode>
             </td>
             <td>
               An array of numbers representing the items per page options.
             </td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>tabIndex: number</td>
+            <td>itemsPerPageFunction</td>
             <td>
-              <Code>0</Code>
+              <TableCode>{"(value: number) => void"}</TableCode>
             </td>
-            <td>Value of the tabindex attribute given to the sortable icon.</td>
-          </tr>
-          <tr>
-            <td>itemsPerPageFunction: function</td>
-            <td></td>
             <td>
               This function will be called when the user selects an item per
               page option. The value selected will be passed as a parameter.
             </td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>margin: string | object</td>
-            <td></td>
+            <td>margin</td>
             <td>
-              Size of the margin to be applied to the component ('xxsmall' |
-              'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge').
-              You can pass an object with 'top', 'bottom', 'left' and 'right'
-              properties in order to specify different margin sizes.
+              <TableCode>
+                'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' |
+                'xxlarge' | Margin
+              </TableCode>
+            </td>
+            <td>
+              Size of the margin to be applied to the component. You can pass an
+              object with 'top', 'bottom', 'left' and 'right' properties in
+              order to specify different margin sizes.
+            </td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>tabIndex</td>
+            <td>
+              <TableCode>number</TableCode>
+            </td>
+            <td>
+              Value of the <Code>tabindex</Code> attribute applied to the
+              sortable icon.
+            </td>
+            <td>
+              <TableCode>0</TableCode>
             </td>
           </tr>
         </tbody>

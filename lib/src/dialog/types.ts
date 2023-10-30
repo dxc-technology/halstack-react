@@ -1,31 +1,36 @@
 type Props = {
   /**
-   * If true, the close 'x' button will be visible.
+   * If true, the close button will be visible.
    */
   isCloseVisible?: boolean;
   /**
-   * This function will be called when the user clicks the close 'x' button.
-   * The responsibility of hiding the modal lies with the user.
+   * This function will be called when the user clicks the close button.
+   * The responsibility of hiding the dialog lies with the user.
    */
   onCloseClick?: () => void;
+  /**
+   * This function will be called when the user clicks on the background of the modal.
+   * The responsibility of hiding the dialog lies with the user.
+   */
+  onBackgroundClick?: () => void;
   /**
    * If true, the dialog will be displayed over a darker background that covers the content behind.
    */
   overlay?: boolean;
   /**
-   * This function will be called when the user clicks background of the modal.
-   * The responsibility of hiding the modal lies with the user.
-   */
-  onBackgroundClick?: () => void;
-  /**
-   * Value of the tabindex given to the close 'x' button.
-   */
-  tabIndex?: number;
-  /**
-   * The area inside the dialog. This area can be used to render
-   * custom content.
+   * Area within the dialog that can be used to render custom content.
+   * We strongly encourage users to not change the
+   * tabindex of the inner components or elements. This
+   * can lead to unpredictable behaviour for keyboard users, affecting
+   * the order of focus and focus locking within the dialog.
    */
   children: React.ReactNode;
+  /**
+   * Value of the tabindex applied to the close button.
+   * Note that values greater than 0 are strongly discouraged. It can
+   * lead to unexpected behaviours with the focus within the dialog.
+   */
+  tabIndex?: number;
 };
 
 export default Props;

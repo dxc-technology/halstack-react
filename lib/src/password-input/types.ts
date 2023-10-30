@@ -8,7 +8,7 @@ type Margin = {
 
 type Props = {
   /**
-   * Text to be placed above the password.
+   * Text to be placed above the password input.
    */
   label?: string;
   /**
@@ -37,7 +37,8 @@ type Props = {
   /**
    * This function will be called when the input element loses the focus.
    * An object including the input value and the error (if the value entered is
-   * not valid) will be passed to this function. If there is no error, error will not be defined.
+   * not valid) will be passed to this function. If there is no error, error will 
+   * not be defined.
    */
   onBlur?: (val: { value: string; error?: string }) => void;
   /**
@@ -60,7 +61,7 @@ type Props = {
    */
   pattern?: string;
   /**
-   * Specifies the minimun length allowed by the password input.
+   * Specifies the minimum length allowed by the password input.
    * This will be checked both when the input element loses the
    * focus and while typing within it. If the string entered does not
    * comply the minimum length, the onBlur and onChange functions will be called

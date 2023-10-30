@@ -1,6 +1,5 @@
 import React from "react";
 import DxcAccordion from "./Accordion";
-import DxcHeading from "../heading/Heading";
 import DxcTextInput from "../text-input/TextInput";
 import DxcButton from "../button/Button";
 import Title from "../../.storybook/components/Title";

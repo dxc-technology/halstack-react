@@ -10,6 +10,7 @@ import {
 } from "@dxc-technology/halstack-react";
 import basicUsage from "./examples/basicUsage";
 import nestedList from "./examples/nestedList";
+import TableCode from "@/common/TableCode";
 
 const sections = [
   {
@@ -22,22 +23,34 @@ const sections = [
             <thead>
               <tr>
                 <th>Name</th>
-                <th>Default</th>
+                <th>Type</th>
                 <th>Description</th>
+                <th>Default</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>type: 'disc' | 'circle' | 'square' | 'number' | 'icon'</td>
+                <td>type</td>
+                <td>
+                  <TableCode>
+                    'disc' | 'circle' | 'square' | 'number' | 'icon'
+                  </TableCode>
+                </td>
+                <td>Defines the style of the bullet point in the list.</td>
                 <td>
                   <Code>'disc'</Code>
                 </td>
-                <td>Defines the style of the bullet point in the list.</td>
               </tr>
               <tr>
-                <td>icon: string | SVGSVGElement</td>
-                <td></td>
-                <td>Icon to display as bullet.</td>
+                <td>icon</td>
+                <td>
+                  <TableCode>
+                    string |{" "}
+                    {"(React.ReactNode & React.SVGProps<SVGSVGElement>)"}
+                  </TableCode>
+                </td>
+                <td>Icon to be displayed as the bullet.</td>
+                <td>-</td>
               </tr>
             </tbody>
           </DxcTable>
@@ -59,15 +72,19 @@ const sections = [
                 <thead>
                   <tr>
                     <th>Name</th>
-                    <th>Default</th>
+                    <th>Type</th>
                     <th>Description</th>
+                    <th>Default</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td>children: node</td>
-                    <td></td>
+                    <td>children</td>
+                    <td>
+                      <TableCode>React.ReactNode</TableCode>
+                    </td>
                     <td>Text to be shown in the list.</td>
+                    <td>-</td>
                   </tr>
                 </tbody>
               </DxcTable>

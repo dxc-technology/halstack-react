@@ -1,4 +1,3 @@
-import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import QuickNavContainer from "@/common/QuickNavContainer";
@@ -6,6 +5,9 @@ import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import { DxcFlex, DxcTable } from "@dxc-technology/halstack-react";
 import basicUsage from "./examples/basicUsage";
 import nestedTexts from "./examples/nestedTexts";
+import TableCode from "@/common/TableCode";
+import StatusTag from "@/common/StatusTag";
+import Code from "@/common/Code";
 
 const sections = [
   {
@@ -14,120 +16,194 @@ const sections = [
       <DxcTable>
         <tr>
           <th>Name</th>
-          <th>Default</th>
+          <th>Type</th>
           <th>Description</th>
+          <th>Default</th>
         </tr>
         <tr>
-          <td>as: keyof HTMLElementTagNameMap</td>
+          <td>display</td>
           <td>
-            <Code>'span'</Code>
+            <TableCode>'inline' | 'block'</TableCode>
+          </td>
+          <td>
+            Specifies the <Code>display</Code> CSS property of the component.
+          </td>
+          <td>
+            <TableCode>'inline'</TableCode>
+          </td>
+        </tr>
+        <tr>
+          <td>color</td>
+          <td>
+            <TableCode>string</TableCode>
+          </td>
+          <td>Color of the text.</td>
+          <td>
+            <TableCode>'#000000'</TableCode>
+          </td>
+        </tr>
+        <tr>
+          <td>fontFamily</td>
+          <td>
+            <TableCode>
+              'Open Sans, sans-serif' | 'Source Code Pro, monospace'
+            </TableCode>
+          </td>
+          <td>
+            Specifies the <Code>font-family</Code> CSS property of the
+            component.
+          </td>
+          <td>
+            <TableCode>'Open Sans, sans-serif'</TableCode>
+          </td>
+        </tr>
+        <tr>
+          <td>fontSize</td>
+          <td>
+            <TableCode>
+              '0.75rem' | '0.875rem' | '1rem' | '1.25rem' | '1.5rem' | '2rem' |
+              '3rem' | '3.75rem'
+            </TableCode>
+          </td>
+          <td>
+            Specifies the <Code>font-size</Code> CSS property of the component.
+          </td>
+          <td>
+            <TableCode>'1rem'</TableCode>
+          </td>
+        </tr>
+        <tr>
+          <td>fontStyle</td>
+          <td>
+            <TableCode>'normal' | 'italic'</TableCode>
+          </td>
+          <td>
+            Specifies the <Code>font-style</Code> CSS property of the component.
+          </td>
+          <td>
+            <TableCode>'normal'</TableCode>
+          </td>
+        </tr>
+        <tr>
+          <td>fontWeight</td>
+          <td>
+            <TableCode>'300' | '400' | '600' | '700'</TableCode>
+          </td>
+          <td>
+            Specifies the <Code>font-weight</Code> CSS property of the
+            component.
+          </td>
+          <td>
+            <TableCode>'400'</TableCode>
+          </td>
+        </tr>
+        <tr>
+          <td>letterSpacing</td>
+          <td>
+            <TableCode>
+              '-0.025em' | '-0.0125em' | '0em' | '0.025em' | '0.05em' | '0.1em'
+            </TableCode>
+          </td>
+          <td>
+            Specifies the <Code>letter-spacing</Code> CSS property of the
+            component.
+          </td>
+          <td>
+            <TableCode>'0em'</TableCode>
+          </td>
+        </tr>
+        <tr>
+          <td>lineHeight</td>
+          <td>
+            <TableCode>
+              '1em' | '1.25em' | '1.365em' | '1.5em' | '1.715em' | '2em'
+            </TableCode>
+          </td>
+          <td>
+            Specifies the <Code>line-height</Code> CSS property of the
+            component.
+          </td>
+          <td>
+            <TableCode>'1.5em'</TableCode>
+          </td>
+        </tr>
+        <tr>
+          <td>textAlign</td>
+          <td>
+            <TableCode>'left' | 'center' | 'right'</TableCode>
+          </td>
+          <td>
+            Specifies the <Code>text-align</Code> CSS property of the component.
+          </td>
+          <td>
+            <TableCode>'left'</TableCode>
+          </td>
+        </tr>
+        <tr>
+          <td>textDecoration</td>
+          <td>
+            <TableCode>'none' | 'underline' | 'line-through'</TableCode>
+          </td>
+          <td>
+            Specifies the <Code>text-decoration</Code> CSS property of the
+            component.
+          </td>
+          <td>
+            <TableCode>'none'</TableCode>
+          </td>
+        </tr>
+        <tr>
+          <td>textOverflow</td>
+          <td>
+            <TableCode>'clip' | 'ellipsis' | 'unset'</TableCode>
+          </td>
+          <td>
+            Specifies the <Code>text-overflow</Code> CSS property of the
+            component.
+          </td>
+          <td>
+            <TableCode>'unset'</TableCode>
+          </td>
+        </tr>
+        <tr>
+          <td>whiteSpace</td>
+          <td>
+            <TableCode>
+              'normal' | 'nowrap' | 'pre' | 'pre-line' | 'pre-wrap'
+            </TableCode>
+          </td>
+          <td>
+            Specifies the <Code>white-space</Code> CSS property of the
+            component.
+          </td>
+          <td>
+            <TableCode>'normal'</TableCode>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+              <StatusTag status="Required">Required</StatusTag>children
+            </DxcFlex>
+          </td>
+          <td>
+            <TableCode>React.ReactNode</TableCode>
+          </td>
+          <td>Custom text.</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>as</td>
+          <td>
+            <TableCode>keyof HTMLElementTagNameMap</TableCode>
           </td>
           <td>
             Determines the HTML tag with which the text is to be rendered (any
             valid HTML tag).
           </td>
-        </tr>
-        <tr>
-          <td>display: 'inline' | 'block'</td>
           <td>
-            <Code>'inline'</Code>
+            <TableCode>'span'</TableCode>
           </td>
-          <td>Specifies the display CSS property of the component.</td>
-        </tr>
-        <tr>
-          <td>
-            fontFamily: 'Open Sans, sans-serif' | 'Source Code Pro, monospace'
-          </td>
-          <td>
-            <Code>'Open Sans, sans-serif'</Code>
-          </td>
-          <td>Specifies the font-family CSS property of the component.</td>
-        </tr>
-        <tr>
-          <td>
-            fontSize: '0.75rem' | '0.875rem' | '1rem' | '1.25rem' | '1.5rem' |
-            '2rem' | '3rem' | '3.75rem'
-          </td>
-          <td>
-            <Code>'1rem'</Code>
-          </td>
-          <td>Specifies the font-size CSS property of the component.</td>
-        </tr>
-        <tr>
-          <td>fontStyle: 'italic' | 'normal'</td>
-          <td>
-            <Code>'normal'</Code>
-          </td>
-          <td>Specifies the font-style CSS property of the component.</td>
-        </tr>
-        <tr>
-          <td>fontWeight: '300' | '400' | '600' | '700' </td>
-          <td>
-            <Code>'400'</Code>
-          </td>
-          <td>Specifies the font-weight CSS property of the component.</td>
-        </tr>
-        <tr>
-          <td>
-            letterSpacing: '-0.025em' | '-0.0125em' | '0em' | '0.025em' |
-            '0.05em' | '0.1em'
-          </td>
-          <td>
-            <Code>'0em'</Code>
-          </td>
-          <td>Specifies the letter-spacing CSS property of the component.</td>
-        </tr>
-        <tr>
-          <td>
-            lineHeight: '1em' | '1.25em' | '1.365em' | '1.5em' | '1.715em' |
-            '2em'
-          </td>
-          <td>
-            <Code>'1.5em'</Code>
-          </td>
-          <td>Specifies the line-height CSS property of the component.</td>
-        </tr>
-        <tr>
-          <td>textAlign: 'left' | 'center' | 'right' </td>
-          <td>
-            <Code>'left'</Code>
-          </td>
-          <td>Specifies the text-align CSS property of the component.</td>
-        </tr>
-        <tr>
-          <td>color: string</td>
-          <td>
-            <Code>'#000000'</Code>
-          </td>
-          <td>Color of text.</td>
-        </tr>
-        <tr>
-          <td>textDecoration: 'none' | 'underline' | 'line-through'</td>
-          <td>
-            <Code>'none'</Code>
-          </td>
-          <td>Specifies the text-decoration CSS property of the component.</td>
-        </tr>
-        <tr>
-          <td>textOverflow: 'clip' | 'ellipsis' | 'unset'</td>
-          <td>
-            <Code>'unset'</Code>
-          </td>
-          <td>Specifies the text-overflow CSS property of the component.</td>
-        </tr>
-        <tr>
-          <td>
-            whiteSpace: 'normal' | 'nowrap' | 'pre' | 'pre-line' | 'pre-wrap'
-          </td>
-          <td>
-            <Code>'normal'</Code>
-          </td>
-          <td>Specifies the white-space CSS property of the component.</td>
-        </tr>
-        <tr>
-          <td>children: node</td>
-          <td></td>
-          <td></td>
         </tr>
       </DxcTable>
     ),

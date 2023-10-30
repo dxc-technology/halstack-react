@@ -6,6 +6,7 @@ type Margin = {
   right?: Space;
 };
 type SVG = React.ReactNode & React.SVGProps<SVGSVGElement>;
+
 export type StepProps = {
   /**
    * Step label.
@@ -46,7 +47,7 @@ type Props = {
    * This function will be called when the user clicks a step. The step
    * number will be passed as a parameter.
    */
-  onStepClick?: (newCurrentStep: number) => void;
+  onStepClick?: (currentStep: number) => void;
   /**
    * An array of objects representing the steps.
    */

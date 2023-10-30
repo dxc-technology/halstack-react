@@ -1,3 +1,14 @@
+type Link = {
+  /**
+   * Label to be shown in the link.
+   */
+  label: string;
+  /**
+   * Sublinks of the link.
+   */
+  links?: Link[];
+};
+
 type Props = {
   /**
    * Title of the quick nav component.
@@ -6,18 +17,7 @@ type Props = {
   /**
    * Links to be shown inside the quick nav component.
    */
-  links: LinkType[];
-};
-
-type LinkType = {
-  /**
-   * Label to be shown in the link.
-   */
-  label: string;
-  /**
-   * Sublinks of the link.
-   */
-  links?: LinkType[];
+  links: Link[];
 };
 
 export default Props;

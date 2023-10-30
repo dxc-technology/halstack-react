@@ -10,14 +10,6 @@ type Margin = {
 
 type Props = {
   /**
-   * Text to be placed above the date.
-   */
-  label?: string;
-  /**
-   * Name attribute of the input element.
-   */
-  name?: string;
-  /**
    * Initial value of the input element, only when it is uncontrolled.
    */
   defaultValue?: string;
@@ -26,9 +18,13 @@ type Props = {
    */
   value?: string;
   /**
-   * The format in which the date value will be displayed. User must use this format when editing the value or it will be considered as an invalid date.
+   * Text to be placed above the date input.
    */
-  format?: string;
+  label?: string;
+  /**
+   * Name attribute of the input element.
+   */
+  name?: string;
   /**
    * Helper text to be placed above the date.
    */
@@ -38,6 +34,10 @@ type Props = {
    */
   placeholder?: boolean;
   /**
+   * The format in which the date value will be displayed. User must use this format when editing the value or it will be considered as an invalid date.
+   */
+  format?: string;
+  /**
    * If true, the date input will have an action to clear the entered value.
    */
   clearable?: boolean;
@@ -46,18 +46,18 @@ type Props = {
    */
   disabled?: boolean;
   /**
-   * If true, the component will not be mutable, meaning the user can not edit the control.
-   * The date picker cannot be opened either. In addition, the clear action will not be displayed 
-   * even if the flag is set to true.
-   */
-  readOnly?: boolean;
-  /**
-   * If true, the date will be optional, showing '(Optional)'
+   * If true, the date will be optional, showing the text '(Optional)'
    * next to the label. Otherwise, the field will be considered required and an error will be
    * passed as a parameter to the OnBlur and onChange functions when it has
    * not been filled.
    */
   optional?: boolean;
+  /**
+   * If true, the component will not be mutable, meaning the user can not edit the control.
+   * The date picker cannot be opened either. In addition, the clear action will not be displayed
+   * even if the flag is set to true.
+   */
+  readOnly?: boolean;
   /**
    * This function will be called when the user types within the input
    * element of the component. An object including the string value, the
@@ -127,7 +127,7 @@ export type CalendarPropsType = {
    */
   innerDate: Dayjs;
   /**
-   * Function called when the date showned needs to be updated
+   * Function called when the showed date needs to be updated.
    */
   onInnerDateChange: (date: Dayjs) => void;
   /**
@@ -135,7 +135,7 @@ export type CalendarPropsType = {
    */
   onDaySelect: (date: Dayjs) => void;
   /**
-   * Current date
+   * Current date.
    */
   today: Dayjs;
 };
@@ -150,7 +150,7 @@ export type YearPickerPropsType = {
    */
   onYearSelect: (year: number) => void;
   /**
-   * Current date
+   * Current date.
    */
   today: Dayjs;
 };

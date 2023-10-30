@@ -9,7 +9,8 @@ import uncontrolled from "./examples/uncontrolled";
 import errorHandling from "./examples/errorHandling";
 import groups from "./examples/groupedOptions";
 import icons from "./examples/icons";
-import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
+import TableCode from "@/common/TableCode";
+import StatusTag from "@/common/StatusTag";
 
 const sections = [
   {
@@ -19,156 +20,209 @@ const sections = [
         <thead>
           <tr>
             <th>Name</th>
+            <th>Type</th>
+            <th>Description</th>
             <th>Default</th>
-            <HeaderDescriptionCell>Description</HeaderDescriptionCell>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>defaultValue: string | string[]</td>
-            <td></td>
+            <td>defaultValue</td>
+            <td>
+              <TableCode>string | string[]</TableCode>
+            </td>
             <td>Initial value of the select, only when it is uncontrolled.</td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>value: string | string[]</td>
-            <td></td>
+            <td>value</td>
+            <td>
+              <TableCode>string | string[]</TableCode>
+            </td>
             <td>
               Value of the select. If undefined, the component will be
               uncontrolled and the value will be managed internally by the
               component.
             </td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>label: string</td>
-            <td></td>
+            <td>label</td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
             <td>Text to be placed above the select.</td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>name: string</td>
-            <td></td>
+            <td>name</td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
             <td>
               Name attribute of the input element. This attribute will allow
               users to find the component's value during the submit event. In
               this event, the component's value will always be a regular string,
-              for both single and multiple selection modes, been in the first
-              one a single option value and in the multiple variant more than
-              one option value, separated by commas.
+              for both single and multiple selection modes, being a single
+              option value in the first case and more than one value when
+              multiple selection is available, separated by commas.
             </td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>options: Option[] | OptionGroup[]</td>
-            <td></td>
+            <td>
+              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                <StatusTag status="Required">Required</StatusTag>options
+              </DxcFlex>
+            </td>
+            <td>
+              <TableCode>
+                {
+                  "({ label: string, value: string, icon: (string | React.ReactNode & React.SVGProps <SVGSVGElement>) })[] | ({ label: string, options: Option[] })[]"
+                }
+              </TableCode>
+            </td>
             <td>
               An array of objects representing the selectable options. Each
               object has the following properties depending on whether it is a
               regular option or a group: <br />
-              Option:
+              <br />
+              <strong>Option</strong>
               <ul>
                 <li>
-                  <b>Label: string</b>: Label of the option to be shown in the
-                  select's listbox.
+                  <b>label</b>: Label of the option to be shown in the select's
+                  listbox.
                 </li>
                 <li>
-                  <b>Value: string</b>: Value of the option. It should be unique
-                  and not an empty string, which is reserved to the empty option
-                  added by <i>optional</i> prop.
+                  <b>value</b>: Value of the option. It should be unique and not
+                  an empty string, which is reserved to the empty option added
+                  by <Code>optional</Code> prop.
                 </li>
                 <li>
-                  <b>Icon: string | SVGSVGElement</b>: Element used as an icon
-                  for the option. It can be either the URL of an image or an
-                  inline SVG. Note that if the URL is the chosen option, tokens
-                  and CSS styling rules will not be applied to the icon.
+                  <b>icon</b>: Element used as an icon for the option. It can be
+                  either the URL of an image or an inline SVG. Note that if the
+                  URL is the chosen option, tokens and CSS styling rules will
+                  not be applied to the icon.
                 </li>
               </ul>
-              OptionGroup:
+              <strong>Grouped options</strong>
               <br />
               <ul>
                 <li>
-                  <b>Label: string</b>: Label of the group to be shown in the
-                  select's listbox.
+                  <b>label</b>: Label of the group to be shown in the select's
+                  listbox.
                 </li>
                 <li>
-                  <b>Options: Option[]</b>: List of the grouped options.
+                  <b>options</b>: List of <Code>Option</Code> instances.
                 </li>
               </ul>
             </td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>helperText: string</td>
-            <td></td>
-            <td>Helper text to be placed above the select.</td>
-          </tr>
-          <tr>
-            <td>placeholder: string</td>
-            <td></td>
-            <td>Text to be put as placeholder of the select.</td>
-          </tr>
-          <tr>
-            <td>searchable: boolean</td>
+            <td>helperText</td>
             <td>
-              <Code>false</Code>
+              <TableCode>string</TableCode>
+            </td>
+            <td>Helper text to be placed above the select.</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>placeholder</td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
+            <td>Text to be put as placeholder of the select.</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>searchable</td>
+            <td>
+              <TableCode>boolean</TableCode>
             </td>
             <td>If true, enables search functionality.</td>
+            <td>
+              <TableCode>false</TableCode>
+            </td>
           </tr>
           <tr>
-            <td>multiple: boolean</td>
+            <td>multiple</td>
             <td>
-              <Code>false</Code>
+              <TableCode>boolean</TableCode>
             </td>
             <td>
               If true, the select component will support multiple selected
               options. In that case, value will be an array of strings with each
               selected option value.
             </td>
+            <td>
+              <TableCode>false</TableCode>
+            </td>
           </tr>
           <tr>
-            <td>disabled: boolean</td>
+            <td>disabled</td>
             <td>
-              <Code>false</Code>
+              <TableCode>boolean</TableCode>
             </td>
             <td>If true, the component will be disabled.</td>
+            <td>
+              <TableCode>false</TableCode>
+            </td>
           </tr>
           <tr>
-            <td>optional: boolean</td>
+            <td>optional</td>
             <td>
-              <Code>false</Code>
+              <TableCode>boolean</TableCode>
             </td>
             <td>
               If true, the select will be optional, showing '(Optional)' next to
               the label and adding a default first option with an empty string
               as value and the placeholder (if defined) as its label. Otherwise,
               the field will be considered required and an error will be passed
-              as a parameter to the OnBlur and onChange functions if an option
-              wasn't selected.
+              as a parameter to the <Code>onBlur</Code> and{" "}
+              <Code>onChange</Code> functions if an option wasn't selected.
+            </td>
+            <td>
+              <TableCode>false</TableCode>
             </td>
           </tr>
           <tr>
-            <td>onChange: function</td>
-            <td></td>
+            <td>
+              <Code>onChange</Code>
+            </td>
+            <td>
+              <TableCode>
+                {"(val: { value: string | string[]; error?: string }) => void"}
+              </TableCode>
+            </td>
             <td>
               This function will be called when the user selects an option. An
               object including the new value (or values) and the error (if the
-              value selected is not valid) will be passed to this function. An
-              example of this object is:{" { "}
-              <Code>value: value, error: error</Code> {" }"}. If there is no
-              error, error will not be defined.
+              value selected is not valid) will be passed to this function. If
+              there is no error, <Code>error</Code> will not be defined.
             </td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>onBlur: function</td>
-            <td></td>
+            <td>onBlur</td>
+            <td>
+              <TableCode>
+                {"(val: { value: string | string[]; error?: string }) => void"}
+              </TableCode>
+            </td>
             <td>
               This function will be called when the select loses the focus. An
               object including the value (or values) and the error (if the value
-              selected is not valid) will be passed to this function. An example
-              of this object is:{" { "}
-              <Code>value: value, error: error</Code>
-              {" }"}. If there is no error, error will not be defined.
+              selected is not valid) will be passed to this function. If there
+              is no error, <Code>error</Code> will not be defined.
             </td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>error: string</td>
-            <td></td>
+            <td>error</td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
             <td>
               If it is a defined value and also a truthy string, the component
               will change its appearance, showing the error below the select
@@ -178,38 +232,52 @@ const sections = [
               both the appearance and the space for the error message would not
               be modified.
             </td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>margin: string | object</td>
-            <td></td>
+            <td>margin</td>
             <td>
-              Size of the margin to be applied to the component ('xxsmall' |
-              'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge').
-              You can pass an object with 'top', 'bottom', 'left' and 'right'
-              properties in order to specify different margin sizes.
+              <TableCode>
+                'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' |
+                'xxlarge' | Margin
+              </TableCode>
+            </td>
+            <td>
+              Size of the margin to be applied to the component. You can pass an
+              object with 'top', 'bottom', 'left' and 'right' properties in
+              order to specify different margin sizes.
+            </td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>size</td>
+            <td>
+              <TableCode>'small' | 'medium' | 'large' | 'fillParent'</TableCode>
+            </td>
+            <td>Size of the component.</td>
+            <td>
+              <TableCode>'medium'</TableCode>
             </td>
           </tr>
           <tr>
-            <td>size: string</td>
+            <td>tabIndex</td>
             <td>
-              <Code>'medium'</Code>
+              <TableCode>number</TableCode>
             </td>
             <td>
-              Size of the component ('small' | 'medium' | 'large' |
-              'fillParent').
+              Value of the <Code>tabindex</Code> attribute.
+            </td>
+            <td>
+              <TableCode>0</TableCode>
             </td>
           </tr>
           <tr>
-            <td>tabIndex: number</td>
+            <td>ref</td>
             <td>
-              <Code>0</Code>
+              <TableCode>{"React.Ref <HTMLDivElement>"}</TableCode>
             </td>
-            <td>Value of the tabindex attribute.</td>
-          </tr>
-          <tr>
-            <td>ref: object</td>
-            <td></td>
             <td>Reference to the component.</td>
+            <td>-</td>
           </tr>
         </tbody>
       </DxcTable>

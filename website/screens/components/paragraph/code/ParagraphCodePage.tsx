@@ -5,6 +5,7 @@ import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import { DxcFlex, DxcTable } from "@dxc-technology/halstack-react";
 import basicUsage from "./examples/basicUsage";
 import multipleParagraphs from "./examples/multipleParagraphs";
+import TableCode from "@/common/TableCode";
 
 const sections = [
   {
@@ -13,13 +14,17 @@ const sections = [
       <DxcTable>
         <tr>
           <th>Name</th>
-          <th>Default</th>
+          <th>Type</th>
           <th>Description</th>
+          <th>Default</th>
         </tr>
         <tr>
-          <td>children: node</td>
-          <td></td>
-          <td>Text to be displayed in the paragraph</td>
+          <td>children</td>
+          <td>
+            <TableCode>React.ReactNode</TableCode>
+          </td>
+          <td>Text to be displayed in the paragraph.</td>
+          <td>-</td>
         </tr>
       </DxcTable>
     ),

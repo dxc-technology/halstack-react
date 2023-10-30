@@ -32,7 +32,7 @@ export type TabProps = {
    */
   notificationNumber?: boolean | number;
   /**
-   * Contains one or more DxcNavTabs.Tab.
+   * Tab text label.
    */
   children: string;
 };
@@ -43,13 +43,13 @@ type Props = {
    */
   iconPosition?: "top" | "left";
   /**
-   * Value of the tabindex for each tab.
-   */
-  tabIndex?: number;
-  /**
-   * Content of the tabs nav.
+   * Contains one or more DxcNavTabs.Tab.
    */
   children: React.ReactNode;
+  /**
+   * Value of the tabindex attribute applied to each tab.
+   */
+  tabIndex?: number;
 };
 
 export default Props;

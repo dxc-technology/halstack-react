@@ -1,16 +1,5 @@
 type SVG = React.ReactNode & React.SVGProps<SVGSVGElement>;
 
-type SidenavPropsType = {
-  /**
-   * The area assigned to render the sidenav title. It is highly recommended to use the sidenav title.
-   */
-  title?: React.ReactNode;
-  /**
-   * The area inside the sidenav. This area can be used to render the content inside the sidenav.
-   */
-  children: React.ReactNode;
-};
-
 export type SidenavTitlePropsType = {
   /**
    * The area inside the sidenav title. This area can be used to render custom content.
@@ -59,23 +48,34 @@ export type SidenavLinkPropsType = {
    */
   icon?: string | SVG;
   /**
-   * If true, the link will be marked as selected. Moreover, in that same case, 
-   * if it is contained within a collapsed group, and consequently, the currently selected link is not visible, 
+   * If true, the link will be marked as selected. Moreover, in that same case,
+   * if it is contained within a collapsed group, and consequently, the currently selected link is not visible,
    * the group title will appear as selected too.
    */
   selected?: boolean;
   /**
    * This function will be called when the user clicks the link and the event will be passed to this function.
    */
-  onClick?: ($event: React.MouseEvent<HTMLAnchorElement>) => void;
-  /**
-   * Value of the tabindex.
-   */
-  tabIndex?: number;
+  onClick?: (event: React.MouseEvent<HTMLAnchorElement>) => void
   /**
    * The area inside the sidenav link.
    */
   children: React.ReactNode;
+  /**
+   * Value of the tabindex.
+   */
+  tabIndex?: number;
 };
 
-export default SidenavPropsType;
+type Props = {
+  /**
+   * The area assigned to render the sidenav title. It is highly recommended to use the sidenav title.
+   */
+  title?: React.ReactNode;
+  /**
+   * The area inside the sidenav. This area can be used to render the content inside the sidenav.
+   */
+  children: React.ReactNode;
+};
+
+export default Props;
