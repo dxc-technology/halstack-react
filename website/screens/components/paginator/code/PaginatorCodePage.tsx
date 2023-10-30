@@ -64,7 +64,8 @@ const sections = [
             </td>
             <td>
               This function will be called when the user selects an item per
-              page option.
+              page option. The number of items per page will be passed as a
+              parameter to this function.
             </td>
             <td>-</td>
           </tr>
@@ -128,7 +129,8 @@ const sections = [
           <>
             <DxcParagraph>
               This is an example of how to display 'Items per Page' select and
-              how to handle it through the itemsPerPageFunction.
+              how to handle it through the <Code>itemsPerPageFunction</Code>{" "}
+              function.
             </DxcParagraph>
             <Example example={itemsPerPage} defaultIsVisible />
           </>
