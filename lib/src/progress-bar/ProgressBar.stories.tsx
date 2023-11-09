@@ -5,7 +5,7 @@ import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import { HalstackProvider } from "../HalstackContext";
 
 export default {
-  title: "ProgressBar",
+  title: "Progress Bar",
   component: DxcProgressBar,
 };
 

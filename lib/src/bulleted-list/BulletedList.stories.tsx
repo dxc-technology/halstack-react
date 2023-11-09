@@ -6,7 +6,7 @@ import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DxcBulletedList from "./BulletedList";
 
 export default {
-  title: "BulletedList",
+  title: "Bulleted List",
   component: DxcBulletedList,
 };
 

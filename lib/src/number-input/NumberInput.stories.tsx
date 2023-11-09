@@ -1,12 +1,10 @@
 import React from "react";
-import { BackgroundColorProvider } from "../BackgroundColorContext";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
-import DarkContainer from "../../.storybook/components/DarkSection";
 import DxcNumberInput from "./NumberInput";
 
 export default {
-  title: "Number input ",
+  title: "Number Input",
   component: DxcNumberInput,
 };
 
@@ -83,33 +81,6 @@ export const Chromatic = () => (
         optional
       />
     </ExampleContainer>
-    <BackgroundColorProvider color="#333333">
-      <DarkContainer>
-        <Title title="Dark" theme="dark" level={2} />
-        <ExampleContainer>
-          <Title title="Helper text, placeholder and optional" theme="dark" level={4} />
-          <DxcNumberInput label="Number input" helperText="Help message" placeholder="Placeholder" optional />
-        </ExampleContainer>
-        <ExampleContainer>
-          <Title title="Helper text, value and error" theme="dark" level={4} />
-          <DxcNumberInput label="Number input" helperText="Help message" error="Error message." defaultValue="199" />
-        </ExampleContainer>
-        <ExampleContainer>
-          <Title title="Disabled and placeholder" theme="dark" level={4} />
-          <DxcNumberInput label="Disabled number input" disabled placeholder="Placeholder" />
-        </ExampleContainer>
-        <ExampleContainer>
-          <Title title="Disabled, helper text, optional and value" theme="dark" level={4} />
-          <DxcNumberInput
-            label="Disabled number input"
-            helperText="Help message"
-            disabled
-            optional
-            defaultValue="1232454"
-          />
-        </ExampleContainer>
-      </DarkContainer>
-    </BackgroundColorProvider>
     <Title title="Margins" theme="light" level={2} />
     <ExampleContainer>
       <Title title="Xxsmall margin" theme="light" level={4} />

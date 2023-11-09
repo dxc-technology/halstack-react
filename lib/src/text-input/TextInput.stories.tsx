@@ -1,20 +1,15 @@
 import React from "react";
 import { userEvent, within } from "@storybook/testing-library";
-import { BackgroundColorProvider } from "../BackgroundColorContext";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
-import DarkContainer from "../../.storybook/components/DarkSection";
 import DxcTextInput from "./TextInput";
-import DxcButton from "../button/Button";
-import DxcCheckbox from "../checkbox/Checkbox";
-import DxcFlex from "../flex/Flex";
 import Suggestions from "./Suggestions";
 import { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme";
 import { HalstackProvider } from "../HalstackContext";
 
 export default {
-  title: "Text input",
+  title: "Text Input",
   component: DxcTextInput,
 };
 
@@ -225,94 +220,6 @@ export const Chromatic = () => (
         action={action}
       />
     </ExampleContainer>
-    <BackgroundColorProvider color="#333333">
-      <DarkContainer>
-        <Title title="Dark theme" theme="dark" level={2} />
-        <ExampleContainer pseudoState="pseudo-hover">
-          <Title title="Hovered" theme="dark" level={4} />
-          <DxcTextInput label="Text input" />
-        </ExampleContainer>
-        <ExampleContainer pseudoState="pseudo-focus-within">
-          <Title title="Focused" theme="dark" level={4} />
-          <DxcTextInput label="Text input" />
-        </ExampleContainer>
-        <ExampleContainer pseudoState="pseudo-hover">
-          <Title title="Hovered action" theme="dark" level={4} />
-          <DxcTextInput label="Text input" defaultValue="Text" clearable />
-        </ExampleContainer>
-        <ExampleContainer pseudoState="pseudo-active">
-          <Title title="Actived action" theme="dark" level={4} />
-          <DxcTextInput label="Text input" action={action} clearable />
-        </ExampleContainer>
-        <ExampleContainer pseudoState="pseudo-focus">
-          <Title title="Focused action" theme="dark" level={4} />
-          <DxcTextInput label="Text input" action={action} clearable />
-        </ExampleContainer>
-        <ExampleContainer>
-          <Title title="Helper text, placeholder, optional and action" theme="dark" level={4} />
-          <DxcTextInput
-            label="Text input"
-            helperText="Help message"
-            placeholder="Placeholder"
-            clearable
-            optional
-            action={action}
-          />
-        </ExampleContainer>
-        <ExampleContainer>
-          <Title title="Invalid" theme="dark" level={4} />
-          <DxcTextInput
-            label="Error text input"
-            helperText="Help message"
-            error="Error message."
-            defaultValue="Text"
-            clearable
-            action={action}
-          />
-        </ExampleContainer>
-        <ExampleContainer pseudoState="pseudo-hover">
-          <Title title="Invalid and hovered" theme="dark" level={4} />
-          <DxcTextInput
-            label="Error text input"
-            helperText="Help message"
-            placeholder="Placeholder"
-            error="Error message."
-          />
-        </ExampleContainer>
-        <ExampleContainer>
-          <Title title="Prefix and suffix" theme="dark" level={4} />
-          <DxcTextInput label="With prefix and suffix" prefix="+34" suffix="USD" />
-        </ExampleContainer>
-        <ExampleContainer>
-          <Title title="Disabled and placeholder" theme="dark" level={4} />
-          <DxcTextInput label="Disabled text input" disabled placeholder="Placeholder" />
-        </ExampleContainer>
-        <ExampleContainer>
-          <Title title="Disabled, helper text, optional, value and action" theme="dark" level={4} />
-          <DxcTextInput
-            label="Disabled text input"
-            helperText="Help message"
-            disabled
-            optional
-            defaultValue="Text"
-            action={action}
-          />
-        </ExampleContainer>
-        <ExampleContainer>
-          <Title title="Disabled with prefix and suffix" theme="dark" level={4} />
-          <DxcTextInput
-            label="Disabled text input"
-            helperText="Help message"
-            disabled
-            optional
-            prefix="+34"
-            suffix="USD"
-            defaultValue="Text"
-            action={action}
-          />
-        </ExampleContainer>
-      </DarkContainer>
-    </BackgroundColorProvider>
     <Title title="Margins" theme="light" level={2} />
     <ExampleContainer>
       <Title title="Xxsmall margin" theme="light" level={4} />
@@ -551,57 +458,8 @@ const AutosuggestListbox = () => {
   );
 };
 
-const DarkAutosuggestListbox = () => {
-  const colorsTheme: any = useTheme();
-
-  return (
-    <ThemeProvider theme={colorsTheme.textInput}>
-      <BackgroundColorProvider color="#333333">
-        <DarkContainer>
-          <Title title="Dark theme" theme="dark" level={2} />
-          <ExampleContainer>
-            <Title title="Default with opened suggestions" theme="dark" level={3} />
-            <DxcFlex direction="column" gap="5rem">
-              <DxcTextInput label="Label" suggestions={countries} optional placeholder="Choose an option" />
-              <DxcCheckbox
-                label="You understand the selection and give your consent"
-                onChange={() => {}}
-                labelPosition="after"
-              />
-              <DxcButton label="Submit" onClick={() => {}} size="medium" margin={{ bottom: "xxlarge" }} />
-            </DxcFlex>
-          </ExampleContainer>
-          <ExampleContainer>
-            <Title title="Autosuggest Error" theme="dark" level={3} />
-            <div style={{ height: "100px" }}>
-              <Suggestions
-                id="x"
-                value=""
-                suggestions={country}
-                visualFocusIndex={-1}
-                highlightedSuggestions={false}
-                searchHasErrors={true}
-                isSearching={false}
-                suggestionOnClick={(suggestion) => {}}
-                styles={{ width: 350 }}
-              />
-            </div>
-          </ExampleContainer>
-        </DarkContainer>
-      </BackgroundColorProvider>
-    </ThemeProvider>
-  );
-};
-
 export const AutosuggestListboxStates = AutosuggestListbox.bind({});
 AutosuggestListboxStates.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const select = canvas.getByRole("combobox");
-  await userEvent.click(select);
-};
-
-export const AutosuggestListboxOnDark = DarkAutosuggestListbox.bind({});
-AutosuggestListboxOnDark.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const select = canvas.getByRole("combobox");
   await userEvent.click(select);

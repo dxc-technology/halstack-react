@@ -1,6 +1,5 @@
 import React from "react";
 import DxcAccordion from "./Accordion";
-import DxcHeading from "../heading/Heading";
 import DxcTextInput from "../text-input/TextInput";
 import DxcButton from "../button/Button";
 import Title from "../../.storybook/components/Title";
@@ -119,7 +118,7 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With bigger icon (SVG)" theme="light" level={4} />
-      <DxcAccordion label="AccordionTest" assistiveText="Assistive text" icon={facebookIcon}>
+      <DxcAccordion label="Accordion Test" assistiveText="Assistive text" icon={facebookIcon}>
         <div>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo
           lobortis eget.

@@ -6,15 +6,13 @@ import YearPicker from "./YearPicker";
 import Calendar from "./Calendar";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
-import { BackgroundColorProvider } from "../BackgroundColorContext";
-import DarkContainer from "../../.storybook/components/DarkSection";
 import dayjs from "dayjs";
 import useTheme from "../useTheme";
 import { ThemeProvider } from "styled-components";
 import { HalstackProvider } from "../HalstackContext";
 
 export default {
-  title: "Date input",
+  title: "Date Input",
   component: DxcDateInput,
 };
 
@@ -59,33 +57,6 @@ const DateInputChromatic = () => (
       <Title title="Relation between icons" theme="light" level={4} />
       <DxcDateInput label="Error date input" error="Error message." defaultValue="06-04-2007" clearable />
     </ExampleContainer>
-    <BackgroundColorProvider color="#333333">
-      <DarkContainer>
-        <Title title="Dark" theme="dark" level={2} />
-        <ExampleContainer>
-          <Title title="Complete date input" theme="dark" level={4} />
-          <DxcDateInput label="Date input" helperText="Help message" format="yyyy/dd/mm" placeholder optional />
-        </ExampleContainer>
-        <ExampleContainer>
-          <Title title="Disabled" theme="dark" level={4} />
-          <DxcDateInput
-            label="Disabled Date input"
-            helperText="Help message"
-            defaultValue="06-04-2027"
-            clearable
-            disabled
-          />
-        </ExampleContainer>
-        <ExampleContainer>
-          <Title title="Invalid" theme="dark" level={4} />
-          <DxcDateInput label="Error date input" error="Error message." placeholder />
-        </ExampleContainer>
-        <ExampleContainer>
-          <Title title="Relation between icons" theme="dark" level={4} />
-          <DxcDateInput label="Error date input" defaultValue="06-04-2007" error="Error message." clearable />
-        </ExampleContainer>
-      </DarkContainer>
-    </BackgroundColorProvider>
     <Title title="Margins" theme="light" level={2} />
     <ExampleContainer>
       <Title title="Xxsmall" theme="light" level={4} />

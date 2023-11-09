@@ -5,7 +5,7 @@ import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import { HalstackProvider } from "../HalstackContext";
 
 export default {
-  title: "NavTabs",
+  title: "Nav Tabs",
   component: DxcNavTabs,
 };
 

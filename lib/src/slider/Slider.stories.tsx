@@ -1,9 +1,7 @@
 import React from "react";
 import DxcSlider from "./Slider";
-import { BackgroundColorProvider } from "../BackgroundColorContext";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
-import DarkContainer from "../../.storybook/components/DarkSection";
 import { HalstackProvider } from "../HalstackContext";
 
 export default {
@@ -78,64 +76,6 @@ export const Chromatic = () => (
         step={10}
       />
     </ExampleContainer>
-    <BackgroundColorProvider color="#333333">
-      <DarkContainer>
-        <Title title="Dark" theme="dark" level={2} />
-        <ExampleContainer pseudoState="pseudo-hover">
-          <Title title="Hovered" theme="dark" level={4} />
-          <DxcSlider label="Slider" helperText="Help message" showLimitsValues />
-        </ExampleContainer>
-        <ExampleContainer pseudoState="pseudo-active">
-          <Title title="Active" theme="dark" level={4} />
-          <DxcSlider label="Slider" helperText="Help message" showLimitsValues />
-        </ExampleContainer>
-        <ExampleContainer pseudoState="pseudo-focus">
-          <Title title="Focused" theme="dark" level={4} />
-          <DxcSlider label="Slider" helperText="Help message" showLimitsValues />
-        </ExampleContainer>
-        <ExampleContainer>
-          <Title title="Disabled" theme="dark" level={4} />
-          <DxcSlider label="Slider" helperText="Help message" disabled showLimitsValues />
-        </ExampleContainer>
-        <ExampleContainer>
-          <Title title="Disabled discrete slider with input" theme="dark" level={4} />
-          <DxcSlider
-            label="Slider"
-            helperText="Help message"
-            disabled
-            defaultValue={40}
-            minValue={0}
-            maxValue={50}
-            showLimitsValues
-            showInput
-            marks
-            step={5}
-          />
-        </ExampleContainer>
-        <ExampleContainer>
-          <Title title="Continuous slider" theme="dark" level={4} />
-          <DxcSlider defaultValue={65} label="Slider" helperText="Help message" showLimitsValues />
-        </ExampleContainer>
-        <ExampleContainer>
-          <Title title="Discrete slider" theme="dark" level={4} />
-          <DxcSlider defaultValue={20} label="Slider" helperText="Help message" showLimitsValues marks step={5} />
-        </ExampleContainer>
-        <ExampleContainer>
-          <Title title="Discrete slider with input" theme="dark" level={4} />
-          <DxcSlider
-            defaultValue={20}
-            minValue={0}
-            maxValue={50}
-            label="Slider"
-            helperText="Help message"
-            showLimitsValues
-            showInput
-            marks
-            step={10}
-          />
-        </ExampleContainer>
-      </DarkContainer>
-    </BackgroundColorProvider>
     <Title title="Margins" theme="light" level={2} />
     <ExampleContainer>
       <Title title="Xxsmall" theme="light" level={4} />
