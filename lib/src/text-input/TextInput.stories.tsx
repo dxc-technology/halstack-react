@@ -43,9 +43,9 @@ const countries = [
   "Afghanistan",
   "Albania",
   "Algeria",
-  "Andorra Andorra Andorra Andorra Andorra Andorra Andorra Andorra",
+  "Andorra",
   "Angola",
-  "Antigua and Barbuda Antigua and Barbuda Antigua and Barbuda",
+  "Antigua and Barbuda",
   "Bahamas",
   "Bahrain",
   "Bangladesh",
@@ -62,7 +62,6 @@ const countries = [
   "Dominica",
   "Denmark",
   "Djibouti",
-  "*",
 ];
 
 const opinionatedTheme = {
