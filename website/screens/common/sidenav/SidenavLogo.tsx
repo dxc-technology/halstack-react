@@ -15,7 +15,7 @@ const SidenavLogo = ({
   const pathVersion = basePath.split("/")[2];
   const isDev = process.env.NODE_ENV === "development";
   const halstackVersion =
-    pjson.dependencies["@dxc-technology/halstack-react"].version;
+    pjson.packages[""].dependencies["@dxc-technology/halstack-react"];
 
   return (
     <SidenavLogoContainer>
