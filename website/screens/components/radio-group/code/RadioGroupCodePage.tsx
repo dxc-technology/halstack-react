@@ -11,7 +11,8 @@ import Example from "@/common/example/Example";
 import controlled from "./examples/controlled";
 import uncontrolled from "./examples/uncontrolled";
 import errorHandling from "./examples/errorHandling";
-import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
+import TableCode from "@/common/TableCode";
+import StatusTag from "@/common/StatusTag";
 
 const sections = [
   {
@@ -21,133 +22,181 @@ const sections = [
         <thead>
           <tr>
             <th>Name</th>
+            <th>Type</th>
+            <th>Description</th>
             <th>Default</th>
-            <HeaderDescriptionCell>Description</HeaderDescriptionCell>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>defaultValue: string</td>
-            <td></td>
+            <td>defaultValue</td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
             <td>
               Initial value of the radio group, only when it is uncontrolled.
             </td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>value: string</td>
-            <td></td>
+            <td>value</td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
             <td>
               Value of the radio group. If undefined, the component will be
               uncontrolled and the value will be managed internally by the
               component.
             </td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>label: string</td>
-            <td></td>
+            <td>label</td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
             <td>Text to be placed above the radio group.</td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>name: string</td>
-            <td></td>
+            <td>name</td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
             <td>
               Name attribute of the input element. This attribute will allow
               users to find the component's value during the submit event.
             </td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>options: Option[]</td>
-            <td></td>
+            <td>helperText</td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
+            <td>Helper text to be placed above the radio group.</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>
+              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                <StatusTag status="Required">Required</StatusTag>options
+              </DxcFlex>
+            </td>
+            <td>
+              <TableCode>
+                {"{ value: string; label: string; disabled?: boolean; }[]"}
+              </TableCode>
+            </td>
             <td>
               An array of objects representing the selectable options. Each
               object Option has the following properties:
               <ul>
                 <li>
-                  <b>label: string</b>: Label of the option placed next to the
-                  radio input.
+                  <b>label</b>: Label of the option placed next to the radio
+                  input.
                 </li>
                 <li>
-                  <b>value: string</b>: Value of the option. It should be unique
-                  and not an empty string, which is reserved to the optional
-                  item added by <i>optional</i> prop.
+                  <b>value</b>: Value of the option. It should be unique and not
+                  an empty string, which is reserved to the optional item added
+                  by the <Code>optional</Code> prop.
                 </li>
                 <li>
-                  <b>disabled: boolean</b>: disables the option.
+                  <b>disabled</b>: disables the option.
                 </li>
               </ul>
             </td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>helperText: string</td>
-            <td></td>
-            <td>Helper text to be placed above the radio group.</td>
-          </tr>
-          <tr>
-            <td>disabled: boolean</td>
+            <td>disabled</td>
             <td>
-              <Code>false</Code>
+              <TableCode>boolean</TableCode>
             </td>
             <td>If true, the component will be disabled.</td>
-          </tr>
-          <tr>
-            <td>optional: boolean</td>
             <td>
-              <Code>false</Code>
-            </td>
-            <td>
-              If true, the radio group will be optional, showing{" "}
-              <Code>(Optional)</Code> next to the label and adding a default
-              last option with an empty string as value. Otherwise, the field
-              will be considered required and an error will be passed as a
-              parameter to the OnBlur functions if an option wasn't selected.
+              <TableCode>false</TableCode>
             </td>
           </tr>
           <tr>
-            <td>optionalItemLabel: string</td>
+            <td>optional</td>
             <td>
-              <Code>"N/A"</Code>
+              <TableCode>boolean</TableCode>
+            </td>
+            <td>
+              If true, the radio group will be optional, showing the text
+              '(Optional)' next to the label and adding a default last option
+              with an empty string as value. Otherwise, the field will be
+              considered required and an error will be passed as a parameter to
+              the <Code>onBlur</Code> function if an option wasn't selected.
+            </td>
+            <td>
+              <TableCode>false</TableCode>
+            </td>
+          </tr>
+          <tr>
+            <td>optionalItemLabel</td>
+            <td>
+              <TableCode>string</TableCode>
             </td>
             <td>Label of the optional radio input.</td>
+            <td>
+              <TableCode>'N/A'</TableCode>
+            </td>
           </tr>
           <tr>
-            <td>readOnly: boolean</td>
+            <td>readOnly</td>
             <td>
-              <Code>false</Code>
+              <TableCode>boolean</TableCode>
             </td>
             <td>
               If true, the component will not be mutable, meaning the user can
               not edit the control.
             </td>
+            <td>
+              <TableCode>false</TableCode>
+            </td>
           </tr>
           <tr>
-            <td>stacking: "row" | "column"</td>
+            <td>stacking</td>
             <td>
-              <Code>"column"</Code>
+              <TableCode>'row' | 'column'</TableCode>
             </td>
             <td>Sets the orientation of the options within the radio group.</td>
+            <td>
+              <TableCode>'column'</TableCode>
+            </td>
           </tr>
           <tr>
-            <td>onChange: function</td>
-            <td></td>
+            <td>onChange</td>
+            <td>
+              <TableCode>{"(value: string) => void"}</TableCode>
+            </td>
             <td>
               This function will be called when the user chooses an option. The
               new value will be passed to this function.
             </td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>onBlur: function</td>
-            <td></td>
+            <td>onBlur</td>
+            <td>
+              <TableCode>
+                {"(val: { value?: string; error?: string }) => void"}
+              </TableCode>
+            </td>
             <td>
               This function will be called when the radio group loses the focus.
               An object including the value and the error will be passed to this
-              function. An example of this object is: {"{ "}
-              <Code>value: value, error: error</Code>
-              {" }"}. If there is no error, error will not be defined.
+              function. If there is no error, error will not be defined.
             </td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>error: string</td>
-            <td></td>
+            <td>error</td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
             <td>
               If it is a defined value and also a truthy string, the component
               will change its appearance, showing the error below the radio
@@ -157,18 +206,27 @@ const sections = [
               appearance and the space for the error message would not be
               modified.
             </td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>tabIndex: number</td>
+            <td>tabIndex</td>
             <td>
-              <Code>0</Code>
+              <TableCode>number</TableCode>
             </td>
-            <td>Value of the tabindex attribute.</td>
+            <td>
+              Value of the <Code>tabindex</Code> attribute.
+            </td>
+            <td>
+              <TableCode>0</TableCode>
+            </td>
           </tr>
           <tr>
-            <td>ref: object</td>
-            <td></td>
+            <td>ref</td>
+            <td>
+              <TableCode>{"React.Ref <HTMLDivElement>"}</TableCode>
+            </td>
             <td>Reference to the component.</td>
+            <td>-</td>
           </tr>
         </tbody>
       </DxcTable>

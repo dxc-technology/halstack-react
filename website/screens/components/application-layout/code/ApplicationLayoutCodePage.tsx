@@ -8,29 +8,37 @@ import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import Link from "next/link";
-import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
+import TableCode from "@/common/TableCode";
+import StatusTag from "@/common/StatusTag";
+import Code from "@/common/Code";
 
 const ApplicationLayoutPropsTable = () => (
   <DxcTable>
     <thead>
       <tr>
         <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
         <th>Default</th>
-        <HeaderDescriptionCell>Description</HeaderDescriptionCell>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td>visibilityToggleLabel: string</td>
-        <td></td>
+        <td>visibilityToggleLabel</td>
+        <td>
+          <TableCode>string</TableCode>
+        </td>
         <td>
           Text to be placed next to the hamburger button that toggles the
           visibility of the sidenav.
         </td>
+        <td>-</td>
       </tr>
       <tr>
-        <td>header: node</td>
-        <td></td>
+        <td>header</td>
+        <td>
+          <TableCode>React.ReactNode</TableCode>
+        </td>
         <td>
           Header of the application layout shown at the top of the screen. It is
           optional and if it is not specified, the default header will be shown.
@@ -40,10 +48,13 @@ const ApplicationLayoutPropsTable = () => (
           </Link>
           .
         </td>
+        <td>-</td>
       </tr>
       <tr>
-        <td>footer: node</td>
-        <td></td>
+        <td>footer</td>
+        <td>
+          <TableCode>React.ReactNode</TableCode>
+        </td>
         <td>
           Footer of the application layout shown at the bottom of the screen. It
           is optional and if it is not specified, the default header will be
@@ -53,10 +64,13 @@ const ApplicationLayoutPropsTable = () => (
           </Link>
           .
         </td>
+        <td>-</td>
       </tr>
       <tr>
-        <td>sidenav: node</td>
-        <td></td>
+        <td>sidenav</td>
+        <td>
+          <TableCode>React.ReactNode</TableCode>
+        </td>
         <td>
           Sidenav of the application layout shown at the left side of the
           screen. Please check the Sidenav documentation{" "}
@@ -65,13 +79,22 @@ const ApplicationLayoutPropsTable = () => (
           </Link>
           .
         </td>
+        <td>-</td>
       </tr>
       <tr>
-        <td>children: node</td>
-        <td></td>
         <td>
-          Use the DxcApplicationLayout.Main provided to render main content.
+          <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+            <StatusTag status="Required">Required</StatusTag>
+            children
+          </DxcFlex>
         </td>
+        <td>
+          <TableCode>React.ReactNode</TableCode>
+        </td>
+        <td>
+          Use the <Code>DxcApplicationLayout.Main</Code> provided to render main content.
+        </td>
+        <td>-</td>
       </tr>
     </tbody>
   </DxcTable>

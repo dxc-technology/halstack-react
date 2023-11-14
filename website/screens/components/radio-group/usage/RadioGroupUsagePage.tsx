@@ -28,7 +28,7 @@ const sections = [
           Single radio button should not be used.
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>
-          If the question that the user needs to responde is as easier as
+          If the question that the user needs to respond is as easier as
           yes/no, it is recommended to use a checkbox instead of radio group.
         </DxcBulletedList.Item>
       </DxcBulletedList>
@@ -52,7 +52,7 @@ const sections = [
               <td>
                 Short lists of radio buttons should be stacked vertically below
                 a descriptive label to better associate the group. Options that
-                are listed vertically are easier to read
+                are listed vertically are easier to read.
               </td>
             </tr>
             <tr>
@@ -62,7 +62,7 @@ const sections = [
                 page while keeping them aligned within their respective columns.
                 Here, it is needed to have in consideration that the linear
                 radio buttons represent some challenge, because it&#39;s
-                difficult to scan and localize
+                difficult to scan and localize.
               </td>
             </tr>
           </tbody>
@@ -70,7 +70,7 @@ const sections = [
         <DxcParagraph>
           *In any case, in the specification it is specified the ideal distance
           between component with label in the same horizontal edge to avoid the
-          problem of pairing and scannability.
+          problem of pairing and scalability.
         </DxcParagraph>
       </>
     ),

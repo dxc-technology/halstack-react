@@ -1,13 +1,13 @@
 import { DxcFlex, DxcTable } from "@dxc-technology/halstack-react";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import QuickNavContainer from "@/common/QuickNavContainer";
-import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import controlled from "./examples/controlled";
 import uncontrolled from "./examples/uncontrolled";
-import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
 import StatusTag from "@/common/StatusTag";
+import TableCode from "@/common/TableCode";
+import Code from "@/common/Code";
 
 const sections = [
   {
@@ -17,127 +17,175 @@ const sections = [
         <thead>
           <tr>
             <th>Name</th>
+            <th>Type</th>
+            <th>Description</th>
             <th>Default</th>
-            <HeaderDescriptionCell>Description</HeaderDescriptionCell>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>defaultChecked: boolean</td>
-            <td></td>
+            <td>defaultChecked</td>
+            <td>
+              <TableCode>boolean</TableCode>
+            </td>
             <td>
               Initial state of the checkbox, only when it is uncontrolled.
             </td>
+            <td>
+              <TableCode>false</TableCode>
+            </td>
           </tr>
           <tr>
-            <td>checked: boolean</td>
+            <td>checked</td>
             <td>
-              <Code>false</Code>
+              <TableCode>boolean</TableCode>
             </td>
             <td>
               If true, the component is checked. If undefined the component will
               be uncontrolled and the value will be managed internally by the
               component.
             </td>
-          </tr>
-          <tr>
-            <td>value: string</td>
-            <td></td>
             <td>
-              Will be passed to the value attribute of the html input element.
-              When inside a form, this value will be only submitted if the
-              checkbox is checked.
+              <TableCode>false</TableCode>
             </td>
           </tr>
           <tr>
-            <td>label: string</td>
-            <td></td>
-            <td>Text to be placed next to the checkbox.</td>
+            <td>value</td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
+            <td>
+              Will be passed to the <Code>value</Code> attribute of the HTML
+              input element. When inside a form, this value will be only
+              submitted if the checkbox is checked.
+            </td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>labelPosition: 'before' | 'after'</td>
+            <td>label</td>
             <td>
-              <Code>'before'</Code>
+              <TableCode>string</TableCode>
+            </td>
+            <td>Text to be placed next to the checkbox.</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>labelPosition</td>
+            <td>
+              <TableCode>'before' | 'after'</TableCode>
             </td>
             <td>
               Whether the label should appear after or before the checkbox.
             </td>
-          </tr>
-          <tr>
-            <td>name: string</td>
-            <td></td>
-            <td>Name attribute of the input element.</td>
-          </tr>
-          <tr>
-            <td>disabled: boolean</td>
             <td>
-              <Code>false</Code>
+              <TableCode>'before'</TableCode>
+            </td>
+          </tr>
+          <tr>
+            <td>name</td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
+            <td>Name attribute of the input element.</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>disabled</td>
+            <td>
+              <TableCode>boolean</TableCode>
             </td>
             <td>If true, the component will be disabled.</td>
+            <td>
+              <TableCode>false</TableCode>
+            </td>
           </tr>
           <tr>
-            <td>optional: boolean</td>
+            <td>optional</td>
             <td>
-              <Code>false</Code>
+              <TableCode>boolean</TableCode>
             </td>
             <td>
-              If true, the component will display <Code>(Optional)</Code> next
-              to the label.
+              If true, the component will display the text '(Optional)' next to
+              the label.
+            </td>
+            <td>
+              <TableCode>false</TableCode>
             </td>
           </tr>
           <tr>
             <td>
               <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                <StatusTag status="Information">New</StatusTag>readOnly: boolean
+                <StatusTag status="Information">New</StatusTag>readOnly
               </DxcFlex>
             </td>
             <td>
-              <Code>false</Code>
+              <TableCode>boolean</TableCode>
             </td>
             <td>
               If true, the component will not be mutable, meaning the user can
               not edit the control.
             </td>
+            <td>
+              <TableCode>false</TableCode>
+            </td>
           </tr>
           <tr>
-            <td>onChange: function</td>
-            <td></td>
+            <td>onChange</td>
+            <td>
+              <TableCode>{"(value: boolean) => void"}</TableCode>
+            </td>
             <td>
               This function will be called when the user clicks the checkbox.
               The new value will be passed as a parameter.
             </td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>margin: string | object</td>
-            <td></td>
+            <td>margin</td>
             <td>
-              Size of the margin to be applied to the component ('xxsmall' |
-              'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge').
-              You can pass an object with 'top', 'bottom', 'left' and 'right'
-              properties in order to specify different margin sizes.
+              <TableCode>
+                'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' |
+                'xxlarge' | Margin
+              </TableCode>
+            </td>
+            <td>
+              Size of the margin to be applied to the component. You can pass an
+              object with 'top', 'bottom', 'left' and 'right' properties in
+              order to specify different margin sizes.
+            </td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>size</td>
+            <td>
+              <TableCode>
+                'small' | 'medium' | 'large' | 'fillParent' | 'fitContent'
+              </TableCode>
+            </td>
+            <td>Size of the component.</td>
+            <td>
+              <TableCode>'fitContent'</TableCode>
             </td>
           </tr>
           <tr>
-            <td>size: string</td>
+            <td>tabIndex</td>
             <td>
-              <Code>'fitContent'</Code>
+              <TableCode>number</TableCode>
             </td>
             <td>
-              Size of the component ('small' | 'medium' | 'large' | 'fillParent'
-              | 'fitContent').
+              Value of the <Code>tabindex</Code> attribute.
+            </td>
+            <td>
+              <TableCode>0</TableCode>
             </td>
           </tr>
           <tr>
-            <td>tabIndex: number</td>
+            <td>ref</td>
             <td>
-              <Code>0</Code>
+              <TableCode>{"React.Ref <HTMLDivElement>"}</TableCode>
             </td>
-            <td>Value of the tabindex.</td>
-          </tr>
-          <tr>
-            <td>ref: object</td>
-            <td></td>
             <td>Reference to the component.</td>
+            <td>-</td>
           </tr>
         </tbody>
       </DxcTable>

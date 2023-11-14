@@ -6,8 +6,8 @@ import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import Example from "@/common/example/Example";
 import basicUsage from "./examples/basicUsage";
 import icons from "./examples/icons";
-import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
 import StatusTag from "@/common/StatusTag";
+import TableCode from "@/common/TableCode";
 
 const sections = [
   {
@@ -17,40 +17,50 @@ const sections = [
         <thead>
           <tr>
             <th>Name</th>
+            <th>Type</th>
+            <th>Description</th>
             <th>Default</th>
-            <HeaderDescriptionCell>Description</HeaderDescriptionCell>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>label: string</td>
-            <td></td>
+            <td>label</td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
             <td>Text to be placed in the button.</td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>mode: 'primary' | 'secondary' | 'text'</td>
+            <td>mode</td>
             <td>
-              <Code>'primary'</Code>
+              <TableCode>'primary' | 'secondary' | 'text'</TableCode>
             </td>
             <td>The available button modes.</td>
+            <td>
+              <TableCode>'primary'</TableCode>
+            </td>
           </tr>
           <tr>
             <td>
               <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                <StatusTag status="Information">New</StatusTag>title: string
+                <StatusTag status="Information">New</StatusTag>title
               </DxcFlex>
             </td>
-            <td></td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
             <td>
               Text representing advisory information related to the button's
               action. Under the hood, this prop also serves as an accessible
               label for the component.
             </td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>type: 'button' | 'reset' | 'submit'</td>
+            <td>type</td>
             <td>
-              <Code>'button'</Code>
+              <TableCode>'button' | 'reset' | 'submit'</TableCode>
             </td>
             <td>
               Sets the <Code>type</Code> attribute of the <abbr>HTML</abbr>{" "}
@@ -63,60 +73,91 @@ const sections = [
               </DxcLink>{" "}
               for further information.
             </td>
+            <td>
+              <TableCode>'button'</TableCode>
+            </td>
           </tr>
           <tr>
-            <td>icon: node | string</td>
-            <td></td>
+            <td>icon</td>
+            <td>
+              <TableCode>
+                string | {"(React.ReactNode & React.SVGProps <SVGSVGElement>)"}
+              </TableCode>
+            </td>
             <td>
               Element or path used as the icon that will be placed next to the
               button label.
             </td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>iconPosition: 'before' | 'after'</td>
+            <td>iconPosition</td>
             <td>
-              <Code>'before'</Code>
+              <TableCode>'before' | 'after'</TableCode>
             </td>
             <td>Whether the icon should appear after or before the label.</td>
+            <td>
+              <TableCode>'before'</TableCode>
+            </td>
           </tr>
           <tr>
-            <td>disabled: boolean</td>
+            <td>disabled</td>
             <td>
-              <Code>false</Code>
+              <TableCode>boolean</TableCode>
             </td>
             <td>If true, the component will be disabled.</td>
+            <td>
+              <TableCode>false</TableCode>
+            </td>
           </tr>
           <tr>
-            <td>onClick: function</td>
-            <td></td>
+            <td>onClick</td>
+            <td>
+              <TableCode>{"() => void"}</TableCode>
+            </td>
             <td>
               This function will be called when the user clicks the button.
             </td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>margin: string | object</td>
-            <td></td>
+            <td>margin</td>
             <td>
-              Size of the margin to be applied to the component ('xxsmall' |
-              'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge').
-              You can pass an object with 'top', 'bottom', 'left' and 'right'
-              properties in order to specify different margin sizes.
+              <TableCode>
+                'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' |
+                'xxlarge' | Margin
+              </TableCode>
+            </td>
+            <td>
+              Size of the margin to be applied to the component. You can pass an
+              object with 'top', 'bottom', 'left' and 'right' properties in
+              order to specify different margin sizes.
+            </td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>size</td>
+            <td>
+              <TableCode>
+                'small' | 'medium' | 'large' | 'fillParent' | 'fitContent'
+              </TableCode>
+            </td>
+            <td>Size of the component.</td>
+            <td>
+              <TableCode>'fitContent'</TableCode>
             </td>
           </tr>
           <tr>
-            <td>size: string </td>
+            <td>tabIndex</td>
             <td>
-              <Code>'fitContent'</Code>
+              <TableCode>number</TableCode>
             </td>
             <td>
-              Size of the component ('small' | 'medium' | 'large' | 'fillParent'
-              | 'fitContent').
+              Value of the <Code>tabindex</Code> attribute.
             </td>
-          </tr>
-          <tr>
-            <td>tabIndex: number</td>
-            <td>0</td>
-            <td>Value of the tabindex attribute.</td>
+            <td>
+              <TableCode>0</TableCode>
+            </td>
           </tr>
         </tbody>
       </DxcTable>

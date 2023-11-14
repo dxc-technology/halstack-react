@@ -11,7 +11,8 @@ import Example from "@/common/example/Example";
 import basicUsage from "./examples/basicUsage";
 import withContent from "./examples/withContent";
 import backgroundClick from "./examples/backgroundClick";
-import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
+import TableCode from "@/common/TableCode";
+import StatusTag from "@/common/StatusTag";
 
 const sections = [
   {
@@ -21,64 +22,88 @@ const sections = [
         <thead>
           <tr>
             <th>Name</th>
+            <th>Type</th>
+            <th>Description</th>
             <th>Default</th>
-            <HeaderDescriptionCell>Description</HeaderDescriptionCell>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>isCloseVisible: boolean</td>
+            <td>isCloseVisible</td>
             <td>
-              <Code>true</Code>
+              <TableCode>boolean</TableCode>
             </td>
-            <td>If true, the close 'x' button will be visible.</td>
+            <td>If true, the close button will be visible.</td>
+            <td>
+              <TableCode>true</TableCode>
+            </td>
           </tr>
           <tr>
-            <td>onCloseClick: function</td>
-            <td></td>
+            <td>onCloseClick</td>
             <td>
-              This function will be called when the user clicks the close 'x'
+              <TableCode>{"() => void"}</TableCode>
+            </td>
+            <td>
+              This function will be called when the user clicks the close
               button. The responsibility of hiding the dialog lies with the
               user.
             </td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>onBackgroundClick: function</td>
-            <td></td>
+            <td>onBackgroundClick</td>
             <td>
-              This function will be called when the user clicks background. The
-              responsibility of hiding the dialog lies with the user.
+              <TableCode>{"() => void"}</TableCode>
             </td>
+            <td>
+              This function will be called when the on the background of the
+              modal. The responsibility of hiding the dialog lies with the user.
+            </td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>overlay: boolean</td>
+            <td>overlay</td>
             <td>
-              <Code>true</Code>
+              <TableCode>boolean</TableCode>
             </td>
             <td>
               If true, the dialog will be displayed over a darker background
               that covers the content behind.
             </td>
-          </tr>
-          <tr>
-            <td>tabIndex: number</td>
             <td>
-              <Code>0</Code>
-            </td>
-            <td>
-              Value of the tabindex given to the close 'x' button. Note that
-              values greater than 0 are strongly discouraged.
+              <TableCode>true</TableCode>
             </td>
           </tr>
           <tr>
-            <td>children: node</td>
-            <td></td>
+            <td>
+              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                <StatusTag status="Required">Required</StatusTag>children
+              </DxcFlex>
+            </td>
+            <td>
+              <TableCode>React.ReactNode</TableCode>
+            </td>
             <td>
               Area within the dialog that can be used to render custom content.
               We strongly encourage users to not change the{" "}
               <Code>tabindex</Code> of the inner components or elements. This
               can lead to unpredictable behaviour for keyboard users, affecting
               the order of focus and focus locking within the dialog.
+            </td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>tabIndex</td>
+            <td>
+              <TableCode>number</TableCode>
+            </td>
+            <td>
+              Value of the <Code>tabindex</Code> applied to the close button.
+              Note that values greater than 0 are strongly discouraged. It can
+              lead to unexpected behaviours with the focus within the dialog.
+            </td>
+            <td>
+              <TableCode>0</TableCode>
             </td>
           </tr>
         </tbody>

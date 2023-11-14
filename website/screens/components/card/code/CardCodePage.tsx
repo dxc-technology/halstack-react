@@ -5,7 +5,7 @@ import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import Code from "@/common/Code";
 import basicUsage from "./examples/basicUsage";
-import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
+import TableCode from "@/common/TableCode";
 
 const sections = [
   {
@@ -15,98 +15,142 @@ const sections = [
         <thead>
           <tr>
             <th>Name</th>
+            <th>Type</th>
+            <th>Description</th>
             <th>Default</th>
-            <HeaderDescriptionCell>Description</HeaderDescriptionCell>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>imageSrc: string</td>
-            <td></td>
+            <td>imageSrc</td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
             <td>
               URL of the image that will be placed in the card component. In
               case of omission, the image container will not appear and the
               content will occupy its space.
             </td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>imageBgColor: string</td>
+            <td>imageBgColor</td>
             <td>
-              <Code>black</Code>
+              <TableCode>string</TableCode>
             </td>
-            <td>Color of the image background.</td>
+            <td>Color of the background image.</td>
+            <td>
+              <TableCode>'black'</TableCode>
+            </td>
           </tr>
           <tr>
-            <td>imagePadding: string | object </td>
-            <td></td>
+            <td>imagePadding</td>
+            <td>
+              <TableCode>
+                'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' |
+                'xxlarge' | Padding
+              </TableCode>
+            </td>
             <td>
               Size of the padding to be applied to the image section of the
-              component (`xxsmall` | `xsmall` | `small` | `medium` | `large` |
-              `xlarge` | `xxlarge`). You can pass an object with `top`,
-              `bottom`, `left` and `right` properties in order to specify
-              different padding sizes.
+              component. You can pass an object with 'top', 'bottom', 'left' and
+              'right' properties in order to specify different padding sizes.
             </td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>imagePosition: `after` | `before`</td>
+            <td>imagePosition</td>
             <td>
-              <Code>`before`</Code>
+              <TableCode>'after' | 'before'</TableCode>
             </td>
-            <td>Whether the image should appear in relation to the content.</td>
+            <td>Where the image should appear in relation to the content.</td>
+            <td>
+              <TableCode>'before'</TableCode>
+            </td>
           </tr>
           <tr>
-            <td>linkHref: string</td>
-            <td></td>
+            <td>linkHref</td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
             <td>
               If defined, the card will be displayed as an anchor, using this
-              prop as `href`. Component will show some visual feedback on hover.
+              prop as <Code>href</Code>. The component will display visual
+              information on mouse-over.
             </td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>onClick: function</td>
-            <td></td>
+            <td>onClick</td>
+            <td>
+              <TableCode>{"() => void"}</TableCode>
+            </td>
             <td>
               This function will be called when the user clicks the card.
               Component will show some visual feedback on hover.
             </td>
+            <td>-</td>
           </tr>
           <tr>
-            <td>imageCover: boolean</td>
+            <td>imageCover</td>
             <td>
-              <Code>false</Code>
+              <TableCode>boolean</TableCode>
             </td>
             <td>
-              Whether the image must cover the whole image area of the card.
+              Whether the image must cover the its whole area of the card.
+            </td>
+            <td>
+              <TableCode>false</TableCode>
             </td>
           </tr>
+
           <tr>
-            <td>margin: string | object</td>
-            <td></td>
+            <td>outlined</td>
             <td>
-              Size of the margin to be applied to the component (`xxsmall` |
-              `xsmall` | `small` | `medium` | `large` | `xlarge` | `xxlarge`).
-              You can pass an object with `top`, `bottom`, `left` and `right`
-              properties in order to specify different margin sizes.
-            </td>
-          </tr>
-          <tr>
-            <td>tabIndex: number</td>
-            <td>0</td>
-            <td>Value of the tabindex given when there is an href.</td>
-          </tr>
-          <tr>
-            <td>outlined: boolean</td>
-            <td>
-              <Code>true</Code>
+              <TableCode>boolean</TableCode>
             </td>
             <td>
               Determines whether or not the component should have an outline.
             </td>
+            <td>
+              <TableCode>true</TableCode>
+            </td>
           </tr>
           <tr>
-            <td>children: node</td>
-            <td></td>
-            <td>Custom content that will be placed in the card component.</td>
+            <td>children</td>
+            <td>
+              <TableCode>React.ReactNode</TableCode>
+            </td>
+            <td>Custom content that will be placed inside the component.</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>margin</td>
+            <td>
+              <TableCode>
+                'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' |
+                'xxlarge' | Margin
+              </TableCode>
+            </td>
+            <td>
+              Size of the margin to be applied to the component. You can pass an
+              object with 'top', 'bottom', 'left' and 'right' properties in
+              order to specify different margin sizes.
+            </td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>tabIndex</td>
+            <td>
+              <TableCode>number</TableCode>
+            </td>
+            <td>
+              Value of the <Code>tabindex</Code> attribute applied when the
+              component is clickable.
+            </td>
+            <td>
+              <TableCode>0</TableCode>
+            </td>
           </tr>
         </tbody>
       </DxcTable>

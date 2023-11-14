@@ -16,7 +16,7 @@ type Props = {
    * This function will be called when the user selects an item per page option.
    * The number will be passed as a parameter to this function.
    */
-  itemsPerPageFunction?: (val: number) => void;
+  itemsPerPageFunction?: (itemsPerPage: number) => void;
   /**
    * Total number of items in the pages.
    */
@@ -29,7 +29,7 @@ type Props = {
    * This function will be called when the user clicks on any of the button to change pages.
    * The page number will be passed as a parameter to this function.
    */
-  onPageChange?: (val: number) => void;
+  onPageChange?: (page: number) => void;
   /**
    * Value of the tabindex attribute.
    */

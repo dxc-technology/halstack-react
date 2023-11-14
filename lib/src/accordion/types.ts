@@ -50,7 +50,7 @@ type Props = {
    */
   margin?: Space | Margin;
   /**
-   * Value of the tabindex.
+   * Value of the tabindex attribute.
    */
   tabIndex?: number;
 };

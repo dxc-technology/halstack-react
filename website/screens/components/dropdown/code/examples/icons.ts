@@ -49,7 +49,7 @@ const code = `() => {
         onSelectOption={selectOption}
         label="Select platform"
         icon={downloadIcon}
-      ></DxcDropdown>
+      />
     </DxcInset>
   );
 }`;

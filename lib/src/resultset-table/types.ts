@@ -55,14 +55,14 @@ type Props = {
    * This function will be called when the user selects an item per page
    * option. The value selected will be passed as a parameter.
    */
-  itemsPerPageFunction?: (newValue: number) => void;
+  itemsPerPageFunction?: (value: number) => void;
   /**
    * Size of the margin to be applied to the component. You can pass an object with 'top',
    * 'bottom', 'left' and 'right' properties in order to specify different margin sizes.
    */
   margin?: Space | Margin;
   /**
-   * Value of the tabindex attribute given to the sortable icon.
+   * Value of the tabindex attribute applied to the sortable icon.
    */
   tabIndex?: number;
 };

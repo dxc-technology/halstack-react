@@ -9,9 +9,10 @@ import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import Example from "@/common/example/Example";
-import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
 import basic from "./examples/basic";
 import layout from "./examples/layout";
+import TableCode from "@/common/TableCode";
+import StatusTag from "@/common/StatusTag";
 
 const sections = [
   {
@@ -20,13 +21,14 @@ const sections = [
       <DxcTable>
         <tr>
           <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
           <th>Default</th>
-          <HeaderDescriptionCell>Description</HeaderDescriptionCell>
         </tr>
         <tr>
-          <td>autoColumns: string</td>
+          <td>autoColumns</td>
           <td>
-            <Code>'auto'</Code>
+            <TableCode>string</TableCode>
           </td>
           <td>
             Sets the <Code>grid-auto-columns</Code> CSS property. See{" "}
@@ -38,11 +40,16 @@ const sections = [
             </DxcLink>{" "}
             for further information.
           </td>
+          <td>
+            <TableCode>'auto'</TableCode>
+          </td>
         </tr>
         <tr>
-          <td>autoFlow: 'row' | 'column' | 'row dense' | 'column dense'</td>
+          <td>autoFlow</td>
           <td>
-            <Code>'row'</Code>
+            <TableCode>
+              'row' | 'column' | 'row dense' | 'column dense'
+            </TableCode>
           </td>
           <td>
             Sets the <Code>grid-auto-flow</Code> CSS property. See{" "}
@@ -54,11 +61,14 @@ const sections = [
             </DxcLink>{" "}
             for further information.
           </td>
+          <td>
+            <TableCode>'row'</TableCode>
+          </td>
         </tr>
         <tr>
-          <td>autoRows: string</td>
+          <td>autoRows</td>
           <td>
-            <Code>'auto'</Code>
+            <TableCode>string</TableCode>
           </td>
           <td>
             Sets the <Code>grid-auto-rows</Code> CSS property. See{" "}
@@ -70,14 +80,17 @@ const sections = [
             </DxcLink>{" "}
             for further information.
           </td>
+          <td>
+            <TableCode>'auto'</TableCode>
+          </td>
         </tr>
         <tr>
+          <td>gap</td>
           <td>
-            gap: '0rem' | '0.125rem' | '0.25rem' | '0.5rem' | '1rem' | '1.5rem'
-            | '2rem' | '3rem' | '4rem' | '5rem' | Gap
-          </td>
-          <td>
-            <Code>'0rem'</Code>
+            <TableCode>
+              '0rem' | '0.125rem' | '0.25rem' | '0.5rem' | '1rem' | '1.5rem' |
+              '2rem' | '3rem' | '4rem' | '5rem' | Gap
+            </TableCode>
           </td>
           <td>
             Sets the <Code>gap</Code> CSS property. See{" "}
@@ -87,17 +100,29 @@ const sections = [
             >
               MDN
             </DxcLink>{" "}
-            for further information.
+            for further information. It can be either a value from the range or
+            an object with the following properties:
+            <ul>
+              <li>
+                <b>rowGap</b>: gutter between rows.
+              </li>
+              <li>
+                <b>columnGap</b>: gutter between columns.
+              </li>
+            </ul>
+          </td>
+          <td>
+            <TableCode>'0rem'</TableCode>
           </td>
         </tr>
         <tr>
+          <td>placeContent</td>
           <td>
-            placeContent: 'normal' | 'start' | 'end' | 'center' | 'stretch' |
-            'space-between' | 'space-around' | 'space-evenly' | 'baseline' |
-            object
-          </td>
-          <td>
-            <Code>'normal'</Code>
+            <TableCode>
+              'normal' | 'start' | 'end' | 'center' | 'stretch' |
+              'space-between' | 'space-around' | 'space-evenly' | 'baseline' |
+              PlaceContent
+            </TableCode>
           </td>
           <td>
             Sets the <Code>place-content</Code> CSS property. See{" "}
@@ -107,16 +132,30 @@ const sections = [
             >
               MDN
             </DxcLink>{" "}
-            for further information.
+            for further information. It can be either a value from the range or
+            an object with the following properties:
+            <ul>
+              <li>
+                <b>justifyContent</b>: aligns the grid along the inline (row)
+                axis.
+              </li>
+              <li>
+                <b>alignContent</b>: aligns the grid along the block (column)
+                axis.
+              </li>
+            </ul>
+          </td>
+          <td>
+            <TableCode>'normal'</TableCode>
           </td>
         </tr>
         <tr>
+          <td>placeItems</td>
           <td>
-            placeItems: 'normal' | 'start' | 'end' | 'center' | 'stretch' |
-            'baseline' | object
-          </td>
-          <td>
-            <Code>'normal'</Code>
+            <TableCode>
+              'normal' | 'start' | 'end' | 'center' | 'stretch' | 'baseline' |
+              PlaceItems
+            </TableCode>
           </td>
           <td>
             Sets the <Code>place-items</Code> CSS property. See{" "}
@@ -126,12 +165,28 @@ const sections = [
             >
               MDN
             </DxcLink>{" "}
-            for further information.
+            for further information. It can be either a value from the range or
+            an object with the following properties:
+            <ul>
+              <li>
+                <b>justifyItems</b>: aligns grid items along the inline (row)
+                axis.
+              </li>
+              <li>
+                <b>alignItems</b>: aligns grid items along the block (column)
+                axis.
+              </li>
+            </ul>
+          </td>
+          <td>
+            <TableCode>'normal'</TableCode>
           </td>
         </tr>
         <tr>
-          <td>templateAreas: string[]</td>
-          <td></td>
+          <td>templateAreas</td>
+          <td>
+            <TableCode>string[]</TableCode>
+          </td>
           <td>
             Sets the <Code>grid-template-areas</Code> CSS property. See{" "}
             <DxcLink
@@ -142,10 +197,13 @@ const sections = [
             </DxcLink>{" "}
             for further information.
           </td>
+          <td>-</td>
         </tr>
         <tr>
-          <td>templateColumns: string[]</td>
-          <td></td>
+          <td>templateColumns</td>
+          <td>
+            <TableCode>string[]</TableCode>
+          </td>
           <td>
             Sets the <Code>grid-template-columns</Code> CSS property. See{" "}
             <DxcLink
@@ -156,10 +214,13 @@ const sections = [
             </DxcLink>{" "}
             for further information.
           </td>
+          <td>-</td>
         </tr>
         <tr>
-          <td>templateRows: string[]</td>
-          <td></td>
+          <td>templateRows</td>
+          <td>
+            <TableCode>string[]</TableCode>
+          </td>
           <td>
             Sets the <Code>grid-template-rows</Code> CSS property. See{" "}
             <DxcLink
@@ -170,18 +231,29 @@ const sections = [
             </DxcLink>{" "}
             for further information.
           </td>
+          <td>-</td>
         </tr>
         <tr>
-          <td>as: keyof HTMLElementTagNameMap</td>
+          <td>as</td>
           <td>
-            <Code>'div'</Code>
+            <TableCode>keyof HTMLElementTagNameMap</TableCode>
           </td>
           <td>Sets a custom HTML tag.</td>
+          <td>
+            <TableCode>'div'</TableCode>
+          </td>
         </tr>
         <tr>
-          <td>children: node</td>
-          <td></td>
+          <td>
+            <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+              <StatusTag status="Required">Required</StatusTag>children
+            </DxcFlex>
+          </td>
+          <td>
+            <TableCode>React.ReactNode</TableCode>
+          </td>
           <td>Custom content inside the grid container.</td>
+          <td>-</td>
         </tr>
       </DxcTable>
     ),
@@ -211,21 +283,27 @@ const sections = [
           <DxcTable>
             <tr>
               <th>Name</th>
+              <th>Type</th>
+              <th>Description</th>
               <th>Default</th>
-              <HeaderDescriptionCell>Description</HeaderDescriptionCell>
             </tr>
             <tr>
-              <td>areaName: string</td>
-              <td></td>
+              <td>areaName</td>
+              <td>
+                <TableCode>string</TableCode>
+              </td>
               <td>
                 Sets the name of an item so that it can be referenced by a
                 template created with the <Code>grid-template-areas</Code>{" "}
                 property.
               </td>
+              <td>-</td>
             </tr>
             <tr>
-              <td>column: number | string | GridCell</td>
-              <td></td>
+              <td>column</td>
+              <td>
+                <TableCode>number | string | GridCell</TableCode>
+              </td>
               <td>
                 Sets the <Code>grid-column</Code> CSS property. See{" "}
                 <DxcLink
@@ -234,12 +312,24 @@ const sections = [
                 >
                   MDN
                 </DxcLink>{" "}
-                for further information.
+                for further information. It can be either a value from the range
+                or an object with the following properties:
+                <ul>
+                  <li>
+                    <b>start</b>: starting position within the grid column.
+                  </li>
+                  <li>
+                    <b>end</b>: ending position within the grid column.
+                  </li>
+                </ul>
               </td>
+              <td>-</td>
             </tr>
             <tr>
-              <td>row: number | string | GridCell</td>
-              <td></td>
+              <td>row</td>
+              <td>
+                <TableCode>number | string | GridCell</TableCode>
+              </td>
               <td>
                 Sets the <Code>grid-row</Code> CSS property. See{" "}
                 <DxcLink
@@ -248,16 +338,26 @@ const sections = [
                 >
                   MDN
                 </DxcLink>{" "}
-                for further information.
+                for further information. It can be either a value from the range
+                or an object with the following properties:
+                <ul>
+                  <li>
+                    <b>start</b>: starting position within the grid row.
+                  </li>
+                  <li>
+                    <b>end</b>: ending position within the grid row.
+                  </li>
+                </ul>
               </td>
+              <td>-</td>
             </tr>
             <tr>
+              <td>placeSelf</td>
               <td>
-                placeSelf: 'auto' | 'start' | 'end' | 'center' | 'stretch' |
-                'baseline' | object
-              </td>
-              <td>
-                <Code>'auto'</Code>
+                <TableCode>
+                  'auto' | 'start' | 'end' | 'center' | 'stretch' | 'baseline' |
+                  PlaceSelf
+                </TableCode>
               </td>
               <td>
                 Sets the <Code>place-self</Code> CSS property. See{" "}
@@ -267,20 +367,44 @@ const sections = [
                 >
                   MDN
                 </DxcLink>{" "}
-                for further information.
+                for further information. It can be either a value from the range
+                or an object with the following properties:
+                <ul>
+                  <li>
+                    <b>justifySelf</b>: aligns a grid item inside a cell along
+                    the inline (row) axis.
+                  </li>
+                  <li>
+                    <b>alignSelf</b>: aligns a grid item inside a cell along the
+                    block (column) axis.
+                  </li>
+                </ul>
               </td>
-            </tr>
-            <tr>
-              <td>as: keyof HTMLElementTagNameMap</td>
               <td>
-                <Code>'div'</Code>
+                <TableCode>'auto'</TableCode>
               </td>
-              <td>Sets the a custom HTML tag.</td>
             </tr>
             <tr>
-              <td>children: node</td>
-              <td></td>
-              <td>Custom content inside the grid container.</td>
+              <td>as</td>
+              <td>
+                <TableCode>keyof HTMLElementTagNameMap</TableCode>
+              </td>
+              <td>Sets a custom HTML tag.</td>
+              <td>
+                <TableCode>'div'</TableCode>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                  <StatusTag status="Required">Required</StatusTag>children
+                </DxcFlex>
+              </td>
+              <td>
+                <TableCode>React.ReactNode</TableCode>
+              </td>
+              <td>Custom content inside the grid item container.</td>
+              <td>-</td>
             </tr>
           </DxcTable>
         ),
