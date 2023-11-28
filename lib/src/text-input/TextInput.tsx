@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState, useCallback } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
@@ -57,6 +57,27 @@ const isNumberIncorrect = (value: number, minNumber: number, maxNumber: number) 
 
 const patternMismatch = (pattern: string, value: string) => pattern != null && !new RegExp(pattern).test(value);
 
+const useWidth = (target) => {
+  const [width, setWidth] = useState(0);
+
+  useEffect(() => {
+    if (target != null) {
+      setWidth(target.getBoundingClientRect().width);
+
+      const triggerObserver = new ResizeObserver((entries) => {
+        const rect = entries[0].target.getBoundingClientRect();
+        setWidth(rect?.width);
+      });
+      triggerObserver.observe(target);
+      return () => {
+        triggerObserver.unobserve(target);
+      };
+    }
+  }, [target]);
+
+  return width;
+};
+
 const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
   (
     {
@@ -99,8 +120,10 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
     const [visualFocusIndex, changeVisualFocusIndex] = useState(-1);
 
     const inputRef = useRef(null);
+    const inputContainerRef = useRef(null);
     const actionRef = useRef(null);
 
+    const width = useWidth(inputContainerRef.current);
     const colorsTheme = useTheme();
     const translatedLabels = useTranslatedLabels();
     const backgroundType = useContext(BackgroundColorContext);
@@ -112,11 +135,6 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
       else if (value > numberInputContext?.maxNumber)
         return translatedLabels.numberInput.valueLessThanOrEqualToErrorMessage(numberInputContext.maxNumber);
     };
-
-    const getTextInputWidth = useCallback(() => {
-      const rect = inputRef?.current?.parentElement?.getBoundingClientRect();
-      return rect?.width;
-    }, []);
 
     const openSuggestions = () => {
       hasSuggestions(suggestions) && changeIsOpen(true);
@@ -186,8 +204,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
         case "Down":
         case "ArrowDown":
           event.preventDefault();
-          if (numberInputContext?.typeNumber === "number")
-            decrementNumber();
+          if (numberInputContext?.typeNumber === "number") decrementNumber();
           else {
             openSuggestions();
             if (!isAutosuggestError && !isSearching && filteredSuggestions.length > 0) {
@@ -201,8 +218,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
         case "Up":
         case "ArrowUp":
           event.preventDefault();
-          if (numberInputContext?.typeNumber === "number")
-            incrementNumber();
+          if (numberInputContext?.typeNumber === "number") incrementNumber();
           else {
             openSuggestions();
             if (!isAutosuggestError && !isSearching && filteredSuggestions.length > 0) {
@@ -346,28 +362,17 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
               {helperText}
             </HelperText>
           )}
-          <InputContainer
-            error={error ? true : false}
-            disabled={disabled}
-            readOnly={readOnly}
-            backgroundType={backgroundType}
-            onClick={handleInputContainerOnClick}
-            onMouseDown={handleInputContainerOnMouseDown}
-          >
-            {prefix && (
-              <Prefix disabled={disabled} backgroundType={backgroundType}>
-                {prefix}
-              </Prefix>
-            )}
-            <AutosuggestWrapper
-              condition={hasSuggestions(suggestions)}
-              wrapper={(children) => (
-                <Popover.Root open={isOpen && (filteredSuggestions.length > 0 || isSearching || isAutosuggestError)}>
-                  <Popover.Trigger asChild aria-controls={undefined}>
-                    {children}
-                  </Popover.Trigger>
+          <AutosuggestWrapper
+            condition={hasSuggestions(suggestions)}
+            wrapper={(children) => (
+              <Popover.Root open={isOpen && (filteredSuggestions.length > 0 || isSearching || isAutosuggestError)}>
+                <Popover.Trigger asChild aria-controls={undefined}>
+                  {children}
+                </Popover.Trigger>
+                <Popover.Portal>
                   <Popover.Content
                     sideOffset={5}
+                    style={{ zIndex: "2147483647" }}
                     onOpenAutoFocus={(event) => {
                       // Avoid select to lose focus when the list is opened
                       event.preventDefault();
@@ -389,12 +394,27 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
                         changeValue(suggestion);
                         closeSuggestions();
                       }}
-                      getTextInputWidth={getTextInputWidth}
+                      styles={{ width }}
                     />
                   </Popover.Content>
-                </Popover.Root>
-              )}
+                </Popover.Portal>
+              </Popover.Root>
+            )}
+          >
+            <InputContainer
+              error={error ? true : false}
+              disabled={disabled}
+              readOnly={readOnly}
+              backgroundType={backgroundType}
+              onClick={handleInputContainerOnClick}
+              onMouseDown={handleInputContainerOnMouseDown}
+              ref={inputContainerRef}
             >
+              {prefix && (
+                <Prefix disabled={disabled} backgroundType={backgroundType}>
+                  {prefix}
+                </Prefix>
+              )}
               <Input
                 id={inputId}
                 name={name}
@@ -431,84 +451,84 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
                 aria-errormessage={error ? errorId : undefined}
                 aria-required={!disabled && !optional}
               />
-            </AutosuggestWrapper>
-            {!disabled && error && (
-              <ErrorIcon backgroundType={backgroundType} aria-label="Error">
-                {icons.error}
-              </ErrorIcon>
-            )}
-            {!disabled && !readOnly && clearable && (value ?? innerValue).length > 0 && (
-              <Action
-                aria-label={translatedLabels.textInput.clearFieldActionTitle}
-                onClick={handleClearActionOnClick}
-                onMouseDown={(event) => {
-                  event.stopPropagation();
-                }}
-                tabIndex={tabIndex}
-                title={translatedLabels.textInput.clearFieldActionTitle}
-                type="button"
-                backgroundType={backgroundType}
-              >
-                {icons.clear}
-              </Action>
-            )}
-            {numberInputContext?.typeNumber === "number" && (
-              <>
+              {!disabled && error && (
+                <ErrorIcon backgroundType={backgroundType} aria-label="Error">
+                  {icons.error}
+                </ErrorIcon>
+              )}
+              {!disabled && !readOnly && clearable && (value ?? innerValue).length > 0 && (
                 <Action
-                  aria-label={translatedLabels.numberInput.decrementValueTitle}
+                  aria-label={translatedLabels.textInput.clearFieldActionTitle}
+                  onClick={handleClearActionOnClick}
+                  onMouseDown={(event) => {
+                    event.stopPropagation();
+                  }}
+                  tabIndex={tabIndex}
+                  title={translatedLabels.textInput.clearFieldActionTitle}
+                  type="button"
+                  backgroundType={backgroundType}
+                >
+                  {icons.clear}
+                </Action>
+              )}
+              {numberInputContext?.typeNumber === "number" && (
+                <>
+                  <Action
+                    aria-label={translatedLabels.numberInput.decrementValueTitle}
+                    disabled={disabled}
+                    onClick={!readOnly ? handleDecrementActionOnClick : undefined}
+                    onMouseDown={(event) => {
+                      event.stopPropagation();
+                    }}
+                    ref={actionRef}
+                    tabIndex={tabIndex}
+                    title={translatedLabels.numberInput.decrementValueTitle}
+                    type="button"
+                    backgroundType={backgroundType}
+                  >
+                    {icons.decrement}
+                  </Action>
+                  <Action
+                    aria-label={translatedLabels.numberInput.incrementValueTitle}
+                    disabled={disabled}
+                    onClick={!readOnly ? handleIncrementActionOnClick : undefined}
+                    onMouseDown={(event) => {
+                      event.stopPropagation();
+                    }}
+                    ref={actionRef}
+                    tabIndex={tabIndex}
+                    title={translatedLabels.numberInput.incrementValueTitle}
+                    type="button"
+                    backgroundType={backgroundType}
+                  >
+                    {icons.increment}
+                  </Action>
+                </>
+              )}
+              {action && (
+                <Action
+                  aria-label={action.title}
                   disabled={disabled}
-                  onClick={!readOnly ? handleDecrementActionOnClick : undefined}
+                  onClick={!readOnly ? action.onClick : undefined}
                   onMouseDown={(event) => {
                     event.stopPropagation();
                   }}
                   ref={actionRef}
                   tabIndex={tabIndex}
-                  title={translatedLabels.numberInput.decrementValueTitle}
+                  title={action.title}
                   type="button"
                   backgroundType={backgroundType}
                 >
-                  {icons.decrement}
+                  {typeof action.icon === "string" ? <img src={action.icon} /> : action.icon}
                 </Action>
-                <Action
-                  aria-label={translatedLabels.numberInput.incrementValueTitle}
-                  disabled={disabled}
-                  onClick={!readOnly ? handleIncrementActionOnClick : undefined}
-                  onMouseDown={(event) => {
-                    event.stopPropagation();
-                  }}
-                  ref={actionRef}
-                  tabIndex={tabIndex}
-                  title={translatedLabels.numberInput.incrementValueTitle}
-                  type="button"
-                  backgroundType={backgroundType}
-                >
-                  {icons.increment}
-                </Action>
-              </>
-            )}
-            {action && (
-              <Action
-                aria-label={action.title}
-                disabled={disabled}
-                onClick={!readOnly ? action.onClick : undefined}
-                onMouseDown={(event) => {
-                  event.stopPropagation();
-                }}
-                ref={actionRef}
-                tabIndex={tabIndex}
-                title={action.title}
-                type="button"
-                backgroundType={backgroundType}
-              >
-                {typeof action.icon === "string" ? <img src={action.icon} /> : action.icon}
-              </Action>
-            )}
-            {suffix && (
-              <Suffix disabled={disabled} backgroundType={backgroundType}>
-                {suffix}
-              </Suffix>
-            )}
-          </InputContainer>
+              )}
+              {suffix && (
+                <Suffix disabled={disabled} backgroundType={backgroundType}>
+                  {suffix}
+                </Suffix>
+              )}
+            </InputContainer>
+          </AutosuggestWrapper>
           {!disabled && typeof error === "string" && (
             <Error id={errorId} backgroundType={backgroundType} aria-live={error ? "assertive" : "off"}>
               {error}

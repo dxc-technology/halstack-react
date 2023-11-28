@@ -1,9 +1,7 @@
 import React from "react";
 import DxcCheckbox from "./Checkbox";
-import { BackgroundColorProvider } from "../BackgroundColorContext";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
-import DarkContainer from "../../.storybook/components/DarkSection";
 import styled from "styled-components";
 import { HalstackProvider } from "../HalstackContext";
 
@@ -86,58 +84,6 @@ const Checkbox = () => (
       <Title title="Disabled and optional with label after" theme="light" level={4} />
       <DxcCheckbox label="Checkbox" disabled labelPosition="after" optional />
     </ExampleContainer>
-    <BackgroundColorProvider color="#333333">
-      <DarkContainer>
-        <ExampleContainer>
-          <Title title="Default" theme="dark" level={4} />
-          <DxcCheckbox label="Checkbox" />
-        </ExampleContainer>
-        <ExampleContainer>
-          <Title title="Checked" theme="dark" level={4} />
-          <DxcCheckbox label="Checkbox" defaultChecked />
-        </ExampleContainer>
-        <ExampleContainer>
-          <Title title="Disabled" theme="dark" level={4} />
-          <DxcCheckbox label="Checkbox" disabled />
-        </ExampleContainer>
-        <ExampleContainer>
-          <Title title="Disabled, checked and optional" theme="dark" level={4} />
-          <DxcCheckbox label="Checkbox" disabled defaultChecked optional />
-        </ExampleContainer>
-        <ExampleContainer pseudoState="pseudo-focus">
-          <Title title="Focused" theme="dark" level={4} />
-          <DxcCheckbox label="Focused" />
-        </ExampleContainer>
-        <ExampleContainer pseudoState="pseudo-hover">
-          <Title title="Hovered" theme="dark" level={4} />
-          <DxcCheckbox label="Hovered" />
-        </ExampleContainer>
-        <ExampleContainer pseudoState="pseudo-hover">
-          <Title title="Hovered and checked" theme="dark" level={4} />
-          <DxcCheckbox label="Hovered" defaultChecked />
-        </ExampleContainer>
-        <ExampleContainer>
-          <Title title="Optional" theme="dark" level={4} />
-          <DxcCheckbox label="Checkbox" optional />
-        </ExampleContainer>
-        <ExampleContainer>
-          <Title title="Label after" theme="dark" level={4} />
-          <DxcCheckbox label="Checkbox" labelPosition="after" />
-        </ExampleContainer>
-        <ExampleContainer>
-          <Title title="Checked with label after" theme="dark" level={4} />
-          <DxcCheckbox label="Checkbox" defaultChecked labelPosition="after" />
-        </ExampleContainer>
-        <ExampleContainer>
-          <Title title="Optional with label after" theme="dark" level={4} />
-          <DxcCheckbox label="Checkbox" optional labelPosition="after" />
-        </ExampleContainer>
-        <ExampleContainer>
-          <Title title="Disabled and optional with label after" theme="dark" level={4} />
-          <DxcCheckbox label="Checkbox" disabled labelPosition="after" optional />
-        </ExampleContainer>
-      </DarkContainer>
-    </BackgroundColorProvider>
     <Title title="Sizes" theme="light" level={2} />
     <ExampleContainer>
       <DxcCheckbox label="Small" size="small" />

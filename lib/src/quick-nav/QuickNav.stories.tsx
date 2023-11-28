@@ -8,7 +8,7 @@ import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import { HalstackProvider } from "../HalstackContext";
 
 export default {
-  title: "QuickNav",
+  title: "Quick Nav",
   component: DxcQuickNav,
 };
 

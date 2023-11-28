@@ -88,7 +88,7 @@ export type DropdownMenuProps = {
   menuItemOnClick: (value: string) => void;
   onKeyDown: (event: React.KeyboardEvent<HTMLUListElement>) => void;
   options: Option[];
-  styles: { width: number };
+  styles: React.CSSProperties;
 };
 
 export type DropdownMenuItemProps = {

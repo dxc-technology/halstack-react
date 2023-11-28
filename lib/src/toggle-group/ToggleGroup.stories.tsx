@@ -6,7 +6,7 @@ import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import { HalstackProvider } from "../HalstackContext";
 
 export default {
-  title: "ToggleGroup",
+  title: "Toggle Group",
   component: DxcToggleGroup,
 };
 

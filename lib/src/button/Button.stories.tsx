@@ -1,10 +1,8 @@
 import React from "react";
-import { BackgroundColorProvider } from "../BackgroundColorContext";
 import DxcButton from "./Button";
 import DxcFlex from "./../flex/Flex";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
-import DarkContainer from "../../.storybook/components/DarkSection";
 import { HalstackProvider } from "../HalstackContext";
 
 export default {
@@ -168,85 +166,6 @@ export const Chromatic = () => (
         icon="https://www.freepnglogos.com/uploads/facebook-logo-design-1.png"
       />
     </ExampleContainer>
-    <BackgroundColorProvider color="#333333">
-      <DarkContainer>
-        <Title title="Primary" theme="dark" level={2} />
-        <ExampleContainer>
-          <Title title="Enabled" theme="dark" level={4} />
-          <DxcButton label="Primary enabled" />
-        </ExampleContainer>
-        <ExampleContainer pseudoState="pseudo-hover">
-          <Title title="Hovered" theme="dark" level={4} />
-          <DxcButton label="Primary hovered" />
-        </ExampleContainer>
-        <ExampleContainer pseudoState="pseudo-focus">
-          <Title title="Focused" theme="dark" level={4} />
-          <DxcButton label="Primary focused" />
-        </ExampleContainer>
-        <ExampleContainer pseudoState="pseudo-active">
-          <Title title="Actived" theme="dark" level={4} />
-          <DxcButton label="Primary actived" />
-        </ExampleContainer>
-        <ExampleContainer>
-          <Title title="Disabled" theme="dark" level={4} />
-          <DxcButton label="Primary disabled" disabled icon={iconSVG} />
-        </ExampleContainer>
-        <ExampleContainer>
-          <Title title="With icon" theme="dark" level={4} />
-          <DxcButton label="Primary" icon={iconSVG} />
-        </ExampleContainer>
-        <Title title="Secondary" theme="dark" level={2} />
-        <ExampleContainer>
-          <Title title="Enabled" theme="dark" level={4} />
-          <DxcButton mode="secondary" label="Secondary enabled" />
-        </ExampleContainer>
-        <ExampleContainer pseudoState="pseudo-hover">
-          <Title title="Hovered" theme="dark" level={4} />
-          <DxcButton mode="secondary" label="Secondary hovered" />
-        </ExampleContainer>
-        <ExampleContainer pseudoState="pseudo-focus">
-          <Title title="Focused" theme="dark" level={4} />
-          <DxcButton mode="secondary" label="Secondary focused" />
-        </ExampleContainer>
-        <ExampleContainer pseudoState="pseudo-active">
-          <Title title="Actived" theme="dark" level={4} />
-          <DxcButton mode="secondary" label="Secondary actived" />
-        </ExampleContainer>
-        <ExampleContainer>
-          <Title title="Disabled" theme="dark" level={4} />
-          <DxcButton mode="secondary" disabled label="Secondary disabled" icon={iconSVG} />
-        </ExampleContainer>
-        <ExampleContainer>
-          <Title title="With icon" theme="dark" level={4} />
-          <DxcButton mode="secondary" label="Primary" icon={iconSVG} />
-        </ExampleContainer>
-        <Title title="Text" theme="dark" level={2} />
-        <ExampleContainer>
-          <Title title="Enabled" theme="dark" level={4} />
-          <DxcButton mode="text" label="Text enabled" />
-        </ExampleContainer>
-        <ExampleContainer pseudoState="pseudo-hover">
-          <Title title="Hovered" theme="dark" level={4} />
-          <DxcButton mode="text" label="Text hovered" />
-        </ExampleContainer>
-        <ExampleContainer pseudoState="pseudo-focus">
-          <Title title="Focused" theme="dark" level={4} />
-          <DxcButton mode="text" label="Text focused" />
-        </ExampleContainer>
-        <ExampleContainer pseudoState="pseudo-active">
-          <Title title="Actived" theme="dark" level={4} />
-          <DxcButton mode="text" label="Text actived" />
-        </ExampleContainer>
-        <ExampleContainer>
-          <Title title="Disabled" theme="dark" level={4} />
-          <DxcButton mode="text" label="Text disabled" disabled icon={iconSVG} />
-        </ExampleContainer>
-        <ExampleContainer>
-          <Title title="With icon" theme="dark" level={4} />
-          <DxcButton mode="text" label="Primary" icon={iconSVG} />
-        </ExampleContainer>
-      </DarkContainer>
-    </BackgroundColorProvider>
     <Title title="Sizes" theme="light" level={2} />
     <ExampleContainer>
       <Title title="Small size" theme="light" level={4} />
@@ -254,7 +173,7 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Medium size" theme="light" level={4} />
-      <DxcButton label="MediumSiz" size="medium" />
+      <DxcButton label="MediumSize" size="medium" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Medium size with ellipsis" theme="light" level={4} />
@@ -262,11 +181,11 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Medium size icon after" theme="light" level={4} />
-      <DxcButton label="Mediu" iconPosition="after" icon={iconSVG} size="medium" />
+      <DxcButton label="Medium" iconPosition="after" icon={iconSVG} size="medium" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Medium size icon before" theme="light" level={4} />
-      <DxcButton label="Mediu" iconPosition="before" icon={iconSVG} size="medium" />
+      <DxcButton label="Medium" iconPosition="before" icon={iconSVG} size="medium" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Medium size icon after with ellipsis" theme="light" level={4} />
@@ -286,11 +205,11 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Large size icon after" theme="light" level={4} />
-      <DxcButton label="LargeSizePrimaryButto" iconPosition="after" icon={iconSVG} size="large" />
+      <DxcButton label="LargeSizePrimaryButton" iconPosition="after" icon={iconSVG} size="large" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Large size icon before" theme="light" level={4} />
-      <DxcButton label="LargeSizePrimaryButto" iconPosition="before" icon={iconSVG} size="large" />
+      <DxcButton label="LargeSizePrimaryButton" iconPosition="before" icon={iconSVG} size="large" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Large size icon after with ellipsis" theme="light" level={4} />

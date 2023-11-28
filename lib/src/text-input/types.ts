@@ -175,7 +175,7 @@ export type SuggestionsProps = {
   searchHasErrors: boolean;
   isSearching: boolean;
   suggestionOnClick: (suggestion: string) => void;
-  getTextInputWidth: () => number;
+  styles: React.CSSProperties;
 };
 
 /**

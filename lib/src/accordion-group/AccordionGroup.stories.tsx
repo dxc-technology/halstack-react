@@ -5,7 +5,7 @@ import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 
 export default {
-  title: "Accordion group",
+  title: "Accordion Group",
   component: DxcAccordionGroup,
 };
 

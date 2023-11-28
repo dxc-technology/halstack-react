@@ -6,7 +6,7 @@ import FileItem from "./FileItem";
 import { HalstackProvider } from "../HalstackContext";
 
 export default {
-  title: "File input",
+  title: "File Input",
   component: DxcFileInput,
 };
 

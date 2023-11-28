@@ -207,19 +207,21 @@ const DxcDropdown = ({
               {!caretHidden && <CaretIcon disabled={disabled}>{isOpen ? upArrowIcon : downArrowIcon}</CaretIcon>}
             </DropdownTrigger>
           </Popover.Trigger>
-          <Popover.Content sideOffset={1} asChild>
-            <DropdownMenu
-              id={menuId}
-              dropdownTriggerId={triggerId}
-              options={options}
-              iconsPosition={optionsIconPosition}
-              visualFocusIndex={visualFocusIndex}
-              menuItemOnClick={handleMenuItemOnClick}
-              onKeyDown={handleMenuOnKeyDown}
-              styles={{ width }}
-              ref={menuRef}
-            />
-          </Popover.Content>
+          <Popover.Portal>
+            <Popover.Content asChild sideOffset={1}>
+              <DropdownMenu
+                id={menuId}
+                dropdownTriggerId={triggerId}
+                options={options}
+                iconsPosition={optionsIconPosition}
+                visualFocusIndex={visualFocusIndex}
+                menuItemOnClick={handleMenuItemOnClick}
+                onKeyDown={handleMenuOnKeyDown}
+                styles={{ width, zIndex: "2147483647" }}
+                ref={menuRef}
+              />
+            </Popover.Content>
+          </Popover.Portal>
         </Popover.Root>
       </DropdownContainer>
     </ThemeProvider>

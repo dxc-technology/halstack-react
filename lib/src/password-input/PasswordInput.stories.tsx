@@ -4,10 +4,9 @@ import DxcPasswordInput from "./PasswordInput";
 import { BackgroundColorProvider } from "../BackgroundColorContext";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
-import DarkContainer from "../../.storybook/components/DarkSection";
 
 export default {
-  title: "Password input",
+  title: "Password Input",
   component: DxcPasswordInput,
 };
 
@@ -37,19 +36,6 @@ export const Chromatic = () => (
       <Title title="Invalid" theme="light" level={4} />
       <DxcPasswordInput label="Error password input" error="Error message." />
     </ExampleContainer>
-    <BackgroundColorProvider color="#333333">
-      <DarkContainer>
-        <Title title="Dark" theme="dark" level={2} />
-        <ExampleContainer>
-          <Title title="With label, helper text and value" theme="dark" level={4} />
-          <DxcPasswordInput label="Password input" helperText="Help message" value="Password" />
-        </ExampleContainer>
-        <ExampleContainer>
-          <Title title="With label, helper text, value and error" theme="dark" level={4} />
-          <DxcPasswordInput label="Password input" helperText="Help message" error="Error message." value="Password" />
-        </ExampleContainer>
-      </DarkContainer>
-    </BackgroundColorProvider>
     <Title title="Margins" theme="light" level={2} />
     <ExampleContainer>
       <Title title="Xxsmall margin" theme="light" level={4} />
@@ -106,26 +92,8 @@ const Password = () => (
   </ExampleContainer>
 );
 
-const PasswordDark = () => (
-  <BackgroundColorProvider color="#333333">
-    <DarkContainer>
-      <ExampleContainer expanded>
-        <Title title="Show password" theme="dark" level={4} />
-        <DxcPasswordInput label="Password input" value="Password" />
-      </ExampleContainer>
-    </DarkContainer>
-  </BackgroundColorProvider>
-);
-
 export const ShowPassword = Password.bind({});
 ShowPassword.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const passwordBtn = canvas.getByRole("button");
-  await userEvent.click(passwordBtn);
-};
-
-export const ShowPasswordDark = PasswordDark.bind({});
-ShowPasswordDark.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const passwordBtn = canvas.getByRole("button");
   await userEvent.click(passwordBtn);

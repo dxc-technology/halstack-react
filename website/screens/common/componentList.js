@@ -2,7 +2,7 @@ exports.componentsList = [
   { label: "Accordion", path: "/components/accordion", status: "Ready" },
   { label: "Alert", path: "/components/alert", status: "Ready" },
   {
-    label: "Application layout",
+    label: "Application Layout",
     path: "/components/application-layout",
     status: "Ready",
   },

@@ -443,31 +443,34 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
                 </CollapseIndicator>
               </Select>
             </Popover.Trigger>
-            <Popover.Content
-              sideOffset={4}
-              onOpenAutoFocus={(event) => {
-                // Avoid select to lose focus when the list is opened
-                event.preventDefault();
-              }}
-              onCloseAutoFocus={(event) => {
-                // Avoid select to lose focus when the list is closed
-                event.preventDefault();
-              }}
-            >
-              <Listbox
-                id={optionsListId}
-                currentValue={value ?? innerValue}
-                options={searchable ? filteredOptions : options}
-                visualFocusIndex={visualFocusIndex}
-                lastOptionIndex={lastOptionIndex}
-                multiple={multiple}
-                optional={optional}
-                optionalItem={optionalItem}
-                searchable={searchable}
-                handleOptionOnClick={handleOptionOnClick}
-                styles={{ width }}
-              />
-            </Popover.Content>
+            <Popover.Portal>
+              <Popover.Content
+                sideOffset={4}
+                style={{ zIndex: "2147483647" }}
+                onOpenAutoFocus={(event) => {
+                  // Avoid select to lose focus when the list is opened
+                  event.preventDefault();
+                }}
+                onCloseAutoFocus={(event) => {
+                  // Avoid select to lose focus when the list is closed
+                  event.preventDefault();
+                }}
+              >
+                <Listbox
+                  id={optionsListId}
+                  currentValue={value ?? innerValue}
+                  options={searchable ? filteredOptions : options}
+                  visualFocusIndex={visualFocusIndex}
+                  lastOptionIndex={lastOptionIndex}
+                  multiple={multiple}
+                  optional={optional}
+                  optionalItem={optionalItem}
+                  searchable={searchable}
+                  handleOptionOnClick={handleOptionOnClick}
+                  styles={{ width }}
+                />
+              </Popover.Content>
+            </Popover.Portal>
           </Popover.Root>
           {!disabled && typeof error === "string" && (
             <Error id={errorId} aria-live={error ? "assertive" : "off"}>

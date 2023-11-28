@@ -8,7 +8,7 @@ type Props = {
 };
 
 const ExampleContainer = ({ children, pseudoState, expanded = false }: Props): JSX.Element => (
-  <DivContainer className={pseudoState} expanded={expanded}>
+  <DivContainer className={`${pseudoState}-all`} expanded={expanded}>
     {children}
   </DivContainer>
 );

@@ -1,9 +1,7 @@
 import React from "react";
 import DxcSwitch from "./Switch";
-import { BackgroundColorProvider } from "../BackgroundColorContext";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
-import DarkContainer from "../../.storybook/components/DarkSection";
 import { HalstackProvider } from "../HalstackContext";
 
 export default {
@@ -52,38 +50,6 @@ export const Chromatic = () => (
       <Title title="Disabled checked" theme="light" level={4} />
       <DxcSwitch label="Switch" disabled defaultChecked labelPosition="after" />
     </ExampleContainer>
-    <BackgroundColorProvider color="#333333">
-      <DarkContainer>
-        <ExampleContainer>
-          <Title title="With label" theme="dark" level={4} />
-          <DxcSwitch label="Switch" />
-        </ExampleContainer>
-        <ExampleContainer pseudoState="pseudo-focus-visible">
-          <Title title="Focused" theme="dark" level={4} />
-          <DxcSwitch label="Switch" labelPosition="after" />
-        </ExampleContainer>
-        <ExampleContainer>
-          <Title title="Checked" theme="dark" level={4} />
-          <DxcSwitch label="Switch" defaultChecked />
-        </ExampleContainer>
-        <ExampleContainer>
-          <Title title="Optional" theme="dark" level={4} />
-          <DxcSwitch label="Switch" optional />
-        </ExampleContainer>
-        <ExampleContainer>
-          <Title title="Disabled" theme="dark" level={4} />
-          <DxcSwitch label="Switch" disabled />
-        </ExampleContainer>
-        <ExampleContainer>
-          <Title title="Disabled optional" theme="dark" level={4} />
-          <DxcSwitch label="Switch" disabled optional labelPosition="after" />
-        </ExampleContainer>
-        <ExampleContainer>
-          <Title title="Disabled checked" theme="dark" level={4} />
-          <DxcSwitch label="Switch" disabled defaultChecked labelPosition="after" />
-        </ExampleContainer>
-      </DarkContainer>
-    </BackgroundColorProvider>
     <Title title="Margins" theme="light" level={2} />
     <ExampleContainer>
       <Title title="Xxsmall margin" theme="light" level={4} />

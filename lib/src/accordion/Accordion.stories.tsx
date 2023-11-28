@@ -1,7 +1,5 @@
 import React from "react";
 import DxcAccordion from "./Accordion";
-import DxcTextInput from "../text-input/TextInput";
-import DxcButton from "../button/Button";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import { HalstackProvider } from "../HalstackContext";
@@ -118,7 +116,7 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With bigger icon (SVG)" theme="light" level={4} />
-      <DxcAccordion label="AccordionTest" assistiveText="Assistive text" icon={facebookIcon}>
+      <DxcAccordion label="Accordion Test" assistiveText="Assistive text" icon={facebookIcon}>
         <div>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo
           lobortis eget.
@@ -174,17 +172,6 @@ export const Chromatic = () => (
           lobortis eget.
         </div>
       </DxcAccordion>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Background color provider over accordion content" theme="light" level={4} />
-      <HalstackProvider advancedTheme={advancedTheme}>
-        <DxcAccordion label="Dark Accordion" defaultIsExpanded assistiveText="Assistive text" icon={folderIcon}>
-          <div style={{ display: "flex", flexDirection: "column", gap: "36px", padding: "36px" }}>
-            <DxcTextInput label="Label" helperText="HelperText" placeholder="Placeholder" size="fillParent" />
-            <DxcButton label="Submit" size="medium" />
-          </div>
-        </DxcAccordion>
-      </HalstackProvider>
     </ExampleContainer>
     <Title title="Margins" theme="light" level={2} />
     <ExampleContainer>

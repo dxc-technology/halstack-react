@@ -187,9 +187,7 @@ const sections = [
             </td>
           </tr>
           <tr>
-            <td>
-              <Code>onChange</Code>
-            </td>
+            <td>onChange</td>
             <td>
               <TableCode>
                 {"(val: { value: string | string[]; error?: string }) => void"}
