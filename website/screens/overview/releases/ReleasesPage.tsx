@@ -36,6 +36,11 @@ const sections = [
         </DxcParagraph>
         <DxcBulletedList>
           <DxcBulletedList.Item>
+            <DxcLink href="https://developer.dxc.com/halstack/11/overview/introduction/">
+              Halstack 11
+            </DxcLink>
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
             <DxcLink href="https://developer.dxc.com/halstack/10/overview/introduction/">
               Halstack 10
             </DxcLink>
