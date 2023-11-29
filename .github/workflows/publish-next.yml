@@ -38,13 +38,13 @@ jobs:
         run: cd lib && npm run build
 
       - name: Install website dependencies
-        run: cd website && yarn
+        run: cd website && npm i
 
       - name: Test library
         run: cd lib && npm run test
 
       - name: Build website
-        run: cd website && SITE_VERSION=next yarn build
+        run: cd website && SITE_VERSION=next npm run build
 
       - name: Publish NEXT version to npm
         run: |

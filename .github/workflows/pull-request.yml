@@ -23,10 +23,10 @@ jobs:
         run: cd lib && npm run build
 
       - name: Install website dependencies
-        run: cd website && yarn
+        run: cd website && npm i
 
       - name: Test library
         run: cd lib && npm run test
 
       - name: Build website
-        run: cd website && yarn build
+        run: cd website && npm run build
