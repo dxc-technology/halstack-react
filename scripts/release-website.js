@@ -56,7 +56,7 @@ const buildSite = (version) => {
   return new Promise((resolve, reject) => {
     console.log(`Building site with version ${version}`);
     exec(
-      `cd website && SITE_VERSION=${version} yarn build`,
+      `cd website && SITE_VERSION=${version} npm run build`,
       (error, stdout, stderr) => {
         if (error) {
           throw new Error(error.message);
