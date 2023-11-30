@@ -23,7 +23,7 @@ jobs:
         run: cd lib && npm run build
 
       - name: Install website dependencies
-        run: cd website && npm i
+        run: cd website && npm i --legacy-peer-deps
 
       - name: Test library
         run: cd lib && npm run test
