@@ -26,17 +26,17 @@ const sections = [
         </DxcParagraph>
         <DxcBulletedList>
           <DxcBulletedList.Item>
-            <Link href="/components/bulleted-list" passHref>
+            <Link href="/components/bulleted-list" passHref legacyBehavior>
               <DxcLink>Bulleted list</DxcLink>
             </Link>
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <Link href="/components/paragraph" passHref>
+            <Link href="/components/paragraph" passHref legacyBehavior>
               <DxcLink>Paragraph</DxcLink>
             </Link>
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <Link href="/components/heading" passHref>
+            <Link href="/components/heading" passHref legacyBehavior>
               <DxcLink>Heading</DxcLink>
             </Link>
           </DxcBulletedList.Item>

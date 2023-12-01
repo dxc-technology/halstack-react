@@ -60,7 +60,7 @@ const ThemeGenerator = () => {
               <DxcTypography fontSize="0.75rem" fontWeight="600" as="nav">
                 <Breadcrumbs>
                   <li>
-                    <Link href="/principles/themes/" passHref>
+                    <Link href="/principles/themes/" passHref legacyBehavior>
                       <DxcLink>Themes</DxcLink>
                     </Link>
                   </li>

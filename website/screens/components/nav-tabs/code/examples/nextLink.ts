@@ -14,13 +14,13 @@ const code = `() => {
   return (
     <DxcInset space="2rem">
       <DxcNavTabs>
-        <Link href="/components/nav-tabs/" passHref>
+        <Link href="/components/nav-tabs/" passHref legacyBehavior>
           <CustomNavTab active>Tab 1</CustomNavTab>
         </Link>
-        <Link href="/components/nav-tabs/" passHref>
+        <Link href="/components/nav-tabs/" passHref legacyBehavior>
           <CustomNavTab>Tab 2</CustomNavTab>
         </Link>
-        <Link href="/components/nav-tabs/" passHref>
+        <Link href="/components/nav-tabs/" passHref legacyBehavior>
           <CustomNavTab>Tab 3</CustomNavTab>
         </Link>
       </DxcNavTabs>
