@@ -12,7 +12,7 @@ const BorderWidthInput = ({
   const [value, changeValue] = useState(
     propertyValue.match(/-?[0-9]+(.[0-9]+)?/g)?.join("")
   );
-  const unitValue = useState(propertyValue.match(/[a-zA-Z]+|%/g)?.[0]);
+  const [unitValue] = useState(propertyValue.match(/[a-zA-Z]+|%/g)?.[0]);
 
   useEffect(() => {
     changeValue(propertyValue.match(/-?[0-9]+(.[0-9]+)?/g)?.join(""));

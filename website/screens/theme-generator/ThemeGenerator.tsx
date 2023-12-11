@@ -38,7 +38,7 @@ const ThemeGenerator = () => {
   const [isDialogVisible, setDialogVisible] = useState(false);
 
   const setComponentProperty = useCallback(
-    (propertyName, propertyValue) => {
+    (propertyName: string, propertyValue: string) => {
       setCustomTheme((prevTheme) => ({
         ...prevTheme,
         [currentComponent]: {
