@@ -19,7 +19,15 @@ export const Chromatic = () => (
         width="200px"
         height="200px"
         background={{ color: "color_purple_400" }}
-        border={{ bottom: { width: "thick", color: "color_purple_600", style: "solid", leftRadius: "0.25rem", rightRadius: "0.25rem" } }}
+        border={{
+          bottom: {
+            width: "thick",
+            color: "color_purple_600",
+            style: "solid",
+            leftRadius: "0.25rem",
+            rightRadius: "0.25rem",
+          },
+        }}
         padding="medium"
         margin="large"
       >
@@ -131,41 +139,41 @@ export const Chromatic = () => (
           nisl nunc vel nisl. Donec euismod, nisl eget ultricies aliquam, nisl velit aliquam nunc, quis aliquam nisl.
         </p>
       </DxcContainer>
-      <Title title="Box shadow and opacity" level={4} />
-      <ExampleContainer>
-        <DxcContainer
-          padding="medium"
-          outline={{ width: "1px", style: "solid", color: "color_black" }}
-          boxShadow="10px 5px 5px #fe0123"
-          opacity="0.75"
-        >
-          <p style={{ margin: 0 }}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisis, sapien vitae aliquam lacinia, nisl
-            quam tincidunt ligula, eget aliquam eros quam quis nunc. Donec euismod, nisl eget ultricies aliquam, nisl
-            velit aliquam nunc, quis aliquam nisl nunc vel nisl. Donec euismod, nisl eget ultricies aliquam, nisl velit
-            aliquam nunc, quis aliquam nisl nunc vel nisl. Donec euismod, nisl eget ultricies aliquam, nisl velit
-            aliquam nunc, quis aliquam nisl nunc vel nisl. Donec euismod, nisl eget ultricies aliquam, nisl velit
-            aliquam nunc, quis aliquam nisl nunc vel nisl. Donec euismod, nisl eget ultricies aliquam, nisl velit
-            aliquam nunc, quis aliquam nisl nunc vel nisl. Donec euismod, nisl eget ultricies aliquam, nisl velit
-            aliquam nunc, quis aliquam nisl.
-          </p>
-        </DxcContainer>
-      </ExampleContainer>
-      <Title title="Background color provider" level={4} />
-      <ExampleContainer>
-        <DxcContainer padding="medium" background={{ color: "color_black" }}>
-          <DxcParagraph>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisis, sapien vitae aliquam lacinia, nisl
-            quam tincidunt ligula, eget aliquam eros quam quis nunc. Donec euismod, nisl eget ultricies aliquam, nisl
-            velit aliquam nunc, quis aliquam nisl nunc vel nisl. Donec euismod, nisl eget ultricies aliquam, nisl velit
-            aliquam nunc, quis aliquam nisl nunc vel nisl. Donec euismod, nisl eget ultricies aliquam, nisl velit
-            aliquam nunc, quis aliquam nisl nunc vel nisl. Donec euismod, nisl eget ultricies aliquam, nisl velit
-            aliquam nunc, quis aliquam nisl nunc vel nisl. Donec euismod, nisl eget ultricies aliquam, nisl velit
-            aliquam nunc, quis aliquam nisl nunc vel nisl. Donec euismod, nisl eget ultricies aliquam, nisl velit
-            aliquam nunc, quis aliquam nisl.
-          </DxcParagraph>
-        </DxcContainer>
-      </ExampleContainer>
+    </ExampleContainer>
+    <Title title="Box shadow and opacity" level={4} />
+    <ExampleContainer>
+      <DxcContainer
+        padding="medium"
+        outline={{ width: "1px", style: "solid", color: "color_black" }}
+        boxShadow="10px 5px 5px #fe0123"
+        opacity="0.75"
+      >
+        <p style={{ margin: 0 }}>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisis, sapien vitae aliquam lacinia, nisl
+          quam tincidunt ligula, eget aliquam eros quam quis nunc. Donec euismod, nisl eget ultricies aliquam, nisl
+          velit aliquam nunc, quis aliquam nisl nunc vel nisl. Donec euismod, nisl eget ultricies aliquam, nisl velit
+          aliquam nunc, quis aliquam nisl nunc vel nisl. Donec euismod, nisl eget ultricies aliquam, nisl velit aliquam
+          nunc, quis aliquam nisl nunc vel nisl. Donec euismod, nisl eget ultricies aliquam, nisl velit aliquam nunc,
+          quis aliquam nisl nunc vel nisl. Donec euismod, nisl eget ultricies aliquam, nisl velit aliquam nunc, quis
+          aliquam nisl nunc vel nisl. Donec euismod, nisl eget ultricies aliquam, nisl velit aliquam nunc, quis aliquam
+          nisl.
+        </p>
+      </DxcContainer>
+    </ExampleContainer>
+    <Title title="Background color provider" level={4} />
+    <ExampleContainer>
+      <DxcContainer padding="medium" background={{ color: "color_black" }}>
+        <DxcParagraph>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisis, sapien vitae aliquam lacinia, nisl
+          quam tincidunt ligula, eget aliquam eros quam quis nunc. Donec euismod, nisl eget ultricies aliquam, nisl
+          velit aliquam nunc, quis aliquam nisl nunc vel nisl. Donec euismod, nisl eget ultricies aliquam, nisl velit
+          aliquam nunc, quis aliquam nisl nunc vel nisl. Donec euismod, nisl eget ultricies aliquam, nisl velit aliquam
+          nunc, quis aliquam nisl nunc vel nisl. Donec euismod, nisl eget ultricies aliquam, nisl velit aliquam nunc,
+          quis aliquam nisl nunc vel nisl. Donec euismod, nisl eget ultricies aliquam, nisl velit aliquam nunc, quis
+          aliquam nisl nunc vel nisl. Donec euismod, nisl eget ultricies aliquam, nisl velit aliquam nunc, quis aliquam
+          nisl.
+        </DxcParagraph>
+      </DxcContainer>
       <Title title="Building a listbox component" level={4} />
       <ExampleContainer>
         <Listbox suggestions={["Option 1", "Option 2", "Option 3", "Option 4", "Option 5"]} />
