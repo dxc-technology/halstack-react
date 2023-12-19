@@ -2,6 +2,8 @@ import React from "react";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DxcContainer from "./Container";
+import DxcParagraph from "../paragraph/Paragraph";
+import DxcTypography from "../typography/Typography";
 
 export default {
   title: "Container",
@@ -17,7 +19,7 @@ export const Chromatic = () => (
         width="200px"
         height="200px"
         background={{ color: "color_purple_400" }}
-        border={{ width: "thick", color: "color_purple_600", style:"solid", radius: "4px" }}
+        border={{ width: "thick", color: "color_purple_600", style: "solid", radius: "4px" }}
         padding="medium"
       >
         <b>Example text</b>
@@ -148,6 +150,56 @@ export const Chromatic = () => (
           </p>
         </DxcContainer>
       </ExampleContainer>
+      <Title title="Background color provider" level={4} />
+      <ExampleContainer>
+        <DxcContainer padding="medium" background={{ color: "color_black" }}>
+          <DxcParagraph>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisis, sapien vitae aliquam lacinia, nisl
+            quam tincidunt ligula, eget aliquam eros quam quis nunc. Donec euismod, nisl eget ultricies aliquam, nisl
+            velit aliquam nunc, quis aliquam nisl nunc vel nisl. Donec euismod, nisl eget ultricies aliquam, nisl velit
+            aliquam nunc, quis aliquam nisl nunc vel nisl. Donec euismod, nisl eget ultricies aliquam, nisl velit
+            aliquam nunc, quis aliquam nisl nunc vel nisl. Donec euismod, nisl eget ultricies aliquam, nisl velit
+            aliquam nunc, quis aliquam nisl nunc vel nisl. Donec euismod, nisl eget ultricies aliquam, nisl velit
+            aliquam nunc, quis aliquam nisl nunc vel nisl. Donec euismod, nisl eget ultricies aliquam, nisl velit
+            aliquam nunc, quis aliquam nisl.
+          </DxcParagraph>
+        </DxcContainer>
+      </ExampleContainer>
+      <Title title="Building a listbox component" level={4} />
+      <ExampleContainer>
+        <Listbox suggestions={["Option 1", "Option 2", "Option 3", "Option 4", "Option 5"]} />
+      </ExampleContainer>
     </ExampleContainer>
   </>
+);
+
+const Listbox = ({ suggestions = [] }: { suggestions: string[] }): JSX.Element => (
+  <DxcContainer
+    boxSizing="border-box"
+    boxShadow="0 4px 6px -1px rgba(0, 0, 0, 0.1)"
+    border={{ width: "1px", style: "solid", color: "color_grey_400", radius: "0.25rem" }}
+    background={{ color: "color_white" }}
+    padding={{ top: "xxsmall", bottom: "xxsmall" }}
+    maxHeight="304px"
+    width="200px"
+    overflow={{ x: "hidden", y: "auto" }}
+  >
+    {suggestions.map((suggestion, index) => (
+      <DxcContainer padding={{ left: "xsmall", right: "xsmall" }}>
+        <DxcContainer
+          border={
+            index !== suggestions.length - 1
+              ? { bottom: { width: "1px", style: "solid", color: "color_grey_200" } }
+              : undefined
+          }
+          padding={{ top: "xxsmall", bottom: "xxsmall", left: "xxsmall", right: "xxsmall" }}
+          overflow="hidden"
+        >
+          <DxcTypography whiteSpace="nowrap" textOverflow="ellipsis" lineHeight="1.715em">
+            {suggestion}
+          </DxcTypography>
+        </DxcContainer>
+      </DxcContainer>
+    ))}
+  </DxcContainer>
 );

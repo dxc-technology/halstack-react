@@ -78,6 +78,7 @@ type Props = {
   opacity?: string;
   outline?: Outline;
   children: React.ReactNode;
+  as?: keyof HTMLElementTagNameMap;
 };
 
 export default Props;

@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import ContainerPropsType from "./types";
 import { getColorToken } from "../common/coreTokens";
+import { BackgroundColorProvider } from "../BackgroundColorContext";
 
 /**
  * This values correspond to the spaces defined in the design system
@@ -17,7 +18,11 @@ const spaces = {
   xxlarge: "48px",
 };
 
-const DxcContainer = (props: ContainerPropsType) => <Container {...props} />;
+const DxcContainer = (props: ContainerPropsType) => (
+  <BackgroundColorProvider color={getColorToken(props?.background?.color)}>
+    <Container {...props} />
+  </BackgroundColorProvider>
+);
 
 const Container = styled.div<ContainerPropsType>`
   box-sizing: ${({ boxSizing }) => boxSizing};
@@ -56,7 +61,9 @@ const Container = styled.div<ContainerPropsType>`
     border && "width" in border ? `${border?.width} ${border?.style} ${getColorToken(border?.color)}` : ""};
   border-radius: ${({ border }) => (border && "radius" in border ? `${border?.radius}` : "")};
   border-top: ${({ border }) =>
-    border && "top" in border ? `${border?.top?.width} ${border?.top?.style} ${getColorToken(border?.top?.color)}` : ""};
+    border && "top" in border
+      ? `${border?.top?.width} ${border?.top?.style} ${getColorToken(border?.top?.color)}`
+      : ""};
   border-top-right-radius: ${({ border }) => (border && "top" in border ? `${border?.top?.rightRadius}` : "")};
   border-top-left-radius: ${({ border }) => (border && "top" in border ? `${border?.top?.leftRadius}` : "")};
   border-right: ${({ border }) =>
@@ -77,7 +84,7 @@ const Container = styled.div<ContainerPropsType>`
   overflow: ${({ overflow }) => (typeof overflow !== "object" ? overflow : "")};
   overflow-x: ${({ overflow }) => (typeof overflow === "object" ? `${overflow?.x}` : "")};
   overflow-y: ${({ overflow }) => (typeof overflow === "object" ? `${overflow?.y}` : "")};
-  
+
   background-attachment: ${({ background }) => background?.attachment};
   background-clip: ${({ background }) => background?.clip};
   background-color: ${({ background }) => getColorToken(background?.color)};
