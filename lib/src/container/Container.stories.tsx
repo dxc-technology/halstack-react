@@ -19,8 +19,9 @@ export const Chromatic = () => (
         width="200px"
         height="200px"
         background={{ color: "color_purple_400" }}
-        border={{ width: "thick", color: "color_purple_600", style: "solid", radius: "4px" }}
+        border={{ bottom: { width: "thick", color: "color_purple_600", style: "solid", leftRadius: "0.25rem", rightRadius: "0.25rem" } }}
         padding="medium"
+        margin="large"
       >
         <b>Example text</b>
       </DxcContainer>
@@ -181,7 +182,7 @@ const Listbox = ({ suggestions = [] }: { suggestions: string[] }): JSX.Element =
     background={{ color: "color_white" }}
     padding={{ top: "xxsmall", bottom: "xxsmall" }}
     maxHeight="304px"
-    width="200px"
+    width="250px"
     overflow={{ x: "hidden", y: "auto" }}
   >
     {suggestions.map((suggestion, index) => (

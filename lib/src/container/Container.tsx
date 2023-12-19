@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import ContainerPropsType from "./types";
+import ContainerPropsType, { StyledProps } from "./types";
 import { getColorToken } from "../common/coreTokens";
 import { BackgroundColorProvider } from "../BackgroundColorContext";
 
@@ -18,17 +18,17 @@ const spaces = {
   xxlarge: "48px",
 };
 
-const DxcContainer = (props: ContainerPropsType) => (
+const DxcContainer = ({ display, width, height, opacity, overflow, ...props }: ContainerPropsType) => (
   <BackgroundColorProvider color={getColorToken(props?.background?.color)}>
-    <Container {...props} />
+    <Container $display={display} $width={width} $height={height} $opacity={opacity} $overflow={overflow} {...props} />
   </BackgroundColorProvider>
 );
 
-const Container = styled.div<ContainerPropsType>`
+const Container = styled.div<StyledProps>`
   box-sizing: ${({ boxSizing }) => boxSizing};
-  display: ${({ display }) => display};
-  width: ${({ width }) => width};
-  height: ${({ height }) => height};
+  display: ${({ $display }) => $display};
+  width: ${({ $width }) => $width};
+  height: ${({ $height }) => $height};
   max-width: ${({ maxWidth }) => maxWidth};
   max-height: ${({ maxHeight }) => maxHeight};
   min-width: ${({ minWidth }) => minWidth};
@@ -41,7 +41,7 @@ const Container = styled.div<ContainerPropsType>`
   float: ${({ float }) => float};
   z-index: ${({ zIndex }) => zIndex};
   box-shadow: ${({ boxShadow }) => boxShadow};
-  opacity: ${({ opacity }) => opacity};
+  opacity: ${({ $opacity }) => $opacity};
   outline: ${({ outline }) => `${outline?.width} ${outline?.style} ${getColorToken(outline?.color)}`};
   outline-offset: ${({ outline }) => outline?.offset};
 
@@ -81,9 +81,9 @@ const Container = styled.div<ContainerPropsType>`
       ? `${border?.left?.width} ${border?.left?.style} ${getColorToken(border?.left?.color)}`
       : ""};
 
-  overflow: ${({ overflow }) => (typeof overflow !== "object" ? overflow : "")};
-  overflow-x: ${({ overflow }) => (typeof overflow === "object" ? `${overflow?.x}` : "")};
-  overflow-y: ${({ overflow }) => (typeof overflow === "object" ? `${overflow?.y}` : "")};
+  overflow: ${({ $overflow }) => (typeof $overflow !== "object" ? $overflow : "")};
+  overflow-x: ${({ $overflow }) => (typeof $overflow === "object" ? `${$overflow?.x}` : "")};
+  overflow-y: ${({ $overflow }) => (typeof $overflow === "object" ? `${$overflow?.y}` : "")};
 
   background-attachment: ${({ background }) => background?.attachment};
   background-clip: ${({ background }) => background?.clip};

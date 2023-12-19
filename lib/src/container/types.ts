@@ -32,7 +32,7 @@ type BorderGenericProperties = {
   width?: string;
   style?: "none" | "dotted" | "dashed" | "solid" | "double" | "groove" | "ridge" | "inset" | "outset";
   color?: ColorTokenKeys;
-}
+};
 type BorderProperties = BorderGenericProperties & {
   radius?: string;
 };
@@ -79,6 +79,14 @@ type Props = {
   outline?: Outline;
   children: React.ReactNode;
   as?: keyof HTMLElementTagNameMap;
+};
+
+export type StyledProps = Omit<Props, "display" | "width" | "height" | "opacity" | "overflow"> & {
+  $display?: "block" | "inline-block" | "inline" | "none";
+  $width?: string;
+  $height?: string;
+  $opacity?: string;
+  $overflow?: Overflow;
 };
 
 export default Props;
