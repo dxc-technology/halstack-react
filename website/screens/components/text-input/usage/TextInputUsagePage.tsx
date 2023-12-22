@@ -189,7 +189,7 @@ const sections = [
               <DxcBulletedList.Item>
                 If the value for the textbox must be chosen from a predefined
                 set of allowed values, use the{" "}
-                <Link href="/components/select" passHref>
+                <Link href="/components/select" passHref legacyBehavior>
                   <DxcLink>select</DxcLink>
                 </Link>{" "}
                 component instead.

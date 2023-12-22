@@ -5,6 +5,7 @@ module.exports = {
   images: {
     loader: "custom",
   },
+  output: "export",
   trailingSlash: true,
   webpack: (config) => {
     config.module.rules.push({

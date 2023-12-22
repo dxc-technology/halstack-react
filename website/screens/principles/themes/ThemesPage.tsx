@@ -81,7 +81,11 @@ const sections = [
             </DxcParagraph>
             <DxcAlert type="info" size="fillParent">
               We strongly recommend using the{" "}
-              <Link href="/theme-generator/opinionated-theme" passHref>
+              <Link
+                href="/theme-generator/opinionated-theme"
+                passHref
+                legacyBehavior
+              >
                 <DxcLink>opinionated theme generator</DxcLink>
               </Link>{" "}
               to create the theme, but you can also create it yourself from
@@ -1429,6 +1433,7 @@ const sections = [
                       <Link
                         href="/utilities/halstack-provider/#opinionated-theme"
                         passHref
+                        legacyBehavior
                       >
                         <DxcLink>Halstack Provider section</DxcLink>
                       </Link>
@@ -1456,7 +1461,11 @@ const sections = [
             </DxcParagraph>
             <DxcAlert type="info" size="fillParent">
               We strongly recommend using the{" "}
-              <Link href="/theme-generator/advanced-theme" passHref>
+              <Link
+                href="/theme-generator/advanced-theme"
+                passHref
+                legacyBehavior
+              >
                 <DxcLink>advanced theme generator</DxcLink>
               </Link>{" "}
               to create the theme, but you can also create it yourself from
@@ -1472,7 +1481,11 @@ const sections = [
             </JsonContainer>
             <DxcParagraph>
               More examples can be found in the{" "}
-              <Link href="/utilities/halstack-provider/#advanced-theme" passHref>
+              <Link
+                href="/utilities/halstack-provider/#advanced-theme"
+                passHref
+                legacyBehavior
+              >
                 <DxcLink>Halstack Provider section</DxcLink>
               </Link>
               .

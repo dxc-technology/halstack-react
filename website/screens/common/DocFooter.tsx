@@ -101,7 +101,7 @@ const DocFooter = ({ githubLink }: { githubLink: string }) => {
             {previousLink && (
               <>
                 <DxcTypography>Previous</DxcTypography>
-                <Link href={previousLink.path} passHref>
+                <Link href={previousLink.path} passHref legacyBehavior>
                   <DxcLink icon={arrowBack}>{previousLink.label}</DxcLink>
                 </Link>
               </>
@@ -111,7 +111,7 @@ const DocFooter = ({ githubLink }: { githubLink: string }) => {
             {nextLink && (
               <>
                 <DxcTypography>Next</DxcTypography>
-                <Link href={nextLink.path} passHref>
+                <Link href={nextLink.path} passHref legacyBehavior>
                   <DxcLink icon={arrowForward} iconPosition="after">
                     {nextLink.label}
                   </DxcLink>

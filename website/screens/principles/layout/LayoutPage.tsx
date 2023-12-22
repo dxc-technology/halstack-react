@@ -25,12 +25,12 @@ const sections = [
         <DxcParagraph>
           Halstack provides multiple components to achieve layout consistency
           and an easy way to arrange elements in the UI. The{" "}
-          <Link href="/components/application-layout/" passHref>
+          <Link href="/components/application-layout/" passHref legacyBehavior>
             <DxcLink>application layout</DxcLink>
           </Link>{" "}
-          is the base that wraps any application built with Halstack.
-          In addition, all of the components listed below can be used within
-          each other to create a wide variety of standard layouts:
+          is the base that wraps any application built with Halstack. In
+          addition, all of the components listed below can be used within each
+          other to create a wide variety of standard layouts:
         </DxcParagraph>
         <DxcBulletedList>
           <DxcBulletedList.Item>Bleed</DxcBulletedList.Item>
@@ -251,6 +251,7 @@ const sections = [
                     <Link
                       href="/principles/spacing/#core-spacing-tokens"
                       passHref
+                      legacyBehavior
                     >
                       <DxcLink>spacing scale</DxcLink>
                     </Link>{" "}

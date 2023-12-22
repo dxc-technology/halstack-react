@@ -15,7 +15,7 @@ const TabsPageLayout = ({ tabs }: TabsPageLayoutProps) => {
     <TabsContainer>
       <DxcNavTabs>
         {tabs.map((tab, index) => (
-          <Link key={index} href={tab.path} passHref>
+          <Link key={index} href={tab.path} passHref legacyBehavior>
             <DxcNavTabs.Tab active={tab.path === router.pathname}>
               {tab.label}
             </DxcNavTabs.Tab>

@@ -38,7 +38,7 @@ const ThemeGenerator = () => {
   const [isDialogVisible, setDialogVisible] = useState(false);
 
   const setComponentProperty = useCallback(
-    (propertyName, propertyValue) => {
+    (propertyName: string, propertyValue: string) => {
       setCustomTheme((prevTheme) => ({
         ...prevTheme,
         [currentComponent]: {
@@ -60,7 +60,7 @@ const ThemeGenerator = () => {
               <DxcTypography fontSize="0.75rem" fontWeight="600" as="nav">
                 <Breadcrumbs>
                   <li>
-                    <Link href="/principles/themes/" passHref>
+                    <Link href="/principles/themes/" passHref legacyBehavior>
                       <DxcLink>Themes</DxcLink>
                     </Link>
                   </li>

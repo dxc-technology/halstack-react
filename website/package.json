@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "dev": "cross-env NODE_OPTIONS='--inspect' next dev",
-    "build": "next build && next export",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
@@ -13,11 +13,11 @@
     "@types/styled-components": "^5.1.18",
     "axios": "^0.27.2",
     "cross-env": "^7.0.3",
-    "next": "12.1.0",
+    "next": "14.0.3",
     "raw-loader": "^4.0.2",
-    "react": "17.0.2",
+    "react": "18.2.0",
     "react-color": "^2.19.3",
-    "react-dom": "17.0.2",
+    "react-dom": "18.2.0",
     "react-error-boundary": "^3.1.4",
     "react-live": "^2.4.1",
     "react-markdown": "^8.0.7",
@@ -25,15 +25,15 @@
     "styled-components": "^5.3.3"
   },
   "devDependencies": {
-    "@types/node": "17.0.2",
-    "@types/react": "17.0.37",
+    "@types/node": "18.18.2",
+    "@types/react": "18.2.0",
     "@types/react-color": "^3.0.6",
     "eslint": "8.5.0",
-    "eslint-config-next": "12.0.9",
+    "eslint-config-next": "14.0.3",
     "typescript": "4.5.4"
   },
   "resolutions": {
-    "@types/react": "17.0.2",
-    "@types/react-dom": "17.0.2"
+    "@types/react": "18.2.0",
+    "@types/react-dom": "18.2.0"
   }
 }

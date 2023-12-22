@@ -72,6 +72,7 @@ const sections = [
           <Link
             href="/overview/introduction/#legacy-documentation-sites"
             passHref
+            legacyBehavior
           >
             <DxcLink>legacy sites</DxcLink>
           </Link>

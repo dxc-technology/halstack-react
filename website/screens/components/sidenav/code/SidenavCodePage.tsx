@@ -212,7 +212,7 @@ const sections = [
         As with the <Code>DxcLink</Code> component, we decided to make our
         Sidenav link component a styled HTML anchor that can be used with any
         React-based router. You can check the{" "}
-        <Link href={"/components/link/"} passHref>
+        <Link href={"/components/link/"} passHref legacyBehavior>
           <DxcLink>Link</DxcLink>
         </Link>{" "}
         for more information regarding this.
@@ -279,7 +279,9 @@ const sections = [
             <tr>
               <td>onClick</td>
               <td>
-                <TableCode>{"(event: React.MouseEvent <HTMLAnchorElement>) => void"}</TableCode>
+                <TableCode>
+                  {"(event: React.MouseEvent <HTMLAnchorElement>) => void"}
+                </TableCode>
               </td>
               <td>
                 This function will be called when the user clicks the link and

@@ -22,7 +22,11 @@ const sections = [
         <DxcParagraph>
           Halstack Design System provides the possibility to translate all the
           labels that cannot be changed by the component properties through the{" "}
-          <Link href="/utilities/halstack-provider/#localization" passHref>
+          <Link
+            href="/utilities/halstack-provider/#localization"
+            passHref
+            legacyBehavior
+          >
             <DxcLink>Halstack Provider</DxcLink>
           </Link>{" "}
           and its property <Code>labels</Code>.
