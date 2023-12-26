@@ -219,7 +219,16 @@ const sections = [
           <td>
             <TableCode>string</TableCode>
           </td>
-          <td></td>
+          <td>
+            Sets the <Code>height</Code> CSS property. See{" "}
+            <DxcLink
+              newWindow
+              href="https://developer.mozilla.org/en-US/docs/Web/CSS/height"
+            >
+              MDN
+            </DxcLink>{" "}
+            for further information.
+          </td>
           <td>
             <TableCode>'auto'</TableCode>
           </td>
