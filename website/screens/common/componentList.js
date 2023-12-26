@@ -7,7 +7,7 @@ exports.componentsList = [
     status: "Ready",
   },
   { label: "Bleed", path: "/components/bleed", status: "Ready" },
-  { label: "Box", path: "/components/box", status: "Deprecated" },
+  { label: "Box", path: "/components/box", status: "Ready" },
   {
     label: "Bulleted List",
     path: "/components/bulleted-list",

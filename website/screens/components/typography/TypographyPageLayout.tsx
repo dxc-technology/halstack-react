@@ -1,5 +1,5 @@
 import PageHeading from "@/common/PageHeading";
-import { DxcFlex, DxcAlert } from "@dxc-technology/halstack-react";
+import { DxcHeading, DxcFlex, DxcAlert } from "@dxc-technology/halstack-react";
 import TabsPageHeading from "@/common/TabsPageLayout";
 import ComponentHeading from "@/common/ComponentHeading";
 

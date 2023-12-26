@@ -1,9 +1,4 @@
-import {
-  DxcParagraph,
-  DxcFlex,
-  DxcAlert,
-  DxcLink,
-} from "@dxc-technology/halstack-react";
+import { DxcParagraph, DxcFlex } from "@dxc-technology/halstack-react";
 import PageHeading from "@/common/PageHeading";
 import TabsPageHeading from "@/common/TabsPageLayout";
 import ComponentHeading from "@/common/ComponentHeading";
@@ -27,12 +22,6 @@ const BoxPageHeading = ({ children }: { children: React.ReactNode }) => {
             organize the webpage is by using groups of related content, this can
             be achieved by using a dedicated Box component.
           </DxcParagraph>
-          <DxcAlert type="warning" size="fillParent">
-            This component will be removed from Halstack Design System in the future.
-            Please consider the new{" "}
-            <DxcLink href="/components/container">Container</DxcLink> component
-            as an alternative for your current use cases.
-          </DxcAlert>
           <TabsPageHeading tabs={tabs}></TabsPageHeading>
         </DxcFlex>
       </PageHeading>
