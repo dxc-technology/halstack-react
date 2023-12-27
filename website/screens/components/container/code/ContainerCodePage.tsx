@@ -59,10 +59,10 @@ const insetTypeString = `{
     left?: string;
 }`;
 const outlineTypeString = `{
-  width?: string;
-  style?: LineStyleValues;
-  color?: CoreColorTokens;
-  offset?: string;
+    width?: string;
+    style?: LineStyleValues;
+    color?: CoreColorTokens;
+    offset?: string;
 }`;
 const overflowTypeString = `OverflowValues | 
 { 
@@ -80,16 +80,6 @@ const sections = [
           <th style={{ minWidth: "200px" }}>Type</th>
           <th>Description</th>
           <th>Default</th>
-        </tr>
-        <tr>
-          <td>as</td>
-          <td>
-            <TableCode>keyof HTMLElementTagNameMap</TableCode>
-          </td>
-          <td>Sets a custom HTML tag.</td>
-          <td>
-            <TableCode>'div'</TableCode>
-          </td>
         </tr>
         <tr>
           <td>background</td>
@@ -337,25 +327,6 @@ const sections = [
           </td>
           <td>
             <TableCode>'auto'</TableCode>
-          </td>
-        </tr>
-        <tr>
-          <td>opacity</td>
-          <td>
-            <TableCode>string</TableCode>
-          </td>
-          <td>
-            Sets the <Code>opacity</Code> CSS property. See{" "}
-            <DxcLink
-              newWindow
-              href="https://developer.mozilla.org/en-US/docs/Web/CSS/opacity"
-            >
-              MDN
-            </DxcLink>{" "}
-            for further information.
-          </td>
-          <td>
-            <TableCode>'1'</TableCode>
           </td>
         </tr>
         <tr>
