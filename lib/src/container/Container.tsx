@@ -18,9 +18,9 @@ const spaces = {
   xxlarge: "48px",
 };
 
-const DxcContainer = ({ display, width, height, opacity, overflow, ...props }: ContainerPropsType) => (
+const DxcContainer = ({ display, width, height, overflow, ...props }: ContainerPropsType) => (
   <BackgroundColorProvider color={getColorToken(props?.background?.color)}>
-    <Container $display={display} $width={width} $height={height} $opacity={opacity} $overflow={overflow} {...props} />
+    <Container $display={display} $width={width} $height={height} $overflow={overflow} {...props} />
   </BackgroundColorProvider>
 );
 
@@ -41,7 +41,6 @@ const Container = styled.div<StyledProps>`
   float: ${({ float }) => float};
   z-index: ${({ zIndex }) => zIndex};
   box-shadow: ${({ boxShadow }) => boxShadow};
-  opacity: ${({ $opacity }) => $opacity};
   outline: ${({ outline }) => `${outline?.width} ${outline?.style} ${getColorToken(outline?.color)}`};
   outline-offset: ${({ outline }) => outline?.offset};
 

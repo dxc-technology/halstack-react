@@ -75,17 +75,14 @@ type Props = {
   zIndex?: "auto" | number;
   background?: Background;
   boxShadow?: string;
-  opacity?: string;
   outline?: Outline;
   children: React.ReactNode;
-  as?: keyof HTMLElementTagNameMap;
 };
 
 export type StyledProps = Omit<Props, "display" | "width" | "height" | "opacity" | "overflow"> & {
   $display?: "block" | "inline-block" | "inline" | "none";
   $width?: string;
   $height?: string;
-  $opacity?: string;
   $overflow?: Overflow;
 };
 
