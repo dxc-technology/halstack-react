@@ -1,8 +1,8 @@
 /**
  * Halstack Color Palette 
- * @link https://developer.dxc.com/halstack/next/principles/color/
+ * @link https://developer.dxc.com/halstack/next/principles/color/usage/#color-tokens-core-color-tokens
  */
-const ColorTokens = {
+const CoreColorTokens = {
   // Color
   // Absolutes
   color_black: "#000000",
@@ -105,8 +105,8 @@ const ColorTokens = {
   color_orange_800: "#915108",
   color_orange_900: "#613605",
 };
-export const getColorToken = (key: ColorTokenKeys) => ColorTokens[key];
-export type ColorTokenKeys = keyof typeof ColorTokens;
+export const getCoreColorToken = (key: CoreColorTokens) => CoreColorTokens[key];
+export type CoreColorTokens = keyof typeof CoreColorTokens;
 
 /**
  * Halstack Spacing Principles 
@@ -131,7 +131,7 @@ const SpacingTokens = {
 }
 
 const CoreTokens = {
-  ...ColorTokens,
+  ...CoreColorTokens,
   ...SpacingTokens,
 
   inherit: "inherit",

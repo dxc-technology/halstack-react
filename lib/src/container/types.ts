@@ -1,4 +1,4 @@
-import { ColorTokenKeys } from "../common/coreTokens";
+import { CoreColorTokens } from "../common/coreTokens";
 
 type SpacingValues = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
 type Space =
@@ -20,7 +20,7 @@ type Inset = {
 type Background = {
   attachment?: string;
   clip?: string;
-  color?: ColorTokenKeys;
+  color?: CoreColorTokens;
   image?: string;
   origin?: string;
   position?: string;
@@ -31,7 +31,7 @@ type Background = {
 type BorderGenericProperties = {
   width?: string;
   style?: "none" | "dotted" | "dashed" | "solid" | "double" | "groove" | "ridge" | "inset" | "outset";
-  color?: ColorTokenKeys;
+  color?: CoreColorTokens;
 };
 type BorderProperties = BorderGenericProperties & {
   radius?: string;

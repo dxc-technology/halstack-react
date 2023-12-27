@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import ContainerPropsType, { StyledProps } from "./types";
-import { getColorToken } from "../common/coreTokens";
+import { getCoreColorToken } from "../common/coreTokens";
 import { BackgroundColorProvider } from "../BackgroundColorContext";
 
 /**
@@ -19,7 +19,7 @@ const spaces = {
 };
 
 const DxcContainer = ({ display, width, height, overflow, ...props }: ContainerPropsType) => (
-  <BackgroundColorProvider color={getColorToken(props?.background?.color)}>
+  <BackgroundColorProvider color={getCoreColorToken(props?.background?.color)}>
     <Container $display={display} $width={width} $height={height} $overflow={overflow} {...props} />
   </BackgroundColorProvider>
 );
@@ -41,7 +41,7 @@ const Container = styled.div<StyledProps>`
   float: ${({ float }) => float};
   z-index: ${({ zIndex }) => zIndex};
   box-shadow: ${({ boxShadow }) => boxShadow};
-  outline: ${({ outline }) => `${outline?.width} ${outline?.style} ${getColorToken(outline?.color)}`};
+  outline: ${({ outline }) => `${outline?.width} ${outline?.style} ${getCoreColorToken(outline?.color)}`};
   outline-offset: ${({ outline }) => outline?.offset};
 
   margin: ${({ margin }) => (typeof margin === "string" ? `${spaces[margin]}` : "")};
@@ -57,27 +57,27 @@ const Container = styled.div<StyledProps>`
   padding-left: ${({ padding }) => (typeof padding === "object" ? spaces[padding.left] : "")};
 
   border: ${({ border }) =>
-    border && "width" in border ? `${border?.width} ${border?.style} ${getColorToken(border?.color)}` : ""};
+    border && "width" in border ? `${border?.width} ${border?.style} ${getCoreColorToken(border?.color)}` : ""};
   border-radius: ${({ border }) => (border && "radius" in border ? `${border?.radius}` : "")};
   border-top: ${({ border }) =>
     border && "top" in border
-      ? `${border?.top?.width} ${border?.top?.style} ${getColorToken(border?.top?.color)}`
+      ? `${border?.top?.width} ${border?.top?.style} ${getCoreColorToken(border?.top?.color)}`
       : ""};
   border-top-right-radius: ${({ border }) => (border && "top" in border ? `${border?.top?.rightRadius}` : "")};
   border-top-left-radius: ${({ border }) => (border && "top" in border ? `${border?.top?.leftRadius}` : "")};
   border-right: ${({ border }) =>
     border && "right" in border
-      ? `${border?.right?.width} ${border?.right?.style} ${getColorToken(border?.right?.color)}`
+      ? `${border?.right?.width} ${border?.right?.style} ${getCoreColorToken(border?.right?.color)}`
       : ""};
   border-bottom: ${({ border }) =>
     border && "bottom" in border
-      ? `${border?.bottom?.width} ${border?.bottom?.style} ${getColorToken(border?.bottom?.color)}`
+      ? `${border?.bottom?.width} ${border?.bottom?.style} ${getCoreColorToken(border?.bottom?.color)}`
       : ""};
   border-bottom-right-radius: ${({ border }) => (border && "bottom" in border ? `${border?.bottom?.rightRadius}` : "")};
   border-bottom-left-radius: ${({ border }) => (border && "bottom" in border ? `${border?.bottom?.leftRadius}` : "")};
   border-left: ${({ border }) =>
     border && "left" in border
-      ? `${border?.left?.width} ${border?.left?.style} ${getColorToken(border?.left?.color)}`
+      ? `${border?.left?.width} ${border?.left?.style} ${getCoreColorToken(border?.left?.color)}`
       : ""};
 
   overflow: ${({ $overflow }) => (typeof $overflow !== "object" ? $overflow : "")};
@@ -86,7 +86,7 @@ const Container = styled.div<StyledProps>`
 
   background-attachment: ${({ background }) => background?.attachment};
   background-clip: ${({ background }) => background?.clip};
-  background-color: ${({ background }) => getColorToken(background?.color)};
+  background-color: ${({ background }) => getCoreColorToken(background?.color)};
   background-image: ${({ background }) => background?.image};
   background-origin: ${({ background }) => background?.origin};
   background-position: ${({ background }) => background?.position};
