@@ -21,36 +21,16 @@ const backgroundTypeString = `{
     repeat?: string;
     size?: string;
 }`;
-const borderTypeString = `{
-  width?: string;
-  style?: LineStyleValues;
-  color?: ColorTokens;
-  radius?: string;
-} | {
-  top?: {
+const borderTypeString = `BorderProperties | {
+  top?: BorderProperties;
+  right?: BorderProperties;
+  bottom?: BorderProperties;
+  left?: BorderProperties;
+}`;
+const borderPropertiesTypeString = `{
     width?: string;
     style?: LineStyleValues;
     color?: CoreColorTokens;
-    rightRadius?: string;
-    leftRadius?: string;
-  };
-  right?: {
-    width?: string;
-    style?: LineStyleValues;
-    color?: CoreColorTokens;
-  };
-  bottom?: {
-    width?: string;
-    style?: LineStyleValues;
-    color?: CoreColorTokens;
-    rightRadius?: string;
-    leftRadius?: string;
-  };
-  left?: {
-    width?: string;
-    style?: LineStyleValues;
-    color?: CoreColorTokens;
-  };
 }`;
 const insetTypeString = `{
     top?: string;
@@ -98,7 +78,14 @@ const sections = [
             <DxcFlex direction="column" gap="0.5rem" alignItems="baseline">
               <ExtendedTableCode>{borderTypeString}</ExtendedTableCode>
               <p>
-                being <Code>LineStyleValues</Code> an enum with the following
+                being <Code>BorderProperties</Code> an object with the following
+                properties:
+              </p>
+              <ExtendedTableCode>
+                {borderPropertiesTypeString}
+              </ExtendedTableCode>
+              <p>
+                and <Code>LineStyleValues</Code> an enum with the following
                 possible values:
               </p>
               <TableCode>
@@ -110,6 +97,23 @@ const sections = [
           <td>
             Based on the CSS property <Code>border</Code> allows configuring all
             properties related to the border of a container.
+          </td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>borderRadius</td>
+          <td>
+            <TableCode>string</TableCode>
+          </td>
+          <td>
+            Sets the <Code>border-radius</Code> CSS property. See{" "}
+            <DxcLink
+              newWindow
+              href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius"
+            >
+              MDN
+            </DxcLink>{" "}
+            for further information.
           </td>
           <td>-</td>
         </tr>
