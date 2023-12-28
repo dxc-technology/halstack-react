@@ -28,28 +28,21 @@ type Background = {
   size?: string;
 };
 
-type BorderGenericProperties = {
+type BorderProperties = {
   width?: string;
   style?: "none" | "dotted" | "dashed" | "solid" | "double" | "groove" | "ridge" | "inset" | "outset";
   color?: CoreColorTokens;
 };
-type BorderProperties = BorderGenericProperties & {
-  radius?: string;
-};
-type TopBottomBorder = BorderGenericProperties & {
-  rightRadius?: string;
-  leftRadius?: string;
-};
 type Border =
   | BorderProperties
   | {
-      top?: TopBottomBorder;
-      right?: BorderGenericProperties;
-      bottom?: TopBottomBorder;
-      left?: BorderGenericProperties;
+      top?: BorderProperties;
+      right?: BorderProperties;
+      bottom?: BorderProperties;
+      left?: BorderProperties;
     };
 
-type Outline = BorderGenericProperties & {
+type Outline = BorderProperties & {
   offset?: string;
 };
 
@@ -67,6 +60,7 @@ type Props = {
   minHeight?: string;
   padding?: Space;
   border?: Border;
+  borderRadius?: string;
   margin?: Space;
   overflow?: Overflow;
   position?: "static" | "relative" | "absolute" | "fixed" | "sticky";

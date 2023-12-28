@@ -58,13 +58,10 @@ const Container = styled.div<StyledProps>`
 
   border: ${({ border }) =>
     border && "width" in border ? `${border?.width} ${border?.style} ${getCoreColorToken(border?.color)}` : ""};
-  border-radius: ${({ border }) => (border && "radius" in border ? `${border?.radius}` : "")};
   border-top: ${({ border }) =>
     border && "top" in border
       ? `${border?.top?.width} ${border?.top?.style} ${getCoreColorToken(border?.top?.color)}`
       : ""};
-  border-top-right-radius: ${({ border }) => (border && "top" in border ? `${border?.top?.rightRadius}` : "")};
-  border-top-left-radius: ${({ border }) => (border && "top" in border ? `${border?.top?.leftRadius}` : "")};
   border-right: ${({ border }) =>
     border && "right" in border
       ? `${border?.right?.width} ${border?.right?.style} ${getCoreColorToken(border?.right?.color)}`
@@ -73,12 +70,11 @@ const Container = styled.div<StyledProps>`
     border && "bottom" in border
       ? `${border?.bottom?.width} ${border?.bottom?.style} ${getCoreColorToken(border?.bottom?.color)}`
       : ""};
-  border-bottom-right-radius: ${({ border }) => (border && "bottom" in border ? `${border?.bottom?.rightRadius}` : "")};
-  border-bottom-left-radius: ${({ border }) => (border && "bottom" in border ? `${border?.bottom?.leftRadius}` : "")};
   border-left: ${({ border }) =>
     border && "left" in border
       ? `${border?.left?.width} ${border?.left?.style} ${getCoreColorToken(border?.left?.color)}`
       : ""};
+  border-radius: ${({ borderRadius }) => borderRadius};
 
   overflow: ${({ $overflow }) => (typeof $overflow !== "object" ? $overflow : "")};
   overflow-x: ${({ $overflow }) => (typeof $overflow === "object" ? `${$overflow?.x}` : "")};
