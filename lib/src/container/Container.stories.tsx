@@ -24,10 +24,9 @@ export const Chromatic = () => (
             width: "thick",
             color: "color_purple_600",
             style: "solid",
-            leftRadius: "0.25rem",
-            rightRadius: "0.25rem",
           },
         }}
+        borderRadius="0 0 0.25rem 0.25rem"
         padding="medium"
         margin="large"
       >
@@ -52,7 +51,8 @@ export const Chromatic = () => (
       <DxcContainer
         position="relative"
         width="fit-content"
-        border={{ color: "color_purple_400", width: "2px", style: "dashed", radius: "4px" }}
+        border={{ color: "color_purple_400", width: "2px", style: "dashed" }}
+        borderRadius="0.25rem"
         margin={{ bottom: "xxlarge" }}
       >
         <DxcContainer display="inline-block" background={{ color: "color_purple_400" }} width="50px" height="50px">
@@ -78,7 +78,8 @@ export const Chromatic = () => (
     <ExampleContainer>
       <DxcContainer
         width="fit-content"
-        border={{ color: "color_purple_400", width: "2px", style: "dashed", radius: "4px" }}
+        border={{ color: "color_purple_400", width: "2px", style: "dashed" }}
+        borderRadius="0.25rem"
       >
         <DxcContainer
           background={{ color: "color_purple_400" }}
@@ -146,7 +147,6 @@ export const Chromatic = () => (
         padding="medium"
         outline={{ width: "1px", style: "solid", color: "color_black" }}
         boxShadow="10px 5px 5px #fe0123"
-        opacity="0.75"
       >
         <p style={{ margin: 0 }}>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisis, sapien vitae aliquam lacinia, nisl
@@ -186,7 +186,8 @@ const Listbox = ({ suggestions = [] }: { suggestions: string[] }): JSX.Element =
   <DxcContainer
     boxSizing="border-box"
     boxShadow="0 4px 6px -1px rgba(0, 0, 0, 0.1)"
-    border={{ width: "1px", style: "solid", color: "color_grey_400", radius: "0.25rem" }}
+    border={{ width: "1px", style: "solid", color: "color_grey_400" }}
+    borderRadius="0.25rem"
     background={{ color: "color_white" }}
     padding={{ top: "xxsmall", bottom: "xxsmall" }}
     maxHeight="304px"
