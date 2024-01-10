@@ -1,6 +1,8 @@
-const CORE_TOKENS = {
-  inherit: "inherit",
-
+/**
+ * Halstack Color Palette 
+ * @link https://developer.dxc.com/halstack/next/principles/color/usage/#color-tokens-core-color-tokens
+ */
+const CoreColorTokens = {
   // Color
   // Absolutes
   color_black: "#000000",
@@ -102,6 +104,37 @@ const CORE_TOKENS = {
   color_orange_700: "#c26c0a",
   color_orange_800: "#915108",
   color_orange_900: "#613605",
+};
+export const getCoreColorToken = (key: CoreColorTokens) => CoreColorTokens[key];
+export type CoreColorTokens = keyof typeof CoreColorTokens;
+
+/**
+ * Halstack Spacing Principles 
+ * @link https://developer.dxc.com/halstack/next/principles/spacing/
+ */
+const SpacingTokens = {
+  spacing_0: "0rem",
+  spacing_2: "0.125rem",
+  spacing_4: "0.25rem",
+  spacing_8: "0.5rem",
+  spacing_12: "0.75rem",
+  spacing_16: "1rem",
+  spacing_24: "1.5rem",
+  spacing_32: "2rem",
+  spacing_40: "2.5rem",
+  spacing_48: "3rem",
+  spacing_56: "3.5rem",
+  spacing_64: "4rem",
+  spacing_80: "5rem",
+  spacing_96: "6rem",
+  spacing_112: "7rem",
+}
+
+const CoreTokens = {
+  ...CoreColorTokens,
+  ...SpacingTokens,
+
+  inherit: "inherit",
 
   // Typography
   type_sans: "Open Sans, sans-serif",
@@ -143,23 +176,6 @@ const CORE_TOKENS = {
   type_leading_loose_01: "1.715em",
   type_leading_loose_02: "2em",
 
-  // Spacing
-  spacing_0: "0rem",
-  spacing_2: "0.125rem",
-  spacing_4: "0.25rem",
-  spacing_8: "0.5rem",
-  spacing_12: "0.75rem",
-  spacing_16: "1rem",
-  spacing_24: "1.5rem",
-  spacing_32: "2rem",
-  spacing_40: "2.5rem",
-  spacing_48: "3rem",
-  spacing_56: "3.5rem",
-  spacing_64: "4rem",
-  spacing_80: "5rem",
-  spacing_96: "6rem",
-  spacing_112: "7rem",
-
   // Border
   border_width_0: "0px",
   border_width_1: "1px",
@@ -174,4 +190,4 @@ const CORE_TOKENS = {
   border_none: "none",
 };
 
-export default CORE_TOKENS;
+export default CoreTokens;
