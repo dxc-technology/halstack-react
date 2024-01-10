@@ -70,7 +70,7 @@ const sections = [
                     <td>
                       <Code>font-style</Code>
                     </td>
-                    <td>regular</td>
+                    <td>normal</td>
                     <td>
                       <Code>font-normal</Code>
                     </td>
@@ -80,7 +80,9 @@ const sections = [
                       <Code>text-transform</Code>
                     </td>
                     <td>initial</td>
-                    <td></td>
+                    <td>
+                      <Code>font-transform-initial</Code>
+                    </td>
                   </tr>
                   <tr>
                     <td>
@@ -138,7 +140,7 @@ const sections = [
                     <td>
                       <Code>font-style</Code>
                     </td>
-                    <td>regular</td>
+                    <td>normal</td>
                     <td>
                       <Code>font-normal</Code>
                     </td>
@@ -148,7 +150,9 @@ const sections = [
                       <Code>text-transform</Code>
                     </td>
                     <td>initial</td>
-                    <td></td>
+                    <td>
+                      <Code>font-transform-initial</Code>
+                    </td>
                   </tr>
                   <tr>
                     <td>
@@ -206,7 +210,7 @@ const sections = [
                     <td>
                       <Code>font-style</Code>
                     </td>
-                    <td>regular</td>
+                    <td>normal</td>
                     <td>
                       <Code>font-normal</Code>
                     </td>
@@ -216,7 +220,9 @@ const sections = [
                       <Code>text-transform</Code>
                     </td>
                     <td>initial</td>
-                    <td></td>
+                    <td>
+                      <Code>font-transform-initial</Code>
+                    </td>
                   </tr>
                   <tr>
                     <td>
@@ -274,7 +280,7 @@ const sections = [
                     <td>
                       <Code>font-style</Code>
                     </td>
-                    <td>regular</td>
+                    <td>normal</td>
                     <td>
                       <Code>font-normal</Code>
                     </td>
@@ -284,7 +290,9 @@ const sections = [
                       <Code>text-transform</Code>
                     </td>
                     <td>initial</td>
-                    <td></td>
+                    <td>
+                      <Code>font-transform-initial</Code>
+                    </td>
                   </tr>
                   <tr>
                     <td>
@@ -342,7 +350,7 @@ const sections = [
                     <td>
                       <Code>font-style</Code>
                     </td>
-                    <td>regular</td>
+                    <td>normal</td>
                     <td>
                       <Code>font-normal</Code>
                     </td>
@@ -352,7 +360,9 @@ const sections = [
                       <Code>text-transform</Code>
                     </td>
                     <td>initial</td>
-                    <td></td>
+                    <td>
+                      <Code>font-transform-initial</Code>
+                    </td>
                   </tr>
                   <tr>
                     <td>
