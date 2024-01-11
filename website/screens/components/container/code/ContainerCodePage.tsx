@@ -10,6 +10,9 @@ import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import StatusTag from "@/common/StatusTag";
 import TableCode, { ExtendedTableCode } from "@/common/TableCode";
+import Example from "@/common/example/Example";
+import basicUsage from "./examples/basicUsage";
+import listbox from "./examples/listbox";
 
 const backgroundTypeString = `{
     attachment?: string;
@@ -449,12 +452,16 @@ const sections = [
   },
   {
     title: "Examples",
-    content: (
-      <DxcParagraph>
-        Examples section is currently under development.
-      </DxcParagraph>
-    ),
-    subSections: [],
+    subSections: [
+      {
+        title: "Basic Usage",
+        content: <Example example={basicUsage} defaultIsVisible />,
+      },
+      {
+        title: "Building a listbox",
+        content: <Example example={listbox} defaultIsVisible />,
+      },
+    ],
   },
 ];
 

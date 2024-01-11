@@ -28,7 +28,7 @@ type Background = {
   size?: string;
 };
 
-type BorderProperties = {
+export type BorderProperties = {
   width?: string;
   style?: "none" | "dotted" | "dashed" | "solid" | "double" | "groove" | "ridge" | "inset" | "outset";
   color?: CoreColorTokens;

@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import ContainerPropsType, { StyledProps } from "./types";
+import ContainerPropsType, { StyledProps, BorderProperties } from "./types";
 import { getCoreColorToken } from "../common/coreTokens";
 import { BackgroundColorProvider } from "../BackgroundColorContext";
 
@@ -24,6 +24,11 @@ const DxcContainer = ({ display, width, height, overflow, ...props }: ContainerP
   </BackgroundColorProvider>
 );
 
+const getBorderStyles = (direction: "top" | "bottom" | "left" | "right", borderProperties: BorderProperties) =>
+  `border-${direction}: ${borderProperties?.width ?? ""} ${borderProperties?.style ?? ""} ${
+    getCoreColorToken(borderProperties?.color) ?? ""
+  }`;
+
 const Container = styled.div<StyledProps>`
   box-sizing: ${({ boxSizing }) => boxSizing};
   display: ${({ $display }) => $display};
@@ -41,44 +46,6 @@ const Container = styled.div<StyledProps>`
   float: ${({ float }) => float};
   z-index: ${({ zIndex }) => zIndex};
   box-shadow: ${({ boxShadow }) => boxShadow};
-  outline: ${({ outline }) => `${outline?.width} ${outline?.style} ${getCoreColorToken(outline?.color)}`};
-  outline-offset: ${({ outline }) => outline?.offset};
-
-  margin: ${({ margin }) => (typeof margin === "string" ? `${spaces[margin]}` : "")};
-  margin-top: ${({ margin }) => (typeof margin === "object" ? spaces[margin.top] : "")};
-  margin-right: ${({ margin }) => (typeof margin === "object" ? spaces[margin.right] : "")};
-  margin-bottom: ${({ margin }) => (typeof margin === "object" ? spaces[margin.bottom] : "")};
-  margin-left: ${({ margin }) => (typeof margin === "object" ? spaces[margin.left] : "")};
-
-  padding: ${({ padding }) => (typeof padding === "string" ? `${spaces[padding]}` : "")};
-  padding-top: ${({ padding }) => (typeof padding === "object" ? spaces[padding.top] : "")};
-  padding-right: ${({ padding }) => (typeof padding === "object" ? spaces[padding.right] : "")};
-  padding-bottom: ${({ padding }) => (typeof padding === "object" ? spaces[padding.bottom] : "")};
-  padding-left: ${({ padding }) => (typeof padding === "object" ? spaces[padding.left] : "")};
-
-  border: ${({ border }) =>
-    border && "width" in border ? `${border?.width} ${border?.style} ${getCoreColorToken(border?.color)}` : ""};
-  border-top: ${({ border }) =>
-    border && "top" in border
-      ? `${border?.top?.width} ${border?.top?.style} ${getCoreColorToken(border?.top?.color)}`
-      : ""};
-  border-right: ${({ border }) =>
-    border && "right" in border
-      ? `${border?.right?.width} ${border?.right?.style} ${getCoreColorToken(border?.right?.color)}`
-      : ""};
-  border-bottom: ${({ border }) =>
-    border && "bottom" in border
-      ? `${border?.bottom?.width} ${border?.bottom?.style} ${getCoreColorToken(border?.bottom?.color)}`
-      : ""};
-  border-left: ${({ border }) =>
-    border && "left" in border
-      ? `${border?.left?.width} ${border?.left?.style} ${getCoreColorToken(border?.left?.color)}`
-      : ""};
-  border-radius: ${({ borderRadius }) => borderRadius};
-
-  overflow: ${({ $overflow }) => (typeof $overflow !== "object" ? $overflow : "")};
-  overflow-x: ${({ $overflow }) => (typeof $overflow === "object" ? `${$overflow?.x}` : "")};
-  overflow-y: ${({ $overflow }) => (typeof $overflow === "object" ? `${$overflow?.y}` : "")};
 
   background-attachment: ${({ background }) => background?.attachment};
   background-clip: ${({ background }) => background?.clip};
@@ -88,6 +55,43 @@ const Container = styled.div<StyledProps>`
   background-position: ${({ background }) => background?.position};
   background-repeat: ${({ background }) => background?.repeat};
   background-size: ${({ background }) => background?.size};
+
+  border-radius: ${({ borderRadius }) => borderRadius};
+  border-width: ${({ border }) => (border && "width" in border ? `${border?.width}` : "")};
+  border-style: ${({ border }) => (border && "style" in border ? `${border?.style}` : "")};
+  border-width: ${({ border }) => (border && "color" in border ? `${getCoreColorToken(border?.color)}` : "")};
+  ${({ border }) => {
+    if (border != null)
+      return "top" in border
+        ? getBorderStyles("top", border.top)
+        : "right" in border
+        ? getBorderStyles("right", border.right)
+        : "left" in border
+        ? getBorderStyles("left", border.left)
+        : "bottom" in border
+        ? getBorderStyles("bottom", border.bottom)
+        : "";
+  }};
+
+  margin: ${({ margin }) => (typeof margin === "string" ? spaces[margin] : "")};
+  margin-top: ${({ margin }) => (typeof margin === "object" ? spaces[margin.top] : "")};
+  margin-right: ${({ margin }) => (typeof margin === "object" ? spaces[margin.right] : "")};
+  margin-bottom: ${({ margin }) => (typeof margin === "object" ? spaces[margin.bottom] : "")};
+  margin-left: ${({ margin }) => (typeof margin === "object" ? spaces[margin.left] : "")};
+
+  outline: ${({ outline }) =>
+    `${outline?.width ?? ""} ${outline?.style ?? ""} ${getCoreColorToken(outline?.color) ?? ""}`};
+  outline-offset: ${({ outline }) => outline?.offset};
+
+  overflow: ${({ $overflow }) => (typeof $overflow === "string" ? $overflow : "")};
+  overflow-x: ${({ $overflow }) => (typeof $overflow === "object" ? `${$overflow?.x}` : "")};
+  overflow-y: ${({ $overflow }) => (typeof $overflow === "object" ? `${$overflow?.y}` : "")};
+
+  padding: ${({ padding }) => (typeof padding === "string" ? spaces[padding] : "")};
+  padding-top: ${({ padding }) => (typeof padding === "object" ? spaces[padding.top] : "")};
+  padding-right: ${({ padding }) => (typeof padding === "object" ? spaces[padding.right] : "")};
+  padding-bottom: ${({ padding }) => (typeof padding === "object" ? spaces[padding.bottom] : "")};
+  padding-left: ${({ padding }) => (typeof padding === "object" ? spaces[padding.left] : "")};
 `;
 
 export default DxcContainer;

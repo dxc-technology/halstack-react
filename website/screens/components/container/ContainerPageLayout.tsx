@@ -9,7 +9,10 @@ import TabsPageHeading from "@/common/TabsPageLayout";
 import ComponentHeading from "@/common/ComponentHeading";
 
 const containerPageHeading = ({ children }: { children: React.ReactNode }) => {
-  const tabs = [{ label: "Code", path: "/components/container" }];
+  const tabs = [
+    { label: "Code", path: "/components/container" },
+    { label: "Usage", path: "/components/container/usage" },
+  ];
 
   return (
     <DxcFlex direction="column" gap="3rem">

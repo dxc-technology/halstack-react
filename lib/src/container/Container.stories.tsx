@@ -178,6 +178,15 @@ export const Chromatic = () => (
       <ExampleContainer>
         <Listbox suggestions={["Option 1", "Option 2", "Option 3", "Option 4", "Option 5"]} />
       </ExampleContainer>
+      <Title title="Border and outline" level={4} />
+      <ExampleContainer>
+        <DxcContainer
+          outline={{ color: "color_blue_400", style: "solid", offset: "2px" }}
+          border={{ top: { style: "solid" } }}
+        >
+          Example text
+        </DxcContainer>
+      </ExampleContainer>
     </ExampleContainer>
   </>
 );
