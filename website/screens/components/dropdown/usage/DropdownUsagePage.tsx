@@ -16,7 +16,7 @@ const sections = [
       <>
         <DxcParagraph>
           Dropdowns have a similar look and behavior to select components, the
-          the difference is that while select is only to collect user's data
+          difference is that while select is only to collect user's data
           into a form, dropdown can be used in a variety of scenarios.
         </DxcParagraph>
         <DxcBulletedList>
