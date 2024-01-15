@@ -10,7 +10,7 @@
   "dependencies": {
     "@dxc-technology/halstack-react": "next",
     "@radix-ui/react-popover": "^1.0.7",
-    "@types/styled-components": "^5.1.18",
+    "@types/styled-components": "5.1.29",
     "axios": "^0.27.2",
     "cross-env": "^7.0.3",
     "next": "14.0.3",
