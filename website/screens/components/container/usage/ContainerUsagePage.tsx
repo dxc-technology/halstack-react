@@ -85,10 +85,10 @@ const sections = [
         content: (
           <>
             <DxcParagraph>
-              Boxes have an inner display type and an outer display type. The
-              inner display type defines the type of formatting context that an
-              element participates in. The outer display type defines the type
-              of box used for an element.
+              In general, you can set various values for the display type using
+              the <Code>display</Code> property. Before using each of them, it
+              is crucial to comprehend their individual characteristics and
+              behaviors.
             </DxcParagraph>
           </>
         ),
@@ -126,9 +126,9 @@ const sections = [
                 </DxcBulletedList>
                 <DxcParagraph>
                   The inline elements are formatted visually as inline elements
-                  (like <Code>span</Code>). They do not start on a new line and
-                  only take up as much width as necessary. Their main
-                  characteristics are:
+                  (like <Code>span</Code> or <Code>a</Code>). They do not start
+                  on a new line and only take up as much width as necessary.
+                  Their main characteristics are:
                 </DxcParagraph>
                 <DxcBulletedList>
                   <DxcBulletedList.Item>
@@ -143,11 +143,18 @@ const sections = [
                     content.
                   </DxcBulletedList.Item>
                   <DxcBulletedList.Item>
-                    Padding, margins, and borders on the left and right sides
-                    will take effect, resulting in the displacement of adjacent
-                    inline boxes away from the current box.
+                    When padding, margins, and borders are applied to the left
+                    and right sides, they cause the displacement of nearby
+                    inline boxes, influencing their position relative to the
+                    current box.
                   </DxcBulletedList.Item>
                 </DxcBulletedList>
+                <DxcParagraph>
+                  The <strong>Container</strong> component allows you to change
+                  this type of display, so use it carefully and try to fully
+                  understand its connotations before applying one value or
+                  another.
+                </DxcParagraph>
               </>
             ),
           },
@@ -156,8 +163,8 @@ const sections = [
             content: (
               <>
                 <DxcParagraph>
-                  Boxes also feature an inherent display type that determines
-                  the arrangement of elements contained within the box. In the
+                  Boxes also feature an inner display type that determines the
+                  arrangement of elements contained within the box. In the
                   absence of specific instructions, the default behavior
                   involves arranging elements inside a box in the normal flow,
                   functioning either as block or inline boxes.
@@ -171,7 +178,7 @@ const sections = [
                 </DxcParagraph>
                 <DxcParagraph>
                   To change the inner display type, you must use other more
-                  semantic components of Halstack, such as{" "}
+                  semantic components of Halstack, such as the{" "}
                   <Link href="/components/flex/" passHref legacyBehavior>
                     <DxcLink>Flex</DxcLink>
                   </Link>{" "}
@@ -191,9 +198,10 @@ const sections = [
         content: (
           <>
             <DxcParagraph>
-              The CSS box model is essentially a box that wraps around every
-              HTML element. It consists of: margins, borders, padding, and the
-              actual content. The image below illustrates the box model:
+              The CSS box model serves as a container enveloping each HTML
+              element. It comprises four distinct layers: margins, borders,
+              padding, and the actual content. The illustration below visually
+              delineates each of these layers:
             </DxcParagraph>
             <Figure caption="A diagram with the layers of a box">
               <Image src={boxModel} alt="A diagram with the layers of a box" />
