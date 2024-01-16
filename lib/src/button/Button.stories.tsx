@@ -166,6 +166,38 @@ export const Chromatic = () => (
         icon="https://www.freepnglogos.com/uploads/facebook-logo-design-1.png"
       />
     </ExampleContainer>
+    <Title title="Error" theme="light" level={2} />
+    <ExampleContainer>
+      <Title title="Enabled" theme="light" level={4} />
+      <DxcButton mode="error" label="Error enabled" />
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-hover">
+      <Title title="Hovered" theme="light" level={4} />
+      <DxcButton mode="error" label="Error hovered" />
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-focus">
+      <Title title="Focused" theme="light" level={4} />
+      <DxcButton mode="error" label="Error focused" />
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-active">
+      <Title title="Actived" theme="light" level={4} />
+      <DxcButton mode="error" label="Error actived" />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Disabled" theme="light" level={4} />
+      <DxcButton mode="error" label="Error disabled" disabled icon={iconSVG} />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="With icon" theme="light" level={4} />
+      <DxcButton label="Error" mode="error" icon={iconSVG} />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Only icon (image)" theme="light" level={4} />
+      <DxcButton
+        mode="error"
+        icon="https://www.freepnglogos.com/uploads/facebook-logo-design-1.png"
+      />
+    </ExampleContainer>
     <Title title="Sizes" theme="light" level={2} />
     <ExampleContainer>
       <Title title="Small size" theme="light" level={4} />
@@ -338,6 +370,31 @@ export const Chromatic = () => (
       <Title title="Disabled" theme="light" level={4} />
       <HalstackProvider theme={opinionatedTheme}>
         <DxcButton mode="text" label="Text disabled" icon={iconSVG} disabled />
+      </HalstackProvider>
+    </ExampleContainer>
+    <Title title="Error" theme="light" level={3} />
+    <ExampleContainer>
+      <Title title="Enabled" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcButton mode="error" label="Error" icon={iconSVG} />
+      </HalstackProvider>
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-hover">
+      <Title title="Hovered" theme="light" level={4} />
+      <DxcButton mode="error" label="Error hovered" icon={iconSVG} />
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-focus">
+      <Title title="Focused" theme="light" level={4} />
+      <DxcButton mode="error" label="Error focused" icon={iconSVG} />
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-active">
+      <Title title="Actived" theme="light" level={4} />
+      <DxcButton mode="error" label="Error actived" icon={iconSVG} />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Disabled" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcButton mode="error" label="Error disabled" icon={iconSVG} disabled />
       </HalstackProvider>
     </ExampleContainer>
   </>

@@ -33,7 +33,7 @@ const DxcButton = ({
         tabIndex={disabled ? -1 : tabIndex}
         title={title}
         type={type}
-        $mode={mode !== "primary" && mode !== "secondary" && mode !== "text" ? "primary" : mode}
+        $mode={mode !== "primary" && mode !== "secondary" && mode !== "text" && mode !== "error" ? "primary" : mode}
         hasLabel={label ? true : false}
         hasIcon={icon ? true : false}
         iconPosition={iconPosition}
@@ -69,6 +69,8 @@ const getButtonStyles = (props) => {
         ? props.theme.primaryBorderRadius
         : $mode === "secondary"
         ? props.theme.secondaryBorderRadius
+        : $mode === "error"
+        ? props.theme.errorBorderRadius
         : props.theme.textBorderRadius
     };
     border-width: ${
@@ -83,6 +85,8 @@ const getButtonStyles = (props) => {
         ? props.theme.primaryBorderStyle
         : $mode === "secondary"
         ? props.theme.secondaryBorderStyle
+        : $mode === "error"
+        ? props.theme.errorBorderStyle
         : props.theme.textBorderStyle
     };
     font-family: ${
@@ -90,6 +94,8 @@ const getButtonStyles = (props) => {
         ? props.theme.primaryFontFamily
         : $mode === "secondary"
         ? props.theme.secondaryFontFamily
+        : $mode === "error"
+        ? props.theme.errorFontFamily
         : props.theme.textFontFamily
     };
     font-size: ${
@@ -97,6 +103,8 @@ const getButtonStyles = (props) => {
         ? props.theme.primaryFontSize
         : $mode === "secondary"
         ? props.theme.secondaryFontSize
+        : $mode === "error"
+        ? props.theme.errorFontSize
         : props.theme.textFontSize
     };
     font-weight: ${
@@ -104,6 +112,8 @@ const getButtonStyles = (props) => {
         ? props.theme.primaryFontWeight
         : $mode === "secondary"
         ? props.theme.secondaryFontWeight
+        : $mode === "error"
+        ? props.theme.errorFontWeight
         : props.theme.textFontWeight
     };
     background-color: ${
@@ -115,6 +125,10 @@ const getButtonStyles = (props) => {
         ? backgroundType === "dark"
           ? props.theme.secondaryBackgroundColorOnDark
           : props.theme.secondaryBackgroundColor
+        : $mode === "error"
+        ? backgroundType === "dark"
+          ? props.theme.errorBackgroundColorOnDark
+          : props.theme.errorBackgroundColor
         : backgroundType === "dark"
         ? props.theme.textBackgroundColorOnDark
         : props.theme.textBackgroundColor
@@ -128,6 +142,10 @@ const getButtonStyles = (props) => {
         ? backgroundType === "dark"
           ? props.theme.secondaryFontColorOnDark
           : props.theme.secondaryFontColor
+        : $mode === "error"
+        ? backgroundType === "dark"
+          ? props.theme.errorFontColorOnDark
+          : props.theme.errorFontColor
         : backgroundType === "dark"
         ? props.theme.textFontColorOnDark
         : props.theme.textFontColor
@@ -149,6 +167,10 @@ const getButtonStyles = (props) => {
           ? backgroundType === "dark"
             ? props.theme.secondaryHoverBackgroundColorOnDark
             : props.theme.secondaryHoverBackgroundColor
+          : $mode === "error"
+          ? backgroundType === "dark"
+            ? props.theme.errorHoverBackgroundColorOnDark
+            : props.theme.errorHoverBackgroundColor
           : backgroundType === "dark"
           ? props.theme.textHoverBackgroundColorOnDark
           : props.theme.textHoverBackgroundColor
@@ -174,6 +196,10 @@ const getButtonStyles = (props) => {
           ? backgroundType === "dark"
             ? props.theme.secondaryActiveBackgroundColorOnDark
             : props.theme.secondaryActiveBackgroundColor
+          : $mode === "error"
+          ? backgroundType === "dark"
+            ? props.theme.errorActiveBackgroundColorOnDark
+            : props.theme.errorActiveBackgroundColor
           : backgroundType === "dark"
           ? props.theme.textActiveBackgroundColorOnDark
           : props.theme.textActiveBackgroundColor
@@ -204,6 +230,10 @@ const getButtonStyles = (props) => {
           ? backgroundType === "dark"
             ? props.theme.secondaryDisabledBackgroundColorOnDark
             : props.theme.secondaryDisabledBackgroundColor
+          : $mode === "error"
+          ? backgroundType === "dark"
+            ? props.theme.errorDisabledBackgroundColorOnDark
+            : props.theme.errorDisabledBackgroundColor
           : backgroundType === "dark"
           ? props.theme.textDisabledBackgroundColorOnDark
           : props.theme.textDisabledBackgroundColor
@@ -217,6 +247,10 @@ const getButtonStyles = (props) => {
           ? backgroundType === "dark"
             ? props.theme.secondaryDisabledFontColorOnDark
             : props.theme.secondaryDisabledFontColor
+          : $mode === "error"
+          ? backgroundType === "dark"
+            ? props.theme.errorDisabledFontColorOnDark
+            : props.theme.errorDisabledFontColor
           : backgroundType === "dark"
           ? props.theme.textDisabledFontColorOnDark
           : props.theme.textDisabledFontColor

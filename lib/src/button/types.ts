@@ -15,7 +15,7 @@ type Props = {
   /**
    * The available button modes.
    */
-  mode?: "primary" | "secondary" | "text";
+  mode?: "primary" | "secondary" | "text" | "error";
   /**
    * If true, the component will be disabled.
    */
