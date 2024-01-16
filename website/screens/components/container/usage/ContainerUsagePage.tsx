@@ -124,6 +124,30 @@ const sections = [
                     to its content.
                   </DxcBulletedList.Item>
                 </DxcBulletedList>
+                <DxcParagraph>
+                  The inline elements are formatted visually as inline elements
+                  (like <Code>span</Code>). They do not start on a new line and
+                  only take up as much width as necessary. Their main
+                  characteristics are:
+                </DxcParagraph>
+                <DxcBulletedList>
+                  <DxcBulletedList.Item>
+                    They do not respect the width and height properties.
+                  </DxcBulletedList.Item>
+                  <DxcBulletedList.Item>
+                    Padding, margin and border will not cause other elements to
+                    be pushed away from the box.
+                  </DxcBulletedList.Item>
+                  <DxcBulletedList.Item>
+                    If width is not specified, the box will shrink to fit its
+                    content.
+                  </DxcBulletedList.Item>
+                  <DxcBulletedList.Item>
+                    Padding, margins, and borders on the left and right sides
+                    will take effect, resulting in the displacement of adjacent
+                    inline boxes away from the current box.
+                  </DxcBulletedList.Item>
+                </DxcBulletedList>
               </>
             ),
           },
