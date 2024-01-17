@@ -89,9 +89,12 @@ const DxcFileInput = React.forwardRef<RefType, FileInputPropsType>(
     };
 
     const addFile = async (selectedFiles) => {
+      const filesToAdd = await getFilesToAdd(selectedFiles);
       if (multiple) {
-        const filesToAdd = await getFilesToAdd(selectedFiles);
-        const finalFiles = [...files, ...filesToAdd];
+        const unrepeatedFilesToAdd = filesToAdd.filter(
+          (file) => !files.map((existingFile) => existingFile.file.name).includes(file.file.name)
+        );
+        const finalFiles = [...files, ...unrepeatedFilesToAdd];
         callbackFile?.(finalFiles);
       } else {
         const fileToAdd =
