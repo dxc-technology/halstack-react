@@ -349,9 +349,9 @@ const sections = [
                 </td>
                 <td>Label</td>
                 <td>
-                  <Code>font-scale-02</Code>
+                  <Code>font-scale-01</Code>
                 </td>
-                <td>14px</td>
+                <td>12px</td>
               </tr>
               <tr>
                 <td>
