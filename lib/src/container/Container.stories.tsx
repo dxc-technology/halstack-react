@@ -20,6 +20,11 @@ export const Chromatic = () => (
         height="200px"
         background={{ color: "color_purple_400" }}
         border={{
+          top: {
+            width: "2px",
+            color: "color_blue_600",
+            style: "solid",
+          },
           bottom: {
             width: "thick",
             color: "color_purple_600",

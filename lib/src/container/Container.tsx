@@ -27,7 +27,7 @@ const DxcContainer = ({ display, width, height, overflow, ...props }: ContainerP
 const getBorderStyles = (direction: "top" | "bottom" | "left" | "right", borderProperties: BorderProperties) =>
   `border-${direction}: ${borderProperties?.width ?? ""} ${borderProperties?.style ?? ""} ${
     getCoreColorToken(borderProperties?.color) ?? ""
-  }`;
+  };`;
 
 const Container = styled.div<StyledProps>`
   box-sizing: ${({ boxSizing }) => boxSizing};
@@ -60,17 +60,22 @@ const Container = styled.div<StyledProps>`
   border-width: ${({ border }) => (border && "width" in border ? `${border?.width}` : "")};
   border-style: ${({ border }) => (border && "style" in border ? `${border?.style}` : "")};
   border-width: ${({ border }) => (border && "color" in border ? `${getCoreColorToken(border?.color)}` : "")};
+
   ${({ border }) => {
-    if (border != null)
-      return "top" in border
-        ? getBorderStyles("top", border.top)
-        : "right" in border
-        ? getBorderStyles("right", border.right)
-        : "left" in border
-        ? getBorderStyles("left", border.left)
-        : "bottom" in border
-        ? getBorderStyles("bottom", border.bottom)
-        : "";
+    if (border != null) {
+      let styles = "";
+      switch (true) {
+        case "top" in border:
+          styles += getBorderStyles("top", border.top);
+        case "right" in border:
+          styles += getBorderStyles("right", border.right);
+        case "left" in border:
+          styles += getBorderStyles("left", border.left);
+        case "bottom" in border:
+          styles += getBorderStyles("bottom", border.bottom);
+      }
+      return styles;
+    }
   }};
 
   margin: ${({ margin }) => (typeof margin === "string" ? spaces[margin] : "")};
