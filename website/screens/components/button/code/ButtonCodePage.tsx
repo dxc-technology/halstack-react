@@ -34,7 +34,7 @@ const sections = [
           <tr>
             <td>mode</td>
             <td>
-              <TableCode>'primary' | 'secondary' | 'text'</TableCode>
+              <TableCode>'primary' | 'secondary' | 'text' | 'error'</TableCode>
             </td>
             <td>The available button modes.</td>
             <td>

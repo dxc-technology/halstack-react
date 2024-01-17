@@ -7,6 +7,7 @@ const code = `() => {
         <DxcButton mode="primary" label="Primary" />
         <DxcButton mode="secondary" label="Secondary" />
         <DxcButton mode="text" label="Text" />
+        <DxcButton mode="error" label="Error" />
       </DxcFlex>
     </DxcInset>
   );

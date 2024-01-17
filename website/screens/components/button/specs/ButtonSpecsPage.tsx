@@ -881,6 +881,192 @@ const sections = [
           },
         ],
       },
+      {
+        title: "Error",
+        subSections: [
+          {
+            title: "Color",
+            content: (
+              <DxcTable>
+                <thead>
+                  <tr>
+                    <th>Component token</th>
+                    <th>Element</th>
+                    <th>Core token</th>
+                    <th>Value</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <Code>errorBackgroundColor</Code>
+                    </td>
+                    <td>Button container</td>
+                    <td>
+                      <Code>color-red-700</Code>
+                    </td>
+                    <td>#d0011b</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>errorFontColor</Code>
+                    </td>
+                    <td>Label</td>
+                    <td>
+                      <Code>color-white</Code>
+                    </td>
+                    <td>#ffffff</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>errorHoverBackgroundColor</Code>
+                    </td>
+                    <td>Container fill:hover</td>
+                    <td>
+                      <Code>color-red-800</Code>
+                    </td>
+                    <td>#980115</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>errorActiveBackgroundColor</Code>
+                    </td>
+                    <td>Container fill:active</td>
+                    <td>
+                      <Code>color-red-900</Code>
+                    </td>
+                    <td>#65010e</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>errorDisabledBackgroundColor</Code>
+                    </td>
+                    <td>Container fill:disabled</td>
+                    <td>
+                      <Code>color-grey-100</Code>
+                    </td>
+                    <td>#f2f2f2</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>errorDisabledFontColor</Code>
+                    </td>
+                    <td>Label:disabled</td>
+                    <td>
+                      <Code>color-grey-500</Code>
+                    </td>
+                    <td>#999999</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>errorFocusBorderColor</Code>
+                    </td>
+                    <td>Container border:focus</td>
+                    <td>
+                      <Code>color-blue-600</Code>
+                    </td>
+                    <td>#0095ff</td>
+                  </tr>
+                </tbody>
+              </DxcTable>
+            ),
+          },
+          {
+            title: "Border",
+            content: (
+              <DxcTable>
+                <thead>
+                  <tr>
+                    <th>Component token</th>
+                    <th>Element</th>
+                    <th>Core token</th>
+                    <th>Value</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <Code>errorBorderThickness</Code>
+                    </td>
+                    <td>Container</td>
+                    <td>
+                      <Code>border-width-0</Code>
+                    </td>
+                    <td>0</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>errorBorderStyle</Code>
+                    </td>
+                    <td>Container</td>
+                    <td>
+                      <Code>border-style-none</Code>
+                    </td>
+                    <td>none</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>errorBorderRadius</Code>
+                    </td>
+                    <td>Container</td>
+                    <td>
+                      <Code>border-radius-medium</Code>
+                    </td>
+                    <td>0.25rem / 4px</td>
+                  </tr>
+                </tbody>
+              </DxcTable>
+            ),
+          },
+          {
+            title: "Typography",
+            content: (
+              <DxcTable>
+                <thead>
+                  <tr>
+                    <th>Component token</th>
+                    <th>Element</th>
+                    <th>Core token</th>
+                    <th>Value</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <Code>errorFontFamily</Code>
+                    </td>
+                    <td>Label</td>
+                    <td>
+                      <Code>font-family-sans</Code>
+                    </td>
+                    <td>&#39;Open Sans&#39;, sans-serif</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>errorFontSize</Code>
+                    </td>
+                    <td>Label</td>
+                    <td>
+                      <Code>font-scale-03</Code>
+                    </td>
+                    <td>1 rem / 16px</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>errorFontWeight</Code>
+                    </td>
+                    <td>Label</td>
+                    <td>
+                      <Code>font-regular</Code>
+                    </td>
+                    <td>400</td>
+                  </tr>
+                </tbody>
+              </DxcTable>
+            ),
+          },
+        ],
+      },
     ],
   },
   {

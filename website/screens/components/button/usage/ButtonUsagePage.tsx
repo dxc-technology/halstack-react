@@ -47,8 +47,8 @@ const sections = [
           changes according to color and border attributes.
         </DxcParagraph>
         <DxcParagraph>
-          Variants: <strong>primary</strong>, <strong>secondary</strong> and{" "}
-          <strong>text</strong>.
+          Variants: <strong>primary</strong>, <strong>secondary</strong>, <strong>text</strong> and{" "}
+          <strong>error</strong>.
         </DxcParagraph>
         <Example example={variants} />
         <DxcTable>
@@ -80,6 +80,14 @@ const sections = [
               <td>
                 For the least pronounced actions; often used in conjunction with
                 a primary button (e.g. cancel in a modal dialog).
+              </td>
+            </tr>
+            <tr>
+              <td>Error</td>
+              <td>
+              For actions that are critical, dangerous, or irreversible; error buttons
+              are designed to grab the user's attention and should be used cautiously
+              (e.g. deleting important data).
               </td>
             </tr>
           </tbody>

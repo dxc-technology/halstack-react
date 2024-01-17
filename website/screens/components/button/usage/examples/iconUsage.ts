@@ -60,6 +60,17 @@ const code = `() => {
           />
           <DxcButton mode="text" icon={icon} title="Go home" />
         </DxcFlex>
+        <DxcFlex justifyContent="space-evenly">
+          <DxcButton label="Error" mode="error" size="large" icon={icon} />
+          <DxcButton
+            label="Error"
+            mode="error"
+            size="large"
+            iconPosition="after"
+            icon={icon}
+          />
+          <DxcButton mode="error" icon={icon} title="Go home" />
+        </DxcFlex>
       </DxcFlex>
     </DxcInset>
   );
