@@ -5,7 +5,7 @@ import { spaces } from "../common/variables";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
 import DxcButton from "../button/Button";
-import FileInputPropsType, { RefType } from "./types";
+import FileInputPropsType, { FileData, RefType } from "./types";
 import FileItem from "./FileItem";
 
 const audioIcon = (
@@ -29,18 +29,18 @@ const fileIcon = (
   </svg>
 );
 
-const getFilePreview = (file) => {
+const getFilePreview = async (file: File): Promise<string | React.JSX.Element> => {
   if (file.type.includes("video")) return videoIcon;
   else if (file.type.includes("audio")) return audioIcon;
-  else if (file.type.includes("image"))
-    return new Promise((resolve) => {
+  else if (file.type.includes("image")) {
+    return new Promise<string>((resolve) => {
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = (e) => {
-        resolve(e.target.result);
+        resolve(e.target.result as string);
       };
     });
-  else return fileIcon;
+  } else return fileIcon;
 };
 
 const DxcFileInput = React.forwardRef<RefType, FileInputPropsType>(
@@ -66,35 +66,45 @@ const DxcFileInput = React.forwardRef<RefType, FileInputPropsType>(
     ref
   ): JSX.Element => {
     const [isDragging, setIsDragging] = useState(false);
-    const [files, setFiles] = useState([]);
+    const [files, setFiles] = useState<FileData[]>([]);
     const [fileInputId] = useState(`file-input-${uuidv4()}`);
 
     const colorsTheme = useTheme();
     const translatedLabels = useTranslatedLabels();
 
-    const checkFileSize = (file) => {
+    const checkFileSize = (file: File) => {
       if (file.size < minSize) return translatedLabels.fileInput.fileSizeGreaterThanErrorMessage;
       else if (file.size > maxSize) return translatedLabels.fileInput.fileSizeLessThanErrorMessage;
     };
 
-    const getFilesToAdd = async (selectedFiles) => {
+    const isFileIncluded = (file: FileData, fileList: FileData[]) => {
+      const fileListInfo = fileList.map((existingFile) => existingFile.file);
+      return fileListInfo.some(({ name, size, type, lastModified, webkitRelativePath }) =>
+        name === file.file.name &&
+        size === file.file.size &&
+        type === file.file.type &&
+        lastModified === file.file.lastModified &&
+        webkitRelativePath === file.file.webkitRelativePath
+      )
+    }
+
+    const getFilesToAdd = async (selectedFiles: File[]) => {
       const filesToAdd = await Promise.all(selectedFiles.map((selectedFile) => getFilePreview(selectedFile))).then(
-        (previews) =>
+        (previews: string[]) =>
           selectedFiles.map((file, index) => {
             const fileInfo = { file, error: checkFileSize(file), preview: previews[index] };
             return fileInfo;
           })
       );
-      return filesToAdd;
+      return filesToAdd.filter(
+        file => !isFileIncluded(file, files)
+      )
     };
 
     const addFile = async (selectedFiles) => {
       const filesToAdd = await getFilesToAdd(selectedFiles);
       if (multiple) {
-        const unrepeatedFilesToAdd = filesToAdd.filter(
-          (file) => !files.map((existingFile) => existingFile.file.name).includes(file.file.name)
-        );
-        const finalFiles = [...files, ...unrepeatedFilesToAdd];
+        const finalFiles = [...files, ...filesToAdd];
         callbackFile?.(finalFiles);
       } else {
         const fileToAdd =
@@ -160,7 +170,7 @@ const DxcFileInput = React.forwardRef<RefType, FileInputPropsType>(
                 return { ...file, preview };
               }
             })
-          );
+          ) as FileData[];
           setFiles(valueFiles);
         }
       };
