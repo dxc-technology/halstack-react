@@ -177,8 +177,8 @@ const sections = [
                   element.
                 </DxcParagraph>
                 <DxcParagraph>
-                  To change the inner display type, you must use other more
-                  semantic components of Halstack, such as the{" "}
+                  To change the inner display type, you must use other and more
+                  semantic layout components of Halstack, such as the{" "}
                   <Link href="/components/flex/" passHref legacyBehavior>
                     <DxcLink>Flex</DxcLink>
                   </Link>{" "}
