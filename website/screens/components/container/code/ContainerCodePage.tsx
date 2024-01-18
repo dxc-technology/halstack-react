@@ -13,6 +13,7 @@ import TableCode, { ExtendedTableCode } from "@/common/TableCode";
 import Example from "@/common/example/Example";
 import basicUsage from "./examples/basicUsage";
 import listbox from "./examples/listbox";
+import Link from "next/link";
 
 const backgroundTypeString = `{
     attachment?: string;
@@ -68,10 +69,29 @@ const sections = [
           <td>background</td>
           <td>
             <ExtendedTableCode>{backgroundTypeString}</ExtendedTableCode>
+            <p>
+              being <Code>CoreColorTokens</Code> the color tokens provided by
+              Halstack Design System. See our{" "}
+              <Link
+                href="/principles/color/usage/#color-tokens-core-color-tokens"
+                passHref
+                legacyBehavior
+              >
+                <DxcLink newWindow>Color palette</DxcLink>
+              </Link>{" "}
+              for further knowledge.
+            </p>
           </td>
           <td>
             Based on the CSS property <Code>background</Code> allows configuring
-            all properties related to the background of a container.
+            all properties related to the background of a container. See{" "}
+            <DxcLink
+              newWindow
+              href="https://developer.mozilla.org/en-US/docs/Web/CSS/background"
+            >
+              MDN
+            </DxcLink>{" "}
+            for further information.
           </td>
           <td>-</td>
         </tr>
@@ -459,7 +479,29 @@ const sections = [
       },
       {
         title: "Building a listbox",
-        content: <Example example={listbox} defaultIsVisible />,
+        content: (
+          <>
+            <DxcParagraph>
+              This code provides an illustration of a custom component created
+              exclusively with the <Code>DxcContainer</Code>.{" "}
+              <strong>You should not copy this code</strong>, but use instead
+              our <Code>DxcSelect</Code>.
+            </DxcParagraph>
+            <DxcParagraph>
+              It is imperative to exclusively utilize Halstack components for
+              optimal compatibility and adherence to our development standards.
+              In case you do not find one that fits your needs, please{" "}
+              <DxcLink
+                href="https://github.com/dxc-technology/halstack-react/discussions/new/choose"
+                newWindow
+              >
+                reach out to our development team
+              </DxcLink>{" "}
+              first to discuss your particular situation.
+            </DxcParagraph>
+            <Example example={listbox} defaultIsVisible />
+          </>
+        ),
       },
     ],
   },
