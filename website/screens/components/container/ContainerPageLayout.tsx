@@ -2,7 +2,6 @@ import {
   DxcParagraph,
   DxcFlex,
   DxcAlert,
-  DxcLink,
 } from "@dxc-technology/halstack-react";
 import PageHeading from "@/common/PageHeading";
 import TabsPageHeading from "@/common/TabsPageLayout";
@@ -20,18 +19,11 @@ const containerPageHeading = ({ children }: { children: React.ReactNode }) => {
         <DxcFlex direction="column" gap="2rem">
           <ComponentHeading name="Container" />
           <DxcParagraph>
-            The container component represents{" "}
-            <DxcLink
-              newWindow
-              href="https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/The_box_model"
-            >
-              the box model
-            </DxcLink>{" "}
-            inside the Halstack Design System. Is a general-purpose container
-            that allows for controlled use of our design tokens. Being generic
-            in nature can be "over-used", so it's important to consider
-            situations where more specific and expressive components could be
-            used.
+            The container component represents the box model inside the Halstack
+            Design System. Is a general-purpose container that allows for
+            controlled use of our design tokens. Being generic in nature can be
+            "over-used", so it's important to consider situations where more
+            specific and expressive components could be used.
           </DxcParagraph>
           <DxcAlert
             type="warning"
