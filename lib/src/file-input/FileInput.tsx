@@ -43,6 +43,17 @@ const getFilePreview = async (file: File): Promise<string | React.JSX.Element> =
   } else return fileIcon;
 };
 
+const isFileIncluded = (file: FileData, fileList: FileData[]) => {
+  const fileListInfo = fileList.map((existingFile) => existingFile.file);
+  return fileListInfo.some(({ name, size, type, lastModified, webkitRelativePath }) =>
+    name === file.file.name &&
+    size === file.file.size &&
+    type === file.file.type &&
+    lastModified === file.file.lastModified &&
+    webkitRelativePath === file.file.webkitRelativePath
+  )
+}
+
 const DxcFileInput = React.forwardRef<RefType, FileInputPropsType>(
   (
     {
@@ -77,17 +88,6 @@ const DxcFileInput = React.forwardRef<RefType, FileInputPropsType>(
       else if (file.size > maxSize) return translatedLabels.fileInput.fileSizeLessThanErrorMessage;
     };
 
-    const isFileIncluded = (file: FileData, fileList: FileData[]) => {
-      const fileListInfo = fileList.map((existingFile) => existingFile.file);
-      return fileListInfo.some(({ name, size, type, lastModified, webkitRelativePath }) =>
-        name === file.file.name &&
-        size === file.file.size &&
-        type === file.file.type &&
-        lastModified === file.file.lastModified &&
-        webkitRelativePath === file.file.webkitRelativePath
-      )
-    }
-
     const getFilesToAdd = async (selectedFiles: File[]) => {
       const filesToAdd = await Promise.all(selectedFiles.map((selectedFile) => getFilePreview(selectedFile))).then(
         (previews: string[]) =>
@@ -101,16 +101,10 @@ const DxcFileInput = React.forwardRef<RefType, FileInputPropsType>(
       )
     };
 
-    const addFile = async (selectedFiles) => {
-      const filesToAdd = await getFilesToAdd(selectedFiles);
-      if (multiple) {
-        const finalFiles = [...files, ...filesToAdd];
-        callbackFile?.(finalFiles);
-      } else {
-        const fileToAdd =
-          selectedFiles.length === 1 ? await getFilesToAdd(selectedFiles) : await getFilesToAdd([selectedFiles[0]]);
-        callbackFile?.(fileToAdd);
-      }
+    const addFile = async (selectedFiles: File[]) => {
+      const filesToAdd = await getFilesToAdd(multiple ? selectedFiles : selectedFiles.length === 1 ? selectedFiles : [selectedFiles[0]]);
+      const finalFiles = multiple ? [...files, ...filesToAdd] : filesToAdd;
+      callbackFile?.(finalFiles);
     };
 
     const selectFiles = (e) => {
