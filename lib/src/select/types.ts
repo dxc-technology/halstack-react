@@ -110,7 +110,7 @@ type Props = CommonProps & {
    * In that case, value will be an array of strings with each selected
    * option value.
    */
-  multiple: true;
+  multiple?: boolean;
   /**
    * Initial value of the select, only when it is uncontrolled.
    */
@@ -119,7 +119,7 @@ type Props = CommonProps & {
    * Value of the select. If undefined, the component will be uncontrolled
    * and the value will be managed internally by the component.
    */
-  value?: string[];
+  value?: string | string[];
   /**
    * This function will be called when the user selects an option.
    * An object including the current selected values and the error (if the value entered is not valid)
