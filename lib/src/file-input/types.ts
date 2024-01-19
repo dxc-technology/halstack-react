@@ -5,7 +5,7 @@ type Margin = {
   left?: Space;
   right?: Space;
 };
-type FileData = {
+export type FileData = {
   /**
    * Selected file.
    */
