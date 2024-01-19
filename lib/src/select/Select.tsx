@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useMemo, useRef, useState, useCallback, useEffect } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme";
@@ -6,26 +5,23 @@ import useTranslatedLabels from "../useTranslatedLabels";
 import { spaces } from "../common/variables";
 import { v4 as uuidv4 } from "uuid";
 import { getMargin } from "../common/utils";
-import SelectPropsType, { RefType } from "./types";
+import SelectPropsType, { Option, OptionGroup, RefType } from "./types";
 import selectIcons from "./Icons";
 import Listbox from "./Listbox";
 import * as Popover from "@radix-ui/react-popover";
 
-const groupsHaveOptions = (innerOptions) =>
-  innerOptions[0].hasOwnProperty("options")
-    ? innerOptions[0].options
-      ? innerOptions.some((groupOption) => groupOption.options.length > 0)
-      : false
-    : true;
+const isOption = (option: Option | OptionGroup): option is OptionGroup => 'options' in option;
 
-const filteredGroupsHaveOptions = (filteredOptions) =>
-  filteredOptions?.[0].options ? filteredOptions.some((groupOption) => groupOption.options?.length > 0) : true;
+const isOptionGroup = (options: Option[] | OptionGroup[]): options is OptionGroup[] => isOption(options[0]);
 
-const canOpenOptions = (options, disabled) => !disabled && options?.length > 0 && groupsHaveOptions(options);
+const groupsHaveOptions = (filteredOptions: Option[] | OptionGroup[]) =>
+  isOptionGroup(filteredOptions) ? filteredOptions.some((groupOption) => groupOption.options?.length > 0) : true;
 
-const filterOptionsBySearchValue = (options, searchValue) => {
+const canOpenOptions = (options: Option[] | OptionGroup[], disabled: boolean) => !disabled && options?.length > 0 && groupsHaveOptions(options);
+
+const filterOptionsBySearchValue = (options: Option[] | OptionGroup[], searchValue: string): Option[] | OptionGroup[] => {
   if (options?.length > 0) {
-    if (options[0].options)
+    if (isOptionGroup(options))
       return options.map((optionGroup) => {
         const group = {
           label: optionGroup.label,
@@ -39,26 +35,26 @@ const filterOptionsBySearchValue = (options, searchValue) => {
   }
 };
 
-const getLastOptionIndex = (options, filteredOptions, searchable, optional, multiple) => {
+const getLastOptionIndex = (options: Option[] | OptionGroup[], filteredOptions: Option[] | OptionGroup[], searchable: boolean, optional: boolean, multiple: boolean) => {
   let last = 0;
-  const reducer = (acc, current) => acc + current.options?.length;
+  const reducer = (acc: number, current: OptionGroup) => acc + current.options?.length;
 
   if (searchable && filteredOptions.length > 0)
-    filteredOptions[0].options ? (last = filteredOptions.reduce(reducer, 0) - 1) : (last = filteredOptions.length - 1);
+    isOptionGroup(filteredOptions) ? (last = filteredOptions.reduce(reducer, 0) - 1) : (last = filteredOptions.length - 1);
   else if (options?.length > 0)
-    options[0].options ? (last = options.reduce(reducer, 0) - 1) : (last = options.length - 1);
+    isOptionGroup(options) ? (last = options.reduce(reducer, 0) - 1) : (last = options.length - 1);
 
   return optional && !multiple ? last + 1 : last;
 };
 
-const getSelectedOption = (value, options, multiple, optional, optionalItem) => {
-  let selectedOption = multiple ? [] : {};
-  let singleSelectionIndex;
+const getSelectedOption = (value: string | string[], options: Option[] | OptionGroup[], multiple: boolean, optional: boolean, optionalItem: Option) => {
+  let selectedOption: Option | Option[] = multiple ? [] : {} as Option;
+  let singleSelectionIndex: number;
 
   if (multiple) {
     if (options?.length > 0) {
-      options.forEach((option) => {
-        if (option.options) {
+      options.forEach((option: Option | OptionGroup) => {
+        if (isOption(option)) {
           option.options.forEach((singleOption) => {
             if (value.includes(singleOption.value) && Array.isArray(selectedOption)) selectedOption.push(singleOption);
           });
@@ -71,8 +67,8 @@ const getSelectedOption = (value, options, multiple, optional, optionalItem) => 
       singleSelectionIndex = 0;
     } else if (options?.length > 0) {
       let group_index = 0;
-      options.some((option, index) => {
-        if (option.options) {
+      options.some((option: Option | OptionGroup, index: number) => {
+        if (isOption(option)) {
           option.options.some((singleOption) => {
             if (singleOption.value === value) {
               selectedOption = singleOption;
@@ -96,9 +92,9 @@ const getSelectedOption = (value, options, multiple, optional, optionalItem) => 
   };
 };
 
-const notOptionalCheck = (value, multiple, optional) => !optional && (multiple ? value.length === 0 : value === "");
+const notOptionalCheck = (value: string | string[], multiple: boolean, optional: boolean) => !optional && (multiple ? value.length === 0 : value === "");
 
-const useWidth = (target) => {
+const useWidth = (target: HTMLInputElement) => {
   const [width, setWidth] = useState(0);
 
   useEffect(() => {
@@ -151,8 +147,8 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
     const [visualFocusIndex, changeVisualFocusIndex] = useState(-1);
     const [isOpen, changeIsOpen] = useState(false);
 
-    const selectRef = useRef(null);
-    const selectSearchInputRef = useRef(null);
+    const selectRef = useRef<HTMLInputElement | null>(null);
+    const selectSearchInputRef = useRef<HTMLInputElement | null>(null);
 
     const width = useWidth(selectRef.current);
     const colorsTheme = useTheme();
@@ -179,8 +175,8 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
       }
     };
 
-    const handleSelectChangeValue = (newOption) => {
-      let newValue;
+    const handleSelectChangeValue = (newOption: Option) => {
+      let newValue: string | string[];
 
       if (multiple) {
         if ((value ?? innerValue).includes(newOption.value))
@@ -207,10 +203,10 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
         setSearchValue("");
       } else openOptions();
     };
-    const handleSelectOnFocus = (event) => {
+    const handleSelectOnFocus = (event: React.FocusEvent<HTMLInputElement>) => {
       if (!event.currentTarget.contains(event.relatedTarget)) searchable && selectSearchInputRef.current.focus();
     };
-    const handleSelectOnBlur = (event) => {
+    const handleSelectOnBlur = (event: React.FocusEvent<HTMLInputElement>) => {
       // focus leaves container (outside, not to childs)
       if (!event.currentTarget.contains(event.relatedTarget)) {
         closeOptions();
@@ -222,29 +218,29 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
           : onBlur?.({ value: currentValue });
       }
     };
-    const handleSelectOnKeyDown = (event) => {
+    const handleSelectOnKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
       switch (event.key) {
         case "Down":
         case "ArrowDown":
           event.preventDefault();
           singleSelectionIndex !== undefined &&
-          (!isOpen || (visualFocusIndex === -1 && singleSelectionIndex > -1 && singleSelectionIndex <= lastOptionIndex))
+            (!isOpen || (visualFocusIndex === -1 && singleSelectionIndex > -1 && singleSelectionIndex <= lastOptionIndex))
             ? changeVisualFocusIndex(singleSelectionIndex)
             : changeVisualFocusIndex((visualFocusIndex) => {
-                if (visualFocusIndex < lastOptionIndex) return visualFocusIndex + 1;
-                else if (visualFocusIndex === lastOptionIndex) return 0;
-              });
+              if (visualFocusIndex < lastOptionIndex) return visualFocusIndex + 1;
+              else if (visualFocusIndex === lastOptionIndex) return 0;
+            });
           openOptions();
           break;
         case "Up":
         case "ArrowUp":
           event.preventDefault();
           singleSelectionIndex !== undefined &&
-          (!isOpen || (visualFocusIndex === -1 && singleSelectionIndex > -1 && singleSelectionIndex <= lastOptionIndex))
+            (!isOpen || (visualFocusIndex === -1 && singleSelectionIndex > -1 && singleSelectionIndex <= lastOptionIndex))
             ? changeVisualFocusIndex(singleSelectionIndex)
             : changeVisualFocusIndex((visualFocusIndex) =>
-                visualFocusIndex === 0 || visualFocusIndex === -1 ? lastOptionIndex : visualFocusIndex - 1
-              );
+              visualFocusIndex === 0 || visualFocusIndex === -1 ? lastOptionIndex : visualFocusIndex - 1
+            );
           openOptions();
           break;
         case "Esc":
@@ -258,31 +254,31 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
             let accLength = optional && !multiple ? 1 : 0;
             if (searchable) {
               if (filteredOptions.length > 0) {
-                if (optional && !multiple && visualFocusIndex === 0 && filteredGroupsHaveOptions(filteredOptions))
+                if (optional && !multiple && visualFocusIndex === 0 && groupsHaveOptions(filteredOptions))
                   handleSelectChangeValue(optionalItem);
                 else
-                  filteredOptions[0].options
-                    ? filteredGroupsHaveOptions(filteredOptions) &&
-                      filteredOptions.some((groupOption) => {
-                        const groupLength = accLength + groupOption.options.length;
-                        groupLength > visualFocusIndex &&
-                          handleSelectChangeValue(groupOption.options[visualFocusIndex - accLength]);
-                        accLength = groupLength;
-                        return groupLength > visualFocusIndex;
-                      })
-                    : handleSelectChangeValue(filteredOptions[visualFocusIndex - accLength]);
-              }
-            } else {
-              if (optional && !multiple && visualFocusIndex === 0) handleSelectChangeValue(optionalItem);
-              else
-                options[0].options
-                  ? options.some((groupOption) => {
+                  isOptionGroup(filteredOptions)
+                    ? groupsHaveOptions(filteredOptions) &&
+                    filteredOptions.some((groupOption) => {
                       const groupLength = accLength + groupOption.options.length;
                       groupLength > visualFocusIndex &&
                         handleSelectChangeValue(groupOption.options[visualFocusIndex - accLength]);
                       accLength = groupLength;
                       return groupLength > visualFocusIndex;
                     })
+                    : handleSelectChangeValue(filteredOptions[visualFocusIndex - accLength]);
+              }
+            } else {
+              if (optional && !multiple && visualFocusIndex === 0) handleSelectChangeValue(optionalItem);
+              else
+                isOptionGroup(options)
+                  ? options.some((groupOption) => {
+                    const groupLength = accLength + groupOption.options.length;
+                    groupLength > visualFocusIndex &&
+                      handleSelectChangeValue(groupOption.options[visualFocusIndex - accLength]);
+                    accLength = groupLength;
+                    return groupLength > visualFocusIndex;
+                  })
                   : handleSelectChangeValue(options[visualFocusIndex - accLength]);
             }
             !multiple && closeOptions();
@@ -292,27 +288,27 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
       }
     };
 
-    const handleSearchIOnChange = (event) => {
+    const handleSearchIOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       setSearchValue(event.target.value);
       changeVisualFocusIndex(-1);
       openOptions();
     };
 
-    const handleClearOptionsActionOnClick = (event) => {
+    const handleClearOptionsActionOnClick = (event: React.MouseEvent) => {
       event.stopPropagation();
       value ?? setInnerValue([]);
       !optional
         ? onChange?.({ value: [], error: translatedLabels.formFields.requiredValueErrorMessage })
-        : onChange?.({ value: [] });
+        : onChange?.({ value: []});
     };
 
-    const handleClearSearchActionOnClick = (event) => {
+    const handleClearSearchActionOnClick = (event: React.MouseEvent) => {
       event.stopPropagation();
       setSearchValue("");
     };
 
     const handleOptionOnClick = useCallback(
-      (option) => {
+      (option: Option) => {
         handleSelectChangeValue(option);
         !multiple && closeOptions();
         setSearchValue("");
@@ -384,9 +380,9 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
                     value={
                       multiple
                         ? (
-                            (value && Array.isArray(value) && value) ??
-                            (innerValue && Array.isArray(innerValue) && innerValue)
-                          ).join(",")
+                          (value && Array.isArray(value) && value) ??
+                          (innerValue && Array.isArray(innerValue) && innerValue)
+                        ).join(",")
                         : value ?? innerValue
                     }
                     readOnly
@@ -419,7 +415,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
                         disabled={disabled}
                         atBackground={!(value ?? innerValue) || (searchable && isOpen)}
                       >
-                        <SelectedOptionLabel>{selectedOption?.label ?? placeholder}</SelectedOptionLabel>
+                        <SelectedOptionLabel>{!Array.isArray(selectedOption) ? selectedOption?.label ?? placeholder : placeholder}</SelectedOptionLabel>
                       </SelectedOption>
                     ))}
                 </SearchableValueContainer>
@@ -490,7 +486,7 @@ const sizes = {
   fillParent: "100%",
 };
 
-const calculateWidth = (margin, size) =>
+const calculateWidth = (margin: SelectPropsType["margin"], size: SelectPropsType["size"]) =>
   size === "fillParent"
     ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
     : sizes[size];
