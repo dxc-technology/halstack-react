@@ -34,6 +34,7 @@ const sections = [
         </DxcParagraph>
         <DxcBulletedList>
           <DxcBulletedList.Item>Bleed</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Container</DxcBulletedList.Item>
           <DxcBulletedList.Item>Flex</DxcBulletedList.Item>
           <DxcBulletedList.Item>Grid</DxcBulletedList.Item>
           <DxcBulletedList.Item>Inset</DxcBulletedList.Item>
