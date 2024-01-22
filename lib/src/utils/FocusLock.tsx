@@ -36,7 +36,7 @@ const getFocusableElements = (container: HTMLElement): HTMLElement[] =>
  * @param element: HTMLElement
  * @returns
  */
-const attempFocus = (element: HTMLElement): boolean => {
+const attemptFocus = (element: HTMLElement): boolean => {
   element?.focus();
   return document.activeElement === element;
 };
@@ -90,31 +90,51 @@ const FocusLock = ({ children }: { children: React.ReactNode }): JSX.Element => 
   const focusFirst = useCallback(() => {
     if (focusableElements?.length === 0) childrenContainerRef.current?.focus();
     else if (focusableElements?.length > 0)
-      for (let i = 0; i < focusableElements.length; i++) if (attempFocus(focusableElements[i])) return;
+      focusableElements.some(attemptFocus);
   }, [focusableElements]);
 
   const focusLast = () => {
-    for (let i = focusableElements.length - 1; i >= 0; i--) if (attempFocus(focusableElements[i])) return;
+    focusableElements.slice().reverse().some(attemptFocus);
   };
 
   const focusLock = (event) => {
-    if (event.key === "Tab") focusableElements.length === 0 && event.preventDefault();
-    else if (event.key === "Tab" && event.key === "Shift") focusableElements.length === 0 && event.preventDefault();
+    if (event.key === "Tab") {
+      if(focusableElements.length === 0 )
+      {
+        event.preventDefault();
+        return;
+      }
+      const firstIndex = 0;
+      const lastIndex = focusableElements.length - 1;
+  
+      if (event.shiftKey) {
+        if (document.activeElement === focusableElements[firstIndex]) {
+          event.preventDefault()
+          focusLast()
+        } 
+      } else {
+        if (document.activeElement === focusableElements[lastIndex]) {
+          event.preventDefault()
+          focusFirst()
+        }
+      }
+    }
   };
 
   useEffect(() => {
-    if (!childrenContainerRef.current?.contains(document.activeElement) && !radixPortalContains(document.activeElement))
+    const isActiveElementOutsideLock = () =>
+      !childrenContainerRef.current?.contains(document.activeElement) &&
+      !radixPortalContains(document.activeElement);
+  
+    if (isActiveElementOutsideLock()) {
       focusFirst();
+    }
   }, [focusFirst]);
 
   return (
-    <>
-      <div onFocus={focusLast} tabIndex={0} />
-      <div onKeyDown={focusLock} ref={childrenContainerRef} tabIndex={focusableElements?.length === 0 ? 0 : -1}>
-        {children}
-      </div>
-      <div onFocus={focusFirst} tabIndex={0} />
-    </>
+    <div onKeyDown={focusLock} ref={childrenContainerRef} tabIndex={focusableElements?.length === 0 ? 0 : -1} aria-modal="true">
+      {children}
+    </div>
   );
 };
 
