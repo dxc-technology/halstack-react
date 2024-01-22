@@ -365,6 +365,16 @@ const sections = [
               </tr>
               <tr>
                 <td>
+                  <Code>text-transform</Code>
+                </td>
+                <td>Label</td>
+                <td>
+                  <Code>font-transform-uppercase</Code>
+                </td>
+                <td>uppercase</td>
+              </tr>
+              <tr>
+                <td>
                   <Code>font-size</Code>
                 </td>
                 <td>Indicator</td>
