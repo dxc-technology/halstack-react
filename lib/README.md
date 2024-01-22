@@ -1,4 +1,4 @@
-<h1 align="center">Halstack React library</h1>
+<h1 align="center">Halstack React library </h1>
 
 `@dxc-technology/halstack-react` is an npm library of reusable React components, made to help React developers with the task of implementing User Interfaces following the DXC Halstack Design Guidelines.
 

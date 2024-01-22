@@ -232,7 +232,7 @@ const sections = [
                 <td>
                   <Code>font-bold</Code>
                 </td>
-                <td>600</td>
+                <td>700</td>
               </tr>
             </tbody>
           </DxcTable>
