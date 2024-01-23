@@ -119,7 +119,7 @@ const DxcResultsetTable = ({
           </thead>
           <tbody>
             {filteredResultset.map((cells, index) => (
-              <tr key={`resultSetTableCell_${index}`}>
+              <tr key={`resultSetTableCell_${page * itemsPerPage + index ?? index}`}>
                 {cells.map((cellContent, index) => (
                   <td key={`resultSetTableCellContent_${index}`}>{cellContent.displayValue}</td>
                 ))}
@@ -164,8 +164,8 @@ const HeaderContainer = styled.span<{ isSortable: Column["isSortable"] }>`
     props.theme.headerTextAlign === "center"
       ? "center"
       : props.theme.headerTextAlign === "right"
-      ? "flex-end"
-      : "flex-start"};
+        ? "flex-end"
+        : "flex-start"};
   gap: 8px;
   width: fit-content;
   border: 1px solid transparent;
