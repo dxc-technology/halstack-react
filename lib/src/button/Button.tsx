@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { AdvancedTheme, spaces } from "../common/variables";
 import { getMargin } from "../common/utils";
@@ -165,7 +165,7 @@ const getButtonStates = (
   }
 `;
 
-type StyledButtonProps = {
+const Button = styled.button<{
   hasIcon: boolean;
   hasLabel: boolean;
   disabled: ButtonPropsType["disabled"];
@@ -173,8 +173,7 @@ type StyledButtonProps = {
   $mode: ButtonPropsType["mode"];
   margin: ButtonPropsType["margin"];
   size: ButtonPropsType["size"];
-};
-const Button = styled.button<StyledButtonProps>`
+}>`
   display: inline-flex;
   flex-direction: ${(props) => (props.iconPosition === "after" ? "row" : "row-reverse")};
   gap: 0.5rem;

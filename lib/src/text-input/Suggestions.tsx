@@ -1,7 +1,6 @@
-import React, { useContext, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 import useTranslatedLabels from "../useTranslatedLabels";
-import BackgroundColorContext, { BackgroundColors } from "../BackgroundColorContext";
 import Suggestion from "./Suggestion";
 import { SuggestionsProps } from "./types";
 import icons from "./Icons";
@@ -18,7 +17,6 @@ const Suggestions = ({
   styles,
 }: SuggestionsProps): JSX.Element => {
   const translatedLabels = useTranslatedLabels();
-  const backgroundType = useContext(BackgroundColorContext);
   const listboxRef = useRef(null);
 
   useEffect(() => {
@@ -35,7 +33,6 @@ const Suggestions = ({
       }}
       ref={listboxRef}
       role="listbox"
-      backgroundType={backgroundType}
       style={styles}
     >
       {!isSearching &&
@@ -58,7 +55,7 @@ const Suggestions = ({
       )}
       {searchHasErrors && (
         <SuggestionsError>
-          <SuggestionsErrorIcon backgroundType={backgroundType}>{icons.error}</SuggestionsErrorIcon>
+          <SuggestionsErrorIcon>{icons.error}</SuggestionsErrorIcon>
           {translatedLabels.textInput.fetchingDataErrorMessage}
         </SuggestionsError>
       )}
@@ -66,7 +63,7 @@ const Suggestions = ({
   );
 };
 
-const SuggestionsContainer = styled.ul<{ backgroundType: BackgroundColors; error: boolean }>`
+const SuggestionsContainer = styled.ul<{ error: boolean }>`
   box-sizing: border-box;
   max-height: 304px;
   overflow-y: auto;
@@ -75,12 +72,7 @@ const SuggestionsContainer = styled.ul<{ backgroundType: BackgroundColors; error
   background-color: ${(props) =>
     props.error ? props.theme.errorListDialogBackgroundColor : props.theme.listDialogBackgroundColor};
   border: 1px solid
-    ${(props) =>
-      props.error
-        ? props.backgroundType === "dark"
-          ? props.theme.errorBorderColorOnDark
-          : props.theme.errorListDialogBorderColor
-        : props.theme.listDialogBorderColor};
+    ${(props) => (props.error ? props.theme.errorListDialogBorderColor : props.theme.listDialogBorderColor)};
 
   border-radius: 0.25rem;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
@@ -98,15 +90,14 @@ const SuggestionsSystemMessage = styled.span`
   line-height: 1.715em;
 `;
 
-const SuggestionsErrorIcon = styled.span<{ backgroundType: BackgroundColors }>`
+const SuggestionsErrorIcon = styled.span`
   display: flex;
   flex-wrap: wrap;
   align-content: center;
   margin-right: 0.5rem;
   height: 18px;
   width: 18px;
-  color: ${(props) =>
-    props.backgroundType === "dark" ? props.theme.errorIconColorOnDark : props.theme.errorIconColor};
+  color: ${(props) => props.theme.errorIconColor};
 `;
 
 const SuggestionsError = styled.span`
