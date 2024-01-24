@@ -2,7 +2,6 @@ import React, { useRef, useState } from "react";
 import {
   DxcDateInput,
   DxcButton,
-  BackgroundColorProvider,
 } from "@dxc-technology/halstack-react";
 import styled from "styled-components";
 
@@ -158,20 +157,6 @@ function App() {
           margin={{ left: "medium" }}
         ></DxcButton>
       </div>
-      <BackgroundColorProvider color="#000000">
-        <DarkMode>
-          <DxcDateInput
-            label="Dark date input"
-            helperText="Some sample text"
-            margin={{
-              left: "medium",
-              bottom: "small",
-              top: "small",
-              right: "medium",
-            }}
-          />
-        </DarkMode>
-      </BackgroundColorProvider>
     </>
   );
 }

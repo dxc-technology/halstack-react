@@ -3,7 +3,6 @@ import styled from "styled-components";
 import {
   DxcProgressBar,
   HalstackProvider,
-  BackgroundColorProvider,
 } from "@dxc-technology/halstack-react";
 
 const colors = {
@@ -126,25 +125,6 @@ function App() {
           />
         </HalstackProvider>
       </div>
-      <h4>Dark mode</h4>
-      <BackgroundColorProvider color="#000000">
-        <Mode mode="dark" text="Undeterminate default">
-          <DxcProgressBar
-            label="Loading"
-            overlay={false}
-            margin={{ top: "xsmall", bottom: "xxsmall" }}
-          />
-        </Mode>
-        <Mode mode="dark" text="Determinate default">
-          <DxcProgressBar
-            label="Loading"
-            overlay={false}
-            showValue
-            value={45}
-            margin={{ top: "xsmall", bottom: "xxsmall" }}
-          />
-        </Mode>
-      </BackgroundColorProvider>
     </div>
   );
 }

@@ -1,9 +1,8 @@
-import React, { forwardRef, useContext, useEffect, useMemo, useState } from "react";
+import React, { forwardRef, useContext, useEffect, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { responsiveSizes } from "../common/variables";
 import { useResponsiveSidenavVisibility } from "../layout/SidenavContext";
 import useTheme from "../useTheme";
-import { BackgroundColorProvider } from "../BackgroundColorContext";
 import SidenavPropsType, {
   SidenavGroupPropsType,
   SidenavLinkPropsType,
@@ -20,12 +19,10 @@ const DxcSidenav = ({ title, children }: SidenavPropsType): JSX.Element => {
   return (
     <ThemeProvider theme={colorsTheme.sidenav}>
       <SidenavContainer>
-        <BackgroundColorProvider color={colorsTheme.sidenav.backgroundColor}>
-          {title}
-          <DxcFlex direction="column" gap="1rem">
-            {children}
-          </DxcFlex>
-        </BackgroundColorProvider>
+        {title}
+        <DxcFlex direction="column" gap="1rem">
+          {children}
+        </DxcFlex>
       </SidenavContainer>
     </ThemeProvider>
   );

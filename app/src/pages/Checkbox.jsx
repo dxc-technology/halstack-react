@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import {
   DxcCheckbox,
   HalstackProvider,
-  BackgroundColorProvider,
 } from "@dxc-technology/halstack-react";
 import styled from "styled-components";
 
@@ -279,35 +278,6 @@ function App() {
           />
           <DxcCheckbox checked disabled label="Checkbox " onChange={onChange} />
         </HalstackProvider>
-      </div>
-      <div>
-        <h4>Dark</h4>
-        <BackgroundColorProvider color="#000000">
-          <Mode mode="dark">
-            <DxcCheckbox
-              checked={checked}
-              label="Checkbox "
-              onChange={onChange}
-            />
-          </Mode>
-          <Mode mode="dark">
-            <DxcCheckbox checked={true} label="Checkbox " onChange={onChange} />
-          </Mode>
-          <Mode mode="dark">
-            <DxcCheckbox
-              checked={checked}
-              label="Checkbox "
-              onChange={onChange}
-              disabled
-            />
-            <DxcCheckbox
-              checked={true}
-              label="Checkbox "
-              onChange={onChange}
-              disabled
-            />
-          </Mode>
-        </BackgroundColorProvider>
       </div>
     </div>
   );

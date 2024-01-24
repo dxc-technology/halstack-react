@@ -3,7 +3,6 @@ import styled, { ThemeProvider } from "styled-components";
 import { spaces, responsiveSizes } from "../common/variables";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
-import { BackgroundColorProvider } from "../BackgroundColorContext";
 import { dxcLogo } from "./Icons";
 import FooterPropsType from "./types";
 import DxcFlex from "../flex/Flex";
@@ -19,15 +18,17 @@ const DxcFooter = ({
   const colorsTheme = useTheme();
   const translatedLabels = useTranslatedLabels();
 
-  const footerLogo = useMemo(() => {
-    if (!colorsTheme.footer.logo) {
-      return dxcLogo;
-    }
-    if (typeof colorsTheme.footer.logo === "string") {
-      return <LogoImg alt={translatedLabels.formFields.logoAlternativeText} src={colorsTheme.footer.logo} />;
-    }
-    return colorsTheme.footer.logo;
-  }, [colorsTheme]);
+  const footerLogo = useMemo(
+    () =>
+      !colorsTheme.footer.logo ? (
+        dxcLogo
+      ) : typeof colorsTheme.footer.logo === "string" ? (
+        <LogoImg alt={translatedLabels.formFields.logoAlternativeText} src={colorsTheme.footer.logo} />
+      ) : (
+        colorsTheme.footer.logo
+      ),
+    [colorsTheme]
+  );
 
   return (
     <ThemeProvider theme={colorsTheme.footer}>
@@ -51,9 +52,7 @@ const DxcFooter = ({
             ))}
           </DxcFlex>
         </DxcFlex>
-        <ChildComponents>
-          <BackgroundColorProvider color={colorsTheme.footer.backgroundColor}>{children}</BackgroundColorProvider>
-        </ChildComponents>
+        <ChildComponents>{children}</ChildComponents>
         <BottomContainer>
           <BottomLinks>
             {bottomLinks?.map((link, index) => (

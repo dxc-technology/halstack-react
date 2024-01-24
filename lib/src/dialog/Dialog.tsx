@@ -3,7 +3,6 @@ import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
 import DialogPropsType from "./types";
 import { responsiveSizes } from "../common/variables";
 import useTheme from "../useTheme";
-import { BackgroundColorProvider } from "../BackgroundColorContext";
 import useTranslatedLabels from "../useTranslatedLabels";
 import { createPortal } from "react-dom";
 import FocusLock from "../utils/FocusLock";
@@ -54,7 +53,7 @@ const DxcDialog = ({
               />
             )}
             <Dialog role="dialog" aria-modal={overlay} isCloseVisible={isCloseVisible}>
-              <BackgroundColorProvider color={colorsTheme.dialog.backgroundColor}>{children}</BackgroundColorProvider>
+              {children}
               {isCloseVisible && (
                 <CloseIconAction
                   onClick={() => {
