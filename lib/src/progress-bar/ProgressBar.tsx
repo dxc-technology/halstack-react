@@ -26,13 +26,12 @@ const DxcProgressBar = ({
       <BackgroundProgressBar overlay={overlay}>
         <ProgressBarContainer overlay={overlay} margin={margin}>
           <InfoProgressBar>
-            <ProgressBarLabel overlay={overlay} backgroundType={backgroundType} aria-label={label || undefined}>
+            <ProgressBarLabel overlay={overlay} aria-label={label || undefined}>
               {label}
             </ProgressBarLabel>
             <ProgressBarProgress
               overlay={overlay}
               showValue={showValue}
-              backgroundType={backgroundType}
               value={valueProgressBar}
             >
               {valueProgressBar} %
@@ -44,14 +43,13 @@ const DxcProgressBar = ({
             aria-valuenow={showValue ? valueProgressBar : undefined}
           >
             <LinearProgressBar
-              backgroundType={backgroundType}
               variant={value === null || value === undefined ? "indeterminate" : "determinate"}
               container="first"
               value={valueProgressBar}
             ></LinearProgressBar>
           </LinearProgress>
           {helperText && (
-            <HelperText overlay={overlay} backgroundType={backgroundType}>
+            <HelperText overlay={overlay}>
               {helperText}
             </HelperText>
           )}
@@ -111,16 +109,14 @@ const InfoProgressBar = styled.div`
   justify-content: space-between;
 `;
 
-const ProgressBarLabel = styled.div<{ backgroundType: BackgroundColors; overlay: ProgressBarPropsType["overlay"] }>`
+const ProgressBarLabel = styled.div<{ overlay: ProgressBarPropsType["overlay"] }>`
   font-family: ${(props) => props.theme.labelFontFamily};
   font-style: ${(props) => props.theme.labelFontStyle};
   font-size: ${(props) => props.theme.labelFontSize};
   font-weight: ${(props) => props.theme.labelFontWeight};
   text-transform: ${(props) => props.theme.labelFontTextTransform};
   color: ${(props) =>
-    props.backgroundType === "dark"
-      ? props.theme.labelFontColorOnDark
-      : props.overlay === true
+    props.overlay === true
       ? props.theme.overlayFontColor
       : props.theme.labelFontColor};
   overflow: hidden;
@@ -130,7 +126,6 @@ const ProgressBarLabel = styled.div<{ backgroundType: BackgroundColors; overlay:
 `;
 
 const ProgressBarProgress = styled.div<{
-  backgroundType: BackgroundColors;
   overlay: ProgressBarPropsType["overlay"];
   showValue: ProgressBarPropsType["showValue"];
   value: ProgressBarPropsType["value"];
@@ -141,9 +136,7 @@ const ProgressBarProgress = styled.div<{
   font-weight: ${(props) => props.theme.valueFontWeight};
   text-transform: ${(props) => props.theme.valueFontTextTransform};
   color: ${(props) =>
-    props.backgroundType === "dark"
-      ? props.theme.valueFontColorOnDark
-      : props.overlay === true
+    props.overlay === true
       ? props.theme.overlayFontColor
       : props.theme.valueFontColor};
   display: ${(props) =>
@@ -151,11 +144,9 @@ const ProgressBarProgress = styled.div<{
   flex-shrink: 0;
 `;
 
-const HelperText = styled.span<{ backgroundType: BackgroundColors; overlay: ProgressBarPropsType["overlay"] }>`
+const HelperText = styled.span<{ overlay: ProgressBarPropsType["overlay"] }>`
   color: ${(props) =>
-    props.backgroundType === "dark"
-      ? props.theme.helperTextFontColorOnDark
-      : props.overlay === true
+    props.overlay === true
       ? props.theme.overlayFontColor
       : props.theme.helperTextFontColor};
   font-family: ${(props) => props.theme.helperTextFontFamily};
@@ -175,13 +166,11 @@ const LinearProgress = styled.div<{ helperText: ProgressBarPropsType["helperText
 `;
 
 const LinearProgressBar = styled.span<{
-  backgroundType: BackgroundColors;
   variant: "determinate" | "indeterminate";
   value: ProgressBarPropsType["value"];
   container: string;
 }>`
-  background-color: ${(props) =>
-    props.backgroundType === "dark" ? props.theme.trackLineColorOnDark : props.theme.trackLineColor};
+  background-color: ${(props) => props.theme.trackLineColor};
   transform: ${(props) => `translateX(-${props.variant === "determinate" ? 100 - props.value : 0}%)`};
   top: 0;
   left: 0;
