@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables";
 import useTheme from "../useTheme";
@@ -27,11 +27,10 @@ const useResize = (refTabList) => {
   }, [refTabList]);
 
   useEffect(() => {
-    window.addEventListener("load", handleWindowSizeChange);
+    handleWindowSizeChange();
     window.addEventListener("resize", handleWindowSizeChange);
 
     return () => {
-      window.removeEventListener("load", handleWindowSizeChange);
       window.removeEventListener("resize", handleWindowSizeChange);
     };
   }, [handleWindowSizeChange]);
