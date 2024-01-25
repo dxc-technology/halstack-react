@@ -24,7 +24,7 @@ jobs:
 
       - name: Run Autorespond Script
         run: 
-          node /scripts/auto-respond.js
+          node scripts/auto-respond.js
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
