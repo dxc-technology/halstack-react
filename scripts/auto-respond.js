@@ -12,7 +12,6 @@ const autoRespond = async () => {
 
       await octokit.rest.issues.createComment({
         ...context.repo,
-        issue_number: pull_request.number,
         issue_number: context.issue.number,
         body: issueComment,
     });
