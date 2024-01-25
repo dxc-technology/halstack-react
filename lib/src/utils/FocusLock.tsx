@@ -84,7 +84,7 @@ const useFocusableElements = (ref: React.MutableRefObject<HTMLDivElement>): HTML
  * @returns
  */
 const FocusLock = ({ children }: { children: React.ReactNode }): JSX.Element => {
-  const childrenContainerRef = useRef<HTMLDivElement>();
+  const childrenContainerRef = useRef<HTMLDivElement>(null);
   const focusableElements = useFocusableElements(childrenContainerRef);
 
   const focusFirst = useCallback(() => {
@@ -93,46 +93,47 @@ const FocusLock = ({ children }: { children: React.ReactNode }): JSX.Element => 
       focusableElements.some(attemptFocus);
   }, [focusableElements]);
 
-  const focusLast = () => {
-    focusableElements.slice().reverse().some(attemptFocus);
-  };
-
-  const focusLock = (event) => {
-    if (event.key === "Tab") {
-      if(focusableElements.length === 0 )
-      {
-        event.preventDefault();
+  const focusPrevious = () => {
+    const getPreviousIndex = (index: number) => (index - 1 + focusableElements.length) % focusableElements.length;
+    const currentIndex = focusableElements.indexOf(document.activeElement as HTMLElement);
+    for (let i = getPreviousIndex(currentIndex); i !== currentIndex; i = getPreviousIndex(i)) {
+      if (attemptFocus(focusableElements[i])) {
         return;
       }
-      const firstIndex = 0;
-      const lastIndex = focusableElements.length - 1;
-  
+    }
+  }
+
+  const focusNext = () => {
+    const getNextIndex = (index: number) => (index + 1) % focusableElements.length;
+    const currentIndex = focusableElements.indexOf(document.activeElement as HTMLElement);
+    for (let i = getNextIndex(currentIndex); i !== currentIndex; i = getNextIndex(i)) {
+      if (attemptFocus(focusableElements[i])) {
+        return;
+      }
+    }
+  };
+
+  const focusLock = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (event.key === "Tab") {
+      event.preventDefault();
+      if (focusableElements.length === 0) { 
+        return;
+      }
       if (event.shiftKey) {
-        if (document.activeElement === focusableElements[firstIndex]) {
-          event.preventDefault()
-          focusLast()
-        } 
+        focusPrevious();
       } else {
-        if (document.activeElement === focusableElements[lastIndex]) {
-          event.preventDefault()
-          focusFirst()
-        }
+        focusNext()
       }
     }
   };
 
   useEffect(() => {
-    const isActiveElementOutsideLock = () =>
-      !childrenContainerRef.current?.contains(document.activeElement) &&
-      !radixPortalContains(document.activeElement);
-  
-    if (isActiveElementOutsideLock()) {
+    if (!childrenContainerRef.current?.contains(document.activeElement) && !radixPortalContains(document.activeElement))
       focusFirst();
-    }
   }, [focusFirst]);
 
   return (
-    <div onKeyDown={focusLock} ref={childrenContainerRef} tabIndex={focusableElements?.length === 0 ? 0 : -1} aria-modal="true">
+    <div onKeyDown={focusLock} ref={childrenContainerRef} tabIndex={focusableElements?.length === 0 ? 0 : -1}>
       {children}
     </div>
   );
