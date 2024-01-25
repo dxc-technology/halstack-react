@@ -1,0 +1,31 @@
+name: AutoRespond Bot
+
+on:
+  issues:
+    types:
+      - opened
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install Node.js 18.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 18.x
+          registry-url: https://registry.npmjs.org/
+
+      - name: Install scripts dependencies
+        run: cd scripts && npm install
+
+      - name: Run Autorespond Script
+        run: 
+          node /scripts/auto-respond.js
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    
