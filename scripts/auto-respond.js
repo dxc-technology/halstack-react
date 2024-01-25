@@ -3,7 +3,8 @@ const { context, getOctokit } = require('@actions/github');
 const autoRespond = async () => {
   try {
     const octokit = getOctokit(process.env.GITHUB_TOKEN);
-
+    console.log("!!!", process.env.GITHUB_TOKEN)
+    console.log("OCTOKIT", octokit);
     const issueComment =
       `Thank you for opening an issue! 🚀
       
