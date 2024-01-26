@@ -4,11 +4,11 @@ const newIssueMessage = async () => {
   try {
     const octokit = getOctokit(process.env.GITHUB_TOKEN);
     const issueComment =
-      `Thank you for opening an issue! 🚀
-
-    Our team will review it as soon as possible. In the meantime, please make sure that you've provided all the necessary details to help us understand and address the issue effectively.
-    
-    Feel free to contribute and participate in discussions!`
+      "Thank you for opening an issue! 🚀\n" + 
+    "Our team will review it as soon as possible. In the meantime, \
+    please make sure that you've provided all the necessary details \
+    to help us understand and address the issue effectively.\n" +
+    "Feel free to contribute and participate in discussions!"
 
     await octokit.rest.issues.createComment({
       ...context.repo,
