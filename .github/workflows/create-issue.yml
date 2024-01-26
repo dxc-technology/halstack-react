@@ -1,4 +1,4 @@
-name: AutoRespond Bot
+name: Inform new issue
 
 on:
   issues:
@@ -24,7 +24,7 @@ jobs:
 
       - name: Run Autorespond Script
         run: 
-          node scripts/auto-respond.js
+          node scripts/new_issue-message.js
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
