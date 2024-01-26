@@ -1,6 +1,6 @@
 const { context, getOctokit } = require('@actions/github');
 
-const autoRespond = async () => {
+const newIssueMessage = async () => {
   try {
     const octokit = getOctokit(process.env.GITHUB_TOKEN);
     const issueComment =
@@ -21,4 +21,4 @@ const autoRespond = async () => {
   }
 }
 
-autoRespond();
+newIssueMessage();
