@@ -5,8 +5,6 @@ import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import { userEvent, within } from "@storybook/testing-library";
 import styled from "styled-components";
-import DxcCheckbox from "../checkbox/Checkbox";
-import DxcTextInput from "../text-input/TextInput";
 
 export default {
   title: "Resultset Table",
@@ -184,15 +182,6 @@ const longRows = [
   ],
 ];
 
-const checkboxRows = [
-  [ { displayValue: <DxcCheckbox /> }, { displayValue: "Peter" }, { displayValue: "Miami" }],
-  [ { displayValue: <DxcCheckbox /> }, { displayValue: "Louis" }, { displayValue: "London" }],
-  [ { displayValue: <DxcCheckbox /> }, { displayValue: "Lana" }, { displayValue: "Amsterdam" }],
-  [ { displayValue: <DxcCheckbox /> }, { displayValue: "Rick" }, { displayValue: "London" }],
-  [ { displayValue: <DxcCheckbox /> }, { displayValue: "Mark" }, { displayValue: "Miami" }],
-  [ { displayValue: <DxcCheckbox /> }, { displayValue: "Cris" }, { displayValue: "Paris" }],
-];
-
 export const Chromatic = () => (
   <>
     <ExampleContainer>
@@ -202,10 +191,6 @@ export const Chromatic = () => (
     <ExampleContainer>
       <Title title="With action" theme="light" level={4} />
       <DxcResultsetTable columns={columns} rows={rowsIcon} />
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="With checkbox" theme="light" level={4} />
-      <DxcResultsetTable columns={columns} rows={checkboxRows} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With items per page option" theme="light" level={4} />
