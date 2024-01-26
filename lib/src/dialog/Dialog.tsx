@@ -44,16 +44,16 @@ const DxcDialog = ({
     <ThemeProvider theme={colorsTheme.dialog}>
       <BodyStyle />
       {createPortal(
-        <FocusLock>
-          <DialogContainer>
-            {overlay && (
-              <Overlay
-                onClick={() => {
-                  onBackgroundClick?.();
-                }}
-              />
-            )}
-            <Dialog role="dialog" aria-modal={overlay} isCloseVisible={isCloseVisible}>
+        <DialogContainer>
+          {overlay && (
+            <Overlay
+              onClick={() => {
+                onBackgroundClick?.();
+              }}
+            />
+          )}
+          <Dialog role="dialog" aria-modal={overlay} isCloseVisible={isCloseVisible}>
+            <FocusLock>
               <BackgroundColorProvider color={colorsTheme.dialog.backgroundColor}>{children}</BackgroundColorProvider>
               {isCloseVisible && (
                 <CloseIconAction
@@ -66,9 +66,9 @@ const DxcDialog = ({
                   {closeIcon}
                 </CloseIconAction>
               )}
-            </Dialog>
-          </DialogContainer>
-        </FocusLock>,
+            </FocusLock>
+          </Dialog>
+        </DialogContainer>,
         document.body
       )}
     </ThemeProvider>
