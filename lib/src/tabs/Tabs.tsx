@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables";
 import useTheme from "../useTheme";
@@ -23,13 +23,12 @@ const useResize = (refTabList) => {
   const [viewWidth, setViewWidth] = useState(0);
 
   const handleWindowSizeChange = useCallback(() => {
-    setViewWidth(refTabList?.current?.offsetWidth);
+    setViewWidth(refTabList?.current?.offsetWidth ?? 0);
   }, [refTabList]);
 
   useEffect(() => {
     handleWindowSizeChange();
     window.addEventListener("resize", handleWindowSizeChange);
-
     return () => {
       window.removeEventListener("resize", handleWindowSizeChange);
     };
