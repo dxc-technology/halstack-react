@@ -593,7 +593,7 @@
     "thickness": "length",
     "borderRadius": "length",
     "overlayColor": "color",
-    "overlayOpacity": "alphaValue"
+    "overlayFontColor": "color"
   },
   "quickNav": {
     "fontColor": "color",
