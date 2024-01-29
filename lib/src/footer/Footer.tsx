@@ -78,7 +78,7 @@ const FooterContainer = styled.footer<{ margin: FooterPropsType["margin"] }>`
   justify-content: space-between;
   width: 100%;
   min-height: ${(props) => props.theme.height};
-  margin-top: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
+  margin-top: ${(props) => (props.margin ? spaces[props.margin] : "0px")};
   background-color: ${(props) => props.theme.backgroundColor};
 
   @media (min-width: ${responsiveSizes.small}rem) {
