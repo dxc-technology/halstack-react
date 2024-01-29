@@ -77,15 +77,6 @@ const sections = [
                   </tr>
                   <tr>
                     <td>
-                      <Code>text-transform</Code>
-                    </td>
-                    <td>initial</td>
-                    <td>
-                      <Code>font-transform-initial</Code>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
                       <Code>letter-spacing</Code>
                     </td>
                     <td>-12.5px / -0.0125em</td>
@@ -143,15 +134,6 @@ const sections = [
                     <td>normal</td>
                     <td>
                       <Code>font-normal</Code>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <Code>text-transform</Code>
-                    </td>
-                    <td>initial</td>
-                    <td>
-                      <Code>font-transform-initial</Code>
                     </td>
                   </tr>
                   <tr>
@@ -217,15 +199,6 @@ const sections = [
                   </tr>
                   <tr>
                     <td>
-                      <Code>text-transform</Code>
-                    </td>
-                    <td>initial</td>
-                    <td>
-                      <Code>font-transform-initial</Code>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
                       <Code>letter-spacing</Code>
                     </td>
                     <td>0px / 0em</td>
@@ -287,15 +260,6 @@ const sections = [
                   </tr>
                   <tr>
                     <td>
-                      <Code>text-transform</Code>
-                    </td>
-                    <td>initial</td>
-                    <td>
-                      <Code>font-transform-initial</Code>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
                       <Code>letter-spacing</Code>
                     </td>
                     <td>0px / 0em</td>
@@ -353,15 +317,6 @@ const sections = [
                     <td>normal</td>
                     <td>
                       <Code>font-normal</Code>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <Code>text-transform</Code>
-                    </td>
-                    <td>initial</td>
-                    <td>
-                      <Code>font-transform-initial</Code>
                     </td>
                   </tr>
                   <tr>
