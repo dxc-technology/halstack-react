@@ -1,8 +1,5 @@
 import React, { useRef, useState } from "react";
-import {
-  DxcDateInput,
-  DxcButton,
-} from "@dxc-technology/halstack-react";
+import { DxcDateInput, DxcButton } from "@dxc-technology/halstack-react";
 import styled from "styled-components";
 
 function App() {
@@ -160,23 +157,5 @@ function App() {
     </>
   );
 }
-
-const DarkMode = ({ children }) => {
-  return (
-    <ModeContainer>
-      <PreviewsContainer>{children}</PreviewsContainer>
-    </ModeContainer>
-  );
-};
-
-const ModeContainer = styled.div`
-  background-color: #000000;
-  display: flex;
-  flex-flow: row wrap;
-`;
-
-const PreviewsContainer = styled.div`
-  flex: 100%;
-`;
 
 export default App;

@@ -701,7 +701,7 @@ const Suffix = styled.span<{ disabled: TextInputPropsType["disabled"] }>`
   pointer-events: none;
 `;
 
-const ErrorIcon = styled.span<{}>`
+const ErrorIcon = styled.span`
   display: flex;
   flex-wrap: wrap;
   align-content: center;

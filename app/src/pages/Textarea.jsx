@@ -207,24 +207,4 @@ function App() {
   );
 }
 
-const Mode = ({ mode, children }) => {
-  return (
-    <ModeContainer mode={mode}>
-      <PreviewsContainer>{children}</PreviewsContainer>
-    </ModeContainer>
-  );
-};
-
-const ModeContainer = styled.div`
-  background-color: ${(props) =>
-    props.mode === "dark" ? "#000000" : "transparent"};
-
-  display: flex;
-  flex-flow: row wrap;
-`;
-
-const PreviewsContainer = styled.div`
-  flex: 100%;
-`;
-
 export default App;
