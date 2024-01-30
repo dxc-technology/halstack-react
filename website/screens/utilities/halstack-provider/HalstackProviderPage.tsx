@@ -18,6 +18,7 @@ import {
 } from "@dxc-technology/halstack-react";
 import Link from "next/link";
 import PageHeading from "@/common/PageHeading";
+import TableCode from "@/common/TableCode";
 
 const sections = [
   {
@@ -26,32 +27,42 @@ const sections = [
       <DxcTable>
         <tr>
           <th>Name</th>
-          <th>Default</th>
+          <th>Type</th>
           <th>Description</th>
+          <th>Default</th>
         </tr>
         <tr>
-          <td>theme: OpinionatedTheme</td>
-          <td></td>
+          <td>theme</td>
+          <td>
+            <TableCode>OpinionatedTheme</TableCode>
+          </td>
           <td>
             Object with a given structure, specified below, for defining the
             opinionated theme.
           </td>
+          <td>-</td>
         </tr>
         <tr>
-          <td>advancedTheme: AdvancedTheme</td>
-          <td></td>
+          <td>advancedTheme</td>
+          <td>
+            <TableCode>AdvancedTheme</TableCode>
+          </td>
           <td>
             Object with a given structure, specified below, for defining the
             advanced theme.
           </td>
+          <td>-</td>
         </tr>
         <tr>
-          <td>labels: TranslatedLabels</td>
-          <td></td>
+          <td>labels</td>
+          <td>
+            <TableCode>TranslatedLabels</TableCode>
+          </td>
           <td>
             Object with a given structure, specified below, for defining
             translations.
           </td>
+          <td>-</td>
         </tr>
       </DxcTable>
     ),
@@ -91,8 +102,8 @@ const sections = [
         <DxcParagraph>
           We create a <Code>customTheme</Code> object with as many components as
           we want and their respective values. Then we pass this object to the{" "}
-          <Code>Halstack Provider</Code>, which wraps our components, through
-          its <Code>theme</Code> property.
+          Halstack Provider, which wraps our components, through its{" "}
+          <Code>theme</Code> property.
         </DxcParagraph>
       </>
     ),
