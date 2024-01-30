@@ -1,182 +1,47 @@
 [
-  {
-    "key": "accordion",
-    "name": "Accordion"
-  },
-  {
-    "key": "alert",
-    "name": "Alert"
-  },
-  {
-    "key": "application-layout",
-    "name": "Application Layout"
-  },
-  {
-    "key": "bleed",
-    "name": "Bleed"
-  },
-  {
-    "key": "box",
-    "name": "Box"
-  },
-  {
-    "key": "bulleted-list",
-    "name": "Bulleted List"
-  },
-  {
-    "key": "button",
-    "name": "Button"
-  },
-  {
-    "key": "card",
-    "name": "Card"
-  },
-  {
-    "key": "checkbox",
-    "name": "Checkbox"
-  },
-  {
-    "key": "chip",
-    "name": "Chip"
-  },
-  {
-    "key": "container",
-    "name": "Container"
-  },
-  {
-    "key": "date-input",
-    "name": "Date Input"
-  },
-  {
-    "key": "dialog",
-    "name": "Dialog"
-  },
-  {
-    "key": "dropdown",
-    "name": "Dropdown"
-  },
-  {
-    "key": "file-input",
-    "name": "File Input"
-  },
-  {
-    "key": "flex",
-    "name": "Flex"
-  },
-  {
-    "key": "footer",
-    "name": "Footer"
-  },
-  {
-    "key": "grid",
-    "name": "Grid"
-  },
-  {
-    "key": "header",
-    "name": "Header"
-  },
-  {
-    "key": "heading",
-    "name": "Heading"
-  },
-  {
-    "key": "image",
-    "name": "Image"
-  },
-  {
-    "key": "inset",
-    "name": "Inset"
-  },
-  {
-    "key": "link",
-    "name": "Link"
-  },
-  {
-    "key": "nav-tabs",
-    "name": "Nav Tabs"
-  },
-  {
-    "key": "number-input",
-    "name": "Number Input"
-  },
-  {
-    "key": "paginator",
-    "name": "Paginator"
-  },
-  {
-    "key": "paragraph",
-    "name": "Paragraph"
-  },
-  {
-    "key": "password-input",
-    "name": "Password Input"
-  },
-  {
-    "key": "progress-bar",
-    "name": "Progress Bar"
-  },
-  {
-    "key": "quick-nav",
-    "name": "Quick Nav"
-  },
-  {
-    "key": "radio-group",
-    "name": "Radio Group"
-  },
-  {
-    "key": "resultset-table",
-    "name": "Resultset Table"
-  },
-  {
-    "key": "select",
-    "name": "Select"
-  },
-  {
-    "key": "sidenav",
-    "name": "Sidenav"
-  },
-  {
-    "key": "slider",
-    "name": "Slider"
-  },
-  {
-    "key": "spinner",
-    "name": "Spinner"
-  },
-  {
-    "key": "switch",
-    "name": "Switch"
-  },
-  {
-    "key": "table",
-    "name": "Table"
-  },
-  {
-    "key": "tabs",
-    "name": "Tabs"
-  },
-  {
-    "key": "tag",
-    "name": "Tag"
-  },
-  {
-    "key": "text-input",
-    "name": "Text Input"
-  },
-  {
-    "key": "textarea",
-    "name": "Textarea"
-  },
-  {
-    "key": "toggle-group",
-    "name": "Toggle Group"
-  },
-  {
-    "key": "typography",
-    "name": "Typography"
-  },
-  {
-    "key": "wizard",
-    "name": "Wizard"
-  }
+  { "key": "accordion", "name": "Accordion" },
+  { "key": "alert", "name": "Alert" },
+  { "key": "application-layout", "name": "Application layout" },
+  { "key": "bleed", "name": "Bleed" },
+  { "key": "box", "name": "Box" },
+  { "key": "bulleted-list", "name": "Bulleted List" },
+  { "key": "button", "name": "Button" },
+  { "key": "card", "name": "Card" },
+  { "key": "checkbox", "name": "Checkbox" },
+  { "key": "chip", "name": "Chip" },
+  { "key": "container", "name": "Container" },
+  { "key": "date-input", "name": "Date Input" },
+  { "key": "dialog", "name": "Dialog" },
+  { "key": "dropdown", "name": "Dropdown" },
+  { "key": "file-input", "name": "File Input" },
+  { "key": "flex", "name": "Flex" },
+  { "key": "footer", "name": "Footer" },
+  { "key": "grid", "name": "Grid" },
+  { "key": "header", "name": "Header" },
+  { "key": "heading", "name": "Heading" },
+  { "key": "image", "name": "Image" },
+  { "key": "inset", "name": "Inset" },
+  { "key": "link", "name": "Link" },
+  { "key": "nav-tabs", "name": "Nav Tabs" },
+  { "key": "number-input", "name": "Number Input" },
+  { "key": "paginator", "name": "Paginator" },
+  { "key": "paragraph", "name": "Paragraph" },
+  { "key": "password-input", "name": "Password Input" },
+  { "key": "progress-bar", "name": "Progress Bar" },
+  { "key": "quick-nav", "name": "Quick Nav" },
+  { "key": "radio-group", "name": "Radio Group" },
+  { "key": "resultset-table", "name": "Resultset Table" },
+  { "key": "select", "name": "Select" },
+  { "key": "sidenav", "name": "Sidenav" },
+  { "key": "slider", "name": "Slider" },
+  { "key": "spinner", "name": "Spinner" },
+  { "key": "switch", "name": "Switch" },
+  { "key": "table", "name": "Table" },
+  { "key": "tabs", "name": "Tabs" },
+  { "key": "tag", "name": "Tag" },
+  { "key": "text-input", "name": "Text Input" },
+  { "key": "textarea", "name": "Textarea" },
+  { "key": "toggle-group", "name": "Toggle Group" },
+  { "key": "typography", "name": "Typography" },
+  { "key": "wizard", "name": "Wizard" }
 ]
