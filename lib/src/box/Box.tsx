@@ -4,7 +4,6 @@ import { spaces } from "../common/variables";
 import { getMargin } from "../common/utils";
 import BoxPropsType from "./types";
 import useTheme from "../useTheme";
-import { BackgroundColorProvider } from "../BackgroundColorContext";
 
 const DxcBox = ({
   shadowDepth = 2,
@@ -18,7 +17,7 @@ const DxcBox = ({
   return (
     <ThemeProvider theme={colorsTheme.box}>
       <Box shadowDepth={shadowDepth} display={display} margin={margin} size={size}>
-        <BackgroundColorProvider color={colorsTheme.box.backgroundColor}>{children}</BackgroundColorProvider>
+        {children}
       </Box>
     </ThemeProvider>
   );

@@ -1,10 +1,9 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { v4 as uuidv4 } from "uuid";
 import { spaces } from "../common/variables";
 import useTheme from "../useTheme";
 import ToggleGroupPropsType, { OptionLabel } from "./types";
-import BackgroundColorContext, { BackgroundColors } from "../BackgroundColorContext";
 import DxcFlex from "../flex/Flex";
 
 const DxcToggleGroup = ({
@@ -23,7 +22,6 @@ const DxcToggleGroup = ({
   const [selectedValue, setSelectedValue] = useState(defaultValue ?? (multiple ? [] : -1));
 
   const colorsTheme = useTheme();
-  const backgroundType = useContext(BackgroundColorContext);
 
   const handleToggleChange = (selectedOption) => {
     let newSelectedOptions;
@@ -89,7 +87,6 @@ const DxcToggleGroup = ({
               }}
               tabIndex={!disabled ? tabIndex : -1}
               title={option.title}
-              backgroundType={backgroundType}
               hasIcon={option.icon}
               optionLabel={option.label}
               selected={
@@ -168,7 +165,6 @@ const ToggleButton = styled.button<{
   selected: boolean;
   hasIcon: OptionLabel["icon"];
   optionLabel: OptionLabel["label"];
-  backgroundType: BackgroundColors;
 }>`
   display: flex;
   flex-direction: column;
@@ -200,10 +196,7 @@ const ToggleButton = styled.button<{
   }
   &:focus {
     outline: none;
-    box-shadow: ${(props) =>
-      `0 0 0 ${props.theme.optionFocusBorderThickness} ${
-        props.backgroundType === "dark" ? props.theme.focusColorOnDark : props.theme.focusColor
-      }`};
+    box-shadow: ${(props) => `0 0 0 ${props.theme.optionFocusBorderThickness} ${props.theme.focusColor}`};
   }
   &:disabled {
     background-color: ${(props) =>

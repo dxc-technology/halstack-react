@@ -62,16 +62,6 @@ const sections = [
                   </td>
                   <td>#000000</td>
                 </tr>
-                <tr>
-                  <td>
-                    <Code>colorOnDark</Code>
-                  </td>
-                  <td>List item text</td>
-                  <td>
-                    <Code>color-white</Code>
-                  </td>
-                  <td>#ffffff</td>
-                </tr>
               </tbody>
             </DxcTable>
           </>
