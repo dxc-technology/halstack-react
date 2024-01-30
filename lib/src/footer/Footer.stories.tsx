@@ -3,6 +3,7 @@ import DxcFooter from "./Footer";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import { HalstackProvider } from "../HalstackContext";
+import DxcParagraph from "../paragraph/Paragraph";
 
 const social = [
   {
@@ -99,6 +100,11 @@ const opinionatedTheme = {
   },
 };
 
+const info = [
+  { label: "Database Codes:", text: "MRAI6XEMRAI6" },
+  { label: "Version:", text: "DXC SICS PC 21.1" },
+];
+
 export const Chromatic = () => (
   <>
     <ExampleContainer>
@@ -120,6 +126,10 @@ export const Chromatic = () => (
           <a href="https://www.linkedin.com/company/dxctechnology">Linkedin</a>
         </div>
       </DxcFooter>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Reduced" theme="light" level={4} />
+      <DxcFooter copyright="Copyright" socialLinks={social} bottomLinks={bottom} variant="reduced" infoTags={info} />
     </ExampleContainer>
     <Title title="Margins" theme="light" level={2} />
     <ExampleContainer>

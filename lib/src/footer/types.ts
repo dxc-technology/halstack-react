@@ -33,6 +33,17 @@ type BottomLink = {
   text: string;
 };
 
+type InfoTag = {
+  /**
+   * Label for the element
+   */
+  label: string;
+  /**
+   * Text for the element
+   */
+  text: string;
+};
+
 type FooterPropsType = {
   /**
    * An array of objects representing the links that will be rendered as
@@ -62,6 +73,17 @@ type FooterPropsType = {
    * inside the custom area.
    */
   tabIndex?: number;
+  /**
+   * Determines the visual style and layout
+   * - "default": The default variant with full content and styling.
+   * - "reduced": A reduced variant with minimal content and styling.
+   */
+  variant?: "default" | "reduced";
+  /**
+   * An array of objects representing the links that will be rendered at
+   * the bottom part of the footer.
+   */
+  infoTags?: InfoTag[];
 };
 
 export default FooterPropsType;

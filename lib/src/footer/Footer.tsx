@@ -4,7 +4,7 @@ import { spaces, responsiveSizes } from "../common/variables";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
 import { BackgroundColorProvider } from "../BackgroundColorContext";
-import { dxcLogo } from "./Icons";
+import { dxcLogo, dxcSmallLogo } from "./Icons";
 import FooterPropsType from "./types";
 import DxcFlex from "../flex/Flex";
 
@@ -15,13 +15,15 @@ const DxcFooter = ({
   children,
   margin,
   tabIndex = 0,
+  variant = "default",
+  infoTags,
 }: FooterPropsType): JSX.Element => {
   const colorsTheme = useTheme();
   const translatedLabels = useTranslatedLabels();
 
   const footerLogo = useMemo(() => {
     if (!colorsTheme.footer.logo) {
-      return dxcLogo;
+      return variant !== "default" ? dxcSmallLogo : dxcLogo;
     }
     if (typeof colorsTheme.footer.logo === "string") {
       return <LogoImg alt={translatedLabels.formFields.logoAlternativeText} src={colorsTheme.footer.logo} />;
@@ -31,58 +33,74 @@ const DxcFooter = ({
 
   return (
     <ThemeProvider theme={colorsTheme.footer}>
-      <FooterContainer margin={margin}>
+      <FooterContainer margin={margin} variant={variant}>
         <DxcFlex justifyContent="space-between" alignItems="center" wrap="wrap" gap="1.5rem">
-          <LogoContainer>{footerLogo}</LogoContainer>
-          <DxcFlex>
-            {socialLinks?.map((link, index) => (
-              <SocialAnchor
-                href={link.href}
-                tabIndex={tabIndex}
-                title={link.title}
-                aria-label={link.title}
-                key={`social${index}${link.href}`}
-                index={index}
-              >
-                <SocialIconContainer>
-                  {typeof link.logo === "string" ? <img src={link.logo} /> : link.logo}
-                </SocialIconContainer>
-              </SocialAnchor>
-            ))}
-          </DxcFlex>
+          <LogoContainer variant={variant}>{footerLogo}</LogoContainer>
+          {variant !== "reduced" && (
+            <DxcFlex>
+              {socialLinks?.map((link, index) => (
+                <SocialAnchor
+                  href={link.href}
+                  tabIndex={tabIndex}
+                  title={link.title}
+                  aria-label={link.title}
+                  key={`social${index}${link.href}`}
+                  index={index}
+                >
+                  <SocialIconContainer>
+                    {typeof link.logo === "string" ? <img src={link.logo} alt="Link" /> : link.logo}
+                  </SocialIconContainer>
+                </SocialAnchor>
+              ))}
+            </DxcFlex>
+          )}
         </DxcFlex>
-        <ChildComponents>
-          <BackgroundColorProvider color={colorsTheme.footer.backgroundColor}>{children}</BackgroundColorProvider>
-        </ChildComponents>
-        <BottomContainer>
-          <BottomLinks>
-            {bottomLinks?.map((link, index) => (
-              <span key={`bottom${index}${link.text}`}>
-                <BottomLink href={link.href} tabIndex={tabIndex}>
-                  {link.text}
-                </BottomLink>
-              </span>
+        {children && (
+          <ChildComponents>
+            <BackgroundColorProvider color={colorsTheme.footer.backgroundColor}>{children}</BackgroundColorProvider>
+          </ChildComponents>
+        )}
+        {variant !== "reduced" ? (
+          <BottomContainer>
+            <BottomLinks>
+              {bottomLinks?.map((link, index) => (
+                <span key={`bottom${index}${link.text}`}>
+                  <BottomLink href={link.href} tabIndex={tabIndex}>
+                    {link.text}
+                  </BottomLink>
+                </span>
+              ))}
+            </BottomLinks>
+            <Copyright>{copyright || translatedLabels.footer.copyrightText(new Date().getFullYear())}</Copyright>
+          </BottomContainer>
+        ) : (
+          <InfoTags>
+            {infoTags?.map((tag, index) => (
+              <React.Fragment key={`tag${index}${tag.label}${tag.text}`}>
+                <InfoLabel>{tag.label}</InfoLabel>
+                <InfoText>{tag.text}</InfoText>
+              </React.Fragment>
             ))}
-          </BottomLinks>
-          <Copyright>{copyright || translatedLabels.footer.copyrightText(new Date().getFullYear())}</Copyright>
-        </BottomContainer>
+          </InfoTags>
+        )}
       </FooterContainer>
     </ThemeProvider>
   );
 };
 
-const FooterContainer = styled.footer<{ margin: FooterPropsType["margin"] }>`
+const FooterContainer = styled.footer<{ margin: FooterPropsType["margin"]; variant?: "default" | "reduced" }>`
+  background-color: ${(props) => props.theme.backgroundColor};
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  flex-direction: ${(props) => (props?.variant !== "default" ? "row" : "column")};
   justify-content: space-between;
-  width: 100%;
-  min-height: ${(props) => props.theme.height};
   margin-top: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
-  background-color: ${(props) => props.theme.backgroundColor};
+  min-height: ${(props) => (props?.variant !== "default" ? props.theme.reducedHeight : props.theme.height)};
+  width: 100%;
 
   @media (min-width: ${responsiveSizes.small}rem) {
-    padding: 24px 36px 24px 36px;
+    padding: ${(props) => (props?.variant !== "default" ? "12px 32px 12px 32px" : "24px 32px 24px 32px")};
   }
   @media (max-width: ${responsiveSizes.small}rem) {
     padding: 20px;
@@ -132,13 +150,13 @@ const Copyright = styled.div`
   }
 `;
 
-const LogoContainer = styled.span`
-  max-height: ${(props) => props.theme.logoHeight};
+const LogoContainer = styled.span<{ variant?: "default" | "reduced" }>`
+  max-height: ${(props) => (props?.variant !== "default" ? props.theme.reducedLogoHeight : props.theme.logoHeight)};
   width: ${(props) => props.theme.logoWidth};
 `;
 
-const LogoImg = styled.img`
-  max-height: ${(props) => props.theme.logoHeight};
+const LogoImg = styled.img<{ variant?: "default" | "reduced" }>`
+  max-height: ${(props) => (props?.variant !== "default" ? props.theme.reducedLogoHeight : props.theme.logoHeight)};
   width: ${(props) => props.theme.logoWidth};
 `;
 
@@ -201,6 +219,29 @@ const BottomLink = styled.a`
   &:focus {
     outline: 2px solid #0095ff;
   }
+`;
+
+const InfoTags = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  align-self: center;
+  line-height: 1em;
+  gap: ${(props) => props.theme.tagGap};
+  @media (min-width: ${responsiveSizes.small}rem) {
+    max-width: 60%;
+  }
+  @media (max-width: ${responsiveSizes.small}rem) {
+    max-width: 100%;
+    width: 100%;
+  }
+`;
+
+const InfoLabel = styled.span`
+  color: ${(props) => props.theme.labelColor};
+`;
+
+const InfoText = styled.span`
+  color: #fff;
 `;
 
 export default DxcFooter;
