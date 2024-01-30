@@ -242,8 +242,8 @@ const CircleSpinner = styled.circle<{
   stroke-dashoffset: ${(props) =>
     props.isDeterminated
       ? props.mode !== "small"
-        ? determinedValue(props.value, 409)
-        : determinedValue(props.value, 38)
+        ? determinateValue(props.value, 409)
+        : determinateValue(props.value, 38)
       : ""};
 `;
 
