@@ -1,10 +1,4 @@
 type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
-type Size = {
-  top?: Space;
-  bottom?: Space;
-  left?: Space;
-  right?: Space;
-};
 type SVG = React.ReactNode & React.SVGProps<SVGSVGElement>;
 
 type SocialLink = {
@@ -56,7 +50,7 @@ type FooterPropsType = {
   /**
    * Size of the top margin to be applied to the footer.
    */
-  margin?: Space | Size;
+  margin?: Space;
   /**
    * Value of the tabindex for all interactive elements, except those
    * inside the custom area.
