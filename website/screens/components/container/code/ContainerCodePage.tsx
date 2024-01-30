@@ -73,7 +73,7 @@ const sections = [
               being <Code>CoreColorTokens</Code> the color tokens provided by
               Halstack Design System. See our{" "}
               <Link
-                href="/principles/color/usage/#color-tokens-core-color-tokens"
+                href="/principles/color/#color-tokens-core-color-tokens"
                 passHref
                 legacyBehavior
               >
