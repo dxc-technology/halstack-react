@@ -1,6 +1,6 @@
 /**
  * Halstack Color Palette 
- * @link https://developer.dxc.com/halstack/next/principles/color/usage/#color-tokens-core-color-tokens
+ * @link https://developer.dxc.com/halstack/next/principles/color/#color-tokens-core-color-tokens
  */
 const CoreColorTokens = {
   // Color

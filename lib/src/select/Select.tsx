@@ -39,7 +39,7 @@ const getLastOptionIndex = (options: Option[] | OptionGroup[], filteredOptions: 
   let last = 0;
   const reducer = (acc: number, current: OptionGroup) => acc + current.options?.length;
 
-  if (searchable && filteredOptions.length > 0)
+  if (searchable && filteredOptions?.length > 0)
     isOptionGroup(filteredOptions) ? (last = filteredOptions.reduce(reducer, 0) - 1) : (last = filteredOptions.length - 1);
   else if (options?.length > 0)
     isOptionGroup(options) ? (last = options.reduce(reducer, 0) - 1) : (last = options.length - 1);
@@ -54,11 +54,11 @@ const getSelectedOption = (value: string | string[], options: Option[] | OptionG
   if (multiple) {
     if (options?.length > 0) {
       options.forEach((option: Option | OptionGroup) => {
-        if (isOption(option)) {
+        if (isOption(option)) 
           option.options.forEach((singleOption) => {
             if (value.includes(singleOption.value) && Array.isArray(selectedOption)) selectedOption.push(singleOption);
           });
-        } else if (value.includes(option.value) && Array.isArray(selectedOption)) selectedOption.push(option);
+        else if (value.includes(option.value) && Array.isArray(selectedOption)) selectedOption.push(option);
       });
     }
   } else {

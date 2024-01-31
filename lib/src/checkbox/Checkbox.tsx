@@ -1,11 +1,10 @@
-import React, { useState, useContext, useRef } from "react";
+import React, { useState, useRef } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import { spaces } from "../common/variables";
+import { AdvancedTheme, spaces } from "../common/variables";
 import { getMargin } from "../common/utils";
 import { v4 as uuidv4 } from "uuid";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
-import BackgroundColorContext, { BackgroundColors } from "../BackgroundColorContext";
 import CheckboxPropsType, { RefType } from "./types";
 
 const checkedIcon = (
@@ -35,11 +34,8 @@ const DxcCheckbox = React.forwardRef<RefType, CheckboxPropsType>(
   ): JSX.Element => {
     const [labelId] = useState(`label-checkbox-${uuidv4()}`);
     const [innerChecked, setInnerChecked] = useState(defaultChecked);
-
     const checkboxRef = useRef(null);
-
     const colorsTheme = useTheme();
-    const backgroundType = useContext(BackgroundColorContext);
     const translatedLabels = useTranslatedLabels();
 
     const handleCheckboxChange = () => {
@@ -68,16 +64,10 @@ const DxcCheckbox = React.forwardRef<RefType, CheckboxPropsType>(
           margin={margin}
           size={size}
           checked={checked ?? innerChecked}
-          backgroundType={backgroundType}
           ref={ref}
         >
           {label && (
-            <LabelContainer
-              id={labelId}
-              disabled={disabled}
-              backgroundType={backgroundType}
-              labelPosition={labelPosition}
-            >
+            <LabelContainer id={labelId} disabled={disabled} labelPosition={labelPosition}>
               {label}
               {optional && ` ${translatedLabels.formFields.optionalLabel}`}
             </LabelContainer>
@@ -101,7 +91,6 @@ const DxcCheckbox = React.forwardRef<RefType, CheckboxPropsType>(
               aria-readonly={readOnly}
               aria-required={!disabled && !optional}
               aria-labelledby={labelId}
-              backgroundType={backgroundType}
               checked={checked ?? innerChecked}
               disabled={disabled}
               readOnly={readOnly}
@@ -129,64 +118,58 @@ const calculateWidth = (margin: CheckboxPropsType["margin"], size: CheckboxProps
     ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
     : sizes[size];
 
-const getDisabledColor = (props, element: string) => {
+const getDisabledColor = (theme: AdvancedTheme["checkbox"], element: string) => {
   switch (element) {
     case "check":
-      return props.backgroundType === "dark" ? props.theme.disabledCheckColorOnDark : props.theme.disabledCheckColor;
+      return theme.disabledCheckColor;
     case "background":
-      return props.backgroundType === "dark"
-        ? props.theme.disabledBackgroundColorCheckedOnDark
-        : props.theme.disabledBackgroundColorChecked;
+      return theme.disabledBackgroundColorChecked;
     case "border":
-      return props.backgroundType === "dark" ? props.theme.disabledBorderColorOnDark : props.theme.disabledBorderColor;
+      return theme.disabledBorderColor;
     case "label":
-      return props.backgroundType === "dark" ? props.theme.disabledFontColorOnDark : props.theme.disabledFontColor;
+      return theme.disabledFontColor;
   }
 };
 
-const getReadOnlyColor = (props, element: string) => {
+const getReadOnlyColor = (theme: AdvancedTheme["checkbox"], element: string) => {
   switch (element) {
     case "check":
-      return props.theme.readOnlyCheckColor;
+      return theme.readOnlyCheckColor;
     case "background":
-      return props.theme.readOnlyBackgroundColorChecked;
+      return theme.readOnlyBackgroundColorChecked;
     case "hoverBackground":
-      return props.theme.hoverReadOnlyBackgroundColorChecked;
+      return theme.hoverReadOnlyBackgroundColorChecked;
     case "border":
-      return props.theme.readOnlyBorderColor;
+      return theme.readOnlyBorderColor;
     case "hoverBorder":
-      return props.theme.hoverReadOnlyBorderColor;
+      return theme.hoverReadOnlyBorderColor;
   }
 };
 
-const getEnabledColor = (props, element: string) => {
+const getEnabledColor = (theme: AdvancedTheme["checkbox"], element: string) => {
   switch (element) {
     case "check":
-      return props.backgroundType === "dark" ? props.theme.checkColorOnDark : props.theme.checkColor;
+      return theme.checkColor;
     case "background":
-      return props.backgroundType === "dark"
-        ? props.theme.backgroundColorCheckedOnDark
-        : props.theme.backgroundColorChecked;
+      return theme.backgroundColorChecked;
     case "hoverBackground":
-      return props.backgroundType === "dark"
-        ? props.theme.hoverBackgroundColorCheckedOnDark
-        : props.theme.hoverBackgroundColorChecked;
+      return theme.hoverBackgroundColorChecked;
     case "border":
-      return props.backgroundType === "dark" ? props.theme.borderColorOnDark : props.theme.borderColor;
+      return theme.borderColor;
     case "hoverBorder":
-      return props.backgroundType === "dark" ? props.theme.hoverBorderColorOnDark : props.theme.hoverBorderColor;
+      return theme.hoverBorderColor;
     case "label":
-      return props.backgroundType === "dark" ? props.theme.fontColorOnDark : props.theme.fontColor;
+      return theme.fontColor;
   }
 };
 
 const LabelContainer = styled.span<{
   disabled: CheckboxPropsType["disabled"];
-  backgroundType: BackgroundColors;
   labelPosition: CheckboxPropsType["labelPosition"];
 }>`
   order: ${(props) => (props.labelPosition === "before" ? 0 : 1)};
-  color: ${(props) => (props.disabled ? getDisabledColor(props, "label") : getEnabledColor(props, "label"))};
+  color: ${(props) =>
+    props.disabled ? getDisabledColor(props.theme, "label") : getEnabledColor(props.theme, "label")};
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.fontSize};
   font-weight: ${(props) => props.theme.fontWeight};
@@ -208,7 +191,6 @@ const Checkbox = styled.span<{
   checked: CheckboxPropsType["checked"];
   disabled: CheckboxPropsType["disabled"];
   readOnly: CheckboxPropsType["readOnly"];
-  backgroundType: BackgroundColors;
 }>`
   position: relative;
   box-sizing: border-box;
@@ -220,29 +202,28 @@ const Checkbox = styled.span<{
   border: 2px solid
     ${(props) =>
       props.disabled
-        ? getDisabledColor(props, "border")
+        ? getDisabledColor(props.theme, "border")
         : props.readOnly
-        ? getReadOnlyColor(props, "border")
-        : getEnabledColor(props, "border")};
+        ? getReadOnlyColor(props.theme, "border")
+        : getEnabledColor(props.theme, "border")};
   border-radius: 2px;
   background-color: ${(props) =>
     props.checked
       ? props.disabled
-        ? getDisabledColor(props, "check")
+        ? getDisabledColor(props.theme, "check")
         : props.readOnly
-        ? getReadOnlyColor(props, "check")
-        : getEnabledColor(props, "check")
+        ? getReadOnlyColor(props.theme, "check")
+        : getEnabledColor(props.theme, "check")
       : "transparent"};
   color: ${(props) =>
     props.disabled
-      ? getDisabledColor(props, "background")
+      ? getDisabledColor(props.theme, "background")
       : props.readOnly
-      ? getReadOnlyColor(props, "background")
-      : getEnabledColor(props, "background")};
+      ? getReadOnlyColor(props.theme, "background")
+      : getEnabledColor(props.theme, "background")};
 
   &:focus {
-    outline: 2px solid
-      ${(props) => (props.backgroundType === "dark" ? props.theme.focusColorOnDark : props.theme.focusColor)};
+    outline: 2px solid ${(props) => props.theme.focusColor};
     outline-offset: 2px;
   }
   svg {
@@ -259,7 +240,6 @@ const MainContainer = styled.div<{
   disabled: CheckboxPropsType["disabled"];
   readOnly: CheckboxPropsType["readOnly"];
   checked: CheckboxPropsType["checked"];
-  backgroundType: BackgroundColors;
 }>`
   display: inline-flex;
   align-items: center;
@@ -280,11 +260,15 @@ const MainContainer = styled.div<{
     border: 2px solid
       ${(props) => {
         if (!props.disabled)
-          return props.readOnly ? getReadOnlyColor(props, "hoverBorder") : getEnabledColor(props, "hoverBorder");
+          return props.readOnly
+            ? getReadOnlyColor(props.theme, "hoverBorder")
+            : getEnabledColor(props.theme, "hoverBorder");
       }};
     color: ${(props) => {
       if (!props.disabled)
-        return props.readOnly ? getReadOnlyColor(props, "hoverBackground") : getEnabledColor(props, "hoverBackground");
+        return props.readOnly
+          ? getReadOnlyColor(props.theme, "hoverBackground")
+          : getEnabledColor(props.theme, "hoverBackground");
     }};
   }
 `;

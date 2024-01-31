@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import Color from "color";
 
-export type BackgroundColors = "dark" | "light";
+type BackgroundColors = "dark" | "light";
 const BackgroundColorContext = React.createContext<BackgroundColors | null>(null);
 
 const getColorType = (hexColor: string): BackgroundColors => {
@@ -24,6 +24,3 @@ const BackgroundColorProvider = ({ color, children }: BackgroundColorProviderPro
   const colorType = useMemo(() => getColorType(color), [color]);
   return <BackgroundColorContext.Provider value={colorType}>{children}</BackgroundColorContext.Provider>;
 };
-
-export default BackgroundColorContext;
-export { BackgroundColorProvider };
