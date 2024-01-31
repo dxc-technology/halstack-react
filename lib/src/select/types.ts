@@ -48,7 +48,7 @@ type CommonProps = {
    * Name attribute of the input element. This attribute will allow users
    * to find the component's value during the submit event. In this event,
    * the component's value will always be a regular string, for both single
-   * and multiple selection modes, being a single option value in the first case 
+   * and multiple selection modes, being a single option value in the first case
    * and more than one value when multiple selection is available, separated by commas.
    */
   name?: string;
@@ -104,13 +104,43 @@ type CommonProps = {
   tabIndex?: number;
 };
 
-type Props = CommonProps & {
+type SingleSelect = CommonProps & {
   /**
    * If true, the select component will support multiple selected options.
    * In that case, value will be an array of strings with each selected
    * option value.
    */
-  multiple?: boolean;
+  multiple?: false;
+  /**
+   * Initial value of the select, only when it is uncontrolled.
+   */
+  defaultValue?: string;
+  /**
+   * Value of the select. If undefined, the component will be uncontrolled
+   * and the value will be managed internally by the component.
+   */
+  value?: string;
+  /**
+   * This function will be called when the user selects an option.
+   * An object including the current value and the error (if the value entered is not valid)
+   * will be passed to this function. If there is no error, error will not be defined.
+   */
+  onChange?: (val: { value: string; error?: string }) => void;
+  /**
+   * This function will be called when the select loses the focus. An
+   * object including the value and the error (if the value
+   * selected is not valid) will be passed to this function. If there is no error,
+   * error will not be defined.
+   */
+  onBlur?: (val: { value: string; error?: string }) => void;
+};
+type MultipleSelect = CommonProps & {
+  /**
+   * If true, the select component will support multiple selected options.
+   * In that case, value will be an array of strings with each selected
+   * option value.
+   */
+  multiple: true;
   /**
    * Initial value of the select, only when it is uncontrolled.
    */
@@ -119,21 +149,23 @@ type Props = CommonProps & {
    * Value of the select. If undefined, the component will be uncontrolled
    * and the value will be managed internally by the component.
    */
-  value?: string | string[];
+  value?: string[];
   /**
    * This function will be called when the user selects an option.
    * An object including the current selected values and the error (if the value entered is not valid)
    * will be passed to this function. If there is no error, error will be null.
    */
-  onChange?: (val: { value: string | string[]; error?: string }) => void;
+  onChange?: (val: { value: string[]; error?: string }) => void;
   /**
    * This function will be called when the select loses the focus. An
    * object including the selected values and the error (if the value
    * selected is not valid) will be passed to this function. If there is no error,
    * error will be null.
    */
-  onBlur?: (val: { value: string | string[]; error?: string }) => void;
+  onBlur?: (val: { value: string[]; error?: string }) => void;
 };
+
+type Props = SingleSelect | MultipleSelect;
 
 /**
  * Single option of the select component.

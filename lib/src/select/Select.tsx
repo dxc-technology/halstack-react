@@ -193,8 +193,8 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
 
       value ?? setInnerValue(newValue);
       notOptionalCheck(newValue, multiple, optional)
-        ? onChange?.({ value: newValue, error: translatedLabels.formFields.requiredValueErrorMessage })
-        : onChange?.({ value: newValue });
+        ? onChange?.({ value: newValue as string & string[], error: translatedLabels.formFields.requiredValueErrorMessage })
+        : onChange?.({ value: newValue as string & string[]});
     };
     const handleSelectOnClick = () => {
       searchable && selectSearchInputRef.current.focus();
@@ -214,8 +214,8 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
 
         const currentValue = value ?? innerValue;
         notOptionalCheck(currentValue, multiple, optional)
-          ? onBlur?.({ value: currentValue, error: translatedLabels.formFields.requiredValueErrorMessage })
-          : onBlur?.({ value: currentValue });
+          ? onBlur?.({ value: currentValue as string & string[], error: translatedLabels.formFields.requiredValueErrorMessage })
+          : onBlur?.({ value: currentValue as string & string[]});
       }
     };
     const handleSelectOnKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
@@ -298,8 +298,8 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
       event.stopPropagation();
       value ?? setInnerValue([]);
       !optional
-        ? onChange?.({ value: [], error: translatedLabels.formFields.requiredValueErrorMessage })
-        : onChange?.({ value: []});
+        ? onChange?.({ value: [] as string & string[], error: translatedLabels.formFields.requiredValueErrorMessage })
+        : onChange?.({ value: [] as string & string[]});
     };
 
     const handleClearSearchActionOnClick = (event: React.MouseEvent) => {
