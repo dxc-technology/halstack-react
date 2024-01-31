@@ -7,8 +7,6 @@ import useTheme from "../useTheme";
 import SliderPropsType, { RefType } from "./types";
 import { v4 as uuidv4 } from "uuid";
 
-const isFirefox = navigator.userAgent.indexOf("Firefox") !== -1;
-
 const DxcSlider = React.forwardRef<RefType, SliderPropsType>(
   (
     {
@@ -36,6 +34,7 @@ const DxcSlider = React.forwardRef<RefType, SliderPropsType>(
     const [innerValue, setInnerValue] = useState(defaultValue ?? 0);
     const [dragging, setDragging] = useState(false);
     const colorsTheme = useTheme();
+    const isFirefox = navigator?.userAgent.indexOf("Firefox") !== -1;
 
     const minLabel = useMemo(
       () => (labelFormatCallback ? labelFormatCallback(minValue) : minValue),
@@ -48,10 +47,11 @@ const DxcSlider = React.forwardRef<RefType, SliderPropsType>(
     );
 
     const tickMarks = useMemo(() => {
-      const ticks = [];
       const numberOfMarks = Math.floor(maxValue / step - minValue / step);
-      let index = 0;
       const range = maxValue - minValue;
+      const ticks = [];
+      let index = 0;
+
       if (marks) {
         while (index <= numberOfMarks) {
           ticks.push(
@@ -65,9 +65,7 @@ const DxcSlider = React.forwardRef<RefType, SliderPropsType>(
           index++;
         }
         return ticks;
-      } else {
-        return null;
-      }
+      } else return null;
     }, [minValue, maxValue, step, value, innerValue]);
 
     const handleSliderChange = (event) => {
