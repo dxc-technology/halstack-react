@@ -119,6 +119,10 @@ const BottomContainer = styled.div`
 const ChildComponents = styled.div<{ variant: "default" | "reduced" }>`
   min-height: 16px;
   overflow: hidden;
+  font-family: ${(props) => props.theme.childrenFontFamily};
+  font-size: ${(props) => props.theme.childrenFontSize};
+  font-style: ${(props) => props.theme.childrenFontStyle};
+  font-weight: ${(props) => props.theme.childrenFontWeight};
   color: ${(props) => props.theme.childrenFontColor};
   ${(props) =>
     props.variant === "reduced" &&

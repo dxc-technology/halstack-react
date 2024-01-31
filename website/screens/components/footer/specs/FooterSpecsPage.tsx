@@ -11,6 +11,7 @@ import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import Image from "@/common/Image";
 import footerAnatomy from "./images/footer_anatomy.png";
+// import footerReducedAnatomy from "./images/footer_reduced_anatomy.png";
 import footerSpecs from "./images/footer_specs.png";
 
 const sections = [
@@ -37,6 +38,18 @@ const sections = [
       </>
     ),
   },
+  // {
+  //   title: "Anatomy (reduced)",
+  //   content: (
+  //     <>
+  //       <Image src={footerReducedAnatomy} alt="Footer anatomy (reduced)" />
+  //       <DxcBulletedList type="number">
+  //         <DxcBulletedList.Item>Container</DxcBulletedList.Item>
+  //         <DxcBulletedList.Item>Logo</DxcBulletedList.Item>
+  //       </DxcBulletedList>
+  //     </>
+  //   ),
+  // },
   {
     title: "Design tokens",
     subSections: [
@@ -98,6 +111,16 @@ const sections = [
                   <Code>socialLinksColor</Code>
                 </td>
                 <td>Social icons</td>
+                <td>
+                  <Code>color-white</Code>
+                </td>
+                <td>#ffffff</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>childrenFontColor</Code>
+                </td>
+                <td>Custom container</td>
                 <td>
                   <Code>color-white</Code>
                 </td>
@@ -170,6 +193,47 @@ const sections = [
                 </td>
                 <td>none</td>
               </tr>
+              <tr>
+                <td>
+                  <Code>childrenFontFamily</Code>
+                </td>
+                <td>Custom container</td>
+                <td>
+                  <Code>font-family-sans</Code>
+                </td>
+                <td>&#39;Open Sans&#39;, sans-serif</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>childrenFontSize</Code>
+                </td>
+                <td>Custom container</td>
+                <td>
+                  <Code>font-scale-01</Code>
+                </td>
+                <td>0.75rem / 12px</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>childrenFontWeight</Code>
+                </td>
+                <td>Custom container</td>
+                <td>
+                  <Code>font-weight-regular</Code>
+                </td>
+                <td>400</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>childrenFontStyle</Code>
+                </td>
+                <td>Custom container</td>
+                <td>
+                  <Code>font-style-normal</Code>
+                </td>
+                <td>normal</td>
+              </tr>
+
               <tr>
                 <td>
                   <Code>copyrightFontFamily</Code>
@@ -273,6 +337,27 @@ const sections = [
         ),
       },
       {
+        title: "Height (reduced)",
+        content: (
+          <DxcTable>
+            <thead>
+              <tr>
+                <th>Property</th>
+                <th>Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <Code>min-height</Code>
+                </td>
+                <td>40px</td>
+              </tr>
+            </tbody>
+          </DxcTable>
+        ),
+      },
+      {
         title: "Margin",
         content: (
           <DxcTable>
@@ -354,6 +439,29 @@ const sections = [
                 </td>
                 <td>DXC logo</td>
                 <td>32px</td>
+              </tr>
+            </tbody>
+          </DxcTable>
+        ),
+      },
+      {
+        title: "Iconography (reduced)",
+        content: (
+          <DxcTable>
+            <thead>
+              <tr>
+                <th>Property</th>
+                <th>Element</th>
+                <th>Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <Code>max-height</Code>
+                </td>
+                <td>DXC logo</td>
+                <td>16px</td>
               </tr>
             </tbody>
           </DxcTable>

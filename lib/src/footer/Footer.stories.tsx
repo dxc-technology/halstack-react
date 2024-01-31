@@ -100,8 +100,8 @@ const opinionatedTheme = {
 };
 
 const info = [
-  { label: "Database Codes", text: "MRAI6XEMRAI6" },
-  { label: "Version", text: "DXC SICS PC 21.1" },
+  { label: "Database Codes", text: "Example" },
+  { label: "Version", text: "Example" },
 ];
 
 export const Chromatic = () => (

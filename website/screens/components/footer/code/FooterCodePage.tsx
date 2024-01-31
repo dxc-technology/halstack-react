@@ -111,6 +111,32 @@ const sections = [
               <TableCode>0</TableCode>
             </td>
           </tr>
+          <tr>
+            <td>
+              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                <StatusTag status="Information">New</StatusTag>variant
+              </DxcFlex>
+            </td>
+            <td>
+              <TableCode>'default' | 'reduced'</TableCode>
+            </td>
+            <td>
+              The active mode for the visual style and layout.
+              <ul>
+                <li>
+                  <b>default</b>: The default variant with full content and
+                  styling.
+                </li>
+                <li>
+                  <b>reduced</b>: A reduced variant with minimal content and
+                  styling.
+                </li>
+              </ul>
+            </td>
+            <td>
+              <TableCode>'default'</TableCode>
+            </td>
+          </tr>
         </tbody>
       </DxcTable>
     ),
