@@ -16,7 +16,6 @@ const DxcFooter = ({
   margin,
   tabIndex = 0,
   variant = "default",
-  infoTags,
 }: FooterPropsType): JSX.Element => {
   const colorsTheme = useTheme();
   const translatedLabels = useTranslatedLabels();
@@ -60,7 +59,7 @@ const DxcFooter = ({
             <BackgroundColorProvider color={colorsTheme.footer.backgroundColor}>{children}</BackgroundColorProvider>
           </ChildComponents>
         )}
-        {variant !== "reduced" ? (
+        {variant !== "reduced" && (
           <BottomContainer>
             <BottomLinks>
               {bottomLinks?.map((link, index) => (
@@ -73,15 +72,6 @@ const DxcFooter = ({
             </BottomLinks>
             <Copyright>{copyright || translatedLabels.footer.copyrightText(new Date().getFullYear())}</Copyright>
           </BottomContainer>
-        ) : (
-          <InfoTags>
-            {infoTags?.map((tag, index) => (
-              <React.Fragment key={`tag${index}${tag.label}${tag.text}`}>
-                <InfoLabel>{tag.label}</InfoLabel>
-                <InfoText>{tag.text}</InfoText>
-              </React.Fragment>
-            ))}
-          </InfoTags>
         )}
       </FooterContainer>
     </ThemeProvider>
@@ -219,29 +209,6 @@ const BottomLink = styled.a`
   &:focus {
     outline: 2px solid #0095ff;
   }
-`;
-
-const InfoTags = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  align-self: center;
-  line-height: 1em;
-  gap: ${(props) => props.theme.tagGap};
-  @media (min-width: ${responsiveSizes.small}rem) {
-    max-width: 60%;
-  }
-  @media (max-width: ${responsiveSizes.small}rem) {
-    max-width: 100%;
-    width: 100%;
-  }
-`;
-
-const InfoLabel = styled.span`
-  color: ${(props) => props.theme.labelColor};
-`;
-
-const InfoText = styled.span`
-  color: #fff;
 `;
 
 export default DxcFooter;

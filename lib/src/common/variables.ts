@@ -426,7 +426,6 @@ export const componentTokens = {
     socialLinksColor: CoreTokens.color_white,
     reducedHeight: "40px",
     reducedLogoHeight: "16px",
-    labelColor: CoreTokens.color_grey_500,
     tagGap: "20px",
   },
   header: {
