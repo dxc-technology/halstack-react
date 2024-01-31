@@ -3,7 +3,6 @@ import DxcFooter from "./Footer";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import { HalstackProvider } from "../HalstackContext";
-import DxcParagraph from "../paragraph/Paragraph";
 
 const social = [
   {
@@ -101,8 +100,8 @@ const opinionatedTheme = {
 };
 
 const info = [
-  { label: "Database Codes:", text: "MRAI6XEMRAI6" },
-  { label: "Version:", text: "DXC SICS PC 21.1" },
+  { label: "Database Codes", text: "MRAI6XEMRAI6" },
+  { label: "Version", text: "DXC SICS PC 21.1" },
 ];
 
 export const Chromatic = () => (
@@ -130,13 +129,11 @@ export const Chromatic = () => (
     <ExampleContainer>
       <Title title="Reduced" theme="light" level={4} />
       <DxcFooter variant="reduced">
-        <div>
-          {info.map((tag) => (
-            <span>
-              {tag.label}: {tag.text}
-            </span>
-          ))}
-        </div>
+        {info.map((tag, index) => (
+          <div key={`tag${index}${tag.label}${tag.text}`}>
+            {tag.label}: {tag.text}
+          </div>
+        ))}
       </DxcFooter>
     </ExampleContainer>
     <Title title="Margins" theme="light" level={2} />

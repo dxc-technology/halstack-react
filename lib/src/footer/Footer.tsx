@@ -3,7 +3,6 @@ import styled, { ThemeProvider } from "styled-components";
 import { spaces, responsiveSizes } from "../common/variables";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
-import { BackgroundColorProvider } from "../BackgroundColorContext";
 import { dxcLogo, dxcSmallLogo } from "./Icons";
 import FooterPropsType from "./types";
 import DxcFlex from "../flex/Flex";
@@ -20,20 +19,26 @@ const DxcFooter = ({
   const colorsTheme = useTheme();
   const translatedLabels = useTranslatedLabels();
 
-  const footerLogo = useMemo(() => {
-    if (!colorsTheme.footer.logo) {
-      return variant !== "default" ? dxcSmallLogo : dxcLogo;
-    }
-    if (typeof colorsTheme.footer.logo === "string") {
-      return <LogoImg alt={translatedLabels.formFields.logoAlternativeText} src={colorsTheme.footer.logo} />;
-    }
-    return colorsTheme.footer.logo;
-  }, [colorsTheme]);
+  const footerLogo = useMemo(
+    () =>
+      !colorsTheme.footer.logo ? (
+        variant !== "reduced" ? (
+          dxcLogo
+        ) : (
+          dxcSmallLogo
+        )
+      ) : typeof colorsTheme.footer.logo === "string" ? (
+        <LogoImg alt={translatedLabels.formFields.logoAlternativeText} src={colorsTheme.footer.logo} />
+      ) : (
+        colorsTheme.footer.logo
+      ),
+    [colorsTheme]
+  );
 
   return (
     <ThemeProvider theme={colorsTheme.footer}>
       <FooterContainer margin={margin} variant={variant}>
-        <DxcFlex justifyContent="space-between" alignItems="center" wrap="wrap" gap="1.5rem">
+        <DxcFlex justifyContent="space-between" alignItems="center" wrap="wrap" gap={"1.5rem"}>
           <LogoContainer variant={variant}>{footerLogo}</LogoContainer>
           {variant !== "reduced" && (
             <DxcFlex>
@@ -54,11 +59,7 @@ const DxcFooter = ({
             </DxcFlex>
           )}
         </DxcFlex>
-        {children && (
-          <ChildComponents>
-            <BackgroundColorProvider color={colorsTheme.footer.backgroundColor}>{children}</BackgroundColorProvider>
-          </ChildComponents>
-        )}
+        {children && <ChildComponents variant={variant}>{children}</ChildComponents>}
         {variant !== "reduced" && (
           <BottomContainer>
             <BottomLinks>
@@ -82,18 +83,18 @@ const FooterContainer = styled.footer<{ margin: FooterPropsType["margin"]; varia
   background-color: ${(props) => props.theme.backgroundColor};
   box-sizing: border-box;
   display: flex;
-  flex-direction: column;
-  flex-direction: ${(props) => (props?.variant !== "default" ? "row" : "column")};
+  flex-direction: ${(props) => (props?.variant !== "reduced" ? "column" : "row")};
   justify-content: space-between;
   margin-top: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
-  min-height: ${(props) => (props?.variant !== "default" ? props.theme.reducedHeight : props.theme.height)};
+  min-height: ${(props) => (props?.variant !== "reduced" ? props.theme.height : props.theme.reducedHeight)};
   width: 100%;
-
+  gap: ${(props) => (props?.variant !== "reduced" ? "0px" : "32px")};
   @media (min-width: ${responsiveSizes.small}rem) {
-    padding: ${(props) => (props?.variant !== "default" ? "12px 32px 12px 32px" : "24px 32px 24px 32px")};
+    padding: ${(props) => (props?.variant !== "reduced" ? "24px 32px 24px 32px" : "12px 32px 12px 32px")};
   }
   @media (max-width: ${responsiveSizes.small}rem) {
     padding: 20px;
+    flex-direction: column;
   }
 `;
 
@@ -115,9 +116,19 @@ const BottomContainer = styled.div`
   margin-top: 16px;
 `;
 
-const ChildComponents = styled.div`
+const ChildComponents = styled.div<{ variant: "default" | "reduced" }>`
   min-height: 16px;
   overflow: hidden;
+  color: ${(props) => props.theme.childrenFontColor};
+  ${(props) =>
+    props.variant === "reduced" &&
+    `
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 16px;
+  `}
 `;
 
 const Copyright = styled.div`
@@ -141,12 +152,12 @@ const Copyright = styled.div`
 `;
 
 const LogoContainer = styled.span<{ variant?: "default" | "reduced" }>`
-  max-height: ${(props) => (props?.variant !== "default" ? props.theme.reducedLogoHeight : props.theme.logoHeight)};
+  max-height: ${(props) => (props?.variant !== "reduced" ? props.theme.logoHeight : props.theme.reducedLogoHeight)};
   width: ${(props) => props.theme.logoWidth};
 `;
 
 const LogoImg = styled.img<{ variant?: "default" | "reduced" }>`
-  max-height: ${(props) => (props?.variant !== "default" ? props.theme.reducedLogoHeight : props.theme.logoHeight)};
+  max-height: ${(props) => (props?.variant !== "reduced" ? props.theme.logoHeight : props.theme.reducedLogoHeight)};
   width: ${(props) => props.theme.logoWidth};
 `;
 

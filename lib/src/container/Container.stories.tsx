@@ -165,33 +165,18 @@ export const Chromatic = () => (
         </p>
       </DxcContainer>
     </ExampleContainer>
-    <Title title="Background color provider" level={4} />
+    <Title title="Building a listbox component" level={4} />
     <ExampleContainer>
-      <DxcContainer padding="medium" background={{ color: "color_black" }}>
-        <DxcParagraph>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisis, sapien vitae aliquam lacinia, nisl
-          quam tincidunt ligula, eget aliquam eros quam quis nunc. Donec euismod, nisl eget ultricies aliquam, nisl
-          velit aliquam nunc, quis aliquam nisl nunc vel nisl. Donec euismod, nisl eget ultricies aliquam, nisl velit
-          aliquam nunc, quis aliquam nisl nunc vel nisl. Donec euismod, nisl eget ultricies aliquam, nisl velit aliquam
-          nunc, quis aliquam nisl nunc vel nisl. Donec euismod, nisl eget ultricies aliquam, nisl velit aliquam nunc,
-          quis aliquam nisl nunc vel nisl. Donec euismod, nisl eget ultricies aliquam, nisl velit aliquam nunc, quis
-          aliquam nisl nunc vel nisl. Donec euismod, nisl eget ultricies aliquam, nisl velit aliquam nunc, quis aliquam
-          nisl.
-        </DxcParagraph>
+      <Listbox suggestions={["Option 1", "Option 2", "Option 3", "Option 4", "Option 5"]} />
+    </ExampleContainer>
+    <Title title="Border and outline" level={4} />
+    <ExampleContainer>
+      <DxcContainer
+        outline={{ color: "color_blue_400", style: "solid", offset: "2px" }}
+        border={{ top: { style: "solid" } }}
+      >
+        Example text
       </DxcContainer>
-      <Title title="Building a listbox component" level={4} />
-      <ExampleContainer>
-        <Listbox suggestions={["Option 1", "Option 2", "Option 3", "Option 4", "Option 5"]} />
-      </ExampleContainer>
-      <Title title="Border and outline" level={4} />
-      <ExampleContainer>
-        <DxcContainer
-          outline={{ color: "color_blue_400", style: "solid", offset: "2px" }}
-          border={{ top: { style: "solid" } }}
-        >
-          Example text
-        </DxcContainer>
-      </ExampleContainer>
     </ExampleContainer>
   </>
 );
