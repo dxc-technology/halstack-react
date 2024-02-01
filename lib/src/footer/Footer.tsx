@@ -38,7 +38,7 @@ const DxcFooter = ({
   return (
     <ThemeProvider theme={colorsTheme.footer}>
       <FooterContainer margin={margin} variant={variant}>
-        <DxcFlex justifyContent="space-between" alignItems="center" wrap="wrap" gap={"1.5rem"}>
+        <DxcFlex justifyContent="space-between" alignItems="center" wrap="wrap" gap="1.5rem">
           <LogoContainer variant={variant}>{footerLogo}</LogoContainer>
           {variant !== "reduced" && (
             <DxcFlex>
@@ -85,7 +85,7 @@ const FooterContainer = styled.footer<{ margin: FooterPropsType["margin"]; varia
   display: flex;
   flex-direction: ${(props) => (props?.variant !== "reduced" ? "column" : "row")};
   justify-content: space-between;
-  margin-top: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
+  margin-top: ${(props) => (props.margin ? spaces[props.margin] : "0px")};
   min-height: ${(props) => (props?.variant !== "reduced" ? props.theme.height : props.theme.reducedHeight)};
   width: 100%;
   gap: ${(props) => (props?.variant !== "reduced" ? "0px" : "32px")};
