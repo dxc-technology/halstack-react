@@ -11,7 +11,6 @@ import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import Image from "@/common/Image";
 import footerAnatomy from "./images/footer_anatomy.png";
-// import footerReducedAnatomy from "./images/footer_reduced_anatomy.png";
 import footerSpecs from "./images/footer_specs.png";
 
 const sections = [
@@ -38,18 +37,7 @@ const sections = [
       </>
     ),
   },
-  // {
-  //   title: "Anatomy (reduced)",
-  //   content: (
-  //     <>
-  //       <Image src={footerReducedAnatomy} alt="Footer anatomy (reduced)" />
-  //       <DxcBulletedList type="number">
-  //         <DxcBulletedList.Item>Container</DxcBulletedList.Item>
-  //         <DxcBulletedList.Item>Logo</DxcBulletedList.Item>
-  //       </DxcBulletedList>
-  //     </>
-  //   ),
-  // },
+  // Could be interesting to add a Footer anatomy for the reduced component
   {
     title: "Design tokens",
     subSections: [
