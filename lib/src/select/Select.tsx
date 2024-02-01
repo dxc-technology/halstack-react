@@ -10,18 +10,18 @@ import selectIcons from "./Icons";
 import Listbox from "./Listbox";
 import * as Popover from "@radix-ui/react-popover";
 
-const isOption = (option: Option | OptionGroup): option is OptionGroup => 'options' in option;
+const isOptionGroup = (option: Option | OptionGroup): option is OptionGroup => 'options' in option && option.options != null;
 
-const isOptionGroup = (options: Option[] | OptionGroup[]): options is OptionGroup[] => isOption(options[0]);
+const isArrayOfOptionGroups = (options: Option[] | OptionGroup[]): options is OptionGroup[] => isOptionGroup(options[0]);
 
 const groupsHaveOptions = (filteredOptions: Option[] | OptionGroup[]) =>
-  isOptionGroup(filteredOptions) ? filteredOptions.some((groupOption) => groupOption.options?.length > 0) : true;
+  isArrayOfOptionGroups(filteredOptions) ? filteredOptions.some((groupOption) => groupOption.options?.length > 0) : true;
 
 const canOpenOptions = (options: Option[] | OptionGroup[], disabled: boolean) => !disabled && options?.length > 0 && groupsHaveOptions(options);
 
 const filterOptionsBySearchValue = (options: Option[] | OptionGroup[], searchValue: string): Option[] | OptionGroup[] => {
   if (options?.length > 0) {
-    if (isOptionGroup(options))
+    if (isArrayOfOptionGroups(options))
       return options.map((optionGroup) => {
         const group = {
           label: optionGroup.label,
@@ -40,9 +40,9 @@ const getLastOptionIndex = (options: Option[] | OptionGroup[], filteredOptions: 
   const reducer = (acc: number, current: OptionGroup) => acc + current.options?.length;
 
   if (searchable && filteredOptions?.length > 0)
-    isOptionGroup(filteredOptions) ? (last = filteredOptions.reduce(reducer, 0) - 1) : (last = filteredOptions.length - 1);
+    isArrayOfOptionGroups(filteredOptions) ? (last = filteredOptions.reduce(reducer, 0) - 1) : (last = filteredOptions.length - 1);
   else if (options?.length > 0)
-    isOptionGroup(options) ? (last = options.reduce(reducer, 0) - 1) : (last = options.length - 1);
+    isArrayOfOptionGroups(options) ? (last = options.reduce(reducer, 0) - 1) : (last = options.length - 1);
 
   return optional && !multiple ? last + 1 : last;
 };
@@ -54,7 +54,7 @@ const getSelectedOption = (value: string | string[], options: Option[] | OptionG
   if (multiple) {
     if (options?.length > 0) {
       options.forEach((option: Option | OptionGroup) => {
-        if (isOption(option)) 
+        if (isOptionGroup(option)) 
           option.options.forEach((singleOption) => {
             if (value.includes(singleOption.value) && Array.isArray(selectedOption)) selectedOption.push(singleOption);
           });
@@ -68,7 +68,7 @@ const getSelectedOption = (value: string | string[], options: Option[] | OptionG
     } else if (options?.length > 0) {
       let group_index = 0;
       options.some((option: Option | OptionGroup, index: number) => {
-        if (isOption(option)) {
+        if (isOptionGroup(option)) {
           option.options.some((singleOption) => {
             if (singleOption.value === value) {
               selectedOption = singleOption;
@@ -257,7 +257,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
                 if (optional && !multiple && visualFocusIndex === 0 && groupsHaveOptions(filteredOptions))
                   handleSelectChangeValue(optionalItem);
                 else
-                  isOptionGroup(filteredOptions)
+                  isArrayOfOptionGroups(filteredOptions)
                     ? groupsHaveOptions(filteredOptions) &&
                     filteredOptions.some((groupOption) => {
                       const groupLength = accLength + groupOption.options.length;
@@ -271,7 +271,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
             } else {
               if (optional && !multiple && visualFocusIndex === 0) handleSelectChangeValue(optionalItem);
               else
-                isOptionGroup(options)
+                isArrayOfOptionGroups(options)
                   ? options.some((groupOption) => {
                     const groupLength = accLength + groupOption.options.length;
                     groupLength > visualFocusIndex &&
