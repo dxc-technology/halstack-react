@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import DxcDialog from "./Dialog";
 import DxcTextInput from "../text-input/TextInput";
 import DxcButton from "../button/Button";
@@ -10,6 +10,8 @@ import { HalstackProvider } from "../HalstackContext";
 import DxcHeading from "../heading/Heading";
 import DxcParagraph from "../paragraph/Paragraph";
 import DxcAlert from "../alert/Alert";
+import DxcDropdown from "../dropdown/Dropdown";
+import { Option } from "../dropdown/types";
 
 export default {
   title: "Dialog",
@@ -166,6 +168,42 @@ export const DialogCloseVisibleFalse = () => (
     </DxcDialog>
   </ExampleContainer>
 );
+
+export const DialogWithDropdown = () => {
+  const options: Option[] = [
+    {
+      value: "1",
+      label: "Amazon with a very long text",
+    },
+    {
+      value: "2",
+      label: "Ebay",
+    },
+    {
+      value: "3",
+      label: "Apple",
+    },
+  ];
+
+  const [isDialogVisible, setDialogVisible] = useState(false);
+  const handleClick = () => {
+    setDialogVisible(!isDialogVisible);
+  };
+  return (
+    <>
+      <Title title="Dialog with dropdown" theme="light" level={4} />
+      <DxcButton label="Enter your data" onClick={handleClick} />
+      {isDialogVisible && (
+        <DxcDialog onCloseClick={handleClick}>
+          <DxcInset space="1.5rem">
+            <DxcDropdown label="Default" options={options} onSelectOption={(value) => { }} />
+          </DxcInset>
+        </DxcDialog>
+      )}
+      <DxcDropdown label="Default" options={options} onSelectOption={(value) => { }} />
+    </>
+  )
+};
 
 const customViewports = {
   resizedScreen: {

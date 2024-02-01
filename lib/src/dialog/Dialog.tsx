@@ -30,7 +30,14 @@ const DxcDialog = ({
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         event.preventDefault();
-        onCloseClick?.();
+        const activeElement = document.activeElement as HTMLElement;
+        const hasPopup = activeElement && 
+          activeElement.getAttribute('aria-haspopup') === "true" &&
+          activeElement.getAttribute('data-state') === "open"
+
+        if (!hasPopup) {
+          onCloseClick?.();
+        }
       }
     };
 
