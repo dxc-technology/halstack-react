@@ -207,7 +207,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
       if (!event.currentTarget.contains(event.relatedTarget)) searchable && selectSearchInputRef.current.focus();
     };
     const handleSelectOnBlur = (event: React.FocusEvent<HTMLInputElement>) => {
-      // focus leaves container (outside, not to childs)
+      // focus leaves container (outside, not to a child)
       if (!event.currentTarget.contains(event.relatedTarget)) {
         closeOptions();
         setSearchValue("");
