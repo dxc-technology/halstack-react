@@ -334,6 +334,7 @@ const ScrollIndicator = styled.button<{
   }
   &:disabled {
     cursor: default;
+    display: none;
     svg {
       visibility: hidden;
     }
