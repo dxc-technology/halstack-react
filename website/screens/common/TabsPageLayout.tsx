@@ -22,7 +22,6 @@ const TabsPageLayout = ({ tabs }: TabsPageLayoutProps) => {
           </Link>
         ))}
       </DxcNavTabs>
-      <Divider />
     </TabsContainer>
   );
 };
