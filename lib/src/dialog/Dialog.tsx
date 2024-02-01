@@ -6,7 +6,7 @@ import useTheme from "../useTheme";
 import { BackgroundColorProvider } from "../BackgroundColorContext";
 import useTranslatedLabels from "../useTranslatedLabels";
 import { createPortal } from "react-dom";
-import FocusLock from "../utils/FocusLock";
+import FocusLock from "react-focus-lock";
 
 const closeIcon = (
   <svg role="img" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
@@ -25,16 +25,12 @@ const DxcDialog = ({
 }: DialogPropsType): JSX.Element => {
   const colorsTheme = useTheme();
   const translatedLabels = useTranslatedLabels();
-
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         event.preventDefault();
         const activeElement = document.activeElement as HTMLElement;
-        const hasPopup = activeElement && 
-          activeElement.getAttribute('aria-haspopup') === "true" &&
-          activeElement.getAttribute('data-state') === "open"
-
+        const hasPopup = activeElement && activeElement.getAttribute("aria-haspopup") === "true";
         if (!hasPopup) {
           onCloseClick?.();
         }
