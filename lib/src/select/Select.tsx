@@ -43,7 +43,7 @@ const getLastOptionIndex = (options, filteredOptions, searchable, optional, mult
   let last = 0;
   const reducer = (acc, current) => acc + current.options?.length;
 
-  if (searchable && filteredOptions.length > 0)
+  if (searchable && filteredOptions?.length > 0)
     filteredOptions[0].options ? (last = filteredOptions.reduce(reducer, 0) - 1) : (last = filteredOptions.length - 1);
   else if (options?.length > 0)
     options[0].options ? (last = options.reduce(reducer, 0) - 1) : (last = options.length - 1);
@@ -58,11 +58,11 @@ const getSelectedOption = (value, options, multiple, optional, optionalItem) => 
   if (multiple) {
     if (options?.length > 0) {
       options.forEach((option) => {
-        if (option.options) {
+        if (option.options)
           option.options.forEach((singleOption) => {
             if (value.includes(singleOption.value) && Array.isArray(selectedOption)) selectedOption.push(singleOption);
           });
-        } else if (value.includes(option.value) && Array.isArray(selectedOption)) selectedOption.push(option);
+        else if (value.includes(option.value) && Array.isArray(selectedOption)) selectedOption.push(option);
       });
     }
   } else {
@@ -211,7 +211,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
       if (!event.currentTarget.contains(event.relatedTarget)) searchable && selectSearchInputRef.current.focus();
     };
     const handleSelectOnBlur = (event) => {
-      // focus leaves container (outside, not to childs)
+      // focus leaves container (outside, not to child)
       if (!event.currentTarget.contains(event.relatedTarget)) {
         closeOptions();
         setSearchValue("");
