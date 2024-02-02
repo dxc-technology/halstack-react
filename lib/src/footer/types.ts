@@ -73,11 +73,6 @@ type FooterPropsType = {
    * - "reduced": A reduced variant with minimal content and styling.
    */
   variant?: "default" | "reduced";
-  /**
-   * An array of objects representing the links that will be rendered at
-   * the bottom part of the footer.
-   */
-  infoTags?: InfoTag[];
 };
 
 export default FooterPropsType;
