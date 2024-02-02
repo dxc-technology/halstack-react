@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 import { OptionProps } from "../select/types";
 import DxcCheckbox from "../checkbox/Checkbox";
@@ -13,41 +13,49 @@ const Option = ({
   isGroupedOption = false,
   isLastOption,
   isSelected,
-}: OptionProps): JSX.Element => (
-  <OptionItem
-    id={id}
-    onClick={() => {
-      onClick(option);
-    }}
-    visualFocused={visualFocused}
-    selected={isSelected}
-    role="option"
-    aria-selected={isSelected}
-  >
-    <StyledOption
+}: OptionProps): JSX.Element => {
+  const labelRef = useRef<HTMLSpanElement>(null);
+
+  useEffect(() => {
+    if (labelRef.current.scrollWidth > labelRef.current.clientWidth) document.getElementById(id).title = option.label;
+  }, [option]);
+
+  return (
+    <OptionItem
+      id={id}
+      onClick={() => {
+        onClick(option);
+      }}
       visualFocused={visualFocused}
       selected={isSelected}
-      last={isLastOption}
-      grouped={isGroupedOption}
-      multiple={multiple}
+      role="option"
+      aria-selected={isSelected}
     >
-      {multiple && <DxcCheckbox checked={isSelected} tabIndex={-1} />}
-      {option.icon && (
-        <OptionIcon
-          grouped={isGroupedOption}
-          multiple={multiple}
-          role={!(typeof option.icon === "string") ? "img" : undefined}
-        >
-          {typeof option.icon === "string" ? <img src={option.icon} /> : option.icon}
-        </OptionIcon>
-      )}
-      <OptionContent grouped={isGroupedOption} hasIcon={option.icon ? true : false} multiple={multiple}>
-        <OptionLabel>{option.label}</OptionLabel>
-        {!multiple && isSelected && <OptionSelectedIndicator>{selectIcons.selected}</OptionSelectedIndicator>}
-      </OptionContent>
-    </StyledOption>
-  </OptionItem>
-);
+      <StyledOption
+        visualFocused={visualFocused}
+        selected={isSelected}
+        last={isLastOption}
+        grouped={isGroupedOption}
+        multiple={multiple}
+      >
+        {multiple && <DxcCheckbox checked={isSelected} tabIndex={-1} />}
+        {option.icon && (
+          <OptionIcon
+            grouped={isGroupedOption}
+            multiple={multiple}
+            role={!(typeof option.icon === "string") ? "img" : undefined}
+          >
+            {typeof option.icon === "string" ? <img src={option.icon} /> : option.icon}
+          </OptionIcon>
+        )}
+        <OptionContent grouped={isGroupedOption} hasIcon={option.icon ? true : false} multiple={multiple}>
+          <OptionLabel ref={labelRef}>{option.label}</OptionLabel>
+          {!multiple && isSelected && <OptionSelectedIndicator>{selectIcons.selected}</OptionSelectedIndicator>}
+        </OptionContent>
+      </StyledOption>
+    </OptionItem>
+  );
+};
 
 const OptionItem = styled.li<{ visualFocused: OptionProps["visualFocused"]; selected: OptionProps["isSelected"] }>`
   padding: 0 0.5rem;

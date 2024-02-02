@@ -172,6 +172,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
 
     const selectRef = useRef<HTMLDivElement | null>(null);
     const selectSearchInputRef = useRef<HTMLInputElement | null>(null);
+    const selectedOptionLabelRef = useRef(null);
 
     const width = useWidth(selectRef.current);
     const colorsTheme = useTheme();
@@ -345,6 +346,17 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
       [handleSelectChangeValue, closeOptions, multiple]
     );
 
+    const getSelectedOptionLabel = useCallback(() => {
+      if (Array.isArray(selectedOption))
+        return selectedOption.length === 0 ? placeholder : selectedOption.map((option) => option.label).join(", ");
+      else return selectedOption?.label ?? placeholder;
+    }, [placeholder, selectedOption]);
+
+    useEffect(() => {
+      if (selectedOptionLabelRef?.current.scrollWidth > selectedOptionLabelRef?.current.clientWidth)
+        selectedOptionLabelRef.current.title = getSelectedOptionLabel();
+    }, [getSelectedOptionLabel]);
+
     return (
       <ThemeProvider theme={colorsTheme.select}>
         <SelectContainer margin={margin} size={size} ref={ref}>
@@ -428,27 +440,17 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
                       size={1}
                     />
                   )}
-                  {(!searchable || searchValue === "") &&
-                    (multiple ? (
-                      <SelectedOption
-                        disabled={disabled}
-                        atBackground={(value ?? innerValue).length === 0 || (searchable && isOpen)}
-                      >
-                        <SelectedOptionLabel>
-                          {Array.isArray(selectedOption) && selectedOption.map((option) => option.label).join(", ")}
-                        </SelectedOptionLabel>
-                        {Array.isArray(selectedOption) && selectedOption.length === 0 && placeholder}
-                      </SelectedOption>
-                    ) : (
-                      <SelectedOption
-                        disabled={disabled}
-                        atBackground={!(value ?? innerValue) || (searchable && isOpen)}
-                      >
-                        <SelectedOptionLabel>
-                          {!Array.isArray(selectedOption) ? selectedOption?.label ?? placeholder : placeholder}
-                        </SelectedOptionLabel>
-                      </SelectedOption>
-                    ))}
+                  {(!searchable || searchValue === "") && (
+                    <SelectedOption
+                      disabled={disabled}
+                      atBackground={
+                        (multiple ? (value ?? innerValue).length === 0 : !(value ?? innerValue)) ||
+                        (searchable && isOpen)
+                      }
+                    >
+                      <SelectedOptionLabel ref={selectedOptionLabelRef}>{getSelectedOptionLabel()}</SelectedOptionLabel>
+                    </SelectedOption>
+                  )}
                 </SearchableValueContainer>
                 {!disabled && error && <ErrorIcon>{selectIcons.error}</ErrorIcon>}
                 {searchable && searchValue.length > 0 && (
