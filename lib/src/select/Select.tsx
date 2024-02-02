@@ -353,7 +353,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
     }, [placeholder, selectedOption]);
 
     useEffect(() => {
-      if (selectedOptionLabelRef?.current.scrollWidth > selectedOptionLabelRef?.current.clientWidth)
+      if (selectedOptionLabelRef?.current?.scrollWidth > selectedOptionLabelRef?.current?.clientWidth)
         selectedOptionLabelRef.current.title = getSelectedOptionLabel();
     }, [getSelectedOptionLabel]);
 
