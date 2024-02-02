@@ -114,7 +114,7 @@ const sections = [
           <tr>
             <td>
               <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                <StatusTag status="Information">New</StatusTag>variant
+                <StatusTag status="Information">New</StatusTag>mode
               </DxcFlex>
             </td>
             <td>
@@ -124,11 +124,11 @@ const sections = [
               The active mode for the visual style and layout.
               <ul>
                 <li>
-                  <b>default</b>: The default variant with full content and
+                  <b>default</b>: The default mode with full content and
                   styling.
                 </li>
                 <li>
-                  <b>reduced</b>: A reduced variant with minimal content and
+                  <b>reduced</b>: A reduced mode with minimal content and
                   styling.
                 </li>
               </ul>

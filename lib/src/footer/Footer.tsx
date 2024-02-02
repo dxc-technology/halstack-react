@@ -14,7 +14,7 @@ const DxcFooter = ({
   children,
   margin,
   tabIndex = 0,
-  variant = "default",
+  mode = "default",
 }: FooterPropsType): JSX.Element => {
   const colorsTheme = useTheme();
   const translatedLabels = useTranslatedLabels();
@@ -22,7 +22,7 @@ const DxcFooter = ({
   const footerLogo = useMemo(
     () =>
       !colorsTheme.footer.logo ? (
-        variant !== "reduced" ? (
+        mode !== "reduced" ? (
           dxcLogo
         ) : (
           dxcSmallLogo
@@ -37,10 +37,10 @@ const DxcFooter = ({
 
   return (
     <ThemeProvider theme={colorsTheme.footer}>
-      <FooterContainer margin={margin} variant={variant}>
+      <FooterContainer margin={margin} mode={mode}>
         <DxcFlex justifyContent="space-between" alignItems="center" wrap="wrap" gap="1.5rem">
-          <LogoContainer variant={variant}>{footerLogo}</LogoContainer>
-          {variant !== "reduced" && (
+          <LogoContainer mode={mode}>{footerLogo}</LogoContainer>
+          {mode !== "reduced" && (
             <DxcFlex>
               {socialLinks?.map((link, index) => (
                 <SocialAnchor
@@ -59,8 +59,8 @@ const DxcFooter = ({
             </DxcFlex>
           )}
         </DxcFlex>
-        {children && <ChildComponents variant={variant}>{children}</ChildComponents>}
-        {variant !== "reduced" && (
+        {children && <ChildComponents mode={mode}>{children}</ChildComponents>}
+        {mode !== "reduced" && (
           <BottomContainer>
             <BottomLinks>
               {bottomLinks?.map((link, index) => (
@@ -79,18 +79,18 @@ const DxcFooter = ({
   );
 };
 
-const FooterContainer = styled.footer<{ margin: FooterPropsType["margin"]; variant?: "default" | "reduced" }>`
+const FooterContainer = styled.footer<{ margin: FooterPropsType["margin"]; mode?: "default" | "reduced" }>`
   background-color: ${(props) => props.theme.backgroundColor};
   box-sizing: border-box;
   display: flex;
-  flex-direction: ${(props) => (props?.variant !== "reduced" ? "column" : "row")};
+  flex-direction: ${(props) => (props?.mode !== "reduced" ? "column" : "row")};
   justify-content: space-between;
   margin-top: ${(props) => (props.margin ? spaces[props.margin] : "0px")};
-  min-height: ${(props) => (props?.variant !== "reduced" ? props.theme.height : props.theme.reducedHeight)};
+  min-height: ${(props) => (props?.mode !== "reduced" ? props.theme.height : props.theme.reducedHeight)};
   width: 100%;
-  gap: ${(props) => (props?.variant !== "reduced" ? "0px" : "32px")};
+  gap: ${(props) => (props?.mode !== "reduced" ? "0px" : "32px")};
   @media (min-width: ${responsiveSizes.small}rem) {
-    padding: ${(props) => (props?.variant !== "reduced" ? "24px 32px 24px 32px" : "12px 32px 12px 32px")};
+    padding: ${(props) => (props?.mode !== "reduced" ? "24px 32px 24px 32px" : "12px 32px 12px 32px")};
   }
   @media (max-width: ${responsiveSizes.small}rem) {
     padding: 20px;
@@ -116,7 +116,7 @@ const BottomContainer = styled.div`
   margin-top: 16px;
 `;
 
-const ChildComponents = styled.div<{ variant: "default" | "reduced" }>`
+const ChildComponents = styled.div<{ mode: "default" | "reduced" }>`
   min-height: 16px;
   overflow: hidden;
   font-family: ${(props) => props.theme.childrenFontFamily};
@@ -125,7 +125,7 @@ const ChildComponents = styled.div<{ variant: "default" | "reduced" }>`
   font-weight: ${(props) => props.theme.childrenFontWeight};
   color: ${(props) => props.theme.childrenFontColor};
   ${(props) =>
-    props.variant === "reduced" &&
+    props.mode === "reduced" &&
     `
     display: flex;
     justify-content: center;
@@ -155,13 +155,13 @@ const Copyright = styled.div`
   }
 `;
 
-const LogoContainer = styled.span<{ variant?: "default" | "reduced" }>`
-  max-height: ${(props) => (props?.variant !== "reduced" ? props.theme.logoHeight : props.theme.reducedLogoHeight)};
+const LogoContainer = styled.span<{ mode?: "default" | "reduced" }>`
+  max-height: ${(props) => (props?.mode !== "reduced" ? props.theme.logoHeight : props.theme.reducedLogoHeight)};
   width: ${(props) => props.theme.logoWidth};
 `;
 
-const LogoImg = styled.img<{ variant?: "default" | "reduced" }>`
-  max-height: ${(props) => (props?.variant !== "reduced" ? props.theme.logoHeight : props.theme.reducedLogoHeight)};
+const LogoImg = styled.img<{ mode?: "default" | "reduced" }>`
+  max-height: ${(props) => (props?.mode !== "reduced" ? props.theme.logoHeight : props.theme.reducedLogoHeight)};
   width: ${(props) => props.theme.logoWidth};
 `;
 

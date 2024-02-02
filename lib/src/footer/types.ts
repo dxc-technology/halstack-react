@@ -69,10 +69,10 @@ type FooterPropsType = {
   tabIndex?: number;
   /**
    * Determines the visual style and layout
-   * - "default": The default variant with full content and styling.
-   * - "reduced": A reduced variant with minimal content and styling.
+   * - "default": The default mode with full content and styling.
+   * - "reduced": A reduced mode with minimal content and styling.
    */
-  variant?: "default" | "reduced";
+  mode?: "default" | "reduced";
 };
 
 export default FooterPropsType;

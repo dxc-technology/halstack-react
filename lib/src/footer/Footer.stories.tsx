@@ -128,7 +128,7 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Reduced" theme="light" level={4} />
-      <DxcFooter variant="reduced">
+      <DxcFooter mode="reduced">
         {info.map((tag, index) => (
           <div key={`tag${index}${tag.label}${tag.text}`}>
             {tag.label}: {tag.text}
