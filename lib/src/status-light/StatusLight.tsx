@@ -1,23 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
 import styled, { ThemeProvider } from "styled-components";
-import { spaces } from "../common/variables";
 import useTheme from "../useTheme";
-import { getMargin } from "../common/utils";
-import DxcBox from "../box/Box";
 import StatusLightPropsType from "./types";
 
 const DxcStatusLight = ({ mode = "default", label, size = "medium" }: StatusLightPropsType): JSX.Element => {
   const colorsTheme = useTheme();
-  const [isHovered, changeIsHovered] = useState(false);
 
   return (
     <ThemeProvider theme={colorsTheme.statusLight}>
-      <StatusLightWrapper>
+      <StatusLightContainer size={size} >
         <StatusDot mode={mode} size={size} />
         <StatusLabel mode={mode} size={size}>
           {label}
         </StatusLabel>
-      </StatusLightWrapper>
+      </StatusLightContainer>
     </ThemeProvider>
   );
 };
@@ -28,15 +24,17 @@ const sizes = {
   large: "16px",
 };
 
-const calculateWidth = (margin, size) =>
-  size === "fillParent"
-    ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
-    : sizes[size];
+const paddings = {
+  small: "2px",
+  medium: "2.5px",
+  large: "4.5px",
+};
 
 // Define the styled components
-const StatusLightWrapper = styled.div`
+const StatusLightContainer = styled.div<{size: StatusLightPropsType["size"] }>`
   display: flex;
   align-items: center;
+  padding: ${({ size }) => paddings[size]} 0px;
 `;
 
 const StatusDot = styled.div<{
