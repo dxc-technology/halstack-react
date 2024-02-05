@@ -809,6 +809,17 @@ export const componentTokens = {
     overlayProgressValueFontColor: CoreTokens.color_white,
     overlayProgressValueTextAlign: "center",
   },
+  statusLight: {
+    fontFamily: CoreTokens.type_sans,
+    fontStyle: CoreTokens.type_normal,
+    fontWeight: CoreTokens.type_semibold,
+    focusColor: CoreTokens.color_blue_600,
+    defaultColor: CoreTokens.color_grey_700,
+    errorColor: CoreTokens.color_red_700,
+    infoColor: CoreTokens.color_blue_700,
+    successColor: CoreTokens.color_green_700,
+    warningColor: CoreTokens.color_orange_700
+  },
   switch: {
     checkedTrackBackgroundColor: CoreTokens.color_purple_700,
     checkedThumbBackgroundColor: CoreTokens.color_white,
