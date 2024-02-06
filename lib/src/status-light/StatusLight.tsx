@@ -1,73 +1,68 @@
 import React from "react";
-import styled, { ThemeProvider } from "styled-components";
-import useTheme from "../useTheme";
+import styled from "styled-components";
 import StatusLightPropsType from "./types";
+import CoreTokens from "../common/coreTokens";
 
 const DxcStatusLight = ({ mode = "default", label, size = "medium" }: StatusLightPropsType): JSX.Element => {
-  const colorsTheme = useTheme();
-
   return (
-    <ThemeProvider theme={colorsTheme.statusLight}>
-      <StatusLightContainer size={size} aria-label={`${mode}: ${label}`} data-testid="status_light-container">
-        <StatusDot mode={mode} size={size} aria-hidden="true" data-testid="status-dot" />
-        <StatusLabel mode={mode} size={size}>
-          {label}
-        </StatusLabel>
-      </StatusLightContainer>
-    </ThemeProvider>
+    <StatusLightContainer size={size} aria-label={`${mode}: ${label}`} data-testid="status_light-container">
+      <StatusDot mode={mode} size={size} aria-hidden="true" data-testid="status-dot" />
+      <StatusLabel mode={mode} size={size}>
+        {label}
+      </StatusLabel>
+    </StatusLightContainer>
   );
-};
-
-const sizes = {
-  small: "12px",
-  medium: "14px",
-  large: "16px",
-};
-
-const paddings = {
-  small: "2px",
-  medium: "2.5px",
-  large: "4.5px",
 };
 
 const StatusLightContainer = styled.div<{ size: StatusLightPropsType["size"] }>`
   display: inline-flex;
   align-items: center;
-  padding: ${({ size }) => paddings[size] ?? paddings["medium"]} 0px;
+  gap: ${CoreTokens.spacing_8};
 `;
 
 const StatusDot = styled.div<{
   mode: StatusLightPropsType["mode"];
   size: StatusLightPropsType["size"];
 }>`
-  width: ${({ size }) => sizes[size] ?? sizes["medium"]};
-  height: ${({ size }) => sizes[size] ?? sizes["medium"]};
+  width: ${({ size }) =>
+    (size === "small" && CoreTokens.type_scale_01) ||
+    (size === "medium" && CoreTokens.type_scale_02) ||
+    (size === "large" && CoreTokens.type_scale_03) ||
+    CoreTokens.type_scale_02};
+  height: ${({ size }) =>
+    (size === "small" && CoreTokens.type_scale_01) ||
+    (size === "medium" && CoreTokens.type_scale_02) ||
+    (size === "large" && CoreTokens.type_scale_03) ||
+    CoreTokens.type_scale_02};
   border-radius: 50%;
-  background-color: ${(props) =>
-    (props.mode === "default" && props.theme.defaultColor) ||
-    (props.mode === "error" && props.theme.errorColor) ||
-    (props.mode === "info" && props.theme.infoColor) ||
-    (props.mode === "success" && props.theme.successColor) ||
-    (props.mode === "warning" && props.theme.warningColor) ||
-    props.theme.defaultColor};
-  margin-right: 8px;
+  background-color: ${({ mode }) =>
+    (mode === "default" && CoreTokens.color_grey_700) ||
+    (mode === "error" && CoreTokens.color_red_700) ||
+    (mode === "info" && CoreTokens.color_blue_700) ||
+    (mode === "success" && CoreTokens.color_green_700) ||
+    (mode === "warning" && CoreTokens.color_orange_700) ||
+    CoreTokens.color_grey_700};
 `;
 
 const StatusLabel = styled.span<{
   mode: StatusLightPropsType["mode"];
   size: StatusLightPropsType["size"];
 }>`
-  font-size: ${({ size }) => sizes[size] ?? sizes["medium"]};
-  font-family: ${(props) => props.theme.fontFamily};
-  font-style: ${(props) => props.theme.fontStyle};
-  font-weight: ${(props) => props.theme.fontWeight};
-  color: ${(props) =>
-    (props.mode === "default" && props.theme.defaultColor) ||
-    (props.mode === "error" && props.theme.errorColor) ||
-    (props.mode === "info" && props.theme.infoColor) ||
-    (props.mode === "success" && props.theme.successColor) ||
-    (props.mode === "warning" && props.theme.warningColor) ||
-    props.theme.defaultColor};
+  font-size: ${({ size }) =>
+    (size === "small" && CoreTokens.type_scale_01) ||
+    (size === "medium" && CoreTokens.type_scale_02) ||
+    (size === "large" && CoreTokens.type_scale_03) ||
+    CoreTokens.type_scale_02};
+  font-family: ${CoreTokens.type_sans};
+  font-style: ${CoreTokens.type_normal};
+  font-weight: ${CoreTokens.type_semibold};
+  color: ${({ mode }) =>
+    (mode === "default" && CoreTokens.color_grey_700) ||
+    (mode === "error" && CoreTokens.color_red_700) ||
+    (mode === "info" && CoreTokens.color_blue_700) ||
+    (mode === "success" && CoreTokens.color_green_700) ||
+    (mode === "warning" && CoreTokens.color_orange_700) ||
+    CoreTokens.color_grey_700};
   text-align: center;
   text-overflow: ellipsis;
   overflow: hidden;
