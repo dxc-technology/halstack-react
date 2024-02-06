@@ -813,7 +813,6 @@ export const componentTokens = {
     fontFamily: CoreTokens.type_sans,
     fontStyle: CoreTokens.type_normal,
     fontWeight: CoreTokens.type_semibold,
-    focusColor: CoreTokens.color_blue_600,
     defaultColor: CoreTokens.color_grey_700,
     errorColor: CoreTokens.color_red_700,
     infoColor: CoreTokens.color_blue_700,

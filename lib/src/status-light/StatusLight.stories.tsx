@@ -1,5 +1,4 @@
 import React from "react";
-import { userEvent, within } from "@storybook/testing-library";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DxcStatusLight from "./StatusLight";
