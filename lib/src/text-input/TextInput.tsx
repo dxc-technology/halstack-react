@@ -606,49 +606,6 @@ const Input = styled.input`
   }
 `;
 
-// const Action = styled.button`
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   flex-shrink: 0;
-//   border: 1px solid transparent;
-//   border-radius: 2px;
-//   width: 24px;
-//   height: 24px;
-//   padding: 3px;
-//   margin-left: 0.25rem;
-//   ${(props) => (props.disabled ? `cursor: not-allowed;` : `cursor: pointer;`)}
-
-//   box-shadow: 0 0 0 2px transparent;
-//   background-color: ${(props) =>
-//     props.disabled ? props.theme.disabledActionBackgroundColor : props.theme.actionBackgroundColor};
-//   color: ${(props) => (props.disabled ? props.theme.disabledActionIconColor : props.theme.actionIconColor)};
-
-//   ${(props) =>
-//     !props.disabled &&
-//     `
-//       &:focus,
-//       &:focus-visible {
-//         outline: none;
-//         box-shadow: 0 0 0 2px ${props.theme.focusActionBorderColor};
-//         color: ${props.theme.focusActionIconColor};
-//       }
-//       &:hover {
-//         background-color: ${props.theme.hoverActionBackgroundColor};
-//         color: ${props.theme.hoverActionIconColor};
-//       }
-//       &:active {
-//         background-color: ${props.theme.activeActionBackgroundColor};
-//         color: ${props.theme.activeActionIconColor};
-//       }
-//     `}
-
-//   img, svg {
-//     width: 16px;
-//     height: 16px;
-//   }
-// `;
-
 const Prefix = styled.span<{ disabled: TextInputPropsType["disabled"] }>`
   height: 1.5rem;
   line-height: 1.5rem;
