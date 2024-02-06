@@ -44,7 +44,6 @@ import DxcImage from "./image/Image";
 import DxcContainer from "./container/Container";
 
 import HalstackContext, { HalstackProvider, HalstackLanguageContext } from "./HalstackContext";
-import { BackgroundColorProvider } from "./BackgroundColorContext";
 
 export {
   DxcAlert,
@@ -74,7 +73,6 @@ export {
   HalstackContext,
   HalstackLanguageContext,
   HalstackProvider,
-  BackgroundColorProvider,
   DxcAccordionGroup,
   DxcBadge,
   DxcPasswordInput,

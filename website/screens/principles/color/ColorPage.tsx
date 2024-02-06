@@ -3,6 +3,7 @@ import {
   DxcFlex,
   DxcLink,
   DxcParagraph,
+  DxcHeading,
 } from "@dxc-technology/halstack-react";
 import Figure from "@/common/Figure";
 import Image from "@/common/Image";
@@ -12,6 +13,7 @@ import Code from "@/common/Code";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import colorOverview from "./images/color_overview.png";
 import colorFamilies from "./images/color_families.png";
+import PageHeading from "@/common/PageHeading";
 
 const sections = [
   {
@@ -820,38 +822,25 @@ const sections = [
       },
     ],
   },
-  {
-    title: "Dark mode",
-    subSections: [
-      {
-        title: "BackgroundColorProvider",
-        content: (
-          <>
-            <DxcParagraph>
-              The Design System components have two versions, 'onDark' and
-              'onLight' to ensure that they are displayed correctly regardless
-              of their background. This is not two different themes of the same
-              component but a way to ensure correct display.
-            </DxcParagraph>
-          </>
-        ),
-      },
-    ],
-  },
 ];
 
-const ColorUsagePage = () => {
+const ColorPage = () => {
   return (
     <DxcFlex direction="column" gap="4rem">
+      <PageHeading>
+        <DxcFlex direction="column" gap="2rem">
+          <DxcHeading level={1} text="Color" weight="bold"></DxcHeading>
+        </DxcFlex>
+      </PageHeading>
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}
           startHeadingLevel={2}
         ></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/principles/color/usage/ColorUsagePage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/principles/color/ColorPage.tsx" />
     </DxcFlex>
   );
 };
 
-export default ColorUsagePage;
+export default ColorPage;

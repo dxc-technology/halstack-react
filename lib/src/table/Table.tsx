@@ -3,7 +3,6 @@ import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables";
 import { getMargin } from "../common/utils";
 import useTheme from "../useTheme";
-import { BackgroundColorProvider } from "../BackgroundColorContext";
 import TablePropsType from "./types";
 
 const DxcTable = ({ children, margin }: TablePropsType): JSX.Element => {
@@ -12,9 +11,7 @@ const DxcTable = ({ children, margin }: TablePropsType): JSX.Element => {
   return (
     <ThemeProvider theme={colorsTheme.table}>
       <DxcTableContainer margin={margin}>
-        <DxcTableContent>
-          <BackgroundColorProvider color={colorsTheme.table.dataBackgroundColor}>{children}</BackgroundColorProvider>
-        </DxcTableContent>
+        <DxcTableContent>{children}</DxcTableContent>
       </DxcTableContainer>
     </ThemeProvider>
   );

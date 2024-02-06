@@ -72,16 +72,6 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <Code>trackLineColorOnDark</Code>
-                </td>
-                <td>Track line</td>
-                <td>
-                  <Code>color-purple-500</Code>
-                </td>
-                <td>#a46ede</td>
-              </tr>
-              <tr>
-                <td>
                   <Code>totalLineColor</Code>
                 </td>
                 <td>Total line</td>
@@ -112,16 +102,6 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <Code>labelFontColorOnDark</Code>
-                </td>
-                <td>Label</td>
-                <td>
-                  <Code>color-white</Code>
-                </td>
-                <td>#ffffff</td>
-              </tr>
-              <tr>
-                <td>
                   <Code>indicatorFontColor</Code>
                 </td>
                 <td>Indicator</td>
@@ -132,16 +112,6 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <Code>indicatorFontColorOnDark</Code>
-                </td>
-                <td>Indicator</td>
-                <td>
-                  <Code>color-white</Code>
-                </td>
-                <td>#ffffff</td>
-              </tr>
-              <tr>
-                <td>
                   <Code>helperFontColor</Code>
                 </td>
                 <td>Helper text</td>
@@ -149,16 +119,6 @@ const sections = [
                   <Code>color-black</Code>
                 </td>
                 <td>#000000</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>helperFontColorOnDark</Code>
-                </td>
-                <td>Helper text</td>
-                <td>
-                  <Code>color-white</Code>
-                </td>
-                <td>#ffffff</td>
               </tr>
               <tr>
                 <td>

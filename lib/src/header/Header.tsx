@@ -5,7 +5,6 @@ import { dxcLogo } from "./Icons";
 import { spaces, responsiveSizes } from "../common/variables";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
-import BackgroundColorContext, { BackgroundColorProvider, BackgroundColors } from "../BackgroundColorContext";
 import HeaderPropsType from "./types";
 
 const closeIcon = (
@@ -50,11 +49,10 @@ type ContentProps = {
 };
 
 const Content = ({ isResponsive, responsiveContent, handleMenu, content }: ContentProps) => {
-  const backgroundType = useContext(BackgroundColorContext);
   return isResponsive ? (
-    <MenuContent backgroundType={backgroundType}>{responsiveContent(handleMenu)}</MenuContent>
+    <MenuContent>{responsiveContent(handleMenu)}</MenuContent>
   ) : (
-    <ContentContainer backgroundType={backgroundType}>{content}</ContentContainer>
+    <ContentContainer>{content}</ContentContainer>
   );
 };
 
@@ -131,27 +129,23 @@ const DxcHeader = ({
                   {closeIcon}
                 </CloseAction>
               </ResponsiveIconsContainer>
-              <BackgroundColorProvider color={colorsTheme.header.menuBackgroundColor}>
-                <Content
-                  isResponsive={isResponsive}
-                  responsiveContent={responsiveContent}
-                  handleMenu={handleMenu}
-                  content={content}
-                />
-              </BackgroundColorProvider>
+              <Content
+                isResponsive={isResponsive}
+                responsiveContent={responsiveContent}
+                handleMenu={handleMenu}
+                content={content}
+              />
             </ResponsiveMenu>
             <Overlay onClick={handleMenu} hasVisibility={isMenuVisible}></Overlay>
           </MainContainer>
         )}
         {!isResponsive && (
-          <BackgroundColorProvider color={colorsTheme.header.backgroundColor}>
-            <Content
-              isResponsive={isResponsive}
-              responsiveContent={responsiveContent}
-              handleMenu={handleMenu}
-              content={content}
-            />
-          </BackgroundColorProvider>
+          <Content
+            isResponsive={isResponsive}
+            responsiveContent={responsiveContent}
+            handleMenu={handleMenu}
+            content={content}
+          />
         )}
       </HeaderContainer>
     </ThemeProvider>
@@ -167,7 +161,7 @@ const HeaderContainer = styled.header<{ margin: HeaderPropsType["margin"]; under
   align-items: center;
   justify-content: space-between;
   min-height: ${(props) => props.theme.minHeight};
-  margin-bottom: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
+  margin-bottom: ${(props) => (props.margin ? spaces[props.margin] : "0px")};
   padding: ${(props) =>
     `${props.theme.paddingTop} ${props.theme.paddingRight} ${props.theme.paddingBottom} ${props.theme.paddingLeft}`};
   background-color: ${(props) => props.theme.backgroundColor};
@@ -199,13 +193,13 @@ const ChildContainer = styled.div`
   width: calc(100% - 186px);
 `;
 
-const ContentContainer = styled.div<{ backgroundType: BackgroundColors }>`
+const ContentContainer = styled.div`
   display: flex;
   align-items: center;
   flex-grow: 1;
   justify-content: flex-end;
   width: calc(100% - 186px);
-  color: ${(props) => (props.backgroundType === "dark" ? props.theme.contentColorOnDark : props.theme.contentColor)};
+  color: ${(props) => props.theme.contentColor};
 `;
 
 const HamburguerTrigger = styled.button`
@@ -300,12 +294,12 @@ const CloseAction = styled.button`
   }
 `;
 
-const MenuContent = styled.div<{ backgroundType: BackgroundColors }>`
+const MenuContent = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   height: 100%;
-  color: ${(props) => (props.backgroundType === "dark" ? props.theme.contentColorOnDark : props.theme.contentColor)};
+  color: ${(props) => props.theme.contentColor};
 `;
 
 const Overlay = styled.div<{ hasVisibility: boolean }>`

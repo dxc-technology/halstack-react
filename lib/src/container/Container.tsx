@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import ContainerPropsType, { StyledProps, BorderProperties } from "./types";
 import { getCoreColorToken } from "../common/coreTokens";
-import { BackgroundColorProvider } from "../BackgroundColorContext";
 
 /**
  * This values correspond to the spaces defined in the design system
@@ -19,9 +18,7 @@ const spaces = {
 };
 
 const DxcContainer = ({ display, width, height, overflow, ...props }: ContainerPropsType) => (
-  <BackgroundColorProvider color={getCoreColorToken(props?.background?.color)}>
-    <Container $display={display} $width={width} $height={height} $overflow={overflow} {...props} />
-  </BackgroundColorProvider>
+  <Container $display={display} $width={width} $height={height} $overflow={overflow} {...props} />
 );
 
 const getBorderStyles = (direction: "top" | "bottom" | "left" | "right", borderProperties: BorderProperties) =>

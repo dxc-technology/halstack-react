@@ -147,7 +147,7 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
             aria-invalid={error ? true : false}
             aria-errormessage={error ? errorId : undefined}
             aria-required={!disabled && !readOnly && !optional}
-            aria-readOnly={readOnly}
+            aria-readonly={readOnly}
             aria-orientation={stacking === "column" ? "vertical" : "horizontal"}
           >
             <ValueInput name={name} disabled={disabled} value={value ?? innerValue ?? ""} readOnly />

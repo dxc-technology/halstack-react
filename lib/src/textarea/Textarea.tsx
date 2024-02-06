@@ -5,7 +5,6 @@ import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
 import { spaces } from "../common/variables";
 import { v4 as uuidv4 } from "uuid";
-import BackgroundColorContext, { BackgroundColors } from "../BackgroundColorContext";
 import TextareaPropsType, { RefType } from "./types";
 
 const patternMatch = (pattern, value) => new RegExp(pattern).test(value);
@@ -41,7 +40,6 @@ const DxcTextarea = React.forwardRef<RefType, TextareaPropsType>(
     const [textareaId] = useState(`textarea-${uuidv4()}`);
 
     const colorsTheme = useTheme();
-    const backgroundType = useContext(BackgroundColorContext);
     const translatedLabels = useTranslatedLabels();
 
     const textareaRef = useRef(null);
@@ -94,15 +92,11 @@ const DxcTextarea = React.forwardRef<RefType, TextareaPropsType>(
       <ThemeProvider theme={colorsTheme.textarea}>
         <TextareaContainer margin={margin} size={size} ref={ref}>
           {label && (
-            <Label htmlFor={textareaId} disabled={disabled} backgroundType={backgroundType} helperText={helperText}>
+            <Label htmlFor={textareaId} disabled={disabled} helperText={helperText}>
               {label} {optional && <OptionalLabel>{translatedLabels.formFields.optionalLabel}</OptionalLabel>}
             </Label>
           )}
-          {helperText && (
-            <HelperText disabled={disabled} backgroundType={backgroundType}>
-              {helperText}
-            </HelperText>
-          )}
+          {helperText && <HelperText disabled={disabled}>{helperText}</HelperText>}
           <Textarea
             id={textareaId}
             name={name}
@@ -118,7 +112,6 @@ const DxcTextarea = React.forwardRef<RefType, TextareaPropsType>(
             minLength={minLength}
             maxLength={maxLength}
             autoComplete={autocomplete}
-            backgroundType={backgroundType}
             ref={textareaRef}
             tabIndex={tabIndex}
             aria-invalid={error ? true : false}
@@ -126,7 +119,7 @@ const DxcTextarea = React.forwardRef<RefType, TextareaPropsType>(
             aria-required={!disabled && !optional}
           />
           {!disabled && typeof error === "string" && (
-            <Error id={errorId} backgroundType={backgroundType} aria-live={error ? "assertive" : "off"}>
+            <Error id={errorId} aria-live={error ? "assertive" : "off"}>
               {error}
             </Error>
           )}
@@ -169,16 +162,8 @@ const TextareaContainer = styled.div<{
 const Label = styled.label<{
   disabled: TextareaPropsType["disabled"];
   helperText: TextareaPropsType["helperText"];
-  backgroundType: BackgroundColors;
 }>`
-  color: ${(props) =>
-    props.disabled
-      ? props.backgroundType === "dark"
-        ? props.theme.disabledLabelFontColorOnDark
-        : props.theme.disabledLabelFontColor
-      : props.backgroundType === "dark"
-      ? props.theme.labelFontColorOnDark
-      : props.theme.labelFontColor};
+  color: ${(props) => (props.disabled ? props.theme.disabledLabelFontColor : props.theme.labelFontColor)};
 
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.labelFontSize};
@@ -192,15 +177,8 @@ const OptionalLabel = styled.span`
   font-weight: ${(props) => props.theme.optionalLabelFontWeight};
 `;
 
-const HelperText = styled.span<{ disabled: TextareaPropsType["disabled"]; backgroundType: BackgroundColors }>`
-  color: ${(props) =>
-    props.disabled
-      ? props.backgroundType === "dark"
-        ? props.theme.disabledHelperTextFontColorOnDark
-        : props.theme.disabledHelperTextFontColor
-      : props.backgroundType === "dark"
-      ? props.theme.helperTextFontColorOnDark
-      : props.theme.helperTextFontColor};
+const HelperText = styled.span<{ disabled: TextareaPropsType["disabled"] }>`
+  color: ${(props) => (props.disabled ? props.theme.disabledHelperTextFontColor : props.theme.helperTextFontColor)};
 
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.helperTextFontSize};
@@ -212,7 +190,6 @@ const HelperText = styled.span<{ disabled: TextareaPropsType["disabled"]; backgr
 
 const Textarea = styled.textarea<{
   verticalGrow: TextareaPropsType["verticalGrow"];
-  backgroundType: BackgroundColors;
   error: TextareaPropsType["error"];
 }>`
   ${({ verticalGrow }) => {
@@ -222,35 +199,24 @@ const Textarea = styled.textarea<{
     else return `resize: none;`;
   }};
 
-  ${(props) => {
-    if (props.disabled)
-      return props.backgroundType === "dark"
-        ? `background-color: ${props.theme.disabledContainerFillColorOnDark};`
-        : `background-color: ${props.theme.disabledContainerFillColor};`;
-    else return `background-color: transparent;`;
-  }}
+  ${(props) =>
+    props.disabled ? `background-color: ${props.theme.disabledContainerFillColor};` : `background-color: transparent;`}
 
   padding: 0.5rem 1rem;
   box-shadow: 0 0 0 2px transparent;
   border-radius: 0.25rem;
   border: 1px solid
     ${(props) => {
-      if (props.disabled)
-        return props.backgroundType === "dark"
-          ? props.theme.disabledBorderColorOnDark
-          : props.theme.disabledBorderColor;
+      if (props.disabled) return props.theme.disabledBorderColor;
       else if (props.error) return "transparent";
       else if (props.readOnly) return props.theme.readOnlyBorderColor;
-      else
-        return props.backgroundType === "dark" ? props.theme.enabledBorderColorOnDark : props.theme.enabledBorderColor;
+      else props.theme.enabledBorderColor;
     }};
 
   ${(props) =>
     props.error &&
     !props.disabled &&
-    `box-shadow: 0 0 0 2px ${
-      props.backgroundType === "dark" ? props.theme.errorBorderColorOnDark : props.theme.errorBorderColor
-    };
+    `box-shadow: 0 0 0 2px ${props.theme.errorBorderColor};
   `}
 
   ${(props) =>
@@ -261,36 +227,18 @@ const Textarea = styled.textarea<{
             ? "transparent"
             : props.readOnly
             ? props.theme.hoverReadOnlyBorderColor
-            : props.backgroundType === "dark"
-            ? props.theme.hoverBorderColorOnDark
             : props.theme.hoverBorderColor
         };
-        ${
-          props.error &&
-          `box-shadow: 0 0 0 2px ${
-            props.backgroundType === "dark"
-              ? props.theme.hoverErrorBorderColorOnDark
-              : props.theme.hoverErrorBorderColor
-          };`
-        }
+        ${props.error && `box-shadow: 0 0 0 2px ${props.theme.hoverErrorBorderColor};`}
       }
       &:focus, &:focus-within {
         outline: none;
         border-color: transparent;
-        box-shadow: 0 0 0 2px ${
-          props.backgroundType === "dark" ? props.theme.focusBorderColorOnDark : props.theme.focusBorderColor
-        };
+        box-shadow: 0 0 0 2px ${props.theme.focusBorderColor};
       }`
       : "cursor: not-allowed;"};
 
-  color: ${(props) =>
-    props.disabled
-      ? props.backgroundType === "dark"
-        ? props.theme.disabledValueFontColorOnDark
-        : props.theme.disabledValueFontColor
-      : props.backgroundType === "dark"
-      ? props.theme.valueFontColorOnDark
-      : props.theme.valueFontColor};
+  color: ${(props) => (props.disabled ? props.theme.disabledValueFontColor : props.theme.valueFontColor)};
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.valueFontSize};
   font-style: ${(props) => props.theme.valueFontStyle};
@@ -298,20 +246,12 @@ const Textarea = styled.textarea<{
   line-height: 1.5em;
 
   ::placeholder {
-    color: ${(props) =>
-      props.disabled
-        ? props.backgroundType === "dark"
-          ? props.theme.disabledPlaceholderFontColorOnDark
-          : props.theme.disabledPlaceholderFontColor
-        : props.backgroundType === "dark"
-        ? props.theme.placeholderFontColorOnDark
-        : props.theme.placeholderFontColor};
+    color: ${(props) => (props.disabled ? props.theme.disabledPlaceholderFontColor : props.theme.placeholderFontColor)};
   }
 `;
 
-const Error = styled.span<{ backgroundType: BackgroundColors }>`
-  color: ${(props) =>
-    props.backgroundType === "dark" ? props.theme.errorMessageColorOnDark : props.theme.errorMessageColor};
+const Error = styled.span`
+  color: ${(props) => props.theme.errorMessageColor};
   font-family: ${(props) => props.theme.fontFamily};
   font-size: 0.75rem;
   font-weight: 400;

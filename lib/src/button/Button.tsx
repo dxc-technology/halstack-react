@@ -1,9 +1,8 @@
-import React, { useContext } from "react";
+import React from "react";
 import styled, { ThemeProvider } from "styled-components";
-import { spaces } from "../common/variables";
+import { AdvancedTheme, spaces } from "../common/variables";
 import { getMargin } from "../common/utils";
 import useTheme from "../useTheme";
-import BackgroundColorContext, { BackgroundColors } from "../BackgroundColorContext";
 import ButtonPropsType from "./types";
 
 const DxcButton = ({
@@ -20,7 +19,6 @@ const DxcButton = ({
   tabIndex = 0,
 }: ButtonPropsType): JSX.Element => {
   const colorsTheme = useTheme();
-  const backgroundType = useContext(BackgroundColorContext);
 
   return (
     <ThemeProvider theme={colorsTheme.button}>
@@ -37,7 +35,6 @@ const DxcButton = ({
         hasLabel={label ? true : false}
         hasIcon={icon ? true : false}
         iconPosition={iconPosition}
-        backgroundType={backgroundType}
         size={size}
         margin={margin}
       >
@@ -61,185 +58,121 @@ const calculateWidth = (margin: ButtonPropsType["margin"], size: ButtonPropsType
     ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
     : sizes[size];
 
-const getButtonStyles = (props) => {
-  const { $mode, backgroundType, disabled } = props;
-  return `
-    border-radius: ${
-      $mode === "primary"
-        ? props.theme.primaryBorderRadius
-        : $mode === "secondary"
-        ? props.theme.secondaryBorderRadius
-        : props.theme.textBorderRadius
-    };
-    border-width: ${
-      $mode === "primary"
-        ? props.theme.primaryBorderThickness
-        : $mode === "secondary"
-        ? props.theme.secondaryBorderThickness
-        : props.theme.textBorderThickness
-    };
-    border-style: ${
-      $mode === "primary"
-        ? props.theme.primaryBorderStyle
-        : $mode === "secondary"
-        ? props.theme.secondaryBorderStyle
-        : props.theme.textBorderStyle
-    };
-    font-family: ${
-      $mode === "primary"
-        ? props.theme.primaryFontFamily
-        : $mode === "secondary"
-        ? props.theme.secondaryFontFamily
-        : props.theme.textFontFamily
-    };
-    font-size: ${
-      $mode === "primary"
-        ? props.theme.primaryFontSize
-        : $mode === "secondary"
-        ? props.theme.secondaryFontSize
-        : props.theme.textFontSize
-    };
-    font-weight: ${
-      $mode === "primary"
-        ? props.theme.primaryFontWeight
-        : $mode === "secondary"
-        ? props.theme.secondaryFontWeight
-        : props.theme.textFontWeight
-    };
+const getButtonStyles = ($mode: ButtonPropsType["mode"], theme: AdvancedTheme["button"]) => `
+  border-color: ${$mode === "secondary" ? theme.secondaryBorderColor : ""};
+  border-radius: ${
+    $mode === "primary"
+      ? theme.primaryBorderRadius
+      : $mode === "secondary"
+      ? theme.secondaryBorderRadius
+      : theme.textBorderRadius
+  };
+  border-width: ${
+    $mode === "primary"
+      ? theme.primaryBorderThickness
+      : $mode === "secondary"
+      ? theme.secondaryBorderThickness
+      : theme.textBorderThickness
+  };
+  border-style: ${
+    $mode === "primary"
+      ? theme.primaryBorderStyle
+      : $mode === "secondary"
+      ? theme.secondaryBorderStyle
+      : theme.textBorderStyle
+  };
+  font-family: ${
+    $mode === "primary"
+      ? theme.primaryFontFamily
+      : $mode === "secondary"
+      ? theme.secondaryFontFamily
+      : theme.textFontFamily
+  };
+  font-size: ${
+    $mode === "primary" ? theme.primaryFontSize : $mode === "secondary" ? theme.secondaryFontSize : theme.textFontSize
+  };
+  font-weight: ${
+    $mode === "primary"
+      ? theme.primaryFontWeight
+      : $mode === "secondary"
+      ? theme.secondaryFontWeight
+      : theme.textFontWeight
+  };
+  background-color: ${
+    $mode === "primary"
+      ? theme.primaryBackgroundColor
+      : $mode === "secondary"
+      ? theme.secondaryBackgroundColor
+      : theme.textBackgroundColor
+  };
+  color: ${
+    $mode === "primary"
+      ? theme.primaryFontColor
+      : $mode === "secondary"
+      ? theme.secondaryFontColor
+      : theme.textFontColor
+  };
+  `;
+
+const getButtonStates = (
+  disabled: ButtonPropsType["disabled"],
+  $mode: ButtonPropsType["mode"],
+  theme: AdvancedTheme["button"]
+) => `
+  &:hover {
     background-color: ${
       $mode === "primary"
-        ? backgroundType === "dark"
-          ? props.theme.primaryBackgroundColorOnDark
-          : props.theme.primaryBackgroundColor
+        ? theme.primaryHoverBackgroundColor
         : $mode === "secondary"
-        ? backgroundType === "dark"
-          ? props.theme.secondaryBackgroundColorOnDark
-          : props.theme.secondaryBackgroundColor
-        : backgroundType === "dark"
-        ? props.theme.textBackgroundColorOnDark
-        : props.theme.textBackgroundColor
+        ? theme.secondaryHoverBackgroundColor
+        : theme.textHoverBackgroundColor
+    };
+    color: ${$mode === "secondary" ? theme.secondaryHoverFontColor : ""};
+  }
+  &:focus {
+    border-color: ${$mode === "secondary" ? "transparent" : ""};
+  }
+  &:active {
+    background-color: ${
+      $mode === "primary"
+        ? theme.primaryActiveBackgroundColor
+        : $mode === "secondary"
+        ? theme.secondaryActiveBackgroundColor
+        : theme.textActiveBackgroundColor
+    };
+    color: ${$mode === "secondary" ? theme.secondaryHoverFontColor : ""};
+    border-color: ${$mode === "secondary" ? "transparent" : ""};
+    outline: none;
+    box-shadow: ${!disabled ? `0 0 0 2px ${theme.focusBorderColor}` : ""};
+  }
+  &:disabled {
+    cursor: not-allowed;
+    background-color: ${
+      $mode === "primary"
+        ? theme.primaryDisabledBackgroundColor
+        : $mode === "secondary"
+        ? theme.secondaryDisabledBackgroundColor
+        : theme.textDisabledBackgroundColor
     };
     color: ${
       $mode === "primary"
-        ? backgroundType === "dark"
-          ? props.theme.primaryFontColorOnDark
-          : props.theme.primaryFontColor
+        ? theme.primaryDisabledFontColor
         : $mode === "secondary"
-        ? backgroundType === "dark"
-          ? props.theme.secondaryFontColorOnDark
-          : props.theme.secondaryFontColor
-        : backgroundType === "dark"
-        ? props.theme.textFontColorOnDark
-        : props.theme.textFontColor
+        ? theme.secondaryDisabledFontColor
+        : theme.textDisabledFontColor
     };
-    border-color: ${
-      $mode === "secondary"
-        ? backgroundType === "dark"
-          ? props.theme.secondaryBorderColorOnDark
-          : props.theme.secondaryBorderColor
-        : ""
-    };
-    &:hover {
-      background-color: ${
-        $mode === "primary"
-          ? backgroundType === "dark"
-            ? props.theme.primaryHoverBackgroundColorOnDark
-            : props.theme.primaryHoverBackgroundColor
-          : $mode === "secondary"
-          ? backgroundType === "dark"
-            ? props.theme.secondaryHoverBackgroundColorOnDark
-            : props.theme.secondaryHoverBackgroundColor
-          : backgroundType === "dark"
-          ? props.theme.textHoverBackgroundColorOnDark
-          : props.theme.textHoverBackgroundColor
-      };
-      color: ${
-        $mode === "secondary"
-          ? backgroundType === "dark"
-            ? props.theme.secondaryHoverFontColorOnDark
-            : props.theme.secondaryHoverFontColor
-          : ""
-      };
-    }
-    &:focus {
-      border-color: ${$mode === "secondary" ? "transparent" : ""};
-    }
-    &:active {
-      background-color: ${
-        $mode === "primary"
-          ? backgroundType === "dark"
-            ? props.theme.primaryActiveBackgroundColorOnDark
-            : props.theme.primaryActiveBackgroundColor
-          : $mode === "secondary"
-          ? backgroundType === "dark"
-            ? props.theme.secondaryActiveBackgroundColorOnDark
-            : props.theme.secondaryActiveBackgroundColor
-          : backgroundType === "dark"
-          ? props.theme.textActiveBackgroundColorOnDark
-          : props.theme.textActiveBackgroundColor
-      };
-      color: ${
-        $mode === "secondary"
-          ? backgroundType === "dark"
-            ? props.theme.secondaryHoverFontColorOnDark
-            : props.theme.secondaryHoverFontColor
-          : ""
-      };
-      border-color: ${$mode === "secondary" ? "transparent" : ""};
-      outline: none;
-      box-shadow: ${
-        !disabled
-          ? `0 0 0 2px ${backgroundType === "dark" ? props.theme.focusBorderColorOnDark : props.theme.focusBorderColor}`
-          : ""
-      };
-    }
-    &:disabled {
-      cursor: not-allowed;
-      background-color: ${
-        $mode === "primary"
-          ? backgroundType === "dark"
-            ? props.theme.primaryDisabledBackgroundColorOnDark
-            : props.theme.primaryDisabledBackgroundColor
-          : $mode === "secondary"
-          ? backgroundType === "dark"
-            ? props.theme.secondaryDisabledBackgroundColorOnDark
-            : props.theme.secondaryDisabledBackgroundColor
-          : backgroundType === "dark"
-          ? props.theme.textDisabledBackgroundColorOnDark
-          : props.theme.textDisabledBackgroundColor
-      };
-      color: ${
-        $mode === "primary"
-          ? backgroundType === "dark"
-            ? props.theme.primaryDisabledFontColorOnDark
-            : props.theme.primaryDisabledFontColor
-          : $mode === "secondary"
-          ? backgroundType === "dark"
-            ? props.theme.secondaryDisabledFontColorOnDark
-            : props.theme.secondaryDisabledFontColor
-          : backgroundType === "dark"
-          ? props.theme.textDisabledFontColorOnDark
-          : props.theme.textDisabledFontColor
-      };
-      border-color: ${
-        $mode === "secondary"
-          ? backgroundType === "dark"
-            ? props.theme.secondaryDisabledBorderColorOnDark
-            : props.theme.secondaryDisabledBorderColor
-          : ""
-      };
-    }
-  `;
-};
+    border-color: ${$mode === "secondary" ? theme.secondaryDisabledBorderColor : ""};
+  }
+`;
 
 const Button = styled.button<{
   hasIcon: boolean;
   hasLabel: boolean;
+  disabled: ButtonPropsType["disabled"];
   iconPosition: ButtonPropsType["iconPosition"];
   $mode: ButtonPropsType["mode"];
   margin: ButtonPropsType["margin"];
   size: ButtonPropsType["size"];
-  backgroundType: BackgroundColors;
 }>`
   display: inline-flex;
   flex-direction: ${(props) => (props.iconPosition === "after" ? "row" : "row-reverse")};
@@ -272,12 +205,11 @@ const Button = styled.button<{
 
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 2px
-      ${(props) =>
-        props.backgroundType === "dark" ? props.theme.focusBorderColorOnDark : props.theme.focusBorderColor};
+    box-shadow: 0 0 0 2px ${(props) => props.theme.focusBorderColor};
   }
 
-  ${(props) => getButtonStyles(props)}
+  ${(props) => getButtonStyles(props.$mode, props.theme)}
+  ${(props) => getButtonStates(props.disabled, props.$mode, props.theme)}
 `;
 
 const LabelContainer = styled.span`
@@ -291,6 +223,7 @@ const LabelContainer = styled.span`
 
 const IconContainer = styled.div`
   display: flex;
+
   img,
   svg {
     height: 24px;
