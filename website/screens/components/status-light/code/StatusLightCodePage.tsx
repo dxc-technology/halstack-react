@@ -2,8 +2,6 @@ import { DxcFlex, DxcTable } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
-import Example from "@/common/example/Example";
-// import basicUsage from "./examples/basicUsage";
 import TableCode from "@/common/TableCode";
 
 const sections = [
@@ -56,16 +54,6 @@ const sections = [
       </DxcTable>
     ),
   },
-  // TODO: Missing examples
-  // {
-  //   title: "Examples",
-  //   subSections: [
-  //     {
-  //       title: "Basic usage",
-  //       content: <Example example={basicUsage} defaultIsVisible />,
-  //     }
-  //   ],
-  // },
 ];
 
 const StatusLightCodePage = () => {
