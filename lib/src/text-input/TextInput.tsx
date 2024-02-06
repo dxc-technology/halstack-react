@@ -11,6 +11,7 @@ import * as Popover from "@radix-ui/react-popover";
 import icons from "./Icons";
 import { v4 as uuidv4 } from "uuid";
 import DxcActionIcon from "../action-icon/ActionIcon";
+import { DxcFlex } from "../main";
 
 const sizes = {
   small: "240px",
@@ -400,78 +401,80 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
               ref={inputContainerRef}
             >
               {prefix && <Prefix disabled={disabled}>{prefix}</Prefix>}
-              <Input
-                id={inputId}
-                name={name}
-                value={value ?? innerValue}
-                placeholder={placeholder}
-                onBlur={handleInputOnBlur}
-                onChange={handleInputOnChange}
-                onFocus={!readOnly ? openSuggestions : undefined}
-                onKeyDown={!readOnly ? handleInputOnKeyDown : undefined}
-                onMouseDown={(event) => {
-                  event.stopPropagation();
-                }}
-                disabled={disabled}
-                readOnly={readOnly}
-                ref={inputRef}
-                pattern={pattern}
-                minLength={minLength}
-                maxLength={maxLength}
-                autoComplete={autocomplete === "off" ? "nope" : autocomplete}
-                tabIndex={tabIndex}
-                type="text"
-                role={hasSuggestions(suggestions) ? "combobox" : undefined}
-                aria-autocomplete={hasSuggestions(suggestions) ? "list" : undefined}
-                aria-controls={hasSuggestions(suggestions) ? autosuggestId : undefined}
-                aria-expanded={hasSuggestions(suggestions) ? isOpen : undefined}
-                aria-haspopup={hasSuggestions(suggestions) ? "listbox" : undefined}
-                aria-activedescendant={
-                  hasSuggestions(suggestions) && isOpen && visualFocusIndex !== -1
-                    ? `suggestion-${visualFocusIndex}`
-                    : undefined
-                }
-                aria-invalid={error ? true : false}
-                aria-errormessage={error ? errorId : undefined}
-                aria-required={!disabled && !optional}
-              />
-              {!disabled && error && <ErrorIcon aria-label="Error">{icons.error}</ErrorIcon>}
-              {!disabled && !readOnly && clearable && (value ?? innerValue).length > 0 && (
-                <DxcActionIcon
-                  onClick={handleClearActionOnClick}
-                  icon={icons.clear}
-                  tabIndex={tabIndex}
-                  title={translatedLabels.textInput.clearFieldActionTitle}
-                />
-              )}
-              {numberInputContext?.typeNumber === "number" && (
-                <>
-                  <DxcActionIcon
-                    onClick={!readOnly ? handleDecrementActionOnClick : undefined}
-                    icon={icons.decrement}
-                    tabIndex={tabIndex}
-                    ref={actionRef}
-                    title={translatedLabels.numberInput.decrementValueTitle}
-                  />
-                  <DxcActionIcon
-                    onClick={!readOnly ? handleIncrementActionOnClick : undefined}
-                    icon={icons.increment}
-                    tabIndex={tabIndex}
-                    ref={actionRef}
-                    title={translatedLabels.numberInput.incrementValueTitle}
-                  />
-                </>
-              )}
-              {action && (
-                <DxcActionIcon
-                  onClick={!readOnly ? action.onClick : undefined}
-                  icon={action.icon}
-                  tabIndex={tabIndex}
-                  ref={actionRef}
-                  title={action.title}
+              <DxcFlex gap={"0.25rem"} alignItems="center" grow={1}>
+                <Input
+                  id={inputId}
+                  name={name}
+                  value={value ?? innerValue}
+                  placeholder={placeholder}
+                  onBlur={handleInputOnBlur}
+                  onChange={handleInputOnChange}
+                  onFocus={!readOnly ? openSuggestions : undefined}
+                  onKeyDown={!readOnly ? handleInputOnKeyDown : undefined}
+                  onMouseDown={(event) => {
+                    event.stopPropagation();
+                  }}
                   disabled={disabled}
+                  readOnly={readOnly}
+                  ref={inputRef}
+                  pattern={pattern}
+                  minLength={minLength}
+                  maxLength={maxLength}
+                  autoComplete={autocomplete === "off" ? "nope" : autocomplete}
+                  tabIndex={tabIndex}
+                  type="text"
+                  role={hasSuggestions(suggestions) ? "combobox" : undefined}
+                  aria-autocomplete={hasSuggestions(suggestions) ? "list" : undefined}
+                  aria-controls={hasSuggestions(suggestions) ? autosuggestId : undefined}
+                  aria-expanded={hasSuggestions(suggestions) ? isOpen : undefined}
+                  aria-haspopup={hasSuggestions(suggestions) ? "listbox" : undefined}
+                  aria-activedescendant={
+                    hasSuggestions(suggestions) && isOpen && visualFocusIndex !== -1
+                      ? `suggestion-${visualFocusIndex}`
+                      : undefined
+                  }
+                  aria-invalid={error ? true : false}
+                  aria-errormessage={error ? errorId : undefined}
+                  aria-required={!disabled && !optional}
                 />
-              )}
+                {!disabled && error && <ErrorIcon aria-label="Error">{icons.error}</ErrorIcon>}
+                {!disabled && !readOnly && clearable && (value ?? innerValue).length > 0 && (
+                  <DxcActionIcon
+                    onClick={handleClearActionOnClick}
+                    icon={icons.clear}
+                    tabIndex={tabIndex}
+                    title={translatedLabels.textInput.clearFieldActionTitle}
+                  />
+                )}
+                {numberInputContext?.typeNumber === "number" && (
+                  <>
+                    <DxcActionIcon
+                      onClick={!readOnly ? handleDecrementActionOnClick : undefined}
+                      icon={icons.decrement}
+                      tabIndex={tabIndex}
+                      ref={actionRef}
+                      title={translatedLabels.numberInput.decrementValueTitle}
+                    />
+                    <DxcActionIcon
+                      onClick={!readOnly ? handleIncrementActionOnClick : undefined}
+                      icon={icons.increment}
+                      tabIndex={tabIndex}
+                      ref={actionRef}
+                      title={translatedLabels.numberInput.incrementValueTitle}
+                    />
+                  </>
+                )}
+                {action && (
+                  <DxcActionIcon
+                    onClick={!readOnly ? action.onClick : undefined}
+                    icon={action.icon}
+                    tabIndex={tabIndex}
+                    ref={actionRef}
+                    title={action.title}
+                    disabled={disabled}
+                  />
+                )}
+              </DxcFlex>
               {suffix && <Suffix disabled={disabled}>{suffix}</Suffix>}
             </InputContainer>
           </AutosuggestWrapper>
@@ -540,7 +543,6 @@ const InputContainer = styled.div<{
   align-items: center;
   height: calc(2.5rem - 2px);
   padding: 0 0.5rem;
-  gap: 0.25rem;
 
   ${(props) => {
     if (props.disabled) return `background-color: ${props.theme.disabledContainerFillColor};`;
