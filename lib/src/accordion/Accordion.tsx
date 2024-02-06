@@ -3,7 +3,6 @@ import styled, { ThemeProvider } from "styled-components";
 import { getMargin } from "../common/utils";
 import { spaces } from "../common/variables";
 import useTheme from "../useTheme";
-import { BackgroundColorProvider } from "../BackgroundColorContext";
 import AccordionPropsType from "./types";
 import BaseTypography from "../utils/BaseTypography";
 import { v4 as uuidv4 } from "uuid";
@@ -103,7 +102,7 @@ const DxcAccordion = ({
         </AccordionHeader>
         {(isExpanded ?? innerIsExpanded) && (
           <AccordionPanel id={`accordion-panel-${id}`} role="region" aria-labelledby={`accordion-${id}`}>
-            <BackgroundColorProvider color={colorsTheme.accordion.backgroundColor}>{children}</BackgroundColorProvider>
+            {children}
           </AccordionPanel>
         )}
       </AccordionContainer>

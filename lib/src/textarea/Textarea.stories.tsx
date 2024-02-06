@@ -2,7 +2,6 @@ import React from "react";
 import DxcTextarea from "./Textarea";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
-import { BackgroundColorProvider } from "../BackgroundColorContext";
 import { HalstackProvider } from "../HalstackContext";
 
 export default {

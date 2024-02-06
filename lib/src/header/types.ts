@@ -1,3 +1,5 @@
+type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
+
 type Props = {
   /**
    * Whether a contrast line should appear at the bottom of the header.
@@ -21,7 +23,7 @@ type Props = {
   /**
    * Size of the bottom margin to be applied to the header.
    */
-  margin?: "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
+  margin?: Space;
   /**
    * Value of the tabindex for all interactive elements, except those inside the
    * custom area.
