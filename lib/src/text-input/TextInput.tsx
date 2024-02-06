@@ -454,6 +454,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
                       tabIndex={tabIndex}
                       ref={actionRef}
                       title={translatedLabels.numberInput.decrementValueTitle}
+                      disabled={disabled}
                     />
                     <DxcActionIcon
                       onClick={!readOnly ? handleIncrementActionOnClick : undefined}
@@ -461,6 +462,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
                       tabIndex={tabIndex}
                       ref={actionRef}
                       title={translatedLabels.numberInput.incrementValueTitle}
+                      disabled={disabled}
                     />
                   </>
                 )}
