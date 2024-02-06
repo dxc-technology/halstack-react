@@ -9,7 +9,7 @@ type Margin = {
 };
 type SVG = React.ReactNode & React.SVGProps<SVGSVGElement>;
 
-type OptionGroup = {
+export type OptionGroup = {
   /**
    * Label of the group to be shown in the select's listbox.
    */
@@ -19,7 +19,7 @@ type OptionGroup = {
    */
   options: Option[];
 };
-type Option = {
+export type Option = {
   /**
    * Element used as the icon that will be placed before the option label.
    * It can be a url of an image or an inline SVG. If the url option
@@ -48,7 +48,7 @@ type CommonProps = {
    * Name attribute of the input element. This attribute will allow users
    * to find the component's value during the submit event. In this event,
    * the component's value will always be a regular string, for both single
-   * and multiple selection modes, being a single option value in the first case 
+   * and multiple selection modes, being a single option value in the first case
    * and more than one value when multiple selection is available, separated by commas.
    */
   name?: string;
@@ -103,6 +103,7 @@ type CommonProps = {
    */
   tabIndex?: number;
 };
+
 type SingleSelect = CommonProps & {
   /**
    * If true, the select component will support multiple selected options.
