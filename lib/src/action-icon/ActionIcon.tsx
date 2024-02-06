@@ -1,25 +1,28 @@
 import React from "react";
-import ActionIconProps from "./types";
+import ActionIconProps, { RefType } from "./types";
 import styled from "styled-components";
 
-const DxcActionIcon = ({ disabled = false, title, icon, onClick, margin, tabIndex }: ActionIconProps): JSX.Element => {
-  return (
-    <ActionIcon
-      aria-label={title}
-      disabled={disabled}
-      onClick={onClick}
-      onMouseDown={(event) => {
-        event.stopPropagation();
-      }}
-      tabIndex={tabIndex}
-      title={title}
-      margin={margin}
-      type="button"
-    >
-      {typeof icon === "string" ? <img src={icon} /> : icon}
-    </ActionIcon>
-  );
-};
+const DxcActionIcon = React.forwardRef<RefType, ActionIconProps>(
+  ({ disabled = false, title, icon, onClick, margin, tabIndex }, ref): JSX.Element => {
+    return (
+      <ActionIcon
+        aria-label={title}
+        disabled={disabled}
+        onClick={onClick}
+        onMouseDown={(event) => {
+          event.stopPropagation();
+        }}
+        tabIndex={tabIndex}
+        title={title}
+        margin={margin}
+        type="button"
+        ref={ref}
+      >
+        {typeof icon === "string" ? <img src={icon} /> : icon}
+      </ActionIcon>
+    );
+  }
+);
 
 const ActionIcon = styled.button<{ margin: ActionIconProps["margin"] }>`
   display: flex;

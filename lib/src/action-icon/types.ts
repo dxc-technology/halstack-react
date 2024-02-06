@@ -33,10 +33,8 @@ type Props = {
    * Value of the tabindex attribute.
    */
   tabIndex?: number;
-  /**
-   * Reference to the component.
-   */
-  ref?: React.Ref<HTMLButtonElement>;
 };
+
+export type RefType = HTMLButtonElement;
 
 export default Props;
