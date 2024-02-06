@@ -115,7 +115,7 @@ function App() {
       label: "Group 2",
       options: [
         { label: "Option 0004", value: "4" },
-        { label: "Option 05", value: "5" },
+        { label: "Option with a very long label to test the ellipsis 0005", value: "5" },
         { label: "Option 006", value: "6" },
       ],
     },
