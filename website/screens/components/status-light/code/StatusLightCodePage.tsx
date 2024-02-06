@@ -21,17 +21,22 @@ const sections = [
           <tr>
             <td>mode</td>
             <td>
-              <TableCode>'default' | 'info' | 'success' | 'warning' | 'error'</TableCode>
+              <TableCode>
+                'default' | 'info' | 'success' | 'warning' | 'error'
+              </TableCode>
             </td>
-            <td>It will define the color of the light based on its semantic meaning.</td>
-            <td>'default'</td>
+            <td>
+              It will define the color of the light based on its semantic
+              meaning.
+            </td>
+            <td>
+              <TableCode>'default'</TableCode>
+            </td>
           </tr>
           <tr>
             <td>label</td>
             <td>
-              <TableCode>
-                string
-              </TableCode>
+              <TableCode>string</TableCode>
             </td>
             <td>
               A short auxiliar text that will add some context to the status.
@@ -41,14 +46,13 @@ const sections = [
           <tr>
             <td>size</td>
             <td>
-              <TableCode>
-                'small' | 'medium' | 'large'
-              </TableCode>
+              <TableCode>'small' | 'medium' | 'large'</TableCode>
             </td>
             <td>
-              Size of the component. Should be defined based on its importance and/or available space.
+              Size of the component. Should be defined based on its importance
+              and/or available space.
             </td>
-            <td>-</td>
+            <td><TableCode>'medium'</TableCode></td>
           </tr>
         </tbody>
       </DxcTable>
