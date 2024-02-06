@@ -6,7 +6,6 @@ import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
 import Figure from "@/common/Figure";
 import Image from "@/common/Image";
-import specsImage from "./images/status-light_specs.png";
 
 const sections = [
   {
