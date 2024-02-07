@@ -23,15 +23,13 @@ const useResize = (refTabList) => {
   const [viewWidth, setViewWidth] = useState(0);
 
   const handleWindowSizeChange = useCallback(() => {
-    setViewWidth(refTabList?.current?.offsetWidth);
+    setViewWidth(refTabList?.current?.offsetWidth ?? 0);
   }, [refTabList]);
 
   useEffect(() => {
-    window.addEventListener("load", handleWindowSizeChange);
+    handleWindowSizeChange();
     window.addEventListener("resize", handleWindowSizeChange);
-
     return () => {
-      window.removeEventListener("load", handleWindowSizeChange);
       window.removeEventListener("resize", handleWindowSizeChange);
     };
   }, [handleWindowSizeChange]);
@@ -336,6 +334,7 @@ const ScrollIndicator = styled.button<{
   }
   &:disabled {
     cursor: default;
+    display: none;
     svg {
       visibility: hidden;
     }
