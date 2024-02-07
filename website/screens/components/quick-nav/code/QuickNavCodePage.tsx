@@ -35,9 +35,9 @@ const sections = [
               <TableCode>{"{ label: string; links?: Link[]; }[]"}</TableCode>
             </td>
             <td>
-              Links of the quick nav component. Only first level links will be
-              shown in the quick nav, due to design restrictions. Each link has
-              the following properties:
+              Links of the quick nav component. Only first and second level
+              links will be shown in the quick nav, due to design restrictions.
+              Each link has the following properties:
               <ul>
                 <li>
                   <b>label</b>: Text to be shown in the link. The content must
