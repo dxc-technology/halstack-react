@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useCallback, useContext, useEffect, useRef, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
@@ -248,6 +248,12 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
           break;
       }
     };
+    const handleWheel = useCallback((event: WheelEvent) => {
+      if (document.activeElement === inputRef.current) {
+        event.preventDefault();
+        event.deltaY < 0 ? incrementNumber(inputRef.current.value) : decrementNumber(inputRef.current.value);
+      }
+    }, []);
 
     const handleClearActionOnClick = () => {
       changeValue("");
@@ -270,8 +276,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
       inputRef?.current?.setAttribute("step", step);
       inputRef?.current?.setAttribute("type", type);
     };
-    const decrementNumber = () => {
-      const currentValue = value ?? innerValue;
+    const decrementNumber = (currentValue = value ?? innerValue) => {
       const numberValue = Number(currentValue);
       const steppedValue = Math.round((numberValue - numberInputContext?.stepNumber + Number.EPSILON) * 100) / 100;
 
@@ -287,8 +292,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
         else changeValue(-numberInputContext.stepNumber);
       }
     };
-    const incrementNumber = () => {
-      const currentValue = value ?? innerValue;
+    const incrementNumber = (currentValue = value ?? innerValue) => {
       const numberValue = Number(currentValue);
       const steppedValue = Math.round((numberValue + numberInputContext?.stepNumber + Number.EPSILON) * 100) / 100;
 
@@ -343,6 +347,16 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
           numberInputContext.stepNumber
         );
     }, [value, innerValue, suggestions, numberInputContext]);
+
+    useEffect(() => {
+      const input = inputRef.current;
+  
+      input.addEventListener('wheel', handleWheel, { passive: false });
+  
+      return () => {
+        input.removeEventListener('wheel', handleWheel);
+      };
+    }, [handleWheel]);
 
     return (
       <ThemeProvider theme={colorsTheme.textInput}>
