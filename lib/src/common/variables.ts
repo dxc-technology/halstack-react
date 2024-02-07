@@ -506,7 +506,6 @@ export const componentTokens = {
     selectedIconColor: CoreTokens.color_grey_700,
     unselectedIconColor: CoreTokens.color_grey_700,
     disabledIconColor: CoreTokens.color_grey_500,
-    dividerThickness: "2px",
   },
   paginator: {
     backgroundColor: CoreTokens.color_grey_100,

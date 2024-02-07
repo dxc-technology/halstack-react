@@ -88,7 +88,7 @@ const Underline = styled.div`
   bottom: 0;
   left: 0;
   width: 100%;
-  height: ${(props) => props.theme.dividerThickness};
+  height: 2px;
   background-color: ${(props) => props.theme.dividerColor};
   z-index: -1;
 `;
