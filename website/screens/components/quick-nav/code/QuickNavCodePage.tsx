@@ -35,15 +35,15 @@ const sections = [
               <TableCode>{"{ label: string; links?: Link[]; }[]"}</TableCode>
             </td>
             <td>
-              Links of the quick nav component. Each link has the following
-              properties:
+              Links of the quick nav component. Only first level links will be
+              shown in the quick nav, due to design restrictions. Each link has
+              the following properties:
               <ul>
                 <li>
-                  <b>label</b>: Text to be shown in the link. The
-                  content must be wrapped with an id equals to the slugified
-                  label (in lower case and the white spaces replaced by
-                  &#39;-&#39;) in order to be able to navigate to the section
-                  that the label references.
+                  <b>label</b>: Text to be shown in the link. The content must
+                  be wrapped with an id equals to the slugified label (in lower
+                  case and the white spaces replaced by &#39;-&#39;) in order to
+                  be able to navigate to the section that the label references.
                 </li>
                 <li>
                   <b>links</b>: Sublinks of the link.
