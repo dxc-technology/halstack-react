@@ -27,17 +27,6 @@ type BottomLink = {
   text: string;
 };
 
-type InfoTag = {
-  /**
-   * Label for the element
-   */
-  label: string;
-  /**
-   * Text for the element
-   */
-  text: string;
-};
-
 type FooterPropsType = {
   /**
    * An array of objects representing the links that will be rendered as

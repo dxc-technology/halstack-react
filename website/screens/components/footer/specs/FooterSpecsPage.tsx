@@ -104,16 +104,6 @@ const sections = [
                 </td>
                 <td>#ffffff</td>
               </tr>
-              <tr>
-                <td>
-                  <Code>childrenFontColor</Code>
-                </td>
-                <td>Custom container</td>
-                <td>
-                  <Code>color-white</Code>
-                </td>
-                <td>#ffffff</td>
-              </tr>
             </tbody>
           </DxcTable>
         ),
@@ -181,47 +171,6 @@ const sections = [
                 </td>
                 <td>none</td>
               </tr>
-              <tr>
-                <td>
-                  <Code>childrenFontFamily</Code>
-                </td>
-                <td>Custom container</td>
-                <td>
-                  <Code>font-family-sans</Code>
-                </td>
-                <td>&#39;Open Sans&#39;, sans-serif</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>childrenFontSize</Code>
-                </td>
-                <td>Custom container</td>
-                <td>
-                  <Code>font-scale-01</Code>
-                </td>
-                <td>0.75rem / 12px</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>childrenFontWeight</Code>
-                </td>
-                <td>Custom container</td>
-                <td>
-                  <Code>font-weight-regular</Code>
-                </td>
-                <td>400</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>childrenFontStyle</Code>
-                </td>
-                <td>Custom container</td>
-                <td>
-                  <Code>font-style-normal</Code>
-                </td>
-                <td>normal</td>
-              </tr>
-
               <tr>
                 <td>
                   <Code>copyrightFontFamily</Code>

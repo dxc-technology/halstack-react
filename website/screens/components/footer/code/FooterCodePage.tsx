@@ -21,6 +21,30 @@ const sections = [
         </thead>
         <tbody>
           <tr>
+            <td>
+              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                <StatusTag status="Information">New</StatusTag>mode
+              </DxcFlex>
+            </td>
+            <td>
+              <TableCode>'default' | 'reduced'</TableCode>
+            </td>
+            <td>
+              The available footer modes:
+              <ul>
+                <li>
+                  <b>default</b>: Footer with full content.
+                </li>
+                <li>
+                  <b>reduced</b>: Smaller footer with minimal content.
+                </li>
+              </ul>
+            </td>
+            <td>
+              <TableCode>'default'</TableCode>
+            </td>
+          </tr>
+          <tr>
             <td>socialLinks</td>
             <td>
               <TableCode>
@@ -109,32 +133,6 @@ const sections = [
             </td>
             <td>
               <TableCode>0</TableCode>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                <StatusTag status="Information">New</StatusTag>mode
-              </DxcFlex>
-            </td>
-            <td>
-              <TableCode>'default' | 'reduced'</TableCode>
-            </td>
-            <td>
-              The active mode for the visual style and layout.
-              <ul>
-                <li>
-                  <b>default</b>: The default mode with full content and
-                  styling.
-                </li>
-                <li>
-                  <b>reduced</b>: A reduced mode with minimal content and
-                  styling.
-                </li>
-              </ul>
-            </td>
-            <td>
-              <TableCode>'default'</TableCode>
             </td>
           </tr>
         </tbody>

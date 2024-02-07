@@ -22,7 +22,7 @@ const DxcFooter = ({
   const footerLogo = useMemo(
     () =>
       !colorsTheme.footer.logo ? (
-        mode !== "reduced" ? (
+        mode === "default" ? (
           dxcLogo
         ) : (
           dxcSmallLogo
@@ -40,7 +40,7 @@ const DxcFooter = ({
       <FooterContainer margin={margin} mode={mode}>
         <DxcFlex justifyContent="space-between" alignItems="center" wrap="wrap" gap="1.5rem">
           <LogoContainer mode={mode}>{footerLogo}</LogoContainer>
-          {mode !== "reduced" && (
+          {mode === "default" && (
             <DxcFlex>
               {socialLinks?.map((link, index) => (
                 <SocialAnchor
@@ -52,7 +52,7 @@ const DxcFooter = ({
                   index={index}
                 >
                   <SocialIconContainer>
-                    {typeof link.logo === "string" ? <img src={link.logo} alt="Link" /> : link.logo}
+                    {typeof link.logo === "string" ? <img src={link.logo} alt={link.title} /> : link.logo}
                   </SocialIconContainer>
                 </SocialAnchor>
               ))}
@@ -60,7 +60,7 @@ const DxcFooter = ({
           )}
         </DxcFlex>
         {children && <ChildComponents mode={mode}>{children}</ChildComponents>}
-        {mode !== "reduced" && (
+        {mode === "default" && (
           <BottomContainer>
             <BottomLinks>
               {bottomLinks?.map((link, index) => (
@@ -79,18 +79,18 @@ const DxcFooter = ({
   );
 };
 
-const FooterContainer = styled.footer<{ margin: FooterPropsType["margin"]; mode?: "default" | "reduced" }>`
+const FooterContainer = styled.footer<{ margin: FooterPropsType["margin"]; mode?: FooterPropsType["mode"] }>`
   background-color: ${(props) => props.theme.backgroundColor};
   box-sizing: border-box;
   display: flex;
-  flex-direction: ${(props) => (props?.mode !== "reduced" ? "column" : "row")};
+  flex-direction: ${(props) => (props?.mode === "default" ? "column" : "row")};
   justify-content: space-between;
   margin-top: ${(props) => (props.margin ? spaces[props.margin] : "0px")};
-  min-height: ${(props) => (props?.mode !== "reduced" ? props.theme.height : props.theme.reducedHeight)};
+  min-height: ${(props) => (props?.mode === "default" ? props.theme.height : props.theme.reducedHeight)};
   width: 100%;
-  gap: ${(props) => (props?.mode !== "reduced" ? "0px" : "32px")};
+  gap: ${(props) => (props?.mode === "default" ? "0px" : "32px")};
   @media (min-width: ${responsiveSizes.small}rem) {
-    padding: ${(props) => (props?.mode !== "reduced" ? "24px 32px 24px 32px" : "12px 32px 12px 32px")};
+    padding: ${(props) => (props?.mode === "default" ? "24px" : "12px")} 32px;
   }
   @media (max-width: ${responsiveSizes.small}rem) {
     padding: 20px;
@@ -116,14 +116,9 @@ const BottomContainer = styled.div`
   margin-top: 16px;
 `;
 
-const ChildComponents = styled.div<{ mode: "default" | "reduced" }>`
+const ChildComponents = styled.div<{ mode: FooterPropsType["mode"] }>`
   min-height: 16px;
   overflow: hidden;
-  font-family: ${(props) => props.theme.childrenFontFamily};
-  font-size: ${(props) => props.theme.childrenFontSize};
-  font-style: ${(props) => props.theme.childrenFontStyle};
-  font-weight: ${(props) => props.theme.childrenFontWeight};
-  color: ${(props) => props.theme.childrenFontColor};
   ${(props) =>
     props.mode === "reduced" &&
     `
@@ -155,13 +150,13 @@ const Copyright = styled.div`
   }
 `;
 
-const LogoContainer = styled.span<{ mode?: "default" | "reduced" }>`
-  max-height: ${(props) => (props?.mode !== "reduced" ? props.theme.logoHeight : props.theme.reducedLogoHeight)};
+const LogoContainer = styled.span<{ mode?: FooterPropsType["mode"] }>`
+  max-height: ${(props) => (props?.mode === "default" ? props.theme.logoHeight : props.theme.reducedLogoHeight)};
   width: ${(props) => props.theme.logoWidth};
 `;
 
-const LogoImg = styled.img<{ mode?: "default" | "reduced" }>`
-  max-height: ${(props) => (props?.mode !== "reduced" ? props.theme.logoHeight : props.theme.reducedLogoHeight)};
+const LogoImg = styled.img<{ mode?: FooterPropsType["mode"] }>`
+  max-height: ${(props) => (props?.mode === "default" ? props.theme.logoHeight : props.theme.reducedLogoHeight)};
   width: ${(props) => props.theme.logoWidth};
 `;
 
