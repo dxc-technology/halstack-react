@@ -348,14 +348,11 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
 
     useEffect(() => {
       const input = inputRef.current;
-      const handleWheelListener = (event: WheelEvent) => {
-        handleWheel(event);
-      };
   
-      input.addEventListener('wheel', handleWheelListener, { passive: false });
+      input.addEventListener('wheel', handleWheel, { passive: false });
   
       return () => {
-        input.removeEventListener('wheel', handleWheelListener);
+        input.removeEventListener('wheel', handleWheel);
       };
     }, [handleWheel]);
 
