@@ -246,12 +246,12 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
           break;
       }
     };
-    const handleWheel = useCallback((event) => {
+    const handleWheel = useCallback((event: WheelEvent) => {
       if (document.activeElement === inputRef.current) {
         event.preventDefault();
         event.deltaY < 0 ? incrementNumber(inputRef.current.value) : decrementNumber(inputRef.current.value);
       }
-    }, [inputRef]);
+    }, []);
 
     const handleClearActionOnClick = () => {
       changeValue("");
@@ -348,7 +348,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
 
     useEffect(() => {
       const input = inputRef.current;
-      const handleWheelListener = (event) => {
+      const handleWheelListener = (event: WheelEvent) => {
         handleWheel(event);
       };
   
