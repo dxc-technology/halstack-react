@@ -10,6 +10,8 @@ import Suggestions from "./Suggestions";
 import * as Popover from "@radix-ui/react-popover";
 import icons from "./Icons";
 import { v4 as uuidv4 } from "uuid";
+import DxcActionIcon from "../action-icon/ActionIcon";
+import { DxcFlex } from "../main";
 
 const sizes = {
   small: "240px",
@@ -413,104 +415,82 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
               ref={inputContainerRef}
             >
               {prefix && <Prefix disabled={disabled}>{prefix}</Prefix>}
-              <Input
-                id={inputId}
-                name={name}
-                value={value ?? innerValue}
-                placeholder={placeholder}
-                onBlur={handleInputOnBlur}
-                onChange={handleInputOnChange}
-                onFocus={!readOnly ? openSuggestions : undefined}
-                onKeyDown={!readOnly ? handleInputOnKeyDown : undefined}
-                onMouseDown={(event) => {
-                  event.stopPropagation();
-                }}
-                disabled={disabled}
-                readOnly={readOnly}
-                ref={inputRef}
-                pattern={pattern}
-                minLength={minLength}
-                maxLength={maxLength}
-                autoComplete={autocomplete === "off" ? "nope" : autocomplete}
-                tabIndex={tabIndex}
-                type="text"
-                role={hasSuggestions(suggestions) ? "combobox" : undefined}
-                aria-autocomplete={hasSuggestions(suggestions) ? "list" : undefined}
-                aria-controls={hasSuggestions(suggestions) ? autosuggestId : undefined}
-                aria-expanded={hasSuggestions(suggestions) ? isOpen : undefined}
-                aria-haspopup={hasSuggestions(suggestions) ? "listbox" : undefined}
-                aria-activedescendant={
-                  hasSuggestions(suggestions) && isOpen && visualFocusIndex !== -1
-                    ? `suggestion-${visualFocusIndex}`
-                    : undefined
-                }
-                aria-invalid={error ? true : false}
-                aria-errormessage={error ? errorId : undefined}
-                aria-required={!disabled && !optional}
-              />
-              {!disabled && error && <ErrorIcon aria-label="Error">{icons.error}</ErrorIcon>}
-              {!disabled && !readOnly && clearable && (value ?? innerValue).length > 0 && (
-                <Action
-                  aria-label={translatedLabels.textInput.clearFieldActionTitle}
-                  onClick={handleClearActionOnClick}
+              <DxcFlex gap={"0.25rem"} alignItems="center" grow={1}>
+                <Input
+                  id={inputId}
+                  name={name}
+                  value={value ?? innerValue}
+                  placeholder={placeholder}
+                  onBlur={handleInputOnBlur}
+                  onChange={handleInputOnChange}
+                  onFocus={!readOnly ? openSuggestions : undefined}
+                  onKeyDown={!readOnly ? handleInputOnKeyDown : undefined}
                   onMouseDown={(event) => {
                     event.stopPropagation();
                   }}
-                  tabIndex={tabIndex}
-                  title={translatedLabels.textInput.clearFieldActionTitle}
-                  type="button"
-                >
-                  {icons.clear}
-                </Action>
-              )}
-              {numberInputContext?.typeNumber === "number" && (
-                <>
-                  <Action
-                    aria-label={translatedLabels.numberInput.decrementValueTitle}
-                    disabled={disabled}
-                    onClick={!readOnly ? handleDecrementActionOnClick : undefined}
-                    onMouseDown={(event) => {
-                      event.stopPropagation();
-                    }}
-                    ref={actionRef}
-                    tabIndex={tabIndex}
-                    title={translatedLabels.numberInput.decrementValueTitle}
-                    type="button"
-                  >
-                    {icons.decrement}
-                  </Action>
-                  <Action
-                    aria-label={translatedLabels.numberInput.incrementValueTitle}
-                    disabled={disabled}
-                    onClick={!readOnly ? handleIncrementActionOnClick : undefined}
-                    onMouseDown={(event) => {
-                      event.stopPropagation();
-                    }}
-                    ref={actionRef}
-                    tabIndex={tabIndex}
-                    title={translatedLabels.numberInput.incrementValueTitle}
-                    type="button"
-                  >
-                    {icons.increment}
-                  </Action>
-                </>
-              )}
-              {action && (
-                <Action
-                  aria-label={action.title}
                   disabled={disabled}
-                  onClick={!readOnly ? action.onClick : undefined}
-                  onMouseDown={(event) => {
-                    event.stopPropagation();
-                  }}
-                  ref={actionRef}
+                  readOnly={readOnly}
+                  ref={inputRef}
+                  pattern={pattern}
+                  minLength={minLength}
+                  maxLength={maxLength}
+                  autoComplete={autocomplete === "off" ? "nope" : autocomplete}
                   tabIndex={tabIndex}
-                  title={action.title}
-                  type="button"
-                >
-                  {typeof action.icon === "string" ? <img src={action.icon} /> : action.icon}
-                </Action>
-              )}
+                  type="text"
+                  role={hasSuggestions(suggestions) ? "combobox" : undefined}
+                  aria-autocomplete={hasSuggestions(suggestions) ? "list" : undefined}
+                  aria-controls={hasSuggestions(suggestions) ? autosuggestId : undefined}
+                  aria-expanded={hasSuggestions(suggestions) ? isOpen : undefined}
+                  aria-haspopup={hasSuggestions(suggestions) ? "listbox" : undefined}
+                  aria-activedescendant={
+                    hasSuggestions(suggestions) && isOpen && visualFocusIndex !== -1
+                      ? `suggestion-${visualFocusIndex}`
+                      : undefined
+                  }
+                  aria-invalid={error ? true : false}
+                  aria-errormessage={error ? errorId : undefined}
+                  aria-required={!disabled && !optional}
+                />
+                {!disabled && error && <ErrorIcon aria-label="Error">{icons.error}</ErrorIcon>}
+                {!disabled && !readOnly && clearable && (value ?? innerValue).length > 0 && (
+                  <DxcActionIcon
+                    onClick={handleClearActionOnClick}
+                    icon={icons.clear}
+                    tabIndex={tabIndex}
+                    title={translatedLabels.textInput.clearFieldActionTitle}
+                  />
+                )}
+                {numberInputContext?.typeNumber === "number" && (
+                  <>
+                    <DxcActionIcon
+                      onClick={!readOnly ? handleDecrementActionOnClick : undefined}
+                      icon={icons.decrement}
+                      tabIndex={tabIndex}
+                      ref={actionRef}
+                      title={translatedLabels.numberInput.decrementValueTitle}
+                      disabled={disabled}
+                    />
+                    <DxcActionIcon
+                      onClick={!readOnly ? handleIncrementActionOnClick : undefined}
+                      icon={icons.increment}
+                      tabIndex={tabIndex}
+                      ref={actionRef}
+                      title={translatedLabels.numberInput.incrementValueTitle}
+                      disabled={disabled}
+                    />
+                  </>
+                )}
+                {action && (
+                  <DxcActionIcon
+                    onClick={!readOnly ? action.onClick : undefined}
+                    icon={action.icon}
+                    tabIndex={tabIndex}
+                    ref={actionRef}
+                    title={action.title}
+                    disabled={disabled}
+                  />
+                )}
+              </DxcFlex>
               {suffix && <Suffix disabled={disabled}>{suffix}</Suffix>}
             </InputContainer>
           </AutosuggestWrapper>
@@ -644,49 +624,6 @@ const Input = styled.input`
   }
 `;
 
-const Action = styled.button`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  border: 1px solid transparent;
-  border-radius: 2px;
-  width: 24px;
-  height: 24px;
-  padding: 3px;
-  margin-left: 0.25rem;
-  ${(props) => (props.disabled ? `cursor: not-allowed;` : `cursor: pointer;`)}
-  
-  box-shadow: 0 0 0 2px transparent;
-  background-color: ${(props) =>
-    props.disabled ? props.theme.disabledActionBackgroundColor : props.theme.actionBackgroundColor};
-  color: ${(props) => (props.disabled ? props.theme.disabledActionIconColor : props.theme.actionIconColor)};
-
-  ${(props) =>
-    !props.disabled &&
-    `
-      &:focus, 
-      &:focus-visible {
-        outline: none;
-        box-shadow: 0 0 0 2px ${props.theme.focusActionBorderColor};
-        color: ${props.theme.focusActionIconColor};
-      }
-      &:hover {
-        background-color: ${props.theme.hoverActionBackgroundColor};
-        color: ${props.theme.hoverActionIconColor};
-      }
-      &:active {
-        background-color: ${props.theme.activeActionBackgroundColor};
-        color: ${props.theme.activeActionIconColor};
-      }
-    `}
-
-  img, svg {
-    width: 16px;
-    height: 16px;
-  }
-`;
-
 const Prefix = styled.span<{ disabled: TextInputPropsType["disabled"] }>`
   height: 1.5rem;
   line-height: 1.5rem;
@@ -722,7 +659,6 @@ const ErrorIcon = styled.span`
   padding: 3px;
   height: 18px;
   width: 18px;
-  margin-left: 0.25rem;
   color: ${(props) => props.theme.errorIconColor};
 
   svg {
