@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import styled from "styled-components";
 import { OptionProps } from "../select/types";
 import DxcCheckbox from "../checkbox/Checkbox";
@@ -14,11 +14,13 @@ const Option = ({
   isLastOption,
   isSelected,
 }: OptionProps): JSX.Element => {
-  const labelRef = useRef<HTMLSpanElement>(null);
+  const handleOnMouseEnter = (event: React.MouseEvent) => {
+    const label = event.currentTarget;
+    const optionElement = document.getElementById(id);
 
-  useEffect(() => {
-    if (labelRef.current.scrollWidth > labelRef.current.clientWidth) document.getElementById(id).title = option.label;
-  }, [option]);
+    if (optionElement.title === "" && label.scrollWidth > label.clientWidth)
+      optionElement.title = option.label;
+  };
 
   return (
     <OptionItem
@@ -49,7 +51,7 @@ const Option = ({
           </OptionIcon>
         )}
         <OptionContent grouped={isGroupedOption} hasIcon={option.icon ? true : false} multiple={multiple}>
-          <OptionLabel ref={labelRef}>{option.label}</OptionLabel>
+          <OptionLabel onMouseEnter={handleOnMouseEnter}>{option.label}</OptionLabel>
           {!multiple && isSelected && <OptionSelectedIndicator>{selectIcons.selected}</OptionSelectedIndicator>}
         </OptionContent>
       </StyledOption>

@@ -114,6 +114,12 @@ const getSelectedOption = (
   };
 };
 
+const getSelectedOptionLabel = (placeholder: string, selectedOption: Option | Option[]) => {
+  if (Array.isArray(selectedOption))
+    return selectedOption.length === 0 ? placeholder : selectedOption.map((option) => option.label).join(", ");
+  else return selectedOption?.label ?? placeholder;
+};
+
 const notOptionalCheck = (value: string | string[], multiple: boolean, optional: boolean) =>
   !optional && (multiple ? value.length === 0 : value === "");
 
@@ -346,19 +352,13 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
       [handleSelectChangeValue, closeOptions, multiple]
     );
 
-    const getSelectedOptionLabel = useCallback(() => {
-      if (Array.isArray(selectedOption))
-        return selectedOption.length === 0 ? placeholder : selectedOption.map((option) => option.label).join(", ");
-      else return selectedOption?.label ?? placeholder;
-    }, [placeholder, selectedOption]);
-
     useEffect(() => {
       if (selectedOptionLabelRef?.current != null) {
         if (selectedOptionLabelRef?.current.scrollWidth > selectedOptionLabelRef?.current.clientWidth)
-          selectedOptionLabelRef.current.title = getSelectedOptionLabel();
+          selectedOptionLabelRef.current.title = getSelectedOptionLabel(placeholder, selectedOption);
         else selectedOptionLabelRef.current.title = "";
       }
-    }, [getSelectedOptionLabel]);
+    }, [placeholder, selectedOption]);
 
     return (
       <ThemeProvider theme={colorsTheme.select}>
@@ -451,7 +451,9 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
                         (searchable && isOpen)
                       }
                     >
-                      <SelectedOptionLabel ref={selectedOptionLabelRef}>{getSelectedOptionLabel()}</SelectedOptionLabel>
+                      <SelectedOptionLabel ref={selectedOptionLabelRef}>
+                        {getSelectedOptionLabel(placeholder, selectedOption)}
+                      </SelectedOptionLabel>
                     </SelectedOption>
                   )}
                 </SearchableValueContainer>
