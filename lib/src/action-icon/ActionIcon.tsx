@@ -3,7 +3,7 @@ import ActionIconProps, { RefType } from "./types";
 import styled from "styled-components";
 
 const DxcActionIcon = React.forwardRef<RefType, ActionIconProps>(
-  ({ disabled = false, title, icon, onClick, margin, tabIndex }, ref): JSX.Element => {
+  ({ disabled = false, title, icon, onClick, tabIndex }, ref): JSX.Element => {
     return (
       <ActionIcon
         aria-label={title}
@@ -14,7 +14,6 @@ const DxcActionIcon = React.forwardRef<RefType, ActionIconProps>(
         }}
         tabIndex={tabIndex}
         title={title}
-        margin={margin}
         type="button"
         ref={ref}
       >
@@ -24,7 +23,7 @@ const DxcActionIcon = React.forwardRef<RefType, ActionIconProps>(
   }
 );
 
-const ActionIcon = styled.button<{ margin: ActionIconProps["margin"] }>`
+const ActionIcon = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
