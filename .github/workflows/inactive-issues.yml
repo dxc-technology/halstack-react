@@ -8,19 +8,13 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       issues: write
-      pull-requests: write
     steps:
       - if: ${{ !contains(github.event.issue.labels.*.name, 'non-closable') }}
         uses: actions/stale@v5
         with:
-          days-before-issue-stale: 15
-          days-before-issue-close: 15
+          days-before-issue-stale: 0
+          days-before-issue-close: 0
           stale-issue-label: "stale"
           stale-issue-message: "This issue is stale because it has been open for 15 days with no activity. If there are no further updates or modifications within the next 15 days, it will be automatically closed."
           close-issue-message: "This issue has been closed as it has been inactive for 15 days since being marked as stale."
-          stale-pr-label: "stale"
-          stale-pr-message: "This PR is stale because it has been open for 7 days with no activity. If there are no further updates or modifications within the next 7 days, it will be automatically closed."
-          close-pr-message: "This PR has been closed as it has been inactive for 7 days since being marked as stale."
-          days-before-pr-stale: 7
-          days-before-pr-close: 7
           repo-token: ${{ secrets.GITHUB_TOKEN }}
