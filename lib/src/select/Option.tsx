@@ -13,41 +13,51 @@ const Option = ({
   isGroupedOption = false,
   isLastOption,
   isSelected,
-}: OptionProps): JSX.Element => (
-  <OptionItem
-    id={id}
-    onClick={() => {
-      onClick(option);
-    }}
-    visualFocused={visualFocused}
-    selected={isSelected}
-    role="option"
-    aria-selected={isSelected}
-  >
-    <StyledOption
+}: OptionProps): JSX.Element => {
+  const handleOnMouseEnter = (event: React.MouseEvent) => {
+    const label = event.currentTarget;
+    const optionElement = document.getElementById(id);
+
+    if (optionElement.title === "" && label.scrollWidth > label.clientWidth)
+      optionElement.title = option.label;
+  };
+
+  return (
+    <OptionItem
+      id={id}
+      onClick={() => {
+        onClick(option);
+      }}
       visualFocused={visualFocused}
       selected={isSelected}
-      last={isLastOption}
-      grouped={isGroupedOption}
-      multiple={multiple}
+      role="option"
+      aria-selected={isSelected}
     >
-      {multiple && <DxcCheckbox checked={isSelected} tabIndex={-1} />}
-      {option.icon && (
-        <OptionIcon
-          grouped={isGroupedOption}
-          multiple={multiple}
-          role={!(typeof option.icon === "string") ? "img" : undefined}
-        >
-          {typeof option.icon === "string" ? <img src={option.icon} /> : option.icon}
-        </OptionIcon>
-      )}
-      <OptionContent grouped={isGroupedOption} hasIcon={option.icon ? true : false} multiple={multiple}>
-        <OptionLabel>{option.label}</OptionLabel>
-        {!multiple && isSelected && <OptionSelectedIndicator>{selectIcons.selected}</OptionSelectedIndicator>}
-      </OptionContent>
-    </StyledOption>
-  </OptionItem>
-);
+      <StyledOption
+        visualFocused={visualFocused}
+        selected={isSelected}
+        last={isLastOption}
+        grouped={isGroupedOption}
+        multiple={multiple}
+      >
+        {multiple && <DxcCheckbox checked={isSelected} tabIndex={-1} />}
+        {option.icon && (
+          <OptionIcon
+            grouped={isGroupedOption}
+            multiple={multiple}
+            role={!(typeof option.icon === "string") ? "img" : undefined}
+          >
+            {typeof option.icon === "string" ? <img src={option.icon} /> : option.icon}
+          </OptionIcon>
+        )}
+        <OptionContent grouped={isGroupedOption} hasIcon={option.icon ? true : false} multiple={multiple}>
+          <OptionLabel onMouseEnter={handleOnMouseEnter}>{option.label}</OptionLabel>
+          {!multiple && isSelected && <OptionSelectedIndicator>{selectIcons.selected}</OptionSelectedIndicator>}
+        </OptionContent>
+      </StyledOption>
+    </OptionItem>
+  );
+};
 
 const OptionItem = styled.li<{ visualFocused: OptionProps["visualFocused"]; selected: OptionProps["isSelected"] }>`
   padding: 0 0.5rem;
