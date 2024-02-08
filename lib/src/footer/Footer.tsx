@@ -28,7 +28,7 @@ const DxcFooter = ({
           dxcSmallLogo
         )
       ) : typeof colorsTheme.footer.logo === "string" ? (
-        <LogoImg alt={translatedLabels.formFields.logoAlternativeText} src={colorsTheme.footer.logo} />
+        <LogoImg mode={mode} alt={translatedLabels.formFields.logoAlternativeText} src={colorsTheme.footer.logo} />
       ) : (
         colorsTheme.footer.logo
       ),
@@ -142,12 +142,12 @@ const Copyright = styled.div`
 `;
 
 const LogoContainer = styled.span<{ mode?: FooterPropsType["mode"] }>`
-  max-height: ${(props) => (props?.mode === "default" ? props.theme.logoHeight : props.theme.reducedLogoHeight)};
+  max-height: ${(props) => (props?.mode === "default" ? props.theme.logoHeight : "16px")};
   width: ${(props) => props.theme.logoWidth};
 `;
 
 const LogoImg = styled.img<{ mode?: FooterPropsType["mode"] }>`
-  max-height: ${(props) => (props?.mode === "default" ? props.theme.logoHeight : props.theme.reducedLogoHeight)};
+  max-height: ${(props) => (props?.mode === "default" ? props.theme.logoHeight : "16px")};
   width: ${(props) => props.theme.logoWidth};
 `;
 
