@@ -59,7 +59,7 @@ const DxcFooter = ({
             </DxcFlex>
           )}
         </DxcFlex>
-        {children && <ChildComponents mode={mode}>{children}</ChildComponents>}
+        <ChildComponents>{children}</ChildComponents>
         {mode === "default" && (
           <BottomContainer>
             <BottomLinks>
@@ -86,11 +86,11 @@ const FooterContainer = styled.footer<{ margin: FooterPropsType["margin"]; mode?
   flex-direction: ${(props) => (props?.mode === "default" ? "column" : "row")};
   justify-content: space-between;
   margin-top: ${(props) => (props.margin ? spaces[props.margin] : "0px")};
-  min-height: ${(props) => (props?.mode === "default" ? props.theme.height : props.theme.reducedHeight)};
+  min-height: ${(props) => (props?.mode === "default" ? props.theme.height : "40px")};
   width: 100%;
   gap: ${(props) => (props?.mode === "default" ? "0px" : "32px")};
   @media (min-width: ${responsiveSizes.small}rem) {
-    padding: ${(props) => (props?.mode === "default" ? "24px" : "12px")} 32px;
+    padding: ${(props) => (props?.variant === "default" ? "24px 36px 24px 36px" : "12px 32px 12px 32px")};
   }
   @media (max-width: ${responsiveSizes.small}rem) {
     padding: 20px;
@@ -116,18 +116,9 @@ const BottomContainer = styled.div`
   margin-top: 16px;
 `;
 
-const ChildComponents = styled.div<{ mode: FooterPropsType["mode"] }>`
+const ChildComponents = styled.div`
   min-height: 16px;
   overflow: hidden;
-  ${(props) =>
-    props.mode === "reduced" &&
-    `
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    gap: 16px;
-  `}
 `;
 
 const Copyright = styled.div`

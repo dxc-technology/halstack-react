@@ -37,7 +37,6 @@ const sections = [
       </>
     ),
   },
-  // Could be interesting to add a Footer anatomy for the reduced component
   {
     title: "Design tokens",
     subSections: [
@@ -274,27 +273,6 @@ const sections = [
         ),
       },
       {
-        title: "Height (reduced)",
-        content: (
-          <DxcTable>
-            <thead>
-              <tr>
-                <th>Property</th>
-                <th>Value</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <Code>min-height</Code>
-                </td>
-                <td>40px</td>
-              </tr>
-            </tbody>
-          </DxcTable>
-        ),
-      },
-      {
         title: "Margin",
         content: (
           <DxcTable>
@@ -376,29 +354,6 @@ const sections = [
                 </td>
                 <td>DXC logo</td>
                 <td>32px</td>
-              </tr>
-            </tbody>
-          </DxcTable>
-        ),
-      },
-      {
-        title: "Iconography (reduced)",
-        content: (
-          <DxcTable>
-            <thead>
-              <tr>
-                <th>Property</th>
-                <th>Element</th>
-                <th>Value</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <Code>max-height</Code>
-                </td>
-                <td>DXC logo</td>
-                <td>16px</td>
               </tr>
             </tbody>
           </DxcTable>
