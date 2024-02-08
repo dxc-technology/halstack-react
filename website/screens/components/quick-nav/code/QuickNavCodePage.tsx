@@ -41,7 +41,7 @@ const sections = [
               <ul>
                 <li>
                   <b>label</b>: Text to be shown in the link. The content must
-                  be wrapped with an id equals to the slugified label (in lower
+                  be wrapped with an id equal to the slugified label (in lower
                   case and the white spaces replaced by &#39;-&#39;) in order to
                   be able to navigate to the section that the label references.
                 </li>
