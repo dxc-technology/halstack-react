@@ -9,6 +9,10 @@ jobs:
     permissions:
       issues: write
     steps:
+      - name: Debug label names
+        run: |
+          echo "Label names: ${{ toJson(github.event.issue.labels.*.name) }}"
+        if: ${{ always() }}
       - name: Check if issue is closable
         if: ${{ !contains(github.event.issue.labels.*.name, 'non-closable') }}
         uses: actions/stale@v5
