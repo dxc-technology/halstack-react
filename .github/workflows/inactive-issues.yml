@@ -9,12 +9,7 @@ jobs:
     permissions:
       issues: write
     steps:
-      - name: Debug label names
-        run: |
-          echo "Label names: ${{ toJson(github.event) }}"
-        if: ${{ always() }}
-      - name: Check if issue is closable
-        uses: actions/stale@v5
+      - uses: actions/stale@v5
         with:
           days-before-issue-stale: 0
           days-before-issue-close: 0
