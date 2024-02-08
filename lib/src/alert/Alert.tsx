@@ -4,7 +4,6 @@ import { spaces } from "../common/variables";
 import { getMargin } from "../common/utils";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
-import { BackgroundColorProvider } from "../BackgroundColorContext";
 import AlertPropsType from "./types";
 
 const alertIcons = {
@@ -88,20 +87,7 @@ const DxcAlert = ({
               </AlertCloseAction>
             )}
           </AlertInfo>
-          {children && (
-            <AlertContent>
-              <BackgroundColorProvider
-                color={
-                  (type === "info" && colorsTheme.alert.infoBackgroundColor) ||
-                  (type === "confirm" && colorsTheme.alert.successBackgroundColor) ||
-                  (type === "warning" && colorsTheme.alert.warningBackgroundColor) ||
-                  (type === "error" && colorsTheme.alert.errorBackgroundColor)
-                }
-              >
-                {children}
-              </BackgroundColorProvider>
-            </AlertContent>
-          )}
+          {children && <AlertContent>{children}</AlertContent>}
         </AlertContainer>
       </AlertModal>
     </ThemeProvider>

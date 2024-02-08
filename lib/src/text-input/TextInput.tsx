@@ -1,16 +1,17 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useCallback, useContext, useEffect, useRef, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
 import { spaces } from "../common/variables";
 import { getMargin } from "../common/utils";
-import BackgroundColorContext, { BackgroundColors } from "../BackgroundColorContext";
 import { NumberInputContext } from "../number-input/NumberInput";
 import TextInputPropsType, { AutosuggestWrapperProps, RefType } from "./types";
 import Suggestions from "./Suggestions";
 import * as Popover from "@radix-ui/react-popover";
 import icons from "./Icons";
 import { v4 as uuidv4 } from "uuid";
+import DxcActionIcon from "../action-icon/ActionIcon";
+import { DxcFlex } from "../main";
 
 const sizes = {
   small: "240px",
@@ -126,7 +127,6 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
     const width = useWidth(inputContainerRef.current);
     const colorsTheme = useTheme();
     const translatedLabels = useTranslatedLabels();
-    const backgroundType = useContext(BackgroundColorContext);
     const numberInputContext = useContext(NumberInputContext);
 
     const getNumberErrorMessage = (value: number) => {
@@ -248,6 +248,12 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
           break;
       }
     };
+    const handleWheel = useCallback((event: WheelEvent) => {
+      if (document.activeElement === inputRef.current) {
+        event.preventDefault();
+        event.deltaY < 0 ? incrementNumber(inputRef.current.value) : decrementNumber(inputRef.current.value);
+      }
+    }, []);
 
     const handleClearActionOnClick = () => {
       changeValue("");
@@ -270,8 +276,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
       inputRef?.current?.setAttribute("step", step);
       inputRef?.current?.setAttribute("type", type);
     };
-    const decrementNumber = () => {
-      const currentValue = value ?? innerValue;
+    const decrementNumber = (currentValue = value ?? innerValue) => {
       const numberValue = Number(currentValue);
       const steppedValue = Math.round((numberValue - numberInputContext?.stepNumber + Number.EPSILON) * 100) / 100;
 
@@ -287,8 +292,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
         else changeValue(-numberInputContext.stepNumber);
       }
     };
-    const incrementNumber = () => {
-      const currentValue = value ?? innerValue;
+    const incrementNumber = (currentValue = value ?? innerValue) => {
       const numberValue = Number(currentValue);
       const steppedValue = Math.round((numberValue + numberInputContext?.stepNumber + Number.EPSILON) * 100) / 100;
 
@@ -344,24 +348,25 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
         );
     }, [value, innerValue, suggestions, numberInputContext]);
 
+    useEffect(() => {
+      const input = inputRef.current;
+  
+      input.addEventListener('wheel', handleWheel, { passive: false });
+  
+      return () => {
+        input.removeEventListener('wheel', handleWheel);
+      };
+    }, [handleWheel]);
+
     return (
       <ThemeProvider theme={colorsTheme.textInput}>
         <TextInputContainer margin={margin} size={size} ref={ref}>
           {label && (
-            <Label
-              htmlFor={inputId}
-              disabled={disabled}
-              backgroundType={backgroundType}
-              hasHelperText={helperText ? true : false}
-            >
+            <Label htmlFor={inputId} disabled={disabled} hasHelperText={helperText ? true : false}>
               {label} {optional && <OptionalLabel>{translatedLabels.formFields.optionalLabel}</OptionalLabel>}
             </Label>
           )}
-          {helperText && (
-            <HelperText disabled={disabled} backgroundType={backgroundType}>
-              {helperText}
-            </HelperText>
-          )}
+          {helperText && <HelperText disabled={disabled}>{helperText}</HelperText>}
           <AutosuggestWrapper
             condition={hasSuggestions(suggestions)}
             wrapper={(children) => (
@@ -405,132 +410,92 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
               error={error ? true : false}
               disabled={disabled}
               readOnly={readOnly}
-              backgroundType={backgroundType}
               onClick={handleInputContainerOnClick}
               onMouseDown={handleInputContainerOnMouseDown}
               ref={inputContainerRef}
             >
-              {prefix && (
-                <Prefix disabled={disabled} backgroundType={backgroundType}>
-                  {prefix}
-                </Prefix>
-              )}
-              <Input
-                id={inputId}
-                name={name}
-                value={value ?? innerValue}
-                placeholder={placeholder}
-                onBlur={handleInputOnBlur}
-                onChange={handleInputOnChange}
-                onFocus={!readOnly ? openSuggestions : undefined}
-                onKeyDown={!readOnly ? handleInputOnKeyDown : undefined}
-                onMouseDown={(event) => {
-                  event.stopPropagation();
-                }}
-                disabled={disabled}
-                readOnly={readOnly}
-                ref={inputRef}
-                backgroundType={backgroundType}
-                pattern={pattern}
-                minLength={minLength}
-                maxLength={maxLength}
-                autoComplete={autocomplete === "off" ? "nope" : autocomplete}
-                tabIndex={tabIndex}
-                type="text"
-                role={hasSuggestions(suggestions) ? "combobox" : undefined}
-                aria-autocomplete={hasSuggestions(suggestions) ? "list" : undefined}
-                aria-controls={hasSuggestions(suggestions) ? autosuggestId : undefined}
-                aria-expanded={hasSuggestions(suggestions) ? isOpen : undefined}
-                aria-haspopup={hasSuggestions(suggestions) ? "listbox" : undefined}
-                aria-activedescendant={
-                  hasSuggestions(suggestions) && isOpen && visualFocusIndex !== -1
-                    ? `suggestion-${visualFocusIndex}`
-                    : undefined
-                }
-                aria-invalid={error ? true : false}
-                aria-errormessage={error ? errorId : undefined}
-                aria-required={!disabled && !optional}
-              />
-              {!disabled && error && (
-                <ErrorIcon backgroundType={backgroundType} aria-label="Error">
-                  {icons.error}
-                </ErrorIcon>
-              )}
-              {!disabled && !readOnly && clearable && (value ?? innerValue).length > 0 && (
-                <Action
-                  aria-label={translatedLabels.textInput.clearFieldActionTitle}
-                  onClick={handleClearActionOnClick}
+              {prefix && <Prefix disabled={disabled}>{prefix}</Prefix>}
+              <DxcFlex gap={"0.25rem"} alignItems="center" grow={1}>
+                <Input
+                  id={inputId}
+                  name={name}
+                  value={value ?? innerValue}
+                  placeholder={placeholder}
+                  onBlur={handleInputOnBlur}
+                  onChange={handleInputOnChange}
+                  onFocus={!readOnly ? openSuggestions : undefined}
+                  onKeyDown={!readOnly ? handleInputOnKeyDown : undefined}
                   onMouseDown={(event) => {
                     event.stopPropagation();
                   }}
-                  tabIndex={tabIndex}
-                  title={translatedLabels.textInput.clearFieldActionTitle}
-                  type="button"
-                  backgroundType={backgroundType}
-                >
-                  {icons.clear}
-                </Action>
-              )}
-              {numberInputContext?.typeNumber === "number" && (
-                <>
-                  <Action
-                    aria-label={translatedLabels.numberInput.decrementValueTitle}
-                    disabled={disabled}
-                    onClick={!readOnly ? handleDecrementActionOnClick : undefined}
-                    onMouseDown={(event) => {
-                      event.stopPropagation();
-                    }}
-                    ref={actionRef}
-                    tabIndex={tabIndex}
-                    title={translatedLabels.numberInput.decrementValueTitle}
-                    type="button"
-                    backgroundType={backgroundType}
-                  >
-                    {icons.decrement}
-                  </Action>
-                  <Action
-                    aria-label={translatedLabels.numberInput.incrementValueTitle}
-                    disabled={disabled}
-                    onClick={!readOnly ? handleIncrementActionOnClick : undefined}
-                    onMouseDown={(event) => {
-                      event.stopPropagation();
-                    }}
-                    ref={actionRef}
-                    tabIndex={tabIndex}
-                    title={translatedLabels.numberInput.incrementValueTitle}
-                    type="button"
-                    backgroundType={backgroundType}
-                  >
-                    {icons.increment}
-                  </Action>
-                </>
-              )}
-              {action && (
-                <Action
-                  aria-label={action.title}
                   disabled={disabled}
-                  onClick={!readOnly ? action.onClick : undefined}
-                  onMouseDown={(event) => {
-                    event.stopPropagation();
-                  }}
-                  ref={actionRef}
+                  readOnly={readOnly}
+                  ref={inputRef}
+                  pattern={pattern}
+                  minLength={minLength}
+                  maxLength={maxLength}
+                  autoComplete={autocomplete === "off" ? "nope" : autocomplete}
                   tabIndex={tabIndex}
-                  title={action.title}
-                  type="button"
-                  backgroundType={backgroundType}
-                >
-                  {typeof action.icon === "string" ? <img src={action.icon} /> : action.icon}
-                </Action>
-              )}
-              {suffix && (
-                <Suffix disabled={disabled} backgroundType={backgroundType}>
-                  {suffix}
-                </Suffix>
-              )}
+                  type="text"
+                  role={hasSuggestions(suggestions) ? "combobox" : undefined}
+                  aria-autocomplete={hasSuggestions(suggestions) ? "list" : undefined}
+                  aria-controls={hasSuggestions(suggestions) ? autosuggestId : undefined}
+                  aria-expanded={hasSuggestions(suggestions) ? isOpen : undefined}
+                  aria-haspopup={hasSuggestions(suggestions) ? "listbox" : undefined}
+                  aria-activedescendant={
+                    hasSuggestions(suggestions) && isOpen && visualFocusIndex !== -1
+                      ? `suggestion-${visualFocusIndex}`
+                      : undefined
+                  }
+                  aria-invalid={error ? true : false}
+                  aria-errormessage={error ? errorId : undefined}
+                  aria-required={!disabled && !optional}
+                />
+                {!disabled && error && <ErrorIcon aria-label="Error">{icons.error}</ErrorIcon>}
+                {!disabled && !readOnly && clearable && (value ?? innerValue).length > 0 && (
+                  <DxcActionIcon
+                    onClick={handleClearActionOnClick}
+                    icon={icons.clear}
+                    tabIndex={tabIndex}
+                    title={translatedLabels.textInput.clearFieldActionTitle}
+                  />
+                )}
+                {numberInputContext?.typeNumber === "number" && (
+                  <>
+                    <DxcActionIcon
+                      onClick={!readOnly ? handleDecrementActionOnClick : undefined}
+                      icon={icons.decrement}
+                      tabIndex={tabIndex}
+                      ref={actionRef}
+                      title={translatedLabels.numberInput.decrementValueTitle}
+                      disabled={disabled}
+                    />
+                    <DxcActionIcon
+                      onClick={!readOnly ? handleIncrementActionOnClick : undefined}
+                      icon={icons.increment}
+                      tabIndex={tabIndex}
+                      ref={actionRef}
+                      title={translatedLabels.numberInput.incrementValueTitle}
+                      disabled={disabled}
+                    />
+                  </>
+                )}
+                {action && (
+                  <DxcActionIcon
+                    onClick={!readOnly ? action.onClick : undefined}
+                    icon={action.icon}
+                    tabIndex={tabIndex}
+                    ref={actionRef}
+                    title={action.title}
+                    disabled={disabled}
+                  />
+                )}
+              </DxcFlex>
+              {suffix && <Suffix disabled={disabled}>{suffix}</Suffix>}
             </InputContainer>
           </AutosuggestWrapper>
           {!disabled && typeof error === "string" && (
-            <Error id={errorId} backgroundType={backgroundType} aria-live={error ? "assertive" : "off"}>
+            <Error id={errorId} aria-live={error ? "assertive" : "off"}>
               {error}
             </Error>
           )}
@@ -558,17 +523,9 @@ const TextInputContainer = styled.div<{ margin: TextInputPropsType["margin"]; si
 
 const Label = styled.label<{
   disabled: TextInputPropsType["disabled"];
-  backgroundType: BackgroundColors;
   hasHelperText: boolean;
 }>`
-  color: ${(props) =>
-    props.disabled
-      ? props.backgroundType === "dark"
-        ? props.theme.disabledLabelFontColorOnDark
-        : props.theme.disabledLabelFontColor
-      : props.backgroundType === "dark"
-      ? props.theme.labelFontColorOnDark
-      : props.theme.labelFontColor};
+  color: ${(props) => (props.disabled ? props.theme.disabledLabelFontColor : props.theme.labelFontColor)};
 
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.labelFontSize};
@@ -582,16 +539,8 @@ const OptionalLabel = styled.span`
   font-weight: ${(props) => props.theme.optionalLabelFontWeight};
 `;
 
-const HelperText = styled.span<{ disabled: TextInputPropsType["disabled"]; backgroundType: BackgroundColors }>`
-  color: ${(props) =>
-    props.disabled
-      ? props.backgroundType === "dark"
-        ? props.theme.disabledHelperTextFontColorOnDark
-        : props.theme.disabledHelperTextFontColor
-      : props.backgroundType === "dark"
-      ? props.theme.helperTextFontColorOnDark
-      : props.theme.helperTextFontColor};
-
+const HelperText = styled.span<{ disabled: TextInputPropsType["disabled"] }>`
+  color: ${(props) => (props.disabled ? props.theme.disabledHelperTextFontColor : props.theme.helperTextFontColor)};
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.helperTextFontSize};
   font-style: ${(props) => props.theme.helperTextFontStyle};
@@ -604,7 +553,6 @@ const InputContainer = styled.div<{
   disabled: TextInputPropsType["disabled"];
   readOnly: TextInputPropsType["readOnly"];
   error: boolean;
-  backgroundType: BackgroundColors;
 }>`
   position: relative;
   display: flex;
@@ -613,30 +561,21 @@ const InputContainer = styled.div<{
   padding: 0 0.5rem;
 
   ${(props) => {
-    if (props.disabled)
-      return props.backgroundType === "dark"
-        ? `background-color: ${props.theme.disabledContainerFillColorOnDark};`
-        : `background-color: ${props.theme.disabledContainerFillColor};`;
+    if (props.disabled) return `background-color: ${props.theme.disabledContainerFillColor};`;
   }}
   box-shadow: 0 0 0 2px transparent;
   border-radius: 4px;
   border: 1px solid
     ${(props) => {
-      if (props.disabled)
-        return props.backgroundType === "dark"
-          ? props.theme.disabledBorderColorOnDark
-          : props.theme.disabledBorderColor;
+      if (props.disabled) return props.theme.disabledBorderColor;
       else if (props.readOnly) return props.theme.readOnlyBorderColor;
-      else
-        return props.backgroundType === "dark" ? props.theme.enabledBorderColorOnDark : props.theme.enabledBorderColor;
+      else return props.theme.enabledBorderColor;
     }};
   ${(props) =>
     props.error &&
     !props.disabled &&
     `border-color: transparent;
-     box-shadow: 0 0 0 2px ${
-       props.backgroundType === "dark" ? props.theme.errorBorderColorOnDark : props.theme.errorBorderColor
-     };
+     box-shadow: 0 0 0 2px ${props.theme.errorBorderColor};
   `}
 
   ${(props) =>
@@ -648,31 +587,19 @@ const InputContainer = styled.div<{
             ? "transparent"
             : props.readOnly
             ? props.theme.hoverReadOnlyBorderColor
-            : props.backgroundType === "dark"
-            ? props.theme.hoverBorderColorOnDark
             : props.theme.hoverBorderColor
         };
-        ${
-          props.error
-            ? `box-shadow: 0 0 0 2px ${
-                props.backgroundType === "dark"
-                  ? props.theme.hoverErrorBorderColorOnDark
-                  : props.theme.hoverErrorBorderColor
-              };`
-            : ""
-        }
+        ${props.error ? `box-shadow: 0 0 0 2px ${props.theme.hoverErrorBorderColor};` : ""}
       }
       &:focus-within {
         border-color: transparent;
-        box-shadow: 0 0 0 2px ${
-          props.backgroundType === "dark" ? props.theme.focusBorderColorOnDark : props.theme.focusBorderColor
-        };
+        box-shadow: 0 0 0 2px ${props.theme.focusBorderColor};
       }
     `
       : "cursor: not-allowed;"};
 `;
 
-const Input = styled.input<{ backgroundType: BackgroundColors }>`
+const Input = styled.input`
   height: calc(2.5rem - 2px);
   width: 100%;
   background: none;
@@ -683,14 +610,7 @@ const Input = styled.input<{ backgroundType: BackgroundColors }>`
   text-overflow: ellipsis;
   white-space: nowrap;
 
-  color: ${(props) =>
-    props.disabled
-      ? props.backgroundType === "dark"
-        ? props.theme.disabledValueFontColorOnDark
-        : props.theme.disabledValueFontColor
-      : props.backgroundType === "dark"
-      ? props.theme.valueFontColorOnDark
-      : props.theme.valueFontColor};
+  color: ${(props) => (props.disabled ? props.theme.disabledValueFontColor : props.theme.valueFontColor)};
 
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.valueFontSize};
@@ -700,105 +620,17 @@ const Input = styled.input<{ backgroundType: BackgroundColors }>`
   ${(props) => props.disabled && `cursor: not-allowed;`}
 
   ::placeholder {
-    color: ${(props) =>
-      props.disabled
-        ? props.backgroundType === "dark"
-          ? props.theme.disabledPlaceholderFontColorOnDark
-          : props.theme.disabledPlaceholderFontColor
-        : props.backgroundType === "dark"
-        ? props.theme.placeholderFontColorOnDark
-        : props.theme.placeholderFontColor};
+    color: ${(props) => (props.disabled ? props.theme.disabledPlaceholderFontColor : props.theme.placeholderFontColor)};
   }
 `;
 
-const Action = styled.button<{ backgroundType: BackgroundColors }>`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  border: 1px solid transparent;
-  border-radius: 2px;
-  width: 24px;
-  height: 24px;
-  padding: 3px;
-  margin-left: 0.25rem;
-  ${(props) => (props.disabled ? `cursor: not-allowed;` : `cursor: pointer;`)}
-
-  box-shadow: 0 0 0 2px transparent;
-  background-color: ${(props) =>
-    props.disabled
-      ? props.backgroundType === "dark"
-        ? props.theme.disabledActionBackgroundColorOnDark
-        : props.theme.disabledActionBackgroundColor
-      : props.backgroundType === "dark"
-      ? props.theme.actionBackgroundColorOnDark
-      : props.theme.actionBackgroundColor};
-
-  color: ${(props) =>
-    props.disabled
-      ? props.backgroundType === "dark"
-        ? props.theme.disabledActionIconColorOnDark
-        : props.theme.disabledActionIconColor
-      : props.backgroundType === "dark"
-      ? props.theme.actionIconColorOnDark
-      : props.theme.actionIconColor};
-
-  ${(props) =>
-    !props.disabled &&
-    `
-      &:focus, 
-      &:focus-visible {
-        outline: none;
-        box-shadow: 0 0 0 2px ${
-          props.backgroundType === "dark"
-            ? props.theme.focusActionBorderColorOnDark
-            : props.theme.focusActionBorderColor
-        };
-        color: ${
-          props.backgroundType === "dark" ? props.theme.focusActionIconColorOnDark : props.theme.focusActionIconColor
-        };
-      }
-      &:hover {
-        background-color: ${
-          props.backgroundType === "dark"
-            ? props.theme.hoverActionBackgroundColorOnDark
-            : props.theme.hoverActionBackgroundColor
-        };
-        color: ${
-          props.backgroundType === "dark" ? props.theme.hoverActionIconColorOnDark : props.theme.hoverActionIconColor
-        };
-      }
-      &:active {
-        background-color: ${
-          props.backgroundType === "dark"
-            ? props.theme.activeActionBackgroundColorOnDark
-            : props.theme.activeActionBackgroundColor
-        };
-        color: ${
-          props.backgroundType === "dark" ? props.theme.activeActionIconColorOnDark : props.theme.activeActionIconColor
-        };
-      }
-    `}
-
-  img, svg {
-    width: 16px;
-    height: 16px;
-  }
-`;
-
-const Prefix = styled.span<{ disabled: TextInputPropsType["disabled"]; backgroundType: BackgroundColors }>`
+const Prefix = styled.span<{ disabled: TextInputPropsType["disabled"] }>`
   height: 1.5rem;
   line-height: 1.5rem;
   margin-left: 0.25rem;
   padding: 0 0.5rem 0 0;
   ${(props) => {
-    const color = props.disabled
-      ? props.backgroundType === "dark"
-        ? props.theme.disabledPrefixColorOnDark
-        : props.theme.disabledPrefixColor
-      : props.backgroundType === "dark"
-      ? props.theme.prefixColorOnDark
-      : props.theme.prefixColor;
+    const color = props.disabled ? props.theme.disabledPrefixColor : props.theme.prefixColor;
     return `color: ${color}; border-right: 1px solid ${color};`;
   }};
   font-family: ${(props) => props.theme.fontFamily};
@@ -806,19 +638,13 @@ const Prefix = styled.span<{ disabled: TextInputPropsType["disabled"]; backgroun
   pointer-events: none;
 `;
 
-const Suffix = styled.span<{ disabled: TextInputPropsType["disabled"]; backgroundType: BackgroundColors }>`
+const Suffix = styled.span<{ disabled: TextInputPropsType["disabled"] }>`
   height: 1.5rem;
   line-height: 1.5rem;
   margin: 0 0.25rem;
   padding: 0 0 0 0.5rem;
   ${(props) => {
-    const color = props.disabled
-      ? props.backgroundType === "dark"
-        ? props.theme.disabledSuffixColorOnDark
-        : props.theme.disabledSuffixColor
-      : props.backgroundType === "dark"
-      ? props.theme.suffixColorOnDark
-      : props.theme.suffixColor;
+    const color = props.disabled ? props.theme.disabledSuffixColor : props.theme.suffixColor;
     return `color: ${color}; border-left: 1px solid ${color};`;
   }};
   font-family: ${(props) => props.theme.fontFamily};
@@ -826,16 +652,14 @@ const Suffix = styled.span<{ disabled: TextInputPropsType["disabled"]; backgroun
   pointer-events: none;
 `;
 
-const ErrorIcon = styled.span<{ backgroundType: BackgroundColors }>`
+const ErrorIcon = styled.span`
   display: flex;
   flex-wrap: wrap;
   align-content: center;
   padding: 3px;
   height: 18px;
   width: 18px;
-  margin-left: 0.25rem;
-  color: ${(props) =>
-    props.backgroundType === "dark" ? props.theme.errorIconColorOnDark : props.theme.errorIconColor};
+  color: ${(props) => props.theme.errorIconColor};
 
   svg {
     line-height: 18px;
@@ -843,10 +667,9 @@ const ErrorIcon = styled.span<{ backgroundType: BackgroundColors }>`
   }
 `;
 
-const Error = styled.span<{ backgroundType: BackgroundColors }>`
+const Error = styled.span`
   min-height: 1.5em;
-  color: ${(props) =>
-    props.backgroundType === "dark" ? props.theme.errorMessageColorOnDark : props.theme.errorMessageColor};
+  color: ${(props) => props.theme.errorMessageColor};
   font-family: ${(props) => props.theme.fontFamily};
   font-size: 0.75rem;
   font-weight: 400;

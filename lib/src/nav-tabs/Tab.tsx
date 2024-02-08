@@ -91,7 +91,7 @@ const DxcTab = forwardRef(
 
 const TabContainer = styled.div<{ active: TabProps["active"] }>`
   align-items: stretch;
-  border-bottom: 2px solid ${(props) => (props.active ? props.theme.selectedUnderlineColor : props.theme.dividerColor)};
+  border-bottom: 2px solid ${(props) => (props.active ? props.theme.selectedUnderlineColor : 'transparent')};
   padding: 0.5rem;
 
   svg {
