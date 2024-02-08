@@ -11,7 +11,7 @@ jobs:
       pull-requests: write
     steps:
       - name: Check if issue is closable
-        id: check-issue
+        id: check_issue
         uses: actions/github-script@v5
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -32,7 +32,7 @@ jobs:
             console.log(`Issue numbers with non-closable label: ${issueNumbers}`);
             return { isClosable: isClosable };
       - name: Close stale issues
-        if: steps.check-issue.outputs.isClosable
+        if: steps.check_issue.outputs.isClosable
         uses: actions/stale@v5
         with:
           days-before-issue-stale: 0
