@@ -9,7 +9,8 @@ jobs:
     permissions:
       issues: write
     steps:
-      - if: ${{ !contains(github.event.issue.labels.*.name, 'non-closable') }}
+      - name: Check if issue is closable
+        if: ${{ !contains(github.event.issue.labels.*.name, 'non-closable') }}
         uses: actions/stale@v5
         with:
           days-before-issue-stale: 0
