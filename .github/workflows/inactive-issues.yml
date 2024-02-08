@@ -1,7 +1,7 @@
 name: Close inactive issues
 on:
   schedule:
-    - cron: "* * * * *"
+    - cron: "0 1 * * *"
 
 jobs:
   close-issues:
@@ -10,55 +10,17 @@ jobs:
       issues: write
       pull-requests: write
     steps:
-      - name: Check if issue is closable
-        id: check_issue
-        uses: actions/github-script@v5
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            const { owner, repo } = context.repo;
-            const { data: issues } = await github.event.issues.listForRepo({
-              owner,
-              repo,
-              labels: 'non-closable',
-              state: 'open'
-            }).catch(err => {
-              console.error('Error fetching issues:', err.message);
-              return { data: [] };
-            });
-            const issueNumbers = issues.map(issue => issue.number);
-            const isClosable = issueNumbers.length === 0 || !issueNumbers.includes(context.issue.number);
-            console.log(`Is issue closable: ${isClosable}`);
-            console.log(`Issue numbers with non-closable label: ${issueNumbers}`);
-            return { isClosable: isClosable };
-      - name: Close stale issues
-        if: steps.check_issue.outputs.isClosable
+      - if: ${{ !contains(github.event.issue.labels.*.name, 'non-closable') }}
         uses: actions/stale@v5
         with:
-          days-before-issue-stale: 0
-          days-before-issue-close: 0
+          days-before-issue-stale: 15
+          days-before-issue-close: 15
           stale-issue-label: "stale"
           stale-issue-message: "This issue is stale because it has been open for 15 days with no activity. If there are no further updates or modifications within the next 15 days, it will be automatically closed."
           close-issue-message: "This issue has been closed as it has been inactive for 15 days since being marked as stale."
+          stale-pr-label: "stale"
+          stale-pr-message: "This PR is stale because it has been open for 7 days with no activity. If there are no further updates or modifications within the next 7 days, it will be automatically closed."
+          close-pr-message: "This PR has been closed as it has been inactive for 7 days since being marked as stale."
+          days-before-pr-stale: 7
+          days-before-pr-close: 7
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-    # steps:
-    #   - name: Check for specific tags
-    #     id: check_tags
-    #     run: |
-    #       TAGS=$(curl -s "https://api.github.com/repos/${GITHUB_REPOSITORY}/issues/${{ github.event.issue.number }}/labels" -H "Authorization: token ${GITHUB_TOKEN}" | jq -r '.[].name')
-    #       if echo "$TAGS" | grep -q "dont-close"; then
-    #         echo "::set-output name=close_issue::false"
-    #       else
-    #         echo "::set-output name=close_issue::true"
-    #       fi
-
-    #   - name: Close or mark as stale
-    #     if: steps.check_tags.outputs.close_issue == 'true'
-    #     uses: actions/stale@v5
-    #     with:
-    #       days-before-issue-stale: 15
-    #       days-before-issue-close: 15
-    #       stale-issue-label: "stale"
-    #       stale-issue-message: "This issue is stale because it has been open for 15 days with no activity. If there are no further updates or modifications within the next 15 days, it will be automatically closed."
-    #       close-issue-message: "This issue has been closed as it has been inactive for 15 days since being marked as stale."
-    #       repo-token: ${{ secrets.GITHUB_TOKEN }}
