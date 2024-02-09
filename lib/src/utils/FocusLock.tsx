@@ -47,7 +47,11 @@ const attemptFocus = (element: HTMLElement): boolean => {
  */
 const radixPortalContains = (activeElement: Element): boolean => {
   const radixPortals = document.querySelectorAll("[data-radix-portal]");
-  return Array.prototype.slice.call(radixPortals).some((portal) => portal.contains(activeElement));
+  const radixPoppers = document.querySelectorAll("[data-radix-popper-content-wrapper]");
+  return (
+    Array.prototype.slice.call(radixPortals).some((portal) => portal.contains(activeElement)) ||
+    Array.prototype.slice.call(radixPoppers).some((popper) => popper.contains(activeElement))
+  );
 };
 
 /**
@@ -101,8 +105,12 @@ const FocusLock = ({ children }: { children: React.ReactNode }): JSX.Element => 
   };
 
   useEffect(() => {
-    if (!childrenContainerRef.current?.contains(document.activeElement) && !radixPortalContains(document.activeElement))
+    if (
+      !childrenContainerRef.current?.contains(document.activeElement) &&
+      !radixPortalContains(document.activeElement)
+    ) {
       focusFirst();
+    }
   }, [focusFirst]);
 
   return (

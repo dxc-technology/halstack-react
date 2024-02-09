@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import DxcDialog from "./Dialog";
 import DxcTextInput from "../text-input/TextInput";
 import DxcButton from "../button/Button";
@@ -10,7 +10,10 @@ import { HalstackProvider } from "../HalstackContext";
 import DxcHeading from "../heading/Heading";
 import DxcParagraph from "../paragraph/Paragraph";
 import DxcAlert from "../alert/Alert";
+import DxcDateInput from '../date-input/DateInput';
 import { userEvent, within } from "@storybook/testing-library";
+import { DxcDropdown } from "../main";
+import { Option } from "../dropdown/types";
 
 export default {
   title: "Dialog",
@@ -261,6 +264,43 @@ export const DialogWithInputs = () => (
     </DxcDialog>
   </ExampleContainer>
 );
+
+export const DialogWithDropdown = () => {
+  const options: Option[] = [
+    {
+      value: "1",
+      label: "Amazon with a very long text",
+    },
+    {
+      value: "2",
+      label: "Ebay",
+    },
+    {
+      value: "3",
+      label: "Apple",
+    },
+  ];
+
+  const [isDialogVisible, setDialogVisible] = useState(false);
+  const handleClick = () => {
+    setDialogVisible(!isDialogVisible);
+  };
+  return (
+    <>
+      <Title title="Dialog with dropdown" theme="light" level={4} />
+      <DxcButton label="Enter your data" onClick={handleClick} />
+      {isDialogVisible && (
+        <DxcDialog isCloseVisible={false}  onCloseClick={handleClick}>
+          <DxcInset space="1.5rem">
+            <DxcDropdown label="Default" options={options} onSelectOption={(value) => { }} />
+            <DxcDateInput/>
+          </DxcInset>
+        </DxcDialog>
+      )}
+      <DxcDropdown label="Default" options={options} onSelectOption={(value) => { }} />
+    </>
+  )
+};
 
 const RespDialog = () => (
   <ExampleContainer expanded={true}>
