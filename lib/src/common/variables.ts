@@ -87,6 +87,18 @@ export const componentTokens = {
     focusActionBorderColor: CoreTokens.color_blue_600,
     overlayColor: CoreTokens.color_grey_800_a,
   },
+  breadcrumbs: {
+    actionBackgroundColor: CoreTokens.color_transparent,
+    hoverActionBackgroundColor: CoreTokens.color_grey_100,
+    activeActionBackgroundColor: CoreTokens.color_grey_300,
+    disabledActionBackgroundColor: CoreTokens.color_transparent,
+    focusActionBorderColor: CoreTokens.color_blue_600,
+    actionIconColor: CoreTokens.color_black,
+    disabledActionIconColor: CoreTokens.color_grey_500,
+    hoverActionIconColor: CoreTokens.color_black,
+    focusActionIconColor: CoreTokens.color_black,
+    activeActionIconColor: CoreTokens.color_black,
+  },
   box: {
     backgroundColor: CoreTokens.color_white,
     borderRadius: CoreTokens.border_radius_medium,
