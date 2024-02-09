@@ -74,12 +74,11 @@ const DxcTab = forwardRef(
             >
               {children}
             </BaseTypography>
-            {notificationNumber && (
+            {notificationNumber && !disabled && (
               <DxcBadge
-                notificationText={
-                  typeof notificationNumber === "number" && notificationNumber > 99 ? "+99" : notificationNumber
-                }
-                disabled={disabled}
+                mode="notification"
+                size="small"
+                label={typeof notificationNumber === "number" && notificationNumber}
               />
             )}
           </DxcFlex>

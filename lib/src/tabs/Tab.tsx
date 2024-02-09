@@ -36,6 +36,7 @@ const Tab = forwardRef(
           notificationNumber={tab.notificationNumber}
           hasLabelAndIcon={hasLabelAndIcon}
           iconPosition={iconPosition}
+          disabled={tab.isDisabled}
         >
           {tab.icon && (
             <TabIconContainer hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
@@ -61,14 +62,12 @@ const Tab = forwardRef(
             {tab.label}
           </BaseTypography>
         </MainLabelContainer>
-        {tab.notificationNumber && (
+        {tab.notificationNumber && !tab.isDisabled && (
           <BadgeContainer hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
             <DxcBadge
-              notificationText={
-                typeof tab.notificationNumber === "number" && tab.notificationNumber > 99
-                  ? "+99"
-                  : tab.notificationNumber
-              }
+              mode="notification"
+              size="small"
+              label={typeof tab.notificationNumber === "number" && tab.notificationNumber}
             />
           </BadgeContainer>
         )}
@@ -153,12 +152,13 @@ const MainLabelContainer = styled.div<{
   notificationNumber: TabProps["tab"]["notificationNumber"];
   hasLabelAndIcon: TabProps["hasLabelAndIcon"];
   iconPosition: TabProps["iconPosition"];
+  disabled: TabProps["tab"]["isDisabled"];
 }>`
   display: flex;
   flex-direction: ${(props) => (props.hasLabelAndIcon && props.iconPosition === "top" && "column") || "row"};
   align-items: center;
   margin-left: ${(props) =>
-    props.notificationNumber
+    props.notificationNumber && !props.disabled
       ? typeof props.notificationNumber === "number"
         ? `calc(${props.theme.badgeWidthWithNotificationNumber} + 12px)`
         : `calc(${props.theme.badgeWidth} + 12px)`
