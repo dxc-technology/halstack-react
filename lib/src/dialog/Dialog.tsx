@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
 import DialogPropsType from "./types";
 import { responsiveSizes } from "../common/variables";
@@ -6,6 +6,7 @@ import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
 import { createPortal } from "react-dom";
 import FocusLock from "../utils/FocusLock";
+import KeyboardContext from "../KeyboardContext";
 
 const closeIcon = (
   <svg role="img" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
@@ -25,11 +26,14 @@ const DxcDialog = ({
   const colorsTheme = useTheme();
   const translatedLabels = useTranslatedLabels();
 
+  const [consumedEscape, setConsumedEscape] = useState(false);
+
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         event.preventDefault();
-        onCloseClick?.();
+        if (!consumedEscape) onCloseClick?.();
+        else setConsumedEscape(false);
       }
     };
 
@@ -37,7 +41,7 @@ const DxcDialog = ({
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, [onCloseClick]);
+  }, [onCloseClick, consumedEscape]);
 
   return (
     <ThemeProvider theme={colorsTheme.dialog}>
@@ -53,7 +57,9 @@ const DxcDialog = ({
           )}
           <Dialog role="dialog" aria-modal={overlay} isCloseVisible={isCloseVisible}>
             <FocusLock>
-              {children}
+              <KeyboardContext.Provider value={{ consumedEscape, setConsumedEscape }}>
+                {children}
+              </KeyboardContext.Provider>
               {isCloseVisible && (
                 <CloseIconAction
                   onClick={() => {

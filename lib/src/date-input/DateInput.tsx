@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect, useRef, useEffect } from "react";
+import React, { useState, useLayoutEffect, useRef, useEffect, useContext } from "react";
 import dayjs from "dayjs";
 import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme";
@@ -10,6 +10,7 @@ import * as Popover from "@radix-ui/react-popover";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import { v4 as uuidv4 } from "uuid";
 import { calendarIcon } from "./Icons";
+import KeyboardContext from "../KeyboardContext";
 dayjs.extend(customParseFormat);
 
 const getValueForPicker = (value, format) => dayjs(value, format.toUpperCase(), true);
@@ -71,6 +72,8 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
     const colorsTheme = useTheme();
     const translatedLabels = useTranslatedLabels();
     const dateRef = useRef(null);
+
+    const keyboardContext = useContext(KeyboardContext);
 
     useEffect(() => {
       if (value || value === "") setDayjsDate(getDate(value, format, lastValidYear, setLastValidYear));
@@ -145,10 +148,13 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
       setIsOpen(false);
     };
 
-    const handleDatePickerEscKeydown = (event) => {
-      event.preventDefault();
-      closeCalendar();
-      dateRef?.current.getElementsByTagName("input")[0].focus();
+    const handleDatePickerEscKeydown = (event: React.KeyboardEvent) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        keyboardContext.setConsumedEscape(true);
+        closeCalendar();
+        dateRef?.current.getElementsByTagName("input")[0].focus();
+      }
     };
     const handleDatePickerOnBlur = (event) => {
       if (!event?.currentTarget.contains(event.relatedTarget)) closeCalendar();
@@ -191,7 +197,8 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
                 align="end"
                 aria-modal={true}
                 onBlur={handleDatePickerOnBlur}
-                onEscapeKeyDown={handleDatePickerEscKeydown}
+                // onEscapeKeyDown={handleDatePickerEscKeydown}
+                onKeyDown={handleDatePickerEscKeydown}
                 avoidCollisions={false}
               >
                 <DxcDatePicker id={calendarId} onDateSelect={handleCalendarOnClick} date={dayjsDate} />

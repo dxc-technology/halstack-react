@@ -1,4 +1,5 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useContext, useEffect, useRef, useState } from "react";
+import KeyboardContext from "../KeyboardContext";
 
 const not = {
   negTabIndex: ':not([tabindex^="-"])',

@@ -12,6 +12,7 @@ import icons from "./Icons";
 import { v4 as uuidv4 } from "uuid";
 import DxcActionIcon from "../action-icon/ActionIcon";
 import { DxcFlex } from "../main";
+import KeyboardContext from "../KeyboardContext";
 
 const sizes = {
   small: "240px",
@@ -129,6 +130,8 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
     const translatedLabels = useTranslatedLabels();
     const numberInputContext = useContext(NumberInputContext);
 
+    const keyboardContext = useContext(KeyboardContext);
+
     const getNumberErrorMessage = (value: number) => {
       if (value < numberInputContext?.minNumber)
         return translatedLabels.numberInput.valueGreaterThanOrEqualToErrorMessage(numberInputContext.minNumber);
@@ -233,6 +236,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
         case "Esc":
         case "Escape":
           event.preventDefault();
+          keyboardContext.setConsumedEscape(true);
           if (hasSuggestions(suggestions)) {
             changeValue("");
             isOpen && closeSuggestions();
@@ -350,11 +354,11 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
 
     useEffect(() => {
       const input = inputRef.current;
-  
-      input.addEventListener('wheel', handleWheel, { passive: false });
-  
+
+      input.addEventListener("wheel", handleWheel, { passive: false });
+
       return () => {
-        input.removeEventListener('wheel', handleWheel);
+        input.removeEventListener("wheel", handleWheel);
       };
     }, [handleWheel]);
 

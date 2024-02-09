@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback, useLayoutEffect } from "react";
+import React, { useState, useEffect, useRef, useCallback, useLayoutEffect, useContext } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import DropdownPropsType from "./types";
 import { spaces } from "../common/variables";
@@ -7,6 +7,7 @@ import useTheme from "../useTheme";
 import { v4 as uuidv4 } from "uuid";
 import * as Popover from "@radix-ui/react-popover";
 import DropdownMenu from "./DropdownMenu";
+import KeyboardContext from "../KeyboardContext";
 
 const upArrowIcon = (
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
@@ -66,6 +67,8 @@ const DxcDropdown = ({
   const triggerRef = useRef(null);
   const menuRef = useRef(null);
   const width = useWidth(triggerRef.current);
+
+  const keyboardContext = useContext(KeyboardContext);
 
   const handleOnOpenMenu = () => {
     changeIsOpen(true);
@@ -140,6 +143,7 @@ const DxcDropdown = ({
         case "Esc":
         case "Escape":
           event.preventDefault();
+          keyboardContext.setConsumedEscape(true);
           handleOnCloseMenu();
           triggerRef.current?.focus();
           break;

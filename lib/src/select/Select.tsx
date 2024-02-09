@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useState, useCallback, useEffect } from "react";
+import React, { useMemo, useRef, useState, useCallback, useEffect, useContext } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
@@ -9,6 +9,7 @@ import SelectPropsType, { Option, OptionGroup, RefType } from "./types";
 import selectIcons from "./Icons";
 import Listbox from "./Listbox";
 import * as Popover from "@radix-ui/react-popover";
+import KeyboardContext from "../KeyboardContext";
 
 const isOptionGroup = (option: Option | OptionGroup): option is OptionGroup =>
   "options" in option && option.options != null;
@@ -195,6 +196,8 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
       [value, innerValue, options, multiple, optional, optionalItem]
     );
 
+    const keyboardContext = useContext(KeyboardContext);
+
     const openOptions = () => {
       if (!isOpen && canOpenOptions(options, disabled)) changeIsOpen(true);
     };
@@ -282,6 +285,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
         case "Esc":
         case "Escape":
           event.preventDefault();
+          keyboardContext.setConsumedEscape(true);
           closeOptions();
           setSearchValue("");
           break;

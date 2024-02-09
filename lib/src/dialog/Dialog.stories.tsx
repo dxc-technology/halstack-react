@@ -298,6 +298,7 @@ export const DialogWithDropdown = () => {
         </DxcDialog>
       )}
       <DxcDropdown label="Default" options={options} onSelectOption={(value) => { }} />
+      <DxcDateInput/>
     </>
   )
 };
