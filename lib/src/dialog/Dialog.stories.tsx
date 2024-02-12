@@ -265,7 +265,7 @@ export const DialogWithInputs = () => (
   </ExampleContainer>
 );
 
-export const DialogWithDropdown = () => {
+export const DialogWithPopups = () => {
   const options: Option[] = [
     {
       value: "1",
@@ -287,7 +287,7 @@ export const DialogWithDropdown = () => {
   };
   return (
     <>
-      <Title title="Dialog with dropdown" theme="light" level={4} />
+      <Title title="Dialog with popups" theme="light" level={4} />
       <DxcButton label="Enter your data" onClick={handleClick} />
       {isDialogVisible && (
         <DxcDialog isCloseVisible={false}  onCloseClick={handleClick}>
@@ -297,8 +297,6 @@ export const DialogWithDropdown = () => {
           </DxcInset>
         </DxcDialog>
       )}
-      <DxcDropdown label="Default" options={options} onSelectOption={(value) => { }} />
-      <DxcDateInput/>
     </>
   )
 };
