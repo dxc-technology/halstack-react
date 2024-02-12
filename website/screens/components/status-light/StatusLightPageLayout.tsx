@@ -6,7 +6,6 @@ import ComponentHeading from "@/common/ComponentHeading";
 const StatusLightPageHeading = ({ children }: { children: React.ReactNode }) => {
   const tabs = [
     { label: "Code", path: "/components/status-light" },
-    { label: "Usage", path: "/components/status-light/usage" },
   ];
 
   return (
