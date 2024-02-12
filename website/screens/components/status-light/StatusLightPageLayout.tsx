@@ -13,7 +13,7 @@ const StatusLightPageHeading = ({ children }: { children: React.ReactNode }) => 
     <DxcFlex direction="column" gap="3rem">
       <PageHeading>
         <DxcFlex direction="column" gap="2rem">
-          <ComponentHeading name="StatusLight" />
+          <ComponentHeading name="Status Light" />
           <DxcParagraph>
             Status Lights, as semantic elements, allow the user to display the completion status of tasks, processes and more.
           </DxcParagraph>

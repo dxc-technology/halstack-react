@@ -58,6 +58,15 @@ const sections = [
       </DxcTable>
     ),
   },
+  {
+    title: "Examples",
+    subSections: [
+      {
+        title: "Basic Usage",
+        content: <p>Examples are not available yet, they will be added soon.</p>
+      },
+    ],
+  },
 ];
 
 const StatusLightCodePage = () => {
