@@ -32,8 +32,11 @@ const DxcDialog = ({
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         event.preventDefault();
-        if (!consumedEscape) onCloseClick?.();
-        else setConsumedEscape(false);
+        if (!consumedEscape) {
+          onCloseClick?.();
+        } else {
+          setConsumedEscape(false);
+        }
       }
     };
 

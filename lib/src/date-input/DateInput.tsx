@@ -197,7 +197,6 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
                 align="end"
                 aria-modal={true}
                 onBlur={handleDatePickerOnBlur}
-                // onEscapeKeyDown={handleDatePickerEscKeydown}
                 onKeyDown={handleDatePickerEscKeydown}
                 avoidCollisions={false}
               >
