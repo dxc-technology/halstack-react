@@ -39,7 +39,7 @@ const sections = [
               <TableCode>string</TableCode>
             </td>
             <td>
-              A short auxiliar text that will add some context to the status.
+              An auxiliar text that will add some context to the status.
             </td>
             <td>-</td>
           </tr>

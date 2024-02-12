@@ -7,7 +7,7 @@ type Props = {
    */
   mode?: Mode;
   /**
-   * A short auxiliar text that will add some context to the status.
+   * An auxiliar text that will add some context to the status.
    */
   label: string;
   /**
