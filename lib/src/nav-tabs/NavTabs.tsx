@@ -76,8 +76,8 @@ const DxcNavTabs = ({ iconPosition = "top", tabIndex = 0, children }: NavTabsPro
   return (
     <ThemeProvider theme={colorsTheme.navTabs}>
       <NavTabsContainer onKeyDown={handleOnKeyDown} role="tablist" aria-label="Navigation tabs">
-        <NavTabsContext.Provider value={contextValue}>{children}</NavTabsContext.Provider>
         <Underline />
+        <NavTabsContext.Provider value={contextValue}>{children}</NavTabsContext.Provider>
       </NavTabsContainer>
     </ThemeProvider>
   );
@@ -90,7 +90,6 @@ const Underline = styled.div`
   width: 100%;
   height: 2px;
   background-color: ${(props) => props.theme.dividerColor};
-  z-index: -1;
 `;
 
 DxcNavTabs.Tab = DxcTab;

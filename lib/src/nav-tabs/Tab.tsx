@@ -93,7 +93,7 @@ const TabContainer = styled.div<{ active: TabProps["active"] }>`
   align-items: stretch;
   border-bottom: 2px solid ${(props) => (props.active ? props.theme.selectedUnderlineColor : 'transparent')};
   padding: 0.5rem;
-
+  z-index: 1;
   svg {
     color: ${(props) => props.theme.unselectedIconColor};
   }
