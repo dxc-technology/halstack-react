@@ -246,7 +246,10 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
             const validFocusedSuggestion =
               filteredSuggestions.length > 0 && visualFocusIndex >= 0 && visualFocusIndex < filteredSuggestions.length;
             validFocusedSuggestion && changeValue(filteredSuggestions[visualFocusIndex]);
-            isOpen && closeSuggestions();
+            if(isOpen) {
+              keyboardContext.setConsumedEscape(true);
+              closeSuggestions()
+            }
           }
           break;
       }
