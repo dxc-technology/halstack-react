@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
 import DialogPropsType from "./types";
 import { responsiveSizes } from "../common/variables";
