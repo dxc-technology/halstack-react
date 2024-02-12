@@ -282,8 +282,12 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
         case "Esc":
         case "Escape":
           event.preventDefault();
-          closeOptions();
-          setSearchValue("");
+          if (!isOpen && multiple && Array.isArray(selectedOption) && selectedOption.length > 0) {
+            handleClearOptionsActionOnEscape(event)
+          } else {
+            closeOptions();
+            setSearchValue("");
+          }
           break;
         case "Enter":
           if (isOpen && visualFocusIndex >= 0) {
@@ -331,6 +335,14 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
     };
 
     const handleClearOptionsActionOnClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+      event.stopPropagation();
+      value ?? setInnerValue([]);
+      !optional
+        ? onChange?.({ value: [] as string & string[], error: translatedLabels.formFields.requiredValueErrorMessage })
+        : onChange?.({ value: [] as string & string[] });
+    };
+
+    const handleClearOptionsActionOnEscape = (event: React.KeyboardEvent) => {
       event.stopPropagation();
       value ?? setInnerValue([]);
       !optional
