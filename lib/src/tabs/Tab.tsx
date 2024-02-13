@@ -160,8 +160,8 @@ const MainLabelContainer = styled.div<{
   margin-left: ${(props) =>
     props.notificationNumber && !props.disabled
       ? typeof props.notificationNumber === "number"
-        ? `calc(${props.theme.badgeWidthWithNotificationNumber} + 12px)`
-        : `calc(${props.theme.badgeWidth} + 12px)`
+        ? "36px"
+        : "18px"
       : "unset"};
 `;
 
