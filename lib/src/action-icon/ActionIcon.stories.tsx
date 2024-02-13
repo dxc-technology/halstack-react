@@ -21,6 +21,10 @@ export const Chromatic = () => (
     <ExampleContainer>
       <DxcActionIcon icon={iconSVG} title="Favourite" />
     </ExampleContainer>
+    <Title title="Disabled" theme="light" level={2} />
+    <ExampleContainer>
+      <DxcActionIcon icon={iconSVG} title="Favourite" disabled />
+    </ExampleContainer>
     <Title title="Hover" theme="light" level={2} />
     <ExampleContainer pseudoState="pseudo-hover">
       <DxcActionIcon icon={iconSVG} title="Favourite" />
