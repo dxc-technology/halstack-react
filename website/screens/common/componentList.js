@@ -51,6 +51,7 @@ exports.componentsList = [
   { label: "Sidenav", path: "/components/sidenav", status: "Ready" },
   { label: "Slider", path: "/components/slider", status: "Ready" },
   { label: "Spinner", path: "/components/spinner", status: "Ready" },
+  { label: "Status Light", path: "/components/status-light", status: "Experimental" },
   { label: "Switch", path: "/components/switch", status: "Ready" },
   { label: "Table", path: "/components/table", status: "Ready" },
   { label: "Tabs", path: "/components/tabs", status: "Ready" },
