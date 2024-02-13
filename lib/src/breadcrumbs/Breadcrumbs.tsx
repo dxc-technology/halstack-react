@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme";
-import BreadcrumbsProps, { Item } from "./types";
-import { css } from "styled-components";
-import DxcActionIcon from "../action-icon/ActionIcon";
-import * as Popover from "@radix-ui/react-popover";
-import DxcContainer from "../container/Container";
+import BreadcrumbsProps, { ItemType } from "./types";
+import DxcDropdown from "../dropdown/Dropdown";
+import { HalstackProvider } from "../HalstackContext";
+import dropdownTheme from "./dropdownTheme";
 
 const defaultCollapsedIcon = (
   <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
@@ -13,82 +12,23 @@ const defaultCollapsedIcon = (
   </svg>
 );
 
-const DropdownMenu = ({
-  collapsedIcon,
-  items,
-}: {
-  collapsedIcon: BreadcrumbsProps["collapsedIcon"];
-  items: BreadcrumbsProps["items"];
-}) => {
-  const [collapsed, setCollapsed] = useState(false);
-
-  return (
-    <Popover.Root open={collapsed}>
-      <Popover.Trigger asChild type={undefined}>
-        <DxcActionIcon
-          icon={collapsedIcon ?? defaultCollapsedIcon}
-          onClick={() => {
-            setCollapsed(!collapsed);
-          }}
-          title="Expand/collapse breadcrumbs menu"
-        />
-      </Popover.Trigger>
-      <Popover.Portal>
-        <Popover.Content sideOffset={6} style={{ zIndex: "2147483647" }}>
-          <DxcContainer
-            boxSizing="border-box"
-            boxShadow="0 4px 6px -1px rgba(0, 0, 0, 0.1)"
-            border={{ width: "1px", style: "solid", color: "color_grey_400" }}
-            borderRadius="0.25rem"
-            background={{ color: "color_white" }}
-            padding={{ top: "xxsmall", bottom: "xxsmall" }}
-            maxHeight="304px"
-            width="fitContent"
-            overflow={{ x: "hidden", y: "auto" }}
-          >
-            {items.map((item, index) => (
-              <DxcContainer padding={{ left: "xsmall", right: "xsmall" }}>
-                <DxcContainer
-                  border={
-                    index !== items.length - 1
-                      ? { bottom: { width: "1px", style: "solid", color: "color_grey_200" } }
-                      : undefined
-                  }
-                  padding="xxsmall"
-                  overflow="hidden"
-                >
-                  <Label>{item.label}</Label>
-                </DxcContainer>
-              </DxcContainer>
-            ))}
-          </DxcContainer>
-        </Popover.Content>
-      </Popover.Portal>
-    </Popover.Root>
-  );
-};
-
-const mapItems = (item: Item, index: number, { length }) => {
+const mapItems = (item: ItemType, index: number, { length }) => {
   const isLast = index === length - 1;
 
   return (
     <ListItem key={index} aria-current={isLast ? "page" : undefined}>
       {isLast ? (
-        <CurrentLabel>{item.label}</CurrentLabel>
+        <CurrentItem>{item.label}</CurrentItem>
       ) : (
-        <Link href={item.href}>
+        <Item href={item.href}>
           <Text>{item.label}</Text>
-        </Link>
+        </Item>
       )}
     </ListItem>
   );
 };
 
-const mapMultipleItems = (
-  collapsedIcon: BreadcrumbsProps["collapsedIcon"],
-  items: BreadcrumbsProps["items"],
-  showRoot: BreadcrumbsProps["showRoot"]
-) => {
+const mapMultipleItems = (items: BreadcrumbsProps["items"], showRoot: BreadcrumbsProps["showRoot"]) => {
   const first = items[0];
   const last = items[items.length - 1];
 
@@ -96,16 +36,26 @@ const mapMultipleItems = (
     <>
       {showRoot && (
         <ListItem key={0}>
-          <Link href={first.href}>
+          <Item href={first.href}>
             <Text>{first.label}</Text>
-          </Link>
+          </Item>
         </ListItem>
       )}
       <ListItem key={1}>
-        <DropdownMenu collapsedIcon={collapsedIcon} items={items.slice(showRoot ? 1 : 0, -1)} />
+        <HalstackProvider advancedTheme={dropdownTheme}>
+          <DxcDropdown
+            icon={defaultCollapsedIcon}
+            options={items.slice(showRoot ? 1 : 0, -1).map(({ label, href }) => ({ label, value: href }))}
+            onSelectOption={(value) => {
+              window.location.href = value;
+            }}
+            caretHidden
+            margin={showRoot && { left: "small" }}
+          />
+        </HalstackProvider>
       </ListItem>
-      <ListItem key={2} aria-current="page">
-        <CurrentLabel>{last.label}</CurrentLabel>
+      <ListItem key={2} aria-current="page" style={{ overflow: "hidden" }}>
+        <CurrentItem>{last.label}</CurrentItem>
       </ListItem>
     </>
   );
@@ -113,7 +63,6 @@ const mapMultipleItems = (
 
 const DxcBreadcrumbs = ({
   ariaLabel = "Breadcrumbs",
-  collapsedIcon,
   items,
   itemsBeforeCollapse = 4,
   showRoot = true,
@@ -125,7 +74,7 @@ const DxcBreadcrumbs = ({
       <nav aria-label={ariaLabel}>
         <OrderedList>
           {itemsBeforeCollapse >= 2 && items.length > itemsBeforeCollapse
-            ? mapMultipleItems(collapsedIcon, items, showRoot)
+            ? mapMultipleItems(items, showRoot)
             : items.map(mapItems)}
         </OrderedList>
       </nav>
@@ -134,22 +83,20 @@ const DxcBreadcrumbs = ({
 };
 
 const OrderedList = styled.ol`
+  margin: 0;
   padding-left: 0;
   display: flex;
+  gap: 0.75rem;
   align-items: center;
   list-style-type: none;
-  margin: 0;
 
   > li:not(:first-child) {
-    margin-left: 0.75rem;
-
     > a,
-    > span,
-    > button {
+    > span {
       margin-left: 0.75rem;
     }
     &::before {
-      display: inline-flex;
+      margin: 0 0.125rem;
       transform: rotate(15deg);
       border-right: 2px solid #999;
       height: 1rem;
@@ -158,50 +105,40 @@ const OrderedList = styled.ol`
   }
 `;
 
-const sharedStyles = css`
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  height: 24px;
-  font-family: "Open Sans", sans-serif;
-  font-size: 0.875rem;
-`;
-
 const ListItem = styled.li`
   display: flex;
   align-items: center;
-`;
-
-const Label = styled.span`
-  ${sharedStyles}
+  font-family: "Open Sans", sans-serif;
+  font-size: 0.875rem;
   color: #000;
 `;
 
-const CurrentLabel = styled.span`
-  ${sharedStyles}
-  color: #999;
+const CurrentItem = styled.span`
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
-const Link = styled.a`
+const Item = styled.a`
   border-radius: 2px;
   padding: 0 2px;
-  color: #000000;
+  display: inline-flex;
+  align-items: center;
+  height: 24px;
+  color: #000;
   text-decoration: none;
   cursor: pointer;
 
   &:focus {
-    box-shadow: 0 0 0 2px #0095ff;
-    outline: none;
+    outline: 2px solid #0095ff;
   }
 `;
 
 const Text = styled.span`
-  box-sizing: border-box;
-  ${sharedStyles}
   border: 1px solid transparent;
-
   &:hover {
-    border-bottom: 1px solid #000000;
+    border-bottom: 1px solid #000;
   }
 `;
 

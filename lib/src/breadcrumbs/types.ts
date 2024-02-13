@@ -1,14 +1,11 @@
-type SVG = React.ReactNode & React.SVGProps<SVGSVGElement>;
-
-export type Item = {
+export type ItemType = {
   label: string;
   href?: string;
 };
 
 type Props = {
   ariaLabel?: string;
-  collapsedIcon?: SVG;
-  items: Array<Item>;
+  items: Array<ItemType>;
   itemsBeforeCollapse?: number;
   showRoot?: boolean;
 };

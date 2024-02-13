@@ -2,6 +2,7 @@ import React from "react";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DxcBreadcrumbs from "./Breadcrumbs";
+import DxcContainer from "../container/Container";
 
 export default {
   title: "Breadcrumbs",
@@ -87,7 +88,7 @@ export const Chromatic = () => (
     </ExampleContainer>
     <Title title="Collapsed breadcrumbs with custom collapsed icon" theme="light" level={3} />
     <ExampleContainer>
-      <DxcBreadcrumbs items={items} showRoot={false} collapsedIcon={collapsedIcon} />
+      <DxcBreadcrumbs items={items} showRoot={false} />
     </ExampleContainer>
     <Title title="Breadcrumbs collapse with three elements" theme="light" level={3} />
     <ExampleContainer>
@@ -110,9 +111,35 @@ export const Chromatic = () => (
             href: "",
           },
         ]}
-        collapsedIcon={collapsedIcon}
         itemsBeforeCollapse={3}
       />
+    </ExampleContainer>
+    <Title title="Truncation and text ellipsis (only when collapsed)" theme="light" level={3} />
+    <ExampleContainer>
+      <DxcContainer width="200px">
+        <DxcBreadcrumbs
+          items={[
+            {
+              label: "Root",
+              href: "/",
+            },
+            {
+              label: "Main folder",
+              href: "",
+            },
+            {
+              label: "User",
+              href: "",
+            },
+            {
+              label: "Very long label for the link",
+              href: "",
+            },
+          ]}
+          itemsBeforeCollapse={3}
+          showRoot={false}
+        />
+      </DxcContainer>
     </ExampleContainer>
   </>
 );
