@@ -5,13 +5,13 @@ import { getMargin } from "../common/utils";
 import useTheme from "../useTheme";
 import TablePropsType from "./types";
 
-const DxcTable = ({ children, margin }: TablePropsType): JSX.Element => {
+const DxcTable = ({ children, margin, mode = "default" }: TablePropsType): JSX.Element => {
   const colorsTheme = useTheme();
 
   return (
     <ThemeProvider theme={colorsTheme.table}>
       <DxcTableContainer margin={margin}>
-        <DxcTableContent>{children}</DxcTableContent>
+        <DxcTableContent mode={mode}>{children}</DxcTableContent>
       </DxcTableContainer>
     </ThemeProvider>
   );
@@ -48,14 +48,14 @@ const DxcTableContainer = styled.div<{ margin: TablePropsType["margin"] }>`
   }
 `;
 
-const DxcTableContent = styled.table`
+const DxcTableContent = styled.table<{ mode: TablePropsType["mode"] }>`
   border-collapse: collapse;
   width: 100%;
 
   & tr {
     border-bottom: ${(props) =>
       `${props.theme.rowSeparatorThickness} ${props.theme.rowSeparatorStyle} ${props.theme.rowSeparatorColor}`};
-    height: 60px;
+    height: ${(props) => (props.mode === "default" ? "60px" : "36px")};
   }
   & td {
     background-color: ${(props) => props.theme.dataBackgroundColor};
@@ -68,7 +68,9 @@ const DxcTableContent = styled.table`
     text-align: ${(props) => props.theme.dataTextAlign};
     line-height: ${(props) => props.theme.dataTextLineHeight};
     padding: ${(props) =>
-      `${props.theme.dataPaddingTop} ${props.theme.dataPaddingRight} ${props.theme.dataPaddingBottom} ${props.theme.dataPaddingLeft}`};
+      props.mode === "default"
+        ? `${props.theme.dataPaddingTop} ${props.theme.dataPaddingRight} ${props.theme.dataPaddingBottom} ${props.theme.dataPaddingLeft}`
+        : `8px 16px 8px 16px`};
   }
   & th {
     background-color: ${(props) => props.theme.headerBackgroundColor};
@@ -81,7 +83,9 @@ const DxcTableContent = styled.table`
     text-align: ${(props) => props.theme.headerTextAlign};
     line-height: ${(props) => props.theme.headerTextLineHeight};
     padding: ${(props) =>
-      `${props.theme.headerPaddingTop} ${props.theme.headerPaddingRight} ${props.theme.headerPaddingBottom} ${props.theme.headerPaddingLeft}`};
+      props.mode === "default"
+        ? `${props.theme.headerPaddingTop} ${props.theme.headerPaddingRight} ${props.theme.headerPaddingBottom} ${props.theme.headerPaddingLeft}`
+        : `8px 16px 8px 16px`};
   }
   & th:first-child {
     border-top-left-radius: ${(props) => props.theme.headerBorderRadius};
