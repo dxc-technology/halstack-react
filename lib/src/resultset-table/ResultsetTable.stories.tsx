@@ -50,6 +50,20 @@ const rowsIcon = [
   ],
 ];
 
+const rowsIconSmall = [
+  [
+    { displayValue: "001", sortValue: "001" },
+    { displayValue: "Peter" },
+    { displayValue: <DxcButton icon={deleteIconSmall} /> },
+  ],
+  [{ displayValue: "002", sortValue: "002" }, { displayValue: "Louis" }, { displayValue: "" }],
+  [
+    { displayValue: "003", sortValue: "003" },
+    { displayValue: "Mark" },
+    { displayValue: <DxcButton icon={deleteIconSmall} /> },
+  ],
+];
+
 const columnsSortable = [
   { displayValue: "Id", isSortable: true },
   { displayValue: "Name", isSortable: true },
@@ -211,6 +225,29 @@ export const Chromatic = () => (
       <SmallContainer>
         <Title title="Small container and text overflow" theme="light" level={4} />
         <DxcResultsetTable columns={columnsSortable} rows={longValues} />
+      </SmallContainer>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Reduced sortable table" theme="light" level={4} />
+      <DxcResultsetTable columns={columnsSortable} rows={rowsSortable} mode="reduced" />
+    </ExampleContainer>
+    {/* PENDING SMALL ICON VERSION */}
+    {/* <ExampleContainer>
+      <Title title="Reduced with action" theme="light" level={4} />
+      <DxcResultsetTable columns={columns} rows={rowsIconSmall} mode="reduced" />
+    </ExampleContainer> */}
+    <ExampleContainer>
+      <Title title="Reduced with items per page option" theme="light" level={4} />
+      <DxcResultsetTable columns={columns} rows={rows} itemsPerPage={2} itemsPerPageOptions={[2, 3]} mode="reduced" />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Reduced scroll resultset table" theme="light" level={4} />
+      <DxcResultsetTable columns={longColumns} rows={longRows} mode="reduced" />
+    </ExampleContainer>
+    <ExampleContainer>
+      <SmallContainer>
+        <Title title="Reduced small container and text overflow" theme="light" level={4} />
+        <DxcResultsetTable columns={columnsSortable} rows={longValues} mode="reduced" />
       </SmallContainer>
     </ExampleContainer>
     <Title title="Margins" theme="light" level={2} />

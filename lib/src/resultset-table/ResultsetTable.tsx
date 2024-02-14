@@ -102,6 +102,7 @@ const DxcResultsetTable = ({
                     }}
                     tabIndex={column.isSortable ? tabIndex : -1}
                     isSortable={column.isSortable}
+                    mode={mode}
                   >
                     <span>{column.displayValue}</span>
                     {column.isSortable && (
@@ -169,7 +170,7 @@ const HeaderContainer = styled.span<{ isSortable: Column["isSortable"]; mode: Re
       : "flex-start"};
   gap: 8px;
   width: fit-content;
-  border: ${(props) => props.mode === "default" && "1px solid transparent"}
+  border: ${(props) => (props.mode === "default" ? "1px solid transparent" : "0px solid transparent")};
   border-radius: 2px;
   padding: ${(props) => (props.mode === "default" ? "3px" : "0px")};
   cursor: ${(props) => (props.isSortable ? "pointer" : "default")};
