@@ -89,12 +89,17 @@ const DxcTableContent = styled.table<{ mode: TablePropsType["mode"] }>`
   }
   & th:first-child {
     border-top-left-radius: ${(props) => props.theme.headerBorderRadius};
+    padding-left: ${(props) => (props.mode === "default" ? "24px" : "20px")};
   }
   & th:last-child {
     border-top-right-radius: ${(props) => props.theme.headerBorderRadius};
+    padding-right: ${(props) => (props.mode === "default" ? "24px" : "20px")};
+  }
+  & td:first-child {
+    padding-left: ${(props) => (props.mode === "default" ? "24px" : "20px")};
   }
   & td:last-child {
-    padding-right: 40px;
+    padding-right: ${(props) => (props.mode === "default" ? "24px" : "20px")};
   }
 `;
 
