@@ -4,6 +4,7 @@ import { spaces } from "../common/variables";
 import { getMargin } from "../common/utils";
 import useTheme from "../useTheme";
 import TablePropsType from "./types";
+import CoreTokens from "../common/coreTokens";
 
 const DxcTable = ({ children, margin, mode = "default" }: TablePropsType): JSX.Element => {
   const colorsTheme = useTheme();
@@ -70,7 +71,7 @@ const DxcTableContent = styled.table<{ mode: TablePropsType["mode"] }>`
     padding: ${(props) =>
       props.mode === "default"
         ? `${props.theme.dataPaddingTop} ${props.theme.dataPaddingRight} ${props.theme.dataPaddingBottom} ${props.theme.dataPaddingLeft}`
-        : `8px 16px 8px 16px`};
+        : `${CoreTokens.spacing_8} ${CoreTokens.spacing_16}`};
   }
   & th {
     background-color: ${(props) => props.theme.headerBackgroundColor};
@@ -85,21 +86,21 @@ const DxcTableContent = styled.table<{ mode: TablePropsType["mode"] }>`
     padding: ${(props) =>
       props.mode === "default"
         ? `${props.theme.headerPaddingTop} ${props.theme.headerPaddingRight} ${props.theme.headerPaddingBottom} ${props.theme.headerPaddingLeft}`
-        : `8px 16px 8px 16px`};
+        : `${CoreTokens.spacing_8} ${CoreTokens.spacing_16}`};
   }
   & th:first-child {
     border-top-left-radius: ${(props) => props.theme.headerBorderRadius};
-    padding-left: ${(props) => (props.mode === "default" ? "24px" : "20px")};
+    padding-left: ${(props) => (props.mode === "default" ? CoreTokens.spacing_24 : "20px")};
   }
   & th:last-child {
     border-top-right-radius: ${(props) => props.theme.headerBorderRadius};
-    padding-right: ${(props) => (props.mode === "default" ? "24px" : "20px")};
+    padding-right: ${(props) => (props.mode === "default" ? CoreTokens.spacing_24 : "20px")};
   }
   & td:first-child {
-    padding-left: ${(props) => (props.mode === "default" ? "24px" : "20px")};
+    padding-left: ${(props) => (props.mode === "default" ? CoreTokens.spacing_24 : "20px")};
   }
   & td:last-child {
-    padding-right: ${(props) => (props.mode === "default" ? "24px" : "20px")};
+    padding-right: ${(props) => (props.mode === "default" ? CoreTokens.spacing_24 : "20px")};
   }
 `;
 

@@ -7,6 +7,7 @@ import useTheme from "../useTheme";
 import ResultsetTablePropsType, { Column } from "./types";
 import icons from "./Icons";
 import { getMargin } from "../common/utils";
+import CoreTokens from "../common/coreTokens";
 
 const normalizeSortValue = (sortValue) => (typeof sortValue === "string" ? sortValue.toUpperCase() : sortValue);
 
@@ -168,11 +169,10 @@ const HeaderContainer = styled.span<{ isSortable: Column["isSortable"]; mode: Re
       : props.theme.headerTextAlign === "right"
       ? "flex-end"
       : "flex-start"};
-  gap: 8px;
+  gap: ${CoreTokens.spacing_8};
   width: fit-content;
-  border: ${(props) => (props.mode === "default" ? "1px solid transparent" : "0px solid transparent")};
+  border: 1px solid transparent;
   border-radius: 2px;
-  padding: ${(props) => (props.mode === "default" ? "3px" : "0px")};
   cursor: ${(props) => (props.isSortable ? "pointer" : "default")};
 
   ${(props) =>
