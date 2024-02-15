@@ -41,6 +41,8 @@ const principlesLinks: LinkDetails[] = [
   { label: "Spacing", path: "/principles/spacing", status: "Ready" },
   { label: "Themes", path: "/principles/themes", status: "Ready" },
   { label: "Typography", path: "/principles/typography", status: "Ready" },
+  { label: "Iconography", path: "/principles/iconography", status: "Ready" },
+
 ];
 
 const componentsLinks = componentsList as LinkDetails[];
