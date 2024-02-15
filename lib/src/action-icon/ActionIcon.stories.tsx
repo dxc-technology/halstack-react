@@ -19,7 +19,7 @@ export const Chromatic = () => (
   <>
     <Title title="Default" theme="light" level={2} />
     <ExampleContainer>
-      <DxcActionIcon icon={iconSVG} title="Favourite" />
+      <DxcActionIcon icon={"https://www.freepnglogos.com/uploads/facebook-logo-design-1.png"} title="Favourite" />
     </ExampleContainer>
     <Title title="Disabled" theme="light" level={2} />
     <ExampleContainer>
