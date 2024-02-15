@@ -3,17 +3,13 @@ import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DxcBreadcrumbs from "./Breadcrumbs";
 import DxcContainer from "../container/Container";
+import { HalstackProvider } from "../HalstackContext";
+import { userEvent, within } from "@storybook/testing-library";
 
 export default {
   title: "Breadcrumbs",
   component: DxcBreadcrumbs,
 };
-
-const collapsedIcon = (
-  <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
-    <path d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h240l80 80h320q33 0 56.5 23.5T880-640v400q0 33-23.5 56.5T800-160H160Zm0-80h640v-400H447l-80-80H160v480Zm0 0v-480 480Z" />
-  </svg>
-);
 
 const items = [
   {
@@ -38,9 +34,9 @@ const items = [
   },
 ];
 
-export const Chromatic = () => (
+const Breadcrumbs = () => (
   <>
-    <Title title="Breadcrumbs" theme="light" level={3} />
+    <Title title="Default" theme="light" level={3} />
     <ExampleContainer>
       <DxcBreadcrumbs
         items={[
@@ -63,58 +59,53 @@ export const Chromatic = () => (
         ]}
       />
     </ExampleContainer>
-    <Title title="Home icon breadcrumbs" theme="light" level={3} />
-    <ExampleContainer>
-      <DxcBreadcrumbs
-        items={[
-          {
-            label: "Home",
-            href: "/",
-          },
-          {
-            label: "User Menu",
-            href: "",
-          },
-        ]}
-      />
-    </ExampleContainer>
-    <Title title="Collapsed breadcrumbs" theme="light" level={3} />
+    <Title title="Collapsed variant" theme="light" level={3} />
     <ExampleContainer>
       <DxcBreadcrumbs items={items} />
     </ExampleContainer>
-    <Title title="Collapsed breadcrumbs without root" theme="light" level={3} />
+    <Title title="Collapsed variant without root" theme="light" level={3} />
     <ExampleContainer>
       <DxcBreadcrumbs items={items} showRoot={false} />
     </ExampleContainer>
-    <Title title="Collapsed breadcrumbs with custom collapsed icon" theme="light" level={3} />
-    <ExampleContainer>
-      <DxcBreadcrumbs items={items} showRoot={false} />
+    <Title title="Focus state" theme="light" level={3} />
+    <ExampleContainer pseudoState="pseudo-focus">
+      <DxcBreadcrumbs items={items} />
     </ExampleContainer>
-    <Title title="Breadcrumbs collapse with three elements" theme="light" level={3} />
-    <ExampleContainer>
-      <DxcBreadcrumbs
-        items={[
-          {
-            label: "Root",
-            href: "/",
-          },
-          {
-            label: "Main folder",
-            href: "",
-          },
-          {
-            label: "User",
-            href: "",
-          },
-          {
-            label: "Test",
-            href: "",
-          },
-        ]}
-        itemsBeforeCollapse={3}
-      />
+    <Title title="Hover state" theme="light" level={3} />
+    <ExampleContainer pseudoState="pseudo-hover">
+      <DxcBreadcrumbs items={items} />
     </ExampleContainer>
-    <Title title="Truncation and text ellipsis (only when collapsed)" theme="light" level={3} />
+    <Title title="Active state" theme="light" level={3} />
+    <ExampleContainer pseudoState="pseudo-active">
+      <DxcBreadcrumbs items={items} />
+    </ExampleContainer>
+    <Title title="Truncation and text ellipsis with tooltip (only when collapsed)" theme="light" level={3} />
+    <ExampleContainer>
+      <DxcContainer width="200px">
+        <DxcBreadcrumbs
+          items={[
+            {
+              label: "Root",
+              href: "/",
+            },
+            {
+              label: "Main folder",
+              href: "",
+            },
+            {
+              label: "User",
+              href: "",
+            },
+            {
+              label: "Very long label for the link",
+              href: "",
+            },
+          ]}
+          itemsBeforeCollapse={3}
+        />
+      </DxcContainer>
+    </ExampleContainer>
+    <Title title="Truncation, text ellipsis with tooltip and without root" theme="light" level={3} />
     <ExampleContainer>
       <DxcContainer width="200px">
         <DxcBreadcrumbs
@@ -141,5 +132,51 @@ export const Chromatic = () => (
         />
       </DxcContainer>
     </ExampleContainer>
+    <Title title="Dropdown theming doesn't affect the collapsed trigger" theme="light" level={3} />
+    <ExampleContainer>
+      <Title title="Opinionated theming" theme="light" level={4} />
+      <ExampleContainer>
+        <HalstackProvider
+          theme={{
+            dropdown: {
+              baseColor: "#fabada",
+              fontColor: "#999",
+              optionFontColor: "#4d4d4d",
+            },
+          }}
+        >
+          <DxcBreadcrumbs items={items} itemsBeforeCollapse={3} />
+        </HalstackProvider>
+      </ExampleContainer>
+      <Title title="Advanced theming" theme="light" level={4} />
+      <ExampleContainer>
+        <HalstackProvider
+          advancedTheme={{
+            dropdown: {
+              buttonBackgroundColor: "#fabada",
+              buttonHeight: "100px",
+              buttonBorderThickness: "2px",
+              buttonBorderStyle: "solid",
+              buttonBorderColor: "#000",
+            },
+          }}
+        >
+          <DxcBreadcrumbs items={items} itemsBeforeCollapse={3} />
+        </HalstackProvider>
+      </ExampleContainer>
+    </ExampleContainer>
+    <Title title="Collapsed variant with dropdown menu opened" theme="light" level={3} />
+    <ExampleContainer>
+      <DxcContainer height="200px">
+        <DxcBreadcrumbs items={items} />
+      </DxcContainer>
+    </ExampleContainer>
   </>
 );
+
+export const Chromatic = Breadcrumbs.bind({});
+Chromatic.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  const dropdowns = canvas.getAllByRole("button");
+  await userEvent.click(dropdowns[dropdowns.length - 1]);
+};

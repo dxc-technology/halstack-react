@@ -5,6 +5,7 @@ import BreadcrumbsProps, { ItemType } from "./types";
 import DxcDropdown from "../dropdown/Dropdown";
 import { HalstackProvider } from "../HalstackContext";
 import dropdownTheme from "./dropdownTheme";
+import CoreTokens from "../common/coreTokens";
 
 const defaultCollapsedIcon = (
   <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
@@ -85,22 +86,22 @@ const DxcBreadcrumbs = ({
 };
 
 const OrderedList = styled.ol`
-  margin: 0;
-  padding-left: 0;
+  margin: ${CoreTokens.spacing_0};
+  padding-left: ${CoreTokens.spacing_0};
   display: flex;
-  gap: 0.75rem;
   align-items: center;
+  gap: ${CoreTokens.spacing_12};
   list-style-type: none;
 
   > li:not(:first-child) {
     > a,
     > span {
-      margin-left: 0.75rem;
+      margin-left: ${CoreTokens.spacing_12};
     }
     &::before {
-      margin: 0 0.125rem;
+      margin: 0 ${CoreTokens.spacing_2};
       transform: rotate(15deg);
-      border-right: 2px solid #999;
+      border-right: ${CoreTokens.border_width_1} solid ${CoreTokens.color_grey_500};
       height: 1rem;
       content: "";
     }
@@ -110,13 +111,13 @@ const OrderedList = styled.ol`
 const ListItem = styled.li`
   display: flex;
   align-items: center;
-  font-family: "Open Sans", sans-serif;
-  font-size: 0.875rem;
-  color: #000;
+  font-family: ${CoreTokens.type_sans};
+  font-size: ${CoreTokens.type_scale_02};
+  color: ${CoreTokens.color_black};
 `;
 
 const CurrentItem = styled.span`
-  font-weight: 600;
+  font-weight: ${CoreTokens.type_semibold};
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -124,24 +125,24 @@ const CurrentItem = styled.span`
 `;
 
 const Item = styled.a`
-  border-radius: 2px;
-  padding: 0 2px;
+  border-radius: ${CoreTokens.border_radius_small};
+  padding: 0 ${CoreTokens.spacing_2};
   display: inline-flex;
   align-items: center;
   height: 24px;
-  color: #000;
-  text-decoration: none;
+  color: ${CoreTokens.color_black};
+  text-decoration: ${CoreTokens.type_no_line};
   cursor: pointer;
 
   &:focus {
-    outline: 2px solid #0095ff;
+    outline: ${CoreTokens.border_width_2} solid ${CoreTokens.color_blue_600};
   }
 `;
 
 const Text = styled.span`
-  border: 1px solid transparent;
+  border: ${CoreTokens.border_width_1} solid ${CoreTokens.color_transparent};
   &:hover {
-    border-bottom: 1px solid #000;
+    border-bottom-color: ${CoreTokens.color_black};
   }
 `;
 
