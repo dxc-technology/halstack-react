@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme";
 import BreadcrumbsProps, { ItemType } from "./types";
@@ -28,54 +28,56 @@ const mapItems = (item: ItemType, index: number, { length }) => {
   );
 };
 
-const mapMultipleItems = (items: BreadcrumbsProps["items"], showRoot: BreadcrumbsProps["showRoot"]) => {
-  const first = items[0];
-  const last = items[items.length - 1];
-
-  return (
-    <>
-      {showRoot && (
-        <ListItem key={0}>
-          <Item href={first.href}>
-            <Text>{first.label}</Text>
-          </Item>
-        </ListItem>
-      )}
-      <ListItem key={1}>
-        <HalstackProvider advancedTheme={dropdownTheme}>
-          <DxcDropdown
-            icon={defaultCollapsedIcon}
-            options={items.slice(showRoot ? 1 : 0, -1).map(({ label, href }) => ({ label, value: href }))}
-            onSelectOption={(value) => {
-              window.location.href = value;
-            }}
-            caretHidden
-            margin={showRoot && { left: "small" }}
-          />
-        </HalstackProvider>
-      </ListItem>
-      <ListItem key={2} aria-current="page" style={{ overflow: "hidden" }}>
-        <CurrentItem>{last.label}</CurrentItem>
-      </ListItem>
-    </>
-  );
-};
-
 const DxcBreadcrumbs = ({
   ariaLabel = "Breadcrumbs",
   items,
   itemsBeforeCollapse = 4,
   showRoot = true,
 }: BreadcrumbsProps) => {
+  const currentItemRef = useRef<HTMLSpanElement>(null);
   const colorsTheme = useTheme();
+
+  useEffect(() => {
+    if (currentItemRef?.current != null) {
+      if (currentItemRef?.current.scrollWidth > currentItemRef?.current.clientWidth)
+        currentItemRef.current.title = items[items.length - 1].label;
+      else currentItemRef.current.title = "";
+    }
+  }, [items]);
 
   return (
     <ThemeProvider theme={colorsTheme.breadcrumbs}>
       <nav aria-label={ariaLabel}>
         <OrderedList>
-          {itemsBeforeCollapse >= 2 && items.length > itemsBeforeCollapse
-            ? mapMultipleItems(items, showRoot)
-            : items.map(mapItems)}
+          {itemsBeforeCollapse >= 2 && items.length > itemsBeforeCollapse ? (
+            <>
+              {showRoot && (
+                <ListItem key={0}>
+                  <Item href={items[0].href}>
+                    <Text>{items[0].label}</Text>
+                  </Item>
+                </ListItem>
+              )}
+              <ListItem key={1}>
+                <HalstackProvider advancedTheme={dropdownTheme}>
+                  <DxcDropdown
+                    icon={defaultCollapsedIcon}
+                    options={items.slice(showRoot ? 1 : 0, -1).map(({ label, href }) => ({ label, value: href }))}
+                    onSelectOption={(value) => {
+                      window.location.href = value;
+                    }}
+                    caretHidden
+                    margin={showRoot && { left: "small" }}
+                  />
+                </HalstackProvider>
+              </ListItem>
+              <ListItem key={2} aria-current="page" style={{ overflow: "hidden" }}>
+                <CurrentItem ref={currentItemRef}>{items[items.length - 1].label}</CurrentItem>
+              </ListItem>
+            </>
+          ) : (
+            items.map(mapItems)
+          )}
         </OrderedList>
       </nav>
     </ThemeProvider>
@@ -118,6 +120,7 @@ const CurrentItem = styled.span`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  cursor: default;
 `;
 
 const Item = styled.a`
