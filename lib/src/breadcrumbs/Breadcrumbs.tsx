@@ -29,6 +29,10 @@ const mapItems = (item: ItemType, index: number, { length }) => {
   );
 };
 
+const onSelectOption = (value: string) => {
+  window.location.href = value;
+};
+
 const DxcBreadcrumbs = ({
   ariaLabel = "Breadcrumbs",
   items,
@@ -50,7 +54,7 @@ const DxcBreadcrumbs = ({
     <ThemeProvider theme={colorsTheme.breadcrumbs}>
       <nav aria-label={ariaLabel}>
         <OrderedList>
-          {itemsBeforeCollapse >= 2 && items.length > itemsBeforeCollapse ? (
+          {items.length > Math.max(itemsBeforeCollapse, 2) ? (
             <>
               {showRoot && (
                 <ListItem key={0}>
@@ -64,9 +68,7 @@ const DxcBreadcrumbs = ({
                   <DxcDropdown
                     icon={defaultCollapsedIcon}
                     options={items.slice(showRoot ? 1 : 0, -1).map(({ label, href }) => ({ label, value: href }))}
-                    onSelectOption={(value) => {
-                      window.location.href = value;
-                    }}
+                    onSelectOption={onSelectOption}
                     caretHidden
                     margin={showRoot && { left: "small" }}
                   />
@@ -99,7 +101,7 @@ const OrderedList = styled.ol`
       margin-left: ${CoreTokens.spacing_12};
     }
     &::before {
-      margin: 0 ${CoreTokens.spacing_2};
+      margin: ${CoreTokens.spacing_0} ${CoreTokens.spacing_2};
       transform: rotate(15deg);
       border-right: ${CoreTokens.border_width_1} solid ${CoreTokens.color_grey_500};
       height: 1rem;
@@ -126,7 +128,7 @@ const CurrentItem = styled.span`
 
 const Item = styled.a`
   border-radius: ${CoreTokens.border_radius_small};
-  padding: 0 ${CoreTokens.spacing_2};
+  padding: ${CoreTokens.spacing_0} ${CoreTokens.spacing_2};
   display: inline-flex;
   align-items: center;
   height: 24px;
