@@ -74,7 +74,7 @@ const sizeMap = {
 const Label = ({ label, notificationLimit, size }) => {
   return (
     <LabelContainer size={size}>
-      {typeof label === "number" ? (label > notificationLimit ? "+99" : label) : label}
+      {typeof label === "number" ? (label > notificationLimit ? "+" + notificationLimit : label) : label}
     </LabelContainer>
   );
 };
