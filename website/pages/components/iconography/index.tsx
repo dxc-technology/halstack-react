@@ -1,7 +1,7 @@
 import Head from "next/head";
-import Icone { ReactElement } from "react";
-import IconographyPageLayout from "../../../screens/components/iconography/IconographyPageLayout";
-import IconographyCodePage from "../../../screens/components/iconography/code/IconographyCodePage";
+import IconographyPageLayout from "../../../screens/principles/iconography/IconographyPageLayout";
+import IconographyCodePage from "../../../screens/principles/iconography/code/IconographyCodePage";
+import { ReactElement } from "react";
 
 const Index = () => {
   return (
