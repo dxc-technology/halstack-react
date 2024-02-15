@@ -42,6 +42,7 @@ const sizeMap = {
     minWidth: "20px",
     fontSize: CoreTokens.type_scale_01,
     borderRadius: CoreTokens.spacing_12,
+    iconSize: "14px",
     padding: {
       contextual: `${CoreTokens.spacing_4}`,
       notification: `${CoreTokens.spacing_0} ${CoreTokens.spacing_4}`,
@@ -53,6 +54,7 @@ const sizeMap = {
     minWidth: "24px",
     fontSize: CoreTokens.type_scale_02,
     borderRadius: CoreTokens.spacing_12,
+    iconSize: "16px",
     padding: {
       contextual: `${CoreTokens.spacing_4} ${CoreTokens.spacing_8}`,
       notification: `${CoreTokens.spacing_0} ${CoreTokens.spacing_4}`,
@@ -64,6 +66,7 @@ const sizeMap = {
     minWidth: "32px",
     fontSize: CoreTokens.type_scale_04,
     borderRadius: CoreTokens.spacing_24,
+    iconSize: "24px",
     padding: {
       contextual: `${CoreTokens.spacing_4} ${CoreTokens.spacing_8}`,
       notification: `${CoreTokens.spacing_0} ${CoreTokens.spacing_8}`,
@@ -92,7 +95,11 @@ const DxcBadge = ({
     <BadgeContainer label={label} mode={mode} color={color} size={size} title={title} aria-label={title}>
       {(mode === "contextual" && (
         <DxcFlex gap="0.125rem" alignItems="center">
-          {icon && <IconContainer>{typeof icon === "string" ? <img src={icon} alt={title} /> : icon}</IconContainer>}
+          {icon && (
+            <IconContainer size={size}>
+              {typeof icon === "string" ? <img src={icon} alt={title} /> : icon}
+            </IconContainer>
+          )}
           <Label label={label} notificationLimit={notificationLimit} size={size} />
         </DxcFlex>
       )) || <Label label={label} notificationLimit={notificationLimit} size={size} />}
@@ -131,12 +138,12 @@ const BadgeContainer = styled.div<{
   box-sizing: ${(props) => props.mode === "notification" && "border-box"};
 `;
 
-const IconContainer = styled.div`
+const IconContainer = styled.div<{ size: BadgePropsType["size"] }>`
   display: flex;
   img,
   svg {
-    height: 24px;
-    width: 24px;
+    height: ${(props) => sizeMap[props.size].iconSize};
+    width: ${(props) => sizeMap[props.size].iconSize};
   }
 `;
 
