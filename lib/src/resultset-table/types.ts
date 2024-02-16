@@ -17,7 +17,7 @@ export type Column = {
   isSortable?: boolean;
 };
 
-type Row = {
+export type Row = {
   /**
    * Value to be displayed in the cell.
    */

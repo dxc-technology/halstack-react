@@ -4,13 +4,14 @@ import { spaces } from "../common/variables";
 import DxcTable from "../table/Table";
 import DxcPaginator from "../paginator/Paginator";
 import useTheme from "../useTheme";
-import ResultsetTablePropsType, { Column } from "./types";
+import ResultsetTablePropsType, { Column, Row } from "./types";
 import icons from "./Icons";
 import { getMargin } from "../common/utils";
 
-const normalizeSortValue = (sortValue) => (typeof sortValue === "string" ? sortValue.toUpperCase() : sortValue);
+const normalizeSortValue = (sortValue: string | React.ReactNode) =>
+  typeof sortValue === "string" ? sortValue.toUpperCase() : sortValue;
 
-const sortArray = (index, order, resultset) =>
+const sortArray = (index: number, order: "ascending" | "descending", resultset: Row[][]) =>
   resultset.slice().sort((element1, element2) => {
     const sortValueA = normalizeSortValue(element1[index].sortValue || element1[index].displayValue);
     const sortValueB = normalizeSortValue(element2[index].sortValue || element2[index].displayValue);
@@ -27,11 +28,15 @@ const sortArray = (index, order, resultset) =>
     return order === "descending" ? comparison * -1 : comparison;
   });
 
-const getMinItemsPerPageIndex = (currentPageInternal, itemsPerPage, page) =>
+const getMinItemsPerPageIndex = (currentPageInternal: number, itemsPerPage: number, page: number) =>
   currentPageInternal === 1 ? 0 : itemsPerPage * (page - 1);
 
-const getMaxItemsPerPageIndex = (minItemsPerPageIndex, itemsPerPage, resultset, page) =>
-  minItemsPerPageIndex + itemsPerPage > resultset.length ? resultset.length : itemsPerPage * page - 1;
+const getMaxItemsPerPageIndex = (
+  minItemsPerPageIndex: number,
+  itemsPerPage: number,
+  resultset: Row[][],
+  page: number
+) => (minItemsPerPageIndex + itemsPerPage > resultset.length ? resultset.length : itemsPerPage * page - 1);
 
 const DxcResultsetTable = ({
   columns,
@@ -80,7 +85,7 @@ const DxcResultsetTable = ({
   };
 
   useEffect(() => {
-    if(!hidePaginator) {
+    if (!hidePaginator) {
       rows.length > 0 ? changePage(1) : changePage(0);
     }
   }, [rows]);
@@ -147,7 +152,7 @@ const DxcResultsetTable = ({
   );
 };
 
-const calculateWidth = (margin) => `calc(100% - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`;
+const calculateWidth = (margin: string | object) => `calc(100% - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`;
 
 const DxcResultsetTableContainer = styled.div<{ margin: ResultsetTablePropsType["margin"] }>`
   width: ${(props) => calculateWidth(props.margin)};
