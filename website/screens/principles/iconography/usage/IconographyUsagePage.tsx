@@ -15,7 +15,7 @@ const sections = [
     title: "Usage",
     content: (
       <>
-        <Image src={icons} /*objectFit={'contain'}*/ height={"400%"} alt="Halstack Icons" />
+        <Image src={icons} height="400" alt="Halstack Icons" />
         <DxcParagraph>
           Use icons within the context of commonly used components such as
           buttons, links, navigation items, or status indicators.
