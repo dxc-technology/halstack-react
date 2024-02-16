@@ -3,6 +3,10 @@ import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
 import TableCode from "@/common/TableCode";
+import Example from "@/common/example/Example";
+import basicUsage from "./examples/basicUsage";
+import customMode from "./examples/customMode";
+import customSize from "./examples/customSize";
 
 const sections = [
   {
@@ -62,8 +66,16 @@ const sections = [
     title: "Examples",
     subSections: [
       {
-        title: "Basic Usage",
-        content: <p>Examples are not available yet, they will be added soon.</p>
+        title: "Basic usage",
+        content: <Example example={basicUsage} defaultIsVisible />
+      },
+      {
+        title: "Custom mode",
+        content: <Example example={customMode} defaultIsVisible />
+      },
+      {
+        title: "Custom size",
+        content: <Example example={customSize} defaultIsVisible />
       },
     ],
   },
