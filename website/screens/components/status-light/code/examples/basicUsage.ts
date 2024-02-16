@@ -7,9 +7,7 @@ import {
 const code = `() => {
     return (
       <DxcInset space="2rem">
-        <DxcFlex direction="column" gap="3rem">
           <DxcStatusLight label="Accepted" mode="success" size="large" />
-        </DxcFlex>
       </DxcInset>
     );
   }`;
