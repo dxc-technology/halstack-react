@@ -107,17 +107,13 @@ const DxcBadge = ({
   );
 };
 
-const getColor = (mode, color) => {
-  return mode === "contextual" ? contextualColorMap[color].text : CoreTokens.color_white;
-};
+const getColor = (mode, color) => (mode === "contextual" ? contextualColorMap[color].text : CoreTokens.color_white);
 
-const getBackgroundColor = (mode, color) => {
-  return mode === "contextual" ? contextualColorMap[color].background : CoreTokens.color_red_700;
-};
+const getBackgroundColor = (mode, color) =>
+  mode === "contextual" ? contextualColorMap[color].background : CoreTokens.color_red_700;
 
-const getPadding = (mode, size) => {
-  return mode === "contextual" ? sizeMap[size].padding.contextual : sizeMap[size].padding.notification;
-};
+const getPadding = (mode, size) =>
+  mode === "contextual" ? sizeMap[size].padding.contextual : sizeMap[size].padding.notification;
 
 const BadgeContainer = styled.div<{
   label: BadgePropsType["label"];
