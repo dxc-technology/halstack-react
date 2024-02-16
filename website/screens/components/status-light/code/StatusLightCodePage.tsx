@@ -5,8 +5,6 @@ import DocFooter from "@/common/DocFooter";
 import TableCode from "@/common/TableCode";
 import Example from "@/common/example/Example";
 import basicUsage from "./examples/basicUsage";
-import customMode from "./examples/customMode";
-import customSize from "./examples/customSize";
 
 const sections = [
   {
@@ -42,9 +40,7 @@ const sections = [
             <td>
               <TableCode>string</TableCode>
             </td>
-            <td>
-              An auxiliar text that will add some context to the status.
-            </td>
+            <td>An auxiliar text that will add some context to the status.</td>
             <td>-</td>
           </tr>
           <tr>
@@ -56,7 +52,9 @@ const sections = [
               Size of the component. Should be defined based on its importance
               and/or available space.
             </td>
-            <td><TableCode>'medium'</TableCode></td>
+            <td>
+              <TableCode>'medium'</TableCode>
+            </td>
           </tr>
         </tbody>
       </DxcTable>
@@ -67,15 +65,7 @@ const sections = [
     subSections: [
       {
         title: "Basic usage",
-        content: <Example example={basicUsage} defaultIsVisible />
-      },
-      {
-        title: "Custom mode",
-        content: <Example example={customMode} defaultIsVisible />
-      },
-      {
-        title: "Custom size",
-        content: <Example example={customSize} defaultIsVisible />
+        content: <Example example={basicUsage} defaultIsVisible />,
       },
     ],
   },
