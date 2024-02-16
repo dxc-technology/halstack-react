@@ -92,7 +92,14 @@ const DxcBadge = ({
   size = "medium",
 }: BadgePropsType): JSX.Element => {
   return (
-    <BadgeContainer label={label} mode={mode} color={color} size={size} title={title} aria-label={title}>
+    <BadgeContainer
+      label={label}
+      mode={mode}
+      color={(mode === "contextual" && color) || undefined}
+      size={size}
+      title={title}
+      aria-label={title}
+    >
       {(mode === "contextual" && (
         <DxcFlex gap="0.125rem" alignItems="center">
           {icon && (
