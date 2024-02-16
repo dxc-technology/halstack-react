@@ -90,7 +90,7 @@ const FooterContainer = styled.footer<{ margin: FooterPropsType["margin"]; mode?
   width: 100%;
   gap: ${(props) => (props?.mode === "default" ? "0px" : "32px")};
   @media (min-width: ${responsiveSizes.small}rem) {
-    padding: ${(props) => (props?.mode === "default" ? "24px 36px 24px 36px" : "12px 32px 12px 32px")};
+    padding: ${(props) => (props?.mode === "default" ? "24px 32px" : "12px 32px")};
   }
   @media (max-width: ${responsiveSizes.small}rem) {
     padding: 20px;
