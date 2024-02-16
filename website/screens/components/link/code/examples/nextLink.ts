@@ -3,18 +3,20 @@ import Link from "next/link";
 import React from "react";
 
 const code = `() => {
-  const CustomLink = React.forwardRef(({ onClick, href, children, ...other }, ref) => {
-    return (
-      <DxcLink {...other} href={href} onClick={onClick} ref={ref}>
-        {children}
-      </DxcLink>
-    );
-  });
+  const CustomLink = React.forwardRef(
+    ({ onClick, href, children, ...other }, ref) => {
+      return (
+        <DxcLink {...other} href={href} onClick={onClick} ref={ref}>
+          {children}
+        </DxcLink>
+      );
+    }
+  );
   return (
     <DxcInset space="2rem">
       This is a text with a
       <Link href="/components/link" passHref legacyBehavior>
-        <CustomLink> next link</CustomLink>
+        <CustomLink>next</CustomLink>
       </Link>{" "}
       link.
     </DxcInset>
