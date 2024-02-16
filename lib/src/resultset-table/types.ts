@@ -40,6 +40,10 @@ type Props = {
    */
   rows: Row[][];
   /**
+   * If true, paginator will not be displayed.
+   */
+  hidePaginator?: boolean;
+  /**
    * If true, a select component for navigation between pages will be displayed.
    */
   showGoToPage?: boolean;

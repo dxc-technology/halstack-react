@@ -36,6 +36,7 @@ const getMaxItemsPerPageIndex = (minItemsPerPageIndex, itemsPerPage, resultset, 
 const DxcResultsetTable = ({
   columns,
   rows,
+  hidePaginator = false,
   showGoToPage = true,
   itemsPerPage = 5,
   itemsPerPageOptions,
@@ -79,7 +80,9 @@ const DxcResultsetTable = ({
   };
 
   useEffect(() => {
-    rows.length > 0 ? changePage(1) : changePage(0);
+    if(!hidePaginator) {
+      rows.length > 0 ? changePage(1) : changePage(0);
+    }
   }, [rows]);
 
   return (
@@ -118,25 +121,27 @@ const DxcResultsetTable = ({
             </tr>
           </thead>
           <tbody>
-            {filteredResultset.map((cells, index) => (
-              <tr key={`resultSetTableCell_${page}_${index}`}>
-                {cells.map((cellContent, index) => (
-                  <td key={`resultSetTableCellContent_${index}`}>{cellContent.displayValue}</td>
+            {filteredResultset.map((cells, rowIndex) => (
+              <tr key={`resultSetTableCell_${page}_${rowIndex}`}>
+                {cells.map((cellContent, cellIndex) => (
+                  <td key={`resultSetTableCellContent_${cellIndex}`}>{cellContent.displayValue}</td>
                 ))}
               </tr>
             ))}
           </tbody>
         </DxcTable>
-        <DxcPaginator
-          totalItems={rows.length}
-          itemsPerPage={itemsPerPage}
-          itemsPerPageOptions={itemsPerPageOptions}
-          itemsPerPageFunction={itemsPerPageFunction}
-          currentPage={page}
-          showGoToPage={showGoToPage}
-          onPageChange={goToPage}
-          tabIndex={tabIndex}
-        />
+        {!hidePaginator && (
+          <DxcPaginator
+            totalItems={rows.length}
+            itemsPerPage={itemsPerPage}
+            itemsPerPageOptions={itemsPerPageOptions}
+            itemsPerPageFunction={itemsPerPageFunction}
+            currentPage={page}
+            showGoToPage={showGoToPage}
+            onPageChange={goToPage}
+            tabIndex={tabIndex}
+          />
+        )}
       </DxcResultsetTableContainer>
     </ThemeProvider>
   );
@@ -164,8 +169,8 @@ const HeaderContainer = styled.span<{ isSortable: Column["isSortable"] }>`
     props.theme.headerTextAlign === "center"
       ? "center"
       : props.theme.headerTextAlign === "right"
-        ? "flex-end"
-        : "flex-start"};
+      ? "flex-end"
+      : "flex-start"};
   gap: 8px;
   width: fit-content;
   border: 1px solid transparent;
