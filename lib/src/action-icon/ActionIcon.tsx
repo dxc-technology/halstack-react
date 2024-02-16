@@ -1,9 +1,9 @@
 import React from "react";
-import ActionIconProps, { RefType } from "./types";
+import ActionIconPropsTypes, { RefType } from "./types";
 import styled from "styled-components";
 import CoreTokens from "../common/coreTokens";
 
-const DxcActionIcon = React.forwardRef<RefType, ActionIconProps>(
+const DxcActionIcon = React.forwardRef<RefType, ActionIconPropsTypes>(
   ({ disabled = false, title, icon, onClick, tabIndex }, ref): JSX.Element => {
     return (
       <ActionIcon
