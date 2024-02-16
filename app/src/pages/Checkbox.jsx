@@ -1,9 +1,5 @@
 import React, { useState } from "react";
-import {
-  DxcCheckbox,
-  HalstackProvider,
-} from "@dxc-technology/halstack-react";
-import styled from "styled-components";
+import { DxcCheckbox, HalstackProvider } from "@dxc-technology/halstack-react";
 
 const colors = {
   checkbox: {

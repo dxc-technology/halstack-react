@@ -71,7 +71,7 @@ const firstDisabledTabs: any = [
 
 const tabsNotification = tabs.map((tab, index) => ({
   ...tab,
-  notificationNumber: (index === 0 && true) || (index === 1 && 5) || (index === 2 && 200),
+  notificationNumber: (index === 0 && true) || (index === 1 && 5) || (index === 2 && 100) || (index === 3 && 200),
 }));
 
 const tabsIcon = tabs.map((tab, index) =>
