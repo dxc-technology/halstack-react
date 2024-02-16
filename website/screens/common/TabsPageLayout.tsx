@@ -12,7 +12,6 @@ const TabsPageLayout = ({ tabs }: TabsPageLayoutProps) => {
   const router = useRouter();
 
   return (
-    <TabsContainer>
       <DxcNavTabs>
         {tabs.map((tab, index) => (
           <Link key={index} href={tab.path} passHref legacyBehavior>
@@ -22,18 +21,7 @@ const TabsPageLayout = ({ tabs }: TabsPageLayoutProps) => {
           </Link>
         ))}
       </DxcNavTabs>
-    </TabsContainer>
   );
 };
-
-const TabsContainer = styled.div`
-  display: grid;
-  grid-template-columns: minmax(0, min-content) 1fr;
-  overflow-x: auto;
-`;
-
-const Divider = styled.span`
-  border-bottom: 2px solid #bfbfbf;
-`;
 
 export default TabsPageLayout;

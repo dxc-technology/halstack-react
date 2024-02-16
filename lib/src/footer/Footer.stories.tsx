@@ -3,6 +3,8 @@ import DxcFooter from "./Footer";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import { HalstackProvider } from "../HalstackContext";
+import DxcFlex from "../flex/Flex";
+import DxcTypography from "../typography/Typography";
 
 const social = [
   {
@@ -99,6 +101,11 @@ const opinionatedTheme = {
   },
 };
 
+const info = [
+  { label: "Example Label", text: "Example" },
+  { label: "Example Label", text: "Example" },
+];
+
 export const Chromatic = () => (
   <>
     <ExampleContainer>
@@ -119,6 +126,18 @@ export const Chromatic = () => (
         <div>
           <a href="https://www.linkedin.com/company/dxctechnology">Linkedin</a>
         </div>
+      </DxcFooter>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Reduced" theme="light" level={4} />
+      <DxcFooter mode="reduced">
+        <DxcFlex justifyContent="center" alignItems="center" gap={"1rem"}>
+          {info.map((tag, index) => (
+            <DxcTypography color="white" key={`tag${index}${tag.label}${tag.text}`} >
+              {tag.label}: {tag.text}
+            </DxcTypography>
+          ))}
+        </DxcFlex>
       </DxcFooter>
     </ExampleContainer>
     <Title title="Margins" theme="light" level={2} />

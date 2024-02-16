@@ -42,6 +42,7 @@ import DxcBulletedList from "./bulleted-list/BulletedList";
 import DxcGrid from "./grid/Grid";
 import DxcImage from "./image/Image";
 import DxcContainer from "./container/Container";
+import DxcStatusLight from "./status-light/StatusLight";
 
 import HalstackContext, { HalstackProvider, HalstackLanguageContext } from "./HalstackContext";
 
@@ -93,4 +94,5 @@ export {
   DxcGrid,
   DxcImage,
   DxcContainer,
+  DxcStatusLight,
 };
