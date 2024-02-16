@@ -376,7 +376,7 @@ const sections = [
                 </td>
                 <td>Cell value</td>
                 <td>-</td>
-                <td>14px</td>
+                <td>16px</td>
               </tr>
               <tr>
                 <td>
@@ -386,7 +386,7 @@ const sections = [
                 <td>
                   <Code>spacing-12</Code>
                 </td>
-                <td>0.75rem / 12px</td>
+                <td>1rem / 16px</td>
               </tr>
               <tr>
                 <td>
@@ -401,10 +401,8 @@ const sections = [
                   <Code>dataPaddingLeft</Code>
                 </td>
                 <td>Cell value</td>
-                <td>
-                  <Code>spacing-40</Code>
-                </td>
-                <td>2.5rem / 40px</td>
+                <td>-</td>
+                <td>20px</td>
               </tr>
               <tr>
                 <td>

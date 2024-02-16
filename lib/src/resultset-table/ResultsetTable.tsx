@@ -7,6 +7,7 @@ import useTheme from "../useTheme";
 import ResultsetTablePropsType, { Column } from "./types";
 import icons from "./Icons";
 import { getMargin } from "../common/utils";
+import CoreTokens from "../common/coreTokens";
 
 const normalizeSortValue = (sortValue) => (typeof sortValue === "string" ? sortValue.toUpperCase() : sortValue);
 
@@ -42,6 +43,7 @@ const DxcResultsetTable = ({
   itemsPerPageFunction,
   margin,
   tabIndex = 0,
+  mode = "default",
 }: ResultsetTablePropsType): JSX.Element => {
   const colorsTheme = useTheme();
   const [page, changePage] = useState(1);
@@ -85,7 +87,7 @@ const DxcResultsetTable = ({
   return (
     <ThemeProvider theme={colorsTheme.table}>
       <DxcResultsetTableContainer margin={margin}>
-        <DxcTable>
+        <DxcTable mode={mode}>
           <thead>
             <tr>
               {columns.map((column, index) => (
@@ -101,6 +103,7 @@ const DxcResultsetTable = ({
                     }}
                     tabIndex={column.isSortable ? tabIndex : -1}
                     isSortable={column.isSortable}
+                    mode={mode}
                   >
                     <span>{column.displayValue}</span>
                     {column.isSortable && (
@@ -157,20 +160,19 @@ const DxcResultsetTableContainer = styled.div<{ margin: ResultsetTablePropsType[
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
 `;
 
-const HeaderContainer = styled.span<{ isSortable: Column["isSortable"] }>`
+const HeaderContainer = styled.span<{ isSortable: Column["isSortable"]; mode: ResultsetTablePropsType["mode"] }>`
   display: flex;
   align-items: center;
   justify-content: ${(props) =>
     props.theme.headerTextAlign === "center"
       ? "center"
       : props.theme.headerTextAlign === "right"
-        ? "flex-end"
-        : "flex-start"};
-  gap: 8px;
+      ? "flex-end"
+      : "flex-start"};
+  gap: ${CoreTokens.spacing_8};
   width: fit-content;
   border: 1px solid transparent;
   border-radius: 2px;
-  padding: 3px;
   cursor: ${(props) => (props.isSortable ? "pointer" : "default")};
 
   ${(props) =>

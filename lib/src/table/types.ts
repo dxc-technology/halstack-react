@@ -17,6 +17,12 @@ type Props = {
    * You can pass an object with 'top', 'bottom', 'left' and 'right' properties in order to specify different margin sizes.
    */
   margin?: Space | Margin;
+  /**
+   * Determines the visual style and layout
+   * - "default": Table with big spacing, applicable to most cases.
+   * - "reduced": Smaller table with minimal spacing for high density information.
+   */
+  mode?: "default" | "reduced";
 };
 
 export default Props;

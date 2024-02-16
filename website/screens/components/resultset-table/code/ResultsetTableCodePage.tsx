@@ -78,6 +78,30 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
+            <td>
+              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                <StatusTag status="Information">New</StatusTag>mode
+              </DxcFlex>
+            </td>
+            <td>
+              <TableCode>'default' | 'reduced'</TableCode>
+            </td>
+            <td>
+              The available table modes:
+              <ul>
+                <li>
+                  <b>default</b>: Table with big spacing, applicable to most cases.
+                </li>
+                <li>
+                  <b>reduced</b>: Smaller table with minimal spacing for high density information.
+                </li>
+              </ul>
+            </td>
+            <td>
+              <TableCode>'default'</TableCode>
+            </td>
+          </tr>
+          <tr>
             <td>showGoToPage</td>
             <td>
               <TableCode>boolean</TableCode>
@@ -159,6 +183,12 @@ const sections = [
       {
         title: "Basic usage",
         content: <Example example={basicUsage} defaultIsVisible />,
+      },
+      {
+        title: "Reduced usage",
+        content: (
+          <p>This example is not available yet, it will be added soon.</p>
+        ),
       },
       {
         title: "Sortable",
