@@ -18,13 +18,6 @@ const deleteIcon = (
   </svg>
 );
 
-const deleteIconSmall = (
-  <svg xmlns="http://www.w3.org/2000/svg" height="12" viewBox="0 0 24 24" width="12">
-    <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
-    <path d="M0 0h24v24H0z" fill="none" />
-  </svg>
-);
-
 const columns = [{ displayValue: "Id" }, { displayValue: "Name" }, { displayValue: "City" }];
 
 const rows = [
@@ -47,20 +40,6 @@ const rowsIcon = [
     { displayValue: "003", sortValue: "003" },
     { displayValue: "Mark" },
     { displayValue: <DxcButton icon={deleteIcon} /> },
-  ],
-];
-
-const rowsIconSmall = [
-  [
-    { displayValue: "001", sortValue: "001" },
-    { displayValue: "Peter" },
-    { displayValue: <DxcButton icon={deleteIconSmall} /> },
-  ],
-  [{ displayValue: "002", sortValue: "002" }, { displayValue: "Louis" }, { displayValue: "" }],
-  [
-    { displayValue: "003", sortValue: "003" },
-    { displayValue: "Mark" },
-    { displayValue: <DxcButton icon={deleteIconSmall} /> },
   ],
 ];
 
@@ -232,10 +211,6 @@ export const Chromatic = () => (
       <DxcResultsetTable columns={columnsSortable} rows={rowsSortable} mode="reduced" />
     </ExampleContainer>
     {/* PENDING SMALL ICON VERSION */}
-    {/* <ExampleContainer>
-      <Title title="Reduced with action" theme="light" level={4} />
-      <DxcResultsetTable columns={columns} rows={rowsIconSmall} mode="reduced" />
-    </ExampleContainer> */}
     <ExampleContainer>
       <Title title="Reduced with items per page option" theme="light" level={4} />
       <DxcResultsetTable columns={columns} rows={rows} itemsPerPage={2} itemsPerPageOptions={[2, 3]} mode="reduced" />
