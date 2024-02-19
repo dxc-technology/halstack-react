@@ -293,6 +293,37 @@ export const Chromatic = () => (
         </DxcTable>
       </div>
     </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Reduced table with actions" theme="light" level={4} />
+      <DxcTable mode="reduced">
+        <tr>
+          <th>header 1</th>
+          <th>header 2</th>
+          <th>header 3</th>
+        </tr>
+        <tr>
+          <td>cell 1</td>
+          <td>cell 2</td>
+          <td>
+            <DxcTable.ActionsCell actions={actions} />
+          </td>
+        </tr>
+        <tr>
+          <td>cell 4</td>
+          <td>cell 5</td>
+          <td>
+            <DxcTable.ActionsCell actions={actions} />
+          </td>
+        </tr>
+        <tr>
+          <td>cell 7</td>
+          <td>cell 8</td>
+          <td>
+            <DxcTable.ActionsCell actions={actions} />
+          </td>
+        </tr>
+      </DxcTable>
+    </ExampleContainer>
     <Title title="Margins" theme="light" level={2} />
     <ExampleContainer>
       <Title title="Xxsmall margin" theme="light" level={4} />
@@ -527,37 +558,6 @@ export const Chromatic = () => (
           </tr>
         </DxcTable>
       </HalstackProvider>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Reduced table with actions" theme="light" level={4} />
-      <DxcTable mode="reduced">
-        <tr>
-          <th>header 1</th>
-          <th>header 2</th>
-          <th>header 3</th>
-        </tr>
-        <tr>
-          <td>cell 1</td>
-          <td>cell 2</td>
-          <td>
-            <DxcTable.ActionsCell actions={actions} />
-          </td>
-        </tr>
-        <tr>
-          <td>cell 4</td>
-          <td>cell 5</td>
-          <td>
-            <DxcTable.ActionsCell actions={actions} />
-          </td>
-        </tr>
-        <tr>
-          <td>cell 7</td>
-          <td>cell 8</td>
-          <td>
-            <DxcTable.ActionsCell actions={actions} />
-          </td>
-        </tr>
-      </DxcTable>
     </ExampleContainer>
   </>
 );
