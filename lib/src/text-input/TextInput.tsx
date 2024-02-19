@@ -249,7 +249,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
       }
     };
     const handleWheel = useCallback((event: WheelEvent) => {
-      if (document.activeElement === inputRef.current) {
+      if (document.activeElement === inputRef.current && numberInputContext?.typeNumber === "number") {
         event.preventDefault();
         event.deltaY < 0 ? incrementNumber(inputRef.current.value) : decrementNumber(inputRef.current.value);
       }
