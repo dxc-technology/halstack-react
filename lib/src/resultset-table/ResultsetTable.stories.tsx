@@ -206,6 +206,25 @@ export const Chromatic = () => (
         <DxcResultsetTable columns={columnsSortable} rows={longValues} />
       </SmallContainer>
     </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Reduced sortable table" theme="light" level={4} />
+      <DxcResultsetTable columns={columnsSortable} rows={rowsSortable} mode="reduced" />
+    </ExampleContainer>
+    {/* PENDING SMALL ICON VERSION */}
+    <ExampleContainer>
+      <Title title="Reduced with items per page option" theme="light" level={4} />
+      <DxcResultsetTable columns={columns} rows={rows} itemsPerPage={2} itemsPerPageOptions={[2, 3]} mode="reduced" />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Reduced scroll resultset table" theme="light" level={4} />
+      <DxcResultsetTable columns={longColumns} rows={longRows} mode="reduced" />
+    </ExampleContainer>
+    <ExampleContainer>
+      <SmallContainer>
+        <Title title="Reduced small container and text overflow" theme="light" level={4} />
+        <DxcResultsetTable columns={columnsSortable} rows={longValues} mode="reduced" />
+      </SmallContainer>
+    </ExampleContainer>
     <Title title="Margins" theme="light" level={2} />
     <ExampleContainer>
       <Title title="Xxsmall" theme="light" level={4} />
