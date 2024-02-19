@@ -4,14 +4,15 @@ import { spaces } from "../common/variables";
 import { getMargin } from "../common/utils";
 import useTheme from "../useTheme";
 import TablePropsType from "./types";
+import CoreTokens from "../common/coreTokens";
 
-const DxcTable = ({ children, margin }: TablePropsType): JSX.Element => {
+const DxcTable = ({ children, margin, mode = "default" }: TablePropsType): JSX.Element => {
   const colorsTheme = useTheme();
 
   return (
     <ThemeProvider theme={colorsTheme.table}>
       <DxcTableContainer margin={margin}>
-        <DxcTableContent>{children}</DxcTableContent>
+        <DxcTableContent mode={mode}>{children}</DxcTableContent>
       </DxcTableContainer>
     </ThemeProvider>
   );
@@ -48,14 +49,14 @@ const DxcTableContainer = styled.div<{ margin: TablePropsType["margin"] }>`
   }
 `;
 
-const DxcTableContent = styled.table`
+const DxcTableContent = styled.table<{ mode: TablePropsType["mode"] }>`
   border-collapse: collapse;
   width: 100%;
 
   & tr {
     border-bottom: ${(props) =>
       `${props.theme.rowSeparatorThickness} ${props.theme.rowSeparatorStyle} ${props.theme.rowSeparatorColor}`};
-    height: 60px;
+    height: ${(props) => (props.mode === "default" ? "60px" : "36px")};
   }
   & td {
     background-color: ${(props) => props.theme.dataBackgroundColor};
@@ -68,7 +69,9 @@ const DxcTableContent = styled.table`
     text-align: ${(props) => props.theme.dataTextAlign};
     line-height: ${(props) => props.theme.dataTextLineHeight};
     padding: ${(props) =>
-      `${props.theme.dataPaddingTop} ${props.theme.dataPaddingRight} ${props.theme.dataPaddingBottom} ${props.theme.dataPaddingLeft}`};
+      props.mode === "default"
+        ? `${props.theme.dataPaddingTop} ${props.theme.dataPaddingRight} ${props.theme.dataPaddingBottom} ${props.theme.dataPaddingLeft}`
+        : `${CoreTokens.spacing_8} ${CoreTokens.spacing_16}`};
   }
   & th {
     background-color: ${(props) => props.theme.headerBackgroundColor};
@@ -81,16 +84,23 @@ const DxcTableContent = styled.table`
     text-align: ${(props) => props.theme.headerTextAlign};
     line-height: ${(props) => props.theme.headerTextLineHeight};
     padding: ${(props) =>
-      `${props.theme.headerPaddingTop} ${props.theme.headerPaddingRight} ${props.theme.headerPaddingBottom} ${props.theme.headerPaddingLeft}`};
+      props.mode === "default"
+        ? `${props.theme.headerPaddingTop} ${props.theme.headerPaddingRight} ${props.theme.headerPaddingBottom} ${props.theme.headerPaddingLeft}`
+        : `${CoreTokens.spacing_8} ${CoreTokens.spacing_16}`};
   }
   & th:first-child {
     border-top-left-radius: ${(props) => props.theme.headerBorderRadius};
+    padding-left: ${(props) => (props.mode === "default" ? CoreTokens.spacing_24 : "20px")};
   }
   & th:last-child {
     border-top-right-radius: ${(props) => props.theme.headerBorderRadius};
+    padding-right: ${(props) => (props.mode === "default" ? CoreTokens.spacing_24 : "20px")};
+  }
+  & td:first-child {
+    padding-left: ${(props) => (props.mode === "default" ? CoreTokens.spacing_24 : "20px")};
   }
   & td:last-child {
-    padding-right: 40px;
+    padding-right: ${(props) => (props.mode === "default" ? CoreTokens.spacing_24 : "20px")};
   }
 `;
 
