@@ -1,6 +1,5 @@
 import React from "react";
 import DxcResultsetTable from "./ResultsetTable";
-import DxcButton from "../button/Button";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import { userEvent, within } from "@storybook/testing-library";
@@ -13,7 +12,7 @@ export default {
 
 const deleteIcon = (
   <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
-    <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
+    <path fill="currentColor" d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
     <path d="M0 0h24v24H0z" fill="none" />
   </svg>
 );
@@ -29,17 +28,77 @@ const rows = [
   [{ displayValue: "006" }, { displayValue: "Cris" }, { displayValue: "Paris" }],
 ];
 
+const actions = [
+  {
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
+        <path d="M0 0h24v24H0V0z" fill="none" />
+        <path d="M7.77 6.76L6.23 5.48.82 12l5.41 6.52 1.54-1.28L3.42 12l4.35-5.24zM7 13h2v-2H7v2zm10-2h-2v2h2v-2zm-6 2h2v-2h-2v2zm6.77-7.52l-1.54 1.28L20.58 12l-4.35 5.24 1.54 1.28L23.18 12l-5.41-6.52z" />
+      </svg>
+    ),
+    title: "icon",
+    onClick: (value?) => {
+      console.log(value);
+    },
+    options: [
+      {
+        value: "1",
+        label: "Amazon with a very long text",
+      },
+      {
+        value: "2",
+        label: "Ebay",
+      },
+      {
+        value: "3",
+        label: "Apple",
+      },
+    ],
+  },
+  {
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
+        <path d="M0 0h24v24H0V0zm0 0h24v24H0V0z" fill="none" />
+        <path d="M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.08 2.93 1 9zm8 8l3 3 3-3c-1.65-1.66-4.34-1.66-6 0zm-4-4l2 2c2.76-2.76 7.24-2.76 10 0l2-2C15.14 9.14 8.87 9.14 5 13z" />
+      </svg>
+    ),
+    title: "icon",
+    onClick: () => {},
+  },
+  {
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
+        <path fill="currentColor" d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
+        <path d="M0 0h24v24H0z" fill="none" />
+      </svg>
+    ),
+    title: "icon",
+    onClick: () => {},
+    disabled: true,
+  },
+];
+
 const rowsIcon = [
   [
     { displayValue: "001", sortValue: "001" },
     { displayValue: "Peter" },
-    { displayValue: <DxcButton icon={deleteIcon} /> },
+    {
+      displayValue: <DxcResultsetTable.ActionsCell actions={actions} />,
+    },
   ],
-  [{ displayValue: "002", sortValue: "002" }, { displayValue: "Louis" }, { displayValue: "" }],
+  [
+    { displayValue: "002", sortValue: "002" },
+    { displayValue: "Louis" },
+    {
+      displayValue: <DxcResultsetTable.ActionsCell actions={actions} />,
+    },
+  ],
   [
     { displayValue: "003", sortValue: "003" },
     { displayValue: "Mark" },
-    { displayValue: <DxcButton icon={deleteIcon} /> },
+    {
+      displayValue: <DxcResultsetTable.ActionsCell actions={actions} />,
+    },
   ],
 ];
 
@@ -313,6 +372,20 @@ const ResultsetTableLast = () => (
 
 export const LastPage = ResultsetTableLast.bind({});
 LastPage.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  const nextButton = canvas.getAllByRole("button")[3];
+  await userEvent.click(nextButton);
+};
+
+const ResultsetActionsCellDropdown = () => (
+  <ExampleContainer>
+    <Title title="Dropdown Action" theme="light" level={4} />
+    <DxcResultsetTable columns={columns} rows={rowsIcon} itemsPerPage={2} />
+  </ExampleContainer>
+);
+
+export const DropdownAction = ResultsetActionsCellDropdown.bind({});
+DropdownAction.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const nextButton = canvas.getAllByRole("button")[3];
   await userEvent.click(nextButton);

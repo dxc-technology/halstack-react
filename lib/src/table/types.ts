@@ -6,6 +6,34 @@ type Margin = {
   right?: Space;
 };
 
+type SVG = React.ReactNode & React.SVGProps<SVGSVGElement>;
+type Option = {
+  /**
+   * Option display value.
+   */
+  label?: string;
+  /**
+   * Element or path used as the icon that will be placed next to the
+   * option label.
+   */
+  icon?: string | SVG;
+  /**
+   * Option inner value.
+   */
+  value: string;
+};
+
+export type ActionIconPropsType = {
+  actions: {
+    icon: string | SVG;
+    title: string;
+    onClick: (value?: string) => void;
+    disabled?: boolean;
+    tabIndex?: number;
+    options?: Option[];
+  }[];
+};
+
 type Props = {
   /**
    * The center section of the table. Can be used to render custom

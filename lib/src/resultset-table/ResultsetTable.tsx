@@ -2,6 +2,7 @@ import React, { useState, useMemo, useEffect } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables";
 import DxcTable from "../table/Table";
+import DxcActionsCell from "../table/ActionsCell";
 import DxcPaginator from "../paginator/Paginator";
 import useTheme from "../useTheme";
 import ResultsetTablePropsType, { Column } from "./types";
@@ -193,5 +194,7 @@ const SortIcon = styled.span`
     width: 100%;
   }
 `;
+
+DxcResultsetTable.ActionsCell = DxcActionsCell;
 
 export default DxcResultsetTable;
