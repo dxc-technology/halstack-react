@@ -53,6 +53,6 @@ type CommonProps = {
   size?: "small" | "medium" | "large";
 };
 
-type Props = (NotificationProps | ContextualProps) & CommonProps;
+type Props = (ContextualProps | NotificationProps) & CommonProps;
 
 export default Props;
