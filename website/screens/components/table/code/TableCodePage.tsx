@@ -94,7 +94,7 @@ const sections = [
       {
         title: "Reduced usage",
         content: (
-          <p>This example is not available yet, it will be added soon.</p>
+          <Example example={reduced} defaultIsVisible />
         ),
       },
     ],
