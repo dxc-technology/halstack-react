@@ -77,6 +77,7 @@ export const Chromatic = () => (
           augue. In fermentum metus proin arcu faucibus proin nibh sit. Vel integer sed enim in sed vel nec ut vitae.
           Commodo sagittis volutpat id lorem.
         </DxcParagraph>
+        <DxcDivider width="30%" />
         <DxcParagraph>
           Lorem ipsum dolor sit amet consectetur. Tincidunt sed pharetra mollis duis volutpat urna. Hendrerit aliquet et
           arcu purus. Sodales elementum sollicitudin consequat elementum tortor. Lectus eget cursus ut ac pharetra
