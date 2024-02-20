@@ -1,7 +1,6 @@
 import {
   DxcStatusLight,
   DxcInset,
-  DxcFlex,
 } from "@dxc-technology/halstack-react";
 
 const code = `() => {
@@ -13,7 +12,6 @@ const code = `() => {
   }`;
 
 const scope = {
-  DxcFlex,
   DxcInset,
   DxcStatusLight,
 };
