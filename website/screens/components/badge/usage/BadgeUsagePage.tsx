@@ -8,8 +8,8 @@ import QuickNavContainer from "@/common/QuickNavContainer";
 import DocFooter from "@/common/DocFooter";
 import Figure from "@/common/Figure";
 import Image from "@/common/Image";
-import badgeNotificationVariant from "./images/badge_notification_variant.jpg";
-import badgeContextualVariant from "./images/badge_contextual_variant.jpg";
+import notificationVariants from "./images/badge_notification_variants.jpg";
+import contextualVariants from "./images/badge_contextual_variants.jpg";
 
 const sections = [
   {
@@ -106,7 +106,7 @@ const sections = [
             </DxcParagraph>
             <Figure caption="Notification badge variants">
               <Image
-                src={badgeNotificationVariant}
+                src={notificationVariants}
                 alt="Notification badge variants"
               />
             </Figure>
@@ -136,11 +136,13 @@ const sections = [
               strategically chosen to enhance the conveyed information.
             </DxcParagraph>
             <Figure caption="Contextual badge variants">
-              <Image
-                src={badgeContextualVariant}
-                alt="Contextual badge variants"
-              />
+              <Image src={contextualVariants} alt="Contextual badge variants" />
             </Figure>
+            <DxcParagraph>
+              The contextual badge is available in 8 different colors from the
+              Halstack palette. This flexibility allows the user to adapt the
+              tag smoothly to diverse contexts:
+            </DxcParagraph>
             <DxcBulletedList>
               <DxcBulletedList.Item>
                 Non-semantic categorization: used in instances where the badge
