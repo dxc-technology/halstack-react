@@ -6,8 +6,8 @@ const code = `() => {
     <DxcInset space="2rem">
       <DxcFlex gap="3rem">
         <DxcBadge mode="notification" />
-        <DxcBadge label="10" mode="notification" />
-        <DxcBadge label="100" mode="notification" />
+        <DxcBadge label={10} mode="notification" />
+        <DxcBadge label={100} mode="notification" />
       </DxcFlex>
     </DxcInset>
   );

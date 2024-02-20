@@ -18,7 +18,7 @@ const code = `() => {
 
   return (
     <DxcInset space="2rem">
-      <DxcFlex gap="3rem">
+      <DxcFlex gap="3rem" wrap="wrap">
         <DxcBadge label="Authorized" icon={icon} />
         <DxcBadge label="Reserved" color="blue" icon={icon} />
         <DxcBadge label="Ready" color="green" icon={icon} />
