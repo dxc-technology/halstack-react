@@ -249,7 +249,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
       }
     };
     const handleWheel = useCallback((event: WheelEvent) => {
-      if (document.activeElement === inputRef.current && numberInputContext?.typeNumber === "number") {
+      if (document.activeElement === inputRef.current) {
         event.preventDefault();
         event.deltaY < 0 ? incrementNumber(inputRef.current.value) : decrementNumber(inputRef.current.value);
       }
@@ -350,9 +350,9 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
 
     useEffect(() => {
       const input = inputRef.current;
-  
-      input.addEventListener('wheel', handleWheel, { passive: false });
-  
+      if( numberInputContext?.typeNumber === "number") {
+        input.addEventListener('wheel', handleWheel, { passive: false });
+      }
       return () => {
         input.removeEventListener('wheel', handleWheel);
       };
