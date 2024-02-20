@@ -89,8 +89,8 @@ const sections = [
     title: "Variants",
     content: (
       <DxcParagraph>
-        The Badge component consists has two distinct variants, each serving
-        specific purposes within our interface.
+        The Badge component has two distinct variants, each serving specific
+        purposes within our interface.
       </DxcParagraph>
     ),
     subSections: [
