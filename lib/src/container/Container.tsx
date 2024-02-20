@@ -56,7 +56,7 @@ const Container = styled.div<StyledProps>`
   border-radius: ${({ borderRadius }) => borderRadius};
   border-width: ${({ border }) => (border && "width" in border ? `${border?.width}` : "")};
   border-style: ${({ border }) => (border && "style" in border ? `${border?.style}` : "")};
-  border-width: ${({ border }) => (border && "color" in border ? `${getCoreColorToken(border?.color)}` : "")};
+  border-color: ${({ border }) => (border && "color" in border ? `${getCoreColorToken(border?.color)}` : "")};
 
   ${({ border }) => {
     if (border != null) {
