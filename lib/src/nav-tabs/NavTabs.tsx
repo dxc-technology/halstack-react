@@ -90,7 +90,6 @@ const Underline = styled.div`
   width: 100%;
   height: 2px;
   background-color: ${(props) => props.theme.dividerColor};
-  z-index: -1;
 `;
 
 DxcNavTabs.Tab = DxcTab;

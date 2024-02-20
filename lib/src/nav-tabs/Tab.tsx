@@ -74,12 +74,11 @@ const DxcTab = forwardRef(
             >
               {children}
             </BaseTypography>
-            {notificationNumber && (
+            {notificationNumber && !disabled && (
               <DxcBadge
-                notificationText={
-                  typeof notificationNumber === "number" && notificationNumber > 99 ? "+99" : notificationNumber
-                }
-                disabled={disabled}
+                mode="notification"
+                size="small"
+                label={typeof notificationNumber === "number" && notificationNumber}
               />
             )}
           </DxcFlex>
@@ -93,7 +92,7 @@ const TabContainer = styled.div<{ active: TabProps["active"] }>`
   align-items: stretch;
   border-bottom: 2px solid ${(props) => (props.active ? props.theme.selectedUnderlineColor : 'transparent')};
   padding: 0.5rem;
-
+  z-index: 1;
   svg {
     color: ${(props) => props.theme.unselectedIconColor};
   }
