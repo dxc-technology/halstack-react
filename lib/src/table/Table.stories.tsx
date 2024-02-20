@@ -34,7 +34,6 @@ const icon2 = (
 
 const actions = [
   {
-    icon: icon1,
     title: "icon",
     onClick: (value?) => {
       console.log(value);
@@ -55,7 +54,6 @@ const actions = [
     ],
   },
   {
-    icon: icon1,
     disabled: true,
     title: "icon",
     onClick: (value?) => {
@@ -599,6 +597,6 @@ const ActionsCellDropdown = () => (
 export const DropdownAction = ActionsCellDropdown.bind({});
 DropdownAction.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
-  const nextButton = canvas.getAllByRole("button")[8];
+  const nextButton = canvas.getAllByRole("button")[6];
   await userEvent.click(nextButton);
 };
