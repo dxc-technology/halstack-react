@@ -1,4 +1,4 @@
-import { DxcFlex } from "@dxc-technology/halstack-react";
+import { DxcFlex, DxcParagraph } from "@dxc-technology/halstack-react";
 import PageHeading from "@/common/PageHeading";
 import TabsPageHeading from "@/common/TabsPageLayout";
 import ComponentHeading from "@/common/ComponentHeading";
@@ -15,6 +15,12 @@ const BadgePageHeading = ({ children }: { children: React.ReactNode }) => {
       <PageHeading>
         <DxcFlex direction="column" gap="2rem">
           <ComponentHeading name="Badge" />
+          <DxcParagraph>
+            The badge component enables users to categorize content effectively
+            and uniformly across their interfaces. It offers a quick overview of
+            a category or status and is frequently used to display numerical or
+            status data.
+          </DxcParagraph>
           <TabsPageHeading tabs={tabs}></TabsPageHeading>
         </DxcFlex>
       </PageHeading>
