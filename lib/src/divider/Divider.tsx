@@ -13,7 +13,6 @@ const DxcDivider = ({
     weight={weight}
     color={color}
     aria-orientation={orientation}
-    role="separator"
   />
 );
 
