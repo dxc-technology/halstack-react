@@ -154,6 +154,7 @@ const LabelContainer = styled.span<{ size: BadgePropsType["size"] }>`
   font-family: ${CoreTokens.type_sans};
   font-size: ${(props) => sizeMap[props.size].fontSize};
   font-weight: ${CoreTokens.type_semibold};
+  white-space: nowrap;
 `;
 
 export default DxcBadge;
