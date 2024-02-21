@@ -169,35 +169,39 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
     };
 
     const decrementNumber = (currentValue = value ?? innerValue) => {
-      const numberValue = Number(currentValue);
-      const steppedValue = Math.round((numberValue - numberInputContext?.stepNumber + Number.EPSILON) * 100) / 100;
+      if (!disabled && !readOnly) {
+        const numberValue = Number(currentValue);
+        const steppedValue = Math.round((numberValue - numberInputContext?.stepNumber + Number.EPSILON) * 100) / 100;
 
-      if (currentValue !== "") {
-        if (numberValue < numberInputContext?.minNumber || steppedValue < numberInputContext?.minNumber)
-          changeValue(numberValue);
-        else if (numberValue > numberInputContext?.maxNumber) changeValue(numberInputContext?.maxNumber);
-        else if (numberValue === numberInputContext?.minNumber) changeValue(numberInputContext?.minNumber);
-        else changeValue(steppedValue);
-      } else {
-        if (numberInputContext?.minNumber >= 0) changeValue(numberInputContext?.minNumber);
-        else if (numberInputContext?.maxNumber < 0) changeValue(numberInputContext?.maxNumber);
-        else changeValue(-numberInputContext.stepNumber);
+        if (currentValue !== "") {
+          if (numberValue < numberInputContext?.minNumber || steppedValue < numberInputContext?.minNumber)
+            changeValue(numberValue);
+          else if (numberValue > numberInputContext?.maxNumber) changeValue(numberInputContext?.maxNumber);
+          else if (numberValue === numberInputContext?.minNumber) changeValue(numberInputContext?.minNumber);
+          else changeValue(steppedValue);
+        } else {
+          if (numberInputContext?.minNumber >= 0) changeValue(numberInputContext?.minNumber);
+          else if (numberInputContext?.maxNumber < 0) changeValue(numberInputContext?.maxNumber);
+          else changeValue(-numberInputContext.stepNumber);
+        }
       }
     };
     const incrementNumber = (currentValue = value ?? innerValue) => {
-      const numberValue = Number(currentValue);
-      const steppedValue = Math.round((numberValue + numberInputContext?.stepNumber + Number.EPSILON) * 100) / 100;
+      if (!disabled && !readOnly) {
+        const numberValue = Number(currentValue);
+        const steppedValue = Math.round((numberValue + numberInputContext?.stepNumber + Number.EPSILON) * 100) / 100;
 
-      if (currentValue !== "") {
-        if (numberValue > numberInputContext?.maxNumber || steppedValue > numberInputContext?.maxNumber)
-          changeValue(numberValue);
-        else if (numberValue < numberInputContext?.minNumber) changeValue(numberInputContext?.minNumber);
-        else if (numberValue === numberInputContext?.maxNumber) changeValue(numberInputContext?.maxNumber);
-        else changeValue(steppedValue);
-      } else {
-        if (numberInputContext?.minNumber > 0) changeValue(numberInputContext?.minNumber);
-        else if (numberInputContext?.maxNumber <= 0) changeValue(numberInputContext?.maxNumber);
-        else changeValue(numberInputContext.stepNumber);
+        if (currentValue !== "") {
+          if (numberValue > numberInputContext?.maxNumber || steppedValue > numberInputContext?.maxNumber)
+            changeValue(numberValue);
+          else if (numberValue < numberInputContext?.minNumber) changeValue(numberInputContext?.minNumber);
+          else if (numberValue === numberInputContext?.maxNumber) changeValue(numberInputContext?.maxNumber);
+          else changeValue(steppedValue);
+        } else {
+          if (numberInputContext?.minNumber > 0) changeValue(numberInputContext?.minNumber);
+          else if (numberInputContext?.maxNumber <= 0) changeValue(numberInputContext?.maxNumber);
+          else changeValue(numberInputContext.stepNumber);
+        }
       }
     };
 
