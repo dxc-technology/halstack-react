@@ -11,23 +11,15 @@ const moreVertIcon = (
 );
 
 const DxcActionsCell = ({ actions }: ActionCellsPropsType): JSX.Element => {
+  const actionIcons = actions.filter((action) => !action.options);
+  const actionDropdown = actions.find((action) => action.options.length);
+  const maxNumberOfActions = actionDropdown ? 2 : 3;
+
   return (
     <DxcFlex gap={"0.5rem"}>
-      {actions.map(
+      {actionIcons.map(
         (action, index) =>
-          index < 3 &&
-          (action.options?.length ? (
-            <HalstackProvider advancedTheme={DropdownTheme} key={`provider-${index}`}>
-              <DxcDropdown
-                options={action.options}
-                onSelectOption={action.onClick}
-                disabled={action.disabled}
-                icon={moreVertIcon}
-                tabIndex={action.tabIndex}
-                caretHidden
-              ></DxcDropdown>
-            </HalstackProvider>
-          ) : (
+          index < maxNumberOfActions && (
             <DxcActionIcon
               icon={action.icon}
               title={action.title}
@@ -36,7 +28,19 @@ const DxcActionsCell = ({ actions }: ActionCellsPropsType): JSX.Element => {
               tabIndex={action.tabIndex ?? 0}
               key={`action-${index}`}
             />
-          ))
+          )
+      )}
+      {actionDropdown && (
+        <HalstackProvider advancedTheme={DropdownTheme} key={`provider-dropdown`}>
+          <DxcDropdown
+            options={actionDropdown.options}
+            onSelectOption={actionDropdown.onClick}
+            disabled={actionDropdown.disabled}
+            icon={moreVertIcon}
+            tabIndex={actionDropdown.tabIndex}
+            caretHidden
+          ></DxcDropdown>
+        </HalstackProvider>
       )}
     </DxcFlex>
   );
