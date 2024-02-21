@@ -3,6 +3,7 @@ import DxcTable from "./Table";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import { HalstackProvider } from "../HalstackContext";
+import { userEvent, within } from "@storybook/testing-library";
 
 export default {
   title: "Table",
@@ -17,6 +18,88 @@ const opinionatedTheme = {
   },
 };
 
+const icon1 = (
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
+    <path d="M0 0h24v24H0V0z" fill="none" />
+    <path d="M7.77 6.76L6.23 5.48.82 12l5.41 6.52 1.54-1.28L3.42 12l4.35-5.24zM7 13h2v-2H7v2zm10-2h-2v2h2v-2zm-6 2h2v-2h-2v2zm6.77-7.52l-1.54 1.28L20.58 12l-4.35 5.24 1.54 1.28L23.18 12l-5.41-6.52z" />
+  </svg>
+);
+
+const actions = [
+  {
+    title: "icon",
+    onClick: (value?) => {
+      console.log(value);
+    },
+    options: [
+      {
+        value: "1",
+        label: "Amazon with a very long text",
+      },
+      {
+        value: "2",
+        label: "Ebay",
+      },
+      {
+        value: "3",
+        label: "Apple",
+      },
+    ],
+  },
+  {
+    title: "icon",
+    onClick: (value?) => {
+      console.log(value);
+    },
+    options: [
+      {
+        value: "1",
+        label: "Amazon with a very long text",
+      },
+      {
+        value: "2",
+        label: "Ebay",
+      },
+      {
+        value: "3",
+        label: "Apple",
+      },
+    ],
+  },
+  {
+    disabled: true,
+    title: "icon",
+    onClick: (value?) => {
+      console.log(value);
+    },
+    options: [
+      {
+        value: "1",
+        label: "Amazon with a very long text",
+      },
+      {
+        value: "2",
+        label: "Ebay",
+      },
+      {
+        value: "3",
+        label: "Apple",
+      },
+    ],
+  },
+  {
+    icon: icon1,
+    title: "icon",
+    onClick: () => {},
+  },
+  {
+    icon: icon1,
+    title: "icon",
+    onClick: () => {},
+    disabled: true,
+  },
+];
+
 export const Chromatic = () => (
   <>
     <ExampleContainer>
@@ -25,22 +108,28 @@ export const Chromatic = () => (
         <tr>
           <th>header 1</th>
           <th>header 2</th>
-          <th>header 3</th>
+          <th>actions</th>
         </tr>
         <tr>
           <td>cell 1</td>
           <td>cell 2</td>
-          <td>cell 3</td>
+          <td>
+            <DxcTable.ActionsCell actions={actions} />
+          </td>
         </tr>
         <tr>
           <td>cell 4</td>
           <td>cell 5</td>
-          <td>cell 6</td>
+          <td>
+            <DxcTable.ActionsCell actions={actions} />
+          </td>
         </tr>
         <tr>
           <td>cell 7</td>
           <td>cell 8</td>
-          <td>Cell 9</td>
+          <td>
+            <DxcTable.ActionsCell actions={actions} />
+          </td>
         </tr>
       </DxcTable>
     </ExampleContainer>
@@ -214,6 +303,37 @@ export const Chromatic = () => (
           </tr>
         </DxcTable>
       </div>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Reduced table with actions" theme="light" level={4} />
+      <DxcTable mode="reduced">
+        <tr>
+          <th>header 1</th>
+          <th>header 2</th>
+          <th>header 3</th>
+        </tr>
+        <tr>
+          <td>cell 1</td>
+          <td>cell 2</td>
+          <td>
+            <DxcTable.ActionsCell actions={actions} />
+          </td>
+        </tr>
+        <tr>
+          <td>cell 4</td>
+          <td>cell 5</td>
+          <td>
+            <DxcTable.ActionsCell actions={actions} />
+          </td>
+        </tr>
+        <tr>
+          <td>cell 7</td>
+          <td>cell 8</td>
+          <td>
+            <DxcTable.ActionsCell actions={actions} />
+          </td>
+        </tr>
+      </DxcTable>
     </ExampleContainer>
     <Title title="Margins" theme="light" level={2} />
     <ExampleContainer>
@@ -452,3 +572,44 @@ export const Chromatic = () => (
     </ExampleContainer>
   </>
 );
+
+const ActionsCellDropdown = () => (
+  <ExampleContainer>
+    <Title title="Dropdown Action" theme="light" level={4} />
+    <DxcTable>
+      <tr>
+        <th>header 1</th>
+        <th>header 2</th>
+        <th>actions</th>
+      </tr>
+      <tr>
+        <td>cell 1</td>
+        <td>cell 2</td>
+        <td>
+          <DxcTable.ActionsCell actions={actions} />
+        </td>
+      </tr>
+      <tr>
+        <td>cell 4</td>
+        <td>cell 5</td>
+        <td>
+          <DxcTable.ActionsCell actions={actions} />
+        </td>
+      </tr>
+      <tr>
+        <td>cell 7</td>
+        <td>cell 8</td>
+        <td>
+          <DxcTable.ActionsCell actions={actions} />
+        </td>
+      </tr>
+    </DxcTable>
+  </ExampleContainer>
+);
+
+export const DropdownAction = ActionsCellDropdown.bind({});
+DropdownAction.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  const nextButton = canvas.getAllByRole("button")[8];
+  await userEvent.click(nextButton);
+};

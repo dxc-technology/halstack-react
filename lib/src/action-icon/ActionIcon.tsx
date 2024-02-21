@@ -33,7 +33,7 @@ const ActionIcon = styled.button`
   border-radius: 2px;
   width: 24px;
   height: 24px;
-  padding: 3px;
+  padding: 0px;
   ${(props) => (props.disabled ? `cursor: not-allowed;` : `cursor: pointer;`)}
 
   box-shadow: 0 0 0 2px transparent;
