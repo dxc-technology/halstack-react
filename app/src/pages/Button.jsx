@@ -1,6 +1,5 @@
 import React from "react";
 import { DxcButton, HalstackProvider } from "@dxc-technology/halstack-react";
-import styled from "styled-components";
 import homeLogo from "../images/home.svg";
 
 const colors = {

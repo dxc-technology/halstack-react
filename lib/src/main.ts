@@ -22,7 +22,6 @@ import DxcChip from "./chip/Chip";
 import DxcApplicationLayout from "./layout/ApplicationLayout";
 import DxcToggleGroup from "./toggle-group/ToggleGroup";
 import DxcAccordionGroup from "./accordion-group/AccordionGroup";
-import DxcBadge from "./badge/Badge";
 import DxcTextInput from "./text-input/TextInput";
 import DxcPasswordInput from "./password-input/PasswordInput";
 import DxcDateInput from "./date-input/DateInput";
@@ -42,6 +41,8 @@ import DxcBulletedList from "./bulleted-list/BulletedList";
 import DxcGrid from "./grid/Grid";
 import DxcImage from "./image/Image";
 import DxcContainer from "./container/Container";
+import DxcBadge from "./badge/Badge";
+import DxcStatusLight from "./status-light/StatusLight";
 
 import HalstackContext, { HalstackProvider, HalstackLanguageContext } from "./HalstackContext";
 
@@ -74,7 +75,6 @@ export {
   HalstackLanguageContext,
   HalstackProvider,
   DxcAccordionGroup,
-  DxcBadge,
   DxcPasswordInput,
   DxcDateInput,
   DxcNumberInput,
@@ -93,4 +93,6 @@ export {
   DxcGrid,
   DxcImage,
   DxcContainer,
+  DxcBadge,
+  DxcStatusLight,
 };

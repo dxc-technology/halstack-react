@@ -3,7 +3,7 @@ import styled, { ThemeProvider } from "styled-components";
 import { spaces, responsiveSizes } from "../common/variables";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
-import { dxcLogo } from "./Icons";
+import { dxcLogo, dxcSmallLogo } from "./Icons";
 import FooterPropsType from "./types";
 import DxcFlex from "../flex/Flex";
 
@@ -14,6 +14,7 @@ const DxcFooter = ({
   children,
   margin,
   tabIndex = 0,
+  mode = "default",
 }: FooterPropsType): JSX.Element => {
   const colorsTheme = useTheme();
   const translatedLabels = useTranslatedLabels();
@@ -21,9 +22,13 @@ const DxcFooter = ({
   const footerLogo = useMemo(
     () =>
       !colorsTheme.footer.logo ? (
-        dxcLogo
+        mode === "default" ? (
+          dxcLogo
+        ) : (
+          dxcSmallLogo
+        )
       ) : typeof colorsTheme.footer.logo === "string" ? (
-        <LogoImg alt={translatedLabels.formFields.logoAlternativeText} src={colorsTheme.footer.logo} />
+        <LogoImg mode={mode} alt={translatedLabels.formFields.logoAlternativeText} src={colorsTheme.footer.logo} />
       ) : (
         colorsTheme.footer.logo
       ),
@@ -32,59 +37,64 @@ const DxcFooter = ({
 
   return (
     <ThemeProvider theme={colorsTheme.footer}>
-      <FooterContainer margin={margin}>
+      <FooterContainer margin={margin} mode={mode}>
         <DxcFlex justifyContent="space-between" alignItems="center" wrap="wrap" gap="1.5rem">
-          <LogoContainer>{footerLogo}</LogoContainer>
-          <DxcFlex>
-            {socialLinks?.map((link, index) => (
-              <SocialAnchor
-                href={link.href}
-                tabIndex={tabIndex}
-                title={link.title}
-                aria-label={link.title}
-                key={`social${index}${link.href}`}
-                index={index}
-              >
-                <SocialIconContainer>
-                  {typeof link.logo === "string" ? <img src={link.logo} /> : link.logo}
-                </SocialIconContainer>
-              </SocialAnchor>
-            ))}
-          </DxcFlex>
+          <LogoContainer mode={mode}>{footerLogo}</LogoContainer>
+          {mode === "default" && (
+            <DxcFlex>
+              {socialLinks?.map((link, index) => (
+                <SocialAnchor
+                  href={link.href}
+                  tabIndex={tabIndex}
+                  title={link.title}
+                  aria-label={link.title}
+                  key={`social${index}${link.href}`}
+                  index={index}
+                >
+                  <SocialIconContainer>
+                    {typeof link.logo === "string" ? <img src={link.logo} alt={link.title} /> : link.logo}
+                  </SocialIconContainer>
+                </SocialAnchor>
+              ))}
+            </DxcFlex>
+          )}
         </DxcFlex>
         <ChildComponents>{children}</ChildComponents>
-        <BottomContainer>
-          <BottomLinks>
-            {bottomLinks?.map((link, index) => (
-              <span key={`bottom${index}${link.text}`}>
-                <BottomLink href={link.href} tabIndex={tabIndex}>
-                  {link.text}
-                </BottomLink>
-              </span>
-            ))}
-          </BottomLinks>
-          <Copyright>{copyright || translatedLabels.footer.copyrightText(new Date().getFullYear())}</Copyright>
-        </BottomContainer>
+        {mode === "default" && (
+          <BottomContainer>
+            <BottomLinks>
+              {bottomLinks?.map((link, index) => (
+                <span key={`bottom${index}${link.text}`}>
+                  <BottomLink href={link.href} tabIndex={tabIndex}>
+                    {link.text}
+                  </BottomLink>
+                </span>
+              ))}
+            </BottomLinks>
+            <Copyright>{copyright || translatedLabels.footer.copyrightText(new Date().getFullYear())}</Copyright>
+          </BottomContainer>
+        )}
       </FooterContainer>
     </ThemeProvider>
   );
 };
 
-const FooterContainer = styled.footer<{ margin: FooterPropsType["margin"] }>`
+const FooterContainer = styled.footer<{ margin: FooterPropsType["margin"]; mode?: FooterPropsType["mode"] }>`
+  background-color: ${(props) => props.theme.backgroundColor};
   box-sizing: border-box;
   display: flex;
-  flex-direction: column;
+  flex-direction: ${(props) => (props?.mode === "default" ? "column" : "row")};
   justify-content: space-between;
-  width: 100%;
-  min-height: ${(props) => props.theme.height};
   margin-top: ${(props) => (props.margin ? spaces[props.margin] : "0px")};
-  background-color: ${(props) => props.theme.backgroundColor};
-
+  min-height: ${(props) => (props?.mode === "default" ? props.theme.height : "40px")};
+  width: 100%;
+  gap: ${(props) => (props?.mode === "default" ? "0px" : "32px")};
   @media (min-width: ${responsiveSizes.small}rem) {
-    padding: 24px 36px 24px 36px;
+    padding: ${(props) => (props?.mode === "default" ? "24px 32px" : "12px 32px")};
   }
   @media (max-width: ${responsiveSizes.small}rem) {
     padding: 20px;
+    flex-direction: column;
   }
 `;
 
@@ -131,13 +141,13 @@ const Copyright = styled.div`
   }
 `;
 
-const LogoContainer = styled.span`
-  max-height: ${(props) => props.theme.logoHeight};
+const LogoContainer = styled.span<{ mode?: FooterPropsType["mode"] }>`
+  max-height: ${(props) => (props?.mode === "default" ? props.theme.logoHeight : "16px")};
   width: ${(props) => props.theme.logoWidth};
 `;
 
-const LogoImg = styled.img`
-  max-height: ${(props) => props.theme.logoHeight};
+const LogoImg = styled.img<{ mode?: FooterPropsType["mode"] }>`
+  max-height: ${(props) => (props?.mode === "default" ? props.theme.logoHeight : "16px")};
   width: ${(props) => props.theme.logoWidth};
 `;
 

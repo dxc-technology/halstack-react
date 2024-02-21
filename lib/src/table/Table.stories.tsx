@@ -117,6 +117,104 @@ export const Chromatic = () => (
         </DxcTable>
       </div>
     </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Default reduced" theme="light" level={4} />
+      <DxcTable mode="reduced">
+        <tr>
+          <th>header 1</th>
+          <th>header 2</th>
+          <th>header 3</th>
+        </tr>
+        <tr>
+          <td>cell 1</td>
+          <td>cell 2</td>
+          <td>cell 3</td>
+        </tr>
+        <tr>
+          <td>cell 4</td>
+          <td>cell 5</td>
+          <td>cell 6</td>
+        </tr>
+        <tr>
+          <td>cell 7</td>
+          <td>cell 8</td>
+          <td>Cell 9</td>
+        </tr>
+      </DxcTable>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Reduced with scrollbar" theme="light" level={4} />
+      <div
+        style={{ height: 200 + "px", display: "flex", flexDirection: "row", width: 100 + "%", marginBottom: 50 + "px" }}
+      >
+        <DxcTable mode="reduced">
+          <tr>
+            <th>
+              header<br></br>subheader
+            </th>
+            <th>
+              header<br></br>subheader
+            </th>
+            <th>
+              header<br></br>subheader
+            </th>
+          </tr>
+          <tr>
+            <td>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+              dolore magna aliqua.
+            </td>
+            <td>
+              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+              consequat.
+            </td>
+            <td>
+              Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+            </td>
+          </tr>
+          <tr>
+            <td>cell data</td>
+            <td>cell data</td>
+            <td>cell data</td>
+          </tr>
+          <tr>
+            <td>cell data</td>
+            <td>cell data</td>
+            <td>cell data</td>
+          </tr>
+          <tr>
+            <td>cell data</td>
+            <td>cell data</td>
+            <td>cell data</td>
+          </tr>
+          <tr>
+            <td>cell data</td>
+            <td>cell data</td>
+            <td>cell data</td>
+          </tr>
+          <tr>
+            <td>cell data</td>
+            <td>cell data</td>
+            <td>cell data</td>
+          </tr>
+          <tr>
+            <td>cell data</td>
+            <td>cell data</td>
+            <td>cell data</td>
+          </tr>
+          <tr>
+            <td>cell data</td>
+            <td>cell data</td>
+            <td>cell data</td>
+          </tr>
+          <tr>
+            <td>cell data</td>
+            <td>cell data</td>
+            <td>cell data</td>
+          </tr>
+        </DxcTable>
+      </div>
+    </ExampleContainer>
     <Title title="Margins" theme="light" level={2} />
     <ExampleContainer>
       <Title title="Xxsmall margin" theme="light" level={4} />
