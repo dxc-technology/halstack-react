@@ -5,6 +5,7 @@ import { getMargin } from "../common/utils";
 import useTheme from "../useTheme";
 import TablePropsType from "./types";
 import CoreTokens from "../common/coreTokens";
+import DxcActionsCell from "./ActionsCell";
 
 const DxcTable = ({ children, margin, mode = "default" }: TablePropsType): JSX.Element => {
   const colorsTheme = useTheme();
@@ -103,5 +104,7 @@ const DxcTableContent = styled.table<{ mode: TablePropsType["mode"] }>`
     padding-right: ${(props) => (props.mode === "default" ? CoreTokens.spacing_24 : "20px")};
   }
 `;
+
+DxcTable.ActionsCell = DxcActionsCell;
 
 export default DxcTable;
