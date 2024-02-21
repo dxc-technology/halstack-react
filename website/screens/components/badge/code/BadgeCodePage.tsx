@@ -44,8 +44,8 @@ const sections = [
           </td>
           <td>
             In notification mode, if the number entered as label is greater that
-            this notification limit, <TableCode>+99</TableCode> will be shown.
-            If not, the entered text will be shown as label.
+            this notification limit, <TableCode>+notificationLimit</TableCode>{" "}
+            will be shown. If not, the entered text will be shown as label.
           </td>
           <td>
             <TableCode>99</TableCode>
