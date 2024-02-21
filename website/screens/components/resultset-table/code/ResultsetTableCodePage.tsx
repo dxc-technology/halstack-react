@@ -8,6 +8,7 @@ import basicUsage from "./examples/basicUsage";
 import sortable from "./examples/sortable";
 import TableCode from "@/common/TableCode";
 import StatusTag from "@/common/StatusTag";
+import reduced from "./examples/reduced";
 
 const sections = [
   {
@@ -187,7 +188,7 @@ const sections = [
       {
         title: "Reduced usage",
         content: (
-          <p>This example is not available yet, it will be added soon.</p>
+          <Example example={reduced} defaultIsVisible />
         ),
       },
       {
