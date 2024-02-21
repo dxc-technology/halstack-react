@@ -1,6 +1,5 @@
 import React from "react";
 import Title from "../../.storybook/components/Title";
-import styled from "styled-components";
 import DxcDivider from "./Divider";
 import { DxcFlex, DxcParagraph } from "../main";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
