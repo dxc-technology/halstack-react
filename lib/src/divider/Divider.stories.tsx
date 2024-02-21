@@ -170,7 +170,3 @@ export const Chromatic = () => (
     </ExampleContainer>
   </>
 );
-
-const FixedHeightDiv = styled.div`
-  height: 240px;
-`;
