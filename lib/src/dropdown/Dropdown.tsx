@@ -242,10 +242,7 @@ const calculateWidth = (margin, size) =>
     : sizes[size];
 
 const DropdownContainer = styled.div<{ margin: DropdownPropsType["margin"]; size: DropdownPropsType["size"] }>`
-  display: inline-block;
   width: ${(props) => calculateWidth(props.margin, props.size)};
-  text-overflow: ellipsis;
-  overflow: hidden;
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
@@ -267,12 +264,12 @@ const DropdownTrigger = styled.button<{
   align-items: center;
   gap: ${(props) => props.theme.caretIconSpacing};
   width: 100%;
-  min-height: 40px;
+  height: ${(props) => props.theme.buttonHeight};
   min-width: ${(props) => (props.label === "" ? "0px" : calculateWidth(props.margin, props.size))};
-  border-radius: ${(props) => props.theme.borderRadius};
-  border-width: ${(props) => props.theme.borderThickness};
-  border-style: ${(props) => props.theme.borderStyle};
-  border-color: ${(props) => (props.disabled ? props.theme.disabledBorderColor : props.theme.borderColor)};
+  border-radius: ${(props) => props.theme.buttonBorderRadius};
+  border-width: ${(props) => props.theme.buttonBorderThickness};
+  border-style: ${(props) => props.theme.buttonBorderStyle};
+  border-color: ${(props) => (props.disabled ? props.theme.disabledButtonBorderColor : props.theme.buttonBorderColor)};
   padding-top: ${(props) => props.theme.buttonPaddingTop};
   padding-bottom: ${(props) => props.theme.buttonPaddingBottom};
   padding-left: ${(props) => props.theme.buttonPaddingLeft};
@@ -286,8 +283,7 @@ const DropdownTrigger = styled.button<{
     !props.disabled &&
     `
       &:focus {
-        outline: ${props.theme.focusColor} solid 2px;
-        outline-offset: -2px;
+        outline: 2px solid ${props.theme.focusColor};
       }
       &:hover {
         background-color: ${props.theme.hoverButtonBackgroundColor};
