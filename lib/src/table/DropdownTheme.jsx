@@ -1,3 +1,4 @@
+import { componentTokens } from "../common/variables";
 export default {
   dropdown: {
     // Breadcrumbs tokens
@@ -16,18 +17,18 @@ export default {
     optionPaddingRight: "16px",
 
     // Dropdown tokens
-    buttonBackgroundColor: "#ffffff",
-    hoverButtonBackgroundColor: "#f2f2f2",
-    activeButtonBackgroundColor: "#cccccc",
+    buttonBackgroundColor: componentTokens.table.actionBackgroundColor,
+    hoverButtonBackgroundColor: componentTokens.table.hoverActionBackgroundColor,
+    activeButtonBackgroundColor: componentTokens.table.activeActionBackgroundColor,
     buttonFontFamily: "Open Sans, sans-serif",
     buttonFontSize: "1rem",
     buttonFontStyle: "normal",
     buttonFontWeight: "400",
     buttonFontColor: "#000000",
     buttonIconSpacing: "10px",
-    buttonIconColor: "#5f249f",
-    disabledColor: "#999999",
-    disabledButtonBackgroundColor: "transparent",
+    buttonIconColor: componentTokens.table.actionIconColor,
+    disabledColor: componentTokens.table.disabledActionIconColor,
+    disabledButtonBackgroundColor: componentTokens.table.disabledActionBackgroundColor,
     disabledBorderColor: "transparent",
     optionBackgroundColor: "#ffffff",
     hoverOptionBackgroundColor: "#f2f2f2",
