@@ -73,7 +73,6 @@ const code = `() => {
 
 const scope = {
   DxcResultsetTable,
-  DxcButton,
   DxcInset,
   deleteIcon,
 };
