@@ -1,6 +1,14 @@
 name: Storybook Tests
 
-on: deployment_status
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - "lib/**"
+  pull_request:
+    paths:
+      - "lib/**"
 
 jobs:
   test:
