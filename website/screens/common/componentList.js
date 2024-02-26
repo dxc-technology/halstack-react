@@ -6,6 +6,11 @@ exports.componentsList = [
     path: "/components/application-layout",
     status: "Ready",
   },
+  {
+    label: "Badge",
+    path: "/components/badge",
+    status: "Experimental",
+  },
   { label: "Bleed", path: "/components/bleed", status: "Ready" },
   { label: "Box", path: "/components/box", status: "Deprecated" },
   {

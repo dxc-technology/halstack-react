@@ -12,11 +12,11 @@ const moreVertIcon = (
 
 const DxcActionsCell = ({ actions }: ActionCellsPropsType): JSX.Element => {
   const actionIcons = actions.filter((action) => !action.options);
-  const actionDropdown = actions.find((action) => action.options.length);
+  const actionDropdown = actions.find((action) => action.options);
   const maxNumberOfActions = actionDropdown ? 2 : 3;
 
   return (
-    <DxcFlex gap={"0.5rem"}>
+    <DxcFlex gap={"0.5rem"} alignItems="center">
       {actionIcons.map(
         (action, index) =>
           index < maxNumberOfActions && (
