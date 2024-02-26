@@ -16,7 +16,7 @@ const DxcActionsCell = ({ actions }: ActionCellsPropsType): JSX.Element => {
   const maxNumberOfActions = actionDropdown ? 2 : 3;
 
   return (
-    <DxcFlex gap={"0.5rem"}>
+    <DxcFlex gap={"0.5rem"} alignItems="center">
       {actionIcons.map(
         (action, index) =>
           index < maxNumberOfActions && (
