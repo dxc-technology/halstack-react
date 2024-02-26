@@ -285,15 +285,10 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
           break;
       }
     };
-    const handleWheel = useCallback(
-      (event: WheelEvent) => {
-        if (document.activeElement === inputRef.current) {
-          event.preventDefault();
-          event.deltaY < 0 ? incrementNumber(inputRef.current.value) : decrementNumber(inputRef.current.value);
-        }
-      },
-      [incrementNumber, decrementNumber]
-    );
+    const handleNumberInputWheel = (event: React.WheelEvent<HTMLInputElement>) => {
+      if (document.activeElement === inputRef.current)
+        event.deltaY < 0 ? incrementNumber(inputRef.current.value) : decrementNumber(inputRef.current.value);
+    };
 
     const handleClearActionOnClick = () => {
       changeValue("");
@@ -355,16 +350,6 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
           numberInputContext.stepNumber
         );
     }, [value, innerValue, suggestions, numberInputContext]);
-
-    useEffect(() => {
-      const input = inputRef.current;
-      if (numberInputContext?.typeNumber === "number") {
-        input.addEventListener("wheel", handleWheel, { passive: false });
-        return () => {
-          input.removeEventListener("wheel", handleWheel);
-        };
-      }
-    }, [handleWheel]);
 
     return (
       <ThemeProvider theme={colorsTheme.textInput}>
@@ -436,6 +421,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
                   onMouseDown={(event) => {
                     event.stopPropagation();
                   }}
+                  onWheel={numberInputContext?.typeNumber === "number" ? handleNumberInputWheel : undefined}
                   disabled={disabled}
                   readOnly={readOnly}
                   ref={inputRef}
