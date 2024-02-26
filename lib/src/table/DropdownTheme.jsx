@@ -37,7 +37,6 @@ export default {
     hoverOptionBackgroundColor: componentTokens.dropdown.hoverOptionBackgroundColor,
     activeOptionBackgroundColor: componentTokens.dropdown.activeOptionBackgroundColor,
     optionFontFamily: componentTokens.dropdown.optionFontFamily,
-    optionFontSize: componentTokens.dropdown.optionFontSize,
     optionFontStyle: componentTokens.dropdown.optionFontStyle,
     optionFontWeight: componentTokens.dropdown.optionFontWeight,
     optionFontColor: componentTokens.dropdown.optionFontColor,
