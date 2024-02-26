@@ -1,9 +1,9 @@
+import React from "react";
 import styled from "styled-components";
 import CoreTokens from "../common/coreTokens";
-import React from "react";
-import { Item as MenuItemPropsType } from "./types";
+import { MenuItemProps } from "./types";
 
-const MenuItem = ({ label, icon, slot, selected, onSelect }: MenuItemPropsType) => (
+const MenuItem = ({ label, icon, slot, selected, onSelect }: MenuItemProps) => (
   <Action role="menuitem" aria-selected={selected} selected={selected} onClick={() => onSelect()}>
     <Label>
       {icon && <Icon aria-hidden>{typeof icon === "string" ? <img src={icon} /> : icon}</Icon>}

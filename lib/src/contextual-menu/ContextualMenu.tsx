@@ -5,15 +5,18 @@ import MenuPropsType, { Item, Section as SectionType, BadgeProps as BadgePropsTy
 import DxcBadge from "../badge/Badge";
 import MenuItem from "./MenuItem";
 
-const DxcContextualMenu = ({ items }: MenuPropsType) => {
-  const [selectedItemIndex, setSelectedItemIndex] = useState<number>(-1);
+const DxcContextualMenu = ({ items, defaultSelectedItemIndex = -1 }: MenuPropsType) => {
+  const [selectedItemIndex, setSelectedItemIndex] = useState<number>(defaultSelectedItemIndex);
 
   const renderSingleItem = (item: Item, index: number) => (
     <Li key={`option-${index}`} role="none">
       <MenuItem
         {...item}
-        selected={item.selected ?? selectedItemIndex === index}
-        onSelect={item.onSelect ?? (() => setSelectedItemIndex(index))}
+        selected={selectedItemIndex === index}
+        onSelect={() => {
+          setSelectedItemIndex(index);
+          item.onSelect?.();
+        }}
       />
     </Li>
   );

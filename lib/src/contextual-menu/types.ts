@@ -6,16 +6,17 @@ export type Item = {
   label: string;
   icon?: string | SVG;
   slot?: React.ReactNode;
-  selected?: boolean;
-  onSelect?: (selected?: boolean) => void;
+  onSelect?: () => void;
 };
-
 export type Section = { title?: string; items: Item[] };
 
 type Props = {
+  defaultSelectedItemIndex?: number;
   items: Item[] | Section[];
 };
 
+export type MenuItemProps = Item & {
+  selected: boolean;
+};
 export type BadgeProps = (ContextualProps | NotificationProps) & Omit<CommonProps, "size">;
-
 export default Props;

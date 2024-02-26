@@ -27,11 +27,7 @@ const items = [{ label: "Item 1" }, { label: "Item 2" }, { label: "Item 3" }, { 
 const sections = [
   {
     title: "Team repositories",
-    items: [
-      { label: "Approved locations" },
-      { label: "Approved locations" },
-      { label: "Approved locations" },
-    ],
+    items: [{ label: "Approved locations" }, { label: "Approved locations" }, { label: "Approved locations" }],
   },
   {
     items: [{ label: "Approved locations" }, { label: "Approved locations" }, { label: "Approved locations" }],
@@ -70,11 +66,7 @@ const itemsWithSlot = [
 const sectionsWithScroll = [
   {
     title: "Team repositories",
-    items: [
-      { label: "Approved locations" },
-      { label: "Approved locations" },
-      { label: "Approved locations" },
-    ],
+    items: [{ label: "Approved locations" }, { label: "Approved locations" }, { label: "Approved locations" }],
   },
   {
     items: [
@@ -122,7 +114,7 @@ export const Chromatic = () => (
     <Title title="With sections" theme="light" level={3} />
     <ExampleContainer>
       <DxcContainer width="300px">
-        <DxcContextualMenu items={sections} />
+        <DxcContextualMenu items={sections} defaultSelectedItemIndex={5} />
       </DxcContainer>
     </ExampleContainer>
     <Title title="With icons" theme="light" level={3} />
@@ -162,19 +154,19 @@ export const MenuItemStates = () => (
   <>
     <Title title="Default" theme="light" level={3} />
     <ExampleContainer>
-      <MenuItem {...items[0]} />
+      <MenuItem {...items[0]} selected={false} />
     </ExampleContainer>
     <Title title="Focus" theme="light" level={3} />
     <ExampleContainer pseudoState="pseudo-focus">
-      <MenuItem {...items[0]} />
+      <MenuItem {...items[0]} selected={false} />
     </ExampleContainer>
     <Title title="Hover" theme="light" level={3} />
     <ExampleContainer pseudoState="pseudo-hover">
-      <MenuItem {...items[0]} />
+      <MenuItem {...items[0]} selected={false} />
     </ExampleContainer>
     <Title title="Active" theme="light" level={3} />
     <ExampleContainer pseudoState="pseudo-active">
-      <MenuItem {...items[0]} />
+      <MenuItem {...items[0]} selected={false} />
     </ExampleContainer>
     <Title title="Selected" theme="light" level={3} />
     <ExampleContainer>
