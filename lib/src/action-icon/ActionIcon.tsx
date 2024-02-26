@@ -1,8 +1,9 @@
 import React from "react";
-import ActionIconProps, { RefType } from "./types";
+import ActionIconPropsTypes, { RefType } from "./types";
 import styled from "styled-components";
+import CoreTokens from "../common/coreTokens";
 
-const DxcActionIcon = React.forwardRef<RefType, ActionIconProps>(
+const DxcActionIcon = React.forwardRef<RefType, ActionIconPropsTypes>(
   ({ disabled = false, title, icon, onClick, tabIndex }, ref): JSX.Element => {
     return (
       <ActionIcon
@@ -32,13 +33,18 @@ const ActionIcon = styled.button`
   border-radius: 2px;
   width: 24px;
   height: 24px;
-  padding: 3px;
+  padding: 0px;
   ${(props) => (props.disabled ? `cursor: not-allowed;` : `cursor: pointer;`)}
 
   box-shadow: 0 0 0 2px transparent;
   background-color: ${(props) =>
-    props.disabled ? props.theme.disabledActionBackgroundColor : props.theme.actionBackgroundColor};
-  color: ${(props) => (props.disabled ? props.theme.disabledActionIconColor : props.theme.actionIconColor)};
+    props.disabled
+      ? props.theme.disabledActionBackgroundColor ?? CoreTokens.color_transparent
+      : props.theme.actionBackgroundColor ?? CoreTokens.color_transparent};
+  color: ${(props) =>
+    props.disabled
+      ? props.theme.disabledActionIconColor ?? CoreTokens.color_grey_500
+      : props.theme.actionIconColor ?? CoreTokens.color_black};
 
   ${(props) =>
     !props.disabled &&
@@ -46,16 +52,16 @@ const ActionIcon = styled.button`
       &:focus,
       &:focus-visible {
         outline: none;
-        box-shadow: 0 0 0 2px ${props.theme.focusActionBorderColor};
-        color: ${props.theme.focusActionIconColor};
+        box-shadow: 0 0 0 2px ${props.theme.focusActionBorderColor ?? CoreTokens.color_blue_600};
+        color: ${props.theme.focusActionIconColor ?? CoreTokens.color_black};
       }
       &:hover {
-        background-color: ${props.theme.hoverActionBackgroundColor};
-        color: ${props.theme.hoverActionIconColor};
+        background-color: ${props.theme.hoverActionBackgroundColor ?? CoreTokens.color_grey_100};
+        color: ${props.theme.hoverActionIconColor ?? CoreTokens.color_black};
       }
       &:active {
-        background-color: ${props.theme.activeActionBackgroundColor};
-        color: ${props.theme.activeActionIconColor};
+        background-color: ${props.theme.activeActionBackgroundColor ?? CoreTokens.color_grey_300};
+        color: ${props.theme.activeActionIconColor ?? CoreTokens.color_black};
       }
     `}
 
