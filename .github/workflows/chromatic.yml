@@ -27,7 +27,14 @@ jobs:
         with:
           node-version: 16.x
           registry-url: https://registry.npmjs.org/
-
+      - name: Run Storybook Tests
+        run: |
+          cd lib
+          yarn
+          npx playwright install --with-deps
+          yarn test-storybook
+        env:
+          TARGET_URL: "${{ github.event.deployment_status.target_url }}"
       - name: Publish to Chromatic
         uses: chromaui/action@v1
         with:
