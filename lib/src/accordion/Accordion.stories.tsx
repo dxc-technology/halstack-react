@@ -77,7 +77,6 @@ const opinionatedTheme = {
 
 export const Chromatic = () => (
   <>
-  Test
     <Title title="Component anatomy" theme="light" level={2} />
     <ExampleContainer>
       <Title title="With label" theme="light" level={4} />

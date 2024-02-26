@@ -36,7 +36,7 @@
     "storybook": "storybook dev -p 6006",
     "storybook:ci": "storybook dev -p 6006 --ci",
     "build-storybook": "storybook build",
-    "test-storybook": "test-storybook",
+    "test-storybook": "test-storybook --url https://www.chromatic.com/build?appId=65dc8589d9498d222f5ffacf",
     "chromatic": "npx chromatic"
   },
   "devDependencies": {

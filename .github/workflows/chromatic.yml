@@ -38,7 +38,7 @@ jobs:
           workingDir: lib
 
       - name: Set Chromatic Deployment URL
-        run: echo "CHROMATIC_DEPLOYMENT_URL=${{ steps.chromatic_publish.outputs }}"
+        run: echo "CHROMATIC_DEPLOYMENT_URL=${{ toJson(steps.chromatic_publish.outputs) }}"
       # - name: Run Storybook Tests
       #   run: |
       #     cd lib
