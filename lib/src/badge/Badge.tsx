@@ -138,7 +138,7 @@ const BadgeContainer = styled.div<{
   padding: ${(props) => (props.label ? getPadding(props.mode, props.size) : "")};
   align-items: center;
   justify-content: center;
-  box-sizing: ${(props) => props.mode === "notification" && "border-box"};
+  box-sizing: border-box;
 `;
 
 const IconContainer = styled.div<{ size: BadgePropsType["size"] }>`
