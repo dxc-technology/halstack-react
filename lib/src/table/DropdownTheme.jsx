@@ -1,7 +1,7 @@
 import { componentTokens } from "../common/variables";
 export default {
   dropdown: {
-    // Breadcrumbs tokens
+    // ActionIcon size tokens
     buttonIconSize: "16px",
     buttonPaddingTop: "4px",
     buttonPaddingBottom: "4px",
@@ -9,6 +9,8 @@ export default {
     buttonPaddingRight: "4px",
     buttonHeight: "24px",
     buttonBorderRadius: "2px",
+    buttonBorderStyle: "none",
+    buttonBorderThickness: "0px",
     buttonBorderColor: "transparent",
     optionFontSize: "14px",
     optionPaddingTop: "0px",
@@ -28,12 +30,14 @@ export default {
     buttonIconSpacing: componentTokens.dropdown.buttonIconSpacing,
     buttonIconColor: componentTokens.table.actionIconColor,
     disabledColor: componentTokens.table.disabledActionIconColor,
+    disabledButtonBorderColor: componentTokens.dropdown.disabledButtonBorderColor,
     disabledButtonBackgroundColor: componentTokens.table.disabledActionBackgroundColor,
     disabledBorderColor: componentTokens.dropdown.disabledBorderColor,
     optionBackgroundColor: componentTokens.dropdown.optionBackgroundColor,
     hoverOptionBackgroundColor: componentTokens.dropdown.hoverOptionBackgroundColor,
     activeOptionBackgroundColor: componentTokens.dropdown.activeOptionBackgroundColor,
     optionFontFamily: componentTokens.dropdown.optionFontFamily,
+    optionFontSize: componentTokens.dropdown.optionFontSize,
     optionFontStyle: componentTokens.dropdown.optionFontStyle,
     optionFontWeight: componentTokens.dropdown.optionFontWeight,
     optionFontColor: componentTokens.dropdown.optionFontColor,
@@ -49,5 +53,6 @@ export default {
     borderColor: componentTokens.dropdown.borderColor,
     scrollBarThumbColor: componentTokens.dropdown.scrollBarThumbColor,
     scrollBarTrackColor: componentTokens.dropdown.scrollBarTrackColor,
+    focusColor: componentTokens.table.focusActionBorderColor,
   },
 };
