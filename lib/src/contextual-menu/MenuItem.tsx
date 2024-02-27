@@ -25,7 +25,6 @@ const Action = styled.button<{ selected?: boolean }>`
   border-radius: 4px;
   padding: ${CoreTokens.spacing_4} ${CoreTokens.spacing_8};
   box-shadow: inset 0 0 0 2px transparent;
-
   display: flex;
   align-items: center;
   justify-content: space-between;

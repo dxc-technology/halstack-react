@@ -107,20 +107,18 @@ export const Chromatic = () => (
   <>
     <Title title="Default" theme="light" level={3} />
     <ExampleContainer>
-      <DxcContainer width="300px">
-        <DxcContextualMenu items={items} />
-      </DxcContainer>
+      <DxcContextualMenu items={items} />
     </ExampleContainer>
     <Title title="With sections" theme="light" level={3} />
     <ExampleContainer>
       <DxcContainer width="300px">
-        <DxcContextualMenu items={sections} defaultSelectedItemIndex={5} />
+        <DxcContextualMenu items={sections} />
       </DxcContainer>
     </ExampleContainer>
     <Title title="With icons" theme="light" level={3} />
     <ExampleContainer>
       <DxcContainer width="300px">
-        <DxcContextualMenu items={itemsWithIcon} />
+        <DxcContextualMenu items={itemsWithIcon} defaultSelectedItemIndex={0} />
       </DxcContainer>
     </ExampleContainer>
     <Title title="With slot" theme="light" level={3} />

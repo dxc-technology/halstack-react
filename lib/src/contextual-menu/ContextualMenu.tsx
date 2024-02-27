@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState, Fragment } from "react";
 import styled from "styled-components";
 import CoreTokens from "../common/coreTokens";
 import MenuPropsType, { Item, Section as SectionType, BadgeProps as BadgePropsType } from "./types";
@@ -9,7 +9,7 @@ const DxcContextualMenu = ({ items, defaultSelectedItemIndex = -1 }: MenuPropsTy
   const [selectedItemIndex, setSelectedItemIndex] = useState<number>(defaultSelectedItemIndex);
 
   const renderSingleItem = (item: Item, index: number) => (
-    <Li key={`option-${index}`} role="none">
+    <Li key={`option-${index}`}>
       <MenuItem
         {...item}
         selected={selectedItemIndex === index}
@@ -21,22 +21,20 @@ const DxcContextualMenu = ({ items, defaultSelectedItemIndex = -1 }: MenuPropsTy
     </Li>
   );
 
-  let acc = 0;
-  const renderSection = (section: SectionType, index: number, items: SectionType[]) => {
-    const globalIndex = acc;
-    acc += section.items.length;
+  let accLength = 0;
+  const renderSection = (section: SectionType, currentSectionIndex: number, items: SectionType[]) => {
+    const startingIndex = accLength;
+    accLength += section.items.length;
     return (
-      <Li key={`option-${index}`}>
-        {section.title != null && (
-          <Title role="heading" aria-level={2}>
-            {section.title}
-          </Title>
-        )}
-        <Section role="group">
-          {section.items.map((item, index) => renderSingleItem(item, globalIndex + index))}
-          {index !== items.length - 1 && <Divider aria-hidden />}
-        </Section>
-      </Li>
+      <Fragment key={`separator-${currentSectionIndex}`}>
+        <Li key={`option-${currentSectionIndex}`}>
+          {section.title != null && <Title>{section.title}</Title>}
+          <Section role="group">
+            {section.items.map((item, index) => renderSingleItem(item, startingIndex + index))}
+          </Section>
+        </Li>
+        {currentSectionIndex !== items.length - 1 && <Divider aria-hidden />}
+      </Fragment>
     );
   };
 
@@ -89,8 +87,8 @@ const Section = styled.ul`
   gap: ${CoreTokens.spacing_4};
 `;
 
-const Title = styled.span`
-  margin-bottom: ${CoreTokens.spacing_4};
+const Title = styled.h2`
+  margin: 0 0 ${CoreTokens.spacing_4} 0;
   padding: ${CoreTokens.spacing_4};
   color: ${CoreTokens.color_grey_900};
   font-family: ${CoreTokens.type_sans};
