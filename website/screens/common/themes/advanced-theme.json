@@ -1018,7 +1018,7 @@
     "errorListDialogBackgroundColor": "#fff5f6",
     "errorListDialogBorderColor": "#d0011b",
     "hoverListOptionBackgroundColor": "#f2f2f2",
-    "activeListOptionBackgroundColor": "#cccccc",
+    "activeListOptionBackgroundColor": "#e6e6e6",
     "focusListOptionBorderColor": "#0095ff"
   },
   "toggleGroup": {
