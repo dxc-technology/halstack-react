@@ -18,6 +18,16 @@ const opinionatedTheme = {
   },
 };
 
+const advancedTheme = {
+  table: {
+    actionIconColor: "#1B75BB",
+    hoverActionIconColor: "#1B75BB",
+    activeActionIconColor: "#1B75BB",
+    focusActionIconColor: "#1B75BB",
+    hoverButtonBackgroundColor: "#cccccc",
+  },
+};
+
 const icon1 = (
   <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
     <path d="M0 0h24v24H0V0z" fill="none" />
@@ -132,6 +142,39 @@ export const Chromatic = () => (
           </td>
         </tr>
       </DxcTable>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Custom actionsCell theme" theme="light" level={4} />
+      <HalstackProvider advancedTheme={advancedTheme}>
+        <DxcTable>
+          <tr>
+            <th>header 1</th>
+            <th>header 2</th>
+            <th>actions</th>
+          </tr>
+          <tr>
+            <td>cell 1</td>
+            <td>cell 2</td>
+            <td>
+              <DxcTable.ActionsCell actions={actions} />
+            </td>
+          </tr>
+          <tr>
+            <td>cell 4</td>
+            <td>cell 5</td>
+            <td>
+              <DxcTable.ActionsCell actions={actions} />
+            </td>
+          </tr>
+          <tr>
+            <td>cell 7</td>
+            <td>cell 8</td>
+            <td>
+              <DxcTable.ActionsCell actions={actions} />
+            </td>
+          </tr>
+        </DxcTable>
+      </HalstackProvider>
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With scrollbar" theme="light" level={4} />
