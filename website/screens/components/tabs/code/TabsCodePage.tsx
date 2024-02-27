@@ -75,11 +75,12 @@ const sections = [
                 </li>
                 <li>
                   <b>notificationNumber</b>: It can have boolean type or number
-                  type. If true, an empty badge will appear. If false, no badge
-                  will appear. If a number is specified, the component will
-                  display a badge with the value as its label. Take into account
-                  that if that number is greater than 99, it will appear as
-                  '+99' in the badge.
+                  type. If true, an empty badge will appear. If false or if the
+                  tab is disabled, no badge will appear. If a number is
+                  specified, the component will display a badge with the value
+                  as its label. Take into account that if that number is greater
+                  than 99, it will appear as <TableCode>+99</TableCode> in the
+                  badge.
                 </li>
               </ul>
             </td>
