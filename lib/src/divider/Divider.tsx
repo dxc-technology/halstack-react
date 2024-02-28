@@ -22,7 +22,11 @@ const StyledDivider = styled.hr<DividerPropsType>`
     };
     ${orientation === "horizontal" ? "width" : "min-height"}: 100%;
     ${orientation === "horizontal" ? "height" : "width"}: 0px;
-    border-width: ${weight === "regular" ? "1px" : "2px"};
+    ${
+      orientation === "horizontal"
+        ? "border-width: " + (weight === "regular" ? "1px 0 0 0" : "2px 0 0 0")
+        : "border-width: " + (weight === "regular" ? "0 0 0 1px" : "0 0 0 2px")
+    };
     margin: 0px;
   `}
 `;
