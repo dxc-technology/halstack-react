@@ -18,7 +18,7 @@ const DxcActionIcon = React.forwardRef<RefType, ActionIconPropsTypes>(
         type="button"
         ref={ref}
       >
-        {typeof icon === "string" ? <img src={icon} /> : icon}
+        {typeof icon === "string" ? <img src={icon} alt="Action Icon" /> : icon}
       </ActionIcon>
     );
   }

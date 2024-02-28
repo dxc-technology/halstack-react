@@ -57,7 +57,7 @@ const DxcAccordion = ({
               <AccordionLabel>
                 {icon && (
                   <IconContainer disabled={disabled}>
-                    {typeof icon === "string" ? <img src={icon} /> : icon}
+                    {typeof icon === "string" ? <img src={icon} alt="Accordion Icon" /> : icon}
                   </IconContainer>
                 )}
                 <BaseTypography
@@ -101,7 +101,7 @@ const DxcAccordion = ({
           </AccordionTrigger>
         </AccordionHeader>
         {(isExpanded ?? innerIsExpanded) && (
-          <AccordionPanel id={`accordion-panel-${id}`} role="region" aria-labelledby={`accordion-${id}`}>
+          <AccordionPanel id={`accordion-panel-${id}`} role="region" aria-label={`accordion-panel-${id}`}>
             {children}
           </AccordionPanel>
         )}

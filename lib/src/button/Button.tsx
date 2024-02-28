@@ -39,7 +39,7 @@ const DxcButton = ({
         margin={margin}
       >
         {label && <LabelContainer>{label}</LabelContainer>}
-        {icon && <IconContainer>{typeof icon === "string" ? <img src={icon} /> : icon}</IconContainer>}
+        {icon && <IconContainer>{typeof icon === "string" ? <img src={icon} alt="Button Icon" /> : icon}</IconContainer>}
       </Button>
     </ThemeProvider>
   );

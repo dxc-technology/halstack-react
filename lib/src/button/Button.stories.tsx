@@ -88,19 +88,19 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Only icon" theme="light" level={4} />
-      <DxcButton icon={iconSVG} />
+      <DxcButton icon={iconSVG} title="Like" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Big icon (SVG)" theme="light" level={4} />
-      <DxcButton icon={facebookIcon} />
+      <DxcButton icon={facebookIcon} title="Facebook" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Big icon (image)" theme="light" level={4} />
-      <DxcButton icon="https://www.freepnglogos.com/uploads/facebook-logo-design-1.png" />
+      <DxcButton icon="https://www.freepnglogos.com/uploads/facebook-logo-design-1.png" title="Facebook" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Small icon" theme="light" level={4} />
-      <DxcButton icon={smallIcon} />
+      <DxcButton icon={smallIcon} title="Configuration" />
     </ExampleContainer>
     <Title title="Secondary" theme="light" level={2} />
     <ExampleContainer>
@@ -129,10 +129,7 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Only icon (image)" theme="light" level={4} />
-      <DxcButton
-        mode="secondary"
-        icon="https://www.freepnglogos.com/uploads/facebook-logo-design-1.png"
-      />
+      <DxcButton mode="secondary" icon="https://www.freepnglogos.com/uploads/facebook-logo-design-1.png" />
     </ExampleContainer>
     <Title title="Text" theme="light" level={2} />
     <ExampleContainer>
@@ -161,10 +158,7 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Only icon (image)" theme="light" level={4} />
-      <DxcButton
-        mode="text"
-        icon="https://www.freepnglogos.com/uploads/facebook-logo-design-1.png"
-      />
+      <DxcButton mode="text" icon="https://www.freepnglogos.com/uploads/facebook-logo-design-1.png" />
     </ExampleContainer>
     <Title title="Sizes" theme="light" level={2} />
     <ExampleContainer>

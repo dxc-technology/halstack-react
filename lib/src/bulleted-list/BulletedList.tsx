@@ -34,7 +34,7 @@ const DxcBulletedList = ({ children, type = "disc", icon = "" }: BulletedListPro
                     </Bullet>
                   ) : type === "icon" ? (
                     <Bullet>
-                      <Icon>{typeof icon === "string" ? <img src={icon} /> : icon}</Icon>
+                      <Icon>{typeof icon === "string" ? <img src={icon} alt="Bullet Icon" /> : icon}</Icon>
                     </Bullet>
                   ) : (
                     <Bullet>
