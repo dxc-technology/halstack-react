@@ -6,19 +6,20 @@ import CoreTokens from "../common/coreTokens";
 const DxcDivider = ({
   orientation = "horizontal",
   weight = "regular",
-  color = "default",
+  color = "mediumGrey",
 }: DividerPropsType): JSX.Element => (
-  <StyledDivider
-    orientation={orientation}
-    weight={weight}
-    color={color}
-    aria-orientation={orientation}
-  />
+  <StyledDivider orientation={orientation} weight={weight} color={color} aria-orientation={orientation} />
 );
 
 const StyledDivider = styled.hr<DividerPropsType>`
   ${({ orientation, weight, color }) => `
-    border-color: ${color === "default" ? CoreTokens.color_grey_400 : CoreTokens.color_grey_700};
+    border-color: ${
+      color === "lightGrey"
+        ? CoreTokens.color_grey_200
+        : color === "mediumGrey"
+        ? CoreTokens.color_grey_400
+        : CoreTokens.color_grey_700
+    };
     ${orientation === "horizontal" ? "width" : "min-height"}: 100%;
     ${orientation === "horizontal" ? "height" : "width"}: 0px;
     border-width: ${weight === "regular" ? "1px" : "2px"};

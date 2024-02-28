@@ -10,7 +10,7 @@ type Props = {
   /**
    * Modifies the color of the divider
    */
-  color?: "default" | "darkGrey";
+  color?: "lightGrey" | "mediumGrey" | "darkGrey";
 };
 
 export default Props;
