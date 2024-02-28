@@ -1,5 +1,6 @@
 import {
   DxcResultsetTable,
+  DxcButton,
   DxcInset,
 } from "@dxc-technology/halstack-react";
 import { deleteIcon } from "./Icons";
@@ -18,32 +19,24 @@ const code = `() => {
     { displayValue: "Actions", isSortable: false },
   ];
 
-  const actions = [
-    {
-      icon: deleteIcon,
-      title: "icon",
-      onClick: () => {},
-    },
-  ];
-  
   const rows = [
     [
       { displayValue: "001", sortValue: "001" },
       { displayValue: showName(), sortValue: sortName() },
       { displayValue: "Miami", sortValue: "Miami" },
-      { displayValue: <DxcResultsetTable.ActionsCell actions={actions} /> },
+      { displayValue: <DxcButton icon={deleteIcon} /> },
     ],
     [
       { displayValue: "002", sortValue: "002" },
       { displayValue: "Louis", sortValue: "Louis" },
       { displayValue: "London", sortValue: "London" },
-      { displayValue: <DxcResultsetTable.ActionsCell actions={actions} /> },
+      { displayValue: <DxcButton icon={deleteIcon} /> },
     ],
     [
       { displayValue: "003", sortValue: "003" },
       { displayValue: "Lana", sortValue: "Lana" },
       { displayValue: "Amsterdam", sortValue: "Amsterdam" },
-      { displayValue: <DxcResultsetTable.ActionsCell actions={actions} /> },
+      { displayValue: <DxcButton icon={deleteIcon} /> },
     ],
   ];
 
@@ -56,6 +49,7 @@ const code = `() => {
 
 const scope = {
   DxcResultsetTable,
+  DxcButton,
   DxcInset,
   deleteIcon,
 };
