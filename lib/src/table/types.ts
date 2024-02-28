@@ -23,6 +23,10 @@ type Option = {
   value: string;
 };
 
+export type DeepPartial<T> = {
+  [P in keyof T]?: Partial<T[P]>;
+};
+
 export type ActionCellsPropsType = {
   actions: Array<
     | {
