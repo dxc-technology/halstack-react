@@ -1,12 +1,33 @@
-import { DxcFlex, DxcTable } from "@dxc-technology/halstack-react";
+import {
+  DxcFlex,
+  DxcLink,
+  DxcParagraph,
+  DxcTable,
+} from "@dxc-technology/halstack-react";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
-import basic from "./examples/basicUsage";
+import TableCode, { ExtendedTableCode } from "@/common/TableCode";
 import StatusTag from "@/common/StatusTag";
-import TableCode from "@/common/TableCode";
+import basic from "./examples/basicUsage";
 import reduced from "./examples/reduced";
+import Link from "next/link";
+import actions from "./examples/actions";
+
+const actionsType = `{
+  icon: string | SVG;
+  title: string;
+  onClick: () => void;
+  disabled?: boolean;
+  tabIndex?: number;
+}[] | {
+  title: string;
+  onClick: (value?: string) => void;
+  disabled?: boolean;
+  tabIndex?: number;
+  options: Option[];
+}[]`;
 
 const sections = [
   {
@@ -53,7 +74,8 @@ const sections = [
                   <b>default</b>: Default table size.
                 </li>
                 <li>
-                  <b>reduced</b>: More compact table with less spacing for high density information.
+                  <b>reduced</b>: More compact table with less spacing for high
+                  density information.
                 </li>
               </ul>
             </td>
@@ -81,6 +103,65 @@ const sections = [
     ),
   },
   {
+    title: "DxcTable.ActionsCell",
+    content: (
+      <DxcParagraph>
+        A compound component aimed to be used inside the table.
+      </DxcParagraph>
+    ),
+    subSections: [
+      {
+        title: "Props",
+        content: (
+          <DxcTable>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Description</th>
+                <th>Default</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <DxcFlex
+                    direction="column"
+                    gap="0.25rem"
+                    alignItems="baseline"
+                  >
+                    <StatusTag status="Required">Required</StatusTag>actions
+                  </DxcFlex>
+                </td>
+                <td>
+                  <ExtendedTableCode>{actionsType}</ExtendedTableCode>
+                </td>
+                <td>
+                  <p>
+                    This prop represents a list of interactuable elements that
+                    will work as buttons or as a dropdown. Those with an
+                    <TableCode>icon</TableCode> are treated as buttons. If any
+                    element lacks an <TableCode>icon</TableCode> and includes
+                    <TableCode>options</TableCode>, it is interpreted as a
+                    dropdown. Only the first one with options will be displayed
+                    and no more than three elements will be displayed in total.
+                    In the case of the dropdown the click function will pass the
+                    value assigned to the option, check{" "}
+                    <Link href="/components/dropdown" passHref legacyBehavior>
+                      <DxcLink>dropdown</DxcLink>
+                    </Link>{" "}
+                    for more details.
+                  </p>
+                </td>
+                <td>-</td>
+              </tr>
+            </tbody>
+          </DxcTable>
+        ),
+      },
+    ],
+  },
+  {
     title: "Examples",
     subSections: [
       {
@@ -93,9 +174,11 @@ const sections = [
       },
       {
         title: "Reduced usage",
-        content: (
-          <Example example={reduced} defaultIsVisible />
-        ),
+        content: <Example example={reduced} defaultIsVisible />,
+      },
+      {
+        title: "Actions cell usage",
+        content: <Example example={actions} defaultIsVisible />,
       },
     ],
   },
