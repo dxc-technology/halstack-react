@@ -57,8 +57,8 @@ type Props = {
   margin?: Space | Margin;
   /**
    * Determines the visual style and layout
-   * - "default": Table with big spacing, applicable to most cases.
-   * - "reduced": Smaller table with minimal spacing for high density information.
+   * - "default": Default table size.
+   * - "reduced": More compact table with less spacing for high density information.
    */
   mode?: "default" | "reduced";
 };

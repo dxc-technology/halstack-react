@@ -72,7 +72,7 @@ const DxcTableContent = styled.table<{ mode: TablePropsType["mode"] }>`
     padding: ${(props) =>
       props.mode === "default"
         ? `${props.theme.dataPaddingTop} ${props.theme.dataPaddingRight} ${props.theme.dataPaddingBottom} ${props.theme.dataPaddingLeft}`
-        : `${CoreTokens.spacing_8} ${CoreTokens.spacing_16}`};
+        : `${props.theme.dataPaddingTopReduced} ${props.theme.dataPaddingRightReduced} ${props.theme.dataPaddingBottomReduced} ${props.theme.dataPaddingLeftReduced}`};
   }
   & th {
     background-color: ${(props) => props.theme.headerBackgroundColor};
@@ -87,21 +87,21 @@ const DxcTableContent = styled.table<{ mode: TablePropsType["mode"] }>`
     padding: ${(props) =>
       props.mode === "default"
         ? `${props.theme.headerPaddingTop} ${props.theme.headerPaddingRight} ${props.theme.headerPaddingBottom} ${props.theme.headerPaddingLeft}`
-        : `${CoreTokens.spacing_8} ${CoreTokens.spacing_16}`};
+        : `${props.theme.headerPaddingTopReduced} ${props.theme.headerPaddingRightReduced} ${props.theme.headerPaddingBottomReduced} ${props.theme.headerPaddingLeftReduced}`};
   }
   & th:first-child {
     border-top-left-radius: ${(props) => props.theme.headerBorderRadius};
-    padding-left: ${(props) => (props.mode === "default" ? CoreTokens.spacing_24 : "20px")};
+    padding-left: ${(props) => (props.mode === "default" ? props.theme.firstChildPaddingLeft : props.theme.firstChildPaddingLeftReduced)};
   }
   & th:last-child {
     border-top-right-radius: ${(props) => props.theme.headerBorderRadius};
-    padding-right: ${(props) => (props.mode === "default" ? CoreTokens.spacing_24 : "20px")};
+    padding-right: ${(props) => (props.mode === "default" ? props.theme.lastChildPaddingRight : props.theme.lastChildPaddingRightReduced)};
   }
   & td:first-child {
-    padding-left: ${(props) => (props.mode === "default" ? CoreTokens.spacing_24 : "20px")};
+    padding-left: ${(props) => (props.mode === "default" ? props.theme.firstChildPaddingLeft : props.theme.firstChildPaddingLeftReduced)};
   }
   & td:last-child {
-    padding-right: ${(props) => (props.mode === "default" ? CoreTokens.spacing_24 : "20px")};
+    padding-right: ${(props) => (props.mode === "default" ? props.theme.lastChildPaddingRight : props.theme.lastChildPaddingRightReduced)};
   }
 `;
 

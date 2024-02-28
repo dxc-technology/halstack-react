@@ -4,6 +4,7 @@ import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import { userEvent, within } from "@storybook/testing-library";
 import styled from "styled-components";
+import { HalstackProvider } from "../HalstackContext";
 
 export default {
   title: "Resultset Table",
@@ -27,6 +28,17 @@ const rows = [
   [{ displayValue: "005" }, { displayValue: "Mark" }, { displayValue: "Miami" }],
   [{ displayValue: "006" }, { displayValue: "Cris" }, { displayValue: "Paris" }],
 ];
+
+const advancedTheme = {
+  table: {
+    actionIconColor: "#1B75BB",
+    hoverActionIconColor: "#1B75BB",
+    activeActionIconColor: "#1B75BB",
+    focusActionIconColor: "#1B75BB",
+    disabledActionIconColor: "#666666",
+    hoverButtonBackgroundColor: "#cccccc",
+  },
+};
 
 const actions = [
   {
@@ -370,6 +382,10 @@ const ResultsetActionsCellDropdown = () => (
   <ExampleContainer>
     <Title title="Dropdown Action" theme="light" level={4} />
     <DxcResultsetTable columns={columns} rows={rowsIcon} itemsPerPage={2} />
+    <Title title="Custom theme actions cell" theme="light" level={4} />
+    <HalstackProvider advancedTheme={advancedTheme}>
+      <DxcResultsetTable columns={columns} rows={rowsIcon} itemsPerPage={2} />
+    </HalstackProvider>
   </ExampleContainer>
 );
 
