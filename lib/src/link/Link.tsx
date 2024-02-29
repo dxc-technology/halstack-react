@@ -10,7 +10,7 @@ const LinkContent = React.memo(({ iconPosition, icon, children }: LinkProps): JS
       {iconPosition === "after" && children}
       {icon && (
         <LinkIconContainer iconPosition={iconPosition}>
-          {typeof icon === "string" ? <LinkIcon src={icon} /> : icon}
+          {typeof icon === "string" ? <LinkIcon src={icon} alt="Link Icon" /> : icon}
         </LinkIconContainer>
       )}
       {iconPosition === "before" && children}

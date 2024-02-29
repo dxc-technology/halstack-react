@@ -7,10 +7,22 @@ import { userEvent, waitFor, within } from "@storybook/testing-library";
 import DxcFlex from "../flex/Flex";
 import DxcLink from "../link/Link";
 import { HalstackProvider } from "../HalstackContext";
+import preview from "../../.storybook/preview";
 
 export default {
   title: "Header",
   component: DxcHeader,
+  parameters: {
+    a11y: {
+      config: {
+        rules: [
+          { id: "landmark-no-duplicate-banner", enabled: false },
+          { id: "landmark-unique", enabled: false },
+          ...preview?.parameters?.a11y?.config?.rules,
+        ],
+      },
+    },
+  },
 };
 
 const options: any = [

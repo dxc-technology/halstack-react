@@ -4,7 +4,6 @@ const layoutIcons = {
   facebookLogo: (
     <svg
       version="1.1"
-      id="Capa_1"
       x="0px"
       y="0px"
       width="438.536px"
@@ -36,7 +35,6 @@ const layoutIcons = {
   linkedinLogo: (
     <svg
       version="1.1"
-      id="Capa_1"
       x="0px"
       y="0px"
       width="438.536px"
