@@ -44,7 +44,7 @@ const FileItem = ({
           (type.includes("image") ? (
             <ImagePreview src={preview} alt={fileName} />
           ) : (
-            <IconPreview error={error} aria-label={getIconAriaLabel()}>
+            <IconPreview error={error} role="document" aria-label={getIconAriaLabel()}>
               {preview}
             </IconPreview>
           ))}

@@ -20,8 +20,10 @@ const DropdownMenuItem = ({
   >
     {iconPosition === "after" && <DropdownMenuItemLabel>{option.label}</DropdownMenuItemLabel>}
     {option.icon && (
-      <DropdownMenuItemIcon role={typeof option.icon === "string" ? undefined : "img"}>
-        {typeof option.icon === "string" ? <img src={option.icon} /> : option.icon}
+      <DropdownMenuItemIcon
+      // role={typeof option.icon === "string" ? undefined : "img"}
+      >
+        {typeof option.icon === "string" ? <img src={option.icon} alt="Dropdown icon" /> : option.icon}
       </DropdownMenuItemIcon>
     )}
     {iconPosition === "before" && <DropdownMenuItemLabel>{option.label}</DropdownMenuItemLabel>}

@@ -23,24 +23,26 @@ const DxcChip = ({
         {prefixIcon && (
           <IconContainer
             role={typeof onClickPrefix === "function" ? "button" : undefined}
+            aria-label={typeof onClickPrefix === "function" ? "Prefix Icon Container" : undefined}
             disabled={disabled}
             interactuable={typeof onClickPrefix === "function" && !disabled}
             tabIndex={typeof onClickPrefix === "function" && !disabled ? tabIndex : -1}
             onClick={() => onClickPrefix && !disabled && onClickPrefix()}
           >
-            {typeof prefixIcon === "string" ? <img src={prefixIcon} /> : prefixIcon}
+            {typeof prefixIcon === "string" ? <img src={prefixIcon} alt="Prefix Icon" /> : prefixIcon}
           </IconContainer>
         )}
         {label && <LabelContainer disabled={disabled}>{label}</LabelContainer>}
         {suffixIcon && (
           <IconContainer
             role={typeof onClickSuffix === "function" ? "button" : undefined}
+            aria-label={typeof onClickSuffix === "function" ? "Suffix Icon Container" : undefined}
             disabled={disabled}
             interactuable={typeof onClickSuffix === "function" && !disabled}
             tabIndex={typeof onClickSuffix === "function" && !disabled ? tabIndex : -1}
             onClick={() => !disabled && onClickSuffix?.()}
           >
-            {typeof suffixIcon === "string" ? <img src={suffixIcon} /> : suffixIcon}
+            {typeof suffixIcon === "string" ? <img src={suffixIcon} alt="Suffix Icon" /> : suffixIcon}
           </IconContainer>
         )}
       </Chip>

@@ -12,6 +12,18 @@ const preview: Preview = {
         date: /Date$/i,
       },
     },
+    a11y: {
+      config: {
+        rules: [
+          {
+            // Disable heading order rule to prevent errors from using h2 and h4 in the titles of the stories
+            id: "heading-order",
+            enabled: false,
+          },
+        ],
+      },
+      options: {},
+    },
   },
   decorators: [
     (Story) => (

@@ -445,7 +445,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
                   aria-errormessage={error ? errorId : undefined}
                   aria-required={!disabled && !optional}
                 />
-                {!disabled && error && <ErrorIcon aria-label="Error">{icons.error}</ErrorIcon>}
+                {!disabled && error && <ErrorIcon role="alert" aria-label="Error">{icons.error}</ErrorIcon>}
                 {!disabled && !readOnly && clearable && (value ?? innerValue).length > 0 && (
                   <DxcActionIcon
                     onClick={handleClearActionOnClick}

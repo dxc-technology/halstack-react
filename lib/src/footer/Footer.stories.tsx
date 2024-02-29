@@ -5,12 +5,13 @@ import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import { HalstackProvider } from "../HalstackContext";
 import DxcFlex from "../flex/Flex";
 import DxcTypography from "../typography/Typography";
+import preview from "../../.storybook/preview";
 
 const social = [
   {
     href: "https://www.linkedin.com/company/dxctechnology",
     logo: (
-      <svg version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 438.536 438.536" fill="currentColor">
+      <svg version="1.1" x="0px" y="0px" viewBox="0 0 438.536 438.536" fill="currentColor">
         <g>
           <path
             d="M414.41,24.123C398.333,8.042,378.963,0,356.315,0H82.228C59.58,0,40.21,8.042,24.126,24.123
@@ -48,7 +49,6 @@ const social = [
     logo: (
       <svg
         version="1.1"
-        id="Capa_1"
         x="0px"
         y="0px"
         viewBox="0 0 438.536 438.536"
@@ -90,6 +90,17 @@ const bottom = [
 export default {
   title: "Footer",
   component: DxcFooter,
+  parameters: {
+    a11y: {
+      config: {
+        rules: [
+          { id: "landmark-no-duplicate-contentinfo", enabled: false },
+          { id: "landmark-unique", enabled: false },
+          ...preview?.parameters?.a11y?.config?.rules,
+        ],
+      },
+    },
+  },
 };
 
 const opinionatedTheme = {
@@ -133,7 +144,7 @@ export const Chromatic = () => (
       <DxcFooter mode="reduced">
         <DxcFlex justifyContent="center" alignItems="center" gap={"1rem"}>
           {info.map((tag, index) => (
-            <DxcTypography color="white" key={`tag${index}${tag.label}${tag.text}`} >
+            <DxcTypography color="white" key={`tag${index}${tag.label}${tag.text}`}>
               {tag.label}: {tag.text}
             </DxcTypography>
           ))}

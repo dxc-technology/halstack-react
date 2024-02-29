@@ -13,7 +13,6 @@ export default {
 const iconSVG = (
   <svg
     version="1.1"
-    id="Capa_1"
     x="0px"
     y="0px"
     width="438.536px"
@@ -193,13 +192,21 @@ export const Chromatic = () => (
 const ChipPrefixFocused = () => (
   <ExampleContainer>
     <Title title="Chip with prefix" theme="light" level={4} />
-    <DxcChip label="Chip with prefix" prefixIcon={iconSVG} onClickPrefix={() => {}} />
+    <DxcChip
+      label="Chip with prefix"
+      prefixIcon={iconSVG}
+      onClickPrefix={() => {}}
+    />
   </ExampleContainer>
 );
 const ChipSuffixFocused = () => (
   <ExampleContainer>
     <Title title="Chip with suffix" theme="light" level={4} />
-    <DxcChip label="Chip with suffix" suffixIcon="https://cdn.iconscout.com/icon/free/png-256/free-delete-2902143-2411575.png" onClickSuffix={() => {}} />
+    <DxcChip
+      label="Chip with suffix"
+      suffixIcon="https://cdn.iconscout.com/icon/free/png-256/free-delete-2902143-2411575.png"
+      onClickSuffix={() => {}}
+    />
   </ExampleContainer>
 );
 

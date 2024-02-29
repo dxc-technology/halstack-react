@@ -190,16 +190,19 @@ const DxcDropdown = ({
               size={size}
               id={triggerId}
               aria-haspopup="true"
-              aria-controls={menuId}
+              aria-controls={isOpen ? menuId : undefined}
               aria-expanded={isOpen ? true : undefined}
+              aria-label="Dropdown trigger"
               tabIndex={tabIndex}
               ref={triggerRef}
             >
               <DropdownTriggerContent>
                 {label && iconPosition === "after" && <DropdownTriggerLabel>{label}</DropdownTriggerLabel>}
                 {icon && (
-                  <DropdownTriggerIcon disabled={disabled} role={typeof icon === "string" ? undefined : "img"}>
-                    {typeof icon === "string" ? <img src={icon} /> : icon}
+                  <DropdownTriggerIcon disabled={disabled} 
+                  // role={typeof icon === "string" ? undefined : "img"}
+                  >
+                    {typeof icon === "string" ? <img src={icon} alt="Dropdown icon" /> : icon}
                   </DropdownTriggerIcon>
                 )}
                 {label && iconPosition === "before" && <DropdownTriggerLabel>{label}</DropdownTriggerLabel>}
