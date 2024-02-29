@@ -101,7 +101,7 @@ const DxcAccordion = ({
           </AccordionTrigger>
         </AccordionHeader>
         {(isExpanded ?? innerIsExpanded) && (
-          <AccordionPanel id={`accordion-panel-${id}`} role="region" aria-label={`accordion-panel-${id}`}>
+          <AccordionPanel id={`accordion-panel-${id}`} role="region" aria-labelledby={`accordion-${id}`}>
             {children}
           </AccordionPanel>
         )}
