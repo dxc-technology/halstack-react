@@ -13,50 +13,42 @@ const code = `() => {
     { displayValue: "Actions"},
   ];
 
-  const actions = [
-    {
-      icon: deleteIcon,
-      title: "icon",
-      onClick: () => {},
-    },
-  ];
-
   const rows = [
     [
       { displayValue: "001"},
       { displayValue: "Peter"},
       { displayValue: "Miami"},
-      { displayValue: <DxcResultsetTable.ActionsCell actions={actions} /> },
+      { displayValue: <DxcButton icon={deleteIcon} /> },
     ],
     [
       { displayValue: "002"},
       { displayValue: "Louis"},
       { displayValue: "London"},
-      { displayValue: <DxcResultsetTable.ActionsCell actions={actions} /> },
+      { displayValue: <DxcButton icon={deleteIcon} /> },
     ],
     [
       { displayValue: "003"},
       { displayValue: "Lana"},
       { displayValue: "Amsterdam"},
-      { displayValue: <DxcResultsetTable.ActionsCell actions={actions} /> },
+      { displayValue: <DxcButton icon={deleteIcon} /> },
     ],
     [
       { displayValue: "004"},
       { displayValue: "Rick"},
       { displayValue: "London"},
-      { displayValue: <DxcResultsetTable.ActionsCell actions={actions} /> },
+      { displayValue: <DxcButton icon={deleteIcon} /> },
     ],
     [
       { displayValue: "005"},
       { displayValue: "Mark"},
       { displayValue: "Miami"},
-      { displayValue: <DxcResultsetTable.ActionsCell actions={actions} /> },
+      { displayValue: <DxcButton icon={deleteIcon} /> },
     ],
     [
       { displayValue: "006"},
       { displayValue: "Cris"},
       { displayValue: "Paris"},
-      { displayValue: <DxcResultsetTable.ActionsCell actions={actions} /> },
+      { displayValue: <DxcButton icon={deleteIcon} /> },
     ],
   ];
 

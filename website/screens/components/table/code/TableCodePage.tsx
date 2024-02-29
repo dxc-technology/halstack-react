@@ -50,10 +50,10 @@ const sections = [
               The available table modes:
               <ul>
                 <li>
-                  <b>default</b>: Table with big spacing, applicable to most cases.
+                  <b>default</b>: Default table size.
                 </li>
                 <li>
-                  <b>reduced</b>: Smaller table with minimal spacing for high density information.
+                  <b>reduced</b>: More compact table with less spacing for high density information.
                 </li>
               </ul>
             </td>
