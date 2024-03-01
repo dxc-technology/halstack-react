@@ -204,7 +204,7 @@ const sections = [
     content: (
       <DxcParagraph>
         A compound component aimed to be used inside the resultset table's
-        displayValue.
+        displayValue to display up to three actions.
       </DxcParagraph>
     ),
     subSections: [
@@ -236,17 +236,17 @@ const sections = [
                 </td>
                 <td>
                   <p>
-                    This prop represents a list of interactuable elements that
-                    will work as buttons or as a dropdown. Those with an
+                    It represents a list of interactuable elements that will
+                    work as buttons or as a dropdown. Those with an{" "}
                     <TableCode>icon</TableCode> are treated as buttons. If any
-                    element lacks an <TableCode>icon</TableCode> and includes
+                    element lacks an <TableCode>icon</TableCode> and includes{" "}
                     <TableCode>options</TableCode>, it is interpreted as a
-                    dropdown. Only the first one with options will be displayed
-                    and no more than three elements will be displayed in total.
-                    In the case of the dropdown the click function will pass the
-                    value assigned to the option, check{" "}
+                    dropdown. Only the first action with options will be
+                    displayed and only up to 3 actions. In the case of the
+                    dropdown the click function will pass the value assigned to
+                    the option, click{" "}
                     <Link href="/components/dropdown" passHref legacyBehavior>
-                      <DxcLink>dropdown</DxcLink>
+                      <DxcLink>here</DxcLink>
                     </Link>{" "}
                     for more details.
                   </p>
