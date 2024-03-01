@@ -1,0 +1,35 @@
+name: Build and test
+
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install Node.js 18.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 18.x
+          registry-url: https://registry.npmjs.org/
+
+      - name: Install lib dependencies
+        run: cd lib && npm install
+
+      - name: Build library
+        run: cd lib && npm run build
+
+      - name: Install website dependencies
+        run: cd website && npm i
+
+      - name: Test library
+        run: cd lib && npm run test
+
+      # - name: Test library accessibility
+      #   run: cd lib && npm run test:accessibility
+
+      - name: Build website
+        run: cd website && npm run build
