@@ -1,6 +1,5 @@
 import {
   DxcResultsetTable,
-  DxcButton,
   DxcInset,
 } from "@dxc-technology/halstack-react";
 import { deleteIcon } from "./Icons";
@@ -73,7 +72,6 @@ const code = `() => {
 
 const scope = {
   DxcResultsetTable,
-  DxcButton,
   DxcInset,
   deleteIcon,
 };
