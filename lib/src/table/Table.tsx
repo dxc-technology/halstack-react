@@ -6,7 +6,9 @@ import useTheme from "../useTheme";
 import TablePropsType, { ActionCellsPropsType, DeepPartial } from "./types";
 import DropdownTheme from "./DropdownTheme";
 import { AdvancedTheme } from "../common/variables";
-import { DxcDropdown, DxcFlex, HalstackProvider } from "../main";
+import DxcDropdown from "../dropdown/Dropdown";
+import DxcFlex from "../flex/Flex";
+import { HalstackProvider } from "../HalstackContext";
 import DxcActionIcon from "../action-icon/ActionIcon";
 
 const moreVertIcon = (
