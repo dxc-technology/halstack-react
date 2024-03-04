@@ -2,10 +2,10 @@ import React, { useEffect, forwardRef, Ref, useContext, useRef } from "react";
 import styled from "styled-components";
 import DxcBadge from "../badge/Badge";
 import DxcFlex from "../flex/Flex";
-import { NavTabsContext } from "./NavTabs";
 import NavTabsPropsType, { TabProps } from "./types";
 import BaseTypography from "../utils/BaseTypography";
 import useTheme from "../useTheme";
+import { NavTabsContext } from "../layout/NavTabsContext";
 
 const DxcTab = forwardRef(
   (

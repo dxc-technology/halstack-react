@@ -86,7 +86,7 @@ type Props = {
   /**
    * This function will be called when the input element loses the focus.
    * An object including the input value and the error (if the value
-   * entered is not valid) will be passed to this function. If there is no error, 
+   * entered is not valid) will be passed to this function. If there is no error,
    * error will not be defined.
    */
   onBlur?: (val: { value: string; error?: string }) => void;
@@ -117,6 +117,13 @@ type Props = {
    * Value of the tabindex attribute.
    */
   tabIndex?: number;
+};
+
+export type NumberInputContextProps = {
+  typeNumber?: string;
+  minNumber?: number;
+  maxNumber?: number;
+  stepNumber?: number;
 };
 
 /**

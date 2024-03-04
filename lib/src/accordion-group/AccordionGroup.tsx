@@ -4,9 +4,8 @@ import { getMargin } from "../common/utils";
 import { spaces } from "../common/variables";
 import useTheme from "../useTheme";
 import AccordionGroupAccordion from "./AccordionGroupAccordion";
-import AccordionGroupPropsType, { AccordionGroupAccordionContextProps } from "./types";
-
-export const AccordionGroupAccordionContext = createContext<AccordionGroupAccordionContextProps | null>(null);
+import AccordionGroupPropsType from "./types";
+import { AccordionGroupAccordionContext } from "../layout/AccordionGroupContext";
 
 const DxcAccordionGroup = ({
   defaultIndexActive,
