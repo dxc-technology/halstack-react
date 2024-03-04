@@ -9,29 +9,29 @@ const code = `() => {
     <DxcInset space="2rem">
       <DxcFlex gap="2rem" justifyContent="center">
         <DxcFlex gap="1rem" direction="column">
-          <DxcStatusLight label="StatusLight"size="small" />
-          <DxcStatusLight label="StatusLight" />
-          <DxcStatusLight label="StatusLight"size="large" />
+          <DxcStatusLight label="Default" size="small" />
+          <DxcStatusLight label="Default" />
+          <DxcStatusLight label="Default"size="large" />
         </DxcFlex>
         <DxcFlex gap="1rem" direction="column">
-          <DxcStatusLight label="StatusLight" mode="info" size="small" />
-          <DxcStatusLight label="StatusLight" mode="info" />
-          <DxcStatusLight label="StatusLight" mode="info" size="large" />
+          <DxcStatusLight label="Info" mode="info" size="small" />
+          <DxcStatusLight label="Info" mode="info" />
+          <DxcStatusLight label="Info" mode="info" size="large" />
         </DxcFlex>
         <DxcFlex gap="1rem" direction="column">
-          <DxcStatusLight label="StatusLight" mode="success" size="small" />
-          <DxcStatusLight label="StatusLight" mode="success" />
-          <DxcStatusLight label="StatusLight" mode="success" size="large" />
+          <DxcStatusLight label="Success" mode="success" size="small" />
+          <DxcStatusLight label="Success" mode="success" />
+          <DxcStatusLight label="Success" mode="success" size="large" />
         </DxcFlex>
         <DxcFlex gap="1rem" direction="column">
-          <DxcStatusLight label="StatusLight" mode="warning" size="small" />
-          <DxcStatusLight label="StatusLight" mode="warning" />
-          <DxcStatusLight label="StatusLight" mode="warning" size="large" />
+          <DxcStatusLight label="Warning" mode="warning" size="small" />
+          <DxcStatusLight label="Warning" mode="warning" />
+          <DxcStatusLight label="Warning" mode="warning" size="large" />
         </DxcFlex>
         <DxcFlex gap="1rem" direction="column">
-          <DxcStatusLight label="StatusLight" mode="error" size="small" />
-          <DxcStatusLight label="StatusLight" mode="error" />
-          <DxcStatusLight label="StatusLight" mode="error" size="large" />
+          <DxcStatusLight label="Error" mode="error" size="small" />
+          <DxcStatusLight label="Error" mode="error" />
+          <DxcStatusLight label="Error" mode="error" size="large" />
         </DxcFlex>
       </DxcFlex>
     </DxcInset>
