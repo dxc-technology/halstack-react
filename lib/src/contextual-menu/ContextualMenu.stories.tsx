@@ -2,7 +2,7 @@ import React from "react";
 import Title from "../../.storybook/components/Title";
 import DxcContextualMenu from "./ContextualMenu";
 import DxcContainer from "../container/Container";
-import MenuItem from "./MenuItem";
+import MenuItemAction from "./MenuItemAction";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 
 export default {
@@ -152,31 +152,31 @@ export const MenuItemStates = () => (
   <>
     <Title title="Default" theme="light" level={3} />
     <ExampleContainer>
-      <MenuItem {...items[0]} selected={false} />
+      <MenuItemAction {...items[0]} selected={false} />
     </ExampleContainer>
     <Title title="Focus" theme="light" level={3} />
     <ExampleContainer pseudoState="pseudo-focus">
-      <MenuItem {...items[0]} selected={false} />
+      <MenuItemAction {...items[0]} selected={false} />
     </ExampleContainer>
     <Title title="Hover" theme="light" level={3} />
     <ExampleContainer pseudoState="pseudo-hover">
-      <MenuItem {...items[0]} selected={false} />
+      <MenuItemAction {...items[0]} selected={false} />
     </ExampleContainer>
     <Title title="Active" theme="light" level={3} />
     <ExampleContainer pseudoState="pseudo-active">
-      <MenuItem {...items[0]} selected={false} />
+      <MenuItemAction {...items[0]} selected={false} />
     </ExampleContainer>
     <Title title="Selected" theme="light" level={3} />
     <ExampleContainer>
-      <MenuItem {...items[0]} selected />
+      <MenuItemAction {...items[0]} selected />
     </ExampleContainer>
     <Title title="Selected hover" theme="light" level={3} />
     <ExampleContainer pseudoState="pseudo-hover">
-      <MenuItem {...items[0]} selected />
+      <MenuItemAction {...items[0]} selected />
     </ExampleContainer>
     <Title title="Selected active" theme="light" level={3} />
     <ExampleContainer pseudoState="pseudo-active">
-      <MenuItem {...items[0]} selected />
+      <MenuItemAction {...items[0]} selected />
     </ExampleContainer>
   </>
 );
