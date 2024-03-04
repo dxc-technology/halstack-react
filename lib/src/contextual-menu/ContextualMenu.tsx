@@ -3,7 +3,7 @@ import styled from "styled-components";
 import CoreTokens from "../common/coreTokens";
 import MenuPropsType, { Item, Section as SectionType, BadgeProps as BadgePropsType } from "./types";
 import DxcBadge from "../badge/Badge";
-import MenuItemAction from "./MenuItem";
+import MenuItemAction from "./MenuItemAction";
 
 const DxcContextualMenu = ({ items, defaultSelectedItemIndex = -1 }: MenuPropsType) => {
   const [selectedItemIndex, setSelectedItemIndex] = useState<number>(defaultSelectedItemIndex);
