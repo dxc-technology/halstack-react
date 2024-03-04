@@ -3,14 +3,14 @@ import styled from "styled-components";
 import CoreTokens from "../common/coreTokens";
 import MenuPropsType, { Item, Section as SectionType, BadgeProps as BadgePropsType } from "./types";
 import DxcBadge from "../badge/Badge";
-import MenuItem from "./MenuItem";
+import MenuItemAction from "./MenuItem";
 
 const DxcContextualMenu = ({ items, defaultSelectedItemIndex = -1 }: MenuPropsType) => {
   const [selectedItemIndex, setSelectedItemIndex] = useState<number>(defaultSelectedItemIndex);
 
   const renderSingleItem = (item: Item, index: number) => (
-    <Li key={`option-${index}`}>
-      <MenuItem
+    <Li key={`option-${index}`} role="menuitem">
+      <MenuItemAction
         {...item}
         selected={selectedItemIndex === index}
         onSelect={() => {
@@ -27,11 +27,9 @@ const DxcContextualMenu = ({ items, defaultSelectedItemIndex = -1 }: MenuPropsTy
     accLength += section.items.length;
     return (
       <Fragment key={`separator-${currentSectionIndex}`}>
-        <Li key={`option-${currentSectionIndex}`}>
+        <Li role="group">
           {section.title != null && <Title>{section.title}</Title>}
-          <Section role="group">
-            {section.items.map((item, index) => renderSingleItem(item, startingIndex + index))}
-          </Section>
+          <Section>{section.items.map((item, index) => renderSingleItem(item, startingIndex + index))}</Section>
         </Li>
         {currentSectionIndex !== items.length - 1 && <Divider aria-hidden />}
       </Fragment>
