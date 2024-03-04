@@ -2,13 +2,14 @@ import {
   DxcParagraph,
   DxcBulletedList,
   DxcFlex,
+  DxcTable,
 } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
-import Figure from "@/common/Figure";
-import Image from "@/common/Image";
-import variants from "./images/status-light_variants.jpg";
+import Example from "@/common/example/Example";
+import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
+import variants from "./example/variants";
 
 const sections = [
   {
@@ -74,7 +75,49 @@ const sections = [
           The Status light component has five different modes, each one
           corresponding to its semantic meaning:
         </DxcParagraph>
-        <DxcBulletedList>
+        <DxcParagraph>
+          Variants: <strong>default</strong>, <strong>info</strong>, <strong>success</strong>, <strong>warning</strong> and{" "}
+          <strong>error</strong>.
+        </DxcParagraph>
+        <Example example={variants} />
+        <DxcTable>
+          <thead>
+            <tr>
+              <th>Variant</th>
+              <HeaderDescriptionCell>Description</HeaderDescriptionCell>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Default</td>
+              <td>For neutral statuses, like archived, draft, paused...</td>
+            </tr>
+            <tr>
+              <td>Info</td>
+              <td>For live statuses, like active, in use, uploaded...</td>
+            </tr>
+            <tr>
+              <td>Success</td>
+              <td>
+                For positive statuses, like finished, approved, completed...
+              </td>
+            </tr>
+            <tr>
+              <td>Warning</td>
+              <td>
+                For pending or critical statuses, like scheduled, in progress,
+                processing...
+              </td>
+            </tr>
+            <tr>
+              <td>Error</td>
+              <td>
+                For negative statuses, like incomplete, rejected, failed...
+              </td>
+            </tr>
+          </tbody>
+        </DxcTable>
+        {/* <DxcBulletedList>
           <DxcBulletedList.Item>
             Default: for neutral statuses, like archived, draft, paused...
           </DxcBulletedList.Item>
@@ -95,7 +138,7 @@ const sections = [
         </DxcBulletedList>
         <Figure caption="Status light variants">
           <Image src={variants} alt="Status light variants" />
-        </Figure>
+        </Figure> */}
       </>
     ),
   },
