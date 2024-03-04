@@ -1034,7 +1034,7 @@ export const componentTokens = {
     errorListDialogBackgroundColor: CoreTokens.color_red_50,
     errorListDialogBorderColor: CoreTokens.color_red_700,
     hoverListOptionBackgroundColor: CoreTokens.color_grey_100,
-    activeListOptionBackgroundColor: CoreTokens.color_grey_300,
+    activeListOptionBackgroundColor: CoreTokens.color_grey_200,
     focusListOptionBorderColor: CoreTokens.color_blue_600,
   },
   toggleGroup: {
