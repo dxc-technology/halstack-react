@@ -3,6 +3,8 @@ import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
 import TableCode from "@/common/TableCode";
+import Example from "@/common/example/Example";
+import basicUsage from "./examples/basicUsage";
 
 const sections = [
   {
@@ -38,9 +40,7 @@ const sections = [
             <td>
               <TableCode>string</TableCode>
             </td>
-            <td>
-              An auxiliar text that will add some context to the status.
-            </td>
+            <td>An auxiliar text that will add some context to the status.</td>
             <td>-</td>
           </tr>
           <tr>
@@ -52,7 +52,9 @@ const sections = [
               Size of the component. Should be defined based on its importance
               and/or available space.
             </td>
-            <td><TableCode>'medium'</TableCode></td>
+            <td>
+              <TableCode>'medium'</TableCode>
+            </td>
           </tr>
         </tbody>
       </DxcTable>
@@ -62,8 +64,8 @@ const sections = [
     title: "Examples",
     subSections: [
       {
-        title: "Basic Usage",
-        content: <p>Examples are not available yet, they will be added soon.</p>
+        title: "Basic usage",
+        content: <Example example={basicUsage} defaultIsVisible />,
       },
     ],
   },

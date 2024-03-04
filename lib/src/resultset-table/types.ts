@@ -69,6 +69,12 @@ type Props = {
    * Value of the tabindex attribute applied to the sortable icon.
    */
   tabIndex?: number;
+  /**
+   * Determines the visual style and layout
+   * - "default": The default mode with big spacing
+   * - "reduced": A reduced mode with minimal spacing for dense tables
+   */
+  mode?: "default" | "reduced";
 };
 
 export default Props;

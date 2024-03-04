@@ -6,6 +6,7 @@ import Example from "@/common/example/Example";
 import basic from "./examples/basicUsage";
 import StatusTag from "@/common/StatusTag";
 import TableCode from "@/common/TableCode";
+import reduced from "./examples/reduced";
 
 const sections = [
   {
@@ -37,6 +38,30 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
+            <td>
+              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                <StatusTag status="Information">New</StatusTag>mode
+              </DxcFlex>
+            </td>
+            <td>
+              <TableCode>'default' | 'reduced'</TableCode>
+            </td>
+            <td>
+              The available table modes:
+              <ul>
+                <li>
+                  <b>default</b>: Default table size.
+                </li>
+                <li>
+                  <b>reduced</b>: More compact table with less spacing for high density information.
+                </li>
+              </ul>
+            </td>
+            <td>
+              <TableCode>'default'</TableCode>
+            </td>
+          </tr>
+          <tr>
             <td>margin</td>
             <td>
               <TableCode>
@@ -64,6 +89,12 @@ const sections = [
           <>
             <Example example={basic} defaultIsVisible />
           </>
+        ),
+      },
+      {
+        title: "Reduced usage",
+        content: (
+          <Example example={reduced} defaultIsVisible />
         ),
       },
     ],

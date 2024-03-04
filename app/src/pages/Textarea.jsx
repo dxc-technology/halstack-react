@@ -1,9 +1,5 @@
 import React, { useRef, useState } from "react";
-import {
-  DxcTextarea,
-  DxcButton,
-} from "@dxc-technology/halstack-react";
-import styled from "styled-components";
+import { DxcTextarea, DxcButton } from "@dxc-technology/halstack-react";
 
 function App() {
   const ref = useRef(null);
