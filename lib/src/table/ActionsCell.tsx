@@ -22,7 +22,6 @@ const overwriteTheme = (theme: DeepPartial<AdvancedTheme>) => {
   newTheme.dropdown.buttonIconColor = theme.table.actionIconColor;
   newTheme.dropdown.disabledColor = theme.table.disabledActionIconColor;
   newTheme.dropdown.disabledButtonBackgroundColor = theme.table.disabledActionBackgroundColor;
-  console.log(newTheme);
   return newTheme;
 };
 

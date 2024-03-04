@@ -1,7 +1,4 @@
-import {
-  DxcResultsetTable,
-  DxcInset,
-} from "@dxc-technology/halstack-react";
+import { DxcResultsetTable, DxcInset } from "@dxc-technology/halstack-react";
 import { deleteIcon } from "./Icons";
 
 const code = `() => {
@@ -17,6 +14,20 @@ const code = `() => {
       icon: deleteIcon,
       title: "icon",
       onClick: () => {},
+    },
+    {
+      title: "edit",
+      onClick: (value) => {},
+      options:[
+        {
+          value: "1",
+          label: "Edit",
+        },
+        {
+          value: "2",
+          label: "Mark as selected",
+        },
+      ]
     },
   ];
 
