@@ -11,7 +11,7 @@ import * as Popover from "@radix-ui/react-popover";
 import icons from "./Icons";
 import { v4 as uuidv4 } from "uuid";
 import DxcActionIcon from "../action-icon/ActionIcon";
-import { DxcFlex } from "../main";
+import DxcFlex from "../flex/Flex";
 
 const sizes = {
   small: "240px",
