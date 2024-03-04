@@ -15,7 +15,7 @@ type Props = {
   items: Item[] | Section[];
 };
 
-export type MenuItemProps = Item & {
+export type MenuItemActionProps = Item & {
   selected: boolean;
 };
 export type BadgeProps = (ContextualProps | NotificationProps) & Omit<CommonProps, "size">;
