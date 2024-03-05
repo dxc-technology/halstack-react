@@ -41,6 +41,9 @@ const DxcProgressBar = ({
             role="progressbar"
             helperText={helperText}
             aria-valuenow={showValue ? valueProgressBar : undefined}
+            aria-valuemin={0}
+            aria-valuemax={100}
+            aria-label={`progress-bar-${label}`}
           >
             <LinearProgressBar
               variant={value === null || value === undefined ? "indeterminate" : "determinate"}

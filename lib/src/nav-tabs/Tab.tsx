@@ -52,7 +52,7 @@ const DxcTab = forwardRef(
         >
           {icon && (
             <TabIconContainer iconPosition={iconPosition}>
-              {typeof icon === "string" ? <img src={icon} /> : icon}
+              {typeof icon === "string" ? <img src={icon} alt="Tab icon" /> : icon}
             </TabIconContainer>
           )}
           <DxcFlex alignItems="center" gap="0.5rem">
