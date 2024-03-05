@@ -16,7 +16,7 @@ const IconContainer = styled.span<{
   icon: string;
   filled: boolean;
 }>`
-  font-family: ${(props) => (props.filled ? "Material Symbols Sharp" : "Material Symbols Outlined")};
+  font-family: "Material Symbols Outlined";
   font-weight: normal;
   font-style: normal;
   font-size: 24px;
@@ -29,6 +29,7 @@ const IconContainer = styled.span<{
   direction: ltr;
   -webkit-font-feature-settings: "liga";
   -webkit-font-smoothing: antialiased;
+  font-variation-settings: ${(props) => (props.filled ? "'FILL' 1" : "'FILL' 0")};
   ::before {
     content: "${(props) => props.icon}";
   }
