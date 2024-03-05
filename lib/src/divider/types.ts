@@ -1,6 +1,6 @@
 type Props = {
   /**
-   * The divider can be showed in horizontal or vertical
+   * The divider can be shown in horizontal or vertical.
    */
   orientation?: "horizontal" | "vertical";
   /**
@@ -8,7 +8,7 @@ type Props = {
    */
   weight?: "regular" | "strong";
   /**
-   * Modifies the color of the divider
+   * Modifies the color of the divider.
    */
   color?: "lightGrey" | "mediumGrey" | "darkGrey";
 };

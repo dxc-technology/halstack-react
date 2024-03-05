@@ -32,7 +32,7 @@ export type StepProps = {
 
 type Props = {
   /**
-   * The wizard can be showed in horizontal or vertical.
+   * The wizard can be shown in horizontal or vertical.
    */
   mode?: "horizontal" | "vertical";
   /**
