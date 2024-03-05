@@ -73,7 +73,7 @@ const sections = [
       <>
         <DxcParagraph>
           The Status light component has five different modes, each one
-          corresponding to its semantic meaning:
+          corresponding to its semantic meaning.
         </DxcParagraph>
         <DxcParagraph>
           Variants: <strong>default</strong>, <strong>info</strong>, <strong>success</strong>, <strong>warning</strong> and{" "}
