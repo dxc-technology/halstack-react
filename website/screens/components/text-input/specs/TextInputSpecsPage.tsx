@@ -521,9 +521,9 @@ const sections = [
                     </td>
                     <td>List option:active</td>
                     <td>
-                      <Code>color-grey-300</Code>
+                      <Code>color-grey-200</Code>
                     </td>
-                    <td>#cccccc</td>
+                    <td>#e6e6e6</td>
                   </tr>
                   <tr>
                     <td>
