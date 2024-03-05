@@ -11,6 +11,10 @@ type Props = {
    * Modifies the color of the divider.
    */
   color?: "lightGrey" | "mediumGrey" | "darkGrey";
+  /**
+   * Indicates whether the divider is just a decorative resource or it works as a semantic separator of content.
+   */
+  decorative?: boolean;
 };
 
 export default Props;
