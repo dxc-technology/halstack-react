@@ -123,11 +123,11 @@ export type CalendarPropsType = {
    */
   selectedDate: Dayjs;
   /**
-   * Date showed by the calendar.
+   * Date shown by the calendar.
    */
   innerDate: Dayjs;
   /**
-   * Function called when the showed date needs to be updated.
+   * Function called when the shown date needs to be updated.
    */
   onInnerDateChange: (date: Dayjs) => void;
   /**

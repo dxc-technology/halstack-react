@@ -84,7 +84,7 @@ const sections = [
         <DxcParagraph>
           The overlay element makes possible to get the user attention into the
           dialog creating a layer between the actual application and the modal
-          information showed in the user interface.
+          information shown in the user interface.
         </DxcParagraph>
       </>
     ),
