@@ -35,7 +35,7 @@
     "iconColor": "color",
     "iconSize": "length",
     "iconMarginLeft": "length",
-    "iconMarginRigth": "length",
+    "iconMarginRight": "length",
     "disabledIconColor": "color",
     "accordionGroupSeparatorBorderColor": "color",
     "accordionGroupSeparatorBorderThickness": "bWidth",
