@@ -36,7 +36,7 @@
     "disabledIconColor": "#999999",
     "iconSize": "24px",
     "iconMarginLeft": "0px",
-    "iconMarginRigth": "12px",
+    "iconMarginRight": "12px",
     "accordionGroupSeparatorBorderColor": "#0000001a",
     "accordionGroupSeparatorBorderThickness": "1px",
     "accordionGroupSeparatorBorderRadius": "0px",
@@ -1030,7 +1030,7 @@
     "errorListDialogBackgroundColor": "#fff5f6",
     "errorListDialogBorderColor": "#d0011b",
     "hoverListOptionBackgroundColor": "#f2f2f2",
-    "activeListOptionBackgroundColor": "#cccccc",
+    "activeListOptionBackgroundColor": "#e6e6e6",
     "focusListOptionBorderColor": "#0095ff"
   },
   "toggleGroup": {
