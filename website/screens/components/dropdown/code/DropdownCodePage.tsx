@@ -128,7 +128,7 @@ const sections = [
                 <TableCode>boolean</TableCode>
               </td>
               <td>
-                If true, the options are showed when the dropdown is hovered.
+                If true, the options are shown when the dropdown is hovered.
               </td>
               <td>
                 <TableCode>false</TableCode>
