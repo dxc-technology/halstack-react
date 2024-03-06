@@ -6,28 +6,29 @@ import CoreTokens from "../common/coreTokens";
 const DxcDivider = ({
   orientation = "horizontal",
   weight = "regular",
-  width = "fixed",
-  color = "default",
+  color = "mediumGrey",
+  decorative = true
 }: DividerPropsType): JSX.Element => (
-  <StyledDivider
-    orientation={orientation}
-    weight={weight}
-    width={width}
-    color={color}
-    aria-orientation={orientation}
-    role="separator"
-  />
+  <StyledDivider orientation={orientation} weight={weight} color={color} aria-orientation={orientation} aria-hidden={decorative} />
 );
 
-const StyledDivider = styled.div<DividerPropsType>`
-  ${({ orientation, weight, width, color }) => `
-    background-color: ${color === "default" ? CoreTokens.color_grey_400 : CoreTokens.color_grey_700};
-    ${
-      orientation === "horizontal" && `width: ${width === "fixed" ? "480px" : width === "Full-Width" ? "100%" : width}`
+const StyledDivider = styled.hr<DividerPropsType>`
+  ${({ orientation, weight, color }) => `
+    border-color: ${
+      color === "lightGrey"
+        ? CoreTokens.color_grey_200
+        : color === "mediumGrey"
+        ? CoreTokens.color_grey_400
+        : CoreTokens.color_grey_700
     };
-    ${orientation === "horizontal" && `height: ${weight === "regular" ? "1px" : "2px"}`};
-    ${orientation === "vertical" && `height: ${width === "fixed" ? "240px" : width === "Full-Width" ? "100%" : width}`};
-    ${orientation === "vertical" && `width: ${weight === "regular" ? "1px" : "2px"}`};
+    ${orientation === "horizontal" ? "width" : "min-height"}: 100%;
+    ${orientation === "horizontal" ? "height" : "width"}: 0px;
+    ${
+      orientation === "horizontal"
+        ? "border-width: " + (weight === "regular" ? "1px 0 0 0" : "2px 0 0 0")
+        : "border-width: " + (weight === "regular" ? "0 0 0 1px" : "0 0 0 2px")
+    };
+    margin: 0px;
   `}
 `;
 

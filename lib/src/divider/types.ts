@@ -1,8 +1,6 @@
-export type Width = "fixed" | "30%" | "50%" | "80%" | "Full-Width";
-
 type Props = {
   /**
-   * The divider can be showed in horizontal or vertical.
+   * The divider can be shown in horizontal or vertical.
    */
   orientation?: "horizontal" | "vertical";
   /**
@@ -10,13 +8,13 @@ type Props = {
    */
   weight?: "regular" | "strong";
   /**
-   * Modifies the length of the divider.
-   */
-  width?: Width;
-  /**
    * Modifies the color of the divider.
    */
-  color?: "default" | "dark-grey";
+  color?: "lightGrey" | "mediumGrey" | "darkGrey";
+  /**
+   * Indicates whether the divider is just a decorative resource or it works as a semantic separator of content.
+   */
+  decorative?: boolean;
 };
 
 export default Props;

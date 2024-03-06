@@ -26,7 +26,7 @@ export const Chromatic = () => (
         <DxcBadge mode="notification" size="small" />
         <DxcBadge mode="notification" label={1} size="small" />
         <DxcBadge mode="notification" label={10} size="small" />
-        <DxcBadge mode="notification" label={1000000} size="medium" notificationLimit={99999999} />
+        <DxcBadge mode="notification" label={1000000} size="small" notificationLimit={99999999} />
         <DxcBadge mode="notification" label={100} size="small" notificationLimit={99} />
       </DxcFlex>
     </ExampleContainer>
