@@ -3,6 +3,9 @@ import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
 import TableCode from "@/common/TableCode";
+import Example from "@/common/example/Example";
+import basicUsage from "./examples/basicUsage";
+import vertical from "./examples/vertical";
 
 const sections = [
   {
@@ -80,9 +83,11 @@ const sections = [
     subSections: [
       {
         title: "Basic Usage",
-        content: (
-          <p>Examples are not available yet, they will be added soon.</p>
-        ),
+        content: <Example example={basicUsage} defaultIsVisible />,
+      },
+      {
+        title: "Vertical",
+        content: <Example example={vertical} defaultIsVisible />,
       },
     ],
   },
