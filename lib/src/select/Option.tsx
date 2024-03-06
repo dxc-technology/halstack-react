@@ -18,8 +18,7 @@ const Option = ({
     const label = event.currentTarget;
     const optionElement = document.getElementById(id);
 
-    if (optionElement.title === "" && label.scrollWidth > label.clientWidth)
-      optionElement.title = option.label;
+    if (optionElement.title === "" && label.scrollWidth > label.clientWidth) optionElement.title = option.label;
   };
 
   return (
@@ -46,6 +45,7 @@ const Option = ({
             grouped={isGroupedOption}
             multiple={multiple}
             role={!(typeof option.icon === "string") ? "img" : undefined}
+            aria-hidden={true}
           >
             {typeof option.icon === "string" ? <img src={option.icon} /> : option.icon}
           </OptionIcon>

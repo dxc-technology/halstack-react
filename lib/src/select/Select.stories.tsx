@@ -473,7 +473,7 @@ const SelectListbox = () => {
         <ExampleContainer pseudoState="pseudo-hover">
           <Title title="Hovered option" theme="light" level={4} />
           <Listbox
-            id="x"
+            id="x8"
             currentValue=""
             options={one_option}
             visualFocusIndex={-1}
@@ -489,7 +489,7 @@ const SelectListbox = () => {
         <ExampleContainer pseudoState="pseudo-active">
           <Title title="Active option" theme="light" level={4} />
           <Listbox
-            id="x"
+            id="x9"
             currentValue=""
             options={one_option}
             visualFocusIndex={-1}
@@ -505,7 +505,7 @@ const SelectListbox = () => {
         <ExampleContainer>
           <Title title="Focused option" theme="light" level={4} />
           <Listbox
-            id="x"
+            id="x10"
             currentValue=""
             options={one_option}
             visualFocusIndex={0}
@@ -521,7 +521,7 @@ const SelectListbox = () => {
         <ExampleContainer pseudoState="pseudo-hover">
           <Title title="Hovered selected option" theme="light" level={4} />
           <Listbox
-            id="x"
+            id="x11"
             currentValue="1"
             options={single_options}
             visualFocusIndex={-1}
@@ -537,7 +537,7 @@ const SelectListbox = () => {
         <ExampleContainer pseudoState="pseudo-active">
           <Title title="Active selected option" theme="light" level={4} />
           <Listbox
-            id="x"
+            id="x12"
             currentValue="2"
             options={single_options}
             visualFocusIndex={0}
@@ -554,7 +554,7 @@ const SelectListbox = () => {
         <ExampleContainer>
           <Title title="Icons (SVGs)" theme="light" level={4} />
           <Listbox
-            id="x"
+            id="x13"
             currentValue="3"
             options={icon_options}
             visualFocusIndex={-1}
@@ -570,7 +570,7 @@ const SelectListbox = () => {
         <ExampleContainer>
           <Title title="Icons (Images)" theme="light" level={4} />
           <Listbox
-            id="x"
+            id="x14"
             currentValue="facebook"
             options={url_options}
             visualFocusIndex={-1}
@@ -586,7 +586,7 @@ const SelectListbox = () => {
         <ExampleContainer>
           <Title title="Grouped icons (SVGs)" theme="light" level={4} />
           <Listbox
-            id="x"
+            id="x15"
             currentValue={["0", "3"]}
             options={icon_options_grouped}
             visualFocusIndex={-1}
@@ -602,7 +602,7 @@ const SelectListbox = () => {
         <ExampleContainer>
           <Title title="Grouped icons (Images)" theme="light" level={4} />
           <Listbox
-            id="x"
+            id="x16"
             currentValue={["facebook", "figma"]}
             options={url_options}
             visualFocusIndex={-1}
@@ -622,7 +622,7 @@ const SelectListbox = () => {
           <Title title="Hovered option" theme="light" level={4} />
           <HalstackProvider theme={opinionatedTheme}>
             <Listbox
-              id="x"
+              id="x17"
               currentValue=""
               options={one_option}
               visualFocusIndex={-1}
@@ -640,7 +640,7 @@ const SelectListbox = () => {
           <Title title="Active option" theme="light" level={4} />{" "}
           <HalstackProvider theme={opinionatedTheme}>
             <Listbox
-              id="x"
+              id="x18"
               currentValue=""
               options={one_option}
               visualFocusIndex={-1}
@@ -658,7 +658,7 @@ const SelectListbox = () => {
           <Title title="Focused option" theme="light" level={4} />{" "}
           <HalstackProvider theme={opinionatedTheme}>
             <Listbox
-              id="x"
+              id="x19"
               currentValue=""
               options={one_option}
               visualFocusIndex={0}
@@ -676,7 +676,7 @@ const SelectListbox = () => {
           <Title title="Hovered selected option" theme="light" level={4} />{" "}
           <HalstackProvider theme={opinionatedTheme}>
             <Listbox
-              id="x"
+              id="x20"
               currentValue="1"
               options={single_options}
               visualFocusIndex={-1}
@@ -694,7 +694,7 @@ const SelectListbox = () => {
           <Title title="Active selected option" theme="light" level={4} />{" "}
           <HalstackProvider theme={opinionatedTheme}>
             <Listbox
-              id="x"
+              id="x21"
               currentValue="2"
               options={single_options}
               visualFocusIndex={0}
@@ -713,7 +713,7 @@ const SelectListbox = () => {
           <Title title="Icons (SVGs)" theme="light" level={4} />{" "}
           <HalstackProvider theme={opinionatedTheme}>
             <Listbox
-              id="x"
+              id="x22"
               currentValue="3"
               options={icon_options}
               visualFocusIndex={-1}
