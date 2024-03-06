@@ -31,7 +31,13 @@ const DxcSpinner = ({
             )}
           </BackgroundSpinner>
           {value >= 0 && value <= 100 ? (
-            <Spinner role="progressbar">
+            <Spinner
+              role="progressbar"
+              aria-valuenow={showValue ? value : undefined}
+              aria-valuemin={0}
+              aria-valuemax={100}
+              aria-label={`progress-bar-${label}`}
+            >
               {mode !== "small" && (
                 <SVGSpinner viewBox="0 0 140 140" isDeterminated={true}>
                   <CircleSpinner cx="70" cy="70" r="65" mode={mode} isDeterminated={true} value={value} />

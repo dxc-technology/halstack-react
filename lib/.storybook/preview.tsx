@@ -20,6 +20,11 @@ const preview: Preview = {
             id: "heading-order",
             enabled: false,
           },
+          {
+            // Disable autocomplete valid rule to prevent errors from "nope" which is used on purpose as an invalid autocomplete value
+            id: "autocomplete-valid",
+            enabled: false,
+          },
         ],
       },
       options: {},

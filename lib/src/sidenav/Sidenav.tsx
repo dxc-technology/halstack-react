@@ -58,7 +58,7 @@ const Group = ({ title, collapsable = false, icon, children }: SidenavGroupProps
             selectedGroup={collapsed && isSelected}
           >
             <DxcFlex alignItems="center" gap="0.5rem">
-              {typeof icon === "string" ? <img src={icon} /> : icon}
+              {typeof icon === "string" ? <img src={icon} alt="" aria-hidden="true" /> : icon}
               {title}
             </DxcFlex>
             {collapsed ? icons.collapsedIcon : icons.collapsableIcon}
@@ -66,7 +66,7 @@ const Group = ({ title, collapsable = false, icon, children }: SidenavGroupProps
         ) : (
           title && (
             <SidenavGroupTitle>
-              {typeof icon === "string" ? <img src={icon} /> : icon}
+              {typeof icon === "string" ? <img src={icon} alt="" aria-hidden="true" /> : icon}
               {title}
             </SidenavGroupTitle>
           )
@@ -104,7 +104,7 @@ const Link = forwardRef<HTMLAnchorElement, SidenavLinkPropsType>(
         {...otherProps}
       >
         <DxcFlex alignItems="center" gap="0.5rem">
-          {typeof icon === "string" ? <img src={icon} /> : icon}
+          {typeof icon === "string" ? <img src={icon} alt="" aria-hidden="true" /> : icon}
           {children}
         </DxcFlex>
         {newWindow && icons.externalLinkIcon}

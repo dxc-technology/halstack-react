@@ -30,7 +30,7 @@ const DxcTag = ({
         {labelPosition === "before" && size !== "small" && label && <TagLabel>{label}</TagLabel>}
         {icon && (
           <IconContainer iconBgColor={iconBgColor}>
-            {typeof icon === "string" ? <TagIcon src={icon}></TagIcon> : icon}
+            {typeof icon === "string" ? <TagIcon src={icon} alt={label}></TagIcon> : icon}
           </IconContainer>
         )}
         {labelPosition === "after" && size !== "small" && label && <TagLabel>{label}</TagLabel>}
