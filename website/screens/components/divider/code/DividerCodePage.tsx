@@ -39,7 +39,9 @@ const sections = [
           <tr>
             <td>length</td>
             <td>
-              <TableCode>'fixed' | '30%' | '50%' | '80%' | 'fillParent'</TableCode>
+              <TableCode>
+                'fixed' | '30%' | '50%' | '80%' | 'fillParent'
+              </TableCode>
             </td>
             <td>Modifies the length of the divider.</td>
             <td>
@@ -49,11 +51,24 @@ const sections = [
           <tr>
             <td>color</td>
             <td>
-              <TableCode>'default' | 'darkGrey'</TableCode>
+              <TableCode>'lightGrey' | 'mediumGrey' | 'darkGrey'</TableCode>
             </td>
-            <td>Modifies the color of the divider</td>
+            <td>Modifies the color of the divider.</td>
             <td>
-              <TableCode>'default'</TableCode>
+              <TableCode>'mediumGrey'</TableCode>
+            </td>
+          </tr>
+          <tr>
+            <td>decorative</td>
+            <td>
+              <TableCode>boolean</TableCode>
+            </td>
+            <td>
+              Indicates whether the divider is just a decorative resource or it
+              works as a semantic separator of content.
+            </td>
+            <td>
+              <TableCode>true</TableCode>
             </td>
           </tr>
         </tbody>
