@@ -76,27 +76,23 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Disabled" theme="light" level={4} />
-      <DxcButton label="Primary disabled" disabled icon={iconSVG} />
+      <DxcButton label="Primary disabled" disabled icon="filled_bottom_app_bar" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With left icon" theme="light" level={4} />
-      <DxcButton label="Primary" icon={iconSVG} />
+      <DxcButton label="Primary" icon="filled_bottom_app_bar" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With right icon" theme="light" level={4} />
-      <DxcButton label="Primary" icon={iconSVG} iconPosition="after" />
+      <DxcButton label="Primary" icon="filled_bottom_app_bar" iconPosition="after" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Only icon" theme="light" level={4} />
-      <DxcButton icon={iconSVG} />
+      <DxcButton icon="filled_bottom_app_bar" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Big icon (SVG)" theme="light" level={4} />
       <DxcButton icon={facebookIcon} />
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Big icon (image)" theme="light" level={4} />
-      <DxcButton icon="https://www.freepnglogos.com/uploads/facebook-logo-design-1.png" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Small icon" theme="light" level={4} />
@@ -121,18 +117,11 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Disabled" theme="light" level={4} />
-      <DxcButton mode="secondary" disabled label="Secondary disabled" icon={iconSVG} />
+      <DxcButton mode="secondary" disabled label="Secondary disabled" icon="filled_bottom_app_bar" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With icon" theme="light" level={4} />
-      <DxcButton mode="secondary" label="Secondary" icon={iconSVG} />
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Only icon (image)" theme="light" level={4} />
-      <DxcButton
-        mode="secondary"
-        icon="https://www.freepnglogos.com/uploads/facebook-logo-design-1.png"
-      />
+      <DxcButton mode="secondary" label="Secondary" icon="filled_bottom_app_bar" />
     </ExampleContainer>
     <Title title="Text" theme="light" level={2} />
     <ExampleContainer>
@@ -153,18 +142,11 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Disabled" theme="light" level={4} />
-      <DxcButton mode="text" label="Text disabled" disabled icon={iconSVG} />
+      <DxcButton mode="text" label="Text disabled" disabled icon="filled_bottom_app_bar" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With icon" theme="light" level={4} />
-      <DxcButton label="Text" mode="text" icon={iconSVG} />
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Only icon (image)" theme="light" level={4} />
-      <DxcButton
-        mode="text"
-        icon="https://www.freepnglogos.com/uploads/facebook-logo-design-1.png"
-      />
+      <DxcButton label="Text" mode="text" icon="filled_bottom_app_bar" />
     </ExampleContainer>
     <Title title="Sizes" theme="light" level={2} />
     <ExampleContainer>
@@ -181,19 +163,19 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Medium size icon after" theme="light" level={4} />
-      <DxcButton label="Medium" iconPosition="after" icon={iconSVG} size="medium" />
+      <DxcButton label="Medium" iconPosition="after" icon="filled_bottom_app_bar" size="medium" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Medium size icon before" theme="light" level={4} />
-      <DxcButton label="Medium" iconPosition="before" icon={iconSVG} size="medium" />
+      <DxcButton label="Medium" iconPosition="before" icon="filled_bottom_app_bar" size="medium" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Medium size icon after with ellipsis" theme="light" level={4} />
-      <DxcButton label="Medium" iconPosition="after" icon={iconSVG} size="medium" />
+      <DxcButton label="Medium" iconPosition="after" icon="filled_bottom_app_bar" size="medium" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Medium size icon before with ellipsis" theme="light" level={4} />
-      <DxcButton label="Medium" iconPosition="before" icon={iconSVG} size="medium" />
+      <DxcButton label="Medium" iconPosition="before" icon="filled_bottom_app_bar" size="medium" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Large size" theme="light" level={4} />
@@ -205,19 +187,19 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Large size icon after" theme="light" level={4} />
-      <DxcButton label="LargeSizePrimaryButton" iconPosition="after" icon={iconSVG} size="large" />
+      <DxcButton label="LargeSizePrimaryButton" iconPosition="after" icon="filled_bottom_app_bar" size="large" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Large size icon before" theme="light" level={4} />
-      <DxcButton label="LargeSizePrimaryButton" iconPosition="before" icon={iconSVG} size="large" />
+      <DxcButton label="LargeSizePrimaryButton" iconPosition="before" icon="filled_bottom_app_bar" size="large" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Large size icon after with ellipsis" theme="light" level={4} />
-      <DxcButton label="LargeSizePrimaryButton" iconPosition="after" icon={iconSVG} size="large" />
+      <DxcButton label="LargeSizePrimaryButton" iconPosition="after" icon="filled_bottom_app_bar" size="large" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Large size icon before with ellipsis" theme="light" level={4} />
-      <DxcButton label="LargeSizePrimaryButton" iconPosition="before" icon={iconSVG} size="large" />
+      <DxcButton label="LargeSizePrimaryButton" iconPosition="before" icon="filled_bottom_app_bar" size="large" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="FillParent size" theme="light" level={4} />
@@ -269,75 +251,75 @@ export const Chromatic = () => (
     <ExampleContainer>
       <Title title="Enabled" theme="light" level={4} />
       <HalstackProvider theme={opinionatedTheme}>
-        <DxcButton label="Primary" icon={iconSVG} />
+        <DxcButton label="Primary" icon="filled_bottom_app_bar" />
       </HalstackProvider>
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-hover">
       <Title title="Hovered" theme="light" level={4} />
-      <DxcButton label="Primary hovered" icon={iconSVG} />
+      <DxcButton label="Primary hovered" icon="filled_bottom_app_bar" />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-focus">
       <Title title="Focused" theme="light" level={4} />
-      <DxcButton label="Primary focused" icon={iconSVG} />
+      <DxcButton label="Primary focused" icon="filled_bottom_app_bar" />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-active">
       <Title title="Actived" theme="light" level={4} />
-      <DxcButton label="Primary actived" icon={iconSVG} />
+      <DxcButton label="Primary actived" icon="filled_bottom_app_bar" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Disabled" theme="light" level={4} />
       <HalstackProvider theme={opinionatedTheme}>
-        <DxcButton label="Primary" icon={iconSVG} disabled />
+        <DxcButton label="Primary" icon="filled_bottom_app_bar" disabled />
       </HalstackProvider>
     </ExampleContainer>
     <Title title="Secondary" theme="light" level={3} />
     <ExampleContainer>
       <Title title="Enabled" theme="light" level={4} />
       <HalstackProvider theme={opinionatedTheme}>
-        <DxcButton mode="secondary" label="Secondary" icon={iconSVG} />
+        <DxcButton mode="secondary" label="Secondary" icon="filled_bottom_app_bar" />
       </HalstackProvider>
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-hover">
       <Title title="Hovered" theme="light" level={4} />
-      <DxcButton mode="secondary" label="Secondary hovered" icon={iconSVG} />
+      <DxcButton mode="secondary" label="Secondary hovered" icon="filled_bottom_app_bar" />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-focus">
       <Title title="Focused" theme="light" level={4} />
-      <DxcButton mode="secondary" label="Secondary focused" icon={iconSVG} />
+      <DxcButton mode="secondary" label="Secondary focused" icon="filled_bottom_app_bar" />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-active">
       <Title title="Actived" theme="light" level={4} />
-      <DxcButton mode="secondary" label="Secondary actived" icon={iconSVG} />
+      <DxcButton mode="secondary" label="Secondary actived" icon="filled_bottom_app_bar" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Disabled" theme="light" level={4} />
       <HalstackProvider theme={opinionatedTheme}>
-        <DxcButton mode="secondary" label="Secondary" icon={iconSVG} disabled />
+        <DxcButton mode="secondary" label="Secondary" icon="filled_bottom_app_bar" disabled />
       </HalstackProvider>
     </ExampleContainer>
     <Title title="Text" theme="light" level={3} />
     <ExampleContainer>
       <Title title="Enabled" theme="light" level={4} />
       <HalstackProvider theme={opinionatedTheme}>
-        <DxcButton mode="text" label="Text" icon={iconSVG} />
+        <DxcButton mode="text" label="Text" icon="filled_bottom_app_bar" />
       </HalstackProvider>
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-hover">
       <Title title="Hovered" theme="light" level={4} />
-      <DxcButton mode="text" label="Text hovered" icon={iconSVG} />
+      <DxcButton mode="text" label="Text hovered" icon="filled_bottom_app_bar" />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-focus">
       <Title title="Focused" theme="light" level={4} />
-      <DxcButton mode="text" label="Text focused" icon={iconSVG} />
+      <DxcButton mode="text" label="Text focused" icon="filled_bottom_app_bar" />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-active">
       <Title title="Actived" theme="light" level={4} />
-      <DxcButton mode="text" label="Text actived" icon={iconSVG} />
+      <DxcButton mode="text" label="Text actived" icon="filled_bottom_app_bar" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Disabled" theme="light" level={4} />
       <HalstackProvider theme={opinionatedTheme}>
-        <DxcButton mode="text" label="Text disabled" icon={iconSVG} disabled />
+        <DxcButton mode="text" label="Text disabled" icon="filled_bottom_app_bar" disabled />
       </HalstackProvider>
     </ExampleContainer>
   </>
