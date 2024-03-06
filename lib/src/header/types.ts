@@ -6,13 +6,13 @@ type Props = {
    */
   underlined?: boolean;
   /**
-   * Content showed in the header. Take into account that the component applies styles
+   * Content shown in the header. Take into account that the component applies styles
    * for the first child in the content, so we recommend the use of React.Fragment
    * to be applied correctly. Otherwise, the styles can be modified.
    */
   content?: React.ReactNode;
   /**
-   * Content showed in responsive version. It receives the close menu handler that can
+   * Content shown in responsive version. It receives the close menu handler that can
    * be used to add that functionality when a element is clicked.
    */
   responsiveContent?: (closeHandler: () => void) => React.ReactNode;

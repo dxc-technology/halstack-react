@@ -12,6 +12,7 @@ import SidenavPropsType, {
 import DxcFlex from "../flex/Flex";
 import DxcBleed from "../bleed/Bleed";
 import icons from "./Icons";
+import CoreTokens from "../common/coreTokens";
 
 const DxcSidenav = ({ title, children }: SidenavPropsType): JSX.Element => {
   const colorsTheme = useTheme();
@@ -155,7 +156,7 @@ const SidenavTitle = styled.div`
 const Divider = styled.div`
   width: 100%;
   height: 1px;
-  background-color: #999999;
+  background-color: ${CoreTokens.color_grey_400};
 
   &:last-child {
     display: none;

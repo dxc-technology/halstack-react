@@ -188,7 +188,7 @@ const AccordionLabel = styled.span`
 const IconContainer = styled.span<{ disabled: AccordionPropsType["disabled"] }>`
   display: flex;
   margin-left: ${(props) => props.theme.iconMarginLeft};
-  margin-right: ${(props) => props.theme.iconMarginRigth};
+  margin-right: ${(props) => props.theme.iconMarginRight};
   color: ${(props) => (props.disabled ? props.theme.disabledIconColor : props.theme.iconColor)};
 
   svg,
