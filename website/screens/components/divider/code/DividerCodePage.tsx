@@ -69,8 +69,9 @@ const sections = [
               <TableCode>boolean</TableCode>
             </td>
             <td>
-              Indicates whether the divider is just a decorative resource or it
-              works as a semantic separator of content.
+              Specifies whether the divider serves a purely decorative purpose
+              or functions as a semantic separator for content. Additionally, it
+              determines whether the divider is accessible to screen readers.
             </td>
             <td>
               <TableCode>true</TableCode>
