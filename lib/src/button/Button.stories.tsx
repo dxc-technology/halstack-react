@@ -95,7 +95,7 @@ export const Chromatic = () => (
       <DxcButton icon={facebookIcon} />
     </ExampleContainer>
     <ExampleContainer>
-      <Title title="Small icon" theme="light" level={4} />
+      <Title title="Small icon (SVG)" theme="light" level={4} />
       <DxcButton icon={smallIcon} />
     </ExampleContainer>
     <Title title="Secondary" theme="light" level={2} />
