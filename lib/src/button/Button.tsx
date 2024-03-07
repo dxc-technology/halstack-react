@@ -224,8 +224,8 @@ const LabelContainer = styled.span`
 
 const IconContainer = styled.div`
   display: flex;
+  font-size: 24px;
 
-  img,
   svg {
     height: 24px;
     width: 24px;

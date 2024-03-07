@@ -13,11 +13,13 @@ export const Chromatic = () => (
   <>
     <Title title="Icon component" theme="light" level={2} />
     <ExampleContainer>
-      <DxcIcon icon="home" />
-      <DxcIcon icon="filled_home" />
+      <DxcTypography as="p" fontSize="1.5rem">
+        <DxcIcon icon="home" />
+        <DxcIcon icon="filled_home" />
+      </DxcTypography>
     </ExampleContainer>
     <ExampleContainer>
-      <DxcTypography as="p" color="#b182e3">
+      <DxcTypography as="p" fontSize="1.5rem" color="#b182e3">
         <DxcIcon icon="home" />
         <DxcIcon icon="filled_home" />
       </DxcTypography>
