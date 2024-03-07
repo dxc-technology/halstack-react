@@ -4,6 +4,7 @@ import { AdvancedTheme, spaces } from "../common/variables";
 import { getMargin } from "../common/utils";
 import useTheme from "../useTheme";
 import ButtonPropsType from "./types";
+import DxcIcon from "../icon/Icon";
 
 const DxcButton = ({
   label = "",
@@ -39,7 +40,7 @@ const DxcButton = ({
         margin={margin}
       >
         {label && <LabelContainer>{label}</LabelContainer>}
-        {icon && <IconContainer>{typeof icon === "string" ? <img src={icon} /> : icon}</IconContainer>}
+        {icon && <IconContainer>{typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}</IconContainer>}
       </Button>
     </ThemeProvider>
   );
