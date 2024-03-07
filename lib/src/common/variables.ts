@@ -38,7 +38,7 @@ export const componentTokens = {
     disabledIconColor: CoreTokens.color_grey_500,
     iconSize: "24px",
     iconMarginLeft: "0px",
-    iconMarginRigth: "12px",
+    iconMarginRight: "12px",
     accordionGroupSeparatorBorderColor: CoreTokens.color_grey_200_a,
     accordionGroupSeparatorBorderThickness: "1px",
     accordionGroupSeparatorBorderRadius: "0px",

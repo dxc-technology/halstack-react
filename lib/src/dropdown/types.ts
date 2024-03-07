@@ -56,7 +56,7 @@ type Props = {
    */
   disabled?: boolean;
   /**
-   * If true, the options are showed when the dropdown is hover.
+   * If true, the options are shown when the dropdown is hover.
    */
   expandOnHover?: boolean;
   /**
