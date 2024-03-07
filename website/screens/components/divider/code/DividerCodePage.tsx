@@ -37,7 +37,9 @@ const sections = [
               <TableCode>'regular' | 'strong'</TableCode>
             </td>
             <td>Modifies the thickness of the divider.</td>
-            <td>'regular'</td>
+            <td>
+              <TableCode>'regular'</TableCode>
+            </td>
           </tr>
           <tr>
             <td>length</td>
