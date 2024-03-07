@@ -6,18 +6,7 @@ import useTheme from "../useTheme";
 import AccordionPropsType from "./types";
 import BaseTypography from "../utils/BaseTypography";
 import { v4 as uuidv4 } from "uuid";
-
-const expandLess = (
-  <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" fill="currentColor">
-    <path d="m7.4 15.375-1.4-1.4 6-6 6 6-1.4 1.4-4.6-4.6Z" />
-  </svg>
-);
-
-const expandMore = (
-  <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" fill="currentColor">
-    <path d="m12 15.375-6-6 1.4-1.4 4.6 4.6 4.6-4.6 1.4 1.4Z" />
-  </svg>
-);
+import DxcIcon from "../icon/Icon";
 
 const DxcAccordion = ({
   label = "",
@@ -57,7 +46,7 @@ const DxcAccordion = ({
               <AccordionLabel>
                 {icon && (
                   <IconContainer disabled={disabled}>
-                    {typeof icon === "string" ? <img src={icon} /> : icon}
+                    {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
                   </IconContainer>
                 )}
                 <BaseTypography
@@ -96,7 +85,7 @@ const DxcAccordion = ({
               )}
             </AccordionInfo>
             <CollapseIndicator disabled={disabled}>
-              {isExpanded ?? innerIsExpanded ? expandLess : expandMore}
+              <DxcIcon icon={isExpanded ?? innerIsExpanded ? "expand_less" : "expand_more"} />
             </CollapseIndicator>
           </AccordionTrigger>
         </AccordionHeader>
