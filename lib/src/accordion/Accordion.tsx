@@ -179,9 +179,9 @@ const IconContainer = styled.span<{ disabled: AccordionPropsType["disabled"] }>`
   margin-left: ${(props) => props.theme.iconMarginLeft};
   margin-right: ${(props) => props.theme.iconMarginRight};
   color: ${(props) => (props.disabled ? props.theme.disabledIconColor : props.theme.iconColor)};
+  font-size: 24px;
 
-  svg,
-  img {
+  svg {
     height: ${(props) => props.theme.iconSize};
     width: ${(props) => props.theme.iconSize};
   }
@@ -197,6 +197,7 @@ const CollapseIndicator = styled.span<{ disabled: AccordionPropsType["disabled"]
   display: flex;
   flex-wrap: wrap;
   align-content: center;
+  font-size: 24px;
   color: ${(props) => (props.disabled ? props.theme.disabledArrowColor : props.theme.arrowColor)};
 `;
 
