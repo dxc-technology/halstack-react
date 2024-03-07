@@ -25,6 +25,7 @@ exports.componentsList = [
   { label: "Container", path: "/components/container", status: "Experimental" },
   { label: "Date Input", path: "/components/date-input", status: "Ready" },
   { label: "Dialog", path: "/components/dialog", status: "Ready" },
+  { label: "Divider", path: "/components/divider", status: "Experimental" },
   { label: "Dropdown", path: "/components/dropdown", status: "Ready" },
   { label: "File Input", path: "/components/file-input", status: "Ready" },
   { label: "Flex", path: "/components/flex", status: "Ready" },
