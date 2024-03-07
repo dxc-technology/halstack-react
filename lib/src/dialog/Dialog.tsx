@@ -3,7 +3,6 @@ import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
 import DialogPropsType from "./types";
 import { responsiveSizes } from "../common/variables";
 import useTheme from "../useTheme";
-import { BackgroundColorProvider } from "../BackgroundColorContext";
 import useTranslatedLabels from "../useTranslatedLabels";
 import { createPortal } from "react-dom";
 import FocusLock from "../utils/FocusLock";
@@ -44,17 +43,17 @@ const DxcDialog = ({
     <ThemeProvider theme={colorsTheme.dialog}>
       <BodyStyle />
       {createPortal(
-        <FocusLock>
-          <DialogContainer>
-            {overlay && (
-              <Overlay
-                onClick={() => {
-                  onBackgroundClick?.();
-                }}
-              />
-            )}
-            <Dialog role="dialog" aria-modal={overlay} isCloseVisible={isCloseVisible}>
-              <BackgroundColorProvider color={colorsTheme.dialog.backgroundColor}>{children}</BackgroundColorProvider>
+        <DialogContainer>
+          {overlay && (
+            <Overlay
+              onClick={() => {
+                onBackgroundClick?.();
+              }}
+            />
+          )}
+          <Dialog role="dialog" aria-modal={overlay} isCloseVisible={isCloseVisible}>
+            <FocusLock>
+              {children}
               {isCloseVisible && (
                 <CloseIconAction
                   onClick={() => {
@@ -66,9 +65,9 @@ const DxcDialog = ({
                   {closeIcon}
                 </CloseIconAction>
               )}
-            </Dialog>
-          </DialogContainer>
-        </FocusLock>,
+            </FocusLock>
+          </Dialog>
+        </DialogContainer>,
         document.body
       )}
     </ThemeProvider>

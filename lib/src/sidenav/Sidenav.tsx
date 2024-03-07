@@ -1,9 +1,8 @@
-import React, { forwardRef, useContext, useEffect, useMemo, useState } from "react";
+import React, { forwardRef, useContext, useEffect, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { responsiveSizes } from "../common/variables";
-import { useResponsiveSidenavVisibility } from "../layout/SidenavContext";
+import { useResponsiveSidenavVisibility } from "./SidenavContext";
 import useTheme from "../useTheme";
-import { BackgroundColorProvider } from "../BackgroundColorContext";
 import SidenavPropsType, {
   SidenavGroupPropsType,
   SidenavLinkPropsType,
@@ -13,6 +12,7 @@ import SidenavPropsType, {
 import DxcFlex from "../flex/Flex";
 import DxcBleed from "../bleed/Bleed";
 import icons from "./Icons";
+import CoreTokens from "../common/coreTokens";
 
 const DxcSidenav = ({ title, children }: SidenavPropsType): JSX.Element => {
   const colorsTheme = useTheme();
@@ -20,12 +20,10 @@ const DxcSidenav = ({ title, children }: SidenavPropsType): JSX.Element => {
   return (
     <ThemeProvider theme={colorsTheme.sidenav}>
       <SidenavContainer>
-        <BackgroundColorProvider color={colorsTheme.sidenav.backgroundColor}>
-          {title}
-          <DxcFlex direction="column" gap="1rem">
-            {children}
-          </DxcFlex>
-        </BackgroundColorProvider>
+        {title}
+        <DxcFlex direction="column" gap="1rem">
+          {children}
+        </DxcFlex>
       </SidenavContainer>
     </ThemeProvider>
   );
@@ -158,7 +156,7 @@ const SidenavTitle = styled.div`
 const Divider = styled.div`
   width: 100%;
   height: 1px;
-  background-color: #999999;
+  background-color: ${CoreTokens.color_grey_400};
 
   &:last-child {
     display: none;

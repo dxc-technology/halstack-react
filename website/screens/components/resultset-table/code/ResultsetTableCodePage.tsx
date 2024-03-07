@@ -1,4 +1,9 @@
-import { DxcFlex, DxcTable } from "@dxc-technology/halstack-react";
+import {
+  DxcFlex,
+  DxcLink,
+  DxcParagraph,
+  DxcTable,
+} from "@dxc-technology/halstack-react";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import Code from "@/common/Code";
@@ -6,8 +11,24 @@ import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import basicUsage from "./examples/basicUsage";
 import sortable from "./examples/sortable";
-import TableCode from "@/common/TableCode";
+import TableCode, { ExtendedTableCode } from "@/common/TableCode";
 import StatusTag from "@/common/StatusTag";
+import reduced from "./examples/reduced";
+import Link from "next/link";
+
+const actionsType = `{
+  icon: string | SVG;
+  title: string;
+  onClick: () => void;
+  disabled?: boolean;
+  tabIndex?: number;
+}[] | {
+  title: string;
+  onClick: (value?: string) => void;
+  disabled?: boolean;
+  tabIndex?: number;
+  options: Option[];
+}[]`;
 
 const sections = [
   {
@@ -76,6 +97,31 @@ const sections = [
               </ul>
             </td>
             <td>-</td>
+          </tr>
+          <tr>
+            <td>
+              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                <StatusTag status="Information">New</StatusTag>mode
+              </DxcFlex>
+            </td>
+            <td>
+              <TableCode>'default' | 'reduced'</TableCode>
+            </td>
+            <td>
+              The available table modes:
+              <ul>
+                <li>
+                  <b>default</b>: Default table size.
+                </li>
+                <li>
+                  <b>reduced</b>: More compact table with less spacing for high
+                  density information.
+                </li>
+              </ul>
+            </td>
+            <td>
+              <TableCode>'default'</TableCode>
+            </td>
           </tr>
           <tr>
             <td>showGoToPage</td>
@@ -154,11 +200,75 @@ const sections = [
     ),
   },
   {
+    title: "DxcResultsetTable.ActionsCell",
+    content: (
+      <DxcParagraph>
+        A compound component aimed to be used inside the resultset table's
+        displayValue to display up to three actions.
+      </DxcParagraph>
+    ),
+    subSections: [
+      {
+        title: "Props",
+        content: (
+          <DxcTable>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Description</th>
+                <th>Default</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <DxcFlex
+                    direction="column"
+                    gap="0.25rem"
+                    alignItems="baseline"
+                  >
+                    <StatusTag status="Required">Required</StatusTag>actions
+                  </DxcFlex>
+                </td>
+                <td>
+                  <ExtendedTableCode>{actionsType}</ExtendedTableCode>
+                </td>
+                <td>
+                  <p>
+                    It represents a list of interactuable elements that will
+                    work as buttons or as a dropdown. Those with an{" "}
+                    <TableCode>icon</TableCode> are treated as buttons. If any
+                    element lacks an <TableCode>icon</TableCode> and includes{" "}
+                    <TableCode>options</TableCode>, it is interpreted as a
+                    dropdown. Only the first action with options will be
+                    displayed and only up to 3 actions. In the case of the
+                    dropdown the click function will pass the value assigned to
+                    the option, click{" "}
+                    <Link href="/components/dropdown" passHref legacyBehavior>
+                      <DxcLink>here</DxcLink>
+                    </Link>{" "}
+                    for more details.
+                  </p>
+                </td>
+                <td>-</td>
+              </tr>
+            </tbody>
+          </DxcTable>
+        ),
+      },
+    ],
+  },
+  {
     title: "Examples",
     subSections: [
       {
         title: "Basic usage",
         content: <Example example={basicUsage} defaultIsVisible />,
+      },
+      {
+        title: "Reduced usage",
+        content: <Example example={reduced} defaultIsVisible />,
       },
       {
         title: "Sortable",

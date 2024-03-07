@@ -1,10 +1,5 @@
 import React, { useRef, useState } from "react";
-import {
-  DxcTextarea,
-  DxcButton,
-  BackgroundColorProvider,
-} from "@dxc-technology/halstack-react";
-import styled from "styled-components";
+import { DxcTextarea, DxcButton } from "@dxc-technology/halstack-react";
 
 function App() {
   const ref = useRef(null);
@@ -204,67 +199,8 @@ function App() {
           margin={{ left: "medium" }}
         ></DxcButton>
       </div>
-      <BackgroundColorProvider color="#000000">
-        <Mode mode="dark">
-          <DxcTextarea
-            label="Example label"
-            optional
-            helperText="Example of helper text"
-            placeholder="Placeholder"
-            margin={{
-              left: "medium",
-              top: "small",
-              right: "medium",
-            }}
-          />
-        </Mode>
-        <Mode mode="dark">
-          <DxcTextarea
-            label="Disabled"
-            helperText="Sample text"
-            placeholder="Enter your text here..."
-            disabled
-            verticalGrow="manual"
-            margin={{
-              left: "medium",
-              bottom: "small",
-              top: "small",
-              right: "medium",
-            }}
-          />
-        </Mode>
-        <Mode mode="dark">
-          <DxcTextarea
-            label="Error input"
-            helperText="Example of helper text"
-            placeholder="Enter your text here..."
-            margin={{ left: "medium", bottom: "small", right: "medium" }}
-            error="Error message."
-          />
-        </Mode>
-      </BackgroundColorProvider>
     </>
   );
 }
-
-const Mode = ({ mode, children }) => {
-  return (
-    <ModeContainer mode={mode}>
-      <PreviewsContainer>{children}</PreviewsContainer>
-    </ModeContainer>
-  );
-};
-
-const ModeContainer = styled.div`
-  background-color: ${(props) =>
-    props.mode === "dark" ? "#000000" : "transparent"};
-
-  display: flex;
-  flex-flow: row wrap;
-`;
-
-const PreviewsContainer = styled.div`
-  flex: 100%;
-`;
 
 export default App;

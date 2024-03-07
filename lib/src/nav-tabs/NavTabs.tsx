@@ -1,10 +1,9 @@
-import React, { useState, ReactElement, createContext, useMemo } from "react";
+import React, { useState, ReactElement, useMemo } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme";
-import NavTabsPropsType, { NavTabsContextProps } from "./types";
+import NavTabsPropsType from "./types";
 import DxcTab from "./Tab";
-
-export const NavTabsContext = createContext<NavTabsContextProps | null>(null);
+import { NavTabsContext } from "./NavTabsContext";
 
 const getPropInChild = (child, propName) =>
   child.props
@@ -77,15 +76,26 @@ const DxcNavTabs = ({ iconPosition = "top", tabIndex = 0, children }: NavTabsPro
     <ThemeProvider theme={colorsTheme.navTabs}>
       <NavTabsContainer onKeyDown={handleOnKeyDown} role="tablist" aria-label="Navigation tabs">
         <NavTabsContext.Provider value={contextValue}>{children}</NavTabsContext.Provider>
+        <Underline />
       </NavTabsContainer>
     </ThemeProvider>
   );
 };
 
+const Underline = styled.div`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: ${(props) => props.theme.dividerColor};
+`;
+
 DxcNavTabs.Tab = DxcTab;
 
 const NavTabsContainer = styled.div`
   display: flex;
+  position: relative;
 `;
 
 export default DxcNavTabs;

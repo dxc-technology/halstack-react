@@ -36,7 +36,7 @@ const getFocusableElements = (container: HTMLElement): HTMLElement[] =>
  * @param element: HTMLElement
  * @returns
  */
-const attempFocus = (element: HTMLElement): boolean => {
+const attemptFocus = (element: HTMLElement): boolean => {
   element?.focus();
   return document.activeElement === element;
 };
@@ -47,7 +47,11 @@ const attempFocus = (element: HTMLElement): boolean => {
  */
 const radixPortalContains = (activeElement: Element): boolean => {
   const radixPortals = document.querySelectorAll("[data-radix-portal]");
-  return Array.prototype.slice.call(radixPortals).some((portal) => portal.contains(activeElement));
+  const radixPoppers = document.querySelectorAll("[data-radix-popper-content-wrapper]");
+  return (
+    Array.prototype.slice.call(radixPortals).some((portal) => portal.contains(activeElement)) ||
+    Array.prototype.slice.call(radixPoppers).some((popper) => popper.contains(activeElement))
+  );
 };
 
 /**
@@ -89,17 +93,15 @@ const FocusLock = ({ children }: { children: React.ReactNode }): JSX.Element => 
 
   const focusFirst = useCallback(() => {
     if (focusableElements?.length === 0) childrenContainerRef.current?.focus();
-    else if (focusableElements?.length > 0)
-      for (let i = 0; i < focusableElements.length; i++) if (attempFocus(focusableElements[i])) return;
+    else if (focusableElements?.length > 0) focusableElements.some((element) => attemptFocus(element));
   }, [focusableElements]);
 
   const focusLast = () => {
-    for (let i = focusableElements.length - 1; i >= 0; i--) if (attempFocus(focusableElements[i])) return;
+    focusableElements.reverse().some((element) => attemptFocus(element));
   };
 
-  const focusLock = (event) => {
+  const focusLock = (event: React.KeyboardEvent<HTMLDivElement>) => {
     if (event.key === "Tab") focusableElements.length === 0 && event.preventDefault();
-    else if (event.key === "Tab" && event.key === "Shift") focusableElements.length === 0 && event.preventDefault();
   };
 
   useEffect(() => {
@@ -110,7 +112,12 @@ const FocusLock = ({ children }: { children: React.ReactNode }): JSX.Element => 
   return (
     <>
       <div onFocus={focusLast} tabIndex={0} />
-      <div onKeyDown={focusLock} ref={childrenContainerRef} tabIndex={focusableElements?.length === 0 ? 0 : -1}>
+      <div
+        onKeyDown={focusLock}
+        ref={childrenContainerRef}
+        tabIndex={focusableElements?.length === 0 ? 0 : -1}
+        style={{ outline: "none" }}
+      >
         {children}
       </div>
       <div onFocus={focusFirst} tabIndex={0} />

@@ -102,7 +102,7 @@ const sections = [
   },
 ];
 
-const getRelasesPageSections = (releases: Release[]) => {
+const getReleasesPageSections = (releases: Release[]) => {
   let section: Section = { title: "Release notes", subSections: [] };
   releases?.forEach((release) => {
     section.subSections?.push({
@@ -141,7 +141,7 @@ const Releases = ({ releases }: { releases: Release[] }) => (
     </PageHeading>
     <QuickNavContainerLayout>
       <QuickNavContainer
-        sections={getRelasesPageSections(releases)}
+        sections={getReleasesPageSections(releases)}
         startHeadingLevel={2}
       />
     </QuickNavContainerLayout>

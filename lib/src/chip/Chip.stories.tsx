@@ -199,7 +199,7 @@ const ChipPrefixFocused = () => (
 const ChipSuffixFocused = () => (
   <ExampleContainer>
     <Title title="Chip with suffix" theme="light" level={4} />
-    <DxcChip label="Chip with suffix" suffixIcon="https://icons-for-free.com/download-icon-close+icon-1320184117228553763_512.png" onClickSuffix={() => {}} />
+    <DxcChip label="Chip with suffix" suffixIcon="https://cdn.iconscout.com/icon/free/png-256/free-delete-2902143-2411575.png" onClickSuffix={() => {}} />
   </ExampleContainer>
 );
 

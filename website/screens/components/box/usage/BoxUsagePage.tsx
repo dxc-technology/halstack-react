@@ -20,7 +20,7 @@ const sections = [
           applying the styles in the box container.
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>
-          Box can be reused accros the UI, avoid using different variants in the
+          Box can be reused across the UI, avoid using different variants in the
           same page.
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>
@@ -38,7 +38,7 @@ const sections = [
         <Example example={variants} />
         <DxcParagraph>
           The <Code>shadow-default</Code> and <Code>shadow-high</Code> variants
-          can be used to create clear distictions between sections of content
+          can be used to create clear distinctions between sections of content
           without the use of borders or separators, the <Code>no-shadow</Code>{" "}
           helps in the process of building the layout. Note that when an
           application <Code>background-color</Code> other than white is used,
