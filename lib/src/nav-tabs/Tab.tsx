@@ -5,7 +5,7 @@ import DxcFlex from "../flex/Flex";
 import NavTabsPropsType, { TabProps } from "./types";
 import BaseTypography from "../utils/BaseTypography";
 import useTheme from "../useTheme";
-import { NavTabsContext } from "../layout/NavTabsContext";
+import { NavTabsContext } from "./NavTabsContext";
 
 const DxcTab = forwardRef(
   (

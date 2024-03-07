@@ -11,7 +11,7 @@ import icons from "./Icons";
 import { v4 as uuidv4 } from "uuid";
 import DxcActionIcon from "../action-icon/ActionIcon";
 import DxcFlex from "../flex/Flex";
-import { NumberInputContext } from "../layout/NumberInputContext";
+import { NumberInputContext } from "../number-input/NumberInputContext";
 
 const sizes = {
   small: "240px",

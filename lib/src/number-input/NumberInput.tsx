@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import DxcTextInput from "../text-input/TextInput";
 import NumberInputPropsType, { RefType } from "./types";
-import { NumberInputContext } from "../layout/NumberInputContext";
+import { NumberInputContext } from "./NumberInputContext";
 
 const DxcNumberInput = React.forwardRef<RefType, NumberInputPropsType>(
   (

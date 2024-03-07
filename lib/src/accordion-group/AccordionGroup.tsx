@@ -5,7 +5,7 @@ import { spaces } from "../common/variables";
 import useTheme from "../useTheme";
 import AccordionGroupAccordion from "./AccordionGroupAccordion";
 import AccordionGroupPropsType from "./types";
-import { AccordionGroupAccordionContext } from "../layout/AccordionGroupContext";
+import { AccordionGroupAccordionContext } from "./AccordionGroupContext";
 
 const DxcAccordionGroup = ({
   defaultIndexActive,

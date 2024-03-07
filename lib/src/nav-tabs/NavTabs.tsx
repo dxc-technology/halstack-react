@@ -3,7 +3,7 @@ import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme";
 import NavTabsPropsType from "./types";
 import DxcTab from "./Tab";
-import { NavTabsContext } from "../layout/NavTabsContext";
+import { NavTabsContext } from "./NavTabsContext";
 
 const getPropInChild = (child, propName) =>
   child.props

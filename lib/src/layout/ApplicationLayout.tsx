@@ -6,7 +6,7 @@ import styled from "styled-components";
 import { responsiveSizes } from "../common/variables";
 import layoutIcons from "./Icons";
 import AppLayoutPropsType, { AppLayoutMainPropsType } from "./types";
-import { SidenavContextProvider, useResponsiveSidenavVisibility } from "./SidenavContext";
+import { SidenavContextProvider, useResponsiveSidenavVisibility } from "../sidenav/SidenavContext";
 import useTranslatedLabels from "../useTranslatedLabels";
 
 const year = new Date().getFullYear();

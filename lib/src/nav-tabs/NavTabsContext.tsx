@@ -1,4 +1,4 @@
 import { createContext } from "react";
-import { NavTabsContextProps } from "../nav-tabs/types";
+import { NavTabsContextProps } from "./types";
 
 export const NavTabsContext = createContext<NavTabsContextProps | null>(null);
