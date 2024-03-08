@@ -91,7 +91,9 @@ export const Chromatic = () => (
         <DxcNavTabs.Tab href="#" notificationNumber={120}>
           Tab 3
         </DxcNavTabs.Tab>
-        <DxcNavTabs.Tab href="#">Tab 4</DxcNavTabs.Tab>
+        <DxcNavTabs.Tab href="#" notificationNumber={12}>
+          Tab 4
+        </DxcNavTabs.Tab>
       </DxcNavTabs>
     </ExampleContainer>
     <ExampleContainer>
@@ -140,7 +142,7 @@ export const Chromatic = () => (
         <DxcNavTabs.Tab href="#" icon={iconSVG} notificationNumber={120}>
           Tab 3
         </DxcNavTabs.Tab>
-        <DxcNavTabs.Tab href="#" icon={largeIcon}>
+        <DxcNavTabs.Tab href="#" icon={largeIcon} notificationNumber={12}>
           Tab 4
         </DxcNavTabs.Tab>
       </DxcNavTabs>
@@ -157,7 +159,7 @@ export const Chromatic = () => (
         <DxcNavTabs.Tab href="#" icon={largeIcon} notificationNumber={120}>
           Tab 3
         </DxcNavTabs.Tab>
-        <DxcNavTabs.Tab href="#" icon={iconSVG}>
+        <DxcNavTabs.Tab href="#" icon={iconSVG} notificationNumber={12}>
           Tab 4
         </DxcNavTabs.Tab>
       </DxcNavTabs>
@@ -264,7 +266,7 @@ export const Chromatic = () => (
           <DxcNavTabs.Tab href="#" icon={iconSVG} notificationNumber={120}>
             Tab 3
           </DxcNavTabs.Tab>
-          <DxcNavTabs.Tab href="#" icon={iconSVG}>
+          <DxcNavTabs.Tab href="#" icon={iconSVG} notificationNumber={12}>
             Tab 4
           </DxcNavTabs.Tab>
         </DxcNavTabs>

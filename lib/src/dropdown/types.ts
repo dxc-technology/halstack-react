@@ -14,8 +14,7 @@ export type Option = {
    */
   label?: string;
   /**
-   * Element or path used as the icon that will be placed next to the
-   * option label.
+   * Material Symbol name or SVG element as the icon that will be placed next to the label.
    */
   icon?: string | SVG;
   /**
@@ -35,8 +34,7 @@ type Props = {
    */
   optionsIconPosition?: "before" | "after";
   /**
-   * Element or path used as the icon that will be placed next to the
-   * dropdown label.
+   * Material Symbol name or SVG element as the icon that will be placed next to the label.
    */
   icon?: string | SVG;
   /**
@@ -56,7 +54,7 @@ type Props = {
    */
   disabled?: boolean;
   /**
-   * If true, the options are showed when the dropdown is hover.
+   * If true, the options are shown when the dropdown is hover.
    */
   expandOnHover?: boolean;
   /**
