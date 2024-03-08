@@ -7,20 +7,7 @@ import useTheme from "../useTheme";
 import { v4 as uuidv4 } from "uuid";
 import * as Popover from "@radix-ui/react-popover";
 import DropdownMenu from "./DropdownMenu";
-
-const upArrowIcon = (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M7 14l5-5 5 5z" />
-    <path d="M0 0h24v24H0z" fill="none" />
-  </svg>
-);
-
-const downArrowIcon = (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M7 10l5 5 5-5z" />
-    <path d="M0 0h24v24H0z" fill="none" />
-  </svg>
-);
+import DxcIcon from "../icon/Icon";
 
 const useWidth = (target) => {
   const [width, setWidth] = useState(0);
@@ -199,15 +186,17 @@ const DxcDropdown = ({
               <DropdownTriggerContent>
                 {label && iconPosition === "after" && <DropdownTriggerLabel>{label}</DropdownTriggerLabel>}
                 {icon && (
-                  <DropdownTriggerIcon disabled={disabled} 
-                  // role={typeof icon === "string" ? undefined : "img"}
-                  >
-                    {typeof icon === "string" ? <img src={icon} alt="Dropdown icon" /> : icon}
+                  <DropdownTriggerIcon disabled={disabled} role={typeof icon === "string" ? undefined : "img"}>
+                    {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
                   </DropdownTriggerIcon>
                 )}
                 {label && iconPosition === "before" && <DropdownTriggerLabel>{label}</DropdownTriggerLabel>}
               </DropdownTriggerContent>
-              {!caretHidden && <CaretIcon disabled={disabled}>{isOpen ? upArrowIcon : downArrowIcon}</CaretIcon>}
+              {!caretHidden && (
+                <CaretIcon disabled={disabled}>
+                  <DxcIcon icon={isOpen ? "arrow_drop_up" : "arrow_drop_down"} />{" "}
+                </CaretIcon>
+              )}
             </DropdownTrigger>
           </Popover.Trigger>
           <Popover.Portal>
@@ -320,8 +309,8 @@ const DropdownTriggerLabel = styled.span`
 const DropdownTriggerIcon = styled.span<{ disabled: DropdownPropsType["disabled"] }>`
   display: flex;
   color: ${(props) => (props.disabled ? props.theme.disabledColor : props.theme.buttonIconColor)};
+  font-size: ${(props) => props.theme.buttonIconSize};
 
-  img,
   svg {
     width: ${(props) => props.theme.buttonIconSize};
     height: ${(props) => props.theme.buttonIconSize};
@@ -331,6 +320,7 @@ const DropdownTriggerIcon = styled.span<{ disabled: DropdownPropsType["disabled"
 const CaretIcon = styled.span<{ disabled: DropdownPropsType["disabled"] }>`
   display: flex;
   color: ${(props) => (props.disabled ? props.theme.disabledColor : props.theme.caretIconColor)};
+  font-size: ${(props) => props.theme.caretIconSize};
 
   svg {
     width: ${(props) => props.theme.caretIconSize};
