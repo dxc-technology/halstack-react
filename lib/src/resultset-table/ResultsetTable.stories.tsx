@@ -62,7 +62,7 @@ const actions = [
     ],
   },
   {
-    icon: "https://www.freepnglogos.com/uploads/facebook-logo-design-1.png",
+    icon: "filled_edit",
     title: "icon",
     onClick: () => {},
   },

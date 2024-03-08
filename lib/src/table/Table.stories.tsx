@@ -98,12 +98,12 @@ const actions = [
     ],
   },
   {
-    icon: icon1,
+    icon: "filled_edit",
     title: "icon",
     onClick: () => {},
   },
   {
-    icon: icon1,
+    icon: "filled_delete",
     title: "icon",
     onClick: () => {},
     disabled: true,
