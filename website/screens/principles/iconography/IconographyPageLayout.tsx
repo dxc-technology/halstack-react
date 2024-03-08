@@ -24,7 +24,7 @@ const IconographyPageHeading = ({ children }: { children: React.ReactNode }) => 
           </DxcParagraph>
           <DxcParagraph>
           Icons are used to visually represent commands, common actions, and locations.
-          To facilitate a more widely-used and standardized icon library, the Halstack design library adopts iconography from {" "}
+          o facilitate providing users with a standardized and more widely adopted icon library, the Halstack Design System leverages the {" "}
           <Link
             href="https://fonts.google.com/icons"
             passHref
@@ -32,9 +32,9 @@ const IconographyPageHeading = ({ children }: { children: React.ReactNode }) => 
           >
             <DxcLink>Material Symbols</DxcLink>
           </Link>{" "}
-          , which is the icon library of the {" "}
+          con library. This library contains over three thousand open source symbols implemented as an icon font that is maintained by Google as part of the {" "}
           <Link
-            href="https://app.uxpin.com/design-system/670ac8ca647bace04103/iconography"
+            href="https://m2.material.io/design/iconography/system-icons.html#design-principles"
             passHref
             legacyBehavior
           >
