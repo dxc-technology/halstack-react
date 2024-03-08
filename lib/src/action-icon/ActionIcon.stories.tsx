@@ -19,15 +19,15 @@ export const Chromatic = () => (
   <>
     <Title title="Default" theme="light" level={2} />
     <ExampleContainer>
-      <DxcActionIcon icon={"https://www.freepnglogos.com/uploads/facebook-logo-design-1.png"} title="Favourite" />
+      <DxcActionIcon icon="favorite" title="Favourite" />
     </ExampleContainer>
     <Title title="Disabled" theme="light" level={2} />
     <ExampleContainer>
-      <DxcActionIcon icon={iconSVG} title="Favourite" disabled />
+      <DxcActionIcon icon="favorite" title="Favourite" disabled />
     </ExampleContainer>
     <Title title="Hover" theme="light" level={2} />
     <ExampleContainer pseudoState="pseudo-hover">
-      <DxcActionIcon icon={iconSVG} title="Favourite" />
+      <DxcActionIcon icon="filled_favorite" title="Favourite" />
     </ExampleContainer>
     <Title title="Focus" theme="light" level={2} />
     <ExampleContainer pseudoState="pseudo-focus">
