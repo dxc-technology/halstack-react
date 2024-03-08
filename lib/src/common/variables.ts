@@ -38,7 +38,7 @@ export const componentTokens = {
     disabledIconColor: CoreTokens.color_grey_500,
     iconSize: "24px",
     iconMarginLeft: "0px",
-    iconMarginRigth: "12px",
+    iconMarginRight: "12px",
     accordionGroupSeparatorBorderColor: CoreTokens.color_grey_200_a,
     accordionGroupSeparatorBorderThickness: "1px",
     accordionGroupSeparatorBorderRadius: "0px",
@@ -1034,7 +1034,7 @@ export const componentTokens = {
     errorListDialogBackgroundColor: CoreTokens.color_red_50,
     errorListDialogBorderColor: CoreTokens.color_red_700,
     hoverListOptionBackgroundColor: CoreTokens.color_grey_100,
-    activeListOptionBackgroundColor: CoreTokens.color_grey_300,
+    activeListOptionBackgroundColor: CoreTokens.color_grey_200,
     focusListOptionBorderColor: CoreTokens.color_blue_600,
   },
   toggleGroup: {
