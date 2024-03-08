@@ -29,7 +29,7 @@ export type Row = {
   sortValue?: string;
 };
 
-type Props = {
+type CommonProps = {
   /**
    * An array of objects representing the columns of the table.
    */
@@ -40,9 +40,24 @@ type Props = {
    */
   rows: Row[][];
   /**
-   * If true, paginator will not be displayed.
+   * Size of the margin to be applied to the component. You can pass an object with 'top',
+   * 'bottom', 'left' and 'right' properties in order to specify different margin sizes.
    */
-  hidePaginator?: boolean;
+  margin?: Space | Margin;
+  /**
+   * Value of the tabindex attribute applied to the sortable icon.
+   */
+  tabIndex?: number;
+  /**
+   * Determines the visual style and layout
+   * - "default": The default mode with big spacing
+   * - "reduced": A reduced mode with minimal spacing for dense tables
+   */
+  mode?: "default" | "reduced";
+};
+
+type PaginatedProps = CommonProps & {
+  hidePaginator?: false;
   /**
    * If true, a select component for navigation between pages will be displayed.
    */
@@ -60,21 +75,32 @@ type Props = {
    * option. The value selected will be passed as a parameter.
    */
   itemsPerPageFunction?: (value: number) => void;
-  /**
-   * Size of the margin to be applied to the component. You can pass an object with 'top',
-   * 'bottom', 'left' and 'right' properties in order to specify different margin sizes.
-   */
-  margin?: Space | Margin;
-  /**
-   * Value of the tabindex attribute applied to the sortable icon.
-   */
-  tabIndex?: number;
-  /**
-   * Determines the visual style and layout
-   * - "default": The default mode with big spacing
-   * - "reduced": A reduced mode with minimal spacing for dense tables
-   */
-  mode?: "default" | "reduced";
 };
+
+type NonPaginatedProps = CommonProps & {
+  /**
+   * If true, paginator will not be displayed.
+   */
+  hidePaginator: true;
+  /**
+   * If true, a select component for navigation between pages will be displayed.
+   */
+  showGoToPage?: never;
+  /**
+   * Number of items per page.
+   */
+  itemsPerPage?: never;
+  /**
+   * An array of numbers representing the items per page options.
+   */
+  itemsPerPageOptions?: never;
+  /**
+   * This function will be called when the user selects an item per page
+   * option. The value selected will be passed as a parameter.
+   */
+  itemsPerPageFunction?: never;
+};
+
+type Props = PaginatedProps | NonPaginatedProps;
 
 export default Props;
