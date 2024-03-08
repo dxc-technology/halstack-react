@@ -10,7 +10,7 @@ type Props = {
    */
   title: string;
   /**
-   * Element or path used as the icon that will be placed next to the label.
+   * Material Symbol name or SVG element as the icon that will be placed next to the label.
    */
   icon: string | SVG;
   /**

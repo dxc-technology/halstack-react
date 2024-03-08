@@ -1,3 +1,4 @@
+import { Option } from "../dropdown/types";
 type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
 type Margin = {
   top?: Space;
@@ -7,22 +8,6 @@ type Margin = {
 };
 
 type SVG = React.ReactNode & React.SVGProps<SVGSVGElement>;
-type Option = {
-  /**
-   * Option display value.
-   */
-  label?: string;
-  /**
-   * Element or path used as the icon that will be placed next to the
-   * option label.
-   */
-  icon?: string | SVG;
-  /**
-   * Option inner value.
-   */
-  value: string;
-};
-
 export type DeepPartial<T> = {
   [P in keyof T]?: Partial<T[P]>;
 };
