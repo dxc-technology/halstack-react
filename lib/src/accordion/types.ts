@@ -23,7 +23,7 @@ type Props = {
    */
   isExpanded?: boolean;
   /**
-   * Element or path used as the icon that will be placed next to panel label.
+   * Material Symbol name or SVG element used as the icon that will be placed next to panel label.
    */
   icon?: string | SVG;
   /**
