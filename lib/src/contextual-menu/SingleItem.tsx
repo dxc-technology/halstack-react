@@ -3,7 +3,7 @@ import { ContextualMenuContext } from "./ContextualMenu";
 import ItemAction from "./ItemAction";
 import { SingleItemProps } from "./types";
 
-const SingleItem = ({ id, label, level, icon, slot, onSelect }: SingleItemProps) => {
+const SingleItem = ({ icon, id, label, level, onSelect, slot }: SingleItemProps) => {
   const { selectedItemId, setSelectedItemId } = useContext(ContextualMenuContext);
 
   const handleClick = () => {
@@ -14,12 +14,12 @@ const SingleItem = ({ id, label, level, icon, slot, onSelect }: SingleItemProps)
   return (
     <ItemAction
       aria-selected={selectedItemId === id}
-      selected={selectedItemId === id}
-      onClick={handleClick}
-      level={level}
-      slot={slot}
-      label={label}
       icon={icon}
+      label={label}
+      level={level}
+      onClick={handleClick}
+      selected={selectedItemId === id}
+      slot={slot}
     />
   );
 };

@@ -18,17 +18,17 @@ const GroupItem = ({ items, label, slot, level }: GroupItemProps) => {
   return (
     <>
       <ItemAction
-        level={level}
+        aria-controls={menuId}
+        aria-expanded={isOpen ? true : undefined}
+        aria-haspopup="true"
         icon={isOpen ? icons.arrowUp : icons.arrowDown}
         label={label}
-        selected={isGroupSelected(items, selectedItemId) && !isOpen}
-        slot={slot}
+        level={level}
         onClick={() => {
           setIsOpen((isOpen) => !isOpen);
         }}
-        aria-haspopup="true"
-        aria-controls={menuId}
-        aria-expanded={isOpen ? true : undefined}
+        selected={!isOpen && isGroupSelected(items, selectedItemId)}
+        slot={slot}
       />
       {isOpen && (
         <ItemsList id={menuId}>

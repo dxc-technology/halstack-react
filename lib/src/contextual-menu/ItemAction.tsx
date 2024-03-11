@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import CoreTokens from "../common/coreTokens";
-import { ItemActionProps, SingleItemProps } from "./types";
+import { ItemActionProps } from "./types";
 
-const ItemAction = ({ label, icon, slot, level, selected, ...props }: ItemActionProps) => (
+const ItemAction = ({ icon, label, level, selected, slot, ...props }: ItemActionProps) => (
   <Action level={level} selected={selected} {...props}>
     <Label>
       {icon && <Icon aria-hidden>{typeof icon === "string" ? <img src={icon} /> : icon}</Icon>}
@@ -20,7 +20,7 @@ const ItemAction = ({ label, icon, slot, level, selected, ...props }: ItemAction
   </Action>
 );
 
-const Action = styled.button<{ selected: boolean; level: SingleItemProps["level"] }>`
+const Action = styled.button<{ level: ItemActionProps["level"]; selected: ItemActionProps["selected"]; }>`
   border: none;
   border-radius: 4px;
   width: 100%;

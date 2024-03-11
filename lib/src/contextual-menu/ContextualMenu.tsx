@@ -20,9 +20,9 @@ import MenuItem from "./MenuItem";
 
 export const ContextualMenuContext = createContext<ContextualMenuContextProps | null>(null);
 
+const isGroupItem = (item: ItemType | GroupItemType): item is GroupItemType => "items" in item;
 const isSection = (item: SectionType | Item | GroupItemType): item is SectionType =>
   "items" in item && !("label" in item);
-const isGroupItem = (item: ItemType | GroupItemType): item is GroupItemType => "items" in item;
 
 const addIdToItems = (items: ContextualMenuPropsType["items"]): ItemsPropWithId => {
   let accId = 0;
@@ -81,13 +81,11 @@ const Menu = styled.ul`
   border: 1px solid ${CoreTokens.color_grey_200};
   border-radius: 0.25rem;
   padding: ${CoreTokens.spacing_16} ${CoreTokens.spacing_8};
-
   display: grid;
   gap: ${CoreTokens.spacing_4};
   min-width: 248px;
   max-height: 100%;
   background-color: ${CoreTokens.color_white};
-
   overflow-y: auto;
   &::-webkit-scrollbar {
     width: 8px;
