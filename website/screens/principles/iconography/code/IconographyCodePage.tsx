@@ -5,6 +5,7 @@ import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import { DxcFlex } from "@dxc-technology/halstack-react";
 import buttonExample from "./examples/ButtonExample";
+import actionExample from "./examples/ActionIconExample";
 import Example from "@/common/example/Example";
 
 const sections = [
@@ -14,6 +15,10 @@ const sections = [
       {
         title: "Icons in Buttons",
         content: <Example example={buttonExample} defaultIsVisible />,
+      },
+      {
+        title: "ActionIcon with Filled Icon",
+        content: <Example example={actionExample} defaultIsVisible />,
       }
     ]
   },
