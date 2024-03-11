@@ -2,7 +2,7 @@ import React from "react";
 import Title from "../../.storybook/components/Title";
 import DxcContextualMenu from "./ContextualMenu";
 import DxcContainer from "../container/Container";
-import MenuItemAction from "./MenuItemAction";
+import SingleItem from "./SingleItem";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 
 export default {
@@ -31,6 +31,28 @@ const sections = [
   },
   {
     items: [{ label: "Approved locations" }, { label: "Approved locations" }, { label: "Approved locations" }],
+  },
+];
+
+const groupItems = [
+  {
+    title: "Section",
+    items: [
+      {
+        label: "Item 1",
+        items: [
+          { label: "Item 1.1", icon: key_icon },
+          {
+            label: "Item 1.2",
+            items: [{ label: "Item 1.2.1", icon: fav_icon, slot: <DxcContextualMenu.Badge color="purple" label="Experimental" /> }, { label: "Item 1.2.2" }],
+          },
+        ],
+      },
+      { label: "Item 2" },
+    ],
+  },
+  {
+    items: [{ label: "Item 3" }, { label: "Item 4" }],
   },
 ];
 
@@ -115,10 +137,16 @@ export const Chromatic = () => (
         <DxcContextualMenu items={sections} />
       </DxcContainer>
     </ExampleContainer>
+    <Title title="With group items" theme="light" level={3} />
+    <ExampleContainer>
+      <DxcContainer width="300px">
+        <DxcContextualMenu items={groupItems} />
+      </DxcContainer>
+    </ExampleContainer>
     <Title title="With icons" theme="light" level={3} />
     <ExampleContainer>
       <DxcContainer width="300px">
-        <DxcContextualMenu items={itemsWithIcon} defaultSelectedItemIndex={0} />
+        <DxcContextualMenu items={itemsWithIcon} />
       </DxcContainer>
     </ExampleContainer>
     <Title title="With slot" theme="light" level={3} />
@@ -148,35 +176,35 @@ export const Chromatic = () => (
   </>
 );
 
-export const MenuItemStates = () => (
-  <>
+export const SingleItemStates = () => (
+  <DxcContainer width="300px">
     <Title title="Default" theme="light" level={3} />
     <ExampleContainer>
-      <MenuItemAction {...items[0]} selected={false} />
+      <SingleItem {...items[0]} id={0} level={0} />
     </ExampleContainer>
     <Title title="Focus" theme="light" level={3} />
     <ExampleContainer pseudoState="pseudo-focus">
-      <MenuItemAction {...items[0]} selected={false} />
+      <SingleItem {...items[0]} id={0} level={0} />
     </ExampleContainer>
     <Title title="Hover" theme="light" level={3} />
     <ExampleContainer pseudoState="pseudo-hover">
-      <MenuItemAction {...items[0]} selected={false} />
+      <SingleItem {...items[0]} id={0} level={0} />
     </ExampleContainer>
     <Title title="Active" theme="light" level={3} />
     <ExampleContainer pseudoState="pseudo-active">
-      <MenuItemAction {...items[0]} selected={false} />
+      <SingleItem {...items[0]} id={0} level={0} />
     </ExampleContainer>
-    <Title title="Selected" theme="light" level={3} />
+    <Title title="" theme="light" level={3} />
     <ExampleContainer>
-      <MenuItemAction {...items[0]} selected />
+      <SingleItem {...items[0]} id={0} level={0} />
     </ExampleContainer>
-    <Title title="Selected hover" theme="light" level={3} />
+    <Title title=" hover" theme="light" level={3} />
     <ExampleContainer pseudoState="pseudo-hover">
-      <MenuItemAction {...items[0]} selected />
+      <SingleItem {...items[0]} id={0} level={0} />
     </ExampleContainer>
-    <Title title="Selected active" theme="light" level={3} />
+    <Title title=" active" theme="light" level={3} />
     <ExampleContainer pseudoState="pseudo-active">
-      <MenuItemAction {...items[0]} selected />
+      <SingleItem {...items[0]} id={0} level={0} />
     </ExampleContainer>
-  </>
+  </DxcContainer>
 );

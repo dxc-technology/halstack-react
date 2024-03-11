@@ -1,46 +1,76 @@
-import React, { useState, Fragment } from "react";
+import React, { Fragment, createContext, useMemo, useState } from "react";
 import styled from "styled-components";
 import CoreTokens from "../common/coreTokens";
-import MenuPropsType, { Item, Section as SectionType, BadgeProps as BadgePropsType } from "./types";
+import ContextualMenuPropsType, {
+  Item,
+  Section as SectionType,
+  BadgeProps,
+  ContextualMenuContextProps,
+  Item as ItemType,
+  GroupItem as GroupItemType,
+  GroupItemWithId,
+  ItemWithId,
+  SectionWithId,
+  ItemsPropWithId,
+} from "./types";
 import DxcBadge from "../badge/Badge";
-import MenuItemAction from "./MenuItemAction";
+import DxcDivider from "../divider/Divider";
+import DxcInset from "../inset/Inset";
+import MenuItem from "./MenuItem";
 
-const DxcContextualMenu = ({ items, defaultSelectedItemIndex = -1 }: MenuPropsType) => {
-  const [selectedItemIndex, setSelectedItemIndex] = useState<number>(defaultSelectedItemIndex);
+export const ContextualMenuContext = createContext<ContextualMenuContextProps | null>(null);
 
-  const renderSingleItem = (item: Item, index: number) => (
-    <Li key={`option-${index}`} role="menuitem">
-      <MenuItemAction
-        {...item}
-        selected={selectedItemIndex === index}
-        onSelect={() => {
-          setSelectedItemIndex(index);
-          item.onSelect?.();
-        }}
-      />
-    </Li>
-  );
+const isSection = (item: SectionType | Item | GroupItemType): item is SectionType =>
+  "items" in item && !("label" in item);
+const isGroupItem = (item: ItemType | GroupItemType): item is GroupItemType => "items" in item;
 
-  let accLength = 0;
-  const renderSection = (section: SectionType, currentSectionIndex: number, items: SectionType[]) => {
-    const startingIndex = accLength;
-    accLength += section.items.length;
-    return (
-      <Fragment key={`separator-${currentSectionIndex}`}>
-        <Li role="group">
-          {section.title != null && <Title>{section.title}</Title>}
-          <Section>{section.items.map((item, index) => renderSingleItem(item, startingIndex + index))}</Section>
-        </Li>
-        {currentSectionIndex !== items.length - 1 && <Divider aria-hidden />}
-      </Fragment>
+const addIdToItems = (items: ContextualMenuPropsType["items"]): ItemsPropWithId => {
+  let accId = 0;
+  const innerAddIdToItems = (items: ContextualMenuPropsType["items"]) => {
+    return items.map((item) =>
+      isSection(item)
+        ? { ...item, items: innerAddIdToItems(item.items) }
+        : isGroupItem(item)
+        ? { ...item, items: innerAddIdToItems(item.items) }
+        : { ...item, id: accId++ }
     );
   };
+  return innerAddIdToItems(items);
+};
+
+const DxcContextualMenu = ({ items }: ContextualMenuPropsType) => {
+  const [selectedItemId, setSelectedItemId] = useState(-1);
+  const itemsWithId = useMemo(() => addIdToItems(items), [items]);
+
+  const renderSection = (section: SectionWithId, currentSectionIndex: number, length: number) => (
+    <Fragment key={`section-${currentSectionIndex}`}>
+      <li role="group">
+        {section.title != null && <Title>{section.title}</Title>}
+        <Section>
+          {section.items.map((item) => (
+            <MenuItem item={item} />
+          ))}
+        </Section>
+      </li>
+      {currentSectionIndex !== length - 1 && (
+        <DxcInset top="0.25rem" bottom="0.25rem">
+          <DxcDivider color="lightGrey" decorative />
+        </DxcInset>
+      )}
+    </Fragment>
+  );
 
   return (
     <Menu role="menu">
-      {items.map((item: Item | SectionType, index: number, items: MenuPropsType["items"]) =>
-        "items" in item ? renderSection(item, index, items as SectionType[]) : renderSingleItem(item, index)
-      )}
+      <ContextualMenuContext.Provider value={{ selectedItemId, setSelectedItemId }}>
+        {itemsWithId.map((item: GroupItemWithId | ItemWithId | SectionWithId, index: number) =>
+          "items" in item && !("label" in item) ? (
+            renderSection(item, index, itemsWithId.length)
+          ) : (
+            <MenuItem item={item} />
+          )
+        )}
+      </ContextualMenuContext.Provider>
     </Menu>
   );
 };
@@ -73,10 +103,6 @@ const Menu = styled.ul`
   }
 `;
 
-const Li = styled.li`
-  display: grid;
-`;
-
 const Section = styled.ul`
   list-style: none;
   margin: 0;
@@ -93,19 +119,8 @@ const Title = styled.h2`
   font-size: ${CoreTokens.type_scale_03};
   font-weight: ${CoreTokens.type_semibold};
   line-height: 24px;
-
-  & + ul > li > button {
-    padding-left: ${CoreTokens.spacing_12} !important;
-  }
 `;
 
-const Divider = styled.hr`
-  margin: ${CoreTokens.spacing_4} 0;
-  border: none;
-  height: 1px;
-  background: ${CoreTokens.color_grey_200};
-`;
-
-DxcContextualMenu.Badge = (props: BadgePropsType) => <DxcBadge {...props} size="small" />;
+DxcContextualMenu.Badge = (props: BadgeProps) => <DxcBadge {...props} size="small" />;
 
 export default DxcContextualMenu;

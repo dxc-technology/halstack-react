@@ -1,10 +1,9 @@
-import React from "react";
 import styled from "styled-components";
 import CoreTokens from "../common/coreTokens";
-import { MenuItemActionProps } from "./types";
+import { ItemActionProps, SingleItemProps } from "./types";
 
-const MenuItemAction = ({ label, icon, slot, selected, onSelect }: MenuItemActionProps) => (
-  <Action aria-selected={selected} selected={selected} onClick={() => onSelect()}>
+const ItemAction = ({ label, icon, slot, level, selected, ...props }: ItemActionProps) => (
+  <Action level={level} selected={selected} {...props}>
     <Label>
       {icon && <Icon aria-hidden>{typeof icon === "string" ? <img src={icon} /> : icon}</Icon>}
       <Text
@@ -20,10 +19,14 @@ const MenuItemAction = ({ label, icon, slot, selected, onSelect }: MenuItemActio
   </Action>
 );
 
-const Action = styled.button<{ selected?: boolean }>`
+const Action = styled.button<{ selected: boolean; level: SingleItemProps["level"] }>`
   border: none;
   border-radius: 4px;
-  padding: ${CoreTokens.spacing_4} ${CoreTokens.spacing_8};
+  width: 100%;
+  padding: ${(props) =>
+    `${CoreTokens.spacing_4} ${CoreTokens.spacing_8} ${CoreTokens.spacing_4} ${`
+    calc(${CoreTokens.spacing_8} + (${CoreTokens.spacing_24} * ${props.level}))
+  `};`};
   box-shadow: inset 0 0 0 2px transparent;
   display: flex;
   align-items: center;
@@ -79,4 +82,4 @@ const Icon = styled.span`
   height: 16px;
 `;
 
-export default React.memo(MenuItemAction);
+export default ItemAction;
