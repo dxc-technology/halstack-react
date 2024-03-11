@@ -62,7 +62,7 @@ const actions = [
     ],
   },
   {
-    icon: "https://www.freepnglogos.com/uploads/facebook-logo-design-1.png",
+    icon: "filled_edit",
     title: "icon",
     onClick: () => {},
   },
@@ -259,6 +259,10 @@ export const Chromatic = () => (
     <ExampleContainer>
       <Title title="Scroll resultset table" theme="light" level={4} />
       <DxcResultsetTable columns={longColumns} rows={longRows} />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Without paginator" theme="light" level={4} />
+      <DxcResultsetTable columns={columns} rows={rows} hidePaginator />
     </ExampleContainer>
     <ExampleContainer>
       <SmallContainer>
