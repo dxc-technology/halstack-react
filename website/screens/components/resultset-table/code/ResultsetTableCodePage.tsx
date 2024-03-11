@@ -238,10 +238,14 @@ const sections = [
                   <p>
                     It represents a list of interactuable elements that will
                     work as buttons or as a dropdown. Those with an{" "}
-                    <TableCode>icon</TableCode> are treated as buttons. If any
-                    element lacks an <TableCode>icon</TableCode> and includes{" "}
-                    <TableCode>options</TableCode>, it is interpreted as a
-                    dropdown. Only the first action with options will be
+                    <TableCode>icon</TableCode> from{" "}
+                    <DxcLink newWindow href="https://fonts.google.com/icons">
+                      Material Symbols
+                    </DxcLink>{" "}
+                    or a <TableCode>SVG</TableCode> are treated as buttons. If
+                    any element lacks an <TableCode>icon</TableCode> and
+                    includes <TableCode>options</TableCode>, it is interpreted
+                    as a dropdown. Only the first action with options will be
                     displayed and only up to 3 actions. In the case of the
                     dropdown the click function will pass the value assigned to
                     the option, click{" "}
