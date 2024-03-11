@@ -39,7 +39,7 @@ const DxcAlert = ({
               {(type === "info" && <DxcIcon icon="filled_info" />) ||
                 (type === "confirm" && <DxcIcon icon="filled_check_circle" />) ||
                 (type === "warning" && <DxcIcon icon="filled_warning" />) ||
-                (type === "error" && <DxcIcon icon="filled_error" />)}
+                (type === "error" && <DxcIcon icon="filled_cancel" />)}
             </AlertIcon>
             <AlertText>
               <AlertTitle>{getTypeText()}</AlertTitle>
