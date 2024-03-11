@@ -1,10 +1,9 @@
 import { DxcTable, DxcInset } from "@dxc-technology/halstack-react";
-import { deleteIcon } from "./Icons";
 
 const code = `() => {
   const actions = [
     {
-      icon: deleteIcon,
+      icon: "delete",
       title: "icon",
       onClick: () => {},
     },
@@ -58,7 +57,6 @@ const code = `() => {
 const scope = {
   DxcTable,
   DxcInset,
-  deleteIcon,
 };
 
 export default { code, scope };
