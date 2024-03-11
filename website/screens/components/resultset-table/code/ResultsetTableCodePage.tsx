@@ -15,6 +15,7 @@ import TableCode, { ExtendedTableCode } from "@/common/TableCode";
 import StatusTag from "@/common/StatusTag";
 import reduced from "./examples/reduced";
 import Link from "next/link";
+import paginatorHidden from "./examples/paginatorHidden";
 
 const actionsType = `{
   icon: string | SVG;
@@ -121,6 +122,20 @@ const sections = [
             </td>
             <td>
               <TableCode>'default'</TableCode>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                <StatusTag status="Information">New</StatusTag>hidePaginator
+              </DxcFlex>
+            </td>
+            <td>
+              <TableCode>boolean</TableCode>
+            </td>
+            <td>If true, paginator will not be displayed.</td>
+            <td>
+              <TableCode>false</TableCode>
             </td>
           </tr>
           <tr>
@@ -273,6 +288,10 @@ const sections = [
       {
         title: "Sortable",
         content: <Example example={sortable} defaultIsVisible />,
+      },
+      {
+        title: "No paginator",
+        content: <Example example={paginatorHidden} defaultIsVisible />,
       },
     ],
   },
