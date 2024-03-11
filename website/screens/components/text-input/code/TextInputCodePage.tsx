@@ -98,7 +98,7 @@ const sections = [
                   an icon from{" "}
                   <DxcLink newWindow href="https://fonts.google.com/icons">
                     Material Symbols
-                  </DxcLink>
+                  </DxcLink>{" "}
                   (string) or a SVG component.
                 </li>
                 <li>
