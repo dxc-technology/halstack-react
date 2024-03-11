@@ -1,7 +1,7 @@
-import { SingleItemProps } from "./types";
-import { useContext } from "react";
+import React, { useContext } from "react";
 import { ContextualMenuContext } from "./ContextualMenu";
 import ItemAction from "./ItemAction";
+import { SingleItemProps } from "./types";
 
 const SingleItem = ({ id, label, level, icon, slot, onSelect }: SingleItemProps) => {
   const { selectedItemId, setSelectedItemId } = useContext(ContextualMenuContext);

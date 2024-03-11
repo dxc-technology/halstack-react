@@ -1,3 +1,5 @@
+import React from "react";
+
 const arrowUp = (
   <svg role="img" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
     <path d="M0 0h24v24H0V0z" fill="none" />
