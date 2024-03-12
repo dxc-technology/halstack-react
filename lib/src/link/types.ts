@@ -17,7 +17,7 @@ export type LinkProps = {
    */
   inheritColor?: boolean;
   /**
-   * Element or path used as the icon that will be placed next to the link text.
+   * Material Symbol name or SVG element as the icon that will be placed next to the link text.
    */
   icon?: string | SVG;
   /**
