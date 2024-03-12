@@ -10,7 +10,7 @@ const code = `() => {
 
   const actions = [
     {
-      icon: "delete",
+      icon: "filled_delete",
       title: "icon",
       onClick: () => {},
     },
@@ -74,7 +74,7 @@ const code = `() => {
       <DxcResultsetTable
         columns={columns}
         rows={rows}
-        mode="reduced"
+        hidePaginator={true}
       ></DxcResultsetTable>
     </DxcInset>
   );

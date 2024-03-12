@@ -35,7 +35,7 @@ const actionLargeIconSVG = {
 
 const actionLargeIconURL = {
   onClick: () => {},
-  icon: "https://iconape.com/wp-content/files/yd/367773/svg/logo-linkedin-logo-icon-png-svg.png",
+  icon: "search",
 };
 
 const country = ["Afghanistan"];

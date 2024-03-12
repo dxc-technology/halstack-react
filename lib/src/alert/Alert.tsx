@@ -5,42 +5,7 @@ import { getMargin } from "../common/utils";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
 import AlertPropsType from "./types";
-
-const alertIcons = {
-  close: (
-    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
-      <path d="M0 0h24v24H0z" fill="none" />
-    </svg>
-  ),
-  info: (
-    <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M0 0h24v24H0z" fill="none" />
-      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" />
-    </svg>
-  ),
-  success: (
-    <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M0 0h24v24H0z" fill="none" />
-      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
-    </svg>
-  ),
-  warning: (
-    <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M0 0h24v24H0z" fill="none" />
-      <path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z" />
-    </svg>
-  ),
-  error: (
-    <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24" fill="currentColor">
-      <path
-        d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z"
-        fill="currentColor"
-      />
-      <path d="M0 0h24v24H0z" fill="none" />
-    </svg>
-  ),
-};
+import DxcIcon from "../icon/Icon";
 
 const DxcAlert = ({
   type = "info",
@@ -71,10 +36,10 @@ const DxcAlert = ({
         <AlertContainer mode={mode} type={type} margin={margin} size={size}>
           <AlertInfo>
             <AlertIcon type={type}>
-              {(type === "info" && alertIcons.info) ||
-                (type === "confirm" && alertIcons.success) ||
-                (type === "warning" && alertIcons.warning) ||
-                (type === "error" && alertIcons.error)}
+              {(type === "info" && <DxcIcon icon="filled_info" />) ||
+                (type === "confirm" && <DxcIcon icon="filled_check_circle" />) ||
+                (type === "warning" && <DxcIcon icon="filled_warning" />) ||
+                (type === "error" && <DxcIcon icon="filled_cancel" />)}
             </AlertIcon>
             <AlertText>
               <AlertTitle>{getTypeText()}</AlertTitle>
@@ -82,8 +47,8 @@ const DxcAlert = ({
               <AlertInlineText>{inlineText}</AlertInlineText>
             </AlertText>
             {onClose && (
-              <AlertCloseAction onClick={onClose} tabIndex={tabIndex} aria-label="Close Alert">
-                {alertIcons.close}
+              <AlertCloseAction onClick={onClose} tabIndex={tabIndex}>
+                <DxcIcon icon="close" />
               </AlertCloseAction>
             )}
           </AlertInfo>
@@ -221,10 +186,7 @@ const AlertIcon = styled.span<{ type: AlertPropsType["type"] }>`
     (props.type === "warning" && props.theme.warningIconColor) ||
     (props.type === "error" && props.theme.errorIconColor)};
 
-  svg {
-    width: ${(props) => props.theme.iconSize};
-    height: ${(props) => props.theme.iconSize};
-  }
+  font-size: ${(props) => props.theme.iconSize};
 `;
 
 const AlertText = styled.div`
@@ -246,8 +208,10 @@ const AlertCloseAction = styled.button`
   display: flex;
   flex-wrap: wrap;
   align-content: center;
+  justify-content: center;
   height: 24px;
   width: 24px;
+  font-size: 20px;
   border: 1px solid transparent;
   border-radius: 2px;
   box-shadow: 0 0 0 2px transparent;

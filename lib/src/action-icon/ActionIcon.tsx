@@ -2,6 +2,7 @@ import React from "react";
 import ActionIconPropsTypes, { RefType } from "./types";
 import styled from "styled-components";
 import CoreTokens from "../common/coreTokens";
+import DxcIcon from "../icon/Icon";
 
 const DxcActionIcon = React.forwardRef<RefType, ActionIconPropsTypes>(
   ({ disabled = false, title, icon, onClick, tabIndex }, ref): JSX.Element => {
@@ -18,7 +19,7 @@ const DxcActionIcon = React.forwardRef<RefType, ActionIconPropsTypes>(
         type="button"
         ref={ref}
       >
-        {typeof icon === "string" ? <img src={icon} alt="Action Icon" /> : icon}
+        {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
       </ActionIcon>
     );
   }
@@ -33,6 +34,7 @@ const ActionIcon = styled.button`
   border-radius: 2px;
   width: 24px;
   height: 24px;
+  font-size: 16px;
   padding: 0px;
   ${(props) => (props.disabled ? `cursor: not-allowed;` : `cursor: pointer;`)}
 
@@ -65,7 +67,7 @@ const ActionIcon = styled.button`
       }
     `}
 
-  img, svg {
+  svg {
     width: 16px;
     height: 16px;
   }
