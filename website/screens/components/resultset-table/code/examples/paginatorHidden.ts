@@ -1,5 +1,4 @@
 import { DxcResultsetTable, DxcInset } from "@dxc-technology/halstack-react";
-import { deleteIcon } from "./Icons";
 
 const code = `() => {
   const columns = [
@@ -11,7 +10,7 @@ const code = `() => {
 
   const actions = [
     {
-      icon: deleteIcon,
+      icon: "filled_delete",
       title: "icon",
       onClick: () => {},
     },
@@ -84,7 +83,6 @@ const code = `() => {
 const scope = {
   DxcResultsetTable,
   DxcInset,
-  deleteIcon,
 };
 
 export default { code, scope };
