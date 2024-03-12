@@ -29,9 +29,17 @@ jobs:
           registry-url: https://registry.npmjs.org/
 
       - name: Publish to Chromatic
+        id: chromatic_publish
         uses: chromaui/action@v1
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           exitOnceUploaded: true
           exitZeroOnChanges: true
           workingDir: lib
+      # - name: Run Storybook Tests
+      #   run: |
+      #     cd lib
+      #     npx playwright install --with-deps
+      #     npm run storybook:accessibility
+      #   env:
+      #     TARGET_URL: "${{ steps.chromatic_publish.outputs.storybookUrl }}"

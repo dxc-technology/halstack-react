@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import dayjs from "dayjs";
 import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme";

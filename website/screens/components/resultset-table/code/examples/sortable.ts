@@ -3,7 +3,6 @@ import {
   DxcButton,
   DxcInset,
 } from "@dxc-technology/halstack-react";
-import { deleteIcon } from "./Icons";
 
 const code = `() => {
   const showName = () => {
@@ -24,19 +23,19 @@ const code = `() => {
       { displayValue: "001", sortValue: "001" },
       { displayValue: showName(), sortValue: sortName() },
       { displayValue: "Miami", sortValue: "Miami" },
-      { displayValue: <DxcButton icon={deleteIcon} /> },
+      { displayValue: <DxcButton icon="delete" /> },
     ],
     [
       { displayValue: "002", sortValue: "002" },
       { displayValue: "Louis", sortValue: "Louis" },
       { displayValue: "London", sortValue: "London" },
-      { displayValue: <DxcButton icon={deleteIcon} /> },
+      { displayValue: <DxcButton icon="delete" /> },
     ],
     [
       { displayValue: "003", sortValue: "003" },
       { displayValue: "Lana", sortValue: "Lana" },
       { displayValue: "Amsterdam", sortValue: "Amsterdam" },
-      { displayValue: <DxcButton icon={deleteIcon} /> },
+      { displayValue: <DxcButton icon="delete" /> },
     ],
   ];
 
@@ -51,7 +50,6 @@ const scope = {
   DxcResultsetTable,
   DxcButton,
   DxcInset,
-  deleteIcon,
 };
 
 export default { code, scope };
