@@ -10,7 +10,7 @@ const social = [
   {
     href: "https://www.linkedin.com/company/dxctechnology",
     logo: (
-      <svg version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 438.536 438.536" fill="currentColor">
+      <svg version="1.1" x="0px" y="0px" viewBox="0 0 438.536 438.536" fill="currentColor">
         <g>
           <path
             d="M414.41,24.123C398.333,8.042,378.963,0,356.315,0H82.228C59.58,0,40.21,8.042,24.126,24.123
@@ -48,7 +48,6 @@ const social = [
     logo: (
       <svg
         version="1.1"
-        id="Capa_1"
         x="0px"
         y="0px"
         viewBox="0 0 438.536 438.536"
