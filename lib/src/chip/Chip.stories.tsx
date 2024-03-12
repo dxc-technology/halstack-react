@@ -64,20 +64,11 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Chip with prefix (SVG) and suffix (URL)" theme="light" level={4} />
-      <DxcChip
-        label="Chip with prefix and suffix"
-        prefixIcon={iconSVG}
-        suffixIcon="https://upload.wikimedia.org/wikipedia/commons/e/e0/Check_green_icon.svg"
-      />
+      <DxcChip label="Chip with prefix and suffix" prefixIcon={iconSVG} suffixIcon="filled_check_circle" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Disabled chip" theme="light" level={4} />
-      <DxcChip
-        label="Disabled"
-        disabled
-        prefixIcon={iconSVG}
-        suffixIcon="https://upload.wikimedia.org/wikipedia/commons/e/e0/Check_green_icon.svg"
-      />
+      <DxcChip label="Disabled" disabled prefixIcon={iconSVG} suffixIcon="filled_check_circle" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Chip with ellipsis" theme="light" level={4} />
@@ -146,22 +137,13 @@ export const Chromatic = () => (
     <ExampleContainer>
       <Title title="Chip with prefix and suffix" theme="light" level={4} />
       <HalstackProvider theme={opinionatedTheme}>
-        <DxcChip
-          label="Chip"
-          prefixIcon={iconSVG}
-          suffixIcon="https://upload.wikimedia.org/wikipedia/commons/e/e0/Check_green_icon.svg"
-        />
+        <DxcChip label="Chip" prefixIcon={iconSVG} suffixIcon="filled_check_circle" />
       </HalstackProvider>
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Chip with prefix and suffix" theme="light" level={4} />
       <HalstackProvider theme={opinionatedTheme}>
-        <DxcChip
-          label="Chip"
-          disabled
-          prefixIcon={iconSVG}
-          suffixIcon="https://upload.wikimedia.org/wikipedia/commons/e/e0/Check_green_icon.svg"
-        />
+        <DxcChip label="Chip" disabled prefixIcon={iconSVG} suffixIcon="filled_check_circle" />
       </HalstackProvider>
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-hover">
@@ -199,7 +181,7 @@ const ChipPrefixFocused = () => (
 const ChipSuffixFocused = () => (
   <ExampleContainer>
     <Title title="Chip with suffix" theme="light" level={4} />
-    <DxcChip label="Chip with suffix" suffixIcon="https://cdn.iconscout.com/icon/free/png-256/free-delete-2902143-2411575.png" onClickSuffix={() => {}} />
+    <DxcChip label="Chip with suffix" suffixIcon="filled_delete" onClickSuffix={() => {}} />
   </ExampleContainer>
 );
 
