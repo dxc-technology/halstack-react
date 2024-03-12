@@ -152,6 +152,11 @@ const Tab = styled.a<{
 const TabIconContainer = styled.div<{ iconPosition: NavTabsPropsType["iconPosition"] }>`
   display: flex;
   font-size: 24px;
+  
+  svg {
+    height: 24px;
+    width: 24px;
+  }
 `;
 
 export default DxcTab;
