@@ -1,9 +1,10 @@
 import React from "react";
 import Title from "../../.storybook/components/Title";
-import DxcContextualMenu from "./ContextualMenu";
+import DxcContextualMenu, { ContextualMenuContext } from "./ContextualMenu";
 import DxcContainer from "../container/Container";
 import SingleItem from "./SingleItem";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
+import { userEvent, within } from "@storybook/testing-library";
 
 export default {
   title: "Contextual Menu",
@@ -39,20 +40,28 @@ const groupItems = [
     title: "Section",
     items: [
       {
-        label: "Item 1",
+        label: "Grouped Item 1",
         items: [
-          { label: "Item 1.1", icon: key_icon },
+          { label: "Item 1", icon: key_icon },
           {
-            label: "Item 1.2",
-            items: [{ label: "Item 1.2.1", icon: fav_icon, slot: <DxcContextualMenu.Badge color="purple" label="Experimental" /> }, { label: "Item 1.2.2" }],
+            label: "Grouped Item 2",
+            items: [
+              {
+                label: "Item 2",
+                icon: fav_icon,
+                slot: <DxcContextualMenu.Badge color="purple" label="Experimental" />,
+              },
+              { label: "Item 3", icon: key_icon, slot: fav_icon },
+            ],
           },
         ],
+        slot: <DxcContextualMenu.Badge color="green" label="New" />,
       },
-      { label: "Item 2" },
+      { label: "Item 4" },
     ],
   },
   {
-    items: [{ label: "Item 3" }, { label: "Item 4" }],
+    items: [{ label: "Item 5" }, { label: "Grouped Item 6", items: [{ label: "Item 7" }, { label: "Item 8" }] }],
   },
 ];
 
@@ -125,7 +134,7 @@ const itemsWithTruncatedText = [
   },
 ];
 
-export const Chromatic = () => (
+const ContextualMenu = () => (
   <>
     <Title title="Default" theme="light" level={3} />
     <ExampleContainer>
@@ -176,35 +185,47 @@ export const Chromatic = () => (
   </>
 );
 
+export const Chromatic = ContextualMenu.bind({});
+Chromatic.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  await userEvent.click(canvas.getByText("Grouped Item 1"));
+  await userEvent.click(canvas.getByText("Grouped Item 2"));
+  await userEvent.click(canvas.getByText("Grouped Item 6"));
+};
+
 export const SingleItemStates = () => (
   <DxcContainer width="300px">
-    <Title title="Default" theme="light" level={3} />
-    <ExampleContainer>
-      <SingleItem {...items[0]} id={0} level={0} />
-    </ExampleContainer>
-    <Title title="Focus" theme="light" level={3} />
-    <ExampleContainer pseudoState="pseudo-focus">
-      <SingleItem {...items[0]} id={0} level={0} />
-    </ExampleContainer>
-    <Title title="Hover" theme="light" level={3} />
-    <ExampleContainer pseudoState="pseudo-hover">
-      <SingleItem {...items[0]} id={0} level={0} />
-    </ExampleContainer>
-    <Title title="Active" theme="light" level={3} />
-    <ExampleContainer pseudoState="pseudo-active">
-      <SingleItem {...items[0]} id={0} level={0} />
-    </ExampleContainer>
-    <Title title="" theme="light" level={3} />
-    <ExampleContainer>
-      <SingleItem {...items[0]} id={0} level={0} />
-    </ExampleContainer>
-    <Title title=" hover" theme="light" level={3} />
-    <ExampleContainer pseudoState="pseudo-hover">
-      <SingleItem {...items[0]} id={0} level={0} />
-    </ExampleContainer>
-    <Title title=" active" theme="light" level={3} />
-    <ExampleContainer pseudoState="pseudo-active">
-      <SingleItem {...items[0]} id={0} level={0} />
-    </ExampleContainer>
+    <ContextualMenuContext.Provider value={{ selectedItemId: -1, setSelectedItemId: () => {} }}>
+      <Title title="Default" theme="light" level={3} />
+      <ExampleContainer>
+        <SingleItem {...items[0]} id={0} level={0} />
+      </ExampleContainer>
+      <Title title="Focus" theme="light" level={3} />
+      <ExampleContainer pseudoState="pseudo-focus">
+        <SingleItem {...items[0]} id={0} level={0} />
+      </ExampleContainer>
+      <Title title="Hover" theme="light" level={3} />
+      <ExampleContainer pseudoState="pseudo-hover">
+        <SingleItem {...items[0]} id={0} level={0} />
+      </ExampleContainer>
+      <Title title="Active" theme="light" level={3} />
+      <ExampleContainer pseudoState="pseudo-active">
+        <SingleItem {...items[0]} id={0} level={0} />
+      </ExampleContainer>
+    </ContextualMenuContext.Provider>
+    <ContextualMenuContext.Provider value={{ selectedItemId: 0, setSelectedItemId: () => {} }}>
+      <Title title="Selected" theme="light" level={3} />
+      <ExampleContainer>
+        <SingleItem {...items[0]} id={0} level={0} />
+      </ExampleContainer>
+      <Title title="Selected hover" theme="light" level={3} />
+      <ExampleContainer pseudoState="pseudo-hover">
+        <SingleItem {...items[0]} id={0} level={0} />
+      </ExampleContainer>
+      <Title title="Selected active" theme="light" level={3} />
+      <ExampleContainer pseudoState="pseudo-active">
+        <SingleItem {...items[0]} id={0} level={0} />
+      </ExampleContainer>
+    </ContextualMenuContext.Provider>
   </DxcContainer>
 );

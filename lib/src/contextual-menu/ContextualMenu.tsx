@@ -3,15 +3,13 @@ import styled from "styled-components";
 import CoreTokens from "../common/coreTokens";
 import ContextualMenuPropsType, {
   Item,
-  Section as SectionType,
+  Section,
   BadgeProps,
   ContextualMenuContextProps,
-  Item as ItemType,
-  GroupItem as GroupItemType,
+  GroupItem,
   GroupItemWithId,
   ItemWithId,
   SectionWithId,
-  ItemsPropWithId,
 } from "./types";
 import DxcBadge from "../badge/Badge";
 import DxcDivider from "../divider/Divider";
@@ -20,14 +18,14 @@ import MenuItem from "./MenuItem";
 
 export const ContextualMenuContext = createContext<ContextualMenuContextProps | null>(null);
 
-const isGroupItem = (item: ItemType | GroupItemType): item is GroupItemType => "items" in item;
-const isSection = (item: SectionType | Item | GroupItemType): item is SectionType =>
+const isGroupItem = (item: Item | GroupItem): item is GroupItem => "items" in item;
+const isSection = (item: Section | Item | GroupItem): item is Section =>
   "items" in item && !("label" in item);
 
-const addIdToItems = (items: ContextualMenuPropsType["items"]): ItemsPropWithId => {
+const addIdToItems = (items: ContextualMenuPropsType["items"]): (ItemWithId | GroupItemWithId)[] | SectionWithId[] => {
   let accId = 0;
   const innerAddIdToItems = (items: ContextualMenuPropsType["items"]) => {
-    return items.map((item) =>
+    return items.map((item: Item | GroupItem | Section) =>
       isSection(item)
         ? { ...item, items: innerAddIdToItems(item.items) }
         : isGroupItem(item)
@@ -46,11 +44,11 @@ const DxcContextualMenu = ({ items }: ContextualMenuPropsType) => {
     <Fragment key={`section-${currentSectionIndex}`}>
       <li role="group">
         {section.title != null && <Title>{section.title}</Title>}
-        <Section>
-          {section.items.map((item) => (
-            <MenuItem item={item} />
+        <SectionList>
+          {section.items.map((item, index) => (
+            <MenuItem item={item} key={`${item.label}-${index}`} />
           ))}
-        </Section>
+        </SectionList>
       </li>
       {currentSectionIndex !== length - 1 && (
         <DxcInset top="0.25rem" bottom="0.25rem">
@@ -67,7 +65,7 @@ const DxcContextualMenu = ({ items }: ContextualMenuPropsType) => {
           "items" in item && !("label" in item) ? (
             renderSection(item, index, itemsWithId.length)
           ) : (
-            <MenuItem item={item} />
+            <MenuItem item={item} key={`${item.label}-${index}`} />
           )
         )}
       </ContextualMenuContext.Provider>
@@ -101,7 +99,7 @@ const Menu = styled.ul`
   }
 `;
 
-const Section = styled.ul`
+const SectionList = styled.ul`
   list-style: none;
   margin: 0;
   padding: 0;

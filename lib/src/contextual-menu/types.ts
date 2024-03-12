@@ -26,7 +26,6 @@ type SectionWithId = { items: (ItemWithId | GroupItemWithId)[]; title?: string }
 type SingleItemProps = ItemWithId & { level: number };
 type GroupItemProps = GroupItemWithId & { level: number };
 type MenuItemProps = { item: ItemWithId | GroupItemWithId; level?: number };
-type ItemsPropWithId = (ItemWithId | GroupItemWithId)[] | SectionWithId[];
 interface ItemActionProps extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "slot"> {
   icon?: string | SVG;
   label: string;
@@ -48,7 +47,6 @@ export type {
   GroupItemProps,
   Item,
   ItemWithId,
-  ItemsPropWithId,
   ItemActionProps,
   SingleItemProps,
   MenuItemProps,

@@ -20,7 +20,6 @@ const GroupItem = ({ items, label, slot, level }: GroupItemProps) => {
       <ItemAction
         aria-controls={menuId}
         aria-expanded={isOpen ? true : undefined}
-        aria-haspopup="true"
         icon={isOpen ? icons.arrowUp : icons.arrowDown}
         label={label}
         level={level}

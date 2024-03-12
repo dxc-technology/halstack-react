@@ -6,7 +6,7 @@ import { ItemActionProps } from "./types";
 const ItemAction = ({ icon, label, level, selected, slot, ...props }: ItemActionProps) => (
   <Action level={level} selected={selected} {...props}>
     <Label>
-      {icon && <Icon aria-hidden>{typeof icon === "string" ? <img src={icon} /> : icon}</Icon>}
+      {icon && <Slot aria-hidden>{typeof icon === "string" ? <img src={icon} /> : icon}</Slot>}
       <Text
         onMouseEnter={(event: React.MouseEvent<HTMLSpanElement>) => {
           const text = event.currentTarget;
@@ -16,11 +16,11 @@ const ItemAction = ({ icon, label, level, selected, slot, ...props }: ItemAction
         {label}
       </Text>
     </Label>
-    {slot}
+    <Slot>{slot}</Slot>
   </Action>
 );
 
-const Action = styled.button<{ level: ItemActionProps["level"]; selected: ItemActionProps["selected"]; }>`
+const Action = styled.button<{ level: ItemActionProps["level"]; selected: ItemActionProps["selected"] }>`
   border: none;
   border-radius: 4px;
   width: 100%;
@@ -75,12 +75,15 @@ const Text = styled.span`
   white-space: nowrap;
 `;
 
-const Icon = styled.span`
+const Slot = styled.span`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 16px;
-  height: 16px;
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
 `;
 
 export default ItemAction;
