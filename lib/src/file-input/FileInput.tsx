@@ -9,7 +9,7 @@ import FileInputPropsType, { FileData, RefType } from "./types";
 import FileItem from "./FileItem";
 
 const getFilePreview = async (file: File): Promise<string> => {
-  if (file.type.includes("video")) return "movie";
+  if (file.type.includes("video")) return "filled_movie";
   else if (file.type.includes("audio")) return "music_video";
   else if (file.type.includes("image")) {
     return new Promise<string>((resolve) => {
