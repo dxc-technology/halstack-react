@@ -6,6 +6,7 @@ import TableCode from "@/common/TableCode";
 import Example from "@/common/example/Example";
 import basicUsage from "./examples/basicUsage";
 import vertical from "./examples/vertical";
+import textInBetween from "./examples/text-In-between";
 
 const sections = [
   {
@@ -91,6 +92,10 @@ const sections = [
       {
         title: "Vertical",
         content: <Example example={vertical} defaultIsVisible />,
+      },
+      {
+        title: "Text In Between",
+        content: <Example example={textInBetween} defaultIsVisible />,
       },
     ],
   },
