@@ -7,7 +7,7 @@ type SocialLink = {
    */
   href: string;
   /**
-   * Element used as the icon for the link.
+   * Material Symbol name or SVG element as the icon used for the link.
    */
   logo: string | SVG;
   /**
