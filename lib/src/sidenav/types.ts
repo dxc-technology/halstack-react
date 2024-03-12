@@ -25,7 +25,7 @@ export type SidenavGroupPropsType = {
    */
   collapsable?: boolean;
   /**
-   * The icon to be displayed next to the title of the group.
+   * The Material symbol or SVG icon to be displayed next to the title of the group.
    */
   icon?: string | SVG;
   /**
@@ -44,7 +44,7 @@ export type SidenavLinkPropsType = {
    */
   newWindow?: boolean;
   /**
-   * Element or path used as the icon that will be placed to the left of the link text.
+   * The Material symbol or SVG element used as the icon that will be placed to the left of the link text.
    */
   icon?: string | SVG;
   /**
@@ -56,7 +56,7 @@ export type SidenavLinkPropsType = {
   /**
    * This function will be called when the user clicks the link and the event will be passed to this function.
    */
-  onClick?: (event: React.MouseEvent<HTMLAnchorElement>) => void
+  onClick?: (event: React.MouseEvent<HTMLAnchorElement>) => void;
   /**
    * The area inside the sidenav link.
    */
