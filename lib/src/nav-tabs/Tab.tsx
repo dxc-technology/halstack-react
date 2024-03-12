@@ -6,6 +6,8 @@ import NavTabsPropsType, { TabProps } from "./types";
 import BaseTypography from "../utils/BaseTypography";
 import useTheme from "../useTheme";
 import { NavTabsContext } from "./NavTabsContext";
+import DxcIcon from "../icon/Icon";
+
 
 const DxcTab = forwardRef(
   (
@@ -52,7 +54,7 @@ const DxcTab = forwardRef(
         >
           {icon && (
             <TabIconContainer iconPosition={iconPosition}>
-              {typeof icon === "string" ? <img src={icon} /> : icon}
+              {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
             </TabIconContainer>
           )}
           <DxcFlex alignItems="center" gap="0.5rem">
@@ -149,12 +151,7 @@ const Tab = styled.a<{
 
 const TabIconContainer = styled.div<{ iconPosition: NavTabsPropsType["iconPosition"] }>`
   display: flex;
-
-  img,
-  svg {
-    height: 24px;
-    width: 24px;
-  }
+  font-size: 24px;
 `;
 
 export default DxcTab;
