@@ -29,13 +29,6 @@ const sections = [
     content: (
       <>
         <DxcParagraph>
-          The chip component container states are <strong>enabled</strong> and{" "}
-          <strong>disabled</strong>:
-        </DxcParagraph>
-        <Figure caption="Chip states">
-          <Image src={statesImage} alt="Chip states" />
-        </Figure>
-        <DxcParagraph>
           The chip action item has the following states:{" "}
           <strong>enabled</strong>, <strong>hover</strong>,{" "}
           <strong>focus</strong>, <strong>active</strong> and{" "}
@@ -113,26 +106,6 @@ const sections = [
                   <Code>color-transparent</Code>
                 </td>
                 <td>transparent</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>disabledBackgroundColor</Code>
-                </td>
-                <td>Container:disabled</td>
-                <td>
-                  <Code>color-grey-100</Code>
-                </td>
-                <td>#f2f2f2</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>disabledFontcolor</Code>
-                </td>
-                <td>Label:disabled</td>
-                <td>
-                  <Code>color-grey-500</Code>
-                </td>
-                <td>#999999</td>
               </tr>
               <tr>
                 <td>

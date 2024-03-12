@@ -58,8 +58,16 @@ export const Chromatic = () => (
       <DxcChip label="Chip with prefix" prefixIcon={smallIconSVG} />
     </ExampleContainer>
     <ExampleContainer>
+      <Title title="Disabled chip with prefix SVG (small icon)" theme="light" level={4} />
+      <DxcChip label="Disabled prefix" prefixIcon={iconSVG} disabled />
+    </ExampleContainer>
+    <ExampleContainer>
       <Title title="Chip with suffix SVG (large icon)" theme="light" level={4} />
       <DxcChip label="Chip with suffix" suffixIcon={iconSVG} />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Disabled chip with suffix SVG (large icon)" theme="light" level={4} />
+      <DxcChip label="Disabled suffix" suffixIcon={iconSVG} disabled />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Chip with prefix (SVG) and suffix (URL)" theme="light" level={4} />

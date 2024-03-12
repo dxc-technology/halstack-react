@@ -20,7 +20,7 @@ const DxcChip = ({
 
   return (
     <ThemeProvider theme={colorsTheme.chip}>
-      <Chip disabled={disabled} margin={margin}>
+      <Chip margin={margin}>
         {prefixIcon && (
           <IconContainer
             role={typeof onClickPrefix === "function" ? "button" : undefined}
@@ -32,7 +32,7 @@ const DxcChip = ({
             {typeof prefixIcon === "string" ? <DxcIcon icon={prefixIcon} /> : prefixIcon}
           </IconContainer>
         )}
-        {label && <LabelContainer disabled={disabled}>{label}</LabelContainer>}
+        {label && <LabelContainer>{label}</LabelContainer>}
         {suffixIcon && (
           <IconContainer
             role={typeof onClickSuffix === "function" ? "button" : undefined}
@@ -52,20 +52,20 @@ const DxcChip = ({
 const calculateWidth = (margin: ChipPropsType["margin"]) =>
   `calc(100% - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`;
 
-const Chip = styled.div<{ margin: ChipPropsType["margin"]; disabled: ChipPropsType["disabled"] }>`
+const Chip = styled.div<{
+  margin: ChipPropsType["margin"];
+}>`
   box-sizing: border-box;
   display: inline-flex;
   align-items: center;
   gap: ${(props) => props.theme.iconSpacing};
   min-height: 40px;
   max-width: ${(props) => calculateWidth(props.margin)};
-  background-color: ${(props) =>
-    (props.disabled && props.theme.disabledBackgroundColor) || props.theme.backgroundColor};
+  background-color: ${(props) => props.theme.backgroundColor};
   border-radius: ${(props) => props.theme.borderRadius};
   border-width: ${(props) => props.theme.borderThickness};
   border-style: ${(props) => props.theme.borderStyle};
   border-color: ${(props) => props.theme.borderColor};
-
   padding-top: ${(props) => props.theme.contentPaddingTop};
   padding-bottom: ${(props) => props.theme.contentPaddingBottom};
   padding-left: ${(props) => props.theme.contentPaddingLeft};
@@ -79,15 +79,14 @@ const Chip = styled.div<{ margin: ChipPropsType["margin"]; disabled: ChipPropsTy
     props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
   margin-left: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
-  cursor: ${({ disabled }) => disabled && "not-allowed"};
 `;
 
-const LabelContainer = styled.span<{ disabled: ChipPropsType["disabled"] }>`
+const LabelContainer = styled.span`
   font-size: ${(props) => props.theme.fontSize};
   font-family: ${(props) => props.theme.fontFamily};
   font-weight: ${(props) => props.theme.fontWeight};
   font-style: ${(props) => props.theme.fontStyle};
-  color: ${(props) => (props.disabled ? props.theme.disabledFontColor : props.theme.fontColor)};
+  color: ${(props) => props.theme.fontColor};
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -100,8 +99,7 @@ const IconContainer = styled.div<{
   display: flex;
   border-radius: 0.25rem;
   color: ${(props) => (props.disabled ? props.theme.disabledIconColor : props.theme.iconColor)};
-  ${({ interactuable }) => interactuable && "cursor: pointer;"}
-
+  cursor: ${({ disabled, interactuable }) => (disabled ? "not-allowed" : interactuable && "pointer")};
   ${(props) =>
     props.interactuable &&
     `
