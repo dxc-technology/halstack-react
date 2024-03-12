@@ -71,6 +71,24 @@ const social = [
   },
 ];
 
+const socialMaterialIcons = [
+  {
+    href: "https://www.linkedin.com/company/dxctechnology",
+    logo: "person",
+    title: "Linkedin",
+  },
+  {
+    href: "https://x.com/dxctechnology",
+    logo: "group",
+    title: "X",
+  },
+  {
+    href: "https://www.facebook.com/DXCTechnology/",
+    logo: "thumb_up",
+    title: "Facebook",
+  },
+];
+
 const bottom = [
   {
     href: "https://www.linkedin.com/company/dxctechnology",
@@ -119,6 +137,14 @@ export const Chromatic = () => (
         </div>
       </DxcFooter>
     </ExampleContainer>
+    <ExampleContainer>
+      <Title title="With children, copyright, bottom links and social links from material" theme="light" level={4} />
+      <DxcFooter copyright="Copyright" socialLinks={socialMaterialIcons} bottomLinks={bottom}>
+        <div>
+          <a href="https://www.linkedin.com/company/dxctechnology">Linkedin</a>
+        </div>
+      </DxcFooter>
+    </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-focus">
       <Title title="Focused bottom and social links" theme="light" level={4} />
       <DxcFooter copyright="Copyright" socialLinks={social} bottomLinks={bottom}>
@@ -132,7 +158,7 @@ export const Chromatic = () => (
       <DxcFooter mode="reduced">
         <DxcFlex justifyContent="center" alignItems="center" gap={"1rem"}>
           {info.map((tag, index) => (
-            <DxcTypography color="white" key={`tag${index}${tag.label}${tag.text}`} >
+            <DxcTypography color="white" key={`tag${index}${tag.label}${tag.text}`}>
               {tag.label}: {tag.text}
             </DxcTypography>
           ))}
