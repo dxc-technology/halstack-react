@@ -47,14 +47,11 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With label and icon" theme="light" level={4} />
-      <DxcTag
-        label="Tag"
-        icon="https://iconape.com/wp-content/files/yd/367773/svg/logo-linkedin-logo-icon-png-svg.png"
-      />
+      <DxcTag label="Tag" icon="person" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With right icon" theme="light" level={4} />
-      <DxcTag label="Tag" icon={icon} labelPosition="before" />
+      <DxcTag label="Tag" icon="group" labelPosition="before" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Icon background color" theme="light" level={4} />
@@ -67,7 +64,7 @@ export const Chromatic = () => (
     <ExampleContainer pseudoState="pseudo-focus">
       <Title title="With action focused" theme="light" level={4} />
       <DxcTag
-        icon={icon}
+        icon="done"
         label="Tag"
         onClick={() => {
           console.log("click");
@@ -110,7 +107,7 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Medium size" theme="light" level={4} />
-      <DxcTag label="Medium size medium s" size="medium" icon={icon} />
+      <DxcTag label="Medium size medium s" size="medium" icon="person" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Medium size with ellipsis" theme="light" level={4} />
