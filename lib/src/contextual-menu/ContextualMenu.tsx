@@ -2,13 +2,13 @@ import React, { Fragment, createContext, useMemo, useState } from "react";
 import styled from "styled-components";
 import CoreTokens from "../common/coreTokens";
 import ContextualMenuPropsType, {
-  Item,
-  Section,
   BadgeProps,
   ContextualMenuContextProps,
   GroupItem,
   GroupItemWithId,
+  Item,
   ItemWithId,
+  Section,
   SectionWithId,
 } from "./types";
 import DxcBadge from "../badge/Badge";
@@ -19,8 +19,7 @@ import MenuItem from "./MenuItem";
 export const ContextualMenuContext = createContext<ContextualMenuContextProps | null>(null);
 
 const isGroupItem = (item: Item | GroupItem): item is GroupItem => "items" in item;
-const isSection = (item: Section | Item | GroupItem): item is Section =>
-  "items" in item && !("label" in item);
+const isSection = (item: Section | Item | GroupItem): item is Section => "items" in item && !("label" in item);
 
 const addIdToItems = (items: ContextualMenuPropsType["items"]): (ItemWithId | GroupItemWithId)[] | SectionWithId[] => {
   let accId = 0;

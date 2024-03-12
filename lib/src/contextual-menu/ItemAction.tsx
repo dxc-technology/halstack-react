@@ -3,10 +3,11 @@ import styled from "styled-components";
 import CoreTokens from "../common/coreTokens";
 import { ItemActionProps } from "./types";
 
-const ItemAction = ({ icon, label, level, selected, slot, ...props }: ItemActionProps) => (
+const ItemAction = ({ badge, collapseIcon, icon, label, level, selected, ...props }: ItemActionProps) => (
   <Action level={level} selected={selected} {...props}>
     <Label>
-      {icon && <Slot aria-hidden>{typeof icon === "string" ? <img src={icon} /> : icon}</Slot>}
+      {collapseIcon && <Icon aria-hidden>{collapseIcon}</Icon>}
+      {icon && <Icon aria-hidden>{typeof icon === "string" ? <img src={icon} /> : icon}</Icon>}
       <Text
         onMouseEnter={(event: React.MouseEvent<HTMLSpanElement>) => {
           const text = event.currentTarget;
@@ -16,7 +17,7 @@ const ItemAction = ({ icon, label, level, selected, slot, ...props }: ItemAction
         {label}
       </Text>
     </Label>
-    <Slot>{slot}</Slot>
+    {badge}
   </Action>
 );
 
@@ -75,7 +76,7 @@ const Text = styled.span`
   white-space: nowrap;
 `;
 
-const Slot = styled.span`
+const Icon = styled.span`
   display: flex;
   align-items: center;
   justify-content: center;

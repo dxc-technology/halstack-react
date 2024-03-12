@@ -11,13 +11,13 @@ export default {
   component: DxcContextualMenu,
 };
 
-const key_icon = (
+const keyIcon = (
   <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="currentColor">
     <path d="M280-400q-33 0-56.5-23.5T200-480q0-33 23.5-56.5T280-560q33 0 56.5 23.5T360-480q0 33-23.5 56.5T280-400Zm0 160q-100 0-170-70T40-480q0-100 70-170t170-70q67 0 121.5 33t86.5 87h352l120 120-180 180-80-60-80 60-85-60h-47q-32 54-86.5 87T280-240Zm0-80q56 0 98.5-34t56.5-86h125l58 41 82-61 71 55 75-75-40-40H435q-14-52-56.5-86T280-640q-66 0-113 47t-47 113q0 66 47 113t113 47Z" />
   </svg>
 );
 
-const fav_icon = (
+const favIcon = (
   <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="currentColor">
     <path d="m480-120-58-52q-101-91-167-157T150-447.5Q111-500 95.5-544T80-634q0-94 63-157t157-63q52 0 99 22t81 62q34-40 81-62t99-22q94 0 157 63t63 157q0 46-15.5 90T810-447.5Q771-395 705-329T538-172l-58 52Zm0-108q96-86 158-147.5t98-107q36-45.5 50-81t14-70.5q0-60-40-100t-100-40q-47 0-87 26.5T518-680h-76q-15-41-55-67.5T300-774q-60 0-100 40t-40 100q0 35 14 70.5t50 81q36 45.5 98 107T480-228Zm0-273Z" />
   </svg>
@@ -37,60 +37,58 @@ const sections = [
 
 const groupItems = [
   {
-    title: "Section",
+    title: "Section 1",
     items: [
       {
         label: "Grouped Item 1",
+        icon: favIcon,
         items: [
-          { label: "Item 1", icon: key_icon },
+          { label: "Item 1" },
           {
             label: "Grouped Item 2",
             items: [
               {
                 label: "Item 2",
-                icon: fav_icon,
-                slot: <DxcContextualMenu.Badge color="purple" label="Experimental" />,
+                badge: <DxcContextualMenu.Badge color="purple" label="Experimental" />,
               },
-              { label: "Item 3", icon: key_icon, slot: fav_icon },
+              { label: "Selected Item 3" },
             ],
           },
         ],
-        slot: <DxcContextualMenu.Badge color="green" label="New" />,
+        badge: <DxcContextualMenu.Badge color="green" label="New" />,
       },
-      { label: "Item 4" },
+      { label: "Item 4", icon: keyIcon },
     ],
   },
   {
-    items: [{ label: "Item 5" }, { label: "Grouped Item 6", items: [{ label: "Item 7" }, { label: "Item 8" }] }],
+    title: "Section 2",
+    items: [
+      { label: "Item 5" },
+      { label: "Grouped Item 6", items: [{ label: "Item 7" }, { label: "Item 8" }] },
+      { label: "Item 9" },
+    ],
   },
 ];
 
 const itemsWithIcon = [
   {
     label: "Item 1",
-    icon: key_icon,
+    icon: keyIcon,
   },
   {
     label: "Item 2",
-    icon: fav_icon,
+    icon: favIcon,
   },
 ];
 
-const itemsWithSlot = [
+const itemsWithBadge = [
   {
     label: "Item 1",
-    slot: <DxcContextualMenu.Badge color="green" label="New" />,
+    badge: <DxcContextualMenu.Badge color="green" label="New" />,
   },
   {
     label: "Item 2",
-    slot: (
-      <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-        <path
-          d="M10.6667 10.6667H1.33333V1.33333H6V0H1.33333C0.593333 0 0 0.6 0 1.33333V10.6667C0 11.4 0.593333 12 1.33333 12H10.6667C11.4 12 12 11.4 12 10.6667V6H10.6667V10.6667ZM7.33333 0V1.33333H9.72667L3.17333 7.88667L4.11333 8.82667L10.6667 2.27333V4.66667H12V0H7.33333Z"
-          fill="#323232"
-        />
-      </svg>
-    ),
+    badge: <DxcContextualMenu.Badge color="purple" label="Experimental" />,
   },
 ];
 
@@ -117,20 +115,12 @@ const sectionsWithScroll = [
 const itemsWithTruncatedText = [
   {
     label: "Item with a very long label that should be truncated",
-    slot: <DxcContextualMenu.Badge color="green" label="New" />,
-    icon: key_icon,
+    badge: <DxcContextualMenu.Badge color="green" label="New" />,
+    icon: keyIcon,
   },
   {
     label: "Item 2",
-    slot: (
-      <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-        <path
-          d="M10.6667 10.6667H1.33333V1.33333H6V0H1.33333C0.593333 0 0 0.6 0 1.33333V10.6667C0 11.4 0.593333 12 1.33333 12H10.6667C11.4 12 12 11.4 12 10.6667V6H10.6667V10.6667ZM7.33333 0V1.33333H9.72667L3.17333 7.88667L4.11333 8.82667L10.6667 2.27333V4.66667H12V0H7.33333Z"
-          fill="#323232"
-        />
-      </svg>
-    ),
-    icon: fav_icon,
+    icon: favIcon,
   },
 ];
 
@@ -158,10 +148,10 @@ const ContextualMenu = () => (
         <DxcContextualMenu items={itemsWithIcon} />
       </DxcContainer>
     </ExampleContainer>
-    <Title title="With slot" theme="light" level={3} />
+    <Title title="With badge" theme="light" level={3} />
     <ExampleContainer>
       <DxcContainer width="300px">
-        <DxcContextualMenu items={itemsWithSlot} />
+        <DxcContextualMenu items={itemsWithBadge} />
       </DxcContainer>
     </ExampleContainer>
     <Title title="With label truncated" theme="light" level={3} />
@@ -190,7 +180,7 @@ Chromatic.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   await userEvent.click(canvas.getByText("Grouped Item 1"));
   await userEvent.click(canvas.getByText("Grouped Item 2"));
-  await userEvent.click(canvas.getByText("Grouped Item 6"));
+  await userEvent.click(canvas.getByText("Selected Item 3"));
 };
 
 export const SingleItemStates = () => (

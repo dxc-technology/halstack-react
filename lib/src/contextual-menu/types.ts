@@ -1,38 +1,43 @@
-import { NotificationProps, CommonProps, ContextualProps } from "../badge/types";
+import React from "react";
+import { ContextualProps, NotificationProps, CommonProps } from "../badge/types";
 
 /**
  * Contextual menu API.
  */
+type BadgeProps = (ContextualProps | NotificationProps) & Omit<CommonProps, "size">;
 type SVG = React.ReactNode & React.SVGProps<SVGSVGElement>;
 type Item = {
+  badge?: React.ReactNode;
   icon?: string | SVG;
   label: string;
   onSelect?: () => void;
-  slot?: React.ReactNode;
 };
-type GroupItem = { items: (Item | GroupItem)[]; label: string; slot?: React.ReactNode };
+type GroupItem = { items: (Item | GroupItem)[]; badge?: React.ReactNode; icon?: string | SVG; label: string };
 type Section = { items: (Item | GroupItem)[]; title?: string };
 type Props = {
   items: (Item | GroupItem)[] | Section[];
 };
-type BadgeProps = (ContextualProps | NotificationProps) & Omit<CommonProps, "size">;
 
 /**
  * Contextual menu internal types.
  */
 type ItemWithId = Item & { id: number };
-type GroupItemWithId = { items: (ItemWithId | GroupItemWithId)[]; label: string; slot?: React.ReactNode };
+type GroupItemWithId = {
+  items: (ItemWithId | GroupItemWithId)[];
+  badge?: React.ReactNode;
+  icon: string | SVG;
+  label: string;
+};
 type SectionWithId = { items: (ItemWithId | GroupItemWithId)[]; title?: string };
 type SingleItemProps = ItemWithId & { level: number };
 type GroupItemProps = GroupItemWithId & { level: number };
 type MenuItemProps = { item: ItemWithId | GroupItemWithId; level?: number };
-interface ItemActionProps extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "slot"> {
-  icon?: string | SVG;
-  label: string;
-  level: number;
-  selected: boolean;
-  slot?: React.ReactNode;
-}
+type ItemActionProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
+  Item & {
+    collapseIcon?: SVG;
+    level: number;
+    selected: boolean;
+  };
 type ContextualMenuContextProps = {
   selectedItemId: number;
   setSelectedItemId: React.Dispatch<React.SetStateAction<number>>;
@@ -43,13 +48,13 @@ export type {
   BadgeProps,
   ContextualMenuContextProps,
   GroupItem,
-  GroupItemWithId,
   GroupItemProps,
+  GroupItemWithId,
   Item,
-  ItemWithId,
   ItemActionProps,
-  SingleItemProps,
+  ItemWithId,
   MenuItemProps,
   Section,
   SectionWithId,
+  SingleItemProps,
 };

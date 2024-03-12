@@ -10,8 +10,8 @@ import { ContextualMenuContext } from "./ContextualMenu";
 const isGroupSelected = (items: GroupItemProps["items"], selectedItemId: number) =>
   items.some((item) => ("id" in item ? item.id === selectedItemId : isGroupSelected(item.items, selectedItemId)));
 
-const GroupItem = ({ items, label, slot, level }: GroupItemProps) => {
-  const menuId = `menu-${label}`;
+const GroupItem = ({ ...props }: GroupItemProps) => {
+  const menuId = `menu-${props.label}`;
   const [isOpen, setIsOpen] = useState(false);
   const { selectedItemId } = useContext(ContextualMenuContext);
 
@@ -20,19 +20,17 @@ const GroupItem = ({ items, label, slot, level }: GroupItemProps) => {
       <ItemAction
         aria-controls={menuId}
         aria-expanded={isOpen ? true : undefined}
-        icon={isOpen ? icons.arrowUp : icons.arrowDown}
-        label={label}
-        level={level}
+        collapseIcon={isOpen ? icons.arrowUp : icons.arrowDown}
         onClick={() => {
           setIsOpen((isOpen) => !isOpen);
         }}
-        selected={!isOpen && isGroupSelected(items, selectedItemId)}
-        slot={slot}
+        selected={!isOpen && isGroupSelected(props.items, selectedItemId)}
+        {...props}
       />
       {isOpen && (
         <ItemsList id={menuId}>
-          {items.map((item) => (
-            <MenuItem item={item} level={level + 1} />
+          {props.items.map((item) => (
+            <MenuItem item={item} level={props.level + 1} />
           ))}
         </ItemsList>
       )}
