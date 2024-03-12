@@ -7,6 +7,7 @@ import {
   DxcParagraph,
   DxcFlex,
   DxcTable,
+  DxcLink,
 } from "@dxc-technology/halstack-react";
 import basicUsage from "./examples/basicUsage";
 import nestedList from "./examples/nestedList";
@@ -49,7 +50,15 @@ const sections = [
                     {"(React.ReactNode & React.SVGProps<SVGSVGElement>)"}
                   </TableCode>
                 </td>
-                <td>Icon to be displayed as the bullet.</td>
+                <td>
+                  <DxcLink newWindow href="https://fonts.google.com/icons">
+                    Material Symbol
+                  </DxcLink>{" "}
+                  name or SVG element to be displayed as the bullet. When using
+                  Material Symbols, replace spaces with underscores. By default
+                  they are outlined if you want it to be filled prefix the
+                  symbol name with <TableCode>"filled_"</TableCode>.
+                </td>
                 <td>-</td>
               </tr>
             </tbody>
