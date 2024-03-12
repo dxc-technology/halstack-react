@@ -8,7 +8,6 @@ import useTheme from "../useTheme";
 import { NavTabsContext } from "./NavTabsContext";
 import DxcIcon from "../icon/Icon";
 
-
 const DxcTab = forwardRef(
   (
     { href, active = false, icon, disabled = false, notificationNumber = false, children, ...otherProps }: TabProps,
@@ -92,22 +91,9 @@ const DxcTab = forwardRef(
 
 const TabContainer = styled.div<{ active: TabProps["active"] }>`
   align-items: stretch;
-  border-bottom: 2px solid ${(props) => (props.active ? props.theme.selectedUnderlineColor : 'transparent')};
+  border-bottom: 2px solid ${(props) => (props.active ? props.theme.selectedUnderlineColor : "transparent")};
   padding: 0.5rem;
   z-index: 1;
-  svg {
-    color: ${(props) => props.theme.unselectedIconColor};
-  }
-  &[aria-selected="true"] {
-    svg {
-      color: ${(props) => props.theme.selectedIconColor};
-    }
-  }
-  &[aria-disabled="true"] {
-    svg {
-      color: ${(props) => props.theme.disabledIconColor};
-    }
-  }
 `;
 
 const Tab = styled.a<{
@@ -152,10 +138,30 @@ const Tab = styled.a<{
 const TabIconContainer = styled.div<{ iconPosition: NavTabsPropsType["iconPosition"] }>`
   display: flex;
   font-size: 24px;
-  
+  color {
+    ${(props) => props.theme.disabledIconColor};
+  }
+  &[aria-selected="true"] {
+    color: ${(props) => props.theme.selectedIconColor};
+  }
+  &[aria-disabled="true"] {
+    color: ${(props) => props.theme.disabledIconColor};
+  }
+
   svg {
     height: 24px;
     width: 24px;
+    color: ${(props) => props.theme.unselectedIconColor};
+  }
+  &[aria-selected="true"] {
+    svg {
+      color: ${(props) => props.theme.selectedIconColor};
+    }
+  }
+  &[aria-disabled="true"] {
+    svg {
+      color: ${(props) => props.theme.disabledIconColor};
+    }
   }
 `;
 
