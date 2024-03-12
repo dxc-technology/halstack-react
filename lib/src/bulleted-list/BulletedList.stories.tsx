@@ -26,7 +26,7 @@ export const Chromatic = () => (
         <DxcBulletedList.Item>Specifications</DxcBulletedList.Item>
       </DxcBulletedList>
       <Title title="Icon list (path)" level={4} />
-      <DxcBulletedList type="icon" icon="https://upload.wikimedia.org/wikipedia/commons/e/e0/Check_green_icon.svg">
+      <DxcBulletedList type="icon" icon="filled_check_circle">
         <DxcBulletedList.Item>Code</DxcBulletedList.Item>
         <DxcBulletedList.Item>Usage</DxcBulletedList.Item>
         <DxcBulletedList.Item>Specifications</DxcBulletedList.Item>
