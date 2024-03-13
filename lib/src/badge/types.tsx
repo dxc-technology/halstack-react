@@ -44,7 +44,7 @@ export type CommonProps = {
    */
   title?: string;
   /**
-   * Element or path used as the icon that will be placed next to the badge label in contextual mode.
+   *  Material Symbol name or SVG element used as the icon that will be placed next to the badge label in contextual mode.
    */
   icon?: string | SVG;
   /**
