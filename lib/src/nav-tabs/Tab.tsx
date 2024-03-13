@@ -135,19 +135,11 @@ const Tab = styled.a<{
   `}
 `;
 
-const TabIconContainer = styled.div<{ iconPosition: NavTabsPropsType["iconPosition"] }>`
+const TabIconContainer = styled.div<{ iconPosition: NavTabsPropsType["iconPosition"], active: TabProps["active"], disabled: TabProps["disabled"] }>`
   display: flex;
   font-size: 24px;
-  color {
-    ${(props) => props.theme.disabledIconColor};
-  }
-  &[aria-selected="true"] {
-    color: ${(props) => props.theme.selectedIconColor};
-  }
-  &[aria-disabled="true"] {
-    color: ${(props) => props.theme.disabledIconColor};
-  }
-
+  color: ${(props) => 
+    props.active ? props.theme.selectedIconColor : props.disabled ?  props.theme.disabledIconColor :  props.theme.unselectedIconColor};
   svg {
     height: 24px;
     width: 24px;
