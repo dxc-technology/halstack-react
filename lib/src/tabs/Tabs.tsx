@@ -5,19 +5,7 @@ import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
 import Tab from "./Tab";
 import TabsPropsType from "./types";
-
-const arrowIcons = {
-  left: (
-    <svg focusable="false" viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M15.41 16.09l-4.58-4.59 4.58-4.59L14 5.5l-6 6 6 6z"></path>
-    </svg>
-  ),
-  right: (
-    <svg focusable="false" viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M8.59 16.34l4.58-4.59-4.58-4.59L10 5.75l6 6-6 6z"></path>
-    </svg>
-  ),
-};
+import DxcIcon from "../icon/Icon";
 
 const useResize = (refTabList) => {
   const [viewWidth, setViewWidth] = useState(0);
@@ -224,7 +212,7 @@ const DxcTabs = ({
             tabIndex={scrollLeftEnabled ? tabIndex : -1}
             minHeightTabs={minHeightTabs}
           >
-            {arrowIcons.left}
+            <DxcIcon icon={"navigate_before"} />
           </ScrollIndicator>
           <TabsContent>
             <TabsContentScroll translateScroll={translateScroll} ref={refTabList} enabled={enabledIndicator}>
@@ -267,7 +255,7 @@ const DxcTabs = ({
             tabIndex={scrollRightEnabled ? tabIndex : -1}
             minHeightTabs={minHeightTabs}
           >
-            {arrowIcons.right}
+            <DxcIcon icon={"navigate_next"} />
           </ScrollIndicator>
         </Tabs>
       </TabsContainer>
@@ -347,11 +335,14 @@ const ScrollIndicator = styled.button<{
     }
   }
 
-  svg {
+  span {
     align-self: center;
     height: 20px;
     width: 20px;
-    fill: ${(props) => props.theme.unselectedFontColor};
+  }
+
+  span::before {
+    color: ${(props) => props.theme.unselectedFontColor};
   }
 `;
 
