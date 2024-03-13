@@ -52,7 +52,7 @@ const DxcTab = forwardRef(
           {...otherProps}
         >
           {icon && (
-            <TabIconContainer iconPosition={iconPosition}>
+            <TabIconContainer iconPosition={iconPosition} active={active} disabled={disabled}>
               {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
             </TabIconContainer>
           )}
@@ -143,17 +143,6 @@ const TabIconContainer = styled.div<{ iconPosition: NavTabsPropsType["iconPositi
   svg {
     height: 24px;
     width: 24px;
-    color: ${(props) => props.theme.unselectedIconColor};
-  }
-  &[aria-selected="true"] {
-    svg {
-      color: ${(props) => props.theme.selectedIconColor};
-    }
-  }
-  &[aria-disabled="true"] {
-    svg {
-      color: ${(props) => props.theme.disabledIconColor};
-    }
   }
 `;
 
