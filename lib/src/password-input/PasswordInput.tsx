@@ -62,7 +62,7 @@ const DxcPasswordInput = React.forwardRef<RefType, PasswordInputPropsType>(
             onClick: () => {
               setIsPasswordVisible((isPasswordVisible) => !isPasswordVisible);
             },
-            icon: isPasswordVisible ? 'Visibility' : 'Visibility_Off',
+            icon: isPasswordVisible ? 'Visibility_Off' : 'Visibility',
             title: isPasswordVisible ? passwordInput.inputHidePasswordTitle : passwordInput.inputShowPasswordTitle,
           }}
           error={error}
