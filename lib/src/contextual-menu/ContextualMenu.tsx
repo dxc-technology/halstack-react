@@ -2,7 +2,6 @@ import React, { Fragment, createContext, useMemo, useState } from "react";
 import styled from "styled-components";
 import CoreTokens from "../common/coreTokens";
 import ContextualMenuPropsType, {
-  BadgeProps,
   ContextualMenuContextProps,
   GroupItem,
   GroupItemWithId,
@@ -11,7 +10,6 @@ import ContextualMenuPropsType, {
   Section,
   SectionWithId,
 } from "./types";
-import DxcBadge from "../badge/Badge";
 import DxcDivider from "../divider/Divider";
 import DxcInset from "../inset/Inset";
 import MenuItem from "./MenuItem";
@@ -115,7 +113,5 @@ const Title = styled.h2`
   font-weight: ${CoreTokens.type_semibold};
   line-height: 24px;
 `;
-
-DxcContextualMenu.Badge = (props: BadgeProps) => <DxcBadge {...props} size="small" />;
 
 export default DxcContextualMenu;

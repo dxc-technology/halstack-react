@@ -5,6 +5,7 @@ import DxcContainer from "../container/Container";
 import SingleItem from "./SingleItem";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import { userEvent, within } from "@storybook/testing-library";
+import DxcBadge from "../badge/Badge";
 
 export default {
   title: "Contextual Menu",
@@ -49,13 +50,13 @@ const groupItems = [
             items: [
               {
                 label: "Item 2",
-                badge: <DxcContextualMenu.Badge color="purple" label="Experimental" />,
+                badge: <DxcBadge color="purple" label="Experimental" />,
               },
               { label: "Selected Item 3" },
             ],
           },
         ],
-        badge: <DxcContextualMenu.Badge color="green" label="New" />,
+        badge: <DxcBadge color="green" label="New" />,
       },
       { label: "Item 4", icon: keyIcon },
     ],
@@ -84,11 +85,11 @@ const itemsWithIcon = [
 const itemsWithBadge = [
   {
     label: "Item 1",
-    badge: <DxcContextualMenu.Badge color="green" label="New" />,
+    badge: <DxcBadge color="green" label="New" />,
   },
   {
     label: "Item 2",
-    badge: <DxcContextualMenu.Badge color="purple" label="Experimental" />,
+    badge: <DxcBadge color="purple" label="Experimental" />,
   },
 ];
 
@@ -115,7 +116,7 @@ const sectionsWithScroll = [
 const itemsWithTruncatedText = [
   {
     label: "Item with a very long label that should be truncated",
-    badge: <DxcContextualMenu.Badge color="green" label="New" />,
+    badge: <DxcBadge color="green" label="New" />,
     icon: keyIcon,
   },
   {

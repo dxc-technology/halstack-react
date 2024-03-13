@@ -1,18 +1,13 @@
 import React from "react";
-import { ContextualProps, NotificationProps, CommonProps } from "../badge/types";
 
-/**
- * Contextual menu API.
- */
-type BadgeProps = (ContextualProps | NotificationProps) & Omit<CommonProps, "size">;
 type SVG = React.ReactNode & React.SVGProps<SVGSVGElement>;
 type Item = {
-  badge?: React.ReactNode;
+  badge?: React.ReactElement;
   icon?: string | SVG;
   label: string;
   onSelect?: () => void;
 };
-type GroupItem = { items: (Item | GroupItem)[]; badge?: React.ReactNode; icon?: string | SVG; label: string };
+type GroupItem = { items: (Item | GroupItem)[]; badge?: React.ReactElement; icon?: string | SVG; label: string };
 type Section = { items: (Item | GroupItem)[]; title?: string };
 type Props = {
   items: (Item | GroupItem)[] | Section[];
@@ -24,7 +19,7 @@ type Props = {
 type ItemWithId = Item & { id: number };
 type GroupItemWithId = {
   items: (ItemWithId | GroupItemWithId)[];
-  badge?: React.ReactNode;
+  badge?: React.ReactElement;
   icon: string | SVG;
   label: string;
 };
@@ -45,7 +40,6 @@ type ContextualMenuContextProps = {
 
 export default Props;
 export type {
-  BadgeProps,
   ContextualMenuContextProps,
   GroupItem,
   GroupItemProps,
