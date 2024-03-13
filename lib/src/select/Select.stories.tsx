@@ -129,6 +129,44 @@ const icon_options_grouped = [
   },
 ];
 
+const icon_options_grouped_material = [
+  {
+    label: "Group 001",
+    options: [
+      {
+        label: "3G Mobile",
+        value: "1",
+        icon: "3g_mobiledata",
+      },
+    ],
+  },
+  {
+    label: "Group 002",
+    options: [
+      {
+        label: "Ethernet",
+        value: "2",
+        icon: "settings_ethernet",
+      },
+    ],
+  },
+  {
+    label: "Group 003",
+    options: [
+      {
+        label: "Wi-fi",
+        value: "3",
+        icon: "wifi",
+      },
+      {
+        label: "Settings backup restore (just for previous configuration)",
+        value: "4",
+        icon: "settings_backup_restore",
+      },
+    ],
+  },
+];
+
 const icon_options = [
   {
     label: "3G Mobile",
@@ -584,11 +622,11 @@ const SelectListbox = () => {
           />
         </ExampleContainer>
         <ExampleContainer>
-          <Title title="Grouped icons (SVGs)" theme="light" level={4} />
+          <Title title="Grouped icons (Material Symbols)" theme="light" level={4} />
           <Listbox
             id="x"
             currentValue={["0", "3"]}
-            options={icon_options_grouped}
+            options={icon_options_grouped_material}
             visualFocusIndex={-1}
             lastOptionIndex={3}
             multiple={false}

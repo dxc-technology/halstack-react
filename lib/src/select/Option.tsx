@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { OptionProps } from "../select/types";
 import DxcCheckbox from "../checkbox/Checkbox";
-import selectIcons from "./Icons";
+import DxcIcon from "../icon/Icon";
 
 const Option = ({
   id,
@@ -18,8 +18,7 @@ const Option = ({
     const label = event.currentTarget;
     const optionElement = document.getElementById(id);
 
-    if (optionElement.title === "" && label.scrollWidth > label.clientWidth)
-      optionElement.title = option.label;
+    if (optionElement.title === "" && label.scrollWidth > label.clientWidth) optionElement.title = option.label;
   };
 
   return (
@@ -52,7 +51,11 @@ const Option = ({
         )}
         <OptionContent grouped={isGroupedOption} hasIcon={option.icon ? true : false} multiple={multiple}>
           <OptionLabel onMouseEnter={handleOnMouseEnter}>{option.label}</OptionLabel>
-          {!multiple && isSelected && <OptionSelectedIndicator>{selectIcons.selected}</OptionSelectedIndicator>}
+          {!multiple && isSelected && (
+            <OptionSelectedIndicator>
+              <DxcIcon icon="done" />
+            </OptionSelectedIndicator>
+          )}
         </OptionContent>
       </StyledOption>
     </OptionItem>
@@ -134,7 +137,7 @@ const OptionSelectedIndicator = styled.span`
   display: flex;
   align-items: center;
   color: ${(props) => props.theme.selectedListOptionIconColor};
-
+  font-size: 16px;
   svg {
     width: 16px;
     height: 16px;
