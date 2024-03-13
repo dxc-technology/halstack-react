@@ -133,7 +133,8 @@ const TabContainer = styled.button<{
     font-style: ${(props) => props.theme.disabledFontStyle};
     outline: none !important;
 
-    svg {
+    svg,
+    span:before {
       color: ${(props) => props.theme.disabledIconColor};
     }
     > div {
