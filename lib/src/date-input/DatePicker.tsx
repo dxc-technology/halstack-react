@@ -37,7 +37,7 @@ const DxcDatePicker = ({ date, onDateSelect, id }: DatePickerPropsType): JSX.Ele
           title={translatedLabels.calendar.previousMonthTitle}
           onClick={() => handleMonthChange(innerDate.set("month", innerDate.get("month") - 1))}
         >
-          <DxcIcon icon="arrow_left" />
+          <DxcIcon icon="keyboard_arrow_left" />
         </HeaderButton>
         <HeaderYearTrigger
           aria-live="polite"
@@ -53,7 +53,7 @@ const DxcDatePicker = ({ date, onDateSelect, id }: DatePickerPropsType): JSX.Ele
           title={translatedLabels.calendar.nextMonthTitle}
           onClick={() => handleMonthChange(innerDate.set("month", innerDate.get("month") + 1))}
         >
-          <DxcIcon icon="arrow_right" />
+          <DxcIcon icon="keyboard_arrow_right" />
         </HeaderButton>
       </PickerHeader>
       {content === "calendar" && (
