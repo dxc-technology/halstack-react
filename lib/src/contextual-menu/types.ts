@@ -29,7 +29,7 @@ type GroupItemProps = GroupItemWithId & { level: number };
 type MenuItemProps = { item: ItemWithId | GroupItemWithId; level?: number };
 type ItemActionProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
   Item & {
-    collapseIcon?: SVG;
+    collapseIcon?: React.ReactNode;
     level: number;
     selected: boolean;
   };

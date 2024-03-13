@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import CoreTokens from "../common/coreTokens";
 import { ItemActionProps } from "./types";
+import DxcIcon from "../icon/Icon";
 
 const ItemAction = ({ badge, collapseIcon, icon, label, level, selected, ...props }: ItemActionProps) => {
   const modifiedBadge = badge && React.cloneElement(badge, { size: "small" });
@@ -10,7 +11,7 @@ const ItemAction = ({ badge, collapseIcon, icon, label, level, selected, ...prop
     <Action level={level} selected={selected} {...props}>
       <Label>
         {collapseIcon && <Icon aria-hidden>{collapseIcon}</Icon>}
-        {icon && <Icon aria-hidden>{typeof icon === "string" ? <img src={icon} /> : icon}</Icon>}
+        {icon && <Icon aria-hidden>{typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}</Icon>}
         <Text
           onMouseEnter={(event: React.MouseEvent<HTMLSpanElement>) => {
             const text = event.currentTarget;

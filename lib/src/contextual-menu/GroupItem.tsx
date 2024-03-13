@@ -2,10 +2,10 @@ import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import CoreTokens from "../common/coreTokens";
 import { GroupItemProps } from "./types";
-import icons from "./Icons";
 import MenuItem from "./MenuItem";
 import ItemAction from "./ItemAction";
 import { ContextualMenuContext } from "./ContextualMenu";
+import DxcIcon from "../icon/Icon";
 
 const isGroupSelected = (items: GroupItemProps["items"], selectedItemId: number) =>
   items.some((item) => ("id" in item ? item.id === selectedItemId : isGroupSelected(item.items, selectedItemId)));
@@ -20,7 +20,7 @@ const GroupItem = ({ ...props }: GroupItemProps) => {
       <ItemAction
         aria-controls={menuId}
         aria-expanded={isOpen ? true : undefined}
-        collapseIcon={isOpen ? icons.arrowUp : icons.arrowDown}
+        collapseIcon={isOpen ? <DxcIcon icon="filled_expand_more" /> : <DxcIcon icon="filled_expand_more" />}
         onClick={() => {
           setIsOpen((isOpen) => !isOpen);
         }}
