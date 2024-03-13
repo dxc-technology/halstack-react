@@ -25,7 +25,7 @@ export type SidenavGroupPropsType = {
    */
   collapsable?: boolean;
   /**
-   * The Material symbol or SVG icon to be displayed next to the title of the group.
+   * Material Symbol name or SVG icon to be displayed next to the title of the group.
    */
   icon?: string | SVG;
   /**
