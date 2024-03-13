@@ -14,10 +14,7 @@ const GroupItem = ({ items, ...props }: GroupItemProps) => {
   const groupMenuId = `group-menu-${props.label}`;
   const [isOpen, setIsOpen] = useState(false);
   const { selectedItemId } = useContext(ContextualMenuContext);
-  const selected = useMemo(
-    () => !isOpen && isGroupSelected(items, selectedItemId),
-    [isOpen, items, selectedItemId]
-  );
+  const selected = useMemo(() => !isOpen && isGroupSelected(items, selectedItemId), [isOpen, items, selectedItemId]);
 
   return (
     <>

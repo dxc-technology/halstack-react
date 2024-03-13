@@ -11,7 +11,9 @@ const ItemAction = ({ badge, collapseIcon, icon, label, depthLevel, selected, ..
     <Action depthLevel={depthLevel} selected={selected} {...props}>
       <Label>
         {collapseIcon && <Icon aria-hidden>{collapseIcon}</Icon>}
-        {icon && depthLevel === 0 && <Icon aria-hidden>{typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}</Icon>}
+        {icon && depthLevel === 0 && (
+          <Icon aria-hidden>{typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}</Icon>
+        )}
         <Text
           onMouseEnter={(event: React.MouseEvent<HTMLSpanElement>) => {
             const text = event.currentTarget;

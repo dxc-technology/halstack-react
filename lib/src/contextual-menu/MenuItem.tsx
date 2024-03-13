@@ -7,7 +7,11 @@ import { MenuItemProps } from "./types";
 
 const MenuItem = ({ item, depthLevel = 0 }: MenuItemProps) => (
   <StyledMenuItem role="menuitem">
-    {"items" in item ? <GroupItem {...item} depthLevel={depthLevel} /> : <SingleItem {...item} depthLevel={depthLevel} />}
+    {"items" in item ? (
+      <GroupItem {...item} depthLevel={depthLevel} />
+    ) : (
+      <SingleItem {...item} depthLevel={depthLevel} />
+    )}
   </StyledMenuItem>
 );
 
