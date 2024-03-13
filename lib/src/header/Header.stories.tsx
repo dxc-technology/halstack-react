@@ -8,6 +8,7 @@ import DxcFlex from "../flex/Flex";
 import DxcLink from "../link/Link";
 import { HalstackProvider } from "../HalstackContext";
 import preview from "../../.storybook/preview";
+import { disabledRules } from "../../test/accessibility/rules/specific/header/disabledRules";
 
 export default {
   title: "Header",
@@ -16,8 +17,7 @@ export default {
     a11y: {
       config: {
         rules: [
-          { id: "landmark-no-duplicate-banner", enabled: false },
-          { id: "landmark-unique", enabled: false },
+          ...disabledRules.map((ruleId) => ({ id: ruleId, enabled: false })),
           ...preview?.parameters?.a11y?.config?.rules,
         ],
       },

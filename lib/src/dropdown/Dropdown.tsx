@@ -186,7 +186,7 @@ const DxcDropdown = ({
               <DropdownTriggerContent>
                 {label && iconPosition === "after" && <DropdownTriggerLabel>{label}</DropdownTriggerLabel>}
                 {icon && (
-                  <DropdownTriggerIcon disabled={disabled} role={typeof icon === "string" ? undefined : "img"}>
+                  <DropdownTriggerIcon disabled={disabled} role={typeof icon === "string" ? undefined : "img"} aria-hidden>
                     {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
                   </DropdownTriggerIcon>
                 )}

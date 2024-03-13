@@ -65,6 +65,7 @@ const DxcCheckbox = React.forwardRef<RefType, CheckboxPropsType>(
           size={size}
           checked={checked ?? innerChecked}
           ref={ref}
+          aria-hidden={!label}
         >
           {label && (
             <LabelContainer id={labelId} disabled={disabled} labelPosition={labelPosition}>

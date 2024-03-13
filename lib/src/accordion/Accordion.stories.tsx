@@ -61,7 +61,7 @@ export const Chromatic = () => (
     <Title title="Component anatomy" theme="light" level={2} />
     <ExampleContainer>
       <Title title="With label" theme="light" level={4} />
-      <DxcAccordion label="Accordion">
+      <DxcAccordion label="Accordion 1">
         <div>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo
           lobortis eget.
@@ -70,7 +70,7 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With assistive text" theme="light" level={4} />
-      <DxcAccordion label="Accordion" assistiveText="Assistive text">
+      <DxcAccordion label="Accordion 2" assistiveText="Assistive text">
         <div>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo
           lobortis eget.
@@ -79,7 +79,7 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With icon" theme="light" level={4} />
-      <DxcAccordion label="Accordion" assistiveText="Assistive text" icon="folder">
+      <DxcAccordion label="Accordion 3" assistiveText="Assistive text" icon="folder">
         <div>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo
           lobortis eget.
@@ -88,7 +88,7 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With smaller icon" theme="light" level={4} />
-      <DxcAccordion label="Accordion" assistiveText="Assistive text" icon={smallIcon}>
+      <DxcAccordion label="Accordion 4" assistiveText="Assistive text" icon={smallIcon}>
         <div>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo
           lobortis eget.

@@ -104,6 +104,7 @@ const Listbox = ({
       aria-multiselectable={!hasOptionGroups ? multiple: undefined}
       style={styles}
       role={hasOptionGroups ? "list" : "listbox"}
+      aria-label="List of options"
     >
       {searchable && (options.length === 0 || !groupsHaveOptions(options)) ? (
         <OptionsSystemMessage>

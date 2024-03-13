@@ -510,7 +510,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
             </Popover.Portal>
           </Popover.Root>
           {!disabled && typeof error === "string" && (
-            <Error id={errorId} aria-live={error ? "assertive" : "off"}>
+            <Error id={errorId} role="status" aria-live={error ? "assertive" : "off"}>
               {error}
             </Error>
           )}

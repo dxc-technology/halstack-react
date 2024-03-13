@@ -87,7 +87,7 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Only icon" theme="light" level={4} />
-      <DxcButton icon="filled_bottom_app_bar" />
+      <DxcButton icon="filled_bottom_app_bar" title="Button with no label" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Big icon (SVG)" theme="light" level={4} />
@@ -95,7 +95,7 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Small icon (SVG)" theme="light" level={4} />
-      <DxcButton icon={smallIcon} />
+      <DxcButton icon={smallIcon} title="Button with no label" />
     </ExampleContainer>
     <Title title="Secondary" theme="light" level={2} />
     <ExampleContainer>

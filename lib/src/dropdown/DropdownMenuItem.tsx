@@ -21,7 +21,7 @@ const DropdownMenuItem = ({
   >
     {iconPosition === "after" && <DropdownMenuItemLabel>{option.label}</DropdownMenuItemLabel>}
     {option.icon && (
-      <DropdownMenuItemIcon role={typeof option.icon === "string" ? undefined : "img"}>
+      <DropdownMenuItemIcon role={typeof option.icon === "string" ? undefined : "img"} aria-hidden>
         {typeof option.icon === "string" ? <DxcIcon icon={option.icon} /> : option.icon}
       </DropdownMenuItemIcon>
     )}

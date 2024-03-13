@@ -76,7 +76,7 @@ const tabsNotification = tabs.map((tab, index) => ({
 
 const tabsIcon = tabs.map((tab, index) =>
   index <= tabs.length / 2
-    ? { ...tab, icon: "https://cdn-icons-png.flaticon.com/512/5039/5039041.png" }
+    ? { ...tab, icon: "mail" }
     : { ...tab, icon: iconSVG }
 );
 

@@ -32,16 +32,17 @@ const Suggestions = ({
         event.preventDefault();
       }}
       ref={listboxRef}
-      role="listbox"
+      role={"listbox"}
       style={styles}
+      aria-label="Suggestions"
     >
       {!isSearching &&
         !searchHasErrors &&
         suggestions.length > 0 &&
         suggestions.map((suggestion, index) => (
           <Suggestion
-            key={`suggestion-${index}`}
-            id={`suggestion-${index}`}
+            key={`${id}-suggestion-${index}`}
+            id={`${id}-suggestion-${index}`}
             value={value}
             onClick={suggestionOnClick}
             suggestion={suggestion}
@@ -51,15 +52,17 @@ const Suggestions = ({
           />
         ))}
       {isSearching && (
-        <SuggestionsSystemMessage>{translatedLabels.textInput.searchingMessage}</SuggestionsSystemMessage>
+        <SuggestionsSystemMessage role="option">{translatedLabels.textInput.searchingMessage}</SuggestionsSystemMessage>
       )}
       {searchHasErrors && (
-        <SuggestionsError>
-          <SuggestionsErrorIcon>
-            <DxcIcon icon="filled_error" />
-          </SuggestionsErrorIcon>
-          {translatedLabels.textInput.fetchingDataErrorMessage}
-        </SuggestionsError>
+        <span role="option">
+          <SuggestionsError role="status" aria-live="assertive">
+            <SuggestionsErrorIcon>
+              <DxcIcon icon="filled_error" />
+            </SuggestionsErrorIcon>
+            {translatedLabels.textInput.fetchingDataErrorMessage}
+          </SuggestionsError>
+        </span>
       )}
     </SuggestionsContainer>
   );

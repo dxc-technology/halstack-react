@@ -31,7 +31,7 @@ const DxcTab = forwardRef(
     };
 
     return (
-      <TabContainer active={active} role="tab" aria-selected={active} aria-disabled={disabled}>
+      <TabContainer active={active}>
         <Tab
           href={!disabled ? href : undefined}
           disabled={disabled}
@@ -48,6 +48,9 @@ const DxcTab = forwardRef(
           }}
           onKeyDown={handleOnKeyDown}
           tabIndex={active ? tabIndex : -1}
+          role="tab"
+          aria-selected={active}
+          aria-disabled={disabled}
           {...otherProps}
         >
           {icon && (
@@ -90,7 +93,7 @@ const DxcTab = forwardRef(
 
 const TabContainer = styled.div<{ active: TabProps["active"] }>`
   align-items: stretch;
-  border-bottom: 2px solid ${(props) => (props.active ? props.theme.selectedUnderlineColor : 'transparent')};
+  border-bottom: 2px solid ${(props) => (props.active ? props.theme.selectedUnderlineColor : "transparent")};
   padding: 0.5rem;
   z-index: 1;
   svg {

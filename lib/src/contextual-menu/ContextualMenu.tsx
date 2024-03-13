@@ -27,9 +27,9 @@ const DxcContextualMenu = ({ items, defaultSelectedItemIndex = -1 }: MenuPropsTy
     accLength += section.items.length;
     return (
       <Fragment key={`separator-${currentSectionIndex}`}>
-        <Li role="group">
+        <Li role="menuitem">
           {section.title != null && <Title>{section.title}</Title>}
-          <Section>{section.items.map((item, index) => renderSingleItem(item, startingIndex + index))}</Section>
+          <Section role="menu">{section.items.map((item, index) => renderSingleItem(item, startingIndex + index))}</Section>
         </Li>
         {currentSectionIndex !== items.length - 1 && <Divider aria-hidden />}
       </Fragment>
@@ -85,7 +85,7 @@ const Section = styled.ul`
   gap: ${CoreTokens.spacing_4};
 `;
 
-const Title = styled.h2`
+const Title = styled.span`
   margin: 0 0 ${CoreTokens.spacing_4} 0;
   padding: ${CoreTokens.spacing_4};
   color: ${CoreTokens.color_grey_900};

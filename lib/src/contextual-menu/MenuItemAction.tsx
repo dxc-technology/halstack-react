@@ -4,7 +4,7 @@ import CoreTokens from "../common/coreTokens";
 import { MenuItemActionProps } from "./types";
 
 const MenuItemAction = ({ label, icon, slot, selected, onSelect }: MenuItemActionProps) => (
-  <Action aria-selected={selected} selected={selected} onClick={() => onSelect()}>
+  <Action aria-current={selected} selected={selected} onClick={() => onSelect()}>
     <Label>
       {icon && <Icon aria-hidden>{typeof icon === "string" ? <img src={icon} /> : icon}</Icon>}
       <Text

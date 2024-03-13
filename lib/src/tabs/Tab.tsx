@@ -4,6 +4,7 @@ import { TabProps } from "./types";
 import DxcBadge from "../badge/Badge";
 import BaseTypography from "../utils/BaseTypography";
 import useTheme from "../useTheme";
+import DxcIcon from "../icon/Icon";
 
 const Tab = forwardRef(
   (
@@ -40,7 +41,7 @@ const Tab = forwardRef(
         >
           {tab.icon && (
             <TabIconContainer hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
-              {typeof tab.icon === "string" ? <img src={tab.icon} /> : tab.icon}
+              {typeof tab.icon === "string" ? <DxcIcon icon={tab.icon} /> : tab.icon}
             </TabIconContainer>
           )}
           <BaseTypography

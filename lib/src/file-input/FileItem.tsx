@@ -64,7 +64,7 @@ const FileItem = ({
               {deleteIcon}
             </DeleteFileAction>
           </DxcFlex>
-          {error && !singleFileMode && <ErrorMessage>{error}</ErrorMessage>}
+          {error && !singleFileMode && <ErrorMessage role="status" aria-live="assertive">{error}</ErrorMessage>}
         </FileItemContent>
       </MainContainer>
     </ThemeProvider>
