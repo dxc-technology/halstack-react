@@ -212,7 +212,7 @@ const DxcTabs = ({
             tabIndex={scrollLeftEnabled ? tabIndex : -1}
             minHeightTabs={minHeightTabs}
           >
-            <DxcIcon icon={"navigate_before"} />
+            <DxcIcon icon={"keyboard_arrow_left"} />
           </ScrollIndicator>
           <TabsContent>
             <TabsContentScroll translateScroll={translateScroll} ref={refTabList} enabled={enabledIndicator}>
@@ -255,7 +255,7 @@ const DxcTabs = ({
             tabIndex={scrollRightEnabled ? tabIndex : -1}
             minHeightTabs={minHeightTabs}
           >
-            <DxcIcon icon={"navigate_next"} />
+            <DxcIcon icon={"keyboard_arrow_right"} />
           </ScrollIndicator>
         </Tabs>
       </TabsContainer>
