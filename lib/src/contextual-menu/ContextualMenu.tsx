@@ -56,7 +56,7 @@ const DxcContextualMenu = ({ items }: ContextualMenuPropsType) => {
   );
 
   return (
-    <Menu role="menu">
+    <ContextualMenu role="menu">
       <ContextualMenuContext.Provider value={{ selectedItemId, setSelectedItemId }}>
         {itemsWithId.map((item: GroupItemWithId | ItemWithId | SectionWithId, index: number) =>
           "items" in item && !("label" in item) ? (
@@ -66,11 +66,11 @@ const DxcContextualMenu = ({ items }: ContextualMenuPropsType) => {
           )
         )}
       </ContextualMenuContext.Provider>
-    </Menu>
+    </ContextualMenu>
   );
 };
 
-const Menu = styled.ul`
+const ContextualMenu = styled.ul`
   box-sizing: border-box;
   margin: 0;
   border: 1px solid ${CoreTokens.color_grey_200};

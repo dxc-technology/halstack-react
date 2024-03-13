@@ -24,13 +24,13 @@ type GroupItemWithId = {
   label: string;
 };
 type SectionWithId = { items: (ItemWithId | GroupItemWithId)[]; title?: string };
-type SingleItemProps = ItemWithId & { level: number };
-type GroupItemProps = GroupItemWithId & { level: number };
-type MenuItemProps = { item: ItemWithId | GroupItemWithId; level?: number };
+type SingleItemProps = ItemWithId & { depthLevel: number };
+type GroupItemProps = GroupItemWithId & { depthLevel: number };
+type MenuItemProps = { item: ItemWithId | GroupItemWithId; depthLevel?: number };
 type ItemActionProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
   Item & {
     collapseIcon?: React.ReactNode;
-    level: number;
+    depthLevel: number;
     selected: boolean;
   };
 type ContextualMenuContextProps = {

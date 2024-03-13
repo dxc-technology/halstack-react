@@ -10,13 +10,13 @@ import DxcIcon from "../icon/Icon";
 const isGroupSelected = (items: GroupItemProps["items"], selectedItemId: number): boolean =>
   items.some((item) => ("id" in item ? item.id === selectedItemId : isGroupSelected(item.items, selectedItemId)));
 
-const GroupItem = ({ ...props }: GroupItemProps) => {
+const GroupItem = ({ items, ...props }: GroupItemProps) => {
   const groupMenuId = `group-menu-${props.label}`;
   const [isOpen, setIsOpen] = useState(false);
   const { selectedItemId } = useContext(ContextualMenuContext);
   const selected = useMemo(
-    () => !isOpen && isGroupSelected(props.items, selectedItemId),
-    [isOpen, props.items, selectedItemId]
+    () => !isOpen && isGroupSelected(items, selectedItemId),
+    [isOpen, items, selectedItemId]
   );
 
   return (
@@ -34,8 +34,8 @@ const GroupItem = ({ ...props }: GroupItemProps) => {
       />
       {isOpen && (
         <ItemsList id={groupMenuId}>
-          {props.items.map((item) => (
-            <MenuItem item={item} level={props.level + 1} />
+          {items.map((item) => (
+            <MenuItem item={item} depthLevel={props.depthLevel + 1} />
           ))}
         </ItemsList>
       )}

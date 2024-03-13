@@ -4,14 +4,14 @@ import CoreTokens from "../common/coreTokens";
 import { ItemActionProps } from "./types";
 import DxcIcon from "../icon/Icon";
 
-const ItemAction = ({ badge, collapseIcon, icon, label, level, selected, ...props }: ItemActionProps) => {
+const ItemAction = ({ badge, collapseIcon, icon, label, depthLevel, selected, ...props }: ItemActionProps) => {
   const modifiedBadge = badge && React.cloneElement(badge, { size: "small" });
 
   return (
-    <Action level={level} selected={selected} {...props}>
+    <Action depthLevel={depthLevel} selected={selected} {...props}>
       <Label>
         {collapseIcon && <Icon aria-hidden>{collapseIcon}</Icon>}
-        {icon && <Icon aria-hidden>{typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}</Icon>}
+        {icon && depthLevel === 0 && <Icon aria-hidden>{typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}</Icon>}
         <Text
           onMouseEnter={(event: React.MouseEvent<HTMLSpanElement>) => {
             const text = event.currentTarget;
@@ -26,13 +26,13 @@ const ItemAction = ({ badge, collapseIcon, icon, label, level, selected, ...prop
   );
 };
 
-const Action = styled.button<{ level: ItemActionProps["level"]; selected: ItemActionProps["selected"] }>`
+const Action = styled.button<{ depthLevel: ItemActionProps["depthLevel"]; selected: ItemActionProps["selected"] }>`
   border: none;
   border-radius: 4px;
   width: 100%;
   padding: ${(props) =>
     `${CoreTokens.spacing_4} ${CoreTokens.spacing_8} ${CoreTokens.spacing_4} ${`
-    calc(${CoreTokens.spacing_8} + (${CoreTokens.spacing_24} * ${props.level}))
+    calc(${CoreTokens.spacing_8} + (${CoreTokens.spacing_24} * ${props.depthLevel}))
   `};`};
   box-shadow: inset 0 0 0 2px transparent;
   display: flex;

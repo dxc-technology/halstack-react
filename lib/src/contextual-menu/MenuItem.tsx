@@ -5,9 +5,9 @@ import SingleItem from "./SingleItem";
 import GroupItem from "./GroupItem";
 import { MenuItemProps } from "./types";
 
-const MenuItem = ({ item, level = 0 }: MenuItemProps) => (
+const MenuItem = ({ item, depthLevel = 0 }: MenuItemProps) => (
   <StyledMenuItem role="menuitem">
-    {"items" in item ? <GroupItem {...item} level={level} /> : <SingleItem {...item} level={level} />}
+    {"items" in item ? <GroupItem {...item} depthLevel={depthLevel} /> : <SingleItem {...item} depthLevel={depthLevel} />}
   </StyledMenuItem>
 );
 

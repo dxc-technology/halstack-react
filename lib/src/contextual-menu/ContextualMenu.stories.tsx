@@ -38,6 +38,7 @@ const groupItems = [
             items: [
               {
                 label: "Item 2",
+                icon: "bookmark",
                 badge: <DxcBadge color="purple" label="Experimental" />,
               },
               { label: "Selected Item 3" },
@@ -177,33 +178,33 @@ export const SingleItemStates = () => (
     <ContextualMenuContext.Provider value={{ selectedItemId: -1, setSelectedItemId: () => {} }}>
       <Title title="Default" theme="light" level={3} />
       <ExampleContainer>
-        <SingleItem {...items[0]} id={0} level={0} />
+        <SingleItem {...items[0]} id={0} depthLevel={0} />
       </ExampleContainer>
       <Title title="Focus" theme="light" level={3} />
       <ExampleContainer pseudoState="pseudo-focus">
-        <SingleItem {...items[0]} id={0} level={0} />
+        <SingleItem {...items[0]} id={0} depthLevel={0} />
       </ExampleContainer>
       <Title title="Hover" theme="light" level={3} />
       <ExampleContainer pseudoState="pseudo-hover">
-        <SingleItem {...items[0]} id={0} level={0} />
+        <SingleItem {...items[0]} id={0} depthLevel={0} />
       </ExampleContainer>
       <Title title="Active" theme="light" level={3} />
       <ExampleContainer pseudoState="pseudo-active">
-        <SingleItem {...items[0]} id={0} level={0} />
+        <SingleItem {...items[0]} id={0} depthLevel={0} />
       </ExampleContainer>
     </ContextualMenuContext.Provider>
     <ContextualMenuContext.Provider value={{ selectedItemId: 0, setSelectedItemId: () => {} }}>
       <Title title="Selected" theme="light" level={3} />
       <ExampleContainer>
-        <SingleItem {...items[0]} id={0} level={0} />
+        <SingleItem {...items[0]} id={0} depthLevel={0} />
       </ExampleContainer>
       <Title title="Selected hover" theme="light" level={3} />
       <ExampleContainer pseudoState="pseudo-hover">
-        <SingleItem {...items[0]} id={0} level={0} />
+        <SingleItem {...items[0]} id={0} depthLevel={0} />
       </ExampleContainer>
       <Title title="Selected active" theme="light" level={3} />
       <ExampleContainer pseudoState="pseudo-active">
-        <SingleItem {...items[0]} id={0} level={0} />
+        <SingleItem {...items[0]} id={0} depthLevel={0} />
       </ExampleContainer>
     </ContextualMenuContext.Provider>
   </DxcContainer>
