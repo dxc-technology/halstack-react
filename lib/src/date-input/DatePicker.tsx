@@ -5,7 +5,8 @@ import { DatePickerPropsType } from "./types";
 import Calendar from "./Calendar";
 import YearPicker from "./YearPicker";
 import useTranslatedLabels from "../useTranslatedLabels";
-import { downCaret, leftCaret, rightCaret, upCaret } from "./Icons";
+import DxcIcon from "../icon/Icon";
+
 const today = dayjs();
 
 const DxcDatePicker = ({ date, onDateSelect, id }: DatePickerPropsType): JSX.Element => {
@@ -36,7 +37,7 @@ const DxcDatePicker = ({ date, onDateSelect, id }: DatePickerPropsType): JSX.Ele
           title={translatedLabels.calendar.previousMonthTitle}
           onClick={() => handleMonthChange(innerDate.set("month", innerDate.get("month") - 1))}
         >
-          {leftCaret}
+          <DxcIcon icon="arrow_left" />
         </HeaderButton>
         <HeaderYearTrigger
           aria-live="polite"
@@ -45,14 +46,14 @@ const DxcDatePicker = ({ date, onDateSelect, id }: DatePickerPropsType): JSX.Ele
           <HeaderYearTriggerLabel>
             {translatedLabels.calendar.months[innerDate.get("month")]} {innerDate.format("YYYY")}
           </HeaderYearTriggerLabel>
-          {content === "yearPicker" ? upCaret : downCaret}
+          <DxcIcon icon={content === "yearPicker" ? "arrow_drop_up" : "arrow_drop_down"} />
         </HeaderYearTrigger>
         <HeaderButton
           aria-label={translatedLabels.calendar.nextMonthTitle}
           title={translatedLabels.calendar.nextMonthTitle}
           onClick={() => handleMonthChange(innerDate.set("month", innerDate.get("month") + 1))}
         >
-          {rightCaret}
+          <DxcIcon icon="arrow_right" />
         </HeaderButton>
       </PickerHeader>
       {content === "calendar" && (
@@ -119,9 +120,9 @@ const HeaderButton = styled.button`
     color: ${(props) => props.theme.dateInput.pickerHeaderActiveFontColor};
     background-color: ${(props) => props.theme.dateInput.pickerHeaderActiveBackgroundColor};
   }
-  svg {
-    width: 24px;
-    height: 24px;
+
+  span::before {
+    font-size: 24px;
   }
 `;
 
@@ -129,6 +130,10 @@ const HeaderYearTrigger = styled(HeaderButton)`
   gap: 8px;
   height: 40px;
   width: 172px;
+  font-size: 24px;
+  span::before {
+    font-size: 24px;
+  }
 `;
 
 const HeaderYearTriggerLabel = styled.span`
