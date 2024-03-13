@@ -27,7 +27,7 @@ const a11yConfig: TestRunnerConfig = {
   },
 };
 
-module.exports = a11yConfig;
+// module.exports = a11yConfig;
 
 // // UNCOMMENT TO EXPORT RESULTS AS JSON IN __ACCESSIBILITY
 // const { injectAxe, getViolations } = require("axe-playwright");

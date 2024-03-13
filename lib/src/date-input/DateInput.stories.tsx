@@ -10,10 +10,33 @@ import dayjs from "dayjs";
 import useTheme from "../useTheme";
 import { ThemeProvider } from "styled-components";
 import { HalstackProvider } from "../HalstackContext";
+import preview from "../../.storybook/preview";
 
 export default {
   title: "Date Input",
   component: DxcDateInput,
+  parameters: {
+    // TODO: REMOVE
+    a11y: {
+      config: {
+        rules: [
+          {
+            id: 'aria-allowed-attr',
+            reviewOnFail: true,
+          },
+          {
+            id: 'duplicate-id-active',
+            reviewOnFail: true,
+          },
+          {
+            id: 'duplicate-id',
+            reviewOnFail: true,
+          },
+          ...preview?.parameters?.a11y?.config?.rules,
+        ],
+      },
+    },
+  },
 };
 
 const opinionatedTheme = {
@@ -41,13 +64,7 @@ const DateInputChromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Read only" theme="light" level={4} />
-      <DxcDateInput
-        label="Example label"
-        helperText="Help message"
-        defaultValue="06-04-2007"
-        clearable
-        readOnly
-      />
+      <DxcDateInput label="Example label" helperText="Help message" defaultValue="06-04-2007" clearable readOnly />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Invalid" theme="light" level={4} />

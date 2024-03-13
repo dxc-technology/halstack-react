@@ -8,7 +8,11 @@ import useTranslatedLabels from "../useTranslatedLabels";
 import CheckboxPropsType, { RefType } from "./types";
 
 const checkedIcon = (
-  <svg fill="currentColor" focusable="false" aria-hidden="true" viewBox="0 0 24 24">
+  <svg
+    fill="currentColor"
+    focusable="false"
+    viewBox="0 0 24 24"
+  >
     <path d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"></path>
   </svg>
 );
@@ -65,10 +69,9 @@ const DxcCheckbox = React.forwardRef<RefType, CheckboxPropsType>(
           size={size}
           checked={checked ?? innerChecked}
           ref={ref}
-          aria-hidden={!label}
         >
           {label && (
-            <LabelContainer id={labelId} disabled={disabled} labelPosition={labelPosition}>
+            <LabelContainer id={labelId} disabled={disabled} labelPosition={labelPosition} aria-label={label}>
               {label}
               {optional && ` ${translatedLabels.formFields.optionalLabel}`}
             </LabelContainer>
@@ -77,7 +80,6 @@ const DxcCheckbox = React.forwardRef<RefType, CheckboxPropsType>(
             type="checkbox"
             checked={checked ?? innerChecked}
             name={name}
-            aria-hidden="true"
             value={value}
             disabled={disabled}
             readOnly
@@ -85,13 +87,15 @@ const DxcCheckbox = React.forwardRef<RefType, CheckboxPropsType>(
           <CheckboxContainer>
             <Checkbox
               onKeyDown={handleKeyboard}
-              role="checkbox"
+              role={disabled || tabIndex === -1 ? "presentation" : "checkbox"}
               tabIndex={disabled ? -1 : tabIndex}
               aria-checked={checked ?? innerChecked}
               aria-disabled={disabled}
               aria-readonly={readOnly}
               aria-required={!disabled && !optional}
               aria-labelledby={label ? labelId : undefined}
+              aria-label={label ? undefined : "Option"}
+              aria-hidden={true}
               checked={checked ?? innerChecked}
               disabled={disabled}
               readOnly={readOnly}
