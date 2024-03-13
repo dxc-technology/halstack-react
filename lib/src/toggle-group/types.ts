@@ -13,7 +13,7 @@ type OptionIcon = {
    */
   label?: never;
   /**
-   * Element used as the icon. Icon and label can't be used at same time.
+   * Material Symbols icon or SVG element. Icon and label can't be used at same time.
    */
   icon: string | SVG;
   /**
@@ -28,7 +28,7 @@ export type OptionLabel = {
    */
   label: string;
   /**
-   * Element used as the icon. Icon and label can't be used at same time.
+   * Material Symbols icon or SVG element. Icon and label can't be used at same time.
    */
   icon?: string | SVG;
   /**
