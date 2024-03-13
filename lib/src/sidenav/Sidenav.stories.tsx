@@ -66,15 +66,11 @@ export const Chromatic = () => (
           </DxcSidenav.Group>
         </DxcSidenav.Section>
         <DxcSidenav.Section>
-          <DxcSidenav.Group
-            collapsable={true}
-            title="Section Group"
-            icon="https://cdn-icons-png.flaticon.com/512/5039/5039041.png"
-          >
+          <DxcSidenav.Group collapsable={true} title="Section Group" icon="filled_bottom_app_bar">
             <DxcSidenav.Link selected>Group Link</DxcSidenav.Link>
             <DxcSidenav.Link icon={iconSVG}>Group Link</DxcSidenav.Link>
           </DxcSidenav.Group>
-          <DxcSidenav.Link icon="https://upload.wikimedia.org/wikipedia/commons/7/73/Flat_tick_icon.svg" newWindow>
+          <DxcSidenav.Link icon="filled_bottom_app_bar" newWindow>
             Single Link
           </DxcSidenav.Link>
           <DxcSidenav.Link newWindow>Single Link</DxcSidenav.Link>
@@ -98,7 +94,7 @@ export const Chromatic = () => (
         <DxcSidenav.Section>
           <DxcSidenav.Link>Single Link</DxcSidenav.Link>
           <DxcSidenav.Group collapsable={true} title="Collapsable Group">
-            <DxcSidenav.Link icon="https://cdn-icons-png.flaticon.com/512/5039/5039041.png">Group Link</DxcSidenav.Link>
+            <DxcSidenav.Link icon="filled_bottom_app_bar">Group Link</DxcSidenav.Link>
           </DxcSidenav.Group>
         </DxcSidenav.Section>
         <DxcSidenav.Section>
