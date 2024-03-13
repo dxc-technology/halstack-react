@@ -664,9 +664,7 @@ const ClearOptionsAction = styled.button`
       }
     `}
 
-  svg {
-    line-height: 18px;
-  }
+  font-size:16px;
 `;
 
 const SearchableValueContainer = styled.div`
@@ -731,10 +729,7 @@ const ErrorIcon = styled.span`
   pointer-events: none;
   color: ${(props) => props.theme.errorIconColor};
 
-  svg {
-    line-height: 18px;
-    font-size: 1.25rem;
-  }
+  font-size: 1.25rem;
 `;
 
 const Error = styled.span`
@@ -782,9 +777,7 @@ const ClearSearchAction = styled.button`
     background-color: ${(props) => props.theme.activeActionBackgroundColor};
     color: ${(props) => props.theme.activeActionIconColor};
   }
-  svg {
-    line-height: 18px;
-  }
+  font-size: 16px;
 `;
 
 export default DxcSelect;

@@ -107,7 +107,6 @@ const OptionIcon = styled.span<{ grouped: OptionProps["isGroupedOption"]; multip
   margin-left: ${(props) => (props.grouped && !props.multiple ? "16px" : "8px")};
   color: ${(props) => props.theme.listOptionIconColor};
 
-  svg,
   img {
     height: 20px;
     width: 20px;
@@ -138,10 +137,6 @@ const OptionSelectedIndicator = styled.span`
   align-items: center;
   color: ${(props) => props.theme.selectedListOptionIconColor};
   font-size: 16px;
-  svg {
-    width: 16px;
-    height: 16px;
-  }
 `;
 
 export default React.memo(Option);

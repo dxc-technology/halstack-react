@@ -163,9 +163,7 @@ const NoMatchesFoundIcon = styled.span`
   width: 16px;
   padding: 4px;
   margin-right: 0.25rem;
-  & > span {
-    font-size: 16px;
-  }
+  font-size: 16px;
 `;
 
 const GroupList = styled.ul`
