@@ -7,8 +7,9 @@ import { userEvent, waitFor, within } from "@storybook/testing-library";
 import DxcFlex from "../flex/Flex";
 import DxcLink from "../link/Link";
 import { HalstackProvider } from "../HalstackContext";
-import preview from "../../.storybook/preview";
+import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import { disabledRules } from "../../test/accessibility/rules/specific/header/disabledRules";
+import preview from "../../.storybook/preview";
 
 export default {
   title: "Header",
@@ -21,6 +22,9 @@ export default {
           ...preview?.parameters?.a11y?.config?.rules,
         ],
       },
+    },
+    viewport: {
+      viewports: INITIAL_VIEWPORTS,
     },
   },
 };
