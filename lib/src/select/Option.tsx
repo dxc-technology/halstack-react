@@ -105,8 +105,8 @@ const OptionIcon = styled.span<{ grouped: OptionProps["isGroupedOption"]; multip
   color: ${(props) => props.theme.listOptionIconColor};
 
   svg {
-    height: 20px;
-    width: 20px;
+    height: 24px;
+    width: 24px;
   }
   font-size: 24px;
 `;
