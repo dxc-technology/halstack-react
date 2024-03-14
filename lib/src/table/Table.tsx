@@ -65,7 +65,6 @@ const DxcTable = ({ children, margin, mode = "default" }: TablePropsType): JSX.E
   return (
     <ThemeProvider theme={colorsTheme.table}>
       <DxcTableContainer margin={margin} tabIndex={0}> 
-      {/* ADDING FOCUS IS NEEDED FOR SCROLL ON KEYBOARD PURPOSES */}
         <DxcTableContent mode={mode}>{children}</DxcTableContent>
       </DxcTableContainer>
     </ThemeProvider>
