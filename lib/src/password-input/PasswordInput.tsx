@@ -3,7 +3,6 @@ import styled from "styled-components";
 import DxcTextInput from "../text-input/TextInput";
 import useTranslatedLabels from "../useTranslatedLabels";
 import PasswordInputPropsType, { RefType } from "./types";
-import icons from "./Icons";
 
 const setInputType = (type: string, element: HTMLDivElement | null) => {
   element?.getElementsByTagName("input")[0].setAttribute("type", type);
@@ -63,7 +62,7 @@ const DxcPasswordInput = React.forwardRef<RefType, PasswordInputPropsType>(
             onClick: () => {
               setIsPasswordVisible((isPasswordVisible) => !isPasswordVisible);
             },
-            icon: isPasswordVisible ? icons.hidePassword : icons.showPassword,
+            icon: isPasswordVisible ? 'Visibility_Off' : 'Visibility',
             title: isPasswordVisible ? passwordInput.inputHidePasswordTitle : passwordInput.inputShowPasswordTitle,
           }}
           error={error}
