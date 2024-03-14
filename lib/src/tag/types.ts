@@ -48,7 +48,7 @@ type TagCommonProps = {
 
 type TagLabelProps = TagCommonProps & {
   /**
-   * Element or path used as the icon that will be placed next to the label.
+   * Material Symbol name or SVG element used as the icon that will be placed next to the label.
    */
   icon?: string | SVG;
   /**
@@ -59,7 +59,7 @@ type TagLabelProps = TagCommonProps & {
 
 type TagIconProps = TagCommonProps & {
   /**
-   * Element or path used as the icon that will be placed next to the label.
+   * Material Symbol name or SVG element used as the icon that will be placed next to the label.
    */
   icon: string | SVG;
   /**

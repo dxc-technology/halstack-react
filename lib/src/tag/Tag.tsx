@@ -4,6 +4,7 @@ import { spaces } from "../common/variables";
 import useTheme from "../useTheme";
 import { getMargin } from "../common/utils";
 import DxcBox from "../box/Box";
+import DxcIcon from "../icon/Icon";
 import TagPropsType from "./types";
 
 const DxcTag = ({
@@ -30,7 +31,7 @@ const DxcTag = ({
         {labelPosition === "before" && size !== "small" && label && <TagLabel>{label}</TagLabel>}
         {icon && (
           <IconContainer iconBgColor={iconBgColor}>
-            {typeof icon === "string" ? <TagIcon src={icon}></TagIcon> : icon}
+            {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
           </IconContainer>
         )}
         {labelPosition === "after" && size !== "small" && label && <TagLabel>{label}</TagLabel>}
@@ -132,14 +133,13 @@ const IconContainer = styled.div<{ iconBgColor: TagPropsType["iconBgColor"] }>`
   color: ${(props) => props.theme.iconColor};
   min-width: ${(props) => props.theme.iconSectionWidth};
   overflow: hidden;
-  img,
+  font-size: 24px;
+
   svg {
     width: ${(props) => props.theme.iconWidth};
     height: ${(props) => props.theme.iconHeight};
   }
 `;
-
-const TagIcon = styled.img``;
 
 const TagLabel = styled.div`
   font-family: ${(props) => props.theme.fontFamily};

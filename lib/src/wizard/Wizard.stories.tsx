@@ -133,6 +133,21 @@ const stepLargeIcons = [
   },
 ];
 
+const stepMaterialSymbols = [
+  {
+    label: "First step",
+    icon: "filled_home",
+  },
+  {
+    label: "Second step",
+    icon: "filled_favorite",
+  },
+  {
+    label: "Third step",
+    icon: "filled_star",
+  },
+];
+
 const opinionatedTheme = {
   wizard: {
     baseColor: "#5f249f",
@@ -170,6 +185,10 @@ export const Chromatic = () => (
     <ExampleContainer>
       <Title title="With large icons" theme="light" level={4} />
       <DxcWizard steps={stepLargeIcons}></DxcWizard>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="With Material Symbols" theme="light" level={4} />
+      <DxcWizard steps={stepMaterialSymbols}></DxcWizard>
     </ExampleContainer>
     <Title title="Margins horizontal" theme="light" level={2} />
     <ExampleContainer>

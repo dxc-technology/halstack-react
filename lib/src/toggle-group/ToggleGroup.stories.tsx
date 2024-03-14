@@ -52,17 +52,17 @@ const options = [
 const optionsWithIcon = [
   {
     value: 1,
-    icon: wifiSVG,
+    icon: "wifi",
     title: "WiFi connection",
   },
   {
     value: 2,
-    icon: ethernetSVG,
+    icon: "filled_lan",
     title: "Ethernet connection",
   },
   {
     value: 3,
-    icon: gMobileSVG,
+    icon: "5g",
     title: "3G Mobile data connection",
   },
 ];
