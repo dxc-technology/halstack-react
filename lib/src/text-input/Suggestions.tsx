@@ -3,7 +3,7 @@ import styled from "styled-components";
 import useTranslatedLabels from "../useTranslatedLabels";
 import Suggestion from "./Suggestion";
 import { SuggestionsProps } from "./types";
-import icons from "./Icons";
+import DxcIcon from "../icon/Icon";
 
 const Suggestions = ({
   id,
@@ -55,7 +55,9 @@ const Suggestions = ({
       )}
       {searchHasErrors && (
         <SuggestionsError>
-          <SuggestionsErrorIcon>{icons.error}</SuggestionsErrorIcon>
+          <SuggestionsErrorIcon>
+            <DxcIcon icon="filled_error" />
+          </SuggestionsErrorIcon>
           {translatedLabels.textInput.fetchingDataErrorMessage}
         </SuggestionsError>
       )}
@@ -97,6 +99,7 @@ const SuggestionsErrorIcon = styled.span`
   margin-right: 0.5rem;
   height: 18px;
   width: 18px;
+  font-size: 18px;
   color: ${(props) => props.theme.errorIconColor};
 `;
 

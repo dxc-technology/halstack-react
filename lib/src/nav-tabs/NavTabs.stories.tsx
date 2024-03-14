@@ -16,7 +16,10 @@ const iconSVG = (
   </svg>
 );
 
-const largeIcon = "https://www.iconpacks.net/icons/1/free-pin-icon-48-thumb.png";
+
+const favoriteIcon = 'filled_Favorite'
+
+const pinIcon = 'Location_On';
 
 const opinionatedTheme = {
   navTabs: {
@@ -91,7 +94,9 @@ export const Chromatic = () => (
         <DxcNavTabs.Tab href="#" notificationNumber={120}>
           Tab 3
         </DxcNavTabs.Tab>
-        <DxcNavTabs.Tab href="#">Tab 4</DxcNavTabs.Tab>
+        <DxcNavTabs.Tab href="#" notificationNumber={12}>
+          Tab 4
+        </DxcNavTabs.Tab>
       </DxcNavTabs>
     </ExampleContainer>
     <ExampleContainer>
@@ -103,10 +108,10 @@ export const Chromatic = () => (
         <DxcNavTabs.Tab href="#" disabled icon={iconSVG}>
           Tab 2
         </DxcNavTabs.Tab>
-        <DxcNavTabs.Tab href="#" icon={largeIcon}>
+        <DxcNavTabs.Tab href="#" icon={pinIcon}>
           Tab 3
         </DxcNavTabs.Tab>
-        <DxcNavTabs.Tab href="#" icon={largeIcon}>
+        <DxcNavTabs.Tab href="#" icon={pinIcon}>
           Tab 4
         </DxcNavTabs.Tab>
       </DxcNavTabs>
@@ -114,16 +119,16 @@ export const Chromatic = () => (
     <ExampleContainer>
       <Title title="With icon position left" theme="light" level={4} />
       <DxcNavTabs iconPosition="left">
-        <DxcNavTabs.Tab href="#" active icon={largeIcon}>
+        <DxcNavTabs.Tab href="#" active icon={pinIcon}>
           Tab 1
         </DxcNavTabs.Tab>
-        <DxcNavTabs.Tab href="#" disabled icon={iconSVG}>
+        <DxcNavTabs.Tab href="#" disabled icon={favoriteIcon}>
           Tab 2
         </DxcNavTabs.Tab>
-        <DxcNavTabs.Tab href="#" icon={iconSVG}>
+        <DxcNavTabs.Tab href="#" icon={favoriteIcon}>
           Tab 3
         </DxcNavTabs.Tab>
-        <DxcNavTabs.Tab href="#" icon={iconSVG}>
+        <DxcNavTabs.Tab href="#" icon={favoriteIcon}>
           Tab 4
         </DxcNavTabs.Tab>
       </DxcNavTabs>
@@ -131,16 +136,16 @@ export const Chromatic = () => (
     <ExampleContainer>
       <Title title="With icon and notification number" theme="light" level={4} />
       <DxcNavTabs>
-        <DxcNavTabs.Tab href="#" active icon={largeIcon} notificationNumber>
+        <DxcNavTabs.Tab href="#" active icon={pinIcon} notificationNumber>
           Tab 1
         </DxcNavTabs.Tab>
-        <DxcNavTabs.Tab href="#" disabled icon={iconSVG} notificationNumber={5}>
+        <DxcNavTabs.Tab href="#" disabled icon={favoriteIcon} notificationNumber={5}>
           Tab 2
         </DxcNavTabs.Tab>
-        <DxcNavTabs.Tab href="#" icon={iconSVG} notificationNumber={120}>
+        <DxcNavTabs.Tab href="#" icon={favoriteIcon} notificationNumber={120}>
           Tab 3
         </DxcNavTabs.Tab>
-        <DxcNavTabs.Tab href="#" icon={largeIcon}>
+        <DxcNavTabs.Tab href="#" icon={pinIcon} notificationNumber={12}>
           Tab 4
         </DxcNavTabs.Tab>
       </DxcNavTabs>
@@ -148,16 +153,16 @@ export const Chromatic = () => (
     <ExampleContainer>
       <Title title="With icon on the left and notification number" theme="light" level={4} />
       <DxcNavTabs iconPosition="left">
-        <DxcNavTabs.Tab href="#" active icon={iconSVG} notificationNumber>
+        <DxcNavTabs.Tab href="#" active icon={favoriteIcon} notificationNumber>
           Tab 1
         </DxcNavTabs.Tab>
-        <DxcNavTabs.Tab href="#" disabled icon={iconSVG} notificationNumber={5}>
+        <DxcNavTabs.Tab href="#" disabled icon={favoriteIcon} notificationNumber={5}>
           Tab 2
         </DxcNavTabs.Tab>
-        <DxcNavTabs.Tab href="#" icon={largeIcon} notificationNumber={120}>
+        <DxcNavTabs.Tab href="#" icon={pinIcon} notificationNumber={120}>
           Tab 3
         </DxcNavTabs.Tab>
-        <DxcNavTabs.Tab href="#" icon={iconSVG}>
+        <DxcNavTabs.Tab href="#" icon={favoriteIcon} notificationNumber={12}>
           Tab 4
         </DxcNavTabs.Tab>
       </DxcNavTabs>
@@ -168,10 +173,10 @@ export const Chromatic = () => (
         <DxcNavTabs.Tab href="#" active>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit
         </DxcNavTabs.Tab>
-        <DxcNavTabs.Tab href="#" icon={iconSVG} disabled notificationNumber={3}>
+        <DxcNavTabs.Tab href="#" icon={favoriteIcon} disabled notificationNumber={3}>
           Tab 2
         </DxcNavTabs.Tab>
-        <DxcNavTabs.Tab href="#" icon={iconSVG}>
+        <DxcNavTabs.Tab href="#" icon={favoriteIcon}>
           Tab 3
         </DxcNavTabs.Tab>
       </DxcNavTabs>
@@ -182,10 +187,10 @@ export const Chromatic = () => (
         <DxcNavTabs.Tab href="#" active>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit
         </DxcNavTabs.Tab>
-        <DxcNavTabs.Tab href="#" icon={iconSVG} disabled notificationNumber={3}>
+        <DxcNavTabs.Tab href="#" icon={favoriteIcon} disabled notificationNumber={3}>
           Tab 2
         </DxcNavTabs.Tab>
-        <DxcNavTabs.Tab href="#" icon={iconSVG}>
+        <DxcNavTabs.Tab href="#" icon={favoriteIcon}>
           Tab 3
         </DxcNavTabs.Tab>
       </DxcNavTabs>
@@ -255,16 +260,16 @@ export const Chromatic = () => (
       <Title title="With icon and notification number" theme="light" level={4} />
       <HalstackProvider theme={opinionatedTheme}>
         <DxcNavTabs>
-          <DxcNavTabs.Tab href="#" active icon={iconSVG} notificationNumber>
+          <DxcNavTabs.Tab href="#" active icon={favoriteIcon} notificationNumber>
             Tab 1
           </DxcNavTabs.Tab>
-          <DxcNavTabs.Tab href="#" disabled icon={iconSVG} notificationNumber={5}>
+          <DxcNavTabs.Tab href="#" disabled icon={favoriteIcon} notificationNumber={5}>
             Tab 2
           </DxcNavTabs.Tab>
-          <DxcNavTabs.Tab href="#" icon={iconSVG} notificationNumber={120}>
+          <DxcNavTabs.Tab href="#" icon={favoriteIcon} notificationNumber={120}>
             Tab 3
           </DxcNavTabs.Tab>
-          <DxcNavTabs.Tab href="#" icon={iconSVG}>
+          <DxcNavTabs.Tab href="#" icon={favoriteIcon} notificationNumber={12}>
             Tab 4
           </DxcNavTabs.Tab>
         </DxcNavTabs>

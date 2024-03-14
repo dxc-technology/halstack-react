@@ -4,6 +4,7 @@ import { TabProps } from "./types";
 import DxcBadge from "../badge/Badge";
 import BaseTypography from "../utils/BaseTypography";
 import useTheme from "../useTheme";
+import DxcIcon from "../icon/Icon";
 
 const Tab = forwardRef(
   (
@@ -36,10 +37,11 @@ const Tab = forwardRef(
           notificationNumber={tab.notificationNumber}
           hasLabelAndIcon={hasLabelAndIcon}
           iconPosition={iconPosition}
+          disabled={tab.isDisabled}
         >
           {tab.icon && (
             <TabIconContainer hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
-              {typeof tab.icon === "string" ? <img src={tab.icon} /> : tab.icon}
+              {typeof tab.icon === "string" ? <DxcIcon icon={tab.icon} /> : tab.icon}
             </TabIconContainer>
           )}
           <BaseTypography
@@ -61,14 +63,12 @@ const Tab = forwardRef(
             {tab.label}
           </BaseTypography>
         </MainLabelContainer>
-        {tab.notificationNumber && (
+        {tab.notificationNumber && !tab.isDisabled && (
           <BadgeContainer hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
             <DxcBadge
-              notificationText={
-                typeof tab.notificationNumber === "number" && tab.notificationNumber > 99
-                  ? "+99"
-                  : tab.notificationNumber
-              }
+              mode="notification"
+              size="small"
+              label={typeof tab.notificationNumber === "number" && tab.notificationNumber}
             />
           </BadgeContainer>
         )}
@@ -111,13 +111,16 @@ const TabContainer = styled.button<{
     outline: ${(props) => props.theme.focusOutline} solid 1px;
     outline-offset: -1px;
   }
-  svg {
+
+  svg,
+  span:before {
     color: ${(props) => props.theme.unselectedIconColor};
   }
 
   &[aria-selected="true"] {
     background-color: ${(props) => props.theme.selectedBackgroundColor};
-    svg {
+    svg,
+    span:before {
       color: ${(props) => props.theme.selectedIconColor};
     }
     opacity: 1;
@@ -130,7 +133,8 @@ const TabContainer = styled.button<{
     font-style: ${(props) => props.theme.disabledFontStyle};
     outline: none !important;
 
-    svg {
+    svg,
+    span:before {
       color: ${(props) => props.theme.disabledIconColor};
     }
     > div {
@@ -153,15 +157,16 @@ const MainLabelContainer = styled.div<{
   notificationNumber: TabProps["tab"]["notificationNumber"];
   hasLabelAndIcon: TabProps["hasLabelAndIcon"];
   iconPosition: TabProps["iconPosition"];
+  disabled: TabProps["tab"]["isDisabled"];
 }>`
   display: flex;
   flex-direction: ${(props) => (props.hasLabelAndIcon && props.iconPosition === "top" && "column") || "row"};
   align-items: center;
   margin-left: ${(props) =>
-    props.notificationNumber
+    props.notificationNumber && !props.disabled
       ? typeof props.notificationNumber === "number"
-        ? `calc(${props.theme.badgeWidthWithNotificationNumber} + 12px)`
-        : `calc(${props.theme.badgeWidth} + 12px)`
+        ? "36px"
+        : "18px"
       : "unset"};
 `;
 
@@ -172,8 +177,8 @@ const TabIconContainer = styled.div<{
   display: flex;
   margin-bottom: ${(props) => (props.hasLabelAndIcon && props.iconPosition === "top" && "8px") || ""};
   margin-right: ${(props) => (props.hasLabelAndIcon && props.iconPosition === "left" && "12px") || ""};
+  font-size: 22px;
 
-  img,
   svg {
     height: 22px;
     width: 22px;

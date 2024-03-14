@@ -9,24 +9,6 @@ export default {
   component: DxcAccordion,
 };
 
-const folderIcon = (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    enableBackground="new 0 0 24 24"
-    height="24px"
-    viewBox="0 0 24 24"
-    width="24px"
-    fill="currentColor"
-  >
-    <g>
-      <rect fill="none" height="24" width="24" />
-    </g>
-    <g>
-      <path d="M20,6h-8l-2-2H4C2.9,4,2.01,4.9,2.01,6L2,18c0,1.1,0.9,2,2,2h16c1.1,0,2-0.9,2-2V8C22,6.9,21.1,6,20,6z M16,16h2v-2h-2v-2 h2v-2h-2V8h4v10h-4V16z M16,16h-2v2H4V6h5.17l2,2H14v2h2v2h-2v2h2V16z" />
-    </g>
-  </svg>
-);
-
 const smallIcon = (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" height="20" width="20">
     <path d="m7.646 18.333-.313-2.625q-.208-.125-.458-.27-.25-.146-.458-.271l-2.438 1.021-2.354-4.063 2.083-1.583V9.458L1.625 7.875l2.354-4.063 2.438 1.021q.208-.125.458-.27.25-.146.458-.271l.313-2.625h4.708l.313 2.625q.208.125.458.271.25.145.458.27l2.438-1.021 2.354 4.063-2.063 1.583v1.084l2.063 1.583-2.354 4.063-2.438-1.021q-.208.125-.458.271-.25.145-.458.27l-.313 2.625ZM10 12.979q1.229 0 2.104-.875T12.979 10q0-1.229-.875-2.104T10 7.021q-1.229 0-2.104.875T7.021 10q0 1.229.875 2.104t2.104.875Zm0-1.75q-.5 0-.865-.364-.364-.365-.364-.865t.364-.865q.365-.364.865-.364t.865.364q.364.365.364.865t-.364.865q-.365.364-.865.364ZM10.021 10Zm-.854 6.583h1.666l.25-2.166q.605-.167 1.167-.5.562-.334 1.021-.792l2.021.854.833-1.375-1.771-1.354q.104-.292.146-.604.042-.313.042-.646 0-.292-.042-.594t-.125-.635l1.771-1.375-.834-1.375-2.02.875q-.48-.479-1.032-.802-.552-.323-1.156-.49l-.271-2.187H9.167l-.271 2.187q-.604.167-1.156.49-.552.323-1.011.781l-2.021-.854-.833 1.375 1.75 1.354q-.083.333-.125.646-.042.312-.042.604t.042.594q.042.302.125.635l-1.75 1.375.833 1.375 2.021-.854q.459.458 1.011.781.552.323 1.156.49Z" />
@@ -36,7 +18,6 @@ const smallIcon = (
 const facebookIcon = (
   <svg
     version="1.1"
-    id="Capa_1"
     x="0px"
     y="0px"
     width="438.536px"
@@ -98,7 +79,7 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With icon" theme="light" level={4} />
-      <DxcAccordion label="Accordion" assistiveText="Assistive text" icon={folderIcon}>
+      <DxcAccordion label="Accordion" assistiveText="Assistive text" icon="folder">
         <div>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo
           lobortis eget.
@@ -117,19 +98,6 @@ export const Chromatic = () => (
     <ExampleContainer>
       <Title title="With bigger icon (SVG)" theme="light" level={4} />
       <DxcAccordion label="Accordion Test" assistiveText="Assistive text" icon={facebookIcon}>
-        <div>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo
-          lobortis eget.
-        </div>
-      </DxcAccordion>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="With bigger icon (image)" theme="light" level={4} />
-      <DxcAccordion
-        label="Accordion"
-        assistiveText="Assistive text"
-        icon="https://www.freepnglogos.com/uploads/facebook-logo-design-1.png"
-      >
         <div>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo
           lobortis eget.
@@ -166,7 +134,7 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Disabled" theme="light" level={4} />
-      <DxcAccordion label="Disabled" assistiveText="Assistive text" icon={folderIcon} disabled>
+      <DxcAccordion label="Disabled" assistiveText="Assistive text" icon="folder" disabled>
         <div>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo
           lobortis eget.
@@ -241,7 +209,7 @@ export const Chromatic = () => (
     <ExampleContainer>
       <Title title="With assistive text and icon" theme="light" level={4} />
       <HalstackProvider theme={opinionatedTheme}>
-        <DxcAccordion label="Accordion" assistiveText="Assistive text" icon={folderIcon}>
+        <DxcAccordion label="Accordion" assistiveText="Assistive text" icon="folder">
           Content
         </DxcAccordion>
       </HalstackProvider>
@@ -271,7 +239,7 @@ export const Chromatic = () => (
     <ExampleContainer>
       <Title title="Disabled" theme="light" level={4} />
       <HalstackProvider theme={opinionatedTheme}>
-        <DxcAccordion label="Disabled" assistiveText="Assistive text" icon={folderIcon} disabled>
+        <DxcAccordion label="Disabled" assistiveText="Assistive text" icon="folder" disabled>
           <div>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
             leo lobortis eget.

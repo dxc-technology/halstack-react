@@ -6,6 +6,11 @@ exports.componentsList = [
     path: "/components/application-layout",
     status: "Ready",
   },
+  {
+    label: "Badge",
+    path: "/components/badge",
+    status: "Experimental",
+  },
   { label: "Bleed", path: "/components/bleed", status: "Ready" },
   { label: "Box", path: "/components/box", status: "Deprecated" },
   {
@@ -20,6 +25,7 @@ exports.componentsList = [
   { label: "Container", path: "/components/container", status: "Experimental" },
   { label: "Date Input", path: "/components/date-input", status: "Ready" },
   { label: "Dialog", path: "/components/dialog", status: "Ready" },
+  { label: "Divider", path: "/components/divider", status: "Experimental" },
   { label: "Dropdown", path: "/components/dropdown", status: "Ready" },
   { label: "File Input", path: "/components/file-input", status: "Ready" },
   { label: "Flex", path: "/components/flex", status: "Ready" },

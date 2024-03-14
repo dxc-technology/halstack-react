@@ -1,6 +1,5 @@
 import React, { useRef, useState } from "react";
 import { DxcDateInput, DxcButton } from "@dxc-technology/halstack-react";
-import styled from "styled-components";
 
 function App() {
   const ref = useRef(null);

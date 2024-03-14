@@ -10,7 +10,7 @@ const social = [
   {
     href: "https://www.linkedin.com/company/dxctechnology",
     logo: (
-      <svg version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 438.536 438.536" fill="currentColor">
+      <svg version="1.1" x="0px" y="0px" viewBox="0 0 438.536 438.536" fill="currentColor">
         <g>
           <path
             d="M414.41,24.123C398.333,8.042,378.963,0,356.315,0H82.228C59.58,0,40.21,8.042,24.126,24.123
@@ -48,7 +48,6 @@ const social = [
     logo: (
       <svg
         version="1.1"
-        id="Capa_1"
         x="0px"
         y="0px"
         viewBox="0 0 438.536 438.536"
@@ -68,6 +67,24 @@ const social = [
         </g>
       </svg>
     ),
+    title: "Facebook",
+  },
+];
+
+const socialMaterialIcons = [
+  {
+    href: "https://www.linkedin.com/company/dxctechnology",
+    logo: "person",
+    title: "Linkedin",
+  },
+  {
+    href: "https://x.com/dxctechnology",
+    logo: "group",
+    title: "X",
+  },
+  {
+    href: "https://www.facebook.com/DXCTechnology/",
+    logo: "thumb_up",
     title: "Facebook",
   },
 ];
@@ -120,6 +137,14 @@ export const Chromatic = () => (
         </div>
       </DxcFooter>
     </ExampleContainer>
+    <ExampleContainer>
+      <Title title="With children, copyright, bottom links and social links from material" theme="light" level={4} />
+      <DxcFooter copyright="Copyright" socialLinks={socialMaterialIcons} bottomLinks={bottom}>
+        <div>
+          <a href="https://www.linkedin.com/company/dxctechnology">Linkedin</a>
+        </div>
+      </DxcFooter>
+    </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-focus">
       <Title title="Focused bottom and social links" theme="light" level={4} />
       <DxcFooter copyright="Copyright" socialLinks={social} bottomLinks={bottom}>
@@ -133,7 +158,7 @@ export const Chromatic = () => (
       <DxcFooter mode="reduced">
         <DxcFlex justifyContent="center" alignItems="center" gap={"1rem"}>
           {info.map((tag, index) => (
-            <DxcTypography color="white" key={`tag${index}${tag.label}${tag.text}`} >
+            <DxcTypography color="white" key={`tag${index}${tag.label}${tag.text}`}>
               {tag.label}: {tag.text}
             </DxcTypography>
           ))}

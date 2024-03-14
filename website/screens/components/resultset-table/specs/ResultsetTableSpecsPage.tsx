@@ -374,8 +374,10 @@ const sections = [
                   <Code>dataPaddingTop</Code>
                 </td>
                 <td>Cell value</td>
-                <td>-</td>
-                <td>14px</td>
+                <td>
+                  <Code>spacing-16</Code>
+                </td>
+                <td>1rem / 16px</td>
               </tr>
               <tr>
                 <td>
@@ -383,9 +385,9 @@ const sections = [
                 </td>
                 <td>Cell value</td>
                 <td>
-                  <Code>spacing-12</Code>
+                  <Code>spacing-16</Code>
                 </td>
-                <td>0.75rem / 12px</td>
+                <td>1rem / 16px</td>
               </tr>
               <tr>
                 <td>
@@ -400,10 +402,104 @@ const sections = [
                   <Code>dataPaddingLeft</Code>
                 </td>
                 <td>Cell value</td>
+                <td>-</td>
+                <td>20px</td>
+              </tr>
+              <tr>
                 <td>
-                  <Code>spacing-40</Code>
+                  <Code>dataPaddingTopReduced</Code>
                 </td>
-                <td>2.5rem / 40px</td>
+                <td>Cell value</td>
+                <td>
+                  <Code>spacing-8</Code>
+                </td>
+                <td>0.5rem / 8px</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>dataPaddingBottomReduced</Code>
+                </td>
+                <td>Cell value</td>
+                <td>
+                  <Code>spacing-8</Code>
+                </td>
+                <td>0.5rem / 8px</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>dataPaddingRightReduced</Code>
+                </td>
+                <td>Cell value</td>
+                <td>
+                  <Code>spacing-16</Code>
+                </td>
+                <td>1rem / 16px</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>dataPaddingLeftReduced</Code>
+                </td>
+                <td>Cell value</td>
+                <td>
+                  <Code>spacing-16</Code>
+                </td>
+                <td>1rem / 16px</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>firstChildPaddingLeft</Code>
+                </td>
+                <td>Cell value</td>
+                <td>
+                  <Code>spacing-24</Code>
+                </td>
+                <td>1.5rem / 24px</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>lastChildPaddingRight</Code>
+                </td>
+                <td>Cell value</td>
+                <td>
+                  <Code>spacing-24</Code>
+                </td>
+                <td>1.5rem / 24px</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>firstChildPaddingLeftReduced</Code>
+                </td>
+                <td>Cell value</td>
+                <td>-</td>
+                <td>20px</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>lastChildPaddingRightReduced</Code>
+                </td>
+                <td>Cell value</td>
+                <td>-</td>
+                <td>20px</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>dataPaddingBottomReduced</Code>
+                </td>
+                <td>Cell value</td>
+                <td>
+                  <Code>spacing-8</Code>
+                </td>
+                <td>0.5rem / 8px</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>dataPaddingRightReduced</Code>
+                </td>
+                <td>Cell value</td>
+                <td>
+                  <Code>spacing-16</Code>
+                </td>
+                <td>1rem / 16px</td>
               </tr>
               <tr>
                 <td>
@@ -442,6 +538,46 @@ const sections = [
                   <Code>spacing-40</Code>
                 </td>
                 <td>2.5rem / 40px</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>headerPaddingTopReduced</Code>
+                </td>
+                <td>Header title</td>
+                <td>
+                  <Code>spacing-8</Code>
+                </td>
+                <td>0.5rem / 8px</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>headerPaddingBottomReduced</Code>
+                </td>
+                <td>Header title</td>
+                <td>
+                  <Code>spacing-8</Code>
+                </td>
+                <td>0.5rem / 8px</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>headerPaddingRightReduced</Code>
+                </td>
+                <td>Header title</td>
+                <td>
+                  <Code>spacing-16</Code>
+                </td>
+                <td>1rem / 16px</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>headerPaddingLeftReduced</Code>
+                </td>
+                <td>Header title</td>
+                <td>
+                  <Code>spacing-16</Code>
+                </td>
+                <td>1rem / 16px</td>
               </tr>
             </tbody>
           </DxcTable>

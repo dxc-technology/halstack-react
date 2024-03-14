@@ -51,7 +51,7 @@ const sections = [
             <td>
               <TableCode>'horizontal' | 'vertical'</TableCode>
             </td>
-            <td>The wizard can be showed in horizontal or vertical.</td>
+            <td>The wizard can be shown in horizontal or vertical.</td>
             <td>
               <TableCode>'horizontal'</TableCode>
             </td>

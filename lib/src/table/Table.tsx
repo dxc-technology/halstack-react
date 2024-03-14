@@ -3,15 +3,69 @@ import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables";
 import { getMargin } from "../common/utils";
 import useTheme from "../useTheme";
-import TablePropsType from "./types";
+import TablePropsType, { ActionCellsPropsType, DeepPartial } from "./types";
+import DropdownTheme from "./DropdownTheme";
+import { AdvancedTheme } from "../common/variables";
+import DxcDropdown from "../dropdown/Dropdown";
+import DxcFlex from "../flex/Flex";
+import { HalstackProvider } from "../HalstackContext";
+import DxcActionIcon from "../action-icon/ActionIcon";
 
-const DxcTable = ({ children, margin }: TablePropsType): JSX.Element => {
+const overwriteTheme = (theme: DeepPartial<AdvancedTheme>) => {
+  const newTheme = DropdownTheme;
+  newTheme.dropdown.buttonBackgroundColor = theme.table.actionBackgroundColor;
+  newTheme.dropdown.hoverButtonBackgroundColor = theme.table.hoverActionBackgroundColor;
+  newTheme.dropdown.activeButtonBackgroundColor = theme.table.activeActionBackgroundColor;
+  newTheme.dropdown.buttonIconColor = theme.table.actionIconColor;
+  newTheme.dropdown.disabledColor = theme.table.disabledActionIconColor;
+  newTheme.dropdown.disabledButtonBackgroundColor = theme.table.disabledActionBackgroundColor;
+  return newTheme;
+};
+
+export const DxcActionsCell = ({ actions }: ActionCellsPropsType): JSX.Element => {
+  const actionIcons = actions.filter((action) => !action.options);
+  const actionDropdown = actions.find((action) => action.options);
+  const maxNumberOfActions = actionDropdown ? 2 : 3;
+  const colorsTheme = useTheme();
+
+  return (
+    <DxcFlex gap={"0.5rem"} alignItems="center">
+      {actionIcons.map(
+        (action, index) =>
+          index < maxNumberOfActions && (
+            <DxcActionIcon
+              icon={action.icon}
+              title={action.title}
+              onClick={action.onClick}
+              disabled={action.disabled ?? false}
+              tabIndex={action.tabIndex ?? 0}
+              key={`action-${index}`}
+            />
+          )
+      )}
+      {actionDropdown && (
+        <HalstackProvider advancedTheme={overwriteTheme(colorsTheme)} key={`provider-dropdown`}>
+          <DxcDropdown
+            options={actionDropdown.options}
+            onSelectOption={actionDropdown.onClick}
+            disabled={actionDropdown.disabled}
+            icon="more_vert"
+            tabIndex={actionDropdown.tabIndex}
+            caretHidden
+          ></DxcDropdown>
+        </HalstackProvider>
+      )}
+    </DxcFlex>
+  );
+};
+
+const DxcTable = ({ children, margin, mode = "default" }: TablePropsType): JSX.Element => {
   const colorsTheme = useTheme();
 
   return (
     <ThemeProvider theme={colorsTheme.table}>
       <DxcTableContainer margin={margin}>
-        <DxcTableContent>{children}</DxcTableContent>
+        <DxcTableContent mode={mode}>{children}</DxcTableContent>
       </DxcTableContainer>
     </ThemeProvider>
   );
@@ -48,14 +102,14 @@ const DxcTableContainer = styled.div<{ margin: TablePropsType["margin"] }>`
   }
 `;
 
-const DxcTableContent = styled.table`
+const DxcTableContent = styled.table<{ mode: TablePropsType["mode"] }>`
   border-collapse: collapse;
   width: 100%;
 
   & tr {
     border-bottom: ${(props) =>
       `${props.theme.rowSeparatorThickness} ${props.theme.rowSeparatorStyle} ${props.theme.rowSeparatorColor}`};
-    height: 60px;
+    height: ${(props) => (props.mode === "default" ? "60px" : "36px")};
   }
   & td {
     background-color: ${(props) => props.theme.dataBackgroundColor};
@@ -68,7 +122,9 @@ const DxcTableContent = styled.table`
     text-align: ${(props) => props.theme.dataTextAlign};
     line-height: ${(props) => props.theme.dataTextLineHeight};
     padding: ${(props) =>
-      `${props.theme.dataPaddingTop} ${props.theme.dataPaddingRight} ${props.theme.dataPaddingBottom} ${props.theme.dataPaddingLeft}`};
+      props.mode === "default"
+        ? `${props.theme.dataPaddingTop} ${props.theme.dataPaddingRight} ${props.theme.dataPaddingBottom} ${props.theme.dataPaddingLeft}`
+        : `${props.theme.dataPaddingTopReduced} ${props.theme.dataPaddingRightReduced} ${props.theme.dataPaddingBottomReduced} ${props.theme.dataPaddingLeftReduced}`};
   }
   & th {
     background-color: ${(props) => props.theme.headerBackgroundColor};
@@ -81,17 +137,30 @@ const DxcTableContent = styled.table`
     text-align: ${(props) => props.theme.headerTextAlign};
     line-height: ${(props) => props.theme.headerTextLineHeight};
     padding: ${(props) =>
-      `${props.theme.headerPaddingTop} ${props.theme.headerPaddingRight} ${props.theme.headerPaddingBottom} ${props.theme.headerPaddingLeft}`};
+      props.mode === "default"
+        ? `${props.theme.headerPaddingTop} ${props.theme.headerPaddingRight} ${props.theme.headerPaddingBottom} ${props.theme.headerPaddingLeft}`
+        : `${props.theme.headerPaddingTopReduced} ${props.theme.headerPaddingRightReduced} ${props.theme.headerPaddingBottomReduced} ${props.theme.headerPaddingLeftReduced}`};
   }
   & th:first-child {
     border-top-left-radius: ${(props) => props.theme.headerBorderRadius};
+    padding-left: ${(props) =>
+      props.mode === "default" ? props.theme.firstChildPaddingLeft : props.theme.firstChildPaddingLeftReduced};
   }
   & th:last-child {
     border-top-right-radius: ${(props) => props.theme.headerBorderRadius};
+    padding-right: ${(props) =>
+      props.mode === "default" ? props.theme.lastChildPaddingRight : props.theme.lastChildPaddingRightReduced};
+  }
+  & td:first-child {
+    padding-left: ${(props) =>
+      props.mode === "default" ? props.theme.firstChildPaddingLeft : props.theme.firstChildPaddingLeftReduced};
   }
   & td:last-child {
-    padding-right: 40px;
+    padding-right: ${(props) =>
+      props.mode === "default" ? props.theme.lastChildPaddingRight : props.theme.lastChildPaddingRightReduced};
   }
 `;
+
+DxcTable.ActionsCell = DxcActionsCell;
 
 export default DxcTable;
