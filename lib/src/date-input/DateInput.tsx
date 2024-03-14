@@ -9,7 +9,6 @@ import DxcDatePicker from "./DatePicker";
 import * as Popover from "@radix-ui/react-popover";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import { v4 as uuidv4 } from "uuid";
-import { calendarIcon } from "./Icons";
 dayjs.extend(customParseFormat);
 
 const getValueForPicker = (value, format) => dayjs(value, format.toUpperCase(), true);
@@ -168,7 +167,7 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
                 placeholder={placeholder ? format.toUpperCase() : null}
                 action={{
                   onClick: openCalendar,
-                  icon: calendarIcon,
+                  icon: "filled_calendar_today",
                   title: "Open calendar",
                 }}
                 clearable={clearable}
