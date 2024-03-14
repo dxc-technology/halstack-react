@@ -36,7 +36,7 @@ const DxcSpinner = ({
               aria-valuenow={showValue ? value : undefined}
               aria-valuemin={0}
               aria-valuemax={100}
-              aria-label={`progress-bar-${label}`}
+              aria-label={label}
             >
               {mode !== "small" && (
                 <SVGSpinner viewBox="0 0 140 140" isDeterminated={true}>
