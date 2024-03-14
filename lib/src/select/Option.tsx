@@ -41,12 +41,8 @@ const Option = ({
       >
         {multiple && <DxcCheckbox checked={isSelected} tabIndex={-1} />}
         {option.icon && (
-          <OptionIcon
-            grouped={isGroupedOption}
-            multiple={multiple}
-            role={!(typeof option.icon === "string") ? "img" : undefined}
-          >
-            {typeof option.icon === "string" ? <img src={option.icon} /> : option.icon}
+          <OptionIcon grouped={isGroupedOption} multiple={multiple}>
+            {typeof option.icon === "string" ? <DxcIcon icon={option.icon} /> : option.icon}
           </OptionIcon>
         )}
         <OptionContent grouped={isGroupedOption} hasIcon={option.icon ? true : false} multiple={multiple}>
@@ -94,6 +90,7 @@ const StyledOption = styled.span<{
   display: flex;
   padding: 0.25rem 0.5rem 0.188rem 0;
   min-height: 24px;
+  align-items: center;
   ${(props) => props.grouped && props.multiple && `padding-left: 16px;`}
   ${(props) =>
     props.last || props.visualFocused || props.selected
@@ -107,10 +104,11 @@ const OptionIcon = styled.span<{ grouped: OptionProps["isGroupedOption"]; multip
   margin-left: ${(props) => (props.grouped && !props.multiple ? "16px" : "8px")};
   color: ${(props) => props.theme.listOptionIconColor};
 
-  img {
+  svg {
     height: 20px;
     width: 20px;
   }
+  font-size: 24px;
 `;
 
 const OptionContent = styled.span<{

@@ -216,70 +216,118 @@ const icon_options = [
   },
 ];
 
-const url_options = [
+// const url_options = [
+//   {
+//     label: "Social Media",
+//     options: [
+//       {
+//         label: "Instagram",
+//         value: "instagram",
+//         icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/800px-Instagram_logo_2016.svg.png",
+//       },
+//       {
+//         label: "X",
+//         value: "x",
+//         icon: "https://static.dezeen.com/uploads/2023/07/x-logo-twitter-elon-musk_dezeen_2364_col_0.jpg",
+//       },
+//       {
+//         label: "Facebook",
+//         value: "facebook",
+//         icon: (
+//           <svg
+//             version="1.1"
+//             x="0px"
+//             y="0px"
+//             width="438.536px"
+//             height="438.536px"
+//             viewBox="0 0 438.536 438.536"
+//             fill="#4267B2"
+//           >
+//             <g>
+//               <path
+//                 d="M414.41,24.123C398.333,8.042,378.963,0,356.315,0H82.228C59.58,0,40.21,8.042,24.126,24.123
+//       C8.045,40.207,0.003,59.576,0.003,82.225v274.084c0,22.647,8.042,42.018,24.123,58.102c16.084,16.084,35.454,24.126,58.102,24.126
+//       h274.084c22.648,0,42.018-8.042,58.095-24.126c16.084-16.084,24.126-35.454,24.126-58.102V82.225
+//       C438.532,59.576,430.49,40.204,414.41,24.123z M373.155,225.548h-49.963V406.84h-74.802V225.548H210.99V163.02h37.401v-37.402
+//       c0-26.838,6.283-47.107,18.843-60.813c12.559-13.706,33.304-20.555,62.242-20.555h49.963v62.526h-31.401
+//       c-10.663,0-17.467,1.853-20.417,5.568c-2.949,3.711-4.428,10.23-4.428,19.558v31.119h56.534L373.155,225.548z"
+//               />
+//             </g>
+//           </svg>
+//         ),
+//       },
+//       {
+//         label: "Pinterest",
+//         value: "pinterest",
+//         icon: "https://cdn-icons-png.flaticon.com/512/145/145808.png",
+//       },
+//     ],
+//   },
+//   {
+//     label: "Design",
+//     options: [
+//       {
+//         label: "Figma",
+//         value: "figma",
+//         icon: "https://logowik.com/content/uploads/images/figma.jpg",
+//       },
+//       {
+//         label: "Adobe XD",
+//         value: "adobexd",
+//         icon: "https://cdn.worldvectorlogo.com/logos/adobe-xd-2.svg",
+//       },
+//       {
+//         label: "Sketch",
+//         value: "sketch",
+//         icon: "https://cdn.worldvectorlogo.com/logos/sketch-2.svg",
+//       },
+//     ],
+//   },
+// ];
+
+const url_options_material = [
   {
-    label: "Social Media",
+    label: "Transport",
     options: [
       {
-        label: "Instagram",
-        value: "instagram",
-        icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/800px-Instagram_logo_2016.svg.png",
+        label: "Electric Car",
+        value: "car",
+        icon: "electric_car",
       },
       {
-        label: "X",
-        value: "x",
-        icon: "https://static.dezeen.com/uploads/2023/07/x-logo-twitter-elon-musk_dezeen_2364_col_0.jpg",
+        label: "Motorcycle",
+        value: "motorcycle",
+        icon: "Motorcycle",
       },
       {
-        label: "Facebook",
-        value: "facebook",
-        icon: (
-          <svg
-            version="1.1"
-            x="0px"
-            y="0px"
-            width="438.536px"
-            height="438.536px"
-            viewBox="0 0 438.536 438.536"
-            fill="#4267B2"
-          >
-            <g>
-              <path
-                d="M414.41,24.123C398.333,8.042,378.963,0,356.315,0H82.228C59.58,0,40.21,8.042,24.126,24.123
-      C8.045,40.207,0.003,59.576,0.003,82.225v274.084c0,22.647,8.042,42.018,24.123,58.102c16.084,16.084,35.454,24.126,58.102,24.126
-      h274.084c22.648,0,42.018-8.042,58.095-24.126c16.084-16.084,24.126-35.454,24.126-58.102V82.225
-      C438.532,59.576,430.49,40.204,414.41,24.123z M373.155,225.548h-49.963V406.84h-74.802V225.548H210.99V163.02h37.401v-37.402
-      c0-26.838,6.283-47.107,18.843-60.813c12.559-13.706,33.304-20.555,62.242-20.555h49.963v62.526h-31.401
-      c-10.663,0-17.467,1.853-20.417,5.568c-2.949,3.711-4.428,10.23-4.428,19.558v31.119h56.534L373.155,225.548z"
-              />
-            </g>
-          </svg>
-        ),
+        label: "Train",
+        value: "train",
+        icon: "train",
       },
       {
-        label: "Pinterest",
-        value: "pinterest",
-        icon: "https://cdn-icons-png.flaticon.com/512/145/145808.png",
+        label: "Bike",
+        value: "bike",
+        icon: "pedal_bike",
       },
     ],
   },
   {
-    label: "Design",
+    label: "Entertainment",
     options: [
       {
-        label: "Figma",
-        value: "figma",
-        icon: "https://logowik.com/content/uploads/images/figma.jpg",
+        label: "Movie",
+        value: "movie",
+        icon: "movie",
       },
       {
-        label: "Adobe XD",
-        value: "adobexd",
-        icon: "https://cdn.worldvectorlogo.com/logos/adobe-xd-2.svg",
+        label: "Music",
+        value: "music",
+        icon: "music_note",
       },
       {
-        label: "Sketch",
-        value: "sketch",
-        icon: "https://cdn.worldvectorlogo.com/logos/sketch-2.svg",
+        label: "Games",
+        value: "games",
+        icon: "joystick",
       },
     ],
   },
@@ -605,7 +653,7 @@ const SelectListbox = () => {
             styles={{ width: 360 }}
           />
         </ExampleContainer>
-        <ExampleContainer>
+        {/* <ExampleContainer>
           <Title title="Icons (Images)" theme="light" level={4} />
           <Listbox
             id="x"
@@ -620,7 +668,7 @@ const SelectListbox = () => {
             handleOptionOnClick={() => {}}
             styles={{ width: 360 }}
           />
-        </ExampleContainer>
+        </ExampleContainer> */}
         <ExampleContainer>
           <Title title="Grouped icons (Material Symbols)" theme="light" level={4} />
           <Listbox
@@ -638,11 +686,11 @@ const SelectListbox = () => {
           />
         </ExampleContainer>
         <ExampleContainer>
-          <Title title="Grouped icons (Images)" theme="light" level={4} />
+          <Title title="Grouped icons (Material)" theme="light" level={4} />
           <Listbox
             id="x"
             currentValue={["facebook", "figma"]}
-            options={url_options}
+            options={url_options_material}
             visualFocusIndex={-1}
             lastOptionIndex={6}
             multiple={true}
