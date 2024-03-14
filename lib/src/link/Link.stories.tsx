@@ -33,7 +33,7 @@ export const Chromatic = () => (
       <Title title="Disabled" theme="light" level={4} />
       <DxcLink disabled>Test</DxcLink>
       <Title title="Icon before" theme="light" level={4} />
-      <DxcLink href="https://www.google.com" icon={icon} iconPosition="before">
+      <DxcLink href="https://www.google.com" icon="lock" iconPosition="before">
         Test
       </DxcLink>
       <Title title="Icon after" theme="light" level={4} />
@@ -76,7 +76,7 @@ export const Chromatic = () => (
     <ExampleContainer pseudoState="pseudo-hover">
       <Title title="Long text with hover" theme="light" level={4} />
       Lorem{" "}
-      <DxcLink href="https://www.google.com" icon={icon}>
+      <DxcLink href="https://www.google.com" icon="filled_home">
         Test
       </DxcLink>{" "}
       ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna

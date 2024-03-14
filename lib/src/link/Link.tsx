@@ -3,6 +3,7 @@ import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables";
 import useTheme from "../useTheme";
 import { LinkProps } from "./types";
+import DxcIcon from "../icon/Icon";
 
 const LinkContent = React.memo(({ iconPosition, icon, children }: LinkProps): JSX.Element => {
   return (
@@ -10,7 +11,7 @@ const LinkContent = React.memo(({ iconPosition, icon, children }: LinkProps): JS
       {iconPosition === "after" && children}
       {icon && (
         <LinkIconContainer iconPosition={iconPosition}>
-          {typeof icon === "string" ? <LinkIcon src={icon} alt="Link Icon" /> : icon}
+          {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
         </LinkIconContainer>
       )}
       {iconPosition === "before" && children}
@@ -117,8 +118,6 @@ const StyledLink = styled.div<{
   }
 `;
 
-const LinkIcon = styled.img``;
-
 const LinkIconContainer = styled.div<{ iconPosition: LinkProps["iconPosition"] }>`
   width: ${(props) => props.theme.iconSize};
   height: ${(props) => props.theme.iconSize};
@@ -126,7 +125,7 @@ const LinkIconContainer = styled.div<{ iconPosition: LinkProps["iconPosition"] }
   overflow: hidden;
   align-self: center;
 
-  img,
+  font-size: ${(props) => props.theme.iconSize};
   svg {
     height: 100%;
     width: 100%;

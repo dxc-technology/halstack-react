@@ -4,6 +4,7 @@ import { spaces } from "../common/variables";
 import { getMargin } from "../common/utils";
 import useTheme from "../useTheme";
 import ChipPropsType from "./types";
+import DxcIcon from "../icon/Icon";
 
 const DxcChip = ({
   label,
@@ -29,7 +30,7 @@ const DxcChip = ({
             tabIndex={typeof onClickPrefix === "function" && !disabled ? tabIndex : -1}
             onClick={() => onClickPrefix && !disabled && onClickPrefix()}
           >
-            {typeof prefixIcon === "string" ? <img src={prefixIcon} alt="Prefix Icon" /> : prefixIcon}
+            {typeof prefixIcon === "string" ? <DxcIcon icon={prefixIcon} /> : prefixIcon}
           </IconContainer>
         )}
         {label && <LabelContainer disabled={disabled}>{label}</LabelContainer>}
@@ -42,7 +43,7 @@ const DxcChip = ({
             tabIndex={typeof onClickSuffix === "function" && !disabled ? tabIndex : -1}
             onClick={() => !disabled && onClickSuffix?.()}
           >
-            {typeof suffixIcon === "string" ? <img src={suffixIcon} alt="Suffix Icon" /> : suffixIcon}
+            {typeof suffixIcon === "string" ? <DxcIcon icon={suffixIcon} /> : suffixIcon}
           </IconContainer>
         )}
       </Chip>
@@ -118,7 +119,7 @@ const IconContainer = styled.div<{
       }
     `}
 
-  img,
+  font-size: ${(props) => props.theme.iconSize};
   svg {
     width: ${(props) => props.theme.iconSize};
     height: ${(props) => props.theme.iconSize};
