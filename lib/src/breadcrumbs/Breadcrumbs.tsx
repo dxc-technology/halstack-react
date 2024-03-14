@@ -1,33 +1,14 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme";
-import BreadcrumbsProps, { ItemType } from "./types";
+import BreadcrumbsProps from "./types";
 import DxcDropdown from "../dropdown/Dropdown";
 import { HalstackProvider } from "../HalstackContext";
 import dropdownTheme from "./dropdownTheme";
 import CoreTokens from "../common/coreTokens";
-
-const defaultCollapsedIcon = (
-  <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
-    <path d="M240-400q-33 0-56.5-23.5T160-480q0-33 23.5-56.5T240-560q33 0 56.5 23.5T320-480q0 33-23.5 56.5T240-400Zm240 0q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm240 0q-33 0-56.5-23.5T640-480q0-33 23.5-56.5T720-560q33 0 56.5 23.5T800-480q0 33-23.5 56.5T720-400Z" />
-  </svg>
-);
-
-const mapItems = (item: ItemType, index: number, { length }) => {
-  const isLast = index === length - 1;
-
-  return (
-    <ListItem key={index} aria-current={isLast ? "page" : undefined}>
-      {isLast ? (
-        <CurrentItem>{item.label}</CurrentItem>
-      ) : (
-        <Item href={item.href}>
-          <Text>{item.label}</Text>
-        </Item>
-      )}
-    </ListItem>
-  );
-};
+import DxcIcon from "../icon/Icon";
+import Item from "./Item";
+import { DxcFlex } from "../main";
 
 const onSelectOption = (value: string) => {
   window.location.href = value;
@@ -35,51 +16,36 @@ const onSelectOption = (value: string) => {
 
 const DxcBreadcrumbs = ({
   ariaLabel = "Breadcrumbs",
+  children,
   items,
   itemsBeforeCollapse = 4,
   showRoot = true,
 }: BreadcrumbsProps) => {
-  const currentItemRef = useRef<HTMLSpanElement>(null);
   const colorsTheme = useTheme();
-
-  useEffect(() => {
-    if (currentItemRef?.current != null) {
-      if (currentItemRef?.current.scrollWidth > currentItemRef?.current.clientWidth)
-        currentItemRef.current.title = items[items.length - 1].label;
-      else currentItemRef.current.title = "";
-    }
-  }, [items]);
-
   return (
     <ThemeProvider theme={colorsTheme.breadcrumbs}>
       <nav aria-label={ariaLabel}>
         <OrderedList>
-          {items.length > Math.max(itemsBeforeCollapse, 2) ? (
+          {children ?? items.length > Math.max(itemsBeforeCollapse, 2) ? (
             <>
-              {showRoot && (
-                <ListItem key={0}>
-                  <Item href={items[0].href}>
-                    <Text>{items[0].label}</Text>
-                  </Item>
-                </ListItem>
-              )}
-              <ListItem key={1}>
+              {showRoot && <Item href={items[0].href} key={0} label={items[0].label} />}
+              <DxcFlex alignItems="center" as="li" key={1}>
                 <HalstackProvider advancedTheme={dropdownTheme}>
                   <DxcDropdown
-                    icon={defaultCollapsedIcon}
-                    options={items.slice(showRoot ? 1 : 0, -1).map(({ label, href }) => ({ label, value: href }))}
-                    onSelectOption={onSelectOption}
                     caretHidden
+                    icon={<DxcIcon icon="more_horiz" />}
                     margin={showRoot && { left: "small" }}
+                    onSelectOption={onSelectOption}
+                    options={items.slice(showRoot ? 1 : 0, -1).map(({ label, href }) => ({ label, value: href }))}
                   />
                 </HalstackProvider>
-              </ListItem>
-              <ListItem key={2} aria-current="page" style={{ overflow: "hidden" }}>
-                <CurrentItem ref={currentItemRef}>{items[items.length - 1].label}</CurrentItem>
-              </ListItem>
+              </DxcFlex>
+              <Item isCurrentPage key={2} label={items[items.length - 1].label} />
             </>
           ) : (
-            items.map(mapItems)
+            items.map((item, index, { length }) => (
+              <Item href={item.href} isCurrentPage={index === length - 1} key={index} label={item.label} />
+            ))
           )}
         </OrderedList>
       </nav>
@@ -110,42 +76,6 @@ const OrderedList = styled.ol`
   }
 `;
 
-const ListItem = styled.li`
-  display: flex;
-  align-items: center;
-  font-family: ${CoreTokens.type_sans};
-  font-size: ${CoreTokens.type_scale_02};
-  color: ${CoreTokens.color_black};
-`;
-
-const CurrentItem = styled.span`
-  font-weight: ${CoreTokens.type_semibold};
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  cursor: default;
-`;
-
-const Item = styled.a`
-  border-radius: ${CoreTokens.border_radius_small};
-  padding: ${CoreTokens.spacing_0} ${CoreTokens.spacing_2};
-  display: inline-flex;
-  align-items: center;
-  height: 24px;
-  color: ${CoreTokens.color_black};
-  text-decoration: ${CoreTokens.type_no_line};
-  cursor: pointer;
-
-  &:focus {
-    outline: ${CoreTokens.border_width_2} solid ${CoreTokens.color_blue_600};
-  }
-`;
-
-const Text = styled.span`
-  border: ${CoreTokens.border_width_1} solid ${CoreTokens.color_transparent};
-  &:hover {
-    border-bottom-color: ${CoreTokens.color_black};
-  }
-`;
+DxcBreadcrumbs.Item = Item;
 
 export default DxcBreadcrumbs;
