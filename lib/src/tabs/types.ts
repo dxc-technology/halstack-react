@@ -28,7 +28,7 @@ export type TabLabelProps = TabCommonProps & {
    */
   label: string;
   /**
-   * Element or path used as the icon that will be displayed in the tab.
+   * Material Symbol name or SVG element used as the icon that will be displayed in the tab.
    */
   icon?: string | SVG;
 };
@@ -39,7 +39,7 @@ export type TabIconProps = TabCommonProps & {
    */
   label?: string;
   /**
-   * Element or path used as the icon that will be displayed in the tab.
+   * Material Symbol name or SVG element used as the icon that will be displayed in the tab.
    */
   icon: string | SVG;
 };
