@@ -36,7 +36,7 @@ const DxcSpinner = ({
               aria-valuenow={showValue ? value : undefined}
               aria-valuemin={0}
               aria-valuemax={100}
-              aria-label={label}
+              aria-label={label || "Spinner"}
             >
               {mode !== "small" && (
                 <SVGSpinner viewBox="0 0 140 140" isDeterminated={true}>
