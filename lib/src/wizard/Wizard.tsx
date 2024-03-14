@@ -3,6 +3,7 @@ import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables";
 import useTheme from "../useTheme";
 import WizardPropsType, { StepProps } from "./types";
+import DxcIcon from "../icon/Icon";
 
 const icons = {
   validIcon: (
@@ -88,9 +89,11 @@ const DxcWizard = ({
               <StepHeader validityIcon={step.valid !== undefined}>
                 <IconContainer current={i === renderedCurrent} visited={i < renderedCurrent} disabled={step.disabled}>
                   {step.icon ? (
-                    <StepIconContainer>
-                      {typeof step.icon === "string" ? <Icon src={step.icon}></Icon> : step.icon}
-                    </StepIconContainer>
+                    typeof step.icon === "string" ? (
+                      <DxcIcon icon={step.icon} />
+                    ) : (
+                      step.icon
+                    )
                   ) : (
                     <Number>{i + 1}</Number>
                   )}
@@ -249,21 +252,11 @@ const IconContainer = styled.div<{ current: boolean; visited: boolean; disabled:
   display: flex;
   justify-content: center;
   align-items: center;
-`;
-
-const Icon = styled.img`
-  width: ${(props) => props.theme.stepIconSize};
-  height: ${(props) => props.theme.stepIconSize};
-`;
-
-const StepIconContainer = styled.div`
-  width: ${(props) => props.theme.stepIconSize};
-  height: ${(props) => props.theme.stepIconSize};
   overflow: hidden;
-  img,
+  font-size: ${(props) => props.theme.stepIconSize};
   svg {
-    height: 100%;
-    width: 100%;
+    width: ${(props) => props.theme.stepIconSize};
+    height: ${(props) => props.theme.stepIconSize};
   }
 `;
 
