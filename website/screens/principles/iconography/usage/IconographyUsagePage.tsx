@@ -11,7 +11,7 @@ const sections = [
     title: "Usage",
     content: (
       <>
-        <Image src={icons} height={400} alt="Halstack Icons" />
+        <Image src={icons}  alt="Halstack Icons" />
         <DxcBulletedList>
           <DxcBulletedList.Item>
             Icon sizes can vary based on use case and application context. Most
