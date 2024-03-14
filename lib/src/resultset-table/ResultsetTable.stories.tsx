@@ -261,6 +261,10 @@ export const Chromatic = () => (
       <DxcResultsetTable columns={longColumns} rows={longRows} />
     </ExampleContainer>
     <ExampleContainer>
+      <Title title="Without paginator" theme="light" level={4} />
+      <DxcResultsetTable columns={columns} rows={rows} hidePaginator />
+    </ExampleContainer>
+    <ExampleContainer>
       <SmallContainer>
         <Title title="Small container and text overflow" theme="light" level={4} />
         <DxcResultsetTable columns={columnsSortable} rows={longValues} />
