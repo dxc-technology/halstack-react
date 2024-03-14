@@ -10,9 +10,6 @@ const setInputType = (type: string, element: HTMLDivElement | null) => {
 };
 
 const setAriaAttributes = (ariaExpanded: "true" | "false", ariaLabel: string, element: HTMLDivElement | null) => {
-  // const inputElement = element?.getElementsByTagName("input")[0];
-  // inputElement?.setAttribute("aria-expanded", ariaExpanded);
-  // inputElement?.setAttribute("aria-label", ariaLabel);
   const buttonElement = element?.getElementsByTagName("button")[0];
   buttonElement?.setAttribute("aria-expanded", ariaExpanded);
   buttonElement?.setAttribute("aria-label", ariaLabel);
