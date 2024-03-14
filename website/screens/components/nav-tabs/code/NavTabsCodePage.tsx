@@ -133,8 +133,8 @@ const sections = [
                 <DxcLink newWindow href="https://fonts.google.com/icons">
                 Material Symbol
               </DxcLink>{" "}
-              name or SVG element as the icon that will be placed next to the
-              label. When using Material Symbols, replace spaces with
+              name or SVG element as the icon that will be displayed in the
+              tab. When using Material Symbols, replace spaces with
               underscores. By default they are outlined if you want it to be
               filled prefix the symbol name with{" "}
               <TableCode>"filled_"</TableCode>.
