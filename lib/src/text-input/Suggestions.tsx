@@ -32,7 +32,7 @@ const Suggestions = ({
         event.preventDefault();
       }}
       ref={listboxRef}
-      role={"listbox"}
+      role="listbox"
       style={styles}
       aria-label="Suggestions"
     >
