@@ -10,7 +10,7 @@ const sections = [
     title: "Usage",
     content: (
       <>
-        <Image src={icons}  alt="Halstack Icons" />
+        <Image src={icons} alt="Halstack Icons" />
         <DxcBulletedList>
           <DxcBulletedList.Item>
             Icon sizes can vary based on use case and application context. Most
@@ -22,8 +22,8 @@ const sections = [
 
           <DxcBulletedList.Item>
             Currently, the default color of icons is always inherited from the
-            parent during implemented. If no color is specified, the icon will be
-            black by default (with a few cases where the default is purple).
+            parent during implemented. If no color is specified, the icon will
+            be black by default (with a few cases where the default is purple).
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
             Icons come in outlined and filled variants. The currently
@@ -53,8 +53,9 @@ const sections = [
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
             Do not use icons that fill the entire space allotted for the icon.
-            All icons currently implemented maintain a minimum of 2px padding
-            (the largest solid icon occupies a maximum of 22px width or height).
+            All icons currently implemented maintain a minimum of 1px of space
+            each side (the largest solid icon occupies a maximum of 22px width
+            or height).
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
             Make sure to maintain scaling proportions and aspect ratios when
@@ -66,12 +67,13 @@ const sections = [
             presented.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-          Limit the usage of colors green, red, and blue to common notifications such as success, error, or information.
+            Limit the usage of colors green, red, and blue to common
+            notifications such as success, error, or information.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            Halstack Users are encouraged to share their own
-            variations of icon usage with the Halstack team so that these can be
-            added as references.
+            Halstack Users are encouraged to share their own variations of icon
+            usage with the Halstack team so that these can be added as
+            references.
           </DxcBulletedList.Item>
         </DxcBulletedList>
       </>
