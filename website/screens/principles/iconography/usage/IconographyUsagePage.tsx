@@ -4,7 +4,6 @@ import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import { DxcBulletedList, DxcFlex } from "@dxc-technology/halstack-react";
 import Image from "@/common/Image";
 import icons from "./images/Iconography_image.png";
-import Link from "next/link";
 
 const sections = [
   {
@@ -54,8 +53,8 @@ const sections = [
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
             Do not use icons that fill the entire space allotted for the icon.
-            All icons currently implemented maintain a minimum of 4px padding
-            (the largest solid icon occupies a maximum of 20px width or height).
+            All icons currently implemented maintain a minimum of 2px padding
+            (the largest solid icon occupies a maximum of 22px width or height).
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
             Make sure to maintain scaling proportions and aspect ratios when
@@ -67,8 +66,7 @@ const sections = [
             presented.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            When using colors, green, red, and blue are colors that are associated
-            with common notifications such as success, error, or information.
+          Limit the usage of colors green, red, and blue to common notifications such as success, error, or information.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
             Halstack Users are encouraged to share their own
