@@ -41,10 +41,6 @@ const Action = styled.button<{ depthLevel: ItemActionProps["depthLevel"]; select
   align-items: center;
   justify-content: space-between;
   gap: ${CoreTokens.spacing_16};
-  color: ${CoreTokens.color_grey_900};
-  font-family: ${CoreTokens.type_sans};
-  font-size: ${CoreTokens.type_scale_02};
-  line-height: 24px;
   ${(props) =>
     props.selected
       ? `background-color: ${CoreTokens.color_purple_100}; font-weight: ${CoreTokens.type_semibold};`
@@ -78,9 +74,13 @@ const Label = styled.span`
 `;
 
 const Text = styled.span`
-  overflow: hidden;
+  color: ${CoreTokens.color_grey_900};
+  font-family: ${CoreTokens.type_sans};
+  font-size: ${CoreTokens.type_scale_02};
+  line-height: 24px;
   text-overflow: ellipsis;
   white-space: nowrap;
+  overflow: hidden;
 `;
 
 const Icon = styled.span`
