@@ -4,15 +4,22 @@ import CoreTokens from "../common/coreTokens";
 import { ItemPropsType } from "./types";
 import { useRef } from "react";
 
-const Item = ({ isCurrentPage = false, href, label, ...otherProps }: ItemPropsType) => {
+const Item = ({ isCurrentPage = false, href, label, onClick }: ItemPropsType) => {
   const currentItemRef = useRef<HTMLSpanElement>(null);
 
-  const handleOnMouseEnter = (event: React.MouseEvent<HTMLLinkElement>) => {
+  const handleOnMouseEnter = (event: React.MouseEvent<HTMLAnchorElement>) => {
     const labelContainer = event.currentTarget;
     const optionElement = currentItemRef?.current;
 
     if (optionElement.title === "" && labelContainer.scrollWidth > labelContainer.clientWidth)
       optionElement.title = label;
+  };
+
+  const handleOnClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    if (onClick) {
+      event.preventDefault();
+      onClick(href);
+    }
   };
 
   return (
@@ -22,7 +29,7 @@ const Item = ({ isCurrentPage = false, href, label, ...otherProps }: ItemPropsTy
           {label}
         </CurrentPage>
       ) : (
-        <Link href={href} {...otherProps}>
+        <Link href={href} onClick={handleOnClick}>
           <Text>{label}</Text>
         </Link>
       )}
