@@ -99,14 +99,14 @@ const sections = [
                   by <Code>optional</Code> prop.
                 </li>
                 <li>
-                  <b>icon</b>: Element used as an icon for the option. It can be
-                  either{" "}
+                  <b>icon</b>:{" "}
                   <DxcLink newWindow href="https://fonts.google.com/icons">
                     Material Symbol
                   </DxcLink>{" "}
-                  name or SVG element. When using Material Symbols, replace
-                  spaces with underscores. By default they are outlined if you
-                  want it to be filled prefix the symbol name with "filled_".
+                  name or SVG element used as the icon for the option. When
+                  using Material Symbols, replace spaces with underscores. By
+                  default they are outlined if you want it to be filled prefix
+                  the symbol name with <Code>"filled_"</Code>.
                 </li>
               </ul>
               <strong>Grouped options</strong>
