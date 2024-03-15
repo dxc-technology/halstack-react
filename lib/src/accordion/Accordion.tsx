@@ -179,7 +179,7 @@ const IconContainer = styled.span<{ disabled: AccordionPropsType["disabled"] }>`
   margin-left: ${(props) => props.theme.iconMarginLeft};
   margin-right: ${(props) => props.theme.iconMarginRight};
   color: ${(props) => (props.disabled ? props.theme.disabledIconColor : props.theme.iconColor)};
-  font-size: 24px;
+  font-size: ${(props) => props.theme.iconSize};
 
   svg {
     height: ${(props) => props.theme.iconSize};
