@@ -9,7 +9,7 @@ const DxcContextualMenu = ({ items, defaultSelectedItemIndex = -1 }: MenuPropsTy
   const [selectedItemIndex, setSelectedItemIndex] = useState<number>(defaultSelectedItemIndex);
 
   const renderSingleItem = (item: Item, index: number) => (
-    <Li key={`option-${index}`} role="menuitem">
+    <Li key={`option-${index}`} role="treeitem">
       <MenuItemAction
         {...item}
         selected={selectedItemIndex === index}
@@ -27,9 +27,11 @@ const DxcContextualMenu = ({ items, defaultSelectedItemIndex = -1 }: MenuPropsTy
     accLength += section.items.length;
     return (
       <Fragment key={`separator-${currentSectionIndex}`}>
-        <Li role="menuitem">
+        <Li role="treeitem">
           {section.title != null && <Title>{section.title}</Title>}
-          <Section role="menu">{section.items.map((item, index) => renderSingleItem(item, startingIndex + index))}</Section>
+          <Section role="group">
+            {section.items.map((item, index) => renderSingleItem(item, startingIndex + index))}
+          </Section>
         </Li>
         {currentSectionIndex !== items.length - 1 && <Divider aria-hidden />}
       </Fragment>
@@ -37,7 +39,7 @@ const DxcContextualMenu = ({ items, defaultSelectedItemIndex = -1 }: MenuPropsTy
   };
 
   return (
-    <Menu role="menu">
+    <Menu role="tree" aria-expanded="true">
       {items.map((item: Item | SectionType, index: number, items: MenuPropsType["items"]) =>
         "items" in item ? renderSection(item, index, items as SectionType[]) : renderSingleItem(item, index)
       )}

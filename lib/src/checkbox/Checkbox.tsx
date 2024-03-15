@@ -83,7 +83,7 @@ const DxcCheckbox = React.forwardRef<RefType, CheckboxPropsType>(
           <CheckboxContainer>
             <Checkbox
               onKeyDown={handleKeyboard}
-              role={disabled || tabIndex === -1 ? "presentation" : "checkbox"}
+              role="checkbox"
               tabIndex={disabled ? -1 : tabIndex}
               aria-checked={checked ?? innerChecked}
               aria-disabled={disabled}
@@ -91,7 +91,6 @@ const DxcCheckbox = React.forwardRef<RefType, CheckboxPropsType>(
               aria-required={!disabled && !optional}
               aria-labelledby={label ? labelId : undefined}
               aria-label={label ? undefined : "Option"}
-              aria-hidden={disabled || tabIndex === -1}
               checked={checked ?? innerChecked}
               disabled={disabled}
               readOnly={readOnly}

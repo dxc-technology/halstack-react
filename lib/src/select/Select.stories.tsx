@@ -7,10 +7,22 @@ import Listbox from "./Listbox";
 import { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme";
 import { HalstackProvider } from "../HalstackContext";
+import { disabledRules } from "../../test/accessibility/rules/specific/select/disabledRules";
+import preview from "../../.storybook/preview";
 
 export default {
   title: "Select",
   component: DxcSelect,
+  parameters: {
+    a11y: {
+      config: {
+        rules: [
+          ...disabledRules.map((ruleId) => ({ id: ruleId, enabled: false })),
+          ...preview?.parameters?.a11y?.config?.rules,
+        ],
+      },
+    },
+  },
 };
 
 const one_option = [{ label: "Option 01", value: "1" }];
