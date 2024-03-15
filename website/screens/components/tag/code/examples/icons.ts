@@ -1,4 +1,4 @@
-import { DxcTag, DxcInset } from "@dxc-technology/halstack-react";
+import { DxcTag, DxcInset, DxcFlex } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   const icon = (
@@ -10,7 +10,10 @@ const code = `() => {
 
   return (
     <DxcInset space="2rem">
-      <DxcTag label="Favourite" icon={icon} />
+      <DxcFlex gap="3rem">
+        <DxcTag label="Favourite" icon={icon} />
+        <DxcTag label="Julia" icon="person" />
+      </DxcFlex>
     </DxcInset>
   );
 }`;
@@ -18,6 +21,7 @@ const code = `() => {
 const scope = {
   DxcTag,
   DxcInset,
+  DxcFlex,
 };
 
 export default { code, scope };
