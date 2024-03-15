@@ -1,4 +1,4 @@
-import { DxcFlex, DxcTable } from "@dxc-technology/halstack-react";
+import { DxcFlex, DxcLink, DxcTable } from "@dxc-technology/halstack-react";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import Code from "@/common/Code";
@@ -85,7 +85,11 @@ const sections = [
                   <b>label</b>: String with the option display value.
                 </li>
                 <li>
-                  <b>icon</b>: Element or path used as the icon of an option.
+                  <b>icon</b>:{" "}
+                  <DxcLink newWindow href="https://fonts.google.com/icons">
+                    Material Symbol
+                  </DxcLink>{" "}
+                  name or SVG element used as the icon of an option.
                 </li>
                 <li>
                   <b>value</b>: Number with the option inner value.
