@@ -36,10 +36,10 @@ jobs:
           exitOnceUploaded: true
           exitZeroOnChanges: true
           workingDir: lib
-      # - name: Run Storybook Tests
-      #   run: |
-      #     cd lib
-      #     npx playwright install --with-deps
-      #     npm run storybook:accessibility
-      #   env:
-      #     TARGET_URL: "${{ steps.chromatic_publish.outputs.storybookUrl }}"
+      - name: Run Storybook Tests
+        run: |
+          cd lib
+          npx playwright install --with-deps
+          npm run storybook:accessibility
+        env:
+          TARGET_URL: "${{ steps.chromatic_publish.outputs.storybookUrl }}"
