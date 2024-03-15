@@ -1,60 +1,62 @@
 import { DxcSelect, DxcInset } from "@dxc-technology/halstack-react";
 
 const code = `() => {
-  const url_options = [
+  const options_material = [
     {
-      label: "Social Media",
+      label: "Transport",
       options: [
         {
-          label: "Instagram",
-          value: "instagram",
-          icon: "https://cdn.pixabay.com/photo/2021/06/15/12/17/instagram-6338401_960_720.png",
+          label: "Electric Car",
+          value: "car",
+          icon: "electric_car",
         },
         {
-          label: "X",
-          value: "x",
-          icon: "https://static.dezeen.com/uploads/2023/07/x-logo-twitter-elon-musk_dezeen_2364_col_0.jpg",
+          label: "Motorcycle",
+          value: "motorcycle",
+          icon: "Motorcycle",
         },
         {
-          label: "Facebook",
-          value: "facebook",
-          icon: "https://cdn.icon-icons.com/icons2/2108/PNG/512/facebook_icon_130940.png",
+          label: "Train",
+          value: "train",
+          icon: "train",
         },
         {
-          label: "Pinterest",
-          value: "pinterest",
-          icon: "https://cdn-icons-png.flaticon.com/512/145/145808.png",
+          label: "Bike",
+          value: "bike",
+          icon: "pedal_bike",
         },
       ],
     },
     {
-      label: "Design",
+      label: "Entertainment",
       options: [
         {
-          label: "Figma",
-          value: "figma",
-          icon: "https://logowik.com/content/uploads/images/figma.jpg",
+          label: "Movie",
+          value: "movie",
+          icon: "movie",
         },
         {
-          label: "Adobe XD",
-          value: "adobexd",
-          icon: "https://cdn.worldvectorlogo.com/logos/adobe-xd-2.svg",
+          label: "Music",
+          value: "music",
+          icon: "music_note",
         },
         {
-          label: "Sketch",
-          value: "sketch",
-          icon: "https://cdn.worldvectorlogo.com/logos/sketch-2.svg",
+          label: "Games",
+          value: "games",
+          icon: "joystick",
         },
       ],
     },
   ];
+  
+  
 
   return (
     <DxcInset space="2rem">
       <DxcSelect
         label="Select your favourite social media"
         placeholder="Choose an option"
-        options={url_options}
+        options={options_material}
       />
     </DxcInset>
   );

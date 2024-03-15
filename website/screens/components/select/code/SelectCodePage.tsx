@@ -1,4 +1,4 @@
-import { DxcFlex, DxcTable } from "@dxc-technology/halstack-react";
+import { DxcFlex, DxcLink, DxcTable } from "@dxc-technology/halstack-react";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import DocFooter from "@/common/DocFooter";
@@ -100,10 +100,14 @@ const sections = [
                   by <Code>optional</Code> prop.
                 </li>
                 <li>
-                  <b>icon</b>: Element used as an icon for the option. It can be
-                  either the URL of an image or an inline SVG. Note that if the
-                  URL is the chosen option, tokens and CSS styling rules will
-                  not be applied to the icon.
+                  <b>icon</b>:{" "}
+                  <DxcLink newWindow href="https://fonts.google.com/icons">
+                    Material Symbol
+                  </DxcLink>{" "}
+                  name or SVG element used as the icon for the option. When
+                  using Material Symbols, replace spaces with underscores. By
+                  default they are outlined if you want it to be filled prefix
+                  the symbol name with <Code>"filled_"</Code>.
                 </li>
               </ul>
               <strong>Grouped options</strong>

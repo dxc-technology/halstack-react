@@ -1,4 +1,9 @@
-import { DxcLink, DxcInset } from "@dxc-technology/halstack-react";
+import {
+  DxcLink,
+  DxcInset,
+  DxcFlex,
+  DxcParagraph,
+} from "@dxc-technology/halstack-react";
 
 const code = `() => {
   const icon = (
@@ -16,17 +21,22 @@ const code = `() => {
 
   return (
     <DxcInset space="2rem">
-      This is a text with a{" "}
-      <DxcLink href="#" icon={icon}>
-        Link
-      </DxcLink>{" "}
-      with icon.
+      <DxcFlex gap="1.5rem" direction="column">
+        <DxcParagraph>
+          This is a text with a <DxcLink href="#" icon={icon}>Link</DxcLink> with icon.
+        </DxcParagraph>
+        <DxcParagraph>
+          This is a text with a <DxcLink href="#" icon="filled_favorite">Link</DxcLink> with icon.
+        </DxcParagraph>
+      </DxcFlex>
     </DxcInset>
   );
 }`;
 
 const scope = {
   DxcLink,
+  DxcParagraph,
+  DxcFlex,
   DxcInset,
 };
 
