@@ -2,7 +2,7 @@ import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
-import StatusTag from "@/common/StatusTag";
+import StatusBadge from "@/common/StatusBadge";
 import TableCode from "@/common/TableCode";
 import {
   DxcLink,
@@ -37,7 +37,8 @@ const sections = [
         <tr>
           <td>
             <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-              <StatusTag status="Required">Required</StatusTag>children
+              <StatusBadge label="Required" status="Required" />
+              children
             </DxcFlex>
           </td>
           <td>
@@ -72,7 +73,8 @@ const sections = [
               <td>
                 {" "}
                 <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                  <StatusTag status="Required">Required</StatusTag>children
+                  <StatusBadge label="Required" status="Required" />
+                  children
                 </DxcFlex>
               </td>
               <td>
@@ -114,7 +116,8 @@ const sections = [
               <td>
                 {" "}
                 <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                  <StatusTag status="Required">Required</StatusTag>children
+                  <StatusBadge label="Required" status="Required" />
+                  children
                 </DxcFlex>
               </td>
               <td>
@@ -188,7 +191,8 @@ const sections = [
             <tr>
               <td>
                 <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                  <StatusTag status="Required">Required</StatusTag>children
+                  <StatusBadge label="Required" status="Required" />
+                  children
                 </DxcFlex>
               </td>
               <td>
@@ -292,7 +296,8 @@ const sections = [
             <tr>
               <td>
                 <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                  <StatusTag status="Required">Required</StatusTag>children
+                  <StatusBadge label="Required" status="Required" />
+                  children
                 </DxcFlex>
               </td>
               <td>

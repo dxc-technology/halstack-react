@@ -6,7 +6,7 @@ import { DxcFlex, DxcTable } from "@dxc-technology/halstack-react";
 import basicUsage from "./examples/basicUsage";
 import nestedTexts from "./examples/nestedTexts";
 import TableCode from "@/common/TableCode";
-import StatusTag from "@/common/StatusTag";
+import StatusBadge from "@/common/StatusBadge";
 import Code from "@/common/Code";
 
 const sections = [
@@ -183,7 +183,8 @@ const sections = [
         <tr>
           <td>
             <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-              <StatusTag status="Required">Required</StatusTag>children
+              <StatusBadge label="Required" status="Required" />
+              children
             </DxcFlex>
           </td>
           <td>

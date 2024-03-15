@@ -12,7 +12,7 @@ import Example from "@/common/example/Example";
 import basicUsage from "./examples/basicUsage";
 import sortable from "./examples/sortable";
 import TableCode, { ExtendedTableCode } from "@/common/TableCode";
-import StatusTag from "@/common/StatusTag";
+import StatusBadge from "@/common/StatusBadge";
 import reduced from "./examples/reduced";
 import Link from "next/link";
 import paginatorHidden from "./examples/paginatorHidden";
@@ -48,7 +48,8 @@ const sections = [
           <tr>
             <td>
               <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                <StatusTag status="Required">Required</StatusTag>columns
+                <StatusBadge label="Required" status="Required" />
+                columns
               </DxcFlex>
             </td>
             <td>
@@ -74,7 +75,8 @@ const sections = [
           <tr>
             <td>
               <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                <StatusTag status="Required">Required</StatusTag>rows
+                <StatusBadge label="Required" status="Required" />
+                rows
               </DxcFlex>
             </td>
             <td>
@@ -102,7 +104,8 @@ const sections = [
           <tr>
             <td>
               <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                <StatusTag status="Information">New</StatusTag>mode
+                <StatusBadge label="New" status="Information" />
+                mode
               </DxcFlex>
             </td>
             <td>
@@ -127,7 +130,8 @@ const sections = [
           <tr>
             <td>
               <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                <StatusTag status="Information">New</StatusTag>hidePaginator
+                <StatusBadge label="New" status="Information" />
+                hidePaginator
               </DxcFlex>
             </td>
             <td>
@@ -243,7 +247,8 @@ const sections = [
                     gap="0.25rem"
                     alignItems="baseline"
                   >
-                    <StatusTag status="Required">Required</StatusTag>actions
+                    <StatusBadge label="Required" status="Required" />
+                    actions
                   </DxcFlex>
                 </td>
                 <td>

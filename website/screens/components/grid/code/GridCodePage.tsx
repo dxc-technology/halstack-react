@@ -12,7 +12,7 @@ import Example from "@/common/example/Example";
 import basic from "./examples/basic";
 import layout from "./examples/layout";
 import TableCode from "@/common/TableCode";
-import StatusTag from "@/common/StatusTag";
+import StatusBadge from "@/common/StatusBadge";
 
 const sections = [
   {
@@ -246,7 +246,8 @@ const sections = [
         <tr>
           <td>
             <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-              <StatusTag status="Required">Required</StatusTag>children
+              <StatusBadge label="Required" status="Required" />
+              children
             </DxcFlex>
           </td>
           <td>
@@ -397,7 +398,8 @@ const sections = [
             <tr>
               <td>
                 <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                  <StatusTag status="Required">Required</StatusTag>children
+                  <StatusBadge label="Required" status="Required" />
+                  children
                 </DxcFlex>
               </td>
               <td>

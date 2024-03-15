@@ -7,7 +7,7 @@ import Example from "@/common/example/Example";
 import basicUsage from "./examples/basicUsage";
 import icons from "./examples/icons";
 import TableCode from "@/common/TableCode";
-import StatusTag from "@/common/StatusTag";
+import StatusBadge from "@/common/StatusBadge";
 
 const sections = [
   {
@@ -27,7 +27,8 @@ const sections = [
             <tr>
               <td>
                 <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                  <StatusTag status="Required">Required</StatusTag>options
+                  <StatusBadge label="Required" status="Required" />
+                  options
                 </DxcFlex>
               </td>
               <td>
@@ -150,7 +151,7 @@ const sections = [
             <tr>
               <td>
                 <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                  <StatusTag status="Required">Required</StatusTag>
+                  <StatusBadge label="Required" status="Required" />
                   onSelectOption
                 </DxcFlex>
               </td>

@@ -7,7 +7,7 @@ import Example from "@/common/example/Example";
 import basicUsage from "./examples/basicUsage";
 import errorHandling from "./examples/errorHandling";
 import formFileInput from "./examples/formFileInput";
-import StatusTag from "@/common/StatusTag";
+import StatusBadge from "@/common/StatusBadge";
 import TableCode from "@/common/TableCode";
 
 const sections = [
@@ -27,7 +27,8 @@ const sections = [
           <tr>
             <td>
               <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                <StatusTag status="Deprecated">Deprecated</StatusTag>name
+                <StatusBadge label="Deprecated" status="Deprecated" />
+                name
               </DxcFlex>
             </td>
             <td>
@@ -122,7 +123,7 @@ const sections = [
           <tr>
             <td>
               <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                <StatusTag status="Required">Required</StatusTag>
+                <StatusBadge label="Required" status="Required" />
                 value
               </DxcFlex>
             </td>
@@ -190,7 +191,7 @@ const sections = [
           <tr>
             <td>
               <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                <StatusTag status="Required">Required</StatusTag>
+                <StatusBadge label="Required" status="Required" />
                 callbackFile
               </DxcFlex>
             </td>

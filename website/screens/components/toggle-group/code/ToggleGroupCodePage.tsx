@@ -6,7 +6,7 @@ import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import controlled from "./examples/controlled";
 import uncontrolled from "./examples/uncontrolled";
-import StatusTag from "@/common/StatusTag";
+import StatusBadge from "@/common/StatusBadge";
 import TableCode from "@/common/TableCode";
 
 const sections = [
@@ -67,7 +67,8 @@ const sections = [
           <tr>
             <td>
               <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                <StatusTag status="Required">Required</StatusTag>options
+                <StatusBadge label="Required" status="Required" />
+                options
               </DxcFlex>
             </td>
             <td>
@@ -91,7 +92,7 @@ const sections = [
                   <b>value</b>: Number with the option inner value.
                 </li>
                 <li>
-                  <StatusTag status="Information">New</StatusTag> <b>title</b>:
+                  <StatusBadge label="New" status="Information" /> <b>title</b>:
                   Text representing advisory information related to an option.
                   Under the hood, it also serves as an accessible label for the
                   icon.

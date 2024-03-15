@@ -14,7 +14,7 @@ import icons from "./examples/icons";
 import controlledAccordionGroup from "./examples/controlledAccordionGroup";
 import uncontrolledAccordionGroup from "./examples/uncontrolledAccordionGroup";
 import TableCode from "@/common/TableCode";
-import StatusTag from "@/common/StatusTag";
+import StatusBadge from "@/common/StatusBadge";
 import Code from "@/common/Code";
 
 const sections = [
@@ -34,7 +34,8 @@ const sections = [
           <tr>
             <td>
               <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                <StatusTag status="Required">Required</StatusTag>label
+                <StatusBadge label="Required" status="Required" />
+                label
               </DxcFlex>
             </td>
             <td>
@@ -115,7 +116,7 @@ const sections = [
           <tr>
             <td>
               <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                <StatusTag status="Required">Required</StatusTag>
+                <StatusBadge label="Required" status="Required" />
                 children
               </DxcFlex>
             </td>
@@ -233,7 +234,7 @@ const sections = [
                     gap="0.25rem"
                     alignItems="baseline"
                   >
-                    <StatusTag status="Required">Required</StatusTag>
+                    <StatusBadge label="Required" status="Required" />
                     children
                   </DxcFlex>
                 </td>
@@ -294,7 +295,8 @@ const sections = [
                         gap="0.25rem"
                         alignItems="baseline"
                       >
-                        <StatusTag status="Required">Required</StatusTag>label
+                        <StatusBadge label="Required" status="Required" />
+                        label
                       </DxcFlex>
                     </td>
                     <td>
@@ -351,7 +353,7 @@ const sections = [
                         gap="0.25rem"
                         alignItems="baseline"
                       >
-                        <StatusTag status="Required">Required</StatusTag>
+                        <StatusBadge label="Required" status="Required" />
                         children
                       </DxcFlex>
                     </td>

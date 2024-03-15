@@ -8,7 +8,7 @@ import controlled from "./examples/controlled";
 import uncontrolled from "./examples/uncontrolled";
 import icons from "./examples/icons";
 import TableCode from "@/common/TableCode";
-import StatusTag from "@/common/StatusTag";
+import StatusBadge from "@/common/StatusBadge";
 
 const sections = [
   {
@@ -59,7 +59,8 @@ const sections = [
           <tr>
             <td>
               <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                <StatusTag status="Required">Required</StatusTag>steps
+                <StatusBadge label="Required" status="Required" />
+                steps
               </DxcFlex>
             </td>
             <td>
@@ -97,9 +98,7 @@ const sections = [
           <tr>
             <td>onStepClick</td>
             <td>
-              <TableCode>
-                {"(currentStep: number) => void"}
-              </TableCode>
+              <TableCode>{"(currentStep: number) => void"}</TableCode>
             </td>
             <td>
               This function will be called when the user clicks a step. The step
