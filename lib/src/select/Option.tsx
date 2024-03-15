@@ -31,6 +31,7 @@ const Option = ({
       selected={isSelected}
       role="option"
       aria-selected={!multiple ? isSelected : undefined}
+      tabIndex={0}
     >
       <StyledOption
         visualFocused={visualFocused}
