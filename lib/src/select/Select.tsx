@@ -6,9 +6,9 @@ import { spaces } from "../common/variables";
 import { v4 as uuidv4 } from "uuid";
 import { getMargin } from "../common/utils";
 import SelectPropsType, { Option, OptionGroup, RefType } from "./types";
-import selectIcons from "./Icons";
 import Listbox from "./Listbox";
 import * as Popover from "@radix-ui/react-popover";
+import DxcIcon from "../icon/Icon";
 
 const isOptionGroup = (option: Option | OptionGroup): option is OptionGroup =>
   "options" in option && option.options != null;
@@ -415,7 +415,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
                       title={translatedLabels.select.actionClearSelectionTitle}
                       aria-label={translatedLabels.select.actionClearSelectionTitle}
                     >
-                      {selectIcons.clear}
+                      <DxcIcon icon="clear" />
                     </ClearOptionsAction>
                   </SelectionIndicator>
                 )}
@@ -460,7 +460,11 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
                     </SelectedOption>
                   )}
                 </SearchableValueContainer>
-                {!disabled && error && <ErrorIcon>{selectIcons.error}</ErrorIcon>}
+                {!disabled && error && (
+                  <ErrorIcon>
+                    <DxcIcon icon="filled_error" />
+                  </ErrorIcon>
+                )}
                 {searchable && searchValue.length > 0 && (
                   <ClearSearchAction
                     onMouseDown={(event) => {
@@ -472,11 +476,11 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
                     title={translatedLabels.select.actionClearSearchTitle}
                     aria-label={translatedLabels.select.actionClearSearchTitle}
                   >
-                    {selectIcons.clear}
+                    <DxcIcon icon="clear" />
                   </ClearSearchAction>
                 )}
                 <CollapseIndicator disabled={disabled}>
-                  {isOpen ? selectIcons.arrowUp : selectIcons.arrowDown}
+                  <DxcIcon icon={isOpen ? "keyboard_arrow_up" : "keyboard_arrow_down"} />
                 </CollapseIndicator>
               </Select>
             </Popover.Trigger>
@@ -663,9 +667,7 @@ const ClearOptionsAction = styled.button`
       }
     `}
 
-  svg {
-    line-height: 18px;
-  }
+  font-size:16px;
 `;
 
 const SearchableValueContainer = styled.div`
@@ -730,10 +732,7 @@ const ErrorIcon = styled.span`
   pointer-events: none;
   color: ${(props) => props.theme.errorIconColor};
 
-  svg {
-    line-height: 18px;
-    font-size: 1.25rem;
-  }
+  font-size: 1.25rem;
 `;
 
 const Error = styled.span`
@@ -781,9 +780,7 @@ const ClearSearchAction = styled.button`
     background-color: ${(props) => props.theme.activeActionBackgroundColor};
     color: ${(props) => props.theme.activeActionIconColor};
   }
-  svg {
-    line-height: 18px;
-  }
+  font-size: 16px;
 `;
 
 export default DxcSelect;

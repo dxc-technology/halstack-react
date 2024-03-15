@@ -3,8 +3,8 @@ import styled from "styled-components";
 import useTranslatedLabels from "../useTranslatedLabels";
 import { ListboxProps } from "./types";
 import Option from "./Option";
-import selectIcons from "./Icons";
 import { v4 as uuidv4 } from "uuid";
+import DxcIcon from "../icon/Icon";
 
 const groupsHaveOptions = (options) =>
   options?.[0].options ? options.some((groupOption) => groupOption.options?.length > 0) : true;
@@ -108,7 +108,9 @@ const Listbox = ({
     >
       {searchable && (options.length === 0 || !groupsHaveOptions(options)) ? (
         <OptionsSystemMessage>
-          <NoMatchesFoundIcon>{selectIcons.searchOff}</NoMatchesFoundIcon>
+          <NoMatchesFoundIcon>
+            <DxcIcon icon="search_off" />
+          </NoMatchesFoundIcon>
           {translatedLabels.select.noMatchesErrorMessage}
         </OptionsSystemMessage>
       ) : (
@@ -166,6 +168,7 @@ const NoMatchesFoundIcon = styled.span`
   width: 16px;
   padding: 4px;
   margin-right: 0.25rem;
+  font-size: 16px;
 `;
 
 const GroupList = styled.ul`
