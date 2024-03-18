@@ -83,7 +83,7 @@ const Icon = styled.div`
   align-content: center;
   color: ${(props) => props.theme.fontColor};
 
-  font-size: ${(props) => props.theme.bulletIconWidth};
+  font-size: ${(props) => props.theme.bulletIconHeight};
   svg {
     height: ${(props) => props.theme.bulletIconHeight};
     width: ${(props) => props.theme.bulletIconWidth};
