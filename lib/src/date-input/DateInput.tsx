@@ -77,7 +77,7 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
 
     useEffect(() => {
       if (!disabled) {
-        const actionButtonRef = dateRef?.current.querySelector("[title='Open calendar']");
+        const actionButtonRef = dateRef?.current.querySelector("[title='Select date']");
         actionButtonRef?.setAttribute("aria-haspopup", true);
         actionButtonRef?.setAttribute("role", "combobox");
         actionButtonRef?.setAttribute("aria-expanded", isOpen);
@@ -157,7 +157,7 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
       <ThemeProvider theme={colorsTheme}>
         <div ref={ref}>
           <Popover.Root open={isOpen}>
-            <Popover.Trigger asChild aria-controls={undefined}>
+            <Popover.Trigger asChild aria-controls={undefined} >
               <DxcTextInput
                 label={label}
                 name={name}
@@ -168,7 +168,7 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
                 action={{
                   onClick: openCalendar,
                   icon: "filled_calendar_today",
-                  title: "Open calendar",
+                  title: "Select date",
                 }}
                 clearable={clearable}
                 disabled={disabled}

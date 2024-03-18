@@ -179,7 +179,7 @@ const DxcDropdown = ({
               aria-haspopup="true"
               aria-controls={isOpen ? menuId : undefined}
               aria-expanded={isOpen ? true : undefined}
-              aria-label="Dropdown trigger"
+              aria-label="Show options"
               tabIndex={tabIndex}
               ref={triggerRef}
             >

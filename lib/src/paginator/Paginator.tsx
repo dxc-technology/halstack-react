@@ -61,7 +61,7 @@ const DxcPaginator = ({
               onClick={() => {
                 onPageChange(1);
               }}
-              title="Go to first page"
+              title="First results"
             />
           )}
           {onPageChange && (
@@ -73,7 +73,7 @@ const DxcPaginator = ({
               onClick={() => {
                 onPageChange(currentPage - 1);
               }}
-              title="Go to previous page"
+              title="Previous results"
             />
           )}
           {showGoToPage ? (
@@ -106,7 +106,7 @@ const DxcPaginator = ({
               onClick={() => {
                 onPageChange(currentPage + 1);
               }}
-              title="Go to next page"
+              title="Next results"
             />
           )}
           {onPageChange && (
@@ -118,7 +118,7 @@ const DxcPaginator = ({
               onClick={() => {
                 onPageChange(totalPages);
               }}
-              title="Go to last page"
+              title="Last results"
             />
           )}
         </LabelsContainer>
