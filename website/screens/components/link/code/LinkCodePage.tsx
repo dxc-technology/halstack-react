@@ -59,9 +59,16 @@ const sections = [
               </TableCode>
             </td>
             <td>
-              Element or path used as the icon that will be placed next to the
-              link text.
+              <DxcLink newWindow href="https://fonts.google.com/icons">
+                Material Symbol
+              </DxcLink>{" "}
+              name or SVG element as the icon that will be placed next to the
+              link text. When using Material Symbols, replace spaces with
+              underscores. By default they are outlined if you want it to be
+              filled prefix the symbol name with{" "}
+              <TableCode>"filled_"</TableCode>.
             </td>
+
             <td>-</td>
           </tr>
           <tr>
