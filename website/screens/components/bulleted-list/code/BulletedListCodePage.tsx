@@ -63,42 +63,37 @@ const sections = [
   },
   {
     title: "DxcBulletedList.Item",
+    content: (
+      <DxcParagraph>
+        Everything between the tags will be displayed as a text item in the
+        list.
+      </DxcParagraph>
+    ),
     subSections: [
       {
         title: "Props",
         content: (
-          <DxcParagraph>
-            Everything between the tags will be displayed as a text item in the
-            list.
-          </DxcParagraph>
+          <DxcTable>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Description</th>
+                <th>Default</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>children</td>
+                <td>
+                  <TableCode>React.ReactNode</TableCode>
+                </td>
+                <td>Text to be shown in the list.</td>
+                <td>-</td>
+              </tr>
+            </tbody>
+          </DxcTable>
         ),
-        subSections: [
-          {
-            title: "Props",
-            content: (
-              <DxcTable>
-                <thead>
-                  <tr>
-                    <th>Name</th>
-                    <th>Type</th>
-                    <th>Description</th>
-                    <th>Default</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>children</td>
-                    <td>
-                      <TableCode>React.ReactNode</TableCode>
-                    </td>
-                    <td>Text to be shown in the list.</td>
-                    <td>-</td>
-                  </tr>
-                </tbody>
-              </DxcTable>
-            ),
-          },
-        ],
       },
     ],
   },
