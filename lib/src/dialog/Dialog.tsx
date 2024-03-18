@@ -144,9 +144,8 @@ const CloseIconAction = styled.button`
   &:active {
     background-color: #cccccc;
   }
-  svg {
-    width: ${(props) => props.theme.closeIconWidth};
-    height: ${(props) => props.theme.closeIconHeight};
+  span {
+    font-size: ${(props) => props.theme.closeIconHeight};
   }
 `;
 
