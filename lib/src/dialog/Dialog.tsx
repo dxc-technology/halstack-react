@@ -6,6 +6,7 @@ import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
 import { createPortal } from "react-dom";
 import FocusLock from "../utils/FocusLock";
+import DxcIcon from "../icon/Icon";
 
 const closeIcon = (
   <svg role="img" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
@@ -62,7 +63,7 @@ const DxcDialog = ({
                   aria-label={translatedLabels.dialog.closeIconAriaLabel}
                   tabIndex={tabIndex}
                 >
-                  {closeIcon}
+                  <DxcIcon icon="close" />
                 </CloseIconAction>
               )}
             </FocusLock>

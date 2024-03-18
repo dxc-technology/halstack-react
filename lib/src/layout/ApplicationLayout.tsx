@@ -8,6 +8,7 @@ import layoutIcons from "./Icons";
 import AppLayoutPropsType, { AppLayoutMainPropsType } from "./types";
 import { SidenavContextProvider, useResponsiveSidenavVisibility } from "../sidenav/SidenavContext";
 import useTranslatedLabels from "../useTranslatedLabels";
+import DxcIcon from "../icon/Icon";
 
 const year = new Date().getFullYear();
 const Main = ({ children }: AppLayoutMainPropsType): JSX.Element => <>{children}</>;
@@ -103,7 +104,7 @@ const DxcApplicationLayout = ({
             aria-label={visibilityToggleLabel ? undefined : translatedLabels.applicationLayout.visibilityToggleTitle}
             title={translatedLabels.applicationLayout.visibilityToggleTitle}
           >
-            {layoutIcons.hamburgerIcon}
+            <DxcIcon icon="Menu" />
             {visibilityToggleLabel}
           </HamburgerTrigger>
         </VisibilityToggle>
@@ -184,9 +185,8 @@ const HamburgerTrigger = styled.button`
     outline: none;
     box-shadow: 0 0 0 2px #0095ff;
   }
-  & > svg {
-    height: 20px;
-    width: 20px;
+  span::before {
+    font-size: 20px;
   }
 `;
 
