@@ -49,7 +49,7 @@ const DxcContextualMenu = ({ items }: ContextualMenuPropsType) => {
       </li>
       {currentSectionIndex !== length - 1 && (
         <DxcInset top="0.25rem" bottom="0.25rem">
-          <DxcDivider color="lightGrey" decorative />
+          <DxcDivider color="lightGrey" />
         </DxcInset>
       )}
     </Fragment>

@@ -22,7 +22,7 @@ const GroupItem = ({ items, ...props }: GroupItemProps) => {
         aria-controls={groupMenuId}
         aria-expanded={isOpen ? true : undefined}
         aria-selected={selected}
-        collapseIcon={isOpen ? <DxcIcon icon="filled_expand_more" /> : <DxcIcon icon="filled_expand_more" />}
+        collapseIcon={isOpen ? <DxcIcon icon="filled_expand_less" /> : <DxcIcon icon="filled_expand_more" />}
         onClick={() => {
           setIsOpen((isOpen) => !isOpen);
         }}
