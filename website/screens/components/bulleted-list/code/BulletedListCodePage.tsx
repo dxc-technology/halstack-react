@@ -16,9 +16,62 @@ import TableCode from "@/common/TableCode";
 const sections = [
   {
     title: "Props",
+    content: (
+      <DxcTable>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Default</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>type</td>
+            <td>
+              <TableCode>
+                'disc' | 'circle' | 'square' | 'number' | 'icon'
+              </TableCode>
+            </td>
+            <td>Defines the style of the bullet point in the list.</td>
+            <td>
+              <Code>'disc'</Code>
+            </td>
+          </tr>
+          <tr>
+            <td>icon</td>
+            <td>
+              <TableCode>
+                string | {"(React.ReactNode & React.SVGProps<SVGSVGElement>)"}
+              </TableCode>
+            </td>
+            <td>
+              <DxcLink newWindow href="https://fonts.google.com/icons">
+                Material Symbol
+              </DxcLink>{" "}
+              name or SVG element to be displayed as the bullet. When using
+              Material Symbols, replace spaces with underscores. By default they
+              are outlined if you want it to be filled prefix the symbol name
+              with <TableCode>"filled_"</TableCode>.
+            </td>
+            <td>-</td>
+          </tr>
+        </tbody>
+      </DxcTable>
+    ),
+  },
+  {
+    title: "DxcBulletedList.Item",
+    content: (
+      <DxcParagraph>
+        Everything between the tags will be displayed as a text item in the
+        list.
+      </DxcParagraph>
+    ),
     subSections: [
       {
-        title: "DxcBulletedList",
+        title: "Props",
         content: (
           <DxcTable>
             <thead>
@@ -31,75 +84,16 @@ const sections = [
             </thead>
             <tbody>
               <tr>
-                <td>type</td>
+                <td>children</td>
                 <td>
-                  <TableCode>
-                    'disc' | 'circle' | 'square' | 'number' | 'icon'
-                  </TableCode>
+                  <TableCode>React.ReactNode</TableCode>
                 </td>
-                <td>Defines the style of the bullet point in the list.</td>
-                <td>
-                  <Code>'disc'</Code>
-                </td>
-              </tr>
-              <tr>
-                <td>icon</td>
-                <td>
-                  <TableCode>
-                    string |{" "}
-                    {"(React.ReactNode & React.SVGProps<SVGSVGElement>)"}
-                  </TableCode>
-                </td>
-                <td>
-                  <DxcLink newWindow href="https://fonts.google.com/icons">
-                    Material Symbol
-                  </DxcLink>{" "}
-                  name or SVG element to be displayed as the bullet. When using
-                  Material Symbols, replace spaces with underscores. By default
-                  they are outlined if you want it to be filled prefix the
-                  symbol name with <TableCode>"filled_"</TableCode>.
-                </td>
+                <td>Text to be shown in the list.</td>
                 <td>-</td>
               </tr>
             </tbody>
           </DxcTable>
         ),
-      },
-      {
-        title: "DxcBulletedList.Item",
-        content: (
-          <DxcParagraph>
-            Everything between the tags will be displayed as a text item in the
-            list.
-          </DxcParagraph>
-        ),
-        subSections: [
-          {
-            title: "Props",
-            content: (
-              <DxcTable>
-                <thead>
-                  <tr>
-                    <th>Name</th>
-                    <th>Type</th>
-                    <th>Description</th>
-                    <th>Default</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>children</td>
-                    <td>
-                      <TableCode>React.ReactNode</TableCode>
-                    </td>
-                    <td>Text to be shown in the list.</td>
-                    <td>-</td>
-                  </tr>
-                </tbody>
-              </DxcTable>
-            ),
-          },
-        ],
       },
     ],
   },
