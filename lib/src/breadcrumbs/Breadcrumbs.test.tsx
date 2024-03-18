@@ -30,9 +30,9 @@ const items = [
 
 describe("Breadcrumbs component tests", () => {
   test("Renders with correct aria accessibility attributes", () => {
-    const { getByText, getByRole } = render(<DxcBreadcrumbs items={items} />);
+    const { getByText, getByRole } = render(<DxcBreadcrumbs items={items} ariaLabel="example" />);
     const breadcrumbs = getByRole("navigation");
-    expect(breadcrumbs.getAttribute("aria-label")).toBe("Breadcrumbs");
+    expect(breadcrumbs.getAttribute("aria-label")).toBe("example");
     expect(getByText("Dark Mode").parentElement.getAttribute("aria-current")).toBe("page");
   });
   test("Collapsed variant renders all the items inside the dropdown menu except the root and the current page", async () => {
@@ -45,7 +45,9 @@ describe("Breadcrumbs component tests", () => {
     expect(getByText("Preferences")).toBeTruthy();
   });
   test("Collapsed variant, with show root set to false, renders all the items inside the dropdown menu except the current page", async () => {
-    const { queryByText, getByText, getByRole } = render(<DxcBreadcrumbs items={items} itemsBeforeCollapse={3} showRoot={false} />);
+    const { queryByText, getByText, getByRole } = render(
+      <DxcBreadcrumbs items={items} itemsBeforeCollapse={3} showRoot={false} />
+    );
     const dropdown = getByRole("button");
     expect(queryByText("Home")).toBeFalsy();
     expect(queryByText("User Menu")).toBeFalsy();
@@ -60,5 +62,36 @@ describe("Breadcrumbs component tests", () => {
     expect(getByText("Home")).toBeTruthy();
     expect(getByRole("button")).toBeTruthy();
     expect(getByText("Dark Mode")).toBeTruthy();
+  });
+  test("The onClick prop from an item is properly called", () => {
+    const onItemClick = jest.fn();
+    const { getByText } = render(
+      <DxcBreadcrumbs
+        onItemClick={onItemClick}
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Preferences", href: "/" },
+        ]}
+      />
+    );
+    userEvent.click(getByText("Home"));
+    expect(onItemClick).toHaveBeenCalled();
+  });
+  test("The onClick prop from an item is properly called (collapsed)", async () => {
+    const onItemClick = jest.fn();
+    const { getByText, getByRole } = render(
+      <DxcBreadcrumbs
+        onItemClick={onItemClick}
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Preferences", href: "/" },
+          { label: "Dark Mode", href: "/" },
+        ]}
+        itemsBeforeCollapse={2}
+      />
+    );
+    await userEvent.click(getByRole("button"));
+    await userEvent.click(getByText("Preferences"));
+    expect(onItemClick).toHaveBeenCalled();
   });
 });

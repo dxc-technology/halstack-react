@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme";
 import BreadcrumbsProps from "./types";
@@ -14,9 +14,18 @@ const DxcBreadcrumbs = ({
   ariaLabel = "Breadcrumbs",
   items,
   itemsBeforeCollapse = 4,
+  onItemClick,
   showRoot = true,
 }: BreadcrumbsProps) => {
   const colorsTheme = useTheme();
+  const handleOnSelectOption = useCallback(
+    (href: string) => {
+      if (onItemClick) onItemClick(href);
+      else window.location.href = href;
+    },
+    [items]
+  );
+
   return (
     <ThemeProvider theme={colorsTheme.breadcrumbs}>
       <nav aria-label={ariaLabel}>
@@ -30,11 +39,7 @@ const DxcBreadcrumbs = ({
                     caretHidden
                     icon={<DxcIcon icon="more_horiz" />}
                     margin={showRoot && { left: "small" }}
-                    onSelectOption={(href: string) => {
-                      const itemOnClick = items.find((item) => item.href === href)?.onClick;
-                      if (itemOnClick) itemOnClick(href);
-                      else window.location.href = href;
-                    }}
+                    onSelectOption={handleOnSelectOption}
                     options={items.slice(showRoot ? 1 : 0, -1).map(({ label, href }) => ({ label, value: href }))}
                   />
                 </HalstackProvider>
@@ -48,7 +53,7 @@ const DxcBreadcrumbs = ({
                 isCurrentPage={index === length - 1}
                 key={index}
                 label={item.label}
-                onClick={item.onClick}
+                onClick={onItemClick}
               />
             ))
           )}

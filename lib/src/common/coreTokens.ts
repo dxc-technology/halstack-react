@@ -109,10 +109,10 @@ export const getCoreColorToken = (key: CoreColorTokens) => CoreColorTokens[key];
 export type CoreColorTokens = keyof typeof CoreColorTokens;
 
 /**
- * Halstack Spacing Principles
+ * Halstack Spacing Values
  * @link https://developer.dxc.com/halstack/next/principles/spacing/
  */
-const SpacingTokens = {
+const CoreSpacingTokens = {
   spacing_0: "0rem",
   spacing_2: "0.125rem",
   spacing_4: "0.25rem",
@@ -132,7 +132,7 @@ const SpacingTokens = {
 
 const CoreTokens = {
   ...CoreColorTokens,
-  ...SpacingTokens,
+  ...CoreSpacingTokens,
 
   inherit: "inherit",
 

@@ -10,7 +10,6 @@ const Item = ({ isCurrentPage = false, href, label, onClick }: ItemPropsType) =>
   const handleOnMouseEnter = (event: React.MouseEvent<HTMLAnchorElement>) => {
     const labelContainer = event.currentTarget;
     const optionElement = currentItemRef?.current;
-
     if (optionElement.title === "" && labelContainer.scrollWidth > labelContainer.clientWidth)
       optionElement.title = label;
   };
