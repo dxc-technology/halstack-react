@@ -104,32 +104,27 @@ const ApplicationLayoutPropsTable = () => (
 const sections = [
   {
     title: "Props",
-    subSections: [
-      {
-        title: "DxcApplicationLayout",
-        content: <ApplicationLayoutPropsTable />,
-      },
-      {
-        title: "DxcApplicationLayout.Main",
-        content: (
-          <DxcParagraph>
-            Everything between the tags will be displayed as the main content of
-            the application layout.
-          </DxcParagraph>
-        ),
-      },
-      {
-        title: "DxcApplicationLayout.useResponsiveSidenavVisibility",
-        content: (
-          <DxcParagraph>
-            Custom hook that returns a function to manually change the
-            visibility of the sidenav in responsive mode. This can be very
-            useful for cases where a custom sidenav is being used and some of
-            its inner elements can close it (for example, a navigation link).
-          </DxcParagraph>
-        ),
-      },
-    ],
+    content: <ApplicationLayoutPropsTable />,
+  },
+  {
+    title: "DxcApplicationLayout.Main",
+    content: (
+      <DxcParagraph>
+        Everything between the tags will be displayed as the main content of the
+        application layout.
+      </DxcParagraph>
+    ),
+  },
+  {
+    title: "DxcApplicationLayout.useResponsiveSidenavVisibility",
+    content: (
+      <DxcParagraph>
+        Custom hook that returns a function to manually change the visibility of
+        the sidenav in responsive mode. This can be very useful for cases where
+        a custom sidenav is being used and some of its inner elements can close
+        it (for example, a navigation link).
+      </DxcParagraph>
+    ),
   },
   {
     title: "Examples",
