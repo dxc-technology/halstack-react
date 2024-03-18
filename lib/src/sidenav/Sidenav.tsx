@@ -11,8 +11,8 @@ import SidenavPropsType, {
 } from "./types.js";
 import DxcFlex from "../flex/Flex";
 import DxcBleed from "../bleed/Bleed";
-import icons from "./Icons";
 import CoreTokens from "../common/coreTokens";
+import DxcIcon from "../icon/Icon";
 
 const DxcSidenav = ({ title, children }: SidenavPropsType): JSX.Element => {
   const colorsTheme = useTheme();
@@ -59,15 +59,15 @@ const Group = ({ title, collapsable = false, icon, children }: SidenavGroupProps
             selectedGroup={collapsed && isSelected}
           >
             <DxcFlex alignItems="center" gap="0.5rem">
-              {typeof icon === "string" ? <img src={icon} /> : icon}
+              {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
               {title}
             </DxcFlex>
-            {collapsed ? icons.collapsedIcon : icons.collapsableIcon}
+            <DxcIcon icon={collapsed ? "expand_more" : "expand_less"} />
           </SidenavGroupTitleButton>
         ) : (
           title && (
             <SidenavGroupTitle>
-              {typeof icon === "string" ? <img src={icon} /> : icon}
+              {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
               {title}
             </SidenavGroupTitle>
           )
@@ -105,10 +105,10 @@ const Link = forwardRef<HTMLAnchorElement, SidenavLinkPropsType>(
         {...otherProps}
       >
         <DxcFlex alignItems="center" gap="0.5rem">
-          {typeof icon === "string" ? <img src={icon} /> : icon}
+          {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
           {children}
         </DxcFlex>
-        {newWindow && icons.externalLinkIcon}
+        {newWindow && <DxcIcon icon="open_in_new" />}
       </SidenavLink>
     );
   }
@@ -179,8 +179,9 @@ const SidenavGroupTitle = styled.span`
   font-style: ${(props) => props.theme.groupTitleFontStyle};
   font-weight: ${(props) => props.theme.groupTitleFontWeight};
   font-size: ${(props) => props.theme.groupTitleFontSize};
-
-  img,
+  span::before {
+    font-size: 16px;
+  }
   svg {
     height: 16px;
     width: 16px;
@@ -220,8 +221,9 @@ const SidenavGroupTitleButton = styled.button<{ selectedGroup: boolean }>`
     color: #fff;
     background-color: ${(props) => (props.selectedGroup ? "#333" : props.theme.groupTitleActiveBackgroundColor)};
   }
-
-  img,
+  span::before {
+    font-size: 16px;
+  }
   svg {
     height: 16px;
     width: 16px;
@@ -265,8 +267,9 @@ const SidenavLink = styled.a<{ selected: SidenavLinkPropsType["selected"] }>`
     outline: 2px solid #0095ff;
     outline-offset: -2px;
   }
-
-  img,
+  span::before {
+    font-size: 16px;
+  }
   svg {
     height: 16px;
     width: 16px;

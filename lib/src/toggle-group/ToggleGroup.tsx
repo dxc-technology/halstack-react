@@ -5,6 +5,7 @@ import { spaces } from "../common/variables";
 import useTheme from "../useTheme";
 import ToggleGroupPropsType, { OptionLabel } from "./types";
 import DxcFlex from "../flex/Flex";
+import DxcIcon from "../icon/Icon";
 
 const DxcToggleGroup = ({
   label,
@@ -102,7 +103,7 @@ const DxcToggleGroup = ({
               <DxcFlex alignItems="center">
                 {option.icon && (
                   <IconContainer optionLabel={option.label}>
-                    {typeof option.icon === "string" ? <img src={option.icon} /> : option.icon}
+                    {typeof option.icon === "string" ? <DxcIcon icon={option.icon} /> : option.icon}
                   </IconContainer>
                 )}
                 {option.label && <LabelContainer>{option.label}</LabelContainer>}
@@ -216,15 +217,12 @@ const LabelContainer = styled.span`
 
 const IconContainer = styled.div<{ optionLabel: OptionLabel["label"] }>`
   display: flex;
-  height: 24px;
-  width: 24px;
   margin-right: ${(props) => props.optionLabel && props.theme.iconMarginRight};
   overflow: hidden;
-
-  img,
+  font-size: 24px;
   svg {
-    height: 100%;
-    width: 100%;
+    height: 24px;
+    width: 24px;
   }
 `;
 

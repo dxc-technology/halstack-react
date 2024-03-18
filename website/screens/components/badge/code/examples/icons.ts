@@ -23,9 +23,9 @@ const code = `() => {
         <DxcBadge label="Reserved" color="blue" icon={icon} />
         <DxcBadge label="Ready" color="green" icon={icon} />
         <DxcBadge label="Pending" color="orange" icon={icon} />
-        <DxcBadge label="Unfulfilled" color="red" icon={icon} />
-        <DxcBadge label="Paid" color="yellow" icon={icon} />
-        <DxcBadge label="Restocked" color="purple" icon={icon} />
+        <DxcBadge label="Unfulfilled" color="red" icon="error" />
+        <DxcBadge label="Paid" color="yellow" icon="euro" />
+        <DxcBadge label="Restocked" color="purple" icon="refresh" />
       </DxcFlex>
     </DxcInset>
   );

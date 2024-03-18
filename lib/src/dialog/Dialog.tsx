@@ -6,13 +6,7 @@ import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
 import { createPortal } from "react-dom";
 import FocusLock from "../utils/FocusLock";
-
-const closeIcon = (
-  <svg role="img" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M0 0h24v24H0V0z" fill="none" />
-    <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z" />
-  </svg>
-);
+import DxcIcon from "../icon/Icon";
 
 const DxcDialog = ({
   isCloseVisible = true,
@@ -62,7 +56,7 @@ const DxcDialog = ({
                   aria-label={translatedLabels.dialog.closeIconAriaLabel}
                   tabIndex={tabIndex}
                 >
-                  {closeIcon}
+                  <DxcIcon icon="close" />
                 </CloseIconAction>
               )}
             </FocusLock>
@@ -143,9 +137,8 @@ const CloseIconAction = styled.button`
   &:active {
     background-color: #cccccc;
   }
-  svg {
-    width: ${(props) => props.theme.closeIconWidth};
-    height: ${(props) => props.theme.closeIconHeight};
+  span {
+    font-size: ${(props) => props.theme.closeIconSize};
   }
 `;
 
