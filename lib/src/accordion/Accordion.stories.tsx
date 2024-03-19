@@ -38,16 +38,6 @@ const facebookIcon = (
   </svg>
 );
 
-const advancedTheme = {
-  accordion: {
-    backgroundColor: "#000000",
-    assistiveTextFontColor: "#ffffff",
-    titleLabelFontColor: "#ffffff",
-    arrowColor: "#5f249f",
-    iconColor: "#5f249f",
-  },
-};
-
 const opinionatedTheme = {
   accordion: {
     accentColor: "#5f249f",
