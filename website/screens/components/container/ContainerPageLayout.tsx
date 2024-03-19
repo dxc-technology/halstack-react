@@ -7,7 +7,7 @@ import PageHeading from "@/common/PageHeading";
 import TabsPageHeading from "@/common/TabsPageLayout";
 import ComponentHeading from "@/common/ComponentHeading";
 
-const containerPageHeading = ({ children }: { children: React.ReactNode }) => {
+const ContainerPageHeading = ({ children }: { children: React.ReactNode }) => {
   const tabs = [
     { label: "Code", path: "/components/container" },
     { label: "Usage", path: "/components/container/usage" },
@@ -38,4 +38,4 @@ const containerPageHeading = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export default containerPageHeading;
+export default ContainerPageHeading;

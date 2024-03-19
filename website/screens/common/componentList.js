@@ -23,6 +23,7 @@ exports.componentsList = [
   { label: "Checkbox", path: "/components/checkbox", status: "Ready" },
   { label: "Chip", path: "/components/chip", status: "Ready" },
   { label: "Container", path: "/components/container", status: "Experimental" },
+  { label: "Contextual Menu", path: "/components/contextual-menu", status: "Experimental" },
   { label: "Date Input", path: "/components/date-input", status: "Ready" },
   { label: "Dialog", path: "/components/dialog", status: "Ready" },
   { label: "Divider", path: "/components/divider", status: "Experimental" },

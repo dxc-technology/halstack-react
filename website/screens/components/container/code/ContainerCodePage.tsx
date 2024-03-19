@@ -26,10 +26,10 @@ const backgroundTypeString = `{
     size?: string;
 }`;
 const borderTypeString = `BorderProperties | {
-  top?: BorderProperties;
-  right?: BorderProperties;
-  bottom?: BorderProperties;
-  left?: BorderProperties;
+    top?: BorderProperties;
+    right?: BorderProperties;
+    bottom?: BorderProperties;
+    left?: BorderProperties;
 }`;
 const borderPropertiesTypeString = `{
     width?: string;
@@ -507,7 +507,7 @@ const sections = [
   },
 ];
 
-const ImageCodePage = () => {
+const ContainerCodePage = () => {
   return (
     <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
@@ -521,4 +521,4 @@ const ImageCodePage = () => {
   );
 };
 
-export default ImageCodePage;
+export default ContainerCodePage;
