@@ -64,7 +64,7 @@ const DxcTable = ({ children, margin, mode = "default" }: TablePropsType): JSX.E
 
   return (
     <ThemeProvider theme={colorsTheme.table}>
-      <DxcTableContainer margin={margin} tabIndex={0}> 
+      <DxcTableContainer margin={margin}> 
         <DxcTableContent mode={mode}>{children}</DxcTableContent>
       </DxcTableContainer>
     </ThemeProvider>
@@ -99,11 +99,6 @@ const DxcTableContainer = styled.div<{ margin: TablePropsType["margin"] }>`
   &::-webkit-scrollbar-track {
     background-color: ${(props) => props.theme.scrollBarTrackColor};
     border-radius: 6px;
-  }
-  &:focus {
-    outline: #0095ff solid 2px;
-    border-top-left-radius: 6px; /* Have to discuss: If there is an scroll, it is not rounded */
-    border-top-right-radius: 6px;  /* Have to discuss: If there is an scroll, it is not rounded */
   }
 `;
 
