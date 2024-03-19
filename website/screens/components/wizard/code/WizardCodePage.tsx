@@ -1,4 +1,4 @@
-import { DxcFlex, DxcTable } from "@dxc-technology/halstack-react";
+import { DxcFlex, DxcLink, DxcTable } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
@@ -82,8 +82,11 @@ const sections = [
                   the step.
                 </li>
                 <li>
-                  <b>icon</b>: Element or path used as the icon displayed in the
-                  step.
+                  <b>icon</b>:{" "}
+                  <DxcLink newWindow href="https://fonts.google.com/icons">
+                    Material Symbol
+                  </DxcLink>{" "}
+                  name or SVG element used as the icon displayed in the step.
                 </li>
                 <li>
                   <b>disabled</b>: Whether the step is disabled or not.

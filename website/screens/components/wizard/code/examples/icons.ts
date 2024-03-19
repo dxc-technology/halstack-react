@@ -8,24 +8,8 @@ const code = `() => {
   };
 
   const userIcon = (
-    <svg width="32px" height="32px" viewBox="0 0 32 32" fill="currentColor">
-      <path d="M22.56,16.53a9.95,9.95,0,0,1-13.12,0A15,15,0,0,0,1,30a1,1,0,0,0,1,1H30a1,1,0,0,0,1-1A15,15,0,0,0,22.56,16.53Z" />
-      <circle cx="16" cy="9" r="8" />
-    </svg>
-  );
-
-  const homeIcon = (
-    <svg
-      viewBox="0 0 24 24"
-      enableBackground="new 0 0 24 24"
-      fill="currentColor"
-    >
-      <g id="Bounding_Box">
-        <rect fill="none" width="24" height="24" />
-      </g>
-      <g id="Master">
-        <path d="M19,9.3V4h-3v2.6L12,3L2,12h3v8h5v-6h4v6h5v-8h3L19,9.3z M10,10c0-1.1,0.9-2,2-2s2,0.9,2,2H10z" />
-      </g>
+    <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="currentColor">
+      <path d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v112H160Zm80-80h480v-32q0-11-5.5-20T700-306q-54-27-109-40.5T480-360q-56 0-111 13.5T260-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T560-640q0-33-23.5-56.5T480-720q-33 0-56.5 23.5T400-640q0 33 23.5 56.5T480-560Zm0-80Zm0 400Z"/>
     </svg>
   );
 
@@ -43,7 +27,7 @@ const code = `() => {
           {
             label: "Address",
             valid: true,
-            icon: homeIcon,
+            icon: "home",
           },
           {
             label: "Payment",
