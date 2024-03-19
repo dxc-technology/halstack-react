@@ -22,7 +22,7 @@ export type OptionGroup = {
 export type Option = {
   /**
    * Element used as the icon that will be placed before the option label.
-   * It can be a url of an image or an inline SVG. If the url option
+   * It can be an inline SVG or Material Symbol name. If the url option
    * is the chosen one, take into account that the component's
    * color styling tokens will not be applied to the image.
    */

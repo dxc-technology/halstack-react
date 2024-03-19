@@ -4,14 +4,14 @@ import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
 import { spaces } from "../common/variables";
 import { getMargin } from "../common/utils";
-import { NumberInputContext } from "../number-input/NumberInput";
 import TextInputPropsType, { AutosuggestWrapperProps, RefType } from "./types";
 import Suggestions from "./Suggestions";
 import * as Popover from "@radix-ui/react-popover";
-import icons from "./Icons";
 import { v4 as uuidv4 } from "uuid";
 import DxcActionIcon from "../action-icon/ActionIcon";
-import { DxcFlex } from "../main";
+import DxcFlex from "../flex/Flex";
+import { NumberInputContext } from "../number-input/NumberInputContext";
+import DxcIcon from "../icon/Icon";
 
 const sizes = {
   small: "240px",
@@ -168,6 +168,43 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
       else onChange?.({ value: formattedValue });
     };
 
+    const decrementNumber = (currentValue = value ?? innerValue) => {
+      if (!disabled && !readOnly) {
+        const numberValue = Number(currentValue);
+        const steppedValue = Math.round((numberValue - numberInputContext?.stepNumber + Number.EPSILON) * 100) / 100;
+
+        if (currentValue !== "") {
+          if (numberValue < numberInputContext?.minNumber || steppedValue < numberInputContext?.minNumber)
+            changeValue(numberValue);
+          else if (numberValue > numberInputContext?.maxNumber) changeValue(numberInputContext?.maxNumber);
+          else if (numberValue === numberInputContext?.minNumber) changeValue(numberInputContext?.minNumber);
+          else changeValue(steppedValue);
+        } else {
+          if (numberInputContext?.minNumber >= 0) changeValue(numberInputContext?.minNumber);
+          else if (numberInputContext?.maxNumber < 0) changeValue(numberInputContext?.maxNumber);
+          else changeValue(-numberInputContext.stepNumber);
+        }
+      }
+    };
+    const incrementNumber = (currentValue = value ?? innerValue) => {
+      if (!disabled && !readOnly) {
+        const numberValue = Number(currentValue);
+        const steppedValue = Math.round((numberValue + numberInputContext?.stepNumber + Number.EPSILON) * 100) / 100;
+
+        if (currentValue !== "") {
+          if (numberValue > numberInputContext?.maxNumber || steppedValue > numberInputContext?.maxNumber)
+            changeValue(numberValue);
+          else if (numberValue < numberInputContext?.minNumber) changeValue(numberInputContext?.minNumber);
+          else if (numberValue === numberInputContext?.maxNumber) changeValue(numberInputContext?.maxNumber);
+          else changeValue(steppedValue);
+        } else {
+          if (numberInputContext?.minNumber > 0) changeValue(numberInputContext?.minNumber);
+          else if (numberInputContext?.maxNumber <= 0) changeValue(numberInputContext?.maxNumber);
+          else changeValue(numberInputContext.stepNumber);
+        }
+      }
+    };
+
     const handleInputContainerOnClick = () => {
       document.activeElement !== actionRef.current && inputRef.current.focus();
     };
@@ -248,12 +285,10 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
           break;
       }
     };
-    const handleWheel = useCallback((event: WheelEvent) => {
-      if (document.activeElement === inputRef.current) {
-        event.preventDefault();
+    const handleNumberInputWheel = (event: React.WheelEvent<HTMLInputElement>) => {
+      if (document.activeElement === inputRef.current)
         event.deltaY < 0 ? incrementNumber(inputRef.current.value) : decrementNumber(inputRef.current.value);
-      }
-    }, []);
+    };
 
     const handleClearActionOnClick = () => {
       changeValue("");
@@ -275,38 +310,6 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
       max && inputRef?.current?.setAttribute("max", max);
       inputRef?.current?.setAttribute("step", step);
       inputRef?.current?.setAttribute("type", type);
-    };
-    const decrementNumber = (currentValue = value ?? innerValue) => {
-      const numberValue = Number(currentValue);
-      const steppedValue = Math.round((numberValue - numberInputContext?.stepNumber + Number.EPSILON) * 100) / 100;
-
-      if (currentValue !== "") {
-        if (numberValue < numberInputContext?.minNumber || steppedValue < numberInputContext?.minNumber)
-          changeValue(numberValue);
-        else if (numberValue > numberInputContext?.maxNumber) changeValue(numberInputContext?.maxNumber);
-        else if (numberValue === numberInputContext?.minNumber) changeValue(numberInputContext?.minNumber);
-        else changeValue(steppedValue);
-      } else {
-        if (numberInputContext?.minNumber >= 0) changeValue(numberInputContext?.minNumber);
-        else if (numberInputContext?.maxNumber < 0) changeValue(numberInputContext?.maxNumber);
-        else changeValue(-numberInputContext.stepNumber);
-      }
-    };
-    const incrementNumber = (currentValue = value ?? innerValue) => {
-      const numberValue = Number(currentValue);
-      const steppedValue = Math.round((numberValue + numberInputContext?.stepNumber + Number.EPSILON) * 100) / 100;
-
-      if (currentValue !== "") {
-        if (numberValue > numberInputContext?.maxNumber || steppedValue > numberInputContext?.maxNumber)
-          changeValue(numberValue);
-        else if (numberValue < numberInputContext?.minNumber) changeValue(numberInputContext?.minNumber);
-        else if (numberValue === numberInputContext?.maxNumber) changeValue(numberInputContext?.maxNumber);
-        else changeValue(steppedValue);
-      } else {
-        if (numberInputContext?.minNumber > 0) changeValue(numberInputContext?.minNumber);
-        else if (numberInputContext?.maxNumber <= 0) changeValue(numberInputContext?.maxNumber);
-        else changeValue(numberInputContext.stepNumber);
-      }
     };
 
     useEffect(() => {
@@ -347,16 +350,6 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
           numberInputContext.stepNumber
         );
     }, [value, innerValue, suggestions, numberInputContext]);
-
-    useEffect(() => {
-      const input = inputRef.current;
-  
-      input.addEventListener('wheel', handleWheel, { passive: false });
-  
-      return () => {
-        input.removeEventListener('wheel', handleWheel);
-      };
-    }, [handleWheel]);
 
     return (
       <ThemeProvider theme={colorsTheme.textInput}>
@@ -428,6 +421,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
                   onMouseDown={(event) => {
                     event.stopPropagation();
                   }}
+                  onWheel={numberInputContext?.typeNumber === "number" ? handleNumberInputWheel : undefined}
                   disabled={disabled}
                   readOnly={readOnly}
                   ref={inputRef}
@@ -451,11 +445,15 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
                   aria-errormessage={error ? errorId : undefined}
                   aria-required={!disabled && !optional}
                 />
-                {!disabled && error && <ErrorIcon aria-label="Error">{icons.error}</ErrorIcon>}
+                {!disabled && error && (
+                  <ErrorIcon aria-label="Error">
+                    <DxcIcon icon="filled_error" />
+                  </ErrorIcon>
+                )}
                 {!disabled && !readOnly && clearable && (value ?? innerValue).length > 0 && (
                   <DxcActionIcon
                     onClick={handleClearActionOnClick}
-                    icon={icons.clear}
+                    icon="close"
                     tabIndex={tabIndex}
                     title={translatedLabels.textInput.clearFieldActionTitle}
                   />
@@ -464,7 +462,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
                   <>
                     <DxcActionIcon
                       onClick={!readOnly ? handleDecrementActionOnClick : undefined}
-                      icon={icons.decrement}
+                      icon="remove"
                       tabIndex={tabIndex}
                       ref={actionRef}
                       title={translatedLabels.numberInput.decrementValueTitle}
@@ -472,7 +470,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
                     />
                     <DxcActionIcon
                       onClick={!readOnly ? handleIncrementActionOnClick : undefined}
-                      icon={icons.increment}
+                      icon="add"
                       tabIndex={tabIndex}
                       ref={actionRef}
                       title={translatedLabels.numberInput.incrementValueTitle}
@@ -659,6 +657,7 @@ const ErrorIcon = styled.span`
   padding: 3px;
   height: 18px;
   width: 18px;
+  font-size: 18px;
   color: ${(props) => props.theme.errorIconColor};
 
   svg {

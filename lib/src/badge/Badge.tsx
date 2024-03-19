@@ -3,6 +3,7 @@ import styled from "styled-components";
 import BadgePropsType from "./types";
 import DxcFlex from "../flex/Flex";
 import CoreTokens from "../common/coreTokens";
+import DxcIcon from "../icon/Icon";
 
 const contextualColorMap = {
   grey: {
@@ -103,9 +104,7 @@ const DxcBadge = ({
       {(mode === "contextual" && (
         <DxcFlex gap="0.125rem" alignItems="center">
           {icon && (
-            <IconContainer size={size}>
-              {typeof icon === "string" ? <img src={icon} alt={title} /> : icon}
-            </IconContainer>
+            <IconContainer size={size}>{typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}</IconContainer>
           )}
           <Label label={label} notificationLimit={notificationLimit} size={size} />
         </DxcFlex>
@@ -138,12 +137,13 @@ const BadgeContainer = styled.div<{
   padding: ${(props) => (props.label ? getPadding(props.mode, props.size) : "")};
   align-items: center;
   justify-content: center;
-  box-sizing: ${(props) => props.mode === "notification" && "border-box"};
+  box-sizing: border-box;
 `;
 
 const IconContainer = styled.div<{ size: BadgePropsType["size"] }>`
   display: flex;
-  img,
+  font-size: ${(props) => sizeMap[props.size].iconSize};
+
   svg {
     height: ${(props) => sizeMap[props.size].iconSize};
     width: ${(props) => sizeMap[props.size].iconSize};

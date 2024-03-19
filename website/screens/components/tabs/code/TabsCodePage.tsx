@@ -1,4 +1,4 @@
-import { DxcFlex, DxcTable } from "@dxc-technology/halstack-react";
+import { DxcFlex, DxcLink, DxcTable } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
@@ -65,8 +65,15 @@ const sections = [
                   <b>label</b>: Tab label.
                 </li>
                 <li>
-                  <b>icon</b>: Element or path used as the icon that will be
-                  displayed in the tab.
+                  <b>icon</b>:{" "}
+                  <DxcLink newWindow href="https://fonts.google.com/icons">
+                    Material Symbol
+                  </DxcLink>{" "}
+                  name or SVG element used as the icon that will be displayed in
+                  the tab. When using Material Symbols, replace spaces with
+                  underscores. By default they are outlined, if you want it to
+                  be filled prefix the symbol name with{" "}
+                  <TableCode>"filled_"</TableCode>.
                 </li>
                 <li>
                   <b>isDisabled</b>: Whether the tab is disabled or not. If the
@@ -75,11 +82,12 @@ const sections = [
                 </li>
                 <li>
                   <b>notificationNumber</b>: It can have boolean type or number
-                  type. If true, an empty badge will appear. If false, no badge
-                  will appear. If a number is specified, the component will
-                  display a badge with the value as its label. Take into account
-                  that if that number is greater than 99, it will appear as
-                  '+99' in the badge.
+                  type. If true, an empty badge will appear. If false or if the
+                  tab is disabled, no badge will appear. If a number is
+                  specified, the component will display a badge with the value
+                  as its label. Take into account that if that number is greater
+                  than 99, it will appear as <TableCode>+99</TableCode> in the
+                  badge.
                 </li>
               </ul>
             </td>

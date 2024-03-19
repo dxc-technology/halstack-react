@@ -4,7 +4,6 @@ const layoutIcons = {
   facebookLogo: (
     <svg
       version="1.1"
-      id="Capa_1"
       x="0px"
       y="0px"
       width="438.536px"
@@ -36,7 +35,6 @@ const layoutIcons = {
   linkedinLogo: (
     <svg
       version="1.1"
-      id="Capa_1"
       x="0px"
       y="0px"
       width="438.536px"
@@ -59,11 +57,6 @@ const layoutIcons = {
         H370.873z"
         />
       </g>
-    </svg>
-  ),
-  hamburgerIcon: (
-    <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 0 24 24">
-      <path d="M3 18V16H21V18ZM3 13V11H21V13ZM3 8V6H21V8Z" />
     </svg>
   ),
 };

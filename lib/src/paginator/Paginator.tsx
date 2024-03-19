@@ -4,7 +4,6 @@ import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
 import DxcButton from "../button/Button";
 import DxcSelect from "../select/Select";
-import { firstIcon, lastIcon, nextIcon, previousIcon } from "./Icons";
 import PaginatorPropsType from "./types";
 
 const DxcPaginator = ({
@@ -56,7 +55,7 @@ const DxcPaginator = ({
             <DxcButton
               mode="secondary"
               disabled={currentPageInternal === 1 || currentPageInternal === 0}
-              icon={firstIcon}
+              icon="first_page"
               tabIndex={tabIndex}
               onClick={() => {
                 onPageChange(1);
@@ -67,7 +66,7 @@ const DxcPaginator = ({
             <DxcButton
               mode="secondary"
               disabled={currentPageInternal === 1 || currentPageInternal === 0}
-              icon={previousIcon}
+              icon="navigate_before"
               tabIndex={tabIndex}
               onClick={() => {
                 onPageChange(currentPage - 1);
@@ -99,7 +98,7 @@ const DxcPaginator = ({
             <DxcButton
               mode="secondary"
               disabled={currentPageInternal === totalPages}
-              icon={nextIcon}
+              icon="navigate_next"
               tabIndex={tabIndex}
               onClick={() => {
                 onPageChange(currentPage + 1);
@@ -110,7 +109,7 @@ const DxcPaginator = ({
             <DxcButton
               mode="secondary"
               disabled={currentPageInternal === totalPages}
-              icon={lastIcon}
+              icon="last_page"
               tabIndex={tabIndex}
               onClick={() => {
                 onPageChange(totalPages);

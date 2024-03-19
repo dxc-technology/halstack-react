@@ -6,6 +6,7 @@ import useTranslatedLabels from "../useTranslatedLabels";
 import { dxcLogo, dxcSmallLogo } from "./Icons";
 import FooterPropsType from "./types";
 import DxcFlex from "../flex/Flex";
+import DxcIcon from "../icon/Icon";
 
 const DxcFooter = ({
   socialLinks,
@@ -52,7 +53,7 @@ const DxcFooter = ({
                   index={index}
                 >
                   <SocialIconContainer>
-                    {typeof link.logo === "string" ? <img src={link.logo} alt={link.title} /> : link.logo}
+                    {typeof link.logo === "string" ? <DxcIcon icon={link.logo} /> : link.logo}
                   </SocialIconContainer>
                 </SocialAnchor>
               ))}
@@ -165,15 +166,13 @@ const SocialAnchor = styled.a<{ index: number }>`
 const SocialIconContainer = styled.div`
   display: flex;
   align-items: center;
-  height: ${(props) => props.theme.socialLinksSize};
-  width: ${(props) => props.theme.socialLinksSize};
   color: ${(props) => props.theme.socialLinksColor};
   overflow: hidden;
+  font-size: ${(props) => props.theme.socialLinksSize};
 
-  img,
   svg {
-    height: 100%;
-    width: 100%;
+    height: ${(props) => props.theme.socialLinksSize};
+    width: ${(props) => props.theme.socialLinksSize};
   }
 `;
 

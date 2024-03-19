@@ -17,7 +17,7 @@ export type StepProps = {
    */
   description?: string;
   /**
-   * Element or path used as the icon displayed in the step.
+   * Material Symbol name or SVG element used as the icon displayed in the step.
    */
   icon?: string | SVG;
   /**
@@ -32,7 +32,7 @@ export type StepProps = {
 
 type Props = {
   /**
-   * The wizard can be showed in horizontal or vertical.
+   * The wizard can be shown in horizontal or vertical.
    */
   mode?: "horizontal" | "vertical";
   /**

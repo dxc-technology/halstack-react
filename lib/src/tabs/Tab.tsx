@@ -4,6 +4,7 @@ import { TabProps } from "./types";
 import DxcBadge from "../badge/Badge";
 import BaseTypography from "../utils/BaseTypography";
 import useTheme from "../useTheme";
+import DxcIcon from "../icon/Icon";
 
 const Tab = forwardRef(
   (
@@ -40,7 +41,7 @@ const Tab = forwardRef(
         >
           {tab.icon && (
             <TabIconContainer hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
-              {typeof tab.icon === "string" ? <img src={tab.icon} /> : tab.icon}
+              {typeof tab.icon === "string" ? <DxcIcon icon={tab.icon} /> : tab.icon}
             </TabIconContainer>
           )}
           <BaseTypography
@@ -110,13 +111,16 @@ const TabContainer = styled.button<{
     outline: ${(props) => props.theme.focusOutline} solid 1px;
     outline-offset: -1px;
   }
-  svg {
+
+  svg,
+  span:before {
     color: ${(props) => props.theme.unselectedIconColor};
   }
 
   &[aria-selected="true"] {
     background-color: ${(props) => props.theme.selectedBackgroundColor};
-    svg {
+    svg,
+    span:before {
       color: ${(props) => props.theme.selectedIconColor};
     }
     opacity: 1;
@@ -129,7 +133,8 @@ const TabContainer = styled.button<{
     font-style: ${(props) => props.theme.disabledFontStyle};
     outline: none !important;
 
-    svg {
+    svg,
+    span:before {
       color: ${(props) => props.theme.disabledIconColor};
     }
     > div {
@@ -172,8 +177,8 @@ const TabIconContainer = styled.div<{
   display: flex;
   margin-bottom: ${(props) => (props.hasLabelAndIcon && props.iconPosition === "top" && "8px") || ""};
   margin-right: ${(props) => (props.hasLabelAndIcon && props.iconPosition === "left" && "12px") || ""};
+  font-size: 22px;
 
-  img,
   svg {
     height: 22px;
     width: 22px;

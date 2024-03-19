@@ -1,9 +1,36 @@
+import { Option } from "../dropdown/types";
 type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
 type Margin = {
   top?: Space;
   bottom?: Space;
   left?: Space;
   right?: Space;
+};
+
+type SVG = React.ReactNode & React.SVGProps<SVGSVGElement>;
+export type DeepPartial<T> = {
+  [P in keyof T]?: Partial<T[P]>;
+};
+
+export type ActionCellsPropsType = {
+  actions: Array<
+    | {
+        icon: string | SVG;
+        title: string;
+        onClick: () => void;
+        disabled?: boolean;
+        tabIndex?: number;
+        options?: never;
+      }
+    | {
+        icon?: never;
+        title: string;
+        onClick: (value?: string) => void;
+        disabled?: boolean;
+        tabIndex?: number;
+        options: Option[];
+      }
+  >;
 };
 
 type Props = {
@@ -19,8 +46,8 @@ type Props = {
   margin?: Space | Margin;
   /**
    * Determines the visual style and layout
-   * - "default": Table with big spacing, applicable to most cases.
-   * - "reduced": Smaller table with minimal spacing for high density information.
+   * - "default": Default table size.
+   * - "reduced": More compact table with less spacing for high density information.
    */
   mode?: "default" | "reduced";
 };

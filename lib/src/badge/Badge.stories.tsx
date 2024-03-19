@@ -26,7 +26,7 @@ export const Chromatic = () => (
         <DxcBadge mode="notification" size="small" />
         <DxcBadge mode="notification" label={1} size="small" />
         <DxcBadge mode="notification" label={10} size="small" />
-        <DxcBadge mode="notification" label={1000000} size="medium" notificationLimit={99999999} />
+        <DxcBadge mode="notification" label={1000000} size="small" notificationLimit={99999999} />
         <DxcBadge mode="notification" label={100} size="small" notificationLimit={99} />
       </DxcFlex>
     </ExampleContainer>
@@ -63,14 +63,14 @@ export const Chromatic = () => (
       <Title title="Medium" theme="light" level={4} />
       <DxcFlex gap="3rem" alignItems="center">
         <DxcBadge label="Label" />
-        <DxcBadge label="Label" icon={icon} />
+        <DxcBadge label="Label" icon="done" />
       </DxcFlex>
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Large" theme="light" level={4} />
       <DxcFlex gap="3rem" alignItems="center">
         <DxcBadge label="Label" size="large" />
-        <DxcBadge label="Label" size="large" icon={icon} />
+        <DxcBadge label="Label" size="large" icon="done" />
       </DxcFlex>
     </ExampleContainer>
     <Title title="Blue" theme="light" level={3} />
@@ -78,7 +78,7 @@ export const Chromatic = () => (
       <Title title="Small" theme="light" level={4} />
       <DxcFlex gap="3rem" alignItems="center">
         <DxcBadge color="blue" label="Label" size="small" />
-        <DxcBadge color="blue" label="Label" size="small" icon={icon} />
+        <DxcBadge color="blue" label="Label" size="small" icon="done" />
       </DxcFlex>
     </ExampleContainer>
     <ExampleContainer>
@@ -100,14 +100,14 @@ export const Chromatic = () => (
       <Title title="Small" theme="light" level={4} />
       <DxcFlex gap="3rem" alignItems="center">
         <DxcBadge color="green" label="Label" size="small" />
-        <DxcBadge color="green" label="Label" size="small" icon={icon} />
+        <DxcBadge color="green" label="Label" size="small" icon="done" />
       </DxcFlex>
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Medium" theme="light" level={4} />
       <DxcFlex gap="3rem" alignItems="center">
         <DxcBadge color="green" label="Label" />
-        <DxcBadge color="green" label="Label" icon={icon} />
+        <DxcBadge color="green" label="Label" icon="done" />
       </DxcFlex>
     </ExampleContainer>
     <ExampleContainer>
@@ -123,7 +123,7 @@ export const Chromatic = () => (
       <Title title="Small" theme="light" level={4} />
       <DxcFlex gap="3rem" alignItems="center">
         <DxcBadge color="orange" label="Label" size="small" />
-        <DxcBadge color="orange" label="Label" size="small" icon={icon} />
+        <DxcBadge color="orange" label="Label" size="small" icon="done" />
       </DxcFlex>
     </ExampleContainer>
     <ExampleContainer>
@@ -145,14 +145,14 @@ export const Chromatic = () => (
       <Title title="Small" theme="light" level={4} />
       <DxcFlex gap="3rem" alignItems="center">
         <DxcBadge color="red" label="Label" size="small" />
-        <DxcBadge color="red" label="Label" size="small" icon={icon} />
+        <DxcBadge color="red" label="Label" size="small" icon="done" />
       </DxcFlex>
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Medium" theme="light" level={4} />
       <DxcFlex gap="3rem" alignItems="center">
         <DxcBadge color="red" label="Label" />
-        <DxcBadge color="red" label="Label" icon={icon} />
+        <DxcBadge color="red" label="Label" icon="done" />
       </DxcFlex>
     </ExampleContainer>
     <ExampleContainer>
@@ -167,7 +167,7 @@ export const Chromatic = () => (
       <Title title="Small" theme="light" level={4} />
       <DxcFlex gap="3rem" alignItems="center">
         <DxcBadge color="yellow" label="Label" size="small" />
-        <DxcBadge color="yellow" label="Label" size="small" icon={icon} />
+        <DxcBadge color="yellow" label="Label" size="small" icon="done" />
       </DxcFlex>
     </ExampleContainer>
     <ExampleContainer>
@@ -181,7 +181,7 @@ export const Chromatic = () => (
       <Title title="Large" theme="light" level={4} />
       <DxcFlex gap="3rem" alignItems="center">
         <DxcBadge color="yellow" label="Label" size="large" />
-        <DxcBadge color="yellow" label="Label" size="large" icon={icon} />
+        <DxcBadge color="yellow" label="Label" size="large" icon="done" />
       </DxcFlex>
     </ExampleContainer>
     <Title title="Purple" theme="light" level={3} />
@@ -189,7 +189,7 @@ export const Chromatic = () => (
       <Title title="Small" theme="light" level={4} />
       <DxcFlex gap="3rem" alignItems="center">
         <DxcBadge color="purple" label="Label" size="small" />
-        <DxcBadge color="purple" label="Label" size="small" icon={icon} />
+        <DxcBadge color="purple" label="Label" size="small" icon="done" />
       </DxcFlex>
     </ExampleContainer>
     <ExampleContainer>

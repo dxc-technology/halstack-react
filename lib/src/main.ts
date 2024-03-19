@@ -43,6 +43,8 @@ import DxcImage from "./image/Image";
 import DxcContainer from "./container/Container";
 import DxcBadge from "./badge/Badge";
 import DxcStatusLight from "./status-light/StatusLight";
+import DxcContextualMenu from "./contextual-menu/ContextualMenu";
+import DxcDivider from "./divider/Divider";
 
 import HalstackContext, { HalstackProvider, HalstackLanguageContext } from "./HalstackContext";
 
@@ -95,4 +97,6 @@ export {
   DxcContainer,
   DxcBadge,
   DxcStatusLight,
+  DxcContextualMenu,
+  DxcDivider,
 };

@@ -95,7 +95,11 @@ const sections = [
               <ul>
                 <li>
                   <b>icon</b>: Icon to be placed in the action. It can be either
-                  a URL (string) or a SVG component.
+                  an icon from{" "}
+                  <DxcLink newWindow href="https://fonts.google.com/icons">
+                    Material Symbols
+                  </DxcLink>{" "}
+                  (string) or a SVG component.
                 </li>
                 <li>
                   <b>onClick</b>: Function to be called when the action button

@@ -1,4 +1,4 @@
-import { DxcFlex, DxcTable } from "@dxc-technology/halstack-react";
+import { DxcFlex, DxcTable, DxcLink } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
@@ -66,7 +66,14 @@ const sections = [
                   for the icon.
                 </li>
                 <li>
-                  <b>logo</b>: Element or path used as the icon for the link.
+                  <b>logo</b>:{" "}
+                  <DxcLink newWindow href="https://fonts.google.com/icons">
+                    Material Symbol
+                  </DxcLink>{" "}
+                  name or SVG element as the icon used for the link. When using
+                  Material Symbols, replace spaces with underscores. By default
+                  they are outlined, if you want it to be filled prefix the
+                  symbol name with <TableCode>"filled_"</TableCode>.
                 </li>
               </ul>
             </td>

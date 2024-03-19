@@ -1,6 +1,6 @@
 type SVG = React.ReactNode & React.SVGProps<SVGSVGElement>;
 
-type ContextualProps = {
+export type ContextualProps = {
   /**
    * Text to be placed in the badge.
    */
@@ -19,7 +19,7 @@ type ContextualProps = {
   color?: "grey" | "blue" | "green" | "orange" | "red" | "yellow" | "purple";
 };
 
-type NotificationProps = {
+export type NotificationProps = {
   /**
    * Text to be placed in the badge.
    */
@@ -38,13 +38,13 @@ type NotificationProps = {
   color?: never;
 };
 
-type CommonProps = {
+export type CommonProps = {
   /**
    * Text representing advisory information related to the badge. Under the hood, this prop also serves as an accessible label for the component.
    */
   title?: string;
   /**
-   * Element or path used as the icon that will be placed next to the badge label in contextual mode.
+   *  Material Symbol name or SVG element used as the icon that will be placed next to the badge label in contextual mode.
    */
   icon?: string | SVG;
   /**

@@ -130,8 +130,14 @@ const sections = [
                   </TableCode>
                 </td>
                 <td>
-                  Element or path used as the icon that will be displayed in the
-                  tab.
+                <DxcLink newWindow href="https://fonts.google.com/icons">
+                Material Symbol
+              </DxcLink>{" "}
+              name or SVG element as the icon that will be displayed in the
+              tab. When using Material Symbols, replace spaces with
+              underscores. By default they are outlined if you want it to be
+              filled prefix the symbol name with{" "}
+              <TableCode>"filled_"</TableCode>.
                 </td>
                 <td>-</td>
               </tr>
@@ -141,11 +147,11 @@ const sections = [
                   <TableCode>boolean | number</TableCode>
                 </td>
                 <td>
-                  If true, an empty badge will appear. If false, no badge will
-                  appear. If a number is specified, the component will display a
-                  badge with the value as its label. Take into account that if
-                  that number is greater than 99, it will appear as '+99' in the
-                  badge.
+                  If true, an empty badge will appear. If false or if the tab is
+                  disabled, no badge will appear. If a number is specified, the
+                  component will display a badge with the value as its label.
+                  Take into account that if that number is greater than 99, it
+                  will appear as <TableCode>+99</TableCode> in the badge.
                 </td>
                 <td>
                   <TableCode>false</TableCode>
