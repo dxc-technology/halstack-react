@@ -56,7 +56,7 @@ const Suggestions = ({
       )}
       {searchHasErrors && (
         <span role="option">
-          <SuggestionsError role="status" aria-live="assertive">
+          <SuggestionsError role="alert" aria-live="assertive">
             <SuggestionsErrorIcon>
               <DxcIcon icon="filled_error" />
             </SuggestionsErrorIcon>

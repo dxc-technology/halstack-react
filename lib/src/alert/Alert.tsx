@@ -38,7 +38,7 @@ const DxcAlert = ({
           type={type}
           margin={margin}
           size={size}
-          role="status"
+          role={type === "error" ? "alert" : "status"}
           aria-live={type === "error" ? "assertive" : "off"}
         >
           <AlertInfo>

@@ -499,7 +499,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
             </InputContainer>
           </AutosuggestWrapper>
           {!disabled && typeof error === "string" && (
-            <Error id={errorId} role="status" aria-live={error ? "assertive" : "off"}>
+            <Error id={errorId} role="alert" aria-live={error ? "assertive" : "off"}>
               {error}
             </Error>
           )}
