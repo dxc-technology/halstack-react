@@ -11,6 +11,7 @@ const isGroupSelected = (items: GroupItemProps["items"], selectedItemId: number)
   items.some((item) => ("id" in item ? item.id === selectedItemId : isGroupSelected(item.items, selectedItemId)));
 
 const GroupItem = ({ items, ...props }: GroupItemProps) => {
+  const groupMenuId = `group-menu-${props.label}`;
   const [isOpen, setIsOpen] = useState(false);
   const { selectedItemId } = useContext(ContextualMenuContext);
   const selected = useMemo(() => !isOpen && isGroupSelected(items, selectedItemId), [isOpen, items, selectedItemId]);
@@ -18,7 +19,9 @@ const GroupItem = ({ items, ...props }: GroupItemProps) => {
   return (
     <>
       <ItemAction
+        aria-controls={groupMenuId}
         aria-expanded={isOpen ? true : undefined}
+        aria-selected={selected}
         collapseIcon={isOpen ? <DxcIcon icon="filled_expand_less" /> : <DxcIcon icon="filled_expand_more" />}
         onClick={() => {
           setIsOpen((isOpen) => !isOpen);
@@ -27,7 +30,7 @@ const GroupItem = ({ items, ...props }: GroupItemProps) => {
         {...props}
       />
       {isOpen && (
-        <ItemsList role="group">
+        <ItemsList id={groupMenuId}>
           {items.map((item) => (
             <MenuItem item={item} depthLevel={props.depthLevel + 1} />
           ))}

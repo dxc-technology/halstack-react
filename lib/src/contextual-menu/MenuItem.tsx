@@ -6,7 +6,7 @@ import GroupItem from "./GroupItem";
 import { MenuItemProps } from "./types";
 
 const MenuItem = ({ item, depthLevel = 0 }: MenuItemProps) => (
-  <StyledMenuItem role="treeitem">
+  <StyledMenuItem role="menuitem">
     {"items" in item ? (
       <GroupItem {...item} depthLevel={depthLevel} />
     ) : (

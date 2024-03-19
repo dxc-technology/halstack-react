@@ -11,6 +11,7 @@ import useTheme from "../useTheme";
 import { ThemeProvider } from "styled-components";
 import { HalstackProvider } from "../HalstackContext";
 import preview from "../../.storybook/preview";
+import { disabledRules } from "../../test/accessibility/rules/specific/date-input/disabledRules";
 
 export default {
   title: "Date Input",
@@ -20,18 +21,7 @@ export default {
     a11y: {
       config: {
         rules: [
-          {
-            id: 'aria-allowed-attr',
-            reviewOnFail: true,
-          },
-          {
-            id: 'duplicate-id-active',
-            reviewOnFail: true,
-          },
-          {
-            id: 'duplicate-id',
-            reviewOnFail: true,
-          },
+          ...disabledRules.map((ruleId) => ({ id: ruleId, reviewOnFail: true })),
           ...preview?.parameters?.a11y?.config?.rules,
         ],
       },

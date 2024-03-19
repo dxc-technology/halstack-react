@@ -39,9 +39,9 @@ const DxcContextualMenu = ({ items }: ContextualMenuPropsType) => {
 
   const renderSection = (section: SectionWithId, currentSectionIndex: number, length: number) => (
     <Fragment key={`section-${currentSectionIndex}`}>
-      <li role="treeitem">
+      <li role="group">
         {section.title != null && <Title>{section.title}</Title>}
-        <SectionList role="group">
+        <SectionList>
           {section.items.map((item, index) => (
             <MenuItem item={item} key={`${item.label}-${index}`} />
           ))}
@@ -56,7 +56,7 @@ const DxcContextualMenu = ({ items }: ContextualMenuPropsType) => {
   );
 
   return (
-    <ContextualMenu role="tree">
+    <ContextualMenu role="menu">
       <ContextualMenuContext.Provider value={{ selectedItemId, setSelectedItemId }}>
         {itemsWithId.map((item: GroupItemWithId | ItemWithId | SectionWithId, index: number) =>
           "items" in item && !("label" in item) ? (

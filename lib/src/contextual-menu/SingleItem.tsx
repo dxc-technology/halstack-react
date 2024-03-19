@@ -13,7 +13,7 @@ const SingleItem = ({ badge, icon, id, label, depthLevel, onSelect }: SingleItem
 
   return (
     <ItemAction
-      aria-current={selectedItemId === id}
+      aria-selected={selectedItemId === id}
       badge={badge}
       icon={icon}
       label={label}
