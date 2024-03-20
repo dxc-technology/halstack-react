@@ -2,25 +2,21 @@ import React from "react";
 import styled from "styled-components";
 
 type Props = {
-  title?: string,
-  theme?: string,
-  level?: number,
+  title?: string;
+  theme?: string;
+  level?: number;
 };
 
-const Title = ({ title, theme, level }: Props): JSX.Element => {
-  return level === 2 ? (
-    <SectionTitle theme={theme}>{title}</SectionTitle>
-  ) : (
-    <ExampleTitle theme={theme}>{title}</ExampleTitle>
+const Title = ({ title, theme, level = 4 }: Props): JSX.Element => {
+  const headingLevel = `h${level}` as keyof JSX.IntrinsicElements;
+  return (
+    <SectionTitle theme={theme} as={headingLevel}>
+      {title}
+    </SectionTitle>
   );
 };
 
-const SectionTitle = styled.h2`
-  font-family: Open Sans, sans-serif;
-  color: ${(props) => (props.theme === "dark" ? "#FFFFFF" : "#000000")};
-`;
-
-const ExampleTitle = styled.h4`
+const SectionTitle = styled.div`
   font-family: Open Sans, sans-serif;
   color: ${(props) => (props.theme === "dark" ? "#FFFFFF" : "#000000")};
 `;

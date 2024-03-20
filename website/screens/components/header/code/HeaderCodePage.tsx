@@ -104,24 +104,19 @@ const sections = [
     ),
   },
   {
-    title: "Children",
-    subSections: [
-      {
-        title: "DxcHeader.Dropdown",
-        content: (
-          <DxcParagraph>
-            Everything between this tags will be displayed as a dropdown. If you
-            want to show a{" "}
-            <Link href="/components/dropdown" passHref legacyBehavior>
-              <DxcLink>DxcDropdown</DxcLink>
-            </Link>
-            , as a shortcut, you can also use it as a direct child of the
-            DxcHeader without the tags, but we recommend to use it with the tags
-            since some styles will be applied for a better fit in the header.
-          </DxcParagraph>
-        ),
-      },
-    ],
+    title: "DxcHeader.Dropdown",
+    content: (
+      <DxcParagraph>
+        Everything between the tags will be displayed as a dropdown. If you
+        want to show a{" "}
+        <Link href="/components/dropdown" passHref legacyBehavior>
+          <DxcLink>DxcDropdown</DxcLink>
+        </Link>
+        , as a shortcut, you can also use it as a direct child of the DxcHeader
+        without the tags, but we recommend to use it with the tags since some
+        styles will be applied for a better fit in the header.
+      </DxcParagraph>
+    ),
   },
   {
     title: "Examples",

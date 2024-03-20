@@ -101,7 +101,7 @@ const DxcHeader = ({
         {isResponsive && responsiveContent && (
           <MainContainer>
             <ChildContainer>
-              <HamburguerTrigger tabIndex={tabIndex} onClick={handleMenu}>
+              <HamburguerTrigger tabIndex={tabIndex} onClick={handleMenu} aria-label="Show options">
                 <DxcIcon icon="menu" />
                 {translatedLabels.header.hamburguerTitle}
               </HamburguerTrigger>

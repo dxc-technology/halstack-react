@@ -26,7 +26,7 @@ const DxcProgressBar = ({
       <BackgroundProgressBar overlay={overlay}>
         <ProgressBarContainer overlay={overlay} margin={margin}>
           <InfoProgressBar>
-            <ProgressBarLabel overlay={overlay} aria-label={label || undefined}>
+            <ProgressBarLabel overlay={overlay}>
               {label}
             </ProgressBarLabel>
             <ProgressBarProgress
@@ -41,6 +41,9 @@ const DxcProgressBar = ({
             role="progressbar"
             helperText={helperText}
             aria-valuenow={showValue ? valueProgressBar : undefined}
+            aria-valuemin={0}
+            aria-valuemax={100}
+            aria-label={label || "Progress Bar"}
           >
             <LinearProgressBar
               variant={value === null || value === undefined ? "indeterminate" : "determinate"}

@@ -1,9 +1,10 @@
-import React, { useLayoutEffect, useRef } from "react";
+import React, { useLayoutEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import useTranslatedLabels from "../useTranslatedLabels";
 import { ListboxProps } from "./types";
 import Option from "./Option";
-import selectIcons from "./Icons";
+import { v4 as uuidv4 } from "uuid";
+import DxcIcon from "../icon/Icon";
 
 const groupsHaveOptions = (options) =>
   options?.[0].options ? options.some((groupOption) => groupOption.options?.length > 0) : true;
@@ -24,14 +25,15 @@ const Listbox = ({
   const translatedLabels = useTranslatedLabels();
   const listboxRef = useRef(null);
 
+  const [listBoxId] = useState(`select-${uuidv4()}`);
   let globalIndex = optional && !multiple ? 0 : -1;
   const mapOptionFunc = (option, mapIndex) => {
+    const groupId = `${listBoxId}-group-${mapIndex}`;
     if (option.options) {
-      const groupId = `group-${mapIndex}`;
       return (
         option.options.length > 0 && (
-          <li key={`group-${mapIndex}`}>
-            <GroupList role="group" aria-labelledby={groupId}>
+          <li key={groupId}>
+            <GroupList role="listbox" aria-labelledby={groupId}>
               <GroupLabel role="presentation" id={groupId}>
                 {option.label}
               </GroupLabel>
@@ -39,8 +41,8 @@ const Listbox = ({
                 globalIndex++;
                 return (
                   <Option
-                    key={`option-${singleOption.value}`}
-                    id={`option-${globalIndex}`}
+                    key={`${listBoxId}-option-${singleOption.value}`}
+                    id={`${listBoxId}-option-${globalIndex}`}
                     option={singleOption}
                     onClick={handleOptionOnClick}
                     multiple={multiple}
@@ -61,8 +63,8 @@ const Listbox = ({
       globalIndex++;
       return (
         <Option
-          key={`option-${option.value}`}
-          id={`option-${globalIndex}`}
+          key={`${listBoxId}-option-${option.value}`}
+          id={`${listBoxId}-option-${globalIndex}`}
           option={option}
           onClick={handleOptionOnClick}
           multiple={multiple}
@@ -87,6 +89,8 @@ const Listbox = ({
     visualFocusedOptionEl?.scrollIntoView?.({ block: "nearest", inline: "start" });
   }, [visualFocusIndex]);
 
+  const hasOptionGroups = options.some(option => option.options?.length > 0);
+
   return (
     <ListboxContainer
       id={id}
@@ -97,21 +101,24 @@ const Listbox = ({
         event.preventDefault();
       }}
       ref={listboxRef}
-      role="listbox"
-      aria-multiselectable={multiple}
+      aria-multiselectable={!hasOptionGroups ? multiple: undefined}
       style={styles}
+      role={hasOptionGroups ? "list" : "listbox"}
+      aria-label="List of options"
     >
       {searchable && (options.length === 0 || !groupsHaveOptions(options)) ? (
         <OptionsSystemMessage>
-          <NoMatchesFoundIcon>{selectIcons.searchOff}</NoMatchesFoundIcon>
+          <NoMatchesFoundIcon>
+            <DxcIcon icon="search_off" />
+          </NoMatchesFoundIcon>
           {translatedLabels.select.noMatchesErrorMessage}
         </OptionsSystemMessage>
       ) : (
         optional &&
         !multiple && (
           <Option
-            key={`option-${optionalItem.value}`}
-            id={`option-${0}`}
+            key={`${id}-option-${optionalItem.value}`}
+            id={`${id}-option-${0}`}
             option={optionalItem}
             onClick={handleOptionOnClick}
             multiple={multiple}
@@ -161,6 +168,7 @@ const NoMatchesFoundIcon = styled.span`
   width: 16px;
   padding: 4px;
   margin-right: 0.25rem;
+  font-size: 16px;
 `;
 
 const GroupList = styled.ul`

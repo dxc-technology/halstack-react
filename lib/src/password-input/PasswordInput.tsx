@@ -3,16 +3,15 @@ import styled from "styled-components";
 import DxcTextInput from "../text-input/TextInput";
 import useTranslatedLabels from "../useTranslatedLabels";
 import PasswordInputPropsType, { RefType } from "./types";
-import icons from "./Icons";
 
 const setInputType = (type: string, element: HTMLDivElement | null) => {
   element?.getElementsByTagName("input")[0].setAttribute("type", type);
 };
 
 const setAriaAttributes = (ariaExpanded: "true" | "false", ariaLabel: string, element: HTMLDivElement | null) => {
-  const inputElement = element?.getElementsByTagName("input")[0];
-  inputElement?.setAttribute("aria-expanded", ariaExpanded);
-  inputElement?.setAttribute("aria-label", ariaLabel);
+  const buttonElement = element?.getElementsByTagName("button")[0];
+  buttonElement?.setAttribute("aria-expanded", ariaExpanded);
+  buttonElement?.setAttribute("aria-label", ariaLabel);
 };
 
 const DxcPasswordInput = React.forwardRef<RefType, PasswordInputPropsType>(
@@ -53,7 +52,7 @@ const DxcPasswordInput = React.forwardRef<RefType, PasswordInputPropsType>(
     }, [isPasswordVisible, passwordInput]);
 
     return (
-      <PasswordInput ref={ref}>
+      <PasswordInput ref={ref} role="group">
         <DxcTextInput
           label={label}
           name={name}
@@ -63,7 +62,7 @@ const DxcPasswordInput = React.forwardRef<RefType, PasswordInputPropsType>(
             onClick: () => {
               setIsPasswordVisible((isPasswordVisible) => !isPasswordVisible);
             },
-            icon: isPasswordVisible ? icons.hidePassword : icons.showPassword,
+            icon: isPasswordVisible ? 'Visibility_Off' : 'Visibility',
             title: isPasswordVisible ? passwordInput.inputHidePasswordTitle : passwordInput.inputShowPasswordTitle,
           }}
           error={error}
