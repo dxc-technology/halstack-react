@@ -7,11 +7,11 @@ import { getMargin } from "../common/utils";
 import TextInputPropsType, { AutosuggestWrapperProps, RefType } from "./types";
 import Suggestions from "./Suggestions";
 import * as Popover from "@radix-ui/react-popover";
-import icons from "./Icons";
 import { v4 as uuidv4 } from "uuid";
 import DxcActionIcon from "../action-icon/ActionIcon";
 import DxcFlex from "../flex/Flex";
 import { NumberInputContext } from "../number-input/NumberInputContext";
+import DxcIcon from "../icon/Icon";
 
 const sizes = {
   small: "240px",
@@ -364,7 +364,13 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
             condition={hasSuggestions(suggestions)}
             wrapper={(children) => (
               <Popover.Root open={isOpen && (filteredSuggestions.length > 0 || isSearching || isAutosuggestError)}>
-                <Popover.Trigger asChild aria-controls={undefined}>
+                <Popover.Trigger
+                  asChild
+                  type={undefined}
+                  aria-controls={undefined}
+                  aria-haspopup={undefined}
+                  aria-expanded={undefined}
+                >
                   {children}
                 </Popover.Trigger>
                 <Popover.Portal>
@@ -445,11 +451,15 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
                   aria-errormessage={error ? errorId : undefined}
                   aria-required={!disabled && !optional}
                 />
-                {!disabled && error && <ErrorIcon aria-label="Error">{icons.error}</ErrorIcon>}
+                {!disabled && error && (
+                  <ErrorIcon aria-hidden="true">
+                    <DxcIcon icon="filled_error" />
+                  </ErrorIcon>
+                )}
                 {!disabled && !readOnly && clearable && (value ?? innerValue).length > 0 && (
                   <DxcActionIcon
                     onClick={handleClearActionOnClick}
-                    icon={icons.clear}
+                    icon="close"
                     tabIndex={tabIndex}
                     title={translatedLabels.textInput.clearFieldActionTitle}
                   />
@@ -458,7 +468,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
                   <>
                     <DxcActionIcon
                       onClick={!readOnly ? handleDecrementActionOnClick : undefined}
-                      icon={icons.decrement}
+                      icon="remove"
                       tabIndex={tabIndex}
                       ref={actionRef}
                       title={translatedLabels.numberInput.decrementValueTitle}
@@ -466,7 +476,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
                     />
                     <DxcActionIcon
                       onClick={!readOnly ? handleIncrementActionOnClick : undefined}
-                      icon={icons.increment}
+                      icon="add"
                       tabIndex={tabIndex}
                       ref={actionRef}
                       title={translatedLabels.numberInput.incrementValueTitle}
@@ -489,7 +499,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
             </InputContainer>
           </AutosuggestWrapper>
           {!disabled && typeof error === "string" && (
-            <Error id={errorId} aria-live={error ? "assertive" : "off"}>
+            <Error id={errorId} role="alert" aria-live={error ? "assertive" : "off"}>
               {error}
             </Error>
           )}
@@ -653,6 +663,7 @@ const ErrorIcon = styled.span`
   padding: 3px;
   height: 18px;
   width: 18px;
+  font-size: 18px;
   color: ${(props) => props.theme.errorIconColor};
 
   svg {

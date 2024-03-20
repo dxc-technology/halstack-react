@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import dayjs from "dayjs";
 import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme";
@@ -9,7 +9,6 @@ import DxcDatePicker from "./DatePicker";
 import * as Popover from "@radix-ui/react-popover";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import { v4 as uuidv4 } from "uuid";
-import { calendarIcon } from "./Icons";
 dayjs.extend(customParseFormat);
 
 const getValueForPicker = (value, format) => dayjs(value, format.toUpperCase(), true);
@@ -78,7 +77,7 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
 
     useEffect(() => {
       if (!disabled) {
-        const actionButtonRef = dateRef?.current.querySelector("[title='Open calendar']");
+        const actionButtonRef = dateRef?.current.querySelector("[title='Select date']");
         actionButtonRef?.setAttribute("aria-haspopup", true);
         actionButtonRef?.setAttribute("role", "combobox");
         actionButtonRef?.setAttribute("aria-expanded", isOpen);
@@ -158,7 +157,7 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
       <ThemeProvider theme={colorsTheme}>
         <div ref={ref}>
           <Popover.Root open={isOpen}>
-            <Popover.Trigger asChild aria-controls={undefined}>
+            <Popover.Trigger asChild aria-controls={undefined} >
               <DxcTextInput
                 label={label}
                 name={name}
@@ -168,8 +167,8 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
                 placeholder={placeholder ? format.toUpperCase() : null}
                 action={{
                   onClick: openCalendar,
-                  icon: calendarIcon,
-                  title: "Open calendar",
+                  icon: "filled_calendar_today",
+                  title: "Select date",
                 }}
                 clearable={clearable}
                 disabled={disabled}

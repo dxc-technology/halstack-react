@@ -1,22 +1,54 @@
-import { NotificationProps, CommonProps, ContextualProps } from "../badge/types";
+import React from "react";
 
 type SVG = React.ReactNode & React.SVGProps<SVGSVGElement>;
-
-export type Item = {
-  label: string;
+type Item = {
+  badge?: React.ReactElement;
   icon?: string | SVG;
-  slot?: React.ReactNode;
+  label: string;
   onSelect?: () => void;
 };
-export type Section = { title?: string; items: Item[] };
-
+type GroupItem = { items: (Item | GroupItem)[]; badge?: React.ReactElement; icon?: string | SVG; label: string };
+type Section = { items: (Item | GroupItem)[]; title?: string };
 type Props = {
-  defaultSelectedItemIndex?: number;
-  items: Item[] | Section[];
+  items: (Item | GroupItem)[] | Section[];
 };
 
-export type MenuItemActionProps = Item & {
-  selected: boolean;
+/**
+ * Contextual menu internal types.
+ */
+type ItemWithId = Item & { id: number };
+type GroupItemWithId = {
+  items: (ItemWithId | GroupItemWithId)[];
+  badge?: React.ReactElement;
+  icon: string | SVG;
+  label: string;
 };
-export type BadgeProps = (ContextualProps | NotificationProps) & Omit<CommonProps, "size">;
+type SectionWithId = { items: (ItemWithId | GroupItemWithId)[]; title?: string };
+type SingleItemProps = ItemWithId & { depthLevel: number };
+type GroupItemProps = GroupItemWithId & { depthLevel: number };
+type MenuItemProps = { item: ItemWithId | GroupItemWithId; depthLevel?: number };
+type ItemActionProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
+  Item & {
+    collapseIcon?: React.ReactNode;
+    depthLevel: number;
+    selected: boolean;
+  };
+type ContextualMenuContextProps = {
+  selectedItemId: number;
+  setSelectedItemId: React.Dispatch<React.SetStateAction<number>>;
+};
+
 export default Props;
+export type {
+  ContextualMenuContextProps,
+  GroupItem,
+  GroupItemProps,
+  GroupItemWithId,
+  Item,
+  ItemActionProps,
+  ItemWithId,
+  MenuItemProps,
+  Section,
+  SectionWithId,
+  SingleItemProps,
+};

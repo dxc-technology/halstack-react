@@ -27,7 +27,7 @@ export const Chromatic = () => (
             leo lobortis eget.
           </DxcInset>
         </DxcAccordionGroup.Accordion>
-        <DxcAccordionGroup.Accordion label="Accordion2" assistiveText="Assistive text">
+        <DxcAccordionGroup.Accordion label="Accordion3" assistiveText="Assistive text">
           <DxcInset space="2rem">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
             leo lobortis eget.
@@ -38,7 +38,7 @@ export const Chromatic = () => (
     <ExampleContainer>
       <Title title="Expanded" theme="light" level={4} />
       <DxcAccordionGroup defaultIndexActive={1}>
-        <DxcAccordionGroup.Accordion label="Accordion1">
+        <DxcAccordionGroup.Accordion label="Accordion4">
           <DxcInset space="2rem">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
             dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
@@ -47,13 +47,13 @@ export const Chromatic = () => (
             anim id est laborum.
           </DxcInset>
         </DxcAccordionGroup.Accordion>
-        <DxcAccordionGroup.Accordion label="Accordion2">
+        <DxcAccordionGroup.Accordion label="Accordion5">
           <DxcInset space="2rem">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
             leo lobortis eget.
           </DxcInset>
         </DxcAccordionGroup.Accordion>
-        <DxcAccordionGroup.Accordion label="Accordion2">
+        <DxcAccordionGroup.Accordion label="Accordion6">
           <DxcInset space="2rem">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
             leo lobortis eget.
@@ -64,7 +64,7 @@ export const Chromatic = () => (
     <ExampleContainer>
       <Title title="Disabled" theme="light" level={4} />
       <DxcAccordionGroup disabled>
-        <DxcAccordionGroup.Accordion label="Accordion1">
+        <DxcAccordionGroup.Accordion label="Accordion7">
           <DxcInset space="2rem">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
             dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
@@ -73,7 +73,7 @@ export const Chromatic = () => (
             anim id est laborum.
           </DxcInset>
         </DxcAccordionGroup.Accordion>
-        <DxcAccordionGroup.Accordion label="Accordion2">
+        <DxcAccordionGroup.Accordion label="Accordion8">
           <DxcInset space="2rem">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
             leo lobortis eget.
@@ -84,7 +84,7 @@ export const Chromatic = () => (
     <ExampleContainer pseudoState="pseudo-focus">
       <Title title="Focused" theme="light" level={4} />
       <DxcAccordionGroup defaultIndexActive={2}>
-        <DxcAccordionGroup.Accordion label="Accordion1">
+        <DxcAccordionGroup.Accordion label="Accordion9">
           <DxcInset space="2rem">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
             dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
@@ -93,13 +93,13 @@ export const Chromatic = () => (
             anim id est laborum.
           </DxcInset>
         </DxcAccordionGroup.Accordion>
-        <DxcAccordionGroup.Accordion label="Accordion2">
+        <DxcAccordionGroup.Accordion label="Accordion10">
           <DxcInset space="2rem">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
             leo lobortis eget.
           </DxcInset>
         </DxcAccordionGroup.Accordion>
-        <DxcAccordionGroup.Accordion label="Accordion2">
+        <DxcAccordionGroup.Accordion label="Accordion11">
           <DxcInset space="2rem">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
             leo lobortis eget.
@@ -111,7 +111,7 @@ export const Chromatic = () => (
     <ExampleContainer>
       <Title title="Xxsmall" theme="light" level={4} />
       <DxcAccordionGroup margin="xxsmall">
-        <DxcAccordionGroup.Accordion label="Accordion1">
+        <DxcAccordionGroup.Accordion label="Accordion12">
           <DxcInset space="2rem">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
             dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
@@ -120,7 +120,7 @@ export const Chromatic = () => (
             anim id est laborum.
           </DxcInset>
         </DxcAccordionGroup.Accordion>
-        <DxcAccordionGroup.Accordion label="Accordion2">
+        <DxcAccordionGroup.Accordion label="Accordion13">
           <DxcInset space="2rem">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
             leo lobortis eget.
@@ -131,7 +131,7 @@ export const Chromatic = () => (
     <ExampleContainer>
       <Title title="Xsmall" theme="light" level={4} />
       <DxcAccordionGroup margin="xsmall">
-        <DxcAccordionGroup.Accordion label="Accordion1">
+        <DxcAccordionGroup.Accordion label="Accordion14">
           <DxcInset space="2rem">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
             dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
@@ -140,7 +140,7 @@ export const Chromatic = () => (
             anim id est laborum.
           </DxcInset>
         </DxcAccordionGroup.Accordion>
-        <DxcAccordionGroup.Accordion label="Accordion2">
+        <DxcAccordionGroup.Accordion label="Accordion15">
           <DxcInset space="2rem">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
             leo lobortis eget.
@@ -151,7 +151,7 @@ export const Chromatic = () => (
     <ExampleContainer>
       <Title title="Small" theme="light" level={4} />
       <DxcAccordionGroup margin="small">
-        <DxcAccordionGroup.Accordion label="Accordion1">
+        <DxcAccordionGroup.Accordion label="Accordion16">
           <DxcInset space="2rem">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
             dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
@@ -160,7 +160,7 @@ export const Chromatic = () => (
             anim id est laborum.
           </DxcInset>
         </DxcAccordionGroup.Accordion>
-        <DxcAccordionGroup.Accordion label="Accordion2">
+        <DxcAccordionGroup.Accordion label="Accordion17">
           <DxcInset space="2rem">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
             leo lobortis eget.
@@ -171,7 +171,7 @@ export const Chromatic = () => (
     <ExampleContainer>
       <Title title="Medium" theme="light" level={4} />
       <DxcAccordionGroup margin="medium">
-        <DxcAccordionGroup.Accordion label="Accordion1">
+        <DxcAccordionGroup.Accordion label="Accordion18">
           <DxcInset space="2rem">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
             dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
@@ -180,7 +180,7 @@ export const Chromatic = () => (
             anim id est laborum.
           </DxcInset>
         </DxcAccordionGroup.Accordion>
-        <DxcAccordionGroup.Accordion label="Accordion2">
+        <DxcAccordionGroup.Accordion label="Accordion19">
           <DxcInset space="2rem">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
             leo lobortis eget.
@@ -191,7 +191,7 @@ export const Chromatic = () => (
     <ExampleContainer>
       <Title title="Large" theme="light" level={4} />
       <DxcAccordionGroup margin="large">
-        <DxcAccordionGroup.Accordion label="Accordion1">
+        <DxcAccordionGroup.Accordion label="Accordion20">
           <DxcInset space="2rem">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
             dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
@@ -200,7 +200,7 @@ export const Chromatic = () => (
             anim id est laborum.
           </DxcInset>
         </DxcAccordionGroup.Accordion>
-        <DxcAccordionGroup.Accordion label="Accordion2">
+        <DxcAccordionGroup.Accordion label="Accordion21">
           <DxcInset space="2rem">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
             leo lobortis eget.
@@ -211,7 +211,7 @@ export const Chromatic = () => (
     <ExampleContainer>
       <Title title="Xlarge" theme="light" level={4} />
       <DxcAccordionGroup margin="xlarge">
-        <DxcAccordionGroup.Accordion label="Accordion1">
+        <DxcAccordionGroup.Accordion label="Accordion22">
           <DxcInset space="2rem">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
             dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
@@ -220,7 +220,7 @@ export const Chromatic = () => (
             anim id est laborum.
           </DxcInset>
         </DxcAccordionGroup.Accordion>
-        <DxcAccordionGroup.Accordion label="Accordion2">
+        <DxcAccordionGroup.Accordion label="Accordion23">
           <DxcInset space="2rem">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
             leo lobortis eget.
@@ -231,7 +231,7 @@ export const Chromatic = () => (
     <ExampleContainer>
       <Title title="Xxlarge" theme="light" level={4} />
       <DxcAccordionGroup margin="xxlarge">
-        <DxcAccordionGroup.Accordion label="Accordion1">
+        <DxcAccordionGroup.Accordion label="Accordion24">
           <DxcInset space="2rem">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
             dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
@@ -240,7 +240,7 @@ export const Chromatic = () => (
             anim id est laborum.
           </DxcInset>
         </DxcAccordionGroup.Accordion>
-        <DxcAccordionGroup.Accordion label="Accordion2">
+        <DxcAccordionGroup.Accordion label="Accordion25">
           <DxcInset space="2rem">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
             leo lobortis eget.

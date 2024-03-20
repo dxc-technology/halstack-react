@@ -20,7 +20,6 @@ const iconSVG = (
 const facebookIcon = (
   <svg
     version="1.1"
-    id="Capa_1"
     x="0px"
     y="0px"
     width="438.536px"
@@ -88,15 +87,15 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Only icon" theme="light" level={4} />
-      <DxcButton icon="filled_bottom_app_bar" />
+      <DxcButton icon="filled_bottom_app_bar" title="Button with no label" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Big icon (SVG)" theme="light" level={4} />
-      <DxcButton icon={facebookIcon} />
+      <DxcButton icon={facebookIcon} title="Facebook" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Small icon (SVG)" theme="light" level={4} />
-      <DxcButton icon={smallIcon} />
+      <DxcButton icon={smallIcon} title="Button with no label" />
     </ExampleContainer>
     <Title title="Secondary" theme="light" level={2} />
     <ExampleContainer>

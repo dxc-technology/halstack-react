@@ -10,10 +10,23 @@ import dayjs from "dayjs";
 import useTheme from "../useTheme";
 import { ThemeProvider } from "styled-components";
 import { HalstackProvider } from "../HalstackContext";
+import preview from "../../.storybook/preview";
+import { disabledRules } from "../../test/accessibility/rules/specific/date-input/disabledRules";
 
 export default {
   title: "Date Input",
   component: DxcDateInput,
+  parameters: {
+    // TODO: REMOVE
+    a11y: {
+      config: {
+        rules: [
+          ...disabledRules.map((ruleId) => ({ id: ruleId, reviewOnFail: true })),
+          ...preview?.parameters?.a11y?.config?.rules,
+        ],
+      },
+    },
+  },
 };
 
 const opinionatedTheme = {
@@ -41,13 +54,7 @@ const DateInputChromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Read only" theme="light" level={4} />
-      <DxcDateInput
-        label="Example label"
-        helperText="Help message"
-        defaultValue="06-04-2007"
-        clearable
-        readOnly
-      />
+      <DxcDateInput label="Example label" helperText="Help message" defaultValue="06-04-2007" clearable readOnly />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Invalid" theme="light" level={4} />
@@ -220,7 +227,7 @@ const DatePickerButtonStates = () => {
 export const DatePickerStates = DatePickerButtonStates.bind({});
 DatePickerStates.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
-  const dateBtn = canvas.getAllByTitle("Open calendar")[0];
+  const dateBtn = canvas.getAllByTitle("Select date")[0];
   await userEvent.click(dateBtn);
 };
 

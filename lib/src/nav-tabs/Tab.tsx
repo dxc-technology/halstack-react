@@ -6,6 +6,7 @@ import NavTabsPropsType, { TabProps } from "./types";
 import BaseTypography from "../utils/BaseTypography";
 import useTheme from "../useTheme";
 import { NavTabsContext } from "./NavTabsContext";
+import DxcIcon from "../icon/Icon";
 
 const DxcTab = forwardRef(
   (
@@ -31,7 +32,7 @@ const DxcTab = forwardRef(
     };
 
     return (
-      <TabContainer active={active} role="tab" aria-selected={active} aria-disabled={disabled}>
+      <TabContainer active={active}>
         <Tab
           href={!disabled ? href : undefined}
           disabled={disabled}
@@ -48,11 +49,14 @@ const DxcTab = forwardRef(
           }}
           onKeyDown={handleOnKeyDown}
           tabIndex={active ? tabIndex : -1}
+          role="tab"
+          aria-selected={active}
+          aria-disabled={disabled}
           {...otherProps}
         >
           {icon && (
-            <TabIconContainer iconPosition={iconPosition}>
-              {typeof icon === "string" ? <img src={icon} /> : icon}
+            <TabIconContainer iconPosition={iconPosition} active={active} disabled={disabled}>
+              {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
             </TabIconContainer>
           )}
           <DxcFlex alignItems="center" gap="0.5rem">
@@ -90,22 +94,9 @@ const DxcTab = forwardRef(
 
 const TabContainer = styled.div<{ active: TabProps["active"] }>`
   align-items: stretch;
-  border-bottom: 2px solid ${(props) => (props.active ? props.theme.selectedUnderlineColor : 'transparent')};
+  border-bottom: 2px solid ${(props) => (props.active ? props.theme.selectedUnderlineColor : "transparent")};
   padding: 0.5rem;
   z-index: 1;
-  svg {
-    color: ${(props) => props.theme.unselectedIconColor};
-  }
-  &[aria-selected="true"] {
-    svg {
-      color: ${(props) => props.theme.selectedIconColor};
-    }
-  }
-  &[aria-disabled="true"] {
-    svg {
-      color: ${(props) => props.theme.disabledIconColor};
-    }
-  }
 `;
 
 const Tab = styled.a<{
@@ -147,10 +138,11 @@ const Tab = styled.a<{
   `}
 `;
 
-const TabIconContainer = styled.div<{ iconPosition: NavTabsPropsType["iconPosition"] }>`
+const TabIconContainer = styled.div<{ iconPosition: NavTabsPropsType["iconPosition"], active: TabProps["active"], disabled: TabProps["disabled"] }>`
   display: flex;
-
-  img,
+  font-size: 24px;
+  color: ${(props) => 
+    props.active ? props.theme.selectedIconColor : props.disabled ?  props.theme.disabledIconColor :  props.theme.unselectedIconColor};
   svg {
     height: 24px;
     width: 24px;

@@ -28,5 +28,8 @@ jobs:
       - name: Test library
         run: cd lib && npm run test
 
+      - name: Test library accessibility
+        run: cd lib && npm run test:accessibility
+
       - name: Build website
         run: cd website && npm run build
