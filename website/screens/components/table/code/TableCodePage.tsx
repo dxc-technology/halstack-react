@@ -9,7 +9,7 @@ import QuickNavContainer from "@/common/QuickNavContainer";
 import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import TableCode, { ExtendedTableCode } from "@/common/TableCode";
-import StatusTag from "@/common/StatusTag";
+import StatusBadge from "@/common/StatusBadge";
 import basic from "./examples/basicUsage";
 import reduced from "./examples/reduced";
 import Link from "next/link";
@@ -46,7 +46,8 @@ const sections = [
           <tr>
             <td>
               <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                <StatusTag status="Required">Required</StatusTag>children
+                <StatusBadge status="required" />
+                children
               </DxcFlex>
             </td>
             <td>
@@ -61,7 +62,8 @@ const sections = [
           <tr>
             <td>
               <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                <StatusTag status="Information">New</StatusTag>mode
+                <StatusBadge label="New" status="information" />
+                mode
               </DxcFlex>
             </td>
             <td>
@@ -131,7 +133,8 @@ const sections = [
                     gap="0.25rem"
                     alignItems="baseline"
                   >
-                    <StatusTag status="Required">Required</StatusTag>actions
+                    <StatusBadge status="required" />
+                    actions
                   </DxcFlex>
                 </td>
                 <td>

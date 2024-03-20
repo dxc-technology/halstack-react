@@ -14,7 +14,7 @@ import routerLink from "./examples/routerLink";
 import routerLinkV6 from "./examples/routerLinkV6";
 import nextLink from "./examples/nextLink";
 import TableCode from "@/common/TableCode";
-import StatusTag from "@/common/StatusTag";
+import StatusBadge from "@/common/StatusBadge";
 
 const sections = [
   {
@@ -45,7 +45,8 @@ const sections = [
           <tr>
             <td>
               <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                <StatusTag status="Required">Required</StatusTag>children
+                <StatusBadge status="required" />
+                children
               </DxcFlex>
             </td>
             <td>
@@ -130,14 +131,14 @@ const sections = [
                   </TableCode>
                 </td>
                 <td>
-                <DxcLink newWindow href="https://fonts.google.com/icons">
-                Material Symbol
-              </DxcLink>{" "}
-              name or SVG element as the icon that will be displayed in the
-              tab. When using Material Symbols, replace spaces with
-              underscores. By default they are outlined if you want it to be
-              filled prefix the symbol name with{" "}
-              <TableCode>"filled_"</TableCode>.
+                  <DxcLink newWindow href="https://fonts.google.com/icons">
+                    Material Symbol
+                  </DxcLink>{" "}
+                  name or SVG element as the icon that will be displayed in the
+                  tab. When using Material Symbols, replace spaces with
+                  underscores. By default they are outlined if you want it to be
+                  filled prefix the symbol name with{" "}
+                  <TableCode>"filled_"</TableCode>.
                 </td>
                 <td>-</td>
               </tr>
@@ -164,7 +165,8 @@ const sections = [
                     gap="0.25rem"
                     alignItems="baseline"
                   >
-                    <StatusTag status="Required">Required</StatusTag>children
+                    <StatusBadge status="required" />
+                    children
                   </DxcFlex>
                 </td>
                 <td>
