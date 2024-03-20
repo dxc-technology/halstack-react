@@ -1,5 +1,5 @@
 import { componentsList } from "./componentList";
-type ComponentStatus = "Ready" | "Deprecated" | "Experimental";
+type ComponentStatus = "ready" | "deprecated" | "experimental";
 
 export type LinkDetails = {
   label: string;
@@ -23,14 +23,14 @@ export const themeGeneratorLinks = [
 ];
 
 const overviewLinks: LinkDetails[] = [
-  { label: "Introduction", path: "/overview/introduction", status: "Ready" },
-  { label: "Releases", path: "/overview/releases", status: "Ready" },
+  { label: "Introduction", path: "/overview/introduction", status: "ready" },
+  { label: "Releases", path: "/overview/releases", status: "ready" },
 ];
 const utilitiesLinks: LinkDetails[] = [
   {
     label: "Halstack Provider",
     path: "/utilities/halstack-provider",
-    status: "Ready",
+    status: "ready",
   },
 ];
 
