@@ -4,10 +4,22 @@ import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import { HalstackProvider } from "../HalstackContext";
 import { userEvent, within } from "@storybook/testing-library";
+import { disabledRules } from "../../test/accessibility/rules/specific/table/disabledRules";
+import preview from "../../.storybook/preview";
 
 export default {
   title: "Table",
   component: DxcTable,
+  parameters: {
+    a11y: {
+      config: {
+        rules: [
+          ...disabledRules.map((ruleId) => ({ id: ruleId, reviewOnFail: true })),
+          ...preview?.parameters?.a11y?.config?.rules,
+        ],
+      },
+    },
+  },
 };
 
 const opinionatedTheme = {
@@ -176,68 +188,68 @@ export const Chromatic = () => (
       >
         <DxcTable>
           <tr>
-            <th tabIndex={0}>
+            <th>
               header<br></br>subheader
             </th>
-            <th tabIndex={0}>
+            <th>
               header<br></br>subheader
             </th>
-            <th tabIndex={0}>
+            <th>
               header<br></br>subheader
             </th>
           </tr>
           <tr>
-            <td tabIndex={0}>
+            <td>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
               dolore magna aliqua.
             </td>
-            <td tabIndex={0}>
+            <td>
               Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
               consequat.
             </td>
-            <td tabIndex={0}>
+            <td>
               Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
             </td>
           </tr>
           <tr>
-            <td tabIndex={0}>cell data</td>
-            <td tabIndex={0}>cell data</td>
-            <td tabIndex={0}>cell data</td>
+            <td>cell data</td>
+            <td>cell data</td>
+            <td>cell data</td>
           </tr>
           <tr>
-            <td tabIndex={0}>cell data</td>
-            <td tabIndex={0}>cell data</td>
-            <td tabIndex={0}>cell data</td>
+            <td>cell data</td>
+            <td>cell data</td>
+            <td>cell data</td>
           </tr>
           <tr>
-            <td tabIndex={0}>cell data</td>
-            <td tabIndex={0}>cell data</td>
-            <td tabIndex={0}>cell data</td>
+            <td>cell data</td>
+            <td>cell data</td>
+            <td>cell data</td>
           </tr>
           <tr>
-            <td tabIndex={0}>cell data</td>
-            <td tabIndex={0}>cell data</td>
-            <td tabIndex={0}>cell data</td>
+            <td>cell data</td>
+            <td>cell data</td>
+            <td>cell data</td>
           </tr>
           <tr>
-            <td tabIndex={0}>cell data</td>
-            <td tabIndex={0}>cell data</td>
-            <td tabIndex={0}>cell data</td>
+            <td>cell data</td>
+            <td>cell data</td>
+            <td>cell data</td>
           </tr>
           <tr>
-            <td tabIndex={0}>cell data</td>
-            <td tabIndex={0}>cell data</td>
-            <td tabIndex={0}>cell data</td>
+            <td>cell data</td>
+            <td>cell data</td>
+            <td>cell data</td>
           </tr>
           <tr>
-            <td tabIndex={0}>cell data</td>
-            <td tabIndex={0}>cell data</td>
-            <td tabIndex={0}>cell data</td>
+            <td>cell data</td>
+            <td>cell data</td>
+            <td>cell data</td>
           </tr>
           <tr>
-            <td tabIndex={0}>cell data</td>
-            <td tabIndex={0}>cell data</td>
-            <td tabIndex={0}>cell data</td>
+            <td>cell data</td>
+            <td>cell data</td>
+            <td>cell data</td>
           </tr>
         </DxcTable>
       </div>
@@ -274,68 +286,68 @@ export const Chromatic = () => (
       >
         <DxcTable mode="reduced">
           <tr>
-            <th tabIndex={0}>
+            <th>
               header<br></br>subheader
             </th>
-            <th tabIndex={0}>
+            <th>
               header<br></br>subheader
             </th>
-            <th tabIndex={0}>
+            <th>
               header<br></br>subheader
             </th>
           </tr>
           <tr>
-            <td tabIndex={0}>
+            <td>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
               dolore magna aliqua.
             </td>
-            <td tabIndex={0}>
+            <td>
               Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
               consequat.
             </td>
-            <td tabIndex={0}>
+            <td>
               Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
             </td>
           </tr>
           <tr>
-            <td tabIndex={0}>cell data</td>
-            <td tabIndex={0}>cell data</td>
-            <td tabIndex={0}>cell data</td>
+            <td>cell data</td>
+            <td>cell data</td>
+            <td>cell data</td>
           </tr>
           <tr>
-            <td tabIndex={0}>cell data</td>
-            <td tabIndex={0}>cell data</td>
-            <td tabIndex={0}>cell data</td>
+            <td>cell data</td>
+            <td>cell data</td>
+            <td>cell data</td>
           </tr>
           <tr>
-            <td tabIndex={0}>cell data</td>
-            <td tabIndex={0}>cell data</td>
-            <td tabIndex={0}>cell data</td>
+            <td>cell data</td>
+            <td>cell data</td>
+            <td>cell data</td>
           </tr>
           <tr>
-            <td tabIndex={0}>cell data</td>
-            <td tabIndex={0}>cell data</td>
-            <td tabIndex={0}>cell data</td>
+            <td>cell data</td>
+            <td>cell data</td>
+            <td>cell data</td>
           </tr>
           <tr>
-            <td tabIndex={0}>cell data</td>
-            <td tabIndex={0}>cell data</td>
-            <td tabIndex={0}>cell data</td>
+            <td>cell data</td>
+            <td>cell data</td>
+            <td>cell data</td>
           </tr>
           <tr>
-            <td tabIndex={0}>cell data</td>
-            <td tabIndex={0}>cell data</td>
-            <td tabIndex={0}>cell data</td>
+            <td>cell data</td>
+            <td>cell data</td>
+            <td>cell data</td>
           </tr>
           <tr>
-            <td tabIndex={0}>cell data</td>
-            <td tabIndex={0}>cell data</td>
-            <td tabIndex={0}>cell data</td>
+            <td>cell data</td>
+            <td>cell data</td>
+            <td>cell data</td>
           </tr>
           <tr>
-            <td tabIndex={0}>cell data</td>
-            <td tabIndex={0}>cell data</td>
-            <td tabIndex={0}>cell data</td>
+            <td>cell data</td>
+            <td>cell data</td>
+            <td>cell data</td>
           </tr>
         </DxcTable>
       </div>

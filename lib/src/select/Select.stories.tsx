@@ -17,7 +17,7 @@ export default {
     a11y: {
       config: {
         rules: [
-          ...disabledRules.map((ruleId) => ({ id: ruleId, enabled: false })),
+          ...disabledRules.map((ruleId) => ({ id: ruleId, reviewOnFail: true })),
           ...preview?.parameters?.a11y?.config?.rules,
         ],
       },
