@@ -36,13 +36,12 @@ const utilitiesLinks: LinkDetails[] = [
 
 const principlesLinks: LinkDetails[] = [
   { label: "Color", path: "/principles/color", status: "Ready" },
+  { label: "Iconography", path: "/principles/iconography", status: "Ready" },
   { label: "Layout", path: "/principles/layout", status: "Ready" },
   { label: "Localization", path: "/principles/localization", status: "Ready" },
   { label: "Spacing", path: "/principles/spacing", status: "Ready" },
   { label: "Themes", path: "/principles/themes", status: "Ready" },
   { label: "Typography", path: "/principles/typography", status: "Ready" },
-  { label: "Iconography", path: "/principles/iconography", status: "Ready" },
-
 ];
 
 const componentsLinks = componentsList as LinkDetails[];
