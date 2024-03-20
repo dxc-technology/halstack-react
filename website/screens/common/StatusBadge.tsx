@@ -30,12 +30,9 @@ const getBadgeColor = (status: Props["status"]) => {
 };
 
 const getStatusLabel = (label: Props["label"], status: Props["status"]) => {
-  if (label) {
-    return label;
-  } else {
-    return status.charAt(0).toUpperCase() + status.slice(1);
-  }
+  return label ? label : status.charAt(0).toUpperCase() + status.slice(1);
 };
+
 const StatusBadge = ({ label, status }: Props) => (
   <DxcBadge
     label={getStatusLabel(label, status)}
