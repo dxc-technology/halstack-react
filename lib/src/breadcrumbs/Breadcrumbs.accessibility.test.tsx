@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "@testing-library/react";
 import { axe } from "../../test/accessibility/axe-helper.js";
-import DxcBreadcrumbs from "./Breadcrumbs.jsx";
+import DxcBreadcrumbs from "./Breadcrumbs";
 import { disabledRules as rules } from "../../test/accessibility/rules/specific/breadcrumbs/disabledRules.js";
 
 const disabledRules = {
