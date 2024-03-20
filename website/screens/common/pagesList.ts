@@ -1,5 +1,5 @@
 import { componentsList } from "./componentList";
-type ComponentStatus = "Ready" | "Deprecated" | "Experimental";
+type ComponentStatus = "ready" | "Deprecated" | "Experimental";
 
 export type LinkDetails = {
   label: string;
@@ -23,25 +23,25 @@ export const themeGeneratorLinks = [
 ];
 
 const overviewLinks: LinkDetails[] = [
-  { label: "Introduction", path: "/overview/introduction", status: "Ready" },
-  { label: "Releases", path: "/overview/releases", status: "Ready" },
+  { label: "Introduction", path: "/overview/introduction", status: "ready" },
+  { label: "Releases", path: "/overview/releases", status: "ready" },
 ];
 const utilitiesLinks: LinkDetails[] = [
   {
     label: "Halstack Provider",
     path: "/utilities/halstack-provider",
-    status: "Ready",
+    status: "ready",
   },
 ];
 
 const principlesLinks: LinkDetails[] = [
-  { label: "Color", path: "/principles/color", status: "Ready" },
-  { label: "Iconography", path: "/principles/iconography", status: "Ready" },
-  { label: "Layout", path: "/principles/layout", status: "Ready" },
-  { label: "Localization", path: "/principles/localization", status: "Ready" },
-  { label: "Spacing", path: "/principles/spacing", status: "Ready" },
-  { label: "Themes", path: "/principles/themes", status: "Ready" },
-  { label: "Typography", path: "/principles/typography", status: "Ready" },
+  { label: "Color", path: "/principles/color", status: "ready" },
+  { label: "Iconography", path: "/principles/iconography", status: "ready" },
+  { label: "Layout", path: "/principles/layout", status: "ready" },
+  { label: "Localization", path: "/principles/localization", status: "ready" },
+  { label: "Spacing", path: "/principles/spacing", status: "ready" },
+  { label: "Themes", path: "/principles/themes", status: "ready" },
+  { label: "Typography", path: "/principles/typography", status: "ready" },
 ];
 
 const componentsLinks = componentsList as LinkDetails[];
