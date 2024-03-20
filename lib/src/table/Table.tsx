@@ -64,7 +64,7 @@ const DxcTable = ({ children, margin, mode = "default" }: TablePropsType): JSX.E
 
   return (
     <ThemeProvider theme={colorsTheme.table}>
-      <DxcTableContainer margin={margin}>
+      <DxcTableContainer margin={margin}> 
         <DxcTableContent mode={mode}>{children}</DxcTableContent>
       </DxcTableContainer>
     </ThemeProvider>

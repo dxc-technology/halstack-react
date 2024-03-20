@@ -251,8 +251,7 @@
   "dialog": {
     "overlayColor": "#000000b3",
     "backgroundColor": "#ffffff",
-    "closeIconWidth": "24px",
-    "closeIconHeight": "24px",
+    "closeIconSize": "24px",
     "closeIconTopPosition": "20px",
     "closeIconRightPosition": "20px",
     "closeIconBackgroundColor": "transparent",

@@ -32,7 +32,7 @@ const FileItem = ({
           (type.includes("image") ? (
             <ImagePreview src={preview} alt={fileName} />
           ) : (
-            <IconPreview error={error} aria-label={getIconAriaLabel()}>
+            <IconPreview error={error} role="document" aria-label={getIconAriaLabel()}>
               <DxcIcon icon={preview} />
             </IconPreview>
           ))}
@@ -56,7 +56,7 @@ const FileItem = ({
               <DxcIcon icon="close" />
             </DeleteFileAction>
           </DxcFlex>
-          {error && !singleFileMode && <ErrorMessage>{error}</ErrorMessage>}
+          {error && !singleFileMode && <ErrorMessage role="alert" aria-live="assertive">{error}</ErrorMessage>}
         </FileItemContent>
       </MainContainer>
     </ThemeProvider>

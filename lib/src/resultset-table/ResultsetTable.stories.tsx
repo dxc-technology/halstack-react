@@ -5,10 +5,22 @@ import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import { userEvent, within } from "@storybook/testing-library";
 import styled from "styled-components";
 import { HalstackProvider } from "../HalstackContext";
+import { disabledRules } from "../../test/accessibility/rules/specific/resultset-table/disabledRules";
+import preview from "../../.storybook/preview";
 
 export default {
   title: "Resultset Table",
   component: DxcResultsetTable,
+  parameters: {
+    a11y: {
+      config: {
+        rules: [
+          ...disabledRules.map((ruleId) => ({ id: ruleId, reviewOnFail: true })),
+          ...preview?.parameters?.a11y?.config?.rules,
+        ],
+      },
+    },
+  },
 };
 
 const deleteIcon = (
