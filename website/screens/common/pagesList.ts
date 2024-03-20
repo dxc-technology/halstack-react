@@ -1,5 +1,5 @@
 import { componentsList } from "./componentList";
-type ComponentStatus = "ready" | "Deprecated" | "Experimental";
+type ComponentStatus = "ready" | "deprecated" | "experimental";
 
 export type LinkDetails = {
   label: string;
