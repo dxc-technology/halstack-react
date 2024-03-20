@@ -182,7 +182,14 @@ const sections = [
                   {"(React.ReactNode & React.SVGProps <SVGSVGElement>)"}
                 </TableCode>
               </td>
-              <td>The icon to be displayed next to the title of the group.</td>
+              <td>
+                A{" "}
+                <DxcLink newWindow href="https://fonts.google.com/icons">
+                  Material Symbol
+                </DxcLink>{" "}
+                or a SVG element to be displayed next to the title of the group
+                as an icon.
+              </td>
               <td>-</td>
             </tr>
             <tr>
@@ -256,8 +263,11 @@ const sections = [
                 </TableCode>
               </td>
               <td>
-                Element or path used as the icon that will be placed to the left
-                of the link text.
+                A{" "}
+                <DxcLink newWindow href="https://fonts.google.com/icons">
+                  Material Symbol
+                </DxcLink>{" "}
+                or a SVG element to be displayed left to the link as an icon.
               </td>
               <td>-</td>
             </tr>

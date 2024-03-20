@@ -6,9 +6,9 @@ import { spaces } from "../common/variables";
 import { v4 as uuidv4 } from "uuid";
 import { getMargin } from "../common/utils";
 import SelectPropsType, { Option, OptionGroup, RefType } from "./types";
-import selectIcons from "./Icons";
 import Listbox from "./Listbox";
 import * as Popover from "@radix-ui/react-popover";
+import DxcIcon from "../icon/Icon";
 
 const isOptionGroup = (option: Option | OptionGroup): option is OptionGroup =>
   "options" in option && option.options != null;
@@ -169,6 +169,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
   ): JSX.Element => {
     const [selectId] = useState(`select-${uuidv4()}`);
     const selectLabelId = `label-${selectId}`;
+    const searchableInputId = `searchable-input-${selectId}`
     const errorId = `error-${selectId}`;
     const optionsListId = `${selectId}-listbox`;
     const [innerValue, setInnerValue] = useState(defaultValue ?? (multiple ? [] : ""));
@@ -371,6 +372,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
                 selectRef.current.focus();
               }}
               helperText={helperText}
+              htmlFor={searchable ? searchableInputId : undefined}
             >
               {label} {optional && <OptionalLabel>{translatedLabels.formFields.optionalLabel}</OptionalLabel>}
             </Label>
@@ -413,7 +415,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
                       title={translatedLabels.select.actionClearSelectionTitle}
                       aria-label={translatedLabels.select.actionClearSelectionTitle}
                     >
-                      {selectIcons.clear}
+                      <DxcIcon icon="clear" />
                     </ClearOptionsAction>
                   </SelectionIndicator>
                 )}
@@ -434,6 +436,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
                   />
                   {searchable && (
                     <SearchInput
+                      id={searchableInputId}
                       value={searchValue}
                       disabled={disabled}
                       onChange={handleSearchIOnChange}
@@ -457,7 +460,11 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
                     </SelectedOption>
                   )}
                 </SearchableValueContainer>
-                {!disabled && error && <ErrorIcon>{selectIcons.error}</ErrorIcon>}
+                {!disabled && error && (
+                  <ErrorIcon>
+                    <DxcIcon icon="filled_error" />
+                  </ErrorIcon>
+                )}
                 {searchable && searchValue.length > 0 && (
                   <ClearSearchAction
                     onMouseDown={(event) => {
@@ -469,11 +476,11 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
                     title={translatedLabels.select.actionClearSearchTitle}
                     aria-label={translatedLabels.select.actionClearSearchTitle}
                   >
-                    {selectIcons.clear}
+                    <DxcIcon icon="clear" />
                   </ClearSearchAction>
                 )}
                 <CollapseIndicator disabled={disabled}>
-                  {isOpen ? selectIcons.arrowUp : selectIcons.arrowDown}
+                  <DxcIcon icon={isOpen ? "keyboard_arrow_up" : "keyboard_arrow_down"} />
                 </CollapseIndicator>
               </Select>
             </Popover.Trigger>
@@ -507,7 +514,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
             </Popover.Portal>
           </Popover.Root>
           {!disabled && typeof error === "string" && (
-            <Error id={errorId} aria-live={error ? "assertive" : "off"}>
+            <Error id={errorId} role="alert" aria-live={error ? "assertive" : "off"}>
               {error}
             </Error>
           )}
@@ -546,7 +553,7 @@ const SelectContainer = styled.div<{ margin: SelectPropsType["margin"]; size: Se
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
 `;
 
-const Label = styled.span<{ disabled: SelectPropsType["disabled"]; helperText: SelectPropsType["helperText"] }>`
+const Label = styled.label<{ disabled: SelectPropsType["disabled"]; helperText: SelectPropsType["helperText"] }>`
   color: ${(props) => (props.disabled ? props.theme.disabledColor : props.theme.labelFontColor)};
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.labelFontSize};
@@ -660,9 +667,7 @@ const ClearOptionsAction = styled.button`
       }
     `}
 
-  svg {
-    line-height: 18px;
-  }
+  font-size:16px;
 `;
 
 const SearchableValueContainer = styled.div`
@@ -727,10 +732,7 @@ const ErrorIcon = styled.span`
   pointer-events: none;
   color: ${(props) => props.theme.errorIconColor};
 
-  svg {
-    line-height: 18px;
-    font-size: 1.25rem;
-  }
+  font-size: 1.25rem;
 `;
 
 const Error = styled.span`
@@ -778,9 +780,7 @@ const ClearSearchAction = styled.button`
     background-color: ${(props) => props.theme.activeActionBackgroundColor};
     color: ${(props) => props.theme.activeActionIconColor};
   }
-  svg {
-    line-height: 18px;
-  }
+  font-size: 16px;
 `;
 
 export default DxcSelect;

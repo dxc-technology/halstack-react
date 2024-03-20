@@ -10,7 +10,7 @@ const DropdownMenu = React.forwardRef<HTMLUListElement, DropdownMenuProps>(
   ): JSX.Element => (
     <DropdownMenuContainer
       onMouseDown={(event) => {
-        // Prevent the onBlur event from closing menu when clicking on the menu since 
+        // Prevent the onBlur event from closing menu when clicking on the menu since
         // it is implemented with a Portal and the menu is not a direct child of the container
         event.preventDefault();
       }}
@@ -19,15 +19,15 @@ const DropdownMenu = React.forwardRef<HTMLUListElement, DropdownMenuProps>(
       role="menu"
       aria-labelledby={dropdownTriggerId}
       aria-orientation="vertical"
-      aria-activedescendant={`option-${visualFocusIndex}`}
+      aria-activedescendant={visualFocusIndex !== -1 ? `${id}-option-${visualFocusIndex}` : undefined}
       tabIndex={-1}
       ref={ref}
       style={styles}
     >
       {options.map((option, index) => (
         <DropdownMenuItem
-          id={`option-${index}`}
-          key={`option-${index}`}
+          id={`${id}-option-${index}`}
+          key={`${id}-option-${index}`}
           visuallyFocused={index === visualFocusIndex}
           iconPosition={iconsPosition}
           onClick={menuItemOnClick}

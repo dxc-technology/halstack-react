@@ -1,4 +1,4 @@
-import { DxcChip, DxcInset } from "@dxc-technology/halstack-react";
+import { DxcChip, DxcFlex, DxcInset } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   const icon = (
@@ -13,12 +13,17 @@ const code = `() => {
     </svg>
   );
   const onClickSuffix = () => {
-    console.log("Copied.");
+    console.log("Delete.");
   };
-
+  const onClickPrefix = () => {
+    console.log("Favorite.");
+  };
   return (
     <DxcInset space="2rem">
-      <DxcChip label="Home" suffixIcon={icon} onClickSuffix={onClickSuffix} />
+      <DxcFlex gap="1rem">
+        <DxcChip label="Home" suffixIcon={icon} onClickSuffix={onClickSuffix} />
+        <DxcChip label="Home" prefixIcon="favorite" onClickPrefix={onClickPrefix} />
+      </DxcFlex>
     </DxcInset>
   );
 }`;
@@ -26,6 +31,7 @@ const code = `() => {
 const scope = {
   DxcChip,
   DxcInset,
+  DxcFlex,
 };
 
 export default { code, scope };

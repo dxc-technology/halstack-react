@@ -11,10 +11,16 @@ import DxcHeading from "../heading/Heading";
 import DxcParagraph from "../paragraph/Paragraph";
 import DxcAlert from "../alert/Alert";
 import { userEvent, within } from "@storybook/testing-library";
+import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
 
 export default {
   title: "Dialog",
   component: DxcDialog,
+  parameters: {
+    viewport: {
+      viewports: INITIAL_VIEWPORTS,
+    },
+  },
 };
 
 const opinionatedTheme = {
