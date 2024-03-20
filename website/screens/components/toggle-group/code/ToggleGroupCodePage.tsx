@@ -67,7 +67,7 @@ const sections = [
           <tr>
             <td>
               <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                <StatusBadge label="Required" status="Required" />
+                <StatusBadge status="required" />
                 options
               </DxcFlex>
             </td>
@@ -96,7 +96,7 @@ const sections = [
                   <b>value</b>: Number with the option inner value.
                 </li>
                 <li>
-                  <StatusBadge label="New" status="Information" /> <b>title</b>:
+                  <StatusBadge label="New" status="information" /> <b>title</b>:
                   Text representing advisory information related to an option.
                   Under the hood, it also serves as an accessible label for the
                   icon.

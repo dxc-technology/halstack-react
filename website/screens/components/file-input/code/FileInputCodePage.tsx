@@ -27,7 +27,7 @@ const sections = [
           <tr>
             <td>
               <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                <StatusBadge label="Deprecated" status="Deprecated" />
+                <StatusBadge status="deprecated" />
                 name
               </DxcFlex>
             </td>
@@ -123,7 +123,7 @@ const sections = [
           <tr>
             <td>
               <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                <StatusBadge label="Required" status="Required" />
+                <StatusBadge status="required" />
                 value
               </DxcFlex>
             </td>
@@ -191,7 +191,7 @@ const sections = [
           <tr>
             <td>
               <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                <StatusBadge label="Required" status="Required" />
+                <StatusBadge status="required" />
                 callbackFile
               </DxcFlex>
             </td>

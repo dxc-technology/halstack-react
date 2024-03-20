@@ -1,29 +1,47 @@
 import { DxcBadge } from "@dxc-technology/halstack-react";
 
-type StatusBadgeProps = {
+type InfoStatus = {
+  status: "information";
   label: string;
-  status: "Deprecated" | "Experimental" | "Information" | "Ready" | "Required";
 };
 
-const getBadgeColor = (status: StatusBadgeProps["status"]) => {
+type NoInfoStatus = {
+  status: "deprecated" | "experimental" | "ready" | "required";
+  label?: never;
+};
+
+type Props = InfoStatus | NoInfoStatus;
+
+const getBadgeColor = (status: Props["status"]) => {
   switch (status) {
-    case "Deprecated":
+    case "deprecated":
       return "yellow";
-    case "Experimental":
+    case "experimental":
       return "purple";
-    case "Information":
+    case "information":
       return "blue";
-    case "Ready":
+    case "ready":
       return "green";
-    case "Required":
+    case "required":
       return "orange";
     default:
       return "grey";
   }
 };
 
-const StatusBadge = ({ label, status }: StatusBadgeProps) => (
-  <DxcBadge label={label} color={getBadgeColor(status)} size="small" />
+const getStatusLabel = (label: Props["label"], status: Props["status"]) => {
+  if (label) {
+    return label;
+  } else {
+    return status.charAt(0).toUpperCase() + status.slice(1);
+  }
+};
+const StatusBadge = ({ label, status }: Props) => (
+  <DxcBadge
+    label={getStatusLabel(label, status)}
+    color={getBadgeColor(status)}
+    size="small"
+  />
 );
 
 export default StatusBadge;

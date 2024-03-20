@@ -23,7 +23,7 @@ const sections = [
           <tr>
             <td>
               <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                <StatusBadge label="New" status="Information" />
+                <StatusBadge label="New" status="information" />
                 mode
               </DxcFlex>
             </td>
@@ -61,7 +61,7 @@ const sections = [
                   <b>href</b>: URL of the page the link goes to.
                 </li>
                 <li>
-                  <StatusBadge label="New" status="Information" /> <b>title</b>:
+                  <StatusBadge label="New" status="information" /> <b>title</b>:
                   Text representing advisory information related to the social
                   link. Under the hood, it also serves as an accessible label
                   for the icon.

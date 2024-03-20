@@ -246,7 +246,7 @@ const sections = [
         <tr>
           <td>
             <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-              <StatusBadge label="Required" status="Required" />
+              <StatusBadge status="required" />
               children
             </DxcFlex>
           </td>
@@ -398,7 +398,7 @@ const sections = [
             <tr>
               <td>
                 <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                  <StatusBadge label="Required" status="Required" />
+                  <StatusBadge status="required" />
                   children
                 </DxcFlex>
               </td>

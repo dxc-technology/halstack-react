@@ -116,8 +116,8 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
                               selected={matchPaths(path)}
                             >
                               {label}
-                              {status !== "Ready" && (
-                                <StatusBadge label={status} status={status} />
+                              {status !== "ready" && (
+                                <StatusBadge status={status} />
                               )}
                             </DxcApplicationLayout.SideNav.Link>
                           </Link>
