@@ -324,7 +324,6 @@
     "focusDropBorderColor": "#0095ff",
     "disabledDropBorderColor": "#999999",
     "dragoverDropBackgroundColor": "#f5fbff",
-    "activeFileItemIconBackgrounColor": "#cccccc",
     "errorFileItemBorderColor": "#d0011b",
     "errorFileItemBackgroundColor": "#fff5f6",
     "errorFilePreviewBackgroundColor": "#ffccd3",
