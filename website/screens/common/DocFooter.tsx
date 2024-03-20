@@ -10,16 +10,14 @@ import styled from "styled-components";
 
 const arrowForward = (
   <svg
-    id="arrow_forward_black_24dp"
     xmlns="http://www.w3.org/2000/svg"
     width="16"
     height="16"
     viewBox="0 0 16 16"
     fill="currentColor"
   >
-    <path id="Path_2989" data-name="Path 2989" d="M0,0H16V16H0Z" fill="none" />
+    <path data-name="Path 2989" d="M0,0H16V16H0Z" fill="none" />
     <path
-      id="Path_2990"
       data-name="Path 2990"
       d="M9.333,4l-.94.94,3.72,3.727H4V10h8.113l-3.72,3.727.94.94,5.333-5.333Z"
       transform="translate(-1.333 -1.333)"
@@ -35,15 +33,13 @@ const arrowBack = (
     viewBox="0 0 16 16"
     fill="currentColor"
   >
-    <g id="arrow_forward_black_24dp" transform="translate(16 16) rotate(180)">
+    <g transform="translate(16 16) rotate(180)">
       <path
-        id="Path_2989"
         data-name="Path 2989"
         d="M0,0H16V16H0Z"
         fill="none"
       />
       <path
-        id="Path_2990"
         data-name="Path 2990"
         d="M9.333,4l-.94.94,3.72,3.727H4V10h8.113l-3.72,3.727.94.94,5.333-5.333Z"
         transform="translate(-1.333 -1.333)"

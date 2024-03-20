@@ -112,6 +112,7 @@ const DxcResultsetTable = ({
                     tabIndex={column.isSortable ? tabIndex : -1}
                     isSortable={column.isSortable}
                     mode={mode}
+                    aria-label={column.isSortable ? "Sort column" : undefined}
                   >
                     <span>{column.displayValue}</span>
                     {column.isSortable && (

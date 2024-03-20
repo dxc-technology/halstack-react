@@ -3,10 +3,16 @@ import DxcTabs from "./Tabs";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import { HalstackProvider } from "../HalstackContext";
+import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
 
 export default {
   title: "Tabs",
   component: DxcTabs,
+  parameters: {
+    viewport: {
+      viewports: INITIAL_VIEWPORTS,
+    },
+  },
 };
 
 const iconSVG = (

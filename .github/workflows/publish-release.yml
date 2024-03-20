@@ -40,6 +40,9 @@ jobs:
       - name: Test library
         run: cd lib && npm run test
 
+      - name: Test library accessibility
+        run: cd lib && npm run test:accessibility
+
       - name: Publish RELEASE to npm
         run: |
           sed -i "s#\"version\": \"0.0.0\"#\"version\": \"${TAG_NAME}\"#" ./dist/package.json

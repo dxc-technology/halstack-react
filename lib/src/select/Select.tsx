@@ -169,6 +169,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
   ): JSX.Element => {
     const [selectId] = useState(`select-${uuidv4()}`);
     const selectLabelId = `label-${selectId}`;
+    const searchableInputId = `searchable-input-${selectId}`
     const errorId = `error-${selectId}`;
     const optionsListId = `${selectId}-listbox`;
     const [innerValue, setInnerValue] = useState(defaultValue ?? (multiple ? [] : ""));
@@ -371,6 +372,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
                 selectRef.current.focus();
               }}
               helperText={helperText}
+              htmlFor={searchable ? searchableInputId : undefined}
             >
               {label} {optional && <OptionalLabel>{translatedLabels.formFields.optionalLabel}</OptionalLabel>}
             </Label>
@@ -434,6 +436,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
                   />
                   {searchable && (
                     <SearchInput
+                      id={searchableInputId}
                       value={searchValue}
                       disabled={disabled}
                       onChange={handleSearchIOnChange}
@@ -511,7 +514,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
             </Popover.Portal>
           </Popover.Root>
           {!disabled && typeof error === "string" && (
-            <Error id={errorId} aria-live={error ? "assertive" : "off"}>
+            <Error id={errorId} role="alert" aria-live={error ? "assertive" : "off"}>
               {error}
             </Error>
           )}
@@ -550,7 +553,7 @@ const SelectContainer = styled.div<{ margin: SelectPropsType["margin"]; size: Se
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
 `;
 
-const Label = styled.span<{ disabled: SelectPropsType["disabled"]; helperText: SelectPropsType["helperText"] }>`
+const Label = styled.label<{ disabled: SelectPropsType["disabled"]; helperText: SelectPropsType["helperText"] }>`
   color: ${(props) => (props.disabled ? props.theme.disabledColor : props.theme.labelFontColor)};
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.labelFontSize};

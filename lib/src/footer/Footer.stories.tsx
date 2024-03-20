@@ -5,6 +5,8 @@ import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import { HalstackProvider } from "../HalstackContext";
 import DxcFlex from "../flex/Flex";
 import DxcTypography from "../typography/Typography";
+import preview from "../../.storybook/preview";
+import { disabledRules } from "../../test/accessibility/rules/specific/footer/disabledRules";
 
 const social = [
   {
@@ -107,6 +109,16 @@ const bottom = [
 export default {
   title: "Footer",
   component: DxcFooter,
+  parameters: {
+    a11y: {
+      config: {
+        rules: [
+          ...disabledRules.map((ruleId) => ({ id: ruleId, enabled: false })),
+          ...preview?.parameters?.a11y?.config?.rules,
+        ],
+      },
+    },
+  },
 };
 
 const opinionatedTheme = {
