@@ -33,7 +33,14 @@ const DxcAlert = ({
     <ThemeProvider theme={colorsTheme.alert}>
       <AlertModal mode={mode}>
         {mode === "modal" && <OverlayContainer mode={mode} onClick={onClose}></OverlayContainer>}
-        <AlertContainer mode={mode} type={type} margin={margin} size={size}>
+        <AlertContainer
+          mode={mode}
+          type={type}
+          margin={margin}
+          size={size}
+          role={type === "error" ? "alert" : "status"}
+          aria-live={type === "error" ? "assertive" : "off"}
+        >
           <AlertInfo>
             <AlertIcon type={type}>
               {(type === "info" && <DxcIcon icon="filled_info" />) ||
@@ -47,7 +54,7 @@ const DxcAlert = ({
               <AlertInlineText>{inlineText}</AlertInlineText>
             </AlertText>
             {onClose && (
-              <AlertCloseAction onClick={onClose} tabIndex={tabIndex}>
+              <AlertCloseAction onClick={onClose} tabIndex={tabIndex} aria-label="Close alert">
                 <DxcIcon icon="close" />
               </AlertCloseAction>
             )}

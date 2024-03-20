@@ -24,6 +24,7 @@ const DxcChip = ({
         {prefixIcon && (
           <IconContainer
             role={typeof onClickPrefix === "function" ? "button" : undefined}
+            aria-label={typeof onClickPrefix === "function" ? "Prefix Action" : undefined}
             disabled={disabled}
             interactuable={typeof onClickPrefix === "function" && !disabled}
             tabIndex={typeof onClickPrefix === "function" && !disabled ? tabIndex : -1}
@@ -36,6 +37,7 @@ const DxcChip = ({
         {suffixIcon && (
           <IconContainer
             role={typeof onClickSuffix === "function" ? "button" : undefined}
+            aria-label={typeof onClickSuffix === "function" ? "Suffix Action" : undefined}
             disabled={disabled}
             interactuable={typeof onClickSuffix === "function" && !disabled}
             tabIndex={typeof onClickSuffix === "function" && !disabled ? tabIndex : -1}

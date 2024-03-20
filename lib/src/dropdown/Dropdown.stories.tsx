@@ -281,8 +281,8 @@ const DropdownListStates = () => {
         <ExampleContainer pseudoState="pseudo-hover">
           <Title title="Hovered option" theme="light" level={4} />
           <DropdownMenu
-            id="x"
-            dropdownTriggerId="dtx"
+            id="x1"
+            dropdownTriggerId="dtx1"
             iconsPosition="before"
             visualFocusIndex={-1}
             menuItemOnClick={(value) => {}}
@@ -294,8 +294,8 @@ const DropdownListStates = () => {
         <ExampleContainer pseudoState="pseudo-active">
           <Title title="Active option" theme="light" level={4} />
           <DropdownMenu
-            id="x"
-            dropdownTriggerId="dtx"
+            id="x2"
+            dropdownTriggerId="dtx2"
             iconsPosition="before"
             visualFocusIndex={-1}
             menuItemOnClick={(value) => {}}
@@ -307,8 +307,8 @@ const DropdownListStates = () => {
         <ExampleContainer>
           <Title title="Focused option" theme="light" level={4} />
           <DropdownMenu
-            id="x"
-            dropdownTriggerId="dtx"
+            id="x3"
+            dropdownTriggerId="dtx3"
             iconsPosition="before"
             visualFocusIndex={0}
             menuItemOnClick={(value) => {}}
@@ -321,8 +321,8 @@ const DropdownListStates = () => {
         <ExampleContainer>
           <Title title="Before" theme="light" level={4} />
           <DropdownMenu
-            id="x"
-            dropdownTriggerId="dtx"
+            id="x4"
+            dropdownTriggerId="dtx4"
             iconsPosition="before"
             visualFocusIndex={-1}
             menuItemOnClick={(value) => {}}
@@ -332,8 +332,8 @@ const DropdownListStates = () => {
           />
           <Title title="After" theme="light" level={4} />
           <DropdownMenu
-            id="x"
-            dropdownTriggerId="dtx"
+            id="x5"
+            dropdownTriggerId="dtx5"
             iconsPosition="after"
             visualFocusIndex={-1}
             menuItemOnClick={(value) => {}}

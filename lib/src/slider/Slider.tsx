@@ -59,6 +59,7 @@ const DxcSlider = React.forwardRef<RefType, SliderPropsType>(
               disabled={disabled}
               stepPosition={(step * index) / range}
               stepValue={(value ?? innerValue) / maxValue}
+              key={`tickmark-${index}-${labelId}`}
             />
           );
 

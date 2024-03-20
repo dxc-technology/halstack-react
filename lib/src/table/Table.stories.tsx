@@ -4,10 +4,22 @@ import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import { HalstackProvider } from "../HalstackContext";
 import { userEvent, within } from "@storybook/testing-library";
+import { disabledRules } from "../../test/accessibility/rules/specific/table/disabledRules";
+import preview from "../../.storybook/preview";
 
 export default {
   title: "Table",
   component: DxcTable,
+  parameters: {
+    a11y: {
+      config: {
+        rules: [
+          ...disabledRules.map((ruleId) => ({ id: ruleId, reviewOnFail: true })),
+          ...preview?.parameters?.a11y?.config?.rules,
+        ],
+      },
+    },
+  },
 };
 
 const opinionatedTheme = {
