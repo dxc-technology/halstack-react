@@ -5,10 +5,22 @@ import DxcBreadcrumbs from "./Breadcrumbs";
 import DxcContainer from "../container/Container";
 import { HalstackProvider } from "../HalstackContext";
 import { userEvent, within } from "@storybook/testing-library";
+import { disabledRules } from "../../test/accessibility/rules/specific/breadcrumbs/disabledRules";
+import preview from "../../.storybook/preview";
 
 export default {
   title: "Breadcrumbs",
   component: DxcBreadcrumbs,
+  parameters: {
+    a11y: {
+      config: {
+        rules: [
+          ...disabledRules.map((ruleId) => ({ id: ruleId, enabled: false })),
+          ...preview?.parameters?.a11y?.config?.rules,
+        ],
+      },
+    },
+  },
 };
 
 const items = [
