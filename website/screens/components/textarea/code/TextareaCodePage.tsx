@@ -103,12 +103,7 @@ const sections = [
             </td>
           </tr>
           <tr>
-            <td>
-              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                <StatusBadge label="New" status="information" />
-                readOnly
-              </DxcFlex>
-            </td>
+            <td>readOnly</td>
             <td>
               <TableCode>boolean</TableCode>
             </td>
