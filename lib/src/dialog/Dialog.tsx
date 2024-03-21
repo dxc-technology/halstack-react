@@ -45,7 +45,7 @@ const DxcDialog = ({
               }}
             />
           )}
-          <Dialog role="dialog" aria-modal={overlay} isCloseVisible={isCloseVisible}>
+          <Dialog role="dialog" aria-modal={overlay} isCloseVisible={isCloseVisible} aria-label="Dialog">
             <FocusLock>
               {children}
               {isCloseVisible && (

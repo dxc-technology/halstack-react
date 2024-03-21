@@ -32,7 +32,7 @@ const DxcTab = forwardRef(
     };
 
     return (
-      <TabContainer active={active} role="tab" aria-selected={active} aria-disabled={disabled}>
+      <TabContainer active={active}>
         <Tab
           href={!disabled ? href : undefined}
           disabled={disabled}
@@ -49,6 +49,9 @@ const DxcTab = forwardRef(
           }}
           onKeyDown={handleOnKeyDown}
           tabIndex={active ? tabIndex : -1}
+          role="tab"
+          aria-selected={active}
+          aria-disabled={disabled}
           {...otherProps}
         >
           {icon && (

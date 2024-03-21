@@ -40,7 +40,7 @@ const DxcCard = ({
           >
             {imageSrc && (
               <ImageContainer imageBgColor={imageBgColor}>
-                <TagImage imagePadding={imagePadding} imageCover={imageCover} src={imageSrc} />
+                <TagImage imagePadding={imagePadding} imageCover={imageCover} src={imageSrc} alt="Card image" />
               </ImageContainer>
             )}
             <CardContent>{children}</CardContent>

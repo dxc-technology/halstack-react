@@ -3,7 +3,7 @@ import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
 import Code from "@/common/Code";
-import StatusTag from "@/common/StatusTag";
+import StatusBadge from "@/common/StatusBadge";
 import TableCode from "@/common/TableCode";
 
 const sections = [
@@ -23,7 +23,8 @@ const sections = [
           <tr>
             <td>
               <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                <StatusTag status="Information">New</StatusTag>mode
+                <StatusBadge label="New" status="information" />
+                mode
               </DxcFlex>
             </td>
             <td>
@@ -60,7 +61,7 @@ const sections = [
                   <b>href</b>: URL of the page the link goes to.
                 </li>
                 <li>
-                  <StatusTag status="Information">New</StatusTag> <b>title</b>:
+                  <StatusBadge label="New" status="information" /> <b>title</b>:
                   Text representing advisory information related to the social
                   link. Under the hood, it also serves as an accessible label
                   for the icon.

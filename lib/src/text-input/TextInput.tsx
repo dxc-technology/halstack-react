@@ -364,7 +364,13 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
             condition={hasSuggestions(suggestions)}
             wrapper={(children) => (
               <Popover.Root open={isOpen && (filteredSuggestions.length > 0 || isSearching || isAutosuggestError)}>
-                <Popover.Trigger asChild aria-controls={undefined}>
+                <Popover.Trigger
+                  asChild
+                  type={undefined}
+                  aria-controls={undefined}
+                  aria-haspopup={undefined}
+                  aria-expanded={undefined}
+                >
                   {children}
                 </Popover.Trigger>
                 <Popover.Portal>
@@ -446,7 +452,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
                   aria-required={!disabled && !optional}
                 />
                 {!disabled && error && (
-                  <ErrorIcon aria-label="Error">
+                  <ErrorIcon aria-hidden="true">
                     <DxcIcon icon="filled_error" />
                   </ErrorIcon>
                 )}
@@ -493,7 +499,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
             </InputContainer>
           </AutosuggestWrapper>
           {!disabled && typeof error === "string" && (
-            <Error id={errorId} aria-live={error ? "assertive" : "off"}>
+            <Error id={errorId} role="alert" aria-live={error ? "assertive" : "off"}>
               {error}
             </Error>
           )}
