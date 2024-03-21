@@ -18,7 +18,7 @@ import {
   themeGeneratorLinks,
 } from "@/common/pagesList";
 import Link from "next/link";
-import StatusTag from "@/common/StatusTag";
+import StatusBadge from "@/common/StatusBadge";
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -116,8 +116,8 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
                               selected={matchPaths(path)}
                             >
                               {label}
-                              {status !== "Ready" && (
-                                <StatusTag status={status}>{status}</StatusTag>
+                              {status !== "ready" && (
+                                <StatusBadge status={status} />
                               )}
                             </DxcApplicationLayout.SideNav.Link>
                           </Link>

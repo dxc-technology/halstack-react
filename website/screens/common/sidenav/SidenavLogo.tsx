@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import Image from "@/common/Image";
 import halstackLogo from "@/common/images/halstack_logo.svg";
-import StatusTag from "@/common/StatusTag";
 import React from "react";
 import { useRouter } from "next/router";
 import pjson from "../../../package-lock.json";
+import { DxcBadge } from "@dxc-technology/halstack-react";
 
 type SidenavLogoProps = { subtitle?: string };
 
@@ -31,13 +31,17 @@ const SidenavLogo = ({
         </Header>
         <Subtitle>{subtitle}</Subtitle>
       </LogoContainer>
-      <StatusTag>
-        {isDev
-          ? "dev"
-          : isNaN(parseInt(pathVersion))
-          ? "next"
-          : `v${halstackVersion}`}
-      </StatusTag>
+      <DxcBadge
+        label={
+          isDev
+            ? "dev"
+            : isNaN(parseInt(pathVersion))
+            ? "next"
+            : `v${halstackVersion}`
+        }
+        color="purple"
+        size="small"
+      />
     </SidenavLogoContainer>
   );
 };
