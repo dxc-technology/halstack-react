@@ -32,7 +32,7 @@ const sections = [
               ensuring accurate and clear descriptions.
             </DxcBulletedList.Item>
             <DxcBulletedList.Item>
-              Place the Contextual Menu aligned to the left or right, but never
+              Place the Contextual menu aligned to the left or right, but never
               in the center of the interface. This component is a complement to
               navigate within the page, but it should never obstruct the main
               content.
@@ -73,11 +73,11 @@ const sections = [
     ],
   },
   {
-    title: "Elements of the Contextual Menu",
+    title: "Elements of the Contextual menu",
     content: (
       <>
         <DxcParagraph>
-          The Contextual Menu is composed of different elements that allow the
+          The Contextual menu is composed of different elements that allow the
           user to navigate through the interface. Each of these elements has a
           different criteria and behaviour, and they are as follows:
         </DxcParagraph>
@@ -99,24 +99,25 @@ const sections = [
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
             <strong>Divider:</strong> its purpose is to separate sections within
-            the contextual menu. They only appear at the end of one section and
+            the Contextual menu. They only appear at the end of one section and
             right before the following one.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Scrollbar:</strong> only present when the scrollable function is available.
+            <strong>Scrollbar:</strong> only present when the scrollable
+            function is available.
           </DxcBulletedList.Item>
         </DxcBulletedList>
-        <Figure caption="Every possible element of the Contextual Menu">
+        <Figure caption="Every possible element of the Contextual menu">
           <Image
             src={contextualMenuElements}
-            alt="Every possible element of the Contextual Menu"
+            alt="Every possible element of the Contextual menu"
           />
         </Figure>
       </>
     ),
   },
   {
-    title: "Contextual Menu vs Sidenav",
+    title: "Contextual menu vs Sidenav",
     content: (
       <>
         <DxcParagraph>

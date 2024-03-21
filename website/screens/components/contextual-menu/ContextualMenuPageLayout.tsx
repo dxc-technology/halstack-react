@@ -20,7 +20,7 @@ const ContextualMenuPageHeading = ({
         <DxcFlex direction="column" gap="2rem">
           <ComponentHeading name="Contextual Menu" />
           <DxcParagraph>
-            The contextual menu is a powerful component that improves user
+            The Contextual menu is a powerful component that improves user
             experience by allowing users to navigate through page-level content
             or choose from a list of actions while complementing the general
             disposition of the main content within the interface.

@@ -61,7 +61,7 @@ const sections = [
             <ExtendedTableCode>{sectionTypeString}</ExtendedTableCode>
           </td>
           <td>
-            Array of items to be displayed in the contextual menu. Each item can
+            Array of items to be displayed in the Contextual menu. Each item can
             be a single/simple item, a group item or a section.
           </td>
           <td>-</td>
