@@ -2,6 +2,7 @@ import dayjs from "dayjs";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { YearPickerPropsType } from "./types";
+import { v4 as uuidv4 } from "uuid";
 
 const getYearsArray = () => {
   const yearList = [];
@@ -13,6 +14,7 @@ const getYearsArray = () => {
 const yearList = getYearsArray();
 
 const YearPicker = ({ onYearSelect, selectedDate, today }: YearPickerPropsType): JSX.Element => {
+  const [id] = useState(uuidv4());
   const [yearToFocus, setYearToFocus] = useState(selectedDate ? selectedDate.get("year") : dayjs().get("year"));
 
   useEffect(() => {
@@ -33,7 +35,7 @@ const YearPicker = ({ onYearSelect, selectedDate, today }: YearPickerPropsType):
   };
 
   return (
-    <YearPickerContainer>
+    <YearPickerContainer role="listbox" aria-label="Year Picker">
       {yearList.map((year) => (
         <YearPickerButton
           aria-label={year}
@@ -43,10 +45,11 @@ const YearPicker = ({ onYearSelect, selectedDate, today }: YearPickerPropsType):
           tabIndex={yearToFocus === year ? 0 : -1}
           isCurrentYear={today.get("year") === year}
           onKeyDown={(event) => handleDayKeyboardEvent(event)}
-          id={`year_${year}`}
+          id={`${id}_year_${year}`}
           onClick={() => {
             onYearSelect(year);
           }}
+          role="option"
         >
           {year}
         </YearPickerButton>
