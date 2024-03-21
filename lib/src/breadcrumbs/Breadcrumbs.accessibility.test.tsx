@@ -32,11 +32,15 @@ const items = [
 
 describe("Breadcrumbs component accessibility tests", () => {
   it("Should not have basic accessibility issues", async () => {
+    const { container } = render(<DxcBreadcrumbs items={items} ariaLabel="example" />);
+    const results = await axe(container, disabledRules);
+    expect(results).toHaveNoViolations();
+  });
+  it("Should not have basic accessibility issues when collapsed", async () => {
     const { container } = render(<DxcBreadcrumbs items={items} itemsBeforeCollapse={3} ariaLabel="example" />);
     const results = await axe(container, disabledRules);
     expect(results).toHaveNoViolations();
   });
-
   it("Should not have basic accessibility issues without root", async () => {
     const { container } = render(
       <DxcBreadcrumbs items={items} itemsBeforeCollapse={3} ariaLabel="example" showRoot={false} />

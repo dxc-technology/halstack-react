@@ -1,6 +1,5 @@
 import React, { useCallback } from "react";
 import styled from "styled-components";
-import useTheme from "../useTheme";
 import BreadcrumbsProps from "./types";
 import DxcDropdown from "../dropdown/Dropdown";
 import { HalstackProvider } from "../HalstackContext";
@@ -17,7 +16,6 @@ const DxcBreadcrumbs = ({
   onItemClick,
   showRoot = true,
 }: BreadcrumbsProps) => {
-  const colorsTheme = useTheme();
   const handleOnSelectOption = useCallback(
     (href: string) => {
       if (onItemClick) onItemClick(href);
