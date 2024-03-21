@@ -16,17 +16,6 @@ import { disabledRules } from "../../test/accessibility/rules/specific/date-inpu
 export default {
   title: "Date Input",
   component: DxcDateInput,
-  parameters: {
-    // TODO: REMOVE
-    a11y: {
-      config: {
-        rules: [
-          ...disabledRules.map((ruleId) => ({ id: ruleId, reviewOnFail: true })),
-          ...preview?.parameters?.a11y?.config?.rules,
-        ],
-      },
-    },
-  },
 };
 
 const opinionatedTheme = {
@@ -202,22 +191,22 @@ const DatePickerButtonStates = () => {
           }}
         >
           <DxcDateInput label="From" defaultValue="01-12-1995" />
-          <DxcDateInput label="To" />
+          <DxcDateInput label="To" defaultValue="01-12-1995" />
           <button style={{ zIndex: "1", width: "100px" }}>Submit</button>
         </div>
       </ExampleContainer>
       <ThemeProvider theme={colorsTheme}>
         <ExampleContainer pseudoState="pseudo-focus">
           <Title title="Isolated calendar focused" theme="light" level={4} />
-          <DxcDatePicker date={dayjs("06-04-1950", "DD-MM-YYYY")} onDateSelect={() => {}} id="test-calendar" />
+          <DxcDatePicker date={dayjs("06-04-1950", "DD-MM-YYYY")} onDateSelect={() => {}} id="test-calendar1" />
         </ExampleContainer>
         <ExampleContainer pseudoState="pseudo-hover">
           <Title title="Isolated calendar hovered" theme="light" level={4} />
-          <DxcDatePicker date={dayjs("06-04-1950", "DD-MM-YYYY")} onDateSelect={() => {}} id="test-calendar" />
+          <DxcDatePicker date={dayjs("06-04-1950", "DD-MM-YYYY")} onDateSelect={() => {}} id="test-calendar2" />
         </ExampleContainer>
         <ExampleContainer pseudoState="pseudo-active">
           <Title title="Isolated calendar actived" theme="light" level={4} />
-          <DxcDatePicker date={dayjs("06-04-1950", "DD-MM-YYYY")} onDateSelect={() => {}} id="test-calendar" />
+          <DxcDatePicker date={dayjs("06-04-1950", "DD-MM-YYYY")} onDateSelect={() => {}} id="test-calendar3" />
         </ExampleContainer>
       </ThemeProvider>
     </>
