@@ -11,7 +11,7 @@ const ContextualMenuPageHeading = ({
   const tabs = [
     { label: "Code", path: "/components/contextual-menu" },
     { label: "Usage", path: "/components/contextual-menu/usage" },
-    { label: "Specs", path: "/components/contextual-menu/specs" },
+    { label: "Specifications", path: "/components/contextual-menu/specifications" },
   ];
 
   return (
