@@ -178,10 +178,8 @@ const Breadcrumbs = () => (
       </ExampleContainer>
     </ExampleContainer>
     <Title title="Collapsed variant with dropdown menu opened" theme="light" level={3} />
-    <ExampleContainer>
-      <DxcContainer height="200px">
-        <DxcBreadcrumbs items={items} />
-      </DxcContainer>
+    <ExampleContainer expanded>
+      <DxcBreadcrumbs items={items} />
     </ExampleContainer>
   </>
 );

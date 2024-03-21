@@ -69,13 +69,13 @@ describe("Breadcrumbs component tests", () => {
       <DxcBreadcrumbs
         onItemClick={onItemClick}
         items={[
-          { label: "Home", href: "/" },
-          { label: "Preferences", href: "/" },
+          { label: "Home", href: "/home" },
+          { label: "Preferences", href: "/preferences" },
         ]}
       />
     );
     userEvent.click(getByText("Home"));
-    expect(onItemClick).toHaveBeenCalled();
+    expect(onItemClick).toHaveBeenCalledWith("/home");
   });
   test("The onClick prop from an item is properly called (collapsed)", async () => {
     const onItemClick = jest.fn();
@@ -92,6 +92,6 @@ describe("Breadcrumbs component tests", () => {
     );
     await userEvent.click(getByRole("button"));
     await userEvent.click(getByText("Preferences"));
-    expect(onItemClick).toHaveBeenCalled();
+    expect(onItemClick).toHaveBeenCalledWith("/");
   });
 });
