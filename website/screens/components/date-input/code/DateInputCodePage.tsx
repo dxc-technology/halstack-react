@@ -144,7 +144,7 @@ const sections = [
             </td>
           </tr>
           <tr>
-            <td> readOnly</td>
+            <td>readOnly</td>
             <td>
               <TableCode>boolean</TableCode>
             </td>
