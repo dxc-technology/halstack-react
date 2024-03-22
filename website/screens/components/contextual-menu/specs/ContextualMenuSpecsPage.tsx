@@ -1,6 +1,7 @@
 import {
   DxcFlex,
   DxcBulletedList,
+  DxcParagraph,
 } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
@@ -65,6 +66,14 @@ const sections = [
           <DxcBulletedList.Item>Divider</DxcBulletedList.Item>
         </DxcBulletedList>
       </>
+    ),
+  },
+  {
+    title: "Design tokens",
+    content: (
+      <DxcParagraph>
+        This component does not currently have design tokens.
+      </DxcParagraph>
     ),
   },
 ];

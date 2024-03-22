@@ -117,7 +117,7 @@ const sections = [
     ),
   },
   {
-    title: "Contextual menu vs Sidenav",
+    title: "Contextual menu and Sidenav",
     content: (
       <>
         <DxcParagraph>
