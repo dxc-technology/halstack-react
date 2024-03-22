@@ -48,9 +48,8 @@ const items = [
 
 const Breadcrumbs = () => (
   <>
-    <Title title="Breadcrumbs" theme="light" level={2} />
+    <Title title="Default" theme="light" level={3} />
     <ExampleContainer>
-      <Title title="Default" theme="light" level={3} />
       <DxcBreadcrumbs
         items={[
           {
@@ -72,28 +71,34 @@ const Breadcrumbs = () => (
         ]}
       />
     </ExampleContainer>
+    <Title title="Collapsed variant" theme="light" level={3} />
     <ExampleContainer>
-      <Title title="Collapsed variant" theme="light" level={3} />
       <DxcBreadcrumbs items={items} />
     </ExampleContainer>
+    <Title title="Collapsed variant without root" theme="light" level={3} />
     <ExampleContainer>
-      <Title title="Collapsed variant without root" theme="light" level={3} />
       <DxcBreadcrumbs items={items} showRoot={false} />
     </ExampleContainer>
-    <ExampleContainer pseudoState="pseudo-focus">
-      <Title title="Focus state" theme="light" level={3} />
-      <DxcBreadcrumbs items={items} />
-    </ExampleContainer>
-    <ExampleContainer pseudoState="pseudo-hover">
-      <Title title="Hover state" theme="light" level={3} />
-      <DxcBreadcrumbs items={items} />
-    </ExampleContainer>
-    <ExampleContainer pseudoState="pseudo-active">
-      <Title title="Active state" theme="light" level={3} />
-      <DxcBreadcrumbs items={items} />
-    </ExampleContainer>
+    <Title title="Collapsed variant with dropdown menu opened" theme="light" level={3} />
     <ExampleContainer>
-      <Title title="Truncation and text ellipsis with tooltip (only when collapsed)" theme="light" level={3} />
+      <DxcContainer height="150px">
+        <DxcBreadcrumbs items={items} />
+      </DxcContainer>
+    </ExampleContainer>
+    <Title title="Focus state" theme="light" level={3} />
+    <ExampleContainer pseudoState="pseudo-focus">
+      <DxcBreadcrumbs items={items} />
+    </ExampleContainer>
+    <Title title="Hover state" theme="light" level={3} />
+    <ExampleContainer pseudoState="pseudo-hover">
+      <DxcBreadcrumbs items={items} />
+    </ExampleContainer>
+    <Title title="Active state" theme="light" level={3} />
+    <ExampleContainer pseudoState="pseudo-active">
+      <DxcBreadcrumbs items={items} />
+    </ExampleContainer>
+    <Title title="Truncation and text ellipsis with tooltip (only when collapsed)" theme="light" level={3} />
+    <ExampleContainer>
       <DxcContainer width="200px">
         <DxcBreadcrumbs
           items={[
@@ -118,8 +123,8 @@ const Breadcrumbs = () => (
         />
       </DxcContainer>
     </ExampleContainer>
+    <Title title="Truncation, text ellipsis with tooltip and without root" theme="light" level={3} />
     <ExampleContainer>
-      <Title title="Truncation, text ellipsis with tooltip and without root" theme="light" level={3} />
       <DxcContainer width="200px">
         <DxcBreadcrumbs
           items={[
@@ -145,10 +150,10 @@ const Breadcrumbs = () => (
         />
       </DxcContainer>
     </ExampleContainer>
+    <Title title="Dropdown theming doesn't affect the collapsed trigger" theme="light" level={3} />
     <ExampleContainer>
-      <Title title="Dropdown theming doesn't affect the collapsed trigger" theme="light" level={3} />
+      <Title title="Opinionated theming" theme="light" level={4} />
       <ExampleContainer>
-        <Title title="Opinionated theming" theme="light" level={4} />
         <HalstackProvider
           theme={{
             dropdown: {
@@ -161,8 +166,8 @@ const Breadcrumbs = () => (
           <DxcBreadcrumbs items={items} itemsBeforeCollapse={3} />
         </HalstackProvider>
       </ExampleContainer>
+      <Title title="Advanced theming" theme="light" level={4} />
       <ExampleContainer>
-        <Title title="Advanced theming" theme="light" level={4} />
         <HalstackProvider
           advancedTheme={{
             dropdown: {
@@ -178,10 +183,6 @@ const Breadcrumbs = () => (
         </HalstackProvider>
       </ExampleContainer>
     </ExampleContainer>
-    <ExampleContainer expanded>
-      <Title title="Collapsed variant with dropdown menu opened" theme="light" level={3} />
-      <DxcBreadcrumbs items={items} />
-    </ExampleContainer>
   </>
 );
 
@@ -189,5 +190,5 @@ export const Chromatic = Breadcrumbs.bind({});
 Chromatic.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const dropdowns = canvas.getAllByRole("button");
-  await userEvent.click(dropdowns[dropdowns.length - 1]);
+  await userEvent.click(dropdowns[2]);
 };
