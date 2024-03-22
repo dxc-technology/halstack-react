@@ -353,7 +353,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
 
     return (
       <ThemeProvider theme={colorsTheme.textInput}>
-        <TextInputContainer margin={margin} size={size} ref={ref}>
+        <TextInputContainer margin={margin} size={size} ref={ref} aria-disabled={disabled}>
           {label && (
             <Label htmlFor={inputId} disabled={disabled} hasHelperText={helperText ? true : false}>
               {label} {optional && <OptionalLabel>{translatedLabels.formFields.optionalLabel}</OptionalLabel>}

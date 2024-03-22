@@ -143,27 +143,15 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With children, copyright, bottom links and social links" theme="light" level={4} />
-      <DxcFooter copyright="Copyright" socialLinks={social} bottomLinks={bottom}>
-        <div>
-          <a href="https://www.linkedin.com/company/dxctechnology">Linkedin</a>
-        </div>
-      </DxcFooter>
+      <DxcFooter copyright="Copyright" socialLinks={social} bottomLinks={bottom}></DxcFooter>
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With children, copyright, bottom links and social links from material" theme="light" level={4} />
-      <DxcFooter copyright="Copyright" socialLinks={socialMaterialIcons} bottomLinks={bottom}>
-        <div>
-          <a href="https://www.linkedin.com/company/dxctechnology">Linkedin</a>
-        </div>
-      </DxcFooter>
+      <DxcFooter copyright="Copyright" socialLinks={socialMaterialIcons} bottomLinks={bottom}></DxcFooter>
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-focus">
       <Title title="Focused bottom and social links" theme="light" level={4} />
-      <DxcFooter copyright="Copyright" socialLinks={social} bottomLinks={bottom}>
-        <div>
-          <a href="https://www.linkedin.com/company/dxctechnology">Linkedin</a>
-        </div>
-      </DxcFooter>
+      <DxcFooter copyright="Copyright" socialLinks={social} bottomLinks={bottom}></DxcFooter>
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Reduced" theme="light" level={4} />
@@ -197,11 +185,7 @@ export const Chromatic = () => (
     <Title title="Opinionated theme" theme="light" level={2} />
     <ExampleContainer>
       <HalstackProvider theme={opinionatedTheme}>
-        <DxcFooter copyright="Copyright" socialLinks={social} bottomLinks={bottom}>
-          <div>
-            <a href="https://www.linkedin.com/company/dxctechnology">Linkedin</a>
-          </div>
-        </DxcFooter>
+        <DxcFooter copyright="Copyright" socialLinks={social} bottomLinks={bottom}></DxcFooter>
       </HalstackProvider>
     </ExampleContainer>
   </>
