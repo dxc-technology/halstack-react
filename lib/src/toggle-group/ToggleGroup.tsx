@@ -60,7 +60,7 @@ const DxcToggleGroup = ({
 
   return (
     <ThemeProvider theme={colorsTheme.toggleGroup}>
-      <ToggleGroup margin={margin}>
+      <ToggleGroup margin={margin} aria-disabled={disabled}>
         <Label id={toggleGroupLabelId} disabled={disabled}>
           {label}
         </Label>

@@ -153,7 +153,7 @@ const DxcFileInput = React.forwardRef<RefType, FileInputPropsType>(
 
     return (
       <ThemeProvider theme={colorsTheme.fileInput}>
-        <FileInputContainer margin={margin} ref={ref}>
+        <FileInputContainer margin={margin} ref={ref} aria-disabled={disabled}>
           <Label htmlFor={fileInputId} disabled={disabled}>
             {label}
           </Label>
