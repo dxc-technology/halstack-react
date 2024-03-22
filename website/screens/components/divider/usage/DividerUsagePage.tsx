@@ -32,7 +32,7 @@ const sections = [
   },
 ];
 
-const DropdownUsagePage = () => {
+const DividerUsagePage = () => {
   return (
     <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
@@ -41,9 +41,9 @@ const DropdownUsagePage = () => {
           startHeadingLevel={2}
         ></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/dropdown/usage/DropdownUsagePage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/divider/usage/DividerUsagePage.tsx" />
     </DxcFlex>
   );
 };
 
-export default DropdownUsagePage;
+export default DividerUsagePage;
