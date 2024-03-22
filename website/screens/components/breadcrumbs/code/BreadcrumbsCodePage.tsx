@@ -4,12 +4,18 @@ import Example from "@/common/example/Example";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import {
-  DxcParagraph,
   DxcFlex,
+  DxcParagraph,
   DxcTable,
-  DxcLink,
 } from "@dxc-technology/halstack-react";
 import TableCode, { ExtendedTableCode } from "@/common/TableCode";
+import basicUsage from "./examples/basicUsage";
+import nextJS from "./examples/nextJS";
+
+const itemTypeString = `{
+  href?: string;
+  label: string;
+}`;
 
 const sections = [
   {
@@ -31,7 +37,7 @@ const sections = [
               <TableCode>string</TableCode>
             </td>
             <td>
-              Provides a label that describes the type of navigation provided by
+              Provides a label that describes the type of navigation enabled by
               the component.
             </td>
             <td>
@@ -41,13 +47,13 @@ const sections = [
           <tr>
             <td>items</td>
             <td>
-              <ExtendedTableCode>
-                {`{ label: string, href?: string }`}
-              </ExtendedTableCode>
+              <TableCode>Item[]</TableCode>
+              <p>
+                being <Code>Item</Code> an object with the following properties:
+              </p>
+              <ExtendedTableCode>{itemTypeString}</ExtendedTableCode>
             </td>
-            <td>
-              Array of objects with the label and href of each breadcrumb.
-            </td>
+            <td>Array of objects representing the items of the breadcrumbs.</td>
             <td>-</td>
           </tr>
           <tr>
@@ -57,7 +63,7 @@ const sections = [
             </td>
             <td>
               Number of items before showing a collapsed version of the
-              breadcrumbs. It can't be lower than 2 (root/collapsed action and
+              breadcrumbs. It can't be lower than two (root/collapsed action and
               current page).
             </td>
             <td>
@@ -72,7 +78,7 @@ const sections = [
             <td>
               Callback for custom navigation with third-party libraries such as
               Next (<Code>useRouter</Code>) or React Router (
-              <Code>useHistory</Code>). This function will be called when an
+              <Code>useNavigate</Code>). This function will be called when an
               item is clicked, receiving its <Code>href</Code> as a parameter.
             </td>
             <td>-</td>
@@ -83,7 +89,8 @@ const sections = [
               <TableCode>boolean</TableCode>
             </td>
             <td>
-              Whether to always show the root item if the items are collapsed.
+              When items are collapsed, whether the root item should always be
+              displayed or not.
             </td>
             <td>
               <TableCode>true</TableCode>
@@ -95,22 +102,36 @@ const sections = [
   },
   {
     title: "Examples",
-    content: (
-      <DxcParagraph>
-        The following examples show the basic structure of the DxcBreadcrumbs
-        component and how to use it.
-      </DxcParagraph>
-    ),
-    // subSections: [
-    //   {
-    //     title: "Basic usage",
-    //     content: <Example example={basicUsage} defaultIsVisible />,
-    //   },
-    //   {
-    //     title: "Nested list",
-    //     content: <Example example={nestedList} defaultIsVisible />,
-    //   },
-    // ],
+    subSections: [
+      {
+        title: "Basic usage",
+        content: <Example example={basicUsage} defaultIsVisible />,
+      },
+      {
+        title: "Custom navigation",
+        content: (
+          <>
+            <DxcParagraph>
+              There are many React based routers, unfortunately all with
+              different APIs.
+            </DxcParagraph>
+            <DxcParagraph>
+              As we explained above, the <Code>onItemClick</Code> prop is a
+              callback that will be called when an item is clicked, receiving
+              its <Code>href</Code> as a parameter. You can take advantage of
+              this prop to navigate programmatically with third-party libraries
+              hooks or functions.
+            </DxcParagraph>
+          </>
+        ),
+        subSections: [
+          {
+            title: "Next.js useRouter",
+            content: <Example example={nextJS} defaultIsVisible />,
+          },
+        ],
+      },
+    ],
   },
 ];
 
