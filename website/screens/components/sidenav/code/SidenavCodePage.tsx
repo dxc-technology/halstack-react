@@ -2,7 +2,7 @@ import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
-import StatusTag from "@/common/StatusTag";
+import StatusBadge from "@/common/StatusBadge";
 import TableCode from "@/common/TableCode";
 import {
   DxcLink,
@@ -37,7 +37,8 @@ const sections = [
         <tr>
           <td>
             <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-              <StatusTag status="Required">Required</StatusTag>children
+              <StatusBadge status="required" />
+              children
             </DxcFlex>
           </td>
           <td>
@@ -72,7 +73,8 @@ const sections = [
               <td>
                 {" "}
                 <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                  <StatusTag status="Required">Required</StatusTag>children
+                  <StatusBadge status="required" />
+                  children
                 </DxcFlex>
               </td>
               <td>
@@ -114,7 +116,8 @@ const sections = [
               <td>
                 {" "}
                 <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                  <StatusTag status="Required">Required</StatusTag>children
+                  <StatusBadge status="required" />
+                  children
                 </DxcFlex>
               </td>
               <td>
@@ -182,13 +185,21 @@ const sections = [
                   {"(React.ReactNode & React.SVGProps <SVGSVGElement>)"}
                 </TableCode>
               </td>
-              <td>The icon to be displayed next to the title of the group.</td>
+              <td>
+                A{" "}
+                <DxcLink newWindow href="https://fonts.google.com/icons">
+                  Material Symbol
+                </DxcLink>{" "}
+                or a SVG element to be displayed next to the title of the group
+                as an icon.
+              </td>
               <td>-</td>
             </tr>
             <tr>
               <td>
                 <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                  <StatusTag status="Required">Required</StatusTag>children
+                  <StatusBadge status="required" />
+                  children
                 </DxcFlex>
               </td>
               <td>
@@ -256,8 +267,11 @@ const sections = [
                 </TableCode>
               </td>
               <td>
-                Element or path used as the icon that will be placed to the left
-                of the link text.
+                A{" "}
+                <DxcLink newWindow href="https://fonts.google.com/icons">
+                  Material Symbol
+                </DxcLink>{" "}
+                or a SVG element to be displayed left to the link as an icon.
               </td>
               <td>-</td>
             </tr>
@@ -292,7 +306,8 @@ const sections = [
             <tr>
               <td>
                 <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                  <StatusTag status="Required">Required</StatusTag>children
+                  <StatusBadge status="required" />
+                  children
                 </DxcFlex>
               </td>
               <td>

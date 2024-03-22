@@ -4,6 +4,7 @@ import DxcFlex from "../flex/Flex";
 import DxcTypography from "../typography/Typography";
 import BulletedListPropsType, { BulletedListItemPropsType } from "./types";
 import useTheme from "../useTheme";
+import DxcIcon from "../icon/Icon";
 
 const BulletedListItem = ({ children }: BulletedListItemPropsType): JSX.Element => {
   return <>{children}</>;
@@ -34,7 +35,7 @@ const DxcBulletedList = ({ children, type = "disc", icon = "" }: BulletedListPro
                     </Bullet>
                   ) : type === "icon" ? (
                     <Bullet>
-                      <Icon>{typeof icon === "string" ? <img src={icon} /> : icon}</Icon>
+                      <Icon>{typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}</Icon>
                     </Bullet>
                   ) : (
                     <Bullet>
@@ -82,8 +83,8 @@ const Icon = styled.div`
   align-content: center;
   color: ${(props) => props.theme.fontColor};
 
-  svg,
-  img {
+  font-size: ${(props) => props.theme.bulletIconHeight};
+  svg {
     height: ${(props) => props.theme.bulletIconHeight};
     width: ${(props) => props.theme.bulletIconWidth};
   }

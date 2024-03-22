@@ -6,18 +6,7 @@ import { spaces, responsiveSizes } from "../common/variables";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
 import HeaderPropsType from "./types";
-
-const closeIcon = (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24" width="24">
-    <path d="M6.4 19 5 17.6l5.6-5.6L5 6.4 6.4 5l5.6 5.6L17.6 5 19 6.4 13.4 12l5.6 5.6-1.4 1.4-5.6-5.6Z" />
-  </svg>
-);
-
-const hamburgerIcon = (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-    <path d="M3,8H21a1,1,0,0,0,0-2H3A1,1,0,0,0,3,8Zm18,8H3a1,1,0,0,0,0,2H21a1,1,0,0,0,0-2Zm0-5H3a1,1,0,0,0,0,2H21a1,1,0,0,0,0-2Z" />
-  </svg>
-);
+import DxcIcon from "../icon/Icon";
 
 const Dropdown = (props: React.ComponentProps<typeof DxcDropdown>) => (
   <HeaderDropdown>
@@ -112,8 +101,8 @@ const DxcHeader = ({
         {isResponsive && responsiveContent && (
           <MainContainer>
             <ChildContainer>
-              <HamburguerTrigger tabIndex={tabIndex} onClick={handleMenu}>
-                {hamburgerIcon}
+              <HamburguerTrigger tabIndex={tabIndex} onClick={handleMenu} aria-label="Show options">
+                <DxcIcon icon="menu" />
                 {translatedLabels.header.hamburguerTitle}
               </HamburguerTrigger>
             </ChildContainer>
@@ -126,7 +115,7 @@ const DxcHeader = ({
                   aria-label={translatedLabels.header.closeIcon}
                   title={translatedLabels.header.closeIcon}
                 >
-                  {closeIcon}
+                  <DxcIcon icon="close" />
                 </CloseAction>
               </ResponsiveIconsContainer>
               <Content
@@ -221,6 +210,9 @@ const HamburguerTrigger = styled.button`
   & > svg {
     fill: ${(props) => props.theme.hamburguerIconColor};
   }
+  & > span {
+    font-size: 24px;
+  }
   font-family: ${(props) => props.theme.hamburguerFontFamily};
   font-style: ${(props) => props.theme.hamburguerFontStyle};
   font-size: ${(props) => props.theme.hamburguerFontSize};
@@ -287,7 +279,7 @@ const CloseAction = styled.button`
   :focus-visible {
     outline: ${(props) => props.theme.hamburguerFocusColor} auto 1px;
   }
-
+  font-size: 24px;
   svg {
     height: 24px;
     width: 24px;

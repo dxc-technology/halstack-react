@@ -1,4 +1,4 @@
-import { DxcFlex, DxcTable } from "@dxc-technology/halstack-react";
+import { DxcFlex, DxcLink, DxcTable } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
@@ -8,7 +8,7 @@ import controlled from "./examples/controlled";
 import uncontrolled from "./examples/uncontrolled";
 import icons from "./examples/icons";
 import TableCode from "@/common/TableCode";
-import StatusTag from "@/common/StatusTag";
+import StatusBadge from "@/common/StatusBadge";
 
 const sections = [
   {
@@ -51,7 +51,7 @@ const sections = [
             <td>
               <TableCode>'horizontal' | 'vertical'</TableCode>
             </td>
-            <td>The wizard can be showed in horizontal or vertical.</td>
+            <td>The wizard can be shown in horizontal or vertical.</td>
             <td>
               <TableCode>'horizontal'</TableCode>
             </td>
@@ -59,7 +59,8 @@ const sections = [
           <tr>
             <td>
               <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                <StatusTag status="Required">Required</StatusTag>steps
+                <StatusBadge status="required" />
+                steps
               </DxcFlex>
             </td>
             <td>
@@ -81,8 +82,11 @@ const sections = [
                   the step.
                 </li>
                 <li>
-                  <b>icon</b>: Element or path used as the icon displayed in the
-                  step.
+                  <b>icon</b>:{" "}
+                  <DxcLink newWindow href="https://fonts.google.com/icons">
+                    Material Symbol
+                  </DxcLink>{" "}
+                  name or SVG element used as the icon displayed in the step.
                 </li>
                 <li>
                   <b>disabled</b>: Whether the step is disabled or not.
@@ -97,9 +101,7 @@ const sections = [
           <tr>
             <td>onStepClick</td>
             <td>
-              <TableCode>
-                {"(currentStep: number) => void"}
-              </TableCode>
+              <TableCode>{"(currentStep: number) => void"}</TableCode>
             </td>
             <td>
               This function will be called when the user clicks a step. The step

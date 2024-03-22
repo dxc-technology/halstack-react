@@ -2,6 +2,7 @@ import {
   DxcFlex,
   DxcTable,
   DxcParagraph,
+  DxcLink,
 } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
@@ -13,7 +14,7 @@ import icons from "./examples/icons";
 import controlledAccordionGroup from "./examples/controlledAccordionGroup";
 import uncontrolledAccordionGroup from "./examples/uncontrolledAccordionGroup";
 import TableCode from "@/common/TableCode";
-import StatusTag from "@/common/StatusTag";
+import StatusBadge from "@/common/StatusBadge";
 import Code from "@/common/Code";
 
 const sections = [
@@ -33,7 +34,8 @@ const sections = [
           <tr>
             <td>
               <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                <StatusTag status="Required">Required</StatusTag>label
+                <StatusBadge status="required" />
+                label
               </DxcFlex>
             </td>
             <td>
@@ -70,8 +72,14 @@ const sections = [
               </TableCode>
             </td>
             <td>
-              Element or path used as the icon that will be placed next to panel
-              label.
+              <DxcLink newWindow href="https://fonts.google.com/icons">
+                Material Symbol
+              </DxcLink>{" "}
+              name or SVG element as the icon that will be placed next to the
+              panel label. When using Material Symbols, replace spaces with
+              underscores. By default they are outlined if you want it to be
+              filled prefix the symbol name with{" "}
+              <TableCode>"filled_"</TableCode>.
             </td>
             <td>-</td>
           </tr>
@@ -108,7 +116,7 @@ const sections = [
           <tr>
             <td>
               <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                <StatusTag status="Required">Required</StatusTag>
+                <StatusBadge status="required" />
                 children
               </DxcFlex>
             </td>
@@ -226,7 +234,7 @@ const sections = [
                     gap="0.25rem"
                     alignItems="baseline"
                   >
-                    <StatusTag status="Required">Required</StatusTag>
+                    <StatusBadge status="required" />
                     children
                   </DxcFlex>
                 </td>
@@ -287,7 +295,8 @@ const sections = [
                         gap="0.25rem"
                         alignItems="baseline"
                       >
-                        <StatusTag status="Required">Required</StatusTag>label
+                        <StatusBadge status="required" />
+                        label
                       </DxcFlex>
                     </td>
                     <td>
@@ -305,8 +314,14 @@ const sections = [
                       </TableCode>
                     </td>
                     <td>
-                      Element or path used as the icon that will be placed next
-                      to panel label.
+                      <DxcLink newWindow href="https://fonts.google.com/icons">
+                        Material Symbol
+                      </DxcLink>{" "}
+                      name or SVG element as the icon that will be placed next
+                      to the panel label. When using Material Symbols, replace
+                      spaces with underscores. By default they are outlined if
+                      you want it to be filled prefix the symbol name with{" "}
+                      <TableCode>"filled_"</TableCode>.
                     </td>
                     <td>-</td>
                   </tr>
@@ -338,7 +353,7 @@ const sections = [
                         gap="0.25rem"
                         alignItems="baseline"
                       >
-                        <StatusTag status="Required">Required</StatusTag>
+                        <StatusBadge status="required" />
                         children
                       </DxcFlex>
                     </td>

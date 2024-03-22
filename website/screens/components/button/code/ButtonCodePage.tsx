@@ -6,7 +6,7 @@ import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import Example from "@/common/example/Example";
 import basicUsage from "./examples/basicUsage";
 import icons from "./examples/icons";
-import StatusTag from "@/common/StatusTag";
+import StatusBadge from "@/common/StatusBadge";
 import TableCode from "@/common/TableCode";
 
 const sections = [
@@ -44,7 +44,8 @@ const sections = [
           <tr>
             <td>
               <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                <StatusTag status="Information">New</StatusTag>title
+                <StatusBadge label="New" status="information" />
+                title
               </DxcFlex>
             </td>
             <td>
@@ -85,8 +86,14 @@ const sections = [
               </TableCode>
             </td>
             <td>
-              Element or path used as the icon that will be placed next to the
-              button label.
+              <DxcLink newWindow href="https://fonts.google.com/icons">
+                Material Symbol
+              </DxcLink>{" "}
+              name or SVG element as the icon that will be placed next to the
+              label. When using Material Symbols, replace spaces with
+              underscores. By default they are outlined if you want it to be
+              filled prefix the symbol name with{" "}
+              <TableCode>"filled_"</TableCode>.
             </td>
             <td>-</td>
           </tr>

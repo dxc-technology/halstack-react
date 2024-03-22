@@ -1,4 +1,4 @@
-import { DxcFlex, DxcTable } from "@dxc-technology/halstack-react";
+import { DxcFlex, DxcLink, DxcTable } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
@@ -38,11 +38,14 @@ const sections = [
               </TableCode>
             </td>
             <td>
-              Element used as icon, placed before the chip label. Note that if
-              the passed value is an URL (string), the color styling tokens will
-              not be applied to the image. For the icon to display correctly, an
-              SVG must be provided to the prop inheriting the component's
-              styles.
+              <DxcLink newWindow href="https://fonts.google.com/icons">
+                Material Symbol
+              </DxcLink>{" "}
+              name or SVG element as the icon that will be placed before the
+              chip label. When using Material Symbols, replace spaces with
+              underscores. By default they are outlined if you want it to be
+              filled prefix the symbol name with{" "}
+              <TableCode>"filled_"</TableCode>.
             </td>
             <td>-</td>
           </tr>
@@ -54,11 +57,14 @@ const sections = [
               </TableCode>
             </td>
             <td>
-              Element used as icon, placed after the chip label. Note that if
-              the passed value is an URL (string), the color styling tokens will
-              not be applied to the image. For the icon to display correctly, an
-              SVG must be provided to the prop inheriting the component's
-              styles.
+              <DxcLink newWindow href="https://fonts.google.com/icons">
+                Material Symbol
+              </DxcLink>{" "}
+              name or SVG element as the icon that will be placed after the chip
+              label. When using Material Symbols, replace spaces with
+              underscores. By default they are outlined if you want it to be
+              filled prefix the symbol name with{" "}
+              <TableCode>"filled_"</TableCode>.
             </td>
             <td>-</td>
           </tr>

@@ -7,10 +7,22 @@ import Listbox from "./Listbox";
 import { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme";
 import { HalstackProvider } from "../HalstackContext";
+import { disabledRules } from "../../test/accessibility/rules/specific/select/disabledRules";
+import preview from "../../.storybook/preview";
 
 export default {
   title: "Select",
   component: DxcSelect,
+  parameters: {
+    a11y: {
+      config: {
+        rules: [
+          ...disabledRules.map((ruleId) => ({ id: ruleId, reviewOnFail: true })),
+          ...preview?.parameters?.a11y?.config?.rules,
+        ],
+      },
+    },
+  },
 };
 
 const one_option = [{ label: "Option 01", value: "1" }];
@@ -65,25 +77,14 @@ const group_options = [
   },
 ];
 
-const icon_options_grouped = [
+const icon_options_grouped_material = [
   {
     label: "Group 001",
     options: [
       {
         label: "3G Mobile",
         value: "1",
-        icon: (
-          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
-            <g>
-              <path d="M0,0h24v24H0V0z" fill="none" />
-            </g>
-            <g>
-              <g>
-                <path d="M3,7v2h5v2H4v2h4v2H3v2h5c1.1,0,2-0.9,2-2v-1.5c0-0.83-0.67-1.5-1.5-1.5c0.83,0,1.5-0.67,1.5-1.5V9c0-1.1-0.9-2-2-2H3z M21,11v4c0,1.1-0.9,2-2,2h-5c-1.1,0-2-0.9-2-2V9c0-1.1,0.9-2,2-2h5c1.1,0,2,0.9,2,2h-7v6h5v-2h-2.5v-2H21z" />
-              </g>
-            </g>
-          </svg>
-        ),
+        icon: "3g_mobiledata",
       },
     ],
   },
@@ -93,12 +94,7 @@ const icon_options_grouped = [
       {
         label: "Ethernet",
         value: "2",
-        icon: (
-          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
-            <path d="M0 0h24v24H0V0z" fill="none" />
-            <path d="M7.77 6.76L6.23 5.48.82 12l5.41 6.52 1.54-1.28L3.42 12l4.35-5.24zM7 13h2v-2H7v2zm10-2h-2v2h2v-2zm-6 2h2v-2h-2v2zm6.77-7.52l-1.54 1.28L20.58 12l-4.35 5.24 1.54 1.28L23.18 12l-5.41-6.52z" />
-          </svg>
-        ),
+        icon: "settings_ethernet",
       },
     ],
   },
@@ -108,22 +104,12 @@ const icon_options_grouped = [
       {
         label: "Wi-fi",
         value: "3",
-        icon: (
-          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
-            <path d="M0 0h24v24H0V0zm0 0h24v24H0V0z" fill="none" />
-            <path d="M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.08 2.93 1 9zm8 8l3 3 3-3c-1.65-1.66-4.34-1.66-6 0zm-4-4l2 2c2.76-2.76 7.24-2.76 10 0l2-2C15.14 9.14 8.87 9.14 5 13z" />
-          </svg>
-        ),
+        icon: "wifi",
       },
       {
         label: "Settings backup restore (just for previous configuration)",
         value: "4",
-        icon: (
-          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
-            <path d="M0 0h24v24H0V0z" fill="none" />
-            <path d="M14 12c0-1.1-.9-2-2-2s-2 .9-2 2 .9 2 2 2 2-.9 2-2zm-2-9c-4.97 0-9 4.03-9 9H0l4 4 4-4H5c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.51 0-2.91-.49-4.06-1.3l-1.42 1.44C8.04 20.3 9.94 21 12 21c4.97 0 9-4.03 9-9s-4.03-9-9-9z" />
-          </svg>
-        ),
+        icon: "settings_backup_restore",
       },
     ],
   },
@@ -178,71 +164,49 @@ const icon_options = [
   },
 ];
 
-const url_options = [
+const options_material = [
   {
-    label: "Social Media",
+    label: "Transport",
     options: [
       {
-        label: "Instagram",
-        value: "instagram",
-        icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/800px-Instagram_logo_2016.svg.png",
+        label: "Electric Car",
+        value: "car",
+        icon: "electric_car",
       },
       {
-        label: "X",
-        value: "x",
-        icon: "https://static.dezeen.com/uploads/2023/07/x-logo-twitter-elon-musk_dezeen_2364_col_0.jpg",
+        label: "Motorcycle",
+        value: "motorcycle",
+        icon: "Motorcycle",
       },
       {
-        label: "Facebook",
-        value: "facebook",
-        icon: (
-          <svg
-            version="1.1"
-            id="Capa_1"
-            x="0px"
-            y="0px"
-            width="438.536px"
-            height="438.536px"
-            viewBox="0 0 438.536 438.536"
-            fill="#4267B2"
-          >
-            <g>
-              <path
-                d="M414.41,24.123C398.333,8.042,378.963,0,356.315,0H82.228C59.58,0,40.21,8.042,24.126,24.123
-      C8.045,40.207,0.003,59.576,0.003,82.225v274.084c0,22.647,8.042,42.018,24.123,58.102c16.084,16.084,35.454,24.126,58.102,24.126
-      h274.084c22.648,0,42.018-8.042,58.095-24.126c16.084-16.084,24.126-35.454,24.126-58.102V82.225
-      C438.532,59.576,430.49,40.204,414.41,24.123z M373.155,225.548h-49.963V406.84h-74.802V225.548H210.99V163.02h37.401v-37.402
-      c0-26.838,6.283-47.107,18.843-60.813c12.559-13.706,33.304-20.555,62.242-20.555h49.963v62.526h-31.401
-      c-10.663,0-17.467,1.853-20.417,5.568c-2.949,3.711-4.428,10.23-4.428,19.558v31.119h56.534L373.155,225.548z"
-              />
-            </g>
-          </svg>
-        ),
+        label: "Train",
+        value: "train",
+        icon: "train",
       },
       {
-        label: "Pinterest",
-        value: "pinterest",
-        icon: "https://cdn-icons-png.flaticon.com/512/145/145808.png",
+        label: "Bike",
+        value: "bike",
+        icon: "pedal_bike",
       },
     ],
   },
   {
-    label: "Design",
+    label: "Entertainment",
     options: [
       {
-        label: "Figma",
-        value: "figma",
-        icon: "https://logowik.com/content/uploads/images/figma.jpg",
+        label: "Movie",
+        value: "movie",
+        icon: "movie",
       },
       {
-        label: "Adobe XD",
-        value: "adobexd",
-        icon: "https://cdn.worldvectorlogo.com/logos/adobe-xd-2.svg",
+        label: "Music",
+        value: "music",
+        icon: "music_note",
       },
       {
-        label: "Sketch",
-        value: "sketch",
-        icon: "https://cdn.worldvectorlogo.com/logos/sketch-2.svg",
+        label: "Games",
+        value: "games",
+        icon: "joystick",
       },
     ],
   },
@@ -474,7 +438,7 @@ const SelectListbox = () => {
         <ExampleContainer pseudoState="pseudo-hover">
           <Title title="Hovered option" theme="light" level={4} />
           <Listbox
-            id="x"
+            id="x8"
             currentValue=""
             options={one_option}
             visualFocusIndex={-1}
@@ -490,7 +454,7 @@ const SelectListbox = () => {
         <ExampleContainer pseudoState="pseudo-active">
           <Title title="Active option" theme="light" level={4} />
           <Listbox
-            id="x"
+            id="x9"
             currentValue=""
             options={one_option}
             visualFocusIndex={-1}
@@ -506,7 +470,7 @@ const SelectListbox = () => {
         <ExampleContainer>
           <Title title="Focused option" theme="light" level={4} />
           <Listbox
-            id="x"
+            id="x10"
             currentValue=""
             options={one_option}
             visualFocusIndex={0}
@@ -522,7 +486,7 @@ const SelectListbox = () => {
         <ExampleContainer pseudoState="pseudo-hover">
           <Title title="Hovered selected option" theme="light" level={4} />
           <Listbox
-            id="x"
+            id="x11"
             currentValue="1"
             options={single_options}
             visualFocusIndex={-1}
@@ -538,7 +502,7 @@ const SelectListbox = () => {
         <ExampleContainer pseudoState="pseudo-active">
           <Title title="Active selected option" theme="light" level={4} />
           <Listbox
-            id="x"
+            id="x12"
             currentValue="2"
             options={single_options}
             visualFocusIndex={0}
@@ -555,7 +519,7 @@ const SelectListbox = () => {
         <ExampleContainer>
           <Title title="Icons (SVGs)" theme="light" level={4} />
           <Listbox
-            id="x"
+            id="x13"
             currentValue="3"
             options={icon_options}
             visualFocusIndex={-1}
@@ -569,27 +533,11 @@ const SelectListbox = () => {
           />
         </ExampleContainer>
         <ExampleContainer>
-          <Title title="Icons (Images)" theme="light" level={4} />
+          <Title title="Grouped icons (Material Symbols)" theme="light" level={4} />
           <Listbox
-            id="x"
-            currentValue="facebook"
-            options={url_options}
-            visualFocusIndex={-1}
-            lastOptionIndex={6}
-            multiple={false}
-            optional={false}
-            optionalItem={{ label: "Empty", value: "" }}
-            searchable={false}
-            handleOptionOnClick={() => {}}
-            styles={{ width: 360 }}
-          />
-        </ExampleContainer>
-        <ExampleContainer>
-          <Title title="Grouped icons (SVGs)" theme="light" level={4} />
-          <Listbox
-            id="x"
+            id="x14"
             currentValue={["0", "3"]}
-            options={icon_options_grouped}
+            options={icon_options_grouped_material}
             visualFocusIndex={-1}
             lastOptionIndex={3}
             multiple={false}
@@ -601,11 +549,11 @@ const SelectListbox = () => {
           />
         </ExampleContainer>
         <ExampleContainer>
-          <Title title="Grouped icons (Images)" theme="light" level={4} />
+          <Title title="Grouped icons (Material)" theme="light" level={4} />
           <Listbox
-            id="x"
+            id="x15"
             currentValue={["facebook", "figma"]}
-            options={url_options}
+            options={options_material}
             visualFocusIndex={-1}
             lastOptionIndex={6}
             multiple={true}
@@ -623,7 +571,7 @@ const SelectListbox = () => {
           <Title title="Hovered option" theme="light" level={4} />
           <HalstackProvider theme={opinionatedTheme}>
             <Listbox
-              id="x"
+              id="x16"
               currentValue=""
               options={one_option}
               visualFocusIndex={-1}
@@ -641,7 +589,7 @@ const SelectListbox = () => {
           <Title title="Active option" theme="light" level={4} />{" "}
           <HalstackProvider theme={opinionatedTheme}>
             <Listbox
-              id="x"
+              id="x17"
               currentValue=""
               options={one_option}
               visualFocusIndex={-1}
@@ -659,7 +607,7 @@ const SelectListbox = () => {
           <Title title="Focused option" theme="light" level={4} />{" "}
           <HalstackProvider theme={opinionatedTheme}>
             <Listbox
-              id="x"
+              id="x18"
               currentValue=""
               options={one_option}
               visualFocusIndex={0}
@@ -677,7 +625,7 @@ const SelectListbox = () => {
           <Title title="Hovered selected option" theme="light" level={4} />{" "}
           <HalstackProvider theme={opinionatedTheme}>
             <Listbox
-              id="x"
+              id="x19"
               currentValue="1"
               options={single_options}
               visualFocusIndex={-1}
@@ -695,7 +643,7 @@ const SelectListbox = () => {
           <Title title="Active selected option" theme="light" level={4} />{" "}
           <HalstackProvider theme={opinionatedTheme}>
             <Listbox
-              id="x"
+              id="x20"
               currentValue="2"
               options={single_options}
               visualFocusIndex={0}
@@ -714,7 +662,7 @@ const SelectListbox = () => {
           <Title title="Icons (SVGs)" theme="light" level={4} />{" "}
           <HalstackProvider theme={opinionatedTheme}>
             <Listbox
-              id="x"
+              id="x21"
               currentValue="3"
               options={icon_options}
               visualFocusIndex={-1}

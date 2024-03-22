@@ -44,7 +44,7 @@ const sections = [
               <TableCode>React.ReactNode</TableCode>
             </td>
             <td>
-              Content showed in the header. Take into account that the component
+              Content shown in the header. Take into account that the component
               applies styles for the first child in the content, so we recommend
               the use of <Code>React.Fragment</Code> to be applied correctly.
               Otherwise, the styles can be modified.
@@ -59,7 +59,7 @@ const sections = [
               </TableCode>
             </td>
             <td>
-              Content showed in responsive version. It receives the close menu
+              Content shown in responsive version. It receives the close menu
               handler that can be used to add that functionality when a element
               is clicked.
             </td>
@@ -104,24 +104,19 @@ const sections = [
     ),
   },
   {
-    title: "Children",
-    subSections: [
-      {
-        title: "DxcHeader.Dropdown",
-        content: (
-          <DxcParagraph>
-            Everything between this tags will be displayed as a dropdown. If you
-            want to show a{" "}
-            <Link href="/components/dropdown" passHref legacyBehavior>
-              <DxcLink>DxcDropdown</DxcLink>
-            </Link>
-            , as a shortcut, you can also use it as a direct child of the
-            DxcHeader without the tags, but we recommend to use it with the tags
-            since some styles will be applied for a better fit in the header.
-          </DxcParagraph>
-        ),
-      },
-    ],
+    title: "DxcHeader.Dropdown",
+    content: (
+      <DxcParagraph>
+        Everything between the tags will be displayed as a dropdown. If you
+        want to show a{" "}
+        <Link href="/components/dropdown" passHref legacyBehavior>
+          <DxcLink>DxcDropdown</DxcLink>
+        </Link>
+        , as a shortcut, you can also use it as a direct child of the DxcHeader
+        without the tags, but we recommend to use it with the tags since some
+        styles will be applied for a better fit in the header.
+      </DxcParagraph>
+    ),
   },
   {
     title: "Examples",

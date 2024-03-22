@@ -1,6 +1,5 @@
 import React from "react";
 import { DxcButton, HalstackProvider } from "@dxc-technology/halstack-react";
-import styled from "styled-components";
 import homeLogo from "../images/home.svg";
 
 const colors = {
@@ -67,10 +66,10 @@ function App() {
               enableBackground="new 0 0 24 24"
               fill="currentColor"
             >
-              <g id="Bounding_Box">
+              <g>
                 <rect fill="none" width="24" height="24" />
               </g>
-              <g id="Master">
+              <g>
                 <path d="M19,9.3V4h-3v2.6L12,3L2,12h3v8h5v-6h4v6h5v-8h3L19,9.3z M10,10c0-1.1,0.9-2,2-2s2,0.9,2,2H10z" />
               </g>
             </svg>
@@ -93,10 +92,10 @@ function App() {
               enableBackground="new 0 0 24 24"
               fill="currentColor"
             >
-              <g id="Bounding_Box">
+              <g>
                 <rect fill="none" width="24" height="24" />
               </g>
-              <g id="Master">
+              <g>
                 <path d="M19,9.3V4h-3v2.6L12,3L2,12h3v8h5v-6h4v6h5v-8h3L19,9.3z M10,10c0-1.1,0.9-2,2-2s2,0.9,2,2H10z" />
               </g>
             </svg>
@@ -119,10 +118,10 @@ function App() {
               enableBackground="new 0 0 24 24"
               fill="currentColor"
             >
-              <g id="Bounding_Box">
+              <g>
                 <rect fill="none" width="24" height="24" />
               </g>
-              <g id="Master">
+              <g>
                 <path d="M19,9.3V4h-3v2.6L12,3L2,12h3v8h5v-6h4v6h5v-8h3L19,9.3z M10,10c0-1.1,0.9-2,2-2s2,0.9,2,2H10z" />
               </g>
             </svg>
@@ -287,10 +286,10 @@ function App() {
                 enableBackground="new 0 0 24 24"
                 fill="currentColor"
               >
-                <g id="Bounding_Box">
+                <g>
                   <rect fill="none" width="24" height="24" />
                 </g>
-                <g id="Master">
+                <g>
                   <path d="M19,9.3V4h-3v2.6L12,3L2,12h3v8h5v-6h4v6h5v-8h3L19,9.3z M10,10c0-1.1,0.9-2,2-2s2,0.9,2,2H10z" />
                 </g>
               </svg>
@@ -357,10 +356,10 @@ function App() {
                 enableBackground="new 0 0 24 24"
                 fill="yellow"
               >
-                <g id="Bounding_Box">
+                <g>
                   <rect fill="none" width="24" height="24" />
                 </g>
-                <g id="Master">
+                <g>
                   <path d="M19,9.3V4h-3v2.6L12,3L2,12h3v8h5v-6h4v6h5v-8h3L19,9.3z M10,10c0-1.1,0.9-2,2-2s2,0.9,2,2H10z" />
                 </g>
               </svg>
@@ -485,10 +484,10 @@ function App() {
                 enableBackground="new 0 0 24 24"
                 fill="currentColor"
               >
-                <g id="Bounding_Box">
+                <g>
                   <rect fill="none" width="24" height="24" />
                 </g>
-                <g id="Master">
+                <g>
                   <path d="M19,9.3V4h-3v2.6L12,3L2,12h3v8h5v-6h4v6h5v-8h3L19,9.3z M10,10c0-1.1,0.9-2,2-2s2,0.9,2,2H10z" />
                 </g>
               </svg>

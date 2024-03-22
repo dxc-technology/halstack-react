@@ -3,12 +3,16 @@ import DxcFooter from "./Footer";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import { HalstackProvider } from "../HalstackContext";
+import DxcFlex from "../flex/Flex";
+import DxcTypography from "../typography/Typography";
+import preview from "../../.storybook/preview";
+import { disabledRules } from "../../test/accessibility/rules/specific/footer/disabledRules";
 
 const social = [
   {
     href: "https://www.linkedin.com/company/dxctechnology",
     logo: (
-      <svg version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 438.536 438.536" fill="currentColor">
+      <svg version="1.1" x="0px" y="0px" viewBox="0 0 438.536 438.536" fill="currentColor">
         <g>
           <path
             d="M414.41,24.123C398.333,8.042,378.963,0,356.315,0H82.228C59.58,0,40.21,8.042,24.126,24.123
@@ -46,7 +50,6 @@ const social = [
     logo: (
       <svg
         version="1.1"
-        id="Capa_1"
         x="0px"
         y="0px"
         viewBox="0 0 438.536 438.536"
@@ -70,6 +73,24 @@ const social = [
   },
 ];
 
+const socialMaterialIcons = [
+  {
+    href: "https://www.linkedin.com/company/dxctechnology",
+    logo: "person",
+    title: "Linkedin",
+  },
+  {
+    href: "https://x.com/dxctechnology",
+    logo: "group",
+    title: "X",
+  },
+  {
+    href: "https://www.facebook.com/DXCTechnology/",
+    logo: "thumb_up",
+    title: "Facebook",
+  },
+];
+
 const bottom = [
   {
     href: "https://www.linkedin.com/company/dxctechnology",
@@ -88,6 +109,16 @@ const bottom = [
 export default {
   title: "Footer",
   component: DxcFooter,
+  parameters: {
+    a11y: {
+      config: {
+        rules: [
+          ...disabledRules.map((ruleId) => ({ id: ruleId, enabled: false })),
+          ...preview?.parameters?.a11y?.config?.rules,
+        ],
+      },
+    },
+  },
 };
 
 const opinionatedTheme = {
@@ -98,6 +129,11 @@ const opinionatedTheme = {
     logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/2021_Facebook_icon.svg/2048px-2021_Facebook_icon.svg.png",
   },
 };
+
+const info = [
+  { label: "Example Label", text: "Example" },
+  { label: "Example Label", text: "Example" },
+];
 
 export const Chromatic = () => (
   <>
@@ -113,12 +149,32 @@ export const Chromatic = () => (
         </div>
       </DxcFooter>
     </ExampleContainer>
+    <ExampleContainer>
+      <Title title="With children, copyright, bottom links and social links from material" theme="light" level={4} />
+      <DxcFooter copyright="Copyright" socialLinks={socialMaterialIcons} bottomLinks={bottom}>
+        <div>
+          <a href="https://www.linkedin.com/company/dxctechnology">Linkedin</a>
+        </div>
+      </DxcFooter>
+    </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-focus">
       <Title title="Focused bottom and social links" theme="light" level={4} />
       <DxcFooter copyright="Copyright" socialLinks={social} bottomLinks={bottom}>
         <div>
           <a href="https://www.linkedin.com/company/dxctechnology">Linkedin</a>
         </div>
+      </DxcFooter>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Reduced" theme="light" level={4} />
+      <DxcFooter mode="reduced">
+        <DxcFlex justifyContent="center" alignItems="center" gap={"1rem"}>
+          {info.map((tag, index) => (
+            <DxcTypography color="white" key={`tag${index}${tag.label}${tag.text}`}>
+              {tag.label}: {tag.text}
+            </DxcTypography>
+          ))}
+        </DxcFlex>
       </DxcFooter>
     </ExampleContainer>
     <Title title="Margins" theme="light" level={2} />

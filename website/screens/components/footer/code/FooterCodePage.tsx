@@ -1,9 +1,9 @@
-import { DxcFlex, DxcTable } from "@dxc-technology/halstack-react";
+import { DxcFlex, DxcTable, DxcLink } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
 import Code from "@/common/Code";
-import StatusTag from "@/common/StatusTag";
+import StatusBadge from "@/common/StatusBadge";
 import TableCode from "@/common/TableCode";
 
 const sections = [
@@ -21,6 +21,31 @@ const sections = [
         </thead>
         <tbody>
           <tr>
+            <td>
+              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                <StatusBadge label="New" status="information" />
+                mode
+              </DxcFlex>
+            </td>
+            <td>
+              <TableCode>'default' | 'reduced'</TableCode>
+            </td>
+            <td>
+              The available footer modes:
+              <ul>
+                <li>
+                  <b>default</b>: Footer with full content.
+                </li>
+                <li>
+                  <b>reduced</b>: Smaller footer with minimal content.
+                </li>
+              </ul>
+            </td>
+            <td>
+              <TableCode>'default'</TableCode>
+            </td>
+          </tr>
+          <tr>
             <td>socialLinks</td>
             <td>
               <TableCode>
@@ -36,13 +61,20 @@ const sections = [
                   <b>href</b>: URL of the page the link goes to.
                 </li>
                 <li>
-                  <StatusTag status="Information">New</StatusTag> <b>title</b>:
+                  <StatusBadge label="New" status="information" /> <b>title</b>:
                   Text representing advisory information related to the social
                   link. Under the hood, it also serves as an accessible label
                   for the icon.
                 </li>
                 <li>
-                  <b>logo</b>: Element or path used as the icon for the link.
+                  <b>logo</b>:{" "}
+                  <DxcLink newWindow href="https://fonts.google.com/icons">
+                    Material Symbol
+                  </DxcLink>{" "}
+                  name or SVG element as the icon used for the link. When using
+                  Material Symbols, replace spaces with underscores. By default
+                  they are outlined, if you want it to be filled prefix the
+                  symbol name with <TableCode>"filled_"</TableCode>.
                 </li>
               </ul>
             </td>

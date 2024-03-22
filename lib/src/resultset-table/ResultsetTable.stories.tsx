@@ -1,19 +1,31 @@
 import React from "react";
 import DxcResultsetTable from "./ResultsetTable";
-import DxcButton from "../button/Button";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import { userEvent, within } from "@storybook/testing-library";
 import styled from "styled-components";
+import { HalstackProvider } from "../HalstackContext";
+import { disabledRules } from "../../test/accessibility/rules/specific/resultset-table/disabledRules";
+import preview from "../../.storybook/preview";
 
 export default {
   title: "Resultset Table",
   component: DxcResultsetTable,
+  parameters: {
+    a11y: {
+      config: {
+        rules: [
+          ...disabledRules.map((ruleId) => ({ id: ruleId, reviewOnFail: true })),
+          ...preview?.parameters?.a11y?.config?.rules,
+        ],
+      },
+    },
+  },
 };
 
 const deleteIcon = (
   <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
-    <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
+    <path fill="currentColor" d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
     <path d="M0 0h24v24H0z" fill="none" />
   </svg>
 );
@@ -29,17 +41,77 @@ const rows = [
   [{ displayValue: "006" }, { displayValue: "Cris" }, { displayValue: "Paris" }],
 ];
 
+const advancedTheme = {
+  table: {
+    actionIconColor: "#1B75BB",
+    hoverActionIconColor: "#1B75BB",
+    activeActionIconColor: "#1B75BB",
+    focusActionIconColor: "#1B75BB",
+    disabledActionIconColor: "#666666",
+    hoverButtonBackgroundColor: "#cccccc",
+  },
+};
+
+const actions = [
+  {
+    title: "icon",
+    onClick: (value?) => {
+      console.log(value);
+    },
+    options: [
+      {
+        value: "1",
+        label: "Amazon with a very long text",
+      },
+      {
+        value: "2",
+        label: "Ebay",
+      },
+      {
+        value: "3",
+        label: "Apple",
+      },
+    ],
+  },
+  {
+    icon: "filled_edit",
+    title: "icon",
+    onClick: () => {},
+  },
+  {
+    icon: deleteIcon,
+    title: "icon",
+    onClick: () => {},
+    disabled: true,
+  },
+  {
+    icon: deleteIcon,
+    title: "icon",
+    onClick: () => {},
+  },
+];
+
 const rowsIcon = [
   [
     { displayValue: "001", sortValue: "001" },
     { displayValue: "Peter" },
-    { displayValue: <DxcButton icon={deleteIcon} /> },
+    {
+      displayValue: <DxcResultsetTable.ActionsCell actions={actions} />,
+    },
   ],
-  [{ displayValue: "002", sortValue: "002" }, { displayValue: "Louis" }, { displayValue: "" }],
+  [
+    { displayValue: "002", sortValue: "002" },
+    { displayValue: "Louis" },
+    {
+      displayValue: <DxcResultsetTable.ActionsCell actions={actions} />,
+    },
+  ],
   [
     { displayValue: "003", sortValue: "003" },
     { displayValue: "Mark" },
-    { displayValue: <DxcButton icon={deleteIcon} /> },
+    {
+      displayValue: <DxcResultsetTable.ActionsCell actions={actions} />,
+    },
   ],
 ];
 
@@ -201,9 +273,32 @@ export const Chromatic = () => (
       <DxcResultsetTable columns={longColumns} rows={longRows} />
     </ExampleContainer>
     <ExampleContainer>
+      <Title title="Without paginator" theme="light" level={4} />
+      <DxcResultsetTable columns={columns} rows={rows} hidePaginator />
+    </ExampleContainer>
+    <ExampleContainer>
       <SmallContainer>
         <Title title="Small container and text overflow" theme="light" level={4} />
         <DxcResultsetTable columns={columnsSortable} rows={longValues} />
+      </SmallContainer>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Reduced sortable table" theme="light" level={4} />
+      <DxcResultsetTable columns={columnsSortable} rows={rowsSortable} mode="reduced" />
+    </ExampleContainer>
+    {/* PENDING SMALL ICON VERSION */}
+    <ExampleContainer>
+      <Title title="Reduced with items per page option" theme="light" level={4} />
+      <DxcResultsetTable columns={columns} rows={rows} itemsPerPage={2} itemsPerPageOptions={[2, 3]} mode="reduced" />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Reduced scroll resultset table" theme="light" level={4} />
+      <DxcResultsetTable columns={longColumns} rows={longRows} mode="reduced" />
+    </ExampleContainer>
+    <ExampleContainer>
+      <SmallContainer>
+        <Title title="Reduced small container and text overflow" theme="light" level={4} />
+        <DxcResultsetTable columns={columnsSortable} rows={longValues} mode="reduced" />
       </SmallContainer>
     </ExampleContainer>
     <Title title="Margins" theme="light" level={2} />
@@ -297,4 +392,22 @@ LastPage.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const nextButton = canvas.getAllByRole("button")[3];
   await userEvent.click(nextButton);
+};
+
+const ResultsetActionsCellDropdown = () => (
+  <ExampleContainer>
+    <Title title="Dropdown Action" theme="light" level={4} />
+    <DxcResultsetTable columns={columns} rows={rowsIcon} itemsPerPage={2} />
+    <Title title="Custom theme actions cell" theme="light" level={4} />
+    <HalstackProvider advancedTheme={advancedTheme}>
+      <DxcResultsetTable columns={columns} rows={rowsIcon} itemsPerPage={2} />
+    </HalstackProvider>
+  </ExampleContainer>
+);
+
+export const DropdownAction = ResultsetActionsCellDropdown.bind({});
+DropdownAction.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  const dropdown = canvas.getAllByRole("button")[5];
+  await userEvent.click(dropdown);
 };

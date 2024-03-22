@@ -3,10 +3,16 @@ import DxcTabs from "./Tabs";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import { HalstackProvider } from "../HalstackContext";
+import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
 
 export default {
   title: "Tabs",
   component: DxcTabs,
+  parameters: {
+    viewport: {
+      viewports: INITIAL_VIEWPORTS,
+    },
+  },
 };
 
 const iconSVG = (
@@ -71,13 +77,11 @@ const firstDisabledTabs: any = [
 
 const tabsNotification = tabs.map((tab, index) => ({
   ...tab,
-  notificationNumber: (index === 0 && true) || (index === 1 && 5) || (index === 2 && 200),
+  notificationNumber: (index === 0 && true) || (index === 1 && 5) || (index === 2 && 100) || (index === 3 && 200),
 }));
 
 const tabsIcon = tabs.map((tab, index) =>
-  index <= tabs.length / 2
-    ? { ...tab, icon: "https://cdn-icons-png.flaticon.com/512/5039/5039041.png" }
-    : { ...tab, icon: iconSVG }
+  index <= tabs.length / 2 ? { ...tab, icon: "mail" } : { ...tab, icon: iconSVG }
 );
 
 const tabsNotificationIcon = tabsNotification.map((tab) => ({ ...tab, icon: iconSVG }));

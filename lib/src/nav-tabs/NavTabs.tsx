@@ -1,10 +1,9 @@
-import React, { useState, ReactElement, createContext, useMemo } from "react";
+import React, { useState, ReactElement, useMemo } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme";
-import NavTabsPropsType, { NavTabsContextProps } from "./types";
+import NavTabsPropsType from "./types";
 import DxcTab from "./Tab";
-
-export const NavTabsContext = createContext<NavTabsContextProps | null>(null);
+import { NavTabsContext } from "./NavTabsContext";
 
 const getPropInChild = (child, propName) =>
   child.props
@@ -90,7 +89,6 @@ const Underline = styled.div`
   width: 100%;
   height: 2px;
   background-color: ${(props) => props.theme.dividerColor};
-  z-index: -1;
 `;
 
 DxcNavTabs.Tab = DxcTab;

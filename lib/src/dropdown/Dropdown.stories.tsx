@@ -15,11 +15,6 @@ export default {
   component: DxcDropdown,
 };
 
-const hamburguerIcon = (
-  <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20">
-    <path d="M3 14.5V13h14v1.5Zm0-3.75v-1.5h14v1.5ZM3 7V5.5h14V7Z" />
-  </svg>
-);
 const iconSVG = (
   <svg viewBox="0 0 24 24" height="24" width="24" fill="currentColor">
     <path d="M0 0h24v24H0z" fill="none" />
@@ -31,8 +26,7 @@ const iconSVGLarge = (
     <path d="M11 44q-1.2 0-2.1-.9Q8 42.2 8 41V15q0-1.2.9-2.1.9-.9 2.1-.9h5.5v-.5q0-3.15 2.175-5.325Q20.85 4 24 4q3.15 0 5.325 2.175Q31.5 8.35 31.5 11.5v.5H37q1.2 0 2.1.9.9.9.9 2.1v26q0 1.2-.9 2.1-.9.9-2.1.9Zm0-3h26V15h-5.5v4.5q0 .65-.425 1.075Q30.65 21 30 21q-.65 0-1.075-.425-.425-.425-.425-1.075V15h-9v4.5q0 .65-.425 1.075Q18.65 21 18 21q-.65 0-1.075-.425-.425-.425-.425-1.075V15H11v26Zm8.5-29h9v-.5q0-1.9-1.3-3.2Q25.9 7 24 7q-1.9 0-3.2 1.3-1.3 1.3-1.3 3.2ZM11 41V15v26Z" />
   </svg>
 );
-const iconUrl = "https://iconape.com/wp-content/files/yd/367773/svg/logo-linkedin-logo-icon-png-svg.png";
-const icons = [iconSVG, iconSVGLarge, iconUrl];
+const icons = [iconSVG, iconSVGLarge, "nutrition"];
 
 const defaultOptions: Option[] = [
   {
@@ -86,7 +80,7 @@ const optionWithIcon: Option[] = [
   {
     value: "1",
     label: "Ebay",
-    icon: iconUrl,
+    icon: "shopping_cart",
   },
 ];
 
@@ -136,7 +130,7 @@ const Dropdown = () => (
         label="Icon after"
         options={options}
         onSelectOption={(value) => {}}
-        icon="https://iconape.com/wp-content/files/yd/367773/svg/logo-linkedin-logo-icon-png-svg.png"
+        icon="shopping_cart"
         iconPosition="after"
       />
     </ExampleContainer>
@@ -146,7 +140,7 @@ const Dropdown = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Only icon without caret" theme="light" level={4} />
-      <DxcDropdown options={options} onSelectOption={(value) => {}} icon={hamburguerIcon} caretHidden />
+      <DxcDropdown options={options} onSelectOption={(value) => {}} icon="menu" caretHidden />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Large icon (SVG)" theme="light" level={4} />
@@ -154,12 +148,7 @@ const Dropdown = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Large icon (image)" theme="light" level={4} />
-      <DxcDropdown
-        label="Large icon"
-        options={options}
-        onSelectOption={(value) => {}}
-        icon="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Hamburger_icon.svg/2048px-Hamburger_icon.svg.png"
-      />
+      <DxcDropdown label="Large icon" options={options} onSelectOption={(value) => {}} icon="menu" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Disabled with icon" theme="light" level={4} />
@@ -292,8 +281,8 @@ const DropdownListStates = () => {
         <ExampleContainer pseudoState="pseudo-hover">
           <Title title="Hovered option" theme="light" level={4} />
           <DropdownMenu
-            id="x"
-            dropdownTriggerId="dtx"
+            id="x1"
+            dropdownTriggerId="dtx1"
             iconsPosition="before"
             visualFocusIndex={-1}
             menuItemOnClick={(value) => {}}
@@ -305,8 +294,8 @@ const DropdownListStates = () => {
         <ExampleContainer pseudoState="pseudo-active">
           <Title title="Active option" theme="light" level={4} />
           <DropdownMenu
-            id="x"
-            dropdownTriggerId="dtx"
+            id="x2"
+            dropdownTriggerId="dtx2"
             iconsPosition="before"
             visualFocusIndex={-1}
             menuItemOnClick={(value) => {}}
@@ -318,8 +307,8 @@ const DropdownListStates = () => {
         <ExampleContainer>
           <Title title="Focused option" theme="light" level={4} />
           <DropdownMenu
-            id="x"
-            dropdownTriggerId="dtx"
+            id="x3"
+            dropdownTriggerId="dtx3"
             iconsPosition="before"
             visualFocusIndex={0}
             menuItemOnClick={(value) => {}}
@@ -332,8 +321,8 @@ const DropdownListStates = () => {
         <ExampleContainer>
           <Title title="Before" theme="light" level={4} />
           <DropdownMenu
-            id="x"
-            dropdownTriggerId="dtx"
+            id="x4"
+            dropdownTriggerId="dtx4"
             iconsPosition="before"
             visualFocusIndex={-1}
             menuItemOnClick={(value) => {}}
@@ -343,8 +332,8 @@ const DropdownListStates = () => {
           />
           <Title title="After" theme="light" level={4} />
           <DropdownMenu
-            id="x"
-            dropdownTriggerId="dtx"
+            id="x5"
+            dropdownTriggerId="dtx5"
             iconsPosition="after"
             visualFocusIndex={-1}
             menuItemOnClick={(value) => {}}

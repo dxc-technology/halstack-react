@@ -2,7 +2,9 @@ import React from "react";
 import DxcImage from "./Image";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
-import { DxcFlex, DxcInset, DxcParagraph } from "../main";
+import DxcFlex from "../flex/Flex";
+import DxcInset from "../inset/Inset";
+import DxcParagraph from "../paragraph/Paragraph";
 
 export default {
   title: "Image",

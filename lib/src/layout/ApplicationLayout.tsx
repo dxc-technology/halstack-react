@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useLayoutEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import DxcHeader from "../header/Header";
 import DxcFooter from "../footer/Footer";
 import DxcSidenav from "../sidenav/Sidenav";
@@ -6,8 +6,9 @@ import styled from "styled-components";
 import { responsiveSizes } from "../common/variables";
 import layoutIcons from "./Icons";
 import AppLayoutPropsType, { AppLayoutMainPropsType } from "./types";
-import { SidenavContextProvider, useResponsiveSidenavVisibility } from "./SidenavContext";
+import { SidenavContextProvider, useResponsiveSidenavVisibility } from "../sidenav/SidenavContext";
 import useTranslatedLabels from "../useTranslatedLabels";
+import DxcIcon from "../icon/Icon";
 
 const year = new Date().getFullYear();
 const Main = ({ children }: AppLayoutMainPropsType): JSX.Element => <>{children}</>;
@@ -70,9 +71,10 @@ const DxcApplicationLayout = ({
 
   const main = childTypeExists(childrenArray, Main);
 
-  const handleResize = () => {
+  const handleResize = useCallback(() => {
     setIsResponsive(window.matchMedia(`(max-width: ${responsiveSizes.medium}rem)`).matches);
-  };
+  }, []);
+
   const handleSidenavVisibility = () => {
     setIsSidenavVisibleResponsive((isSidenavVisibleResponsive) => !isSidenavVisibleResponsive);
   };
@@ -83,7 +85,7 @@ const DxcApplicationLayout = ({
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, []);
+  }, [handleResize]);
 
   useEffect(() => {
     !isResponsive && setIsSidenavVisibleResponsive(false);
@@ -103,7 +105,7 @@ const DxcApplicationLayout = ({
             aria-label={visibilityToggleLabel ? undefined : translatedLabels.applicationLayout.visibilityToggleTitle}
             title={translatedLabels.applicationLayout.visibilityToggleTitle}
           >
-            {layoutIcons.hamburgerIcon}
+            <DxcIcon icon="Menu" />
             {visibilityToggleLabel}
           </HamburgerTrigger>
         </VisibilityToggle>
@@ -184,9 +186,8 @@ const HamburgerTrigger = styled.button`
     outline: none;
     box-shadow: 0 0 0 2px #0095ff;
   }
-  & > svg {
-    height: 20px;
-    width: 20px;
+  span::before {
+    font-size: 20px;
   }
 `;
 

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import useTranslatedLabels from "../useTranslatedLabels";
 import Suggestion from "./Suggestion";
 import { SuggestionsProps } from "./types";
-import icons from "./Icons";
+import DxcIcon from "../icon/Icon";
 
 const Suggestions = ({
   id,
@@ -34,14 +34,15 @@ const Suggestions = ({
       ref={listboxRef}
       role="listbox"
       style={styles}
+      aria-label="Suggestions"
     >
       {!isSearching &&
         !searchHasErrors &&
         suggestions.length > 0 &&
         suggestions.map((suggestion, index) => (
           <Suggestion
-            key={`suggestion-${index}`}
-            id={`suggestion-${index}`}
+            key={`${id}-suggestion-${index}`}
+            id={`${id}-suggestion-${index}`}
             value={value}
             onClick={suggestionOnClick}
             suggestion={suggestion}
@@ -51,13 +52,17 @@ const Suggestions = ({
           />
         ))}
       {isSearching && (
-        <SuggestionsSystemMessage>{translatedLabels.textInput.searchingMessage}</SuggestionsSystemMessage>
+        <SuggestionsSystemMessage role="option">{translatedLabels.textInput.searchingMessage}</SuggestionsSystemMessage>
       )}
       {searchHasErrors && (
-        <SuggestionsError>
-          <SuggestionsErrorIcon>{icons.error}</SuggestionsErrorIcon>
-          {translatedLabels.textInput.fetchingDataErrorMessage}
-        </SuggestionsError>
+        <span role="option">
+          <SuggestionsError role="alert" aria-live="assertive">
+            <SuggestionsErrorIcon>
+              <DxcIcon icon="filled_error" />
+            </SuggestionsErrorIcon>
+            {translatedLabels.textInput.fetchingDataErrorMessage}
+          </SuggestionsError>
+        </span>
       )}
     </SuggestionsContainer>
   );
@@ -97,6 +102,7 @@ const SuggestionsErrorIcon = styled.span`
   margin-right: 0.5rem;
   height: 18px;
   width: 18px;
+  font-size: 18px;
   color: ${(props) => props.theme.errorIconColor};
 `;
 

@@ -1,4 +1,4 @@
-import { DxcFlex, DxcTable } from "@dxc-technology/halstack-react";
+import { DxcFlex, DxcLink, DxcTable } from "@dxc-technology/halstack-react";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import Code from "@/common/Code";
@@ -6,7 +6,7 @@ import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import controlled from "./examples/controlled";
 import uncontrolled from "./examples/uncontrolled";
-import StatusTag from "@/common/StatusTag";
+import StatusBadge from "@/common/StatusBadge";
 import TableCode from "@/common/TableCode";
 
 const sections = [
@@ -67,7 +67,8 @@ const sections = [
           <tr>
             <td>
               <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                <StatusTag status="Required">Required</StatusTag>options
+                <StatusBadge status="required" />
+                options
               </DxcFlex>
             </td>
             <td>
@@ -85,13 +86,17 @@ const sections = [
                   <b>label</b>: String with the option display value.
                 </li>
                 <li>
-                  <b>icon</b>: Element or path used as the icon of an option.
+                  <b>icon</b>:{" "}
+                  <DxcLink newWindow href="https://fonts.google.com/icons">
+                    Material Symbol
+                  </DxcLink>{" "}
+                  name or SVG element used as the icon of an option.
                 </li>
                 <li>
                   <b>value</b>: Number with the option inner value.
                 </li>
                 <li>
-                  <StatusTag status="Information">New</StatusTag> <b>title</b>:
+                  <StatusBadge label="New" status="information" /> <b>title</b>:
                   Text representing advisory information related to an option.
                   Under the hood, it also serves as an accessible label for the
                   icon.

@@ -7,7 +7,7 @@ import Example from "@/common/example/Example";
 import directionAlignment from "./examples/directionAlignment";
 import gapOrderGrow from "./examples/gapOrderGrow";
 import TableCode from "@/common/TableCode";
-import StatusTag from "@/common/StatusTag";
+import StatusBadge from "@/common/StatusBadge";
 
 const sections = [
   {
@@ -268,7 +268,8 @@ const sections = [
         <tr>
           <td>
             <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-              <StatusTag status="Required">Required</StatusTag>children
+              <StatusBadge status="required" />
+              children
             </DxcFlex>
           </td>
           <td>

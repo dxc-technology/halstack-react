@@ -21,21 +21,30 @@ const action = {
       <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z" />
     </svg>
   ),
+  title: "Copy",
 };
 
 const actionLargeIconSVG = {
   onClick: () => {},
   icon: (
-    <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 0 24 24" width="48px" fill="currentColor">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      height="48px"
+      viewBox="0 0 24 24"
+      width="48px"
+      fill="currentColor"
+    >
       <path d="M0 0h24v24H0V0z" fill="none" />
       <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z" />
     </svg>
   ),
+  title: "Clock",
 };
 
 const actionLargeIconURL = {
   onClick: () => {},
-  icon: "https://iconape.com/wp-content/files/yd/367773/svg/logo-linkedin-logo-icon-png-svg.png",
+  icon: "search",
+  title: "Search",
 };
 
 const country = ["Afghanistan"];
@@ -371,7 +380,7 @@ const AutosuggestListbox = () => {
         <ExampleContainer pseudoState="pseudo-hover">
           <Title title="Hovered suggestion" theme="light" level={4} />
           <Suggestions
-            id="x"
+            id="x1"
             value=""
             suggestions={country}
             visualFocusIndex={-1}
@@ -385,7 +394,7 @@ const AutosuggestListbox = () => {
         <ExampleContainer pseudoState="pseudo-active">
           <Title title="Active suggestion" theme="light" level={4} />
           <Suggestions
-            id="x"
+            id="x2"
             value=""
             suggestions={country}
             visualFocusIndex={-1}
@@ -399,7 +408,7 @@ const AutosuggestListbox = () => {
         <ExampleContainer>
           <Title title="Focused suggestion" theme="light" level={4} />
           <Suggestions
-            id="x"
+            id="x3"
             value=""
             suggestions={country}
             visualFocusIndex={0}
@@ -413,7 +422,7 @@ const AutosuggestListbox = () => {
         <ExampleContainer>
           <Title title="Highlighted suggestion" theme="light" level={4} />
           <Suggestions
-            id="x"
+            id="x4"
             value="Afgh"
             suggestions={country}
             visualFocusIndex={-1}
@@ -428,7 +437,7 @@ const AutosuggestListbox = () => {
       <ExampleContainer>
         <Title title="Autosuggest Error" theme="light" level={3} />
         <Suggestions
-          id="x"
+          id="x5"
           value=""
           suggestions={country}
           visualFocusIndex={-1}
@@ -442,7 +451,7 @@ const AutosuggestListbox = () => {
       <ExampleContainer>
         <Title title="Autosuggest Searching message" theme="light" level={3} />
         <Suggestions
-          id="x"
+          id="x6"
           value=""
           suggestions={country}
           visualFocusIndex={-1}

@@ -46,6 +46,9 @@ jobs:
       - name: Test library
         run: cd lib && npm run test
 
+      - name: Test library accessibility
+        run: cd lib && npm run test:accessibility
+
       - name: Build website
         run: cd website && SITE_VERSION=next npm run build
 

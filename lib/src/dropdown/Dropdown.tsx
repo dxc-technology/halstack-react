@@ -7,20 +7,7 @@ import useTheme from "../useTheme";
 import { v4 as uuidv4 } from "uuid";
 import * as Popover from "@radix-ui/react-popover";
 import DropdownMenu from "./DropdownMenu";
-
-const upArrowIcon = (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M7 14l5-5 5 5z" />
-    <path d="M0 0h24v24H0z" fill="none" />
-  </svg>
-);
-
-const downArrowIcon = (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M7 10l5 5 5-5z" />
-    <path d="M0 0h24v24H0z" fill="none" />
-  </svg>
-);
+import DxcIcon from "../icon/Icon";
 
 const useWidth = (target) => {
   const [width, setWidth] = useState(0);
@@ -190,21 +177,26 @@ const DxcDropdown = ({
               size={size}
               id={triggerId}
               aria-haspopup="true"
-              aria-controls={menuId}
+              aria-controls={isOpen ? menuId : undefined}
               aria-expanded={isOpen ? true : undefined}
+              aria-label="Show options"
               tabIndex={tabIndex}
               ref={triggerRef}
             >
               <DropdownTriggerContent>
                 {label && iconPosition === "after" && <DropdownTriggerLabel>{label}</DropdownTriggerLabel>}
                 {icon && (
-                  <DropdownTriggerIcon disabled={disabled} role={typeof icon === "string" ? undefined : "img"}>
-                    {typeof icon === "string" ? <img src={icon} /> : icon}
+                  <DropdownTriggerIcon disabled={disabled} role={typeof icon === "string" ? undefined : "img"} aria-hidden>
+                    {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
                   </DropdownTriggerIcon>
                 )}
                 {label && iconPosition === "before" && <DropdownTriggerLabel>{label}</DropdownTriggerLabel>}
               </DropdownTriggerContent>
-              {!caretHidden && <CaretIcon disabled={disabled}>{isOpen ? upArrowIcon : downArrowIcon}</CaretIcon>}
+              {!caretHidden && (
+                <CaretIcon disabled={disabled}>
+                  <DxcIcon icon={isOpen ? "arrow_drop_up" : "arrow_drop_down"} />{" "}
+                </CaretIcon>
+              )}
             </DropdownTrigger>
           </Popover.Trigger>
           <Popover.Portal>
@@ -242,10 +234,7 @@ const calculateWidth = (margin, size) =>
     : sizes[size];
 
 const DropdownContainer = styled.div<{ margin: DropdownPropsType["margin"]; size: DropdownPropsType["size"] }>`
-  display: inline-block;
   width: ${(props) => calculateWidth(props.margin, props.size)};
-  text-overflow: ellipsis;
-  overflow: hidden;
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
@@ -267,12 +256,12 @@ const DropdownTrigger = styled.button<{
   align-items: center;
   gap: ${(props) => props.theme.caretIconSpacing};
   width: 100%;
-  min-height: 40px;
+  height: ${(props) => props.theme.buttonHeight};
   min-width: ${(props) => (props.label === "" ? "0px" : calculateWidth(props.margin, props.size))};
-  border-radius: ${(props) => props.theme.borderRadius};
-  border-width: ${(props) => props.theme.borderThickness};
-  border-style: ${(props) => props.theme.borderStyle};
-  border-color: ${(props) => (props.disabled ? props.theme.disabledBorderColor : props.theme.borderColor)};
+  border-radius: ${(props) => props.theme.buttonBorderRadius};
+  border-width: ${(props) => props.theme.buttonBorderThickness};
+  border-style: ${(props) => props.theme.buttonBorderStyle};
+  border-color: ${(props) => (props.disabled ? props.theme.disabledButtonBorderColor : props.theme.buttonBorderColor)};
   padding-top: ${(props) => props.theme.buttonPaddingTop};
   padding-bottom: ${(props) => props.theme.buttonPaddingBottom};
   padding-left: ${(props) => props.theme.buttonPaddingLeft};
@@ -286,8 +275,7 @@ const DropdownTrigger = styled.button<{
     !props.disabled &&
     `
       &:focus {
-        outline: ${props.theme.focusColor} solid 2px;
-        outline-offset: -2px;
+        outline: 2px solid ${props.theme.focusColor};
       }
       &:hover {
         background-color: ${props.theme.hoverButtonBackgroundColor};
@@ -321,8 +309,8 @@ const DropdownTriggerLabel = styled.span`
 const DropdownTriggerIcon = styled.span<{ disabled: DropdownPropsType["disabled"] }>`
   display: flex;
   color: ${(props) => (props.disabled ? props.theme.disabledColor : props.theme.buttonIconColor)};
+  font-size: ${(props) => props.theme.buttonIconSize};
 
-  img,
   svg {
     width: ${(props) => props.theme.buttonIconSize};
     height: ${(props) => props.theme.buttonIconSize};
@@ -332,6 +320,7 @@ const DropdownTriggerIcon = styled.span<{ disabled: DropdownPropsType["disabled"
 const CaretIcon = styled.span<{ disabled: DropdownPropsType["disabled"] }>`
   display: flex;
   color: ${(props) => (props.disabled ? props.theme.disabledColor : props.theme.caretIconColor)};
+  font-size: ${(props) => props.theme.caretIconSize};
 
   svg {
     width: ${(props) => props.theme.caretIconSize};

@@ -108,7 +108,7 @@ export const Chromatic = () => (
           width="50px"
           height="50px"
         >
-          <b>1</b>
+          <b tabIndex={0}>1</b>
         </DxcContainer>
         <DxcContainer
           border={{ width: "1px", style: "solid", color: "color_black" }}
@@ -116,7 +116,7 @@ export const Chromatic = () => (
           width="50px"
           height="50px"
         >
-          <b>2</b>
+          <b tabIndex={0}>2</b>
         </DxcContainer>
         <DxcContainer
           border={{ width: "1px", style: "solid", color: "color_black" }}
@@ -124,7 +124,7 @@ export const Chromatic = () => (
           width="50px"
           height="50px"
         >
-          <b>3</b>
+          <b tabIndex={0}>3</b>
         </DxcContainer>
       </DxcContainer>
     </ExampleContainer>

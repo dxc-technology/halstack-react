@@ -4,19 +4,7 @@ import DxcFlex from "../flex/Flex";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
 import { FileItemProps } from "./types";
-
-const deleteIcon = (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M0 0h24v24H0V0z" fill="none" />
-    <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z" />
-  </svg>
-);
-
-const errorIcon = (
-  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
-    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" />
-  </svg>
-);
+import DxcIcon from "../icon/Icon";
 
 const FileItem = ({
   fileName = "",
@@ -44,14 +32,18 @@ const FileItem = ({
           (type.includes("image") ? (
             <ImagePreview src={preview} alt={fileName} />
           ) : (
-            <IconPreview error={error} aria-label={getIconAriaLabel()}>
-              {preview}
+            <IconPreview error={error} role="document" aria-label={getIconAriaLabel()}>
+              <DxcIcon icon={preview} />
             </IconPreview>
           ))}
         <FileItemContent>
           <FileName>{fileName}</FileName>
           <DxcFlex gap="0.25rem">
-            {error && <ErrorIcon>{errorIcon}</ErrorIcon>}
+            {error && (
+              <ErrorIcon>
+                <DxcIcon icon="filled_error" />
+              </ErrorIcon>
+            )}
             <DeleteFileAction
               onClick={() => {
                 onDelete(fileName);
@@ -61,10 +53,10 @@ const FileItem = ({
               aria-label={translatedLabels.fileInput.deleteFileActionTitle}
               tabIndex={tabIndex}
             >
-              {deleteIcon}
+              <DxcIcon icon="close" />
             </DeleteFileAction>
           </DxcFlex>
-          {error && !singleFileMode && <ErrorMessage>{error}</ErrorMessage>}
+          {error && !singleFileMode && <ErrorMessage role="alert" aria-live="assertive">{error}</ErrorMessage>}
         </FileItemContent>
       </MainContainer>
     </ThemeProvider>
@@ -111,7 +103,7 @@ const IconPreview = styled.span<{ error: FileItemProps["error"] }>`
   padding: 15px;
   border-radius: 2px;
   color: ${(props) => (props.error ? props.theme.errorFilePreviewIconColor : props.theme.filePreviewIconColor)};
-
+  font-size: 18px;
   svg {
     height: 18px;
     width: 18px;
@@ -145,6 +137,7 @@ const ErrorIcon = styled.span`
   padding: 3px;
   height: 18px;
   width: 18px;
+  font-size: 18px;
   color: #d0011b;
 `;
 
@@ -163,10 +156,7 @@ const DeleteFileAction = styled.button`
   padding: 3px;
   cursor: pointer;
   color: ${(props) => props.theme.deleteFileItemColor};
-
-  svg {
-    line-height: 18px;
-  }
+  font-size: 18px;
   &:hover {
     background-color: ${(props) => props.theme.hoverDeleteFileItemBackgroundColor};
   }

@@ -15,7 +15,7 @@ import routerLink from "./examples/routerLink";
 import routerLink6 from "./examples/routerLink6";
 import icons from "./examples/icons";
 import TableCode from "@/common/TableCode";
-import StatusTag from "@/common/StatusTag";
+import StatusBadge from "@/common/StatusBadge";
 
 const sections = [
   {
@@ -59,9 +59,16 @@ const sections = [
               </TableCode>
             </td>
             <td>
-              Element or path used as the icon that will be placed next to the
-              link text.
+              <DxcLink newWindow href="https://fonts.google.com/icons">
+                Material Symbol
+              </DxcLink>{" "}
+              name or SVG element as the icon that will be placed next to the
+              link text. When using Material Symbols, replace spaces with
+              underscores. By default they are outlined if you want it to be
+              filled prefix the symbol name with{" "}
+              <TableCode>"filled_"</TableCode>.
             </td>
+
             <td>-</td>
           </tr>
           <tr>
@@ -106,7 +113,8 @@ const sections = [
           <tr>
             <td>
               <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                <StatusTag status="Required">Required</StatusTag>children
+                <StatusBadge status="required" />
+                children
               </DxcFlex>
             </td>
             <td>

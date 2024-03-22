@@ -7,7 +7,7 @@ type SocialLink = {
    */
   href: string;
   /**
-   * Element used as the icon for the link.
+   * Material Symbol name or SVG element as the icon used for the link.
    */
   logo: string | SVG;
   /**
@@ -56,6 +56,12 @@ type FooterPropsType = {
    * inside the custom area.
    */
   tabIndex?: number;
+  /**
+   * Determines the visual style and layout
+   * - "default": The default mode with full content and styling.
+   * - "reduced": A reduced mode with minimal content and styling.
+   */
+  mode?: "default" | "reduced";
 };
 
 export default FooterPropsType;

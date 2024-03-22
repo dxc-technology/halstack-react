@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { DropdownMenuItemProps } from "./types";
+import DxcIcon from "../icon/Icon";
 
 const DropdownMenuItem = ({
   id,
@@ -20,8 +21,8 @@ const DropdownMenuItem = ({
   >
     {iconPosition === "after" && <DropdownMenuItemLabel>{option.label}</DropdownMenuItemLabel>}
     {option.icon && (
-      <DropdownMenuItemIcon role={typeof option.icon === "string" ? undefined : "img"}>
-        {typeof option.icon === "string" ? <img src={option.icon} /> : option.icon}
+      <DropdownMenuItemIcon role={typeof option.icon === "string" ? undefined : "img"} aria-hidden>
+        {typeof option.icon === "string" ? <DxcIcon icon={option.icon} /> : option.icon}
       </DropdownMenuItemIcon>
     )}
     {iconPosition === "before" && <DropdownMenuItemLabel>{option.label}</DropdownMenuItemLabel>}
@@ -62,8 +63,8 @@ const DropdownMenuItemLabel = styled.span`
 const DropdownMenuItemIcon = styled.div`
   display: flex;
   color: ${(props) => props.theme.optionIconColor};
+  font-size: ${(props) => props.theme.optionIconSize};
 
-  img,
   svg {
     width: ${(props) => props.theme.optionIconSize};
     height: ${(props) => props.theme.optionIconSize};

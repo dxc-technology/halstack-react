@@ -1,4 +1,4 @@
-import { DxcFlex, DxcTable } from "@dxc-technology/halstack-react";
+import { DxcFlex, DxcLink, DxcTable } from "@dxc-technology/halstack-react";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
@@ -7,7 +7,7 @@ import Example from "@/common/example/Example";
 import basicUsage from "./examples/basicUsage";
 import icons from "./examples/icons";
 import TableCode from "@/common/TableCode";
-import StatusTag from "@/common/StatusTag";
+import StatusBadge from "@/common/StatusBadge";
 
 const sections = [
   {
@@ -27,7 +27,8 @@ const sections = [
             <tr>
               <td>
                 <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                  <StatusTag status="Required">Required</StatusTag>options
+                  <StatusBadge status="required" />
+                  options
                 </DxcFlex>
               </td>
               <td>
@@ -45,8 +46,15 @@ const sections = [
                     <b>label</b>: Option display value.
                   </li>
                   <li>
-                    <b>icon</b>: Element or path used as the icon that will be
-                    placed next to the option label.
+                    <b>icon</b>:{" "}
+                    <DxcLink newWindow href="https://fonts.google.com/icons">
+                      Material Symbol
+                    </DxcLink>{" "}
+                    name or SVG element as the icon that will be placed next to
+                    the option label. When using Material Symbols, replace
+                    spaces with underscores. By default they are outlined if you
+                    want it to be filled prefix the symbol name with{" "}
+                    <TableCode>"filled_"</TableCode>.
                   </li>
                   <li>
                     <b>value</b>: Option inner value.
@@ -77,8 +85,14 @@ const sections = [
                 </TableCode>
               </td>
               <td>
-                Element or path used as the icon that will be placed next to the
-                dropdown label.
+                <DxcLink newWindow href="https://fonts.google.com/icons">
+                  Material Symbol
+                </DxcLink>{" "}
+                name or SVG element as the icon that will be placed next to the
+                dropdown label. When using Material Symbols, replace spaces with
+                underscores. By default they are outlined if you want it to be
+                filled prefix the symbol name with{" "}
+                <TableCode>"filled_"</TableCode>.
               </td>
               <td>-</td>
             </tr>
@@ -128,7 +142,7 @@ const sections = [
                 <TableCode>boolean</TableCode>
               </td>
               <td>
-                If true, the options are showed when the dropdown is hovered.
+                If true, the options are shown when the dropdown is hovered.
               </td>
               <td>
                 <TableCode>false</TableCode>
@@ -137,7 +151,7 @@ const sections = [
             <tr>
               <td>
                 <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                  <StatusTag status="Required">Required</StatusTag>
+                  <StatusBadge status="required" />
                   onSelectOption
                 </DxcFlex>
               </td>

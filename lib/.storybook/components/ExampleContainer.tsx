@@ -1,9 +1,19 @@
 import React from "react";
 import styled from "styled-components";
 
+type PseudoStates =
+  | "pseudo-active"
+  | "pseudo-focus"
+  | "pseudo-focus-visible"
+  | "pseudo-focus-within"
+  | "pseudo-hover"
+  | "pseudo-link"
+  | "pseudo-target"
+  | "pseudo-visited";
+
 type Props = {
   children?: React.ReactNode;
-  pseudoState?: string;
+  pseudoState?: PseudoStates;
   expanded?: boolean;
 };
 

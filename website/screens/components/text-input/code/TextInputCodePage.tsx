@@ -9,7 +9,7 @@ import uncontrolled from "./examples/uncontrolled";
 import action from "./examples/action";
 import functionSuggestions from "./examples/functionSuggestions";
 import errorHandling from "./examples/errorHandling";
-import StatusTag from "@/common/StatusTag";
+import StatusBadge from "@/common/StatusBadge";
 import TableCode from "@/common/TableCode";
 
 const sections = [
@@ -95,7 +95,11 @@ const sections = [
               <ul>
                 <li>
                   <b>icon</b>: Icon to be placed in the action. It can be either
-                  a URL (string) or a SVG component.
+                  an icon from{" "}
+                  <DxcLink newWindow href="https://fonts.google.com/icons">
+                    Material Symbols
+                  </DxcLink>{" "}
+                  (string) or a SVG component.
                 </li>
                 <li>
                   <b>onClick</b>: Function to be called when the action button
@@ -152,7 +156,8 @@ const sections = [
           <tr>
             <td>
               <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                <StatusTag status="Information">New</StatusTag>readOnly
+                <StatusBadge label="New" status="information" />
+                readOnly
               </DxcFlex>
             </td>
             <td>

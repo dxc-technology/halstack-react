@@ -1,5 +1,5 @@
 /**
- * Halstack Color Palette 
+ * Halstack Color Palette
  * @link https://developer.dxc.com/halstack/next/principles/color/#color-tokens-core-color-tokens
  */
 const CoreColorTokens = {
@@ -109,10 +109,10 @@ export const getCoreColorToken = (key: CoreColorTokens) => CoreColorTokens[key];
 export type CoreColorTokens = keyof typeof CoreColorTokens;
 
 /**
- * Halstack Spacing Principles 
+ * Halstack Spacing Values
  * @link https://developer.dxc.com/halstack/next/principles/spacing/
  */
-const SpacingTokens = {
+const CoreSpacingTokens = {
   spacing_0: "0rem",
   spacing_2: "0.125rem",
   spacing_4: "0.25rem",
@@ -128,11 +128,11 @@ const SpacingTokens = {
   spacing_80: "5rem",
   spacing_96: "6rem",
   spacing_112: "7rem",
-}
+};
 
 const CoreTokens = {
   ...CoreColorTokens,
-  ...SpacingTokens,
+  ...CoreSpacingTokens,
 
   inherit: "inherit",
 

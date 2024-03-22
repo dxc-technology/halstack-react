@@ -20,7 +20,7 @@ export const ExtendedTableCode = ({
 
 const ExtendedCodeContainer = styled.div`
   width: 100%;
-  white-space: pre-wrap;
+  white-space: pre;
   padding: 2px 4px;
   background-color: #f2eafa;
   border-radius: 0.25rem;

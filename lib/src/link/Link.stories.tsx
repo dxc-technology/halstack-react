@@ -11,10 +11,10 @@ export default {
 
 const icon = (
   <svg viewBox="0 0 24 24" enableBackground="new 0 0 24 24" fill="currentColor">
-    <g id="Bounding_Box">
+    <g>
       <rect fill="none" width="24" height="24" />
     </g>
-    <g id="Master">
+    <g>
       <path d="M19,9.3V4h-3v2.6L12,3L2,12h3v8h5v-6h4v6h5v-8h3L19,9.3z M10,10c0-1.1,0.9-2,2-2s2,0.9,2,2H10z" />
     </g>
   </svg>
@@ -33,7 +33,7 @@ export const Chromatic = () => (
       <Title title="Disabled" theme="light" level={4} />
       <DxcLink disabled>Test</DxcLink>
       <Title title="Icon before" theme="light" level={4} />
-      <DxcLink href="https://www.google.com" icon={icon} iconPosition="before">
+      <DxcLink href="https://www.google.com" icon="lock" iconPosition="before">
         Test
       </DxcLink>
       <Title title="Icon after" theme="light" level={4} />
@@ -76,7 +76,7 @@ export const Chromatic = () => (
     <ExampleContainer pseudoState="pseudo-hover">
       <Title title="Long text with hover" theme="light" level={4} />
       Lorem{" "}
-      <DxcLink href="https://www.google.com" icon={icon}>
+      <DxcLink href="https://www.google.com" icon="filled_home">
         Test
       </DxcLink>{" "}
       ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
