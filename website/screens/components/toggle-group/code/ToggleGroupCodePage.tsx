@@ -96,10 +96,9 @@ const sections = [
                   <b>value</b>: Number with the option inner value.
                 </li>
                 <li>
-                  <StatusBadge label="New" status="information" /> <b>title</b>:
-                  Text representing advisory information related to an option.
-                  Under the hood, it also serves as an accessible label for the
-                  icon.
+                  <b>title</b>: Text representing advisory information related
+                  to an option. Under the hood, it also serves as an accessible
+                  label for the icon.
                 </li>
               </ul>
             </td>

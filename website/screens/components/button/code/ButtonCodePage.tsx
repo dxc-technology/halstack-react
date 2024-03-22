@@ -42,12 +42,7 @@ const sections = [
             </td>
           </tr>
           <tr>
-            <td>
-              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                <StatusBadge label="New" status="information" />
-                title
-              </DxcFlex>
-            </td>
+            <td>title</td>
             <td>
               <TableCode>string</TableCode>
             </td>
