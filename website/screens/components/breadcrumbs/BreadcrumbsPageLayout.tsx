@@ -15,8 +15,9 @@ const BreadcrumbsPageHeading = ({
         <DxcFlex direction="column" gap="2rem">
           <ComponentHeading name="Breadcrumbs" />
           <DxcParagraph>
-            The Breadcrumbs component represents a list of links showing the
-            location of the current page in the navigational hierarchy.
+            A breadcrumbs trail is a secondary form of navigation that allows
+            users to keep track and maintain awareness of their location as they
+            move through a hierarchically structured web application.
           </DxcParagraph>
           <TabsPageHeading tabs={tabs}></TabsPageHeading>
         </DxcFlex>
