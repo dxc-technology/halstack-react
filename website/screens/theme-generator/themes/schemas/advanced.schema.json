@@ -323,7 +323,6 @@
     "focusDropBorderColor": "color",
     "disabledDropBorderColor": "color",
     "dragoverDropBackgroundColor": "color",
-    "activeFileItemIconBackgrounColor": "color",
     "errorFileItemBorderColor": "color",
     "errorFileItemBackgroundColor": "color",
     "errorFilePreviewBackgroundColor": "color",
