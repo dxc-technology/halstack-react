@@ -1,4 +1,4 @@
-import React, { useState, ReactElement, useMemo } from "react";
+import React, { useState, ReactElement, useMemo, useRef, useEffect } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme";
 import NavTabsPropsType from "./types";
@@ -42,7 +42,14 @@ const getNextTabIndex = (array, initialIndex): number => {
 
 const DxcNavTabs = ({ iconPosition = "top", tabIndex = 0, children }: NavTabsPropsType): JSX.Element => {
   const [innerFocusIndex, setInnerFocusIndex] = useState(null);
+  const [underlineWidth, setUnderlineWidth] = useState(null);
+  const refNavTabList = useRef(null);
   const colorsTheme = useTheme();
+
+  useEffect(() => {
+    console.log(refNavTabList?.current?.scrollWidth);
+    setUnderlineWidth(refNavTabList?.current?.scrollWidth);
+  }, [children]);
 
   const contextValue = useMemo(
     () => ({
@@ -57,7 +64,7 @@ const DxcNavTabs = ({ iconPosition = "top", tabIndex = 0, children }: NavTabsPro
     const activeTab = React.Children.toArray(children).findIndex((child: ReactElement) =>
       getPropInChild(child, "active")
     );
-    
+
     switch (event.key) {
       case "Left":
       case "ArrowLeft":
@@ -74,21 +81,22 @@ const DxcNavTabs = ({ iconPosition = "top", tabIndex = 0, children }: NavTabsPro
 
   return (
     <ThemeProvider theme={colorsTheme.navTabs}>
-      <NavTabsContainer onKeyDown={handleOnKeyDown} role="tablist" aria-label="Navigation tabs">
+      <NavTabsContainer onKeyDown={handleOnKeyDown} ref={refNavTabList} role="tablist" aria-label="Navigation tabs">
         <NavTabsContext.Provider value={contextValue}>{children}</NavTabsContext.Provider>
-        <Underline />
+        <Underline underlineWidth={underlineWidth} />
       </NavTabsContainer>
     </ThemeProvider>
   );
 };
 
-const Underline = styled.div`
+const Underline = styled.div<{ underlineWidth: number }>`
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 100%;
   height: 2px;
   background-color: ${(props) => props.theme.dividerColor};
+  z-index: -1;
+  width: ${(props) => props.underlineWidth}px;
 `;
 
 DxcNavTabs.Tab = DxcTab;
@@ -96,6 +104,8 @@ DxcNavTabs.Tab = DxcTab;
 const NavTabsContainer = styled.div`
   display: flex;
   position: relative;
+  overflow: auto;
+  z-index: 0;
 `;
 
 export default DxcNavTabs;
