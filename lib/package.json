@@ -56,6 +56,8 @@
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.0.0",
     "@types/color": "^3.0.3",
+    "@types/jest": "^29.5.12",
+    "@types/jest-axe": "^3.5.9",
     "@types/react": "^18.0.18",
     "@types/styled-components": "5.1.29",
     "@types/uuid": "^9.0.6",
