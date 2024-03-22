@@ -1,5 +1,6 @@
 import React from "react";
 import DxcNavTabs from "./NavTabs";
+import DxcContainer from "../container/Container";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import { HalstackProvider } from "../HalstackContext";
@@ -16,10 +17,9 @@ const iconSVG = (
   </svg>
 );
 
+const favoriteIcon = "filled_Favorite";
 
-const favoriteIcon = 'filled_Favorite'
-
-const pinIcon = 'Location_On';
+const pinIcon = "Location_On";
 
 const opinionatedTheme = {
   navTabs: {
@@ -274,6 +274,21 @@ export const Chromatic = () => (
           </DxcNavTabs.Tab>
         </DxcNavTabs>
       </HalstackProvider>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="NavTabs in a limited space container" theme="light" level={4} />
+      <DxcContainer width="500px">
+        <DxcNavTabs>
+          <DxcNavTabs.Tab href="#" active>
+            Tab 1
+          </DxcNavTabs.Tab>
+          <DxcNavTabs.Tab href="#" disabled>
+            Tab 2
+          </DxcNavTabs.Tab>
+          <DxcNavTabs.Tab href="#">Tab 3</DxcNavTabs.Tab>
+          <DxcNavTabs.Tab href="#">Tab 4</DxcNavTabs.Tab>
+        </DxcNavTabs>
+      </DxcContainer>
     </ExampleContainer>
   </>
 );
