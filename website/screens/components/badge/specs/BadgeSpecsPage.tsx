@@ -1,4 +1,4 @@
-import { DxcBulletedList, DxcFlex } from "@dxc-technology/halstack-react";
+import { DxcBulletedList, DxcFlex, DxcParagraph } from "@dxc-technology/halstack-react";
 import Image from "@/common/Image";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
@@ -27,6 +27,14 @@ const sections = [
           <DxcBulletedList.Item>Label</DxcBulletedList.Item>
         </DxcBulletedList>
       </>
+    ),
+  },
+  {
+    title: "Design tokens",
+    content: (
+      <DxcParagraph>
+        This component does not currently have design tokens.
+      </DxcParagraph>
     ),
   },
 ];
