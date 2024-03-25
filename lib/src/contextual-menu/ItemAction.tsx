@@ -10,8 +10,8 @@ const ItemAction = ({ badge, collapseIcon, icon, label, depthLevel, selected, ..
   return (
     <Action depthLevel={depthLevel} selected={selected} {...props}>
       <Label>
-        {collapseIcon && <Icon>{collapseIcon}</Icon>}
-        {icon && depthLevel === 0 && <Icon>{typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}</Icon>}
+        {collapseIcon}
+        {icon && depthLevel === 0 && (typeof icon === "string" ? <DxcIcon icon={icon} /> : icon)}
         <Text
           onMouseEnter={(event: React.MouseEvent<HTMLSpanElement>) => {
             const text = event.currentTarget;
@@ -62,9 +62,13 @@ const Action = styled.button<{ depthLevel: ItemActionProps["depthLevel"]; select
     outline: 2px solid ${CoreTokens.color_blue_600};
     outline-offset: -1px;
   }
-  > span::before,
-  svg {
+  span::before {
+    display: flex;
     font-size: 16px;
+  }
+  svg {
+    height: 16px;
+    width: 16px;
   }
 `;
 
@@ -83,17 +87,6 @@ const Text = styled.span`
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-`;
-
-const Icon = styled.span`
-  display: flex;
-
-  > span::before,
-  svg {
-    height: 16px;
-    width: 16px;
-    font-size: 16px;
-  }
 `;
 
 export default ItemAction;
