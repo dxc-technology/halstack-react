@@ -82,7 +82,9 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
         actionButtonRef?.setAttribute("role", "combobox");
         actionButtonRef?.setAttribute("aria-expanded", isOpen);
         actionButtonRef?.setAttribute("aria-controls", calendarId);
-        actionButtonRef?.setAttribute("aria-describedby", calendarId);
+        if (isOpen) {
+          actionButtonRef?.setAttribute("aria-describedby", calendarId);
+        }
       }
     }, [isOpen, disabled, calendarId]);
 
@@ -157,7 +159,7 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
       <ThemeProvider theme={colorsTheme}>
         <div ref={ref}>
           <Popover.Root open={isOpen}>
-            <Popover.Trigger asChild aria-controls={undefined} >
+            <Popover.Trigger asChild aria-controls={undefined}>
               <DxcTextInput
                 label={label}
                 name={name}

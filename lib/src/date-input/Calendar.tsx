@@ -3,6 +3,7 @@ import React, { useState, useMemo, useEffect } from "react";
 import styled from "styled-components";
 import { CalendarPropsType } from "./types";
 import useTranslatedLabels from "../useTranslatedLabels";
+import { v4 as uuidv4 } from "uuid";
 import DxcFlex from "../flex/Flex";
 
 const getDays = (innerDate: Dayjs) => {
@@ -48,6 +49,12 @@ const isDaySelected = (date: { day: number; month: number; year: number }, selec
   selectedDate?.get("year") === date.year &&
   selectedDate?.get("date") === date.day;
 
+const chunk = (data: any[], chunkSize: number) => {
+  return Array.from({ length: Math.ceil(data.length / chunkSize) }, (_, rowIndex) =>
+    data.slice(rowIndex * chunkSize, (rowIndex + 1) * chunkSize)
+  );
+};
+
 const Calendar = ({
   selectedDate,
   innerDate,
@@ -55,6 +62,7 @@ const Calendar = ({
   onDaySelect,
   today,
 }: CalendarPropsType): JSX.Element => {
+  const [id] = useState(uuidv4());
   const [dateToFocus, setDateToFocus] = useState(getDateToFocus(selectedDate, innerDate, today));
   const [isFocusable, setIsFocusable] = useState(false);
   const dayCells = useMemo(() => getDays(innerDate), [innerDate]);
@@ -74,6 +82,7 @@ const Calendar = ({
   };
 
   const focusDate = (date: Dayjs) => {
+    console.log("FOCUSDATE", date);
     if (innerDate.get("month") !== date.get("month") || innerDate.get("year") !== date.get("year")) {
       onInnerDateChange(date);
     }
@@ -83,7 +92,7 @@ const Calendar = ({
 
   useEffect(() => {
     if (isFocusable) {
-      document.getElementById(`day_${dateToFocus.get("date")}_month${dateToFocus.get("month")}`)?.focus();
+      document.getElementById(`${id}_day_${dateToFocus.get("date")}_month${dateToFocus.get("month")}`)?.focus();
       setIsFocusable(false);
     }
   }, [dateToFocus, isFocusable]);
@@ -153,38 +162,45 @@ const Calendar = ({
         break;
     }
   };
-
   return (
-    <CalendarContainer>
+    <CalendarContainer role="grid">
       <DxcFlex alignItems="center" justifyContent="space-between">
         {weekDays.map((weekDay) => (
           <WeekHeaderCell key={weekDay}>{weekDay}</WeekHeaderCell>
         ))}
       </DxcFlex>
-      <DayCellsContainer onBlur={handleOnBlur}>
-        {dayCells.map((date, index) => (
-          <DayCell
-            onKeyDown={(event) => handleDayKeyboardEvent(event, date)}
-            aria-label={date.day}
-            id={`day_${date.day}_month${date.month}`}
-            key={`day_${index}`}
-            onClick={() => onDateClickHandler(date)}
-            selected={isDaySelected(date, selectedDate)}
-            actualMonth={date.month === innerDate.get("month")}
-            autoFocus={date.day === dateToFocus.get("date") && date.month === dateToFocus.get("month")}
-            aria-selected={isDaySelected(date, selectedDate)}
-            tabIndex={date.day === dateToFocus.get("date") && date.month === dateToFocus.get("month") ? 0 : -1}
-            isCurrentDay={
-              today.get("date") === date.day &&
-              today.get("month") === innerDate.get("month") &&
-              today.get("month") === date.month &&
-              today.get("year") === innerDate.get("year")
-            }
-          >
-            {date.day}
-          </DayCell>
+      <WeeksContainer onBlur={handleOnBlur}>
+        {chunk(dayCells, weekDays.length).map((week, rowIndex) => (
+          <DayCellsContainer key={`${id}_week_${rowIndex}`} role="row">
+            {week.map((date, index) => (
+              <DayCellContainer
+                key={`${id}_day_${index}`}
+                role="gridcell"
+                aria-selected={isDaySelected(date, selectedDate)}
+              >
+                <DayCell
+                  onKeyDown={(event) => handleDayKeyboardEvent(event, date)}
+                  id={`${id}_day_${date.day}_month${date.month}`}
+                  key={`${id}_day_container_${index}`}
+                  onClick={() => onDateClickHandler(date)}
+                  selected={isDaySelected(date, selectedDate)}
+                  actualMonth={date.month === innerDate.get("month")}
+                  autoFocus={date.day === dateToFocus.get("date") && date.month === dateToFocus.get("month")}
+                  tabIndex={date.day === dateToFocus.get("date") && date.month === dateToFocus.get("month") ? 0 : -1}
+                  isCurrentDay={
+                    today.get("date") === date.day &&
+                    today.get("month") === innerDate.get("month") &&
+                    today.get("month") === date.month &&
+                    today.get("year") === innerDate.get("year")
+                  }
+                >
+                  {date.day}
+                </DayCell>
+              </DayCellContainer>
+            ))}
+          </DayCellsContainer>
         ))}
-      </DayCellsContainer>
+      </WeeksContainer>
     </CalendarContainer>
   );
 };
@@ -209,12 +225,20 @@ const WeekHeaderCell = styled.span`
   width: 36px;
   height: 36px;
 `;
+const DayCellContainer = styled.div``;
+
+const WeeksContainer = styled.div`
+  box-sizing: border-box;
+  display: flex;
+  gap: 4px;
+  flex-direction: column;
+  justify-content: space-between;
+`;
 
 const DayCellsContainer = styled.div`
   box-sizing: border-box;
   display: flex;
   gap: 4px;
-  flex-wrap: wrap;
   justify-content: space-between;
 `;
 
