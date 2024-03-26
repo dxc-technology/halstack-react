@@ -27,7 +27,7 @@ jobs:
           role-skip-session-tagging: true
 
       - name: Install website dependencies
-        run: cd website && yarn
+        run: cd website && npm install
 
       - name: Install scripts dependencies
         run: cd scripts && npm install
