@@ -1,11 +1,6 @@
-name: Publish Website
+name: Publish Release
 
-on:
-  push:
-    branches:
-      - master
-    paths:
-      - "website/**"
+on: pull_request
 
 jobs:
   build:
@@ -34,10 +29,8 @@ jobs:
       - name: Install website dependencies
         run: cd website && npm i
 
-      - name: Build library
-        run: cd website && SITE_VERSION=next npm run build
+      - name: Install scripts dependencies
+        run: cd scripts && npm i
 
-      - name: Move website to S3
-        run: |
-          aws s3 rm s3://design-system-react-cdk-site/halstack/next/ --recursive
-          aws s3 cp ./website/out/ s3://design-system-react-cdk-site/halstack/next/ --recursive
+      - name: Move RELEASE website to S3
+        run: node scripts/release-website.js 12.0.0
