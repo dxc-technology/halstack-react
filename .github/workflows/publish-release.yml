@@ -26,11 +26,36 @@ jobs:
           role-duration-seconds: 3600
           role-skip-session-tagging: true
 
+      - name: Install lib dependencies
+        run: cd lib && npm install --omit=dev
+
+      - name: Install lib babel dependency
+        run: cd lib && npm install --D @babel/core
+
+      - name: Build library
+        run: cd lib && npm run build
+
       - name: Install website dependencies
         run: cd website && npm install
+
+      - name: Test library
+        run: cd lib && npm run test
+
+      - name: Test library accessibility
+        run: cd lib && npm run test:accessibility
 
       - name: Install scripts dependencies
         run: cd scripts && npm install
 
       - name: Move RELEASE website to S3
-        run: node scripts/release-website.js 12.0.0
+        run: node scripts/release-website.js $TAG_NAME
+        env:
+          TAG_NAME: ${{ github.event.release.tag_name }}
+
+      - name: Execute script version
+        run: node scripts/create-version.js $TAG_NAME
+
+      - name: Deploy version to S3 Bucket
+        run: |
+          aws s3 rm s3://design.system.components.catalog/guidelines/version --recursive
+          aws s3 cp ./catalog/version/ s3://design.system.components.catalog/guidelines/version --recursive
