@@ -14,6 +14,11 @@ exports.componentsList = [
   { label: "Bleed", path: "/components/bleed", status: "ready" },
   { label: "Box", path: "/components/box", status: "deprecated" },
   {
+    label: "Breadcrumbs",
+    path: "/components/breadcrumbs",
+    status: "experimental",
+  },
+  {
     label: "Bulleted List",
     path: "/components/bulleted-list",
     status: "ready",
