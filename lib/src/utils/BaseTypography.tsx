@@ -23,6 +23,14 @@ type BaseTypographyProps = TypographyContextProps & {
   children: React.ReactNode;
 };
 
+const ValidTypographyTags = [
+  "a", "blockquote", "cite", "code", "div", "em", "figcaption", "h1", "h2", "h3", "h4", "h5", "h6", "p", "pre", "small", "span", "strong"
+];
+
+const isValidTypography = (tag: keyof HTMLElementTagNameMap) => {
+  return ValidTypographyTags.includes(tag);
+}
+
 const BaseTypography = ({
   as,
   display,
@@ -40,10 +48,9 @@ const BaseTypography = ({
   children,
 }: BaseTypographyProps): JSX.Element => {
   const componentContext = useContext(TypographyContext);
-
   const contextValue = useMemo(
     () => ({
-      as: as ?? componentContext?.as ?? "span",
+      as: isValidTypography(as) ? as : (isValidTypography(componentContext?.as) ? componentContext?.as : "span"),
       display: display ?? componentContext?.display ?? "inline",
       fontFamily: fontFamily ?? componentContext?.fontFamily ?? "Open Sans, sans-serif",
       fontSize: fontSize ?? componentContext?.fontSize ?? "1rem",
