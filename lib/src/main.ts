@@ -45,6 +45,7 @@ import DxcBadge from "./badge/Badge";
 import DxcStatusLight from "./status-light/StatusLight";
 import DxcContextualMenu from "./contextual-menu/ContextualMenu";
 import DxcDivider from "./divider/Divider";
+import DxcBreadcrumbs from "./breadcrumbs/Breadcrumbs";
 
 import HalstackContext, { HalstackProvider, HalstackLanguageContext } from "./HalstackContext";
 
@@ -99,4 +100,5 @@ export {
   DxcStatusLight,
   DxcContextualMenu,
   DxcDivider,
+  DxcBreadcrumbs,
 };

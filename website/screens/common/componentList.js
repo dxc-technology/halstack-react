@@ -14,6 +14,11 @@ exports.componentsList = [
   { label: "Bleed", path: "/components/bleed", status: "ready" },
   { label: "Box", path: "/components/box", status: "deprecated" },
   {
+    label: "Breadcrumbs",
+    path: "/components/breadcrumbs",
+    status: "experimental",
+  },
+  {
     label: "Bulleted List",
     path: "/components/bulleted-list",
     status: "ready",
@@ -23,6 +28,7 @@ exports.componentsList = [
   { label: "Checkbox", path: "/components/checkbox", status: "ready" },
   { label: "Chip", path: "/components/chip", status: "ready" },
   { label: "Container", path: "/components/container", status: "experimental" },
+  { label: "Contextual Menu", path: "/components/contextual-menu", status: "experimental" },
   { label: "Date Input", path: "/components/date-input", status: "ready" },
   { label: "Dialog", path: "/components/dialog", status: "ready" },
   { label: "Divider", path: "/components/divider", status: "experimental" },
