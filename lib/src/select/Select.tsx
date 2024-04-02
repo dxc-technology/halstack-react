@@ -283,6 +283,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
         case "Esc":
         case "Escape":
           event.preventDefault();
+          event.stopPropagation();
           closeOptions();
           setSearchValue("");
           break;

@@ -144,10 +144,14 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
       setIsOpen(false);
     };
 
-    const handleDatePickerEscKeydown = (event) => {
-      event.preventDefault();
-      closeCalendar();
-      dateRef?.current.getElementsByTagName("input")[0].focus();
+    const handleDatePickerEscKeydown = (event: React.KeyboardEvent) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        // Prevents propagation to interact properly with Modals closure
+        event.stopPropagation();
+        closeCalendar();
+        dateRef?.current.getElementsByTagName("input")[0].focus();
+      }
     };
     const handleDatePickerOnBlur = (event) => {
       if (!event?.currentTarget.contains(event.relatedTarget)) closeCalendar();
@@ -157,7 +161,7 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
       <ThemeProvider theme={colorsTheme}>
         <div ref={ref}>
           <Popover.Root open={isOpen}>
-            <Popover.Trigger asChild aria-controls={undefined} >
+            <Popover.Trigger asChild aria-controls={undefined}>
               <DxcTextInput
                 label={label}
                 name={name}
@@ -190,7 +194,7 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
                 align="end"
                 aria-modal={true}
                 onBlur={handleDatePickerOnBlur}
-                onEscapeKeyDown={handleDatePickerEscKeydown}
+                onKeyDown={handleDatePickerEscKeydown}
                 avoidCollisions={false}
               >
                 <DxcDatePicker id={calendarId} onDateSelect={handleCalendarOnClick} date={dayjsDate} />

@@ -127,6 +127,7 @@ const DxcDropdown = ({
         case "Esc":
         case "Escape":
           event.preventDefault();
+          event.stopPropagation();
           handleOnCloseMenu();
           triggerRef.current?.focus();
           break;
