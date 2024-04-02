@@ -38,7 +38,9 @@ const Title = ({ children }: SidenavTitlePropsType): JSX.Element => (
 const Section = ({ children }: SidenavSectionPropsType): JSX.Element => (
   <>
     <DxcBleed horizontal="1rem">
-      <DxcFlex direction="column">{children}</DxcFlex>
+      <DxcFlex direction="column">
+        <Ul>{children}</Ul>
+      </DxcFlex>
     </DxcBleed>
     <Divider />
   </>
@@ -51,29 +53,35 @@ const Group = ({ title, collapsable = false, icon, children }: SidenavGroupProps
 
   return (
     <GroupContext.Provider value={changeIsSelected}>
-      <SidenavGroup>
-        {collapsable && title ? (
-          <SidenavGroupTitleButton
-            aria-expanded={!collapsed}
-            onClick={() => setCollapsed(!collapsed)}
-            selectedGroup={collapsed && isSelected}
-          >
-            <DxcFlex alignItems="center" gap="0.5rem">
-              {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
-              {title}
-            </DxcFlex>
-            <DxcIcon icon={collapsed ? "expand_more" : "expand_less"} />
-          </SidenavGroupTitleButton>
-        ) : (
-          title && (
-            <SidenavGroupTitle>
-              {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
-              {title}
-            </SidenavGroupTitle>
-          )
-        )}
-        {!collapsed && children}
-      </SidenavGroup>
+      <Li>
+        <SidenavGroup>
+          <Li>
+            {collapsable && title ? (
+              <SidenavGroupTitleButton
+                aria-expanded={!collapsed}
+                onClick={() => setCollapsed(!collapsed)}
+                selectedGroup={collapsed && isSelected}
+              >
+                <DxcFlex alignItems="center" gap="0.5rem">
+                  {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
+                  {title}
+                </DxcFlex>
+                <DxcIcon icon={collapsed ? "expand_more" : "expand_less"} />
+              </SidenavGroupTitleButton>
+            ) : (
+              title && (
+                <SidenavGroupTitle>
+                  {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
+                  {title}
+                </SidenavGroupTitle>
+              )
+            )}
+          </Li>
+          <Li>
+            <Ul>{!collapsed && children}</Ul>
+          </Li>
+        </SidenavGroup>
+      </Li>
     </GroupContext.Provider>
   );
 };
@@ -95,26 +103,28 @@ const Link = forwardRef<HTMLAnchorElement, SidenavLinkPropsType>(
     }, [selected, changeIsGroupSelected]);
 
     return (
-      <SidenavLink
-        selected={selected}
-        href={href ? href : undefined}
-        target={href ? (newWindow ? "_blank" : "_self") : undefined}
-        ref={ref}
-        tabIndex={tabIndex}
-        onClick={handleClick}
-        {...otherProps}
-      >
-        <DxcFlex alignItems="center" gap="0.5rem">
-          {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
-          {children}
-        </DxcFlex>
-        {newWindow && <DxcIcon icon="open_in_new" />}
-      </SidenavLink>
+      <Li>
+        <SidenavLink
+          selected={selected}
+          href={href ? href : undefined}
+          target={href ? (newWindow ? "_blank" : "_self") : undefined}
+          ref={ref}
+          tabIndex={tabIndex}
+          onClick={handleClick}
+          {...otherProps}
+        >
+          <DxcFlex alignItems="center" gap="0.5rem">
+            {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
+            {children}
+          </DxcFlex>
+          {newWindow && <DxcIcon icon="open_in_new" />}
+        </SidenavLink>
+      </Li>
     );
   }
 );
 
-const SidenavContainer = styled.div`
+const SidenavContainer = styled.nav`
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -163,10 +173,33 @@ const Divider = styled.div`
   }
 `;
 
-const SidenavGroup = styled.div`
+const SidenavGroup = styled.ul`
+  padding-inline-start: 0;
+  padding-inline-end: 0;
+  margin-inline-start: 0;
+  margin-inline-start: 0;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  list-style-type: none;
   a {
     padding: 0.5rem 1.2rem 0.5rem 2.25rem;
   }
+`;
+
+const Li = styled.li`
+  list-style: none;
+`;
+
+const Ul = styled.ul`
+  /* margin: 0; */
+  /* padding: 0; */
+  padding-inline-start: 0;
+  padding-inline-end: 0;
+  margin-inline-start: 0;
+  margin-inline-start: 0;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  list-style-type: none;
 `;
 
 const SidenavGroupTitle = styled.span`
