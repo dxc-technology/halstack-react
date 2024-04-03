@@ -44,7 +44,7 @@ const sections = [
     ),
   },
   {
-    title: "Usage guidelines",
+    title: "Usage",
     content: (
       <>
         <Image src={iconographyExamples} alt="Halstack Icons" />
