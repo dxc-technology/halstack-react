@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from "react";
+import React, { useState, useMemo, useEffect, useRef } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables";
 import DxcPaginator from "../paginator/Paginator";
@@ -56,6 +56,8 @@ const DxcResultsetTable = ({
   const [sortColumnIndex, changeSortColumnIndex] = useState(-1);
   const [sortOrder, changeSortOrder] = useState<"ascending" | "descending">("ascending");
 
+  const prevRowCountRef = useRef<number>(rows.length);
+
   const minItemsPerPageIndex = useMemo(() => getMinItemsPerPageIndex(page, itemsPerPage, page), [itemsPerPage, page]);
   const maxItemsPerPageIndex = useMemo(
     () => getMaxItemsPerPageIndex(minItemsPerPageIndex, itemsPerPage, rows, page),
@@ -86,11 +88,33 @@ const DxcResultsetTable = ({
     );
   };
 
+  // useEffect(() => {
+  //   console.log("CHANGE", rows);
+  //   if (!hidePaginator) {
+  //     rows.length > 0 ? changePage(1) : changePage(0);
+  //   }
+  // }, [rows]);
+
   useEffect(() => {
     if (!hidePaginator) {
-      rows.length > 0 ? changePage(1) : changePage(0);
+      if (rows.length === 0) {
+        changePage(0);
+      } else if (rows.length > prevRowCountRef.current) {
+        const lastPage = Math.ceil(rows.length / itemsPerPage);
+        const prevLastPage = Math.ceil(prevRowCountRef.current / itemsPerPage);
+        if (lastPage > prevLastPage) {
+          changePage(lastPage);
+        }
+      } else if (rows.length < prevRowCountRef.current) {
+        const lastPage = Math.ceil(rows.length / itemsPerPage);
+        const prevLastPage = Math.ceil(prevRowCountRef.current / itemsPerPage);
+        if (lastPage < prevLastPage) {
+          changePage(Math.min(lastPage, page));
+        }
+      }
+      prevRowCountRef.current = rows.length;
     }
-  }, [rows]);
+  }, [rows.length]);
 
   return (
     <ThemeProvider theme={colorsTheme.table}>
@@ -156,7 +180,8 @@ const DxcResultsetTable = ({
   );
 };
 
-const calculateWidth = (margin: string | object) => `calc(100% - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`;
+const calculateWidth = (margin: string | object) =>
+  `calc(100% - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`;
 
 const DxcResultsetTableContainer = styled.div<{ margin: ResultsetTablePropsType["margin"] }>`
   width: ${(props) => calculateWidth(props.margin)};
