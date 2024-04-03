@@ -28,11 +28,11 @@ const sections = [
           <Link href="https://fonts.google.com/icons" passHref legacyBehavior>
             <DxcLink>Material Symbols</DxcLink>
           </Link>{" "}
-          con library. This library contains over three thousand open source
-          symbols implemented as an icon font that is maintained by Google as
-          part of the{" "}
+          library. This library contains over three thousand open source symbols
+          implemented as an icon font that is maintained by Google as part of
+          the{" "}
           <Link
-            href="https://m2.material.io/design/iconography/system-icons.html#design-principles"
+            href="https://m3.material.io/"
             passHref
             legacyBehavior
           >
@@ -122,8 +122,8 @@ const sections = [
         <DxcParagraph>
           Icons are present in most of the Halstack components through the prop{" "}
           <Code>icon</Code>. Below are some examples, using the{" "}
-          <Code>DxcButton</Code>, representing the possibilities offered
-          by our Design System:
+          <Code>DxcButton</Code>, representing the possibilities offered by our
+          Design System:
         </DxcParagraph>
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>Regular icon</DxcBulletedList.Item>
