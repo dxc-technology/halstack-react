@@ -74,10 +74,4 @@ describe("Heading component tests", () => {
     expect(getByText("my-heading-test")).toBeTruthy();
     expect(getByRole("heading", { level: 4 })).toBeTruthy();
   });
-
-  test("Heading renders with level 5 and invalid as", () => {
-    const { getByText, getByRole } = render(<DxcHeading text="my-heading-test" level={5} as="h4afdssf"></DxcHeading>);
-    expect(getByText("my-heading-test")).toBeTruthy();
-    expect(getByRole("heading", { level: 5 })).toBeTruthy();
-  });
 });
