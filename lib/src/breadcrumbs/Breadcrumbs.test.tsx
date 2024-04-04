@@ -3,7 +3,7 @@ import { render } from "@testing-library/react";
 import DxcBreadcrumbs from "./Breadcrumbs";
 import userEvent from "@testing-library/user-event";
 
-global.ResizeObserver = class ResizeObserver {
+(global as any).ResizeObserver = class ResizeObserver {
   observe() {}
   unobserve() {}
   disconnect() {}
