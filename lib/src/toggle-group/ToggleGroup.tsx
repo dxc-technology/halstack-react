@@ -65,7 +65,7 @@ const DxcToggleGroup = ({
           {label}
         </Label>
         <HelperText disabled={disabled}>{helperText}</HelperText>
-        <OptionsContainer aria-labelledby={toggleGroupLabelId}>
+        <OptionsContainer>
           {options.map((option, i) => (
             <ToggleButton
               key={`toggle-${i}-${option.label}`}
@@ -79,6 +79,8 @@ const DxcToggleGroup = ({
                   ? option.value === value
                   : option.value === selectedValue
               }
+              aria-labelledby={toggleGroupLabelId}
+              aria-disabled={disabled}
               disabled={disabled}
               onClick={() => {
                 handleToggleChange(option.value);

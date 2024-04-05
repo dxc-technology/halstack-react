@@ -4,10 +4,22 @@ import DxcToggleGroup from "./ToggleGroup";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import { HalstackProvider } from "../HalstackContext";
+import { disabledRules } from "../../test/accessibility/rules/specific/toggle-group/disabledRules";
+import preview from "../../.storybook/preview";
 
 export default {
   title: "Toggle Group",
   component: DxcToggleGroup,
+  parameters: {
+    a11y: {
+      config: {
+        rules: [
+          ...disabledRules.map((ruleId) => ({ id: ruleId, reviewOnFail: true })),
+          ...preview?.parameters?.a11y?.config?.rules,
+        ],
+      },
+    },
+  },
 };
 
 const ethernetSVG = (
@@ -123,7 +135,7 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Disabled" theme="light" level={4} />
-      <DxcToggleGroup label="Disabled" defaultValue={2} options={options} disabled />
+      <DxcToggleGroup label="Disabled" defaultValue={2} options={options} helperText="HelperText"  disabled />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-hover">
       <Title title="Hovered" theme="light" level={4} />
@@ -184,7 +196,7 @@ export const Chromatic = () => (
     <ExampleContainer>
       <HalstackProvider theme={opinionatedTheme}>
         <Title title="Disabled" theme="light" level={4} />
-        <DxcToggleGroup label="Disabled" defaultValue={2} options={options} disabled />
+        <DxcToggleGroup label="Disabled" defaultValue={2} options={options} helperText="HelperText"  disabled />
       </HalstackProvider>
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-hover">

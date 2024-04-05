@@ -7,10 +7,22 @@ import Suggestions from "./Suggestions";
 import { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme";
 import { HalstackProvider } from "../HalstackContext";
+import { disabledRules } from "../../test/accessibility/rules/specific/text-input/disabledRules";
+import preview from "../../.storybook/preview";
 
 export default {
   title: "Text Input",
   component: DxcTextInput,
+  parameters: {
+    a11y: {
+      config: {
+        rules: [
+          ...disabledRules.map((ruleId) => ({ id: ruleId, reviewOnFail: true })),
+          ...preview?.parameters?.a11y?.config?.rules,
+        ],
+      },
+    },
+  },
 };
 
 const action = {
@@ -27,13 +39,7 @@ const action = {
 const actionLargeIconSVG = {
   onClick: () => {},
   icon: (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      height="48px"
-      viewBox="0 0 24 24"
-      width="48px"
-      fill="currentColor"
-    >
+    <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 0 24 24" width="48px" fill="currentColor">
       <path d="M0 0h24v24H0V0z" fill="none" />
       <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z" />
     </svg>

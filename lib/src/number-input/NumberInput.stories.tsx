@@ -2,10 +2,22 @@ import React from "react";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DxcNumberInput from "./NumberInput";
+import { disabledRules } from "../../test/accessibility/rules/specific/number-input/disabledRules";
+import preview from "../../.storybook/preview";
 
 export default {
   title: "Number Input",
   component: DxcNumberInput,
+  parameters: {
+    a11y: {
+      config: {
+        rules: [
+          ...disabledRules.map((ruleId) => ({ id: ruleId, reviewOnFail: true })),
+          ...preview?.parameters?.a11y?.config?.rules,
+        ],
+      },
+    },
+  },
 };
 
 export const Chromatic = () => (
@@ -32,25 +44,11 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Read only" theme="light" level={4} />
-      <DxcNumberInput
-        label="Example label"
-        helperText="Help message"
-        readOnly
-        optional
-        prefix="€"
-        defaultValue="33"
-      />
+      <DxcNumberInput label="Example label" helperText="Help message" readOnly optional prefix="€" defaultValue="33" />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-hover">
       <Title title="Hovered read only" theme="light" level={4} />
-      <DxcNumberInput
-        label="Example label"
-        helperText="Help message"
-        readOnly
-        optional
-        prefix="€"
-        defaultValue="1"
-      />
+      <DxcNumberInput label="Example label" helperText="Help message" readOnly optional prefix="€" defaultValue="1" />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-active">
       <Title title="Active read only" theme="light" level={4} />

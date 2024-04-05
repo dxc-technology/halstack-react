@@ -3,10 +3,22 @@ import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcRadioGroup from "./RadioGroup";
 import { HalstackProvider } from "../HalstackContext";
+import { disabledRules } from "../../test/accessibility/rules/specific/radio-group/disabledRules";
+import preview from "../../.storybook/preview";
 
 export default {
   title: "Radio Group",
   component: DxcRadioGroup,
+  parameters: {
+    a11y: {
+      config: {
+        rules: [
+          ...disabledRules.map((ruleId) => ({ id: ruleId, reviewOnFail: true })),
+          ...preview?.parameters?.a11y?.config?.rules,
+        ],
+      },
+    },
+  },
 };
 
 const single_option = [{ label: "Option A", value: "A" }];

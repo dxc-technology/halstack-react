@@ -2,10 +2,22 @@ import React from "react";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DxcStatusLight from "./StatusLight";
+import { disabledRules } from "../../test/accessibility/rules/specific/status-light/disabledRules";
+import preview from "../../.storybook/preview";
 
 export default {
   title: "Status Light",
   component: DxcStatusLight,
+  parameters: {
+    a11y: {
+      config: {
+        rules: [
+          ...disabledRules.map((ruleId) => ({ id: ruleId, reviewOnFail: true })),
+          ...preview?.parameters?.a11y?.config?.rules,
+        ],
+      },
+    },
+  },
 };
 
 export const Chromatic = () => (
