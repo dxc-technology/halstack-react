@@ -90,7 +90,7 @@ const DxcTextarea = React.forwardRef<RefType, TextareaPropsType>(
 
     return (
       <ThemeProvider theme={colorsTheme.textarea}>
-        <TextareaContainer margin={margin} size={size} ref={ref} aria-disabled={disabled}>
+        <TextareaContainer margin={margin} size={size} ref={ref}>
           {label && (
             <Label htmlFor={textareaId} disabled={disabled} helperText={helperText}>
               {label} {optional && <OptionalLabel>{translatedLabels.formFields.optionalLabel}</OptionalLabel>}

@@ -128,7 +128,7 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
 
     return (
       <ThemeProvider theme={colorsTheme.radioGroup}>
-        <RadioGroupContainer ref={ref} aria-disabled={disabled}>
+        <RadioGroupContainer ref={ref}>
           {label && (
             <Label id={radioGroupLabelId} helperText={helperText} disabled={disabled}>
               {label}
@@ -142,6 +142,7 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
             onKeyDown={handleOnKeyDown}
             stacking={stacking}
             role="radiogroup"
+            aria-disabled={disabled}
             aria-labelledby={radioGroupLabelId}
             aria-invalid={error ? true : false}
             aria-errormessage={error ? errorId : undefined}

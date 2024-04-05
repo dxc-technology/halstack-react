@@ -20,7 +20,7 @@ const DxcChip = ({
 
   return (
     <ThemeProvider theme={colorsTheme.chip}>
-      <Chip disabled={disabled} margin={margin} aria-disabled={disabled}>
+      <Chip disabled={disabled} margin={margin}>
         {prefixIcon && (
           <IconContainer
             role={typeof onClickPrefix === "function" ? "button" : undefined}
