@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React, { useId, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { getMargin } from "../common/utils";
 import { spaces } from "../common/variables";
 import useTheme from "../useTheme";
 import AccordionPropsType from "./types";
 import BaseTypography from "../utils/BaseTypography";
-import { v4 as uuidv4 } from "uuid";
 import DxcIcon from "../icon/Icon";
 
 const DxcAccordion = ({
@@ -20,7 +19,7 @@ const DxcAccordion = ({
   margin,
   tabIndex = 0,
 }: AccordionPropsType): JSX.Element => {
-  const [id] = useState(uuidv4());
+  const id = useId();
   const [innerIsExpanded, setInnerIsExpanded] = useState(defaultIsExpanded ?? false);
   const colorsTheme = useTheme();
 

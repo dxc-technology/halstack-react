@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React, { useId, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import { v4 as uuidv4 } from "uuid";
 import { spaces } from "../common/variables";
 import useTheme from "../useTheme";
 import ToggleGroupPropsType, { OptionLabel } from "./types";
@@ -19,7 +18,7 @@ const DxcToggleGroup = ({
   multiple = false,
   tabIndex = 0,
 }: ToggleGroupPropsType): JSX.Element => {
-  const [toggleGroupLabelId] = useState(`label-toggle-group-${uuidv4()}`);
+  const toggleGroupLabelId = `label-toggle-group-${useId()}`;
   const [selectedValue, setSelectedValue] = useState(defaultValue ?? (multiple ? [] : -1));
 
   const colorsTheme = useTheme();

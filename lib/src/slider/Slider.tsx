@@ -1,11 +1,11 @@
-import React, { useState, useMemo } from "react";
+
+import React, { useState, useMemo, useId } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import DxcTextInput from "../text-input/TextInput";
 import { spaces } from "../common/variables";
 import { getMargin } from "../common/utils";
 import useTheme from "../useTheme";
 import SliderPropsType, { RefType } from "./types";
-import { v4 as uuidv4 } from "uuid";
 
 const DxcSlider = React.forwardRef<RefType, SliderPropsType>(
   (
@@ -30,7 +30,7 @@ const DxcSlider = React.forwardRef<RefType, SliderPropsType>(
     },
     ref
   ): JSX.Element => {
-    const [labelId] = useState(`label-${uuidv4()}`);
+    const labelId = `label-${useId()}`;
     const [innerValue, setInnerValue] = useState(defaultValue ?? 0);
     const [dragging, setDragging] = useState(false);
     const colorsTheme = useTheme();
