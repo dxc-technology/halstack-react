@@ -227,7 +227,7 @@
     "pickerHoverFontColor": "#000000",
     "pickerActiveBackgroundColor": "#4b1c7d",
     "pickerActiveFontColor": "#ffffff",
-    "pickerNonCurrentMonthFontColor": "#999999",
+    "pickerNonCurrentMonthFontColor": "#666666",
     "pickerCurrentDateBorderColor": "#cbacec",
     "pickerCurrentDateFontColor": "#000000",
     "pickerCurrentYearFontColor": "#5f249f",

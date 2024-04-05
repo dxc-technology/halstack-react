@@ -229,7 +229,7 @@ export const componentTokens = {
     pickerHoverFontColor: CoreTokens.color_black,
     pickerActiveBackgroundColor: CoreTokens.color_purple_800,
     pickerActiveFontColor: CoreTokens.color_white,
-    pickerNonCurrentMonthFontColor: CoreTokens.color_grey_500,
+    pickerNonCurrentMonthFontColor: CoreTokens.color_grey_700,
     pickerCurrentDateBorderColor: CoreTokens.color_purple_300,
     pickerCurrentDateFontColor: CoreTokens.color_black,
     pickerCurrentYearFontColor: CoreTokens.color_purple_700,
