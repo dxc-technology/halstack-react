@@ -1,9 +1,8 @@
-import React, { useMemo, useRef, useState, useCallback, useEffect } from "react";
+import React, { useMemo, useRef, useState, useCallback, useEffect, useId } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
 import { spaces } from "../common/variables";
-import { v4 as uuidv4 } from "uuid";
 import { getMargin } from "../common/utils";
 import SelectPropsType, { Option, OptionGroup, RefType } from "./types";
 import Listbox from "./Listbox";
@@ -167,7 +166,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
     },
     ref
   ): JSX.Element => {
-    const [selectId] = useState(`select-${uuidv4()}`);
+    const selectId = `select-${useId()}`;
     const selectLabelId = `label-${selectId}`;
     const searchableInputId = `searchable-input-${selectId}`
     const errorId = `error-${selectId}`;

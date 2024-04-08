@@ -1,7 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useId, useRef, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { RadioProps } from "./types";
-import { v4 as uuidv4 } from "uuid";
 import useTheme from "../useTheme";
 import { AdvancedTheme } from "../common/variables";
 import DxcFlex from "../flex/Flex";
@@ -16,7 +15,7 @@ const DxcRadio = ({
   readOnly,
   tabIndex,
 }: RadioProps): JSX.Element => {
-  const [radioLabelId] = useState(`radio-${uuidv4()}`);
+  const radioLabelId = `radio-${useId()}`;
   const ref = useRef<HTMLSpanElement>(null);
   const colorsTheme = useTheme();
 

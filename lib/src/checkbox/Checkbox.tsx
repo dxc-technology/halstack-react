@@ -1,8 +1,7 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useId } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { AdvancedTheme, spaces } from "../common/variables";
 import { getMargin } from "../common/utils";
-import { v4 as uuidv4 } from "uuid";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
 import CheckboxPropsType, { RefType } from "./types";
@@ -32,7 +31,7 @@ const DxcCheckbox = React.forwardRef<RefType, CheckboxPropsType>(
     },
     ref
   ): JSX.Element => {
-    const [labelId] = useState(`label-checkbox-${uuidv4()}`);
+    const labelId = `label-checkbox-${useId()}`;
     const [innerChecked, setInnerChecked] = useState(defaultChecked);
     const checkboxRef = useRef(null);
     const colorsTheme = useTheme();
