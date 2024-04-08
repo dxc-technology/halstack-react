@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useId } from "react";
 import dayjs from "dayjs";
 import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme";
@@ -8,7 +8,6 @@ import DateInputPropsType, { RefType } from "./types";
 import DxcDatePicker from "./DatePicker";
 import * as Popover from "@radix-ui/react-popover";
 import customParseFormat from "dayjs/plugin/customParseFormat";
-import { v4 as uuidv4 } from "uuid";
 dayjs.extend(customParseFormat);
 
 const getValueForPicker = (value, format) => dayjs(value, format.toUpperCase(), true);
@@ -58,7 +57,7 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
   ): JSX.Element => {
     const [innerValue, setInnerValue] = useState(defaultValue);
     const [isOpen, setIsOpen] = useState(false);
-    const [calendarId] = useState(`date-picker-${uuidv4()}`);
+    const calendarId = `date-picker-${useId()}`;
     const [dayjsDate, setDayjsDate] = useState(getValueForPicker(value ?? defaultValue ?? "", format));
     const [lastValidYear, setLastValidYear] = useState(
       innerValue || value

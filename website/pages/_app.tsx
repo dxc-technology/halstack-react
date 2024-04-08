@@ -95,10 +95,10 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
                       size="fillParent"
                       clearable
                       margin={{
-                        top: "small",
-                        bottom: "small",
-                        right: "xsmall",
-                        left: "xsmall",
+                        top: "large",
+                        bottom: "large",
+                        right: "medium",
+                        left: "medium",
                       }}
                     />
                   </DxcApplicationLayout.SideNav.Section>

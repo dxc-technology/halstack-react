@@ -1,10 +1,9 @@
-import React, { useState, useEffect, useRef, useCallback, useLayoutEffect } from "react";
+import React, { useState, useEffect, useRef, useCallback, useLayoutEffect, useId } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import DropdownPropsType from "./types";
 import { spaces } from "../common/variables";
 import { getMargin } from "../common/utils";
 import useTheme from "../useTheme";
-import { v4 as uuidv4 } from "uuid";
 import * as Popover from "@radix-ui/react-popover";
 import DropdownMenu from "./DropdownMenu";
 import DxcIcon from "../icon/Icon";
@@ -44,8 +43,9 @@ const DxcDropdown = ({
   size = "fitContent",
   tabIndex = 0,
 }: DropdownPropsType): JSX.Element => {
-  const [triggerId] = useState(`trigger-${uuidv4()}`);
-  const menuId = `menu-${triggerId}`;
+  const id = useId();
+  const triggerId = `trigger-${id}`;
+  const menuId = `menu-${id}`;
   const [isOpen, changeIsOpen] = useState(false);
   const [visualFocusIndex, setVisualFocusIndex] = useState(0);
 
