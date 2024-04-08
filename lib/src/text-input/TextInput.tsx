@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useId, useRef, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
@@ -7,7 +7,6 @@ import { getMargin } from "../common/utils";
 import TextInputPropsType, { AutosuggestWrapperProps, RefType } from "./types";
 import Suggestions from "./Suggestions";
 import * as Popover from "@radix-ui/react-popover";
-import { v4 as uuidv4 } from "uuid";
 import DxcActionIcon from "../action-icon/ActionIcon";
 import DxcFlex from "../flex/Flex";
 import { NumberInputContext } from "../number-input/NumberInputContext";
@@ -109,7 +108,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
     },
     ref
   ): JSX.Element => {
-    const [inputId] = useState(`input-${uuidv4()}`);
+    const inputId = `input-${useId()}`;
     const autosuggestId = `suggestions-${inputId}`;
     const errorId = `error-${inputId}`;
 

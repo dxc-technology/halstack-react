@@ -22,13 +22,12 @@ const singleDisabledOptions = [
 
 describe("Radio Group component tests", () => {
   test("Initial render has correct aria attributes and tabIndex", () => {
-    const { getByRole, getAllByRole, getByText, container } = render(
+    const { getByRole, getAllByRole, getByText } = render(
       <DxcRadioGroup label="test-radioGroup-label" options={options} error="" />
     );
     const radioGroup = getByRole("radiogroup");
     const radios = getAllByRole("radio");
-    const errorId = `error-${getByText("test-radioGroup-label").id.replace("label-", "")}`;
-    const error = container.querySelector(`#${errorId}`);
+    const error = getByRole("alert");
     expect(radioGroup.getAttribute("aria-disabled")).toBe("false");
     expect(radioGroup.getAttribute("aria-labelledby")).toBe(getByText("test-radioGroup-label").id);
     expect(radioGroup.getAttribute("aria-invalid")).toBe("false");

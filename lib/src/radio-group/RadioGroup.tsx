@@ -1,7 +1,6 @@
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useId, useMemo, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import RadioGroupPropsType, { RefType, Option } from "./types";
-import { v4 as uuidv4 } from "uuid";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
 import DxcRadio from "./Radio";
@@ -32,7 +31,7 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
     },
     ref
   ): JSX.Element => {
-    const [radioGroupId] = useState(`radio-group-${uuidv4()}`);
+    const radioGroupId = `radio-group-${useId()}`;
     const radioGroupLabelId = `label-${radioGroupId}`;
     const errorId = `error-${radioGroupId}`;
 
