@@ -1,10 +1,9 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useId, useRef, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { getMargin } from "../common/utils";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
 import { spaces } from "../common/variables";
-import { v4 as uuidv4 } from "uuid";
 import TextareaPropsType, { RefType } from "./types";
 
 const patternMatch = (pattern, value) => new RegExp(pattern).test(value);
@@ -37,7 +36,7 @@ const DxcTextarea = React.forwardRef<RefType, TextareaPropsType>(
     ref
   ) => {
     const [innerValue, setInnerValue] = useState(defaultValue);
-    const [textareaId] = useState(`textarea-${uuidv4()}`);
+    const textareaId = `textarea-${useId()}`;
 
     const colorsTheme = useTheme();
     const translatedLabels = useTranslatedLabels();
