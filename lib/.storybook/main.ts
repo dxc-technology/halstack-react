@@ -13,6 +13,5 @@ const config: StorybookConfig = {
     name: "@storybook/react-vite",
     options: {},
   },
-  features: { buildStoriesJson: true },
 };
 export default config;

@@ -3,10 +3,22 @@ import DxcSlider from "./Slider";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import { HalstackProvider } from "../HalstackContext";
+import { disabledRules } from "../../test/accessibility/rules/specific/slider/disabledRules";
+import preview from "../../.storybook/preview";
 
 export default {
   title: "Slider",
   component: DxcSlider,
+  parameters: {
+    a11y: {
+      config: {
+        rules: [
+          ...disabledRules.map((ruleId) => ({ id: ruleId, reviewOnFail: true })),
+          ...preview?.parameters?.a11y?.config?.rules,
+        ],
+      },
+    },
+  },
 };
 
 const labelFormat = (value) => `${value}E100000000000000000000000`;
