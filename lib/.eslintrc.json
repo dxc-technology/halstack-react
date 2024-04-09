@@ -1,14 +1,12 @@
 {
   "env": {
     "jest/globals": true,
-    "browser": true,
-    "window": true
+    "browser": true
   },
   "extends": [
     "airbnb",
     "prettier",
     "plugin:jest/recommended",
-    "plugin:storybook/recommended",
     "plugin:storybook/recommended"
   ],
   "plugins": [
@@ -32,9 +30,9 @@
         ]
       }
     ],
-    "react/jsx-one-expression-per-line": "allow",
+    "react/jsx-one-expression-per-line": "off",
     "no-nested-ternary": "off",
-    "import/extensions": "allow",
+    "import/extensions": "off",
     "import/no-unresolved": [
       "error",
       {
@@ -52,7 +50,7 @@
         ]
       }
     ],
-    "react/self-closing-comp": "allow",
+    "react/self-closing-comp": "off",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "react/jsx-filename-extension": [
