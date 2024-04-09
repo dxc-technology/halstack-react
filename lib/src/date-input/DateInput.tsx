@@ -147,7 +147,6 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
     const handleDatePickerEscKeydown = (event: React.KeyboardEvent) => {
       if (event.key === "Escape") {
         event.preventDefault();
-        // Prevents propagation to interact properly with Modals closure
         event.stopPropagation();
         closeCalendar();
         dateRef?.current.getElementsByTagName("input")[0].focus();
