@@ -1,4 +1,5 @@
 {
+  "parser": "@typescript-eslint/parser",
   "env": {
     "jest/globals": true,
     "browser": true
@@ -7,11 +8,15 @@
     "airbnb",
     "prettier",
     "plugin:jest/recommended",
-    "plugin:storybook/recommended"
+    "plugin:storybook/recommended",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended"
   ],
   "plugins": [
     "jest",
-    "react-hooks"
+    "react-hooks",
+    "@typescript-eslint"
   ],
   "rules": {
     "linebreak-style": 0,
@@ -33,6 +38,15 @@
     "react/jsx-one-expression-per-line": "off",
     "no-nested-ternary": "off",
     "import/extensions": "off",
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+         "devDependencies":[
+          "**/*.@(test|stories).@(js|jsx|ts|tsx)",
+          "**/axe-helper.@(js|ts)"
+         ]
+      }
+    ],
     "import/no-unresolved": [
       "error",
       {
@@ -42,6 +56,7 @@
         ]
       }
     ],
+    "import/prefer-default-export": "off",
     "react/prop-types": [
       2,
       {
@@ -58,9 +73,19 @@
       {
         "extensions": [
           ".js",
-          ".jsx"
+          ".jsx",
+          ".ts",
+          ".tsx"
         ]
       }
     ]
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"],
+        "moduleDirectory": ["node_modules", "src"]
+      }
+    }
   }
 }
