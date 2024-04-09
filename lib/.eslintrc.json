@@ -19,11 +19,14 @@
     "@typescript-eslint"
   ],
   "rules": {
-    "linebreak-style": 0,
+    "class-methods-use-this": "warn",
+    "linebreak-style": "off",
     "no-use-before-define": [
       "error",
       {
-        "functions": false
+        "functions": false,
+        // TODO: Put Styled-Components variables in a separate file and import them
+        "variables": false
       }
     ],
     "no-underscore-dangle": [
@@ -57,8 +60,16 @@
       }
     ],
     "import/prefer-default-export": "off",
+    "jsx-a11y/no-noninteractive-tabindex": "warn",
+    "react/function-component-definition": [
+      "error",
+      {
+        "namedComponents": "arrow-function",
+        "unnamedComponents": "arrow-function"
+      }
+    ],
     "react/prop-types": [
-      2,
+      "error",
       {
         "ignore": [
           "children"
@@ -69,7 +80,7 @@
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "react/jsx-filename-extension": [
-      1,
+      "warn",
       {
         "extensions": [
           ".js",
@@ -78,7 +89,10 @@
           ".tsx"
         ]
       }
-    ]
+    ],
+    "react/jsx-props-no-spreading": "off",
+    "react/no-array-index-key": "warn",
+    "react/require-default-props": "off"
   },
   "settings": {
     "import/resolver": {

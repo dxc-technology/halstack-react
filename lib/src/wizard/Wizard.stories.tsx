@@ -162,8 +162,8 @@ const opinionatedTheme = {
   },
 };
 
-export function Chromatic() {
-  return <>
+export const Chromatic = () => (
+  <>
     <ExampleContainer>
       <Title
         title="Current step in the third step, labels and description"
@@ -307,14 +307,14 @@ export function Chromatic() {
       </HalstackProvider>
     </ExampleContainer>
   </>
-}
+);
 
-function WizardSelected() {
-  return <ExampleContainer>
+const WizardSelected = () => (
+  <ExampleContainer>
     <Title title="Clicked step" theme="light" level={4} />
     <DxcWizard steps={stepWithLabel} mode="vertical"></DxcWizard>
   </ExampleContainer>
-}
+);
 
 export const WizardStepActived = WizardSelected.bind({});
 WizardStepActived.play = async ({ canvasElement }) => {

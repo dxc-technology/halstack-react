@@ -4,9 +4,13 @@
 import { configureAxe } from "jest-axe";
 import { disabledRules } from "./rules/common/disabledRules";
 
-export const axe = configureAxe({
-  rules: disabledRules.reduce((rulesObj, rule) => ({
+export const formatRules = (rules: string[]) => (
+  rules.reduce((rulesObj, rule) => ({
     ...rulesObj,
     [rule]: { enabled: false }
-  }), {}),
+  }), {})
+) 
+
+export const axe = configureAxe({
+  rules: formatRules(disabledRules)
 });

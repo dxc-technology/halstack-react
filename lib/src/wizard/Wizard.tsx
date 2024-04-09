@@ -7,7 +7,12 @@ import DxcIcon from "../icon/Icon";
 
 const icons = {
   validIcon: (
-    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="18"
+      height="18"
+      viewBox="0 0 18 18"
+    >
       <path data-name="Path 2946" d="M0,0H18V18H0Z" fill="none" />
       <path
         data-name="Path 2947"
@@ -25,7 +30,12 @@ const icons = {
     </svg>
   ),
   invalidIcon: (
-    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="18"
+      height="18"
+      viewBox="0 0 18 18"
+    >
       <path data-name="Path 2943" d="M0,0H18V18H0Z" fill="none" />
       <path
         data-name="Path 2944"
@@ -52,7 +62,9 @@ const DxcWizard = ({
   margin,
   tabIndex = 0,
 }: WizardPropsType): JSX.Element => {
-  const [innerCurrent, setInnerCurrentStep] = useState(currentStep ?? defaultCurrentStep ?? 0);
+  const [innerCurrent, setInnerCurrentStep] = useState(
+    currentStep ?? defaultCurrentStep ?? 0
+  );
   const renderedCurrent = currentStep == null ? innerCurrent : currentStep;
   const colorsTheme = useTheme();
 
@@ -70,7 +82,11 @@ const DxcWizard = ({
     <ThemeProvider theme={colorsTheme.wizard}>
       <StepsContainer mode={mode} margin={margin} role="group">
         {steps?.map((step, i) => (
-          <StepContainer key={`step${i}`} mode={mode} lastStep={i === steps?.length - 1}>
+          <StepContainer
+            key={`step${i}`}
+            mode={mode}
+            lastStep={steps && i === (steps?.length || 0) - 1}
+          >
             <Step
               onClick={() => {
                 handleStepClick(i);
@@ -78,12 +94,16 @@ const DxcWizard = ({
               disabled={step.disabled}
               mode={mode}
               first={i === 0}
-              last={i === steps?.length - 1}
+              last={i === (steps?.length || 0) - 1}
               aria-current={renderedCurrent === i ? "step" : "false"}
               tabIndex={tabIndex}
             >
               <StepHeader validityIcon={step.valid !== undefined}>
-                <IconContainer current={i === renderedCurrent} visited={i < renderedCurrent} disabled={step.disabled}>
+                <IconContainer
+                  current={i === renderedCurrent}
+                  visited={i < renderedCurrent}
+                  disabled={step.disabled}
+                >
                   {step.icon ? (
                     typeof step.icon === "string" ? (
                       <DxcIcon icon={step.icon} />
@@ -96,20 +116,32 @@ const DxcWizard = ({
                 </IconContainer>
                 {step.valid !== undefined &&
                   (step.valid ? (
-                    <ValidityIconContainer>{icons.validIcon}</ValidityIconContainer>
+                    <ValidityIconContainer>
+                      {icons.validIcon}
+                    </ValidityIconContainer>
                   ) : (
-                    <ValidityIconContainer>{icons.invalidIcon}</ValidityIconContainer>
+                    <ValidityIconContainer>
+                      {icons.invalidIcon}
+                    </ValidityIconContainer>
                   ))}
               </StepHeader>
               {(step.label || step.description) && (
                 <InfoContainer>
                   {step.label && (
-                    <Label current={i === renderedCurrent} disabled={step.disabled} visited={i <= innerCurrent}>
+                    <Label
+                      current={i === renderedCurrent}
+                      disabled={step.disabled}
+                      visited={i <= innerCurrent}
+                    >
                       {step.label}
                     </Label>
                   )}
                   {step.description && (
-                    <Description current={i === renderedCurrent} disabled={step.disabled} visited={i <= innerCurrent}>
+                    <Description
+                      current={i === renderedCurrent}
+                      disabled={step.disabled}
+                      visited={i <= innerCurrent}
+                    >
                       {step.description}
                     </Description>
                   )}
@@ -124,24 +156,41 @@ const DxcWizard = ({
   );
 };
 
-const StepsContainer = styled.div<{ mode: WizardPropsType["mode"]; margin: WizardPropsType["margin"] }>`
+const StepsContainer = styled.div<{
+  mode: WizardPropsType["mode"];
+  margin: WizardPropsType["margin"];
+}>`
   display: flex;
   flex-direction: ${(props) => (props.mode === "vertical" ? "column" : "row")};
   justify-content: center;
   ${(props) => props.mode === "vertical" && "height: 500px"};
   font-family: ${(props) => props.theme.fontFamily};
-  margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
+  margin: ${(props) =>
+    props.margin && typeof props.margin !== "object"
+      ? spaces[props.margin]
+      : "0px"};
   margin-top: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
+    props.margin && typeof props.margin === "object" && props.margin.top
+      ? spaces[props.margin.top]
+      : ""};
   margin-right: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
+    props.margin && typeof props.margin === "object" && props.margin.right
+      ? spaces[props.margin.right]
+      : ""};
   margin-bottom: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
+    props.margin && typeof props.margin === "object" && props.margin.bottom
+      ? spaces[props.margin.bottom]
+      : ""};
   margin-left: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
+    props.margin && typeof props.margin === "object" && props.margin.left
+      ? spaces[props.margin.left]
+      : ""};
 `;
 
-const StepContainer = styled.div<{ mode: WizardPropsType["mode"]; lastStep: boolean }>`
+const StepContainer = styled.div<{
+  mode: WizardPropsType["mode"];
+  lastStep: boolean;
+}>`
   display: inline-flex;
   ${(props) => props.mode !== "vertical" && "align-items: center;"}
   flex-grow: ${(props) => (props.lastStep ? "0" : "1")};
@@ -167,12 +216,12 @@ const Step = styled.button<{
         ? "0 0 24px 0"
         : "0 24px 0 0"
       : props.last
-      ? props.mode === "vertical"
-        ? "24px 0 0 0"
-        : "0 0 0 24px"
-      : props.mode === "vertical"
-      ? "24px 0"
-      : "0 24px"};
+        ? props.mode === "vertical"
+          ? "24px 0 0 0"
+          : "0 0 0 24px"
+        : props.mode === "vertical"
+          ? "24px 0"
+          : "0 24px"};
 
   padding: 0px;
   ${(props) => (props.disabled ? "cursor: not-allowed" : "")};
@@ -191,38 +240,42 @@ const StepHeader = styled.div<{ validityIcon: boolean }>`
   ${(props) => props.validityIcon && "padding-bottom: 4px;"}
 `;
 
-const IconContainer = styled.div<{ current: boolean; visited: boolean; disabled: StepProps["disabled"] }>`
+const IconContainer = styled.div<{
+  current: boolean;
+  visited: boolean;
+  disabled: StepProps["disabled"];
+}>`
   width: ${(props) =>
     props.disabled
       ? props.theme.disabledStepWidth
       : props.current
-      ? props.theme.selectedStepWidth
-      : props.theme.stepWidth};
+        ? props.theme.selectedStepWidth
+        : props.theme.stepWidth};
   height: ${(props) =>
     props.disabled
       ? props.theme.disabledStepHeight
       : props.current
-      ? props.theme.selectedStepHeight
-      : props.theme.stepHeight};
+        ? props.theme.selectedStepHeight
+        : props.theme.stepHeight};
 
   ${(props) => `
     ${
       props.disabled
         ? `border: ${props.theme.disabledStepBorderThickness} ${props.theme.disabledStepBorderStyle} ${props.theme.disabledStepBorderColor};`
         : props.current
-        ? `border: ${props.theme.selectedStepBorderThickness} ${props.theme.selectedStepBorderStyle} ${props.theme.selectedStepBorderColor};`
-        : props.visited
-        ? `border: ${props.theme.stepBorderThickness} ${props.theme.stepBorderStyle} ${props.theme.visitedStepBorderColor};`
-        : `border: ${props.theme.stepBorderThickness} ${props.theme.stepBorderStyle} ${props.theme.unvisitedStepBorderColor};`
+          ? `border: ${props.theme.selectedStepBorderThickness} ${props.theme.selectedStepBorderStyle} ${props.theme.selectedStepBorderColor};`
+          : props.visited
+            ? `border: ${props.theme.stepBorderThickness} ${props.theme.stepBorderStyle} ${props.theme.visitedStepBorderColor};`
+            : `border: ${props.theme.stepBorderThickness} ${props.theme.stepBorderStyle} ${props.theme.unvisitedStepBorderColor};`
     }
     background: ${
       props.disabled
         ? `${props.theme.disabledStepBackgroundColor}`
         : props.current
-        ? `${props.theme.selectedStepBackgroundColor}`
-        : !props.visited
-        ? `${props.theme.unvisitedStepBackgroundColor}`
-        : `${props.theme.visitedStepBackgroundColor}`
+          ? `${props.theme.selectedStepBackgroundColor}`
+          : !props.visited
+            ? `${props.theme.unvisitedStepBackgroundColor}`
+            : `${props.theme.visitedStepBackgroundColor}`
     };
   `}
   ${(props) =>
@@ -232,18 +285,18 @@ const IconContainer = styled.div<{ current: boolean; visited: boolean; disabled:
           props.current
             ? props.theme.selectedStepFontColor
             : !props.visited
-            ? props.theme.unvisitedStepFontColor
-            : props.theme.visitedStepFontColor
+              ? props.theme.unvisitedStepFontColor
+              : props.theme.visitedStepFontColor
         };`};
 
   border-radius: ${(props) =>
     !props.current && !props.disabled
       ? props.theme.stepBorderRadius
       : props.current
-      ? props.theme.selectedStepBorderRadius
-      : props.disabled
-      ? props.theme.disabledStepBorderRadius
-      : ""};
+        ? props.theme.selectedStepBorderRadius
+        : props.disabled
+          ? props.theme.disabledStepBorderRadius
+          : ""};
 
   display: flex;
   justify-content: center;
@@ -278,7 +331,11 @@ const InfoContainer = styled.div`
   margin-left: 12px;
 `;
 
-const Label = styled.p<{ current: boolean; visited: boolean; disabled: StepProps["disabled"] }>`
+const Label = styled.p<{
+  current: boolean;
+  visited: boolean;
+  disabled: StepProps["disabled"];
+}>`
   text-align: ${(props) => props.theme.labelTextAlign};
   font-family: ${(props) => props.theme.labelFontFamily};
   font-size: ${(props) => props.theme.labelFontSize};
@@ -292,14 +349,18 @@ const Label = styled.p<{ current: boolean; visited: boolean; disabled: StepProps
           !props.visited
             ? props.theme.unvisitedLabelFontColor
             : props.current
-            ? props.theme.selectedLabelFontColor
-            : props.theme.visitedLabelFontColor
+              ? props.theme.selectedLabelFontColor
+              : props.theme.visitedLabelFontColor
         };`};
   text-transform: ${(props) => props.theme.labelFontTextTransform};
   margin: 0;
 `;
 
-const Description = styled.p<{ current: boolean; visited: boolean; disabled: StepProps["disabled"] }>`
+const Description = styled.p<{
+  current: boolean;
+  visited: boolean;
+  disabled: StepProps["disabled"];
+}>`
   text-align: ${(props) => props.theme.helperTextTextAlign};
   font-family: ${(props) => props.theme.helperTextFontFamily};
   font-size: ${(props) => props.theme.helperTextFontSize};
@@ -314,8 +375,8 @@ const Description = styled.p<{ current: boolean; visited: boolean; disabled: Ste
           !props.visited
             ? props.theme.unvisitedHelperTextFontColor
             : props.current
-            ? props.theme.selectedHelperTextFontColor
-            : props.theme.visitedHelperTextFontColor
+              ? props.theme.selectedHelperTextFontColor
+              : props.theme.visitedHelperTextFontColor
         };`};
   margin: 0;
 `;
