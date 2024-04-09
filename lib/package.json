@@ -25,8 +25,8 @@
   },
   "scripts": {
     "prepare": "cd .. && husky ./lib/.husky",
-    "test": "jest --env=jsdom --config=./jest.config.js",
-    "test:accessibility": "jest --env=jsdom --config=./jest.config.accessibility.js",
+    "test": "jest --env=jsdom --config=./jest.config.ts",
+    "test:accessibility": "jest --env=jsdom --config=./jest.config.accessibility.ts",
     "test:watch": "npm test -- --watch --coverage",
     "build": "babel src --extensions .js,.jsx,.ts,.tsx --out-dir ../dist --copy-files --verbose && node ../scripts/build/copy-package.js && node ../scripts/build/copy-readme.js && tsc ",
     "build:watch": "babel src --watch --extensions .js,.jsx,.ts,.tsx --out-dir ../dist --copy-files --verbose",
@@ -89,6 +89,7 @@
     "storybook": "^7.5.3",
     "storybook-addon-pseudo-states": "^3.0.1",
     "styled-components": "^5.0.1",
+    "ts-node": "^10.9.2",
     "typescript": "^5.3.3"
   },
   "lint-staged": {

@@ -46,7 +46,8 @@
       {
          "devDependencies":[
           "**/*.@(test|stories).@(js|jsx|ts|tsx)",
-          "**/axe-helper.@(js|ts)"
+          "**/axe-helper.@(js|ts)",
+          "**/setupJestAxe.@(js|ts)"
          ]
       }
     ],
