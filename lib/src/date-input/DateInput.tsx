@@ -53,7 +53,7 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
       size,
       tabIndex,
     },
-    ref
+    ref,
   ): JSX.Element => {
     const [innerValue, setInnerValue] = useState(defaultValue);
     const [isOpen, setIsOpen] = useState(false);
@@ -64,7 +64,7 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
         ? !format.toUpperCase().includes("YYYY") && +getValueForPicker(value ?? innerValue, format).format("YY") < 68
           ? 2000
           : 1900
-        : undefined
+        : undefined,
     );
     const colorsTheme = useTheme();
     const translatedLabels = useTranslatedLabels();
@@ -146,7 +146,7 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
     const handleDatePickerEscKeydown = (event: React.KeyboardEvent) => {
       if (event.key === "Escape") {
         event.preventDefault();
-        event.stopPropagation();
+        isOpen && event.stopPropagation();
         closeCalendar();
         dateRef?.current.getElementsByTagName("input")[0].focus();
       }
@@ -202,7 +202,7 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
         </div>
       </ThemeProvider>
     );
-  }
+  },
 );
 
 const StyledPopoverContent = styled(Popover.Content)`

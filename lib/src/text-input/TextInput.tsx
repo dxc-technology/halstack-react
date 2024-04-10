@@ -33,7 +33,7 @@ const makeCancelable = (promise) => {
   const wrappedPromise = new Promise<string[]>((resolve, reject) => {
     promise.then(
       (val) => (hasCanceled_ ? reject({ isCanceled: true }) : resolve(val)),
-      (promiseError) => (hasCanceled_ ? reject({ isCanceled: true }) : reject(promiseError))
+      (promiseError) => (hasCanceled_ ? reject({ isCanceled: true }) : reject(promiseError)),
     );
   });
   return {
@@ -106,7 +106,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
       size = "medium",
       tabIndex = 0,
     },
-    ref
+    ref,
   ): JSX.Element => {
     const inputId = `input-${useId()}`;
     const autosuggestId = `suggestions-${inputId}`;
@@ -269,7 +269,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
         case "Esc":
         case "Escape":
           event.preventDefault();
-          event.stopPropagation();
+          isOpen && event.stopPropagation();
           if (hasSuggestions(suggestions)) {
             changeValue("");
             isOpen && closeSuggestions();
@@ -337,7 +337,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
         };
       } else if (suggestions?.length > 0) {
         changeFilteredSuggestions(
-          suggestions.filter((suggestion) => suggestion.toUpperCase().startsWith((value ?? innerValue).toUpperCase()))
+          suggestions.filter((suggestion) => suggestion.toUpperCase().startsWith((value ?? innerValue).toUpperCase())),
         );
         changeVisualFocusIndex(-1);
       }
@@ -347,7 +347,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
           numberInputContext.typeNumber,
           numberInputContext.minNumber,
           numberInputContext.maxNumber,
-          numberInputContext.stepNumber
+          numberInputContext.stepNumber,
         );
     }, [value, innerValue, suggestions, numberInputContext]);
 
@@ -506,7 +506,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
         </TextInputContainer>
       </ThemeProvider>
     );
-  }
+  },
 );
 
 const TextInputContainer = styled.div<{ margin: TextInputPropsType["margin"]; size: TextInputPropsType["size"] }>`
@@ -590,8 +590,8 @@ const InputContainer = styled.div<{
           props.error
             ? "transparent"
             : props.readOnly
-            ? props.theme.hoverReadOnlyBorderColor
-            : props.theme.hoverBorderColor
+              ? props.theme.hoverReadOnlyBorderColor
+              : props.theme.hoverBorderColor
         };
         ${props.error ? `box-shadow: 0 0 0 2px ${props.theme.hoverErrorBorderColor};` : ""}
       }
