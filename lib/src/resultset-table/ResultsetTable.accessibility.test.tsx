@@ -5,7 +5,6 @@ import DxcResultsetTable from "./ResultsetTable";
 
 // TODO: REMOVE
 import { disabledRules as rules } from "../../test/accessibility/rules/specific/resultset-table/disabledRules.js";
-import { ActionCellsPropsType } from "../table/types.js";
 
 const disabledRules = {
   rules: rules.reduce((rulesObj, rule) => {
