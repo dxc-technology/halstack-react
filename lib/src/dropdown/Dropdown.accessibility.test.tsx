@@ -58,6 +58,7 @@ describe("Dropdown component accessibility tests", () => {
         margin="medium"
         size="medium"
         optionsIconPosition="before"
+        onSelectOption={() => {}}
       />
     );
     const results = await axe(baseElement);
@@ -74,6 +75,7 @@ describe("Dropdown component accessibility tests", () => {
         margin="medium"
         size="medium"
         optionsIconPosition="before"
+        onSelectOption={() => {}}
         disabled
       />
     );
@@ -91,6 +93,7 @@ describe("Dropdown component accessibility tests", () => {
         margin="medium"
         size="medium"
         optionsIconPosition="after"
+        onSelectOption={() => {}}
         caretHidden
       />
     );
@@ -108,6 +111,7 @@ describe("Dropdown component accessibility tests", () => {
         margin="medium"
         size="medium"
         optionsIconPosition="after"
+        onSelectOption={() => {}}
         expandOnHover
       />
     );

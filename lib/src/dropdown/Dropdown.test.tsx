@@ -35,7 +35,10 @@ const options = [
 
 describe("Dropdown component tests", () => {
   test("Renders with correct aria attributes", async () => {
-    const { getAllByRole, getByRole } = render(<DxcDropdown options={options} label="dropdown-test" />);
+    const onSelectOption = jest.fn();
+    const { getAllByRole, getByRole } = render(
+      <DxcDropdown options={options} label="dropdown-test" onSelectOption={onSelectOption} />
+    );
     const dropdown = getByRole("button");
     expect(dropdown.getAttribute("aria-haspopup")).toBe("true");
     expect(dropdown.getAttribute("aria-expanded")).toBeNull();
@@ -51,7 +54,10 @@ describe("Dropdown component tests", () => {
   });
 
   test("Button trigger opens and closes the menu options when clicked", async () => {
-    const { getByRole, queryByRole, getByText } = render(<DxcDropdown options={options} label="dropdown-test" />);
+    const onSelectOption = jest.fn();
+    const { getByRole, queryByRole, getByText } = render(
+      <DxcDropdown options={options} label="dropdown-test" onSelectOption={onSelectOption} />
+    );
     const dropdown = getByRole("button");
     expect(queryByRole("menu")).toBeFalsy();
     await userEvent.click(dropdown);
@@ -65,8 +71,9 @@ describe("Dropdown component tests", () => {
   });
 
   test("Button trigger is not interactive when disabled", async () => {
+    const onSelectOption = jest.fn();
     const { getByRole, queryByRole, queryByText } = render(
-      <DxcDropdown disabled options={options} label="dropdown-test" />
+      <DxcDropdown disabled options={options} label="dropdown-test" onSelectOption={onSelectOption} />
     );
     const dropdown = getByRole("button");
     expect(queryByRole("menu")).toBeFalsy();
@@ -91,8 +98,9 @@ describe("Dropdown component tests", () => {
   });
 
   test("When expandOnHover is true, the dropdown trigger shows and hides the menu when it is hovered", () => {
+    const onSelectOption = jest.fn();
     const { queryByText, getByRole, queryByRole } = render(
-      <DxcDropdown options={options} expandOnHover label="dropdown-test" />
+      <DxcDropdown options={options} expandOnHover label="dropdown-test" onSelectOption={onSelectOption} />
     );
     expect(queryByText("option-test")).toBeFalsy();
     expect(queryByRole("menu")).toBeFalsy();
@@ -104,7 +112,10 @@ describe("Dropdown component tests", () => {
   });
 
   test("The menu is closed when the dropdown loses the focus (blur)", async () => {
-    const { getByRole, queryByRole } = render(<DxcDropdown options={options} label="dropdown-test" />);
+    const onSelectOption = jest.fn();
+    const { getByRole, queryByRole } = render(
+      <DxcDropdown options={options} label="dropdown-test" onSelectOption={onSelectOption} />
+    );
     const dropdown = getByRole("button");
     await userEvent.click(dropdown);
     expect(getByRole("menu")).toBeTruthy();
@@ -113,7 +124,10 @@ describe("Dropdown component tests", () => {
   });
 
   test("Menu button key events - Arrow up opens the list and moves the focus to the last menu item", () => {
-    const { getByRole } = render(<DxcDropdown options={options} label="dropdown-test" />);
+    const onSelectOption = jest.fn();
+    const { getByRole } = render(
+      <DxcDropdown options={options} label="dropdown-test" onSelectOption={onSelectOption} />
+    );
     const dropdown = getByRole("button");
     fireEvent.keyDown(dropdown, { key: "ArrowUp", code: "ArrowUp", keyCode: 38, charCode: 38 });
     const menu = getByRole("menu");
@@ -123,7 +137,10 @@ describe("Dropdown component tests", () => {
   });
 
   test("Menu button key events - Arrow down opens the list and moves the focus to the first menu item", () => {
-    const { getByRole } = render(<DxcDropdown options={options} label="dropdown-test" />);
+    const onSelectOption = jest.fn();
+    const { getByRole } = render(
+      <DxcDropdown options={options} label="dropdown-test" onSelectOption={onSelectOption} />
+    );
     const dropdown = getByRole("button");
     fireEvent.keyDown(dropdown, { key: "ArrowDown", code: "ArrowDown", keyCode: 40, charCode: 40 });
     const menu = getByRole("menu");
@@ -133,7 +150,10 @@ describe("Dropdown component tests", () => {
   });
 
   test("Menu button key events - Enter opens the list and moves the focus to the first menu item", () => {
-    const { getByRole } = render(<DxcDropdown options={options} label="dropdown-test" />);
+    const onSelectOption = jest.fn();
+    const { getByRole } = render(
+      <DxcDropdown options={options} label="dropdown-test" onSelectOption={onSelectOption} />
+    );
     const dropdown = getByRole("button");
     fireEvent.keyDown(dropdown, { key: "Enter", code: "Enter", keyCode: 13, charCode: 13 });
     const menu = getByRole("menu");
@@ -143,7 +163,10 @@ describe("Dropdown component tests", () => {
   });
 
   test("Menu button key events - Space opens the list and moves the focus to the first menu item", () => {
-    const { getByRole } = render(<DxcDropdown options={options} label="dropdown-test" />);
+    const onSelectOption = jest.fn();
+    const { getByRole } = render(
+      <DxcDropdown options={options} label="dropdown-test" onSelectOption={onSelectOption} />
+    );
     const dropdown = getByRole("button");
     fireEvent.keyDown(dropdown, { key: " ", code: "Space", keyCode: 32, charCode: 32 });
     const menu = getByRole("menu");
@@ -222,7 +245,10 @@ describe("Dropdown component tests", () => {
   });
 
   test("Menu key events - Esc closes the menu and sets focus on the menu button", async () => {
-    const { getByRole, queryByRole } = render(<DxcDropdown options={options} label="dropdown-test" />);
+    const onSelectOption = jest.fn();
+    const { getByRole, queryByRole } = render(
+      <DxcDropdown options={options} label="dropdown-test" onSelectOption={onSelectOption} />
+    );
     await userEvent.click(getByRole("button"));
     fireEvent.keyDown(getByRole("menu"), { key: "Esc", code: "Esc", keyCode: 27, charCode: 27 });
     expect(queryByRole("menu")).toBeFalsy();
@@ -230,7 +256,10 @@ describe("Dropdown component tests", () => {
   });
 
   test("Menu key events - Home moves the focus to the first menu item", () => {
-    const { getByRole } = render(<DxcDropdown options={options} label="dropdown-test-1" />);
+    const onSelectOption = jest.fn();
+    const { getByRole } = render(
+      <DxcDropdown options={options} label="dropdown-test-1" onSelectOption={onSelectOption} />
+    );
     fireEvent.keyDown(getByRole("button"), { key: "ArrowUp", code: "ArrowUp", keyCode: 38, charCode: 38 });
     const menu = getByRole("menu");
     expect(menu.getAttribute("aria-activedescendant")).toBe(`${menu.id}-option-3`);
@@ -239,7 +268,10 @@ describe("Dropdown component tests", () => {
   });
 
   test("Menu key events - End moves the focus to the last menu item", async () => {
-    const { getByRole } = render(<DxcDropdown options={options} label="dropdown-test-1" />);
+    const onSelectOption = jest.fn();
+    const { getByRole } = render(
+      <DxcDropdown options={options} label="dropdown-test-1" onSelectOption={onSelectOption} />
+    );
     await userEvent.click(getByRole("button"));
     const menu = getByRole("menu");
     expect(menu.getAttribute("aria-activedescendant")).toBe(`${menu.id}-option-0`);
@@ -248,7 +280,10 @@ describe("Dropdown component tests", () => {
   });
 
   test("Menu key events - PageUp moves the focus to the first menu item", () => {
-    const { getByRole } = render(<DxcDropdown options={options} label="dropdown-test-1" />);
+    const onSelectOption = jest.fn();
+    const { getByRole } = render(
+      <DxcDropdown options={options} label="dropdown-test-1" onSelectOption={onSelectOption} />
+    );
     fireEvent.keyDown(getByRole("button"), { key: "ArrowUp", code: "ArrowUp", keyCode: 38, charCode: 38 });
     const menu = getByRole("menu");
     expect(menu.getAttribute("aria-activedescendant")).toBe(`${menu.id}-option-3`);
@@ -257,7 +292,10 @@ describe("Dropdown component tests", () => {
   });
 
   test("Menu key events - PageDown moves the focus to the last menu item", async () => {
-    const { getByRole } = render(<DxcDropdown options={options} label="dropdown-test-1" />);
+    const onSelectOption = jest.fn();
+    const { getByRole } = render(
+      <DxcDropdown options={options} label="dropdown-test-1" onSelectOption={onSelectOption} />
+    );
     await userEvent.click(getByRole("button"));
     const menu = getByRole("menu");
     expect(menu.getAttribute("aria-activedescendant")).toBe(`${menu.id}-option-0`);
@@ -266,7 +304,10 @@ describe("Dropdown component tests", () => {
   });
 
   test("Menu key events - Tab closes the menu and sets focus to the next element", async () => {
-    const { getByRole, queryByRole } = render(<DxcDropdown options={options} label="dropdown-test-1" />);
+    const onSelectOption = jest.fn();
+    const { getByRole, queryByRole } = render(
+      <DxcDropdown options={options} label="dropdown-test-1" onSelectOption={onSelectOption} />
+    );
     const dropdown = getByRole("button");
     await userEvent.click(dropdown);
     expect(getByRole("menu")).toBeTruthy();

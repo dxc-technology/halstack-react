@@ -61,7 +61,7 @@ type Props = {
    * This function will be called every time the selection changes.
    * The value of the selected option will be passed as a parameter.
    */
-  onSelectOption?: (value: string) => void;
+  onSelectOption: (value: string) => void;
   /**
    * Size of the margin to be applied to the component.
    * You can pass an object with 'top', 'bottom', 'left' and 'right'
