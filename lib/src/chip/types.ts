@@ -8,31 +8,60 @@ type Margin = {
 
 type SVG = React.ReactNode & React.SVGProps<SVGSVGElement>;
 
+type Icon = string | SVG;
+
+type PrefixIconProps =
+  | {
+      /**
+       * Element or path used as icon to be placed before the chip label.
+       */
+      prefixIcon: Icon;
+      /**
+       * This function will be called when the prefix is clicked.
+       */
+      onClickPrefix: () => void;
+      /**
+       * Element or path used as icon to be placed after the chip label.
+       */
+      suffixIcon?: Icon;
+      /**
+       * This function will be called when the suffix is clicked.
+       */
+      onClickSuffix?: never;
+      /**
+       * If true, the action icon will be disabled.
+       */
+      disabled?: boolean;
+    }
+  | {
+      prefixIcon?: Icon;
+      onClickPrefix?: never;
+      suffixIcon?: never;
+      onClickSuffix?: () => void;
+      disabled?: never;
+    };
+
+type SuffixIconProps =
+  | {
+      suffixIcon: Icon;
+      onClickSuffix: () => void;
+      prefixIcon?: Icon;
+      onClickPrefix?: never;
+      disabled?: boolean;
+    }
+  | {
+      suffixIcon?: Icon;
+      onClickSuffix?: never;
+      prefixIcon?: never;
+      onClickPrefix?: () => void;
+      disabled?: never;
+    };
+
 type Props = {
   /**
    * Text to be placed on the chip.
    */
   label?: string;
-  /**
-   * Element or path used as icon to be placed after the chip label.
-   */
-  suffixIcon?: string | SVG;
-  /**
-   * Element or path used as icon to be placed before the chip label.
-   */
-  prefixIcon?: string | SVG;
-  /**
-   * This function will be called when the suffix is clicked.
-   */
-  onClickSuffix?: () => void;
-  /**
-   * This function will be called when the prefix is clicked.
-   */
-  onClickPrefix?: () => void;
-  /**
-   * If true, the component will be disabled.
-   */
-  disabled?: boolean;
   /**
    * Size of the margin to be applied to the component ('xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge').
    * You can pass an object with 'top', 'bottom', 'left' and 'right' properties in order to specify different margin sizes.
@@ -42,6 +71,6 @@ type Props = {
    * Value of the tabindex attribute.
    */
   tabIndex?: number;
-};
+} & (PrefixIconProps | SuffixIconProps);
 
 export default Props;

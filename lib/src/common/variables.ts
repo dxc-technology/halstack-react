@@ -193,7 +193,6 @@ export const componentTokens = {
   },
   chip: {
     backgroundColor: CoreTokens.color_grey_200,
-    disabledBackgroundColor: CoreTokens.color_grey_100,
     fontFamily: CoreTokens.type_sans,
     fontSize: CoreTokens.type_scale_03,
     fontStyle: CoreTokens.type_normal,

@@ -20,7 +20,7 @@ const DxcChip = ({
 
   return (
     <ThemeProvider theme={colorsTheme.chip}>
-      <Chip disabled={disabled} margin={margin}>
+      <Chip margin={margin}>
         {prefixIcon && (
           <IconContainer
             role={typeof onClickPrefix === "function" ? "button" : undefined}
@@ -28,12 +28,12 @@ const DxcChip = ({
             disabled={disabled}
             interactuable={typeof onClickPrefix === "function" && !disabled}
             tabIndex={typeof onClickPrefix === "function" && !disabled ? tabIndex : -1}
-            onClick={() => onClickPrefix && !disabled && onClickPrefix()}
+            onClickPrefix={onClickPrefix}
           >
             {typeof prefixIcon === "string" ? <DxcIcon icon={prefixIcon} /> : prefixIcon}
           </IconContainer>
         )}
-        {label && <LabelContainer disabled={disabled}>{label}</LabelContainer>}
+        {label && <LabelContainer>{label}</LabelContainer>}
         {suffixIcon && (
           <IconContainer
             role={typeof onClickSuffix === "function" ? "button" : undefined}
@@ -41,7 +41,7 @@ const DxcChip = ({
             disabled={disabled}
             interactuable={typeof onClickSuffix === "function" && !disabled}
             tabIndex={typeof onClickSuffix === "function" && !disabled ? tabIndex : -1}
-            onClick={() => !disabled && onClickSuffix?.()}
+            onClickSuffix={onClickSuffix}
           >
             {typeof suffixIcon === "string" ? <DxcIcon icon={suffixIcon} /> : suffixIcon}
           </IconContainer>
@@ -54,15 +54,14 @@ const DxcChip = ({
 const calculateWidth = (margin: ChipPropsType["margin"]) =>
   `calc(100% - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`;
 
-const Chip = styled.div<{ margin: ChipPropsType["margin"]; disabled: ChipPropsType["disabled"] }>`
+const Chip = styled.div<{ margin: ChipPropsType["margin"] }>`
   box-sizing: border-box;
   display: inline-flex;
   align-items: center;
   gap: ${(props) => props.theme.iconSpacing};
   min-height: 40px;
   max-width: ${(props) => calculateWidth(props.margin)};
-  background-color: ${(props) =>
-    (props.disabled && props.theme.disabledBackgroundColor) || props.theme.backgroundColor};
+  background-color: ${(props) => props.theme.backgroundColor};
   border-radius: ${(props) => props.theme.borderRadius};
   border-width: ${(props) => props.theme.borderThickness};
   border-style: ${(props) => props.theme.borderStyle};
@@ -81,15 +80,14 @@ const Chip = styled.div<{ margin: ChipPropsType["margin"]; disabled: ChipPropsTy
     props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
   margin-left: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
-  cursor: ${({ disabled }) => disabled && "not-allowed"};
 `;
 
-const LabelContainer = styled.span<{ disabled: ChipPropsType["disabled"] }>`
+const LabelContainer = styled.span`
   font-size: ${(props) => props.theme.fontSize};
   font-family: ${(props) => props.theme.fontFamily};
   font-weight: ${(props) => props.theme.fontWeight};
   font-style: ${(props) => props.theme.fontStyle};
-  color: ${(props) => (props.disabled ? props.theme.disabledFontColor : props.theme.fontColor)};
+  color: ${(props) => props.theme.fontColor};
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -97,13 +95,22 @@ const LabelContainer = styled.span<{ disabled: ChipPropsType["disabled"] }>`
 
 const IconContainer = styled.div<{
   disabled: ChipPropsType["disabled"];
+  onClickPrefix?: ChipPropsType["onClickPrefix"];
+  onClickSuffix?: ChipPropsType["onClickSuffix"];
   interactuable: boolean;
 }>`
   display: flex;
   border-radius: 0.25rem;
-  color: ${(props) => (props.disabled ? props.theme.disabledIconColor : props.theme.iconColor)};
-  ${({ interactuable }) => interactuable && "cursor: pointer;"}
-
+  color: ${(props) =>
+    props.disabled && (props.onClickPrefix || props.onClickSuffix)
+      ? props.theme.disabledIconColor
+      : props.theme.iconColor};
+  cursor: ${(props) =>
+    props.disabled && (props.onClickPrefix || props.onClickSuffix)
+      ? "not-allowed"
+      : props.interactuable
+      ? "pointer"
+      : ""};
   ${(props) =>
     props.interactuable &&
     `
