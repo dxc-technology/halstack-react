@@ -11,8 +11,7 @@ import DxcHeading from "../heading/Heading";
 import DxcParagraph from "../paragraph/Paragraph";
 import DxcAlert from "../alert/Alert";
 import { userEvent, within } from "@storybook/testing-library";
-import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
-import DxcDateInput from "../date-input/DateInput";
+import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
 
 export default {
   title: "Dialog",
@@ -245,8 +244,26 @@ const ScrollingDialog = () => (
 export const DialogWithInputs = () => (
   <ExampleContainer expanded={true}>
     <Title title="Dialog with inputs" theme="light" level={4} />
-    <DxcDialog onCloseClick={() => console.log("!!!")}>
-      <DxcDateInput label="With format M-dd-yyyy" format="M-dd-yyyy" />
+    <DxcDialog>
+      <DxcInset space="1.5rem">
+        <DxcFlex gap="2rem" direction="column">
+          <DxcHeading level={4} text="Example form" />
+          <DxcFlex gap="1rem" direction="column">
+            <DxcTextInput size="fillParent" label="Name" />
+            <DxcTextInput size="fillParent" label="Surname" />
+          </DxcFlex>
+          <DxcAlert
+            type="error"
+            inlineText="User: arn:aws:xxx::xxxxxxxxxxxx:assumed-role/assure-sandbox-xxxx-xxxxxxxxxxxxxxxxxxxxxxxxxx/sandbox-xxxx-xxxxxxxxxxxxxxxxxx is not authorized to perform: lambda:xxxxxxxxxxxxxx on resource: arn:aws:lambda:us-east-1:xxxxxxxxxxxx:function:sandbox-xxxx-xx-xxxxxxx-xxxxxxx-lambda because no identity-based policy allows the lambda:xxxxxxxxxxxxxx action"
+            size="fillParent"
+            margin={{ bottom: "xsmall" }}
+          />
+          <DxcFlex justifyContent="flex-end" gap="0.5rem">
+            <DxcButton label="Cancel" mode="text" />
+            <DxcButton label="Save" />
+          </DxcFlex>
+        </DxcFlex>
+      </DxcInset>
     </DxcDialog>
   </ExampleContainer>
 );
@@ -351,3 +368,4 @@ ScrollDialog.play = async ({ canvasElement }) => {
   await userEvent.tab();
   await userEvent.tab();
 };
+
