@@ -28,7 +28,7 @@ const DxcChip = ({
             disabled={disabled}
             interactuable={typeof onClickPrefix === "function" && !disabled}
             tabIndex={typeof onClickPrefix === "function" && !disabled ? tabIndex : -1}
-            onClickPrefix={onClickPrefix}
+            onClick={onClickPrefix}
           >
             {typeof prefixIcon === "string" ? <DxcIcon icon={prefixIcon} /> : prefixIcon}
           </IconContainer>
@@ -41,7 +41,7 @@ const DxcChip = ({
             disabled={disabled}
             interactuable={typeof onClickSuffix === "function" && !disabled}
             tabIndex={typeof onClickSuffix === "function" && !disabled ? tabIndex : -1}
-            onClickSuffix={onClickSuffix}
+            onClick={onClickSuffix}
           >
             {typeof suffixIcon === "string" ? <DxcIcon icon={suffixIcon} /> : suffixIcon}
           </IconContainer>
