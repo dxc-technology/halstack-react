@@ -53,7 +53,7 @@ describe("Slider component tests", () => {
     const { getByRole } = render(
       <DxcSlider minValue={0} maxValue={100} onChange={onChange} showLimitsValues value={13} showInput />
     );
-    let input = getByRole("textbox") as HTMLInputElement;
+    const input = getByRole("textbox") as HTMLInputElement;
     expect(getByRole("slider").getAttribute("aria-valuenow")).toBe("13");
     expect(input.value).toBe("13");
     act(() => {
@@ -69,7 +69,7 @@ describe("Slider component tests", () => {
     const { getByRole } = render(
       <DxcSlider minValue={0} maxValue={100} onChange={onChange} showLimitsValues showInput />
     );
-    let input = getByRole("textbox") as HTMLInputElement;
+    const input = getByRole("textbox") as HTMLInputElement;
     act(() => {
       fireEvent.change(input, { target: { value: 25 } });
     });
@@ -83,7 +83,7 @@ describe("Slider component tests", () => {
     const { getByRole } = render(
       <DxcSlider minValue={0} maxValue={100} onChange={onChange} showLimitsValues disabled showInput value={13} />
     );
-    let input = getByRole("textbox") as HTMLInputElement;
+    const input = getByRole("textbox") as HTMLInputElement;
     act(() => {
       fireEvent.change(input, { target: { value: 25 } });
     });

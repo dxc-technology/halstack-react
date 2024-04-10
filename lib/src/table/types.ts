@@ -20,10 +20,10 @@ export type ActionCellsPropsType = {
         onClick: () => void;
         disabled?: boolean;
         tabIndex?: number;
-        options?: never | undefined;
+        options?: never;
       }
     | {
-        icon?: never | undefined;
+        icon?: never;
         title: string;
         onClick: (value?: string) => void;
         disabled?: boolean;
