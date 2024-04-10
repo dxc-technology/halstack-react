@@ -12,27 +12,25 @@ export type DeepPartial<T> = {
   [P in keyof T]?: Partial<T[P]>;
 };
 
-export type Actions = Array<
-  | {
-      icon: string | SVG;
-      title: string;
-      onClick: () => void;
-      disabled?: boolean;
-      tabIndex?: number;
-      options?: never;
-    }
-  | {
-      icon?: never;
-      title: string;
-      onClick: (value?: string) => void;
-      disabled?: boolean;
-      tabIndex?: number;
-      options: Option[];
-    }
->;
-
 export type ActionCellsPropsType = {
-  actions: Actions;
+  actions: Array<
+    | {
+        icon: string | SVG;
+        title: string;
+        onClick: () => void;
+        disabled?: boolean;
+        tabIndex?: number;
+        options?: never;
+      }
+    | {
+        icon?: never;
+        title: string;
+        onClick: (value?: string) => void;
+        disabled?: boolean;
+        tabIndex?: number;
+        options: Option[];
+      }
+  >;
 };
 
 type Props = {

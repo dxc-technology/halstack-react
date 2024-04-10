@@ -2,7 +2,6 @@ import React from "react";
 import { act, render } from "@testing-library/react";
 import DxcTable from "./Table";
 import userEvent from "@testing-library/user-event";
-import { Actions } from "./types";
 
 (global as any).globalThis = global;
 (global as any).DOMRect = {
@@ -59,7 +58,7 @@ describe("Table component tests", () => {
   test("Table ActionsCell", async () => {
     const onSelectOption = jest.fn();
     const onClick = jest.fn();
-    const actions: Actions = [
+    const actions = [
       {
         title: "icon1",
         onClick: onSelectOption,
