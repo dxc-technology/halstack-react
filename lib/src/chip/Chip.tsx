@@ -95,22 +95,15 @@ const LabelContainer = styled.span`
 
 const IconContainer = styled.div<{
   disabled: ChipPropsType["disabled"];
-  onClickPrefix?: ChipPropsType["onClickPrefix"];
-  onClickSuffix?: ChipPropsType["onClickSuffix"];
+  onClick?: ChipPropsType["onClickPrefix"];
   interactuable: boolean;
 }>`
   display: flex;
   border-radius: 0.25rem;
   color: ${(props) =>
-    props.disabled && (props.onClickPrefix || props.onClickSuffix)
-      ? props.theme.disabledIconColor
-      : props.theme.iconColor};
+    props.disabled && (props.onClick || props.onClick) ? props.theme.disabledIconColor : props.theme.iconColor};
   cursor: ${(props) =>
-    props.disabled && (props.onClickPrefix || props.onClickSuffix)
-      ? "not-allowed"
-      : props.interactuable
-      ? "pointer"
-      : ""};
+    props.disabled && (props.onClick || props.onClick) ? "not-allowed" : props.interactuable ? "pointer" : ""};
   ${(props) =>
     props.interactuable &&
     `
