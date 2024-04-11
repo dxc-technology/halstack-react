@@ -12,6 +12,18 @@ import DxcCard from "../card/Card";
 import DxcRadioGroup from "../radio-group/RadioGroup";
 import DxcSlider from "../slider/Slider";
 import DxcSwitch from "../switch/Switch";
+import DxcDateInput from "../date-input/DateInput";
+
+// Mocking DOMRect for Radix Primitive Popover
+(global as any).globalThis = global;
+(global as any).DOMRect = {
+  fromRect: () => ({ top: 0, left: 0, bottom: 0, right: 0, width: 0, height: 0 }),
+};
+(global as any).ResizeObserver = class ResizeObserver {
+  observe() {}
+  unobserve() {}
+  disconnect() {}
+};
 
 const options = [
   { label: "Female", value: "female" },
@@ -56,6 +68,19 @@ describe("Dialog component tests", () => {
     const { getByRole } = render(<DxcDialog onCloseClick={onCloseClick}>dialog-text</DxcDialog>);
     fireEvent.keyDown(getByRole("dialog"), { key: "Escape", code: "Escape", keyCode: 27, charCode: 27 });
     expect(onCloseClick).toHaveBeenCalled();
+  });
+
+  test("Does not call function onCloseClick when 'Escape' key is pressed while a child popover is opened", async () => {
+    const onCloseClick = jest.fn();
+    const { getByRole } = render(
+      <DxcDialog onCloseClick={onCloseClick}>
+        <DxcDateInput label="With format M-dd-yyyy" format="M-dd-yyyy" />
+      </DxcDialog>
+    );
+    const calendarAction = getByRole("combobox");
+    await userEvent.click(calendarAction);
+    fireEvent.keyDown(document.activeElement, { key: "Escape", code: "Escape", keyCode: 27, charCode: 27 });
+    expect(onCloseClick).not.toHaveBeenCalled();
   });
 });
 
