@@ -57,7 +57,7 @@ type SuffixIconProps =
       disabled?: never;
     };
 
-type Props = {
+type CommonProps = {
   /**
    * Text to be placed on the chip.
    */
@@ -72,5 +72,7 @@ type Props = {
    */
   tabIndex?: number;
 } & (PrefixIconProps | SuffixIconProps);
+
+type Props = (PrefixIconProps | SuffixIconProps) & CommonProps;
 
 export default Props;

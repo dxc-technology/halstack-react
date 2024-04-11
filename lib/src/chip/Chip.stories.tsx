@@ -44,6 +44,10 @@ const opinionatedTheme = {
 export const Chromatic = () => (
   <>
     <ExampleContainer>
+      <Title title="Default" theme="light" level={4} />
+      <DxcChip label="Default" />
+    </ExampleContainer>
+    <ExampleContainer>
       <Title title="With prefix (SVG)" theme="light" level={4} />
       <DxcChip label="Prefix" prefixIcon={iconSVG} />
     </ExampleContainer>
@@ -70,6 +74,15 @@ export const Chromatic = () => (
         prefixIcon="filled_check_circle"
         onClickPrefix={() => {}}
         suffixIcon={iconSVG}
+      />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Prefix and action suffix" theme="light" level={4} />
+      <DxcChip
+        label="Prefix and action suffix"
+        prefixIcon="filled_check_circle"
+        suffixIcon={iconSVG}
+        onClickSuffix={() => {}}
       />
     </ExampleContainer>
     <ExampleContainer>
