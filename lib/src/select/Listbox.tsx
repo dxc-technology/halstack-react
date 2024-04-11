@@ -1,9 +1,8 @@
-import React, { useLayoutEffect, useRef, useState } from "react";
+import React, { useId, useLayoutEffect, useRef } from "react";
 import styled from "styled-components";
 import useTranslatedLabels from "../useTranslatedLabels";
 import { ListboxProps } from "./types";
 import Option from "./Option";
-import { v4 as uuidv4 } from "uuid";
 import DxcIcon from "../icon/Icon";
 
 const groupsHaveOptions = (options) =>
@@ -24,11 +23,11 @@ const Listbox = ({
 }: ListboxProps): JSX.Element => {
   const translatedLabels = useTranslatedLabels();
   const listboxRef = useRef(null);
-
-  const [listBoxId] = useState(`select-${uuidv4()}`);
+  const listboxId = `select-${useId()}`;
+  
   let globalIndex = optional && !multiple ? 0 : -1;
   const mapOptionFunc = (option, mapIndex) => {
-    const groupId = `${listBoxId}-group-${mapIndex}`;
+    const groupId = `${listboxId}-group-${mapIndex}`;
     if (option.options) {
       return (
         option.options.length > 0 && (
@@ -41,8 +40,8 @@ const Listbox = ({
                 globalIndex++;
                 return (
                   <Option
-                    key={`${listBoxId}-option-${singleOption.value}`}
-                    id={`${listBoxId}-option-${globalIndex}`}
+                    key={`${listboxId}-option-${singleOption.value}`}
+                    id={`${listboxId}-option-${globalIndex}`}
                     option={singleOption}
                     onClick={handleOptionOnClick}
                     multiple={multiple}
@@ -63,8 +62,8 @@ const Listbox = ({
       globalIndex++;
       return (
         <Option
-          key={`${listBoxId}-option-${option.value}`}
-          id={`${listBoxId}-option-${globalIndex}`}
+          key={`${listboxId}-option-${option.value}`}
+          id={`${listboxId}-option-${globalIndex}`}
           option={option}
           onClick={handleOptionOnClick}
           multiple={multiple}
