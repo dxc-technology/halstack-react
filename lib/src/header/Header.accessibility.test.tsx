@@ -11,7 +11,7 @@ const disabledRules = {
     rulesObj[rule] = { enabled: false };
     return rulesObj;
   }, {}),
-}
+};
 
 const iconSVG = (
   <svg viewBox="0 0 24 24" height="24" width="24" fill="currentColor">
@@ -70,12 +70,13 @@ describe("Header component accessibility tests", () => {
               margin="medium"
               size="medium"
               optionsIconPosition="after"
+              onSelectOption={() => {}}
             />
           </DxcFlex>
         }
         margin="medium"
         underlined
-      />
+      />,
     );
     const results = await axe(container, disabledRules);
     expect(results).toHaveNoViolations();
