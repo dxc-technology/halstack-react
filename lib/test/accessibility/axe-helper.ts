@@ -1,6 +1,3 @@
-// const { configureAxe } = require("jest-axe");
-// const { disabledRules } = require("./rules/common/disabledRules");
-
 import { configureAxe } from "jest-axe";
 import { disabledRules } from "./rules/common/disabledRules";
 
