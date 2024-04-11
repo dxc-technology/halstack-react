@@ -168,7 +168,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
   ): JSX.Element => {
     const selectId = `select-${useId()}`;
     const selectLabelId = `label-${selectId}`;
-    const searchableInputId = `searchable-input-${selectId}`
+    const searchableInputId = `searchable-input-${selectId}`;
     const errorId = `error-${selectId}`;
     const optionsListId = `${selectId}-listbox`;
     const [innerValue, setInnerValue] = useState(defaultValue ?? (multiple ? [] : ""));
@@ -282,6 +282,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
         case "Esc":
         case "Escape":
           event.preventDefault();
+          isOpen && event.stopPropagation();
           closeOptions();
           setSearchValue("");
           break;
