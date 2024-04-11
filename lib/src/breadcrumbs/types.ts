@@ -4,7 +4,7 @@ type Item = {
 };
 type Props = {
   ariaLabel?: string;
-  items: Array<Item>;
+  items: Item[];
   itemsBeforeCollapse?: number;
   onItemClick?: (href: string) => void;
   showRoot?: boolean;

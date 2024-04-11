@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useId } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import { v4 as uuidv4 } from "uuid";
 import { spaces } from "../common/variables";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
@@ -58,8 +57,7 @@ const DxcFileInput = React.forwardRef<RefType, FileInputPropsType>(
   ): JSX.Element => {
     const [isDragging, setIsDragging] = useState(false);
     const [files, setFiles] = useState<FileData[]>([]);
-    const [fileInputId] = useState(`file-input-${uuidv4()}`);
-
+    const fileInputId = `file-input-${useId()}`;
     const colorsTheme = useTheme();
     const translatedLabels = useTranslatedLabels();
 
