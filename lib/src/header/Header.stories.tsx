@@ -1,13 +1,13 @@
 import React from "react";
+import { userEvent, waitFor, within } from "@storybook/testing-library";
+import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import DxcHeader from "./Header";
 import DxcButton from "../button/Button";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
-import { userEvent, waitFor, within } from "@storybook/testing-library";
 import DxcFlex from "../flex/Flex";
 import DxcLink from "../link/Link";
 import { HalstackProvider } from "../HalstackContext";
-import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import { disabledRules } from "../../test/accessibility/rules/specific/header/disabledRules";
 import preview from "../../.storybook/preview";
 
@@ -19,7 +19,7 @@ export default {
       config: {
         rules: [
           ...disabledRules.map((ruleId) => ({ id: ruleId, enabled: false })),
-          ...preview?.parameters?.a11y?.config?.rules,
+          ...(preview?.parameters?.a11y?.config?.rules || []),
         ],
       },
     },
@@ -29,24 +29,24 @@ export default {
   },
 };
 
-const options: any = [
+const options = [
   {
-    value: 1,
+    value: "1",
     label: "Amazon",
   },
 ];
 
-const options2: any = [
+const options2 = [
   {
-    value: 1,
+    value: "1",
     label: "Home",
   },
   {
-    value: 2,
+    value: "2",
     label: "Release notes",
   },
   {
-    value: 3,
+    value: "3",
     label: "Sign out",
   },
 ];
@@ -66,17 +66,39 @@ const opinionatedTheme = {
   },
 };
 
+const responsiveContentFunctionWithHandler = (closeHandler) => (
+  <>
+    <DxcButton label="Custom Button" onClick={closeHandler} />
+    Custom content
+  </>
+);
+
+const responsiveContentFunction = () => <p>Lorem ipsum dolor sit amet.</p>;
+
 export const Chromatic = () => (
   <>
     <ExampleContainer>
       <Title title="Default with dropdown" theme="light" level={4} />
       <DxcHeader
-        content={<DxcHeader.Dropdown options={options} label="Default Dropdown" onSelectOption={() => {}} />}
+        content={
+          <DxcHeader.Dropdown
+            options={options}
+            label="Default Dropdown"
+            onSelectOption={() => {}}
+          />
+        }
       />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Underlined with text" theme="light" level={4} />
-      <DxcHeader underlined content={<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras felis.</p>} />
+      <DxcHeader
+        underlined
+        content={
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras felis.
+          </p>
+        }
+      />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Underlined, dropdown and links" theme="light" level={4} />
@@ -86,7 +108,11 @@ export const Chromatic = () => (
             <DxcLink>Link 1</DxcLink>
             <DxcLink>Link 2</DxcLink>
             <DxcLink>Link 3</DxcLink>
-            <DxcHeader.Dropdown options={options2} label="Label" onSelectOption={() => {}} />
+            <DxcHeader.Dropdown
+              options={options2}
+              label="Label"
+              onSelectOption={() => {}}
+            />
           </DxcFlex>
         }
         underlined
@@ -96,50 +122,59 @@ export const Chromatic = () => (
     <ExampleContainer>
       <Title title="Xxsmall margin" theme="light" level={4} />
       <DxcHeader underlined margin="xxsmall" />
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras felis.</p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras felis.
+      </p>
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Xsmall margin" theme="light" level={4} />
       <DxcHeader underlined margin="xsmall" />
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras felis.</p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras felis.
+      </p>
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Small margin" theme="light" level={4} />
       <DxcHeader underlined margin="small" />
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras felis.</p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras felis.
+      </p>
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Medium margin" theme="light" level={4} />
       <DxcHeader underlined margin="medium" />
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras felis.</p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras felis.
+      </p>
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Large margin" theme="light" level={4} />
       <DxcHeader underlined margin="large" />
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras felis.</p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras felis.
+      </p>
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Xlarge margin" theme="light" level={4} />
       <DxcHeader underlined margin="xlarge" />
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras felis.</p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras felis.
+      </p>
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Xxlarge margin" theme="light" level={4} />
       <DxcHeader underlined margin="xxlarge" />
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras felis.</p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras felis.
+      </p>
     </ExampleContainer>
     <Title title="Opinionated theme" theme="light" level={2} />
     <ExampleContainer>
       <HalstackProvider theme={opinionatedTheme}>
         <DxcHeader
           underlined
-          content={<DxcButton label={"Custom Button"} />}
-          responsiveContent={(closeHandler) => (
-            <>
-              <DxcButton label={"Custom Button"} onClick={closeHandler} />
-              Custom content
-            </>
-          )}
+          content={<DxcButton label="Custom Button" />}
+          responsiveContent={responsiveContentFunctionWithHandler}
         />
       </HalstackProvider>
     </ExampleContainer>
@@ -150,10 +185,14 @@ export const ResponsiveHeader = () => (
   <ExampleContainer>
     <Title title="Responsive" theme="light" level={4} />
     <DxcHeader
-      content={<DxcHeader.Dropdown options={options} label="Default Dropdown" onSelectOption={() => {}} />}
-      responsiveContent={(closeHandler) => (
-        <DxcHeader.Dropdown options={options} label="Default Dropdown" onSelectOption={() => {}} />
-      )}
+      content={
+        <DxcHeader.Dropdown
+          options={options}
+          label="Default Dropdown"
+          onSelectOption={() => {}}
+        />
+      }
+      responsiveContent={responsiveContentFunction}
       underlined
     />
   </ExampleContainer>
@@ -162,28 +201,26 @@ export const ResponsiveHeader = () => (
 const RespHeaderFocus = () => (
   <ExampleContainer pseudoState="pseudo-focus">
     <Title title="Responsive focus" theme="light" level={4} />
-    <DxcHeader responsiveContent={(closeHandler) => <p>Lorem ipsum dolor sit amet.</p>} underlined />
+    <DxcHeader responsiveContent={responsiveContentFunction} underlined />
   </ExampleContainer>
 );
-
 const RespHeaderHover = () => (
   <ExampleContainer pseudoState="pseudo-hover">
     <Title title="Responsive hover" theme="light" level={4} />
-    <DxcHeader responsiveContent={(closeHandler) => <p>Lorem ipsum dolor sit amet.</p>} underlined />
+    <DxcHeader responsiveContent={responsiveContentFunction} underlined />
   </ExampleContainer>
 );
-
 const RespHeaderMenuMobile = () => (
   <ExampleContainer>
     <Title title="Responsive menu" theme="light" level={4} />
-    <DxcHeader responsiveContent={(closeHandler) => <p>Lorem ipsum dolor sit amet.</p>} underlined />
+    <DxcHeader responsiveContent={responsiveContentFunction} underlined />
   </ExampleContainer>
 );
 
 const RespHeaderMenuTablet = () => (
   <ExampleContainer>
     <Title title="Responsive menu" theme="light" level={4} />
-    <DxcHeader responsiveContent={(closeHandler) => <p>Lorem ipsum dolor sit amet.</p>} underlined />
+    <DxcHeader responsiveContent={responsiveContentFunction} underlined />
   </ExampleContainer>
 );
 
@@ -191,7 +228,7 @@ const RespHeaderMenuOpinionated = () => (
   <ExampleContainer>
     <Title title="Responsive menu" theme="light" level={4} />
     <HalstackProvider theme={opinionatedTheme}>
-      <DxcHeader responsiveContent={(closeHandler) => <p>Lorem ipsum dolor sit amet.</p>} underlined />
+      <DxcHeader responsiveContent={responsiveContentFunction} underlined />
     </HalstackProvider>
   </ExampleContainer>
 );
@@ -253,7 +290,9 @@ ResponsiveHeaderMenuTablet.play = async ({ canvasElement }) => {
   await userEvent.click(canvas.getByText("Menu"));
 };
 
-export const ResponsiveHeaderMenuOpinionated = RespHeaderMenuOpinionated.bind({});
+export const ResponsiveHeaderMenuOpinionated = RespHeaderMenuOpinionated.bind(
+  {}
+);
 ResponsiveHeaderMenuOpinionated.parameters = {
   viewport: {
     defaultViewport: "pixelxl",

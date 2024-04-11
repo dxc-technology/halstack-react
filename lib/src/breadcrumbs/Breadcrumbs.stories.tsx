@@ -1,10 +1,10 @@
 import React from "react";
+import { userEvent, within } from "@storybook/testing-library";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DxcBreadcrumbs from "./Breadcrumbs";
 import DxcContainer from "../container/Container";
 import { HalstackProvider } from "../HalstackContext";
-import { userEvent, within } from "@storybook/testing-library";
 import { disabledRules } from "../../test/accessibility/rules/specific/breadcrumbs/disabledRules";
 import preview from "../../.storybook/preview";
 
@@ -16,7 +16,7 @@ export default {
       config: {
         rules: [
           ...disabledRules.map((ruleId) => ({ id: ruleId, enabled: false })),
-          ...preview?.parameters?.a11y?.config?.rules,
+          ...(preview?.parameters?.a11y?.config?.rules || []),
         ],
       },
     },
@@ -79,7 +79,11 @@ const Breadcrumbs = () => (
     <ExampleContainer>
       <DxcBreadcrumbs items={items} showRoot={false} />
     </ExampleContainer>
-    <Title title="Collapsed variant with dropdown menu opened" theme="light" level={3} />
+    <Title
+      title="Collapsed variant with dropdown menu opened"
+      theme="light"
+      level={3}
+    />
     <ExampleContainer>
       <DxcContainer height="150px">
         <DxcBreadcrumbs items={items} />
@@ -97,7 +101,11 @@ const Breadcrumbs = () => (
     <ExampleContainer pseudoState="pseudo-active">
       <DxcBreadcrumbs items={items} />
     </ExampleContainer>
-    <Title title="Truncation and text ellipsis with tooltip (only when collapsed)" theme="light" level={3} />
+    <Title
+      title="Truncation and text ellipsis with tooltip (only when collapsed)"
+      theme="light"
+      level={3}
+    />
     <ExampleContainer>
       <DxcContainer width="200px">
         <DxcBreadcrumbs
@@ -123,7 +131,11 @@ const Breadcrumbs = () => (
         />
       </DxcContainer>
     </ExampleContainer>
-    <Title title="Truncation, text ellipsis with tooltip and without root" theme="light" level={3} />
+    <Title
+      title="Truncation, text ellipsis with tooltip and without root"
+      theme="light"
+      level={3}
+    />
     <ExampleContainer>
       <DxcContainer width="200px">
         <DxcBreadcrumbs
@@ -150,7 +162,11 @@ const Breadcrumbs = () => (
         />
       </DxcContainer>
     </ExampleContainer>
-    <Title title="Dropdown theming doesn't affect the collapsed trigger" theme="light" level={3} />
+    <Title
+      title="Dropdown theming doesn't affect the collapsed trigger"
+      theme="light"
+      level={3}
+    />
     <ExampleContainer>
       <Title title="Opinionated theming" theme="light" level={4} />
       <ExampleContainer>

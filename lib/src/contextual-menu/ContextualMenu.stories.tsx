@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useMemo } from "react";
+import { userEvent, within } from "@storybook/testing-library";
 import Title from "../../.storybook/components/Title";
 import DxcContextualMenu, { ContextualMenuContext } from "./ContextualMenu";
 import DxcContainer from "../container/Container";
 import SingleItem from "./SingleItem";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
-import { userEvent, within } from "@storybook/testing-library";
 import DxcBadge from "../badge/Badge";
 import { disabledRules } from "../../test/accessibility/rules/specific/contextual-menu/disabledRules";
 import preview from "../../.storybook/preview";
@@ -17,23 +17,39 @@ export default {
     a11y: {
       config: {
         rules: [
-          ...disabledRules.map((ruleId) => ({ id: ruleId, reviewOnFail: true })),
-          ...preview?.parameters?.a11y?.config?.rules,
+          ...disabledRules.map((ruleId) => ({
+            id: ruleId,
+            reviewOnFail: true,
+          })),
+          ...(preview?.parameters?.a11y?.config?.rules || []),
         ],
       },
     },
   },
 };
 
-const items = [{ label: "Item 1" }, { label: "Item 2" }, { label: "Item 3" }, { label: "Item 4" }];
+const items = [
+  { label: "Item 1" },
+  { label: "Item 2" },
+  { label: "Item 3" },
+  { label: "Item 4" },
+];
 
 const sections = [
   {
     title: "Team repositories",
-    items: [{ label: "Approved locations" }, { label: "Approved locations" }, { label: "Approved locations" }],
+    items: [
+      { label: "Approved locations" },
+      { label: "Approved locations" },
+      { label: "Approved locations" },
+    ],
   },
   {
-    items: [{ label: "Approved locations" }, { label: "Approved locations" }, { label: "Approved locations" }],
+    items: [
+      { label: "Approved locations" },
+      { label: "Approved locations" },
+      { label: "Approved locations" },
+    ],
   },
 ];
 
@@ -67,7 +83,10 @@ const groupItems = [
     title: "Section 2",
     items: [
       { label: "Item 5" },
-      { label: "Grouped Item 6", items: [{ label: "Item 7" }, { label: "Item 8" }] },
+      {
+        label: "Grouped Item 6",
+        items: [{ label: "Item 7" }, { label: "Item 8" }],
+      },
       { label: "Item 9" },
     ],
   },
@@ -77,7 +96,12 @@ const itemsWithIcon = [
   {
     label: "Item 1",
     icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        height="24"
+        viewBox="0 -960 960 960"
+        width="24"
+      >
         <path d="M200-120v-640q0-33 23.5-56.5T280-840h400q33 0 56.5 23.5T760-760v640L480-240 200-120Zm80-122 200-86 200 86v-518H280v518Zm0-518h400-400Z" />
       </svg>
     ),
@@ -102,7 +126,11 @@ const itemsWithBadge = [
 const sectionsWithScroll = [
   {
     title: "Team repositories",
-    items: [{ label: "Approved locations" }, { label: "Approved locations" }, { label: "Approved locations" }],
+    items: [
+      { label: "Approved locations" },
+      { label: "Approved locations" },
+      { label: "Approved locations" },
+    ],
   },
   {
     items: [
@@ -124,7 +152,12 @@ const itemsWithTruncatedText = [
     label: "Item with a very long label that should be truncated",
     badge: <DxcBadge color="green" label="New" />,
     icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        height="24"
+        viewBox="0 -960 960 960"
+        width="24"
+      >
         <path d="M200-120v-640q0-33 23.5-56.5T280-840h400q33 0 56.5 23.5T760-760v640L480-240 200-120Zm80-122 200-86 200 86v-518H280v518Zm0-518h400-400Z" />
       </svg>
     ),
@@ -194,39 +227,51 @@ Chromatic.play = async ({ canvasElement }) => {
   await userEvent.click(canvas.getByText("Selected Item 3"));
 };
 
-export const SingleItemStates = () => (
-  <DxcContainer width="300px">
-    <ContextualMenuContext.Provider value={{ selectedItemId: -1, setSelectedItemId: () => {} }}>
-      <Title title="Default" theme="light" level={3} />
-      <ExampleContainer>
-        <SingleItem {...items[0]} id={0} depthLevel={0} />
-      </ExampleContainer>
-      <Title title="Focus" theme="light" level={3} />
-      <ExampleContainer pseudoState="pseudo-focus">
-        <SingleItem {...items[0]} id={0} depthLevel={0} />
-      </ExampleContainer>
-      <Title title="Hover" theme="light" level={3} />
-      <ExampleContainer pseudoState="pseudo-hover">
-        <SingleItem {...items[0]} id={0} depthLevel={0} />
-      </ExampleContainer>
-      <Title title="Active" theme="light" level={3} />
-      <ExampleContainer pseudoState="pseudo-active">
-        <SingleItem {...items[0]} id={0} depthLevel={0} />
-      </ExampleContainer>
-    </ContextualMenuContext.Provider>
-    <ContextualMenuContext.Provider value={{ selectedItemId: 0, setSelectedItemId: () => {} }}>
-      <Title title="Selected" theme="light" level={3} />
-      <ExampleContainer>
-        <SingleItem {...items[0]} id={0} depthLevel={0} />
-      </ExampleContainer>
-      <Title title="Selected hover" theme="light" level={3} />
-      <ExampleContainer pseudoState="pseudo-hover">
-        <SingleItem {...items[0]} id={0} depthLevel={0} />
-      </ExampleContainer>
-      <Title title="Selected active" theme="light" level={3} />
-      <ExampleContainer pseudoState="pseudo-active">
-        <SingleItem {...items[0]} id={0} depthLevel={0} />
-      </ExampleContainer>
-    </ContextualMenuContext.Provider>
-  </DxcContainer>
-);
+export const SingleItemStates = () => {
+  const defaultContextValue = useMemo(
+    () => ({ selectedItemId: -1, setSelectedItemId: () => {} }),
+    []
+  );
+
+  const selectedContextValue = useMemo(
+    () => ({ selectedItemId: 0, setSelectedItemId: () => {} }),
+    []
+  );
+
+  return (
+    <DxcContainer width="300px">
+      <ContextualMenuContext.Provider value={defaultContextValue}>
+        <Title title="Default" theme="light" level={3} />
+        <ExampleContainer>
+          <SingleItem {...items[0]} id={0} depthLevel={0} />
+        </ExampleContainer>
+        <Title title="Focus" theme="light" level={3} />
+        <ExampleContainer pseudoState="pseudo-focus">
+          <SingleItem {...items[0]} id={0} depthLevel={0} />
+        </ExampleContainer>
+        <Title title="Hover" theme="light" level={3} />
+        <ExampleContainer pseudoState="pseudo-hover">
+          <SingleItem {...items[0]} id={0} depthLevel={0} />
+        </ExampleContainer>
+        <Title title="Active" theme="light" level={3} />
+        <ExampleContainer pseudoState="pseudo-active">
+          <SingleItem {...items[0]} id={0} depthLevel={0} />
+        </ExampleContainer>
+      </ContextualMenuContext.Provider>
+      <ContextualMenuContext.Provider value={selectedContextValue}>
+        <Title title="Selected" theme="light" level={3} />
+        <ExampleContainer>
+          <SingleItem {...items[0]} id={0} depthLevel={0} />
+        </ExampleContainer>
+        <Title title="Selected hover" theme="light" level={3} />
+        <ExampleContainer pseudoState="pseudo-hover">
+          <SingleItem {...items[0]} id={0} depthLevel={0} />
+        </ExampleContainer>
+        <Title title="Selected active" theme="light" level={3} />
+        <ExampleContainer pseudoState="pseudo-active">
+          <SingleItem {...items[0]} id={0} depthLevel={0} />
+        </ExampleContainer>
+      </ContextualMenuContext.Provider>
+    </DxcContainer>
+  );
+};

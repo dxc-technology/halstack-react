@@ -1,16 +1,23 @@
-import React from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
 import CoreTokens from "../common/coreTokens";
 import { ItemPropsType } from "./types";
-import { useRef } from "react";
 
-const Item = ({ isCurrentPage = false, href, label, onClick }: ItemPropsType) => {
+const Item = ({
+  isCurrentPage = false,
+  href,
+  label,
+  onClick,
+}: ItemPropsType) => {
   const currentItemRef = useRef<HTMLSpanElement>(null);
 
   const handleOnMouseEnter = (event: React.MouseEvent<HTMLAnchorElement>) => {
     const labelContainer = event.currentTarget;
     const optionElement = currentItemRef?.current;
-    if (optionElement.title === "" && labelContainer.scrollWidth > labelContainer.clientWidth)
+    if (
+      optionElement.title === "" &&
+      labelContainer.scrollWidth > labelContainer.clientWidth
+    )
       optionElement.title = label;
   };
 
@@ -22,7 +29,10 @@ const Item = ({ isCurrentPage = false, href, label, onClick }: ItemPropsType) =>
   };
 
   return (
-    <ListItem aria-current={isCurrentPage ? "page" : undefined} isCurrentPage={isCurrentPage}>
+    <ListItem
+      aria-current={isCurrentPage ? "page" : undefined}
+      isCurrentPage={isCurrentPage}
+    >
       {isCurrentPage ? (
         <CurrentPage ref={currentItemRef} onMouseEnter={handleOnMouseEnter}>
           {label}

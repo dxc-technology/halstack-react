@@ -1,7 +1,7 @@
 import React from "react";
+import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import DxcApplicationLayout from "./ApplicationLayout";
 import Title from "../../.storybook/components/Title";
-import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 
 export default {
   title: "Application Layout",
@@ -14,8 +14,7 @@ export default {
 };
 
 export const DefaultApplicationLayout = () => (
-  <>
-    <DxcApplicationLayout>
+  <DxcApplicationLayout>
       <DxcApplicationLayout.Main>
         <Title title="Default application layout" theme="light" level={4} />
         <p>Main Content</p>
@@ -24,12 +23,10 @@ export const DefaultApplicationLayout = () => (
         <p>Main Content</p>
       </DxcApplicationLayout.Main>
     </DxcApplicationLayout>
-  </>
 );
 
 export const ApplicationLayoutWithDefaultSidenav = () => (
-  <>
-    <DxcApplicationLayout
+  <DxcApplicationLayout
       sidenav={
         <DxcApplicationLayout.SideNav
           title={
@@ -55,12 +52,10 @@ export const ApplicationLayoutWithDefaultSidenav = () => (
         <p>Main Content</p>
       </DxcApplicationLayout.Main>
     </DxcApplicationLayout>
-  </>
 );
 
 export const ApplicationLayoutWithResponsiveSidenav = () => (
-  <>
-    <DxcApplicationLayout
+  <DxcApplicationLayout
       visibilityToggleLabel="Example"
       sidenav={
         <DxcApplicationLayout.SideNav
@@ -87,7 +82,6 @@ export const ApplicationLayoutWithResponsiveSidenav = () => (
         <p>Main Content</p>
       </DxcApplicationLayout.Main>
     </DxcApplicationLayout>
-  </>
 );
 
 ApplicationLayoutWithResponsiveSidenav.parameters = {
@@ -98,8 +92,7 @@ ApplicationLayoutWithResponsiveSidenav.parameters = {
 };
 
 export const ApplicationLayoutWithCustomHeader = () => (
-  <>
-    <DxcApplicationLayout
+  <DxcApplicationLayout
       header={<p>Custom Header</p>}
       sidenav={
         <DxcApplicationLayout.SideNav
@@ -126,12 +119,10 @@ export const ApplicationLayoutWithCustomHeader = () => (
         <p>Main Content</p>
       </DxcApplicationLayout.Main>
     </DxcApplicationLayout>
-  </>
 );
 
 export const ApplicationLayoutWithCustomFooter = () => (
-  <>
-    <DxcApplicationLayout
+  <DxcApplicationLayout
       footer={<p>Custom Footer</p>}
       sidenav={
         <DxcApplicationLayout.SideNav
@@ -158,5 +149,4 @@ export const ApplicationLayoutWithCustomFooter = () => (
         <p>Main Content</p>
       </DxcApplicationLayout.Main>
     </DxcApplicationLayout>
-  </>
 );

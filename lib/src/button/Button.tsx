@@ -32,15 +32,23 @@ const DxcButton = ({
         tabIndex={disabled ? -1 : tabIndex}
         title={title}
         type={type}
-        $mode={mode !== "primary" && mode !== "secondary" && mode !== "text" ? "primary" : mode}
-        hasLabel={label ? true : false}
-        hasIcon={icon ? true : false}
+        $mode={
+          mode !== "primary" && mode !== "secondary" && mode !== "text"
+            ? "primary"
+            : mode
+        }
+        hasLabel={!!label}
+        hasIcon={!!icon}
         iconPosition={iconPosition}
         size={size}
         margin={margin}
       >
         {label && <LabelContainer>{label}</LabelContainer>}
-        {icon && <IconContainer>{typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}</IconContainer>}
+        {icon && (
+          <IconContainer>
+            {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
+          </IconContainer>
+        )}
       </Button>
     </ThemeProvider>
   );
@@ -54,64 +62,74 @@ const sizes = {
   fitContent: "fit-content",
 };
 
-const calculateWidth = (margin: ButtonPropsType["margin"], size: ButtonPropsType["size"]) =>
+const calculateWidth = (
+  margin: ButtonPropsType["margin"],
+  size: ButtonPropsType["size"]
+) =>
   size === "fillParent"
     ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
     : sizes[size];
 
-const getButtonStyles = ($mode: ButtonPropsType["mode"], theme: AdvancedTheme["button"]) => `
+const getButtonStyles = (
+  $mode: ButtonPropsType["mode"],
+  theme: AdvancedTheme["button"]
+) => `
   border-color: ${$mode === "secondary" ? theme.secondaryBorderColor : ""};
   border-radius: ${
     $mode === "primary"
       ? theme.primaryBorderRadius
       : $mode === "secondary"
-      ? theme.secondaryBorderRadius
-      : theme.textBorderRadius
+        ? theme.secondaryBorderRadius
+        : theme.textBorderRadius
   };
   border-width: ${
     $mode === "primary"
       ? theme.primaryBorderThickness
       : $mode === "secondary"
-      ? theme.secondaryBorderThickness
-      : theme.textBorderThickness
+        ? theme.secondaryBorderThickness
+        : theme.textBorderThickness
   };
   border-style: ${
     $mode === "primary"
       ? theme.primaryBorderStyle
       : $mode === "secondary"
-      ? theme.secondaryBorderStyle
-      : theme.textBorderStyle
+        ? theme.secondaryBorderStyle
+        : theme.textBorderStyle
   };
   font-family: ${
     $mode === "primary"
       ? theme.primaryFontFamily
       : $mode === "secondary"
-      ? theme.secondaryFontFamily
-      : theme.textFontFamily
+        ? theme.secondaryFontFamily
+        : theme.textFontFamily
   };
   font-size: ${
-    $mode === "primary" ? theme.primaryFontSize : $mode === "secondary" ? theme.secondaryFontSize : theme.textFontSize
+    $mode === "primary"
+      ? theme.primaryFontSize
+      : $mode === "secondary"
+        ? theme.secondaryFontSize
+        : theme.textFontSize
   };
   font-weight: ${
     $mode === "primary"
       ? theme.primaryFontWeight
       : $mode === "secondary"
-      ? theme.secondaryFontWeight
-      : theme.textFontWeight
+        ? theme.secondaryFontWeight
+        : theme.textFontWeight
   };
   background-color: ${
     $mode === "primary"
       ? theme.primaryBackgroundColor
       : $mode === "secondary"
-      ? theme.secondaryBackgroundColor
-      : theme.textBackgroundColor
+        ? theme.secondaryBackgroundColor
+        : theme.textBackgroundColor
   };
   color: ${
     $mode === "primary"
       ? theme.primaryFontColor
       : $mode === "secondary"
-      ? theme.secondaryFontColor
-      : theme.textFontColor
+        ? theme.secondaryFontColor
+        : theme.textFontColor
   };
   `;
 
@@ -125,8 +143,8 @@ const getButtonStates = (
       $mode === "primary"
         ? theme.primaryHoverBackgroundColor
         : $mode === "secondary"
-        ? theme.secondaryHoverBackgroundColor
-        : theme.textHoverBackgroundColor
+          ? theme.secondaryHoverBackgroundColor
+          : theme.textHoverBackgroundColor
     };
     color: ${$mode === "secondary" ? theme.secondaryHoverFontColor : ""};
   }
@@ -138,8 +156,8 @@ const getButtonStates = (
       $mode === "primary"
         ? theme.primaryActiveBackgroundColor
         : $mode === "secondary"
-        ? theme.secondaryActiveBackgroundColor
-        : theme.textActiveBackgroundColor
+          ? theme.secondaryActiveBackgroundColor
+          : theme.textActiveBackgroundColor
     };
     color: ${$mode === "secondary" ? theme.secondaryHoverFontColor : ""};
     border-color: ${$mode === "secondary" ? "transparent" : ""};
@@ -152,15 +170,15 @@ const getButtonStates = (
       $mode === "primary"
         ? theme.primaryDisabledBackgroundColor
         : $mode === "secondary"
-        ? theme.secondaryDisabledBackgroundColor
-        : theme.textDisabledBackgroundColor
+          ? theme.secondaryDisabledBackgroundColor
+          : theme.textDisabledBackgroundColor
     };
     color: ${
       $mode === "primary"
         ? theme.primaryDisabledFontColor
         : $mode === "secondary"
-        ? theme.secondaryDisabledFontColor
-        : theme.textDisabledFontColor
+          ? theme.secondaryDisabledFontColor
+          : theme.textDisabledFontColor
     };
     border-color: ${$mode === "secondary" ? theme.secondaryDisabledBorderColor : ""};
   }
@@ -176,27 +194,43 @@ const Button = styled.button<{
   size: ButtonPropsType["size"];
 }>`
   display: inline-flex;
-  flex-direction: ${(props) => (props.iconPosition === "after" ? "row" : "row-reverse")};
+  flex-direction: ${(props) =>
+    props.iconPosition === "after" ? "row" : "row-reverse"};
   gap: 0.5rem;
   align-items: center;
   justify-content: center;
   width: ${(props) => calculateWidth(props.margin, props.size)};
   height: 40px;
-  margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
+  margin: ${(props) =>
+    props.margin && typeof props.margin !== "object"
+      ? spaces[props.margin]
+      : "0px"};
   margin-top: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
+    props.margin && typeof props.margin === "object" && props.margin.top
+      ? spaces[props.margin.top]
+      : ""};
   margin-right: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
+    props.margin && typeof props.margin === "object" && props.margin.right
+      ? spaces[props.margin.right]
+      : ""};
   margin-bottom: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
+    props.margin && typeof props.margin === "object" && props.margin.bottom
+      ? spaces[props.margin.bottom]
+      : ""};
   margin-left: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
+    props.margin && typeof props.margin === "object" && props.margin.left
+      ? spaces[props.margin.left]
+      : ""};
   padding-top: ${(props) => props.theme.paddingTop};
   padding-bottom: ${(props) => props.theme.paddingBottom};
   padding-left: ${(props) =>
-    props.hasIcon && !props.hasLabel ? props.theme.paddingLeft : `calc(${props.theme.paddingLeft} + 8px)`};
+    props.hasIcon && !props.hasLabel
+      ? props.theme.paddingLeft
+      : `calc(${props.theme.paddingLeft} + 8px)`};
   padding-right: ${(props) =>
-    props.hasIcon && !props.hasLabel ? props.theme.paddingRight : `calc(${props.theme.paddingRight} + 8px)`};
+    props.hasIcon && !props.hasLabel
+      ? props.theme.paddingRight
+      : `calc(${props.theme.paddingRight} + 8px)`};
   box-shadow: 0 0 0 2px transparent;
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.fontSize};

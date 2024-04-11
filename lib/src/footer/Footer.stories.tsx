@@ -12,7 +12,13 @@ const social = [
   {
     href: "https://www.linkedin.com/company/dxctechnology",
     logo: (
-      <svg version="1.1" x="0px" y="0px" viewBox="0 0 438.536 438.536" fill="currentColor">
+      <svg
+        version="1.1"
+        x="0px"
+        y="0px"
+        viewBox="0 0 438.536 438.536"
+        fill="currentColor"
+      >
         <g>
           <path
             d="M414.41,24.123C398.333,8.042,378.963,0,356.315,0H82.228C59.58,0,40.21,8.042,24.126,24.123
@@ -35,7 +41,13 @@ const social = [
   {
     href: "https://x.com/dxctechnology",
     logo: (
-      <svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg
+        width="256"
+        height="256"
+        viewBox="0 0 256 256"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
         <rect width="256" height="256" rx="40" fill="white" />
         <path
           d="M140.192 118.205L187.848 64H176.556L135.158 111.056L102.117 64H64L113.975 135.163L64 192H75.2914L118.982 142.296L153.883 192H192L140.192 118.205ZM124.722 135.787L119.65 128.697L79.3634 72.3294H96.7094L129.232 117.837L134.282 124.927L176.551 184.076H159.205L124.722 135.787Z"
@@ -114,7 +126,7 @@ export default {
       config: {
         rules: [
           ...disabledRules.map((ruleId) => ({ id: ruleId, enabled: false })),
-          ...preview?.parameters?.a11y?.config?.rules,
+          ...(preview?.parameters?.a11y?.config?.rules || []),
         ],
       },
     },
@@ -142,16 +154,32 @@ export const Chromatic = () => (
       <DxcFooter />
     </ExampleContainer>
     <ExampleContainer>
-      <Title title="With children, copyright, bottom links and social links" theme="light" level={4} />
-      <DxcFooter copyright="Copyright" socialLinks={social} bottomLinks={bottom}>
+      <Title
+        title="With children, copyright, bottom links and social links"
+        theme="light"
+        level={4}
+      />
+      <DxcFooter
+        copyright="Copyright"
+        socialLinks={social}
+        bottomLinks={bottom}
+      >
         <div>
           <a href="https://www.linkedin.com/company/dxctechnology">Linkedin</a>
         </div>
       </DxcFooter>
     </ExampleContainer>
     <ExampleContainer>
-      <Title title="With children, copyright, bottom links and social links from material" theme="light" level={4} />
-      <DxcFooter copyright="Copyright" socialLinks={socialMaterialIcons} bottomLinks={bottom}>
+      <Title
+        title="With children, copyright, bottom links and social links from material"
+        theme="light"
+        level={4}
+      />
+      <DxcFooter
+        copyright="Copyright"
+        socialLinks={socialMaterialIcons}
+        bottomLinks={bottom}
+      >
         <div>
           <a href="https://www.linkedin.com/company/dxctechnology">Linkedin</a>
         </div>
@@ -159,7 +187,11 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-focus">
       <Title title="Focused bottom and social links" theme="light" level={4} />
-      <DxcFooter copyright="Copyright" socialLinks={social} bottomLinks={bottom}>
+      <DxcFooter
+        copyright="Copyright"
+        socialLinks={social}
+        bottomLinks={bottom}
+      >
         <div>
           <a href="https://www.linkedin.com/company/dxctechnology">Linkedin</a>
         </div>
@@ -168,9 +200,12 @@ export const Chromatic = () => (
     <ExampleContainer>
       <Title title="Reduced" theme="light" level={4} />
       <DxcFooter mode="reduced">
-        <DxcFlex justifyContent="center" alignItems="center" gap={"1rem"}>
+        <DxcFlex justifyContent="center" alignItems="center" gap="1rem">
           {info.map((tag, index) => (
-            <DxcTypography color="white" key={`tag${index}${tag.label}${tag.text}`}>
+            <DxcTypography
+              color="white"
+              key={`tag${index}${tag.label}${tag.text}`}
+            >
               {tag.label}: {tag.text}
             </DxcTypography>
           ))}
@@ -197,9 +232,15 @@ export const Chromatic = () => (
     <Title title="Opinionated theme" theme="light" level={2} />
     <ExampleContainer>
       <HalstackProvider theme={opinionatedTheme}>
-        <DxcFooter copyright="Copyright" socialLinks={social} bottomLinks={bottom}>
+        <DxcFooter
+          copyright="Copyright"
+          socialLinks={social}
+          bottomLinks={bottom}
+        >
           <div>
-            <a href="https://www.linkedin.com/company/dxctechnology">Linkedin</a>
+            <a href="https://www.linkedin.com/company/dxctechnology">
+              Linkedin
+            </a>
           </div>
         </DxcFooter>
       </HalstackProvider>

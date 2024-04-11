@@ -23,7 +23,7 @@ const DxcCard = ({
 
   return (
     <Card
-      hasAction={onClick || linkHref ? true : false}
+      hasAction={!!(onClick || linkHref)}
       margin={margin}
       onMouseEnter={() => changeIsHovered(true)}
       onMouseLeave={() => changeIsHovered(false)}
@@ -32,15 +32,22 @@ const DxcCard = ({
       as={linkHref && "a"}
       href={linkHref}
     >
-      <DxcBox shadowDepth={!outlined ? 0 : isHovered && (onClick || linkHref) ? 2 : 1}>
+      <DxcBox
+        shadowDepth={!outlined ? 0 : isHovered && (onClick || linkHref) ? 2 : 1}
+      >
         <ThemeProvider theme={colorsTheme.card}>
           <CardContainer
-            hasAction={onClick || linkHref ? true : false}
+            hasAction={!!(onClick || linkHref)}
             imagePosition={imageSrc ? imagePosition : "none"}
           >
             {imageSrc && (
               <ImageContainer imageBgColor={imageBgColor}>
-                <TagImage imagePadding={imagePadding} imageCover={imageCover} src={imageSrc} alt="Card image" />
+                <TagImage
+                  imagePadding={imagePadding}
+                  imageCover={imageCover}
+                  src={imageSrc}
+                  alt="Card image"
+                />
               </ImageContainer>
             )}
             <CardContent>{children}</CardContent>
@@ -58,12 +65,24 @@ const Card = styled.div<{
   display: inline-flex;
   cursor: ${({ hasAction }) => (hasAction && "pointer") || "unset"};
   outline: ${({ hasAction }) => !hasAction && "none"};
-  margin: ${({ margin }) => (margin && typeof margin !== "object" ? spaces[margin] : "0px")};
-  margin-top: ${({ margin }) => (margin && typeof margin === "object" && margin.top ? spaces[margin.top] : "")};
-  margin-right: ${({ margin }) => (margin && typeof margin === "object" && margin.right ? spaces[margin.right] : "")};
+  margin: ${({ margin }) =>
+    margin && typeof margin !== "object" ? spaces[margin] : "0px"};
+  margin-top: ${({ margin }) =>
+    margin && typeof margin === "object" && margin.top
+      ? spaces[margin.top]
+      : ""};
+  margin-right: ${({ margin }) =>
+    margin && typeof margin === "object" && margin.right
+      ? spaces[margin.right]
+      : ""};
   margin-bottom: ${({ margin }) =>
-    margin && typeof margin === "object" && margin.bottom ? spaces[margin.bottom] : ""};
-  margin-left: ${({ margin }) => (margin && typeof margin === "object" && margin.left ? spaces[margin.left] : "")};
+    margin && typeof margin === "object" && margin.bottom
+      ? spaces[margin.bottom]
+      : ""};
+  margin-left: ${({ margin }) =>
+    margin && typeof margin === "object" && margin.left
+      ? spaces[margin.left]
+      : ""};
   text-decoration: none;
   ${({ hasAction }) =>
     hasAction &&
@@ -77,7 +96,8 @@ const CardContainer = styled.div<{
   imagePosition: CardPropsType["imagePosition"] | "none";
 }>`
   display: inline-flex;
-  flex-direction: ${(props) => (props.imagePosition === "after" ? "row-reverse" : "row")};
+  flex-direction: ${(props) =>
+    props.imagePosition === "after" ? "row-reverse" : "row"};
   height: ${(props) => props.theme.height};
   width: ${(props) => props.theme.width};
   &:hover {
@@ -85,19 +105,26 @@ const CardContainer = styled.div<{
   }
 `;
 
-const TagImage = styled.img<{ imagePadding: CardPropsType["imagePadding"]; imageCover: CardPropsType["imageCover"] }>`
+const TagImage = styled.img<{
+  imagePadding: CardPropsType["imagePadding"];
+  imageCover: CardPropsType["imageCover"];
+}>`
   height: ${({ imagePadding }) =>
     !imagePadding
       ? "100%"
-      : typeof imagePadding !== "object" && `calc(100% - ${spaces[imagePadding]} - ${spaces[imagePadding]})`};
+      : typeof imagePadding !== "object" &&
+        `calc(100% - ${spaces[imagePadding]} - ${spaces[imagePadding]})`};
   width: ${({ imagePadding }) =>
     !imagePadding
       ? "100%"
-      : typeof imagePadding !== "object" && `calc(100% - ${spaces[imagePadding]} - ${spaces[imagePadding]})`};
+      : typeof imagePadding !== "object" &&
+        `calc(100% - ${spaces[imagePadding]} - ${spaces[imagePadding]})`};
   object-fit: ${({ imageCover }) => (imageCover ? "cover" : "contain")};
 `;
 
-const ImageContainer = styled.div<{ imageBgColor: CardPropsType["imageBgColor"] }>`
+const ImageContainer = styled.div<{
+  imageBgColor: CardPropsType["imageBgColor"];
+}>`
   display: inline-flex;
   justify-content: center;
   align-items: center;
