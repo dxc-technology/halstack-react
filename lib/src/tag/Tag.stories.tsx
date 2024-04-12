@@ -69,13 +69,7 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-focus">
       <Title title="With action focused" theme="light" level={4} />
-      <DxcTag
-        icon="done"
-        label="Tag"
-        onClick={() => {
-          console.log("click");
-        }}
-      />
+      <DxcTag icon="done" label="Tag" onClick={() => {}} />
     </ExampleContainer>
     <Title title="Margins" theme="light" level={2} />
     <ExampleContainer>

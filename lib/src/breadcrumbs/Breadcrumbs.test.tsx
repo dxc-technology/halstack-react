@@ -3,13 +3,11 @@ import { render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import DxcBreadcrumbs from "./Breadcrumbs";
 
-global.ResizeObserver = class ResizeObserver {
-  observe() {}
-
-  unobserve() {}
-
-  disconnect() {}
-};
+global.ResizeObserver = jest.fn().mockImplementation(() => ({
+  observe: jest.fn(),
+  unobserve: jest.fn(),
+  disconnect: jest.fn(),
+}));
 
 const items = [
   {

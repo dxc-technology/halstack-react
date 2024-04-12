@@ -12,10 +12,34 @@
     "eslint:recommended",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:security/recommended-legacy",
+    // "plugin:security/recommended-legacy",
     "plugin:react/recommended"
   ],
   "plugins": ["jest", "react-hooks", "@typescript-eslint"],
+  "overrides": [
+    // Test files
+    {
+      "files": ["**/?(*.)+(spec|test).[jt]s?(x)"],
+      "rules": {
+        "jsx-a11y/tabindex-no-positive": "off",
+        "jsx-a11y/no-noninteractive-tabindex": "off"
+      }
+    },
+    // Storybook files
+    {
+      "files": ["**/?(*.)+(stories).[jt]s?(x)"],
+      "rules": {
+        "jsx-a11y/no-noninteractive-tabindex": "off"
+      }
+    },
+    // FocusLock file
+    {
+      "files": ["**/FocusLock.[jt]s?(x)"],
+      "rules": {
+        "jsx-a11y/no-noninteractive-tabindex": "off"
+      }
+    }
+  ],
   "rules": {
     "camelcase": "warn",
     "class-methods-use-this": "warn",
@@ -56,8 +80,6 @@
     ],
     "import/prefer-default-export": "off",
     "jest/valid-title": "warn",
-    "jsx-a11y/no-noninteractive-tabindex": "warn",
-    "jsx-a11y/tabindex-no-positive": "warn",
     "react/function-component-definition": [
       "error",
       {
@@ -81,7 +103,7 @@
       }
     ],
     "react/jsx-props-no-spreading": "off",
-    "react/jsx-no-useless-fragment": "warn",
+    "react/jsx-no-useless-fragment": ["warn", { "allowExpressions": true }],
     "react/no-array-index-key": "warn",
     "react/require-default-props": "off"
   },

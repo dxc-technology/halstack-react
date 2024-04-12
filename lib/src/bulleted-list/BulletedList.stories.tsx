@@ -24,94 +24,94 @@ const icon = (
 
 export const Chromatic = () => (
   <ExampleContainer>
-      <Title title="Icon list (SVG)" level={4} />
-      <DxcBulletedList type="icon" icon={icon}>
-        <DxcBulletedList.Item>Code</DxcBulletedList.Item>
-        <DxcBulletedList.Item>Usage</DxcBulletedList.Item>
-        <DxcBulletedList.Item>Specifications</DxcBulletedList.Item>
-      </DxcBulletedList>
-      <Title title="Icon list (path)" level={4} />
-      <DxcBulletedList type="icon" icon="filled_check_circle">
-        <DxcBulletedList.Item>Code</DxcBulletedList.Item>
-        <DxcBulletedList.Item>Usage</DxcBulletedList.Item>
-        <DxcBulletedList.Item>Specifications</DxcBulletedList.Item>
-      </DxcBulletedList>
-      <Title title="Number list" level={4} />
+    <Title title="Icon list (SVG)" level={4} />
+    <DxcBulletedList type="icon" icon={icon}>
+      <DxcBulletedList.Item>Code</DxcBulletedList.Item>
+      <DxcBulletedList.Item>Usage</DxcBulletedList.Item>
+      <DxcBulletedList.Item>Specifications</DxcBulletedList.Item>
+    </DxcBulletedList>
+    <Title title="Icon list (path)" level={4} />
+    <DxcBulletedList type="icon" icon="filled_check_circle">
+      <DxcBulletedList.Item>Code</DxcBulletedList.Item>
+      <DxcBulletedList.Item>Usage</DxcBulletedList.Item>
+      <DxcBulletedList.Item>Specifications</DxcBulletedList.Item>
+    </DxcBulletedList>
+    <Title title="Number list" level={4} />
+    <DxcBulletedList type="number">
+      <DxcBulletedList.Item>Code</DxcBulletedList.Item>
+      <DxcBulletedList.Item>Usage</DxcBulletedList.Item>
+      <DxcBulletedList.Item>Specifications</DxcBulletedList.Item>
+    </DxcBulletedList>
+    <Title title="Square" level={4} />
+    <DxcBulletedList type="square">
+      <DxcBulletedList.Item>Code</DxcBulletedList.Item>
+      <DxcBulletedList.Item>Usage</DxcBulletedList.Item>
+      <DxcBulletedList.Item>Specifications</DxcBulletedList.Item>
+    </DxcBulletedList>
+    <Title title="Circle" level={4} />
+    <DxcBulletedList type="circle">
+      <DxcBulletedList.Item>Code</DxcBulletedList.Item>
+      <DxcBulletedList.Item>Usage</DxcBulletedList.Item>
+      <DxcBulletedList.Item>Specifications</DxcBulletedList.Item>
+    </DxcBulletedList>
+    <Title title="Disc" level={4} />
+    <DxcBulletedList>
+      <DxcBulletedList.Item>Code</DxcBulletedList.Item>
+      <DxcBulletedList.Item>Usage</DxcBulletedList.Item>
+      <DxcBulletedList.Item>Specifications</DxcBulletedList.Item>
+    </DxcBulletedList>
+    <Title title="Multiple lines" level={4} />
+    <Container>
+      <Title title="Number" level={4} />
       <DxcBulletedList type="number">
-        <DxcBulletedList.Item>Code</DxcBulletedList.Item>
-        <DxcBulletedList.Item>Usage</DxcBulletedList.Item>
-        <DxcBulletedList.Item>Specifications</DxcBulletedList.Item>
+        <DxcBulletedList.Item>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </DxcBulletedList.Item>
+        <DxcBulletedList.Item>Text 2.</DxcBulletedList.Item>
       </DxcBulletedList>
+    </Container>
+    <Container>
       <Title title="Square" level={4} />
       <DxcBulletedList type="square">
-        <DxcBulletedList.Item>Code</DxcBulletedList.Item>
-        <DxcBulletedList.Item>Usage</DxcBulletedList.Item>
-        <DxcBulletedList.Item>Specifications</DxcBulletedList.Item>
+        <DxcBulletedList.Item>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </DxcBulletedList.Item>
+        <DxcBulletedList.Item>Text 2.</DxcBulletedList.Item>
       </DxcBulletedList>
+    </Container>
+    <Container>
       <Title title="Circle" level={4} />
       <DxcBulletedList type="circle">
-        <DxcBulletedList.Item>Code</DxcBulletedList.Item>
-        <DxcBulletedList.Item>Usage</DxcBulletedList.Item>
-        <DxcBulletedList.Item>Specifications</DxcBulletedList.Item>
+        <DxcBulletedList.Item>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </DxcBulletedList.Item>
+        <DxcBulletedList.Item>Text 2.</DxcBulletedList.Item>
       </DxcBulletedList>
-      <Title title="Disc" level={4} />
+    </Container>
+    <Title title="Disc" level={4} />
+    <Container>
       <DxcBulletedList>
-        <DxcBulletedList.Item>Code</DxcBulletedList.Item>
-        <DxcBulletedList.Item>Usage</DxcBulletedList.Item>
-        <DxcBulletedList.Item>Specifications</DxcBulletedList.Item>
+        <DxcBulletedList.Item>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </DxcBulletedList.Item>
+        <DxcBulletedList.Item>Text 2.</DxcBulletedList.Item>
       </DxcBulletedList>
-      <Title title="Multiple lines" level={4} />
-      <Container>
-        <Title title="Number" level={4} />
-        <DxcBulletedList type="number">
-          <DxcBulletedList.Item>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </DxcBulletedList.Item>
-          <DxcBulletedList.Item>Text 2.</DxcBulletedList.Item>
-        </DxcBulletedList>
-      </Container>
-      <Container>
-        <Title title="Square" level={4} />
-        <DxcBulletedList type="square">
-          <DxcBulletedList.Item>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </DxcBulletedList.Item>
-          <DxcBulletedList.Item>Text 2.</DxcBulletedList.Item>
-        </DxcBulletedList>
-      </Container>
-      <Container>
-        <Title title="Circle" level={4} />
-        <DxcBulletedList type="circle">
-          <DxcBulletedList.Item>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </DxcBulletedList.Item>
-          <DxcBulletedList.Item>Text 2.</DxcBulletedList.Item>
-        </DxcBulletedList>
-      </Container>
-      <Title title="Disc" level={4} />
-      <Container>
-        <DxcBulletedList>
-          <DxcBulletedList.Item>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </DxcBulletedList.Item>
-          <DxcBulletedList.Item>Text 2.</DxcBulletedList.Item>
-        </DxcBulletedList>
-      </Container>
-      <Container>
-        <Title title="Icon" level={4} />
-        <DxcBulletedList type="icon" icon={icon}>
-          <DxcBulletedList.Item>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </DxcBulletedList.Item>
-          <DxcBulletedList.Item>Text 2.</DxcBulletedList.Item>
-        </DxcBulletedList>
-      </Container>
-    </ExampleContainer>
+    </Container>
+    <Container>
+      <Title title="Icon" level={4} />
+      <DxcBulletedList type="icon" icon={icon}>
+        <DxcBulletedList.Item>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </DxcBulletedList.Item>
+        <DxcBulletedList.Item>Text 2.</DxcBulletedList.Item>
+      </DxcBulletedList>
+    </Container>
+  </ExampleContainer>
 );
 
 const Container = styled.div`

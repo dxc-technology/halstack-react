@@ -94,9 +94,7 @@ const advancedTheme = {
 const actions = [
   {
     title: "icon",
-    onClick: (value?) => {
-      console.log(value);
-    },
+    onClick: () => {},
     options: [
       {
         value: "1",

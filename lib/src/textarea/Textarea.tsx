@@ -6,7 +6,8 @@ import useTranslatedLabels from "../useTranslatedLabels";
 import { spaces } from "../common/variables";
 import TextareaPropsType, { RefType } from "./types";
 
-const patternMatch = (pattern, value) => new RegExp(pattern).test(value);
+const patternMatch = (pattern: string, value: string) =>
+  new RegExp(pattern).test(value);
 
 const DxcTextarea = React.forwardRef<RefType, TextareaPropsType>(
   (
@@ -190,7 +191,10 @@ const sizes = {
   fillParent: "100%",
 };
 
-const calculateWidth = (margin, size) =>
+const calculateWidth = (
+  margin: TextareaPropsType["margin"],
+  size: TextareaPropsType["size"]
+) =>
   size === "fillParent"
     ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
     : sizes[size];

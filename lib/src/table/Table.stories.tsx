@@ -46,9 +46,7 @@ const advancedTheme = {
 const actions = [
   {
     title: "icon",
-    onClick: (value?) => {
-      console.log(value);
-    },
+    onClick: () => {},
     options: [
       {
         value: "1",
@@ -66,9 +64,7 @@ const actions = [
   },
   {
     title: "icon",
-    onClick: (value?) => {
-      console.log(value);
-    },
+    onClick: () => {},
     options: [
       {
         value: "1",
@@ -87,9 +83,7 @@ const actions = [
   {
     disabled: true,
     title: "icon",
-    onClick: (value?) => {
-      console.log(value);
-    },
+    onClick: () => {},
     options: [
       {
         value: "1",

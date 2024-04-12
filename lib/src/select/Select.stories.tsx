@@ -80,7 +80,7 @@ const groupOptions = [
   },
 ];
 
-const icon_options_grouped_material = [
+const iconOptionsGroupedMaterial = [
   {
     label: "Group 001",
     options: [
@@ -118,7 +118,7 @@ const icon_options_grouped_material = [
   },
 ];
 
-const icon_options = [
+const iconOptions = [
   {
     label: "3G Mobile",
     value: "1",
@@ -191,7 +191,7 @@ const icon_options = [
   },
 ];
 
-const options_material = [
+const optionsMaterial = [
   {
     label: "Transport",
     options: [
@@ -630,7 +630,7 @@ const SelectListbox = () => {
           <Listbox
             id="x13"
             currentValue="3"
-            options={icon_options}
+            options={iconOptions}
             visualFocusIndex={-1}
             lastOptionIndex={3}
             multiple={false}
@@ -650,7 +650,7 @@ const SelectListbox = () => {
           <Listbox
             id="x14"
             currentValue={["0", "3"]}
-            options={icon_options_grouped_material}
+            options={iconOptionsGroupedMaterial}
             visualFocusIndex={-1}
             lastOptionIndex={3}
             multiple={false}
@@ -666,7 +666,7 @@ const SelectListbox = () => {
           <Listbox
             id="x15"
             currentValue={["facebook", "figma"]}
-            options={options_material}
+            options={optionsMaterial}
             visualFocusIndex={-1}
             lastOptionIndex={6}
             multiple
@@ -777,7 +777,7 @@ const SelectListbox = () => {
             <Listbox
               id="x21"
               currentValue="3"
-              options={icon_options}
+              options={iconOptions}
               visualFocusIndex={-1}
               lastOptionIndex={3}
               multiple={false}
