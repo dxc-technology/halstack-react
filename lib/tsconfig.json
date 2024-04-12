@@ -3,7 +3,7 @@
     "declaration": true,
     "emitDeclarationOnly": true,
     "isolatedModules": true,
-    "rootDir": "./src",
+    "rootDir": "./",
     "outDir": "../dist",
     "jsx": "preserve",
     "esModuleInterop": true,
