@@ -171,10 +171,15 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
       setIsOpen(false);
     };
 
-    const handleDatePickerEscKeydown = (event) => {
-      event.preventDefault();
-      closeCalendar();
-      dateRef?.current.getElementsByTagName("input")[0].focus();
+    const handleDatePickerEscKeydown = (event: React.KeyboardEvent) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        if (isOpen) {
+          event.stopPropagation();
+        }
+        closeCalendar();
+        dateRef?.current.getElementsByTagName("input")[0].focus();
+      }
     };
     const handleDatePickerOnBlur = (event) => {
       if (!event?.currentTarget.contains(event.relatedTarget)) closeCalendar();
@@ -217,7 +222,7 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
                 align="end"
                 aria-modal
                 onBlur={handleDatePickerOnBlur}
-                onEscapeKeyDown={handleDatePickerEscKeydown}
+                onKeyDown={handleDatePickerEscKeydown}
                 avoidCollisions={false}
               >
                 <DxcDatePicker

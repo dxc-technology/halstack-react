@@ -16,7 +16,7 @@ import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import useTheme from "../useTheme";
 import { HalstackProvider } from "../HalstackContext";
 import preview from "../../.storybook/preview";
-import { disabledRules } from "../../test/accessibility/rules/specific/date-input/disabledRules";
+import { disabledRules } from "../utils/accessibility/rules/specific/date-input/disabledRules";
 
 export default {
   title: "Date Input",

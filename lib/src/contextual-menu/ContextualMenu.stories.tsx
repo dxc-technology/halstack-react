@@ -6,7 +6,7 @@ import DxcContainer from "../container/Container";
 import SingleItem from "./SingleItem";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DxcBadge from "../badge/Badge";
-import { disabledRules } from "../../test/accessibility/rules/specific/contextual-menu/disabledRules";
+import { disabledRules } from "../utils/accessibility/rules/specific/contextual-menu/disabledRules";
 import preview from "../../.storybook/preview";
 
 export default {

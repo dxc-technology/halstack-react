@@ -128,7 +128,6 @@ const TabContainer = styled.div<{ active: TabProps["active"] }>`
     ${(props) =>
       props.active ? props.theme.selectedUnderlineColor : "transparent"};
   padding: 0.5rem;
-  z-index: 1;
 `;
 
 const Tab = styled.a<{

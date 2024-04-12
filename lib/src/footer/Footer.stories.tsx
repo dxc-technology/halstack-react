@@ -6,7 +6,7 @@ import { HalstackProvider } from "../HalstackContext";
 import DxcFlex from "../flex/Flex";
 import DxcTypography from "../typography/Typography";
 import preview from "../../.storybook/preview";
-import { disabledRules } from "../../test/accessibility/rules/specific/footer/disabledRules";
+import { disabledRules } from "../utils/accessibility/rules/specific/footer/disabledRules";
 
 const social = [
   {

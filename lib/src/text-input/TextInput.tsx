@@ -421,6 +421,9 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
         case "Esc":
         case "Escape":
           event.preventDefault();
+          if (isOpen) {
+            event.stopPropagation();
+          }
           if (hasSuggestions(suggestions)) {
             changeValue("");
             if (isOpen) {

@@ -73,7 +73,7 @@ npm test
 Or run only those of a specific component:
 
 ```bash
-npm test Button.test.js
+npm test Button.test.tsx
 ```
 
 ### Storybook
