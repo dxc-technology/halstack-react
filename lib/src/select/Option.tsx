@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { OptionProps } from "../select/types";
+import { OptionProps } from "./types";
 import DxcCheckbox from "../checkbox/Checkbox";
 import DxcIcon from "../icon/Icon";
 
@@ -18,7 +18,8 @@ const Option = ({
     const label = event.currentTarget;
     const optionElement = document.getElementById(id);
 
-    if (optionElement.title === "" && label.scrollWidth > label.clientWidth) optionElement.title = option.label;
+    if (optionElement.title === "" && label.scrollWidth > label.clientWidth)
+      optionElement.title = option.label;
   };
 
   return (
@@ -43,11 +44,21 @@ const Option = ({
         {multiple && <DxcCheckbox checked={isSelected} tabIndex={-1} />}
         {option.icon && (
           <OptionIcon grouped={isGroupedOption} multiple={multiple}>
-            {typeof option.icon === "string" ? <DxcIcon icon={option.icon} /> : option.icon}
+            {typeof option.icon === "string" ? (
+              <DxcIcon icon={option.icon} />
+            ) : (
+              option.icon
+            )}
           </OptionIcon>
         )}
-        <OptionContent grouped={isGroupedOption} hasIcon={option.icon ? true : false} multiple={multiple}>
-          <OptionLabel onMouseEnter={handleOnMouseEnter}>{option.label}</OptionLabel>
+        <OptionContent
+          grouped={isGroupedOption}
+          hasIcon={!!option.icon}
+          multiple={multiple}
+        >
+          <OptionLabel onMouseEnter={handleOnMouseEnter}>
+            {option.label}
+          </OptionLabel>
           {!multiple && isSelected && (
             <OptionSelectedIndicator>
               <DxcIcon icon="done" />
@@ -59,11 +70,18 @@ const Option = ({
   );
 };
 
-const OptionItem = styled.li<{ visualFocused: OptionProps["visualFocused"]; selected: OptionProps["isSelected"] }>`
+const OptionItem = styled.li<{
+  visualFocused: OptionProps["visualFocused"];
+  selected: OptionProps["isSelected"];
+}>`
   padding: 0 0.5rem;
   box-shadow: inset 0 0 0 2px transparent;
-  ${(props) => props.visualFocused && `box-shadow: inset 0 0 0 2px ${props.theme.focusListOptionBorderColor};`}
-  ${(props) => props.selected && `background-color: ${props.theme.selectedListOptionBackgroundColor}`};
+  ${(props) =>
+    props.visualFocused &&
+    `box-shadow: inset 0 0 0 2px ${props.theme.focusListOptionBorderColor};`}
+  ${(props) =>
+    props.selected &&
+    `background-color: ${props.theme.selectedListOptionBackgroundColor}`};
   line-height: 1.715em;
   cursor: pointer;
 
@@ -99,10 +117,14 @@ const StyledOption = styled.span<{
       : `border-bottom: 1px solid ${props.theme.listOptionDividerColor}`};
 `;
 
-const OptionIcon = styled.span<{ grouped: OptionProps["isGroupedOption"]; multiple: OptionProps["multiple"] }>`
+const OptionIcon = styled.span<{
+  grouped: OptionProps["isGroupedOption"];
+  multiple: OptionProps["multiple"];
+}>`
   display: flex;
   padding: 0.125rem;
-  margin-left: ${(props) => (props.grouped && !props.multiple ? "16px" : "8px")};
+  margin-left: ${(props) =>
+    props.grouped && !props.multiple ? "16px" : "8px"};
   color: ${(props) => props.theme.listOptionIconColor};
 
   svg {
@@ -122,7 +144,8 @@ const OptionContent = styled.span<{
   gap: 0.25rem;
   width: 100%;
   overflow: hidden;
-  margin-left: ${(props) => (props.grouped && !props.multiple && !props.hasIcon ? "16px" : "8px")};
+  margin-left: ${(props) =>
+    props.grouped && !props.multiple && !props.hasIcon ? "16px" : "8px"};
 `;
 
 const OptionLabel = styled.span`

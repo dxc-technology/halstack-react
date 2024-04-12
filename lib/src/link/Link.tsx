@@ -5,9 +5,9 @@ import useTheme from "../useTheme";
 import { LinkProps } from "./types";
 import DxcIcon from "../icon/Icon";
 
-const LinkContent = React.memo(({ iconPosition, icon, children }: LinkProps): JSX.Element => {
-  return (
-    <React.Fragment>
+const LinkContent = React.memo(
+  ({ iconPosition, icon, children }: LinkProps): JSX.Element => (
+    <>
       {iconPosition === "after" && children}
       {icon && (
         <LinkIconContainer iconPosition={iconPosition}>
@@ -15,9 +15,11 @@ const LinkContent = React.memo(({ iconPosition, icon, children }: LinkProps): JS
         </LinkIconContainer>
       )}
       {iconPosition === "before" && children}
-    </React.Fragment>
-  );
-});
+    </>
+  )
+);
+
+LinkContent.displayName = "LinkContent";
 
 const DxcLink = forwardRef(
   (
@@ -52,7 +54,9 @@ const DxcLink = forwardRef(
           ref={ref}
           {...otherProps}
         >
-          <LinkContent iconPosition={iconPosition} icon={icon} children={children} />
+          <LinkContent iconPosition={iconPosition} icon={icon}>
+            {children}
+          </LinkContent>
         </StyledLink>
       </ThemeProvider>
     );
@@ -66,15 +70,26 @@ const StyledLink = styled.div<{
 }>`
   display: inline-flex;
   align-items: baseline;
-  margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
+  margin: ${(props) =>
+    props.margin && typeof props.margin !== "object"
+      ? spaces[props.margin]
+      : "0px"};
   margin-top: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
+    props.margin && typeof props.margin === "object" && props.margin.top
+      ? spaces[props.margin.top]
+      : ""};
   margin-right: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
+    props.margin && typeof props.margin === "object" && props.margin.right
+      ? spaces[props.margin.right]
+      : ""};
   margin-bottom: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
+    props.margin && typeof props.margin === "object" && props.margin.bottom
+      ? spaces[props.margin.bottom]
+      : ""};
   margin-left: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
+    props.margin && typeof props.margin === "object" && props.margin.left
+      ? spaces[props.margin.left]
+      : ""};
   background: none;
   border: none;
   padding: 0;
@@ -90,10 +105,17 @@ const StyledLink = styled.div<{
      border-bottom: ${props.theme.underlineThickness} ${props.theme.underlineStyle} transparent;`}
   ${(props) => props.disabled && "cursor: default;"}
   color: ${(props) =>
-    props.inheritColor ? "inherit" : !props.disabled ? props.theme.fontColor : props.theme.disabledFontColor};
+    props.inheritColor
+      ? "inherit"
+      : !props.disabled
+        ? props.theme.fontColor
+        : props.theme.disabledFontColor};
   ${(props) => (props.disabled ? "pointer-events: none;" : "")}
   &:visited {
-    color: ${(props) => (!props.inheritColor && !props.disabled ? props.theme.visitedFontColor : "")};
+    color: ${(props) =>
+      !props.inheritColor && !props.disabled
+        ? props.theme.visitedFontColor
+        : ""};
     &:hover {
       ${(props) =>
         `color: ${props.theme.visitedFontColor};
@@ -118,10 +140,13 @@ const StyledLink = styled.div<{
   }
 `;
 
-const LinkIconContainer = styled.div<{ iconPosition: LinkProps["iconPosition"] }>`
+const LinkIconContainer = styled.div<{
+  iconPosition: LinkProps["iconPosition"];
+}>`
   width: ${(props) => props.theme.iconSize};
   height: ${(props) => props.theme.iconSize};
-  ${(props) => `${props.iconPosition === "before" ? "margin-right" : "margin-left"}: ${props.theme.iconSpacing}`};
+  ${(props) =>
+    `${props.iconPosition === "before" ? "margin-right" : "margin-left"}: ${props.theme.iconSpacing}`};
   overflow: hidden;
   align-self: center;
 
@@ -131,5 +156,7 @@ const LinkIconContainer = styled.div<{ iconPosition: LinkProps["iconPosition"] }
     width: 100%;
   }
 `;
+
+DxcLink.displayName = "DxcLink";
 
 export default DxcLink;

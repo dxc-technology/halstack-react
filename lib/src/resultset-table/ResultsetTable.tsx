@@ -12,10 +12,18 @@ import CoreTokens from "../common/coreTokens";
 const normalizeSortValue = (sortValue: string | React.ReactNode) =>
   typeof sortValue === "string" ? sortValue.toUpperCase() : sortValue;
 
-const sortArray = (index: number, order: "ascending" | "descending", resultset: Row[][]) =>
+const sortArray = (
+  index: number,
+  order: "ascending" | "descending",
+  resultset: Row[][]
+) =>
   resultset.slice().sort((element1, element2) => {
-    const sortValueA = normalizeSortValue(element1[index].sortValue || element1[index].displayValue);
-    const sortValueB = normalizeSortValue(element2[index].sortValue || element2[index].displayValue);
+    const sortValueA = normalizeSortValue(
+      element1[index].sortValue || element1[index].displayValue
+    );
+    const sortValueB = normalizeSortValue(
+      element2[index].sortValue || element2[index].displayValue
+    );
     let comparison = 0;
     if (typeof sortValueA === "object") {
       comparison = -1;
@@ -29,15 +37,21 @@ const sortArray = (index: number, order: "ascending" | "descending", resultset: 
     return order === "descending" ? comparison * -1 : comparison;
   });
 
-const getMinItemsPerPageIndex = (currentPageInternal: number, itemsPerPage: number, page: number) =>
-  currentPageInternal === 1 ? 0 : itemsPerPage * (page - 1);
+const getMinItemsPerPageIndex = (
+  currentPageInternal: number,
+  itemsPerPage: number,
+  page: number
+) => (currentPageInternal === 1 ? 0 : itemsPerPage * (page - 1));
 
 const getMaxItemsPerPageIndex = (
   minItemsPerPageIndex: number,
   itemsPerPage: number,
   resultset: Row[][],
   page: number
-) => (minItemsPerPageIndex + itemsPerPage > resultset.length ? resultset.length : itemsPerPage * page - 1);
+) =>
+  minItemsPerPageIndex + itemsPerPage > resultset.length
+    ? resultset.length
+    : itemsPerPage * page - 1;
 
 const DxcResultsetTable = ({
   columns,
@@ -54,19 +68,30 @@ const DxcResultsetTable = ({
   const colorsTheme = useTheme();
   const [page, changePage] = useState(1);
   const [sortColumnIndex, changeSortColumnIndex] = useState(-1);
-  const [sortOrder, changeSortOrder] = useState<"ascending" | "descending">("ascending");
+  const [sortOrder, changeSortOrder] = useState<"ascending" | "descending">(
+    "ascending"
+  );
 
-  const minItemsPerPageIndex = useMemo(() => getMinItemsPerPageIndex(page, itemsPerPage, page), [itemsPerPage, page]);
+  const minItemsPerPageIndex = useMemo(
+    () => getMinItemsPerPageIndex(page, itemsPerPage, page),
+    [itemsPerPage, page]
+  );
   const maxItemsPerPageIndex = useMemo(
-    () => getMaxItemsPerPageIndex(minItemsPerPageIndex, itemsPerPage, rows, page),
+    () =>
+      getMaxItemsPerPageIndex(minItemsPerPageIndex, itemsPerPage, rows, page),
     [itemsPerPage, minItemsPerPageIndex, page, rows]
   );
   const sortedResultset = useMemo(
-    () => (sortColumnIndex !== -1 ? sortArray(sortColumnIndex, sortOrder, rows) : rows),
+    () =>
+      sortColumnIndex !== -1
+        ? sortArray(sortColumnIndex, sortOrder, rows)
+        : rows,
     [sortColumnIndex, sortOrder, rows]
   );
   const filteredResultset = useMemo(
-    () => sortedResultset && sortedResultset.slice(minItemsPerPageIndex, maxItemsPerPageIndex + 1),
+    () =>
+      sortedResultset &&
+      sortedResultset.slice(minItemsPerPageIndex, maxItemsPerPageIndex + 1),
     [sortedResultset, minItemsPerPageIndex, maxItemsPerPageIndex]
   );
 
@@ -81,14 +106,18 @@ const DxcResultsetTable = ({
       sortColumnIndex === -1 || sortColumnIndex !== columnIndex
         ? "ascending"
         : sortOrder === "ascending"
-        ? "descending"
-        : "ascending"
+          ? "descending"
+          : "ascending"
     );
   };
 
   useEffect(() => {
     if (!hidePaginator) {
-      rows.length > 0 ? changePage(1) : changePage(0);
+      if (rows.length > 0) {
+        changePage(1);
+      } else {
+        changePage(0);
+      }
     }
   }, [rows]);
 
@@ -101,13 +130,21 @@ const DxcResultsetTable = ({
               {columns.map((column, index) => (
                 <th
                   key={`tableHeader_${index}`}
-                  aria-sort={column.isSortable ? (sortColumnIndex === index ? sortOrder : "none") : undefined}
+                  aria-sort={
+                    column.isSortable
+                      ? sortColumnIndex === index
+                        ? sortOrder
+                        : "none"
+                      : undefined
+                  }
                 >
                   <HeaderContainer
                     role={column.isSortable ? "button" : undefined}
                     key={`headerContainer_${index}`}
                     onClick={() => {
-                      column.isSortable && changeSorting(index);
+                      if (column.isSortable) {
+                        changeSorting(index);
+                      }
                     }}
                     tabIndex={column.isSortable ? tabIndex : -1}
                     isSortable={column.isSortable}
@@ -133,7 +170,9 @@ const DxcResultsetTable = ({
             {filteredResultset.map((cells, rowIndex) => (
               <tr key={`resultSetTableCell_${page}_${rowIndex}`}>
                 {cells.map((cellContent, cellIndex) => (
-                  <td key={`resultSetTableCellContent_${cellIndex}`}>{cellContent.displayValue}</td>
+                  <td key={`resultSetTableCellContent_${cellIndex}`}>
+                    {cellContent.displayValue}
+                  </td>
                 ))}
               </tr>
             ))}
@@ -156,30 +195,47 @@ const DxcResultsetTable = ({
   );
 };
 
-const calculateWidth = (margin: string | object) => `calc(100% - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`;
+const calculateWidth = (margin: string | object) =>
+  `calc(100% - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`;
 
-const DxcResultsetTableContainer = styled.div<{ margin: ResultsetTablePropsType["margin"] }>`
+const DxcResultsetTableContainer = styled.div<{
+  margin: ResultsetTablePropsType["margin"];
+}>`
   width: ${(props) => calculateWidth(props.margin)};
-  margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
+  margin: ${(props) =>
+    props.margin && typeof props.margin !== "object"
+      ? spaces[props.margin]
+      : "0px"};
   margin-top: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
+    props.margin && typeof props.margin === "object" && props.margin.top
+      ? spaces[props.margin.top]
+      : ""};
   margin-right: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
+    props.margin && typeof props.margin === "object" && props.margin.right
+      ? spaces[props.margin.right]
+      : ""};
   margin-bottom: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
+    props.margin && typeof props.margin === "object" && props.margin.bottom
+      ? spaces[props.margin.bottom]
+      : ""};
   margin-left: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
+    props.margin && typeof props.margin === "object" && props.margin.left
+      ? spaces[props.margin.left]
+      : ""};
 `;
 
-const HeaderContainer = styled.span<{ isSortable: Column["isSortable"]; mode: ResultsetTablePropsType["mode"] }>`
+const HeaderContainer = styled.span<{
+  isSortable: Column["isSortable"];
+  mode: ResultsetTablePropsType["mode"];
+}>`
   display: flex;
   align-items: center;
   justify-content: ${(props) =>
     props.theme.headerTextAlign === "center"
       ? "center"
       : props.theme.headerTextAlign === "right"
-      ? "flex-end"
-      : "flex-start"};
+        ? "flex-end"
+        : "flex-start"};
   gap: ${CoreTokens.spacing_8};
   width: fit-content;
   border: 1px solid transparent;

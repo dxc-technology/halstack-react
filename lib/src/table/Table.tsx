@@ -1,11 +1,10 @@
 import React from "react";
 import styled, { ThemeProvider } from "styled-components";
-import { spaces } from "../common/variables";
+import { spaces, AdvancedTheme } from "../common/variables";
 import { getMargin } from "../common/utils";
 import useTheme from "../useTheme";
 import TablePropsType, { ActionCellsPropsType, DeepPartial } from "./types";
 import DropdownTheme from "./DropdownTheme";
-import { AdvancedTheme } from "../common/variables";
 import DxcDropdown from "../dropdown/Dropdown";
 import DxcFlex from "../flex/Flex";
 import { HalstackProvider } from "../HalstackContext";
@@ -14,22 +13,27 @@ import DxcActionIcon from "../action-icon/ActionIcon";
 const overwriteTheme = (theme: DeepPartial<AdvancedTheme>) => {
   const newTheme = DropdownTheme;
   newTheme.dropdown.buttonBackgroundColor = theme.table.actionBackgroundColor;
-  newTheme.dropdown.hoverButtonBackgroundColor = theme.table.hoverActionBackgroundColor;
-  newTheme.dropdown.activeButtonBackgroundColor = theme.table.activeActionBackgroundColor;
+  newTheme.dropdown.hoverButtonBackgroundColor =
+    theme.table.hoverActionBackgroundColor;
+  newTheme.dropdown.activeButtonBackgroundColor =
+    theme.table.activeActionBackgroundColor;
   newTheme.dropdown.buttonIconColor = theme.table.actionIconColor;
   newTheme.dropdown.disabledColor = theme.table.disabledActionIconColor;
-  newTheme.dropdown.disabledButtonBackgroundColor = theme.table.disabledActionBackgroundColor;
+  newTheme.dropdown.disabledButtonBackgroundColor =
+    theme.table.disabledActionBackgroundColor;
   return newTheme;
 };
 
-export const DxcActionsCell = ({ actions }: ActionCellsPropsType): JSX.Element => {
+export const DxcActionsCell = ({
+  actions,
+}: ActionCellsPropsType): JSX.Element => {
   const actionIcons = actions.filter((action) => !action.options);
   const actionDropdown = actions.find((action) => action.options);
   const maxNumberOfActions = actionDropdown ? 2 : 3;
   const colorsTheme = useTheme();
 
   return (
-    <DxcFlex gap={"0.5rem"} alignItems="center">
+    <DxcFlex gap="0.5rem" alignItems="center">
       {actionIcons.map(
         (action, index) =>
           index < maxNumberOfActions && (
@@ -44,7 +48,10 @@ export const DxcActionsCell = ({ actions }: ActionCellsPropsType): JSX.Element =
           )
       )}
       {actionDropdown && (
-        <HalstackProvider advancedTheme={overwriteTheme(colorsTheme)} key={`provider-dropdown`}>
+        <HalstackProvider
+          advancedTheme={overwriteTheme(colorsTheme)}
+          key="provider-dropdown"
+        >
           <DxcDropdown
             options={actionDropdown.options}
             onSelectOption={actionDropdown.onClick}
@@ -59,33 +66,47 @@ export const DxcActionsCell = ({ actions }: ActionCellsPropsType): JSX.Element =
   );
 };
 
-const DxcTable = ({ children, margin, mode = "default" }: TablePropsType): JSX.Element => {
+const DxcTable = ({
+  children,
+  margin,
+  mode = "default",
+}: TablePropsType): JSX.Element => {
   const colorsTheme = useTheme();
 
   return (
     <ThemeProvider theme={colorsTheme.table}>
-      <DxcTableContainer margin={margin}> 
+      <DxcTableContainer margin={margin}>
         <DxcTableContent mode={mode}>{children}</DxcTableContent>
       </DxcTableContainer>
     </ThemeProvider>
   );
 };
 
-const calculateWidth = (margin) => {
-  return `calc(100% - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`;
-};
+const calculateWidth = (margin) =>
+  `calc(100% - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`;
 
 const DxcTableContainer = styled.div<{ margin: TablePropsType["margin"] }>`
   width: ${(props) => calculateWidth(props.margin)};
-  margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
+  margin: ${(props) =>
+    props.margin && typeof props.margin !== "object"
+      ? spaces[props.margin]
+      : "0px"};
   margin-top: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
+    props.margin && typeof props.margin === "object" && props.margin.top
+      ? spaces[props.margin.top]
+      : ""};
   margin-right: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
+    props.margin && typeof props.margin === "object" && props.margin.right
+      ? spaces[props.margin.right]
+      : ""};
   margin-bottom: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
+    props.margin && typeof props.margin === "object" && props.margin.bottom
+      ? spaces[props.margin.bottom]
+      : ""};
   margin-left: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
+    props.margin && typeof props.margin === "object" && props.margin.left
+      ? spaces[props.margin.left]
+      : ""};
 
   overflow: auto;
   &::-webkit-scrollbar {
@@ -144,20 +165,28 @@ const DxcTableContent = styled.table<{ mode: TablePropsType["mode"] }>`
   & th:first-child {
     border-top-left-radius: ${(props) => props.theme.headerBorderRadius};
     padding-left: ${(props) =>
-      props.mode === "default" ? props.theme.firstChildPaddingLeft : props.theme.firstChildPaddingLeftReduced};
+      props.mode === "default"
+        ? props.theme.firstChildPaddingLeft
+        : props.theme.firstChildPaddingLeftReduced};
   }
   & th:last-child {
     border-top-right-radius: ${(props) => props.theme.headerBorderRadius};
     padding-right: ${(props) =>
-      props.mode === "default" ? props.theme.lastChildPaddingRight : props.theme.lastChildPaddingRightReduced};
+      props.mode === "default"
+        ? props.theme.lastChildPaddingRight
+        : props.theme.lastChildPaddingRightReduced};
   }
   & td:first-child {
     padding-left: ${(props) =>
-      props.mode === "default" ? props.theme.firstChildPaddingLeft : props.theme.firstChildPaddingLeftReduced};
+      props.mode === "default"
+        ? props.theme.firstChildPaddingLeft
+        : props.theme.firstChildPaddingLeftReduced};
   }
   & td:last-child {
     padding-right: ${(props) =>
-      props.mode === "default" ? props.theme.lastChildPaddingRight : props.theme.lastChildPaddingRightReduced};
+      props.mode === "default"
+        ? props.theme.lastChildPaddingRight
+        : props.theme.lastChildPaddingRightReduced};
   }
 `;
 

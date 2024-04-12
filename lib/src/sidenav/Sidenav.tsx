@@ -8,7 +8,7 @@ import SidenavPropsType, {
   SidenavLinkPropsType,
   SidenavSectionPropsType,
   SidenavTitlePropsType,
-} from "./types.js";
+} from "./types";
 import DxcFlex from "../flex/Flex";
 import DxcBleed from "../bleed/Bleed";
 import CoreTokens from "../common/coreTokens";
@@ -44,8 +44,15 @@ const Section = ({ children }: SidenavSectionPropsType): JSX.Element => (
   </>
 );
 
-const GroupContext = React.createContext<React.Dispatch<React.SetStateAction<boolean>> | null>(null);
-const Group = ({ title, collapsable = false, icon, children }: SidenavGroupPropsType): JSX.Element => {
+const GroupContext = React.createContext<React.Dispatch<
+  React.SetStateAction<boolean>
+> | null>(null);
+const Group = ({
+  title,
+  collapsable = false,
+  icon,
+  children,
+}: SidenavGroupPropsType): JSX.Element => {
   const [collapsed, setCollapsed] = useState(false);
   const [isSelected, changeIsSelected] = useState(false);
 
@@ -80,7 +87,16 @@ const Group = ({ title, collapsable = false, icon, children }: SidenavGroupProps
 
 const Link = forwardRef<HTMLAnchorElement, SidenavLinkPropsType>(
   (
-    { href, newWindow = false, selected = false, icon, onClick, tabIndex = 0, children, ...otherProps },
+    {
+      href,
+      newWindow = false,
+      selected = false,
+      icon,
+      onClick,
+      tabIndex = 0,
+      children,
+      ...otherProps
+    },
     ref
   ): JSX.Element => {
     const changeIsGroupSelected = useContext(GroupContext);
@@ -91,13 +107,15 @@ const Link = forwardRef<HTMLAnchorElement, SidenavLinkPropsType>(
     };
 
     useEffect(() => {
-      changeIsGroupSelected?.((isGroupSelected) => (!isGroupSelected ? selected : isGroupSelected));
+      changeIsGroupSelected?.((isGroupSelected) =>
+        !isGroupSelected ? selected : isGroupSelected
+      );
     }, [selected, changeIsGroupSelected]);
 
     return (
       <SidenavLink
         selected={selected}
-        href={href ? href : undefined}
+        href={href || undefined}
         target={href ? (newWindow ? "_blank" : "_self") : undefined}
         ref={ref}
         tabIndex={tabIndex}
@@ -113,6 +131,8 @@ const Link = forwardRef<HTMLAnchorElement, SidenavLinkPropsType>(
     );
   }
 );
+
+Link.displayName = "Link";
 
 const SidenavContainer = styled.div`
   box-sizing: border-box;
@@ -219,7 +239,10 @@ const SidenavGroupTitleButton = styled.button<{ selectedGroup: boolean }>`
   }
   &:active {
     color: #fff;
-    background-color: ${(props) => (props.selectedGroup ? "#333" : props.theme.groupTitleActiveBackgroundColor)};
+    background-color: ${(props) =>
+      props.selectedGroup
+        ? "#333"
+        : props.theme.groupTitleActiveBackgroundColor};
   }
   span::before {
     font-size: 16px;

@@ -1,22 +1,27 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
+import styled from "styled-components";
 import DxcHeader from "../header/Header";
 import DxcFooter from "../footer/Footer";
 import DxcSidenav from "../sidenav/Sidenav";
-import styled from "styled-components";
 import { responsiveSizes } from "../common/variables";
 import layoutIcons from "./Icons";
 import AppLayoutPropsType, { AppLayoutMainPropsType } from "./types";
-import { SidenavContextProvider, useResponsiveSidenavVisibility } from "../sidenav/SidenavContext";
+import {
+  SidenavContextProvider,
+  useResponsiveSidenavVisibility,
+} from "../sidenav/SidenavContext";
 import useTranslatedLabels from "../useTranslatedLabels";
 import DxcIcon from "../icon/Icon";
 
 const year = new Date().getFullYear();
-const Main = ({ children }: AppLayoutMainPropsType): JSX.Element => <>{children}</>;
+const Main = ({ children }: AppLayoutMainPropsType): JSX.Element => (
+  <>{children}</>
+);
 const defaultHeader = () => <DxcHeader underlined />;
 
 const defaultFooter = () => (
   <DxcFooter
-    copyright={`© DXC Technology ${year}​​​​. All rights reserved.`}
+    copyright={`© DXC Technology ${year}. All rights reserved.`}
     bottomLinks={[
       {
         href: "https://www.linkedin.com/company/dxctechnology",
@@ -51,7 +56,8 @@ const defaultFooter = () => (
   />
 );
 
-const childTypeExists = (children, childType) => children.find((child) => child?.type === childType);
+const childTypeExists = (children, childType) =>
+  children.find((child) => child?.type === childType);
 
 const DxcApplicationLayout = ({
   visibilityToggleLabel = "",
@@ -60,7 +66,8 @@ const DxcApplicationLayout = ({
   footer,
   children,
 }: AppLayoutPropsType): JSX.Element => {
-  const [isSidenavVisibleResponsive, setIsSidenavVisibleResponsive] = useState(false);
+  const [isSidenavVisibleResponsive, setIsSidenavVisibleResponsive] =
+    useState(false);
   const [isResponsive, setIsResponsive] = useState(false);
   const ref = useRef(null);
   const translatedLabels = useTranslatedLabels();
@@ -72,11 +79,16 @@ const DxcApplicationLayout = ({
   const main = childTypeExists(childrenArray, Main);
 
   const handleResize = useCallback(() => {
-    setIsResponsive(window.matchMedia(`(max-width: ${responsiveSizes.medium}rem)`).matches);
+    setIsResponsive(
+      window.matchMedia(`(max-width: ${responsiveSizes.medium}rem)`).matches
+    );
   }, []);
 
   const handleSidenavVisibility = () => {
-    setIsSidenavVisibleResponsive((isSidenavVisibleResponsive) => !isSidenavVisibleResponsive);
+    setIsSidenavVisibleResponsive(
+      (isSidenavVisibleCurrentlyResponsive) =>
+        !isSidenavVisibleCurrentlyResponsive
+    );
   };
 
   useEffect(() => {
@@ -88,12 +100,14 @@ const DxcApplicationLayout = ({
   }, [handleResize]);
 
   useEffect(() => {
-    !isResponsive && setIsSidenavVisibleResponsive(false);
+    if (!isResponsive) {
+      setIsSidenavVisibleResponsive(false);
+    }
   }, [isResponsive]);
 
   return (
     <ApplicationLayoutContainer
-      hasSidenav={sidenav ? true : false}
+      hasSidenav={!!sidenav}
       isSidenavVisible={isSidenavVisibleResponsive}
       ref={ref}
     >
@@ -102,7 +116,11 @@ const DxcApplicationLayout = ({
         <VisibilityToggle>
           <HamburgerTrigger
             onClick={handleSidenavVisibility}
-            aria-label={visibilityToggleLabel ? undefined : translatedLabels.applicationLayout.visibilityToggleTitle}
+            aria-label={
+              visibilityToggleLabel
+                ? undefined
+                : translatedLabels.applicationLayout.visibilityToggleTitle
+            }
             title={translatedLabels.applicationLayout.visibilityToggleTitle}
           >
             <DxcIcon icon="Menu" />
@@ -125,7 +143,10 @@ const DxcApplicationLayout = ({
   );
 };
 
-const ApplicationLayoutContainer = styled.div<{ isSidenavVisible: boolean; hasSidenav: boolean }>`
+const ApplicationLayoutContainer = styled.div<{
+  isSidenavVisible: boolean;
+  hasSidenav: boolean;
+}>`
   position: absolute;
   top: 64px;
   bottom: 0;
@@ -172,7 +193,9 @@ const HamburgerTrigger = styled.button`
   padding: 12px 4px;
   background-color: transparent;
   box-shadow: 0 0 0 2px transparent;
-  font-family: Open Sans, sans-serif;
+  font-family:
+    Open Sans,
+    sans-serif;
   font-weight: 600;
   font-size: 14px;
   color: #000;
@@ -226,6 +249,7 @@ DxcApplicationLayout.Header = DxcHeader;
 DxcApplicationLayout.Main = Main;
 DxcApplicationLayout.Footer = DxcFooter;
 DxcApplicationLayout.SideNav = DxcSidenav;
-DxcApplicationLayout.useResponsiveSidenavVisibility = useResponsiveSidenavVisibility;
+DxcApplicationLayout.useResponsiveSidenavVisibility =
+  useResponsiveSidenavVisibility;
 
 export default DxcApplicationLayout;

@@ -20,6 +20,7 @@
     "camelcase": "warn",
     "class-methods-use-this": "warn",
     "linebreak-style": "off",
+    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
     "no-use-before-define": [
       "error",
       {

@@ -8,7 +8,11 @@ const setInputType = (type: string, element: HTMLDivElement | null) => {
   element?.getElementsByTagName("input")[0].setAttribute("type", type);
 };
 
-const setAriaAttributes = (ariaExpanded: "true" | "false", ariaLabel: string, element: HTMLDivElement | null) => {
+const setAriaAttributes = (
+  ariaExpanded: "true" | "false",
+  ariaLabel: string,
+  element: HTMLDivElement | null
+) => {
   const buttonElement = element?.getElementsByTagName("button")[0];
   buttonElement?.setAttribute("aria-expanded", ariaExpanded);
   buttonElement?.setAttribute("aria-label", ariaLabel);
@@ -43,10 +47,18 @@ const DxcPasswordInput = React.forwardRef<RefType, PasswordInputPropsType>(
       (() => {
         if (isPasswordVisible) {
           setInputType("text", inputRef.current);
-          setAriaAttributes("true", passwordInput.inputHidePasswordTitle, inputRef.current);
+          setAriaAttributes(
+            "true",
+            passwordInput.inputHidePasswordTitle,
+            inputRef.current
+          );
         } else {
           setInputType("password", inputRef.current);
-          setAriaAttributes("false", passwordInput.inputShowPasswordTitle, inputRef.current);
+          setAriaAttributes(
+            "false",
+            passwordInput.inputShowPasswordTitle,
+            inputRef.current
+          );
         }
       })();
     }, [isPasswordVisible, passwordInput]);
@@ -60,10 +72,14 @@ const DxcPasswordInput = React.forwardRef<RefType, PasswordInputPropsType>(
           helperText={helperText}
           action={{
             onClick: () => {
-              setIsPasswordVisible((isPasswordVisible) => !isPasswordVisible);
+              setIsPasswordVisible(
+                (isPasswordCurrentlyVisible) => !isPasswordCurrentlyVisible
+              );
             },
-            icon: isPasswordVisible ? 'Visibility_Off' : 'Visibility',
-            title: isPasswordVisible ? passwordInput.inputHidePasswordTitle : passwordInput.inputShowPasswordTitle,
+            icon: isPasswordVisible ? "Visibility_Off" : "Visibility",
+            title: isPasswordVisible
+              ? passwordInput.inputHidePasswordTitle
+              : passwordInput.inputShowPasswordTitle,
           }}
           error={error}
           clearable={clearable}
@@ -88,5 +104,7 @@ const PasswordInput = styled.div`
     display: none;
   }
 `;
+
+DxcPasswordInput.displayName = "DxcPasswordInput";
 
 export default DxcPasswordInput;

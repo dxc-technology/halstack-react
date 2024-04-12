@@ -1,4 +1,11 @@
-import React, { useEffect, forwardRef, Ref, useContext, useRef } from "react";
+import React, {
+  useEffect,
+  forwardRef,
+  Ref,
+  useContext,
+  useRef,
+  useImperativeHandle,
+} from "react";
 import styled from "styled-components";
 import DxcBadge from "../badge/Badge";
 import DxcFlex from "../flex/Flex";
@@ -10,15 +17,27 @@ import DxcIcon from "../icon/Icon";
 
 const DxcTab = forwardRef(
   (
-    { href, active = false, icon, disabled = false, notificationNumber = false, children, ...otherProps }: TabProps,
+    {
+      href,
+      active = false,
+      icon,
+      disabled = false,
+      notificationNumber = false,
+      children,
+      ...otherProps
+    }: TabProps,
     ref: Ref<HTMLAnchorElement>
   ): JSX.Element => {
     const tabRef = useRef<HTMLAnchorElement>();
     const colorsTheme = useTheme();
     const { iconPosition, tabIndex, focusedLabel } = useContext(NavTabsContext);
+    const innerRef = useRef<HTMLAnchorElement>(null);
+    useImperativeHandle(ref, () => innerRef.current!, []);
 
     useEffect(() => {
-      focusedLabel === children.toString() && tabRef?.current?.focus();
+      if (focusedLabel === children.toString()) {
+        tabRef?.current?.focus();
+      }
     }, [focusedLabel]);
 
     const handleOnKeyDown = (event: React.KeyboardEvent<HTMLAnchorElement>) => {
@@ -27,6 +46,8 @@ const DxcTab = forwardRef(
         case "Enter":
           event.preventDefault();
           tabRef?.current?.click();
+          break;
+        default:
           break;
       }
     };
@@ -38,13 +59,16 @@ const DxcTab = forwardRef(
           disabled={disabled}
           active={active}
           iconPosition={iconPosition}
-          hasIcon={icon != null ? true : false}
+          hasIcon={icon != null}
           ref={(anchorRef) => {
             tabRef.current = anchorRef;
 
             if (ref) {
-              if (typeof ref === "function") ref(anchorRef);
-              else (ref as React.MutableRefObject<HTMLAnchorElement | null>).current = anchorRef;
+              if (typeof ref === "function") {
+                ref(anchorRef);
+              } else {
+                innerRef.current = anchorRef;
+              }
             }
           }}
           onKeyDown={handleOnKeyDown}
@@ -55,7 +79,11 @@ const DxcTab = forwardRef(
           {...otherProps}
         >
           {icon && (
-            <TabIconContainer iconPosition={iconPosition} active={active} disabled={disabled}>
+            <TabIconContainer
+              iconPosition={iconPosition}
+              active={active}
+              disabled={disabled}
+            >
               {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
             </TabIconContainer>
           )}
@@ -65,8 +93,8 @@ const DxcTab = forwardRef(
                 disabled
                   ? colorsTheme.navTabs.disabledFontColor
                   : active
-                  ? colorsTheme.navTabs.selectedFontColor
-                  : colorsTheme.navTabs.unselectedFontColor
+                    ? colorsTheme.navTabs.selectedFontColor
+                    : colorsTheme.navTabs.unselectedFontColor
               }
               fontFamily={colorsTheme.navTabs.fontFamily}
               fontSize={colorsTheme.navTabs.fontSize}
@@ -82,7 +110,9 @@ const DxcTab = forwardRef(
               <DxcBadge
                 mode="notification"
                 size="small"
-                label={typeof notificationNumber === "number" && notificationNumber}
+                label={
+                  typeof notificationNumber === "number" && notificationNumber
+                }
               />
             )}
           </DxcFlex>
@@ -94,7 +124,9 @@ const DxcTab = forwardRef(
 
 const TabContainer = styled.div<{ active: TabProps["active"] }>`
   align-items: stretch;
-  border-bottom: 2px solid ${(props) => (props.active ? props.theme.selectedUnderlineColor : "transparent")};
+  border-bottom: 2px solid
+    ${(props) =>
+      props.active ? props.theme.selectedUnderlineColor : "transparent"};
   padding: 0.5rem;
   z-index: 1;
 `;
@@ -107,17 +139,22 @@ const Tab = styled.a<{
 }>`
   box-sizing: border-box;
   display: flex;
-  flex-direction: ${(props) => (props.hasIcon && props.iconPosition === "top" ? "column" : "row")};
+  flex-direction: ${(props) =>
+    props.hasIcon && props.iconPosition === "top" ? "column" : "row"};
   justify-content: center;
   align-items: center;
-  gap: ${(props) => (props.hasIcon && props.iconPosition === "top" ? "0.375rem" : "0.625rem")};
-  height: ${(props) => (props.hasIcon && props.iconPosition === "top" ? "78px" : "100%")};
+  gap: ${(props) =>
+    props.hasIcon && props.iconPosition === "top" ? "0.375rem" : "0.625rem"};
+  height: ${(props) =>
+    props.hasIcon && props.iconPosition === "top" ? "78px" : "100%"};
   min-width: 176px;
   min-height: 44px;
   padding: 0.375rem;
   border-radius: 4px;
   background: ${(props) =>
-    props.active ? props.theme.selectedBackgroundColor : props.theme.unselectedBackgroundColor};
+    props.active
+      ? props.theme.selectedBackgroundColor
+      : props.theme.unselectedBackgroundColor};
   text-decoration-color: transparent;
   text-decoration-line: none;
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
@@ -138,15 +175,25 @@ const Tab = styled.a<{
   `}
 `;
 
-const TabIconContainer = styled.div<{ iconPosition: NavTabsPropsType["iconPosition"], active: TabProps["active"], disabled: TabProps["disabled"] }>`
+const TabIconContainer = styled.div<{
+  iconPosition: NavTabsPropsType["iconPosition"];
+  active: TabProps["active"];
+  disabled: TabProps["disabled"];
+}>`
   display: flex;
   font-size: 24px;
-  color: ${(props) => 
-    props.active ? props.theme.selectedIconColor : props.disabled ?  props.theme.disabledIconColor :  props.theme.unselectedIconColor};
+  color: ${(props) =>
+    props.active
+      ? props.theme.selectedIconColor
+      : props.disabled
+        ? props.theme.disabledIconColor
+        : props.theme.unselectedIconColor};
   svg {
     height: 24px;
     width: 24px;
   }
 `;
+
+DxcTab.displayName = "DxcTab";
 
 export default DxcTab;

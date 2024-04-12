@@ -1,4 +1,6 @@
 import React from "react";
+import { userEvent } from "@storybook/testing-library";
+import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import DxcDialog from "./Dialog";
 import DxcTextInput from "../text-input/TextInput";
 import DxcButton from "../button/Button";
@@ -10,8 +12,6 @@ import { HalstackProvider } from "../HalstackContext";
 import DxcHeading from "../heading/Heading";
 import DxcParagraph from "../paragraph/Paragraph";
 import DxcAlert from "../alert/Alert";
-import { userEvent, within } from "@storybook/testing-library";
-import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
 
 export default {
   title: "Dialog",
@@ -32,22 +32,27 @@ const opinionatedTheme = {
 };
 
 export const DefaultDialog = () => (
-  <ExampleContainer expanded={true}>
+  <ExampleContainer expanded>
     <Title title="Default dialog" theme="light" level={4} />
     <DxcDialog>
       <DxcInset space="1.5rem">
         <DxcFlex direction="column" gap="1rem">
           <DxcHeading level={4} text="Example title" />
           <DxcParagraph>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi egestas luctus porttitor. Donec massa magna,
-            placerat sit amet felis eget, venenatis fringilla ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing
-            elit. Donec congue laoreet orci, nec elementum dolor consequat quis. Curabitur rhoncus justo sed dapibus
-            tincidunt. Vestibulum cursus ut risus sit amet congue. Nunc luctus, urna ullamcorper facilisis Jia Le, risus
-            eros aliquam erat, ut efficitur ante neque id odio. Nam orci leo, dignissim sit amet dolor ut, congue
-            gravida enim. Donec rhoncus aliquam nisl, ac cursus enim bibendum vitae. Nunc sit amet elit ornare,
-            malesuada urna eu, fringilla mauris. Vivamus bibendum turpis est, id elementum purus euismod sit amet. Etiam
-            sit amet maximus augue. Vivamus erat sapien, ultricies fringilla tellus id, condimentum blandit justo.
-            Praesent quis nunc dignissim, pharetra neque molestie, molestie lectus.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
+            egestas luctus porttitor. Donec massa magna, placerat sit amet felis
+            eget, venenatis fringilla ipsum. Lorem ipsum dolor sit amet,
+            consectetur adipiscing elit. Donec congue laoreet orci, nec
+            elementum dolor consequat quis. Curabitur rhoncus justo sed dapibus
+            tincidunt. Vestibulum cursus ut risus sit amet congue. Nunc luctus,
+            urna ullamcorper facilisis Jia Le, risus eros aliquam erat, ut
+            efficitur ante neque id odio. Nam orci leo, dignissim sit amet dolor
+            ut, congue gravida enim. Donec rhoncus aliquam nisl, ac cursus enim
+            bibendum vitae. Nunc sit amet elit ornare, malesuada urna eu,
+            fringilla mauris. Vivamus bibendum turpis est, id elementum purus
+            euismod sit amet. Etiam sit amet maximus augue. Vivamus erat sapien,
+            ultricies fringilla tellus id, condimentum blandit justo. Praesent
+            quis nunc dignissim, pharetra neque molestie, molestie lectus.
           </DxcParagraph>
         </DxcFlex>
       </DxcInset>
@@ -56,7 +61,7 @@ export const DefaultDialog = () => (
 );
 
 export const DefaultDialogOpinionated = () => (
-  <ExampleContainer expanded={true}>
+  <ExampleContainer expanded>
     <Title title="Default dialog" theme="light" level={4} />
     <HalstackProvider theme={opinionatedTheme}>
       <DxcDialog>
@@ -64,15 +69,21 @@ export const DefaultDialogOpinionated = () => (
           <DxcFlex direction="column" gap="1rem">
             <DxcHeading level={4} text="Example title" />
             <DxcParagraph>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi egestas luctus porttitor. Donec massa
-              magna, placerat sit amet felis eget, venenatis fringilla ipsum. Lorem ipsum dolor sit amet, consectetur
-              adipiscing elit. Donec congue laoreet orci, nec elementum dolor consequat quis. Curabitur rhoncus justo
-              sed dapibus tincidunt. Vestibulum cursus ut risus sit amet congue. Nunc luctus, urna ullamcorper facilisis
-              Jia Le, risus eros aliquam erat, ut efficitur ante neque id odio. Nam orci leo, dignissim sit amet dolor
-              ut, congue gravida enim. Donec rhoncus aliquam nisl, ac cursus enim bibendum vitae. Nunc sit amet elit
-              ornare, malesuada urna eu, fringilla mauris. Vivamus bibendum turpis est, id elementum purus euismod sit
-              amet. Etiam sit amet maximus augue. Vivamus erat sapien, ultricies fringilla tellus id, condimentum
-              blandit justo. Praesent quis nunc dignissim, pharetra neque molestie, molestie lectus.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
+              egestas luctus porttitor. Donec massa magna, placerat sit amet
+              felis eget, venenatis fringilla ipsum. Lorem ipsum dolor sit amet,
+              consectetur adipiscing elit. Donec congue laoreet orci, nec
+              elementum dolor consequat quis. Curabitur rhoncus justo sed
+              dapibus tincidunt. Vestibulum cursus ut risus sit amet congue.
+              Nunc luctus, urna ullamcorper facilisis Jia Le, risus eros aliquam
+              erat, ut efficitur ante neque id odio. Nam orci leo, dignissim sit
+              amet dolor ut, congue gravida enim. Donec rhoncus aliquam nisl, ac
+              cursus enim bibendum vitae. Nunc sit amet elit ornare, malesuada
+              urna eu, fringilla mauris. Vivamus bibendum turpis est, id
+              elementum purus euismod sit amet. Etiam sit amet maximus augue.
+              Vivamus erat sapien, ultricies fringilla tellus id, condimentum
+              blandit justo. Praesent quis nunc dignissim, pharetra neque
+              molestie, molestie lectus.
             </DxcParagraph>
           </DxcFlex>
         </DxcInset>
@@ -82,141 +93,179 @@ export const DefaultDialogOpinionated = () => (
 );
 
 const ScrollingDialog = () => (
-  <ExampleContainer expanded={true}>
+  <ExampleContainer expanded>
     <Title title="Default dialog" theme="light" level={4} />
     <>
       <DxcParagraph>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
-        laborum.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+        mollit anim id est laborum.
       </DxcParagraph>
       <DxcParagraph>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
-        laborum.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+        mollit anim id est laborum.
       </DxcParagraph>
       <DxcParagraph>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
-        laborum.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+        mollit anim id est laborum.
       </DxcParagraph>
       <DxcParagraph>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
-        laborum.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+        mollit anim id est laborum.
       </DxcParagraph>
       <DxcParagraph>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
-        laborum.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+        mollit anim id est laborum.
       </DxcParagraph>
       <DxcParagraph>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
-        laborum.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+        mollit anim id est laborum.
       </DxcParagraph>
       <DxcParagraph>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
-        laborum.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+        mollit anim id est laborum.
       </DxcParagraph>
       <DxcParagraph>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
-        laborum.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+        mollit anim id est laborum.
       </DxcParagraph>
       <DxcParagraph>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
-        laborum.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+        mollit anim id est laborum.
       </DxcParagraph>
       <DxcParagraph>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
-        laborum.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+        mollit anim id est laborum.
       </DxcParagraph>
       <DxcParagraph>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
-        laborum.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+        mollit anim id est laborum.
       </DxcParagraph>
       <DxcParagraph>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
-        laborum.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+        mollit anim id est laborum.
       </DxcParagraph>
       <DxcParagraph>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
-        laborum.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+        mollit anim id est laborum.
       </DxcParagraph>
       <DxcParagraph>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
-        laborum.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+        mollit anim id est laborum.
       </DxcParagraph>
       <DxcParagraph>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
-        laborum.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+        mollit anim id est laborum.
       </DxcParagraph>
       <DxcParagraph>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
-        laborum.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+        mollit anim id est laborum.
       </DxcParagraph>
       <DxcParagraph>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
-        laborum.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+        mollit anim id est laborum.
       </DxcParagraph>
       <DxcParagraph>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
-        laborum.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+        mollit anim id est laborum.
       </DxcParagraph>
       <DxcParagraph>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
-        laborum.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+        mollit anim id est laborum.
       </DxcParagraph>
     </>
     <DxcDialog>
@@ -224,15 +273,20 @@ const ScrollingDialog = () => (
         <DxcFlex direction="column" gap="1rem">
           <DxcHeading level={4} text="Example title" />
           <DxcParagraph>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi egestas luctus porttitor. Donec massa magna,
-            placerat sit amet felis eget, venenatis fringilla ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing
-            elit. Donec congue laoreet orci, nec elementum dolor consequat quis. Curabitur rhoncus justo sed dapibus
-            tincidunt. Vestibulum cursus ut risus sit amet congue. Nunc luctus, urna ullamcorper facilisis Jia Le, risus
-            eros aliquam erat, ut efficitur ante neque id odio. Nam orci leo, dignissim sit amet dolor ut, congue
-            gravida enim. Donec rhoncus aliquam nisl, ac cursus enim bibendum vitae. Nunc sit amet elit ornare,
-            malesuada urna eu, fringilla mauris. Vivamus bibendum turpis est, id elementum purus euismod sit amet. Etiam
-            sit amet maximus augue. Vivamus erat sapien, ultricies fringilla tellus id, condimentum blandit justo.
-            Praesent quis nunc dignissim, pharetra neque molestie, molestie lectus.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
+            egestas luctus porttitor. Donec massa magna, placerat sit amet felis
+            eget, venenatis fringilla ipsum. Lorem ipsum dolor sit amet,
+            consectetur adipiscing elit. Donec congue laoreet orci, nec
+            elementum dolor consequat quis. Curabitur rhoncus justo sed dapibus
+            tincidunt. Vestibulum cursus ut risus sit amet congue. Nunc luctus,
+            urna ullamcorper facilisis Jia Le, risus eros aliquam erat, ut
+            efficitur ante neque id odio. Nam orci leo, dignissim sit amet dolor
+            ut, congue gravida enim. Donec rhoncus aliquam nisl, ac cursus enim
+            bibendum vitae. Nunc sit amet elit ornare, malesuada urna eu,
+            fringilla mauris. Vivamus bibendum turpis est, id elementum purus
+            euismod sit amet. Etiam sit amet maximus augue. Vivamus erat sapien,
+            ultricies fringilla tellus id, condimentum blandit justo. Praesent
+            quis nunc dignissim, pharetra neque molestie, molestie lectus.
           </DxcParagraph>
           <DxcButton label="Test" />
         </DxcFlex>
@@ -242,7 +296,7 @@ const ScrollingDialog = () => (
 );
 
 export const DialogWithInputs = () => (
-  <ExampleContainer expanded={true}>
+  <ExampleContainer expanded>
     <Title title="Dialog with inputs" theme="light" level={4} />
     <DxcDialog>
       <DxcInset space="1.5rem">
@@ -269,7 +323,7 @@ export const DialogWithInputs = () => (
 );
 
 const RespDialog = () => (
-  <ExampleContainer expanded={true}>
+  <ExampleContainer expanded>
     <Title title="Responsive dialog" theme="light" level={4} />
     <DxcDialog>
       <DxcInset space="1.5rem">
@@ -290,22 +344,27 @@ const RespDialog = () => (
 );
 
 export const DialogWithoutOverlay = () => (
-  <ExampleContainer expanded={true}>
+  <ExampleContainer expanded>
     <Title title="Dialog Without Overlay" theme="light" level={4} />
     <DxcDialog overlay={false}>
       <DxcInset space="1.5rem">
         <DxcFlex direction="column" gap="1rem">
           <DxcHeading level={4} text="Example title" />
           <DxcParagraph>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi egestas luctus porttitor. Donec massa magna,
-            placerat sit amet felis eget, venenatis fringilla ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing
-            elit. Donec congue laoreet orci, nec elementum dolor consequat quis. Curabitur rhoncus justo sed dapibus
-            tincidunt. Vestibulum cursus ut risus sit amet congue. Nunc luctus, urna ullamcorper facilisis Jia Le, risus
-            eros aliquam erat, ut efficitur ante neque id odio. Nam orci leo, dignissim sit amet dolor ut, congue
-            gravida enim. Donec rhoncus aliquam nisl, ac cursus enim bibendum vitae. Nunc sit amet elit ornare,
-            malesuada urna eu, fringilla mauris. Vivamus bibendum turpis est, id elementum purus euismod sit amet. Etiam
-            sit amet maximus augue. Vivamus erat sapien, ultricies fringilla tellus id, condimentum blandit justo.
-            Praesent quis nunc dignissim, pharetra neque molestie, molestie lectus.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
+            egestas luctus porttitor. Donec massa magna, placerat sit amet felis
+            eget, venenatis fringilla ipsum. Lorem ipsum dolor sit amet,
+            consectetur adipiscing elit. Donec congue laoreet orci, nec
+            elementum dolor consequat quis. Curabitur rhoncus justo sed dapibus
+            tincidunt. Vestibulum cursus ut risus sit amet congue. Nunc luctus,
+            urna ullamcorper facilisis Jia Le, risus eros aliquam erat, ut
+            efficitur ante neque id odio. Nam orci leo, dignissim sit amet dolor
+            ut, congue gravida enim. Donec rhoncus aliquam nisl, ac cursus enim
+            bibendum vitae. Nunc sit amet elit ornare, malesuada urna eu,
+            fringilla mauris. Vivamus bibendum turpis est, id elementum purus
+            euismod sit amet. Etiam sit amet maximus augue. Vivamus erat sapien,
+            ultricies fringilla tellus id, condimentum blandit justo. Praesent
+            quis nunc dignissim, pharetra neque molestie, molestie lectus.
           </DxcParagraph>
         </DxcFlex>
       </DxcInset>
@@ -314,20 +373,25 @@ export const DialogWithoutOverlay = () => (
 );
 
 export const DialogCloseVisibleFalse = () => (
-  <ExampleContainer expanded={true}>
+  <ExampleContainer expanded>
     <Title title="Dialog Close Visible" theme="dark" level={4} />
     <DxcDialog isCloseVisible={false}>
       <DxcInset space="1.5rem">
         <DxcParagraph>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi egestas luctus porttitor. Donec massa magna,
-          placerat sit amet felis eget, venenatis fringilla ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing
-          elit. Donec congue laoreet orci, nec elementum dolor consequat quis. Curabitur rhoncus justo sed dapibus
-          tincidunt. Vestibulum cursus ut risus sit amet congue. Nunc luctus, urna ullamcorper facilisis Jia Le, risus
-          eros aliquam erat, ut efficitur ante neque id odio. Nam orci leo, dignissim sit amet dolor ut, congue gravida
-          enim. Donec rhoncus aliquam nisl, ac cursus enim bibendum vitae. Nunc sit amet elit ornare, malesuada urna eu,
-          fringilla mauris. Vivamus bibendum turpis est, id elementum purus euismod sit amet. Etiam sit amet maximus
-          augue. Vivamus erat sapien, ultricies fringilla tellus id, condimentum blandit justo. Praesent quis nunc
-          dignissim, pharetra neque molestie, molestie lectus.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi egestas
+          luctus porttitor. Donec massa magna, placerat sit amet felis eget,
+          venenatis fringilla ipsum. Lorem ipsum dolor sit amet, consectetur
+          adipiscing elit. Donec congue laoreet orci, nec elementum dolor
+          consequat quis. Curabitur rhoncus justo sed dapibus tincidunt.
+          Vestibulum cursus ut risus sit amet congue. Nunc luctus, urna
+          ullamcorper facilisis Jia Le, risus eros aliquam erat, ut efficitur
+          ante neque id odio. Nam orci leo, dignissim sit amet dolor ut, congue
+          gravida enim. Donec rhoncus aliquam nisl, ac cursus enim bibendum
+          vitae. Nunc sit amet elit ornare, malesuada urna eu, fringilla mauris.
+          Vivamus bibendum turpis est, id elementum purus euismod sit amet.
+          Etiam sit amet maximus augue. Vivamus erat sapien, ultricies fringilla
+          tellus id, condimentum blandit justo. Praesent quis nunc dignissim,
+          pharetra neque molestie, molestie lectus.
         </DxcParagraph>
       </DxcInset>
     </DxcDialog>
@@ -362,10 +426,8 @@ MobileResponsiveDialog.parameters = {
 };
 
 export const ScrollDialog = ScrollingDialog.bind({});
-ScrollDialog.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
+ScrollDialog.play = async () => {
   await userEvent.tab();
   await userEvent.tab();
   await userEvent.tab();
 };
-

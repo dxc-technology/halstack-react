@@ -5,7 +5,16 @@ import { DropdownMenuProps } from "./types";
 
 const DropdownMenu = React.forwardRef<HTMLUListElement, DropdownMenuProps>(
   (
-    { id, dropdownTriggerId, iconsPosition, visualFocusIndex, menuItemOnClick, onKeyDown, options, styles },
+    {
+      id,
+      dropdownTriggerId,
+      iconsPosition,
+      visualFocusIndex,
+      menuItemOnClick,
+      onKeyDown,
+      options,
+      styles,
+    },
     ref
   ): JSX.Element => (
     <DropdownMenuContainer
@@ -19,7 +28,9 @@ const DropdownMenu = React.forwardRef<HTMLUListElement, DropdownMenuProps>(
       role="menu"
       aria-labelledby={dropdownTriggerId}
       aria-orientation="vertical"
-      aria-activedescendant={visualFocusIndex !== -1 ? `${id}-option-${visualFocusIndex}` : undefined}
+      aria-activedescendant={
+        visualFocusIndex !== -1 ? `${id}-option-${visualFocusIndex}` : undefined
+      }
       tabIndex={-1}
       ref={ref}
       style={styles}
@@ -68,5 +79,7 @@ const DropdownMenuContainer = styled.ul`
     border-radius: 6px;
   }
 `;
+
+DropdownMenu.displayName = "DropdownMenu";
 
 export default React.memo(DropdownMenu);

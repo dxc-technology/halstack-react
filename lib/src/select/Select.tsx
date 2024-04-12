@@ -1,19 +1,27 @@
-import React, { useMemo, useRef, useState, useCallback, useEffect, useId } from "react";
+import React, {
+  useMemo,
+  useRef,
+  useState,
+  useCallback,
+  useEffect,
+  useId,
+} from "react";
 import styled, { ThemeProvider } from "styled-components";
+import * as Popover from "@radix-ui/react-popover";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
 import { spaces } from "../common/variables";
 import { getMargin } from "../common/utils";
 import SelectPropsType, { Option, OptionGroup, RefType } from "./types";
 import Listbox from "./Listbox";
-import * as Popover from "@radix-ui/react-popover";
 import DxcIcon from "../icon/Icon";
 
 const isOptionGroup = (option: Option | OptionGroup): option is OptionGroup =>
   "options" in option && option.options != null;
 
-const isArrayOfOptionGroups = (options: Option[] | OptionGroup[]): options is OptionGroup[] =>
-  isOptionGroup(options[0]);
+const isArrayOfOptionGroups = (
+  options: Option[] | OptionGroup[]
+): options is OptionGroup[] => isOptionGroup(options[0]);
 
 const groupsHaveOptions = (filteredOptions: Option[] | OptionGroup[]) =>
   isArrayOfOptionGroups(filteredOptions)
@@ -38,8 +46,11 @@ const filterOptionsBySearchValue = (
         };
         return group;
       });
-    else return options.filter((option) => option.label.toUpperCase().includes(searchValue.toUpperCase()));
+    return options.filter((option) =>
+      option.label.toUpperCase().includes(searchValue.toUpperCase())
+    );
   }
+  return [];
 };
 
 const getLastOptionIndex = (
@@ -50,14 +61,21 @@ const getLastOptionIndex = (
   multiple: boolean
 ) => {
   let last = 0;
-  const reducer = (acc: number, current: OptionGroup) => acc + current.options?.length;
+  const reducer = (acc: number, current: OptionGroup) =>
+    acc + (current.options?.length || 0);
 
   if (searchable && filteredOptions?.length > 0)
-    isArrayOfOptionGroups(filteredOptions)
-      ? (last = filteredOptions.reduce(reducer, 0) - 1)
-      : (last = filteredOptions.length - 1);
+    if (isArrayOfOptionGroups(filteredOptions)) {
+      last = filteredOptions.reduce(reducer, 0) - 1;
+    } else {
+      last = filteredOptions.length - 1;
+    }
   else if (options?.length > 0)
-    isArrayOfOptionGroups(options) ? (last = options.reduce(reducer, 0) - 1) : (last = options.length - 1);
+    if (isArrayOfOptionGroups(options)) {
+      last = options.reduce(reducer, 0) - 1;
+    } else {
+      last = options.length - 1;
+    }
 
   return optional && !multiple ? last + 1 : last;
 };
@@ -77,34 +95,39 @@ const getSelectedOption = (
       options.forEach((option: Option | OptionGroup) => {
         if (isOptionGroup(option))
           option.options.forEach((singleOption) => {
-            if (value.includes(singleOption.value) && Array.isArray(selectedOption)) selectedOption.push(singleOption);
+            if (
+              value.includes(singleOption.value) &&
+              Array.isArray(selectedOption)
+            )
+              selectedOption.push(singleOption);
           });
-        else if (value.includes(option.value) && Array.isArray(selectedOption)) selectedOption.push(option);
+        else if (value.includes(option.value) && Array.isArray(selectedOption))
+          selectedOption.push(option);
       });
     }
-  } else {
-    if (optional && value === "") {
-      selectedOption = optionalItem;
-      singleSelectionIndex = 0;
-    } else if (options?.length > 0) {
-      let group_index = 0;
-      options.some((option: Option | OptionGroup, index: number) => {
-        if (isOptionGroup(option)) {
-          option.options.some((singleOption) => {
-            if (singleOption.value === value) {
-              selectedOption = singleOption;
-              singleSelectionIndex = optional ? group_index + 1 : group_index;
-              return true;
-            }
-            group_index++;
-          });
-        } else if (option.value === value) {
-          selectedOption = option;
-          singleSelectionIndex = optional ? index + 1 : index;
-          return true;
-        }
-      });
-    }
+  } else if (optional && value === "") {
+    selectedOption = optionalItem;
+    singleSelectionIndex = 0;
+  } else if (options?.length > 0) {
+    let groupIndex = 0;
+    options.some((option: Option | OptionGroup, index: number) => {
+      if (isOptionGroup(option)) {
+        option.options.some((singleOption) => {
+          if (singleOption.value === value) {
+            selectedOption = singleOption;
+            singleSelectionIndex = optional ? groupIndex + 1 : groupIndex;
+            return true;
+          }
+          groupIndex += 1;
+          return false;
+        });
+      } else if (option.value === value) {
+        selectedOption = option;
+        singleSelectionIndex = optional ? index + 1 : index;
+        return true;
+      }
+      return false;
+    });
   }
 
   return {
@@ -113,14 +136,22 @@ const getSelectedOption = (
   };
 };
 
-const getSelectedOptionLabel = (placeholder: string, selectedOption: Option | Option[]) => {
+const getSelectedOptionLabel = (
+  placeholder: string,
+  selectedOption: Option | Option[]
+) => {
   if (Array.isArray(selectedOption))
-    return selectedOption.length === 0 ? placeholder : selectedOption.map((option) => option.label).join(", ");
-  else return selectedOption?.label ?? placeholder;
+    return selectedOption.length === 0
+      ? placeholder
+      : selectedOption.map((option) => option.label).join(", ");
+  return selectedOption?.label ?? placeholder;
 };
 
-const notOptionalCheck = (value: string | string[], multiple: boolean, optional: boolean) =>
-  !optional && (multiple ? value.length === 0 : value === "");
+const notOptionalCheck = (
+  value: string | string[],
+  multiple: boolean,
+  optional: boolean
+) => !optional && (multiple ? value.length === 0 : value === "");
 
 const useWidth = (target: HTMLDivElement) => {
   const [width, setWidth] = useState(0);
@@ -138,6 +169,7 @@ const useWidth = (target: HTMLDivElement) => {
         triggerObserver.unobserve(target);
       };
     }
+    return undefined;
   }, [target]);
 
   return width;
@@ -168,10 +200,12 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
   ): JSX.Element => {
     const selectId = `select-${useId()}`;
     const selectLabelId = `label-${selectId}`;
-    const searchableInputId = `searchable-input-${selectId}`
+    const searchableInputId = `searchable-input-${selectId}`;
     const errorId = `error-${selectId}`;
     const optionsListId = `${selectId}-listbox`;
-    const [innerValue, setInnerValue] = useState(defaultValue ?? (multiple ? [] : ""));
+    const [innerValue, setInnerValue] = useState(
+      defaultValue ?? (multiple ? [] : "")
+    );
     const [searchValue, setSearchValue] = useState("");
     const [visualFocusIndex, changeVisualFocusIndex] = useState(-1);
     const [isOpen, changeIsOpen] = useState(false);
@@ -185,13 +219,30 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
     const translatedLabels = useTranslatedLabels();
 
     const optionalItem = { label: placeholder, value: "" };
-    const filteredOptions = useMemo(() => filterOptionsBySearchValue(options, searchValue), [options, searchValue]);
+    const filteredOptions = useMemo(
+      () => filterOptionsBySearchValue(options, searchValue),
+      [options, searchValue]
+    );
     const lastOptionIndex = useMemo(
-      () => getLastOptionIndex(options, filteredOptions, searchable, optional, multiple),
+      () =>
+        getLastOptionIndex(
+          options,
+          filteredOptions,
+          searchable,
+          optional,
+          multiple
+        ),
       [options, filteredOptions, searchable, optional, multiple]
     );
     const { selectedOption, singleSelectionIndex } = useMemo(
-      () => getSelectedOption(value ?? innerValue, options, multiple, optional, optionalItem),
+      () =>
+        getSelectedOption(
+          value ?? innerValue,
+          options,
+          multiple,
+          optional,
+          optionalItem
+        ),
       [value, innerValue, options, multiple, optional, optionalItem]
     );
 
@@ -216,28 +267,37 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
           ).filter((optionVal) => optionVal !== newOption.value);
         else
           newValue = [
-            ...((value && Array.isArray(value) && value) ?? (innerValue && Array.isArray(innerValue) && innerValue)),
+            ...((value && Array.isArray(value) && value) ??
+              (innerValue && Array.isArray(innerValue) && innerValue)),
             newOption.value,
           ];
       } else newValue = newOption.value;
 
-      value ?? setInnerValue(newValue);
-      notOptionalCheck(newValue, multiple, optional)
-        ? onChange?.({
-            value: newValue as string & string[],
-            error: translatedLabels.formFields.requiredValueErrorMessage,
-          })
-        : onChange?.({ value: newValue as string & string[] });
+      if (value == null) {
+        setInnerValue(newValue);
+      }
+      if (notOptionalCheck(newValue, multiple, optional)) {
+        onChange?.({
+          value: newValue as string & string[],
+          error: translatedLabels.formFields.requiredValueErrorMessage,
+        });
+      } else {
+        onChange?.({ value: newValue as string & string[] });
+      }
     };
     const handleSelectOnClick = () => {
-      searchable && selectSearchInputRef.current.focus();
+      if (searchable) {
+        selectSearchInputRef.current.focus();
+      }
       if (isOpen) {
         closeOptions();
         setSearchValue("");
       } else openOptions();
     };
     const handleSelectOnFocus = (event: React.FocusEvent<HTMLInputElement>) => {
-      if (!event.currentTarget.contains(event.relatedTarget)) searchable && selectSearchInputRef.current.focus();
+      if (!event.currentTarget.contains(event.relatedTarget) && searchable) {
+        selectSearchInputRef.current.focus();
+      }
     };
     const handleSelectOnBlur = (event: React.FocusEvent<HTMLInputElement>) => {
       // focus leaves container (outside, not to a child)
@@ -246,12 +306,14 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
         setSearchValue("");
 
         const currentValue = value ?? innerValue;
-        notOptionalCheck(currentValue, multiple, optional)
-          ? onBlur?.({
-              value: currentValue as string & string[],
-              error: translatedLabels.formFields.requiredValueErrorMessage,
-            })
-          : onBlur?.({ value: currentValue as string & string[] });
+        if (notOptionalCheck(currentValue, multiple, optional)) {
+          onBlur?.({
+            value: currentValue as string & string[],
+            error: translatedLabels.formFields.requiredValueErrorMessage,
+          });
+        } else {
+          onBlur?.({ value: currentValue as string & string[] });
+        }
       }
     };
     const handleSelectOnKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
@@ -259,24 +321,44 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
         case "Down":
         case "ArrowDown":
           event.preventDefault();
-          singleSelectionIndex !== undefined &&
-          (!isOpen || (visualFocusIndex === -1 && singleSelectionIndex > -1 && singleSelectionIndex <= lastOptionIndex))
-            ? changeVisualFocusIndex(singleSelectionIndex)
-            : changeVisualFocusIndex((visualFocusIndex) => {
-                if (visualFocusIndex < lastOptionIndex) return visualFocusIndex + 1;
-                else if (visualFocusIndex === lastOptionIndex) return 0;
+          if (singleSelectionIndex !== undefined) {
+            if (
+              !isOpen ||
+              (visualFocusIndex === -1 &&
+                singleSelectionIndex > -1 &&
+                singleSelectionIndex <= lastOptionIndex)
+            ) {
+              changeVisualFocusIndex(singleSelectionIndex);
+            } else {
+              changeVisualFocusIndex((currentVisualFocusIndex) => {
+                if (currentVisualFocusIndex < lastOptionIndex) {
+                  return currentVisualFocusIndex + 1;
+                }
+                return 0;
               });
+            }
+          }
           openOptions();
           break;
         case "Up":
         case "ArrowUp":
           event.preventDefault();
-          singleSelectionIndex !== undefined &&
-          (!isOpen || (visualFocusIndex === -1 && singleSelectionIndex > -1 && singleSelectionIndex <= lastOptionIndex))
-            ? changeVisualFocusIndex(singleSelectionIndex)
-            : changeVisualFocusIndex((visualFocusIndex) =>
-                visualFocusIndex === 0 || visualFocusIndex === -1 ? lastOptionIndex : visualFocusIndex - 1
+          if (singleSelectionIndex !== undefined) {
+            if (
+              !isOpen ||
+              (visualFocusIndex === -1 &&
+                singleSelectionIndex > -1 &&
+                singleSelectionIndex <= lastOptionIndex)
+            ) {
+              changeVisualFocusIndex(singleSelectionIndex);
+            } else {
+              changeVisualFocusIndex((currentVisualFocusIndex) =>
+                currentVisualFocusIndex === 0 || currentVisualFocusIndex === -1
+                  ? lastOptionIndex
+                  : currentVisualFocusIndex - 1
               );
+            }
+          }
           openOptions();
           break;
         case "Esc":
@@ -290,55 +372,88 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
             let accLength = optional && !multiple ? 1 : 0;
             if (searchable) {
               if (filteredOptions.length > 0) {
-                if (optional && !multiple && visualFocusIndex === 0 && groupsHaveOptions(filteredOptions))
+                if (
+                  optional &&
+                  !multiple &&
+                  visualFocusIndex === 0 &&
+                  groupsHaveOptions(filteredOptions)
+                )
                   handleSelectChangeValue(optionalItem);
-                else
-                  isArrayOfOptionGroups(filteredOptions)
-                    ? groupsHaveOptions(filteredOptions) &&
-                      filteredOptions.some((groupOption) => {
-                        const groupLength = accLength + groupOption.options.length;
-                        groupLength > visualFocusIndex &&
-                          handleSelectChangeValue(groupOption.options[visualFocusIndex - accLength]);
-                        accLength = groupLength;
-                        return groupLength > visualFocusIndex;
-                      })
-                    : handleSelectChangeValue(filteredOptions[visualFocusIndex - accLength]);
-              }
-            } else {
-              if (optional && !multiple && visualFocusIndex === 0) handleSelectChangeValue(optionalItem);
-              else
-                isArrayOfOptionGroups(options)
-                  ? options.some((groupOption) => {
-                      const groupLength = accLength + groupOption.options.length;
-                      groupLength > visualFocusIndex &&
-                        handleSelectChangeValue(groupOption.options[visualFocusIndex - accLength]);
+                else if (isArrayOfOptionGroups(filteredOptions)) {
+                  if (groupsHaveOptions(filteredOptions)) {
+                    filteredOptions.some((groupOption) => {
+                      const groupLength =
+                        accLength + groupOption.options.length;
+                      if (groupLength > visualFocusIndex) {
+                        handleSelectChangeValue(
+                          groupOption.options[visualFocusIndex - accLength]
+                        );
+                      }
                       accLength = groupLength;
                       return groupLength > visualFocusIndex;
-                    })
-                  : handleSelectChangeValue(options[visualFocusIndex - accLength]);
+                    });
+                  }
+                } else {
+                  handleSelectChangeValue(
+                    filteredOptions[visualFocusIndex - accLength]
+                  );
+                }
+              }
+            } else if (optional && !multiple && visualFocusIndex === 0)
+              handleSelectChangeValue(optionalItem);
+            else if (isArrayOfOptionGroups(options)) {
+              options.some((groupOption) => {
+                const groupLength = accLength + groupOption.options.length;
+                if (groupLength > visualFocusIndex) {
+                  handleSelectChangeValue(
+                    groupOption.options[visualFocusIndex - accLength]
+                  );
+                }
+                accLength = groupLength;
+                return groupLength > visualFocusIndex;
+              });
+            } else {
+              handleSelectChangeValue(options[visualFocusIndex - accLength]);
             }
-            !multiple && closeOptions();
+            if (!multiple) {
+              closeOptions();
+            }
             setSearchValue("");
           }
+          break;
+        default:
           break;
       }
     };
 
-    const handleSearchIOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleSearchIOnChange = (
+      event: React.ChangeEvent<HTMLInputElement>
+    ) => {
       setSearchValue(event.target.value);
       changeVisualFocusIndex(-1);
       openOptions();
     };
 
-    const handleClearOptionsActionOnClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const handleClearOptionsActionOnClick = (
+      event: React.MouseEvent<HTMLButtonElement>
+    ) => {
       event.stopPropagation();
-      value ?? setInnerValue([]);
-      !optional
-        ? onChange?.({ value: [] as string & string[], error: translatedLabels.formFields.requiredValueErrorMessage })
-        : onChange?.({ value: [] as string & string[] });
+      if (value == null) {
+        setInnerValue([]);
+      }
+      if (!optional) {
+        onChange?.({
+          value: [] as string & string[],
+          error: translatedLabels.formFields.requiredValueErrorMessage,
+        });
+      } else {
+        onChange?.({ value: [] as string & string[] });
+      }
     };
 
-    const handleClearSearchActionOnClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const handleClearSearchActionOnClick = (
+      event: React.MouseEvent<HTMLButtonElement>
+    ) => {
       event.stopPropagation();
       setSearchValue("");
     };
@@ -346,7 +461,9 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
     const handleOptionOnClick = useCallback(
       (option: Option) => {
         handleSelectChangeValue(option);
-        !multiple && closeOptions();
+        if (!multiple) {
+          closeOptions();
+        }
         setSearchValue("");
       },
       [handleSelectChangeValue, closeOptions, multiple]
@@ -354,8 +471,14 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
 
     useEffect(() => {
       if (selectedOptionLabelRef?.current != null) {
-        if (selectedOptionLabelRef?.current.scrollWidth > selectedOptionLabelRef?.current.clientWidth)
-          selectedOptionLabelRef.current.title = getSelectedOptionLabel(placeholder, selectedOption);
+        if (
+          selectedOptionLabelRef?.current.scrollWidth >
+          selectedOptionLabelRef?.current.clientWidth
+        )
+          selectedOptionLabelRef.current.title = getSelectedOptionLabel(
+            placeholder,
+            selectedOption
+          );
         else selectedOptionLabelRef.current.title = "";
       }
     }, [placeholder, selectedOption]);
@@ -373,10 +496,17 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
               helperText={helperText}
               htmlFor={searchable ? searchableInputId : undefined}
             >
-              {label} {optional && <OptionalLabel>{translatedLabels.formFields.optionalLabel}</OptionalLabel>}
+              {label}{" "}
+              {optional && (
+                <OptionalLabel>
+                  {translatedLabels.formFields.optionalLabel}
+                </OptionalLabel>
+              )}
             </Label>
           )}
-          {helperText && <HelperText disabled={disabled}>{helperText}</HelperText>}
+          {helperText && (
+            <HelperText disabled={disabled}>{helperText}</HelperText>
+          )}
           <Popover.Root open={isOpen}>
             <Popover.Trigger asChild type={undefined}>
               <Select
@@ -395,29 +525,41 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
                 aria-expanded={isOpen}
                 aria-haspopup="listbox"
                 aria-labelledby={label ? selectLabelId : undefined}
-                aria-activedescendant={visualFocusIndex >= 0 ? `option-${visualFocusIndex}` : undefined}
-                aria-invalid={error ? true : false}
+                aria-activedescendant={
+                  visualFocusIndex >= 0
+                    ? `option-${visualFocusIndex}`
+                    : undefined
+                }
+                aria-invalid={!!error}
                 aria-errormessage={error ? errorId : undefined}
                 aria-required={!disabled && !optional}
               >
-                {multiple && Array.isArray(selectedOption) && selectedOption.length > 0 && (
-                  <SelectionIndicator>
-                    <SelectionNumber disabled={disabled}>{selectedOption.length}</SelectionNumber>
-                    <ClearOptionsAction
-                      disabled={disabled}
-                      onMouseDown={(event) => {
-                        // Avoid input to lose focus when pressed
-                        event.preventDefault();
-                      }}
-                      onClick={handleClearOptionsActionOnClick}
-                      tabIndex={-1}
-                      title={translatedLabels.select.actionClearSelectionTitle}
-                      aria-label={translatedLabels.select.actionClearSelectionTitle}
-                    >
-                      <DxcIcon icon="clear" />
-                    </ClearOptionsAction>
-                  </SelectionIndicator>
-                )}
+                {multiple &&
+                  Array.isArray(selectedOption) &&
+                  selectedOption.length > 0 && (
+                    <SelectionIndicator>
+                      <SelectionNumber disabled={disabled}>
+                        {selectedOption.length}
+                      </SelectionNumber>
+                      <ClearOptionsAction
+                        disabled={disabled}
+                        onMouseDown={(event) => {
+                          // Avoid input to lose focus when pressed
+                          event.preventDefault();
+                        }}
+                        onClick={handleClearOptionsActionOnClick}
+                        tabIndex={-1}
+                        title={
+                          translatedLabels.select.actionClearSelectionTitle
+                        }
+                        aria-label={
+                          translatedLabels.select.actionClearSelectionTitle
+                        }
+                      >
+                        <DxcIcon icon="clear" />
+                      </ClearOptionsAction>
+                    </SelectionIndicator>
+                  )}
                 <SearchableValueContainer>
                   <ValueInput
                     name={name}
@@ -426,7 +568,9 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
                       multiple
                         ? (
                             (value && Array.isArray(value) && value) ??
-                            (innerValue && Array.isArray(innerValue) && innerValue)
+                            (innerValue &&
+                              Array.isArray(innerValue) &&
+                              innerValue)
                           ).join(",")
                         : value ?? innerValue
                     }
@@ -449,7 +593,9 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
                     <SelectedOption
                       disabled={disabled}
                       atBackground={
-                        (multiple ? (value ?? innerValue).length === 0 : !(value ?? innerValue)) ||
+                        (multiple
+                          ? (value ?? innerValue).length === 0
+                          : !(value ?? innerValue)) ||
                         (searchable && isOpen)
                       }
                     >
@@ -479,7 +625,9 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
                   </ClearSearchAction>
                 )}
                 <CollapseIndicator disabled={disabled}>
-                  <DxcIcon icon={isOpen ? "keyboard_arrow_up" : "keyboard_arrow_down"} />
+                  <DxcIcon
+                    icon={isOpen ? "keyboard_arrow_up" : "keyboard_arrow_down"}
+                  />
                 </CollapseIndicator>
               </Select>
             </Popover.Trigger>
@@ -513,7 +661,11 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
             </Popover.Portal>
           </Popover.Root>
           {!disabled && typeof error === "string" && (
-            <Error id={errorId} role="alert" aria-live={error ? "assertive" : "off"}>
+            <Error
+              id={errorId}
+              role="alert"
+              aria-live={error ? "assertive" : "off"}
+            >
               {error}
             </Error>
           )}
@@ -530,30 +682,51 @@ const sizes = {
   fillParent: "100%",
 };
 
-const calculateWidth = (margin: SelectPropsType["margin"], size: SelectPropsType["size"]) =>
+const calculateWidth = (
+  margin: SelectPropsType["margin"],
+  size: SelectPropsType["size"]
+) =>
   size === "fillParent"
     ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
     : sizes[size];
 
-const SelectContainer = styled.div<{ margin: SelectPropsType["margin"]; size: SelectPropsType["size"] }>`
+const SelectContainer = styled.div<{
+  margin: SelectPropsType["margin"];
+  size: SelectPropsType["size"];
+}>`
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
 
   width: ${(props) => calculateWidth(props.margin, props.size)};
-  margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
+  margin: ${(props) =>
+    props.margin && typeof props.margin !== "object"
+      ? spaces[props.margin]
+      : "0px"};
   margin-top: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
+    props.margin && typeof props.margin === "object" && props.margin.top
+      ? spaces[props.margin.top]
+      : ""};
   margin-right: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
+    props.margin && typeof props.margin === "object" && props.margin.right
+      ? spaces[props.margin.right]
+      : ""};
   margin-bottom: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
+    props.margin && typeof props.margin === "object" && props.margin.bottom
+      ? spaces[props.margin.bottom]
+      : ""};
   margin-left: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
+    props.margin && typeof props.margin === "object" && props.margin.left
+      ? spaces[props.margin.left]
+      : ""};
 `;
 
-const Label = styled.label<{ disabled: SelectPropsType["disabled"]; helperText: SelectPropsType["helperText"] }>`
-  color: ${(props) => (props.disabled ? props.theme.disabledColor : props.theme.labelFontColor)};
+const Label = styled.label<{
+  disabled: SelectPropsType["disabled"];
+  helperText: SelectPropsType["helperText"];
+}>`
+  color: ${(props) =>
+    props.disabled ? props.theme.disabledColor : props.theme.labelFontColor};
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.labelFontSize};
   font-style: ${(props) => props.theme.labelFontStyle};
@@ -568,7 +741,10 @@ const OptionalLabel = styled.span`
 `;
 
 const HelperText = styled.span<{ disabled: SelectPropsType["disabled"] }>`
-  color: ${(props) => (props.disabled ? props.theme.disabledColor : props.theme.helperTextFontColor)};
+  color: ${(props) =>
+    props.disabled
+      ? props.theme.disabledColor
+      : props.theme.helperTextFontColor};
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.helperTextFontSize};
   font-style: ${(props) => props.theme.helperTextFontStyle};
@@ -577,18 +753,26 @@ const HelperText = styled.span<{ disabled: SelectPropsType["disabled"] }>`
   margin-bottom: 0.25rem;
 `;
 
-const Select = styled.div<{ disabled: SelectPropsType["disabled"]; error: SelectPropsType["error"] }>`
+const Select = styled.div<{
+  disabled: SelectPropsType["disabled"];
+  error: SelectPropsType["error"];
+}>`
   display: flex;
   position: relative;
   align-items: center;
   height: calc(2.5rem - 2px);
   padding: 0 0.5rem;
   outline: none;
-  ${(props) => props.disabled && `background-color: ${props.theme.disabledInputBackgroundColor}`};
+  ${(props) =>
+    props.disabled &&
+    `background-color: ${props.theme.disabledInputBackgroundColor}`};
   box-shadow: 0 0 0 2px transparent;
   border-radius: 4px;
   border: 1px solid
-    ${(props) => (props.disabled ? props.theme.disabledInputBorderColor : props.theme.enabledInputBorderColor)};
+    ${(props) =>
+      props.disabled
+        ? props.theme.disabledInputBorderColor
+        : props.theme.enabledInputBorderColor};
   ${(props) =>
     props.error &&
     !props.disabled &&
@@ -626,9 +810,15 @@ const SelectionNumber = styled.span<{ disabled: SelectPropsType["disabled"] }>`
   width: 22px;
   height: 22px;
   user-select: none;
-  ${(props) => !props.disabled && `background-color: ${props.theme.selectionIndicatorBackgroundColor}`};
-  border-right: 1px solid ${(props) => props.theme.selectionIndicatorBorderColor};
-  color: ${(props) => (props.disabled ? props.theme.disabledColor : props.theme.selectionIndicatorFontColor)};
+  ${(props) =>
+    !props.disabled &&
+    `background-color: ${props.theme.selectionIndicatorBackgroundColor}`};
+  border-right: 1px solid
+    ${(props) => props.theme.selectionIndicatorBorderColor};
+  color: ${(props) =>
+    props.disabled
+      ? props.theme.disabledColor
+      : props.theme.selectionIndicatorFontColor};
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.selectionIndicatorFontSize};
   font-style: ${(props) => props.theme.selectionIndicatorFontStyle};
@@ -646,9 +836,13 @@ const ClearOptionsAction = styled.button`
   padding: 0.25rem;
   ${(props) => (props.disabled ? `cursor: not-allowed;` : `cursor: pointer;`)}
   background-color: ${(props) =>
-    props.disabled ? "transparent" : props.theme.enabledSelectionIndicatorActionBackgroundColor};
+    props.disabled
+      ? "transparent"
+      : props.theme.enabledSelectionIndicatorActionBackgroundColor};
   color: ${(props) =>
-    props.disabled ? props.theme.disabledColor : props.theme.enabledSelectionIndicatorActionIconColor};
+    props.disabled
+      ? props.theme.disabledColor
+      : props.theme.enabledSelectionIndicatorActionIconColor};
 
   :focus-visible {
     outline: none;
@@ -674,7 +868,10 @@ const SearchableValueContainer = styled.div`
   width: 100%;
 `;
 
-const SelectedOption = styled.span<{ disabled: SelectPropsType["disabled"]; atBackground: boolean }>`
+const SelectedOption = styled.span<{
+  disabled: SelectPropsType["disabled"];
+  atBackground: boolean;
+}>`
   grid-area: 1 / 1 / 1 / 1;
   display: inline-flex;
   align-items: center;
@@ -683,11 +880,12 @@ const SelectedOption = styled.span<{ disabled: SelectPropsType["disabled"]; atBa
   user-select: none;
   overflow: hidden;
 
-  color: ${(props) => {
-    if (props.disabled) return props.theme.disabledColor;
-    else if (props.atBackground) return props.theme.placeholderFontColor;
-    else return props.theme.valueFontColor;
-  }};
+  color: ${(props) =>
+    props.disabled
+      ? props.theme.disabledColor
+      : props.atBackground
+        ? props.theme.placeholderFontColor
+        : props.theme.valueFontColor};
 
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.valueFontSize};
@@ -712,7 +910,8 @@ const SearchInput = styled.input`
   border: none;
   outline: none;
   padding: 0 0.5rem;
-  color: ${(props) => (props.disabled ? props.theme.disabledColor : props.theme.valueFontColor)};
+  color: ${(props) =>
+    props.disabled ? props.theme.disabledColor : props.theme.valueFontColor};
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.valueFontSize};
   font-style: ${(props) => props.theme.valueFontStyle};
@@ -744,7 +943,9 @@ const Error = styled.span`
   margin-top: 0.25rem;
 `;
 
-const CollapseIndicator = styled.span<{ disabled: SelectPropsType["disabled"] }>`
+const CollapseIndicator = styled.span<{
+  disabled: SelectPropsType["disabled"];
+}>`
   display: flex;
   flex-wrap: wrap;
   align-content: center;
@@ -752,7 +953,10 @@ const CollapseIndicator = styled.span<{ disabled: SelectPropsType["disabled"] }>
   width: 16px;
   padding: 4px;
   margin-left: 0.25rem;
-  color: ${(props) => (props.disabled ? props.theme.disabledColor : props.theme.collapseIndicatorColor)};
+  color: ${(props) =>
+    props.disabled
+      ? props.theme.disabledColor
+      : props.theme.collapseIndicatorColor};
 `;
 
 const ClearSearchAction = styled.button`
@@ -781,5 +985,7 @@ const ClearSearchAction = styled.button`
   }
   font-size: 16px;
 `;
+
+DxcSelect.displayName = "DxcSelect";
 
 export default DxcSelect;

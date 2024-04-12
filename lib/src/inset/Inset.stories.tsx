@@ -1,7 +1,7 @@
 import React from "react";
-import Title from "../../.storybook/components/Title";
 import styled from "styled-components";
-import DxcFlex from "./../flex/Flex";
+import Title from "../../.storybook/components/Title";
+import DxcFlex from "../flex/Flex";
 import DxcInset from "./Inset";
 
 export default {
@@ -197,7 +197,10 @@ export const Chromatic = () => (
         <Placeholder></Placeholder>
       </DxcInset>
     </Container>
-    <Title title="top = xxsmall, right= medium, bottom = large and left = xxlarge" level={4} />
+    <Title
+      title="top = xxsmall, right= medium, bottom = large and left = xxlarge"
+      level={4}
+    />
     <Container>
       <DxcInset top="0.25rem" right="1.5rem" bottom="2rem" left="4rem">
         <Placeholder></Placeholder>

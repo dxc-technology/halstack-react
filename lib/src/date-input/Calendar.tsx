@@ -7,8 +7,13 @@ import DxcFlex from "../flex/Flex";
 
 const getDays = (innerDate: Dayjs) => {
   const monthDayCells = [];
-  const lastMonthNumberOfDays = innerDate.set("month", innerDate.get("month") - 1).endOf("month");
-  const firstDayOfMonth = innerDate.startOf("month").day() === 0 ? 6 : innerDate.startOf("month").day() - 1;
+  const lastMonthNumberOfDays = innerDate
+    .set("month", innerDate.get("month") - 1)
+    .endOf("month");
+  const firstDayOfMonth =
+    innerDate.startOf("month").day() === 0
+      ? 6
+      : innerDate.startOf("month").day() - 1;
   const daysInMonth = firstDayOfMonth + innerDate.daysInMonth();
 
   for (let i = 0; i < 42; i++) {
@@ -35,15 +40,19 @@ const getDays = (innerDate: Dayjs) => {
   return monthDayCells;
 };
 
-const getDateToFocus = (selectedDate, innerDate, today) => {
-  return selectedDate?.get("month") === innerDate.get("month") && selectedDate?.get("year") === innerDate.get("year")
+const getDateToFocus = (selectedDate, innerDate, today) =>
+  selectedDate?.get("month") === innerDate.get("month") &&
+  selectedDate?.get("year") === innerDate.get("year")
     ? selectedDate
-    : today.get("month") === innerDate.get("month") && today.get("year") === innerDate.get("year")
-    ? today
-    : innerDate.set("date", 1);
-};
+    : today.get("month") === innerDate.get("month") &&
+        today.get("year") === innerDate.get("year")
+      ? today
+      : innerDate.set("date", 1);
 
-const isDaySelected = (date: { day: number; month: number; year: number }, selectedDate) =>
+const isDaySelected = (
+  date: { day: number; month: number; year: number },
+  selectedDate
+) =>
   selectedDate?.get("month") === date.month &&
   selectedDate?.get("year") === date.year &&
   selectedDate?.get("date") === date.day;
@@ -55,13 +64,19 @@ const Calendar = ({
   onDaySelect,
   today,
 }: CalendarPropsType): JSX.Element => {
-  const [dateToFocus, setDateToFocus] = useState(getDateToFocus(selectedDate, innerDate, today));
+  const [dateToFocus, setDateToFocus] = useState(
+    getDateToFocus(selectedDate, innerDate, today)
+  );
   const [isFocusable, setIsFocusable] = useState(false);
   const dayCells = useMemo(() => getDays(innerDate), [innerDate]);
   const translatedLabels = useTranslatedLabels();
   const weekDays = translatedLabels.calendar.daysShort;
 
-  const onDateClickHandler = (date: { day: number; month: number; year: number }) => {
+  const onDateClickHandler = (date: {
+    day: number;
+    month: number;
+    year: number;
+  }) => {
     const newDate = innerDate.set("month", date.month).set("date", date.day);
     onDaySelect(newDate);
     setDateToFocus(newDate);
@@ -74,7 +89,10 @@ const Calendar = ({
   };
 
   const focusDate = (date: Dayjs) => {
-    if (innerDate.get("month") !== date.get("month") || innerDate.get("year") !== date.get("year")) {
+    if (
+      innerDate.get("month") !== date.get("month") ||
+      innerDate.get("year") !== date.get("year")
+    ) {
       onInnerDateChange(date);
     }
     setDateToFocus(date);
@@ -83,13 +101,20 @@ const Calendar = ({
 
   useEffect(() => {
     if (isFocusable) {
-      document.getElementById(`day_${dateToFocus.get("date")}_month${dateToFocus.get("month")}`)?.focus();
+      document
+        .getElementById(
+          `day_${dateToFocus.get("date")}_month${dateToFocus.get("month")}`
+        )
+        ?.focus();
       setIsFocusable(false);
     }
   }, [dateToFocus, isFocusable]);
 
   useEffect(() => {
-    if (dateToFocus.get("month") !== innerDate.get("month") || dateToFocus.get("year") !== innerDate.get("year")) {
+    if (
+      dateToFocus.get("month") !== innerDate.get("month") ||
+      dateToFocus.get("year") !== innerDate.get("year")
+    ) {
       setDateToFocus(getDateToFocus(selectedDate, innerDate, today));
     }
   }, [innerDate, dateToFocus, selectedDate, today]);
@@ -103,53 +128,87 @@ const Calendar = ({
     switch (event.key) {
       case "PageUp":
         event.preventDefault();
-        event.shiftKey
-          ? (dateToFocusTemp = dateToFocusTemp.set("year", dateToFocusTemp.get("year") - 1))
-          : (dateToFocusTemp = dateToFocusTemp.set("month", dateToFocusTemp.get("month") - 1));
+        if (event.shiftKey) {
+          dateToFocusTemp = dateToFocusTemp.set(
+            "year",
+            dateToFocusTemp.get("year") - 1
+          );
+        } else {
+          dateToFocusTemp = dateToFocusTemp.set(
+            "month",
+            dateToFocusTemp.get("month") - 1
+          );
+        }
         focusDate(dateToFocusTemp);
         break;
       case "PageDown":
         event.preventDefault();
-        event.shiftKey
-          ? (dateToFocusTemp = dateToFocusTemp.set("year", dateToFocusTemp.get("year") + 1))
-          : (dateToFocusTemp = dateToFocusTemp.set("month", dateToFocusTemp.get("month") + 1));
+        if (event.shiftKey) {
+          dateToFocusTemp = dateToFocusTemp.set(
+            "year",
+            dateToFocusTemp.get("year") + 1
+          );
+        } else {
+          dateToFocusTemp = dateToFocusTemp.set(
+            "month",
+            dateToFocusTemp.get("month") + 1
+          );
+        }
         focusDate(dateToFocusTemp);
         break;
       case "ArrowLeft":
         event.preventDefault();
-        dateToFocusTemp = dateToFocusTemp.set("date", dateToFocusTemp.get("date") - 1);
+        dateToFocusTemp = dateToFocusTemp.set(
+          "date",
+          dateToFocusTemp.get("date") - 1
+        );
         focusDate(dateToFocusTemp);
         break;
       case "ArrowRight":
         event.preventDefault();
-        dateToFocusTemp = dateToFocusTemp.set("date", dateToFocusTemp.get("date") + 1);
+        dateToFocusTemp = dateToFocusTemp.set(
+          "date",
+          dateToFocusTemp.get("date") + 1
+        );
         focusDate(dateToFocusTemp);
         break;
       case "ArrowUp":
         event.preventDefault();
-        dateToFocusTemp = dateToFocusTemp.set("date", dateToFocusTemp.get("date") - 7);
+        dateToFocusTemp = dateToFocusTemp.set(
+          "date",
+          dateToFocusTemp.get("date") - 7
+        );
         focusDate(dateToFocusTemp);
         break;
       case "ArrowDown":
         event.preventDefault();
-        dateToFocusTemp = dateToFocusTemp.set("date", dateToFocusTemp.get("date") + 7);
+        dateToFocusTemp = dateToFocusTemp.set(
+          "date",
+          dateToFocusTemp.get("date") + 7
+        );
         focusDate(dateToFocusTemp);
         break;
       case "Home":
         event.preventDefault();
-        dateToFocus.get("day") !== 0
-          ? (dateToFocusTemp = dateToFocusTemp.day(1))
-          : (dateToFocusTemp = innerDate.date(date.day - 1).day(1));
+        if (dateToFocus.get("day") !== 0) {
+          dateToFocusTemp = dateToFocusTemp.day(1);
+        } else {
+          dateToFocusTemp = innerDate.date(date.day - 1).day(1);
+        }
         focusDate(dateToFocusTemp);
         break;
       case "End":
         event.preventDefault();
-        dateToFocusTemp.get("day") !== 0 && (dateToFocusTemp = dateToFocusTemp.day(7));
+        if (dateToFocusTemp.get("day") !== 0) {
+          dateToFocusTemp = dateToFocusTemp.day(7);
+        }
         focusDate(dateToFocusTemp);
         break;
       case " ":
         event.preventDefault();
         onDaySelect(dateToFocusTemp);
+        break;
+      default:
         break;
     }
   };
@@ -171,9 +230,17 @@ const Calendar = ({
             onClick={() => onDateClickHandler(date)}
             selected={isDaySelected(date, selectedDate)}
             actualMonth={date.month === innerDate.get("month")}
-            autoFocus={date.day === dateToFocus.get("date") && date.month === dateToFocus.get("month")}
+            autoFocus={
+              date.day === dateToFocus.get("date") &&
+              date.month === dateToFocus.get("month")
+            }
             aria-selected={isDaySelected(date, selectedDate)}
-            tabIndex={date.day === dateToFocus.get("date") && date.month === dateToFocus.get("month") ? 0 : -1}
+            tabIndex={
+              date.day === dateToFocus.get("date") &&
+              date.month === dateToFocus.get("month")
+                ? 0
+                : -1
+            }
             isCurrentDay={
               today.get("date") === date.day &&
               today.get("month") === innerDate.get("month") &&
@@ -246,10 +313,13 @@ const DayCell = styled.button<{
         ? props.theme.dateInput.pickerSelectedBackgroundColor
         : props.theme.dateInput.pickerHoverBackgroundColor};
     color: ${(props) =>
-      props.selected ? props.theme.dateInput.pickerSelectedFontColor : props.theme.dateInput.pickerHoverFontColor};
+      props.selected
+        ? props.theme.dateInput.pickerSelectedFontColor
+        : props.theme.dateInput.pickerHoverFontColor};
   }
   &:active {
-    background-color: ${(props) => props.theme.dateInput.pickerActiveBackgroundColor};
+    background-color: ${(props) =>
+      props.theme.dateInput.pickerActiveBackgroundColor};
     color: ${(props) => props.theme.dateInput.pickerActiveFontColor};
   }
 
@@ -258,15 +328,17 @@ const DayCell = styled.button<{
     !props.selected &&
     `border: ${props.theme.dateInput.pickerCurrentDateBorderWidth} solid ${props.theme.dateInput.pickerCurrentDateBorderColor};`}
   background-color: ${(props) =>
-    props.selected ? props.theme.dateInput.pickerSelectedBackgroundColor : "transparent"};
+    props.selected
+      ? props.theme.dateInput.pickerSelectedBackgroundColor
+      : "transparent"};
   color: ${(props) =>
     props.selected
       ? props.theme.dateInput.pickerSelectedFontColor
       : props.isCurrentDay
-      ? props.theme.dateInput.pickerCurrentDateFontColor
-      : !props.actualMonth
-      ? props.theme.dateInput.pickerNonCurrentMonthFontColor
-      : props.theme.dateInput.pickerFontColor};
+        ? props.theme.dateInput.pickerCurrentDateFontColor
+        : !props.actualMonth
+          ? props.theme.dateInput.pickerNonCurrentMonthFontColor
+          : props.theme.dateInput.pickerFontColor};
 `;
 
 export default React.memo(Calendar);

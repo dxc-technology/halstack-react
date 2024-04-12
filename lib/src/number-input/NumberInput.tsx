@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import styled from "styled-components";
 import DxcTextInput from "../text-input/TextInput";
 import NumberInputPropsType, { RefType } from "./types";
@@ -33,8 +33,20 @@ const DxcNumberInput = React.forwardRef<RefType, NumberInputPropsType>(
   ) => {
     const numberInputRef = React.useRef<HTMLInputElement>(null);
 
+    const contextValue = useMemo(
+      () => ({
+        typeNumber: "number",
+        minNumber: min,
+        maxNumber: max,
+        stepNumber: step,
+      }),
+      [min, max, step]
+    );
+
     useEffect(() => {
-      const input = numberInputRef.current?.getElementsByTagName("input")[0] as HTMLInputElement;
+      const input = numberInputRef.current?.getElementsByTagName(
+        "input"
+      )[0] as HTMLInputElement;
       const preventDefault = (event: WheelEvent) => {
         event.preventDefault();
       };
@@ -46,7 +58,7 @@ const DxcNumberInput = React.forwardRef<RefType, NumberInputPropsType>(
     }, []);
 
     return (
-      <NumberInputContext.Provider value={{ typeNumber: "number", minNumber: min, maxNumber: max, stepNumber: step }}>
+      <NumberInputContext.Provider value={contextValue}>
         <NumberInputContainer ref={numberInputRef}>
           <DxcTextInput
             label={label}
@@ -88,5 +100,7 @@ const NumberInputContainer = styled.div`
     -moz-appearance: textfield;
   }
 `;
+
+DxcNumberInput.displayName = "DxcNumberInput";
 
 export default DxcNumberInput;

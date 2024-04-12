@@ -7,19 +7,20 @@ import DxcButton from "../button/Button";
 import FileInputPropsType, { FileData, RefType } from "./types";
 import FileItem from "./FileItem";
 
-const getFilePreview = async (file: File): Promise<string> => {
-  if (file.type.includes("video")) return "filled_movie";
-  else if (file.type.includes("audio")) return "music_video";
-  else if (file.type.includes("image")) {
-    return new Promise<string>((resolve) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = (e) => {
-        resolve(e.target.result as string);
-      };
-    });
-  } else return "draft";
-};
+const getFilePreview = async (file: File): Promise<string> =>
+  file.type.includes("video")
+    ? "filled_movie"
+    : file.type.includes("audio")
+      ? "music_video"
+      : file.type.includes("image")
+        ? new Promise<string>((resolve) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = (e) => {
+              resolve(e.target.result as string);
+            };
+          })
+        : "draft";
 
 const isFileIncluded = (file: FileData, fileList: FileData[]) => {
   const fileListInfo = fileList.map((existingFile) => existingFile.file);
@@ -36,7 +37,6 @@ const isFileIncluded = (file: FileData, fileList: FileData[]) => {
 const DxcFileInput = React.forwardRef<RefType, FileInputPropsType>(
   (
     {
-      name = "",
       mode = "file",
       label = "",
       buttonLabel,
@@ -61,25 +61,36 @@ const DxcFileInput = React.forwardRef<RefType, FileInputPropsType>(
     const colorsTheme = useTheme();
     const translatedLabels = useTranslatedLabels();
 
-    const checkFileSize = (file: File) => {
-      if (file.size < minSize) return translatedLabels.fileInput.fileSizeGreaterThanErrorMessage;
-      else if (file.size > maxSize) return translatedLabels.fileInput.fileSizeLessThanErrorMessage;
-    };
+    const checkFileSize = (file: File) =>
+      file.size < minSize
+        ? translatedLabels.fileInput.fileSizeGreaterThanErrorMessage
+        : file.size > maxSize
+          ? translatedLabels.fileInput.fileSizeLessThanErrorMessage
+          : "";
 
     const getFilesToAdd = async (selectedFiles: File[]) => {
-      const filesToAdd = await Promise.all(selectedFiles.map((selectedFile) => getFilePreview(selectedFile))).then(
-        (previews: string[]) =>
-          selectedFiles.map((file, index) => {
-            const fileInfo = { file, error: checkFileSize(file), preview: previews[index] };
-            return fileInfo;
-          })
+      const filesToAdd = await Promise.all(
+        selectedFiles.map((selectedFile) => getFilePreview(selectedFile))
+      ).then((previews: string[]) =>
+        selectedFiles.map((file, index) => {
+          const fileInfo = {
+            file,
+            error: checkFileSize(file),
+            preview: previews[index],
+          };
+          return fileInfo;
+        })
       );
       return filesToAdd.filter((file) => !isFileIncluded(file, files));
     };
 
     const addFile = async (selectedFiles: File[]) => {
       const filesToAdd = await getFilesToAdd(
-        multiple ? selectedFiles : selectedFiles.length === 1 ? selectedFiles : [selectedFiles[0]]
+        multiple
+          ? selectedFiles
+          : selectedFiles.length === 1
+            ? selectedFiles
+            : [selectedFiles[0]]
       );
       const finalFiles = multiple ? [...files, ...filesToAdd] : filesToAdd;
       callbackFile?.(finalFiles);
@@ -87,7 +98,9 @@ const DxcFileInput = React.forwardRef<RefType, FileInputPropsType>(
 
     const selectFiles = (e) => {
       const selectedFiles = e.target.files;
-      const filesArray = Object.keys(selectedFiles).map((key) => selectedFiles[key]);
+      const filesArray = Object.keys(selectedFiles).map(
+        (key) => selectedFiles[key]
+      );
       addFile(filesArray);
       e.target.value = null;
     };
@@ -95,9 +108,9 @@ const DxcFileInput = React.forwardRef<RefType, FileInputPropsType>(
     const onDelete = useCallback(
       (fileName) => {
         const filesCopy = [...files];
-        const fileToRemove = filesCopy.find((file) => {
-          return file.file.name === fileName;
-        });
+        const fileToRemove = filesCopy.find(
+          (file) => file.file.name === fileName
+        );
         const fileIndex = filesCopy.indexOf(fileToRemove);
         filesCopy.splice(fileIndex, 1);
         callbackFile?.(filesCopy);
@@ -125,7 +138,9 @@ const DxcFileInput = React.forwardRef<RefType, FileInputPropsType>(
       setIsDragging(false);
       const filesObject = e.dataTransfer.files;
       if (filesObject?.length > 0) {
-        const filesArray = Object.keys(filesObject).map((key) => filesObject[key]);
+        const filesArray = Object.keys(filesObject).map(
+          (key) => filesObject[key]
+        );
         addFile(filesArray);
       }
     };
@@ -137,10 +152,9 @@ const DxcFileInput = React.forwardRef<RefType, FileInputPropsType>(
             value.map(async (file) => {
               if (file.preview) {
                 return file;
-              } else {
-                const preview = await getFilePreview(file.file);
-                return { ...file, preview };
               }
+              const preview = await getFilePreview(file.file);
+              return { ...file, preview };
             })
           )) as FileData[];
           setFiles(valueFiles);
@@ -187,7 +201,9 @@ const DxcFileInput = React.forwardRef<RefType, FileInputPropsType>(
                       fileName={file.file.name}
                       error={file.error}
                       singleFileMode={!multiple && files.length === 1}
-                      showPreview={mode === "file" && !multiple ? false : showPreview}
+                      showPreview={
+                        mode === "file" && !multiple ? false : showPreview
+                      }
                       preview={file.preview}
                       type={file.file.type}
                       onDelete={onDelete}
@@ -220,7 +236,10 @@ const DxcFileInput = React.forwardRef<RefType, FileInputPropsType>(
               >
                 <DxcButton
                   mode="secondary"
-                  label={buttonLabel ?? translatedLabels.fileInput.dropAreaButtonLabelDefault}
+                  label={
+                    buttonLabel ??
+                    translatedLabels.fileInput.dropAreaButtonLabelDefault
+                  }
                   onClick={handleClick}
                   disabled={disabled}
                   size="fitContent"
@@ -229,15 +248,19 @@ const DxcFileInput = React.forwardRef<RefType, FileInputPropsType>(
                   <DropzoneLabel disabled={disabled}>
                     {dropAreaLabel ??
                       (multiple
-                        ? translatedLabels.fileInput.multipleDropAreaLabelDefault
-                        : translatedLabels.fileInput.singleDropAreaLabelDefault)}
+                        ? translatedLabels.fileInput
+                            .multipleDropAreaLabelDefault
+                        : translatedLabels.fileInput
+                            .singleDropAreaLabelDefault)}
                   </DropzoneLabel>
                 ) : (
                   <FiledropLabel disabled={disabled}>
                     {dropAreaLabel ??
                       (multiple
-                        ? translatedLabels.fileInput.multipleDropAreaLabelDefault
-                        : translatedLabels.fileInput.singleDropAreaLabelDefault)}
+                        ? translatedLabels.fileInput
+                            .multipleDropAreaLabelDefault
+                        : translatedLabels.fileInput
+                            .singleDropAreaLabelDefault)}
                   </FiledropLabel>
                 )}
               </DragDropArea>
@@ -260,9 +283,10 @@ const DxcFileInput = React.forwardRef<RefType, FileInputPropsType>(
               )}
             </Container>
           )}
-          {mode === "file" && !multiple && files.length === 1 && files[0].error && (
-            <ErrorMessage>{files[0].error}</ErrorMessage>
-          )}
+          {mode === "file" &&
+            !multiple &&
+            files.length === 1 &&
+            files[0].error && <ErrorMessage>{files[0].error}</ErrorMessage>}
         </FileInputContainer>
       </ThemeProvider>
     );
@@ -272,20 +296,34 @@ const DxcFileInput = React.forwardRef<RefType, FileInputPropsType>(
 const FileInputContainer = styled.div<{ margin: FileInputPropsType["margin"] }>`
   display: flex;
   flex-direction: column;
-  margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
+  margin: ${(props) =>
+    props.margin && typeof props.margin !== "object"
+      ? spaces[props.margin]
+      : "0px"};
   margin-top: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
+    props.margin && typeof props.margin === "object" && props.margin.top
+      ? spaces[props.margin.top]
+      : ""};
   margin-right: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
+    props.margin && typeof props.margin === "object" && props.margin.right
+      ? spaces[props.margin.right]
+      : ""};
   margin-bottom: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
+    props.margin && typeof props.margin === "object" && props.margin.bottom
+      ? spaces[props.margin.bottom]
+      : ""};
   margin-left: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
+    props.margin && typeof props.margin === "object" && props.margin.left
+      ? spaces[props.margin.left]
+      : ""};
   width: fit-content;
 `;
 
 const Label = styled.label<{ disabled: FileInputPropsType["disabled"] }>`
-  color: ${(props) => (props.disabled ? props.theme.disabledLabelFontColor : props.theme.labelFontColor)};
+  color: ${(props) =>
+    props.disabled
+      ? props.theme.disabledLabelFontColor
+      : props.theme.labelFontColor};
   font-family: ${(props) => props.theme.labelFontFamily};
   font-size: ${(props) => props.theme.labelFontSize};
   font-weight: ${(props) => props.theme.labelFontWeight};
@@ -293,7 +331,10 @@ const Label = styled.label<{ disabled: FileInputPropsType["disabled"] }>`
 `;
 
 const HelperText = styled.span<{ disabled: FileInputPropsType["disabled"] }>`
-  color: ${(props) => (props.disabled ? props.theme.disabledHelperTextFontcolor : props.theme.helperTextFontColor)};
+  color: ${(props) =>
+    props.disabled
+      ? props.theme.disabledHelperTextFontcolor
+      : props.theme.helperTextFontColor};
   font-family: ${(props) => props.theme.helperTextFontFamily};
   font-size: ${(props) => props.theme.helperTextFontSize};
   font-weight: ${(props) => props.theme.helperTextFontWeight};
@@ -303,7 +344,9 @@ const HelperText = styled.span<{ disabled: FileInputPropsType["disabled"] }>`
 const FileContainer = styled.div<{ singleFileMode: boolean }>`
   display: flex;
   ${(props) =>
-    props.singleFileMode ? "flex-direction: row; column-gap: 0.25rem;" : "flex-direction: column; row-gap: 0.25rem;"}
+    props.singleFileMode
+      ? "flex-direction: row; column-gap: 0.25rem;"
+      : "flex-direction: column; row-gap: 0.25rem;"}
   margin-top: 0.25rem;
 `;
 
@@ -346,7 +389,10 @@ const DragDropArea = styled.div<{
   border-radius: ${(props) => props.theme.dropBorderRadius};
   border-width: ${(props) => props.theme.dropBorderThickness};
   border-style: ${(props) => props.theme.dropBorderStyle};
-  border-color: ${(props) => (props.disabled ? props.theme.disabledDropBorderColor : props.theme.dropBorderColor)};
+  border-color: ${(props) =>
+    props.disabled
+      ? props.theme.disabledDropBorderColor
+      : props.theme.dropBorderColor};
   ${(props) =>
     props.isDragging &&
     `
@@ -364,7 +410,10 @@ const DropzoneLabel = styled.div<{ disabled: FileInputPropsType["disabled"] }>`
   text-overflow: ellipsis;
   -webkit-line-clamp: 3;
   text-align: center;
-  color: ${(props) => (props.disabled ? props.theme.disabledDropLabelFontColor : props.theme.dropLabelFontColor)};
+  color: ${(props) =>
+    props.disabled
+      ? props.theme.disabledDropLabelFontColor
+      : props.theme.dropLabelFontColor};
   font-family: ${(props) => props.theme.dropLabelFontFamily};
   font-size: ${(props) => props.theme.dropLabelFontSize};
   font-weight: ${(props) => props.theme.dropLabelFontWeight};
@@ -374,7 +423,10 @@ const FiledropLabel = styled.span<{ disabled: FileInputPropsType["disabled"] }>`
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  color: ${(props) => (props.disabled ? props.theme.disabledDropLabelFontColor : props.theme.dropLabelFontColor)};
+  color: ${(props) =>
+    props.disabled
+      ? props.theme.disabledDropLabelFontColor
+      : props.theme.dropLabelFontColor};
   font-family: ${(props) => props.theme.dropLabelFontFamily};
   font-size: ${(props) => props.theme.dropLabelFontSize};
   font-weight: ${(props) => props.theme.dropLabelFontWeight};
@@ -388,5 +440,7 @@ const ErrorMessage = styled.div`
   line-height: ${(props) => props.theme.errorMessageLineHeight};
   margin-top: 0.25rem;
 `;
+
+DxcFileInput.displayName = "DxcFileInput";
 
 export default DxcFileInput;

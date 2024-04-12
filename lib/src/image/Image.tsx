@@ -1,10 +1,14 @@
 import React from "react";
-import ImagePropsType, { CaptionWrapperProps } from "./types";
 import styled, { ThemeProvider } from "styled-components";
+import ImagePropsType, { CaptionWrapperProps } from "./types";
 import useTheme from "../useTheme";
 import BaseTypography from "../utils/BaseTypography";
 
-const CaptionWrapper = ({ condition, wrapper, children }: CaptionWrapperProps): JSX.Element => (
+const CaptionWrapper = ({
+  condition,
+  wrapper,
+  children,
+}: CaptionWrapperProps): JSX.Element => (
   <>{condition ? wrapper(children) : children}</>
 );
 
@@ -24,26 +28,28 @@ const DxcImage = ({
 }: ImagePropsType) => {
   const colorsTheme = useTheme();
 
+  const wrapperFunction = (children: React.ReactNode) => (
+    <Figure>
+      {children}
+      <BaseTypography
+        as="figcaption"
+        color={colorsTheme.image.captionFontColor}
+        fontFamily={colorsTheme.image.captionFontFamily}
+        fontSize={colorsTheme.image.captionFontSize}
+        fontStyle={colorsTheme.image.captionFontStyle}
+        fontWeight={colorsTheme.image.captionFontWeight}
+        lineHeight={colorsTheme.image.captionLineHeight}
+      >
+        {caption}
+      </BaseTypography>
+    </Figure>
+  );
+
   return (
     <ThemeProvider theme={colorsTheme.image}>
       <CaptionWrapper
-        condition={caption != undefined}
-        wrapper={(children: React.ReactNode) => (
-          <Figure>
-            {children}
-            <BaseTypography
-              as="figcaption"
-              color={colorsTheme.image.captionFontColor}
-              fontFamily={colorsTheme.image.captionFontFamily}
-              fontSize={colorsTheme.image.captionFontSize}
-              fontStyle={colorsTheme.image.captionFontStyle}
-              fontWeight={colorsTheme.image.captionFontWeight}
-              lineHeight={colorsTheme.image.captionLineHeight}
-            >
-              {caption}
-            </BaseTypography>
-          </Figure>
-        )}
+        condition={caption !== undefined}
+        wrapper={wrapperFunction}
       >
         <img
           alt={alt}

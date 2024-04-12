@@ -12,8 +12,14 @@ const getYearsArray = () => {
 };
 const yearList = getYearsArray();
 
-const YearPicker = ({ onYearSelect, selectedDate, today }: YearPickerPropsType): JSX.Element => {
-  const [yearToFocus, setYearToFocus] = useState(selectedDate ? selectedDate.get("year") : dayjs().get("year"));
+const YearPicker = ({
+  onYearSelect,
+  selectedDate,
+  today,
+}: YearPickerPropsType): JSX.Element => {
+  const [yearToFocus, setYearToFocus] = useState(
+    selectedDate ? selectedDate.get("year") : dayjs().get("year")
+  );
 
   useEffect(() => {
     const yearToFocusEl = document.getElementById(`year_${yearToFocus}`);
@@ -28,6 +34,8 @@ const YearPicker = ({ onYearSelect, selectedDate, today }: YearPickerPropsType):
         break;
       case "ArrowDown":
         setYearToFocus((prev) => (prev < 2100 ? prev + 1 : prev));
+        break;
+      default:
         break;
     }
   };
@@ -67,7 +75,10 @@ const YearPickerContainer = styled.div`
   padding: 2px 8px 8px 8px;
 `;
 
-const YearPickerButton = styled.button<{ selected: boolean; isCurrentYear: boolean }>`
+const YearPickerButton = styled.button<{
+  selected: boolean;
+  isCurrentYear: boolean;
+}>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -90,9 +101,9 @@ const YearPickerButton = styled.button<{ selected: boolean; isCurrentYear: boole
          color: ${props.theme.dateInput.pickerSelectedFontColor} !important;
          background-color: ${props.theme.dateInput.pickerSelectedBackgroundColor} !important;`
       : props.isCurrentYear
-      ? `border: 1px solid ${props.theme.dateInput.pickerCurrentDateBorderColor}; 
+        ? `border: 1px solid ${props.theme.dateInput.pickerCurrentDateBorderColor}; 
          color: ${props.theme.dateInput.pickerCurrentYearFontColor};`
-      : ``}
+        : ``}
 
   &:hover, &:focus, &:active {
     font-size: ${(props) => props.theme.dateInput.pickerInteractedYearFontSize};
@@ -100,7 +111,8 @@ const YearPickerButton = styled.button<{ selected: boolean; isCurrentYear: boole
   }
   &:hover {
     color: ${(props) => props.theme.dateInput.pickerHoverFontColor};
-    background-color: ${(props) => props.theme.dateInput.pickerHoverBackgroundColor};
+    background-color: ${(props) =>
+      props.theme.dateInput.pickerHoverBackgroundColor};
   }
   &:focus {
     color: ${(props) => props.theme.dateInput.pickerHoverFontColor};
@@ -109,7 +121,8 @@ const YearPickerButton = styled.button<{ selected: boolean; isCurrentYear: boole
   }
   &:active {
     color: ${(props) => props.theme.dateInput.pickerActiveFontColor};
-    background-color: ${(props) => props.theme.dateInput.pickerActiveBackgroundColor} !important;
+    background-color: ${(props) =>
+      props.theme.dateInput.pickerActiveBackgroundColor} !important;
   }
 `;
 
