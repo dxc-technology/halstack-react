@@ -47,10 +47,16 @@ const attemptFocus = (element: HTMLElement): boolean => {
  */
 const radixPortalContains = (activeElement: Element): boolean => {
   const radixPortals = document.querySelectorAll("[data-radix-portal]");
-  const radixPoppers = document.querySelectorAll("[data-radix-popper-content-wrapper]");
+  const radixPoppers = document.querySelectorAll(
+    "[data-radix-popper-content-wrapper]"
+  );
   return (
-    Array.prototype.slice.call(radixPortals).some((portal) => portal.contains(activeElement)) ||
-    Array.prototype.slice.call(radixPoppers).some((popper) => popper.contains(activeElement))
+    Array.prototype.slice
+      .call(radixPortals)
+      .some((portal) => portal.contains(activeElement)) ||
+    Array.prototype.slice
+      .call(radixPoppers)
+      .some((popper) => popper.contains(activeElement))
   );
 };
 
@@ -59,7 +65,9 @@ const radixPortalContains = (activeElement: Element): boolean => {
  * @param ref: React.MutableRefObject<HTMLDivElement>
  * @returns
  */
-const useFocusableElements = (ref: React.MutableRefObject<HTMLDivElement>): HTMLElement[] => {
+const useFocusableElements = (
+  ref: React.MutableRefObject<HTMLDivElement>
+): HTMLElement[] => {
   const [focusableElements, setFocusableElements] = useState<HTMLElement[]>();
 
   useEffect(() => {
@@ -69,11 +77,16 @@ const useFocusableElements = (ref: React.MutableRefObject<HTMLDivElement>): HTML
       const observer = new MutationObserver(() => {
         setFocusableElements(getFocusableElements(ref.current));
       });
-      observer.observe(ref.current, { childList: true, subtree: true, attributes: true });
+      observer.observe(ref.current, {
+        childList: true,
+        subtree: true,
+        attributes: true,
+      });
       return () => {
         observer.disconnect();
       };
     }
+    return undefined;
   }, []);
 
   return focusableElements;
@@ -87,13 +100,18 @@ const useFocusableElements = (ref: React.MutableRefObject<HTMLDivElement>): HTML
  * @param children: React.ReactNode
  * @returns
  */
-const FocusLock = ({ children }: { children: React.ReactNode }): JSX.Element => {
+const FocusLock = ({
+  children,
+}: {
+  children: React.ReactNode;
+}): JSX.Element => {
   const childrenContainerRef = useRef<HTMLDivElement>();
   const focusableElements = useFocusableElements(childrenContainerRef);
 
   const focusFirst = useCallback(() => {
     if (focusableElements?.length === 0) childrenContainerRef.current?.focus();
-    else if (focusableElements?.length > 0) focusableElements.some((element) => attemptFocus(element));
+    else if (focusableElements?.length > 0)
+      focusableElements.some((element) => attemptFocus(element));
   }, [focusableElements]);
 
   const focusLast = () => {
@@ -101,18 +119,23 @@ const FocusLock = ({ children }: { children: React.ReactNode }): JSX.Element => 
   };
 
   const focusLock = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    if (event.key === "Tab") focusableElements.length === 0 && event.preventDefault();
+    if (event.key === "Tab" && focusableElements.length === 0) {
+      event.preventDefault();
+    }
   };
 
   useEffect(() => {
-    if (!childrenContainerRef.current?.contains(document.activeElement) && !radixPortalContains(document.activeElement))
+    if (
+      !childrenContainerRef.current?.contains(document.activeElement) &&
+      !radixPortalContains(document.activeElement)
+    )
       focusFirst();
   }, [focusFirst]);
 
   return (
     <>
       <div onFocus={focusLast} tabIndex={0} />
-      <div
+      <div // eslint-disable-line jsx-a11y/no-static-element-interactions
         onKeyDown={focusLock}
         ref={childrenContainerRef}
         tabIndex={focusableElements?.length === 0 ? 0 : -1}

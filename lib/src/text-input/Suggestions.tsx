@@ -20,14 +20,20 @@ const Suggestions = ({
   const listboxRef = useRef(null);
 
   useEffect(() => {
-    const visualFocusedOptionEl = listboxRef?.current?.querySelectorAll("[role='option']")[visualFocusIndex];
-    visualFocusedOptionEl?.scrollIntoView?.({ block: "nearest", inline: "start" });
+    const visualFocusedOptionEl =
+      listboxRef?.current?.querySelectorAll("[role='option']")[
+        visualFocusIndex
+      ];
+    visualFocusedOptionEl?.scrollIntoView?.({
+      block: "nearest",
+      inline: "start",
+    });
   }, [visualFocusIndex]);
 
   return (
     <SuggestionsContainer
       id={id}
-      error={searchHasErrors ? true : false}
+      error={!!searchHasErrors}
       onMouseDown={(event) => {
         event.preventDefault();
       }}
@@ -52,17 +58,19 @@ const Suggestions = ({
           />
         ))}
       {isSearching && (
-        <SuggestionsSystemMessage role="option">{translatedLabels.textInput.searchingMessage}</SuggestionsSystemMessage>
+        <SuggestionsSystemMessage role="option">
+          {translatedLabels.textInput.searchingMessage}
+        </SuggestionsSystemMessage>
       )}
       {searchHasErrors && (
-        <span role="option">
+        <ErrorMessage role="option">
           <SuggestionsError role="alert" aria-live="assertive">
             <SuggestionsErrorIcon>
               <DxcIcon icon="filled_error" />
             </SuggestionsErrorIcon>
             {translatedLabels.textInput.fetchingDataErrorMessage}
           </SuggestionsError>
-        </span>
+        </ErrorMessage>
       )}
     </SuggestionsContainer>
   );
@@ -75,9 +83,14 @@ const SuggestionsContainer = styled.ul<{ error: boolean }>`
   margin: 0;
   padding: 0.25rem 0;
   background-color: ${(props) =>
-    props.error ? props.theme.errorListDialogBackgroundColor : props.theme.listDialogBackgroundColor};
+    props.error
+      ? props.theme.errorListDialogBackgroundColor
+      : props.theme.listDialogBackgroundColor};
   border: 1px solid
-    ${(props) => (props.error ? props.theme.errorListDialogBorderColor : props.theme.listDialogBorderColor)};
+    ${(props) =>
+      props.error
+        ? props.theme.errorListDialogBorderColor
+        : props.theme.listDialogBorderColor};
 
   border-radius: 0.25rem;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
@@ -94,6 +107,8 @@ const SuggestionsSystemMessage = styled.span`
   color: ${(props) => props.theme.systemMessageFontColor};
   line-height: 1.715em;
 `;
+
+const ErrorMessage = styled.span``;
 
 const SuggestionsErrorIcon = styled.span`
   display: flex;

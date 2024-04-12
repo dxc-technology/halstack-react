@@ -22,19 +22,28 @@ const DxcTag = ({
   const colorsTheme = useTheme();
   const [isHovered, changeIsHovered] = useState(false);
   const clickHandler = () => {
-    onClick && onClick();
+    if (onClick) {
+      onClick();
+    }
   };
 
   const tagContent = (
-    <DxcBox size={size} shadowDepth={(isHovered && (onClick || linkHref) && 2) || 1}>
+    <DxcBox
+      size={size}
+      shadowDepth={(isHovered && (onClick || linkHref) && 2) || 1}
+    >
       <TagContent>
-        {labelPosition === "before" && size !== "small" && label && <TagLabel>{label}</TagLabel>}
+        {labelPosition === "before" && size !== "small" && label && (
+          <TagLabel>{label}</TagLabel>
+        )}
         {icon && (
           <IconContainer iconBgColor={iconBgColor}>
             {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
           </IconContainer>
         )}
-        {labelPosition === "after" && size !== "small" && label && <TagLabel>{label}</TagLabel>}
+        {labelPosition === "after" && size !== "small" && label && (
+          <TagLabel>{label}</TagLabel>
+        )}
       </TagContent>
     </DxcBox>
   );
@@ -52,7 +61,11 @@ const DxcTag = ({
         {onClick ? (
           <StyledButton tabIndex={tabIndex}>{tagContent}</StyledButton>
         ) : linkHref ? (
-          <StyledLink tabIndex={tabIndex} href={linkHref} target={newWindow ? "_blank" : "_self"}>
+          <StyledLink
+            tabIndex={tabIndex}
+            href={linkHref}
+            target={newWindow ? "_blank" : "_self"}
+          >
             {tagContent}
           </StyledLink>
         ) : (
@@ -83,12 +96,24 @@ const StyledDxcTag = styled.div<{
 }>`
   display: inline-flex;
   cursor: ${({ hasAction }) => (hasAction && "pointer") || "unset"};
-  margin: ${({ margin }) => (margin && typeof margin !== "object" ? spaces[margin] : "0px")};
-  margin-top: ${({ margin }) => (margin && typeof margin === "object" && margin.top ? spaces[margin.top] : "")};
-  margin-right: ${({ margin }) => (margin && typeof margin === "object" && margin.right ? spaces[margin.right] : "")};
+  margin: ${({ margin }) =>
+    margin && typeof margin !== "object" ? spaces[margin] : "0px"};
+  margin-top: ${({ margin }) =>
+    margin && typeof margin === "object" && margin.top
+      ? spaces[margin.top]
+      : ""};
+  margin-right: ${({ margin }) =>
+    margin && typeof margin === "object" && margin.right
+      ? spaces[margin.right]
+      : ""};
   margin-bottom: ${({ margin }) =>
-    margin && typeof margin === "object" && margin.bottom ? spaces[margin.bottom] : ""};
-  margin-left: ${({ margin }) => (margin && typeof margin === "object" && margin.left ? spaces[margin.left] : "")};
+    margin && typeof margin === "object" && margin.bottom
+      ? spaces[margin.bottom]
+      : ""};
+  margin-left: ${({ margin }) =>
+    margin && typeof margin === "object" && margin.left
+      ? spaces[margin.left]
+      : ""};
   width: ${(props) => calculateWidth(props.margin, props.size)};
   height: ${(props) => props.theme.height};
 `;
