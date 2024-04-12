@@ -75,13 +75,21 @@ const sizeMap = {
   },
 };
 
-const Label = ({ label, notificationLimit, size }) => {
-  return (
-    <LabelContainer size={size}>
-      {typeof label === "number" ? (label > notificationLimit ? "+" + notificationLimit : label) : label}
-    </LabelContainer>
-  );
+type LabelProps = {
+  label: string | number;
+  notificationLimit: number;
+  size: BadgePropsType["size"];
 };
+
+const Label = ({ label, notificationLimit, size }: LabelProps) => (
+  <LabelContainer size={size}>
+    {typeof label === "number"
+      ? label > notificationLimit
+        ? `+${notificationLimit}`
+        : label
+      : label}
+  </LabelContainer>
+);
 
 const DxcBadge = ({
   label,
@@ -91,35 +99,48 @@ const DxcBadge = ({
   icon,
   notificationLimit = 99,
   size = "medium",
-}: BadgePropsType): JSX.Element => {
-  return (
-    <BadgeContainer
-      label={label}
-      mode={mode}
-      color={(mode === "contextual" && color) || undefined}
-      size={size}
-      title={title}
-      aria-label={title}
-    >
-      {(mode === "contextual" && (
-        <DxcFlex gap="0.125rem" alignItems="center">
-          {icon && (
-            <IconContainer size={size}>{typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}</IconContainer>
-          )}
-          <Label label={label} notificationLimit={notificationLimit} size={size} />
-        </DxcFlex>
-      )) || <Label label={label} notificationLimit={notificationLimit} size={size} />}
-    </BadgeContainer>
-  );
-};
+}: BadgePropsType): JSX.Element => (
+  <BadgeContainer
+    label={label}
+    mode={mode}
+    color={(mode === "contextual" && color) || undefined}
+    size={size}
+    title={title}
+    aria-label={title}
+  >
+    {(mode === "contextual" && (
+      <DxcFlex gap="0.125rem" alignItems="center">
+        {icon && (
+          <IconContainer size={size}>
+            {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
+          </IconContainer>
+        )}
+        <Label
+          label={label}
+          notificationLimit={notificationLimit}
+          size={size}
+        />
+      </DxcFlex>
+    )) || (
+      <Label label={label} notificationLimit={notificationLimit} size={size} />
+    )}
+  </BadgeContainer>
+);
 
-const getColor = (mode, color) => (mode === "contextual" ? contextualColorMap[color].text : CoreTokens.color_white);
+const getColor = (mode, color) =>
+  mode === "contextual"
+    ? contextualColorMap[color].text
+    : CoreTokens.color_white;
 
 const getBackgroundColor = (mode, color) =>
-  mode === "contextual" ? contextualColorMap[color].background : CoreTokens.color_red_700;
+  mode === "contextual"
+    ? contextualColorMap[color].background
+    : CoreTokens.color_red_700;
 
 const getPadding = (mode, size) =>
-  mode === "contextual" ? sizeMap[size].padding.contextual : sizeMap[size].padding.notification;
+  mode === "contextual"
+    ? sizeMap[size].padding.contextual
+    : sizeMap[size].padding.notification;
 
 const BadgeContainer = styled.div<{
   label: BadgePropsType["label"];
@@ -131,10 +152,15 @@ const BadgeContainer = styled.div<{
   color: ${(props) => getColor(props.mode, props.color)};
   background-color: ${(props) => getBackgroundColor(props.mode, props.color)};
   border-radius: ${(props) => sizeMap[props.size].borderRadius};
-  width: ${(props) => (!props.label && props.mode === "notification" ? sizeMap[props.size].width : "fit-content")};
-  min-width: ${(props) => props.mode === "notification" && sizeMap[props.size].minWidth};
+  width: ${(props) =>
+    !props.label && props.mode === "notification"
+      ? sizeMap[props.size].width
+      : "fit-content"};
+  min-width: ${(props) =>
+    props.mode === "notification" && sizeMap[props.size].minWidth};
   height: ${(props) => sizeMap[props.size].height};
-  padding: ${(props) => (props.label ? getPadding(props.mode, props.size) : "")};
+  padding: ${(props) =>
+    props.label ? getPadding(props.mode, props.size) : ""};
   align-items: center;
   justify-content: center;
   box-sizing: border-box;

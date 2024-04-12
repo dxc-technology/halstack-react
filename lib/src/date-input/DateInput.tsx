@@ -152,8 +152,8 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
         translatedLabels.dateInput.invalidDateErrorMessage;
       const callbackParams =
         inputError || invalidDateMessage
-          ? { blurValue, error: inputError || invalidDateMessage }
-          : { blurValue };
+          ? { value: blurValue, error: inputError || invalidDateMessage }
+          : { value: blurValue };
       if (date.isValid()) {
         onBlur?.({
           ...callbackParams,

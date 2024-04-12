@@ -1,11 +1,13 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import DxcBreadcrumbs from "./Breadcrumbs";
 import userEvent from "@testing-library/user-event";
+import DxcBreadcrumbs from "./Breadcrumbs";
 
 global.ResizeObserver = class ResizeObserver {
   observe() {}
+
   unobserve() {}
+
   disconnect() {}
 };
 
@@ -30,13 +32,19 @@ const items = [
 
 describe("Breadcrumbs component tests", () => {
   test("Renders with correct aria accessibility attributes", () => {
-    const { getByText, getByRole } = render(<DxcBreadcrumbs items={items} ariaLabel="example" />);
+    const { getByText, getByRole } = render(
+      <DxcBreadcrumbs items={items} ariaLabel="example" />
+    );
     const breadcrumbs = getByRole("navigation");
     expect(breadcrumbs.getAttribute("aria-label")).toBe("example");
-    expect(getByText("Dark Mode").parentElement.getAttribute("aria-current")).toBe("page");
+    expect(
+      getByText("Dark Mode").parentElement.getAttribute("aria-current")
+    ).toBe("page");
   });
   test("Collapsed variant renders all the items inside the dropdown menu except the root and the current page", async () => {
-    const { queryByText, getByText, getByRole } = render(<DxcBreadcrumbs items={items} itemsBeforeCollapse={3} />);
+    const { queryByText, getByText, getByRole } = render(
+      <DxcBreadcrumbs items={items} itemsBeforeCollapse={3} />
+    );
     const dropdown = getByRole("button");
     expect(queryByText("User Menu")).toBeFalsy();
     expect(queryByText("Preferences")).toBeFalsy();
@@ -58,7 +66,9 @@ describe("Breadcrumbs component tests", () => {
     expect(getByText("Preferences")).toBeTruthy();
   });
   test("If itemsBeforeCollapse value is below two, ignores it and renders a collapsed variant", async () => {
-    const { getByText, getByRole } = render(<DxcBreadcrumbs items={items} itemsBeforeCollapse={-1} />);
+    const { getByText, getByRole } = render(
+      <DxcBreadcrumbs items={items} itemsBeforeCollapse={-1} />
+    );
     expect(getByText("Home")).toBeTruthy();
     expect(getByRole("button")).toBeTruthy();
     expect(getByText("Dark Mode")).toBeTruthy();
