@@ -17,22 +17,30 @@ const DxcQuickNav = ({ title, links }: QuickNavTypes): JSX.Element => {
     <ThemeProvider theme={colorsTheme.quickNav}>
       <QuickNavContainer>
         <DxcFlex direction="column" gap="0.5rem">
-          <DxcHeading level={4} text={title || translatedLabels.quickNav.contentTitle} />
+          <DxcHeading
+            level={4}
+            text={title || translatedLabels.quickNav.contentTitle}
+          />
           <ListColumn>
             {links.map((link) => (
               <li key={link.label}>
                 <DxcInset space="0.25rem">
                   <DxcTypography>
-                    <Link href={`#${slugify(link?.label, { lower: true })}`}>{link?.label}</Link>
+                    <Link href={`#${slugify(link?.label, { lower: true })}`}>
+                      {link?.label}
+                    </Link>
                     <ListSecondColumn>
                       {link.links?.map((sublink) => (
                         <li key={sublink.label}>
                           <DxcInset horizontal="0.5rem">
                             <DxcTypography>
                               <Link
-                                href={`#${slugify(link?.label, { lower: true })}-${slugify(sublink?.label, {
-                                  lower: true,
-                                })}`}
+                                href={`#${slugify(link?.label, { lower: true })}-${slugify(
+                                  sublink?.label,
+                                  {
+                                    lower: true,
+                                  }
+                                )}`}
                               >
                                 {sublink?.label}
                               </Link>

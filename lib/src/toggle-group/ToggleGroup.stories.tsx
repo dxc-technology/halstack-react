@@ -11,13 +11,25 @@ export default {
 };
 
 const ethernetSVG = (
-  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    height="24px"
+    viewBox="0 0 24 24"
+    width="24px"
+    fill="currentColor"
+  >
     <path d="M0 0h24v24H0V0z" fill="none" />
     <path d="M7.77 6.76L6.23 5.48.82 12l5.41 6.52 1.54-1.28L3.42 12l4.35-5.24zM7 13h2v-2H7v2zm10-2h-2v2h2v-2zm-6 2h2v-2h-2v2zm6.77-7.52l-1.54 1.28L20.58 12l-4.35 5.24 1.54 1.28L23.18 12l-5.41-6.52z" />
   </svg>
 );
 const gMobileSVG = (
-  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    height="24px"
+    viewBox="0 0 24 24"
+    width="24px"
+    fill="currentColor"
+  >
     <g>
       <path d="M0,0h24v24H0V0z" fill="none" />
     </g>
@@ -29,7 +41,13 @@ const gMobileSVG = (
   </svg>
 );
 const wifiSVG = (
-  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    height="24px"
+    viewBox="0 0 24 24"
+    width="24px"
+    fill="currentColor"
+  >
     <path d="M0 0h24v24H0V0zm0 0h24v24H0V0z" fill="none" />
     <path d="M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.08 2.93 1 9zm8 8l3 3 3-3c-1.65-1.66-4.34-1.66-6 0zm-4-4l2 2c2.76-2.76 7.24-2.76 10 0l2-2C15.14 9.14 8.87 9.14 5 13z" />
   </svg>
@@ -107,11 +125,20 @@ export const Chromatic = () => (
   <>
     <ExampleContainer>
       <Title title="Basic toggle group" theme="light" level={4} />
-      <DxcToggleGroup label="Toggle group" helperText="HelperText" options={options} />
+      <DxcToggleGroup
+        label="Toggle group"
+        helperText="HelperText"
+        options={options}
+      />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Selected" theme="light" level={4} />
-      <DxcToggleGroup label="Selected" helperText="HelperText" defaultValue={2} options={options} />
+      <DxcToggleGroup
+        label="Selected"
+        helperText="HelperText"
+        defaultValue={2}
+        options={options}
+      />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Icons toggle group" theme="light" level={4} />
@@ -123,7 +150,12 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Disabled" theme="light" level={4} />
-      <DxcToggleGroup label="Disabled" defaultValue={2} options={options} disabled />
+      <DxcToggleGroup
+        label="Disabled"
+        defaultValue={2}
+        options={options}
+        disabled
+      />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-hover">
       <Title title="Hovered" theme="light" level={4} />
@@ -142,7 +174,11 @@ export const Chromatic = () => (
     <Title title="Margins" theme="light" level={2} />
     <ExampleContainer>
       <Title title="xxSmall" theme="light" level={4} />
-      <DxcToggleGroup label="xxSmall margin" options={options} margin="xxsmall" />
+      <DxcToggleGroup
+        label="xxSmall margin"
+        options={options}
+        margin="xxsmall"
+      />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="xSmall" theme="light" level={4} />
@@ -166,25 +202,42 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="xxLarge" theme="light" level={4} />
-      <DxcToggleGroup label="xxLarge margin" options={options} margin="xxlarge" />
+      <DxcToggleGroup
+        label="xxLarge margin"
+        options={options}
+        margin="xxlarge"
+      />
     </ExampleContainer>
     <Title title="Opinionated theme" theme="light" level={2} />
     <ExampleContainer>
       <HalstackProvider theme={opinionatedTheme}>
         <Title title="Selected" theme="light" level={4} />
-        <DxcToggleGroup label="Selected" helperText="HelperText" defaultValue={2} options={options} />
+        <DxcToggleGroup
+          label="Selected"
+          helperText="HelperText"
+          defaultValue={2}
+          options={options}
+        />
       </HalstackProvider>
     </ExampleContainer>
     <ExampleContainer>
       <HalstackProvider theme={opinionatedTheme}>
         <Title title="Icons & label toggle group" theme="light" level={4} />
-        <DxcToggleGroup label="Icons & label" options={optionsWithIconAndLabel} />
+        <DxcToggleGroup
+          label="Icons & label"
+          options={optionsWithIconAndLabel}
+        />
       </HalstackProvider>
     </ExampleContainer>
     <ExampleContainer>
       <HalstackProvider theme={opinionatedTheme}>
         <Title title="Disabled" theme="light" level={4} />
-        <DxcToggleGroup label="Disabled" defaultValue={2} options={options} disabled />
+        <DxcToggleGroup
+          label="Disabled"
+          defaultValue={2}
+          options={options}
+          disabled
+        />
       </HalstackProvider>
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-hover">
@@ -201,7 +254,13 @@ export const Chromatic = () => (
     </ExampleContainer>
   </>
 );
-const OptionSelected = () => <DxcToggleGroup label="Toggle group" helperText="HelperText" options={options} />;
+const OptionSelected = () => (
+  <DxcToggleGroup
+    label="Toggle group"
+    helperText="HelperText"
+    options={options}
+  />
+);
 
 export const ToggleGroupSelectedActived = OptionSelected.bind({});
 ToggleGroupSelectedActived.play = async ({ canvasElement }) => {

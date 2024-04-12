@@ -188,11 +188,11 @@ export const Chromatic = () => (
       <Title title="With scrollbar" theme="light" level={4} />
       <div
         style={{
-          height: `${200  }px`,
+          height: `${200}px`,
           display: "flex",
           flexDirection: "row",
-          width: `${100  }%`,
-          marginBottom: `${50  }px`,
+          width: `${100}%`,
+          marginBottom: `${50}px`,
         }}
       >
         <DxcTable>
@@ -293,11 +293,11 @@ export const Chromatic = () => (
       <Title title="Reduced with scrollbar" theme="light" level={4} />
       <div
         style={{
-          height: `${200  }px`,
+          height: `${200}px`,
           display: "flex",
           flexDirection: "row",
-          width: `${100  }%`,
-          marginBottom: `${50  }px`,
+          width: `${100}%`,
+          marginBottom: `${50}px`,
         }}
       >
         <DxcTable mode="reduced">

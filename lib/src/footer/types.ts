@@ -1,4 +1,11 @@
-type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
+type Space =
+  | "xxsmall"
+  | "xsmall"
+  | "small"
+  | "medium"
+  | "large"
+  | "xlarge"
+  | "xxlarge";
 type SVG = React.ReactNode & React.SVGProps<SVGSVGElement>;
 
 type SocialLink = {

@@ -850,15 +850,15 @@ const SearchValueOpinionated = () => (
 
 const MultipleSelect = () => (
   <ExampleContainer expanded>
-      <Title title="Multiple select" theme="light" level={4} />
-      <DxcSelect
-        label="Select label"
-        options={singleOptions}
-        defaultValue={["1", "4"]}
-        multiple
-        placeholder="Choose an option"
-      />
-    </ExampleContainer>
+    <Title title="Multiple select" theme="light" level={4} />
+    <DxcSelect
+      label="Select label"
+      options={singleOptions}
+      defaultValue={["1", "4"]}
+      multiple
+      placeholder="Choose an option"
+    />
+  </ExampleContainer>
 );
 
 const MultipleSelectOpinioated = () => (

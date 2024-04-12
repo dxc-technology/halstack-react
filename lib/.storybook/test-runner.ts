@@ -12,9 +12,11 @@ const a11yConfig: TestRunnerConfig = {
     // Get the entire context of a story, including parameters, args, argTypes, etc.
     const storyContext = await getStoryContext(page, context);
     // Apply viewport handle support
-    const viewPortParams: ViewportParameters = storyContext.parameters?.viewport;
+    const viewPortParams: ViewportParameters =
+      storyContext.parameters?.viewport;
     const defaultViewport = viewPortParams?.defaultViewport;
-    const viewport = defaultViewport && viewPortParams.viewports[defaultViewport].styles;
+    const viewport =
+      defaultViewport && viewPortParams.viewports[defaultViewport].styles;
     const parsedViewportSizes: ViewportStyles = viewport
       ? Object.entries(viewport).reduce(
           (acc, [screen, size]) => ({
@@ -83,5 +85,5 @@ export default a11yConfig;
 //     });
 //   },
 // };
-// 
+//
 // export default a11yConfig;

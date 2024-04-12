@@ -24,15 +24,17 @@ const DxcAlert = ({
     type === "info"
       ? translatedLabels.alert.infoTitleText
       : type === "confirm"
-      ? translatedLabels.alert.successTitleText
-      : type === "warning"
-      ? translatedLabels.alert.warningTitleText
-      : translatedLabels.alert.errorTitleText;
+        ? translatedLabels.alert.successTitleText
+        : type === "warning"
+          ? translatedLabels.alert.warningTitleText
+          : translatedLabels.alert.errorTitleText;
 
   return (
     <ThemeProvider theme={colorsTheme.alert}>
       <AlertModal mode={mode}>
-        {mode === "modal" && <OverlayContainer mode={mode} onClick={onClose}></OverlayContainer>}
+        {mode === "modal" && (
+          <OverlayContainer mode={mode} onClick={onClose}></OverlayContainer>
+        )}
         <AlertContainer
           mode={mode}
           type={type}
@@ -44,7 +46,9 @@ const DxcAlert = ({
           <AlertInfo>
             <AlertIcon type={type}>
               {(type === "info" && <DxcIcon icon="filled_info" />) ||
-                (type === "confirm" && <DxcIcon icon="filled_check_circle" />) ||
+                (type === "confirm" && (
+                  <DxcIcon icon="filled_check_circle" />
+                )) ||
                 (type === "warning" && <DxcIcon icon="filled_warning" />) ||
                 (type === "error" && <DxcIcon icon="filled_cancel" />)}
             </AlertIcon>
@@ -54,7 +58,11 @@ const DxcAlert = ({
               <AlertInlineText>{inlineText}</AlertInlineText>
             </AlertText>
             {onClose && (
-              <AlertCloseAction onClick={onClose} tabIndex={tabIndex} aria-label="Close alert">
+              <AlertCloseAction
+                onClick={onClose}
+                tabIndex={tabIndex}
+                aria-label="Close alert"
+              >
                 <DxcIcon icon="close" />
               </AlertCloseAction>
             )}
@@ -93,7 +101,8 @@ const AlertModal = styled.div<{ mode: AlertPropsType["mode"] }>`
 `;
 
 const OverlayContainer = styled.div<{ mode: AlertPropsType["mode"] }>`
-  background-color: ${(props) => (props.mode === "modal" ? `${props.theme.overlayColor}` : "transparent")};
+  background-color: ${(props) =>
+    props.mode === "modal" ? `${props.theme.overlayColor}` : "transparent"};
   position: ${(props) => (props.mode === "modal" ? "fixed" : "")};
   top: ${(props) => (props.mode === "modal" ? "0" : "")};
   bottom: ${(props) => (props.mode === "modal" ? "0" : "")};
@@ -107,16 +116,28 @@ const AlertContainer = styled.div<{
   type: AlertPropsType["type"];
   mode: AlertPropsType["mode"];
 }>`
-  margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
+  margin: ${(props) =>
+    props.margin && typeof props.margin !== "object"
+      ? spaces[props.margin]
+      : "0px"};
   margin-top: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
+    props.margin && typeof props.margin === "object" && props.margin.top
+      ? spaces[props.margin.top]
+      : ""};
   margin-right: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
+    props.margin && typeof props.margin === "object" && props.margin.right
+      ? spaces[props.margin.right]
+      : ""};
   margin-bottom: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
+    props.margin && typeof props.margin === "object" && props.margin.bottom
+      ? spaces[props.margin.bottom]
+      : ""};
   margin-left: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
-  display: ${(props) => (props.size === "fitContent" ? "inline-block" : "block")};
+    props.margin && typeof props.margin === "object" && props.margin.left
+      ? spaces[props.margin.left]
+      : ""};
+  display: ${(props) =>
+    props.size === "fitContent" ? "inline-block" : "block"};
   overflow: hidden;
   box-sizing: border-box;
 
@@ -139,8 +160,10 @@ const AlertContainer = styled.div<{
   padding-right: 12px;
   justify-content: ${(props) => (props.mode === "modal" ? "center" : "")};
   align-items: ${(props) => (props.mode === "modal" ? "center" : "")};
-  max-width: ${(props) => props.size !== "fillParent" && calculateWidth(props.margin, "fillParent")};
-  width: ${(props) => props.size !== "fillParent" && calculateWidth(props.margin, props.size)};
+  max-width: ${(props) =>
+    props.size !== "fillParent" && calculateWidth(props.margin, "fillParent")};
+  width: ${(props) =>
+    props.size !== "fillParent" && calculateWidth(props.margin, props.size)};
   z-index: ${(props) => (props.mode === "modal" ? "1300" : "")};
 `;
 

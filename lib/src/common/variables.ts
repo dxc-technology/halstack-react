@@ -675,7 +675,8 @@ export const componentTokens = {
     selectionIndicatorFontWeight: CoreTokens.type_normal,
     selectionIndicatorBorderColor: CoreTokens.color_grey_400,
     selectionIndicatorBackgroundColor: CoreTokens.color_grey_50,
-    enabledSelectionIndicatorActionBackgroundColor: CoreTokens.color_transparent,
+    enabledSelectionIndicatorActionBackgroundColor:
+      CoreTokens.color_transparent,
     enabledSelectionIndicatorActionIconColor: CoreTokens.color_black,
     hoverSelectionIndicatorActionBackgroundColor: CoreTokens.color_grey_100,
     hoverSelectionIndicatorActionIconColor: CoreTokens.color_black,
@@ -1315,10 +1316,12 @@ export const responsiveSizes = {
 export const defaultTranslatedComponentLabels = {
   formFields: {
     optionalLabel: "(Optional)",
-    requiredSelectionErrorMessage: "This field is required. Please, choose an option.",
+    requiredSelectionErrorMessage:
+      "This field is required. Please, choose an option.",
     requiredValueErrorMessage: "This field is required. Please, enter a value.",
     formatRequestedErrorMessage: "Please match the format requested.",
-    lengthErrorMessage: (minLength?: number, maxLength?: number) => `Min length ${minLength}, max length ${maxLength}.`,
+    lengthErrorMessage: (minLength?: number, maxLength?: number) =>
+      `Min length ${minLength}, max length ${maxLength}.`,
     logoAlternativeText: "Logo",
   },
   applicationLayout: {
@@ -1347,24 +1350,31 @@ export const defaultTranslatedComponentLabels = {
     deleteFileActionTitle: "Remove file",
   },
   footer: {
-    copyrightText: (year: number) => `© DXC Technology ${year}. All rights reserved.`,
+    copyrightText: (year: number) =>
+      `© DXC Technology ${year}. All rights reserved.`,
   },
   header: {
     closeIcon: "Close menu",
     hamburguerTitle: "Menu",
   },
   numberInput: {
-    valueGreaterThanOrEqualToErrorMessage: (value: number) => `Value must be greater than or equal to ${value}.`,
-    valueLessThanOrEqualToErrorMessage: (value: number) => `Value must be less than or equal to ${value}.`,
+    valueGreaterThanOrEqualToErrorMessage: (value: number) =>
+      `Value must be greater than or equal to ${value}.`,
+    valueLessThanOrEqualToErrorMessage: (value: number) =>
+      `Value must be less than or equal to ${value}.`,
     decrementValueTitle: "Decrement value",
     incrementValueTitle: "Increment value",
   },
   paginator: {
     itemsPerPageText: "Items per page: ",
-    minToMaxOfText: (minNumberOfItems: number, maxNumberOfItems: number, totalItems: number) =>
-      `${minNumberOfItems} to ${maxNumberOfItems} of ${totalItems}`,
+    minToMaxOfText: (
+      minNumberOfItems: number,
+      maxNumberOfItems: number,
+      totalItems: number
+    ) => `${minNumberOfItems} to ${maxNumberOfItems} of ${totalItems}`,
     goToPageText: "Go to page:",
-    pageOfText: (pageNumber: number, totalPagesNumber: number) => `Page: ${pageNumber} of ${totalPagesNumber}`,
+    pageOfText: (pageNumber: number, totalPagesNumber: number) =>
+      `Page: ${pageNumber} of ${totalPagesNumber}`,
   },
   passwordInput: {
     inputShowPasswordTitle: "Show password",

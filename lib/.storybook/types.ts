@@ -1,4 +1,7 @@
-type Styles = ViewportStyles | ((s: ViewportStyles | undefined) => ViewportStyles) | null;
+type Styles =
+  | ViewportStyles
+  | ((s: ViewportStyles | undefined) => ViewportStyles)
+  | null;
 interface Viewport {
   name: string;
   styles: Styles;
@@ -12,6 +15,6 @@ interface ViewportMap {
   [key: string]: Viewport;
 }
 export interface ViewportParameters {
-    viewports: ViewportMap;
-    defaultViewport: string;
+  viewports: ViewportMap;
+  defaultViewport: string;
 }

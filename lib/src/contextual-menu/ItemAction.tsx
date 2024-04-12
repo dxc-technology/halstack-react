@@ -4,18 +4,29 @@ import CoreTokens from "../common/coreTokens";
 import { ItemActionProps } from "./types";
 import DxcIcon from "../icon/Icon";
 
-const ItemAction = ({ badge, collapseIcon, icon, label, depthLevel, selected, ...props }: ItemActionProps) => {
+const ItemAction = ({
+  badge,
+  collapseIcon,
+  icon,
+  label,
+  depthLevel,
+  selected,
+  ...props
+}: ItemActionProps) => {
   const modifiedBadge = badge && React.cloneElement(badge, { size: "small" });
 
   return (
     <Action depthLevel={depthLevel} selected={selected} {...props}>
       <Label>
         {collapseIcon}
-        {icon && depthLevel === 0 && (typeof icon === "string" ? <DxcIcon icon={icon} /> : icon)}
+        {icon &&
+          depthLevel === 0 &&
+          (typeof icon === "string" ? <DxcIcon icon={icon} /> : icon)}
         <Text
           onMouseEnter={(event: React.MouseEvent<HTMLSpanElement>) => {
             const text = event.currentTarget;
-            if (text.title === "" && text.scrollWidth > text.clientWidth) text.title = label;
+            if (text.title === "" && text.scrollWidth > text.clientWidth)
+              text.title = label;
           }}
         >
           {label}
@@ -26,7 +37,10 @@ const ItemAction = ({ badge, collapseIcon, icon, label, depthLevel, selected, ..
   );
 };
 
-const Action = styled.button<{ depthLevel: ItemActionProps["depthLevel"]; selected: ItemActionProps["selected"] }>`
+const Action = styled.button<{
+  depthLevel: ItemActionProps["depthLevel"];
+  selected: ItemActionProps["selected"];
+}>`
   border: none;
   border-radius: 4px;
   width: 100%;

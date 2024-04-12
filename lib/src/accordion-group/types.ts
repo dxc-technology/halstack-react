@@ -1,4 +1,11 @@
-type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
+type Space =
+  | "xxsmall"
+  | "xsmall"
+  | "small"
+  | "medium"
+  | "large"
+  | "xlarge"
+  | "xxlarge";
 type Margin = {
   top?: Space;
   bottom?: Space;
@@ -57,7 +64,9 @@ type Props = {
   /**
    * Customized accordion(s) that are allowed inside an Accordion Group.
    */
-  children: React.ReactElement<AccordionPropsType>[] | React.ReactElement<AccordionPropsType>;
+  children:
+    | React.ReactElement<AccordionPropsType>[]
+    | React.ReactElement<AccordionPropsType>;
 };
 
 export type AccordionGroupAccordionContextProps = {

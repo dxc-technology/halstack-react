@@ -29,7 +29,11 @@ const DxcFooter = ({
           dxcSmallLogo
         )
       ) : typeof colorsTheme.footer.logo === "string" ? (
-        <LogoImg mode={mode} alt={translatedLabels.formFields.logoAlternativeText} src={colorsTheme.footer.logo} />
+        <LogoImg
+          mode={mode}
+          alt={translatedLabels.formFields.logoAlternativeText}
+          src={colorsTheme.footer.logo}
+        />
       ) : (
         colorsTheme.footer.logo
       ),
@@ -39,7 +43,12 @@ const DxcFooter = ({
   return (
     <ThemeProvider theme={colorsTheme.footer}>
       <FooterContainer margin={margin} mode={mode}>
-        <DxcFlex justifyContent="space-between" alignItems="center" wrap="wrap" gap="1.5rem">
+        <DxcFlex
+          justifyContent="space-between"
+          alignItems="center"
+          wrap="wrap"
+          gap="1.5rem"
+        >
           <LogoContainer mode={mode}>{footerLogo}</LogoContainer>
           {mode === "default" && (
             <DxcFlex>
@@ -53,7 +62,11 @@ const DxcFooter = ({
                   index={index}
                 >
                   <SocialIconContainer>
-                    {typeof link.logo === "string" ? <DxcIcon icon={link.logo} /> : link.logo}
+                    {typeof link.logo === "string" ? (
+                      <DxcIcon icon={link.logo} />
+                    ) : (
+                      link.logo
+                    )}
                   </SocialIconContainer>
                 </SocialAnchor>
               ))}
@@ -72,7 +85,10 @@ const DxcFooter = ({
                 </span>
               ))}
             </BottomLinks>
-            <Copyright>{copyright || translatedLabels.footer.copyrightText(new Date().getFullYear())}</Copyright>
+            <Copyright>
+              {copyright ||
+                translatedLabels.footer.copyrightText(new Date().getFullYear())}
+            </Copyright>
           </BottomContainer>
         )}
       </FooterContainer>
@@ -80,18 +96,23 @@ const DxcFooter = ({
   );
 };
 
-const FooterContainer = styled.footer<{ margin: FooterPropsType["margin"]; mode?: FooterPropsType["mode"] }>`
+const FooterContainer = styled.footer<{
+  margin: FooterPropsType["margin"];
+  mode?: FooterPropsType["mode"];
+}>`
   background-color: ${(props) => props.theme.backgroundColor};
   box-sizing: border-box;
   display: flex;
   flex-direction: ${(props) => (props?.mode === "default" ? "column" : "row")};
   justify-content: space-between;
   margin-top: ${(props) => (props.margin ? spaces[props.margin] : "0px")};
-  min-height: ${(props) => (props?.mode === "default" ? props.theme.height : "40px")};
+  min-height: ${(props) =>
+    props?.mode === "default" ? props.theme.height : "40px"};
   width: 100%;
   gap: ${(props) => (props?.mode === "default" ? "0px" : "32px")};
   @media (min-width: ${responsiveSizes.small}rem) {
-    padding: ${(props) => (props?.mode === "default" ? "24px 32px" : "12px 32px")};
+    padding: ${(props) =>
+      props?.mode === "default" ? "24px 32px" : "12px 32px"};
   }
   @media (max-width: ${responsiveSizes.small}rem) {
     padding: 20px;
@@ -143,18 +164,21 @@ const Copyright = styled.div`
 `;
 
 const LogoContainer = styled.span<{ mode?: FooterPropsType["mode"] }>`
-  max-height: ${(props) => (props?.mode === "default" ? props.theme.logoHeight : "16px")};
+  max-height: ${(props) =>
+    props?.mode === "default" ? props.theme.logoHeight : "16px"};
   width: ${(props) => props.theme.logoWidth};
 `;
 
 const LogoImg = styled.img<{ mode?: FooterPropsType["mode"] }>`
-  max-height: ${(props) => (props?.mode === "default" ? props.theme.logoHeight : "16px")};
+  max-height: ${(props) =>
+    props?.mode === "default" ? props.theme.logoHeight : "16px"};
   width: ${(props) => props.theme.logoWidth};
 `;
 
 const SocialAnchor = styled.a<{ index: number }>`
   display: inline-flex;
-  margin-left: ${(props) => (props.index === 0 ? "0px" : props.theme.socialLinksGutter)};
+  margin-left: ${(props) =>
+    props.index === 0 ? "0px" : props.theme.socialLinksGutter};
   border-radius: 4px;
 
   &:focus {

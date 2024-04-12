@@ -123,7 +123,12 @@ export const SpinnerOverlayWithValueAndLabelOpinionated = () => (
   <ExampleContainer>
     <HalstackProvider theme={opinionatedTheme}>
       <Title title="Mode overlay" theme="light" level={4} />
-      <DxcSpinner mode="overlay" label="Label" value={50} showValue></DxcSpinner>
+      <DxcSpinner
+        mode="overlay"
+        label="Label"
+        value={50}
+        showValue
+      ></DxcSpinner>
     </HalstackProvider>
   </ExampleContainer>
 );

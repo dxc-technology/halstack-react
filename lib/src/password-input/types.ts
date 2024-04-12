@@ -1,4 +1,11 @@
-type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
+type Space =
+  | "xxsmall"
+  | "xsmall"
+  | "small"
+  | "medium"
+  | "large"
+  | "xlarge"
+  | "xxlarge";
 type Margin = {
   top?: Space;
   bottom?: Space;
@@ -37,7 +44,7 @@ type Props = {
   /**
    * This function will be called when the input element loses the focus.
    * An object including the input value and the error (if the value entered is
-   * not valid) will be passed to this function. If there is no error, error will 
+   * not valid) will be passed to this function. If there is no error, error will
    * not be defined.
    */
   onBlur?: (val: { value: string; error?: string }) => void;

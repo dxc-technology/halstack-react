@@ -19,17 +19,30 @@ const DropdownMenuItem = ({
     role="menuitem"
     tabIndex={-1}
   >
-    {iconPosition === "after" && <DropdownMenuItemLabel>{option.label}</DropdownMenuItemLabel>}
+    {iconPosition === "after" && (
+      <DropdownMenuItemLabel>{option.label}</DropdownMenuItemLabel>
+    )}
     {option.icon && (
-      <DropdownMenuItemIcon role={typeof option.icon === "string" ? undefined : "img"} aria-hidden>
-        {typeof option.icon === "string" ? <DxcIcon icon={option.icon} /> : option.icon}
+      <DropdownMenuItemIcon
+        role={typeof option.icon === "string" ? undefined : "img"}
+        aria-hidden
+      >
+        {typeof option.icon === "string" ? (
+          <DxcIcon icon={option.icon} />
+        ) : (
+          option.icon
+        )}
       </DropdownMenuItemIcon>
     )}
-    {iconPosition === "before" && <DropdownMenuItemLabel>{option.label}</DropdownMenuItemLabel>}
+    {iconPosition === "before" && (
+      <DropdownMenuItemLabel>{option.label}</DropdownMenuItemLabel>
+    )}
   </DropdownMenuItemContainer>
 );
 
-const DropdownMenuItemContainer = styled.li<{ visuallyFocused: DropdownMenuItemProps["visuallyFocused"] }>`
+const DropdownMenuItemContainer = styled.li<{
+  visuallyFocused: DropdownMenuItemProps["visuallyFocused"];
+}>`
   box-sizing: border-box;
   display: flex;
   align-items: center;
@@ -41,7 +54,9 @@ const DropdownMenuItemContainer = styled.li<{ visuallyFocused: DropdownMenuItemP
   padding-right: ${(props) => props.theme.optionPaddingRight};
   cursor: pointer;
 
-  ${(props) => props.visuallyFocused && `outline: ${props.theme.focusColor} solid 2px; outline-offset: -2px;`}
+  ${(props) =>
+    props.visuallyFocused &&
+    `outline: ${props.theme.focusColor} solid 2px; outline-offset: -2px;`}
   &:hover {
     background-color: ${(props) => props.theme.hoverOptionBackgroundColor};
   }

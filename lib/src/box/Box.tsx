@@ -16,7 +16,12 @@ const DxcBox = ({
 
   return (
     <ThemeProvider theme={colorsTheme.box}>
-      <Box shadowDepth={shadowDepth} display={display} margin={margin} size={size}>
+      <Box
+        shadowDepth={shadowDepth}
+        display={display}
+        margin={margin}
+        size={size}
+      >
         {children}
       </Box>
     </ThemeProvider>
@@ -31,7 +36,10 @@ const sizes = {
   fitContent: "fit-content",
 };
 
-const calculateWidth = (margin: BoxPropsType["margin"], size: BoxPropsType["size"]) =>
+const calculateWidth = (
+  margin: BoxPropsType["margin"],
+  size: BoxPropsType["size"]
+) =>
   size === "fillParent"
     ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
     : sizes[size];
@@ -49,18 +57,29 @@ const Box = styled.div<BoxPropsType>`
     props.shadowDepth === 1
       ? `${props.theme.oneShadowDepthShadowOffsetX} ${props.theme.oneShadowDepthShadowOffsetY} ${props.theme.oneShadowDepthShadowBlur}  ${props.theme.oneShadowDepthShadowSpread} ${props.theme.oneShadowDepthShadowColor}`
       : props.shadowDepth === 2
-      ? `${props.theme.twoShadowDepthShadowOffsetX} ${props.theme.twoShadowDepthShadowOffsetY} ${props.theme.twoShadowDepthShadowBlur}  ${props.theme.twoShadowDepthShadowSpread} ${props.theme.twoShadowDepthShadowColor}`
-      : `${props.theme.noneShadowDepthShadowOffsetX} ${props.theme.noneShadowDepthShadowOffsetY} ${props.theme.noneShadowDepthShadowBlur}  ${props.theme.noneShadowDepthShadowSpread} ${props.theme.noneShadowDepthShadowColor}`};
+        ? `${props.theme.twoShadowDepthShadowOffsetX} ${props.theme.twoShadowDepthShadowOffsetY} ${props.theme.twoShadowDepthShadowBlur}  ${props.theme.twoShadowDepthShadowSpread} ${props.theme.twoShadowDepthShadowColor}`
+        : `${props.theme.noneShadowDepthShadowOffsetX} ${props.theme.noneShadowDepthShadowOffsetY} ${props.theme.noneShadowDepthShadowBlur}  ${props.theme.noneShadowDepthShadowSpread} ${props.theme.noneShadowDepthShadowColor}`};
 
-  margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
+  margin: ${(props) =>
+    props.margin && typeof props.margin !== "object"
+      ? spaces[props.margin]
+      : "0px"};
   margin-top: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
+    props.margin && typeof props.margin === "object" && props.margin.top
+      ? spaces[props.margin.top]
+      : ""};
   margin-right: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
+    props.margin && typeof props.margin === "object" && props.margin.right
+      ? spaces[props.margin.right]
+      : ""};
   margin-bottom: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
+    props.margin && typeof props.margin === "object" && props.margin.bottom
+      ? spaces[props.margin.bottom]
+      : ""};
   margin-left: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
+    props.margin && typeof props.margin === "object" && props.margin.left
+      ? spaces[props.margin.left]
+      : ""};
 `;
 
 export default DxcBox;

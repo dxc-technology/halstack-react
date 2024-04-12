@@ -17,7 +17,9 @@ const Title = ({ title, theme, level = 4 }: Props): JSX.Element => {
 };
 
 const SectionTitle = styled.div`
-  font-family: Open Sans, sans-serif;
+  font-family:
+    Open Sans,
+    sans-serif;
   color: ${(props) => (props.theme === "dark" ? "#FFFFFF" : "#000000")};
 `;
 

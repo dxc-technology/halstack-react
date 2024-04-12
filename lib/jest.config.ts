@@ -1,4 +1,4 @@
-import type {Config} from 'jest';
+import type { Config } from "jest";
 
 const config: Config = {
   moduleNameMapper: {
@@ -6,7 +6,10 @@ const config: Config = {
     "\\.(svg)$": "<rootDir>/test/mocks/svgMock.js",
     "\\.(png)$": "<rootDir>/test/mocks/pngMock.js",
   },
-  testMatch: ["**/?(*.)+(spec|test).[jt]s?(x)", "!**/?(*.)+(accessibility.)(spec|test).[jt]s?(x)"],
+  testMatch: [
+    "**/?(*.)+(spec|test).[jt]s?(x)",
+    "!**/?(*.)+(accessibility.)(spec|test).[jt]s?(x)",
+  ],
 };
 
 export default config;

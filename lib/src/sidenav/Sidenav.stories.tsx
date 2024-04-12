@@ -163,33 +163,33 @@ export const Chromatic = () => (
 
 const CollapsedGroupSidenav = () => (
   <ExampleContainer>
-      <Title
-        title="Collapsed group with a selected link"
-        theme="light"
-        level={4}
-      />
-      <DxcSidenav title={<DxcSidenav.Title>Dxc technology</DxcSidenav.Title>}>
-        <DxcSidenav.Section>
-          <DxcSidenav.Group collapsable title="Collapsed Group" icon={iconSVG}>
-            <DxcSidenav.Link>Group Link</DxcSidenav.Link>
-            <DxcSidenav.Link>Group Link</DxcSidenav.Link>
-            <DxcSidenav.Link>Group Link</DxcSidenav.Link>
-            <DxcSidenav.Link>Group Link</DxcSidenav.Link>
-          </DxcSidenav.Group>
-        </DxcSidenav.Section>
-        <DxcSidenav.Section>
-          <DxcSidenav.Group collapsable title="Collapsed Group">
-            <DxcSidenav.Link>Group Link</DxcSidenav.Link>
-            <DxcSidenav.Link selected>Group Link</DxcSidenav.Link>
-          </DxcSidenav.Group>
-          <DxcSidenav.Group collapsable title="Section Group">
-            <DxcSidenav.Link>Group Link</DxcSidenav.Link>
-            <DxcSidenav.Link>Group Link</DxcSidenav.Link>
-            <DxcSidenav.Link>Group Link</DxcSidenav.Link>
-          </DxcSidenav.Group>
-        </DxcSidenav.Section>
-      </DxcSidenav>
-    </ExampleContainer>
+    <Title
+      title="Collapsed group with a selected link"
+      theme="light"
+      level={4}
+    />
+    <DxcSidenav title={<DxcSidenav.Title>Dxc technology</DxcSidenav.Title>}>
+      <DxcSidenav.Section>
+        <DxcSidenav.Group collapsable title="Collapsed Group" icon={iconSVG}>
+          <DxcSidenav.Link>Group Link</DxcSidenav.Link>
+          <DxcSidenav.Link>Group Link</DxcSidenav.Link>
+          <DxcSidenav.Link>Group Link</DxcSidenav.Link>
+          <DxcSidenav.Link>Group Link</DxcSidenav.Link>
+        </DxcSidenav.Group>
+      </DxcSidenav.Section>
+      <DxcSidenav.Section>
+        <DxcSidenav.Group collapsable title="Collapsed Group">
+          <DxcSidenav.Link>Group Link</DxcSidenav.Link>
+          <DxcSidenav.Link selected>Group Link</DxcSidenav.Link>
+        </DxcSidenav.Group>
+        <DxcSidenav.Group collapsable title="Section Group">
+          <DxcSidenav.Link>Group Link</DxcSidenav.Link>
+          <DxcSidenav.Link>Group Link</DxcSidenav.Link>
+          <DxcSidenav.Link>Group Link</DxcSidenav.Link>
+        </DxcSidenav.Group>
+      </DxcSidenav.Section>
+    </DxcSidenav>
+  </ExampleContainer>
 );
 
 const HoveredGroupSidenav = () => (

@@ -10,7 +10,8 @@ export default {
   component: DxcFileInput,
 };
 
-const picPreview = "https://cdn.mos.cms.futurecdn.net/CAZ6JXi6huSuN4QGE627NR.jpg";
+const picPreview =
+  "https://cdn.mos.cms.futurecdn.net/CAZ6JXi6huSuN4QGE627NR.jpg";
 
 const file1 = new File(["file1"], "file.pdf", { type: "text/plain" });
 const file2 = new File(["file2"], "file2.mp3", {
@@ -19,12 +20,20 @@ const file2 = new File(["file2"], "file2.mp3", {
 const file3 = new File(["file3"], "file3.png", {
   type: "image/png",
 });
-const file4 = new File(["file4"], "file4file4file4file4file4file4file4file4file4.mp4", {
-  type: "video",
-});
-const file5 = new File(["file5"], "file5file5file5file5file5file5file5file5file5.mp4", {
-  type: "video",
-});
+const file4 = new File(
+  ["file4"],
+  "file4file4file4file4file4file4file4file4file4.mp4",
+  {
+    type: "video",
+  }
+);
+const file5 = new File(
+  ["file5"],
+  "file5file5file5file5file5file5file5file5file5.mp4",
+  {
+    type: "video",
+  }
+);
 
 const fileExample = [
   {
@@ -123,7 +132,12 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With label and helper text" theme="light" level={4} />
-      <DxcFileInput label="File input" helperText="Please select files" value={[]} callbackFile={() => {}} />
+      <DxcFileInput
+        label="File input"
+        helperText="Please select files"
+        value={[]}
+        callbackFile={() => {}}
+      />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Single file" theme="light" level={4} />
@@ -147,7 +161,12 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Multiple files" theme="light" level={4} />
-      <DxcFileInput label="File input" helperText="Please select files" value={filesExamples} callbackFile={() => {}} />
+      <DxcFileInput
+        label="File input"
+        helperText="Please select files"
+        value={filesExamples}
+        callbackFile={() => {}}
+      />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Show preview" theme="light" level={4} />
@@ -161,7 +180,13 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Disabled" theme="light" level={4} />
-      <DxcFileInput label="File input" helperText="Please select files" disabled value={[]} callbackFile={() => {}} />
+      <DxcFileInput
+        label="File input"
+        helperText="Please select files"
+        disabled
+        value={[]}
+        callbackFile={() => {}}
+      />
     </ExampleContainer>
     <Title title="Margins" theme="light" level={3} />
     <ExampleContainer>
@@ -241,10 +266,19 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With label" theme="light" level={4} />
-      <DxcFileInput mode="filedrop" label="File input" value={[]} callbackFile={() => {}} />
+      <DxcFileInput
+        mode="filedrop"
+        label="File input"
+        value={[]}
+        callbackFile={() => {}}
+      />
     </ExampleContainer>
     <ExampleContainer>
-      <Title title="With label, helper text and ellipsis" theme="light" level={4} />
+      <Title
+        title="With label, helper text and ellipsis"
+        theme="light"
+        level={4}
+      />
       <DxcFileInput
         mode="filedrop"
         label="File input"
@@ -392,10 +426,19 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With label" theme="light" level={4} />
-      <DxcFileInput label="File input" mode="dropzone" value={[]} callbackFile={() => {}} />
+      <DxcFileInput
+        label="File input"
+        mode="dropzone"
+        value={[]}
+        callbackFile={() => {}}
+      />
     </ExampleContainer>
     <ExampleContainer>
-      <Title title="With label, helper text and ellipsis" theme="light" level={4} />
+      <Title
+        title="With label, helper text and ellipsis"
+        theme="light"
+        level={4}
+      />
       <DxcFileInput
         label="File input"
         helperText="Please select files"

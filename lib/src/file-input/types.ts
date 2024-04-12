@@ -1,4 +1,11 @@
-type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
+type Space =
+  | "xxsmall"
+  | "xsmall"
+  | "small"
+  | "medium"
+  | "large"
+  | "xlarge"
+  | "xxlarge";
 type Margin = {
   top?: Space;
   bottom?: Space;
@@ -127,8 +134,8 @@ export type FileItemProps = {
   singleFileMode: boolean;
   preview: string;
   type: string;
-  onDelete: (fileName: string) => void,
-  tabIndex: number,
+  onDelete: (fileName: string) => void;
+  tabIndex: number;
 };
 
 export default Props;

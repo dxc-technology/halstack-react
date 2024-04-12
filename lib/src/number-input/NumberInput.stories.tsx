@@ -20,15 +20,34 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Helper text, optional and value" theme="light" level={4} />
-      <DxcNumberInput label="Number input" defaultValue="12" helperText="Help message" optional />
+      <DxcNumberInput
+        label="Number input"
+        defaultValue="12"
+        helperText="Help message"
+        optional
+      />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Disabled and placeholder" theme="light" level={4} />
-      <DxcNumberInput label="Disabled number input" disabled placeholder="Placeholder" />
+      <DxcNumberInput
+        label="Disabled number input"
+        disabled
+        placeholder="Placeholder"
+      />
     </ExampleContainer>
     <ExampleContainer>
-      <Title title="Disabled, helper text, optional and value" theme="light" level={4} />
-      <DxcNumberInput label="Disabled number input" helperText="Help message" disabled optional defaultValue="10" />
+      <Title
+        title="Disabled, helper text, optional and value"
+        theme="light"
+        level={4}
+      />
+      <DxcNumberInput
+        label="Disabled number input"
+        helperText="Help message"
+        disabled
+        optional
+        defaultValue="10"
+      />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Read only" theme="light" level={4} />

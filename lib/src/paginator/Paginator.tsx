@@ -23,7 +23,9 @@ const DxcPaginator = ({
       ? currentPageInternal
       : (currentPageInternal - 1) * itemsPerPage + 1;
   const maxItemsPerPage =
-    minItemsPerPage - 1 + itemsPerPage > totalItems ? totalItems : minItemsPerPage - 1 + itemsPerPage;
+    minItemsPerPage - 1 + itemsPerPage > totalItems
+      ? totalItems
+      : minItemsPerPage - 1 + itemsPerPage;
 
   const colorsTheme = useTheme();
   const translatedLabels = useTranslatedLabels();
@@ -34,10 +36,15 @@ const DxcPaginator = ({
         <LabelsContainer>
           {itemsPerPageOptions && (
             <ItemsPageContainer>
-              <ItemsLabel>{translatedLabels.paginator.itemsPerPageText}</ItemsLabel>
+              <ItemsLabel>
+                {translatedLabels.paginator.itemsPerPageText}
+              </ItemsLabel>
               <SelectContainer>
                 <DxcSelect
-                  options={itemsPerPageOptions.map((num) => ({ label: num.toString(), value: num.toString() }))}
+                  options={itemsPerPageOptions.map((num) => ({
+                    label: num.toString(),
+                    value: num.toString(),
+                  }))}
                   onChange={(newValue) => {
                     itemsPerPageFunction(Number(newValue.value));
                   }}
@@ -49,7 +56,11 @@ const DxcPaginator = ({
             </ItemsPageContainer>
           )}
           <TotalItemsContainer>
-            {translatedLabels.paginator.minToMaxOfText(minItemsPerPage, maxItemsPerPage, totalItems)}
+            {translatedLabels.paginator.minToMaxOfText(
+              minItemsPerPage,
+              maxItemsPerPage,
+              totalItems
+            )}
           </TotalItemsContainer>
           {onPageChange && (
             <DxcButton
@@ -94,7 +105,12 @@ const DxcPaginator = ({
               </SelectContainer>
             </PageToSelectContainer>
           ) : (
-            <span>{translatedLabels.paginator.pageOfText(currentPageInternal, totalPages)}</span>
+            <span>
+              {translatedLabels.paginator.pageOfText(
+                currentPageInternal,
+                totalPages
+              )}
+            </span>
           )}
           {onPageChange && (
             <DxcButton
@@ -135,7 +151,8 @@ const DxcPaginatorContainer = styled.div`
   text-transform: ${(props) => props.theme.fontTextTransform};
   background-color: ${(props) => props.theme.backgroundColor};
   color: ${(props) => props.theme.fontColor};
-  padding: ${(props) => props.theme.verticalPadding} ${(props) => props.theme.horizontalPadding};
+  padding: ${(props) => props.theme.verticalPadding}
+    ${(props) => props.theme.horizontalPadding};
 
   button {
     &:disabled {

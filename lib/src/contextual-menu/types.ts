@@ -28,10 +28,16 @@ type GroupItemWithId = {
   items: (ItemWithId | GroupItemWithId)[];
   label: string;
 };
-type SectionWithId = { items: (ItemWithId | GroupItemWithId)[]; title?: string };
+type SectionWithId = {
+  items: (ItemWithId | GroupItemWithId)[];
+  title?: string;
+};
 type SingleItemProps = ItemWithId & { depthLevel: number };
 type GroupItemProps = GroupItemWithId & { depthLevel: number };
-type MenuItemProps = { item: ItemWithId | GroupItemWithId; depthLevel?: number };
+type MenuItemProps = {
+  item: ItemWithId | GroupItemWithId;
+  depthLevel?: number;
+};
 type ItemActionProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
   Item & {
     collapseIcon?: React.ReactNode;

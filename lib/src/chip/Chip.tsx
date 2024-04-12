@@ -24,26 +24,42 @@ const DxcChip = ({
         {prefixIcon && (
           <IconContainer
             role={typeof onClickPrefix === "function" ? "button" : undefined}
-            aria-label={typeof onClickPrefix === "function" ? "Prefix Action" : undefined}
+            aria-label={
+              typeof onClickPrefix === "function" ? "Prefix Action" : undefined
+            }
             disabled={disabled}
             interactuable={typeof onClickPrefix === "function" && !disabled}
-            tabIndex={typeof onClickPrefix === "function" && !disabled ? tabIndex : -1}
+            tabIndex={
+              typeof onClickPrefix === "function" && !disabled ? tabIndex : -1
+            }
             onClick={() => onClickPrefix && !disabled && onClickPrefix()}
           >
-            {typeof prefixIcon === "string" ? <DxcIcon icon={prefixIcon} /> : prefixIcon}
+            {typeof prefixIcon === "string" ? (
+              <DxcIcon icon={prefixIcon} />
+            ) : (
+              prefixIcon
+            )}
           </IconContainer>
         )}
         {label && <LabelContainer disabled={disabled}>{label}</LabelContainer>}
         {suffixIcon && (
           <IconContainer
             role={typeof onClickSuffix === "function" ? "button" : undefined}
-            aria-label={typeof onClickSuffix === "function" ? "Suffix Action" : undefined}
+            aria-label={
+              typeof onClickSuffix === "function" ? "Suffix Action" : undefined
+            }
             disabled={disabled}
             interactuable={typeof onClickSuffix === "function" && !disabled}
-            tabIndex={typeof onClickSuffix === "function" && !disabled ? tabIndex : -1}
+            tabIndex={
+              typeof onClickSuffix === "function" && !disabled ? tabIndex : -1
+            }
             onClick={() => !disabled && onClickSuffix?.()}
           >
-            {typeof suffixIcon === "string" ? <DxcIcon icon={suffixIcon} /> : suffixIcon}
+            {typeof suffixIcon === "string" ? (
+              <DxcIcon icon={suffixIcon} />
+            ) : (
+              suffixIcon
+            )}
           </IconContainer>
         )}
       </Chip>
@@ -54,7 +70,10 @@ const DxcChip = ({
 const calculateWidth = (margin: ChipPropsType["margin"]) =>
   `calc(100% - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`;
 
-const Chip = styled.div<{ margin: ChipPropsType["margin"]; disabled: ChipPropsType["disabled"] }>`
+const Chip = styled.div<{
+  margin: ChipPropsType["margin"];
+  disabled: ChipPropsType["disabled"];
+}>`
   box-sizing: border-box;
   display: inline-flex;
   align-items: center;
@@ -62,7 +81,8 @@ const Chip = styled.div<{ margin: ChipPropsType["margin"]; disabled: ChipPropsTy
   min-height: 40px;
   max-width: ${(props) => calculateWidth(props.margin)};
   background-color: ${(props) =>
-    (props.disabled && props.theme.disabledBackgroundColor) || props.theme.backgroundColor};
+    (props.disabled && props.theme.disabledBackgroundColor) ||
+    props.theme.backgroundColor};
   border-radius: ${(props) => props.theme.borderRadius};
   border-width: ${(props) => props.theme.borderThickness};
   border-style: ${(props) => props.theme.borderStyle};
@@ -72,15 +92,26 @@ const Chip = styled.div<{ margin: ChipPropsType["margin"]; disabled: ChipPropsTy
   padding-bottom: ${(props) => props.theme.contentPaddingBottom};
   padding-left: ${(props) => props.theme.contentPaddingLeft};
   padding-right: ${(props) => props.theme.contentPaddingRight};
-  margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
+  margin: ${(props) =>
+    props.margin && typeof props.margin !== "object"
+      ? spaces[props.margin]
+      : "0px"};
   margin-top: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
+    props.margin && typeof props.margin === "object" && props.margin.top
+      ? spaces[props.margin.top]
+      : ""};
   margin-right: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
+    props.margin && typeof props.margin === "object" && props.margin.right
+      ? spaces[props.margin.right]
+      : ""};
   margin-bottom: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
+    props.margin && typeof props.margin === "object" && props.margin.bottom
+      ? spaces[props.margin.bottom]
+      : ""};
   margin-left: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
+    props.margin && typeof props.margin === "object" && props.margin.left
+      ? spaces[props.margin.left]
+      : ""};
   cursor: ${({ disabled }) => disabled && "not-allowed"};
 `;
 
@@ -89,7 +120,8 @@ const LabelContainer = styled.span<{ disabled: ChipPropsType["disabled"] }>`
   font-family: ${(props) => props.theme.fontFamily};
   font-weight: ${(props) => props.theme.fontWeight};
   font-style: ${(props) => props.theme.fontStyle};
-  color: ${(props) => (props.disabled ? props.theme.disabledFontColor : props.theme.fontColor)};
+  color: ${(props) =>
+    props.disabled ? props.theme.disabledFontColor : props.theme.fontColor};
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -101,7 +133,8 @@ const IconContainer = styled.div<{
 }>`
   display: flex;
   border-radius: 0.25rem;
-  color: ${(props) => (props.disabled ? props.theme.disabledIconColor : props.theme.iconColor)};
+  color: ${(props) =>
+    props.disabled ? props.theme.disabledIconColor : props.theme.iconColor};
   ${({ interactuable }) => interactuable && "cursor: pointer;"}
 
   ${(props) =>

@@ -6,15 +6,21 @@ const DxcGrid = (props: GridPropsType): JSX.Element => <Grid {...props} />;
 
 const Grid = styled.div<GridPropsType>`
   display: grid;
-  ${({ templateColumns }) => templateColumns && `grid-template-columns: ${templateColumns.join(" ")};`}
-  ${({ templateRows }) => templateRows && `grid-template-rows: ${templateRows.join(" ")};`}
-  ${({ templateAreas }) => templateAreas && `grid-template-areas: ${templateAreas.map((row) => `"${row}"`).join(" ")};`}
+  ${({ templateColumns }) =>
+    templateColumns && `grid-template-columns: ${templateColumns.join(" ")};`}
+  ${({ templateRows }) =>
+    templateRows && `grid-template-rows: ${templateRows.join(" ")};`}
+  ${({ templateAreas }) =>
+    templateAreas &&
+    `grid-template-areas: ${templateAreas.map((row) => `"${row}"`).join(" ")};`}
   ${({ autoColumns }) => autoColumns && `grid-auto-columns: ${autoColumns};`}
   ${({ autoRows }) => autoRows && `grid-auto-rows: ${autoRows};`}
   ${({ autoFlow }) => autoFlow && `grid-auto-flow: ${autoFlow};`}
   ${({ gap }) =>
     gap != null &&
-    (typeof gap === "string" ? `gap: ${gap};` : `row-gap: ${gap.rowGap ?? ""}; column-gap: ${gap.columnGap ?? ""};`)}
+    (typeof gap === "string"
+      ? `gap: ${gap};`
+      : `row-gap: ${gap.rowGap ?? ""}; column-gap: ${gap.columnGap ?? ""};`)}
   ${({ placeItems }) =>
     placeItems &&
     (typeof placeItems === "string"
@@ -30,10 +36,13 @@ const Grid = styled.div<GridPropsType>`
   ${({ column }) =>
     column &&
     `grid-column: ${
-      typeof column === "string" || typeof column === "number" ? column : `${column.start} / ${column.end};`
+      typeof column === "string" || typeof column === "number"
+        ? column
+        : `${column.start} / ${column.end};`
     };`}
   ${({ row }) =>
-    row && `grid-row: ${typeof row === "string" || typeof row === "number" ? row : `${row.start} / ${row.end};`};`}
+    row &&
+    `grid-row: ${typeof row === "string" || typeof row === "number" ? row : `${row.start} / ${row.end};`};`}
   ${({ placeSelf }) =>
     placeSelf &&
     (typeof placeSelf === "string"
@@ -46,10 +55,13 @@ const GridItem = styled.div<GridItemProps>`
   ${({ column }) =>
     column &&
     `grid-column: ${
-      typeof column === "string" || typeof column === "number" ? column : `${column.start} / ${column.end};`
+      typeof column === "string" || typeof column === "number"
+        ? column
+        : `${column.start} / ${column.end};`
     };`}
   ${({ row }) =>
-    row && `grid-row: ${typeof row === "string" || typeof row === "number" ? row : `${row.start} / ${row.end};`};`}
+    row &&
+    `grid-row: ${typeof row === "string" || typeof row === "number" ? row : `${row.start} / ${row.end};`};`}
   ${({ placeSelf }) =>
     placeSelf &&
     (typeof placeSelf === "string"
