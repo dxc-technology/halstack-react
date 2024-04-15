@@ -92,7 +92,7 @@ export const Chromatic = () => (
     <ExampleContainer>
       <Title title="Disabled action prefix and suffix" theme="light" level={4} />
       <DxcChip
-        label="Disabled"
+        label="Disabled action prefix"
         disabled
         prefixIcon={iconSVG}
         onClickPrefix={() => {}}
