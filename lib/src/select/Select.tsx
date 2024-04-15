@@ -36,7 +36,7 @@ const filterOptionsBySearchValue = (
   searchValue: string
 ): Option[] | OptionGroup[] => {
   if (options?.length > 0) {
-    if (isArrayOfOptionGroups(options))
+    if (isArrayOfOptionGroups(options)) {
       return options.map((optionGroup) => {
         const group = {
           label: optionGroup.label,
@@ -46,6 +46,7 @@ const filterOptionsBySearchValue = (
         };
         return group;
       });
+    }
     return options.filter((option) =>
       option.label.toUpperCase().includes(searchValue.toUpperCase())
     );

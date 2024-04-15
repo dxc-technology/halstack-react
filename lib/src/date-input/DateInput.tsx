@@ -145,7 +145,7 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
       }
     };
     const handleOnBlur = ({ value: blurValue, error: inputError }) => {
-      const date = getDate(value, format, lastValidYear, setLastValidYear);
+      const date = getDate(blurValue, format, lastValidYear, setLastValidYear);
       const invalidDateMessage =
         blurValue !== "" &&
         !date.isValid() &&
