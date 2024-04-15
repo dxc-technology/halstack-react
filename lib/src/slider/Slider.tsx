@@ -279,26 +279,19 @@ const SliderInput = styled.input<{
         ? props.theme.disabledThumbBackgroundColor
         : props.theme.thumbBackgroundColor};
     &:active {
-      ${(props) => {
-        if (!props.disabled) {
-          return `
-          background: ${props.theme.activeThumbBackgroundColor};
-            transform: scale(1.16667);`;
-        }
-        return "";
-      }}
+      ${(props) =>
+        !props.disabled &&
+        `background: ${props.theme.activeThumbBackgroundColor};
+            transform: scale(1.16667);`}
     }
     &:hover {
-      ${(props) => {
-        if (!props.disabled) {
-          return `height: ${props.theme.hoverThumbHeight};
+      ${(props) =>
+        !props.disabled &&
+        `height: ${props.theme.hoverThumbHeight};
           width: ${props.theme.hoverThumbWidth};
           transform: scale(1.16667);
           transform-origin: center center;
-          background: ${props.theme.hoverThumbBackgroundColor};`;
-        }
-        return "";
-      }}
+          background: ${props.theme.hoverThumbBackgroundColor};`}
     }
   }
   &::-moz-range-track {
@@ -322,16 +315,13 @@ const SliderInput = styled.input<{
       transform: scale(1.16667);
     }
     &:hover {
-      ${(props) => {
-        if (!props.disabled) {
-          return `height: ${props.theme.hoverThumbHeight};
+      ${(props) =>
+        !props.disabled &&
+        `height: ${props.theme.hoverThumbHeight};
           width: ${props.theme.hoverThumbWidth};
           transform: scale(1.16667);
           transform-origin: center center;
-          background: ${props.theme.hoverThumbBackgroundColor};`;
-        }
-        return "";
-      }}
+          background: ${props.theme.hoverThumbBackgroundColor};`}
     }
   }
   &:focus {

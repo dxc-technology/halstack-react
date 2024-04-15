@@ -20,17 +20,14 @@ const getPropInChild = (child, propName) =>
         : undefined
     : undefined;
 
-const getLabelFromTab = (child) => {
-  if (typeof child === "string") {
-    return child.toString();
-  }
-  if (child.props.children) {
-    return Array.isArray(child.props.children)
-      ? getLabelFromTab(child.props.children[0])
-      : getLabelFromTab(child.props.children);
-  }
-  return "";
-};
+const getLabelFromTab = (child) =>
+  typeof child === "string"
+    ? child.toString()
+    : child.props.children
+      ? Array.isArray(child.props.children)
+        ? getLabelFromTab(child.props.children[0])
+        : getLabelFromTab(child.props.children)
+      : undefined;
 
 const getPreviousTabIndex = (array, initialIndex): number => {
   let index = initialIndex === 0 ? array.length - 1 : initialIndex - 1;

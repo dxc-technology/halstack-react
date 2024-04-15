@@ -113,11 +113,7 @@ const DxcResultsetTable = ({
 
   useEffect(() => {
     if (!hidePaginator) {
-      if (rows.length > 0) {
-        changePage(1);
-      } else {
-        changePage(0);
-      }
+      changePage(rows.length > 0 ? 1 : 0);
     }
   }, [rows]);
 

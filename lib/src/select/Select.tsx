@@ -65,18 +65,19 @@ const getLastOptionIndex = (
   const reducer = (acc: number, current: OptionGroup) =>
     acc + (current.options?.length || 0);
 
-  if (searchable && filteredOptions?.length > 0)
+  if (searchable && filteredOptions?.length > 0) {
     if (isArrayOfOptionGroups(filteredOptions)) {
       last = filteredOptions.reduce(reducer, 0) - 1;
     } else {
       last = filteredOptions.length - 1;
     }
-  else if (options?.length > 0)
+  } else if (options?.length > 0) {
     if (isArrayOfOptionGroups(options)) {
       last = options.reduce(reducer, 0) - 1;
     } else {
       last = options.length - 1;
     }
+  }
 
   return optional && !multiple ? last + 1 : last;
 };

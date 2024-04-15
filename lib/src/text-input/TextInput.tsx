@@ -194,10 +194,11 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
         ? translatedLabels.numberInput.valueGreaterThanOrEqualToErrorMessage(
             numberInputContext.minNumber
           )
-        : checkedValue > numberInputContext?.maxNumber &&
-          translatedLabels.numberInput.valueLessThanOrEqualToErrorMessage(
-            numberInputContext.maxNumber
-          );
+        : checkedValue > numberInputContext?.maxNumber
+          ? translatedLabels.numberInput.valueLessThanOrEqualToErrorMessage(
+              numberInputContext.maxNumber
+            )
+          : undefined;
 
     const openSuggestions = () => {
       if (hasSuggestions) {
@@ -388,8 +389,9 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
               changeVisualFocusIndex((visualFocusedSuggIndex) =>
                 visualFocusedSuggIndex < filteredSuggestions.length - 1
                   ? visualFocusedSuggIndex + 1
-                  : visualFocusedSuggIndex === filteredSuggestions.length - 1 &&
-                    0
+                  : visualFocusedSuggIndex === filteredSuggestions.length - 1
+                    ? 0
+                    : undefined
               );
             }
           }
@@ -768,11 +770,9 @@ const InputContainer = styled.div<{
   height: calc(2.5rem - 2px);
   padding: 0 0.5rem;
 
-  ${(props) => {
-    if (props.disabled)
-      return `background-color: ${props.theme.disabledContainerFillColor};`;
-    return "";
-  }}
+  ${(props) =>
+    props.disabled &&
+    `background-color: ${props.theme.disabledContainerFillColor};`}
   box-shadow: 0 0 0 2px transparent;
   border-radius: 4px;
   border: 1px solid

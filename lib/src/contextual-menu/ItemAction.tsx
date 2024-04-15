@@ -25,8 +25,9 @@ const ItemAction = ({
         <Text
           onMouseEnter={(event: React.MouseEvent<HTMLSpanElement>) => {
             const text = event.currentTarget;
-            if (text.title === "" && text.scrollWidth > text.clientWidth)
+            if (text.title === "" && text.scrollWidth > text.clientWidth) {
               text.title = label;
+            }
           }}
         >
           {label}
