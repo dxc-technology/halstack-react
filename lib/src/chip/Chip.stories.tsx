@@ -103,10 +103,10 @@ export const Chromatic = () => (
       <Title title="Prefix and disabled action suffix" theme="light" level={4} />
       <DxcChip
         label="Disabled action suffix"
-        disabled
         prefixIcon={iconSVG}
         suffixIcon="filled_check_circle"
         onClickSuffix={() => {}}
+        disabled
       />
     </ExampleContainer>
     <ExampleContainer>
