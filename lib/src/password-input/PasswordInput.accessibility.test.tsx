@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import { axe } from "../utils/accessibility/axe-helper";
+import { axe } from "../../test/accessibility/axe-helper";
 import DxcPasswordInput from "./PasswordInput";
 
 // Mocking DOMRect for Radix Primitive Popover

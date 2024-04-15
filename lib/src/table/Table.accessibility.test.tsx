@@ -1,10 +1,10 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import { axe, formatRules } from "../utils/accessibility/axe-helper";
+import { axe, formatRules } from "../../test/accessibility/axe-helper";
 import DxcTable from "./Table";
 
 // TODO: REMOVE
-import { disabledRules as rules } from "../utils/accessibility/rules/specific/table/disabledRules";
+import { disabledRules as rules } from "../../test/accessibility/rules/specific/table/disabledRules";
 
 const disabledRules = {
   rules: formatRules(rules),

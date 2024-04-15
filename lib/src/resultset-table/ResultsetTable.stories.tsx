@@ -5,7 +5,7 @@ import DxcResultsetTable from "./ResultsetTable";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import { HalstackProvider } from "../HalstackContext";
-import { disabledRules } from "../utils/accessibility/rules/specific/resultset-table/disabledRules";
+import { disabledRules } from "../../test/accessibility/rules/specific/resultset-table/disabledRules";
 import preview from "../../.storybook/preview";
 
 export default {

@@ -1,10 +1,10 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import { axe, formatRules } from "../utils/accessibility/axe-helper";
+import { axe, formatRules } from "../../test/accessibility/axe-helper";
 import DxcHeader from "./Header";
 import DxcFlex from "../flex/Flex";
 import DxcLink from "../link/Link";
-import { disabledRules as rules } from "../utils/accessibility/rules/specific/header/disabledRules";
+import { disabledRules as rules } from "../../test/accessibility/rules/specific/header/disabledRules";
 
 const disabledRules = {
   rules: formatRules(rules),

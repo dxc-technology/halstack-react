@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import { axe } from "../utils/accessibility/axe-helper";
+import { axe } from "../../test/accessibility/axe-helper";
 import DxcAlert from "./Alert";
 
 describe("Alert component accessibility tests", () => {

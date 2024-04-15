@@ -8,7 +8,7 @@ import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DxcFlex from "../flex/Flex";
 import DxcLink from "../link/Link";
 import { HalstackProvider } from "../HalstackContext";
-import { disabledRules } from "../utils/accessibility/rules/specific/header/disabledRules";
+import { disabledRules } from "../../test/accessibility/rules/specific/header/disabledRules";
 import preview from "../../.storybook/preview";
 
 export default {

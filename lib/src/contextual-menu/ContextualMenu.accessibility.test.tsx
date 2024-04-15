@@ -1,11 +1,11 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import { axe, formatRules } from "../utils/accessibility/axe-helper";
+import { axe, formatRules } from "../../test/accessibility/axe-helper";
 import DxcContextualMenu from "./ContextualMenu";
 import DxcBadge from "../badge/Badge";
 
 // TODO: REMOVE
-import { disabledRules as rules } from "../utils/accessibility/rules/specific/contextual-menu/disabledRules";
+import { disabledRules as rules } from "../../test/accessibility/rules/specific/contextual-menu/disabledRules";
 
 const disabledRules = {
   rules: formatRules(rules),

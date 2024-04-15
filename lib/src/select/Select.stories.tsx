@@ -7,7 +7,7 @@ import DxcSelect from "./Select";
 import Listbox from "./Listbox";
 import useTheme from "../useTheme";
 import { HalstackProvider } from "../HalstackContext";
-import { disabledRules } from "../utils/accessibility/rules/specific/select/disabledRules";
+import { disabledRules } from "../../test/accessibility/rules/specific/select/disabledRules";
 import preview from "../../.storybook/preview";
 
 export default {
