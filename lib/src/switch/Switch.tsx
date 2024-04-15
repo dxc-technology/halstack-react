@@ -140,7 +140,7 @@ const getDisabledColor = (
         case "uncheck":
           return theme.disabledUncheckedTrackBackgroundColor;
         default:
-          break;
+          return undefined;
       }
       break;
     case "thumb":
@@ -150,15 +150,14 @@ const getDisabledColor = (
         case "uncheck":
           return theme.disabledUncheckedThumbBackgroundColor;
         default:
-          break;
+          return undefined;
       }
       break;
     case "label":
       return theme.disabledLabelFontColor;
     default:
-      break;
+      return undefined;
   }
-  return "";
 };
 
 const getNotDisabledColor = (
@@ -174,7 +173,7 @@ const getNotDisabledColor = (
         case "uncheck":
           return theme.uncheckedTrackBackgroundColor;
         default:
-          break;
+          return undefined;
       }
       break;
     case "thumb":
@@ -184,15 +183,14 @@ const getNotDisabledColor = (
         case "uncheck":
           return theme.uncheckedThumbBackgroundColor;
         default:
-          break;
+          return undefined;
       }
       break;
     case "label":
       return theme.labelFontColor;
     default:
-      break;
+      return undefined;
   }
-  return "";
 };
 
 const SwitchContainer = styled.div<{

@@ -96,7 +96,6 @@ const getRadioInputStateColor = (
           ? props.theme.activeReadOnlyRadioInputColor
           : props.theme.activeRadioInputColor;
     case "enabled":
-    default:
       return props.disabled
         ? props.theme.disabledRadioInputColor
         : props.error
@@ -104,6 +103,8 @@ const getRadioInputStateColor = (
           : props.readOnly
             ? props.theme.readOnlyRadioInputColor
             : props.theme.radioInputColor;
+    default:
+      return undefined;
   }
 };
 
