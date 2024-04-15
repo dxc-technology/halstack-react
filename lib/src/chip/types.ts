@@ -37,7 +37,7 @@ type PrefixIconProps =
       prefixIcon?: Icon;
       onClickPrefix?: never;
       suffixIcon?: never;
-      onClickSuffix?: () => void;
+      onClickSuffix?: never;
       disabled?: never;
     };
 
@@ -53,7 +53,7 @@ type SuffixIconProps =
       suffixIcon?: Icon;
       onClickSuffix?: never;
       prefixIcon?: never;
-      onClickPrefix?: () => void;
+      onClickPrefix?: never;
       disabled?: never;
     };
 
