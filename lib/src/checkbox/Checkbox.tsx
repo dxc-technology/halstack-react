@@ -299,12 +299,12 @@ const MainContainer = styled.div<{
   &:hover ${Checkbox} {
     border: 2px solid
       ${(props) =>
-        props.disabled &&
+        !props.disabled &&
         (props.readOnly
           ? getReadOnlyColor(props.theme, "hoverBorder")
           : getEnabledColor(props.theme, "hoverBorder"))};
     color: ${(props) =>
-      props.disabled &&
+      !props.disabled &&
       (props.readOnly
         ? getReadOnlyColor(props.theme, "hoverBackground")
         : getEnabledColor(props.theme, "hoverBackground"))};
