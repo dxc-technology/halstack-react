@@ -50,7 +50,7 @@ const DxcSwitch = React.forwardRef<RefType, SwitchPropsType>(
     };
 
     const handlerSwitchChange = () => {
-      if (checked) {
+      if (checked == null) {
         setInnerChecked((currentInnerChecked) => !currentInnerChecked);
       }
       onChange?.(checked ? !checked : !innerChecked);
@@ -155,7 +155,6 @@ const getDisabledColor = (
       break;
     case "label":
       return theme.disabledLabelFontColor;
-      break;
     default:
       break;
   }
@@ -172,10 +171,8 @@ const getNotDisabledColor = (
       switch (subElement) {
         case "check":
           return theme.checkedTrackBackgroundColor;
-          break;
         case "uncheck":
           return theme.uncheckedTrackBackgroundColor;
-          break;
         default:
           break;
       }
@@ -184,17 +181,14 @@ const getNotDisabledColor = (
       switch (subElement) {
         case "check":
           return theme.checkedThumbBackgroundColor;
-          break;
         case "uncheck":
           return theme.uncheckedThumbBackgroundColor;
-          break;
         default:
           break;
       }
       break;
     case "label":
       return theme.labelFontColor;
-      break;
     default:
       break;
   }

@@ -37,6 +37,7 @@ const isFileIncluded = (file: FileData, fileList: FileData[]) => {
 const DxcFileInput = React.forwardRef<RefType, FileInputPropsType>(
   (
     {
+      // name = "",
       mode = "file",
       label = "",
       buttonLabel,
@@ -66,7 +67,7 @@ const DxcFileInput = React.forwardRef<RefType, FileInputPropsType>(
         ? translatedLabels.fileInput.fileSizeGreaterThanErrorMessage
         : file.size > maxSize
           ? translatedLabels.fileInput.fileSizeLessThanErrorMessage
-          : "";
+          : undefined;
 
     const getFilesToAdd = async (selectedFiles: File[]) => {
       const filesToAdd = await Promise.all(

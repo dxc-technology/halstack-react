@@ -272,7 +272,9 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
               (innerValue && Array.isArray(innerValue) && innerValue)),
             newOption.value,
           ];
-      } else newValue = newOption.value;
+      } else {
+        newValue = newOption.value;
+      }
 
       if (value == null) {
         setInnerValue(newValue);
@@ -322,43 +324,41 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
         case "Down":
         case "ArrowDown":
           event.preventDefault();
-          if (singleSelectionIndex !== undefined) {
-            if (
-              !isOpen ||
+          if (
+            singleSelectionIndex !== undefined &&
+            (!isOpen ||
               (visualFocusIndex === -1 &&
                 singleSelectionIndex > -1 &&
-                singleSelectionIndex <= lastOptionIndex)
-            ) {
-              changeVisualFocusIndex(singleSelectionIndex);
-            } else {
-              changeVisualFocusIndex((currentVisualFocusIndex) => {
-                if (currentVisualFocusIndex < lastOptionIndex) {
-                  return currentVisualFocusIndex + 1;
-                }
-                return 0;
-              });
-            }
+                singleSelectionIndex <= lastOptionIndex))
+          ) {
+            changeVisualFocusIndex(singleSelectionIndex);
+          } else {
+            changeVisualFocusIndex((currentVisualFocusIndex) => {
+              if (currentVisualFocusIndex < lastOptionIndex) {
+                return currentVisualFocusIndex + 1;
+              }
+              return 0;
+            });
           }
           openOptions();
           break;
         case "Up":
         case "ArrowUp":
           event.preventDefault();
-          if (singleSelectionIndex !== undefined) {
-            if (
-              !isOpen ||
+          if (
+            singleSelectionIndex !== undefined &&
+            (!isOpen ||
               (visualFocusIndex === -1 &&
                 singleSelectionIndex > -1 &&
-                singleSelectionIndex <= lastOptionIndex)
-            ) {
-              changeVisualFocusIndex(singleSelectionIndex);
-            } else {
-              changeVisualFocusIndex((currentVisualFocusIndex) =>
-                currentVisualFocusIndex === 0 || currentVisualFocusIndex === -1
-                  ? lastOptionIndex
-                  : currentVisualFocusIndex - 1
-              );
-            }
+                singleSelectionIndex <= lastOptionIndex))
+          ) {
+            changeVisualFocusIndex(singleSelectionIndex);
+          } else {
+            changeVisualFocusIndex((currentVisualFocusIndex) =>
+              currentVisualFocusIndex === 0 || currentVisualFocusIndex === -1
+                ? lastOptionIndex
+                : currentVisualFocusIndex - 1
+            );
           }
           openOptions();
           break;
@@ -403,9 +403,9 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
                   );
                 }
               }
-            } else if (optional && !multiple && visualFocusIndex === 0)
+            } else if (optional && !multiple && visualFocusIndex === 0) {
               handleSelectChangeValue(optionalItem);
-            else if (isArrayOfOptionGroups(options)) {
+            } else if (isArrayOfOptionGroups(options)) {
               options.some((groupOption) => {
                 const groupLength = accLength + groupOption.options.length;
                 if (groupLength > visualFocusIndex) {

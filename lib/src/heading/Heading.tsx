@@ -23,7 +23,7 @@ const DxcHeading = ({
     ) {
       return as;
     }
-    return "h5";
+    return undefined;
   };
 
   return (

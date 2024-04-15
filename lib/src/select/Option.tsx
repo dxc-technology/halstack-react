@@ -18,8 +18,9 @@ const Option = ({
     const label = event.currentTarget;
     const optionElement = document.getElementById(id);
 
-    if (optionElement.title === "" && label.scrollWidth > label.clientWidth)
+    if (optionElement.title === "" && label.scrollWidth > label.clientWidth) {
       optionElement.title = option.label;
+    }
   };
 
   return (

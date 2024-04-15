@@ -99,7 +99,7 @@ const DxcTabs = ({
   }, [activeTabIndex]);
 
   const handleSelected = (newValue) => {
-    if (activeTabIndex) {
+    if (activeTabIndex == null) {
       setInnerActiveTabIndex(newValue);
     }
     onTabClick?.(newValue);
