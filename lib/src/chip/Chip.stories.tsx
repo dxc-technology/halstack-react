@@ -100,6 +100,16 @@ export const Chromatic = () => (
       />
     </ExampleContainer>
     <ExampleContainer>
+      <Title title="Prefix and disabled action suffix" theme="light" level={4} />
+      <DxcChip
+        label="Disabled action suffix"
+        disabled
+        prefixIcon={iconSVG}
+        suffixIcon="filled_check_circle"
+        onClickSuffix={() => {}}
+      />
+    </ExampleContainer>
+    <ExampleContainer>
       <Title title="With ellipsis" theme="light" level={4} />
       <div style={{ width: "200px" }}>
         <DxcChip label="With ellipsis asdfasdf asdf asdfasdf asdf asdfasdf asdfasdf asdf asdf adfasrfasf afsdg afgasfg asdf asdf asdf asdf asdf asdf asdf  afdg asfg asdfg asdf asdf asdf asdfasdf asd fas df asd asdf asdf asdfasd fg ssssssssssss ssss" />

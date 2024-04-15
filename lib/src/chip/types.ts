@@ -71,7 +71,7 @@ type CommonProps = {
    * Value of the tabindex attribute.
    */
   tabIndex?: number;
-} & (PrefixIconProps | SuffixIconProps);
+};
 
 type Props = (PrefixIconProps | SuffixIconProps) & CommonProps;
 
