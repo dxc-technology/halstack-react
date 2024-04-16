@@ -95,16 +95,21 @@ const getSelectedOption = (
   if (multiple) {
     if (options?.length > 0) {
       options.forEach((option: Option | OptionGroup) => {
-        if (isOptionGroup(option))
+        if (isOptionGroup(option)) {
           option.options.forEach((singleOption) => {
             if (
               value.includes(singleOption.value) &&
               Array.isArray(selectedOption)
-            )
+            ) {
               selectedOption.push(singleOption);
+            }
           });
-        else if (value.includes(option.value) && Array.isArray(selectedOption))
+        } else if (
+          value.includes(option.value) &&
+          Array.isArray(selectedOption)
+        ) {
           selectedOption.push(option);
+        }
       });
     }
   } else if (optional && value === "") {
@@ -141,13 +146,12 @@ const getSelectedOption = (
 const getSelectedOptionLabel = (
   placeholder: string,
   selectedOption: Option | Option[]
-) => {
-  if (Array.isArray(selectedOption))
-    return selectedOption.length === 0
+) =>
+  Array.isArray(selectedOption)
+    ? selectedOption.length === 0
       ? placeholder
-      : selectedOption.map((option) => option.label).join(", ");
-  return selectedOption?.label ?? placeholder;
-};
+      : selectedOption.map((option) => option.label).join(", ")
+    : selectedOption?.label ?? placeholder;
 
 const notOptionalCheck = (
   value: string | string[],
@@ -249,7 +253,9 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
     );
 
     const openOptions = () => {
-      if (!isOpen && canOpenOptions(options, disabled)) changeIsOpen(true);
+      if (!isOpen && canOpenOptions(options, disabled)) {
+        changeIsOpen(true);
+      }
     };
     const closeOptions = () => {
       if (isOpen) {
@@ -262,17 +268,18 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
       let newValue: string | string[];
 
       if (multiple) {
-        if ((value ?? innerValue).includes(newOption.value))
+        if ((value ?? innerValue).includes(newOption.value)) {
           newValue = (
             (value && Array.isArray(value) && value) ??
             (innerValue && Array.isArray(innerValue) && innerValue)
           ).filter((optionVal) => optionVal !== newOption.value);
-        else
+        } else {
           newValue = [
             ...((value && Array.isArray(value) && value) ??
               (innerValue && Array.isArray(innerValue) && innerValue)),
             newOption.value,
           ];
+        }
       } else {
         newValue = newOption.value;
       }
@@ -296,7 +303,9 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
       if (isOpen) {
         closeOptions();
         setSearchValue("");
-      } else openOptions();
+      } else {
+        openOptions();
+      }
     };
     const handleSelectOnFocus = (event: React.FocusEvent<HTMLInputElement>) => {
       if (!event.currentTarget.contains(event.relatedTarget) && searchable) {
@@ -382,9 +391,9 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
                   !multiple &&
                   visualFocusIndex === 0 &&
                   groupsHaveOptions(filteredOptions)
-                )
+                ) {
                   handleSelectChangeValue(optionalItem);
-                else if (isArrayOfOptionGroups(filteredOptions)) {
+                } else if (isArrayOfOptionGroups(filteredOptions)) {
                   if (groupsHaveOptions(filteredOptions)) {
                     filteredOptions.some((groupOption) => {
                       const groupLength =
@@ -479,12 +488,14 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
         if (
           selectedOptionLabelRef?.current.scrollWidth >
           selectedOptionLabelRef?.current.clientWidth
-        )
+        ) {
           selectedOptionLabelRef.current.title = getSelectedOptionLabel(
             placeholder,
             selectedOption
           );
-        else selectedOptionLabelRef.current.title = "";
+        } else {
+          selectedOptionLabelRef.current.title = "";
+        }
       }
     }, [placeholder, selectedOption]);
 

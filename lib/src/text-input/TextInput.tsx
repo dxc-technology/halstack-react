@@ -220,12 +220,12 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
         setInnerValue(formattedValue);
       }
 
-      if (isRequired(formattedValue, optional))
+      if (isRequired(formattedValue, optional)) {
         onChange?.({
           value: formattedValue,
           error: translatedLabels.formFields.requiredValueErrorMessage,
         });
-      else if (isLengthIncorrect(formattedValue, minLength, maxLength))
+      } else if (isLengthIncorrect(formattedValue, minLength, maxLength)) {
         onChange?.({
           value: formattedValue,
           error: translatedLabels.formFields.lengthErrorMessage(
@@ -233,24 +233,26 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
             maxLength
           ),
         });
-      else if (patternMismatch(pattern, formattedValue))
+      } else if (patternMismatch(pattern, formattedValue)) {
         onChange?.({
           value: formattedValue,
           error: translatedLabels.formFields.formatRequestedErrorMessage,
         });
-      else if (
+      } else if (
         numberInputContext?.typeNumber === "number" &&
         isNumberIncorrect(
           Number(newValue),
           numberInputContext?.minNumber,
           numberInputContext?.maxNumber
         )
-      )
+      ) {
         onChange?.({
           value: formattedValue,
           error: getNumberErrorMessage(Number(newValue)),
         });
-      else onChange?.({ value: formattedValue });
+      } else {
+        onChange?.({ value: formattedValue });
+      }
     };
 
     const decrementNumber = (currentValue = value ?? innerValue) => {
@@ -268,13 +270,15 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
           if (
             numberValue < numberInputContext?.minNumber ||
             steppedValue < numberInputContext?.minNumber
-          )
+          ) {
             changeValue(numberValue);
-          else if (numberValue > numberInputContext?.maxNumber)
+          } else if (numberValue > numberInputContext?.maxNumber) {
             changeValue(numberInputContext?.maxNumber);
-          else if (numberValue === numberInputContext?.minNumber)
+          } else if (numberValue === numberInputContext?.minNumber) {
             changeValue(numberInputContext?.minNumber);
-          else changeValue(steppedValue);
+          } else {
+            changeValue(steppedValue);
+          }
         } else if (numberInputContext?.minNumber >= 0) {
           changeValue(numberInputContext?.minNumber);
         } else if (numberInputContext?.maxNumber < 0) {
@@ -299,13 +303,15 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
           if (
             numberValue > numberInputContext?.maxNumber ||
             steppedValue > numberInputContext?.maxNumber
-          )
+          ) {
             changeValue(numberValue);
-          else if (numberValue < numberInputContext?.minNumber)
+          } else if (numberValue < numberInputContext?.minNumber) {
             changeValue(numberInputContext?.minNumber);
-          else if (numberValue === numberInputContext?.maxNumber)
+          } else if (numberValue === numberInputContext?.maxNumber) {
             changeValue(numberInputContext?.maxNumber);
-          else changeValue(steppedValue);
+          } else {
+            changeValue(steppedValue);
+          }
         } else if (numberInputContext?.minNumber > 0) {
           changeValue(numberInputContext?.minNumber);
         } else if (numberInputContext?.maxNumber <= 0) {
@@ -339,12 +345,12 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
     const handleInputOnBlur = (event: React.FocusEvent<HTMLInputElement>) => {
       closeSuggestions();
 
-      if (isRequired(event.target.value, optional))
+      if (isRequired(event.target.value, optional)) {
         onBlur?.({
           value: event.target.value,
           error: translatedLabels.formFields.requiredValueErrorMessage,
         });
-      else if (isLengthIncorrect(event.target.value, minLength, maxLength))
+      } else if (isLengthIncorrect(event.target.value, minLength, maxLength)) {
         onBlur?.({
           value: event.target.value,
           error: translatedLabels.formFields.lengthErrorMessage(
@@ -352,24 +358,26 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
             maxLength
           ),
         });
-      else if (patternMismatch(pattern, event.target.value))
+      } else if (patternMismatch(pattern, event.target.value)) {
         onBlur?.({
           value: event.target.value,
           error: translatedLabels.formFields.formatRequestedErrorMessage,
         });
-      else if (
+      } else if (
         numberInputContext?.typeNumber === "number" &&
         isNumberIncorrect(
           Number(event.target.value),
           numberInputContext?.minNumber,
           numberInputContext?.maxNumber
         )
-      )
+      ) {
         onBlur?.({
           value: event.target.value,
           error: getNumberErrorMessage(Number(event.target.value)),
         });
-      else onBlur?.({ value: event.target.value });
+      } else {
+        onBlur?.({ value: event.target.value });
+      }
     };
     const handleInputOnKeyDown = (
       event: React.KeyboardEvent<HTMLInputElement>
@@ -378,8 +386,9 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
         case "Down":
         case "ArrowDown":
           event.preventDefault();
-          if (numberInputContext?.typeNumber === "number") decrementNumber();
-          else {
+          if (numberInputContext?.typeNumber === "number") {
+            decrementNumber();
+          } else {
             openSuggestions();
             if (
               !isAutosuggestError &&
@@ -399,24 +408,22 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
         case "Up":
         case "ArrowUp":
           event.preventDefault();
-          if (numberInputContext?.typeNumber === "number") incrementNumber();
-          else {
+          if (numberInputContext?.typeNumber === "number") {
+            incrementNumber();
+          } else {
             openSuggestions();
             if (
               !isAutosuggestError &&
               !isSearching &&
               filteredSuggestions.length > 0
             ) {
-              changeVisualFocusIndex((visualFocusedSuggIndex) => {
-                if (
-                  visualFocusedSuggIndex === 0 ||
-                  visualFocusedSuggIndex === -1
-                )
-                  return filteredSuggestions.length > 0
+              changeVisualFocusIndex((visualFocusedSuggIndex) =>
+                visualFocusedSuggIndex === 0 || visualFocusedSuggIndex === -1
+                  ? filteredSuggestions.length > 0
                     ? filteredSuggestions.length - 1
-                    : suggestions.length - 1;
-                return visualFocusedSuggIndex - 1;
-              });
+                    : suggestions.length - 1
+                  : visualFocusedSuggIndex - 1
+              );
             }
           }
           break;
@@ -454,12 +461,13 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
     const handleNumberInputWheel = (
       event: React.WheelEvent<HTMLInputElement>
     ) => {
-      if (document.activeElement === inputRef.current)
+      if (document.activeElement === inputRef.current) {
         if (event.deltaY < 0) {
           incrementNumber(inputRef.current.value);
         } else {
           decrementNumber(inputRef.current.value);
         }
+      }
     };
 
     const handleClearActionOnClick = () => {

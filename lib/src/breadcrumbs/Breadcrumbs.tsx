@@ -18,8 +18,11 @@ const DxcBreadcrumbs = ({
 }: BreadcrumbsProps) => {
   const handleOnSelectOption = useCallback(
     (href: string) => {
-      if (onItemClick) onItemClick(href);
-      else window.location.href = href;
+      if (onItemClick) {
+        onItemClick(href);
+      } else {
+        window.location.href = href;
+      }
     },
     [items]
   );

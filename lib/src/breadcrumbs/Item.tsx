@@ -17,8 +17,9 @@ const Item = ({
     if (
       optionElement.title === "" &&
       labelContainer.scrollWidth > labelContainer.clientWidth
-    )
+    ) {
       optionElement.title = label;
+    }
   };
 
   const handleOnClick = (event: React.MouseEvent<HTMLAnchorElement>) => {

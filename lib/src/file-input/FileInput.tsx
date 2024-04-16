@@ -127,11 +127,15 @@ const DxcFileInput = React.forwardRef<RefType, FileInputPropsType>(
       e.stopPropagation();
     };
     const handleDragIn = (e) => {
-      if (e.dataTransfer.items?.length > 0) setIsDragging(true);
+      if (e.dataTransfer.items?.length > 0) {
+        setIsDragging(true);
+      }
     };
     const handleDragOut = (e) => {
       // only if dragged items leave container (outside, not to childs)
-      if (!e.currentTarget.contains(e.relatedTarget)) setIsDragging(false);
+      if (!e.currentTarget.contains(e.relatedTarget)) {
+        setIsDragging(false);
+      }
     };
     const handleDrop = (e) => {
       e.preventDefault();

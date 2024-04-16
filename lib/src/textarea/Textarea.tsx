@@ -58,12 +58,12 @@ const DxcTextarea = React.forwardRef<RefType, TextareaPropsType>(
         setInnerValue(newValue);
       }
 
-      if (isNotOptional(newValue))
+      if (isNotOptional(newValue)) {
         onChange?.({
           value: newValue,
           error: translatedLabels.formFields.requiredValueErrorMessage,
         });
-      else if (isLengthIncorrect(newValue))
+      } else if (isLengthIncorrect(newValue)) {
         onChange?.({
           value: newValue,
           error: translatedLabels.formFields.lengthErrorMessage(
@@ -71,12 +71,14 @@ const DxcTextarea = React.forwardRef<RefType, TextareaPropsType>(
             maxLength
           ),
         });
-      else if (newValue && pattern && !patternMatch(pattern, newValue))
+      } else if (newValue && pattern && !patternMatch(pattern, newValue)) {
         onChange?.({
           value: newValue,
           error: translatedLabels.formFields.formatRequestedErrorMessage,
         });
-      else onChange?.({ value: newValue });
+      } else {
+        onChange?.({ value: newValue });
+      }
     };
 
     const autoVerticalGrow = () => {
@@ -96,12 +98,12 @@ const DxcTextarea = React.forwardRef<RefType, TextareaPropsType>(
     };
 
     const handleOnBlur = (event) => {
-      if (isNotOptional(event.target.value))
+      if (isNotOptional(event.target.value)) {
         onBlur?.({
           value: event.target.value,
           error: translatedLabels.formFields.requiredValueErrorMessage,
         });
-      else if (isLengthIncorrect(event.target.value))
+      } else if (isLengthIncorrect(event.target.value)) {
         onBlur?.({
           value: event.target.value,
           error: translatedLabels.formFields.lengthErrorMessage(
@@ -109,16 +111,18 @@ const DxcTextarea = React.forwardRef<RefType, TextareaPropsType>(
             maxLength
           ),
         });
-      else if (
+      } else if (
         event.target.value &&
         pattern &&
         !patternMatch(pattern, event.target.value)
-      )
+      ) {
         onBlur?.({
           value: event.target.value,
           error: translatedLabels.formFields.formatRequestedErrorMessage,
         });
-      else onBlur?.({ value: event.target.value });
+      } else {
+        onBlur?.({ value: event.target.value });
+      }
     };
 
     const handleOnChange = (event) => {

@@ -107,8 +107,9 @@ function App() {
               <DxcButton
                 label="Save"
                 onClick={() => {
-                  if (nameValue === "" || nameValue === "")
+                  if (nameValue === "" || nameValue === "") {
                     changeIsVisible(true);
+                  }
                   else {
                     changeIsVisible(false);
                     setIsDialog1Visible(false);

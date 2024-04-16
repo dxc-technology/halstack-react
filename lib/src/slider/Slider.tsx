@@ -88,8 +88,9 @@ const DxcSlider = React.forwardRef<RefType, SliderPropsType>(
     const handlerInputChange = (event) => {
       const intValue = parseInt(event.value, 10);
       if (value == null) {
-        if (!Number.isNaN(intValue))
+        if (!Number.isNaN(intValue)) {
           setInnerValue(intValue > maxValue ? maxValue : intValue);
+        }
       }
       if (!Number.isNaN(intValue)) {
         onChange?.(intValue > maxValue ? maxValue : intValue);

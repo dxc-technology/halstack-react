@@ -38,16 +38,19 @@ const DxcToggleGroup = ({
           newSelectedOptions.push(selectedOption);
         }
         setSelectedValue(newSelectedOptions);
-      } else
+      } else {
         setSelectedValue(
           selectedOption === selectedValue ? null : selectedOption
         );
+      }
     } else if (multiple) {
       newSelectedOptions = Array.isArray(value) ? value.map((v) => v) : value;
       if (newSelectedOptions.includes(selectedOption)) {
         const index = newSelectedOptions.indexOf(selectedOption);
         newSelectedOptions.splice(index, 1);
-      } else newSelectedOptions.push(selectedOption);
+      } else {
+        newSelectedOptions.push(selectedOption);
+      }
     }
 
     onChange?.(multiple ? newSelectedOptions : selectedOption);

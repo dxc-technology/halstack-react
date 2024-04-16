@@ -109,9 +109,11 @@ const FocusLock = ({
   const focusableElements = useFocusableElements(childrenContainerRef);
 
   const focusFirst = useCallback(() => {
-    if (focusableElements?.length === 0) childrenContainerRef.current?.focus();
-    else if (focusableElements?.length > 0)
+    if (focusableElements?.length === 0) {
+      childrenContainerRef.current?.focus();
+    } else if (focusableElements?.length > 0) {
       focusableElements.some((element) => attemptFocus(element));
+    }
   }, [focusableElements]);
 
   const focusLast = () => {
@@ -128,8 +130,9 @@ const FocusLock = ({
     if (
       !childrenContainerRef.current?.contains(document.activeElement) &&
       !radixPortalContains(document.activeElement)
-    )
+    ) {
       focusFirst();
+    }
   }, [focusFirst]);
 
   return (

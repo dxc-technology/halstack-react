@@ -11,8 +11,9 @@ const transformSpecialChars = (str: string) => {
       (item, index) => regexAsString.indexOf(item) === index
     );
     uniqueSpecialChars.forEach((specialChar) => {
-      if (str.includes(specialChar))
+      if (str.includes(specialChar)) {
         value = value.replace(specialChar, `\\${specialChar}`);
+      }
     });
   }
   return value;

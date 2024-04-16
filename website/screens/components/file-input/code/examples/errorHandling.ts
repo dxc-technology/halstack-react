@@ -5,8 +5,9 @@ const code = `() => {
   const [files, setFiles] = useState([]);
   const callbackFile = (files) => {
     const updatedFiles = files.map((file) => {
-      if (file.error)
+      if (file.error) {
         return { ...file, error: "Please select a file with valid size." };
+      }
       return { ...file };
     });
     setFiles(updatedFiles);

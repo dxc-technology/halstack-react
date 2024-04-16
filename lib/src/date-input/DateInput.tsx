@@ -15,8 +15,9 @@ const getValueForPicker = (value, format) =>
   dayjs(value, format.toUpperCase(), true);
 
 const getDate = (value, format, lastValidYear, setLastValidYear) => {
-  if ((value || value === "") && format.toUpperCase().includes("YYYY"))
+  if ((value || value === "") && format.toUpperCase().includes("YYYY")) {
     return getValueForPicker(value, format);
+  }
   let newDate = getValueForPicker(value, format);
   if (!lastValidYear) {
     if (+newDate.format("YY") < 68) {
@@ -78,8 +79,9 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
     const dateRef = useRef(null);
 
     useEffect(() => {
-      if (value || value === "")
+      if (value || value === "") {
         setDayjsDate(getDate(value, format, lastValidYear, setLastValidYear));
+      }
     }, [value, format, lastValidYear]);
 
     useEffect(() => {
@@ -182,7 +184,9 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
       }
     };
     const handleDatePickerOnBlur = (event) => {
-      if (!event?.currentTarget.contains(event.relatedTarget)) closeCalendar();
+      if (!event?.currentTarget.contains(event.relatedTarget)) {
+        closeCalendar();
+      }
     };
 
     return (
