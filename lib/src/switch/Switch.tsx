@@ -37,9 +37,9 @@ const DxcSwitch = React.forwardRef<RefType, SwitchPropsType>(
         case "Enter":
         case " ": {
           // Space
-          const isChecked = !(checked ?? innerChecked);
           event.preventDefault();
           refTrack.current.focus();
+          const isChecked = !(checked ?? innerChecked);
           setInnerChecked(isChecked);
           onChange?.(isChecked);
           break;
@@ -142,7 +142,6 @@ const getDisabledColor = (
         default:
           return undefined;
       }
-      break;
     case "thumb":
       switch (subElement) {
         case "check":
@@ -152,7 +151,6 @@ const getDisabledColor = (
         default:
           return undefined;
       }
-      break;
     case "label":
       return theme.disabledLabelFontColor;
     default:
