@@ -1009,7 +1009,7 @@ describe("TextInput component synchronous autosuggest tests", () => {
     expect(queryByRole("listbox")).toBeFalsy();
     fireEvent.keyDown(input, {
       key: "Esc",
-      code: "Esp",
+      code: "Esc",
       keyCode: 27,
       charCode: 27,
     });
