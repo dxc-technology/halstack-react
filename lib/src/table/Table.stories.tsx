@@ -4,7 +4,7 @@ import DxcTable from "./Table";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import { HalstackProvider } from "../HalstackContext";
-import { disabledRules } from "../../test/accessibility/rules/specific/table/disabledRules";
+import disabledRules from "../../test/accessibility/rules/specific/table/disabledRules";
 import preview from "../../.storybook/preview";
 
 export default {

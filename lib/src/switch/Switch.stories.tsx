@@ -3,7 +3,7 @@ import DxcSwitch from "./Switch";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import { HalstackProvider } from "../HalstackContext";
-import { disabledRules } from "../../test/accessibility/rules/specific/switch/disabledRules";
+import disabledRules from "../../test/accessibility/rules/specific/switch/disabledRules";
 import preview from "../../.storybook/preview";
 
 export default {
