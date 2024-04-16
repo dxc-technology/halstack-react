@@ -43,8 +43,6 @@
     }
   ],
   "rules": {
-    "camelcase": "warn",
-    "class-methods-use-this": "warn",
     "curly": "warn",
     "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
     "no-use-before-define": [
@@ -61,7 +59,6 @@
         "allow": ["_options", "_links", "hasCanceled_"]
       }
     ],
-    "react/jsx-one-expression-per-line": "off",
     "no-nested-ternary": "off",
     "import/extensions": "off",
     "import/no-extraneous-dependencies": [
@@ -74,8 +71,6 @@
         ]
       }
     ],
-    "import/prefer-default-export": "off",
-    "jest/valid-title": "warn",
     "react/function-component-definition": [
       "error",
       {
@@ -83,15 +78,7 @@
         "unnamedComponents": "arrow-function"
       }
     ],
-    "react/prop-types": [
-      "error",
-      {
-        "ignore": ["children"]
-      }
-    ],
     "react/self-closing-comp": "off",
-    "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn",
     "react/jsx-filename-extension": [
       "warn",
       {
