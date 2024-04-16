@@ -1,7 +1,7 @@
 import React from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { spaces, AdvancedTheme } from "../common/variables";
-import { getMargin } from "../common/utils";
+import getMargin from "../common/utils";
 import useTheme from "../useTheme";
 import TablePropsType, { ActionCellsPropsType, DeepPartial } from "./types";
 import DropdownTheme from "./DropdownTheme";

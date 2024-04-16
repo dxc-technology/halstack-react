@@ -11,7 +11,7 @@ import * as Popover from "@radix-ui/react-popover";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
 import { spaces } from "../common/variables";
-import { getMargin } from "../common/utils";
+import getMargin from "../common/utils";
 import SelectPropsType, { Option, OptionGroup, RefType } from "./types";
 import Listbox from "./Listbox";
 import DxcIcon from "../icon/Icon";

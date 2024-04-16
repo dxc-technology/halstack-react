@@ -1,11 +1,11 @@
 import React, { Children, useCallback, useMemo, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import { getMargin } from "../common/utils";
+import getMargin from "../common/utils";
 import { spaces } from "../common/variables";
 import useTheme from "../useTheme";
 import AccordionGroupAccordion from "./AccordionGroupAccordion";
 import AccordionGroupPropsType from "./types";
-import { AccordionGroupAccordionContext } from "./AccordionGroupContext";
+import AccordionGroupAccordionContext from "./AccordionGroupContext";
 
 type AccordionProviderType = {
   children: AccordionGroupPropsType["children"];

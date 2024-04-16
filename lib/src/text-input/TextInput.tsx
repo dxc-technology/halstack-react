@@ -4,12 +4,12 @@ import * as Popover from "@radix-ui/react-popover";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
 import { spaces } from "../common/variables";
-import { getMargin } from "../common/utils";
+import getMargin from "../common/utils";
 import TextInputPropsType, { AutosuggestWrapperProps, RefType } from "./types";
 import Suggestions from "./Suggestions";
 import DxcActionIcon from "../action-icon/ActionIcon";
 import DxcFlex from "../flex/Flex";
-import { NumberInputContext } from "../number-input/NumberInputContext";
+import NumberInputContext from "../number-input/NumberInputContext";
 import DxcIcon from "../icon/Icon";
 
 const sizes = {

@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import DxcAccordion from "../accordion/Accordion";
 import { AccordionPropsType } from "./types";
-import { AccordionGroupAccordionContext } from "./AccordionGroupContext";
+import AccordionGroupAccordionContext from "./AccordionGroupContext";
 
 const AccordionGroupAccordion = ({
   ...childProps

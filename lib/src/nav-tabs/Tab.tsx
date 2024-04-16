@@ -12,7 +12,7 @@ import DxcFlex from "../flex/Flex";
 import NavTabsPropsType, { TabProps } from "./types";
 import BaseTypography from "../utils/BaseTypography";
 import useTheme from "../useTheme";
-import { NavTabsContext } from "./NavTabsContext";
+import NavTabsContext from "./NavTabsContext";
 import DxcIcon from "../icon/Icon";
 
 const DxcTab = forwardRef(

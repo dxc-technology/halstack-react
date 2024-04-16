@@ -45,7 +45,7 @@
   "rules": {
     "camelcase": "warn",
     "class-methods-use-this": "warn",
-    "linebreak-style": "off",
+    "curly": "warn",
     "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
     "no-use-before-define": [
       "error",
@@ -72,12 +72,6 @@
           "**/axe-helper.@(js|ts)",
           "**/setupJestAxe.@(js|ts)"
         ]
-      }
-    ],
-    "import/no-unresolved": [
-      "error",
-      {
-        "ignore": ["react", "styled-components"]
       }
     ],
     "import/prefer-default-export": "off",

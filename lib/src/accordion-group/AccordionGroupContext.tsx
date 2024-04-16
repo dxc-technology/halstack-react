@@ -1,5 +1,7 @@
 import { createContext } from "react";
 import { AccordionGroupAccordionContextProps } from "./types";
 
-export const AccordionGroupAccordionContext =
+const AccordionGroupAccordionContext =
   createContext<AccordionGroupAccordionContextProps | null>(null);
+
+export default AccordionGroupAccordionContext;

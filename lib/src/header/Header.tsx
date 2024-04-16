@@ -7,7 +7,7 @@ import React, {
 } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import DxcDropdown from "../dropdown/Dropdown";
-import { dxcLogo } from "./Icons";
+import dxcLogo from "./Icons";
 import { spaces, responsiveSizes } from "../common/variables";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";

@@ -604,5 +604,6 @@ const Halstack = styled.div`
   @import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:FILL@0..1");
 `;
 
-export default HalstackContext;
 export { HalstackProvider, HalstackLanguageContext };
+
+export default HalstackContext;

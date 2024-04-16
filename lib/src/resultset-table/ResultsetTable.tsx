@@ -6,7 +6,7 @@ import DxcTable, { DxcActionsCell } from "../table/Table";
 import useTheme from "../useTheme";
 import ResultsetTablePropsType, { Column, Row } from "./types";
 import icons from "./Icons";
-import { getMargin } from "../common/utils";
+import getMargin from "../common/utils";
 import CoreTokens from "../common/coreTokens";
 
 const normalizeSortValue = (sortValue: string | React.ReactNode) =>
