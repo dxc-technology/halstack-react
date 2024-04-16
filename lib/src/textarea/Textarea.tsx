@@ -284,7 +284,6 @@ const Textarea = styled.textarea<{
   padding: 0.5rem 1rem;
   box-shadow: 0 0 0 2px transparent;
   border-radius: 0.25rem;
-
   border: 1px solid
     ${(props) =>
       props.disabled
