@@ -19,11 +19,7 @@ const sizes = {
   fillParent: "100%",
 };
 
-const AutosuggestWrapper = ({
-  condition,
-  wrapper,
-  children,
-}: AutosuggestWrapperProps): JSX.Element => (
+const AutosuggestWrapper = ({ condition, wrapper, children }: AutosuggestWrapperProps): JSX.Element => (
   <>{condition ? wrapper(children) : children}</>
 );
 
@@ -37,8 +33,7 @@ const makeCancelable = (promise) => {
   const wrappedPromise = new Promise<string[]>((resolve, reject) => {
     promise.then(
       (val) => (hasCanceled_ ? reject(Error("Is canceled")) : resolve(val)),
-      (promiseError) =>
-        hasCanceled_ ? reject(Error("Is canceled")) : reject(promiseError)
+      (promiseError) => (hasCanceled_ ? reject(Error("Is canceled")) : reject(promiseError)),
     );
   });
   return {
@@ -52,23 +47,15 @@ const makeCancelable = (promise) => {
 const hasSuggestions = (suggestions: TextInputPropsType["suggestions"]) =>
   typeof suggestions === "function" || suggestions?.length > 0;
 
-const isRequired = (value: string, optional: boolean) =>
-  value === "" && !optional;
+const isRequired = (value: string, optional: boolean) => value === "" && !optional;
 
-const isLengthIncorrect = (
-  value: string,
-  minLength: number,
-  maxLength: number
-) => value != null && (value.length < minLength || value.length > maxLength);
+const isLengthIncorrect = (value: string, minLength: number, maxLength: number) =>
+  value != null && (value.length < minLength || value.length > maxLength);
 
-const isNumberIncorrect = (
-  value: number,
-  minNumber: number,
-  maxNumber: number
-) => value < minNumber || value > maxNumber;
+const isNumberIncorrect = (value: number, minNumber: number, maxNumber: number) =>
+  value < minNumber || value > maxNumber;
 
-const patternMismatch = (pattern: string, value: string) =>
-  pattern != null && !new RegExp(pattern).test(value);
+const patternMismatch = (pattern: string, value: string) => pattern != null && !new RegExp(pattern).test(value);
 
 const useWidth = (target) => {
   const [width, setWidth] = useState(0);
@@ -120,7 +107,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
       size = "medium",
       tabIndex = 0,
     },
-    ref
+    ref,
   ): JSX.Element => {
     const inputId = `input-${useId()}`;
     const autosuggestId = `suggestions-${inputId}`;
@@ -143,12 +130,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
     const numberInputContext = useContext(NumberInputContext);
     // Define the wrapper function outside of the parent component
     const autosuggestWrapperFunction = (children: React.ReactNode) => (
-      <Popover.Root
-        open={
-          isOpen &&
-          (filteredSuggestions.length > 0 || isSearching || isAutosuggestError)
-        }
-      >
+      <Popover.Root open={isOpen && (filteredSuggestions.length > 0 || isSearching || isAutosuggestError)}>
         <Popover.Trigger
           asChild
           type={undefined}
@@ -191,13 +173,9 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
     );
     const getNumberErrorMessage = (checkedValue: number) =>
       checkedValue < numberInputContext?.minNumber
-        ? translatedLabels.numberInput.valueGreaterThanOrEqualToErrorMessage(
-            numberInputContext.minNumber
-          )
+        ? translatedLabels.numberInput.valueGreaterThanOrEqualToErrorMessage(numberInputContext.minNumber)
         : checkedValue > numberInputContext?.maxNumber
-          ? translatedLabels.numberInput.valueLessThanOrEqualToErrorMessage(
-              numberInputContext.maxNumber
-            )
+          ? translatedLabels.numberInput.valueLessThanOrEqualToErrorMessage(numberInputContext.maxNumber)
           : undefined;
 
     const openSuggestions = () => {
@@ -214,8 +192,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
     };
 
     const changeValue = (newValue: number | string) => {
-      const formattedValue =
-        typeof newValue === "number" ? newValue.toString() : newValue;
+      const formattedValue = typeof newValue === "number" ? newValue.toString() : newValue;
       if (value == null) {
         setInnerValue(formattedValue);
       }
@@ -228,10 +205,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
       } else if (isLengthIncorrect(formattedValue, minLength, maxLength)) {
         onChange?.({
           value: formattedValue,
-          error: translatedLabels.formFields.lengthErrorMessage(
-            minLength,
-            maxLength
-          ),
+          error: translatedLabels.formFields.lengthErrorMessage(minLength, maxLength),
         });
       } else if (patternMismatch(pattern, formattedValue)) {
         onChange?.({
@@ -240,11 +214,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
         });
       } else if (
         numberInputContext?.typeNumber === "number" &&
-        isNumberIncorrect(
-          Number(newValue),
-          numberInputContext?.minNumber,
-          numberInputContext?.maxNumber
-        )
+        isNumberIncorrect(Number(newValue), numberInputContext?.minNumber, numberInputContext?.maxNumber)
       ) {
         onChange?.({
           value: formattedValue,
@@ -259,18 +229,10 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
       if (!disabled && !readOnly) {
         const numberValue = Number(currentValue);
         const steppedValue =
-          Math.round(
-            (numberValue -
-              (numberInputContext?.stepNumber || 1) +
-              Number.EPSILON) *
-              100
-          ) / 100;
+          Math.round((numberValue - (numberInputContext?.stepNumber || 1) + Number.EPSILON) * 100) / 100;
 
         if (currentValue !== "") {
-          if (
-            numberValue < numberInputContext?.minNumber ||
-            steppedValue < numberInputContext?.minNumber
-          ) {
+          if (numberValue < numberInputContext?.minNumber || steppedValue < numberInputContext?.minNumber) {
             changeValue(numberValue);
           } else if (numberValue > numberInputContext?.maxNumber) {
             changeValue(numberInputContext?.maxNumber);
@@ -292,18 +254,10 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
       if (!disabled && !readOnly) {
         const numberValue = Number(currentValue);
         const steppedValue =
-          Math.round(
-            (numberValue +
-              (numberInputContext?.stepNumber || 1) +
-              Number.EPSILON) *
-              100
-          ) / 100;
+          Math.round((numberValue + (numberInputContext?.stepNumber || 1) + Number.EPSILON) * 100) / 100;
 
         if (currentValue !== "") {
-          if (
-            numberValue > numberInputContext?.maxNumber ||
-            steppedValue > numberInputContext?.maxNumber
-          ) {
+          if (numberValue > numberInputContext?.maxNumber || steppedValue > numberInputContext?.maxNumber) {
             changeValue(numberValue);
           } else if (numberValue < numberInputContext?.minNumber) {
             changeValue(numberInputContext?.minNumber);
@@ -327,18 +281,14 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
         inputRef.current.focus();
       }
     };
-    const handleInputContainerOnMouseDown = (
-      event: React.MouseEvent<HTMLDivElement>
-    ) => {
+    const handleInputContainerOnMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
       // Avoid input to lose the focus when the container is pressed
       if (document.activeElement === inputRef.current) {
         event.preventDefault();
       }
     };
 
-    const handleInputOnChange = (
-      event: React.ChangeEvent<HTMLInputElement>
-    ) => {
+    const handleInputOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       openSuggestions();
       changeValue(event.target.value);
     };
@@ -353,10 +303,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
       } else if (isLengthIncorrect(event.target.value, minLength, maxLength)) {
         onBlur?.({
           value: event.target.value,
-          error: translatedLabels.formFields.lengthErrorMessage(
-            minLength,
-            maxLength
-          ),
+          error: translatedLabels.formFields.lengthErrorMessage(minLength, maxLength),
         });
       } else if (patternMismatch(pattern, event.target.value)) {
         onBlur?.({
@@ -365,11 +312,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
         });
       } else if (
         numberInputContext?.typeNumber === "number" &&
-        isNumberIncorrect(
-          Number(event.target.value),
-          numberInputContext?.minNumber,
-          numberInputContext?.maxNumber
-        )
+        isNumberIncorrect(Number(event.target.value), numberInputContext?.minNumber, numberInputContext?.maxNumber)
       ) {
         onBlur?.({
           value: event.target.value,
@@ -379,9 +322,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
         onBlur?.({ value: event.target.value });
       }
     };
-    const handleInputOnKeyDown = (
-      event: React.KeyboardEvent<HTMLInputElement>
-    ) => {
+    const handleInputOnKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
       switch (event.key) {
         case "Down":
         case "ArrowDown":
@@ -390,17 +331,13 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
             decrementNumber();
           } else {
             openSuggestions();
-            if (
-              !isAutosuggestError &&
-              !isSearching &&
-              filteredSuggestions.length > 0
-            ) {
+            if (!isAutosuggestError && !isSearching && filteredSuggestions.length > 0) {
               changeVisualFocusIndex((visualFocusedSuggIndex) =>
                 visualFocusedSuggIndex < filteredSuggestions.length - 1
                   ? visualFocusedSuggIndex + 1
                   : visualFocusedSuggIndex === filteredSuggestions.length - 1
                     ? 0
-                    : undefined
+                    : undefined,
               );
             }
           }
@@ -412,17 +349,13 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
             incrementNumber();
           } else {
             openSuggestions();
-            if (
-              !isAutosuggestError &&
-              !isSearching &&
-              filteredSuggestions.length > 0
-            ) {
+            if (!isAutosuggestError && !isSearching && filteredSuggestions.length > 0) {
               changeVisualFocusIndex((visualFocusedSuggIndex) =>
                 visualFocusedSuggIndex === 0 || visualFocusedSuggIndex === -1
                   ? filteredSuggestions.length > 0
                     ? filteredSuggestions.length - 1
                     : suggestions.length - 1
-                  : visualFocusedSuggIndex - 1
+                  : visualFocusedSuggIndex - 1,
               );
             }
           }
@@ -443,9 +376,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
         case "Enter":
           if (hasSuggestions(suggestions) && !isSearching) {
             const validFocusedSuggestion =
-              filteredSuggestions.length > 0 &&
-              visualFocusIndex >= 0 &&
-              visualFocusIndex < filteredSuggestions.length;
+              filteredSuggestions.length > 0 && visualFocusIndex >= 0 && visualFocusIndex < filteredSuggestions.length;
             if (validFocusedSuggestion) {
               changeValue(filteredSuggestions[visualFocusIndex]);
             }
@@ -458,9 +389,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
           break;
       }
     };
-    const handleNumberInputWheel = (
-      event: React.WheelEvent<HTMLInputElement>
-    ) => {
+    const handleNumberInputWheel = (event: React.WheelEvent<HTMLInputElement>) => {
       if (document.activeElement === inputRef.current) {
         if (event.deltaY < 0) {
           incrementNumber(inputRef.current.value);
@@ -487,12 +416,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
       inputRef.current.focus();
     };
 
-    const setNumberProps = (
-      type: string,
-      min: number,
-      max: number,
-      step: number
-    ) => {
+    const setNumberProps = (type: string, min: number, max: number, step: number) => {
       if (min) {
         inputRef?.current?.setAttribute("min", min);
       }
@@ -509,9 +433,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
         changeIsAutosuggestError(false);
         changeFilteredSuggestions([]);
 
-        const cancelablePromise = makeCancelable(
-          suggestions(value ?? innerValue)
-        );
+        const cancelablePromise = makeCancelable(suggestions(value ?? innerValue));
         cancelablePromise.promise
           .then((promiseResponse) => {
             changeIsSearching(false);
@@ -531,11 +453,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
       }
       if (suggestions?.length > 0) {
         changeFilteredSuggestions(
-          suggestions.filter((suggestion) =>
-            suggestion
-              .toUpperCase()
-              .startsWith((value ?? innerValue).toUpperCase())
-          )
+          suggestions.filter((suggestion) => suggestion.toUpperCase().startsWith((value ?? innerValue).toUpperCase())),
         );
         changeVisualFocusIndex(-1);
       }
@@ -544,7 +462,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
           numberInputContext.typeNumber,
           numberInputContext.minNumber,
           numberInputContext.maxNumber,
-          numberInputContext.stepNumber
+          numberInputContext.stepNumber,
         );
       }
       return undefined;
@@ -554,26 +472,12 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
       <ThemeProvider theme={colorsTheme.textInput}>
         <TextInputContainer margin={margin} size={size} ref={ref}>
           {label && (
-            <Label
-              htmlFor={inputId}
-              disabled={disabled}
-              hasHelperText={!!helperText}
-            >
-              {label}{" "}
-              {optional && (
-                <OptionalLabel>
-                  {translatedLabels.formFields.optionalLabel}
-                </OptionalLabel>
-              )}
+            <Label htmlFor={inputId} disabled={disabled} hasHelperText={!!helperText}>
+              {label} {optional && <OptionalLabel>{translatedLabels.formFields.optionalLabel}</OptionalLabel>}
             </Label>
           )}
-          {helperText && (
-            <HelperText disabled={disabled}>{helperText}</HelperText>
-          )}
-          <AutosuggestWrapper
-            condition={hasSuggestions(suggestions)}
-            wrapper={autosuggestWrapperFunction}
-          >
+          {helperText && <HelperText disabled={disabled}>{helperText}</HelperText>}
+          <AutosuggestWrapper condition={hasSuggestions(suggestions)} wrapper={autosuggestWrapperFunction}>
             <InputContainer
               error={!!error}
               disabled={disabled}
@@ -596,11 +500,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
                   onMouseDown={(event) => {
                     event.stopPropagation();
                   }}
-                  onWheel={
-                    numberInputContext?.typeNumber === "number"
-                      ? handleNumberInputWheel
-                      : undefined
-                  }
+                  onWheel={numberInputContext?.typeNumber === "number" ? handleNumberInputWheel : undefined}
                   disabled={disabled}
                   readOnly={readOnly}
                   ref={inputRef}
@@ -611,22 +511,12 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
                   tabIndex={tabIndex}
                   type="text"
                   role={hasSuggestions(suggestions) ? "combobox" : undefined}
-                  aria-autocomplete={
-                    hasSuggestions(suggestions) ? "list" : undefined
-                  }
-                  aria-controls={
-                    hasSuggestions(suggestions) ? autosuggestId : undefined
-                  }
-                  aria-expanded={
-                    hasSuggestions(suggestions) ? isOpen : undefined
-                  }
-                  aria-haspopup={
-                    hasSuggestions(suggestions) ? "listbox" : undefined
-                  }
+                  aria-autocomplete={hasSuggestions(suggestions) ? "list" : undefined}
+                  aria-controls={hasSuggestions(suggestions) ? autosuggestId : undefined}
+                  aria-expanded={hasSuggestions(suggestions) ? isOpen : undefined}
+                  aria-haspopup={hasSuggestions(suggestions) ? "listbox" : undefined}
                   aria-activedescendant={
-                    hasSuggestions(suggestions) &&
-                    isOpen &&
-                    visualFocusIndex !== -1
+                    hasSuggestions(suggestions) && isOpen && visualFocusIndex !== -1
                       ? `suggestion-${visualFocusIndex}`
                       : undefined
                   }
@@ -639,23 +529,18 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
                     <DxcIcon icon="filled_error" />
                   </ErrorIcon>
                 )}
-                {!disabled &&
-                  !readOnly &&
-                  clearable &&
-                  (value ?? innerValue).length > 0 && (
-                    <DxcActionIcon
-                      onClick={handleClearActionOnClick}
-                      icon="close"
-                      tabIndex={tabIndex}
-                      title={translatedLabels.textInput.clearFieldActionTitle}
-                    />
-                  )}
+                {!disabled && !readOnly && clearable && (value ?? innerValue).length > 0 && (
+                  <DxcActionIcon
+                    onClick={handleClearActionOnClick}
+                    icon="close"
+                    tabIndex={tabIndex}
+                    title={translatedLabels.textInput.clearFieldActionTitle}
+                  />
+                )}
                 {numberInputContext?.typeNumber === "number" && (
                   <>
                     <DxcActionIcon
-                      onClick={
-                        !readOnly ? handleDecrementActionOnClick : undefined
-                      }
+                      onClick={!readOnly ? handleDecrementActionOnClick : undefined}
                       icon="remove"
                       tabIndex={tabIndex}
                       ref={actionRef}
@@ -663,9 +548,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
                       disabled={disabled}
                     />
                     <DxcActionIcon
-                      onClick={
-                        !readOnly ? handleIncrementActionOnClick : undefined
-                      }
+                      onClick={!readOnly ? handleIncrementActionOnClick : undefined}
                       icon="add"
                       tabIndex={tabIndex}
                       ref={actionRef}
@@ -689,18 +572,14 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
             </InputContainer>
           </AutosuggestWrapper>
           {!disabled && typeof error === "string" && (
-            <ErrorWrapper
-              id={errorId}
-              role="alert"
-              aria-live={error ? "assertive" : "off"}
-            >
+            <ErrorWrapper id={errorId} role="alert" aria-live={error ? "assertive" : "off"}>
               {error}
             </ErrorWrapper>
           )}
         </TextInputContainer>
       </ThemeProvider>
     );
-  }
+  },
 );
 
 const TextInputContainer = styled.div<{
@@ -711,36 +590,22 @@ const TextInputContainer = styled.div<{
   display: flex;
   flex-direction: column;
   width: ${(props) => calculateWidth(props.margin, props.size)};
-  margin: ${(props) =>
-    props.margin && typeof props.margin !== "object"
-      ? spaces[props.margin]
-      : "0px"};
+  margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.top
-      ? spaces[props.margin.top]
-      : ""};
+    props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
   margin-right: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.right
-      ? spaces[props.margin.right]
-      : ""};
+    props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
   margin-bottom: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.bottom
-      ? spaces[props.margin.bottom]
-      : ""};
+    props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
   margin-left: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.left
-      ? spaces[props.margin.left]
-      : ""};
+    props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
 `;
 
 const Label = styled.label<{
   disabled: TextInputPropsType["disabled"];
   hasHelperText: boolean;
 }>`
-  color: ${(props) =>
-    props.disabled
-      ? props.theme.disabledLabelFontColor
-      : props.theme.labelFontColor};
+  color: ${(props) => (props.disabled ? props.theme.disabledLabelFontColor : props.theme.labelFontColor)};
 
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.labelFontSize};
@@ -755,10 +620,7 @@ const OptionalLabel = styled.span`
 `;
 
 const HelperText = styled.span<{ disabled: TextInputPropsType["disabled"] }>`
-  color: ${(props) =>
-    props.disabled
-      ? props.theme.disabledHelperTextFontColor
-      : props.theme.helperTextFontColor};
+  color: ${(props) => (props.disabled ? props.theme.disabledHelperTextFontColor : props.theme.helperTextFontColor)};
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.helperTextFontSize};
   font-style: ${(props) => props.theme.helperTextFontStyle};
@@ -778,9 +640,7 @@ const InputContainer = styled.div<{
   height: calc(2.5rem - 2px);
   padding: 0 0.5rem;
 
-  ${(props) =>
-    props.disabled &&
-    `background-color: ${props.theme.disabledContainerFillColor};`}
+  ${(props) => props.disabled && `background-color: ${props.theme.disabledContainerFillColor};`}
   box-shadow: 0 0 0 2px transparent;
   border-radius: 4px;
   border: 1px solid
@@ -829,10 +689,7 @@ const Input = styled.input`
   text-overflow: ellipsis;
   white-space: nowrap;
 
-  color: ${(props) =>
-    props.disabled
-      ? props.theme.disabledValueFontColor
-      : props.theme.valueFontColor};
+  color: ${(props) => (props.disabled ? props.theme.disabledValueFontColor : props.theme.valueFontColor)};
 
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.valueFontSize};
@@ -842,10 +699,7 @@ const Input = styled.input`
   ${(props) => props.disabled && `cursor: not-allowed;`}
 
   ::placeholder {
-    color: ${(props) =>
-      props.disabled
-        ? props.theme.disabledPlaceholderFontColor
-        : props.theme.placeholderFontColor};
+    color: ${(props) => (props.disabled ? props.theme.disabledPlaceholderFontColor : props.theme.placeholderFontColor)};
   }
 `;
 
@@ -855,9 +709,7 @@ const Prefix = styled.span<{ disabled: TextInputPropsType["disabled"] }>`
   margin-left: 0.25rem;
   padding: 0 0.5rem 0 0;
   ${(props) => {
-    const color = props.disabled
-      ? props.theme.disabledPrefixColor
-      : props.theme.prefixColor;
+    const color = props.disabled ? props.theme.disabledPrefixColor : props.theme.prefixColor;
     return `color: ${color}; border-right: 1px solid ${color};`;
   }};
   font-family: ${(props) => props.theme.fontFamily};
@@ -871,9 +723,7 @@ const Suffix = styled.span<{ disabled: TextInputPropsType["disabled"] }>`
   margin: 0 0.25rem;
   padding: 0 0 0 0.5rem;
   ${(props) => {
-    const color = props.disabled
-      ? props.theme.disabledSuffixColor
-      : props.theme.suffixColor;
+    const color = props.disabled ? props.theme.disabledSuffixColor : props.theme.suffixColor;
     return `color: ${color}; border-left: 1px solid ${color};`;
   }};
   font-family: ${(props) => props.theme.fontFamily};

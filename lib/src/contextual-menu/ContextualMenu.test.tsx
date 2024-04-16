@@ -3,28 +3,15 @@ import { render, fireEvent } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import DxcContextualMenu from "./ContextualMenu";
 
-const items = [
-  { label: "Item 1" },
-  { label: "Item 2" },
-  { label: "Item 3" },
-  { label: "Item 4" },
-];
+const items = [{ label: "Item 1" }, { label: "Item 2" }, { label: "Item 3" }, { label: "Item 4" }];
 
 const sections = [
   {
     title: "Team repositories",
-    items: [
-      { label: "Approved locations" },
-      { label: "Approved locations" },
-      { label: "Approved locations" },
-    ],
+    items: [{ label: "Approved locations" }, { label: "Approved locations" }, { label: "Approved locations" }],
   },
   {
-    items: [
-      { label: "Approved locations" },
-      { label: "Approved locations" },
-      { label: "Approved locations" },
-    ],
+    items: [{ label: "Approved locations" }, { label: "Approved locations" }, { label: "Approved locations" }],
   },
 ];
 
@@ -49,18 +36,14 @@ const groups = [
 
 describe("Contextual menu component tests", () => {
   test("Default - Renders with correct aria attributes", () => {
-    const { getAllByRole, getByRole } = render(
-      <DxcContextualMenu items={items} />
-    );
+    const { getAllByRole, getByRole } = render(<DxcContextualMenu items={items} />);
     expect(getAllByRole("menuitem").length).toBe(4);
     const actions = getAllByRole("button");
     expect(actions[0].getAttribute("aria-selected")).toBeTruthy();
     expect(getByRole("menu")).toBeTruthy();
   });
   test("Group - Group items collapse when clicked", async () => {
-    const { queryByText, getByText } = render(
-      <DxcContextualMenu items={groups} />
-    );
+    const { queryByText, getByText } = render(<DxcContextualMenu items={groups} />);
     await userEvent.click(getByText("Grouped Item 1"));
     expect(getByText("Item 1")).toBeTruthy();
     expect(getByText("Grouped Item 2")).toBeTruthy();
@@ -73,15 +56,11 @@ describe("Contextual menu component tests", () => {
     expect(queryByText("Item 3")).toBeFalsy();
   });
   test("Group - Renders with correct aria attributes", async () => {
-    const { getByText, getAllByRole } = render(
-      <DxcContextualMenu items={groups} />
-    );
+    const { getByText, getAllByRole } = render(<DxcContextualMenu items={groups} />);
     const group1 = getAllByRole("button")[0];
     await userEvent.click(group1);
     expect(group1.getAttribute("aria-expanded")).toBeTruthy();
-    expect(group1.getAttribute("aria-controls")).toBe(
-      getAllByRole("list")[0].id
-    );
+    expect(group1.getAttribute("aria-controls")).toBe(getAllByRole("list")[0].id);
     await userEvent.click(getByText("Grouped Item 2"));
     await userEvent.click(getByText("Grouped Item 3"));
     expect(getAllByRole("menuitem").length).toBe(10);

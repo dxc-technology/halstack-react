@@ -20,7 +20,7 @@ const DxcActionIcon = React.forwardRef<RefType, ActionIconPropsTypes>(
     >
       {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
     </ActionIcon>
-  )
+  ),
 );
 
 const ActionIcon = styled.button`
@@ -39,8 +39,7 @@ const ActionIcon = styled.button`
   box-shadow: 0 0 0 2px transparent;
   background-color: ${(props) =>
     props.disabled
-      ? props.theme.disabledActionBackgroundColor ??
-        CoreTokens.color_transparent
+      ? props.theme.disabledActionBackgroundColor ?? CoreTokens.color_transparent
       : props.theme.actionBackgroundColor ?? CoreTokens.color_transparent};
   color: ${(props) =>
     props.disabled

@@ -10,8 +10,7 @@ const iconSVG = (
   </svg>
 );
 
-const iconUrl =
-  "https://iconape.com/wp-content/files/yd/367773/svg/logo-linkedin-logo-icon-png-svg.png";
+const iconUrl = "https://iconape.com/wp-content/files/yd/367773/svg/logo-linkedin-logo-icon-png-svg.png";
 
 // Mocking DOMRect for Radix Primitive Popover
 (global as any).globalThis = global;
@@ -67,7 +66,7 @@ describe("Dropdown component accessibility tests", () => {
         size="medium"
         optionsIconPosition="before"
         onSelectOption={() => {}}
-      />
+      />,
     );
     const results = await axe(baseElement);
     expect(results).toHaveNoViolations();
@@ -85,7 +84,7 @@ describe("Dropdown component accessibility tests", () => {
         optionsIconPosition="before"
         onSelectOption={() => {}}
         disabled
-      />
+      />,
     );
     const results = await axe(baseElement);
     expect(results).toHaveNoViolations();
@@ -103,7 +102,7 @@ describe("Dropdown component accessibility tests", () => {
         optionsIconPosition="after"
         onSelectOption={() => {}}
         caretHidden
-      />
+      />,
     );
     const results = await axe(baseElement);
     expect(results).toHaveNoViolations();
@@ -121,7 +120,7 @@ describe("Dropdown component accessibility tests", () => {
         optionsIconPosition="after"
         onSelectOption={() => {}}
         expandOnHover
-      />
+      />,
     );
     const results = await axe(baseElement);
     expect(results).toHaveNoViolations();

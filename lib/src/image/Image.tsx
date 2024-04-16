@@ -4,11 +4,7 @@ import ImagePropsType, { CaptionWrapperProps } from "./types";
 import useTheme from "../useTheme";
 import BaseTypography from "../utils/BaseTypography";
 
-const CaptionWrapper = ({
-  condition,
-  wrapper,
-  children,
-}: CaptionWrapperProps): JSX.Element => (
+const CaptionWrapper = ({ condition, wrapper, children }: CaptionWrapperProps): JSX.Element => (
   <>{condition ? wrapper(children) : children}</>
 );
 
@@ -47,10 +43,7 @@ const DxcImage = ({
 
   return (
     <ThemeProvider theme={colorsTheme.image}>
-      <CaptionWrapper
-        condition={caption !== undefined}
-        wrapper={wrapperFunction}
-      >
+      <CaptionWrapper condition={caption !== undefined} wrapper={wrapperFunction}>
         <img
           alt={alt}
           loading={lazyLoading ? "lazy" : undefined}

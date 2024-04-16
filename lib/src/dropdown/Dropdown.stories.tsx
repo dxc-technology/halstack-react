@@ -22,12 +22,7 @@ const iconSVG = (
   </svg>
 );
 const iconSVGLarge = (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 48 48"
-    height="48"
-    width="48"
-  >
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" height="48" width="48">
     <path d="M11 44q-1.2 0-2.1-.9Q8 42.2 8 41V15q0-1.2.9-2.1.9-.9 2.1-.9h5.5v-.5q0-3.15 2.175-5.325Q20.85 4 24 4q3.15 0 5.325 2.175Q31.5 8.35 31.5 11.5v.5H37q1.2 0 2.1.9.9.9.9 2.1v26q0 1.2-.9 2.1-.9.9-2.1.9Zm0-3h26V15h-5.5v4.5q0 .65-.425 1.075Q30.65 21 30 21q-.65 0-1.075-.425-.425-.425-.425-1.075V15h-9v4.5q0 .65-.425 1.075Q18.65 21 18 21q-.65 0-1.075-.425-.425-.425-.425-1.075V15H11v26Zm8.5-29h9v-.5q0-1.9-1.3-3.2Q25.9 7 24 7q-1.9 0-3.2 1.3-1.3 1.3-1.3 3.2ZM11 41V15v26Z" />
   </svg>
 );
@@ -103,62 +98,31 @@ const Dropdown = () => (
   <>
     <ExampleContainer>
       <Title title="Default" theme="light" level={4} />
-      <DxcDropdown
-        label="Default"
-        options={options}
-        onSelectOption={() => {}}
-      />
+      <DxcDropdown label="Default" options={options} onSelectOption={() => {}} />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-hover">
       <Title title="Hovered" theme="light" level={4} />
-      <DxcDropdown
-        label="Hovered"
-        options={options}
-        onSelectOption={() => {}}
-      />
+      <DxcDropdown label="Hovered" options={options} onSelectOption={() => {}} />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-focus">
       <Title title="Focused" theme="light" level={4} />
-      <DxcDropdown
-        label="Focused"
-        options={options}
-        onSelectOption={() => {}}
-      />
+      <DxcDropdown label="Focused" options={options} onSelectOption={() => {}} />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-active">
       <Title title="Actived" theme="light" level={4} />
-      <DxcDropdown
-        label="Actived"
-        options={options}
-        onSelectOption={() => {}}
-      />
+      <DxcDropdown label="Actived" options={options} onSelectOption={() => {}} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Disabled" theme="light" level={4} />
-      <DxcDropdown
-        label="Disabled"
-        options={options}
-        onSelectOption={() => {}}
-        disabled
-      />
+      <DxcDropdown label="Disabled" options={options} onSelectOption={() => {}} disabled />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Caret hidden" theme="light" level={4} />
-      <DxcDropdown
-        label="Caret hidden"
-        options={options}
-        onSelectOption={() => {}}
-        caretHidden
-      />
+      <DxcDropdown label="Caret hidden" options={options} onSelectOption={() => {}} caretHidden />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With icon before" theme="light" level={4} />
-      <DxcDropdown
-        label="Icon before"
-        options={options}
-        onSelectOption={() => {}}
-        icon={iconSVG}
-      />
+      <DxcDropdown label="Icon before" options={options} onSelectOption={() => {}} icon={iconSVG} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With icon after" theme="light" level={4} />
@@ -176,40 +140,19 @@ const Dropdown = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Only icon without caret" theme="light" level={4} />
-      <DxcDropdown
-        options={options}
-        onSelectOption={() => {}}
-        icon="menu"
-        caretHidden
-      />
+      <DxcDropdown options={options} onSelectOption={() => {}} icon="menu" caretHidden />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Large icon (SVG)" theme="light" level={4} />
-      <DxcDropdown
-        label="Large icon"
-        options={options}
-        onSelectOption={() => {}}
-        icon={iconSVGLarge}
-      />
+      <DxcDropdown label="Large icon" options={options} onSelectOption={() => {}} icon={iconSVGLarge} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Large icon (image)" theme="light" level={4} />
-      <DxcDropdown
-        label="Large icon"
-        options={options}
-        onSelectOption={() => {}}
-        icon="menu"
-      />
+      <DxcDropdown label="Large icon" options={options} onSelectOption={() => {}} icon="menu" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Disabled with icon" theme="light" level={4} />
-      <DxcDropdown
-        label="Disabled with icon"
-        options={options}
-        onSelectOption={() => {}}
-        icon={iconSVG}
-        disabled
-      />
+      <DxcDropdown label="Disabled with icon" options={options} onSelectOption={() => {}} icon={iconSVG} disabled />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Ellipsis" theme="light" level={4} />
@@ -224,133 +167,56 @@ const Dropdown = () => (
     <Title title="Margins" theme="light" level={2} />
     <ExampleContainer>
       <Title title="Xxsmall" theme="light" level={4} />
-      <DxcDropdown
-        label="Xxsmall"
-        options={options}
-        onSelectOption={() => {}}
-        icon={iconSVG}
-        margin="xxsmall"
-      />
+      <DxcDropdown label="Xxsmall" options={options} onSelectOption={() => {}} icon={iconSVG} margin="xxsmall" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Xsmall" theme="light" level={4} />
-      <DxcDropdown
-        label="Xsmall"
-        options={options}
-        onSelectOption={() => {}}
-        icon={iconSVG}
-        margin="xsmall"
-      />
+      <DxcDropdown label="Xsmall" options={options} onSelectOption={() => {}} icon={iconSVG} margin="xsmall" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Small" theme="light" level={4} />
-      <DxcDropdown
-        label="Small"
-        options={options}
-        onSelectOption={() => {}}
-        icon={iconSVG}
-        margin="small"
-      />
+      <DxcDropdown label="Small" options={options} onSelectOption={() => {}} icon={iconSVG} margin="small" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Medium" theme="light" level={4} />
-      <DxcDropdown
-        label="Medium"
-        options={options}
-        onSelectOption={() => {}}
-        icon={iconSVG}
-        margin="medium"
-      />
+      <DxcDropdown label="Medium" options={options} onSelectOption={() => {}} icon={iconSVG} margin="medium" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Large" theme="light" level={4} />
-      <DxcDropdown
-        label="Large"
-        options={options}
-        onSelectOption={() => {}}
-        icon={iconSVG}
-        margin="large"
-      />
+      <DxcDropdown label="Large" options={options} onSelectOption={() => {}} icon={iconSVG} margin="large" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Xlarge" theme="light" level={4} />
-      <DxcDropdown
-        label="Xlarge"
-        options={options}
-        onSelectOption={() => {}}
-        icon={iconSVG}
-        margin="xlarge"
-      />
+      <DxcDropdown label="Xlarge" options={options} onSelectOption={() => {}} icon={iconSVG} margin="xlarge" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Xxlarge" theme="light" level={4} />
-      <DxcDropdown
-        label="Xxlarge"
-        options={options}
-        onSelectOption={() => {}}
-        icon={iconSVG}
-        margin="xxlarge"
-      />
+      <DxcDropdown label="Xxlarge" options={options} onSelectOption={() => {}} icon={iconSVG} margin="xxlarge" />
     </ExampleContainer>
     <Title title="Sizes" theme="light" level={2} />
     <ExampleContainer>
       <Title title="Small" theme="light" level={4} />
-      <DxcDropdown
-        label="Small"
-        options={options}
-        onSelectOption={() => {}}
-        icon={iconSVG}
-        size="small"
-      />
+      <DxcDropdown label="Small" options={options} onSelectOption={() => {}} icon={iconSVG} size="small" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Medium" theme="light" level={4} />
-      <DxcDropdown
-        label="Medium"
-        options={options}
-        onSelectOption={() => {}}
-        icon={iconSVG}
-        size="medium"
-      />
+      <DxcDropdown label="Medium" options={options} onSelectOption={() => {}} icon={iconSVG} size="medium" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Large" theme="light" level={4} />
-      <DxcDropdown
-        label="Large"
-        options={options}
-        onSelectOption={() => {}}
-        icon={iconSVG}
-        size="large"
-      />
+      <DxcDropdown label="Large" options={options} onSelectOption={() => {}} icon={iconSVG} size="large" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="FitContent" theme="light" level={4} />
-      <DxcDropdown
-        label="FitContent"
-        options={options}
-        onSelectOption={() => {}}
-        icon={iconSVG}
-        size="fitContent"
-      />
+      <DxcDropdown label="FitContent" options={options} onSelectOption={() => {}} icon={iconSVG} size="fitContent" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="FillParent" theme="light" level={4} />
-      <DxcDropdown
-        label="FillParent"
-        options={options}
-        onSelectOption={() => {}}
-        icon={iconSVG}
-        size="fillParent"
-      />
+      <DxcDropdown label="FillParent" options={options} onSelectOption={() => {}} icon={iconSVG} size="fillParent" />
     </ExampleContainer>
     <ExampleContainer expanded>
       <Title title="Opened menu" theme="light" level={4} />
-      <DxcDropdown
-        label="Label"
-        options={options}
-        onSelectOption={() => {}}
-        margin={{ top: "xxlarge" }}
-      />
+      <DxcDropdown label="Label" options={options} onSelectOption={() => {}} margin={{ top: "xxlarge" }} />
     </ExampleContainer>
   </>
 );
@@ -383,12 +249,7 @@ const DropdownListStates = () => {
             zIndex: "1300",
           }}
         >
-          <DxcDropdown
-            label="Select a platform"
-            options={defaultOptions}
-            onSelectOption={() => {}}
-            size="medium"
-          />
+          <DxcDropdown label="Select a platform" options={defaultOptions} onSelectOption={() => {}} size="medium" />
           <button type="submit" style={{ zIndex: "1", width: "100px" }}>
             Submit
           </button>
@@ -467,11 +328,7 @@ const DropdownListStates = () => {
 
 const DropdownRightAlignment = () => (
   <ExampleContainer expanded>
-    <Title
-      title="Dropdown collisions on the right boundary (right)"
-      theme="light"
-      level={4}
-    />
+    <Title title="Dropdown collisions on the right boundary (right)" theme="light" level={4} />
     <DxcFlex justifyContent="flex-end">
       <DxcDropdown label="Label" options={options} onSelectOption={() => {}} />
     </DxcFlex>
@@ -480,18 +337,9 @@ const DropdownRightAlignment = () => (
 
 const DropdownCenterAlignment = () => (
   <ExampleContainer expanded>
-    <Title
-      title="Dropdown collisions on the right boundary (centered)"
-      theme="light"
-      level={4}
-    />
+    <Title title="Dropdown collisions on the right boundary (centered)" theme="light" level={4} />
     <DxcFlex justifyContent="flex-end">
-      <DxcDropdown
-        label="Label"
-        options={defaultOptions}
-        onSelectOption={() => {}}
-        margin="small"
-      />
+      <DxcDropdown label="Label" options={defaultOptions} onSelectOption={() => {}} margin="small" />
     </DxcFlex>
   </ExampleContainer>
 );
@@ -509,57 +357,31 @@ export const OpinionatedTheme = () => (
     <ExampleContainer>
       <Title title="Default" theme="light" level={4} />
       <HalstackProvider theme={opinionatedTheme}>
-        <DxcDropdown
-          label="Default"
-          options={options}
-          onSelectOption={() => {}}
-          icon={iconSVG}
-        />
+        <DxcDropdown label="Default" options={options} onSelectOption={() => {}} icon={iconSVG} />
       </HalstackProvider>
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-hover">
       <Title title="Hovered" theme="light" level={4} />
       <HalstackProvider theme={opinionatedTheme}>
-        <DxcDropdown
-          label="Hovered"
-          options={options}
-          onSelectOption={() => {}}
-          icon={iconSVG}
-        />
+        <DxcDropdown label="Hovered" options={options} onSelectOption={() => {}} icon={iconSVG} />
       </HalstackProvider>
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-active">
       <Title title="Actived" theme="light" level={4} />
       <HalstackProvider theme={opinionatedTheme}>
-        <DxcDropdown
-          label="Actived"
-          options={options}
-          onSelectOption={() => {}}
-          icon={iconSVG}
-        />
+        <DxcDropdown label="Actived" options={options} onSelectOption={() => {}} icon={iconSVG} />
       </HalstackProvider>
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-focus">
       <Title title="Focused" theme="light" level={4} />
       <HalstackProvider theme={opinionatedTheme}>
-        <DxcDropdown
-          label="Focused"
-          options={options}
-          onSelectOption={() => {}}
-          icon={iconSVG}
-        />
+        <DxcDropdown label="Focused" options={options} onSelectOption={() => {}} icon={iconSVG} />
       </HalstackProvider>
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Disabled" theme="light" level={4} />
       <HalstackProvider theme={opinionatedTheme}>
-        <DxcDropdown
-          label="Disabled"
-          options={options}
-          onSelectOption={() => {}}
-          icon={iconSVG}
-          disabled
-        />
+        <DxcDropdown label="Disabled" options={options} onSelectOption={() => {}} icon={iconSVG} disabled />
       </HalstackProvider>
     </ExampleContainer>
   </>

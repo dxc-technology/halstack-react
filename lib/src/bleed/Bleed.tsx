@@ -2,16 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import BleedPropsType from "./types";
 
-const Bleed = ({
-  space,
-  horizontal,
-  vertical,
-  top,
-  right,
-  bottom,
-  left,
-  children,
-}: BleedPropsType): JSX.Element => (
+const Bleed = ({ space, horizontal, vertical, top, right, bottom, left, children }: BleedPropsType): JSX.Element => (
   <StyledBleed
     space={space}
     horizontal={horizontal}
@@ -32,7 +23,7 @@ function getSpacingValue(spacingName) {
 const StyledBleed = styled.div<BleedPropsType>`
   ${({ space, horizontal, vertical, top, right, bottom, left }) => `
     margin: -${getSpacingValue(top || vertical || space)} -${getSpacingValue(
-      right || horizontal || space
+      right || horizontal || space,
     )} -${getSpacingValue(bottom || vertical || space)} -${getSpacingValue(left || horizontal || space)};
 `}
 `;

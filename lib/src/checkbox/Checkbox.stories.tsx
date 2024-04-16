@@ -81,11 +81,7 @@ const Checkbox = () => (
       <DxcCheckbox label="Checkbox" optional labelPosition="after" />
     </ExampleContainer>
     <ExampleContainer>
-      <Title
-        title="Disabled and optional with label after"
-        theme="light"
-        level={4}
-      />
+      <Title title="Disabled and optional with label after" theme="light" level={4} />
       <DxcCheckbox label="Checkbox" disabled labelPosition="after" optional />
     </ExampleContainer>
     <Title title="Sizes" theme="light" level={2} />
@@ -149,14 +145,8 @@ const Checkbox = () => (
     <ExampleContainer>
       <Title title="Label overflow" theme="light" level={4} />
       <SmallContainer>
-        <DxcCheckbox
-          label="Very long label to check its overflowing"
-          defaultChecked
-        />
-        <DxcCheckbox
-          label="Very long label to check its overflowing"
-          labelPosition="after"
-        />
+        <DxcCheckbox label="Very long label to check its overflowing" defaultChecked />
+        <DxcCheckbox label="Very long label to check its overflowing" labelPosition="after" />
       </SmallContainer>
     </ExampleContainer>
     <Title title="Opinionated theme" theme="light" level={2} />

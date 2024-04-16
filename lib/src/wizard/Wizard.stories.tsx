@@ -17,13 +17,7 @@ const favoriteSVG = (
   </svg>
 );
 const largeIcon = (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    height="48px"
-    viewBox="0 0 24 24"
-    width="48px"
-    fill="currentColor"
-  >
+  <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 0 24 24" width="48px" fill="currentColor">
     <path d="M0 0h24v24H0z" fill="none" />
     <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
   </svg>
@@ -165,30 +159,15 @@ const opinionatedTheme = {
 export const Chromatic = () => (
   <>
     <ExampleContainer>
-      <Title
-        title="Current step in the third step, labels and description"
-        theme="light"
-        level={4}
-      />
-      <DxcWizard
-        defaultCurrentStep={2}
-        steps={stepWithLabelDescription}
-      ></DxcWizard>
+      <Title title="Current step in the third step, labels and description" theme="light" level={4} />
+      <DxcWizard defaultCurrentStep={2} steps={stepWithLabelDescription}></DxcWizard>
     </ExampleContainer>
     <ExampleContainer>
-      <Title
-        title="With long description in horizontal"
-        theme="light"
-        level={4}
-      />
+      <Title title="With long description in horizontal" theme="light" level={4} />
       <DxcWizard steps={stepWithLongDescription}></DxcWizard>
     </ExampleContainer>
     <ExampleContainer>
-      <Title
-        title="With long description in vertical"
-        theme="light"
-        level={4}
-      />
+      <Title title="With long description in vertical" theme="light" level={4} />
       <DxcWizard mode="vertical" steps={stepWithLongDescription}></DxcWizard>
     </ExampleContainer>
     <ExampleContainer>
@@ -243,67 +222,36 @@ export const Chromatic = () => (
     <Title title="Margins vertical" theme="light" level={2} />
     <ExampleContainer>
       <Title title="Xxsmall margin" theme="light" level={4} />
-      <DxcWizard
-        mode="vertical"
-        margin="xxsmall"
-        steps={stepWithLabelDescription}
-      ></DxcWizard>
+      <DxcWizard mode="vertical" margin="xxsmall" steps={stepWithLabelDescription}></DxcWizard>
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Xsmall margin" theme="light" level={4} />
-      <DxcWizard
-        mode="vertical"
-        margin="xsmall"
-        steps={stepWithLabel}
-      ></DxcWizard>
+      <DxcWizard mode="vertical" margin="xsmall" steps={stepWithLabel}></DxcWizard>
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Small margin" theme="light" level={4} />
-      <DxcWizard
-        mode="vertical"
-        margin="small"
-        steps={stepWithLabel}
-      ></DxcWizard>
+      <DxcWizard mode="vertical" margin="small" steps={stepWithLabel}></DxcWizard>
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Medium margin" theme="light" level={4} />
-      <DxcWizard
-        mode="vertical"
-        margin="medium"
-        steps={stepWithLabel}
-      ></DxcWizard>
+      <DxcWizard mode="vertical" margin="medium" steps={stepWithLabel}></DxcWizard>
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Large margin" theme="light" level={4} />
-      <DxcWizard
-        mode="vertical"
-        margin="large"
-        steps={stepWithLabel}
-      ></DxcWizard>
+      <DxcWizard mode="vertical" margin="large" steps={stepWithLabel}></DxcWizard>
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Xlarge margin" theme="light" level={4} />
-      <DxcWizard
-        mode="vertical"
-        margin="xlarge"
-        steps={stepWithLabel}
-      ></DxcWizard>
+      <DxcWizard mode="vertical" margin="xlarge" steps={stepWithLabel}></DxcWizard>
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Xxlarge margin" theme="light" level={4} />
-      <DxcWizard
-        mode="vertical"
-        margin="xxlarge"
-        steps={stepWithLabel}
-      ></DxcWizard>
+      <DxcWizard mode="vertical" margin="xxlarge" steps={stepWithLabel}></DxcWizard>
     </ExampleContainer>
     <Title title="Opinionated theme" theme="light" level={2} />
     <ExampleContainer>
       <HalstackProvider theme={opinionatedTheme}>
-        <DxcWizard
-          defaultCurrentStep={2}
-          steps={stepWithLabelDescription}
-        ></DxcWizard>
+        <DxcWizard defaultCurrentStep={2} steps={stepWithLabelDescription}></DxcWizard>
       </HalstackProvider>
     </ExampleContainer>
   </>

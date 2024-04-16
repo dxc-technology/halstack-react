@@ -28,7 +28,7 @@ describe("Radio Group component accessibility tests", () => {
         stacking="row"
         optionalItemLabel="Optional"
         optional
-      />
+      />,
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
@@ -45,7 +45,7 @@ describe("Radio Group component accessibility tests", () => {
         stacking="row"
         optionalItemLabel="Optional"
         readOnly
-      />
+      />,
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();

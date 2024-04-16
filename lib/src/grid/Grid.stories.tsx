@@ -30,10 +30,7 @@ export const Chromatic = () => (
         <ColoredContainer />
         <ColoredContainer />
       </DxcGrid>
-      <DxcGrid
-        templateRows={["repeat(3, 100px)"]}
-        placeItems={{ alignItems: "end", justifyItems: "center" }}
-      >
+      <DxcGrid templateRows={["repeat(3, 100px)"]} placeItems={{ alignItems: "end", justifyItems: "center" }}>
         <ColoredContainer height="50px" width="50px" />
         <ColoredContainer height="50px" width="50px" />
         <ColoredContainer height="50px" width="50px" />
@@ -76,11 +73,7 @@ export const Chromatic = () => (
       <DxcGrid
         templateColumns={["repeat(4, 1fr)"]}
         templateRows={["40px", "200px", "60px"]}
-        templateAreas={[
-          "header header header header",
-          "sidenav main main main",
-          "sidenav footer footer footer",
-        ]}
+        templateAreas={["header header header header", "sidenav main main main", "sidenav footer footer footer"]}
         gap={{ rowGap: "0.5rem", columnGap: "1rem" }}
       >
         <DxcGrid.Item areaName="header" as="header">
@@ -99,11 +92,7 @@ export const Chromatic = () => (
     </ExampleContainer>
     <Title title="Template rows and columns with flexible sizes" level={4} />
     <ExampleContainer>
-      <DxcGrid
-        templateColumns={["1fr", "1fr", "1fr"]}
-        templateRows={["1fr", "3fr", "1fr"]}
-        gap="0.5rem"
-      >
+      <DxcGrid templateColumns={["1fr", "1fr", "1fr"]} templateRows={["1fr", "3fr", "1fr"]} gap="0.5rem">
         <DxcGrid.Item column={{ start: 1, end: -1 }}>
           <ColoredContainer color="yellow" height="100%">
             Header
@@ -151,12 +140,7 @@ export const Chromatic = () => (
     </DxcInset>
     <Title title="Implicit rows and columns" level={4} />
     <ExampleContainer>
-      <DxcGrid
-        templateColumns={["50px"]}
-        templateRows={["50px", "50px"]}
-        autoRows="50px"
-        autoColumns="50px"
-      >
+      <DxcGrid templateColumns={["50px"]} templateRows={["50px", "50px"]} autoRows="50px" autoColumns="50px">
         <DxcGrid.Item>
           <ColoredContainer height="50px">1</ColoredContainer>
         </DxcGrid.Item>
@@ -169,22 +153,14 @@ export const Chromatic = () => (
         <DxcGrid.Item row={3}>
           <ColoredContainer height="50px">4</ColoredContainer>
         </DxcGrid.Item>
-        <DxcGrid.Item
-          row={{ start: 1, end: 2 }}
-          column={{ start: 5, end: "span 2" }}
-        >
+        <DxcGrid.Item row={{ start: 1, end: 2 }} column={{ start: 5, end: "span 2" }}>
           <ColoredContainer height="50px">2</ColoredContainer>
         </DxcGrid.Item>
       </DxcGrid>
     </ExampleContainer>
     <Title title="Autoflow 'row' (default)" level={4} />
     <ExampleContainer>
-      <DxcGrid
-        templateColumns={["repeat(5, 1fr)"]}
-        templateRows={["1fr", "1fr"]}
-        autoFlow="row"
-        autoColumns="1fr"
-      >
+      <DxcGrid templateColumns={["repeat(5, 1fr)"]} templateRows={["1fr", "1fr"]} autoFlow="row" autoColumns="1fr">
         <DxcGrid.Item row={{ start: 1, end: "span 2" }} column={1}>
           <ColoredContainer height="100%">1</ColoredContainer>
         </DxcGrid.Item>
@@ -200,12 +176,7 @@ export const Chromatic = () => (
     </ExampleContainer>
     <Title title="Autoflow 'column'" level={4} />
     <ExampleContainer>
-      <DxcGrid
-        templateColumns={["repeat(5, 1fr)"]}
-        templateRows={["1fr", "1fr"]}
-        autoFlow="column"
-        autoColumns="1fr"
-      >
+      <DxcGrid templateColumns={["repeat(5, 1fr)"]} templateRows={["1fr", "1fr"]} autoFlow="column" autoColumns="1fr">
         <DxcGrid.Item row={{ start: 1, end: -1 }} column={1}>
           <ColoredContainer height="100%">1</ColoredContainer>
         </DxcGrid.Item>

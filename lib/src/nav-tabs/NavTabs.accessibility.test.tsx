@@ -20,7 +20,7 @@ describe("Tabs component accessibility tests", () => {
         <DxcNavTabs.Tab href="/test3" icon={pinIcon} notificationNumber={12}>
           Tab 3
         </DxcNavTabs.Tab>
-      </DxcNavTabs>
+      </DxcNavTabs>,
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();

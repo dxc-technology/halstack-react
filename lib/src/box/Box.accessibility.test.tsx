@@ -8,7 +8,7 @@ describe("Box component accessibility tests", () => {
     const { container } = render(
       <DxcBox shadowDepth={0} margin="medium" size="small" display="flex">
         Box
-      </DxcBox>
+      </DxcBox>,
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();

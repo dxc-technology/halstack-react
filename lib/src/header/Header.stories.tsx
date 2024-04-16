@@ -80,25 +80,12 @@ export const Chromatic = () => (
     <ExampleContainer>
       <Title title="Default with dropdown" theme="light" level={4} />
       <DxcHeader
-        content={
-          <DxcHeader.Dropdown
-            options={options}
-            label="Default Dropdown"
-            onSelectOption={() => {}}
-          />
-        }
+        content={<DxcHeader.Dropdown options={options} label="Default Dropdown" onSelectOption={() => {}} />}
       />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Underlined with text" theme="light" level={4} />
-      <DxcHeader
-        underlined
-        content={
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras felis.
-          </p>
-        }
-      />
+      <DxcHeader underlined content={<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras felis.</p>} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Underlined, dropdown and links" theme="light" level={4} />
@@ -108,11 +95,7 @@ export const Chromatic = () => (
             <DxcLink>Link 1</DxcLink>
             <DxcLink>Link 2</DxcLink>
             <DxcLink>Link 3</DxcLink>
-            <DxcHeader.Dropdown
-              options={options2}
-              label="Label"
-              onSelectOption={() => {}}
-            />
+            <DxcHeader.Dropdown options={options2} label="Label" onSelectOption={() => {}} />
           </DxcFlex>
         }
         underlined
@@ -122,51 +105,37 @@ export const Chromatic = () => (
     <ExampleContainer>
       <Title title="Xxsmall margin" theme="light" level={4} />
       <DxcHeader underlined margin="xxsmall" />
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras felis.
-      </p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras felis.</p>
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Xsmall margin" theme="light" level={4} />
       <DxcHeader underlined margin="xsmall" />
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras felis.
-      </p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras felis.</p>
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Small margin" theme="light" level={4} />
       <DxcHeader underlined margin="small" />
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras felis.
-      </p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras felis.</p>
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Medium margin" theme="light" level={4} />
       <DxcHeader underlined margin="medium" />
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras felis.
-      </p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras felis.</p>
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Large margin" theme="light" level={4} />
       <DxcHeader underlined margin="large" />
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras felis.
-      </p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras felis.</p>
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Xlarge margin" theme="light" level={4} />
       <DxcHeader underlined margin="xlarge" />
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras felis.
-      </p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras felis.</p>
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Xxlarge margin" theme="light" level={4} />
       <DxcHeader underlined margin="xxlarge" />
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras felis.
-      </p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras felis.</p>
     </ExampleContainer>
     <Title title="Opinionated theme" theme="light" level={2} />
     <ExampleContainer>
@@ -185,13 +154,7 @@ export const ResponsiveHeader = () => (
   <ExampleContainer>
     <Title title="Responsive" theme="light" level={4} />
     <DxcHeader
-      content={
-        <DxcHeader.Dropdown
-          options={options}
-          label="Default Dropdown"
-          onSelectOption={() => {}}
-        />
-      }
+      content={<DxcHeader.Dropdown options={options} label="Default Dropdown" onSelectOption={() => {}} />}
       responsiveContent={responsiveContentFunction}
       underlined
     />
@@ -290,9 +253,7 @@ ResponsiveHeaderMenuTablet.play = async ({ canvasElement }) => {
   await userEvent.click(canvas.getByText("Menu"));
 };
 
-export const ResponsiveHeaderMenuOpinionated = RespHeaderMenuOpinionated.bind(
-  {}
-);
+export const ResponsiveHeaderMenuOpinionated = RespHeaderMenuOpinionated.bind({});
 ResponsiveHeaderMenuOpinionated.parameters = {
   viewport: {
     defaultViewport: "pixelxl",

@@ -20,10 +20,7 @@ const Suggestions = ({
   const listboxRef = useRef(null);
 
   useEffect(() => {
-    const visualFocusedOptionEl =
-      listboxRef?.current?.querySelectorAll("[role='option']")[
-        visualFocusIndex
-      ];
+    const visualFocusedOptionEl = listboxRef?.current?.querySelectorAll("[role='option']")[visualFocusIndex];
     visualFocusedOptionEl?.scrollIntoView?.({
       block: "nearest",
       inline: "start",
@@ -58,9 +55,7 @@ const Suggestions = ({
           />
         ))}
       {isSearching && (
-        <SuggestionsSystemMessage role="option">
-          {translatedLabels.textInput.searchingMessage}
-        </SuggestionsSystemMessage>
+        <SuggestionsSystemMessage role="option">{translatedLabels.textInput.searchingMessage}</SuggestionsSystemMessage>
       )}
       {searchHasErrors && (
         <ErrorMessage role="option">
@@ -83,14 +78,9 @@ const SuggestionsContainer = styled.ul<{ error: boolean }>`
   margin: 0;
   padding: 0.25rem 0;
   background-color: ${(props) =>
-    props.error
-      ? props.theme.errorListDialogBackgroundColor
-      : props.theme.listDialogBackgroundColor};
+    props.error ? props.theme.errorListDialogBackgroundColor : props.theme.listDialogBackgroundColor};
   border: 1px solid
-    ${(props) =>
-      props.error
-        ? props.theme.errorListDialogBorderColor
-        : props.theme.listDialogBorderColor};
+    ${(props) => (props.error ? props.theme.errorListDialogBorderColor : props.theme.listDialogBorderColor)};
 
   border-radius: 0.25rem;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);

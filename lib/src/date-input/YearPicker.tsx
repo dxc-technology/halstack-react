@@ -12,14 +12,8 @@ const getYearsArray = () => {
 };
 const yearList = getYearsArray();
 
-const YearPicker = ({
-  onYearSelect,
-  selectedDate,
-  today,
-}: YearPickerPropsType): JSX.Element => {
-  const [yearToFocus, setYearToFocus] = useState(
-    selectedDate ? selectedDate.get("year") : dayjs().get("year")
-  );
+const YearPicker = ({ onYearSelect, selectedDate, today }: YearPickerPropsType): JSX.Element => {
+  const [yearToFocus, setYearToFocus] = useState(selectedDate ? selectedDate.get("year") : dayjs().get("year"));
 
   useEffect(() => {
     const yearToFocusEl = document.getElementById(`year_${yearToFocus}`);
@@ -111,8 +105,7 @@ const YearPickerButton = styled.button<{
   }
   &:hover {
     color: ${(props) => props.theme.dateInput.pickerHoverFontColor};
-    background-color: ${(props) =>
-      props.theme.dateInput.pickerHoverBackgroundColor};
+    background-color: ${(props) => props.theme.dateInput.pickerHoverBackgroundColor};
   }
   &:focus {
     color: ${(props) => props.theme.dateInput.pickerHoverFontColor};
@@ -121,8 +114,7 @@ const YearPickerButton = styled.button<{
   }
   &:active {
     color: ${(props) => props.theme.dateInput.pickerActiveFontColor};
-    background-color: ${(props) =>
-      props.theme.dateInput.pickerActiveBackgroundColor} !important;
+    background-color: ${(props) => props.theme.dateInput.pickerActiveBackgroundColor} !important;
   }
 `;
 

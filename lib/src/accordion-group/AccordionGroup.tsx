@@ -16,20 +16,10 @@ type AccordionProviderType = {
     disabled: boolean;
   };
 };
-const AccordionProvider = ({
-  children,
-  index,
-  contextValue,
-}: AccordionProviderType) => {
-  const contextProviderValue = useMemo(
-    () => ({ index, ...contextValue }),
-    [index, contextValue]
-  );
+const AccordionProvider = ({ children, index, contextValue }: AccordionProviderType) => {
+  const contextProviderValue = useMemo(() => ({ index, ...contextValue }), [index, contextValue]);
   return (
-    <AccordionGroupAccordionContext.Provider
-      key={`accordion-${index}`}
-      value={contextProviderValue}
-    >
+    <AccordionGroupAccordionContext.Provider key={`accordion-${index}`} value={contextProviderValue}>
       {children}
     </AccordionGroupAccordionContext.Provider>
   );
@@ -44,9 +34,7 @@ const DxcAccordionGroup = ({
   children,
 }: AccordionGroupPropsType): JSX.Element => {
   const colorsTheme = useTheme();
-  const [innerIndexActive, setInnerIndexActive] = useState(
-    defaultIndexActive ?? -1
-  );
+  const [innerIndexActive, setInnerIndexActive] = useState(defaultIndexActive ?? -1);
 
   const handlerActiveChange = useCallback(
     (index: number) => {
@@ -57,7 +45,7 @@ const DxcAccordionGroup = ({
         onActiveChange?.(index);
       }
     },
-    [disabled, indexActive, onActiveChange]
+    [disabled, indexActive, onActiveChange],
   );
   const contextValue = useMemo(
     () => ({
@@ -65,7 +53,7 @@ const DxcAccordionGroup = ({
       handlerActiveChange,
       disabled,
     }),
-    [indexActive, innerIndexActive, handlerActiveChange, disabled]
+    [indexActive, innerIndexActive, handlerActiveChange, disabled],
   );
 
   return (
@@ -91,24 +79,12 @@ const AccordionGroupContainer = styled.div<{
   disabled: AccordionGroupPropsType["disabled"];
 }>`
   width: ${(props) => calculateWidth(props.margin)};
-  margin: ${({ margin }) =>
-    margin && typeof margin !== "object" ? spaces[margin] : "0px"};
-  margin-top: ${({ margin }) =>
-    margin && typeof margin === "object" && margin.top
-      ? spaces[margin.top]
-      : ""};
-  margin-right: ${({ margin }) =>
-    margin && typeof margin === "object" && margin.right
-      ? spaces[margin.right]
-      : ""};
+  margin: ${({ margin }) => (margin && typeof margin !== "object" ? spaces[margin] : "0px")};
+  margin-top: ${({ margin }) => (margin && typeof margin === "object" && margin.top ? spaces[margin.top] : "")};
+  margin-right: ${({ margin }) => (margin && typeof margin === "object" && margin.right ? spaces[margin.right] : "")};
   margin-bottom: ${({ margin }) =>
-    margin && typeof margin === "object" && margin.bottom
-      ? spaces[margin.bottom]
-      : ""};
-  margin-left: ${({ margin }) =>
-    margin && typeof margin === "object" && margin.left
-      ? spaces[margin.left]
-      : ""};
+    margin && typeof margin === "object" && margin.bottom ? spaces[margin.bottom] : ""};
+  margin-left: ${({ margin }) => (margin && typeof margin === "object" && margin.left ? spaces[margin.left] : "")};
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
 
   > div:not(:last-of-type):not(:only-of-type) {

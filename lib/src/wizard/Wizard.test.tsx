@@ -14,7 +14,7 @@ describe("Wizard components tests", () => {
             label: "second-step",
           },
         ]}
-      />
+      />,
     );
     const steps = getAllByRole("button");
     expect(getByText("first-step")).toBeTruthy();
@@ -35,7 +35,7 @@ describe("Wizard components tests", () => {
             label: "second-step",
           },
         ]}
-      />
+      />,
     );
     const steps = getAllByRole("button");
     expect(steps[1].getAttribute("aria-current")).toBe("step");
@@ -51,7 +51,7 @@ describe("Wizard components tests", () => {
             label: "first-step",
           },
         ]}
-      />
+      />,
     );
     const step = getByText("first-step");
     fireEvent.click(step);
@@ -69,7 +69,7 @@ describe("Wizard components tests", () => {
             description: "step-description",
           },
         ]}
-      />
+      />,
     );
     const step = getByText("step-description");
     fireEvent.click(step);
@@ -86,7 +86,7 @@ describe("Wizard components tests", () => {
             label: "first-step",
           },
         ]}
-      />
+      />,
     );
     const step = getByText("1");
     fireEvent.click(step);
@@ -107,7 +107,7 @@ describe("Wizard components tests", () => {
             disabled: true,
           },
         ]}
-      />
+      />,
     );
     const step = getByText("second-step");
     fireEvent.click(step);
@@ -128,7 +128,7 @@ describe("Wizard components tests", () => {
             label: "second-step",
           },
         ]}
-      />
+      />,
     );
     const steps = getAllByRole("button");
     fireEvent.click(steps[1]);

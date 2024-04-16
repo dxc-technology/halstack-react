@@ -24,7 +24,7 @@ const DxcBreadcrumbs = ({
         window.location.href = href;
       }
     },
-    [items]
+    [items],
   );
 
   return (
@@ -32,9 +32,7 @@ const DxcBreadcrumbs = ({
       <OrderedList>
         {items && items.length > Math.max(itemsBeforeCollapse, 2) ? (
           <>
-            {showRoot && (
-              <Item href={items[0].href} key={0} label={items[0].label} />
-            )}
+            {showRoot && <Item href={items[0].href} key={0} label={items[0].label} />}
             <DxcFlex alignItems="center" as="li" key={1}>
               <HalstackProvider advancedTheme={dropdownTheme}>
                 <DxcDropdown
@@ -42,9 +40,7 @@ const DxcBreadcrumbs = ({
                   icon={<DxcIcon icon="more_horiz" />}
                   margin={showRoot && { left: "small" }}
                   onSelectOption={handleOnSelectOption}
-                  options={items
-                    .slice(showRoot ? 1 : 0, -1)
-                    .map(({ label, href }) => ({ label, value: href }))}
+                  options={items.slice(showRoot ? 1 : 0, -1).map(({ label, href }) => ({ label, value: href }))}
                 />
               </HalstackProvider>
             </DxcFlex>
@@ -82,8 +78,7 @@ const OrderedList = styled.ol`
     &::before {
       margin: ${CoreTokens.spacing_0} ${CoreTokens.spacing_2};
       transform: rotate(15deg);
-      border-right: ${CoreTokens.border_width_1} solid
-        ${CoreTokens.color_grey_500};
+      border-right: ${CoreTokens.border_width_1} solid ${CoreTokens.color_grey_500};
       height: 1rem;
       content: "";
     }

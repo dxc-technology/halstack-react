@@ -24,30 +24,18 @@ const folderIcon = (
 describe("Accordion component accessibility tests", () => {
   it("Should not have basic accessibility issues", async () => {
     const { container } = render(
-      <DxcAccordion
-        label="Accordion"
-        assistiveText="Assistive Text"
-        icon={folderIcon}
-        margin="small"
-        defaultIsExpanded
-      >
+      <DxcAccordion label="Accordion" assistiveText="Assistive Text" icon={folderIcon} margin="small" defaultIsExpanded>
         <div>test-expanded</div>
-      </DxcAccordion>
+      </DxcAccordion>,
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
   });
   it("Should not have basic accessibility issues for disabled mode", async () => {
     const { container } = render(
-      <DxcAccordion
-        label="Accordion"
-        assistiveText="Assistive Text"
-        icon={folderIcon}
-        margin="small"
-        disabled
-      >
+      <DxcAccordion label="Accordion" assistiveText="Assistive Text" icon={folderIcon} margin="small" disabled>
         <div>test-expanded</div>
-      </DxcAccordion>
+      </DxcAccordion>,
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();

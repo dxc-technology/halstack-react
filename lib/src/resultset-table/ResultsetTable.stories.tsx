@@ -27,57 +27,21 @@ export default {
 };
 
 const deleteIcon = (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    height="24"
-    viewBox="0 0 24 24"
-    width="24"
-  >
-    <path
-      fill="currentColor"
-      d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"
-    />
+  <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
+    <path fill="currentColor" d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
     <path d="M0 0h24v24H0z" fill="none" />
   </svg>
 );
 
-const columns = [
-  { displayValue: "Id" },
-  { displayValue: "Name" },
-  { displayValue: "City" },
-];
+const columns = [{ displayValue: "Id" }, { displayValue: "Name" }, { displayValue: "City" }];
 
 const rows = [
-  [
-    { displayValue: "001" },
-    { displayValue: "Peter" },
-    { displayValue: "Miami" },
-  ],
-  [
-    { displayValue: "002" },
-    { displayValue: "Louis" },
-    { displayValue: "London" },
-  ],
-  [
-    { displayValue: "003" },
-    { displayValue: "Lana" },
-    { displayValue: "Amsterdam" },
-  ],
-  [
-    { displayValue: "004" },
-    { displayValue: "Rick" },
-    { displayValue: "London" },
-  ],
-  [
-    { displayValue: "005" },
-    { displayValue: "Mark" },
-    { displayValue: "Miami" },
-  ],
-  [
-    { displayValue: "006" },
-    { displayValue: "Cris" },
-    { displayValue: "Paris" },
-  ],
+  [{ displayValue: "001" }, { displayValue: "Peter" }, { displayValue: "Miami" }],
+  [{ displayValue: "002" }, { displayValue: "Louis" }, { displayValue: "London" }],
+  [{ displayValue: "003" }, { displayValue: "Lana" }, { displayValue: "Amsterdam" }],
+  [{ displayValue: "004" }, { displayValue: "Rick" }, { displayValue: "London" }],
+  [{ displayValue: "005" }, { displayValue: "Mark" }, { displayValue: "Miami" }],
+  [{ displayValue: "006" }, { displayValue: "Cris" }, { displayValue: "Paris" }],
 ];
 
 const advancedTheme = {
@@ -303,12 +267,7 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With items per page option" theme="light" level={4} />
-      <DxcResultsetTable
-        columns={columns}
-        rows={rows}
-        itemsPerPage={2}
-        itemsPerPageOptions={[2, 3]}
-      />
+      <DxcResultsetTable columns={columns} rows={rows} itemsPerPage={2} itemsPerPageOptions={[2, 3]} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Scroll resultset table" theme="light" level={4} />
@@ -320,36 +279,18 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <SmallContainer>
-        <Title
-          title="Small container and text overflow"
-          theme="light"
-          level={4}
-        />
+        <Title title="Small container and text overflow" theme="light" level={4} />
         <DxcResultsetTable columns={columnsSortable} rows={longValues} />
       </SmallContainer>
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Reduced sortable table" theme="light" level={4} />
-      <DxcResultsetTable
-        columns={columnsSortable}
-        rows={rowsSortable}
-        mode="reduced"
-      />
+      <DxcResultsetTable columns={columnsSortable} rows={rowsSortable} mode="reduced" />
     </ExampleContainer>
     {/* PENDING SMALL ICON VERSION */}
     <ExampleContainer>
-      <Title
-        title="Reduced with items per page option"
-        theme="light"
-        level={4}
-      />
-      <DxcResultsetTable
-        columns={columns}
-        rows={rows}
-        itemsPerPage={2}
-        itemsPerPageOptions={[2, 3]}
-        mode="reduced"
-      />
+      <Title title="Reduced with items per page option" theme="light" level={4} />
+      <DxcResultsetTable columns={columns} rows={rows} itemsPerPage={2} itemsPerPageOptions={[2, 3]} mode="reduced" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Reduced scroll resultset table" theme="light" level={4} />
@@ -357,16 +298,8 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <SmallContainer>
-        <Title
-          title="Reduced small container and text overflow"
-          theme="light"
-          level={4}
-        />
-        <DxcResultsetTable
-          columns={columnsSortable}
-          rows={longValues}
-          mode="reduced"
-        />
+        <Title title="Reduced small container and text overflow" theme="light" level={4} />
+        <DxcResultsetTable columns={columnsSortable} rows={longValues} mode="reduced" />
       </SmallContainer>
     </ExampleContainer>
     <Title title="Margins" theme="light" level={2} />

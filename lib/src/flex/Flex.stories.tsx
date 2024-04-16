@@ -20,18 +20,9 @@ export const Chromatic = () => (
         <Placeholder minWidth="50px" />
       </DxcFlex>
     </Container>
-    <Title
-      title="Direction column, wrap, justify content end, align items center and gap"
-      level={4}
-    />
+    <Title title="Direction column, wrap, justify content end, align items center and gap" level={4} />
     <Container>
-      <DxcFlex
-        direction="column"
-        wrap="wrap"
-        justifyContent="end"
-        alignItems="center"
-        gap="1.5rem"
-      >
+      <DxcFlex direction="column" wrap="wrap" justifyContent="end" alignItems="center" gap="1.5rem">
         <Placeholder />
         <Placeholder minWidth="100px" />
         <Placeholder />
@@ -39,17 +30,9 @@ export const Chromatic = () => (
         <Placeholder />
       </DxcFlex>
     </Container>
-    <Title
-      title="Wrap with align content space between, row and column gaps, and as a span"
-      level={4}
-    />
+    <Title title="Wrap with align content space between, row and column gaps, and as a span" level={4} />
     <Container height="250px">
-      <DxcFlex
-        wrap="wrap"
-        alignContent="space-between"
-        as="span"
-        gap={{ rowGap: "0.5rem", columnGap: "1.5rem" }}
-      >
+      <DxcFlex wrap="wrap" alignContent="space-between" as="span" gap={{ rowGap: "0.5rem", columnGap: "1.5rem" }}>
         <Placeholder />
         <Placeholder />
         <Placeholder />

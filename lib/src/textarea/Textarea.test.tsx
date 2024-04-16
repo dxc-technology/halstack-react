@@ -10,20 +10,14 @@ describe("Textarea component tests", () => {
   });
 
   test("Renders with correct label and helper text", () => {
-    const { getByText } = render(
-      <DxcTextarea label="Example label" helperText="Example helper text" />
-    );
+    const { getByText } = render(<DxcTextarea label="Example label" helperText="Example helper text" />);
     expect(getByText("Example label")).toBeTruthy();
     expect(getByText("Example helper text")).toBeTruthy();
   });
 
   test("Renders with correct label and optional", () => {
     const { getByText, getByRole } = render(
-      <DxcTextarea
-        label="Example label"
-        helperText="Example helper text"
-        optional
-      />
+      <DxcTextarea label="Example label" helperText="Example helper text" optional />,
     );
     const textarea = getByRole("textbox");
     expect(getByText("Example label")).toBeTruthy();
@@ -39,9 +33,7 @@ describe("Textarea component tests", () => {
   });
 
   test("Renders with error message and correct aria attributes", () => {
-    const { getByText, getByLabelText } = render(
-      <DxcTextarea label="Example label" error="Error message." />
-    );
+    const { getByText, getByLabelText } = render(<DxcTextarea label="Example label" error="Error message." />);
     const textarea = getByLabelText("Example label");
     const errorMessage = getByText("Error message.");
     expect(errorMessage).toBeTruthy();
@@ -51,9 +43,7 @@ describe("Textarea component tests", () => {
   });
 
   test("Renders with correct default rows", () => {
-    const { getByLabelText } = render(
-      <DxcTextarea label="Example label" rows={10} />
-    );
+    const { getByLabelText } = render(<DxcTextarea label="Example label" rows={10} />);
     const textarea = getByLabelText("Example label") as HTMLTextAreaElement;
     expect(textarea.rows).toBe(10);
   });
@@ -68,11 +58,7 @@ describe("Textarea component tests", () => {
 
   test("Renders with correct initial value", () => {
     const { getByLabelText } = render(
-      <DxcTextarea
-        label="Example label"
-        placeholder="Placeholder"
-        defaultValue="Example text"
-      />
+      <DxcTextarea label="Example label" placeholder="Placeholder" defaultValue="Example text" />,
     );
     const textarea = getByLabelText("Example label") as HTMLTextAreaElement;
     expect(textarea.value).toBe("Example text");
@@ -80,9 +66,7 @@ describe("Textarea component tests", () => {
 
   test("Disabled textarea can not be modified", () => {
     const onChange = jest.fn();
-    const { getByLabelText } = render(
-      <DxcTextarea label="Example label" onChange={onChange} disabled />
-    );
+    const { getByLabelText } = render(<DxcTextarea label="Example label" onChange={onChange} disabled />);
     const textarea = getByLabelText("Example label");
     userEvent.type(textarea, "Test");
     expect(onChange).not.toHaveBeenCalled();
@@ -90,9 +74,7 @@ describe("Textarea component tests", () => {
 
   test("Read-only textarea does not trigger onChange function", () => {
     const onChange = jest.fn();
-    const { getByLabelText } = render(
-      <DxcTextarea label="Example label" onChange={onChange} readOnly />
-    );
+    const { getByLabelText } = render(<DxcTextarea label="Example label" onChange={onChange} readOnly />);
     const textarea = getByLabelText("Example label");
     userEvent.type(textarea, "Test");
     expect(onChange).not.toHaveBeenCalled();
@@ -107,14 +89,9 @@ describe("Textarea component tests", () => {
     });
     const { getByText } = render(
       <form onSubmit={handlerOnSubmit}>
-        <DxcTextarea
-          label="Example label"
-          name="data"
-          defaultValue="Comments"
-          readOnly
-        />
+        <DxcTextarea label="Example label" name="data" defaultValue="Comments" readOnly />
         <button type="submit">Submit</button>
-      </form>
+      </form>,
     );
     const submit = getByText("Submit");
     await userEvent.click(submit);
@@ -125,12 +102,7 @@ describe("Textarea component tests", () => {
     const onChange = jest.fn();
     const onBlur = jest.fn();
     const { getByLabelText } = render(
-      <DxcTextarea
-        label="Example label"
-        placeholder="Placeholder"
-        onChange={onChange}
-        onBlur={onBlur}
-      />
+      <DxcTextarea label="Example label" placeholder="Placeholder" onChange={onChange} onBlur={onBlur} />,
     );
     const textarea = getByLabelText("Example label");
     fireEvent.focus(textarea);
@@ -149,11 +121,7 @@ describe("Textarea component tests", () => {
   test("Not optional constraint (onChange)", () => {
     const onChange = jest.fn();
     const { getByLabelText } = render(
-      <DxcTextarea
-        label="Example label"
-        placeholder="Placeholder"
-        onChange={onChange}
-      />
+      <DxcTextarea label="Example label" placeholder="Placeholder" onChange={onChange} />,
     );
     const textarea = getByLabelText("Example label");
     fireEvent.focus(textarea);
@@ -179,7 +147,7 @@ describe("Textarea component tests", () => {
         onBlur={onBlur}
         margin={{ left: "medium", right: "medium" }}
         pattern='^.*(?=.*[a-zA-Z])(?=.*\d)(?=.*[!&$%&? "]).*$'
-      />
+      />,
     );
     const textarea = getByLabelText("Example label");
     fireEvent.change(textarea, { target: { value: "pattern test" } });
@@ -215,7 +183,7 @@ describe("Textarea component tests", () => {
         margin={{ left: "medium", right: "medium" }}
         minLength={5}
         maxLength={10}
-      />
+      />,
     );
     const textarea = getByLabelText("Example label");
     fireEvent.change(textarea, { target: { value: "test" } });
@@ -252,7 +220,7 @@ describe("Textarea component tests", () => {
         pattern='^.*(?=.*[a-zA-Z])(?=.*\d)(?=.*[!&$%&? "]).*$'
         minLength={5}
         maxLength={10}
-      />
+      />,
     );
     const textarea = getByLabelText("Example label");
     fireEvent.change(textarea, { target: { value: "test" } });
@@ -289,9 +257,7 @@ describe("Textarea component tests", () => {
 
   test("onBlur function is called correctly", () => {
     const onBlur = jest.fn();
-    const { getByLabelText } = render(
-      <DxcTextarea label="Example label" onBlur={onBlur} />
-    );
+    const { getByLabelText } = render(<DxcTextarea label="Example label" onBlur={onBlur} />);
     const textarea = getByLabelText("Example label");
     fireEvent.change(textarea, { target: { value: "Blur test" } });
     fireEvent.blur(textarea);
@@ -301,13 +267,7 @@ describe("Textarea component tests", () => {
 
   test("onChange function is called correctly", () => {
     const onChange = jest.fn();
-    const { getByLabelText } = render(
-      <DxcTextarea
-        label="Example label"
-        value="Test value"
-        onChange={onChange}
-      />
-    );
+    const { getByLabelText } = render(<DxcTextarea label="Example label" value="Test value" onChange={onChange} />);
     const textarea = getByLabelText("Example label") as HTMLTextAreaElement;
     fireEvent.change(textarea, { target: { value: "Controlled test" } });
     expect(onChange).toHaveBeenCalled();

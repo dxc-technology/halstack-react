@@ -14,17 +14,12 @@ import DxcDivider from "../divider/Divider";
 import DxcInset from "../inset/Inset";
 import MenuItem from "./MenuItem";
 
-export const ContextualMenuContext =
-  createContext<ContextualMenuContextProps | null>(null);
+export const ContextualMenuContext = createContext<ContextualMenuContextProps | null>(null);
 
-const isGroupItem = (item: Item | GroupItem): item is GroupItem =>
-  "items" in item;
-const isSection = (item: Section | Item | GroupItem): item is Section =>
-  "items" in item && !("label" in item);
+const isGroupItem = (item: Item | GroupItem): item is GroupItem => "items" in item;
+const isSection = (item: Section | Item | GroupItem): item is Section => "items" in item && !("label" in item);
 
-const addIdToItems = (
-  items: ContextualMenuPropsType["items"]
-): (ItemWithId | GroupItemWithId)[] | SectionWithId[] => {
+const addIdToItems = (items: ContextualMenuPropsType["items"]): (ItemWithId | GroupItemWithId)[] | SectionWithId[] => {
   let accId = 0;
   const innerAddIdToItems = (innerItems: ContextualMenuPropsType["items"]) =>
     innerItems.map((item: Item | GroupItem | Section) => {
@@ -59,16 +54,9 @@ const addIdToItems = (
 const DxcContextualMenu = ({ items }: ContextualMenuPropsType) => {
   const [selectedItemId, setSelectedItemId] = useState(-1);
   const itemsWithId = useMemo(() => addIdToItems(items), [items]);
-  const contextValue = useMemo(
-    () => ({ selectedItemId, setSelectedItemId }),
-    [selectedItemId, setSelectedItemId]
-  );
+  const contextValue = useMemo(() => ({ selectedItemId, setSelectedItemId }), [selectedItemId, setSelectedItemId]);
 
-  const renderSection = (
-    section: SectionWithId,
-    currentSectionIndex: number,
-    length: number
-  ) => (
+  const renderSection = (section: SectionWithId, currentSectionIndex: number, length: number) => (
     <Fragment key={`section-${currentSectionIndex}`}>
       <li role="group">
         {section.title != null && <Title>{section.title}</Title>}
@@ -89,16 +77,12 @@ const DxcContextualMenu = ({ items }: ContextualMenuPropsType) => {
   return (
     <ContextualMenu role="menu">
       <ContextualMenuContext.Provider value={contextValue}>
-        {itemsWithId.map(
-          (
-            item: GroupItemWithId | ItemWithId | SectionWithId,
-            index: number
-          ) =>
-            "items" in item && !("label" in item) ? (
-              renderSection(item, index, itemsWithId.length)
-            ) : (
-              <MenuItem item={item} key={`${item.label}-${index}`} />
-            )
+        {itemsWithId.map((item: GroupItemWithId | ItemWithId | SectionWithId, index: number) =>
+          "items" in item && !("label" in item) ? (
+            renderSection(item, index, itemsWithId.length)
+          ) : (
+            <MenuItem item={item} key={`${item.label}-${index}`} />
+          ),
         )}
       </ContextualMenuContext.Provider>
     </ContextualMenu>

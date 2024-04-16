@@ -30,9 +30,7 @@ export const ApplicationLayoutWithDefaultSidenav = () => (
     sidenav={
       <DxcApplicationLayout.SideNav
         title={
-          <DxcApplicationLayout.SideNav.Title>
-            Application layout with push sidenav
-          </DxcApplicationLayout.SideNav.Title>
+          <DxcApplicationLayout.SideNav.Title>Application layout with push sidenav</DxcApplicationLayout.SideNav.Title>
         }
       >
         <DxcApplicationLayout.SideNav.Section>
@@ -60,9 +58,7 @@ export const ApplicationLayoutWithResponsiveSidenav = () => (
     sidenav={
       <DxcApplicationLayout.SideNav
         title={
-          <DxcApplicationLayout.SideNav.Title>
-            Application layout with push sidenav
-          </DxcApplicationLayout.SideNav.Title>
+          <DxcApplicationLayout.SideNav.Title>Application layout with push sidenav</DxcApplicationLayout.SideNav.Title>
         }
       >
         <DxcApplicationLayout.SideNav.Section>
@@ -97,9 +93,7 @@ export const ApplicationLayoutWithCustomHeader = () => (
     sidenav={
       <DxcApplicationLayout.SideNav
         title={
-          <DxcApplicationLayout.SideNav.Title>
-            Application layout with push sidenav
-          </DxcApplicationLayout.SideNav.Title>
+          <DxcApplicationLayout.SideNav.Title>Application layout with push sidenav</DxcApplicationLayout.SideNav.Title>
         }
       >
         <DxcApplicationLayout.SideNav.Section>
@@ -127,9 +121,7 @@ export const ApplicationLayoutWithCustomFooter = () => (
     sidenav={
       <DxcApplicationLayout.SideNav
         title={
-          <DxcApplicationLayout.SideNav.Title>
-            Application layout with push sidenav
-          </DxcApplicationLayout.SideNav.Title>
+          <DxcApplicationLayout.SideNav.Title>Application layout with push sidenav</DxcApplicationLayout.SideNav.Title>
         }
       >
         <DxcApplicationLayout.SideNav.Section>

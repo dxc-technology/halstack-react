@@ -79,11 +79,7 @@ const Breadcrumbs = () => (
     <ExampleContainer>
       <DxcBreadcrumbs items={items} showRoot={false} />
     </ExampleContainer>
-    <Title
-      title="Collapsed variant with dropdown menu opened"
-      theme="light"
-      level={3}
-    />
+    <Title title="Collapsed variant with dropdown menu opened" theme="light" level={3} />
     <ExampleContainer>
       <DxcContainer height="150px">
         <DxcBreadcrumbs items={items} />
@@ -101,11 +97,7 @@ const Breadcrumbs = () => (
     <ExampleContainer pseudoState="pseudo-active">
       <DxcBreadcrumbs items={items} />
     </ExampleContainer>
-    <Title
-      title="Truncation and text ellipsis with tooltip (only when collapsed)"
-      theme="light"
-      level={3}
-    />
+    <Title title="Truncation and text ellipsis with tooltip (only when collapsed)" theme="light" level={3} />
     <ExampleContainer>
       <DxcContainer width="200px">
         <DxcBreadcrumbs
@@ -131,11 +123,7 @@ const Breadcrumbs = () => (
         />
       </DxcContainer>
     </ExampleContainer>
-    <Title
-      title="Truncation, text ellipsis with tooltip and without root"
-      theme="light"
-      level={3}
-    />
+    <Title title="Truncation, text ellipsis with tooltip and without root" theme="light" level={3} />
     <ExampleContainer>
       <DxcContainer width="200px">
         <DxcBreadcrumbs
@@ -162,11 +150,7 @@ const Breadcrumbs = () => (
         />
       </DxcContainer>
     </ExampleContainer>
-    <Title
-      title="Dropdown theming doesn't affect the collapsed trigger"
-      theme="light"
-      level={3}
-    />
+    <Title title="Dropdown theming doesn't affect the collapsed trigger" theme="light" level={3} />
     <ExampleContainer>
       <Title title="Opinionated theming" theme="light" level={4} />
       <ExampleContainer>

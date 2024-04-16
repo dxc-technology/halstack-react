@@ -59,9 +59,7 @@ const DxcRadio = ({
               tabIndex={disabled ? -1 : focused ? tabIndex : -1}
               ref={ref}
             >
-              {checked && (
-                <Dot disabled={disabled} readOnly={readOnly} error={error} />
-              )}
+              {checked && <Dot disabled={disabled} readOnly={readOnly} error={error} />}
             </RadioInput>
           </RadioInputContainer>
           <Label id={radioLabelId} disabled={disabled}>
@@ -80,7 +78,7 @@ type CommonStylingProps = {
 };
 const getRadioInputStateColor = (
   props: CommonStylingProps & { theme: AdvancedTheme["radioGroup"] },
-  state: "enabled" | "hover" | "active"
+  state: "enabled" | "hover" | "active",
 ) => {
   switch (state) {
     case "hover":
@@ -156,27 +154,22 @@ const Label = styled.span<{ disabled: RadioProps["disabled"] }>`
 const RadioContainer = styled.span<CommonStylingProps>`
   display: inline-flex;
   align-items: center;
-  cursor: ${(props) =>
-    props.disabled ? "not-allowed" : props.readOnly ? "default" : "pointer"};
+  cursor: ${(props) => (props.disabled ? "not-allowed" : props.readOnly ? "default" : "pointer")};
 
   &:hover {
     ${RadioInput} {
-      border-color: ${(props) =>
-        !props.disabled && getRadioInputStateColor(props, "hover")};
+      border-color: ${(props) => !props.disabled && getRadioInputStateColor(props, "hover")};
     }
     ${Dot} {
-      background-color: ${(props) =>
-        !props.disabled && getRadioInputStateColor(props, "hover")};
+      background-color: ${(props) => !props.disabled && getRadioInputStateColor(props, "hover")};
     }
   }
   &:active {
     ${RadioInput} {
-      border-color: ${(props) =>
-        !props.disabled && getRadioInputStateColor(props, "active")};
+      border-color: ${(props) => !props.disabled && getRadioInputStateColor(props, "active")};
     }
     ${Dot} {
-      background-color: ${(props) =>
-        !props.disabled && getRadioInputStateColor(props, "active")};
+      background-color: ${(props) => !props.disabled && getRadioInputStateColor(props, "active")};
     }
   }
 `;

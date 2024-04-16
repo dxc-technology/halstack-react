@@ -20,7 +20,7 @@ describe("Tag component accessibility tests", () => {
         margin="medium"
         size="medium"
         labelPosition="before"
-      />
+      />,
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
@@ -35,7 +35,7 @@ describe("Tag component accessibility tests", () => {
         size="medium"
         labelPosition="before"
         newWindow
-      />
+      />,
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();

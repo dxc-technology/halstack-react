@@ -48,9 +48,7 @@ describe("Dialog component tests", () => {
   });
 
   test("Dialog renders without close button", () => {
-    const { queryByRole } = render(
-      <DxcDialog isCloseVisible={false}>dialog-text</DxcDialog>
-    );
+    const { queryByRole } = render(<DxcDialog isCloseVisible={false}>dialog-text</DxcDialog>);
     expect(queryByRole("button")).toBeFalsy();
   });
 
@@ -58,7 +56,7 @@ describe("Dialog component tests", () => {
     const { getByRole } = render(
       <DxcDialog isCloseVisible={false} overlay={false}>
         dialog-text
-      </DxcDialog>
+      </DxcDialog>,
     );
     expect(getByRole("dialog")).toBeTruthy();
     expect(getByRole("dialog").getAttribute("aria-modal")).toBe("false");
@@ -66,9 +64,7 @@ describe("Dialog component tests", () => {
 
   test("Calls correct function onCloseClick", () => {
     const onCloseClick = jest.fn();
-    const { getByRole } = render(
-      <DxcDialog onCloseClick={onCloseClick}>dialog-text</DxcDialog>
-    );
+    const { getByRole } = render(<DxcDialog onCloseClick={onCloseClick}>dialog-text</DxcDialog>);
     const closeButton = getByRole("button");
     fireEvent.click(closeButton);
     expect(onCloseClick).toHaveBeenCalled();
@@ -76,9 +72,7 @@ describe("Dialog component tests", () => {
 
   test("Calls correct function onCloseClick when 'Escape' key is pressed", () => {
     const onCloseClick = jest.fn();
-    const { getByRole } = render(
-      <DxcDialog onCloseClick={onCloseClick}>dialog-text</DxcDialog>
-    );
+    const { getByRole } = render(<DxcDialog onCloseClick={onCloseClick}>dialog-text</DxcDialog>);
     fireEvent.keyDown(getByRole("dialog"), {
       key: "Escape",
       code: "Escape",
@@ -93,7 +87,7 @@ describe("Dialog component tests", () => {
     const { getByRole } = render(
       <DxcDialog onCloseClick={onCloseClick}>
         <DxcDateInput label="With format M-dd-yyyy" format="M-dd-yyyy" />
-      </DxcDialog>
+      </DxcDialog>,
     );
     const calendarAction = getByRole("combobox");
     await userEvent.click(calendarAction);
@@ -124,7 +118,7 @@ describe("Dialog component: Focus lock tests", () => {
     const { getAllByRole } = render(
       <DxcDialog>
         <DxcButton label="Accept" />
-      </DxcDialog>
+      </DxcDialog>,
     );
     const button = getAllByRole("button")[0];
     expect(document.activeElement).toEqual(button);
@@ -134,10 +128,8 @@ describe("Dialog component: Focus lock tests", () => {
   test("Autofocus with Card component", () => {
     const { getByRole } = render(
       <DxcDialog>
-        <DxcCard linkHref="https://developer.dxc.com/halstack/next/components/card/">
-          example-card
-        </DxcCard>
-      </DxcDialog>
+        <DxcCard linkHref="https://developer.dxc.com/halstack/next/components/card/">example-card</DxcCard>
+      </DxcDialog>,
     );
     const card = getByRole("link");
     expect(document.activeElement).toEqual(card);
@@ -147,7 +139,7 @@ describe("Dialog component: Focus lock tests", () => {
     const { getByRole } = render(
       <DxcDialog>
         <DxcCheckbox label="Name" />
-      </DxcDialog>
+      </DxcDialog>,
     );
     const checkbox = getByRole("checkbox");
     expect(document.activeElement).toEqual(checkbox);
@@ -157,7 +149,7 @@ describe("Dialog component: Focus lock tests", () => {
     const { getByRole } = render(
       <DxcDialog>
         This is a text with a <DxcLink href="#">Link</DxcLink> to another page.
-      </DxcDialog>
+      </DxcDialog>,
     );
     const link = getByRole("link");
     expect(document.activeElement).toEqual(link);
@@ -167,7 +159,7 @@ describe("Dialog component: Focus lock tests", () => {
     const { getAllByRole } = render(
       <DxcDialog>
         <DxcRadioGroup label="Example" options={options} />
-      </DxcDialog>
+      </DxcDialog>,
     );
     const checkedRadio = getAllByRole("radio")[0];
     expect(document.activeElement).toEqual(checkedRadio);
@@ -177,7 +169,7 @@ describe("Dialog component: Focus lock tests", () => {
     const { getByRole } = render(
       <DxcDialog>
         <DxcSelect label="Country" options={options} />
-      </DxcDialog>
+      </DxcDialog>,
     );
     const select = getByRole("combobox");
     expect(document.activeElement).toEqual(select);
@@ -187,7 +179,7 @@ describe("Dialog component: Focus lock tests", () => {
     const { getByRole } = render(
       <DxcDialog>
         <DxcSlider label="label" minValue={0} maxValue={100} showLimitsValues />
-      </DxcDialog>
+      </DxcDialog>,
     );
     const slider = getByRole("slider");
     expect(document.activeElement).toEqual(slider);
@@ -197,7 +189,7 @@ describe("Dialog component: Focus lock tests", () => {
     const { getByRole } = render(
       <DxcDialog>
         <DxcSwitch label="Example" />
-      </DxcDialog>
+      </DxcDialog>,
     );
     const switchButton = getByRole("switch");
     expect(document.activeElement).toEqual(switchButton);
@@ -207,7 +199,7 @@ describe("Dialog component: Focus lock tests", () => {
     const { getByRole } = render(
       <DxcDialog>
         <DxcTextInput label="Name" />
-      </DxcDialog>
+      </DxcDialog>,
     );
     const input = getByRole("textbox");
     expect(document.activeElement).toEqual(input);
@@ -217,7 +209,7 @@ describe("Dialog component: Focus lock tests", () => {
     const { getByRole } = render(
       <DxcDialog>
         <DxcTextarea label="Name" />
-      </DxcDialog>
+      </DxcDialog>,
     );
     const textarea = getByRole("textbox");
     expect(document.activeElement).toEqual(textarea);
@@ -228,7 +220,7 @@ describe("Dialog component: Focus lock tests", () => {
       <DxcDialog>
         <input title="Name" tabIndex={-1} />
         <input title="Name" />
-      </DxcDialog>
+      </DxcDialog>,
     );
     const inputs = getAllByRole("textbox");
     const button = getByRole("button");
@@ -253,7 +245,7 @@ describe("Dialog component: Focus lock tests", () => {
         <DxcRadioGroup label="Country" options={options} tabIndex={-1} />
         <DxcTextInput label="Name" tabIndex={-1} />
         <DxcTextarea label="Description" />
-      </DxcDialog>
+      </DxcDialog>,
     );
     const textarea = getAllByRole("textbox")[2];
     expect(document.activeElement).toEqual(textarea);
@@ -265,7 +257,7 @@ describe("Dialog component: Focus lock tests", () => {
         <DxcCheckbox label="Accept" disabled />
         <DxcTextarea label="Name" />
         <DxcRadioGroup label="Name" options={options} />
-      </DxcDialog>
+      </DxcDialog>,
     );
     const closeAction = getByRole("button");
     const textarea = getByRole("textbox");
@@ -283,7 +275,7 @@ describe("Dialog component: Focus lock tests", () => {
         <input title="Name" style={{ display: "none" }} />
         <input title="Name" style={{ visibility: "hidden" }} />
         <input type="hidden" name="example" />
-      </DxcDialog>
+      </DxcDialog>,
     );
     const closeAction = getByRole("button");
     expect(document.activeElement).toEqual(closeAction);
@@ -300,7 +292,7 @@ describe("Dialog component: Focus lock tests", () => {
           <p>Sample text.</p>
         </DxcDialog>
         <DxcTextInput label="Surname" />
-      </>
+      </>,
     );
     const inputs = getAllByRole("textbox");
     const dialog = getAllByRole("dialog")[0];

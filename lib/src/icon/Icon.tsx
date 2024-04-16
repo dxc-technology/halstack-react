@@ -9,15 +9,7 @@ const DxcIcon = ({ icon }: IconPropsType): JSX.Element => {
     filled = true;
     iconName = icon.replace(/filled_/g, "");
   }
-  return (
-    <IconContainer
-      role="img"
-      aria-label={icon}
-      filled={filled}
-      icon={iconName}
-      aria-hidden="true"
-    />
-  );
+  return <IconContainer role="img" aria-label={icon} filled={filled} icon={iconName} aria-hidden="true" />;
 };
 
 const IconContainer = styled.span<{
@@ -38,8 +30,7 @@ const IconContainer = styled.span<{
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   -moz-osx-font-smoothing: grayscale;
-  font-variation-settings: ${(props) =>
-    props.filled ? "'FILL' 1" : "'FILL' 0"};
+  font-variation-settings: ${(props) => (props.filled ? "'FILL' 1" : "'FILL' 0")};
   ::before {
     content: "${(props) => props.icon}";
   }

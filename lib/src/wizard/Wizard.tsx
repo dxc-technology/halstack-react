@@ -7,12 +7,7 @@ import DxcIcon from "../icon/Icon";
 
 const icons = {
   validIcon: (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="18"
-      height="18"
-      viewBox="0 0 18 18"
-    >
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
       <path data-name="Path 2946" d="M0,0H18V18H0Z" fill="none" />
       <path
         data-name="Path 2947"
@@ -30,12 +25,7 @@ const icons = {
     </svg>
   ),
   invalidIcon: (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="18"
-      height="18"
-      viewBox="0 0 18 18"
-    >
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
       <path data-name="Path 2943" d="M0,0H18V18H0Z" fill="none" />
       <path
         data-name="Path 2944"
@@ -62,9 +52,7 @@ const DxcWizard = ({
   margin,
   tabIndex = 0,
 }: WizardPropsType): JSX.Element => {
-  const [innerCurrent, setInnerCurrentStep] = useState(
-    currentStep ?? defaultCurrentStep ?? 0
-  );
+  const [innerCurrent, setInnerCurrentStep] = useState(currentStep ?? defaultCurrentStep ?? 0);
   const renderedCurrent = currentStep == null ? innerCurrent : currentStep;
   const colorsTheme = useTheme();
 
@@ -82,11 +70,7 @@ const DxcWizard = ({
     <ThemeProvider theme={colorsTheme.wizard}>
       <StepsContainer mode={mode} margin={margin} role="group">
         {steps?.map((step, i) => (
-          <StepContainer
-            key={`step${i}`}
-            mode={mode}
-            lastStep={steps && i === (steps?.length || 0) - 1}
-          >
+          <StepContainer key={`step${i}`} mode={mode} lastStep={steps && i === (steps?.length || 0) - 1}>
             <Step
               onClick={() => {
                 handleStepClick(i);
@@ -99,11 +83,7 @@ const DxcWizard = ({
               tabIndex={tabIndex}
             >
               <StepHeader validityIcon={step.valid !== undefined}>
-                <IconContainer
-                  current={i === renderedCurrent}
-                  visited={i < renderedCurrent}
-                  disabled={step.disabled}
-                >
+                <IconContainer current={i === renderedCurrent} visited={i < renderedCurrent} disabled={step.disabled}>
                   {step.icon ? (
                     typeof step.icon === "string" ? (
                       <DxcIcon icon={step.icon} />
@@ -116,32 +96,20 @@ const DxcWizard = ({
                 </IconContainer>
                 {step.valid !== undefined &&
                   (step.valid ? (
-                    <ValidityIconContainer>
-                      {icons.validIcon}
-                    </ValidityIconContainer>
+                    <ValidityIconContainer>{icons.validIcon}</ValidityIconContainer>
                   ) : (
-                    <ValidityIconContainer>
-                      {icons.invalidIcon}
-                    </ValidityIconContainer>
+                    <ValidityIconContainer>{icons.invalidIcon}</ValidityIconContainer>
                   ))}
               </StepHeader>
               {(step.label || step.description) && (
                 <InfoContainer>
                   {step.label && (
-                    <Label
-                      current={i === renderedCurrent}
-                      disabled={step.disabled}
-                      visited={i <= innerCurrent}
-                    >
+                    <Label current={i === renderedCurrent} disabled={step.disabled} visited={i <= innerCurrent}>
                       {step.label}
                     </Label>
                   )}
                   {step.description && (
-                    <Description
-                      current={i === renderedCurrent}
-                      disabled={step.disabled}
-                      visited={i <= innerCurrent}
-                    >
+                    <Description current={i === renderedCurrent} disabled={step.disabled} visited={i <= innerCurrent}>
                       {step.description}
                     </Description>
                   )}
@@ -165,26 +133,15 @@ const StepsContainer = styled.div<{
   justify-content: center;
   ${(props) => props.mode === "vertical" && "height: 500px"};
   font-family: ${(props) => props.theme.fontFamily};
-  margin: ${(props) =>
-    props.margin && typeof props.margin !== "object"
-      ? spaces[props.margin]
-      : "0px"};
+  margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.top
-      ? spaces[props.margin.top]
-      : ""};
+    props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
   margin-right: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.right
-      ? spaces[props.margin.right]
-      : ""};
+    props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
   margin-bottom: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.bottom
-      ? spaces[props.margin.bottom]
-      : ""};
+    props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
   margin-left: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.left
-      ? spaces[props.margin.left]
-      : ""};
+    props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
 `;
 
 const StepContainer = styled.div<{

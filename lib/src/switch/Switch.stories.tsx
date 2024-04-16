@@ -98,10 +98,7 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Medium size (with large label)" theme="light" level={4} />
-      <DxcSwitch
-        label="Very very very large label or even huge"
-        size="medium"
-      />
+      <DxcSwitch label="Very very very large label or even huge" size="medium" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Medium size (with long label)" theme="light" level={4} />

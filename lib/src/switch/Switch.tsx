@@ -22,7 +22,7 @@ const DxcSwitch = React.forwardRef<RefType, SwitchPropsType>(
       size = "fitContent",
       tabIndex = 0,
     },
-    ref
+    ref,
   ): JSX.Element => {
     const switchId = `switch-${useId()}`;
     const labelId = `label-${switchId}`;
@@ -67,14 +67,8 @@ const DxcSwitch = React.forwardRef<RefType, SwitchPropsType>(
           ref={ref}
         >
           {labelPosition === "before" && label && (
-            <LabelContainer
-              id={labelId}
-              labelPosition={labelPosition}
-              disabled={disabled}
-              label={label}
-            >
-              {label}{" "}
-              {optional && <>{translatedLabels.formFields.optionalLabel}</>}
+            <LabelContainer id={labelId} labelPosition={labelPosition} disabled={disabled} label={label}>
+              {label} {optional && <>{translatedLabels.formFields.optionalLabel}</>}
             </LabelContainer>
           )}
           <ValueInput
@@ -98,20 +92,14 @@ const DxcSwitch = React.forwardRef<RefType, SwitchPropsType>(
             />
           </SwitchBase>
           {labelPosition === "after" && label && (
-            <LabelContainer
-              id={labelId}
-              labelPosition={labelPosition}
-              disabled={disabled}
-              label={label}
-            >
-              {optional && <>{translatedLabels.formFields.optionalLabel}</>}{" "}
-              {label}
+            <LabelContainer id={labelId} labelPosition={labelPosition} disabled={disabled} label={label}>
+              {optional && <>{translatedLabels.formFields.optionalLabel}</>} {label}
             </LabelContainer>
           )}
         </SwitchContainer>
       </ThemeProvider>
     );
-  }
+  },
 );
 
 const sizes = {
@@ -130,7 +118,7 @@ const calculateWidth = (margin, size) =>
 const getDisabledColor = (
   theme: AdvancedTheme["switch"],
   element: "track" | "thumb" | "label",
-  subElement?: "check" | "uncheck"
+  subElement?: "check" | "uncheck",
 ) => {
   switch (element) {
     case "track":
@@ -161,7 +149,7 @@ const getDisabledColor = (
 const getNotDisabledColor = (
   theme: AdvancedTheme["switch"],
   element: "track" | "thumb" | "label",
-  subElement?: "check" | "uncheck"
+  subElement?: "check" | "uncheck",
 ) => {
   switch (element) {
     case "track":
@@ -202,26 +190,15 @@ const SwitchContainer = styled.div<{
   height: 40px;
   cursor: ${(props) => (props.disabled === true ? "not-allowed" : "pointer")};
 
-  margin: ${(props) =>
-    props.margin && typeof props.margin !== "object"
-      ? spaces[props.margin]
-      : "0px"};
+  margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.top
-      ? spaces[props.margin.top]
-      : ""};
+    props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
   margin-right: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.right
-      ? spaces[props.margin.right]
-      : ""};
+    props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
   margin-bottom: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.bottom
-      ? spaces[props.margin.bottom]
-      : ""};
+    props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
   margin-left: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.left
-      ? spaces[props.margin.left]
-      : ""};
+    props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
 `;
 
 const LabelContainer = styled.span<{
@@ -233,16 +210,11 @@ const LabelContainer = styled.span<{
   text-overflow: ellipsis;
   white-space: nowrap;
   color: ${(props) =>
-    props.disabled
-      ? getDisabledColor(props.theme, "label")
-      : getNotDisabledColor(props.theme, "label")};
+    props.disabled ? getDisabledColor(props.theme, "label") : getNotDisabledColor(props.theme, "label")};
   opacity: 1;
   font-family: ${(props) => props.theme.labelFontFamily};
   font-size: ${(props) => props.theme.labelFontSize};
-  font-style: ${(props) =>
-    props.disabled
-      ? props.theme.disabledLabelFontStyle
-      : props.theme.labelFontStyle};
+  font-style: ${(props) => (props.disabled ? props.theme.disabledLabelFontStyle : props.theme.labelFontStyle)};
   font-weight: ${(props) => props.theme.labelFontWeight};
 
   ${(props) =>

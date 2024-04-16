@@ -41,8 +41,7 @@ export const Chromatic = () => (
     <ExampleContainer>
       <DxcContainer
         background={{
-          image:
-            "url(https://www.laecuaciondigital.com/wp-content/uploads/2023/10/DXC-Technology.png)",
+          image: "url(https://www.laecuaciondigital.com/wp-content/uploads/2023/10/DXC-Technology.png)",
           position: "50%",
         }}
         width="500px"
@@ -60,20 +59,10 @@ export const Chromatic = () => (
         borderRadius="0.25rem"
         margin={{ bottom: "xxlarge" }}
       >
-        <DxcContainer
-          display="inline-block"
-          background={{ color: "color_purple_400" }}
-          width="50px"
-          height="50px"
-        >
+        <DxcContainer display="inline-block" background={{ color: "color_purple_400" }} width="50px" height="50px">
           <b>1</b>
         </DxcContainer>
-        <DxcContainer
-          display="inline-block"
-          background={{ color: "color_purple_400" }}
-          width="50px"
-          height="50px"
-        >
+        <DxcContainer display="inline-block" background={{ color: "color_purple_400" }} width="50px" height="50px">
           <b>2</b>
         </DxcContainer>
         <DxcContainer
@@ -104,23 +93,14 @@ export const Chromatic = () => (
         >
           <b>1</b>
         </DxcContainer>
-        <DxcContainer
-          background={{ color: "color_purple_400" }}
-          width="50px"
-          height="50px"
-          margin={{ top: "large" }}
-        >
+        <DxcContainer background={{ color: "color_purple_400" }} width="50px" height="50px" margin={{ top: "large" }}>
           <b>2</b>
         </DxcContainer>
       </DxcContainer>
     </ExampleContainer>
     <Title title="Overflow" level={4} />
     <ExampleContainer>
-      <DxcContainer
-        overflow={{ x: "auto" }}
-        maxHeight="100px"
-        width="fit-content"
-      >
+      <DxcContainer overflow={{ x: "auto" }} maxHeight="100px" width="fit-content">
         <DxcContainer
           border={{ width: "1px", style: "solid", color: "color_black" }}
           background={{ color: "color_purple_400" }}
@@ -149,32 +129,19 @@ export const Chromatic = () => (
     </ExampleContainer>
     <Title title="Float" level={4} />
     <ExampleContainer>
-      <DxcContainer
-        padding="medium"
-        border={{ width: "1px", style: "solid", color: "color_black" }}
-      >
-        <DxcContainer
-          float="right"
-          background={{ color: "color_purple_400" }}
-          width="100px"
-          height="100px"
-        >
+      <DxcContainer padding="medium" border={{ width: "1px", style: "solid", color: "color_black" }}>
+        <DxcContainer float="right" background={{ color: "color_purple_400" }} width="100px" height="100px">
           <b>Floating text</b>
         </DxcContainer>
         <p style={{ margin: 0 }}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-          facilisis, sapien vitae aliquam lacinia, nisl quam tincidunt ligula,
-          eget aliquam eros quam quis nunc. Donec euismod, nisl eget ultricies
-          aliquam, nisl velit aliquam nunc, quis aliquam nisl nunc vel nisl.
-          Donec euismod, nisl eget ultricies aliquam, nisl velit aliquam nunc,
-          quis aliquam nisl nunc vel nisl. Donec euismod, nisl eget ultricies
-          aliquam, nisl velit aliquam nunc, quis aliquam nisl nunc vel nisl.
-          Donec euismod, nisl eget ultricies aliquam, nisl velit aliquam nunc,
-          quis aliquam nisl nunc vel nisl. Donec euismod, nisl eget ultricies
-          aliquam, nisl velit aliquam nunc, quis aliquam nisl nunc vel nisl.
-          Donec euismod, nisl eget ultricies aliquam, nisl velit aliquam nunc,
-          quis aliquam nisl nunc vel nisl. Donec euismod, nisl eget ultricies
-          aliquam, nisl velit aliquam nunc, quis aliquam nisl.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisis, sapien vitae aliquam lacinia, nisl
+          quam tincidunt ligula, eget aliquam eros quam quis nunc. Donec euismod, nisl eget ultricies aliquam, nisl
+          velit aliquam nunc, quis aliquam nisl nunc vel nisl. Donec euismod, nisl eget ultricies aliquam, nisl velit
+          aliquam nunc, quis aliquam nisl nunc vel nisl. Donec euismod, nisl eget ultricies aliquam, nisl velit aliquam
+          nunc, quis aliquam nisl nunc vel nisl. Donec euismod, nisl eget ultricies aliquam, nisl velit aliquam nunc,
+          quis aliquam nisl nunc vel nisl. Donec euismod, nisl eget ultricies aliquam, nisl velit aliquam nunc, quis
+          aliquam nisl nunc vel nisl. Donec euismod, nisl eget ultricies aliquam, nisl velit aliquam nunc, quis aliquam
+          nisl nunc vel nisl. Donec euismod, nisl eget ultricies aliquam, nisl velit aliquam nunc, quis aliquam nisl.
         </p>
       </DxcContainer>
     </ExampleContainer>
@@ -186,32 +153,20 @@ export const Chromatic = () => (
         boxShadow="10px 5px 5px #fe0123"
       >
         <p style={{ margin: 0 }}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-          facilisis, sapien vitae aliquam lacinia, nisl quam tincidunt ligula,
-          eget aliquam eros quam quis nunc. Donec euismod, nisl eget ultricies
-          aliquam, nisl velit aliquam nunc, quis aliquam nisl nunc vel nisl.
-          Donec euismod, nisl eget ultricies aliquam, nisl velit aliquam nunc,
-          quis aliquam nisl nunc vel nisl. Donec euismod, nisl eget ultricies
-          aliquam, nisl velit aliquam nunc, quis aliquam nisl nunc vel nisl.
-          Donec euismod, nisl eget ultricies aliquam, nisl velit aliquam nunc,
-          quis aliquam nisl nunc vel nisl. Donec euismod, nisl eget ultricies
-          aliquam, nisl velit aliquam nunc, quis aliquam nisl nunc vel nisl.
-          Donec euismod, nisl eget ultricies aliquam, nisl velit aliquam nunc,
-          quis aliquam nisl.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisis, sapien vitae aliquam lacinia, nisl
+          quam tincidunt ligula, eget aliquam eros quam quis nunc. Donec euismod, nisl eget ultricies aliquam, nisl
+          velit aliquam nunc, quis aliquam nisl nunc vel nisl. Donec euismod, nisl eget ultricies aliquam, nisl velit
+          aliquam nunc, quis aliquam nisl nunc vel nisl. Donec euismod, nisl eget ultricies aliquam, nisl velit aliquam
+          nunc, quis aliquam nisl nunc vel nisl. Donec euismod, nisl eget ultricies aliquam, nisl velit aliquam nunc,
+          quis aliquam nisl nunc vel nisl. Donec euismod, nisl eget ultricies aliquam, nisl velit aliquam nunc, quis
+          aliquam nisl nunc vel nisl. Donec euismod, nisl eget ultricies aliquam, nisl velit aliquam nunc, quis aliquam
+          nisl.
         </p>
       </DxcContainer>
     </ExampleContainer>
     <Title title="Building a listbox component" level={4} />
     <ExampleContainer>
-      <Listbox
-        suggestions={[
-          "Option 1",
-          "Option 2",
-          "Option 3",
-          "Option 4",
-          "Option 5",
-        ]}
-      />
+      <Listbox suggestions={["Option 1", "Option 2", "Option 3", "Option 4", "Option 5"]} />
     </ExampleContainer>
     <Title title="Border and outline" level={4} />
     <ExampleContainer>
@@ -225,11 +180,7 @@ export const Chromatic = () => (
   </>
 );
 
-const Listbox = ({
-  suggestions = [],
-}: {
-  suggestions: string[];
-}): JSX.Element => (
+const Listbox = ({ suggestions = [] }: { suggestions: string[] }): JSX.Element => (
   <DxcContainer
     boxSizing="border-box"
     boxShadow="0 4px 6px -1px rgba(0, 0, 0, 0.1)"
@@ -242,10 +193,7 @@ const Listbox = ({
     overflow={{ x: "hidden", y: "auto" }}
   >
     {suggestions.map((suggestion, index) => (
-      <DxcContainer
-        key={`container-${index}`}
-        padding={{ left: "xsmall", right: "xsmall" }}
-      >
+      <DxcContainer key={`container-${index}`} padding={{ left: "xsmall", right: "xsmall" }}>
         <DxcContainer
           border={
             index !== suggestions.length - 1
@@ -266,11 +214,7 @@ const Listbox = ({
           }}
           overflow="hidden"
         >
-          <DxcTypography
-            whiteSpace="nowrap"
-            textOverflow="ellipsis"
-            lineHeight="1.715em"
-          >
+          <DxcTypography whiteSpace="nowrap" textOverflow="ellipsis" lineHeight="1.715em">
             {suggestion}
           </DxcTypography>
         </DxcContainer>

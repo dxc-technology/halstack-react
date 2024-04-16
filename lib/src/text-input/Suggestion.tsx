@@ -7,9 +7,7 @@ const transformSpecialChars = (str: string) => {
   let value = str;
   if (specialCharsRegex.test(value)) {
     const regexAsString = specialCharsRegex.toString().split("");
-    const uniqueSpecialChars = regexAsString.filter(
-      (item, index) => regexAsString.indexOf(item) === index
-    );
+    const uniqueSpecialChars = regexAsString.filter((item, index) => regexAsString.indexOf(item) === index);
     uniqueSpecialChars.forEach((specialChar) => {
       if (str.includes(specialChar)) {
         value = value.replace(specialChar, `\\${specialChar}`);
@@ -68,10 +66,7 @@ const SuggestionContainer = styled.li<{
   line-height: 1.715em;
   cursor: pointer;
   box-shadow: inset 0 0 0 2px
-    ${(props) =>
-      props.visuallyFocused
-        ? props.theme.focusListOptionBorderColor
-        : "transparent"};
+    ${(props) => (props.visuallyFocused ? props.theme.focusListOptionBorderColor : "transparent")};
 
   &:hover {
     background-color: ${(props) => props.theme.hoverListOptionBackgroundColor};

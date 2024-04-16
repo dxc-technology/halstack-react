@@ -35,9 +35,7 @@ c-10.663,0-17.467,1.853-20.417,5.568c-2.949,3.711-4.428,10.23-4.428,19.558v31.11
   </svg>
 );
 
-const TitleComponent = () => (
-  <DxcSidenav.Title>Dxc technology</DxcSidenav.Title>
-);
+const TitleComponent = () => <DxcSidenav.Title>Dxc technology</DxcSidenav.Title>;
 
 const opinionatedTheme = {
   sidenav: {
@@ -52,17 +50,13 @@ export const Chromatic = () => (
       <DxcSidenav title={<DxcSidenav.Title>Dxc technology</DxcSidenav.Title>}>
         <DxcSidenav.Section>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In
-            ullamcorper consectetur mollis. Suspendisse vitae lacinia libero.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ullamcorper consectetur mollis. Suspendisse
+            vitae lacinia libero.
           </p>
         </DxcSidenav.Section>
         <DxcSidenav.Section>
           <DxcSidenav.Link>Single Link</DxcSidenav.Link>
-          <DxcSidenav.Group
-            collapsable={false}
-            title="Single Group"
-            icon={iconSVG}
-          >
+          <DxcSidenav.Group collapsable={false} title="Single Group" icon={iconSVG}>
             <DxcSidenav.Link>Group Link</DxcSidenav.Link>
             <DxcSidenav.Link>Group Link</DxcSidenav.Link>
             <DxcSidenav.Link>Group Link</DxcSidenav.Link>
@@ -70,11 +64,7 @@ export const Chromatic = () => (
           </DxcSidenav.Group>
         </DxcSidenav.Section>
         <DxcSidenav.Section>
-          <DxcSidenav.Group
-            collapsable
-            title="Section Group"
-            icon="filled_bottom_app_bar"
-          >
+          <DxcSidenav.Group collapsable title="Section Group" icon="filled_bottom_app_bar">
             <DxcSidenav.Link selected>Group Link</DxcSidenav.Link>
             <DxcSidenav.Link icon={iconSVG}>Group Link</DxcSidenav.Link>
           </DxcSidenav.Group>
@@ -95,16 +85,14 @@ export const Chromatic = () => (
       <DxcSidenav title={<DxcSidenav.Title>Dxc technology</DxcSidenav.Title>}>
         <DxcSidenav.Section>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In
-            ullamcorper consectetur mollis. Suspendisse vitae lacinia libero.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ullamcorper consectetur mollis. Suspendisse
+            vitae lacinia libero.
           </p>
         </DxcSidenav.Section>
         <DxcSidenav.Section>
           <DxcSidenav.Link>Single Link</DxcSidenav.Link>
           <DxcSidenav.Group collapsable title="Collapsable Group">
-            <DxcSidenav.Link icon="filled_bottom_app_bar">
-              Group Link
-            </DxcSidenav.Link>
+            <DxcSidenav.Link icon="filled_bottom_app_bar">Group Link</DxcSidenav.Link>
           </DxcSidenav.Group>
         </DxcSidenav.Section>
         <DxcSidenav.Section>
@@ -125,17 +113,13 @@ export const Chromatic = () => (
         <DxcSidenav title={<TitleComponent />}>
           <DxcSidenav.Section>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. In
-              ullamcorper consectetur mollis. Suspendisse vitae lacinia libero.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ullamcorper consectetur mollis. Suspendisse
+              vitae lacinia libero.
             </p>
           </DxcSidenav.Section>
           <DxcSidenav.Section>
             <DxcSidenav.Link>Single Link</DxcSidenav.Link>
-            <DxcSidenav.Group
-              collapsable={false}
-              title="Single Group"
-              icon={iconSVG}
-            >
+            <DxcSidenav.Group collapsable={false} title="Single Group" icon={iconSVG}>
               <DxcSidenav.Link>Group Link</DxcSidenav.Link>
               <DxcSidenav.Link>Group Link</DxcSidenav.Link>
               <DxcSidenav.Link>Group Link</DxcSidenav.Link>
@@ -163,11 +147,7 @@ export const Chromatic = () => (
 
 const CollapsedGroupSidenav = () => (
   <ExampleContainer>
-    <Title
-      title="Collapsed group with a selected link"
-      theme="light"
-      level={4}
-    />
+    <Title title="Collapsed group with a selected link" theme="light" level={4} />
     <DxcSidenav title={<DxcSidenav.Title>Dxc technology</DxcSidenav.Title>}>
       <DxcSidenav.Section>
         <DxcSidenav.Group collapsable title="Collapsed Group" icon={iconSVG}>
@@ -194,11 +174,7 @@ const CollapsedGroupSidenav = () => (
 
 const HoveredGroupSidenav = () => (
   <ExampleContainer pseudoState="pseudo-hover">
-    <Title
-      title="Hover state for groups (selected and not)"
-      theme="light"
-      level={4}
-    />
+    <Title title="Hover state for groups (selected and not)" theme="light" level={4} />
     <DxcSidenav title={<DxcSidenav.Title>Dxc technology</DxcSidenav.Title>}>
       <DxcSidenav.Section>
         <DxcSidenav.Link>Single Link</DxcSidenav.Link>
@@ -234,11 +210,7 @@ const HoveredGroupSidenav = () => (
 
 const ActiveGroupSidenav = () => (
   <ExampleContainer pseudoState="pseudo-active">
-    <Title
-      title="Active state for groups (selected and not)"
-      theme="light"
-      level={4}
-    />
+    <Title title="Active state for groups (selected and not)" theme="light" level={4} />
     <DxcSidenav title={<DxcSidenav.Title>Dxc technology</DxcSidenav.Title>}>
       <DxcSidenav.Section>
         <DxcInset space="1rem">

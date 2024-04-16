@@ -15,7 +15,7 @@ describe("Checkbox component accessibility tests", () => {
         margin="small"
         defaultChecked
         optional
-      />
+      />,
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
@@ -30,7 +30,7 @@ describe("Checkbox component accessibility tests", () => {
         value="checkboxValue"
         margin="small"
         readOnly
-      />
+      />,
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
@@ -45,7 +45,7 @@ describe("Checkbox component accessibility tests", () => {
         value="checkboxValue"
         margin="small"
         disabled
-      />
+      />,
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();

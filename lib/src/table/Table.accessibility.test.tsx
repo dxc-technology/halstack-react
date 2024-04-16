@@ -50,7 +50,7 @@ describe("Table component accessibility tests", () => {
             <td>cell-6</td>
           </tr>
         </tbody>
-      </DxcTable>
+      </DxcTable>,
     );
     const results = await axe(container, disabledRules);
     expect(results).toHaveNoViolations();
@@ -77,7 +77,7 @@ describe("Table component accessibility tests", () => {
             <td>cell-6</td>
           </tr>
         </tbody>
-      </DxcTable>
+      </DxcTable>,
     );
     const results = await axe(container, disabledRules);
     expect(results).toHaveNoViolations();

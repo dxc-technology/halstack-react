@@ -45,7 +45,7 @@ describe("Sidenav component accessibility tests", () => {
             <DxcSidenav.Link href="#">Lorem ipsum</DxcSidenav.Link>
           </DxcSidenav.Group>
         </DxcSidenav.Section>
-      </DxcSidenav>
+      </DxcSidenav>,
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();

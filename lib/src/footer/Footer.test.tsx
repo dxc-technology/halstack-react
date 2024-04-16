@@ -35,9 +35,7 @@ describe("Footer component tests", () => {
   });
 
   test("Footer renders with copyright text", () => {
-    const { getByText } = render(
-      <DxcFooter copyright="test-copyright"></DxcFooter>
-    );
+    const { getByText } = render(<DxcFooter copyright="test-copyright"></DxcFooter>);
     expect(getByText("test-copyright")).toBeTruthy();
   });
 
@@ -50,7 +48,7 @@ describe("Footer component tests", () => {
     const { getByText } = render(
       <DxcFooter>
         <p>footer-child-text</p>
-      </DxcFooter>
+      </DxcFooter>,
     );
     expect(getByText("footer-child-text")).toBeTruthy();
   });
@@ -65,7 +63,7 @@ describe("Footer component tests", () => {
     const { queryByText } = render(
       <DxcFooter>
         <p>footer-child-text</p>
-      </DxcFooter>
+      </DxcFooter>,
     );
 
     expect(queryByText("footer-child-text")).toBeTruthy();
@@ -78,13 +76,9 @@ describe("Footer component tests", () => {
     });
 
     const { getAllByRole, getByText } = render(
-      <DxcFooter
-        socialLinks={social}
-        bottomLinks={bottom}
-        copyright="test-copyright"
-      >
+      <DxcFooter socialLinks={social} bottomLinks={bottom} copyright="test-copyright">
         <p>footer-child-text</p>
-      </DxcFooter>
+      </DxcFooter>,
     );
     const socialIcon = getAllByRole("link")[0];
     expect(socialIcon.getAttribute("href")).toBe("https://www.test.com/social");

@@ -13,12 +13,10 @@ describe("Tabs component tests", () => {
           Tab 2
         </DxcNavTabs.Tab>
         <DxcNavTabs.Tab href="/test3">Tab 3</DxcNavTabs.Tab>
-      </DxcNavTabs>
+      </DxcNavTabs>,
     );
     expect(getByRole("tablist")).toBeTruthy();
-    expect(getByRole("tablist").getAttribute("aria-label")).toBe(
-      "Navigation tabs"
-    );
+    expect(getByRole("tablist").getAttribute("aria-label")).toBe("Navigation tabs");
     expect(getByText("Tab 1")).toBeTruthy();
     expect(getByText("Tab 2")).toBeTruthy();
     expect(getByText("Tab 3")).toBeTruthy();
@@ -48,7 +46,7 @@ describe("Tabs component tests", () => {
         <DxcNavTabs.Tab href="/test3" notificationNumber={1000} icon="Settings">
           Tab 3
         </DxcNavTabs.Tab>
-      </DxcNavTabs>
+      </DxcNavTabs>,
     );
     expect(getByText("10")).toBeTruthy();
     expect(queryByText("20")).toBeFalsy();
@@ -65,7 +63,7 @@ describe("Tabs component tests", () => {
         <DxcNavTabs.Tab href="/test3" active>
           Tab 3
         </DxcNavTabs.Tab>
-      </DxcNavTabs>
+      </DxcNavTabs>,
     );
     const tabs = getAllByRole("tab");
     expect(tabs[0].getAttribute("tabindex")).toBe("-1");

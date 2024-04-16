@@ -11,8 +11,7 @@ import DxcDatePicker from "./DatePicker";
 
 dayjs.extend(customParseFormat);
 
-const getValueForPicker = (value, format) =>
-  dayjs(value, format.toUpperCase(), true);
+const getValueForPicker = (value, format) => dayjs(value, format.toUpperCase(), true);
 
 const getDate = (value, format, lastValidYear, setLastValidYear) => {
   if ((value || value === "") && format.toUpperCase().includes("YYYY")) {
@@ -28,10 +27,7 @@ const getDate = (value, format, lastValidYear, setLastValidYear) => {
       newDate = newDate.set("year", 1900 + +newDate.format("YY"));
     }
   } else {
-    newDate = newDate.set(
-      "year",
-      (lastValidYear <= 1999 ? 1900 : 2000) + +newDate.format("YY")
-    );
+    newDate = newDate.set("year", (lastValidYear <= 1999 ? 1900 : 2000) + +newDate.format("YY"));
   }
   return newDate;
 };
@@ -58,21 +54,18 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
       size,
       tabIndex,
     },
-    ref
+    ref,
   ): JSX.Element => {
     const [innerValue, setInnerValue] = useState(defaultValue);
     const [isOpen, setIsOpen] = useState(false);
     const calendarId = `date-picker-${useId()}`;
-    const [dayjsDate, setDayjsDate] = useState(
-      getValueForPicker(value ?? defaultValue ?? "", format)
-    );
+    const [dayjsDate, setDayjsDate] = useState(getValueForPicker(value ?? defaultValue ?? "", format));
     const [lastValidYear, setLastValidYear] = useState(
       innerValue || value
-        ? !format.toUpperCase().includes("YYYY") &&
-          +getValueForPicker(value ?? innerValue, format).format("YY") < 68
+        ? !format.toUpperCase().includes("YYYY") && +getValueForPicker(value ?? innerValue, format).format("YY") < 68
           ? 2000
           : 1900
-        : undefined
+        : undefined,
     );
     const colorsTheme = useTheme();
     const translatedLabels = useTranslatedLabels();
@@ -86,9 +79,7 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
 
     useEffect(() => {
       if (!disabled) {
-        const actionButtonRef = dateRef?.current.querySelector(
-          "[title='Select date']"
-        );
+        const actionButtonRef = dateRef?.current.querySelector("[title='Select date']");
         actionButtonRef?.setAttribute("aria-haspopup", true);
         actionButtonRef?.setAttribute("role", "combobox");
         actionButtonRef?.setAttribute("aria-expanded", isOpen);
@@ -120,16 +111,9 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
       if (value == null) {
         setInnerValue(newValue);
       }
-      const newDate = getDate(
-        newValue,
-        format,
-        lastValidYear,
-        setLastValidYear
-      );
+      const newDate = getDate(newValue, format, lastValidYear, setLastValidYear);
       const invalidDateMessage =
-        newValue !== "" &&
-        !newDate.isValid() &&
-        translatedLabels.dateInput.invalidDateErrorMessage;
+        newValue !== "" && !newDate.isValid() && translatedLabels.dateInput.invalidDateErrorMessage;
       const callbackParams =
         inputError || invalidDateMessage
           ? { value: newValue, error: inputError || invalidDateMessage }
@@ -149,9 +133,7 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
     const handleOnBlur = ({ value: blurValue, error: inputError }) => {
       const date = getDate(blurValue, format, lastValidYear, setLastValidYear);
       const invalidDateMessage =
-        blurValue !== "" &&
-        !date.isValid() &&
-        translatedLabels.dateInput.invalidDateErrorMessage;
+        blurValue !== "" && !date.isValid() && translatedLabels.dateInput.invalidDateErrorMessage;
       const callbackParams =
         inputError || invalidDateMessage
           ? { value: blurValue, error: inputError || invalidDateMessage }
@@ -229,18 +211,14 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
                 onKeyDown={handleDatePickerEscKeydown}
                 avoidCollisions={false}
               >
-                <DxcDatePicker
-                  id={calendarId}
-                  onDateSelect={handleCalendarOnClick}
-                  date={dayjsDate}
-                />
+                <DxcDatePicker id={calendarId} onDateSelect={handleCalendarOnClick} date={dayjsDate} />
               </StyledPopoverContent>
             </Popover.Portal>
           </Popover.Root>
         </div>
       </ThemeProvider>
     );
-  }
+  },
 );
 
 const StyledPopoverContent = styled(Popover.Content)`

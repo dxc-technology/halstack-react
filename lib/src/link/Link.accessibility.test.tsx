@@ -19,23 +19,13 @@ describe("Link component accessibility tests", () => {
   it("Should not have basic accessibility issues", async () => {
     const { container } = render(
       <DxcFlex>
-        <DxcLink
-          href="https://www.google.com"
-          icon={icon}
-          iconPosition="before"
-          margin="medium"
-        >
+        <DxcLink href="https://www.google.com" icon={icon} iconPosition="before" margin="medium">
           Link
         </DxcLink>
-        <DxcLink
-          href="https://www.google.com"
-          icon={icon}
-          iconPosition="after"
-          margin="medium"
-        >
+        <DxcLink href="https://www.google.com" icon={icon} iconPosition="after" margin="medium">
           Link
         </DxcLink>
-      </DxcFlex>
+      </DxcFlex>,
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
@@ -43,25 +33,13 @@ describe("Link component accessibility tests", () => {
   it("Should not have basic accessibility issues for disabled mode", async () => {
     const { container } = render(
       <DxcFlex>
-        <DxcLink
-          href="https://www.google.com"
-          icon={icon}
-          iconPosition="before"
-          margin="medium"
-          disabled
-        >
+        <DxcLink href="https://www.google.com" icon={icon} iconPosition="before" margin="medium" disabled>
           Link
         </DxcLink>
-        <DxcLink
-          href="https://www.google.com"
-          icon={icon}
-          iconPosition="after"
-          margin="medium"
-          disabled
-        >
+        <DxcLink href="https://www.google.com" icon={icon} iconPosition="after" margin="medium" disabled>
           Link
         </DxcLink>
-      </DxcFlex>
+      </DxcFlex>,
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
@@ -69,25 +47,13 @@ describe("Link component accessibility tests", () => {
   it("Should not have basic accessibility issues for new-window mode", async () => {
     const { container } = render(
       <DxcFlex>
-        <DxcLink
-          href="https://www.google.com"
-          icon={icon}
-          iconPosition="before"
-          margin="medium"
-          newWindow
-        >
+        <DxcLink href="https://www.google.com" icon={icon} iconPosition="before" margin="medium" newWindow>
           Link
         </DxcLink>
-        <DxcLink
-          href="https://www.google.com"
-          icon={icon}
-          iconPosition="after"
-          margin="medium"
-          newWindow
-        >
+        <DxcLink href="https://www.google.com" icon={icon} iconPosition="after" margin="medium" newWindow>
           Link
         </DxcLink>
-      </DxcFlex>
+      </DxcFlex>,
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();

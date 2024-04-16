@@ -20,18 +20,14 @@ describe("Checkbox component tests", () => {
 
   test("Calls correct function onChange", () => {
     const onChange = jest.fn();
-    const { getByText } = render(
-      <DxcCheckbox label="Checkbox" onChange={onChange} />
-    );
+    const { getByText } = render(<DxcCheckbox label="Checkbox" onChange={onChange} />);
     fireEvent.click(getByText("Checkbox"));
     expect(onChange).toHaveBeenCalled();
   });
 
   test("Read-only checkbox does not trigger onChange function", () => {
     const onChange = jest.fn();
-    const { getByRole } = render(
-      <DxcCheckbox label="Checkbox" onChange={onChange} readOnly />
-    );
+    const { getByRole } = render(<DxcCheckbox label="Checkbox" onChange={onChange} readOnly />);
     const checkbox = getByRole("checkbox");
     expect(checkbox.getAttribute("aria-readonly")).toBe("true");
     fireEvent.click(checkbox);
@@ -47,15 +43,9 @@ describe("Checkbox component tests", () => {
     });
     const { getByText } = render(
       <form onSubmit={handlerOnSubmit}>
-        <DxcCheckbox
-          label="Checkbox"
-          name="data"
-          value="checked"
-          readOnly
-          defaultChecked
-        />
+        <DxcCheckbox label="Checkbox" name="data" value="checked" readOnly defaultChecked />
         <button type="submit">Submit</button>
-      </form>
+      </form>,
     );
     const submit = getByText("Submit");
     await userEvent.click(submit);
@@ -64,9 +54,7 @@ describe("Checkbox component tests", () => {
 
   test("Read-only checkbox doesn't change its value with Space key", () => {
     const onChange = jest.fn();
-    const { getByRole } = render(
-      <DxcCheckbox label="Checkbox" onChange={onChange} readOnly />
-    );
+    const { getByRole } = render(<DxcCheckbox label="Checkbox" onChange={onChange} readOnly />);
     const checkbox = getByRole("checkbox");
     userEvent.tab();
     expect(document.activeElement === checkbox).toBeTruthy();
@@ -81,13 +69,10 @@ describe("Checkbox component tests", () => {
 
   test("Uncontrolled checkbox", () => {
     const onChange = jest.fn();
-    const component = render(
-      <DxcCheckbox label="Checkbox" onChange={onChange} name="test" />
-    );
+    const component = render(<DxcCheckbox label="Checkbox" onChange={onChange} name="test" />);
     const visibleCheckbox = component.getByText("Checkbox");
     const input = component.getByRole("checkbox");
-    const submitInput =
-      component.container.querySelector<HTMLInputElement>(`input[name="test"]`);
+    const submitInput = component.container.querySelector<HTMLInputElement>(`input[name="test"]`);
     expect(input.getAttribute("aria-checked")).toBe("false");
     expect(submitInput.checked).toBe(false);
     fireEvent.click(visibleCheckbox);
@@ -99,18 +84,10 @@ describe("Checkbox component tests", () => {
 
   test("Controlled checkbox", () => {
     const onChange = jest.fn();
-    const component = render(
-      <DxcCheckbox
-        label="Checkbox"
-        checked={false}
-        onChange={onChange}
-        name="test"
-      />
-    );
+    const component = render(<DxcCheckbox label="Checkbox" checked={false} onChange={onChange} name="test" />);
     const input = component.getByRole("checkbox");
     const visibleCheckbox = component.getByText("Checkbox");
-    const submitInput =
-      component.container.querySelector<HTMLInputElement>(`input[name="test"]`);
+    const submitInput = component.container.querySelector<HTMLInputElement>(`input[name="test"]`);
     fireEvent.click(visibleCheckbox);
     expect(onChange).toHaveBeenCalled();
     expect(onChange).toHaveBeenCalledWith(true);
@@ -120,16 +97,10 @@ describe("Checkbox component tests", () => {
 
   test("Renders with correct initial value and initial state when it is uncontrolled", () => {
     const { getByRole, container } = render(
-      <DxcCheckbox
-        label="Default label"
-        defaultChecked
-        value="test-defaultChecked"
-        name="test"
-      />
+      <DxcCheckbox label="Default label" defaultChecked value="test-defaultChecked" name="test" />,
     );
     const checkbox = getByRole("checkbox");
-    const submitInput =
-      container.querySelector<HTMLInputElement>(`input[name="test"]`);
+    const submitInput = container.querySelector<HTMLInputElement>(`input[name="test"]`);
     expect(submitInput.value).toBe("test-defaultChecked");
     expect(checkbox.getAttribute("aria-checked")).toBe("true");
     expect(submitInput.checked).toBe(true);
@@ -138,12 +109,11 @@ describe("Checkbox component tests", () => {
   test("disable keyboard and mouse interactions", () => {
     const onChange = jest.fn();
     const { getByRole, getByText, container } = render(
-      <DxcCheckbox label="Checkbox" onChange={onChange} disabled name="test" />
+      <DxcCheckbox label="Checkbox" onChange={onChange} disabled name="test" />,
     );
     const input = getByRole("checkbox");
     const visibleCheckbox = getByText("Checkbox");
-    const submitInput =
-      container.querySelector<HTMLInputElement>(`input[name="test"]`);
+    const submitInput = container.querySelector<HTMLInputElement>(`input[name="test"]`);
     fireEvent.click(visibleCheckbox);
     expect(onChange).toHaveBeenCalledTimes(0);
     expect(input.getAttribute("aria-checked")).toBe("false");
@@ -155,9 +125,7 @@ describe("Checkbox component tests", () => {
 
   test("keyboard interactions", () => {
     const onChange = jest.fn();
-    const { getByRole } = render(
-      <DxcCheckbox label="Checkbox" name="test" onChange={onChange} />
-    );
+    const { getByRole } = render(<DxcCheckbox label="Checkbox" name="test" onChange={onChange} />);
     const checkbox = getByRole("checkbox");
     userEvent.tab();
     expect(document.activeElement === checkbox).toBeTruthy();

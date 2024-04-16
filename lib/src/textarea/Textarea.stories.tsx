@@ -28,13 +28,7 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Disabled" theme="light" level={4} />
-      <DxcTextarea
-        label="Disabled"
-        optional
-        helperText="Sample text"
-        placeholder="Enter your text here..."
-        disabled
-      />
+      <DxcTextarea label="Disabled" optional helperText="Sample text" placeholder="Enter your text here..." disabled />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Disabled with value" theme="light" level={4} />
@@ -42,21 +36,11 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Read only" theme="light" level={4} />
-      <DxcTextarea
-        label="Label"
-        readOnly
-        defaultValue="Example text"
-        verticalGrow="manual"
-      />
+      <DxcTextarea label="Label" readOnly defaultValue="Example text" verticalGrow="manual" />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-hover">
       <Title title="Hovered read only" theme="light" level={4} />
-      <DxcTextarea
-        label="Label"
-        readOnly
-        defaultValue="Example text"
-        verticalGrow="manual"
-      />
+      <DxcTextarea label="Label" readOnly defaultValue="Example text" verticalGrow="manual" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With error" theme="light" level={4} />
@@ -77,25 +61,12 @@ export const Chromatic = () => (
       />
     </ExampleContainer>
     <ExampleContainer>
-      <Title
-        title="Helper text and optional with value"
-        theme="light"
-        level={4}
-      />
-      <DxcTextarea
-        label="Helper & optional"
-        defaultValue="Some text"
-        helperText="Sample text"
-        optional
-      />
+      <Title title="Helper text and optional with value" theme="light" level={4} />
+      <DxcTextarea label="Helper & optional" defaultValue="Some text" helperText="Sample text" optional />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Resizable" theme="light" level={4} />
-      <DxcTextarea
-        label="With resizer"
-        helperText="Helper text"
-        verticalGrow="manual"
-      />
+      <DxcTextarea label="With resizer" helperText="Helper text" verticalGrow="manual" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Grow manual" theme="light" level={4} />
@@ -151,11 +122,7 @@ export const Chromatic = () => (
     <ExampleContainer pseudoState="pseudo-hover">
       <Title title="Hovered" theme="light" level={4} />
       <HalstackProvider theme={opinionatedTheme}>
-        <DxcTextarea
-          label="Hovered"
-          helperText="Sample text"
-          placeholder="Placeholder"
-        />
+        <DxcTextarea label="Hovered" helperText="Sample text" placeholder="Placeholder" />
       </HalstackProvider>
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-focus">
@@ -179,12 +146,7 @@ export const Chromatic = () => (
     <ExampleContainer>
       <Title title="Disabled with value" theme="light" level={4} />
       <HalstackProvider theme={opinionatedTheme}>
-        <DxcTextarea
-          label="Disabled"
-          helperText="Sample text"
-          defaultValue="Example text"
-          disabled
-        />
+        <DxcTextarea label="Disabled" helperText="Sample text" defaultValue="Example text" disabled />
       </HalstackProvider>
     </ExampleContainer>
     <ExampleContainer>

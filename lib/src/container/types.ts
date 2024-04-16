@@ -1,13 +1,6 @@
 import { CoreColorTokens } from "../common/coreTokens";
 
-type SpacingValues =
-  | "xxsmall"
-  | "xsmall"
-  | "small"
-  | "medium"
-  | "large"
-  | "xlarge"
-  | "xxlarge";
+type SpacingValues = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
 type Space =
   | SpacingValues
   | {
@@ -37,16 +30,7 @@ type Background = {
 
 export type BorderProperties = {
   width?: string;
-  style?:
-    | "none"
-    | "dotted"
-    | "dashed"
-    | "solid"
-    | "double"
-    | "groove"
-    | "ridge"
-    | "inset"
-    | "outset";
+  style?: "none" | "dotted" | "dashed" | "solid" | "double" | "groove" | "ridge" | "inset" | "outset";
   color?: CoreColorTokens;
 };
 type Border =
@@ -89,10 +73,7 @@ type Props = {
   children: React.ReactNode;
 };
 
-export type StyledProps = Omit<
-  Props,
-  "display" | "width" | "height" | "opacity" | "overflow"
-> & {
+export type StyledProps = Omit<Props, "display" | "width" | "height" | "opacity" | "overflow"> & {
   $display?: "block" | "inline-block" | "inline" | "none";
   $width?: string;
   $height?: string;

@@ -17,8 +17,7 @@ const iconSVG = (
   </svg>
 );
 
-const iconUrl =
-  "https://iconape.com/wp-content/files/yd/367773/svg/logo-linkedin-logo-icon-png-svg.png";
+const iconUrl = "https://iconape.com/wp-content/files/yd/367773/svg/logo-linkedin-logo-icon-png-svg.png";
 
 const options = [
   {
@@ -74,7 +73,7 @@ describe("Header component accessibility tests", () => {
         }
         margin="medium"
         underlined
-      />
+      />,
     );
     const results = await axe(container, disabledRules);
     expect(results).toHaveNoViolations();

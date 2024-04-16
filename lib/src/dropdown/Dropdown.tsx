@@ -1,11 +1,4 @@
-import React, {
-  useState,
-  useEffect,
-  useRef,
-  useCallback,
-  useLayoutEffect,
-  useId,
-} from "react";
+import React, { useState, useEffect, useRef, useCallback, useLayoutEffect, useId } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import * as Popover from "@radix-ui/react-popover";
 import DropdownPropsType from "./types";
@@ -75,7 +68,7 @@ const DxcDropdown = ({
       handleOnCloseMenu();
       triggerRef.current?.focus();
     },
-    [onSelectOption]
+    [onSelectOption],
   );
   const handleOnBlur = (event) => {
     if (!event.currentTarget.contains(event.relatedTarget)) {
@@ -108,15 +101,13 @@ const DxcDropdown = ({
 
   const setPreviousIndexFocus = () => {
     setVisualFocusIndex((currentFocusIndex) => {
-      const index =
-        currentFocusIndex === 0 ? options.length - 1 : currentFocusIndex - 1;
+      const index = currentFocusIndex === 0 ? options.length - 1 : currentFocusIndex - 1;
       return index;
     });
   };
   const setNextIndexFocus = () => {
     setVisualFocusIndex((currentFocusIndex) => {
-      const index =
-        currentFocusIndex === options.length - 1 ? 0 : currentFocusIndex + 1;
+      const index = currentFocusIndex === options.length - 1 ? 0 : currentFocusIndex + 1;
       return index;
     });
   };
@@ -165,12 +156,11 @@ const DxcDropdown = ({
           break;
       }
     },
-    [onSelectOption, visualFocusIndex, options]
+    [onSelectOption, visualFocusIndex, options],
   );
 
   useLayoutEffect(() => {
-    const visualFocusedMenuItem =
-      menuRef?.current?.querySelectorAll("[role='menuitem']")[visualFocusIndex];
+    const visualFocusedMenuItem = menuRef?.current?.querySelectorAll("[role='menuitem']")[visualFocusIndex];
     visualFocusedMenuItem?.scrollIntoView?.({
       block: "nearest",
       inline: "start",
@@ -181,9 +171,7 @@ const DxcDropdown = ({
     <ThemeProvider theme={colorsTheme.dropdown}>
       <DropdownContainer
         onMouseEnter={!disabled && expandOnHover ? handleOnOpenMenu : undefined}
-        onMouseLeave={
-          !disabled && expandOnHover ? handleOnCloseMenu : undefined
-        }
+        onMouseLeave={!disabled && expandOnHover ? handleOnCloseMenu : undefined}
         onBlur={!disabled ? handleOnBlur : undefined}
         margin={margin}
         size={size}
@@ -209,9 +197,7 @@ const DxcDropdown = ({
               ref={triggerRef}
             >
               <DropdownTriggerContent>
-                {label && iconPosition === "after" && (
-                  <DropdownTriggerLabel>{label}</DropdownTriggerLabel>
-                )}
+                {label && iconPosition === "after" && <DropdownTriggerLabel>{label}</DropdownTriggerLabel>}
                 {icon && (
                   <DropdownTriggerIcon
                     disabled={disabled}
@@ -221,15 +207,11 @@ const DxcDropdown = ({
                     {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
                   </DropdownTriggerIcon>
                 )}
-                {label && iconPosition === "before" && (
-                  <DropdownTriggerLabel>{label}</DropdownTriggerLabel>
-                )}
+                {label && iconPosition === "before" && <DropdownTriggerLabel>{label}</DropdownTriggerLabel>}
               </DropdownTriggerContent>
               {!caretHidden && (
                 <CaretIcon disabled={disabled}>
-                  <DxcIcon
-                    icon={isOpen ? "arrow_drop_up" : "arrow_drop_down"}
-                  />{" "}
+                  <DxcIcon icon={isOpen ? "arrow_drop_up" : "arrow_drop_down"} />{" "}
                 </CaretIcon>
               )}
             </DropdownTrigger>
@@ -273,26 +255,15 @@ const DropdownContainer = styled.div<{
   size: DropdownPropsType["size"];
 }>`
   width: ${(props) => calculateWidth(props.margin, props.size)};
-  margin: ${(props) =>
-    props.margin && typeof props.margin !== "object"
-      ? spaces[props.margin]
-      : "0px"};
+  margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.top
-      ? spaces[props.margin.top]
-      : ""};
+    props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
   margin-right: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.right
-      ? spaces[props.margin.right]
-      : ""};
+    props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
   margin-bottom: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.bottom
-      ? spaces[props.margin.bottom]
-      : ""};
+    props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
   margin-left: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.left
-      ? spaces[props.margin.left]
-      : ""};
+    props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
 `;
 
 const DropdownTrigger = styled.button<{
@@ -306,25 +277,18 @@ const DropdownTrigger = styled.button<{
   gap: ${(props) => props.theme.caretIconSpacing};
   width: 100%;
   height: ${(props) => props.theme.buttonHeight};
-  min-width: ${(props) =>
-    props.label === "" ? "0px" : calculateWidth(props.margin, props.size)};
+  min-width: ${(props) => (props.label === "" ? "0px" : calculateWidth(props.margin, props.size))};
   border-radius: ${(props) => props.theme.buttonBorderRadius};
   border-width: ${(props) => props.theme.buttonBorderThickness};
   border-style: ${(props) => props.theme.buttonBorderStyle};
-  border-color: ${(props) =>
-    props.disabled
-      ? props.theme.disabledButtonBorderColor
-      : props.theme.buttonBorderColor};
+  border-color: ${(props) => (props.disabled ? props.theme.disabledButtonBorderColor : props.theme.buttonBorderColor)};
   padding-top: ${(props) => props.theme.buttonPaddingTop};
   padding-bottom: ${(props) => props.theme.buttonPaddingBottom};
   padding-left: ${(props) => props.theme.buttonPaddingLeft};
   padding-right: ${(props) => props.theme.buttonPaddingRight};
   background-color: ${(props) =>
-    props.disabled
-      ? props.theme.disabledButtonBackgroundColor
-      : props.theme.buttonBackgroundColor};
-  color: ${(props) =>
-    props.disabled ? props.theme.disabledColor : props.theme.buttonFontColor};
+    props.disabled ? props.theme.disabledButtonBackgroundColor : props.theme.buttonBackgroundColor};
+  color: ${(props) => (props.disabled ? props.theme.disabledColor : props.theme.buttonFontColor)};
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
 
   ${(props) =>
@@ -366,8 +330,7 @@ const DropdownTriggerIcon = styled.span<{
   disabled: DropdownPropsType["disabled"];
 }>`
   display: flex;
-  color: ${(props) =>
-    props.disabled ? props.theme.disabledColor : props.theme.buttonIconColor};
+  color: ${(props) => (props.disabled ? props.theme.disabledColor : props.theme.buttonIconColor)};
   font-size: ${(props) => props.theme.buttonIconSize};
 
   svg {
@@ -378,8 +341,7 @@ const DropdownTriggerIcon = styled.span<{
 
 const CaretIcon = styled.span<{ disabled: DropdownPropsType["disabled"] }>`
   display: flex;
-  color: ${(props) =>
-    props.disabled ? props.theme.disabledColor : props.theme.caretIconColor};
+  color: ${(props) => (props.disabled ? props.theme.disabledColor : props.theme.caretIconColor)};
   font-size: ${(props) => props.theme.caretIconSize};
 
   svg {

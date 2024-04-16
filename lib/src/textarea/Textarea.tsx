@@ -6,8 +6,7 @@ import useTranslatedLabels from "../useTranslatedLabels";
 import { spaces } from "../common/variables";
 import TextareaPropsType, { RefType } from "./types";
 
-const patternMatch = (pattern: string, value: string) =>
-  new RegExp(pattern).test(value);
+const patternMatch = (pattern: string, value: string) => new RegExp(pattern).test(value);
 
 const DxcTextarea = React.forwardRef<RefType, TextareaPropsType>(
   (
@@ -34,7 +33,7 @@ const DxcTextarea = React.forwardRef<RefType, TextareaPropsType>(
       size = "medium",
       tabIndex = 0,
     },
-    ref
+    ref,
   ) => {
     const [innerValue, setInnerValue] = useState(defaultValue);
     const textareaId = `textarea-${useId()}`;
@@ -66,10 +65,7 @@ const DxcTextarea = React.forwardRef<RefType, TextareaPropsType>(
       } else if (isLengthIncorrect(newValue)) {
         onChange?.({
           value: newValue,
-          error: translatedLabels.formFields.lengthErrorMessage(
-            minLength,
-            maxLength
-          ),
+          error: translatedLabels.formFields.lengthErrorMessage(minLength, maxLength),
         });
       } else if (newValue && pattern && !patternMatch(pattern, newValue)) {
         onChange?.({
@@ -82,18 +78,10 @@ const DxcTextarea = React.forwardRef<RefType, TextareaPropsType>(
     };
 
     const autoVerticalGrow = () => {
-      const textareaLineHeight = parseInt(
-        window.getComputedStyle(textareaRef.current)["line-height"],
-        10
-      );
-      const textareaPaddingTopBottom =
-        parseInt(
-          window.getComputedStyle(textareaRef.current)["padding-top"],
-          10
-        ) * 2;
+      const textareaLineHeight = parseInt(window.getComputedStyle(textareaRef.current)["line-height"], 10);
+      const textareaPaddingTopBottom = parseInt(window.getComputedStyle(textareaRef.current)["padding-top"], 10) * 2;
       textareaRef.current.style.height = `${textareaLineHeight * rows}px`;
-      const newHeight =
-        textareaRef.current.scrollHeight - textareaPaddingTopBottom;
+      const newHeight = textareaRef.current.scrollHeight - textareaPaddingTopBottom;
       textareaRef.current.style.height = `${newHeight}px`;
     };
 
@@ -106,16 +94,9 @@ const DxcTextarea = React.forwardRef<RefType, TextareaPropsType>(
       } else if (isLengthIncorrect(event.target.value)) {
         onBlur?.({
           value: event.target.value,
-          error: translatedLabels.formFields.lengthErrorMessage(
-            minLength,
-            maxLength
-          ),
+          error: translatedLabels.formFields.lengthErrorMessage(minLength, maxLength),
         });
-      } else if (
-        event.target.value &&
-        pattern &&
-        !patternMatch(pattern, event.target.value)
-      ) {
+      } else if (event.target.value && pattern && !patternMatch(pattern, event.target.value)) {
         onBlur?.({
           value: event.target.value,
           error: translatedLabels.formFields.formatRequestedErrorMessage,
@@ -136,22 +117,11 @@ const DxcTextarea = React.forwardRef<RefType, TextareaPropsType>(
       <ThemeProvider theme={colorsTheme.textarea}>
         <TextareaContainer margin={margin} size={size} ref={ref}>
           {label && (
-            <Label
-              htmlFor={textareaId}
-              disabled={disabled}
-              helperText={helperText}
-            >
-              {label}{" "}
-              {optional && (
-                <OptionalLabel>
-                  {translatedLabels.formFields.optionalLabel}
-                </OptionalLabel>
-              )}
+            <Label htmlFor={textareaId} disabled={disabled} helperText={helperText}>
+              {label} {optional && <OptionalLabel>{translatedLabels.formFields.optionalLabel}</OptionalLabel>}
             </Label>
           )}
-          {helperText && (
-            <HelperText disabled={disabled}>{helperText}</HelperText>
-          )}
+          {helperText && <HelperText disabled={disabled}>{helperText}</HelperText>}
           <Textarea
             id={textareaId}
             name={name}
@@ -174,18 +144,14 @@ const DxcTextarea = React.forwardRef<RefType, TextareaPropsType>(
             aria-required={!disabled && !optional}
           />
           {!disabled && typeof error === "string" && (
-            <Error
-              id={errorId}
-              role="alert"
-              aria-live={error ? "assertive" : "off"}
-            >
+            <Error id={errorId} role="alert" aria-live={error ? "assertive" : "off"}>
               {error}
             </Error>
           )}
         </TextareaContainer>
       </ThemeProvider>
     );
-  }
+  },
 );
 
 const sizes = {
@@ -195,10 +161,7 @@ const sizes = {
   fillParent: "100%",
 };
 
-const calculateWidth = (
-  margin: TextareaPropsType["margin"],
-  size: TextareaPropsType["size"]
-) =>
+const calculateWidth = (margin: TextareaPropsType["margin"], size: TextareaPropsType["size"]) =>
   size === "fillParent"
     ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
     : sizes[size];
@@ -210,36 +173,22 @@ const TextareaContainer = styled.div<{
   display: flex;
   flex-direction: column;
   width: ${(props) => calculateWidth(props.margin, props.size)};
-  margin: ${(props) =>
-    props.margin && typeof props.margin !== "object"
-      ? spaces[props.margin]
-      : "0px"};
+  margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.top
-      ? spaces[props.margin.top]
-      : ""};
+    props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
   margin-right: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.right
-      ? spaces[props.margin.right]
-      : ""};
+    props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
   margin-bottom: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.bottom
-      ? spaces[props.margin.bottom]
-      : ""};
+    props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
   margin-left: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.left
-      ? spaces[props.margin.left]
-      : ""};
+    props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
 `;
 
 const Label = styled.label<{
   disabled: TextareaPropsType["disabled"];
   helperText: TextareaPropsType["helperText"];
 }>`
-  color: ${(props) =>
-    props.disabled
-      ? props.theme.disabledLabelFontColor
-      : props.theme.labelFontColor};
+  color: ${(props) => (props.disabled ? props.theme.disabledLabelFontColor : props.theme.labelFontColor)};
 
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.labelFontSize};
@@ -254,10 +203,7 @@ const OptionalLabel = styled.span`
 `;
 
 const HelperText = styled.span<{ disabled: TextareaPropsType["disabled"] }>`
-  color: ${(props) =>
-    props.disabled
-      ? props.theme.disabledHelperTextFontColor
-      : props.theme.helperTextFontColor};
+  color: ${(props) => (props.disabled ? props.theme.disabledHelperTextFontColor : props.theme.helperTextFontColor)};
 
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.helperTextFontSize};
@@ -281,9 +227,7 @@ const Textarea = styled.textarea<{
           : `resize: none;`};
 
   ${(props) =>
-    props.disabled
-      ? `background-color: ${props.theme.disabledContainerFillColor};`
-      : `background-color: transparent;`}
+    props.disabled ? `background-color: ${props.theme.disabledContainerFillColor};` : `background-color: transparent;`}
 
   padding: 0.5rem 1rem;
   box-shadow: 0 0 0 2px transparent;
@@ -323,10 +267,7 @@ const Textarea = styled.textarea<{
       }`
       : "cursor: not-allowed;"};
 
-  color: ${(props) =>
-    props.disabled
-      ? props.theme.disabledValueFontColor
-      : props.theme.valueFontColor};
+  color: ${(props) => (props.disabled ? props.theme.disabledValueFontColor : props.theme.valueFontColor)};
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.valueFontSize};
   font-style: ${(props) => props.theme.valueFontStyle};
@@ -334,10 +275,7 @@ const Textarea = styled.textarea<{
   line-height: 1.5em;
 
   ::placeholder {
-    color: ${(props) =>
-      props.disabled
-        ? props.theme.disabledPlaceholderFontColor
-        : props.theme.placeholderFontColor};
+    color: ${(props) => (props.disabled ? props.theme.disabledPlaceholderFontColor : props.theme.placeholderFontColor)};
   }
 `;
 

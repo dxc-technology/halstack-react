@@ -3,8 +3,7 @@ import { render } from "@testing-library/react";
 import { axe } from "../../test/accessibility/axe-helper";
 import DxcFileInput from "./FileInput";
 
-const picPreview =
-  "https://cdn.mos.cms.futurecdn.net/CAZ6JXi6huSuN4QGE627NR.jpg";
+const picPreview = "https://cdn.mos.cms.futurecdn.net/CAZ6JXi6huSuN4QGE627NR.jpg";
 
 const file1 = new File(["file1"], "file.pdf", { type: "text/plain" });
 const file2 = new File(["file2"], "file2.mp3", {
@@ -13,20 +12,12 @@ const file2 = new File(["file2"], "file2.mp3", {
 const file3 = new File(["file3"], "file3.png", {
   type: "image/png",
 });
-const file4 = new File(
-  ["file4"],
-  "file4file4file4file4file4file4file4file4file4.mp4",
-  {
-    type: "video",
-  }
-);
-const file5 = new File(
-  ["file5"],
-  "file5file5file5file5file5file5file5file5file5.mp4",
-  {
-    type: "video",
-  }
-);
+const file4 = new File(["file4"], "file4file4file4file4file4file4file4file4file4.mp4", {
+  type: "video",
+});
+const file5 = new File(["file5"], "file5file5file5file5file5file5file5file5file5.mp4", {
+  type: "video",
+});
 
 const filesExamples = [
   {
@@ -70,7 +61,7 @@ describe("FileInput component accessibility tests", () => {
         minSize={1000}
         maxSize={20000}
         showPreview
-      />
+      />,
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
@@ -91,7 +82,7 @@ describe("FileInput component accessibility tests", () => {
         minSize={1000}
         maxSize={20000}
         disabled
-      />
+      />,
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
@@ -111,7 +102,7 @@ describe("FileInput component accessibility tests", () => {
         minSize={1000}
         maxSize={20000}
         showPreview
-      />
+      />,
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
@@ -132,7 +123,7 @@ describe("FileInput component accessibility tests", () => {
         minSize={1000}
         maxSize={20000}
         showPreview
-      />
+      />,
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();

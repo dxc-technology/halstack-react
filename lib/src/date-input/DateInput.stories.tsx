@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  userEvent,
-  within,
-  fireEvent,
-  screen,
-} from "@storybook/testing-library";
+import { userEvent, within, fireEvent, screen } from "@storybook/testing-library";
 import dayjs from "dayjs";
 import { ThemeProvider } from "styled-components";
 import DxcDateInput from "./DateInput";
@@ -48,13 +43,7 @@ const DateInputChromatic = () => (
   <>
     <ExampleContainer>
       <Title title="Complete date input" theme="light" level={4} />
-      <DxcDateInput
-        label="Date input"
-        helperText="Help message"
-        format="dd/mm/yy"
-        placeholder
-        optional
-      />
+      <DxcDateInput label="Date input" helperText="Help message" format="dd/mm/yy" placeholder optional />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Disabled" theme="light" level={4} />
@@ -68,30 +57,15 @@ const DateInputChromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Read only" theme="light" level={4} />
-      <DxcDateInput
-        label="Example label"
-        helperText="Help message"
-        defaultValue="06-04-2007"
-        clearable
-        readOnly
-      />
+      <DxcDateInput label="Example label" helperText="Help message" defaultValue="06-04-2007" clearable readOnly />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Invalid" theme="light" level={4} />
-      <DxcDateInput
-        label="Error date input"
-        error="Error message."
-        placeholder
-      />
+      <DxcDateInput label="Error date input" error="Error message." placeholder />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Relation between icons" theme="light" level={4} />
-      <DxcDateInput
-        label="Error date input"
-        error="Error message."
-        defaultValue="06-04-2007"
-        clearable
-      />
+      <DxcDateInput label="Error date input" error="Error message." defaultValue="06-04-2007" clearable />
     </ExampleContainer>
     <Title title="Margins" theme="light" level={2} />
     <ExampleContainer>
@@ -145,9 +119,7 @@ const DateInputChromatic = () => (
 export const Chromatic = DateInputChromatic.bind({});
 Chromatic.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
-  await userEvent.click(
-    canvas.getAllByRole("combobox")[canvas.getAllByRole("combobox").length - 1]
-  );
+  await userEvent.click(canvas.getAllByRole("combobox")[canvas.getAllByRole("combobox").length - 1]);
   await fireEvent.click(screen.getByText("April 1905"));
 };
 
@@ -170,23 +142,13 @@ const DateInputOpinionatedTheme = () => (
     <ExampleContainer>
       <Title title="Disabled" theme="light" level={4} />
       <HalstackProvider theme={opinionatedTheme}>
-        <DxcDateInput
-          label="Date input"
-          helperText="Help message"
-          format="dd/mm/yy"
-          placeholder
-          optional
-        />
+        <DxcDateInput label="Date input" helperText="Help message" format="dd/mm/yy" placeholder optional />
       </HalstackProvider>
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Invalid" theme="light" level={4} />
       <HalstackProvider theme={opinionatedTheme}>
-        <DxcDateInput
-          label="Error date input"
-          error="Error message."
-          placeholder
-        />
+        <DxcDateInput label="Error date input" error="Error message." placeholder />
       </HalstackProvider>
     </ExampleContainer>
     <ExampleContainer expanded>
@@ -201,9 +163,7 @@ const DateInputOpinionatedTheme = () => (
 export const DateInputOpinionated = DateInputOpinionatedTheme.bind({});
 DateInputOpinionated.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
-  await userEvent.click(
-    canvas.getAllByRole("combobox")[canvas.getAllByRole("combobox").length - 1]
-  );
+  await userEvent.click(canvas.getAllByRole("combobox")[canvas.getAllByRole("combobox").length - 1]);
 };
 
 const YearPickerOpinionatedTheme = () => (
@@ -227,11 +187,7 @@ const DatePickerButtonStates = () => {
   return (
     <>
       <ExampleContainer>
-        <Title
-          title="Show date picker over another element with z-index 0"
-          theme="light"
-          level={4}
-        />
+        <Title title="Show date picker over another element with z-index 0" theme="light" level={4} />
         <div
           style={{
             display: "flex",
@@ -258,27 +214,15 @@ const DatePickerButtonStates = () => {
       <ThemeProvider theme={colorsTheme}>
         <ExampleContainer pseudoState="pseudo-focus">
           <Title title="Isolated calendar focused" theme="light" level={4} />
-          <DxcDatePicker
-            date={dayjs("06-04-1950", "DD-MM-YYYY")}
-            onDateSelect={() => {}}
-            id="test-calendar"
-          />
+          <DxcDatePicker date={dayjs("06-04-1950", "DD-MM-YYYY")} onDateSelect={() => {}} id="test-calendar" />
         </ExampleContainer>
         <ExampleContainer pseudoState="pseudo-hover">
           <Title title="Isolated calendar hovered" theme="light" level={4} />
-          <DxcDatePicker
-            date={dayjs("06-04-1950", "DD-MM-YYYY")}
-            onDateSelect={() => {}}
-            id="test-calendar"
-          />
+          <DxcDatePicker date={dayjs("06-04-1950", "DD-MM-YYYY")} onDateSelect={() => {}} id="test-calendar" />
         </ExampleContainer>
         <ExampleContainer pseudoState="pseudo-active">
           <Title title="Isolated calendar actived" theme="light" level={4} />
-          <DxcDatePicker
-            date={dayjs("06-04-1950", "DD-MM-YYYY")}
-            onDateSelect={() => {}}
-            id="test-calendar"
-          />
+          <DxcDatePicker date={dayjs("06-04-1950", "DD-MM-YYYY")} onDateSelect={() => {}} id="test-calendar" />
         </ExampleContainer>
       </ThemeProvider>
     </>
@@ -339,11 +283,7 @@ export const DatePickerWithToday = () => {
         />
       </ExampleContainer>
       <ExampleContainer>
-        <Title
-          title="Isolated year picker with today"
-          theme="light"
-          level={4}
-        />
+        <Title title="Isolated year picker with today" theme="light" level={4} />
         <YearPicker
           selectedDate={dayjs("06-04-1905", "DD-MM-YYYY")}
           onYearSelect={() => {}}

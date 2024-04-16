@@ -28,26 +28,13 @@ c-10.663,0-17.467,1.853-20.417,5.568c-2.949,3.711-4.428,10.23-4.428,19.558v31.11
 
 describe("Chip component accessibility tests", () => {
   it("Should not have basic accessibility issues", async () => {
-    const { container } = render(
-      <DxcChip
-        margin="small"
-        prefixIcon={iconSVG}
-        suffixIcon={iconSVG}
-        label="Chip"
-      />
-    );
+    const { container } = render(<DxcChip margin="small" prefixIcon={iconSVG} suffixIcon={iconSVG} label="Chip" />);
     const results = await axe(container);
     expect(results).toHaveNoViolations();
   });
   it("Should not have basic accessibility issues for disabled mode", async () => {
     const { container } = render(
-      <DxcChip
-        margin="small"
-        prefixIcon={iconSVG}
-        suffixIcon={iconSVG}
-        label="Chip"
-        disabled
-      />
+      <DxcChip margin="small" prefixIcon={iconSVG} suffixIcon={iconSVG} label="Chip" disabled />,
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();

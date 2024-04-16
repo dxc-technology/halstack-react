@@ -36,19 +36,10 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Disabled" theme="light" level={4} />
-      <DxcSlider
-        label="Slider"
-        helperText="Help message"
-        disabled
-        showLimitsValues
-      />
+      <DxcSlider label="Slider" helperText="Help message" disabled showLimitsValues />
     </ExampleContainer>
     <ExampleContainer>
-      <Title
-        title="Disabled discrete slider with input"
-        theme="light"
-        level={4}
-      />
+      <Title title="Disabled discrete slider with input" theme="light" level={4} />
       <DxcSlider
         label="Slider"
         helperText="Help message"
@@ -65,23 +56,11 @@ export const Chromatic = () => (
     <Title title="Variants" theme="light" level={2} />
     <ExampleContainer>
       <Title title="Continuous slider" theme="light" level={4} />
-      <DxcSlider
-        defaultValue={65}
-        label="Slider"
-        helperText="Help message"
-        showLimitsValues
-      />
+      <DxcSlider defaultValue={65} label="Slider" helperText="Help message" showLimitsValues />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Discrete slider" theme="light" level={4} />
-      <DxcSlider
-        defaultValue={20}
-        label="Slider"
-        helperText="Help message"
-        showLimitsValues
-        marks
-        step={5}
-      />
+      <DxcSlider defaultValue={20} label="Slider" helperText="Help message" showLimitsValues marks step={5} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Discrete slider with input" theme="light" level={4} />
@@ -169,11 +148,7 @@ export const Chromatic = () => (
       </HalstackProvider>
     </ExampleContainer>
     <ExampleContainer>
-      <Title
-        title="Disabled discrete slider with input"
-        theme="light"
-        level={4}
-      />{" "}
+      <Title title="Disabled discrete slider with input" theme="light" level={4} />{" "}
       <HalstackProvider theme={opinionatedTheme}>
         <DxcSlider
           label="Slider"
@@ -192,25 +167,13 @@ export const Chromatic = () => (
     <ExampleContainer>
       <Title title="Continuous slider" theme="light" level={4} />
       <HalstackProvider theme={opinionatedTheme}>
-        <DxcSlider
-          defaultValue={65}
-          label="Slider"
-          helperText="Help message"
-          showLimitsValues
-        />
+        <DxcSlider defaultValue={65} label="Slider" helperText="Help message" showLimitsValues />
       </HalstackProvider>
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Discrete slider" theme="light" level={4} />
       <HalstackProvider theme={opinionatedTheme}>
-        <DxcSlider
-          defaultValue={20}
-          label="Slider"
-          helperText="Help message"
-          showLimitsValues
-          marks
-          step={5}
-        />
+        <DxcSlider defaultValue={20} label="Slider" helperText="Help message" showLimitsValues marks step={5} />
       </HalstackProvider>
     </ExampleContainer>
   </>

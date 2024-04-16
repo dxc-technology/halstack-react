@@ -37,7 +37,7 @@ describe("Slider component accessibility tests", () => {
         showLimitsValues
         showInput
         marks
-      />
+      />,
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
@@ -58,7 +58,7 @@ describe("Slider component accessibility tests", () => {
         showInput
         marks
         disabled
-      />
+      />,
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();

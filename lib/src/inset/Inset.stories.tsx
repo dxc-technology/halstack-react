@@ -197,10 +197,7 @@ export const Chromatic = () => (
         <Placeholder></Placeholder>
       </DxcInset>
     </Container>
-    <Title
-      title="top = xxsmall, right= medium, bottom = large and left = xxlarge"
-      level={4}
-    />
+    <Title title="top = xxsmall, right= medium, bottom = large and left = xxlarge" level={4} />
     <Container>
       <DxcInset top="0.25rem" right="1.5rem" bottom="2rem" left="4rem">
         <Placeholder></Placeholder>

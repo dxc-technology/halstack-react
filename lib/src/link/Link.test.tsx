@@ -17,24 +17,22 @@ describe("Link component tests", () => {
     const { getByText } = render(
       <DxcLink href="/testPage" disabled>
         Link
-      </DxcLink>
+      </DxcLink>,
     );
     expect(getByText("Link").hasAttribute("href")).toBeFalsy();
     const { getByText: getByTextLinkButton } = render(
       <DxcLink onClick={() => {}} disabled>
         LinkButton
-      </DxcLink>
+      </DxcLink>,
     );
-    expect(
-      getByTextLinkButton("LinkButton").hasAttribute("onclick")
-    ).toBeFalsy();
+    expect(getByTextLinkButton("LinkButton").hasAttribute("onclick")).toBeFalsy();
   });
 
   test("Link open new tab", () => {
     const { getByRole } = render(
       <DxcLink href="/testPage" newWindow>
         Link
-      </DxcLink>
+      </DxcLink>,
     );
     expect(getByRole("link").getAttribute("target")).toEqual("_blank");
   });
@@ -52,7 +50,7 @@ describe("Link component tests", () => {
     const { getByText } = render(
       <DxcLink onClick={onClick} disabled>
         Link
-      </DxcLink>
+      </DxcLink>,
     );
     const link = getByText("Link");
     fireEvent.click(link);

@@ -1,10 +1,4 @@
-import React, {
-  useState,
-  ReactElement,
-  useMemo,
-  useRef,
-  useEffect,
-} from "react";
+import React, { useState, ReactElement, useMemo, useRef, useEffect } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme";
 import NavTabsPropsType from "./types";
@@ -45,11 +39,7 @@ const getNextTabIndex = (array, initialIndex): number => {
   return index;
 };
 
-const DxcNavTabs = ({
-  iconPosition = "top",
-  tabIndex = 0,
-  children,
-}: NavTabsPropsType): JSX.Element => {
+const DxcNavTabs = ({ iconPosition = "top", tabIndex = 0, children }: NavTabsPropsType): JSX.Element => {
   const [innerFocusIndex, setInnerFocusIndex] = useState(null);
   const [underlineWidth, setUnderlineWidth] = useState(null);
   const refNavTabList = useRef(null);
@@ -64,39 +54,26 @@ const DxcNavTabs = ({
     () => ({
       iconPosition,
       tabIndex,
-      focusedLabel:
-        innerFocusIndex === null
-          ? undefined
-          : getLabelFromTab(children[innerFocusIndex]),
+      focusedLabel: innerFocusIndex === null ? undefined : getLabelFromTab(children[innerFocusIndex]),
     }),
-    [iconPosition, tabIndex, innerFocusIndex]
+    [iconPosition, tabIndex, innerFocusIndex],
   );
 
   const handleOnKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    const activeTab = React.Children.toArray(children).findIndex(
-      (child: ReactElement) => getPropInChild(child, "active")
+    const activeTab = React.Children.toArray(children).findIndex((child: ReactElement) =>
+      getPropInChild(child, "active"),
     );
 
     switch (event.key) {
       case "Left":
       case "ArrowLeft":
         event.preventDefault();
-        setInnerFocusIndex(
-          getPreviousTabIndex(
-            children,
-            innerFocusIndex === null ? activeTab : innerFocusIndex
-          )
-        );
+        setInnerFocusIndex(getPreviousTabIndex(children, innerFocusIndex === null ? activeTab : innerFocusIndex));
         break;
       case "Right":
       case "ArrowRight":
         event.preventDefault();
-        setInnerFocusIndex(
-          getNextTabIndex(
-            children,
-            innerFocusIndex === null ? activeTab : innerFocusIndex
-          )
-        );
+        setInnerFocusIndex(getNextTabIndex(children, innerFocusIndex === null ? activeTab : innerFocusIndex));
         break;
       default:
         break;
@@ -105,15 +82,8 @@ const DxcNavTabs = ({
 
   return (
     <ThemeProvider theme={colorsTheme.navTabs}>
-      <NavTabsContainer
-        onKeyDown={handleOnKeyDown}
-        ref={refNavTabList}
-        role="tablist"
-        aria-label="Navigation tabs"
-      >
-        <NavTabsContext.Provider value={contextValue}>
-          {children}
-        </NavTabsContext.Provider>
+      <NavTabsContainer onKeyDown={handleOnKeyDown} ref={refNavTabList} role="tablist" aria-label="Navigation tabs">
+        <NavTabsContext.Provider value={contextValue}>{children}</NavTabsContext.Provider>
         <Underline underlineWidth={underlineWidth} />
       </NavTabsContainer>
     </ThemeProvider>

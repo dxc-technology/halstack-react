@@ -17,11 +17,7 @@ const DxcProgressBar = ({
 
   useEffect(() => {
     setValueProgressBar(
-      value === null || value === undefined || value < 0
-        ? 0
-        : value >= 0 && value <= 100
-          ? value
-          : 100
+      value === null || value === undefined || value < 0 ? 0 : value >= 0 && value <= 100 ? value : 100,
     );
   }, [value]);
 
@@ -31,11 +27,7 @@ const DxcProgressBar = ({
         <ProgressBarContainer overlay={overlay} margin={margin}>
           <InfoProgressBar>
             <ProgressBarLabel overlay={overlay}>{label}</ProgressBarLabel>
-            <ProgressBarProgress
-              overlay={overlay}
-              showValue={showValue}
-              value={valueProgressBar}
-            >
+            <ProgressBarProgress overlay={overlay} showValue={showValue} value={valueProgressBar}>
               {valueProgressBar} %
             </ProgressBarProgress>
           </InfoProgressBar>
@@ -48,18 +40,12 @@ const DxcProgressBar = ({
             aria-label={label || "Progress Bar"}
           >
             <LinearProgressBar
-              variant={
-                value === null || value === undefined
-                  ? "indeterminate"
-                  : "determinate"
-              }
+              variant={value === null || value === undefined ? "indeterminate" : "determinate"}
               container="first"
               value={valueProgressBar}
             ></LinearProgressBar>
           </LinearProgress>
-          {helperText && (
-            <HelperText overlay={overlay}>{helperText}</HelperText>
-          )}
+          {helperText && <HelperText overlay={overlay}>{helperText}</HelperText>}
         </ProgressBarContainer>
       </BackgroundProgressBar>
     </ThemeProvider>
@@ -96,26 +82,15 @@ const ProgressBarContainer = styled.div<{
 }>`
   z-index: ${(props) => (props.overlay === true && "100") || "0"};
   width: ${(props) => (props.overlay === true ? "80%" : "100%")};
-  margin: ${(props) =>
-    props.margin && typeof props.margin !== "object"
-      ? spaces[props.margin]
-      : "0px"};
+  margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.top
-      ? spaces[props.margin.top]
-      : ""};
+    props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
   margin-right: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.right
-      ? spaces[props.margin.right]
-      : ""};
+    props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
   margin-bottom: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.bottom
-      ? spaces[props.margin.bottom]
-      : ""};
+    props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
   margin-left: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.left
-      ? spaces[props.margin.left]
-      : ""};
+    props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
 `;
 
 const InfoProgressBar = styled.div`
@@ -137,10 +112,7 @@ const ProgressBarLabel = styled.div<{
   font-size: ${(props) => props.theme.labelFontSize};
   font-weight: ${(props) => props.theme.labelFontWeight};
   text-transform: ${(props) => props.theme.labelFontTextTransform};
-  color: ${(props) =>
-    props.overlay === true
-      ? props.theme.overlayFontColor
-      : props.theme.labelFontColor};
+  color: ${(props) => (props.overlay === true ? props.theme.overlayFontColor : props.theme.labelFontColor)};
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -157,24 +129,14 @@ const ProgressBarProgress = styled.div<{
   font-size: ${(props) => props.theme.valueFontSize};
   font-weight: ${(props) => props.theme.valueFontWeight};
   text-transform: ${(props) => props.theme.valueFontTextTransform};
-  color: ${(props) =>
-    props.overlay === true
-      ? props.theme.overlayFontColor
-      : props.theme.valueFontColor};
+  color: ${(props) => (props.overlay === true ? props.theme.overlayFontColor : props.theme.valueFontColor)};
   display: ${(props) =>
-    (props.value !== undefined &&
-      props.value !== null &&
-      props.showValue === true &&
-      "block") ||
-    "none"};
+    (props.value !== undefined && props.value !== null && props.showValue === true && "block") || "none"};
   flex-shrink: 0;
 `;
 
 const HelperText = styled.span<{ overlay: ProgressBarPropsType["overlay"] }>`
-  color: ${(props) =>
-    props.overlay === true
-      ? props.theme.overlayFontColor
-      : props.theme.helperTextFontColor};
+  color: ${(props) => (props.overlay === true ? props.theme.overlayFontColor : props.theme.helperTextFontColor)};
   font-family: ${(props) => props.theme.helperTextFontFamily};
   font-size: ${(props) => props.theme.helperTextFontSize};
   font-style: ${(props) => props.theme.helperTextFontStyle};
@@ -199,17 +161,13 @@ const LinearProgressBar = styled.span<{
   container: string;
 }>`
   background-color: ${(props) => props.theme.trackLineColor};
-  transform: ${(props) =>
-    `translateX(-${props.variant === "determinate" ? 100 - props.value : 0}%)`};
+  transform: ${(props) => `translateX(-${props.variant === "determinate" ? 100 - props.value : 0}%)`};
   top: 0;
   left: 0;
   width: 100%;
   bottom: 0;
   position: absolute;
-  transition: ${(props) =>
-    props.variant === "determinate"
-      ? "transform .4s linear"
-      : "transform 0.2s linear"};
+  transition: ${(props) => (props.variant === "determinate" ? "transform .4s linear" : "transform 0.2s linear")};
   transform-origin: left;
   ${(props) => props.variant === "indeterminate" && "width: auto;"};
   ${(props) =>

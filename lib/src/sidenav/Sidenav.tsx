@@ -44,15 +44,8 @@ const Section = ({ children }: SidenavSectionPropsType): JSX.Element => (
   </>
 );
 
-const GroupContext = React.createContext<React.Dispatch<
-  React.SetStateAction<boolean>
-> | null>(null);
-const Group = ({
-  title,
-  collapsable = false,
-  icon,
-  children,
-}: SidenavGroupPropsType): JSX.Element => {
+const GroupContext = React.createContext<React.Dispatch<React.SetStateAction<boolean>> | null>(null);
+const Group = ({ title, collapsable = false, icon, children }: SidenavGroupPropsType): JSX.Element => {
   const [collapsed, setCollapsed] = useState(false);
   const [isSelected, changeIsSelected] = useState(false);
 
@@ -87,17 +80,8 @@ const Group = ({
 
 const Link = forwardRef<HTMLAnchorElement, SidenavLinkPropsType>(
   (
-    {
-      href,
-      newWindow = false,
-      selected = false,
-      icon,
-      onClick,
-      tabIndex = 0,
-      children,
-      ...otherProps
-    },
-    ref
+    { href, newWindow = false, selected = false, icon, onClick, tabIndex = 0, children, ...otherProps },
+    ref,
   ): JSX.Element => {
     const changeIsGroupSelected = useContext(GroupContext);
     const setIsSidenavVisibleResponsive = useResponsiveSidenavVisibility();
@@ -107,9 +91,7 @@ const Link = forwardRef<HTMLAnchorElement, SidenavLinkPropsType>(
     };
 
     useEffect(() => {
-      changeIsGroupSelected?.((isGroupSelected) =>
-        !isGroupSelected ? selected : isGroupSelected
-      );
+      changeIsGroupSelected?.((isGroupSelected) => (!isGroupSelected ? selected : isGroupSelected));
     }, [selected, changeIsGroupSelected]);
 
     return (
@@ -129,7 +111,7 @@ const Link = forwardRef<HTMLAnchorElement, SidenavLinkPropsType>(
         {newWindow && <DxcIcon icon="open_in_new" />}
       </SidenavLink>
     );
-  }
+  },
 );
 
 Link.displayName = "Link";
@@ -239,10 +221,7 @@ const SidenavGroupTitleButton = styled.button<{ selectedGroup: boolean }>`
   }
   &:active {
     color: #fff;
-    background-color: ${(props) =>
-      props.selectedGroup
-        ? "#333"
-        : props.theme.groupTitleActiveBackgroundColor};
+    background-color: ${(props) => (props.selectedGroup ? "#333" : props.theme.groupTitleActiveBackgroundColor)};
   }
   span::before {
     font-size: 16px;

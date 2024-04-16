@@ -4,23 +4,11 @@ import { spaces } from "../common/variables";
 import useTheme from "../useTheme";
 import HeadingPropsType from "./types";
 
-const DxcHeading = ({
-  level = 1,
-  text = "",
-  as,
-  weight,
-  margin,
-}: HeadingPropsType): JSX.Element => {
+const DxcHeading = ({ level = 1, text = "", as, weight, margin }: HeadingPropsType): JSX.Element => {
   const colorsTheme = useTheme();
 
   const checkValidAs = () => {
-    if (
-      as === "h1" ||
-      as === "h2" ||
-      as === "h3" ||
-      as === "h4" ||
-      as === "h5"
-    ) {
+    if (as === "h1" || as === "h2" || as === "h3" || as === "h4" || as === "h5") {
       return as;
     }
     return undefined;
@@ -56,26 +44,15 @@ const DxcHeading = ({
 };
 
 const HeadingContainer = styled.div<{ margin: HeadingPropsType["margin"] }>`
-  margin: ${(props) =>
-    props.margin && typeof props.margin !== "object"
-      ? spaces[props.margin]
-      : "0px"};
+  margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.top
-      ? spaces[props.margin.top]
-      : ""};
+    props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
   margin-right: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.right
-      ? spaces[props.margin.right]
-      : ""};
+    props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
   margin-bottom: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.bottom
-      ? spaces[props.margin.bottom]
-      : ""};
+    props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
   margin-left: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.left
-      ? spaces[props.margin.left]
-      : ""};
+    props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
 `;
 
 const HeadingLevel1 = styled.h1<{ weight: HeadingPropsType["weight"] }>`

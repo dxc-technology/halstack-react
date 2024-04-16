@@ -18,7 +18,7 @@ describe("Textarea component accessibility tests", () => {
         minLength={0}
         maxLength={100}
         optional
-      />
+      />,
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
@@ -37,7 +37,7 @@ describe("Textarea component accessibility tests", () => {
         minLength={0}
         maxLength={100}
         pattern='^.*(?=.*[a-zA-Z])(?=.*)(?=.*[!&$%&? "]).*$'
-      />
+      />,
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
@@ -55,7 +55,7 @@ describe("Textarea component accessibility tests", () => {
         error="Error message."
         minLength={0}
         maxLength={100}
-      />
+      />,
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
@@ -74,7 +74,7 @@ describe("Textarea component accessibility tests", () => {
         minLength={0}
         maxLength={100}
         disabled
-      />
+      />,
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
@@ -93,7 +93,7 @@ describe("Textarea component accessibility tests", () => {
         minLength={0}
         maxLength={100}
         readOnly
-      />
+      />,
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();

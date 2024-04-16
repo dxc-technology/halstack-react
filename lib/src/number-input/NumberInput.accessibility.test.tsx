@@ -37,7 +37,7 @@ describe("Number input component accessibility tests", () => {
         name="Name"
         size="medium"
         step={1}
-      />
+      />,
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
@@ -58,7 +58,7 @@ describe("Number input component accessibility tests", () => {
         size="medium"
         step={1}
         optional
-      />
+      />,
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
@@ -79,7 +79,7 @@ describe("Number input component accessibility tests", () => {
         error="Input error"
         size="medium"
         step={1}
-      />
+      />,
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
@@ -100,7 +100,7 @@ describe("Number input component accessibility tests", () => {
         size="medium"
         step={1}
         disabled
-      />
+      />,
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
@@ -121,7 +121,7 @@ describe("Number input component accessibility tests", () => {
         size="medium"
         step={1}
         readOnly
-      />
+      />,
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
@@ -142,7 +142,7 @@ describe("Number input component accessibility tests", () => {
         size="medium"
         step={1}
         autocomplete="on"
-      />
+      />,
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();

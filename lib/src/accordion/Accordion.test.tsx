@@ -7,7 +7,7 @@ describe("Accordion component tests", () => {
     const { getByRole } = render(
       <DxcAccordion label="Accordion" defaultIsExpanded>
         <div>test-expanded</div>
-      </DxcAccordion>
+      </DxcAccordion>,
     );
     const accordion = getByRole("button");
     const panel = getByRole("region");
@@ -19,7 +19,7 @@ describe("Accordion component tests", () => {
     const { getByRole } = render(
       <DxcAccordion label="Accordion" defaultIsExpanded>
         <div>test-expanded</div>
-      </DxcAccordion>
+      </DxcAccordion>,
     );
     const accordion = getByRole("button");
     expect(accordion.getAttribute("aria-expanded")).toBe("true");
@@ -30,7 +30,7 @@ describe("Accordion component tests", () => {
     const { getByText } = render(
       <DxcAccordion label="Accordion" onChange={onChange}>
         <div>test-expanded</div>
-      </DxcAccordion>
+      </DxcAccordion>,
     );
     fireEvent.click(getByText("Accordion"));
     expect(onChange).toHaveBeenCalled();
@@ -41,7 +41,7 @@ describe("Accordion component tests", () => {
     const { getByText, getByRole } = render(
       <DxcAccordion label="Accordion" onChange={onChange} isExpanded>
         <div>test-expanded</div>
-      </DxcAccordion>
+      </DxcAccordion>,
     );
     expect(getByRole("button").getAttribute("aria-expanded")).toBe("true");
     fireEvent.click(getByText("Accordion"));

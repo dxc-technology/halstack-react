@@ -6,9 +6,7 @@ import useTranslatedLabels from "../useTranslatedLabels";
 import DxcRadio from "./Radio";
 
 const getInitialFocusIndex = (innerOptions: Option[], value?: string) => {
-  const initialSelectedOptionIndex = innerOptions.findIndex(
-    (option) => option.value === value
-  );
+  const initialSelectedOptionIndex = innerOptions.findIndex((option) => option.value === value);
   return initialSelectedOptionIndex !== -1 ? initialSelectedOptionIndex : 0;
 };
 
@@ -31,7 +29,7 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
       error,
       tabIndex = 0,
     },
-    ref
+    ref,
   ): JSX.Element => {
     const radioGroupId = `radio-group-${useId()}`;
     const radioGroupLabelId = `label-${radioGroupId}`;
@@ -49,20 +47,16 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
           ? [
               ...options,
               {
-                label:
-                  optionalItemLabel ??
-                  translatedLabels.radioGroup.optionalItemLabelDefault,
+                label: optionalItemLabel ?? translatedLabels.radioGroup.optionalItemLabelDefault,
                 value: "",
                 disabled,
               },
             ]
           : options,
-      [optional, options, optionalItemLabel, translatedLabels]
+      [optional, options, optionalItemLabel, translatedLabels],
     );
 
-    const [currentFocusIndex, setCurrentFocusIndex] = useState(
-      getInitialFocusIndex(innerOptions, value ?? innerValue)
-    );
+    const [currentFocusIndex, setCurrentFocusIndex] = useState(getInitialFocusIndex(innerOptions, value ?? innerValue));
 
     const handleOnChange = useCallback(
       (newValue: string) => {
@@ -74,7 +68,7 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
           onChange?.(newValue);
         }
       },
-      [value, innerValue, onChange]
+      [value, innerValue, onChange],
     );
     const handleOnBlur = (event: React.FocusEvent<HTMLDivElement>) => {
       // If the radio group loses the focus to an element not contained inside it...
@@ -99,10 +93,7 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
 
     const setPreviousRadioChecked = () => {
       setCurrentFocusIndex((currentFocusIndexValue) => {
-        let index =
-          currentFocusIndexValue === 0
-            ? innerOptions.length - 1
-            : currentFocusIndexValue - 1;
+        let index = currentFocusIndexValue === 0 ? innerOptions.length - 1 : currentFocusIndexValue - 1;
         while (innerOptions[index].disabled) {
           index = index === 0 ? innerOptions.length - 1 : index - 1;
         }
@@ -112,10 +103,7 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
     };
     const setNextRadioChecked = () => {
       setCurrentFocusIndex((currentFocusIndexValue) => {
-        let index =
-          currentFocusIndexValue === innerOptions.length - 1
-            ? 0
-            : currentFocusIndexValue + 1;
+        let index = currentFocusIndexValue === innerOptions.length - 1 ? 0 : currentFocusIndexValue + 1;
         while (innerOptions[index].disabled) {
           index = index === innerOptions.length - 1 ? 0 : index + 1;
         }
@@ -152,20 +140,12 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
       <ThemeProvider theme={colorsTheme.radioGroup}>
         <RadioGroupContainer ref={ref}>
           {label && (
-            <Label
-              id={radioGroupLabelId}
-              helperText={helperText}
-              disabled={disabled}
-            >
+            <Label id={radioGroupLabelId} helperText={helperText} disabled={disabled}>
               {label}
-              {optional && (
-                <OptionalLabel>{` ${translatedLabels.formFields.optionalLabel}`}</OptionalLabel>
-              )}
+              {optional && <OptionalLabel>{` ${translatedLabels.formFields.optionalLabel}`}</OptionalLabel>}
             </Label>
           )}
-          {helperText && (
-            <HelperText disabled={disabled}>{helperText}</HelperText>
-          )}
+          {helperText && <HelperText disabled={disabled}>{helperText}</HelperText>}
           <RadioGroup
             onBlur={handleOnBlur}
             onFocus={handleOnFocus}
@@ -180,12 +160,7 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
             aria-readonly={readOnly}
             aria-orientation={stacking === "column" ? "vertical" : "horizontal"}
           >
-            <ValueInput
-              name={name}
-              disabled={disabled}
-              value={value ?? innerValue ?? ""}
-              readOnly
-            />
+            <ValueInput name={name} disabled={disabled} value={value ?? innerValue ?? ""} readOnly />
             {innerOptions.map((option, index) => (
               <DxcRadio
                 key={`radio-${index}`}
@@ -204,18 +179,14 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
             ))}
           </RadioGroup>
           {!disabled && typeof error === "string" && (
-            <Error
-              id={errorId}
-              role="alert"
-              aria-live={error ? "assertive" : "off"}
-            >
+            <Error id={errorId} role="alert" aria-live={error ? "assertive" : "off"}>
               {error}
             </Error>
           )}
         </RadioGroupContainer>
       </ThemeProvider>
     );
-  }
+  },
 );
 
 const RadioGroupContainer = styled.div`
@@ -228,17 +199,13 @@ const Label = styled.span<{
   helperText: RadioGroupPropsType["helperText"];
   disabled: RadioGroupPropsType["disabled"];
 }>`
-  color: ${(props) =>
-    props.disabled
-      ? props.theme.disabledLabelFontColor
-      : props.theme.labelFontColor};
+  color: ${(props) => (props.disabled ? props.theme.disabledLabelFontColor : props.theme.labelFontColor)};
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.labelFontSize};
   font-style: ${(props) => props.theme.labelFontStyle};
   font-weight: ${(props) => props.theme.labelFontWeight};
   line-height: ${(props) => props.theme.labelLineHeight};
-  ${(props) =>
-    !props.helperText && `margin-bottom: ${props.theme.groupLabelMargin}`}
+  ${(props) => !props.helperText && `margin-bottom: ${props.theme.groupLabelMargin}`}
 `;
 
 const OptionalLabel = styled.span`
@@ -246,10 +213,7 @@ const OptionalLabel = styled.span`
 `;
 
 const HelperText = styled.span<{ disabled: RadioGroupPropsType["disabled"] }>`
-  color: ${(props) =>
-    props.disabled
-      ? props.theme.disabledHelperTextFontColor
-      : props.theme.helperTextFontColor};
+  color: ${(props) => (props.disabled ? props.theme.disabledHelperTextFontColor : props.theme.helperTextFontColor)};
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.helperTextFontSize};
   font-style: ${(props) => props.theme.helperTextFontStyle};

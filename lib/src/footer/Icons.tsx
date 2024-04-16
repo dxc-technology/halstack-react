@@ -1,12 +1,7 @@
 import React from "react";
 
 export const dxcLogo = (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="100%"
-    height="32"
-    viewBox="0 0 280.781 32"
-  >
+  <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="32" viewBox="0 0 280.781 32">
     <title>DXC Logo</title>
     <g>
       <path
@@ -69,12 +64,7 @@ export const dxcLogo = (
 );
 
 export const dxcSmallLogo = (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="100%"
-    height="16"
-    viewBox="0 0 280.781 32"
-  >
+  <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="16" viewBox="0 0 280.781 32">
     <title>DXC Logo</title>
     <g>
       <path

@@ -31,7 +31,7 @@ describe("Paginator component accessibility tests", () => {
         onPageChange={() => {}}
         itemsPerPageOptions={[5, 10, 15]}
         showGoToPage
-      />
+      />,
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();

@@ -9,11 +9,7 @@ import DxcIcon from "../icon/Icon";
 
 const today = dayjs();
 
-const DxcDatePicker = ({
-  date,
-  onDateSelect,
-  id,
-}: DatePickerPropsType): JSX.Element => {
+const DxcDatePicker = ({ date, onDateSelect, id }: DatePickerPropsType): JSX.Element => {
   const [innerDate, setInnerDate] = useState(date?.isValid() ? date : dayjs());
   const [content, setContent] = useState("calendar");
   const selectedDate = date?.isValid() ? date : null;
@@ -39,40 +35,23 @@ const DxcDatePicker = ({
         <HeaderButton
           aria-label={translatedLabels.calendar.previousMonthTitle}
           title={translatedLabels.calendar.previousMonthTitle}
-          onClick={() =>
-            handleMonthChange(
-              innerDate.set("month", innerDate.get("month") - 1)
-            )
-          }
+          onClick={() => handleMonthChange(innerDate.set("month", innerDate.get("month") - 1))}
         >
           <DxcIcon icon="keyboard_arrow_left" />
         </HeaderButton>
         <HeaderYearTrigger
           aria-live="polite"
-          onClick={() =>
-            setContent((currentContent) =>
-              currentContent === "yearPicker" ? "calendar" : "yearPicker"
-            )
-          }
+          onClick={() => setContent((currentContent) => (currentContent === "yearPicker" ? "calendar" : "yearPicker"))}
         >
           <HeaderYearTriggerLabel>
-            {translatedLabels.calendar.months[innerDate.get("month")]}{" "}
-            {innerDate.format("YYYY")}
+            {translatedLabels.calendar.months[innerDate.get("month")]} {innerDate.format("YYYY")}
           </HeaderYearTriggerLabel>
-          <DxcIcon
-            icon={
-              content === "yearPicker" ? "arrow_drop_up" : "arrow_drop_down"
-            }
-          />
+          <DxcIcon icon={content === "yearPicker" ? "arrow_drop_up" : "arrow_drop_down"} />
         </HeaderYearTrigger>
         <HeaderButton
           aria-label={translatedLabels.calendar.nextMonthTitle}
           title={translatedLabels.calendar.nextMonthTitle}
-          onClick={() =>
-            handleMonthChange(
-              innerDate.set("month", innerDate.get("month") + 1)
-            )
-          }
+          onClick={() => handleMonthChange(innerDate.set("month", innerDate.get("month") + 1))}
         >
           <DxcIcon icon="keyboard_arrow_right" />
         </HeaderButton>
@@ -87,11 +66,7 @@ const DxcDatePicker = ({
         />
       )}
       {content === "yearPicker" && (
-        <YearPicker
-          selectedDate={selectedDate}
-          onYearSelect={handleOnYearSelect}
-          today={today}
-        />
+        <YearPicker selectedDate={selectedDate} onYearSelect={handleOnYearSelect} today={today} />
       )}
     </DatePicker>
   );
@@ -101,9 +76,7 @@ const DatePicker = styled.div`
   padding-top: 16px;
   background-color: ${(props) => props.theme.dateInput.pickerBackgroundColor};
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  border: ${(
-    props
-  ) => `${props.theme.dateInput.pickerBorderWidth} ${props.theme.dateInput.pickerBorderStyle}
+  border: ${(props) => `${props.theme.dateInput.pickerBorderWidth} ${props.theme.dateInput.pickerBorderStyle}
       ${props.theme.dateInput.pickerBorderColor}`};
   border-radius: 4px;
   width: fit-content;
@@ -130,16 +103,14 @@ const HeaderButton = styled.button`
   height: 24px;
   padding: 0px;
   color: ${(props) => props.theme.dateInput.pickerHeaderFontColor};
-  background-color: ${(props) =>
-    props.theme.dateInput.pickerHeaderBackgroundColor};
+  background-color: ${(props) => props.theme.dateInput.pickerHeaderBackgroundColor};
   border-radius: 4px;
   border: none;
   cursor: pointer;
 
   &:hover {
     color: ${(props) => props.theme.dateInput.pickerHeaderHoverFontColor};
-    background-color: ${(props) =>
-      props.theme.dateInput.pickerHeaderHoverBackgroundColor};
+    background-color: ${(props) => props.theme.dateInput.pickerHeaderHoverBackgroundColor};
   }
   &:focus {
     outline: ${(props) => `${props.theme.dateInput.pickerFocusColor} solid
@@ -147,8 +118,7 @@ const HeaderButton = styled.button`
   }
   &:active {
     color: ${(props) => props.theme.dateInput.pickerHeaderActiveFontColor};
-    background-color: ${(props) =>
-      props.theme.dateInput.pickerHeaderActiveBackgroundColor};
+    background-color: ${(props) => props.theme.dateInput.pickerHeaderActiveBackgroundColor};
   }
 
   span::before {

@@ -17,9 +17,7 @@ type TypographyContextProps = {
   whiteSpace?: string;
 };
 
-const TypographyContext = React.createContext<TypographyContextProps | null>(
-  null
-);
+const TypographyContext = React.createContext<TypographyContextProps | null>(null);
 
 type BaseTypographyProps = TypographyContextProps & {
   children: React.ReactNode;
@@ -47,8 +45,7 @@ const BaseTypography = ({
     () => ({
       as: as ?? componentContext?.as ?? "span",
       display: display ?? componentContext?.display ?? "inline",
-      fontFamily:
-        fontFamily ?? componentContext?.fontFamily ?? "Open Sans, sans-serif",
+      fontFamily: fontFamily ?? componentContext?.fontFamily ?? "Open Sans, sans-serif",
       fontSize: fontSize ?? componentContext?.fontSize ?? "1rem",
       fontStyle: fontStyle ?? componentContext?.fontStyle ?? "normal",
       fontWeight: fontWeight ?? componentContext?.fontWeight ?? "400",
@@ -56,8 +53,7 @@ const BaseTypography = ({
       lineHeight: lineHeight ?? componentContext?.lineHeight ?? "1.5em",
       textAlign: textAlign ?? componentContext?.textAlign ?? "left",
       color: color ?? componentContext?.color ?? "#000000",
-      textDecoration:
-        textDecoration ?? componentContext?.textDecoration ?? "none",
+      textDecoration: textDecoration ?? componentContext?.textDecoration ?? "none",
       textOverflow: textOverflow ?? componentContext?.textOverflow ?? "unset",
       whiteSpace: whiteSpace ?? componentContext?.whiteSpace ?? "normal",
     }),
@@ -75,7 +71,7 @@ const BaseTypography = ({
       textDecoration,
       textOverflow,
       whiteSpace,
-    ]
+    ],
   );
 
   return (
@@ -98,8 +94,7 @@ const StyledTypography = styled.span<BaseTypographyProps>`
   text-decoration: ${({ textDecoration }) => textDecoration};
   text-overflow: ${({ textOverflow }) => textOverflow};
   white-space: ${({ whiteSpace }) => whiteSpace};
-  overflow: ${({ textOverflow }) =>
-    textOverflow !== "unset" ? "hidden" : "visible"};
+  overflow: ${({ textOverflow }) => (textOverflow !== "unset" ? "hidden" : "visible")};
   margin: 0;
 `;
 

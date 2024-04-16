@@ -26,7 +26,7 @@ const getFocusableElements = (container: HTMLElement): HTMLElement[] =>
       (element: HTMLElement) =>
         element.getAttribute("aria-hidden") !== "true" &&
         window.getComputedStyle(element).display !== "none" &&
-        window.getComputedStyle(element).visibility !== "hidden"
+        window.getComputedStyle(element).visibility !== "hidden",
     );
 
 /**
@@ -47,16 +47,10 @@ const attemptFocus = (element: HTMLElement): boolean => {
  */
 const radixPortalContains = (activeElement: Element): boolean => {
   const radixPortals = document.querySelectorAll("[data-radix-portal]");
-  const radixPoppers = document.querySelectorAll(
-    "[data-radix-popper-content-wrapper]"
-  );
+  const radixPoppers = document.querySelectorAll("[data-radix-popper-content-wrapper]");
   return (
-    Array.prototype.slice
-      .call(radixPortals)
-      .some((portal) => portal.contains(activeElement)) ||
-    Array.prototype.slice
-      .call(radixPoppers)
-      .some((popper) => popper.contains(activeElement))
+    Array.prototype.slice.call(radixPortals).some((portal) => portal.contains(activeElement)) ||
+    Array.prototype.slice.call(radixPoppers).some((popper) => popper.contains(activeElement))
   );
 };
 
@@ -65,9 +59,7 @@ const radixPortalContains = (activeElement: Element): boolean => {
  * @param ref: React.MutableRefObject<HTMLDivElement>
  * @returns
  */
-const useFocusableElements = (
-  ref: React.MutableRefObject<HTMLDivElement>
-): HTMLElement[] => {
+const useFocusableElements = (ref: React.MutableRefObject<HTMLDivElement>): HTMLElement[] => {
   const [focusableElements, setFocusableElements] = useState<HTMLElement[]>();
 
   useEffect(() => {
@@ -100,11 +92,7 @@ const useFocusableElements = (
  * @param children: React.ReactNode
  * @returns
  */
-const FocusLock = ({
-  children,
-}: {
-  children: React.ReactNode;
-}): JSX.Element => {
+const FocusLock = ({ children }: { children: React.ReactNode }): JSX.Element => {
   const childrenContainerRef = useRef<HTMLDivElement>();
   const focusableElements = useFocusableElements(childrenContainerRef);
 

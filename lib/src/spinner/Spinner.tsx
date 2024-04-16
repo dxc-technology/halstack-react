@@ -40,26 +40,12 @@ const DxcSpinner = ({
             >
               {mode !== "small" && (
                 <SVGSpinner viewBox="0 0 140 140" isDeterminated>
-                  <CircleSpinner
-                    cx="70"
-                    cy="70"
-                    r="65"
-                    mode={mode}
-                    isDeterminated
-                    value={value}
-                  />
+                  <CircleSpinner cx="70" cy="70" r="65" mode={mode} isDeterminated value={value} />
                 </SVGSpinner>
               )}
               {mode === "small" && (
                 <SVGSpinner viewBox="0 0 16 16" isDeterminated>
-                  <CircleSpinner
-                    cx="8"
-                    cy="8"
-                    r="6"
-                    mode={mode}
-                    isDeterminated
-                    value={value}
-                  />
+                  <CircleSpinner cx="8" cy="8" r="6" mode={mode} isDeterminated value={value} />
                 </SVGSpinner>
               )}
             </Spinner>
@@ -67,26 +53,12 @@ const DxcSpinner = ({
             <Spinner role="progressbar">
               {mode !== "small" && (
                 <SVGSpinner viewBox="0 0 140 140" isDeterminated={false}>
-                  <CircleSpinner
-                    cx="70"
-                    cy="70"
-                    r="65"
-                    mode={mode}
-                    isDeterminated={false}
-                    value={value}
-                  />
+                  <CircleSpinner cx="70" cy="70" r="65" mode={mode} isDeterminated={false} value={value} />
                 </SVGSpinner>
               )}
               {mode === "small" && (
                 <SVGSpinner viewBox="0 0 16 16" isDeterminated={false}>
-                  <CircleSpinner
-                    cx="8"
-                    cy="8"
-                    r="6"
-                    mode={mode}
-                    isDeterminated={false}
-                    value={value}
-                  />
+                  <CircleSpinner cx="8" cy="8" r="6" mode={mode} isDeterminated={false} value={value} />
                 </SVGSpinner>
               )}
             </Spinner>
@@ -95,11 +67,7 @@ const DxcSpinner = ({
             <LabelsContainer>
               <SpinnerLabel mode={mode}>{label}</SpinnerLabel>
               {(value || value === 0) && showValue && (
-                <SpinnerProgress
-                  value={value}
-                  mode={mode}
-                  showValue={showValue}
-                >
+                <SpinnerProgress value={value} mode={mode} showValue={showValue}>
                   {value}%
                 </SpinnerProgress>
               )}
@@ -111,10 +79,7 @@ const DxcSpinner = ({
   );
 };
 
-const determinateValue = (
-  value: SpinnerPropsType["value"],
-  strokeDashArray: number
-) => {
+const determinateValue = (value: SpinnerPropsType["value"], strokeDashArray: number) => {
   let val = 0;
   if (value >= 0 && value <= 100) {
     val = strokeDashArray * (1 - value / 100);
@@ -137,11 +102,7 @@ const DXCSpinner = styled.div<{
   z-index: ${(props) => (props.mode === "overlay" ? 1300 : "")};
 
   margin: ${(props) =>
-    props.mode !== "overlay"
-      ? props.margin && typeof props.margin !== "object"
-        ? spaces[props.margin]
-        : "0px"
-      : ""};
+    props.mode !== "overlay" ? (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px") : ""};
   margin-top: ${(props) =>
     props.mode !== "overlay"
       ? props.margin && typeof props.margin === "object" && props.margin.top
@@ -267,8 +228,7 @@ const SVGSpinner = styled.svg<{ isDeterminated: boolean }>`
   left: 0;
   transform-origin: center;
   overflow: visible;
-  animation: ${(props) =>
-    !props.isDeterminated ? "1.4s linear infinite both spinner-svg" : ""};
+  animation: ${(props) => (!props.isDeterminated ? "1.4s linear infinite both spinner-svg" : "")};
 `;
 
 const CircleSpinner = styled.circle<{
@@ -284,10 +244,7 @@ const CircleSpinner = styled.circle<{
       : props.mode !== "small"
         ? "1.4s ease-in-out infinite both svg-circle-large"
         : "1.4s ease-in-out infinite both svg-circle-small"};
-  stroke: ${(props) =>
-    props.mode === "overlay"
-      ? props.theme.trackCircleColorOverlay
-      : props.theme.trackCircleColor};
+  stroke: ${(props) => (props.mode === "overlay" ? props.theme.trackCircleColorOverlay : props.theme.trackCircleColor)};
   transform-origin: ${(props) => (!props.isDeterminated ? "50% 50%" : "")};
   stroke-dasharray: ${(props) => (props.mode !== "small" ? "409" : "38")};
   stroke-width: ${(props) => (props.mode !== "small" ? "8.5px" : "2px")};
@@ -314,33 +271,15 @@ const SpinnerLabel = styled.p<{ mode: SpinnerPropsType["mode"] }>`
   overflow: hidden;
   text-overflow: ellipsis;
   font-family: ${(props) =>
-    props.mode === "overlay"
-      ? props.theme.overlayLabelFontFamily
-      : props.theme.labelFontFamily};
+    props.mode === "overlay" ? props.theme.overlayLabelFontFamily : props.theme.labelFontFamily};
   font-weight: ${(props) =>
-    props.mode === "overlay"
-      ? props.theme.overlayLabelFontWeight
-      : props.theme.labelFontWeight};
-  font-size: ${(props) =>
-    props.mode === "overlay"
-      ? props.theme.overlayLabelFontSize
-      : props.theme.labelFontSize};
-  font-style: ${(props) =>
-    props.mode === "overlay"
-      ? props.theme.overlayLabelFontStyle
-      : props.theme.labelFontStyle};
-  color: ${(props) =>
-    props.mode === "overlay"
-      ? props.theme.overlayLabelFontColor
-      : props.theme.labelFontColor};
-  text-align: ${(props) =>
-    props.mode === "overlay"
-      ? props.theme.overlayLabelTextAlign
-      : props.theme.labelTextAlign};
+    props.mode === "overlay" ? props.theme.overlayLabelFontWeight : props.theme.labelFontWeight};
+  font-size: ${(props) => (props.mode === "overlay" ? props.theme.overlayLabelFontSize : props.theme.labelFontSize)};
+  font-style: ${(props) => (props.mode === "overlay" ? props.theme.overlayLabelFontStyle : props.theme.labelFontStyle)};
+  color: ${(props) => (props.mode === "overlay" ? props.theme.overlayLabelFontColor : props.theme.labelFontColor)};
+  text-align: ${(props) => (props.mode === "overlay" ? props.theme.overlayLabelTextAlign : props.theme.labelTextAlign)};
   letter-spacing: ${(props) =>
-    props.mode === "overlay"
-      ? props.theme.overlayLabelLetterSpacing
-      : props.theme.labelLetterSpacing};
+    props.mode === "overlay" ? props.theme.overlayLabelLetterSpacing : props.theme.labelLetterSpacing};
 `;
 
 const SpinnerProgress = styled.p<{
@@ -353,36 +292,21 @@ const SpinnerProgress = styled.p<{
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  display: ${(props) =>
-    (props.value && props.showValue === true && "block") || "none"};
+  display: ${(props) => (props.value && props.showValue === true && "block") || "none"};
   font-family: ${(props) =>
-    props.mode === "overlay"
-      ? props.theme.overlayProgressValueFontFamily
-      : props.theme.progressValueFontFamily};
+    props.mode === "overlay" ? props.theme.overlayProgressValueFontFamily : props.theme.progressValueFontFamily};
   font-weight: ${(props) =>
-    props.mode === "overlay"
-      ? props.theme.overlayProgressValueFontWeight
-      : props.theme.progressValueFontWeight};
+    props.mode === "overlay" ? props.theme.overlayProgressValueFontWeight : props.theme.progressValueFontWeight};
   font-size: ${(props) =>
-    props.mode === "overlay"
-      ? props.theme.overlayProgressValueFontSize
-      : props.theme.progressValueFontSize};
+    props.mode === "overlay" ? props.theme.overlayProgressValueFontSize : props.theme.progressValueFontSize};
   font-style: ${(props) =>
-    props.mode === "overlay"
-      ? props.theme.overlayProgressValueFontStyle
-      : props.theme.progressValueFontStyle};
+    props.mode === "overlay" ? props.theme.overlayProgressValueFontStyle : props.theme.progressValueFontStyle};
   color: ${(props) =>
-    props.mode === "overlay"
-      ? props.theme.overlayProgressValueFontColor
-      : props.theme.progressValueFontColor};
+    props.mode === "overlay" ? props.theme.overlayProgressValueFontColor : props.theme.progressValueFontColor};
   text-align: ${(props) =>
-    props.mode === "overlay"
-      ? props.theme.overlayProgressValueTextAlign
-      : props.theme.progressValueTextAlign};
+    props.mode === "overlay" ? props.theme.overlayProgressValueTextAlign : props.theme.progressValueTextAlign};
   letter-spacing: ${(props) =>
-    props.mode === "overlay"
-      ? props.theme.overlayProgressValueLetterSpacing
-      : props.theme.progressValueLetterSpacing};
+    props.mode === "overlay" ? props.theme.overlayProgressValueLetterSpacing : props.theme.progressValueLetterSpacing};
 `;
 
 export default DxcSpinner;

@@ -25,17 +25,13 @@ export const Chromatic = () => (
     <ExampleContainer>
       <Title title="Image with text" theme="light" level={4} />
       <DxcParagraph>
-        Lorem ipsum dolor sit amet consectetur. Tincidunt sed pharetra mollis
-        duis volutpat urna. Hendrerit aliquet et arcu purus. Sodales elementum
-        sollicitudin consequat elementum tortor. Lectus eget cursus ut ac
-        pharetra lobortis integer eu. Potenti amet ac id risus ac nunc orci
-        nibh. Tempus vitae vitae aenean arcu. Nibh tristique porta dui enim eget
-        tristique rutrum. Quisque faucibus suscipit nibh est sed. Netus
-        venenatis congue diam in dui morbi dignissim lorem. Urna aliquet sem in
-        tincidunt. Nunc arcu nec fringilla enim purus ut justo nisi. Vel mus ut
-        ornare faucibus blandit diam sit vestibulum massa. Semper nullam sit
-        sagittis hendrerit augue. In fermentum metus proin arcu faucibus proin
-        nibh sit. Vel integer sed enim in sed vel nec ut vitae. Commodo sagittis
+        Lorem ipsum dolor sit amet consectetur. Tincidunt sed pharetra mollis duis volutpat urna. Hendrerit aliquet et
+        arcu purus. Sodales elementum sollicitudin consequat elementum tortor. Lectus eget cursus ut ac pharetra
+        lobortis integer eu. Potenti amet ac id risus ac nunc orci nibh. Tempus vitae vitae aenean arcu. Nibh tristique
+        porta dui enim eget tristique rutrum. Quisque faucibus suscipit nibh est sed. Netus venenatis congue diam in dui
+        morbi dignissim lorem. Urna aliquet sem in tincidunt. Nunc arcu nec fringilla enim purus ut justo nisi. Vel mus
+        ut ornare faucibus blandit diam sit vestibulum massa. Semper nullam sit sagittis hendrerit augue. In fermentum
+        metus proin arcu faucibus proin nibh sit. Vel integer sed enim in sed vel nec ut vitae. Commodo sagittis
         volutpat id lorem.
       </DxcParagraph>
       <DxcInset top="2rem" bottom="2rem">
@@ -46,17 +42,13 @@ export const Chromatic = () => (
         />
       </DxcInset>
       <DxcParagraph>
-        Lorem ipsum dolor sit amet consectetur. Tincidunt sed pharetra mollis
-        duis volutpat urna. Hendrerit aliquet et arcu purus. Sodales elementum
-        sollicitudin consequat elementum tortor. Lectus eget cursus ut ac
-        pharetra lobortis integer eu. Potenti amet ac id risus ac nunc orci
-        nibh. Tempus vitae vitae aenean arcu. Nibh tristique porta dui enim eget
-        tristique rutrum. Quisque faucibus suscipit nibh est sed. Netus
-        venenatis congue diam in dui morbi dignissim lorem. Urna aliquet sem in
-        tincidunt. Nunc arcu nec fringilla enim purus ut justo nisi. Vel mus ut
-        ornare faucibus blandit diam sit vestibulum massa. Semper nullam sit
-        sagittis hendrerit augue. In fermentum metus proin arcu faucibus proin
-        nibh sit. Vel integer sed enim in sed vel nec ut vitae. Commodo sagittis
+        Lorem ipsum dolor sit amet consectetur. Tincidunt sed pharetra mollis duis volutpat urna. Hendrerit aliquet et
+        arcu purus. Sodales elementum sollicitudin consequat elementum tortor. Lectus eget cursus ut ac pharetra
+        lobortis integer eu. Potenti amet ac id risus ac nunc orci nibh. Tempus vitae vitae aenean arcu. Nibh tristique
+        porta dui enim eget tristique rutrum. Quisque faucibus suscipit nibh est sed. Netus venenatis congue diam in dui
+        morbi dignissim lorem. Urna aliquet sem in tincidunt. Nunc arcu nec fringilla enim purus ut justo nisi. Vel mus
+        ut ornare faucibus blandit diam sit vestibulum massa. Semper nullam sit sagittis hendrerit augue. In fermentum
+        metus proin arcu faucibus proin nibh sit. Vel integer sed enim in sed vel nec ut vitae. Commodo sagittis
         volutpat id lorem.
       </DxcParagraph>
     </ExampleContainer>
@@ -70,30 +62,21 @@ export const Chromatic = () => (
           src="https://assets.entrepreneur.com/content/3x2/2000/20191009140007-GettyImages-1053962188.jpeg"
         />
         <DxcParagraph>
-          Lorem ipsum dolor sit amet consectetur. Tincidunt sed pharetra mollis
-          duis volutpat urna. Hendrerit aliquet et arcu purus. Sodales elementum
-          sollicitudin consequat elementum tortor. Lectus eget cursus ut ac
-          pharetra lobortis integer eu. Potenti amet ac id risus ac nunc orci
-          nibh. Tempus vitae vitae aenean arcu. Nibh tristique porta dui enim
-          eget tristique rutrum. Quisque faucibus suscipit nibh est sed. Netus
-          venenatis congue diam in dui morbi dignissim lorem. Urna aliquet sem
-          in tincidunt. Nunc arcu nec fringilla enim purus ut justo nisi. Vel
-          mus ut ornare faucibus blandit diam sit vestibulum massa. Semper
-          nullam sit sagittis hendrerit augue. In fermentum metus proin arcu
-          faucibus proin nibh sit. Vel integer sed enim in sed vel nec ut vitae.
-          Commodo sagittis volutpat id lorem. Lorem ipsum dolor sit amet
-          consectetur. Tincidunt sed pharetra mollis duis volutpat urna.
-          Hendrerit aliquet et arcu purus. Sodales elementum sollicitudin
-          consequat elementum tortor. Lectus eget cursus ut ac pharetra lobortis
-          integer eu. Potenti amet ac id risus ac nunc orci nibh. Tempus vitae
-          vitae aenean arcu. Nibh tristique porta dui enim eget tristique
-          rutrum. Quisque faucibus suscipit nibh est sed. Netus venenatis congue
-          diam in dui morbi dignissim lorem. Urna aliquet sem in tincidunt. Nunc
-          arcu nec fringilla enim purus ut justo nisi. Vel mus ut ornare
-          faucibus blandit diam sit vestibulum massa. Semper nullam sit sagittis
-          hendrerit augue. In fermentum metus proin arcu faucibus proin nibh
-          sit. Vel integer sed enim in sed vel nec ut vitae. Commodo sagittis
-          volutpat id lorem.
+          Lorem ipsum dolor sit amet consectetur. Tincidunt sed pharetra mollis duis volutpat urna. Hendrerit aliquet et
+          arcu purus. Sodales elementum sollicitudin consequat elementum tortor. Lectus eget cursus ut ac pharetra
+          lobortis integer eu. Potenti amet ac id risus ac nunc orci nibh. Tempus vitae vitae aenean arcu. Nibh
+          tristique porta dui enim eget tristique rutrum. Quisque faucibus suscipit nibh est sed. Netus venenatis congue
+          diam in dui morbi dignissim lorem. Urna aliquet sem in tincidunt. Nunc arcu nec fringilla enim purus ut justo
+          nisi. Vel mus ut ornare faucibus blandit diam sit vestibulum massa. Semper nullam sit sagittis hendrerit
+          augue. In fermentum metus proin arcu faucibus proin nibh sit. Vel integer sed enim in sed vel nec ut vitae.
+          Commodo sagittis volutpat id lorem. Lorem ipsum dolor sit amet consectetur. Tincidunt sed pharetra mollis duis
+          volutpat urna. Hendrerit aliquet et arcu purus. Sodales elementum sollicitudin consequat elementum tortor.
+          Lectus eget cursus ut ac pharetra lobortis integer eu. Potenti amet ac id risus ac nunc orci nibh. Tempus
+          vitae vitae aenean arcu. Nibh tristique porta dui enim eget tristique rutrum. Quisque faucibus suscipit nibh
+          est sed. Netus venenatis congue diam in dui morbi dignissim lorem. Urna aliquet sem in tincidunt. Nunc arcu
+          nec fringilla enim purus ut justo nisi. Vel mus ut ornare faucibus blandit diam sit vestibulum massa. Semper
+          nullam sit sagittis hendrerit augue. In fermentum metus proin arcu faucibus proin nibh sit. Vel integer sed
+          enim in sed vel nec ut vitae. Commodo sagittis volutpat id lorem.
         </DxcParagraph>
       </DxcFlex>
     </ExampleContainer>

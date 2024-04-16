@@ -21,10 +21,8 @@ export default {
 
     // Dropdown tokens
     buttonBackgroundColor: componentTokens.table.actionBackgroundColor,
-    hoverButtonBackgroundColor:
-      componentTokens.table.hoverActionBackgroundColor,
-    activeButtonBackgroundColor:
-      componentTokens.table.activeActionBackgroundColor,
+    hoverButtonBackgroundColor: componentTokens.table.hoverActionBackgroundColor,
+    activeButtonBackgroundColor: componentTokens.table.activeActionBackgroundColor,
     buttonFontFamily: componentTokens.dropdown.buttonFontFamily,
     buttonFontSize: componentTokens.dropdown.buttonFontSize,
     buttonFontStyle: componentTokens.dropdown.buttonFontStyle,
@@ -33,16 +31,12 @@ export default {
     buttonIconSpacing: componentTokens.dropdown.buttonIconSpacing,
     buttonIconColor: componentTokens.table.actionIconColor,
     disabledColor: componentTokens.table.disabledActionIconColor,
-    disabledButtonBorderColor:
-      componentTokens.dropdown.disabledButtonBorderColor,
-    disabledButtonBackgroundColor:
-      componentTokens.table.disabledActionBackgroundColor,
+    disabledButtonBorderColor: componentTokens.dropdown.disabledButtonBorderColor,
+    disabledButtonBackgroundColor: componentTokens.table.disabledActionBackgroundColor,
     disabledBorderColor: componentTokens.dropdown.disabledBorderColor,
     optionBackgroundColor: componentTokens.dropdown.optionBackgroundColor,
-    hoverOptionBackgroundColor:
-      componentTokens.dropdown.hoverOptionBackgroundColor,
-    activeOptionBackgroundColor:
-      componentTokens.dropdown.activeOptionBackgroundColor,
+    hoverOptionBackgroundColor: componentTokens.dropdown.hoverOptionBackgroundColor,
+    activeOptionBackgroundColor: componentTokens.dropdown.activeOptionBackgroundColor,
     optionFontFamily: componentTokens.dropdown.optionFontFamily,
     optionFontStyle: componentTokens.dropdown.optionFontStyle,
     optionFontWeight: componentTokens.dropdown.optionFontWeight,

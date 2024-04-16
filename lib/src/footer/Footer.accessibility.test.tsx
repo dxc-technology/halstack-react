@@ -12,13 +12,7 @@ const social = [
   {
     href: "https://www.linkedin.com/company/dxctechnology",
     logo: (
-      <svg
-        version="1.1"
-        x="0px"
-        y="0px"
-        viewBox="0 0 438.536 438.536"
-        fill="currentColor"
-      >
+      <svg version="1.1" x="0px" y="0px" viewBox="0 0 438.536 438.536" fill="currentColor">
         <g>
           <path
             d="M414.41,24.123C398.333,8.042,378.963,0,356.315,0H82.228C59.58,0,40.21,8.042,24.126,24.123
@@ -41,13 +35,7 @@ const social = [
   {
     href: "https://x.com/dxctechnology",
     logo: (
-      <svg
-        width="256"
-        height="256"
-        viewBox="0 0 256 256"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
+      <svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect width="256" height="256" rx="40" fill="white" />
         <path
           d="M140.192 118.205L187.848 64H176.556L135.158 111.056L102.117 64H64L113.975 135.163L64 192H75.2914L118.982 142.296L153.883 192H192L140.192 118.205ZM124.722 135.787L119.65 128.697L79.3634 72.3294H96.7094L129.232 117.837L134.282 124.927L176.551 184.076H159.205L124.722 135.787Z"
@@ -103,34 +91,22 @@ const bottom = [
 describe("Footer component accessibility tests", () => {
   it("Should not have basic accessibility issues", async () => {
     const { container } = render(
-      <DxcFooter
-        copyright="Copyright"
-        socialLinks={social}
-        bottomLinks={bottom}
-        margin="small"
-        mode="default"
-      >
+      <DxcFooter copyright="Copyright" socialLinks={social} bottomLinks={bottom} margin="small" mode="default">
         <div>
           <a href="https://www.linkedin.com/company/dxctechnology">Linkedin</a>
         </div>
-      </DxcFooter>
+      </DxcFooter>,
     );
     const results = await axe(container, disabledRules);
     expect(results).toHaveNoViolations();
   });
   it("Should not have basic accessibility issues for reduced mode", async () => {
     const { container } = render(
-      <DxcFooter
-        copyright="Copyright"
-        socialLinks={social}
-        bottomLinks={bottom}
-        margin="small"
-        mode="reduced"
-      >
+      <DxcFooter copyright="Copyright" socialLinks={social} bottomLinks={bottom} margin="small" mode="reduced">
         <div>
           <a href="https://www.linkedin.com/company/dxctechnology">Linkedin</a>
         </div>
-      </DxcFooter>
+      </DxcFooter>,
     );
     const results = await axe(container, disabledRules);
     expect(results).toHaveNoViolations();

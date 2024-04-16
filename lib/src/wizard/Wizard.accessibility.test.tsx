@@ -36,7 +36,7 @@ describe("Wizard component accessibility tests", () => {
         mode="vertical"
         defaultCurrentStep={1}
         margin="medium"
-      />
+      />,
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();

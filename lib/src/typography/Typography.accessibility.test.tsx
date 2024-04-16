@@ -32,7 +32,7 @@ describe("Typography component accessibility tests", () => {
         <DxcTypography display="block" fontSize="0.75rem">
           0.75rem.
         </DxcTypography>
-      </DxcFlex>
+      </DxcFlex>,
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
@@ -58,7 +58,7 @@ describe("Typography component accessibility tests", () => {
         <DxcTypography display="block" letterSpacing="0.1em">
           0.1em.
         </DxcTypography>
-      </DxcFlex>
+      </DxcFlex>,
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
@@ -84,7 +84,7 @@ describe("Typography component accessibility tests", () => {
         <DxcTypography display="block" lineHeight="2em">
           2em.
         </DxcTypography>
-      </DxcFlex>
+      </DxcFlex>,
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
@@ -104,7 +104,7 @@ describe("Typography component accessibility tests", () => {
         <DxcTypography display="block" fontWeight="700">
           700.
         </DxcTypography>
-      </DxcFlex>
+      </DxcFlex>,
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
@@ -118,7 +118,7 @@ describe("Typography component accessibility tests", () => {
         <DxcTypography display="block" textDecoration="line-through">
           Line-through.
         </DxcTypography>
-      </DxcFlex>
+      </DxcFlex>,
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
@@ -132,7 +132,7 @@ describe("Typography component accessibility tests", () => {
         <DxcTypography display="block" fontFamily="Source Code Pro, monospace">
           Source Code Pro, monospace.
         </DxcTypography>
-      </DxcFlex>
+      </DxcFlex>,
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
@@ -146,7 +146,7 @@ describe("Typography component accessibility tests", () => {
         <DxcTypography display="block" fontStyle="normal">
           Normal.
         </DxcTypography>
-      </DxcFlex>
+      </DxcFlex>,
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
@@ -163,7 +163,7 @@ describe("Typography component accessibility tests", () => {
         <DxcTypography display="block" textAlign="right">
           Right.
         </DxcTypography>
-      </DxcFlex>
+      </DxcFlex>,
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
@@ -171,9 +171,7 @@ describe("Typography component accessibility tests", () => {
   it("Should not have basic accessibility issues for different white-spaces", async () => {
     const { container } = render(
       <DxcFlex>
-        <DxcTypography fontSize="2rem">
-          {"                  "} Normal: A bunch of words you see.
-        </DxcTypography>
+        <DxcTypography fontSize="2rem">{"                  "} Normal: A bunch of words you see.</DxcTypography>
         <DxcTypography whiteSpace="nowrap" fontSize="2rem">
           {"                  "}No-wrap: A bunch of words you see.
         </DxcTypography>
@@ -186,7 +184,7 @@ describe("Typography component accessibility tests", () => {
         <DxcTypography whiteSpace="pre-wrap" fontSize="2rem">
           {"                  "} pre-wrap: A bunch of words you see.
         </DxcTypography>
-      </DxcFlex>
+      </DxcFlex>,
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
@@ -202,7 +200,7 @@ describe("Typography component accessibility tests", () => {
           Display Inline.
           <DxcTypography>A different text.</DxcTypography>
         </DxcTypography>
-      </DxcFlex>
+      </DxcFlex>,
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
@@ -225,7 +223,7 @@ describe("Typography component accessibility tests", () => {
             Overflow unset.
           </DxcTypography>
         </div>
-      </DxcFlex>
+      </DxcFlex>,
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();

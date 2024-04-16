@@ -23,13 +23,7 @@ global.ResizeObserver = jest.fn().mockImplementation(() => ({
 }));
 
 const icon = (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    height="24px"
-    viewBox="0 0 24 24"
-    width="24px"
-    fill="currentColor"
-  >
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
     <path d="M0 0h24v24H0V0zm0 0h24v24H0V0z" fill="none" />
     <path d="M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.08 2.93 1 9zm8 8l3 3 3-3c-1.65-1.66-4.34-1.66-6 0zm-4-4l2 2c2.76-2.76 7.24-2.76 10 0l2-2C15.14 9.14 8.87 9.14 5 13z" />
   </svg>
@@ -241,23 +235,17 @@ const rows2 = [
 
 describe("Resultset table component tests", () => {
   test("Resultset table rendered correctly", () => {
-    const { getByText } = render(
-      <DxcResultsetTable columns={columns} rows={rows} itemsPerPage={3} />
-    );
+    const { getByText } = render(<DxcResultsetTable columns={columns} rows={rows} itemsPerPage={3} />);
     expect(getByText("Peter")).toBeTruthy();
   });
 
   test("Resultset table shows as many rows as itemsPerPage", () => {
-    const { getAllByRole } = render(
-      <DxcResultsetTable columns={columns} rows={rows} itemsPerPage={3} />
-    );
+    const { getAllByRole } = render(<DxcResultsetTable columns={columns} rows={rows} itemsPerPage={3} />);
     expect(getAllByRole("row").length - 1).toEqual(3);
   });
 
   test("Resultset table shows rows on second page", () => {
-    const { getByText, getAllByRole } = render(
-      <DxcResultsetTable columns={columns} rows={rows} itemsPerPage={3} />
-    );
+    const { getByText, getAllByRole } = render(<DxcResultsetTable columns={columns} rows={rows} itemsPerPage={3} />);
     expect(getByText("Peter")).toBeTruthy();
     expect(getByText("Louis")).toBeTruthy();
     expect(getByText("Lana")).toBeTruthy();
@@ -275,12 +263,7 @@ describe("Resultset table component tests", () => {
     window.HTMLElement.prototype.scrollIntoView = () => {};
     window.HTMLElement.prototype.scrollTo = () => {};
     const { getByText, getAllByRole } = render(
-      <DxcResultsetTable
-        columns={columns}
-        showGoToPage
-        rows={rows}
-        itemsPerPage={3}
-      />
+      <DxcResultsetTable columns={columns} showGoToPage rows={rows} itemsPerPage={3} />,
     );
     expect(getByText("Peter")).toBeTruthy();
     expect(getByText("Louis")).toBeTruthy();
@@ -298,9 +281,7 @@ describe("Resultset table component tests", () => {
   });
 
   test("Resultset table going to the last page shows only one row", () => {
-    const { getByText, getAllByRole } = render(
-      <DxcResultsetTable columns={columns} rows={rows} itemsPerPage={3} />
-    );
+    const { getByText, getAllByRole } = render(<DxcResultsetTable columns={columns} rows={rows} itemsPerPage={3} />);
     const lastButton = getAllByRole("button")[4];
     fireEvent.click(lastButton);
     expect(getByText("10 to 10 of 10")).toBeTruthy();
@@ -309,9 +290,7 @@ describe("Resultset table component tests", () => {
   });
 
   test("Resultset table sort rows by column", () => {
-    const component = render(
-      <DxcResultsetTable columns={columns} rows={rows} itemsPerPage={3} />
-    );
+    const component = render(<DxcResultsetTable columns={columns} rows={rows} itemsPerPage={3} />);
     expect(component.queryByText("Peter")).toBeTruthy();
     fireEvent.click(component.queryByText("Name"));
     expect(component.queryByText("Tina")).not.toBeTruthy();
@@ -323,24 +302,15 @@ describe("Resultset table component tests", () => {
   });
 
   test("Resultset table change rows should go to first page", () => {
-    const { queryByText, rerender } = render(
-      <DxcResultsetTable columns={columns} rows={rows} itemsPerPage={3} />
-    );
+    const { queryByText, rerender } = render(<DxcResultsetTable columns={columns} rows={rows} itemsPerPage={3} />);
     expect(queryByText("Peter")).toBeTruthy();
-    rerender(
-      <DxcResultsetTable columns={columns} rows={rows2} itemsPerPage={3} />
-    );
+    rerender(<DxcResultsetTable columns={columns} rows={rows2} itemsPerPage={3} />);
     expect(queryByText("1 to 3 of 3")).toBeTruthy();
   });
 
   test("Resultset table change itemsPerPage should go to first page", () => {
     const { getAllByRole } = render(
-      <DxcResultsetTable
-        columns={columns}
-        rows={rows}
-        itemsPerPage={3}
-        itemsPerPageOptions={[2, 3]}
-      />
+      <DxcResultsetTable columns={columns} rows={rows} itemsPerPage={3} itemsPerPageOptions={[2, 3]} />,
     );
     const lastButton = getAllByRole("button")[4];
     expect(getAllByRole("row").length - 1).toEqual(3);
@@ -349,9 +319,7 @@ describe("Resultset table component tests", () => {
   });
 
   test("Resultset table may not use the paginator", () => {
-    const { getAllByRole } = render(
-      <DxcResultsetTable columns={columns} rows={rows} hidePaginator />
-    );
+    const { getAllByRole } = render(<DxcResultsetTable columns={columns} rows={rows} hidePaginator />);
     const nextButton = getAllByRole("button")[3];
     expect(nextButton).not.toBeTruthy();
   });
@@ -401,7 +369,7 @@ describe("Resultset table component tests", () => {
       ],
     ];
     const { getAllByRole, getByRole, getByText } = render(
-      <DxcResultsetTable columns={columns} rows={actionRows} itemsPerPage={3} />
+      <DxcResultsetTable columns={columns} rows={actionRows} itemsPerPage={3} />,
     );
     const dropdown = getAllByRole("button")[2];
     act(() => {

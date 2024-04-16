@@ -23,15 +23,13 @@ const singleDisabledOptions = [
 describe("Radio Group component tests", () => {
   test("Initial render has correct aria attributes and tabIndex", () => {
     const { getByRole, getAllByRole, getByText } = render(
-      <DxcRadioGroup label="test-radioGroup-label" options={options} error="" />
+      <DxcRadioGroup label="test-radioGroup-label" options={options} error="" />,
     );
     const radioGroup = getByRole("radiogroup");
     const radios = getAllByRole("radio");
     const error = getByRole("alert");
     expect(radioGroup.getAttribute("aria-disabled")).toBe("false");
-    expect(radioGroup.getAttribute("aria-labelledby")).toBe(
-      getByText("test-radioGroup-label").id
-    );
+    expect(radioGroup.getAttribute("aria-labelledby")).toBe(getByText("test-radioGroup-label").id);
     expect(radioGroup.getAttribute("aria-invalid")).toBe("false");
     expect(radioGroup.getAttribute("aria-required")).toBe("true");
     expect(radioGroup.getAttribute("aria-orientation")).toBe("vertical");
@@ -41,20 +39,12 @@ describe("Radio Group component tests", () => {
       expect(radio.tabIndex).toBe(index === 0 ? 0 : -1);
       expect(radio.getAttribute("aria-checked")).toBe("false");
       expect(radio.getAttribute("aria-disabled")).toBe("false");
-      expect(radio.getAttribute("aria-labelledby")).toBe(
-        getByText(`Option 0${index + 1}`).id
-      );
+      expect(radio.getAttribute("aria-labelledby")).toBe(getByText(`Option 0${index + 1}`).id);
     });
   });
 
   test("aria-orientation attribute changes depending on stacking prop value", () => {
-    const { getByRole } = render(
-      <DxcRadioGroup
-        label="test-radioGroup-label"
-        options={options}
-        stacking="row"
-      />
-    );
+    const { getByRole } = render(<DxcRadioGroup label="test-radioGroup-label" options={options} stacking="row" />);
     const radioGroup = getByRole("radiogroup");
     expect(radioGroup.getAttribute("aria-orientation")).toBe("horizontal");
   });
@@ -68,13 +58,9 @@ describe("Radio Group component tests", () => {
     });
     const { getByText, getByRole, getAllByRole } = render(
       <form onSubmit={handlerOnSubmit}>
-        <DxcRadioGroup
-          name="radiogroup"
-          label="test-radio-group-label"
-          options={options}
-        />
+        <DxcRadioGroup name="radiogroup" label="test-radio-group-label" options={options} />
         <button type="submit">Submit</button>
-      </form>
+      </form>,
     );
     const radioGroup = getByRole("radiogroup");
     const submit = getByText("Submit");
@@ -85,7 +71,7 @@ describe("Radio Group component tests", () => {
 
   test("Disabled state renders with correct aria attribute, correct tabIndex values and it is not focusable by keyboard", () => {
     const { getByRole, getAllByRole } = render(
-      <DxcRadioGroup label="test-radioGroup-label" options={options} disabled />
+      <DxcRadioGroup label="test-radioGroup-label" options={options} disabled />,
     );
     const radioGroup = getByRole("radiogroup");
     const radios = getAllByRole("radio");
@@ -118,11 +104,7 @@ describe("Radio Group component tests", () => {
 
   test("Disabled option renders with correct aria attribute, correct tabIndex value and it is not focusable by keyboard (focus 'jumps' the disabled option)", () => {
     const { getByRole, getAllByRole } = render(
-      <DxcRadioGroup
-        name="test"
-        label="test-radioGroup-label"
-        options={singleDisabledOptions}
-      />
+      <DxcRadioGroup name="test" label="test-radioGroup-label" options={singleDisabledOptions} />,
     );
     const radioGroup = getByRole("radiogroup");
     const radios = getAllByRole("radio");
@@ -156,15 +138,9 @@ describe("Radio Group component tests", () => {
     });
     const { getByText } = render(
       <form onSubmit={handlerOnSubmit}>
-        <DxcRadioGroup
-          name="radiogroup"
-          defaultValue="1"
-          disabled
-          label="test-radio-group-label"
-          options={options}
-        />
+        <DxcRadioGroup name="radiogroup" defaultValue="1" disabled label="test-radio-group-label" options={options} />
         <button type="submit">Submit</button>
-      </form>
+      </form>,
     );
     const submit = getByText("Submit");
     await userEvent.click(submit);
@@ -172,11 +148,7 @@ describe("Radio Group component tests", () => {
 
   test("Error state renders with correct aria attributes", () => {
     const { getByRole, getByText } = render(
-      <DxcRadioGroup
-        label="test-radioGroup-label"
-        options={options}
-        error="Error message"
-      />
+      <DxcRadioGroup label="test-radioGroup-label" options={options} error="Error message" />,
     );
     const radioGroup = getByRole("radiogroup");
     const errorMessage = getByText("Error message");
@@ -189,12 +161,7 @@ describe("Radio Group component tests", () => {
     const onChange = jest.fn();
     const onBlur = jest.fn();
     const { getByRole, getAllByRole } = render(
-      <DxcRadioGroup
-        label="test-radioGroup-label"
-        options={options}
-        onChange={onChange}
-        onBlur={onBlur}
-      />
+      <DxcRadioGroup label="test-radioGroup-label" options={options} onChange={onChange} onBlur={onBlur} />,
     );
     const radioGroup = getByRole("radiogroup");
     expect(radioGroup.getAttribute("aria-required")).toBe("true");
@@ -213,13 +180,7 @@ describe("Radio Group component tests", () => {
     const onChange = jest.fn();
     const onBlur = jest.fn();
     const { getByRole, getAllByRole } = render(
-      <DxcRadioGroup
-        label="test-radioGroup-label"
-        value=""
-        options={options}
-        onChange={onChange}
-        onBlur={onBlur}
-      />
+      <DxcRadioGroup label="test-radioGroup-label" value="" options={options} onChange={onChange} onBlur={onBlur} />,
     );
     const radioGroup = getByRole("radiogroup");
     expect(radioGroup.getAttribute("aria-required")).toBe("true");
@@ -242,11 +203,10 @@ describe("Radio Group component tests", () => {
         helperText="test-radio-group-helper-text"
         options={options}
         onChange={onChange}
-      />
+      />,
     );
     const radio = getAllByRole("radio")[1];
-    const submitInput =
-      container.querySelector<HTMLInputElement>(`input[name="test"]`);
+    const submitInput = container.querySelector<HTMLInputElement>(`input[name="test"]`);
     expect(radio.tabIndex).toBe(0);
     expect(radio.getAttribute("aria-checked")).toBe("true");
     expect(submitInput.value).toBe("2");
@@ -265,7 +225,7 @@ describe("Radio Group component tests", () => {
         onBlur={onBlur}
         optional
         optionalItemLabel="No selection"
-      />
+      />,
     );
     const radioGroup = getByRole("radiogroup");
     expect(radioGroup.getAttribute("aria-required")).toBe("false");
@@ -273,8 +233,7 @@ describe("Radio Group component tests", () => {
     expect(onBlur).toHaveBeenCalledWith({});
     expect(radioGroup.getAttribute("aria-invalid")).toBe("false");
     const optionalLabel = getByText("No selection");
-    const submitInput =
-      container.querySelector<HTMLInputElement>(`input[name="test"]`);
+    const submitInput = container.querySelector<HTMLInputElement>(`input[name="test"]`);
     await userEvent.click(optionalLabel);
     expect(onChange).toHaveBeenCalledWith("");
     expect(submitInput.value).toBe("");
@@ -292,12 +251,11 @@ describe("Radio Group component tests", () => {
         options={options}
         onChange={onChange}
         onBlur={onBlur}
-      />
+      />,
     );
     const radioGroup = getByRole("radiogroup");
     const radios = getAllByRole("radio");
-    const submitInput =
-      container.querySelector<HTMLInputElement>(`input[name="test"]`);
+    const submitInput = container.querySelector<HTMLInputElement>(`input[name="test"]`);
     expect(submitInput.value).toBe("2");
     expect(radios[1].tabIndex).toBe(0);
     expect(radios[1].getAttribute("aria-checked")).toBe("true");
@@ -316,12 +274,11 @@ describe("Radio Group component tests", () => {
         helperText="test-radio-group-helper-text"
         options={options}
         onChange={onChange}
-      />
+      />,
     );
     const radioLabel = getByText("Option 09");
     const checkedRadio = getAllByRole("radio")[8];
-    const submitInput =
-      container.querySelector<HTMLInputElement>(`input[name="test"]`);
+    const submitInput = container.querySelector<HTMLInputElement>(`input[name="test"]`);
     expect(checkedRadio.tabIndex).toBe(-1);
     await userEvent.click(radioLabel);
     expect(onChange).toHaveBeenCalledWith("9");
@@ -340,11 +297,10 @@ describe("Radio Group component tests", () => {
         helperText="test-radio-group-helper-text"
         options={options}
         onChange={onChange}
-      />
+      />,
     );
     const checkedRadio = getAllByRole("radio")[6];
-    const submitInput =
-      container.querySelector<HTMLInputElement>(`input[name="test"]`);
+    const submitInput = container.querySelector<HTMLInputElement>(`input[name="test"]`);
     expect(checkedRadio.tabIndex).toBe(-1);
     await userEvent.click(checkedRadio);
     expect(onChange).toHaveBeenCalledWith("7");
@@ -364,7 +320,7 @@ describe("Radio Group component tests", () => {
         helperText="test-radio-group-helper-text"
         options={options}
         onChange={onChange}
-      />
+      />,
     );
     const checkedRadio = getAllByRole("radio")[1];
     expect(checkedRadio.tabIndex).toBe(0);
@@ -383,12 +339,11 @@ describe("Radio Group component tests", () => {
         helperText="test-radio-group-helper-text"
         options={options}
         onChange={onChange}
-      />
+      />,
     );
     const radioGroup = getByRole("radiogroup");
     const checkedRadio = getAllByRole("radio")[0];
-    const submitInput =
-      container.querySelector<HTMLInputElement>(`input[name="test"]`);
+    const submitInput = container.querySelector<HTMLInputElement>(`input[name="test"]`);
     fireEvent.keyDown(radioGroup, {
       key: " ",
       code: "Space",
@@ -412,12 +367,11 @@ describe("Radio Group component tests", () => {
         options={options}
         onChange={onChange}
         onBlur={onBlur}
-      />
+      />,
     );
     const radioGroup = getByRole("radiogroup");
     const radios = getAllByRole("radio");
-    const submitInput =
-      container.querySelector<HTMLInputElement>(`input[name="test"]`);
+    const submitInput = container.querySelector<HTMLInputElement>(`input[name="test"]`);
     const checkedRadio = getAllByRole("radio")[0];
     userEvent.tab();
     expect(onChange).not.toHaveBeenCalled();
@@ -451,12 +405,11 @@ describe("Radio Group component tests", () => {
         options={options}
         onChange={onChange}
         onBlur={onBlur}
-      />
+      />,
     );
     const radioGroup = getByRole("radiogroup");
     const radios = getAllByRole("radio");
-    const submitInput =
-      container.querySelector<HTMLInputElement>(`input[name="test"]`);
+    const submitInput = container.querySelector<HTMLInputElement>(`input[name="test"]`);
     fireEvent.keyDown(radioGroup, {
       key: "ArrowDown",
       code: "ArrowDown",
@@ -495,12 +448,11 @@ describe("Radio Group component tests", () => {
         options={options}
         onChange={onChange}
         onBlur={onBlur}
-      />
+      />,
     );
     const radioGroup = getByRole("radiogroup");
     const radios = getAllByRole("radio");
-    const submitInput =
-      container.querySelector<HTMLInputElement>(`input[name="test"]`);
+    const submitInput = container.querySelector<HTMLInputElement>(`input[name="test"]`);
     fireEvent.keyDown(radioGroup, {
       key: "ArrowUp",
       code: "ArrowUp",
@@ -536,12 +488,11 @@ describe("Radio Group component tests", () => {
         helperText="test-radio-group-helper-text"
         options={options}
         onChange={onChange}
-      />
+      />,
     );
     const radioGroup = getByRole("radiogroup");
     const radios = getAllByRole("radio");
-    const submitInput =
-      container.querySelector<HTMLInputElement>(`input[name="test"]`);
+    const submitInput = container.querySelector<HTMLInputElement>(`input[name="test"]`);
     await userEvent.click(radios[3]);
     fireEvent.keyDown(radioGroup, {
       key: "ArrowDown",
@@ -578,12 +529,11 @@ describe("Radio Group component tests", () => {
         options={options}
         onChange={onChange}
         readOnly
-      />
+      />,
     );
     const radioGroup = getByRole("radiogroup");
     const radios = getAllByRole("radio");
-    const submitInput =
-      container.querySelector<HTMLInputElement>(`input[name="test"]`);
+    const submitInput = container.querySelector<HTMLInputElement>(`input[name="test"]`);
     await userEvent.click(radios[5]);
     expect(onChange).not.toHaveBeenCalled();
     expect(radios[5].getAttribute("aria-checked")).toBe("false");
@@ -612,15 +562,9 @@ describe("Radio Group component tests", () => {
     });
     const { getByText } = render(
       <form onSubmit={handlerOnSubmit}>
-        <DxcRadioGroup
-          name="radiogroup"
-          label="test-radio-group-label"
-          value="data"
-          options={options}
-          readOnly
-        />
+        <DxcRadioGroup name="radiogroup" label="test-radio-group-label" value="data" options={options} readOnly />
         <button type="submit">Submit</button>
-      </form>
+      </form>,
     );
     const submit = getByText("Submit");
     await userEvent.click(submit);

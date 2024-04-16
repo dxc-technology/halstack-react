@@ -19,29 +19,16 @@ const FileItem = ({
   const colorsTheme = useTheme();
   const translatedLabels = useTranslatedLabels();
 
-  const getIconAriaLabel = () =>
-    type.includes("video")
-      ? "video"
-      : type.includes("audio")
-        ? "audio"
-        : "file";
+  const getIconAriaLabel = () => (type.includes("video") ? "video" : type.includes("audio") ? "audio" : "file");
 
   return (
     <ThemeProvider theme={colorsTheme.fileInput}>
-      <MainContainer
-        error={error}
-        singleFileMode={singleFileMode}
-        showPreview={showPreview}
-      >
+      <MainContainer error={error} singleFileMode={singleFileMode} showPreview={showPreview}>
         {showPreview &&
           (type.includes("image") ? (
             <ImagePreview src={preview} alt={fileName} />
           ) : (
-            <IconPreview
-              error={error}
-              role="document"
-              aria-label={getIconAriaLabel()}
-            >
+            <IconPreview error={error} role="document" aria-label={getIconAriaLabel()}>
               <DxcIcon icon={preview} />
             </IconPreview>
           ))}
@@ -90,14 +77,8 @@ const MainContainer = styled.div<{
     props.showPreview
       ? `calc(8px - ${props.theme.fileItemBorderThickness})`
       : `calc(8px - ${props.theme.fileItemBorderThickness}) calc(8px - ${props.theme.fileItemBorderThickness}) calc(8px - ${props.theme.fileItemBorderThickness}) 16px`};
-  ${(props) =>
-    props.error
-      ? `background-color: ${props.theme.errorFileItemBackgroundColor};`
-      : ""};
-  border-color: ${(props) =>
-    props.error
-      ? props.theme.errorFileItemBorderColor
-      : props.theme.fileItemBorderColor};
+  ${(props) => (props.error ? `background-color: ${props.theme.errorFileItemBackgroundColor};` : "")};
+  border-color: ${(props) => (props.error ? props.theme.errorFileItemBorderColor : props.theme.fileItemBorderColor)};
   border-width: ${(props) => props.theme.fileItemBorderThickness};
   border-style: ${(props) => props.theme.fileItemBorderStyle};
   border-radius: ${(props) => props.theme.fileItemBorderRadius};
@@ -116,17 +97,12 @@ const IconPreview = styled.span<{ error: FileItemProps["error"] }>`
   align-items: center;
   justify-content: center;
   background-color: ${(props) =>
-    props.error
-      ? props.theme.errorFilePreviewBackgroundColor
-      : props.theme.filePreviewBackgroundColor};
+    props.error ? props.theme.errorFilePreviewBackgroundColor : props.theme.filePreviewBackgroundColor};
   width: 48px;
   height: 48px;
   padding: 15px;
   border-radius: 2px;
-  color: ${(props) =>
-    props.error
-      ? props.theme.errorFilePreviewIconColor
-      : props.theme.filePreviewIconColor};
+  color: ${(props) => (props.error ? props.theme.errorFilePreviewIconColor : props.theme.filePreviewIconColor)};
   font-size: 18px;
   svg {
     height: 18px;
@@ -182,18 +158,15 @@ const DeleteFileAction = styled.button`
   color: ${(props) => props.theme.deleteFileItemColor};
   font-size: 18px;
   &:hover {
-    background-color: ${(props) =>
-      props.theme.hoverDeleteFileItemBackgroundColor};
+    background-color: ${(props) => props.theme.hoverDeleteFileItemBackgroundColor};
   }
   &:focus,
   &:focus-visible {
     outline: none;
-    box-shadow: 0 0 0 2px
-      ${(props) => props.theme.focusDeleteFileItemBorderColor};
+    box-shadow: 0 0 0 2px ${(props) => props.theme.focusDeleteFileItemBorderColor};
   }
   &:active {
-    background-color: ${(props) =>
-      props.theme.activeDeleteFileItemBackgroundColor};
+    background-color: ${(props) => props.theme.activeDeleteFileItemBackgroundColor};
   }
 `;
 

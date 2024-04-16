@@ -20,26 +20,19 @@ const DxcAccordion = ({
   tabIndex = 0,
 }: AccordionPropsType): JSX.Element => {
   const id = useId();
-  const [innerIsExpanded, setInnerIsExpanded] = useState(
-    defaultIsExpanded ?? false
-  );
+  const [innerIsExpanded, setInnerIsExpanded] = useState(defaultIsExpanded ?? false);
   const colorsTheme = useTheme();
 
   const handleAccordionState = () => {
     if (isExpanded == null) {
-      setInnerIsExpanded(
-        (innerIsCurrentlyExpanded) => !innerIsCurrentlyExpanded
-      );
+      setInnerIsExpanded((innerIsCurrentlyExpanded) => !innerIsCurrentlyExpanded);
     }
     onChange?.(!isExpanded ?? !innerIsExpanded);
   };
 
   return (
     <ThemeProvider theme={colorsTheme.accordion}>
-      <AccordionContainer
-        isExpanded={isExpanded ?? innerIsExpanded}
-        margin={margin}
-      >
+      <AccordionContainer isExpanded={isExpanded ?? innerIsExpanded} margin={margin}>
         <AccordionHeader>
           <AccordionTrigger
             id={`accordion-${id}`}
@@ -84,9 +77,7 @@ const DxcAccordion = ({
                     fontSize={colorsTheme.accordion.assistiveTextFontSize}
                     fontStyle={colorsTheme.accordion.assistiveTextFontStyle}
                     fontWeight={colorsTheme.accordion.assistiveTextFontWeight}
-                    letterSpacing={
-                      colorsTheme.accordion.assistiveTextLetterSpacing
-                    }
+                    letterSpacing={colorsTheme.accordion.assistiveTextLetterSpacing}
                     lineHeight="1.5em"
                   >
                     {assistiveText}
@@ -95,20 +86,12 @@ const DxcAccordion = ({
               )}
             </AccordionInfo>
             <CollapseIndicator disabled={disabled}>
-              <DxcIcon
-                icon={
-                  isExpanded ?? innerIsExpanded ? "expand_less" : "expand_more"
-                }
-              />
+              <DxcIcon icon={isExpanded ?? innerIsExpanded ? "expand_less" : "expand_more"} />
             </CollapseIndicator>
           </AccordionTrigger>
         </AccordionHeader>
         {(isExpanded ?? innerIsExpanded) && (
-          <AccordionPanel
-            id={`accordion-panel-${id}`}
-            role="region"
-            aria-labelledby={`accordion-${id}`}
-          >
+          <AccordionPanel id={`accordion-panel-${id}`} role="region" aria-labelledby={`accordion-${id}`}>
             {children}
           </AccordionPanel>
         )}
@@ -128,32 +111,19 @@ const AccordionContainer = styled.div<{
   flex-direction: column;
   background-color: ${(props) => props.theme.backgroundColor};
   border-radius: ${(props) => props.theme.borderRadius};
-  ${(props) =>
-    props.isExpanded &&
-    `border-bottom-left-radius: 0; border-bottom-right-radius: 0;`}
+  ${(props) => props.isExpanded && `border-bottom-left-radius: 0; border-bottom-right-radius: 0;`}
   box-shadow: ${(props) =>
     `${props.theme.boxShadowOffsetX} ${props.theme.boxShadowOffsetY} ${props.theme.boxShadowBlur} ${props.theme.boxShadowColor}`};
   min-width: 280px;
-  margin: ${(props) =>
-    props.margin && typeof props.margin !== "object"
-      ? spaces[props.margin]
-      : "0px"};
+  margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.top
-      ? spaces[props.margin.top]
-      : ""};
+    props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
   margin-right: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.right
-      ? spaces[props.margin.right]
-      : ""};
+    props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
   margin-bottom: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.bottom
-      ? spaces[props.margin.bottom]
-      : ""};
+    props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
   margin-left: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.left
-      ? spaces[props.margin.left]
-      : ""};
+    props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
   width: ${(props) => calculateWidth(props.margin)};
 `;
 
@@ -175,9 +145,7 @@ const AccordionTrigger = styled.button<{
   background-color: transparent;
   border: none;
   border-radius: ${(props) => props.theme.borderRadius};
-  ${(props) =>
-    props.isExpanded &&
-    `border-bottom-left-radius: 0; border-bottom-right-radius: 0;`}
+  ${(props) => props.isExpanded && `border-bottom-left-radius: 0; border-bottom-right-radius: 0;`}
   padding: 12px 16px;
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
 
@@ -211,8 +179,7 @@ const IconContainer = styled.span<{ disabled: AccordionPropsType["disabled"] }>`
   display: flex;
   margin-left: ${(props) => props.theme.iconMarginLeft};
   margin-right: ${(props) => props.theme.iconMarginRight};
-  color: ${(props) =>
-    props.disabled ? props.theme.disabledIconColor : props.theme.iconColor};
+  color: ${(props) => (props.disabled ? props.theme.disabledIconColor : props.theme.iconColor)};
   font-size: ${(props) => props.theme.iconSize};
 
   svg {
@@ -234,8 +201,7 @@ const CollapseIndicator = styled.span<{
   flex-wrap: wrap;
   align-content: center;
   font-size: 24px;
-  color: ${(props) =>
-    props.disabled ? props.theme.disabledArrowColor : props.theme.arrowColor};
+  color: ${(props) => (props.disabled ? props.theme.disabledArrowColor : props.theme.arrowColor)};
 `;
 
 const AccordionPanel = styled.div`

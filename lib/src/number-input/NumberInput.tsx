@@ -29,7 +29,7 @@ const DxcNumberInput = React.forwardRef<RefType, NumberInputPropsType>(
       size,
       tabIndex,
     },
-    ref
+    ref,
   ) => {
     const numberInputRef = React.useRef<HTMLInputElement>(null);
 
@@ -40,13 +40,11 @@ const DxcNumberInput = React.forwardRef<RefType, NumberInputPropsType>(
         maxNumber: max,
         stepNumber: step,
       }),
-      [min, max, step]
+      [min, max, step],
     );
 
     useEffect(() => {
-      const input = numberInputRef.current?.getElementsByTagName(
-        "input"
-      )[0] as HTMLInputElement;
+      const input = numberInputRef.current?.getElementsByTagName("input")[0] as HTMLInputElement;
       const preventDefault = (event: WheelEvent) => {
         event.preventDefault();
       };
@@ -84,7 +82,7 @@ const DxcNumberInput = React.forwardRef<RefType, NumberInputPropsType>(
         </NumberInputContainer>
       </NumberInputContext.Provider>
     );
-  }
+  },
 );
 
 const NumberInputContainer = styled.div`

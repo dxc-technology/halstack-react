@@ -47,10 +47,7 @@ import DxcContextualMenu from "./contextual-menu/ContextualMenu";
 import DxcDivider from "./divider/Divider";
 import DxcBreadcrumbs from "./breadcrumbs/Breadcrumbs";
 
-import HalstackContext, {
-  HalstackProvider,
-  HalstackLanguageContext,
-} from "./HalstackContext";
+import HalstackContext, { HalstackProvider, HalstackLanguageContext } from "./HalstackContext";
 
 export {
   DxcAlert,

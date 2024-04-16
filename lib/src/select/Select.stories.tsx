@@ -123,13 +123,7 @@ const iconOptions = [
     label: "3G Mobile",
     value: "1",
     icon: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        height="24px"
-        viewBox="0 0 24 24"
-        width="24px"
-        fill="currentColor"
-      >
+      <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
         <g>
           <path d="M0,0h24v24H0V0z" fill="none" />
         </g>
@@ -145,13 +139,7 @@ const iconOptions = [
     label: "Ethernet",
     value: "2",
     icon: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        height="24px"
-        viewBox="0 0 24 24"
-        width="24px"
-        fill="currentColor"
-      >
+      <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
         <path d="M0 0h24v24H0V0z" fill="none" />
         <path d="M7.77 6.76L6.23 5.48.82 12l5.41 6.52 1.54-1.28L3.42 12l4.35-5.24zM7 13h2v-2H7v2zm10-2h-2v2h2v-2zm-6 2h2v-2h-2v2zm6.77-7.52l-1.54 1.28L20.58 12l-4.35 5.24 1.54 1.28L23.18 12l-5.41-6.52z" />
       </svg>
@@ -161,13 +149,7 @@ const iconOptions = [
     label: "Wi-fi",
     value: "3",
     icon: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        height="24px"
-        viewBox="0 0 24 24"
-        width="24px"
-        fill="currentColor"
-      >
+      <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
         <path d="M0 0h24v24H0V0zm0 0h24v24H0V0z" fill="none" />
         <path d="M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.08 2.93 1 9zm8 8l3 3 3-3c-1.65-1.66-4.34-1.66-6 0zm-4-4l2 2c2.76-2.76 7.24-2.76 10 0l2-2C15.14 9.14 8.87 9.14 5 13z" />
       </svg>
@@ -177,13 +159,7 @@ const iconOptions = [
     label: "Settings backup restore (just for previous configuration)",
     value: "4",
     icon: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        height="24px"
-        viewBox="0 0 24 24"
-        width="24px"
-        fill="currentColor"
-      >
+      <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
         <path d="M0 0h24v24H0V0z" fill="none" />
         <path d="M14 12c0-1.1-.9-2-2-2s-2 .9-2 2 .9 2 2 2 2-.9 2-2zm-2-9c-4.97 0-9 4.03-9 9H0l4 4 4-4H5c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.51 0-2.91-.49-4.06-1.3l-1.42 1.44C8.04 20.3 9.94 21 12 21c4.97 0 9-4.03 9-9s-4.03-9-9-9z" />
       </svg>
@@ -267,21 +243,11 @@ const Select = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Disabled" theme="light" level={4} />
-      <DxcSelect
-        label="Disabled"
-        placeholder="Placeholder"
-        disabled
-        options={singleOptions}
-      />
+      <DxcSelect label="Disabled" placeholder="Placeholder" disabled options={singleOptions} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Disabled with value" theme="light" level={4} />
-      <DxcSelect
-        label="Disabled with value"
-        disabled
-        options={singleOptions}
-        defaultValue="1"
-      />
+      <DxcSelect label="Disabled with value" disabled options={singleOptions} defaultValue="1" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Error" theme="light" level={4} />
@@ -305,55 +271,25 @@ const Select = () => (
     </ExampleContainer>
     <Title title="Anatomy" theme="light" level={2} />
     <ExampleContainer>
-      <Title
-        title="Label, placeholder and helper text"
-        theme="light"
-        level={4}
-      />
-      <DxcSelect
-        label="Label"
-        options={singleOptions}
-        helperText="Helper text"
-        placeholder="Placeholder"
-      />
+      <Title title="Label, placeholder and helper text" theme="light" level={4} />
+      <DxcSelect label="Label" options={singleOptions} helperText="Helper text" placeholder="Placeholder" />
     </ExampleContainer>
     <Title title="Variants" theme="light" level={2} />
     <ExampleContainer>
       <Title title="Simple selection" theme="light" level={4} />
-      <DxcSelect
-        label="Simple selection"
-        searchable
-        options={singleOptions}
-        defaultValue="2"
-      />
+      <DxcSelect label="Simple selection" searchable options={singleOptions} defaultValue="2" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Multiple selection" theme="light" level={4} />
-      <DxcSelect
-        label="Multiple select"
-        searchable
-        options={singleOptions}
-        multiple
-        defaultValue={["1", "2"]}
-      />
+      <DxcSelect label="Multiple select" searchable options={singleOptions} multiple defaultValue={["1", "2"]} />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-hover">
       <Title title="Multiple clear hovered" theme="light" level={4} />
-      <DxcSelect
-        label="Multiple select"
-        options={singleOptions}
-        multiple
-        defaultValue={["1", "2"]}
-      />
+      <DxcSelect label="Multiple select" options={singleOptions} multiple defaultValue={["1", "2"]} />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-active">
       <Title title="Multiple clear actived" theme="light" level={4} />
-      <DxcSelect
-        label="Multiple select"
-        options={singleOptions}
-        multiple
-        defaultValue={["1", "2"]}
-      />
+      <DxcSelect label="Multiple select" options={singleOptions} multiple defaultValue={["1", "2"]} />
     </ExampleContainer>
     <Title title="Sizes" theme="light" level={2} />
     <ExampleContainer>
@@ -404,18 +340,9 @@ const Select = () => (
     <ExampleContainer expanded>
       <Title title="Ellipsis" theme="light" level={2} />
       <Title title="Multiple selection with ellipsis" theme="light" level={4} />
-      <DxcSelect
-        label="Label"
-        options={singleOptions}
-        multiple
-        defaultValue={["1", "2", "3", "4"]}
-      />
+      <DxcSelect label="Label" options={singleOptions} multiple defaultValue={["1", "2", "3", "4"]} />
       <Title title="Value with ellipsis" theme="light" level={4} />
-      <DxcSelect
-        label="Label"
-        options={optionsWithEllipsisMedium}
-        defaultValue="1"
-      />
+      <DxcSelect label="Label" options={optionsWithEllipsisMedium} defaultValue="1" />
       <Title title="Options with ellipsis" theme="light" level={4} />
       <DxcSelect
         label="Label"
@@ -441,23 +368,13 @@ const Select = () => (
     <ExampleContainer>
       <Title title="Disabled" theme="light" level={4} />
       <HalstackProvider theme={opinionatedTheme}>
-        <DxcSelect
-          label="Disabled"
-          placeholder="Placeholder"
-          disabled
-          options={singleOptions}
-        />
+        <DxcSelect label="Disabled" placeholder="Placeholder" disabled options={singleOptions} />
       </HalstackProvider>
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Disabled with value" theme="light" level={4} />
       <HalstackProvider theme={opinionatedTheme}>
-        <DxcSelect
-          label="Disabled with value"
-          disabled
-          options={singleOptions}
-          defaultValue="1"
-        />
+        <DxcSelect label="Disabled with value" disabled options={singleOptions} defaultValue="1" />
       </HalstackProvider>
     </ExampleContainer>
     <ExampleContainer>
@@ -472,31 +389,15 @@ const Select = () => (
         />
         <ExampleContainer>
           <Title title="Multiple selection" theme="light" level={4} />
-          <DxcSelect
-            label="Multiple select"
-            searchable
-            options={singleOptions}
-            multiple
-            defaultValue={["1", "2"]}
-          />
+          <DxcSelect label="Multiple select" searchable options={singleOptions} multiple defaultValue={["1", "2"]} />
         </ExampleContainer>
         <ExampleContainer pseudoState="pseudo-hover">
           <Title title="Multiple clear hovered" theme="light" level={4} />
-          <DxcSelect
-            label="Multiple select"
-            options={singleOptions}
-            multiple
-            defaultValue={["1", "2"]}
-          />
+          <DxcSelect label="Multiple select" options={singleOptions} multiple defaultValue={["1", "2"]} />
         </ExampleContainer>
         <ExampleContainer pseudoState="pseudo-active">
           <Title title="Multiple clear actived" theme="light" level={4} />
-          <DxcSelect
-            label="Multiple select"
-            options={singleOptions}
-            multiple
-            defaultValue={["1", "2"]}
-          />
+          <DxcSelect label="Multiple select" options={singleOptions} multiple defaultValue={["1", "2"]} />
         </ExampleContainer>
       </HalstackProvider>
     </ExampleContainer>
@@ -532,12 +433,7 @@ const SelectListbox = () => {
               zIndex: "1300",
             }}
           >
-            <DxcSelect
-              label="Label"
-              options={singleOptions}
-              optional
-              placeholder="Choose an option"
-            />
+            <DxcSelect label="Label" options={singleOptions} optional placeholder="Choose an option" />
             <button type="submit" style={{ zIndex: "1", width: "100px" }}>
               Submit
             </button>
@@ -642,11 +538,7 @@ const SelectListbox = () => {
           />
         </ExampleContainer>
         <ExampleContainer>
-          <Title
-            title="Grouped icons (Material Symbols)"
-            theme="light"
-            level={4}
-          />
+          <Title title="Grouped icons (Material Symbols)" theme="light" level={4} />
           <Listbox
             id="x14"
             currentValue={["0", "3"]}
@@ -797,12 +689,7 @@ const SelectListbox = () => {
 const SearchableSelect = () => (
   <ExampleContainer expanded>
     <Title title="Searchable select" theme="light" level={4} />
-    <DxcSelect
-      label="Select Label"
-      searchable
-      options={singleOptions}
-      placeholder="Choose an option"
-    />
+    <DxcSelect label="Select Label" searchable options={singleOptions} placeholder="Choose an option" />
   </ExampleContainer>
 );
 
@@ -810,12 +697,7 @@ const SearchableSelectOpinionated = () => (
   <ExampleContainer expanded>
     <Title title="Searchable select" theme="light" level={4} />
     <HalstackProvider theme={opinionatedTheme}>
-      <DxcSelect
-        label="Select Label"
-        searchable
-        options={singleOptions}
-        placeholder="Choose an option"
-      />
+      <DxcSelect label="Select Label" searchable options={singleOptions} placeholder="Choose an option" />
     </HalstackProvider>
   </ExampleContainer>
 );
@@ -879,12 +761,7 @@ const MultipleSelectOpinioated = () => (
 const DefaultGroupedOptionsSelect = () => (
   <ExampleContainer expanded>
     <Title title="Grouped options simple select" theme="light" level={4} />
-    <DxcSelect
-      label="Label"
-      options={groupOptions}
-      defaultValue="9"
-      placeholder="Choose an option"
-    />
+    <DxcSelect label="Label" options={groupOptions} defaultValue="9" placeholder="Choose an option" />
   </ExampleContainer>
 );
 
@@ -892,12 +769,7 @@ const DefaultGroupedOptionsSelectOpinionated = () => (
   <ExampleContainer expanded>
     <Title title="Grouped options simple select" theme="light" level={4} />
     <HalstackProvider theme={opinionatedTheme}>
-      <DxcSelect
-        label="Label"
-        options={groupOptions}
-        defaultValue="9"
-        placeholder="Choose an option"
-      />
+      <DxcSelect label="Label" options={groupOptions} defaultValue="9" placeholder="Choose an option" />
     </HalstackProvider>
   </ExampleContainer>
 );
@@ -905,13 +777,7 @@ const DefaultGroupedOptionsSelectOpinionated = () => (
 const MultipleGroupedOptionsSelect = () => (
   <ExampleContainer expanded>
     <Title title="Grouped options multiple select" theme="light" level={4} />
-    <DxcSelect
-      label="Label"
-      options={groupOptions}
-      defaultValue={["0", "2"]}
-      multiple
-      placeholder="Choose an option"
-    />
+    <DxcSelect label="Label" options={groupOptions} defaultValue={["0", "2"]} multiple placeholder="Choose an option" />
   </ExampleContainer>
 );
 
@@ -932,11 +798,7 @@ const MultipleGroupedOptionsSelectOpinionated = () => (
 
 const MultipleSearchable = () => (
   <ExampleContainer expanded>
-    <Title
-      title="Searchable multiple select with value"
-      theme="light"
-      level={4}
-    />
+    <Title title="Searchable multiple select with value" theme="light" level={4} />
     <DxcSelect
       label="Select Label"
       searchable
@@ -950,11 +812,7 @@ const MultipleSearchable = () => (
 
 const MultipleSearchableOpinionated = () => (
   <ExampleContainer expanded>
-    <Title
-      title="Searchable multiple select with value"
-      theme="light"
-      level={4}
-    />
+    <Title title="Searchable multiple select with value" theme="light" level={4} />
     <HalstackProvider theme={opinionatedTheme}>
       <DxcSelect
         label="Select Label"
@@ -1011,8 +869,7 @@ MultipleSearchableWithValue.play = async ({ canvasElement }) => {
   await userEvent.click(canvas.getAllByRole("combobox")[0]);
 };
 
-export const MultipleSearchableWithValueOpinionated =
-  MultipleSearchableOpinionated.bind({});
+export const MultipleSearchableWithValueOpinionated = MultipleSearchableOpinionated.bind({});
 MultipleSearchableWithValueOpinionated.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   await userEvent.click(canvas.getAllByRole("combobox")[0]);
@@ -1025,8 +882,7 @@ GroupOptionsDisplayed.play = async ({ canvasElement }) => {
   await userEvent.click(select);
 };
 
-export const GroupOptionsDisplayedOpinionated =
-  DefaultGroupedOptionsSelectOpinionated.bind({});
+export const GroupOptionsDisplayedOpinionated = DefaultGroupedOptionsSelectOpinionated.bind({});
 GroupOptionsDisplayedOpinionated.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const select = canvas.getByRole("combobox");
@@ -1039,23 +895,20 @@ MultipleOptionsDisplayed.play = async ({ canvasElement }) => {
   await userEvent.click(canvas.getAllByRole("combobox")[0]);
 };
 
-export const MultipleOptionsDisplayedOpinionated =
-  MultipleSelectOpinioated.bind({});
+export const MultipleOptionsDisplayedOpinionated = MultipleSelectOpinioated.bind({});
 MultipleOptionsDisplayedOpinionated.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   await userEvent.click(canvas.getAllByRole("combobox")[0]);
 };
 
-export const MultipleGroupedOptionsDisplayed =
-  MultipleGroupedOptionsSelect.bind({});
+export const MultipleGroupedOptionsDisplayed = MultipleGroupedOptionsSelect.bind({});
 MultipleGroupedOptionsDisplayed.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const select = canvas.getByRole("combobox");
   await userEvent.click(select);
 };
 
-export const MultipleGroupedOptionsDisplayedOpinionated =
-  MultipleGroupedOptionsSelectOpinionated.bind({});
+export const MultipleGroupedOptionsDisplayedOpinionated = MultipleGroupedOptionsSelectOpinionated.bind({});
 MultipleGroupedOptionsDisplayedOpinionated.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const select = canvas.getByRole("combobox");

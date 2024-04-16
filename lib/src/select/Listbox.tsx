@@ -6,9 +6,7 @@ import Option from "./Option";
 import DxcIcon from "../icon/Icon";
 
 const groupsHaveOptions = (options) =>
-  options?.[0].options
-    ? options.some((groupOption) => groupOption.options?.length > 0)
-    : true;
+  options?.[0].options ? options.some((groupOption) => groupOption.options?.length > 0) : true;
 
 const Listbox = ({
   id,
@@ -51,9 +49,7 @@ const Listbox = ({
                     isGroupedOption
                     isLastOption={lastOptionIndex === globalIndex}
                     isSelected={
-                      multiple
-                        ? currentValue.includes(singleOption.value)
-                        : currentValue === singleOption.value
+                      multiple ? currentValue.includes(singleOption.value) : currentValue === singleOption.value
                     }
                   />
                 );
@@ -73,11 +69,7 @@ const Listbox = ({
         multiple={multiple}
         visualFocused={visualFocusIndex === globalIndex}
         isLastOption={lastOptionIndex === globalIndex}
-        isSelected={
-          multiple
-            ? currentValue.includes(option.value)
-            : currentValue === option.value
-        }
+        isSelected={multiple ? currentValue.includes(option.value) : currentValue === option.value}
       />
     );
   };
@@ -85,22 +77,15 @@ const Listbox = ({
   useLayoutEffect(() => {
     if (currentValue && !multiple) {
       const listEl = listboxRef?.current;
-      const selectedListOptionEl = listEl?.querySelector(
-        "[aria-selected='true']"
-      );
+      const selectedListOptionEl = listEl?.querySelector("[aria-selected='true']");
       listEl?.scrollTo?.({
-        top:
-          (selectedListOptionEl?.offsetTop || 0) -
-          (listEl?.clientHeight || 0) / 2,
+        top: (selectedListOptionEl?.offsetTop || 0) - (listEl?.clientHeight || 0) / 2,
       });
     }
   }, [currentValue, multiple]);
 
   useLayoutEffect(() => {
-    const visualFocusedOptionEl =
-      listboxRef?.current?.querySelectorAll("[role='option']")[
-        visualFocusIndex
-      ];
+    const visualFocusedOptionEl = listboxRef?.current?.querySelectorAll("[role='option']")[visualFocusIndex];
     visualFocusedOptionEl?.scrollIntoView?.({
       block: "nearest",
       inline: "start",
@@ -143,11 +128,7 @@ const Listbox = ({
             visualFocused={visualFocusIndex === 0}
             isGroupedOption={false}
             isLastOption={lastOptionIndex === 0}
-            isSelected={
-              multiple
-                ? currentValue.includes(optionalItem.value)
-                : currentValue === optionalItem.value
-            }
+            isSelected={multiple ? currentValue.includes(optionalItem.value) : currentValue === optionalItem.value}
           />
         )
       )}

@@ -45,21 +45,11 @@ const Option = ({
         {multiple && <DxcCheckbox checked={isSelected} tabIndex={-1} />}
         {option.icon && (
           <OptionIcon grouped={isGroupedOption} multiple={multiple}>
-            {typeof option.icon === "string" ? (
-              <DxcIcon icon={option.icon} />
-            ) : (
-              option.icon
-            )}
+            {typeof option.icon === "string" ? <DxcIcon icon={option.icon} /> : option.icon}
           </OptionIcon>
         )}
-        <OptionContent
-          grouped={isGroupedOption}
-          hasIcon={!!option.icon}
-          multiple={multiple}
-        >
-          <OptionLabel onMouseEnter={handleOnMouseEnter}>
-            {option.label}
-          </OptionLabel>
+        <OptionContent grouped={isGroupedOption} hasIcon={!!option.icon} multiple={multiple}>
+          <OptionLabel onMouseEnter={handleOnMouseEnter}>{option.label}</OptionLabel>
           {!multiple && isSelected && (
             <OptionSelectedIndicator>
               <DxcIcon icon="done" />
@@ -77,12 +67,8 @@ const OptionItem = styled.li<{
 }>`
   padding: 0 0.5rem;
   box-shadow: inset 0 0 0 2px transparent;
-  ${(props) =>
-    props.visualFocused &&
-    `box-shadow: inset 0 0 0 2px ${props.theme.focusListOptionBorderColor};`}
-  ${(props) =>
-    props.selected &&
-    `background-color: ${props.theme.selectedListOptionBackgroundColor}`};
+  ${(props) => props.visualFocused && `box-shadow: inset 0 0 0 2px ${props.theme.focusListOptionBorderColor};`}
+  ${(props) => props.selected && `background-color: ${props.theme.selectedListOptionBackgroundColor}`};
   line-height: 1.715em;
   cursor: pointer;
 
@@ -124,8 +110,7 @@ const OptionIcon = styled.span<{
 }>`
   display: flex;
   padding: 0.125rem;
-  margin-left: ${(props) =>
-    props.grouped && !props.multiple ? "16px" : "8px"};
+  margin-left: ${(props) => (props.grouped && !props.multiple ? "16px" : "8px")};
   color: ${(props) => props.theme.listOptionIconColor};
 
   svg {
@@ -145,8 +130,7 @@ const OptionContent = styled.span<{
   gap: 0.25rem;
   width: 100%;
   overflow: hidden;
-  margin-left: ${(props) =>
-    props.grouped && !props.multiple && !props.hasIcon ? "16px" : "8px"};
+  margin-left: ${(props) => (props.grouped && !props.multiple && !props.hasIcon ? "16px" : "8px")};
 `;
 
 const OptionLabel = styled.span`

@@ -12,13 +12,7 @@ const disabledRules = {
 };
 
 const iconSVG = (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    height="24px"
-    viewBox="0 0 24 24"
-    width="24px"
-    fill="currentColor"
-  >
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
     <g>
       <path d="M0,0h24v24H0V0z" fill="none" />
     </g>
@@ -127,7 +121,7 @@ describe("Select component accessibility tests", () => {
           multiple
           optional
         />
-      </DxcFlex>
+      </DxcFlex>,
     );
     const results = await axe(baseElement, disabledRules);
     expect(results).toHaveNoViolations();
@@ -162,7 +156,7 @@ describe("Select component accessibility tests", () => {
           multiple
           disabled
         />
-      </DxcFlex>
+      </DxcFlex>,
     );
     const results = await axe(baseElement, disabledRules);
     expect(results).toHaveNoViolations();

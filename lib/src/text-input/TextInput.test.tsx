@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  render,
-  fireEvent,
-  waitForElementToBeRemoved,
-  act,
-} from "@testing-library/react";
+import { render, fireEvent, waitForElementToBeRemoved, act } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import DxcTextInput from "./TextInput";
 
@@ -50,27 +45,12 @@ const countries = [
   "Denmark",
   "Djibouti",
 ];
-const specialCharacters = [
-  "/",
-  "\\",
-  "*",
-  "(",
-  ")",
-  "[",
-  "]",
-  "+",
-  "?",
-  "*{[]}|",
-];
+const specialCharacters = ["/", "\\", "*", "(", ")", "[", "]", "+", "?", "*{[]}|"];
 
 describe("TextInput component tests", () => {
   test("Renders with correct error aria attributes", () => {
     const { getByText, getByRole } = render(
-      <DxcTextInput
-        label="Error label"
-        placeholder="Placeholder"
-        error="Error message."
-      />
+      <DxcTextInput label="Error label" placeholder="Placeholder" error="Error message." />,
     );
     const input = getByRole("textbox");
     const errorMessage = getByText("Error message.");
@@ -82,11 +62,7 @@ describe("TextInput component tests", () => {
 
   test("Renders with correct initial value", () => {
     const { getByRole } = render(
-      <DxcTextInput
-        label="Default label"
-        placeholder="Placeholder"
-        defaultValue="Example text"
-      />
+      <DxcTextInput label="Default label" placeholder="Placeholder" defaultValue="Example text" />,
     );
     const input = getByRole("textbox") as HTMLInputElement;
     expect(input.value).toBe("Example text");
@@ -96,13 +72,7 @@ describe("TextInput component tests", () => {
     const onChange = jest.fn();
     const onBlur = jest.fn();
     const { getByRole } = render(
-      <DxcTextInput
-        label="Input label"
-        placeholder="Placeholder"
-        onChange={onChange}
-        onBlur={onBlur}
-        clearable
-      />
+      <DxcTextInput label="Input label" placeholder="Placeholder" onChange={onChange} onBlur={onBlur} clearable />,
     );
     const input = getByRole("textbox");
     fireEvent.focus(input);
@@ -121,12 +91,7 @@ describe("TextInput component tests", () => {
   test("Not optional constraint (onChange)", () => {
     const onChange = jest.fn();
     const { getByRole } = render(
-      <DxcTextInput
-        label="Input label"
-        placeholder="Placeholder"
-        onChange={onChange}
-        clearable
-      />
+      <DxcTextInput label="Input label" placeholder="Placeholder" onChange={onChange} clearable />,
     );
     const input = getByRole("textbox");
     fireEvent.change(input, { target: { value: "Test" } });
@@ -152,7 +117,7 @@ describe("TextInput component tests", () => {
         margin={{ left: "medium", right: "medium" }}
         clearable
         pattern='^.*(?=.*[a-zA-Z])(?=.*\d)(?=.*[!&$%&? "]).*$'
-      />
+      />,
     );
     const input = getByRole("textbox");
     fireEvent.change(input, { target: { value: "pattern test" } });
@@ -189,7 +154,7 @@ describe("TextInput component tests", () => {
         clearable
         minLength={5}
         maxLength={10}
-      />
+      />,
     );
     const input = getByRole("textbox");
     fireEvent.change(input, { target: { value: "test" } });
@@ -227,7 +192,7 @@ describe("TextInput component tests", () => {
         pattern='^.*(?=.*[a-zA-Z])(?=.*\d)(?=.*[!&$%&? "]).*$'
         minLength={5}
         maxLength={10}
-      />
+      />,
     );
     const input = getByRole("textbox");
     fireEvent.change(input, { target: { value: "test" } });
@@ -264,9 +229,7 @@ describe("TextInput component tests", () => {
 
   test("onChange function is called correctly", () => {
     const onChange = jest.fn();
-    const { getByRole } = render(
-      <DxcTextInput label="Input label" onChange={onChange} />
-    );
+    const { getByRole } = render(<DxcTextInput label="Input label" onChange={onChange} />);
     const input = getByRole("textbox") as HTMLInputElement;
     userEvent.type(input, "onchange event test");
     expect(input.value).toBe("onchange event test");
@@ -277,9 +240,7 @@ describe("TextInput component tests", () => {
   test("onBlur function is called correctly", () => {
     const onBlur = jest.fn();
     const onChange = jest.fn();
-    const { getByRole } = render(
-      <DxcTextInput label="Input label" onChange={onChange} onBlur={onBlur} />
-    );
+    const { getByRole } = render(<DxcTextInput label="Input label" onChange={onChange} onBlur={onBlur} />);
     const input = getByRole("textbox");
     fireEvent.change(input, { target: { value: "Blur test" } });
     fireEvent.blur(input);
@@ -288,16 +249,12 @@ describe("TextInput component tests", () => {
   });
 
   test("Clear action tooltip is correct", () => {
-    const { getByTitle } = render(
-      <DxcTextInput label="Input label" value="Text" clearable />
-    );
+    const { getByTitle } = render(<DxcTextInput label="Input label" value="Text" clearable />);
     expect(getByTitle("Clear field")).toBeTruthy();
   });
 
   test("Clear action onClick cleans the input", async () => {
-    const { getByRole } = render(
-      <DxcTextInput label="Input label" clearable />
-    );
+    const { getByRole } = render(<DxcTextInput label="Input label" clearable />);
     const input = getByRole("textbox") as HTMLInputElement;
     userEvent.type(input, "Test");
     const closeAction = getByRole("button");
@@ -307,9 +264,7 @@ describe("TextInput component tests", () => {
 
   test("Disabled text input renders with correct aria and can not be modified", () => {
     const onChange = jest.fn();
-    const { getByRole } = render(
-      <DxcTextInput label="Input label" onChange={onChange} disabled />
-    );
+    const { getByRole } = render(<DxcTextInput label="Input label" onChange={onChange} disabled />);
     const input = getByRole("textbox");
     userEvent.type(input, "Test");
     expect(onChange).not.toHaveBeenCalled();
@@ -333,9 +288,7 @@ describe("TextInput component tests", () => {
         </svg>
       ),
     };
-    const { getByRole } = render(
-      <DxcTextInput label="Disabled input label" action={action} disabled />
-    );
+    const { getByRole } = render(<DxcTextInput label="Disabled input label" action={action} disabled />);
     const input = getByRole("textbox") as HTMLInputElement;
     expect(input.disabled).toBeTruthy();
     await userEvent.click(getByRole("button"));
@@ -344,12 +297,7 @@ describe("TextInput component tests", () => {
 
   test("Disabled text input (clear default action should not be displayed, even with text written on the input)", () => {
     const { getByRole, queryByRole } = render(
-      <DxcTextInput
-        label="Disabled input label"
-        value="Sample text"
-        disabled
-        clearable
-      />
+      <DxcTextInput label="Disabled input label" value="Sample text" disabled clearable />,
     );
     const input = getByRole("textbox") as HTMLInputElement;
     expect(input.disabled).toBeTruthy();
@@ -358,13 +306,7 @@ describe("TextInput component tests", () => {
 
   test("Disabled text input (suffix and prefix must be displayed)", () => {
     const { getByRole, getByText } = render(
-      <DxcTextInput
-        label="Disabled input label"
-        value="Sample text"
-        prefix="+34"
-        suffix="USD"
-        disabled
-      />
+      <DxcTextInput label="Disabled input label" value="Sample text" prefix="+34" suffix="USD" disabled />,
     );
     const input = getByRole("textbox") as HTMLInputElement;
     expect(input.disabled).toBeTruthy();
@@ -374,12 +316,7 @@ describe("TextInput component tests", () => {
 
   test("Read-only text input doesn't render the clear action", () => {
     const { getByRole, queryByRole } = render(
-      <DxcTextInput
-        label="Disabled input label"
-        defaultValue="Sample text"
-        readOnly
-        clearable
-      />
+      <DxcTextInput label="Disabled input label" defaultValue="Sample text" readOnly clearable />,
     );
     const input = getByRole("textbox") as HTMLInputElement;
     expect(input.readOnly).toBeTruthy();
@@ -388,9 +325,7 @@ describe("TextInput component tests", () => {
 
   test("Read-only text input does not trigger onChange function", () => {
     const onChange = jest.fn();
-    const { getByLabelText } = render(
-      <DxcTextInput label="Example label" onChange={onChange} readOnly />
-    );
+    const { getByLabelText } = render(<DxcTextInput label="Example label" onChange={onChange} readOnly />);
     const textInput = getByLabelText("Example label");
     userEvent.type(textInput, "Test");
     expect(onChange).not.toHaveBeenCalled();
@@ -405,14 +340,9 @@ describe("TextInput component tests", () => {
     });
     const { getByText } = render(
       <form onSubmit={handlerOnSubmit}>
-        <DxcTextInput
-          label="Example label"
-          name="data"
-          defaultValue="Text"
-          readOnly
-        />
+        <DxcTextInput label="Example label" name="data" defaultValue="Text" readOnly />
         <button type="submit">Submit</button>
-      </form>
+      </form>,
     );
     const submit = getByText("Submit");
     await userEvent.click(submit);
@@ -438,9 +368,7 @@ describe("TextInput component tests", () => {
       ),
       title: "Search",
     };
-    const { getByRole } = render(
-      <DxcTextInput label="Input label" action={action} readOnly />
-    );
+    const { getByRole } = render(<DxcTextInput label="Input label" action={action} readOnly />);
     await userEvent.click(getByRole("button"));
     expect(onClick).not.toHaveBeenCalled();
   });
@@ -464,9 +392,7 @@ describe("TextInput component tests", () => {
       ),
       title: "Search",
     };
-    const { getByRole, getByTestId, getByTitle } = render(
-      <DxcTextInput label="Input label" action={action} />
-    );
+    const { getByRole, getByTestId, getByTitle } = render(<DxcTextInput label="Input label" action={action} />);
     expect(getByTestId("image")).toBeTruthy();
     expect(getByTitle("Search")).toBeTruthy();
     await userEvent.click(getByRole("button"));
@@ -502,7 +428,7 @@ describe("TextInput component tests", () => {
       <form onSubmit={handlerOnSubmit}>
         <DxcTextInput label="Input label" name="data" action={action} />
         <button type="submit">Submit</button>
-      </form>
+      </form>,
     );
     const search = getAllByRole("button")[0];
     const submit = getByText("Submit");
@@ -516,9 +442,7 @@ describe("TextInput component tests", () => {
   });
 
   test("Renders with correct prefix and suffix", () => {
-    const { getByText } = render(
-      <DxcTextInput label="Input label" prefix="+34" suffix="USD" />
-    );
+    const { getByText } = render(<DxcTextInput label="Input label" prefix="+34" suffix="USD" />);
     expect(getByText("+34")).toBeTruthy();
     expect(getByText("USD")).toBeTruthy();
   });
@@ -542,9 +466,7 @@ describe("TextInput component tests", () => {
       ),
       title: "Search",
     };
-    const { getByRole, getAllByRole } = render(
-      <DxcTextInput label="Example label" clearable action={action} />
-    );
+    const { getByRole, getAllByRole } = render(<DxcTextInput label="Example label" clearable action={action} />);
     const input = getByRole("textbox");
     expect(input.getAttribute("aria-autocomplete")).toBeNull();
     expect(input.getAttribute("aria-controls")).toBeNull();
@@ -563,11 +485,7 @@ describe("TextInput component tests", () => {
 
   test("Autosuggest has correct accessibility attributes", () => {
     const { getByRole, getAllByRole } = render(
-      <DxcTextInput
-        label="Autocomplete Countries"
-        optional
-        suggestions={countries}
-      />
+      <DxcTextInput label="Autocomplete Countries" optional suggestions={countries} />,
     );
     const input = getByRole("combobox");
     expect(input.getAttribute("aria-autocomplete")).toBe("list");
@@ -584,11 +502,7 @@ describe("TextInput component tests", () => {
 
   test("Mouse wheel interaction does not affect the text value", () => {
     const { getByRole } = render(
-      <DxcTextInput
-        label="Default label"
-        placeholder="Placeholder"
-        defaultValue="Example text"
-      />
+      <DxcTextInput label="Default label" placeholder="Placeholder" defaultValue="Example text" />,
     );
     const input = getByRole("textbox") as HTMLInputElement;
     fireEvent.wheel(input, { deltaY: -100 });
@@ -602,11 +516,7 @@ describe("TextInput component synchronous autosuggest tests", () => {
   test("Autosuggest is displayed when the input gains focus", () => {
     const onChange = jest.fn();
     const { getByRole, getByText } = render(
-      <DxcTextInput
-        label="Autocomplete Countries"
-        suggestions={countries}
-        onChange={onChange}
-      />
+      <DxcTextInput label="Autocomplete Countries" suggestions={countries} onChange={onChange} />,
     );
     const input = getByRole("combobox");
     fireEvent.focus(input);
@@ -621,11 +531,7 @@ describe("TextInput component synchronous autosuggest tests", () => {
   test("Autosuggest is displayed when the user clicks the input", async () => {
     const onChange = jest.fn();
     const { getByRole, getByText } = render(
-      <DxcTextInput
-        label="Autocomplete Countries"
-        suggestions={countries}
-        onChange={onChange}
-      />
+      <DxcTextInput label="Autocomplete Countries" suggestions={countries} onChange={onChange} />,
     );
     const input = getByRole("combobox");
     await userEvent.click(input);
@@ -639,7 +545,7 @@ describe("TextInput component synchronous autosuggest tests", () => {
 
   test("Autosuggest is displayed while the user is writing (if closed previously, if it is open stays open)", async () => {
     const { getByRole, getByText, getAllByText } = render(
-      <DxcTextInput label="Autocomplete Countries" suggestions={countries} />
+      <DxcTextInput label="Autocomplete Countries" suggestions={countries} />,
     );
     const input = getByRole("combobox");
     await userEvent.type(input, "Bah");
@@ -652,12 +558,7 @@ describe("TextInput component synchronous autosuggest tests", () => {
   test("Read-only text input does not open the suggestions list", async () => {
     const onChange = jest.fn();
     const { getByRole, queryByRole } = render(
-      <DxcTextInput
-        label="Autocomplete Countries"
-        suggestions={countries}
-        onChange={onChange}
-        readOnly
-      />
+      <DxcTextInput label="Autocomplete Countries" suggestions={countries} onChange={onChange} readOnly />,
     );
     const input = getByRole("combobox");
     fireEvent.focus(input);
@@ -674,14 +575,9 @@ describe("TextInput component synchronous autosuggest tests", () => {
         placeholder="Placeholder"
         margin="medium"
         defaultValue="Suggestion 2"
-        suggestions={[
-          "Suggestion 11",
-          "Suggestion 12",
-          "Suggestion 23",
-          "Suggestion 24",
-        ]}
+        suggestions={["Suggestion 11", "Suggestion 12", "Suggestion 23", "Suggestion 24"]}
         clearable
-      />
+      />,
     );
     const input = getByRole("combobox") as HTMLInputElement;
     expect(input.value).toBe("Suggestion 2");
@@ -694,11 +590,7 @@ describe("TextInput component synchronous autosuggest tests", () => {
   test("Autosuggest is not displayed when prop suggestions is an empty array", () => {
     const onChange = jest.fn();
     const { queryByRole } = render(
-      <DxcTextInput
-        label="Autocomplete Countries"
-        suggestions={[]}
-        onChange={onChange}
-      />
+      <DxcTextInput label="Autocomplete Countries" suggestions={[]} onChange={onChange} />,
     );
     const input = queryByRole("textbox");
     fireEvent.focus(input);
@@ -708,11 +600,7 @@ describe("TextInput component synchronous autosuggest tests", () => {
   test("Autosuggest closes the listbox when there are no matches for the user's input", async () => {
     const onChange = jest.fn();
     const { getByRole, queryByRole } = render(
-      <DxcTextInput
-        label="Autocomplete Countries"
-        suggestions={countries}
-        onChange={onChange}
-      />
+      <DxcTextInput label="Autocomplete Countries" suggestions={countries} onChange={onChange} />,
     );
     const input = getByRole("combobox");
     await act(async () => {
@@ -724,11 +612,7 @@ describe("TextInput component synchronous autosuggest tests", () => {
   test("Autosuggest with no matches founded doesn't let the listbox to be opened", async () => {
     const onChange = jest.fn();
     const { getByRole, queryByRole } = render(
-      <DxcTextInput
-        label="Autocomplete Countries"
-        suggestions={countries}
-        onChange={onChange}
-      />
+      <DxcTextInput label="Autocomplete Countries" suggestions={countries} onChange={onChange} />,
     );
     const input = getByRole("combobox");
     await act(async () => {
@@ -756,11 +640,7 @@ describe("TextInput component synchronous autosuggest tests", () => {
   test("Autosuggest uncontrolled - Suggestion selected by click", async () => {
     const onChange = jest.fn();
     const { getByRole, getByText, queryByRole } = render(
-      <DxcTextInput
-        label="Autocomplete Countries"
-        suggestions={countries}
-        onChange={onChange}
-      />
+      <DxcTextInput label="Autocomplete Countries" suggestions={countries} onChange={onChange} />,
     );
     const input = getByRole("combobox") as HTMLInputElement;
     fireEvent.focus(input);
@@ -780,12 +660,7 @@ describe("TextInput component synchronous autosuggest tests", () => {
   test("Autosuggest controlled - Suggestion selected by click", async () => {
     const onChange = jest.fn();
     const { getByRole, getByText, queryByRole } = render(
-      <DxcTextInput
-        label="Autocomplete Countries"
-        value="Andor"
-        suggestions={countries}
-        onChange={onChange}
-      />
+      <DxcTextInput label="Autocomplete Countries" value="Andor" suggestions={countries} onChange={onChange} />,
     );
     const input = getByRole("combobox") as HTMLInputElement;
     await userEvent.click(getByText("Autocomplete Countries"));
@@ -807,7 +682,7 @@ describe("TextInput component synchronous autosuggest tests", () => {
         onChange={onChange}
         onBlur={onBlur}
         pattern='^.*(?=.*[a-zA-Z])(?=.*\d)(?=.*[!&$%&? "]).*$'
-      />
+      />,
     );
     const input = getByRole("combobox");
     fireEvent.focus(input);
@@ -841,7 +716,7 @@ describe("TextInput component synchronous autosuggest tests", () => {
         onBlur={onBlur}
         minLength={5}
         maxLength={10}
-      />
+      />,
     );
     const input = getByRole("combobox");
     fireEvent.focus(input);
@@ -867,11 +742,7 @@ describe("TextInput component synchronous autosuggest tests", () => {
   test("Autosuggest keys: arrow down key opens autosuggest, active first option is selected with Enter and closes the autosuggest", () => {
     const onChange = jest.fn();
     const { getByRole, queryByRole } = render(
-      <DxcTextInput
-        label="Autocomplete Countries"
-        suggestions={countries}
-        onChange={onChange}
-      />
+      <DxcTextInput label="Autocomplete Countries" suggestions={countries} onChange={onChange} />,
     );
     const input = getByRole("combobox") as HTMLInputElement;
     fireEvent.keyDown(input, {
@@ -895,11 +766,7 @@ describe("TextInput component synchronous autosuggest tests", () => {
   test("Autosuggest keys: arrow up key opens autosuggest, active last option is selected with Enter and closes the autosuggest", () => {
     const onChange = jest.fn();
     const { getByRole, queryByRole } = render(
-      <DxcTextInput
-        label="Autocomplete Countries"
-        suggestions={countries}
-        onChange={onChange}
-      />
+      <DxcTextInput label="Autocomplete Countries" suggestions={countries} onChange={onChange} />,
     );
     const input = getByRole("combobox") as HTMLInputElement;
     fireEvent.keyDown(input, {
@@ -923,11 +790,7 @@ describe("TextInput component synchronous autosuggest tests", () => {
   test("Autosuggest keys: Esc key closes the autosuggest and cleans the input", () => {
     const onChange = jest.fn();
     const { getByRole, queryByRole } = render(
-      <DxcTextInput
-        label="Autocomplete Countries"
-        suggestions={countries}
-        onChange={onChange}
-      />
+      <DxcTextInput label="Autocomplete Countries" suggestions={countries} onChange={onChange} />,
     );
     const input = getByRole("combobox") as HTMLInputElement;
     fireEvent.focus(input);
@@ -947,11 +810,7 @@ describe("TextInput component synchronous autosuggest tests", () => {
   test("Autosuggest keys: Enter, if no active suggestion closes the autosuggest", () => {
     const onChange = jest.fn();
     const { getByRole, queryByRole } = render(
-      <DxcTextInput
-        label="Autocomplete Countries"
-        suggestions={countries}
-        onChange={onChange}
-      />
+      <DxcTextInput label="Autocomplete Countries" suggestions={countries} onChange={onChange} />,
     );
     const input = getByRole("combobox") as HTMLInputElement;
     fireEvent.focus(input);
@@ -970,11 +829,7 @@ describe("TextInput component synchronous autosuggest tests", () => {
   test("Autosuggest complex key sequence: write, arrow up two times, arrow down and select with Enter. Then, clean with Esc.", async () => {
     const onChange = jest.fn();
     const { getByRole, queryByRole } = render(
-      <DxcTextInput
-        label="Autocomplete Countries"
-        suggestions={countries}
-        onChange={onChange}
-      />
+      <DxcTextInput label="Autocomplete Countries" suggestions={countries} onChange={onChange} />,
     );
     const input = getByRole("combobox") as HTMLInputElement;
     fireEvent.focus(input);
@@ -1020,11 +875,7 @@ describe("TextInput component synchronous autosuggest tests", () => {
   test("Autosuggest escapes special characters", () => {
     const onChange = jest.fn();
     const { getAllByText, getByRole } = render(
-      <DxcTextInput
-        label="Autocomplete Countries"
-        suggestions={specialCharacters}
-        onChange={onChange}
-      />
+      <DxcTextInput label="Autocomplete Countries" suggestions={specialCharacters} onChange={onChange} />,
     );
     const input = getByRole("combobox");
     fireEvent.focus(input);
@@ -1067,21 +918,15 @@ describe("TextInput component asynchronous autosuggest tests", () => {
           setTimeout(() => {
             resolve(
               newValue
-                ? countries.filter((option) =>
-                    option.toUpperCase().includes(newValue.toUpperCase())
-                  )
-                : countries
+                ? countries.filter((option) => option.toUpperCase().includes(newValue.toUpperCase()))
+                : countries,
             );
           }, 100);
-        })
+        }),
     );
     const onChange = jest.fn();
     const { getByRole, getByText } = render(
-      <DxcTextInput
-        label="Autosuggest Countries"
-        suggestions={callbackFunc}
-        onChange={onChange}
-      />
+      <DxcTextInput label="Autosuggest Countries" suggestions={callbackFunc} onChange={onChange} />,
     );
     const input = getByRole("combobox") as HTMLInputElement;
     fireEvent.focus(input);
@@ -1118,21 +963,15 @@ describe("TextInput component asynchronous autosuggest tests", () => {
           setTimeout(() => {
             resolve(
               newValue
-                ? countries.filter((option) =>
-                    option.toUpperCase().includes(newValue.toUpperCase())
-                  )
-                : countries
+                ? countries.filter((option) => option.toUpperCase().includes(newValue.toUpperCase()))
+                : countries,
             );
           }, 100);
-        })
+        }),
     );
     const onChange = jest.fn();
     const { getByRole, queryByText, queryByRole } = render(
-      <DxcTextInput
-        label="Autosuggest Countries"
-        suggestions={callbackFunc}
-        onChange={onChange}
-      />
+      <DxcTextInput label="Autosuggest Countries" suggestions={callbackFunc} onChange={onChange} />,
     );
     const input = getByRole("combobox") as HTMLInputElement;
     fireEvent.focus(input);
@@ -1156,21 +995,15 @@ describe("TextInput component asynchronous autosuggest tests", () => {
           setTimeout(() => {
             resolve(
               newValue
-                ? countries.filter((option) =>
-                    option.toUpperCase().includes(newValue.toUpperCase())
-                  )
-                : countries
+                ? countries.filter((option) => option.toUpperCase().includes(newValue.toUpperCase()))
+                : countries,
             );
           }, 100);
-        })
+        }),
     );
     const onChange = jest.fn();
     const { getByRole, getByText, queryByText, queryByRole } = render(
-      <DxcTextInput
-        label="Autosuggest Countries"
-        suggestions={callbackFunc}
-        onChange={onChange}
-      />
+      <DxcTextInput label="Autosuggest Countries" suggestions={callbackFunc} onChange={onChange} />,
     );
     const input = getByRole("combobox") as HTMLInputElement;
     fireEvent.focus(input);
@@ -1207,21 +1040,15 @@ describe("TextInput component asynchronous autosuggest tests", () => {
           setTimeout(() => {
             resolve(
               newValue
-                ? countries.filter((option) =>
-                    option.toUpperCase().includes(newValue.toUpperCase())
-                  )
-                : countries
+                ? countries.filter((option) => option.toUpperCase().includes(newValue.toUpperCase()))
+                : countries,
             );
           }, 100);
-        })
+        }),
     );
     const onChange = jest.fn();
     const { getByRole, getByText } = render(
-      <DxcTextInput
-        label="Autosuggest Countries"
-        onChange={onChange}
-        suggestions={callbackFunc}
-      />
+      <DxcTextInput label="Autosuggest Countries" onChange={onChange} suggestions={callbackFunc} />,
     );
     const input = getByRole("combobox") as HTMLInputElement;
     fireEvent.focus(input);
@@ -1240,22 +1067,15 @@ describe("TextInput component asynchronous autosuggest tests", () => {
           setTimeout(() => {
             resolve(
               newValue
-                ? countries.filter((option) =>
-                    option.toUpperCase().includes(newValue.toUpperCase())
-                  )
-                : countries
+                ? countries.filter((option) => option.toUpperCase().includes(newValue.toUpperCase()))
+                : countries,
             );
           }, 100);
-        })
+        }),
     );
     const onChange = jest.fn();
     const { getByRole, getByText, queryByRole } = render(
-      <DxcTextInput
-        label="Autosuggest Countries"
-        value="Denm"
-        onChange={onChange}
-        suggestions={callbackFunc}
-      />
+      <DxcTextInput label="Autosuggest Countries" value="Denm" onChange={onChange} suggestions={callbackFunc} />,
     );
     const input = getByRole("combobox") as HTMLInputElement;
     expect(input.value).toBe("Denm");
@@ -1275,21 +1095,15 @@ describe("TextInput component asynchronous autosuggest tests", () => {
           setTimeout(() => {
             resolve(
               newValue
-                ? countries.filter((option) =>
-                    option.toUpperCase().includes(newValue.toUpperCase())
-                  )
-                : countries
+                ? countries.filter((option) => option.toUpperCase().includes(newValue.toUpperCase()))
+                : countries,
             );
           }, 100);
-        })
+        }),
     );
     const onChange = jest.fn();
     const { getByText, getByRole, queryByRole } = render(
-      <DxcTextInput
-        label="Autosuggest Countries"
-        onChange={onChange}
-        suggestions={callbackFunc}
-      />
+      <DxcTextInput label="Autosuggest Countries" onChange={onChange} suggestions={callbackFunc} />,
     );
     const input = getByRole("combobox");
     fireEvent.focus(input);
@@ -1307,21 +1121,15 @@ describe("TextInput component asynchronous autosuggest tests", () => {
           setTimeout(() => {
             resolve(
               newValue
-                ? countries.filter((option) =>
-                    option.toUpperCase().includes(newValue.toUpperCase())
-                  )
-                : countries
+                ? countries.filter((option) => option.toUpperCase().includes(newValue.toUpperCase()))
+                : countries,
             );
           }, 100);
-        })
+        }),
     );
     const onChange = jest.fn();
     const { getByText, getByRole, queryByRole } = render(
-      <DxcTextInput
-        label="Autosuggest Countries"
-        onChange={onChange}
-        suggestions={callbackFunc}
-      />
+      <DxcTextInput label="Autosuggest Countries" onChange={onChange} suggestions={callbackFunc} />,
     );
     const input = getByRole("combobox");
     fireEvent.focus(input);
@@ -1353,15 +1161,11 @@ describe("TextInput component asynchronous autosuggest tests", () => {
           setTimeout(() => {
             reject(new Error("err"));
           }, 100);
-        })
+        }),
     );
     const onChange = jest.fn();
     const { getByRole, getByText } = render(
-      <DxcTextInput
-        label="Autosuggest Countries"
-        onChange={onChange}
-        suggestions={errorCallbackFunc}
-      />
+      <DxcTextInput label="Autosuggest Countries" onChange={onChange} suggestions={errorCallbackFunc} />,
     );
     const input = getByRole("combobox");
     fireEvent.focus(input);

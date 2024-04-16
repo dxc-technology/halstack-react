@@ -7,7 +7,7 @@ export const formatRules = (rules: string[]) =>
       ...rulesObj,
       [rule]: { enabled: false },
     }),
-    {}
+    {},
   );
 
 export const axe = configureAxe({

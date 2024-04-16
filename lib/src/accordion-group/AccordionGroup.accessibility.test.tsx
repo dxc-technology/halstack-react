@@ -25,21 +25,13 @@ describe("Accordion component accessibility tests", () => {
   it("Should not have basic accessibility issues", async () => {
     const { container } = render(
       <DxcAccordionGroup defaultIndexActive={1} margin="small">
-        <DxcAccordionGroup.Accordion
-          label="Accordion1"
-          assistiveText="Assistive Text1"
-          icon={folderIcon}
-        >
+        <DxcAccordionGroup.Accordion label="Accordion1" assistiveText="Assistive Text1" icon={folderIcon}>
           <div>First accordion</div>
         </DxcAccordionGroup.Accordion>
-        <DxcAccordionGroup.Accordion
-          label="Accordion2"
-          assistiveText="Assistive Text2"
-          icon={folderIcon}
-        >
+        <DxcAccordionGroup.Accordion label="Accordion2" assistiveText="Assistive Text2" icon={folderIcon}>
           <div>Second accordion</div>
         </DxcAccordionGroup.Accordion>
-      </DxcAccordionGroup>
+      </DxcAccordionGroup>,
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
@@ -47,21 +39,13 @@ describe("Accordion component accessibility tests", () => {
   it("Should not have basic accessibility issues for disabled mode", async () => {
     const { container } = render(
       <DxcAccordionGroup defaultIndexActive={1} margin="small" disabled>
-        <DxcAccordionGroup.Accordion
-          label="Accordion1"
-          assistiveText="Assistive Text1"
-          icon={folderIcon}
-        >
+        <DxcAccordionGroup.Accordion label="Accordion1" assistiveText="Assistive Text1" icon={folderIcon}>
           <div>First accordion</div>
         </DxcAccordionGroup.Accordion>
-        <DxcAccordionGroup.Accordion
-          label="Accordion2"
-          assistiveText="Assistive Text2"
-          icon={folderIcon}
-        >
+        <DxcAccordionGroup.Accordion label="Accordion2" assistiveText="Assistive Text2" icon={folderIcon}>
           <div>Second accordion</div>
         </DxcAccordionGroup.Accordion>
-      </DxcAccordionGroup>
+      </DxcAccordionGroup>,
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();

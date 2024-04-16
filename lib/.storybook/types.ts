@@ -1,7 +1,4 @@
-type Styles =
-  | ViewportStyles
-  | ((s: ViewportStyles | undefined) => ViewportStyles)
-  | null;
+type Styles = ViewportStyles | ((s: ViewportStyles | undefined) => ViewportStyles) | null;
 interface Viewport {
   name: string;
   styles: Styles;

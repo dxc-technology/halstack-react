@@ -2,16 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import InsetPropsType from "./types";
 
-const Inset = ({
-  space,
-  horizontal,
-  vertical,
-  top,
-  right,
-  bottom,
-  left,
-  children,
-}: InsetPropsType): JSX.Element => (
+const Inset = ({ space, horizontal, vertical, top, right, bottom, left, children }: InsetPropsType): JSX.Element => (
   <StyledInset
     space={space}
     horizontal={horizontal}

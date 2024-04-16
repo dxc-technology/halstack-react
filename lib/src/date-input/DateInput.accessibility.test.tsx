@@ -44,7 +44,7 @@ describe("DateInput component accessibility tests", () => {
         size="medium"
         placeholder
         clearable
-      />
+      />,
     );
     const results = await axe(baseElement, disabledRules);
     expect(results).toHaveNoViolations();
@@ -62,7 +62,7 @@ describe("DateInput component accessibility tests", () => {
         size="medium"
         placeholder
         autocomplete="on"
-      />
+      />,
     );
     const results = await axe(baseElement, disabledRules);
     expect(results).toHaveNoViolations();
@@ -80,7 +80,7 @@ describe("DateInput component accessibility tests", () => {
         size="medium"
         placeholder
         optional
-      />
+      />,
     );
     const results = await axe(baseElement, disabledRules);
     expect(results).toHaveNoViolations();
@@ -99,7 +99,7 @@ describe("DateInput component accessibility tests", () => {
         size="medium"
         placeholder
         clearable
-      />
+      />,
     );
     const results = await axe(baseElement, disabledRules);
     expect(results).toHaveNoViolations();
@@ -119,7 +119,7 @@ describe("DateInput component accessibility tests", () => {
         placeholder
         clearable
         readOnly
-      />
+      />,
     );
     const results = await axe(baseElement, disabledRules);
     expect(results).toHaveNoViolations();
@@ -139,7 +139,7 @@ describe("DateInput component accessibility tests", () => {
         placeholder
         clearable
         disabled
-      />
+      />,
     );
     const results = await axe(baseElement, disabledRules);
     expect(results).toHaveNoViolations();

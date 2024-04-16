@@ -10,9 +10,7 @@ describe("Button component tests", () => {
 
   test("Calls correct function on click", () => {
     const onClick = jest.fn();
-    const { getByText } = render(
-      <DxcButton label="Button" onClick={onClick} />
-    );
+    const { getByText } = render(<DxcButton label="Button" onClick={onClick} />);
 
     const button = getByText("Button");
     fireEvent.click(button);
@@ -20,9 +18,7 @@ describe("Button component tests", () => {
   });
 
   test("Renders with correct accessibility attributes", () => {
-    const { getByRole } = render(
-      <DxcButton label="Home" title="Go home" tabIndex={1} />
-    );
+    const { getByRole } = render(<DxcButton label="Home" title="Go home" tabIndex={1} />);
 
     const button = getByRole("button");
     expect(button.getAttribute("aria-label")).toBe("Go home");

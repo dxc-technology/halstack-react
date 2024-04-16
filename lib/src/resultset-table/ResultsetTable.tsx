@@ -12,18 +12,10 @@ import CoreTokens from "../common/coreTokens";
 const normalizeSortValue = (sortValue: string | React.ReactNode) =>
   typeof sortValue === "string" ? sortValue.toUpperCase() : sortValue;
 
-const sortArray = (
-  index: number,
-  order: "ascending" | "descending",
-  resultset: Row[][]
-) =>
+const sortArray = (index: number, order: "ascending" | "descending", resultset: Row[][]) =>
   resultset.slice().sort((element1, element2) => {
-    const sortValueA = normalizeSortValue(
-      element1[index].sortValue || element1[index].displayValue
-    );
-    const sortValueB = normalizeSortValue(
-      element2[index].sortValue || element2[index].displayValue
-    );
+    const sortValueA = normalizeSortValue(element1[index].sortValue || element1[index].displayValue);
+    const sortValueB = normalizeSortValue(element2[index].sortValue || element2[index].displayValue);
     let comparison = 0;
     if (typeof sortValueA === "object") {
       comparison = -1;
@@ -37,21 +29,15 @@ const sortArray = (
     return order === "descending" ? comparison * -1 : comparison;
   });
 
-const getMinItemsPerPageIndex = (
-  currentPageInternal: number,
-  itemsPerPage: number,
-  page: number
-) => (currentPageInternal === 1 ? 0 : itemsPerPage * (page - 1));
+const getMinItemsPerPageIndex = (currentPageInternal: number, itemsPerPage: number, page: number) =>
+  currentPageInternal === 1 ? 0 : itemsPerPage * (page - 1);
 
 const getMaxItemsPerPageIndex = (
   minItemsPerPageIndex: number,
   itemsPerPage: number,
   resultset: Row[][],
-  page: number
-) =>
-  minItemsPerPageIndex + itemsPerPage > resultset.length
-    ? resultset.length
-    : itemsPerPage * page - 1;
+  page: number,
+) => (minItemsPerPageIndex + itemsPerPage > resultset.length ? resultset.length : itemsPerPage * page - 1);
 
 const DxcResultsetTable = ({
   columns,
@@ -68,31 +54,20 @@ const DxcResultsetTable = ({
   const colorsTheme = useTheme();
   const [page, changePage] = useState(1);
   const [sortColumnIndex, changeSortColumnIndex] = useState(-1);
-  const [sortOrder, changeSortOrder] = useState<"ascending" | "descending">(
-    "ascending"
-  );
+  const [sortOrder, changeSortOrder] = useState<"ascending" | "descending">("ascending");
 
-  const minItemsPerPageIndex = useMemo(
-    () => getMinItemsPerPageIndex(page, itemsPerPage, page),
-    [itemsPerPage, page]
-  );
+  const minItemsPerPageIndex = useMemo(() => getMinItemsPerPageIndex(page, itemsPerPage, page), [itemsPerPage, page]);
   const maxItemsPerPageIndex = useMemo(
-    () =>
-      getMaxItemsPerPageIndex(minItemsPerPageIndex, itemsPerPage, rows, page),
-    [itemsPerPage, minItemsPerPageIndex, page, rows]
+    () => getMaxItemsPerPageIndex(minItemsPerPageIndex, itemsPerPage, rows, page),
+    [itemsPerPage, minItemsPerPageIndex, page, rows],
   );
   const sortedResultset = useMemo(
-    () =>
-      sortColumnIndex !== -1
-        ? sortArray(sortColumnIndex, sortOrder, rows)
-        : rows,
-    [sortColumnIndex, sortOrder, rows]
+    () => (sortColumnIndex !== -1 ? sortArray(sortColumnIndex, sortOrder, rows) : rows),
+    [sortColumnIndex, sortOrder, rows],
   );
   const filteredResultset = useMemo(
-    () =>
-      sortedResultset &&
-      sortedResultset.slice(minItemsPerPageIndex, maxItemsPerPageIndex + 1),
-    [sortedResultset, minItemsPerPageIndex, maxItemsPerPageIndex]
+    () => sortedResultset && sortedResultset.slice(minItemsPerPageIndex, maxItemsPerPageIndex + 1),
+    [sortedResultset, minItemsPerPageIndex, maxItemsPerPageIndex],
   );
 
   const goToPage = (newPage: number) => {
@@ -107,7 +82,7 @@ const DxcResultsetTable = ({
         ? "ascending"
         : sortOrder === "ascending"
           ? "descending"
-          : "ascending"
+          : "ascending",
     );
   };
 
@@ -126,13 +101,7 @@ const DxcResultsetTable = ({
               {columns.map((column, index) => (
                 <th
                   key={`tableHeader_${index}`}
-                  aria-sort={
-                    column.isSortable
-                      ? sortColumnIndex === index
-                        ? sortOrder
-                        : "none"
-                      : undefined
-                  }
+                  aria-sort={column.isSortable ? (sortColumnIndex === index ? sortOrder : "none") : undefined}
                 >
                   <HeaderContainer
                     role={column.isSortable ? "button" : undefined}
@@ -166,9 +135,7 @@ const DxcResultsetTable = ({
             {filteredResultset.map((cells, rowIndex) => (
               <tr key={`resultSetTableCell_${page}_${rowIndex}`}>
                 {cells.map((cellContent, cellIndex) => (
-                  <td key={`resultSetTableCellContent_${cellIndex}`}>
-                    {cellContent.displayValue}
-                  </td>
+                  <td key={`resultSetTableCellContent_${cellIndex}`}>{cellContent.displayValue}</td>
                 ))}
               </tr>
             ))}
@@ -198,26 +165,15 @@ const DxcResultsetTableContainer = styled.div<{
   margin: ResultsetTablePropsType["margin"];
 }>`
   width: ${(props) => calculateWidth(props.margin)};
-  margin: ${(props) =>
-    props.margin && typeof props.margin !== "object"
-      ? spaces[props.margin]
-      : "0px"};
+  margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.top
-      ? spaces[props.margin.top]
-      : ""};
+    props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
   margin-right: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.right
-      ? spaces[props.margin.right]
-      : ""};
+    props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
   margin-bottom: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.bottom
-      ? spaces[props.margin.bottom]
-      : ""};
+    props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
   margin-left: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.left
-      ? spaces[props.margin.left]
-      : ""};
+    props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
 `;
 
 const HeaderContainer = styled.span<{

@@ -8,17 +8,8 @@ import DxcIcon from "../icon/Icon";
 
 const Tab = forwardRef(
   (
-    {
-      active,
-      tab,
-      tabIndex,
-      hasLabelAndIcon,
-      iconPosition,
-      onClick,
-      onMouseEnter,
-      onMouseLeave,
-    }: TabProps,
-    ref: Ref<HTMLButtonElement>
+    { active, tab, tabIndex, hasLabelAndIcon, iconPosition, onClick, onMouseEnter, onMouseLeave }: TabProps,
+    ref: Ref<HTMLButtonElement>,
   ): JSX.Element => {
     const colorsTheme = useTheme();
 
@@ -49,15 +40,8 @@ const Tab = forwardRef(
           disabled={tab.isDisabled}
         >
           {tab.icon && (
-            <TabIconContainer
-              hasLabelAndIcon={hasLabelAndIcon}
-              iconPosition={iconPosition}
-            >
-              {typeof tab.icon === "string" ? (
-                <DxcIcon icon={tab.icon} />
-              ) : (
-                tab.icon
-              )}
+            <TabIconContainer hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
+              {typeof tab.icon === "string" ? <DxcIcon icon={tab.icon} /> : tab.icon}
             </TabIconContainer>
           )}
           <BaseTypography
@@ -70,16 +54,8 @@ const Tab = forwardRef(
             }
             fontFamily={colorsTheme.tabs.fontFamily}
             fontSize={colorsTheme.tabs.fontSize}
-            fontStyle={
-              tab.isDisabled
-                ? colorsTheme.tabs.disabledFontStyle
-                : colorsTheme.tabs.fontStyle
-            }
-            fontWeight={
-              active
-                ? colorsTheme.tabs.pressedFontWeight
-                : colorsTheme.tabs.fontWeight
-            }
+            fontStyle={tab.isDisabled ? colorsTheme.tabs.disabledFontStyle : colorsTheme.tabs.fontStyle}
+            fontWeight={active ? colorsTheme.tabs.pressedFontWeight : colorsTheme.tabs.fontWeight}
             textAlign="center"
             letterSpacing="0.025em"
             lineHeight="1.715em"
@@ -88,23 +64,17 @@ const Tab = forwardRef(
           </BaseTypography>
         </MainLabelContainer>
         {tab.notificationNumber && !tab.isDisabled && (
-          <BadgeContainer
-            hasLabelAndIcon={hasLabelAndIcon}
-            iconPosition={iconPosition}
-          >
+          <BadgeContainer hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
             <DxcBadge
               mode="notification"
               size="small"
-              label={
-                typeof tab.notificationNumber === "number" &&
-                tab.notificationNumber
-              }
+              label={typeof tab.notificationNumber === "number" && tab.notificationNumber}
             />
           </BadgeContainer>
         )}
       </TabContainer>
     );
-  }
+  },
 );
 
 const TabContainer = styled.button<{
@@ -124,29 +94,18 @@ const TabContainer = styled.button<{
   min-width: 90px;
   max-width: 360px;
   padding: ${(props) =>
-    ((!props.hasLabelAndIcon ||
-      (props.hasLabelAndIcon && props.iconPosition !== "top")) &&
-      "12px 16px") ||
-    "8px 16px"};
+    ((!props.hasLabelAndIcon || (props.hasLabelAndIcon && props.iconPosition !== "top")) && "12px 16px") || "8px 16px"};
   height: ${(props) =>
-    ((!props.hasLabelAndIcon ||
-      (props.hasLabelAndIcon && props.iconPosition !== "top")) &&
-      "47px") ||
-    "71px"};
+    ((!props.hasLabelAndIcon || (props.hasLabelAndIcon && props.iconPosition !== "top")) && "47px") || "71px"};
   min-height: ${(props) =>
-    ((!props.hasLabelAndIcon ||
-      (props.hasLabelAndIcon && props.iconPosition !== "top")) &&
-      "47px") ||
-    "71px"};
+    ((!props.hasLabelAndIcon || (props.hasLabelAndIcon && props.iconPosition !== "top")) && "47px") || "71px"};
   background-color: ${(props) => props.theme.unselectedBackgroundColor};
 
   &:hover {
-    background-color: ${(props) =>
-      `${props.theme.hoverBackgroundColor} !important`};
+    background-color: ${(props) => `${props.theme.hoverBackgroundColor} !important`};
   }
   &:active {
-    background-color: ${(props) =>
-      `${props.theme.pressedBackgroundColor} !important`};
+    background-color: ${(props) => `${props.theme.pressedBackgroundColor} !important`};
   }
   &:focus {
     outline: ${(props) => props.theme.focusOutline} solid 1px;
@@ -168,8 +127,7 @@ const TabContainer = styled.button<{
   }
 
   &:disabled {
-    background-color: ${(props) =>
-      props.theme.unselectedBackgroundColor} !important;
+    background-color: ${(props) => props.theme.unselectedBackgroundColor} !important;
     cursor: not-allowed !important;
     pointer-events: all;
     font-style: ${(props) => props.theme.disabledFontStyle};
@@ -192,10 +150,7 @@ const BadgeContainer = styled.div<{
   margin-left: 12px;
   height: 100%;
   display: flex;
-  align-items: ${(props) =>
-    props.hasLabelAndIcon && props.iconPosition === "top"
-      ? "flex-start"
-      : "center"};
+  align-items: ${(props) => (props.hasLabelAndIcon && props.iconPosition === "top" ? "flex-start" : "center")};
 `;
 
 const MainLabelContainer = styled.div<{
@@ -205,9 +160,7 @@ const MainLabelContainer = styled.div<{
   disabled: TabProps["tab"]["isDisabled"];
 }>`
   display: flex;
-  flex-direction: ${(props) =>
-    (props.hasLabelAndIcon && props.iconPosition === "top" && "column") ||
-    "row"};
+  flex-direction: ${(props) => (props.hasLabelAndIcon && props.iconPosition === "top" && "column") || "row"};
   align-items: center;
   margin-left: ${(props) =>
     props.notificationNumber && !props.disabled
@@ -222,10 +175,8 @@ const TabIconContainer = styled.div<{
   iconPosition: TabProps["iconPosition"];
 }>`
   display: flex;
-  margin-bottom: ${(props) =>
-    (props.hasLabelAndIcon && props.iconPosition === "top" && "8px") || ""};
-  margin-right: ${(props) =>
-    (props.hasLabelAndIcon && props.iconPosition === "left" && "12px") || ""};
+  margin-bottom: ${(props) => (props.hasLabelAndIcon && props.iconPosition === "top" && "8px") || ""};
+  margin-right: ${(props) => (props.hasLabelAndIcon && props.iconPosition === "left" && "12px") || ""};
   font-size: 22px;
 
   svg {

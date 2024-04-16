@@ -134,21 +134,12 @@ export const Chromatic = () => (
       </DxcNavTabs>
     </ExampleContainer>
     <ExampleContainer>
-      <Title
-        title="With icon and notification number"
-        theme="light"
-        level={4}
-      />
+      <Title title="With icon and notification number" theme="light" level={4} />
       <DxcNavTabs>
         <DxcNavTabs.Tab href="#" active icon={pinIcon} notificationNumber>
           Tab 1
         </DxcNavTabs.Tab>
-        <DxcNavTabs.Tab
-          href="#"
-          disabled
-          icon={favoriteIcon}
-          notificationNumber={5}
-        >
+        <DxcNavTabs.Tab href="#" disabled icon={favoriteIcon} notificationNumber={5}>
           Tab 2
         </DxcNavTabs.Tab>
         <DxcNavTabs.Tab href="#" icon={favoriteIcon} notificationNumber={120}>
@@ -160,21 +151,12 @@ export const Chromatic = () => (
       </DxcNavTabs>
     </ExampleContainer>
     <ExampleContainer>
-      <Title
-        title="With icon on the left and notification number"
-        theme="light"
-        level={4}
-      />
+      <Title title="With icon on the left and notification number" theme="light" level={4} />
       <DxcNavTabs iconPosition="left">
         <DxcNavTabs.Tab href="#" active icon={favoriteIcon} notificationNumber>
           Tab 1
         </DxcNavTabs.Tab>
-        <DxcNavTabs.Tab
-          href="#"
-          disabled
-          icon={favoriteIcon}
-          notificationNumber={5}
-        >
+        <DxcNavTabs.Tab href="#" disabled icon={favoriteIcon} notificationNumber={5}>
           Tab 2
         </DxcNavTabs.Tab>
         <DxcNavTabs.Tab href="#" icon={pinIcon} notificationNumber={120}>
@@ -191,12 +173,7 @@ export const Chromatic = () => (
         <DxcNavTabs.Tab href="#" active>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit
         </DxcNavTabs.Tab>
-        <DxcNavTabs.Tab
-          href="#"
-          icon={favoriteIcon}
-          disabled
-          notificationNumber={3}
-        >
+        <DxcNavTabs.Tab href="#" icon={favoriteIcon} disabled notificationNumber={3}>
           Tab 2
         </DxcNavTabs.Tab>
         <DxcNavTabs.Tab href="#" icon={favoriteIcon}>
@@ -205,21 +182,12 @@ export const Chromatic = () => (
       </DxcNavTabs>
     </ExampleContainer>
     <ExampleContainer>
-      <Title
-        title="With long label and left icon alignment"
-        theme="light"
-        level={4}
-      />
+      <Title title="With long label and left icon alignment" theme="light" level={4} />
       <DxcNavTabs iconPosition="left">
         <DxcNavTabs.Tab href="#" active>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit
         </DxcNavTabs.Tab>
-        <DxcNavTabs.Tab
-          href="#"
-          icon={favoriteIcon}
-          disabled
-          notificationNumber={3}
-        >
+        <DxcNavTabs.Tab href="#" icon={favoriteIcon} disabled notificationNumber={3}>
           Tab 2
         </DxcNavTabs.Tab>
         <DxcNavTabs.Tab href="#" icon={favoriteIcon}>
@@ -289,27 +257,13 @@ export const Chromatic = () => (
       </HalstackProvider>
     </ExampleContainer>
     <ExampleContainer>
-      <Title
-        title="With icon and notification number"
-        theme="light"
-        level={4}
-      />
+      <Title title="With icon and notification number" theme="light" level={4} />
       <HalstackProvider theme={opinionatedTheme}>
         <DxcNavTabs>
-          <DxcNavTabs.Tab
-            href="#"
-            active
-            icon={favoriteIcon}
-            notificationNumber
-          >
+          <DxcNavTabs.Tab href="#" active icon={favoriteIcon} notificationNumber>
             Tab 1
           </DxcNavTabs.Tab>
-          <DxcNavTabs.Tab
-            href="#"
-            disabled
-            icon={favoriteIcon}
-            notificationNumber={5}
-          >
+          <DxcNavTabs.Tab href="#" disabled icon={favoriteIcon} notificationNumber={5}>
             Tab 2
           </DxcNavTabs.Tab>
           <DxcNavTabs.Tab href="#" icon={favoriteIcon} notificationNumber={120}>
@@ -322,11 +276,7 @@ export const Chromatic = () => (
       </HalstackProvider>
     </ExampleContainer>
     <ExampleContainer>
-      <Title
-        title="NavTabs in a limited space container"
-        theme="light"
-        level={4}
-      />
+      <Title title="NavTabs in a limited space container" theme="light" level={4} />
       <DxcContainer width="500px">
         <DxcNavTabs>
           <DxcNavTabs.Tab href="#" active>

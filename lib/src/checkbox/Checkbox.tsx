@@ -29,7 +29,7 @@ const DxcCheckbox = React.forwardRef<RefType, CheckboxPropsType>(
       size = "fitContent",
       tabIndex = 0,
     },
-    ref
+    ref,
   ): JSX.Element => {
     const labelId = `label-checkbox-${useId()}`;
     const [innerChecked, setInnerChecked] = useState(defaultChecked);
@@ -73,12 +73,7 @@ const DxcCheckbox = React.forwardRef<RefType, CheckboxPropsType>(
           ref={ref}
         >
           {label && (
-            <LabelContainer
-              id={labelId}
-              disabled={disabled}
-              labelPosition={labelPosition}
-              aria-label={label}
-            >
+            <LabelContainer id={labelId} disabled={disabled} labelPosition={labelPosition} aria-label={label}>
               {label}
               {optional && ` ${translatedLabels.formFields.optionalLabel}`}
             </LabelContainer>
@@ -113,7 +108,7 @@ const DxcCheckbox = React.forwardRef<RefType, CheckboxPropsType>(
         </MainContainer>
       </ThemeProvider>
     );
-  }
+  },
 );
 
 const sizes = {
@@ -124,18 +119,12 @@ const sizes = {
   fitContent: "fit-content",
 };
 
-const calculateWidth = (
-  margin: CheckboxPropsType["margin"],
-  size: CheckboxPropsType["size"]
-) =>
+const calculateWidth = (margin: CheckboxPropsType["margin"], size: CheckboxPropsType["size"]) =>
   size === "fillParent"
     ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
     : sizes[size];
 
-const getDisabledColor = (
-  theme: AdvancedTheme["checkbox"],
-  element: string
-) => {
+const getDisabledColor = (theme: AdvancedTheme["checkbox"], element: string) => {
   switch (element) {
     case "check":
       return theme.disabledCheckColor;
@@ -150,10 +139,7 @@ const getDisabledColor = (
   }
 };
 
-const getReadOnlyColor = (
-  theme: AdvancedTheme["checkbox"],
-  element: string
-) => {
+const getReadOnlyColor = (theme: AdvancedTheme["checkbox"], element: string) => {
   switch (element) {
     case "check":
       return theme.readOnlyCheckColor;
@@ -195,9 +181,7 @@ const LabelContainer = styled.span<{
 }>`
   order: ${(props) => (props.labelPosition === "before" ? 0 : 1)};
   color: ${(props) =>
-    props.disabled
-      ? getDisabledColor(props.theme, "label")
-      : getEnabledColor(props.theme, "label")};
+    props.disabled ? getDisabledColor(props.theme, "label") : getEnabledColor(props.theme, "label")};
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.fontSize};
   font-weight: ${(props) => props.theme.fontWeight};
@@ -273,36 +257,22 @@ const MainContainer = styled.div<{
   align-items: center;
   gap: ${(props) => props.theme.checkLabelSpacing};
   width: ${(props) => calculateWidth(props.margin, props.size)};
-  margin: ${(props) =>
-    props.margin && typeof props.margin !== "object"
-      ? spaces[props.margin]
-      : "0px"};
+  margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.top
-      ? spaces[props.margin.top]
-      : ""};
+    props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
   margin-right: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.right
-      ? spaces[props.margin.right]
-      : ""};
+    props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
   margin-bottom: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.bottom
-      ? spaces[props.margin.bottom]
-      : ""};
+    props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
   margin-left: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.left
-      ? spaces[props.margin.left]
-      : ""};
-  cursor: ${(props) =>
-    props.disabled ? "not-allowed" : props.readOnly ? "default" : "pointer"};
+    props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
+  cursor: ${(props) => (props.disabled ? "not-allowed" : props.readOnly ? "default" : "pointer")};
 
   &:hover ${Checkbox} {
     border: 2px solid
       ${(props) =>
         !props.disabled &&
-        (props.readOnly
-          ? getReadOnlyColor(props.theme, "hoverBorder")
-          : getEnabledColor(props.theme, "hoverBorder"))};
+        (props.readOnly ? getReadOnlyColor(props.theme, "hoverBorder") : getEnabledColor(props.theme, "hoverBorder"))};
     color: ${(props) =>
       !props.disabled &&
       (props.readOnly

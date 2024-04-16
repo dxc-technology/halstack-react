@@ -13,7 +13,7 @@ describe("ProgressBar component accessibility tests", () => {
         value={50}
         showValue
         overlay
-      ></DxcProgressBar>
+      ></DxcProgressBar>,
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();

@@ -28,28 +28,15 @@ export default {
   },
 };
 
-const items = [
-  { label: "Item 1" },
-  { label: "Item 2" },
-  { label: "Item 3" },
-  { label: "Item 4" },
-];
+const items = [{ label: "Item 1" }, { label: "Item 2" }, { label: "Item 3" }, { label: "Item 4" }];
 
 const sections = [
   {
     title: "Team repositories",
-    items: [
-      { label: "Approved locations" },
-      { label: "Approved locations" },
-      { label: "Approved locations" },
-    ],
+    items: [{ label: "Approved locations" }, { label: "Approved locations" }, { label: "Approved locations" }],
   },
   {
-    items: [
-      { label: "Approved locations" },
-      { label: "Approved locations" },
-      { label: "Approved locations" },
-    ],
+    items: [{ label: "Approved locations" }, { label: "Approved locations" }, { label: "Approved locations" }],
   },
 ];
 
@@ -96,12 +83,7 @@ const itemsWithIcon = [
   {
     label: "Item 1",
     icon: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        height="24"
-        viewBox="0 -960 960 960"
-        width="24"
-      >
+      <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
         <path d="M200-120v-640q0-33 23.5-56.5T280-840h400q33 0 56.5 23.5T760-760v640L480-240 200-120Zm80-122 200-86 200 86v-518H280v518Zm0-518h400-400Z" />
       </svg>
     ),
@@ -126,11 +108,7 @@ const itemsWithBadge = [
 const sectionsWithScroll = [
   {
     title: "Team repositories",
-    items: [
-      { label: "Approved locations" },
-      { label: "Approved locations" },
-      { label: "Approved locations" },
-    ],
+    items: [{ label: "Approved locations" }, { label: "Approved locations" }, { label: "Approved locations" }],
   },
   {
     items: [
@@ -152,12 +130,7 @@ const itemsWithTruncatedText = [
     label: "Item with a very long label that should be truncated",
     badge: <DxcBadge color="green" label="New" />,
     icon: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        height="24"
-        viewBox="0 -960 960 960"
-        width="24"
-      >
+      <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
         <path d="M200-120v-640q0-33 23.5-56.5T280-840h400q33 0 56.5 23.5T760-760v640L480-240 200-120Zm80-122 200-86 200 86v-518H280v518Zm0-518h400-400Z" />
       </svg>
     ),
@@ -228,15 +201,9 @@ Chromatic.play = async ({ canvasElement }) => {
 };
 
 export const SingleItemStates = () => {
-  const defaultContextValue = useMemo(
-    () => ({ selectedItemId: -1, setSelectedItemId: () => {} }),
-    []
-  );
+  const defaultContextValue = useMemo(() => ({ selectedItemId: -1, setSelectedItemId: () => {} }), []);
 
-  const selectedContextValue = useMemo(
-    () => ({ selectedItemId: 0, setSelectedItemId: () => {} }),
-    []
-  );
+  const selectedContextValue = useMemo(() => ({ selectedItemId: 0, setSelectedItemId: () => {} }), []);
 
   return (
     <DxcContainer width="300px">

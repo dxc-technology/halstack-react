@@ -6,17 +6,12 @@ import DxcSidenav from "../sidenav/Sidenav";
 import { responsiveSizes } from "../common/variables";
 import layoutIcons from "./Icons";
 import AppLayoutPropsType, { AppLayoutMainPropsType } from "./types";
-import {
-  SidenavContextProvider,
-  useResponsiveSidenavVisibility,
-} from "../sidenav/SidenavContext";
+import { SidenavContextProvider, useResponsiveSidenavVisibility } from "../sidenav/SidenavContext";
 import useTranslatedLabels from "../useTranslatedLabels";
 import DxcIcon from "../icon/Icon";
 
 const year = new Date().getFullYear();
-const Main = ({ children }: AppLayoutMainPropsType): JSX.Element => (
-  <>{children}</>
-);
+const Main = ({ children }: AppLayoutMainPropsType): JSX.Element => <>{children}</>;
 const defaultHeader = () => <DxcHeader underlined />;
 
 const defaultFooter = () => (
@@ -56,8 +51,7 @@ const defaultFooter = () => (
   />
 );
 
-const childTypeExists = (children, childType) =>
-  children.find((child) => child?.type === childType);
+const childTypeExists = (children, childType) => children.find((child) => child?.type === childType);
 
 const DxcApplicationLayout = ({
   visibilityToggleLabel = "",
@@ -66,8 +60,7 @@ const DxcApplicationLayout = ({
   footer,
   children,
 }: AppLayoutPropsType): JSX.Element => {
-  const [isSidenavVisibleResponsive, setIsSidenavVisibleResponsive] =
-    useState(false);
+  const [isSidenavVisibleResponsive, setIsSidenavVisibleResponsive] = useState(false);
   const [isResponsive, setIsResponsive] = useState(false);
   const ref = useRef(null);
   const translatedLabels = useTranslatedLabels();
@@ -79,16 +72,11 @@ const DxcApplicationLayout = ({
   const main = childTypeExists(childrenArray, Main);
 
   const handleResize = useCallback(() => {
-    setIsResponsive(
-      window.matchMedia(`(max-width: ${responsiveSizes.medium}rem)`).matches
-    );
+    setIsResponsive(window.matchMedia(`(max-width: ${responsiveSizes.medium}rem)`).matches);
   }, []);
 
   const handleSidenavVisibility = () => {
-    setIsSidenavVisibleResponsive(
-      (isSidenavVisibleCurrentlyResponsive) =>
-        !isSidenavVisibleCurrentlyResponsive
-    );
+    setIsSidenavVisibleResponsive((isSidenavVisibleCurrentlyResponsive) => !isSidenavVisibleCurrentlyResponsive);
   };
 
   useEffect(() => {
@@ -106,21 +94,13 @@ const DxcApplicationLayout = ({
   }, [isResponsive]);
 
   return (
-    <ApplicationLayoutContainer
-      hasSidenav={!!sidenav}
-      isSidenavVisible={isSidenavVisibleResponsive}
-      ref={ref}
-    >
+    <ApplicationLayoutContainer hasSidenav={!!sidenav} isSidenavVisible={isSidenavVisibleResponsive} ref={ref}>
       <HeaderContainer>{headerContent}</HeaderContainer>
       {sidenav && isResponsive && (
         <VisibilityToggle>
           <HamburgerTrigger
             onClick={handleSidenavVisibility}
-            aria-label={
-              visibilityToggleLabel
-                ? undefined
-                : translatedLabels.applicationLayout.visibilityToggleTitle
-            }
+            aria-label={visibilityToggleLabel ? undefined : translatedLabels.applicationLayout.visibilityToggleTitle}
             title={translatedLabels.applicationLayout.visibilityToggleTitle}
           >
             <DxcIcon icon="Menu" />
@@ -249,7 +229,6 @@ DxcApplicationLayout.Header = DxcHeader;
 DxcApplicationLayout.Main = Main;
 DxcApplicationLayout.Footer = DxcFooter;
 DxcApplicationLayout.SideNav = DxcSidenav;
-DxcApplicationLayout.useResponsiveSidenavVisibility =
-  useResponsiveSidenavVisibility;
+DxcApplicationLayout.useResponsiveSidenavVisibility = useResponsiveSidenavVisibility;
 
 export default DxcApplicationLayout;

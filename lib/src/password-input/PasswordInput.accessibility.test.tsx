@@ -34,7 +34,7 @@ describe("Password input component accessibility tests", () => {
         minLength={5}
         maxLength={10}
         clearable
-      />
+      />,
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
@@ -52,7 +52,7 @@ describe("Password input component accessibility tests", () => {
         maxLength={10}
         autocomplete="on"
         pattern='^.*(?=.*[a-zA-Z])(?=.*)(?=.*[!&$%&? "]).*$'
-      />
+      />,
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
@@ -70,7 +70,7 @@ describe("Password input component accessibility tests", () => {
         minLength={5}
         maxLength={10}
         clearable
-      />
+      />,
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
@@ -87,7 +87,7 @@ describe("Password input component accessibility tests", () => {
         minLength={5}
         maxLength={10}
         autocomplete="on"
-      />
+      />,
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();

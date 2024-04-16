@@ -32,9 +32,7 @@ describe("Header component tests", () => {
       value: 1024,
     });
 
-    const { getByText } = render(
-      <DxcHeader content={<p>header-child-text</p>}></DxcHeader>
-    );
+    const { getByText } = render(<DxcHeader content={<p>header-child-text</p>}></DxcHeader>);
     expect(getByText("header-child-text")).toBeTruthy();
   });
 
@@ -49,9 +47,7 @@ describe("Header component tests", () => {
         matches: true,
       })),
     });
-    const { getByText } = render(
-      <DxcHeader responsiveContent={() => <p>header-child-text</p>}></DxcHeader>
-    );
+    const { getByText } = render(<DxcHeader responsiveContent={() => <p>header-child-text</p>}></DxcHeader>);
     expect(getByText("Menu")).toBeTruthy();
   });
 });
