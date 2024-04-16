@@ -5,7 +5,7 @@ import DxcActionIcon from "./ActionIcon";
 
 export default {
   title: "Action Icon ",
-  component: DxcActionIcon,
+  component: DxcActionIcon
 };
 
 const iconSVG = (

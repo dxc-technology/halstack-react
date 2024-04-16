@@ -8,9 +8,9 @@ export default {
   component: DxcApplicationLayout,
   parameters: {
     viewport: {
-      viewports: INITIAL_VIEWPORTS,
-    },
-  },
+      viewports: INITIAL_VIEWPORTS
+    }
+  }
 };
 
 export const DefaultApplicationLayout = () => (
@@ -82,9 +82,9 @@ export const ApplicationLayoutWithResponsiveSidenav = () => (
 
 ApplicationLayoutWithResponsiveSidenav.parameters = {
   viewport: {
-    defaultViewport: "pixel",
+    defaultViewport: "pixel"
   },
-  chromatic: { viewports: [540] },
+  chromatic: { viewports: [540] }
 };
 
 export const ApplicationLayoutWithCustomHeader = () => (

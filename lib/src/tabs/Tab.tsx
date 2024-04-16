@@ -9,7 +9,7 @@ import DxcIcon from "../icon/Icon";
 const Tab = forwardRef(
   (
     { active, tab, tabIndex, hasLabelAndIcon, iconPosition, onClick, onMouseEnter, onMouseLeave }: TabProps,
-    ref: Ref<HTMLButtonElement>,
+    ref: Ref<HTMLButtonElement>
   ): JSX.Element => {
     const colorsTheme = useTheme();
 
@@ -74,7 +74,7 @@ const Tab = forwardRef(
         )}
       </TabContainer>
     );
-  },
+  }
 );
 
 const TabContainer = styled.button<{

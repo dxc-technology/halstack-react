@@ -18,17 +18,17 @@ export default {
   component: DxcDialog,
   parameters: {
     viewport: {
-      viewports: INITIAL_VIEWPORTS,
-    },
-  },
+      viewports: INITIAL_VIEWPORTS
+    }
+  }
 };
 
 const opinionatedTheme = {
   dialog: {
     baseColor: "#ffffff",
     closeIconColor: "#000000",
-    overlayColor: "#000000b3",
-  },
+    overlayColor: "#000000b3"
+  }
 };
 
 export const DefaultDialog = () => (
@@ -339,26 +339,26 @@ const customViewports = {
     name: "Custom viewport",
     styles: {
       width: "720px",
-      height: "900px",
-    },
-  },
+      height: "900px"
+    }
+  }
 };
 
 export const ResponsiveDialog = DefaultDialog.bind({});
 ResponsiveDialog.parameters = {
   viewport: {
     viewports: customViewports,
-    defaultViewport: "resizedScreen",
+    defaultViewport: "resizedScreen"
   },
-  chromatic: { viewports: [720] },
+  chromatic: { viewports: [720] }
 };
 
 export const MobileResponsiveDialog = RespDialog.bind({});
 MobileResponsiveDialog.parameters = {
   viewport: {
-    defaultViewport: "iphonex",
+    defaultViewport: "iphonex"
   },
-  chromatic: { viewports: [375] },
+  chromatic: { viewports: [375] }
 };
 
 export const ScrollDialog = ScrollingDialog.bind({});

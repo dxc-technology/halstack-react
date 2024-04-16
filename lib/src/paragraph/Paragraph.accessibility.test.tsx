@@ -15,7 +15,7 @@ describe("Paragraph component accessibility tests", () => {
         iaculis pretium. Fusce id imperdiet dui, ut laoreet justo. Sed maximus sollicitudin ipsum, et varius massa
         condimentum eget. Vivamus id mauris et nisl mattis consequat et id lectus. Quisque mollis lacinia nisl.
         Suspendisse sed quam tincidunt, commodo dolor vel, tincidunt nisl.
-      </DxcParagraph>,
+      </DxcParagraph>
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();

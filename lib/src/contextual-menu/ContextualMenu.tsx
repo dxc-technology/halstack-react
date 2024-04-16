@@ -8,7 +8,7 @@ import ContextualMenuPropsType, {
   Item,
   ItemWithId,
   Section,
-  SectionWithId,
+  SectionWithId
 } from "./types";
 import DxcDivider from "../divider/Divider";
 import DxcInset from "../inset/Inset";
@@ -82,7 +82,7 @@ const DxcContextualMenu = ({ items }: ContextualMenuPropsType) => {
             renderSection(item, index, itemsWithId.length)
           ) : (
             <MenuItem item={item} key={`${item.label}-${index}`} />
-          ),
+          )
         )}
       </ContextualMenuContext.Provider>
     </ContextualMenu>

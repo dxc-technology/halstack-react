@@ -6,7 +6,7 @@ import DxcFlex from "../flex/Flex";
 
 export default {
   title: "Bleed",
-  component: DxcBleed,
+  component: DxcBleed
 };
 
 export const Chromatic = () => (

@@ -16,7 +16,7 @@ const sizes = {
   small: "240px",
   medium: "360px",
   large: "480px",
-  fillParent: "100%",
+  fillParent: "100%"
 };
 
 const AutosuggestWrapper = ({ condition, wrapper, children }: AutosuggestWrapperProps): JSX.Element => (
@@ -33,14 +33,14 @@ const makeCancelable = (promise) => {
   const wrappedPromise = new Promise<string[]>((resolve, reject) => {
     promise.then(
       (val) => (hasCanceled_ ? reject(Error("Is canceled")) : resolve(val)),
-      (promiseError) => (hasCanceled_ ? reject(Error("Is canceled")) : reject(promiseError)),
+      (promiseError) => (hasCanceled_ ? reject(Error("Is canceled")) : reject(promiseError))
     );
   });
   return {
     promise: wrappedPromise,
     cancel() {
       hasCanceled_ = true;
-    },
+    }
   };
 };
 
@@ -105,9 +105,9 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
       autocomplete = "off",
       margin,
       size = "medium",
-      tabIndex = 0,
+      tabIndex = 0
     },
-    ref,
+    ref
   ): JSX.Element => {
     const inputId = `input-${useId()}`;
     const autosuggestId = `suggestions-${inputId}`;
@@ -200,17 +200,17 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
       if (isRequired(formattedValue, optional)) {
         onChange?.({
           value: formattedValue,
-          error: translatedLabels.formFields.requiredValueErrorMessage,
+          error: translatedLabels.formFields.requiredValueErrorMessage
         });
       } else if (isLengthIncorrect(formattedValue, minLength, maxLength)) {
         onChange?.({
           value: formattedValue,
-          error: translatedLabels.formFields.lengthErrorMessage(minLength, maxLength),
+          error: translatedLabels.formFields.lengthErrorMessage(minLength, maxLength)
         });
       } else if (patternMismatch(pattern, formattedValue)) {
         onChange?.({
           value: formattedValue,
-          error: translatedLabels.formFields.formatRequestedErrorMessage,
+          error: translatedLabels.formFields.formatRequestedErrorMessage
         });
       } else if (
         numberInputContext?.typeNumber === "number" &&
@@ -218,7 +218,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
       ) {
         onChange?.({
           value: formattedValue,
-          error: getNumberErrorMessage(Number(newValue)),
+          error: getNumberErrorMessage(Number(newValue))
         });
       } else {
         onChange?.({ value: formattedValue });
@@ -298,17 +298,17 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
       if (isRequired(event.target.value, optional)) {
         onBlur?.({
           value: event.target.value,
-          error: translatedLabels.formFields.requiredValueErrorMessage,
+          error: translatedLabels.formFields.requiredValueErrorMessage
         });
       } else if (isLengthIncorrect(event.target.value, minLength, maxLength)) {
         onBlur?.({
           value: event.target.value,
-          error: translatedLabels.formFields.lengthErrorMessage(minLength, maxLength),
+          error: translatedLabels.formFields.lengthErrorMessage(minLength, maxLength)
         });
       } else if (patternMismatch(pattern, event.target.value)) {
         onBlur?.({
           value: event.target.value,
-          error: translatedLabels.formFields.formatRequestedErrorMessage,
+          error: translatedLabels.formFields.formatRequestedErrorMessage
         });
       } else if (
         numberInputContext?.typeNumber === "number" &&
@@ -316,7 +316,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
       ) {
         onBlur?.({
           value: event.target.value,
-          error: getNumberErrorMessage(Number(event.target.value)),
+          error: getNumberErrorMessage(Number(event.target.value))
         });
       } else {
         onBlur?.({ value: event.target.value });
@@ -337,7 +337,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
                   ? visualFocusedSuggIndex + 1
                   : visualFocusedSuggIndex === filteredSuggestions.length - 1
                     ? 0
-                    : undefined,
+                    : undefined
               );
             }
           }
@@ -355,7 +355,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
                   ? filteredSuggestions.length > 0
                     ? filteredSuggestions.length - 1
                     : suggestions.length - 1
-                  : visualFocusedSuggIndex - 1,
+                  : visualFocusedSuggIndex - 1
               );
             }
           }
@@ -453,7 +453,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
       }
       if (suggestions?.length > 0) {
         changeFilteredSuggestions(
-          suggestions.filter((suggestion) => suggestion.toUpperCase().startsWith((value ?? innerValue).toUpperCase())),
+          suggestions.filter((suggestion) => suggestion.toUpperCase().startsWith((value ?? innerValue).toUpperCase()))
         );
         changeVisualFocusIndex(-1);
       }
@@ -462,7 +462,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
           numberInputContext.typeNumber,
           numberInputContext.minNumber,
           numberInputContext.maxNumber,
-          numberInputContext.stepNumber,
+          numberInputContext.stepNumber
         );
       }
       return undefined;
@@ -579,7 +579,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
         </TextInputContainer>
       </ThemeProvider>
     );
-  },
+  }
 );
 
 const TextInputContainer = styled.div<{

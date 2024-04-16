@@ -52,9 +52,9 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
       autocomplete,
       margin,
       size,
-      tabIndex,
+      tabIndex
     },
-    ref,
+    ref
   ): JSX.Element => {
     const [innerValue, setInnerValue] = useState(defaultValue);
     const [isOpen, setIsOpen] = useState(false);
@@ -65,7 +65,7 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
         ? !format.toUpperCase().includes("YYYY") && +getValueForPicker(value ?? innerValue, format).format("YY") < 68
           ? 2000
           : 1900
-        : undefined,
+        : undefined
     );
     const colorsTheme = useTheme();
     const translatedLabels = useTranslatedLabels();
@@ -98,11 +98,11 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
       if (newDate?.set("day", newDate.get("date")).toJSON()) {
         onChange?.({
           value: newValue,
-          date: newDate.toDate(),
+          date: newDate.toDate()
         });
       } else {
         onChange?.({
-          value: newValue,
+          value: newValue
         });
       }
     };
@@ -122,7 +122,7 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
         setDayjsDate(newDate);
         onChange?.({
           ...callbackParams,
-          date: newDate.toDate(),
+          date: newDate.toDate()
         });
       } else {
         onChange?.(callbackParams);
@@ -141,7 +141,7 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
       if (date.isValid()) {
         onBlur?.({
           ...callbackParams,
-          date: date.toDate(),
+          date: date.toDate()
         });
       } else {
         onBlur?.(callbackParams);
@@ -186,7 +186,7 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
                 action={{
                   onClick: openCalendar,
                   icon: "filled_calendar_today",
-                  title: "Select date",
+                  title: "Select date"
                 }}
                 clearable={clearable}
                 disabled={disabled}
@@ -218,7 +218,7 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
         </div>
       </ThemeProvider>
     );
-  },
+  }
 );
 
 const StyledPopoverContent = styled(Popover.Content)`

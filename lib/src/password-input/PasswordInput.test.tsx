@@ -12,13 +12,13 @@ import DxcPasswordInput from "./PasswordInput";
     bottom: 0,
     right: 0,
     width: 0,
-    height: 0,
-  }),
+    height: 0
+  })
 };
 global.ResizeObserver = jest.fn().mockImplementation(() => ({
   observe: jest.fn(),
   unobserve: jest.fn(),
-  disconnect: jest.fn(),
+  disconnect: jest.fn()
 }));
 
 describe("Password input component tests", () => {
@@ -84,7 +84,7 @@ describe("Password input component tests", () => {
 
   test("Password tooltip is correct", async () => {
     const { getAllByRole, getByTitle, queryByTitle } = render(
-      <DxcPasswordInput label="Password input" clearable value="Password" />,
+      <DxcPasswordInput label="Password input" clearable value="Password" />
     );
     const showButton = getAllByRole("button")[1];
     userEvent.hover(showButton);

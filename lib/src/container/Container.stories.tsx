@@ -6,7 +6,7 @@ import DxcTypography from "../typography/Typography";
 
 export default {
   title: "Container",
-  component: DxcContainer,
+  component: DxcContainer
 };
 
 export const Chromatic = () => (
@@ -22,13 +22,13 @@ export const Chromatic = () => (
           top: {
             width: "2px",
             color: "color_blue_600",
-            style: "solid",
+            style: "solid"
           },
           bottom: {
             width: "thick",
             color: "color_purple_600",
-            style: "solid",
-          },
+            style: "solid"
+          }
         }}
         borderRadius="0 0 0.25rem 0.25rem"
         padding="medium"
@@ -42,7 +42,7 @@ export const Chromatic = () => (
       <DxcContainer
         background={{
           image: "url(https://www.laecuaciondigital.com/wp-content/uploads/2023/10/DXC-Technology.png)",
-          position: "50%",
+          position: "50%"
         }}
         width="500px"
         height="500px"
@@ -201,8 +201,8 @@ const Listbox = ({ suggestions = [] }: { suggestions: string[] }): JSX.Element =
                   bottom: {
                     width: "1px",
                     style: "solid",
-                    color: "color_grey_200",
-                  },
+                    color: "color_grey_200"
+                  }
                 }
               : undefined
           }
@@ -210,7 +210,7 @@ const Listbox = ({ suggestions = [] }: { suggestions: string[] }): JSX.Element =
             top: "xxsmall",
             bottom: "xxsmall",
             left: "xxsmall",
-            right: "xxsmall",
+            right: "xxsmall"
           }}
           overflow="hidden"
         >

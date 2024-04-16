@@ -6,14 +6,14 @@ import { HalstackProvider } from "../HalstackContext";
 
 export default {
   title: "Paginator",
-  component: DxcPaginator,
+  component: DxcPaginator
 };
 
 const opinionatedTheme = {
   paginator: {
     baseColor: "#f2f2f2",
-    fontColor: "#000000",
-  },
+    fontColor: "#000000"
+  }
 };
 
 export const Chromatic = () => (

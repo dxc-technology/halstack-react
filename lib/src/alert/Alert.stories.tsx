@@ -6,15 +6,15 @@ import { HalstackProvider } from "../HalstackContext";
 
 export default {
   title: "Alert",
-  component: DxcAlert,
+  component: DxcAlert
 };
 
 const opinionatedTheme = {
   alert: {
     baseColor: "#e6f4ff",
     accentColor: "#0067b3",
-    overlayColor: "#000000b3",
-  },
+    overlayColor: "#000000b3"
+  }
 };
 
 export const Chromatic = () => (

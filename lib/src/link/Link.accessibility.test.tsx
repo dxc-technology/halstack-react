@@ -25,7 +25,7 @@ describe("Link component accessibility tests", () => {
         <DxcLink href="https://www.google.com" icon={icon} iconPosition="after" margin="medium">
           Link
         </DxcLink>
-      </DxcFlex>,
+      </DxcFlex>
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
@@ -39,7 +39,7 @@ describe("Link component accessibility tests", () => {
         <DxcLink href="https://www.google.com" icon={icon} iconPosition="after" margin="medium" disabled>
           Link
         </DxcLink>
-      </DxcFlex>,
+      </DxcFlex>
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
@@ -53,7 +53,7 @@ describe("Link component accessibility tests", () => {
         <DxcLink href="https://www.google.com" icon={icon} iconPosition="after" margin="medium" newWindow>
           Link
         </DxcLink>
-      </DxcFlex>,
+      </DxcFlex>
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();

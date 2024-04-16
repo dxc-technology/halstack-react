@@ -5,7 +5,7 @@ import DxcFlex from "./Flex";
 
 export default {
   title: "Flex",
-  component: DxcFlex,
+  component: DxcFlex
 };
 
 export const Chromatic = () => (

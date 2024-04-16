@@ -12,13 +12,13 @@ import DxcPaginator from "./Paginator";
     bottom: 0,
     right: 0,
     width: 0,
-    height: 0,
-  }),
+    height: 0
+  })
 };
 global.ResizeObserver = jest.fn().mockImplementation(() => ({
   observe: jest.fn(),
   unobserve: jest.fn(),
-  disconnect: jest.fn(),
+  disconnect: jest.fn()
 }));
 
 describe("Paginator component accessibility tests", () => {
@@ -31,7 +31,7 @@ describe("Paginator component accessibility tests", () => {
         onPageChange={() => {}}
         itemsPerPageOptions={[5, 10, 15]}
         showGoToPage
-      />,
+      />
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();

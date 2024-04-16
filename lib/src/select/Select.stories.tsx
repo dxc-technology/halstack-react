@@ -19,13 +19,13 @@ export default {
         rules: [
           ...disabledRules.map((ruleId) => ({
             id: ruleId,
-            reviewOnFail: true,
+            reviewOnFail: true
           })),
-          ...(preview?.parameters?.a11y?.config?.rules || []),
-        ],
-      },
-    },
-  },
+          ...(preview?.parameters?.a11y?.config?.rules || [])
+        ]
+      }
+    }
+  }
 };
 
 const oneOption = [{ label: "Option 01", value: "1" }];
@@ -34,7 +34,7 @@ const singleOptions = [
   { label: "Option 01", value: "1" },
   { label: "Option 02", value: "2" },
   { label: "Option 03", value: "3" },
-  { label: "Option 04", value: "4" },
+  { label: "Option 04", value: "4" }
 ];
 
 const groupOptions = [
@@ -43,41 +43,41 @@ const groupOptions = [
     options: [
       { label: "Option 001", value: "1" },
       { label: "Option 002", value: "2" },
-      { label: "Option 003", value: "3" },
-    ],
+      { label: "Option 003", value: "3" }
+    ]
   },
   {
     label: "Group 002",
     options: [
       { label: "Option 004", value: "4" },
       { label: "Option 005", value: "5" },
-      { label: "Option 006", value: "6" },
-    ],
+      { label: "Option 006", value: "6" }
+    ]
   },
   {
     label: "Group 003",
     options: [
       { label: "Option 007", value: "7" },
       { label: "Option 008", value: "8" },
-      { label: "Option 009", value: "9" },
-    ],
+      { label: "Option 009", value: "9" }
+    ]
   },
   {
     label: "Group 004",
     options: [
       { label: "Option 010", value: "10" },
       { label: "Option 011", value: "11" },
-      { label: "Option 012", value: "12" },
-    ],
+      { label: "Option 012", value: "12" }
+    ]
   },
   {
     label: "Group 005",
     options: [
       { label: "Option 013", value: "13" },
       { label: "Option 014", value: "14" },
-      { label: "Option 015", value: "15" },
-    ],
-  },
+      { label: "Option 015", value: "15" }
+    ]
+  }
 ];
 
 const iconOptionsGroupedMaterial = [
@@ -87,9 +87,9 @@ const iconOptionsGroupedMaterial = [
       {
         label: "3G Mobile",
         value: "1",
-        icon: "3g_mobiledata",
-      },
-    ],
+        icon: "3g_mobiledata"
+      }
+    ]
   },
   {
     label: "Group 002",
@@ -97,9 +97,9 @@ const iconOptionsGroupedMaterial = [
       {
         label: "Ethernet",
         value: "2",
-        icon: "settings_ethernet",
-      },
-    ],
+        icon: "settings_ethernet"
+      }
+    ]
   },
   {
     label: "Group 003",
@@ -107,15 +107,15 @@ const iconOptionsGroupedMaterial = [
       {
         label: "Wi-fi",
         value: "3",
-        icon: "wifi",
+        icon: "wifi"
       },
       {
         label: "Settings backup restore (just for previous configuration)",
         value: "4",
-        icon: "settings_backup_restore",
-      },
-    ],
-  },
+        icon: "settings_backup_restore"
+      }
+    ]
+  }
 ];
 
 const iconOptions = [
@@ -133,7 +133,7 @@ const iconOptions = [
           </g>
         </g>
       </svg>
-    ),
+    )
   },
   {
     label: "Ethernet",
@@ -143,7 +143,7 @@ const iconOptions = [
         <path d="M0 0h24v24H0V0z" fill="none" />
         <path d="M7.77 6.76L6.23 5.48.82 12l5.41 6.52 1.54-1.28L3.42 12l4.35-5.24zM7 13h2v-2H7v2zm10-2h-2v2h2v-2zm-6 2h2v-2h-2v2zm6.77-7.52l-1.54 1.28L20.58 12l-4.35 5.24 1.54 1.28L23.18 12l-5.41-6.52z" />
       </svg>
-    ),
+    )
   },
   {
     label: "Wi-fi",
@@ -153,7 +153,7 @@ const iconOptions = [
         <path d="M0 0h24v24H0V0zm0 0h24v24H0V0z" fill="none" />
         <path d="M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.08 2.93 1 9zm8 8l3 3 3-3c-1.65-1.66-4.34-1.66-6 0zm-4-4l2 2c2.76-2.76 7.24-2.76 10 0l2-2C15.14 9.14 8.87 9.14 5 13z" />
       </svg>
-    ),
+    )
   },
   {
     label: "Settings backup restore (just for previous configuration)",
@@ -163,8 +163,8 @@ const iconOptions = [
         <path d="M0 0h24v24H0V0z" fill="none" />
         <path d="M14 12c0-1.1-.9-2-2-2s-2 .9-2 2 .9 2 2 2 2-.9 2-2zm-2-9c-4.97 0-9 4.03-9 9H0l4 4 4-4H5c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.51 0-2.91-.49-4.06-1.3l-1.42 1.44C8.04 20.3 9.94 21 12 21c4.97 0 9-4.03 9-9s-4.03-9-9-9z" />
       </svg>
-    ),
-  },
+    )
+  }
 ];
 
 const optionsMaterial = [
@@ -174,24 +174,24 @@ const optionsMaterial = [
       {
         label: "Electric Car",
         value: "car",
-        icon: "electric_car",
+        icon: "electric_car"
       },
       {
         label: "Motorcycle",
         value: "motorcycle",
-        icon: "Motorcycle",
+        icon: "Motorcycle"
       },
       {
         label: "Train",
         value: "train",
-        icon: "train",
+        icon: "train"
       },
       {
         label: "Bike",
         value: "bike",
-        icon: "pedal_bike",
-      },
-    ],
+        icon: "pedal_bike"
+      }
+    ]
   },
   {
     label: "Entertainment",
@@ -199,26 +199,26 @@ const optionsMaterial = [
       {
         label: "Movie",
         value: "movie",
-        icon: "movie",
+        icon: "movie"
       },
       {
         label: "Music",
         value: "music",
-        icon: "music_note",
+        icon: "music_note"
       },
       {
         label: "Games",
         value: "games",
-        icon: "joystick",
-      },
-    ],
-  },
+        icon: "joystick"
+      }
+    ]
+  }
 ];
 
 const optionsWithEllipsisMedium = [
   { label: "Optiond1234567890123456789012345678901234", value: "1" },
   { label: "Optiond12345678901234567890123456789012345", value: "2" },
-  { label: "Option 031111111111111111111111111111222", value: "3" },
+  { label: "Option 031111111111111111111111111111222", value: "3" }
 ];
 
 const opinionatedTheme = {
@@ -226,8 +226,8 @@ const opinionatedTheme = {
     selectedOptionBackgroundColor: "#e6f4ff",
     fontColor: "#000000",
     optionFontColor: "#000000",
-    hoverBorderColor: "#a46ede",
-  },
+    hoverBorderColor: "#a46ede"
+  }
 };
 
 const Select = () => (
@@ -430,7 +430,7 @@ const SelectListbox = () => {
               border: "1px solid black",
               borderRadius: "4px",
               overflow: "auto",
-              zIndex: "1300",
+              zIndex: "1300"
             }}
           >
             <DxcSelect label="Label" options={singleOptions} optional placeholder="Choose an option" />

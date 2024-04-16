@@ -8,7 +8,7 @@ const disabledRules = [
   "aria-allowed-role",
   "aria-required-children",
   "aria-required-parent",
-  "list",
+  "list"
 ];
 
 export default disabledRules;

@@ -12,7 +12,7 @@ const options = [
   { label: "Option 06", value: "6", disabled: true },
   { label: "Option 07", value: "7", disabled: true },
   { label: "Option 08", value: "8", disabled: true },
-  { label: "Option 09", value: "9" },
+  { label: "Option 09", value: "9" }
 ];
 
 describe("Radio Group component accessibility tests", () => {
@@ -28,7 +28,7 @@ describe("Radio Group component accessibility tests", () => {
         stacking="row"
         optionalItemLabel="Optional"
         optional
-      />,
+      />
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
@@ -45,7 +45,7 @@ describe("Radio Group component accessibility tests", () => {
         stacking="row"
         optionalItemLabel="Optional"
         readOnly
-      />,
+      />
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();

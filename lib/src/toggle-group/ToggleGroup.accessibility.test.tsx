@@ -32,18 +32,18 @@ const options = [
   {
     value: 1,
     icon: wifiSVG,
-    title: "WiFi connection",
+    title: "WiFi connection"
   },
   {
     value: 2,
     icon: ethernetSVG,
-    title: "Ethernet connection",
+    title: "Ethernet connection"
   },
   {
     value: 3,
     icon: gMobileSVG,
-    title: "3G Mobile data connection",
-  },
+    title: "3G Mobile data connection"
+  }
 ];
 
 describe("Toggle group component accessibility tests", () => {
@@ -56,7 +56,7 @@ describe("Toggle group component accessibility tests", () => {
         margin="medium"
         defaultValue={[2]}
         multiple
-      />,
+      />
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
@@ -69,7 +69,7 @@ describe("Toggle group component accessibility tests", () => {
         options={options}
         margin="medium"
         disabled
-      />,
+      />
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();

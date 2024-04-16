@@ -12,13 +12,13 @@ import DxcSlider from "./Slider";
     bottom: 0,
     right: 0,
     width: 0,
-    height: 0,
-  }),
+    height: 0
+  })
 };
 global.ResizeObserver = jest.fn().mockImplementation(() => ({
   observe: jest.fn(),
   unobserve: jest.fn(),
-  disconnect: jest.fn(),
+  disconnect: jest.fn()
 }));
 
 describe("Slider component accessibility tests", () => {
@@ -37,7 +37,7 @@ describe("Slider component accessibility tests", () => {
         showLimitsValues
         showInput
         marks
-      />,
+      />
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
@@ -58,7 +58,7 @@ describe("Slider component accessibility tests", () => {
         showInput
         marks
         disabled
-      />,
+      />
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();

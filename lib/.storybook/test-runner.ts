@@ -19,9 +19,9 @@ const a11yConfig: TestRunnerConfig = {
       ? Object.entries(viewport).reduce(
           (acc, [screen, size]) => ({
             ...acc,
-            [screen]: parseInt(size),
+            [screen]: parseInt(size)
           }),
-          {} as ViewportStyles,
+          {} as ViewportStyles
         )
       : DEFAULT_VIEWPORT_SIZE;
 
@@ -39,16 +39,16 @@ const a11yConfig: TestRunnerConfig = {
 
     // Apply story-level a11y rules
     await configureAxe(page, {
-      rules: storyContext.parameters?.a11y?.config?.rules,
+      rules: storyContext.parameters?.a11y?.config?.rules
     });
 
     await checkA11y(page, "#storybook-root", {
       detailedReport: true,
       detailedReportOptions: {
-        html: true,
-      },
+        html: true
+      }
     });
-  },
+  }
 };
 
 export default a11yConfig;

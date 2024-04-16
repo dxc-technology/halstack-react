@@ -20,7 +20,7 @@ const DxcImage = ({
   objectFit,
   objectPosition,
   onLoad,
-  onError,
+  onError
 }: ImagePropsType) => {
   const colorsTheme = useTheme();
 
@@ -56,7 +56,7 @@ const DxcImage = ({
             objectFit,
             objectPosition,
             width,
-            height,
+            height
           }}
         />
       </CaptionWrapper>

@@ -8,32 +8,32 @@ import DxcIcon from "../icon/Icon";
 const contextualColorMap = {
   grey: {
     background: CoreTokens.color_grey_200,
-    text: CoreTokens.color_grey_900,
+    text: CoreTokens.color_grey_900
   },
   blue: {
     background: CoreTokens.color_blue_200,
-    text: CoreTokens.color_blue_900,
+    text: CoreTokens.color_blue_900
   },
   green: {
     background: CoreTokens.color_green_200,
-    text: CoreTokens.color_green_900,
+    text: CoreTokens.color_green_900
   },
   orange: {
     background: CoreTokens.color_orange_200,
-    text: CoreTokens.color_orange_900,
+    text: CoreTokens.color_orange_900
   },
   red: {
     background: CoreTokens.color_red_200,
-    text: CoreTokens.color_red_900,
+    text: CoreTokens.color_red_900
   },
   yellow: {
     background: CoreTokens.color_yellow_200,
-    text: CoreTokens.color_yellow_900,
+    text: CoreTokens.color_yellow_900
   },
   purple: {
     background: CoreTokens.color_purple_200,
-    text: CoreTokens.color_purple_900,
-  },
+    text: CoreTokens.color_purple_900
+  }
 };
 
 const sizeMap = {
@@ -46,8 +46,8 @@ const sizeMap = {
     iconSize: "14px",
     padding: {
       contextual: `${CoreTokens.spacing_4}`,
-      notification: `${CoreTokens.spacing_0} ${CoreTokens.spacing_4}`,
-    },
+      notification: `${CoreTokens.spacing_0} ${CoreTokens.spacing_4}`
+    }
   },
   medium: {
     height: "24px",
@@ -58,8 +58,8 @@ const sizeMap = {
     iconSize: "16px",
     padding: {
       contextual: `${CoreTokens.spacing_4} ${CoreTokens.spacing_8}`,
-      notification: `${CoreTokens.spacing_0} ${CoreTokens.spacing_4}`,
-    },
+      notification: `${CoreTokens.spacing_0} ${CoreTokens.spacing_4}`
+    }
   },
   large: {
     height: "32px",
@@ -70,9 +70,9 @@ const sizeMap = {
     iconSize: "24px",
     padding: {
       contextual: `${CoreTokens.spacing_4} ${CoreTokens.spacing_8}`,
-      notification: `${CoreTokens.spacing_0} ${CoreTokens.spacing_8}`,
-    },
-  },
+      notification: `${CoreTokens.spacing_0} ${CoreTokens.spacing_8}`
+    }
+  }
 };
 
 type LabelProps = {
@@ -94,7 +94,7 @@ const DxcBadge = ({
   color = "grey",
   icon,
   notificationLimit = 99,
-  size = "medium",
+  size = "medium"
 }: BadgePropsType): JSX.Element => (
   <BadgeContainer
     label={label}

@@ -17,7 +17,7 @@ describe("Bulleted List component accessibility tests", () => {
         <DxcBulletedList.Item>Code</DxcBulletedList.Item>
         <DxcBulletedList.Item>Usage</DxcBulletedList.Item>
         <DxcBulletedList.Item>Specifications</DxcBulletedList.Item>
-      </DxcBulletedList>,
+      </DxcBulletedList>
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
@@ -28,7 +28,7 @@ describe("Bulleted List component accessibility tests", () => {
         <DxcBulletedList.Item>Code</DxcBulletedList.Item>
         <DxcBulletedList.Item>Usage</DxcBulletedList.Item>
         <DxcBulletedList.Item>Specifications</DxcBulletedList.Item>
-      </DxcBulletedList>,
+      </DxcBulletedList>
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
@@ -39,7 +39,7 @@ describe("Bulleted List component accessibility tests", () => {
         <DxcBulletedList.Item>Code</DxcBulletedList.Item>
         <DxcBulletedList.Item>Usage</DxcBulletedList.Item>
         <DxcBulletedList.Item>Specifications</DxcBulletedList.Item>
-      </DxcBulletedList>,
+      </DxcBulletedList>
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
@@ -50,7 +50,7 @@ describe("Bulleted List component accessibility tests", () => {
         <DxcBulletedList.Item>Code</DxcBulletedList.Item>
         <DxcBulletedList.Item>Usage</DxcBulletedList.Item>
         <DxcBulletedList.Item>Specifications</DxcBulletedList.Item>
-      </DxcBulletedList>,
+      </DxcBulletedList>
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
@@ -61,7 +61,7 @@ describe("Bulleted List component accessibility tests", () => {
         <DxcBulletedList.Item>Code</DxcBulletedList.Item>
         <DxcBulletedList.Item>Usage</DxcBulletedList.Item>
         <DxcBulletedList.Item>Specifications</DxcBulletedList.Item>
-      </DxcBulletedList>,
+      </DxcBulletedList>
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();

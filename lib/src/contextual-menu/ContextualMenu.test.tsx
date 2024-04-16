@@ -8,11 +8,11 @@ const items = [{ label: "Item 1" }, { label: "Item 2" }, { label: "Item 3" }, { 
 const sections = [
   {
     title: "Team repositories",
-    items: [{ label: "Approved locations" }, { label: "Approved locations" }, { label: "Approved locations" }],
+    items: [{ label: "Approved locations" }, { label: "Approved locations" }, { label: "Approved locations" }]
   },
   {
-    items: [{ label: "Approved locations" }, { label: "Approved locations" }, { label: "Approved locations" }],
-  },
+    items: [{ label: "Approved locations" }, { label: "Approved locations" }, { label: "Approved locations" }]
+  }
 ];
 
 const groups = [
@@ -22,16 +22,16 @@ const groups = [
       { label: "Item 1" },
       {
         label: "Grouped Item 2",
-        items: [{ label: "Item 2" }, { label: "Item 3" }],
-      },
-    ],
+        items: [{ label: "Item 2" }, { label: "Item 3" }]
+      }
+    ]
   },
   { label: "Item 4", icon: "key" },
   {
     label: "Grouped Item 3",
-    items: [{ label: "Item 6" }, { label: "Item 7" }],
+    items: [{ label: "Item 6" }, { label: "Item 7" }]
   },
-  { label: "Item 8" },
+  { label: "Item 8" }
 ];
 
 describe("Contextual menu component tests", () => {
@@ -95,8 +95,8 @@ describe("Contextual menu component tests", () => {
     const test = [
       {
         label: "Tested item",
-        onSelect: jest.fn(),
-      },
+        onSelect: jest.fn()
+      }
     ];
     const { getByRole } = render(<DxcContextualMenu items={test} />);
     const item = getByRole("button");

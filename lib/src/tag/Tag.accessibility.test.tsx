@@ -13,14 +13,7 @@ const icon = (
 describe("Tag component accessibility tests", () => {
   it("Should not have basic accessibility issues", async () => {
     const { container } = render(
-      <DxcTag
-        label="tag-test"
-        icon={icon}
-        iconBgColor="#fabada"
-        margin="medium"
-        size="medium"
-        labelPosition="before"
-      />,
+      <DxcTag label="tag-test" icon={icon} iconBgColor="#fabada" margin="medium" size="medium" labelPosition="before" />
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
@@ -35,7 +28,7 @@ describe("Tag component accessibility tests", () => {
         size="medium"
         labelPosition="before"
         newWindow
-      />,
+      />
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();

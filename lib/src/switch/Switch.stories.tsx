@@ -14,18 +14,18 @@ export default {
       config: {
         rules: [
           ...disabledRules.map((ruleId) => ({ id: ruleId, enabled: false })),
-          ...(preview?.parameters?.a11y?.config?.rules || []),
-        ],
-      },
-    },
-  },
+          ...(preview?.parameters?.a11y?.config?.rules || [])
+        ]
+      }
+    }
+  }
 };
 
 const opinionatedTheme = {
   switch: {
     checkedBaseColor: "#5f249f",
-    fontColor: "#000000",
-  },
+    fontColor: "#000000"
+  }
 };
 
 export const Chromatic = () => (

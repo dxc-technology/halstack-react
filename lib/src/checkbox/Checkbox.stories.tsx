@@ -7,15 +7,15 @@ import { HalstackProvider } from "../HalstackContext";
 
 export default {
   title: "Checkbox",
-  component: DxcCheckbox,
+  component: DxcCheckbox
 };
 
 const opinionatedTheme = {
   checkbox: {
     baseColor: "#0067b3",
     checkColor: "#ffffff",
-    fontColor: "#000000",
-  },
+    fontColor: "#000000"
+  }
 };
 
 const Checkbox = () => (

@@ -8,7 +8,7 @@ import DxcBadge from "../badge/Badge";
 import { disabledRules as rules } from "../../test/accessibility/rules/specific/contextual-menu/disabledRules";
 
 const disabledRules = {
-  rules: formatRules(rules),
+  rules: formatRules(rules)
 };
 
 const badgeIcon = (
@@ -35,7 +35,7 @@ const itemsWithTruncatedText = [
   {
     label: "Item with a very long label that should be truncated",
     slot: <DxcBadge color="blue" mode="contextual" label="Label" size="small" icon={badgeIcon} title="Badge" />,
-    icon: keyIcon,
+    icon: keyIcon
   },
   {
     label: "Item 2",
@@ -47,8 +47,8 @@ const itemsWithTruncatedText = [
         />
       </svg>
     ),
-    icon: favIcon,
-  },
+    icon: favIcon
+  }
 ];
 
 describe("Context menu accessibility tests", () => {

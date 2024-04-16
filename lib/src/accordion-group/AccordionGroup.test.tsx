@@ -19,7 +19,7 @@ describe("Accordion component tests", () => {
             leo lobortis eget.
           </div>
         </DxcAccordionGroup.Accordion>
-      </DxcAccordionGroup>,
+      </DxcAccordionGroup>
     );
     expect(getAllByRole("button")[0].getAttribute("aria-expanded")).toBe("false");
     expect(getAllByRole("button")[1].getAttribute("aria-expanded")).toBe("false");
@@ -38,7 +38,7 @@ describe("Accordion component tests", () => {
         <DxcAccordionGroup.Accordion label="Accordion2">
           <div>Second accordion</div>
         </DxcAccordionGroup.Accordion>
-      </DxcAccordionGroup>,
+      </DxcAccordionGroup>
     );
     expect(getAllByRole("button")[0].getAttribute("aria-expanded")).toBe("false");
     expect(getAllByRole("button")[1].getAttribute("aria-expanded")).toBe("true");
@@ -56,7 +56,7 @@ describe("Accordion component tests", () => {
         <DxcAccordionGroup.Accordion label="Accordion2">
           <div>Text2</div>
         </DxcAccordionGroup.Accordion>
-      </DxcAccordionGroup>,
+      </DxcAccordionGroup>
     );
     expect(queryByText("Text1")).toBeFalsy();
     expect(getByText("Text2")).toBeTruthy();
@@ -75,7 +75,7 @@ describe("Accordion component tests", () => {
         <DxcAccordionGroup.Accordion label="Accordion2">
           <div>Text2</div>
         </DxcAccordionGroup.Accordion>
-      </DxcAccordionGroup>,
+      </DxcAccordionGroup>
     );
     expect(getAllByRole("button")[0].getAttribute("aria-expanded")).toBe("true");
     expect(getAllByRole("button")[1].getAttribute("aria-expanded")).toBe("false");
@@ -91,7 +91,7 @@ describe("Accordion component tests", () => {
         <DxcAccordionGroup.Accordion label="Accordion2">
           <div>Text2</div>
         </DxcAccordionGroup.Accordion>
-      </DxcAccordionGroup>,
+      </DxcAccordionGroup>
     );
     fireEvent.click(getByText("Accordion1"));
     fireEvent.click(getByText("Accordion2"));

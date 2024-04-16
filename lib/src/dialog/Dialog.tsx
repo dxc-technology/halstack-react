@@ -14,7 +14,7 @@ const DxcDialog = ({
   children,
   overlay = true,
   onBackgroundClick,
-  tabIndex = 0,
+  tabIndex = 0
 }: DialogPropsType): JSX.Element => {
   const colorsTheme = useTheme();
   const translatedLabels = useTranslatedLabels();
@@ -62,7 +62,7 @@ const DxcDialog = ({
             </FocusLock>
           </Dialog>
         </DialogContainer>,
-        document.body,
+        document.body
       )}
     </ThemeProvider>
   );

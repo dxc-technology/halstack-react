@@ -4,53 +4,53 @@ import DxcTabs from "./Tabs";
 
 const sampleTabs = [
   {
-    label: "Tab-1",
+    label: "Tab-1"
   },
   {
-    label: "Tab-2",
+    label: "Tab-2"
   },
   {
-    label: "Tab-3",
-  },
+    label: "Tab-3"
+  }
 ];
 const sampleTabsWithBadge = [
   {
     label: "Tab-1",
-    notificationNumber: 10,
+    notificationNumber: 10
   },
   {
     label: "Tab-2",
-    notificationNumber: 20,
+    notificationNumber: 20
   },
   {
     label: "Tab-3",
-    notificationNumber: 101,
-  },
+    notificationNumber: 101
+  }
 ];
 const sampleTabsMiddleDisabled = [
   {
-    label: "Tab-1",
+    label: "Tab-1"
   },
   {
     label: "Tab-2",
-    isDisabled: true,
+    isDisabled: true
   },
   {
-    label: "Tab-3",
-  },
+    label: "Tab-3"
+  }
 ];
 const sampleTabsLastTabNonDisabled = [
   {
     label: "Tab-1",
-    isDisabled: true,
+    isDisabled: true
   },
   {
     label: "Tab-2",
-    isDisabled: true,
+    isDisabled: true
   },
   {
-    label: "Tab-3",
-  },
+    label: "Tab-3"
+  }
 ];
 
 describe("Tabs component tests", () => {
@@ -86,13 +86,13 @@ describe("Tabs component tests", () => {
         tabs={[
           {
             label: "Tab-1",
-            isDisabled: true,
+            isDisabled: true
           },
           {
-            label: "Tab-2",
-          },
+            label: "Tab-2"
+          }
         ]}
-      />,
+      />
     );
     expect(getAllByRole("tab")[0].hasAttribute("disabled")).toBeTruthy();
     expect(getAllByRole("tab")[1].hasAttribute("disabled")).toBeFalsy();
@@ -147,7 +147,7 @@ describe("Tabs component tests", () => {
   test("Controlled tabs with active index in disabled tab should not change focus to the first available tab", () => {
     const onTabClick = jest.fn();
     const { getAllByRole } = render(
-      <DxcTabs tabs={sampleTabsLastTabNonDisabled} onTabClick={onTabClick} activeTabIndex={0}></DxcTabs>,
+      <DxcTabs tabs={sampleTabsLastTabNonDisabled} onTabClick={onTabClick} activeTabIndex={0}></DxcTabs>
     );
     const tabs = getAllByRole("tab");
     expect(tabs[0].getAttribute("aria-selected")).toBe("true");
@@ -169,7 +169,7 @@ describe("Tabs component tests", () => {
   test("Select tabs with keyboard event arrows", () => {
     const onTabClick = jest.fn();
     const { getByText, getByRole, getAllByRole } = render(
-      <DxcTabs tabs={sampleTabs} onTabClick={onTabClick}></DxcTabs>,
+      <DxcTabs tabs={sampleTabs} onTabClick={onTabClick}></DxcTabs>
     );
     const tabList = getByRole("tablist");
     const tab1 = getByText("Tab-1");
@@ -220,7 +220,7 @@ describe("Tabs component tests", () => {
   test("Skip disabled tab with keyboard event arrows", () => {
     const onTabClick = jest.fn();
     const { getByText, getByRole, getAllByRole } = render(
-      <DxcTabs tabs={sampleTabsMiddleDisabled} onTabClick={onTabClick}></DxcTabs>,
+      <DxcTabs tabs={sampleTabsMiddleDisabled} onTabClick={onTabClick}></DxcTabs>
     );
     const tabList = getByRole("tablist");
     const tab1 = getByText("Tab-1");

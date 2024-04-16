@@ -33,13 +33,13 @@ const DxcTabs = ({
   onTabHover,
   margin,
   iconPosition = "top",
-  tabIndex = 0,
+  tabIndex = 0
 }: TabsPropsType): JSX.Element => {
   const colorsTheme = useTheme();
   const hasLabelAndIcon = tabs && tabs.filter((tab) => tab.label && tab.icon).length > 0;
   const firstFocus = tabs && tabs.findIndex((tab) => !tab.isDisabled);
   const [innerActiveTabIndex, setInnerActiveTabIndex] = useState(
-    tabs && defaultActiveTabIndex && !tabs[defaultActiveTabIndex].isDisabled ? defaultActiveTabIndex : firstFocus,
+    tabs && defaultActiveTabIndex && !tabs[defaultActiveTabIndex].isDisabled ? defaultActiveTabIndex : firstFocus
   );
   const [activeIndicatorWidth, setActiveIndicatorWidth] = useState(0);
   const [activeIndicatorLeft, setActiveIndicatorLeft] = useState(0);

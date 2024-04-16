@@ -23,7 +23,7 @@ describe("Badge component accessibility tests", () => {
         <DxcBadge color="purple" mode="contextual" label="Label" size="small" icon={icon} title="Badge1" />
         <DxcBadge color="red" mode="contextual" label="Label" size="small" icon={icon} title="Badge1" />
         <DxcBadge color="yellow" mode="contextual" label="Label" size="small" icon={icon} title="Badge1" />
-      </DxcFlex>,
+      </DxcFlex>
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
@@ -41,7 +41,7 @@ describe("Badge component accessibility tests", () => {
           notificationLimit={99999999}
           title="Badge2"
         />
-      </DxcFlex>,
+      </DxcFlex>
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();

@@ -16,7 +16,7 @@ const DxcToggleGroup = ({
   options,
   margin,
   multiple = false,
-  tabIndex = 0,
+  tabIndex = 0
 }: ToggleGroupPropsType): JSX.Element => {
   const toggleGroupLabelId = `label-toggle-group-${useId()}`;
   const [selectedValue, setSelectedValue] = useState(defaultValue ?? (multiple ? [] : -1));

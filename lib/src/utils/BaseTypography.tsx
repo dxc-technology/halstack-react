@@ -37,7 +37,7 @@ const BaseTypography = ({
   textDecoration,
   textOverflow,
   whiteSpace,
-  children,
+  children
 }: BaseTypographyProps): JSX.Element => {
   const componentContext = useContext(TypographyContext);
 
@@ -55,7 +55,7 @@ const BaseTypography = ({
       color: color ?? componentContext?.color ?? "#000000",
       textDecoration: textDecoration ?? componentContext?.textDecoration ?? "none",
       textOverflow: textOverflow ?? componentContext?.textOverflow ?? "unset",
-      whiteSpace: whiteSpace ?? componentContext?.whiteSpace ?? "normal",
+      whiteSpace: whiteSpace ?? componentContext?.whiteSpace ?? "normal"
     }),
     [
       as,
@@ -70,8 +70,8 @@ const BaseTypography = ({
       color,
       textDecoration,
       textOverflow,
-      whiteSpace,
-    ],
+      whiteSpace
+    ]
   );
 
   return (

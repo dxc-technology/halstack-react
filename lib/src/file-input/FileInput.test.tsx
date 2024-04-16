@@ -5,16 +5,16 @@ import DxcFileInput from "./FileInput";
 
 const file1 = new File(["file1"], "file1.png", { type: "image/png" });
 const file2 = new File(["file2"], "file2.txt", {
-  type: "text/plain",
+  type: "text/plain"
 });
 const allFiles = [
   {
-    file: file1,
+    file: file1
   },
   {
     error: "Error message",
-    file: file2,
-  },
+    file: file2
+  }
 ];
 
 describe("FileInput component tests", () => {
@@ -27,7 +27,7 @@ describe("FileInput component tests", () => {
         value={allFiles}
         buttonLabel="Choose files"
         callbackFile={callbackFile}
-      />,
+      />
     );
     expect(getByText("File input label")).toBeTruthy();
     expect(getByText("File input helper text")).toBeTruthy();
@@ -42,7 +42,7 @@ describe("FileInput component tests", () => {
         helperText="File input helper text"
         value={allFiles}
         callbackFile={callbackFile}
-      />,
+      />
     );
     expect(getByText("Select files")).toBeTruthy();
   });
@@ -56,7 +56,7 @@ describe("FileInput component tests", () => {
         value={allFiles}
         multiple={false}
         callbackFile={callbackFile}
-      />,
+      />
     );
     expect(getByText("Select file")).toBeTruthy();
   });
@@ -70,7 +70,7 @@ describe("FileInput component tests", () => {
         value={allFiles}
         mode="filedrop"
         callbackFile={callbackFile}
-      />,
+      />
     );
     expect(getByText("Select")).toBeTruthy();
     expect(getByText("or drop files")).toBeTruthy();
@@ -86,7 +86,7 @@ describe("FileInput component tests", () => {
         mode="filedrop"
         multiple={false}
         callbackFile={callbackFile}
-      />,
+      />
     );
     expect(getByText("Select")).toBeTruthy();
     expect(getByText("or drop a file")).toBeTruthy();
@@ -103,7 +103,7 @@ describe("FileInput component tests", () => {
         buttonLabel="Choose"
         dropAreaLabel="(or drop the files)"
         callbackFile={callbackFile}
-      />,
+      />
     );
     expect(getByText("Choose")).toBeTruthy();
     expect(getByText("(or drop the files)")).toBeTruthy();
@@ -118,7 +118,7 @@ describe("FileInput component tests", () => {
         value={allFiles}
         mode="dropzone"
         callbackFile={callbackFile}
-      />,
+      />
     );
     expect(getByText("Select")).toBeTruthy();
     expect(getByText("or drop files")).toBeTruthy();
@@ -134,7 +134,7 @@ describe("FileInput component tests", () => {
         mode="dropzone"
         multiple={false}
         callbackFile={callbackFile}
-      />,
+      />
     );
     expect(getByText("Select")).toBeTruthy();
     expect(getByText("or drop a file")).toBeTruthy();
@@ -151,7 +151,7 @@ describe("FileInput component tests", () => {
         buttonLabel="Choose"
         dropAreaLabel="(or drop the files)"
         callbackFile={callbackFile}
-      />,
+      />
     );
     expect(getByText("Choose")).toBeTruthy();
     expect(getByText("(or drop the files)")).toBeTruthy();
@@ -166,7 +166,7 @@ describe("FileInput component tests", () => {
         value={allFiles}
         callbackFile={callbackFile}
         disabled
-      />,
+      />
     );
     expect(getByText("Select files")).toBeTruthy();
     const button = getByRole("button") as HTMLButtonElement;
@@ -181,7 +181,7 @@ describe("FileInput component tests", () => {
         helperText="File input helper text"
         value={allFiles}
         callbackFile={callbackFile}
-      />,
+      />
     );
     await waitFor(() => {
       expect(getByText("file1.png")).toBeTruthy();
@@ -198,7 +198,7 @@ describe("FileInput component tests", () => {
         helperText="File input helper text"
         value={allFiles}
         callbackFile={callbackFile}
-      />,
+      />
     );
     await waitFor(() => {
       expect(getByText("file1.png")).toBeTruthy();
@@ -209,13 +209,13 @@ describe("FileInput component tests", () => {
       expect(callbackFile).toHaveBeenCalledWith([
         {
           file: file1,
-          preview: "data:image/png;base64,ZmlsZTE=",
+          preview: "data:image/png;base64,ZmlsZTE="
         },
         {
           error: "Error message",
           file: file2,
-          preview: "draft",
-        },
+          preview: "draft"
+        }
       ]);
     });
   });
@@ -229,7 +229,7 @@ describe("FileInput component tests", () => {
         multiple={false}
         value={allFiles}
         callbackFile={callbackFile}
-      />,
+      />
     );
     await waitFor(() => {
       expect(getByText("file1.png")).toBeTruthy();
@@ -248,7 +248,7 @@ describe("FileInput component tests", () => {
         value={allFiles}
         callbackFile={callbackFile}
         multiple={false}
-      />,
+      />
     );
     await waitFor(() => {
       expect(getByText("file1.png")).toBeTruthy();
@@ -259,8 +259,8 @@ describe("FileInput component tests", () => {
       expect(callbackFile).toHaveBeenCalledWith([
         {
           file: newFile,
-          preview: "draft",
-        },
+          preview: "draft"
+        }
       ]);
     });
   });
@@ -273,7 +273,7 @@ describe("FileInput component tests", () => {
         helperText="File input helper text"
         value={allFiles}
         callbackFile={callbackFile}
-      />,
+      />
     );
     await waitFor(() => {
       expect(getByText("file1.png")).toBeTruthy();
@@ -285,8 +285,8 @@ describe("FileInput component tests", () => {
         {
           error: "Error message",
           file: file2,
-          preview: "draft",
-        },
+          preview: "draft"
+        }
       ]);
     });
   });
@@ -300,7 +300,7 @@ describe("FileInput component tests", () => {
         helperText="File input helper text"
         value={allFiles}
         callbackFile={callbackFile}
-      />,
+      />
     );
     await waitFor(() => {
       const inputFile = getByLabelText("File input label");
@@ -308,18 +308,18 @@ describe("FileInput component tests", () => {
       expect(callbackFile).toHaveBeenCalledWith([
         {
           file: file1,
-          preview: "data:image/png;base64,ZmlsZTE=",
+          preview: "data:image/png;base64,ZmlsZTE="
         },
         {
           error: "Error message",
           file: file2,
-          preview: "draft",
+          preview: "draft"
         },
         {
           error: undefined,
           file: newFile,
-          preview: "draft",
-        },
+          preview: "draft"
+        }
       ]);
     });
   });
@@ -335,7 +335,7 @@ describe("FileInput component tests", () => {
         maxSize={20000}
         value={allFiles}
         callbackFile={callbackFile}
-      />,
+      />
     );
     await waitFor(() => {
       expect(getByText("file1.png")).toBeTruthy();
@@ -348,13 +348,13 @@ describe("FileInput component tests", () => {
         {
           error: "Error message",
           file: file2,
-          preview: "draft",
+          preview: "draft"
         },
         {
           error: "File size must be greater than min size.",
           file: newFile,
-          preview: "draft",
-        },
+          preview: "draft"
+        }
       ]);
     });
   });

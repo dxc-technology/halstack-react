@@ -21,36 +21,36 @@ const iconUrl = "https://iconape.com/wp-content/files/yd/367773/svg/logo-linkedi
     bottom: 0,
     right: 0,
     width: 0,
-    height: 0,
-  }),
+    height: 0
+  })
 };
 global.ResizeObserver = jest.fn().mockImplementation(() => ({
   observe: jest.fn(),
   unobserve: jest.fn(),
-  disconnect: jest.fn(),
+  disconnect: jest.fn()
 }));
 
 const options = [
   {
     value: "1",
     label: "Amazon",
-    icon: iconUrl,
+    icon: iconUrl
   },
   {
     value: "2",
     label: "Ebay",
-    icon: iconUrl,
+    icon: iconUrl
   },
   {
     value: "3",
     label: "Wallapop",
-    icon: iconSVG,
+    icon: iconSVG
   },
   {
     value: "4",
     label: "Aliexpress",
-    icon: iconSVG,
-  },
+    icon: iconSVG
+  }
 ];
 
 describe("Dropdown component accessibility tests", () => {
@@ -66,7 +66,7 @@ describe("Dropdown component accessibility tests", () => {
         size="medium"
         optionsIconPosition="before"
         onSelectOption={() => {}}
-      />,
+      />
     );
     const results = await axe(baseElement);
     expect(results).toHaveNoViolations();
@@ -84,7 +84,7 @@ describe("Dropdown component accessibility tests", () => {
         optionsIconPosition="before"
         onSelectOption={() => {}}
         disabled
-      />,
+      />
     );
     const results = await axe(baseElement);
     expect(results).toHaveNoViolations();
@@ -102,7 +102,7 @@ describe("Dropdown component accessibility tests", () => {
         optionsIconPosition="after"
         onSelectOption={() => {}}
         caretHidden
-      />,
+      />
     );
     const results = await axe(baseElement);
     expect(results).toHaveNoViolations();
@@ -120,7 +120,7 @@ describe("Dropdown component accessibility tests", () => {
         optionsIconPosition="after"
         onSelectOption={() => {}}
         expandOnHover
-      />,
+      />
     );
     const results = await axe(baseElement);
     expect(results).toHaveNoViolations();

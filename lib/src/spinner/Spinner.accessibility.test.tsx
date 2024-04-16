@@ -10,7 +10,7 @@ describe("Spinner component accessibility tests", () => {
       <DxcFlex>
         <DxcSpinner label="test-loading" margin="medium" mode="overlay" value={50} showValue></DxcSpinner>
         <DxcSpinner label="test-loading" margin="medium" mode="overlay" value={50}></DxcSpinner>
-      </DxcFlex>,
+      </DxcFlex>
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
@@ -20,7 +20,7 @@ describe("Spinner component accessibility tests", () => {
       <DxcFlex>
         <DxcSpinner label="test-loading" margin="medium" mode="large" value={50} showValue></DxcSpinner>
         <DxcSpinner label="test-loading" margin="medium" mode="large" value={50}></DxcSpinner>
-      </DxcFlex>,
+      </DxcFlex>
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
@@ -30,7 +30,7 @@ describe("Spinner component accessibility tests", () => {
       <DxcFlex>
         <DxcSpinner label="test-loading" margin="medium" mode="small" value={50} showValue></DxcSpinner>
         <DxcSpinner label="test-loading" margin="medium" mode="small" value={50}></DxcSpinner>
-      </DxcFlex>,
+      </DxcFlex>
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();

@@ -13,7 +13,7 @@ const DxcRadio = ({
   disabled,
   focused,
   readOnly,
-  tabIndex,
+  tabIndex
 }: RadioProps): JSX.Element => {
   const radioLabelId = `radio-${useId()}`;
   const ref = useRef<HTMLSpanElement>(null);
@@ -78,7 +78,7 @@ type CommonStylingProps = {
 };
 const getRadioInputStateColor = (
   props: CommonStylingProps & { theme: AdvancedTheme["radioGroup"] },
-  state: "enabled" | "hover" | "active",
+  state: "enabled" | "hover" | "active"
 ) => {
   switch (state) {
     case "hover":

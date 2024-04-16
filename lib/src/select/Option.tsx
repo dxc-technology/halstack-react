@@ -12,7 +12,7 @@ const Option = ({
   visualFocused,
   isGroupedOption = false,
   isLastOption,
-  isSelected,
+  isSelected
 }: OptionProps): JSX.Element => {
   const handleOnMouseEnter = (event: React.MouseEvent) => {
     const label = event.currentTarget;

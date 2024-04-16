@@ -31,7 +31,7 @@ const DxcAccordionGroup = ({
   disabled = false,
   onActiveChange,
   margin,
-  children,
+  children
 }: AccordionGroupPropsType): JSX.Element => {
   const colorsTheme = useTheme();
   const [innerIndexActive, setInnerIndexActive] = useState(defaultIndexActive ?? -1);
@@ -45,15 +45,15 @@ const DxcAccordionGroup = ({
         onActiveChange?.(index);
       }
     },
-    [disabled, indexActive, onActiveChange],
+    [disabled, indexActive, onActiveChange]
   );
   const contextValue = useMemo(
     () => ({
       activeIndex: indexActive ?? innerIndexActive,
       handlerActiveChange,
-      disabled,
+      disabled
     }),
-    [indexActive, innerIndexActive, handlerActiveChange, disabled],
+    [indexActive, innerIndexActive, handlerActiveChange, disabled]
   );
 
   return (

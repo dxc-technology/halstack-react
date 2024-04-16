@@ -18,25 +18,25 @@ describe("Wizard component accessibility tests", () => {
           {
             label: "first-step",
             description: "Description",
-            icon: favoriteSVG,
+            icon: favoriteSVG
           },
           {
             label: "second-step",
-            description: "Description",
+            description: "Description"
           },
           {
             label: "valid-step",
-            valid: true,
+            valid: true
           },
           {
             label: "disabled-step",
-            disabled: true,
-          },
+            disabled: true
+          }
         ]}
         mode="vertical"
         defaultCurrentStep={1}
         margin="medium"
-      />,
+      />
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();

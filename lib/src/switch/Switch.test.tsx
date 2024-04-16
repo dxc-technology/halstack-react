@@ -88,7 +88,7 @@ describe("Switch component tests", () => {
 
   test("Renders with correct initial value and initial state when it is uncontrolled", () => {
     const component = render(
-      <DxcSwitch label="Default label" defaultChecked value="test-defaultChecked" name="test" />,
+      <DxcSwitch label="Default label" defaultChecked value="test-defaultChecked" name="test" />
     );
     const switchEl = component.getByRole("switch");
     const inputEl = component.container.querySelector<HTMLInputElement>(`input[name="test"]`);

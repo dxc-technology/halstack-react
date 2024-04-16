@@ -6,7 +6,7 @@ import ExampleContainer from "../../.storybook/components/ExampleContainer";
 
 export default {
   title: "Accordion Group",
-  component: DxcAccordionGroup,
+  component: DxcAccordionGroup
 };
 
 export const Chromatic = () => (

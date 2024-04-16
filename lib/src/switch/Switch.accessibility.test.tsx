@@ -5,7 +5,7 @@ import DxcSwitch from "./Switch";
 import { disabledRules as rules } from "../../test/accessibility/rules/specific/switch/disabledRules";
 
 const disabledRules = {
-  rules: formatRules(rules),
+  rules: formatRules(rules)
 };
 
 describe("Switch component accessibility tests", () => {
@@ -20,7 +20,7 @@ describe("Switch component accessibility tests", () => {
         margin="medium"
         size="medium"
         checked
-      />,
+      />
     );
     const results = await axe(container, disabledRules);
     expect(results).toHaveNoViolations();
@@ -36,7 +36,7 @@ describe("Switch component accessibility tests", () => {
         margin="medium"
         size="medium"
         optional
-      />,
+      />
     );
     const results = await axe(container, disabledRules);
     expect(results).toHaveNoViolations();
@@ -52,7 +52,7 @@ describe("Switch component accessibility tests", () => {
         margin="medium"
         size="medium"
         disabled
-      />,
+      />
     );
     const results = await axe(container, disabledRules);
     expect(results).toHaveNoViolations();

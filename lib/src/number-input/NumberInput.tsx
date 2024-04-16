@@ -27,9 +27,9 @@ const DxcNumberInput = React.forwardRef<RefType, NumberInputPropsType>(
       autocomplete,
       margin,
       size,
-      tabIndex,
+      tabIndex
     },
-    ref,
+    ref
   ) => {
     const numberInputRef = React.useRef<HTMLInputElement>(null);
 
@@ -38,9 +38,9 @@ const DxcNumberInput = React.forwardRef<RefType, NumberInputPropsType>(
         typeNumber: "number",
         minNumber: min,
         maxNumber: max,
-        stepNumber: step,
+        stepNumber: step
       }),
-      [min, max, step],
+      [min, max, step]
     );
 
     useEffect(() => {
@@ -82,7 +82,7 @@ const DxcNumberInput = React.forwardRef<RefType, NumberInputPropsType>(
         </NumberInputContainer>
       </NumberInputContext.Provider>
     );
-  },
+  }
 );
 
 const NumberInputContainer = styled.div`

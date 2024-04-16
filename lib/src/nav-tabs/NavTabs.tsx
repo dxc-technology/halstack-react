@@ -54,14 +54,14 @@ const DxcNavTabs = ({ iconPosition = "top", tabIndex = 0, children }: NavTabsPro
     () => ({
       iconPosition,
       tabIndex,
-      focusedLabel: innerFocusIndex === null ? undefined : getLabelFromTab(children[innerFocusIndex]),
+      focusedLabel: innerFocusIndex === null ? undefined : getLabelFromTab(children[innerFocusIndex])
     }),
-    [iconPosition, tabIndex, innerFocusIndex],
+    [iconPosition, tabIndex, innerFocusIndex]
   );
 
   const handleOnKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
     const activeTab = React.Children.toArray(children).findIndex((child: ReactElement) =>
-      getPropInChild(child, "active"),
+      getPropInChild(child, "active")
     );
 
     switch (event.key) {

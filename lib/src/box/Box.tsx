@@ -10,7 +10,7 @@ const DxcBox = ({
   display = "inline-flex",
   children,
   margin,
-  size = "fitContent",
+  size = "fitContent"
 }: BoxPropsType): JSX.Element => {
   const colorsTheme = useTheme();
 
@@ -28,7 +28,7 @@ const sizes = {
   medium: "240px",
   large: "480px",
   fillParent: "100%",
-  fitContent: "fit-content",
+  fitContent: "fit-content"
 };
 
 const calculateWidth = (margin: BoxPropsType["margin"], size: BoxPropsType["size"]) =>

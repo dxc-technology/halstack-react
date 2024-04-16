@@ -16,7 +16,7 @@ describe("Card component accessibility tests", () => {
         imageCover
       >
         test-card
-      </DxcCard>,
+      </DxcCard>
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();

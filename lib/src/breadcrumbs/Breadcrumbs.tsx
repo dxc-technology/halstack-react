@@ -14,7 +14,7 @@ const DxcBreadcrumbs = ({
   items,
   itemsBeforeCollapse = 4,
   onItemClick,
-  showRoot = true,
+  showRoot = true
 }: BreadcrumbsProps) => {
   const handleOnSelectOption = useCallback(
     (href: string) => {
@@ -24,7 +24,7 @@ const DxcBreadcrumbs = ({
         window.location.href = href;
       }
     },
-    [items],
+    [items]
   );
 
   return (

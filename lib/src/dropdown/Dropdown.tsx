@@ -42,7 +42,7 @@ const DxcDropdown = ({
   onSelectOption,
   margin,
   size = "fitContent",
-  tabIndex = 0,
+  tabIndex = 0
 }: DropdownPropsType): JSX.Element => {
   const id = useId();
   const triggerId = `trigger-${id}`;
@@ -68,7 +68,7 @@ const DxcDropdown = ({
       handleOnCloseMenu();
       triggerRef.current?.focus();
     },
-    [onSelectOption],
+    [onSelectOption]
   );
   const handleOnBlur = (event) => {
     if (!event.currentTarget.contains(event.relatedTarget)) {
@@ -156,14 +156,14 @@ const DxcDropdown = ({
           break;
       }
     },
-    [onSelectOption, visualFocusIndex, options],
+    [onSelectOption, visualFocusIndex, options]
   );
 
   useLayoutEffect(() => {
     const visualFocusedMenuItem = menuRef?.current?.querySelectorAll("[role='menuitem']")[visualFocusIndex];
     visualFocusedMenuItem?.scrollIntoView?.({
       block: "nearest",
-      inline: "start",
+      inline: "start"
     });
   }, [visualFocusIndex]);
 
@@ -242,7 +242,7 @@ const sizes = {
   medium: "240px",
   large: "480px",
   fillParent: "100%",
-  fitContent: "fit-content",
+  fitContent: "fit-content"
 };
 
 const calculateWidth = (margin, size) =>

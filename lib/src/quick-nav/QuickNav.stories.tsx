@@ -9,35 +9,35 @@ import { HalstackProvider } from "../HalstackContext";
 
 export default {
   title: "Quick Nav",
-  component: DxcQuickNav,
+  component: DxcQuickNav
 };
 
 const opinionatedTheme = {
   quickNav: {
     fontColor: "#666666",
-    accentColor: "#9a6bb2",
-  },
+    accentColor: "#9a6bb2"
+  }
 };
 
 const defaultLinks = [
   {
-    label: "Overview",
+    label: "Overview"
   },
   {
     label: "Principles",
-    links: [{ label: "Color" }, { label: "Spacing" }, { label: "Typography" }],
+    links: [{ label: "Color" }, { label: "Spacing" }, { label: "Typography" }]
   },
   {
     label: "Components",
     links: [
       {
-        label: "Accordion",
+        label: "Accordion"
       },
       {
-        label: "Button",
-      },
-    ],
-  },
+        label: "Button"
+      }
+    ]
+  }
 ];
 
 const links = [
@@ -45,37 +45,37 @@ const links = [
     label: "Overview",
     links: [
       {
-        label: "Introduction",
-      },
-    ],
+        label: "Introduction"
+      }
+    ]
   },
   {
     label: "Components",
     links: [
       {
-        label: "Introduction",
+        label: "Introduction"
       },
       {
-        label: "Accordion",
-      },
-    ],
+        label: "Accordion"
+      }
+    ]
   },
   {
     label: "Principles very very very very very very very very long",
     links: [
       { label: "Color very very very very very very very very long" },
       { label: "Spacingveryveryveryveryveryveryveryverylong" },
-      { label: "Typography" },
-    ],
+      { label: "Typography" }
+    ]
   },
   {
     label: "Componentsveryveryveryveryveryveryveryverylong",
     links: [
       {
-        label: "Accordion",
-      },
-    ],
-  },
+        label: "Accordion"
+      }
+    ]
+  }
 ];
 
 export const Chromatic = () => (

@@ -6,7 +6,7 @@ import DxcCard from "./Card";
 
 export default {
   title: "Card",
-  component: DxcCard,
+  component: DxcCard
 };
 
 const Card = () => (

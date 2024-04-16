@@ -14,7 +14,7 @@ describe("Badge component tests", () => {
       <DxcFlex>
         <DxcBadge label={120} mode="notification" />
         <DxcBadge label={11} mode="notification" notificationLimit={10} />
-      </DxcFlex>,
+      </DxcFlex>
     );
     expect(getByText("+99")).toBeTruthy();
     expect(getByText("+10")).toBeTruthy();

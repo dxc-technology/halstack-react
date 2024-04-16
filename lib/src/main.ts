@@ -100,5 +100,5 @@ export {
   DxcStatusLight,
   DxcContextualMenu,
   DxcDivider,
-  DxcBreadcrumbs,
+  DxcBreadcrumbs
 };

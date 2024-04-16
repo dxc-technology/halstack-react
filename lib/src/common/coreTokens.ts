@@ -103,7 +103,7 @@ const CoreColorTokens = {
   color_orange_600: "#f38f20",
   color_orange_700: "#c26c0a",
   color_orange_800: "#915108",
-  color_orange_900: "#613605",
+  color_orange_900: "#613605"
 };
 export const getCoreColorToken = (key: CoreColorTokens) => CoreColorTokens[key];
 export type CoreColorTokens = keyof typeof CoreColorTokens;
@@ -127,7 +127,7 @@ const CoreSpacingTokens = {
   spacing_64: "4rem",
   spacing_80: "5rem",
   spacing_96: "6rem",
-  spacing_112: "7rem",
+  spacing_112: "7rem"
 };
 
 const CoreTokens = {
@@ -187,7 +187,7 @@ const CoreTokens = {
   border_radius_large: "0.375rem",
   border_solid: "solid",
   border_dashed: "dashed",
-  border_none: "none",
+  border_none: "none"
 };
 
 export default CoreTokens;

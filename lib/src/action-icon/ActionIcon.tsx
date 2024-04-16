@@ -20,7 +20,7 @@ const DxcActionIcon = React.forwardRef<RefType, ActionIconPropsTypes>(
     >
       {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
     </ActionIcon>
-  ),
+  )
 );
 
 const ActionIcon = styled.button`

@@ -22,7 +22,7 @@ describe("Button component accessibility tests", () => {
         title="Button Title"
         size="fitContent"
         type="button"
-      />,
+      />
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
@@ -39,7 +39,7 @@ describe("Button component accessibility tests", () => {
         size="fitContent"
         type="button"
         disabled
-      />,
+      />
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
@@ -55,7 +55,7 @@ describe("Button component accessibility tests", () => {
         title="Button Title"
         size="fitContent"
         type="button"
-      />,
+      />
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
@@ -71,7 +71,7 @@ describe("Button component accessibility tests", () => {
         title="Button Title"
         size="fitContent"
         type="button"
-      />,
+      />
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();

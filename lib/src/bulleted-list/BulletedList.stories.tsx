@@ -6,7 +6,7 @@ import DxcBulletedList from "./BulletedList";
 
 export default {
   title: "Bulleted List",
-  component: DxcBulletedList,
+  component: DxcBulletedList
 };
 
 const icon = (

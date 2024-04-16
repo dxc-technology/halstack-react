@@ -5,7 +5,7 @@ import ExampleContainer from "../../.storybook/components/ExampleContainer";
 
 export default {
   title: "Paragraph",
-  component: DxcParagraph,
+  component: DxcParagraph
 };
 
 export const Chromatic = () => (

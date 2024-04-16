@@ -13,13 +13,13 @@ import { ActionCellsPropsType } from "../table/types";
     bottom: 0,
     right: 0,
     width: 0,
-    height: 0,
-  }),
+    height: 0
+  })
 };
 global.ResizeObserver = jest.fn().mockImplementation(() => ({
   observe: jest.fn(),
   unobserve: jest.fn(),
-  disconnect: jest.fn(),
+  disconnect: jest.fn()
 }));
 
 const icon = (
@@ -32,205 +32,205 @@ const icon = (
 const columns = [
   {
     displayValue: "Id",
-    isSortable: false,
+    isSortable: false
   },
   {
     displayValue: "Name",
-    isSortable: true,
+    isSortable: true
   },
   {
     displayValue: "City",
-    isSortable: false,
-  },
+    isSortable: false
+  }
 ];
 const rows = [
   [
     {
       displayValue: "001",
-      sortValue: "001",
+      sortValue: "001"
     },
     {
       displayValue: "Peter",
-      sortValue: "Peter",
+      sortValue: "Peter"
     },
     {
       displayValue: "Oviedo",
-      sortValue: "Oviedo",
-    },
+      sortValue: "Oviedo"
+    }
   ],
   [
     {
       displayValue: "002",
-      sortValue: "002",
+      sortValue: "002"
     },
     {
       displayValue: "Louis",
-      sortValue: "Louis",
+      sortValue: "Louis"
     },
     {
       displayValue: "Oviedo",
-      sortValue: "Oviedo",
-    },
+      sortValue: "Oviedo"
+    }
   ],
   [
     {
       displayValue: "003",
-      sortValue: "003",
+      sortValue: "003"
     },
     {
       displayValue: "Lana",
-      sortValue: "Lana",
+      sortValue: "Lana"
     },
     {
       displayValue: "Albacete",
-      sortValue: "Albacete",
-    },
+      sortValue: "Albacete"
+    }
   ],
   [
     {
       displayValue: "004",
-      sortValue: "004",
+      sortValue: "004"
     },
     {
       displayValue: "Rick",
-      sortValue: "Rick",
+      sortValue: "Rick"
     },
     {
       displayValue: "Albacete",
-      sortValue: "Albacete",
-    },
+      sortValue: "Albacete"
+    }
   ],
   [
     {
       displayValue: "005",
-      sortValue: "005",
+      sortValue: "005"
     },
     {
       displayValue: "Mark",
-      sortValue: "Mark",
+      sortValue: "Mark"
     },
     {
       displayValue: "Madrid",
-      sortValue: "Madrid",
-    },
+      sortValue: "Madrid"
+    }
   ],
   [
     {
       displayValue: "006",
-      sortValue: "006",
+      sortValue: "006"
     },
     {
       displayValue: "Cris",
-      sortValue: "Cris",
+      sortValue: "Cris"
     },
     {
       displayValue: "Barcelona",
-      sortValue: "Barcelona",
-    },
+      sortValue: "Barcelona"
+    }
   ],
   [
     {
       displayValue: "007",
-      sortValue: "007",
+      sortValue: "007"
     },
     {
       displayValue: "Susan",
-      sortValue: "Susan",
+      sortValue: "Susan"
     },
     {
       displayValue: "Madrid",
-      sortValue: "Madrid",
-    },
+      sortValue: "Madrid"
+    }
   ],
   [
     {
       displayValue: "008",
-      sortValue: "008",
+      sortValue: "008"
     },
     {
       displayValue: "Tina",
-      sortValue: "Tina",
+      sortValue: "Tina"
     },
     {
       displayValue: "Barcelona",
-      sortValue: "Barcelona",
-    },
+      sortValue: "Barcelona"
+    }
   ],
   [
     {
       displayValue: "009",
-      sortValue: "009",
+      sortValue: "009"
     },
     {
       displayValue: "Kevin",
-      sortValue: "Kevin",
+      sortValue: "Kevin"
     },
     {
       displayValue: "Oviedo",
-      sortValue: "Oviedo",
-    },
+      sortValue: "Oviedo"
+    }
   ],
   [
     {
       displayValue: "010",
-      sortValue: "010",
+      sortValue: "010"
     },
     {
       displayValue: "Cosmin",
-      sortValue: "Cosmin",
+      sortValue: "Cosmin"
     },
     {
       displayValue: "Barcelona",
-      sortValue: "Barcelona",
-    },
-  ],
+      sortValue: "Barcelona"
+    }
+  ]
 ];
 const rows2 = [
   [
     {
       displayValue: "546",
-      sortValue: "465",
+      sortValue: "465"
     },
     {
       displayValue: "OtherValue",
-      sortValue: "OtherValue",
+      sortValue: "OtherValue"
     },
     {
       displayValue: "OtherValue",
-      sortValue: "OtherValue",
-    },
+      sortValue: "OtherValue"
+    }
   ],
   [
     {
       displayValue: "978",
-      sortValue: "465",
+      sortValue: "465"
     },
     {
       displayValue: "OtherValue",
-      sortValue: "OtherValue",
+      sortValue: "OtherValue"
     },
     {
       displayValue: "OtherValue",
-      sortValue: "OtherValue",
+      sortValue: "OtherValue"
     },
     {
-      displayValue: "",
-    },
+      displayValue: ""
+    }
   ],
   [
     {
       displayValue: "678",
-      sortValue: "344",
+      sortValue: "344"
     },
     {
       displayValue: "OtherValue",
-      sortValue: "OtherValue",
+      sortValue: "OtherValue"
     },
     {
       displayValue: "OtherValue",
-      sortValue: "OtherValue",
-    },
-  ],
+      sortValue: "OtherValue"
+    }
+  ]
 ];
 
 describe("Resultset table component tests", () => {
@@ -263,7 +263,7 @@ describe("Resultset table component tests", () => {
     window.HTMLElement.prototype.scrollIntoView = () => {};
     window.HTMLElement.prototype.scrollTo = () => {};
     const { getByText, getAllByRole } = render(
-      <DxcResultsetTable columns={columns} showGoToPage rows={rows} itemsPerPage={3} />,
+      <DxcResultsetTable columns={columns} showGoToPage rows={rows} itemsPerPage={3} />
     );
     expect(getByText("Peter")).toBeTruthy();
     expect(getByText("Louis")).toBeTruthy();
@@ -310,7 +310,7 @@ describe("Resultset table component tests", () => {
 
   test("Resultset table change itemsPerPage should go to first page", () => {
     const { getAllByRole } = render(
-      <DxcResultsetTable columns={columns} rows={rows} itemsPerPage={3} itemsPerPageOptions={[2, 3]} />,
+      <DxcResultsetTable columns={columns} rows={rows} itemsPerPage={3} itemsPerPageOptions={[2, 3]} />
     );
     const lastButton = getAllByRole("button")[4];
     expect(getAllByRole("row").length - 1).toEqual(3);
@@ -334,42 +334,42 @@ describe("Resultset table component tests", () => {
         options: [
           {
             value: "1",
-            label: "Amazon",
+            label: "Amazon"
           },
           {
             value: "2",
-            label: "Ebay",
+            label: "Ebay"
           },
           {
             value: "3",
-            label: "Aliexpress",
-          },
-        ],
+            label: "Aliexpress"
+          }
+        ]
       },
       {
         icon,
         title: "icon2",
-        onClick,
-      },
+        onClick
+      }
     ];
     const actionRows = [
       [
         {
           displayValue: "001",
-          sortValue: "001",
+          sortValue: "001"
         },
         {
           displayValue: "Peter",
-          sortValue: "Peter",
+          sortValue: "Peter"
         },
         {
           displayValue: <DxcResultsetTable.ActionsCell actions={actions} />,
-          sortValue: "Actions",
-        },
-      ],
+          sortValue: "Actions"
+        }
+      ]
     ];
     const { getAllByRole, getByRole, getByText } = render(
-      <DxcResultsetTable columns={columns} rows={actionRows} itemsPerPage={3} />,
+      <DxcResultsetTable columns={columns} rows={actionRows} itemsPerPage={3} />
     );
     const dropdown = getAllByRole("button")[2];
     act(() => {

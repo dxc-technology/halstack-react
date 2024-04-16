@@ -36,7 +36,7 @@ const getMaxItemsPerPageIndex = (
   minItemsPerPageIndex: number,
   itemsPerPage: number,
   resultset: Row[][],
-  page: number,
+  page: number
 ) => (minItemsPerPageIndex + itemsPerPage > resultset.length ? resultset.length : itemsPerPage * page - 1);
 
 const DxcResultsetTable = ({
@@ -49,7 +49,7 @@ const DxcResultsetTable = ({
   itemsPerPageFunction,
   margin,
   tabIndex = 0,
-  mode = "default",
+  mode = "default"
 }: ResultsetTablePropsType): JSX.Element => {
   const colorsTheme = useTheme();
   const [page, changePage] = useState(1);
@@ -59,15 +59,15 @@ const DxcResultsetTable = ({
   const minItemsPerPageIndex = useMemo(() => getMinItemsPerPageIndex(page, itemsPerPage, page), [itemsPerPage, page]);
   const maxItemsPerPageIndex = useMemo(
     () => getMaxItemsPerPageIndex(minItemsPerPageIndex, itemsPerPage, rows, page),
-    [itemsPerPage, minItemsPerPageIndex, page, rows],
+    [itemsPerPage, minItemsPerPageIndex, page, rows]
   );
   const sortedResultset = useMemo(
     () => (sortColumnIndex !== -1 ? sortArray(sortColumnIndex, sortOrder, rows) : rows),
-    [sortColumnIndex, sortOrder, rows],
+    [sortColumnIndex, sortOrder, rows]
   );
   const filteredResultset = useMemo(
     () => sortedResultset && sortedResultset.slice(minItemsPerPageIndex, maxItemsPerPageIndex + 1),
-    [sortedResultset, minItemsPerPageIndex, maxItemsPerPageIndex],
+    [sortedResultset, minItemsPerPageIndex, maxItemsPerPageIndex]
   );
 
   const goToPage = (newPage: number) => {
@@ -82,7 +82,7 @@ const DxcResultsetTable = ({
         ? "ascending"
         : sortOrder === "ascending"
           ? "descending"
-          : "ascending",
+          : "ascending"
     );
   };
 

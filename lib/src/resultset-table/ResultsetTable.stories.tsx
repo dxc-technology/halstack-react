@@ -17,13 +17,13 @@ export default {
         rules: [
           ...disabledRules.map((ruleId) => ({
             id: ruleId,
-            reviewOnFail: true,
+            reviewOnFail: true
           })),
-          ...(preview?.parameters?.a11y?.config?.rules || []),
-        ],
-      },
-    },
-  },
+          ...(preview?.parameters?.a11y?.config?.rules || [])
+        ]
+      }
+    }
+  }
 };
 
 const deleteIcon = (
@@ -41,7 +41,7 @@ const rows = [
   [{ displayValue: "003" }, { displayValue: "Lana" }, { displayValue: "Amsterdam" }],
   [{ displayValue: "004" }, { displayValue: "Rick" }, { displayValue: "London" }],
   [{ displayValue: "005" }, { displayValue: "Mark" }, { displayValue: "Miami" }],
-  [{ displayValue: "006" }, { displayValue: "Cris" }, { displayValue: "Paris" }],
+  [{ displayValue: "006" }, { displayValue: "Cris" }, { displayValue: "Paris" }]
 ];
 
 const advancedTheme = {
@@ -51,8 +51,8 @@ const advancedTheme = {
     activeActionIconColor: "#1B75BB",
     focusActionIconColor: "#1B75BB",
     disabledActionIconColor: "#666666",
-    hoverButtonBackgroundColor: "#cccccc",
-  },
+    hoverButtonBackgroundColor: "#cccccc"
+  }
 };
 
 const actions = [
@@ -62,34 +62,34 @@ const actions = [
     options: [
       {
         value: "1",
-        label: "Amazon with a very long text",
+        label: "Amazon with a very long text"
       },
       {
         value: "2",
-        label: "Ebay",
+        label: "Ebay"
       },
       {
         value: "3",
-        label: "Apple",
-      },
-    ],
+        label: "Apple"
+      }
+    ]
   },
   {
     icon: "filled_edit",
     title: "icon",
-    onClick: () => {},
+    onClick: () => {}
   },
   {
     icon: deleteIcon,
     title: "icon",
     onClick: () => {},
-    disabled: true,
+    disabled: true
   },
   {
     icon: deleteIcon,
     title: "icon",
-    onClick: () => {},
-  },
+    onClick: () => {}
+  }
 ];
 
 const rowsIcon = [
@@ -97,70 +97,70 @@ const rowsIcon = [
     { displayValue: "001", sortValue: "001" },
     { displayValue: "Peter" },
     {
-      displayValue: <DxcResultsetTable.ActionsCell actions={actions} />,
-    },
+      displayValue: <DxcResultsetTable.ActionsCell actions={actions} />
+    }
   ],
   [
     { displayValue: "002", sortValue: "002" },
     { displayValue: "Louis" },
     {
-      displayValue: <DxcResultsetTable.ActionsCell actions={actions} />,
-    },
+      displayValue: <DxcResultsetTable.ActionsCell actions={actions} />
+    }
   ],
   [
     { displayValue: "003", sortValue: "003" },
     { displayValue: "Mark" },
     {
-      displayValue: <DxcResultsetTable.ActionsCell actions={actions} />,
-    },
-  ],
+      displayValue: <DxcResultsetTable.ActionsCell actions={actions} />
+    }
+  ]
 ];
 
 const columnsSortable = [
   { displayValue: "Id", isSortable: true },
   { displayValue: "Name", isSortable: true },
-  { displayValue: "City", isSortable: false },
+  { displayValue: "City", isSortable: false }
 ];
 
 const longValues = [
   [
     { displayValue: "000000000000000001", sortValue: "000000000000000001" },
     { displayValue: "Peter Larsson González", sortValue: "Peter" },
-    { displayValue: "Miami: The city that never sleeps", sortValue: "Miami" },
+    { displayValue: "Miami: The city that never sleeps", sortValue: "Miami" }
   ],
   [
     { displayValue: "002", sortValue: "002" },
     { displayValue: "Louis", sortValue: "Louis" },
-    { displayValue: "London", sortValue: "London" },
+    { displayValue: "London", sortValue: "London" }
   ],
   [
     { displayValue: "003", sortValue: "003" },
     { displayValue: "Aida", sortValue: "Aida" },
-    { displayValue: "Wroclaw", sortValue: "Wroclaw" },
-  ],
+    { displayValue: "Wroclaw", sortValue: "Wroclaw" }
+  ]
 ];
 
 const rowsSortable = [
   [
     { displayValue: "001", sortValue: "001" },
     { displayValue: "Peter", sortValue: "Peter" },
-    { displayValue: "Miami", sortValue: "Miami" },
+    { displayValue: "Miami", sortValue: "Miami" }
   ],
   [
     { displayValue: "002", sortValue: "002" },
     { displayValue: "Louis", sortValue: "Louis" },
-    { displayValue: "London", sortValue: "London" },
+    { displayValue: "London", sortValue: "London" }
   ],
   [
     { displayValue: "003", sortValue: "003" },
     { displayValue: "Aida", sortValue: "Aida" },
-    { displayValue: "Wroclaw", sortValue: "Wroclaw" },
+    { displayValue: "Wroclaw", sortValue: "Wroclaw" }
   ],
   [
     { displayValue: "004", sortValue: "004" },
     { displayValue: "Lana", sortValue: "Lana" },
-    { displayValue: "Amsterdam", sortValue: "Amsterdam" },
-  ],
+    { displayValue: "Amsterdam", sortValue: "Amsterdam" }
+  ]
 ];
 
 const longColumns = [
@@ -183,7 +183,7 @@ const longColumns = [
   { displayValue: "Column17" },
   { displayValue: "Column18" },
   { displayValue: "Column19" },
-  { displayValue: "Column20" },
+  { displayValue: "Column20" }
 ];
 
 const longRows = [
@@ -207,7 +207,7 @@ const longRows = [
     { displayValue: "002", sortValue: "002" },
     { displayValue: "Louis", sortValue: "Louis" },
     { displayValue: "London", sortValue: "London" },
-    { displayValue: "London", sortValue: "London" },
+    { displayValue: "London", sortValue: "London" }
   ],
   [
     { displayValue: "002", sortValue: "002" },
@@ -229,7 +229,7 @@ const longRows = [
     { displayValue: "002", sortValue: "002" },
     { displayValue: "Louis", sortValue: "Louis" },
     { displayValue: "London", sortValue: "London" },
-    { displayValue: "London", sortValue: "London" },
+    { displayValue: "London", sortValue: "London" }
   ],
   [
     { displayValue: "002", sortValue: "002" },
@@ -251,8 +251,8 @@ const longRows = [
     { displayValue: "002", sortValue: "002" },
     { displayValue: "Louis", sortValue: "Louis" },
     { displayValue: "London", sortValue: "London" },
-    { displayValue: "London", sortValue: "London" },
-  ],
+    { displayValue: "London", sortValue: "London" }
+  ]
 ];
 
 export const Chromatic = () => (

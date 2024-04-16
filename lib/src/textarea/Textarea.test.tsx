@@ -17,7 +17,7 @@ describe("Textarea component tests", () => {
 
   test("Renders with correct label and optional", () => {
     const { getByText, getByRole } = render(
-      <DxcTextarea label="Example label" helperText="Example helper text" optional />,
+      <DxcTextarea label="Example label" helperText="Example helper text" optional />
     );
     const textarea = getByRole("textbox");
     expect(getByText("Example label")).toBeTruthy();
@@ -58,7 +58,7 @@ describe("Textarea component tests", () => {
 
   test("Renders with correct initial value", () => {
     const { getByLabelText } = render(
-      <DxcTextarea label="Example label" placeholder="Placeholder" defaultValue="Example text" />,
+      <DxcTextarea label="Example label" placeholder="Placeholder" defaultValue="Example text" />
     );
     const textarea = getByLabelText("Example label") as HTMLTextAreaElement;
     expect(textarea.value).toBe("Example text");
@@ -91,7 +91,7 @@ describe("Textarea component tests", () => {
       <form onSubmit={handlerOnSubmit}>
         <DxcTextarea label="Example label" name="data" defaultValue="Comments" readOnly />
         <button type="submit">Submit</button>
-      </form>,
+      </form>
     );
     const submit = getByText("Submit");
     await userEvent.click(submit);
@@ -102,7 +102,7 @@ describe("Textarea component tests", () => {
     const onChange = jest.fn();
     const onBlur = jest.fn();
     const { getByLabelText } = render(
-      <DxcTextarea label="Example label" placeholder="Placeholder" onChange={onChange} onBlur={onBlur} />,
+      <DxcTextarea label="Example label" placeholder="Placeholder" onChange={onChange} onBlur={onBlur} />
     );
     const textarea = getByLabelText("Example label");
     fireEvent.focus(textarea);
@@ -110,7 +110,7 @@ describe("Textarea component tests", () => {
     expect(onBlur).toHaveBeenCalled();
     expect(onBlur).toHaveBeenCalledWith({
       value: "",
-      error: "This field is required. Please, enter a value.",
+      error: "This field is required. Please, enter a value."
     });
     fireEvent.change(textarea, { target: { value: "Test" } });
     fireEvent.blur(textarea);
@@ -121,7 +121,7 @@ describe("Textarea component tests", () => {
   test("Not optional constraint (onChange)", () => {
     const onChange = jest.fn();
     const { getByLabelText } = render(
-      <DxcTextarea label="Example label" placeholder="Placeholder" onChange={onChange} />,
+      <DxcTextarea label="Example label" placeholder="Placeholder" onChange={onChange} />
     );
     const textarea = getByLabelText("Example label");
     fireEvent.focus(textarea);
@@ -132,7 +132,7 @@ describe("Textarea component tests", () => {
     expect(onChange).toHaveBeenCalled();
     expect(onChange).toHaveBeenCalledWith({
       value: "",
-      error: "This field is required. Please, enter a value.",
+      error: "This field is required. Please, enter a value."
     });
   });
 
@@ -147,20 +147,20 @@ describe("Textarea component tests", () => {
         onBlur={onBlur}
         margin={{ left: "medium", right: "medium" }}
         pattern='^.*(?=.*[a-zA-Z])(?=.*\d)(?=.*[!&$%&? "]).*$'
-      />,
+      />
     );
     const textarea = getByLabelText("Example label");
     fireEvent.change(textarea, { target: { value: "pattern test" } });
     expect(onChange).toHaveBeenCalled();
     expect(onChange).toHaveBeenCalledWith({
       value: "pattern test",
-      error: "Please match the format requested.",
+      error: "Please match the format requested."
     });
     fireEvent.blur(textarea);
     expect(onBlur).toHaveBeenCalled();
     expect(onBlur).toHaveBeenCalledWith({
       value: "pattern test",
-      error: "Please match the format requested.",
+      error: "Please match the format requested."
     });
     userEvent.clear(textarea);
     fireEvent.change(textarea, { target: { value: "pattern4&" } });
@@ -183,20 +183,20 @@ describe("Textarea component tests", () => {
         margin={{ left: "medium", right: "medium" }}
         minLength={5}
         maxLength={10}
-      />,
+      />
     );
     const textarea = getByLabelText("Example label");
     fireEvent.change(textarea, { target: { value: "test" } });
     expect(onChange).toHaveBeenCalled();
     expect(onChange).toHaveBeenCalledWith({
       value: "test",
-      error: "Min length 5, max length 10.",
+      error: "Min length 5, max length 10."
     });
     fireEvent.blur(textarea);
     expect(onBlur).toHaveBeenCalled();
     expect(onBlur).toHaveBeenCalledWith({
       value: "test",
-      error: "Min length 5, max length 10.",
+      error: "Min length 5, max length 10."
     });
     userEvent.clear(textarea);
     fireEvent.change(textarea, { target: { value: "length" } });
@@ -220,32 +220,32 @@ describe("Textarea component tests", () => {
         pattern='^.*(?=.*[a-zA-Z])(?=.*\d)(?=.*[!&$%&? "]).*$'
         minLength={5}
         maxLength={10}
-      />,
+      />
     );
     const textarea = getByLabelText("Example label");
     fireEvent.change(textarea, { target: { value: "test" } });
     expect(onChange).toHaveBeenCalled();
     expect(onChange).toHaveBeenCalledWith({
       value: "test",
-      error: "Min length 5, max length 10.",
+      error: "Min length 5, max length 10."
     });
     fireEvent.blur(textarea);
     expect(onBlur).toHaveBeenCalled();
     expect(onBlur).toHaveBeenCalledWith({
       value: "test",
-      error: "Min length 5, max length 10.",
+      error: "Min length 5, max length 10."
     });
     fireEvent.change(textarea, { target: { value: "tests" } });
     expect(onChange).toHaveBeenCalled();
     expect(onChange).toHaveBeenCalledWith({
       value: "tests",
-      error: "Please match the format requested.",
+      error: "Please match the format requested."
     });
     fireEvent.blur(textarea);
     expect(onBlur).toHaveBeenCalled();
     expect(onBlur).toHaveBeenCalledWith({
       value: "tests",
-      error: "Please match the format requested.",
+      error: "Please match the format requested."
     });
     fireEvent.change(textarea, { target: { value: "tests4&" } });
     expect(onChange).toHaveBeenCalled();

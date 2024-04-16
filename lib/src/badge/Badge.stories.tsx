@@ -6,7 +6,7 @@ import DxcFlex from "../flex/Flex";
 
 export default {
   title: "Badge",
-  component: DxcBadge,
+  component: DxcBadge
 };
 
 const icon = (

@@ -5,26 +5,26 @@ import DxcBreadcrumbs from "./Breadcrumbs";
 import { disabledRules as rules } from "../../test/accessibility/rules/specific/breadcrumbs/disabledRules";
 
 const disabledRules = {
-  rules: formatRules(rules),
+  rules: formatRules(rules)
 };
 
 const items = [
   {
     label: "Home",
-    href: "/",
+    href: "/"
   },
   {
     label: "User Menu",
-    href: "",
+    href: ""
   },
   {
     label: "Preferences",
-    href: "",
+    href: ""
   },
   {
     label: "Dark Mode",
-    href: "",
-  },
+    href: ""
+  }
 ];
 
 describe("Breadcrumbs component accessibility tests", () => {
@@ -40,7 +40,7 @@ describe("Breadcrumbs component accessibility tests", () => {
   });
   it("Should not have basic accessibility issues without root", async () => {
     const { container } = render(
-      <DxcBreadcrumbs items={items} itemsBeforeCollapse={3} ariaLabel="example" showRoot={false} />,
+      <DxcBreadcrumbs items={items} itemsBeforeCollapse={3} ariaLabel="example" showRoot={false} />
     );
     const results = await axe(container, disabledRules);
     expect(results).toHaveNoViolations();

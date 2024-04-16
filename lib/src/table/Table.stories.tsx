@@ -16,21 +16,21 @@ export default {
         rules: [
           ...disabledRules.map((ruleId) => ({
             id: ruleId,
-            reviewOnFail: true,
+            reviewOnFail: true
           })),
-          ...(preview?.parameters?.a11y?.config?.rules || []),
-        ],
-      },
-    },
-  },
+          ...(preview?.parameters?.a11y?.config?.rules || [])
+        ]
+      }
+    }
+  }
 };
 
 const opinionatedTheme = {
   table: {
     baseColor: "#5f249f",
     headerFontColor: "#ffffff",
-    cellFontColor: "#000000",
-  },
+    cellFontColor: "#000000"
+  }
 };
 
 const advancedTheme = {
@@ -39,8 +39,8 @@ const advancedTheme = {
     hoverActionIconColor: "#1B75BB",
     activeActionIconColor: "#1B75BB",
     focusActionIconColor: "#1B75BB",
-    hoverButtonBackgroundColor: "#cccccc",
-  },
+    hoverButtonBackgroundColor: "#cccccc"
+  }
 };
 
 const actions = [
@@ -50,17 +50,17 @@ const actions = [
     options: [
       {
         value: "1",
-        label: "Amazon with a very long text",
+        label: "Amazon with a very long text"
       },
       {
         value: "2",
-        label: "Ebay",
+        label: "Ebay"
       },
       {
         value: "3",
-        label: "Apple",
-      },
-    ],
+        label: "Apple"
+      }
+    ]
   },
   {
     title: "icon",
@@ -68,17 +68,17 @@ const actions = [
     options: [
       {
         value: "1",
-        label: "Amazon with a very long text",
+        label: "Amazon with a very long text"
       },
       {
         value: "2",
-        label: "Ebay",
+        label: "Ebay"
       },
       {
         value: "3",
-        label: "Apple",
-      },
-    ],
+        label: "Apple"
+      }
+    ]
   },
   {
     disabled: true,
@@ -87,29 +87,29 @@ const actions = [
     options: [
       {
         value: "1",
-        label: "Amazon with a very long text",
+        label: "Amazon with a very long text"
       },
       {
         value: "2",
-        label: "Ebay",
+        label: "Ebay"
       },
       {
         value: "3",
-        label: "Apple",
-      },
-    ],
+        label: "Apple"
+      }
+    ]
   },
   {
     icon: "filled_edit",
     title: "icon",
-    onClick: () => {},
+    onClick: () => {}
   },
   {
     icon: "filled_delete",
     title: "icon",
     onClick: () => {},
-    disabled: true,
-  },
+    disabled: true
+  }
 ];
 
 export const Chromatic = () => (
@@ -186,7 +186,7 @@ export const Chromatic = () => (
           display: "flex",
           flexDirection: "row",
           width: `${100}%`,
-          marginBottom: `${50}px`,
+          marginBottom: `${50}px`
         }}
       >
         <DxcTable>
@@ -290,7 +290,7 @@ export const Chromatic = () => (
           display: "flex",
           flexDirection: "row",
           width: `${100}%`,
-          marginBottom: `${50}px`,
+          marginBottom: `${50}px`
         }}
       >
         <DxcTable mode="reduced">

@@ -31,7 +31,7 @@ describe("Alert component tests", () => {
     const { getByText } = render(
       <DxcAlert inlineText="alert-text">
         <p>sample-children</p>
-      </DxcAlert>,
+      </DxcAlert>
     );
     expect(getByText("alert-text")).toBeTruthy();
     expect(getByText("sample-children")).toBeTruthy();

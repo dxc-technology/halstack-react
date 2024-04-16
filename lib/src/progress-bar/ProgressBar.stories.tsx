@@ -6,7 +6,7 @@ import { HalstackProvider } from "../HalstackContext";
 
 export default {
   title: "Progress Bar",
-  component: DxcProgressBar,
+  component: DxcProgressBar
 };
 
 const opinionatedTheme = {
@@ -15,8 +15,8 @@ const opinionatedTheme = {
     baseColor: "#e6e6e6",
     fontColor: "#000000",
     overlayColor: "#000000b3",
-    overlayFontColor: "#ffffff",
-  },
+    overlayFontColor: "#ffffff"
+  }
 };
 
 export const Chromatic = () => (

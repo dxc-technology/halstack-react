@@ -7,7 +7,7 @@ import { HalstackProvider } from "../HalstackContext";
 
 export default {
   title: "Button",
-  component: DxcButton,
+  component: DxcButton
 };
 
 const facebookIcon = (
@@ -43,8 +43,8 @@ const opinionatedTheme = {
   button: {
     baseColor: "#5f249f",
     primaryFontColor: "#ffffff",
-    secondaryHoverFontColor: "#ffffff",
-  },
+    secondaryHoverFontColor: "#ffffff"
+  }
 };
 
 export const Chromatic = () => (

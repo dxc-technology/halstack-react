@@ -45,7 +45,7 @@ describe("Checkbox component tests", () => {
       <form onSubmit={handlerOnSubmit}>
         <DxcCheckbox label="Checkbox" name="data" value="checked" readOnly defaultChecked />
         <button type="submit">Submit</button>
-      </form>,
+      </form>
     );
     const submit = getByText("Submit");
     await userEvent.click(submit);
@@ -62,7 +62,7 @@ describe("Checkbox component tests", () => {
       key: " ",
       code: "Space",
       keyCode: 32,
-      charCode: 32,
+      charCode: 32
     });
     expect(onChange).not.toHaveBeenCalled();
   });
@@ -97,7 +97,7 @@ describe("Checkbox component tests", () => {
 
   test("Renders with correct initial value and initial state when it is uncontrolled", () => {
     const { getByRole, container } = render(
-      <DxcCheckbox label="Default label" defaultChecked value="test-defaultChecked" name="test" />,
+      <DxcCheckbox label="Default label" defaultChecked value="test-defaultChecked" name="test" />
     );
     const checkbox = getByRole("checkbox");
     const submitInput = container.querySelector<HTMLInputElement>(`input[name="test"]`);
@@ -109,7 +109,7 @@ describe("Checkbox component tests", () => {
   test("disable keyboard and mouse interactions", () => {
     const onChange = jest.fn();
     const { getByRole, getByText, container } = render(
-      <DxcCheckbox label="Checkbox" onChange={onChange} disabled name="test" />,
+      <DxcCheckbox label="Checkbox" onChange={onChange} disabled name="test" />
     );
     const input = getByRole("checkbox");
     const visibleCheckbox = getByText("Checkbox");
@@ -133,7 +133,7 @@ describe("Checkbox component tests", () => {
       key: " ",
       code: "Space",
       keyCode: 32,
-      charCode: 32,
+      charCode: 32
     });
     expect(onChange).toHaveBeenCalledWith(true);
   });

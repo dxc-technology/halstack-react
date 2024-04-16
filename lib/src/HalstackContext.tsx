@@ -6,7 +6,7 @@ import {
   OpinionatedTheme,
   TranslatedLabels,
   componentTokens,
-  defaultTranslatedComponentLabels,
+  defaultTranslatedComponentLabels
 } from "./common/variables";
 
 /**
@@ -382,7 +382,7 @@ type HalstackProviderPropsType = {
 const HalstackProvider = ({ theme, advancedTheme, labels, children }: HalstackProviderPropsType): JSX.Element => {
   const parsedTheme = useMemo(
     () => (theme ? parseTheme(theme) : advancedTheme ? parseAdvancedTheme(advancedTheme) : componentTokens),
-    [theme, advancedTheme],
+    [theme, advancedTheme]
   );
   const parsedLabels = useMemo(() => (labels ? parseLabels(labels) : defaultTranslatedComponentLabels), [labels]);
 

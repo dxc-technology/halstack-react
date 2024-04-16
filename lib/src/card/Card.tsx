@@ -16,7 +16,7 @@ const DxcCard = ({
   margin,
   tabIndex = 0,
   outlined = true,
-  children,
+  children
 }: CardPropsType): JSX.Element => {
   const colorsTheme = useTheme();
   const [isHovered, changeIsHovered] = useState(false);

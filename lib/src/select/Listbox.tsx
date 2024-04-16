@@ -19,7 +19,7 @@ const Listbox = ({
   optionalItem,
   searchable,
   handleOptionOnClick,
-  styles,
+  styles
 }: ListboxProps): JSX.Element => {
   const translatedLabels = useTranslatedLabels();
   const listboxRef = useRef(null);
@@ -79,7 +79,7 @@ const Listbox = ({
       const listEl = listboxRef?.current;
       const selectedListOptionEl = listEl?.querySelector("[aria-selected='true']");
       listEl?.scrollTo?.({
-        top: (selectedListOptionEl?.offsetTop || 0) - (listEl?.clientHeight || 0) / 2,
+        top: (selectedListOptionEl?.offsetTop || 0) - (listEl?.clientHeight || 0) / 2
       });
     }
   }, [currentValue, multiple]);
@@ -88,7 +88,7 @@ const Listbox = ({
     const visualFocusedOptionEl = listboxRef?.current?.querySelectorAll("[role='option']")[visualFocusIndex];
     visualFocusedOptionEl?.scrollIntoView?.({
       block: "nearest",
-      inline: "start",
+      inline: "start"
     });
   }, [visualFocusIndex]);
 

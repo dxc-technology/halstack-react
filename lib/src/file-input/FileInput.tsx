@@ -30,7 +30,7 @@ const isFileIncluded = (file: FileData, fileList: FileData[]) => {
       size === file.file.size &&
       type === file.file.type &&
       lastModified === file.file.lastModified &&
-      webkitRelativePath === file.file.webkitRelativePath,
+      webkitRelativePath === file.file.webkitRelativePath
   );
 };
 
@@ -52,9 +52,9 @@ const DxcFileInput = React.forwardRef<RefType, FileInputPropsType>(
       callbackFile,
       value,
       margin,
-      tabIndex = 0,
+      tabIndex = 0
     },
-    ref,
+    ref
   ): JSX.Element => {
     const [isDragging, setIsDragging] = useState(false);
     const [files, setFiles] = useState<FileData[]>([]);
@@ -76,17 +76,17 @@ const DxcFileInput = React.forwardRef<RefType, FileInputPropsType>(
             const fileInfo = {
               file,
               error: checkFileSize(file),
-              preview: previews[index],
+              preview: previews[index]
             };
             return fileInfo;
-          }),
+          })
       );
       return filesToAdd.filter((file) => !isFileIncluded(file, files));
     };
 
     const addFile = async (selectedFiles: File[]) => {
       const filesToAdd = await getFilesToAdd(
-        multiple ? selectedFiles : selectedFiles.length === 1 ? selectedFiles : [selectedFiles[0]],
+        multiple ? selectedFiles : selectedFiles.length === 1 ? selectedFiles : [selectedFiles[0]]
       );
       const finalFiles = multiple ? [...files, ...filesToAdd] : filesToAdd;
       callbackFile?.(finalFiles);
@@ -107,7 +107,7 @@ const DxcFileInput = React.forwardRef<RefType, FileInputPropsType>(
         filesCopy.splice(fileIndex, 1);
         callbackFile?.(filesCopy);
       },
-      [files, callbackFile],
+      [files, callbackFile]
     );
 
     const handleClick = () => {
@@ -149,7 +149,7 @@ const DxcFileInput = React.forwardRef<RefType, FileInputPropsType>(
               }
               const preview = await getFilePreview(file.file);
               return { ...file, preview };
-            }),
+            })
           )) as FileData[];
           setFiles(valueFiles);
         }
@@ -274,7 +274,7 @@ const DxcFileInput = React.forwardRef<RefType, FileInputPropsType>(
         </FileInputContainer>
       </ThemeProvider>
     );
-  },
+  }
 );
 
 const FileInputContainer = styled.div<{ margin: FileInputPropsType["margin"] }>`

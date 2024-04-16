@@ -19,13 +19,13 @@ export default {
         rules: [
           ...disabledRules.map((ruleId) => ({
             id: ruleId,
-            reviewOnFail: true,
+            reviewOnFail: true
           })),
-          ...(preview?.parameters?.a11y?.config?.rules || []),
-        ],
-      },
-    },
-  },
+          ...(preview?.parameters?.a11y?.config?.rules || [])
+        ]
+      }
+    }
+  }
 };
 
 const items = [{ label: "Item 1" }, { label: "Item 2" }, { label: "Item 3" }, { label: "Item 4" }];
@@ -33,11 +33,11 @@ const items = [{ label: "Item 1" }, { label: "Item 2" }, { label: "Item 3" }, { 
 const sections = [
   {
     title: "Team repositories",
-    items: [{ label: "Approved locations" }, { label: "Approved locations" }, { label: "Approved locations" }],
+    items: [{ label: "Approved locations" }, { label: "Approved locations" }, { label: "Approved locations" }]
   },
   {
-    items: [{ label: "Approved locations" }, { label: "Approved locations" }, { label: "Approved locations" }],
-  },
+    items: [{ label: "Approved locations" }, { label: "Approved locations" }, { label: "Approved locations" }]
+  }
 ];
 
 const groupItems = [
@@ -55,16 +55,16 @@ const groupItems = [
               {
                 label: "Item 2",
                 icon: "bookmark",
-                badge: <DxcBadge color="purple" label="Experimental" />,
+                badge: <DxcBadge color="purple" label="Experimental" />
               },
-              { label: "Selected Item 3" },
-            ],
-          },
+              { label: "Selected Item 3" }
+            ]
+          }
         ],
-        badge: <DxcBadge color="green" label="New" />,
+        badge: <DxcBadge color="green" label="New" />
       },
-      { label: "Item 4", icon: "key" },
-    ],
+      { label: "Item 4", icon: "key" }
+    ]
   },
   {
     title: "Section 2",
@@ -72,11 +72,11 @@ const groupItems = [
       { label: "Item 5" },
       {
         label: "Grouped Item 6",
-        items: [{ label: "Item 7" }, { label: "Item 8" }],
+        items: [{ label: "Item 7" }, { label: "Item 8" }]
       },
-      { label: "Item 9" },
-    ],
-  },
+      { label: "Item 9" }
+    ]
+  }
 ];
 
 const itemsWithIcon = [
@@ -86,29 +86,29 @@ const itemsWithIcon = [
       <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
         <path d="M200-120v-640q0-33 23.5-56.5T280-840h400q33 0 56.5 23.5T760-760v640L480-240 200-120Zm80-122 200-86 200 86v-518H280v518Zm0-518h400-400Z" />
       </svg>
-    ),
+    )
   },
   {
     label: "Item 2",
-    icon: "star",
-  },
+    icon: "star"
+  }
 ];
 
 const itemsWithBadge = [
   {
     label: "Item 1",
-    badge: <DxcBadge color="green" label="New" />,
+    badge: <DxcBadge color="green" label="New" />
   },
   {
     label: "Item 2",
-    badge: <DxcBadge color="purple" label="Experimental" />,
-  },
+    badge: <DxcBadge color="purple" label="Experimental" />
+  }
 ];
 
 const sectionsWithScroll = [
   {
     title: "Team repositories",
-    items: [{ label: "Approved locations" }, { label: "Approved locations" }, { label: "Approved locations" }],
+    items: [{ label: "Approved locations" }, { label: "Approved locations" }, { label: "Approved locations" }]
   },
   {
     items: [
@@ -120,9 +120,9 @@ const sectionsWithScroll = [
       { label: "Approved locations" },
       { label: "Approved locations" },
       { label: "Approved locations" },
-      { label: "Approved locations" },
-    ],
-  },
+      { label: "Approved locations" }
+    ]
+  }
 ];
 
 const itemsWithTruncatedText = [
@@ -133,12 +133,12 @@ const itemsWithTruncatedText = [
       <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
         <path d="M200-120v-640q0-33 23.5-56.5T280-840h400q33 0 56.5 23.5T760-760v640L480-240 200-120Zm80-122 200-86 200 86v-518H280v518Zm0-518h400-400Z" />
       </svg>
-    ),
+    )
   },
   {
     label: "Item 2",
-    icon: "favorite",
-  },
+    icon: "favorite"
+  }
 ];
 
 const ContextualMenu = () => (

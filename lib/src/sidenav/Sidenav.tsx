@@ -7,7 +7,7 @@ import SidenavPropsType, {
   SidenavGroupPropsType,
   SidenavLinkPropsType,
   SidenavSectionPropsType,
-  SidenavTitlePropsType,
+  SidenavTitlePropsType
 } from "./types";
 import DxcFlex from "../flex/Flex";
 import DxcBleed from "../bleed/Bleed";
@@ -81,7 +81,7 @@ const Group = ({ title, collapsable = false, icon, children }: SidenavGroupProps
 const Link = forwardRef<HTMLAnchorElement, SidenavLinkPropsType>(
   (
     { href, newWindow = false, selected = false, icon, onClick, tabIndex = 0, children, ...otherProps },
-    ref,
+    ref
   ): JSX.Element => {
     const changeIsGroupSelected = useContext(GroupContext);
     const setIsSidenavVisibleResponsive = useResponsiveSidenavVisibility();
@@ -111,7 +111,7 @@ const Link = forwardRef<HTMLAnchorElement, SidenavLinkPropsType>(
         {newWindow && <DxcIcon icon="open_in_new" />}
       </SidenavLink>
     );
-  },
+  }
 );
 
 Link.displayName = "Link";

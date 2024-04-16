@@ -27,9 +27,9 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
       onChange,
       onBlur,
       error,
-      tabIndex = 0,
+      tabIndex = 0
     },
-    ref,
+    ref
   ): JSX.Element => {
     const radioGroupId = `radio-group-${useId()}`;
     const radioGroupLabelId = `label-${radioGroupId}`;
@@ -49,11 +49,11 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
               {
                 label: optionalItemLabel ?? translatedLabels.radioGroup.optionalItemLabelDefault,
                 value: "",
-                disabled,
-              },
+                disabled
+              }
             ]
           : options,
-      [optional, options, optionalItemLabel, translatedLabels],
+      [optional, options, optionalItemLabel, translatedLabels]
     );
 
     const [currentFocusIndex, setCurrentFocusIndex] = useState(getInitialFocusIndex(innerOptions, value ?? innerValue));
@@ -68,7 +68,7 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
           onChange?.(newValue);
         }
       },
-      [value, innerValue, onChange],
+      [value, innerValue, onChange]
     );
     const handleOnBlur = (event: React.FocusEvent<HTMLDivElement>) => {
       // If the radio group loses the focus to an element not contained inside it...
@@ -78,7 +78,7 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
         if (!optional && !currentValue) {
           onBlur?.({
             value: currentValue,
-            error: translatedLabels.formFields.requiredSelectionErrorMessage,
+            error: translatedLabels.formFields.requiredSelectionErrorMessage
           });
         } else {
           onBlur?.({ value: currentValue });
@@ -186,7 +186,7 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
         </RadioGroupContainer>
       </ThemeProvider>
     );
-  },
+  }
 );
 
 const RadioGroupContainer = styled.div`

@@ -16,7 +16,7 @@ const LinkContent = React.memo(
       )}
       {iconPosition === "before" && children}
     </>
-  ),
+  )
 );
 
 LinkContent.displayName = "LinkContent";
@@ -36,7 +36,7 @@ const DxcLink = forwardRef(
       children,
       ...otherProps
     }: LinkProps,
-    ref: Ref<HTMLAnchorElement>,
+    ref: Ref<HTMLAnchorElement>
   ): JSX.Element => {
     const colorsTheme = useTheme();
 
@@ -60,7 +60,7 @@ const DxcLink = forwardRef(
         </StyledLink>
       </ThemeProvider>
     );
-  },
+  }
 );
 
 const StyledLink = styled.div<{

@@ -53,7 +53,7 @@ const DxcHeader = ({
   responsiveContent,
   onClick,
   margin,
-  tabIndex = 0,
+  tabIndex = 0
 }: HeaderPropsType): JSX.Element => {
   const colorsTheme = useTheme();
   const translatedLabels = useTranslatedLabels();
@@ -76,12 +76,12 @@ const DxcHeader = ({
 
   const headerLogo = useMemo(
     () => getLogoElement(colorsTheme.header.logo, translatedLabels.formFields.logoAlternativeText),
-    [colorsTheme.header.logo],
+    [colorsTheme.header.logo]
   );
 
   const headerResponsiveLogo = useMemo(
     () => getLogoElement(colorsTheme.header.logoResponsive, translatedLabels.formFields.logoAlternativeText),
-    [colorsTheme.header.logoResponsive],
+    [colorsTheme.header.logoResponsive]
   );
 
   useEffect(() => {

@@ -25,9 +25,9 @@ const DxcSlider = React.forwardRef<RefType, SliderPropsType>(
       onDragEnd,
       labelFormatCallback,
       margin,
-      size = "fillParent",
+      size = "fillParent"
     },
-    ref,
+    ref
   ): JSX.Element => {
     const labelId = `label-${useId()}`;
     const [innerValue, setInnerValue] = useState(defaultValue ?? 0);
@@ -37,12 +37,12 @@ const DxcSlider = React.forwardRef<RefType, SliderPropsType>(
 
     const minLabel = useMemo(
       () => (labelFormatCallback ? labelFormatCallback(minValue) : minValue),
-      [labelFormatCallback, minValue],
+      [labelFormatCallback, minValue]
     );
 
     const maxLabel = useMemo(
       () => (labelFormatCallback ? labelFormatCallback(maxValue) : maxValue),
-      [labelFormatCallback, maxValue],
+      [labelFormatCallback, maxValue]
     );
 
     const tickMarks = useMemo(() => {
@@ -58,7 +58,7 @@ const DxcSlider = React.forwardRef<RefType, SliderPropsType>(
               stepPosition={(step * index) / range}
               stepValue={(value ?? innerValue) / maxValue}
               key={`tickmark-${index}-${labelId}`}
-            />,
+            />
           );
         }
         return ticks;
@@ -146,13 +146,13 @@ const DxcSlider = React.forwardRef<RefType, SliderPropsType>(
         </Container>
       </ThemeProvider>
     );
-  },
+  }
 );
 
 const sizes = {
   medium: "360px",
   large: "480px",
-  fillParent: "100%",
+  fillParent: "100%"
 };
 
 const calculateWidth = (margin: SliderPropsType["margin"], size: SliderPropsType["size"]) =>

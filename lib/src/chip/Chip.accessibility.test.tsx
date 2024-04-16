@@ -34,7 +34,7 @@ describe("Chip component accessibility tests", () => {
   });
   it("Should not have basic accessibility issues for disabled mode", async () => {
     const { container } = render(
-      <DxcChip margin="small" prefixIcon={iconSVG} suffixIcon={iconSVG} label="Chip" disabled />,
+      <DxcChip margin="small" prefixIcon={iconSVG} suffixIcon={iconSVG} label="Chip" disabled />
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();

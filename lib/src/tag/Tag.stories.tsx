@@ -7,7 +7,7 @@ import { HalstackProvider } from "../HalstackContext";
 
 export default {
   title: "Tag",
-  component: DxcTag,
+  component: DxcTag
 };
 
 const icon = (
@@ -27,8 +27,8 @@ const largeIcon = (
 const opinionatedTheme = {
   tag: {
     fontColor: "#000000",
-    iconColor: "#ffffff",
-  },
+    iconColor: "#ffffff"
+  }
 };
 
 export const Chromatic = () => (

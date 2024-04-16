@@ -11,7 +11,7 @@ describe("StatusLight component accessibility tests", () => {
         <DxcStatusLight label="Status Light Test" mode="default" size="large"></DxcStatusLight>
         <DxcStatusLight label="Status Light Test" mode="default" size="medium"></DxcStatusLight>
         <DxcStatusLight label="Status Light Test" mode="default" size="small"></DxcStatusLight>
-      </DxcFlex>,
+      </DxcFlex>
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
@@ -22,7 +22,7 @@ describe("StatusLight component accessibility tests", () => {
         <DxcStatusLight label="Status Light Test" mode="error" size="large"></DxcStatusLight>
         <DxcStatusLight label="Status Light Test" mode="error" size="medium"></DxcStatusLight>
         <DxcStatusLight label="Status Light Test" mode="error" size="small"></DxcStatusLight>
-      </DxcFlex>,
+      </DxcFlex>
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
@@ -33,7 +33,7 @@ describe("StatusLight component accessibility tests", () => {
         <DxcStatusLight label="Status Light Test" mode="info" size="large"></DxcStatusLight>
         <DxcStatusLight label="Status Light Test" mode="info" size="medium"></DxcStatusLight>
         <DxcStatusLight label="Status Light Test" mode="info" size="small"></DxcStatusLight>
-      </DxcFlex>,
+      </DxcFlex>
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
@@ -44,7 +44,7 @@ describe("StatusLight component accessibility tests", () => {
         <DxcStatusLight label="Status Light Test" mode="success" size="large"></DxcStatusLight>
         <DxcStatusLight label="Status Light Test" mode="success" size="medium"></DxcStatusLight>
         <DxcStatusLight label="Status Light Test" mode="success" size="small"></DxcStatusLight>
-      </DxcFlex>,
+      </DxcFlex>
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
@@ -55,7 +55,7 @@ describe("StatusLight component accessibility tests", () => {
         <DxcStatusLight label="Status Light Test" mode="warning" size="large"></DxcStatusLight>
         <DxcStatusLight label="Status Light Test" mode="warning" size="medium"></DxcStatusLight>
         <DxcStatusLight label="Status Light Test" mode="warning" size="small"></DxcStatusLight>
-      </DxcFlex>,
+      </DxcFlex>
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();

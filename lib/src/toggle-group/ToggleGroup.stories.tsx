@@ -7,7 +7,7 @@ import { HalstackProvider } from "../HalstackContext";
 
 export default {
   title: "Toggle Group",
-  component: DxcToggleGroup,
+  component: DxcToggleGroup
 };
 
 const ethernetSVG = (
@@ -38,60 +38,60 @@ const wifiSVG = (
 const options = [
   {
     value: 1,
-    label: "Facebook",
+    label: "Facebook"
   },
   {
     value: 2,
-    label: "X",
+    label: "X"
   },
   {
     value: 3,
-    label: "Linkedin",
-  },
+    label: "Linkedin"
+  }
 ];
 const optionsWithIcon = [
   {
     value: 1,
     icon: "wifi",
-    title: "WiFi connection",
+    title: "WiFi connection"
   },
   {
     value: 2,
     icon: "filled_lan",
-    title: "Ethernet connection",
+    title: "Ethernet connection"
   },
   {
     value: 3,
     icon: "5g",
-    title: "3G Mobile data connection",
-  },
+    title: "3G Mobile data connection"
+  }
 ];
 const optionsWithIconAndLabel = [
   {
     value: 1,
     label: "Wi-fi",
-    icon: wifiSVG,
+    icon: wifiSVG
   },
   {
     value: 2,
     label: "Ethernet",
-    icon: ethernetSVG,
+    icon: ethernetSVG
   },
   {
     value: 3,
     label: "3G Mobile",
-    icon: gMobileSVG,
-  },
+    icon: gMobileSVG
+  }
 ];
 const twoOptions = [
   {
     value: 1,
-    label: "Facebook",
+    label: "Facebook"
   },
   {
     value: 2,
-    label: "X",
-  },
+    label: "X"
+  }
 ];
 
 const opinionatedTheme = {
@@ -99,8 +99,8 @@ const opinionatedTheme = {
     selectedBaseColor: "#5f249f",
     selectedFontColor: "#ffffff",
     unselectedBaseColor: "#e6e6e6",
-    unselectedFontColor: "#000000",
-  },
+    unselectedFontColor: "#000000"
+  }
 };
 
 export const Chromatic = () => (

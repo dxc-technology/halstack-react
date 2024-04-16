@@ -31,9 +31,9 @@ const DxcPasswordInput = React.forwardRef<RefType, PasswordInputPropsType>(
       autocomplete = "off",
       margin,
       size = "medium",
-      tabIndex = 0,
+      tabIndex = 0
     },
-    ref,
+    ref
   ) => {
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
     const inputRef = useRef<HTMLDivElement>(null);
@@ -63,7 +63,7 @@ const DxcPasswordInput = React.forwardRef<RefType, PasswordInputPropsType>(
               setIsPasswordVisible((isPasswordCurrentlyVisible) => !isPasswordCurrentlyVisible);
             },
             icon: isPasswordVisible ? "Visibility_Off" : "Visibility",
-            title: isPasswordVisible ? passwordInput.inputHidePasswordTitle : passwordInput.inputShowPasswordTitle,
+            title: isPasswordVisible ? passwordInput.inputHidePasswordTitle : passwordInput.inputShowPasswordTitle
           }}
           error={error}
           clearable={clearable}
@@ -80,7 +80,7 @@ const DxcPasswordInput = React.forwardRef<RefType, PasswordInputPropsType>(
         />
       </PasswordInput>
     );
-  },
+  }
 );
 
 const PasswordInput = styled.div`

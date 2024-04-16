@@ -31,7 +31,7 @@ describe("Accordion component accessibility tests", () => {
         <DxcAccordionGroup.Accordion label="Accordion2" assistiveText="Assistive Text2" icon={folderIcon}>
           <div>Second accordion</div>
         </DxcAccordionGroup.Accordion>
-      </DxcAccordionGroup>,
+      </DxcAccordionGroup>
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
@@ -45,7 +45,7 @@ describe("Accordion component accessibility tests", () => {
         <DxcAccordionGroup.Accordion label="Accordion2" assistiveText="Assistive Text2" icon={folderIcon}>
           <div>Second accordion</div>
         </DxcAccordionGroup.Accordion>
-      </DxcAccordionGroup>,
+      </DxcAccordionGroup>
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();

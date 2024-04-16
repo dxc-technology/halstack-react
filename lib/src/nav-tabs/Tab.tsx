@@ -11,7 +11,7 @@ import DxcIcon from "../icon/Icon";
 const DxcTab = forwardRef(
   (
     { href, active = false, icon, disabled = false, notificationNumber = false, children, ...otherProps }: TabProps,
-    ref: Ref<HTMLAnchorElement>,
+    ref: Ref<HTMLAnchorElement>
   ): JSX.Element => {
     const tabRef = useRef<HTMLAnchorElement>();
     const colorsTheme = useTheme();
@@ -98,7 +98,7 @@ const DxcTab = forwardRef(
         </Tab>
       </TabContainer>
     );
-  },
+  }
 );
 
 const TabContainer = styled.div<{ active: TabProps["active"] }>`

@@ -20,9 +20,9 @@ const DxcSwitch = React.forwardRef<RefType, SwitchPropsType>(
       onChange,
       margin,
       size = "fitContent",
-      tabIndex = 0,
+      tabIndex = 0
     },
-    ref,
+    ref
   ): JSX.Element => {
     const switchId = `switch-${useId()}`;
     const labelId = `label-${switchId}`;
@@ -99,7 +99,7 @@ const DxcSwitch = React.forwardRef<RefType, SwitchPropsType>(
         </SwitchContainer>
       </ThemeProvider>
     );
-  },
+  }
 );
 
 const sizes = {
@@ -107,7 +107,7 @@ const sizes = {
   medium: "240px",
   large: "480px",
   fillParent: "100%",
-  fitContent: "fit-content",
+  fitContent: "fit-content"
 };
 
 const calculateWidth = (margin, size) =>
@@ -118,7 +118,7 @@ const calculateWidth = (margin, size) =>
 const getDisabledColor = (
   theme: AdvancedTheme["switch"],
   element: "track" | "thumb" | "label",
-  subElement?: "check" | "uncheck",
+  subElement?: "check" | "uncheck"
 ) => {
   switch (element) {
     case "track":
@@ -149,7 +149,7 @@ const getDisabledColor = (
 const getNotDisabledColor = (
   theme: AdvancedTheme["switch"],
   element: "track" | "thumb" | "label",
-  subElement?: "check" | "uncheck",
+  subElement?: "check" | "uncheck"
 ) => {
   switch (element) {
     case "track":

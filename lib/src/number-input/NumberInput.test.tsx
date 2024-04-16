@@ -12,19 +12,19 @@ import DxcNumberInput from "./NumberInput";
     bottom: 0,
     right: 0,
     width: 0,
-    height: 0,
-  }),
+    height: 0
+  })
 };
 global.ResizeObserver = jest.fn().mockImplementation(() => ({
   observe: jest.fn(),
   unobserve: jest.fn(),
-  disconnect: jest.fn(),
+  disconnect: jest.fn()
 }));
 
 describe("Number input component tests", () => {
   test("Number input renders with label, helper text, placeholder and increment/decrement action buttons", () => {
     const { getByLabelText, getByText, queryAllByRole } = render(
-      <DxcNumberInput label="Number input label" helperText="Helper text" placeholder="Placeholder" />,
+      <DxcNumberInput label="Number input label" helperText="Helper text" placeholder="Placeholder" />
     );
     const number = getByLabelText("Number input label");
     expect(getByText("Number input label")).toBeTruthy();
@@ -76,7 +76,7 @@ describe("Number input component tests", () => {
     const onBlur = jest.fn();
     const onChange = jest.fn();
     const { getByLabelText } = render(
-      <DxcNumberInput label="Number input label" onBlur={onBlur} onChange={onChange} />,
+      <DxcNumberInput label="Number input label" onBlur={onBlur} onChange={onChange} />
     );
     const number = getByLabelText("Number input label");
     userEvent.type(number, "1");
@@ -85,12 +85,12 @@ describe("Number input component tests", () => {
     expect(onBlur).toHaveBeenCalled();
     expect(onBlur).toHaveBeenCalledWith({
       value: "",
-      error: "This field is required. Please, enter a value.",
+      error: "This field is required. Please, enter a value."
     });
     expect(onChange).toHaveBeenCalled();
     expect(onChange).toHaveBeenCalledWith({
       value: "",
-      error: "This field is required. Please, enter a value.",
+      error: "This field is required. Please, enter a value."
     });
   });
 
@@ -127,7 +127,7 @@ describe("Number input component tests", () => {
       expect(error).toBe("Value must be greater than or equal to 0.");
     });
     const { getByLabelText } = render(
-      <DxcNumberInput label="Number input label" min={0} onBlur={onBlur} onChange={onChange} />,
+      <DxcNumberInput label="Number input label" min={0} onBlur={onBlur} onChange={onChange} />
     );
     const number = getByLabelText("Number input label");
     userEvent.type(number, "-1");
@@ -160,20 +160,20 @@ describe("Number input component tests", () => {
     const onChange = jest.fn();
     const onBlur = jest.fn();
     const { getByLabelText } = render(
-      <DxcNumberInput label="Number input label" max={10} onBlur={onBlur} onChange={onChange} />,
+      <DxcNumberInput label="Number input label" max={10} onBlur={onBlur} onChange={onChange} />
     );
     const number = getByLabelText("Number input label");
     userEvent.type(number, "12");
     expect(onChange).toHaveBeenCalledTimes(2);
     expect(onChange).toHaveBeenCalledWith({
       value: "12",
-      error: "Value must be less than or equal to 10.",
+      error: "Value must be less than or equal to 10."
     });
     fireEvent.blur(number);
     expect(onBlur).toHaveBeenCalled();
     expect(onBlur).toHaveBeenCalledWith({
       value: "12",
-      error: "Value must be less than or equal to 10.",
+      error: "Value must be less than or equal to 10."
     });
   });
 
@@ -262,14 +262,14 @@ describe("Number input component tests", () => {
   test("Increment and decrement the value with min, max and step", async () => {
     const onBlur = jest.fn();
     const { getByLabelText, getAllByRole } = render(
-      <DxcNumberInput label="Number input label" min={5} max={20} step={8} onBlur={onBlur} />,
+      <DxcNumberInput label="Number input label" min={5} max={20} step={8} onBlur={onBlur} />
     );
     const number = getByLabelText("Number input label") as HTMLInputElement;
     userEvent.type(number, "1");
     fireEvent.blur(number);
     expect(onBlur).toHaveBeenCalledWith({
       value: "1",
-      error: "Value must be greater than or equal to 5.",
+      error: "Value must be greater than or equal to 5."
     });
     const increment = getAllByRole("button")[1];
     await userEvent.click(increment);
@@ -291,7 +291,7 @@ describe("Number input component tests", () => {
   test("Start incrementing from 0 when the min value is less than 0 and the max value is bigger than 0", async () => {
     const onBlur = jest.fn();
     const { getByLabelText, getAllByRole } = render(
-      <DxcNumberInput label="Number input label" min={-10} max={10} step={1} onBlur={onBlur} />,
+      <DxcNumberInput label="Number input label" min={-10} max={10} step={1} onBlur={onBlur} />
     );
     const number = getByLabelText("Number input label") as HTMLInputElement;
     const increment = getAllByRole("button")[1];
@@ -303,7 +303,7 @@ describe("Number input component tests", () => {
 
   test("Start incrementing from 0 when the min value is less than 0 and the max is 0", async () => {
     const { getByLabelText, getAllByRole } = render(
-      <DxcNumberInput label="Number input label" min={-10} max={0} step={1} />,
+      <DxcNumberInput label="Number input label" min={-10} max={0} step={1} />
     );
     const number = getByLabelText("Number input label") as HTMLInputElement;
     const increment = getAllByRole("button")[1];
@@ -315,7 +315,7 @@ describe("Number input component tests", () => {
 
   test("Start incrementing from the min value when it is bigger than 0", async () => {
     const { getByLabelText, getAllByRole } = render(
-      <DxcNumberInput label="Number input label" min={2} max={10} step={0.5} />,
+      <DxcNumberInput label="Number input label" min={2} max={10} step={0.5} />
     );
     const number = getByLabelText("Number input label") as HTMLInputElement;
     const increment = getAllByRole("button")[1];
@@ -327,7 +327,7 @@ describe("Number input component tests", () => {
 
   test("Start incrementing from the max value when it is less than 0", async () => {
     const { getByLabelText, getAllByRole } = render(
-      <DxcNumberInput label="Number input label" min={-10} max={-1} step={0.5} />,
+      <DxcNumberInput label="Number input label" min={-10} max={-1} step={0.5} />
     );
     const number = getByLabelText("Number input label") as HTMLInputElement;
     const increment = getAllByRole("button")[1];
@@ -339,7 +339,7 @@ describe("Number input component tests", () => {
 
   test("Start decrementing from 0 when the min value is less than 0 and the max value is bigger than 0", async () => {
     const { getByLabelText, getAllByRole } = render(
-      <DxcNumberInput label="Number input label" min={-10} max={10} step={1} />,
+      <DxcNumberInput label="Number input label" min={-10} max={10} step={1} />
     );
     const number = getByLabelText("Number input label") as HTMLInputElement;
     const decrement = getAllByRole("button")[0];
@@ -349,7 +349,7 @@ describe("Number input component tests", () => {
 
   test("Start decrementing from 0 when the min value is 0 and the max value is bigger than 0", async () => {
     const { getByLabelText, getAllByRole } = render(
-      <DxcNumberInput label="Number input label" min={0} max={10} step={1} />,
+      <DxcNumberInput label="Number input label" min={0} max={10} step={1} />
     );
     const number = getByLabelText("Number input label") as HTMLInputElement;
     const decrement = getAllByRole("button")[0];
@@ -359,7 +359,7 @@ describe("Number input component tests", () => {
 
   test("Start decrementing from the min value when it is bigger than 0", async () => {
     const { getByLabelText, getAllByRole } = render(
-      <DxcNumberInput label="Number input label" min={2} max={10} step={0.5} />,
+      <DxcNumberInput label="Number input label" min={2} max={10} step={0.5} />
     );
     const number = getByLabelText("Number input label") as HTMLInputElement;
     const decrement = getAllByRole("button")[0];
@@ -371,7 +371,7 @@ describe("Number input component tests", () => {
 
   test("Start decrementing from the max value when it is less than 0", async () => {
     const { getByLabelText, getAllByRole } = render(
-      <DxcNumberInput label="Number input label" min={-10} max={-1} step={0.5} />,
+      <DxcNumberInput label="Number input label" min={-10} max={-1} step={0.5} />
     );
     const number = getByLabelText("Number input label") as HTMLInputElement;
     const decrement = getAllByRole("button")[0];
@@ -407,7 +407,7 @@ describe("Number input component tests", () => {
 
   test("Value is unchanged when using the scroll wheel in mouse in a disabled input", () => {
     const { getByLabelText } = render(
-      <DxcNumberInput disabled label="Number input label" min={5} max={20} step={5} defaultValue="10" />,
+      <DxcNumberInput disabled label="Number input label" min={5} max={20} step={5} defaultValue="10" />
     );
     const number = getByLabelText("Number input label") as HTMLInputElement;
     fireEvent.wheel(number, { deltaY: -100 });
@@ -422,7 +422,7 @@ describe("Number input component tests", () => {
 
   test("Value is unchanged when using the arrows in keyboard in a disabled input", () => {
     const { getByLabelText } = render(
-      <DxcNumberInput disabled label="Number input label" min={5} max={20} step={5} defaultValue="10" />,
+      <DxcNumberInput disabled label="Number input label" min={5} max={20} step={5} defaultValue="10" />
     );
     const number = getByLabelText("Number input label") as HTMLInputElement;
     fireEvent.keyDown(number, { keyCode: 38 });
@@ -437,7 +437,7 @@ describe("Number input component tests", () => {
 
   test("Value is unchanged when using the scroll wheel in mouse in a read-only input", () => {
     const { getByLabelText } = render(
-      <DxcNumberInput readOnly label="Number input label" min={5} max={20} step={5} defaultValue="10" />,
+      <DxcNumberInput readOnly label="Number input label" min={5} max={20} step={5} defaultValue="10" />
     );
     const number = getByLabelText("Number input label") as HTMLInputElement;
     fireEvent.wheel(number, { deltaY: -100 });
@@ -452,7 +452,7 @@ describe("Number input component tests", () => {
 
   test("Value is unchanged when using the arrows in keyboard in a read-only input", () => {
     const { getByLabelText } = render(
-      <DxcNumberInput readOnly label="Number input label" min={5} max={20} step={5} defaultValue="10" />,
+      <DxcNumberInput readOnly label="Number input label" min={5} max={20} step={5} defaultValue="10" />
     );
     const number = getByLabelText("Number input label") as HTMLInputElement;
     fireEvent.keyDown(number, { keyCode: 38 });
@@ -513,7 +513,7 @@ describe("Number input component tests", () => {
       <form onSubmit={handlerOnSubmit}>
         <DxcNumberInput label="Number input label" name="data" />
         <button type="submit">Submit</button>
-      </form>,
+      </form>
     );
     const less = getAllByRole("button")[0];
     const more = getAllByRole("button")[1];

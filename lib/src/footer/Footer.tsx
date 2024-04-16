@@ -15,7 +15,7 @@ const DxcFooter = ({
   children,
   margin,
   tabIndex = 0,
-  mode = "default",
+  mode = "default"
 }: FooterPropsType): JSX.Element => {
   const colorsTheme = useTheme();
   const translatedLabels = useTranslatedLabels();
@@ -33,7 +33,7 @@ const DxcFooter = ({
       ) : (
         colorsTheme.footer.logo
       ),
-    [colorsTheme],
+    [colorsTheme]
   );
 
   return (

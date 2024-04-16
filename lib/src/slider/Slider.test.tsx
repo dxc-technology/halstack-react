@@ -12,13 +12,13 @@ import DxcSlider from "./Slider";
     bottom: 0,
     right: 0,
     width: 0,
-    height: 0,
-  }),
+    height: 0
+  })
 };
 global.ResizeObserver = jest.fn().mockImplementation(() => ({
   observe: jest.fn(),
   unobserve: jest.fn(),
-  disconnect: jest.fn(),
+  disconnect: jest.fn()
 }));
 
 describe("Slider component tests", () => {
@@ -33,7 +33,7 @@ describe("Slider component tests", () => {
 
   test("Slider renders with correct initial value when it is uncontrolled", () => {
     const { getByRole } = render(
-      <DxcSlider defaultValue={30} minValue={0} maxValue={100} showLimitsValues showInput />,
+      <DxcSlider defaultValue={30} minValue={0} maxValue={100} showLimitsValues showInput />
     );
     const slider = getByRole("slider");
     const input = getByRole("textbox") as HTMLInputElement;
@@ -43,7 +43,7 @@ describe("Slider component tests", () => {
 
   test("Slider correct limit values", () => {
     const { getByRole, getByText } = render(
-      <DxcSlider defaultValue={125} minValue={30} maxValue={125} showLimitsValues />,
+      <DxcSlider defaultValue={125} minValue={30} maxValue={125} showLimitsValues />
     );
     const slider = getByRole("slider");
     expect(slider.getAttribute("aria-valuemin")).toBe("30");
@@ -53,7 +53,7 @@ describe("Slider component tests", () => {
       key: "ArrowRight",
       code: "ArrowRight",
       keyCode: 39,
-      charCode: 39,
+      charCode: 39
     });
     expect(slider.getAttribute("aria-valuenow")).toBe("125");
     expect(getByText("30")).toBeTruthy();
@@ -63,7 +63,7 @@ describe("Slider component tests", () => {
   test("Calls correct function onChange in controlled slider", () => {
     const onChange = jest.fn();
     const { getByRole } = render(
-      <DxcSlider minValue={0} maxValue={100} onChange={onChange} showLimitsValues value={13} showInput />,
+      <DxcSlider minValue={0} maxValue={100} onChange={onChange} showLimitsValues value={13} showInput />
     );
     const input = getByRole("textbox") as HTMLInputElement;
     expect(getByRole("slider").getAttribute("aria-valuenow")).toBe("13");
@@ -79,7 +79,7 @@ describe("Slider component tests", () => {
   test("Calls correct function onChange in uncontrolled slider", () => {
     const onChange = jest.fn();
     const { getByRole } = render(
-      <DxcSlider minValue={0} maxValue={100} onChange={onChange} showLimitsValues showInput />,
+      <DxcSlider minValue={0} maxValue={100} onChange={onChange} showLimitsValues showInput />
     );
     const input = getByRole("textbox") as HTMLInputElement;
     act(() => {
@@ -93,7 +93,7 @@ describe("Slider component tests", () => {
   test("Disabled slider have disabled input and slider", () => {
     const onChange = jest.fn();
     const { getByRole } = render(
-      <DxcSlider minValue={0} maxValue={100} onChange={onChange} showLimitsValues disabled showInput value={13} />,
+      <DxcSlider minValue={0} maxValue={100} onChange={onChange} showLimitsValues disabled showInput value={13} />
     );
     const input = getByRole("textbox") as HTMLInputElement;
     act(() => {
@@ -141,7 +141,7 @@ describe("Slider component tests", () => {
         showInput
         value={25}
         labelFormatCallback={labelFormatCallback}
-      />,
+      />
     );
     expect(getByText("0$")).toBeTruthy();
     expect(getByText("100$")).toBeTruthy();
@@ -151,7 +151,7 @@ describe("Slider component tests", () => {
   test("Change value correctly to 0 from external function", () => {
     const onChange = jest.fn();
     const { rerender, getByRole } = render(
-      <DxcSlider minValue={0} maxValue={100} onChange={onChange} showLimitsValues value={13} showInput />,
+      <DxcSlider minValue={0} maxValue={100} onChange={onChange} showLimitsValues value={13} showInput />
     );
     const slider = getByRole("slider");
     userEvent.tab();
@@ -159,7 +159,7 @@ describe("Slider component tests", () => {
       key: "ArrowRight",
       code: "ArrowRight",
       keyCode: 39,
-      charCode: 39,
+      charCode: 39
     });
     rerender(<DxcSlider minValue={0} maxValue={100} onChange={onChange} showLimitsValues value={0} showInput />);
     expect(slider.getAttribute("aria-valuenow")).toBe("0");

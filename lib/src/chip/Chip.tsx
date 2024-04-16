@@ -14,7 +14,7 @@ const DxcChip = ({
   onClickPrefix,
   disabled,
   margin,
-  tabIndex = 0,
+  tabIndex = 0
 }: ChipPropsType): JSX.Element => {
   const colorsTheme = useTheme();
 

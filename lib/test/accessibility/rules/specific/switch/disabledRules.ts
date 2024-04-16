@@ -4,7 +4,7 @@
  */
 const disabledRules = [
   // Disable aria toggle field name rule to prevent errors from having switches with no label on purpose
-  "aria-toggle-field-name",
+  "aria-toggle-field-name"
 ];
 
 export default disabledRules;

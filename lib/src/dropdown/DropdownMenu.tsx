@@ -6,7 +6,7 @@ import { DropdownMenuProps } from "./types";
 const DropdownMenu = React.forwardRef<HTMLUListElement, DropdownMenuProps>(
   (
     { id, dropdownTriggerId, iconsPosition, visualFocusIndex, menuItemOnClick, onKeyDown, options, styles },
-    ref,
+    ref
   ): JSX.Element => (
     <DropdownMenuContainer
       onMouseDown={(event) => {
@@ -35,7 +35,7 @@ const DropdownMenu = React.forwardRef<HTMLUListElement, DropdownMenuProps>(
         />
       ))}
     </DropdownMenuContainer>
-  ),
+  )
 );
 
 const DropdownMenuContainer = styled.ul`
