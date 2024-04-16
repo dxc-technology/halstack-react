@@ -135,7 +135,7 @@ const FocusLock = ({
   return (
     <>
       <div onFocus={focusLast} tabIndex={0} />
-      <div // eslint-disable-line jsx-a11y/no-static-element-interactions
+      <div
         onKeyDown={focusLock}
         ref={childrenContainerRef}
         tabIndex={focusableElements?.length === 0 ? 0 : -1}
