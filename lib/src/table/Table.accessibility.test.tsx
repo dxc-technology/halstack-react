@@ -4,7 +4,7 @@ import { axe, formatRules } from "../../test/accessibility/axe-helper";
 import DxcTable from "./Table";
 
 // TODO: REMOVE
-import { disabledRules as rules } from "../../test/accessibility/rules/specific/table/disabledRules";
+import rules from "../../test/accessibility/rules/specific/table/disabledRules";
 
 const disabledRules = {
   rules: formatRules(rules),

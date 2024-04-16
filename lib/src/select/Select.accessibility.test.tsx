@@ -5,7 +5,7 @@ import DxcSelect from "./Select";
 import DxcFlex from "../flex/Flex";
 
 // TODO: REMOVE
-import { disabledRules as rules } from "../../test/accessibility/rules/specific/select/disabledRules";
+import rules from "../../test/accessibility/rules/specific/select/disabledRules";
 
 const disabledRules = {
   rules: formatRules(rules),

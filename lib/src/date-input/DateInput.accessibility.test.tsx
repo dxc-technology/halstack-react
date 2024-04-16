@@ -4,7 +4,7 @@ import { axe, formatRules } from "../../test/accessibility/axe-helper";
 import DxcDateInput from "./DateInput";
 
 // TODO: REMOVE
-import { disabledRules as rules } from "../../test/accessibility/rules/specific/date-input/disabledRules";
+import rules from "../../test/accessibility/rules/specific/date-input/disabledRules";
 
 const disabledRules = {
   rules: formatRules(rules),

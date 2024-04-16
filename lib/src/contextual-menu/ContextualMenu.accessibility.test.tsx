@@ -5,7 +5,7 @@ import DxcContextualMenu from "./ContextualMenu";
 import DxcBadge from "../badge/Badge";
 
 // TODO: REMOVE
-import { disabledRules as rules } from "../../test/accessibility/rules/specific/contextual-menu/disabledRules";
+import rules from "../../test/accessibility/rules/specific/contextual-menu/disabledRules";
 
 const disabledRules = {
   rules: formatRules(rules),

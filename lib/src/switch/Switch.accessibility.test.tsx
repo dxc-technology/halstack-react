@@ -2,7 +2,7 @@ import React from "react";
 import { render } from "@testing-library/react";
 import { axe, formatRules } from "../../test/accessibility/axe-helper";
 import DxcSwitch from "./Switch";
-import { disabledRules as rules } from "../../test/accessibility/rules/specific/switch/disabledRules";
+import rules from "../../test/accessibility/rules/specific/switch/disabledRules";
 
 const disabledRules = {
   rules: formatRules(rules),
