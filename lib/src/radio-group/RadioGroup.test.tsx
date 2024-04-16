@@ -12,12 +12,12 @@ const options = [
   { label: "Option 06", value: "6" },
   { label: "Option 07", value: "7" },
   { label: "Option 08", value: "8" },
-  { label: "Option 09", value: "9" }
+  { label: "Option 09", value: "9" },
 ];
 const singleDisabledOptions = [
   { label: "Option 01", value: "1" },
   { label: "Option 02", value: "2" },
-  { label: "Option 03", value: "3", disabled: true }
+  { label: "Option 03", value: "3", disabled: true },
 ];
 
 describe("Radio Group component tests", () => {
@@ -83,19 +83,19 @@ describe("Radio Group component tests", () => {
       key: " ",
       code: "Space",
       keyCode: 13,
-      charCode: 13
+      charCode: 13,
     });
     fireEvent.keyDown(radioGroup, {
       key: "ArrowLeft",
       code: "ArrowLeft",
       keyCode: 37,
-      charCode: 37
+      charCode: 37,
     });
     fireEvent.keyDown(radioGroup, {
       key: "ArrowDown",
       code: "ArrowDown",
       keyCode: 40,
-      charCode: 40
+      charCode: 40,
     });
     radios.forEach((radio) => {
       expect(radio.tabIndex).toBe(-1);
@@ -116,13 +116,13 @@ describe("Radio Group component tests", () => {
       key: "ArrowDown",
       code: "ArrowDown",
       keyCode: 40,
-      charCode: 40
+      charCode: 40,
     });
     fireEvent.keyDown(radioGroup, {
       key: "ArrowDown",
       code: "ArrowDown",
       keyCode: 40,
-      charCode: 40
+      charCode: 40,
     });
     expect(radios[0].tabIndex).toBe(0);
     expect(radios[1].tabIndex).toBe(-1);
@@ -167,7 +167,7 @@ describe("Radio Group component tests", () => {
     expect(radioGroup.getAttribute("aria-required")).toBe("true");
     fireEvent.blur(radioGroup);
     expect(onBlur).toHaveBeenCalledWith({
-      error: "This field is required. Please, choose an option."
+      error: "This field is required. Please, choose an option.",
     });
     await userEvent.click(radioGroup);
     await userEvent.click(getAllByRole("radio")[0]);
@@ -187,7 +187,7 @@ describe("Radio Group component tests", () => {
     fireEvent.blur(radioGroup);
     expect(onBlur).toHaveBeenCalledWith({
       value: "",
-      error: "This field is required. Please, choose an option."
+      error: "This field is required. Please, choose an option.",
     });
     await userEvent.click(getAllByRole("radio")[0]);
     expect(onChange).toHaveBeenCalledWith("1");
@@ -348,7 +348,7 @@ describe("Radio Group component tests", () => {
       key: " ",
       code: "Space",
       keyCode: 32,
-      charCode: 32
+      charCode: 32,
     });
     expect(onChange).toHaveBeenCalledWith("1");
     expect(checkedRadio.getAttribute("aria-checked")).toBe("true");
@@ -383,7 +383,7 @@ describe("Radio Group component tests", () => {
       key: "ArrowRight",
       code: "ArrowRight",
       keyCode: 39,
-      charCode: 39
+      charCode: 39,
     });
     expect(onBlur).not.toHaveBeenCalled();
     expect(onChange).toHaveBeenCalledTimes(1);
@@ -414,7 +414,7 @@ describe("Radio Group component tests", () => {
       key: "ArrowDown",
       code: "ArrowDown",
       keyCode: 40,
-      charCode: 40
+      charCode: 40,
     });
     expect(onBlur).not.toHaveBeenCalled();
     expect(onChange).toHaveBeenCalledTimes(1);
@@ -426,7 +426,7 @@ describe("Radio Group component tests", () => {
       key: "ArrowRight",
       code: "ArrowRight",
       keyCode: 39,
-      charCode: 39
+      charCode: 39,
     });
     expect(onBlur).not.toHaveBeenCalled();
     expect(onChange).toHaveBeenCalledTimes(2);
@@ -457,7 +457,7 @@ describe("Radio Group component tests", () => {
       key: "ArrowUp",
       code: "ArrowUp",
       keyCode: 38,
-      charCode: 38
+      charCode: 38,
     });
     expect(onBlur).not.toHaveBeenCalled();
     expect(onChange).toHaveBeenCalledTimes(1);
@@ -469,7 +469,7 @@ describe("Radio Group component tests", () => {
       key: "ArrowLeft",
       code: "ArrowLeft",
       keyCode: 37,
-      charCode: 37
+      charCode: 37,
     });
     expect(onBlur).not.toHaveBeenCalled();
     expect(onChange).toHaveBeenCalledTimes(2);
@@ -498,7 +498,7 @@ describe("Radio Group component tests", () => {
       key: "ArrowDown",
       code: "ArrowDown",
       keyCode: 40,
-      charCode: 40
+      charCode: 40,
     });
     expect(onChange).toHaveBeenCalledWith("5");
     expect(radios[4].getAttribute("aria-checked")).toBe("true");
@@ -510,7 +510,7 @@ describe("Radio Group component tests", () => {
       key: "ArrowLeft",
       code: "ArrowLeft",
       keyCode: 37,
-      charCode: 37
+      charCode: 37,
     });
     expect(onChange).toHaveBeenCalledWith("8");
     expect(radios[7].getAttribute("aria-checked")).toBe("true");
@@ -544,7 +544,7 @@ describe("Radio Group component tests", () => {
       key: "ArrowUp",
       code: "ArrowUp",
       keyCode: 38,
-      charCode: 38
+      charCode: 38,
     });
     expect(onChange).not.toHaveBeenCalled();
     expect(radios[4].getAttribute("aria-checked")).toBe("false");

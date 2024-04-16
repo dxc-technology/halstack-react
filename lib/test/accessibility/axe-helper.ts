@@ -5,11 +5,11 @@ export const formatRules = (rules: string[]) =>
   rules.reduce(
     (rulesObj, rule) => ({
       ...rulesObj,
-      [rule]: { enabled: false }
+      [rule]: { enabled: false },
     }),
     {}
   );
 
 export const axe = configureAxe({
-  rules: formatRules(disabledRules)
+  rules: formatRules(disabledRules),
 });

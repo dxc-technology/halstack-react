@@ -53,7 +53,7 @@ const DxcHeader = ({
   responsiveContent,
   onClick,
   margin,
-  tabIndex = 0
+  tabIndex = 0,
 }: HeaderPropsType): JSX.Element => {
   const colorsTheme = useTheme();
   const translatedLabels = useTranslatedLabels();

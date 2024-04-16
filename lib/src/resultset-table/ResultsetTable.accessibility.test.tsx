@@ -8,7 +8,7 @@ import { disabledRules as rules } from "../../test/accessibility/rules/specific/
 import { ActionCellsPropsType } from "../table/types";
 
 const disabledRules = {
-  rules: formatRules(rules)
+  rules: formatRules(rules),
 };
 
 const deleteIcon = (
@@ -27,13 +27,13 @@ const deleteIcon = (
     bottom: 0,
     right: 0,
     width: 0,
-    height: 0
-  })
+    height: 0,
+  }),
 };
 global.ResizeObserver = jest.fn().mockImplementation(() => ({
   observe: jest.fn(),
   unobserve: jest.fn(),
-  disconnect: jest.fn()
+  disconnect: jest.fn(),
 }));
 
 const actions: ActionCellsPropsType["actions"] = [
@@ -43,221 +43,221 @@ const actions: ActionCellsPropsType["actions"] = [
     options: [
       {
         value: "1",
-        label: "Amazon with a very long text"
+        label: "Amazon with a very long text",
       },
       {
         value: "2",
-        label: "Ebay"
+        label: "Ebay",
       },
       {
         value: "3",
-        label: "Apple"
-      }
-    ]
+        label: "Apple",
+      },
+    ],
   },
   {
     icon: "https://www.freepnglogos.com/uploads/facebook-logo-design-1.png",
     title: "icon",
-    onClick: () => {}
+    onClick: () => {},
   },
   {
     icon: deleteIcon,
     title: "icon",
     onClick: () => {},
-    disabled: true
+    disabled: true,
   },
   {
     icon: deleteIcon,
     title: "icon",
-    onClick: () => {}
-  }
+    onClick: () => {},
+  },
 ];
 
 const columns = [
   {
     displayValue: "Id",
-    isSortable: false
+    isSortable: false,
   },
   {
     displayValue: "Name",
-    isSortable: true
+    isSortable: true,
   },
   {
     displayValue: "City",
-    isSortable: false
-  }
+    isSortable: false,
+  },
 ];
 const rows = [
   [
     {
       displayValue: "001",
-      sortValue: "001"
+      sortValue: "001",
     },
     {
       displayValue: "Peter",
-      sortValue: "Peter"
+      sortValue: "Peter",
     },
     {
       displayValue: "Oviedo",
-      sortValue: "Oviedo"
+      sortValue: "Oviedo",
     },
     {
-      displayValue: <DxcResultsetTable.ActionsCell actions={actions} />
-    }
+      displayValue: <DxcResultsetTable.ActionsCell actions={actions} />,
+    },
   ],
   [
     {
       displayValue: "002",
-      sortValue: "002"
+      sortValue: "002",
     },
     {
       displayValue: "Louis",
-      sortValue: "Louis"
+      sortValue: "Louis",
     },
     {
       displayValue: "Oviedo",
-      sortValue: "Oviedo"
+      sortValue: "Oviedo",
     },
     {
-      displayValue: <DxcResultsetTable.ActionsCell actions={actions} />
-    }
+      displayValue: <DxcResultsetTable.ActionsCell actions={actions} />,
+    },
   ],
   [
     {
       displayValue: "003",
-      sortValue: "003"
+      sortValue: "003",
     },
     {
       displayValue: "Lana",
-      sortValue: "Lana"
+      sortValue: "Lana",
     },
     {
       displayValue: "Albacete",
-      sortValue: "Albacete"
+      sortValue: "Albacete",
     },
     {
-      displayValue: <DxcResultsetTable.ActionsCell actions={actions} />
-    }
+      displayValue: <DxcResultsetTable.ActionsCell actions={actions} />,
+    },
   ],
   [
     {
       displayValue: "004",
-      sortValue: "004"
+      sortValue: "004",
     },
     {
       displayValue: "Rick",
-      sortValue: "Rick"
+      sortValue: "Rick",
     },
     {
       displayValue: "Albacete",
-      sortValue: "Albacete"
+      sortValue: "Albacete",
     },
     {
-      displayValue: <DxcResultsetTable.ActionsCell actions={actions} />
-    }
+      displayValue: <DxcResultsetTable.ActionsCell actions={actions} />,
+    },
   ],
   [
     {
       displayValue: "005",
-      sortValue: "005"
+      sortValue: "005",
     },
     {
       displayValue: "Mark",
-      sortValue: "Mark"
+      sortValue: "Mark",
     },
     {
       displayValue: "Madrid",
-      sortValue: "Madrid"
+      sortValue: "Madrid",
     },
     {
-      displayValue: <DxcResultsetTable.ActionsCell actions={actions} />
-    }
+      displayValue: <DxcResultsetTable.ActionsCell actions={actions} />,
+    },
   ],
   [
     {
       displayValue: "006",
-      sortValue: "006"
+      sortValue: "006",
     },
     {
       displayValue: "Cris",
-      sortValue: "Cris"
+      sortValue: "Cris",
     },
     {
       displayValue: "Barcelona",
-      sortValue: "Barcelona"
+      sortValue: "Barcelona",
     },
     {
-      displayValue: <DxcResultsetTable.ActionsCell actions={actions} />
-    }
+      displayValue: <DxcResultsetTable.ActionsCell actions={actions} />,
+    },
   ],
   [
     {
       displayValue: "007",
-      sortValue: "007"
+      sortValue: "007",
     },
     {
       displayValue: "Susan",
-      sortValue: "Susan"
+      sortValue: "Susan",
     },
     {
       displayValue: "Madrid",
-      sortValue: "Madrid"
+      sortValue: "Madrid",
     },
     {
-      displayValue: <DxcResultsetTable.ActionsCell actions={actions} />
-    }
+      displayValue: <DxcResultsetTable.ActionsCell actions={actions} />,
+    },
   ],
   [
     {
       displayValue: "008",
-      sortValue: "008"
+      sortValue: "008",
     },
     {
       displayValue: "Tina",
-      sortValue: "Tina"
+      sortValue: "Tina",
     },
     {
       displayValue: "Barcelona",
-      sortValue: "Barcelona"
+      sortValue: "Barcelona",
     },
     {
-      displayValue: <DxcResultsetTable.ActionsCell actions={actions} />
-    }
+      displayValue: <DxcResultsetTable.ActionsCell actions={actions} />,
+    },
   ],
   [
     {
       displayValue: "009",
-      sortValue: "009"
+      sortValue: "009",
     },
     {
       displayValue: "Kevin",
-      sortValue: "Kevin"
+      sortValue: "Kevin",
     },
     {
       displayValue: "Oviedo",
-      sortValue: "Oviedo"
+      sortValue: "Oviedo",
     },
     {
-      displayValue: <DxcResultsetTable.ActionsCell actions={actions} />
-    }
+      displayValue: <DxcResultsetTable.ActionsCell actions={actions} />,
+    },
   ],
   [
     {
       displayValue: "010",
-      sortValue: "010"
+      sortValue: "010",
     },
     {
       displayValue: "Cosmin",
-      sortValue: "Cosmin"
+      sortValue: "Cosmin",
     },
     {
       displayValue: "Barcelona",
-      sortValue: "Barcelona"
+      sortValue: "Barcelona",
     },
     {
-      displayValue: <DxcResultsetTable.ActionsCell actions={actions} />
-    }
-  ]
+      displayValue: <DxcResultsetTable.ActionsCell actions={actions} />,
+    },
+  ],
 ];
 
 describe("Resultset Table input component accessibility tests", () => {

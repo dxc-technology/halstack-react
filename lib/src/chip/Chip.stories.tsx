@@ -7,7 +7,7 @@ import { HalstackProvider } from "../HalstackContext";
 
 export default {
   title: "Chip",
-  component: DxcChip
+  component: DxcChip,
 };
 
 const iconSVG = (
@@ -43,8 +43,8 @@ const opinionatedTheme = {
   chip: {
     baseColor: "#e6e6e6",
     fontColor: "#000000",
-    iconColor: "#4d4d4d"
-  }
+    iconColor: "#4d4d4d",
+  },
 };
 
 export const Chromatic = () => (

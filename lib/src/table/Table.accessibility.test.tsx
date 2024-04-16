@@ -7,7 +7,7 @@ import DxcTable from "./Table";
 import { disabledRules as rules } from "../../test/accessibility/rules/specific/table/disabledRules";
 
 const disabledRules = {
-  rules: formatRules(rules)
+  rules: formatRules(rules),
 };
 
 (global as any).globalThis = global;
@@ -18,13 +18,13 @@ const disabledRules = {
     bottom: 0,
     right: 0,
     width: 0,
-    height: 0
-  })
+    height: 0,
+  }),
 };
 global.ResizeObserver = jest.fn().mockImplementation(() => ({
   observe: jest.fn(),
   unobserve: jest.fn(),
-  disconnect: jest.fn()
+  disconnect: jest.fn(),
 }));
 
 describe("Table component accessibility tests", () => {

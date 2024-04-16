@@ -19,36 +19,36 @@ export default {
       config: {
         rules: [
           ...disabledRules.map((ruleId) => ({ id: ruleId, enabled: false })),
-          ...(preview?.parameters?.a11y?.config?.rules || [])
-        ]
-      }
+          ...(preview?.parameters?.a11y?.config?.rules || []),
+        ],
+      },
     },
     viewport: {
-      viewports: INITIAL_VIEWPORTS
-    }
-  }
+      viewports: INITIAL_VIEWPORTS,
+    },
+  },
 };
 
 const options = [
   {
     value: "1",
-    label: "Amazon"
-  }
+    label: "Amazon",
+  },
 ];
 
 const options2 = [
   {
     value: "1",
-    label: "Home"
+    label: "Home",
   },
   {
     value: "2",
-    label: "Release notes"
+    label: "Release notes",
   },
   {
     value: "3",
-    label: "Sign out"
-  }
+    label: "Sign out",
+  },
 ];
 
 const opinionatedTheme = {
@@ -62,8 +62,8 @@ const opinionatedTheme = {
     logoResponsive:
       "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/2021_Facebook_icon.svg/2048px-2021_Facebook_icon.svg.png",
     contentColor: "#000000",
-    overlayColor: "#000000b3"
-  }
+    overlayColor: "#000000b3",
+  },
 };
 
 const responsiveContentFunctionWithHandler = (closeHandler) => (
@@ -198,17 +198,17 @@ const RespHeaderMenuOpinionated = () => (
 
 ResponsiveHeader.parameters = {
   viewport: {
-    defaultViewport: "iphonex"
+    defaultViewport: "iphonex",
   },
-  chromatic: { viewports: [375] }
+  chromatic: { viewports: [375] },
 };
 
 export const ResponsiveHeaderFocus = RespHeaderFocus.bind({});
 ResponsiveHeaderFocus.parameters = {
   viewport: {
-    defaultViewport: "iphonex"
+    defaultViewport: "iphonex",
   },
-  chromatic: { viewports: [375] }
+  chromatic: { viewports: [375] },
 };
 ResponsiveHeaderFocus.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
@@ -218,9 +218,9 @@ ResponsiveHeaderFocus.play = async ({ canvasElement }) => {
 export const ResponsiveHeaderHover = RespHeaderHover.bind({});
 ResponsiveHeaderHover.parameters = {
   viewport: {
-    defaultViewport: "iphonex"
+    defaultViewport: "iphonex",
   },
-  chromatic: { viewports: [375] }
+  chromatic: { viewports: [375] },
 };
 ResponsiveHeaderHover.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
@@ -230,9 +230,9 @@ ResponsiveHeaderHover.play = async ({ canvasElement }) => {
 export const ResponsiveHeaderMenuMobile = RespHeaderMenuMobile.bind({});
 ResponsiveHeaderMenuMobile.parameters = {
   viewport: {
-    defaultViewport: "iphonex"
+    defaultViewport: "iphonex",
   },
-  chromatic: { viewports: [375] }
+  chromatic: { viewports: [375] },
 };
 ResponsiveHeaderMenuMobile.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
@@ -243,9 +243,9 @@ ResponsiveHeaderMenuMobile.play = async ({ canvasElement }) => {
 export const ResponsiveHeaderMenuTablet = RespHeaderMenuTablet.bind({});
 ResponsiveHeaderMenuTablet.parameters = {
   viewport: {
-    defaultViewport: "pixelxl"
+    defaultViewport: "pixelxl",
   },
-  chromatic: { viewports: [720] }
+  chromatic: { viewports: [720] },
 };
 ResponsiveHeaderMenuTablet.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
@@ -256,9 +256,9 @@ ResponsiveHeaderMenuTablet.play = async ({ canvasElement }) => {
 export const ResponsiveHeaderMenuOpinionated = RespHeaderMenuOpinionated.bind({});
 ResponsiveHeaderMenuOpinionated.parameters = {
   viewport: {
-    defaultViewport: "pixelxl"
+    defaultViewport: "pixelxl",
   },
-  chromatic: { viewports: [720] }
+  chromatic: { viewports: [720] },
 };
 ResponsiveHeaderMenuOpinionated.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);

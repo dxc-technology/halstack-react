@@ -54,7 +54,7 @@ const DxcNavTabs = ({ iconPosition = "top", tabIndex = 0, children }: NavTabsPro
     () => ({
       iconPosition,
       tabIndex,
-      focusedLabel: innerFocusIndex === null ? undefined : getLabelFromTab(children[innerFocusIndex])
+      focusedLabel: innerFocusIndex === null ? undefined : getLabelFromTab(children[innerFocusIndex]),
     }),
     [iconPosition, tabIndex, innerFocusIndex]
   );

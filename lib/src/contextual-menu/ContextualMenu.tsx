@@ -8,7 +8,7 @@ import ContextualMenuPropsType, {
   Item,
   ItemWithId,
   Section,
-  SectionWithId
+  SectionWithId,
 } from "./types";
 import DxcDivider from "../divider/Divider";
 import DxcInset from "../inset/Inset";

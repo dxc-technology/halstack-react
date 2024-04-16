@@ -16,34 +16,34 @@ export default {
       config: {
         rules: [
           ...disabledRules.map((ruleId) => ({ id: ruleId, enabled: false })),
-          ...(preview?.parameters?.a11y?.config?.rules || [])
-        ]
-      }
-    }
-  }
+          ...(preview?.parameters?.a11y?.config?.rules || []),
+        ],
+      },
+    },
+  },
 };
 
 const items = [
   {
     label: "Home",
-    href: "/"
+    href: "/",
   },
   {
     label: "User Menu",
-    href: ""
+    href: "",
   },
   {
     label: "Preferences",
-    href: ""
+    href: "",
   },
   {
     label: "Customization",
-    href: ""
+    href: "",
   },
   {
     label: "Dark Mode",
-    href: ""
-  }
+    href: "",
+  },
 ];
 
 const Breadcrumbs = () => (
@@ -54,20 +54,20 @@ const Breadcrumbs = () => (
         items={[
           {
             label: "Home",
-            href: "/"
+            href: "/",
           },
           {
             label: "User Menu",
-            href: ""
+            href: "",
           },
           {
             label: "Preferences",
-            href: ""
+            href: "",
           },
           {
             label: "Dark Mode",
-            href: ""
-          }
+            href: "",
+          },
         ]}
       />
     </ExampleContainer>
@@ -104,20 +104,20 @@ const Breadcrumbs = () => (
           items={[
             {
               label: "Root",
-              href: "/"
+              href: "/",
             },
             {
               label: "Main folder",
-              href: ""
+              href: "",
             },
             {
               label: "User",
-              href: ""
+              href: "",
             },
             {
               label: "Very long label for the link",
-              href: ""
-            }
+              href: "",
+            },
           ]}
           itemsBeforeCollapse={3}
         />
@@ -130,20 +130,20 @@ const Breadcrumbs = () => (
           items={[
             {
               label: "Root",
-              href: "/"
+              href: "/",
             },
             {
               label: "Main folder",
-              href: ""
+              href: "",
             },
             {
               label: "User",
-              href: ""
+              href: "",
             },
             {
               label: "Very long label for the link",
-              href: ""
-            }
+              href: "",
+            },
           ]}
           itemsBeforeCollapse={3}
           showRoot={false}
@@ -159,8 +159,8 @@ const Breadcrumbs = () => (
             dropdown: {
               baseColor: "#fabada",
               fontColor: "#999",
-              optionFontColor: "#4d4d4d"
-            }
+              optionFontColor: "#4d4d4d",
+            },
           }}
         >
           <DxcBreadcrumbs items={items} itemsBeforeCollapse={3} />
@@ -175,8 +175,8 @@ const Breadcrumbs = () => (
               buttonHeight: "100px",
               buttonBorderThickness: "2px",
               buttonBorderStyle: "solid",
-              buttonBorderColor: "#000"
-            }
+              buttonBorderColor: "#000",
+            },
           }}
         >
           <DxcBreadcrumbs items={items} itemsBeforeCollapse={3} />

@@ -16,7 +16,7 @@ const sizes = {
   small: "240px",
   medium: "360px",
   large: "480px",
-  fillParent: "100%"
+  fillParent: "100%",
 };
 
 const AutosuggestWrapper = ({ condition, wrapper, children }: AutosuggestWrapperProps): JSX.Element => (
@@ -40,7 +40,7 @@ const makeCancelable = (promise) => {
     promise: wrappedPromise,
     cancel() {
       hasCanceled_ = true;
-    }
+    },
   };
 };
 
@@ -105,7 +105,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
       autocomplete = "off",
       margin,
       size = "medium",
-      tabIndex = 0
+      tabIndex = 0,
     },
     ref
   ): JSX.Element => {
@@ -200,17 +200,17 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
       if (isRequired(formattedValue, optional)) {
         onChange?.({
           value: formattedValue,
-          error: translatedLabels.formFields.requiredValueErrorMessage
+          error: translatedLabels.formFields.requiredValueErrorMessage,
         });
       } else if (isLengthIncorrect(formattedValue, minLength, maxLength)) {
         onChange?.({
           value: formattedValue,
-          error: translatedLabels.formFields.lengthErrorMessage(minLength, maxLength)
+          error: translatedLabels.formFields.lengthErrorMessage(minLength, maxLength),
         });
       } else if (patternMismatch(pattern, formattedValue)) {
         onChange?.({
           value: formattedValue,
-          error: translatedLabels.formFields.formatRequestedErrorMessage
+          error: translatedLabels.formFields.formatRequestedErrorMessage,
         });
       } else if (
         numberInputContext?.typeNumber === "number" &&
@@ -218,7 +218,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
       ) {
         onChange?.({
           value: formattedValue,
-          error: getNumberErrorMessage(Number(newValue))
+          error: getNumberErrorMessage(Number(newValue)),
         });
       } else {
         onChange?.({ value: formattedValue });
@@ -298,17 +298,17 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
       if (isRequired(event.target.value, optional)) {
         onBlur?.({
           value: event.target.value,
-          error: translatedLabels.formFields.requiredValueErrorMessage
+          error: translatedLabels.formFields.requiredValueErrorMessage,
         });
       } else if (isLengthIncorrect(event.target.value, minLength, maxLength)) {
         onBlur?.({
           value: event.target.value,
-          error: translatedLabels.formFields.lengthErrorMessage(minLength, maxLength)
+          error: translatedLabels.formFields.lengthErrorMessage(minLength, maxLength),
         });
       } else if (patternMismatch(pattern, event.target.value)) {
         onBlur?.({
           value: event.target.value,
-          error: translatedLabels.formFields.formatRequestedErrorMessage
+          error: translatedLabels.formFields.formatRequestedErrorMessage,
         });
       } else if (
         numberInputContext?.typeNumber === "number" &&
@@ -316,7 +316,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
       ) {
         onBlur?.({
           value: event.target.value,
-          error: getNumberErrorMessage(Number(event.target.value))
+          error: getNumberErrorMessage(Number(event.target.value)),
         });
       } else {
         onBlur?.({ value: event.target.value });

@@ -6,7 +6,7 @@ import { HalstackProvider } from "../HalstackContext";
 
 export default {
   title: "Link",
-  component: DxcLink
+  component: DxcLink,
 };
 
 const icon = (
@@ -22,8 +22,8 @@ const icon = (
 
 const opinionatedTheme = {
   link: {
-    baseColor: "#5f249f"
-  }
+    baseColor: "#5f249f",
+  },
 };
 
 export const Chromatic = () => (

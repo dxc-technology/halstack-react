@@ -53,6 +53,6 @@ export default {
     borderColor: componentTokens.dropdown.borderColor,
     scrollBarThumbColor: componentTokens.dropdown.scrollBarThumbColor,
     scrollBarTrackColor: componentTokens.dropdown.scrollBarTrackColor,
-    focusColor: componentTokens.table.focusActionBorderColor
-  }
+    focusColor: componentTokens.table.focusActionBorderColor,
+  },
 };

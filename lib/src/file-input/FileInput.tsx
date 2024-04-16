@@ -52,7 +52,7 @@ const DxcFileInput = React.forwardRef<RefType, FileInputPropsType>(
       callbackFile,
       value,
       margin,
-      tabIndex = 0
+      tabIndex = 0,
     },
     ref
   ): JSX.Element => {
@@ -76,7 +76,7 @@ const DxcFileInput = React.forwardRef<RefType, FileInputPropsType>(
             const fileInfo = {
               file,
               error: checkFileSize(file),
-              preview: previews[index]
+              preview: previews[index],
             };
             return fileInfo;
           })

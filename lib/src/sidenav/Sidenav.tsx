@@ -7,7 +7,7 @@ import SidenavPropsType, {
   SidenavGroupPropsType,
   SidenavLinkPropsType,
   SidenavSectionPropsType,
-  SidenavTitlePropsType
+  SidenavTitlePropsType,
 } from "./types";
 import DxcFlex from "../flex/Flex";
 import DxcBleed from "../bleed/Bleed";

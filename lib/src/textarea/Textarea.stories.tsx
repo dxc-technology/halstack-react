@@ -6,14 +6,14 @@ import { HalstackProvider } from "../HalstackContext";
 
 export default {
   title: "Textarea",
-  component: DxcTextarea
+  component: DxcTextarea,
 };
 
 const opinionatedTheme = {
   textarea: {
     fontColor: "#000000",
-    hoverBorderColor: "#a46ede"
-  }
+    hoverBorderColor: "#a46ede",
+  },
 };
 
 export const Chromatic = () => (

@@ -6,7 +6,7 @@ import {
   OpinionatedTheme,
   TranslatedLabels,
   componentTokens,
-  defaultTranslatedComponentLabels
+  defaultTranslatedComponentLabels,
 } from "./common/variables";
 
 /**

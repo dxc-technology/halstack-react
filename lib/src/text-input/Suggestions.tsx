@@ -14,7 +14,7 @@ const Suggestions = ({
   searchHasErrors,
   isSearching,
   suggestionOnClick,
-  styles
+  styles,
 }: SuggestionsProps): JSX.Element => {
   const translatedLabels = useTranslatedLabels();
   const listboxRef = useRef(null);
@@ -23,7 +23,7 @@ const Suggestions = ({
     const visualFocusedOptionEl = listboxRef?.current?.querySelectorAll("[role='option']")[visualFocusIndex];
     visualFocusedOptionEl?.scrollIntoView?.({
       block: "nearest",
-      inline: "start"
+      inline: "start",
     });
   }, [visualFocusIndex]);
 

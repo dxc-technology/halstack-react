@@ -7,7 +7,7 @@ import { HalstackProvider } from "../HalstackContext";
 
 export default {
   title: "Wizard",
-  component: DxcWizard
+  component: DxcWizard,
 };
 
 const favoriteSVG = (
@@ -25,135 +25,135 @@ const largeIcon = (
 
 const stepWithLabel = [
   {
-    label: "First step"
+    label: "First step",
   },
   {
-    label: "Second step"
+    label: "Second step",
   },
   {
-    label: "Third step"
+    label: "Third step",
   },
   {
-    label: "Forth step"
-  }
+    label: "Forth step",
+  },
 ];
 
 const stepWithLabelDescription = [
   {
     label: "First step",
-    description: "Description"
+    description: "Description",
   },
   {
     label: "Second step",
-    description: "Description"
+    description: "Description",
   },
   {
     label: "Third step",
     description: "Description",
-    valid: true
+    valid: true,
   },
   {
     label: "Forth step",
     description: "Description",
-    valid: false
-  }
+    valid: false,
+  },
 ];
 
 const stepWithLongDescription = [
   {
     label: "First step",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. "
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ",
   },
   {
     label: "Second step",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. "
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ",
   },
   {
     label: "Third step",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. "
-  }
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ",
+  },
 ];
 
 const stepDisabled = [
   {
     label: "First step",
     description: "Description",
-    disabled: true
+    disabled: true,
   },
   {
     label: "Second step",
     description: "Description",
     icon: favoriteSVG,
-    disabled: true
+    disabled: true,
   },
   {
     label: "Third step",
     description: "Description",
     disabled: true,
-    valid: true
+    valid: true,
   },
   {
     label: "Forth step",
     description: "Description",
     valid: false,
-    disabled: true
-  }
+    disabled: true,
+  },
 ];
 
 const stepIcons = [
   {
     label: "First step",
-    icon: favoriteSVG
+    icon: favoriteSVG,
   },
   {
     label: "Second step",
-    icon: favoriteSVG
+    icon: favoriteSVG,
   },
   {
     label: "Third step",
-    icon: favoriteSVG
-  }
+    icon: favoriteSVG,
+  },
 ];
 
 const stepLargeIcons = [
   {
     label: "First step",
-    icon: largeIcon
+    icon: largeIcon,
   },
   {
     label: "Second step",
-    icon: largeIcon
+    icon: largeIcon,
   },
   {
     label: "Third step",
-    icon: largeIcon
-  }
+    icon: largeIcon,
+  },
 ];
 
 const stepMaterialSymbols = [
   {
     label: "First step",
-    icon: "filled_home"
+    icon: "filled_home",
   },
   {
     label: "Second step",
-    icon: "filled_favorite"
+    icon: "filled_favorite",
   },
   {
     label: "Third step",
-    icon: "filled_star"
-  }
+    icon: "filled_star",
+  },
 ];
 
 const opinionatedTheme = {
   wizard: {
     baseColor: "#5f249f",
     fontColor: "#000000",
-    selectedStepFontColor: "#ffffff"
-  }
+    selectedStepFontColor: "#ffffff",
+  },
 };
 
 export const Chromatic = () => (

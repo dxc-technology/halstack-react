@@ -42,7 +42,7 @@ export const componentTokens = {
     accordionGroupSeparatorBorderColor: CoreTokens.color_grey_200_a,
     accordionGroupSeparatorBorderThickness: "1px",
     accordionGroupSeparatorBorderRadius: "0px",
-    accordionGroupSeparatorBorderStyle: CoreTokens.border_solid
+    accordionGroupSeparatorBorderStyle: CoreTokens.border_solid,
   },
   alert: {
     titleFontFamily: CoreTokens.type_sans,
@@ -85,7 +85,7 @@ export const componentTokens = {
     hoverActionBackgroundColor: CoreTokens.color_grey_100_a,
     activeActionBackgroundColor: CoreTokens.color_grey_200_a,
     focusActionBorderColor: CoreTokens.color_blue_600,
-    overlayColor: CoreTokens.color_grey_800_a
+    overlayColor: CoreTokens.color_grey_800_a,
   },
   box: {
     backgroundColor: CoreTokens.color_white,
@@ -107,7 +107,7 @@ export const componentTokens = {
     twoShadowDepthShadowOffsetY: "3px",
     twoShadowDepthShadowBlur: "10px",
     twoShadowDepthShadowSpread: "0px",
-    twoShadowDepthShadowColor: CoreTokens.color_grey_300_a
+    twoShadowDepthShadowColor: CoreTokens.color_grey_300_a,
   },
   bulletedList: {
     fontColor: CoreTokens.color_black,
@@ -115,7 +115,7 @@ export const componentTokens = {
     bulletIconWidth: "1.5rem",
     bulletHeight: "5px",
     bulletWidth: "5px",
-    bulletMarginRight: CoreTokens.spacing_8
+    bulletMarginRight: CoreTokens.spacing_8,
   },
   button: {
     labelFontLineHeight: CoreTokens.type_leading_normal,
@@ -163,11 +163,11 @@ export const componentTokens = {
     textBorderRadius: CoreTokens.border_radius_medium,
     textFontFamily: CoreTokens.type_sans,
     textFontSize: CoreTokens.type_scale_03,
-    textFontWeight: CoreTokens.type_regular
+    textFontWeight: CoreTokens.type_regular,
   },
   card: {
     height: "220px",
-    width: "400px"
+    width: "400px",
   },
   checkbox: {
     backgroundColorChecked: CoreTokens.color_blue_800,
@@ -189,7 +189,7 @@ export const componentTokens = {
     fontColor: CoreTokens.color_black,
     disabledFontColor: CoreTokens.color_grey_500,
     focusColor: CoreTokens.color_blue_600,
-    checkLabelSpacing: CoreTokens.spacing_8
+    checkLabelSpacing: CoreTokens.spacing_8,
   },
   chip: {
     backgroundColor: CoreTokens.color_grey_200,
@@ -217,7 +217,7 @@ export const componentTokens = {
     focusColor: CoreTokens.color_blue_600,
     focusBorderStyle: CoreTokens.border_solid,
     focusBorderThickness: CoreTokens.border_width_2,
-    focusBorderRadius: CoreTokens.border_radius_medium
+    focusBorderRadius: CoreTokens.border_radius_medium,
   },
   dateInput: {
     pickerBackgroundColor: CoreTokens.color_white,
@@ -248,7 +248,7 @@ export const componentTokens = {
     pickerFontSize: CoreTokens.type_scale_02,
     pickerFontWeight: CoreTokens.type_regular,
     pickerInteractedYearFontSize: CoreTokens.type_scale_05,
-    pickerHeaderFontSize: CoreTokens.type_scale_02
+    pickerHeaderFontSize: CoreTokens.type_scale_02,
   },
   dialog: {
     overlayColor: CoreTokens.color_grey_800_a,
@@ -265,7 +265,7 @@ export const componentTokens = {
     boxShadowOffsetX: "0px",
     boxShadowOffsetY: "1px",
     boxShadowBlur: "3px",
-    boxShadowColor: CoreTokens.color_grey_300_a
+    boxShadowColor: CoreTokens.color_grey_300_a,
   },
   dropdown: {
     buttonBackgroundColor: CoreTokens.color_white,
@@ -315,7 +315,7 @@ export const componentTokens = {
     borderColor: CoreTokens.color_transparent,
     scrollBarThumbColor: CoreTokens.color_grey_700,
     scrollBarTrackColor: CoreTokens.color_grey_300,
-    focusColor: CoreTokens.color_blue_600
+    focusColor: CoreTokens.color_blue_600,
   },
   fileInput: {
     dropBorderColor: CoreTokens.color_black,
@@ -367,7 +367,7 @@ export const componentTokens = {
     focusDeleteFileItemBorderColor: CoreTokens.color_blue_600,
     filePreviewBackgroundColor: CoreTokens.color_grey_100,
     filePreviewIconColor: CoreTokens.color_grey_600,
-    errorFilePreviewIconColor: CoreTokens.color_red_700
+    errorFilePreviewIconColor: CoreTokens.color_red_700,
   },
   footer: {
     height: "124px",
@@ -392,7 +392,7 @@ export const componentTokens = {
     logoWidth: "auto",
     socialLinksSize: "24px",
     socialLinksGutter: CoreTokens.spacing_16,
-    socialLinksColor: CoreTokens.color_white
+    socialLinksColor: CoreTokens.color_white,
   },
   header: {
     backgroundColor: CoreTokens.color_white,
@@ -424,7 +424,7 @@ export const componentTokens = {
     underlinedColor: CoreTokens.color_black,
     underlinedThickness: "2px",
     underlinedStyle: CoreTokens.border_solid,
-    contentColor: CoreTokens.color_black
+    contentColor: CoreTokens.color_black,
   },
   heading: {
     level1FontColor: CoreTokens.inherit,
@@ -461,7 +461,7 @@ export const componentTokens = {
     level5FontStyle: CoreTokens.type_normal,
     level5FontWeight: CoreTokens.type_semibold,
     level5LineHeight: CoreTokens.type_leading_normal,
-    level5LetterSpacing: CoreTokens.type_spacing_wide_01
+    level5LetterSpacing: CoreTokens.type_spacing_wide_01,
   },
   image: {
     captionFontColor: CoreTokens.color_grey_900,
@@ -469,7 +469,7 @@ export const componentTokens = {
     captionFontSize: CoreTokens.type_scale_02,
     captionFontStyle: CoreTokens.type_normal,
     captionFontWeight: CoreTokens.type_regular,
-    captionLineHeight: CoreTokens.type_leading_normal
+    captionLineHeight: CoreTokens.type_leading_normal,
   },
   link: {
     fontColor: CoreTokens.color_blue_800,
@@ -489,7 +489,7 @@ export const componentTokens = {
     visitedUnderlineColor: CoreTokens.color_purple_700,
     activeFontColor: CoreTokens.color_black,
     activeUnderlineColor: CoreTokens.color_black,
-    focusColor: CoreTokens.color_blue_600
+    focusColor: CoreTokens.color_blue_600,
   },
   navTabs: {
     selectedBackgroundColor: CoreTokens.color_white,
@@ -508,7 +508,7 @@ export const componentTokens = {
     fontWeight: CoreTokens.type_regular,
     selectedIconColor: CoreTokens.color_grey_700,
     unselectedIconColor: CoreTokens.color_grey_700,
-    disabledIconColor: CoreTokens.color_grey_500
+    disabledIconColor: CoreTokens.color_grey_500,
   },
   paginator: {
     backgroundColor: CoreTokens.color_grey_100,
@@ -527,13 +527,13 @@ export const componentTokens = {
     pageSelectorMarginRight: "30px",
     pageSelectorMarginLeft: CoreTokens.spacing_0,
     totalItemsContainerMarginRight: CoreTokens.spacing_40,
-    totalItemsContainerMarginLeft: CoreTokens.spacing_0
+    totalItemsContainerMarginLeft: CoreTokens.spacing_0,
   },
   paragraph: {
     display: "block",
     fontColor: CoreTokens.color_black,
     fontSize: CoreTokens.type_scale_03,
-    fontWeight: CoreTokens.type_regular
+    fontWeight: CoreTokens.type_regular,
   },
   progressBar: {
     trackLineColor: CoreTokens.color_purple_700,
@@ -558,7 +558,7 @@ export const componentTokens = {
     thickness: "9px",
     borderRadius: "5px",
     overlayColor: CoreTokens.color_grey_800_a,
-    overlayFontColor: CoreTokens.color_white
+    overlayFontColor: CoreTokens.color_white,
   },
   quickNav: {
     fontColor: CoreTokens.color_grey_700,
@@ -575,7 +575,7 @@ export const componentTokens = {
     fontFamily: CoreTokens.type_sans,
     fontSize: CoreTokens.type_scale_02,
     fontStyle: CoreTokens.type_normal,
-    fontWeight: CoreTokens.type_regular
+    fontWeight: CoreTokens.type_regular,
   },
   radioGroup: {
     fontFamily: CoreTokens.type_sans,
@@ -613,7 +613,7 @@ export const componentTokens = {
     groupLabelMargin: CoreTokens.spacing_8,
     radioInputLabelMargin: CoreTokens.spacing_8,
     groupVerticalGutter: CoreTokens.spacing_4,
-    groupHorizontalGutter: CoreTokens.spacing_32
+    groupHorizontalGutter: CoreTokens.spacing_32,
   },
   select: {
     fontFamily: CoreTokens.type_sans,
@@ -680,7 +680,7 @@ export const componentTokens = {
     hoverSelectionIndicatorActionBackgroundColor: CoreTokens.color_grey_100,
     hoverSelectionIndicatorActionIconColor: CoreTokens.color_black,
     activeSelectionIndicatorActionBackgroundColor: CoreTokens.color_grey_300,
-    activeSelectionIndicatorActionIconColor: CoreTokens.color_black
+    activeSelectionIndicatorActionIconColor: CoreTokens.color_black,
   },
   sidenav: {
     backgroundColor: CoreTokens.color_grey_100,
@@ -723,7 +723,7 @@ export const componentTokens = {
     linkMarginLeft: CoreTokens.spacing_16,
     linkFocusColor: CoreTokens.color_blue_600,
     scrollBarThumbColor: CoreTokens.color_grey_200_a,
-    scrollBarTrackColor: CoreTokens.color_transparent
+    scrollBarTrackColor: CoreTokens.color_transparent,
   },
   slider: {
     fontFamily: CoreTokens.type_sans,
@@ -779,7 +779,7 @@ export const componentTokens = {
     focusColor: CoreTokens.color_blue_600,
     floorLabelMarginRight: CoreTokens.type_scale_03,
     ceilLabelMarginLeft: CoreTokens.type_scale_03,
-    inputMarginLeft: CoreTokens.type_scale_06
+    inputMarginLeft: CoreTokens.type_scale_06,
   },
   spinner: {
     trackCircleColor: CoreTokens.color_purple_700,
@@ -810,7 +810,7 @@ export const componentTokens = {
     overlayProgressValueFontStyle: CoreTokens.type_normal,
     overlayProgressValueFontWeight: CoreTokens.type_bold,
     overlayProgressValueFontColor: CoreTokens.color_white,
-    overlayProgressValueTextAlign: "center"
+    overlayProgressValueTextAlign: "center",
   },
   switch: {
     checkedTrackBackgroundColor: CoreTokens.color_purple_700,
@@ -834,7 +834,7 @@ export const componentTokens = {
     thumbShift: "1.25rem",
     trackHeight: "12px",
     trackWidth: "36px",
-    spaceBetweenLabelSwitch: CoreTokens.spacing_8
+    spaceBetweenLabelSwitch: CoreTokens.spacing_8,
   },
   table: {
     rowSeparatorThickness: "1px",
@@ -891,7 +891,7 @@ export const componentTokens = {
     disabledActionBackgroundColor: CoreTokens.color_transparent,
     hoverActionBackgroundColor: CoreTokens.color_grey_100,
     focusActionBorderColor: CoreTokens.color_blue_600,
-    activeActionBackgroundColor: CoreTokens.color_grey_300
+    activeActionBackgroundColor: CoreTokens.color_grey_300,
   },
   tabs: {
     fontFamily: CoreTokens.type_sans,
@@ -916,7 +916,7 @@ export const componentTokens = {
     dividerColor: CoreTokens.color_grey_400,
     dividerThickness: "1px",
     focusOutline: CoreTokens.color_purple_700,
-    scrollButtonsWidth: "48px"
+    scrollButtonsWidth: "48px",
   },
   tag: {
     fontFamily: CoreTokens.type_sans,
@@ -933,7 +933,7 @@ export const componentTokens = {
     iconSectionWidth: "40px",
     iconHeight: "24px",
     iconWidth: "auto",
-    focusColor: CoreTokens.color_blue_600
+    focusColor: CoreTokens.color_blue_600,
   },
   textarea: {
     fontFamily: CoreTokens.type_sans,
@@ -968,7 +968,7 @@ export const componentTokens = {
     valueFontSize: CoreTokens.type_scale_03,
     valueFontStyle: CoreTokens.type_normal,
     valueFontWeight: CoreTokens.type_regular,
-    disabledValueFontColor: CoreTokens.color_grey_500
+    disabledValueFontColor: CoreTokens.color_grey_500,
   },
   textInput: {
     fontFamily: CoreTokens.type_sans,
@@ -1032,7 +1032,7 @@ export const componentTokens = {
     errorListDialogBorderColor: CoreTokens.color_red_700,
     hoverListOptionBackgroundColor: CoreTokens.color_grey_100,
     activeListOptionBackgroundColor: CoreTokens.color_grey_200,
-    focusListOptionBorderColor: CoreTokens.color_blue_600
+    focusListOptionBorderColor: CoreTokens.color_blue_600,
   },
   toggleGroup: {
     containerBackgroundColor: CoreTokens.color_grey_50,
@@ -1080,7 +1080,7 @@ export const componentTokens = {
     containerBorderThickness: CoreTokens.border_width_1,
     containerBorderStyle: CoreTokens.border_solid,
     containerBorderRadius: CoreTokens.border_radius_large,
-    optionFocusBorderThickness: CoreTokens.border_width_2
+    optionFocusBorderThickness: CoreTokens.border_width_2,
   },
   wizard: {
     visitedStepFontColor: CoreTokens.color_black,
@@ -1141,8 +1141,8 @@ export const componentTokens = {
     separatorBorderThickness: "1px",
     separatorBorderStyle: CoreTokens.border_solid,
     separatorColor: CoreTokens.color_grey_700,
-    focusColor: CoreTokens.color_blue_600
-  }
+    focusColor: CoreTokens.color_blue_600,
+  },
 };
 
 export type AdvancedTheme = typeof componentTokens;
@@ -1301,7 +1301,7 @@ export const spaces = {
   medium: CoreTokens.spacing_16,
   large: CoreTokens.spacing_24,
   xlarge: CoreTokens.spacing_32,
-  xxlarge: CoreTokens.spacing_48
+  xxlarge: CoreTokens.spacing_48,
 };
 
 export const responsiveSizes = {
@@ -1309,7 +1309,7 @@ export const responsiveSizes = {
   small: "30",
   medium: "45",
   large: "66",
-  xlarge: "90"
+  xlarge: "90",
 };
 
 export const defaultTranslatedComponentLabels = {
@@ -1319,22 +1319,22 @@ export const defaultTranslatedComponentLabels = {
     requiredValueErrorMessage: "This field is required. Please, enter a value.",
     formatRequestedErrorMessage: "Please match the format requested.",
     lengthErrorMessage: (minLength?: number, maxLength?: number) => `Min length ${minLength}, max length ${maxLength}.`,
-    logoAlternativeText: "Logo"
+    logoAlternativeText: "Logo",
   },
   applicationLayout: {
-    visibilityToggleTitle: "Toggle visibility sidenav"
+    visibilityToggleTitle: "Toggle visibility sidenav",
   },
   alert: {
     infoTitleText: "information",
     successTitleText: "success",
     warningTitleText: "warning",
-    errorTitleText: "error"
+    errorTitleText: "error",
   },
   dateInput: {
-    invalidDateErrorMessage: "Invalid date."
+    invalidDateErrorMessage: "Invalid date.",
   },
   dialog: {
-    closeIconAriaLabel: "Close dialog"
+    closeIconAriaLabel: "Close dialog",
   },
   fileInput: {
     fileSizeGreaterThanErrorMessage: "File size must be greater than min size.",
@@ -1344,51 +1344,51 @@ export const defaultTranslatedComponentLabels = {
     dropAreaButtonLabelDefault: "Select",
     multipleDropAreaLabelDefault: "or drop files",
     singleDropAreaLabelDefault: "or drop a file",
-    deleteFileActionTitle: "Remove file"
+    deleteFileActionTitle: "Remove file",
   },
   footer: {
-    copyrightText: (year: number) => `© DXC Technology ${year}. All rights reserved.`
+    copyrightText: (year: number) => `© DXC Technology ${year}. All rights reserved.`,
   },
   header: {
     closeIcon: "Close menu",
-    hamburguerTitle: "Menu"
+    hamburguerTitle: "Menu",
   },
   numberInput: {
     valueGreaterThanOrEqualToErrorMessage: (value: number) => `Value must be greater than or equal to ${value}.`,
     valueLessThanOrEqualToErrorMessage: (value: number) => `Value must be less than or equal to ${value}.`,
     decrementValueTitle: "Decrement value",
-    incrementValueTitle: "Increment value"
+    incrementValueTitle: "Increment value",
   },
   paginator: {
     itemsPerPageText: "Items per page: ",
     minToMaxOfText: (minNumberOfItems: number, maxNumberOfItems: number, totalItems: number) =>
       `${minNumberOfItems} to ${maxNumberOfItems} of ${totalItems}`,
     goToPageText: "Go to page:",
-    pageOfText: (pageNumber: number, totalPagesNumber: number) => `Page: ${pageNumber} of ${totalPagesNumber}`
+    pageOfText: (pageNumber: number, totalPagesNumber: number) => `Page: ${pageNumber} of ${totalPagesNumber}`,
   },
   passwordInput: {
     inputShowPasswordTitle: "Show password",
-    inputHidePasswordTitle: "Hide password"
+    inputHidePasswordTitle: "Hide password",
   },
   quickNav: {
-    contentTitle: "Contents"
+    contentTitle: "Contents",
   },
   radioGroup: {
-    optionalItemLabelDefault: "N/A"
+    optionalItemLabelDefault: "N/A",
   },
   select: {
     noMatchesErrorMessage: "No matches found",
     actionClearSelectionTitle: "Clear selection",
-    actionClearSearchTitle: "Clear search"
+    actionClearSearchTitle: "Clear search",
   },
   tabs: {
     scrollLeft: "Scroll left",
-    scrollRight: "Scroll right"
+    scrollRight: "Scroll right",
   },
   textInput: {
     clearFieldActionTitle: "Clear field",
     searchingMessage: "Searching...",
-    fetchingDataErrorMessage: "Error fetching data"
+    fetchingDataErrorMessage: "Error fetching data",
   },
   calendar: {
     daysShort: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
@@ -1404,11 +1404,11 @@ export const defaultTranslatedComponentLabels = {
       "September",
       "October",
       "November",
-      "December"
+      "December",
     ],
     previousMonthTitle: "Previous month",
-    nextMonthTitle: "Next month"
-  }
+    nextMonthTitle: "Next month",
+  },
 };
 
 export type TranslatedLabels = typeof defaultTranslatedComponentLabels;

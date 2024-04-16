@@ -40,7 +40,7 @@ const icons = {
         fill="#d0011b"
       />
     </svg>
-  )
+  ),
 };
 
 const DxcWizard = ({
@@ -50,7 +50,7 @@ const DxcWizard = ({
   onStepClick,
   steps,
   margin,
-  tabIndex = 0
+  tabIndex = 0,
 }: WizardPropsType): JSX.Element => {
   const [innerCurrent, setInnerCurrentStep] = useState(currentStep ?? defaultCurrentStep ?? 0);
   const renderedCurrent = currentStep == null ? innerCurrent : currentStep;

@@ -7,7 +7,7 @@ import DxcLink from "../link/Link";
 import { disabledRules as rules } from "../../test/accessibility/rules/specific/header/disabledRules";
 
 const disabledRules = {
-  rules: formatRules(rules)
+  rules: formatRules(rules),
 };
 
 const iconSVG = (
@@ -23,23 +23,23 @@ const options = [
   {
     value: "1",
     label: "Amazon",
-    icon: iconUrl
+    icon: iconUrl,
   },
   {
     value: "2",
     label: "Ebay",
-    icon: iconUrl
+    icon: iconUrl,
   },
   {
     value: "3",
     label: "Wallapop",
-    icon: iconSVG
+    icon: iconSVG,
   },
   {
     value: "4",
     label: "Aliexpress",
-    icon: iconSVG
-  }
+    icon: iconSVG,
+  },
 ];
 
 describe("Header component accessibility tests", () => {
@@ -47,8 +47,8 @@ describe("Header component accessibility tests", () => {
     Object.defineProperty(window, "matchMedia", {
       writable: true,
       value: jest.fn().mockImplementation(() => ({
-        matches: false
-      }))
+        matches: false,
+      })),
     });
   });
   it("Should not have basic accessibility issues", async () => {

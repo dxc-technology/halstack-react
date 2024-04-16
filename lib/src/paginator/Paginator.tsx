@@ -14,7 +14,7 @@ const DxcPaginator = ({
   showGoToPage,
   onPageChange,
   itemsPerPageFunction,
-  tabIndex = 0
+  tabIndex = 0,
 }: PaginatorPropsType): JSX.Element => {
   const totalPages = itemsPerPage > 0 && Math.ceil(totalItems / itemsPerPage);
   const currentPageInternal = currentPage === -1 ? totalPages : currentPage;
@@ -39,7 +39,7 @@ const DxcPaginator = ({
                 <DxcSelect
                   options={itemsPerPageOptions.map((num) => ({
                     label: num.toString(),
-                    value: num.toString()
+                    value: num.toString(),
                   }))}
                   onChange={(newValue) => {
                     itemsPerPageFunction(Number(newValue.value));
@@ -85,7 +85,7 @@ const DxcPaginator = ({
                 <DxcSelect
                   options={Array.from(Array(totalPages), (e, num) => ({
                     label: (num + 1).toString(),
-                    value: (num + 1).toString()
+                    value: (num + 1).toString(),
                   }))}
                   onChange={(newValue) => {
                     onPageChange(Number(newValue.value));

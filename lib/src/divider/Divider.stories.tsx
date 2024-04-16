@@ -6,7 +6,7 @@ import ExampleContainer from "../../.storybook/components/ExampleContainer";
 
 export default {
   title: "Divider",
-  component: DxcDivider
+  component: DxcDivider,
 };
 
 export const Chromatic = () => (

@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 
 const not = {
   negTabIndex: ':not([tabindex^="-"])',
-  disabled: ":not(:disabled)"
+  disabled: ":not(:disabled)",
 };
 const focusableQuery = [
   `a[href]${not.negTabIndex}`,
@@ -16,7 +16,7 @@ const focusableQuery = [
   `audio[controls]${not.negTabIndex}`,
   `video[controls]${not.negTabIndex}`,
   `[contenteditable]${not.negTabIndex}`,
-  `[tabindex]${not.negTabIndex}${not.disabled}`
+  `[tabindex]${not.negTabIndex}${not.disabled}`,
 ].join(",");
 
 const getFocusableElements = (container: HTMLElement): HTMLElement[] =>
@@ -72,7 +72,7 @@ const useFocusableElements = (ref: React.MutableRefObject<HTMLDivElement>): HTML
       observer.observe(ref.current, {
         childList: true,
         subtree: true,
-        attributes: true
+        attributes: true,
       });
       return () => {
         observer.disconnect();

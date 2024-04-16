@@ -4,53 +4,53 @@ import DxcTabs from "./Tabs";
 
 const sampleTabs = [
   {
-    label: "Tab-1"
+    label: "Tab-1",
   },
   {
-    label: "Tab-2"
+    label: "Tab-2",
   },
   {
-    label: "Tab-3"
-  }
+    label: "Tab-3",
+  },
 ];
 const sampleTabsWithBadge = [
   {
     label: "Tab-1",
-    notificationNumber: 10
+    notificationNumber: 10,
   },
   {
     label: "Tab-2",
-    notificationNumber: 20
+    notificationNumber: 20,
   },
   {
     label: "Tab-3",
-    notificationNumber: 101
-  }
+    notificationNumber: 101,
+  },
 ];
 const sampleTabsMiddleDisabled = [
   {
-    label: "Tab-1"
+    label: "Tab-1",
   },
   {
     label: "Tab-2",
-    isDisabled: true
+    isDisabled: true,
   },
   {
-    label: "Tab-3"
-  }
+    label: "Tab-3",
+  },
 ];
 const sampleTabsLastTabNonDisabled = [
   {
     label: "Tab-1",
-    isDisabled: true
+    isDisabled: true,
   },
   {
     label: "Tab-2",
-    isDisabled: true
+    isDisabled: true,
   },
   {
-    label: "Tab-3"
-  }
+    label: "Tab-3",
+  },
 ];
 
 describe("Tabs component tests", () => {
@@ -86,11 +86,11 @@ describe("Tabs component tests", () => {
         tabs={[
           {
             label: "Tab-1",
-            isDisabled: true
+            isDisabled: true,
           },
           {
-            label: "Tab-2"
-          }
+            label: "Tab-2",
+          },
         ]}
       />
     );

@@ -31,7 +31,7 @@ const DxcAccordionGroup = ({
   disabled = false,
   onActiveChange,
   margin,
-  children
+  children,
 }: AccordionGroupPropsType): JSX.Element => {
   const colorsTheme = useTheme();
   const [innerIndexActive, setInnerIndexActive] = useState(defaultIndexActive ?? -1);
@@ -51,7 +51,7 @@ const DxcAccordionGroup = ({
     () => ({
       activeIndex: indexActive ?? innerIndexActive,
       handlerActiveChange,
-      disabled
+      disabled,
     }),
     [indexActive, innerIndexActive, handlerActiveChange, disabled]
   );

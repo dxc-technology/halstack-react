@@ -7,7 +7,7 @@ import DxcDateInput from "./DateInput";
 import { disabledRules as rules } from "../../test/accessibility/rules/specific/date-input/disabledRules";
 
 const disabledRules = {
-  rules: formatRules(rules)
+  rules: formatRules(rules),
 };
 
 // Mocking DOMRect for Radix Primitive Popover
@@ -21,13 +21,13 @@ const disabledRules = {
     width: 0,
     height: 0,
     x: 0,
-    y: 0
-  })
+    y: 0,
+  }),
 };
 global.ResizeObserver = jest.fn().mockImplementation(() => ({
   observe: jest.fn(),
   unobserve: jest.fn(),
-  disconnect: jest.fn()
+  disconnect: jest.fn(),
 }));
 
 describe("DateInput component accessibility tests", () => {

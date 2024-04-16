@@ -12,13 +12,13 @@ import { ActionCellsPropsType } from "./types";
     bottom: 0,
     right: 0,
     width: 0,
-    height: 0
-  })
+    height: 0,
+  }),
 };
 global.ResizeObserver = jest.fn().mockImplementation(() => ({
   observe: jest.fn(),
   unobserve: jest.fn(),
-  disconnect: jest.fn()
+  disconnect: jest.fn(),
 }));
 
 const icon = (
@@ -73,23 +73,23 @@ describe("Table component tests", () => {
         options: [
           {
             value: "1",
-            label: "Amazon"
+            label: "Amazon",
           },
           {
             value: "2",
-            label: "Ebay"
+            label: "Ebay",
           },
           {
             value: "3",
-            label: "Aliexpress"
-          }
-        ]
+            label: "Aliexpress",
+          },
+        ],
       },
       {
         icon,
         title: "icon2",
-        onClick
-      }
+        onClick,
+      },
     ];
     const { getAllByRole, getByRole, getByText } = render(
       <DxcTable>

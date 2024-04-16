@@ -12,13 +12,13 @@ import DxcPasswordInput from "./PasswordInput";
     bottom: 0,
     right: 0,
     width: 0,
-    height: 0
-  })
+    height: 0,
+  }),
 };
 global.ResizeObserver = jest.fn().mockImplementation(() => ({
   observe: jest.fn(),
   unobserve: jest.fn(),
-  disconnect: jest.fn()
+  disconnect: jest.fn(),
 }));
 
 describe("Password input component accessibility tests", () => {

@@ -4,10 +4,10 @@ const configAccessibility: Config = {
   moduleNameMapper: {
     "\\.(css|less|scss|sass)$": "identity-obj-proxy",
     "\\.(svg)$": "<rootDir>/test/mocks/svgMock.ts",
-    "\\.(png)$": "<rootDir>/test/mocks/pngMock.ts"
+    "\\.(png)$": "<rootDir>/test/mocks/pngMock.ts",
   },
   testMatch: ["**/?(*.)+(accessibility.)(spec|test).[jt]s?(x)"],
-  setupFilesAfterEnv: ["<rootDir>/setupJestAxe.ts"]
+  setupFilesAfterEnv: ["<rootDir>/setupJestAxe.ts"],
 };
 
 export default configAccessibility;

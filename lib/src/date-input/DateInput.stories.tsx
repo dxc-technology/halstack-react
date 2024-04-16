@@ -23,20 +23,20 @@ export default {
         rules: [
           ...disabledRules.map((ruleId) => ({
             id: ruleId,
-            reviewOnFail: true
+            reviewOnFail: true,
           })),
-          ...(preview?.parameters?.a11y?.config?.rules || [])
-        ]
-      }
-    }
-  }
+          ...(preview?.parameters?.a11y?.config?.rules || []),
+        ],
+      },
+    },
+  },
 };
 
 const opinionatedTheme = {
   dateInput: {
     baseColor: "#5f249f",
-    selectedFontColor: "#ffffff"
-  }
+    selectedFontColor: "#ffffff",
+  },
 };
 
 const DateInputChromatic = () => (
@@ -201,7 +201,7 @@ const DatePickerButtonStates = () => {
             borderRadius: "4px",
             overflow: "auto",
             zIndex: "1300",
-            position: "relative"
+            position: "relative",
           }}
         >
           <DxcDateInput label="From" defaultValue="01-12-1995" />

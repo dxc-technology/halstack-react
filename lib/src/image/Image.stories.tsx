@@ -8,7 +8,7 @@ import DxcParagraph from "../paragraph/Paragraph";
 
 export default {
   title: "Image",
-  component: DxcImage
+  component: DxcImage,
 };
 
 export const Chromatic = () => (
@@ -98,7 +98,7 @@ export const Chromatic = () => (
           display: "flex",
           width: "fit-content",
           border: "1px solid #000",
-          padding: "0.5rem"
+          padding: "0.5rem",
         }}
       >
         <DxcImage

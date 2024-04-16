@@ -58,7 +58,7 @@ const layoutIcons = {
         />
       </g>
     </svg>
-  )
+  ),
 };
 
 export default layoutIcons;

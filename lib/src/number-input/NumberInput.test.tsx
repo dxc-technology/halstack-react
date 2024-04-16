@@ -12,13 +12,13 @@ import DxcNumberInput from "./NumberInput";
     bottom: 0,
     right: 0,
     width: 0,
-    height: 0
-  })
+    height: 0,
+  }),
 };
 global.ResizeObserver = jest.fn().mockImplementation(() => ({
   observe: jest.fn(),
   unobserve: jest.fn(),
-  disconnect: jest.fn()
+  disconnect: jest.fn(),
 }));
 
 describe("Number input component tests", () => {
@@ -85,12 +85,12 @@ describe("Number input component tests", () => {
     expect(onBlur).toHaveBeenCalled();
     expect(onBlur).toHaveBeenCalledWith({
       value: "",
-      error: "This field is required. Please, enter a value."
+      error: "This field is required. Please, enter a value.",
     });
     expect(onChange).toHaveBeenCalled();
     expect(onChange).toHaveBeenCalledWith({
       value: "",
-      error: "This field is required. Please, enter a value."
+      error: "This field is required. Please, enter a value.",
     });
   });
 
@@ -167,13 +167,13 @@ describe("Number input component tests", () => {
     expect(onChange).toHaveBeenCalledTimes(2);
     expect(onChange).toHaveBeenCalledWith({
       value: "12",
-      error: "Value must be less than or equal to 10."
+      error: "Value must be less than or equal to 10.",
     });
     fireEvent.blur(number);
     expect(onBlur).toHaveBeenCalled();
     expect(onBlur).toHaveBeenCalledWith({
       value: "12",
-      error: "Value must be less than or equal to 10."
+      error: "Value must be less than or equal to 10.",
     });
   });
 
@@ -269,7 +269,7 @@ describe("Number input component tests", () => {
     fireEvent.blur(number);
     expect(onBlur).toHaveBeenCalledWith({
       value: "1",
-      error: "Value must be greater than or equal to 5."
+      error: "Value must be greater than or equal to 5.",
     });
     const increment = getAllByRole("button")[1];
     await userEvent.click(increment);

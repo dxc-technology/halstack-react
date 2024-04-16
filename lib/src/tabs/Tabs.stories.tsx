@@ -10,9 +10,9 @@ export default {
   component: DxcTabs,
   parameters: {
     viewport: {
-      viewports: INITIAL_VIEWPORTS
-    }
-  }
+      viewports: INITIAL_VIEWPORTS,
+    },
+  },
 };
 
 const iconSVG = (
@@ -23,61 +23,61 @@ const iconSVG = (
 
 const tabs = [
   {
-    label: "Tab 1"
+    label: "Tab 1",
   },
   {
-    label: "Tab 2"
+    label: "Tab 2",
   },
   {
     label: "Tab 3",
-    isDisabled: true
+    isDisabled: true,
   },
   {
-    label: "Tab 4"
+    label: "Tab 4",
   },
   {
-    label: "Tab 5"
+    label: "Tab 5",
   },
   {
-    label: "Tab 6"
+    label: "Tab 6",
   },
   {
-    label: "Tab 7"
-  }
+    label: "Tab 7",
+  },
 ];
 
 const disabledTabs = [
   {
     label: "Tab 1",
-    isDisabled: true
+    isDisabled: true,
   },
   {
     label: "Tab 2",
-    isDisabled: true
+    isDisabled: true,
   },
   {
     label: "Tab 3",
-    isDisabled: true
-  }
+    isDisabled: true,
+  },
 ];
 
 const firstDisabledTabs = [
   {
     label: "Tab 1",
-    isDisabled: true
+    isDisabled: true,
   },
   {
     label: "Tab 2",
-    isDisabled: true
+    isDisabled: true,
   },
   {
-    label: "Tab 3"
-  }
+    label: "Tab 3",
+  },
 ];
 
 const tabsNotification = tabs.map((tab, index) => ({
   ...tab,
-  notificationNumber: (index === 0 && true) || (index === 1 && 5) || (index === 2 && 100) || (index === 3 && 200)
+  notificationNumber: (index === 0 && true) || (index === 1 && 5) || (index === 2 && 100) || (index === 3 && 200),
 }));
 
 const tabsIcon = tabs.map((tab, index) =>
@@ -86,13 +86,13 @@ const tabsIcon = tabs.map((tab, index) =>
 
 const tabsNotificationIcon = tabsNotification.map((tab) => ({
   ...tab,
-  icon: iconSVG
+  icon: iconSVG,
 }));
 
 const opinionatedTheme = {
   tabs: {
-    baseColor: "#5f249f"
-  }
+    baseColor: "#5f249f",
+  },
 };
 
 export const Chromatic = () => (
@@ -227,7 +227,7 @@ export const ScrollableTabs = () => (
 
 ScrollableTabs.parameters = {
   viewport: {
-    defaultViewport: "iphonex"
+    defaultViewport: "iphonex",
   },
-  chromatic: { viewports: [375], delay: 5000 }
+  chromatic: { viewports: [375], delay: 5000 },
 };

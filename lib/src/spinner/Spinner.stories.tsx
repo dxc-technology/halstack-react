@@ -6,7 +6,7 @@ import { HalstackProvider } from "../HalstackContext";
 
 export default {
   title: "Spinner",
-  component: DxcSpinner
+  component: DxcSpinner,
 };
 
 const opinionatedTheme = {
@@ -15,8 +15,8 @@ const opinionatedTheme = {
     baseColor: "#ffffff",
     fontColor: "#000000",
     overlayColor: "#a46ede",
-    overlayFontColor: "#ffffff"
-  }
+    overlayFontColor: "#ffffff",
+  },
 };
 
 export const Chromatic = () => (

@@ -52,7 +52,7 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
       autocomplete,
       margin,
       size,
-      tabIndex
+      tabIndex,
     },
     ref
   ): JSX.Element => {
@@ -98,11 +98,11 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
       if (newDate?.set("day", newDate.get("date")).toJSON()) {
         onChange?.({
           value: newValue,
-          date: newDate.toDate()
+          date: newDate.toDate(),
         });
       } else {
         onChange?.({
-          value: newValue
+          value: newValue,
         });
       }
     };
@@ -122,7 +122,7 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
         setDayjsDate(newDate);
         onChange?.({
           ...callbackParams,
-          date: newDate.toDate()
+          date: newDate.toDate(),
         });
       } else {
         onChange?.(callbackParams);
@@ -141,7 +141,7 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
       if (date.isValid()) {
         onBlur?.({
           ...callbackParams,
-          date: date.toDate()
+          date: date.toDate(),
         });
       } else {
         onBlur?.(callbackParams);
@@ -186,7 +186,7 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
                 action={{
                   onClick: openCalendar,
                   icon: "filled_calendar_today",
-                  title: "Select date"
+                  title: "Select date",
                 }}
                 clearable={clearable}
                 disabled={disabled}

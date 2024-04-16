@@ -7,7 +7,7 @@ import { HalstackProvider } from "../HalstackContext";
 
 export default {
   title: "Nav Tabs",
-  component: DxcNavTabs
+  component: DxcNavTabs,
 };
 
 const iconSVG = (
@@ -24,8 +24,8 @@ const pinIcon = "Location_On";
 const opinionatedTheme = {
   navTabs: {
     baseColor: "#666666",
-    accentColor: "#5f249f"
-  }
+    accentColor: "#5f249f",
+  },
 };
 
 export const Chromatic = () => (

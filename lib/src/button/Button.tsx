@@ -17,7 +17,7 @@ const DxcButton = ({
   onClick = () => {},
   margin,
   size = "fitContent",
-  tabIndex = 0
+  tabIndex = 0,
 }: ButtonPropsType): JSX.Element => {
   const colorsTheme = useTheme();
 
@@ -51,7 +51,7 @@ const sizes = {
   medium: "120px",
   large: "240px",
   fillParent: "100%",
-  fitContent: "fit-content"
+  fitContent: "fit-content",
 };
 
 const calculateWidth = (margin: ButtonPropsType["margin"], size: ButtonPropsType["size"]) =>

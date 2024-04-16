@@ -15,7 +15,7 @@ const DxcAlert = ({
   children,
   margin,
   size = "fitContent",
-  tabIndex
+  tabIndex,
 }: AlertPropsType): JSX.Element => {
   const colorsTheme = useTheme();
   const translatedLabels = useTranslatedLabels();
@@ -71,7 +71,7 @@ const sizes = {
   medium: "480px",
   large: "820px",
   fillParent: "100%",
-  fitContent: "fit-content"
+  fitContent: "fit-content",
 };
 
 const calculateWidth = (margin, size) =>

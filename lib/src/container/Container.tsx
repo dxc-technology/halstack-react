@@ -14,7 +14,7 @@ const spaces = {
   medium: "16px",
   large: "24px",
   xlarge: "32px",
-  xxlarge: "48px"
+  xxlarge: "48px",
 };
 
 const DxcContainer = ({ display, width, height, overflow, ...props }: ContainerPropsType) => (

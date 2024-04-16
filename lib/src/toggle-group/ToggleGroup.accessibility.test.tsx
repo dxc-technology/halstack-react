@@ -32,18 +32,18 @@ const options = [
   {
     value: 1,
     icon: wifiSVG,
-    title: "WiFi connection"
+    title: "WiFi connection",
   },
   {
     value: 2,
     icon: ethernetSVG,
-    title: "Ethernet connection"
+    title: "Ethernet connection",
   },
   {
     value: 3,
     icon: gMobileSVG,
-    title: "3G Mobile data connection"
-  }
+    title: "3G Mobile data connection",
+  },
 ];
 
 describe("Toggle group component accessibility tests", () => {

@@ -4,7 +4,7 @@
  */
 const disabledRules = [
   // TODO: Work on nested interaction with the DxcCheckbox component to prevent these issues
-  "nested-interactive"
+  "nested-interactive",
 ];
 
 export default disabledRules;

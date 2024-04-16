@@ -34,7 +34,7 @@ const filterOptionsBySearchValue = (
           label: optionGroup.label,
           options: optionGroup.options.filter((option) =>
             option.label.toUpperCase().includes(searchValue.toUpperCase())
-          )
+          ),
         };
         return group;
       });
@@ -122,7 +122,7 @@ const getSelectedOption = (
 
   return {
     selectedOption,
-    singleSelectionIndex
+    singleSelectionIndex,
   };
 };
 
@@ -177,7 +177,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
       error,
       margin,
       size = "medium",
-      tabIndex = 0
+      tabIndex = 0,
     },
     ref
   ): JSX.Element => {
@@ -234,7 +234,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
         } else {
           newValue = [
             ...((value && Array.isArray(value) && value) ?? (innerValue && Array.isArray(innerValue) && innerValue)),
-            newOption.value
+            newOption.value,
           ];
         }
       } else {
@@ -247,7 +247,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
       if (notOptionalCheck(newValue, multiple, optional)) {
         onChange?.({
           value: newValue as string & string[],
-          error: translatedLabels.formFields.requiredValueErrorMessage
+          error: translatedLabels.formFields.requiredValueErrorMessage,
         });
       } else {
         onChange?.({ value: newValue as string & string[] });
@@ -279,7 +279,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
         if (notOptionalCheck(currentValue, multiple, optional)) {
           onBlur?.({
             value: currentValue as string & string[],
-            error: translatedLabels.formFields.requiredValueErrorMessage
+            error: translatedLabels.formFields.requiredValueErrorMessage,
           });
         } else {
           onBlur?.({ value: currentValue as string & string[] });
@@ -395,7 +395,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
       if (!optional) {
         onChange?.({
           value: [] as string & string[],
-          error: translatedLabels.formFields.requiredValueErrorMessage
+          error: translatedLabels.formFields.requiredValueErrorMessage,
         });
       } else {
         onChange?.({ value: [] as string & string[] });
@@ -595,7 +595,7 @@ const sizes = {
   small: "240px",
   medium: "360px",
   large: "480px",
-  fillParent: "100%"
+  fillParent: "100%",
 };
 
 const calculateWidth = (margin: SelectPropsType["margin"], size: SelectPropsType["size"]) =>

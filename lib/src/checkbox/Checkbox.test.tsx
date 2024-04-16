@@ -62,7 +62,7 @@ describe("Checkbox component tests", () => {
       key: " ",
       code: "Space",
       keyCode: 32,
-      charCode: 32
+      charCode: 32,
     });
     expect(onChange).not.toHaveBeenCalled();
   });
@@ -133,7 +133,7 @@ describe("Checkbox component tests", () => {
       key: " ",
       code: "Space",
       keyCode: 32,
-      charCode: 32
+      charCode: 32,
     });
     expect(onChange).toHaveBeenCalledWith(true);
   });

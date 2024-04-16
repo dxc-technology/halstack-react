@@ -8,37 +8,37 @@ const links = [
     label: "Overview",
     links: [
       {
-        label: "Introduction"
-      }
-    ]
+        label: "Introduction",
+      },
+    ],
   },
   {
     label: "Components",
     links: [
       {
-        label: "Introduction"
+        label: "Introduction",
       },
       {
-        label: "Accordion"
-      }
-    ]
+        label: "Accordion",
+      },
+    ],
   },
   {
     label: "Principles very very very very very very very very long",
     links: [
       { label: "Color very very very very very very very very long" },
       { label: "Spacingveryveryveryveryveryveryveryverylong" },
-      { label: "Typography" }
-    ]
+      { label: "Typography" },
+    ],
   },
   {
     label: "Componentsveryveryveryveryveryveryveryverylong",
     links: [
       {
-        label: "Accordion"
-      }
-    ]
-  }
+        label: "Accordion",
+      },
+    ],
+  },
 ];
 
 describe("Quick Nav component accessibility tests", () => {

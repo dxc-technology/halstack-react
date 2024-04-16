@@ -10,15 +10,15 @@ const preview: Preview = {
     controls: {
       matchers: {
         color: /(background|color)$/i,
-        date: /Date$/i
-      }
+        date: /Date$/i,
+      },
     },
     a11y: {
       config: {
-        rules: disabledRules.map((ruleId) => ({ id: ruleId, enabled: false }))
+        rules: disabledRules.map((ruleId) => ({ id: ruleId, enabled: false })),
       },
-      options: {}
-    }
+      options: {},
+    },
   },
   decorators: [
     (Story) => (
@@ -27,8 +27,8 @@ const preview: Preview = {
           <Story />
         </Container>
       </HalstackProvider>
-    )
-  ]
+    ),
+  ],
 };
 
 const Container = styled.div`

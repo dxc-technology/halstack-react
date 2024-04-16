@@ -13,7 +13,7 @@ const DxcRadio = ({
   disabled,
   focused,
   readOnly,
-  tabIndex
+  tabIndex,
 }: RadioProps): JSX.Element => {
   const radioLabelId = `radio-${useId()}`;
   const ref = useRef<HTMLSpanElement>(null);

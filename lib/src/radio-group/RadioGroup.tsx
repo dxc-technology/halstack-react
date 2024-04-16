@@ -27,7 +27,7 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
       onChange,
       onBlur,
       error,
-      tabIndex = 0
+      tabIndex = 0,
     },
     ref
   ): JSX.Element => {
@@ -49,8 +49,8 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
               {
                 label: optionalItemLabel ?? translatedLabels.radioGroup.optionalItemLabelDefault,
                 value: "",
-                disabled
-              }
+                disabled,
+              },
             ]
           : options,
       [optional, options, optionalItemLabel, translatedLabels]
@@ -78,7 +78,7 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
         if (!optional && !currentValue) {
           onBlur?.({
             value: currentValue,
-            error: translatedLabels.formFields.requiredSelectionErrorMessage
+            error: translatedLabels.formFields.requiredSelectionErrorMessage,
           });
         } else {
           onBlur?.({ value: currentValue });

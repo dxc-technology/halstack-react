@@ -6,14 +6,14 @@ const social = [
   {
     href: "https://www.test.com/social",
     logo: "https://developer.apple.com/design/human-interface-guidelines/foundations/app-icons/images/icon-and-image-large-icon-settings_2x.png",
-    title: "test"
-  }
+    title: "test",
+  },
 ];
 const bottom = [
   {
     href: "https://www.test.com/bottom",
-    text: "bottom-link-text"
-  }
+    text: "bottom-link-text",
+  },
 ];
 
 describe("Footer component tests", () => {
@@ -43,7 +43,7 @@ describe("Footer component tests", () => {
     // We need to force the offsetWidth value
     Object.defineProperty(HTMLElement.prototype, "offsetWidth", {
       configurable: true,
-      value: 1024
+      value: 1024,
     });
     const { getByText } = render(
       <DxcFooter>
@@ -57,7 +57,7 @@ describe("Footer component tests", () => {
     // 425 is mobile width
     Object.defineProperty(HTMLElement.prototype, "offsetWidth", {
       configurable: true,
-      value: 425
+      value: 425,
     });
 
     const { queryByText } = render(
@@ -72,7 +72,7 @@ describe("Footer component tests", () => {
   test("Footer is fully rendered", () => {
     Object.defineProperty(HTMLElement.prototype, "offsetWidth", {
       configurable: true,
-      value: 1024
+      value: 1024,
     });
 
     const { getAllByRole, getByText } = render(

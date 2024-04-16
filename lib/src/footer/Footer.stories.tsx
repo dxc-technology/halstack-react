@@ -30,7 +30,7 @@ const social = [
         </g>
       </svg>
     ),
-    title: "Linkedin"
+    title: "Linkedin",
   },
   {
     href: "https://x.com/dxctechnology",
@@ -43,7 +43,7 @@ const social = [
         />
       </svg>
     ),
-    title: "X"
+    title: "X",
   },
   {
     href: "https://www.facebook.com/DXCTechnology/",
@@ -69,41 +69,41 @@ const social = [
         </g>
       </svg>
     ),
-    title: "Facebook"
-  }
+    title: "Facebook",
+  },
 ];
 
 const socialMaterialIcons = [
   {
     href: "https://www.linkedin.com/company/dxctechnology",
     logo: "person",
-    title: "Linkedin"
+    title: "Linkedin",
   },
   {
     href: "https://x.com/dxctechnology",
     logo: "group",
-    title: "X"
+    title: "X",
   },
   {
     href: "https://www.facebook.com/DXCTechnology/",
     logo: "thumb_up",
-    title: "Facebook"
-  }
+    title: "Facebook",
+  },
 ];
 
 const bottom = [
   {
     href: "https://www.linkedin.com/company/dxctechnology",
-    text: "Linkedin"
+    text: "Linkedin",
   },
   {
     href: "https://x.com/dxctechnology",
-    text: "X"
+    text: "X",
   },
   {
     href: "https://www.facebook.com/DXCTechnology/",
-    text: "Facebook"
-  }
+    text: "Facebook",
+  },
 ];
 
 export default {
@@ -114,11 +114,11 @@ export default {
       config: {
         rules: [
           ...disabledRules.map((ruleId) => ({ id: ruleId, enabled: false })),
-          ...(preview?.parameters?.a11y?.config?.rules || [])
-        ]
-      }
-    }
-  }
+          ...(preview?.parameters?.a11y?.config?.rules || []),
+        ],
+      },
+    },
+  },
 };
 
 const opinionatedTheme = {
@@ -126,13 +126,13 @@ const opinionatedTheme = {
     baseColor: "#000000",
     fontColor: "#ffffff",
     accentColor: "#0095ff",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/2021_Facebook_icon.svg/2048px-2021_Facebook_icon.svg.png"
-  }
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/2021_Facebook_icon.svg/2048px-2021_Facebook_icon.svg.png",
+  },
 };
 
 const info = [
   { label: "Example Label", text: "Example" },
-  { label: "Example Label", text: "Example" }
+  { label: "Example Label", text: "Example" },
 ];
 
 export const Chromatic = () => (

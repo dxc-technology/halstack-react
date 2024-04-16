@@ -17,7 +17,7 @@ const DxcTag = ({
   newWindow = false,
   margin,
   size = "fitContent",
-  tabIndex = 0
+  tabIndex = 0,
 }: TagPropsType): JSX.Element => {
   const colorsTheme = useTheme();
   const [isHovered, changeIsHovered] = useState(false);
@@ -70,7 +70,7 @@ const sizes = {
   medium: "240px",
   large: "480px",
   fillParent: "100%",
-  fitContent: "fit-content"
+  fitContent: "fit-content",
 };
 
 const calculateWidth = (margin, size) =>

@@ -11,32 +11,32 @@ import DxcBreadcrumbs from "./Breadcrumbs";
     bottom: 0,
     right: 0,
     width: 0,
-    height: 0
-  })
+    height: 0,
+  }),
 };
 global.ResizeObserver = jest.fn().mockImplementation(() => ({
   observe: jest.fn(),
   unobserve: jest.fn(),
-  disconnect: jest.fn()
+  disconnect: jest.fn(),
 }));
 
 const items = [
   {
     label: "Home",
-    href: "/"
+    href: "/",
   },
   {
     label: "User Menu",
-    href: ""
+    href: "",
   },
   {
     label: "Preferences",
-    href: ""
+    href: "",
   },
   {
     label: "Dark Mode",
-    href: ""
-  }
+    href: "",
+  },
 ];
 
 describe("Breadcrumbs component tests", () => {
@@ -81,7 +81,7 @@ describe("Breadcrumbs component tests", () => {
         onItemClick={onItemClick}
         items={[
           { label: "Home", href: "/home" },
-          { label: "Preferences", href: "/preferences" }
+          { label: "Preferences", href: "/preferences" },
         ]}
       />
     );
@@ -96,7 +96,7 @@ describe("Breadcrumbs component tests", () => {
         items={[
           { label: "Home", href: "/" },
           { label: "Preferences", href: "/" },
-          { label: "Dark Mode", href: "/" }
+          { label: "Dark Mode", href: "/" },
         ]}
         itemsBeforeCollapse={2}
       />

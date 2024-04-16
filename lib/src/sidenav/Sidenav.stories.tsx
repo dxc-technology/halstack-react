@@ -9,7 +9,7 @@ import { HalstackProvider } from "../HalstackContext";
 
 export default {
   title: "Sidenav",
-  component: DxcSidenav
+  component: DxcSidenav,
 };
 
 const iconSVG = (
@@ -39,8 +39,8 @@ const TitleComponent = () => <DxcSidenav.Title>Dxc technology</DxcSidenav.Title>
 
 const opinionatedTheme = {
   sidenav: {
-    baseColor: "#f2f2f2"
-  }
+    baseColor: "#f2f2f2",
+  },
 };
 
 export const Chromatic = () => (
@@ -220,7 +220,7 @@ const ActiveGroupSidenav = () => (
               { label: "v1.0.0", value: "1" },
               { label: "v2.0.0", value: "2" },
               { label: "v3.0.0", value: "3" },
-              { label: "v4.0.0", value: "4" }
+              { label: "v4.0.0", value: "4" },
             ]}
             size="fillParent"
           />

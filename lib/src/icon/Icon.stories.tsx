@@ -6,7 +6,7 @@ import { DxcTypography } from "../main";
 
 export default {
   title: "Icon",
-  component: DxcIcon
+  component: DxcIcon,
 };
 
 export const Chromatic = () => (

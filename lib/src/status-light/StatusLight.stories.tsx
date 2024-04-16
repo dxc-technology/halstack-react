@@ -5,7 +5,7 @@ import DxcStatusLight from "./StatusLight";
 
 export default {
   title: "Status Light",
-  component: DxcStatusLight
+  component: DxcStatusLight,
 };
 
 export const Chromatic = () => (

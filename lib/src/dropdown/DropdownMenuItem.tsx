@@ -8,7 +8,7 @@ const DropdownMenuItem = ({
   visuallyFocused,
   iconPosition,
   onClick,
-  option
+  option,
 }: DropdownMenuItemProps): JSX.Element => (
   <DropdownMenuItemContainer
     visuallyFocused={visuallyFocused}

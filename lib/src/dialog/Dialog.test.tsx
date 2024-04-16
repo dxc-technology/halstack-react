@@ -23,20 +23,20 @@ import DxcDateInput from "../date-input/DateInput";
     bottom: 0,
     right: 0,
     width: 0,
-    height: 0
-  })
+    height: 0,
+  }),
 };
 global.ResizeObserver = jest.fn().mockImplementation(() => ({
   observe: jest.fn(),
   unobserve: jest.fn(),
-  disconnect: jest.fn()
+  disconnect: jest.fn(),
 }));
 
 const options = [
   { label: "Female", value: "female" },
   { label: "Male", value: "male" },
   { label: "Non-binary", value: "non-binary" },
-  { label: "Other", value: "other" }
+  { label: "Other", value: "other" },
 ];
 
 describe("Dialog component tests", () => {
@@ -77,7 +77,7 @@ describe("Dialog component tests", () => {
       key: "Escape",
       code: "Escape",
       keyCode: 27,
-      charCode: 27
+      charCode: 27,
     });
     expect(onCloseClick).toHaveBeenCalled();
   });
@@ -95,7 +95,7 @@ describe("Dialog component tests", () => {
       key: "Escape",
       code: "Escape",
       keyCode: 27,
-      charCode: 27
+      charCode: 27,
     });
     expect(onCloseClick).not.toHaveBeenCalled();
   });

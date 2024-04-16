@@ -10,7 +10,7 @@ const DxcProgressBar = ({
   overlay = false,
   value,
   showValue = false,
-  margin
+  margin,
 }: ProgressBarPropsType): JSX.Element => {
   const colorsTheme = useTheme();
   const [valueProgressBar, setValueProgressBar] = useState(0);

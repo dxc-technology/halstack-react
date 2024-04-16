@@ -12,32 +12,32 @@ import DxcDropdown from "./Dropdown";
     bottom: 0,
     right: 0,
     width: 0,
-    height: 0
-  })
+    height: 0,
+  }),
 };
 global.ResizeObserver = jest.fn().mockImplementation(() => ({
   observe: jest.fn(),
   unobserve: jest.fn(),
-  disconnect: jest.fn()
+  disconnect: jest.fn(),
 }));
 
 const options = [
   {
     value: "1",
-    label: "Amazon"
+    label: "Amazon",
   },
   {
     value: "2",
-    label: "Ebay"
+    label: "Ebay",
   },
   {
     value: "3",
-    label: "Wallapop"
+    label: "Wallapop",
   },
   {
     value: "4",
-    label: "Aliexpress"
-  }
+    label: "Aliexpress",
+  },
 ];
 
 describe("Dropdown component tests", () => {
@@ -140,7 +140,7 @@ describe("Dropdown component tests", () => {
       key: "ArrowUp",
       code: "ArrowUp",
       keyCode: 38,
-      charCode: 38
+      charCode: 38,
     });
     const menu = getByRole("menu");
     expect(menu).toBeTruthy();
@@ -158,7 +158,7 @@ describe("Dropdown component tests", () => {
       key: "ArrowDown",
       code: "ArrowDown",
       keyCode: 40,
-      charCode: 40
+      charCode: 40,
     });
     const menu = getByRole("menu");
     expect(menu).toBeTruthy();
@@ -176,7 +176,7 @@ describe("Dropdown component tests", () => {
       key: "Enter",
       code: "Enter",
       keyCode: 13,
-      charCode: 13
+      charCode: 13,
     });
     const menu = getByRole("menu");
     expect(menu).toBeTruthy();
@@ -194,7 +194,7 @@ describe("Dropdown component tests", () => {
       key: " ",
       code: "Space",
       keyCode: 32,
-      charCode: 32
+      charCode: 32,
     });
     const menu = getByRole("menu");
     expect(menu).toBeTruthy();
@@ -211,14 +211,14 @@ describe("Dropdown component tests", () => {
       key: "ArrowUp",
       code: "ArrowUp",
       keyCode: 38,
-      charCode: 38
+      charCode: 38,
     });
     const menu = getByRole("menu");
     fireEvent.keyDown(menu, {
       key: "ArrowUp",
       code: "ArrowUp",
       keyCode: 38,
-      charCode: 38
+      charCode: 38,
     });
     expect(document.activeElement === menu).toBeTruthy();
     expect(menu.getAttribute("aria-activedescendant")).toBe(`${menu.id}-option-2`);
@@ -226,7 +226,7 @@ describe("Dropdown component tests", () => {
       key: "Enter",
       code: "Enter",
       keyCode: 13,
-      charCode: 13
+      charCode: 13,
     });
     expect(onSelectOption).toHaveBeenCalledWith("3");
   });
@@ -242,7 +242,7 @@ describe("Dropdown component tests", () => {
       key: "ArrowUp",
       code: "ArrowUp",
       keyCode: 38,
-      charCode: 38
+      charCode: 38,
     });
     expect(document.activeElement === menu).toBeTruthy();
     expect(menu.getAttribute("aria-activedescendant")).toBe(`${menu.id}-option-3`);
@@ -250,7 +250,7 @@ describe("Dropdown component tests", () => {
       key: "Enter",
       code: "Enter",
       keyCode: 13,
-      charCode: 13
+      charCode: 13,
     });
     expect(onSelectOption).toHaveBeenCalledWith("4");
   });
@@ -266,13 +266,13 @@ describe("Dropdown component tests", () => {
       key: "ArrowDown",
       code: "ArrowDown",
       keyCode: 40,
-      charCode: 40
+      charCode: 40,
     });
     fireEvent.keyDown(menu, {
       key: "ArrowDown",
       code: "ArrowDown",
       keyCode: 40,
-      charCode: 40
+      charCode: 40,
     });
     expect(document.activeElement === menu).toBeTruthy();
     expect(menu.getAttribute("aria-activedescendant")).toBe(`${menu.id}-option-2`);
@@ -280,7 +280,7 @@ describe("Dropdown component tests", () => {
       key: "Enter",
       code: "Enter",
       keyCode: 13,
-      charCode: 13
+      charCode: 13,
     });
     expect(onSelectOption).toHaveBeenCalledWith("3");
   });
@@ -294,14 +294,14 @@ describe("Dropdown component tests", () => {
       key: "ArrowUp",
       code: "ArrowUp",
       keyCode: 38,
-      charCode: 38
+      charCode: 38,
     });
     const menu = getByRole("menu");
     fireEvent.keyDown(menu, {
       key: "ArrowDown",
       code: "ArrowDown",
       keyCode: 40,
-      charCode: 40
+      charCode: 40,
     });
     expect(document.activeElement === menu).toBeTruthy();
     expect(menu.getAttribute("aria-activedescendant")).toBe(`${menu.id}-option-0`);
@@ -309,7 +309,7 @@ describe("Dropdown component tests", () => {
       key: "Enter",
       code: "Enter",
       keyCode: 13,
-      charCode: 13
+      charCode: 13,
     });
     expect(onSelectOption).toHaveBeenCalledWith("1");
   });
@@ -324,7 +324,7 @@ describe("Dropdown component tests", () => {
       key: "Enter",
       code: "Enter",
       keyCode: 13,
-      charCode: 13
+      charCode: 13,
     });
     expect(onSelectOption).toHaveBeenCalledWith("1");
     expect(queryByRole("menu")).toBeFalsy();
@@ -341,7 +341,7 @@ describe("Dropdown component tests", () => {
       key: "Esc",
       code: "Esc",
       keyCode: 27,
-      charCode: 27
+      charCode: 27,
     });
     expect(queryByRole("menu")).toBeFalsy();
     expect(document.activeElement === getByRole("button")).toBeTruthy();
@@ -356,7 +356,7 @@ describe("Dropdown component tests", () => {
       key: "ArrowUp",
       code: "ArrowUp",
       keyCode: 38,
-      charCode: 38
+      charCode: 38,
     });
     const menu = getByRole("menu");
     expect(menu.getAttribute("aria-activedescendant")).toBe(`${menu.id}-option-3`);
@@ -364,7 +364,7 @@ describe("Dropdown component tests", () => {
       key: "Home",
       code: "Home",
       keyCode: 36,
-      charCode: 36
+      charCode: 36,
     });
     expect(menu.getAttribute("aria-activedescendant")).toBe(`${menu.id}-option-0`);
   });
@@ -381,7 +381,7 @@ describe("Dropdown component tests", () => {
       key: "End",
       code: "End",
       keyCode: 35,
-      charCode: 35
+      charCode: 35,
     });
     expect(menu.getAttribute("aria-activedescendant")).toBe(`${menu.id}-option-3`);
   });
@@ -395,7 +395,7 @@ describe("Dropdown component tests", () => {
       key: "ArrowUp",
       code: "ArrowUp",
       keyCode: 38,
-      charCode: 38
+      charCode: 38,
     });
     const menu = getByRole("menu");
     expect(menu.getAttribute("aria-activedescendant")).toBe(`${menu.id}-option-3`);
@@ -403,7 +403,7 @@ describe("Dropdown component tests", () => {
       key: "PageUp",
       code: "PageUp",
       keyCode: 33,
-      charCode: 33
+      charCode: 33,
     });
     expect(menu.getAttribute("aria-activedescendant")).toBe(`${menu.id}-option-0`);
   });
@@ -420,7 +420,7 @@ describe("Dropdown component tests", () => {
       key: "PageDown",
       code: "PageDown",
       keyCode: 34,
-      charCode: 34
+      charCode: 34,
     });
     expect(menu.getAttribute("aria-activedescendant")).toBe(`${menu.id}-option-3`);
   });
@@ -437,7 +437,7 @@ describe("Dropdown component tests", () => {
       key: "Tab",
       code: "Tab",
       keyCode: 9,
-      charCode: 9
+      charCode: 9,
     });
     expect(queryByRole("menu")).toBeFalsy();
   });

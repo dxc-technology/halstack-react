@@ -6,7 +6,7 @@ import ExampleContainer from "../../.storybook/components/ExampleContainer";
 
 export default {
   title: "Password Input",
-  component: DxcPasswordInput
+  component: DxcPasswordInput,
 };
 
 export const Chromatic = () => (

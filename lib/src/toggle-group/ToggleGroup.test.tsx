@@ -5,20 +5,20 @@ import DxcToggleGroup from "./ToggleGroup";
 const options = [
   {
     value: 1,
-    label: "Amazon"
+    label: "Amazon",
   },
   {
     value: 2,
-    label: "Ebay"
+    label: "Ebay",
   },
   {
     value: 3,
-    label: "Apple"
+    label: "Apple",
   },
   {
     value: 4,
-    label: "Google"
-  }
+    label: "Google",
+  },
 ];
 
 describe("Toggle group component tests", () => {
@@ -43,8 +43,8 @@ describe("Toggle group component tests", () => {
           {
             value: 1,
             icon: "https://cdn.icon-icons.com/icons2/2645/PNG/512/mic_mute_icon_159965.png",
-            title: "Mute"
-          }
+            title: "Mute",
+          },
         ]}
       />
     );

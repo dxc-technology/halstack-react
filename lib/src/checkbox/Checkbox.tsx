@@ -27,7 +27,7 @@ const DxcCheckbox = React.forwardRef<RefType, CheckboxPropsType>(
       onChange,
       margin,
       size = "fitContent",
-      tabIndex = 0
+      tabIndex = 0,
     },
     ref
   ): JSX.Element => {
@@ -116,7 +116,7 @@ const sizes = {
   medium: "240px",
   large: "480px",
   fillParent: "100%",
-  fitContent: "fit-content"
+  fitContent: "fit-content",
 };
 
 const calculateWidth = (margin: CheckboxPropsType["margin"], size: CheckboxPropsType["size"]) =>

@@ -9,7 +9,7 @@ const DxcSpinner = ({
   value,
   showValue = false,
   mode = "large",
-  margin
+  margin,
 }: SpinnerPropsType): JSX.Element => {
   const colorsTheme = useTheme();
 

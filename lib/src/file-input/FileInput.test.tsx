@@ -5,16 +5,16 @@ import DxcFileInput from "./FileInput";
 
 const file1 = new File(["file1"], "file1.png", { type: "image/png" });
 const file2 = new File(["file2"], "file2.txt", {
-  type: "text/plain"
+  type: "text/plain",
 });
 const allFiles = [
   {
-    file: file1
+    file: file1,
   },
   {
     error: "Error message",
-    file: file2
-  }
+    file: file2,
+  },
 ];
 
 describe("FileInput component tests", () => {
@@ -209,13 +209,13 @@ describe("FileInput component tests", () => {
       expect(callbackFile).toHaveBeenCalledWith([
         {
           file: file1,
-          preview: "data:image/png;base64,ZmlsZTE="
+          preview: "data:image/png;base64,ZmlsZTE=",
         },
         {
           error: "Error message",
           file: file2,
-          preview: "draft"
-        }
+          preview: "draft",
+        },
       ]);
     });
   });
@@ -259,8 +259,8 @@ describe("FileInput component tests", () => {
       expect(callbackFile).toHaveBeenCalledWith([
         {
           file: newFile,
-          preview: "draft"
-        }
+          preview: "draft",
+        },
       ]);
     });
   });
@@ -285,8 +285,8 @@ describe("FileInput component tests", () => {
         {
           error: "Error message",
           file: file2,
-          preview: "draft"
-        }
+          preview: "draft",
+        },
       ]);
     });
   });
@@ -308,18 +308,18 @@ describe("FileInput component tests", () => {
       expect(callbackFile).toHaveBeenCalledWith([
         {
           file: file1,
-          preview: "data:image/png;base64,ZmlsZTE="
+          preview: "data:image/png;base64,ZmlsZTE=",
         },
         {
           error: "Error message",
           file: file2,
-          preview: "draft"
+          preview: "draft",
         },
         {
           error: undefined,
           file: newFile,
-          preview: "draft"
-        }
+          preview: "draft",
+        },
       ]);
     });
   });
@@ -348,13 +348,13 @@ describe("FileInput component tests", () => {
         {
           error: "Error message",
           file: file2,
-          preview: "draft"
+          preview: "draft",
         },
         {
           error: "File size must be greater than min size.",
           file: newFile,
-          preview: "draft"
-        }
+          preview: "draft",
+        },
       ]);
     });
   });

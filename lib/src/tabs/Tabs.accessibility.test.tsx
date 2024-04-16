@@ -13,20 +13,20 @@ const sampleTabs = [
   {
     label: "Tab-1",
     icon: iconSVG,
-    notificationNumber: 10
+    notificationNumber: 10,
   },
   {
     label: "Tab-2",
-    icon: iconSVG
+    icon: iconSVG,
   },
   {
     label: "Tab-3",
-    notificationNumber: 20
+    notificationNumber: 20,
   },
   {
     label: "Tab-4",
-    isDisabled: true
-  }
+    isDisabled: true,
+  },
 ];
 
 describe("Tabs component accessibility tests", () => {

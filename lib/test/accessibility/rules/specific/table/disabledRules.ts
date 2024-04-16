@@ -5,7 +5,7 @@
 const disabledRules = [
   // TODO: Find a better solution
   // Disable scrollable region focusable rule to prevent errors from having scrollable tables with no focusable elements
-  "scrollable-region-focusable"
+  "scrollable-region-focusable",
 ];
 
 export default disabledRules;

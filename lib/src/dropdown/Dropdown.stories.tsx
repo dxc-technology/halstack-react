@@ -12,7 +12,7 @@ import { HalstackProvider } from "../HalstackContext";
 
 export default {
   title: "Dropdown",
-  component: DxcDropdown
+  component: DxcDropdown,
 };
 
 const iconSVG = (
@@ -31,57 +31,57 @@ const icons = [iconSVG, iconSVGLarge, "nutrition"];
 const defaultOptions: Option[] = [
   {
     value: "1",
-    label: "Amazon"
+    label: "Amazon",
   },
   {
     value: "2",
-    label: "Ebay"
+    label: "Ebay",
   },
   {
     value: "3",
-    label: "Apple"
+    label: "Apple",
   },
   {
     value: "4",
-    label: "Wallapop"
+    label: "Wallapop",
   },
   {
     value: "5",
-    label: "Aliexpress"
+    label: "Aliexpress",
   },
   {
     value: "6",
-    label: "Etsy"
+    label: "Etsy",
   },
   {
     value: "7",
-    label: "Alibaba"
+    label: "Alibaba",
   },
   {
     value: "8",
-    label: "Gearbest shop"
-  }
+    label: "Gearbest shop",
+  },
 ];
 const options: Option[] = [
   {
     value: "1",
-    label: "Amazon with a very long text"
+    label: "Amazon with a very long text",
   },
   {
     value: "2",
-    label: "Ebay"
+    label: "Ebay",
   },
   {
     value: "3",
-    label: "Apple"
-  }
+    label: "Apple",
+  },
 ];
 const optionWithIcon: Option[] = [
   {
     value: "1",
     label: "Ebay",
-    icon: "shopping_cart"
-  }
+    icon: "shopping_cart",
+  },
 ];
 
 const optionsIcon = options.map((op, i) => ({ ...op, icon: icons[i] }));
@@ -90,8 +90,8 @@ const opinionatedTheme = {
   dropdown: {
     baseColor: "#ffffff",
     fontColor: "#000000",
-    optionFontColor: "#000000"
-  }
+    optionFontColor: "#000000",
+  },
 };
 
 const Dropdown = () => (
@@ -246,7 +246,7 @@ const DropdownListStates = () => {
             border: "1px solid black",
             borderRadius: "4px",
             overflow: "auto",
-            zIndex: "1300"
+            zIndex: "1300",
           }}
         >
           <DxcDropdown label="Select a platform" options={defaultOptions} onSelectOption={() => {}} size="medium" />

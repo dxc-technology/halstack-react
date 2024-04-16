@@ -7,13 +7,13 @@ import { HalstackProvider } from "../HalstackContext";
 
 export default {
   title: "Box ",
-  component: DxcBox
+  component: DxcBox,
 };
 
 const opinionatedTheme = {
   box: {
-    baseColor: "#ffffff"
-  }
+    baseColor: "#ffffff",
+  },
 };
 
 export const Chromatic = () => (

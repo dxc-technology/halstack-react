@@ -6,7 +6,7 @@ import { HalstackProvider } from "../HalstackContext";
 
 export default {
   title: "Slider",
-  component: DxcSlider
+  component: DxcSlider,
 };
 
 const labelFormat = (value) => `${value}E100000000000000000000000`;
@@ -15,8 +15,8 @@ const opinionatedTheme = {
   slider: {
     baseColor: "#0067b3",
     fontColor: "#000000",
-    totalLineColor: "#e6e6e6"
-  }
+    totalLineColor: "#e6e6e6",
+  },
 };
 
 export const Chromatic = () => (

@@ -8,7 +8,7 @@ import DxcFlex from "../flex/Flex";
 import { disabledRules as rules } from "../../test/accessibility/rules/specific/select/disabledRules";
 
 const disabledRules = {
-  rules: formatRules(rules)
+  rules: formatRules(rules),
 };
 
 const iconSVG = (
@@ -30,48 +30,48 @@ const groupOptions = [
     options: [
       { label: "Option 001", value: "1" },
       { label: "Option 002", value: "2" },
-      { label: "Option 003", value: "3" }
-    ]
+      { label: "Option 003", value: "3" },
+    ],
   },
   {
     label: "Group 002",
     options: [
       { label: "Option 004", value: "4" },
       { label: "Option 005", value: "5" },
-      { label: "Option 006", value: "6" }
-    ]
+      { label: "Option 006", value: "6" },
+    ],
   },
   {
     label: "Group 003",
     options: [
       { label: "Option 007", value: "7" },
       { label: "Option 008", value: "8" },
-      { label: "Option 009", value: "9" }
-    ]
+      { label: "Option 009", value: "9" },
+    ],
   },
   {
     label: "Group 004",
     options: [
       { label: "Option 010", value: "10" },
       { label: "Option 011", value: "11" },
-      { label: "Option 012", value: "12" }
-    ]
+      { label: "Option 012", value: "12" },
+    ],
   },
   {
     label: "Group 005",
     options: [
       { label: "Option 013", value: "13" },
       { label: "Option 014", value: "14" },
-      { label: "Option 015", value: "15" }
-    ]
-  }
+      { label: "Option 015", value: "15" },
+    ],
+  },
 ];
 
 const singleOptions = [
   { label: "Option 01", value: "1", icon: iconSVG },
   { label: "Option 02", value: "2", icon: iconSVG },
   { label: "Option 03", value: "3", icon: iconSVG },
-  { label: "Option 04", value: "4", icon: iconSVG }
+  { label: "Option 04", value: "4", icon: iconSVG },
 ];
 
 // Mocking DOMRect for Radix Primitive Popover
@@ -83,13 +83,13 @@ const singleOptions = [
     bottom: 0,
     right: 0,
     width: 0,
-    height: 0
-  })
+    height: 0,
+  }),
 };
 global.ResizeObserver = jest.fn().mockImplementation(() => ({
   observe: jest.fn(),
   unobserve: jest.fn(),
-  disconnect: jest.fn()
+  disconnect: jest.fn(),
 }));
 
 describe("Select component accessibility tests", () => {

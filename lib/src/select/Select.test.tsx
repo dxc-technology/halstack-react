@@ -12,13 +12,13 @@ import DxcSelect from "./Select";
     bottom: 0,
     right: 0,
     width: 0,
-    height: 0
-  })
+    height: 0,
+  }),
 };
 global.ResizeObserver = jest.fn().mockImplementation(() => ({
   observe: jest.fn(),
   unobserve: jest.fn(),
-  disconnect: jest.fn()
+  disconnect: jest.fn(),
 }));
 
 const singleOptions = [
@@ -41,7 +41,7 @@ const singleOptions = [
   { label: "Option 17", value: "17" },
   { label: "Option 18", value: "18" },
   { label: "Option 19", value: "19" },
-  { label: "Option 20", value: "20" }
+  { label: "Option 20", value: "20" },
 ];
 
 const groupOptions = [
@@ -54,8 +54,8 @@ const groupOptions = [
       { label: "Verde", value: "verde" },
       { label: "Amarillo", value: "amarillo" },
       { label: "Blanco", value: "blanco" },
-      { label: "Negro", value: "negro" }
-    ]
+      { label: "Negro", value: "negro" },
+    ],
   },
   {
     label: "Ciudades españolas",
@@ -64,8 +64,8 @@ const groupOptions = [
       { label: "Oviedo", value: "oviedo" },
       { label: "Sevilla", value: "sevilla" },
       { label: "Bilbao", value: "bilbao" },
-      { label: "Barcelona", value: "barcelona" }
-    ]
+      { label: "Barcelona", value: "barcelona" },
+    ],
   },
   {
     label: "Ríos españoles",
@@ -75,9 +75,9 @@ const groupOptions = [
       { label: "Tajo", value: "tajo" },
       { label: "Guadiana", value: "guadiana" },
       { label: "Guadalquivir", value: "guadalquivir" },
-      { label: "Ebro", value: "ebro" }
-    ]
-  }
+      { label: "Ebro", value: "ebro" },
+    ],
+  },
 ];
 
 describe("Select component tests", () => {
@@ -235,7 +235,7 @@ describe("Select component tests", () => {
       key: "Tab",
       code: "Tab",
       keyCode: 9,
-      charCode: 9
+      charCode: 9,
     });
     expect(onBlur).not.toHaveBeenCalled();
   });
@@ -280,7 +280,7 @@ describe("Select component tests", () => {
     expect(onBlur).toHaveBeenCalled();
     expect(onBlur).toHaveBeenCalledWith({
       value: "",
-      error: "This field is required. Please, enter a value."
+      error: "This field is required. Please, enter a value.",
     });
     await userEvent.click(select);
     await userEvent.click(getAllByRole("option")[0]);
@@ -304,7 +304,7 @@ describe("Select component tests", () => {
     expect(onBlur).toHaveBeenCalled();
     expect(onBlur).toHaveBeenCalledWith({
       value: [],
-      error: "This field is required. Please, enter a value."
+      error: "This field is required. Please, enter a value.",
     });
     await userEvent.click(select);
     await userEvent.click(getAllByRole("option")[0]);
@@ -320,13 +320,13 @@ describe("Select component tests", () => {
     expect(onChange).toHaveBeenCalled();
     expect(onChange).toHaveBeenCalledWith({
       value: [],
-      error: "This field is required. Please, enter a value."
+      error: "This field is required. Please, enter a value.",
     });
     fireEvent.blur(select);
     expect(onBlur).toHaveBeenCalled();
     expect(onBlur).toHaveBeenCalledWith({
       value: [],
-      error: "This field is required. Please, enter a value."
+      error: "This field is required. Please, enter a value.",
     });
   });
 
@@ -410,14 +410,14 @@ describe("Select component tests", () => {
       key: "ArrowDown",
       code: "ArrowDown",
       keyCode: 40,
-      charCode: 40
+      charCode: 40,
     });
     expect(select.getAttribute("aria-activedescendant")).toBe("option-0");
     fireEvent.keyDown(select, {
       key: "Enter",
       code: "Enter",
       keyCode: 13,
-      charCode: 13
+      charCode: 13,
     });
     expect(onChange).toHaveBeenCalledWith({ value: "" });
     expect(getAllByText("Choose an option").length).toBe(1);
@@ -425,7 +425,7 @@ describe("Select component tests", () => {
       key: "ArrowUp",
       code: "ArrowUp",
       keyCode: 38,
-      charCode: 38
+      charCode: 38,
     });
     expect(select.getAttribute("aria-activedescendant")).toBe("option-0");
   });
@@ -460,7 +460,7 @@ describe("Select component tests", () => {
       key: "ArrowUp",
       code: "ArrowUp",
       keyCode: 38,
-      charCode: 38
+      charCode: 38,
     });
     expect(queryByRole("listbox")).toBeTruthy();
     expect(select.getAttribute("aria-activedescendant")).toBe("option-19");
@@ -473,13 +473,13 @@ describe("Select component tests", () => {
       key: "ArrowDown",
       code: "ArrowDown",
       keyCode: 40,
-      charCode: 40
+      charCode: 40,
     });
     fireEvent.keyDown(select, {
       key: "ArrowUp",
       code: "ArrowUp",
       keyCode: 38,
-      charCode: 38
+      charCode: 38,
     });
     expect(queryByRole("listbox")).toBeTruthy();
     expect(select.getAttribute("aria-activedescendant")).toBe("option-19");
@@ -492,7 +492,7 @@ describe("Select component tests", () => {
       key: "ArrowDown",
       code: "ArrowDown",
       keyCode: 40,
-      charCode: 40
+      charCode: 40,
     });
     expect(queryByRole("listbox")).toBeTruthy();
     expect(select.getAttribute("aria-activedescendant")).toBe("option-0");
@@ -505,13 +505,13 @@ describe("Select component tests", () => {
       key: "ArrowUp",
       code: "ArrowUp",
       keyCode: 38,
-      charCode: 38
+      charCode: 38,
     });
     fireEvent.keyDown(select, {
       key: "ArrowDown",
       code: "ArrowDown",
       keyCode: 40,
-      charCode: 40
+      charCode: 40,
     });
     expect(queryByRole("listbox")).toBeTruthy();
     expect(select.getAttribute("aria-activedescendant")).toBe("option-0");
@@ -527,31 +527,31 @@ describe("Select component tests", () => {
       key: "ArrowUp",
       code: "ArrowUp",
       keyCode: 38,
-      charCode: 38
+      charCode: 38,
     });
     fireEvent.keyDown(select, {
       key: "ArrowUp",
       code: "ArrowUp",
       keyCode: 38,
-      charCode: 38
+      charCode: 38,
     });
     fireEvent.keyDown(select, {
       key: "ArrowUp",
       code: "ArrowUp",
       keyCode: 38,
-      charCode: 38
+      charCode: 38,
     });
     fireEvent.keyDown(select, {
       key: "ArrowDown",
       code: "ArrowDown",
       keyCode: 40,
-      charCode: 40
+      charCode: 40,
     });
     fireEvent.keyDown(select, {
       key: "Enter",
       code: "Enter",
       keyCode: 13,
-      charCode: 13
+      charCode: 13,
     });
     expect(onChange).toHaveBeenCalledWith({ value: "20" });
     expect(queryByRole("listbox")).toBeFalsy();
@@ -639,7 +639,7 @@ describe("Select component tests", () => {
       key: "Esc",
       code: "Esc",
       keyCode: 27,
-      charCode: 27
+      charCode: 27,
     });
     expect(searchInput.value).toBe("");
     expect(queryByRole("listbox")).toBeFalsy();
@@ -679,19 +679,19 @@ describe("Select component tests", () => {
       key: "ArrowUp",
       code: "ArrowUp",
       keyCode: 38,
-      charCode: 38
+      charCode: 38,
     });
     fireEvent.keyDown(select, {
       key: "ArrowUp",
       code: "ArrowUp",
       keyCode: 38,
-      charCode: 38
+      charCode: 38,
     });
     fireEvent.keyDown(select, {
       key: "Enter",
       code: "Enter",
       keyCode: 13,
-      charCode: 13
+      charCode: 13,
     });
     expect(onChange).toHaveBeenCalledWith({ value: ["11", "19"] });
     expect(queryByRole("listbox")).toBeTruthy();
@@ -716,7 +716,7 @@ describe("Select component tests", () => {
     await userEvent.click(getByTitle("Clear selection"));
     expect(onChange).toHaveBeenCalledWith({
       value: [],
-      error: "This field is required. Please, enter a value."
+      error: "This field is required. Please, enter a value.",
     });
     expect(queryByRole("listbox")).toBeTruthy();
     expect(queryByText("Option 06, Option 09, Option 14")).toBeFalsy();
@@ -757,46 +757,46 @@ describe("Select component tests", () => {
       key: "ArrowUp",
       code: "ArrowUp",
       keyCode: 38,
-      charCode: 38
+      charCode: 38,
     });
     expect(select.getAttribute("aria-activedescendant")).toBe("option-4");
     fireEvent.keyDown(select, {
       key: "ArrowUp",
       code: "ArrowUp",
       keyCode: 38,
-      charCode: 38
+      charCode: 38,
     });
     fireEvent.keyDown(select, {
       key: "Enter",
       code: "Enter",
       keyCode: 13,
-      charCode: 13
+      charCode: 13,
     });
     expect(getByText("Option 04")).toBeTruthy();
     fireEvent.keyDown(select, {
       key: "ArrowDown",
       code: "ArrowDown",
       keyCode: 40,
-      charCode: 40
+      charCode: 40,
     });
     expect(select.getAttribute("aria-activedescendant")).toBe("option-3");
     fireEvent.keyDown(select, {
       key: "ArrowDown",
       code: "ArrowDown",
       keyCode: 40,
-      charCode: 40
+      charCode: 40,
     });
     fireEvent.keyDown(select, {
       key: "ArrowDown",
       code: "ArrowDown",
       keyCode: 40,
-      charCode: 40
+      charCode: 40,
     });
     fireEvent.keyDown(select, {
       key: "Enter",
       code: "Enter",
       keyCode: 13,
-      charCode: 13
+      charCode: 13,
     });
     expect(getByText("Option 06")).toBeTruthy();
   });
@@ -816,7 +816,7 @@ describe("Select component tests", () => {
       key: "ArrowUp",
       code: "ArrowUp",
       keyCode: 38,
-      charCode: 38
+      charCode: 38,
     });
     expect(select.getAttribute("aria-activedescendant")).toBe("option-15");
     await userEvent.click(select);
@@ -825,32 +825,32 @@ describe("Select component tests", () => {
       key: "ArrowDown",
       code: "ArrowDown",
       keyCode: 40,
-      charCode: 40
+      charCode: 40,
     });
     expect(select.getAttribute("aria-activedescendant")).toBe("option-15");
     fireEvent.keyDown(select, {
       key: "ArrowDown",
       code: "ArrowDown",
       keyCode: 40,
-      charCode: 40
+      charCode: 40,
     });
     fireEvent.keyDown(select, {
       key: "ArrowDown",
       code: "ArrowDown",
       keyCode: 40,
-      charCode: 40
+      charCode: 40,
     });
     fireEvent.keyDown(select, {
       key: "ArrowUp",
       code: "ArrowUp",
       keyCode: 38,
-      charCode: 38
+      charCode: 38,
     });
     fireEvent.keyDown(select, {
       key: "Enter",
       code: "Enter",
       keyCode: 13,
-      charCode: 13
+      charCode: 13,
     });
     expect(getByText("Option 17")).toBeTruthy();
   });
@@ -888,8 +888,8 @@ describe("Select component tests", () => {
         options={[
           {
             label: "Group 1",
-            options: []
-          }
+            options: [],
+          },
         ]}
       />
     );
@@ -938,14 +938,14 @@ describe("Select component tests", () => {
       key: "ArrowDown",
       code: "ArrowDown",
       keyCode: 40,
-      charCode: 40
+      charCode: 40,
     });
     expect(select.getAttribute("aria-activedescendant")).toBe("option-0");
     fireEvent.keyDown(select, {
       key: "Enter",
       code: "Enter",
       keyCode: 13,
-      charCode: 13
+      charCode: 13,
     });
     expect(onChange).toHaveBeenCalledWith({ value: "" });
     expect(getAllByText("Placeholder example").length).toBe(1);
@@ -953,7 +953,7 @@ describe("Select component tests", () => {
       key: "ArrowUp",
       code: "ArrowUp",
       keyCode: 38,
-      charCode: 38
+      charCode: 38,
     });
     expect(select.getAttribute("aria-activedescendant")).toBe("option-0");
   });
@@ -986,7 +986,7 @@ describe("Select component tests", () => {
       key: "ArrowUp",
       code: "ArrowUp",
       keyCode: 38,
-      charCode: 38
+      charCode: 38,
     });
     expect(queryByRole("list")).toBeTruthy();
     expect(select.getAttribute("aria-activedescendant")).toBe("option-17");
@@ -999,13 +999,13 @@ describe("Select component tests", () => {
       key: "ArrowDown",
       code: "ArrowDown",
       keyCode: 40,
-      charCode: 40
+      charCode: 40,
     });
     fireEvent.keyDown(select, {
       key: "ArrowUp",
       code: "ArrowUp",
       keyCode: 38,
-      charCode: 38
+      charCode: 38,
     });
     expect(queryByRole("list")).toBeTruthy();
     expect(select.getAttribute("aria-activedescendant")).toBe("option-17");
@@ -1018,7 +1018,7 @@ describe("Select component tests", () => {
       key: "ArrowDown",
       code: "ArrowDown",
       keyCode: 40,
-      charCode: 40
+      charCode: 40,
     });
     expect(queryByRole("list")).toBeTruthy();
     expect(select.getAttribute("aria-activedescendant")).toBe("option-0");
@@ -1031,13 +1031,13 @@ describe("Select component tests", () => {
       key: "ArrowUp",
       code: "ArrowUp",
       keyCode: 38,
-      charCode: 38
+      charCode: 38,
     });
     fireEvent.keyDown(select, {
       key: "ArrowDown",
       code: "ArrowDown",
       keyCode: 40,
-      charCode: 40
+      charCode: 40,
     });
     expect(queryByRole("list")).toBeTruthy();
     expect(select.getAttribute("aria-activedescendant")).toBe("option-0");
@@ -1053,31 +1053,31 @@ describe("Select component tests", () => {
       key: "ArrowUp",
       code: "ArrowUp",
       keyCode: 38,
-      charCode: 38
+      charCode: 38,
     });
     fireEvent.keyDown(select, {
       key: "ArrowUp",
       code: "ArrowUp",
       keyCode: 38,
-      charCode: 38
+      charCode: 38,
     });
     fireEvent.keyDown(select, {
       key: "ArrowUp",
       code: "ArrowUp",
       keyCode: 38,
-      charCode: 38
+      charCode: 38,
     });
     fireEvent.keyDown(select, {
       key: "ArrowDown",
       code: "ArrowDown",
       keyCode: 40,
-      charCode: 40
+      charCode: 40,
     });
     fireEvent.keyDown(select, {
       key: "Enter",
       code: "Enter",
       keyCode: 13,
-      charCode: 13
+      charCode: 13,
     });
     expect(onChange).toHaveBeenCalledWith({ value: "ebro" });
     expect(queryByRole("list")).toBeFalsy();
@@ -1138,22 +1138,22 @@ describe("Select component tests", () => {
       key: "ArrowUp",
       code: "ArrowUp",
       keyCode: 38,
-      charCode: 38
+      charCode: 38,
     });
     fireEvent.keyDown(select, {
       key: "ArrowUp",
       code: "ArrowUp",
       keyCode: 38,
-      charCode: 38
+      charCode: 38,
     });
     fireEvent.keyDown(select, {
       key: "Enter",
       code: "Enter",
       keyCode: 13,
-      charCode: 13
+      charCode: 13,
     });
     expect(onChange).toHaveBeenCalledWith({
-      value: ["bilbao", "guadalquivir"]
+      value: ["bilbao", "guadalquivir"],
     });
     expect(queryByRole("list")).toBeTruthy();
     expect(getByText("Bilbao, Guadalquivir")).toBeTruthy();
@@ -1172,7 +1172,7 @@ describe("Select component tests", () => {
     await userEvent.click(getAllByRole("option")[13]);
     await userEvent.click(getAllByRole("option")[17]);
     expect(onChange).toHaveBeenCalledWith({
-      value: ["blanco", "oviedo", "duero", "ebro"]
+      value: ["blanco", "oviedo", "duero", "ebro"],
     });
     expect(queryByRole("list")).toBeTruthy();
     expect(getByText("Blanco, Oviedo, Duero, Ebro")).toBeTruthy();
@@ -1217,46 +1217,46 @@ describe("Select component tests", () => {
       key: "ArrowUp",
       code: "ArrowUp",
       keyCode: 38,
-      charCode: 38
+      charCode: 38,
     });
     expect(select.getAttribute("aria-activedescendant")).toBe("option-2");
     fireEvent.keyDown(select, {
       key: "ArrowUp",
       code: "ArrowUp",
       keyCode: 38,
-      charCode: 38
+      charCode: 38,
     });
     fireEvent.keyDown(select, {
       key: "Enter",
       code: "Enter",
       keyCode: 13,
-      charCode: 13
+      charCode: 13,
     });
     expect(getByText("Rojo")).toBeTruthy();
     fireEvent.keyDown(select, {
       key: "ArrowDown",
       code: "ArrowDown",
       keyCode: 40,
-      charCode: 40
+      charCode: 40,
     });
     expect(select.getAttribute("aria-activedescendant")).toBe("option-1");
     fireEvent.keyDown(select, {
       key: "ArrowDown",
       code: "ArrowDown",
       keyCode: 40,
-      charCode: 40
+      charCode: 40,
     });
     fireEvent.keyDown(select, {
       key: "ArrowDown",
       code: "ArrowDown",
       keyCode: 40,
-      charCode: 40
+      charCode: 40,
     });
     fireEvent.keyDown(select, {
       key: "Enter",
       code: "Enter",
       keyCode: 13,
-      charCode: 13
+      charCode: 13,
     });
     expect(getByText("Verde")).toBeTruthy();
   });
@@ -1275,7 +1275,7 @@ describe("Select component tests", () => {
       key: "ArrowUp",
       code: "ArrowUp",
       keyCode: 38,
-      charCode: 38
+      charCode: 38,
     });
     expect(select.getAttribute("aria-activedescendant")).toBe("option-17");
     await userEvent.click(select);
@@ -1283,32 +1283,32 @@ describe("Select component tests", () => {
       key: "ArrowDown",
       code: "ArrowDown",
       keyCode: 40,
-      charCode: 40
+      charCode: 40,
     });
     expect(select.getAttribute("aria-activedescendant")).toBe("option-17");
     fireEvent.keyDown(select, {
       key: "ArrowDown",
       code: "ArrowDown",
       keyCode: 40,
-      charCode: 40
+      charCode: 40,
     });
     fireEvent.keyDown(select, {
       key: "ArrowDown",
       code: "ArrowDown",
       keyCode: 40,
-      charCode: 40
+      charCode: 40,
     });
     fireEvent.keyDown(select, {
       key: "ArrowUp",
       code: "ArrowUp",
       keyCode: 38,
-      charCode: 38
+      charCode: 38,
     });
     fireEvent.keyDown(select, {
       key: "Enter",
       code: "Enter",
       keyCode: 13,
-      charCode: 13
+      charCode: 13,
     });
     expect(getByText("Azul")).toBeTruthy();
   });

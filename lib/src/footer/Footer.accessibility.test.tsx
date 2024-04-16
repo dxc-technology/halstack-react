@@ -5,7 +5,7 @@ import DxcFooter from "./Footer";
 import { disabledRules as rules } from "../../test/accessibility/rules/specific/footer/disabledRules";
 
 const disabledRules = {
-  rules: formatRules(rules)
+  rules: formatRules(rules),
 };
 
 const social = [
@@ -30,7 +30,7 @@ const social = [
         </g>
       </svg>
     ),
-    title: "Linkedin"
+    title: "Linkedin",
   },
   {
     href: "https://x.com/dxctechnology",
@@ -43,7 +43,7 @@ const social = [
         />
       </svg>
     ),
-    title: "X"
+    title: "X",
   },
   {
     href: "https://www.facebook.com/DXCTechnology/",
@@ -69,23 +69,23 @@ const social = [
         </g>
       </svg>
     ),
-    title: "Facebook"
-  }
+    title: "Facebook",
+  },
 ];
 
 const bottom = [
   {
     href: "https://www.linkedin.com/company/dxctechnology",
-    text: "Linkedin"
+    text: "Linkedin",
   },
   {
     href: "https://x.com/dxctechnology",
-    text: "X"
+    text: "X",
   },
   {
     href: "https://www.facebook.com/DXCTechnology/",
-    text: "Facebook"
-  }
+    text: "Facebook",
+  },
 ];
 
 describe("Footer component accessibility tests", () => {

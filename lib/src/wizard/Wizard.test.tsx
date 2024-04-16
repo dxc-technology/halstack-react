@@ -8,11 +8,11 @@ describe("Wizard components tests", () => {
       <DxcWizard
         steps={[
           {
-            label: "first-step"
+            label: "first-step",
           },
           {
-            label: "second-step"
-          }
+            label: "second-step",
+          },
         ]}
       />
     );
@@ -29,11 +29,11 @@ describe("Wizard components tests", () => {
         defaultCurrentStep={1}
         steps={[
           {
-            label: "first-step"
+            label: "first-step",
           },
           {
-            label: "second-step"
-          }
+            label: "second-step",
+          },
         ]}
       />
     );
@@ -48,8 +48,8 @@ describe("Wizard components tests", () => {
         onStepClick={onClick}
         steps={[
           {
-            label: "first-step"
-          }
+            label: "first-step",
+          },
         ]}
       />
     );
@@ -66,8 +66,8 @@ describe("Wizard components tests", () => {
         steps={[
           {
             label: "first-step",
-            description: "step-description"
-          }
+            description: "step-description",
+          },
         ]}
       />
     );
@@ -83,8 +83,8 @@ describe("Wizard components tests", () => {
         onStepClick={onClick}
         steps={[
           {
-            label: "first-step"
-          }
+            label: "first-step",
+          },
         ]}
       />
     );
@@ -100,12 +100,12 @@ describe("Wizard components tests", () => {
         onStepClick={onClick}
         steps={[
           {
-            label: "first-step"
+            label: "first-step",
           },
           {
             label: "second-step",
-            disabled: true
-          }
+            disabled: true,
+          },
         ]}
       />
     );
@@ -122,11 +122,11 @@ describe("Wizard components tests", () => {
         onStepClick={onClick}
         steps={[
           {
-            label: "first-step"
+            label: "first-step",
           },
           {
-            label: "second-step"
-          }
+            label: "second-step",
+          },
         ]}
       />
     );

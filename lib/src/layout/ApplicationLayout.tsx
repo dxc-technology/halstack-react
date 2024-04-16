@@ -20,33 +20,33 @@ const defaultFooter = () => (
     bottomLinks={[
       {
         href: "https://www.linkedin.com/company/dxctechnology",
-        text: "Linkedin"
+        text: "Linkedin",
       },
       {
         href: "https://x.com/dxctechnology",
-        text: "X"
+        text: "X",
       },
       {
         href: "https://www.facebook.com/DXCTechnology/",
-        text: "Facebook"
-      }
+        text: "Facebook",
+      },
     ]}
     socialLinks={[
       {
         href: "https://www.linkedin.com/company/dxctechnology",
         logo: layoutIcons.linkedinLogo,
-        title: "Linkedin"
+        title: "Linkedin",
       },
       {
         href: "https://x.com/dxctechnology",
         logo: layoutIcons.xLogo,
-        title: "X"
+        title: "X",
       },
       {
         href: "https://www.facebook.com/DXCTechnology/",
         logo: layoutIcons.facebookLogo,
-        title: "Facebook"
-      }
+        title: "Facebook",
+      },
     ]}
   />
 );
@@ -58,7 +58,7 @@ const DxcApplicationLayout = ({
   header,
   sidenav,
   footer,
-  children
+  children,
 }: AppLayoutPropsType): JSX.Element => {
   const [isSidenavVisibleResponsive, setIsSidenavVisibleResponsive] = useState(false);
   const [isResponsive, setIsResponsive] = useState(false);

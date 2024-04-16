@@ -6,7 +6,7 @@ import { HalstackProvider } from "../HalstackContext";
 
 export default {
   title: "Radio Group",
-  component: DxcRadioGroup
+  component: DxcRadioGroup,
 };
 
 const singleOption = [{ label: "Option A", value: "A" }];
@@ -15,7 +15,7 @@ const options = [
   { label: "Option 1", value: "1" },
   { label: "Option 2", value: "2" },
   { label: "Option 3", value: "3" },
-  { label: "Option 4", value: "4" }
+  { label: "Option 4", value: "4" },
 ];
 
 const singleDisabledOptions = [{ label: "Option A", value: "A", disabled: true }];
@@ -23,8 +23,8 @@ const singleDisabledOptions = [{ label: "Option A", value: "A", disabled: true }
 const opinionatedTheme = {
   radioGroup: {
     baseColor: "#0086e6",
-    fontColor: "#000000"
-  }
+    fontColor: "#000000",
+  },
 };
 
 export const Chromatic = () => (

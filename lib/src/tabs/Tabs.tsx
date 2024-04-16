@@ -33,7 +33,7 @@ const DxcTabs = ({
   onTabHover,
   margin,
   iconPosition = "top",
-  tabIndex = 0
+  tabIndex = 0,
 }: TabsPropsType): JSX.Element => {
   const colorsTheme = useTheme();
   const hasLabelAndIcon = tabs && tabs.filter((tab) => tab.label && tab.icon).length > 0;

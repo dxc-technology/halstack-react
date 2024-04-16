@@ -16,19 +16,19 @@ const getDays = (innerDate: Dayjs) => {
       monthDayCells.push({
         day: lastMonthNumberOfDays.get("date") - firstDayOfMonth + i + 1,
         month: innerDate.get("month") ? innerDate.get("month") - 1 : 11,
-        year: innerDate.set("month", innerDate.get("month") - 1).get("year")
+        year: innerDate.set("month", innerDate.get("month") - 1).get("year"),
       });
     } else if (i < daysInMonth) {
       monthDayCells.push({
         day: i - firstDayOfMonth + 1,
         month: innerDate.get("month"),
-        year: innerDate.get("year")
+        year: innerDate.get("year"),
       });
     } else {
       monthDayCells.push({
         day: i - daysInMonth + 1,
         month: innerDate.get("month") === 11 ? 0 : innerDate.get("month") + 1,
-        year: innerDate.set("month", innerDate.get("month") + 1).get("year")
+        year: innerDate.set("month", innerDate.get("month") + 1).get("year"),
       });
     }
   }
@@ -52,7 +52,7 @@ const Calendar = ({
   innerDate,
   onInnerDateChange,
   onDaySelect,
-  today
+  today,
 }: CalendarPropsType): JSX.Element => {
   const [dateToFocus, setDateToFocus] = useState(getDateToFocus(selectedDate, innerDate, today));
   const [isFocusable, setIsFocusable] = useState(false);

@@ -52,6 +52,6 @@ export default {
     borderColor: CoreTokens.color_transparent,
     scrollBarThumbColor: CoreTokens.color_grey_700,
     scrollBarTrackColor: CoreTokens.color_grey_300,
-    focusColor: CoreTokens.color_blue_600
-  }
+    focusColor: CoreTokens.color_blue_600,
+  },
 };

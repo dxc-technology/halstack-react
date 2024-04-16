@@ -61,5 +61,5 @@ export type {
   MenuItemProps,
   Section,
   SectionWithId,
-  SingleItemProps
+  SingleItemProps,
 };

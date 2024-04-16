@@ -12,13 +12,13 @@ import DxcTextInput from "./TextInput";
     bottom: 0,
     right: 0,
     width: 0,
-    height: 0
-  })
+    height: 0,
+  }),
 };
 global.ResizeObserver = jest.fn().mockImplementation(() => ({
   observe: jest.fn(),
   unobserve: jest.fn(),
-  disconnect: jest.fn()
+  disconnect: jest.fn(),
 }));
 
 const countries = [
@@ -43,7 +43,7 @@ const countries = [
   "Dominican Republic",
   "Dominica",
   "Denmark",
-  "Djibouti"
+  "Djibouti",
 ];
 const specialCharacters = ["/", "\\", "*", "(", ")", "[", "]", "+", "?", "*{[]}|"];
 
@@ -80,7 +80,7 @@ describe("TextInput component tests", () => {
     expect(onBlur).toHaveBeenCalled();
     expect(onBlur).toHaveBeenCalledWith({
       value: "",
-      error: "This field is required. Please, enter a value."
+      error: "This field is required. Please, enter a value.",
     });
     fireEvent.change(input, { target: { value: "Test" } });
     fireEvent.blur(input);
@@ -101,7 +101,7 @@ describe("TextInput component tests", () => {
     expect(onChange).toHaveBeenCalled();
     expect(onChange).toHaveBeenCalledWith({
       value: "",
-      error: "This field is required. Please, enter a value."
+      error: "This field is required. Please, enter a value.",
     });
   });
 
@@ -124,13 +124,13 @@ describe("TextInput component tests", () => {
     expect(onChange).toHaveBeenCalled();
     expect(onChange).toHaveBeenCalledWith({
       value: "pattern test",
-      error: "Please match the format requested."
+      error: "Please match the format requested.",
     });
     fireEvent.blur(input);
     expect(onBlur).toHaveBeenCalled();
     expect(onBlur).toHaveBeenCalledWith({
       value: "pattern test",
-      error: "Please match the format requested."
+      error: "Please match the format requested.",
     });
     userEvent.clear(input);
     fireEvent.change(input, { target: { value: "pattern4&" } });
@@ -161,13 +161,13 @@ describe("TextInput component tests", () => {
     expect(onChange).toHaveBeenCalled();
     expect(onChange).toHaveBeenCalledWith({
       value: "test",
-      error: "Min length 5, max length 10."
+      error: "Min length 5, max length 10.",
     });
     fireEvent.blur(input);
     expect(onBlur).toHaveBeenCalled();
     expect(onBlur).toHaveBeenCalledWith({
       value: "test",
-      error: "Min length 5, max length 10."
+      error: "Min length 5, max length 10.",
     });
     userEvent.clear(input);
     fireEvent.change(input, { target: { value: "length" } });
@@ -199,25 +199,25 @@ describe("TextInput component tests", () => {
     expect(onChange).toHaveBeenCalled();
     expect(onChange).toHaveBeenCalledWith({
       value: "test",
-      error: "Min length 5, max length 10."
+      error: "Min length 5, max length 10.",
     });
     fireEvent.blur(input);
     expect(onBlur).toHaveBeenCalled();
     expect(onBlur).toHaveBeenCalledWith({
       value: "test",
-      error: "Min length 5, max length 10."
+      error: "Min length 5, max length 10.",
     });
     fireEvent.change(input, { target: { value: "tests" } });
     expect(onChange).toHaveBeenCalled();
     expect(onChange).toHaveBeenCalledWith({
       value: "tests",
-      error: "Please match the format requested."
+      error: "Please match the format requested.",
     });
     fireEvent.blur(input);
     expect(onBlur).toHaveBeenCalled();
     expect(onBlur).toHaveBeenCalledWith({
       value: "tests",
-      error: "Please match the format requested."
+      error: "Please match the format requested.",
     });
     fireEvent.change(input, { target: { value: "tests4&" } });
     expect(onChange).toHaveBeenCalled();
@@ -286,7 +286,7 @@ describe("TextInput component tests", () => {
           <path d="M0 0h24v24H0V0z" fill="none" />
           <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z" />
         </svg>
-      )
+      ),
     };
     const { getByRole } = render(<DxcTextInput label="Disabled input label" action={action} disabled />);
     const input = getByRole("textbox") as HTMLInputElement;
@@ -366,7 +366,7 @@ describe("TextInput component tests", () => {
           <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z" />
         </svg>
       ),
-      title: "Search"
+      title: "Search",
     };
     const { getByRole } = render(<DxcTextInput label="Input label" action={action} readOnly />);
     await userEvent.click(getByRole("button"));
@@ -390,7 +390,7 @@ describe("TextInput component tests", () => {
           <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z" />
         </svg>
       ),
-      title: "Search"
+      title: "Search",
     };
     const { getByRole, getByTestId, getByTitle } = render(<DxcTextInput label="Input label" action={action} />);
     expect(getByTestId("image")).toBeTruthy();
@@ -416,7 +416,7 @@ describe("TextInput component tests", () => {
           <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z" />
         </svg>
       ),
-      title: "Search"
+      title: "Search",
     };
     const handlerOnSubmit = jest.fn((e) => {
       e.preventDefault();
@@ -464,7 +464,7 @@ describe("TextInput component tests", () => {
           <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z" />
         </svg>
       ),
-      title: "Search"
+      title: "Search",
     };
     const { getByRole, getAllByRole } = render(<DxcTextInput label="Example label" clearable action={action} />);
     const input = getByRole("textbox");
@@ -625,14 +625,14 @@ describe("TextInput component synchronous autosuggest tests", () => {
       key: "ArrowUp",
       code: "ArrowUp",
       keyCode: 38,
-      charCode: 38
+      charCode: 38,
     });
     expect(queryByRole("listbox")).toBeFalsy();
     fireEvent.keyDown(input, {
       key: "ArrowDown",
       code: "ArrowDown",
       keyCode: 40,
-      charCode: 40
+      charCode: 40,
     });
     expect(queryByRole("listbox")).toBeFalsy();
   });
@@ -696,12 +696,12 @@ describe("TextInput component synchronous autosuggest tests", () => {
     });
     expect(onChange).toHaveBeenCalledWith({
       value: "Andorra",
-      error: "Please match the format requested."
+      error: "Please match the format requested.",
     });
     fireEvent.blur(input);
     expect(onBlur).toHaveBeenCalledWith({
       value: "Andorra",
-      error: "Please match the format requested."
+      error: "Please match the format requested.",
     });
   });
 
@@ -730,12 +730,12 @@ describe("TextInput component synchronous autosuggest tests", () => {
     });
     expect(onChange).toHaveBeenCalledWith({
       value: "Cha",
-      error: "Min length 5, max length 10."
+      error: "Min length 5, max length 10.",
     });
     fireEvent.blur(input);
     expect(onBlur).toHaveBeenCalledWith({
       value: "Chad",
-      error: "Min length 5, max length 10."
+      error: "Min length 5, max length 10.",
     });
   });
 
@@ -749,7 +749,7 @@ describe("TextInput component synchronous autosuggest tests", () => {
       key: "ArrowDown",
       code: "ArrowDown",
       keyCode: 40,
-      charCode: 40
+      charCode: 40,
     });
     const list = getByRole("listbox");
     expect(list).toBeTruthy();
@@ -757,7 +757,7 @@ describe("TextInput component synchronous autosuggest tests", () => {
       key: "Enter",
       code: "Enter",
       keyCode: 13,
-      charCode: 13
+      charCode: 13,
     });
     expect(input.value).toBe("Afghanistan");
     expect(queryByRole("list")).toBeFalsy();
@@ -773,7 +773,7 @@ describe("TextInput component synchronous autosuggest tests", () => {
       key: "ArrowUp",
       code: "ArrowUp",
       keyCode: 38,
-      charCode: 38
+      charCode: 38,
     });
     const list = getByRole("listbox");
     expect(list).toBeTruthy();
@@ -781,7 +781,7 @@ describe("TextInput component synchronous autosuggest tests", () => {
       key: "Enter",
       code: "Enter",
       keyCode: 13,
-      charCode: 13
+      charCode: 13,
     });
     expect(input.value).toBe("Djibouti");
     expect(queryByRole("list")).toBeFalsy();
@@ -801,7 +801,7 @@ describe("TextInput component synchronous autosuggest tests", () => {
       key: "Esc",
       code: "Esc",
       keyCode: 27,
-      charCode: 27
+      charCode: 27,
     });
     expect(input.value).toBe("");
     expect(queryByRole("listbox")).toBeFalsy();
@@ -820,7 +820,7 @@ describe("TextInput component synchronous autosuggest tests", () => {
       key: "Enter",
       code: "Enter",
       keyCode: 27,
-      charCode: 27
+      charCode: 27,
     });
     expect(input.value).toBe("");
     expect(queryByRole("list")).toBeFalsy();
@@ -840,25 +840,25 @@ describe("TextInput component synchronous autosuggest tests", () => {
       key: "ArrowUp",
       code: "ArrowUp",
       keyCode: 38,
-      charCode: 38
+      charCode: 38,
     });
     fireEvent.keyDown(input, {
       key: "ArrowUp",
       code: "ArrowUpp",
       keyCode: 38,
-      charCode: 38
+      charCode: 38,
     });
     fireEvent.keyDown(input, {
       key: "ArrowDown",
       code: "ArrowDown",
       keyCode: 40,
-      charCode: 40
+      charCode: 40,
     });
     fireEvent.keyDown(input, {
       key: "Enter",
       code: "Enter",
       keyCode: 13,
-      charCode: 13
+      charCode: 13,
     });
     expect(input.value).toBe("Barbados");
     expect(queryByRole("listbox")).toBeFalsy();
@@ -866,7 +866,7 @@ describe("TextInput component synchronous autosuggest tests", () => {
       key: "Esc",
       code: "Esc",
       keyCode: 27,
-      charCode: 27
+      charCode: 27,
     });
     expect(input.value).toBe("");
     expect(queryByRole("listbox")).toBeFalsy();
@@ -943,13 +943,13 @@ describe("TextInput component asynchronous autosuggest tests", () => {
       key: "ArrowUp",
       code: "ArrowUp",
       keyCode: 38,
-      charCode: 38
+      charCode: 38,
     });
     fireEvent.keyDown(input, {
       key: "Enter",
       code: "Enter",
       keyCode: 13,
-      charCode: 13
+      charCode: 13,
     });
     expect(input.value).toBe("Cabo Verde");
   });
@@ -977,7 +977,7 @@ describe("TextInput component asynchronous autosuggest tests", () => {
       key: "Esc",
       code: "Esc",
       keyCode: 27,
-      charCode: 27
+      charCode: 27,
     });
     expect(queryByRole("listbox")).toBeFalsy();
     expect(queryByText("Searching...")).toBeFalsy();
@@ -1008,7 +1008,7 @@ describe("TextInput component asynchronous autosuggest tests", () => {
       key: "Esc",
       code: "Esc",
       keyCode: 27,
-      charCode: 27
+      charCode: 27,
     });
     expect(queryByRole("listbox")).toBeFalsy();
     expect(queryByText("Searching...")).toBeFalsy();
@@ -1017,7 +1017,7 @@ describe("TextInput component asynchronous autosuggest tests", () => {
       key: "ArrowDown",
       code: "ArrowDown",
       keyCode: 40,
-      charCode: 40
+      charCode: 40,
     });
     expect(list).toBeTruthy();
     await waitForElementToBeRemoved(() => getByText("Searching..."));
@@ -1128,14 +1128,14 @@ describe("TextInput component asynchronous autosuggest tests", () => {
       key: "ArrowUp",
       code: "ArrowUp",
       keyCode: 38,
-      charCode: 38
+      charCode: 38,
     });
     expect(queryByRole("listbox")).toBeFalsy();
     fireEvent.keyDown(input, {
       key: "ArrowDown",
       code: "ArrowDown",
       keyCode: 40,
-      charCode: 40
+      charCode: 40,
     });
     expect(queryByRole("listbox")).toBeFalsy();
   });

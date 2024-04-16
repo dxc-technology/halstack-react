@@ -17,7 +17,7 @@ const DxcAccordion = ({
   onChange,
   children,
   margin,
-  tabIndex = 0
+  tabIndex = 0,
 }: AccordionPropsType): JSX.Element => {
   const id = useId();
   const [innerIsExpanded, setInnerIsExpanded] = useState(defaultIsExpanded ?? false);

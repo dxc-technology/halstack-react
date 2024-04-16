@@ -5,7 +5,7 @@ import ExampleContainer from "../../.storybook/components/ExampleContainer";
 
 export default {
   title: "Heading",
-  component: DxcHeading
+  component: DxcHeading,
 };
 
 export const Chromatic = () => (

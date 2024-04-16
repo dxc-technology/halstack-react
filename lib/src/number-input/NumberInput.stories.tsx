@@ -5,7 +5,7 @@ import DxcNumberInput from "./NumberInput";
 
 export default {
   title: "Number Input",
-  component: DxcNumberInput
+  component: DxcNumberInput,
 };
 
 export const Chromatic = () => (

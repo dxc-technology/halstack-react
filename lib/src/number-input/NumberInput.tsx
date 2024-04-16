@@ -27,7 +27,7 @@ const DxcNumberInput = React.forwardRef<RefType, NumberInputPropsType>(
       autocomplete,
       margin,
       size,
-      tabIndex
+      tabIndex,
     },
     ref
   ) => {
@@ -38,7 +38,7 @@ const DxcNumberInput = React.forwardRef<RefType, NumberInputPropsType>(
         typeNumber: "number",
         minNumber: min,
         maxNumber: max,
-        stepNumber: step
+        stepNumber: step,
       }),
       [min, max, step]
     );

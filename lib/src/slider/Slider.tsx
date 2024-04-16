@@ -25,7 +25,7 @@ const DxcSlider = React.forwardRef<RefType, SliderPropsType>(
       onDragEnd,
       labelFormatCallback,
       margin,
-      size = "fillParent"
+      size = "fillParent",
     },
     ref
   ): JSX.Element => {
@@ -152,7 +152,7 @@ const DxcSlider = React.forwardRef<RefType, SliderPropsType>(
 const sizes = {
   medium: "360px",
   large: "480px",
-  fillParent: "100%"
+  fillParent: "100%",
 };
 
 const calculateWidth = (margin: SliderPropsType["margin"], size: SliderPropsType["size"]) =>

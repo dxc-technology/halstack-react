@@ -31,7 +31,7 @@ const DxcTextarea = React.forwardRef<RefType, TextareaPropsType>(
       autocomplete = "off",
       margin,
       size = "medium",
-      tabIndex = 0
+      tabIndex = 0,
     },
     ref
   ) => {
@@ -60,17 +60,17 @@ const DxcTextarea = React.forwardRef<RefType, TextareaPropsType>(
       if (isNotOptional(newValue)) {
         onChange?.({
           value: newValue,
-          error: translatedLabels.formFields.requiredValueErrorMessage
+          error: translatedLabels.formFields.requiredValueErrorMessage,
         });
       } else if (isLengthIncorrect(newValue)) {
         onChange?.({
           value: newValue,
-          error: translatedLabels.formFields.lengthErrorMessage(minLength, maxLength)
+          error: translatedLabels.formFields.lengthErrorMessage(minLength, maxLength),
         });
       } else if (newValue && pattern && !patternMatch(pattern, newValue)) {
         onChange?.({
           value: newValue,
-          error: translatedLabels.formFields.formatRequestedErrorMessage
+          error: translatedLabels.formFields.formatRequestedErrorMessage,
         });
       } else {
         onChange?.({ value: newValue });
@@ -89,17 +89,17 @@ const DxcTextarea = React.forwardRef<RefType, TextareaPropsType>(
       if (isNotOptional(event.target.value)) {
         onBlur?.({
           value: event.target.value,
-          error: translatedLabels.formFields.requiredValueErrorMessage
+          error: translatedLabels.formFields.requiredValueErrorMessage,
         });
       } else if (isLengthIncorrect(event.target.value)) {
         onBlur?.({
           value: event.target.value,
-          error: translatedLabels.formFields.lengthErrorMessage(minLength, maxLength)
+          error: translatedLabels.formFields.lengthErrorMessage(minLength, maxLength),
         });
       } else if (event.target.value && pattern && !patternMatch(pattern, event.target.value)) {
         onBlur?.({
           value: event.target.value,
-          error: translatedLabels.formFields.formatRequestedErrorMessage
+          error: translatedLabels.formFields.formatRequestedErrorMessage,
         });
       } else {
         onBlur?.({ value: event.target.value });
@@ -158,7 +158,7 @@ const sizes = {
   small: "240px",
   medium: "360px",
   large: "480px",
-  fillParent: "100%"
+  fillParent: "100%",
 };
 
 const calculateWidth = (margin: TextareaPropsType["margin"], size: TextareaPropsType["size"]) =>

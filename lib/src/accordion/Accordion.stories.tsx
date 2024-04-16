@@ -6,7 +6,7 @@ import { HalstackProvider } from "../HalstackContext";
 
 export default {
   title: "Accordion",
-  component: DxcAccordion
+  component: DxcAccordion,
 };
 
 const smallIcon = (
@@ -42,8 +42,8 @@ const opinionatedTheme = {
   accordion: {
     accentColor: "#5f249f",
     titleFontColor: "#000000",
-    assistiveTextFontColor: "#666666"
-  }
+    assistiveTextFontColor: "#666666",
+  },
 };
 
 export const Chromatic = () => (

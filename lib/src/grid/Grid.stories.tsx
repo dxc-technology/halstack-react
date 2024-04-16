@@ -7,7 +7,7 @@ import DxcInset from "../inset/Inset";
 
 export default {
   title: "Grid",
-  component: DxcGrid
+  component: DxcGrid,
 };
 
 export const Chromatic = () => (

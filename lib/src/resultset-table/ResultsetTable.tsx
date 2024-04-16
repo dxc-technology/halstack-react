@@ -49,7 +49,7 @@ const DxcResultsetTable = ({
   itemsPerPageFunction,
   margin,
   tabIndex = 0,
-  mode = "default"
+  mode = "default",
 }: ResultsetTablePropsType): JSX.Element => {
   const colorsTheme = useTheme();
   const [page, changePage] = useState(1);

@@ -31,7 +31,7 @@ const DxcQuickNav = ({ title, links }: QuickNavTypes): JSX.Element => {
                             <DxcTypography>
                               <Link
                                 href={`#${slugify(link?.label, { lower: true })}-${slugify(sublink?.label, {
-                                  lower: true
+                                  lower: true,
                                 })}`}
                               >
                                 {sublink?.label}

@@ -5,7 +5,7 @@ import DxcTypography from "./Typography";
 
 export default {
   title: "Typography",
-  component: DxcTypography
+  component: DxcTypography,
 };
 
 export const Chromatic = () => (

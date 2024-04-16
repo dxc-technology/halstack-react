@@ -6,7 +6,7 @@ import DxcInset from "./Inset";
 
 export default {
   title: "Inset",
-  component: DxcInset
+  component: DxcInset,
 };
 
 export const Chromatic = () => (

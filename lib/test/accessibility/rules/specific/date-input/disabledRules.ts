@@ -6,7 +6,7 @@ const disabledRules = [
   // TODO: REMOVE
   "aria-allowed-attr",
   "duplicate-id-active",
-  "duplicate-id"
+  "duplicate-id",
 ];
 
 export default disabledRules;

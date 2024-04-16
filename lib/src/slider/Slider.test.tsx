@@ -12,13 +12,13 @@ import DxcSlider from "./Slider";
     bottom: 0,
     right: 0,
     width: 0,
-    height: 0
-  })
+    height: 0,
+  }),
 };
 global.ResizeObserver = jest.fn().mockImplementation(() => ({
   observe: jest.fn(),
   unobserve: jest.fn(),
-  disconnect: jest.fn()
+  disconnect: jest.fn(),
 }));
 
 describe("Slider component tests", () => {
@@ -53,7 +53,7 @@ describe("Slider component tests", () => {
       key: "ArrowRight",
       code: "ArrowRight",
       keyCode: 39,
-      charCode: 39
+      charCode: 39,
     });
     expect(slider.getAttribute("aria-valuenow")).toBe("125");
     expect(getByText("30")).toBeTruthy();
@@ -159,7 +159,7 @@ describe("Slider component tests", () => {
       key: "ArrowRight",
       code: "ArrowRight",
       keyCode: 39,
-      charCode: 39
+      charCode: 39,
     });
     rerender(<DxcSlider minValue={0} maxValue={100} onChange={onChange} showLimitsValues value={0} showInput />);
     expect(slider.getAttribute("aria-valuenow")).toBe("0");

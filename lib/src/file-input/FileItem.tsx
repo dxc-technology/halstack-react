@@ -14,7 +14,7 @@ const FileItem = ({
   preview,
   type,
   onDelete,
-  tabIndex
+  tabIndex,
 }: FileItemProps): JSX.Element => {
   const colorsTheme = useTheme();
   const translatedLabels = useTranslatedLabels();

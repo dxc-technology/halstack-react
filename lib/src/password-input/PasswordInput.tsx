@@ -31,7 +31,7 @@ const DxcPasswordInput = React.forwardRef<RefType, PasswordInputPropsType>(
       autocomplete = "off",
       margin,
       size = "medium",
-      tabIndex = 0
+      tabIndex = 0,
     },
     ref
   ) => {
@@ -63,7 +63,7 @@ const DxcPasswordInput = React.forwardRef<RefType, PasswordInputPropsType>(
               setIsPasswordVisible((isPasswordCurrentlyVisible) => !isPasswordCurrentlyVisible);
             },
             icon: isPasswordVisible ? "Visibility_Off" : "Visibility",
-            title: isPasswordVisible ? passwordInput.inputHidePasswordTitle : passwordInput.inputShowPasswordTitle
+            title: isPasswordVisible ? passwordInput.inputHidePasswordTitle : passwordInput.inputShowPasswordTitle,
           }}
           error={error}
           clearable={clearable}
