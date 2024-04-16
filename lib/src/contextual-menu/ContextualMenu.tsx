@@ -24,9 +24,7 @@ const addIdToItems = (items: ContextualMenuPropsType["items"]): (ItemWithId | Gr
   const innerAddIdToItems = (innerItems: ContextualMenuPropsType["items"]) =>
     innerItems.map((item: Item | GroupItem | Section) => {
       let newItem;
-      if (isSection(item)) {
-        newItem = { ...item, items: innerAddIdToItems(item.items) };
-      } else if (isGroupItem(item)) {
+      if (isSection(item) || isGroupItem(item)) {
         newItem = { ...item, items: innerAddIdToItems(item.items) };
       } else {
         newItem = { ...item, id: (accId += 1) };
@@ -35,21 +33,6 @@ const addIdToItems = (items: ContextualMenuPropsType["items"]): (ItemWithId | Gr
     });
   return innerAddIdToItems(items);
 };
-
-// const addIdToItems = (
-//   items: ContextualMenuPropsType["items"]
-// ): (ItemWithId | GroupItemWithId)[] | SectionWithId[] => {
-//   let accId = 0;
-//   const innerAddIdToItems = (innerItems: ContextualMenuPropsType["items"]) =>
-//     innerItems.map((item: Item | GroupItem | Section) =>
-//       isSection(item)
-//         ? { ...item, items: innerAddIdToItems(item.items) }
-//         : isGroupItem(item)
-//           ? { ...item, items: innerAddIdToItems(item.items) }
-//           : { ...item, id: (accId += 1) }
-//     );
-//   return innerAddIdToItems(items);
-// };
 
 const DxcContextualMenu = ({ items }: ContextualMenuPropsType) => {
   const [selectedItemId, setSelectedItemId] = useState(-1);
