@@ -10,8 +10,6 @@ import dayjs from "dayjs";
 import useTheme from "../useTheme";
 import { ThemeProvider } from "styled-components";
 import { HalstackProvider } from "../HalstackContext";
-import preview from "../../.storybook/preview";
-import { disabledRules } from "../../test/accessibility/rules/specific/date-input/disabledRules";
 
 export default {
   title: "Date Input",

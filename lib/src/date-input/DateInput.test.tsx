@@ -49,7 +49,7 @@ describe("DateInput component tests", () => {
     const calendarAction = getByRole("combobox");
     expect(input.value).toBe("21-10-2015");
     await userEvent.click(calendarAction);
-    expect(getByText("21").closest("div").getAttribute("aria-selected")).toBe("true");
+    expect(getByText("21").closest("span").getAttribute("aria-selected")).toBe("true");
     expect(getByText("October 2015")).toBeTruthy();
   });
 
@@ -104,7 +104,7 @@ describe("DateInput component tests", () => {
     const calendarAction = getByRole("combobox");
     const d = dayjs("2019-10-20");
     await userEvent.click(calendarAction);
-    expect(getAllByText(d.get("date"))[0].closest("div").getAttribute("aria-selected")).toBe("true");
+    expect(getAllByText(d.get("date"))[0].closest("span").getAttribute("aria-selected")).toBe("true");
     expect(getByText(d.format("MMMM YYYY"))).toBeTruthy();
   });
 
@@ -115,7 +115,7 @@ describe("DateInput component tests", () => {
     const input = getByRole("textbox");
     userEvent.type(input, "01-01-2010");
     await userEvent.click(calendarAction);
-    expect(getAllByText(d.get("date"))[0].closest("div").getAttribute("aria-selected")).toBe("true");
+    expect(getAllByText(d.get("date"))[0].closest("span").getAttribute("aria-selected")).toBe("true");
     expect(getByText(d.format("MMMM YYYY"))).toBeTruthy();
   });
 
@@ -150,7 +150,7 @@ describe("DateInput component tests", () => {
     fireEvent.click(dayButton);
     let d = dayjs();
     d = d.set("date", 10);
-    expect(getAllByText(d.get("date"))[0].closest("div").getAttribute("aria-selected")).toBe("true");
+    expect(getAllByText(d.get("date"))[0].closest("span").getAttribute("aria-selected")).toBe("true");
     expect(getByText(d.format("MMMM YYYY"))).toBeTruthy();
     fireEvent.keyDown(document, { key: "Escape", code: "Escape", keyCode: 27, charCode: 27 });
     expect(input.value).toBe(d.format("M-DD-YYYY"));
@@ -184,7 +184,7 @@ describe("DateInput component tests", () => {
     fireEvent.click(dayButton);
     let d = dayjs("10-08-2021", "DD-MM-YYYY", true);
     d = d.set("date", 31).set("month", 6);
-    expect(getAllByText(d.get("date"))[0].closest("div").getAttribute("aria-selected")).toBe("true");
+    expect(getAllByText(d.get("date"))[0].closest("span").getAttribute("aria-selected")).toBe("true");
     expect(getByText(d.format("MMMM YYYY"))).toBeTruthy();
     fireEvent.keyDown(document, { key: "Escape", code: "Escape", keyCode: 27, charCode: 27 });
     expect(input.value).toBe(d.format("DD-MM-YYYY"));
@@ -253,7 +253,7 @@ describe("DateInput component tests", () => {
     expect(getByText("January 2010")).toBeTruthy();
     expect(document.activeElement === getAllByText("2")[0].closest("button")).toBeTruthy();
     fireEvent.click(getAllByText("2")[0].closest("button"), { key: " ", code: "Space", keyCode: 32, charCode: 32 });
-    expect(getAllByText("2")[0].closest("div").getAttribute("aria-selected")).toBe("true");
+    expect(getAllByText("2")[0].closest("span").getAttribute("aria-selected")).toBe("true");
     fireEvent.keyDown(document, { key: "Escape", code: "Escape", keyCode: 27, charCode: 27 });
     expect(input.value).toBe("02-01-2010");
   });
@@ -430,7 +430,7 @@ describe("DateInput component tests", () => {
     const calendarAction = getByRole("combobox");
     expect(input.value).toBe("21-10-80");
     await userEvent.click(calendarAction);
-    expect(getByText("21").closest("div").getAttribute("aria-selected")).toBe("true");
+    expect(getByText("21").closest("span").getAttribute("aria-selected")).toBe("true");
     expect(getByText("October 1980")).toBeTruthy();
     await userEvent.type(calendarAction, "{esc}");
     fireEvent.change(input, { target: { value: "21-10-10" } });

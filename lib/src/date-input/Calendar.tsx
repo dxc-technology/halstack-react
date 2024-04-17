@@ -39,8 +39,8 @@ const getDateToFocus = (selectedDate, innerDate, today) => {
   return selectedDate?.get("month") === innerDate.get("month") && selectedDate?.get("year") === innerDate.get("year")
     ? selectedDate
     : today.get("month") === innerDate.get("month") && today.get("year") === innerDate.get("year")
-    ? today
-    : innerDate.set("date", 1);
+      ? today
+      : innerDate.set("date", 1);
 };
 
 const isDaySelected = (date: { day: number; month: number; year: number }, selectedDate) =>
@@ -50,7 +50,7 @@ const isDaySelected = (date: { day: number; month: number; year: number }, selec
 
 const chunk = (data: any[], chunkSize: number) => {
   return Array.from({ length: Math.ceil(data.length / chunkSize) }, (_, rowIndex) =>
-    data.slice(rowIndex * chunkSize, (rowIndex + 1) * chunkSize)
+    data.slice(rowIndex * chunkSize, (rowIndex + 1) * chunkSize),
   );
 };
 
@@ -163,24 +163,25 @@ const Calendar = ({
   };
   return (
     <CalendarContainer role="grid">
-      <DxcFlex alignItems="center" justifyContent="space-between">
+      <CalendarRow role="row">
         {weekDays.map((weekDay) => (
-          <WeekHeaderCell key={weekDay}>{weekDay}</WeekHeaderCell>
+          <CalendarCell key={weekDay} role="columnheader">
+            {weekDay}
+          </CalendarCell>
         ))}
-      </DxcFlex>
-      <WeeksContainer onBlur={handleOnBlur}>
+      </CalendarRow>
+      <WeeksContainer onBlur={handleOnBlur} role="rowgroup">
         {chunk(dayCells, weekDays.length).map((week, rowIndex) => (
           <DayCellsContainer key={`${id}_week_${rowIndex}`} role="row">
             {week.map((date, index) => (
-              <DayCellContainer
+              <CalendarCell
                 key={`${id}_day_${index}`}
                 role="gridcell"
                 aria-selected={isDaySelected(date, selectedDate)}
               >
-                <DayCell
+                <DayCellButton
                   onKeyDown={(event) => handleDayKeyboardEvent(event, date)}
                   id={`${id}_day_${date.day}_month${date.month}`}
-                  key={`${id}_day_container_${index}`}
                   onClick={() => onDateClickHandler(date)}
                   selected={isDaySelected(date, selectedDate)}
                   actualMonth={date.month === innerDate.get("month")}
@@ -194,8 +195,8 @@ const Calendar = ({
                   }
                 >
                   {date.day}
-                </DayCell>
-              </DayCellContainer>
+                </DayCellButton>
+              </CalendarCell>
             ))}
           </DayCellsContainer>
         ))}
@@ -217,14 +218,21 @@ const CalendarContainer = styled.div`
   font-weight: ${(props) => props.theme.dateInput.pickerFontWeight};
 `;
 
-const WeekHeaderCell = styled.span`
+const CalendarRow = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const CalendarCell = styled.span`
   display: flex;
   align-items: center;
   justify-content: center;
   width: 36px;
   height: 36px;
 `;
-const DayCellContainer = styled.div``;
 
 const WeeksContainer = styled.div`
   box-sizing: border-box;
@@ -241,7 +249,7 @@ const DayCellsContainer = styled.div`
   justify-content: space-between;
 `;
 
-const DayCell = styled.button<{
+const DayCellButton = styled.button<{
   selected: boolean;
   actualMonth: boolean;
   isCurrentDay: boolean;
@@ -286,10 +294,10 @@ const DayCell = styled.button<{
     props.selected
       ? props.theme.dateInput.pickerSelectedFontColor
       : props.isCurrentDay
-      ? props.theme.dateInput.pickerCurrentDateFontColor
-      : !props.actualMonth
-      ? props.theme.dateInput.pickerNonCurrentMonthFontColor
-      : props.theme.dateInput.pickerFontColor};
+        ? props.theme.dateInput.pickerCurrentDateFontColor
+        : !props.actualMonth
+          ? props.theme.dateInput.pickerNonCurrentMonthFontColor
+          : props.theme.dateInput.pickerFontColor};
 `;
 
 export default React.memo(Calendar);
