@@ -1,9 +1,8 @@
 import { Dayjs } from "dayjs";
-import React, { useState, useMemo, useEffect } from "react";
+import React, { useState, useMemo, useEffect, useId } from "react";
 import styled from "styled-components";
 import { CalendarPropsType } from "./types";
 import useTranslatedLabels from "../useTranslatedLabels";
-import { v4 as uuidv4 } from "uuid";
 import DxcFlex from "../flex/Flex";
 
 const getDays = (innerDate: Dayjs) => {
@@ -62,7 +61,7 @@ const Calendar = ({
   onDaySelect,
   today,
 }: CalendarPropsType): JSX.Element => {
-  const [id] = useState(uuidv4());
+  const id = useId();
   const [dateToFocus, setDateToFocus] = useState(getDateToFocus(selectedDate, innerDate, today));
   const [isFocusable, setIsFocusable] = useState(false);
   const dayCells = useMemo(() => getDays(innerDate), [innerDate]);

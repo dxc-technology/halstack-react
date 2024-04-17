@@ -1,8 +1,7 @@
 import dayjs from "dayjs";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useId, useState } from "react";
 import styled from "styled-components";
 import { YearPickerPropsType } from "./types";
-import { v4 as uuidv4 } from "uuid";
 
 const getYearsArray = () => {
   const yearList = [];
@@ -14,7 +13,7 @@ const getYearsArray = () => {
 const yearList = getYearsArray();
 
 const YearPicker = ({ onYearSelect, selectedDate, today }: YearPickerPropsType): JSX.Element => {
-  const [id] = useState(uuidv4());
+  const id = useId();
   const [yearToFocus, setYearToFocus] = useState(selectedDate ? selectedDate.get("year") : dayjs().get("year"));
 
   useEffect(() => {
