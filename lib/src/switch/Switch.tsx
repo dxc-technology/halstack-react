@@ -1,6 +1,5 @@
-import React, { useState, useContext, useRef } from "react";
+import React, { useState, useRef, useId } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import { v4 as uuidv4 } from "uuid";
 import { AdvancedTheme, spaces } from "../common/variables";
 import { getMargin } from "../common/utils";
 import useTheme from "../useTheme";
@@ -25,7 +24,7 @@ const DxcSwitch = React.forwardRef<RefType, SwitchPropsType>(
     },
     ref
   ): JSX.Element => {
-    const [switchId] = useState(`switch-${uuidv4()}`);
+    const switchId = `switch-${useId()}`;
     const labelId = `label-${switchId}`;
     const [innerChecked, setInnerChecked] = useState(defaultChecked ?? false);
 

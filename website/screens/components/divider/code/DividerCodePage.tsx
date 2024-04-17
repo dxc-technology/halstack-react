@@ -42,18 +42,6 @@ const sections = [
             </td>
           </tr>
           <tr>
-            <td>length</td>
-            <td>
-              <TableCode>
-                'fixed' | '30%' | '50%' | '80%' | 'fillParent'
-              </TableCode>
-            </td>
-            <td>Modifies the length of the divider.</td>
-            <td>
-              <TableCode>'fixed'</TableCode>
-            </td>
-          </tr>
-          <tr>
             <td>color</td>
             <td>
               <TableCode>'lightGrey' | 'mediumGrey' | 'darkGrey'</TableCode>

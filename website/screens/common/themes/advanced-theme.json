@@ -191,13 +191,11 @@
   },
   "chip": {
     "backgroundColor": "#e6e6e6",
-    "disabledBackgroundColor": "#f2f2f2",
     "fontFamily": "Open Sans, sans-serif",
     "fontSize": "1rem",
     "fontStyle": "normal",
     "fontWeight": "400",
     "fontColor": "#000000",
-    "disabledFontColor": "#999999",
     "borderColor": "transparent",
     "borderRadius": "80px",
     "borderThickness": "0px",
@@ -214,8 +212,7 @@
     "disabledIconColor": "#999999",
     "focusColor": "#0095ff",
     "focusBorderStyle": "solid",
-    "focusBorderThickness": "2px",
-    "focusBorderRadius": "0.25rem"
+    "focusBorderThickness": "2px"
   },
   "dateInput": {
     "pickerBackgroundColor": "#ffffff",
@@ -323,7 +320,6 @@
     "focusDropBorderColor": "#0095ff",
     "disabledDropBorderColor": "#999999",
     "dragoverDropBackgroundColor": "#f5fbff",
-    "activeFileItemIconBackgrounColor": "#cccccc",
     "errorFileItemBorderColor": "#d0011b",
     "errorFileItemBackgroundColor": "#fff5f6",
     "errorFilePreviewBackgroundColor": "#ffccd3",

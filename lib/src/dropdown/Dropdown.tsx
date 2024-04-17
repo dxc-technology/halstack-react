@@ -1,10 +1,9 @@
-import React, { useState, useEffect, useRef, useCallback, useLayoutEffect } from "react";
+import React, { useState, useEffect, useRef, useCallback, useLayoutEffect, useId } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import DropdownPropsType from "./types";
 import { spaces } from "../common/variables";
 import { getMargin } from "../common/utils";
 import useTheme from "../useTheme";
-import { v4 as uuidv4 } from "uuid";
 import * as Popover from "@radix-ui/react-popover";
 import DropdownMenu from "./DropdownMenu";
 import DxcIcon from "../icon/Icon";
@@ -44,8 +43,9 @@ const DxcDropdown = ({
   size = "fitContent",
   tabIndex = 0,
 }: DropdownPropsType): JSX.Element => {
-  const [triggerId] = useState(`trigger-${uuidv4()}`);
-  const menuId = `menu-${triggerId}`;
+  const id = useId();
+  const triggerId = `trigger-${id}`;
+  const menuId = `menu-${id}`;
   const [isOpen, changeIsOpen] = useState(false);
   const [visualFocusIndex, setVisualFocusIndex] = useState(0);
 
@@ -127,6 +127,7 @@ const DxcDropdown = ({
         case "Esc":
         case "Escape":
           event.preventDefault();
+          isOpen && event.stopPropagation();
           handleOnCloseMenu();
           triggerRef.current?.focus();
           break;
@@ -186,7 +187,11 @@ const DxcDropdown = ({
               <DropdownTriggerContent>
                 {label && iconPosition === "after" && <DropdownTriggerLabel>{label}</DropdownTriggerLabel>}
                 {icon && (
-                  <DropdownTriggerIcon disabled={disabled} role={typeof icon === "string" ? undefined : "img"} aria-hidden>
+                  <DropdownTriggerIcon
+                    disabled={disabled}
+                    role={typeof icon === "string" ? undefined : "img"}
+                    aria-hidden
+                  >
                     {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
                   </DropdownTriggerIcon>
                 )}

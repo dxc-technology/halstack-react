@@ -7,7 +7,12 @@ type Item = {
   label: string;
   onSelect?: () => void;
 };
-type GroupItem = { items: (Item | GroupItem)[]; badge?: React.ReactElement; icon?: string | SVG; label: string };
+type GroupItem = {
+  badge?: React.ReactElement;
+  icon?: string | SVG;
+  items: (Item | GroupItem)[];
+  label: string;
+};
 type Section = { items: (Item | GroupItem)[]; title?: string };
 type Props = {
   items: (Item | GroupItem)[] | Section[];
@@ -18,9 +23,9 @@ type Props = {
  */
 type ItemWithId = Item & { id: number };
 type GroupItemWithId = {
-  items: (ItemWithId | GroupItemWithId)[];
   badge?: React.ReactElement;
   icon: string | SVG;
+  items: (ItemWithId | GroupItemWithId)[];
   label: string;
 };
 type SectionWithId = { items: (ItemWithId | GroupItemWithId)[]; title?: string };
