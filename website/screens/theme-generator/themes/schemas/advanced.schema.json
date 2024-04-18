@@ -191,6 +191,8 @@
   },
   "chip": {
     "backgroundColor": "color",
+    "disabledBackgroundColor": "color",
+    "disabledFontColor": "color",
     "fontColor": "color",
     "fontFamily": "fFamily",
     "fontSize": "length",
@@ -212,7 +214,8 @@
     "disabledIconColor": "color",
     "focusColor": "color",
     "focusBorderStyle": "bStyle",
-    "focusBorderThickness": "length"
+    "focusBorderThickness": "length",
+    "focusBorderRadius": "length"
   },
   "dateInput": {
     "pickerBackgroundColor": "color",
