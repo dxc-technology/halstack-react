@@ -3,6 +3,7 @@ import styled from "styled-components";
 import type { Preview } from "@storybook/react";
 import React from "react";
 import disabledRules from "../test/accessibility/rules/common/disabledRules";
+import "../src/common/fonts.css";
 
 const preview: Preview = {
   parameters: {

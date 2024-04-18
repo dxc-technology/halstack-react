@@ -193,11 +193,13 @@ export const componentTokens = {
   },
   chip: {
     backgroundColor: CoreTokens.color_grey_200,
+    disabledBackgroundColor: CoreTokens.color_grey_100,
     fontFamily: CoreTokens.type_sans,
     fontSize: CoreTokens.type_scale_03,
     fontStyle: CoreTokens.type_normal,
     fontWeight: CoreTokens.type_regular,
     fontColor: CoreTokens.color_black,
+    disabledFontColor: CoreTokens.color_grey_500,
     borderColor: CoreTokens.color_transparent,
     borderRadius: "80px",
     borderThickness: CoreTokens.border_width_0,
@@ -215,6 +217,7 @@ export const componentTokens = {
     focusColor: CoreTokens.color_blue_600,
     focusBorderStyle: CoreTokens.border_solid,
     focusBorderThickness: CoreTokens.border_width_2,
+    focusBorderRadius: CoreTokens.border_radius_medium,
   },
   dateInput: {
     pickerBackgroundColor: CoreTokens.color_white,
