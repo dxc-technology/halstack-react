@@ -11,6 +11,7 @@ import Figure from "@/common/Figure";
 import Image from "@/common/Image";
 import Code from "@/common/Code";
 import specsImage from "./images/chip_specs.png";
+import statesImage from "./images/chip_states_container.png";
 import prefixSuffixStatesImage from "./images/chip_states_action.png";
 import anatomyImage from "./images/chip_anatomy.png";
 
@@ -27,6 +28,13 @@ const sections = [
     title: "States",
     content: (
       <>
+        <DxcParagraph>
+          The chip component container states are <strong>enabled</strong> and{" "}
+          <strong>disabled</strong>:
+        </DxcParagraph>
+        <Figure caption="Chip states">
+          <Image src={statesImage} alt="Chip states" />
+        </Figure>
         <DxcParagraph>
           The chip action item has the following states:{" "}
           <strong>enabled</strong>, <strong>hover</strong>,{" "}
@@ -105,6 +113,26 @@ const sections = [
                   <Code>color-transparent</Code>
                 </td>
                 <td>transparent</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>disabledBackgroundColor</Code>
+                </td>
+                <td>Container:disabled</td>
+                <td>
+                  <Code>color-grey-100</Code>
+                </td>
+                <td>#f2f2f2</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>disabledFontcolor</Code>
+                </td>
+                <td>Label:disabled</td>
+                <td>
+                  <Code>color-grey-500</Code>
+                </td>
+                <td>#999999</td>
               </tr>
               <tr>
                 <td>
@@ -299,7 +327,7 @@ const sections = [
             <tbody>
               <tr>
                 <td>
-                  <Code>borderThickness</Code>
+                  <Code>border-width</Code>
                 </td>
                 <td>Chip container</td>
                 <td>
@@ -309,27 +337,27 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <Code>borderStyle</Code>
+                  <Code>border-style</Code>
                 </td>
                 <td>Chip container</td>
                 <td>
-                  <Code>border-style-solid</Code>
+                  <Code>border-style-none</Code>
                 </td>
-                <td>solid</td>
+                <td>none</td>
               </tr>
               <tr>
                 <td>
-                  <Code>borderRadius</Code>
+                  <Code>border-radius</Code>
                 </td>
                 <td>Chip container</td>
                 <td>
-                  <Code>-</Code>
+                  <Code>border-radius-full</Code>
                 </td>
-                <td>80px</td>
+                <td>9999px</td>
               </tr>
               <tr>
                 <td>
-                  <Code>focusBorderThickness</Code>
+                  <Code>border-width</Code>
                 </td>
                 <td>Focus border</td>
                 <td>
@@ -339,13 +367,23 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <Code>focusBorderStyle</Code>
+                  <Code>border-style</Code>
                 </td>
                 <td>Focus border</td>
                 <td>
                   <Code>border-style-solid</Code>
                 </td>
                 <td>solid</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>border-radius</Code>
+                </td>
+                <td>Focus border</td>
+                <td>
+                  <Code>border-radius-medium</Code>
+                </td>
+                <td>0.25rem / 4px</td>
               </tr>
             </tbody>
           </DxcTable>
@@ -372,7 +410,7 @@ const sections = [
                 <td>
                   <Code>size-icon-large</Code>
                 </td>
-                <td>24px</td>
+                <td>24x24px</td>
               </tr>
             </tbody>
           </DxcTable>

@@ -215,6 +215,7 @@ export const componentTokens = {
     focusColor: CoreTokens.color_blue_600,
     focusBorderStyle: CoreTokens.border_solid,
     focusBorderThickness: CoreTokens.border_width_2,
+    focusBorderRadius: CoreTokens.border_radius_medium,
   },
   dateInput: {
     pickerBackgroundColor: CoreTokens.color_white,
