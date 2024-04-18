@@ -88,23 +88,10 @@ const DxcResultsetTable = ({
     );
   };
 
-  // useEffect(() => {
-  //   console.log("CHANGE", rows);
-  //   if (!hidePaginator) {
-  //     rows.length > 0 ? changePage(1) : changePage(0);
-  //   }
-  // }, [rows]);
-
   useEffect(() => {
     if (!hidePaginator) {
       if (rows.length === 0) {
         changePage(0);
-      } else if (rows.length > prevRowCountRef.current) {
-        const lastPage = Math.ceil(rows.length / itemsPerPage);
-        const prevLastPage = Math.ceil(prevRowCountRef.current / itemsPerPage);
-        if (lastPage > prevLastPage) {
-          changePage(lastPage);
-        }
       } else if (rows.length < prevRowCountRef.current) {
         const lastPage = Math.ceil(rows.length / itemsPerPage);
         const prevLastPage = Math.ceil(prevRowCountRef.current / itemsPerPage);
