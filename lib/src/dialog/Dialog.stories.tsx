@@ -10,7 +10,7 @@ import { HalstackProvider } from "../HalstackContext";
 import DxcHeading from "../heading/Heading";
 import DxcParagraph from "../paragraph/Paragraph";
 import DxcAlert from "../alert/Alert";
-import { userEvent, within } from "@storybook/testing-library";
+import { userEvent, within } from "@storybook/test";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 
 export default {
@@ -362,8 +362,7 @@ MobileResponsiveDialog.parameters = {
 };
 
 export const ScrollDialog = ScrollingDialog.bind({});
-ScrollDialog.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
+ScrollDialog.play = async () => {
   await userEvent.tab();
   await userEvent.tab();
   await userEvent.tab();
