@@ -3,7 +3,6 @@ import styled from "styled-components";
 import type { Preview } from "@storybook/react";
 import React from "react";
 import { disabledRules } from "../test/accessibility/rules/common/disabledRules";
-import "../src/common/fonts.css";
 
 const preview: Preview = {
   parameters: {
@@ -32,6 +31,7 @@ const preview: Preview = {
 };
 
 const Container = styled.div`
+  @import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:FILL@0..1");
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
     "Droid Sans", "Helvetica Neue", sans-serif;
 `;
