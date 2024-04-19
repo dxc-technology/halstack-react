@@ -1,4 +1,3 @@
-import "./common/fonts.css";
 import DxcAlert from "./alert/Alert";
 import DxcAccordion from "./accordion/Accordion";
 import DxcButton from "./button/Button";
