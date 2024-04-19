@@ -10,7 +10,6 @@ import dayjs from "dayjs";
 import useTheme from "../useTheme";
 import { ThemeProvider } from "styled-components";
 import { HalstackProvider } from "../HalstackContext";
-import DxcFlex from "../flex/Flex";
 
 export default {
   title: "Date Input",
@@ -97,14 +96,6 @@ const DateInputChromatic = () => (
     <ExampleContainer expanded>
       <Title title="Year picker" theme="light" level={4} />
       <DxcDateInput label="Date input" defaultValue="06-04-1905" />
-    </ExampleContainer>
-    <ExampleContainer expanded>
-      <Title title="FLEX" theme="light" level={4} />
-      <HalstackProvider theme={opinionatedTheme}>
-        <DxcFlex>
-          <DxcDateInput label="Date input" defaultValue="06-04-1905" size="fillParent" />
-        </DxcFlex>
-      </HalstackProvider>
     </ExampleContainer>
   </>
 );
