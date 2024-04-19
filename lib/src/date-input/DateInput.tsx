@@ -8,7 +8,22 @@ import DateInputPropsType, { RefType } from "./types";
 import DxcDatePicker from "./DatePicker";
 import * as Popover from "@radix-ui/react-popover";
 import customParseFormat from "dayjs/plugin/customParseFormat";
+import { getMargin } from "../common/utils";
+import { spaces } from "../common/variables";
+
 dayjs.extend(customParseFormat);
+
+const sizes = {
+  small: "240px",
+  medium: "360px",
+  large: "480px",
+  fillParent: "100%",
+};
+
+const calculateWidth = (margin, size) =>
+  size === "fillParent"
+    ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
+    : sizes[size];
 
 const getValueForPicker = (value, format) => dayjs(value, format.toUpperCase(), true);
 
@@ -53,7 +68,7 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
       size,
       tabIndex,
     },
-    ref
+    ref,
   ): JSX.Element => {
     const [innerValue, setInnerValue] = useState(defaultValue);
     const [isOpen, setIsOpen] = useState(false);
@@ -64,7 +79,7 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
         ? !format.toUpperCase().includes("YYYY") && +getValueForPicker(value ?? innerValue, format).format("YY") < 68
           ? 2000
           : 1900
-        : undefined
+        : undefined,
     );
     const colorsTheme = useTheme();
     const translatedLabels = useTranslatedLabels();
@@ -159,7 +174,7 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
 
     return (
       <ThemeProvider theme={colorsTheme}>
-        <div ref={ref}>
+        <DateInputContainer margin={margin} size={size} ref={ref}>
           <Popover.Root open={isOpen}>
             <Popover.Trigger asChild aria-controls={undefined}>
               <DxcTextInput
@@ -201,10 +216,10 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
               </StyledPopoverContent>
             </Popover.Portal>
           </Popover.Root>
-        </div>
+        </DateInputContainer>
       </ThemeProvider>
     );
-  }
+  },
 );
 
 const StyledPopoverContent = styled(Popover.Content)`
@@ -212,6 +227,10 @@ const StyledPopoverContent = styled(Popover.Content)`
   &:focus-visible {
     outline: none;
   }
+`;
+
+const DateInputContainer = styled.div<{ margin: DateInputPropsType["margin"]; size: DateInputPropsType["size"] }>`
+  width: ${(props) => calculateWidth(props.margin, props.size)};
 `;
 
 export default DxcDateInput;
