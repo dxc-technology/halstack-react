@@ -95,10 +95,7 @@ const sections = [
             <td>
               <TableCode>boolean</TableCode>
             </td>
-            <td>
-              If true, action prefix icon or action suffix icon (if defined)
-              will be disabled.
-            </td>
+            <td>If true, the component will be disabled.</td>
             <td>
               <TableCode>false</TableCode>
             </td>
