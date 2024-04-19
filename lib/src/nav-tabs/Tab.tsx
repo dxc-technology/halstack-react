@@ -96,7 +96,6 @@ const TabContainer = styled.div<{ active: TabProps["active"] }>`
   align-items: stretch;
   border-bottom: 2px solid ${(props) => (props.active ? props.theme.selectedUnderlineColor : "transparent")};
   padding: 0.5rem;
-  z-index: 1;
 `;
 
 const Tab = styled.a<{
@@ -138,11 +137,19 @@ const Tab = styled.a<{
   `}
 `;
 
-const TabIconContainer = styled.div<{ iconPosition: NavTabsPropsType["iconPosition"], active: TabProps["active"], disabled: TabProps["disabled"] }>`
+const TabIconContainer = styled.div<{
+  iconPosition: NavTabsPropsType["iconPosition"];
+  active: TabProps["active"];
+  disabled: TabProps["disabled"];
+}>`
   display: flex;
   font-size: 24px;
-  color: ${(props) => 
-    props.active ? props.theme.selectedIconColor : props.disabled ?  props.theme.disabledIconColor :  props.theme.unselectedIconColor};
+  color: ${(props) =>
+    props.active
+      ? props.theme.selectedIconColor
+      : props.disabled
+      ? props.theme.disabledIconColor
+      : props.theme.unselectedIconColor};
   svg {
     height: 24px;
     width: 24px;

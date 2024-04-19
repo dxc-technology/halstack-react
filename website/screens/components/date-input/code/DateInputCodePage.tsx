@@ -13,7 +13,7 @@ import basicUsage from "./examples/basicUsage";
 import errorHandling from "./examples/errorHandling";
 import controlled from "./examples/controlled";
 import uncontrolled from "./examples/uncontrolled";
-import StatusTag from "@/common/StatusTag";
+import StatusBadge from "@/common/StatusBadge";
 import TableCode from "@/common/TableCode";
 
 const sections = [
@@ -144,11 +144,7 @@ const sections = [
             </td>
           </tr>
           <tr>
-            <td>
-              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                <StatusTag status="Information">New</StatusTag>readOnly
-              </DxcFlex>
-            </td>
+            <td>readOnly</td>
             <td>
               <TableCode>boolean</TableCode>
             </td>

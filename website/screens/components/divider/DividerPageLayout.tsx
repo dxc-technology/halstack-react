@@ -4,7 +4,11 @@ import TabsPageHeading from "@/common/TabsPageLayout";
 import ComponentHeading from "@/common/ComponentHeading";
 
 const DividerPageHeading = ({ children }: { children: React.ReactNode }) => {
-  const tabs = [{ label: "Code", path: "/components/divider" }];
+  const tabs = [
+    { label: "Code", path: "/components/divider" },
+    { label: "Usage", path: "/components/divider/usage" },
+    { label: "Specifications", path: "/components/divider/specifications" },
+  ];
 
   return (
     <DxcFlex direction="column" gap="3rem">
@@ -12,10 +16,8 @@ const DividerPageHeading = ({ children }: { children: React.ReactNode }) => {
         <DxcFlex direction="column" gap="2rem">
           <ComponentHeading name="Divider" />
           <DxcParagraph>
-            Dividers are horizontal or vertical lines used to visually separate
-            related content or serve as a semantic delimiter within interfaces,
-            enhancing readability and providing clear visual distinctions
-            between different sections or elements.
+            A divider is a thin line that visually separates groups of content
+            within a specific area of an application.
           </DxcParagraph>
           <TabsPageHeading tabs={tabs}></TabsPageHeading>
         </DxcFlex>

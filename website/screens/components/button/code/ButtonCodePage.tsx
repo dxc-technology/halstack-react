@@ -6,7 +6,7 @@ import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import Example from "@/common/example/Example";
 import basicUsage from "./examples/basicUsage";
 import icons from "./examples/icons";
-import StatusTag from "@/common/StatusTag";
+import StatusBadge from "@/common/StatusBadge";
 import TableCode from "@/common/TableCode";
 
 const sections = [
@@ -42,11 +42,7 @@ const sections = [
             </td>
           </tr>
           <tr>
-            <td>
-              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                <StatusTag status="Information">New</StatusTag>title
-              </DxcFlex>
-            </td>
+            <td>title</td>
             <td>
               <TableCode>string</TableCode>
             </td>

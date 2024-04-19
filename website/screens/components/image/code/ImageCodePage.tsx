@@ -5,7 +5,7 @@ import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import Example from "@/common/example/Example";
 import basic from "./examples/basicUsage";
-import StatusTag from "@/common/StatusTag";
+import StatusBadge from "@/common/StatusBadge";
 import TableCode from "@/common/TableCode";
 
 const sections = [
@@ -22,7 +22,8 @@ const sections = [
         <tr>
           <td>
             <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-              <StatusTag status="Required">Required</StatusTag>alt
+              <StatusBadge status="required" />
+              alt
             </DxcFlex>
           </td>
           <td>
@@ -77,7 +78,8 @@ const sections = [
         <tr>
           <td>
             <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-              <StatusTag status="Required">Required</StatusTag>src
+              <StatusBadge status="required" />
+              src
             </DxcFlex>
           </td>
           <td>

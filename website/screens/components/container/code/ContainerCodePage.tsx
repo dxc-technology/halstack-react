@@ -8,7 +8,7 @@ import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
-import StatusTag from "@/common/StatusTag";
+import StatusBadge from "@/common/StatusBadge";
 import TableCode, { ExtendedTableCode } from "@/common/TableCode";
 import Example from "@/common/example/Example";
 import basicUsage from "./examples/basicUsage";
@@ -26,10 +26,10 @@ const backgroundTypeString = `{
     size?: string;
 }`;
 const borderTypeString = `BorderProperties | {
-  top?: BorderProperties;
-  right?: BorderProperties;
-  bottom?: BorderProperties;
-  left?: BorderProperties;
+    top?: BorderProperties;
+    right?: BorderProperties;
+    bottom?: BorderProperties;
+    left?: BorderProperties;
 }`;
 const borderPropertiesTypeString = `{
     width?: string;
@@ -181,7 +181,8 @@ const sections = [
         <tr>
           <td>
             <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-              <StatusTag status="Required">Required</StatusTag>children
+              <StatusBadge status="required" />
+              children
             </DxcFlex>
           </td>
           <td>
@@ -507,7 +508,7 @@ const sections = [
   },
 ];
 
-const ImageCodePage = () => {
+const ContainerCodePage = () => {
   return (
     <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
@@ -521,4 +522,4 @@ const ImageCodePage = () => {
   );
 };
 
-export default ImageCodePage;
+export default ContainerCodePage;

@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import Image from "@/common/Image";
 import halstackLogo from "@/common/images/halstack_logo.svg";
-import StatusTag from "@/common/StatusTag";
 import React from "react";
 import { useRouter } from "next/router";
 import pjson from "../../../package-lock.json";
+import { DxcBadge, DxcFlex } from "@dxc-technology/halstack-react";
 
 type SidenavLogoProps = { subtitle?: string };
 
@@ -20,7 +20,7 @@ const SidenavLogo = ({
   return (
     <SidenavLogoContainer>
       <LogoContainer>
-        <Header>
+        <DxcFlex alignItems="center" gap="0.5rem">
           <Image
             src={halstackLogo}
             alt="Halstack logo"
@@ -28,16 +28,20 @@ const SidenavLogo = ({
             height={24}
           />
           <Title>Halstack</Title>
-        </Header>
+        </DxcFlex>
         <Subtitle>{subtitle}</Subtitle>
       </LogoContainer>
-      <StatusTag>
-        {isDev
-          ? "dev"
-          : isNaN(parseInt(pathVersion))
-          ? "next"
-          : `v${halstackVersion}`}
-      </StatusTag>
+      <DxcBadge
+        label={
+          isDev
+            ? "dev"
+            : isNaN(parseInt(pathVersion))
+            ? "next"
+            : `v${halstackVersion}`
+        }
+        color="purple"
+        size="small"
+      />
     </SidenavLogoContainer>
   );
 };
@@ -51,11 +55,6 @@ const LogoContainer = styled.div`
   margin: 0 24px;
   display: flex;
   flex-direction: column;
-`;
-
-const Header = styled.div`
-  display: flex;
-  gap: 0.5rem;
 `;
 
 const Title = styled.div`
