@@ -116,8 +116,8 @@ const DxcTextarea = React.forwardRef<RefType, TextareaPropsType>(
 
     useEffect(() => {
       if (verticalGrow === "auto" && prevValueRef.current !== (value ?? innerValue)) {
-        const textareaLineHeight = parseInt(window.getComputedStyle(textareaRef.current)["line-height"]);
-        const textareaPaddingTopBottom = parseInt(window.getComputedStyle(textareaRef.current)["padding-top"]) * 2;
+        const textareaLineHeight = parseInt(window.getComputedStyle(textareaRef.current)["line-height"], 10);
+        const textareaPaddingTopBottom = parseInt(window.getComputedStyle(textareaRef.current)["padding-top"], 10) * 2;
         textareaRef.current.style.height = `${textareaLineHeight * rows}px`;
         const newHeight = textareaRef.current.scrollHeight - textareaPaddingTopBottom;
         textareaRef.current.style.height = `${newHeight}px`;

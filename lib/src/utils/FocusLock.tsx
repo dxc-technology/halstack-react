@@ -79,7 +79,7 @@ const useFocusableElements = (ref: React.MutableRefObject<HTMLDivElement>): HTML
       };
     }
     return undefined;
-  }, []);
+  }, [ref]);
 
   return focusableElements;
 };

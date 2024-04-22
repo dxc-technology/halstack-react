@@ -13,9 +13,10 @@
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
     // "plugin:security/recommended-legacy",
-    "plugin:react/recommended"
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended"
   ],
-  "plugins": ["jest", "react-hooks", "@typescript-eslint"],
+  "plugins": ["jest", "@typescript-eslint"],
   "overrides": [
     // Test files
     {
