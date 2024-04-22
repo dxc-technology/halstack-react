@@ -9,6 +9,7 @@ import AppLayoutPropsType, { AppLayoutMainPropsType } from "./types";
 import { SidenavContextProvider, useResponsiveSidenavVisibility } from "../sidenav/SidenavContext";
 import useTranslatedLabels from "../useTranslatedLabels";
 import DxcIcon from "../icon/Icon";
+import { debounce } from "lodash";
 
 const year = new Date().getFullYear();
 const Main = ({ children }: AppLayoutMainPropsType): JSX.Element => <>{children}</>;
@@ -71,9 +72,12 @@ const DxcApplicationLayout = ({
 
   const main = childTypeExists(childrenArray, Main);
 
-  const handleResize = useCallback(() => {
-    setIsResponsive(window.matchMedia(`(max-width: ${responsiveSizes.medium}rem)`).matches);
-  }, []);
+  const handleResize = useCallback(
+    debounce(() => {
+      setIsResponsive(window.matchMedia(`(max-width: ${responsiveSizes.medium}rem)`).matches);
+    }, 100),
+    []
+  );
 
   const handleSidenavVisibility = () => {
     setIsSidenavVisibleResponsive((isSidenavVisibleResponsive) => !isSidenavVisibleResponsive);

@@ -7,6 +7,7 @@ import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
 import HeaderPropsType from "./types";
 import DxcIcon from "../icon/Icon";
+import { debounce } from "lodash";
 
 const Dropdown = (props: React.ComponentProps<typeof DxcDropdown>) => (
   <HeaderDropdown>
@@ -60,9 +61,12 @@ const DxcHeader = ({
   const [isResponsive, setIsResponsive] = useState(false);
   const [isMenuVisible, setIsMenuVisible] = useState(false);
 
-  const handleResize = useCallback(() => {
-    setIsResponsive(window.matchMedia(`(max-width: ${responsiveSizes.medium}rem)`).matches);
-  }, []);
+  const handleResize = useCallback(
+    debounce(() => {
+      setIsResponsive(window.matchMedia(`(max-width: ${responsiveSizes.medium}rem)`).matches);
+    }, 100),
+    []
+  );
 
   const handleMenu = () => {
     if (isResponsive && !isMenuVisible) {

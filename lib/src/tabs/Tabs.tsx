@@ -6,13 +6,17 @@ import useTranslatedLabels from "../useTranslatedLabels";
 import Tab from "./Tab";
 import TabsPropsType from "./types";
 import DxcIcon from "../icon/Icon";
+import { debounce } from "lodash";
 
 const useResize = (refTabList) => {
   const [viewWidth, setViewWidth] = useState(0);
 
-  const handleWindowSizeChange = useCallback(() => {
-    setViewWidth(refTabList?.current?.offsetWidth ?? 0);
-  }, [refTabList]);
+  const handleWindowSizeChange = useCallback(
+    debounce(() => {
+      setViewWidth(refTabList?.current?.offsetWidth ?? 0);
+    }, 100),
+    [refTabList]
+  );
 
   useEffect(() => {
     handleWindowSizeChange();
