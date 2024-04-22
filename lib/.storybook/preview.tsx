@@ -3,6 +3,7 @@ import styled from "styled-components";
 import type { Preview } from "@storybook/react";
 import React from "react";
 import { disabledRules } from "../test/accessibility/rules/common/disabledRules";
+import { withPerformance } from "storybook-addon-performance";
 
 const preview: Preview = {
   parameters: {
@@ -28,6 +29,7 @@ const preview: Preview = {
         </Container>
       </HalstackProvider>
     ),
+    withPerformance,
   ],
 };
 

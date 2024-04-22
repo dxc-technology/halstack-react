@@ -7,6 +7,7 @@ const config: StorybookConfig = {
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
     "storybook-addon-pseudo-states",
+    "storybook-addon-performance",
     "@storybook/addon-a11y",
   ],
   framework: {
