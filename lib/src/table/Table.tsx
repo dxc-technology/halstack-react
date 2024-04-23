@@ -1,5 +1,6 @@
 import React from "react";
 import styled, { ThemeProvider } from "styled-components";
+import { v4 as uuidv4 } from "uuid";
 import { spaces, AdvancedTheme } from "../common/variables";
 import getMargin from "../common/utils";
 import useTheme from "../useTheme";
@@ -29,8 +30,9 @@ export const DxcActionsCell = ({ actions }: ActionCellsPropsType): JSX.Element =
 
   return (
     <DxcFlex gap="0.5rem" alignItems="center">
-      {actionIcons.map(
-        (action, index) =>
+      {actionIcons.map((action, index) => {
+        const actionKey = uuidv4();
+        return (
           index < maxNumberOfActions && (
             <DxcActionIcon
               icon={action.icon}
@@ -38,10 +40,11 @@ export const DxcActionsCell = ({ actions }: ActionCellsPropsType): JSX.Element =
               onClick={action.onClick}
               disabled={action.disabled ?? false}
               tabIndex={action.tabIndex ?? 0}
-              key={`action-${index}`}
+              key={`action-${actionKey}`}
             />
           )
-      )}
+        );
+      })}
       {actionDropdown && (
         <HalstackProvider advancedTheme={overwriteTheme(colorsTheme)} key="provider-dropdown">
           <DxcDropdown

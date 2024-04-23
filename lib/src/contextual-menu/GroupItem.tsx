@@ -1,5 +1,6 @@
 import React, { useContext, useMemo, useState } from "react";
 import styled from "styled-components";
+import { v4 as uuidv4 } from "uuid";
 import CoreTokens from "../common/coreTokens";
 import { GroupItemProps } from "./types";
 import MenuItem from "./MenuItem";
@@ -31,9 +32,10 @@ const GroupItem = ({ items, ...props }: GroupItemProps) => {
       />
       {isOpen && (
         <ItemsList id={groupMenuId}>
-          {items.map((item, index) => (
-            <MenuItem key={`${groupMenuId}-${index}`} item={item} depthLevel={props.depthLevel + 1} />
-          ))}
+          {items.map((item) => {
+            const itemKey = uuidv4();
+            return <MenuItem key={`${groupMenuId}-${itemKey}`} item={item} depthLevel={props.depthLevel + 1} />;
+          })}
         </ItemsList>
       )}
     </>

@@ -1,5 +1,6 @@
 import React, { useCallback } from "react";
 import styled from "styled-components";
+import { v4 as uuidv4 } from "uuid";
 import BreadcrumbsProps from "./types";
 import DxcDropdown from "../dropdown/Dropdown";
 import { HalstackProvider } from "../HalstackContext";
@@ -32,8 +33,8 @@ const DxcBreadcrumbs = ({
       <OrderedList>
         {items && items.length > Math.max(itemsBeforeCollapse, 2) ? (
           <>
-            {showRoot && <Item href={items[0].href} key={0} label={items[0].label} />}
-            <DxcFlex alignItems="center" as="li" key={1}>
+            {showRoot && <Item href={items[0].href} label={items[0].label} />}
+            <DxcFlex alignItems="center" as="li">
               <HalstackProvider advancedTheme={dropdownTheme}>
                 <DxcDropdown
                   caretHidden
@@ -44,18 +45,21 @@ const DxcBreadcrumbs = ({
                 />
               </HalstackProvider>
             </DxcFlex>
-            <Item isCurrentPage key={2} label={items[items.length - 1].label} />
+            <Item isCurrentPage label={items[items.length - 1].label} />
           </>
         ) : (
-          items.map((item, index, { length }) => (
-            <Item
-              href={item.href}
-              isCurrentPage={index === length - 1}
-              key={index}
-              label={item.label}
-              onClick={onItemClick}
-            />
-          ))
+          items.map((item, index, { length }) => {
+            const itemKey = uuidv4();
+            return (
+              <Item
+                href={item.href}
+                isCurrentPage={index === length - 1}
+                key={itemKey}
+                label={item.label}
+                onClick={onItemClick}
+              />
+            );
+          })
         )}
       </OrderedList>
     </nav>

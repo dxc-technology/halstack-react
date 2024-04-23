@@ -1,5 +1,6 @@
 import React, { useState, useMemo, useEffect } from "react";
 import styled, { ThemeProvider } from "styled-components";
+import { v4 as uuidv4 } from "uuid";
 import { spaces } from "../common/variables";
 import DxcPaginator from "../paginator/Paginator";
 import DxcTable, { DxcActionsCell } from "../table/Table";
@@ -98,47 +99,53 @@ const DxcResultsetTable = ({
         <DxcTable mode={mode}>
           <thead>
             <tr>
-              {columns.map((column, index) => (
-                <th
-                  key={`tableHeader_${index}`}
-                  aria-sort={column.isSortable ? (sortColumnIndex === index ? sortOrder : "none") : undefined}
-                >
-                  <HeaderContainer
-                    role={column.isSortable ? "button" : undefined}
-                    key={`headerContainer_${index}`}
-                    onClick={() => {
-                      if (column.isSortable) {
-                        changeSorting(index);
-                      }
-                    }}
-                    tabIndex={column.isSortable ? tabIndex : -1}
-                    isSortable={column.isSortable}
-                    mode={mode}
-                    aria-label={column.isSortable ? "Sort column" : undefined}
+              {columns.map((column, index) => {
+                const columnKey = uuidv4();
+                return (
+                  <th
+                    key={`tableHeader_${columnKey}`}
+                    aria-sort={column.isSortable ? (sortColumnIndex === index ? sortOrder : "none") : undefined}
                   >
-                    <span>{column.displayValue}</span>
-                    {column.isSortable && (
-                      <SortIcon>
-                        {sortColumnIndex === index
-                          ? sortOrder === "ascending"
-                            ? icons.arrowUp
-                            : icons.arrowDown
-                          : icons.bothArrows}
-                      </SortIcon>
-                    )}
-                  </HeaderContainer>
-                </th>
-              ))}
+                    <HeaderContainer
+                      role={column.isSortable ? "button" : undefined}
+                      onClick={() => {
+                        if (column.isSortable) {
+                          changeSorting(index);
+                        }
+                      }}
+                      tabIndex={column.isSortable ? tabIndex : -1}
+                      isSortable={column.isSortable}
+                      mode={mode}
+                      aria-label={column.isSortable ? "Sort column" : undefined}
+                    >
+                      <span>{column.displayValue}</span>
+                      {column.isSortable && (
+                        <SortIcon>
+                          {sortColumnIndex === index
+                            ? sortOrder === "ascending"
+                              ? icons.arrowUp
+                              : icons.arrowDown
+                            : icons.bothArrows}
+                        </SortIcon>
+                      )}
+                    </HeaderContainer>
+                  </th>
+                );
+              })}
             </tr>
           </thead>
           <tbody>
-            {filteredResultset.map((cells, rowIndex) => (
-              <tr key={`resultSetTableCell_${page}_${rowIndex}`}>
-                {cells.map((cellContent, cellIndex) => (
-                  <td key={`resultSetTableCellContent_${cellIndex}`}>{cellContent.displayValue}</td>
-                ))}
-              </tr>
-            ))}
+            {filteredResultset.map((cells) => {
+              const rowKey = uuidv4();
+              return (
+                <tr key={`resultSetTableCell_${page}_${rowKey}`}>
+                  {cells.map((cellContent) => {
+                    const cellKey = uuidv4();
+                    return <td key={`resultSetTableCellContent_${cellKey}`}>{cellContent.displayValue}</td>;
+                  })}
+                </tr>
+              );
+            })}
           </tbody>
         </DxcTable>
         {!hidePaginator && (

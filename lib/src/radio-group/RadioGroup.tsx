@@ -1,5 +1,6 @@
 import React, { useCallback, useId, useMemo, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
+import { v4 as uuidv4 } from "uuid";
 import RadioGroupPropsType, { RefType, Option } from "./types";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
@@ -161,22 +162,25 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
             aria-orientation={stacking === "column" ? "vertical" : "horizontal"}
           >
             <ValueInput name={name} disabled={disabled} value={value ?? innerValue ?? ""} readOnly />
-            {innerOptions.map((option, index) => (
-              <DxcRadio
-                key={`radio-${index}`}
-                label={option.label}
-                checked={(value ?? innerValue) === option.value}
-                onClick={() => {
-                  handleOnChange(option.value);
-                  setCurrentFocusIndex(index);
-                }}
-                error={error}
-                disabled={option.disabled || disabled}
-                focused={currentFocusIndex === index}
-                readOnly={readOnly}
-                tabIndex={tabIndex}
-              />
-            ))}
+            {innerOptions.map((option, index) => {
+              const optionKey = uuidv4();
+              return (
+                <DxcRadio
+                  key={`radio-${optionKey}`}
+                  label={option.label}
+                  checked={(value ?? innerValue) === option.value}
+                  onClick={() => {
+                    handleOnChange(option.value);
+                    setCurrentFocusIndex(index);
+                  }}
+                  error={error}
+                  disabled={option.disabled || disabled}
+                  focused={currentFocusIndex === index}
+                  readOnly={readOnly}
+                  tabIndex={tabIndex}
+                />
+              );
+            })}
           </RadioGroup>
           {!disabled && typeof error === "string" && (
             <Error id={errorId} role="alert" aria-live={error ? "assertive" : "off"}>

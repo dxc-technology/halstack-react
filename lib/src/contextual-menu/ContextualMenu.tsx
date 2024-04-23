@@ -1,5 +1,6 @@
 import React, { Fragment, createContext, useMemo, useState } from "react";
 import styled from "styled-components";
+import { type V4Options, v4 as uuidv4 } from "uuid";
 import CoreTokens from "../common/coreTokens";
 import ContextualMenuPropsType, {
   ContextualMenuContextProps,
@@ -39,14 +40,15 @@ const DxcContextualMenu = ({ items }: ContextualMenuPropsType) => {
   const itemsWithId = useMemo(() => addIdToItems(items), [items]);
   const contextValue = useMemo(() => ({ selectedItemId, setSelectedItemId }), [selectedItemId, setSelectedItemId]);
 
-  const renderSection = (section: SectionWithId, currentSectionIndex: number, length: number) => (
-    <Fragment key={`section-${currentSectionIndex}`}>
+  const renderSection = (section: SectionWithId, currentSectionIndex: number, length: number, sectionId: V4Options) => (
+    <Fragment key={`section-${sectionId}`}>
       <li role="group">
         {section.title != null && <Title>{section.title}</Title>}
         <SectionList>
-          {section.items.map((item, index) => (
-            <MenuItem item={item} key={`${item.label}-${index}`} />
-          ))}
+          {section.items.map((item) => {
+            const itemKey = uuidv4();
+            return <MenuItem item={item} key={`item-${itemKey}`} />;
+          })}
         </SectionList>
       </li>
       {currentSectionIndex !== length - 1 && (
@@ -60,13 +62,14 @@ const DxcContextualMenu = ({ items }: ContextualMenuPropsType) => {
   return (
     <ContextualMenu role="menu">
       <ContextualMenuContext.Provider value={contextValue}>
-        {itemsWithId.map((item: GroupItemWithId | ItemWithId | SectionWithId, index: number) =>
-          "items" in item && !("label" in item) ? (
-            renderSection(item, index, itemsWithId.length)
+        {itemsWithId.map((item: GroupItemWithId | ItemWithId | SectionWithId, index: number) => {
+          const itemId = uuidv4();
+          return "items" in item && !("label" in item) ? (
+            renderSection(item, index, itemsWithId.length, itemId)
           ) : (
-            <MenuItem item={item} key={`${item.label}-${index}`} />
-          )
-        )}
+            <MenuItem item={item} key={`item-${itemId}`} />
+          );
+        })}
       </ContextualMenuContext.Provider>
     </ContextualMenu>
   );

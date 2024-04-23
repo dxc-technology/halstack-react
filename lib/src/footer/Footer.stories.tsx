@@ -1,4 +1,5 @@
 import React from "react";
+import { v4 as uuidv4 } from "uuid";
 import DxcFooter from "./Footer";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
@@ -169,11 +170,14 @@ export const Chromatic = () => (
       <Title title="Reduced" theme="light" level={4} />
       <DxcFooter mode="reduced">
         <DxcFlex justifyContent="center" alignItems="center" gap="1rem">
-          {info.map((tag, index) => (
-            <DxcTypography color="white" key={`tag${index}${tag.label}${tag.text}`}>
-              {tag.label}: {tag.text}
-            </DxcTypography>
-          ))}
+          {info.map((tag) => {
+            const tagKey = uuidv4();
+            return (
+              <DxcTypography color="white" key={`tag-${tagKey}`}>
+                {tag.label}: {tag.text}
+              </DxcTypography>
+            );
+          })}
         </DxcFlex>
       </DxcFooter>
     </ExampleContainer>

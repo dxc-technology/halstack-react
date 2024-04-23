@@ -1,4 +1,5 @@
 import React from "react";
+import { v4 as uuidv4 } from "uuid";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DxcContainer from "./Container";
@@ -192,33 +193,36 @@ const Listbox = ({ suggestions = [] }: { suggestions: string[] }): JSX.Element =
     width="250px"
     overflow={{ x: "hidden", y: "auto" }}
   >
-    {suggestions.map((suggestion, index) => (
-      <DxcContainer key={`container-${index}`} padding={{ left: "xsmall", right: "xsmall" }}>
-        <DxcContainer
-          border={
-            index !== suggestions.length - 1
-              ? {
-                  bottom: {
-                    width: "1px",
-                    style: "solid",
-                    color: "color_grey_200",
-                  },
-                }
-              : undefined
-          }
-          padding={{
-            top: "xxsmall",
-            bottom: "xxsmall",
-            left: "xxsmall",
-            right: "xxsmall",
-          }}
-          overflow="hidden"
-        >
-          <DxcTypography whiteSpace="nowrap" textOverflow="ellipsis" lineHeight="1.715em">
-            {suggestion}
-          </DxcTypography>
+    {suggestions.map((suggestion, index) => {
+      const suggestionId = uuidv4();
+      return (
+        <DxcContainer key={`container-${suggestionId}`} padding={{ left: "xsmall", right: "xsmall" }}>
+          <DxcContainer
+            border={
+              index !== suggestions.length - 1
+                ? {
+                    bottom: {
+                      width: "1px",
+                      style: "solid",
+                      color: "color_grey_200",
+                    },
+                  }
+                : undefined
+            }
+            padding={{
+              top: "xxsmall",
+              bottom: "xxsmall",
+              left: "xxsmall",
+              right: "xxsmall",
+            }}
+            overflow="hidden"
+          >
+            <DxcTypography whiteSpace="nowrap" textOverflow="ellipsis" lineHeight="1.715em">
+              {suggestion}
+            </DxcTypography>
+          </DxcContainer>
         </DxcContainer>
-      </DxcContainer>
-    ))}
+      );
+    })}
   </DxcContainer>
 );

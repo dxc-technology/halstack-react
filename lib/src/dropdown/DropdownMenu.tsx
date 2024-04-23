@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { v4 as uuidv4 } from "uuid";
 import DropdownMenuItem from "./DropdownMenuItem";
 import { DropdownMenuProps } from "./types";
 
@@ -24,16 +25,19 @@ const DropdownMenu = React.forwardRef<HTMLUListElement, DropdownMenuProps>(
       ref={ref}
       style={styles}
     >
-      {options.map((option, index) => (
-        <DropdownMenuItem
-          id={`${id}-option-${index}`}
-          key={`${id}-option-${index}`}
-          visuallyFocused={index === visualFocusIndex}
-          iconPosition={iconsPosition}
-          onClick={menuItemOnClick}
-          option={option}
-        />
-      ))}
+      {options.map((option, index) => {
+        const optionKey = uuidv4();
+        return (
+          <DropdownMenuItem
+            id={`${id}-option-${optionKey}`}
+            key={`${id}-option-${optionKey}`}
+            visuallyFocused={index === visualFocusIndex}
+            iconPosition={iconsPosition}
+            onClick={menuItemOnClick}
+            option={option}
+          />
+        );
+      })}
     </DropdownMenuContainer>
   )
 );

@@ -1,6 +1,7 @@
 import { Dayjs } from "dayjs";
 import React, { useState, useMemo, useEffect } from "react";
 import styled from "styled-components";
+import { v4 as uuidv4 } from "uuid";
 import { CalendarPropsType } from "./types";
 import useTranslatedLabels from "../useTranslatedLabels";
 import DxcFlex from "../flex/Flex";
@@ -171,28 +172,31 @@ const Calendar = ({
         ))}
       </DxcFlex>
       <DayCellsContainer onBlur={handleOnBlur}>
-        {dayCells.map((date, index) => (
-          <DayCell
-            onKeyDown={(event) => handleDayKeyboardEvent(event, date)}
-            aria-label={date.day}
-            id={`day_${date.day}_month${date.month}`}
-            key={`day_${index}`}
-            onClick={() => onDateClickHandler(date)}
-            selected={isDaySelected(date, selectedDate)}
-            actualMonth={date.month === innerDate.get("month")}
-            autoFocus={date.day === dateToFocus.get("date") && date.month === dateToFocus.get("month")}
-            aria-selected={isDaySelected(date, selectedDate)}
-            tabIndex={date.day === dateToFocus.get("date") && date.month === dateToFocus.get("month") ? 0 : -1}
-            isCurrentDay={
-              today.get("date") === date.day &&
-              today.get("month") === innerDate.get("month") &&
-              today.get("month") === date.month &&
-              today.get("year") === innerDate.get("year")
-            }
-          >
-            {date.day}
-          </DayCell>
-        ))}
+        {dayCells.map((date) => {
+          const dateKey = uuidv4();
+          return (
+            <DayCell
+              onKeyDown={(event) => handleDayKeyboardEvent(event, date)}
+              aria-label={date.day}
+              id={`day_${date.day}_month${date.month}`}
+              key={`day_${dateKey}`}
+              onClick={() => onDateClickHandler(date)}
+              selected={isDaySelected(date, selectedDate)}
+              actualMonth={date.month === innerDate.get("month")}
+              autoFocus={date.day === dateToFocus.get("date") && date.month === dateToFocus.get("month")}
+              aria-selected={isDaySelected(date, selectedDate)}
+              tabIndex={date.day === dateToFocus.get("date") && date.month === dateToFocus.get("month") ? 0 : -1}
+              isCurrentDay={
+                today.get("date") === date.day &&
+                today.get("month") === innerDate.get("month") &&
+                today.get("month") === date.month &&
+                today.get("year") === innerDate.get("year")
+              }
+            >
+              {date.day}
+            </DayCell>
+          );
+        })}
       </DayCellsContainer>
     </CalendarContainer>
   );

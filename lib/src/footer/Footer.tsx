@@ -1,5 +1,6 @@
 import React, { useMemo } from "react";
 import styled, { ThemeProvider } from "styled-components";
+import { v4 as uuidv4 } from "uuid";
 import { spaces, responsiveSizes } from "../common/variables";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
@@ -43,20 +44,23 @@ const DxcFooter = ({
           <LogoContainer mode={mode}>{footerLogo}</LogoContainer>
           {mode === "default" && (
             <DxcFlex>
-              {socialLinks?.map((link, index) => (
-                <SocialAnchor
-                  href={link.href}
-                  tabIndex={tabIndex}
-                  title={link.title}
-                  aria-label={link.title}
-                  key={`social${index}${link.href}`}
-                  index={index}
-                >
-                  <SocialIconContainer>
-                    {typeof link.logo === "string" ? <DxcIcon icon={link.logo} /> : link.logo}
-                  </SocialIconContainer>
-                </SocialAnchor>
-              ))}
+              {socialLinks?.map((link, index) => {
+                const linkKey = uuidv4();
+                return (
+                  <SocialAnchor
+                    href={link.href}
+                    tabIndex={tabIndex}
+                    title={link.title}
+                    aria-label={link.title}
+                    key={`social-${linkKey}`}
+                    index={index}
+                  >
+                    <SocialIconContainer>
+                      {typeof link.logo === "string" ? <DxcIcon icon={link.logo} /> : link.logo}
+                    </SocialIconContainer>
+                  </SocialAnchor>
+                );
+              })}
             </DxcFlex>
           )}
         </DxcFlex>
@@ -64,13 +68,16 @@ const DxcFooter = ({
         {mode === "default" && (
           <BottomContainer>
             <BottomLinks>
-              {bottomLinks?.map((link, index) => (
-                <span key={`bottom${index}${link.text}`}>
-                  <BottomLink href={link.href} tabIndex={tabIndex}>
-                    {link.text}
-                  </BottomLink>
-                </span>
-              ))}
+              {bottomLinks?.map((link) => {
+                const linkKey = uuidv4();
+                return (
+                  <span key={`bottom-${linkKey}`}>
+                    <BottomLink href={link.href} tabIndex={tabIndex}>
+                      {link.text}
+                    </BottomLink>
+                  </span>
+                );
+              })}
             </BottomLinks>
             <Copyright>{copyright || translatedLabels.footer.copyrightText(new Date().getFullYear())}</Copyright>
           </BottomContainer>
