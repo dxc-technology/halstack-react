@@ -24,8 +24,8 @@ export const themeGeneratorLinks = [
 
 const overviewLinks: LinkDetails[] = [
   { label: "Introduction", path: "/overview/introduction", status: "ready" },
-  { label: "Releases", path: "/overview/releases", status: "ready" },
   { label: "Component lifecycle", path: "/overview/component-lifecycle", status: "ready" },
+  { label: "Releases", path: "/overview/releases", status: "ready" },
 ];
 const utilitiesLinks: LinkDetails[] = [
   {

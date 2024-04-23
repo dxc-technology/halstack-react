@@ -74,7 +74,7 @@ const sections = [
               Already released and available in our design tools.
             </DxcBulletedList.Item>
             <DxcBulletedList.Item>
-              The component API is subject to change.
+              The component API may be subject to change.
             </DxcBulletedList.Item>
           </DxcBulletedList>
         ),
@@ -226,7 +226,7 @@ const ComponentLifecyclePage = () => {
           startHeadingLevel={2}
         ></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/principles/color/ColorPage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/principles/component-lifecycle/ComponentLifecyclePage.tsx" />
     </DxcFlex>
   );
 };

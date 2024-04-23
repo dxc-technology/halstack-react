@@ -1,5 +1,5 @@
 import Head from "next/head";
-import ComponentLifecyclePage from "../../screens/principles/component-lifecycle/ComponentLifecycle";
+import ComponentLifecyclePage from "../../screens/principles/component-lifecycle/ComponentLifecyclePage";
 
 const ComponentLifecycle = () => {
   return (
