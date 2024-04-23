@@ -12,7 +12,7 @@ import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 
 const sections = [
   {
-    title: "What is Halstack",
+    title: "What Halstack is",
     content: (
       <DxcParagraph>
         Halstack is an Open Source Design System built and maintained by DXC
@@ -52,7 +52,7 @@ const sections = [
     ],
   },
   {
-    title: "What is not Halstack",
+    title: "What Halstack is not",
     subSections: [
       {
         title: "A headless component library",

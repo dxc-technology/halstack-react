@@ -5,7 +5,6 @@ import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import controlled from "./examples/controlled";
 import uncontrolled from "./examples/uncontrolled";
-import StatusBadge from "@/common/StatusBadge";
 import TableCode from "@/common/TableCode";
 import Code from "@/common/Code";
 
