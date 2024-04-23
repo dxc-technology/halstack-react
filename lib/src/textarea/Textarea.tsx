@@ -1,4 +1,4 @@
-import React, { useId, useRef, useState } from "react";
+import React, { useEffect, useId, useRef, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { getMargin } from "../common/utils";
 import useTheme from "../useTheme";
@@ -42,6 +42,7 @@ const DxcTextarea = React.forwardRef<RefType, TextareaPropsType>(
     const translatedLabels = useTranslatedLabels();
 
     const textareaRef = useRef(null);
+    const prevValueRef = useRef(null);
     const errorId = `error-${textareaId}`;
 
     const isNotOptional = (value) => value === "" && !optional;
@@ -61,14 +62,6 @@ const DxcTextarea = React.forwardRef<RefType, TextareaPropsType>(
       else onChange?.({ value: newValue });
     };
 
-    const autoVerticalGrow = () => {
-      const textareaLineHeight = parseInt(window.getComputedStyle(textareaRef.current)["line-height"]);
-      const textareaPaddingTopBottom = parseInt(window.getComputedStyle(textareaRef.current)["padding-top"]) * 2;
-      textareaRef.current.style.height = `${textareaLineHeight * rows}px`;
-      const newHeight = textareaRef.current.scrollHeight - textareaPaddingTopBottom;
-      textareaRef.current.style.height = `${newHeight}px`;
-    };
-
     const handleOnBlur = (event) => {
       if (isNotOptional(event.target.value))
         onBlur?.({ value: event.target.value, error: translatedLabels.formFields.requiredValueErrorMessage });
@@ -84,8 +77,18 @@ const DxcTextarea = React.forwardRef<RefType, TextareaPropsType>(
 
     const handleOnChange = (event) => {
       changeValue(event.target.value);
-      verticalGrow === "auto" && autoVerticalGrow();
     };
+
+    useEffect(() => {
+      if (verticalGrow === "auto" && prevValueRef.current !== (value ?? innerValue)) {
+        const textareaLineHeight = parseInt(window.getComputedStyle(textareaRef.current)["line-height"]);
+        const textareaPaddingTopBottom = parseInt(window.getComputedStyle(textareaRef.current)["padding-top"]) * 2;
+        textareaRef.current.style.height = `${textareaLineHeight * rows}px`;
+        const newHeight = textareaRef.current.scrollHeight - textareaPaddingTopBottom;
+        textareaRef.current.style.height = `${newHeight}px`;
+        prevValueRef.current = value ?? innerValue;
+      }
+    }, [verticalGrow, value, innerValue, rows]);
 
     return (
       <ThemeProvider theme={colorsTheme.textarea}>
