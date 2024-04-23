@@ -1,6 +1,6 @@
 import React, { Fragment, createContext, useMemo, useState } from "react";
 import styled from "styled-components";
-import { type V4Options, v4 as uuidv4 } from "uuid";
+import { v4 as uuidv4 } from "uuid";
 import CoreTokens from "../common/coreTokens";
 import ContextualMenuPropsType, {
   ContextualMenuContextProps,
@@ -40,7 +40,7 @@ const DxcContextualMenu = ({ items }: ContextualMenuPropsType) => {
   const itemsWithId = useMemo(() => addIdToItems(items), [items]);
   const contextValue = useMemo(() => ({ selectedItemId, setSelectedItemId }), [selectedItemId, setSelectedItemId]);
 
-  const renderSection = (section: SectionWithId, currentSectionIndex: number, length: number, sectionId: V4Options) => (
+  const renderSection = (section: SectionWithId, currentSectionIndex: number, length: number, sectionId: string) => (
     <Fragment key={`section-${sectionId}`}>
       <li role="group">
         {section.title != null && <Title>{section.title}</Title>}
