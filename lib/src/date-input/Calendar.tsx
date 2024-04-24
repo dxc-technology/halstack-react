@@ -3,7 +3,6 @@ import React, { useState, useMemo, useEffect, useId } from "react";
 import styled from "styled-components";
 import { CalendarPropsType } from "./types";
 import useTranslatedLabels from "../useTranslatedLabels";
-import DxcFlex from "../flex/Flex";
 
 const getDays = (innerDate: Dayjs) => {
   const monthDayCells = [];
@@ -81,7 +80,6 @@ const Calendar = ({
   };
 
   const focusDate = (date: Dayjs) => {
-    console.log("FOCUSDATE", date);
     if (innerDate.get("month") !== date.get("month") || innerDate.get("year") !== date.get("year")) {
       onInnerDateChange(date);
     }
