@@ -189,7 +189,7 @@ const DatePickerButtonStates = () => {
           }}
         >
           <DxcDateInput label="From" defaultValue="01-12-1995" />
-          <DxcDateInput label="To" defaultValue="01-12-1995" />
+          <DxcDateInput label="To" />
           <button style={{ zIndex: "1", width: "100px" }}>Submit</button>
         </div>
       </ExampleContainer>
