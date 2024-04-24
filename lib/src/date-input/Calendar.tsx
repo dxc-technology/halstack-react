@@ -47,9 +47,9 @@ const isDaySelected = (date: { day: number; month: number; year: number }, selec
   selectedDate?.get("year") === date.year &&
   selectedDate?.get("date") === date.day;
 
-const chunk = (data: any[], chunkSize: number) => {
-  return Array.from({ length: Math.ceil(data.length / chunkSize) }, (_, rowIndex) =>
-    data.slice(rowIndex * chunkSize, (rowIndex + 1) * chunkSize),
+const divideDaysIntoWeeks = (data: any[], weekSize: number) => {
+  return Array.from({ length: Math.ceil(data.length / weekSize) }, (_, rowIndex) =>
+    data.slice(rowIndex * weekSize, (rowIndex + 1) * weekSize),
   );
 };
 
@@ -169,7 +169,7 @@ const Calendar = ({
         ))}
       </CalendarRow>
       <WeeksContainer onBlur={handleOnBlur} role="rowgroup">
-        {chunk(dayCells, weekDays.length).map((week, rowIndex) => (
+        {divideDaysIntoWeeks(dayCells, weekDays.length).map((week, rowIndex) => (
           <DayCellsContainer key={`${id}_week_${rowIndex}`} role="row">
             {week.map((date, index) => (
               <CalendarCell
