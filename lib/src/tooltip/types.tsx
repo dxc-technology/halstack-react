@@ -4,7 +4,7 @@ type Props = {
   /**
    * PENDING DESCRIPTION
    */
-  position: Position;
+  position?: Position;
   /**
    * PENDING DESCRIPTION
    */

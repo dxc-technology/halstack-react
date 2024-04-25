@@ -14,28 +14,8 @@ export const Chromatic = () => (
   <>
     {/* <Title title="Notification" theme="light" level={2} /> */}
     <ExampleContainer>
-      <DxcTooltip position="top" title="Tooltip">
-        <DxcButton label="Primary enabled" />
-      </DxcTooltip>
-    </ExampleContainer>
-    <ExampleContainer>
-      <DxcTooltip position="top" title="Tooltip">
-        <DxcButton label="Primary enabled" />
-      </DxcTooltip>
-    </ExampleContainer>
-    <ExampleContainer>
-      <DxcTooltip position="bottom" title="Tooltip">
-        <DxcButton label="Primary enabled" />
-      </DxcTooltip>
-    </ExampleContainer>
-    <ExampleContainer>
-      <DxcTooltip position="left" title="Tooltip">
-        <DxcButton label="Primary enabled" />
-      </DxcTooltip>
-    </ExampleContainer>
-    <ExampleContainer>
-      <DxcTooltip position="right" title="Tooltip">
-        <DxcButton label="Primary enabled" />
+      <DxcTooltip title="Tooltip Test">
+        <DxcButton label="Hoverable button" />
       </DxcTooltip>
     </ExampleContainer>
   </>

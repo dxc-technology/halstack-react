@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import TooltipPropsType from "./types";
 import * as Popover from "@radix-ui/react-popover";
 import CoreTokens from "../common/coreTokens";
 
-const DxcTooltip = ({ position = "top", title = "TEST", children }: TooltipPropsType): JSX.Element => {
+const ARROW_SIZE = 8;
+
+const DxcTooltip = ({ position = "bottom", title, children }: TooltipPropsType): JSX.Element => {
   const [isOpen, changeIsOpen] = useState(false);
 
   const handleOnOpenTooltip = () => {
@@ -20,24 +22,30 @@ const DxcTooltip = ({ position = "top", title = "TEST", children }: TooltipProps
         <PopoverTrigger>{children}</PopoverTrigger>
       </Popover.Trigger>
       <Popover.Portal>
-        <StyledPopoverContent side={position}>
+        <StyledPopoverContent side={position} sideOffset={ARROW_SIZE} data-testid={"popover-content"}>
           <TooltipContainer>{title}</TooltipContainer>
           <TooltipArrow asChild>
-            <svg
-              width="10"
-              height="5"
-              viewBox="0 0 30 10"
-              preserveAspectRatio="none"
-              style={{ display: "block" }}
-            >
-              <polygon points="0,0 30,0 16,10 14,10"></polygon>
-            </svg>
+            <Triangle size={ARROW_SIZE} aria-hidden />
           </TooltipArrow>
         </StyledPopoverContent>
       </Popover.Portal>
     </Popover.Root>
   );
 };
+const Triangle = styled.span<{ size: number }>`
+  display: block;
+  height: ${(props) => `${props.size}px`};
+  width: ${(props) => `${props.size}px`};
+  background-color: ${CoreTokens.color_grey_800};
+  position: absolute;
+  bottom: ${(props) => `-${props.size / 2}px`};
+  ${(props) => css`
+    left: calc(50% - ${props.size / 2}px);
+  `}
+  clip-path: polygon(0% 0%, 100% 100%, 0% 100%);
+  transform: rotate(-45deg);
+  border-radius: 0 0 0 1px;
+`;
 
 const PopoverTrigger = styled.div`
   display: inline-flex;
