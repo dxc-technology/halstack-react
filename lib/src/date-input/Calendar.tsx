@@ -161,22 +161,18 @@ const Calendar = ({
   };
   return (
     <CalendarContainer role="grid">
-      <CalendarRow role="row">
+      <CalendarHeaderRow role="row">
         {weekDays.map((weekDay) => (
-          <CalendarCell key={weekDay} role="columnheader">
+          <WeekHeaderCell key={weekDay} role="columnheader">
             {weekDay}
-          </CalendarCell>
+          </WeekHeaderCell>
         ))}
-      </CalendarRow>
-      <WeeksContainer onBlur={handleOnBlur} role="rowgroup">
+      </CalendarHeaderRow>
+      <MonthContainer onBlur={handleOnBlur} role="rowgroup">
         {divideDaysIntoWeeks(dayCells, weekDays.length).map((week, rowIndex) => (
-          <DayCellsContainer key={`${id}_week_${rowIndex}`} role="row">
+          <WeekContainer key={`${id}_week_${rowIndex}`} role="row">
             {week.map((date, index) => (
-              <CalendarCell
-                key={`${id}_day_${index}`}
-                role="gridcell"
-                aria-selected={isDaySelected(date, selectedDate)}
-              >
+              <span key={`${id}_day_${index}`} role="gridcell" aria-selected={isDaySelected(date, selectedDate)}>
                 <DayCellButton
                   onKeyDown={(event) => handleDayKeyboardEvent(event, date)}
                   id={`${id}_day_${date.day}_month${date.month}`}
@@ -194,11 +190,11 @@ const Calendar = ({
                 >
                   {date.day}
                 </DayCellButton>
-              </CalendarCell>
+              </span>
             ))}
-          </DayCellsContainer>
+          </WeekContainer>
         ))}
-      </WeeksContainer>
+      </MonthContainer>
     </CalendarContainer>
   );
 };
@@ -216,7 +212,7 @@ const CalendarContainer = styled.div`
   font-weight: ${(props) => props.theme.dateInput.pickerFontWeight};
 `;
 
-const CalendarRow = styled.div`
+const CalendarHeaderRow = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -224,7 +220,7 @@ const CalendarRow = styled.div`
   align-items: center;
 `;
 
-const CalendarCell = styled.span`
+const WeekHeaderCell = styled.span`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -232,7 +228,9 @@ const CalendarCell = styled.span`
   height: 36px;
 `;
 
-const WeeksContainer = styled.div`
+const DayCellContainer = styled.span``;
+
+const MonthContainer = styled.div`
   box-sizing: border-box;
   display: flex;
   gap: 4px;
@@ -240,7 +238,7 @@ const WeeksContainer = styled.div`
   justify-content: space-between;
 `;
 
-const DayCellsContainer = styled.div`
+const WeekContainer = styled.div`
   box-sizing: border-box;
   display: flex;
   gap: 4px;
