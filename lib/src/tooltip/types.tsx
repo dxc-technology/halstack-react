@@ -8,7 +8,11 @@ type Props = {
   /**
    * PENDING DESCRIPTION
    */
-  children: React.ReactNode
+  title: string;
+  /**
+   * PENDING DESCRIPTION
+   */
+  children: React.ReactNode;
 };
 
 export default Props;

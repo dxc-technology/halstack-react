@@ -14,22 +14,27 @@ export const Chromatic = () => (
   <>
     {/* <Title title="Notification" theme="light" level={2} /> */}
     <ExampleContainer>
-      <DxcTooltip position="top">
+      <DxcTooltip position="top" title="Tooltip">
         <DxcButton label="Primary enabled" />
       </DxcTooltip>
     </ExampleContainer>
     <ExampleContainer>
-      <DxcTooltip position="bottom">
+      <DxcTooltip position="top" title="Tooltip">
         <DxcButton label="Primary enabled" />
       </DxcTooltip>
     </ExampleContainer>
     <ExampleContainer>
-      <DxcTooltip position="left">
+      <DxcTooltip position="bottom" title="Tooltip">
         <DxcButton label="Primary enabled" />
       </DxcTooltip>
     </ExampleContainer>
     <ExampleContainer>
-      <DxcTooltip position="right">
+      <DxcTooltip position="left" title="Tooltip">
+        <DxcButton label="Primary enabled" />
+      </DxcTooltip>
+    </ExampleContainer>
+    <ExampleContainer>
+      <DxcTooltip position="right" title="Tooltip">
         <DxcButton label="Primary enabled" />
       </DxcTooltip>
     </ExampleContainer>
