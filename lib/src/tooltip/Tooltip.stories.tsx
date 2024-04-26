@@ -44,10 +44,10 @@ const Tooltip = () => (
 
 export const Chromatic = Tooltip.bind({});
 Chromatic.play = async ({ canvasElement }) => {
-  // const canvas = within(canvasElement);
-  // const buttonList = canvas.getAllByRole("button");
-  // await userEvent.hover(buttonList[0]);
-  // await userEvent.hover(buttonList[1]);
-  // await userEvent.hover(buttonList[2]);
-  // await userEvent.hover(buttonList[3]);
+  const canvas = within(canvasElement);
+  const buttonList = canvas.getAllByRole("button");
+  await userEvent.hover(buttonList[0]);
+  await userEvent.hover(buttonList[1]);
+  await userEvent.hover(buttonList[2]);
+  await userEvent.hover(buttonList[3]);
 };
