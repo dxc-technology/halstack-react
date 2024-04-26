@@ -8,16 +8,8 @@ import DateInputPropsType, { RefType } from "./types";
 import DxcDatePicker from "./DatePicker";
 import * as Popover from "@radix-ui/react-popover";
 import customParseFormat from "dayjs/plugin/customParseFormat";
-import { getMargin } from "../common/utils";
 
 dayjs.extend(customParseFormat);
-
-const sizes = {
-  small: "240px",
-  medium: "360px",
-  large: "480px",
-  fillParent: "100%",
-};
 
 const getValueForPicker = (value, format) => dayjs(value, format.toUpperCase(), true);
 
