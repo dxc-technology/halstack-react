@@ -18,9 +18,10 @@ const DxcActionIcon = React.forwardRef<RefType, ActionIconPropsTypes>(
           }}
           tabIndex={tabIndex}
           // TODO: Remove title? (Still needed to pass some tests)
-          title={title}
+          // title={title}
           type="button"
           ref={ref}
+          data-testid={title}
         >
           {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
         </ActionIcon>

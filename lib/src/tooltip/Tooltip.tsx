@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled, { css } from "styled-components";
 import TooltipPropsType from "./types";
-import * as Popover from "@radix-ui/react-popover";
+import * as Tooltip from "@radix-ui/react-tooltip";
 import CoreTokens from "../common/coreTokens";
 
 const ARROW_SIZE = 8;
@@ -17,26 +17,29 @@ const DxcTooltip = ({ position = "bottom", title, children }: TooltipPropsType):
   };
 
   return title ? (
-    <Popover.Root open={isOpen}>
-      <Popover.Trigger
-        asChild
-        type={undefined}
-        aria-expanded={undefined}
-        aria-controls={undefined}
-        onMouseEnter={handleOnOpenTooltip}
-        onMouseLeave={handleOnCloseTooltip}
-      >
-        <PopoverTrigger>{children}</PopoverTrigger>
-      </Popover.Trigger>
-      <Popover.Portal>
-        <StyledPopoverContent side={position} sideOffset={ARROW_SIZE} data-testid={"popover-content"} role="tooltip">
-          <TooltipContainer>{title}</TooltipContainer>
-          <TooltipArrow asChild aria-hidden>
-            <Triangle size={ARROW_SIZE} />
-          </TooltipArrow>
-        </StyledPopoverContent>
-      </Popover.Portal>
-    </Popover.Root>
+    <Tooltip.Provider>
+      <Tooltip.Root open={isOpen}>
+        <Tooltip.Trigger
+          asChild
+          onMouseEnter={handleOnOpenTooltip}
+          onMouseLeave={handleOnCloseTooltip}
+        >
+          <TooltipTrigger>{children}</TooltipTrigger>
+        </Tooltip.Trigger>
+        <Tooltip.Portal>
+          <StyledTooltipContent
+            side={position}
+            sideOffset={ARROW_SIZE}
+            data-testid={"popover-content"}
+          >
+            <TooltipContainer>{title}</TooltipContainer>
+            <TooltipArrow asChild aria-hidden>
+              <Triangle size={ARROW_SIZE} />
+            </TooltipArrow>
+          </StyledTooltipContent>
+        </Tooltip.Portal>
+      </Tooltip.Root>
+    </Tooltip.Provider>
   ) : (
     <>{children}</>
   );
@@ -56,19 +59,17 @@ const Triangle = styled.span<{ size: number }>`
   border-radius: 0 0 0 1px;
 `;
 
-const PopoverTrigger = styled.div`
+const TooltipTrigger = styled.div`
   display: inline-flex;
   position: relative;
 `;
 
-const StyledPopoverContent = styled(Popover.Content)`
+const StyledTooltipContent = styled(Tooltip.Content)`
   z-index: 2147483647;
-  &:focus-visible {
-    outline: none;
-  }
+
 `;
 
-const TooltipArrow = styled(Popover.Arrow)`
+const TooltipArrow = styled(Tooltip.Arrow)`
   fill: ${CoreTokens.color_grey_800};
 `;
 

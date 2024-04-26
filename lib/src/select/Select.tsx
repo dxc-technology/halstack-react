@@ -415,6 +415,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
                         onClick={handleClearOptionsActionOnClick}
                         tabIndex={-1}
                         aria-label={translatedLabels.select.actionClearSelectionTitle}
+                        data-testid={translatedLabels.select.actionClearSelectionTitle}
                       >
                         <DxcIcon icon="clear" />
                       </ClearOptionsAction>
@@ -468,8 +469,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
                   </ErrorIcon>
                 )}
                 {searchable && searchValue.length > 0 && (
-                  // TODO -> Solve problem: Using tooltip makes it lose focus on hover
-                  // <DxcTooltip title={translatedLabels.select.actionClearSelectionTitle}>
+                  <DxcTooltip title={translatedLabels.select.actionClearSelectionTitle}>
                     <ClearSearchAction
                       onMouseDown={(event) => {
                         // Avoid input to lose focus
@@ -477,12 +477,12 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
                       }}
                       onClick={handleClearSearchActionOnClick}
                       tabIndex={-1}
-                      title={translatedLabels.select.actionClearSearchTitle}
+                      data-testid={translatedLabels.select.actionClearSearchTitle}
                       aria-label={translatedLabels.select.actionClearSearchTitle}
                     >
                       <DxcIcon icon="clear" />
                     </ClearSearchAction>
-                  // </DxcTooltip>
+                  </DxcTooltip>
                 )}
                 <CollapseIndicator disabled={disabled}>
                   <DxcIcon icon={isOpen ? "keyboard_arrow_up" : "keyboard_arrow_down"} />
@@ -492,7 +492,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
             <Popover.Portal>
               <Popover.Content
                 sideOffset={4}
-                style={{ zIndex: "2147483647" }}
+                style={{ zIndex: "2147483646" }}
                 onOpenAutoFocus={(event) => {
                   // Avoid select to lose focus when the list is opened
                   event.preventDefault();

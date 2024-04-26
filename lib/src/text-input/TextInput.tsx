@@ -376,7 +376,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
                 <Popover.Portal>
                   <Popover.Content
                     sideOffset={5}
-                    style={{ zIndex: "2147483647" }}
+                    style={{ zIndex: "2147483646" }}
                     onOpenAutoFocus={(event) => {
                       // Avoid select to lose focus when the list is opened
                       event.preventDefault();
@@ -472,6 +472,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
                       tabIndex={tabIndex}
                       ref={actionRef}
                       title={translatedLabels.numberInput.decrementValueTitle}
+                      data-testid={"decrement-value-button"}
                       disabled={disabled}
                     />
                     <DxcActionIcon
@@ -480,6 +481,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
                       tabIndex={tabIndex}
                       ref={actionRef}
                       title={translatedLabels.numberInput.incrementValueTitle}
+                      data-testid={"increment-value-button"}
                       disabled={disabled}
                     />
                   </>

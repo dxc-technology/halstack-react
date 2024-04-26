@@ -36,7 +36,6 @@ export const DxcActionsCell = ({ actions }: ActionCellsPropsType): JSX.Element =
           index < maxNumberOfActions && (
             <DxcActionIcon
               icon={action.icon}
-              // TODO: Remove title? (Still needed for aria-label)
               title={action.title}
               onClick={action.onClick}
               disabled={action.disabled ?? false}

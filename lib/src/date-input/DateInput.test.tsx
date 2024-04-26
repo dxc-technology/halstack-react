@@ -157,7 +157,7 @@ describe("DateInput component tests", () => {
   });
 
   test("Changing months using the arrows", async () => {
-    const { getByText, getByRole, getByTitle } = render(
+    const { getByText, getByRole, getByTestId } = render(
       <DxcDateInput label="label" format="dd-mm-yyyy" defaultValue="10-10-2000" />
     );
     const calendarAction = getByRole("combobox");
@@ -165,10 +165,10 @@ describe("DateInput component tests", () => {
     let d = dayjs("10-10-2000", "DD-MM-YYYY", true);
     d = d.set("date", 10);
     expect(getByText(d.format("MMMM YYYY"))).toBeTruthy();
-    const previousMonth = getByTitle("Previous month");
+    const previousMonth = getByTestId("Previous month");
     await userEvent.click(previousMonth);
     expect(getByText(d.set("month", d.get("month") - 1).format("MMMM YYYY"))).toBeTruthy();
-    const nextMonth = getByTitle("Next month");
+    const nextMonth = getByTestId("Next month");
     await userEvent.click(nextMonth);
     expect(getByText(d.format("MMMM YYYY"))).toBeTruthy();
   });
@@ -207,6 +207,7 @@ describe("DateInput component tests", () => {
   test("Selecting a date from the calendar (using keyboard presses)", async () => {
     const { getByRole, getAllByText, getByText } = render(<DxcDateInput />);
     const calendarAction = getByRole("combobox");
+    console.log("CALENDAR ACTION", calendarAction)
     const input = getByRole("textbox") as HTMLInputElement;
     userEvent.type(input, "01-01-2010");
     expect(input.value).toBe("01-01-2010");

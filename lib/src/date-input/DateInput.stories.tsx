@@ -227,7 +227,7 @@ const DatePickerButtonStates = () => {
 export const DatePickerStates = DatePickerButtonStates.bind({});
 DatePickerStates.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
-  const dateBtn = canvas.getAllByTitle("Select date")[0];
+  const dateBtn = canvas.getAllByTestId("Select date")[0];
   await userEvent.click(dateBtn);
 };
 

@@ -15,25 +15,27 @@ import DxcButton from "../button/Button";
 
 describe("Tooltip component tests", () => {
   test("Tooltip does not render by default", () => {
-    const { queryByText } = render(
+    const { queryByText, getByText } = render(
       <DxcTooltip title="Tooltip Test">
         <DxcButton label="Hoverable button" />
       </DxcTooltip>,
     );
+    const triggerElement = getByText("Hoverable button");
+    fireEvent.mouseLeave(triggerElement);
     expect(queryByText("Tooltip Test")).not.toBeTruthy();
   });
 
   test("Tooltip renders with correct label on hover", () => {
-    const { getByText, queryByText } = render(
+    const { getByText, queryAllByText } = render(
       <DxcTooltip title="Tooltip Test">
         <DxcButton label="Hoverable button" />
       </DxcTooltip>,
     );
     const triggerElement = getByText("Hoverable button");
     fireEvent.mouseEnter(triggerElement);
-    expect(getByText("Tooltip Test")).toBeTruthy();
+    expect(queryAllByText("Tooltip Test").length).toBeGreaterThan(0);
     fireEvent.mouseLeave(triggerElement);
-    expect(queryByText("Tooltip Test")).not.toBeTruthy();
+    expect(queryAllByText("Tooltip Test").length).toBe(0);
   });
   
   test("Tooltip sets the default display position properly", () => {

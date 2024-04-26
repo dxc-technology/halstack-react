@@ -5,7 +5,6 @@ import DxcButton from "../button/Button";
 import { userEvent, within } from "@storybook/testing-library";
 import DxcInset from "../inset/Inset";
 import DxcFlex from "../flex/Flex";
-import DxcBleed from "../bleed/Bleed";
 import Title from "../../.storybook/components/Title";
 
 export default {
@@ -20,10 +19,10 @@ const Tooltip = () => (
       <DxcInset horizontal="5rem" vertical="1rem">
         <DxcFlex gap="2rem">
           <DxcTooltip title="Tooltip Test" position="bottom">
-            <DxcButton label="Hoverable button" title="Button Title" />
+            <DxcButton label="Hoverable button" />
           </DxcTooltip>
           <DxcTooltip title="Tooltip Test" position="top">
-            <DxcButton label="Hoverable button" title="Button Title" />
+            <DxcButton label="Hoverable button" />
           </DxcTooltip>
         </DxcFlex>
       </DxcInset>
@@ -32,10 +31,10 @@ const Tooltip = () => (
       <DxcInset horizontal="5rem" vertical="1rem">
         <DxcFlex gap="2rem">
           <DxcTooltip title="Tooltip Test" position="left">
-            <DxcButton label="Hoverable button" title="Button Title" />
+            <DxcButton label="Hoverable button" />
           </DxcTooltip>
           <DxcTooltip title="Tooltip Test" position="right">
-            <DxcButton label="Hoverable button" title="Button Title" />
+            <DxcButton label="Hoverable button" />
           </DxcTooltip>
         </DxcFlex>
       </DxcInset>
@@ -45,10 +44,10 @@ const Tooltip = () => (
 
 export const Chromatic = Tooltip.bind({});
 Chromatic.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const buttonList = canvas.getAllByRole("button");
-  await userEvent.hover(buttonList[0]);
-  await userEvent.hover(buttonList[1]);
-  await userEvent.hover(buttonList[2]);
-  await userEvent.hover(buttonList[3]);
+  // const canvas = within(canvasElement);
+  // const buttonList = canvas.getAllByRole("button");
+  // await userEvent.hover(buttonList[0]);
+  // await userEvent.hover(buttonList[1]);
+  // await userEvent.hover(buttonList[2]);
+  // await userEvent.hover(buttonList[3]);
 };

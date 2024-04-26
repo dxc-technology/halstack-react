@@ -76,8 +76,7 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
 
     useEffect(() => {
       if (!disabled) {
-        // TODO: REVIEW QUERY SELECTOR
-        const actionButtonRef = dateRef?.current.querySelector("[title='Select date']");
+        const actionButtonRef = dateRef?.current.querySelector("[data-testid='Select date']");
         actionButtonRef?.setAttribute("aria-haspopup", true);
         actionButtonRef?.setAttribute("role", "combobox");
         actionButtonRef?.setAttribute("aria-expanded", isOpen);
@@ -195,8 +194,6 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
                 onBlur={handleDatePickerOnBlur}
                 onKeyDown={handleDatePickerEscKeydown}
                 avoidCollisions={false}
-                // 
-                asChild
               >
                 <DxcDatePicker id={calendarId} onDateSelect={handleCalendarOnClick} date={dayjsDate} />
               </StyledPopoverContent>
@@ -209,7 +206,7 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
 );
 
 const StyledPopoverContent = styled(Popover.Content)`
-  z-index: 2147483647;
+  z-index: 2147483646;
   &:focus-visible {
     outline: none;
   }

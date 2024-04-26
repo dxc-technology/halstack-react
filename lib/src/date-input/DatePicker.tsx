@@ -37,8 +37,7 @@ const DxcDatePicker = ({ date, onDateSelect, id }: DatePickerPropsType): JSX.Ele
           <HeaderButton
             aria-label={translatedLabels.calendar.previousMonthTitle}
             onClick={() => handleMonthChange(innerDate.set("month", innerDate.get("month") - 1))}
-            // TODO: Remove title? (Still needed to pass some tests)
-            title={translatedLabels.calendar.previousMonthTitle}
+            data-testid={translatedLabels.calendar.previousMonthTitle}
           >
             <DxcIcon icon="keyboard_arrow_left" />
           </HeaderButton>
@@ -56,8 +55,7 @@ const DxcDatePicker = ({ date, onDateSelect, id }: DatePickerPropsType): JSX.Ele
           <HeaderButton
             aria-label={translatedLabels.calendar.nextMonthTitle}
             onClick={() => handleMonthChange(innerDate.set("month", innerDate.get("month") + 1))}
-            // TODO: Remove title? (Still needed to pass some tests)
-            title={translatedLabels.calendar.nextMonthTitle}
+            data-testid={translatedLabels.calendar.nextMonthTitle}
           >
             <DxcIcon icon="keyboard_arrow_right" />
           </HeaderButton>
