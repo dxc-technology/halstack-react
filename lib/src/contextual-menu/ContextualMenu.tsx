@@ -104,7 +104,7 @@ const SectionList = styled.ul`
   gap: ${CoreTokens.spacing_4};
 `;
 
-const Title = styled.h2`
+const Title = styled.span`
   margin: 0 0 ${CoreTokens.spacing_4} 0;
   padding: ${CoreTokens.spacing_4};
   color: ${CoreTokens.color_grey_900};

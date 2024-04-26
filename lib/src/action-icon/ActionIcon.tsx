@@ -17,8 +17,6 @@ const DxcActionIcon = React.forwardRef<RefType, ActionIconPropsTypes>(
             event.stopPropagation();
           }}
           tabIndex={tabIndex}
-          // TODO: Remove title? (Still needed to pass some tests)
-          // title={title}
           type="button"
           ref={ref}
           data-testid={title}
@@ -27,7 +25,7 @@ const DxcActionIcon = React.forwardRef<RefType, ActionIconPropsTypes>(
         </ActionIcon>
       </DxcTooltip>
     );
-  },
+  }
 );
 
 const ActionIcon = styled.button`
