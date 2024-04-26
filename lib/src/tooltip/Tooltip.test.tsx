@@ -35,8 +35,21 @@ describe("Tooltip component tests", () => {
     fireEvent.mouseLeave(triggerElement);
     expect(queryByText("Tooltip Test")).not.toBeTruthy();
   });
-
-  test("Tooltip sets the display position properly", () => {
+  
+  test("Tooltip sets the default display position properly", () => {
+    const { getByText, getByTestId } = render(
+      <DxcTooltip title="Tooltip Test">
+        <DxcButton label="Hoverable button" />
+      </DxcTooltip>,
+    );
+    const triggerElement = getByText("Hoverable button");
+    fireEvent.mouseEnter(triggerElement);
+    const popoverContent = getByTestId("popover-content");
+    expect(popoverContent).toBeTruthy();
+    const position = popoverContent.getAttribute("data-side");
+    expect(position).toBe("bottom");
+  });
+  test("Tooltip sets the custom display position properly", () => {
     const { getByText, getByTestId } = render(
       <DxcTooltip title="Tooltip Test" position="top">
         <DxcButton label="Hoverable button" />

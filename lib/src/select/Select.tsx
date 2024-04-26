@@ -8,6 +8,7 @@ import SelectPropsType, { Option, OptionGroup, RefType } from "./types";
 import Listbox from "./Listbox";
 import * as Popover from "@radix-ui/react-popover";
 import DxcIcon from "../icon/Icon";
+import DxcTooltip from "../tooltip/Tooltip";
 
 const isOptionGroup = (option: Option | OptionGroup): option is OptionGroup =>
   "options" in option && option.options != null;
@@ -25,7 +26,7 @@ const canOpenOptions = (options: Option[] | OptionGroup[], disabled: boolean) =>
 
 const filterOptionsBySearchValue = (
   options: Option[] | OptionGroup[],
-  searchValue: string
+  searchValue: string,
 ): Option[] | OptionGroup[] => {
   if (options?.length > 0) {
     if (isArrayOfOptionGroups(options))
@@ -33,7 +34,7 @@ const filterOptionsBySearchValue = (
         const group = {
           label: optionGroup.label,
           options: optionGroup.options.filter((option) =>
-            option.label.toUpperCase().includes(searchValue.toUpperCase())
+            option.label.toUpperCase().includes(searchValue.toUpperCase()),
           ),
         };
         return group;
@@ -47,7 +48,7 @@ const getLastOptionIndex = (
   filteredOptions: Option[] | OptionGroup[],
   searchable: boolean,
   optional: boolean,
-  multiple: boolean
+  multiple: boolean,
 ) => {
   let last = 0;
   const reducer = (acc: number, current: OptionGroup) => acc + current.options?.length;
@@ -67,7 +68,7 @@ const getSelectedOption = (
   options: Option[] | OptionGroup[],
   multiple: boolean,
   optional: boolean,
-  optionalItem: Option
+  optionalItem: Option,
 ) => {
   let selectedOption: Option | Option[] = multiple ? [] : ({} as Option);
   let singleSelectionIndex: number;
@@ -164,7 +165,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
       size = "medium",
       tabIndex = 0,
     },
-    ref
+    ref,
   ): JSX.Element => {
     const selectId = `select-${useId()}`;
     const selectLabelId = `label-${selectId}`;
@@ -188,11 +189,11 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
     const filteredOptions = useMemo(() => filterOptionsBySearchValue(options, searchValue), [options, searchValue]);
     const lastOptionIndex = useMemo(
       () => getLastOptionIndex(options, filteredOptions, searchable, optional, multiple),
-      [options, filteredOptions, searchable, optional, multiple]
+      [options, filteredOptions, searchable, optional, multiple],
     );
     const { selectedOption, singleSelectionIndex } = useMemo(
       () => getSelectedOption(value ?? innerValue, options, multiple, optional, optionalItem),
-      [value, innerValue, options, multiple, optional, optionalItem]
+      [value, innerValue, options, multiple, optional, optionalItem],
     );
 
     const openOptions = () => {
@@ -275,7 +276,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
           (!isOpen || (visualFocusIndex === -1 && singleSelectionIndex > -1 && singleSelectionIndex <= lastOptionIndex))
             ? changeVisualFocusIndex(singleSelectionIndex)
             : changeVisualFocusIndex((visualFocusIndex) =>
-                visualFocusIndex === 0 || visualFocusIndex === -1 ? lastOptionIndex : visualFocusIndex - 1
+                visualFocusIndex === 0 || visualFocusIndex === -1 ? lastOptionIndex : visualFocusIndex - 1,
               );
           openOptions();
           break;
@@ -350,7 +351,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
         !multiple && closeOptions();
         setSearchValue("");
       },
-      [handleSelectChangeValue, closeOptions, multiple]
+      [handleSelectChangeValue, closeOptions, multiple],
     );
 
     useEffect(() => {
@@ -404,19 +405,20 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
                 {multiple && Array.isArray(selectedOption) && selectedOption.length > 0 && (
                   <SelectionIndicator>
                     <SelectionNumber disabled={disabled}>{selectedOption.length}</SelectionNumber>
-                    <ClearOptionsAction
-                      disabled={disabled}
-                      onMouseDown={(event) => {
-                        // Avoid input to lose focus when pressed
-                        event.preventDefault();
-                      }}
-                      onClick={handleClearOptionsActionOnClick}
-                      tabIndex={-1}
-                      title={translatedLabels.select.actionClearSelectionTitle}
-                      aria-label={translatedLabels.select.actionClearSelectionTitle}
-                    >
-                      <DxcIcon icon="clear" />
-                    </ClearOptionsAction>
+                    <DxcTooltip title={translatedLabels.select.actionClearSelectionTitle}>
+                      <ClearOptionsAction
+                        disabled={disabled}
+                        onMouseDown={(event) => {
+                          // Avoid input to lose focus when pressed
+                          event.preventDefault();
+                        }}
+                        onClick={handleClearOptionsActionOnClick}
+                        tabIndex={-1}
+                        aria-label={translatedLabels.select.actionClearSelectionTitle}
+                      >
+                        <DxcIcon icon="clear" />
+                      </ClearOptionsAction>
+                    </DxcTooltip>
                   </SelectionIndicator>
                 )}
                 <SearchableValueContainer>
@@ -466,18 +468,21 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
                   </ErrorIcon>
                 )}
                 {searchable && searchValue.length > 0 && (
-                  <ClearSearchAction
-                    onMouseDown={(event) => {
-                      // Avoid input to lose focus
-                      event.preventDefault();
-                    }}
-                    onClick={handleClearSearchActionOnClick}
-                    tabIndex={-1}
-                    title={translatedLabels.select.actionClearSearchTitle}
-                    aria-label={translatedLabels.select.actionClearSearchTitle}
-                  >
-                    <DxcIcon icon="clear" />
-                  </ClearSearchAction>
+                  // TODO -> Solve problem: Using tooltip makes it lose focus on hover
+                  // <DxcTooltip title={translatedLabels.select.actionClearSelectionTitle}>
+                    <ClearSearchAction
+                      onMouseDown={(event) => {
+                        // Avoid input to lose focus
+                        event.preventDefault();
+                      }}
+                      onClick={handleClearSearchActionOnClick}
+                      tabIndex={-1}
+                      title={translatedLabels.select.actionClearSearchTitle}
+                      aria-label={translatedLabels.select.actionClearSearchTitle}
+                    >
+                      <DxcIcon icon="clear" />
+                    </ClearSearchAction>
+                  // </DxcTooltip>
                 )}
                 <CollapseIndicator disabled={disabled}>
                   <DxcIcon icon={isOpen ? "keyboard_arrow_up" : "keyboard_arrow_down"} />
@@ -521,7 +526,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
         </SelectContainer>
       </ThemeProvider>
     );
-  }
+  },
 );
 
 const sizes = {

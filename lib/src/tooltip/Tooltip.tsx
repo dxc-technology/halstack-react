@@ -16,20 +16,29 @@ const DxcTooltip = ({ position = "bottom", title, children }: TooltipPropsType):
     changeIsOpen(false);
   };
 
-  return (
+  return title ? (
     <Popover.Root open={isOpen}>
-      <Popover.Trigger asChild type={undefined} onMouseEnter={handleOnOpenTooltip} onMouseLeave={handleOnCloseTooltip}>
+      <Popover.Trigger
+        asChild
+        type={undefined}
+        aria-expanded={undefined}
+        aria-controls={undefined}
+        onMouseEnter={handleOnOpenTooltip}
+        onMouseLeave={handleOnCloseTooltip}
+      >
         <PopoverTrigger>{children}</PopoverTrigger>
       </Popover.Trigger>
       <Popover.Portal>
-        <StyledPopoverContent side={position} sideOffset={ARROW_SIZE} data-testid={"popover-content"}>
+        <StyledPopoverContent side={position} sideOffset={ARROW_SIZE} data-testid={"popover-content"} role="tooltip">
           <TooltipContainer>{title}</TooltipContainer>
-          <TooltipArrow asChild>
-            <Triangle size={ARROW_SIZE} aria-hidden />
+          <TooltipArrow asChild aria-hidden>
+            <Triangle size={ARROW_SIZE} />
           </TooltipArrow>
         </StyledPopoverContent>
       </Popover.Portal>
     </Popover.Root>
+  ) : (
+    <>{children}</>
   );
 };
 const Triangle = styled.span<{ size: number }>`

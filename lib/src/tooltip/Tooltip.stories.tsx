@@ -1,22 +1,54 @@
 import React from "react";
 import DxcTooltip from "./Tooltip";
-import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
-import DxcFlex from "../flex/Flex";
 import DxcButton from "../button/Button";
+import { userEvent, within } from "@storybook/testing-library";
+import DxcInset from "../inset/Inset";
+import DxcFlex from "../flex/Flex";
+import DxcBleed from "../bleed/Bleed";
+import Title from "../../.storybook/components/Title";
 
 export default {
   title: "Tooltip",
   component: DxcTooltip,
 };
 
-export const Chromatic = () => (
+const Tooltip = () => (
   <>
-    {/* <Title title="Notification" theme="light" level={2} /> */}
+    <Title title="Tooltips" theme="light" level={2} />
     <ExampleContainer>
-      <DxcTooltip title="Tooltip Test">
-        <DxcButton label="Hoverable button" />
-      </DxcTooltip>
+      <DxcInset horizontal="5rem" vertical="1rem">
+        <DxcFlex gap="2rem">
+          <DxcTooltip title="Tooltip Test" position="bottom">
+            <DxcButton label="Hoverable button" title="Button Title" />
+          </DxcTooltip>
+          <DxcTooltip title="Tooltip Test" position="top">
+            <DxcButton label="Hoverable button" title="Button Title" />
+          </DxcTooltip>
+        </DxcFlex>
+      </DxcInset>
+    </ExampleContainer>
+    <ExampleContainer>
+      <DxcInset horizontal="5rem" vertical="1rem">
+        <DxcFlex gap="2rem">
+          <DxcTooltip title="Tooltip Test" position="left">
+            <DxcButton label="Hoverable button" title="Button Title" />
+          </DxcTooltip>
+          <DxcTooltip title="Tooltip Test" position="right">
+            <DxcButton label="Hoverable button" title="Button Title" />
+          </DxcTooltip>
+        </DxcFlex>
+      </DxcInset>
     </ExampleContainer>
   </>
 );
+
+export const Chromatic = Tooltip.bind({});
+Chromatic.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  const buttonList = canvas.getAllByRole("button");
+  await userEvent.hover(buttonList[0]);
+  await userEvent.hover(buttonList[1]);
+  await userEvent.hover(buttonList[2]);
+  await userEvent.hover(buttonList[3]);
+};

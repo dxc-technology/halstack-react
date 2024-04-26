@@ -1,16 +1,16 @@
-type Position = "top" | "bottom" | "right" | "left";
+type Position = "bottom" | "top" | "left" | "right";
 
 type Props = {
   /**
-   * PENDING DESCRIPTION
+   * Preferred position for displaying the tooltip. It may adjust automatically based on available space.
    */
   position?: Position;
   /**
-   * PENDING DESCRIPTION
+   * Text to be displayed inside the tooltip.
    */
   title: string;
   /**
-   * PENDING DESCRIPTION
+   * Content in which the Tooltip will be displayed.
    */
   children: React.ReactNode;
 };

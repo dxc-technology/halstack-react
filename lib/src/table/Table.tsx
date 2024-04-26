@@ -10,6 +10,7 @@ import DxcDropdown from "../dropdown/Dropdown";
 import DxcFlex from "../flex/Flex";
 import { HalstackProvider } from "../HalstackContext";
 import DxcActionIcon from "../action-icon/ActionIcon";
+import DxcTooltip from "../tooltip/Tooltip";
 
 const overwriteTheme = (theme: DeepPartial<AdvancedTheme>) => {
   const newTheme = DropdownTheme;
@@ -35,13 +36,14 @@ export const DxcActionsCell = ({ actions }: ActionCellsPropsType): JSX.Element =
           index < maxNumberOfActions && (
             <DxcActionIcon
               icon={action.icon}
+              // TODO: Remove title? (Still needed for aria-label)
               title={action.title}
               onClick={action.onClick}
               disabled={action.disabled ?? false}
               tabIndex={action.tabIndex ?? 0}
               key={`action-${index}`}
             />
-          )
+          ),
       )}
       {actionDropdown && (
         <HalstackProvider advancedTheme={overwriteTheme(colorsTheme)} key={`provider-dropdown`}>
@@ -64,7 +66,7 @@ const DxcTable = ({ children, margin, mode = "default" }: TablePropsType): JSX.E
 
   return (
     <ThemeProvider theme={colorsTheme.table}>
-      <DxcTableContainer margin={margin}> 
+      <DxcTableContainer margin={margin}>
         <DxcTableContent mode={mode}>{children}</DxcTableContent>
       </DxcTableContainer>
     </ThemeProvider>

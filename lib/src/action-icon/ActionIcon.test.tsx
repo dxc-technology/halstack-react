@@ -35,7 +35,6 @@ describe("Action icon component tests", () => {
 
     const button = getByRole("button");
     expect(button.getAttribute("aria-label")).toBe("favourite");
-    expect(button.getAttribute("title")).toBe("favourite");
     expect(button.getAttribute("tabindex")).toBe("1");
   });
 });
