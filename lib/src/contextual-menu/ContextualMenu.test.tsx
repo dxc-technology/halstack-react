@@ -85,9 +85,8 @@ describe("Contextual menu component tests", () => {
       },
     ];
     const { getByText, getAllByRole } = render(<DxcContextualMenu items={test} />);
-    expect(getByText("Tested item")).toBe(2);
-    const item = getAllByRole("button")[1];
-    expect(item.getAttribute("aria-selected")).toBeTruthy();
+    expect(getByText("Tested item")).toBeTruthy();
+    expect(getAllByRole("button")[1].getAttribute("aria-selected")).toBeTruthy();
   });
   test("Group - Collapsed groups render as selected when containing a selected item", async () => {
     const { getAllByRole } = render(<DxcContextualMenu items={groups} />);
