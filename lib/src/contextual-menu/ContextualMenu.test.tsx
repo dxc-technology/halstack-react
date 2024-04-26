@@ -1,5 +1,5 @@
 import React from "react";
-import { render, fireEvent, getByRole } from "@testing-library/react";
+import { render, fireEvent } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import DxcContextualMenu from "./ContextualMenu";
 
@@ -32,16 +32,27 @@ const groups = [
 ];
 
 describe("Contextual menu component tests", () => {
-  test("Default - Renders with correct aria attributes", () => {
+  test("Single - Renders with correct aria attributes", async () => {
     const { getAllByRole, getByRole } = render(<DxcContextualMenu items={items} />);
     expect(getAllByRole("menuitem").length).toBe(4);
     const actions = getAllByRole("button");
+    await userEvent.click(actions[0]);
     expect(actions[0].getAttribute("aria-selected")).toBeTruthy();
     expect(getByRole("menu")).toBeTruthy();
   });
+  test("Single - An item can appear as selected by default by using the attribute selectedByDefault", () => {
+    const test = [
+      {
+        label: "Tested item",
+        selectedByDefault: true,
+      },
+    ];
+    const { getByRole } = render(<DxcContextualMenu items={test} />);
+    const item = getByRole("button");
+    expect(item.getAttribute("aria-selected")).toBeTruthy();
+  });
   test("Group - Group items collapse when clicked", async () => {
-    const { queryByText, getByText, getAllByRole } = render(<DxcContextualMenu items={groups} />);
-    const group1 = getAllByRole("button")[0];
+    const { queryByText, getByText } = render(<DxcContextualMenu items={groups} />);
     await userEvent.click(getByText("Grouped Item 1"));
     expect(getByText("Item 1")).toBeTruthy();
     expect(getByText("Grouped Item 2")).toBeTruthy();
@@ -54,16 +65,29 @@ describe("Contextual menu component tests", () => {
     expect(queryByText("Item 3")).toBeFalsy();
   });
   test("Group - Renders with correct aria attributes", async () => {
-    const { getByText, getAllByRole } = render(<DxcContextualMenu items={groups} />);
+    const { getAllByRole } = render(<DxcContextualMenu items={groups} />);
     const group1 = getAllByRole("button")[0];
     await userEvent.click(group1);
     expect(group1.getAttribute("aria-expanded")).toBeTruthy();
     expect(group1.getAttribute("aria-controls")).toBe(getAllByRole("list")[0].id);
-    await userEvent.click(getByText("Grouped Item 2"));
-    await userEvent.click(getByText("Grouped Item 3"));
+    await userEvent.click(getAllByRole("button")[2]);
+    await userEvent.click(getAllByRole("button")[6]);
     expect(getAllByRole("menuitem").length).toBe(10);
-    const actions = getAllByRole("button");
-    expect(actions[4].getAttribute("aria-selected")).toBeTruthy();
+    const optionToBeClicked = getAllByRole("button")[4];
+    await userEvent.click(optionToBeClicked);
+    expect(optionToBeClicked.getAttribute("aria-selected")).toBeTruthy();
+  });
+  test("Group - A grouped item, selected by default, must be visible (expanded group) in the first render of the component", () => {
+    const test = [
+      {
+        label: "Grouped item",
+        items: [{ label: "Tested item", selectedByDefault: true }],
+      },
+    ];
+    const { getByText, getAllByRole } = render(<DxcContextualMenu items={test} />);
+    expect(getByText("Tested item")).toBe(2);
+    const item = getAllByRole("button")[1];
+    expect(item.getAttribute("aria-selected")).toBeTruthy();
   });
   test("Group - Collapsed groups render as selected when containing a selected item", async () => {
     const { getAllByRole } = render(<DxcContextualMenu items={groups} />);
@@ -88,6 +112,8 @@ describe("Contextual menu component tests", () => {
     await userEvent.click(actions[0]);
     expect(actions[0].getAttribute("aria-selected")).toBeTruthy();
     expect(getAllByRole("group").length).toBe(2);
+    const section = getAllByRole("group")[0];
+    expect(section.getAttribute("aria-labelledby")).toBe("Team repositories");
   });
   test("The onSelect event from each item is called correctly", () => {
     const test = [

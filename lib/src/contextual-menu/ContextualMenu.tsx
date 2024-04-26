@@ -1,4 +1,4 @@
-import React, { Fragment, createContext, useMemo, useState } from "react";
+import React, { Fragment, createContext, useLayoutEffect, useMemo, useRef, useState } from "react";
 import styled from "styled-components";
 import CoreTokens from "../common/coreTokens";
 import ContextualMenuPropsType, {
@@ -35,6 +35,7 @@ const addIdToItems = (items: ContextualMenuPropsType["items"]): (ItemWithId | Gr
 
 const DxcContextualMenu = ({ items }: ContextualMenuPropsType) => {
   const [selectedItemId, setSelectedItemId] = useState(-1);
+  const contextualMenuRef = useRef(null);
   const itemsWithId = useMemo(() => addIdToItems(items), [items]);
 
   const renderSection = (section: SectionWithId, currentSectionIndex: number, length: number) => (
@@ -55,8 +56,18 @@ const DxcContextualMenu = ({ items }: ContextualMenuPropsType) => {
     </Fragment>
   );
 
+  const [firstUpdate, setFirstUpdate] = useState(true);
+  useLayoutEffect(() => {
+    if (selectedItemId !== -1 && firstUpdate) {
+      const contextualMenuEl = contextualMenuRef?.current;
+      const selectedItemEl = contextualMenuEl?.querySelector("[aria-selected='true']");
+      contextualMenuEl?.scrollTo?.({ top: selectedItemEl?.offsetTop - contextualMenuEl?.clientHeight / 2 });
+      setFirstUpdate(false);
+    }
+  }, [firstUpdate, selectedItemId]);
+
   return (
-    <ContextualMenu role="menu">
+    <ContextualMenu role="menu" ref={contextualMenuRef}>
       <ContextualMenuContext.Provider value={{ selectedItemId, setSelectedItemId }}>
         {itemsWithId.map((item: GroupItemWithId | ItemWithId | SectionWithId, index: number) =>
           "items" in item && !("label" in item) ? (

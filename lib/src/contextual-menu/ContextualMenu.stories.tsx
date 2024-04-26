@@ -114,7 +114,7 @@ const sectionsWithScroll = [
       { label: "Approved locations" },
       { label: "Approved locations" },
       { label: "Approved locations" },
-      { label: "Approved locations" },
+      { label: "Approved locations", selectedByDefault: true },
     ],
   },
 ];
@@ -171,7 +171,7 @@ export const Chromatic = () => (
         <DxcContextualMenu items={itemsWithTruncatedText} />
       </DxcContainer>
     </ExampleContainer>
-    <Title title="With scroll" theme="light" level={3} />
+    <Title title="With auto-scroll" theme="light" level={3} />
     <ExampleContainer>
       <DxcContainer height="300px" width="300px">
         <DxcContextualMenu items={sectionsWithScroll} />
