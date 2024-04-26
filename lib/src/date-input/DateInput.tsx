@@ -19,11 +19,6 @@ const sizes = {
   fillParent: "100%",
 };
 
-const calculateWidth = (margin, size) =>
-  size === "fillParent"
-    ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
-    : sizes[size];
-
 const getValueForPicker = (value, format) => dayjs(value, format.toUpperCase(), true);
 
 const getDate = (value, format, lastValidYear, setLastValidYear) => {
@@ -67,7 +62,7 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
       size,
       tabIndex,
     },
-    ref,
+    ref
   ): JSX.Element => {
     const [innerValue, setInnerValue] = useState(defaultValue);
     const [isOpen, setIsOpen] = useState(false);
@@ -78,7 +73,7 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
         ? !format.toUpperCase().includes("YYYY") && +getValueForPicker(value ?? innerValue, format).format("YY") < 68
           ? 2000
           : 1900
-        : undefined,
+        : undefined
     );
     const colorsTheme = useTheme();
     const translatedLabels = useTranslatedLabels();
@@ -218,7 +213,7 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
         </DateInputContainer>
       </ThemeProvider>
     );
-  },
+  }
 );
 
 const StyledPopoverContent = styled(Popover.Content)`
@@ -229,7 +224,7 @@ const StyledPopoverContent = styled(Popover.Content)`
 `;
 
 const DateInputContainer = styled.div<{ margin: DateInputPropsType["margin"]; size: DateInputPropsType["size"] }>`
-  width: ${(props) => calculateWidth(props.margin, props.size)};
+  ${(props) => props.size == "fillParent" && "width: 100%;"}
 `;
 
 export default DxcDateInput;
