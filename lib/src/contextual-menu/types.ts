@@ -6,6 +6,7 @@ type Item = {
   icon?: string | SVG;
   label: string;
   onSelect?: () => void;
+  selectedByDefault?: boolean;
 };
 type GroupItem = {
   badge?: React.ReactElement;
@@ -32,12 +33,14 @@ type SectionWithId = { items: (ItemWithId | GroupItemWithId)[]; title?: string }
 type SingleItemProps = ItemWithId & { depthLevel: number };
 type GroupItemProps = GroupItemWithId & { depthLevel: number };
 type MenuItemProps = { item: ItemWithId | GroupItemWithId; depthLevel?: number };
-type ItemActionProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
-  Item & {
-    collapseIcon?: React.ReactNode;
-    depthLevel: number;
-    selected: boolean;
-  };
+type ItemActionProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
+  badge?: Item["badge"];
+  collapseIcon?: React.ReactNode;
+  depthLevel: number;
+  icon?: Item["icon"];
+  label: Item["label"];
+  selected: boolean;
+};
 type ContextualMenuContextProps = {
   selectedItemId: number;
   setSelectedItemId: React.Dispatch<React.SetStateAction<number>>;

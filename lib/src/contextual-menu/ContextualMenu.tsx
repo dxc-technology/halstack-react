@@ -39,8 +39,8 @@ const DxcContextualMenu = ({ items }: ContextualMenuPropsType) => {
 
   const renderSection = (section: SectionWithId, currentSectionIndex: number, length: number) => (
     <Fragment key={`section-${currentSectionIndex}`}>
-      <li role="group">
-        {section.title != null && <Title>{section.title}</Title>}
+      <li role="group" aria-labelledby={section.title}>
+        {section.title != null && <Title id={section.title}>{section.title}</Title>}
         <SectionList>
           {section.items.map((item, index) => (
             <MenuItem item={item} key={`${item.label}-${index}`} />
@@ -104,7 +104,7 @@ const SectionList = styled.ul`
   gap: ${CoreTokens.spacing_4};
 `;
 
-const Title = styled.span`
+const Title = styled.h2`
   margin: 0 0 ${CoreTokens.spacing_4} 0;
   padding: ${CoreTokens.spacing_4};
   color: ${CoreTokens.color_grey_900};
