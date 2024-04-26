@@ -19,19 +19,11 @@ const DxcTooltip = ({ position = "bottom", title, children }: TooltipPropsType):
   return title ? (
     <Tooltip.Provider>
       <Tooltip.Root open={isOpen}>
-        <Tooltip.Trigger
-          asChild
-          onMouseEnter={handleOnOpenTooltip}
-          onMouseLeave={handleOnCloseTooltip}
-        >
+        <Tooltip.Trigger asChild onMouseEnter={handleOnOpenTooltip} onMouseLeave={handleOnCloseTooltip}>
           <TooltipTrigger>{children}</TooltipTrigger>
         </Tooltip.Trigger>
         <Tooltip.Portal>
-          <StyledTooltipContent
-            side={position}
-            sideOffset={ARROW_SIZE}
-            data-testid={"popover-content"}
-          >
+          <StyledTooltipContent side={position} sideOffset={ARROW_SIZE} data-testid={"popover-content"}>
             <TooltipContainer>{title}</TooltipContainer>
             <TooltipArrow asChild aria-hidden>
               <Triangle size={ARROW_SIZE} />
@@ -66,7 +58,6 @@ const TooltipTrigger = styled.div`
 
 const StyledTooltipContent = styled(Tooltip.Content)`
   z-index: 2147483647;
-
 `;
 
 const TooltipArrow = styled(Tooltip.Arrow)`

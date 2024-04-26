@@ -67,29 +67,29 @@ const getButtonStyles = ($mode: ButtonPropsType["mode"], theme: AdvancedTheme["b
     $mode === "primary"
       ? theme.primaryBorderRadius
       : $mode === "secondary"
-        ? theme.secondaryBorderRadius
-        : theme.textBorderRadius
+      ? theme.secondaryBorderRadius
+      : theme.textBorderRadius
   };
   border-width: ${
     $mode === "primary"
       ? theme.primaryBorderThickness
       : $mode === "secondary"
-        ? theme.secondaryBorderThickness
-        : theme.textBorderThickness
+      ? theme.secondaryBorderThickness
+      : theme.textBorderThickness
   };
   border-style: ${
     $mode === "primary"
       ? theme.primaryBorderStyle
       : $mode === "secondary"
-        ? theme.secondaryBorderStyle
-        : theme.textBorderStyle
+      ? theme.secondaryBorderStyle
+      : theme.textBorderStyle
   };
   font-family: ${
     $mode === "primary"
       ? theme.primaryFontFamily
       : $mode === "secondary"
-        ? theme.secondaryFontFamily
-        : theme.textFontFamily
+      ? theme.secondaryFontFamily
+      : theme.textFontFamily
   };
   font-size: ${
     $mode === "primary" ? theme.primaryFontSize : $mode === "secondary" ? theme.secondaryFontSize : theme.textFontSize
@@ -98,37 +98,37 @@ const getButtonStyles = ($mode: ButtonPropsType["mode"], theme: AdvancedTheme["b
     $mode === "primary"
       ? theme.primaryFontWeight
       : $mode === "secondary"
-        ? theme.secondaryFontWeight
-        : theme.textFontWeight
+      ? theme.secondaryFontWeight
+      : theme.textFontWeight
   };
   background-color: ${
     $mode === "primary"
       ? theme.primaryBackgroundColor
       : $mode === "secondary"
-        ? theme.secondaryBackgroundColor
-        : theme.textBackgroundColor
+      ? theme.secondaryBackgroundColor
+      : theme.textBackgroundColor
   };
   color: ${
     $mode === "primary"
       ? theme.primaryFontColor
       : $mode === "secondary"
-        ? theme.secondaryFontColor
-        : theme.textFontColor
+      ? theme.secondaryFontColor
+      : theme.textFontColor
   };
   `;
 
 const getButtonStates = (
   disabled: ButtonPropsType["disabled"],
   $mode: ButtonPropsType["mode"],
-  theme: AdvancedTheme["button"],
+  theme: AdvancedTheme["button"]
 ) => `
   &:hover {
     background-color: ${
       $mode === "primary"
         ? theme.primaryHoverBackgroundColor
         : $mode === "secondary"
-          ? theme.secondaryHoverBackgroundColor
-          : theme.textHoverBackgroundColor
+        ? theme.secondaryHoverBackgroundColor
+        : theme.textHoverBackgroundColor
     };
     color: ${$mode === "secondary" ? theme.secondaryHoverFontColor : ""};
   }
@@ -140,8 +140,8 @@ const getButtonStates = (
       $mode === "primary"
         ? theme.primaryActiveBackgroundColor
         : $mode === "secondary"
-          ? theme.secondaryActiveBackgroundColor
-          : theme.textActiveBackgroundColor
+        ? theme.secondaryActiveBackgroundColor
+        : theme.textActiveBackgroundColor
     };
     color: ${$mode === "secondary" ? theme.secondaryHoverFontColor : ""};
     border-color: ${$mode === "secondary" ? "transparent" : ""};
@@ -154,15 +154,15 @@ const getButtonStates = (
       $mode === "primary"
         ? theme.primaryDisabledBackgroundColor
         : $mode === "secondary"
-          ? theme.secondaryDisabledBackgroundColor
-          : theme.textDisabledBackgroundColor
+        ? theme.secondaryDisabledBackgroundColor
+        : theme.textDisabledBackgroundColor
     };
     color: ${
       $mode === "primary"
         ? theme.primaryDisabledFontColor
         : $mode === "secondary"
-          ? theme.secondaryDisabledFontColor
-          : theme.textDisabledFontColor
+        ? theme.secondaryDisabledFontColor
+        : theme.textDisabledFontColor
     };
     border-color: ${$mode === "secondary" ? theme.secondaryDisabledBorderColor : ""};
   }

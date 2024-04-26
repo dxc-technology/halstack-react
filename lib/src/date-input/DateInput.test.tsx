@@ -207,7 +207,6 @@ describe("DateInput component tests", () => {
   test("Selecting a date from the calendar (using keyboard presses)", async () => {
     const { getByRole, getAllByText, getByText } = render(<DxcDateInput />);
     const calendarAction = getByRole("combobox");
-    console.log("CALENDAR ACTION", calendarAction)
     const input = getByRole("textbox") as HTMLInputElement;
     userEvent.type(input, "01-01-2010");
     expect(input.value).toBe("01-01-2010");
