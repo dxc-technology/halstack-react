@@ -65,13 +65,13 @@ const TooltipArrow = styled(Tooltip.Arrow)`
 `;
 
 const TooltipContainer = styled.div`
-  height: 32px;
   box-sizing: border-box;
   padding: 8px 12px;
   border-radius: 4px;
   font-size: ${CoreTokens.type_scale_01};
   font-family: ${CoreTokens.type_sans};
-  white-space: nowrap;
+  max-width: 142px;
+  text-align: center;
   color: ${CoreTokens.color_white};
   background-color: ${CoreTokens.color_grey_800};
   border-color: ${CoreTokens.color_grey_800};
