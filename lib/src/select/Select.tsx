@@ -26,7 +26,7 @@ const canOpenOptions = (options: Option[] | OptionGroup[], disabled: boolean) =>
 
 const filterOptionsBySearchValue = (
   options: Option[] | OptionGroup[],
-  searchValue: string,
+  searchValue: string
 ): Option[] | OptionGroup[] => {
   if (options?.length > 0) {
     if (isArrayOfOptionGroups(options))
@@ -34,7 +34,7 @@ const filterOptionsBySearchValue = (
         const group = {
           label: optionGroup.label,
           options: optionGroup.options.filter((option) =>
-            option.label.toUpperCase().includes(searchValue.toUpperCase()),
+            option.label.toUpperCase().includes(searchValue.toUpperCase())
           ),
         };
         return group;
@@ -48,7 +48,7 @@ const getLastOptionIndex = (
   filteredOptions: Option[] | OptionGroup[],
   searchable: boolean,
   optional: boolean,
-  multiple: boolean,
+  multiple: boolean
 ) => {
   let last = 0;
   const reducer = (acc: number, current: OptionGroup) => acc + current.options?.length;
@@ -68,7 +68,7 @@ const getSelectedOption = (
   options: Option[] | OptionGroup[],
   multiple: boolean,
   optional: boolean,
-  optionalItem: Option,
+  optionalItem: Option
 ) => {
   let selectedOption: Option | Option[] = multiple ? [] : ({} as Option);
   let singleSelectionIndex: number;
@@ -165,7 +165,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
       size = "medium",
       tabIndex = 0,
     },
-    ref,
+    ref
   ): JSX.Element => {
     const selectId = `select-${useId()}`;
     const selectLabelId = `label-${selectId}`;
@@ -189,11 +189,11 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
     const filteredOptions = useMemo(() => filterOptionsBySearchValue(options, searchValue), [options, searchValue]);
     const lastOptionIndex = useMemo(
       () => getLastOptionIndex(options, filteredOptions, searchable, optional, multiple),
-      [options, filteredOptions, searchable, optional, multiple],
+      [options, filteredOptions, searchable, optional, multiple]
     );
     const { selectedOption, singleSelectionIndex } = useMemo(
       () => getSelectedOption(value ?? innerValue, options, multiple, optional, optionalItem),
-      [value, innerValue, options, multiple, optional, optionalItem],
+      [value, innerValue, options, multiple, optional, optionalItem]
     );
 
     const openOptions = () => {
@@ -276,7 +276,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
           (!isOpen || (visualFocusIndex === -1 && singleSelectionIndex > -1 && singleSelectionIndex <= lastOptionIndex))
             ? changeVisualFocusIndex(singleSelectionIndex)
             : changeVisualFocusIndex((visualFocusIndex) =>
-                visualFocusIndex === 0 || visualFocusIndex === -1 ? lastOptionIndex : visualFocusIndex - 1,
+                visualFocusIndex === 0 || visualFocusIndex === -1 ? lastOptionIndex : visualFocusIndex - 1
               );
           openOptions();
           break;
@@ -351,7 +351,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
         !multiple && closeOptions();
         setSearchValue("");
       },
-      [handleSelectChangeValue, closeOptions, multiple],
+      [handleSelectChangeValue, closeOptions, multiple]
     );
 
     useEffect(() => {
@@ -526,7 +526,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
         </SelectContainer>
       </ThemeProvider>
     );
-  },
+  }
 );
 
 const sizes = {

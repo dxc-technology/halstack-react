@@ -34,7 +34,7 @@ const DxcFooter = ({
       ) : (
         colorsTheme.footer.logo
       ),
-    [colorsTheme],
+    [colorsTheme]
   );
 
   return (

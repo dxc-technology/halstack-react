@@ -42,7 +42,7 @@ export const DxcActionsCell = ({ actions }: ActionCellsPropsType): JSX.Element =
               tabIndex={action.tabIndex ?? 0}
               key={`action-${index}`}
             />
-          ),
+          )
       )}
       {actionDropdown && (
         <HalstackProvider advancedTheme={overwriteTheme(colorsTheme)} key={`provider-dropdown`}>
