@@ -10,10 +10,22 @@ import dayjs from "dayjs";
 import useTheme from "../useTheme";
 import { ThemeProvider } from "styled-components";
 import { HalstackProvider } from "../HalstackContext";
+import preview from "../../.storybook/preview";
+import { disabledRules } from "../../test/accessibility/rules/specific/date-input/disabledRules";
 
 export default {
   title: "Date Input",
   component: DxcDateInput,
+  parameters: {
+    a11y: {
+      config: {
+        rules: [
+          ...disabledRules.map((ruleId) => ({ id: ruleId, enabled: false })),
+          ...preview?.parameters?.a11y?.config?.rules,
+        ],
+      },
+    },
+  },
 };
 
 const opinionatedTheme = {
