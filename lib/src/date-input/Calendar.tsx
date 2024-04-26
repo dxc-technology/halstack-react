@@ -38,8 +38,8 @@ const getDateToFocus = (selectedDate, innerDate, today) => {
   return selectedDate?.get("month") === innerDate.get("month") && selectedDate?.get("year") === innerDate.get("year")
     ? selectedDate
     : today.get("month") === innerDate.get("month") && today.get("year") === innerDate.get("year")
-      ? today
-      : innerDate.set("date", 1);
+    ? today
+    : innerDate.set("date", 1);
 };
 
 const isDaySelected = (date: { day: number; month: number; year: number }, selectedDate) =>
@@ -49,7 +49,7 @@ const isDaySelected = (date: { day: number; month: number; year: number }, selec
 
 const divideDaysIntoWeeks = (data: any[], weekSize: number) => {
   return Array.from({ length: Math.ceil(data.length / weekSize) }, (_, rowIndex) =>
-    data.slice(rowIndex * weekSize, (rowIndex + 1) * weekSize),
+    data.slice(rowIndex * weekSize, (rowIndex + 1) * weekSize)
   );
 };
 
@@ -172,25 +172,26 @@ const Calendar = ({
         {divideDaysIntoWeeks(dayCells, weekDays.length).map((week, rowIndex) => (
           <WeekContainer key={`${id}_week_${rowIndex}`} role="row">
             {week.map((date, index) => (
-              <span key={`${id}_day_${index}`} role="gridcell" aria-selected={isDaySelected(date, selectedDate)}>
-                <DayCellButton
-                  onKeyDown={(event) => handleDayKeyboardEvent(event, date)}
-                  id={`${id}_day_${date.day}_month${date.month}`}
-                  onClick={() => onDateClickHandler(date)}
-                  selected={isDaySelected(date, selectedDate)}
-                  actualMonth={date.month === innerDate.get("month")}
-                  autoFocus={date.day === dateToFocus.get("date") && date.month === dateToFocus.get("month")}
-                  tabIndex={date.day === dateToFocus.get("date") && date.month === dateToFocus.get("month") ? 0 : -1}
-                  isCurrentDay={
-                    today.get("date") === date.day &&
-                    today.get("month") === innerDate.get("month") &&
-                    today.get("month") === date.month &&
-                    today.get("year") === innerDate.get("year")
-                  }
-                >
-                  {date.day}
-                </DayCellButton>
-              </span>
+              <DayCellButton
+                key={`${id}_day_${index}`}
+                role="gridcell"
+                aria-selected={isDaySelected(date, selectedDate)}
+                onKeyDown={(event) => handleDayKeyboardEvent(event, date)}
+                id={`${id}_day_${date.day}_month${date.month}`}
+                onClick={() => onDateClickHandler(date)}
+                selected={isDaySelected(date, selectedDate)}
+                actualMonth={date.month === innerDate.get("month")}
+                autoFocus={date.day === dateToFocus.get("date") && date.month === dateToFocus.get("month")}
+                tabIndex={date.day === dateToFocus.get("date") && date.month === dateToFocus.get("month") ? 0 : -1}
+                isCurrentDay={
+                  today.get("date") === date.day &&
+                  today.get("month") === innerDate.get("month") &&
+                  today.get("month") === date.month &&
+                  today.get("year") === innerDate.get("year")
+                }
+              >
+                {date.day}
+              </DayCellButton>
             ))}
           </WeekContainer>
         ))}
@@ -227,8 +228,6 @@ const WeekHeaderCell = styled.span`
   width: 36px;
   height: 36px;
 `;
-
-const DayCellContainer = styled.span``;
 
 const MonthContainer = styled.div`
   box-sizing: border-box;
@@ -290,10 +289,10 @@ const DayCellButton = styled.button<{
     props.selected
       ? props.theme.dateInput.pickerSelectedFontColor
       : props.isCurrentDay
-        ? props.theme.dateInput.pickerCurrentDateFontColor
-        : !props.actualMonth
-          ? props.theme.dateInput.pickerNonCurrentMonthFontColor
-          : props.theme.dateInput.pickerFontColor};
+      ? props.theme.dateInput.pickerCurrentDateFontColor
+      : !props.actualMonth
+      ? props.theme.dateInput.pickerNonCurrentMonthFontColor
+      : props.theme.dateInput.pickerFontColor};
 `;
 
 export default React.memo(Calendar);
