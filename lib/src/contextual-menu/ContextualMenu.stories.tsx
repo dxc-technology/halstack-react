@@ -29,7 +29,7 @@ const items = [{ label: "Item 1" }, { label: "Item 2" }, { label: "Item 3" }, { 
 
 const sections = [
   {
-    title: "Team repositories",
+    title: "Section title",
     items: [{ label: "Approved locations" }, { label: "Approved locations" }, { label: "Approved locations" }],
   },
   {
