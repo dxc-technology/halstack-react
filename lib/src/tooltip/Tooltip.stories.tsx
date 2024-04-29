@@ -13,62 +13,14 @@ export default {
 
 const Tooltip = () => (
   <>
-    {/*<Title title="Bottom tooltips" theme="light" level={4} />
-     <ExampleContainer>
-      <DxcInset horizontal="5rem" vertical="3rem">
-        <DxcTooltip title="Tooltip Test" position="bottom">
-          <DxcButton label="Hoverable button" />
-        </DxcTooltip>
-      </DxcInset>
-      <DxcInset horizontal="5rem" vertical="3rem">
-        <DxcTooltip title="Tooltip Test with a much larger text to display" position="bottom">
+    <Title title="Active tooltip" theme="light" level={4} />
+    <ExampleContainer>
+      <DxcInset space="5rem">
+        <DxcTooltip title="Tooltip Test">
           <DxcButton label="Hoverable button" />
         </DxcTooltip>
       </DxcInset>
     </ExampleContainer>
-    <Title title="Top tooltips" theme="light" level={4} />
-    <ExampleContainer>
-      <DxcInset horizontal="5rem" vertical="3rem">
-        <DxcTooltip title="Tooltip Test" position="top">
-          <DxcButton label="Hoverable button" />
-        </DxcTooltip>
-      </DxcInset>
-      <DxcInset horizontal="5rem" vertical="3rem">
-        <DxcTooltip title="Tooltip Test with a much larger text to display" position="top">
-          <DxcButton label="Hoverable button" />
-        </DxcTooltip>
-      </DxcInset>
-    </ExampleContainer>
-    <Title title="Left tooltips" theme="light" level={4} />
-    <ExampleContainer>
-      <DxcInset horizontal="3rem">
-        <DxcInset horizontal="5rem" vertical="2rem">
-          <DxcTooltip title="Tooltip Test" position="left">
-            <DxcButton label="Hoverable button" />
-          </DxcTooltip>
-        </DxcInset>
-        <DxcInset horizontal="5rem" vertical="2rem">
-          <DxcTooltip title="Tooltip Test with a much larger text to display" position="left">
-            <DxcButton label="Hoverable button" />
-          </DxcTooltip>
-        </DxcInset>
-      </DxcInset>
-    </ExampleContainer>
-    <Title title="Right tooltips" theme="light" level={4} />
-    <ExampleContainer>
-      <DxcInset horizontal="3rem">
-        <DxcInset horizontal="5rem" vertical="2rem">
-          <DxcTooltip title="Tooltip Test" position="right">
-            <DxcButton label="Hoverable button" />
-          </DxcTooltip>
-        </DxcInset>
-        <DxcInset horizontal="5rem" vertical="2rem">
-          <DxcTooltip title="Tooltip Test with a much larger text to display" position="right">
-            <DxcButton label="Hoverable button" />
-          </DxcTooltip>
-        </DxcInset>
-      </DxcInset>
-    </ExampleContainer> */}
     <Title title="Bottom tooltip" theme="light" level={4} />
     <ExampleContainer>
       <DxcInset space="5rem">
@@ -148,7 +100,5 @@ export const Chromatic = Tooltip.bind({});
 Chromatic.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const buttonList = canvas.getAllByRole("button");
-  for (const button of buttonList) {
-    await userEvent.hover(button);
-  }
+  await userEvent.hover(buttonList[0]);
 };
