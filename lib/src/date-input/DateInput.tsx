@@ -160,7 +160,7 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
 
     return (
       <ThemeProvider theme={colorsTheme}>
-        <DateInputContainer margin={margin} size={size} ref={ref}>
+        <DateInputContainer size={size} ref={ref}>
           <Popover.Root open={isOpen}>
             <Popover.Trigger asChild aria-controls={undefined}>
               <DxcTextInput
@@ -215,7 +215,7 @@ const StyledPopoverContent = styled(Popover.Content)`
   }
 `;
 
-const DateInputContainer = styled.div<{ margin: DateInputPropsType["margin"]; size: DateInputPropsType["size"] }>`
+const DateInputContainer = styled.div<{ size: DateInputPropsType["size"] }>`
   ${(props) => props.size == "fillParent" && "width: 100%;"}
 `;
 

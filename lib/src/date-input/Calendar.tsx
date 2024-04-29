@@ -173,11 +173,10 @@ const Calendar = ({
           <WeekContainer key={`${id}_week_${rowIndex}`} role="row">
             {week.map((date, index) => (
               <DayCellButton
-                key={`${id}_day_${index}`}
+                id={`${id}_day_${date.day}_month${date.month}`}
                 role="gridcell"
                 aria-selected={isDaySelected(date, selectedDate)}
                 onKeyDown={(event) => handleDayKeyboardEvent(event, date)}
-                id={`${id}_day_${date.day}_month${date.month}`}
                 onClick={() => onDateClickHandler(date)}
                 selected={isDaySelected(date, selectedDate)}
                 actualMonth={date.month === innerDate.get("month")}
