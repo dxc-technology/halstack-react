@@ -3,7 +3,7 @@ import DxcHeader from "./Header";
 import DxcButton from "../button/Button";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
-import { userEvent, waitFor, within } from "@storybook/testing-library";
+import { userEvent, waitFor, within } from "@storybook/test";
 import DxcFlex from "../flex/Flex";
 import DxcLink from "../link/Link";
 import { HalstackProvider } from "../HalstackContext";

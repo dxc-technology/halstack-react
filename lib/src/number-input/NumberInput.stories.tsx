@@ -32,25 +32,11 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Read only" theme="light" level={4} />
-      <DxcNumberInput
-        label="Example label"
-        helperText="Help message"
-        readOnly
-        optional
-        prefix="€"
-        defaultValue="33"
-      />
+      <DxcNumberInput label="Example label" helperText="Help message" readOnly optional prefix="€" defaultValue="33" />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-hover">
       <Title title="Hovered read only" theme="light" level={4} />
-      <DxcNumberInput
-        label="Example label"
-        helperText="Help message"
-        readOnly
-        optional
-        prefix="€"
-        defaultValue="1"
-      />
+      <DxcNumberInput label="Example label" helperText="Help message" readOnly optional prefix="€" defaultValue="1" />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-active">
       <Title title="Active read only" theme="light" level={4} />
