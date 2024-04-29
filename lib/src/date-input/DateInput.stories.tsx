@@ -1,5 +1,5 @@
 import React from "react";
-import { userEvent, within, fireEvent, screen } from "@storybook/testing-library";
+import { userEvent, within, fireEvent, screen } from "@storybook/test";
 import DxcDateInput from "./DateInput";
 import DxcDatePicker from "./DatePicker";
 import YearPicker from "./YearPicker";

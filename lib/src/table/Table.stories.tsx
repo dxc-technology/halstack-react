@@ -3,7 +3,7 @@ import DxcTable from "./Table";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import { HalstackProvider } from "../HalstackContext";
-import { userEvent, within } from "@storybook/testing-library";
+import { userEvent, within } from "@storybook/test";
 import { disabledRules } from "../../test/accessibility/rules/specific/table/disabledRules";
 import preview from "../../.storybook/preview";
 
