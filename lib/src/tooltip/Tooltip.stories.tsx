@@ -2,7 +2,7 @@ import React from "react";
 import DxcTooltip from "./Tooltip";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DxcButton from "../button/Button";
-import { userEvent, within } from "@storybook/testing-library";
+import { userEvent, within } from "@storybook/test";
 import DxcInset from "../inset/Inset";
 import Title from "../../.storybook/components/Title";
 
