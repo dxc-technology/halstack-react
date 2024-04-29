@@ -1,18 +1,17 @@
 import React from "react";
 
 type SVG = React.ReactNode & React.SVGProps<SVGSVGElement>;
-type Item = {
+type CommonItemProps = {
   badge?: React.ReactElement;
   icon?: string | SVG;
   label: string;
+};
+type Item = CommonItemProps & {
   onSelect?: () => void;
   selectedByDefault?: boolean;
 };
-type GroupItem = {
-  badge?: React.ReactElement;
-  icon?: string | SVG;
+type GroupItem = CommonItemProps & {
   items: (Item | GroupItem)[];
-  label: string;
 };
 type Section = { items: (Item | GroupItem)[]; title?: string };
 type Props = {
