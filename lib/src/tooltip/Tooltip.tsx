@@ -11,7 +11,7 @@ const DxcTooltip = ({ position = "bottom", label, children }: TooltipPropsType):
     <Tooltip.Provider delayDuration={300}>
       <Tooltip.Root>
         <Tooltip.Trigger asChild>
-          <TooltipTrigger>{children}</TooltipTrigger>
+          <TooltipTriggerContainer>{children}</TooltipTriggerContainer>
         </Tooltip.Trigger>
         <Tooltip.Portal>
           <StyledTooltipContent side={position} sideOffset={SIZE} data-testid={"popover-content"}>
@@ -41,16 +41,15 @@ const Triangle = styled.span<{ size: number }>`
   border-radius: 0 0 0 1px;
 `;
 
-const TooltipTrigger = styled.div`
+const TooltipTriggerContainer = styled.div`
   display: inline-flex;
   position: relative;
 `;
 
 const StyledTooltipContent = styled(Tooltip.Content)`
-  display: flex;
   z-index: 2147483647;
 
-  animation-duration: 0.3s;
+  animation-duration: 0.2s;
   animation-timing-function: ease-out;
 
   /* Additional optimization to prevent blurry text in certain browsers */
