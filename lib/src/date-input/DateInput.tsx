@@ -84,7 +84,9 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
         actionButtonRef?.setAttribute("role", "combobox");
         actionButtonRef?.setAttribute("aria-expanded", isOpen);
         actionButtonRef?.setAttribute("aria-controls", calendarId);
-        actionButtonRef?.setAttribute("aria-describedby", calendarId);
+        if (isOpen) {
+          actionButtonRef?.setAttribute("aria-describedby", calendarId);
+        }
       }
     }, [isOpen, disabled, calendarId]);
 
@@ -173,7 +175,7 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
 
     return (
       <ThemeProvider theme={colorsTheme}>
-        <div ref={ref}>
+        <DateInputContainer size={size} ref={ref}>
           <Popover.Root open={isOpen}>
             <Popover.Trigger asChild aria-controls={undefined}>
               <DxcTextInput
@@ -215,7 +217,7 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
               </StyledPopoverContent>
             </Popover.Portal>
           </Popover.Root>
-        </div>
+        </DateInputContainer>
       </ThemeProvider>
     );
   }
@@ -226,6 +228,10 @@ const StyledPopoverContent = styled(Popover.Content)`
   &:focus-visible {
     outline: none;
   }
+`;
+
+const DateInputContainer = styled.div<{ size: DateInputPropsType["size"] }>`
+  ${(props) => props.size === "fillParent" && "width: 100%;"}
 `;
 
 DxcDateInput.displayName = "DxcDateInput";

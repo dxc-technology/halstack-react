@@ -105,7 +105,7 @@ const FocusLock = ({ children }: { children: React.ReactNode }): JSX.Element => 
   }, [focusableElements]);
 
   const focusLast = () => {
-    focusableElements.reverse().some((element) => attemptFocus(element));
+    focusableElements?.reverse()?.some((element) => attemptFocus(element));
   };
 
   const focusLock = (event: React.KeyboardEvent<HTMLDivElement>) => {

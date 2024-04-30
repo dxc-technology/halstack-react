@@ -1,5 +1,4 @@
 import React, { useMemo } from "react";
-import { userEvent, within } from "@storybook/testing-library";
 import Title from "../../.storybook/components/Title";
 import DxcContextualMenu, { ContextualMenuContext } from "./ContextualMenu";
 import DxcContainer from "../container/Container";
@@ -32,7 +31,7 @@ const items = [{ label: "Item 1" }, { label: "Item 2" }, { label: "Item 3" }, { 
 
 const sections = [
   {
-    title: "Team repositories",
+    title: "Section title",
     items: [{ label: "Approved locations" }, { label: "Approved locations" }, { label: "Approved locations" }],
   },
   {
@@ -57,7 +56,7 @@ const groupItems = [
                 icon: "bookmark",
                 badge: <DxcBadge color="purple" label="Experimental" />,
               },
-              { label: "Selected Item 3" },
+              { label: "Selected Item 3", selectedByDefault: true },
             ],
           },
         ],
@@ -120,7 +119,7 @@ const sectionsWithScroll = [
       { label: "Approved locations" },
       { label: "Approved locations" },
       { label: "Approved locations" },
-      { label: "Approved locations" },
+      { label: "Approved locations", selectedByDefault: true },
     ],
   },
 ];
@@ -141,7 +140,7 @@ const itemsWithTruncatedText = [
   },
 ];
 
-const ContextualMenu = () => (
+export const Chromatic = () => (
   <>
     <Title title="Default" theme="light" level={3} />
     <ExampleContainer>
@@ -177,7 +176,7 @@ const ContextualMenu = () => (
         <DxcContextualMenu items={itemsWithTruncatedText} />
       </DxcContainer>
     </ExampleContainer>
-    <Title title="With scroll" theme="light" level={3} />
+    <Title title="With auto-scroll" theme="light" level={3} />
     <ExampleContainer>
       <DxcContainer height="300px" width="300px">
         <DxcContextualMenu items={sectionsWithScroll} />
@@ -192,22 +191,13 @@ const ContextualMenu = () => (
   </>
 );
 
-export const Chromatic = ContextualMenu.bind({});
-Chromatic.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  await userEvent.click(canvas.getByText("Grouped Item 1"));
-  await userEvent.click(canvas.getByText("Grouped Item 2"));
-  await userEvent.click(canvas.getByText("Selected Item 3"));
-};
-
 export const SingleItemStates = () => {
-  const defaultContextValue = useMemo(() => ({ selectedItemId: -1, setSelectedItemId: () => {} }), []);
-
-  const selectedContextValue = useMemo(() => ({ selectedItemId: 0, setSelectedItemId: () => {} }), []);
+  const value1 = useMemo(() => ({ selectedItemId: -1, setSelectedItemId: () => {} }), []);
+  const value2 = useMemo(() => ({ selectedItemId: 0, setSelectedItemId: () => {} }), []);
 
   return (
     <DxcContainer width="300px">
-      <ContextualMenuContext.Provider value={defaultContextValue}>
+      <ContextualMenuContext.Provider value={value1}>
         <Title title="Default" theme="light" level={3} />
         <ExampleContainer>
           <SingleItem {...items[0]} id={0} depthLevel={0} />
@@ -225,7 +215,7 @@ export const SingleItemStates = () => {
           <SingleItem {...items[0]} id={0} depthLevel={0} />
         </ExampleContainer>
       </ContextualMenuContext.Provider>
-      <ContextualMenuContext.Provider value={selectedContextValue}>
+      <ContextualMenuContext.Provider value={value2}>
         <Title title="Selected" theme="light" level={3} />
         <ExampleContainer>
           <SingleItem {...items[0]} id={0} depthLevel={0} />

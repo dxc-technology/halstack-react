@@ -4,14 +4,14 @@ import CoreTokens from "../common/coreTokens";
 import { ItemActionProps } from "./types";
 import DxcIcon from "../icon/Icon";
 
-const ItemAction = ({ badge, collapseIcon, icon, label, depthLevel, selected, ...props }: ItemActionProps) => {
+const ItemAction = ({ badge, collapseIcon, icon, label, depthLevel, ...props }: ItemActionProps) => {
   const modifiedBadge = badge && React.cloneElement(badge, { size: "small" });
 
   return (
-    <Action depthLevel={depthLevel} selected={selected} {...props}>
+    <Action depthLevel={depthLevel} {...props}>
       <Label>
         {collapseIcon}
-        {icon && depthLevel === 0 && (typeof icon === "string" ? <DxcIcon icon={icon} /> : icon)}
+        {icon && depthLevel === 0 && <Icon>{typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}</Icon>}
         <Text
           onMouseEnter={(event: React.MouseEvent<HTMLSpanElement>) => {
             const text = event.currentTarget;
@@ -67,10 +67,12 @@ const Action = styled.button<{
     outline: 2px solid ${CoreTokens.color_blue_600};
     outline-offset: -1px;
   }
-  span::before {
-    display: flex;
-    font-size: 16px;
-  }
+`;
+
+const Icon = styled.span`
+  display: flex;
+  font-size: 16px;
+
   svg {
     height: 16px;
     width: 16px;

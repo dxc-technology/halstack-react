@@ -1,5 +1,5 @@
 import React from "react";
-import { userEvent, within } from "@storybook/testing-library";
+import { userEvent, within } from "@storybook/test";
 import styled from "styled-components";
 import DxcResultsetTable from "./ResultsetTable";
 import Title from "../../.storybook/components/Title";

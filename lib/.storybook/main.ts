@@ -8,10 +8,14 @@ const config: StorybookConfig = {
     "@storybook/addon-interactions",
     "storybook-addon-pseudo-states",
     "@storybook/addon-a11y",
+    "@chromatic-com/storybook",
   ],
   framework: {
     name: "@storybook/react-vite",
     options: {},
+  },
+  typescript: {
+    reactDocgen: "react-docgen-typescript",
   },
 };
 

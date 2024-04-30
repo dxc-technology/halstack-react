@@ -1,5 +1,5 @@
 import React from "react";
-import { userEvent, waitFor, within } from "@storybook/testing-library";
+import { userEvent, waitFor, within } from "@storybook/test";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import DxcHeader from "./Header";
 import DxcButton from "../button/Button";

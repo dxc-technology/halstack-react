@@ -1,5 +1,5 @@
 import React from "react";
-import { userEvent, within } from "@storybook/testing-library";
+import { userEvent, within } from "@storybook/test";
 import { ThemeProvider } from "styled-components";
 import DxcDropdown from "./Dropdown";
 import Title from "../../.storybook/components/Title";

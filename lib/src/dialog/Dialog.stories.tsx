@@ -1,5 +1,5 @@
 import React from "react";
-import { userEvent } from "@storybook/testing-library";
+import { userEvent } from "@storybook/test";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import DxcDialog from "./Dialog";
 import DxcTextInput from "../text-input/TextInput";

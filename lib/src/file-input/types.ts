@@ -22,10 +22,6 @@ export type FileData = {
 
 type CommonProps = {
   /**
-   * @deprecated Name attribute.
-   */
-  name?: string;
-  /**
    * Text to be placed above the component.
    */
   label?: string;

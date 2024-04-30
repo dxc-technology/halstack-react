@@ -1,5 +1,5 @@
 import React from "react";
-import { userEvent } from "@storybook/testing-library";
+import { userEvent } from "@storybook/test";
 import DxcChip from "./Chip";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
@@ -174,11 +174,7 @@ export const Chromatic = () => (
 const ChipPrefixFocused = () => (
   <ExampleContainer>
     <Title title="Chip with prefix" theme="light" level={4} />
-    <DxcChip
-      label="Chip with prefix"
-      prefixIcon={iconSVG}
-      onClickPrefix={() => {}}
-    />
+    <DxcChip label="Chip with prefix" prefixIcon={iconSVG} onClickPrefix={() => {}} />
   </ExampleContainer>
 );
 const ChipSuffixFocused = () => (

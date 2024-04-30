@@ -1,5 +1,5 @@
 import React from "react";
-import { userEvent, within } from "@storybook/testing-library";
+import { userEvent, within } from "@storybook/test";
 import DxcSidenav from "./Sidenav";
 import DxcSelect from "../select/Select";
 import DxcInset from "../inset/Inset";

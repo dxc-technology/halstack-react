@@ -1,6 +1,5 @@
-import React, { Fragment, createContext, useMemo, useState } from "react";
+import React, { Fragment, createContext, useLayoutEffect, useMemo, useRef, useState } from "react";
 import styled from "styled-components";
-import { v4 as uuidv4 } from "uuid";
 import CoreTokens from "../common/coreTokens";
 import ContextualMenuPropsType, {
   ContextualMenuContextProps,
@@ -37,18 +36,16 @@ const addIdToItems = (items: ContextualMenuPropsType["items"]): (ItemWithId | Gr
 
 const DxcContextualMenu = ({ items }: ContextualMenuPropsType) => {
   const [selectedItemId, setSelectedItemId] = useState(-1);
+  const contextualMenuRef = useRef(null);
   const itemsWithId = useMemo(() => addIdToItems(items), [items]);
   const contextValue = useMemo(() => ({ selectedItemId, setSelectedItemId }), [selectedItemId, setSelectedItemId]);
 
-  const renderSection = (section: SectionWithId, currentSectionIndex: number, length: number, sectionId: string) => (
-    <Fragment key={`section-${sectionId}`}>
-      <li role="group">
-        {section.title != null && <Title>{section.title}</Title>}
+  const renderSection = (section: SectionWithId, currentSectionIndex: number, length: number) => (
+    <Fragment key={`section-${currentSectionIndex}`}>
+      <li role="group" aria-labelledby={section.title}>
+        {section.title != null && <Title id={section.title}>{section.title}</Title>}
         <SectionList>
-          {section.items.map((item) => {
-            const itemKey = uuidv4();
-            return <MenuItem item={item} key={`item-${itemKey}`} />;
-          })}
+          {section.items.map((item, index) => <MenuItem item={item} key={`item-${index}`} />)}
         </SectionList>
       </li>
       {currentSectionIndex !== length - 1 && (
@@ -59,17 +56,26 @@ const DxcContextualMenu = ({ items }: ContextualMenuPropsType) => {
     </Fragment>
   );
 
+  const [firstUpdate, setFirstUpdate] = useState(true);
+  useLayoutEffect(() => {
+    if (selectedItemId !== -1 && firstUpdate) {
+      const contextualMenuEl = contextualMenuRef?.current;
+      const selectedItemEl = contextualMenuEl?.querySelector("[aria-selected='true']");
+      contextualMenuEl?.scrollTo?.({
+        top: (selectedItemEl?.offsetTop || 0) - (contextualMenuEl?.clientHeight || 0) / 2,
+      });
+      setFirstUpdate(false);
+    }
+  }, [firstUpdate, selectedItemId]);
+
   return (
-    <ContextualMenu role="menu">
+    <ContextualMenu role="menu" ref={contextualMenuRef}>
       <ContextualMenuContext.Provider value={contextValue}>
-        {itemsWithId.map((item: GroupItemWithId | ItemWithId | SectionWithId, index: number) => {
-          const itemId = uuidv4();
-          return "items" in item && !("label" in item) ? (
-            renderSection(item, index, itemsWithId.length, itemId)
+        {itemsWithId.map((item: GroupItemWithId | ItemWithId | SectionWithId, index: number) => "items" in item && !("label" in item) ? (
+            renderSection(item, index, itemsWithId.length)
           ) : (
-            <MenuItem item={item} key={`item-${itemId}`} />
-          );
-        })}
+            <MenuItem item={item} key={`item-${index}`} />
+          ))}
       </ContextualMenuContext.Provider>
     </ContextualMenu>
   );
@@ -109,7 +115,7 @@ const SectionList = styled.ul`
   gap: ${CoreTokens.spacing_4};
 `;
 
-const Title = styled.span`
+const Title = styled.h2`
   margin: 0 0 ${CoreTokens.spacing_4} 0;
   padding: ${CoreTokens.spacing_4};
   color: ${CoreTokens.color_grey_900};

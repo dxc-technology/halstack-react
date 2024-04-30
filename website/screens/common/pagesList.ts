@@ -1,10 +1,16 @@
-import { componentsList } from "./componentList";
-type ComponentStatus = "ready" | "deprecated" | "experimental";
+import componentsList from "./componentsList.json";
 
-export type LinkDetails = {
+export type ComponentStatus =
+  | "experimental"
+  | "new"
+  | "stable"
+  | "legacy"
+  | "deprecated";
+
+type LinkDetails = {
   label: string;
   path: string;
-  status: ComponentStatus;
+  status?: ComponentStatus;
 };
 
 export type LinksSectionDetails = {
@@ -23,25 +29,25 @@ export const themeGeneratorLinks = [
 ];
 
 const overviewLinks: LinkDetails[] = [
-  { label: "Introduction", path: "/overview/introduction", status: "ready" },
-  { label: "Releases", path: "/overview/releases", status: "ready" },
+  { label: "Introduction", path: "/overview/introduction" },
+  { label: "Component lifecycle", path: "/overview/component-lifecycle" },
+  { label: "Releases", path: "/overview/releases" },
 ];
 const utilitiesLinks: LinkDetails[] = [
   {
     label: "Halstack Provider",
     path: "/utilities/halstack-provider",
-    status: "ready",
   },
 ];
 
 const principlesLinks: LinkDetails[] = [
-  { label: "Color", path: "/principles/color", status: "ready" },
-  { label: "Iconography", path: "/principles/iconography", status: "ready" },
-  { label: "Layout", path: "/principles/layout", status: "ready" },
-  { label: "Localization", path: "/principles/localization", status: "ready" },
-  { label: "Spacing", path: "/principles/spacing", status: "ready" },
-  { label: "Themes", path: "/principles/themes", status: "ready" },
-  { label: "Typography", path: "/principles/typography", status: "ready" },
+  { label: "Color", path: "/principles/color" },
+  { label: "Iconography", path: "/principles/iconography" },
+  { label: "Layout", path: "/principles/layout" },
+  { label: "Localization", path: "/principles/localization" },
+  { label: "Spacing", path: "/principles/spacing" },
+  { label: "Themes", path: "/principles/themes" },
+  { label: "Typography", path: "/principles/typography" },
 ];
 
 const componentsLinks = componentsList as LinkDetails[];

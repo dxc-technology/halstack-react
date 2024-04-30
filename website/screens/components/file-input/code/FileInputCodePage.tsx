@@ -25,19 +25,6 @@ const sections = [
         </thead>
         <tbody>
           <tr>
-            <td>
-              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                <StatusBadge status="deprecated" />
-                name
-              </DxcFlex>
-            </td>
-            <td>
-              <TableCode>string</TableCode>
-            </td>
-            <td>Name attribute.</td>
-            <td>-</td>
-          </tr>
-          <tr>
             <td>mode</td>
             <td>
               <TableCode>'file' | 'filedrop' | 'dropzone'</TableCode>
