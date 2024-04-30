@@ -2,7 +2,7 @@ import { DxcBadge } from "@dxc-technology/halstack-react";
 import { ComponentStatus } from "./pagesList";
 
 type StatusBadgeProps = {
-  componentStatus?: boolean;
+  hasTitle?: boolean;
   status: ComponentStatus | "required";
 };
 
@@ -40,7 +40,7 @@ const getBadgeTitle = (status: StatusBadgeProps["status"]) => {
   }
 };
 
-const StatusBadge = ({ componentStatus = false, status }: StatusBadgeProps) => (
+const StatusBadge = ({ hasTitle: componentStatus = false, status }: StatusBadgeProps) => (
   <DxcBadge
     label={status[0].toUpperCase() + status.slice(1)}
     color={getBadgeColor(status)}
