@@ -16,7 +16,7 @@ const Tooltip = () => (
     <Title title="Active tooltip" theme="light" level={4} />
     <ExampleContainer>
       <DxcInset space="5rem">
-        <DxcTooltip title="Tooltip Test">
+        <DxcTooltip label="Tooltip Test">
           <DxcButton label="Hoverable button" />
         </DxcTooltip>
       </DxcInset>
@@ -24,7 +24,7 @@ const Tooltip = () => (
     <Title title="Bottom tooltip" theme="light" level={4} />
     <ExampleContainer>
       <DxcInset space="5rem">
-        <DxcTooltip title="Tooltip Test" position="bottom">
+        <DxcTooltip label="Tooltip Test" position="bottom">
           <DxcButton label="Hoverable button" />
         </DxcTooltip>
       </DxcInset>
@@ -32,7 +32,7 @@ const Tooltip = () => (
     <Title title="Bottom tooltip multi-line" theme="light" level={4} />
     <ExampleContainer>
       <DxcInset space="5rem">
-        <DxcTooltip title="Tooltip Test with a much larger text to display" position="bottom">
+        <DxcTooltip label="Tooltip Test with a much larger text to display" position="bottom">
           <DxcButton label="Hoverable button" />
         </DxcTooltip>
       </DxcInset>
@@ -40,7 +40,7 @@ const Tooltip = () => (
     <Title title="Top tooltip" theme="light" level={4} />
     <ExampleContainer>
       <DxcInset space="5rem">
-        <DxcTooltip title="Tooltip Test" position="top">
+        <DxcTooltip label="Tooltip Test" position="top">
           <DxcButton label="Hoverable button" />
         </DxcTooltip>
       </DxcInset>
@@ -48,7 +48,7 @@ const Tooltip = () => (
     <Title title="Top tooltip multi-line" theme="light" level={4} />
     <ExampleContainer>
       <DxcInset space="5rem">
-        <DxcTooltip title="Tooltip Test with a much larger text to display" position="top">
+        <DxcTooltip label="Tooltip Test with a much larger text to display" position="top">
           <DxcButton label="Hoverable button" />
         </DxcTooltip>
       </DxcInset>
@@ -57,7 +57,7 @@ const Tooltip = () => (
     <ExampleContainer>
       <DxcInset horizontal="3rem">
         <DxcInset horizontal="5rem" vertical="2rem">
-          <DxcTooltip title="Tooltip Test" position="left">
+          <DxcTooltip label="Tooltip Test" position="left">
             <DxcButton label="Hoverable button" />
           </DxcTooltip>
         </DxcInset>
@@ -67,7 +67,7 @@ const Tooltip = () => (
     <ExampleContainer>
       <DxcInset horizontal="3rem">
         <DxcInset horizontal="5rem" vertical="2rem">
-          <DxcTooltip title="Tooltip Test with a much larger text to display" position="left">
+          <DxcTooltip label="Tooltip Test with a much larger text to display" position="left">
             <DxcButton label="Hoverable button" />
           </DxcTooltip>
         </DxcInset>
@@ -77,7 +77,7 @@ const Tooltip = () => (
     <ExampleContainer>
       <DxcInset horizontal="3rem">
         <DxcInset horizontal="5rem" vertical="2rem">
-          <DxcTooltip title="Tooltip Test" position="right">
+          <DxcTooltip label="Tooltip Test" position="right">
             <DxcButton label="Hoverable button" />
           </DxcTooltip>
         </DxcInset>
@@ -87,7 +87,7 @@ const Tooltip = () => (
     <ExampleContainer>
       <DxcInset horizontal="3rem">
         <DxcInset horizontal="5rem" vertical="2rem">
-          <DxcTooltip title="Tooltip Test with a much larger text to display" position="right">
+          <DxcTooltip label="Tooltip Test with a much larger text to display" position="right">
             <DxcButton label="Hoverable button" />
           </DxcTooltip>
         </DxcInset>

@@ -4,17 +4,18 @@ import TooltipPropsType from "./types";
 import * as Tooltip from "@radix-ui/react-tooltip";
 import CoreTokens from "../common/coreTokens";
 
-const DxcTooltip = ({ position = "bottom", title, children }: TooltipPropsType): JSX.Element => {
+const DxcTooltip = ({ position = "bottom", label, children }: TooltipPropsType): JSX.Element => {
   const SIZE = 8;
-  return title ? (
-    <Tooltip.Provider delayDuration={300}>
+
+  return label ? (
+    <Tooltip.Provider delayDuration={300} skipDelayDuration={700}>
       <Tooltip.Root>
         <Tooltip.Trigger asChild>
           <TooltipTrigger>{children}</TooltipTrigger>
         </Tooltip.Trigger>
         <Tooltip.Portal>
           <StyledTooltipContent side={position} sideOffset={SIZE} data-testid={"popover-content"}>
-            <TooltipContainer>{title}</TooltipContainer>
+            <TooltipContainer>{label}</TooltipContainer>
             <TooltipArrow asChild aria-hidden>
               <Triangle size={SIZE} />
             </TooltipArrow>

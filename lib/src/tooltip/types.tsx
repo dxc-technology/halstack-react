@@ -8,7 +8,7 @@ type Props = {
   /**
    * Text to be displayed inside the tooltip.
    */
-  title: string;
+  label: string;
   /**
    * Content in which the Tooltip will be displayed.
    */

@@ -1,7 +1,8 @@
 import React from "react";
-import { fireEvent, render } from "@testing-library/react";
+import { render, waitFor } from "@testing-library/react";
 import DxcTooltip from "./Tooltip";
 import DxcButton from "../button/Button";
+import userEvent from "@testing-library/user-event";
 
 (global as any).globalThis = global;
 (global as any).DOMRect = {
@@ -14,54 +15,76 @@ import DxcButton from "../button/Button";
 };
 
 describe("Tooltip component tests", () => {
-  test("Tooltip does not render by default", () => {
-    const { queryByText, getByText } = render(
-      <DxcTooltip title="Tooltip Test">
+  test("Tooltip does not render by default", async () => {
+    const { queryByRole } = render(
+      <DxcTooltip label="Tooltip Test">
         <DxcButton label="Hoverable button" />
-      </DxcTooltip>,
+      </DxcTooltip>
     );
-    const triggerElement = getByText("Hoverable button");
-    fireEvent.mouseLeave(triggerElement);
-    expect(queryByText("Tooltip Test")).not.toBeTruthy();
+    await waitFor(() => {
+      const tooltipElement = queryByRole("tooltip");
+      expect(tooltipElement).toBeFalsy();
+    });
   });
 
-  test("Tooltip renders with correct label on hover", () => {
-    const { getByText, queryAllByText } = render(
-      <DxcTooltip title="Tooltip Test">
+  test("Tooltip renders with correct label on hover", async () => {
+    const { getByText, getByRole } = render(
+      <DxcTooltip label="Tooltip Test">
         <DxcButton label="Hoverable button" />
-      </DxcTooltip>,
+      </DxcTooltip>
     );
     const triggerElement = getByText("Hoverable button");
-    fireEvent.mouseEnter(triggerElement);
-    expect(queryAllByText("Tooltip Test").length).toBeGreaterThan(0);
-    fireEvent.mouseLeave(triggerElement);
-    expect(queryAllByText("Tooltip Test").length).toBe(0);
+    await userEvent.hover(triggerElement);
+    await waitFor(() => {
+      const tooltipContent = getByRole("tooltip", { name: "Tooltip Test" });
+      expect(tooltipContent).toBeTruthy();
+    });
   });
-  
-  test("Tooltip sets the default display position properly", () => {
-    const { getByText, getByTestId } = render(
-      <DxcTooltip title="Tooltip Test">
+
+  test("Tooltip stops being rendered when hover is stopped", async () => {
+    const { getByText, queryByRole } = render(
+      <DxcTooltip label="Tooltip Test">
         <DxcButton label="Hoverable button" />
-      </DxcTooltip>,
+      </DxcTooltip>
     );
     const triggerElement = getByText("Hoverable button");
-    fireEvent.mouseEnter(triggerElement);
-    const popoverContent = getByTestId("popover-content");
-    expect(popoverContent).toBeTruthy();
-    const position = popoverContent.getAttribute("data-side");
-    expect(position).toBe("bottom");
+    await userEvent.hover(triggerElement);
+    await userEvent.unhover(triggerElement);
+    await waitFor(() => {
+      const tooltipElement = queryByRole("tooltip");
+      expect(tooltipElement).toBeFalsy();
+    });
   });
-  test("Tooltip sets the custom display position properly", () => {
-    const { getByText, getByTestId } = render(
-      <DxcTooltip title="Tooltip Test" position="top">
+
+  test("Tooltip sets the default display position properly", async () => {
+    const { getByText, getByRole } = render(
+      <DxcTooltip label="Tooltip Test">
         <DxcButton label="Hoverable button" />
-      </DxcTooltip>,
+      </DxcTooltip>
     );
     const triggerElement = getByText("Hoverable button");
-    fireEvent.mouseEnter(triggerElement);
-    const popoverContent = getByTestId("popover-content");
-    expect(popoverContent).toBeTruthy();
-    const position = popoverContent.getAttribute("data-side");
-    expect(position).toBe("top");
+    await userEvent.hover(triggerElement);
+    await waitFor(() => {
+      const tooltipContent = getByRole("tooltip", { name: "Tooltip Test" });
+      const position = tooltipContent.closest("div").getAttribute("data-side");
+      expect(tooltipContent).toBeTruthy();
+      expect(position).toBe("bottom");
+    });
+  });
+
+  test("Tooltip sets the custom display position properly", async () => {
+    const { getByText, getByRole } = render(
+      <DxcTooltip label="Tooltip Test" position="top">
+        <DxcButton label="Hoverable button" />
+      </DxcTooltip>
+    );
+    const triggerElement = getByText("Hoverable button");
+    await userEvent.hover(triggerElement);
+    await waitFor(() => {
+      const tooltipContent = getByRole("tooltip", { name: "Tooltip Test" });
+      const position = tooltipContent.closest("div").getAttribute("data-side");
+      expect(tooltipContent).toBeTruthy();
+      expect(position).toBe("top");
+    });
   });
 });
