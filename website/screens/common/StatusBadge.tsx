@@ -40,11 +40,11 @@ const getBadgeTitle = (status: StatusBadgeProps["status"]) => {
   }
 };
 
-const StatusBadge = ({ hasTitle: componentStatus = false, status }: StatusBadgeProps) => (
+const StatusBadge = ({ hasTitle = false, status }: StatusBadgeProps) => (
   <DxcBadge
     label={status[0].toUpperCase() + status.slice(1)}
     color={getBadgeColor(status)}
-    title={componentStatus ? getBadgeTitle(status) : undefined}
+    title={hasTitle ? getBadgeTitle(status) : undefined}
     size="small"
   />
 );
