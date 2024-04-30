@@ -4,7 +4,6 @@ import DxcContextualMenu, { ContextualMenuContext } from "./ContextualMenu";
 import DxcContainer from "../container/Container";
 import SingleItem from "./SingleItem";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
-import { userEvent, within } from "@storybook/test";
 import DxcBadge from "../badge/Badge";
 import { disabledRules } from "../../test/accessibility/rules/specific/contextual-menu/disabledRules";
 import preview from "../../.storybook/preview";
