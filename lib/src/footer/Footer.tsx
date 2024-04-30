@@ -7,7 +7,6 @@ import { dxcLogo, dxcSmallLogo } from "./Icons";
 import FooterPropsType from "./types";
 import DxcFlex from "../flex/Flex";
 import DxcIcon from "../icon/Icon";
-import DxcTooltip from "../tooltip/Tooltip";
 
 const DxcFooter = ({
   socialLinks,
@@ -45,19 +44,18 @@ const DxcFooter = ({
           {mode === "default" && (
             <DxcFlex>
               {socialLinks?.map((link, index) => (
-                <DxcTooltip label={link.title}>
-                  <SocialAnchor
-                    href={link.href}
-                    tabIndex={tabIndex}
-                    aria-label={link.title}
-                    key={`social${index}${link.href}`}
-                    index={index}
-                  >
-                    <SocialIconContainer>
-                      {typeof link.logo === "string" ? <DxcIcon icon={link.logo} /> : link.logo}
-                    </SocialIconContainer>
-                  </SocialAnchor>
-                </DxcTooltip>
+                <SocialAnchor
+                  href={link.href}
+                  tabIndex={tabIndex}
+                  title={link.title}
+                  aria-label={link.title}
+                  key={`social${index}${link.href}`}
+                  index={index}
+                >
+                  <SocialIconContainer>
+                    {typeof link.logo === "string" ? <DxcIcon icon={link.logo} /> : link.logo}
+                  </SocialIconContainer>
+                </SocialAnchor>
               ))}
             </DxcFlex>
           )}

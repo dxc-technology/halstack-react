@@ -212,8 +212,8 @@ describe("TextInput component tests", () => {
   });
 
   test("Clear action tooltip is correct", () => {
-    const { getByTestId } = render(<DxcTextInput label="Input label" value="Text" clearable />);
-    expect(getByTestId("Clear field")).toBeTruthy();
+    const { getByTitle } = render(<DxcTextInput label="Input label" value="Text" clearable />);
+    expect(getByTitle("Clear field")).toBeTruthy();
   });
 
   test("Clear action onClick cleans the input", async () => {
@@ -355,9 +355,9 @@ describe("TextInput component tests", () => {
       ),
       title: "Search",
     };
-    const { getByRole, getByTestId } = render(<DxcTextInput label="Input label" action={action} />);
+    const { getByRole, getByTestId, getByTitle } = render(<DxcTextInput label="Input label" action={action} />);
     expect(getByTestId("image")).toBeTruthy();
-    expect(getByTestId("Search")).toBeTruthy();
+    expect(getByTitle("Search")).toBeTruthy();
     await userEvent.click(getByRole("button"));
     expect(onClick).toHaveBeenCalled();
   });

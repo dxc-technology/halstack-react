@@ -10,22 +10,22 @@ const iconSVG = (
 );
 describe("Action icon component tests", () => {
   test("Action icon renders with correct text", () => {
-    const { getByTestId } = render(<DxcActionIcon icon={iconSVG} title="favourite" />);
-    expect(getByTestId("favourite")).toBeTruthy();
+    const { getByTitle } = render(<DxcActionIcon icon={iconSVG} title="favourite" />);
+    expect(getByTitle("favourite")).toBeTruthy();
   });
 
   test("Calls correct function on click", () => {
     const onClick = jest.fn();
-    const { getByTestId } = render(<DxcActionIcon icon={iconSVG} title="favourite" onClick={onClick} />);
-    const action = getByTestId("favourite");
+    const { getByTitle } = render(<DxcActionIcon icon={iconSVG} title="favourite" onClick={onClick} />);
+    const action = getByTitle("favourite");
     fireEvent.click(action);
     expect(onClick).toHaveBeenCalled();
   });
 
   test("On click is not called when disabled", () => {
     const onClick = jest.fn();
-    const { getByTestId } = render(<DxcActionIcon disabled icon={iconSVG} title="favourite" onClick={onClick} />);
-    const action = getByTestId("favourite");
+    const { getByTitle } = render(<DxcActionIcon disabled icon={iconSVG} title="favourite" onClick={onClick} />);
+    const action = getByTitle("favourite");
     fireEvent.click(action);
     expect(onClick).toHaveBeenCalledTimes(0);
   });
@@ -35,6 +35,7 @@ describe("Action icon component tests", () => {
 
     const button = getByRole("button");
     expect(button.getAttribute("aria-label")).toBe("favourite");
+    expect(button.getAttribute("title")).toBe("favourite");
     expect(button.getAttribute("tabindex")).toBe("1");
   });
 });

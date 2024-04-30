@@ -214,7 +214,7 @@ const DxcDropdown = ({
                 visualFocusIndex={visualFocusIndex}
                 menuItemOnClick={handleMenuItemOnClick}
                 onKeyDown={handleMenuOnKeyDown}
-                styles={{ width, zIndex: "2147483646" }}
+                styles={{ width, zIndex: "2147483647" }}
                 ref={menuRef}
               />
             </Popover.Content>

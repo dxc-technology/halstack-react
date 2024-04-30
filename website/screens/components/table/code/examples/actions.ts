@@ -4,7 +4,7 @@ const code = `() => {
   const actions = [
     {
       icon: "delete",
-      title: "Delete",
+      title: "icon",
       onClick: () => {},
     },
     {

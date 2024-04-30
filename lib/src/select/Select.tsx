@@ -8,7 +8,6 @@ import SelectPropsType, { Option, OptionGroup, RefType } from "./types";
 import Listbox from "./Listbox";
 import * as Popover from "@radix-ui/react-popover";
 import DxcIcon from "../icon/Icon";
-import DxcTooltip from "../tooltip/Tooltip";
 
 const isOptionGroup = (option: Option | OptionGroup): option is OptionGroup =>
   "options" in option && option.options != null;
@@ -405,21 +404,19 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
                 {multiple && Array.isArray(selectedOption) && selectedOption.length > 0 && (
                   <SelectionIndicator>
                     <SelectionNumber disabled={disabled}>{selectedOption.length}</SelectionNumber>
-                    <DxcTooltip label={translatedLabels.select.actionClearSelectionTitle}>
-                      <ClearOptionsAction
-                        disabled={disabled}
-                        onMouseDown={(event) => {
-                          // Avoid input to lose focus when pressed
-                          event.preventDefault();
-                        }}
-                        onClick={handleClearOptionsActionOnClick}
-                        tabIndex={-1}
-                        aria-label={translatedLabels.select.actionClearSelectionTitle}
-                        data-testid={translatedLabels.select.actionClearSelectionTitle}
-                      >
-                        <DxcIcon icon="clear" />
-                      </ClearOptionsAction>
-                    </DxcTooltip>
+                    <ClearOptionsAction
+                      disabled={disabled}
+                      onMouseDown={(event) => {
+                        // Avoid input to lose focus when pressed
+                        event.preventDefault();
+                      }}
+                      onClick={handleClearOptionsActionOnClick}
+                      tabIndex={-1}
+                      title={translatedLabels.select.actionClearSelectionTitle}
+                      aria-label={translatedLabels.select.actionClearSelectionTitle}
+                    >
+                      <DxcIcon icon="clear" />
+                    </ClearOptionsAction>
                   </SelectionIndicator>
                 )}
                 <SearchableValueContainer>
@@ -469,20 +466,18 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
                   </ErrorIcon>
                 )}
                 {searchable && searchValue.length > 0 && (
-                  <DxcTooltip label={translatedLabels.select.actionClearSelectionTitle}>
-                    <ClearSearchAction
-                      onMouseDown={(event) => {
-                        // Avoid input to lose focus
-                        event.preventDefault();
-                      }}
-                      onClick={handleClearSearchActionOnClick}
-                      tabIndex={-1}
-                      data-testid={translatedLabels.select.actionClearSearchTitle}
-                      aria-label={translatedLabels.select.actionClearSearchTitle}
-                    >
-                      <DxcIcon icon="clear" />
-                    </ClearSearchAction>
-                  </DxcTooltip>
+                  <ClearSearchAction
+                    onMouseDown={(event) => {
+                      // Avoid input to lose focus
+                      event.preventDefault();
+                    }}
+                    onClick={handleClearSearchActionOnClick}
+                    tabIndex={-1}
+                    title={translatedLabels.select.actionClearSearchTitle}
+                    aria-label={translatedLabels.select.actionClearSearchTitle}
+                  >
+                    <DxcIcon icon="clear" />
+                  </ClearSearchAction>
                 )}
                 <CollapseIndicator disabled={disabled}>
                   <DxcIcon icon={isOpen ? "keyboard_arrow_up" : "keyboard_arrow_down"} />
@@ -492,7 +487,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
             <Popover.Portal>
               <Popover.Content
                 sideOffset={4}
-                style={{ zIndex: "2147483646" }}
+                style={{ zIndex: "2147483647" }}
                 onOpenAutoFocus={(event) => {
                   // Avoid select to lose focus when the list is opened
                   event.preventDefault();

@@ -77,7 +77,7 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
 
     useEffect(() => {
       if (!disabled) {
-        const actionButtonRef = dateRef?.current.querySelector("[data-testid='Select date']");
+        const actionButtonRef = dateRef?.current.querySelector("[title='Select date']");
         actionButtonRef?.setAttribute("aria-haspopup", true);
         actionButtonRef?.setAttribute("role", "combobox");
         actionButtonRef?.setAttribute("aria-expanded", isOpen);
@@ -209,7 +209,7 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
 );
 
 const StyledPopoverContent = styled(Popover.Content)`
-  z-index: 2147483646;
+  z-index: 2147483647;
   &:focus-visible {
     outline: none;
   }

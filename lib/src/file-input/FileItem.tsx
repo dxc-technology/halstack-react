@@ -5,7 +5,6 @@ import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
 import { FileItemProps } from "./types";
 import DxcIcon from "../icon/Icon";
-import DxcTooltip from "../tooltip/Tooltip";
 
 const FileItem = ({
   fileName = "",
@@ -45,24 +44,19 @@ const FileItem = ({
                 <DxcIcon icon="filled_error" />
               </ErrorIcon>
             )}
-            <DxcTooltip label={translatedLabels.fileInput.deleteFileActionTitle}>
-              <DeleteFileAction
-                onClick={() => {
-                  onDelete(fileName);
-                }}
-                type="button"
-                aria-label={translatedLabels.fileInput.deleteFileActionTitle}
-                tabIndex={tabIndex}
-              >
-                <DxcIcon icon="close" />
-              </DeleteFileAction>
-            </DxcTooltip>
+            <DeleteFileAction
+              onClick={() => {
+                onDelete(fileName);
+              }}
+              type="button"
+              title={translatedLabels.fileInput.deleteFileActionTitle}
+              aria-label={translatedLabels.fileInput.deleteFileActionTitle}
+              tabIndex={tabIndex}
+            >
+              <DxcIcon icon="close" />
+            </DeleteFileAction>
           </DxcFlex>
-          {error && !singleFileMode && (
-            <ErrorMessage role="alert" aria-live="assertive">
-              {error}
-            </ErrorMessage>
-          )}
+          {error && !singleFileMode && <ErrorMessage role="alert" aria-live="assertive">{error}</ErrorMessage>}
         </FileItemContent>
       </MainContainer>
     </ThemeProvider>

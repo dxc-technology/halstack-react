@@ -22,6 +22,7 @@ describe("Button component tests", () => {
 
     const button = getByRole("button");
     expect(button.getAttribute("aria-label")).toBe("Go home");
+    expect(button.getAttribute("title")).toBe("Go home");
     expect(button.getAttribute("tabindex")).toBe("1");
   });
 });

@@ -6,7 +6,6 @@ import Calendar from "./Calendar";
 import YearPicker from "./YearPicker";
 import useTranslatedLabels from "../useTranslatedLabels";
 import DxcIcon from "../icon/Icon";
-import DxcTooltip from "../tooltip/Tooltip";
 
 const today = dayjs();
 
@@ -33,15 +32,13 @@ const DxcDatePicker = ({ date, onDateSelect, id }: DatePickerPropsType): JSX.Ele
   return (
     <DatePicker id={id}>
       <PickerHeader>
-        <DxcTooltip label={translatedLabels.calendar.previousMonthTitle}>
-          <HeaderButton
-            aria-label={translatedLabels.calendar.previousMonthTitle}
-            onClick={() => handleMonthChange(innerDate.set("month", innerDate.get("month") - 1))}
-            data-testid={translatedLabels.calendar.previousMonthTitle}
-          >
-            <DxcIcon icon="keyboard_arrow_left" />
-          </HeaderButton>
-        </DxcTooltip>
+        <HeaderButton
+          aria-label={translatedLabels.calendar.previousMonthTitle}
+          title={translatedLabels.calendar.previousMonthTitle}
+          onClick={() => handleMonthChange(innerDate.set("month", innerDate.get("month") - 1))}
+        >
+          <DxcIcon icon="keyboard_arrow_left" />
+        </HeaderButton>
         <HeaderYearTrigger
           aria-live="polite"
           onClick={() => setContent((content) => (content === "yearPicker" ? "calendar" : "yearPicker"))}
@@ -51,15 +48,13 @@ const DxcDatePicker = ({ date, onDateSelect, id }: DatePickerPropsType): JSX.Ele
           </HeaderYearTriggerLabel>
           <DxcIcon icon={content === "yearPicker" ? "arrow_drop_up" : "arrow_drop_down"} />
         </HeaderYearTrigger>
-        <DxcTooltip label={translatedLabels.calendar.nextMonthTitle}>
-          <HeaderButton
-            aria-label={translatedLabels.calendar.nextMonthTitle}
-            onClick={() => handleMonthChange(innerDate.set("month", innerDate.get("month") + 1))}
-            data-testid={translatedLabels.calendar.nextMonthTitle}
-          >
-            <DxcIcon icon="keyboard_arrow_right" />
-          </HeaderButton>
-        </DxcTooltip>
+        <HeaderButton
+          aria-label={translatedLabels.calendar.nextMonthTitle}
+          title={translatedLabels.calendar.nextMonthTitle}
+          onClick={() => handleMonthChange(innerDate.set("month", innerDate.get("month") + 1))}
+        >
+          <DxcIcon icon="keyboard_arrow_right" />
+        </HeaderButton>
       </PickerHeader>
       {content === "calendar" && (
         <Calendar

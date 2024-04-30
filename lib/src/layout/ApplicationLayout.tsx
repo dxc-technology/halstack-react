@@ -9,7 +9,6 @@ import AppLayoutPropsType, { AppLayoutMainPropsType } from "./types";
 import { SidenavContextProvider, useResponsiveSidenavVisibility } from "../sidenav/SidenavContext";
 import useTranslatedLabels from "../useTranslatedLabels";
 import DxcIcon from "../icon/Icon";
-import DxcTooltip from "../tooltip/Tooltip";
 
 const year = new Date().getFullYear();
 const Main = ({ children }: AppLayoutMainPropsType): JSX.Element => <>{children}</>;
@@ -101,15 +100,14 @@ const DxcApplicationLayout = ({
       <HeaderContainer>{headerContent}</HeaderContainer>
       {sidenav && isResponsive && (
         <VisibilityToggle>
-          <DxcTooltip label={translatedLabels.applicationLayout.visibilityToggleTitle}>
-            <HamburgerTrigger
-              onClick={handleSidenavVisibility}
-              aria-label={visibilityToggleLabel ? undefined : translatedLabels.applicationLayout.visibilityToggleTitle}
-            >
-              <DxcIcon icon="Menu" />
-              {visibilityToggleLabel}
-            </HamburgerTrigger>
-          </DxcTooltip>
+          <HamburgerTrigger
+            onClick={handleSidenavVisibility}
+            aria-label={visibilityToggleLabel ? undefined : translatedLabels.applicationLayout.visibilityToggleTitle}
+            title={translatedLabels.applicationLayout.visibilityToggleTitle}
+          >
+            <DxcIcon icon="Menu" />
+            {visibilityToggleLabel}
+          </HamburgerTrigger>
         </VisibilityToggle>
       )}
       <BodyContainer>
@@ -174,9 +172,7 @@ const HamburgerTrigger = styled.button`
   padding: 12px 4px;
   background-color: transparent;
   box-shadow: 0 0 0 2px transparent;
-  font-family:
-    Open Sans,
-    sans-serif;
+  font-family: Open Sans, sans-serif;
   font-weight: 600;
   font-size: 14px;
   color: #000;

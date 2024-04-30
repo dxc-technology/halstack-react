@@ -54,7 +54,7 @@ const advancedTheme = {
 
 const actions = [
   {
-    title: "Other options",
+    title: "icon",
     onClick: (value?) => {
       console.log(value);
     },
@@ -75,18 +75,18 @@ const actions = [
   },
   {
     icon: "filled_edit",
-    title: "Edit",
+    title: "icon",
     onClick: () => {},
   },
   {
     icon: deleteIcon,
-    title: "Delete",
+    title: "icon",
     onClick: () => {},
     disabled: true,
   },
   {
     icon: deleteIcon,
-    title: "Delete",
+    title: "icon",
     onClick: () => {},
   },
 ];
