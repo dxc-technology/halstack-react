@@ -146,7 +146,7 @@ describe("DateInput component tests", () => {
     const input = getByRole("textbox") as HTMLInputElement;
     const calendarAction = getByRole("combobox");
     await userEvent.click(calendarAction);
-    const dayButton = getAllByText("10")[0].closest("button");
+    const dayButton = getAllByText("10")[0];
     fireEvent.click(dayButton);
     let d = dayjs();
     d = d.set("date", 10);
@@ -180,7 +180,7 @@ describe("DateInput component tests", () => {
     const input = getByRole("textbox") as HTMLInputElement;
     const calendarAction = getByRole("combobox");
     await userEvent.click(calendarAction);
-    const dayButton = getAllByText("31")[0].closest("button");
+    const dayButton = getAllByText("31")[0];
     fireEvent.click(dayButton);
     let d = dayjs("10-08-2021", "DD-MM-YYYY", true);
     d = d.set("date", 31).set("month", 6);
@@ -211,31 +211,31 @@ describe("DateInput component tests", () => {
     userEvent.type(input, "01-01-2010");
     expect(input.value).toBe("01-01-2010");
     await userEvent.click(calendarAction);
-    expect(document.activeElement === getAllByText("1")[0].closest("button")).toBeTruthy();
-    fireEvent.keyDown(getAllByText("1")[0].closest("button"), {
+    expect(document.activeElement === getAllByText("1")[0]).toBeTruthy();
+    fireEvent.keyDown(getAllByText("1")[0], {
       key: "ArrowRight",
       code: "ArrowRight",
       keyCode: 39,
       charCode: 39,
     });
-    expect(document.activeElement === getAllByText("2")[0].closest("button")).toBeTruthy();
-    fireEvent.keyDown(getAllByText("2")[0].closest("button"), {
+    expect(document.activeElement === getAllByText("2")[0]).toBeTruthy();
+    fireEvent.keyDown(getAllByText("2")[0], {
       key: "PageUp",
       code: "PageUp",
       keyCode: 33,
       charCode: 33,
     });
-    expect(document.activeElement === getAllByText("2")[0].closest("button")).toBeTruthy();
+    expect(document.activeElement === getAllByText("2")[0]).toBeTruthy();
     expect(getByText("December 2009")).toBeTruthy();
-    fireEvent.keyDown(getAllByText("2")[0].closest("button"), {
+    fireEvent.keyDown(getAllByText("2")[0], {
       key: "PageDown",
       code: "PageDown",
       keyCode: 34,
       charCode: 34,
     });
-    expect(document.activeElement === getAllByText("2")[0].closest("button")).toBeTruthy();
+    expect(document.activeElement === getAllByText("2")[0]).toBeTruthy();
     expect(getByText("January 2010")).toBeTruthy();
-    fireEvent.keyDown(getAllByText("2")[0].closest("button"), {
+    fireEvent.keyDown(getAllByText("2")[0], {
       key: "PageDown",
       code: "PageDown",
       keyCode: 34,
@@ -243,7 +243,7 @@ describe("DateInput component tests", () => {
       shiftKey: true,
     });
     expect(getByText("January 2011")).toBeTruthy();
-    fireEvent.keyDown(getAllByText("2")[0].closest("button"), {
+    fireEvent.keyDown(getAllByText("2")[0], {
       key: "PageUp",
       code: "PageUp",
       keyCode: 33,
@@ -251,9 +251,9 @@ describe("DateInput component tests", () => {
       shiftKey: true,
     });
     expect(getByText("January 2010")).toBeTruthy();
-    expect(document.activeElement === getAllByText("2")[0].closest("button")).toBeTruthy();
-    fireEvent.click(getAllByText("2")[0].closest("button"), { key: " ", code: "Space", keyCode: 32, charCode: 32 });
-    expect(getAllByText("2")[0].closest("button").getAttribute("aria-selected")).toBe("true");
+    expect(document.activeElement === getAllByText("2")[0]).toBeTruthy();
+    fireEvent.click(getAllByText("2")[0], { key: " ", code: "Space", keyCode: 32, charCode: 32 });
+    expect(getAllByText("2")[0].getAttribute("aria-selected")).toBe("true");
     fireEvent.keyDown(document, { key: "Escape", code: "Escape", keyCode: 27, charCode: 27 });
     expect(input.value).toBe("02-01-2010");
   });
@@ -265,42 +265,42 @@ describe("DateInput component tests", () => {
     userEvent.type(input, "01-01-2010");
     expect(input.value).toBe("01-01-2010");
     await userEvent.click(calendarAction);
-    expect(document.activeElement === getAllByText("1")[0].closest("button")).toBeTruthy();
-    fireEvent.keyDown(getAllByText("1")[0].closest("button"), {
+    expect(document.activeElement === getAllByText("1")[0]).toBeTruthy();
+    fireEvent.keyDown(getAllByText("1")[0], {
       key: "ArrowDown",
       code: "ArrowDown",
       keyCode: 40,
       charCode: 40,
     });
-    expect(document.activeElement === getAllByText("8")[0].closest("button")).toBeTruthy();
-    fireEvent.keyDown(getAllByText("8")[0].closest("button"), {
+    expect(document.activeElement === getAllByText("8")[0]).toBeTruthy();
+    fireEvent.keyDown(getAllByText("8")[0], {
       key: "ArrowDown",
       code: "ArrowDown",
       keyCode: 40,
       charCode: 40,
     });
-    expect(document.activeElement === getAllByText("15")[0].closest("button")).toBeTruthy();
-    fireEvent.keyDown(getAllByText("15")[0].closest("button"), {
+    expect(document.activeElement === getAllByText("15")[0]).toBeTruthy();
+    fireEvent.keyDown(getAllByText("15")[0], {
       key: "ArrowUp",
       code: "ArrowUp",
       keyCode: 38,
       charCode: 38,
     });
-    expect(document.activeElement === getAllByText("8")[0].closest("button")).toBeTruthy();
-    fireEvent.keyDown(getAllByText("8")[0].closest("button"), {
+    expect(document.activeElement === getAllByText("8")[0]).toBeTruthy();
+    fireEvent.keyDown(getAllByText("8")[0], {
       key: "End",
       code: "End",
       keyCode: 35,
       charCode: 35,
     });
-    expect(document.activeElement === getAllByText("10")[0].closest("button")).toBeTruthy();
-    fireEvent.keyDown(getAllByText("10")[0].closest("button"), {
+    expect(document.activeElement === getAllByText("10")[0]).toBeTruthy();
+    fireEvent.keyDown(getAllByText("10")[0], {
       key: "Home",
       code: "Home",
       keyCode: 36,
       charCode: 36,
     });
-    fireEvent.keyDown(getAllByText("10")[0].closest("button"), { key: " ", code: "Space", keyCode: 32, charCode: 32 });
+    fireEvent.keyDown(getAllByText("10")[0], { key: " ", code: "Space", keyCode: 32, charCode: 32 });
     expect(input.value).toBe("10-01-2010");
   });
 
@@ -408,16 +408,16 @@ describe("DateInput component tests", () => {
     const calendarAction = getByRole("combobox");
     expect(calendarAction.getAttribute("aria-autocomplete")).toBeNull();
     expect(calendarAction.getAttribute("aria-controls")).toBeTruthy();
-    expect(calendarAction.getAttribute("aria-describedby")).toBeTruthy();
-    expect(
-      calendarAction.getAttribute("aria-describedby") === calendarAction.getAttribute("aria-controls")
-    ).toBeTruthy();
+    expect(calendarAction.getAttribute("aria-describedby")).toBeFalsy();
     expect(calendarAction.getAttribute("aria-expanded")).toBe("false");
     await userEvent.click(calendarAction);
     const datePicker = getByRole("dialog");
     expect(datePicker.getAttribute("aria-modal")).toBe("true");
     expect(calendarAction.getAttribute("aria-expanded")).toBe("true");
     expect(document.getElementById(calendarAction.getAttribute("aria-describedby"))).toBeTruthy();
+    expect(
+      calendarAction.getAttribute("aria-describedby") === calendarAction.getAttribute("aria-controls")
+    ).toBeTruthy();
     await userEvent.type(calendarAction, "{esc}");
     expect(calendarAction.getAttribute("aria-expanded")).toBe("false");
   });

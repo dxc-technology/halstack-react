@@ -1,9 +1,8 @@
 import { Dayjs } from "dayjs";
-import React, { useState, useMemo, useEffect } from "react";
+import React, { useState, useMemo, useEffect, useId } from "react";
 import styled from "styled-components";
 import { CalendarPropsType } from "./types";
 import useTranslatedLabels from "../useTranslatedLabels";
-import DxcFlex from "../flex/Flex";
 
 const getDays = (innerDate: Dayjs) => {
   const monthDayCells = [];
@@ -48,6 +47,12 @@ const isDaySelected = (date: { day: number; month: number; year: number }, selec
   selectedDate?.get("year") === date.year &&
   selectedDate?.get("date") === date.day;
 
+const divideDaysIntoWeeks = (data: any[], weekSize: number) => {
+  return Array.from({ length: Math.ceil(data.length / weekSize) }, (_, rowIndex) =>
+    data.slice(rowIndex * weekSize, (rowIndex + 1) * weekSize)
+  );
+};
+
 const Calendar = ({
   selectedDate,
   innerDate,
@@ -55,6 +60,7 @@ const Calendar = ({
   onDaySelect,
   today,
 }: CalendarPropsType): JSX.Element => {
+  const id = useId();
   const [dateToFocus, setDateToFocus] = useState(getDateToFocus(selectedDate, innerDate, today));
   const [isFocusable, setIsFocusable] = useState(false);
   const dayCells = useMemo(() => getDays(innerDate), [innerDate]);
@@ -83,7 +89,7 @@ const Calendar = ({
 
   useEffect(() => {
     if (isFocusable) {
-      document.getElementById(`day_${dateToFocus.get("date")}_month${dateToFocus.get("month")}`)?.focus();
+      document.getElementById(`${id}_day_${dateToFocus.get("date")}_month${dateToFocus.get("month")}`)?.focus();
       setIsFocusable(false);
     }
   }, [dateToFocus, isFocusable]);
@@ -153,38 +159,42 @@ const Calendar = ({
         break;
     }
   };
-
   return (
-    <CalendarContainer>
-      <DxcFlex alignItems="center" justifyContent="space-between">
+    <CalendarContainer role="grid">
+      <CalendarHeaderRow role="row">
         {weekDays.map((weekDay) => (
-          <WeekHeaderCell key={weekDay}>{weekDay}</WeekHeaderCell>
+          <WeekHeaderCell key={weekDay} role="columnheader">
+            {weekDay}
+          </WeekHeaderCell>
         ))}
-      </DxcFlex>
-      <DayCellsContainer onBlur={handleOnBlur}>
-        {dayCells.map((date, index) => (
-          <DayCell
-            onKeyDown={(event) => handleDayKeyboardEvent(event, date)}
-            aria-label={date.day}
-            id={`day_${date.day}_month${date.month}`}
-            key={`day_${index}`}
-            onClick={() => onDateClickHandler(date)}
-            selected={isDaySelected(date, selectedDate)}
-            actualMonth={date.month === innerDate.get("month")}
-            autoFocus={date.day === dateToFocus.get("date") && date.month === dateToFocus.get("month")}
-            aria-selected={isDaySelected(date, selectedDate)}
-            tabIndex={date.day === dateToFocus.get("date") && date.month === dateToFocus.get("month") ? 0 : -1}
-            isCurrentDay={
-              today.get("date") === date.day &&
-              today.get("month") === innerDate.get("month") &&
-              today.get("month") === date.month &&
-              today.get("year") === innerDate.get("year")
-            }
-          >
-            {date.day}
-          </DayCell>
+      </CalendarHeaderRow>
+      <MonthContainer onBlur={handleOnBlur} role="rowgroup">
+        {divideDaysIntoWeeks(dayCells, weekDays.length).map((week, rowIndex) => (
+          <WeekContainer key={`${id}_week_${rowIndex}`} role="row">
+            {week.map((date, index) => (
+              <DayCellButton
+                id={`${id}_day_${date.day}_month${date.month}`}
+                role="gridcell"
+                aria-selected={isDaySelected(date, selectedDate)}
+                onKeyDown={(event) => handleDayKeyboardEvent(event, date)}
+                onClick={() => onDateClickHandler(date)}
+                selected={isDaySelected(date, selectedDate)}
+                actualMonth={date.month === innerDate.get("month")}
+                autoFocus={date.day === dateToFocus.get("date") && date.month === dateToFocus.get("month")}
+                tabIndex={date.day === dateToFocus.get("date") && date.month === dateToFocus.get("month") ? 0 : -1}
+                isCurrentDay={
+                  today.get("date") === date.day &&
+                  today.get("month") === innerDate.get("month") &&
+                  today.get("month") === date.month &&
+                  today.get("year") === innerDate.get("year")
+                }
+              >
+                {date.day}
+              </DayCellButton>
+            ))}
+          </WeekContainer>
         ))}
-      </DayCellsContainer>
+      </MonthContainer>
     </CalendarContainer>
   );
 };
@@ -202,6 +212,14 @@ const CalendarContainer = styled.div`
   font-weight: ${(props) => props.theme.dateInput.pickerFontWeight};
 `;
 
+const CalendarHeaderRow = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+`;
+
 const WeekHeaderCell = styled.span`
   display: flex;
   align-items: center;
@@ -210,15 +228,22 @@ const WeekHeaderCell = styled.span`
   height: 36px;
 `;
 
-const DayCellsContainer = styled.div`
+const MonthContainer = styled.div`
   box-sizing: border-box;
   display: flex;
   gap: 4px;
-  flex-wrap: wrap;
+  flex-direction: column;
   justify-content: space-between;
 `;
 
-const DayCell = styled.button<{
+const WeekContainer = styled.div`
+  box-sizing: border-box;
+  display: flex;
+  gap: 4px;
+  justify-content: space-between;
+`;
+
+const DayCellButton = styled.button<{
   selected: boolean;
   actualMonth: boolean;
   isCurrentDay: boolean;
