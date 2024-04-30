@@ -45,7 +45,7 @@ const DxcFooter = ({
           {mode === "default" && (
             <DxcFlex>
               {socialLinks?.map((link, index) => (
-                <DxcTooltip title={link.title}>
+                <DxcTooltip label={link.title}>
                   <SocialAnchor
                     href={link.href}
                     tabIndex={tabIndex}

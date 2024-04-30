@@ -24,7 +24,7 @@ const DxcButton = ({
 
   return (
     <ThemeProvider theme={colorsTheme.button}>
-      <DxcTooltip title={title}>
+      <DxcTooltip label={title}>
         <Button
           aria-label={title}
           disabled={disabled}

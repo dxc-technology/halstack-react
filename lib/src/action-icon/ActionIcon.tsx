@@ -8,7 +8,7 @@ import DxcTooltip from "../tooltip/Tooltip";
 const DxcActionIcon = React.forwardRef<RefType, ActionIconPropsTypes>(
   ({ disabled = false, title, icon, onClick, tabIndex }, ref): JSX.Element => {
     return (
-      <DxcTooltip title={title}>
+      <DxcTooltip label={title}>
         <ActionIcon
           aria-label={title}
           disabled={disabled}

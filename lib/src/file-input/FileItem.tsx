@@ -45,7 +45,7 @@ const FileItem = ({
                 <DxcIcon icon="filled_error" />
               </ErrorIcon>
             )}
-            <DxcTooltip title={translatedLabels.fileInput.deleteFileActionTitle}>
+            <DxcTooltip label={translatedLabels.fileInput.deleteFileActionTitle}>
               <DeleteFileAction
                 onClick={() => {
                   onDelete(fileName);

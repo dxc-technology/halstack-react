@@ -94,7 +94,7 @@ const DxcBadge = ({
   size = "medium",
 }: BadgePropsType): JSX.Element => {
   return (
-    <DxcTooltip title={title}>
+    <DxcTooltip label={title}>
       <BadgeContainer
         label={label}
         mode={mode}

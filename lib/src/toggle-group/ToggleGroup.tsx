@@ -67,7 +67,7 @@ const DxcToggleGroup = ({
         <HelperText disabled={disabled}>{helperText}</HelperText>
         <OptionsContainer aria-labelledby={toggleGroupLabelId}>
           {options.map((option, i) => (
-            <DxcTooltip title={option.title}>
+            <DxcTooltip label={option.title}>
               <ToggleButton
                 key={`toggle-${i}-${option.label}`}
                 aria-label={option.title}

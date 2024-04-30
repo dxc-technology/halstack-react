@@ -405,7 +405,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
                 {multiple && Array.isArray(selectedOption) && selectedOption.length > 0 && (
                   <SelectionIndicator>
                     <SelectionNumber disabled={disabled}>{selectedOption.length}</SelectionNumber>
-                    <DxcTooltip title={translatedLabels.select.actionClearSelectionTitle}>
+                    <DxcTooltip label={translatedLabels.select.actionClearSelectionTitle}>
                       <ClearOptionsAction
                         disabled={disabled}
                         onMouseDown={(event) => {
@@ -469,7 +469,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
                   </ErrorIcon>
                 )}
                 {searchable && searchValue.length > 0 && (
-                  <DxcTooltip title={translatedLabels.select.actionClearSelectionTitle}>
+                  <DxcTooltip label={translatedLabels.select.actionClearSelectionTitle}>
                     <ClearSearchAction
                       onMouseDown={(event) => {
                         // Avoid input to lose focus

@@ -110,7 +110,7 @@ const DxcHeader = ({
             <ResponsiveMenu hasVisibility={isMenuVisible}>
               <ResponsiveIconsContainer>
                 <ResponsiveLogoContainer>{headerResponsiveLogo}</ResponsiveLogoContainer>
-                <DxcTooltip title={translatedLabels.header.closeIcon}>
+                <DxcTooltip label={translatedLabels.header.closeIcon}>
                   <CloseAction tabIndex={tabIndex} onClick={handleMenu} aria-label={translatedLabels.header.closeIcon}>
                     <DxcIcon icon="close" />
                   </CloseAction>
