@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import { v4 as uuidv4 } from "uuid";
 import { spaces } from "../common/variables";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
@@ -220,33 +219,30 @@ const DxcTabs = ({
           <TabsContent>
             <TabsContentScroll translateScroll={translateScroll} ref={refTabList} enabled={enabledIndicator}>
               <TabList role="tablist" onKeyDown={handleOnKeyDown} minHeightTabs={minHeightTabs}>
-                {tabs.map((tab, i) => {
-                  const tabKey = uuidv4();
-                  return (
-                    <Tab
-                      tab={tab}
-                      key={`tab-${tabKey}`}
-                      active={isTabActive(i)}
-                      tabIndex={isTabActive(i) && !tab.isDisabled ? tabIndex : -1}
-                      hasLabelAndIcon={hasLabelAndIcon}
-                      iconPosition={iconPosition}
-                      ref={(el) => {
-                        refTabs.current[i] = el;
-                      }}
-                      onClick={() => {
-                        setCurrentFocusIndex(i);
-                        setTemporalFocusIndex(i);
-                        handleSelected(i);
-                      }}
-                      onMouseEnter={() => {
-                        onTabHover?.(i);
-                      }}
-                      onMouseLeave={() => {
-                        onTabHover?.(null);
-                      }}
-                    />
-                  );
-                })}
+                {tabs.map((tab, i) => (
+                  <Tab
+                    tab={tab}
+                    key={`tab-${i}`}
+                    active={isTabActive(i)}
+                    tabIndex={isTabActive(i) && !tab.isDisabled ? tabIndex : -1}
+                    hasLabelAndIcon={hasLabelAndIcon}
+                    iconPosition={iconPosition}
+                    ref={(el) => {
+                      refTabs.current[i] = el;
+                    }}
+                    onClick={() => {
+                      setCurrentFocusIndex(i);
+                      setTemporalFocusIndex(i);
+                      handleSelected(i);
+                    }}
+                    onMouseEnter={() => {
+                      onTabHover?.(i);
+                    }}
+                    onMouseLeave={() => {
+                      onTabHover?.(null);
+                    }}
+                  />
+                ))}
               </TabList>
               <ActiveIndicator
                 tabWidth={activeIndicatorWidth}

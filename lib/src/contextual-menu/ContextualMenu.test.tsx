@@ -27,10 +27,7 @@ const groups = [
     ],
   },
   { label: "Item 4", icon: "key" },
-  {
-    label: "Grouped Item 3",
-    items: [{ label: "Item 6" }, { label: "Item 7" }],
-  },
+  { label: "Grouped Item 3", items: [{ label: "Item 6" }, { label: "Item 7" }] },
   { label: "Item 8" },
 ];
 
