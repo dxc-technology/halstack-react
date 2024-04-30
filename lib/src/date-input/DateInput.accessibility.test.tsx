@@ -3,16 +3,6 @@ import { render } from "@testing-library/react";
 import { axe } from "../../test/accessibility/axe-helper.js";
 import DxcDateInput from "./DateInput";
 
-// TODO: REMOVE
-import { disabledRules as rules } from "../../test/accessibility/rules/specific/date-input/disabledRules.js";
-
-const disabledRules = {
-  rules: rules.reduce((rulesObj, rule) => {
-    rulesObj[rule] = { enabled: false };
-    return rulesObj;
-  }, {}),
-};
-
 // Mocking DOMRect for Radix Primitive Popover
 (global as any).globalThis = global;
 (global as any).DOMRect = {
@@ -22,6 +12,16 @@ const disabledRules = {
   observe() {}
   unobserve() {}
   disconnect() {}
+};
+
+// TODO: REMOVE
+import { disabledRules as rules } from "../../test/accessibility/rules/specific/date-input/disabledRules.js";
+
+const disabledRules = {
+  rules: rules.reduce((rulesObj, rule) => {
+    rulesObj[rule] = { enabled: false };
+    return rulesObj;
+  }, {}),
 };
 
 describe("DateInput component accessibility tests", () => {

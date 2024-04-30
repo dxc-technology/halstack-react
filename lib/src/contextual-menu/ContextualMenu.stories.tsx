@@ -4,7 +4,6 @@ import DxcContextualMenu, { ContextualMenuContext } from "./ContextualMenu";
 import DxcContainer from "../container/Container";
 import SingleItem from "./SingleItem";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
-import { userEvent, within } from "@storybook/test";
 import DxcBadge from "../badge/Badge";
 import { disabledRules } from "../../test/accessibility/rules/specific/contextual-menu/disabledRules";
 import preview from "../../.storybook/preview";
@@ -29,7 +28,7 @@ const items = [{ label: "Item 1" }, { label: "Item 2" }, { label: "Item 3" }, { 
 
 const sections = [
   {
-    title: "Team repositories",
+    title: "Section title",
     items: [{ label: "Approved locations" }, { label: "Approved locations" }, { label: "Approved locations" }],
   },
   {
@@ -54,7 +53,7 @@ const groupItems = [
                 icon: "bookmark",
                 badge: <DxcBadge color="purple" label="Experimental" />,
               },
-              { label: "Selected Item 3" },
+              { label: "Selected Item 3", selectedByDefault: true },
             ],
           },
         ],
@@ -114,7 +113,7 @@ const sectionsWithScroll = [
       { label: "Approved locations" },
       { label: "Approved locations" },
       { label: "Approved locations" },
-      { label: "Approved locations" },
+      { label: "Approved locations", selectedByDefault: true },
     ],
   },
 ];
@@ -135,7 +134,7 @@ const itemsWithTruncatedText = [
   },
 ];
 
-const ContextualMenu = () => (
+export const Chromatic = () => (
   <>
     <Title title="Default" theme="light" level={3} />
     <ExampleContainer>
@@ -171,7 +170,7 @@ const ContextualMenu = () => (
         <DxcContextualMenu items={itemsWithTruncatedText} />
       </DxcContainer>
     </ExampleContainer>
-    <Title title="With scroll" theme="light" level={3} />
+    <Title title="With auto-scroll" theme="light" level={3} />
     <ExampleContainer>
       <DxcContainer height="300px" width="300px">
         <DxcContextualMenu items={sectionsWithScroll} />
@@ -185,14 +184,6 @@ const ContextualMenu = () => (
     </ExampleContainer>
   </>
 );
-
-export const Chromatic = ContextualMenu.bind({});
-Chromatic.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  await userEvent.click(canvas.getByText("Grouped Item 1"));
-  await userEvent.click(canvas.getByText("Grouped Item 2"));
-  await userEvent.click(canvas.getByText("Selected Item 3"));
-};
 
 export const SingleItemStates = () => (
   <DxcContainer width="300px">
