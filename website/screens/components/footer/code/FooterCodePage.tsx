@@ -23,7 +23,7 @@ const sections = [
           <tr>
             <td>
               <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                <StatusBadge label="New" status="information" />
+                <StatusBadge status="new" />
                 mode
               </DxcFlex>
             </td>
