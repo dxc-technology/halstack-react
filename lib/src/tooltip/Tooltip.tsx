@@ -8,7 +8,7 @@ const DxcTooltip = ({ position = "bottom", label, children }: TooltipPropsType):
   const SIZE = 8;
 
   return label ? (
-    <Tooltip.Provider delayDuration={300} skipDelayDuration={700}>
+    <Tooltip.Provider delayDuration={300}>
       <Tooltip.Root>
         <Tooltip.Trigger asChild>
           <TooltipTrigger>{children}</TooltipTrigger>
@@ -121,7 +121,7 @@ const TooltipContainer = styled.div`
   border-radius: 4px;
   font-size: ${CoreTokens.type_scale_01};
   font-family: ${CoreTokens.type_sans};
-  max-width: 142px;
+  max-width: 242px;
   color: ${CoreTokens.color_white};
   background-color: ${CoreTokens.color_grey_800};
   border-color: ${CoreTokens.color_grey_800};
