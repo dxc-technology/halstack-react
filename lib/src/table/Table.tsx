@@ -46,14 +46,16 @@ export const DxcActionsCell = ({ actions }: ActionCellsPropsType): JSX.Element =
       )}
       {actionDropdown && (
         <HalstackProvider advancedTheme={overwriteTheme(colorsTheme)} key={`provider-dropdown`}>
-          <DxcDropdown
-            options={actionDropdown.options}
-            onSelectOption={actionDropdown.onClick}
-            disabled={actionDropdown.disabled}
-            icon="more_vert"
-            tabIndex={actionDropdown.tabIndex}
-            caretHidden
-          ></DxcDropdown>
+          <DxcTooltip label={actionDropdown.title}>
+            <DxcDropdown
+              options={actionDropdown.options}
+              onSelectOption={actionDropdown.onClick}
+              disabled={actionDropdown.disabled}
+              icon="more_vert"
+              tabIndex={actionDropdown.tabIndex}
+              caretHidden
+            ></DxcDropdown>
+          </DxcTooltip>
         </HalstackProvider>
       )}
     </DxcFlex>

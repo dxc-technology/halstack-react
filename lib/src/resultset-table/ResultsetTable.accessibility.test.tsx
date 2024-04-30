@@ -34,7 +34,7 @@ const deleteIcon = (
 
 const actions: ActionCellsPropsType['actions'] = [
   {
-    title: "icon",
+    title: "Other options",
     onClick: () => {},
     options: [
       {
@@ -53,18 +53,18 @@ const actions: ActionCellsPropsType['actions'] = [
   },
   {
     icon: "https://www.freepnglogos.com/uploads/facebook-logo-design-1.png",
-    title: "icon",
+    title: "Facebook",
     onClick: () => {},
   },
   {
     icon: deleteIcon,
-    title: "icon",
+    title: "Delete",
     onClick: () => {},
     disabled: true,
   },
   {
     icon: deleteIcon,
-    title: "icon",
+    title: "Delete",
     onClick: () => {},
   },
 ] ;
