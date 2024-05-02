@@ -140,9 +140,7 @@ export const Chromatic = () => (
     <ExampleContainer>
       <Title title="Typography whitespace" theme="light" level={4} />
       <div style={{ margin: "50px", border: "1px solid red", width: "125px" }}>
-        <DxcTypography fontSize="2rem">
-          {"                  "} Normal: A bunch of words you see.
-        </DxcTypography>
+        <DxcTypography fontSize="2rem">{"                  "} Normal: A bunch of words you see.</DxcTypography>
       </div>
       <div style={{ margin: "50px", border: "1px solid red", width: "125px" }}>
         <DxcTypography whiteSpace="nowrap" fontSize="2rem">

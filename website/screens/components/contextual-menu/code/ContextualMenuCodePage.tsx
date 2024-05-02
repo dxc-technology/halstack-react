@@ -13,6 +13,7 @@ const itemTypeString = `{
     icon?: string | SVG;
     label: string;
     onSelect?: () => void;
+    selectedByDefault?: boolean;
 }`;
 
 const groupItemTypeString = `{
@@ -23,7 +24,7 @@ const groupItemTypeString = `{
 }`;
 
 const sectionTypeString = `{
-    items: (Item | GroupItem)[]; 
+    items: (Item | GroupItem)[];
     title?: string
 }`;
 

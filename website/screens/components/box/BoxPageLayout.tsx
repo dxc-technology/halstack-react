@@ -7,6 +7,7 @@ import {
 import PageHeading from "@/common/PageHeading";
 import TabsPageHeading from "@/common/TabsPageLayout";
 import ComponentHeading from "@/common/ComponentHeading";
+import Link from "next/link";
 
 const BoxPageHeading = ({ children }: { children: React.ReactNode }) => {
   const tabs = [
@@ -28,10 +29,12 @@ const BoxPageHeading = ({ children }: { children: React.ReactNode }) => {
             be achieved by using a dedicated Box component.
           </DxcParagraph>
           <DxcAlert type="warning" size="fillParent">
-            This component will be removed from Halstack Design System in the future.
-            Please consider the new{" "}
-            <DxcLink href="/components/container">Container</DxcLink> component
-            as an alternative for your current use cases.
+            This component will be removed from Halstack Design System in the
+            future. Please consider the new{" "}
+            <Link href="/components/container" passHref legacyBehavior>
+              <DxcLink href="/components/container">Container</DxcLink>
+            </Link>{" "}
+            component as an alternative for your current use cases.
           </DxcAlert>
           <TabsPageHeading tabs={tabs}></TabsPageHeading>
         </DxcFlex>

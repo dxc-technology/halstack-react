@@ -36,7 +36,6 @@ const isFileIncluded = (file: FileData, fileList: FileData[]) => {
 const DxcFileInput = React.forwardRef<RefType, FileInputPropsType>(
   (
     {
-      name = "",
       mode = "file",
       label = "",
       buttonLabel,

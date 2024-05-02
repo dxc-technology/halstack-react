@@ -1,4 +1,4 @@
-import React, { Fragment, createContext, useMemo, useState } from "react";
+import React, { Fragment, createContext, useLayoutEffect, useMemo, useRef, useState } from "react";
 import styled from "styled-components";
 import CoreTokens from "../common/coreTokens";
 import ContextualMenuPropsType, {
@@ -35,12 +35,13 @@ const addIdToItems = (items: ContextualMenuPropsType["items"]): (ItemWithId | Gr
 
 const DxcContextualMenu = ({ items }: ContextualMenuPropsType) => {
   const [selectedItemId, setSelectedItemId] = useState(-1);
+  const contextualMenuRef = useRef(null);
   const itemsWithId = useMemo(() => addIdToItems(items), [items]);
 
   const renderSection = (section: SectionWithId, currentSectionIndex: number, length: number) => (
     <Fragment key={`section-${currentSectionIndex}`}>
-      <li role="group">
-        {section.title != null && <Title>{section.title}</Title>}
+      <li role="group" aria-labelledby={section.title}>
+        {section.title != null && <Title id={section.title}>{section.title}</Title>}
         <SectionList>
           {section.items.map((item, index) => (
             <MenuItem item={item} key={`${item.label}-${index}`} />
@@ -55,8 +56,18 @@ const DxcContextualMenu = ({ items }: ContextualMenuPropsType) => {
     </Fragment>
   );
 
+  const [firstUpdate, setFirstUpdate] = useState(true);
+  useLayoutEffect(() => {
+    if (selectedItemId !== -1 && firstUpdate) {
+      const contextualMenuEl = contextualMenuRef?.current;
+      const selectedItemEl = contextualMenuEl?.querySelector("[aria-selected='true']");
+      contextualMenuEl?.scrollTo?.({ top: selectedItemEl?.offsetTop - contextualMenuEl?.clientHeight / 2 });
+      setFirstUpdate(false);
+    }
+  }, [firstUpdate, selectedItemId]);
+
   return (
-    <ContextualMenu role="menu">
+    <ContextualMenu role="menu" ref={contextualMenuRef}>
       <ContextualMenuContext.Provider value={{ selectedItemId, setSelectedItemId }}>
         {itemsWithId.map((item: GroupItemWithId | ItemWithId | SectionWithId, index: number) =>
           "items" in item && !("label" in item) ? (
@@ -104,7 +115,7 @@ const SectionList = styled.ul`
   gap: ${CoreTokens.spacing_4};
 `;
 
-const Title = styled.span`
+const Title = styled.h2`
   margin: 0 0 ${CoreTokens.spacing_4} 0;
   padding: ${CoreTokens.spacing_4};
   color: ${CoreTokens.color_grey_900};

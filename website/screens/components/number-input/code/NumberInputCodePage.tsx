@@ -7,7 +7,6 @@ import Example from "@/common/example/Example";
 import controlled from "./examples/controlled";
 import uncontrolled from "./examples/uncontrolled";
 import errorUsage from "./examples/errorHandling";
-import StatusBadge from "@/common/StatusBadge";
 import TableCode from "@/common/TableCode";
 
 const sections = [
