@@ -4,21 +4,19 @@ import TooltipPropsType from "./types";
 import * as Tooltip from "@radix-ui/react-tooltip";
 import CoreTokens from "../common/coreTokens";
 
-const DxcTooltip = ({ position = "bottom", label, children }: TooltipPropsType): JSX.Element => {
-  const SIZE = 8;
-
-  return label ? (
+const DxcTooltip = ({ position = "bottom", label, children }: TooltipPropsType): JSX.Element =>
+  label ? (
     <Tooltip.Provider delayDuration={300}>
       <Tooltip.Root>
         <Tooltip.Trigger asChild>
           <TooltipTriggerContainer>{children}</TooltipTriggerContainer>
         </Tooltip.Trigger>
         <Tooltip.Portal>
-          <StyledTooltipContent side={position} sideOffset={SIZE} data-testid={"popover-content"}>
+          <StyledTooltipContent side={position} sideOffset={8} data-testid={"popover-content"}>
             <TooltipContainer>{label}</TooltipContainer>
-            <TooltipArrow asChild aria-hidden>
-              <Triangle size={SIZE} />
-            </TooltipArrow>
+            <Tooltip.Arrow asChild aria-hidden>
+              <Triangle />
+            </Tooltip.Arrow>
           </StyledTooltipContent>
         </Tooltip.Portal>
       </Tooltip.Root>
@@ -26,16 +24,14 @@ const DxcTooltip = ({ position = "bottom", label, children }: TooltipPropsType):
   ) : (
     <>{children}</>
   );
-};
-const Triangle = styled.span<{ size: number }>`
+const Triangle = styled.span`
   display: block;
-  height: ${(props) => `${props.size}px`};
-  width: ${(props) => `${props.size}px`};
+  height: 8px;
+  width: 8px;
   background-color: ${CoreTokens.color_grey_800};
   position: absolute;
-  left: ${(props) => `calc(50% - ${props.size / 2}px)`};
-  bottom: ${(props) =>
-    `-${props.size / 2 - 1}px`}; // Moved up 1 pixel to prevent sub-pixel alignment causing visual inconsistencies
+  left: calc(50% - 4px);
+  bottom: -3px; // Moved up 1 pixel to prevent sub-pixel alignment causing visual inconsistencies
   clip-path: polygon(0% 0%, 100% 100%, 0% 100%);
   transform: rotate(-45deg);
   border-radius: 0 0 0 1px;
@@ -108,10 +104,6 @@ const StyledTooltipContent = styled(Tooltip.Content)`
       transform: translateX(0);
     }
   }
-`;
-
-const TooltipArrow = styled(Tooltip.Arrow)`
-  fill: ${CoreTokens.color_grey_800};
 `;
 
 const TooltipContainer = styled.div`
