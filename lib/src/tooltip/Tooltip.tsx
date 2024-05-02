@@ -4,6 +4,22 @@ import TooltipPropsType from "./types";
 import * as Tooltip from "@radix-ui/react-tooltip";
 import CoreTokens from "../common/coreTokens";
 
+const Triangle = () => (
+  <svg
+    width="12"
+    height="6"
+    viewBox="0 0 12 6"
+    xmlns="http://www.w3.org/2000/svg"
+    preserveAspectRatio="none"
+    display="block"
+  >
+    <path
+      d="M0.351562 0L5.30131 4.94975C5.69184 5.34027 6.325 5.34027 6.71552 4.94975L11.6653 0H6.00842H0.351562Z"
+      fill={CoreTokens.color_grey_800}
+    />
+  </svg>
+);
+
 const DxcTooltip = ({ position = "bottom", label, children }: TooltipPropsType): JSX.Element =>
   label ? (
     <Tooltip.Provider delayDuration={300}>
@@ -12,7 +28,7 @@ const DxcTooltip = ({ position = "bottom", label, children }: TooltipPropsType):
           <TooltipTriggerContainer>{children}</TooltipTriggerContainer>
         </Tooltip.Trigger>
         <Tooltip.Portal>
-          <StyledTooltipContent side={position} sideOffset={8} data-testid={"popover-content"}>
+          <StyledTooltipContent side={position} sideOffset={8}>
             <TooltipContainer>{label}</TooltipContainer>
             <Tooltip.Arrow asChild aria-hidden>
               <Triangle />
@@ -24,18 +40,6 @@ const DxcTooltip = ({ position = "bottom", label, children }: TooltipPropsType):
   ) : (
     <>{children}</>
   );
-const Triangle = styled.span`
-  display: block;
-  height: 8px;
-  width: 8px;
-  background-color: ${CoreTokens.color_grey_800};
-  position: absolute;
-  left: calc(50% - 4px);
-  bottom: -3px; // Moved up 1 pixel to prevent sub-pixel alignment causing visual inconsistencies
-  clip-path: polygon(0% 0%, 100% 100%, 0% 100%);
-  transform: rotate(-45deg);
-  border-radius: 0 0 0 1px;
-`;
 
 const TooltipTriggerContainer = styled.div`
   display: inline-flex;
