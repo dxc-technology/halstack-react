@@ -6,7 +6,6 @@ import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import Example from "@/common/example/Example";
 import basicUsage from "./examples/basicUsage";
 import icons from "./examples/icons";
-import StatusBadge from "@/common/StatusBadge";
 import TableCode from "@/common/TableCode";
 
 const sections = [

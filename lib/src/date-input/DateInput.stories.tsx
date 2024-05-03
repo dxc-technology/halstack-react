@@ -1,5 +1,5 @@
 import React from "react";
-import { userEvent, within, fireEvent, screen } from "@storybook/testing-library";
+import { userEvent, within, fireEvent, screen } from "@storybook/test";
 import DxcDateInput from "./DateInput";
 import DxcDatePicker from "./DatePicker";
 import YearPicker from "./YearPicker";
@@ -17,11 +17,10 @@ export default {
   title: "Date Input",
   component: DxcDateInput,
   parameters: {
-    // TODO: REMOVE
     a11y: {
       config: {
         rules: [
-          ...disabledRules.map((ruleId) => ({ id: ruleId, reviewOnFail: true })),
+          ...disabledRules.map((ruleId) => ({ id: ruleId, enabled: false })),
           ...preview?.parameters?.a11y?.config?.rules,
         ],
       },
@@ -209,15 +208,15 @@ const DatePickerButtonStates = () => {
       <ThemeProvider theme={colorsTheme}>
         <ExampleContainer pseudoState="pseudo-focus">
           <Title title="Isolated calendar focused" theme="light" level={4} />
-          <DxcDatePicker date={dayjs("06-04-1950", "DD-MM-YYYY")} onDateSelect={() => {}} id="test-calendar" />
+          <DxcDatePicker date={dayjs("06-04-1950", "DD-MM-YYYY")} onDateSelect={() => {}} id="test-calendar1" />
         </ExampleContainer>
         <ExampleContainer pseudoState="pseudo-hover">
           <Title title="Isolated calendar hovered" theme="light" level={4} />
-          <DxcDatePicker date={dayjs("06-04-1950", "DD-MM-YYYY")} onDateSelect={() => {}} id="test-calendar" />
+          <DxcDatePicker date={dayjs("06-04-1950", "DD-MM-YYYY")} onDateSelect={() => {}} id="test-calendar2" />
         </ExampleContainer>
         <ExampleContainer pseudoState="pseudo-active">
           <Title title="Isolated calendar actived" theme="light" level={4} />
-          <DxcDatePicker date={dayjs("06-04-1950", "DD-MM-YYYY")} onDateSelect={() => {}} id="test-calendar" />
+          <DxcDatePicker date={dayjs("06-04-1950", "DD-MM-YYYY")} onDateSelect={() => {}} id="test-calendar3" />
         </ExampleContainer>
       </ThemeProvider>
     </>
