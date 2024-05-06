@@ -3,6 +3,7 @@ import { userEvent, within } from "@storybook/test";
 import DxcPasswordInput from "./PasswordInput";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
+import DxcFlex from "../flex/Flex";
 
 export default {
   title: "Password Input",
@@ -80,6 +81,14 @@ export const Chromatic = () => (
     <ExampleContainer>
       <Title title="FillParent size" theme="light" level={4} />
       <DxcPasswordInput label="FillParent" size="fillParent" />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Without label" theme="light" level={4} />
+      <DxcFlex justifyContent="space-between" gap="1rem">
+        <DxcPasswordInput label="fillParent" size="fillParent" />
+        <DxcPasswordInput label="medium" size="medium" />
+        <DxcPasswordInput label="large" size="large" />
+      </DxcFlex>
     </ExampleContainer>
   </>
 );
