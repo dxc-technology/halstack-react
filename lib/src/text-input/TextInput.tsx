@@ -590,6 +590,7 @@ const TextInputContainer = styled.div<{
   display: flex;
   flex-direction: column;
   width: ${(props) => calculateWidth(props.margin, props.size)};
+  ${(props) => props.size !== "fillParent" && `min-width:${  calculateWidth(props.margin, props.size)}`};
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};

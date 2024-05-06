@@ -52,7 +52,7 @@ const DxcPasswordInput = React.forwardRef<RefType, PasswordInputPropsType>(
     }, [isPasswordVisible, passwordInput]);
 
     return (
-      <PasswordInput ref={ref} role="group">
+      <PasswordInput ref={ref} role="group" size={size}>
         <DxcTextInput
           label={label}
           name={name}
@@ -83,7 +83,8 @@ const DxcPasswordInput = React.forwardRef<RefType, PasswordInputPropsType>(
   }
 );
 
-const PasswordInput = styled.div`
+const PasswordInput = styled.div<{ size: PasswordInputPropsType["size"] }>`
+  ${(props) => props.size === "fillParent" && "width: 100%;"}
   & ::-ms-reveal {
     display: none;
   }

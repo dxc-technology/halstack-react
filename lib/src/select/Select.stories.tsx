@@ -9,6 +9,7 @@ import useTheme from "../useTheme";
 import { HalstackProvider } from "../HalstackContext";
 import disabledRules from "../../test/accessibility/rules/specific/select/disabledRules";
 import preview from "../../.storybook/preview";
+import DxcFlex from "../flex/Flex";
 
 export default {
   title: "Select",
@@ -307,6 +308,14 @@ const Select = () => (
     <ExampleContainer>
       <Title title="Fillparent size" theme="light" level={4} />
       <DxcSelect label="Fillparent" options={singleOptions} size="fillParent" />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Different sizes inside a flex" theme="light" level={4} />
+      <DxcFlex justifyContent="space-between" gap="1rem">
+        <DxcSelect label="fillParent" size="fillParent" options={singleOptions} />
+        <DxcSelect label="medium" size="medium" options={singleOptions} />
+        <DxcSelect label="large" size="large" options={singleOptions} />
+      </DxcFlex>
     </ExampleContainer>
     <Title title="Margins" theme="light" level={2} />
     <ExampleContainer>

@@ -24,7 +24,7 @@ const sections = [
           even withdrawn to meet ever-evolving standards and user requirements.
         </DxcParagraph>
         <DxcParagraph>
-          Each of the stages can be understood as milestones that summarize the
+          Each of the states can be understood as milestones that summarize the
           maturity lifecycle of the components in Halstack and have their
           implications or requirements which need to be fulfilled to move from
           one to another. This process is non-linear, which means that a
@@ -226,7 +226,7 @@ const ComponentLifecyclePage = () => {
           startHeadingLevel={2}
         ></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/principles/component-lifecycle/ComponentLifecyclePage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/overview/component-lifecycle/ComponentLifecyclePage.tsx" />
     </DxcFlex>
   );
 };
