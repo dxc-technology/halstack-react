@@ -9,16 +9,10 @@ jobs:
   linkChecker:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v2
 
       - name: Link Checker
         id: lychee
         uses: lycheeverse/lychee-action@v1
-
-      - name: Create Issue From File
-        if: env.lychee_exit_code != 0
-        uses: peter-evans/create-issue-from-file@v4
         with:
-          title: Link Checker Report
-          content-filepath: ./lychee/out.md
-          labels: patch
+          args: . --exclude app
