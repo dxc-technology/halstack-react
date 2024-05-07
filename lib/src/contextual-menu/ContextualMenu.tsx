@@ -1,5 +1,5 @@
 import React, { Fragment, createContext, useLayoutEffect, useMemo, useRef, useState } from "react";
-import styled from "styled-components";
+import styled, { ThemeProvider } from "styled-components";
 import CoreTokens from "../common/coreTokens";
 import ContextualMenuPropsType, {
   ContextualMenuContextProps,
@@ -13,6 +13,7 @@ import ContextualMenuPropsType, {
 import DxcDivider from "../divider/Divider";
 import DxcInset from "../inset/Inset";
 import MenuItem from "./MenuItem";
+import useTheme from "../useTheme";
 
 export const ContextualMenuContext = createContext<ContextualMenuContextProps | null>(null);
 
@@ -26,8 +27,8 @@ const addIdToItems = (items: ContextualMenuPropsType["items"]): (ItemWithId | Gr
       isSection(item)
         ? { ...item, items: innerAddIdToItems(item.items) }
         : isGroupItem(item)
-        ? { ...item, items: innerAddIdToItems(item.items) }
-        : { ...item, id: accId++ }
+          ? { ...item, items: innerAddIdToItems(item.items) }
+          : { ...item, id: accId++ },
     );
   };
   return innerAddIdToItems(items);
@@ -37,6 +38,7 @@ const DxcContextualMenu = ({ items }: ContextualMenuPropsType) => {
   const [selectedItemId, setSelectedItemId] = useState(-1);
   const contextualMenuRef = useRef(null);
   const itemsWithId = useMemo(() => addIdToItems(items), [items]);
+  const colorsTheme = useTheme();
 
   const renderSection = (section: SectionWithId, currentSectionIndex: number, length: number) => (
     <Fragment key={`section-${currentSectionIndex}`}>
@@ -67,31 +69,33 @@ const DxcContextualMenu = ({ items }: ContextualMenuPropsType) => {
   }, [firstUpdate, selectedItemId]);
 
   return (
-    <ContextualMenu role="menu" ref={contextualMenuRef}>
-      <ContextualMenuContext.Provider value={{ selectedItemId, setSelectedItemId }}>
-        {itemsWithId.map((item: GroupItemWithId | ItemWithId | SectionWithId, index: number) =>
-          "items" in item && !("label" in item) ? (
-            renderSection(item, index, itemsWithId.length)
-          ) : (
-            <MenuItem item={item} key={`${item.label}-${index}`} />
-          )
-        )}
-      </ContextualMenuContext.Provider>
-    </ContextualMenu>
+    <ThemeProvider theme={colorsTheme.contextualMenu}>
+      <ContextualMenu role="menu" ref={contextualMenuRef}>
+        <ContextualMenuContext.Provider value={{ selectedItemId, setSelectedItemId }}>
+          {itemsWithId.map((item: GroupItemWithId | ItemWithId | SectionWithId, index: number) =>
+            "items" in item && !("label" in item) ? (
+              renderSection(item, index, itemsWithId.length)
+            ) : (
+              <MenuItem item={item} key={`${item.label}-${index}`} />
+            ),
+          )}
+        </ContextualMenuContext.Provider>
+      </ContextualMenu>
+    </ThemeProvider>
   );
 };
 
 const ContextualMenu = styled.ul`
   box-sizing: border-box;
   margin: 0;
-  border: 1px solid ${CoreTokens.color_grey_200};
+  border: 1px solid ${({ theme }) => theme.borderColor};
   border-radius: 0.25rem;
   padding: ${CoreTokens.spacing_16} ${CoreTokens.spacing_8};
   display: grid;
   gap: ${CoreTokens.spacing_4};
   min-width: 248px;
   max-height: 100%;
-  background-color: ${CoreTokens.color_white};
+  background-color: ${({ theme }) => theme.backgroundColor};
   overflow-y: auto;
   &::-webkit-scrollbar {
     width: 8px;
@@ -118,11 +122,11 @@ const SectionList = styled.ul`
 const Title = styled.h2`
   margin: 0 0 ${CoreTokens.spacing_4} 0;
   padding: ${CoreTokens.spacing_4};
-  color: ${CoreTokens.color_grey_900};
-  font-family: ${CoreTokens.type_sans};
-  font-size: ${CoreTokens.type_scale_03};
-  font-weight: ${CoreTokens.type_semibold};
-  line-height: 24px;
+  color: ${({ theme }) => theme.sectionTitleFontColor};
+  font-family: ${({ theme }) => theme.fontFamily};
+  font-size: ${({ theme }) => theme.sectionTitleFontSize};
+  font-weight: ${({ theme }) => theme.sectionTitleFontWeight};
+  line-height: ${({ theme }) => theme.sectionTitleLineHeight};
 `;
 
 export default DxcContextualMenu;
