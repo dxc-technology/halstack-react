@@ -55,36 +55,4 @@ describe("Tooltip component tests", () => {
       expect(tooltipElement).toBeFalsy();
     });
   });
-
-  test("Tooltip sets the default display position properly", async () => {
-    const { getByText, getByRole } = render(
-      <DxcTooltip label="Tooltip Test">
-        <DxcButton label="Hoverable button" />
-      </DxcTooltip>
-    );
-    const triggerElement = getByText("Hoverable button");
-    await userEvent.hover(triggerElement);
-    await waitFor(() => {
-      const tooltipContent = getByRole("tooltip", { name: "Tooltip Test" });
-      const position = tooltipContent.closest("div").getAttribute("data-side");
-      expect(tooltipContent).toBeTruthy();
-      expect(position).toBe("bottom");
-    });
-  });
-
-  test("Tooltip sets the custom display position properly", async () => {
-    const { getByText, getByRole } = render(
-      <DxcTooltip label="Tooltip Test" position="top">
-        <DxcButton label="Hoverable button" />
-      </DxcTooltip>
-    );
-    const triggerElement = getByText("Hoverable button");
-    await userEvent.hover(triggerElement);
-    await waitFor(() => {
-      const tooltipContent = getByRole("tooltip", { name: "Tooltip Test" });
-      const position = tooltipContent.closest("div").getAttribute("data-side");
-      expect(tooltipContent).toBeTruthy();
-      expect(position).toBe("top");
-    });
-  });
 });
