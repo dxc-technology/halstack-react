@@ -29,7 +29,7 @@ const LargeTextWithinTooltip = () => (
   <>
     <Title title="Multiple line tooltip" theme="light" level={4} />
     <ExampleContainer>
-      <DxcInset bottom="5rem">
+      <DxcInset bottom="5rem" left="1rem">
         <DxcTooltip label="Tooltip Test with a large text to display in the container while hovering the component">
           <DxcButton label="Hoverable button" />
         </DxcTooltip>
