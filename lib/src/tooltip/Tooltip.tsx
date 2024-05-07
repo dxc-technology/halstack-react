@@ -22,7 +22,7 @@ const Triangle = () => (
 
 const DxcTooltip = ({ position = "bottom", label, children }: TooltipPropsType): JSX.Element =>
   label ? (
-    <Tooltip.Provider delayDuration={0} skipDelayDuration={0}>
+    <Tooltip.Provider delayDuration={300}>
       <Tooltip.Root>
         <Tooltip.Trigger asChild>
           <TooltipTriggerContainer>{children}</TooltipTriggerContainer>

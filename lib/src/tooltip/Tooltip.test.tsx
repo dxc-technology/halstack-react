@@ -3,6 +3,7 @@ import { render, waitFor, screen, waitForElementToBeRemoved } from "@testing-lib
 import DxcTooltip from "./Tooltip";
 import DxcButton from "../button/Button";
 import userEvent from "@testing-library/user-event";
+import "@testing-library/jest-dom";
 
 (global as any).globalThis = global;
 (global as any).DOMRect = {
@@ -15,19 +16,41 @@ import userEvent from "@testing-library/user-event";
 };
 
 describe("Tooltip component tests", () => {
-  test("Tooltip shows/unshows when hovering/unhovering", async () => {
-    const { getByText, queryByRole } = render(
-      <DxcTooltip label="">
+  test("Tooltip does not render by default", async () => {
+    const { queryByRole } = render(
+      <DxcTooltip label="Tooltip Test">
+        <DxcButton label="Hoverable button" />
+      </DxcTooltip>
+    );
+    await waitFor(() => {
+      const tooltipElement = queryByRole("tooltip");
+      expect(tooltipElement).toBeFalsy();
+    });
+  });
+
+  test("Tooltip renders with correct label on hover", async () => {
+    const { getByText } = render(
+      <DxcTooltip label="Tooltip Test">
         <DxcButton label="Hoverable button" />
       </DxcTooltip>
     );
     const triggerElement = getByText("Hoverable button");
-    expect(queryByRole("tooltip")).toBeFalsy();
     userEvent.hover(triggerElement);
-    expect(await screen.findByRole("tooltip", { name: "Tooltip Test" })).toBeTruthy();
+    await screen.findByRole("tooltip", { name: "Tooltip Test" });
+  });
+
+  test("Tooltip stops being rendered when hover is stopped", async () => {
+    const { getByText, queryByRole } = render(
+      <DxcTooltip label="Tooltip Test">
+        <DxcButton label="Hoverable button" />
+      </DxcTooltip>
+    );
+    const triggerElement = getByText("Hoverable button");
+    userEvent.hover(triggerElement);
     userEvent.unhover(triggerElement);
     await waitFor(() => {
-      expect(queryByRole("tooltip")).toBeFalsy();
+      const tooltipElement = queryByRole("tooltip");
+      expect(tooltipElement).toBeFalsy();
     });
   });
 });
