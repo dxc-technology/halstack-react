@@ -164,7 +164,7 @@ const sections = [
                 <td>
                   <Code>actionIconColor</Code>
                 </td>
-                <td>Actions Cell</td>
+                <td>Actions cell</td>
                 <td>
                   <Code>color-purple-700</Code>
                 </td>
@@ -174,7 +174,7 @@ const sections = [
                 <td>
                   <Code>disabledActionIconColor</Code>
                 </td>
-                <td>Actions Cell</td>
+                <td>Actions cell</td>
                 <td>
                   <Code>color-grey-500</Code>
                 </td>
@@ -184,7 +184,7 @@ const sections = [
                 <td>
                   <Code>hoverActionIconColor</Code>
                 </td>
-                <td>Actions Cell</td>
+                <td>Actions cell</td>
                 <td>
                   <Code>color-purple-700</Code>
                 </td>
@@ -194,7 +194,7 @@ const sections = [
                 <td>
                   <Code>focusActionIconColor</Code>
                 </td>
-                <td>Actions Cell</td>
+                <td>Actions cell</td>
                 <td>
                   <Code>color-purple-700</Code>
                 </td>
@@ -204,7 +204,7 @@ const sections = [
                 <td>
                   <Code>activeActionIconColor</Code>
                 </td>
-                <td>Actions Cell</td>
+                <td>Actions cell</td>
                 <td>
                   <Code>color-purple-700</Code>
                 </td>
@@ -214,7 +214,7 @@ const sections = [
                 <td>
                   <Code>actionBackgroundColor</Code>
                 </td>
-                <td>Actions Cell</td>
+                <td>Actions cell</td>
                 <td>
                   <Code>color-transparent</Code>
                 </td>
@@ -224,7 +224,7 @@ const sections = [
                 <td>
                   <Code>disabledActionBackgroundColor</Code>
                 </td>
-                <td>Actions Cell</td>
+                <td>Actions cell</td>
                 <td>
                   <Code>color-transparent</Code>
                 </td>
@@ -234,7 +234,7 @@ const sections = [
                 <td>
                   <Code>hoverActionBackgroundColor</Code>
                 </td>
-                <td>Actions Cell</td>
+                <td>Actions cell</td>
                 <td>
                   <Code>color-grey-100</Code>
                 </td>
@@ -244,7 +244,7 @@ const sections = [
                 <td>
                   <Code>focusActionBorderColor</Code>
                 </td>
-                <td>Actions Cell</td>
+                <td>Actions cell</td>
                 <td>
                   <Code>color-blue-600</Code>
                 </td>
@@ -254,7 +254,7 @@ const sections = [
                 <td>
                   <Code>activeActionBackgroundColor</Code>
                 </td>
-                <td>Actions Cell</td>
+                <td>Actions cell</td>
                 <td>
                   <Code>color-grey-300</Code>
                 </td>
