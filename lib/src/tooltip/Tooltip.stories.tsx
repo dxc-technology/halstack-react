@@ -16,24 +16,20 @@ const Tooltip = () => (
   <>
     <Title title="Default tooltip" theme="light" level={4} />
     <ExampleContainer>
-      <DxcInset bottom="3rem">
-        <DxcTooltip label="Tooltip Test">
-          <DxcButton label="Hoverable button" />
-        </DxcTooltip>
-      </DxcInset>
+      <DxcTooltip label="Tooltip Test">
+        <DxcButton label="Hoverable button" />
+      </DxcTooltip>
     </ExampleContainer>
   </>
 );
 
 const LargeTextWithinTooltip = () => (
   <>
-    <Title title="Default tooltip" theme="light" level={4} />
+    <Title title="Multiple line tooltip" theme="light" level={4} />
     <ExampleContainer>
-      <DxcInset bottom="3rem">
-        <DxcTooltip label="Tooltip Test with a large text to display in the container while hovering the component">
-          <DxcButton label="Hoverable button" />
-        </DxcTooltip>
-      </DxcInset>
+      <DxcTooltip label="Tooltip Test with a large text to display in the container while hovering the component">
+        <DxcButton label="Hoverable button" />
+      </DxcTooltip>
     </ExampleContainer>
   </>
 );
@@ -68,11 +64,9 @@ const RightTooltip = () => (
   <>
     <Title title="Right tooltip" theme="light" level={4} />
     <ExampleContainer>
-      <DxcFlex justifyContent="start">
-        <DxcTooltip label="Tooltip Test" position="right">
-          <DxcButton label="Hoverable button" />
-        </DxcTooltip>
-      </DxcFlex>
+      <DxcTooltip label="Tooltip Test" position="right">
+        <DxcButton label="Hoverable button" />
+      </DxcTooltip>
     </ExampleContainer>
   </>
 );
