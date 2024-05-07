@@ -117,7 +117,7 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
                             >
                               {label}
                               {status && status !== "stable" && (
-                                <StatusBadge componentStatus status={status} />
+                                <StatusBadge hasTitle status={status} />
                               )}
                             </DxcApplicationLayout.SideNav.Link>
                           </Link>

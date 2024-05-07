@@ -2,7 +2,6 @@ import {
   DxcParagraph,
   DxcFlex,
   DxcBulletedList,
-  DxcLink,
 } from "@dxc-technology/halstack-react";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
@@ -44,6 +43,10 @@ const sections = [
             <DxcBulletedList.Item>
               Use our Badge component as a complement to the menu items to show
               the status of any navigable section.
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
+              We strongly recommend only selecting by default the first option
+              of the menu. Any other option may become unintuitive for the user.
             </DxcBulletedList.Item>
           </DxcBulletedList>
         ),
