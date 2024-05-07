@@ -1,5 +1,5 @@
 import React from "react";
-import { render, waitFor, screen, waitForElementToBeRemoved } from "@testing-library/react";
+import { render, waitFor, screen } from "@testing-library/react";
 import DxcTooltip from "./Tooltip";
 import DxcButton from "../button/Button";
 import userEvent from "@testing-library/user-event";
