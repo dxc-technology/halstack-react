@@ -874,7 +874,17 @@
     "headerTextLineHeight": "normal",
     "scrollBarThumbColor": "#666666",
     "scrollBarTrackColor": "#cccccc",
-    "sortIconColor": "#ffffff"
+    "sortIconColor": "#ffffff",
+    "actionIconColor": "#5f249f",
+    "disabledActionIconColor": "#999999",
+    "hoverActionIconColor": "#5f249f",
+    "focusActionIconColor": "#5f249f",
+    "activeActionIconColor": "#5f249f",
+    "actionBackgroundColor": "transparent",
+    "disabledActionBackgroundColor": "transparent",
+    "hoverActionBackgroundColor": "#f2f2f2",
+    "focusActionBorderColor": "#0095ff",
+    "activeActionBackgroundColor": "#cccccc"
   },
   "tabs": {
     "fontFamily": "Open Sans, sans-serif",
