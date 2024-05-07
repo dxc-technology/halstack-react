@@ -34,7 +34,7 @@ describe("Tooltip component tests", () => {
       </DxcTooltip>
     );
     const triggerElement = getByText("Hoverable button");
-    await userEvent.hover(triggerElement);
+    userEvent.hover(triggerElement);
     await waitFor(() => {
       const tooltipContent = getByRole("tooltip", { name: "Tooltip Test" });
       expect(tooltipContent).toBeTruthy();
@@ -43,13 +43,13 @@ describe("Tooltip component tests", () => {
 
   test("Tooltip stops being rendered when hover is stopped", async () => {
     const { getByText, queryByRole } = render(
-      <DxcTooltip label="Tooltip Test">
+      <DxcTooltip label="">
         <DxcButton label="Hoverable button" />
       </DxcTooltip>
     );
     const triggerElement = getByText("Hoverable button");
-    await userEvent.hover(triggerElement);
-    await userEvent.unhover(triggerElement);
+    userEvent.hover(triggerElement);
+    userEvent.unhover(triggerElement);
     await waitFor(() => {
       const tooltipElement = queryByRole("tooltip");
       expect(tooltipElement).toBeFalsy();
