@@ -77,7 +77,7 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
 
     useEffect(() => {
       if (!disabled) {
-        const actionButtonRef = dateRef?.current.querySelector("[title='Select date']");
+        const actionButtonRef = dateRef?.current.querySelector("[data-testid='Select date']");
         actionButtonRef?.setAttribute("aria-haspopup", true);
         actionButtonRef?.setAttribute("role", "combobox");
         actionButtonRef?.setAttribute("aria-expanded", isOpen);
