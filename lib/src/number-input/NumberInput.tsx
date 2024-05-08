@@ -29,7 +29,7 @@ const DxcNumberInput = React.forwardRef<RefType, NumberInputPropsType>(
       size,
       tabIndex,
     },
-    ref
+    ref,
   ) => {
     const numberInputRef = React.useRef<HTMLInputElement>(null);
 
@@ -47,7 +47,7 @@ const DxcNumberInput = React.forwardRef<RefType, NumberInputPropsType>(
 
     return (
       <NumberInputContext.Provider value={{ typeNumber: "number", minNumber: min, maxNumber: max, stepNumber: step }}>
-        <NumberInputContainer ref={numberInputRef}>
+        <NumberInputContainer ref={numberInputRef} size={size}>
           <DxcTextInput
             label={label}
             name={name}
@@ -72,10 +72,11 @@ const DxcNumberInput = React.forwardRef<RefType, NumberInputPropsType>(
         </NumberInputContainer>
       </NumberInputContext.Provider>
     );
-  }
+  },
 );
 
-const NumberInputContainer = styled.div`
+const NumberInputContainer = styled.div<{ size: NumberInputPropsType["size"] }>`
+  ${(props) => props.size == "fillParent" && "width: 100%;"}
   // Chrome, Safari, Edge, Opera
   input::-webkit-outer-spin-button,
   input::-webkit-inner-spin-button {

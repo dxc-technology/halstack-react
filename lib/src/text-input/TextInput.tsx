@@ -33,7 +33,7 @@ const makeCancelable = (promise) => {
   const wrappedPromise = new Promise<string[]>((resolve, reject) => {
     promise.then(
       (val) => (hasCanceled_ ? reject({ isCanceled: true }) : resolve(val)),
-      (promiseError) => (hasCanceled_ ? reject({ isCanceled: true }) : reject(promiseError))
+      (promiseError) => (hasCanceled_ ? reject({ isCanceled: true }) : reject(promiseError)),
     );
   });
   return {
@@ -106,7 +106,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
       size = "medium",
       tabIndex = 0,
     },
-    ref
+    ref,
   ): JSX.Element => {
     const inputId = `input-${useId()}`;
     const autosuggestId = `suggestions-${inputId}`;
@@ -337,7 +337,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
         };
       } else if (suggestions?.length > 0) {
         changeFilteredSuggestions(
-          suggestions.filter((suggestion) => suggestion.toUpperCase().startsWith((value ?? innerValue).toUpperCase()))
+          suggestions.filter((suggestion) => suggestion.toUpperCase().startsWith((value ?? innerValue).toUpperCase())),
         );
         changeVisualFocusIndex(-1);
       }
@@ -347,7 +347,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
           numberInputContext.typeNumber,
           numberInputContext.minNumber,
           numberInputContext.maxNumber,
-          numberInputContext.stepNumber
+          numberInputContext.stepNumber,
         );
     }, [value, innerValue, suggestions, numberInputContext]);
 
@@ -506,7 +506,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
         </TextInputContainer>
       </ThemeProvider>
     );
-  }
+  },
 );
 
 const TextInputContainer = styled.div<{ margin: TextInputPropsType["margin"]; size: TextInputPropsType["size"] }>`
@@ -514,6 +514,7 @@ const TextInputContainer = styled.div<{ margin: TextInputPropsType["margin"]; si
   display: flex;
   flex-direction: column;
   width: ${(props) => calculateWidth(props.margin, props.size)};
+  ${(props) => props.size !== "fillParent" && "min-width:" + calculateWidth(props.margin, props.size)};
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
@@ -590,8 +591,8 @@ const InputContainer = styled.div<{
           props.error
             ? "transparent"
             : props.readOnly
-            ? props.theme.hoverReadOnlyBorderColor
-            : props.theme.hoverBorderColor
+              ? props.theme.hoverReadOnlyBorderColor
+              : props.theme.hoverBorderColor
         };
         ${props.error ? `box-shadow: 0 0 0 2px ${props.theme.hoverErrorBorderColor};` : ""}
       }

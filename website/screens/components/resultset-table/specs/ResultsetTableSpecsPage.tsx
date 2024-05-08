@@ -160,6 +160,106 @@ const sections = [
                 </td>
                 <td>#cccccc</td>
               </tr>
+              <tr>
+                <td>
+                  <Code>actionIconColor</Code>
+                </td>
+                <td>Actions cell</td>
+                <td>
+                  <Code>color-purple-700</Code>
+                </td>
+                <td>#5f249f</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>disabledActionIconColor</Code>
+                </td>
+                <td>Actions cell</td>
+                <td>
+                  <Code>color-grey-500</Code>
+                </td>
+                <td>#999999</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>hoverActionIconColor</Code>
+                </td>
+                <td>Actions cell</td>
+                <td>
+                  <Code>color-purple-700</Code>
+                </td>
+                <td>#5f249f</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>focusActionIconColor</Code>
+                </td>
+                <td>Actions cell</td>
+                <td>
+                  <Code>color-purple-700</Code>
+                </td>
+                <td>#5f249f</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>activeActionIconColor</Code>
+                </td>
+                <td>Actions cell</td>
+                <td>
+                  <Code>color-purple-700</Code>
+                </td>
+                <td>#5f249f</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>actionBackgroundColor</Code>
+                </td>
+                <td>Actions cell</td>
+                <td>
+                  <Code>color-transparent</Code>
+                </td>
+                <td>transparent</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>disabledActionBackgroundColor</Code>
+                </td>
+                <td>Actions cell</td>
+                <td>
+                  <Code>color-transparent</Code>
+                </td>
+                <td>transparent</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>hoverActionBackgroundColor</Code>
+                </td>
+                <td>Actions cell</td>
+                <td>
+                  <Code>color-grey-100</Code>
+                </td>
+                <td>#f2f2f2</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>focusActionBorderColor</Code>
+                </td>
+                <td>Actions cell</td>
+                <td>
+                  <Code>color-blue-600</Code>
+                </td>
+                <td>#0095ff</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>activeActionBackgroundColor</Code>
+                </td>
+                <td>Actions cell</td>
+                <td>
+                  <Code>color-grey-300</Code>
+                </td>
+                <td>#cccccc</td>
+              </tr>
             </tbody>
           </DxcTable>
         ),
