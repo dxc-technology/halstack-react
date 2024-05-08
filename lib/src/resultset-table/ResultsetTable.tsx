@@ -28,7 +28,7 @@ const sortArray = (index: number, order: "ascending" | "descending", resultset: 
     }
     return order === "descending" ? comparison * -1 : comparison;
   });
-  
+
 const getMinItemsPerPageIndex = (currentPageInternal: number, itemsPerPage: number, page: number) =>
   currentPageInternal === 1 ? 0 : itemsPerPage * (page - 1);
 
@@ -38,6 +38,16 @@ const getMaxItemsPerPageIndex = (
   resultset: Row[][],
   page: number,
 ) => (minItemsPerPageIndex + itemsPerPage > resultset.length ? resultset.length : itemsPerPage * page - 1);
+
+const getRowsWithIds = (resultset: Row[][]) => {
+  if (resultset.length > 0) {
+    return resultset.map((row, index) => ({
+      cells: row,
+      id: `row_${index}`,
+    }));
+  }
+  return [];
+};
 
 const DxcResultsetTable = ({
   columns,
@@ -53,11 +63,12 @@ const DxcResultsetTable = ({
 }: ResultsetTablePropsType): JSX.Element => {
   const colorsTheme = useTheme();
   const [page, changePage] = useState(1);
-  const [rowsWithIds, setRowsWithIds] = useState([]);
   const [sortColumnIndex, changeSortColumnIndex] = useState(-1);
   const [sortOrder, changeSortOrder] = useState<"ascending" | "descending">("ascending");
 
   const prevRowCountRef = useRef<number>(rows.length);
+
+  const rowsWithIds = useMemo(() => getRowsWithIds(rows), [rows]);
 
   const minItemsPerPageIndex = useMemo(() => getMinItemsPerPageIndex(page, itemsPerPage, page), [itemsPerPage, page]);
   const maxItemsPerPageIndex = useMemo(
@@ -104,18 +115,6 @@ const DxcResultsetTable = ({
       prevRowCountRef.current = rows.length;
     }
   }, [rows.length]);
-
-  useEffect(() => {
-    if (rows.length > 0) {
-      setRowsWithIds(
-        rows.map((row, index) => ({
-          cells: row,
-          id: `row_${index}`,
-        })),
-      );
-    }
-    prevRowCountRef.current = rows.length;
-  }, [rows]);
 
   return (
     <ThemeProvider theme={colorsTheme.table}>
