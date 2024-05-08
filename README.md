@@ -6,8 +6,6 @@
 
 <h1 align="center">Halstack Design System</h1>
 
-[![Check Links](https://github.com/dxc-technology/halstack-react/actions/workflows/check-links.yml/badge.svg)](https://github.com/dxc-technology/halstack-react/actions/workflows/check-links.yml)
-
 Halstack is an Open Source Design System built and maintained by DXC Technology with the purpose of providing all the necessary tools for designing and implementing accessible, intuitive and consistent User Experiences with React.
 
 ## How to start
