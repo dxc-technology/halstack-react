@@ -39,7 +39,7 @@ const getMaxItemsPerPageIndex = (
   page: number,
 ) => (minItemsPerPageIndex + itemsPerPage > resultset.length ? resultset.length : itemsPerPage * page - 1);
 
-const getRowsWithIds = (resultset: Row[][]) => {
+const assignIdsToRows = (resultset: Row[][]) => {
   if (resultset.length > 0) {
     return resultset.map((row, index) => ({
       cells: row,
@@ -68,7 +68,7 @@ const DxcResultsetTable = ({
 
   const prevRowCountRef = useRef<number>(rows.length);
 
-  const rowsWithIds = useMemo(() => getRowsWithIds(rows), [rows]);
+  const rowsWithIds = useMemo(() => assignIdsToRows(rows), [rows]);
 
   const minItemsPerPageIndex = useMemo(() => getMinItemsPerPageIndex(page, itemsPerPage, page), [itemsPerPage, page]);
   const maxItemsPerPageIndex = useMemo(
@@ -155,7 +155,7 @@ const DxcResultsetTable = ({
           </thead>
           <tbody>
             {filteredResultset.map((row) => (
-              <tr key={`resultSetTableCell_${page}_${row.id}`}>
+              <tr key={`resultSetTableCell_${row.id}`}>
                 {row.cells.map((cellContent, cellIndex) => (
                   <td key={`resultSetTableCellContent_${cellIndex}`}>{cellContent.displayValue}</td>
                 ))}
