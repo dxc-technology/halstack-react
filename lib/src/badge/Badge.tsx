@@ -4,6 +4,7 @@ import BadgePropsType from "./types";
 import DxcFlex from "../flex/Flex";
 import CoreTokens from "../common/coreTokens";
 import DxcIcon from "../icon/Icon";
+import DxcTooltip from "../tooltip/Tooltip";
 
 const contextualColorMap = {
   grey: {
@@ -93,23 +94,24 @@ const DxcBadge = ({
   size = "medium",
 }: BadgePropsType): JSX.Element => {
   return (
-    <BadgeContainer
-      label={label}
-      mode={mode}
-      color={(mode === "contextual" && color) || undefined}
-      size={size}
-      title={title}
-      aria-label={title}
-    >
-      {(mode === "contextual" && (
-        <DxcFlex gap="0.125rem" alignItems="center">
-          {icon && (
-            <IconContainer size={size}>{typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}</IconContainer>
-          )}
-          <Label label={label} notificationLimit={notificationLimit} size={size} />
-        </DxcFlex>
-      )) || <Label label={label} notificationLimit={notificationLimit} size={size} />}
-    </BadgeContainer>
+    <DxcTooltip label={title}>
+      <BadgeContainer
+        label={label}
+        mode={mode}
+        color={(mode === "contextual" && color) || undefined}
+        size={size}
+        aria-label={title}
+      >
+        {(mode === "contextual" && (
+          <DxcFlex gap="0.125rem" alignItems="center">
+            {icon && (
+              <IconContainer size={size}>{typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}</IconContainer>
+            )}
+            <Label label={label} notificationLimit={notificationLimit} size={size} />
+          </DxcFlex>
+        )) || <Label label={label} notificationLimit={notificationLimit} size={size} />}
+      </BadgeContainer>
+    </DxcTooltip>
   );
 };
 
