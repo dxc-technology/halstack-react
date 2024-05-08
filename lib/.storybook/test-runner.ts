@@ -30,7 +30,7 @@ const a11yConfig: TestRunnerConfig = {
         page.setViewportSize(parsedViewportSizes);
       }
     } catch (err) {
-      console.error("Problem when loading the Story Context");
+      console.error("Problem when loading the Story Context -> ", err);
     }
   },
   async postVisit(page, context) {
@@ -47,7 +47,7 @@ const a11yConfig: TestRunnerConfig = {
         rules: storyContext?.parameters?.a11y?.config?.rules,
       });
     } catch (err) {
-      console.error("Problem when loading the Story Context");
+      console.error("Problem when loading the Story Context -> ", err);
     }
 
     await checkA11y(page, "#storybook-root", {
