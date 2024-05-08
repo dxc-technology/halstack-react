@@ -155,7 +155,7 @@ const DxcResultsetTable = ({
           </thead>
           <tbody>
             {filteredResultset.map((row) => (
-              <tr key={`resultSetTableCell_${page}_${row.id}`} id={`resultSetTableCell_${page}_${row.id}`}>
+              <tr key={`resultSetTableCell_${page}_${row.id}`}>
                 {row.cells.map((cellContent, cellIndex) => (
                   <td key={`resultSetTableCellContent_${cellIndex}`}>{cellContent.displayValue}</td>
                 ))}
