@@ -155,7 +155,7 @@ const DxcResultsetTable = ({
           </thead>
           <tbody>
             {filteredResultset.map((row) => (
-              <tr key={`resultSetTableCell_${row.id}`}>
+              <tr key={`resultSetTableCell_${row.id}`} data-testid={`resultSetTableCell_${row.id}`}>
                 {row.cells.map((cellContent, cellIndex) => (
                   <td key={`resultSetTableCellContent_${cellIndex}`}>{cellContent.displayValue}</td>
                 ))}

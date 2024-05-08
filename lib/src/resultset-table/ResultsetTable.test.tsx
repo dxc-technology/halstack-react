@@ -3,6 +3,7 @@ import { render, fireEvent, act } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import DxcResultsetTable from "./ResultsetTable";
 import { ActionCellsPropsType } from "../table/types";
+import { DxcCheckbox } from "../main";
 
 // Mocking DOMRect for Radix Primitive Popover
 (global as any).globalThis = global;
@@ -179,6 +180,33 @@ const rows = [
   ],
 ];
 
+const columnsReduced = [
+  {
+    displayValue: "Id",
+    isSortable: true,
+  },
+];
+const rowsReduced = [
+  [
+    {
+      displayValue: "001",
+      sortValue: "001",
+    },
+  ],
+  [
+    {
+      displayValue: "002",
+      sortValue: "002",
+    },
+  ],
+  [
+    {
+      displayValue: "003",
+      sortValue: "003",
+    },
+  ],
+];
+
 const rows2 = [...rows].slice(0, -1);
 
 describe("Resultset table component tests", () => {
@@ -211,7 +239,7 @@ describe("Resultset table component tests", () => {
     window.HTMLElement.prototype.scrollIntoView = () => {};
     window.HTMLElement.prototype.scrollTo = () => {};
     const { getByText, getAllByRole } = render(
-      <DxcResultsetTable columns={columns} showGoToPage rows={rows} itemsPerPage={3} />
+      <DxcResultsetTable columns={columns} showGoToPage rows={rows} itemsPerPage={3} />,
     );
     expect(getByText("Peter")).toBeTruthy();
     expect(getByText("Louis")).toBeTruthy();
@@ -251,7 +279,7 @@ describe("Resultset table component tests", () => {
 
   test("Resultset table should go one page back when removing the last page data", () => {
     const { getAllByRole, queryByText, rerender } = render(
-      <DxcResultsetTable columns={columns} rows={rows} itemsPerPage={3} />
+      <DxcResultsetTable columns={columns} rows={rows} itemsPerPage={3} />,
     );
     expect(queryByText("1 to 3 of 10")).toBeTruthy();
     const lastButton = getAllByRole("button")[4];
@@ -264,7 +292,7 @@ describe("Resultset table component tests", () => {
 
   test("Resultset table shouldn't go one page back when there is data left in the last page", () => {
     const { getAllByRole, queryByText, rerender } = render(
-      <DxcResultsetTable columns={columns} rows={rows} itemsPerPage={2} />
+      <DxcResultsetTable columns={columns} rows={rows} itemsPerPage={2} />,
     );
     expect(queryByText("1 to 2 of 10")).toBeTruthy();
     const lastButton = getAllByRole("button")[4];
@@ -275,9 +303,36 @@ describe("Resultset table component tests", () => {
     expect(queryByText("9 to 9 of 9")).toBeTruthy();
   });
 
+  test("Resultset table should work as expected when changing the order", async () => {
+    const { getAllByRole } = render(<DxcResultsetTable columns={columnsReduced} rows={rowsReduced} itemsPerPage={3} />);
+    const columnHeader = getAllByRole("columnheader")[0];
+    const rowsBefore = getAllByRole("row");
+    const sortButton = getAllByRole("button")[0];
+
+    expect(columnHeader.getAttribute("aria-sort")).toBe("none");
+
+    for (let i = 1; i < rowsBefore.length; i++) {
+      expect(rowsBefore[i].getAttribute("data-testid")).toEqual(`resultSetTableCell_row_${i - 1}`);
+    }
+
+    fireEvent.click(sortButton);
+
+    expect(columnHeader.getAttribute("aria-sort")).toBe("ascending");
+
+    fireEvent.click(sortButton);
+
+    expect(columnHeader.getAttribute("aria-sort")).toBe("descending");
+
+    const rowsAfter = getAllByRole("row");
+
+    for (let i = rowsAfter.length - 1; i >= 1; i--) {
+      expect(rowsAfter[i].getAttribute("data-testid")).toEqual(`resultSetTableCell_row_${rowsAfter.length - 1 - i}`);
+    }
+  });
+
   test("Resultset table change itemsPerPage should go to first page", () => {
     const { getAllByRole } = render(
-      <DxcResultsetTable columns={columns} rows={rows} itemsPerPage={3} itemsPerPageOptions={[2, 3]} />
+      <DxcResultsetTable columns={columns} rows={rows} itemsPerPage={3} itemsPerPageOptions={[2, 3]} />,
     );
     const lastButton = getAllByRole("button")[4];
     expect(getAllByRole("row").length - 1).toEqual(3);
@@ -294,7 +349,7 @@ describe("Resultset table component tests", () => {
   test("Resultset table with ActionsCell", () => {
     const onSelectOption = jest.fn();
     const onClick = jest.fn();
-    const actions: ActionCellsPropsType['actions'] = [
+    const actions: ActionCellsPropsType["actions"] = [
       {
         title: "icon1",
         onClick: onSelectOption,
@@ -318,7 +373,7 @@ describe("Resultset table component tests", () => {
         title: "icon2",
         onClick: onClick,
       },
-    ] ;
+    ];
     const actionRows = [
       [
         {
@@ -336,7 +391,7 @@ describe("Resultset table component tests", () => {
       ],
     ];
     const { getAllByRole, getByRole, getByText } = render(
-      <DxcResultsetTable columns={columns} rows={actionRows} itemsPerPage={3} />
+      <DxcResultsetTable columns={columns} rows={actionRows} itemsPerPage={3} />,
     );
     const dropdown = getAllByRole("button")[2];
     act(() => {

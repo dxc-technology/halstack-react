@@ -7,6 +7,7 @@ import styled from "styled-components";
 import { HalstackProvider } from "../HalstackContext";
 import { disabledRules } from "../../test/accessibility/rules/specific/resultset-table/disabledRules";
 import preview from "../../.storybook/preview";
+import DxcCheckbox from "../checkbox/Checkbox";
 
 export default {
   title: "Resultset Table",
@@ -411,3 +412,44 @@ DropdownAction.play = async ({ canvasElement }) => {
   const dropdown = canvas.getAllByRole("button")[5];
   userEvent.click(dropdown);
 };
+
+const columnsCheckbox = [
+  { displayValue: "Id", isSortable: true },
+  { displayValue: "Checkbox", isSortable: false },
+  { displayValue: "Name", isSortable: false },
+  { displayValue: "City", isSortable: false },
+];
+
+const rowsCheckbox = [
+  [
+    { displayValue: "001", sortValue: "001" },
+    {
+      displayValue: <DxcCheckbox size="fillParent" />,
+    },
+    { displayValue: "Peter" },
+    { displayValue: "Miami" },
+  ],
+  [
+    { displayValue: "002", sortValue: "002" },
+    {
+      displayValue: <DxcCheckbox size="fillParent" />,
+    },
+    { displayValue: "Louis" },
+    { displayValue: "London" },
+  ],
+  [
+    { displayValue: "003", sortValue: "003" },
+    {
+      displayValue: <DxcCheckbox size="fillParent" />,
+    },
+    { displayValue: "Lana" },
+    { displayValue: "Amsterdam" },
+  ],
+];
+
+export const ResultsetCheckbox = () => (
+  <ExampleContainer>
+    <Title title="Dropdown Action" theme="light" level={4} />
+    <DxcResultsetTable columns={columnsCheckbox} rows={rowsCheckbox} itemsPerPage={3} />
+  </ExampleContainer>
+);
