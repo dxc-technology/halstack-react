@@ -449,7 +449,7 @@ const sections = [
                     </thead>
                     <tbody>
                       <tr>
-                        <td>Base Color</td>
+                        <td>Base color</td>
                         <td>
                           <Code>pickerSelectedBackgroundColor</Code>
                           <br />

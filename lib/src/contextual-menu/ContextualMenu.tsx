@@ -125,6 +125,7 @@ const Title = styled.h2`
   color: ${({ theme }) => theme.sectionTitleFontColor};
   font-family: ${({ theme }) => theme.fontFamily};
   font-size: ${({ theme }) => theme.sectionTitleFontSize};
+  font-style: ${({ theme }) => theme.sectionTitleFontStyle};
   font-weight: ${({ theme }) => theme.sectionTitleFontWeight};
   line-height: ${({ theme }) => theme.sectionTitleLineHeight};
 `;

@@ -230,21 +230,3 @@ export const SingleItemStates = () => {
     </ThemeProvider>
   );
 };
-
-export const ThemeTesting = () => {
-  const contextualMenuTokens = {
-    contextualMenu: {
-      accentColor: "#fabada",
-      fontColor: "#333",
-      iconColor: "#0095ff",
-    },
-  };
-
-  return (
-    <HalstackProvider theme={contextualMenuTokens}>
-      <DxcContainer width="300px">
-        <DxcContextualMenu items={groupItems} />
-      </DxcContainer>
-    </HalstackProvider>
-  );
-};
