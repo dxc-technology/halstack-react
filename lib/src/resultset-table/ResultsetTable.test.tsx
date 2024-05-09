@@ -3,7 +3,7 @@ import { render, fireEvent, act } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import DxcResultsetTable from "./ResultsetTable";
 import { ActionCellsPropsType } from "../table/types";
-import { DxcCheckbox } from "../main";
+import DxcCheckbox from "../checkbox/Checkbox";
 
 // Mocking DOMRect for Radix Primitive Popover
 (global as any).globalThis = global;
