@@ -211,11 +211,6 @@ describe("TextInput component tests", () => {
     expect(onBlur).toHaveBeenCalledWith({ value: "Blur test" });
   });
 
-  test("Clear action tooltip is correct", () => {
-    const { getByTestId } = render(<DxcTextInput label="Input label" value="Text" clearable />);
-    expect(getByTestId("Clear field")).toBeTruthy();
-  });
-
   test("Clear action onClick cleans the input", async () => {
     const { getByRole } = render(<DxcTextInput label="Input label" clearable />);
     const input = getByRole("textbox") as HTMLInputElement;
@@ -336,7 +331,7 @@ describe("TextInput component tests", () => {
     expect(onClick).not.toHaveBeenCalled();
   });
 
-  test("Action prop: image displayed with title and onClick event", async () => {
+  test("Action prop: image displayed and onClick event", async () => {
     const onClick = jest.fn();
     const action = {
       onClick: onClick,
@@ -357,7 +352,6 @@ describe("TextInput component tests", () => {
     };
     const { getByRole, getByTestId } = render(<DxcTextInput label="Input label" action={action} />);
     expect(getByTestId("image")).toBeTruthy();
-    expect(getByTestId("Search")).toBeTruthy();
     await userEvent.click(getByRole("button"));
     expect(onClick).toHaveBeenCalled();
   });

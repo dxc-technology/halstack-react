@@ -75,17 +75,6 @@ describe("Password input component tests", () => {
     expect(passwordInput.type).toBe("text");
   });
 
-  test("Password tooltip is correct", async () => {
-    const { getAllByRole, getByTestId, queryByTitle } = render(
-      <DxcPasswordInput label="Password input" clearable value="Password" />
-    );
-    const showButton = getAllByRole("button")[1];
-    userEvent.hover(showButton);
-    expect(getByTestId("Show password")).toBeTruthy();
-    userEvent.unhover(showButton);
-    expect(queryByTitle("Hide password")).toBeFalsy();
-  });
-
   test("Password input has correct accessibility attributes", async () => {
     const { getByRole, getByLabelText } = render(<DxcPasswordInput label="Password input" />);
     const showButton = getByRole("button");

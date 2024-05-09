@@ -9,23 +9,18 @@ const iconSVG = (
   </svg>
 );
 describe("Action icon component tests", () => {
-  test("Action icon renders with correct text", () => {
-    const { getByTestId } = render(<DxcActionIcon icon={iconSVG} title="favourite" />);
-    expect(getByTestId("favourite")).toBeTruthy();
-  });
-
   test("Calls correct function on click", () => {
     const onClick = jest.fn();
-    const { getByTestId } = render(<DxcActionIcon icon={iconSVG} title="favourite" onClick={onClick} />);
-    const action = getByTestId("favourite");
+    const { getByRole } = render(<DxcActionIcon icon={iconSVG} title="favourite" onClick={onClick} />);
+    const action = getByRole("button");
     fireEvent.click(action);
     expect(onClick).toHaveBeenCalled();
   });
 
   test("On click is not called when disabled", () => {
     const onClick = jest.fn();
-    const { getByTestId } = render(<DxcActionIcon disabled icon={iconSVG} title="favourite" onClick={onClick} />);
-    const action = getByTestId("favourite");
+    const { getByRole } = render(<DxcActionIcon disabled icon={iconSVG} title="favourite" onClick={onClick} />);
+    const action = getByRole("button");
     fireEvent.click(action);
     expect(onClick).toHaveBeenCalledTimes(0);
   });

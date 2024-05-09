@@ -26,12 +26,6 @@ describe("Number input component tests", () => {
     expect(queryAllByRole("button").length).toBe(2);
   });
 
-  test("Number input buttons' tooltip is correct", () => {
-    const { getByTestId } = render(<DxcNumberInput label="Number label" />);
-    expect(getByTestId("Decrement value")).toBeTruthy();
-    expect(getByTestId("Increment value")).toBeTruthy();
-  });
-
   test("Number input is disabled", () => {
     const { getByLabelText } = render(<DxcNumberInput label="Number label" disabled />);
     const number = getByLabelText("Number label") as HTMLInputElement;

@@ -19,7 +19,6 @@ const DxcActionIcon = React.forwardRef<RefType, ActionIconPropsTypes>(
           tabIndex={tabIndex}
           type="button"
           ref={ref}
-          data-testid={title}
         >
           {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
         </ActionIcon>

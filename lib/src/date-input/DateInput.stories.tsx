@@ -226,7 +226,7 @@ const DatePickerButtonStates = () => {
 export const DatePickerStates = DatePickerButtonStates.bind({});
 DatePickerStates.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
-  const dateBtn = canvas.getAllByTestId("Select date")[0];
+  const dateBtn = canvas.getAllByRole("combobox")[0];
   await userEvent.click(dateBtn);
 };
 
