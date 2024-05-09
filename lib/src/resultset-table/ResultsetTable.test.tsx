@@ -180,30 +180,37 @@ const rows = [
   ],
 ];
 
-const columnsReduced = [
-  {
-    displayValue: "Id",
-    isSortable: true,
-  },
+const columnsWithCheckbox = [
+  { displayValue: "Id", isSortable: true },
+  { displayValue: "Checkbox", isSortable: false },
+  { displayValue: "Name", isSortable: false },
+  { displayValue: "City", isSortable: false },
 ];
-const rowsReduced = [
+
+const rowsWithCheckbox = [
   [
+    { displayValue: "001", sortValue: "001" },
     {
-      displayValue: "001",
-      sortValue: "001",
+      displayValue: <DxcCheckbox size="fillParent" defaultChecked={true} />,
     },
+    { displayValue: "Peter" },
+    { displayValue: "Miami" },
   ],
   [
+    { displayValue: "002", sortValue: "002" },
     {
-      displayValue: "002",
-      sortValue: "002",
+      displayValue: <DxcCheckbox size="fillParent" />,
     },
+    { displayValue: "Louis" },
+    { displayValue: "London" },
   ],
   [
+    { displayValue: "003", sortValue: "003" },
     {
-      displayValue: "003",
-      sortValue: "003",
+      displayValue: <DxcCheckbox size="fillParent" />,
     },
+    { displayValue: "Lana" },
+    { displayValue: "Amsterdam" },
   ],
 ];
 
@@ -303,17 +310,16 @@ describe("Resultset table component tests", () => {
     expect(queryByText("9 to 9 of 9")).toBeTruthy();
   });
 
-  test("Resultset table should work as expected when changing the order", async () => {
-    const { getAllByRole } = render(<DxcResultsetTable columns={columnsReduced} rows={rowsReduced} itemsPerPage={3} />);
+  test("Resultset table uncontrolled components maintain its value when sorting", async () => {
+    const { getAllByRole } = render(
+      <DxcResultsetTable columns={columnsWithCheckbox} rows={rowsWithCheckbox} itemsPerPage={3} />,
+    );
     const columnHeader = getAllByRole("columnheader")[0];
-    const rowsBefore = getAllByRole("row");
     const sortButton = getAllByRole("button")[0];
 
-    expect(columnHeader.getAttribute("aria-sort")).toBe("none");
+    expect(getAllByRole("checkbox")[0].getAttribute("aria-checked")).toBe("true");
 
-    for (let i = 1; i < rowsBefore.length; i++) {
-      expect(rowsBefore[i].getAttribute("data-testid")).toEqual(`resultSetTableCell_row_${i - 1}`);
-    }
+    expect(columnHeader.getAttribute("aria-sort")).toBe("none");
 
     fireEvent.click(sortButton);
 
@@ -322,12 +328,8 @@ describe("Resultset table component tests", () => {
     fireEvent.click(sortButton);
 
     expect(columnHeader.getAttribute("aria-sort")).toBe("descending");
-
-    const rowsAfter = getAllByRole("row");
-
-    for (let i = rowsAfter.length - 1; i >= 1; i--) {
-      expect(rowsAfter[i].getAttribute("data-testid")).toEqual(`resultSetTableCell_row_${rowsAfter.length - 1 - i}`);
-    }
+    
+    expect(getAllByRole("checkbox")[0].getAttribute("aria-checked")).toBe("false");
   });
 
   test("Resultset table change itemsPerPage should go to first page", () => {
