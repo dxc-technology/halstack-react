@@ -51,6 +51,7 @@ const FileItem = ({
                   onDelete(fileName);
                 }}
                 type="button"
+                aria-label={translatedLabels.fileInput.deleteFileActionTitle}
                 tabIndex={tabIndex}
               >
                 <DxcIcon icon="close" />
