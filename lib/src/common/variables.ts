@@ -1199,6 +1199,12 @@ export type OpinionatedTheme = {
     fontColor: string;
     iconColor: string;
   };
+  contextualMenu: {
+    accentColor: string;
+    baseColor: string;
+    fontColor: string;
+    iconColor: string;
+  },
   dateInput: {
     baseColor: string;
     selectedFontColor: string;

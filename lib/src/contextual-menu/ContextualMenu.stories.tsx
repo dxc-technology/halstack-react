@@ -9,6 +9,7 @@ import { disabledRules } from "../../test/accessibility/rules/specific/contextua
 import preview from "../../.storybook/preview";
 import { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme";
+import { HalstackProvider } from "../HalstackContext";
 
 export default {
   title: "Contextual Menu",
@@ -227,5 +228,23 @@ export const SingleItemStates = () => {
         </ContextualMenuContext.Provider>
       </DxcContainer>
     </ThemeProvider>
+  );
+};
+
+export const ThemeTesting = () => {
+  const contextualMenuTokens = {
+    contextualMenu: {
+      accentColor: "#fabada",
+      fontColor: "#333",
+      iconColor: "#0095ff",
+    },
+  };
+
+  return (
+    <HalstackProvider theme={contextualMenuTokens}>
+      <DxcContainer width="300px">
+        <DxcContextualMenu items={groupItems} />
+      </DxcContainer>
+    </HalstackProvider>
   );
 };

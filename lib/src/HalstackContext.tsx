@@ -109,6 +109,18 @@ const parseTheme = (theme: DeepPartial<OpinionatedTheme>): AdvancedTheme => {
   chipTokens.hoverIconColor = subLightness(10, theme?.chip?.iconColor) ?? chipTokens.hoverIconColor;
   chipTokens.activeIconColor = subLightness(30, theme?.chip?.iconColor) ?? chipTokens.activeIconColor;
 
+  const contextualMenu = componentTokensCopy.contextualMenu;
+  contextualMenu.backgroundColor = theme?.contextualMenu?.baseColor ?? contextualMenu.backgroundColor;
+  contextualMenu.menuItemFontColor = theme?.contextualMenu?.fontColor ?? contextualMenu.menuItemFontColor;
+  contextualMenu.sectionTitleFontColor = theme?.contextualMenu?.fontColor ?? contextualMenu.sectionTitleFontColor;
+  contextualMenu.iconColor = theme?.contextualMenu?.iconColor ?? contextualMenu.iconColor;
+  contextualMenu.selectedMenuItemBackgroundColor =
+    theme?.contextualMenu?.accentColor ?? contextualMenu.selectedMenuItemBackgroundColor;
+  contextualMenu.hoverSelectedMenuItemBackgroundColor =
+    subLightness(5, theme?.contextualMenu?.accentColor) ?? contextualMenu.hoverSelectedMenuItemBackgroundColor;
+  contextualMenu.activeSelectedMenuItemBackgroundColor =
+    subLightness(5, theme?.contextualMenu?.accentColor) ?? contextualMenu.activeSelectedMenuItemBackgroundColor;
+
   const dateTokens = componentTokensCopy.dateInput;
   dateTokens.pickerSelectedBackgroundColor = theme?.dateInput?.baseColor ?? dateTokens.pickerSelectedBackgroundColor;
   dateTokens.pickerSelectedFontColor = theme?.dateInput?.selectedFontColor ?? dateTokens.pickerSelectedFontColor;
@@ -379,7 +391,7 @@ type HalstackProviderPropsType = {
 const HalstackProvider = ({ theme, advancedTheme, labels, children }: HalstackProviderPropsType): JSX.Element => {
   const parsedTheme = useMemo(
     () => (theme ? parseTheme(theme) : advancedTheme ? parseAdvancedTheme(advancedTheme) : componentTokens),
-    [theme, advancedTheme]
+    [theme, advancedTheme],
   );
   const parsedLabels = useMemo(() => (labels ? parseLabels(labels) : defaultTranslatedComponentLabels), [labels]);
 
