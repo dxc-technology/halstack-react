@@ -378,6 +378,66 @@ const sections = [
                 ),
               },
               {
+                title: "Contextual Menu",
+                content: (
+                  <DxcTable>
+                    <thead>
+                      <tr>
+                        <th>Theme Input</th>
+                        <th>Tokens (calculation)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Accent color</td>
+                        <td>
+                          <Code>selectedMenuItemBackgroundColor</Code>
+                          <br />
+                          <br />
+                          <Code>hoverSelectedMenuItemBackgroundColor</Code> (-5%
+                          of lightness)
+                          <br />
+                          <br />
+                          <Code>
+                            activeSelectedMenuItemBackgroundColor
+                          </Code>{" "}
+                          (-5% of lightness)
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Base color</td>
+                        <td>
+                          <Code>backgroundColor</Code>
+                          <br />
+                          <br />
+                          <Code>hoverMenuItemBackgroundColor</Code> (-5% of
+                          lightness)
+                          <br />
+                          <br />
+                          <Code>activeMenuItemBackgroundColor</Code> (-5% of
+                          lightness)
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Font color</td>
+                        <td>
+                          <Code>menuItemFontColor</Code>
+                          <br />
+                          <br />
+                          <Code>sectionFontColor</Code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Icon color</td>
+                        <td>
+                          <Code>menuItemIconColor</Code>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </DxcTable>
+                ),
+              },
+              {
                 title: "Date Input",
                 content: (
                   <DxcTable>
