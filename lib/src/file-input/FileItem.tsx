@@ -51,18 +51,12 @@ const FileItem = ({
                   onDelete(fileName);
                 }}
                 type="button"
-                aria-label={translatedLabels.fileInput.deleteFileActionTitle}
                 tabIndex={tabIndex}
               >
                 <DxcIcon icon="close" />
               </DeleteFileAction>
             </DxcTooltip>
           </DxcFlex>
-          {error && !singleFileMode && (
-            <ErrorMessage role="alert" aria-live="assertive">
-              {error}
-            </ErrorMessage>
-          )}
           {error && !singleFileMode && (
             <ErrorMessage role="alert" aria-live="assertive">
               {error}
