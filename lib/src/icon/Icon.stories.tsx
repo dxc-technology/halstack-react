@@ -2,7 +2,7 @@ import React from "react";
 import DxcIcon from "./Icon";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
-import { DxcTypography } from "../main";
+import DxcTypography from "../typography/Typography";
 
 export default {
   title: "Icon",
