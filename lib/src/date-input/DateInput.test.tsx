@@ -157,7 +157,7 @@ describe("DateInput component tests", () => {
   });
 
   test("Changing months using the arrows", async () => {
-    const { getByText, getByRole, getByTitle } = render(
+    const { getByText, getByRole, getAllByRole } = render(
       <DxcDateInput label="label" format="dd-mm-yyyy" defaultValue="10-10-2000" />
     );
     const calendarAction = getByRole("combobox");
@@ -165,11 +165,13 @@ describe("DateInput component tests", () => {
     let d = dayjs("10-10-2000", "DD-MM-YYYY", true);
     d = d.set("date", 10);
     expect(getByText(d.format("MMMM YYYY"))).toBeTruthy();
-    const previousMonth = getByTitle("Previous month");
-    await userEvent.click(previousMonth);
+    const previousMonthButton = getAllByRole("button")[0];
+    expect(previousMonthButton.getAttribute("aria-label")).toBe("Previous month");
+    await userEvent.click(previousMonthButton);
     expect(getByText(d.set("month", d.get("month") - 1).format("MMMM YYYY"))).toBeTruthy();
-    const nextMonth = getByTitle("Next month");
-    await userEvent.click(nextMonth);
+    const nextMonthButton = getAllByRole("button")[2];
+    expect(nextMonthButton.getAttribute("aria-label")).toBe("Next month");
+    await userEvent.click(nextMonthButton);
     expect(getByText(d.format("MMMM YYYY"))).toBeTruthy();
   });
 
