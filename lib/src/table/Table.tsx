@@ -10,6 +10,7 @@ import DxcDropdown from "../dropdown/Dropdown";
 import DxcFlex from "../flex/Flex";
 import { HalstackProvider } from "../HalstackContext";
 import DxcActionIcon from "../action-icon/ActionIcon";
+import DxcTooltip from "../tooltip/Tooltip";
 
 const overwriteTheme = (theme: DeepPartial<AdvancedTheme>) => {
   const newTheme = DropdownTheme;
@@ -45,14 +46,16 @@ export const DxcActionsCell = ({ actions }: ActionCellsPropsType): JSX.Element =
       )}
       {actionDropdown && (
         <HalstackProvider advancedTheme={overwriteTheme(colorsTheme)} key={`provider-dropdown`}>
-          <DxcDropdown
-            options={actionDropdown.options}
-            onSelectOption={actionDropdown.onClick}
-            disabled={actionDropdown.disabled}
-            icon="more_vert"
-            tabIndex={actionDropdown.tabIndex}
-            caretHidden
-          ></DxcDropdown>
+          <DxcTooltip label={actionDropdown.title}>
+            <DxcDropdown
+              options={actionDropdown.options}
+              onSelectOption={actionDropdown.onClick}
+              disabled={actionDropdown.disabled}
+              icon="more_vert"
+              tabIndex={actionDropdown.tabIndex}
+              caretHidden
+            ></DxcDropdown>
+          </DxcTooltip>
         </HalstackProvider>
       )}
     </DxcFlex>
@@ -64,7 +67,7 @@ const DxcTable = ({ children, margin, mode = "default" }: TablePropsType): JSX.E
 
   return (
     <ThemeProvider theme={colorsTheme.table}>
-      <DxcTableContainer margin={margin}> 
+      <DxcTableContainer margin={margin}>
         <DxcTableContent mode={mode}>{children}</DxcTableContent>
       </DxcTableContainer>
     </ThemeProvider>
