@@ -7,6 +7,7 @@ import DxcTextInput from "./TextInput";
 import Suggestions from "./Suggestions";
 import useTheme from "../useTheme";
 import { HalstackProvider } from "../HalstackContext";
+import DxcFlex from "../flex/Flex";
 
 export default {
   title: "Text Input",
@@ -267,6 +268,14 @@ export const Chromatic = () => (
     <ExampleContainer>
       <Title title="FillParent size" theme="light" level={4} />
       <DxcTextInput label="FillParent" size="fillParent" />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Different sizes inside a flex" theme="light" level={4} />
+      <DxcFlex justifyContent="space-between" gap="1.5rem">
+        <DxcTextInput label="Text input" size="fillParent" />
+        <DxcTextInput label="Text input" size="medium" />
+        <DxcTextInput label="Text input" size="large" />
+      </DxcFlex>
     </ExampleContainer>
     <Title title="Opinionated theme" theme="light" level={2} />
     <ExampleContainer>

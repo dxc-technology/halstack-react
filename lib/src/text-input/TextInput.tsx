@@ -107,7 +107,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
       size = "medium",
       tabIndex = 0,
     },
-    ref
+    ref,
   ): JSX.Element => {
     const inputId = `input-${useId()}`;
     const autosuggestId = `suggestions-${inputId}`;
@@ -453,7 +453,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
       }
       if (suggestions?.length > 0) {
         changeFilteredSuggestions(
-          suggestions.filter((suggestion) => suggestion.toUpperCase().startsWith((value ?? innerValue).toUpperCase()))
+          suggestions.filter((suggestion) => suggestion.toUpperCase().startsWith((value ?? innerValue).toUpperCase())),
         );
         changeVisualFocusIndex(-1);
       }
@@ -462,7 +462,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
           numberInputContext.typeNumber,
           numberInputContext.minNumber,
           numberInputContext.maxNumber,
-          numberInputContext.stepNumber
+          numberInputContext.stepNumber,
         );
       }
       return undefined;
@@ -579,7 +579,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
         </TextInputContainer>
       </ThemeProvider>
     );
-  }
+  },
 );
 
 const TextInputContainer = styled.div<{
@@ -590,6 +590,7 @@ const TextInputContainer = styled.div<{
   display: flex;
   flex-direction: column;
   width: ${(props) => calculateWidth(props.margin, props.size)};
+  ${(props) => props.size !== "fillParent" && "min-width:" + calculateWidth(props.margin, props.size)};
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};

@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from "react";
+import React, { useState, useMemo, useEffect, useRef } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { v4 as uuidv4 } from "uuid";
 import { spaces } from "../common/variables";
@@ -13,10 +13,10 @@ import CoreTokens from "../common/coreTokens";
 const normalizeSortValue = (sortValue: string | React.ReactNode) =>
   typeof sortValue === "string" ? sortValue.toUpperCase() : sortValue;
 
-const sortArray = (index: number, order: "ascending" | "descending", resultset: Row[][]) =>
+const sortArray = (index: number, order: "ascending" | "descending", resultset: { id: string; cells: Row[] }[]) =>
   resultset.slice().sort((element1, element2) => {
-    const sortValueA = normalizeSortValue(element1[index].sortValue || element1[index].displayValue);
-    const sortValueB = normalizeSortValue(element2[index].sortValue || element2[index].displayValue);
+    const sortValueA = normalizeSortValue(element1.cells[index].sortValue || element1[index].displayValue);
+    const sortValueB = normalizeSortValue(element2.cells[index].sortValue || element2[index].displayValue);
     let comparison = 0;
     if (typeof sortValueA === "object") {
       comparison = -1;
@@ -37,8 +37,18 @@ const getMaxItemsPerPageIndex = (
   minItemsPerPageIndex: number,
   itemsPerPage: number,
   resultset: Row[][],
-  page: number
+  page: number,
 ) => (minItemsPerPageIndex + itemsPerPage > resultset.length ? resultset.length : itemsPerPage * page - 1);
+
+const assignIdsToRows = (resultset: Row[][]) => {
+  if (resultset.length > 0) {
+    return resultset.map((row, index) => ({
+      cells: row,
+      id: `row_${index}`,
+    }));
+  }
+  return [];
+};
 
 const DxcResultsetTable = ({
   columns,
@@ -57,18 +67,23 @@ const DxcResultsetTable = ({
   const [sortColumnIndex, changeSortColumnIndex] = useState(-1);
   const [sortOrder, changeSortOrder] = useState<"ascending" | "descending">("ascending");
 
+  const prevRowCountRef = useRef<number>(rows.length);
+
+  const rowsWithIds = useMemo(() => assignIdsToRows(rows), [rows]);
+
   const minItemsPerPageIndex = useMemo(() => getMinItemsPerPageIndex(page, itemsPerPage, page), [itemsPerPage, page]);
   const maxItemsPerPageIndex = useMemo(
     () => getMaxItemsPerPageIndex(minItemsPerPageIndex, itemsPerPage, rows, page),
-    [itemsPerPage, minItemsPerPageIndex, page, rows]
+    [itemsPerPage, minItemsPerPageIndex, page, rows],
   );
+
   const sortedResultset = useMemo(
-    () => (sortColumnIndex !== -1 ? sortArray(sortColumnIndex, sortOrder, rows) : rows),
-    [sortColumnIndex, sortOrder, rows]
+    () => (sortColumnIndex !== -1 ? sortArray(sortColumnIndex, sortOrder, rowsWithIds) : rowsWithIds),
+    [sortColumnIndex, sortOrder, rowsWithIds],
   );
   const filteredResultset = useMemo(
     () => sortedResultset && sortedResultset.slice(minItemsPerPageIndex, maxItemsPerPageIndex + 1),
-    [sortedResultset, minItemsPerPageIndex, maxItemsPerPageIndex]
+    [sortedResultset, minItemsPerPageIndex, maxItemsPerPageIndex],
   );
 
   const goToPage = (newPage: number) => {
@@ -89,9 +104,18 @@ const DxcResultsetTable = ({
 
   useEffect(() => {
     if (!hidePaginator) {
-      changePage(rows.length > 0 ? 1 : 0);
+      if (rows.length === 0) {
+        changePage(0);
+      } else if (rows.length < prevRowCountRef.current) {
+        const lastPage = Math.ceil(rows.length / itemsPerPage);
+        const prevLastPage = Math.ceil(prevRowCountRef.current / itemsPerPage);
+        if (lastPage < prevLastPage) {
+          changePage(Math.min(lastPage, page));
+        }
+      }
+      prevRowCountRef.current = rows.length;
     }
-  }, [rows]);
+  }, [rows.length]);
 
   return (
     <ThemeProvider theme={colorsTheme.table}>
@@ -135,17 +159,13 @@ const DxcResultsetTable = ({
             </tr>
           </thead>
           <tbody>
-            {filteredResultset.map((cells) => {
-              const rowKey = uuidv4();
-              return (
-                <tr key={`resultSetTableCell_${page}_${rowKey}`}>
-                  {cells.map((cellContent) => {
-                    const cellKey = uuidv4();
-                    return <td key={`resultSetTableCellContent_${cellKey}`}>{cellContent.displayValue}</td>;
-                  })}
-                </tr>
-              );
-            })}
+            {filteredResultset.map((row) => (
+              <tr key={`resultSetTableCell_${row.id}`}>
+                {row.cells.map((cellContent, cellIndex) => (
+                  <td key={`resultSetTableCellContent_${cellIndex}`}>{cellContent.displayValue}</td>
+                ))}
+              </tr>
+            ))}
           </tbody>
         </DxcTable>
         {!hidePaginator && (
