@@ -3,6 +3,7 @@ import { render, fireEvent, act } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import DxcResultsetTable from "./ResultsetTable";
 import { ActionCellsPropsType } from "../table/types";
+import DxcCheckbox from "../checkbox/Checkbox";
 
 // Mocking DOMRect for Radix Primitive Popover
 (global as any).globalThis = global;
@@ -185,53 +186,42 @@ const rows = [
     },
   ],
 ];
-const rows2 = [
+
+const columnsWithCheckbox = [
+  { displayValue: "Id", isSortable: true },
+  { displayValue: "Checkbox", isSortable: false },
+  { displayValue: "Name", isSortable: false },
+  { displayValue: "City", isSortable: false },
+];
+
+const rowsWithCheckbox = [
   [
+    { displayValue: "001", sortValue: "001" },
     {
-      displayValue: "546",
-      sortValue: "465",
+      displayValue: <DxcCheckbox size="fillParent" defaultChecked />,
     },
-    {
-      displayValue: "OtherValue",
-      sortValue: "OtherValue",
-    },
-    {
-      displayValue: "OtherValue",
-      sortValue: "OtherValue",
-    },
+    { displayValue: "Peter" },
+    { displayValue: "Miami" },
   ],
   [
+    { displayValue: "002", sortValue: "002" },
     {
-      displayValue: "978",
-      sortValue: "465",
+      displayValue: <DxcCheckbox size="fillParent" />,
     },
-    {
-      displayValue: "OtherValue",
-      sortValue: "OtherValue",
-    },
-    {
-      displayValue: "OtherValue",
-      sortValue: "OtherValue",
-    },
-    {
-      displayValue: "",
-    },
+    { displayValue: "Louis" },
+    { displayValue: "London" },
   ],
   [
+    { displayValue: "003", sortValue: "003" },
     {
-      displayValue: "678",
-      sortValue: "344",
+      displayValue: <DxcCheckbox size="fillParent" />,
     },
-    {
-      displayValue: "OtherValue",
-      sortValue: "OtherValue",
-    },
-    {
-      displayValue: "OtherValue",
-      sortValue: "OtherValue",
-    },
+    { displayValue: "Lana" },
+    { displayValue: "Amsterdam" },
   ],
 ];
+
+const rows2 = [...rows].slice(0, -1);
 
 describe("Resultset table component tests", () => {
   test("Resultset table rendered correctly", () => {
@@ -301,11 +291,52 @@ describe("Resultset table component tests", () => {
     expect(component.queryByText("Cosmin")).not.toBeTruthy();
   });
 
-  test("Resultset table change rows should go to first page", () => {
-    const { queryByText, rerender } = render(<DxcResultsetTable columns={columns} rows={rows} itemsPerPage={3} />);
+  test("Resultset table should go one page back when removing the last page data", () => {
+    const { getAllByRole, queryByText, rerender } = render(
+      <DxcResultsetTable columns={columns} rows={rows} itemsPerPage={3} />
+    );
+    expect(queryByText("1 to 3 of 10")).toBeTruthy();
+    const lastButton = getAllByRole("button")[4];
     expect(queryByText("Peter")).toBeTruthy();
+    fireEvent.click(lastButton);
+    expect(queryByText("10 to 10 of 10")).toBeTruthy();
     rerender(<DxcResultsetTable columns={columns} rows={rows2} itemsPerPage={3} />);
-    expect(queryByText("1 to 3 of 3")).toBeTruthy();
+    expect(queryByText("7 to 9 of 9")).toBeTruthy();
+  });
+
+  test("Resultset table shouldn't go one page back when there is data left in the last page", () => {
+    const { getAllByRole, queryByText, rerender } = render(
+      <DxcResultsetTable columns={columns} rows={rows} itemsPerPage={2} />
+    );
+    expect(queryByText("1 to 2 of 10")).toBeTruthy();
+    const lastButton = getAllByRole("button")[4];
+    expect(queryByText("Peter")).toBeTruthy();
+    fireEvent.click(lastButton);
+    expect(queryByText("9 to 10 of 10")).toBeTruthy();
+    rerender(<DxcResultsetTable columns={columns} rows={rows2} itemsPerPage={2} />);
+    expect(queryByText("9 to 9 of 9")).toBeTruthy();
+  });
+
+  test("Resultset table uncontrolled components maintain its value when sorting", async () => {
+    const { getAllByRole } = render(
+      <DxcResultsetTable columns={columnsWithCheckbox} rows={rowsWithCheckbox} itemsPerPage={3} />
+    );
+    const columnHeader = getAllByRole("columnheader")[0];
+    const sortButton = getAllByRole("button")[0];
+
+    expect(getAllByRole("checkbox")[0].getAttribute("aria-checked")).toBe("true");
+
+    expect(columnHeader.getAttribute("aria-sort")).toBe("none");
+
+    fireEvent.click(sortButton);
+
+    expect(columnHeader.getAttribute("aria-sort")).toBe("ascending");
+
+    fireEvent.click(sortButton);
+
+    expect(columnHeader.getAttribute("aria-sort")).toBe("descending");
+
+    expect(getAllByRole("checkbox")[0].getAttribute("aria-checked")).toBe("false");
   });
 
   test("Resultset table change itemsPerPage should go to first page", () => {

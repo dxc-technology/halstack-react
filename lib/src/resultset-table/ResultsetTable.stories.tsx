@@ -410,5 +410,5 @@ export const DropdownAction = ResultsetActionsCellDropdown.bind({});
 DropdownAction.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const dropdown = canvas.getAllByRole("button")[5];
-  await userEvent.click(dropdown);
+  userEvent.click(dropdown);
 };
