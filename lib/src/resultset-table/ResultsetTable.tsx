@@ -1,6 +1,5 @@
 import React, { useState, useMemo, useEffect, useRef } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import { v4 as uuidv4 } from "uuid";
 import { spaces } from "../common/variables";
 import DxcPaginator from "../paginator/Paginator";
 import DxcTable, { DxcActionsCell } from "../table/Table";
@@ -123,39 +122,36 @@ const DxcResultsetTable = ({
         <DxcTable mode={mode}>
           <thead>
             <tr>
-              {columns.map((column, index) => {
-                const columnKey = uuidv4();
-                return (
-                  <th
-                    key={`tableHeader_${columnKey}`}
-                    aria-sort={column.isSortable ? (sortColumnIndex === index ? sortOrder : "none") : undefined}
+              {columns.map((column, index) => (
+                <th
+                  key={`tableHeader_${index}`}
+                  aria-sort={column.isSortable ? (sortColumnIndex === index ? sortOrder : "none") : undefined}
+                >
+                  <HeaderContainer
+                    role={column.isSortable ? "button" : undefined}
+                    onClick={() => {
+                      if (column.isSortable) {
+                        changeSorting(index);
+                      }
+                    }}
+                    tabIndex={column.isSortable ? tabIndex : -1}
+                    isSortable={column.isSortable}
+                    mode={mode}
+                    aria-label={column.isSortable ? "Sort column" : undefined}
                   >
-                    <HeaderContainer
-                      role={column.isSortable ? "button" : undefined}
-                      onClick={() => {
-                        if (column.isSortable) {
-                          changeSorting(index);
-                        }
-                      }}
-                      tabIndex={column.isSortable ? tabIndex : -1}
-                      isSortable={column.isSortable}
-                      mode={mode}
-                      aria-label={column.isSortable ? "Sort column" : undefined}
-                    >
-                      <span>{column.displayValue}</span>
-                      {column.isSortable && (
-                        <SortIcon>
-                          {sortColumnIndex === index
-                            ? sortOrder === "ascending"
-                              ? icons.arrowUp
-                              : icons.arrowDown
-                            : icons.bothArrows}
-                        </SortIcon>
-                      )}
-                    </HeaderContainer>
-                  </th>
-                );
-              })}
+                    <span>{column.displayValue}</span>
+                    {column.isSortable && (
+                      <SortIcon>
+                        {sortColumnIndex === index
+                          ? sortOrder === "ascending"
+                            ? icons.arrowUp
+                            : icons.arrowDown
+                          : icons.bothArrows}
+                      </SortIcon>
+                    )}
+                  </HeaderContainer>
+                </th>
+              ))}
             </tr>
           </thead>
           <tbody>

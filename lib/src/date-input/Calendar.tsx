@@ -1,7 +1,6 @@
 import { Dayjs } from "dayjs";
 import React, { useState, useMemo, useEffect, useId } from "react";
 import styled from "styled-components";
-import { v4 as uuidv4 } from "uuid";
 import { CalendarPropsType } from "./types";
 import useTranslatedLabels from "../useTranslatedLabels";
 
@@ -182,31 +181,28 @@ const Calendar = ({
       <MonthContainer onBlur={handleOnBlur} role="rowgroup">
         {divideDaysIntoWeeks(dayCells, weekDays.length).map((week, rowIndex) => (
           <WeekContainer key={`${id}_week_${rowIndex}`} role="row">
-            {week.map((date) => {
-              const dateKey = uuidv4();
-              return (
-                <DayCellButton
-                  id={`${id}_day_${date.day}_month${date.month}`}
-                  key={`day_${dateKey}`}
-                  role="gridcell"
-                  aria-selected={isDaySelected(date, selectedDate)}
-                  onKeyDown={(event) => handleDayKeyboardEvent(event, date)}
-                  onClick={() => onDateClickHandler(date)}
-                  selected={isDaySelected(date, selectedDate)}
-                  actualMonth={date.month === innerDate.get("month")}
-                  autoFocus={date.day === dateToFocus.get("date") && date.month === dateToFocus.get("month")}
-                  tabIndex={date.day === dateToFocus.get("date") && date.month === dateToFocus.get("month") ? 0 : -1}
-                  isCurrentDay={
-                    today.get("date") === date.day &&
-                    today.get("month") === innerDate.get("month") &&
-                    today.get("month") === date.month &&
-                    today.get("year") === innerDate.get("year")
-                  }
-                >
-                  {date.day}
-                </DayCellButton>
-              );
-            })}
+            {week.map((date) => (
+              <DayCellButton
+                id={`${id}_day_${date.day}_month${date.month}`}
+                key={`${id}_day_${date.day}_month${date.month}`}
+                role="gridcell"
+                aria-selected={isDaySelected(date, selectedDate)}
+                onKeyDown={(event) => handleDayKeyboardEvent(event, date)}
+                onClick={() => onDateClickHandler(date)}
+                selected={isDaySelected(date, selectedDate)}
+                actualMonth={date.month === innerDate.get("month")}
+                autoFocus={date.day === dateToFocus.get("date") && date.month === dateToFocus.get("month")}
+                tabIndex={date.day === dateToFocus.get("date") && date.month === dateToFocus.get("month") ? 0 : -1}
+                isCurrentDay={
+                  today.get("date") === date.day &&
+                  today.get("month") === innerDate.get("month") &&
+                  today.get("month") === date.month &&
+                  today.get("year") === innerDate.get("year")
+                }
+              >
+                {date.day}
+              </DayCellButton>
+            ))}
           </WeekContainer>
         ))}
       </MonthContainer>

@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useCallback, useId } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import { v4 as uuidv4 } from "uuid";
 import { spaces } from "../common/variables";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
@@ -190,22 +189,19 @@ const DxcFileInput = React.forwardRef<RefType, FileInputPropsType>(
               />
               {files.length > 0 && (
                 <FileItemListContainer>
-                  {files.map((file) => {
-                    const fileKey = uuidv4();
-                    return (
-                      <FileItem
-                        fileName={file.file.name}
-                        error={file.error}
-                        singleFileMode={!multiple && files.length === 1}
-                        showPreview={mode === "file" && !multiple ? false : showPreview}
-                        preview={file.preview}
-                        type={file.file.type}
-                        onDelete={onDelete}
-                        tabIndex={tabIndex}
-                        key={`file-${fileKey}`}
-                      />
-                    );
-                  })}
+                  {files.map((file, index) => (
+                    <FileItem
+                      fileName={file.file.name}
+                      error={file.error}
+                      singleFileMode={!multiple && files.length === 1}
+                      showPreview={mode === "file" && !multiple ? false : showPreview}
+                      preview={file.preview}
+                      type={file.file.type}
+                      onDelete={onDelete}
+                      tabIndex={tabIndex}
+                      key={`file-${index}`}
+                    />
+                  ))}
                 </FileItemListContainer>
               )}
             </FileContainer>
@@ -254,22 +250,19 @@ const DxcFileInput = React.forwardRef<RefType, FileInputPropsType>(
               </DragDropArea>
               {files.length > 0 && (
                 <FileItemListContainer>
-                  {files.map((file) => {
-                    const fileKey = uuidv4();
-                    return (
-                      <FileItem
-                        fileName={file.file.name}
-                        error={file.error}
-                        singleFileMode={false}
-                        showPreview={showPreview}
-                        preview={file.preview}
-                        type={file.file.type}
-                        onDelete={onDelete}
-                        tabIndex={tabIndex}
-                        key={`file-${fileKey}`}
-                      />
-                    );
-                  })}
+                  {files.map((file, index) => (
+                    <FileItem
+                      fileName={file.file.name}
+                      error={file.error}
+                      singleFileMode={false}
+                      showPreview={showPreview}
+                      preview={file.preview}
+                      type={file.file.type}
+                      onDelete={onDelete}
+                      tabIndex={tabIndex}
+                      key={`file-${index}`}
+                    />
+                  ))}
                 </FileItemListContainer>
               )}
             </Container>

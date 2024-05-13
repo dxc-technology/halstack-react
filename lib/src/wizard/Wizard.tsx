@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import { v4 as uuidv4 } from "uuid";
 import { spaces } from "../common/variables";
 import useTheme from "../useTheme";
 import WizardPropsType, { StepProps } from "./types";
@@ -70,10 +69,8 @@ const DxcWizard = ({
   return (
     <ThemeProvider theme={colorsTheme.wizard}>
       <StepsContainer mode={mode} margin={margin} role="group">
-        {steps?.map((step, i) => {
-          const stepKey = uuidv4();
-          return (
-            <StepContainer key={`step-${stepKey}`} mode={mode} lastStep={steps && i === (steps?.length || 0) - 1}>
+        {steps?.map((step, i) => (
+            <StepContainer key={`step${i}`} mode={mode} lastStep={steps && i === (steps?.length || 0) - 1}>
               <Step
                 onClick={() => {
                   handleStepClick(i);
@@ -121,8 +118,7 @@ const DxcWizard = ({
               </Step>
               {i === steps.length - 1 ? "" : <StepSeparator mode={mode} />}
             </StepContainer>
-          );
-        })}
+          ))}
       </StepsContainer>
     </ThemeProvider>
   );

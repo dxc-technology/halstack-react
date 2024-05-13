@@ -1,6 +1,5 @@
 import React, { useCallback } from "react";
 import styled from "styled-components";
-import { v4 as uuidv4 } from "uuid";
 import BreadcrumbsProps from "./types";
 import DxcDropdown from "../dropdown/Dropdown";
 import { HalstackProvider } from "../HalstackContext";
@@ -48,18 +47,15 @@ const DxcBreadcrumbs = ({
             <Item isCurrentPage label={items[items.length - 1].label} />
           </>
         ) : (
-          items.map((item, index, { length }) => {
-            const itemKey = uuidv4();
-            return (
-              <Item
-                href={item.href}
-                isCurrentPage={index === length - 1}
-                key={itemKey}
-                label={item.label}
-                onClick={onItemClick}
-              />
-            );
-          })
+          items.map((item, index, { length }) => (
+            <Item
+              href={item.href}
+              isCurrentPage={index === length - 1}
+              key={index}
+              label={item.label}
+              onClick={onItemClick}
+            />
+          ))
         )}
       </OrderedList>
     </nav>

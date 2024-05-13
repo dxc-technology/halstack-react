@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
-import { v4 as uuidv4 } from "uuid";
 import useTranslatedLabels from "../useTranslatedLabels";
 import Suggestion from "./Suggestion";
 import { SuggestionsProps } from "./types";
@@ -43,21 +42,18 @@ const Suggestions = ({
       {!isSearching &&
         !searchHasErrors &&
         suggestions.length > 0 &&
-        suggestions.map((suggestion, index) => {
-          const suggestionKey = uuidv4();
-          return (
-            <Suggestion
-              key={`${id}-suggestion-${suggestionKey}`}
-              id={`${id}-suggestion-${suggestionKey}`}
-              value={value}
-              onClick={suggestionOnClick}
-              suggestion={suggestion}
-              isLast={index === suggestions.length - 1}
-              visuallyFocused={visualFocusIndex === index}
-              highlighted={highlightedSuggestions}
-            />
-          );
-        })}
+        suggestions.map((suggestion, index) => (
+          <Suggestion
+            key={`${id}-suggestion-${index}`}
+            id={`${id}-suggestion-${index}`}
+            value={value}
+            onClick={suggestionOnClick}
+            suggestion={suggestion}
+            isLast={index === suggestions.length - 1}
+            visuallyFocused={visualFocusIndex === index}
+            highlighted={highlightedSuggestions}
+          />
+        ))}
       {isSearching && (
         <SuggestionsSystemMessage role="option">{translatedLabels.textInput.searchingMessage}</SuggestionsSystemMessage>
       )}
