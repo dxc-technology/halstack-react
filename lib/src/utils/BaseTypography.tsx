@@ -94,7 +94,7 @@ const StyledTypography = styled.span<BaseTypographyProps>`
   text-decoration: ${({ textDecoration }) => textDecoration};
   text-overflow: ${({ textOverflow }) => textOverflow};
   white-space: ${({ whiteSpace }) => whiteSpace};
-  overflow: ${({ textOverflow }) => textOverflow !== "unset" ? "hidden" : "visible"};
+  overflow: ${({ textOverflow }) => (textOverflow !== "unset" ? "hidden" : "visible")};
   margin: 0;
 `;
 

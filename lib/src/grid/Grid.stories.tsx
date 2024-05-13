@@ -1,7 +1,7 @@
 import React from "react";
+import styled from "styled-components";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
-import styled from "styled-components";
 import DxcGrid from "./Grid";
 import DxcInset from "../inset/Inset";
 
@@ -200,7 +200,11 @@ const Container = styled.div<{ height?: string }>`
   ${({ height }) => height && `height: ${height}`};
 `;
 
-const ColoredContainer = styled.div<{ color?: string; width?: string; height?: string }>`
+const ColoredContainer = styled.div<{
+  color?: string;
+  width?: string;
+  height?: string;
+}>`
   box-sizing: border-box;
   display: flex;
   justify-content: center;

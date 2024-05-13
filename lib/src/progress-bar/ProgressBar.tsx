@@ -26,14 +26,8 @@ const DxcProgressBar = ({
       <BackgroundProgressBar overlay={overlay}>
         <ProgressBarContainer overlay={overlay} margin={margin}>
           <InfoProgressBar>
-            <ProgressBarLabel overlay={overlay}>
-              {label}
-            </ProgressBarLabel>
-            <ProgressBarProgress
-              overlay={overlay}
-              showValue={showValue}
-              value={valueProgressBar}
-            >
+            <ProgressBarLabel overlay={overlay}>{label}</ProgressBarLabel>
+            <ProgressBarProgress overlay={overlay} showValue={showValue} value={valueProgressBar}>
               {valueProgressBar} %
             </ProgressBarProgress>
           </InfoProgressBar>
@@ -51,18 +45,16 @@ const DxcProgressBar = ({
               value={valueProgressBar}
             ></LinearProgressBar>
           </LinearProgress>
-          {helperText && (
-            <HelperText overlay={overlay}>
-              {helperText}
-            </HelperText>
-          )}
+          {helperText && <HelperText overlay={overlay}>{helperText}</HelperText>}
         </ProgressBarContainer>
       </BackgroundProgressBar>
     </ThemeProvider>
   );
 };
 
-const BackgroundProgressBar = styled.div<{ overlay: ProgressBarPropsType["overlay"] }>`
+const BackgroundProgressBar = styled.div<{
+  overlay: ProgressBarPropsType["overlay"];
+}>`
   ${({ overlay, theme }) =>
     overlay
       ? `background-color: ${theme.overlayColor};
@@ -112,16 +104,15 @@ const InfoProgressBar = styled.div`
   justify-content: space-between;
 `;
 
-const ProgressBarLabel = styled.div<{ overlay: ProgressBarPropsType["overlay"] }>`
+const ProgressBarLabel = styled.div<{
+  overlay: ProgressBarPropsType["overlay"];
+}>`
   font-family: ${(props) => props.theme.labelFontFamily};
   font-style: ${(props) => props.theme.labelFontStyle};
   font-size: ${(props) => props.theme.labelFontSize};
   font-weight: ${(props) => props.theme.labelFontWeight};
   text-transform: ${(props) => props.theme.labelFontTextTransform};
-  color: ${(props) =>
-    props.overlay === true
-      ? props.theme.overlayFontColor
-      : props.theme.labelFontColor};
+  color: ${(props) => (props.overlay === true ? props.theme.overlayFontColor : props.theme.labelFontColor)};
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -138,20 +129,14 @@ const ProgressBarProgress = styled.div<{
   font-size: ${(props) => props.theme.valueFontSize};
   font-weight: ${(props) => props.theme.valueFontWeight};
   text-transform: ${(props) => props.theme.valueFontTextTransform};
-  color: ${(props) =>
-    props.overlay === true
-      ? props.theme.overlayFontColor
-      : props.theme.valueFontColor};
+  color: ${(props) => (props.overlay === true ? props.theme.overlayFontColor : props.theme.valueFontColor)};
   display: ${(props) =>
     (props.value !== undefined && props.value !== null && props.showValue === true && "block") || "none"};
   flex-shrink: 0;
 `;
 
 const HelperText = styled.span<{ overlay: ProgressBarPropsType["overlay"] }>`
-  color: ${(props) =>
-    props.overlay === true
-      ? props.theme.overlayFontColor
-      : props.theme.helperTextFontColor};
+  color: ${(props) => (props.overlay === true ? props.theme.overlayFontColor : props.theme.helperTextFontColor)};
   font-family: ${(props) => props.theme.helperTextFontFamily};
   font-size: ${(props) => props.theme.helperTextFontSize};
   font-style: ${(props) => props.theme.helperTextFontStyle};
@@ -159,7 +144,9 @@ const HelperText = styled.span<{ overlay: ProgressBarPropsType["overlay"] }>`
   line-height: 1.5em;
 `;
 
-const LinearProgress = styled.div<{ helperText: ProgressBarPropsType["helperText"] }>`
+const LinearProgress = styled.div<{
+  helperText: ProgressBarPropsType["helperText"];
+}>`
   height: ${(props) => props.theme.thickness};
   background-color: ${(props) => props.theme.totalLineColor};
   border-radius: ${(props) => props.theme.borderRadius};

@@ -1,7 +1,7 @@
 import React, { useState, useRef, useId } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { AdvancedTheme, spaces } from "../common/variables";
-import { getMargin } from "../common/utils";
+import getMargin from "../common/utils";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
 import SwitchPropsType, { RefType } from "./types";
@@ -35,18 +35,24 @@ const DxcSwitch = React.forwardRef<RefType, SwitchPropsType>(
     const handleOnKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
       switch (event.key) {
         case "Enter":
-        case " ": // Space
+        case " ": {
+          // Space
           event.preventDefault();
           refTrack.current.focus();
           const isChecked = !(checked ?? innerChecked);
           setInnerChecked(isChecked);
           onChange?.(isChecked);
           break;
+        }
+        default:
+          break;
       }
     };
 
-    const handlerSwitchChange = (event) => {
-      checked ?? setInnerChecked((innerChecked) => !innerChecked);
+    const handlerSwitchChange = () => {
+      if (checked == null) {
+        setInnerChecked((currentInnerChecked) => !currentInnerChecked);
+      }
       onChange?.(checked ? !checked : !innerChecked);
     };
 
@@ -68,7 +74,7 @@ const DxcSwitch = React.forwardRef<RefType, SwitchPropsType>(
           <ValueInput
             type="checkbox"
             name={name}
-            aria-hidden={true}
+            aria-hidden
             value={value}
             disabled={disabled}
             checked={checked ?? innerChecked}
@@ -121,6 +127,8 @@ const getDisabledColor = (
           return theme.disabledCheckedTrackBackgroundColor;
         case "uncheck":
           return theme.disabledUncheckedTrackBackgroundColor;
+        default:
+          return undefined;
       }
     case "thumb":
       switch (subElement) {
@@ -128,9 +136,13 @@ const getDisabledColor = (
           return theme.disabledCheckedThumbBackgroundColor;
         case "uncheck":
           return theme.disabledUncheckedThumbBackgroundColor;
+        default:
+          return undefined;
       }
     case "label":
       return theme.disabledLabelFontColor;
+    default:
+      return undefined;
   }
 };
 
@@ -146,16 +158,24 @@ const getNotDisabledColor = (
           return theme.checkedTrackBackgroundColor;
         case "uncheck":
           return theme.uncheckedTrackBackgroundColor;
+        default:
+          return undefined;
       }
+      break;
     case "thumb":
       switch (subElement) {
         case "check":
           return theme.checkedThumbBackgroundColor;
         case "uncheck":
           return theme.uncheckedThumbBackgroundColor;
+        default:
+          return undefined;
       }
+      break;
     case "label":
       return theme.labelFontColor;
+    default:
+      return undefined;
   }
 };
 
@@ -189,7 +209,8 @@ const LabelContainer = styled.span<{
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  color: ${(props) => (props.disabled ? getDisabledColor(props.theme, "label") : getNotDisabledColor(props.theme, "label"))};
+  color: ${(props) =>
+    props.disabled ? getDisabledColor(props.theme, "label") : getNotDisabledColor(props.theme, "label")};
   opacity: 1;
   font-family: ${(props) => props.theme.labelFontFamily};
   font-size: ${(props) => props.theme.labelFontSize};
@@ -200,8 +221,8 @@ const LabelContainer = styled.span<{
     !props.label
       ? "margin: 0px;"
       : props.labelPosition === "after"
-      ? `margin-left: ${props.theme.spaceBetweenLabelSwitch};`
-      : `margin-right: ${props.theme.spaceBetweenLabelSwitch};`};
+        ? `margin-left: ${props.theme.spaceBetweenLabelSwitch};`
+        : `margin-right: ${props.theme.spaceBetweenLabelSwitch};`};
 
   ${(props) => props.labelPosition === "before" && "order: -1"}
 `;
@@ -241,28 +262,41 @@ const SwitchTrack = styled.span<{ disabled: SwitchPropsType["disabled"] }>`
     width: ${(props) => props.theme.thumbWidth};
     height: ${(props) => props.theme.thumbHeight};
     border-radius: 50%;
-    box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+    box-shadow:
+      0px 2px 1px -1px rgb(0 0 0 / 20%),
+      0px 1px 1px 0px rgb(0 0 0 / 14%),
+      0px 1px 3px 0px rgb(0 0 0 / 12%);
     bottom: -6px;
     left: -4px;
     transform: translateX(0px);
     background-color: ${(props) =>
-      props.disabled ? getDisabledColor(props.theme, "thumb", "uncheck") : getNotDisabledColor(props.theme, "thumb", "uncheck")};
+      props.disabled
+        ? getDisabledColor(props.theme, "thumb", "uncheck")
+        : getNotDisabledColor(props.theme, "thumb", "uncheck")};
   }
 
   /* Unchecked */
   background-color: ${(props) =>
-    props.disabled ? getDisabledColor(props.theme, "track", "uncheck") : getNotDisabledColor(props.theme, "track", "uncheck")};
+    props.disabled
+      ? getDisabledColor(props.theme, "track", "uncheck")
+      : getNotDisabledColor(props.theme, "track", "uncheck")};
 
   /* Checked */
   &[aria-checked="true"] {
     background-color: ${(props) =>
-      props.disabled ? getDisabledColor(props.theme, "track", "check") : getNotDisabledColor(props.theme, "track", "check")};
+      props.disabled
+        ? getDisabledColor(props.theme, "track", "check")
+        : getNotDisabledColor(props.theme, "track", "check")};
     ::before {
       transform: translateX(${(props) => props.theme.thumbShift});
       background-color: ${(props) =>
-        props.disabled ? getDisabledColor(props.theme, "thumb", "check") : getNotDisabledColor(props.theme, "thumb", "check")};
+        props.disabled
+          ? getDisabledColor(props.theme, "thumb", "check")
+          : getNotDisabledColor(props.theme, "thumb", "check")};
     }
   }
 `;
+
+DxcSwitch.displayName = "DxcSwitch";
 
 export default DxcSwitch;

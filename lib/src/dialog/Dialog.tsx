@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
+import { createPortal } from "react-dom";
 import DialogPropsType from "./types";
 import { responsiveSizes } from "../common/variables";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
-import { createPortal } from "react-dom";
 import FocusLock from "../utils/FocusLock";
 import DxcIcon from "../icon/Icon";
 
@@ -91,7 +91,9 @@ const Overlay = styled.div`
   background-color: ${(props) => props.theme.overlayColor};
 `;
 
-const Dialog = styled.div<{ isCloseVisible: DialogPropsType["isCloseVisible"] }>`
+const Dialog = styled.div<{
+  isCloseVisible: DialogPropsType["isCloseVisible"];
+}>`
   position: relative;
   box-sizing: border-box;
   max-width: 80%;

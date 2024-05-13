@@ -3,13 +3,15 @@ import styled from "styled-components";
 import { SuggestionProps } from "./types";
 
 const transformSpecialChars = (str: string) => {
-  const specialCharsRegex = /[\\*()\[\]{}+?/]/;
+  const specialCharsRegex = /[\\*()[\]{}+?/]/;
   let value = str;
   if (specialCharsRegex.test(value)) {
     const regexAsString = specialCharsRegex.toString().split("");
     const uniqueSpecialChars = regexAsString.filter((item, index) => regexAsString.indexOf(item) === index);
     uniqueSpecialChars.forEach((specialChar) => {
-      if (str.includes(specialChar)) value = value.replace(specialChar, "\\" + specialChar);
+      if (str.includes(specialChar)) {
+        value = value.replace(specialChar, `\\${specialChar}`);
+      }
     });
   }
   return value;
@@ -26,7 +28,10 @@ const Suggestion = ({
 }: SuggestionProps): JSX.Element => {
   const matchedSuggestion = useMemo(() => {
     const regEx = new RegExp(transformSpecialChars(value), "i");
-    return { matchedWords: suggestion.match(regEx), noMatchedWords: suggestion.replace(regEx, "") };
+    return {
+      matchedWords: suggestion.match(regEx),
+      noMatchedWords: suggestion.replace(regEx, ""),
+    };
   }, [value, suggestion]);
 
   return (

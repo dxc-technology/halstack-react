@@ -1,11 +1,10 @@
 import React from "react";
 import styled, { ThemeProvider } from "styled-components";
-import { spaces } from "../common/variables";
-import { getMargin } from "../common/utils";
+import { spaces, AdvancedTheme } from "../common/variables";
+import getMargin from "../common/utils";
 import useTheme from "../useTheme";
 import TablePropsType, { ActionCellsPropsType, DeepPartial } from "./types";
 import DropdownTheme from "./DropdownTheme";
-import { AdvancedTheme } from "../common/variables";
 import DxcDropdown from "../dropdown/Dropdown";
 import DxcFlex from "../flex/Flex";
 import { HalstackProvider } from "../HalstackContext";
@@ -29,7 +28,7 @@ export const DxcActionsCell = ({ actions }: ActionCellsPropsType): JSX.Element =
   const colorsTheme = useTheme();
 
   return (
-    <DxcFlex gap={"0.5rem"} alignItems="center">
+    <DxcFlex gap="0.5rem" alignItems="center">
       {actionIcons.map(
         (action, index) =>
           index < maxNumberOfActions && (
@@ -44,7 +43,7 @@ export const DxcActionsCell = ({ actions }: ActionCellsPropsType): JSX.Element =
           )
       )}
       {actionDropdown && (
-        <HalstackProvider advancedTheme={overwriteTheme(colorsTheme)} key={`provider-dropdown`}>
+        <HalstackProvider advancedTheme={overwriteTheme(colorsTheme)} key="provider-dropdown">
           <DxcDropdown
             options={actionDropdown.options}
             onSelectOption={actionDropdown.onClick}
@@ -64,16 +63,14 @@ const DxcTable = ({ children, margin, mode = "default" }: TablePropsType): JSX.E
 
   return (
     <ThemeProvider theme={colorsTheme.table}>
-      <DxcTableContainer margin={margin}> 
+      <DxcTableContainer margin={margin}>
         <DxcTableContent mode={mode}>{children}</DxcTableContent>
       </DxcTableContainer>
     </ThemeProvider>
   );
 };
 
-const calculateWidth = (margin) => {
-  return `calc(100% - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`;
-};
+const calculateWidth = (margin) => `calc(100% - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`;
 
 const DxcTableContainer = styled.div<{ margin: TablePropsType["margin"] }>`
   width: ${(props) => calculateWidth(props.margin)};

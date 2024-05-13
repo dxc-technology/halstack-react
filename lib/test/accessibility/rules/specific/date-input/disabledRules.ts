@@ -7,3 +7,5 @@ export const disabledRules = [
   // Disable aria allowed rule to prevent false positive from gridcell role not being allowed in buttons
   "aria-allowed-role",
 ];
+
+export default disabledRules;

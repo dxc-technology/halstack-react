@@ -6,13 +6,20 @@ import DxcTextInput from "./TextInput";
 // Mocking DOMRect for Radix Primitive Popover
 (global as any).globalThis = global;
 (global as any).DOMRect = {
-  fromRect: () => ({ top: 0, left: 0, bottom: 0, right: 0, width: 0, height: 0 }),
+  fromRect: () => ({
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
+    width: 0,
+    height: 0,
+  }),
 };
-(global as any).ResizeObserver = class ResizeObserver {
-  observe() {}
-  unobserve() {}
-  disconnect() {}
-};
+global.ResizeObserver = jest.fn().mockImplementation(() => ({
+  observe: jest.fn(),
+  unobserve: jest.fn(),
+  disconnect: jest.fn(),
+}));
 
 const countries = [
   "Afghanistan",
@@ -71,7 +78,10 @@ describe("TextInput component tests", () => {
     fireEvent.focus(input);
     fireEvent.blur(input);
     expect(onBlur).toHaveBeenCalled();
-    expect(onBlur).toHaveBeenCalledWith({ value: "", error: "This field is required. Please, enter a value." });
+    expect(onBlur).toHaveBeenCalledWith({
+      value: "",
+      error: "This field is required. Please, enter a value.",
+    });
     fireEvent.change(input, { target: { value: "Test" } });
     fireEvent.blur(input);
     expect(onBlur).toHaveBeenCalled();
@@ -89,7 +99,10 @@ describe("TextInput component tests", () => {
     expect(onChange).toHaveBeenCalledWith({ value: "Test" });
     userEvent.clear(input);
     expect(onChange).toHaveBeenCalled();
-    expect(onChange).toHaveBeenCalledWith({ value: "", error: "This field is required. Please, enter a value." });
+    expect(onChange).toHaveBeenCalledWith({
+      value: "",
+      error: "This field is required. Please, enter a value.",
+    });
   });
 
   test("Pattern constraint", () => {
@@ -109,10 +122,16 @@ describe("TextInput component tests", () => {
     const input = getByRole("textbox");
     fireEvent.change(input, { target: { value: "pattern test" } });
     expect(onChange).toHaveBeenCalled();
-    expect(onChange).toHaveBeenCalledWith({ value: "pattern test", error: "Please match the format requested." });
+    expect(onChange).toHaveBeenCalledWith({
+      value: "pattern test",
+      error: "Please match the format requested.",
+    });
     fireEvent.blur(input);
     expect(onBlur).toHaveBeenCalled();
-    expect(onBlur).toHaveBeenCalledWith({ value: "pattern test", error: "Please match the format requested." });
+    expect(onBlur).toHaveBeenCalledWith({
+      value: "pattern test",
+      error: "Please match the format requested.",
+    });
     userEvent.clear(input);
     fireEvent.change(input, { target: { value: "pattern4&" } });
     expect(onChange).toHaveBeenCalled();
@@ -140,10 +159,16 @@ describe("TextInput component tests", () => {
     const input = getByRole("textbox");
     fireEvent.change(input, { target: { value: "test" } });
     expect(onChange).toHaveBeenCalled();
-    expect(onChange).toHaveBeenCalledWith({ value: "test", error: "Min length 5, max length 10." });
+    expect(onChange).toHaveBeenCalledWith({
+      value: "test",
+      error: "Min length 5, max length 10.",
+    });
     fireEvent.blur(input);
     expect(onBlur).toHaveBeenCalled();
-    expect(onBlur).toHaveBeenCalledWith({ value: "test", error: "Min length 5, max length 10." });
+    expect(onBlur).toHaveBeenCalledWith({
+      value: "test",
+      error: "Min length 5, max length 10.",
+    });
     userEvent.clear(input);
     fireEvent.change(input, { target: { value: "length" } });
     expect(onChange).toHaveBeenCalled();
@@ -172,16 +197,28 @@ describe("TextInput component tests", () => {
     const input = getByRole("textbox");
     fireEvent.change(input, { target: { value: "test" } });
     expect(onChange).toHaveBeenCalled();
-    expect(onChange).toHaveBeenCalledWith({ value: "test", error: "Min length 5, max length 10." });
+    expect(onChange).toHaveBeenCalledWith({
+      value: "test",
+      error: "Min length 5, max length 10.",
+    });
     fireEvent.blur(input);
     expect(onBlur).toHaveBeenCalled();
-    expect(onBlur).toHaveBeenCalledWith({ value: "test", error: "Min length 5, max length 10." });
+    expect(onBlur).toHaveBeenCalledWith({
+      value: "test",
+      error: "Min length 5, max length 10.",
+    });
     fireEvent.change(input, { target: { value: "tests" } });
     expect(onChange).toHaveBeenCalled();
-    expect(onChange).toHaveBeenCalledWith({ value: "tests", error: "Please match the format requested." });
+    expect(onChange).toHaveBeenCalledWith({
+      value: "tests",
+      error: "Please match the format requested.",
+    });
     fireEvent.blur(input);
     expect(onBlur).toHaveBeenCalled();
-    expect(onBlur).toHaveBeenCalledWith({ value: "tests", error: "Please match the format requested." });
+    expect(onBlur).toHaveBeenCalledWith({
+      value: "tests",
+      error: "Please match the format requested.",
+    });
     fireEvent.change(input, { target: { value: "tests4&" } });
     expect(onChange).toHaveBeenCalled();
     expect(onChange).toHaveBeenCalledWith({ value: "tests4&" });
@@ -236,7 +273,7 @@ describe("TextInput component tests", () => {
   test("Disabled text input (action must be shown but not clickable)", async () => {
     const onClick = jest.fn();
     const action = {
-      onClick: onClick,
+      onClick,
       icon: (
         <svg
           data-testid="image"
@@ -315,7 +352,7 @@ describe("TextInput component tests", () => {
   test("Read-only text input doesn't trigger custom action's onClick event", async () => {
     const onClick = jest.fn();
     const action = {
-      onClick: onClick,
+      onClick,
       icon: (
         <svg
           data-testid="image"
@@ -339,7 +376,7 @@ describe("TextInput component tests", () => {
   test("Action prop: image displayed with title and onClick event", async () => {
     const onClick = jest.fn();
     const action = {
-      onClick: onClick,
+      onClick,
       icon: (
         <svg
           data-testid="image"
@@ -365,7 +402,7 @@ describe("TextInput component tests", () => {
   test("Text input submit correctly value in form", async () => {
     const onClick = jest.fn();
     const action = {
-      onClick: onClick,
+      onClick,
       icon: (
         <svg
           data-testid="image"
@@ -413,7 +450,7 @@ describe("TextInput component tests", () => {
   test("Text Input has correct aria accessibility attributes", () => {
     const onClick = jest.fn();
     const action = {
-      onClick: onClick,
+      onClick,
       icon: (
         <svg
           data-testid="image"
@@ -584,9 +621,19 @@ describe("TextInput component synchronous autosuggest tests", () => {
     expect(queryByRole("listbox")).toBeFalsy();
     fireEvent.focus(input);
     expect(queryByRole("listbox")).toBeFalsy();
-    fireEvent.keyDown(input, { key: "ArrowUp", code: "ArrowUp", keyCode: 38, charCode: 38 });
+    fireEvent.keyDown(input, {
+      key: "ArrowUp",
+      code: "ArrowUp",
+      keyCode: 38,
+      charCode: 38,
+    });
     expect(queryByRole("listbox")).toBeFalsy();
-    fireEvent.keyDown(input, { key: "ArrowDown", code: "ArrowDown", keyCode: 40, charCode: 40 });
+    fireEvent.keyDown(input, {
+      key: "ArrowDown",
+      code: "ArrowDown",
+      keyCode: 40,
+      charCode: 40,
+    });
     expect(queryByRole("listbox")).toBeFalsy();
   });
 
@@ -647,9 +694,15 @@ describe("TextInput component synchronous autosuggest tests", () => {
     await act(async () => {
       userEvent.click(getByRole("option"));
     });
-    expect(onChange).toHaveBeenCalledWith({ value: "Andorra", error: "Please match the format requested." });
+    expect(onChange).toHaveBeenCalledWith({
+      value: "Andorra",
+      error: "Please match the format requested.",
+    });
     fireEvent.blur(input);
-    expect(onBlur).toHaveBeenCalledWith({ value: "Andorra", error: "Please match the format requested." });
+    expect(onBlur).toHaveBeenCalledWith({
+      value: "Andorra",
+      error: "Please match the format requested.",
+    });
   });
 
   test("Autosuggest - Length constraint", async () => {
@@ -675,9 +728,15 @@ describe("TextInput component synchronous autosuggest tests", () => {
     await act(async () => {
       userEvent.click(getByRole("option"));
     });
-    expect(onChange).toHaveBeenCalledWith({ value: "Cha", error: "Min length 5, max length 10." });
+    expect(onChange).toHaveBeenCalledWith({
+      value: "Cha",
+      error: "Min length 5, max length 10.",
+    });
     fireEvent.blur(input);
-    expect(onBlur).toHaveBeenCalledWith({ value: "Chad", error: "Min length 5, max length 10." });
+    expect(onBlur).toHaveBeenCalledWith({
+      value: "Chad",
+      error: "Min length 5, max length 10.",
+    });
   });
 
   test("Autosuggest keys: arrow down key opens autosuggest, active first option is selected with Enter and closes the autosuggest", () => {
@@ -686,10 +745,20 @@ describe("TextInput component synchronous autosuggest tests", () => {
       <DxcTextInput label="Autocomplete Countries" suggestions={countries} onChange={onChange} />
     );
     const input = getByRole("combobox") as HTMLInputElement;
-    fireEvent.keyDown(input, { key: "ArrowDown", code: "ArrowDown", keyCode: 40, charCode: 40 });
+    fireEvent.keyDown(input, {
+      key: "ArrowDown",
+      code: "ArrowDown",
+      keyCode: 40,
+      charCode: 40,
+    });
     const list = getByRole("listbox");
     expect(list).toBeTruthy();
-    fireEvent.keyDown(input, { key: "Enter", code: "Enter", keyCode: 13, charCode: 13 });
+    fireEvent.keyDown(input, {
+      key: "Enter",
+      code: "Enter",
+      keyCode: 13,
+      charCode: 13,
+    });
     expect(input.value).toBe("Afghanistan");
     expect(queryByRole("list")).toBeFalsy();
   });
@@ -700,10 +769,20 @@ describe("TextInput component synchronous autosuggest tests", () => {
       <DxcTextInput label="Autocomplete Countries" suggestions={countries} onChange={onChange} />
     );
     const input = getByRole("combobox") as HTMLInputElement;
-    fireEvent.keyDown(input, { key: "ArrowUp", code: "ArrowUp", keyCode: 38, charCode: 38 });
+    fireEvent.keyDown(input, {
+      key: "ArrowUp",
+      code: "ArrowUp",
+      keyCode: 38,
+      charCode: 38,
+    });
     const list = getByRole("listbox");
     expect(list).toBeTruthy();
-    fireEvent.keyDown(input, { key: "Enter", code: "Enter", keyCode: 13, charCode: 13 });
+    fireEvent.keyDown(input, {
+      key: "Enter",
+      code: "Enter",
+      keyCode: 13,
+      charCode: 13,
+    });
     expect(input.value).toBe("Djibouti");
     expect(queryByRole("list")).toBeFalsy();
   });
@@ -718,7 +797,12 @@ describe("TextInput component synchronous autosuggest tests", () => {
     userEvent.type(input, "Bangla");
     const list = getByRole("listbox");
     expect(list).toBeTruthy();
-    fireEvent.keyDown(input, { key: "Esc", code: "Esc", keyCode: 27, charCode: 27 });
+    fireEvent.keyDown(input, {
+      key: "Esc",
+      code: "Esc",
+      keyCode: 27,
+      charCode: 27,
+    });
     expect(input.value).toBe("");
     expect(queryByRole("listbox")).toBeFalsy();
   });
@@ -732,7 +816,12 @@ describe("TextInput component synchronous autosuggest tests", () => {
     fireEvent.focus(input);
     const list = getByRole("listbox");
     expect(list).toBeTruthy();
-    fireEvent.keyDown(input, { key: "Enter", code: "Enter", keyCode: 27, charCode: 27 });
+    fireEvent.keyDown(input, {
+      key: "Enter",
+      code: "Enter",
+      keyCode: 27,
+      charCode: 27,
+    });
     expect(input.value).toBe("");
     expect(queryByRole("list")).toBeFalsy();
   });
@@ -747,13 +836,38 @@ describe("TextInput component synchronous autosuggest tests", () => {
     await act(async () => {
       userEvent.type(input, "Ba");
     });
-    fireEvent.keyDown(input, { key: "ArrowUp", code: "ArrowUp", keyCode: 38, charCode: 38 });
-    fireEvent.keyDown(input, { key: "ArrowUp", code: "ArrowUpp", keyCode: 38, charCode: 38 });
-    fireEvent.keyDown(input, { key: "ArrowDown", code: "ArrowDown", keyCode: 40, charCode: 40 });
-    fireEvent.keyDown(input, { key: "Enter", code: "Enter", keyCode: 13, charCode: 13 });
+    fireEvent.keyDown(input, {
+      key: "ArrowUp",
+      code: "ArrowUp",
+      keyCode: 38,
+      charCode: 38,
+    });
+    fireEvent.keyDown(input, {
+      key: "ArrowUp",
+      code: "ArrowUpp",
+      keyCode: 38,
+      charCode: 38,
+    });
+    fireEvent.keyDown(input, {
+      key: "ArrowDown",
+      code: "ArrowDown",
+      keyCode: 40,
+      charCode: 40,
+    });
+    fireEvent.keyDown(input, {
+      key: "Enter",
+      code: "Enter",
+      keyCode: 13,
+      charCode: 13,
+    });
     expect(input.value).toBe("Barbados");
     expect(queryByRole("listbox")).toBeFalsy();
-    fireEvent.keyDown(input, { key: "Esc", code: "Esp", keyCode: 27, charCode: 27 });
+    fireEvent.keyDown(input, {
+      key: "Esc",
+      code: "Esc",
+      keyCode: 27,
+      charCode: 27,
+    });
     expect(input.value).toBe("");
     expect(queryByRole("listbox")).toBeFalsy();
   });
@@ -798,16 +912,16 @@ describe("TextInput component synchronous autosuggest tests", () => {
 
 describe("TextInput component asynchronous autosuggest tests", () => {
   test("Autosuggest 'Searching...' message is shown", async () => {
-    const callbackFunc = jest.fn((newValue) => {
-      const result = new Promise<string[]>((resolve) =>
-        setTimeout(() => {
-          resolve(
-            newValue ? countries.filter((option) => option.toUpperCase().includes(newValue.toUpperCase())) : countries
-          );
-        }, 100)
-      );
-      return result;
-    });
+    const callbackFunc = jest.fn(
+      (newValue) =>
+        new Promise<string[]>((resolve) => {
+          setTimeout(() => {
+            resolve(
+              newValue ? countries.filter((option) => option.toUpperCase().includes(newValue.toUpperCase())) : countries
+            );
+          }, 100);
+        })
+    );
     const onChange = jest.fn();
     const { getByRole, getByText } = render(
       <DxcTextInput label="Autosuggest Countries" suggestions={callbackFunc} onChange={onChange} />
@@ -825,22 +939,32 @@ describe("TextInput component asynchronous autosuggest tests", () => {
     });
     await waitForElementToBeRemoved(() => getByText("Searching..."));
     expect(getByText("Cabo Verde")).toBeTruthy();
-    fireEvent.keyDown(input, { key: "ArrowUp", code: "ArrowUp", keyCode: 38, charCode: 38 });
-    fireEvent.keyDown(input, { key: "Enter", code: "Enter", keyCode: 13, charCode: 13 });
+    fireEvent.keyDown(input, {
+      key: "ArrowUp",
+      code: "ArrowUp",
+      keyCode: 38,
+      charCode: 38,
+    });
+    fireEvent.keyDown(input, {
+      key: "Enter",
+      code: "Enter",
+      keyCode: 13,
+      charCode: 13,
+    });
     expect(input.value).toBe("Cabo Verde");
   });
 
   test("Autosuggest Esc key works while 'Searching...' message is shown", () => {
-    const callbackFunc = jest.fn((newValue) => {
-      const result = new Promise<string[]>((resolve) =>
-        setTimeout(() => {
-          resolve(
-            newValue ? countries.filter((option) => option.toUpperCase().includes(newValue.toUpperCase())) : countries
-          );
-        }, 100)
-      );
-      return result;
-    });
+    const callbackFunc = jest.fn(
+      (newValue) =>
+        new Promise<string[]>((resolve) => {
+          setTimeout(() => {
+            resolve(
+              newValue ? countries.filter((option) => option.toUpperCase().includes(newValue.toUpperCase())) : countries
+            );
+          }, 100);
+        })
+    );
     const onChange = jest.fn();
     const { getByRole, queryByText, queryByRole } = render(
       <DxcTextInput label="Autosuggest Countries" suggestions={callbackFunc} onChange={onChange} />
@@ -849,23 +973,28 @@ describe("TextInput component asynchronous autosuggest tests", () => {
     fireEvent.focus(input);
     expect(getByRole("listbox")).toBeTruthy();
     userEvent.type(input, "Ab");
-    fireEvent.keyDown(input, { key: "Esc", code: "Esc", keyCode: 27, charCode: 27 });
+    fireEvent.keyDown(input, {
+      key: "Esc",
+      code: "Esc",
+      keyCode: 27,
+      charCode: 27,
+    });
     expect(queryByRole("listbox")).toBeFalsy();
     expect(queryByText("Searching...")).toBeFalsy();
     expect(input.value).toBe("");
   });
 
   test("Autosuggest Esc + arrow down working while 'Searching...' message is shown", async () => {
-    const callbackFunc = jest.fn((newValue) => {
-      const result = new Promise<string[]>((resolve) =>
-        setTimeout(() => {
-          resolve(
-            newValue ? countries.filter((option) => option.toUpperCase().includes(newValue.toUpperCase())) : countries
-          );
-        }, 100)
-      );
-      return result;
-    });
+    const callbackFunc = jest.fn(
+      (newValue) =>
+        new Promise<string[]>((resolve) => {
+          setTimeout(() => {
+            resolve(
+              newValue ? countries.filter((option) => option.toUpperCase().includes(newValue.toUpperCase())) : countries
+            );
+          }, 100);
+        })
+    );
     const onChange = jest.fn();
     const { getByRole, getByText, queryByText, queryByRole } = render(
       <DxcTextInput label="Autosuggest Countries" suggestions={callbackFunc} onChange={onChange} />
@@ -875,11 +1004,21 @@ describe("TextInput component asynchronous autosuggest tests", () => {
     const list = getByRole("listbox");
     expect(list).toBeTruthy();
     userEvent.type(input, "Ab");
-    fireEvent.keyDown(input, { key: "Esc", code: "Esc", keyCode: 27, charCode: 27 });
+    fireEvent.keyDown(input, {
+      key: "Esc",
+      code: "Esc",
+      keyCode: 27,
+      charCode: 27,
+    });
     expect(queryByRole("listbox")).toBeFalsy();
     expect(queryByText("Searching...")).toBeFalsy();
     expect(input.value).toBe("");
-    fireEvent.keyDown(input, { key: "ArrowDown", code: "ArrowDown", keyCode: 40, charCode: 40 });
+    fireEvent.keyDown(input, {
+      key: "ArrowDown",
+      code: "ArrowDown",
+      keyCode: 40,
+      charCode: 40,
+    });
     expect(list).toBeTruthy();
     await waitForElementToBeRemoved(() => getByText("Searching..."));
     expect(getByText("Afghanistan")).toBeTruthy();
@@ -889,16 +1028,16 @@ describe("TextInput component asynchronous autosuggest tests", () => {
   });
 
   test("Asynchronous uncontrolled autosuggest test", async () => {
-    const callbackFunc = jest.fn((newValue) => {
-      const result = new Promise<string[]>((resolve) =>
-        setTimeout(() => {
-          resolve(
-            newValue ? countries.filter((option) => option.toUpperCase().includes(newValue.toUpperCase())) : countries
-          );
-        }, 100)
-      );
-      return result;
-    });
+    const callbackFunc = jest.fn(
+      (newValue) =>
+        new Promise<string[]>((resolve) => {
+          setTimeout(() => {
+            resolve(
+              newValue ? countries.filter((option) => option.toUpperCase().includes(newValue.toUpperCase())) : countries
+            );
+          }, 100);
+        })
+    );
     const onChange = jest.fn();
     const { getByRole, getByText } = render(
       <DxcTextInput label="Autosuggest Countries" onChange={onChange} suggestions={callbackFunc} />
@@ -914,16 +1053,16 @@ describe("TextInput component asynchronous autosuggest tests", () => {
   });
 
   test("Asynchronous controlled autosuggest test", async () => {
-    const callbackFunc = jest.fn((newValue) => {
-      const result = new Promise<string[]>((resolve) =>
-        setTimeout(() => {
-          resolve(
-            newValue ? countries.filter((option) => option.toUpperCase().includes(newValue.toUpperCase())) : countries
-          );
-        }, 100)
-      );
-      return result;
-    });
+    const callbackFunc = jest.fn(
+      (newValue) =>
+        new Promise<string[]>((resolve) => {
+          setTimeout(() => {
+            resolve(
+              newValue ? countries.filter((option) => option.toUpperCase().includes(newValue.toUpperCase())) : countries
+            );
+          }, 100);
+        })
+    );
     const onChange = jest.fn();
     const { getByRole, getByText, queryByRole } = render(
       <DxcTextInput label="Autosuggest Countries" value="Denm" onChange={onChange} suggestions={callbackFunc} />
@@ -940,16 +1079,16 @@ describe("TextInput component asynchronous autosuggest tests", () => {
   });
 
   test("Asynchronous autosuggest closes the listbox after finishing no matches search", async () => {
-    const callbackFunc = jest.fn((newValue) => {
-      const result = new Promise<string[]>((resolve) =>
-        setTimeout(() => {
-          resolve(
-            newValue ? countries.filter((option) => option.toUpperCase().includes(newValue.toUpperCase())) : countries
-          );
-        }, 100)
-      );
-      return result;
-    });
+    const callbackFunc = jest.fn(
+      (newValue) =>
+        new Promise<string[]>((resolve) => {
+          setTimeout(() => {
+            resolve(
+              newValue ? countries.filter((option) => option.toUpperCase().includes(newValue.toUpperCase())) : countries
+            );
+          }, 100);
+        })
+    );
     const onChange = jest.fn();
     const { getByText, getByRole, queryByRole } = render(
       <DxcTextInput label="Autosuggest Countries" onChange={onChange} suggestions={callbackFunc} />
@@ -964,16 +1103,16 @@ describe("TextInput component asynchronous autosuggest tests", () => {
   });
 
   test("Asynchronous autosuggest with no matches founded doesn't let the listbox to be opened", async () => {
-    const callbackFunc = jest.fn((newValue) => {
-      const result = new Promise<string[]>((resolve) =>
-        setTimeout(() => {
-          resolve(
-            newValue ? countries.filter((option) => option.toUpperCase().includes(newValue.toUpperCase())) : countries
-          );
-        }, 100)
-      );
-      return result;
-    });
+    const callbackFunc = jest.fn(
+      (newValue) =>
+        new Promise<string[]>((resolve) => {
+          setTimeout(() => {
+            resolve(
+              newValue ? countries.filter((option) => option.toUpperCase().includes(newValue.toUpperCase())) : countries
+            );
+          }, 100);
+        })
+    );
     const onChange = jest.fn();
     const { getByText, getByRole, queryByRole } = render(
       <DxcTextInput label="Autosuggest Countries" onChange={onChange} suggestions={callbackFunc} />
@@ -985,21 +1124,31 @@ describe("TextInput component asynchronous autosuggest tests", () => {
     expect(queryByRole("listbox")).toBeFalsy();
     fireEvent.focus(input);
     expect(queryByRole("listbox")).toBeFalsy();
-    fireEvent.keyDown(input, { key: "ArrowUp", code: "ArrowUp", keyCode: 38, charCode: 38 });
+    fireEvent.keyDown(input, {
+      key: "ArrowUp",
+      code: "ArrowUp",
+      keyCode: 38,
+      charCode: 38,
+    });
     expect(queryByRole("listbox")).toBeFalsy();
-    fireEvent.keyDown(input, { key: "ArrowDown", code: "ArrowDown", keyCode: 40, charCode: 40 });
+    fireEvent.keyDown(input, {
+      key: "ArrowDown",
+      code: "ArrowDown",
+      keyCode: 40,
+      charCode: 40,
+    });
     expect(queryByRole("listbox")).toBeFalsy();
   });
 
   test("Asynchronous autosuggest request failed, shows 'Error fetching data' message", async () => {
-    const errorCallbackFunc = jest.fn(() => {
-      const result = new Promise<string[]>((resolve, reject) =>
-        setTimeout(() => {
-          reject("err");
-        }, 100)
-      );
-      return result;
-    });
+    const errorCallbackFunc = jest.fn(
+      () =>
+        new Promise<string[]>((resolve, reject) => {
+          setTimeout(() => {
+            reject(new Error("err"));
+          }, 100);
+        })
+    );
     const onChange = jest.fn();
     const { getByRole, getByText } = render(
       <DxcTextInput label="Autosuggest Countries" onChange={onChange} suggestions={errorCallbackFunc} />

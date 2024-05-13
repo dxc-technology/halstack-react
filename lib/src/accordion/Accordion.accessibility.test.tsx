@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "@testing-library/react";
 import DxcAccordion from "./Accordion";
-import { axe } from "../../test/accessibility/axe-helper.js";
+import { axe } from "../../test/accessibility/axe-helper";
 
 const folderIcon = (
   <svg

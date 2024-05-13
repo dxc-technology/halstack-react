@@ -6,13 +6,20 @@ import DxcNumberInput from "./NumberInput";
 // Mocking DOMRect for Radix Primitive Popover
 (global as any).globalThis = global;
 (global as any).DOMRect = {
-  fromRect: () => ({ top: 0, left: 0, bottom: 0, right: 0, width: 0, height: 0 }),
+  fromRect: () => ({
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
+    width: 0,
+    height: 0,
+  }),
 };
-(global as any).ResizeObserver = class ResizeObserver {
-  observe() {}
-  unobserve() {}
-  disconnect() {}
-};
+global.ResizeObserver = jest.fn().mockImplementation(() => ({
+  observe: jest.fn(),
+  unobserve: jest.fn(),
+  disconnect: jest.fn(),
+}));
 
 describe("Number input component tests", () => {
   test("Number input renders with label, helper text, placeholder and increment/decrement action buttons", () => {
@@ -76,9 +83,15 @@ describe("Number input component tests", () => {
     userEvent.clear(number);
     fireEvent.blur(number);
     expect(onBlur).toHaveBeenCalled();
-    expect(onBlur).toHaveBeenCalledWith({ value: "", error: "This field is required. Please, enter a value." });
+    expect(onBlur).toHaveBeenCalledWith({
+      value: "",
+      error: "This field is required. Please, enter a value.",
+    });
     expect(onChange).toHaveBeenCalled();
-    expect(onChange).toHaveBeenCalledWith({ value: "", error: "This field is required. Please, enter a value." });
+    expect(onChange).toHaveBeenCalledWith({
+      value: "",
+      error: "This field is required. Please, enter a value.",
+    });
   });
 
   test("Suffix and prefix must be shown", () => {
@@ -152,10 +165,16 @@ describe("Number input component tests", () => {
     const number = getByLabelText("Number input label");
     userEvent.type(number, "12");
     expect(onChange).toHaveBeenCalledTimes(2);
-    expect(onChange).toHaveBeenCalledWith({ value: "12", error: "Value must be less than or equal to 10." });
+    expect(onChange).toHaveBeenCalledWith({
+      value: "12",
+      error: "Value must be less than or equal to 10.",
+    });
     fireEvent.blur(number);
     expect(onBlur).toHaveBeenCalled();
-    expect(onBlur).toHaveBeenCalledWith({ value: "12", error: "Value must be less than or equal to 10." });
+    expect(onBlur).toHaveBeenCalledWith({
+      value: "12",
+      error: "Value must be less than or equal to 10.",
+    });
   });
 
   test("Cannot increment the value if it is greater than the max value", async () => {
@@ -248,7 +267,10 @@ describe("Number input component tests", () => {
     const number = getByLabelText("Number input label") as HTMLInputElement;
     userEvent.type(number, "1");
     fireEvent.blur(number);
-    expect(onBlur).toHaveBeenCalledWith({ value: "1", error: "Value must be greater than or equal to 5." });
+    expect(onBlur).toHaveBeenCalledWith({
+      value: "1",
+      error: "Value must be greater than or equal to 5.",
+    });
     const increment = getAllByRole("button")[1];
     await userEvent.click(increment);
     expect(number.value).toBe("5");

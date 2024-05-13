@@ -7,19 +7,20 @@ import DxcButton from "../button/Button";
 import FileInputPropsType, { FileData, RefType } from "./types";
 import FileItem from "./FileItem";
 
-const getFilePreview = async (file: File): Promise<string> => {
-  if (file.type.includes("video")) return "filled_movie";
-  else if (file.type.includes("audio")) return "music_video";
-  else if (file.type.includes("image")) {
-    return new Promise<string>((resolve) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = (e) => {
-        resolve(e.target.result as string);
-      };
-    });
-  } else return "draft";
-};
+const getFilePreview = async (file: File): Promise<string> =>
+  file.type.includes("video")
+    ? "filled_movie"
+    : file.type.includes("audio")
+      ? "music_video"
+      : file.type.includes("image")
+        ? new Promise<string>((resolve) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = (e) => {
+              resolve(e.target.result as string);
+            };
+          })
+        : "draft";
 
 const isFileIncluded = (file: FileData, fileList: FileData[]) => {
   const fileListInfo = fileList.map((existingFile) => existingFile.file);
@@ -60,16 +61,22 @@ const DxcFileInput = React.forwardRef<RefType, FileInputPropsType>(
     const colorsTheme = useTheme();
     const translatedLabels = useTranslatedLabels();
 
-    const checkFileSize = (file: File) => {
-      if (file.size < minSize) return translatedLabels.fileInput.fileSizeGreaterThanErrorMessage;
-      else if (file.size > maxSize) return translatedLabels.fileInput.fileSizeLessThanErrorMessage;
-    };
+    const checkFileSize = (file: File) =>
+      file.size < minSize
+        ? translatedLabels.fileInput.fileSizeGreaterThanErrorMessage
+        : file.size > maxSize
+          ? translatedLabels.fileInput.fileSizeLessThanErrorMessage
+          : undefined;
 
     const getFilesToAdd = async (selectedFiles: File[]) => {
       const filesToAdd = await Promise.all(selectedFiles.map((selectedFile) => getFilePreview(selectedFile))).then(
         (previews: string[]) =>
           selectedFiles.map((file, index) => {
-            const fileInfo = { file, error: checkFileSize(file), preview: previews[index] };
+            const fileInfo = {
+              file,
+              error: checkFileSize(file),
+              preview: previews[index],
+            };
             return fileInfo;
           })
       );
@@ -94,9 +101,7 @@ const DxcFileInput = React.forwardRef<RefType, FileInputPropsType>(
     const onDelete = useCallback(
       (fileName) => {
         const filesCopy = [...files];
-        const fileToRemove = filesCopy.find((file) => {
-          return file.file.name === fileName;
-        });
+        const fileToRemove = filesCopy.find((file) => file.file.name === fileName);
         const fileIndex = filesCopy.indexOf(fileToRemove);
         filesCopy.splice(fileIndex, 1);
         callbackFile?.(filesCopy);
@@ -112,11 +117,15 @@ const DxcFileInput = React.forwardRef<RefType, FileInputPropsType>(
       e.stopPropagation();
     };
     const handleDragIn = (e) => {
-      if (e.dataTransfer.items?.length > 0) setIsDragging(true);
+      if (e.dataTransfer.items?.length > 0) {
+        setIsDragging(true);
+      }
     };
     const handleDragOut = (e) => {
       // only if dragged items leave container (outside, not to childs)
-      if (!e.currentTarget.contains(e.relatedTarget)) setIsDragging(false);
+      if (!e.currentTarget.contains(e.relatedTarget)) {
+        setIsDragging(false);
+      }
     };
     const handleDrop = (e) => {
       e.preventDefault();
@@ -136,10 +145,9 @@ const DxcFileInput = React.forwardRef<RefType, FileInputPropsType>(
             value.map(async (file) => {
               if (file.preview) {
                 return file;
-              } else {
-                const preview = await getFilePreview(file.file);
-                return { ...file, preview };
               }
+              const preview = await getFilePreview(file.file);
+              return { ...file, preview };
             })
           )) as FileData[];
           setFiles(valueFiles);
@@ -387,5 +395,7 @@ const ErrorMessage = styled.div`
   line-height: ${(props) => props.theme.errorMessageLineHeight};
   margin-top: 0.25rem;
 `;
+
+DxcFileInput.displayName = "DxcFileInput";
 
 export default DxcFileInput;

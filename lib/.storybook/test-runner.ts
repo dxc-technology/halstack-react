@@ -59,13 +59,13 @@ const a11yConfig: TestRunnerConfig = {
   },
 };
 
-module.exports = a11yConfig;
+export default a11yConfig;
 
 // // UNCOMMENT TO EXPORT RESULTS AS JSON IN __ACCESSIBILITY
 // const { injectAxe, getViolations } = require("axe-playwright");
 // const fs = require("fs");
 
-// module.exports = {
+// const a11yConfig: TestRunnerConfig = {
 //   setup() {
 //     fs.mkdir(process.cwd() + "/src/__accessibility__/", { recursive: true }, (err) => {
 //       if (err) throw err;
@@ -91,3 +91,5 @@ module.exports = a11yConfig;
 //     });
 //   },
 // };
+//
+// export default a11yConfig;

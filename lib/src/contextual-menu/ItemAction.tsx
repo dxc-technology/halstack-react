@@ -15,7 +15,9 @@ const ItemAction = ({ badge, collapseIcon, icon, label, depthLevel, ...props }: 
         <Text
           onMouseEnter={(event: React.MouseEvent<HTMLSpanElement>) => {
             const text = event.currentTarget;
-            if (text.title === "" && text.scrollWidth > text.clientWidth) text.title = label;
+            if (text.title === "" && text.scrollWidth > text.clientWidth) {
+              text.title = label;
+            }
           }}
         >
           {label}
@@ -26,7 +28,10 @@ const ItemAction = ({ badge, collapseIcon, icon, label, depthLevel, ...props }: 
   );
 };
 
-const Action = styled.button<{ depthLevel: ItemActionProps["depthLevel"]; selected: ItemActionProps["selected"] }>`
+const Action = styled.button<{
+  depthLevel: ItemActionProps["depthLevel"];
+  selected: ItemActionProps["selected"];
+}>`
   border: none;
   border-radius: 4px;
   width: 100%;

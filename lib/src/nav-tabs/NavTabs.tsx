@@ -3,26 +3,25 @@ import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme";
 import NavTabsPropsType from "./types";
 import DxcTab from "./Tab";
-import { NavTabsContext } from "./NavTabsContext";
+import NavTabsContext from "./NavTabsContext";
 
 const getPropInChild = (child, propName) =>
   child.props
     ? child.props[propName]
       ? child.props[propName]
       : child.props.children
-      ? getPropInChild(child.props.children, propName)
-      : undefined
+        ? getPropInChild(child.props.children, propName)
+        : undefined
     : undefined;
 
-const getLabelFromTab = (child) => {
-  if (typeof child === "string") {
-    return child.toString();
-  } else if (child.props.children) {
-    return Array.isArray(child.props.children)
-      ? getLabelFromTab(child.props.children[0])
-      : getLabelFromTab(child.props.children);
-  }
-};
+const getLabelFromTab = (child) =>
+  typeof child === "string"
+    ? child.toString()
+    : child.props.children
+      ? Array.isArray(child.props.children)
+        ? getLabelFromTab(child.props.children[0])
+        : getLabelFromTab(child.props.children)
+      : undefined;
 
 const getPreviousTabIndex = (array, initialIndex): number => {
   let index = initialIndex === 0 ? array.length - 1 : initialIndex - 1;
@@ -47,7 +46,6 @@ const DxcNavTabs = ({ iconPosition = "top", tabIndex = 0, children }: NavTabsPro
   const colorsTheme = useTheme();
 
   useEffect(() => {
-    console.log(refNavTabList?.current?.scrollWidth);
     setUnderlineWidth(refNavTabList?.current?.scrollWidth);
   }, [children]);
 
@@ -75,6 +73,8 @@ const DxcNavTabs = ({ iconPosition = "top", tabIndex = 0, children }: NavTabsPro
       case "ArrowRight":
         event.preventDefault();
         setInnerFocusIndex(getNextTabIndex(children, innerFocusIndex === null ? activeTab : innerFocusIndex));
+        break;
+      default:
         break;
     }
   };

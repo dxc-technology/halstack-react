@@ -21,15 +21,16 @@ const isSection = (item: Section | Item | GroupItem): item is Section => "items"
 
 const addIdToItems = (items: ContextualMenuPropsType["items"]): (ItemWithId | GroupItemWithId)[] | SectionWithId[] => {
   let accId = 0;
-  const innerAddIdToItems = (items: ContextualMenuPropsType["items"]) => {
-    return items.map((item: Item | GroupItem | Section) =>
-      isSection(item)
-        ? { ...item, items: innerAddIdToItems(item.items) }
-        : isGroupItem(item)
-        ? { ...item, items: innerAddIdToItems(item.items) }
-        : { ...item, id: accId++ }
-    );
-  };
+  const innerAddIdToItems = (innerItems: ContextualMenuPropsType["items"]) =>
+    innerItems.map((item: Item | GroupItem | Section) => {
+      let newItem;
+      if (isSection(item) || isGroupItem(item)) {
+        newItem = { ...item, items: innerAddIdToItems(item.items) };
+      } else {
+        newItem = { ...item, id: (accId += 1) };
+      }
+      return newItem;
+    });
   return innerAddIdToItems(items);
 };
 
@@ -37,15 +38,14 @@ const DxcContextualMenu = ({ items }: ContextualMenuPropsType) => {
   const [selectedItemId, setSelectedItemId] = useState(-1);
   const contextualMenuRef = useRef(null);
   const itemsWithId = useMemo(() => addIdToItems(items), [items]);
+  const contextValue = useMemo(() => ({ selectedItemId, setSelectedItemId }), [selectedItemId, setSelectedItemId]);
 
   const renderSection = (section: SectionWithId, currentSectionIndex: number, length: number) => (
     <Fragment key={`section-${currentSectionIndex}`}>
       <li role="group" aria-labelledby={section.title}>
         {section.title != null && <Title id={section.title}>{section.title}</Title>}
         <SectionList>
-          {section.items.map((item, index) => (
-            <MenuItem item={item} key={`${item.label}-${index}`} />
-          ))}
+          {section.items.map((item, index) => <MenuItem item={item} key={`item-${index}`} />)}
         </SectionList>
       </li>
       {currentSectionIndex !== length - 1 && (
@@ -61,21 +61,21 @@ const DxcContextualMenu = ({ items }: ContextualMenuPropsType) => {
     if (selectedItemId !== -1 && firstUpdate) {
       const contextualMenuEl = contextualMenuRef?.current;
       const selectedItemEl = contextualMenuEl?.querySelector("[aria-selected='true']");
-      contextualMenuEl?.scrollTo?.({ top: selectedItemEl?.offsetTop - contextualMenuEl?.clientHeight / 2 });
+      contextualMenuEl?.scrollTo?.({
+        top: (selectedItemEl?.offsetTop || 0) - (contextualMenuEl?.clientHeight || 0) / 2,
+      });
       setFirstUpdate(false);
     }
   }, [firstUpdate, selectedItemId]);
 
   return (
     <ContextualMenu role="menu" ref={contextualMenuRef}>
-      <ContextualMenuContext.Provider value={{ selectedItemId, setSelectedItemId }}>
-        {itemsWithId.map((item: GroupItemWithId | ItemWithId | SectionWithId, index: number) =>
-          "items" in item && !("label" in item) ? (
+      <ContextualMenuContext.Provider value={contextValue}>
+        {itemsWithId.map((item: GroupItemWithId | ItemWithId | SectionWithId, index: number) => "items" in item && !("label" in item) ? (
             renderSection(item, index, itemsWithId.length)
           ) : (
-            <MenuItem item={item} key={`${item.label}-${index}`} />
-          )
-        )}
+            <MenuItem item={item} key={`item-${index}`} />
+          ))}
       </ContextualMenuContext.Provider>
     </ContextualMenu>
   );

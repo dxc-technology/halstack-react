@@ -2,7 +2,7 @@ import React, { useState, useMemo, useId } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import DxcTextInput from "../text-input/TextInput";
 import { spaces } from "../common/variables";
-import { getMargin } from "../common/utils";
+import getMargin from "../common/utils";
 import useTheme from "../useTheme";
 import SliderPropsType, { RefType } from "./types";
 
@@ -49,10 +49,9 @@ const DxcSlider = React.forwardRef<RefType, SliderPropsType>(
       const numberOfMarks = Math.floor(maxValue / step - minValue / step);
       const range = maxValue - minValue;
       const ticks = [];
-      let index = 0;
 
       if (marks) {
-        while (index <= numberOfMarks) {
+        for (let index = 0; index <= numberOfMarks; index++) {
           ticks.push(
             <TickMark
               disabled={disabled}
@@ -61,16 +60,17 @@ const DxcSlider = React.forwardRef<RefType, SliderPropsType>(
               key={`tickmark-${index}-${labelId}`}
             />
           );
-
-          index++;
         }
         return ticks;
-      } else return null;
+      }
+      return null;
     }, [minValue, maxValue, step, value, innerValue]);
 
     const handleSliderChange = (event) => {
       const valueToCheck = event.target.value;
-      (valueToCheck !== value || valueToCheck !== innerValue) && setInnerValue(valueToCheck);
+      if (valueToCheck !== value || valueToCheck !== innerValue) {
+        setInnerValue(valueToCheck);
+      }
       onChange?.(valueToCheck);
     };
 
@@ -88,7 +88,9 @@ const DxcSlider = React.forwardRef<RefType, SliderPropsType>(
     const handlerInputChange = (event) => {
       const intValue = parseInt(event.value, 10);
       if (value == null) {
-        if (!Number.isNaN(intValue)) setInnerValue(intValue > maxValue ? maxValue : intValue);
+        if (!Number.isNaN(intValue)) {
+          setInnerValue(intValue > maxValue ? maxValue : intValue);
+        }
       }
       if (!Number.isNaN(intValue)) {
         onChange?.(intValue > maxValue ? maxValue : intValue);
@@ -166,7 +168,10 @@ const getFireFoxStyles = () => `
   width: calc(100% - 16px);
   margin-right: 3px;`;
 
-const Container = styled.div<{ margin: SliderPropsType["margin"]; size: SliderPropsType["size"] }>`
+const Container = styled.div<{
+  margin: SliderPropsType["margin"];
+  size: SliderPropsType["size"];
+}>`
   display: flex;
   flex-direction: column;
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
@@ -212,13 +217,13 @@ const SliderInput = styled.input<{
   vertical-align: middle;
   -webkit-appearance: none;
   background-color: ${(props) =>
-    props.disabled ? props.theme.disabledTotalLineColor + "61" : props.theme.totalLineColor};
+    props.disabled ? `${props.theme.disabledTotalLineColor}61` : props.theme.totalLineColor};
   background-image: ${(props) =>
     props.disabled
       ? `linear-gradient(${props.theme.disabledTrackLineColor}, ${props.theme.disabledTrackLineColor})`
       : `linear-gradient(${props.theme.trackLineColor}, ${props.theme.trackLineColor})`};
   background-repeat: no-repeat;
-  background-size: ${(props) => ((props.value - props.min) * 100) / (props.max - props.min) + "% 100%"};
+  background-size: ${(props) => `${((props.value - props.min) * 100) / (props.max - props.min)}% 100%`};
   border-radius: 5px;
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
   &::-webkit-slider-runnable-track {
@@ -238,24 +243,19 @@ const SliderInput = styled.input<{
     background: ${(props) =>
       props.disabled ? props.theme.disabledThumbBackgroundColor : props.theme.thumbBackgroundColor};
     &:active {
-      ${(props) => {
-        if (!props.disabled) {
-          return `
-          background: ${props.theme.activeThumbBackgroundColor};
-            transform: scale(1.16667);`;
-        }
-      }}
+      ${(props) =>
+        !props.disabled &&
+        `background: ${props.theme.activeThumbBackgroundColor};
+            transform: scale(1.16667);`}
     }
     &:hover {
-      ${(props) => {
-        if (!props.disabled) {
-          return `height: ${props.theme.hoverThumbHeight};
+      ${(props) =>
+        !props.disabled &&
+        `height: ${props.theme.hoverThumbHeight};
           width: ${props.theme.hoverThumbWidth};
           transform: scale(1.16667);
           transform-origin: center center;
-          background: ${props.theme.hoverThumbBackgroundColor};`;
-        }
-      }}
+          background: ${props.theme.hoverThumbBackgroundColor};`}
     }
   }
   &::-moz-range-track {
@@ -277,15 +277,13 @@ const SliderInput = styled.input<{
       transform: scale(1.16667);
     }
     &:hover {
-      ${(props) => {
-        if (!props.disabled) {
-          return `height: ${props.theme.hoverThumbHeight};
+      ${(props) =>
+        !props.disabled &&
+        `height: ${props.theme.hoverThumbHeight};
           width: ${props.theme.hoverThumbWidth};
           transform: scale(1.16667);
           transform-origin: center center;
-          background: ${props.theme.hoverThumbBackgroundColor};`;
-        }
-      }}
+          background: ${props.theme.hoverThumbBackgroundColor};`}
     }
   }
   &:focus {
@@ -368,5 +366,7 @@ const StyledTextInput = styled.div`
   margin-left: ${(props) => props.theme.inputMarginLeft};
   max-width: 70px;
 `;
+
+DxcSlider.displayName = "DxcSlider";
 
 export default DxcSlider;

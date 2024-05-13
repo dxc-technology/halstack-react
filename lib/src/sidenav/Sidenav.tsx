@@ -8,7 +8,7 @@ import SidenavPropsType, {
   SidenavLinkPropsType,
   SidenavSectionPropsType,
   SidenavTitlePropsType,
-} from "./types.js";
+} from "./types";
 import DxcFlex from "../flex/Flex";
 import DxcBleed from "../bleed/Bleed";
 import CoreTokens from "../common/coreTokens";
@@ -97,7 +97,7 @@ const Link = forwardRef<HTMLAnchorElement, SidenavLinkPropsType>(
     return (
       <SidenavLink
         selected={selected}
-        href={href ? href : undefined}
+        href={href || undefined}
         target={href ? (newWindow ? "_blank" : "_self") : undefined}
         ref={ref}
         tabIndex={tabIndex}
@@ -113,6 +113,8 @@ const Link = forwardRef<HTMLAnchorElement, SidenavLinkPropsType>(
     );
   }
 );
+
+Link.displayName = "Link";
 
 const SidenavContainer = styled.div`
   box-sizing: border-box;

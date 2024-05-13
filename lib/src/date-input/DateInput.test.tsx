@@ -7,13 +7,20 @@ import DxcDateInput from "./DateInput";
 // Mocking DOMRect for Radix Primitive Popover
 (global as any).globalThis = global;
 (global as any).DOMRect = {
-  fromRect: () => ({ top: 0, left: 0, bottom: 0, right: 0, width: 0, height: 0 }),
+  fromRect: () => ({
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
+    width: 0,
+    height: 0,
+  }),
 };
-(global as any).ResizeObserver = class ResizeObserver {
-  observe() {}
-  unobserve() {}
-  disconnect() {}
-};
+global.ResizeObserver = jest.fn().mockImplementation(() => ({
+  observe: jest.fn(),
+  unobserve: jest.fn(),
+  disconnect: jest.fn(),
+}));
 
 describe("DateInput component tests", () => {
   test("Renders with correct label, helper text, optional, placeholder and clearable action", async () => {
@@ -82,7 +89,10 @@ describe("DateInput component tests", () => {
     await userEvent.keyboard("/");
     await userEvent.keyboard("2010");
     expect(onChange).toHaveBeenCalledTimes(10);
-    expect(onChange).toHaveBeenCalledWith({ value: "10/90/2010", error: "Invalid date." });
+    expect(onChange).toHaveBeenCalledWith({
+      value: "10/90/2010",
+      error: "Invalid date.",
+    });
   });
 
   test("Calendar renders with correct date: today's date", async () => {
@@ -128,7 +138,10 @@ describe("DateInput component tests", () => {
     userEvent.type(input, "01-01-xxxx");
     fireEvent.blur(input);
     expect(onBlur).toHaveBeenCalled();
-    expect(onBlur).toHaveBeenCalledWith({ value: "01-01-xxxx", error: "Invalid date." });
+    expect(onBlur).toHaveBeenCalledWith({
+      value: "01-01-xxxx",
+      error: "Invalid date.",
+    });
     await userEvent.click(calendarAction);
     expect(
       document.activeElement ===
@@ -152,7 +165,12 @@ describe("DateInput component tests", () => {
     d = d.set("date", 10);
     expect(getAllByText(d.get("date"))[0].getAttribute("aria-selected")).toBe("true");
     expect(getByText(d.format("MMMM YYYY"))).toBeTruthy();
-    fireEvent.keyDown(document, { key: "Escape", code: "Escape", keyCode: 27, charCode: 27 });
+    fireEvent.keyDown(document, {
+      key: "Escape",
+      code: "Escape",
+      keyCode: 27,
+      charCode: 27,
+    });
     expect(input.value).toBe(d.format("M-DD-YYYY"));
   });
 
@@ -186,7 +204,12 @@ describe("DateInput component tests", () => {
     d = d.set("date", 31).set("month", 6);
     expect(getAllByText(d.get("date"))[0].getAttribute("aria-selected")).toBe("true");
     expect(getByText(d.format("MMMM YYYY"))).toBeTruthy();
-    fireEvent.keyDown(document, { key: "Escape", code: "Escape", keyCode: 27, charCode: 27 });
+    fireEvent.keyDown(document, {
+      key: "Escape",
+      code: "Escape",
+      keyCode: 27,
+      charCode: 27,
+    });
     expect(input.value).toBe(d.format("DD-MM-YYYY"));
   });
 
@@ -200,7 +223,12 @@ describe("DateInput component tests", () => {
     expect(getByText("2024")).toBeTruthy();
     await userEvent.click(getByText("2024"));
     await userEvent.click(getByText(d.set("year", 2024).format("MMMM YYYY")));
-    fireEvent.keyDown(document, { key: "Escape", code: "Escape", keyCode: 27, charCode: 27 });
+    fireEvent.keyDown(document, {
+      key: "Escape",
+      code: "Escape",
+      keyCode: 27,
+      charCode: 27,
+    });
     expect(input.value).toBe(d.format("DD-MM-YYYY"));
   });
 
@@ -327,10 +355,16 @@ describe("DateInput component tests", () => {
     userEvent.type(input, "10-10-");
     expect(input.value).toBe("10-10-");
     expect(onChange).toHaveBeenCalledTimes(6);
-    expect(onChange).toHaveBeenCalledWith({ value: "10-10-", error: "Invalid date." });
+    expect(onChange).toHaveBeenCalledWith({
+      value: "10-10-",
+      error: "Invalid date.",
+    });
     fireEvent.blur(input);
     expect(onBlur).toHaveBeenCalled();
-    expect(onBlur).toHaveBeenCalledWith({ value: "10-10-", error: "Invalid date." });
+    expect(onBlur).toHaveBeenCalledWith({
+      value: "10-10-",
+      error: "Invalid date.",
+    });
   });
 
   test("onBlur function removes the error when it is fixed", () => {
@@ -342,7 +376,10 @@ describe("DateInput component tests", () => {
     expect(input.value).toBe("test");
     fireEvent.blur(input);
     expect(onBlur).toHaveBeenCalled();
-    expect(onBlur).toHaveBeenCalledWith({ value: "test", error: "Invalid date." });
+    expect(onBlur).toHaveBeenCalledWith({
+      value: "test",
+      error: "Invalid date.",
+    });
     userEvent.clear(input);
     userEvent.type(input, "20-02-2002");
     expect(input.value).toBe("20-02-2002");
@@ -359,7 +396,10 @@ describe("DateInput component tests", () => {
     expect(input.value).toBe("test");
     fireEvent.blur(input);
     expect(onBlur).toHaveBeenCalled();
-    expect(onBlur).toHaveBeenCalledWith({ value: "test", error: "Invalid date." });
+    expect(onBlur).toHaveBeenCalledWith({
+      value: "test",
+      error: "Invalid date.",
+    });
     userEvent.clear(input);
     fireEvent.blur(input);
     expect(onBlur).toHaveBeenCalled();
@@ -392,7 +432,11 @@ describe("DateInput component tests", () => {
     const { getByRole, queryByText } = render(<DxcDateInput disabled />);
     const calendarAction = getByRole("button");
     const d = new Date();
-    const options: Intl.DateTimeFormatOptions = { weekday: "short", month: "short", day: "numeric" };
+    const options: Intl.DateTimeFormatOptions = {
+      weekday: "short",
+      month: "short",
+      day: "numeric",
+    };
     const input = getByRole("textbox") as HTMLInputElement;
     expect(input.disabled).toBeTruthy();
     await userEvent.click(calendarAction);

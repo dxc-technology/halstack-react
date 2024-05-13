@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import { axe } from "../../test/accessibility/axe-helper.js";
+import { axe } from "../../test/accessibility/axe-helper";
 import DxcStatusLight from "./StatusLight";
 import DxcFlex from "../flex/Flex";
 

@@ -1,18 +1,15 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import { axe } from "../../test/accessibility/axe-helper.js";
+import { axe, formatRules } from "../../test/accessibility/axe-helper";
 import DxcSelect from "./Select";
 import DxcFlex from "../flex/Flex";
 
 // TODO: REMOVE
-import { disabledRules as rules } from "../../test/accessibility/rules/specific/select/disabledRules.js";
+import rules from "../../test/accessibility/rules/specific/select/disabledRules";
 
 const disabledRules = {
-  rules: rules.reduce((rulesObj, rule) => {
-    rulesObj[rule] = { enabled: false };
-    return rulesObj;
-  }, {}),
-}
+  rules: formatRules(rules),
+};
 
 const iconSVG = (
   <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
@@ -27,7 +24,7 @@ const iconSVG = (
   </svg>
 );
 
-const group_options = [
+const groupOptions = [
   {
     label: "Group 001",
     options: [
@@ -70,7 +67,7 @@ const group_options = [
   },
 ];
 
-const single_options = [
+const singleOptions = [
   { label: "Option 01", value: "1", icon: iconSVG },
   { label: "Option 02", value: "2", icon: iconSVG },
   { label: "Option 03", value: "3", icon: iconSVG },
@@ -80,13 +77,20 @@ const single_options = [
 // Mocking DOMRect for Radix Primitive Popover
 (global as any).globalThis = global;
 (global as any).DOMRect = {
-  fromRect: () => ({ top: 0, left: 0, bottom: 0, right: 0, width: 0, height: 0 }),
+  fromRect: () => ({
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
+    width: 0,
+    height: 0,
+  }),
 };
-(global as any).ResizeObserver = class ResizeObserver {
-  observe() {}
-  unobserve() {}
-  disconnect() {}
-};
+global.ResizeObserver = jest.fn().mockImplementation(() => ({
+  observe: jest.fn(),
+  unobserve: jest.fn(),
+  disconnect: jest.fn(),
+}));
 
 describe("Select component accessibility tests", () => {
   it("Should not have basic accessibility issues", async () => {
@@ -97,7 +101,7 @@ describe("Select component accessibility tests", () => {
           label="test-select-label"
           helperText="test-select-helper-text"
           placeholder="Example text"
-          options={single_options}
+          options={singleOptions}
           defaultValue="1"
           margin="medium"
           name="Name"
@@ -108,7 +112,7 @@ describe("Select component accessibility tests", () => {
           label="test-select-label"
           helperText="test-select-helper-text"
           placeholder="Example text"
-          options={single_options}
+          options={singleOptions}
           defaultValue={["4", "2", "6"]}
           margin="medium"
           name="Name"
@@ -130,7 +134,7 @@ describe("Select component accessibility tests", () => {
           label="test-select-label"
           helperText="test-select-helper-text"
           placeholder="Example text"
-          options={group_options}
+          options={groupOptions}
           defaultValue={["4", "2", "6"]}
           error="Error"
           margin="medium"
@@ -143,7 +147,7 @@ describe("Select component accessibility tests", () => {
           label="test-select-label"
           helperText="test-select-helper-text"
           placeholder="Example text"
-          options={group_options}
+          options={groupOptions}
           defaultValue={["4", "2", "6"]}
           margin="medium"
           name="Name"

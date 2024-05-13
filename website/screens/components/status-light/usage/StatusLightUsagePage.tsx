@@ -117,28 +117,6 @@ const sections = [
             </tr>
           </tbody>
         </DxcTable>
-        {/* <DxcBulletedList>
-          <DxcBulletedList.Item>
-            Default: for neutral statuses, like archived, draft, paused...
-          </DxcBulletedList.Item>
-          <DxcBulletedList.Item>
-            Info: for live statuses, like active, in use, uploaded...
-          </DxcBulletedList.Item>
-          <DxcBulletedList.Item>
-            Success: for positive statuses, like finished, approved,
-            completed...
-          </DxcBulletedList.Item>
-          <DxcBulletedList.Item>
-            Warning: for pending or critical statuses, like scheduled, in
-            progress, processing...
-          </DxcBulletedList.Item>
-          <DxcBulletedList.Item>
-            Error: for negative statuses, like incomplete, rejected, failed...
-          </DxcBulletedList.Item>
-        </DxcBulletedList>
-        <Figure caption="Status light variants">
-          <Image src={variants} alt="Status light variants" />
-        </Figure> */}
       </>
     ),
   },

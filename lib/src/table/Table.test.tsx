@@ -1,18 +1,25 @@
 import React from "react";
 import { act, render } from "@testing-library/react";
-import DxcTable from "./Table";
 import userEvent from "@testing-library/user-event";
+import DxcTable from "./Table";
 import { ActionCellsPropsType } from "./types";
 
 (global as any).globalThis = global;
 (global as any).DOMRect = {
-  fromRect: () => ({ top: 0, left: 0, bottom: 0, right: 0, width: 0, height: 0 }),
+  fromRect: () => ({
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
+    width: 0,
+    height: 0,
+  }),
 };
-(global as any).ResizeObserver = class ResizeObserver {
-  observe() {}
-  unobserve() {}
-  disconnect() {}
-};
+global.ResizeObserver = jest.fn().mockImplementation(() => ({
+  observe: jest.fn(),
+  unobserve: jest.fn(),
+  disconnect: jest.fn(),
+}));
 
 const icon = (
   <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
@@ -59,7 +66,7 @@ describe("Table component tests", () => {
   test("Table ActionsCell", async () => {
     const onSelectOption = jest.fn();
     const onClick = jest.fn();
-    const actions: ActionCellsPropsType['actions'] = [
+    const actions: ActionCellsPropsType["actions"] = [
       {
         title: "icon1",
         onClick: onSelectOption,
@@ -79,9 +86,9 @@ describe("Table component tests", () => {
         ],
       },
       {
-        icon: icon,
+        icon,
         title: "icon2",
-        onClick: onClick,
+        onClick,
       },
     ];
     const { getAllByRole, getByRole, getByText } = render(
@@ -102,7 +109,7 @@ describe("Table component tests", () => {
           <tr>
             <td>cell-4</td>
             <td>cell-5</td>
-            <td>
+            <td aria-label="actions">
               <DxcTable.ActionsCell actions={actions} />
             </td>
           </tr>

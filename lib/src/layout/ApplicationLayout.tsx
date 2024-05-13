@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
+import styled from "styled-components";
 import DxcHeader from "../header/Header";
 import DxcFooter from "../footer/Footer";
 import DxcSidenav from "../sidenav/Sidenav";
-import styled from "styled-components";
 import { responsiveSizes } from "../common/variables";
 import layoutIcons from "./Icons";
 import AppLayoutPropsType, { AppLayoutMainPropsType } from "./types";
@@ -16,7 +16,7 @@ const defaultHeader = () => <DxcHeader underlined />;
 
 const defaultFooter = () => (
   <DxcFooter
-    copyright={`© DXC Technology ${year}​​​​. All rights reserved.`}
+    copyright={`© DXC Technology ${year}. All rights reserved.`}
     bottomLinks={[
       {
         href: "https://www.linkedin.com/company/dxctechnology",
@@ -76,7 +76,7 @@ const DxcApplicationLayout = ({
   }, []);
 
   const handleSidenavVisibility = () => {
-    setIsSidenavVisibleResponsive((isSidenavVisibleResponsive) => !isSidenavVisibleResponsive);
+    setIsSidenavVisibleResponsive((isSidenavVisibleCurrentlyResponsive) => !isSidenavVisibleCurrentlyResponsive);
   };
 
   useEffect(() => {
@@ -88,15 +88,13 @@ const DxcApplicationLayout = ({
   }, [handleResize]);
 
   useEffect(() => {
-    !isResponsive && setIsSidenavVisibleResponsive(false);
+    if (!isResponsive) {
+      setIsSidenavVisibleResponsive(false);
+    }
   }, [isResponsive]);
 
   return (
-    <ApplicationLayoutContainer
-      hasSidenav={sidenav ? true : false}
-      isSidenavVisible={isSidenavVisibleResponsive}
-      ref={ref}
-    >
+    <ApplicationLayoutContainer hasSidenav={!!sidenav} isSidenavVisible={isSidenavVisibleResponsive} ref={ref}>
       <HeaderContainer>{headerContent}</HeaderContainer>
       {sidenav && isResponsive && (
         <VisibilityToggle>
@@ -125,7 +123,10 @@ const DxcApplicationLayout = ({
   );
 };
 
-const ApplicationLayoutContainer = styled.div<{ isSidenavVisible: boolean; hasSidenav: boolean }>`
+const ApplicationLayoutContainer = styled.div<{
+  isSidenavVisible: boolean;
+  hasSidenav: boolean;
+}>`
   position: absolute;
   top: 64px;
   bottom: 0;
@@ -172,7 +173,9 @@ const HamburgerTrigger = styled.button`
   padding: 12px 4px;
   background-color: transparent;
   box-shadow: 0 0 0 2px transparent;
-  font-family: Open Sans, sans-serif;
+  font-family:
+    Open Sans,
+    sans-serif;
   font-weight: 600;
   font-size: 14px;
   color: #000;

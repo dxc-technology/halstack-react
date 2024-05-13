@@ -6,7 +6,7 @@ import { HalstackProvider } from "../HalstackContext";
 import DxcFlex from "../flex/Flex";
 import DxcTypography from "../typography/Typography";
 import preview from "../../.storybook/preview";
-import { disabledRules } from "../../test/accessibility/rules/specific/footer/disabledRules";
+import disabledRules from "../../test/accessibility/rules/specific/footer/disabledRules";
 
 const social = [
   {
@@ -114,7 +114,7 @@ export default {
       config: {
         rules: [
           ...disabledRules.map((ruleId) => ({ id: ruleId, enabled: false })),
-          ...preview?.parameters?.a11y?.config?.rules,
+          ...(preview?.parameters?.a11y?.config?.rules || []),
         ],
       },
     },
@@ -168,7 +168,7 @@ export const Chromatic = () => (
     <ExampleContainer>
       <Title title="Reduced" theme="light" level={4} />
       <DxcFooter mode="reduced">
-        <DxcFlex justifyContent="center" alignItems="center" gap={"1rem"}>
+        <DxcFlex justifyContent="center" alignItems="center" gap="1rem">
           {info.map((tag, index) => (
             <DxcTypography color="white" key={`tag${index}${tag.label}${tag.text}`}>
               {tag.label}: {tag.text}

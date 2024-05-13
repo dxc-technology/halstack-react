@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { OptionProps } from "../select/types";
+import { OptionProps } from "./types";
 import DxcCheckbox from "../checkbox/Checkbox";
 import DxcIcon from "../icon/Icon";
 
@@ -18,7 +18,9 @@ const Option = ({
     const label = event.currentTarget;
     const optionElement = document.getElementById(id);
 
-    if (optionElement.title === "" && label.scrollWidth > label.clientWidth) optionElement.title = option.label;
+    if (optionElement.title === "" && label.scrollWidth > label.clientWidth) {
+      optionElement.title = option.label;
+    }
   };
 
   return (
@@ -46,7 +48,7 @@ const Option = ({
             {typeof option.icon === "string" ? <DxcIcon icon={option.icon} /> : option.icon}
           </OptionIcon>
         )}
-        <OptionContent grouped={isGroupedOption} hasIcon={option.icon ? true : false} multiple={multiple}>
+        <OptionContent grouped={isGroupedOption} hasIcon={!!option.icon} multiple={multiple}>
           <OptionLabel onMouseEnter={handleOnMouseEnter}>{option.label}</OptionLabel>
           {!multiple && isSelected && (
             <OptionSelectedIndicator>
@@ -59,7 +61,10 @@ const Option = ({
   );
 };
 
-const OptionItem = styled.li<{ visualFocused: OptionProps["visualFocused"]; selected: OptionProps["isSelected"] }>`
+const OptionItem = styled.li<{
+  visualFocused: OptionProps["visualFocused"];
+  selected: OptionProps["isSelected"];
+}>`
   padding: 0 0.5rem;
   box-shadow: inset 0 0 0 2px transparent;
   ${(props) => props.visualFocused && `box-shadow: inset 0 0 0 2px ${props.theme.focusListOptionBorderColor};`}
@@ -99,7 +104,10 @@ const StyledOption = styled.span<{
       : `border-bottom: 1px solid ${props.theme.listOptionDividerColor}`};
 `;
 
-const OptionIcon = styled.span<{ grouped: OptionProps["isGroupedOption"]; multiple: OptionProps["multiple"] }>`
+const OptionIcon = styled.span<{
+  grouped: OptionProps["isGroupedOption"];
+  multiple: OptionProps["multiple"];
+}>`
   display: flex;
   padding: 0.125rem;
   margin-left: ${(props) => (props.grouped && !props.multiple ? "16px" : "8px")};

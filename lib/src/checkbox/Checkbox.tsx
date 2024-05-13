@@ -1,7 +1,7 @@
 import React, { useState, useRef, useId } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { AdvancedTheme, spaces } from "../common/variables";
-import { getMargin } from "../common/utils";
+import getMargin from "../common/utils";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
 import CheckboxPropsType, { RefType } from "./types";
@@ -39,9 +39,13 @@ const DxcCheckbox = React.forwardRef<RefType, CheckboxPropsType>(
 
     const handleCheckboxChange = () => {
       if (!disabled && !readOnly) {
-        document.activeElement !== checkboxRef?.current && checkboxRef?.current?.focus();
+        if (document.activeElement !== checkboxRef?.current) {
+          checkboxRef?.current?.focus();
+        }
         const newChecked = checked ?? innerChecked;
-        checked ?? setInnerChecked((innerChecked) => !innerChecked);
+        if (checked == null) {
+          setInnerChecked((innerCurrentlyChecked) => !innerCurrentlyChecked);
+        }
         onChange?.(!newChecked);
       }
     };
@@ -51,6 +55,9 @@ const DxcCheckbox = React.forwardRef<RefType, CheckboxPropsType>(
         case " ":
           event.preventDefault();
           handleCheckboxChange();
+          break;
+        default:
+          break;
       }
     };
 
@@ -127,6 +134,8 @@ const getDisabledColor = (theme: AdvancedTheme["checkbox"], element: string) => 
       return theme.disabledBorderColor;
     case "label":
       return theme.disabledFontColor;
+    default:
+      return undefined;
   }
 };
 
@@ -142,6 +151,8 @@ const getReadOnlyColor = (theme: AdvancedTheme["checkbox"], element: string) => 
       return theme.readOnlyBorderColor;
     case "hoverBorder":
       return theme.hoverReadOnlyBorderColor;
+    default:
+      return undefined;
   }
 };
 
@@ -159,6 +170,8 @@ const getEnabledColor = (theme: AdvancedTheme["checkbox"], element: string) => {
       return theme.hoverBorderColor;
     case "label":
       return theme.fontColor;
+    default:
+      return undefined;
   }
 };
 
@@ -203,23 +216,23 @@ const Checkbox = styled.span<{
       props.disabled
         ? getDisabledColor(props.theme, "border")
         : props.readOnly
-        ? getReadOnlyColor(props.theme, "border")
-        : getEnabledColor(props.theme, "border")};
+          ? getReadOnlyColor(props.theme, "border")
+          : getEnabledColor(props.theme, "border")};
   border-radius: 2px;
   background-color: ${(props) =>
     props.checked
       ? props.disabled
         ? getDisabledColor(props.theme, "check")
         : props.readOnly
-        ? getReadOnlyColor(props.theme, "check")
-        : getEnabledColor(props.theme, "check")
+          ? getReadOnlyColor(props.theme, "check")
+          : getEnabledColor(props.theme, "check")
       : "transparent"};
   color: ${(props) =>
     props.disabled
       ? getDisabledColor(props.theme, "background")
       : props.readOnly
-      ? getReadOnlyColor(props.theme, "background")
-      : getEnabledColor(props.theme, "background")};
+        ? getReadOnlyColor(props.theme, "background")
+        : getEnabledColor(props.theme, "background")};
 
   &:focus {
     outline: 2px solid ${(props) => props.theme.focusColor};
@@ -257,19 +270,17 @@ const MainContainer = styled.div<{
 
   &:hover ${Checkbox} {
     border: 2px solid
-      ${(props) => {
-        if (!props.disabled)
-          return props.readOnly
-            ? getReadOnlyColor(props.theme, "hoverBorder")
-            : getEnabledColor(props.theme, "hoverBorder");
-      }};
-    color: ${(props) => {
-      if (!props.disabled)
-        return props.readOnly
-          ? getReadOnlyColor(props.theme, "hoverBackground")
-          : getEnabledColor(props.theme, "hoverBackground");
-    }};
+      ${(props) =>
+        !props.disabled &&
+        (props.readOnly ? getReadOnlyColor(props.theme, "hoverBorder") : getEnabledColor(props.theme, "hoverBorder"))};
+    color: ${(props) =>
+      !props.disabled &&
+      (props.readOnly
+        ? getReadOnlyColor(props.theme, "hoverBackground")
+        : getEnabledColor(props.theme, "hoverBackground"))};
   }
 `;
+
+DxcCheckbox.displayName = "DxcCheckbox";
 
 export default DxcCheckbox;

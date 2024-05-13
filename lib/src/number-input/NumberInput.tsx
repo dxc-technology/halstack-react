@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import styled from "styled-components";
 import DxcTextInput from "../text-input/TextInput";
 import NumberInputPropsType, { RefType } from "./types";
-import { NumberInputContext } from "./NumberInputContext";
+import NumberInputContext from "./NumberInputContext";
 
 const DxcNumberInput = React.forwardRef<RefType, NumberInputPropsType>(
   (
@@ -29,9 +29,19 @@ const DxcNumberInput = React.forwardRef<RefType, NumberInputPropsType>(
       size,
       tabIndex,
     },
-    ref,
+    ref
   ) => {
     const numberInputRef = React.useRef<HTMLInputElement>(null);
+
+    const contextValue = useMemo(
+      () => ({
+        typeNumber: "number",
+        minNumber: min,
+        maxNumber: max,
+        stepNumber: step,
+      }),
+      [min, max, step]
+    );
 
     useEffect(() => {
       const input = numberInputRef.current?.getElementsByTagName("input")[0] as HTMLInputElement;
@@ -46,7 +56,7 @@ const DxcNumberInput = React.forwardRef<RefType, NumberInputPropsType>(
     }, []);
 
     return (
-      <NumberInputContext.Provider value={{ typeNumber: "number", minNumber: min, maxNumber: max, stepNumber: step }}>
+      <NumberInputContext.Provider value={contextValue}>
         <NumberInputContainer ref={numberInputRef} size={size}>
           <DxcTextInput
             label={label}
@@ -72,11 +82,11 @@ const DxcNumberInput = React.forwardRef<RefType, NumberInputPropsType>(
         </NumberInputContainer>
       </NumberInputContext.Provider>
     );
-  },
+  }
 );
 
 const NumberInputContainer = styled.div<{ size: NumberInputPropsType["size"] }>`
-  ${(props) => props.size == "fillParent" && "width: 100%;"}
+  ${(props) => props.size === "fillParent" && "width: 100%;"}
   // Chrome, Safari, Edge, Opera
   input::-webkit-outer-spin-button,
   input::-webkit-inner-spin-button {
@@ -89,5 +99,7 @@ const NumberInputContainer = styled.div<{ size: NumberInputPropsType["size"] }>`
     -moz-appearance: textfield;
   }
 `;
+
+DxcNumberInput.displayName = "DxcNumberInput";
 
 export default DxcNumberInput;

@@ -1,8 +1,8 @@
 import React from "react";
+import { userEvent, within } from "@storybook/test";
 import DxcTooltip from "./Tooltip";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DxcButton from "../button/Button";
-import { userEvent, within } from "@storybook/test";
 import DxcInset from "../inset/Inset";
 import Title from "../../.storybook/components/Title";
 import DxcFlex from "../flex/Flex";

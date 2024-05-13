@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import styled, { ThemeProvider } from "styled-components";
 import DxcFlex from "../flex/Flex";
 import DxcTypography from "../typography/Typography";
@@ -6,9 +6,7 @@ import BulletedListPropsType, { BulletedListItemPropsType } from "./types";
 import useTheme from "../useTheme";
 import DxcIcon from "../icon/Icon";
 
-const BulletedListItem = ({ children }: BulletedListItemPropsType): JSX.Element => {
-  return <>{children}</>;
-};
+const BulletedListItem = ({ children }: BulletedListItemPropsType): JSX.Element => <>{children}</>;
 
 const DxcBulletedList = ({ children, type = "disc", icon = "" }: BulletedListPropsType): JSX.Element => {
   const colorsTheme = useTheme();
@@ -17,36 +15,34 @@ const DxcBulletedList = ({ children, type = "disc", icon = "" }: BulletedListPro
     <ThemeProvider theme={colorsTheme.bulletedList}>
       <ListContainer>
         <DxcFlex direction="column" as={type === "number" ? "ol" : "ul"} gap="0.125rem">
-          {React.Children.map(children, (child, index) => {
-            return (
-              <ListItem>
-                <GeneralContent>
-                  {type === "number" ? (
-                    <Number>
-                      <DxcTypography color={colorsTheme.bulletedList.fontColor}>{index + 1}.</DxcTypography>
-                    </Number>
-                  ) : type === "square" ? (
-                    <Bullet>
-                      <Square />
-                    </Bullet>
-                  ) : type === "circle" ? (
-                    <Bullet>
-                      <Circle />
-                    </Bullet>
-                  ) : type === "icon" ? (
-                    <Bullet>
-                      <Icon>{typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}</Icon>
-                    </Bullet>
-                  ) : (
-                    <Bullet>
-                      <Disc />
-                    </Bullet>
-                  )}
-                  <DxcTypography color={colorsTheme.bulletedList.fontColor}>{child}</DxcTypography>
-                </GeneralContent>
-              </ListItem>
-            );
-          })}
+          {React.Children.map(children, (child, index) => (
+            <ListItem>
+              <GeneralContent>
+                {type === "number" ? (
+                  <Number>
+                    <DxcTypography color={colorsTheme.bulletedList.fontColor}>{index + 1}.</DxcTypography>
+                  </Number>
+                ) : type === "square" ? (
+                  <Bullet>
+                    <Square />
+                  </Bullet>
+                ) : type === "circle" ? (
+                  <Bullet>
+                    <Circle />
+                  </Bullet>
+                ) : type === "icon" ? (
+                  <Bullet>
+                    <Icon>{typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}</Icon>
+                  </Bullet>
+                ) : (
+                  <Bullet>
+                    <Disc />
+                  </Bullet>
+                )}
+                <DxcTypography color={colorsTheme.bulletedList.fontColor}>{child}</DxcTypography>
+              </GeneralContent>
+            </ListItem>
+          ))}
         </DxcFlex>
       </ListContainer>
     </ThemeProvider>

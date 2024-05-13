@@ -15,9 +15,9 @@ const DxcDatePicker = ({ date, onDateSelect, id }: DatePickerPropsType): JSX.Ele
   const selectedDate = date?.isValid() ? date : null;
   const translatedLabels = useTranslatedLabels();
 
-  const handleDateSelect = (date: Dayjs) => {
-    setInnerDate(date);
-    onDateSelect(date);
+  const handleDateSelect = (chosenDate: Dayjs) => {
+    setInnerDate(chosenDate);
+    onDateSelect(chosenDate);
   };
 
   const handleOnYearSelect = (year) => {
@@ -25,8 +25,8 @@ const DxcDatePicker = ({ date, onDateSelect, id }: DatePickerPropsType): JSX.Ele
     setContent("calendar");
   };
 
-  const handleMonthChange = (date: Dayjs) => {
-    setInnerDate(date);
+  const handleMonthChange = (chosenDate: Dayjs) => {
+    setInnerDate(chosenDate);
   };
 
   return (
@@ -41,7 +41,7 @@ const DxcDatePicker = ({ date, onDateSelect, id }: DatePickerPropsType): JSX.Ele
         </HeaderButton>
         <HeaderYearTrigger
           aria-live="polite"
-          onClick={() => setContent((content) => (content === "yearPicker" ? "calendar" : "yearPicker"))}
+          onClick={() => setContent((currentContent) => (currentContent === "yearPicker" ? "calendar" : "yearPicker"))}
         >
           <HeaderYearTriggerLabel>
             {translatedLabels.calendar.months[innerDate.get("month")]} {innerDate.format("YYYY")}

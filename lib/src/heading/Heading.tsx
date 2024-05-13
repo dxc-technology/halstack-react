@@ -8,7 +8,10 @@ const DxcHeading = ({ level = 1, text = "", as, weight, margin }: HeadingPropsTy
   const colorsTheme = useTheme();
 
   const checkValidAs = () => {
-    if (as === "h1" || as === "h2" || as === "h3" || as === "h4" || as === "h5") return as;
+    if (as === "h1" || as === "h2" || as === "h3" || as === "h4" || as === "h5") {
+      return as;
+    }
+    return undefined;
   };
 
   return (
@@ -61,10 +64,10 @@ const HeadingLevel1 = styled.h1<{ weight: HeadingPropsType["weight"] }>`
     props.weight === "normal"
       ? "400"
       : props.weight === "light"
-      ? "300"
-      : props.weight === "bold"
-      ? "600"
-      : props.theme.level1FontWeight};
+        ? "300"
+        : props.weight === "bold"
+          ? "600"
+          : props.theme.level1FontWeight};
   letter-spacing: ${(props) => props.theme.level1LetterSpacing};
   color: ${(props) => props.theme.level1FontColor};
   margin: 0;
@@ -79,10 +82,10 @@ const HeadingLevel2 = styled.h2<{ weight: HeadingPropsType["weight"] }>`
     props.weight === "normal"
       ? "400"
       : props.weight === "light"
-      ? "300"
-      : props.weight === "bold"
-      ? "600"
-      : props.theme.level2FontWeight};
+        ? "300"
+        : props.weight === "bold"
+          ? "600"
+          : props.theme.level2FontWeight};
   letter-spacing: ${(props) => props.theme.level2LetterSpacing};
   color: ${(props) => props.theme.level2FontColor};
   margin: 0;
@@ -97,10 +100,10 @@ const HeadingLevel3 = styled.h3<{ weight: HeadingPropsType["weight"] }>`
     props.weight === "normal"
       ? "400"
       : props.weight === "light"
-      ? "300"
-      : props.weight === "bold"
-      ? "600"
-      : props.theme.level3FontWeight};
+        ? "300"
+        : props.weight === "bold"
+          ? "600"
+          : props.theme.level3FontWeight};
   letter-spacing: ${(props) => props.theme.level3LetterSpacing};
   color: ${(props) => props.theme.level3FontColor};
   margin: 0;
@@ -115,10 +118,10 @@ const HeadingLevel4 = styled.h4<{ weight: HeadingPropsType["weight"] }>`
     props.weight === "normal"
       ? "400"
       : props.weight === "light"
-      ? "300"
-      : props.weight === "bold"
-      ? "600"
-      : props.theme.level4FontWeight};
+        ? "300"
+        : props.weight === "bold"
+          ? "600"
+          : props.theme.level4FontWeight};
   letter-spacing: ${(props) => props.theme.level4LetterSpacing};
   color: ${(props) => props.theme.level4FontColor};
   margin: 0;
@@ -133,10 +136,10 @@ const HeadingLevel5 = styled.h5<{ weight: HeadingPropsType["weight"] }>`
     props.weight === "normal"
       ? "400"
       : props.weight === "light"
-      ? "300"
-      : props.weight === "bold"
-      ? "600"
-      : props.theme.level5FontWeight};
+        ? "300"
+        : props.weight === "bold"
+          ? "600"
+          : props.theme.level5FontWeight};
   letter-spacing: ${(props) => props.theme.level5LetterSpacing};
   color: ${(props) => props.theme.level5FontColor};
   margin: 0;

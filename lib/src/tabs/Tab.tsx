@@ -49,8 +49,8 @@ const Tab = forwardRef(
               tab.isDisabled
                 ? colorsTheme.tabs.disabledFontColor
                 : active
-                ? colorsTheme.tabs.selectedFontColor
-                : colorsTheme.tabs.unselectedFontColor
+                  ? colorsTheme.tabs.selectedFontColor
+                  : colorsTheme.tabs.unselectedFontColor
             }
             fontFamily={colorsTheme.tabs.fontFamily}
             fontSize={colorsTheme.tabs.fontSize}
@@ -184,5 +184,7 @@ const TabIconContainer = styled.div<{
     width: 22px;
   }
 `;
+
+Tab.displayName = "Tab";
 
 export default React.memo(Tab);

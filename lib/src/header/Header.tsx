@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useRef, useMemo, useContext, useCallback } from "react";
+import React, { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import DxcDropdown from "../dropdown/Dropdown";
-import { dxcLogo } from "./Icons";
+import dxcLogo from "./Icons";
 import { spaces, responsiveSizes } from "../common/variables";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
@@ -24,11 +24,14 @@ const HeaderDropdown = styled.div`
   }
 `;
 
-const getLogoElement = (themeInput, logoLabel) => {
-  if (!themeInput) return dxcLogo;
-  else if (typeof themeInput === "string") return <LogoImg alt={logoLabel} src={themeInput}></LogoImg>;
-  else return themeInput;
-};
+const getLogoElement = (themeInput, logoLabel) =>
+  !themeInput ? (
+    dxcLogo
+  ) : typeof themeInput === "string" ? (
+    <LogoImg alt={logoLabel} src={themeInput}></LogoImg>
+  ) : (
+    themeInput
+  );
 
 type ContentProps = {
   isResponsive: boolean;
@@ -37,13 +40,12 @@ type ContentProps = {
   content: HeaderPropsType["content"];
 };
 
-const Content = ({ isResponsive, responsiveContent, handleMenu, content }: ContentProps) => {
-  return isResponsive ? (
+const Content = ({ isResponsive, responsiveContent, handleMenu, content }: ContentProps) =>
+  isResponsive ? (
     <MenuContent>{responsiveContent(handleMenu)}</MenuContent>
   ) : (
     <ContentContainer>{content}</ContentContainer>
   );
-};
 
 const DxcHeader = ({
   underlined = false,
@@ -72,13 +74,15 @@ const DxcHeader = ({
     }
   };
 
-  const headerLogo = useMemo(() => {
-    return getLogoElement(colorsTheme.header.logo, translatedLabels.formFields.logoAlternativeText);
-  }, [colorsTheme.header.logo]);
+  const headerLogo = useMemo(
+    () => getLogoElement(colorsTheme.header.logo, translatedLabels.formFields.logoAlternativeText),
+    [colorsTheme.header.logo]
+  );
 
-  const headerResponsiveLogo = useMemo(() => {
-    return getLogoElement(colorsTheme.header.logoResponsive, translatedLabels.formFields.logoAlternativeText);
-  }, [colorsTheme.header.logoResponsive]);
+  const headerResponsiveLogo = useMemo(
+    () => getLogoElement(colorsTheme.header.logoResponsive, translatedLabels.formFields.logoAlternativeText),
+    [colorsTheme.header.logoResponsive]
+  );
 
   useEffect(() => {
     handleResize();
@@ -89,13 +93,15 @@ const DxcHeader = ({
   }, [handleResize]);
 
   useEffect(() => {
-    !isResponsive && setIsMenuVisible(false);
+    if (!isResponsive) {
+      setIsMenuVisible(false);
+    }
   }, [isResponsive]);
 
   return (
     <ThemeProvider theme={colorsTheme.header}>
       <HeaderContainer underlined={underlined} margin={margin} ref={ref}>
-        <LogoAnchor tabIndex={onClick ? tabIndex : -1} interactuable={onClick ? true : false} onClick={onClick}>
+        <LogoAnchor tabIndex={onClick ? tabIndex : -1} interactuable={!!onClick} onClick={onClick}>
           <LogoContainer>{headerLogo}</LogoContainer>
         </LogoAnchor>
         {isResponsive && responsiveContent && (
@@ -143,7 +149,10 @@ const DxcHeader = ({
 
 DxcHeader.Dropdown = Dropdown;
 
-const HeaderContainer = styled.header<{ margin: HeaderPropsType["margin"]; underlined: HeaderPropsType["underlined"] }>`
+const HeaderContainer = styled.header<{
+  margin: HeaderPropsType["margin"];
+  underlined: HeaderPropsType["underlined"];
+}>`
   box-sizing: border-box;
   display: flex;
   flex-direction: row;

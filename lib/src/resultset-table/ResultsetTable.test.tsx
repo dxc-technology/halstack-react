@@ -8,13 +8,20 @@ import DxcCheckbox from "../checkbox/Checkbox";
 // Mocking DOMRect for Radix Primitive Popover
 (global as any).globalThis = global;
 (global as any).DOMRect = {
-  fromRect: () => ({ top: 0, left: 0, bottom: 0, right: 0, width: 0, height: 0 }),
+  fromRect: () => ({
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
+    width: 0,
+    height: 0,
+  }),
 };
-(global as any).ResizeObserver = class ResizeObserver {
-  observe() {}
-  unobserve() {}
-  disconnect() {}
-};
+global.ResizeObserver = jest.fn().mockImplementation(() => ({
+  observe: jest.fn(),
+  unobserve: jest.fn(),
+  disconnect: jest.fn(),
+}));
 
 const icon = (
   <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
@@ -191,7 +198,7 @@ const rowsWithCheckbox = [
   [
     { displayValue: "001", sortValue: "001" },
     {
-      displayValue: <DxcCheckbox size="fillParent" defaultChecked={true} />,
+      displayValue: <DxcCheckbox size="fillParent" defaultChecked />,
     },
     { displayValue: "Peter" },
     { displayValue: "Miami" },
@@ -246,7 +253,7 @@ describe("Resultset table component tests", () => {
     window.HTMLElement.prototype.scrollIntoView = () => {};
     window.HTMLElement.prototype.scrollTo = () => {};
     const { getByText, getAllByRole } = render(
-      <DxcResultsetTable columns={columns} showGoToPage rows={rows} itemsPerPage={3} />,
+      <DxcResultsetTable columns={columns} showGoToPage rows={rows} itemsPerPage={3} />
     );
     expect(getByText("Peter")).toBeTruthy();
     expect(getByText("Louis")).toBeTruthy();
@@ -286,7 +293,7 @@ describe("Resultset table component tests", () => {
 
   test("Resultset table should go one page back when removing the last page data", () => {
     const { getAllByRole, queryByText, rerender } = render(
-      <DxcResultsetTable columns={columns} rows={rows} itemsPerPage={3} />,
+      <DxcResultsetTable columns={columns} rows={rows} itemsPerPage={3} />
     );
     expect(queryByText("1 to 3 of 10")).toBeTruthy();
     const lastButton = getAllByRole("button")[4];
@@ -299,7 +306,7 @@ describe("Resultset table component tests", () => {
 
   test("Resultset table shouldn't go one page back when there is data left in the last page", () => {
     const { getAllByRole, queryByText, rerender } = render(
-      <DxcResultsetTable columns={columns} rows={rows} itemsPerPage={2} />,
+      <DxcResultsetTable columns={columns} rows={rows} itemsPerPage={2} />
     );
     expect(queryByText("1 to 2 of 10")).toBeTruthy();
     const lastButton = getAllByRole("button")[4];
@@ -312,7 +319,7 @@ describe("Resultset table component tests", () => {
 
   test("Resultset table uncontrolled components maintain its value when sorting", async () => {
     const { getAllByRole } = render(
-      <DxcResultsetTable columns={columnsWithCheckbox} rows={rowsWithCheckbox} itemsPerPage={3} />,
+      <DxcResultsetTable columns={columnsWithCheckbox} rows={rowsWithCheckbox} itemsPerPage={3} />
     );
     const columnHeader = getAllByRole("columnheader")[0];
     const sortButton = getAllByRole("button")[0];
@@ -328,13 +335,13 @@ describe("Resultset table component tests", () => {
     fireEvent.click(sortButton);
 
     expect(columnHeader.getAttribute("aria-sort")).toBe("descending");
-    
+
     expect(getAllByRole("checkbox")[0].getAttribute("aria-checked")).toBe("false");
   });
 
   test("Resultset table change itemsPerPage should go to first page", () => {
     const { getAllByRole } = render(
-      <DxcResultsetTable columns={columns} rows={rows} itemsPerPage={3} itemsPerPageOptions={[2, 3]} />,
+      <DxcResultsetTable columns={columns} rows={rows} itemsPerPage={3} itemsPerPageOptions={[2, 3]} />
     );
     const lastButton = getAllByRole("button")[4];
     expect(getAllByRole("row").length - 1).toEqual(3);
@@ -371,9 +378,9 @@ describe("Resultset table component tests", () => {
         ],
       },
       {
-        icon: icon,
+        icon,
         title: "icon2",
-        onClick: onClick,
+        onClick,
       },
     ];
     const actionRows = [
@@ -393,7 +400,7 @@ describe("Resultset table component tests", () => {
       ],
     ];
     const { getAllByRole, getByRole, getByText } = render(
-      <DxcResultsetTable columns={columns} rows={actionRows} itemsPerPage={3} />,
+      <DxcResultsetTable columns={columns} rows={actionRows} itemsPerPage={3} />
     );
     const dropdown = getAllByRole("button")[2];
     act(() => {

@@ -123,8 +123,8 @@ export type FileItemProps = {
   singleFileMode: boolean;
   preview: string;
   type: string;
-  onDelete: (fileName: string) => void,
-  tabIndex: number,
+  onDelete: (fileName: string) => void;
+  tabIndex: number;
 };
 
 export default Props;

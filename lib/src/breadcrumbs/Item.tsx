@@ -1,8 +1,7 @@
-import React from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
 import CoreTokens from "../common/coreTokens";
 import { ItemPropsType } from "./types";
-import { useRef } from "react";
 
 const Item = ({ isCurrentPage = false, href, label, onClick }: ItemPropsType) => {
   const currentItemRef = useRef<HTMLSpanElement>(null);
@@ -10,8 +9,9 @@ const Item = ({ isCurrentPage = false, href, label, onClick }: ItemPropsType) =>
   const handleOnMouseEnter = (event: React.MouseEvent<HTMLAnchorElement>) => {
     const labelContainer = event.currentTarget;
     const optionElement = currentItemRef?.current;
-    if (optionElement.title === "" && labelContainer.scrollWidth > labelContainer.clientWidth)
+    if (optionElement.title === "" && labelContainer.scrollWidth > labelContainer.clientWidth) {
       optionElement.title = label;
+    }
   };
 
   const handleOnClick = (event: React.MouseEvent<HTMLAnchorElement>) => {

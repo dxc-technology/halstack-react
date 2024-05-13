@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables";
 import useTheme from "../useTheme";
-import { getMargin } from "../common/utils";
+import getMargin from "../common/utils";
 import DxcBox from "../box/Box";
 import DxcIcon from "../icon/Icon";
 import TagPropsType from "./types";
@@ -22,7 +22,9 @@ const DxcTag = ({
   const colorsTheme = useTheme();
   const [isHovered, changeIsHovered] = useState(false);
   const clickHandler = () => {
-    onClick && onClick();
+    if (onClick) {
+      onClick();
+    }
   };
 
   const tagContent = (

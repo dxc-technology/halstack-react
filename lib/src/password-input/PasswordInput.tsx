@@ -33,7 +33,7 @@ const DxcPasswordInput = React.forwardRef<RefType, PasswordInputPropsType>(
       size = "medium",
       tabIndex = 0,
     },
-    ref,
+    ref
   ) => {
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
     const inputRef = useRef<HTMLDivElement>(null);
@@ -60,7 +60,7 @@ const DxcPasswordInput = React.forwardRef<RefType, PasswordInputPropsType>(
           helperText={helperText}
           action={{
             onClick: () => {
-              setIsPasswordVisible((isPasswordVisible) => !isPasswordVisible);
+              setIsPasswordVisible((isPasswordCurrentlyVisible) => !isPasswordCurrentlyVisible);
             },
             icon: isPasswordVisible ? "Visibility_Off" : "Visibility",
             title: isPasswordVisible ? passwordInput.inputHidePasswordTitle : passwordInput.inputShowPasswordTitle,
@@ -80,14 +80,16 @@ const DxcPasswordInput = React.forwardRef<RefType, PasswordInputPropsType>(
         />
       </PasswordInput>
     );
-  },
+  }
 );
 
 const PasswordInput = styled.div<{ size: PasswordInputPropsType["size"] }>`
-  ${(props) => props.size == "fillParent" && "width: 100%;"}
+  ${(props) => props.size === "fillParent" && "width: 100%;"}
   & ::-ms-reveal {
     display: none;
   }
 `;
+
+DxcPasswordInput.displayName = "DxcPasswordInput";
 
 export default DxcPasswordInput;

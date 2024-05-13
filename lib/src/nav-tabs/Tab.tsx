@@ -1,11 +1,11 @@
-import React, { useEffect, forwardRef, Ref, useContext, useRef } from "react";
+import React, { useEffect, forwardRef, Ref, useContext, useRef, useImperativeHandle } from "react";
 import styled from "styled-components";
 import DxcBadge from "../badge/Badge";
 import DxcFlex from "../flex/Flex";
 import NavTabsPropsType, { TabProps } from "./types";
 import BaseTypography from "../utils/BaseTypography";
 import useTheme from "../useTheme";
-import { NavTabsContext } from "./NavTabsContext";
+import NavTabsContext from "./NavTabsContext";
 import DxcIcon from "../icon/Icon";
 
 const DxcTab = forwardRef(
@@ -16,9 +16,13 @@ const DxcTab = forwardRef(
     const tabRef = useRef<HTMLAnchorElement>();
     const colorsTheme = useTheme();
     const { iconPosition, tabIndex, focusedLabel } = useContext(NavTabsContext);
+    const innerRef = useRef<HTMLAnchorElement>(null);
+    useImperativeHandle(ref, () => innerRef.current!, []);
 
     useEffect(() => {
-      focusedLabel === children.toString() && tabRef?.current?.focus();
+      if (focusedLabel === children.toString()) {
+        tabRef?.current?.focus();
+      }
     }, [focusedLabel]);
 
     const handleOnKeyDown = (event: React.KeyboardEvent<HTMLAnchorElement>) => {
@@ -27,6 +31,8 @@ const DxcTab = forwardRef(
         case "Enter":
           event.preventDefault();
           tabRef?.current?.click();
+          break;
+        default:
           break;
       }
     };
@@ -38,13 +44,16 @@ const DxcTab = forwardRef(
           disabled={disabled}
           active={active}
           iconPosition={iconPosition}
-          hasIcon={icon != null ? true : false}
+          hasIcon={icon != null}
           ref={(anchorRef) => {
             tabRef.current = anchorRef;
 
             if (ref) {
-              if (typeof ref === "function") ref(anchorRef);
-              else (ref as React.MutableRefObject<HTMLAnchorElement | null>).current = anchorRef;
+              if (typeof ref === "function") {
+                ref(anchorRef);
+              } else {
+                innerRef.current = anchorRef;
+              }
             }
           }}
           onKeyDown={handleOnKeyDown}
@@ -65,8 +74,8 @@ const DxcTab = forwardRef(
                 disabled
                   ? colorsTheme.navTabs.disabledFontColor
                   : active
-                  ? colorsTheme.navTabs.selectedFontColor
-                  : colorsTheme.navTabs.unselectedFontColor
+                    ? colorsTheme.navTabs.selectedFontColor
+                    : colorsTheme.navTabs.unselectedFontColor
               }
               fontFamily={colorsTheme.navTabs.fontFamily}
               fontSize={colorsTheme.navTabs.fontSize}
@@ -148,12 +157,14 @@ const TabIconContainer = styled.div<{
     props.active
       ? props.theme.selectedIconColor
       : props.disabled
-      ? props.theme.disabledIconColor
-      : props.theme.unselectedIconColor};
+        ? props.theme.disabledIconColor
+        : props.theme.unselectedIconColor};
   svg {
     height: 24px;
     width: 24px;
   }
 `;
+
+DxcTab.displayName = "DxcTab";
 
 export default DxcTab;

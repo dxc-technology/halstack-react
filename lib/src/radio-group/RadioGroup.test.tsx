@@ -36,8 +36,7 @@ describe("Radio Group component tests", () => {
     expect(error.getAttribute("aria-live")).toBe("off");
     radios.forEach((radio, index) => {
       // if no option was previously selected, first option is the focusable one
-      if (index === 0) expect(radio.tabIndex).toBe(0);
-      else expect(radio.tabIndex).toBe(-1);
+      expect(radio.tabIndex).toBe(index === 0 ? 0 : -1);
       expect(radio.getAttribute("aria-checked")).toBe("false");
       expect(radio.getAttribute("aria-disabled")).toBe("false");
       expect(radio.getAttribute("aria-labelledby")).toBe(getByText(`Option 0${index + 1}`).id);
@@ -80,9 +79,24 @@ describe("Radio Group component tests", () => {
     radios.forEach((radio) => {
       expect(radio.tabIndex).toBe(-1);
     });
-    fireEvent.keyDown(radioGroup, { key: " ", code: "Space", keyCode: 13, charCode: 13 });
-    fireEvent.keyDown(radioGroup, { key: "ArrowLeft", code: "ArrowLeft", keyCode: 37, charCode: 37 });
-    fireEvent.keyDown(radioGroup, { key: "ArrowDown", code: "ArrowDown", keyCode: 40, charCode: 40 });
+    fireEvent.keyDown(radioGroup, {
+      key: " ",
+      code: "Space",
+      keyCode: 13,
+      charCode: 13,
+    });
+    fireEvent.keyDown(radioGroup, {
+      key: "ArrowLeft",
+      code: "ArrowLeft",
+      keyCode: 37,
+      charCode: 37,
+    });
+    fireEvent.keyDown(radioGroup, {
+      key: "ArrowDown",
+      code: "ArrowDown",
+      keyCode: 40,
+      charCode: 40,
+    });
     radios.forEach((radio) => {
       expect(radio.tabIndex).toBe(-1);
     });
@@ -98,8 +112,18 @@ describe("Radio Group component tests", () => {
     expect(radios[0].tabIndex).toBe(0);
     expect(radios[1].tabIndex).toBe(-1);
     expect(radios[2].tabIndex).toBe(-1);
-    fireEvent.keyDown(radioGroup, { key: "ArrowDown", code: "ArrowDown", keyCode: 40, charCode: 40 });
-    fireEvent.keyDown(radioGroup, { key: "ArrowDown", code: "ArrowDown", keyCode: 40, charCode: 40 });
+    fireEvent.keyDown(radioGroup, {
+      key: "ArrowDown",
+      code: "ArrowDown",
+      keyCode: 40,
+      charCode: 40,
+    });
+    fireEvent.keyDown(radioGroup, {
+      key: "ArrowDown",
+      code: "ArrowDown",
+      keyCode: 40,
+      charCode: 40,
+    });
     expect(radios[0].tabIndex).toBe(0);
     expect(radios[1].tabIndex).toBe(-1);
     expect(radios[2].tabIndex).toBe(-1);
@@ -142,7 +166,9 @@ describe("Radio Group component tests", () => {
     const radioGroup = getByRole("radiogroup");
     expect(radioGroup.getAttribute("aria-required")).toBe("true");
     fireEvent.blur(radioGroup);
-    expect(onBlur).toHaveBeenCalledWith({ error: "This field is required. Please, choose an option." });
+    expect(onBlur).toHaveBeenCalledWith({
+      error: "This field is required. Please, choose an option.",
+    });
     await userEvent.click(radioGroup);
     await userEvent.click(getAllByRole("radio")[0]);
     expect(onChange).toHaveBeenCalledWith("1");
@@ -159,7 +185,10 @@ describe("Radio Group component tests", () => {
     const radioGroup = getByRole("radiogroup");
     expect(radioGroup.getAttribute("aria-required")).toBe("true");
     fireEvent.blur(radioGroup);
-    expect(onBlur).toHaveBeenCalledWith({ value: "", error: "This field is required. Please, choose an option." });
+    expect(onBlur).toHaveBeenCalledWith({
+      value: "",
+      error: "This field is required. Please, choose an option.",
+    });
     await userEvent.click(getAllByRole("radio")[0]);
     expect(onChange).toHaveBeenCalledWith("1");
   });
@@ -315,7 +344,12 @@ describe("Radio Group component tests", () => {
     const radioGroup = getByRole("radiogroup");
     const checkedRadio = getAllByRole("radio")[0];
     const submitInput = container.querySelector<HTMLInputElement>(`input[name="test"]`);
-    fireEvent.keyDown(radioGroup, { key: " ", code: "Space", keyCode: 32, charCode: 32 });
+    fireEvent.keyDown(radioGroup, {
+      key: " ",
+      code: "Space",
+      keyCode: 32,
+      charCode: 32,
+    });
     expect(onChange).toHaveBeenCalledWith("1");
     expect(checkedRadio.getAttribute("aria-checked")).toBe("true");
     expect(checkedRadio.tabIndex).toBe(0);
@@ -345,7 +379,12 @@ describe("Radio Group component tests", () => {
     expect(checkedRadio.tabIndex).toBe(0);
     expect(checkedRadio.getAttribute("aria-checked")).toBe("false");
     expect(document.activeElement).toEqual(checkedRadio);
-    fireEvent.keyDown(radioGroup, { key: "ArrowRight", code: "ArrowRight", keyCode: 39, charCode: 39 });
+    fireEvent.keyDown(radioGroup, {
+      key: "ArrowRight",
+      code: "ArrowRight",
+      keyCode: 39,
+      charCode: 39,
+    });
     expect(onBlur).not.toHaveBeenCalled();
     expect(onChange).toHaveBeenCalledTimes(1);
     expect(radios[1].getAttribute("aria-checked")).toBe("true");
@@ -371,14 +410,24 @@ describe("Radio Group component tests", () => {
     const radioGroup = getByRole("radiogroup");
     const radios = getAllByRole("radio");
     const submitInput = container.querySelector<HTMLInputElement>(`input[name="test"]`);
-    fireEvent.keyDown(radioGroup, { key: "ArrowDown", code: "ArrowDown", keyCode: 40, charCode: 40 });
+    fireEvent.keyDown(radioGroup, {
+      key: "ArrowDown",
+      code: "ArrowDown",
+      keyCode: 40,
+      charCode: 40,
+    });
     expect(onBlur).not.toHaveBeenCalled();
     expect(onChange).toHaveBeenCalledTimes(1);
     expect(radios[8].getAttribute("aria-checked")).toBe("true");
     expect(document.activeElement).toEqual(radios[8]);
     expect(radios[8].tabIndex).toBe(0);
     expect(submitInput.value).toBe("9");
-    fireEvent.keyDown(radioGroup, { key: "ArrowRight", code: "ArrowRight", keyCode: 39, charCode: 39 });
+    fireEvent.keyDown(radioGroup, {
+      key: "ArrowRight",
+      code: "ArrowRight",
+      keyCode: 39,
+      charCode: 39,
+    });
     expect(onBlur).not.toHaveBeenCalled();
     expect(onChange).toHaveBeenCalledTimes(2);
     expect(radios[0].getAttribute("aria-checked")).toBe("true");
@@ -404,14 +453,24 @@ describe("Radio Group component tests", () => {
     const radioGroup = getByRole("radiogroup");
     const radios = getAllByRole("radio");
     const submitInput = container.querySelector<HTMLInputElement>(`input[name="test"]`);
-    fireEvent.keyDown(radioGroup, { key: "ArrowUp", code: "ArrowUp", keyCode: 38, charCode: 38 });
+    fireEvent.keyDown(radioGroup, {
+      key: "ArrowUp",
+      code: "ArrowUp",
+      keyCode: 38,
+      charCode: 38,
+    });
     expect(onBlur).not.toHaveBeenCalled();
     expect(onChange).toHaveBeenCalledTimes(1);
     expect(radios[0].getAttribute("aria-checked")).toBe("true");
     expect(document.activeElement).toEqual(radios[0]);
     expect(radios[0].tabIndex).toBe(0);
     expect(submitInput.value).toBe("1");
-    fireEvent.keyDown(radioGroup, { key: "ArrowLeft", code: "ArrowLeft", keyCode: 37, charCode: 37 });
+    fireEvent.keyDown(radioGroup, {
+      key: "ArrowLeft",
+      code: "ArrowLeft",
+      keyCode: 37,
+      charCode: 37,
+    });
     expect(onBlur).not.toHaveBeenCalled();
     expect(onChange).toHaveBeenCalledTimes(2);
     expect(radios[8].getAttribute("aria-checked")).toBe("true");
@@ -435,14 +494,24 @@ describe("Radio Group component tests", () => {
     const radios = getAllByRole("radio");
     const submitInput = container.querySelector<HTMLInputElement>(`input[name="test"]`);
     await userEvent.click(radios[3]);
-    fireEvent.keyDown(radioGroup, { key: "ArrowDown", code: "ArrowDown", keyCode: 40, charCode: 40 });
+    fireEvent.keyDown(radioGroup, {
+      key: "ArrowDown",
+      code: "ArrowDown",
+      keyCode: 40,
+      charCode: 40,
+    });
     expect(onChange).toHaveBeenCalledWith("5");
     expect(radios[4].getAttribute("aria-checked")).toBe("true");
     expect(document.activeElement).toEqual(radios[4]);
     expect(radios[4].tabIndex).toBe(0);
     expect(submitInput.value).toBe("5");
     await userEvent.click(radios[8]);
-    fireEvent.keyDown(radioGroup, { key: "ArrowLeft", code: "ArrowLeft", keyCode: 37, charCode: 37 });
+    fireEvent.keyDown(radioGroup, {
+      key: "ArrowLeft",
+      code: "ArrowLeft",
+      keyCode: 37,
+      charCode: 37,
+    });
     expect(onChange).toHaveBeenCalledWith("8");
     expect(radios[7].getAttribute("aria-checked")).toBe("true");
     expect(document.activeElement).toEqual(radios[7]);
@@ -471,7 +540,12 @@ describe("Radio Group component tests", () => {
     expect(document.activeElement).toEqual(radios[5]);
     expect(radios[5].tabIndex).toBe(0);
     expect(submitInput.value).toBe("");
-    fireEvent.keyDown(radioGroup, { key: "ArrowUp", code: "ArrowUp", keyCode: 38, charCode: 38 });
+    fireEvent.keyDown(radioGroup, {
+      key: "ArrowUp",
+      code: "ArrowUp",
+      keyCode: 38,
+      charCode: 38,
+    });
     expect(onChange).not.toHaveBeenCalled();
     expect(radios[4].getAttribute("aria-checked")).toBe("false");
     expect(document.activeElement).toEqual(radios[4]);

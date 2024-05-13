@@ -1,7 +1,7 @@
 import React from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables";
-import { getMargin } from "../common/utils";
+import getMargin from "../common/utils";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
 import AlertPropsType from "./types";
@@ -24,10 +24,10 @@ const DxcAlert = ({
     type === "info"
       ? translatedLabels.alert.infoTitleText
       : type === "confirm"
-      ? translatedLabels.alert.successTitleText
-      : type === "warning"
-      ? translatedLabels.alert.warningTitleText
-      : translatedLabels.alert.errorTitleText;
+        ? translatedLabels.alert.successTitleText
+        : type === "warning"
+          ? translatedLabels.alert.warningTitleText
+          : translatedLabels.alert.errorTitleText;
 
   return (
     <ThemeProvider theme={colorsTheme.alert}>

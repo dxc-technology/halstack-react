@@ -75,13 +75,17 @@ const sizeMap = {
   },
 };
 
-const Label = ({ label, notificationLimit, size }) => {
-  return (
-    <LabelContainer size={size}>
-      {typeof label === "number" ? (label > notificationLimit ? "+" + notificationLimit : label) : label}
-    </LabelContainer>
-  );
+type LabelProps = {
+  label: string | number;
+  notificationLimit: number;
+  size: BadgePropsType["size"];
 };
+
+const Label = ({ label, notificationLimit, size }: LabelProps) => (
+  <LabelContainer size={size}>
+    {typeof label === "number" ? (label > notificationLimit ? `+${notificationLimit}` : label) : label}
+  </LabelContainer>
+);
 
 const DxcBadge = ({
   label,
@@ -91,27 +95,23 @@ const DxcBadge = ({
   icon,
   notificationLimit = 99,
   size = "medium",
-}: BadgePropsType): JSX.Element => {
-  return (
-    <BadgeContainer
-      label={label}
-      mode={mode}
-      color={(mode === "contextual" && color) || undefined}
-      size={size}
-      title={title}
-      aria-label={title}
-    >
-      {(mode === "contextual" && (
-        <DxcFlex gap="0.125rem" alignItems="center">
-          {icon && (
-            <IconContainer size={size}>{typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}</IconContainer>
-          )}
-          <Label label={label} notificationLimit={notificationLimit} size={size} />
-        </DxcFlex>
-      )) || <Label label={label} notificationLimit={notificationLimit} size={size} />}
-    </BadgeContainer>
-  );
-};
+}: BadgePropsType): JSX.Element => (
+  <BadgeContainer
+    label={label}
+    mode={mode}
+    color={(mode === "contextual" && color) || undefined}
+    size={size}
+    title={title}
+    aria-label={title}
+  >
+    {(mode === "contextual" && (
+      <DxcFlex gap="0.125rem" alignItems="center">
+        {icon && <IconContainer size={size}>{typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}</IconContainer>}
+        <Label label={label} notificationLimit={notificationLimit} size={size} />
+      </DxcFlex>
+    )) || <Label label={label} notificationLimit={notificationLimit} size={size} />}
+  </BadgeContainer>
+);
 
 const getColor = (mode, color) => (mode === "contextual" ? contextualColorMap[color].text : CoreTokens.color_white);
 

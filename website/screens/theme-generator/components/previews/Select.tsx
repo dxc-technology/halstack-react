@@ -3,13 +3,13 @@ import { DxcSelect } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
 import PreviewContainer from "./PreviewContainer";
 
-const single_options = [
+const singleOptions = [
   { label: "Option 01", value: "1" },
   { label: "Option 02", value: "2" },
   { label: "Option 03", value: "3" },
   { label: "Option 04", value: "4" },
 ];
-const single_options_long = [
+const singleOptionsLong = [
   { label: "Option 01", value: "1" },
   { label: "Option 02", value: "2" },
   { label: "Option 03", value: "3" },
@@ -182,14 +182,14 @@ const Select = () => (
       <DxcSelect
         label="Label"
         helperText="Helper text"
-        options={single_options}
+        options={singleOptions}
         placeholder="Choose an option"
         size="fillParent"
       />
       <DxcSelect
         label="Label"
         helperText="Helper text"
-        options={single_options}
+        options={singleOptions}
         placeholder="Choose an option"
         disabled
         size="fillParent"
@@ -197,7 +197,7 @@ const Select = () => (
       <DxcSelect
         label="Label"
         helperText="Helper text"
-        options={single_options}
+        options={singleOptions}
         error="Error message"
         placeholder="Choose an option"
         size="fillParent"
@@ -207,7 +207,7 @@ const Select = () => (
       <DxcSelect
         label="Label"
         helperText="Helper text"
-        options={single_options_long}
+        options={singleOptionsLong}
         placeholder="Choose an option"
         searchable
         optional

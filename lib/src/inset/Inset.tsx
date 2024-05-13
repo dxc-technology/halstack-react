@@ -2,33 +2,22 @@ import React from "react";
 import styled from "styled-components";
 import InsetPropsType from "./types";
 
-export default function Inset({
-  space,
-  horizontal,
-  vertical,
-  top,
-  right,
-  bottom,
-  left,
-  children,
-}: InsetPropsType): JSX.Element {
-  return (
-    <StyledInset
-      space={space}
-      horizontal={horizontal}
-      vertical={vertical}
-      top={top}
-      right={right}
-      bottom={bottom}
-      left={left}
-    >
-      {children}
-    </StyledInset>
-  );
-}
+const Inset = ({ space, horizontal, vertical, top, right, bottom, left, children }: InsetPropsType): JSX.Element => (
+  <StyledInset
+    space={space}
+    horizontal={horizontal}
+    vertical={vertical}
+    top={top}
+    right={right}
+    bottom={bottom}
+    left={left}
+  >
+    {children}
+  </StyledInset>
+);
 
 function getSpacingValue(spacingName) {
-  return spacingName ? spacingName : "0rem";
+  return spacingName || "0rem";
 }
 
 const StyledInset = styled.div<InsetPropsType>`
@@ -37,3 +26,5 @@ const StyledInset = styled.div<InsetPropsType>`
     ${getSpacingValue(bottom || vertical || space)} ${getSpacingValue(left || horizontal || space)};
 `}
 `;
+
+export default Inset;

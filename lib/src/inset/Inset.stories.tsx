@@ -1,7 +1,7 @@
 import React from "react";
-import Title from "../../.storybook/components/Title";
 import styled from "styled-components";
-import DxcFlex from "./../flex/Flex";
+import Title from "../../.storybook/components/Title";
+import DxcFlex from "../flex/Flex";
 import DxcInset from "./Inset";
 
 export default {

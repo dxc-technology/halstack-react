@@ -19,11 +19,7 @@ const FileItem = ({
   const colorsTheme = useTheme();
   const translatedLabels = useTranslatedLabels();
 
-  const getIconAriaLabel = () => {
-    if (type.includes("video")) return "video";
-    else if (type.includes("audio")) return "audio";
-    else return "file";
-  };
+  const getIconAriaLabel = () => (type.includes("video") ? "video" : type.includes("audio") ? "audio" : "file");
 
   return (
     <ThemeProvider theme={colorsTheme.fileInput}>
@@ -56,7 +52,11 @@ const FileItem = ({
               <DxcIcon icon="close" />
             </DeleteFileAction>
           </DxcFlex>
-          {error && !singleFileMode && <ErrorMessage role="alert" aria-live="assertive">{error}</ErrorMessage>}
+          {error && !singleFileMode && (
+            <ErrorMessage role="alert" aria-live="assertive">
+              {error}
+            </ErrorMessage>
+          )}
         </FileItemContent>
       </MainContainer>
     </ThemeProvider>

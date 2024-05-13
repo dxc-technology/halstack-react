@@ -1,6 +1,6 @@
 import React, { useId, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import { getMargin } from "../common/utils";
+import getMargin from "../common/utils";
 import { spaces } from "../common/variables";
 import useTheme from "../useTheme";
 import AccordionPropsType from "./types";
@@ -24,7 +24,9 @@ const DxcAccordion = ({
   const colorsTheme = useTheme();
 
   const handleAccordionState = () => {
-    isExpanded ?? setInnerIsExpanded((innerIsExpanded) => !innerIsExpanded);
+    if (isExpanded == null) {
+      setInnerIsExpanded((innerIsCurrentlyExpanded) => !innerIsCurrentlyExpanded);
+    }
     onChange?.(!isExpanded ?? !innerIsExpanded);
   };
 
@@ -192,7 +194,9 @@ const AccordionAssistiveText = styled.span`
   padding-right: ${(props) => props.theme.assistiveTextPaddingRight};
 `;
 
-const CollapseIndicator = styled.span<{ disabled: AccordionPropsType["disabled"] }>`
+const CollapseIndicator = styled.span<{
+  disabled: AccordionPropsType["disabled"];
+}>`
   display: flex;
   flex-wrap: wrap;
   align-content: center;

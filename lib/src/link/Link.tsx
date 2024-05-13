@@ -5,9 +5,9 @@ import useTheme from "../useTheme";
 import { LinkProps } from "./types";
 import DxcIcon from "../icon/Icon";
 
-const LinkContent = React.memo(({ iconPosition, icon, children }: LinkProps): JSX.Element => {
-  return (
-    <React.Fragment>
+const LinkContent = React.memo(
+  ({ iconPosition, icon, children }: LinkProps): JSX.Element => (
+    <>
       {iconPosition === "after" && children}
       {icon && (
         <LinkIconContainer iconPosition={iconPosition}>
@@ -15,9 +15,11 @@ const LinkContent = React.memo(({ iconPosition, icon, children }: LinkProps): JS
         </LinkIconContainer>
       )}
       {iconPosition === "before" && children}
-    </React.Fragment>
-  );
-});
+    </>
+  )
+);
+
+LinkContent.displayName = "LinkContent";
 
 const DxcLink = forwardRef(
   (
@@ -52,7 +54,9 @@ const DxcLink = forwardRef(
           ref={ref}
           {...otherProps}
         >
-          <LinkContent iconPosition={iconPosition} icon={icon} children={children} />
+          <LinkContent iconPosition={iconPosition} icon={icon}>
+            {children}
+          </LinkContent>
         </StyledLink>
       </ThemeProvider>
     );
@@ -118,7 +122,9 @@ const StyledLink = styled.div<{
   }
 `;
 
-const LinkIconContainer = styled.div<{ iconPosition: LinkProps["iconPosition"] }>`
+const LinkIconContainer = styled.div<{
+  iconPosition: LinkProps["iconPosition"];
+}>`
   width: ${(props) => props.theme.iconSize};
   height: ${(props) => props.theme.iconSize};
   ${(props) => `${props.iconPosition === "before" ? "margin-right" : "margin-left"}: ${props.theme.iconSpacing}`};
@@ -131,5 +137,7 @@ const LinkIconContainer = styled.div<{ iconPosition: LinkProps["iconPosition"] }
     width: 100%;
   }
 `;
+
+DxcLink.displayName = "DxcLink";
 
 export default DxcLink;

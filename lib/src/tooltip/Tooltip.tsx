@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import TooltipPropsType from "./types";
 import * as Tooltip from "@radix-ui/react-tooltip";
+import TooltipPropsType from "./types";
 import CoreTokens from "../common/coreTokens";
 
 const Triangle = () => (

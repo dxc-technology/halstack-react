@@ -62,7 +62,9 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
       (newValue: string) => {
         const currentValue = value ?? innerValue;
         if (newValue !== currentValue && !readOnly) {
-          value ?? setInnerValue(newValue);
+          if (value == null) {
+            setInnerValue(newValue);
+          }
           onChange?.(newValue);
         }
       },
@@ -73,18 +75,25 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
       if (!event.currentTarget.contains(event.relatedTarget as Node)) {
         setFirstTimeFocus(true);
         const currentValue = value ?? innerValue;
-        !optional && !Boolean(currentValue)
-          ? onBlur?.({ value: currentValue, error: translatedLabels.formFields.requiredSelectionErrorMessage })
-          : onBlur?.({ value: currentValue });
+        if (!optional && !currentValue) {
+          onBlur?.({
+            value: currentValue,
+            error: translatedLabels.formFields.requiredSelectionErrorMessage,
+          });
+        } else {
+          onBlur?.({ value: currentValue });
+        }
       }
     };
     const handleOnFocus = () => {
-      firstTimeFocus && setFirstTimeFocus(false);
+      if (firstTimeFocus) {
+        setFirstTimeFocus(false);
+      }
     };
 
     const setPreviousRadioChecked = () => {
-      setCurrentFocusIndex((currentFocusIndex) => {
-        let index = currentFocusIndex === 0 ? innerOptions.length - 1 : currentFocusIndex - 1;
+      setCurrentFocusIndex((currentFocusIndexValue) => {
+        let index = currentFocusIndexValue === 0 ? innerOptions.length - 1 : currentFocusIndexValue - 1;
         while (innerOptions[index].disabled) {
           index = index === 0 ? innerOptions.length - 1 : index - 1;
         }
@@ -93,8 +102,8 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
       });
     };
     const setNextRadioChecked = () => {
-      setCurrentFocusIndex((currentFocusIndex) => {
-        let index = currentFocusIndex === innerOptions.length - 1 ? 0 : currentFocusIndex + 1;
+      setCurrentFocusIndex((currentFocusIndexValue) => {
+        let index = currentFocusIndexValue === innerOptions.length - 1 ? 0 : currentFocusIndexValue + 1;
         while (innerOptions[index].disabled) {
           index = index === innerOptions.length - 1 ? 0 : index + 1;
         }
@@ -122,6 +131,8 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
           event.preventDefault();
           handleOnChange(innerOptions[currentFocusIndex].value);
           break;
+        default:
+          break;
       }
     };
 
@@ -143,7 +154,7 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
             role="radiogroup"
             aria-disabled={disabled}
             aria-labelledby={radioGroupLabelId}
-            aria-invalid={error ? true : false}
+            aria-invalid={!!error}
             aria-errormessage={error ? errorId : undefined}
             aria-required={!disabled && !readOnly && !optional}
             aria-readonly={readOnly}
@@ -151,6 +162,7 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
           >
             <ValueInput name={name} disabled={disabled} value={value ?? innerValue ?? ""} readOnly />
             {innerOptions.map((option, index) => (
+              // TODO: Remove index from key
               <DxcRadio
                 key={`radio-${index}`}
                 label={option.label}
@@ -184,7 +196,10 @@ const RadioGroupContainer = styled.div`
   flex-direction: column;
 `;
 
-const Label = styled.span<{ helperText: RadioGroupPropsType["helperText"]; disabled: RadioGroupPropsType["disabled"] }>`
+const Label = styled.span<{
+  helperText: RadioGroupPropsType["helperText"];
+  disabled: RadioGroupPropsType["disabled"];
+}>`
   color: ${(props) => (props.disabled ? props.theme.disabledLabelFontColor : props.theme.labelFontColor)};
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.labelFontSize};
@@ -229,5 +244,7 @@ const Error = styled.span`
   line-height: 1.5em;
   margin-top: 0.5rem;
 `;
+
+DxcRadioGroup.displayName = "DxcRadioGroup";
 
 export default DxcRadioGroup;

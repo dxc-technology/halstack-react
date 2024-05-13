@@ -1,5 +1,5 @@
 import React from "react";
-import { userEvent, within } from "@storybook/test";
+import { userEvent } from "@storybook/test";
 import DxcChip from "./Chip";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";

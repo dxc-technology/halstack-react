@@ -1,15 +1,15 @@
 import React, { useContext, useEffect, useId, useRef, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
+import * as Popover from "@radix-ui/react-popover";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
 import { spaces } from "../common/variables";
-import { getMargin } from "../common/utils";
+import getMargin from "../common/utils";
 import TextInputPropsType, { AutosuggestWrapperProps, RefType } from "./types";
 import Suggestions from "./Suggestions";
-import * as Popover from "@radix-ui/react-popover";
 import DxcActionIcon from "../action-icon/ActionIcon";
 import DxcFlex from "../flex/Flex";
-import { NumberInputContext } from "../number-input/NumberInputContext";
+import NumberInputContext from "../number-input/NumberInputContext";
 import DxcIcon from "../icon/Icon";
 
 const sizes = {
@@ -32,8 +32,8 @@ const makeCancelable = (promise) => {
   let hasCanceled_ = false;
   const wrappedPromise = new Promise<string[]>((resolve, reject) => {
     promise.then(
-      (val) => (hasCanceled_ ? reject({ isCanceled: true }) : resolve(val)),
-      (promiseError) => (hasCanceled_ ? reject({ isCanceled: true }) : reject(promiseError)),
+      (val) => (hasCanceled_ ? reject(Error("Is canceled")) : resolve(val)),
+      (promiseError) => (hasCanceled_ ? reject(Error("Is canceled")) : reject(promiseError))
     );
   });
   return {
@@ -73,6 +73,7 @@ const useWidth = (target) => {
         triggerObserver.unobserve(target);
       };
     }
+    return undefined;
   }, [target]);
 
   return width;
@@ -106,7 +107,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
       size = "medium",
       tabIndex = 0,
     },
-    ref,
+    ref
   ): JSX.Element => {
     const inputId = `input-${useId()}`;
     const autosuggestId = `suggestions-${inputId}`;
@@ -127,16 +128,60 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
     const colorsTheme = useTheme();
     const translatedLabels = useTranslatedLabels();
     const numberInputContext = useContext(NumberInputContext);
-
-    const getNumberErrorMessage = (value: number) => {
-      if (value < numberInputContext?.minNumber)
-        return translatedLabels.numberInput.valueGreaterThanOrEqualToErrorMessage(numberInputContext.minNumber);
-      else if (value > numberInputContext?.maxNumber)
-        return translatedLabels.numberInput.valueLessThanOrEqualToErrorMessage(numberInputContext.maxNumber);
-    };
+    // Define the wrapper function outside of the parent component
+    const autosuggestWrapperFunction = (children: React.ReactNode) => (
+      <Popover.Root open={isOpen && (filteredSuggestions.length > 0 || isSearching || isAutosuggestError)}>
+        <Popover.Trigger
+          asChild
+          type={undefined}
+          aria-controls={undefined}
+          aria-haspopup={undefined}
+          aria-expanded={undefined}
+        >
+          {children}
+        </Popover.Trigger>
+        <Popover.Portal>
+          <Popover.Content
+            sideOffset={5}
+            style={{ zIndex: "2147483647" }}
+            onOpenAutoFocus={(event) => {
+              // Avoid select to lose focus when the list is opened
+              event.preventDefault();
+            }}
+            onCloseAutoFocus={(event) => {
+              // Avoid select to lose focus when the list is closed
+              event.preventDefault();
+            }}
+          >
+            <Suggestions
+              id={autosuggestId}
+              value={value ?? innerValue}
+              suggestions={filteredSuggestions}
+              visualFocusIndex={visualFocusIndex}
+              highlightedSuggestions={typeof suggestions !== "function"}
+              searchHasErrors={isAutosuggestError}
+              isSearching={isSearching}
+              suggestionOnClick={(suggestion) => {
+                changeValue(suggestion);
+                closeSuggestions();
+              }}
+              styles={{ width }}
+            />
+          </Popover.Content>
+        </Popover.Portal>
+      </Popover.Root>
+    );
+    const getNumberErrorMessage = (checkedValue: number) =>
+      checkedValue < numberInputContext?.minNumber
+        ? translatedLabels.numberInput.valueGreaterThanOrEqualToErrorMessage(numberInputContext.minNumber)
+        : checkedValue > numberInputContext?.maxNumber
+          ? translatedLabels.numberInput.valueLessThanOrEqualToErrorMessage(numberInputContext.maxNumber)
+          : undefined;
 
     const openSuggestions = () => {
-      hasSuggestions(suggestions) && changeIsOpen(true);
+      if (hasSuggestions) {
+        changeIsOpen(true);
+      }
     };
 
     const closeSuggestions = () => {
@@ -148,68 +193,99 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
 
     const changeValue = (newValue: number | string) => {
       const formattedValue = typeof newValue === "number" ? newValue.toString() : newValue;
-      value ?? setInnerValue(formattedValue);
+      if (value == null) {
+        setInnerValue(formattedValue);
+      }
 
-      if (isRequired(formattedValue, optional))
-        onChange?.({ value: formattedValue, error: translatedLabels.formFields.requiredValueErrorMessage });
-      else if (isLengthIncorrect(formattedValue, minLength, maxLength))
+      if (isRequired(formattedValue, optional)) {
+        onChange?.({
+          value: formattedValue,
+          error: translatedLabels.formFields.requiredValueErrorMessage,
+        });
+      } else if (isLengthIncorrect(formattedValue, minLength, maxLength)) {
         onChange?.({
           value: formattedValue,
           error: translatedLabels.formFields.lengthErrorMessage(minLength, maxLength),
         });
-      else if (patternMismatch(pattern, formattedValue))
-        onChange?.({ value: formattedValue, error: translatedLabels.formFields.formatRequestedErrorMessage });
-      else if (
+      } else if (patternMismatch(pattern, formattedValue)) {
+        onChange?.({
+          value: formattedValue,
+          error: translatedLabels.formFields.formatRequestedErrorMessage,
+        });
+      } else if (
         numberInputContext?.typeNumber === "number" &&
         isNumberIncorrect(Number(newValue), numberInputContext?.minNumber, numberInputContext?.maxNumber)
-      )
-        onChange?.({ value: formattedValue, error: getNumberErrorMessage(Number(newValue)) });
-      else onChange?.({ value: formattedValue });
+      ) {
+        onChange?.({
+          value: formattedValue,
+          error: getNumberErrorMessage(Number(newValue)),
+        });
+      } else {
+        onChange?.({ value: formattedValue });
+      }
     };
 
     const decrementNumber = (currentValue = value ?? innerValue) => {
       if (!disabled && !readOnly) {
         const numberValue = Number(currentValue);
-        const steppedValue = Math.round((numberValue - numberInputContext?.stepNumber + Number.EPSILON) * 100) / 100;
+        const steppedValue =
+          Math.round((numberValue - (numberInputContext?.stepNumber || 1) + Number.EPSILON) * 100) / 100;
 
         if (currentValue !== "") {
-          if (numberValue < numberInputContext?.minNumber || steppedValue < numberInputContext?.minNumber)
+          if (numberValue < numberInputContext?.minNumber || steppedValue < numberInputContext?.minNumber) {
             changeValue(numberValue);
-          else if (numberValue > numberInputContext?.maxNumber) changeValue(numberInputContext?.maxNumber);
-          else if (numberValue === numberInputContext?.minNumber) changeValue(numberInputContext?.minNumber);
-          else changeValue(steppedValue);
+          } else if (numberValue > numberInputContext?.maxNumber) {
+            changeValue(numberInputContext?.maxNumber);
+          } else if (numberValue === numberInputContext?.minNumber) {
+            changeValue(numberInputContext?.minNumber);
+          } else {
+            changeValue(steppedValue);
+          }
+        } else if (numberInputContext?.minNumber >= 0) {
+          changeValue(numberInputContext?.minNumber);
+        } else if (numberInputContext?.maxNumber < 0) {
+          changeValue(numberInputContext?.maxNumber);
         } else {
-          if (numberInputContext?.minNumber >= 0) changeValue(numberInputContext?.minNumber);
-          else if (numberInputContext?.maxNumber < 0) changeValue(numberInputContext?.maxNumber);
-          else changeValue(-numberInputContext.stepNumber);
+          changeValue(-numberInputContext.stepNumber);
         }
       }
     };
     const incrementNumber = (currentValue = value ?? innerValue) => {
       if (!disabled && !readOnly) {
         const numberValue = Number(currentValue);
-        const steppedValue = Math.round((numberValue + numberInputContext?.stepNumber + Number.EPSILON) * 100) / 100;
+        const steppedValue =
+          Math.round((numberValue + (numberInputContext?.stepNumber || 1) + Number.EPSILON) * 100) / 100;
 
         if (currentValue !== "") {
-          if (numberValue > numberInputContext?.maxNumber || steppedValue > numberInputContext?.maxNumber)
+          if (numberValue > numberInputContext?.maxNumber || steppedValue > numberInputContext?.maxNumber) {
             changeValue(numberValue);
-          else if (numberValue < numberInputContext?.minNumber) changeValue(numberInputContext?.minNumber);
-          else if (numberValue === numberInputContext?.maxNumber) changeValue(numberInputContext?.maxNumber);
-          else changeValue(steppedValue);
+          } else if (numberValue < numberInputContext?.minNumber) {
+            changeValue(numberInputContext?.minNumber);
+          } else if (numberValue === numberInputContext?.maxNumber) {
+            changeValue(numberInputContext?.maxNumber);
+          } else {
+            changeValue(steppedValue);
+          }
+        } else if (numberInputContext?.minNumber > 0) {
+          changeValue(numberInputContext?.minNumber);
+        } else if (numberInputContext?.maxNumber <= 0) {
+          changeValue(numberInputContext?.maxNumber);
         } else {
-          if (numberInputContext?.minNumber > 0) changeValue(numberInputContext?.minNumber);
-          else if (numberInputContext?.maxNumber <= 0) changeValue(numberInputContext?.maxNumber);
-          else changeValue(numberInputContext.stepNumber);
+          changeValue(numberInputContext.stepNumber);
         }
       }
     };
 
     const handleInputContainerOnClick = () => {
-      document.activeElement !== actionRef.current && inputRef.current.focus();
+      if (document.activeElement !== actionRef.current) {
+        inputRef.current.focus();
+      }
     };
     const handleInputContainerOnMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
       // Avoid input to lose the focus when the container is pressed
-      document.activeElement === inputRef.current && event.preventDefault();
+      if (document.activeElement === inputRef.current) {
+        event.preventDefault();
+      }
     };
 
     const handleInputOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -219,81 +295,116 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
     const handleInputOnBlur = (event: React.FocusEvent<HTMLInputElement>) => {
       closeSuggestions();
 
-      if (isRequired(event.target.value, optional))
-        onBlur?.({ value: event.target.value, error: translatedLabels.formFields.requiredValueErrorMessage });
-      else if (isLengthIncorrect(event.target.value, minLength, maxLength))
+      if (isRequired(event.target.value, optional)) {
+        onBlur?.({
+          value: event.target.value,
+          error: translatedLabels.formFields.requiredValueErrorMessage,
+        });
+      } else if (isLengthIncorrect(event.target.value, minLength, maxLength)) {
         onBlur?.({
           value: event.target.value,
           error: translatedLabels.formFields.lengthErrorMessage(minLength, maxLength),
         });
-      else if (patternMismatch(pattern, event.target.value))
-        onBlur?.({ value: event.target.value, error: translatedLabels.formFields.formatRequestedErrorMessage });
-      else if (
+      } else if (patternMismatch(pattern, event.target.value)) {
+        onBlur?.({
+          value: event.target.value,
+          error: translatedLabels.formFields.formatRequestedErrorMessage,
+        });
+      } else if (
         numberInputContext?.typeNumber === "number" &&
         isNumberIncorrect(Number(event.target.value), numberInputContext?.minNumber, numberInputContext?.maxNumber)
-      )
-        onBlur?.({ value: event.target.value, error: getNumberErrorMessage(Number(event.target.value)) });
-      else onBlur?.({ value: event.target.value });
+      ) {
+        onBlur?.({
+          value: event.target.value,
+          error: getNumberErrorMessage(Number(event.target.value)),
+        });
+      } else {
+        onBlur?.({ value: event.target.value });
+      }
     };
     const handleInputOnKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
       switch (event.key) {
         case "Down":
         case "ArrowDown":
           event.preventDefault();
-          if (numberInputContext?.typeNumber === "number") decrementNumber();
-          else {
+          if (numberInputContext?.typeNumber === "number") {
+            decrementNumber();
+          } else {
             openSuggestions();
             if (!isAutosuggestError && !isSearching && filteredSuggestions.length > 0) {
-              changeVisualFocusIndex((visualFocusedSuggIndex) => {
-                if (visualFocusedSuggIndex < filteredSuggestions.length - 1) return visualFocusedSuggIndex + 1;
-                else if (visualFocusedSuggIndex === filteredSuggestions.length - 1) return 0;
-              });
+              changeVisualFocusIndex((visualFocusedSuggIndex) =>
+                visualFocusedSuggIndex < filteredSuggestions.length - 1
+                  ? visualFocusedSuggIndex + 1
+                  : visualFocusedSuggIndex === filteredSuggestions.length - 1
+                    ? 0
+                    : undefined
+              );
             }
           }
           break;
         case "Up":
         case "ArrowUp":
           event.preventDefault();
-          if (numberInputContext?.typeNumber === "number") incrementNumber();
-          else {
+          if (numberInputContext?.typeNumber === "number") {
+            incrementNumber();
+          } else {
             openSuggestions();
             if (!isAutosuggestError && !isSearching && filteredSuggestions.length > 0) {
-              changeVisualFocusIndex((visualFocusedSuggIndex) => {
-                if (visualFocusedSuggIndex === 0 || visualFocusedSuggIndex === -1)
-                  return filteredSuggestions.length > 0 ? filteredSuggestions.length - 1 : suggestions.length - 1;
-                else return visualFocusedSuggIndex - 1;
-              });
+              changeVisualFocusIndex((visualFocusedSuggIndex) =>
+                visualFocusedSuggIndex === 0 || visualFocusedSuggIndex === -1
+                  ? filteredSuggestions.length > 0
+                    ? filteredSuggestions.length - 1
+                    : suggestions.length - 1
+                  : visualFocusedSuggIndex - 1
+              );
             }
           }
           break;
         case "Esc":
         case "Escape":
           event.preventDefault();
-          isOpen && event.stopPropagation();
+          if (isOpen) {
+            event.stopPropagation();
+          }
           if (hasSuggestions(suggestions)) {
             changeValue("");
-            isOpen && closeSuggestions();
+            if (isOpen) {
+              closeSuggestions();
+            }
           }
           break;
         case "Enter":
           if (hasSuggestions(suggestions) && !isSearching) {
             const validFocusedSuggestion =
               filteredSuggestions.length > 0 && visualFocusIndex >= 0 && visualFocusIndex < filteredSuggestions.length;
-            validFocusedSuggestion && changeValue(filteredSuggestions[visualFocusIndex]);
-            isOpen && closeSuggestions();
+            if (validFocusedSuggestion) {
+              changeValue(filteredSuggestions[visualFocusIndex]);
+            }
+            if (isOpen) {
+              closeSuggestions();
+            }
           }
+          break;
+        default:
           break;
       }
     };
     const handleNumberInputWheel = (event: React.WheelEvent<HTMLInputElement>) => {
-      if (document.activeElement === inputRef.current)
-        event.deltaY < 0 ? incrementNumber(inputRef.current.value) : decrementNumber(inputRef.current.value);
+      if (document.activeElement === inputRef.current) {
+        if (event.deltaY < 0) {
+          incrementNumber(inputRef.current.value);
+        } else {
+          decrementNumber(inputRef.current.value);
+        }
+      }
     };
 
     const handleClearActionOnClick = () => {
       changeValue("");
       inputRef.current.focus();
-      suggestions && closeSuggestions();
+      if (suggestions) {
+        closeSuggestions();
+      }
     };
 
     const handleDecrementActionOnClick = () => {
@@ -306,8 +417,12 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
     };
 
     const setNumberProps = (type: string, min: number, max: number, step: number) => {
-      min && inputRef?.current?.setAttribute("min", min);
-      max && inputRef?.current?.setAttribute("max", max);
+      if (min) {
+        inputRef?.current?.setAttribute("min", min);
+      }
+      if (max) {
+        inputRef?.current?.setAttribute("max", max);
+      }
       inputRef?.current?.setAttribute("step", step);
       inputRef?.current?.setAttribute("type", type);
     };
@@ -326,7 +441,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
             changeFilteredSuggestions(promiseResponse);
           })
           .catch((err) => {
-            if (!err.isCanceled) {
+            if (err.message !== "Is canceled") {
               changeIsSearching(false);
               changeIsAutosuggestError(true);
             }
@@ -335,78 +450,36 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
         return () => {
           cancelablePromise.cancel();
         };
-      } else if (suggestions?.length > 0) {
+      }
+      if (suggestions?.length > 0) {
         changeFilteredSuggestions(
-          suggestions.filter((suggestion) => suggestion.toUpperCase().startsWith((value ?? innerValue).toUpperCase())),
+          suggestions.filter((suggestion) => suggestion.toUpperCase().startsWith((value ?? innerValue).toUpperCase()))
         );
         changeVisualFocusIndex(-1);
       }
-
-      numberInputContext != null &&
+      if (numberInputContext != null) {
         setNumberProps(
           numberInputContext.typeNumber,
           numberInputContext.minNumber,
           numberInputContext.maxNumber,
-          numberInputContext.stepNumber,
+          numberInputContext.stepNumber
         );
+      }
+      return undefined;
     }, [value, innerValue, suggestions, numberInputContext]);
 
     return (
       <ThemeProvider theme={colorsTheme.textInput}>
         <TextInputContainer margin={margin} size={size} ref={ref}>
           {label && (
-            <Label htmlFor={inputId} disabled={disabled} hasHelperText={helperText ? true : false}>
+            <Label htmlFor={inputId} disabled={disabled} hasHelperText={!!helperText}>
               {label} {optional && <OptionalLabel>{translatedLabels.formFields.optionalLabel}</OptionalLabel>}
             </Label>
           )}
           {helperText && <HelperText disabled={disabled}>{helperText}</HelperText>}
-          <AutosuggestWrapper
-            condition={hasSuggestions(suggestions)}
-            wrapper={(children) => (
-              <Popover.Root open={isOpen && (filteredSuggestions.length > 0 || isSearching || isAutosuggestError)}>
-                <Popover.Trigger
-                  asChild
-                  type={undefined}
-                  aria-controls={undefined}
-                  aria-haspopup={undefined}
-                  aria-expanded={undefined}
-                >
-                  {children}
-                </Popover.Trigger>
-                <Popover.Portal>
-                  <Popover.Content
-                    sideOffset={5}
-                    style={{ zIndex: "2147483647" }}
-                    onOpenAutoFocus={(event) => {
-                      // Avoid select to lose focus when the list is opened
-                      event.preventDefault();
-                    }}
-                    onCloseAutoFocus={(event) => {
-                      // Avoid select to lose focus when the list is closed
-                      event.preventDefault();
-                    }}
-                  >
-                    <Suggestions
-                      id={autosuggestId}
-                      value={value ?? innerValue}
-                      suggestions={filteredSuggestions}
-                      visualFocusIndex={visualFocusIndex}
-                      highlightedSuggestions={typeof suggestions !== "function"}
-                      searchHasErrors={isAutosuggestError}
-                      isSearching={isSearching}
-                      suggestionOnClick={(suggestion) => {
-                        changeValue(suggestion);
-                        closeSuggestions();
-                      }}
-                      styles={{ width }}
-                    />
-                  </Popover.Content>
-                </Popover.Portal>
-              </Popover.Root>
-            )}
-          >
+          <AutosuggestWrapper condition={hasSuggestions(suggestions)} wrapper={autosuggestWrapperFunction}>
             <InputContainer
-              error={error ? true : false}
+              error={!!error}
               disabled={disabled}
               readOnly={readOnly}
               onClick={handleInputContainerOnClick}
@@ -414,7 +487,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
               ref={inputContainerRef}
             >
               {prefix && <Prefix disabled={disabled}>{prefix}</Prefix>}
-              <DxcFlex gap={"0.25rem"} alignItems="center" grow={1}>
+              <DxcFlex gap="0.25rem" alignItems="center" grow={1}>
                 <Input
                   id={inputId}
                   name={name}
@@ -447,7 +520,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
                       ? `suggestion-${visualFocusIndex}`
                       : undefined
                   }
-                  aria-invalid={error ? true : false}
+                  aria-invalid={!!error}
                   aria-errormessage={error ? errorId : undefined}
                   aria-required={!disabled && !optional}
                 />
@@ -499,22 +572,25 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
             </InputContainer>
           </AutosuggestWrapper>
           {!disabled && typeof error === "string" && (
-            <Error id={errorId} role="alert" aria-live={error ? "assertive" : "off"}>
+            <ErrorWrapper id={errorId} role="alert" aria-live={error ? "assertive" : "off"}>
               {error}
-            </Error>
+            </ErrorWrapper>
           )}
         </TextInputContainer>
       </ThemeProvider>
     );
-  },
+  }
 );
 
-const TextInputContainer = styled.div<{ margin: TextInputPropsType["margin"]; size: TextInputPropsType["size"] }>`
+const TextInputContainer = styled.div<{
+  margin: TextInputPropsType["margin"];
+  size: TextInputPropsType["size"];
+}>`
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   width: ${(props) => calculateWidth(props.margin, props.size)};
-  ${(props) => props.size !== "fillParent" && "min-width:" + calculateWidth(props.margin, props.size)};
+  ${(props) => props.size !== "fillParent" && `min-width:${  calculateWidth(props.margin, props.size)}`};
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
@@ -565,17 +641,16 @@ const InputContainer = styled.div<{
   height: calc(2.5rem - 2px);
   padding: 0 0.5rem;
 
-  ${(props) => {
-    if (props.disabled) return `background-color: ${props.theme.disabledContainerFillColor};`;
-  }}
+  ${(props) => props.disabled && `background-color: ${props.theme.disabledContainerFillColor};`}
   box-shadow: 0 0 0 2px transparent;
   border-radius: 4px;
   border: 1px solid
-    ${(props) => {
-      if (props.disabled) return props.theme.disabledBorderColor;
-      else if (props.readOnly) return props.theme.readOnlyBorderColor;
-      else return props.theme.enabledBorderColor;
-    }};
+    ${(props) =>
+      props.disabled
+        ? props.theme.disabledBorderColor
+        : props.readOnly
+          ? props.theme.readOnlyBorderColor
+          : props.theme.enabledBorderColor};
   ${(props) =>
     props.error &&
     !props.disabled &&
@@ -673,7 +748,7 @@ const ErrorIcon = styled.span`
   }
 `;
 
-const Error = styled.span`
+const ErrorWrapper = styled.span`
   min-height: 1.5em;
   color: ${(props) => props.theme.errorMessageColor};
   font-family: ${(props) => props.theme.fontFamily};
@@ -682,5 +757,7 @@ const Error = styled.span`
   line-height: 1.5em;
   margin-top: 0.25rem;
 `;
+
+DxcTextInput.displayName = "DxcTextInput";
 
 export default DxcTextInput;

@@ -39,13 +39,13 @@ const DxcSpinner = ({
               aria-label={label || "Spinner"}
             >
               {mode !== "small" && (
-                <SVGSpinner viewBox="0 0 140 140" isDeterminated={true}>
-                  <CircleSpinner cx="70" cy="70" r="65" mode={mode} isDeterminated={true} value={value} />
+                <SVGSpinner viewBox="0 0 140 140" isDeterminated>
+                  <CircleSpinner cx="70" cy="70" r="65" mode={mode} isDeterminated value={value} />
                 </SVGSpinner>
               )}
               {mode === "small" && (
-                <SVGSpinner viewBox="0 0 16 16" isDeterminated={true}>
-                  <CircleSpinner cx="8" cy="8" r="6" mode={mode} isDeterminated={true} value={value} />
+                <SVGSpinner viewBox="0 0 16 16" isDeterminated>
+                  <CircleSpinner cx="8" cy="8" r="6" mode={mode} isDeterminated value={value} />
                 </SVGSpinner>
               )}
             </Spinner>
@@ -87,7 +87,10 @@ const determinateValue = (value: SpinnerPropsType["value"], strokeDashArray: num
   return val;
 };
 
-const DXCSpinner = styled.div<{ mode: SpinnerPropsType["mode"]; margin: SpinnerPropsType["margin"] }>`
+const DXCSpinner = styled.div<{
+  mode: SpinnerPropsType["mode"];
+  margin: SpinnerPropsType["margin"];
+}>`
   height: ${(props) => (props.mode === "overlay" ? "100vh" : "")};
   width: ${(props) => (props.mode === "overlay" ? "100vw" : "")};
   display: ${(props) => (props.mode === "overlay" ? "flex" : "")};
@@ -99,27 +102,27 @@ const DXCSpinner = styled.div<{ mode: SpinnerPropsType["mode"]; margin: SpinnerP
   z-index: ${(props) => (props.mode === "overlay" ? 1300 : "")};
 
   margin: ${(props) =>
-    props.mode != "overlay" ? (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px") : ""};
+    props.mode !== "overlay" ? (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px") : ""};
   margin-top: ${(props) =>
-    props.mode != "overlay"
+    props.mode !== "overlay"
       ? props.margin && typeof props.margin === "object" && props.margin.top
         ? spaces[props.margin.top]
         : ""
       : ""};
   margin-right: ${(props) =>
-    props.mode != "overlay"
+    props.mode !== "overlay"
       ? props.margin && typeof props.margin === "object" && props.margin.right
         ? spaces[props.margin.right]
         : ""
       : ""};
   margin-bottom: ${(props) =>
-    props.mode != "overlay"
+    props.mode !== "overlay"
       ? props.margin && typeof props.margin === "object" && props.margin.bottom
         ? spaces[props.margin.bottom]
         : ""
       : ""};
   margin-left: ${(props) =>
-    props.mode != "overlay"
+    props.mode !== "overlay"
       ? props.margin && typeof props.margin === "object" && props.margin.left
         ? spaces[props.margin.left]
         : ""
@@ -239,8 +242,8 @@ const CircleSpinner = styled.circle<{
     props.isDeterminated
       ? "none"
       : props.mode !== "small"
-      ? "1.4s ease-in-out infinite both svg-circle-large"
-      : "1.4s ease-in-out infinite both svg-circle-small"};
+        ? "1.4s ease-in-out infinite both svg-circle-large"
+        : "1.4s ease-in-out infinite both svg-circle-small"};
   stroke: ${(props) => (props.mode === "overlay" ? props.theme.trackCircleColorOverlay : props.theme.trackCircleColor)};
   transform-origin: ${(props) => (!props.isDeterminated ? "50% 50%" : "")};
   stroke-dasharray: ${(props) => (props.mode !== "small" ? "409" : "38")};

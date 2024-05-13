@@ -18,8 +18,11 @@ const DxcBreadcrumbs = ({
 }: BreadcrumbsProps) => {
   const handleOnSelectOption = useCallback(
     (href: string) => {
-      if (onItemClick) onItemClick(href);
-      else window.location.href = href;
+      if (onItemClick) {
+        onItemClick(href);
+      } else {
+        window.location.href = href;
+      }
     },
     [items]
   );
@@ -29,8 +32,8 @@ const DxcBreadcrumbs = ({
       <OrderedList>
         {items && items.length > Math.max(itemsBeforeCollapse, 2) ? (
           <>
-            {showRoot && <Item href={items[0].href} key={0} label={items[0].label} />}
-            <DxcFlex alignItems="center" as="li" key={1}>
+            {showRoot && <Item href={items[0].href} label={items[0].label} />}
+            <DxcFlex alignItems="center" as="li">
               <HalstackProvider advancedTheme={dropdownTheme}>
                 <DxcDropdown
                   caretHidden
@@ -41,7 +44,7 @@ const DxcBreadcrumbs = ({
                 />
               </HalstackProvider>
             </DxcFlex>
-            <Item isCurrentPage key={2} label={items[items.length - 1].label} />
+            <Item isCurrentPage label={items[items.length - 1].label} />
           </>
         ) : (
           items.map((item, index, { length }) => (

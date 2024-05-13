@@ -1,8 +1,8 @@
 import React from "react";
+import styled from "styled-components";
 import DxcCheckbox from "./Checkbox";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
-import styled from "styled-components";
 import { HalstackProvider } from "../HalstackContext";
 
 export default {

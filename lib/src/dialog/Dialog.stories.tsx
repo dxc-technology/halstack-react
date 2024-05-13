@@ -1,4 +1,6 @@
 import React from "react";
+import { userEvent } from "@storybook/test";
+import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import DxcDialog from "./Dialog";
 import DxcTextInput from "../text-input/TextInput";
 import DxcButton from "../button/Button";
@@ -10,8 +12,6 @@ import { HalstackProvider } from "../HalstackContext";
 import DxcHeading from "../heading/Heading";
 import DxcParagraph from "../paragraph/Paragraph";
 import DxcAlert from "../alert/Alert";
-import { userEvent, within } from "@storybook/test";
-import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 
 export default {
   title: "Dialog",
@@ -32,7 +32,7 @@ const opinionatedTheme = {
 };
 
 export const DefaultDialog = () => (
-  <ExampleContainer expanded={true}>
+  <ExampleContainer expanded>
     <Title title="Default dialog" theme="light" level={4} />
     <DxcDialog>
       <DxcInset space="1.5rem">
@@ -56,7 +56,7 @@ export const DefaultDialog = () => (
 );
 
 export const DefaultDialogOpinionated = () => (
-  <ExampleContainer expanded={true}>
+  <ExampleContainer expanded>
     <Title title="Default dialog" theme="light" level={4} />
     <HalstackProvider theme={opinionatedTheme}>
       <DxcDialog>
@@ -82,7 +82,7 @@ export const DefaultDialogOpinionated = () => (
 );
 
 const ScrollingDialog = () => (
-  <ExampleContainer expanded={true}>
+  <ExampleContainer expanded>
     <Title title="Default dialog" theme="light" level={4} />
     <>
       <DxcParagraph>
@@ -242,7 +242,7 @@ const ScrollingDialog = () => (
 );
 
 export const DialogWithInputs = () => (
-  <ExampleContainer expanded={true}>
+  <ExampleContainer expanded>
     <Title title="Dialog with inputs" theme="light" level={4} />
     <DxcDialog>
       <DxcInset space="1.5rem">
@@ -269,7 +269,7 @@ export const DialogWithInputs = () => (
 );
 
 const RespDialog = () => (
-  <ExampleContainer expanded={true}>
+  <ExampleContainer expanded>
     <Title title="Responsive dialog" theme="light" level={4} />
     <DxcDialog>
       <DxcInset space="1.5rem">
@@ -290,7 +290,7 @@ const RespDialog = () => (
 );
 
 export const DialogWithoutOverlay = () => (
-  <ExampleContainer expanded={true}>
+  <ExampleContainer expanded>
     <Title title="Dialog Without Overlay" theme="light" level={4} />
     <DxcDialog overlay={false}>
       <DxcInset space="1.5rem">
@@ -314,7 +314,7 @@ export const DialogWithoutOverlay = () => (
 );
 
 export const DialogCloseVisibleFalse = () => (
-  <ExampleContainer expanded={true}>
+  <ExampleContainer expanded>
     <Title title="Dialog Close Visible" theme="dark" level={4} />
     <DxcDialog isCloseVisible={false}>
       <DxcInset space="1.5rem">

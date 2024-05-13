@@ -6,13 +6,20 @@ import DxcDropdown from "./Dropdown";
 // Mocking DOMRect for Radix Primitive Popover
 (global as any).globalThis = global;
 (global as any).DOMRect = {
-  fromRect: () => ({ top: 0, left: 0, bottom: 0, right: 0, width: 0, height: 0 }),
+  fromRect: () => ({
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
+    width: 0,
+    height: 0,
+  }),
 };
-(global as any).ResizeObserver = class ResizeObserver {
-  observe() {}
-  unobserve() {}
-  disconnect() {}
-};
+global.ResizeObserver = jest.fn().mockImplementation(() => ({
+  observe: jest.fn(),
+  unobserve: jest.fn(),
+  disconnect: jest.fn(),
+}));
 
 const options = [
   {
@@ -129,7 +136,12 @@ describe("Dropdown component tests", () => {
       <DxcDropdown options={options} label="dropdown-test" onSelectOption={onSelectOption} />
     );
     const dropdown = getByRole("button");
-    fireEvent.keyDown(dropdown, { key: "ArrowUp", code: "ArrowUp", keyCode: 38, charCode: 38 });
+    fireEvent.keyDown(dropdown, {
+      key: "ArrowUp",
+      code: "ArrowUp",
+      keyCode: 38,
+      charCode: 38,
+    });
     const menu = getByRole("menu");
     expect(menu).toBeTruthy();
     expect(document.activeElement === menu).toBeTruthy();
@@ -142,7 +154,12 @@ describe("Dropdown component tests", () => {
       <DxcDropdown options={options} label="dropdown-test" onSelectOption={onSelectOption} />
     );
     const dropdown = getByRole("button");
-    fireEvent.keyDown(dropdown, { key: "ArrowDown", code: "ArrowDown", keyCode: 40, charCode: 40 });
+    fireEvent.keyDown(dropdown, {
+      key: "ArrowDown",
+      code: "ArrowDown",
+      keyCode: 40,
+      charCode: 40,
+    });
     const menu = getByRole("menu");
     expect(menu).toBeTruthy();
     expect(document.activeElement === menu).toBeTruthy();
@@ -155,7 +172,12 @@ describe("Dropdown component tests", () => {
       <DxcDropdown options={options} label="dropdown-test" onSelectOption={onSelectOption} />
     );
     const dropdown = getByRole("button");
-    fireEvent.keyDown(dropdown, { key: "Enter", code: "Enter", keyCode: 13, charCode: 13 });
+    fireEvent.keyDown(dropdown, {
+      key: "Enter",
+      code: "Enter",
+      keyCode: 13,
+      charCode: 13,
+    });
     const menu = getByRole("menu");
     expect(menu).toBeTruthy();
     expect(document.activeElement === menu).toBeTruthy();
@@ -168,7 +190,12 @@ describe("Dropdown component tests", () => {
       <DxcDropdown options={options} label="dropdown-test" onSelectOption={onSelectOption} />
     );
     const dropdown = getByRole("button");
-    fireEvent.keyDown(dropdown, { key: " ", code: "Space", keyCode: 32, charCode: 32 });
+    fireEvent.keyDown(dropdown, {
+      key: " ",
+      code: "Space",
+      keyCode: 32,
+      charCode: 32,
+    });
     const menu = getByRole("menu");
     expect(menu).toBeTruthy();
     expect(document.activeElement === menu).toBeTruthy();
@@ -180,12 +207,27 @@ describe("Dropdown component tests", () => {
     const { getByRole } = render(
       <DxcDropdown onSelectOption={onSelectOption} options={options} label="dropdown-test" />
     );
-    fireEvent.keyDown(getByRole("button"), { key: "ArrowUp", code: "ArrowUp", keyCode: 38, charCode: 38 });
+    fireEvent.keyDown(getByRole("button"), {
+      key: "ArrowUp",
+      code: "ArrowUp",
+      keyCode: 38,
+      charCode: 38,
+    });
     const menu = getByRole("menu");
-    fireEvent.keyDown(menu, { key: "ArrowUp", code: "ArrowUp", keyCode: 38, charCode: 38 });
+    fireEvent.keyDown(menu, {
+      key: "ArrowUp",
+      code: "ArrowUp",
+      keyCode: 38,
+      charCode: 38,
+    });
     expect(document.activeElement === menu).toBeTruthy();
     expect(menu.getAttribute("aria-activedescendant")).toBe(`${menu.id}-option-2`);
-    fireEvent.keyDown(menu, { key: "Enter", code: "Enter", keyCode: 13, charCode: 13 });
+    fireEvent.keyDown(menu, {
+      key: "Enter",
+      code: "Enter",
+      keyCode: 13,
+      charCode: 13,
+    });
     expect(onSelectOption).toHaveBeenCalledWith("3");
   });
 
@@ -196,10 +238,20 @@ describe("Dropdown component tests", () => {
     );
     await userEvent.click(getByRole("button"));
     const menu = getByRole("menu");
-    fireEvent.keyDown(menu, { key: "ArrowUp", code: "ArrowUp", keyCode: 38, charCode: 38 });
+    fireEvent.keyDown(menu, {
+      key: "ArrowUp",
+      code: "ArrowUp",
+      keyCode: 38,
+      charCode: 38,
+    });
     expect(document.activeElement === menu).toBeTruthy();
     expect(menu.getAttribute("aria-activedescendant")).toBe(`${menu.id}-option-3`);
-    fireEvent.keyDown(menu, { key: "Enter", code: "Enter", keyCode: 13, charCode: 13 });
+    fireEvent.keyDown(menu, {
+      key: "Enter",
+      code: "Enter",
+      keyCode: 13,
+      charCode: 13,
+    });
     expect(onSelectOption).toHaveBeenCalledWith("4");
   });
 
@@ -210,25 +262,55 @@ describe("Dropdown component tests", () => {
     );
     await userEvent.click(getByRole("button"));
     const menu = getByRole("menu");
-    fireEvent.keyDown(menu, { key: "ArrowDown", code: "ArrowDown", keyCode: 40, charCode: 40 });
-    fireEvent.keyDown(menu, { key: "ArrowDown", code: "ArrowDown", keyCode: 40, charCode: 40 });
+    fireEvent.keyDown(menu, {
+      key: "ArrowDown",
+      code: "ArrowDown",
+      keyCode: 40,
+      charCode: 40,
+    });
+    fireEvent.keyDown(menu, {
+      key: "ArrowDown",
+      code: "ArrowDown",
+      keyCode: 40,
+      charCode: 40,
+    });
     expect(document.activeElement === menu).toBeTruthy();
     expect(menu.getAttribute("aria-activedescendant")).toBe(`${menu.id}-option-2`);
-    fireEvent.keyDown(menu, { key: "Enter", code: "Enter", keyCode: 13, charCode: 13 });
+    fireEvent.keyDown(menu, {
+      key: "Enter",
+      code: "Enter",
+      keyCode: 13,
+      charCode: 13,
+    });
     expect(onSelectOption).toHaveBeenCalledWith("3");
   });
 
-  test("Menu key events - Arrow down, if focus is on the last menu item, moves focus to the first menu item. ", () => {
+  test("Menu key events - Arrow down, if focus is on the last menu item, moves focus to the first menu item.", () => {
     const onSelectOption = jest.fn();
     const { getByRole } = render(
       <DxcDropdown onSelectOption={onSelectOption} options={options} label="dropdown-test" />
     );
-    fireEvent.keyDown(getByRole("button"), { key: "ArrowUp", code: "ArrowUp", keyCode: 38, charCode: 38 });
+    fireEvent.keyDown(getByRole("button"), {
+      key: "ArrowUp",
+      code: "ArrowUp",
+      keyCode: 38,
+      charCode: 38,
+    });
     const menu = getByRole("menu");
-    fireEvent.keyDown(menu, { key: "ArrowDown", code: "ArrowDown", keyCode: 40, charCode: 40 });
+    fireEvent.keyDown(menu, {
+      key: "ArrowDown",
+      code: "ArrowDown",
+      keyCode: 40,
+      charCode: 40,
+    });
     expect(document.activeElement === menu).toBeTruthy();
     expect(menu.getAttribute("aria-activedescendant")).toBe(`${menu.id}-option-0`);
-    fireEvent.keyDown(menu, { key: "Enter", code: "Enter", keyCode: 13, charCode: 13 });
+    fireEvent.keyDown(menu, {
+      key: "Enter",
+      code: "Enter",
+      keyCode: 13,
+      charCode: 13,
+    });
     expect(onSelectOption).toHaveBeenCalledWith("1");
   });
 
@@ -238,7 +320,12 @@ describe("Dropdown component tests", () => {
       <DxcDropdown onSelectOption={onSelectOption} options={options} label="dropdown-test" />
     );
     await userEvent.click(getByRole("button"));
-    fireEvent.keyDown(getByRole("menu"), { key: "Enter", code: "Enter", keyCode: 13, charCode: 13 });
+    fireEvent.keyDown(getByRole("menu"), {
+      key: "Enter",
+      code: "Enter",
+      keyCode: 13,
+      charCode: 13,
+    });
     expect(onSelectOption).toHaveBeenCalledWith("1");
     expect(queryByRole("menu")).toBeFalsy();
     expect(document.activeElement === getByRole("button")).toBeTruthy();
@@ -250,7 +337,12 @@ describe("Dropdown component tests", () => {
       <DxcDropdown options={options} label="dropdown-test" onSelectOption={onSelectOption} />
     );
     await userEvent.click(getByRole("button"));
-    fireEvent.keyDown(getByRole("menu"), { key: "Esc", code: "Esc", keyCode: 27, charCode: 27 });
+    fireEvent.keyDown(getByRole("menu"), {
+      key: "Esc",
+      code: "Esc",
+      keyCode: 27,
+      charCode: 27,
+    });
     expect(queryByRole("menu")).toBeFalsy();
     expect(document.activeElement === getByRole("button")).toBeTruthy();
   });
@@ -260,10 +352,20 @@ describe("Dropdown component tests", () => {
     const { getByRole } = render(
       <DxcDropdown options={options} label="dropdown-test-1" onSelectOption={onSelectOption} />
     );
-    fireEvent.keyDown(getByRole("button"), { key: "ArrowUp", code: "ArrowUp", keyCode: 38, charCode: 38 });
+    fireEvent.keyDown(getByRole("button"), {
+      key: "ArrowUp",
+      code: "ArrowUp",
+      keyCode: 38,
+      charCode: 38,
+    });
     const menu = getByRole("menu");
     expect(menu.getAttribute("aria-activedescendant")).toBe(`${menu.id}-option-3`);
-    fireEvent.keyDown(menu, { key: "Home", code: "Home", keyCode: 36, charCode: 36 });
+    fireEvent.keyDown(menu, {
+      key: "Home",
+      code: "Home",
+      keyCode: 36,
+      charCode: 36,
+    });
     expect(menu.getAttribute("aria-activedescendant")).toBe(`${menu.id}-option-0`);
   });
 
@@ -275,7 +377,12 @@ describe("Dropdown component tests", () => {
     await userEvent.click(getByRole("button"));
     const menu = getByRole("menu");
     expect(menu.getAttribute("aria-activedescendant")).toBe(`${menu.id}-option-0`);
-    fireEvent.keyDown(menu, { key: "End", code: "End", keyCode: 35, charCode: 35 });
+    fireEvent.keyDown(menu, {
+      key: "End",
+      code: "End",
+      keyCode: 35,
+      charCode: 35,
+    });
     expect(menu.getAttribute("aria-activedescendant")).toBe(`${menu.id}-option-3`);
   });
 
@@ -284,10 +391,20 @@ describe("Dropdown component tests", () => {
     const { getByRole } = render(
       <DxcDropdown options={options} label="dropdown-test-1" onSelectOption={onSelectOption} />
     );
-    fireEvent.keyDown(getByRole("button"), { key: "ArrowUp", code: "ArrowUp", keyCode: 38, charCode: 38 });
+    fireEvent.keyDown(getByRole("button"), {
+      key: "ArrowUp",
+      code: "ArrowUp",
+      keyCode: 38,
+      charCode: 38,
+    });
     const menu = getByRole("menu");
     expect(menu.getAttribute("aria-activedescendant")).toBe(`${menu.id}-option-3`);
-    fireEvent.keyDown(menu, { key: "PageUp", code: "PageUp", keyCode: 33, charCode: 33 });
+    fireEvent.keyDown(menu, {
+      key: "PageUp",
+      code: "PageUp",
+      keyCode: 33,
+      charCode: 33,
+    });
     expect(menu.getAttribute("aria-activedescendant")).toBe(`${menu.id}-option-0`);
   });
 
@@ -299,7 +416,12 @@ describe("Dropdown component tests", () => {
     await userEvent.click(getByRole("button"));
     const menu = getByRole("menu");
     expect(menu.getAttribute("aria-activedescendant")).toBe(`${menu.id}-option-0`);
-    fireEvent.keyDown(menu, { key: "PageDown", code: "PageDown", keyCode: 34, charCode: 34 });
+    fireEvent.keyDown(menu, {
+      key: "PageDown",
+      code: "PageDown",
+      keyCode: 34,
+      charCode: 34,
+    });
     expect(menu.getAttribute("aria-activedescendant")).toBe(`${menu.id}-option-3`);
   });
 
@@ -311,7 +433,12 @@ describe("Dropdown component tests", () => {
     const dropdown = getByRole("button");
     await userEvent.click(dropdown);
     expect(getByRole("menu")).toBeTruthy();
-    fireEvent.keyDown(getByRole("menu"), { key: "Tab", code: "Tab", keyCode: 9, charCode: 9 });
+    fireEvent.keyDown(getByRole("menu"), {
+      key: "Tab",
+      code: "Tab",
+      keyCode: 9,
+      charCode: 9,
+    });
     expect(queryByRole("menu")).toBeFalsy();
   });
 });

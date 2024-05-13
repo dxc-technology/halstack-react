@@ -1,17 +1,17 @@
 import React from "react";
 import { userEvent, within, fireEvent, screen } from "@storybook/test";
+import dayjs from "dayjs";
+import { ThemeProvider } from "styled-components";
 import DxcDateInput from "./DateInput";
 import DxcDatePicker from "./DatePicker";
 import YearPicker from "./YearPicker";
 import Calendar from "./Calendar";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
-import dayjs from "dayjs";
 import useTheme from "../useTheme";
-import { ThemeProvider } from "styled-components";
 import { HalstackProvider } from "../HalstackContext";
 import preview from "../../.storybook/preview";
-import { disabledRules } from "../../test/accessibility/rules/specific/date-input/disabledRules";
+import disabledRules from "../../test/accessibility/rules/specific/date-input/disabledRules";
 
 export default {
   title: "Date Input",
@@ -20,8 +20,11 @@ export default {
     a11y: {
       config: {
         rules: [
-          ...disabledRules.map((ruleId) => ({ id: ruleId, enabled: false })),
-          ...preview?.parameters?.a11y?.config?.rules,
+          ...disabledRules.map((ruleId) => ({
+            id: ruleId,
+            reviewOnFail: true,
+          })),
+          ...(preview?.parameters?.a11y?.config?.rules || []),
         ],
       },
     },
@@ -179,7 +182,7 @@ YearPickerOpinionated.play = async ({ canvasElement }) => {
 };
 
 const DatePickerButtonStates = () => {
-  const colorsTheme: any = useTheme();
+  const colorsTheme = useTheme();
   return (
     <>
       <ExampleContainer>
@@ -202,7 +205,9 @@ const DatePickerButtonStates = () => {
         >
           <DxcDateInput label="From" defaultValue="01-12-1995" />
           <DxcDateInput label="To" />
-          <button style={{ zIndex: "1", width: "100px" }}>Submit</button>
+          <button type="submit" style={{ zIndex: "1", width: "100px" }}>
+            Submit
+          </button>
         </div>
       </ExampleContainer>
       <ThemeProvider theme={colorsTheme}>
@@ -231,41 +236,39 @@ DatePickerStates.play = async ({ canvasElement }) => {
 };
 
 export const YearPickerStates = () => {
-  const colorsTheme: any = useTheme();
+  const colorsTheme = useTheme();
   return (
-    <>
-      <ThemeProvider theme={colorsTheme}>
-        <ExampleContainer pseudoState="pseudo-focus">
-          <Title title="Isolated year picker focused" theme="light" level={4} />
-          <YearPicker
-            selectedDate={dayjs("06-04-1905", "DD-MM-YYYY")}
-            onYearSelect={() => {}}
-            today={dayjs("1904-04-03", "YYYY-MM-DD")}
-          />
-        </ExampleContainer>
-        <ExampleContainer pseudoState="pseudo-hover">
-          <Title title="Isolated year picker hovered" theme="light" level={4} />
-          <YearPicker
-            selectedDate={dayjs("06-04-1905", "DD-MM-YYYY")}
-            onYearSelect={() => {}}
-            today={dayjs("1904-04-03", "YYYY-MM-DD")}
-          />
-        </ExampleContainer>
-        <ExampleContainer pseudoState="pseudo-active">
-          <Title title="Isolated year picker actived" theme="light" level={4} />
-          <YearPicker
-            selectedDate={dayjs("06-04-1905", "DD-MM-YYYY")}
-            onYearSelect={() => {}}
-            today={dayjs("1904-04-03", "YYYY-MM-DD")}
-          />
-        </ExampleContainer>
-      </ThemeProvider>
-    </>
+    <ThemeProvider theme={colorsTheme}>
+      <ExampleContainer pseudoState="pseudo-focus">
+        <Title title="Isolated year picker focused" theme="light" level={4} />
+        <YearPicker
+          selectedDate={dayjs("06-04-1905", "DD-MM-YYYY")}
+          onYearSelect={() => {}}
+          today={dayjs("1904-04-03", "YYYY-MM-DD")}
+        />
+      </ExampleContainer>
+      <ExampleContainer pseudoState="pseudo-hover">
+        <Title title="Isolated year picker hovered" theme="light" level={4} />
+        <YearPicker
+          selectedDate={dayjs("06-04-1905", "DD-MM-YYYY")}
+          onYearSelect={() => {}}
+          today={dayjs("1904-04-03", "YYYY-MM-DD")}
+        />
+      </ExampleContainer>
+      <ExampleContainer pseudoState="pseudo-active">
+        <Title title="Isolated year picker actived" theme="light" level={4} />
+        <YearPicker
+          selectedDate={dayjs("06-04-1905", "DD-MM-YYYY")}
+          onYearSelect={() => {}}
+          today={dayjs("1904-04-03", "YYYY-MM-DD")}
+        />
+      </ExampleContainer>
+    </ThemeProvider>
   );
 };
 
 export const DatePickerWithToday = () => {
-  const colorsTheme: any = useTheme();
+  const colorsTheme = useTheme();
   return (
     <ThemeProvider theme={colorsTheme}>
       <ExampleContainer>

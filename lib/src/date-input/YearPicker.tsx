@@ -30,6 +30,8 @@ const YearPicker = ({ onYearSelect, selectedDate, today }: YearPickerPropsType):
       case "ArrowDown":
         setYearToFocus((prev) => (prev < 2100 ? prev + 1 : prev));
         break;
+      default:
+        break;
     }
   };
 
@@ -69,7 +71,10 @@ const YearPickerContainer = styled.div`
   padding: 2px 8px 8px 8px;
 `;
 
-const YearPickerButton = styled.button<{ selected: boolean; isCurrentYear: boolean }>`
+const YearPickerButton = styled.button<{
+  selected: boolean;
+  isCurrentYear: boolean;
+}>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -92,9 +97,9 @@ const YearPickerButton = styled.button<{ selected: boolean; isCurrentYear: boole
          color: ${props.theme.dateInput.pickerSelectedFontColor} !important;
          background-color: ${props.theme.dateInput.pickerSelectedBackgroundColor} !important;`
       : props.isCurrentYear
-      ? `border: 1px solid ${props.theme.dateInput.pickerCurrentDateBorderColor}; 
+        ? `border: 1px solid ${props.theme.dateInput.pickerCurrentDateBorderColor}; 
          color: ${props.theme.dateInput.pickerCurrentYearFontColor};`
-      : ``}
+        : ``}
 
   &:hover, &:focus, &:active {
     font-size: ${(props) => props.theme.dateInput.pickerInteractedYearFontSize};

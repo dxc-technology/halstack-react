@@ -58,4 +58,5 @@ const GridItem = styled.div<GridItemProps>`
 `;
 
 DxcGrid.Item = GridItem;
+
 export default DxcGrid;

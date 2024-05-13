@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef, useCallback, useLayoutEffect, useId } from "react";
 import styled, { ThemeProvider } from "styled-components";
+import * as Popover from "@radix-ui/react-popover";
 import DropdownPropsType from "./types";
 import { spaces } from "../common/variables";
-import { getMargin } from "../common/utils";
+import getMargin from "../common/utils";
 import useTheme from "../useTheme";
-import * as Popover from "@radix-ui/react-popover";
 import DropdownMenu from "./DropdownMenu";
 import DxcIcon from "../icon/Icon";
 
@@ -24,6 +24,7 @@ const useWidth = (target) => {
         triggerObserver.unobserve(target);
       };
     }
+    return undefined;
   }, [target]);
 
   return width;
@@ -70,11 +71,13 @@ const DxcDropdown = ({
     [onSelectOption]
   );
   const handleOnBlur = (event) => {
-    !event.currentTarget.contains(event.relatedTarget) && handleOnCloseMenu();
+    if (!event.currentTarget.contains(event.relatedTarget)) {
+      handleOnCloseMenu();
+    }
   };
 
   const handleTriggerOnClick = () => {
-    changeIsOpen((isOpen) => !isOpen);
+    changeIsOpen((isCurrentlyOpen) => !isCurrentlyOpen);
   };
   const handleTriggerOnKeyDown = (event) => {
     switch (event.key) {
@@ -91,18 +94,20 @@ const DxcDropdown = ({
         event.preventDefault();
         handleOnOpenMenu();
         break;
+      default:
+        break;
     }
   };
 
   const setPreviousIndexFocus = () => {
     setVisualFocusIndex((currentFocusIndex) => {
-      let index = currentFocusIndex === 0 ? options.length - 1 : currentFocusIndex - 1;
+      const index = currentFocusIndex === 0 ? options.length - 1 : currentFocusIndex - 1;
       return index;
     });
   };
   const setNextIndexFocus = () => {
     setVisualFocusIndex((currentFocusIndex) => {
-      let index = currentFocusIndex === options.length - 1 ? 0 : currentFocusIndex + 1;
+      const index = currentFocusIndex === options.length - 1 ? 0 : currentFocusIndex + 1;
       return index;
     });
   };
@@ -127,7 +132,9 @@ const DxcDropdown = ({
         case "Esc":
         case "Escape":
           event.preventDefault();
-          isOpen && event.stopPropagation();
+          if (isOpen) {
+            event.stopPropagation();
+          }
           handleOnCloseMenu();
           triggerRef.current?.focus();
           break;
@@ -145,6 +152,8 @@ const DxcDropdown = ({
           handleOnCloseMenu();
           triggerRef.current?.focus();
           break;
+        default:
+          break;
       }
     },
     [onSelectOption, visualFocusIndex, options]
@@ -152,7 +161,10 @@ const DxcDropdown = ({
 
   useLayoutEffect(() => {
     const visualFocusedMenuItem = menuRef?.current?.querySelectorAll("[role='menuitem']")[visualFocusIndex];
-    visualFocusedMenuItem?.scrollIntoView?.({ block: "nearest", inline: "start" });
+    visualFocusedMenuItem?.scrollIntoView?.({
+      block: "nearest",
+      inline: "start",
+    });
   }, [visualFocusIndex]);
 
   return (
@@ -238,7 +250,10 @@ const calculateWidth = (margin, size) =>
     ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
     : sizes[size];
 
-const DropdownContainer = styled.div<{ margin: DropdownPropsType["margin"]; size: DropdownPropsType["size"] }>`
+const DropdownContainer = styled.div<{
+  margin: DropdownPropsType["margin"];
+  size: DropdownPropsType["size"];
+}>`
   width: ${(props) => calculateWidth(props.margin, props.size)};
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
@@ -311,7 +326,9 @@ const DropdownTriggerLabel = styled.span`
   overflow: hidden;
 `;
 
-const DropdownTriggerIcon = styled.span<{ disabled: DropdownPropsType["disabled"] }>`
+const DropdownTriggerIcon = styled.span<{
+  disabled: DropdownPropsType["disabled"];
+}>`
   display: flex;
   color: ${(props) => (props.disabled ? props.theme.disabledColor : props.theme.buttonIconColor)};
   font-size: ${(props) => props.theme.buttonIconSize};

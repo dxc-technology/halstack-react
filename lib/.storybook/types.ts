@@ -12,6 +12,6 @@ interface ViewportMap {
   [key: string]: Viewport;
 }
 export interface ViewportParameters {
-    viewports: ViewportMap;
-    defaultViewport: string;
+  viewports: ViewportMap;
+  defaultViewport: string;
 }

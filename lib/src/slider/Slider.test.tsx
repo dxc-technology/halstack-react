@@ -6,13 +6,20 @@ import DxcSlider from "./Slider";
 // Mocking DOMRect for Radix Primitive Popover
 (global as any).globalThis = global;
 (global as any).DOMRect = {
-  fromRect: () => ({ top: 0, left: 0, bottom: 0, right: 0, width: 0, height: 0 }),
+  fromRect: () => ({
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
+    width: 0,
+    height: 0,
+  }),
 };
-(global as any).ResizeObserver = class ResizeObserver {
-  observe() {}
-  unobserve() {}
-  disconnect() {}
-};
+global.ResizeObserver = jest.fn().mockImplementation(() => ({
+  observe: jest.fn(),
+  unobserve: jest.fn(),
+  disconnect: jest.fn(),
+}));
 
 describe("Slider component tests", () => {
   test("Slider renders with correct text and label id", () => {
@@ -42,7 +49,12 @@ describe("Slider component tests", () => {
     expect(slider.getAttribute("aria-valuemin")).toBe("30");
     expect(slider.getAttribute("aria-valuemax")).toBe("125");
     userEvent.tab();
-    fireEvent.keyDown(slider, { key: "ArrowRight", code: "ArrowRight", keyCode: 39, charCode: 39 });
+    fireEvent.keyDown(slider, {
+      key: "ArrowRight",
+      code: "ArrowRight",
+      keyCode: 39,
+      charCode: 39,
+    });
     expect(slider.getAttribute("aria-valuenow")).toBe("125");
     expect(getByText("30")).toBeTruthy();
     expect(getByText("125")).toBeTruthy();
@@ -143,7 +155,12 @@ describe("Slider component tests", () => {
     );
     const slider = getByRole("slider");
     userEvent.tab();
-    fireEvent.keyDown(slider, { key: "ArrowRight", code: "ArrowRight", keyCode: 39, charCode: 39 });
+    fireEvent.keyDown(slider, {
+      key: "ArrowRight",
+      code: "ArrowRight",
+      keyCode: 39,
+      charCode: 39,
+    });
     rerender(<DxcSlider minValue={0} maxValue={100} onChange={onChange} showLimitsValues value={0} showInput />);
     expect(slider.getAttribute("aria-valuenow")).toBe("0");
   });

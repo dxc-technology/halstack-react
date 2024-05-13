@@ -1,17 +1,14 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import { axe } from "../../test/accessibility/axe-helper.js";
+import { axe, formatRules } from "../../test/accessibility/axe-helper";
 import DxcResultsetTable from "./ResultsetTable";
 
 // TODO: REMOVE
-import { disabledRules as rules } from "../../test/accessibility/rules/specific/resultset-table/disabledRules.js";
-import { ActionCellsPropsType } from "../table/types.js";
+import rules from "../../test/accessibility/rules/specific/resultset-table/disabledRules";
+import { ActionCellsPropsType } from "../table/types";
 
 const disabledRules = {
-  rules: rules.reduce((rulesObj, rule) => {
-    rulesObj[rule] = { enabled: false };
-    return rulesObj;
-  }, {}),
+  rules: formatRules(rules),
 };
 
 const deleteIcon = (
@@ -24,15 +21,22 @@ const deleteIcon = (
 // Mocking DOMRect for Radix Primitive Popover
 (global as any).globalThis = global;
 (global as any).DOMRect = {
-  fromRect: () => ({ top: 0, left: 0, bottom: 0, right: 0, width: 0, height: 0 }),
+  fromRect: () => ({
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
+    width: 0,
+    height: 0,
+  }),
 };
-(global as any).ResizeObserver = class ResizeObserver {
-  observe() {}
-  unobserve() {}
-  disconnect() {}
-};
+global.ResizeObserver = jest.fn().mockImplementation(() => ({
+  observe: jest.fn(),
+  unobserve: jest.fn(),
+  disconnect: jest.fn(),
+}));
 
-const actions: ActionCellsPropsType['actions'] = [
+const actions: ActionCellsPropsType["actions"] = [
   {
     title: "icon",
     onClick: () => {},
@@ -67,7 +71,7 @@ const actions: ActionCellsPropsType['actions'] = [
     title: "icon",
     onClick: () => {},
   },
-] ;
+];
 
 const columns = [
   {

@@ -80,7 +80,10 @@ const DxcFooter = ({
   );
 };
 
-const FooterContainer = styled.footer<{ margin: FooterPropsType["margin"]; mode?: FooterPropsType["mode"] }>`
+const FooterContainer = styled.footer<{
+  margin: FooterPropsType["margin"];
+  mode?: FooterPropsType["mode"];
+}>`
   background-color: ${(props) => props.theme.backgroundColor};
   box-sizing: border-box;
   display: flex;

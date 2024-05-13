@@ -1,8 +1,8 @@
 import React from "react";
+import { userEvent, within } from "@storybook/test";
 import DxcWizard from "./Wizard";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
-import { userEvent, within } from "@storybook/test";
 import { HalstackProvider } from "../HalstackContext";
 
 export default {

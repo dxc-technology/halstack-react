@@ -28,7 +28,7 @@ const DxcToggleGroup = ({
 
     if (value == null) {
       if (multiple && Array.isArray(selectedValue)) {
-        newSelectedOptions = selectedValue.map((value) => value);
+        newSelectedOptions = selectedValue.map((singleValue) => singleValue);
         if (newSelectedOptions.includes(selectedOption)) {
           const index = newSelectedOptions.indexOf(selectedOption);
           newSelectedOptions.splice(index, 1);
@@ -36,13 +36,17 @@ const DxcToggleGroup = ({
           newSelectedOptions.push(selectedOption);
         }
         setSelectedValue(newSelectedOptions);
-      } else setSelectedValue(selectedOption === selectedValue ? null : selectedOption);
+      } else {
+        setSelectedValue(selectedOption === selectedValue ? null : selectedOption);
+      }
     } else if (multiple) {
       newSelectedOptions = Array.isArray(value) ? value.map((v) => v) : value;
       if (newSelectedOptions.includes(selectedOption)) {
         const index = newSelectedOptions.indexOf(selectedOption);
         newSelectedOptions.splice(index, 1);
-      } else newSelectedOptions.push(selectedOption);
+      } else {
+        newSelectedOptions.push(selectedOption);
+      }
     }
 
     onChange?.(multiple ? newSelectedOptions : selectedOption);
@@ -54,6 +58,9 @@ const DxcToggleGroup = ({
       case " ":
         event.preventDefault();
         handleToggleChange(optionValue);
+        break;
+      default:
+        break;
     }
   };
 
@@ -65,9 +72,9 @@ const DxcToggleGroup = ({
         </Label>
         <HelperText disabled={disabled}>{helperText}</HelperText>
         <OptionsContainer aria-labelledby={toggleGroupLabelId}>
-          {options.map((option, i) => (
+          {options.map((option, index) => (
             <ToggleButton
-              key={`toggle-${i}-${option.label}`}
+              key={`toggle-${index}`}
               aria-label={option.title}
               aria-pressed={
                 multiple
@@ -75,8 +82,8 @@ const DxcToggleGroup = ({
                     ? Array.isArray(value) && value.includes(option.value)
                     : Array.isArray(selectedValue) && selectedValue.includes(option.value)
                   : value
-                  ? option.value === value
-                  : option.value === selectedValue
+                    ? option.value === value
+                    : option.value === selectedValue
               }
               disabled={disabled}
               onClick={() => {
@@ -95,8 +102,8 @@ const DxcToggleGroup = ({
                     ? Array.isArray(value) && value.includes(option.value)
                     : Array.isArray(selectedValue) && selectedValue.includes(option.value)
                   : value
-                  ? option.value === value
-                  : option.value === selectedValue
+                    ? option.value === value
+                    : option.value === selectedValue
               }
             >
               <DxcFlex alignItems="center">

@@ -1,11 +1,11 @@
 import React from "react";
+import { userEvent, within } from "@storybook/test";
+import styled from "styled-components";
 import DxcResultsetTable from "./ResultsetTable";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
-import { userEvent, within } from "@storybook/test";
-import styled from "styled-components";
 import { HalstackProvider } from "../HalstackContext";
-import { disabledRules } from "../../test/accessibility/rules/specific/resultset-table/disabledRules";
+import disabledRules from "../../test/accessibility/rules/specific/resultset-table/disabledRules";
 import preview from "../../.storybook/preview";
 
 export default {
@@ -15,8 +15,11 @@ export default {
     a11y: {
       config: {
         rules: [
-          ...disabledRules.map((ruleId) => ({ id: ruleId, reviewOnFail: true })),
-          ...preview?.parameters?.a11y?.config?.rules,
+          ...disabledRules.map((ruleId) => ({
+            id: ruleId,
+            reviewOnFail: true,
+          })),
+          ...(preview?.parameters?.a11y?.config?.rules || []),
         ],
       },
     },
@@ -55,9 +58,7 @@ const advancedTheme = {
 const actions = [
   {
     title: "icon",
-    onClick: (value?) => {
-      console.log(value);
-    },
+    onClick: () => {},
     options: [
       {
         value: "1",
@@ -304,31 +305,31 @@ export const Chromatic = () => (
     <Title title="Margins" theme="light" level={2} />
     <ExampleContainer>
       <Title title="Xxsmall" theme="light" level={4} />
-      <DxcResultsetTable columns={columns} rows={rows} margin={"xxsmall"} />
+      <DxcResultsetTable columns={columns} rows={rows} margin="xxsmall" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Xsmall" theme="light" level={4} />
-      <DxcResultsetTable columns={columns} rows={rows} margin={"xsmall"} />
+      <DxcResultsetTable columns={columns} rows={rows} margin="xsmall" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Small" theme="light" level={4} />
-      <DxcResultsetTable columns={columns} rows={rows} margin={"small"} />
+      <DxcResultsetTable columns={columns} rows={rows} margin="small" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Medium" theme="light" level={4} />
-      <DxcResultsetTable columns={columns} rows={rows} margin={"medium"} />
+      <DxcResultsetTable columns={columns} rows={rows} margin="medium" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Large" theme="light" level={4} />
-      <DxcResultsetTable columns={columns} rows={rows} margin={"large"} />
+      <DxcResultsetTable columns={columns} rows={rows} margin="large" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Xlarge" theme="light" level={4} />
-      <DxcResultsetTable columns={columns} rows={rows} margin={"xlarge"} />
+      <DxcResultsetTable columns={columns} rows={rows} margin="xlarge" />
     </ExampleContainer>
     <ExampleContainer expanded>
       <Title title="Xxlarge" theme="light" level={4} />
-      <DxcResultsetTable columns={columns} rows={rows} margin={"xxlarge"} />
+      <DxcResultsetTable columns={columns} rows={rows} margin="xxlarge" />
     </ExampleContainer>
   </>
 );
