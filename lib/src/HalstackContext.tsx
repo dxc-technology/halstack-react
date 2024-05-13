@@ -113,14 +113,14 @@ const parseTheme = (theme: DeepPartial<OpinionatedTheme>): AdvancedTheme => {
   contextualMenu.selectedMenuItemBackgroundColor =
     theme?.contextualMenu?.accentColor ?? contextualMenu.selectedMenuItemBackgroundColor;
   contextualMenu.hoverSelectedMenuItemBackgroundColor =
-    subLightness(5, theme?.contextualMenu?.accentColor) ?? contextualMenu.hoverSelectedMenuItemBackgroundColor; // ??
+    subLightness(5, theme?.contextualMenu?.accentColor) ?? contextualMenu.hoverSelectedMenuItemBackgroundColor;
   contextualMenu.activeSelectedMenuItemBackgroundColor =
-    subLightness(5, theme?.contextualMenu?.accentColor) ?? contextualMenu.activeSelectedMenuItemBackgroundColor; // ??
+    subLightness(5, theme?.contextualMenu?.accentColor) ?? contextualMenu.activeSelectedMenuItemBackgroundColor;
   contextualMenu.backgroundColor = theme?.contextualMenu?.baseColor ?? contextualMenu.backgroundColor;
   contextualMenu.hoverMenuItemBackgroundColor =
-    subLightness(5, theme?.contextualMenu?.baseColor) ?? contextualMenu.hoverMenuItemBackgroundColor; // ??
+    subLightness(5, theme?.contextualMenu?.baseColor) ?? contextualMenu.hoverMenuItemBackgroundColor;
   contextualMenu.activeMenuItemBackgroundColor =
-    subLightness(5, theme?.contextualMenu?.baseColor) ?? contextualMenu.activeMenuItemBackgroundColor; // ??
+    subLightness(5, theme?.contextualMenu?.baseColor) ?? contextualMenu.activeMenuItemBackgroundColor;
   contextualMenu.menuItemFontColor = theme?.contextualMenu?.fontColor ?? contextualMenu.menuItemFontColor;
   contextualMenu.sectionTitleFontColor = theme?.contextualMenu?.fontColor ?? contextualMenu.sectionTitleFontColor;
   contextualMenu.iconColor = theme?.contextualMenu?.iconColor ?? contextualMenu.iconColor;

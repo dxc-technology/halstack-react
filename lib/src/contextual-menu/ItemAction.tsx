@@ -13,6 +13,7 @@ const ItemAction = ({ badge, collapseIcon, icon, label, depthLevel, ...props }: 
         {collapseIcon && <Icon>{collapseIcon}</Icon>}
         {icon && depthLevel === 0 && <Icon>{typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}</Icon>}
         <Text
+          selected={props.selected}
           onMouseEnter={(event: React.MouseEvent<HTMLSpanElement>) => {
             const text = event.currentTarget;
             if (text.title === "" && text.scrollWidth > text.clientWidth) text.title = label;
@@ -41,7 +42,7 @@ const Action = styled.button<{ depthLevel: ItemActionProps["depthLevel"]; select
   gap: ${CoreTokens.spacing_16};
   ${({ selected, theme }) =>
     selected
-      ? `background-color: ${theme.selectedMenuItemBackgroundColor}; font-weight: ${theme.selectedMenuItemFontWeight};`
+      ? `background-color: ${theme.selectedMenuItemBackgroundColor};`
       : `background-color: ${CoreTokens.color_transparent}`};
   cursor: pointer;
   overflow: hidden;
@@ -82,12 +83,12 @@ const Label = styled.span`
   overflow: hidden;
 `;
 
-const Text = styled.span`
+const Text = styled.span<{ selected: ItemActionProps["selected"] }>`
   color: ${({ theme }) => theme.menuItemFontColor};
   font-family: ${({ theme }) => theme.fontFamily};
   font-size: ${({ theme }) => theme.menuItemFontSize};
   font-style: ${({ theme }) => theme.menuItemFontStyle};
-  font-weight: ${({ theme }) => theme.menuItemFontWeight};
+  font-weight: ${({ selected, theme }) => (selected ? theme.selectedMenuItemFontWeight : theme.menuItemFontWeight)};
   line-height: ${({ theme }) => theme.menuItemLineHeight};
   text-overflow: ellipsis;
   white-space: nowrap;

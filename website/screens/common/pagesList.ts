@@ -31,7 +31,6 @@ export const themeGeneratorLinks = [
 const overviewLinks: LinkDetails[] = [
   { label: "Introduction", path: "/overview/introduction" },
   { label: "Component lifecycle", path: "/overview/component-lifecycle" },
-  { label: "Component status", path: "/overview/component-status" },
   { label: "Releases", path: "/overview/releases" },
 ];
 const utilitiesLinks: LinkDetails[] = [

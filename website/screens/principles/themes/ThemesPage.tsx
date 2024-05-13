@@ -430,7 +430,7 @@ const sections = [
                       <tr>
                         <td>Icon color</td>
                         <td>
-                          <Code>menuItemIconColor</Code>
+                          <Code>iconColor</Code>
                         </td>
                       </tr>
                     </tbody>

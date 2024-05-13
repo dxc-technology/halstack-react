@@ -9,7 +9,6 @@ import { disabledRules } from "../../test/accessibility/rules/specific/contextua
 import preview from "../../.storybook/preview";
 import { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme";
-import { HalstackProvider } from "../HalstackContext";
 
 export default {
   title: "Contextual Menu",
