@@ -1,7 +1,8 @@
 import React from "react";
 import Title from "../../.storybook/components/Title";
 import DxcDivider from "./Divider";
-import { DxcFlex, DxcParagraph } from "../main";
+import DxcFlex from "../flex/Flex";
+import DxcParagraph from "../paragraph/Paragraph";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 
 export default {

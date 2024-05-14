@@ -2,6 +2,7 @@ import React from "react";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DxcNumberInput from "./NumberInput";
+import DxcFlex from "../flex/Flex";
 
 export default {
   title: "Number Input",
@@ -32,25 +33,11 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Read only" theme="light" level={4} />
-      <DxcNumberInput
-        label="Example label"
-        helperText="Help message"
-        readOnly
-        optional
-        prefix="€"
-        defaultValue="33"
-      />
+      <DxcNumberInput label="Example label" helperText="Help message" readOnly optional prefix="€" defaultValue="33" />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-hover">
       <Title title="Hovered read only" theme="light" level={4} />
-      <DxcNumberInput
-        label="Example label"
-        helperText="Help message"
-        readOnly
-        optional
-        prefix="€"
-        defaultValue="1"
-      />
+      <DxcNumberInput label="Example label" helperText="Help message" readOnly optional prefix="€" defaultValue="1" />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-active">
       <Title title="Active read only" theme="light" level={4} />
@@ -126,6 +113,14 @@ export const Chromatic = () => (
     <ExampleContainer>
       <Title title="FillParent size" theme="light" level={4} />
       <DxcNumberInput label="FillParent" size="fillParent" />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Different sizes inside a flex" theme="light" level={4} />
+      <DxcFlex justifyContent="space-between" gap="1rem">
+        <DxcNumberInput label="fillParent" size="fillParent" />
+        <DxcNumberInput label="medium" size="medium" />
+        <DxcNumberInput label="large" size="large" />
+      </DxcFlex>
     </ExampleContainer>
   </>
 );

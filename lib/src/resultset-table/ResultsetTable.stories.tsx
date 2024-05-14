@@ -2,7 +2,7 @@ import React from "react";
 import DxcResultsetTable from "./ResultsetTable";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
-import { userEvent, within } from "@storybook/testing-library";
+import { userEvent, within } from "@storybook/test";
 import styled from "styled-components";
 import { HalstackProvider } from "../HalstackContext";
 import { disabledRules } from "../../test/accessibility/rules/specific/resultset-table/disabledRules";
@@ -409,5 +409,5 @@ export const DropdownAction = ResultsetActionsCellDropdown.bind({});
 DropdownAction.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const dropdown = canvas.getAllByRole("button")[5];
-  await userEvent.click(dropdown);
+  userEvent.click(dropdown);
 };

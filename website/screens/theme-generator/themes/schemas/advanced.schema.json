@@ -874,7 +874,17 @@
     "headerTextLineHeight": "length",
     "scrollBarThumbColor": "color",
     "scrollBarTrackColor": "color",
-    "sortIconColor": "color"
+    "sortIconColor": "color",
+    "actionIconColor": "color",
+    "disabledActionIconColor": "color",
+    "hoverActionIconColor": "color",
+    "focusActionIconColor": "color",
+    "activeActionIconColor": "color",
+    "actionBackgroundColor": "color",
+    "disabledActionBackgroundColor": "color",
+    "hoverActionBackgroundColor": "color",
+    "focusActionBorderColor": "color",
+    "activeActionBackgroundColor": "color"
   },
   "tabs": {
     "fontFamily": "fFamily",

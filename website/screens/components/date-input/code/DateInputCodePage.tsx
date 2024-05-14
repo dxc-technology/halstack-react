@@ -13,7 +13,6 @@ import basicUsage from "./examples/basicUsage";
 import errorHandling from "./examples/errorHandling";
 import controlled from "./examples/controlled";
 import uncontrolled from "./examples/uncontrolled";
-import StatusBadge from "@/common/StatusBadge";
 import TableCode from "@/common/TableCode";
 
 const sections = [

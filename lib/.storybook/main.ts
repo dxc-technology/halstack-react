@@ -9,10 +9,14 @@ const config: StorybookConfig = {
     "storybook-addon-pseudo-states",
     "storybook-addon-performance",
     "@storybook/addon-a11y",
+    "@chromatic-com/storybook",
   ],
   framework: {
     name: "@storybook/react-vite",
     options: {},
+  },
+  typescript: {
+    reactDocgen: "react-docgen-typescript",
   },
 };
 export default config;

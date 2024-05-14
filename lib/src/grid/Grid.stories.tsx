@@ -209,7 +209,9 @@ const ColoredContainer = styled.div<{ color?: string; width?: string; height?: s
   padding: 1rem;
   border: 1px solid #a46ede;
   border-radius: 0.5rem;
-  font-family: Open Sans, sans-serif;
+  font-family:
+    Open Sans,
+    sans-serif;
   font-size: 1.5rem;
   font-weight: bold;
   color: #a46ede;
