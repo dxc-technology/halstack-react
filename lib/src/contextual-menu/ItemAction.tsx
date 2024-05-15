@@ -10,9 +10,10 @@ const ItemAction = ({ badge, collapseIcon, icon, label, depthLevel, ...props }: 
   return (
     <Action depthLevel={depthLevel} {...props}>
       <Label>
-        {collapseIcon}
+        {collapseIcon && <Icon>{collapseIcon}</Icon>}
         {icon && depthLevel === 0 && <Icon>{typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}</Icon>}
         <Text
+          selected={props.selected}
           onMouseEnter={(event: React.MouseEvent<HTMLSpanElement>) => {
             const text = event.currentTarget;
             if (text.title === "" && text.scrollWidth > text.clientWidth) text.title = label;
@@ -39,24 +40,24 @@ const Action = styled.button<{ depthLevel: ItemActionProps["depthLevel"]; select
   align-items: center;
   justify-content: space-between;
   gap: ${CoreTokens.spacing_16};
-  ${(props) =>
-    props.selected
-      ? `background-color: ${CoreTokens.color_purple_100}; font-weight: ${CoreTokens.type_semibold};`
+  ${({ selected, theme }) =>
+    selected
+      ? `background-color: ${theme.selectedMenuItemBackgroundColor};`
       : `background-color: ${CoreTokens.color_transparent}`};
   cursor: pointer;
   overflow: hidden;
 
   &:hover {
-    ${(props) =>
-      props.selected
-        ? `background-color: ${CoreTokens.color_purple_200};`
-        : `background-color: ${CoreTokens.color_grey_100};`};
+    ${({ selected, theme }) =>
+      selected
+        ? `background-color: ${theme.hoverSelectedMenuItemBackgroundColor};`
+        : `background-color: ${theme.hoverMenuItemBackgroundColor};`};
   }
   &:active {
-    ${(props) =>
-      props.selected
-        ? `background-color: ${CoreTokens.color_purple_200};`
-        : `background-color: ${CoreTokens.color_grey_100};`};
+    ${({ selected, theme }) =>
+      selected
+        ? `background-color: ${theme.activeSelectedMenuItemBackgroundColor};`
+        : `background-color: ${theme.activeMenuItemBackgroundColor};`};
   }
   &:focus {
     outline: 2px solid ${CoreTokens.color_blue_600};
@@ -66,11 +67,12 @@ const Action = styled.button<{ depthLevel: ItemActionProps["depthLevel"]; select
 
 const Icon = styled.span`
   display: flex;
-  font-size: 16px;
+  font-size: ${({ theme }) => theme.iconSize};
+  color: ${({ theme }) => theme.iconColor};
 
   svg {
-    height: 16px;
-    width: 16px;
+    height: ${({ theme }) => theme.iconSize};
+    width: ${({ theme }) => theme.iconSize};
   }
 `;
 
@@ -81,11 +83,13 @@ const Label = styled.span`
   overflow: hidden;
 `;
 
-const Text = styled.span`
-  color: ${CoreTokens.color_grey_900};
-  font-family: ${CoreTokens.type_sans};
-  font-size: ${CoreTokens.type_scale_02};
-  line-height: 24px;
+const Text = styled.span<{ selected: ItemActionProps["selected"] }>`
+  color: ${({ theme }) => theme.menuItemFontColor};
+  font-family: ${({ theme }) => theme.fontFamily};
+  font-size: ${({ theme }) => theme.menuItemFontSize};
+  font-style: ${({ theme }) => theme.menuItemFontStyle};
+  font-weight: ${({ selected, theme }) => (selected ? theme.selectedMenuItemFontWeight : theme.menuItemFontWeight)};
+  line-height: ${({ theme }) => theme.menuItemLineHeight};
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;

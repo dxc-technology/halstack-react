@@ -139,7 +139,6 @@ const CoreTokens = {
   // Typography
   type_sans: "Open Sans, sans-serif",
 
-  type_scale_root: "16px",
   type_scale_08: "3.75rem",
   type_scale_07: "2.5rem",
   type_scale_06: "2rem",
