@@ -81,12 +81,12 @@ const sections = [
             </td>
             <td>
               <TableCode>
-                {"{ displayValue: React.ReactNode; sortValue?: string; }[]"}
+                {"{ displayValue: React.ReactNode; sortValue?: string; }[][]"}
               </TableCode>
             </td>
             <td>
               An array of objects representing the rows of the table, you will
-              have as many objects as columns in the table. Each object has the
+              have as many objects as columns in the table. Each row is composed of cells that have the
               following properties:
               <ul>
                 <li>
