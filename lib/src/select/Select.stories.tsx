@@ -411,7 +411,7 @@ const Select = () => (
 );
 
 const SelectListbox = () => {
-  const colorsTheme: any = useTheme();
+  const colorsTheme = useTheme();
 
   return (
     <>
