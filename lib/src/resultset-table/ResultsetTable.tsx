@@ -12,7 +12,7 @@ import CoreTokens from "../common/coreTokens";
 const normalizeSortValue = (sortValue: string | React.ReactNode) =>
   typeof sortValue === "string" ? sortValue.toUpperCase() : sortValue;
 
-const sortArray = (index: number, order: "ascending" | "descending", resultset: { id: string; cells: Row[] }[]) =>
+const sortArray = (index: number, order: "ascending" | "descending", resultset: { id: string; cells: Row }[]) =>
   resultset.slice().sort((element1, element2) => {
     const sortValueA = normalizeSortValue(element1.cells[index].sortValue || element1[index].displayValue);
     const sortValueB = normalizeSortValue(element2.cells[index].sortValue || element2[index].displayValue);
@@ -35,11 +35,11 @@ const getMinItemsPerPageIndex = (currentPageInternal: number, itemsPerPage: numb
 const getMaxItemsPerPageIndex = (
   minItemsPerPageIndex: number,
   itemsPerPage: number,
-  resultset: Row[][],
+  resultset: Row[],
   page: number,
 ) => (minItemsPerPageIndex + itemsPerPage > resultset.length ? resultset.length : itemsPerPage * page - 1);
 
-const assignIdsToRows = (resultset: Row[][]) => {
+const assignIdsToRows = (resultset: Row[]) => {
   if (resultset.length > 0) {
     return resultset.map((row, index) => ({
       cells: row,
