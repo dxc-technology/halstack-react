@@ -86,7 +86,7 @@ const sections = [
             </td>
             <td>
               An array of objects representing the rows of the table, you will
-              have as many objects as columns in the table. Each row is composed of cells that have the
+              have as many objects as columns in the table. Each row is a set of cells that have the
               following properties:
               <ul>
                 <li>
