@@ -27,6 +27,12 @@
     "fontColor": "color",
     "iconColor": "color"
   },
+  "contextualMenu": {
+    "accentColor": "color",
+    "baseColor": "color",
+    "fontColor": "color",
+    "iconColor": "color"
+  },
   "dateInput": {
     "baseColor": "color",
     "selectedFontColor": "color"
