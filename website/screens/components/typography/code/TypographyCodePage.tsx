@@ -196,11 +196,14 @@ const sections = [
         <tr>
           <td>as</td>
           <td>
-            <TableCode>keyof HTMLElementTagNameMap</TableCode>
+            <TableCode>
+              'a' | 'blockquote' | 'cite' | 'code' | 'div' | 'em' | 'figcaption'
+              | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'pre' | 'small'
+              | 'span' | 'strong'
+            </TableCode>
           </td>
           <td>
-            Determines the HTML tag with which the text is to be rendered (any
-            valid HTML tag).
+            Determines the HTML tag with which the text is to be rendered.
           </td>
           <td>
             <TableCode>'span'</TableCode>

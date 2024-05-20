@@ -32,6 +32,7 @@ import HeaderPreview from "./previews/Header";
 import BulletedListPreview from "./previews/BulletedList";
 import ParagraphPreview from "./previews/Paragraph";
 import NavTabsPreview from "./previews/NavTabs";
+import ContextualMenu from "./previews/ContextualMenu";
 
 const SampleComponents = [
   {
@@ -65,6 +66,10 @@ const SampleComponents = [
   {
     name: "chip",
     preview: ChipPreview,
+  },
+  {
+    name: "contextualMenu",
+    preview: ContextualMenu,
   },
   {
     name: "dateInput",
