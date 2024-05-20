@@ -31,8 +31,14 @@ const actionsType = `{
   options: Option[];
 }[]`;
 
-const cellTypeString = `{ displayValue: React.ReactNode; sortValue?: string; }[]`;
-const columnTypeString = `{ displayValue: React.ReactNode; isSortable?: boolean; }`;
+const cellTypeString = `{ 
+  displayValue: React.ReactNode; 
+  sortValue?: string; 
+}[]`;
+const columnTypeString = `{ 
+  displayValue: React.ReactNode; 
+  isSortable?: boolean; 
+}`;
 
 const sections = [
   {
