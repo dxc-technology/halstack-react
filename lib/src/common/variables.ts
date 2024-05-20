@@ -219,6 +219,29 @@ export const componentTokens = {
     focusBorderThickness: CoreTokens.border_width_2,
     focusBorderRadius: CoreTokens.border_radius_medium,
   },
+  contextualMenu: {
+    fontFamily: CoreTokens.type_sans,
+    backgroundColor: CoreTokens.color_white,
+    borderColor: CoreTokens.color_grey_200,
+    menuItemFontColor: CoreTokens.color_grey_900,
+    menuItemFontSize: CoreTokens.type_scale_02,
+    menuItemFontStyle: CoreTokens.type_normal,
+    menuItemFontWeight: CoreTokens.type_regular,
+    menuItemLineHeight: "24px",
+    hoverMenuItemBackgroundColor: CoreTokens.color_grey_100,
+    activeMenuItemBackgroundColor: CoreTokens.color_grey_100,
+    selectedMenuItemBackgroundColor: CoreTokens.color_purple_100,
+    hoverSelectedMenuItemBackgroundColor: CoreTokens.color_purple_200,
+    activeSelectedMenuItemBackgroundColor: CoreTokens.color_purple_200,
+    selectedMenuItemFontWeight: CoreTokens.type_semibold,
+    sectionTitleFontColor: CoreTokens.color_grey_900,
+    sectionTitleFontSize: CoreTokens.type_scale_03,
+    sectionTitleFontStyle: CoreTokens.type_normal,
+    sectionTitleFontWeight: CoreTokens.type_semibold,
+    sectionTitleLineHeight: "24px",
+    iconColor: CoreTokens.color_grey_900,
+    iconSize: "16px",
+  },
   dateInput: {
     pickerBackgroundColor: CoreTokens.color_white,
     pickerFontColor: CoreTokens.color_black,
@@ -295,7 +318,7 @@ export const componentTokens = {
     hoverOptionBackgroundColor: CoreTokens.color_grey_100,
     activeOptionBackgroundColor: CoreTokens.color_grey_300,
     optionFontFamily: CoreTokens.type_sans,
-    optionFontSize: CoreTokens.type_scale_root,
+    optionFontSize: CoreTokens.type_scale_03,
     optionFontStyle: CoreTokens.type_normal,
     optionFontWeight: CoreTokens.type_regular,
     optionFontColor: CoreTokens.color_black,
@@ -824,7 +847,7 @@ export const componentTokens = {
     disabledLabelFontColor: CoreTokens.color_grey_500,
     disabledLabelFontStyle: CoreTokens.type_normal,
     labelFontFamily: CoreTokens.type_sans,
-    labelFontSize: CoreTokens.type_scale_root,
+    labelFontSize: CoreTokens.type_scale_03,
     labelFontStyle: CoreTokens.type_normal,
     labelFontWeight: CoreTokens.type_regular,
     labelFontColor: CoreTokens.color_black,
@@ -1172,6 +1195,12 @@ export type OpinionatedTheme = {
     fontColor: string;
   };
   chip: {
+    baseColor: string;
+    fontColor: string;
+    iconColor: string;
+  };
+  contextualMenu: {
+    accentColor: string;
     baseColor: string;
     fontColor: string;
     iconColor: string;

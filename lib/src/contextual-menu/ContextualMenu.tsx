@@ -1,5 +1,5 @@
 import React, { Fragment, createContext, useLayoutEffect, useMemo, useRef, useState } from "react";
-import styled from "styled-components";
+import styled, { ThemeProvider } from "styled-components";
 import CoreTokens from "../common/coreTokens";
 import ContextualMenuPropsType, {
   ContextualMenuContextProps,
@@ -13,6 +13,7 @@ import ContextualMenuPropsType, {
 import DxcDivider from "../divider/Divider";
 import DxcInset from "../inset/Inset";
 import MenuItem from "./MenuItem";
+import useTheme from "../useTheme";
 
 export const ContextualMenuContext = createContext<ContextualMenuContextProps | null>(null);
 
@@ -39,13 +40,16 @@ const DxcContextualMenu = ({ items }: ContextualMenuPropsType) => {
   const contextualMenuRef = useRef(null);
   const itemsWithId = useMemo(() => addIdToItems(items), [items]);
   const contextValue = useMemo(() => ({ selectedItemId, setSelectedItemId }), [selectedItemId, setSelectedItemId]);
+  const colorsTheme = useTheme();
 
   const renderSection = (section: SectionWithId, currentSectionIndex: number, length: number) => (
     <Fragment key={`section-${currentSectionIndex}`}>
       <li role="group" aria-labelledby={section.title}>
         {section.title != null && <Title id={section.title}>{section.title}</Title>}
         <SectionList>
-          {section.items.map((item, index) => <MenuItem item={item} key={`item-${index}`} />)}
+          {section.items.map((item, index) => (
+            <MenuItem item={item} key={`item-${index}`} />
+          ))}
         </SectionList>
       </li>
       {currentSectionIndex !== length - 1 && (
@@ -69,29 +73,33 @@ const DxcContextualMenu = ({ items }: ContextualMenuPropsType) => {
   }, [firstUpdate, selectedItemId]);
 
   return (
-    <ContextualMenu role="menu" ref={contextualMenuRef}>
-      <ContextualMenuContext.Provider value={contextValue}>
-        {itemsWithId.map((item: GroupItemWithId | ItemWithId | SectionWithId, index: number) => "items" in item && !("label" in item) ? (
-            renderSection(item, index, itemsWithId.length)
-          ) : (
-            <MenuItem item={item} key={`item-${index}`} />
-          ))}
-      </ContextualMenuContext.Provider>
-    </ContextualMenu>
+    <ThemeProvider theme={colorsTheme.contextualMenu}>
+      <ContextualMenu role="menu" ref={contextualMenuRef}>
+        <ContextualMenuContext.Provider value={contextValue}>
+          {itemsWithId.map((item: GroupItemWithId | ItemWithId | SectionWithId, index: number) =>
+            "items" in item && !("label" in item) ? (
+              renderSection(item, index, itemsWithId.length)
+            ) : (
+              <MenuItem item={item} key={`${item.label}-${index}`} />
+            )
+          )}
+        </ContextualMenuContext.Provider>
+      </ContextualMenu>
+    </ThemeProvider>
   );
 };
 
 const ContextualMenu = styled.ul`
   box-sizing: border-box;
   margin: 0;
-  border: 1px solid ${CoreTokens.color_grey_200};
+  border: 1px solid ${({ theme }) => theme.borderColor};
   border-radius: 0.25rem;
   padding: ${CoreTokens.spacing_16} ${CoreTokens.spacing_8};
   display: grid;
   gap: ${CoreTokens.spacing_4};
   min-width: 248px;
   max-height: 100%;
-  background-color: ${CoreTokens.color_white};
+  background-color: ${({ theme }) => theme.backgroundColor};
   overflow-y: auto;
   &::-webkit-scrollbar {
     width: 8px;
@@ -118,11 +126,12 @@ const SectionList = styled.ul`
 const Title = styled.h2`
   margin: 0 0 ${CoreTokens.spacing_4} 0;
   padding: ${CoreTokens.spacing_4};
-  color: ${CoreTokens.color_grey_900};
-  font-family: ${CoreTokens.type_sans};
-  font-size: ${CoreTokens.type_scale_03};
-  font-weight: ${CoreTokens.type_semibold};
-  line-height: 24px;
+  color: ${({ theme }) => theme.sectionTitleFontColor};
+  font-family: ${({ theme }) => theme.fontFamily};
+  font-size: ${({ theme }) => theme.sectionTitleFontSize};
+  font-style: ${({ theme }) => theme.sectionTitleFontStyle};
+  font-weight: ${({ theme }) => theme.sectionTitleFontWeight};
+  line-height: ${({ theme }) => theme.sectionTitleLineHeight};
 `;
 
 export default DxcContextualMenu;

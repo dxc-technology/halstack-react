@@ -15,6 +15,10 @@ type GroupItem = CommonItemProps & {
 };
 type Section = { items: (Item | GroupItem)[]; title?: string };
 type Props = {
+  /**
+   * Array of items to be displayed in the Contextual menu.
+   * Each item can be a single/simple item, a group item or a section.
+   */
   items: (Item | GroupItem)[] | Section[];
 };
 

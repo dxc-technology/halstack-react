@@ -1,4 +1,5 @@
 import React, { useMemo } from "react";
+import { ThemeProvider } from "styled-components";
 import Title from "../../.storybook/components/Title";
 import DxcContextualMenu, { ContextualMenuContext } from "./ContextualMenu";
 import DxcContainer from "../container/Container";
@@ -7,6 +8,7 @@ import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DxcBadge from "../badge/Badge";
 import disabledRules from "../../test/accessibility/rules/specific/contextual-menu/disabledRules";
 import preview from "../../.storybook/preview";
+import useTheme from "../useTheme";
 
 export default {
   title: "Contextual Menu",
@@ -82,7 +84,7 @@ const itemsWithIcon = [
   {
     label: "Item 1",
     icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
+      <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="currentColor">
         <path d="M200-120v-640q0-33 23.5-56.5T280-840h400q33 0 56.5 23.5T760-760v640L480-240 200-120Zm80-122 200-86 200 86v-518H280v518Zm0-518h400-400Z" />
       </svg>
     ),
@@ -129,7 +131,7 @@ const itemsWithTruncatedText = [
     label: "Item with a very long label that should be truncated",
     badge: <DxcBadge color="green" label="New" />,
     icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
+      <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="currentColor">
         <path d="M200-120v-640q0-33 23.5-56.5T280-840h400q33 0 56.5 23.5T760-760v640L480-240 200-120Zm80-122 200-86 200 86v-518H280v518Zm0-518h400-400Z" />
       </svg>
     ),
@@ -192,43 +194,46 @@ export const Chromatic = () => (
 );
 
 export const SingleItemStates = () => {
+  const colorsTheme = useTheme();
   const value1 = useMemo(() => ({ selectedItemId: -1, setSelectedItemId: () => {} }), []);
   const value2 = useMemo(() => ({ selectedItemId: 0, setSelectedItemId: () => {} }), []);
 
   return (
-    <DxcContainer width="300px">
-      <ContextualMenuContext.Provider value={value1}>
-        <Title title="Default" theme="light" level={3} />
-        <ExampleContainer>
-          <SingleItem {...items[0]} id={0} depthLevel={0} />
-        </ExampleContainer>
-        <Title title="Focus" theme="light" level={3} />
-        <ExampleContainer pseudoState="pseudo-focus">
-          <SingleItem {...items[0]} id={0} depthLevel={0} />
-        </ExampleContainer>
-        <Title title="Hover" theme="light" level={3} />
-        <ExampleContainer pseudoState="pseudo-hover">
-          <SingleItem {...items[0]} id={0} depthLevel={0} />
-        </ExampleContainer>
-        <Title title="Active" theme="light" level={3} />
-        <ExampleContainer pseudoState="pseudo-active">
-          <SingleItem {...items[0]} id={0} depthLevel={0} />
-        </ExampleContainer>
-      </ContextualMenuContext.Provider>
-      <ContextualMenuContext.Provider value={value2}>
-        <Title title="Selected" theme="light" level={3} />
-        <ExampleContainer>
-          <SingleItem {...items[0]} id={0} depthLevel={0} />
-        </ExampleContainer>
-        <Title title="Selected hover" theme="light" level={3} />
-        <ExampleContainer pseudoState="pseudo-hover">
-          <SingleItem {...items[0]} id={0} depthLevel={0} />
-        </ExampleContainer>
-        <Title title="Selected active" theme="light" level={3} />
-        <ExampleContainer pseudoState="pseudo-active">
-          <SingleItem {...items[0]} id={0} depthLevel={0} />
-        </ExampleContainer>
-      </ContextualMenuContext.Provider>
-    </DxcContainer>
+    <ThemeProvider theme={colorsTheme.contextualMenu}>
+      <DxcContainer width="300px">
+        <ContextualMenuContext.Provider value={value1}>
+          <Title title="Default" theme="light" level={3} />
+          <ExampleContainer>
+            <SingleItem {...items[0]} id={0} depthLevel={0} />
+          </ExampleContainer>
+          <Title title="Focus" theme="light" level={3} />
+          <ExampleContainer pseudoState="pseudo-focus">
+            <SingleItem {...items[0]} id={0} depthLevel={0} />
+          </ExampleContainer>
+          <Title title="Hover" theme="light" level={3} />
+          <ExampleContainer pseudoState="pseudo-hover">
+            <SingleItem {...items[0]} id={0} depthLevel={0} />
+          </ExampleContainer>
+          <Title title="Active" theme="light" level={3} />
+          <ExampleContainer pseudoState="pseudo-active">
+            <SingleItem {...items[0]} id={0} depthLevel={0} />
+          </ExampleContainer>
+        </ContextualMenuContext.Provider>
+        <ContextualMenuContext.Provider value={value2}>
+          <Title title="Selected" theme="light" level={3} />
+          <ExampleContainer>
+            <SingleItem {...items[0]} id={0} depthLevel={0} />
+          </ExampleContainer>
+          <Title title="Selected hover" theme="light" level={3} />
+          <ExampleContainer pseudoState="pseudo-hover">
+            <SingleItem {...items[0]} id={0} depthLevel={0} />
+          </ExampleContainer>
+          <Title title="Selected active" theme="light" level={3} />
+          <ExampleContainer pseudoState="pseudo-active">
+            <SingleItem {...items[0]} id={0} depthLevel={0} />
+          </ExampleContainer>
+        </ContextualMenuContext.Provider>
+      </DxcContainer>
+    </ThemeProvider>
   );
 };
