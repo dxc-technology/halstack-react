@@ -56,7 +56,11 @@ const FileItem = ({
               <DxcIcon icon="close" />
             </DeleteFileAction>
           </DxcFlex>
-          {error && !singleFileMode && <ErrorMessage role="alert" aria-live="assertive">{error}</ErrorMessage>}
+          {error && !singleFileMode && (
+            <ErrorMessage role="alert" aria-live="assertive">
+              {error}
+            </ErrorMessage>
+          )}
         </FileItemContent>
       </MainContainer>
     </ThemeProvider>
@@ -145,6 +149,7 @@ const DeleteFileAction = styled.button`
   display: flex;
   flex-wrap: wrap;
   align-content: center;
+  justify-content: center;
   height: 24px;
   width: 24px;
   font-size: 1rem;
