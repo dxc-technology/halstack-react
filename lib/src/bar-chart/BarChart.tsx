@@ -5,22 +5,16 @@ import { useState, useMemo, useCallback } from "react";
 import BarChartProps, { DataTypes, InsetWrapperProps } from "./types";
 import theme from "./theme";
 import styled, { css } from "styled-components";
-import { DxcSpinner, DxcTypography, DxcInset, DxcSelect, DxcButton, DxcFlex, DxcHeading, DxcGrid } from "../main";
+import { DxcSpinner, DxcInset, DxcSelect, DxcButton, DxcHeading, DxcGrid } from "../main";
 import DxcIcon from "../icon/Icon";
 import CoreTokens from "../common/coreTokens";
+import useTranslatedLabels from "../useTranslatedLabels";
 
 /**
  * Cloudscape Design Components - Theming
  * https://cloudscape.design/foundation/visual-foundation/theming/
  */
 applyTheme({ theme });
-
-const LoadingStatus = memo(() => (
-  <LoadingContainer>
-    <DxcSpinner mode="small" />
-    Loading data.
-  </LoadingContainer>
-));
 
 const StatusMessage = memo(({ title, description }: { title: string; description: string }) => (
   <StatusMessageContainer>
@@ -54,6 +48,7 @@ const DxcBarChart = <X extends DataTypes>({
   const [filteredData, setFilteredData] = useState(series);
   const filters = useMemo(() => series.map((series) => series.title), [series]);
   const [selectedFilters, setSelectedFilters] = useState<string[]>(filters);
+  const translatedLabels = useTranslatedLabels();
 
   const filterData = useCallback(
     (value: string[]) => {
@@ -64,7 +59,10 @@ const DxcBarChart = <X extends DataTypes>({
   );
 
   return loading ? (
-    <LoadingStatus />
+    <LoadingContainer>
+      <DxcSpinner mode="small" />
+      {translatedLabels.barChart.loadingDataMessage}
+    </LoadingContainer>
   ) : error ? (
     <ErrorStatus>
       <Label>
@@ -72,7 +70,7 @@ const DxcBarChart = <X extends DataTypes>({
         {error}
       </Label>
       <DxcButton
-        label="Retry"
+        label={translatedLabels.barChart.retryButtonLabel}
         mode="secondary"
         onClick={() => {
           onRetry();
@@ -88,8 +86,9 @@ const DxcBarChart = <X extends DataTypes>({
       )}
       {showFilter && (
         <DxcSelect
-          label="Filter displayed data"
-          placeholder="Select series..."
+          label={translatedLabels.barChart.filterLabel}
+          placeholder={translatedLabels.barChart.filterPlaceholder}
+          searchable
           multiple
           options={filters.map((filter) => ({
             label: filter,
@@ -108,16 +107,24 @@ const DxcBarChart = <X extends DataTypes>({
           visibleSeries={filteredData as any}
           xDomain={xDomain as any}
           yDomain={yDomain}
-          ariaLabel="Single data series line chart"
+          ariaLabel={translatedLabels.barChart.ariaLabel}
           xTitle={xTitle}
           yTitle={yTitle}
           legendTitle={legendTitle}
           hideLegend={!showLegend}
           horizontalBars={horizontalBars}
           stackedBars={stackedBars}
-          empty={<StatusMessage title="No data available" description="There's not data available." />}
+          empty={
+            <StatusMessage
+              title={translatedLabels.barChart.noDataMessageTitle}
+              description={translatedLabels.barChart.noDataMessageBody}
+            />
+          }
           noMatch={
-            <StatusMessage title="No matching data" description="Try changing the filters or reloading the data." />
+            <StatusMessage
+              title={translatedLabels.barChart.noMatchesMessageTitle}
+              description={translatedLabels.barChart.noMatchesMessageBody}
+            />
           }
           hideFilter
           onHighlightChange={(highlightedSeries) => {

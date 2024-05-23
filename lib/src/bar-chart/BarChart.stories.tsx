@@ -107,7 +107,7 @@ const BarChart = () => (
           },
         ]}
         xDomain={[0, 1, 2, 3, 4]}
-        yDomain={[0, 700000]}
+        yDomain={[0, 600000]}
       />
     </ExampleContainer>
     <Title title="Horizontal bar chart" theme="light" level={4} />
