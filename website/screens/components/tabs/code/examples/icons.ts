@@ -36,14 +36,18 @@ const code = `() => {
           {
             label: "3G Mobile",
             icon: mobileIcon,
+            notificationNumber: true
           },
           {
             label: "Ethernet",
             icon: "settings_ethernet",
+            isDisabled: true,
+            notificationNumber: 2
           },
           {
             label: "Wifi",
             icon: "wifi",
+            notificationNumber: 120
           },
         ]}
       ></DxcTabs>
