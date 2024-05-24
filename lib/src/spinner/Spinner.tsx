@@ -1,71 +1,53 @@
-import React from "react";
+import React, { useId, useMemo } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables";
 import useTheme from "../useTheme";
 import SpinnerPropsType from "./types";
 
-const DxcSpinner = ({
-  label = "",
-  value,
-  showValue = false,
-  mode = "large",
-  margin,
-}: SpinnerPropsType): JSX.Element => {
+const DxcSpinner = ({ label, value, showValue = false, mode = "large", margin }: SpinnerPropsType): JSX.Element => {
+  const labelId = useId();
   const colorsTheme = useTheme();
+  const determinated = useMemo(() => value >= 0 && value <= 100, [value]);
 
   return (
     <ThemeProvider theme={colorsTheme.spinner}>
       <DXCSpinner margin={margin} mode={mode}>
         <SpinnerContainer mode={mode}>
-          {mode === "overlay" && <BackOverlay></BackOverlay>}
+          {mode === "overlay" && <BackOverlay />}
           <BackgroundSpinner>
-            {mode !== "small" && (
+            {mode === "small" ? (
+              <SVGBackground viewBox="0 0 16 16">
+                <CircleBackground cx="8" cy="8" r="6" mode={mode} />
+              </SVGBackground>
+            ) : (
               <SVGBackground viewBox="0 0 140 140">
                 <CircleBackground cx="70" cy="70" r="65" mode={mode} />
               </SVGBackground>
             )}
-            {mode === "small" && (
-              <SVGBackground viewBox="0 0 16 16">
-                <CircleBackground cx="8" cy="8" r="6" mode={mode} />
-              </SVGBackground>
-            )}
           </BackgroundSpinner>
-          {value >= 0 && value <= 100 ? (
-            <Spinner
-              role="progressbar"
-              aria-valuenow={showValue ? value : undefined}
-              aria-valuemin={0}
-              aria-valuemax={100}
-              aria-label={label || "Spinner"}
-            >
-              {mode !== "small" && (
-                <SVGSpinner viewBox="0 0 140 140" isDeterminated={true}>
-                  <CircleSpinner cx="70" cy="70" r="65" mode={mode} isDeterminated={true} value={value} />
-                </SVGSpinner>
-              )}
-              {mode === "small" && (
-                <SVGSpinner viewBox="0 0 16 16" isDeterminated={true}>
-                  <CircleSpinner cx="8" cy="8" r="6" mode={mode} isDeterminated={true} value={value} />
-                </SVGSpinner>
-              )}
-            </Spinner>
-          ) : (
-            <Spinner role="progressbar">
-              {mode !== "small" && (
-                <SVGSpinner viewBox="0 0 140 140" isDeterminated={false}>
-                  <CircleSpinner cx="70" cy="70" r="65" mode={mode} isDeterminated={false} value={value} />
-                </SVGSpinner>
-              )}
-              {mode === "small" && (
-                <SVGSpinner viewBox="0 0 16 16" isDeterminated={false}>
-                  <CircleSpinner cx="8" cy="8" r="6" mode={mode} isDeterminated={false} value={value} />
-                </SVGSpinner>
-              )}
-            </Spinner>
-          )}
+          <Spinner
+            role="progressbar"
+            aria-valuenow={determinated && showValue ? value : undefined}
+            aria-valuemin={determinated ? 0 : undefined}
+            aria-valuemax={determinated ? 100 : undefined}
+            aria-labelledby={label && mode !== "small" ? labelId : undefined}
+            aria-label={!label ? "Loading indicator" : mode === "small" ? label : undefined}
+          >
+            {mode === "small" ? (
+              <SVGSpinner viewBox="0 0 16 16" determinated={determinated}>
+                <CircleSpinner cx="8" cy="8" r="6" mode={mode} determinated={determinated} value={value} />
+              </SVGSpinner>
+            ) : (
+              <SVGSpinner viewBox="0 0 140 140" determinated={determinated}>
+                <CircleSpinner cx="70" cy="70" r="65" mode={mode} determinated={determinated} value={value} />
+              </SVGSpinner>
+            )}
+          </Spinner>
           {mode !== "small" && (
-            <LabelsContainer>
-              <SpinnerLabel mode={mode}>{label}</SpinnerLabel>
+            <LabelsContainer> 
+              <SpinnerLabel id={labelId} mode={mode}>
+                {label}
+              </SpinnerLabel>
               {(value || value === 0) && showValue && (
                 <SpinnerProgress value={value} mode={mode} showValue={showValue}>
                   {value}%
@@ -81,9 +63,7 @@ const DxcSpinner = ({
 
 const determinateValue = (value: SpinnerPropsType["value"], strokeDashArray: number) => {
   let val = 0;
-  if (value >= 0 && value <= 100) {
-    val = strokeDashArray * (1 - value / 100);
-  }
+  if (value >= 0 && value <= 100) val = strokeDashArray * (1 - value / 100);
   return val;
 };
 
@@ -217,7 +197,7 @@ const Spinner = styled.div`
   position: relative;
 `;
 
-const SVGSpinner = styled.svg<{ isDeterminated: boolean }>`
+const SVGSpinner = styled.svg<{ determinated: boolean }>`
   height: inherit;
   width: inherit;
   transform: rotate(-90deg);
@@ -225,28 +205,28 @@ const SVGSpinner = styled.svg<{ isDeterminated: boolean }>`
   left: 0;
   transform-origin: center;
   overflow: visible;
-  animation: ${(props) => (!props.isDeterminated ? "1.4s linear infinite both spinner-svg" : "")};
+  animation: ${(props) => (!props.determinated ? "1.4s linear infinite both spinner-svg" : "")};
 `;
 
 const CircleSpinner = styled.circle<{
   value: SpinnerPropsType["value"];
-  isDeterminated: boolean;
+  determinated: boolean;
 }>`
   fill: transparent;
   stroke-linecap: initial;
   vector-effect: non-scaling-stroke;
   animation: ${(props) =>
-    props.isDeterminated
+    props.determinated
       ? "none"
       : props.mode !== "small"
-      ? "1.4s ease-in-out infinite both svg-circle-large"
-      : "1.4s ease-in-out infinite both svg-circle-small"};
+        ? "1.4s ease-in-out infinite both svg-circle-large"
+        : "1.4s ease-in-out infinite both svg-circle-small"};
   stroke: ${(props) => (props.mode === "overlay" ? props.theme.trackCircleColorOverlay : props.theme.trackCircleColor)};
-  transform-origin: ${(props) => (!props.isDeterminated ? "50% 50%" : "")};
+  transform-origin: ${(props) => (!props.determinated ? "50% 50%" : "")};
   stroke-dasharray: ${(props) => (props.mode !== "small" ? "409" : "38")};
   stroke-width: ${(props) => (props.mode !== "small" ? "8.5px" : "2px")};
   stroke-dashoffset: ${(props) =>
-    props.isDeterminated
+    props.determinated
       ? props.mode !== "small"
         ? determinateValue(props.value, 409)
         : determinateValue(props.value, 38)
@@ -254,11 +234,10 @@ const CircleSpinner = styled.circle<{
 `;
 
 const LabelsContainer = styled.div`
-  display: block;
-  margin: 0 auto;
   position: absolute;
-  text-align: center;
+  margin: 0 auto;
   width: 110px;
+  text-align: center;
 `;
 
 const SpinnerLabel = styled.p<{ mode: SpinnerPropsType["mode"] }>`
