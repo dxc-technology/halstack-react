@@ -11,6 +11,7 @@ import DxcActionIcon from "../action-icon/ActionIcon";
 import DxcFlex from "../flex/Flex";
 import { NumberInputContext } from "../number-input/NumberInputContext";
 import DxcIcon from "../icon/Icon";
+import useWidth from "../utils/useWidth";
 
 const sizes = {
   small: "240px",
@@ -33,7 +34,7 @@ const makeCancelable = (promise) => {
   const wrappedPromise = new Promise<string[]>((resolve, reject) => {
     promise.then(
       (val) => (hasCanceled_ ? reject({ isCanceled: true }) : resolve(val)),
-      (promiseError) => (hasCanceled_ ? reject({ isCanceled: true }) : reject(promiseError)),
+      (promiseError) => (hasCanceled_ ? reject({ isCanceled: true }) : reject(promiseError))
     );
   });
   return {
@@ -56,27 +57,6 @@ const isNumberIncorrect = (value: number, minNumber: number, maxNumber: number) 
   value < minNumber || value > maxNumber;
 
 const patternMismatch = (pattern: string, value: string) => pattern != null && !new RegExp(pattern).test(value);
-
-const useWidth = (target) => {
-  const [width, setWidth] = useState(0);
-
-  useEffect(() => {
-    if (target != null) {
-      setWidth(target.getBoundingClientRect().width);
-
-      const triggerObserver = new ResizeObserver((entries) => {
-        const rect = entries[0].target.getBoundingClientRect();
-        setWidth(rect?.width);
-      });
-      triggerObserver.observe(target);
-      return () => {
-        triggerObserver.unobserve(target);
-      };
-    }
-  }, [target]);
-
-  return width;
-};
 
 const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
   (
@@ -106,7 +86,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
       size = "medium",
       tabIndex = 0,
     },
-    ref,
+    ref
   ): JSX.Element => {
     const inputId = `input-${useId()}`;
     const autosuggestId = `suggestions-${inputId}`;
@@ -337,7 +317,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
         };
       } else if (suggestions?.length > 0) {
         changeFilteredSuggestions(
-          suggestions.filter((suggestion) => suggestion.toUpperCase().startsWith((value ?? innerValue).toUpperCase())),
+          suggestions.filter((suggestion) => suggestion.toUpperCase().startsWith((value ?? innerValue).toUpperCase()))
         );
         changeVisualFocusIndex(-1);
       }
@@ -347,7 +327,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
           numberInputContext.typeNumber,
           numberInputContext.minNumber,
           numberInputContext.maxNumber,
-          numberInputContext.stepNumber,
+          numberInputContext.stepNumber
         );
     }, [value, innerValue, suggestions, numberInputContext]);
 
@@ -506,7 +486,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
         </TextInputContainer>
       </ThemeProvider>
     );
-  },
+  }
 );
 
 const TextInputContainer = styled.div<{ margin: TextInputPropsType["margin"]; size: TextInputPropsType["size"] }>`

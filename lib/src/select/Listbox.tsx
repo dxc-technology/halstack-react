@@ -1,4 +1,4 @@
-import React, { useId, useLayoutEffect, useRef } from "react";
+import React, { useLayoutEffect, useRef } from "react";
 import styled from "styled-components";
 import useTranslatedLabels from "../useTranslatedLabels";
 import { ListboxProps } from "./types";
@@ -23,11 +23,10 @@ const Listbox = ({
 }: ListboxProps): JSX.Element => {
   const translatedLabels = useTranslatedLabels();
   const listboxRef = useRef(null);
-  const listboxId = `select-${useId()}`;
-  
+
   let globalIndex = optional && !multiple ? 0 : -1;
   const mapOptionFunc = (option, mapIndex) => {
-    const groupId = `${listboxId}-group-${mapIndex}`;
+    const groupId = `${id}-group-${mapIndex}`;
     if (option.options) {
       return (
         option.options.length > 0 && (
@@ -40,8 +39,8 @@ const Listbox = ({
                 globalIndex++;
                 return (
                   <Option
-                    key={`${listboxId}-option-${singleOption.value}`}
-                    id={`${listboxId}-option-${globalIndex}`}
+                    key={`${id}-option-${singleOption.value}`}
+                    id={`${id}-option-${globalIndex}`}
                     option={singleOption}
                     onClick={handleOptionOnClick}
                     multiple={multiple}
@@ -62,8 +61,8 @@ const Listbox = ({
       globalIndex++;
       return (
         <Option
-          key={`${listboxId}-option-${option.value}`}
-          id={`${listboxId}-option-${globalIndex}`}
+          key={`${id}-option-${option.value}`}
+          id={`${id}-option-${globalIndex}`}
           option={option}
           onClick={handleOptionOnClick}
           multiple={multiple}
@@ -88,7 +87,7 @@ const Listbox = ({
     visualFocusedOptionEl?.scrollIntoView?.({ block: "nearest", inline: "start" });
   }, [visualFocusIndex]);
 
-  const hasOptionGroups = options.some(option => option.options?.length > 0);
+  const hasOptionGroups = options.some((option) => option.options?.length > 0);
 
   return (
     <ListboxContainer
@@ -100,7 +99,7 @@ const Listbox = ({
         event.preventDefault();
       }}
       ref={listboxRef}
-      aria-multiselectable={!hasOptionGroups ? multiple: undefined}
+      aria-multiselectable={!hasOptionGroups ? multiple : undefined}
       style={styles}
       role={hasOptionGroups ? "list" : "listbox"}
       aria-label="List of options"
@@ -180,4 +179,4 @@ const GroupLabel = styled.li`
   line-height: 1.715em;
 `;
 
-export default React.memo(Listbox);
+export default Listbox;

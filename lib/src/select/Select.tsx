@@ -1,5 +1,5 @@
-import React, { useMemo, useRef, useState, useCallback, useEffect, useId } from "react";
-import styled, { ThemeProvider } from "styled-components";
+import React, { useMemo, useRef, useState, useCallback, useLayoutEffect, useId } from "react";
+import styled, { css, ThemeProvider } from "styled-components";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
 import { spaces } from "../common/variables";
@@ -8,6 +8,8 @@ import SelectPropsType, { Option, OptionGroup, RefType } from "./types";
 import Listbox from "./Listbox";
 import * as Popover from "@radix-ui/react-popover";
 import DxcIcon from "../icon/Icon";
+import useWidth from "../utils/useWidth";
+import { DxcFlex } from "../main";
 
 const isOptionGroup = (option: Option | OptionGroup): option is OptionGroup =>
   "options" in option && option.options != null;
@@ -25,7 +27,7 @@ const canOpenOptions = (options: Option[] | OptionGroup[], disabled: boolean) =>
 
 const filterOptionsBySearchValue = (
   options: Option[] | OptionGroup[],
-  searchValue: string,
+  searchValue: string
 ): Option[] | OptionGroup[] => {
   if (options?.length > 0) {
     if (isArrayOfOptionGroups(options))
@@ -33,7 +35,7 @@ const filterOptionsBySearchValue = (
         const group = {
           label: optionGroup.label,
           options: optionGroup.options.filter((option) =>
-            option.label.toUpperCase().includes(searchValue.toUpperCase()),
+            option.label.toUpperCase().includes(searchValue.toUpperCase())
           ),
         };
         return group;
@@ -47,7 +49,7 @@ const getLastOptionIndex = (
   filteredOptions: Option[] | OptionGroup[],
   searchable: boolean,
   optional: boolean,
-  multiple: boolean,
+  multiple: boolean
 ) => {
   let last = 0;
   const reducer = (acc: number, current: OptionGroup) => acc + current.options?.length;
@@ -67,7 +69,7 @@ const getSelectedOption = (
   options: Option[] | OptionGroup[],
   multiple: boolean,
   optional: boolean,
-  optionalItem: Option,
+  optionalItem: Option
 ) => {
   let selectedOption: Option | Option[] = multiple ? [] : ({} as Option);
   let singleSelectionIndex: number;
@@ -122,27 +124,6 @@ const getSelectedOptionLabel = (placeholder: string, selectedOption: Option | Op
 const notOptionalCheck = (value: string | string[], multiple: boolean, optional: boolean) =>
   !optional && (multiple ? value.length === 0 : value === "");
 
-const useWidth = (target: HTMLDivElement) => {
-  const [width, setWidth] = useState(0);
-
-  useEffect(() => {
-    if (target != null) {
-      setWidth(target.getBoundingClientRect().width);
-
-      const triggerObserver = new ResizeObserver((entries) => {
-        const rect = entries[0].target.getBoundingClientRect();
-        setWidth(rect?.width);
-      });
-      triggerObserver.observe(target);
-      return () => {
-        triggerObserver.unobserve(target);
-      };
-    }
-  }, [target]);
-
-  return width;
-};
-
 const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
   (
     {
@@ -164,13 +145,12 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
       size = "medium",
       tabIndex = 0,
     },
-    ref,
+    ref
   ): JSX.Element => {
     const selectId = `select-${useId()}`;
     const selectLabelId = `label-${selectId}`;
-    const searchableInputId = `searchable-input-${selectId}`;
     const errorId = `error-${selectId}`;
-    const optionsListId = `${selectId}-listbox`;
+    const listboxId = `${selectId}-listbox`;
     const [innerValue, setInnerValue] = useState(defaultValue ?? (multiple ? [] : ""));
     const [searchValue, setSearchValue] = useState("");
     const [visualFocusIndex, changeVisualFocusIndex] = useState(-1);
@@ -188,17 +168,17 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
     const filteredOptions = useMemo(() => filterOptionsBySearchValue(options, searchValue), [options, searchValue]);
     const lastOptionIndex = useMemo(
       () => getLastOptionIndex(options, filteredOptions, searchable, optional, multiple),
-      [options, filteredOptions, searchable, optional, multiple],
+      [options, filteredOptions, searchable, optional, multiple]
     );
     const { selectedOption, singleSelectionIndex } = useMemo(
       () => getSelectedOption(value ?? innerValue, options, multiple, optional, optionalItem),
-      [value, innerValue, options, multiple, optional, optionalItem],
+      [value, innerValue, options, multiple, optional, optionalItem]
     );
 
-    const openOptions = () => {
+    const openListbox = () => {
       if (!isOpen && canOpenOptions(options, disabled)) changeIsOpen(true);
     };
-    const closeOptions = () => {
+    const closeListbox = () => {
       if (isOpen) {
         changeIsOpen(false);
         changeVisualFocusIndex(-1);
@@ -232,17 +212,16 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
     const handleSelectOnClick = () => {
       searchable && selectSearchInputRef.current.focus();
       if (isOpen) {
-        closeOptions();
+        closeListbox();
         setSearchValue("");
-      } else openOptions();
+      } else openListbox();
     };
     const handleSelectOnFocus = (event: React.FocusEvent<HTMLInputElement>) => {
       if (!event.currentTarget.contains(event.relatedTarget)) searchable && selectSearchInputRef.current.focus();
     };
     const handleSelectOnBlur = (event: React.FocusEvent<HTMLInputElement>) => {
-      // focus leaves container (outside, not to a child)
       if (!event.currentTarget.contains(event.relatedTarget)) {
-        closeOptions();
+        closeListbox();
         setSearchValue("");
 
         const currentValue = value ?? innerValue;
@@ -266,7 +245,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
                 if (visualFocusIndex < lastOptionIndex) return visualFocusIndex + 1;
                 else if (visualFocusIndex === lastOptionIndex) return 0;
               });
-          openOptions();
+          openListbox();
           break;
         case "Up":
         case "ArrowUp":
@@ -275,15 +254,15 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
           (!isOpen || (visualFocusIndex === -1 && singleSelectionIndex > -1 && singleSelectionIndex <= lastOptionIndex))
             ? changeVisualFocusIndex(singleSelectionIndex)
             : changeVisualFocusIndex((visualFocusIndex) =>
-                visualFocusIndex === 0 || visualFocusIndex === -1 ? lastOptionIndex : visualFocusIndex - 1,
+                visualFocusIndex === 0 || visualFocusIndex === -1 ? lastOptionIndex : visualFocusIndex - 1
               );
-          openOptions();
+          openListbox();
           break;
         case "Esc":
         case "Escape":
           event.preventDefault();
           isOpen && event.stopPropagation();
-          closeOptions();
+          closeListbox();
           setSearchValue("");
           break;
         case "Enter":
@@ -318,7 +297,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
                     })
                   : handleSelectChangeValue(options[visualFocusIndex - accLength]);
             }
-            !multiple && closeOptions();
+            !multiple && closeListbox();
             setSearchValue("");
           }
           break;
@@ -328,7 +307,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
     const handleSearchIOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       setSearchValue(event.target.value);
       changeVisualFocusIndex(-1);
-      openOptions();
+      openListbox();
     };
 
     const handleClearOptionsActionOnClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -347,13 +326,13 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
     const handleOptionOnClick = useCallback(
       (option: Option) => {
         handleSelectChangeValue(option);
-        !multiple && closeOptions();
+        !multiple && closeListbox();
         setSearchValue("");
       },
-      [handleSelectChangeValue, closeOptions, multiple],
+      [handleSelectChangeValue, closeListbox, multiple]
     );
 
-    useEffect(() => {
+    useLayoutEffect(() => {
       if (selectedOptionLabelRef?.current != null) {
         if (selectedOptionLabelRef?.current.scrollWidth > selectedOptionLabelRef?.current.clientWidth)
           selectedOptionLabelRef.current.title = getSelectedOptionLabel(placeholder, selectedOption);
@@ -372,7 +351,6 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
                 selectRef.current.focus();
               }}
               helperText={helperText}
-              htmlFor={searchable ? searchableInputId : undefined}
             >
               {label} {optional && <OptionalLabel>{translatedLabels.formFields.optionalLabel}</OptionalLabel>}
             </Label>
@@ -391,7 +369,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
                 ref={selectRef}
                 tabIndex={disabled ? -1 : tabIndex}
                 role="combobox"
-                aria-controls={optionsListId}
+                aria-controls={listboxId}
                 aria-disabled={disabled}
                 aria-expanded={isOpen}
                 aria-haspopup="listbox"
@@ -415,7 +393,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
                       title={translatedLabels.select.actionClearSelectionTitle}
                       aria-label={translatedLabels.select.actionClearSelectionTitle}
                     >
-                      <DxcIcon icon="clear" />
+                      <DxcIcon icon="close" />
                     </ClearOptionsAction>
                   </SelectionIndicator>
                 )}
@@ -436,7 +414,6 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
                   />
                   {searchable && (
                     <SearchInput
-                      id={searchableInputId}
                       value={searchValue}
                       disabled={disabled}
                       onChange={handleSearchIOnChange}
@@ -444,6 +421,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
                       autoComplete="nope"
                       autoCorrect="nope"
                       size={1}
+                      aria-labelledby={label ? selectLabelId : undefined}
                     />
                   )}
                   {(!searchable || searchValue === "") && (
@@ -498,7 +476,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
                 }}
               >
                 <Listbox
-                  id={optionsListId}
+                  id={listboxId}
                   currentValue={value ?? innerValue}
                   options={searchable ? filteredOptions : options}
                   visualFocusIndex={visualFocusIndex}
@@ -521,7 +499,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
         </SelectContainer>
       </ThemeProvider>
     );
-  },
+  }
 );
 
 const sizes = {
@@ -613,23 +591,32 @@ const Select = styled.div<{ disabled: SelectPropsType["disabled"]; error: Select
     `};
 `;
 
-const SelectionIndicator = styled.span`
-  display: flex;
-  border: 1px solid ${(props) => props.theme.selectionIndicatorBorderColor};
-  border-radius: 2px;
-  max-height: 22px;
-  width: 46px;
-`;
-
-const SelectionNumber = styled.span<{ disabled: SelectPropsType["disabled"] }>`
+const sharedStyles = css`
+  box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 22px;
-  height: 22px;
+  width: 24px;
+  height: 24px;
+  padding: 0.25rem;
+`;
+
+const SelectionIndicator = styled.div`
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-width: 48px;
+  min-height: 24px;
+  border-radius: 2px;
+  border: 1px solid ${(props) => props.theme.selectionIndicatorBorderColor};
+`;
+
+const SelectionNumber = styled.span<{ disabled: SelectPropsType["disabled"] }>`
+  display: grid;
+  place-items: center;
+  border-right: 1px solid ${(props) => props.theme.selectionIndicatorBorderColor};
   user-select: none;
   ${(props) => !props.disabled && `background-color: ${props.theme.selectionIndicatorBackgroundColor}`};
-  border-right: 1px solid ${(props) => props.theme.selectionIndicatorBorderColor};
   color: ${(props) => (props.disabled ? props.theme.disabledColor : props.theme.selectionIndicatorFontColor)};
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.selectionIndicatorFontSize};
@@ -639,18 +626,16 @@ const SelectionNumber = styled.span<{ disabled: SelectPropsType["disabled"] }>`
 `;
 
 const ClearOptionsAction = styled.button`
-  display: flex;
-  flex-wrap: wrap;
-  align-content: center;
-  width: 23px;
-  height: 22px;
+  display: grid;
+  place-items: center;
   border: none;
-  padding: 0.25rem;
+  padding: 0;
   ${(props) => (props.disabled ? `cursor: not-allowed;` : `cursor: pointer;`)}
   background-color: ${(props) =>
     props.disabled ? "transparent" : props.theme.enabledSelectionIndicatorActionBackgroundColor};
   color: ${(props) =>
     props.disabled ? props.theme.disabledColor : props.theme.enabledSelectionIndicatorActionIconColor};
+  font-size: 16px;
 
   :focus-visible {
     outline: none;
@@ -667,8 +652,6 @@ const ClearOptionsAction = styled.button`
         color: ${props.theme.activeSelectionIndicatorActionIconColor};
       }
     `}
-
-  font-size:16px;
 `;
 
 const SearchableValueContainer = styled.div`

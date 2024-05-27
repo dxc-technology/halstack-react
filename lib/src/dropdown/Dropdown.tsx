@@ -7,27 +7,7 @@ import useTheme from "../useTheme";
 import * as Popover from "@radix-ui/react-popover";
 import DropdownMenu from "./DropdownMenu";
 import DxcIcon from "../icon/Icon";
-
-const useWidth = (target) => {
-  const [width, setWidth] = useState(0);
-
-  useEffect(() => {
-    if (target != null) {
-      setWidth(target.getBoundingClientRect().width);
-
-      const triggerObserver = new ResizeObserver((entries) => {
-        const rect = entries[0].target.getBoundingClientRect();
-        setWidth(rect?.width);
-      });
-      triggerObserver.observe(target);
-      return () => {
-        triggerObserver.unobserve(target);
-      };
-    }
-  }, [target]);
-
-  return width;
-};
+import useWidth from "../utils/useWidth";
 
 const DxcDropdown = ({
   options,
