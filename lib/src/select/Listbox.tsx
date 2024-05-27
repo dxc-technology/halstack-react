@@ -31,7 +31,7 @@ const Listbox = ({
       return (
         option.options.length > 0 && (
           <li key={groupId}>
-            <GroupList role="listbox" aria-labelledby={groupId}>
+            <ul role="listbox" aria-labelledby={groupId} style={{ padding: 0 }}>
               <GroupLabel role="presentation" id={groupId}>
                 {option.label}
               </GroupLabel>
@@ -53,7 +53,7 @@ const Listbox = ({
                   />
                 );
               })}
-            </GroupList>
+            </ul>
           </li>
         )
       );
@@ -167,10 +167,6 @@ const NoMatchesFoundIcon = styled.span`
   padding: 4px;
   margin-right: 0.25rem;
   font-size: 16px;
-`;
-
-const GroupList = styled.ul`
-  padding: 0;
 `;
 
 const GroupLabel = styled.li`

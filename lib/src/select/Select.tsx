@@ -1,5 +1,5 @@
 import React, { useMemo, useRef, useState, useCallback, useLayoutEffect, useId } from "react";
-import styled, { css, ThemeProvider } from "styled-components";
+import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
 import { spaces } from "../common/variables";
@@ -9,7 +9,6 @@ import Listbox from "./Listbox";
 import * as Popover from "@radix-ui/react-popover";
 import DxcIcon from "../icon/Icon";
 import useWidth from "../utils/useWidth";
-import { DxcFlex } from "../main";
 
 const isOptionGroup = (option: Option | OptionGroup): option is OptionGroup =>
   "options" in option && option.options != null;
@@ -115,11 +114,12 @@ const getSelectedOption = (
   };
 };
 
-const getSelectedOptionLabel = (placeholder: string, selectedOption: Option | Option[]) => {
-  if (Array.isArray(selectedOption))
-    return selectedOption.length === 0 ? placeholder : selectedOption.map((option) => option.label).join(", ");
-  else return selectedOption?.label ?? placeholder;
-};
+const getSelectedOptionLabel = (placeholder: string, selectedOption: Option | Option[]) =>
+  Array.isArray(selectedOption)
+    ? selectedOption.length === 0
+      ? placeholder
+      : selectedOption.map((option) => option.label).join(", ")
+    : selectedOption?.label ?? placeholder;
 
 const notOptionalCheck = (value: string | string[], multiple: boolean, optional: boolean) =>
   !optional && (multiple ? value.length === 0 : value === "");
@@ -398,7 +398,8 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
                   </SelectionIndicator>
                 )}
                 <SearchableValueContainer>
-                  <ValueInput
+                  <input
+                    style={{ display: "none" }}
                     name={name}
                     disabled={disabled}
                     value={
@@ -515,10 +516,9 @@ const calculateWidth = (margin: SelectPropsType["margin"], size: SelectPropsType
     : sizes[size];
 
 const SelectContainer = styled.div<{ margin: SelectPropsType["margin"]; size: SelectPropsType["size"] }>`
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  box-sizing: border-box;
-
   width: ${(props) => calculateWidth(props.margin, props.size)};
   ${(props) => props.size !== "fillParent" && "min-width:" + calculateWidth(props.margin, props.size)};
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
@@ -530,11 +530,11 @@ const SelectContainer = styled.div<{ margin: SelectPropsType["margin"]; size: Se
     props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
   margin-left: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
+  font-family: ${(props) => props.theme.fontFamily};
 `;
 
 const Label = styled.label<{ disabled: SelectPropsType["disabled"]; helperText: SelectPropsType["helperText"] }>`
   color: ${(props) => (props.disabled ? props.theme.disabledColor : props.theme.labelFontColor)};
-  font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.labelFontSize};
   font-style: ${(props) => props.theme.labelFontStyle};
   font-weight: ${(props) => props.theme.labelFontWeight};
@@ -549,7 +549,6 @@ const OptionalLabel = styled.span`
 
 const HelperText = styled.span<{ disabled: SelectPropsType["disabled"] }>`
   color: ${(props) => (props.disabled ? props.theme.disabledColor : props.theme.helperTextFontColor)};
-  font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.helperTextFontSize};
   font-style: ${(props) => props.theme.helperTextFontStyle};
   font-weight: ${(props) => props.theme.helperTextFontWeight};
@@ -591,16 +590,6 @@ const Select = styled.div<{ disabled: SelectPropsType["disabled"]; error: Select
     `};
 `;
 
-const sharedStyles = css`
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 24px;
-  height: 24px;
-  padding: 0.25rem;
-`;
-
 const SelectionIndicator = styled.div`
   box-sizing: border-box;
   display: grid;
@@ -618,7 +607,6 @@ const SelectionNumber = styled.span<{ disabled: SelectPropsType["disabled"] }>`
   user-select: none;
   ${(props) => !props.disabled && `background-color: ${props.theme.selectionIndicatorBackgroundColor}`};
   color: ${(props) => (props.disabled ? props.theme.disabledColor : props.theme.selectionIndicatorFontColor)};
-  font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.selectionIndicatorFontSize};
   font-style: ${(props) => props.theme.selectionIndicatorFontStyle};
   font-weight: ${(props) => props.theme.selectionIndicatorFontWeight};
@@ -673,8 +661,6 @@ const SelectedOption = styled.span<{ disabled: SelectPropsType["disabled"]; atBa
     else if (props.atBackground) return props.theme.placeholderFontColor;
     else return props.theme.valueFontColor;
   }};
-
-  font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.valueFontSize};
   font-style: ${(props) => props.theme.valueFontStyle};
   font-weight: ${(props) => props.theme.valueFontWeight};
@@ -686,10 +672,6 @@ const SelectedOptionLabel = styled.span`
   white-space: nowrap;
 `;
 
-const ValueInput = styled.input`
-  display: none;
-`;
-
 const SearchInput = styled.input`
   grid-area: 1 / 1 / 1 / 1;
   height: calc(2.5rem - 2px);
@@ -698,7 +680,6 @@ const SearchInput = styled.input`
   outline: none;
   padding: 0 0.5rem;
   color: ${(props) => (props.disabled ? props.theme.disabledColor : props.theme.valueFontColor)};
-  font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.valueFontSize};
   font-style: ${(props) => props.theme.valueFontStyle};
   font-weight: ${(props) => props.theme.valueFontWeight};
@@ -713,49 +694,40 @@ const ErrorIcon = styled.span`
   height: 18px;
   width: 18px;
   margin-left: 0.25rem;
-  pointer-events: none;
   color: ${(props) => props.theme.errorIconColor};
-
   font-size: 1.25rem;
 `;
 
 const Error = styled.span`
   min-height: 1.5em;
   color: ${(props) => props.theme.errorMessageColor};
-  font-family: ${(props) => props.theme.fontFamily};
   font-size: 0.75rem;
-  font-weight: 400;
   line-height: 1.5em;
   margin-top: 0.25rem;
 `;
 
 const CollapseIndicator = styled.span<{ disabled: SelectPropsType["disabled"] }>`
-  display: flex;
-  flex-wrap: wrap;
-  align-content: center;
-  height: 16px;
-  width: 16px;
   padding: 4px;
+  font-size: 16px;
   margin-left: 0.25rem;
   color: ${(props) => (props.disabled ? props.theme.disabledColor : props.theme.collapseIndicatorColor)};
 `;
 
 const ClearSearchAction = styled.button`
   display: flex;
-  flex-wrap: wrap;
-  align-content: center;
-  height: 24px;
-  width: 24px;
-  font-size: 1rem;
-  font-family: ${(props) => props.theme.fontFamily};
-  border: 1px solid transparent;
-  border-radius: 2px;
-  padding: 3px;
+  justify-content: center;
+  align-items: center;
+  min-height: 24px;
+  min-width: 24px;
   margin-left: 0.25rem;
+  border: none;
+  border-radius: 2px;
+  padding: 0;
   background-color: ${(props) => props.theme.actionBackgroundColor};
   color: ${(props) => props.theme.actionIconColor};
-
+  font-size: 1rem;
   cursor: pointer;
+
   &:hover {
     background-color: ${(props) => props.theme.hoverActionBackgroundColor};
     color: ${(props) => props.theme.hoverActionIconColor};
@@ -764,7 +736,6 @@ const ClearSearchAction = styled.button`
     background-color: ${(props) => props.theme.activeActionBackgroundColor};
     color: ${(props) => props.theme.activeActionIconColor};
   }
-  font-size: 16px;
 `;
 
 export default DxcSelect;
