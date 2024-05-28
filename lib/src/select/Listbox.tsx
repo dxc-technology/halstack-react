@@ -4,9 +4,7 @@ import useTranslatedLabels from "../useTranslatedLabels";
 import { ListboxProps } from "./types";
 import Option from "./Option";
 import DxcIcon from "../icon/Icon";
-
-const groupsHaveOptions = (options) =>
-  options?.[0].options ? options.some((groupOption) => groupOption.options?.length > 0) : true;
+import { groupsHaveOptions } from "./selectUtils";
 
 const Listbox = ({
   id,
