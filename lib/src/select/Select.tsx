@@ -707,6 +707,8 @@ const Error = styled.span`
 `;
 
 const CollapseIndicator = styled.span<{ disabled: SelectPropsType["disabled"] }>`
+  display: grid;
+  place-items: center;
   padding: 4px;
   font-size: 16px;
   margin-left: 0.25rem;
@@ -714,9 +716,8 @@ const CollapseIndicator = styled.span<{ disabled: SelectPropsType["disabled"] }>
 `;
 
 const ClearSearchAction = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: grid;
+  place-items: center;
   min-height: 24px;
   min-width: 24px;
   margin-left: 0.25rem;
