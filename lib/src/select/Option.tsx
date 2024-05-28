@@ -104,8 +104,8 @@ const StyledOption = styled.span<{
 
 const OptionIcon = styled.span<{ grouped: OptionProps["isGroupedOption"]; multiple: OptionProps["multiple"] }>`
   margin-left: ${(props) => (props.grouped && !props.multiple ? "16px" : "8px")};
-  display: flex;
-  padding: 0.125rem;
+  display: grid;
+  place-items: center;
   color: ${(props) => props.theme.listOptionIconColor};
   font-size: 24px;
   svg {
