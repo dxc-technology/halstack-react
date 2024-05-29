@@ -90,6 +90,10 @@ type BarChartProps<X extends DataTypes> = {
    */
   xDomain?: X[];
   /**
+   * Formatter function for the x axis. It receives the x value and returns a string.
+   */
+  xFormatter?: (value: X) => string;
+  /**
    * Title of the x axis.
    */
   xTitle?: string;
@@ -97,6 +101,10 @@ type BarChartProps<X extends DataTypes> = {
    * Determines the domain of the y axis, i.e. the range of values that will be visible in the chart
    */
   yDomain?: [number, number];
+  /**
+   * Formatter function for the y axis. It receives the y value and returns a string.
+   */
+  yFormatter?: (value: number) => string;
   /**
    * Title of the y axis.
    */

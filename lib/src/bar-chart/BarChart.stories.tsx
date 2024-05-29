@@ -164,6 +164,10 @@ const BarChart = () => (
     <ExampleContainer>
       <DxcBarChart series={[]} error="Error loading data." />
     </ExampleContainer>
+    <Title title="Error state with 'Retry' action" theme="light" level={4} />
+    <ExampleContainer>
+      <DxcBarChart series={[]} error="Error loading data." onRetry={() => {}} />
+    </ExampleContainer>
     <Title title="Loading state" theme="light" level={4} />
     <ExampleContainer>
       <DxcBarChart series={[]} loading />

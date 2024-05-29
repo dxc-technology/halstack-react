@@ -41,8 +41,10 @@ const DxcBarChart = <X extends DataTypes>({
   showLegend,
   stackedBars,
   xDomain,
+  xFormatter,
   xTitle,
   yDomain,
+  yFormatter,
   yTitle,
 }: BarChartProps<X>) => {
   const [filteredData, setFilteredData] = useState(series);
@@ -69,13 +71,15 @@ const DxcBarChart = <X extends DataTypes>({
         <DxcIcon icon="cancel" />
         {error}
       </Label>
-      <DxcButton
-        label={translatedLabels.barChart.retryButtonLabel}
-        mode="secondary"
-        onClick={() => {
-          onRetry();
-        }}
-      />
+      {onRetry && (
+        <DxcButton
+          label={translatedLabels.barChart.retryButtonLabel}
+          mode="secondary"
+          onClick={() => {
+            onRetry();
+          }}
+        />
+      )}
     </ErrorStatus>
   ) : (
     <DxcGrid gap="1rem">
@@ -87,50 +91,52 @@ const DxcBarChart = <X extends DataTypes>({
       {showFilter && (
         <DxcSelect
           label={translatedLabels.barChart.filterLabel}
-          placeholder={translatedLabels.barChart.filterPlaceholder}
-          searchable
           multiple
-          options={filters.map((filter) => ({
-            label: filter,
-            value: filter,
-          }))}
-          value={selectedFilters}
           onChange={({ value: visibleSeries }) => {
             filterData(visibleSeries);
             onFilterChange?.(visibleSeries);
           }}
+          options={filters.map((filter) => ({
+            label: filter,
+            value: filter,
+          }))}
+          placeholder={translatedLabels.barChart.filterPlaceholder}
+          searchable
+          value={selectedFilters}
         />
       )}
       <InsetWrapper condition={!yTitle && !horizontalBars}>
         <BarChart
-          series={series as any}
-          visibleSeries={filteredData as any}
-          xDomain={xDomain as any}
-          yDomain={yDomain}
           ariaLabel={translatedLabels.barChart.ariaLabel}
-          xTitle={xTitle}
-          yTitle={yTitle}
-          legendTitle={legendTitle}
-          hideLegend={!showLegend}
-          horizontalBars={horizontalBars}
-          stackedBars={stackedBars}
           empty={
             <StatusMessage
               title={translatedLabels.barChart.noDataMessageTitle}
               description={translatedLabels.barChart.noDataMessageBody}
             />
           }
+          hideFilter
+          hideLegend={!showLegend}
+          horizontalBars={horizontalBars}
+          legendTitle={legendTitle}
           noMatch={
             <StatusMessage
               title={translatedLabels.barChart.noMatchesMessageTitle}
               description={translatedLabels.barChart.noMatchesMessageBody}
             />
           }
-          hideFilter
           onHighlightChange={(highlightedSeries) => {
             const highlightedSeriesTitle = highlightedSeries.detail.highlightedSeries?.title;
             onHighlightChange?.(highlightedSeriesTitle);
           }}
+          series={series as any}
+          stackedBars={stackedBars}
+          visibleSeries={filteredData as any}
+          xDomain={xDomain as any}
+          xTickFormatter={xFormatter}
+          xTitle={xTitle}
+          yDomain={yDomain}
+          yTickFormatter={yFormatter}
+          yTitle={yTitle}
         />
       </InsetWrapper>
     </DxcGrid>
