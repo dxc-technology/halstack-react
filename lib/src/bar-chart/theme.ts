@@ -17,12 +17,10 @@ const theme: Theme = {
     colorChartsPaletteCategorical12: CoreTokens.color_yellow_900,
     colorChartsThresholdNeutral: CoreTokens.color_grey_700,
     fontFamilyBase: "Open Sans, sans-serif",
-    // Tipografia de los valores de los ejes x e y
     fontSizeBodyS: "12px",
     colorTextBodySecondary: CoreTokens.color_grey_700,
-    // Tipografia de las leyendas y los titulos de los ejes x e y
     fontSizeBodyM: "14px",
-    colorTextBodyDefault: "CoreTokens.color_grey_900",
+    colorTextBodyDefault: CoreTokens.color_grey_900,
   },
 };
 
