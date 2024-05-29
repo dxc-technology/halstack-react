@@ -1,4 +1,4 @@
-type DataTypes = string | number | Date;
+type DataTypes = string | number;
 
 type BarChartThresholdSeries<X> = {
   title: string;
