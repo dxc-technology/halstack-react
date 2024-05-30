@@ -1,5 +1,5 @@
 import React from "react";
-import { render, waitFor } from "@testing-library/react";
+import { getByRole, render } from "@testing-library/react";
 import DxcBarChart from "./BarChart";
 import userEvent from "@testing-library/user-event";
 
@@ -90,7 +90,7 @@ describe("Bar Chart component tests", () => {
   });
   test("onRetry is called when the retry button is clicked", async () => {
     const onRetry = jest.fn();
-    const { getByText } = render(
+    const { getByText, getByRole } = render(
       <DxcBarChart
         onRetry={onRetry}
         error="Error"
@@ -115,7 +115,7 @@ describe("Bar Chart component tests", () => {
       />
     );
     expect(getByText("Error")).toBeTruthy();
-    await userEvent.click(getByText("Retry"));
+    await userEvent.click(getByRole("button"));
     expect(onRetry).toHaveBeenCalled();
   });
 });
