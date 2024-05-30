@@ -140,12 +140,13 @@ const ListboxContainer = styled.ul`
   border: 1px solid ${(props) => props.theme.listDialogBorderColor};
   border-radius: 0.25rem;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  cursor: default;
   color: ${(props) => props.theme.listOptionFontColor};
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.listOptionFontSize};
   font-style: ${(props) => props.theme.listOptionFontStyle};
   font-weight: ${(props) => props.theme.listOptionFontWeight};
+  line-height: 24px;
+  cursor: default;
 `;
 
 const OptionsSystemMessage = styled.span`

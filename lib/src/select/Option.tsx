@@ -66,7 +66,6 @@ const OptionItem = styled.li<{ visualFocused: OptionProps["visualFocused"]; sele
   box-shadow: inset 0 0 0 2px transparent;
   ${(props) => props.visualFocused && `box-shadow: inset 0 0 0 2px ${props.theme.focusListOptionBorderColor};`}
   ${(props) => props.selected && `background-color: ${props.theme.selectedListOptionBackgroundColor}`};
-  line-height: 1.715em;
   cursor: pointer;
 
   &:hover {
@@ -92,9 +91,9 @@ const StyledOption = styled.span<{
 }>`
   box-sizing: border-box;
   display: flex;
-  padding: 0.25rem 0.5rem 0.25rem 0;
-  min-height: 24px;
   align-items: center;
+  height: 32px;
+  padding: 4px 8px 4px 0;
   ${(props) => props.grouped && props.multiple && `padding-left: 16px;`}
   ${(props) =>
     props.last || props.visualFocused || props.selected
