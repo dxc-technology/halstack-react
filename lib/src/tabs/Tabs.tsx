@@ -1,4 +1,4 @@
-import React, { useCallback, useLayoutEffect, useEffect, useMemo, useRef, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables";
 import useTheme from "../useTheme";
@@ -57,7 +57,7 @@ const DxcTabs = ({
   const translatedLabels = useTranslatedLabels();
   const enabledIndicator = useMemo(() => viewWidth < totalTabsWidth, [viewWidth]);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     let sumWidth = refTabs?.current?.reduce(function (count, obj) {
       return count + obj.offsetWidth;
     }, 0);
@@ -66,11 +66,11 @@ const DxcTabs = ({
     setActiveIndicatorLeft(refTabs?.current[activeTabIndex ?? innerActiveTabIndex]?.offsetLeft);
   }, [refTabs]);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     setMinHeightTabs(refTabList?.current?.offsetHeight + 1);
   }, [refTabList]);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (activeTabIndex >= 0) {
       setActiveIndicatorWidth(refTabs?.current[activeTabIndex]?.offsetWidth);
       setActiveIndicatorLeft(refTabs?.current[activeTabIndex]?.offsetLeft);
