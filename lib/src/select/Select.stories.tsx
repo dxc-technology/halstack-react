@@ -749,7 +749,7 @@ const MultipleSelect = () => (
   </>
 );
 
-const MultipleSelectOpinioated = () => (
+const MultipleSelectOpinionated = () => (
   <ExampleContainer expanded>
     <Title title="Multiple select" theme="light" level={4} />
     <HalstackProvider theme={opinionatedTheme}>
@@ -907,7 +907,7 @@ MultipleOptionsDisplayed.play = async ({ canvasElement }) => {
   await userEvent.click(canvas.getAllByRole("combobox")[0]);
 };
 
-export const MultipleOptionsDisplayedOpinionated = MultipleSelectOpinioated.bind({});
+export const MultipleOptionsDisplayedOpinionated = MultipleSelectOpinionated.bind({});
 MultipleOptionsDisplayedOpinionated.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   await userEvent.click(canvas.getAllByRole("combobox")[0]);

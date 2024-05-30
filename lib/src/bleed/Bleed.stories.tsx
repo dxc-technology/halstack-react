@@ -111,7 +111,6 @@ export const Chromatic = () => (
         <Placeholder></Placeholder>
       </DxcFlex>
     </Container>
-
     <Title title="Horizontal = none" theme="light" level={4} />
     <Container>
       <DxcFlex direction="column" gap="1.5rem">

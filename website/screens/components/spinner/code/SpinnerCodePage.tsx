@@ -6,6 +6,7 @@ import Example from "@/common/example/Example";
 import basicUsage from "./examples/basicUsage";
 import overlay from "./examples/overlay";
 import TableCode from "@/common/TableCode";
+import Code from "@/common/Code";
 
 const sections = [
   {
@@ -26,7 +27,7 @@ const sections = [
             <td>
               <TableCode>string</TableCode>
             </td>
-            <td>Text to be placed inside the spinner.</td>
+            <td>Text to be placed inside the spinner. When the component is in small mode, this label acts as an <Code>aria-label</Code> value.</td>
             <td>-</td>
           </tr>
           <tr>
