@@ -171,7 +171,7 @@ const sections = [
         content: <Example example={uncontrolled} defaultIsVisible />,
       },
       {
-        title: "Icons",
+        title: "Icons and notifications",
         content: <Example example={icons} defaultIsVisible />,
       },
     ],
