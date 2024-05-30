@@ -13,6 +13,7 @@ import basicUsage from "./examples/basicUsage";
 import routerLink from "./examples/routerLink";
 import routerLinkV6 from "./examples/routerLinkV6";
 import nextLink from "./examples/nextLink";
+import icons from "./examples/icons";
 import TableCode from "@/common/TableCode";
 import StatusBadge from "@/common/StatusBadge";
 
@@ -286,6 +287,14 @@ const sections = [
             ),
           },
         ],
+      },
+      {
+        title: "Icons and notifications",
+        content: (
+          <>
+            <Example example={icons} defaultIsVisible />
+          </>
+        ),
       },
     ],
   },
