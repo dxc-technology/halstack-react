@@ -545,7 +545,7 @@ const SelectListbox = () => {
           <Title title="Grouped icons (Material Symbols)" theme="light" level={4} />
           <Listbox
             id="x14"
-            currentValue={["0", "3"]}
+            currentValue={"4"}
             options={icon_options_grouped_material}
             visualFocusIndex={-1}
             lastOptionIndex={3}
@@ -561,7 +561,7 @@ const SelectListbox = () => {
           <Title title="Grouped icons (Material)" theme="light" level={4} />
           <Listbox
             id="x15"
-            currentValue={["facebook", "figma"]}
+            currentValue={["car", "motorcycle", "train"]}
             options={options_material}
             visualFocusIndex={-1}
             lastOptionIndex={6}

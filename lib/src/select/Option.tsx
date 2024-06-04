@@ -17,7 +17,6 @@ const Option = ({
   const handleOnMouseEnter = (event: React.MouseEvent) => {
     const label = event.currentTarget;
     const optionElement = document.getElementById(id);
-
     if (optionElement.title === "" && label.scrollWidth > label.clientWidth) optionElement.title = option.label;
   };
 
@@ -31,7 +30,6 @@ const Option = ({
       selected={isSelected}
       role="option"
       aria-selected={!multiple ? isSelected : undefined}
-      tabIndex={0}
     >
       <StyledOption
         visualFocused={visualFocused}
@@ -40,7 +38,11 @@ const Option = ({
         grouped={isGroupedOption}
         multiple={multiple}
       >
-        {multiple && <DxcCheckbox checked={isSelected} tabIndex={-1} />}
+        {multiple && (
+          <div style={{ display: "flex", pointerEvents: "none" }}>
+            <DxcCheckbox checked={isSelected} tabIndex={-1} />
+          </div>
+        )}
         {option.icon && (
           <OptionIcon grouped={isGroupedOption} multiple={multiple}>
             {typeof option.icon === "string" ? <DxcIcon icon={option.icon} /> : option.icon}
@@ -64,7 +66,6 @@ const OptionItem = styled.li<{ visualFocused: OptionProps["visualFocused"]; sele
   box-shadow: inset 0 0 0 2px transparent;
   ${(props) => props.visualFocused && `box-shadow: inset 0 0 0 2px ${props.theme.focusListOptionBorderColor};`}
   ${(props) => props.selected && `background-color: ${props.theme.selectedListOptionBackgroundColor}`};
-  line-height: 1.715em;
   cursor: pointer;
 
   &:hover {
@@ -88,10 +89,11 @@ const StyledOption = styled.span<{
   selected: OptionProps["isSelected"];
   last: OptionProps["isLastOption"];
 }>`
+  box-sizing: border-box;
   display: flex;
-  padding: 0.25rem 0.5rem 0.188rem 0;
-  min-height: 24px;
   align-items: center;
+  height: 32px;
+  padding: 4px 8px 4px 0;
   ${(props) => props.grouped && props.multiple && `padding-left: 16px;`}
   ${(props) =>
     props.last || props.visualFocused || props.selected
@@ -100,16 +102,15 @@ const StyledOption = styled.span<{
 `;
 
 const OptionIcon = styled.span<{ grouped: OptionProps["isGroupedOption"]; multiple: OptionProps["multiple"] }>`
-  display: flex;
-  padding: 0.125rem;
   margin-left: ${(props) => (props.grouped && !props.multiple ? "16px" : "8px")};
+  display: grid;
+  place-items: center;
   color: ${(props) => props.theme.listOptionIconColor};
-
+  font-size: 24px;
   svg {
     height: 24px;
     width: 24px;
   }
-  font-size: 24px;
 `;
 
 const OptionContent = styled.span<{
@@ -117,12 +118,12 @@ const OptionContent = styled.span<{
   multiple: OptionProps["multiple"];
   hasIcon: boolean;
 }>`
+  margin-left: ${(props) => (props.grouped && !props.multiple && !props.hasIcon ? "16px" : "8px")};
   display: flex;
   justify-content: space-between;
   gap: 0.25rem;
   width: 100%;
   overflow: hidden;
-  margin-left: ${(props) => (props.grouped && !props.multiple && !props.hasIcon ? "16px" : "8px")};
 `;
 
 const OptionLabel = styled.span`
@@ -138,4 +139,4 @@ const OptionSelectedIndicator = styled.span`
   font-size: 16px;
 `;
 
-export default React.memo(Option);
+export default Option;
