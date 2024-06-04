@@ -81,7 +81,7 @@ const tabsNotification = tabs.map((tab, index) => ({
 }));
 
 const tabsIcon = tabs.map((tab, index) =>
-  index <= tabs.length / 2 ? { ...tab, icon: "mail" } : { ...tab, icon: iconSVG },
+  index > tabs.length / 2 ? { ...tab, icon: "mail" } : { ...tab, icon: iconSVG },
 );
 
 const tabsNotificationIcon = tabsNotification.map((tab) => ({ ...tab, icon: iconSVG }));
