@@ -876,6 +876,26 @@ const sections = [
                   </td>
                   <td>0.25rem / 4px</td>
                 </tr>
+                <tr>
+                  <td>
+                    <Code>prefixDividerPaddingRight</Code>
+                  </td>
+                  <td>Prefix</td>
+                  <td>
+                    <Code>spacing-8</Code>
+                  </td>
+                  <td>0.5rem / 8px</td>
+                </tr>
+                <tr>
+                  <td>
+                    <Code>suffixDividerPaddingLeft</Code>
+                  </td>
+                  <td>Suffix</td>
+                  <td>
+                    <Code>spacing-8</Code>
+                  </td>
+                  <td>0.5rem / 8px</td>
+                </tr>
               </tbody>
             </DxcTable>
             <DxcTable>
@@ -1087,6 +1107,34 @@ const sections = [
         title: "Border",
         content: (
           <>
+            <DxcTable>
+              <thead>
+                <tr>
+                  <th>Property</th>
+                  <th>Element</th>
+                  <th>Core token</th>
+                  <th>Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <Code>prefixDividerBorderWidth</Code>
+                  </td>
+                  <td>Prefix</td>
+                  <td>-</td>
+                  <td>1px</td>
+                </tr>
+                <tr>
+                  <td>
+                    <Code>suffixDividerBorderWidth</Code>
+                  </td>
+                  <td>Suffix</td>
+                  <td>-</td>
+                  <td>1px</td>
+                </tr>
+              </tbody>
+            </DxcTable>
             <DxcTable>
               <thead>
                 <tr>

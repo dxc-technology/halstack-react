@@ -504,6 +504,7 @@ const TextInputContainer = styled.div<{ margin: TextInputPropsType["margin"]; si
     props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
   margin-left: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
+  font-family: ${(props) => props.theme.fontFamily};
 `;
 
 const Label = styled.label<{
@@ -511,8 +512,6 @@ const Label = styled.label<{
   hasHelperText: boolean;
 }>`
   color: ${(props) => (props.disabled ? props.theme.disabledLabelFontColor : props.theme.labelFontColor)};
-
-  font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.labelFontSize};
   font-style: ${(props) => props.theme.labelFontStyle};
   font-weight: ${(props) => props.theme.labelFontWeight};
@@ -526,7 +525,6 @@ const OptionalLabel = styled.span`
 
 const HelperText = styled.span<{ disabled: TextInputPropsType["disabled"] }>`
   color: ${(props) => (props.disabled ? props.theme.disabledHelperTextFontColor : props.theme.helperTextFontColor)};
-  font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.helperTextFontSize};
   font-style: ${(props) => props.theme.helperTextFontStyle};
   font-weight: ${(props) => props.theme.helperTextFontWeight};
@@ -544,7 +542,6 @@ const InputContainer = styled.div<{
   align-items: center;
   height: calc(2.5rem - 2px);
   padding: 0 0.5rem;
-
   ${(props) => {
     if (props.disabled) return `background-color: ${props.theme.disabledContainerFillColor};`;
   }}
@@ -562,7 +559,6 @@ const InputContainer = styled.div<{
     `border-color: transparent;
      box-shadow: 0 0 0 2px ${props.theme.errorBorderColor};
   `}
-
   ${(props) =>
     !props.disabled
       ? `
@@ -594,9 +590,7 @@ const Input = styled.input`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-
   color: ${(props) => (props.disabled ? props.theme.disabledValueFontColor : props.theme.valueFontColor)};
-
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.valueFontSize};
   font-style: ${(props) => props.theme.valueFontStyle};
@@ -611,29 +605,27 @@ const Input = styled.input`
 
 const Prefix = styled.span<{ disabled: TextInputPropsType["disabled"] }>`
   height: 1.5rem;
-  line-height: 1.5rem;
   margin-left: 0.25rem;
-  padding: 0 0.5rem 0 0;
+  padding-right: ${(props) => props.theme.prefixDividerPaddingRight};
   ${(props) => {
     const color = props.disabled ? props.theme.disabledPrefixColor : props.theme.prefixColor;
-    return `color: ${color}; border-right: 1px solid ${color};`;
+    return `color: ${color}; border-right: ${props.theme.prefixDividerBorderWidth} solid ${color};`;
   }};
-  font-family: ${(props) => props.theme.fontFamily};
   font-size: 1rem;
+  line-height: 1.5rem;
   pointer-events: none;
 `;
 
 const Suffix = styled.span<{ disabled: TextInputPropsType["disabled"] }>`
   height: 1.5rem;
-  line-height: 1.5rem;
   margin: 0 0.25rem;
-  padding: 0 0 0 0.5rem;
+  padding-left: ${(props) => props.theme.suffixDividerPaddingLeft};
   ${(props) => {
     const color = props.disabled ? props.theme.disabledSuffixColor : props.theme.suffixColor;
-    return `color: ${color}; border-left: 1px solid ${color};`;
+    return `color: ${color}; border-left: ${props.theme.suffixDividerBorderWidth} solid ${color};`;
   }};
-  font-family: ${(props) => props.theme.fontFamily};
   font-size: 1rem;
+  line-height: 1.5rem;
   pointer-events: none;
 `;
 
@@ -646,17 +638,11 @@ const ErrorIcon = styled.span`
   width: 18px;
   font-size: 18px;
   color: ${(props) => props.theme.errorIconColor};
-
-  svg {
-    line-height: 18px;
-    font-size: 1.25rem;
-  }
 `;
 
 const Error = styled.span`
   min-height: 1.5em;
   color: ${(props) => props.theme.errorMessageColor};
-  font-family: ${(props) => props.theme.fontFamily};
   font-size: 0.75rem;
   font-weight: 400;
   line-height: 1.5em;
