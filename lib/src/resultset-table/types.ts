@@ -26,7 +26,7 @@ type Cell = {
    * Value to be used when sorting the table by that
    * column. If not indicated displayValue will be used for sorting.
    */
-  sortValue?: string;
+  sortValue?: string | number | Date;
 };
 
 export type Row = Cell[];
