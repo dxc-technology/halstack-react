@@ -6,8 +6,8 @@ import ComponentHeading from "@/common/ComponentHeading";
 const BarChartPageHeading = ({ children }: { children: React.ReactNode }) => {
   const tabs = [
     { label: "Code", path: "/components/bar-chart" },
-    // { label: "Usage", path: "/components/bar-chart/usage" },
-    // { label: "Specifications", path: "/components/bar-chart/specifications" },
+    { label: "Usage", path: "/components/bar-chart/usage" },
+    { label: "Specifications", path: "/components/bar-chart/specifications" },
   ];
 
   return (
@@ -16,9 +16,11 @@ const BarChartPageHeading = ({ children }: { children: React.ReactNode }) => {
         <DxcFlex direction="column" gap="2rem">
           <ComponentHeading name="Bar Chart" />
           <DxcParagraph>
-            The bar chart component enables users to visualize data in a simple
-            and intuitive way. It is used to represent data in a graphical way
-            and is frequently used to display numerical data.
+            A bar chart is a graphical representation that displays and compares
+            discrete data categories using rectangular bars. Each bar's length
+            or height is proportional to the frequency or value of its
+            corresponding category, allowing users to identify which groups are
+            the highest or most common and compare them with others.
           </DxcParagraph>
           <TabsPageHeading tabs={tabs}></TabsPageHeading>
         </DxcFlex>
