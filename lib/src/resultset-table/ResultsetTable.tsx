@@ -12,14 +12,18 @@ import CoreTokens from "../common/coreTokens";
 const normalizeSortValue = (sortValue: string | React.ReactNode) =>
   typeof sortValue === "string" ? sortValue.toUpperCase() : sortValue;
 
+const isDateType = (value: React.ReactNode | Date): boolean => {
+  return value instanceof Date;
+};
+
 const sortArray = (index: number, order: "ascending" | "descending", resultset: { id: string; cells: Row }[]) =>
   resultset.slice().sort((element1, element2) => {
     const sortValueA = normalizeSortValue(element1.cells[index].sortValue || element1[index].displayValue);
     const sortValueB = normalizeSortValue(element2.cells[index].sortValue || element2[index].displayValue);
     let comparison = 0;
-    if (typeof sortValueA === "object") {
+    if (typeof sortValueA === "object" && !isDateType(sortValueA)) {
       comparison = -1;
-    } else if (typeof sortValueB === "object") {
+    } else if (typeof sortValueB === "object" && !isDateType(sortValueB)) {
       comparison = 1;
     } else if (sortValueA > sortValueB) {
       comparison = 1;
@@ -32,12 +36,8 @@ const sortArray = (index: number, order: "ascending" | "descending", resultset: 
 const getMinItemsPerPageIndex = (currentPageInternal: number, itemsPerPage: number, page: number) =>
   currentPageInternal === 1 ? 0 : itemsPerPage * (page - 1);
 
-const getMaxItemsPerPageIndex = (
-  minItemsPerPageIndex: number,
-  itemsPerPage: number,
-  resultset: Row[],
-  page: number,
-) => (minItemsPerPageIndex + itemsPerPage > resultset.length ? resultset.length : itemsPerPage * page - 1);
+const getMaxItemsPerPageIndex = (minItemsPerPageIndex: number, itemsPerPage: number, resultset: Row[], page: number) =>
+  minItemsPerPageIndex + itemsPerPage > resultset.length ? resultset.length : itemsPerPage * page - 1;
 
 const assignIdsToRows = (resultset: Row[]) => {
   if (resultset.length > 0) {
@@ -73,16 +73,16 @@ const DxcResultsetTable = ({
   const minItemsPerPageIndex = useMemo(() => getMinItemsPerPageIndex(page, itemsPerPage, page), [itemsPerPage, page]);
   const maxItemsPerPageIndex = useMemo(
     () => getMaxItemsPerPageIndex(minItemsPerPageIndex, itemsPerPage, rows, page),
-    [itemsPerPage, minItemsPerPageIndex, page, rows],
+    [itemsPerPage, minItemsPerPageIndex, page, rows]
   );
 
   const sortedResultset = useMemo(
     () => (sortColumnIndex !== -1 ? sortArray(sortColumnIndex, sortOrder, rowsWithIds) : rowsWithIds),
-    [sortColumnIndex, sortOrder, rowsWithIds],
+    [sortColumnIndex, sortOrder, rowsWithIds]
   );
   const filteredResultset = useMemo(
     () => sortedResultset && sortedResultset.slice(minItemsPerPageIndex, maxItemsPerPageIndex + 1),
-    [sortedResultset, minItemsPerPageIndex, maxItemsPerPageIndex],
+    [sortedResultset, minItemsPerPageIndex, maxItemsPerPageIndex]
   );
 
   const goToPage = (newPage: number) => {
@@ -97,7 +97,7 @@ const DxcResultsetTable = ({
         ? "ascending"
         : sortOrder === "ascending"
           ? "descending"
-          : "ascending",
+          : "ascending"
     );
   };
 
