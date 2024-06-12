@@ -24,10 +24,10 @@ const DxcAlert = ({
     type === "info"
       ? translatedLabels.alert.infoTitleText
       : type === "confirm"
-      ? translatedLabels.alert.successTitleText
-      : type === "warning"
-      ? translatedLabels.alert.warningTitleText
-      : translatedLabels.alert.errorTitleText;
+        ? translatedLabels.alert.successTitleText
+        : type === "warning"
+          ? translatedLabels.alert.warningTitleText
+          : translatedLabels.alert.errorTitleText;
 
   return (
     <ThemeProvider theme={colorsTheme.alert}>
@@ -53,7 +53,7 @@ const DxcAlert = ({
               {inlineText && inlineText !== "" && "-"}
               <AlertInlineText>{inlineText}</AlertInlineText>
             </AlertText>
-            {onClose && (
+            {typeof onClose === "function" && (
               <AlertCloseAction onClick={onClose} tabIndex={tabIndex} aria-label="Close alert">
                 <DxcIcon icon="close" />
               </AlertCloseAction>

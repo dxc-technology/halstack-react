@@ -41,17 +41,14 @@ const sections = [
               Uses one of the available alert modes:
               <ul>
                 <li>
-                  <b>inline:</b> If an <Code>onClose</Code> prop is received,
-                  close button will be visible and the function will be executed
-                  when it's clicked. There is no overlay layer. Position should
-                  be decided by the user.
+                  <b>inline:</b> Renders as a regular component, following the
+                  natural order of the elements in the document tree.
                 </li>
                 <li>
                   <b>modal:</b> The alert will be displayed in the middle of the
-                  screen with an overlay layer behind. The <Code>onClose</Code>{" "}
-                  function will be executed when the X button or the overlay is
-                  clicked. The user has the responsibility of hiding the modal
-                  in the <Code>onClose</Code> event, otherwise the modal will
+                  screen with an overlay layer behind. In this mode, the user
+                  has the responsibility of hiding the alert with the{" "}
+                  <Code>onClose</Code> event, otherwise the overlaid modal will
                   remain visible.
                 </li>
               </ul>
@@ -65,9 +62,7 @@ const sections = [
             <td>
               <TableCode>string</TableCode>
             </td>
-            <td>
-              Message of the alert.
-            </td>
+            <td>Message of the alert.</td>
             <td>-</td>
           </tr>
           <tr>
@@ -76,9 +71,11 @@ const sections = [
               <TableCode>{"() => void"}</TableCode>
             </td>
             <td>
-              This function will be called when the user clicks the close
-              button. If there is no function we should close the alert by
-              default.
+              If defined, a close button will be displayed and this function
+              will be executed when the action is clicked. When{" "}
+              <Code>mode="modal"</Code> this function will also be executed when
+              the background overlay is clicked. The user has the responsibility
+              of hiding the modal, otherwise it will remain visible.
             </td>
             <td>-</td>
           </tr>
