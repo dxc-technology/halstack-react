@@ -58,78 +58,91 @@ const sections = [
             <DxcTable>
               <thead>
                 <tr>
+                  <th>Categorical color</th>
                   <th>Core token</th>
                   <th>Value</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
+                  <td>color-categorical-01</td>
                   <td>
                     <Code>color-purple-500</Code>
                   </td>
                   <td>#A46EDE</td>
                 </tr>
                 <tr>
-                  <td>
-                    <Code>color-purple-600</Code>
-                  </td>
-                  <td>#7D2FD0</td>
-                </tr>
-                <tr>
+                  <td>color-categorical-02</td>
                   <td>
                     <Code>color-blue-600</Code>
                   </td>
                   <td>#0095FF</td>
                 </tr>
                 <tr>
-                  <td>
-                    <Code>color-blue-800</Code>
-                  </td>
-                  <td>#0067B3</td>
-                </tr>
-                <tr>
+                  <td>color-categorical-03</td>
                   <td>
                     <Code>color-green-700</Code>
                   </td>
                   <td>#24A148</td>
                 </tr>
                 <tr>
-                  <td>
-                    <Code>color-green-900</Code>
-                  </td>
-                  <td>#135325</td>
-                </tr>
-                <tr>
+                  <td>color-categorical-04</td>
                   <td>
                     <Code>color-red-500</Code>
                   </td>
                   <td>#FE344F</td>
                 </tr>
                 <tr>
-                  <td>
-                    <Code>color-red-700</Code>
-                  </td>
-                  <td>#D0011B</td>
-                </tr>
-                <tr>
+                  <td>color-categorical-05</td>
                   <td>
                     <Code>color-yellow-800</Code>
                   </td>
                   <td>#947705</td>
                 </tr>
                 <tr>
-                  <td>
-                    <Code>color-yellow-900</Code>
-                  </td>
-                  <td>#624F04</td>
-                </tr>
-                <tr>
+                  <td>color-categorical-06</td>
                   <td>
                     <Code>color-orange-700</Code>
                   </td>
                   <td>#C26C0A</td>
                 </tr>
                 <tr>
+                  <td>color-categorical-07</td>
+                  <td>
+                    <Code>color-purple-600</Code>
+                  </td>
+                  <td>#7D2FD0</td>
+                </tr>
+                <tr>
+                  <td>color-categorical-08</td>
+                  <td>
+                    <Code>color-blue-800</Code>
+                  </td>
+                  <td>#0067B3</td>
+                </tr>
+                <tr>
+                  <td>color-categorical-09</td>
+                  <td>
+                    <Code>color-green-900</Code>
+                  </td>
+                  <td>#135325</td>
+                </tr>
+                <tr>
+                  <td>color-categorical-10</td>
+                  <td>
+                    <Code>color-red-700</Code>
+                  </td>
+                  <td>#D0011B</td>
+                </tr>
+                <tr>
+                  <td>color-categorical-11</td>
+                  <td>
+                    <Code>color-yellow-900</Code>
+                  </td>
+                  <td>#624F04</td>
+                </tr>
+                <tr>
+                  <td>color-categorical-12</td>
                   <td>
                     <Code>color-orange-800</Code>
                   </td>
