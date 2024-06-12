@@ -1,6 +1,6 @@
 type DataTypes = string | number;
 
-type BarChartThresholdSeries<X> = {
+type ThresholdSeries<X> = {
   /**
    * Title of the series.
    */
@@ -19,7 +19,7 @@ type BarChartThresholdSeries<X> = {
   x?: X;
 };
 
-type BarChartDataSeries<X> = {
+type BarDataSeries<X> = {
   /**
    * Title of the series.
    */
@@ -34,7 +34,7 @@ type BarChartDataSeries<X> = {
   data: { x: X; y: number }[];
 };
 
-type BarChartSeries<X> = BarChartThresholdSeries<X> | BarChartDataSeries<X>;
+type BarChartSeries<X> = ThresholdSeries<X> | BarDataSeries<X>;
 
 type BarChartProps<X extends DataTypes> = {
   /**
@@ -46,51 +46,67 @@ type BarChartProps<X extends DataTypes> = {
    */
   error?: string;
   /**
-   * If true, the chart will display horizontal bars.
+   * When set to true, the x and y axes are swapped, resulting in bars
+   * being displayed horizontally rather than vertically. This feature is
+   * applicable only when the chart contains exclusively bar series.
    */
   horizontalBars?: boolean;
   /**
-   * Legend title.
+   * Title of the chart legend.
    */
   legendTitle?: string;
   /**
-   * Activates the loading state.
+   * If true, activates the loading state of the component.
    */
   loading?: boolean;
   /**
-   * Event called when the bar chart filters are changed.
+   * This function will be called when the user changes the displayed
+   * data series with the default filter. This event is only triggered
+   * when 'showFilter' is set to 'true'.
    */
   onFilterChange?: (visibleSeries: string[]) => void;
   /**
-   * Event called when the highlighted series has changed because of user interaction.
+   * This function will be called when the user hovers over a data series
+   * through the chart legend. This event is only triggered when
+   * 'showLegend' is set to 'true'.
    */
   onHighlightChange?: (highlightedSeries?: string) => void;
   /**
-   * Event called when the user clicks on the retry action of the error state.
+   * This function will be called when the user clicks the retry action
+   * in the error state. A 'DxcButton' component will be
+   * displayed if this prop is defined to perform the action.
    */
   onRetry?: () => void;
   /**
-   * Array that represents the source of data for the displayed chart.
+   * An array of objects representing the data series to be displayed in
+   * the chart.
    */
   series: BarChartSeries<X>[];
   /**
-   * If true, the chart will display a filter to show/hide series.
+   * If true, the chart will display a filter to allow the user to change
+   * the displayed data series.
    */
   showFilter?: boolean;
   /**
-   * If true, the chart will display a legend with the corresponding data series.
+   * If true, the chart will display a legend with the data series
+   * information.
    */
   showLegend?: boolean;
   /**
-   * When set to true, bars in the same data point are stacked instead of being grouped next to each other.
+   * If true, bars in the same data point are stacked instead of being
+   * grouped next to each other.
    */
   stackedBars?: boolean;
   /**
-   * Determines the domain of the x axis, i.e. the range of values that will be visible in the chart
+   * Specifies the x-axis domain, defining the visible range. For
+   * numerical data, use a tuple: [minValue, maxValue]. For categorical
+   * data, use an array of category strings. Explicitly setting this is
+   * recommended. If not set, the component will auto-fit all data
+   * points.
    */
   xDomain?: X[];
   /**
-   * Formatter function for the x axis. It receives the x value and returns a string.
+   * Function to format the displayed label of an x-axis mark.
    */
   xFormatter?: (value: X) => string;
   /**
@@ -98,11 +114,14 @@ type BarChartProps<X extends DataTypes> = {
    */
   xTitle?: string;
   /**
-   * Determines the domain of the y axis, i.e. the range of values that will be visible in the chart
+   * Specifies the y-axis domain, defining the visible range. The domain
+   * is defined by a tuple: [minValue, maxValue]. Explicitly setting this
+   * is recommended. If not set, the component will auto-fit all data
+   * points.
    */
   yDomain?: [number, number];
   /**
-   * Formatter function for the y axis. It receives the y value and returns a string.
+   * Function to format the displayed label of an y-axis mark.
    */
   yFormatter?: (value: number) => string;
   /**
