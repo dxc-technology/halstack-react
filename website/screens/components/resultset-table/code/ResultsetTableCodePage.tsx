@@ -33,7 +33,7 @@ const actionsType = `{
 
 const cellTypeString = `{ 
   displayValue: React.ReactNode; 
-  sortValue?: string; 
+  sortValue?: string | number | Date; 
 }[]`;
 const columnTypeString = `{ 
   displayValue: React.ReactNode; 
