@@ -1127,11 +1127,31 @@ const sections = [
                 </tr>
                 <tr>
                   <td>
+                    <Code>prefixDividerBorderStyle</Code>
+                  </td>
+                  <td>Prefix</td>
+                  <td>
+                    <Code>border-style-solid</Code>
+                  </td>
+                  <td>solid</td>
+                </tr>
+                <tr>
+                  <td>
                     <Code>suffixDividerBorderWidth</Code>
                   </td>
                   <td>Suffix</td>
                   <td>-</td>
                   <td>1px</td>
+                </tr>
+                <tr>
+                  <td>
+                    <Code>suffixDividerBorderStyle</Code>
+                  </td>
+                  <td>Suffix</td>
+                  <td>
+                    <Code>border-style-solid</Code>
+                  </td>
+                  <td>solid</td>
                 </tr>
               </tbody>
             </DxcTable>

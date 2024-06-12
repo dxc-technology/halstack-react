@@ -609,7 +609,7 @@ const Prefix = styled.span<{ disabled: TextInputPropsType["disabled"] }>`
   padding-right: ${(props) => props.theme.prefixDividerPaddingRight};
   ${(props) => {
     const color = props.disabled ? props.theme.disabledPrefixColor : props.theme.prefixColor;
-    return `color: ${color}; border-right: ${props.theme.prefixDividerBorderWidth} solid ${color};`;
+    return `color: ${color}; border-right: ${props.theme.prefixDividerBorderWidth} ${props.theme.prefixDividerBorderStyle} ${color};`;
   }};
   font-size: 1rem;
   line-height: 1.5rem;
@@ -622,7 +622,7 @@ const Suffix = styled.span<{ disabled: TextInputPropsType["disabled"] }>`
   padding-left: ${(props) => props.theme.suffixDividerPaddingLeft};
   ${(props) => {
     const color = props.disabled ? props.theme.disabledSuffixColor : props.theme.suffixColor;
-    return `color: ${color}; border-left: ${props.theme.suffixDividerBorderWidth} solid ${color};`;
+    return `color: ${color}; border-left: ${props.theme.suffixDividerBorderWidth} ${props.theme.suffixDividerBorderStyle} ${color};`;
   }};
   font-size: 1rem;
   line-height: 1.5rem;
