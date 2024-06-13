@@ -1,15 +1,17 @@
-import React, { useState, useRef, useEffect, useId } from "react";
+import React, { useState, useRef, useEffect, useId, useCallback } from "react";
 import dayjs from "dayjs";
 import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
 import DxcTextInput from "../text-input/TextInput";
 import DateInputPropsType, { RefType } from "./types";
-import DxcDatePicker from "./DatePicker";
+import DatePicker from "./DatePicker";
 import * as Popover from "@radix-ui/react-popover";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 
 dayjs.extend(customParseFormat);
+
+const SIDEOFFSET = 4;
 
 const getValueForPicker = (value, format) => dayjs(value, format.toUpperCase(), true);
 
@@ -67,26 +69,11 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
           : 1900
         : undefined
     );
+    const [sideOffset, setSideOffset] = useState(SIDEOFFSET);
     const colorsTheme = useTheme();
     const translatedLabels = useTranslatedLabels();
     const dateRef = useRef(null);
-
-    useEffect(() => {
-      if (value || value === "") setDayjsDate(getDate(value, format, lastValidYear, setLastValidYear));
-    }, [value, format, lastValidYear]);
-
-    useEffect(() => {
-      if (!disabled) {
-        const actionButtonRef = dateRef?.current.querySelector("[title='Select date']");
-        actionButtonRef?.setAttribute("aria-haspopup", true);
-        actionButtonRef?.setAttribute("role", "combobox");
-        actionButtonRef?.setAttribute("aria-expanded", isOpen);
-        actionButtonRef?.setAttribute("aria-controls", calendarId);
-        if (isOpen) {
-          actionButtonRef?.setAttribute("aria-describedby", calendarId);
-        }
-      }
-    }, [isOpen, disabled, calendarId]);
+    const popoverContentRef = useRef(null);
 
     const handleCalendarOnClick = (newDate) => {
       const newValue = newDate.format(format.toUpperCase());
@@ -139,8 +126,25 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
         : onBlur?.(callbackParams);
     };
 
+    const adjustSideOffset = useCallback(() => {
+      if (error) {
+        setTimeout(() => {
+          if (popoverContentRef.current && dateRef.current) {
+            const popoverRect = popoverContentRef.current.getBoundingClientRect();
+            const triggerRect = dateRef.current.getBoundingClientRect();
+            const errorMessageHeight = dateRef.current.querySelector('[id^="error-input"]')?.offsetHeight;
+
+            setSideOffset((currentSideOffset) => {
+              return popoverRect.top - currentSideOffset > triggerRect.bottom - errorMessageHeight ? -errorMessageHeight : SIDEOFFSET;
+            });
+          }
+        }, 0);
+      }
+    }, [error]);
+
     const openCalendar = () => {
       setIsOpen(!isOpen);
+      adjustSideOffset();
     };
     const closeCalendar = () => {
       setIsOpen(false);
@@ -158,17 +162,49 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
       if (!event?.currentTarget.contains(event.relatedTarget)) closeCalendar();
     };
 
+    useEffect(() => {
+      window.addEventListener("scroll", adjustSideOffset);
+      return () => {
+        window.removeEventListener("scroll", adjustSideOffset);
+      };
+    }, []);
+
+    useEffect(() => {
+      if (value || value === "") setDayjsDate(getDate(value, format, lastValidYear, setLastValidYear));
+    }, [value, format, lastValidYear]);
+
+    useEffect(() => {
+      if (!disabled) {
+        const actionButtonRef = dateRef?.current.querySelector("[title='Select date']");
+        actionButtonRef?.setAttribute("aria-haspopup", true);
+        actionButtonRef?.setAttribute("role", "combobox");
+        actionButtonRef?.setAttribute("aria-expanded", isOpen);
+        actionButtonRef?.setAttribute("aria-controls", calendarId);
+        if (isOpen) {
+          actionButtonRef?.setAttribute("aria-describedby", calendarId);
+        }
+      }
+    }, [isOpen, disabled, calendarId]);
+
     return (
       <ThemeProvider theme={colorsTheme}>
         <DateInputContainer size={size} ref={ref}>
+          {label && (
+            <Label
+              htmlFor={dateRef.current?.getElementsByTagName("input")[0].id}
+              disabled={disabled}
+              hasHelperText={helperText ? true : false}
+            >
+              {label} {optional && <OptionalLabel>{translatedLabels.formFields.optionalLabel}</OptionalLabel>}
+            </Label>
+          )}
+          {helperText && <HelperText disabled={disabled}>{helperText}</HelperText>}
           <Popover.Root open={isOpen}>
             <Popover.Trigger asChild aria-controls={undefined}>
               <DxcTextInput
-                label={label}
                 name={name}
                 defaultValue={defaultValue}
                 value={value ?? innerValue}
-                helperText={helperText}
                 placeholder={placeholder ? format.toUpperCase() : null}
                 action={{
                   onClick: openCalendar,
@@ -191,14 +227,14 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
             </Popover.Trigger>
             <Popover.Portal>
               <StyledPopoverContent
-                sideOffset={error ? -18 : 2}
+                sideOffset={sideOffset}
                 align="end"
                 aria-modal={true}
                 onBlur={handleDatePickerOnBlur}
                 onKeyDown={handleDatePickerEscKeydown}
-                avoidCollisions={false}
+                ref={popoverContentRef}
               >
-                <DxcDatePicker id={calendarId} onDateSelect={handleCalendarOnClick} date={dayjsDate} />
+                <DatePicker id={calendarId} onDateSelect={handleCalendarOnClick} date={dayjsDate} />
               </StyledPopoverContent>
             </Popover.Portal>
           </Popover.Root>
@@ -217,6 +253,33 @@ const StyledPopoverContent = styled(Popover.Content)`
 
 const DateInputContainer = styled.div<{ size: DateInputPropsType["size"] }>`
   ${(props) => props.size == "fillParent" && "width: 100%;"}
+`;
+
+const Label = styled.label<{
+  disabled: DateInputPropsType["disabled"];
+  hasHelperText: boolean;
+}>`
+  color: ${(props) =>
+    props.disabled ? props.theme.textInput.disabledLabelFontColor : props.theme.textInput.labelFontColor};
+  font-size: ${(props) => props.theme.textInput.labelFontSize};
+  font-style: ${(props) => props.theme.textInput.labelFontStyle};
+  font-weight: ${(props) => props.theme.textInput.labelFontWeight};
+  line-height: ${(props) => props.theme.textInput.labelLineHeight};
+  ${(props) => !props.hasHelperText && `margin-bottom: 0.25rem`}
+`;
+
+const OptionalLabel = styled.span`
+  font-weight: ${(props) => props.theme.textInput.optionalLabelFontWeight};
+`;
+
+const HelperText = styled.span<{ disabled: DateInputPropsType["disabled"] }>`
+  color: ${(props) =>
+    props.disabled ? props.theme.textInput.disabledHelperTextFontColor : props.theme.textInput.helperTextFontColor};
+  font-size: ${(props) => props.theme.textInput.helperTextFontSize};
+  font-style: ${(props) => props.theme.textInput.helperTextFontStyle};
+  font-weight: ${(props) => props.theme.textInput.helperTextFontWeight};
+  line-height: ${(props) => props.theme.textInput.helperTextLineHeight};
+  margin-bottom: 0.25rem;
 `;
 
 export default DxcDateInput;

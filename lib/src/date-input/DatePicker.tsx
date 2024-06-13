@@ -9,7 +9,7 @@ import DxcIcon from "../icon/Icon";
 
 const today = dayjs();
 
-const DxcDatePicker = ({ date, onDateSelect, id }: DatePickerPropsType): JSX.Element => {
+const DatePicker = ({ date, onDateSelect, id }: DatePickerPropsType): JSX.Element => {
   const [innerDate, setInnerDate] = useState(date?.isValid() ? date : dayjs());
   const [content, setContent] = useState("calendar");
   const selectedDate = date?.isValid() ? date : null;
@@ -30,7 +30,7 @@ const DxcDatePicker = ({ date, onDateSelect, id }: DatePickerPropsType): JSX.Ele
   };
 
   return (
-    <DatePicker id={id}>
+    <DatePickerContainer id={id}>
       <PickerHeader>
         <HeaderButton
           aria-label={translatedLabels.calendar.previousMonthTitle}
@@ -68,11 +68,11 @@ const DxcDatePicker = ({ date, onDateSelect, id }: DatePickerPropsType): JSX.Ele
       {content === "yearPicker" && (
         <YearPicker selectedDate={selectedDate} onYearSelect={handleOnYearSelect} today={today} />
       )}
-    </DatePicker>
+    </DatePickerContainer>
   );
 };
 
-const DatePicker = styled.div`
+const DatePickerContainer = styled.div`
   padding-top: 16px;
   background-color: ${(props) => props.theme.dateInput.pickerBackgroundColor};
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
@@ -144,4 +144,4 @@ const HeaderYearTriggerLabel = styled.span`
   font-size: ${(props) => props.theme.dateInput.pickerHeaderFontSize};
 `;
 
-export default React.memo(DxcDatePicker);
+export default React.memo(DatePicker);
