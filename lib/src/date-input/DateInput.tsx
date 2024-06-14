@@ -8,6 +8,8 @@ import DateInputPropsType, { RefType } from "./types";
 import DatePicker from "./DatePicker";
 import * as Popover from "@radix-ui/react-popover";
 import customParseFormat from "dayjs/plugin/customParseFormat";
+import { getMargin } from "../common/utils";
+import { spaces } from "../common/variables";
 
 dayjs.extend(customParseFormat);
 
@@ -183,7 +185,7 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
 
     return (
       <ThemeProvider theme={colorsTheme}>
-        <DateInputContainer size={size} ref={ref}>
+        <DateInputContainer margin={margin} size={size} ref={ref}>
           {label && (
             <Label
               htmlFor={dateRef.current?.getElementsByTagName("input")[0].id}
@@ -214,7 +216,6 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
                 onBlur={handleOnBlur}
                 error={error}
                 autocomplete={autocomplete}
-                margin={margin}
                 size={size}
                 tabIndex={tabIndex}
                 ref={dateRef}
@@ -239,17 +240,34 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
   }
 );
 
-const StyledPopoverContent = styled(Popover.Content)`
-  z-index: 2147483647;
-  &:focus-visible {
-    outline: none;
-  }
-`;
+const sizes = {
+  small: "240px",
+  medium: "360px",
+  large: "480px",
+  fillParent: "100%",
+};
 
-const DateInputContainer = styled.div<{ size: DateInputPropsType["size"] }>`
+const calculateWidth = (margin, size) =>
+  size === "fillParent"
+    ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
+    : sizes[size];
+
+const DateInputContainer = styled.div<{ margin: DateInputPropsType["margin"]; size: DateInputPropsType["size"] }>`
   ${(props) => props.size == "fillParent" && "width: 100%;"}
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  width: ${(props) => calculateWidth(props.margin, props.size)};
+  ${(props) => props.size !== "fillParent" && "min-width:" + calculateWidth(props.margin, props.size)};
+  margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
+  margin-top: ${(props) =>
+    props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
+  margin-right: ${(props) =>
+    props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
+  margin-bottom: ${(props) =>
+    props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
+  margin-left: ${(props) =>
+    props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
   font-family: ${(props) => props.theme.textInput.fontFamily};
 `;
 
@@ -278,6 +296,13 @@ const HelperText = styled.span<{ disabled: DateInputPropsType["disabled"] }>`
   font-weight: ${(props) => props.theme.textInput.helperTextFontWeight};
   line-height: ${(props) => props.theme.textInput.helperTextLineHeight};
   margin-bottom: 0.25rem;
+`;
+
+const StyledPopoverContent = styled(Popover.Content)`
+  z-index: 2147483647;
+  &:focus-visible {
+    outline: none;
+  }
 `;
 
 export default DxcDateInput;
