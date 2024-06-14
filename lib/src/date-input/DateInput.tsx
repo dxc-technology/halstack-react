@@ -27,9 +27,7 @@ const getDate = (value, format, lastValidYear, setLastValidYear) => {
         setLastValidYear(1900 + +newDate.format("YY"));
         newDate = newDate.set("year", 1900 + +newDate.format("YY"));
       }
-    } else {
-      newDate = newDate.set("year", (lastValidYear <= 1999 ? 1900 : 2000) + +newDate.format("YY"));
-    }
+    } else newDate = newDate.set("year", (lastValidYear <= 1999 ? 1900 : 2000) + +newDate.format("YY"));
     return newDate;
   }
 };
@@ -133,10 +131,7 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
             const popoverRect = popoverContentRef.current.getBoundingClientRect();
             const triggerRect = dateRef.current.getBoundingClientRect();
             const errorMessageHeight = dateRef.current.querySelector('[id^="error-input"]')?.offsetHeight;
-
-            setSideOffset((currentSideOffset) => {
-              return popoverRect.top - currentSideOffset > triggerRect.bottom - errorMessageHeight ? -errorMessageHeight : SIDEOFFSET;
-            });
+            setSideOffset(popoverRect.top > triggerRect.bottom - errorMessageHeight ? -errorMessageHeight : SIDEOFFSET);
           }
         }, 0);
       }

@@ -107,7 +107,7 @@ const DateInputChromatic = () => (
     </ExampleContainer>
     <ExampleContainer expanded>
       <Title title="Year picker" theme="light" level={4} />
-      <DxcDateInput label="Date input" defaultValue="06-04-1905" />
+      <DxcDateInput label="Date input" defaultValue="06-04-1905" error="Error message" />
     </ExampleContainer>
   </>
 );
