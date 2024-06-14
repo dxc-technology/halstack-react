@@ -248,6 +248,9 @@ const StyledPopoverContent = styled(Popover.Content)`
 
 const DateInputContainer = styled.div<{ size: DateInputPropsType["size"] }>`
   ${(props) => props.size == "fillParent" && "width: 100%;"}
+  display: flex;
+  flex-direction: column;
+  font-family: ${(props) => props.theme.textInput.fontFamily};
 `;
 
 const Label = styled.label<{
