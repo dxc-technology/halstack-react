@@ -21,7 +21,7 @@
   {
     "label": "Breadcrumbs",
     "path": "/components/breadcrumbs",
-    "status": "experimental"
+    "status": "new"
   },
   {
     "label": "Bulleted List",

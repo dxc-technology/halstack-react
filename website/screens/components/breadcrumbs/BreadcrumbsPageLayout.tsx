@@ -8,7 +8,12 @@ const BreadcrumbsPageHeading = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const tabs = [{ label: "Code", path: "/components/breadcrumbs" }];
+  const tabs = [
+    { label: "Code", path: "/components/breadcrumbs" },
+    { label: "Usage", path: "/components/breadcrumbs/usage" },
+    { label: "Specifications", path: "/components/breadcrumbs/specifications" },
+  ];
+
   return (
     <DxcFlex direction="column" gap="3rem">
       <PageHeading>
