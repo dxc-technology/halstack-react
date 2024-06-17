@@ -3,13 +3,13 @@ import dayjs from "dayjs";
 import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
-import DxcTextInput from "../text-input/TextInput";
 import DateInputPropsType, { RefType } from "./types";
 import DatePicker from "./DatePicker";
 import * as Popover from "@radix-ui/react-popover";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import { getMargin } from "../common/utils";
 import { spaces } from "../common/variables";
+import { DxcTextInput } from "../main";
 
 dayjs.extend(customParseFormat);
 
@@ -127,13 +127,15 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
     };
 
     const adjustSideOffset = useCallback(() => {
-      if (error) {
+      if (error != null) {
         setTimeout(() => {
           if (popoverContentRef.current && dateRef.current) {
             const popoverRect = popoverContentRef.current.getBoundingClientRect();
-            const triggerRect = dateRef.current.getBoundingClientRect();
-            const errorMessageHeight = dateRef.current.querySelector('[id^="error-input"]')?.offsetHeight;
-            setSideOffset(popoverRect.top > triggerRect.bottom - errorMessageHeight ? -errorMessageHeight : SIDEOFFSET);
+            const triggerRect = dateRef.current.querySelector('[id^="input"]')?.getBoundingClientRect();
+            const errorMessageHeight = dateRef.current
+              .querySelector('[id^="error-input"]')
+              ?.getBoundingClientRect().height;
+            setSideOffset(popoverRect.top > triggerRect.bottom ? -errorMessageHeight : SIDEOFFSET);
           }
         }, 0);
       }
@@ -164,7 +166,7 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
       return () => {
         window.removeEventListener("scroll", adjustSideOffset);
       };
-    }, []);
+    }, [adjustSideOffset]);
 
     useEffect(() => {
       if (value || value === "") setDayjsDate(getDate(value, format, lastValidYear, setLastValidYear));
@@ -254,7 +256,6 @@ const calculateWidth = (margin, size) =>
 
 const DateInputContainer = styled.div<{ margin: DateInputPropsType["margin"]; size: DateInputPropsType["size"] }>`
   ${(props) => props.size == "fillParent" && "width: 100%;"}
-  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   width: ${(props) => calculateWidth(props.margin, props.size)};
