@@ -9,7 +9,7 @@ import * as Popover from "@radix-ui/react-popover";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import { getMargin } from "../common/utils";
 import { spaces } from "../common/variables";
-import { DxcTextInput } from "../main";
+import DxcTextInput from "../text-input/TextInput";
 
 dayjs.extend(customParseFormat);
 
