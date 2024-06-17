@@ -35,7 +35,9 @@ const sections = [
   {
     title: "Design tokens",
     content: (
-      <DxcParagraph>This component currently has no design tokens.</DxcParagraph>
+      <DxcParagraph>
+        This component currently has no design tokens.
+      </DxcParagraph>
     ),
   },
 ];

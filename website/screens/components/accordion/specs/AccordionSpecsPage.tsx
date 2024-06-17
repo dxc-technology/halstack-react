@@ -54,7 +54,7 @@ const sections = [
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>Title</DxcBulletedList.Item>
               <DxcBulletedList.Item>
-                Helper text<em>(Optional)</em>
+                Helper text <em>(Optional)</em>
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
                 Caret icon <em>(Expand/collapse)</em>
@@ -233,7 +233,7 @@ const sections = [
                 <td>
                   <Code>font-family-sans</Code>
                 </td>
-                <td>&#39;Open Sans&#39;, sans-serif;</td>
+                <td>&#39;Open Sans&#39;, sans-serif</td>
               </tr>
               <tr>
                 <td>
@@ -273,7 +273,7 @@ const sections = [
                 <td>
                   <Code>font-sans</Code>
                 </td>
-                <td>&#39;Open Sans&#39;, sans-serif;</td>
+                <td>&#39;Open Sans&#39;, sans-serif</td>
               </tr>
               <tr>
                 <td>
