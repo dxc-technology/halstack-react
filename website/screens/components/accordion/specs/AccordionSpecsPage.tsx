@@ -54,7 +54,7 @@ const sections = [
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>Title</DxcBulletedList.Item>
               <DxcBulletedList.Item>
-                Helper text<em>(Optional)</em>
+                Helper text <em>(Optional)</em>
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
                 Caret icon <em>(Expand/collapse)</em>
