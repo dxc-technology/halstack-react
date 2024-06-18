@@ -6,6 +6,9 @@ import {
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
+import Example from "@/common/example/Example";
+import collapsed from "./examples/collapsed";
+import noRoot from "./examples/noRoot";
 
 const sections = [
   {
@@ -64,6 +67,36 @@ const sections = [
         ),
       },
     ],
+  },
+  {
+    title: "Collapsed Breadcrumbs",
+    content: (
+      <>
+        <DxcParagraph>
+          When there are more than four items in the breadcrumbs, the component
+          will collapse the items in a dropdown menu to avoid overloading the
+          interface. Users can click on the dropdown to view the hidden items
+          and navigate to the desired level.
+        </DxcParagraph>
+        <DxcParagraph>
+          Although this can be configurable, we highly encourage our users to
+          stick with the collapsing at five or more items. This was not a random
+          decision, we carefully selected it to ensure the component does not
+          overload the interface and remains an effective navigational aid.
+        </DxcParagraph>
+        <Example example={collapsed} />
+        <DxcParagraph>
+          Depending on the amount of available space, the collapsed breadcrumbs
+          can be synthesized more by removing the root element and displaying
+          only the collapsed dropdown and the current page.
+        </DxcParagraph>
+        <Example example={noRoot} />
+        <DxcParagraph>
+          Be mindful of your user's cognitive load and collapse breadcrumbs
+          appropriately.
+        </DxcParagraph>
+      </>
+    ),
   },
 ];
 
