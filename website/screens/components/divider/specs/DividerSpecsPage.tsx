@@ -33,7 +33,7 @@ const sections = [
     content: (
       <>
         <DxcParagraph>
-          This component does not currently have design tokens.
+          This component currently has no design tokens.
         </DxcParagraph>
       </>
     ),

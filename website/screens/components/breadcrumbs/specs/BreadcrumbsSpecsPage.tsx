@@ -8,15 +8,15 @@ import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import Figure from "@/common/Figure";
-import specsImage from "./images/badge_specs.jpg";
-import anatomyImage from "./images/badge_anatomy.jpg";
+import specs from "./images/breadcrumbs_specs.png";
+import anatomy from "./images/breadcrumbs_anatomy.png";
 
 const sections = [
   {
     title: "Specifications",
     content: (
-      <Figure caption="Badge design specifications">
-        <Image src={specsImage} alt="Badge design specifications" />
+      <Figure caption="Breadcrumbs design specifications">
+        <Image src={specs} alt="Breadcrumbs design specifications" />
       </Figure>
     ),
   },
@@ -24,11 +24,10 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image src={anatomyImage} alt="Badge anatomy" />
+        <Image src={anatomy} alt="Breadcrumbs anatomy" />
         <DxcBulletedList type="number">
-          <DxcBulletedList.Item>Container</DxcBulletedList.Item>
-          <DxcBulletedList.Item>Icon</DxcBulletedList.Item>
-          <DxcBulletedList.Item>Label</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Breadcrumbs item</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Divider</DxcBulletedList.Item>
         </DxcBulletedList>
       </>
     ),
@@ -43,7 +42,7 @@ const sections = [
   },
 ];
 
-const BadgeSpecsPage = () => {
+const BreadcrumbsSpecsPage = () => {
   return (
     <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
@@ -52,9 +51,9 @@ const BadgeSpecsPage = () => {
           startHeadingLevel={2}
         ></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/badge/specs/BadgeSpecsPage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/breadcrumbs/specs/BreadcrumbsSpecsPage.tsx" />
     </DxcFlex>
   );
 };
 
-export default BadgeSpecsPage;
+export default BreadcrumbsSpecsPage;

@@ -43,7 +43,7 @@ const sections = [
                     <td>
                       <Code>font-family</Code>
                     </td>
-                    <td>&#39;Open Sans&#39;, sans-serif;</td>
+                    <td>&#39;Open Sans&#39;, sans-serif</td>
                     <td>
                       <Code>font-family-sans</Code>
                     </td>
@@ -104,7 +104,7 @@ const sections = [
                     <td>
                       <Code>font-family</Code>
                     </td>
-                    <td>&#39;Open Sans&#39;, sans-serif;</td>
+                    <td>&#39;Open Sans&#39;, sans-serif</td>
                     <td>
                       <Code>font-family-sans</Code>
                     </td>
@@ -165,7 +165,7 @@ const sections = [
                     <td>
                       <Code>font-family</Code>
                     </td>
-                    <td>&#39;Open Sans&#39;, sans-serif;</td>
+                    <td>&#39;Open Sans&#39;, sans-serif</td>
                     <td>
                       <Code>font-family-sans</Code>
                     </td>
@@ -226,7 +226,7 @@ const sections = [
                     <td>
                       <Code>font-family</Code>
                     </td>
-                    <td>&#39;Open Sans&#39;, sans-serif;</td>
+                    <td>&#39;Open Sans&#39;, sans-serif</td>
                     <td>
                       <Code>font-family-sans</Code>
                     </td>
@@ -287,7 +287,7 @@ const sections = [
                     <td>
                       <Code>font-family</Code>
                     </td>
-                    <td>&#39;Open Sans&#39;, sans-serif;</td>
+                    <td>&#39;Open Sans&#39;, sans-serif</td>
                     <td>
                       <Code>font-family-sans</Code>
                     </td>
