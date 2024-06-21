@@ -224,7 +224,7 @@ const sections = [
                 <td>
                   <Code>font-family-sans</Code>
                 </td>
-                <td>&#39;Open Sans&#39;, sans-serif;</td>
+                <td>&#39;Open Sans&#39;, sans-serif</td>
               </tr>
               <tr>
                 <td>
