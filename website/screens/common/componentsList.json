@@ -121,6 +121,11 @@
     "status": "stable"
   },
   {
+    "label": "Tooltip",
+    "path": "/components/tooltip",
+    "status": "experimental"
+  },
+  {
     "label": "Typography",
     "path": "/components/typography",
     "status": "stable"
