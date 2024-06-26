@@ -11,6 +11,7 @@ import {
 import TableCode, { ExtendedTableCode } from "@/common/TableCode";
 import basicUsage from "./examples/basicUsage";
 import nextJS from "./examples/nextJS";
+import StatusBadge from "@/common/StatusBadge";
 
 const itemTypeString = `{
   href?: string;
@@ -45,7 +46,12 @@ const sections = [
             </td>
           </tr>
           <tr>
-            <td>items</td>
+            <td>
+              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                <StatusBadge status="required" />
+                items
+              </DxcFlex>
+            </td>
             <td>
               <TableCode>Item[]</TableCode>
               <p>
