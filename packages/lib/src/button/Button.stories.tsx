@@ -1,4 +1,5 @@
 import DxcButton from "./Button";
+import DxcFlex from "../flex/Flex";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import { HalstackProvider } from "../HalstackContext";
@@ -230,11 +231,11 @@ export const Chromatic = () => (
     </ExampleContainer>
     <Title title="Inside a flex" theme="light" level={2} />
     <ExampleContainer>
-      {/* <DxcFlex direction="column" gap="1rem">
+      <DxcFlex direction="column" gap="1rem">
         <DxcButton label="Button" />
         <DxcButton label="Button" />
         <DxcButton label="Button" />
-      </DxcFlex> */}
+      </DxcFlex>
     </ExampleContainer>
     <Title title="Opinionated theme" theme="light" level={2} />
     <Title title="Primary" theme="light" level={3} />

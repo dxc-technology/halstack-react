@@ -6,6 +6,7 @@ import DxcIcon from "../icon/Icon";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
 import HeaderPropsType from "./types";
+import DxcFlex from "../flex/Flex";
 
 const Dropdown = (props: ComponentProps<typeof DxcDropdown>) => (
   <HeaderDropdown>
@@ -107,7 +108,7 @@ const DxcHeader = ({
           <LogoContainer>{headerLogo}</LogoContainer>
         </LogoAnchor>
         {isResponsive && responsiveContent && (
-          <MainContainer>
+          <DxcFlex grow={1}>
             <ChildContainer>
               <HamburgerTrigger tabIndex={tabIndex} onClick={handleMenu} aria-label="Show options">
                 <DxcIcon icon="menu" />
@@ -115,7 +116,7 @@ const DxcHeader = ({
               </HamburgerTrigger>
             </ChildContainer>
             <ResponsiveMenu hasVisibility={isMenuVisible}>
-              <ResponsiveIconsContainer>
+              <DxcFlex justifyContent="space-between" alignItems="center">
                 <ResponsiveLogoContainer>{headerResponsiveLogo}</ResponsiveLogoContainer>
                 <CloseAction
                   tabIndex={tabIndex}
@@ -125,7 +126,7 @@ const DxcHeader = ({
                 >
                   <DxcIcon icon="close" />
                 </CloseAction>
-              </ResponsiveIconsContainer>
+              </DxcFlex>
               <Content
                 isResponsive={isResponsive}
                 responsiveContent={responsiveContent}
@@ -134,7 +135,7 @@ const DxcHeader = ({
               />
             </ResponsiveMenu>
             <Overlay onClick={handleMenu} hasVisibility={isMenuVisible}></Overlay>
-          </MainContainer>
+          </DxcFlex>
         )}
         {!isResponsive && (
           <Content
@@ -220,28 +221,23 @@ const HamburgerTrigger = styled.button`
   border-radius: 2px;
   background-color: transparent;
   :hover {
-    background-color: ${(props) => props.theme.HamburgerHoverColor};
+    background-color: ${(props) => props.theme.hamburguerHoverColor};
   }
   &:focus {
-    outline: ${(props) => props.theme.HamburgerFocusColor} auto 1px;
+    outline: ${(props) => props.theme.hamburguerFocusColor} auto 1px;
   }
   & > svg {
-    fill: ${(props) => props.theme.HamburgerIconColor};
+    fill: ${(props) => props.theme.hamburguerIconColor};
   }
   & > span {
     font-size: 24px;
   }
-  font-family: ${(props) => props.theme.HamburgerFontFamily};
-  font-style: ${(props) => props.theme.HamburgerFontStyle};
-  font-size: ${(props) => props.theme.HamburgerFontSize};
-  text-transform: ${(props) => props.theme.HamburgerTextTransform};
-  font-weight: ${(props) => props.theme.HamburgerFontWeight};
-  color: ${(props) => props.theme.HamburgerFontColor};
-`;
-
-const MainContainer = styled.div`
-  display: flex;
-  flex-grow: 1;
+  font-family: ${(props) => props.theme.hamburguerFontFamily};
+  font-style: ${(props) => props.theme.hamburguerFontStyle};
+  font-size: ${(props) => props.theme.hamburguerFontSize};
+  text-transform: ${(props) => props.theme.hamburguerTextTransform};
+  font-weight: ${(props) => props.theme.hamburguerFontWeight};
+  color: ${(props) => props.theme.hamburguerFontColor};
 `;
 
 const ResponsiveMenu = styled.div<{ hasVisibility: boolean }>`
@@ -277,12 +273,6 @@ const ResponsiveLogoContainer = styled.div`
   display: flex;
 `;
 
-const ResponsiveIconsContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
 const CloseAction = styled.button`
   display: flex;
   justify-content: center;
@@ -295,7 +285,7 @@ const CloseAction = styled.button`
 
   :focus,
   :focus-visible {
-    outline: ${(props) => props.theme.HamburgerFocusColor} auto 1px;
+    outline: ${(props) => props.theme.hamburguerFocusColor} auto 1px;
   }
   font-size: 24px;
   svg {
