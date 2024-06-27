@@ -6,6 +6,7 @@ import { DxcFlex, DxcTable } from "@dxc-technology/halstack-react";
 import basicUsage from "./examples/basicUsage";
 import multipleParagraphs from "./examples/multipleParagraphs";
 import TableCode from "@/common/TableCode";
+import StatusBadge from "@/common/StatusBadge";
 
 const sections = [
   {
@@ -19,7 +20,12 @@ const sections = [
           <th>Default</th>
         </tr>
         <tr>
-          <td>children</td>
+          <td>
+            <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+              <StatusBadge status="required" />
+              children
+            </DxcFlex>
+          </td>
           <td>
             <TableCode>React.ReactNode</TableCode>
           </td>
@@ -48,7 +54,10 @@ const ParagraphCodePage = () => {
   return (
     <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
+        <QuickNavContainer
+          sections={sections}
+          startHeadingLevel={2}
+        ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/paragraph/code/ParagraphCodePage.tsx" />
     </DxcFlex>

@@ -5,6 +5,7 @@ import DocFooter from "@/common/DocFooter";
 import TableCode from "@/common/TableCode";
 import Example from "@/common/example/Example";
 import basicUsage from "./examples/basicUsage";
+import StatusBadge from "@/common/StatusBadge";
 
 const sections = [
   {
@@ -23,15 +24,25 @@ const sections = [
           <tr>
             <td>mode</td>
             <td>
-              <TableCode>'default' | 'info' | 'success' | 'warning' | 'error'</TableCode>
+              <TableCode>
+                'default' | 'info' | 'success' | 'warning' | 'error'
+              </TableCode>
             </td>
-            <td>It will define the color of the light based on its semantic meaning.</td>
+            <td>
+              It will define the color of the light based on its semantic
+              meaning.
+            </td>
             <td>
               <TableCode>'default'</TableCode>
             </td>
           </tr>
           <tr>
-            <td>label</td>
+            <td>
+              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                <StatusBadge status="required" />
+                label
+              </DxcFlex>
+            </td>
             <td>
               <TableCode>string</TableCode>
             </td>
@@ -43,7 +54,10 @@ const sections = [
             <td>
               <TableCode>'small' | 'medium' | 'large'</TableCode>
             </td>
-            <td>Size of the component. Should be defined based on its importance and/or available space.</td>
+            <td>
+              Size of the component. Should be defined based on its importance
+              and/or available space.
+            </td>
             <td>
               <TableCode>'medium'</TableCode>
             </td>
@@ -67,7 +81,10 @@ const StatusLightCodePage = () => {
   return (
     <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
+        <QuickNavContainer
+          sections={sections}
+          startHeadingLevel={2}
+        ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/status-light/code/StatusLightCodePage.tsx" />
     </DxcFlex>
