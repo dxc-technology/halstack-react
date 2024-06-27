@@ -1,5 +1,5 @@
 import React from "react";
-import { DxcParagraph, DxcTypography } from "@repo/ui";
+import { DxcParagraph, DxcTypography } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
 import PreviewContainer from "./PreviewContainer";
 

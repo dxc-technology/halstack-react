@@ -1,4 +1,4 @@
-import { DxcAlert, DxcInset } from "@repo/ui";
+import { DxcAlert, DxcInset } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   return (

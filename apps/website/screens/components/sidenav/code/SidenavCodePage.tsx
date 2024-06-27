@@ -4,7 +4,7 @@ import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import StatusBadge from "@/common/StatusBadge";
 import TableCode from "@/common/TableCode";
-import { DxcLink, DxcFlex, DxcTable, DxcParagraph } from "@repo/ui";
+import { DxcLink, DxcFlex, DxcTable, DxcParagraph } from "@dxc-technology/halstack-react";
 import Link from "next/link";
 
 const sections = [

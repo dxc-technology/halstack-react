@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { DxcSwitch } from "@repo/ui";
+import { DxcSwitch } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
 import PreviewContainer from "./PreviewContainer";
 

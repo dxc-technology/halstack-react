@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { DxcButton, DxcDialog, DxcTextarea, DxcHeading, DxcFlex } from "@repo/ui";
+import { DxcButton, DxcDialog, DxcTextarea, DxcHeading, DxcFlex } from "@dxc-technology/halstack-react";
 import { deepMerge } from "./utils";
 import ImportDialogProps, { IndexedThemeInput, IndexedTheme } from "./types";
 import styled from "styled-components";

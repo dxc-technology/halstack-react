@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Image from "@/common/Image";
 import halstackLogo from "@/common/images/halstack_logo.svg";
 import React from "react";
-import { DxcBadge, DxcFlex } from "@repo/ui";
+import { DxcBadge, DxcFlex } from "@dxc-technology/halstack-react";
 import { useRouter } from "next/router";
 
 type SidenavLogoProps = { subtitle?: string };

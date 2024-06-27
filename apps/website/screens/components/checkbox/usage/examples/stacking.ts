@@ -1,4 +1,4 @@
-import { DxcCheckbox, DxcInset, DxcFlex, DxcHeading } from "@repo/ui";
+import { DxcCheckbox, DxcInset, DxcFlex, DxcHeading } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   return (

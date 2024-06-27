@@ -1,4 +1,4 @@
-import { DxcBadge, DxcContextualMenu, DxcContainer, DxcInset } from "@repo/ui";
+import { DxcBadge, DxcContextualMenu, DxcContainer, DxcInset } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   const groupItems = [

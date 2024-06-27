@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { DxcFlex } from "@repo/ui";
+import { DxcFlex } from "@dxc-technology/halstack-react";
 
 type DocImageProps = {
   children: React.ReactNode;

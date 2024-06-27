@@ -3,7 +3,7 @@ import type { NextPage } from "next";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import styled from "styled-components";
-import { DxcApplicationLayout, DxcTextInput, HalstackProvider } from "@repo/ui";
+import { DxcApplicationLayout, DxcTextInput, HalstackProvider } from "@dxc-technology/halstack-react";
 import "../global-styles.css";
 import { responsiveSizes } from "../screens/common/variables";
 import SidenavLogo from "@/common/sidenav/SidenavLogo";

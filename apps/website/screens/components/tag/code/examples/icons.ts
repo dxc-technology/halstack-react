@@ -1,4 +1,4 @@
-import { DxcTag, DxcInset, DxcFlex } from "@repo/ui";
+import { DxcTag, DxcInset, DxcFlex } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   const icon = (

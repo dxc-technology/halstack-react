@@ -1,5 +1,5 @@
 import React from "react";
-import { DxcFlex } from "@repo/ui";
+import { DxcFlex } from "@dxc-technology/halstack-react";
 import HeadingLink from "./HeadingLink";
 
 type LevelEnum = 1 | 2 | 3 | 4 | 5;

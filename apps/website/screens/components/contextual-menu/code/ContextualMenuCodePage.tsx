@@ -4,7 +4,7 @@ import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import TableCode, { ExtendedTableCode } from "@/common/TableCode";
 import Example from "@/common/example/Example";
-import { DxcFlex, DxcTable } from "@repo/ui";
+import { DxcFlex, DxcTable } from "@dxc-technology/halstack-react";
 import actionMenu from "./examples/actionMenu";
 import navigationMenu from "./examples/navigationMenu";
 

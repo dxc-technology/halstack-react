@@ -1,4 +1,4 @@
-import { DxcProgressBar, DxcInset } from "@repo/ui";
+import { DxcProgressBar, DxcInset } from "@dxc-technology/halstack-react";
 
 const code = `() => (
   <DxcInset space="2rem">

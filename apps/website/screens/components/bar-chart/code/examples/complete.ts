@@ -1,4 +1,4 @@
-import { DxcBarChart, DxcInset } from "@repo/ui";
+import { DxcBarChart, DxcInset } from "@dxc-technology/halstack-react";
 
 const code = `() => (
   <DxcInset space="2rem">

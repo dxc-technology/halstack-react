@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { DxcTypography, DxcLink, DxcFlex } from "@repo/ui";
+import { DxcTypography, DxcLink, DxcFlex } from "@dxc-technology/halstack-react";
 import Link from "next/link";
 import { getNavigationLinks } from "./pagesList";
 import styled from "styled-components";

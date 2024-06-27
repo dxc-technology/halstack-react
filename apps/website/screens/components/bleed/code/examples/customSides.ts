@@ -1,4 +1,4 @@
-import { DxcBleed, DxcInset, DxcFlex } from "@repo/ui";
+import { DxcBleed, DxcInset, DxcFlex } from "@dxc-technology/halstack-react";
 import Placeholder from "@/common/Placeholder";
 
 const code = `() => {

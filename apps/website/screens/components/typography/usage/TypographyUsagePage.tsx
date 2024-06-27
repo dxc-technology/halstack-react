@@ -1,7 +1,7 @@
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
-import { DxcBulletedList, DxcLink, DxcParagraph, DxcFlex } from "@repo/ui";
+import { DxcBulletedList, DxcLink, DxcParagraph, DxcFlex } from "@dxc-technology/halstack-react";
 import Link from "next/link";
 
 const sections = [

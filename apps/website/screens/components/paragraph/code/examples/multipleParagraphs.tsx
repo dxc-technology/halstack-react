@@ -1,4 +1,4 @@
-import { DxcParagraph, DxcInset, DxcTypography, DxcFlex } from "@repo/ui";
+import { DxcParagraph, DxcInset, DxcTypography, DxcFlex } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   return (

@@ -1,4 +1,4 @@
-import { DxcContainer, DxcInset, DxcTypography } from "@repo/ui";
+import { DxcContainer, DxcInset, DxcTypography } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   const suggestions = ["Option 1", "Option 2", "Option 3", "Option 4"];

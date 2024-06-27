@@ -1,4 +1,4 @@
-import { DxcAccordionGroup, DxcInset } from "@repo/ui";
+import { DxcAccordionGroup, DxcInset } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 
 const code = `() => {

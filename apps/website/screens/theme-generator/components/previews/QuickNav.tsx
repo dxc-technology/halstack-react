@@ -1,5 +1,5 @@
 import React from "react";
-import { DxcQuickNav } from "@repo/ui";
+import { DxcQuickNav } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
 
 const links = [

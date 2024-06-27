@@ -1,4 +1,4 @@
-import { DxcParagraph, DxcFlex, DxcAlert, DxcLink } from "@repo/ui";
+import { DxcParagraph, DxcFlex, DxcAlert, DxcLink } from "@dxc-technology/halstack-react";
 import PageHeading from "@/common/PageHeading";
 import TabsPageHeading from "@/common/TabsPageLayout";
 import ComponentHeading from "@/common/ComponentHeading";

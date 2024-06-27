@@ -1,4 +1,4 @@
-import { DxcNumberInput, DxcButton, DxcInset, DxcFlex } from "@repo/ui";
+import { DxcNumberInput, DxcButton, DxcInset, DxcFlex } from "@dxc-technology/halstack-react";
 import { useState, useRef } from "react";
 
 const code = `() => {

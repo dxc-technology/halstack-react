@@ -1,4 +1,4 @@
-import { DxcFileInput, DxcInset } from "@repo/ui";
+import { DxcFileInput, DxcInset } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 
 const code = `() => {

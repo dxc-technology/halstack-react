@@ -1,4 +1,4 @@
-import { DxcInset, DxcQuickNav } from "@repo/ui";
+import { DxcInset, DxcQuickNav } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   const links = [

@@ -1,4 +1,4 @@
-import { DxcRadioGroup, DxcInset, DxcFlex } from "@repo/ui";
+import { DxcRadioGroup, DxcInset, DxcFlex } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   const options = [

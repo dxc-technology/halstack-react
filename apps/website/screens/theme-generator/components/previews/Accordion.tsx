@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { DxcAccordion, DxcAccordionGroup, DxcInset } from "@repo/ui";
+import { DxcAccordion, DxcAccordionGroup, DxcInset } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
 import facebookIcon from "../../images/FacebookIcon";
 import PreviewContainer from "./PreviewContainer";

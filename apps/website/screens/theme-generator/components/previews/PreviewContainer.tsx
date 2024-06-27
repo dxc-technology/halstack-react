@@ -1,4 +1,4 @@
-import { DxcFlex } from "@repo/ui";
+import { DxcFlex } from "@dxc-technology/halstack-react";
 
 type PreviewContainerProps = {
   children: React.ReactNode;

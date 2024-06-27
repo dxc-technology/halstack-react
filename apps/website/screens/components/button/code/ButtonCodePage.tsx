@@ -1,4 +1,4 @@
-import { DxcFlex, DxcLink, DxcTable } from "@repo/ui";
+import { DxcFlex, DxcLink, DxcTable } from "@dxc-technology/halstack-react";
 import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";

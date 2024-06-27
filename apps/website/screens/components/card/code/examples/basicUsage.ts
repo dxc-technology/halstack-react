@@ -1,4 +1,4 @@
-import { DxcInset, DxcCard } from "@repo/ui";
+import { DxcInset, DxcCard } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   return (

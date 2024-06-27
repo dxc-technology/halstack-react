@@ -1,4 +1,4 @@
-import { DxcResultsetTable, DxcButton, DxcInset } from "@repo/ui";
+import { DxcResultsetTable, DxcButton, DxcInset } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   const showName = () => {

@@ -1,4 +1,4 @@
-import { DxcBulletedList, DxcFlex, DxcParagraph } from "@repo/ui";
+import { DxcBulletedList, DxcFlex, DxcParagraph } from "@dxc-technology/halstack-react";
 import DocFooter from "@/common/DocFooter";
 import Figure from "@/common/Figure";
 import Image from "@/common/Image";

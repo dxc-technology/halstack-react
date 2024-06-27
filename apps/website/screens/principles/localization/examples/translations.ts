@@ -1,4 +1,4 @@
-import { DxcSelect, DxcTextInput, DxcPaginator, HalstackProvider, DxcInset } from "@repo/ui";
+import { DxcSelect, DxcTextInput, DxcPaginator, HalstackProvider, DxcInset } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 
 const code = `() => {

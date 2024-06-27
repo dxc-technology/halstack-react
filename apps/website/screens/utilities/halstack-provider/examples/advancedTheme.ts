@@ -1,4 +1,4 @@
-import { HalstackProvider, DxcTextInput, DxcInset, DxcAccordion } from "@repo/ui";
+import { HalstackProvider, DxcTextInput, DxcInset, DxcAccordion } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   const advancedTheme = {

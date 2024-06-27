@@ -1,4 +1,4 @@
-import { DxcResultsetTable, DxcInset } from "@repo/ui";
+import { DxcResultsetTable, DxcInset } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   const columns = [

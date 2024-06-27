@@ -1,4 +1,4 @@
-import { DxcTextarea, DxcInset, DxcFlex, DxcButton } from "@repo/ui";
+import { DxcTextarea, DxcInset, DxcFlex, DxcButton } from "@dxc-technology/halstack-react";
 import { useRef } from "react";
 
 const code = `() => {

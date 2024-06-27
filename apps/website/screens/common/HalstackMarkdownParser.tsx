@@ -1,4 +1,4 @@
-import { DxcBulletedList, DxcHeading, DxcLink } from "@repo/ui";
+import { DxcBulletedList, DxcHeading, DxcLink } from "@dxc-technology/halstack-react";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import Code from "./Code";
 import React from "react";

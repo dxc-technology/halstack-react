@@ -2,7 +2,7 @@ import DocFooter from "@/common/DocFooter";
 import PageHeading from "@/common/PageHeading";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
-import { DxcBulletedList, DxcFlex, DxcHeading, DxcParagraph } from "@repo/ui";
+import { DxcBulletedList, DxcFlex, DxcHeading, DxcParagraph } from "@dxc-technology/halstack-react";
 
 const sections = [
   {

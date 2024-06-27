@@ -3,7 +3,7 @@ import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
-import { DxcFlex } from "@repo/ui";
+import { DxcFlex } from "@dxc-technology/halstack-react";
 import typographyBasicUsage from "./examples/typographyBasicUsage";
 import paragraphBasicUsage from "./examples/paragraphBasicUsage";
 import bulletedListBasicUsage from "./examples/bulletedListBasicUsage";

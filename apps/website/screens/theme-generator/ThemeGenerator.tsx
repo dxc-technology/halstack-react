@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from "react";
-import { DxcApplicationLayout, DxcButton, DxcInset, DxcFlex, DxcLink, DxcTypography, DxcHeading } from "@repo/ui";
+import { DxcApplicationLayout, DxcButton, DxcInset, DxcFlex, DxcLink, DxcTypography, DxcHeading } from "@dxc-technology/halstack-react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import opinionatedTheme from "@/common/themes/opinionated-theme.json";

@@ -1,5 +1,5 @@
 import React from "react";
-import { DxcNavTabs } from "@repo/ui";
+import { DxcNavTabs } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
 import PreviewContainer from "./PreviewContainer";
 

@@ -1,4 +1,4 @@
-import { DxcBreadcrumbs, DxcInset } from "@repo/ui";
+import { DxcBreadcrumbs, DxcInset } from "@dxc-technology/halstack-react";
 import { useRouter } from "next/router";
 
 const code = `() => {

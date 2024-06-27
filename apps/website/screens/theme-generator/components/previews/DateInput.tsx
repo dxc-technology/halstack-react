@@ -1,5 +1,5 @@
 import React from "react";
-import { DxcDateInput } from "@repo/ui";
+import { DxcDateInput } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
 import PreviewContainer from "./PreviewContainer";
 

@@ -1,4 +1,4 @@
-import { DxcLink, DxcInset } from "@repo/ui";
+import { DxcLink, DxcInset } from "@dxc-technology/halstack-react";
 import React from "react";
 
 type routerProps = {

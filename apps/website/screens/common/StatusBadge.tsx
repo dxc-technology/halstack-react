@@ -1,4 +1,4 @@
-import { DxcBadge } from "@repo/ui";
+import { DxcBadge } from "@dxc-technology/halstack-react";
 import { ComponentStatus } from "./pagesList";
 
 type StatusBadgeProps = {

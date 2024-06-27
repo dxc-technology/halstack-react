@@ -4,7 +4,7 @@ import Example from "@/common/example/Example";
 import PageHeading from "@/common/PageHeading";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
-import { DxcHeading, DxcFlex, DxcTable, DxcParagraph, DxcLink } from "@repo/ui";
+import { DxcHeading, DxcFlex, DxcTable, DxcParagraph, DxcLink } from "@dxc-technology/halstack-react";
 import Link from "next/link";
 import translations from "./examples/translations";
 

@@ -2,7 +2,7 @@ import {
   DxcBulletedList,
   DxcInset,
   DxcHeading,
-} from "@repo/ui";
+} from "@dxc-technology/halstack-react";
 
 const code = `() => {
   return (

@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import slugify from "slugify";
-import { DxcBleed, DxcHeading } from "@repo/ui";
+import { DxcBleed, DxcHeading } from "@dxc-technology/halstack-react";
 import { responsiveSizes } from "../common/variables";
 
 const linkIcon = (

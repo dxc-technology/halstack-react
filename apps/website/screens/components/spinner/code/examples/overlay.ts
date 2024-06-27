@@ -1,4 +1,4 @@
-import { DxcSpinner, DxcButton, DxcInset } from "@repo/ui";
+import { DxcSpinner, DxcButton, DxcInset } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 
 const code = `() => {

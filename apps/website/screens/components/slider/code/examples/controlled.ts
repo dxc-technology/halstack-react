@@ -1,4 +1,4 @@
-import { DxcSlider, DxcInset } from "@repo/ui";
+import { DxcSlider, DxcInset } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 
 const code = `() => {

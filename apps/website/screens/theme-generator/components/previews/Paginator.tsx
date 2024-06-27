@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { DxcPaginator } from "@repo/ui";
+import { DxcPaginator } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
 import PreviewContainer from "./PreviewContainer";
 

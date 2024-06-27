@@ -1,4 +1,4 @@
-import { DxcDivider, DxcFlex, DxcInset, DxcParagraph } from "@repo/ui";
+import { DxcDivider, DxcFlex, DxcInset, DxcParagraph } from "@dxc-technology/halstack-react";
 const code = `() => {
     return (
       <DxcInset space="2rem">

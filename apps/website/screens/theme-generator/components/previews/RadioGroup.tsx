@@ -1,5 +1,5 @@
 import React from "react";
-import { DxcRadioGroup } from "@repo/ui";
+import { DxcRadioGroup } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
 import PreviewContainer from "./PreviewContainer";
 

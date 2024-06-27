@@ -1,4 +1,4 @@
-import { DxcSwitch, DxcInset, DxcFlex, DxcHeading } from "@repo/ui";
+import { DxcSwitch, DxcInset, DxcFlex, DxcHeading } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   return (

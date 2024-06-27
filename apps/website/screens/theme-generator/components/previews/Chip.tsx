@@ -1,5 +1,5 @@
 import React from "react";
-import { DxcChip } from "@repo/ui";
+import { DxcChip } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
 import PreviewContainer from "./PreviewContainer";
 

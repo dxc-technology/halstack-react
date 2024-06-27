@@ -1,5 +1,5 @@
 import React from "react";
-import { DxcDropdown } from "@repo/ui";
+import { DxcDropdown } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
 import facebookIcon from "../../images/FacebookIcon";
 import linkedinIcon from "../../images/LinkedinIcon";

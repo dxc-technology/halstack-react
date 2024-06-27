@@ -1,4 +1,4 @@
-import { DxcHeading, DxcFlex, DxcTable, DxcParagraph } from "@repo/ui";
+import { DxcHeading, DxcFlex, DxcTable, DxcParagraph } from "@dxc-technology/halstack-react";
 import Figure from "@/common/Figure";
 import Image from "@/common/Image";
 import Code from "@/common/Code";

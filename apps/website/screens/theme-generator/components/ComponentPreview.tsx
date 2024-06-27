@@ -4,7 +4,7 @@ import componentsPreview from "./ComponentsPreviewMap";
 import { makeReadableSidenav } from "../utils";
 import { ErrorBoundary } from "react-error-boundary";
 import { useRouter } from "next/router";
-import { DxcHeading, DxcFlex, DxcAlert, HalstackProvider } from "@repo/ui";
+import { DxcHeading, DxcFlex, DxcAlert, HalstackProvider } from "@dxc-technology/halstack-react";
 
 type ComponentPreviewProps = {
   customTheme: object;

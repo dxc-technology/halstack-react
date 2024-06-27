@@ -1,4 +1,4 @@
-import { DxcCheckbox, DxcInset } from "@repo/ui";
+import { DxcCheckbox, DxcInset } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 
 const code = `() => {

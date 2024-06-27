@@ -1,4 +1,4 @@
-import { DxcTabs, DxcInset, DxcFlex } from "@repo/ui";
+import { DxcTabs, DxcInset, DxcFlex } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 
 const code = `() => {

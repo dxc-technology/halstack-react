@@ -42,8 +42,8 @@ jobs:
 
       - name: Publish RELEASE to npm
         run: |
-          sed -i "s#\"version\": \"0.0.0\"#\"version\": \"${TAG_NAME}\"#" ./packages/ui/dist/package.json
-          cd packages/ui/dist/
+          sed -i "s#\"version\": \"0.0.0\"#\"version\": \"${TAG_NAME}\"#" ./packages/lib/dist/package.json
+          cd packages/lib/dist/
           npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}

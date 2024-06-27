@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { DxcAlert, DxcButton } from "@repo/ui";
+import { DxcAlert, DxcButton } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
 import PreviewContainer from "./PreviewContainer";
 

@@ -1,4 +1,4 @@
-import { DxcTextInput, DxcInset, DxcFlex } from "@repo/ui";
+import { DxcTextInput, DxcInset, DxcFlex } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   const countries = [

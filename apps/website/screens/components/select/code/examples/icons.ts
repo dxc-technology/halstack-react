@@ -1,4 +1,4 @@
-import { DxcSelect, DxcInset } from "@repo/ui";
+import { DxcSelect, DxcInset } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   const options_material = [

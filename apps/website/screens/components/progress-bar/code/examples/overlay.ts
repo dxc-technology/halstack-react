@@ -1,4 +1,4 @@
-import { DxcProgressBar, DxcButton, DxcInset, DxcFlex } from "@repo/ui";
+import { DxcProgressBar, DxcButton, DxcInset, DxcFlex } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 
 const code = `() => {

@@ -1,5 +1,5 @@
 import React from "react";
-import { DxcApplicationLayout, DxcDropdown, DxcFlex, DxcLink, DxcParagraph } from "@repo/ui";
+import { DxcApplicationLayout, DxcDropdown, DxcFlex, DxcLink, DxcParagraph } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
 import PreviewContainer from "./PreviewContainer";
 

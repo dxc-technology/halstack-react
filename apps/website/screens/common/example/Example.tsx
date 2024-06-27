@@ -3,7 +3,7 @@ import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from "react-live";
 import theme from "./liveEditorTheme";
-import { DxcButton } from "@repo/ui";
+import { DxcButton } from "@dxc-technology/halstack-react";
 
 type Example = {
   scope?: object;

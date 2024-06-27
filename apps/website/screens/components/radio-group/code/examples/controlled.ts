@@ -1,4 +1,4 @@
-import { DxcRadioGroup, DxcInset } from "@repo/ui";
+import { DxcRadioGroup, DxcInset } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 
 const code = `() => {

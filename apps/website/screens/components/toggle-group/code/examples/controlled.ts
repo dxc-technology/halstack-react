@@ -1,4 +1,4 @@
-import { DxcToggleGroup, DxcInset } from "@repo/ui";
+import { DxcToggleGroup, DxcInset } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 
 const code = `() => {

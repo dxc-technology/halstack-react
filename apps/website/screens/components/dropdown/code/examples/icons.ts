@@ -1,4 +1,4 @@
-import { DxcDropdown, DxcInset } from "@repo/ui";
+import { DxcDropdown, DxcInset } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   const selectOption = (value) => {
