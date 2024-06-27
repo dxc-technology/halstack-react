@@ -1,26 +1,9 @@
 import { DxcFlex, DxcTable } from "@dxc-technology/halstack-react";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import QuickNavContainer from "@/common/QuickNavContainer";
-import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
-import Example from "@/common/example/Example";
-// import basicUsage from "./examples/basicUsage";
-import StatusBadge from "@/common/StatusBadge";
 import TableCode from "@/common/TableCode";
-type Props = {
-  /**
-   * Preferred position for displaying the tooltip. It may adjust automatically based on available space.
-   */
-  position?: "bottom" | "top" | "left" | "right";
-  /**
-   * Text to be displayed inside the tooltip.
-   */
-  label: string;
-  /**
-   * Content in which the Tooltip will be displayed.
-   */
-  children: React.ReactNode;
-};
+
 const sections = [
   {
     title: "Props",

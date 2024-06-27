@@ -2,7 +2,6 @@ import {
   DxcParagraph,
   DxcBulletedList,
   DxcFlex,
-  DxcTable,
 } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
