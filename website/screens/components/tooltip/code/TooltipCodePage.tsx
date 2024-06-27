@@ -1,4 +1,4 @@
-import { DxcFlex, DxcTable } from "@dxc-technology/halstack-react";
+import { DxcFlex, DxcParagraph, DxcTable } from "@dxc-technology/halstack-react";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import DocFooter from "@/common/DocFooter";
@@ -51,12 +51,11 @@ const sections = [
   },
   {
     title: "Examples",
-    subSections: [
-      {
-        title: "Basic Usage",
-        content: <p>Examples are not available yet, they will be added soon.</p>
-      },
-    ],
+    content: (
+      <DxcParagraph>
+        The examples are under development and will be available soon.
+      </DxcParagraph>
+    ),
   },
 ];
 
