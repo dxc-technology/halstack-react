@@ -46,7 +46,7 @@ const sections = [
           <td>
             <TableCode>
               'flex-start' | 'flex-end' | 'start' | 'end' | 'left' | 'right' |
-              'center' | 'space-between' | 'space-around' | 'space-evenly
+              'center' | 'space-between' | 'space-around' | 'space-evenly'
             </TableCode>
           </td>
           <td>

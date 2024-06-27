@@ -12,6 +12,7 @@ import {
 import basicUsage from "./examples/basicUsage";
 import nestedList from "./examples/nestedList";
 import TableCode from "@/common/TableCode";
+import StatusBadge from "@/common/StatusBadge";
 
 const sections = [
   {
@@ -84,7 +85,16 @@ const sections = [
             </thead>
             <tbody>
               <tr>
-                <td>children</td>
+                <td>
+                  <DxcFlex
+                    direction="column"
+                    gap="0.25rem"
+                    alignItems="baseline"
+                  >
+                    <StatusBadge status="required" />
+                    children
+                  </DxcFlex>
+                </td>
                 <td>
                   <TableCode>React.ReactNode</TableCode>
                 </td>

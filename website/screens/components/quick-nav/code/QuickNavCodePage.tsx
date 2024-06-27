@@ -6,6 +6,7 @@ import Example from "@/common/example/Example";
 import quickNav from "./examples/quickNav";
 import withContent from "./examples/withContent";
 import TableCode from "@/common/TableCode";
+import StatusBadge from "@/common/StatusBadge";
 
 const sections = [
   {
@@ -30,7 +31,12 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
-            <td>links</td>
+            <td>
+              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                <StatusBadge status="required" />
+                links
+              </DxcFlex>
+            </td>
             <td>
               <TableCode>{"{ label: string; links?: Link[]; }[]"}</TableCode>
             </td>
