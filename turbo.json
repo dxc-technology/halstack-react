@@ -6,20 +6,20 @@
       "inputs": ["$TURBO_DEFAULT$", ".env", ".env.*", "!**/*.stories.{tsx,jsx,mdx}"],
       "outputs": [".next/**", "!.next/cache/**", "dist/**", "storybook-static/**"]
     },
-    "lint": {
-      "dependsOn": ["^lint"]
-    },
+    "build-storybook": {},
     "dev": {
       "cache": false,
       "persistent": true
     },
+    "lint": {
+      "dependsOn": ["^lint"]
+    },
+    "storybook": {},
     "test": {},
     "test:accessibility": {},
     "test:watch": {
       "cache": false,
       "persistent": true
-    },
-    "build-storybook": {},
-    "storybook": {}
+    }
   }
 }
