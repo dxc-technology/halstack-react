@@ -21,7 +21,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Install ui dependencies
+      - name: Install lib dependencies
         run: cd packages/lib && npm i
 
       - name: Install Node.js 18.x
@@ -38,6 +38,7 @@ jobs:
           exitOnceUploaded: true
           exitZeroOnChanges: true
           workingDir: packages/lib
+
       - name: Run Storybook Tests
         run: |
           cd packages/lib

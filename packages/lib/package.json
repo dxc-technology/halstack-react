@@ -10,7 +10,7 @@
     "default": "./dist/index.js"
   },
   "scripts": {
-    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "build": "tsup src/index.ts --format cjs,esm --dts && node ../../scripts/copy-package.js && node ../../scripts/copy-readme.js",
     "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
     "lint": "eslint . --max-warnings 0",
     "test": "jest --env=jsdom --config=./jest.config.js",
