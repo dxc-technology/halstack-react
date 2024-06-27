@@ -1,14 +1,16 @@
 name: "Chromatic"
 
-on:
-  push:
-    branches:
-      - master
-    paths:
-      - "packages/ui/**"
-  pull_request:
-    paths:
-      - "packages/ui/**"
+# on:
+#   push:
+#     branches:
+#       - master
+#     paths:
+#       - "packages/ui/**"
+#   pull_request:
+#     paths:
+#       - "packages/ui/**"
+
+on: pull_request
 
 jobs:
   chromatic-deployment:
