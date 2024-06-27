@@ -1,5 +1,5 @@
 {
-  "name": "turbo-halstack",
+  "name": "halstack-react",
   "private": true,
   "scripts": {
     "build": "turbo build",

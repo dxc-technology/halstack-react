@@ -8,8 +8,8 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@repo/ui": "*",
     "@radix-ui/react-popover": "^1.0.7",
+    "@repo/ui": "*",
     "@types/styled-components": "5.1.29",
     "cross-env": "^7.0.3",
     "next": "14.2.4",
