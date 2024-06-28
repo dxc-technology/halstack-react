@@ -3,7 +3,7 @@
   "scripts": {
     "dev": "tsc --watch",
     "build": "tsc && node ./dist/index.js && npm run link",
-    "link": "cd dist/themed/components && npm link && cd ../../../ && npm link dist/themed/components --force"
+    "link": "npm link dist/themed/components --force"
   },
   "devDependencies": {
     "@cloudscape-design/components": "^3.0.671",
