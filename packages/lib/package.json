@@ -11,11 +11,9 @@
   },
   "scripts": {
     "build": "tsup src/index.ts --format cjs,esm --dts && node ../../scripts/copy-package.js && node ../../scripts/copy-readme.js",
-    "build-cloudscape": "cd ../cloudscape-themed && turbo build",
     "build-storybook": "storybook build",
     "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
     "lint": "eslint . --max-warnings 0",
-    "preinstall": "npm run build-cloudscape",
     "storybook": "storybook dev -p 6006",
     "storybook:accessibility": "test-storybook",
     "storybook:accessibility:ci": "test-storybook --maxWorkers=2",

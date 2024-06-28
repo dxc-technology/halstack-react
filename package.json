@@ -3,9 +3,11 @@
   "private": true,
   "scripts": {
     "build": "turbo build",
+    "build-cloudscape": "cd ../cloudscape-themed && turbo build",
     "dev": "turbo dev",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "lint": "turbo lint",
+    "preinstall": "npm run build-cloudscape",
     "storybook": "turbo storybook",
     "test": "turbo test",
     "test:accessibility": "turbo test:accessibility"

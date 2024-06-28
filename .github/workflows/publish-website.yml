@@ -32,7 +32,7 @@ jobs:
           role-skip-session-tagging: true
 
       - name: Install website dependencies
-        run: cd apps/website && npm i
+        run: cd apps/website && npm install
 
       - name: Build library
         run: cd apps/website && SITE_VERSION=next npm run build
