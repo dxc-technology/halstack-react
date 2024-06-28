@@ -11,15 +11,17 @@
   },
   "scripts": {
     "build": "tsup src/index.ts --format cjs,esm --dts && node ../../scripts/copy-package.js && node ../../scripts/copy-readme.js",
+    "build-cloudscape": "cd ../cloudscape-themed && turbo build",
+    "build-storybook": "storybook build",
     "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
     "lint": "eslint . --max-warnings 0",
-    "test": "jest --env=jsdom --config=./jest.config.js",
-    "test:accessibility": "jest --env=jsdom --config=./jest.config.accessibility.js",
-    "test:watch": "jest --env=jsdom --config=./jest.config.js --watch",
+    "preinstall": "turbo build-cloudscape",
     "storybook": "storybook dev -p 6006",
     "storybook:accessibility": "test-storybook",
     "storybook:accessibility:ci": "test-storybook --maxWorkers=2",
-    "build-storybook": "storybook build"
+    "test": "jest --env=jsdom --config=./jest.config.js",
+    "test:accessibility": "jest --env=jsdom --config=./jest.config.accessibility.js",
+    "test:watch": "jest --env=jsdom --config=./jest.config.js --watch"
   },
   "peerDependencies": {
     "react": "^18.x",
