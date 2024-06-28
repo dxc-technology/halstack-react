@@ -1,0 +1,13 @@
+{
+  "name": "@dxc-technology/cloudscape-themed",
+  "scripts": {
+    "dev": "tsc --watch",
+    "build": "tsc && node ./dist/index.js",
+    "link": "cd dist/themed/components && npm link && cd ../../../ && npm link cloudscape-themed/dist/themed/components --force"
+  },
+  "devDependencies": {
+    "@cloudscape-design/components-themeable": "^3.0.685",
+    "@dxc-technology/typescript-config": "*",
+    "typescript": "latest"
+  }
+}

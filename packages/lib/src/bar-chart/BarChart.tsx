@@ -1,5 +1,5 @@
 import { memo } from "react";
-import { BarChart } from "@cloudscape-design/components";
+import { BarChart } from "@cloudscape-design/components-themed";
 import { useState, useMemo, useCallback } from "react";
 import BarChartProps, { DataTypes, InsetWrapperProps } from "./types";
 import styled, { css } from "styled-components";
