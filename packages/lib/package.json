@@ -15,7 +15,7 @@
     "build-storybook": "storybook build",
     "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
     "lint": "eslint . --max-warnings 0",
-    "preinstall": "turbo build-cloudscape",
+    "preinstall": "npm run build-cloudscape",
     "storybook": "storybook dev -p 6006",
     "storybook:accessibility": "test-storybook",
     "storybook:accessibility:ci": "test-storybook --maxWorkers=2",
