@@ -32,10 +32,10 @@ jobs:
           role-skip-session-tagging: true
 
       - name: Install website dependencies
-        run: cd apps/website && npm install
+        run: npm install
 
-      - name: Build library
-        run: cd apps/website && SITE_VERSION=next npm run build
+      - name: Build website
+        run: SITE_VERSION=next npm run build
 
       - name: Move website to S3
         run: |
