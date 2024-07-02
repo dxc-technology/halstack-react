@@ -14,7 +14,7 @@
   {
     "label": "Bar Chart",
     "path": "/components/bar-chart",
-    "status": "experimental"
+    "status": "new"
   },
   { "label": "Bleed", "path": "/components/bleed", "status": "stable" },
   { "label": "Box", "path": "/components/box", "status": "deprecated" },
