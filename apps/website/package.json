@@ -8,8 +8,8 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@radix-ui/react-popover": "^1.0.7",
     "@dxc-technology/halstack-react": "*",
+    "@radix-ui/react-popover": "^1.0.7",
     "@types/styled-components": "5.1.29",
     "cross-env": "^7.0.3",
     "next": "14.2.4",

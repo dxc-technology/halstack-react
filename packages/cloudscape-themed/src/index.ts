@@ -1,6 +1,5 @@
 import { join } from 'path';
 import { buildThemedComponents } from '@cloudscape-design/components-themeable/theming';
-import { Theme } from "@cloudscape-design/components/theming";
 
 const CoreColorTokens = {
   color_grey_700: "#666666",
@@ -29,7 +28,7 @@ const CoreColorTokens = {
   color_orange_800: "#915108",
 };
 
-const theme: Theme = {
+const theme = {
   tokens: {
     colorChartsPaletteCategorical1: CoreColorTokens.color_purple_500,
     colorChartsPaletteCategorical2: CoreColorTokens.color_blue_600,

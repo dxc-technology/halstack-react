@@ -6,7 +6,6 @@
     "link": "npm link dist/themed/components --force"
   },
   "devDependencies": {
-    "@cloudscape-design/components": "^3.0.671",
     "@cloudscape-design/components-themeable": "^3.0.685",
     "@dxc-technology/typescript-config": "*",
     "typescript": "latest"
