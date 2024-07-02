@@ -27,7 +27,8 @@
     "styled-components": "^5.0.1"
   },
   "dependencies": {
-    "@cloudscape-design/components-themed": "file:packages/cloudscape-themed/dist/themed/components",
+    "@cloudscape-design/components": "file:packages/cloudscape-themed/dist/themed/components",
+    "@cloudscape-design/design-tokens": "file:packages/cloudscape-themed/dist/themed/design-tokens",
     "@radix-ui/react-popover": "^1.1.0",
     "@radix-ui/react-tooltip": "^1.1.0",
     "color": "^4.2.3",
