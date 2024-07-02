@@ -1,0 +1,27 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "inputs": ["$TURBO_DEFAULT$", ".env", ".env.*", "!**/*.stories.{tsx,jsx,mdx}"],
+      "outputs": [".next/**", "!.next/cache/**", "dist/**", "storybook-static/**"]
+    },
+    "build-storybook": {},
+    "dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "lint": {
+      "dependsOn": ["^lint"]
+    },
+    "storybook": {},
+    "storybook:accessibility": {},
+    "storybook:accessibility:ci": {},
+    "test": {},
+    "test:accessibility": {},
+    "test:watch": {
+      "cache": false,
+      "persistent": true
+    }
+  }
+}

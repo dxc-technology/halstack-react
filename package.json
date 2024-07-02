@@ -1,0 +1,30 @@
+{
+  "name": "halstack-react",
+  "private": true,
+  "scripts": {
+    "build": "turbo build",
+    "build:cloudscape": "cd packages/cloudscape-themed && turbo build",
+    "dev": "turbo dev",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "lint": "turbo lint",
+    "preinstall": "npm run build:cloudscape",
+    "storybook": "turbo storybook",
+    "storybook:accessibility": "turbo storybook:accessibility",
+    "storybook:accessibility:ci": "turbo storybook:accessibility:ci",
+    "test": "turbo test",
+    "test:accessibility": "turbo test:accessibility"
+  },
+  "devDependencies": {
+    "prettier": "^3.2.5",
+    "turbo": "^2.0.4",
+    "typescript": "^5.4.5"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "packageManager": "npm@9.8.1",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ]
+}

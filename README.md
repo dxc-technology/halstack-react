@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://developer.dxc.com/halstack/">
-    <img src="website/screens/common/images/halstack_logo.svg" alt="Halstack Design System logo" />
+    <img src="apps/website/screens/common/images/halstack_logo.svg" alt="Halstack Design System logo" />
   </a>
 </p>
 

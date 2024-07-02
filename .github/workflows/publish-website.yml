@@ -5,7 +5,7 @@ on:
     branches:
       - master
     paths:
-      - "website/**"
+      - "apps/website/**"
 
 jobs:
   build:
@@ -32,12 +32,12 @@ jobs:
           role-skip-session-tagging: true
 
       - name: Install website dependencies
-        run: cd website && npm i
+        run: npm install
 
-      - name: Build library
-        run: cd website && SITE_VERSION=next npm run build
+      - name: Build website
+        run: SITE_VERSION=next npm run build
 
       - name: Move website to S3
         run: |
           aws s3 rm s3://design-system-react-cdk-site/halstack/next/ --recursive
-          aws s3 cp ./website/out/ s3://design-system-react-cdk-site/halstack/next/ --recursive
+          aws s3 cp ./apps/website/out/ s3://design-system-react-cdk-site/halstack/next/ --recursive
