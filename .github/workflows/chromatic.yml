@@ -36,6 +36,7 @@ jobs:
           exitOnceUploaded: true
           exitZeroOnChanges: true
           workingDir: lib
+          forceRebuild: true
       - name: Run Storybook Tests
         run: |
           cd lib
