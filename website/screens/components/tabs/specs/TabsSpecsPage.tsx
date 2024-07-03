@@ -267,88 +267,129 @@ const sections = [
                 </td>
                 <td>#bfbfbf</td>
               </tr>
+            </tbody>
+          </DxcTable>
+        ),
+      },
+      {
+        title: "Typography",
+        content: (
+          <DxcTable>
+            <thead>
+              <tr>
+                <th>Component token</th>
+                <th>Element</th>
+                <th>Core token</th>
+                <th>Value</th>
+              </tr>
+            </thead>
+            <tbody>
               <tr>
                 <td>
-                  <Code>badgeBackgroundColor</Code>
+                  <Code>fontFamily</Code>
                 </td>
-                <td>Badge container</td>
+                <td>Title</td>
                 <td>
-                  <Code>color-red-700</Code>
+                  <Code>font-family-sans</Code>
                 </td>
-                <td>#d0011b</td>
+                <td>&#39;Open Sans&#39;, sans-serif</td>
               </tr>
               <tr>
                 <td>
-                  <Code>badgeFontColor</Code>
+                  <Code>fontSize</Code>
                 </td>
-                <td>Label</td>
+                <td>Title</td>
                 <td>
-                  <Code>color-white</Code>
+                  <Code>font-scale-03</Code>
                 </td>
-                <td>#ffffff</td>
+                <td>1rem / 16px</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>fontStyle</Code>
+                </td>
+                <td>Title</td>
+                <td>
+                  <Code>font-style-normal</Code>
+                </td>
+                <td>normal</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>disabledFontStyle</Code>
+                </td>
+                <td>Title</td>
+                <td>
+                  <Code>font-style-normal</Code>
+                </td>
+                <td>normal</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>fontWeight</Code>
+                </td>
+                <td>Title:disabled</td>
+                <td>
+                  <Code>font-weight-semibold</Code>
+                </td>
+                <td>600</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>pressedFontWeight</Code>
+                </td>
+                <td>Title:active</td>
+                <td>
+                  <Code>font-weight-semibold</Code>
+                </td>
+                <td>600</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>fontTextTransform</Code>
+                </td>
+                <td>Title</td>
+                <td>-</td>
+                <td>none</td>
+              </tr>
+            </tbody>
+          </DxcTable>
+        ),
+      },
+      {
+        title: "Border",
+        content: (
+          <DxcTable>
+            <thead>
+              <tr>
+                <th>Component token</th>
+                <th>Element</th>
+                <th>Core token</th>
+                <th>Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <Code>dividerThickness</Code>
+                </td>
+                <td>Separator</td>
+                <td>-</td>
+                <td>1px</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>selectedUnderlineThickness</Code>
+                </td>
+                <td>Separator:selected</td>
+                <td>-</td>
+                <td>2px</td>
               </tr>
             </tbody>
           </DxcTable>
         ),
       },
     ],
-  },
-  {
-    title: "Typography",
-    content: (
-      <DxcTable>
-        <thead>
-          <tr>
-            <th>Component token</th>
-            <th>Element</th>
-            <th>Core token</th>
-            <th>Value</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              <Code>fontFamily</Code>
-            </td>
-            <td>Title</td>
-            <td>
-              <Code>font-family-sans</Code>
-            </td>
-            <td>&#39;Open Sans&#39;, sans-serif;</td>
-          </tr>
-          <tr>
-            <td>
-              <Code>fontSize</Code>
-            </td>
-            <td>Title</td>
-            <td>
-              <Code>font-scale-03</Code>
-            </td>
-            <td>1rem / 16px</td>
-          </tr>
-          <tr>
-            <td>
-              <Code>fontStyle</Code>
-            </td>
-            <td>Title</td>
-            <td>
-              <Code>font-style-normal</Code>
-            </td>
-            <td>normal</td>
-          </tr>
-          <tr>
-            <td>
-              <Code>fontWeight</Code>
-            </td>
-            <td>Title</td>
-            <td>
-              <Code>font-weight-semibold</Code>
-            </td>
-            <td>600</td>
-          </tr>
-        </tbody>
-      </DxcTable>
-    ),
   },
   {
     title: "Accessibility",

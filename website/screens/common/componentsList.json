@@ -11,12 +11,17 @@
     "path": "/components/badge",
     "status": "new"
   },
+  {
+    "label": "Bar Chart",
+    "path": "/components/bar-chart",
+    "status": "experimental"
+  },
   { "label": "Bleed", "path": "/components/bleed", "status": "stable" },
   { "label": "Box", "path": "/components/box", "status": "deprecated" },
   {
     "label": "Breadcrumbs",
     "path": "/components/breadcrumbs",
-    "status": "experimental"
+    "status": "new"
   },
   {
     "label": "Bulleted List",
@@ -114,6 +119,11 @@
     "label": "Toggle Group",
     "path": "/components/toggle-group",
     "status": "stable"
+  },
+  {
+    "label": "Tooltip",
+    "path": "/components/tooltip",
+    "status": "experimental"
   },
   {
     "label": "Typography",

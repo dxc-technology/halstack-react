@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback, useLayoutEffect, useId } from "react";
+import React, { useState, useRef, useCallback, useLayoutEffect, useId } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import * as Popover from "@radix-ui/react-popover";
 import DropdownPropsType from "./types";
@@ -7,28 +7,7 @@ import getMargin from "../common/utils";
 import useTheme from "../useTheme";
 import DropdownMenu from "./DropdownMenu";
 import DxcIcon from "../icon/Icon";
-
-const useWidth = (target) => {
-  const [width, setWidth] = useState(0);
-
-  useEffect(() => {
-    if (target != null) {
-      setWidth(target.getBoundingClientRect().width);
-
-      const triggerObserver = new ResizeObserver((entries) => {
-        const rect = entries[0].target.getBoundingClientRect();
-        setWidth(rect?.width);
-      });
-      triggerObserver.observe(target);
-      return () => {
-        triggerObserver.unobserve(target);
-      };
-    }
-    return undefined;
-  }, [target]);
-
-  return width;
-};
+import useWidth from "../utils/useWidth";
 
 const DxcDropdown = ({
   options,

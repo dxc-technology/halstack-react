@@ -12,14 +12,16 @@ import CoreTokens from "../common/coreTokens";
 const normalizeSortValue = (sortValue: string | React.ReactNode) =>
   typeof sortValue === "string" ? sortValue.toUpperCase() : sortValue;
 
-const sortArray = (index: number, order: "ascending" | "descending", resultset: { id: string; cells: Row[] }[]) =>
+const isDateType = (value: React.ReactNode | Date): boolean => value instanceof Date;
+
+const sortArray = (index: number, order: "ascending" | "descending", resultset: { id: string; cells: Row }[]) =>
   resultset.slice().sort((element1, element2) => {
     const sortValueA = normalizeSortValue(element1.cells[index].sortValue || element1[index].displayValue);
     const sortValueB = normalizeSortValue(element2.cells[index].sortValue || element2[index].displayValue);
     let comparison = 0;
-    if (typeof sortValueA === "object") {
+    if (typeof sortValueA === "object" && !isDateType(sortValueA)) {
       comparison = -1;
-    } else if (typeof sortValueB === "object") {
+    } else if (typeof sortValueB === "object" && !isDateType(sortValueB)) {
       comparison = 1;
     } else if (sortValueA > sortValueB) {
       comparison = 1;
@@ -32,14 +34,10 @@ const sortArray = (index: number, order: "ascending" | "descending", resultset: 
 const getMinItemsPerPageIndex = (currentPageInternal: number, itemsPerPage: number, page: number) =>
   currentPageInternal === 1 ? 0 : itemsPerPage * (page - 1);
 
-const getMaxItemsPerPageIndex = (
-  minItemsPerPageIndex: number,
-  itemsPerPage: number,
-  resultset: Row[][],
-  page: number
-) => (minItemsPerPageIndex + itemsPerPage > resultset.length ? resultset.length : itemsPerPage * page - 1);
+const getMaxItemsPerPageIndex = (minItemsPerPageIndex: number, itemsPerPage: number, resultset: Row[], page: number) =>
+  minItemsPerPageIndex + itemsPerPage > resultset.length ? resultset.length : itemsPerPage * page - 1;
 
-const assignIdsToRows = (resultset: Row[][]) => {
+const assignIdsToRows = (resultset: Row[]) => {
   if (resultset.length > 0) {
     return resultset.map((row, index) => ({
       cells: row,

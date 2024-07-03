@@ -10,6 +10,7 @@ const disabledRules = {
   rules: formatRules(rules),
 };
 
+// Mocking DOMRect for Radix Primitive Popover
 (global as any).globalThis = global;
 (global as any).DOMRect = {
   fromRect: () => ({

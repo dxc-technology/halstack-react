@@ -7,6 +7,7 @@ import Example from "@/common/example/Example";
 import { DxcFlex, DxcTable } from "@dxc-technology/halstack-react";
 import actionMenu from "./examples/actionMenu";
 import navigationMenu from "./examples/navigationMenu";
+import StatusBadge from "@/common/StatusBadge";
 
 const itemTypeString = `{
     badge?: React.ReactElement;
@@ -40,7 +41,12 @@ const sections = [
           <th>Default</th>
         </tr>
         <tr>
-          <td>items</td>
+          <td>
+            <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+              <StatusBadge status="required" />
+              items
+            </DxcFlex>
+          </td>
           <td>
             <TableCode style={{ fontSize: "0.875rem" }}>
               (Item | GroupItem)[] | Section[]

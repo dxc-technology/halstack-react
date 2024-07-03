@@ -46,6 +46,8 @@ import DxcStatusLight from "./status-light/StatusLight";
 import DxcContextualMenu from "./contextual-menu/ContextualMenu";
 import DxcDivider from "./divider/Divider";
 import DxcBreadcrumbs from "./breadcrumbs/Breadcrumbs";
+import DxcBarChart from "./bar-chart/BarChart";
+import DxcTooltip from "./tooltip/Tooltip";
 
 import HalstackContext, { HalstackProvider, HalstackLanguageContext } from "./HalstackContext";
 
@@ -101,4 +103,6 @@ export {
   DxcContextualMenu,
   DxcDivider,
   DxcBreadcrumbs,
+  DxcBarChart,
+  DxcTooltip,
 };

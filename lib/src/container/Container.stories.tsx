@@ -41,8 +41,9 @@ export const Chromatic = () => (
     <ExampleContainer>
       <DxcContainer
         background={{
-          image: "url(https://www.laecuaciondigital.com/wp-content/uploads/2023/10/DXC-Technology.png)",
-          position: "50%",
+          image:
+            "url(https://dxc.com/content/dam/dxc/projects/dxc-com/common/images/landscape-1050x650/logos/we_are_dxc-1050x650.jpg)",
+          size: "500px 500px",
         }}
         width="500px"
         height="500px"

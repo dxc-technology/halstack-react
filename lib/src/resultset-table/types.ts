@@ -17,7 +17,7 @@ export type Column = {
   isSortable?: boolean;
 };
 
-export type Row = {
+type Cell = {
   /**
    * Value to be displayed in the cell.
    */
@@ -26,8 +26,10 @@ export type Row = {
    * Value to be used when sorting the table by that
    * column. If not indicated displayValue will be used for sorting.
    */
-  sortValue?: string;
+  sortValue?: string | number | Date;
 };
+
+export type Row = Cell[];
 
 type CommonProps = {
   /**
@@ -38,7 +40,7 @@ type CommonProps = {
    * An array of objects representing the rows of the table, you will have
    * as many objects as columns in the table.
    */
-  rows: Row[][];
+  rows: Row[];
   /**
    * Size of the margin to be applied to the component. You can pass an object with 'top',
    * 'bottom', 'left' and 'right' properties in order to specify different margin sizes.

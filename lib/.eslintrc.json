@@ -89,7 +89,8 @@
     "react/jsx-props-no-spreading": "off",
     "react/jsx-no-useless-fragment": ["warn", { "allowExpressions": true }],
     "react/no-array-index-key": "warn",
-    "react/require-default-props": "off"
+    "react/require-default-props": "off",
+    "@typescript-eslint/no-explicit-any": "warn"
   },
   "settings": {
     "import/resolver": {

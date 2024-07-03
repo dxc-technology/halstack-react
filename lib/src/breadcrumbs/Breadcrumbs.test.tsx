@@ -3,6 +3,7 @@ import { render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import DxcBreadcrumbs from "./Breadcrumbs";
 
+// Mocking DOMRect for Radix Primitive Popover
 (global as any).globalThis = global;
 (global as any).DOMRect = {
   fromRect: () => ({

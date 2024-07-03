@@ -137,7 +137,7 @@ const BadgeTableCodePage = () => {
           startHeadingLevel={2}
         ></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/badge/TableCode/BadgeTableCodePage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/badge/code/BadgeCodePage.tsx" />
     </DxcFlex>
   );
 };

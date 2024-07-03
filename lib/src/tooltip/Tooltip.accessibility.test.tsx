@@ -4,6 +4,7 @@ import { axe } from "../../test/accessibility/axe-helper";
 import DxcTooltip from "./Tooltip";
 import DxcButton from "../button/Button";
 
+// Mocking DOMRect for Radix Primitive Popover
 (global as any).globalThis = global;
 (global as any).DOMRect = {
   fromRect: () => ({

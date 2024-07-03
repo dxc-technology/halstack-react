@@ -53,7 +53,7 @@ const DxcAlert = ({
               {inlineText && inlineText !== "" && "-"}
               <AlertInlineText>{inlineText}</AlertInlineText>
             </AlertText>
-            {onClose && (
+            {typeof onClose === "function" && (
               <AlertCloseAction onClick={onClose} tabIndex={tabIndex} aria-label="Close alert">
                 <DxcIcon icon="close" />
               </AlertCloseAction>

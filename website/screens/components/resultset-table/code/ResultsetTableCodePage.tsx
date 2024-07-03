@@ -31,6 +31,15 @@ const actionsType = `{
   options: Option[];
 }[]`;
 
+const cellTypeString = `{ 
+  displayValue: React.ReactNode; 
+  sortValue?: string | number | Date; 
+}[]`;
+const columnTypeString = `{ 
+  displayValue: React.ReactNode; 
+  isSortable?: boolean; 
+}`;
+
 const sections = [
   {
     title: "Props",
@@ -53,9 +62,12 @@ const sections = [
               </DxcFlex>
             </td>
             <td>
-              <TableCode>
-                {"{ displayValue: React.ReactNode; isSortable?: boolean; }[]"}
-              </TableCode>
+              <TableCode>Column[]</TableCode>
+              <p>
+                being <Code>Column</Code> an object with the following
+                properties:
+              </p>
+              <ExtendedTableCode>{columnTypeString}</ExtendedTableCode>
             </td>
             <td>
               An array of objects representing the columns of the table. Each
@@ -80,14 +92,17 @@ const sections = [
               </DxcFlex>
             </td>
             <td>
-              <TableCode>
-                {"{ displayValue: React.ReactNode; sortValue?: string; }[]"}
-              </TableCode>
+              <TableCode>Row[]</TableCode>
+              <p>
+                being <Code>Row</Code> a <Code>Cell[]</Code> and being{" "}
+                <Code>Cell</Code> an object with the following properties:
+              </p>
+              <ExtendedTableCode>{cellTypeString}</ExtendedTableCode>
             </td>
             <td>
               An array of objects representing the rows of the table, you will
-              have as many objects as columns in the table. Each object has the
-              following properties:
+              have as many objects as columns in the table. Each row is a set of
+              cells that have the following properties:
               <ul>
                 <li>
                   <b>displayValue</b>: Value to be displayed in the cell.

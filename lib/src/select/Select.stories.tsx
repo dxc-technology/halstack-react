@@ -550,7 +550,7 @@ const SelectListbox = () => {
           <Title title="Grouped icons (Material Symbols)" theme="light" level={4} />
           <Listbox
             id="x14"
-            currentValue={["0", "3"]}
+            currentValue="4"
             options={iconOptionsGroupedMaterial}
             visualFocusIndex={-1}
             lastOptionIndex={3}
@@ -566,7 +566,7 @@ const SelectListbox = () => {
           <Title title="Grouped icons (Material)" theme="light" level={4} />
           <Listbox
             id="x15"
-            currentValue={["facebook", "figma"]}
+            currentValue={["car", "motorcycle", "train"]}
             options={optionsMaterial}
             visualFocusIndex={-1}
             lastOptionIndex={6}
@@ -752,7 +752,7 @@ const MultipleSelect = () => (
   </ExampleContainer>
 );
 
-const MultipleSelectOpinioated = () => (
+const MultipleSelectOpinionated = () => (
   <ExampleContainer expanded>
     <Title title="Multiple select" theme="light" level={4} />
     <HalstackProvider theme={opinionatedTheme}>
@@ -904,7 +904,7 @@ MultipleOptionsDisplayed.play = async ({ canvasElement }) => {
   await userEvent.click(canvas.getAllByRole("combobox")[0]);
 };
 
-export const MultipleOptionsDisplayedOpinionated = MultipleSelectOpinioated.bind({});
+export const MultipleOptionsDisplayedOpinionated = MultipleSelectOpinionated.bind({});
 MultipleOptionsDisplayedOpinionated.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   await userEvent.click(canvas.getAllByRole("combobox")[0]);

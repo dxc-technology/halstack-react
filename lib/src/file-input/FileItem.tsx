@@ -145,6 +145,7 @@ const DeleteFileAction = styled.button`
   display: flex;
   flex-wrap: wrap;
   align-content: center;
+  justify-content: center;
   height: 24px;
   width: 24px;
   font-size: 1rem;

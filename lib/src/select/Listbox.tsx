@@ -1,12 +1,10 @@
-import React, { useId, useLayoutEffect, useRef } from "react";
+import React, { useLayoutEffect, useRef } from "react";
 import styled from "styled-components";
 import useTranslatedLabels from "../useTranslatedLabels";
 import { ListboxProps } from "./types";
 import Option from "./Option";
 import DxcIcon from "../icon/Icon";
-
-const groupsHaveOptions = (options) =>
-  options?.[0].options ? options.some((groupOption) => groupOption.options?.length > 0) : true;
+import { groupsHaveOptions } from "./selectUtils";
 
 const Listbox = ({
   id,
@@ -23,16 +21,15 @@ const Listbox = ({
 }: ListboxProps): JSX.Element => {
   const translatedLabels = useTranslatedLabels();
   const listboxRef = useRef(null);
-  const listboxId = `select-${useId()}`;
 
   let globalIndex = optional && !multiple ? 0 : -1;
   const mapOptionFunc = (option, mapIndex) => {
-    const groupId = `${listboxId}-group-${mapIndex}`;
+    const groupId = `${id}-group-${mapIndex}`;
     if (option.options) {
       return (
         option.options.length > 0 && (
           <li key={groupId}>
-            <GroupList role="listbox" aria-labelledby={groupId}>
+            <ul role="listbox" aria-labelledby={groupId} style={{ padding: 0 }}>
               <GroupLabel role="presentation" id={groupId}>
                 {option.label}
               </GroupLabel>
@@ -40,8 +37,8 @@ const Listbox = ({
                 globalIndex += 1;
                 return (
                   <Option
-                    key={`${listboxId}-option-${singleOption.value}`}
-                    id={`${listboxId}-option-${globalIndex}`}
+                    key={`${id}-option-${singleOption.value}`}
+                    id={`${id}-option-${globalIndex}`}
                     option={singleOption}
                     onClick={handleOptionOnClick}
                     multiple={multiple}
@@ -54,7 +51,7 @@ const Listbox = ({
                   />
                 );
               })}
-            </GroupList>
+            </ul>
           </li>
         )
       );
@@ -62,8 +59,8 @@ const Listbox = ({
     globalIndex += 1;
     return (
       <Option
-        key={`${listboxId}-option-${option.value}`}
-        id={`${listboxId}-option-${globalIndex}`}
+        key={`${id}-option-${option.value}`}
+        id={`${id}-option-${globalIndex}`}
         option={option}
         onClick={handleOptionOnClick}
         multiple={multiple}
@@ -147,12 +144,13 @@ const ListboxContainer = styled.ul`
   border: 1px solid ${(props) => props.theme.listDialogBorderColor};
   border-radius: 0.25rem;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  cursor: default;
   color: ${(props) => props.theme.listOptionFontColor};
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.listOptionFontSize};
   font-style: ${(props) => props.theme.listOptionFontStyle};
   font-weight: ${(props) => props.theme.listOptionFontWeight};
+  line-height: 24px;
+  cursor: default;
 `;
 
 const OptionsSystemMessage = styled.span`
@@ -174,14 +172,10 @@ const NoMatchesFoundIcon = styled.span`
   font-size: 16px;
 `;
 
-const GroupList = styled.ul`
-  padding: 0;
-`;
-
 const GroupLabel = styled.li`
   padding: 4px 16px;
   font-weight: ${(props) => props.theme.listGroupLabelFontWeight};
   line-height: 1.715em;
 `;
 
-export default React.memo(Listbox);
+export default Listbox;

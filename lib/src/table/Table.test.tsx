@@ -4,6 +4,7 @@ import userEvent from "@testing-library/user-event";
 import DxcTable from "./Table";
 import { ActionCellsPropsType } from "./types";
 
+// Mocking DOMRect for Radix Primitive Popover
 (global as any).globalThis = global;
 (global as any).DOMRect = {
   fromRect: () => ({
