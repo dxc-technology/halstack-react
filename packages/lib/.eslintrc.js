@@ -7,7 +7,7 @@ module.exports = {
   },
   extends: [
     "@dxc-technology/eslint-config/react-internal.js",
-    "airbnb",
+    // "airbnb",
     "prettier",
     "plugin:jest/recommended",
     "plugin:storybook/recommended",
