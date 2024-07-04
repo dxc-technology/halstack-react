@@ -16,20 +16,14 @@ jobs:
           node-version: 18.x
           registry-url: https://registry.npmjs.org/
 
-      - name: Install lib dependencies
-        run: cd lib && npm install
+      - name: Install dependencies
+        run: npm install
 
-      - name: Build library
-        run: cd lib && npm run build
-
-      - name: Install website dependencies
-        run: cd website && npm i
+      - name: Build library and website
+        run: npm run build
 
       - name: Test library
-        run: cd lib && npm run test
+        run: npm run test
 
       - name: Test library accessibility
-        run: cd lib && npm run test:accessibility
-
-      - name: Build website
-        run: cd website && npm run build
+        run: npm run test:accessibility
