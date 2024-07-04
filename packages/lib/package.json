@@ -24,11 +24,10 @@
   "peerDependencies": {
     "react": "^18.x",
     "react-dom": "^18.x",
-    "styled-components": "^5.0.1"
+    "styled-components": "^5.0.1",
+    "@cloudscape-design/components": "3.0.677"
   },
   "dependencies": {
-    "@cloudscape-design/components": "file:packages/cloudscape-themed/dist/themed/components",
-    "@cloudscape-design/design-tokens": "file:packages/cloudscape-themed/dist/themed/design-tokens",
     "@radix-ui/react-popover": "^1.1.0",
     "@radix-ui/react-tooltip": "^1.1.0",
     "color": "^4.2.3",
@@ -36,6 +35,8 @@
     "slugify": "^1.6.6"
   },
   "devDependencies": {
+    "@cloudscape-design/components": "file:packages/cloudscape-themed/dist/themed/components",
+    "@cloudscape-design/design-tokens": "file:packages/cloudscape-themed/dist/themed/design-tokens",
     "@babel/cli": "^7.16.8",
     "@babel/core": "^7.16.7",
     "@babel/plugin-proposal-nullish-coalescing-operator": "^7.13.8",

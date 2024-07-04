@@ -2,11 +2,6 @@ import { render } from "@testing-library/react";
 import DxcBarChart from "./BarChart";
 import userEvent from "@testing-library/user-event";
 
-// Mocking applyTheme function to avoid issues with Cloudscape theming
-jest.mock("@cloudscape-design/components/theming", () => ({
-  applyTheme: jest.fn(),
-}));
-
 // Mocking DOMRect for Radix Primitive Popover
 (global as any).globalThis = global;
 (global as any).DOMRect = {
