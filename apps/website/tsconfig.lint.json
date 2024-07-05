@@ -1,0 +1,9 @@
+{
+    "extends": "@dxc-technology/typescript-config/react-library.json",
+    "compilerOptions": {
+      "outDir": "dist"
+    },
+    "include": ["pages", "turbo", "test", "."],
+    "exclude": ["node_modules", "dist"]
+  }
+  
