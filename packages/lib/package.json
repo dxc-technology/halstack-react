@@ -17,6 +17,7 @@
     "build-storybook": "storybook build",
     "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
     "lint": "eslint . --max-warnings 0",
+    "prepublishOnly": "node ../../scripts/copy-readme.js",
     "storybook": "storybook dev -p 6006",
     "storybook:accessibility": "test-storybook",
     "storybook:accessibility:ci": "test-storybook --maxWorkers=2",
