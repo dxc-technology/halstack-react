@@ -9,6 +9,9 @@
     "types": "./src/index.ts",
     "default": "./dist/index.js"
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsup src/index.ts --format cjs,esm --dts && node ../../scripts/copy-package.js && node ../../scripts/copy-readme.js",
     "build-storybook": "storybook build",
