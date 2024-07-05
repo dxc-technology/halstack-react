@@ -15,6 +15,7 @@
     "test:accessibility": "turbo test:accessibility"
   },
   "devDependencies": {
+    "husky": "^9.0.11",
     "identity-obj-proxy": "^3.0.0",
     "prettier": "^3.2.5",
     "turbo": "^2.0.4",
