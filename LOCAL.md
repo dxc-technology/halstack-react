@@ -1,3 +1,9 @@
+<p align="center">
+  <a href="https://developer.dxc.com/halstack/">
+    <img src="apps/website/screens/common/images/halstack_logo.svg" alt="Halstack Design System logo" />
+  </a>
+</p>
+
 <h1 align="center">Local environment</h1>
 
 Halstack has become a monorepo, so the development environment has changed. Now, the library and the example application are in the same repository, and the library is built and linked to the example application.
