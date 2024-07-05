@@ -1,6 +1,6 @@
 import { render } from "@testing-library/react";
-import DxcBarChart from "./BarChart";
 import userEvent from "@testing-library/user-event";
+import DxcBarChart from "./BarChart";
 
 // Mocking applyTheme function to avoid issues with Cloudscape theming
 jest.mock("@cloudscape-design/components/theming", () => ({

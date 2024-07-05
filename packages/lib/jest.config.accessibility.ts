@@ -8,6 +8,9 @@ const configAccessibility: Config = {
   },
   testMatch: ["**/?(*.)+(accessibility.)(spec|test).[jt]s?(x)"],
   setupFilesAfterEnv: ["<rootDir>/setupJestAxe.ts"],
+  transform: {
+    "^.+\\.[tj]sx?$": "babel-jest",
+  },
 };
 
 export default configAccessibility;

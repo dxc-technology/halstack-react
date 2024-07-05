@@ -1,7 +1,7 @@
 import { BarChart } from "@cloudscape-design/components";
 import { useState, useMemo, useCallback, memo } from "react";
-import BarChartProps, { DataTypes, InsetWrapperProps } from "./types";
 import styled, { css } from "styled-components";
+import BarChartProps, { DataTypes, InsetWrapperProps } from "./types";
 import DxcSpinner from "../spinner/Spinner";
 import DxcInset from "../inset/Inset";
 import DxcSelect from "../select/Select";

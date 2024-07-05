@@ -1,28 +1,26 @@
 import { forwardRef } from "react";
-import ActionIconPropsTypes, { RefType } from "./types";
 import styled from "styled-components";
+import ActionIconPropsTypes, { RefType } from "./types";
 import CoreTokens from "../common/coreTokens";
 import DxcIcon from "../icon/Icon";
 
 const DxcActionIcon = forwardRef<RefType, ActionIconPropsTypes>(
-  ({ disabled = false, title, icon, onClick, tabIndex }, ref): JSX.Element => {
-    return (
-      <ActionIcon
-        aria-label={title}
-        disabled={disabled}
-        onClick={onClick}
-        onMouseDown={(event) => {
-          event.stopPropagation();
-        }}
-        tabIndex={tabIndex}
-        title={title}
-        type="button"
-        ref={ref}
-      >
-        {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
-      </ActionIcon>
-    );
-  }
+  ({ disabled = false, title, icon, onClick, tabIndex }, ref): JSX.Element => (
+    <ActionIcon
+      aria-label={title}
+      disabled={disabled}
+      onClick={onClick}
+      onMouseDown={(event) => {
+        event.stopPropagation();
+      }}
+      tabIndex={tabIndex}
+      title={title}
+      type="button"
+      ref={ref}
+    >
+      {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
+    </ActionIcon>
+  )
 );
 
 const ActionIcon = styled.button`

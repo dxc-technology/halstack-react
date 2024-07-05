@@ -7,7 +7,7 @@ import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
 import HeaderPropsType from "./types";
 import DxcFlex from "../flex/Flex";
-import { dxcLogo } from "./Icons";
+import dxcLogo from "./Icons";
 
 const Dropdown = (props: ComponentProps<typeof DxcDropdown>) => (
   <HeaderDropdown>

@@ -7,16 +7,6 @@ type Margin = {
 };
 type SVG = React.ReactNode & React.SVGProps<SVGSVGElement>;
 
-export type ListOptionGroupType = {
-  /**
-   * Label of the group to be shown in the select's listbox.
-   */
-  label: string;
-  /**
-   * List of the grouped options.
-   */
-  options: ListOptionType[];
-};
 export type ListOptionType = {
   /**
    * Element used as the icon that will be placed before the option label.
@@ -35,6 +25,17 @@ export type ListOptionType = {
    * by optional prop.
    */
   value: string;
+};
+
+export type ListOptionGroupType = {
+  /**
+   * Label of the group to be shown in the select's listbox.
+   */
+  label: string;
+  /**
+   * List of the grouped options.
+   */
+  options: ListOptionType[];
 };
 
 type CommonProps = {

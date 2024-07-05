@@ -1,5 +1,5 @@
-import disabledRules from "../../test/accessibility/rules/specific/table/disabledRules";
 import { userEvent, within } from "@storybook/test";
+import disabledRules from "../../test/accessibility/rules/specific/table/disabledRules";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import preview from "../../.storybook/preview";

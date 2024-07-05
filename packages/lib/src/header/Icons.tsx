@@ -1,4 +1,4 @@
-export const dxcLogo = (
+const dxcLogo = (
   <svg xmlns="http://www.w3.org/2000/svg" width="73" height="40" viewBox="0 0 73 40">
     <title>DXC Logo</title>
     <g transform="translate(0)">
@@ -17,3 +17,5 @@ export const dxcLogo = (
     </g>
   </svg>
 );
+
+export default dxcLogo;

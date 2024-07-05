@@ -1,4 +1,4 @@
-import { Theme } from "@cloudscape-design/components/theming";
+import type { Theme } from "@cloudscape-design/components/theming";
 import CoreTokens from "../common/coreTokens";
 
 const theme: Theme = {
