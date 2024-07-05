@@ -1,8 +1,7 @@
-import React from "react";
-import styled from "styled-components";
 import * as Tooltip from "@radix-ui/react-tooltip";
-import TooltipPropsType from "./types";
+import styled from "styled-components";
 import CoreTokens from "../common/coreTokens";
+import TooltipPropsType from "./types";
 
 const triangleIcon = (
   <svg

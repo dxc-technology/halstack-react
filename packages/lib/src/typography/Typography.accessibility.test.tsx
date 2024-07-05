@@ -1,7 +1,7 @@
 import { render } from "@testing-library/react";
 import { axe } from "../../test/accessibility/axe-helper";
-import DxcTypography from "./Typography";
 import DxcFlex from "../flex/Flex";
+import DxcTypography from "./Typography";
 
 describe("Typography component accessibility tests", () => {
   it("Should not have basic accessibility issues for different font sizes", async () => {

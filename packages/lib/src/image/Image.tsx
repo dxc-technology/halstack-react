@@ -1,7 +1,7 @@
 import styled, { ThemeProvider } from "styled-components";
-import ImagePropsType, { CaptionWrapperProps } from "./types";
 import useTheme from "../useTheme";
 import BaseTypography from "../utils/BaseTypography";
+import ImagePropsType, { CaptionWrapperProps } from "./types";
 
 const CaptionWrapper = ({ condition, wrapper, children }: CaptionWrapperProps): JSX.Element => (
   <>{condition ? wrapper(children) : children}</>

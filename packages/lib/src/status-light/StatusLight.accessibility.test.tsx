@@ -1,7 +1,7 @@
 import { render } from "@testing-library/react";
 import { axe } from "../../test/accessibility/axe-helper";
-import DxcStatusLight from "./StatusLight";
 import DxcFlex from "../flex/Flex";
+import DxcStatusLight from "./StatusLight";
 
 describe("StatusLight component accessibility tests", () => {
   it("Should not have basic accessibility issues for default mode", async () => {
