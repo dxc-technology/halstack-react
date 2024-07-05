@@ -19,7 +19,7 @@
     "storybook:accessibility:ci": "test-storybook --maxWorkers=2",
     "test": "jest --env=jsdom --config=./jest.config.ts",
     "test:accessibility": "jest --env=jsdom --config=./jest.config.accessibility.ts",
-    "test:watch": "jest --env=jsdom --config=./jest.config.js --watch"
+    "test:watch": "jest --env=jsdom --config=./jest.config.ts --watch"
   },
   "peerDependencies": {
     "react": "^18.x",
