@@ -31,7 +31,7 @@ function App() {
           label="Custom Button"
           onClick={onClick}
           disabled
-          size="large"
+          width="large"
           margin="small"
         />
         <DxcButton
@@ -39,15 +39,15 @@ function App() {
           label="Custom Button"
           onClick={onClick}
           disabled
-          size="large"
+          width="large"
           margin="small"
         />
         <DxcButton
-          mode="text"
+          mode="tertiary"
           label="Custom Button"
           onClick={onClick}
           disabled
-          size="large"
+          width="large"
           margin="small"
         />
       </div>
@@ -106,7 +106,7 @@ function App() {
       <div>
         <h4>Text - only icon</h4>
         <DxcButton
-          mode="text"
+          mode="tertiary"
           onClick={onClick}
           icon={
             <svg
@@ -130,49 +130,49 @@ function App() {
         />
       </div>
       <div>
-        <h4>Sizes</h4>
-        <div className="test-case" id="small-size">
+        <h4>Widths</h4>
+        <div className="test-case" id="small-width">
           <DxcButton
             mode="primary"
             label="Small"
             onClick={onClick}
-            size="small"
+            width="small"
             margin="small"
           />
         </div>
-        <div className="test-case" id="medium-size">
+        <div className="test-case" id="medium-width">
           <DxcButton
             mode="primary"
             label="Medium"
             onClick={onClick}
-            size="medium"
+            width="medium"
             margin="small"
           />
         </div>
-        <div className="test-case" id="large-size">
+        <div className="test-case" id="large-width">
           <DxcButton
             mode="primary"
             label="Large"
             onClick={onClick}
-            size="large"
+            width="large"
             margin="small"
           />
         </div>
-        <div className="test-case" id="fitContent-size">
+        <div className="test-case" id="fitContent-width">
           <DxcButton
             mode="primary"
             label="Fit Content"
             onClick={onClick}
-            size="fitContent"
+            width="fitContent"
             margin="small"
           />
         </div>
-        <div className="test-case" id="fillParent-size">
+        <div className="test-case" id="fillParent-width">
           <DxcButton
             mode="primary"
             label="Fill Parent"
             onClick={onClick}
-            size="fillParent"
+            width="fillParent"
             margin="small"
           />
         </div>
@@ -184,7 +184,7 @@ function App() {
             mode="primary"
             label="xxsmall"
             onClick={onClick}
-            size="large"
+            width="large"
             margin="xxsmall"
           />
         </div>
@@ -193,7 +193,7 @@ function App() {
             mode="primary"
             label="xsmall"
             onClick={onClick}
-            size="large"
+            width="large"
             margin="xsmall"
           />
         </div>
@@ -202,7 +202,7 @@ function App() {
             mode="primary"
             label="small"
             onClick={onClick}
-            size="large"
+            width="large"
             margin="small"
           />
         </div>
@@ -211,7 +211,7 @@ function App() {
             mode="primary"
             label="medium"
             onClick={onClick}
-            size="large"
+            width="large"
             margin="medium"
           />
         </div>
@@ -220,7 +220,7 @@ function App() {
             mode="primary"
             label="large"
             onClick={onClick}
-            size="large"
+            width="large"
             margin="large"
           />
         </div>
@@ -229,7 +229,7 @@ function App() {
             mode="primary"
             label="xlarge"
             onClick={onClick}
-            size="large"
+            width="large"
             margin="xlarge"
           />
         </div>
@@ -238,7 +238,7 @@ function App() {
             mode="primary"
             label="xxlarge"
             onClick={onClick}
-            size="large"
+            width="large"
             margin="xxlarge"
           />
         </div>
@@ -255,7 +255,7 @@ function App() {
         </div>
         <div className="test-case" id="primary-max-line-icon-after">
           <h4>
-            primary button size medium - Label max size single line icon after
+            primary button width medium - Label max width single line icon after
           </h4>
           <DxcButton
             mode="primary"
@@ -263,13 +263,14 @@ function App() {
             iconPosition="after"
             onClick={onClick}
             icon={<p>This is a text</p>}
-            size="medium"
+            width="medium"
             margin="xsmall"
           />
         </div>
         <div className="test-case" id="primary-max-line-icon-before">
           <h4>
-            primary button size medium - Label max size single line icon before
+            primary button width medium - Label max width single line icon
+            before
           </h4>
           <DxcButton
             mode="primary"
@@ -294,13 +295,13 @@ function App() {
                 </g>
               </svg>
             }
-            size="medium"
+            width="medium"
             margin="xsmall"
           />
         </div>
         <div className="test-case" id="primary-min-multiline-icon-after">
           <h4>
-            primary button size medium - Label min size multi line icon after
+            primary button width medium - Label min width multi line icon after
           </h4>
           <DxcButton
             mode="primary"
@@ -308,13 +309,13 @@ function App() {
             iconPosition="after"
             onClick={onClick}
             icon={iconSVG}
-            size="medium"
+            width="medium"
             margin="xsmall"
           />
         </div>
         <div className="test-case" id="primary-min-multiline-icon-before">
           <h4>
-            primary button size medium - Label min size multi line icon before
+            primary button width medium - Label min width multi line icon before
           </h4>
           <DxcButton
             mode="primary"
@@ -322,7 +323,7 @@ function App() {
             iconPosition="before"
             onClick={onClick}
             icon={iconSVG}
-            size="medium"
+            width="medium"
             margin="xsmall"
           />
         </div>
@@ -331,7 +332,7 @@ function App() {
         <div className="test-case" id="text-single-line">
           <h4>text button single line</h4>
           <DxcButton
-            mode="text"
+            mode="tertiary"
             label="Button"
             onClick={onClick}
             margin="xsmall"
@@ -339,10 +340,10 @@ function App() {
         </div>
         <div className="test-case" id="text-max-line-icon-after">
           <h4>
-            text button size medium - Label max size single line icon after
+            text button width medium - Label max width single line icon after
           </h4>
           <DxcButton
-            mode="text"
+            mode="tertiary"
             label="But"
             iconPosition="after"
             onClick={onClick}
@@ -364,49 +365,49 @@ function App() {
                 </g>
               </svg>
             }
-            size="medium"
+            width="medium"
             margin="xsmall"
           />
         </div>
         <div className="test-case" id="text-max-line-icon-before">
           <h4>
-            text button size medium - Label max size single line icon before
+            text button width medium - Label max width single line icon before
           </h4>
           <DxcButton
-            mode="text"
+            mode="tertiary"
             label="But"
             iconPosition="before"
             onClick={onClick}
             icon={iconSVG}
-            size="medium"
+            width="medium"
             margin="xsmall"
           />
         </div>
         <div className="test-case" id="text-min-multiline-icon-after">
           <h4>
-            text button size medium - Label min size multi line icon after
+            text button width medium - Label min width multi line icon after
           </h4>
           <DxcButton
-            mode="text"
+            mode="tertiary"
             label="ButL"
             iconPosition="after"
             onClick={onClick}
             icon={<img src={homeLogo} alt="Home" />}
-            size="medium"
+            width="medium"
             margin="xsmall"
           />
         </div>
         <div className="test-case" id="text-min-multiline-icon-before">
           <h4>
-            text button size medium - Label min size multi line icon before
+            text button width medium - Label min width multi line icon before
           </h4>
           <DxcButton
-            mode="text"
+            mode="tertiary"
             label="ButM"
             iconPosition="before"
             onClick={onClick}
             icon={iconSVG}
-            size="medium"
+            width="medium"
             margin="xsmall"
           />
         </div>
@@ -423,7 +424,8 @@ function App() {
         </div>
         <div className="test-case" id="secondary-max-line-icon-after">
           <h4>
-            secondary button size medium - Label max size single line icon after
+            secondary button width medium - Label max width single line icon
+            after
           </h4>
           <DxcButton
             mode="secondary"
@@ -431,13 +433,13 @@ function App() {
             iconPosition="after"
             onClick={onClick}
             icon={iconSVG}
-            size="medium"
+            width="medium"
             margin="xsmall"
           />
         </div>
         <div className="test-case" id="secondary-max-line-icon-before">
           <h4>
-            secondary button size medium - Label max size single line icon
+            secondary button width medium - Label max width single line icon
             before
           </h4>
           <DxcButton
@@ -446,13 +448,14 @@ function App() {
             iconPosition="before"
             onClick={onClick}
             icon={iconSVG}
-            size="medium"
+            width="medium"
             margin="xsmall"
           />
         </div>
         <div className="test-case" id="secondary-min-multiline-icon-after">
           <h4>
-            secondary button size medium - Label min size multi line icon after
+            secondary button width medium - Label min width multi line icon
+            after
           </h4>
           <DxcButton
             mode="secondary"
@@ -460,13 +463,14 @@ function App() {
             iconPosition="after"
             onClick={onClick}
             icon={iconSVG}
-            size="medium"
+            width="medium"
             margin="xsmall"
           />
         </div>
         <div className="test-case" id="secondary-min-multiline-icon-before">
           <h4>
-            secondary button size medium - Label min size multi line icon before
+            secondary button width medium - Label min width multi line icon
+            before
           </h4>
 
           <DxcButton
@@ -492,7 +496,7 @@ function App() {
                 </g>
               </svg>
             }
-            size="medium"
+            width="medium"
             margin="xsmall"
           />
         </div>
@@ -505,21 +509,21 @@ function App() {
               mode="primary"
               label="Custom Button"
               onClick={onClick}
-              size="large"
+              width="large"
               margin="small"
             />
             <DxcButton
               mode="secondary"
               label="Custom Button"
               onClick={onClick}
-              size="large"
+              width="large"
               margin="small"
             />
             <DxcButton
-              mode="text"
+              mode="tertiary"
               label="Custom Button"
               onClick={onClick}
-              size="large"
+              width="large"
               margin="small"
             />
           </div>
@@ -529,7 +533,7 @@ function App() {
               label="Custom Button"
               onClick={onClick}
               disabled
-              size="large"
+              width="large"
               margin="small"
             />
             <DxcButton
@@ -537,15 +541,15 @@ function App() {
               label="Custom Button"
               onClick={onClick}
               disabled
-              size="large"
+              width="large"
               margin="small"
             />
             <DxcButton
-              mode="text"
+              mode="tertiary"
               label="Custom Button"
               onClick={onClick}
               disabled
-              size="large"
+              width="large"
               margin="small"
             />
           </div>

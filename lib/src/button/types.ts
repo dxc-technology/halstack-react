@@ -15,7 +15,11 @@ type Props = {
   /**
    * The available button modes.
    */
-  mode?: "primary" | "secondary" | "text";
+  mode?: "primary" | "secondary" | "tertiary";
+  /**
+   * The available semantic buttons.
+   */
+  semantic?: "brand" | "error" | "warning" | "success" | "info";
   /**
    * If true, the component will be disabled.
    */
@@ -46,9 +50,13 @@ type Props = {
    */
   margin?: Space | Margin;
   /**
-   * Size of the component.
+   * Size of the component. It affects to the height.
    */
-  size?: "small" | "medium" | "large" | "fillParent" | "fitContent";
+  size?: "small" | "medium" | "large";
+  /*
+   * Width of the component.
+   */
+  width?: "small" | "medium" | "large" | "fillParent" | "fitContent";
   /**
    * Value of the tabindex attribute.
    */

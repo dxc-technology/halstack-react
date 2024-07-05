@@ -5,7 +5,9 @@ import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import Example from "@/common/example/Example";
 import basicUsage from "./examples/basicUsage";
-import icons from "./examples/icons";
+import icons from "./examples/semantic";
+import semantic from "./examples/icons";
+import sizes from "./examples/sizes";
 import TableCode from "@/common/TableCode";
 
 const sections = [
@@ -33,11 +35,23 @@ const sections = [
           <tr>
             <td>mode</td>
             <td>
-              <TableCode>'primary' | 'secondary' | 'text'</TableCode>
+              <TableCode>'primary' | 'secondary' | 'tertiary'</TableCode>
             </td>
             <td>The available button modes.</td>
             <td>
               <TableCode>'primary'</TableCode>
+            </td>
+          </tr>
+          <tr>
+            <td>semantic</td>
+            <td>
+              <TableCode>
+                'brand' | 'error' | 'warning' | 'success' | 'info'
+              </TableCode>
+            </td>
+            <td>The available semantic buttons.</td>
+            <td>
+              <TableCode>'brand'</TableCode>
             </td>
           </tr>
           <tr>
@@ -139,11 +153,21 @@ const sections = [
           <tr>
             <td>size</td>
             <td>
+              <TableCode>'small' | 'medium' | 'large'</TableCode>
+            </td>
+            <td>Size of the component. It affects to the height.</td>
+            <td>
+              <TableCode>'large'</TableCode>
+            </td>
+          </tr>
+          <tr>
+            <td>width</td>
+            <td>
               <TableCode>
                 'small' | 'medium' | 'large' | 'fillParent' | 'fitContent'
               </TableCode>
             </td>
-            <td>Size of the component.</td>
+            <td>Width of the component.</td>
             <td>
               <TableCode>'fitContent'</TableCode>
             </td>
@@ -170,6 +194,14 @@ const sections = [
       {
         title: "Basic usage",
         content: <Example example={basicUsage} defaultIsVisible />,
+      },
+      {
+        title: "Semantic",
+        content: <Example example={semantic} defaultIsVisible />,
+      },
+      {
+        title: "Size",
+        content: <Example example={sizes} defaultIsVisible />,
       },
       {
         title: "Icons",

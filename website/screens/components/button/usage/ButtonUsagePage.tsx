@@ -48,7 +48,7 @@ const sections = [
         </DxcParagraph>
         <DxcParagraph>
           Variants: <strong>primary</strong>, <strong>secondary</strong> and{" "}
-          <strong>text</strong>.
+          <strong>tertiary</strong>.
         </DxcParagraph>
         <Example example={variants} />
         <DxcTable>

@@ -75,23 +75,25 @@ const parseTheme = (theme: DeepPartial<OpinionatedTheme>): AdvancedTheme => {
   boxTokens.backgroundColor = theme?.box?.baseColor ?? boxTokens.backgroundColor;
 
   const buttonTokens = componentTokensCopy.button;
-  buttonTokens.primaryFontColor = theme?.button?.primaryFontColor ?? buttonTokens.primaryFontColor;
-  buttonTokens.primaryBackgroundColor = theme?.button?.baseColor ?? buttonTokens.primaryBackgroundColor;
-  buttonTokens.secondaryFontColor = theme?.button?.baseColor ?? buttonTokens.secondaryFontColor;
-  buttonTokens.secondaryHoverFontColor = theme?.button?.secondaryHoverFontColor ?? buttonTokens.secondaryHoverFontColor;
-  buttonTokens.secondaryBorderColor = theme?.button?.baseColor ?? buttonTokens.secondaryBorderColor;
-  buttonTokens.secondaryHoverBackgroundColor = theme?.button?.baseColor ?? buttonTokens.secondaryHoverBackgroundColor;
-  buttonTokens.textFontColor = theme?.button?.baseColor ?? buttonTokens.textFontColor;
-  buttonTokens.primaryHoverBackgroundColor =
-    subLightness(8, theme?.button?.baseColor) ?? buttonTokens.primaryHoverBackgroundColor;
-  buttonTokens.primaryActiveBackgroundColor =
-    subLightness(18, theme?.button?.baseColor) ?? buttonTokens.primaryActiveBackgroundColor;
-  buttonTokens.secondaryActiveBackgroundColor =
-    subLightness(18, theme?.button?.baseColor) ?? buttonTokens.secondaryActiveBackgroundColor;
-  buttonTokens.textHoverBackgroundColor =
-    addLightness(57, theme?.button?.baseColor) ?? buttonTokens.textHoverBackgroundColor;
-  buttonTokens.textActiveBackgroundColor =
-    addLightness(52, theme?.button?.baseColor) ?? buttonTokens.textActiveBackgroundColor;
+  buttonTokens.primaryBrandFontColor = theme?.button?.primaryFontColor ?? buttonTokens.primaryBrandFontColor;
+  buttonTokens.primaryBrandBackgroundColor = theme?.button?.baseColor ?? buttonTokens.primaryBrandBackgroundColor;
+  buttonTokens.secondaryBrandFontColor = theme?.button?.baseColor ?? buttonTokens.secondaryBrandFontColor;
+  buttonTokens.secondaryHoverBrandFontColor =
+    theme?.button?.secondaryHoverFontColor ?? buttonTokens.secondaryHoverBrandFontColor;
+  buttonTokens.secondaryBrandBorderColor = theme?.button?.baseColor ?? buttonTokens.secondaryBrandBorderColor;
+  buttonTokens.secondaryHoverBrandBackgroundColor =
+    theme?.button?.baseColor ?? buttonTokens.secondaryHoverBrandBackgroundColor;
+  buttonTokens.tertiaryBrandFontColor = theme?.button?.baseColor ?? buttonTokens.tertiaryBrandFontColor;
+  buttonTokens.primaryHoverBrandBackgroundColor =
+    subLightness(8, theme?.button?.baseColor) ?? buttonTokens.primaryHoverBrandBackgroundColor;
+  buttonTokens.primaryActiveBrandBackgroundColor =
+    subLightness(18, theme?.button?.baseColor) ?? buttonTokens.primaryActiveBrandBackgroundColor;
+  buttonTokens.secondaryActiveBrandBackgroundColor =
+    subLightness(18, theme?.button?.baseColor) ?? buttonTokens.secondaryActiveBrandBackgroundColor;
+  buttonTokens.tertiaryHoverBrandBackgroundColor =
+    addLightness(57, theme?.button?.baseColor) ?? buttonTokens.tertiaryHoverBrandBackgroundColor;
+  buttonTokens.tertiaryActiveBrandBackgroundColor =
+    addLightness(52, theme?.button?.baseColor) ?? buttonTokens.tertiaryActiveBrandBackgroundColor;
 
   const checkboxTokens = componentTokensCopy.checkbox;
   checkboxTokens.backgroundColorChecked = theme?.checkbox?.baseColor ?? checkboxTokens.backgroundColorChecked;

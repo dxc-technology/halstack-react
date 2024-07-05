@@ -3,10 +3,10 @@ import { DxcButton, DxcInset, DxcFlex } from "@dxc-technology/halstack-react";
 const code = `() => {
   return (
     <DxcInset space="2rem">
-      <DxcFlex gap="2rem" justifyContent="center">
-        <DxcButton mode="primary" label="Primary" />
-        <DxcButton mode="secondary" label="Secondary" />
-        <DxcButton mode="tertiary" label="Tertiary" />
+      <DxcFlex gap="1.5rem">
+        <DxcButton size="small" icon="person" />
+        <DxcButton label="Search" size="medium" icon="person" />
+        <DxcButton label="Submit" size="large" icon="person" />
       </DxcFlex>
     </DxcInset>
   );
@@ -14,8 +14,8 @@ const code = `() => {
 
 const scope = {
   DxcButton,
-  DxcFlex,
   DxcInset,
+  DxcFlex,
 };
 
 export default { code, scope };

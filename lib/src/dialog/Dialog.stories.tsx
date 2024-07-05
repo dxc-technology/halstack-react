@@ -10,7 +10,7 @@ import { HalstackProvider } from "../HalstackContext";
 import DxcHeading from "../heading/Heading";
 import DxcParagraph from "../paragraph/Paragraph";
 import DxcAlert from "../alert/Alert";
-import { userEvent, within } from "@storybook/test";
+import { userEvent } from "@storybook/test";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 
 export default {
@@ -259,7 +259,7 @@ export const DialogWithInputs = () => (
             margin={{ bottom: "xsmall" }}
           />
           <DxcFlex justifyContent="flex-end" gap="0.5rem">
-            <DxcButton label="Cancel" mode="text" />
+            <DxcButton label="Cancel" mode="tertiary" />
             <DxcButton label="Save" />
           </DxcFlex>
         </DxcFlex>
@@ -280,7 +280,7 @@ const RespDialog = () => (
             <DxcTextInput size="fillParent" label="Surname" />
           </DxcFlex>
           <DxcFlex justifyContent="flex-end" gap="0.5rem">
-            <DxcButton label="Cancel" mode="text" />
+            <DxcButton label="Cancel" mode="tertiary" />
             <DxcButton label="Save" />
           </DxcFlex>
         </DxcFlex>

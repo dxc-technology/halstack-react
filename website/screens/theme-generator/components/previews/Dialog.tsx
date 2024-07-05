@@ -61,7 +61,7 @@ const Dialog = () => {
                   <DxcButton
                     label="Cancel"
                     onClick={handleClickDefaultDialog}
-                    mode="text"
+                    mode="tertiary"
                   />
                   <DxcButton
                     label="Delete"
@@ -92,7 +92,7 @@ const Dialog = () => {
                   <DxcButton
                     label="Cancel"
                     onClick={handleClickBackground}
-                    mode="text"
+                    mode="tertiary"
                   />
                   <DxcButton
                     label="Add client"

@@ -20,7 +20,7 @@ describe("Button component accessibility tests", () => {
         margin="small"
         mode="primary"
         title="Button Title"
-        size="fitContent"
+        width="fitContent"
         type="button"
       />
     );
@@ -36,7 +36,7 @@ describe("Button component accessibility tests", () => {
         margin="small"
         mode="primary"
         title="Button Title"
-        size="fitContent"
+        width="fitContent"
         type="button"
         disabled
       />
@@ -53,7 +53,7 @@ describe("Button component accessibility tests", () => {
         margin="small"
         mode="secondary"
         title="Button Title"
-        size="fitContent"
+        width="fitContent"
         type="button"
       />
     );
@@ -67,9 +67,9 @@ describe("Button component accessibility tests", () => {
         icon={iconSVG}
         iconPosition="after"
         margin="small"
-        mode="text"
+        mode="tertiary"
         title="Button Title"
-        size="fitContent"
+        width="fitContent"
         type="button"
       />
     );

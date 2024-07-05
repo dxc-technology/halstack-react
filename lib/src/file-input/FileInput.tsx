@@ -176,7 +176,7 @@ const DxcFileInput = React.forwardRef<RefType, FileInputPropsType>(
                 }
                 onClick={handleClick}
                 disabled={disabled}
-                size="fitContent"
+                width="fitContent"
                 tabIndex={tabIndex}
               />
               {files.length > 0 && (
@@ -222,7 +222,7 @@ const DxcFileInput = React.forwardRef<RefType, FileInputPropsType>(
                   label={buttonLabel ?? translatedLabels.fileInput.dropAreaButtonLabelDefault}
                   onClick={handleClick}
                   disabled={disabled}
-                  size="fitContent"
+                  width="fitContent"
                 />
                 {mode === "dropzone" ? (
                   <DropzoneLabel disabled={disabled}>

@@ -62,7 +62,7 @@ function App() {
                 <DxcAlert
                   type="error"
                   inlineText="To be valid, you need to fill every field."
-                  size="fillParent"
+                  width="fillParent"
                   onClose={handleVisibility}
                 />
               )}
@@ -73,15 +73,15 @@ function App() {
                 onChange={({ value }) => {
                   setNameValue(value);
                 }}
-                size="fillParent"
+                width="fillParent"
                 disabled={isDisabled}
                 tabIndex={-1}
               />
-              <DxcDateInput label="Start date" size="fillParent" />
+              <DxcDateInput label="Start date" width="fillParent" />
               <DxcSelect
                 label="Example select"
                 options={options}
-                size="fillParent"
+                width="fillParent"
               />
               <DxcTextarea
                 label="Description"
@@ -89,14 +89,14 @@ function App() {
                 onChange={({ value }) => {
                   setDescriptionValue(value);
                 }}
-                size="fillParent"
+                width="fillParent"
                 disabled={isDisabled}
               />
             </DxcFlex>
             <DxcFlex justifyContent="flex-end" gap="0.5rem">
               <DxcButton
                 label="Disable fields"
-                mode="text"
+                mode="tertiary"
                 onClick={handleDisabled}
               />
               <DxcButton

@@ -81,7 +81,7 @@ const ThemeGenerator = () => {
                 <DxcHeading text="Global Theme Actions" level={3} />
                 <DxcFlex direction="column" gap="0.25rem">
                   <DxcButton
-                    mode="text"
+                    mode="tertiary"
                     label="Reset"
                     onClick={() => {
                       setCustomTheme(
@@ -91,7 +91,7 @@ const ThemeGenerator = () => {
                       );
                     }}
                     icon={icons.reset}
-                    size="fillParent"
+                    width="fillParent"
                   />
                   <DxcButton
                     mode="secondary"
@@ -100,7 +100,7 @@ const ThemeGenerator = () => {
                       setDialogVisible(true);
                     }}
                     icon={icons.import}
-                    size="fillParent"
+                    width="fillParent"
                   />
                   <DxcButton
                     mode="primary"
@@ -109,7 +109,7 @@ const ThemeGenerator = () => {
                       downloadFile(customTheme);
                     }}
                     icon={icons.export}
-                    size="fillParent"
+                    width="fillParent"
                   />
                 </DxcFlex>
               </DxcFlex>

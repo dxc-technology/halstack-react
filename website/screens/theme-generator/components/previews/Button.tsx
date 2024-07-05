@@ -1,5 +1,5 @@
 import React from "react";
-import { DxcButton } from "@dxc-technology/halstack-react";
+import { DxcButton, DxcFlex } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
 import linkedinIcon from "../../images/LinkedinIcon";
 import PreviewContainer from "./PreviewContainer";
@@ -12,40 +12,381 @@ const Button = () => {
   return (
     <PreviewContainer>
       <Mode text="Primary">
-        <DxcButton mode="primary" label="button" />
-        <DxcButton
-          mode="primary"
-          label="Button"
-          icon={linkedinIcon}
-          onClick={onClick}
-        />
-        <DxcButton mode="primary" label="button" disabled onClick={onClick} />
+        <DxcFlex direction="column" gap="2rem">
+          <DxcFlex gap="3rem">
+            <DxcButton
+              mode="primary"
+              semantic="brand"
+              icon="person"
+              size="small"
+            />
+            <DxcButton
+              mode="primary"
+              semantic="brand"
+              label="Brand"
+              size="medium"
+            />
+            <DxcButton
+              mode="primary"
+              semantic="brand"
+              label="Brand"
+              size="large"
+            />
+            <DxcButton mode="primary" semantic="brand" label="Brand" disabled />
+          </DxcFlex>
+          <DxcFlex gap="3rem">
+            <DxcButton
+              mode="primary"
+              semantic="error"
+              icon="person"
+              size="small"
+            />
+            <DxcButton
+              mode="primary"
+              semantic="error"
+              label="Error"
+              size="medium"
+            />
+            <DxcButton
+              mode="primary"
+              semantic="error"
+              label="Error"
+              size="large"
+            />
+            <DxcButton mode="primary" semantic="error" label="Error" disabled />
+          </DxcFlex>
+          <DxcFlex gap="3rem">
+            <DxcButton
+              mode="primary"
+              semantic="warning"
+              icon="person"
+              size="small"
+            />
+            <DxcButton
+              mode="primary"
+              semantic="warning"
+              label="Warning"
+              size="medium"
+            />
+            <DxcButton
+              mode="primary"
+              semantic="warning"
+              label="Warning"
+              size="large"
+            />
+            <DxcButton
+              mode="primary"
+              semantic="warning"
+              label="Warning"
+              disabled
+            />
+          </DxcFlex>
+          <DxcFlex gap="3rem">
+            <DxcButton
+              mode="primary"
+              semantic="success"
+              icon="person"
+              size="small"
+            />
+            <DxcButton
+              mode="primary"
+              semantic="success"
+              label="Success"
+              size="medium"
+            />
+            <DxcButton
+              mode="primary"
+              semantic="success"
+              label="Success"
+              size="large"
+            />
+            <DxcButton
+              mode="primary"
+              semantic="success"
+              label="Success"
+              disabled
+            />
+          </DxcFlex>
+          <DxcFlex gap="3rem">
+            <DxcButton
+              mode="primary"
+              semantic="info"
+              icon="person"
+              size="small"
+            />
+            <DxcButton
+              mode="primary"
+              semantic="info"
+              label="Info"
+              size="medium"
+            />
+            <DxcButton
+              mode="primary"
+              semantic="info"
+              label="Info"
+              size="large"
+            />
+            <DxcButton mode="primary" semantic="info" label="Info" disabled />
+          </DxcFlex>
+        </DxcFlex>
       </Mode>
       <Mode text="Secondary">
-        <DxcButton mode="secondary" label="button" onClick={onClick} />
-        <DxcButton
-          label="Button"
-          mode="secondary"
-          icon={linkedinIcon}
-          iconPosition="after"
-          onClick={onClick}
-        />
-        <DxcButton
-          mode="secondary"
-          label="button"
-          disabled={true}
-          onClick={onClick}
-        />
+        <DxcFlex direction="column" gap="2rem">
+          <DxcFlex gap="3rem">
+            <DxcButton
+              mode="secondary"
+              semantic="brand"
+              icon="person"
+              size="small"
+            />
+            <DxcButton
+              mode="secondary"
+              semantic="brand"
+              label="Brand"
+              size="medium"
+            />
+            <DxcButton
+              mode="secondary"
+              semantic="brand"
+              label="Brand"
+              size="large"
+            />
+            <DxcButton
+              mode="secondary"
+              semantic="brand"
+              label="Brand"
+              disabled
+            />
+          </DxcFlex>
+          <DxcFlex gap="3rem">
+            <DxcButton
+              mode="secondary"
+              semantic="error"
+              icon="person"
+              size="small"
+            />
+            <DxcButton
+              mode="secondary"
+              semantic="error"
+              label="Error"
+              size="medium"
+            />
+            <DxcButton
+              mode="secondary"
+              semantic="error"
+              label="Error"
+              size="large"
+            />
+            <DxcButton
+              mode="secondary"
+              semantic="error"
+              label="Error"
+              disabled
+            />
+          </DxcFlex>
+          <DxcFlex gap="3rem">
+            <DxcButton
+              mode="secondary"
+              semantic="warning"
+              icon="person"
+              size="small"
+            />
+            <DxcButton
+              mode="secondary"
+              semantic="warning"
+              label="Warning"
+              size="medium"
+            />
+            <DxcButton
+              mode="secondary"
+              semantic="warning"
+              label="Warning"
+              size="large"
+            />
+            <DxcButton
+              mode="secondary"
+              semantic="warning"
+              label="Warning"
+              disabled
+            />
+          </DxcFlex>
+          <DxcFlex gap="3rem">
+            <DxcButton
+              mode="secondary"
+              semantic="success"
+              icon="person"
+              size="small"
+            />
+            <DxcButton
+              mode="secondary"
+              semantic="success"
+              label="Success"
+              size="medium"
+            />
+            <DxcButton
+              mode="secondary"
+              semantic="success"
+              label="Success"
+              size="large"
+            />
+            <DxcButton
+              mode="secondary"
+              semantic="success"
+              label="Success"
+              disabled
+            />
+          </DxcFlex>
+          <DxcFlex gap="3rem">
+            <DxcButton
+              mode="secondary"
+              semantic="info"
+              icon="person"
+              size="small"
+            />
+            <DxcButton
+              mode="secondary"
+              semantic="info"
+              label="Info"
+              size="medium"
+            />
+            <DxcButton
+              mode="secondary"
+              semantic="info"
+              label="Info"
+              size="large"
+            />
+            <DxcButton mode="secondary" semantic="info" label="Info" disabled />
+          </DxcFlex>
+        </DxcFlex>
       </Mode>
-      <Mode text="Text">
-        <DxcButton mode="text" label="button" onClick={onClick} />
-        <DxcButton
-          label="Button"
-          mode="text"
-          icon={linkedinIcon}
-          onClick={onClick}
-        />
-        <DxcButton mode="text" label="button" disabled onClick={onClick} />
+      <Mode text="Tertiary">
+        <DxcFlex direction="column" gap="2rem">
+          <DxcFlex gap="3rem">
+            <DxcButton
+              mode="tertiary"
+              semantic="brand"
+              icon="person"
+              size="small"
+            />
+            <DxcButton
+              mode="tertiary"
+              semantic="brand"
+              label="Brand"
+              size="medium"
+            />
+            <DxcButton
+              mode="tertiary"
+              semantic="brand"
+              label="Brand"
+              size="large"
+            />
+            <DxcButton
+              mode="tertiary"
+              semantic="brand"
+              label="Brand"
+              disabled
+            />
+          </DxcFlex>
+          <DxcFlex gap="3rem">
+            <DxcButton
+              mode="tertiary"
+              semantic="error"
+              icon="person"
+              size="small"
+            />
+            <DxcButton
+              mode="tertiary"
+              semantic="error"
+              label="Error"
+              size="medium"
+            />
+            <DxcButton
+              mode="tertiary"
+              semantic="error"
+              label="Error"
+              size="large"
+            />
+            <DxcButton
+              mode="tertiary"
+              semantic="error"
+              label="Error"
+              disabled
+            />
+          </DxcFlex>
+          <DxcFlex gap="3rem">
+            <DxcButton
+              mode="tertiary"
+              semantic="warning"
+              icon="person"
+              size="small"
+            />
+            <DxcButton
+              mode="tertiary"
+              semantic="warning"
+              label="Warning"
+              size="medium"
+            />
+            <DxcButton
+              mode="tertiary"
+              semantic="warning"
+              label="Warning"
+              size="large"
+            />
+            <DxcButton
+              mode="tertiary"
+              semantic="warning"
+              label="Warning"
+              disabled
+            />
+          </DxcFlex>
+          <DxcFlex gap="3rem">
+            <DxcButton
+              mode="tertiary"
+              semantic="success"
+              icon="person"
+              size="small"
+            />
+            <DxcButton
+              mode="tertiary"
+              semantic="success"
+              label="Success"
+              size="medium"
+            />
+            <DxcButton
+              mode="tertiary"
+              semantic="success"
+              label="Success"
+              size="large"
+            />
+            <DxcButton
+              mode="tertiary"
+              semantic="success"
+              label="Success"
+              disabled
+            />
+          </DxcFlex>
+          <DxcFlex gap="3rem">
+            <DxcButton
+              mode="tertiary"
+              semantic="info"
+              icon="person"
+              size="small"
+            />
+            <DxcButton
+              mode="tertiary"
+              semantic="info"
+              label="Info"
+              size="medium"
+            />
+            <DxcButton
+              mode="tertiary"
+              semantic="info"
+              label="Info"
+              size="large"
+            />
+            <DxcButton mode="tertiary" semantic="info" label="Info" disabled />
+          </DxcFlex>
+        </DxcFlex>
       </Mode>
     </PreviewContainer>
   );

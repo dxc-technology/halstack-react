@@ -86,7 +86,7 @@ const ImportDialog = ({
           verticalGrow="none"
         />
         <DxcFlex justifyContent="flex-end" gap="0.5rem">
-          <DxcButton mode="text" label="Cancel" onClick={closeDialog} />
+          <DxcButton mode="tertiary" label="Cancel" onClick={closeDialog} />
           <DxcButton
             mode="primary"
             label="Import"

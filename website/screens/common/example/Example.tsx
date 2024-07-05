@@ -101,14 +101,14 @@ const Example = ({
               <DxcButton
                 label={"Copy code"}
                 icon={icons.copy}
-                mode="text"
+                mode="tertiary"
                 onClick={copyCode}
               />
             )}
             <DxcButton
               label={isCodeVisible ? "Hide code" : "View code"}
               icon={icons.code}
-              mode="text"
+              mode="tertiary"
               onClick={handleCodeOnClick}
             />
           </CodeActionsContainer>
