@@ -9,6 +9,9 @@
     "types": "./src/index.ts",
     "default": "./dist/index.js"
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsup src/index.ts --format cjs,esm --dts",
     "build-storybook": "storybook build",
