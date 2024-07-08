@@ -10,10 +10,11 @@
     "default": "./dist/index.js"
   },
   "scripts": {
-    "build": "tsup src/index.ts --format cjs,esm --dts && node ../../scripts/copy-package.js && node ../../scripts/copy-readme.js",
+    "build": "tsup src/index.ts --format cjs,esm --dts",
     "build-storybook": "storybook build",
     "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
     "lint": "eslint . --max-warnings 0",
+    "prepublishOnly": "node ../../scripts/copy-readme.js",
     "storybook": "storybook dev -p 6006",
     "storybook:accessibility": "test-storybook",
     "storybook:accessibility:ci": "test-storybook --maxWorkers=2",
@@ -22,10 +23,10 @@
     "test:watch": "jest --env=jsdom --config=./jest.config.ts --watch"
   },
   "peerDependencies": {
-    "@cloudscape-design/components": "3.0.677",
     "react": "^18.x",
     "react-dom": "^18.x",
-    "styled-components": "^5.0.1"
+    "styled-components": "^5.0.1",
+    "@cloudscape-design/components": "3.0.677"
   },
   "dependencies": {
     "@radix-ui/react-popover": "^1.1.0",
@@ -35,6 +36,8 @@
     "slugify": "^1.6.6"
   },
   "devDependencies": {
+    "@cloudscape-design/components": "file:packages/cloudscape-themed/dist/themed/components",
+    "@cloudscape-design/design-tokens": "file:packages/cloudscape-themed/dist/themed/design-tokens",
     "@babel/cli": "^7.16.8",
     "@babel/core": "^7.16.7",
     "@babel/plugin-proposal-nullish-coalescing-operator": "^7.13.8",
@@ -44,19 +47,17 @@
     "@babel/preset-react": "^7.16.7",
     "@babel/preset-typescript": "^7.16.7",
     "@chromatic-com/storybook": "^1.5.0",
-    "@cloudscape-design/components": "file:packages/cloudscape-themed/dist/themed/components",
-    "@cloudscape-design/design-tokens": "file:packages/cloudscape-themed/dist/themed/design-tokens",
     "@dxc-technology/eslint-config": "*",
     "@dxc-technology/typescript-config": "*",
-    "@storybook/addon-a11y": "^8.1.10",
-    "@storybook/addon-essentials": "^8.1.10",
-    "@storybook/addon-interactions": "^8.1.10",
-    "@storybook/addon-links": "^8.1.10",
+    "@storybook/addon-a11y": "^8.1.11",
+    "@storybook/addon-essentials": "^8.1.11",
+    "@storybook/addon-interactions": "^8.1.11",
+    "@storybook/addon-links": "^8.1.11",
     "@storybook/addon-viewport": "^8.1.11",
-    "@storybook/blocks": "^8.1.10",
-    "@storybook/react": "^8.1.10",
-    "@storybook/react-vite": "^8.1.10",
-    "@storybook/test": "^8.1.10",
+    "@storybook/blocks": "^8.1.11",
+    "@storybook/react": "^8.1.11",
+    "@storybook/react-vite": "^8.1.11",
+    "@storybook/test": "^8.1.11",
     "@storybook/test-runner": "^0.18.2",
     "@testing-library/jest-dom": "^6.4.6",
     "@testing-library/react": "^13.0.0",
@@ -87,7 +88,7 @@
     "jest-axe": "^9.0.0",
     "jest-environment-jsdom": "^29.7.0",
     "playwright": "^1.44.1",
-    "storybook": "^8.1.10",
+    "storybook": "^8.1.11",
     "storybook-addon-pseudo-states": "^3.1.1",
     "tsup": "^8.1.0",
     "typescript": "^5.3.3"
