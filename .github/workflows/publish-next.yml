@@ -5,7 +5,7 @@ on:
     branches:
       - master
     paths:
-      - "lib/**"
+      - "packages/lib/**"
 
 jobs:
   build:
@@ -31,31 +31,22 @@ jobs:
           role-duration-seconds: 3600
           role-skip-session-tagging: true
 
-      - name: Install lib dependencies
-        run: cd lib && npm install --omit=dev
-
-      - name: Install lib babel dependency
-        run: cd lib && npm install --D @babel/core
-
-      - name: Build library
-        run: cd lib && npm run build
-
-      - name: Install website dependencies
-        run: cd website && npm i
-
+      - name: Install dependencies
+        run: npm install
+    
+      - name: Build library and website
+        run: npm run build
+    
       - name: Test library
-        run: cd lib && npm run test
-
+        run: npm run test
+    
       - name: Test library accessibility
-        run: cd lib && npm run test:accessibility
-
-      - name: Build website
-        run: cd website && SITE_VERSION=next npm run build
+        run: npm run test:accessibility
 
       - name: Publish NEXT version to npm
         run: |
-          sed -i "s#\"version\": \"0.0.0\"#\"version\": \"0.0.0-${GITHUB_SHA:0:7}\"#" ./dist/package.json
-          cd dist
+          sed -i "s#\"version\": \"0.0.0\"#\"version\": \"0.0.0-${GITHUB_SHA:0:7}\"#" ./packages/lib/package.json
+          cd packages/lib
           npm publish --tag next --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
@@ -63,4 +54,4 @@ jobs:
       - name: Move NEXT website to S3
         run: |
           aws s3 rm s3://design-system-react-cdk-site/halstack/next/ --recursive
-          aws s3 cp ./website/out/ s3://design-system-react-cdk-site/halstack/next/ --recursive
+          aws s3 cp ./apps/website/out/ s3://design-system-react-cdk-site/halstack/next/ --recursive

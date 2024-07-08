@@ -56,7 +56,7 @@ const buildSite = (version) => {
   return new Promise((resolve, reject) => {
     console.log(`Building site with version ${version}`);
     exec(
-      `cd website && SITE_VERSION=${version} npm run build`,
+      `cd apps/website && SITE_VERSION=${version} npm run build`,
       (error, stdout, stderr) => {
         if (error) {
           throw new Error(error.message);
@@ -92,7 +92,7 @@ const moveToBucket = (version) => {
   return new Promise((resolve, reject) => {
     exec(
       `aws s3 rm s3://${BUCKET_NAME}/${DIRECTORY}${version}/ --recursive &&
-        aws s3 cp ./website/out/ s3://${BUCKET_NAME}/${DIRECTORY}${version}/ --recursive`,
+        aws s3 cp ./apps/website/out/ s3://${BUCKET_NAME}/${DIRECTORY}${version}/ --recursive`,
       (error, stdout, stderr) => {
         if (error) {
           throw new Error(error.message);
