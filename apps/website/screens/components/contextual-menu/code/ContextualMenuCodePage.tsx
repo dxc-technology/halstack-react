@@ -34,45 +34,44 @@ const sections = [
     title: "Props",
     content: (
       <DxcTable>
-        <tr>
-          <th>Name</th>
-          <th style={{ minWidth: "200px" }}>Type</th>
-          <th>Description</th>
-          <th>Default</th>
-        </tr>
-        <tr>
-          <td>
-            <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-              <StatusBadge status="required" />
-              items
-            </DxcFlex>
-          </td>
-          <td>
-            <TableCode style={{ fontSize: "0.875rem" }}>
-              (Item | GroupItem)[] | Section[]
-            </TableCode>
-            <p>
-              being an <Code>Item</Code> an object with the following
-              properties:
-            </p>
-            <ExtendedTableCode>{itemTypeString}</ExtendedTableCode>
-            <p>
-              a <Code>GroupItem</Code> another object with the following
-              properties:
-            </p>
-            <ExtendedTableCode>{groupItemTypeString}</ExtendedTableCode>
-            <p>
-              and a <Code>Section</Code> another object with the following
-              properties:
-            </p>
-            <ExtendedTableCode>{sectionTypeString}</ExtendedTableCode>
-          </td>
-          <td>
-            Array of items to be displayed in the Contextual menu. Each item can
-            be a single/simple item, a group item or a section.
-          </td>
-          <td>-</td>
-        </tr>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th style={{ minWidth: "200px" }}>Type</th>
+            <th>Description</th>
+            <th>Default</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                <StatusBadge status="required" />
+                items
+              </DxcFlex>
+            </td>
+            <td>
+              <TableCode style={{ fontSize: "0.875rem" }}>(Item | GroupItem)[] | Section[]</TableCode>
+              <p>
+                being an <Code>Item</Code> an object with the following properties:
+              </p>
+              <ExtendedTableCode>{itemTypeString}</ExtendedTableCode>
+              <p>
+                a <Code>GroupItem</Code> another object with the following properties:
+              </p>
+              <ExtendedTableCode>{groupItemTypeString}</ExtendedTableCode>
+              <p>
+                and a <Code>Section</Code> another object with the following properties:
+              </p>
+              <ExtendedTableCode>{sectionTypeString}</ExtendedTableCode>
+            </td>
+            <td>
+              Array of items to be displayed in the Contextual menu. Each item can be a single/simple item, a group item
+              or a section.
+            </td>
+            <td>-</td>
+          </tr>
+        </tbody>
       </DxcTable>
     ),
   },
@@ -95,10 +94,7 @@ const ContextualMenuCodePage = () => {
   return (
     <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
-        <QuickNavContainer
-          sections={sections}
-          startHeadingLevel={2}
-        ></QuickNavContainer>
+        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/contextual-menu/code/ContextualMenuCodePage.tsx" />
     </DxcFlex>
