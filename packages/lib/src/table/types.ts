@@ -1,4 +1,5 @@
 import { Option } from "../dropdown/types";
+
 type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
 type Margin = {
   top?: Space;
@@ -8,9 +9,6 @@ type Margin = {
 };
 
 type SVG = React.ReactNode & React.SVGProps<SVGSVGElement>;
-export type DeepPartial<T> = {
-  [P in keyof T]?: Partial<T[P]>;
-};
 
 export type ActionCellsPropsType = {
   actions: Array<
