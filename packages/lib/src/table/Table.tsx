@@ -3,11 +3,11 @@ import { spaces, AdvancedTheme } from "../common/variables";
 import getMargin from "../common/utils";
 import DxcDropdown from "../dropdown/Dropdown";
 import DxcFlex from "../flex/Flex";
-import { HalstackProvider } from "../HalstackContext";
+import { DeepPartial, HalstackProvider } from "../HalstackContext";
 import useTheme from "../useTheme";
 import dropdownTheme from "./dropdownTheme";
-import TablePropsType, { ActionCellsPropsType, DeepPartial } from "./types";
 import DxcActionIcon from "../action-icon/ActionIcon";
+import TablePropsType, { ActionCellsPropsType } from "./types";
 
 const overwriteTheme = (theme: DeepPartial<AdvancedTheme>) => {
   const newTheme = dropdownTheme;

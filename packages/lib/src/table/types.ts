@@ -9,9 +9,6 @@ type Margin = {
 };
 
 type SVG = React.ReactNode & React.SVGProps<SVGSVGElement>;
-export type DeepPartial<T> = {
-  [P in keyof T]?: Partial<T[P]>;
-};
 
 export type ActionCellsPropsType = {
   actions: Array<
