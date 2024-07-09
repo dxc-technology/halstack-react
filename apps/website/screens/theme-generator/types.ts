@@ -8,7 +8,7 @@ export type IndexedTheme = {
 type ImportDialogProps = {
   customThemeSchema: IndexedTheme;
   setCustomTheme: React.Dispatch<React.SetStateAction<IndexedTheme>>;
-  setDialogVisible: (isVisible: boolean) => void;
+  setDialogVisible: (_isVisible: boolean) => void;
 };
 
 export default ImportDialogProps;

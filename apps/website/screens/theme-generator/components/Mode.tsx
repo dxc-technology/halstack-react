@@ -1,10 +1,10 @@
-import React from "react";
+import { ReactNode } from "react";
 import styled from "styled-components";
 
 type ModeProps = {
   text: string;
   mode?: "light" | "dark";
-  children: React.ReactNode;
+  children: ReactNode;
 };
 const Mode = ({ text, mode = "light", children }: ModeProps): JSX.Element => (
   <ModeContainer mode={mode}>

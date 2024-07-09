@@ -1,9 +1,9 @@
-import React from "react";
+import { ComponentProps } from "react";
 import { DxcApplicationLayout, DxcDropdown, DxcFlex, DxcLink, DxcParagraph } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
 import PreviewContainer from "./PreviewContainer";
 
-type dropdownTypes = React.ComponentProps<typeof DxcDropdown>;
+type dropdownTypes = ComponentProps<typeof DxcDropdown>;
 
 const options: dropdownTypes["options"] = [
   {

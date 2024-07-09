@@ -1,4 +1,3 @@
-import React from "react";
 import StyledSelect from "./common/StyledSelect";
 import ThemeInputWidgetProps from "./common/types";
 
@@ -10,8 +9,8 @@ const TextAlignInput = ({ propertyName, propertyValue, onChangeCustomTheme }: Th
       onChangeCustomTheme(propertyName, event.target.value);
     }}
   >
-    {textAlignOptions.map((transformOption) => (
-      <option value={transformOption} selected={transformOption === propertyValue}>
+    {textAlignOptions.map((transformOption, index) => (
+      <option key={`option${index}`} value={transformOption} selected={transformOption === propertyValue}>
         {transformOption}
       </option>
     ))}

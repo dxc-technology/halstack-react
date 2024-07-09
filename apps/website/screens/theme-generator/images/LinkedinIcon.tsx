@@ -1,5 +1,3 @@
-import React from "react";
-
 const linkedinIcon = (
   <svg
     version="1.1"

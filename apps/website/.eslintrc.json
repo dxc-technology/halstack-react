@@ -1,7 +1,15 @@
 {
-  "extends": "next/core-web-vitals",
+  "extends": ["next/core-web-vitals", "@dxc-technology/eslint-config/react-internal.js", "@dxc-technology/eslint-config/next.js"],
   "rules": {
-    // TODO: Remove rule and replace `'`
-    "react/no-unescaped-entities": "off"
+    "no-unused-vars": [
+      "warn",
+      {
+        "argsIgnorePattern": "^_"
+      }
+    ],
+    // TODO: Remove rules
+    "react/no-unescaped-entities": "off",
+    "import/no-anonymous-default-export": "off",
+    "react-hooks/exhaustive-deps": "off"
   }
 }

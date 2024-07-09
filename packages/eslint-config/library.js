@@ -15,7 +15,6 @@ module.exports = {
     browser: true,
   },
   extends: [
-    // "@dxc-technology/eslint-config/react-internal.js",
     "airbnb",
     "prettier",
     "turbo",
@@ -108,14 +107,6 @@ module.exports = {
     "react-hooks/exhaustive-deps": "off",
     "@typescript-eslint/no-explicit-any": "off",
   },
-  // settings: {
-  //   "import/resolver": {
-  //     node: {
-  //       extensions: [".js", ".jsx", ".ts", ".tsx"],
-  //       moduleDirectory: ["node_modules", "src"],
-  //     },
-  //   },
-  // },
   settings: {
     "import/resolver": {
       typescript: {
@@ -123,4 +114,10 @@ module.exports = {
       },
     },
   },
+  ignorePatterns: [
+    // Ignore dotfiles
+    ".*.js",
+    "node_modules/",
+    "dist/",
+  ],
 };

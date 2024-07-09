@@ -5,14 +5,14 @@ import { LiveProvider, LiveEditor, LiveError, LivePreview } from "react-live";
 import theme from "./liveEditorTheme";
 import { DxcButton } from "@dxc-technology/halstack-react";
 
-type Example = {
+type ExampleType = {
   scope?: object;
   code?: string;
 };
 type ExamplePropTypes = {
   actionsVisible?: boolean;
   defaultIsVisible?: boolean;
-  example: Example;
+  example: ExampleType;
 };
 
 const icons = {

@@ -1,4 +1,3 @@
-import React from "react";
 import { DxcButton } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
 import linkedinIcon from "../../images/LinkedinIcon";

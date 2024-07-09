@@ -13,14 +13,14 @@ import Link from "next/link";
 import StatusBadge from "@/common/StatusBadge";
 
 type NextPageWithLayout = NextPage & {
-  getLayout?: (page: ReactElement) => ReactNode;
+  getLayout?: (_page: ReactElement) => ReactNode;
 };
 type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
 };
 type ApplicationLayoutWrapperProps = {
   condition: boolean;
-  wrapper: (children: React.ReactNode) => JSX.Element;
+  wrapper: (_children: ReactNode) => JSX.Element;
   children: ReactNode;
 };
 
