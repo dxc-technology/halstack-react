@@ -1,8 +1,0 @@
-{
-  "extends": "@dxc-technology/typescript-config/react-library.json",
-  "compilerOptions": {
-    "outDir": "dist"
-  },
-  "include": ["src", "turbo", "test", "."],
-  "exclude": ["node_modules", "dist"]
-}
