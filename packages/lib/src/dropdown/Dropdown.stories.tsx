@@ -255,7 +255,7 @@ const DropdownListStates = () => {
         </div>
       </ExampleContainer>
       <ThemeProvider theme={colorsTheme.dropdown}>
-        <Title title="DropdownOption states" theme="light" level={3} />
+        <Title title="Option states" theme="light" level={3} />
         <ExampleContainer pseudoState="pseudo-hover">
           <Title title="Hovered option" theme="light" level={4} />
           <DropdownMenu
