@@ -6,7 +6,10 @@ const setVersion = () => {
     version: versionToDeploy,
   };
   const jsonData = JSON.stringify(object);
-  fs.writeFile("catalog/version/version.json", jsonData, (err) => {
+  const versionDirectory = "./catalog/version/";
+  if (!fs.existsSync(versionDirectory))
+    fs.mkdirSync(versionDirectory, { recursive: true });
+  fs.writeFile(`${versionDirectory}version.json`, jsonData, (err) => {
     if (err) throw err;
   });
 };
