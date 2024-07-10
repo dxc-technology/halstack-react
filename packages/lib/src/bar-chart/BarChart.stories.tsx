@@ -276,5 +276,5 @@ const BarChart = () => (
 export const Chromatic = BarChart.bind({});
 Chromatic.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
-  await userEvent.click(canvas.getAllByTitle("Clear selection")[1]);
+  await userEvent.click(canvas.getAllByRole("button")[0]);
 };
