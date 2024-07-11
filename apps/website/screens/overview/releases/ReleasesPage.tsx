@@ -28,6 +28,9 @@ const sections = [
         <DxcParagraph>Every major release of Halstack is collected below:</DxcParagraph>
         <DxcBulletedList>
           <DxcBulletedList.Item>
+            <DxcLink href="https://developer.dxc.com/halstack/13/overview/introduction/">Halstack 13</DxcLink>
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
             <DxcLink href="https://developer.dxc.com/halstack/12/overview/introduction/">Halstack 12</DxcLink>
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
