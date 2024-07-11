@@ -1,6 +1,6 @@
 const fs = require("fs");
 
-const componentsList = require("../website/screens/common/componentsList.json");
+const componentsList = require("../apps/website/screens/common/componentsList.json");
 
 const setCatalog = () => {
   let catalog = [];
