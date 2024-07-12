@@ -523,6 +523,7 @@ const ClearOptionsAction = styled.button`
   color: ${(props) =>
     props.disabled ? props.theme.disabledColor : props.theme.enabledSelectionIndicatorActionIconColor};
   font-size: 16px;
+  width: 100%;
 
   :focus-visible {
     outline: none;
@@ -628,7 +629,6 @@ const ClearSearchAction = styled.button`
   font-size: 1rem;
   cursor: pointer;
   width: 100%;
-  height: 100%;
 
   &:hover {
     background-color: ${(props) => props.theme.hoverActionBackgroundColor};
