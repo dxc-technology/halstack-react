@@ -1,5 +1,5 @@
-import { join } from 'path';
-import { buildThemedComponents } from '@cloudscape-design/components-themeable/theming';
+import { join } from "path";
+import { buildThemedComponents } from "@cloudscape-design/components-themeable/theming";
 
 const CoreColorTokens = {
   color_grey_700: "#666666",
@@ -53,7 +53,7 @@ const theme = {
 
 buildThemedComponents({
   theme,
-  outputDir: join(__dirname, './themed'),
+  outputDir: join(__dirname, "./themed"),
 });
 
-console.log('✅ Cloudscape components themed');
+console.log("✅ Cloudscape components themed");

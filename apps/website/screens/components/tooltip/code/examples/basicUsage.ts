@@ -1,8 +1,4 @@
-import {
-  DxcTooltip,
-  DxcButton,
-  DxcInset,
-} from "@dxc-technology/halstack-react";
+import { DxcTooltip, DxcButton, DxcInset } from "@dxc-technology/halstack-react";
 
 const code = `() => {
     return (
