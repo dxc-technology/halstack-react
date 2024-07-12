@@ -1,5 +1,13 @@
 import React, { useState } from "react";
-import { DxcDialog, DxcButton, DxcHeading, DxcTextInput, DxcFlex, DxcParagraph, DxcInset } from "@dxc-technology/halstack-react";
+import {
+  DxcDialog,
+  DxcButton,
+  DxcHeading,
+  DxcTextInput,
+  DxcFlex,
+  DxcParagraph,
+  DxcInset,
+} from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
 import PreviewContainer from "./PreviewContainer";
 
