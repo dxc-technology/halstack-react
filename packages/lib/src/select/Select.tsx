@@ -628,7 +628,6 @@ const ClearSearchAction = styled.button`
   color: ${(props) => props.theme.actionIconColor};
   font-size: 1rem;
   cursor: pointer;
-  width: 100%;
 
   &:hover {
     background-color: ${(props) => props.theme.hoverActionBackgroundColor};
