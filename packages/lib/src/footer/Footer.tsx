@@ -8,6 +8,7 @@ import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
 import { dxcLogo, dxcSmallLogo } from "./Icons";
 import FooterPropsType from "./types";
+import type { Spaces } from "../flex/types";
 
 const DxcFooter = ({
   socialLinks,
@@ -43,7 +44,7 @@ const DxcFooter = ({
         <DxcFlex justifyContent="space-between" alignItems="center" wrap="wrap" gap="1.5rem">
           <LogoContainer mode={mode}>{footerLogo}</LogoContainer>
           {mode === "default" && (
-            <DxcFlex>
+            <DxcFlex gap={colorsTheme.footer.socialLinksGutter as Spaces}>
               {socialLinks?.map((link, index) => (
                 <DxcTooltip label={link.title}>
                   <SocialAnchor
@@ -155,8 +156,8 @@ const LogoImg = styled.img<{ mode?: FooterPropsType["mode"] }>`
 `;
 
 const SocialAnchor = styled.a<{ index: number }>`
-  display: inline-flex;
-  margin-left: ${(props) => (props.index === 0 ? "0px" : props.theme.socialLinksGutter)};
+  /* display: inline-flex;
+  margin-left: ${(props) => (props.index === 0 ? "0px" : props.theme.socialLinksGutter)}; */
   border-radius: 4px;
 
   &:focus {
