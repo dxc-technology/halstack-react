@@ -107,7 +107,7 @@ const StyledLink = styled.div<{
        cursor: pointer;`}
   }
   &:focus {
-    border-radius: 2px;
+    border-radius: 4px;
     outline: 2px solid ${(props) => props.theme.focusColor};
     ${(props) => props.disabled && "outline: none"}
   }
