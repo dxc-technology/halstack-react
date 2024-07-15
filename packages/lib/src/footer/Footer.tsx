@@ -156,8 +156,6 @@ const LogoImg = styled.img<{ mode?: FooterPropsType["mode"] }>`
 `;
 
 const SocialAnchor = styled.a<{ index: number }>`
-  /* display: inline-flex;
-  margin-left: ${(props) => (props.index === 0 ? "0px" : props.theme.socialLinksGutter)}; */
   border-radius: 4px;
 
   &:focus {
