@@ -6,7 +6,16 @@ import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import opinionatedTheme from "./examples/opinionatedTheme";
 import advancedTheme from "./examples/advancedTheme";
 import customTranslations from "./examples/customTranslations";
-import { DxcFlex, DxcParagraph, DxcTable, DxcLink, DxcAlert, DxcTypography, DxcBleed, DxcHeading } from "@dxc-technology/halstack-react";
+import {
+  DxcFlex,
+  DxcParagraph,
+  DxcTable,
+  DxcLink,
+  DxcAlert,
+  DxcTypography,
+  DxcBleed,
+  DxcHeading,
+} from "@dxc-technology/halstack-react";
 import Link from "next/link";
 import PageHeading from "@/common/PageHeading";
 import TableCode from "@/common/TableCode";

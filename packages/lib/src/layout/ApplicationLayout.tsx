@@ -7,6 +7,7 @@ import DxcIcon from "../icon/Icon";
 import DxcSidenav from "../sidenav/Sidenav";
 import { SidenavContextProvider, useResponsiveSidenavVisibility } from "../sidenav/SidenavContext";
 import useTranslatedLabels from "../useTranslatedLabels";
+import DxcTooltip from "../tooltip/Tooltip";
 import layoutIcons from "./Icons";
 import AppLayoutPropsType, { AppLayoutMainPropsType } from "./types";
 
@@ -100,14 +101,15 @@ const DxcApplicationLayout = ({
       <HeaderContainer>{headerContent}</HeaderContainer>
       {sidenav && isResponsive && (
         <VisibilityToggle>
-          <HamburgerTrigger
-            onClick={handleSidenavVisibility}
-            aria-label={visibilityToggleLabel ? undefined : translatedLabels.applicationLayout.visibilityToggleTitle}
-            title={translatedLabels.applicationLayout.visibilityToggleTitle}
-          >
-            <DxcIcon icon="Menu" />
-            {visibilityToggleLabel}
-          </HamburgerTrigger>
+          <DxcTooltip label={translatedLabels.applicationLayout.visibilityToggleTitle}>
+            <HamburgerTrigger
+              onClick={handleSidenavVisibility}
+              aria-label={visibilityToggleLabel ? undefined : translatedLabels.applicationLayout.visibilityToggleTitle}
+            >
+              <DxcIcon icon="Menu" />
+              {visibilityToggleLabel}
+            </HamburgerTrigger>
+          </DxcTooltip>
         </VisibilityToggle>
       )}
       <BodyContainer>

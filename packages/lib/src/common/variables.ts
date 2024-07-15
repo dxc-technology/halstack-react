@@ -1357,7 +1357,7 @@ export const defaultTranslatedComponentLabels = {
     logoAlternativeText: "Logo",
   },
   applicationLayout: {
-    visibilityToggleTitle: "Toggle visibility sidenav",
+    visibilityToggleTitle: "Toggle sidenav visibility",
   },
   alert: {
     infoTitleText: "information",

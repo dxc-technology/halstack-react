@@ -1,4 +1,12 @@
-import { DxcTable, DxcFlex, DxcLink, DxcHeading, DxcParagraph, DxcBulletedList, DxcAlert } from "@dxc-technology/halstack-react";
+import {
+  DxcTable,
+  DxcFlex,
+  DxcLink,
+  DxcHeading,
+  DxcParagraph,
+  DxcBulletedList,
+  DxcAlert,
+} from "@dxc-technology/halstack-react";
 import Link from "next/link";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import PageHeading from "@/common/PageHeading";
