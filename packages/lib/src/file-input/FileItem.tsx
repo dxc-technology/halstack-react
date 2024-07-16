@@ -142,36 +142,6 @@ const ErrorIcon = styled.span`
   color: #d0011b;
 `;
 
-const DeleteFileAction = styled.button`
-  display: flex;
-  flex-wrap: wrap;
-  align-content: center;
-  justify-content: center;
-  height: 24px;
-  width: 24px;
-  font-size: 1rem;
-  font-family: ${(props) => props.theme.fontFamily};
-  border: 1px solid transparent;
-  border-radius: 2px;
-  background-color: transparent;
-  box-shadow: 0 0 0 2px transparent;
-  padding: 3px;
-  cursor: pointer;
-  color: ${(props) => props.theme.deleteFileItemColor};
-  font-size: 18px;
-  &:hover {
-    background-color: ${(props) => props.theme.hoverDeleteFileItemBackgroundColor};
-  }
-  &:focus,
-  &:focus-visible {
-    outline: none;
-    box-shadow: 0 0 0 2px ${(props) => props.theme.focusDeleteFileItemBorderColor};
-  }
-  &:active {
-    background-color: ${(props) => props.theme.activeDeleteFileItemBackgroundColor};
-  }
-`;
-
 const ErrorMessage = styled.span`
   color: ${(props) => props.theme.errorMessageFontColor};
   font-family: ${(props) => props.theme.errorMessageFontFamily};
