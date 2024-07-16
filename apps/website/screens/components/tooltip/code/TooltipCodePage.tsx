@@ -26,10 +26,11 @@ const sections = [
               <TableCode>'bottom' | 'top' | 'left' | 'right'</TableCode>
             </td>
             <td>
-              Preferred position for displaying the tooltip. It may adjust
-              automatically based on available space.
+              Preferred position for displaying the tooltip. It may adjust automatically based on available space.
             </td>
-            <td>'bottom'</td>
+            <td>
+              <TableCode>'bottom'</TableCode>
+            </td>
           </tr>
           <tr>
             <td>label</td>
@@ -66,10 +67,7 @@ const TooltipCodePage = () => {
   return (
     <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
-        <QuickNavContainer
-          sections={sections}
-          startHeadingLevel={2}
-        ></QuickNavContainer>
+        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/tooltip/code/TooltipCodePage.tsx" />
     </DxcFlex>

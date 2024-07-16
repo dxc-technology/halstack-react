@@ -1,8 +1,4 @@
-import {
-  DxcParagraph,
-  DxcBulletedList,
-  DxcFlex,
-} from "@dxc-technology/halstack-react";
+import { DxcParagraph, DxcBulletedList, DxcFlex } from "@dxc-technology/halstack-react";
 import Image from "@/common/Image";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
@@ -37,9 +33,7 @@ const sections = [
     title: "Design tokens",
     content: (
       <>
-        <DxcParagraph>
-          This component currently has no design tokens.
-        </DxcParagraph>
+        <DxcParagraph>This component currently has no design tokens.</DxcParagraph>
       </>
     ),
   },
@@ -49,10 +43,7 @@ const TooltipSpecsPage = () => {
   return (
     <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
-        <QuickNavContainer
-          sections={sections}
-          startHeadingLevel={2}
-        ></QuickNavContainer>
+        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/tooltip/specs/TooltipSpecsPage.tsx" />
     </DxcFlex>
