@@ -1,4 +1,12 @@
-import { DxcDialog, DxcButton, DxcTextInput, DxcInset, DxcFlex, DxcGrid, DxcHeading } from "@dxc-technology/halstack-react";
+import {
+  DxcDialog,
+  DxcButton,
+  DxcTextInput,
+  DxcInset,
+  DxcFlex,
+  DxcGrid,
+  DxcHeading,
+} from "@dxc-technology/halstack-react";
 import { useState } from "react";
 
 const code = `() => {

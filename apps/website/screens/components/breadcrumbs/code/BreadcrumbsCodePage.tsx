@@ -3,11 +3,7 @@ import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
-import {
-  DxcFlex,
-  DxcParagraph,
-  DxcTable,
-} from "@dxc-technology/halstack-react";
+import { DxcFlex, DxcParagraph, DxcTable } from "@dxc-technology/halstack-react";
 import TableCode, { ExtendedTableCode } from "@/common/TableCode";
 import basicUsage from "./examples/basicUsage";
 import nextJS from "./examples/nextJS";
@@ -37,10 +33,7 @@ const sections = [
             <td>
               <TableCode>string</TableCode>
             </td>
-            <td>
-              Provides a label that describes the type of navigation enabled by
-              the component.
-            </td>
+            <td>Provides a label that describes the type of navigation enabled by the component.</td>
             <td>
               <TableCode>'Breadcrumbs'</TableCode>
             </td>
@@ -68,9 +61,8 @@ const sections = [
               <TableCode>number</TableCode>
             </td>
             <td>
-              Number of items before showing a collapsed version of the
-              breadcrumbs. It can't be lower than two (root/collapsed action and
-              current page).
+              Number of items before showing a collapsed version of the breadcrumbs. It can't be lower than two
+              (root/collapsed action and current page).
             </td>
             <td>
               <TableCode>4</TableCode>
@@ -82,10 +74,9 @@ const sections = [
               <TableCode>number</TableCode>
             </td>
             <td>
-              Callback for custom navigation with third-party libraries such as
-              Next (<Code>useRouter</Code>) or React Router (
-              <Code>useNavigate</Code>). This function will be called when an
-              item is clicked, receiving its <Code>href</Code> as a parameter.
+              Callback for custom navigation with third-party libraries such as Next (<Code>useRouter</Code>) or React
+              Router (<Code>useNavigate</Code>). This function will be called when an item is clicked, receiving its{" "}
+              <Code>href</Code> as a parameter.
             </td>
             <td>-</td>
           </tr>
@@ -94,10 +85,7 @@ const sections = [
             <td>
               <TableCode>boolean</TableCode>
             </td>
-            <td>
-              When items are collapsed, whether the root item should always be
-              displayed or not.
-            </td>
+            <td>When items are collapsed, whether the root item should always be displayed or not.</td>
             <td>
               <TableCode>true</TableCode>
             </td>
@@ -117,16 +105,11 @@ const sections = [
         title: "Custom navigation",
         content: (
           <>
+            <DxcParagraph>There are many React based routers, unfortunately all with different APIs.</DxcParagraph>
             <DxcParagraph>
-              There are many React based routers, unfortunately all with
-              different APIs.
-            </DxcParagraph>
-            <DxcParagraph>
-              As we explained above, the <Code>onItemClick</Code> prop is a
-              callback that will be called when an item is clicked, receiving
-              its <Code>href</Code> as a parameter. You can take advantage of
-              this prop to navigate programmatically with third-party libraries
-              hooks or functions.
+              As we explained above, the <Code>onItemClick</Code> prop is a callback that will be called when an item is
+              clicked, receiving its <Code>href</Code> as a parameter. You can take advantage of this prop to navigate
+              programmatically with third-party libraries hooks or functions.
             </DxcParagraph>
           </>
         ),
@@ -145,10 +128,7 @@ const BreadcrumbsCodePage = () => {
   return (
     <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
-        <QuickNavContainer
-          sections={sections}
-          startHeadingLevel={2}
-        ></QuickNavContainer>
+        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/breadcrumbs/code/BreadcrumbsCodePage.tsx" />
     </DxcFlex>

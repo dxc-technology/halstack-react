@@ -56,7 +56,7 @@ Here is a list of the most common commands you will use:
 
 - `turbo build` - Build the library.
 - `turbo dev` - Start the development server.
-- `turbo format` - Run the Prettier formatter.
+- `npm run format` - Run the Prettier formatter.
 - `turbo lint` - Run the linter.
 - `turbo storybook` - Start the Storybook server.
 - `turbo storybook:accessibility` - Run the accessibility tests on Storybook.

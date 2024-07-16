@@ -4,6 +4,7 @@ import styled, { ThemeProvider } from "styled-components";
 import { getMargin } from "../common/utils";
 import { spaces } from "../common/variables";
 import DxcIcon from "../icon/Icon";
+import DxcTooltip from "../tooltip/Tooltip";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
 import useWidth from "../utils/useWidth";
@@ -278,19 +279,20 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
                 {multiple && Array.isArray(selectedOption) && selectedOption.length > 0 && (
                   <SelectionIndicator>
                     <SelectionNumber disabled={disabled}>{selectedOption.length}</SelectionNumber>
-                    <ClearOptionsAction
-                      disabled={disabled}
-                      onMouseDown={(event) => {
-                        // Avoid input to lose focus when pressed
-                        event.preventDefault();
-                      }}
-                      onClick={handleClearOptionsActionOnClick}
-                      tabIndex={-1}
-                      title={translatedLabels.select.actionClearSelectionTitle}
-                      aria-label={translatedLabels.select.actionClearSelectionTitle}
-                    >
-                      <DxcIcon icon="close" />
-                    </ClearOptionsAction>
+                    <DxcTooltip label={translatedLabels.select.actionClearSelectionTitle}>
+                      <ClearOptionsAction
+                        disabled={disabled}
+                        onMouseDown={(event) => {
+                          // Avoid input to lose focus when pressed
+                          event.preventDefault();
+                        }}
+                        onClick={handleClearOptionsActionOnClick}
+                        tabIndex={-1}
+                        aria-label={translatedLabels.select.actionClearSelectionTitle}
+                      >
+                        <DxcIcon icon="clear" />
+                      </ClearOptionsAction>
+                    </DxcTooltip>
                   </SelectionIndicator>
                 )}
                 <SearchableValueContainer>
@@ -341,18 +343,19 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
                   </ErrorIcon>
                 )}
                 {searchable && searchValue.length > 0 && (
-                  <ClearSearchAction
-                    onMouseDown={(event) => {
-                      // Avoid input to lose focus
-                      event.preventDefault();
-                    }}
-                    onClick={handleClearSearchActionOnClick}
-                    tabIndex={-1}
-                    title={translatedLabels.select.actionClearSearchTitle}
-                    aria-label={translatedLabels.select.actionClearSearchTitle}
-                  >
-                    <DxcIcon icon="clear" />
-                  </ClearSearchAction>
+                  <DxcTooltip label={translatedLabels.select.actionClearSelectionTitle}>
+                    <ClearSearchAction
+                      onMouseDown={(event) => {
+                        // Avoid input to lose focus
+                        event.preventDefault();
+                      }}
+                      onClick={handleClearSearchActionOnClick}
+                      tabIndex={-1}
+                      aria-label={translatedLabels.select.actionClearSearchTitle}
+                    >
+                      <DxcIcon icon="clear" />
+                    </ClearSearchAction>
+                  </DxcTooltip>
                 )}
                 <CollapseIndicator disabled={disabled}>
                   <DxcIcon icon={isOpen ? "keyboard_arrow_up" : "keyboard_arrow_down"} />
@@ -520,6 +523,7 @@ const ClearOptionsAction = styled.button`
   color: ${(props) =>
     props.disabled ? props.theme.disabledColor : props.theme.enabledSelectionIndicatorActionIconColor};
   font-size: 16px;
+  width: 100%;
 
   :focus-visible {
     outline: none;
