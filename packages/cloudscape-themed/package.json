@@ -1,13 +1,19 @@
 {
   "name": "@dxc-technology/cloudscape-themed",
+  "version": "0.0.0",
+  "files": [
+    "dist/components",
+    "dist/design-tokens"
+  ],
   "scripts": {
-    "dev": "tsc --watch",
-    "build": "tsc && node ./dist/index.js && npm run link",
-    "link": "npm link dist/themed/components --force"
+    "build": "ts-node src/index.ts"
+  },
+  "dependencies": {
+    "@cloudscape-design/components-themeable": "^3.0.685",
+    "@dxc-technology/typescript-config": "*"
   },
   "devDependencies": {
-    "@cloudscape-design/components-themeable": "^3.0.685",
-    "@dxc-technology/typescript-config": "*",
+    "ts-node": "^10.0.0",
     "typescript": "latest"
   }
 }

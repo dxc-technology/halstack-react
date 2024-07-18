@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "build": "turbo build",
-    "build:cloudscape": "cd packages/cloudscape-themed && turbo build",
+    "build:cloudscape": "npm run build --workspace=@dxc-technology/cloudscape-themed",
     "dev": "turbo dev",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "lint": "turbo lint",

@@ -53,7 +53,7 @@ const theme = {
 
 buildThemedComponents({
   theme,
-  outputDir: join(__dirname, "./themed"),
+  outputDir: join(__dirname, "../dist"),
 });
 
 console.log("✅ Cloudscape components themed");
