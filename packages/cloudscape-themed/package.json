@@ -1,6 +1,8 @@
 {
   "name": "@dxc-technology/cloudscape-themed",
   "version": "0.0.0",
+  "main": "./dist/components/index.js",
+  "types": "./dist/components/index.d.ts",
   "files": [
     "dist/components",
     "dist/design-tokens"
