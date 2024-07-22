@@ -1,30 +1,40 @@
 import React from "react";
-import { DxcButton } from "@dxc-technology/halstack-react";
+import { DxcButton, DxcFlex } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
-import linkedinIcon from "../../images/LinkedinIcon";
 import PreviewContainer from "./PreviewContainer";
 
 const Button = () => {
-  const onClick = () => {
-    console.log("click");
-  };
-
   return (
     <PreviewContainer>
       <Mode text="Primary">
-        <DxcButton mode="primary" label="button" />
-        <DxcButton mode="primary" label="Button" icon={linkedinIcon} onClick={onClick} />
-        <DxcButton mode="primary" label="button" disabled onClick={onClick} />
+        <DxcFlex direction="column" gap="2rem">
+          <DxcFlex gap="3rem">
+            <DxcButton mode="primary" semantic="default" icon="person" size={{ height: "small" }} />
+            <DxcButton mode="primary" semantic="default" label="Default" size={{ height: "medium" }} />
+            <DxcButton mode="primary" semantic="default" label="Default" size={{ height: "large" }} />
+            <DxcButton mode="primary" semantic="default" label="Default" disabled />
+          </DxcFlex>
+        </DxcFlex>
       </Mode>
       <Mode text="Secondary">
-        <DxcButton mode="secondary" label="button" onClick={onClick} />
-        <DxcButton label="Button" mode="secondary" icon={linkedinIcon} iconPosition="after" onClick={onClick} />
-        <DxcButton mode="secondary" label="button" disabled={true} onClick={onClick} />
+        <DxcFlex direction="column" gap="2rem">
+          <DxcFlex gap="3rem">
+            <DxcButton mode="secondary" semantic="default" icon="person" size={{ height: "small" }} />
+            <DxcButton mode="secondary" semantic="default" label="Default" size={{ height: "medium" }} />
+            <DxcButton mode="secondary" semantic="default" label="Default" size={{ height: "large" }} />
+            <DxcButton mode="secondary" semantic="default" label="Default" disabled />
+          </DxcFlex>
+        </DxcFlex>
       </Mode>
-      <Mode text="Text">
-        <DxcButton mode="text" label="button" onClick={onClick} />
-        <DxcButton label="Button" mode="text" icon={linkedinIcon} onClick={onClick} />
-        <DxcButton mode="text" label="button" disabled onClick={onClick} />
+      <Mode text="Tertiary">
+        <DxcFlex direction="column" gap="2rem">
+          <DxcFlex gap="3rem">
+            <DxcButton mode="tertiary" semantic="default" icon="person" size={{ height: "small" }} />
+            <DxcButton mode="tertiary" semantic="default" label="Default" size={{ height: "medium" }} />
+            <DxcButton mode="tertiary" semantic="default" label="Default" size={{ height: "large" }} />
+            <DxcButton mode="tertiary" semantic="default" label="Default" disabled />
+          </DxcFlex>
+        </DxcFlex>
       </Mode>
     </PreviewContainer>
   );

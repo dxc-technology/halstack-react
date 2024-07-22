@@ -3,9 +3,12 @@ import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
+import StatusBadge from "@/common/StatusBadge";
 import Example from "@/common/example/Example";
 import basicUsage from "./examples/basicUsage";
+import semantic from "./examples/semantic";
 import icons from "./examples/icons";
+import sizes from "./examples/sizes";
 import TableCode from "@/common/TableCode";
 
 const sections = [
@@ -33,11 +36,26 @@ const sections = [
           <tr>
             <td>mode</td>
             <td>
-              <TableCode>'primary' | 'secondary' | 'text'</TableCode>
+              <TableCode>'primary' | 'secondary' | 'tertiary'</TableCode>
             </td>
             <td>The available button modes.</td>
             <td>
               <TableCode>'primary'</TableCode>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                <StatusBadge status="new" />
+                semantic
+              </DxcFlex>
+            </td>
+            <td>
+              <TableCode>'default' | 'error' | 'warning' | 'success' | 'info'</TableCode>
+            </td>
+            <td>Specifies the semantic meaning of the buttons, which determines its color.</td>
+            <td>
+              <TableCode>'default'</TableCode>
             </td>
           </tr>
           <tr>
@@ -122,13 +140,22 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
-            <td>size</td>
             <td>
-              <TableCode>'small' | 'medium' | 'large' | 'fillParent' | 'fitContent'</TableCode>
+              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                <StatusBadge status="new" />
+                size
+              </DxcFlex>
             </td>
-            <td>Size of the component.</td>
             <td>
-              <TableCode>'fitContent'</TableCode>
+              <TableCode>
+                {
+                  "{ height: 'small' | 'medium' | 'large'; width: 'small' | 'medium' | 'large' | 'fillParent' | 'fitContent' }"
+                }
+              </TableCode>
+            </td>
+            <td>Object used to define the dimensions of the button in terms of height and width. </td>
+            <td>
+              <TableCode>{"{ height: 'medium'; width: 'fitContent' }"}</TableCode>
             </td>
           </tr>
           <tr>
@@ -155,8 +182,16 @@ const sections = [
         content: <Example example={basicUsage} defaultIsVisible />,
       },
       {
+        title: "Semantic",
+        content: <Example example={semantic} defaultIsVisible />,
+      },
+      {
         title: "Icons",
         content: <Example example={icons} defaultIsVisible />,
+      },
+      {
+        title: "Size",
+        content: <Example example={sizes} defaultIsVisible />,
       },
     ],
   },
