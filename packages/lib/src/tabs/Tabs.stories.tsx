@@ -2,11 +2,13 @@ import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import { HalstackProvider } from "../HalstackContext";
+import DxcTabsLegacy from "./TabsLegacy";
 import DxcTabs from "./Tabs";
+// import DxcTabs from "./Tabs";
 
 export default {
   title: "Tabs",
-  component: DxcTabs,
+  component: DxcTabsLegacy,
   parameters: {
     viewport: {
       viewports: INITIAL_VIEWPORTS,
@@ -94,107 +96,153 @@ const opinionatedTheme = {
 export const Chromatic = () => (
   <>
     <ExampleContainer>
+      <Title title="TEST" theme="light" level={4} />
+      <DxcTabs iconPosition="top" tabIndex={0}>
+        <DxcTabs.Tab label="Tab 1" onClick={() => {}} onHover={() => {}}>
+          <p>EXAMPLE 1</p>
+        </DxcTabs.Tab>
+        <DxcTabs.Tab label="Tab 2" onClick={() => {}} onHover={() => {}} active>
+          <p>EXAMPLE 2</p>
+        </DxcTabs.Tab>
+        <DxcTabs.Tab label="Tab 3" onClick={() => {}} onHover={() => {}} disabled>
+          <p>EXAMPLE 3</p>
+        </DxcTabs.Tab>
+        <DxcTabs.Tab label="Tab 4" onClick={() => {}} onHover={() => {}}>
+          <p>EXAMPLE 4</p>
+        </DxcTabs.Tab>
+        <DxcTabs.Tab label="Tab 5" onClick={() => {}} onHover={() => {}}>
+          <p>EXAMPLE 5</p>
+        </DxcTabs.Tab>
+        <DxcTabs.Tab label="Tab 6" onClick={() => {}} onHover={() => {}}>
+          <p>EXAMPLE 6</p>
+        </DxcTabs.Tab>
+        <DxcTabs.Tab label="Tab 7" onClick={() => {}} onHover={() => {}}>
+          <p>EXAMPLE 7</p>
+        </DxcTabs.Tab>
+      </DxcTabs>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="TEST" theme="light" level={4} />
+      <DxcTabs iconPosition="top" tabIndex={0}>
+        <DxcTabs.Tab label="Tab 1" icon={iconSVG} onClick={() => {}} onHover={() => {}} >
+          <p>EXAMPLE 1</p>
+        </DxcTabs.Tab>
+        <DxcTabs.Tab label="Tab 2" icon={iconSVG} onClick={() => {}} onHover={() => {}} disabled>
+          <p>EXAMPLE 2</p>
+        </DxcTabs.Tab>
+        <DxcTabs.Tab label="Tab 3" icon={iconSVG} onClick={() => {}} onHover={() => {}} disabled>
+          <p>EXAMPLE 3</p>
+        </DxcTabs.Tab>
+        <DxcTabs.Tab label="Tab 4" icon={iconSVG} onClick={() => {}} onHover={() => {}} disabled>
+          <p>EXAMPLE 4</p>
+        </DxcTabs.Tab>
+        <DxcTabs.Tab label="Tab 5" icon={iconSVG} onClick={() => {}} onHover={() => {}} disabled>
+          <p>EXAMPLE 5</p>
+        </DxcTabs.Tab>
+      </DxcTabs>
+    </ExampleContainer>
+    <ExampleContainer>
       <Title title="Only label" theme="light" level={4} />
-      <DxcTabs tabs={tabs} />
+      <DxcTabsLegacy tabs={tabs} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Disabled tabs" theme="light" level={4} />
-      <DxcTabs activeTabIndex={0} tabs={disabledTabs} />
+      <DxcTabsLegacy activeTabIndex={0} tabs={disabledTabs} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="First two tabs disabled" theme="light" level={4} />
-      <DxcTabs tabs={firstDisabledTabs} />
+      <DxcTabsLegacy tabs={firstDisabledTabs} />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-hover">
       <Title title="Hovered tabs" theme="light" level={4} />
-      <DxcTabs tabs={tabs} />
+      <DxcTabsLegacy tabs={tabs} />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-focus">
       <Title title="Focused tabs" theme="light" level={4} />
-      <DxcTabs tabs={tabs} />
+      <DxcTabsLegacy tabs={tabs} />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-active">
       <Title title="Actived tabs" theme="light" level={4} />
-      <DxcTabs tabs={tabs} />
+      <DxcTabsLegacy tabs={tabs} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With notification number" theme="light" level={4} />
-      <DxcTabs tabs={tabsNotification} />
+      <DxcTabsLegacy tabs={tabsNotification} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With icon position top" theme="light" level={4} />
-      <DxcTabs tabs={tabsIcon} />
+      <DxcTabsLegacy tabs={tabsIcon} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With icon position left" theme="light" level={4} />
-      <DxcTabs tabs={tabsIcon} iconPosition="left" />
+      <DxcTabsLegacy tabs={tabsIcon} iconPosition="left" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With icon and notification number" theme="light" level={4} />
-      <DxcTabs tabs={tabsNotificationIcon} />
+      <DxcTabsLegacy tabs={tabsNotificationIcon} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With icon on the left and notification number" theme="light" level={4} />
-      <DxcTabs tabs={tabsNotificationIcon} iconPosition="left" />
+      <DxcTabsLegacy tabs={tabsNotificationIcon} iconPosition="left" />
     </ExampleContainer>
     <Title title="Margins" theme="light" level={2} />
     <ExampleContainer>
       <Title title="Xxsmall margin" theme="light" level={4} />
-      <DxcTabs tabs={tabs} margin="xxsmall" />
+      <DxcTabsLegacy tabs={tabs} margin="xxsmall" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Xsmall margin" theme="light" level={4} />
-      <DxcTabs tabs={tabs} margin="xsmall" />
+      <DxcTabsLegacy tabs={tabs} margin="xsmall" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Small margin" theme="light" level={4} />
-      <DxcTabs tabs={tabs} margin="small" />
+      <DxcTabsLegacy tabs={tabs} margin="small" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Medium margin" theme="light" level={4} />
-      <DxcTabs tabs={tabs} margin="medium" />
+      <DxcTabsLegacy tabs={tabs} margin="medium" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Large margin" theme="light" level={4} />
-      <DxcTabs tabs={tabs} margin="large" />
+      <DxcTabsLegacy tabs={tabs} margin="large" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Xlarge margin" theme="light" level={4} />
-      <DxcTabs tabs={tabs} margin="xlarge" />
+      <DxcTabsLegacy tabs={tabs} margin="xlarge" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Xxlarge margin" theme="light" level={4} />
-      <DxcTabs tabs={tabs} margin="xxlarge" />
+      <DxcTabsLegacy tabs={tabs} margin="xxlarge" />
     </ExampleContainer>
     <Title title="Opinionated theme" theme="light" level={2} />
     <ExampleContainer>
       <Title title="With icon and notification" theme="light" level={4} />
       <HalstackProvider theme={opinionatedTheme}>
-        <DxcTabs tabs={tabsNotificationIcon} />
+        <DxcTabsLegacy tabs={tabsNotificationIcon} />
       </HalstackProvider>
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Disabled" theme="light" level={4} />
       <HalstackProvider theme={opinionatedTheme}>
-        <DxcTabs activeTabIndex={0} tabs={disabledTabs} />
+        <DxcTabsLegacy activeTabIndex={0} tabs={disabledTabs} />
       </HalstackProvider>
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-hover">
       <Title title="Hovered" theme="light" level={4} />
       <HalstackProvider theme={opinionatedTheme}>
-        <DxcTabs tabs={tabs} />
+        <DxcTabsLegacy tabs={tabs} />
       </HalstackProvider>
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-focus">
       <Title title="Focused" theme="light" level={4} />
       <HalstackProvider theme={opinionatedTheme}>
-        <DxcTabs tabs={tabs} />
+        <DxcTabsLegacy tabs={tabs} />
       </HalstackProvider>
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-active">
       <Title title="Actived" theme="light" level={4} />
       <HalstackProvider theme={opinionatedTheme}>
-        <DxcTabs tabs={tabs} />
+        <DxcTabsLegacy tabs={tabs} />
       </HalstackProvider>
     </ExampleContainer>
   </>
@@ -204,19 +252,19 @@ export const ScrollableTabs = () => (
   <>
     <ExampleContainer>
       <Title title="Only label" theme="light" level={4} />
-      <DxcTabs tabs={tabs} />
+      <DxcTabsLegacy tabs={tabs} />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-hover">
       <Title title="Hovered tabs" theme="light" level={4} />
-      <DxcTabs tabs={tabs} />
+      <DxcTabsLegacy tabs={tabs} />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-focus">
       <Title title="Focused tabs" theme="light" level={4} />
-      <DxcTabs tabs={tabs} />
+      <DxcTabsLegacy tabs={tabs} />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-active">
       <Title title="Actived tabs" theme="light" level={4} />
-      <DxcTabs tabs={tabs} />
+      <DxcTabsLegacy tabs={tabs} />
     </ExampleContainer>
   </>
 );

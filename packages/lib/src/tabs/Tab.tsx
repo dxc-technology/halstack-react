@@ -1,85 +1,248 @@
-import { forwardRef, memo } from "react";
+import { forwardRef, Ref, useContext, useEffect, useRef } from "react";
 import styled from "styled-components";
 import DxcBadge from "../badge/Badge";
 import DxcIcon from "../icon/Icon";
 import useTheme from "../useTheme";
 import BaseTypography from "../utils/BaseTypography";
-import { TabProps } from "./types";
+import { TabsContext } from "./TabsContext";
+import { TabProps, TabsContextProps } from "./types";
 
-const Tab = forwardRef(
+const DxcTab = forwardRef(
   (
-    { active, tab, tabIndex, hasLabelAndIcon, iconPosition, onClick, onMouseEnter, onMouseLeave }: TabProps,
-    ref: React.Ref<HTMLButtonElement>
+    { icon, label, disabled = false, notificationNumber = false, onClick, onHover }: TabProps,
+    ref: Ref<HTMLButtonElement>
   ): JSX.Element => {
+    const tabRef = useRef<HTMLButtonElement>();
     const colorsTheme = useTheme();
+    const {
+      iconPosition,
+      tabIndex,
+      focusedLabel,
+      // setFocusedLabel,
+      activeLabel,
+      setActiveLabel,
+      setActiveIndicatorWidth,
+      setActiveIndicatorLeft,
+    } = useContext(TabsContext);
+
+    useEffect(() => {
+      focusedLabel === label && tabRef?.current?.focus();
+    }, [focusedLabel]);
+
+    useEffect(() => {
+      if (activeLabel === label) {
+        setActiveIndicatorWidth(tabRef?.current?.offsetWidth);
+        setActiveIndicatorLeft(tabRef?.current?.offsetLeft);
+      }
+    }, [activeLabel]);
+
+    const handleOnKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
+      switch (event.key) {
+        case " ":
+        case "Enter":
+          event.preventDefault();
+          tabRef?.current?.click();
+          break;
+      }
+    };
 
     return (
       <TabContainer
         role="tab"
         type="button"
-        tabIndex={tabIndex}
-        disabled={tab.isDisabled}
-        aria-selected={active}
-        hasLabelAndIcon={hasLabelAndIcon}
+        tabIndex={activeLabel === label && !disabled ? tabIndex : -1}
+        disabled={disabled}
+        aria-selected={activeLabel === label}
+        hasLabelAndIcon={!!label && !!icon}
         iconPosition={iconPosition}
-        ref={ref}
+        ref={(anchorRef) => {
+          tabRef.current = anchorRef;
+
+          if (ref) {
+            if (typeof ref === "function") ref(anchorRef);
+            else (ref as React.MutableRefObject<HTMLButtonElement | null>).current = anchorRef;
+          }
+        }}
         onClick={() => {
+          setActiveLabel(label);
           onClick();
         }}
-        onMouseEnter={() => {
-          onMouseEnter();
-        }}
-        onMouseLeave={() => {
-          onMouseLeave();
-        }}
+        onMouseEnter={() => onHover()}
+        onKeyDown={handleOnKeyDown}
       >
         <MainLabelContainer
-          notificationNumber={tab.notificationNumber}
-          hasLabelAndIcon={hasLabelAndIcon}
+          notificationNumber={notificationNumber}
+          hasLabelAndIcon={!!label && !!icon}
           iconPosition={iconPosition}
-          disabled={tab.isDisabled}
+          disabled={disabled}
         >
-          {tab.icon && (
-            <TabIconContainer hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
-              {typeof tab.icon === "string" ? <DxcIcon icon={tab.icon} /> : tab.icon}
+          {icon && (
+            <TabIconContainer hasLabelAndIcon={!!label && !!icon} iconPosition={iconPosition}>
+              {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
             </TabIconContainer>
           )}
           <BaseTypography
             color={
-              tab.isDisabled
+              disabled
                 ? colorsTheme.tabs.disabledFontColor
-                : active
+                : activeLabel === label
                   ? colorsTheme.tabs.selectedFontColor
                   : colorsTheme.tabs.unselectedFontColor
             }
             fontFamily={colorsTheme.tabs.fontFamily}
             fontSize={colorsTheme.tabs.fontSize}
-            fontStyle={tab.isDisabled ? colorsTheme.tabs.disabledFontStyle : colorsTheme.tabs.fontStyle}
-            fontWeight={active ? colorsTheme.tabs.pressedFontWeight : colorsTheme.tabs.fontWeight}
+            fontStyle={disabled ? colorsTheme.tabs.disabledFontStyle : colorsTheme.tabs.fontStyle}
+            fontWeight={activeLabel === label ? colorsTheme.tabs.pressedFontWeight : colorsTheme.tabs.fontWeight}
             textAlign="center"
             letterSpacing="0.025em"
             lineHeight="1.715em"
           >
-            {tab.label}
+            {label}
           </BaseTypography>
         </MainLabelContainer>
-        {tab.notificationNumber && !tab.isDisabled && (
-          <BadgeContainer hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
+        {notificationNumber && !disabled && (
+          <BadgeContainer hasLabelAndIcon={!!label && !!icon} iconPosition={iconPosition}>
             <DxcBadge
               mode="notification"
               size="small"
-              label={typeof tab.notificationNumber === "number" && tab.notificationNumber}
+              label={typeof notificationNumber === "number" && notificationNumber}
             />
           </BadgeContainer>
         )}
       </TabContainer>
     );
+
+    // --------------------------------------------
+
+    // return (
+    //   <TabContainer active={active}>
+    //     <Tab
+    //       href={!disabled ? href : undefined}
+    //       disabled={disabled}
+    //       active={active}
+    //       iconPosition={iconPosition}
+    //       hasIcon={icon != null ? true : false}
+    //       ref={(anchorRef) => {
+    //         tabRef.current = anchorRef;
+
+    //         if (ref) {
+    //           if (typeof ref === "function") ref(anchorRef);
+    //           else (ref as React.MutableRefObject<HTMLAnchorElement | null>).current = anchorRef;
+    //         }
+    //       }}
+    //       onKeyDown={handleOnKeyDown}
+    //       tabIndex={active ? tabIndex : -1}
+    //       role="tab"
+    //       aria-selected={active}
+    //       aria-disabled={disabled}
+    //     >
+    //       {icon && (
+    //         <TabIconContainer iconPosition={iconPosition} active={active} disabled={disabled}>
+    //           {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
+    //         </TabIconContainer>
+    //       )}
+    //       <DxcFlex alignItems="center" gap="0.5rem">
+    //         <BaseTypography
+    //           color={
+    //             disabled
+    //               ? colorsTheme.tabs.disabledFontColor
+    //               : active
+    //                 ? colorsTheme.tabs.selectedFontColor
+    //                 : colorsTheme.tabs.unselectedFontColor
+    //           }
+    //           fontFamily={colorsTheme.tabs.fontFamily}
+    //           fontSize={colorsTheme.tabs.fontSize}
+    //           fontStyle={colorsTheme.tabs.fontStyle}
+    //           fontWeight={colorsTheme.tabs.fontWeight}
+    //           textAlign="center"
+    //           letterSpacing="0.025em"
+    //           lineHeight="1.715em"
+    //         >
+    //           {children}
+    //         </BaseTypography>
+    //         {notificationNumber && !disabled && (
+    //           <DxcBadge
+    //             mode="notification"
+    //             size="small"
+    //             label={typeof notificationNumber === "number" && notificationNumber}
+    //           />
+    //         )}
+    //       </DxcFlex>
+    //     </Tab>
+    //   </TabContainer>
+    // );
+
+    // --------------------------------------------
   }
 );
 
+// const TabContainer = styled.div<{ active: TabProps["active"] }>`
+//   align-items: stretch;
+//   border-bottom: 2px solid ${(props) => (props.active ? props.theme.selectedUnderlineColor : "transparent")};
+//   padding: 0.5rem;
+// `;
+
+// const Tab = styled.a<{
+//   disabled: TabProps["disabled"];
+//   active: TabProps["active"];
+//   hasIcon: boolean;
+//   iconPosition: TabsPropsType["iconPosition"];
+// }>`
+//   box-sizing: border-box;
+//   display: flex;
+//   flex-direction: ${(props) => (props.hasIcon && props.iconPosition === "top" ? "column" : "row")};
+//   justify-content: center;
+//   align-items: center;
+//   gap: ${(props) => (props.hasIcon && props.iconPosition === "top" ? "0.375rem" : "0.625rem")};
+//   height: ${(props) => (props.hasIcon && props.iconPosition === "top" ? "78px" : "100%")};
+//   min-width: 176px;
+//   min-height: 44px;
+//   padding: 0.375rem;
+//   border-radius: 4px;
+//   background: ${(props) =>
+//     props.active ? props.theme.selectedBackgroundColor : props.theme.unselectedBackgroundColor};
+//   text-decoration-color: transparent;
+//   text-decoration-line: none;
+//   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
+
+//   ${(props) =>
+//     !props.disabled &&
+//     `
+//       :hover {
+//         background: ${props.theme.hoverBackgroundColor};
+//       }
+//       :focus {
+//         outline: 2px solid ${props.theme.focusOutline};
+//       }
+//       :active {
+//         background: ${props.theme.pressedBackgroundColor};
+//         outline: 2px solid #33aaff};
+//       }
+//   `}
+// `;
+
+// const TabIconContainer = styled.div<{
+//   iconPosition: TabsPropsType["iconPosition"];
+//   active: TabProps["active"];
+//   disabled: TabProps["disabled"];
+// }>`
+//   display: flex;
+//   font-size: 24px;
+//   color: ${(props) =>
+//     props.active
+//       ? props.theme.selectedIconColor
+//       : props.disabled
+//         ? props.theme.disabledIconColor
+//         : props.theme.unselectedIconColor};
+//   svg {
+//     height: 24px;
+//     width: 24px;
+//   }
+// `;
+
 const TabContainer = styled.button<{
-  hasLabelAndIcon: TabProps["hasLabelAndIcon"];
-  iconPosition: TabProps["iconPosition"];
+  hasLabelAndIcon: boolean;
+  iconPosition: TabsContextProps["iconPosition"];
 }>`
   text-transform: ${(props) => props.theme.fontTextTransform};
   overflow: hidden;
@@ -144,8 +307,8 @@ const TabContainer = styled.button<{
 `;
 
 const BadgeContainer = styled.div<{
-  hasLabelAndIcon: TabProps["hasLabelAndIcon"];
-  iconPosition: TabProps["iconPosition"];
+  hasLabelAndIcon: boolean;
+  iconPosition: TabsContextProps["iconPosition"];
 }>`
   margin-left: 12px;
   height: 100%;
@@ -154,10 +317,10 @@ const BadgeContainer = styled.div<{
 `;
 
 const MainLabelContainer = styled.div<{
-  notificationNumber: TabProps["tab"]["notificationNumber"];
-  hasLabelAndIcon: TabProps["hasLabelAndIcon"];
-  iconPosition: TabProps["iconPosition"];
-  disabled: TabProps["tab"]["isDisabled"];
+  notificationNumber: TabProps["notificationNumber"];
+  hasLabelAndIcon: boolean;
+  iconPosition: TabsContextProps["iconPosition"];
+  disabled: boolean;
 }>`
   display: flex;
   flex-direction: ${(props) => (props.hasLabelAndIcon && props.iconPosition === "top" && "column") || "row"};
@@ -171,8 +334,8 @@ const MainLabelContainer = styled.div<{
 `;
 
 const TabIconContainer = styled.div<{
-  hasLabelAndIcon: TabProps["hasLabelAndIcon"];
-  iconPosition: TabProps["iconPosition"];
+  hasLabelAndIcon: boolean;
+  iconPosition: TabsContextProps["iconPosition"];
 }>`
   display: flex;
   margin-bottom: ${(props) => (props.hasLabelAndIcon && props.iconPosition === "top" && "8px") || ""};
@@ -185,4 +348,4 @@ const TabIconContainer = styled.div<{
   }
 `;
 
-export default memo(Tab);
+export default DxcTab;

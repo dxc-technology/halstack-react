@@ -1,5 +1,5 @@
 import { fireEvent, render } from "@testing-library/react";
-import DxcTabs from "./Tabs";
+import DxcTabs from "./TabsLegacy";
 
 const sampleTabs = [
   {

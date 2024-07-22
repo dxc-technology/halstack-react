@@ -1,6 +1,6 @@
 import { render } from "@testing-library/react";
-import { axe } from "../../test/accessibility/axe-helper.js";
-import DxcTabs from "./Tabs";
+import { axe } from "../../test/accessibility/axe-helper";
+import DxcTabs from "./TabsLegacy";
 
 const iconSVG = (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" height="20" width="20" fill="currentColor">
