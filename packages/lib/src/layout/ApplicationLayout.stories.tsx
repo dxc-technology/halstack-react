@@ -180,6 +180,12 @@ const Tooltip = () => (
 );
 
 export const ApplicationLayoutTooltip = Tooltip.bind({});
+ApplicationLayoutTooltip.parameters = {
+  viewport: {
+    defaultViewport: "pixel",
+  },
+  chromatic: { viewports: [540] },
+};
 ApplicationLayoutTooltip.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const toggleVisibility = await canvas.findByRole("button");
