@@ -101,19 +101,19 @@ export const Chromatic = () => (
           </DxcFlex>
           <DxcFlex direction="column">
             <ExampleContainer>
-              <DxcButton icon="home" size={{ height: "small" }} />
+              <DxcButton icon="home" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-hover">
-              <DxcButton icon="home" size={{ height: "small" }} />
+              <DxcButton icon="home" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-focus">
-              <DxcButton icon="home" size={{ height: "small" }} />
+              <DxcButton icon="home" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-active">
-              <DxcButton icon="home" size={{ height: "small" }} />
+              <DxcButton icon="home" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer>
-              <DxcButton icon="home" size={{ height: "small" }} disabled />
+              <DxcButton icon="home" size={{ height: "small" }} disabled title="Home" />
             </ExampleContainer>
           </DxcFlex>
         </DxcFlex>
@@ -122,7 +122,7 @@ export const Chromatic = () => (
             <Title title="Width" theme="light" level={4} />
             <DxcFlex>
               <ExampleContainer>
-                <DxcButton icon={facebookIcon} size={{ height: "small", width: "small" }} />
+                <DxcButton icon={facebookIcon} size={{ height: "small", width: "small" }} title="Facebook" />
               </ExampleContainer>
               <ExampleContainer>
                 <DxcButton label="Medium" size={{ height: "small", width: "medium" }} />
@@ -253,19 +253,19 @@ export const Chromatic = () => (
           </DxcFlex>
           <DxcFlex direction="column">
             <ExampleContainer>
-              <DxcButton mode="secondary" icon="home" size={{ height: "small" }} />
+              <DxcButton mode="secondary" icon="home" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-hover">
-              <DxcButton mode="secondary" icon="home" size={{ height: "small" }} />
+              <DxcButton mode="secondary" icon="home" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-focus">
-              <DxcButton mode="secondary" icon="home" size={{ height: "small" }} />
+              <DxcButton mode="secondary" icon="home" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-active">
-              <DxcButton mode="secondary" icon="home" size={{ height: "small" }} />
+              <DxcButton mode="secondary" icon="home" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer>
-              <DxcButton mode="secondary" icon="home" size={{ height: "small" }} disabled />
+              <DxcButton mode="secondary" icon="home" size={{ height: "small" }} disabled title="Home" />
             </ExampleContainer>
           </DxcFlex>
         </DxcFlex>
@@ -331,19 +331,19 @@ export const Chromatic = () => (
           </DxcFlex>
           <DxcFlex direction="column">
             <ExampleContainer>
-              <DxcButton mode="tertiary" icon="home" size={{ height: "small" }} />
+              <DxcButton mode="tertiary" icon="home" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-hover">
-              <DxcButton mode="tertiary" icon="home" size={{ height: "small" }} />
+              <DxcButton mode="tertiary" icon="home" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-focus">
-              <DxcButton mode="tertiary" icon="home" size={{ height: "small" }} />
+              <DxcButton mode="tertiary" icon="home" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-active">
-              <DxcButton mode="tertiary" icon="home" size={{ height: "small" }} />
+              <DxcButton mode="tertiary" icon="home" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer>
-              <DxcButton mode="tertiary" icon="home" size={{ height: "small" }} disabled />
+              <DxcButton mode="tertiary" icon="home" size={{ height: "small" }} disabled title="Home" />
             </ExampleContainer>
           </DxcFlex>
         </DxcFlex>
@@ -405,19 +405,19 @@ export const Chromatic = () => (
           </DxcFlex>
           <DxcFlex direction="column">
             <ExampleContainer>
-              <DxcButton icon="home" size={{ height: "medium" }} />
+              <DxcButton icon="home" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-hover">
-              <DxcButton icon="home" size={{ height: "medium" }} />
+              <DxcButton icon="home" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-focus">
-              <DxcButton icon="home" size={{ height: "medium" }} />
+              <DxcButton icon="home" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-active">
-              <DxcButton icon="home" size={{ height: "medium" }} />
+              <DxcButton icon="home" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer>
-              <DxcButton icon="home" size={{ height: "medium" }} disabled />
+              <DxcButton icon="home" size={{ height: "medium" }} disabled title="Home" />
             </ExampleContainer>
           </DxcFlex>
         </DxcFlex>
@@ -426,7 +426,7 @@ export const Chromatic = () => (
             <Title title="Width" theme="light" level={4} />
             <DxcFlex>
               <ExampleContainer>
-                <DxcButton label="Small Small" size={{ height: "medium", width: "small" }} />
+                <DxcButton label="Small Small" size={{ height: "medium", width: "small" }} title="Facebook" />
               </ExampleContainer>
               <ExampleContainer>
                 <DxcButton label="Medium Medium Medium" size={{ height: "medium", width: "medium" }} />
@@ -557,19 +557,19 @@ export const Chromatic = () => (
           </DxcFlex>
           <DxcFlex direction="column">
             <ExampleContainer>
-              <DxcButton mode="secondary" icon="home" size={{ height: "medium" }} />
+              <DxcButton mode="secondary" icon="home" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-hover">
-              <DxcButton mode="secondary" icon="home" size={{ height: "medium" }} />
+              <DxcButton mode="secondary" icon="home" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-focus">
-              <DxcButton mode="secondary" icon="home" size={{ height: "medium" }} />
+              <DxcButton mode="secondary" icon="home" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-active">
-              <DxcButton mode="secondary" icon="home" size={{ height: "medium" }} />
+              <DxcButton mode="secondary" icon="home" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer>
-              <DxcButton mode="secondary" icon="home" size={{ height: "medium" }} disabled />
+              <DxcButton mode="secondary" icon="home" size={{ height: "medium" }} disabled title="Home" />
             </ExampleContainer>
           </DxcFlex>
         </DxcFlex>
@@ -659,19 +659,19 @@ export const Chromatic = () => (
           </DxcFlex>
           <DxcFlex direction="column">
             <ExampleContainer>
-              <DxcButton mode="tertiary" icon="home" size={{ height: "medium" }} />
+              <DxcButton mode="tertiary" icon="home" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-hover">
-              <DxcButton mode="tertiary" icon="home" size={{ height: "medium" }} />
+              <DxcButton mode="tertiary" icon="home" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-focus">
-              <DxcButton mode="tertiary" icon="home" size={{ height: "medium" }} />
+              <DxcButton mode="tertiary" icon="home" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-active">
-              <DxcButton mode="tertiary" icon="home" size={{ height: "medium" }} />
+              <DxcButton mode="tertiary" icon="home" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer>
-              <DxcButton mode="tertiary" icon="home" size={{ height: "medium" }} disabled />
+              <DxcButton mode="tertiary" icon="home" size={{ height: "medium" }} disabled title="Home" />
             </ExampleContainer>
           </DxcFlex>
         </DxcFlex>
@@ -733,19 +733,19 @@ export const Chromatic = () => (
           </DxcFlex>
           <DxcFlex direction="column">
             <ExampleContainer>
-              <DxcButton icon="home" />
+              <DxcButton icon="home" title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-hover">
-              <DxcButton icon="home" />
+              <DxcButton icon="home" title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-focus">
-              <DxcButton icon="home" />
+              <DxcButton icon="home" title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-active">
-              <DxcButton icon="home" />
+              <DxcButton icon="home" title="Home" />
             </ExampleContainer>
             <ExampleContainer>
-              <DxcButton icon="home" disabled />
+              <DxcButton icon="home" disabled title="Home" />
             </ExampleContainer>
           </DxcFlex>
         </DxcFlex>
@@ -754,7 +754,7 @@ export const Chromatic = () => (
             <Title title="Width" theme="light" level={4} />
             <DxcFlex>
               <ExampleContainer>
-                <DxcButton icon={facebookIcon} size={{ height: "large", width: "small" }} />
+                <DxcButton icon={facebookIcon} size={{ height: "large", width: "small" }} title="Facebook" />
               </ExampleContainer>
               <ExampleContainer>
                 <DxcButton label="Medium" size={{ height: "large", width: "medium" }} />
@@ -854,19 +854,19 @@ export const Chromatic = () => (
           </DxcFlex>
           <DxcFlex direction="column">
             <ExampleContainer>
-              <DxcButton mode="secondary" icon="home" />
+              <DxcButton mode="secondary" icon="home" title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-hover">
-              <DxcButton mode="secondary" icon="home" />
+              <DxcButton mode="secondary" icon="home" title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-focus">
-              <DxcButton mode="secondary" icon="home" />
+              <DxcButton mode="secondary" icon="home" title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-active">
-              <DxcButton mode="secondary" icon="home" />
+              <DxcButton mode="secondary" icon="home" title="Home" />
             </ExampleContainer>
             <ExampleContainer>
-              <DxcButton mode="secondary" icon="home" disabled />
+              <DxcButton mode="secondary" icon="home" disabled title="Home" />
             </ExampleContainer>
           </DxcFlex>
         </DxcFlex>
@@ -925,19 +925,19 @@ export const Chromatic = () => (
           </DxcFlex>
           <DxcFlex direction="column">
             <ExampleContainer>
-              <DxcButton mode="tertiary" icon="home" />
+              <DxcButton mode="tertiary" icon="home" title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-hover">
-              <DxcButton mode="tertiary" icon="home" />
+              <DxcButton mode="tertiary" icon="home" title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-focus">
-              <DxcButton mode="tertiary" icon="home" />
+              <DxcButton mode="tertiary" icon="home" title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-active">
-              <DxcButton mode="tertiary" icon="home" />
+              <DxcButton mode="tertiary" icon="home" title="Home" />
             </ExampleContainer>
             <ExampleContainer>
-              <DxcButton mode="tertiary" icon="home" disabled />
+              <DxcButton mode="tertiary" icon="home" disabled title="Home" />
             </ExampleContainer>
           </DxcFlex>
         </DxcFlex>
@@ -1009,19 +1009,19 @@ export const Chromatic = () => (
           </DxcFlex>
           <DxcFlex direction="column">
             <ExampleContainer>
-              <DxcButton icon="home" semantic="error" size={{ height: "small" }} />
+              <DxcButton icon="home" semantic="error" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-hover">
-              <DxcButton icon="home" semantic="error" size={{ height: "small" }} />
+              <DxcButton icon="home" semantic="error" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-focus">
-              <DxcButton icon="home" semantic="error" size={{ height: "small" }} />
+              <DxcButton icon="home" semantic="error" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-active">
-              <DxcButton icon="home" semantic="error" size={{ height: "small" }} />
+              <DxcButton icon="home" semantic="error" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer>
-              <DxcButton icon="home" semantic="error" size={{ height: "small" }} disabled />
+              <DxcButton icon="home" semantic="error" size={{ height: "small" }} disabled title="Home" />
             </ExampleContainer>
           </DxcFlex>
         </DxcFlex>
@@ -1030,7 +1030,12 @@ export const Chromatic = () => (
             <Title title="Width" theme="light" level={4} />
             <DxcFlex>
               <ExampleContainer>
-                <DxcButton icon={facebookIcon} semantic="error" size={{ height: "small", width: "small" }} />
+                <DxcButton
+                  icon={facebookIcon}
+                  semantic="error"
+                  size={{ height: "small", width: "small" }}
+                  title="Facebook"
+                />
               </ExampleContainer>
               <ExampleContainer>
                 <DxcButton label="Medium" semantic="error" size={{ height: "small", width: "medium" }} />
@@ -1145,19 +1150,26 @@ export const Chromatic = () => (
           </DxcFlex>
           <DxcFlex direction="column">
             <ExampleContainer>
-              <DxcButton mode="secondary" semantic="error" icon="home" size={{ height: "small" }} />
+              <DxcButton mode="secondary" semantic="error" icon="home" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-hover">
-              <DxcButton mode="secondary" semantic="error" icon="home" size={{ height: "small" }} />
+              <DxcButton mode="secondary" semantic="error" icon="home" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-focus">
-              <DxcButton mode="secondary" semantic="error" icon="home" size={{ height: "small" }} />
+              <DxcButton mode="secondary" semantic="error" icon="home" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-active">
-              <DxcButton mode="secondary" semantic="error" icon="home" size={{ height: "small" }} />
+              <DxcButton mode="secondary" semantic="error" icon="home" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer>
-              <DxcButton mode="secondary" semantic="error" icon="home" size={{ height: "small" }} disabled />
+              <DxcButton
+                mode="secondary"
+                semantic="error"
+                icon="home"
+                size={{ height: "small" }}
+                disabled
+                title="Home"
+              />
             </ExampleContainer>
           </DxcFlex>
         </DxcFlex>
@@ -1259,19 +1271,26 @@ export const Chromatic = () => (
           </DxcFlex>
           <DxcFlex direction="column">
             <ExampleContainer>
-              <DxcButton mode="tertiary" semantic="error" icon="home" size={{ height: "small" }} />
+              <DxcButton mode="tertiary" semantic="error" icon="home" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-hover">
-              <DxcButton mode="tertiary" semantic="error" icon="home" size={{ height: "small" }} />
+              <DxcButton mode="tertiary" semantic="error" icon="home" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-focus">
-              <DxcButton mode="tertiary" semantic="error" icon="home" size={{ height: "small" }} />
+              <DxcButton mode="tertiary" semantic="error" icon="home" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-active">
-              <DxcButton mode="tertiary" semantic="error" icon="home" size={{ height: "small" }} />
+              <DxcButton mode="tertiary" semantic="error" icon="home" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer>
-              <DxcButton mode="tertiary" semantic="error" icon="home" size={{ height: "small" }} disabled />
+              <DxcButton
+                mode="tertiary"
+                semantic="error"
+                icon="home"
+                size={{ height: "small" }}
+                disabled
+                title="Home"
+              />
             </ExampleContainer>
           </DxcFlex>
         </DxcFlex>
@@ -1364,19 +1383,19 @@ export const Chromatic = () => (
           </DxcFlex>
           <DxcFlex direction="column">
             <ExampleContainer>
-              <DxcButton icon="home" semantic="error" size={{ height: "medium" }} />
+              <DxcButton icon="home" semantic="error" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-hover">
-              <DxcButton icon="home" semantic="error" size={{ height: "medium" }} />
+              <DxcButton icon="home" semantic="error" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-focus">
-              <DxcButton icon="home" semantic="error" size={{ height: "medium" }} />
+              <DxcButton icon="home" semantic="error" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-active">
-              <DxcButton icon="home" semantic="error" size={{ height: "medium" }} />
+              <DxcButton icon="home" semantic="error" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer>
-              <DxcButton icon="home" semantic="error" size={{ height: "medium" }} disabled />
+              <DxcButton icon="home" semantic="error" size={{ height: "medium" }} disabled title="Home" />
             </ExampleContainer>
           </DxcFlex>
         </DxcFlex>
@@ -1385,7 +1404,12 @@ export const Chromatic = () => (
             <Title title="Width" theme="light" level={4} />
             <DxcFlex>
               <ExampleContainer>
-                <DxcButton icon={facebookIcon} semantic="error" size={{ height: "medium", width: "small" }} />
+                <DxcButton
+                  icon={facebookIcon}
+                  semantic="error"
+                  size={{ height: "medium", width: "small" }}
+                  title="Facebook"
+                />
               </ExampleContainer>
               <ExampleContainer>
                 <DxcButton label="Medium" semantic="error" size={{ height: "medium", width: "medium" }} />
@@ -1500,19 +1524,26 @@ export const Chromatic = () => (
           </DxcFlex>
           <DxcFlex direction="column">
             <ExampleContainer>
-              <DxcButton mode="secondary" semantic="error" icon="home" size={{ height: "medium" }} />
+              <DxcButton mode="secondary" semantic="error" icon="home" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-hover">
-              <DxcButton mode="secondary" semantic="error" icon="home" size={{ height: "medium" }} />
+              <DxcButton mode="secondary" semantic="error" icon="home" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-focus">
-              <DxcButton mode="secondary" semantic="error" icon="home" size={{ height: "medium" }} />
+              <DxcButton mode="secondary" semantic="error" icon="home" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-active">
-              <DxcButton mode="secondary" semantic="error" icon="home" size={{ height: "medium" }} />
+              <DxcButton mode="secondary" semantic="error" icon="home" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer>
-              <DxcButton mode="secondary" semantic="error" icon="home" size={{ height: "medium" }} disabled />
+              <DxcButton
+                mode="secondary"
+                semantic="error"
+                icon="home"
+                size={{ height: "medium" }}
+                disabled
+                title="Home"
+              />
             </ExampleContainer>
           </DxcFlex>
         </DxcFlex>
@@ -1614,19 +1645,26 @@ export const Chromatic = () => (
           </DxcFlex>
           <DxcFlex direction="column">
             <ExampleContainer>
-              <DxcButton mode="tertiary" semantic="error" icon="home" size={{ height: "medium" }} />
+              <DxcButton mode="tertiary" semantic="error" icon="home" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-hover">
-              <DxcButton mode="tertiary" semantic="error" icon="home" size={{ height: "medium" }} />
+              <DxcButton mode="tertiary" semantic="error" icon="home" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-focus">
-              <DxcButton mode="tertiary" semantic="error" icon="home" size={{ height: "medium" }} />
+              <DxcButton mode="tertiary" semantic="error" icon="home" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-active">
-              <DxcButton mode="tertiary" semantic="error" icon="home" size={{ height: "medium" }} />
+              <DxcButton mode="tertiary" semantic="error" icon="home" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer>
-              <DxcButton mode="tertiary" semantic="error" icon="home" size={{ height: "medium" }} disabled />
+              <DxcButton
+                mode="tertiary"
+                semantic="error"
+                icon="home"
+                size={{ height: "medium" }}
+                disabled
+                title="Home"
+              />
             </ExampleContainer>
           </DxcFlex>
         </DxcFlex>
@@ -1688,19 +1726,19 @@ export const Chromatic = () => (
           </DxcFlex>
           <DxcFlex direction="column">
             <ExampleContainer>
-              <DxcButton icon="home" semantic="error" />
+              <DxcButton icon="home" semantic="error" title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-hover">
-              <DxcButton icon="home" semantic="error" />
+              <DxcButton icon="home" semantic="error" title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-focus">
-              <DxcButton icon="home" semantic="error" />
+              <DxcButton icon="home" semantic="error" title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-active">
-              <DxcButton icon="home" semantic="error" />
+              <DxcButton icon="home" semantic="error" title="Home" />
             </ExampleContainer>
             <ExampleContainer>
-              <DxcButton icon="home" semantic="error" disabled />
+              <DxcButton icon="home" semantic="error" disabled title="Home" />
             </ExampleContainer>
           </DxcFlex>
         </DxcFlex>
@@ -1709,7 +1747,12 @@ export const Chromatic = () => (
             <Title title="Width" theme="light" level={4} />
             <DxcFlex>
               <ExampleContainer>
-                <DxcButton icon={facebookIcon} semantic="error" size={{ height: "large", width: "small" }} />
+                <DxcButton
+                  icon={facebookIcon}
+                  semantic="error"
+                  size={{ height: "large", width: "small" }}
+                  title="Facebook"
+                />
               </ExampleContainer>
               <ExampleContainer>
                 <DxcButton label="Medium" semantic="error" size={{ height: "large", width: "medium" }} />
@@ -1788,19 +1831,19 @@ export const Chromatic = () => (
           </DxcFlex>
           <DxcFlex direction="column">
             <ExampleContainer>
-              <DxcButton mode="secondary" semantic="error" icon="home" />
+              <DxcButton mode="secondary" semantic="error" icon="home" title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-hover">
-              <DxcButton mode="secondary" semantic="error" icon="home" />
+              <DxcButton mode="secondary" semantic="error" icon="home" title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-focus">
-              <DxcButton mode="secondary" semantic="error" icon="home" />
+              <DxcButton mode="secondary" semantic="error" icon="home" title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-active">
-              <DxcButton mode="secondary" semantic="error" icon="home" />
+              <DxcButton mode="secondary" semantic="error" icon="home" title="Home" />
             </ExampleContainer>
             <ExampleContainer>
-              <DxcButton mode="secondary" semantic="error" icon="home" disabled />
+              <DxcButton mode="secondary" semantic="error" icon="home" disabled title="Home" />
             </ExampleContainer>
           </DxcFlex>
         </DxcFlex>
@@ -1859,19 +1902,19 @@ export const Chromatic = () => (
           </DxcFlex>
           <DxcFlex direction="column">
             <ExampleContainer>
-              <DxcButton mode="tertiary" semantic="error" icon="home" />
+              <DxcButton mode="tertiary" semantic="error" icon="home" title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-hover">
-              <DxcButton mode="tertiary" semantic="error" icon="home" />
+              <DxcButton mode="tertiary" semantic="error" icon="home" title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-focus">
-              <DxcButton mode="tertiary" semantic="error" icon="home" />
+              <DxcButton mode="tertiary" semantic="error" icon="home" title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-active">
-              <DxcButton mode="tertiary" semantic="error" icon="home" />
+              <DxcButton mode="tertiary" semantic="error" icon="home" title="Home" />
             </ExampleContainer>
             <ExampleContainer>
-              <DxcButton mode="tertiary" semantic="error" icon="home" disabled />
+              <DxcButton mode="tertiary" semantic="error" icon="home" disabled title="Home" />
             </ExampleContainer>
           </DxcFlex>
         </DxcFlex>
@@ -1967,19 +2010,19 @@ export const Chromatic = () => (
           </DxcFlex>
           <DxcFlex direction="column">
             <ExampleContainer>
-              <DxcButton icon="home" semantic="warning" size={{ height: "small" }} />
+              <DxcButton icon="home" semantic="warning" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-hover">
-              <DxcButton icon="home" semantic="warning" size={{ height: "small" }} />
+              <DxcButton icon="home" semantic="warning" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-focus">
-              <DxcButton icon="home" semantic="warning" size={{ height: "small" }} />
+              <DxcButton icon="home" semantic="warning" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-active">
-              <DxcButton icon="home" semantic="warning" size={{ height: "small" }} />
+              <DxcButton icon="home" semantic="warning" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer>
-              <DxcButton icon="home" semantic="warning" size={{ height: "small" }} disabled />
+              <DxcButton icon="home" semantic="warning" size={{ height: "small" }} disabled title="Home" />
             </ExampleContainer>
           </DxcFlex>
         </DxcFlex>
@@ -1988,7 +2031,12 @@ export const Chromatic = () => (
             <Title title="Width" theme="light" level={4} />
             <DxcFlex>
               <ExampleContainer>
-                <DxcButton icon={facebookIcon} semantic="warning" size={{ height: "small", width: "small" }} />
+                <DxcButton
+                  icon={facebookIcon}
+                  semantic="warning"
+                  size={{ height: "small", width: "small" }}
+                  title="Facebook"
+                />
               </ExampleContainer>
               <ExampleContainer>
                 <DxcButton label="Medium" semantic="warning" size={{ height: "small", width: "medium" }} />
@@ -2103,19 +2151,26 @@ export const Chromatic = () => (
           </DxcFlex>
           <DxcFlex direction="column">
             <ExampleContainer>
-              <DxcButton mode="secondary" semantic="warning" icon="home" size={{ height: "small" }} />
+              <DxcButton mode="secondary" semantic="warning" icon="home" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-hover">
-              <DxcButton mode="secondary" semantic="warning" icon="home" size={{ height: "small" }} />
+              <DxcButton mode="secondary" semantic="warning" icon="home" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-focus">
-              <DxcButton mode="secondary" semantic="warning" icon="home" size={{ height: "small" }} />
+              <DxcButton mode="secondary" semantic="warning" icon="home" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-active">
-              <DxcButton mode="secondary" semantic="warning" icon="home" size={{ height: "small" }} />
+              <DxcButton mode="secondary" semantic="warning" icon="home" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer>
-              <DxcButton mode="secondary" semantic="warning" icon="home" size={{ height: "small" }} disabled />
+              <DxcButton
+                mode="secondary"
+                semantic="warning"
+                icon="home"
+                size={{ height: "small" }}
+                disabled
+                title="Home"
+              />
             </ExampleContainer>
           </DxcFlex>
         </DxcFlex>
@@ -2217,19 +2272,26 @@ export const Chromatic = () => (
           </DxcFlex>
           <DxcFlex direction="column">
             <ExampleContainer>
-              <DxcButton mode="tertiary" semantic="warning" icon="home" size={{ height: "small" }} />
+              <DxcButton mode="tertiary" semantic="warning" icon="home" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-hover">
-              <DxcButton mode="tertiary" semantic="warning" icon="home" size={{ height: "small" }} />
+              <DxcButton mode="tertiary" semantic="warning" icon="home" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-focus">
-              <DxcButton mode="tertiary" semantic="warning" icon="home" size={{ height: "small" }} />
+              <DxcButton mode="tertiary" semantic="warning" icon="home" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-active">
-              <DxcButton mode="tertiary" semantic="warning" icon="home" size={{ height: "small" }} />
+              <DxcButton mode="tertiary" semantic="warning" icon="home" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer>
-              <DxcButton mode="tertiary" semantic="warning" icon="home" size={{ height: "small" }} disabled />
+              <DxcButton
+                mode="tertiary"
+                semantic="warning"
+                icon="home"
+                size={{ height: "small" }}
+                disabled
+                title="Home"
+              />
             </ExampleContainer>
           </DxcFlex>
         </DxcFlex>
@@ -2322,19 +2384,19 @@ export const Chromatic = () => (
           </DxcFlex>
           <DxcFlex direction="column">
             <ExampleContainer>
-              <DxcButton icon="home" semantic="warning" size={{ height: "medium" }} />
+              <DxcButton icon="home" semantic="warning" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-hover">
-              <DxcButton icon="home" semantic="warning" size={{ height: "medium" }} />
+              <DxcButton icon="home" semantic="warning" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-focus">
-              <DxcButton icon="home" semantic="warning" size={{ height: "medium" }} />
+              <DxcButton icon="home" semantic="warning" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-active">
-              <DxcButton icon="home" semantic="warning" size={{ height: "medium" }} />
+              <DxcButton icon="home" semantic="warning" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer>
-              <DxcButton icon="home" semantic="warning" size={{ height: "medium" }} disabled />
+              <DxcButton icon="home" semantic="warning" size={{ height: "medium" }} disabled title="Home" />
             </ExampleContainer>
           </DxcFlex>
         </DxcFlex>
@@ -2343,7 +2405,12 @@ export const Chromatic = () => (
             <Title title="Width" theme="light" level={4} />
             <DxcFlex>
               <ExampleContainer>
-                <DxcButton icon={facebookIcon} semantic="warning" size={{ height: "medium", width: "small" }} />
+                <DxcButton
+                  icon={facebookIcon}
+                  semantic="warning"
+                  size={{ height: "medium", width: "small" }}
+                  title="Facebook"
+                />
               </ExampleContainer>
               <ExampleContainer>
                 <DxcButton label="Medium" semantic="warning" size={{ height: "medium", width: "medium" }} />
@@ -2482,19 +2549,26 @@ export const Chromatic = () => (
           </DxcFlex>
           <DxcFlex direction="column">
             <ExampleContainer>
-              <DxcButton mode="secondary" semantic="warning" icon="home" size={{ height: "medium" }} />
+              <DxcButton mode="secondary" semantic="warning" icon="home" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-hover">
-              <DxcButton mode="secondary" semantic="warning" icon="home" size={{ height: "medium" }} />
+              <DxcButton mode="secondary" semantic="warning" icon="home" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-focus">
-              <DxcButton mode="secondary" semantic="warning" icon="home" size={{ height: "medium" }} />
+              <DxcButton mode="secondary" semantic="warning" icon="home" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-active">
-              <DxcButton mode="secondary" semantic="warning" icon="home" size={{ height: "medium" }} />
+              <DxcButton mode="secondary" semantic="warning" icon="home" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer>
-              <DxcButton mode="secondary" semantic="warning" icon="home" size={{ height: "medium" }} disabled />
+              <DxcButton
+                mode="secondary"
+                semantic="warning"
+                icon="home"
+                size={{ height: "medium" }}
+                disabled
+                title="Home"
+              />
             </ExampleContainer>
           </DxcFlex>
         </DxcFlex>
@@ -2596,19 +2670,26 @@ export const Chromatic = () => (
           </DxcFlex>
           <DxcFlex direction="column">
             <ExampleContainer>
-              <DxcButton mode="tertiary" semantic="warning" icon="home" size={{ height: "medium" }} />
+              <DxcButton mode="tertiary" semantic="warning" icon="home" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-hover">
-              <DxcButton mode="tertiary" semantic="warning" icon="home" size={{ height: "medium" }} />
+              <DxcButton mode="tertiary" semantic="warning" icon="home" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-focus">
-              <DxcButton mode="tertiary" semantic="warning" icon="home" size={{ height: "medium" }} />
+              <DxcButton mode="tertiary" semantic="warning" icon="home" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-active">
-              <DxcButton mode="tertiary" semantic="warning" icon="home" size={{ height: "medium" }} />
+              <DxcButton mode="tertiary" semantic="warning" icon="home" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer>
-              <DxcButton mode="tertiary" semantic="warning" icon="home" size={{ height: "medium" }} disabled />
+              <DxcButton
+                mode="tertiary"
+                semantic="warning"
+                icon="home"
+                size={{ height: "medium" }}
+                disabled
+                title="Home"
+              />
             </ExampleContainer>
           </DxcFlex>
         </DxcFlex>
@@ -2670,19 +2751,19 @@ export const Chromatic = () => (
           </DxcFlex>
           <DxcFlex direction="column">
             <ExampleContainer>
-              <DxcButton icon="home" semantic="warning" />
+              <DxcButton icon="home" semantic="warning" title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-hover">
-              <DxcButton icon="home" semantic="warning" />
+              <DxcButton icon="home" semantic="warning" title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-focus">
-              <DxcButton icon="home" semantic="warning" />
+              <DxcButton icon="home" semantic="warning" title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-active">
-              <DxcButton icon="home" semantic="warning" />
+              <DxcButton icon="home" semantic="warning" title="Home" />
             </ExampleContainer>
             <ExampleContainer>
-              <DxcButton icon="home" semantic="warning" disabled />
+              <DxcButton icon="home" semantic="warning" disabled title="Home" />
             </ExampleContainer>
           </DxcFlex>
         </DxcFlex>
@@ -2691,7 +2772,12 @@ export const Chromatic = () => (
             <Title title="Width" theme="light" level={4} />
             <DxcFlex>
               <ExampleContainer>
-                <DxcButton icon={facebookIcon} semantic="warning" size={{ height: "large", width: "small" }} />
+                <DxcButton
+                  icon={facebookIcon}
+                  semantic="warning"
+                  size={{ height: "large", width: "small" }}
+                  title="Facebook"
+                />
               </ExampleContainer>
               <ExampleContainer>
                 <DxcButton label="Medium" semantic="warning" size={{ height: "large", width: "medium" }} />
@@ -2770,19 +2856,19 @@ export const Chromatic = () => (
           </DxcFlex>
           <DxcFlex direction="column">
             <ExampleContainer>
-              <DxcButton mode="secondary" semantic="warning" icon="home" />
+              <DxcButton mode="secondary" semantic="warning" icon="home" title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-hover">
-              <DxcButton mode="secondary" semantic="warning" icon="home" />
+              <DxcButton mode="secondary" semantic="warning" icon="home" title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-focus">
-              <DxcButton mode="secondary" semantic="warning" icon="home" />
+              <DxcButton mode="secondary" semantic="warning" icon="home" title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-active">
-              <DxcButton mode="secondary" semantic="warning" icon="home" />
+              <DxcButton mode="secondary" semantic="warning" icon="home" title="Home" />
             </ExampleContainer>
             <ExampleContainer>
-              <DxcButton mode="secondary" semantic="warning" icon="home" disabled />
+              <DxcButton mode="secondary" semantic="warning" icon="home" disabled title="Home" />
             </ExampleContainer>
           </DxcFlex>
         </DxcFlex>
@@ -2848,19 +2934,19 @@ export const Chromatic = () => (
           </DxcFlex>
           <DxcFlex direction="column">
             <ExampleContainer>
-              <DxcButton mode="tertiary" semantic="warning" icon="home" />
+              <DxcButton mode="tertiary" semantic="warning" icon="home" title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-hover">
-              <DxcButton mode="tertiary" semantic="warning" icon="home" />
+              <DxcButton mode="tertiary" semantic="warning" icon="home" title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-focus">
-              <DxcButton mode="tertiary" semantic="warning" icon="home" />
+              <DxcButton mode="tertiary" semantic="warning" icon="home" title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-active">
-              <DxcButton mode="tertiary" semantic="warning" icon="home" />
+              <DxcButton mode="tertiary" semantic="warning" icon="home" title="Home" />
             </ExampleContainer>
             <ExampleContainer>
-              <DxcButton mode="tertiary" semantic="warning" icon="home" disabled />
+              <DxcButton mode="tertiary" semantic="warning" icon="home" disabled title="Home" />
             </ExampleContainer>
           </DxcFlex>
         </DxcFlex>
@@ -2956,19 +3042,19 @@ export const Chromatic = () => (
           </DxcFlex>
           <DxcFlex direction="column">
             <ExampleContainer>
-              <DxcButton icon="home" semantic="success" size={{ height: "small" }} />
+              <DxcButton icon="home" semantic="success" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-hover">
-              <DxcButton icon="home" semantic="success" size={{ height: "small" }} />
+              <DxcButton icon="home" semantic="success" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-focus">
-              <DxcButton icon="home" semantic="success" size={{ height: "small" }} />
+              <DxcButton icon="home" semantic="success" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-active">
-              <DxcButton icon="home" semantic="success" size={{ height: "small" }} />
+              <DxcButton icon="home" semantic="success" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer>
-              <DxcButton icon="home" semantic="success" size={{ height: "small" }} disabled />
+              <DxcButton icon="home" semantic="success" size={{ height: "small" }} disabled title="Home" />
             </ExampleContainer>
           </DxcFlex>
         </DxcFlex>
@@ -2977,7 +3063,12 @@ export const Chromatic = () => (
             <Title title="Width" theme="light" level={4} />
             <DxcFlex>
               <ExampleContainer>
-                <DxcButton icon={facebookIcon} semantic="success" size={{ height: "small", width: "small" }} />
+                <DxcButton
+                  icon={facebookIcon}
+                  semantic="success"
+                  size={{ height: "small", width: "small" }}
+                  title="Facebook"
+                />
               </ExampleContainer>
               <ExampleContainer>
                 <DxcButton label="Medium" semantic="success" size={{ height: "small", width: "medium" }} />
@@ -3092,19 +3183,26 @@ export const Chromatic = () => (
           </DxcFlex>
           <DxcFlex direction="column">
             <ExampleContainer>
-              <DxcButton mode="secondary" semantic="success" icon="home" size={{ height: "small" }} />
+              <DxcButton mode="secondary" semantic="success" icon="home" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-hover">
-              <DxcButton mode="secondary" semantic="success" icon="home" size={{ height: "small" }} />
+              <DxcButton mode="secondary" semantic="success" icon="home" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-focus">
-              <DxcButton mode="secondary" semantic="success" icon="home" size={{ height: "small" }} />
+              <DxcButton mode="secondary" semantic="success" icon="home" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-active">
-              <DxcButton mode="secondary" semantic="success" icon="home" size={{ height: "small" }} />
+              <DxcButton mode="secondary" semantic="success" icon="home" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer>
-              <DxcButton mode="secondary" semantic="success" icon="home" size={{ height: "small" }} disabled />
+              <DxcButton
+                mode="secondary"
+                semantic="success"
+                icon="home"
+                size={{ height: "small" }}
+                disabled
+                title="Home"
+              />
             </ExampleContainer>
           </DxcFlex>
         </DxcFlex>
@@ -3206,19 +3304,26 @@ export const Chromatic = () => (
           </DxcFlex>
           <DxcFlex direction="column">
             <ExampleContainer>
-              <DxcButton mode="tertiary" semantic="success" icon="home" size={{ height: "small" }} />
+              <DxcButton mode="tertiary" semantic="success" icon="home" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-hover">
-              <DxcButton mode="tertiary" semantic="success" icon="home" size={{ height: "small" }} />
+              <DxcButton mode="tertiary" semantic="success" icon="home" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-focus">
-              <DxcButton mode="tertiary" semantic="success" icon="home" size={{ height: "small" }} />
+              <DxcButton mode="tertiary" semantic="success" icon="home" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-active">
-              <DxcButton mode="tertiary" semantic="success" icon="home" size={{ height: "small" }} />
+              <DxcButton mode="tertiary" semantic="success" icon="home" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer>
-              <DxcButton mode="tertiary" semantic="success" icon="home" size={{ height: "small" }} disabled />
+              <DxcButton
+                mode="tertiary"
+                semantic="success"
+                icon="home"
+                size={{ height: "small" }}
+                disabled
+                title="Home"
+              />
             </ExampleContainer>
           </DxcFlex>
         </DxcFlex>
@@ -3311,19 +3416,19 @@ export const Chromatic = () => (
           </DxcFlex>
           <DxcFlex direction="column">
             <ExampleContainer>
-              <DxcButton icon="home" semantic="success" size={{ height: "medium" }} />
+              <DxcButton icon="home" semantic="success" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-hover">
-              <DxcButton icon="home" semantic="success" size={{ height: "medium" }} />
+              <DxcButton icon="home" semantic="success" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-focus">
-              <DxcButton icon="home" semantic="success" size={{ height: "medium" }} />
+              <DxcButton icon="home" semantic="success" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-active">
-              <DxcButton icon="home" semantic="success" size={{ height: "medium" }} />
+              <DxcButton icon="home" semantic="success" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer>
-              <DxcButton icon="home" semantic="success" size={{ height: "medium" }} disabled />
+              <DxcButton icon="home" semantic="success" size={{ height: "medium" }} disabled title="Home" />
             </ExampleContainer>
           </DxcFlex>
         </DxcFlex>
@@ -3332,7 +3437,12 @@ export const Chromatic = () => (
             <Title title="Width" theme="light" level={4} />
             <DxcFlex>
               <ExampleContainer>
-                <DxcButton icon={facebookIcon} semantic="success" size={{ height: "medium", width: "small" }} />
+                <DxcButton
+                  icon={facebookIcon}
+                  semantic="success"
+                  size={{ height: "medium", width: "small" }}
+                  title="Facebook"
+                />
               </ExampleContainer>
               <ExampleContainer>
                 <DxcButton label="Medium" semantic="success" size={{ height: "medium", width: "medium" }} />
@@ -3471,19 +3581,26 @@ export const Chromatic = () => (
           </DxcFlex>
           <DxcFlex direction="column">
             <ExampleContainer>
-              <DxcButton mode="secondary" semantic="success" icon="home" size={{ height: "medium" }} />
+              <DxcButton mode="secondary" semantic="success" icon="home" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-hover">
-              <DxcButton mode="secondary" semantic="success" icon="home" size={{ height: "medium" }} />
+              <DxcButton mode="secondary" semantic="success" icon="home" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-focus">
-              <DxcButton mode="secondary" semantic="success" icon="home" size={{ height: "medium" }} />
+              <DxcButton mode="secondary" semantic="success" icon="home" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-active">
-              <DxcButton mode="secondary" semantic="success" icon="home" size={{ height: "medium" }} />
+              <DxcButton mode="secondary" semantic="success" icon="home" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer>
-              <DxcButton mode="secondary" semantic="success" icon="home" size={{ height: "medium" }} disabled />
+              <DxcButton
+                mode="secondary"
+                semantic="success"
+                icon="home"
+                size={{ height: "medium" }}
+                disabled
+                title="Home"
+              />
             </ExampleContainer>
           </DxcFlex>
         </DxcFlex>
@@ -3585,19 +3702,26 @@ export const Chromatic = () => (
           </DxcFlex>
           <DxcFlex direction="column">
             <ExampleContainer>
-              <DxcButton mode="tertiary" semantic="success" icon="home" size={{ height: "medium" }} />
+              <DxcButton mode="tertiary" semantic="success" icon="home" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-hover">
-              <DxcButton mode="tertiary" semantic="success" icon="home" size={{ height: "medium" }} />
+              <DxcButton mode="tertiary" semantic="success" icon="home" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-focus">
-              <DxcButton mode="tertiary" semantic="success" icon="home" size={{ height: "medium" }} />
+              <DxcButton mode="tertiary" semantic="success" icon="home" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-active">
-              <DxcButton mode="tertiary" semantic="success" icon="home" size={{ height: "medium" }} />
+              <DxcButton mode="tertiary" semantic="success" icon="home" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer>
-              <DxcButton mode="tertiary" semantic="success" icon="home" size={{ height: "medium" }} disabled />
+              <DxcButton
+                mode="tertiary"
+                semantic="success"
+                icon="home"
+                size={{ height: "medium" }}
+                disabled
+                title="Home"
+              />
             </ExampleContainer>
           </DxcFlex>
         </DxcFlex>
@@ -3659,19 +3783,19 @@ export const Chromatic = () => (
           </DxcFlex>
           <DxcFlex direction="column">
             <ExampleContainer>
-              <DxcButton icon="home" semantic="success" />
+              <DxcButton icon="home" semantic="success" title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-hover">
-              <DxcButton icon="home" semantic="success" />
+              <DxcButton icon="home" semantic="success" title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-focus">
-              <DxcButton icon="home" semantic="success" />
+              <DxcButton icon="home" semantic="success" title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-active">
-              <DxcButton icon="home" semantic="success" />
+              <DxcButton icon="home" semantic="success" title="Home" />
             </ExampleContainer>
             <ExampleContainer>
-              <DxcButton icon="home" semantic="success" disabled />
+              <DxcButton icon="home" semantic="success" disabled title="Home" />
             </ExampleContainer>
           </DxcFlex>
         </DxcFlex>
@@ -3680,7 +3804,12 @@ export const Chromatic = () => (
             <Title title="Width" theme="light" level={4} />
             <DxcFlex>
               <ExampleContainer>
-                <DxcButton icon={facebookIcon} semantic="success" size={{ height: "large", width: "small" }} />
+                <DxcButton
+                  icon={facebookIcon}
+                  semantic="success"
+                  size={{ height: "large", width: "small" }}
+                  title="Facebook"
+                />
               </ExampleContainer>
               <ExampleContainer>
                 <DxcButton label="Medium" semantic="success" size={{ height: "large", width: "medium" }} />
@@ -3759,19 +3888,19 @@ export const Chromatic = () => (
           </DxcFlex>
           <DxcFlex direction="column">
             <ExampleContainer>
-              <DxcButton mode="secondary" semantic="success" icon="home" />
+              <DxcButton mode="secondary" semantic="success" icon="home" title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-hover">
-              <DxcButton mode="secondary" semantic="success" icon="home" />
+              <DxcButton mode="secondary" semantic="success" icon="home" title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-focus">
-              <DxcButton mode="secondary" semantic="success" icon="home" />
+              <DxcButton mode="secondary" semantic="success" icon="home" title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-active">
-              <DxcButton mode="secondary" semantic="success" icon="home" />
+              <DxcButton mode="secondary" semantic="success" icon="home" title="Home" />
             </ExampleContainer>
             <ExampleContainer>
-              <DxcButton mode="secondary" semantic="success" icon="home" disabled />
+              <DxcButton mode="secondary" semantic="success" icon="home" disabled title="Home" />
             </ExampleContainer>
           </DxcFlex>
         </DxcFlex>
@@ -3837,19 +3966,19 @@ export const Chromatic = () => (
           </DxcFlex>
           <DxcFlex direction="column">
             <ExampleContainer>
-              <DxcButton mode="tertiary" semantic="success" icon="home" />
+              <DxcButton mode="tertiary" semantic="success" icon="home" title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-hover">
-              <DxcButton mode="tertiary" semantic="success" icon="home" />
+              <DxcButton mode="tertiary" semantic="success" icon="home" title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-focus">
-              <DxcButton mode="tertiary" semantic="success" icon="home" />
+              <DxcButton mode="tertiary" semantic="success" icon="home" title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-active">
-              <DxcButton mode="tertiary" semantic="success" icon="home" />
+              <DxcButton mode="tertiary" semantic="success" icon="home" title="Home" />
             </ExampleContainer>
             <ExampleContainer>
-              <DxcButton mode="tertiary" semantic="success" icon="home" disabled />
+              <DxcButton mode="tertiary" semantic="success" icon="home" disabled title="Home" />
             </ExampleContainer>
           </DxcFlex>
         </DxcFlex>
@@ -3921,19 +4050,19 @@ export const Chromatic = () => (
           </DxcFlex>
           <DxcFlex direction="column">
             <ExampleContainer>
-              <DxcButton icon="home" semantic="info" size={{ height: "small" }} />
+              <DxcButton icon="home" semantic="info" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-hover">
-              <DxcButton icon="home" semantic="info" size={{ height: "small" }} />
+              <DxcButton icon="home" semantic="info" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-focus">
-              <DxcButton icon="home" semantic="info" size={{ height: "small" }} />
+              <DxcButton icon="home" semantic="info" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-active">
-              <DxcButton icon="home" semantic="info" size={{ height: "small" }} />
+              <DxcButton icon="home" semantic="info" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer>
-              <DxcButton icon="home" semantic="info" size={{ height: "small" }} disabled />
+              <DxcButton icon="home" semantic="info" size={{ height: "small" }} disabled title="Home" />
             </ExampleContainer>
           </DxcFlex>
         </DxcFlex>
@@ -3942,7 +4071,12 @@ export const Chromatic = () => (
             <Title title="Width" theme="light" level={4} />
             <DxcFlex>
               <ExampleContainer>
-                <DxcButton icon={facebookIcon} semantic="info" size={{ height: "small", width: "small" }} />
+                <DxcButton
+                  icon={facebookIcon}
+                  semantic="info"
+                  size={{ height: "small", width: "small" }}
+                  title="Facebook"
+                />
               </ExampleContainer>
               <ExampleContainer>
                 <DxcButton label="Medium" semantic="info" size={{ height: "small", width: "medium" }} />
@@ -4057,19 +4191,26 @@ export const Chromatic = () => (
           </DxcFlex>
           <DxcFlex direction="column">
             <ExampleContainer>
-              <DxcButton mode="secondary" semantic="info" icon="home" size={{ height: "small" }} />
+              <DxcButton mode="secondary" semantic="info" icon="home" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-hover">
-              <DxcButton mode="secondary" semantic="info" icon="home" size={{ height: "small" }} />
+              <DxcButton mode="secondary" semantic="info" icon="home" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-focus">
-              <DxcButton mode="secondary" semantic="info" icon="home" size={{ height: "small" }} />
+              <DxcButton mode="secondary" semantic="info" icon="home" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-active">
-              <DxcButton mode="secondary" semantic="info" icon="home" size={{ height: "small" }} />
+              <DxcButton mode="secondary" semantic="info" icon="home" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer>
-              <DxcButton mode="secondary" semantic="info" icon="home" size={{ height: "small" }} disabled />
+              <DxcButton
+                mode="secondary"
+                semantic="info"
+                icon="home"
+                size={{ height: "small" }}
+                disabled
+                title="Home"
+              />
             </ExampleContainer>
           </DxcFlex>
         </DxcFlex>
@@ -4171,19 +4312,19 @@ export const Chromatic = () => (
           </DxcFlex>
           <DxcFlex direction="column">
             <ExampleContainer>
-              <DxcButton mode="tertiary" semantic="info" icon="home" size={{ height: "small" }} />
+              <DxcButton mode="tertiary" semantic="info" icon="home" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-hover">
-              <DxcButton mode="tertiary" semantic="info" icon="home" size={{ height: "small" }} />
+              <DxcButton mode="tertiary" semantic="info" icon="home" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-focus">
-              <DxcButton mode="tertiary" semantic="info" icon="home" size={{ height: "small" }} />
+              <DxcButton mode="tertiary" semantic="info" icon="home" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-active">
-              <DxcButton mode="tertiary" semantic="info" icon="home" size={{ height: "small" }} />
+              <DxcButton mode="tertiary" semantic="info" icon="home" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer>
-              <DxcButton mode="tertiary" semantic="info" icon="home" size={{ height: "small" }} disabled />
+              <DxcButton mode="tertiary" semantic="info" icon="home" size={{ height: "small" }} disabled title="Home" />
             </ExampleContainer>
           </DxcFlex>
         </DxcFlex>
@@ -4252,19 +4393,19 @@ export const Chromatic = () => (
           </DxcFlex>
           <DxcFlex direction="column">
             <ExampleContainer>
-              <DxcButton icon="home" semantic="info" size={{ height: "medium" }} />
+              <DxcButton icon="home" semantic="info" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-hover">
-              <DxcButton icon="home" semantic="info" size={{ height: "medium" }} />
+              <DxcButton icon="home" semantic="info" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-focus">
-              <DxcButton icon="home" semantic="info" size={{ height: "medium" }} />
+              <DxcButton icon="home" semantic="info" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-active">
-              <DxcButton icon="home" semantic="info" size={{ height: "medium" }} />
+              <DxcButton icon="home" semantic="info" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer>
-              <DxcButton icon="home" semantic="info" size={{ height: "medium" }} disabled />
+              <DxcButton icon="home" semantic="info" size={{ height: "medium" }} disabled title="Home" />
             </ExampleContainer>
           </DxcFlex>
         </DxcFlex>
@@ -4273,7 +4414,12 @@ export const Chromatic = () => (
             <Title title="Width" theme="light" level={4} />
             <DxcFlex>
               <ExampleContainer>
-                <DxcButton icon={facebookIcon} semantic="info" size={{ height: "medium", width: "small" }} />
+                <DxcButton
+                  icon={facebookIcon}
+                  semantic="info"
+                  size={{ height: "medium", width: "small" }}
+                  title="Facebook"
+                />
               </ExampleContainer>
               <ExampleContainer>
                 <DxcButton label="Medium" semantic="info" size={{ height: "medium", width: "medium" }} />
@@ -4388,19 +4534,26 @@ export const Chromatic = () => (
           </DxcFlex>
           <DxcFlex direction="column">
             <ExampleContainer>
-              <DxcButton mode="secondary" semantic="info" icon="home" size={{ height: "medium" }} />
+              <DxcButton mode="secondary" semantic="info" icon="home" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-hover">
-              <DxcButton mode="secondary" semantic="info" icon="home" size={{ height: "medium" }} />
+              <DxcButton mode="secondary" semantic="info" icon="home" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-focus">
-              <DxcButton mode="secondary" semantic="info" icon="home" size={{ height: "medium" }} />
+              <DxcButton mode="secondary" semantic="info" icon="home" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-active">
-              <DxcButton mode="secondary" semantic="info" icon="home" size={{ height: "medium" }} />
+              <DxcButton mode="secondary" semantic="info" icon="home" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer>
-              <DxcButton mode="secondary" semantic="info" icon="home" size={{ height: "medium" }} disabled />
+              <DxcButton
+                mode="secondary"
+                semantic="info"
+                icon="home"
+                size={{ height: "medium" }}
+                disabled
+                title="Home"
+              />
             </ExampleContainer>
           </DxcFlex>
         </DxcFlex>
@@ -4502,19 +4655,26 @@ export const Chromatic = () => (
           </DxcFlex>
           <DxcFlex direction="column">
             <ExampleContainer>
-              <DxcButton mode="tertiary" semantic="info" icon="home" size={{ height: "medium" }} />
+              <DxcButton mode="tertiary" semantic="info" icon="home" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-hover">
-              <DxcButton mode="tertiary" semantic="info" icon="home" size={{ height: "medium" }} />
+              <DxcButton mode="tertiary" semantic="info" icon="home" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-focus">
-              <DxcButton mode="tertiary" semantic="info" icon="home" size={{ height: "medium" }} />
+              <DxcButton mode="tertiary" semantic="info" icon="home" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-active">
-              <DxcButton mode="tertiary" semantic="info" icon="home" size={{ height: "medium" }} />
+              <DxcButton mode="tertiary" semantic="info" icon="home" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer>
-              <DxcButton mode="tertiary" semantic="info" icon="home" size={{ height: "medium" }} disabled />
+              <DxcButton
+                mode="tertiary"
+                semantic="info"
+                icon="home"
+                size={{ height: "medium" }}
+                disabled
+                title="Home"
+              />
             </ExampleContainer>
           </DxcFlex>
         </DxcFlex>
@@ -4576,19 +4736,19 @@ export const Chromatic = () => (
           </DxcFlex>
           <DxcFlex direction="column">
             <ExampleContainer>
-              <DxcButton icon="home" semantic="info" />
+              <DxcButton icon="home" semantic="info" title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-hover">
-              <DxcButton icon="home" semantic="info" />
+              <DxcButton icon="home" semantic="info" title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-focus">
-              <DxcButton icon="home" semantic="info" />
+              <DxcButton icon="home" semantic="info" title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-active">
-              <DxcButton icon="home" semantic="info" />
+              <DxcButton icon="home" semantic="info" title="Home" />
             </ExampleContainer>
             <ExampleContainer>
-              <DxcButton icon="home" semantic="info" disabled />
+              <DxcButton icon="home" semantic="info" disabled title="Home" />
             </ExampleContainer>
           </DxcFlex>
         </DxcFlex>
@@ -4597,7 +4757,12 @@ export const Chromatic = () => (
             <Title title="Width" theme="light" level={4} />
             <DxcFlex>
               <ExampleContainer>
-                <DxcButton icon={facebookIcon} semantic="info" size={{ height: "large", width: "small" }} />
+                <DxcButton
+                  icon={facebookIcon}
+                  semantic="info"
+                  size={{ height: "large", width: "small" }}
+                  title="Facebook"
+                />
               </ExampleContainer>
               <ExampleContainer>
                 <DxcButton label="Medium" semantic="info" size={{ height: "large", width: "medium" }} />
@@ -4669,19 +4834,19 @@ export const Chromatic = () => (
           </DxcFlex>
           <DxcFlex direction="column">
             <ExampleContainer>
-              <DxcButton mode="secondary" semantic="info" icon="home" />
+              <DxcButton mode="secondary" semantic="info" icon="home" title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-hover">
-              <DxcButton mode="secondary" semantic="info" icon="home" />
+              <DxcButton mode="secondary" semantic="info" icon="home" title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-focus">
-              <DxcButton mode="secondary" semantic="info" icon="home" />
+              <DxcButton mode="secondary" semantic="info" icon="home" title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-active">
-              <DxcButton mode="secondary" semantic="info" icon="home" />
+              <DxcButton mode="secondary" semantic="info" icon="home" title="Home" />
             </ExampleContainer>
             <ExampleContainer>
-              <DxcButton mode="secondary" semantic="info" icon="home" disabled />
+              <DxcButton mode="secondary" semantic="info" icon="home" disabled title="Home" />
             </ExampleContainer>
           </DxcFlex>
         </DxcFlex>
@@ -4740,19 +4905,19 @@ export const Chromatic = () => (
           </DxcFlex>
           <DxcFlex direction="column">
             <ExampleContainer>
-              <DxcButton mode="tertiary" semantic="info" icon="home" />
+              <DxcButton mode="tertiary" semantic="info" icon="home" title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-hover">
-              <DxcButton mode="tertiary" semantic="info" icon="home" />
+              <DxcButton mode="tertiary" semantic="info" icon="home" title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-focus">
-              <DxcButton mode="tertiary" semantic="info" icon="home" />
+              <DxcButton mode="tertiary" semantic="info" icon="home" title="Home" />
             </ExampleContainer>
             <ExampleContainer pseudoState="pseudo-active">
-              <DxcButton mode="tertiary" semantic="info" icon="home" />
+              <DxcButton mode="tertiary" semantic="info" icon="home" title="Home" />
             </ExampleContainer>
             <ExampleContainer>
-              <DxcButton mode="tertiary" semantic="info" icon="home" disabled />
+              <DxcButton mode="tertiary" semantic="info" icon="home" disabled title="Home" />
             </ExampleContainer>
           </DxcFlex>
         </DxcFlex>
