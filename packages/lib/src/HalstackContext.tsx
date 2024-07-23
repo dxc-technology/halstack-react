@@ -97,7 +97,7 @@ const parseTheme = (theme: DeepPartial<OpinionatedTheme>): AdvancedTheme => {
   buttonTokens.primaryDisabledDefaultBackgroundColor =
     addLightness(57, theme?.button?.baseColor) ?? buttonTokens.primaryDisabledDefaultBackgroundColor;
   buttonTokens.primaryDisabledDefaultFontColor =
-    addLightness(42, theme?.button?.baseColor) ?? buttonTokens.primaryDisabledDefaultFontColor;
+    addLightness(42, theme?.button?.primaryFontColor) ?? buttonTokens.primaryDisabledDefaultFontColor;
   buttonTokens.secondaryDisabledDefaultBorderColor =
     addLightness(42, theme?.button?.baseColor) ?? buttonTokens.secondaryDisabledDefaultBorderColor;
   buttonTokens.secondaryDisabledDefaultFontColor =
