@@ -122,20 +122,6 @@ const StyledLink = styled.div<{
     }
     ${(props) => props.disabled && "outline: none"}
   }
-  /* &:focus {
-    position: relative;
-    &::before {
-      content: "";
-      position: absolute;
-      top: -2px;
-      right: -2px;
-      bottom: -2px;
-      left: -2px;
-      border-radius: 4px;
-      outline: 2px solid ${(props) => props.theme.focusColor};
-    }
-    ${(props) => props.disabled && "outline: none"}
-  } */
   &:active {
     ${(props) =>
       `color: ${props.theme.activeFontColor} !important;
