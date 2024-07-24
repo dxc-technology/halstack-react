@@ -3,23 +3,25 @@ import styled from "styled-components";
 import ActionIconPropsTypes, { RefType } from "./types";
 import CoreTokens from "../common/coreTokens";
 import DxcIcon from "../icon/Icon";
+import DxcTooltip from "../tooltip/Tooltip";
 
 const DxcActionIcon = forwardRef<RefType, ActionIconPropsTypes>(
   ({ disabled = false, title, icon, onClick, tabIndex }, ref): JSX.Element => (
-    <ActionIcon
-      aria-label={title}
-      disabled={disabled}
-      onClick={onClick}
-      onMouseDown={(event) => {
-        event.stopPropagation();
-      }}
-      tabIndex={tabIndex}
-      title={title}
-      type="button"
-      ref={ref}
-    >
-      {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
-    </ActionIcon>
+    <DxcTooltip label={title}>
+      <ActionIcon
+        aria-label={title}
+        disabled={disabled}
+        onClick={onClick}
+        onMouseDown={(event) => {
+          event.stopPropagation();
+        }}
+        tabIndex={tabIndex}
+        type="button"
+        ref={ref}
+      >
+        {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
+      </ActionIcon>
+    </DxcTooltip>
   )
 );
 
@@ -39,12 +41,12 @@ const ActionIcon = styled.button`
   box-shadow: 0 0 0 2px transparent;
   background-color: ${(props) =>
     props.disabled
-      ? props.theme.disabledActionBackgroundColor ?? CoreTokens.color_transparent
-      : props.theme.actionBackgroundColor ?? CoreTokens.color_transparent};
+      ? (props.theme.disabledActionBackgroundColor ?? CoreTokens.color_transparent)
+      : (props.theme.actionBackgroundColor ?? CoreTokens.color_transparent)};
   color: ${(props) =>
     props.disabled
-      ? props.theme.disabledActionIconColor ?? CoreTokens.color_grey_500
-      : props.theme.actionIconColor ?? CoreTokens.color_black};
+      ? (props.theme.disabledActionIconColor ?? CoreTokens.color_grey_500)
+      : (props.theme.actionIconColor ?? CoreTokens.color_black)};
 
   ${(props) =>
     !props.disabled &&

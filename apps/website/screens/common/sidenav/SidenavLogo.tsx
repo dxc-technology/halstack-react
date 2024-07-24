@@ -2,13 +2,11 @@ import styled from "styled-components";
 import Image from "@/common/Image";
 import halstackLogo from "@/common/images/halstack_logo.svg";
 import { DxcBadge, DxcFlex } from "@dxc-technology/halstack-react";
-import { useRouter } from "next/router";
 
 type SidenavLogoProps = { subtitle?: string };
 
 const SidenavLogo = ({ subtitle = "Design System" }: SidenavLogoProps): JSX.Element => {
-  const { basePath } = useRouter();
-  const pathVersion = basePath.split("/")[2];
+  const pathVersion = process.env.SITE_VERSION;
   const isDev = process.env.NODE_ENV === "development";
 
   return (
@@ -21,7 +19,7 @@ const SidenavLogo = ({ subtitle = "Design System" }: SidenavLogoProps): JSX.Elem
         <Subtitle>{subtitle}</Subtitle>
       </LogoContainer>
       <DxcBadge
-        label={isDev ? "dev" : isNaN(parseInt(pathVersion)) ? "next" : `v${pathVersion}`}
+        label={isDev ? "dev" : pathVersion === "next" ? pathVersion : `v${pathVersion}`}
         color="purple"
         size="small"
       />

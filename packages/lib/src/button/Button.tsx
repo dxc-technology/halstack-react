@@ -4,6 +4,7 @@ import getMargin from "../common/utils";
 import useTheme from "../useTheme";
 import ButtonPropsType from "./types";
 import DxcIcon from "../icon/Icon";
+import DxcTooltip from "../tooltip/Tooltip";
 
 const DxcButton = ({
   label = "",
@@ -22,25 +23,26 @@ const DxcButton = ({
 
   return (
     <ThemeProvider theme={colorsTheme.button}>
-      <Button
-        aria-label={title}
-        disabled={disabled}
-        onClick={() => {
-          onClick();
-        }}
-        tabIndex={disabled ? -1 : tabIndex}
-        title={title}
-        type={type}
-        $mode={mode !== "primary" && mode !== "secondary" && mode !== "text" ? "primary" : mode}
-        hasLabel={!!label}
-        hasIcon={!!icon}
-        iconPosition={iconPosition}
-        size={size}
-        margin={margin}
-      >
-        {label && <LabelContainer>{label}</LabelContainer>}
-        {icon && <IconContainer>{typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}</IconContainer>}
-      </Button>
+      <DxcTooltip label={title}>
+        <Button
+          aria-label={title}
+          disabled={disabled}
+          onClick={() => {
+            onClick();
+          }}
+          tabIndex={disabled ? -1 : tabIndex}
+          type={type}
+          $mode={mode !== "primary" && mode !== "secondary" && mode !== "text" ? "primary" : mode}
+          hasLabel={!!label}
+          hasIcon={!!icon}
+          iconPosition={iconPosition}
+          size={size}
+          margin={margin}
+        >
+          {label && <LabelContainer>{label}</LabelContainer>}
+          {icon && <IconContainer>{typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}</IconContainer>}
+        </Button>
+      </DxcTooltip>
     </ThemeProvider>
   );
 };

@@ -3,10 +3,12 @@ import styled, { ThemeProvider } from "styled-components";
 import { responsiveSizes, spaces } from "../common/variables";
 import DxcFlex from "../flex/Flex";
 import DxcIcon from "../icon/Icon";
+import DxcTooltip from "../tooltip/Tooltip";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
 import { dxcLogo, dxcSmallLogo } from "./Icons";
 import FooterPropsType from "./types";
+import type { Spaces } from "../flex/types";
 
 const DxcFooter = ({
   socialLinks,
@@ -42,20 +44,15 @@ const DxcFooter = ({
         <DxcFlex justifyContent="space-between" alignItems="center" wrap="wrap" gap="1.5rem">
           <LogoContainer mode={mode}>{footerLogo}</LogoContainer>
           {mode === "default" && (
-            <DxcFlex>
+            <DxcFlex gap={colorsTheme.footer.socialLinksGutter as Spaces}>
               {socialLinks?.map((link, index) => (
-                <SocialAnchor
-                  href={link.href}
-                  tabIndex={tabIndex}
-                  title={link.title}
-                  aria-label={link.title}
-                  key={`social${index}${link.href}`}
-                  index={index}
-                >
-                  <SocialIconContainer>
-                    {typeof link.logo === "string" ? <DxcIcon icon={link.logo} /> : link.logo}
-                  </SocialIconContainer>
-                </SocialAnchor>
+                <DxcTooltip label={link.title} key={`social${index}${link.href}`}>
+                  <SocialAnchor href={link.href} tabIndex={tabIndex} aria-label={link.title} index={index}>
+                    <SocialIconContainer>
+                      {typeof link.logo === "string" ? <DxcIcon icon={link.logo} /> : link.logo}
+                    </SocialIconContainer>
+                  </SocialAnchor>
+                </DxcTooltip>
               ))}
             </DxcFlex>
           )}
@@ -156,8 +153,6 @@ const LogoImg = styled.img<{ mode?: FooterPropsType["mode"] }>`
 `;
 
 const SocialAnchor = styled.a<{ index: number }>`
-  display: inline-flex;
-  margin-left: ${(props) => (props.index === 0 ? "0px" : props.theme.socialLinksGutter)};
   border-radius: 4px;
 
   &:focus {

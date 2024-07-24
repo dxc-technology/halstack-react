@@ -1,4 +1,12 @@
-import { DxcTable, DxcFlex, DxcLink, DxcHeading, DxcParagraph, DxcBulletedList, DxcAlert } from "@dxc-technology/halstack-react";
+import {
+  DxcTable,
+  DxcFlex,
+  DxcLink,
+  DxcHeading,
+  DxcParagraph,
+  DxcBulletedList,
+  DxcAlert,
+} from "@dxc-technology/halstack-react";
 import Link from "next/link";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import PageHeading from "@/common/PageHeading";
@@ -1116,6 +1124,18 @@ const sections = [
                         <td>Base color</td>
                         <td>
                           <Code>headerBackgroundColor</Code>
+                          <br />
+                          <br />
+                          <Code>actionIconColor</Code>
+                          <br />
+                          <br />
+                          <Code>hoverActionIconColor</Code>
+                          <br />
+                          <br />
+                          <Code>focusActionIconColor</Code>
+                          <br />
+                          <br />
+                          <Code>activeActionIconColor</Code>
                         </td>
                       </tr>
                       <tr>

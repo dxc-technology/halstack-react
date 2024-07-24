@@ -131,7 +131,7 @@ const deploy = async () => {
   );
   const existingVersionsInBucket = await getVersionsInS3Bucket();
   const isNewLatest = !existingVersionsInBucket.includes(majorVersionToDeploy);
-  await buildSite(majorVersionToDeploy);
+  await buildSite(versionToDeploy);
   await removeBucket(majorVersionToDeploy);
   await moveToBucket(majorVersionToDeploy);
   const listAvailableVersions = await getVersionsInS3Bucket();

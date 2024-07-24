@@ -3,6 +3,7 @@
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
+      "env": ["SITE_VERSION", "NODE_ENV"],
       "inputs": ["$TURBO_DEFAULT$", ".env", ".env.*", "!**/*.stories.{tsx,jsx,mdx}"],
       "outputs": [".next/**", "!.next/cache/**", "dist/**", "storybook-static/**"]
     },

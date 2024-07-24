@@ -13,7 +13,8 @@
     "storybook:accessibility:ci": "turbo storybook:accessibility:ci",
     "test": "turbo test",
     "test:accessibility": "turbo test:accessibility",
-    "prepare": "husky"
+    "prepare": "husky",
+    "test:watch": "turbo test:watch"
   },
   "devDependencies": {
     "husky": "^9.0.11",

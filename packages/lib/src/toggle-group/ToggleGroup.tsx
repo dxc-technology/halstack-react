@@ -3,6 +3,7 @@ import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables";
 import DxcFlex from "../flex/Flex";
 import DxcIcon from "../icon/Icon";
+import DxcTooltip from "../tooltip/Tooltip";
 import useTheme from "../useTheme";
 import ToggleGroupPropsType, { OptionLabel } from "./types";
 
@@ -72,49 +73,49 @@ const DxcToggleGroup = ({
         </Label>
         <HelperText disabled={disabled}>{helperText}</HelperText>
         <OptionsContainer aria-labelledby={toggleGroupLabelId}>
-          {options.map((option, index) => (
-            <ToggleButton
-              key={`toggle-${index}`}
-              aria-label={option.title}
-              aria-pressed={
-                multiple
-                  ? value
-                    ? Array.isArray(value) && value.includes(option.value)
-                    : Array.isArray(selectedValue) && selectedValue.includes(option.value)
-                  : value
-                    ? option.value === value
-                    : option.value === selectedValue
-              }
-              disabled={disabled}
-              onClick={() => {
-                handleToggleChange(option.value);
-              }}
-              onKeyDown={(event) => {
-                handleOnKeyDown(event, option.value);
-              }}
-              tabIndex={!disabled ? tabIndex : -1}
-              title={option.title}
-              hasIcon={option.icon}
-              optionLabel={option.label}
-              selected={
-                multiple
-                  ? value
-                    ? Array.isArray(value) && value.includes(option.value)
-                    : Array.isArray(selectedValue) && selectedValue.includes(option.value)
-                  : value
-                    ? option.value === value
-                    : option.value === selectedValue
-              }
-            >
-              <DxcFlex alignItems="center">
-                {option.icon && (
-                  <IconContainer optionLabel={option.label}>
-                    {typeof option.icon === "string" ? <DxcIcon icon={option.icon} /> : option.icon}
-                  </IconContainer>
-                )}
-                {option.label && <LabelContainer>{option.label}</LabelContainer>}
-              </DxcFlex>
-            </ToggleButton>
+          {options.map((option, i) => (
+            <DxcTooltip label={option.title} key={`toggle-${i}-${option.label}`}>
+              <ToggleButton
+                aria-label={option.title}
+                aria-pressed={
+                  multiple
+                    ? value
+                      ? Array.isArray(value) && value.includes(option.value)
+                      : Array.isArray(selectedValue) && selectedValue.includes(option.value)
+                    : value
+                      ? option.value === value
+                      : option.value === selectedValue
+                }
+                disabled={disabled}
+                onClick={() => {
+                  handleToggleChange(option.value);
+                }}
+                onKeyDown={(event) => {
+                  handleOnKeyDown(event, option.value);
+                }}
+                tabIndex={!disabled ? tabIndex : -1}
+                hasIcon={option.icon}
+                optionLabel={option.label}
+                selected={
+                  multiple
+                    ? value
+                      ? Array.isArray(value) && value.includes(option.value)
+                      : Array.isArray(selectedValue) && selectedValue.includes(option.value)
+                    : value
+                      ? option.value === value
+                      : option.value === selectedValue
+                }
+              >
+                <DxcFlex alignItems="center">
+                  {option.icon && (
+                    <IconContainer optionLabel={option.label}>
+                      {typeof option.icon === "string" ? <DxcIcon icon={option.icon} /> : option.icon}
+                    </IconContainer>
+                  )}
+                  {option.label && <LabelContainer>{option.label}</LabelContainer>}
+                </DxcFlex>
+              </ToggleButton>
+            </DxcTooltip>
           ))}
         </OptionsContainer>
       </ToggleGroup>

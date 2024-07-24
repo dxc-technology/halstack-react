@@ -3,8 +3,8 @@ import CoreTokens from "../common/coreTokens";
 import StatusLightPropsType from "./types";
 
 const DxcStatusLight = ({ mode = "default", label, size = "medium" }: StatusLightPropsType): JSX.Element => (
-  <StatusLightContainer size={size} aria-label={`${mode}: ${label}`} data-testid="status_light-container">
-    <StatusDot mode={mode} size={size} aria-hidden="true" data-testid="status-dot" />
+  <StatusLightContainer size={size} aria-label={`${mode}: ${label}`} role="status">
+    <StatusDot mode={mode} size={size} aria-hidden="true" />
     <StatusLabel mode={mode} size={size}>
       {label}
     </StatusLabel>

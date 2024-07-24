@@ -646,19 +646,18 @@ describe("Select component tests", () => {
 
   test("Non-Grouped Options: Searchable - While user types, a clear action is displayed for cleaning the search value", async () => {
     const onChange = jest.fn();
-    const { container, getByRole, getAllByRole, queryByTitle } = render(
+    const { container, getByRole, getAllByRole, queryByRole } = render(
       <DxcSelect label="test-select-label" options={singleOptions} onChange={onChange} searchable />
     );
     const searchInput = container.querySelectorAll("input")[1];
     await userEvent.type(searchInput, "Option 02");
     expect(getAllByRole("option").length).toBe(1);
-    expect(queryByTitle("Clear search")).toBeTruthy();
-    const clearAction = getByRole("button");
-    expect(clearAction).toBeTruthy();
-    await userEvent.click(clearAction);
+    const clearSearchButton = getByRole("button");
+    expect(clearSearchButton.getAttribute("aria-label")).toBe("Clear search");
+    await userEvent.click(clearSearchButton);
     expect(getByRole("listbox")).toBeTruthy();
     expect(getAllByRole("option").length).toBe(20);
-    expect(queryByTitle("Clear search")).toBeFalsy();
+    expect(queryByRole("button")).toBeFalsy();
   });
 
   test("Non-Grouped Options: Multiple selection - Displays a checkbox per option and enables the multi-selection", async () => {
@@ -700,7 +699,7 @@ describe("Select component tests", () => {
 
   test("Non-Grouped Options: Multiple selection - Clear action and selection indicator", async () => {
     const onChange = jest.fn();
-    const { getByText, queryByText, getByRole, getAllByRole, queryByRole, getByTitle, queryByTitle } = render(
+    const { getByText, queryByText, getByRole, getAllByRole, queryByRole } = render(
       <DxcSelect label="test-select-label" options={singleOptions} onChange={onChange} multiple />
     );
     const select = getByRole("combobox");
@@ -712,15 +711,14 @@ describe("Select component tests", () => {
     expect(queryByRole("listbox")).toBeTruthy();
     expect(getByText("Option 06, Option 09, Option 14")).toBeTruthy();
     expect(getByText("3", { exact: true })).toBeTruthy();
-    await userEvent.click(getByTitle("Clear selection"));
-    expect(onChange).toHaveBeenCalledWith({
-      value: [],
-      error: "This field is required. Please, enter a value.",
-    });
+    const clearSelectionButton = getByRole("button");
+    expect(clearSelectionButton.getAttribute("aria-label")).toBe("Clear selection");
+    await userEvent.click(clearSelectionButton);
+    expect(onChange).toHaveBeenCalledWith({ value: [], error: "This field is required. Please, enter a value." });
     expect(queryByRole("listbox")).toBeTruthy();
     expect(queryByText("Option 06, Option 09, Option 14")).toBeFalsy();
     expect(queryByText("3")).toBeFalsy();
-    expect(queryByTitle("Clear selection")).toBeFalsy();
+    expect(queryByRole("button")).toBeFalsy();
   });
 
   test("Non-Grouped Options: Multiple selection - Optional option should not be added when the select is marked as multiple", async () => {
@@ -1161,7 +1159,7 @@ describe("Select component tests", () => {
 
   test("Grouped Options: Multiple selection - Clear action and selection indicator", async () => {
     const onChange = jest.fn();
-    const { getByText, queryByText, getByRole, getAllByRole, queryByRole, getByTitle, queryByTitle } = render(
+    const { getByText, queryByText, getByRole, getAllByRole, queryByRole } = render(
       <DxcSelect label="test-select-label" options={groupOptions} onChange={onChange} multiple />
     );
     const select = getByRole("combobox");
@@ -1176,11 +1174,13 @@ describe("Select component tests", () => {
     expect(queryByRole("list")).toBeTruthy();
     expect(getByText("Blanco, Oviedo, Duero, Ebro")).toBeTruthy();
     expect(getByText("4", { exact: true })).toBeTruthy();
-    await userEvent.click(getByTitle("Clear selection"));
+    const clearSelectionButton = getByRole("button");
+    expect(clearSelectionButton.getAttribute("aria-label")).toBe("Clear selection");
+    await userEvent.click(clearSelectionButton);
     expect(queryByRole("list")).toBeTruthy();
     expect(queryByText("Blanco, Oviedo, Duero, Ebro")).toBeFalsy();
     expect(queryByText("4")).toBeFalsy();
-    expect(queryByTitle("Clear selection")).toBeFalsy();
+    expect(queryByRole("button")).toBeFalsy();
   });
 
   test("Grouped Options: Multiple selection - Optional option should not be added when the select is marked as multiple", async () => {
@@ -1314,7 +1314,7 @@ describe("Select component tests", () => {
 
   test("Multiple selection and optional - Clear action cleans every selected option but does not display an error", async () => {
     const onChange = jest.fn();
-    const { getByRole, getAllByRole, getByTitle } = render(
+    const { getByRole, getAllByRole } = render(
       <DxcSelect label="test-select-label" options={singleOptions} onChange={onChange} multiple optional />
     );
     const select = getByRole("combobox");
@@ -1323,7 +1323,9 @@ describe("Select component tests", () => {
     await userEvent.click(getAllByRole("option")[8]);
     await userEvent.click(getAllByRole("option")[13]);
     expect(onChange).toHaveBeenCalledWith({ value: ["6", "9", "14"] });
-    await userEvent.click(getByTitle("Clear selection"));
+    const clearSelectionButton = getByRole("button");
+    expect(clearSelectionButton.getAttribute("aria-label")).toBe("Clear selection");
+    await userEvent.click(clearSelectionButton);
     expect(onChange).toHaveBeenCalledWith({ value: [] });
   });
 });

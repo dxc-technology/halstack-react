@@ -6,6 +6,7 @@ import DxcIcon from "../icon/Icon";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
 import HeaderPropsType from "./types";
+import DxcTooltip from "../tooltip/Tooltip";
 import DxcFlex from "../flex/Flex";
 
 const Dropdown = (props: ComponentProps<typeof DxcDropdown>) => (
@@ -121,14 +122,11 @@ const DxcHeader = ({
             <ResponsiveMenu hasVisibility={isMenuVisible}>
               <DxcFlex justifyContent="space-between" alignItems="center">
                 <ResponsiveLogoContainer>{headerResponsiveLogo}</ResponsiveLogoContainer>
-                <CloseAction
-                  tabIndex={tabIndex}
-                  onClick={handleMenu}
-                  aria-label={translatedLabels.header.closeIcon}
-                  title={translatedLabels.header.closeIcon}
-                >
-                  <DxcIcon icon="close" />
-                </CloseAction>
+                <DxcTooltip label={translatedLabels.header.closeIcon}>
+                  <CloseAction tabIndex={tabIndex} onClick={handleMenu} aria-label={translatedLabels.header.closeIcon}>
+                    <DxcIcon icon="close" />
+                  </CloseAction>
+                </DxcTooltip>
               </DxcFlex>
               <Content
                 isResponsive={isResponsive}

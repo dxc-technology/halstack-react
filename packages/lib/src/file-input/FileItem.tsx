@@ -5,6 +5,7 @@ import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
 import { FileItemProps } from "./types";
 import DxcIcon from "../icon/Icon";
+import DxcActionIcon from "../action-icon/ActionIcon";
 
 const FileItem = ({
   fileName = "",
@@ -40,17 +41,12 @@ const FileItem = ({
                 <DxcIcon icon="filled_error" />
               </ErrorIcon>
             )}
-            <DeleteFileAction
-              onClick={() => {
-                onDelete(fileName);
-              }}
-              type="button"
-              title={translatedLabels.fileInput.deleteFileActionTitle}
-              aria-label={translatedLabels.fileInput.deleteFileActionTitle}
+            <DxcActionIcon
+              onClick={() => onDelete(fileName)}
+              icon="close"
               tabIndex={tabIndex}
-            >
-              <DxcIcon icon="close" />
-            </DeleteFileAction>
+              title={translatedLabels.fileInput.deleteFileActionTitle}
+            />
           </DxcFlex>
           {error && !singleFileMode && (
             <ErrorMessage role="alert" aria-live="assertive">
@@ -139,36 +135,6 @@ const ErrorIcon = styled.span`
   width: 18px;
   font-size: 18px;
   color: #d0011b;
-`;
-
-const DeleteFileAction = styled.button`
-  display: flex;
-  flex-wrap: wrap;
-  align-content: center;
-  justify-content: center;
-  height: 24px;
-  width: 24px;
-  font-size: 1rem;
-  font-family: ${(props) => props.theme.fontFamily};
-  border: 1px solid transparent;
-  border-radius: 2px;
-  background-color: transparent;
-  box-shadow: 0 0 0 2px transparent;
-  padding: 3px;
-  cursor: pointer;
-  color: ${(props) => props.theme.deleteFileItemColor};
-  font-size: 18px;
-  &:hover {
-    background-color: ${(props) => props.theme.hoverDeleteFileItemBackgroundColor};
-  }
-  &:focus,
-  &:focus-visible {
-    outline: none;
-    box-shadow: 0 0 0 2px ${(props) => props.theme.focusDeleteFileItemBorderColor};
-  }
-  &:active {
-    background-color: ${(props) => props.theme.activeDeleteFileItemBackgroundColor};
-  }
 `;
 
 const ErrorMessage = styled.span`
