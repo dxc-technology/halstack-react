@@ -1124,6 +1124,18 @@ const sections = [
                         <td>Base color</td>
                         <td>
                           <Code>headerBackgroundColor</Code>
+                          <br />
+                          <br />
+                          <Code>actionIconColor</Code>
+                          <br />
+                          <br />
+                          <Code>hoverActionIconColor</Code>
+                          <br />
+                          <br />
+                          <Code>focusActionIconColor</Code>
+                          <br />
+                          <br />
+                          <Code>activeActionIconColor</Code>
                         </td>
                       </tr>
                       <tr>

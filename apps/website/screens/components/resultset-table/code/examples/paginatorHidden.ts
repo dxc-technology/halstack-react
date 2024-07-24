@@ -11,7 +11,7 @@ const code = `() => {
   const actions = [
     {
       icon: "filled_delete",
-      title: "icon",
+      title: "Delete",
       onClick: () => {},
     },
     {
