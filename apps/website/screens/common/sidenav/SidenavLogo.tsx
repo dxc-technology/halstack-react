@@ -19,7 +19,7 @@ const SidenavLogo = ({ subtitle = "Design System" }: SidenavLogoProps): JSX.Elem
         <Subtitle>{subtitle}</Subtitle>
       </LogoContainer>
       <DxcBadge
-        label={isDev ? "dev" : isNaN(parseInt(pathVersion)) ? "next" : `v${pathVersion}.0.0`}
+        label={isDev ? "dev" : pathVersion === "next" ? pathVersion : `v${pathVersion}`}
         color="purple"
         size="small"
       />
