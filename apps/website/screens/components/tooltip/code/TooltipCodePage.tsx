@@ -28,7 +28,9 @@ const sections = [
             <td>
               Preferred position for displaying the tooltip. It may adjust automatically based on available space.
             </td>
-            <td>'bottom'</td>
+            <td>
+              <TableCode>'bottom'</TableCode>
+            </td>
           </tr>
           <tr>
             <td>label</td>
