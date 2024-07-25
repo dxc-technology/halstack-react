@@ -35,9 +35,7 @@ jobs:
         run: npm install
     
       - name: Build library and website
-        env:
-          SITE_VERSION: next
-        run: npm run build
+        run: cd packages/lib && SITE_VERSION=next npm run build
     
       - name: Test library
         run: npm run test

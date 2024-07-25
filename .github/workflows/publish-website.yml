@@ -35,9 +35,7 @@ jobs:
         run: npm install
 
       - name: Build library and website
-        env:
-          SITE_VERSION: next
-        run: npm run build
+        run: cd apps/website && SITE_VERSION=next npm run build
 
       - name: Move website to S3
         run: |
