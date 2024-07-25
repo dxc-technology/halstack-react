@@ -48,7 +48,7 @@ import DxcDivider from "./divider/Divider";
 import DxcBreadcrumbs from "./breadcrumbs/Breadcrumbs";
 import DxcBarChart from "./bar-chart/BarChart";
 import DxcTooltip from "./tooltip/Tooltip";
-import DxcDataGrid from "./data-grid/Datagrid";
+import DxcDataGrid from "./data-grid/DataGrid";
 
 import HalstackContext, { HalstackProvider, HalstackLanguageContext } from "./HalstackContext";
 
