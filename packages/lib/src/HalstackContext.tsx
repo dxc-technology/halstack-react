@@ -301,6 +301,10 @@ const parseTheme = (theme: DeepPartial<OpinionatedTheme>): AdvancedTheme => {
   tableTokens.headerFontColor = theme?.table?.headerFontColor ?? tableTokens.headerFontColor;
   tableTokens.dataFontColor = theme?.table?.cellFontColor ?? tableTokens.dataFontColor;
   tableTokens.sortIconColor = theme?.table?.headerFontColor ?? tableTokens.sortIconColor;
+  tableTokens.actionIconColor = theme?.table?.baseColor ?? tableTokens.actionIconColor;
+  tableTokens.hoverActionIconColor = theme?.table?.baseColor ?? tableTokens.hoverActionIconColor;
+  tableTokens.focusActionIconColor = theme?.table?.baseColor ?? tableTokens.focusActionIconColor;
+  tableTokens.activeActionIconColor = theme?.table?.baseColor ?? tableTokens.activeActionIconColor;
 
   const tabsTokens = componentTokensCopy.tabs;
   tabsTokens.selectedFontColor = theme?.tabs?.baseColor ?? tabsTokens.selectedFontColor;
