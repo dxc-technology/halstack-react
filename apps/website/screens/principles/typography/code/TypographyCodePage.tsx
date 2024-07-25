@@ -13,19 +13,19 @@ const sections = [
     title: "Examples",
     subSections: [
       {
-        title: "Heading basic usage",
+        title: "Heading",
         content: <Example example={headingBasicUsage} defaultIsVisible />,
       },
       {
-        title: "Paragraph basic usage",
+        title: "Paragraph",
         content: <Example example={paragraphBasicUsage} defaultIsVisible />,
       },
       {
-        title: "Bulleted list basic usage",
+        title: "Bulleted list",
         content: <Example example={bulletedListBasicUsage} defaultIsVisible />,
       },
       {
-        title: "Typography basic usage",
+        title: "Typography",
         content: <Example example={typographyBasicUsage} defaultIsVisible />,
       },
     ],
