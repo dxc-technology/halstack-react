@@ -34,10 +34,11 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build library and website
-        env:
-          SITE_VERSION: next
+      - name: Build library
         run: npm run build
+        
+      - name: Build website
+        run: cd apps/website && SITE_VERSION=next npm run build
 
       - name: Move website to S3
         run: |
