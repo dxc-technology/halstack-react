@@ -275,7 +275,7 @@ const sections = [
                 <td>
                   <Code>spacing-0</Code>
                 </td>
-                <td>0</td>
+                <td>0rem / 0px</td>
               </tr>
               <tr>
                 <td>
@@ -285,7 +285,7 @@ const sections = [
                 <td>
                   <Code>spacing-0</Code>
                 </td>
-                <td>0</td>
+                <td>0rem / 0px</td>
               </tr>
               <tr>
                 <td>
@@ -322,7 +322,7 @@ const sections = [
                 <td>
                   <Code>border-width-0</Code>
                 </td>
-                <td>0</td>
+                <td>0rem / 0px</td>
               </tr>
               <tr>
                 <td>

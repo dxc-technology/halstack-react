@@ -304,7 +304,7 @@ const sections = [
                   <td>
                     <Code>font-tracking-normal</Code>
                   </td>
-                  <td>0</td>
+                  <td>0rem / 0px</td>
                 </tr>
                 <tr>
                   <td>
