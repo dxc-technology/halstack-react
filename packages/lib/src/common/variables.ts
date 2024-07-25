@@ -206,7 +206,7 @@ export const componentTokens = {
     secondaryHoverDefaultFontColor: CoreTokens.color_white,
     secondaryHoverErrorFontColor: CoreTokens.color_white,
     secondaryHoverWarningFontColor: CoreTokens.color_white,
-    secondaryHoverSuccesFontColor: CoreTokens.color_white,
+    secondaryHoverSuccessFontColor: CoreTokens.color_white,
     secondaryHoverInfoFontColor: CoreTokens.color_white,
     secondaryActiveDefaultBackgroundColor: CoreTokens.color_purple_800,
     secondaryActiveErrorBackgroundColor: CoreTokens.color_red_800,

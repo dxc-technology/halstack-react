@@ -155,7 +155,7 @@ const sections = [
             </td>
             <td>Object used to define the dimensions of the button in terms of height and width. </td>
             <td>
-              <TableCode>{"{ height: 'medium'; width: 'fitContent' }"}</TableCode>
+              <TableCode>{"{ height: 'large'; width: 'fitContent' }"}</TableCode>
             </td>
           </tr>
           <tr>

@@ -204,7 +204,7 @@
     "secondaryHoverDefaultFontColor": "#ffffff",
     "secondaryHoverErrorFontColor": "#ffffff",
     "secondaryHoverWarningFontColor": "#ffffff",
-    "secondaryHoverSuccesFontColor": "#ffffff",
+    "secondaryHoverSuccessFontColor": "#ffffff",
     "secondaryHoverInfoFontColor": "#ffffff",
     "secondaryActiveDefaultBackgroundColor": "#4b1c7d",
     "secondaryActiveErrorBackgroundColor": "#980115",

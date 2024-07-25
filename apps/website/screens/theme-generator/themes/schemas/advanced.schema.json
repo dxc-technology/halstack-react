@@ -204,7 +204,7 @@
     "secondaryHoverDefaultFontColor": "color",
     "secondaryHoverErrorFontColor": "color",
     "secondaryHoverWarningFontColor": "color",
-    "secondaryHoverSuccesFontColor": "color",
+    "secondaryHoverSuccessFontColor": "color",
     "secondaryHoverInfoFontColor": "color",
     "secondaryActiveDefaultBackgroundColor": "color",
     "secondaryActiveErrorBackgroundColor": "color",

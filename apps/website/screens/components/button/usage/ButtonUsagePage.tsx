@@ -138,7 +138,7 @@ const sections = [
               </td>
               <td>
                 Neutral action with no specific context. Typically used for general actions. Shown in the brand's
-                primary color. Use for neutral actions such as "Submit," "Save," or "Continue.”
+                primary color. Use for neutral actions such as "Submit", "Save" or "Continue.”
               </td>
             </tr>
             <tr>
@@ -149,7 +149,7 @@ const sections = [
               </td>
               <td>
                 Indicates a destructive action or highlights a critical issue. Styled in red. Use for actions like
-                "Delete," "Remove," or "Cancel Subscription.”
+                "Delete", "Remove" or "Cancel Subscription.”
               </td>
             </tr>
             <tr>
@@ -160,7 +160,7 @@ const sections = [
               </td>
               <td>
                 Alerts the user to potential issues or actions that need caution. Styled in orange. Use for actions like
-                "Warning," or "Attention Needed.”
+                "Warning" or "Attention Needed.”
               </td>
             </tr>
             <tr>
@@ -171,7 +171,7 @@ const sections = [
               </td>
               <td>
                 Represents a positive action or confirms the completion of a task. Styled in green. Use for actions like
-                "Confirm," "Complete," or "Approve.”
+                "Confirm", "Complete" or "Approve.”
               </td>
             </tr>
             <tr>
@@ -182,7 +182,7 @@ const sections = [
               </td>
               <td>
                 Provides additional information or context. Shown in blue, the brand's secondary color. Use for actions
-                like "More Info," "Details," or "Learn More.”
+                like "More Info", "Details" or "Learn More.”
               </td>
             </tr>
           </tbody>
@@ -297,7 +297,7 @@ const sections = [
         content: (
           <DxcBulletedList>
             <DxcBulletedList.Item>
-              <strong>Use actionable language:</strong> Start with a verb that clearly describes the action. Examples:{" "}
+              <strong>Use actionable language:</strong> Start with a verb that clearly describes the action. Examples:
               "Submit", "Save" or "Delete".
             </DxcBulletedList.Item>
             <DxcBulletedList.Item>
@@ -313,11 +313,11 @@ const sections = [
           <DxcBulletedList>
             <DxcBulletedList.Item>
               <strong>Avoid ambiguity:</strong> Make sure the button’s purpose is immediately clear. Avoid vague labels
-              like "Click here" or "Go."
+              like "Click here" or "Go".
             </DxcBulletedList.Item>
             <DxcBulletedList.Item>
               <strong>Use specific nouns:</strong> If necessary, include a noun to provide more context. Examples: "Add
-              item," "View details."
+              item", "View details".
             </DxcBulletedList.Item>
           </DxcBulletedList>
         ),
@@ -343,11 +343,11 @@ const sections = [
           <DxcBulletedList>
             <DxcBulletedList.Item>
               <strong>User-centric language:</strong> Write from the user’s perspective. For actions that the user
-              performs, consider using first-person pronouns (e.g., "My profile,").
+              performs, consider using first-person pronouns (e.g., "My profile").
             </DxcBulletedList.Item>
             <DxcBulletedList.Item>
               <strong>Positive tone:</strong> Where possible, frame actions positively to encourage interaction. For
-              example, use "Continue" instead of "Next."
+              example, use "Continue" instead of "Next".
             </DxcBulletedList.Item>
           </DxcBulletedList>
         ),

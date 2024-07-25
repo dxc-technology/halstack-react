@@ -33,7 +33,7 @@ const DxcButton = ({
           }}
           tabIndex={disabled ? -1 : tabIndex}
           type={type}
-          $mode={mode !== "primary" && mode !== "secondary" && mode !== "tertiary" ? "primary" : mode}
+          $mode={mode === "primary" || mode === "secondary" || mode === "tertiary" ? mode : "primary"}
           hasLabel={label ? true : false}
           hasIcon={icon ? true : false}
           iconPosition={iconPosition}
@@ -220,9 +220,9 @@ const getButtonStyles = (
           color: ${theme.secondaryErrorFontColor};
           border-color ${theme.secondaryErrorBorderColor};`;
           hover = `background-color: ${theme.secondaryHoverErrorBackgroundColor};
-          color: ${theme.secondaryHoverDefaultFontColor};`;
+          color: ${theme.secondaryHoverErrorFontColor};`;
           active = `background-color: ${theme.secondaryActiveErrorBackgroundColor};
-          color: ${theme.secondaryHoverDefaultFontColor};
+          color: ${theme.secondaryHoverErrorFontColor};
           border-color: transparent;
           outline: none;
           box-shadow: 0 0 0 2px ${theme.focusBorderColor};`;
@@ -239,7 +239,7 @@ const getButtonStyles = (
           hover = `background-color: ${theme.secondaryHoverWarningBackgroundColor};
           color: ${theme.secondaryHoverWarningFontColor};`;
           active = `background-color: ${theme.secondaryActiveWarningBackgroundColor};
-          color: ${theme.secondaryHoverDefaultFontColor};
+          color: ${theme.secondaryHoverWarningFontColor};
           border-color: transparent;
           outline: none;
           box-shadow: 0 0 0 2px ${theme.focusBorderColor};`;
@@ -254,9 +254,9 @@ const getButtonStyles = (
           color: ${theme.secondarySuccessFontColor};
           border-color ${theme.secondarySuccessBorderColor};`;
           hover = `background-color: ${theme.secondaryHoverSuccessBackgroundColor};
-          color: ${theme.secondaryHoverDefaultFontColor};`;
+          color: ${theme.secondaryHoverSuccessFontColor};`;
           active = `background-color: ${theme.secondaryActiveSuccessBackgroundColor};
-          color: ${theme.secondaryHoverDefaultFontColor};
+          color: ${theme.secondaryHoverSuccessFontColor};
           border-color: transparent;
           outline: none;
           box-shadow: 0 0 0 2px ${theme.focusBorderColor};`;
@@ -273,7 +273,7 @@ const getButtonStyles = (
           hover = `background-color: ${theme.secondaryHoverInfoBackgroundColor};
           color: ${theme.secondaryHoverInfoFontColor};`;
           active = `background-color: ${theme.secondaryActiveInfoBackgroundColor};
-          color: ${theme.secondaryHoverDefaultFontColor};
+          color: ${theme.secondaryHoverInfoFontColor};
           border-color: transparent;
           outline: none;
           box-shadow: 0 0 0 2px ${theme.focusBorderColor};`;
@@ -415,17 +415,29 @@ const Button = styled.button<{
   margin-left: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
   padding-top: ${(props) =>
-    props.size.height === "small"
-      ? props.theme.paddingSmallTop
-      : props.size.height === "medium"
-        ? props.theme.paddingMediumTop
-        : props.theme.paddingLargeTop};
+    props.hasIcon && !props.hasLabel
+      ? props.size.height === "small"
+        ? props.theme.paddingSmallOnlyIconTop
+        : props.size.height === "medium"
+          ? props.theme.paddingMediumOnlyIconTop
+          : props.theme.paddingLargeOnlyIconTop
+      : props.size.height === "small"
+        ? props.theme.paddingSmallTop
+        : props.size.height === "medium"
+          ? props.theme.paddingMediumTop
+          : props.theme.paddingLargeTop};
   padding-bottom: ${(props) =>
-    props.size.height === "small"
-      ? props.theme.paddingSmallBottom
-      : props.size.height === "medium"
-        ? props.theme.paddingMediumBottom
-        : props.theme.paddingLargeBottom};
+    props.hasIcon && !props.hasLabel
+      ? props.size.height === "small"
+        ? props.theme.paddingSmallOnlyIconBottom
+        : props.size.height === "medium"
+          ? props.theme.paddingMediumOnlyIconBottom
+          : props.theme.paddingLargeOnlyIconBottom
+      : props.size.height === "small"
+        ? props.theme.paddingSmallBottom
+        : props.size.height === "medium"
+          ? props.theme.paddingMediumBottom
+          : props.theme.paddingLargeBottom};
   padding-left: ${(props) =>
     props.hasIcon && !props.hasLabel
       ? props.size.height === "small"

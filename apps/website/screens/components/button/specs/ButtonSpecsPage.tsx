@@ -855,7 +855,7 @@ const sections = [
                     <td>
                       <Code>border-width-0</Code>
                     </td>
-                    <td>0</td>
+                    <td>0rem / 0px</td>
                   </tr>
                   <tr>
                     <td>
@@ -1168,16 +1168,6 @@ const sections = [
                   </tr>
                   <tr>
                     <td>
-                      <Code>secondaryHoverDefaultBackgroundColor</Code>
-                    </td>
-                    <td>Label:hover (default)</td>
-                    <td>
-                      <Code>color-white</Code>
-                    </td>
-                    <td>#ffffff</td>
-                  </tr>
-                  <tr>
-                    <td>
                       <Code>secondaryHoverDefaultFontColor</Code>
                     </td>
                     <td>Label:hover (default)</td>
@@ -1208,7 +1198,7 @@ const sections = [
                   </tr>
                   <tr>
                     <td>
-                      <Code>secondaryHoverSuccesFontColor</Code>
+                      <Code>secondaryHoverSuccessFontColor</Code>
                     </td>
                     <td>Label:hover (success)</td>
                     <td>
@@ -1887,7 +1877,7 @@ const sections = [
                     <td>
                       <Code>border-width-0</Code>
                     </td>
-                    <td>0</td>
+                    <td>0rem / 0px</td>
                   </tr>
                   <tr>
                     <td>
