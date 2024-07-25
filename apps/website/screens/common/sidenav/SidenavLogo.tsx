@@ -6,7 +6,7 @@ import { DxcBadge, DxcFlex } from "@dxc-technology/halstack-react";
 type SidenavLogoProps = { subtitle?: string };
 
 const SidenavLogo = ({ subtitle = "Design System" }: SidenavLogoProps): JSX.Element => {
-  const pathVersion = process.env.SITE_VERSION;
+  const pathVersion = process.env.NEXT_PUBLIC_SITE_VERSION;
   const isDev = process.env.NODE_ENV === "development";
 
   return (
