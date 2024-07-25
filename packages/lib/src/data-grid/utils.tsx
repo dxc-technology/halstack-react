@@ -1,5 +1,4 @@
 import DxcCheckbox from "../checkbox/Checkbox";
-import DxcContainer from "../container/Container";
 import DxcFlex from "../flex/Flex";
 import { HalstackProvider } from "../HalstackContext";
 import DxcIcon from "../icon/Icon";
