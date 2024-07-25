@@ -1,6 +1,8 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import DxcCheckbox from "../checkbox/Checkbox";
+import DxcContainer from "../container/Container";
+import DxcFlex from "../flex/Flex";
 import { HalstackProvider } from "../HalstackContext";
+import DxcIcon from "../icon/Icon";
 import { GridColumn, HierarchyGridRow, GridRow, ExpandableGridRow } from "./types";
 import { Column, RenderSortStatusProps, SortColumn, textEditor } from "react-data-grid";
 
@@ -58,8 +60,19 @@ export const convertToRDGColumns = (gridColumn: GridColumn, summaryRow?: GridRow
 };
 
 export const renderSortStatus = ({ sortDirection }: RenderSortStatusProps) => {
-  //TODO: change to DxcIcons
-  return <>{sortDirection !== undefined ? (sortDirection === "ASC" ? "\u2B9D" : "\u2B9F") : null}</>;
+  return (
+    <div className="sortIconContainer">
+      {sortDirection !== undefined ? (
+        sortDirection === "ASC" ? (
+          <DxcIcon icon="Keyboard_Arrow_Up" />
+        ) : (
+          <DxcIcon icon="Keyboard_Arrow_Down" />
+        )
+      ) : (
+        <DxcIcon icon="Expand_All" />
+      )}
+    </div>
+  );
 };
 
 export const renderHierarchyTrigger = (
@@ -67,6 +80,7 @@ export const renderHierarchyTrigger = (
   triggerRow: HierarchyGridRow,
   uniqueRowId: string,
   columnKey: string,
+  // eslint-disable-next-line no-unused-vars
   onRowsToRender: (rows: HierarchyGridRow[]) => void
 ) => {
   return (
@@ -112,7 +126,10 @@ export const renderHierarchyTrigger = (
         onRowsToRender(newRowsToRender);
       }}
     >
-      {triggerRow[columnKey]}
+      <DxcFlex gap="0.5rem">
+        <DxcIcon icon={triggerRow.visibleChildren ? "Keyboard_Arrow_Down" : "Chevron_Right"} />
+        {triggerRow[columnKey]}
+      </DxcFlex>
     </button>
   );
 };
@@ -122,6 +139,7 @@ export const renderCheckbox = (
   row: GridRow | HierarchyGridRow | ExpandableGridRow,
   uniqueRowId: string,
   selectedRows: Set<number | string>,
+  // eslint-disable-next-line no-unused-vars
   onSelectRows: (selectedRows: Set<number | string>) => void
 ) => {
   return (
@@ -152,7 +170,8 @@ export const renderHeaderCheckbox = (
   rows: GridRow[] | HierarchyGridRow[] | ExpandableGridRow[],
   uniqueRowId: string,
   selectedRows: Set<number | string>,
-  onSelectRows: (selectedRows: Set<number | string>) => void
+  // eslint-disable-next-line no-unused-vars
+  onSelectRows: (selected: Set<number | string>) => void
 ) => {
   return (
     <HalstackProvider advancedTheme={checkboxTheme}>

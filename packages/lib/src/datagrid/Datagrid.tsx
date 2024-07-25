@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useMemo, useState } from "react";
 import DataGridPropsType, { HierarchyGridRow, GridRow, ExpandableGridRow } from "./types";
-import DataGrid, { Column, SortColumn } from "react-data-grid";
+import DataGrid, { SortColumn } from "react-data-grid";
 import "react-data-grid/lib/styles.css";
 
 import {
@@ -116,7 +116,6 @@ const DxcDataGrid = ({
               </HierarchyContainer>
             );
           }
-          // TODO: styled component that adds left padding based on row.rowLevel * paddingValue
           return (
             <HierarchyContainer level={row.rowLevel || 0} className="ellipsis-cell">
               {row[firstColumnKey]}
@@ -260,6 +259,12 @@ const HierarchyContainer = styled.div<{
   padding-left: calc(10px * ${(props) => props.level});
   button {
     padding: 0px;
+    background: transparent;
+    border: 0px;
+    cursor: pointer;
+    width: 100%;
+    height: 36px;
+    text-align: left;
   }
 `;
 
@@ -278,6 +283,12 @@ const DataGridContainer = styled.div`
       font-weight: 400;
       color: rgb(255, 255, 255);
       text-transform: none;
+      .sortIconContainer {
+        margin-left: 0.5rem;
+        display: flex;
+        height: 100%;
+        align-items: center;
+      }
     }
     .rdg-cell:first-child {
       border-top-left-radius: 4px;

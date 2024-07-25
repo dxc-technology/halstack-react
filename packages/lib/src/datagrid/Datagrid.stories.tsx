@@ -2,7 +2,7 @@ import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DxcDataGrid from "./Datagrid";
 import DxcContainer from "../container/Container";
-import { GridColumn } from "./types";
+import { GridColumn, HierarchyGridRow } from "./types";
 import { useState } from "react";
 
 export default {
@@ -40,7 +40,6 @@ const columns: GridColumn[] = [
     key: "priority",
     name: "Priority",
     resizable: true,
-    sortable: true,
     draggable: true,
     alignment: "center",
   },
@@ -122,8 +121,91 @@ const expandableRows = [
   },
 ];
 
+const childcolumns: GridColumn[] = [
+  {
+    key: "name",
+    name: "Name",
+    resizable: true,
+    sortable: true,
+    summaryKeyToRender: "label",
+    alignment: "center",
+  },
+  {
+    key: "value",
+    name: "Value",
+    resizable: true,
+    sortable: true,
+    draggable: true,
+    textEditable: true,
+    summaryKeyToRender: "total",
+    alignment: "right",
+  },
+];
+
+const childRows: HierarchyGridRow[] = [
+  {
+    name: "Root Node 1",
+    value: "1",
+    id: "a",
+    childRows: [
+      {
+        name: "Child Node 1.1",
+        value: "1.1",
+        id: "aa",
+        childRows: [
+          {
+            name: "Grandchild Node 1.1.1",
+            value: "1.1.1",
+            id: "aaa",
+          },
+          {
+            name: "Grandchild Node 1.1.2",
+            value: "1.1.2",
+            id: "aab",
+          },
+        ],
+      },
+      {
+        name: "Child Node 1.2",
+        value: "1.2",
+        id: "ab",
+      },
+    ],
+  },
+  {
+    name: "Root Node 2",
+    value: "2",
+    id: "b",
+    childRows: [
+      {
+        name: "Child Node 2.1",
+        value: "2.1",
+        id: "ba",
+        childRows: [
+          {
+            name: "Grandchild Node 2.1.1",
+            value: "2.1.1",
+            id: "baa",
+          },
+        ],
+      },
+      {
+        name: "Child Node 2.2",
+        value: "2.2",
+        id: "bb",
+      },
+      {
+        name: "Child Node 2.3",
+        value: "2.3",
+        id: "bc",
+      },
+    ],
+  },
+];
+
 export const Chromatic = () => {
   const [selectedRows, setSelectedRows] = useState((): Set<number | string> => new Set());
+  const [selectedChildRows, setSelectedChildRows] = useState((): Set<number | string> => new Set());
   return (
     <>
       <ExampleContainer>
@@ -139,22 +221,37 @@ export const Chromatic = () => {
         <DxcDataGrid
           columns={columns}
           rows={expandableRows}
-          uniqueRowId="id"
+          uniqueRowId="task"
           selectable
           selectedRows={selectedRows}
           onSelectRows={setSelectedRows}
         />
       </ExampleContainer>
       <ExampleContainer>
-        <Title title="Selectable" theme="light" level={4} />
+        <Title title="Selectable & expandable" theme="light" level={4} />
         <DxcDataGrid
           columns={columns}
           rows={expandableRows}
-          uniqueRowId="id"
+          uniqueRowId="task"
           expandable
           selectable
           selectedRows={selectedRows}
           onSelectRows={setSelectedRows}
+        />
+      </ExampleContainer>
+      <ExampleContainer>
+        <Title title="DataGrid with children" theme="light" level={4} />
+        <DxcDataGrid columns={childcolumns} rows={childRows} uniqueRowId="id" />
+      </ExampleContainer>
+      <ExampleContainer>
+        <Title title="DataGrid with children" theme="light" level={4} />
+        <DxcDataGrid
+          columns={childcolumns}
+          rows={childRows}
+          uniqueRowId="value"
+          selectable
+          selectedRows={selectedChildRows}
+          onSelectRows={setSelectedChildRows}
         />
       </ExampleContainer>
     </>
