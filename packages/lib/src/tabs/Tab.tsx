@@ -18,7 +18,6 @@ const DxcTab = forwardRef(
       iconPosition,
       tabIndex,
       focusedLabel,
-      // setFocusedLabel,
       activeLabel,
       setActiveLabel,
       setActiveIndicatorWidth,
@@ -111,134 +110,8 @@ const DxcTab = forwardRef(
         )}
       </TabContainer>
     );
-
-    // --------------------------------------------
-
-    // return (
-    //   <TabContainer active={active}>
-    //     <Tab
-    //       href={!disabled ? href : undefined}
-    //       disabled={disabled}
-    //       active={active}
-    //       iconPosition={iconPosition}
-    //       hasIcon={icon != null ? true : false}
-    //       ref={(anchorRef) => {
-    //         tabRef.current = anchorRef;
-
-    //         if (ref) {
-    //           if (typeof ref === "function") ref(anchorRef);
-    //           else (ref as React.MutableRefObject<HTMLAnchorElement | null>).current = anchorRef;
-    //         }
-    //       }}
-    //       onKeyDown={handleOnKeyDown}
-    //       tabIndex={active ? tabIndex : -1}
-    //       role="tab"
-    //       aria-selected={active}
-    //       aria-disabled={disabled}
-    //     >
-    //       {icon && (
-    //         <TabIconContainer iconPosition={iconPosition} active={active} disabled={disabled}>
-    //           {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
-    //         </TabIconContainer>
-    //       )}
-    //       <DxcFlex alignItems="center" gap="0.5rem">
-    //         <BaseTypography
-    //           color={
-    //             disabled
-    //               ? colorsTheme.tabs.disabledFontColor
-    //               : active
-    //                 ? colorsTheme.tabs.selectedFontColor
-    //                 : colorsTheme.tabs.unselectedFontColor
-    //           }
-    //           fontFamily={colorsTheme.tabs.fontFamily}
-    //           fontSize={colorsTheme.tabs.fontSize}
-    //           fontStyle={colorsTheme.tabs.fontStyle}
-    //           fontWeight={colorsTheme.tabs.fontWeight}
-    //           textAlign="center"
-    //           letterSpacing="0.025em"
-    //           lineHeight="1.715em"
-    //         >
-    //           {children}
-    //         </BaseTypography>
-    //         {notificationNumber && !disabled && (
-    //           <DxcBadge
-    //             mode="notification"
-    //             size="small"
-    //             label={typeof notificationNumber === "number" && notificationNumber}
-    //           />
-    //         )}
-    //       </DxcFlex>
-    //     </Tab>
-    //   </TabContainer>
-    // );
-
-    // --------------------------------------------
   }
 );
-
-// const TabContainer = styled.div<{ active: TabProps["active"] }>`
-//   align-items: stretch;
-//   border-bottom: 2px solid ${(props) => (props.active ? props.theme.selectedUnderlineColor : "transparent")};
-//   padding: 0.5rem;
-// `;
-
-// const Tab = styled.a<{
-//   disabled: TabProps["disabled"];
-//   active: TabProps["active"];
-//   hasIcon: boolean;
-//   iconPosition: TabsPropsType["iconPosition"];
-// }>`
-//   box-sizing: border-box;
-//   display: flex;
-//   flex-direction: ${(props) => (props.hasIcon && props.iconPosition === "top" ? "column" : "row")};
-//   justify-content: center;
-//   align-items: center;
-//   gap: ${(props) => (props.hasIcon && props.iconPosition === "top" ? "0.375rem" : "0.625rem")};
-//   height: ${(props) => (props.hasIcon && props.iconPosition === "top" ? "78px" : "100%")};
-//   min-width: 176px;
-//   min-height: 44px;
-//   padding: 0.375rem;
-//   border-radius: 4px;
-//   background: ${(props) =>
-//     props.active ? props.theme.selectedBackgroundColor : props.theme.unselectedBackgroundColor};
-//   text-decoration-color: transparent;
-//   text-decoration-line: none;
-//   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
-
-//   ${(props) =>
-//     !props.disabled &&
-//     `
-//       :hover {
-//         background: ${props.theme.hoverBackgroundColor};
-//       }
-//       :focus {
-//         outline: 2px solid ${props.theme.focusOutline};
-//       }
-//       :active {
-//         background: ${props.theme.pressedBackgroundColor};
-//         outline: 2px solid #33aaff};
-//       }
-//   `}
-// `;
-
-// const TabIconContainer = styled.div<{
-//   iconPosition: TabsPropsType["iconPosition"];
-//   active: TabProps["active"];
-//   disabled: TabProps["disabled"];
-// }>`
-//   display: flex;
-//   font-size: 24px;
-//   color: ${(props) =>
-//     props.active
-//       ? props.theme.selectedIconColor
-//       : props.disabled
-//         ? props.theme.disabledIconColor
-//         : props.theme.unselectedIconColor};
-//   svg {
-//     height: 24px;
-//     width: 24px;
-//   }
-// `;
 
 const TabContainer = styled.button<{
   hasLabelAndIcon: boolean;

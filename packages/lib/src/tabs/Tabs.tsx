@@ -89,21 +89,8 @@ const DxcTabs = ({
 
   // TODO: Figure out a way to handle scroll with Compound Components
   useEffect(() => {
-    // let sumWidth = refTabList?.current?.reduce(function (count, obj) {
-    //   return count + obj.offsetWidth;
-    // }, 0);
-    console.log("REF", refTabList?.current?.firstElementChild?.offsetWidth)
     setTotalTabsWidth(refTabList?.current?.firstElementChild?.offsetWidth);
-    // setActiveIndicatorWidth(refTabList?.current[activeTabIndex]?.offsetWidth);
-    // setActiveIndicatorLeft(refTabList?.current[activeTabIndex]?.offsetLeft);
   }, [refTabList]);
-
-  // useEffect(() => {
-  //   if (activeTabIndex >= 0) {
-  //     setActiveIndicatorWidth(refTabs?.current[activeTabIndex]?.offsetWidth);
-  //     setActiveIndicatorLeft(refTabs?.current[activeTabIndex]?.offsetLeft);
-  //   }
-  // }, [activeTabIndex]);
 
   useEffect(() => {
     setMinHeightTabs(refTabList?.current?.offsetHeight + 1);
@@ -111,13 +98,10 @@ const DxcTabs = ({
 
   const contextValue = useMemo(() => {
     const focusedChild = Children.toArray(children)[innerFocusIndex];
-    // const childrenIndexFromLabel = (label: string) =>
-    //   Children.toArray(children).findIndex((child) => isValidElement(child) && child.props.label === label);
     return {
       iconPosition,
       tabIndex,
       focusedLabel: isValidElement(focusedChild) && focusedChild.props.label,
-      // setFocusedLabel: (label: string) => setInnerFocusIndex(childrenIndexFromLabel(label)),
       activeLabel: activeTabLabel,
       setActiveLabel: setActiveTabLabel,
       setActiveIndicatorWidth,
