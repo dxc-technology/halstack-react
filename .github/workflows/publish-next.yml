@@ -34,8 +34,11 @@ jobs:
       - name: Install dependencies
         run: npm install
     
-      - name: Build library and website
-        run: cd packages/lib && SITE_VERSION=next npm run build
+      - name: Build library
+        run: npm run build
+        
+      - name: Build website
+        run:  cd apps/website && SITE_VERSION=next npm run build
     
       - name: Test library
         run: npm run test
