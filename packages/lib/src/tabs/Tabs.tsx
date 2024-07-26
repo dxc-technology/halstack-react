@@ -3,7 +3,7 @@ import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme";
 import { TabsContext } from "./TabsContext";
 import DxcTab from "./Tab";
-import TabsPropsType from "./types";
+import TabsPropsType, { TabProps } from "./types";
 import DxcTabsLegacy from "./TabsLegacy";
 import { spaces } from "../common/variables";
 import useTranslatedLabels from "../useTranslatedLabels";
@@ -67,7 +67,13 @@ const DxcTabs = ({
     return false;
   });
 
-  const initialActiveTab = Children.toArray(children).find((child) => isValidElement(child) && child.props.active);
+  const childrenArray: ReactElement<TabProps>[] = Children.toArray(children) as ReactElement<TabProps>[];
+
+  const hasActiveChild = childrenArray.some((child) => isValidElement(child) && child.props.active);
+
+  const initialActiveTab = hasActiveChild
+    ? childrenArray.find((child) => isValidElement(child) && child.props.active)
+    : childrenArray.find((child) => isValidElement(child) && !child.props.disabled);
 
   const initialActiveTabLabel = isValidElement(initialActiveTab) ? initialActiveTab.props.label : "";
 
@@ -142,7 +148,9 @@ const DxcTabs = ({
   };
 
   const handleOnKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    const activeTab = Children.toArray(children).findIndex((child: ReactElement) => child.props.label === activeTabLabel);
+    const activeTab = Children.toArray(children).findIndex(
+      (child: ReactElement) => child.props.label === activeTabLabel
+    );
     switch (event.key) {
       case "Left":
       case "ArrowLeft":
@@ -160,7 +168,7 @@ const DxcTabs = ({
         break;
       case "Tab":
         if (activeTab !== innerFocusIndex) {
-          console.log("INNERFOCUS", activeTab)
+          console.log("INNERFOCUS", activeTab);
           setInnerFocusIndex(activeTab);
         }
         break;

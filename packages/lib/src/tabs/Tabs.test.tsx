@@ -1,3 +1,4 @@
+import "@testing-library/jest-dom";
 import { fireEvent, render } from "@testing-library/react";
 import DxcTabs from "./Tabs";
 
@@ -38,20 +39,7 @@ const sampleTabsFirstDisabled = (
     </DxcTabs.Tab>
   </DxcTabs>
 );
-const sampleTabsUncontrolled = (onTabClick: (() => void)[]) => (
-  <DxcTabs>
-    <DxcTabs.Tab label="Tab-1" onClick={onTabClick[0]}>
-      <></>
-    </DxcTabs.Tab>
-    <DxcTabs.Tab label="Tab-2" onClick={onTabClick[1]}>
-      <></>
-    </DxcTabs.Tab>
-    <DxcTabs.Tab label="Tab-3" onClick={onTabClick[2]}>
-      <></>
-    </DxcTabs.Tab>
-  </DxcTabs>
-);
-const sampleTabsControlled = (onTabClick: (() => void)[]) => (
+const sampleTabsInteraction = (onTabClick: (() => void)[]) => (
   <DxcTabs>
     <DxcTabs.Tab label="Tab-1" onClick={onTabClick[0]} active>
       <></>
@@ -64,29 +52,29 @@ const sampleTabsControlled = (onTabClick: (() => void)[]) => (
     </DxcTabs.Tab>
   </DxcTabs>
 );
-const sampleTabsMiddleDisabled = (
+const sampleTabsMiddleDisabled = (onTabClick: (() => void)[]) => (
   <DxcTabs>
-    <DxcTabs.Tab label="Tab-1">
+    <DxcTabs.Tab label="Tab-1" onClick={onTabClick[0]}>
       <></>
     </DxcTabs.Tab>
-    <DxcTabs.Tab label="Tab-2" disabled>
+    <DxcTabs.Tab label="Tab-2" onClick={onTabClick[1]} disabled>
       <></>
     </DxcTabs.Tab>
-    <DxcTabs.Tab label="Tab-3">
+    <DxcTabs.Tab label="Tab-3" onClick={onTabClick[2]}>
       <></>
     </DxcTabs.Tab>
   </DxcTabs>
 );
 
-const sampleTabsLastTabNonDisabled = (
+const sampleTabsLastTabNonDisabledFirstActive = (onTabClick: (() => void)[]) => (
   <DxcTabs>
-    <DxcTabs.Tab label="Tab-1" disabled>
+    <DxcTabs.Tab label="Tab-1" onClick={onTabClick[0]} disabled active>
       <></>
     </DxcTabs.Tab>
-    <DxcTabs.Tab label="Tab-2" disabled>
+    <DxcTabs.Tab label="Tab-2" onClick={onTabClick[1]} disabled>
       <></>
     </DxcTabs.Tab>
-    <DxcTabs.Tab label="Tab-3">
+    <DxcTabs.Tab label="Tab-3" onClick={onTabClick[2]}>
       <></>
     </DxcTabs.Tab>
   </DxcTabs>
@@ -127,33 +115,9 @@ describe("Tabs component tests", () => {
     expect(getAllByRole("tab")[1].hasAttribute("disabled")).toBeFalsy();
   });
 
-  test("Uncontrolled tabs", () => {
+  test("Tabs interaction", () => {
     const onTabClick = [jest.fn(), jest.fn(), jest.fn()];
-    const { getByText, getAllByRole } = render(sampleTabsUncontrolled(onTabClick));
-    const tabs = getAllByRole("tab");
-    const tab1 = getByText("Tab-1");
-    const tab2 = getByText("Tab-2");
-    const tab3 = getByText("Tab-3");
-    fireEvent.click(tab1);
-    expect(onTabClick[0]).toHaveBeenCalled();
-    expect(tabs[0].getAttribute("aria-selected")).toBe("true");
-    expect(tabs[1].getAttribute("aria-selected")).toBe("false");
-    expect(tabs[2].getAttribute("aria-selected")).toBe("false");
-    fireEvent.click(tab2);
-    expect(onTabClick[1]).toHaveBeenCalled();
-    expect(tabs[0].getAttribute("aria-selected")).toBe("false");
-    expect(tabs[1].getAttribute("aria-selected")).toBe("true");
-    expect(tabs[2].getAttribute("aria-selected")).toBe("false");
-    fireEvent.click(tab3);
-    expect(onTabClick[2]).toHaveBeenCalled();
-    expect(tabs[0].getAttribute("aria-selected")).toBe("false");
-    expect(tabs[1].getAttribute("aria-selected")).toBe("false");
-    expect(tabs[2].getAttribute("aria-selected")).toBe("true");
-  });
-
-  test("Controlled tabs", () => {
-    const onTabClick = [jest.fn(), jest.fn(), jest.fn()];
-    const { getAllByRole } = render(sampleTabsControlled(onTabClick));
+    const { getAllByRole } = render(sampleTabsInteraction(onTabClick));
     const tabs = getAllByRole("tab");
     fireEvent.click(tabs[0]);
     expect(onTabClick[0]).toHaveBeenCalled();
@@ -172,115 +136,98 @@ describe("Tabs component tests", () => {
     expect(tabs[2].getAttribute("aria-selected")).toBe("true");
   });
 
-  test("Uncontrolled tabs should have focus in the first non-disabled tab", () => {
-    // const onTabClick = jest.fn();
-    // const { getAllByRole } = render(
-    //   <DxcTabsLegacy tabs={sampleTabsLastTabNonDisabledLegacy} onTabClick={onTabClick}></DxcTabsLegacy>
-    // );
-    // const tabs = getAllByRole("tab");
-    // expect(tabs[0].hasAttribute("disabled")).toBeTruthy();
-    // expect(tabs[1].hasAttribute("disabled")).toBeTruthy();
-    // expect(tabs[2].hasAttribute("disabled")).toBeFalsy();
-    // expect(tabs[0].getAttribute("aria-selected")).toBe("false");
-    // expect(tabs[1].getAttribute("aria-selected")).toBe("false");
-    // expect(tabs[2].getAttribute("aria-selected")).toBe("true");
-  });
-
-  test("Controlled tabs with active index in disabled tab should not change focus to the first available tab", () => {
-    // const onTabClick = jest.fn();
-    // const { getAllByRole } = render(
-    //   <DxcTabsLegacy
-    //     tabs={sampleTabsLastTabNonDisabledLegacy}
-    //     onTabClick={onTabClick}
-    //     activeTabIndex={0}
-    //   ></DxcTabsLegacy>
-    // );
-    // const tabs = getAllByRole("tab");
-    // expect(tabs[0].getAttribute("aria-selected")).toBe("true");
-    // expect(tabs[1].getAttribute("aria-selected")).toBe("false");
-    // expect(tabs[2].getAttribute("aria-selected")).toBe("false");
-    // expect(tabs[0].hasAttribute("disabled")).toBeTruthy();
-    // expect(tabs[1].hasAttribute("disabled")).toBeTruthy();
-    // expect(tabs[2].hasAttribute("disabled")).toBeFalsy();
-    // fireEvent.click(tabs[2]);
-    // expect(onTabClick).toHaveBeenCalledWith(2);
-    // expect(tabs[0].getAttribute("aria-selected")).toBe("true");
-    // expect(tabs[1].getAttribute("aria-selected")).toBe("false");
-    // expect(tabs[2].getAttribute("aria-selected")).toBe("false");
-    // expect(tabs[0].hasAttribute("disabled")).toBeTruthy();
-    // expect(tabs[1].hasAttribute("disabled")).toBeTruthy();
-    // expect(tabs[2].hasAttribute("disabled")).toBeFalsy();
+  test("Tabs with active index in disabled tab should interact the same way", () => {
+    const onTabClick = [jest.fn(), jest.fn(), jest.fn()];
+    const { getAllByRole } = render(sampleTabsLastTabNonDisabledFirstActive(onTabClick));
+    const tabs = getAllByRole("tab");
+    expect(tabs[0].getAttribute("aria-selected")).toBe("true");
+    expect(tabs[1].getAttribute("aria-selected")).toBe("false");
+    expect(tabs[2].getAttribute("aria-selected")).toBe("false");
+    expect(tabs[0].hasAttribute("disabled")).toBeTruthy();
+    expect(tabs[1].hasAttribute("disabled")).toBeTruthy();
+    expect(tabs[2].hasAttribute("disabled")).toBeFalsy();
+    fireEvent.click(tabs[2]);
+    expect(onTabClick[2]).toHaveBeenCalled();
+    expect(tabs[0].getAttribute("aria-selected")).toBe("false");
+    expect(tabs[1].getAttribute("aria-selected")).toBe("false");
+    expect(tabs[2].getAttribute("aria-selected")).toBe("true");
+    expect(tabs[0].hasAttribute("disabled")).toBeTruthy();
+    expect(tabs[1].hasAttribute("disabled")).toBeTruthy();
+    expect(tabs[2].hasAttribute("disabled")).toBeFalsy();
   });
 
   test("Select tabs with keyboard event arrows", () => {
-    // const onTabClick = jest.fn();
-    // const { getByText, getByRole, getAllByRole } = render(
-    //   <DxcTabsLegacy tabs={sampleTabsLegacy} onTabClick={onTabClick}></DxcTabsLegacy>
-    // );
-    // const tabList = getByRole("tablist");
-    // const tab1 = getByText("Tab-1");
-    // const tabs = getAllByRole("tab");
-    // fireEvent.click(tab1);
-    // expect(tabs[0].getAttribute("aria-selected")).toBe("true");
-    // expect(tabs[1].getAttribute("aria-selected")).toBe("false");
-    // expect(tabs[2].getAttribute("aria-selected")).toBe("false");
-    // expect(onTabClick).toHaveBeenCalledWith(0);
-    // fireEvent.keyDown(tabList, { key: "ArrowRight" });
-    // fireEvent.keyDown(tabList, { key: "Enter" });
-    // expect(tabs[0].getAttribute("aria-selected")).toBe("false");
-    // expect(tabs[1].getAttribute("aria-selected")).toBe("true");
-    // expect(tabs[2].getAttribute("aria-selected")).toBe("false");
-    // expect(onTabClick).toHaveBeenCalledWith(1);
-    // fireEvent.keyDown(tabList, { key: "ArrowRight" });
-    // fireEvent.keyDown(tabList, { key: "Enter" });
-    // expect(tabs[0].getAttribute("aria-selected")).toBe("false");
-    // expect(tabs[1].getAttribute("aria-selected")).toBe("false");
-    // expect(tabs[2].getAttribute("aria-selected")).toBe("true");
-    // expect(onTabClick).toHaveBeenCalledWith(2);
-    // fireEvent.keyDown(tabList, { key: "ArrowLeft" });
-    // fireEvent.keyDown(tabList, { key: "Enter" });
-    // expect(tabs[0].getAttribute("aria-selected")).toBe("false");
-    // expect(tabs[1].getAttribute("aria-selected")).toBe("true");
-    // expect(tabs[2].getAttribute("aria-selected")).toBe("false");
-    // expect(onTabClick).toHaveBeenCalledWith(1);
-    // fireEvent.keyDown(tabList, { key: "ArrowLeft" });
-    // fireEvent.keyDown(tabList, { key: "Enter" });
-    // expect(tabs[0].getAttribute("aria-selected")).toBe("true");
-    // expect(tabs[1].getAttribute("aria-selected")).toBe("false");
-    // expect(tabs[2].getAttribute("aria-selected")).toBe("false");
-    // expect(onTabClick).toHaveBeenCalledWith(0);
-    // fireEvent.keyDown(tabList, { key: "ArrowLeft" });
-    // fireEvent.keyDown(tabList, { key: "Enter" });
-    // expect(tabs[0].getAttribute("aria-selected")).toBe("false");
-    // expect(tabs[1].getAttribute("aria-selected")).toBe("false");
-    // expect(tabs[2].getAttribute("aria-selected")).toBe("true");
-    // expect(onTabClick).toHaveBeenCalledWith(2);
-    // fireEvent.keyDown(tabList, { key: "ArrowRight" });
-    // fireEvent.keyDown(tabList, { key: "Enter" });
-    // expect(tabs[0].getAttribute("aria-selected")).toBe("true");
-    // expect(tabs[1].getAttribute("aria-selected")).toBe("false");
-    // expect(tabs[2].getAttribute("aria-selected")).toBe("false");
-    // expect(onTabClick).toHaveBeenCalledWith(0);
+    const onTabClick = [jest.fn(), jest.fn(), jest.fn()];
+    const { getByText, getByRole, getAllByRole } = render(sampleTabsInteraction(onTabClick));
+    const tabList = getByRole("tablist");
+    const tab1 = getByText("Tab-1");
+    const tabs = getAllByRole("tab");
+    fireEvent.click(tab1);
+    expect(tabs[0].getAttribute("aria-selected")).toBe("true");
+    expect(tabs[1].getAttribute("aria-selected")).toBe("false");
+    expect(tabs[2].getAttribute("aria-selected")).toBe("false");
+    expect(onTabClick[0]).toHaveBeenCalled();
+    fireEvent.keyDown(tabList, { key: "ArrowRight" });
+    expect(tabs[1]).toHaveFocus();
+    fireEvent.keyDown(tabs[1], { key: "Enter" });
+    expect(tabs[0].getAttribute("aria-selected")).toBe("false");
+    expect(tabs[1].getAttribute("aria-selected")).toBe("true");
+    expect(tabs[2].getAttribute("aria-selected")).toBe("false");
+    expect(onTabClick[1]).toHaveBeenCalled();
+    fireEvent.keyDown(tabList, { key: "ArrowRight" });
+    expect(tabs[2]).toHaveFocus();
+    fireEvent.keyDown(tabs[2], { key: "Enter" });
+    expect(tabs[0].getAttribute("aria-selected")).toBe("false");
+    expect(tabs[1].getAttribute("aria-selected")).toBe("false");
+    expect(tabs[2].getAttribute("aria-selected")).toBe("true");
+    expect(onTabClick[2]).toHaveBeenCalled();
+    fireEvent.keyDown(tabList, { key: "ArrowLeft" });
+    expect(tabs[1]).toHaveFocus();
+    fireEvent.keyDown(tabs[1], { key: "Enter" });
+    expect(tabs[0].getAttribute("aria-selected")).toBe("false");
+    expect(tabs[1].getAttribute("aria-selected")).toBe("true");
+    expect(tabs[2].getAttribute("aria-selected")).toBe("false");
+    expect(onTabClick[1]).toHaveBeenCalled();
+    fireEvent.keyDown(tabList, { key: "ArrowLeft" });
+    expect(tabs[0]).toHaveFocus();
+    fireEvent.keyDown(tabs[0], { key: "Enter" });
+    expect(tabs[0].getAttribute("aria-selected")).toBe("true");
+    expect(tabs[1].getAttribute("aria-selected")).toBe("false");
+    expect(tabs[2].getAttribute("aria-selected")).toBe("false");
+    expect(onTabClick[0]).toHaveBeenCalled();
+    fireEvent.keyDown(tabList, { key: "ArrowLeft" });
+    expect(tabs[2]).toHaveFocus();
+    fireEvent.keyDown(tabs[2], { key: "Enter" });
+    expect(tabs[0].getAttribute("aria-selected")).toBe("false");
+    expect(tabs[1].getAttribute("aria-selected")).toBe("false");
+    expect(tabs[2].getAttribute("aria-selected")).toBe("true");
+    expect(onTabClick[2]).toHaveBeenCalled();
+    fireEvent.keyDown(tabList, { key: "ArrowRight" });
+    expect(tabs[0]).toHaveFocus();
+    fireEvent.keyDown(tabs[0], { key: "Enter" });
+    expect(tabs[0].getAttribute("aria-selected")).toBe("true");
+    expect(tabs[1].getAttribute("aria-selected")).toBe("false");
+    expect(tabs[2].getAttribute("aria-selected")).toBe("false");
+    expect(onTabClick[0]).toHaveBeenCalled();
   });
 
   test("Skip disabled tab with keyboard event arrows", () => {
-    //   const onTabClick = jest.fn();
-    //   const { getByText, getByRole, getAllByRole } = render(
-    //     <DxcTabsLegacy tabs={sampleTabsMiddleDisabledLegacy} onTabClick={onTabClick}></DxcTabsLegacy>
-    //   );
-    //   const tabList = getByRole("tablist");
-    //   const tab1 = getByText("Tab-1");
-    //   const tabs = getAllByRole("tab");
-    //   fireEvent.click(tab1);
-    //   expect(tabs[0].getAttribute("aria-selected")).toBe("true");
-    //   expect(tabs[1].getAttribute("aria-selected")).toBe("false");
-    //   expect(tabs[2].getAttribute("aria-selected")).toBe("false");
-    //   expect(onTabClick).toHaveBeenCalledWith(0);
-    //   fireEvent.keyDown(tabList, { key: "ArrowRight" });
-    //   fireEvent.keyDown(tabList, { key: " " });
-    //   expect(tabs[0].getAttribute("aria-selected")).toBe("false");
-    //   expect(tabs[1].getAttribute("aria-selected")).toBe("false");
-    //   expect(tabs[2].getAttribute("aria-selected")).toBe("true");
-    //   expect(onTabClick).toHaveBeenCalledWith(2);
+    const onTabClick = [jest.fn(), jest.fn(), jest.fn()];
+    const { getByText, getByRole, getAllByRole } = render(sampleTabsMiddleDisabled(onTabClick));
+    const tabList = getByRole("tablist");
+    const tab1 = getByText("Tab-1");
+    const tabs = getAllByRole("tab");
+    fireEvent.click(tab1);
+    expect(tabs[0].getAttribute("aria-selected")).toBe("true");
+    expect(tabs[1].getAttribute("aria-selected")).toBe("false");
+    expect(tabs[2].getAttribute("aria-selected")).toBe("false");
+    expect(onTabClick[0]).toHaveBeenCalled();
+    fireEvent.keyDown(tabList, { key: "ArrowRight" });
+    expect(tabs[2]).toHaveFocus();
+    fireEvent.keyDown(tabs[2], { key: " " });
+    expect(tabs[0].getAttribute("aria-selected")).toBe("false");
+    expect(tabs[1].getAttribute("aria-selected")).toBe("false");
+    expect(tabs[2].getAttribute("aria-selected")).toBe("true");
+    expect(onTabClick[2]).toHaveBeenCalled();
   });
 });
