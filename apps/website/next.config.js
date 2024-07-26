@@ -13,8 +13,8 @@ module.exports = {
     return config;
   },
   reactStrictMode: true,
-  assetPrefix: process.env.NODE_ENV === "production" ? `/halstack/${process.env.SITE_VERSION}` : undefined,
-  basePath: process.env.NODE_ENV === "production" ? `/halstack/${process.env.SITE_VERSION}` : undefined,
+  assetPrefix: process.env.NODE_ENV === "production" ? `/halstack/${process.env.NEXT_PUBLIC_SITE_VERSION}` : undefined,
+  basePath: process.env.NODE_ENV === "production" ? `/halstack/${process.env.NEXT_PUBLIC_SITE_VERSION}` : undefined,
   transpilePackages: [
     "@cloudscape-design/components",
     "@cloudscape-design/component-toolkit",
