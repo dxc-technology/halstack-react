@@ -115,8 +115,8 @@ const tabsNotification = (iconPosition?: "top" | "left") => (
   </DxcTabs>
 );
 
-const tabsIcon = (
-  <DxcTabs>
+const tabsIcon = (iconPosition?: "top" | "left") => (
+  <DxcTabs iconPosition={iconPosition}>
     <DxcTabs.Tab label="Tab 1" icon={iconSVG}>
       <></>
     </DxcTabs.Tab>
@@ -143,16 +143,16 @@ const tabsIcon = (
 
 const tabsNotificationIcon = (iconPosition?: "top" | "left") => (
   <DxcTabs iconPosition={iconPosition}>
-    <DxcTabs.Tab label="Tab 1" icon={iconSVG}>
+    <DxcTabs.Tab label="Tab 1" icon={iconSVG} notificationNumber={true}>
       <></>
     </DxcTabs.Tab>
-    <DxcTabs.Tab label="Tab 2" icon={iconSVG}>
+    <DxcTabs.Tab label="Tab 2" icon={iconSVG} notificationNumber={5}>
       <></>
     </DxcTabs.Tab>
-    <DxcTabs.Tab label="Tab 3" icon={iconSVG} disabled>
+    <DxcTabs.Tab label="Tab 3" icon={iconSVG} notificationNumber={100} disabled>
       <></>
     </DxcTabs.Tab>
-    <DxcTabs.Tab label="Tab 4" icon={iconSVG}>
+    <DxcTabs.Tab label="Tab 4" icon={iconSVG} notificationNumber={200}>
       <></>
     </DxcTabs.Tab>
     <DxcTabs.Tab label="Tab 5" icon={iconSVG}>
@@ -205,11 +205,11 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With icon position top" theme="light" level={4} />
-      {tabsIcon}
+      {tabsIcon()}
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With icon position left" theme="light" level={4} />
-      {tabsNotification("left")}
+      {tabsIcon("left")}
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With icon and notification number" theme="light" level={4} />

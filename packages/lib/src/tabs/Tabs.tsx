@@ -60,12 +60,6 @@ const DxcTabs = ({
     }
     return false;
   });
-  const isActiveIndicatorDisabled = Children.toArray(children).every((child) => {
-    if (isValidElement(child)) {
-      return child.props.disabled && !child.props.active;
-    }
-    return false;
-  });
 
   const childrenArray: ReactElement<TabProps>[] = Children.toArray(children) as ReactElement<TabProps>[];
 
@@ -92,6 +86,13 @@ const DxcTabs = ({
   const viewWidth = useResize(refTabList);
   const translatedLabels = useTranslatedLabels();
   const enabledIndicator = useMemo(() => viewWidth < totalTabsWidth, [viewWidth]);
+
+  const isActiveIndicatorDisabled = Children.toArray(children).some((child) => {
+    if (isValidElement(child)) {
+      return activeTabLabel === child.props.label && child.props.disabled;
+    }
+    return false;
+  });
 
   // TODO: Figure out a way to handle scroll with Compound Components
   useEffect(() => {
