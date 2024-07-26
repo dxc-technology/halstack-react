@@ -124,7 +124,7 @@ export const Chromatic = () => (
     <ExampleContainer>
       <Title title="TEST" theme="light" level={4} />
       <DxcTabs iconPosition="top" tabIndex={0}>
-        <DxcTabs.Tab label="Tab 1" icon={iconSVG} onClick={() => {}} onHover={() => {}} >
+        <DxcTabs.Tab label="Tab 1" icon={iconSVG} onClick={() => {}} onHover={() => {}}>
           <p>EXAMPLE 1</p>
         </DxcTabs.Tab>
         <DxcTabs.Tab label="Tab 2" icon={iconSVG} onClick={() => {}} onHover={() => {}} disabled>
@@ -138,6 +138,20 @@ export const Chromatic = () => (
         </DxcTabs.Tab>
         <DxcTabs.Tab label="Tab 5" icon={iconSVG} onClick={() => {}} onHover={() => {}} disabled>
           <p>EXAMPLE 5</p>
+        </DxcTabs.Tab>
+      </DxcTabs>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="TEST" theme="light" level={4} />
+      <DxcTabs>
+        <DxcTabs.Tab label="Tab-1" notificationNumber={10} active>
+          <></>
+        </DxcTabs.Tab>
+        <DxcTabs.Tab label="Tab-2" notificationNumber={20}>
+          <></>
+        </DxcTabs.Tab>
+        <DxcTabs.Tab label="Tab-3" notificationNumber={30}>
+          <></>
         </DxcTabs.Tab>
       </DxcTabs>
     </ExampleContainer>
