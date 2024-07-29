@@ -56,7 +56,7 @@ const buildSite = (version) => {
   return new Promise((resolve, reject) => {
     console.log(`Building site with version ${version}`);
     exec(
-      `cd apps/website && SITE_VERSION=${version} npm run build`,
+      `cd apps/website && NEXT_PUBLIC_SITE_VERSION=${version} npm run build`,
       (error, stdout, stderr) => {
         if (error) {
           throw new Error(error.message);
@@ -131,7 +131,7 @@ const deploy = async () => {
   );
   const existingVersionsInBucket = await getVersionsInS3Bucket();
   const isNewLatest = !existingVersionsInBucket.includes(majorVersionToDeploy);
-  await buildSite(versionToDeploy);
+  await buildSite(majorVersionToDeploy);
   await removeBucket(majorVersionToDeploy);
   await moveToBucket(majorVersionToDeploy);
   const listAvailableVersions = await getVersionsInS3Bucket();
