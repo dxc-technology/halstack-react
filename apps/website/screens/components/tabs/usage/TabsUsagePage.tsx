@@ -4,8 +4,8 @@ import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import Figure from "@/common/Figure";
 import DocFooter from "@/common/DocFooter";
-import tabsUsage from "./examples/usage";
-import defaultUsage from "./examples/default";
+import tabsUsage from "./examplesNew/usage";
+import defaultUsage from "./examplesNew/default";
 import contentUsageTabImage from "./images/tabs_content.png";
 import typographyUsageTabImage from "./images/tabs_typography.png";
 import tabsPlacement from "./images/tabs_placement.png";
@@ -16,7 +16,7 @@ import tabsAlignment from "./images/tabs_alignment.png";
 import tabsPanelBehavior from "./images/tabs_panel_behavior.png";
 import tabsScrollablePanelBehavior from "./images/tabs_scrollable_panel_behavior.png";
 import Example from "@/common/example/Example";
-import scrollableUsage from "./examples/scrollable";
+import scrollableUsage from "./examplesNew/scrollable";
 
 const sections = [
   {

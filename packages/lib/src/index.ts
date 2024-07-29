@@ -7,7 +7,7 @@ import DxcDialog from "./dialog/Dialog";
 import DxcDropdown from "./dropdown/Dropdown";
 import DxcSlider from "./slider/Slider";
 import DxcSwitch from "./switch/Switch";
-import DxcTabs from "./tabs/TabsLegacy";
+import DxcTabs from "./tabs/Tabs";
 import DxcProgressBar from "./progress-bar/ProgressBar";
 import DxcSpinner from "./spinner/Spinner";
 import DxcTable from "./table/Table";

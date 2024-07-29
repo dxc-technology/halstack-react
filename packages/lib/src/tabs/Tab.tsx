@@ -9,7 +9,7 @@ import { TabProps, TabsContextProps } from "./types";
 
 const DxcTab = forwardRef(
   (
-    { icon, label, disabled = false, notificationNumber = false, onClick, onHover }: TabProps,
+    { icon, label, disabled = false, notificationNumber = false, onClick = () => {}, onHover = () => {} }: TabProps,
     ref: Ref<HTMLButtonElement>
   ): JSX.Element => {
     const tabRef = useRef<HTMLButtonElement>();
