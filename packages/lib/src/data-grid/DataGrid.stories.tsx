@@ -35,6 +35,7 @@ const columns: GridColumn[] = [
     sortable: true,
     draggable: true,
     alignment: "right",
+    summaryKeyToRender: "label",
   },
   {
     key: "priority",
@@ -42,6 +43,7 @@ const columns: GridColumn[] = [
     resizable: true,
     draggable: true,
     alignment: "center",
+    summaryKeyToRender: "total",
   },
 ];
 
@@ -127,7 +129,6 @@ const childcolumns: GridColumn[] = [
     name: "Name",
     resizable: true,
     sortable: true,
-    summaryKeyToRender: "label",
     alignment: "center",
   },
   {
@@ -137,7 +138,6 @@ const childcolumns: GridColumn[] = [
     sortable: true,
     draggable: true,
     textEditable: true,
-    summaryKeyToRender: "total",
     alignment: "right",
   },
 ];
@@ -252,6 +252,15 @@ export const Chromatic = () => {
           selectable
           selectedRows={selectedChildRows}
           onSelectRows={setSelectedChildRows}
+        />
+      </ExampleContainer>
+      <ExampleContainer>
+        <Title title="Summary row" theme="light" level={4} />
+        <DxcDataGrid
+          columns={columns}
+          rows={expandableRows}
+          summaryRow={{ label: "Total", total: 100 }}
+          uniqueRowId="id"
         />
       </ExampleContainer>
     </>

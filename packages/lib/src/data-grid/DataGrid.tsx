@@ -273,6 +273,7 @@ const DataGridContainer = styled.div`
   .rdg {
     border-radius: 4px;
     max-height: 100%;
+    border: 0px;
   }
   .rdg-header-row {
     background-color: rgb(95, 36, 159);
@@ -302,7 +303,17 @@ const DataGridContainer = styled.div`
     overflow: hidden;
     white-space: nowrap;
   }
-  .rdg-cell {
+  .rdg-summary-row {
+    background-color: #fafafa;
+    .rdg-cell {
+      border-top: 0px;
+      font-weight: 600;
+    }
+  }
+  .rdg-row {
+    .rdg-cell:last-child {
+      border-right: 0px;
+    }
   }
   .align-left {
     text-align: left;
