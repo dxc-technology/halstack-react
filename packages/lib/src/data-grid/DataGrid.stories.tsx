@@ -4,10 +4,22 @@ import DxcDataGrid from "./DataGrid";
 import DxcContainer from "../container/Container";
 import { GridColumn, HierarchyGridRow } from "./types";
 import { useState } from "react";
+import { disabledRules } from "../../test/accessibility/rules/specific/data-grid/disabledRules";
+import preview from "../../.storybook/preview";
 
 export default {
   title: "Datagrid",
   component: DxcDataGrid,
+  parameters: {
+    a11y: {
+      config: {
+        rules: [
+          ...disabledRules.map((ruleId) => ({ id: ruleId, reviewOnFail: true })),
+          ...preview?.parameters?.a11y?.config?.rules,
+        ],
+      },
+    },
+  },
 };
 
 const columns: GridColumn[] = [
