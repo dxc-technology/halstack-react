@@ -6,7 +6,7 @@ const code = `() => {
       <DxcFlex gap="2rem" justifyContent="center">
         <DxcButton mode="primary" label="Primary" />
         <DxcButton mode="secondary" label="Secondary" />
-        <DxcButton mode="text" label="Text" />
+        <DxcButton mode="tertiary" label="Tertiary" />
       </DxcFlex>
     </DxcInset>
   );
