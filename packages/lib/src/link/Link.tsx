@@ -6,8 +6,8 @@ import useTheme from "../useTheme";
 import { LinkProps } from "./types";
 
 const LinkContent = memo(
-  ({ iconPosition, icon, children }: LinkProps): JSX.Element => (
-    <>
+  ({ iconPosition, icon, inheritColor, children }: LinkProps): JSX.Element => (
+    <LinkContainer inheritColor>
       {iconPosition === "after" && children}
       {icon && (
         <LinkIconContainer iconPosition={iconPosition}>
@@ -15,7 +15,7 @@ const LinkContent = memo(
         </LinkIconContainer>
       )}
       {iconPosition === "before" && children}
-    </>
+    </LinkContainer>
   )
 );
 
@@ -52,7 +52,7 @@ const DxcLink = forwardRef(
           ref={ref}
           {...otherProps}
         >
-          <LinkContent iconPosition={iconPosition} icon={icon} children={children} />
+          <LinkContent iconPosition={iconPosition} icon={icon} children={children} inheritColor={inheritColor} />
         </StyledLink>
       </ThemeProvider>
     );
@@ -77,55 +77,37 @@ const StyledLink = styled.div<{
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
   background: none;
   border: none;
-  padding: 0;
+  ${(props) => `padding-bottom: ${props.theme.underlineSpacing};`}
   cursor: pointer;
   font-size: ${(props) => props.theme.fontSize};
   font-weight: ${(props) => props.theme.fontWeight};
   font-style: ${(props) => props.theme.fontStyle};
   font-family: ${(props) => props.theme.fontFamily};
-  text-decoration-color: transparent;
+  text-decoration: none;
   width: fit-content;
-  ${(props) =>
-    `padding-bottom: ${props.theme.underlineSpacing};
-     border-bottom: ${props.theme.underlineThickness} ${props.theme.underlineStyle} transparent;`}
+  border-bottom-color: transparent;
   ${(props) => props.disabled && "cursor: default;"}
   color: ${(props) =>
     props.inheritColor ? "inherit" : !props.disabled ? props.theme.fontColor : props.theme.disabledFontColor};
   ${(props) => (props.disabled ? "pointer-events: none;" : "")}
   &:visited {
     color: ${(props) => (!props.inheritColor && !props.disabled ? props.theme.visitedFontColor : "")};
-    &:hover {
-      ${(props) =>
-        `color: ${props.theme.visitedFontColor};
-         border-bottom-color: ${props.theme.visitedUnderlineColor};`}
+    & > span:hover {
+      ${(props) => `color: ${props.theme.visitedFontColor};
+                    border-bottom-color: ${props.theme.visitedUnderlineColor};`}
     }
-  }
-  &:hover {
-    ${(props) =>
-      `color: ${props.theme.hoverFontColor};
-       border-bottom-color: ${props.theme.hoverUnderlineColor};
-       cursor: pointer;`}
-  }
-  &:focus {
-    position: relative;
-    &::before {
-      content: "";
-      margin: -2px;
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      border-radius: 4px;
-      outline: 2px solid ${(props) => props.theme.focusColor};
-      pointer-events: none;
-    }
-    ${(props) => props.disabled && "outline: none"}
   }
   &:active {
-    ${(props) =>
-      `color: ${props.theme.activeFontColor} !important;
-       border-bottom-color: ${props.theme.activeUnderlineColor} !important;`}
+    & > span {
+      ${(props) => `color: ${props.theme.activeFontColor} !important;
+                    border-bottom-color: ${props.theme.activeUnderlineColor} !important;`}
+    }
+  }
+  &:focus {
+    border-radius: 4px;
+    outline: 2px solid ${(props) => props.theme.focusColor};
+    outline-offset: 2px;
+    ${(props) => props.disabled && "outline: none"}
   }
 `;
 
@@ -140,6 +122,22 @@ const LinkIconContainer = styled.div<{ iconPosition: LinkProps["iconPosition"] }
   svg {
     height: 100%;
     width: 100%;
+  }
+`;
+
+const LinkContainer = styled.span<{
+  inheritColor: LinkProps["inheritColor"];
+}>`
+  display: inline-flex;
+  margin: 0;
+  padding: 0;
+  ${(props) => `border-bottom: ${props.theme.underlineThickness} ${props.theme.underlineStyle};`}
+  border-bottom-color: transparent;
+  &:hover {
+    ${(props) =>
+      `color: ${props.theme.hoverFontColor};
+       cursor: pointer;
+       border-bottom-color: ${props.theme.hoverUnderlineColor};`}
   }
 `;
 
