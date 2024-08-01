@@ -1,3 +1,4 @@
+import DxcActionIcon from "../action-icon/ActionIcon";
 import DxcCheckbox from "../checkbox/Checkbox";
 import DxcFlex from "../flex/Flex";
 import { HalstackProvider } from "../HalstackContext";
@@ -74,13 +75,51 @@ export const renderSortStatus = ({ sortDirection }: RenderSortStatusProps) => {
   );
 };
 
+export const renderExpandableTrigger = (
+  row: ExpandableGridRow,
+  rows: ExpandableGridRow[],
+  uniqueRowId: string,
+  setRowsToRender: (value: React.SetStateAction<ExpandableGridRow[] | GridRow[] | HierarchyGridRow[]>) => void
+) => {
+  return (
+    <DxcActionIcon
+      icon={row.contentIsExpanded ? "arrow_drop_down" : "arrow_right"}
+      title="Expand content"
+      aria-expanded={row.contentIsExpanded}
+      onClick={() => {
+        row.contentIsExpanded = !row.contentIsExpanded;
+        if (row.contentIsExpanded) {
+          const rowIndex = rows.findIndex((rowToRender) => row === rowToRender);
+          setRowsToRender((rows) => {
+            const newRows = [...rows];
+            addRow(newRows, rowIndex + 1, {
+              isExpandedChildContent: row.contentIsExpanded,
+              [uniqueRowId]: rowKeyGetter(row, uniqueRowId) + "_expanded",
+              expandedChildContent: row.expandedContent,
+              triggerRowKey: rowKeyGetter(row, uniqueRowId),
+              expandedContentHeight: row.expandedContentHeight,
+            });
+            return newRows;
+          });
+        } else {
+          const rowIndex = rows.findIndex((rowToRender) => row === rowToRender);
+          setRowsToRender((rows) => {
+            const newRows = [...rows];
+            deleteRow(newRows, rowIndex + 1);
+            return newRows;
+          });
+        }
+      }}
+    />
+  );
+};
+
 export const renderHierarchyTrigger = (
   rows: HierarchyGridRow[],
   triggerRow: HierarchyGridRow,
   uniqueRowId: string,
   columnKey: string,
-  // eslint-disable-next-line no-unused-vars
-  onRowsToRender: (rows: HierarchyGridRow[]) => void
+  setRowsToRender: (value: React.SetStateAction<GridRow[] | ExpandableGridRow[] | HierarchyGridRow[]>) => void
 ) => {
   return (
     <button
@@ -122,7 +161,7 @@ export const renderHierarchyTrigger = (
           );
         }
         triggerRow.visibleChildren = !triggerRow.visibleChildren;
-        onRowsToRender(newRowsToRender);
+        setRowsToRender(newRowsToRender);
       }}
     >
       <DxcFlex gap="0.5rem">
@@ -138,7 +177,6 @@ export const renderCheckbox = (
   row: GridRow | HierarchyGridRow | ExpandableGridRow,
   uniqueRowId: string,
   selectedRows: Set<number | string>,
-  // eslint-disable-next-line no-unused-vars
   onSelectRows: (selectedRows: Set<number | string>) => void
 ) => {
   return (
@@ -169,7 +207,6 @@ export const renderHeaderCheckbox = (
   rows: GridRow[] | HierarchyGridRow[] | ExpandableGridRow[],
   uniqueRowId: string,
   selectedRows: Set<number | string>,
-  // eslint-disable-next-line no-unused-vars
   onSelectRows: (selected: Set<number | string>) => void
 ) => {
   return (
