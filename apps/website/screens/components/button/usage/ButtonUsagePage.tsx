@@ -1,4 +1,11 @@
-import { DxcBulletedList, DxcFlex, DxcTable, DxcParagraph } from "@dxc-technology/halstack-react";
+import {
+  DxcBulletedList,
+  DxcFlex,
+  DxcTable,
+  DxcParagraph,
+  DxcTypography,
+  DxcAlert,
+} from "@dxc-technology/halstack-react";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import DocFooter from "@/common/DocFooter";
@@ -27,7 +34,6 @@ const sections = [
       </DxcBulletedList>
     ),
   },
-
   {
     title: "Variants",
     content: (
@@ -37,7 +43,7 @@ const sections = [
           attributes.
         </DxcParagraph>
         <DxcParagraph>
-          Variants: <strong>primary</strong>, <strong>secondary</strong> and <strong>text</strong>.
+          Variants: <strong>primary</strong>, <strong>secondary</strong> and <strong>tertiary</strong>.
         </DxcParagraph>
         <Example example={variants} />
         <DxcTable>
@@ -107,6 +113,295 @@ const sections = [
         <Example example={icons} />
       </>
     ),
+  },
+  {
+    title: "Semantic buttons",
+    content: (
+      <>
+        <DxcParagraph>
+          Semantic buttons use specific colors to convey the nature of the action they trigger. They provide immediate
+          context about the action's significance or the feedback it represents.
+        </DxcParagraph>
+        <DxcTable>
+          <thead>
+            <tr>
+              <th>Semantic</th>
+              <HeaderDescriptionCell>Description</HeaderDescriptionCell>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <DxcTypography color="#5f249f" fontWeight="600">
+                  Default
+                </DxcTypography>
+              </td>
+              <td>
+                Neutral action with no specific context. Typically used for general actions. Shown in the brand's
+                primary color. Use for neutral actions such as "Submit", "Save" or "Continue.”
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <DxcTypography color="#d0011b" fontWeight="600">
+                  Error
+                </DxcTypography>
+              </td>
+              <td>
+                Indicates a destructive action or highlights a critical issue. Styled in red. Use for actions like
+                "Delete", "Remove" or "Cancel Subscription.”
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <DxcTypography color="#c26c0a" fontWeight="600">
+                  Warning
+                </DxcTypography>
+              </td>
+              <td>
+                Alerts the user to potential issues or actions that need caution. Styled in orange. Use for actions like
+                "Warning" or "Attention Needed.”
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <DxcTypography color="#24a148" fontWeight="600">
+                  Success
+                </DxcTypography>
+              </td>
+              <td>
+                Represents a positive action or confirms the completion of a task. Styled in green. Use for actions like
+                "Confirm", "Complete" or "Approve.”
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <DxcTypography color="#0086e6" fontWeight="600">
+                  Info
+                </DxcTypography>
+              </td>
+              <td>
+                Provides additional information or context. Shown in blue, the brand's secondary color. Use for actions
+                like "More Info", "Details" or "Learn More.”
+              </td>
+            </tr>
+          </tbody>
+        </DxcTable>
+      </>
+    ),
+  },
+  {
+    title: "Sizes",
+    content: (
+      <>
+        <DxcParagraph>
+          The context in which a button is used often dictates its size. Halstack provides buttons in different sizes to
+          help create interfaces that are not only functional but also intuitive and accessible, catering to a wide
+          range of user needs and interaction scenarios.
+        </DxcParagraph>
+        <DxcParagraph>
+          Varying button sizes help establish a clear visual hierarchy, guiding users towards the most critical actions.
+          Primary actions are made more prominent with larger buttons, while secondary actions use smaller buttons to
+          avoid distraction.
+        </DxcParagraph>
+        <DxcAlert type="warning">
+          To maintain a clear and effective visual hierarchy, avoid overusing different button sizes within a single
+          interface.
+        </DxcAlert>
+      </>
+    ),
+    subSections: [
+      {
+        title: "Height",
+        subSections: [
+          {
+            title: "Small",
+            content: (
+              <>
+                <DxcParagraph>
+                  Small buttons help to maintain a clean and uncluttered interface, especially in dense layouts. They
+                  are suitable for scenarios where precise actions are needed, often accompanied by icons for quick
+                  recognition.
+                </DxcParagraph>
+                <DxcParagraph>Use cases:</DxcParagraph>
+                <DxcBulletedList>
+                  <DxcBulletedList.Item>
+                    <strong>Compact spaces:</strong> Small buttons are ideal for areas with limited space, such as
+                    tables, forms, and other components.
+                  </DxcBulletedList.Item>
+                  <DxcBulletedList.Item>
+                    <strong>Secondary actions:</strong> They can be used for less prominent actions that are not the
+                    primary focus of the user’s interaction.
+                  </DxcBulletedList.Item>
+                </DxcBulletedList>
+              </>
+            ),
+          },
+          {
+            title: "Medium",
+            content: (
+              <>
+                <DxcParagraph>
+                  Medium buttons provide a good balance between visibility and space usage, making them versatile for
+                  various design contexts.
+                </DxcParagraph>
+                <DxcParagraph>Use cases:</DxcParagraph>
+                <DxcBulletedList>
+                  <DxcBulletedList.Item>
+                    <strong>General use:</strong> Medium buttons are the standard size for most button interactions
+                    across web and mobile applications.
+                  </DxcBulletedList.Item>
+                  <DxcBulletedList.Item>
+                    <strong>Primary actions:</strong> They are often used for primary actions on forms, dialogs, and
+                    other key interaction points.
+                  </DxcBulletedList.Item>
+                  <DxcBulletedList.Item>
+                    <strong>Consistency:</strong> Using medium buttons as the default ensures a consistent look and feel
+                    across the application, aiding user familiarity and navigation.
+                  </DxcBulletedList.Item>
+                </DxcBulletedList>
+              </>
+            ),
+          },
+          {
+            title: "Large",
+            content: (
+              <>
+                <DxcParagraph>
+                  Large buttons draw attention and encourage interaction, which is vital for important actions. They
+                  create a visual hierarchy, emphasizing the most important actions and guiding users towards them.
+                </DxcParagraph>
+                <DxcParagraph>Use cases:</DxcParagraph>
+                <DxcBulletedList>
+                  <DxcBulletedList.Item>
+                    <strong>Prominent actions:</strong> Large buttons are used for primary or critical actions that
+                    require high visibility, such as "Submit", "Save" or "Purchase".
+                  </DxcBulletedList.Item>
+                  <DxcBulletedList.Item>
+                    <strong>Call to action (CTA):</strong> They are often employed in call-to-action sections where user
+                    engagement is crucial, like landing pages.
+                  </DxcBulletedList.Item>
+                </DxcBulletedList>
+              </>
+            ),
+          },
+        ],
+      },
+    ],
+  },
+  {
+    title: "Best practices for button labels:",
+    subSections: [
+      {
+        title: "Be clear and concise",
+        content: (
+          <DxcBulletedList>
+            <DxcBulletedList.Item>
+              <strong>Use actionable language:</strong> Start with a verb that clearly describes the action. Examples:
+              "Submit", "Save" or "Delete".
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
+              <strong>Keep it short:</strong> Aim for one or two words. Longer text can make buttons harder to read and
+              understand quickly.
+            </DxcBulletedList.Item>
+          </DxcBulletedList>
+        ),
+      },
+      {
+        title: "Ensure clarity",
+        content: (
+          <DxcBulletedList>
+            <DxcBulletedList.Item>
+              <strong>Avoid ambiguity:</strong> Make sure the button’s purpose is immediately clear. Avoid vague labels
+              like "Click here" or "Go".
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
+              <strong>Use specific nouns:</strong> If necessary, include a noun to provide more context. Examples: "Add
+              item", "View details".
+            </DxcBulletedList.Item>
+          </DxcBulletedList>
+        ),
+      },
+      {
+        title: "Maintain consistency",
+        content: (
+          <DxcBulletedList>
+            <DxcBulletedList.Item>
+              <strong>Consistent terminology:</strong> Use the same terms for similar actions across your interface to
+              avoid confusion. For example, always use "Submit" for form submissions.
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
+              <strong>Sentence case:</strong> Use sentence-style capitalization—only capitalize the first word. This
+              improves readability and looks more approachable.
+            </DxcBulletedList.Item>
+          </DxcBulletedList>
+        ),
+      },
+      {
+        title: "Focus on the user",
+        content: (
+          <DxcBulletedList>
+            <DxcBulletedList.Item>
+              <strong>User-centric language:</strong> Write from the user’s perspective. For actions that the user
+              performs, consider using first-person pronouns (e.g., "My profile").
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
+              <strong>Positive tone:</strong> Where possible, frame actions positively to encourage interaction. For
+              example, use "Continue" instead of "Next".
+            </DxcBulletedList.Item>
+          </DxcBulletedList>
+        ),
+      },
+      {
+        title: "Accessibility",
+        content: (
+          <DxcBulletedList>
+            <DxcBulletedList.Item>
+              <strong>Descriptive labels:</strong> Ensure that the button copy makes sense out of context for screen
+              reader users. Avoid labels like "More" without additional context.
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
+              <strong>Avoid jargon:</strong> Use plain language that is easily understood by all users, including those
+              who may not be familiar with technical terms.
+            </DxcBulletedList.Item>
+          </DxcBulletedList>
+        ),
+      },
+      {
+        title: "Visual hierarchy",
+        content: (
+          <DxcBulletedList>
+            <DxcBulletedList.Item>
+              <strong>Primary action first:</strong> Ensure the primary action stands out with a prominent position and
+              styling.
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
+              <strong>Avoid redundant text:</strong> Do not include unnecessary words that do not add value to the
+              action.
+            </DxcBulletedList.Item>
+          </DxcBulletedList>
+        ),
+      },
+      {
+        title: "Tips",
+        content: (
+          <DxcBulletedList>
+            <DxcBulletedList.Item>
+              <strong>Test for clarity:</strong> Show your button text to others without context to see if they
+              understand the action.
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
+              <strong>Iterate based on feedback:</strong> Be open to changing your button copy based on user feedback
+              and testing results.
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
+              <strong>Avoid punctuation:</strong> Do not use end punctuation in button labels unless absolutely
+              necessary.
+            </DxcBulletedList.Item>
+          </DxcBulletedList>
+        ),
+      },
+    ],
   },
 ];
 
