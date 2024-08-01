@@ -4,6 +4,7 @@ import DxcDataGrid from "./DataGrid";
 import DxcContainer from "../container/Container";
 import { GridColumn, HierarchyGridRow } from "./types";
 import { useState } from "react";
+import { fireEvent, screen, userEvent, within } from "@storybook/test";
 
 export default {
   title: "Datagrid",
@@ -265,4 +266,49 @@ export const Chromatic = () => {
       </ExampleContainer>
     </>
   );
+};
+
+const DataGridSortedChildren = () => {
+  const [selectedChildRows, setSelectedChildRows] = useState((): Set<number | string> => new Set());
+  return (
+    <ExampleContainer>
+      <DxcDataGrid
+        columns={childcolumns}
+        rows={childRows}
+        uniqueRowId="id"
+        selectable
+        onSelectRows={setSelectedChildRows}
+        selectedRows={selectedChildRows}
+      />
+    </ExampleContainer>
+  );
+};
+
+export const DataGridSortedWithChildren = DataGridSortedChildren.bind({});
+DataGridSortedWithChildren.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  await userEvent.click(canvas.getAllByRole("checkbox")[0]);
+  await userEvent.click(canvas.getByText("Root Node 1"));
+  await userEvent.click(canvas.getByText("Root Node 2"));
+  await userEvent.click(canvas.getByText("Child Node 1.1"));
+  await userEvent.click(canvas.getByText("Child Node 2.1"));
+  await userEvent.click(canvas.getAllByRole("columnheader")[1]);
+  await userEvent.click(canvas.getAllByRole("columnheader")[1]);
+  await userEvent.click(canvas.getAllByRole("checkbox")[5]);
+};
+
+const DataGridSortedExpandable = () => {
+  return (
+    <ExampleContainer>
+      <DxcDataGrid columns={columns} rows={expandableRows} uniqueRowId="task" expandable />
+    </ExampleContainer>
+  );
+};
+
+export const DataGridSortedExpanded = DataGridSortedExpandable.bind({});
+DataGridSortedExpanded.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  await userEvent.click(canvas.getAllByRole("button")[0]);
+  await userEvent.click(canvas.getAllByRole("button")[1]);
+  await userEvent.click(canvas.getAllByRole("columnheader")[3]);
 };

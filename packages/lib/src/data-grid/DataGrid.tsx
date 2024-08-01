@@ -68,7 +68,8 @@ const DxcDataGrid = ({
               <ActionContainer>
                 <DxcActionIcon
                   icon={row.contentIsExpanded ? "arrow_drop_down" : "arrow_right"}
-                  title="icon"
+                  title="Expand content"
+                  aria-expanded={row.contentIsExpanded}
                   onClick={() => {
                     row.contentIsExpanded = !row.contentIsExpanded;
                     if (row.contentIsExpanded) {
@@ -77,7 +78,7 @@ const DxcDataGrid = ({
                         const newRows = [...rows];
                         addRow(newRows, rowIndex + 1, {
                           isExpandedChildContent: row.contentIsExpanded,
-                          uniqueRowId: rowKeyGetter(row, uniqueRowId) + "_expanded",
+                          [uniqueRowId]: rowKeyGetter(row, uniqueRowId) + "_expanded",
                           expandedChildContent: row.expandedContent,
                           triggerRowKey: rowKeyGetter(row, uniqueRowId),
                           expandedContentHeight: row.expandedContentHeight,
@@ -272,7 +273,7 @@ const DataGridContainer = styled.div`
   width: 100%;
   .rdg {
     border-radius: 4px;
-    max-height: 100%;
+    height: 100%;
     border: 0px;
   }
   .rdg-header-row {
