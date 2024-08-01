@@ -77,6 +77,7 @@ const StyledLink = styled.div<{
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
   background: none;
   border: none;
+  padding: 0;
   ${(props) => `padding-bottom: ${props.theme.underlineSpacing};`}
   cursor: pointer;
   font-size: ${(props) => props.theme.fontSize};
@@ -85,7 +86,6 @@ const StyledLink = styled.div<{
   font-family: ${(props) => props.theme.fontFamily};
   text-decoration: none;
   width: fit-content;
-  border-bottom-color: transparent;
   ${(props) => props.disabled && "cursor: default;"}
   color: ${(props) =>
     props.inheritColor ? "inherit" : !props.disabled ? props.theme.fontColor : props.theme.disabledFontColor};
