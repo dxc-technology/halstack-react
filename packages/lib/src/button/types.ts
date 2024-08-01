@@ -7,6 +7,17 @@ type Margin = {
 };
 type SVG = React.ReactNode & React.SVGProps<SVGSVGElement>;
 
+type Size = {
+  /**
+   * Height of the component.
+   */
+  height?: "small" | "medium" | "large";
+  /*
+   * Width of the component.
+   */
+  width?: "small" | "medium" | "large" | "fillParent" | "fitContent";
+};
+
 type Props = {
   /**
    * Text to be placed in the button.
@@ -15,7 +26,11 @@ type Props = {
   /**
    * The available button modes.
    */
-  mode?: "primary" | "secondary" | "text";
+  mode?: "primary" | "secondary" | "tertiary";
+  /**
+   * Specifies the semantic meaning of the buttons, which determines its color.
+   */
+  semantic?: "default" | "error" | "warning" | "success" | "info";
   /**
    * If true, the component will be disabled.
    */
@@ -48,7 +63,7 @@ type Props = {
   /**
    * Size of the component.
    */
-  size?: "small" | "medium" | "large" | "fillParent" | "fitContent";
+  size?: Size;
   /**
    * Value of the tabindex attribute.
    */
