@@ -9,7 +9,6 @@
     "test",
     ".",
     ".storybook",
-    ".storybook/test-runner.ts"
   ],
   "exclude": ["node_modules", "dist", ".turbo"]
 }
