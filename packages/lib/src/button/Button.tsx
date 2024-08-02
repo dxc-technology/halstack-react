@@ -89,7 +89,7 @@ const getButtonStyles = (
   let focus = "";
   let disabled = "";
 
-  let commonPrimaryStyles = `
+  const commonPrimaryStyles = `
     font-weight: ${theme.primaryFontWeight};
     font-size: ${size?.height === "small" ? theme.primarySmallFontSize : size?.height === "medium" ? theme.primaryMediumFontSize : theme.primaryLargeFontSize};
     font-family: ${theme.primaryFontFamily};
@@ -97,7 +97,7 @@ const getButtonStyles = (
     border-width ${theme.primaryBorderThickness};
     border-style: ${theme.primaryBorderStyle};`;
 
-  let commonSecondaryStyles = `
+  const commonSecondaryStyles = `
     font-weight: ${theme.secondaryFontWeight};
     font-size: ${size?.height === "small" ? theme.secondarySmallFontSize : size?.height === "medium" ? theme.secondaryMediumFontSize : theme.secondaryLargeFontSize};
     font-family: ${theme.secondaryFontFamily};
@@ -105,7 +105,7 @@ const getButtonStyles = (
     border-width ${theme.secondaryBorderThickness};
     border-style: ${theme.secondaryBorderStyle};`;
 
-  let commonTertiaryStyles = `
+  const commonTertiaryStyles = `
     font-weight: ${theme.tertiaryFontWeight};
     font-size: ${size?.height === "small" ? theme.tertiarySmallFontSize : size?.height === "medium" ? theme.tertiaryMediumFontSize : theme.tertiaryLargeFontSize};
     font-family: ${theme.tertiaryFontFamily};
@@ -385,6 +385,8 @@ const getButtonStyles = (
         &:disabled {
           ${disabled}
         }`;
+    default:
+      return undefined;
   }
 };
 
@@ -403,7 +405,7 @@ const Button = styled.button<{
   gap: 0.5rem;
   align-items: center;
   justify-content: center;
-  height: ${(props) => getHeight(props.size?.height && props.size?.height) + "rem"};
+  height: ${(props) => `${getHeight(props.size?.height && props.size?.height)}rem`};
   width: ${(props) => calculateWidth(props.margin, props.size)};
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>

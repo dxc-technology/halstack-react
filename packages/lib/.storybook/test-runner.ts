@@ -19,7 +19,7 @@ const a11yConfig: TestRunnerConfig = {
         ? Object.entries(viewport).reduce(
             (acc, [screen, size]) => ({
               ...acc,
-              [screen]: parseInt(size),
+              [screen]: parseInt(size, 10),
             }),
             {} as ViewportStyles
           )
@@ -57,3 +57,5 @@ const a11yConfig: TestRunnerConfig = {
     });
   },
 };
+
+export default a11yConfig;

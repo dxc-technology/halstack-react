@@ -80,6 +80,7 @@ module.exports = {
           "**/*.@(test|stories).@(js|jsx|ts|tsx)",
           "**/axe-helper.@(js|ts)",
           "**/setupJestAxe.@(js|ts)",
+          "**/.storybook/*..@(js|jsx|ts|tsx)",
         ],
       },
     ],
@@ -115,8 +116,9 @@ module.exports = {
     },
   },
   ignorePatterns: [
-    // Ignore dotfiles
-    ".*.js",
+    // Ignore dotfiles except storybook
+    // ".*.[jt]s",
+    "!.storybook",
     "node_modules/",
     "dist/",
   ],
