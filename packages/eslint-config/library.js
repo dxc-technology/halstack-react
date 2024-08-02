@@ -123,7 +123,7 @@ module.exports = {
   },
   ignorePatterns: [
     // Ignore dotfiles except storybook
-    // ".*.[jt]s",
+    ".*.[jt]s",
     "!.storybook",
     "node_modules/",
     "dist/",

@@ -1,8 +1,7 @@
 {
-  "extends": "@dxc-technology/typescript-config/react-library.json",
+  "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "dist"
   },
-  "include": ["src", "test", ".", ".storybook", ".storybook/test-runner.ts"],
   "exclude": ["node_modules", "dist"]
 }
