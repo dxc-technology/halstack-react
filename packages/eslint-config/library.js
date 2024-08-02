@@ -38,6 +38,12 @@ module.exports = {
         "@typescript-eslint/no-explicit-any": "off",
       },
     },
+    {
+      files: ["**/.storybook/test-runner.ts"],
+      rules: {
+        "no-console": "off",
+      }
+    },
     // Storybook files
     {
       files: ["**/?(*.)+(stories).[jt]s?(x)"],
@@ -52,7 +58,7 @@ module.exports = {
         "jsx-a11y/no-noninteractive-tabindex": "off",
         "jsx-a11y/no-static-element-interactions": "off",
       },
-    },
+    }
   ],
   rules: {
     curly: "warn",
