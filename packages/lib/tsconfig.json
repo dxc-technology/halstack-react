@@ -8,7 +8,7 @@
     "src",
     "test",
     ".",
-    ".storybook",
+    ".storybook/**/*"
   ],
   "exclude": ["node_modules", "dist", ".turbo"]
 }

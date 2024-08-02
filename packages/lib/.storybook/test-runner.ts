@@ -3,7 +3,6 @@ import { getStoryContext, type TestRunnerConfig } from "@storybook/test-runner";
 import { ViewportParameters, ViewportStyles } from "./types";
 
 const DEFAULT_VIEWPORT_SIZE = { width: 1280, height: 720 };
-
 const a11yConfig: TestRunnerConfig = {
   async preVisit(page, context) {
     await injectAxe(page);

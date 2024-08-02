@@ -1,8 +1,4 @@
 {
   "extends": "./tsconfig.json",
-  "compilerOptions": {
-    "outDir": "dist"
-  },
-  "include": ["pages", "turbo", "test", "."],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "out", ".turbo"]
 }

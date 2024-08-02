@@ -42,7 +42,7 @@ module.exports = {
       files: ["**/.storybook/test-runner.ts"],
       rules: {
         "no-console": "off",
-      }
+      },
     },
     // Storybook files
     {
@@ -58,7 +58,7 @@ module.exports = {
         "jsx-a11y/no-noninteractive-tabindex": "off",
         "jsx-a11y/no-static-element-interactions": "off",
       },
-    }
+    },
   ],
   rules: {
     curly: "warn",
@@ -122,10 +122,10 @@ module.exports = {
     },
   },
   ignorePatterns: [
-    // Ignore dotfiles except storybook
-    ".*.[jt]s",
-    "!.storybook",
+    // Ignore dotfiles
+    ".*.js",
     "node_modules/",
     "dist/",
+    "!.storybook",
   ],
 };
