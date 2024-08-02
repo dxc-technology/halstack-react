@@ -310,9 +310,18 @@ DataGridSortedWithChildren.play = async ({ canvasElement }) => {
 };
 
 const DataGridSortedExpandable = () => {
+  const [selectedRows, setSelectedRows] = useState((): Set<number | string> => new Set());
   return (
     <ExampleContainer>
-      <DxcDataGrid columns={columns} rows={expandableRows} uniqueRowId="task" expandable />
+      <DxcDataGrid
+        columns={columns}
+        rows={expandableRows}
+        uniqueRowId="task"
+        expandable
+        selectable
+        onSelectRows={setSelectedRows}
+        selectedRows={selectedRows}
+      />
     </ExampleContainer>
   );
 };
@@ -322,5 +331,5 @@ DataGridSortedExpanded.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   await userEvent.click(canvas.getAllByRole("button")[0]);
   await userEvent.click(canvas.getAllByRole("button")[1]);
-  await userEvent.click(canvas.getAllByRole("columnheader")[3]);
+  await userEvent.click(canvas.getAllByRole("columnheader")[4]);
 };

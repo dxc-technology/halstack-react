@@ -54,7 +54,7 @@ const DxcDataGrid = ({
           width: 50,
           colSpan(args) {
             return args.type === "ROW" && args.row.isExpandedChildContent
-              ? columns.length + (selectable ? 2 : 1)
+              ? columns.length + (selectable ? 1 : 0)
               : undefined;
           },
           renderCell({ row }) {
@@ -278,6 +278,7 @@ const DataGridContainer = styled.div`
     .rdg-cell {
       border-top: 0px;
       font-weight: 600;
+      border-right: 0px;
     }
   }
   .rdg-row {
