@@ -76,11 +76,11 @@ const Example = ({ actionsVisible = true, defaultIsVisible = false, example }: E
         </StyledPreview>
         {actionsVisible && (
           <CodeActionsContainer isCodeVisible={isCodeVisible}>
-            {isCodeVisible && <DxcButton label={"Copy code"} icon={icons.copy} mode="text" onClick={copyCode} />}
+            {isCodeVisible && <DxcButton label="Copy code" icon={icons.copy} mode="tertiary" onClick={copyCode} />}
             <DxcButton
               label={isCodeVisible ? "Hide code" : "View code"}
               icon={icons.code}
-              mode="text"
+              mode="tertiary"
               onClick={handleCodeOnClick}
             />
           </CodeActionsContainer>

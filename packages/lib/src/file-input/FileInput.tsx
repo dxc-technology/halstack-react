@@ -184,7 +184,7 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
                 }
                 onClick={handleClick}
                 disabled={disabled}
-                size="fitContent"
+                size={{ width: "fitContent" }}
                 tabIndex={tabIndex}
               />
               {files.length > 0 && (
@@ -230,7 +230,7 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
                   label={buttonLabel ?? translatedLabels.fileInput.dropAreaButtonLabelDefault}
                   onClick={handleClick}
                   disabled={disabled}
-                  size="fitContent"
+                  size={{ width: "fitContent" }}
                 />
                 {mode === "dropzone" ? (
                   <DropzoneLabel disabled={disabled}>

@@ -19,7 +19,75 @@ describe("Button component accessibility tests", () => {
         margin="small"
         mode="primary"
         title="Button Title"
-        size="fitContent"
+        size={{ width: "fitContent" }}
+        type="button"
+      />
+    );
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
+  });
+  it("Should not have basic accessibility issues for semantic error", async () => {
+    const { container } = render(
+      <DxcButton
+        label="Primary"
+        icon={iconSVG}
+        iconPosition="after"
+        margin="small"
+        mode="primary"
+        semantic="error"
+        title="Button Title"
+        size={{ width: "fitContent" }}
+        type="button"
+      />
+    );
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
+  });
+  it("Should not have basic accessibility issues for semantic warning", async () => {
+    const { container } = render(
+      <DxcButton
+        label="Primary"
+        icon={iconSVG}
+        iconPosition="after"
+        margin="small"
+        mode="primary"
+        semantic="warning"
+        title="Button Title"
+        size={{ width: "fitContent" }}
+        type="button"
+      />
+    );
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
+  });
+  it("Should not have basic accessibility issues for semantic success", async () => {
+    const { container } = render(
+      <DxcButton
+        label="Primary"
+        icon={iconSVG}
+        iconPosition="after"
+        margin="small"
+        mode="primary"
+        semantic="success"
+        title="Button Title"
+        size={{ width: "fitContent" }}
+        type="button"
+      />
+    );
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
+  });
+  it("Should not have basic accessibility issues for semantic info", async () => {
+    const { container } = render(
+      <DxcButton
+        label="Primary"
+        icon={iconSVG}
+        iconPosition="after"
+        margin="small"
+        mode="primary"
+        semantic="info"
+        title="Button Title"
+        size={{ width: "fitContent" }}
         type="button"
       />
     );
@@ -35,7 +103,79 @@ describe("Button component accessibility tests", () => {
         margin="small"
         mode="primary"
         title="Button Title"
-        size="fitContent"
+        size={{ width: "fitContent" }}
+        type="button"
+        disabled
+      />
+    );
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
+  });
+  it("Should not have basic accessibility issues for disabled mode for semantic error", async () => {
+    const { container } = render(
+      <DxcButton
+        label="Primary"
+        icon={iconSVG}
+        iconPosition="after"
+        margin="small"
+        mode="primary"
+        semantic="error"
+        title="Button Title"
+        size={{ width: "fitContent" }}
+        type="button"
+        disabled
+      />
+    );
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
+  });
+  it("Should not have basic accessibility issues for disabled mode for semantic warning", async () => {
+    const { container } = render(
+      <DxcButton
+        label="Primary"
+        icon={iconSVG}
+        iconPosition="after"
+        margin="small"
+        mode="primary"
+        semantic="warning"
+        title="Button Title"
+        size={{ width: "fitContent" }}
+        type="button"
+        disabled
+      />
+    );
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
+  });
+  it("Should not have basic accessibility issues for disabled mode for semantic success", async () => {
+    const { container } = render(
+      <DxcButton
+        label="Primary"
+        icon={iconSVG}
+        iconPosition="after"
+        margin="small"
+        mode="primary"
+        semantic="success"
+        title="Button Title"
+        size={{ width: "fitContent" }}
+        type="button"
+        disabled
+      />
+    );
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
+  });
+  it("Should not have basic accessibility issues for disabled mode for semantic info", async () => {
+    const { container } = render(
+      <DxcButton
+        label="Primary"
+        icon={iconSVG}
+        iconPosition="after"
+        margin="small"
+        mode="primary"
+        semantic="info"
+        title="Button Title"
+        size={{ width: "fitContent" }}
         type="button"
         disabled
       />
@@ -52,23 +192,159 @@ describe("Button component accessibility tests", () => {
         margin="small"
         mode="secondary"
         title="Button Title"
-        size="fitContent"
+        size={{ width: "fitContent" }}
         type="button"
       />
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
   });
-  it("Should not have basic accessibility issues for text mode", async () => {
+  it("Should not have basic accessibility issues for secondary mode for semantic error", async () => {
     const { container } = render(
       <DxcButton
         label="Primary"
         icon={iconSVG}
         iconPosition="after"
         margin="small"
-        mode="text"
+        mode="secondary"
+        semantic="error"
         title="Button Title"
-        size="fitContent"
+        size={{ width: "fitContent" }}
+        type="button"
+      />
+    );
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
+  });
+  it("Should not have basic accessibility issues for secondary mode for semantic warning", async () => {
+    const { container } = render(
+      <DxcButton
+        label="Primary"
+        icon={iconSVG}
+        iconPosition="after"
+        margin="small"
+        mode="secondary"
+        semantic="warning"
+        title="Button Title"
+        size={{ width: "fitContent" }}
+        type="button"
+      />
+    );
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
+  });
+  it("Should not have basic accessibility issues for secondary mode for semantic success", async () => {
+    const { container } = render(
+      <DxcButton
+        label="Primary"
+        icon={iconSVG}
+        iconPosition="after"
+        margin="small"
+        mode="secondary"
+        semantic="success"
+        title="Button Title"
+        size={{ width: "fitContent" }}
+        type="button"
+      />
+    );
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
+  });
+  it("Should not have basic accessibility issues for secondary mode for semantic info", async () => {
+    const { container } = render(
+      <DxcButton
+        label="Primary"
+        icon={iconSVG}
+        iconPosition="after"
+        margin="small"
+        mode="secondary"
+        semantic="info"
+        title="Button Title"
+        size={{ width: "fitContent" }}
+        type="button"
+      />
+    );
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
+  });
+  it("Should not have basic accessibility issues for tertiary mode", async () => {
+    const { container } = render(
+      <DxcButton
+        label="Primary"
+        icon={iconSVG}
+        iconPosition="after"
+        margin="small"
+        mode="tertiary"
+        title="Button Title"
+        size={{ width: "fitContent" }}
+        type="button"
+      />
+    );
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
+  });
+  it("Should not have basic accessibility issues for tertiary mode for semantic error", async () => {
+    const { container } = render(
+      <DxcButton
+        label="Primary"
+        icon={iconSVG}
+        iconPosition="after"
+        margin="small"
+        mode="tertiary"
+        semantic="error"
+        title="Button Title"
+        size={{ width: "fitContent" }}
+        type="button"
+      />
+    );
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
+  });
+  it("Should not have basic accessibility issues for tertiary mode for semantic warning", async () => {
+    const { container } = render(
+      <DxcButton
+        label="Primary"
+        icon={iconSVG}
+        iconPosition="after"
+        margin="small"
+        mode="tertiary"
+        semantic="warning"
+        title="Button Title"
+        size={{ width: "fitContent" }}
+        type="button"
+      />
+    );
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
+  });
+  it("Should not have basic accessibility issues for tertiary mode for semantic success", async () => {
+    const { container } = render(
+      <DxcButton
+        label="Primary"
+        icon={iconSVG}
+        iconPosition="after"
+        margin="small"
+        mode="tertiary"
+        semantic="success"
+        title="Button Title"
+        size={{ width: "fitContent" }}
+        type="button"
+      />
+    );
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
+  });
+  it("Should not have basic accessibility issues for tertiary mode for semantic info", async () => {
+    const { container } = render(
+      <DxcButton
+        label="Primary"
+        icon={iconSVG}
+        iconPosition="after"
+        margin="small"
+        mode="tertiary"
+        semantic="info"
+        title="Button Title"
+        size={{ width: "fitContent" }}
         type="button"
       />
     );

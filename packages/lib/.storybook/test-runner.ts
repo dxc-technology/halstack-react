@@ -57,38 +57,3 @@ const a11yConfig: TestRunnerConfig = {
     });
   },
 };
-
-export default a11yConfig;
-
-// // UNCOMMENT TO EXPORT RESULTS AS JSON IN __ACCESSIBILITY
-// const { injectAxe, getViolations } = require("axe-playwright");
-// const fs = require("fs");
-
-// const a11yConfig: TestRunnerConfig = {
-//   setup() {
-//     fs.mkdir(process.cwd() + "/src/__accessibility__/", { recursive: true }, (err) => {
-//       if (err) throw err;
-//     });
-//   },
-//   async preVisit(page, context) {
-//     await injectAxe(page);
-//   },
-//   async postVisit(page, context) {
-//     const violations = await getViolations(page, "#storybook-root", {
-//       detailedReport: true,
-//     });
-
-//     await new Promise((resolve, reject) => {
-//       fs.writeFile(
-//         process.cwd() + `/src/__accessibility__/${context.id}.json`,
-//         JSON.stringify(violations, null, 2),
-//         (err) => {
-//           if (err) reject(err);
-//           resolve();
-//         }
-//       );
-//     });
-//   },
-// };
-//
-// export default a11yConfig;

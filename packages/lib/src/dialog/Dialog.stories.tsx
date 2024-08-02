@@ -258,7 +258,7 @@ export const DialogWithInputs = () => (
             margin={{ bottom: "xsmall" }}
           />
           <DxcFlex justifyContent="flex-end" gap="0.5rem">
-            <DxcButton label="Cancel" mode="text" />
+            <DxcButton label="Cancel" mode="tertiary" />
             <DxcButton label="Save" />
           </DxcFlex>
         </DxcFlex>
@@ -279,7 +279,7 @@ const RespDialog = () => (
             <DxcTextInput size="fillParent" label="Surname" />
           </DxcFlex>
           <DxcFlex justifyContent="flex-end" gap="0.5rem">
-            <DxcButton label="Cancel" mode="text" />
+            <DxcButton label="Cancel" mode="tertiary" />
             <DxcButton label="Save" />
           </DxcFlex>
         </DxcFlex>
