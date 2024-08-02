@@ -26,7 +26,7 @@ export default {
 const columns: GridColumn[] = [
   {
     key: "id",
-    name: "ID",
+    label: "ID",
     resizable: true,
     sortable: true,
     draggable: false,
@@ -34,7 +34,7 @@ const columns: GridColumn[] = [
   },
   {
     key: "task",
-    name: "Title",
+    label: "Title",
     resizable: true,
     sortable: true,
     draggable: true,
@@ -43,7 +43,7 @@ const columns: GridColumn[] = [
   },
   {
     key: "complete",
-    name: " % Complete",
+    label: " % Complete",
     resizable: true,
     sortable: true,
     draggable: true,
@@ -52,7 +52,7 @@ const columns: GridColumn[] = [
   },
   {
     key: "priority",
-    name: "Priority",
+    label: "Priority",
     resizable: true,
     draggable: true,
     alignment: "center",
@@ -139,14 +139,14 @@ const expandableRows = [
 const childcolumns: GridColumn[] = [
   {
     key: "name",
-    name: "Name",
+    label: "Name",
     resizable: true,
     sortable: true,
     alignment: "center",
   },
   {
     key: "value",
-    name: "Value",
+    label: "Value",
     resizable: true,
     sortable: true,
     draggable: true,
@@ -214,7 +214,7 @@ const childRows: HierarchyGridRow[] = [
       },
     ],
   },
-];
+] as HierarchyGridRow[];
 
 export const Chromatic = () => {
   const [selectedRows, setSelectedRows] = useState((): Set<number | string> => new Set());

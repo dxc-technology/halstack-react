@@ -1,11 +1,11 @@
 export type GridColumn = {
   key: string;
-  name: string;
+  label: string;
   resizable?: boolean;
   sortable?: boolean;
   draggable?: boolean;
   textEditable?: boolean;
-  summaryKeyToRender?: string;
+  summaryKey?: string;
   alignment?: "left" | "right" | "center";
 };
 
@@ -14,8 +14,7 @@ export type GridRow = {
 };
 
 export type HierarchyGridRow = GridRow & {
-  childRows?: HierarchyGridRow[];
-  rowLevel?: number;
+  childRows?: HierarchyGridRow[] | GridRow[];
 };
 
 export type ExpandableGridRow = GridRow & {
@@ -57,7 +56,7 @@ type Props =
   | ({
       columns: GridColumn[];
       rows: GridRow[];
-      expandable?: never;
+      expandable?: never | false;
       summaryRow?: GridRow;
     } & SelectableGridProps)
   | (ExpandableRows & SelectableGridProps)

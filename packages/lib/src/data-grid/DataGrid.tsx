@@ -53,9 +53,7 @@ const DxcDataGrid = ({
           maxWidth: 50,
           width: 50,
           colSpan(args) {
-            return args.type === "ROW" && args.row.isExpandedChildContent
-              ? columns.length + (selectable ? 1 : 0)
-              : undefined;
+            return args.type === "ROW" && args.row.isExpandedChildContent ? columns.length + 1 : undefined;
           },
           renderCell({ row }) {
             if (row.isExpandedChildContent) {
@@ -65,7 +63,7 @@ const DxcDataGrid = ({
             // if row has expandable content
             return (
               <ActionContainer>
-                {renderExpandableTrigger(row, rowsToRender, uniqueRowId, setRowsToRender)}
+                {row.expandedContent && renderExpandableTrigger(row, rowsToRender, uniqueRowId, setRowsToRender)}
               </ActionContainer>
             );
           },
@@ -203,11 +201,12 @@ const DxcDataGrid = ({
           ) {
             return row.expandedContentHeight;
           }
-          return 36;
+          return 60;
         }}
         selectedRows={selectedRows}
         bottomSummaryRows={summaryRow ? [summaryRow] : undefined}
-        headerRowHeight={48}
+        headerRowHeight={60}
+        summaryRowHeight={60}
         className="fill-grid"
       />
     </DataGridContainer>
@@ -233,7 +232,7 @@ const HierarchyContainer = styled.div<{
     border: 0px;
     cursor: pointer;
     width: 100%;
-    height: 36px;
+    height: 60px;
     text-align: left;
   }
 `;

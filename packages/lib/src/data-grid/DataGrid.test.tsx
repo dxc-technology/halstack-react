@@ -1,13 +1,12 @@
 import { findAllByRole, fireEvent, getAllByRole, render, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import DxcDataGrid from "./DataGrid";
-import { screen } from "@storybook/test";
-import { GridColumn } from "./types";
+import { GridColumn, HierarchyGridRow } from "./types";
 
 const columns: GridColumn[] = [
   {
     key: "id",
-    name: "ID",
+    label: "ID",
     resizable: true,
     sortable: true,
     draggable: false,
@@ -15,7 +14,7 @@ const columns: GridColumn[] = [
   },
   {
     key: "complete",
-    name: " % Complete",
+    label: " % Complete",
     resizable: true,
     sortable: true,
     draggable: true,
@@ -49,6 +48,45 @@ const expandableRows = [
     expandedContent: <div> Custom content 5</div>,
   },
 ];
+
+const rowsWithChildren: HierarchyGridRow[] = [
+  {
+    id: 1,
+    complete: 46,
+    childRows: [
+      {
+        id: 1.1,
+        complete: 46,
+        childRows: [
+          {
+            id: "1.1a",
+            complete: 46,
+          },
+        ],
+      },
+      {
+        complete: 46,
+        value: 1.2,
+      },
+    ],
+  },
+  {
+    id: 2,
+    complete: 51,
+  },
+  {
+    id: 3,
+    complete: 40,
+  },
+  {
+    id: 4,
+    complete: 10,
+  },
+  {
+    id: 5,
+    complete: 1,
+  },
+] as HierarchyGridRow[];
 
 describe("Data grid component tests", () => {
   beforeAll(() => {

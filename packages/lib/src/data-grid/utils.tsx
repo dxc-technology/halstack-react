@@ -35,7 +35,7 @@ const checkboxTheme = {
 export const convertToRDGColumns = (gridColumn: GridColumn, summaryRow?: GridRow): Column<any, any> => {
   return {
     key: gridColumn.key,
-    name: gridColumn.name,
+    name: gridColumn.label,
     resizable: gridColumn.resizable,
     sortable: gridColumn.sortable,
     draggable: gridColumn.draggable,
@@ -50,9 +50,9 @@ export const convertToRDGColumns = (gridColumn: GridColumn, summaryRow?: GridRow
       );
     },
     renderSummaryCell: () => {
-      return gridColumn.summaryKeyToRender ? (
+      return gridColumn.summaryKey ? (
         <div className={`ellipsis-cell ${gridColumn.alignment ? "align-" + gridColumn.alignment : "align-left"}`}>
-          {summaryRow?.[gridColumn.summaryKeyToRender]}
+          {summaryRow?.[gridColumn.summaryKey]}
         </div>
       ) : undefined;
     },
@@ -128,7 +128,8 @@ export const renderHierarchyTrigger = (
         if (!triggerRow.visibleChildren) {
           const rowIndex = rows.findIndex((rowToRender) => triggerRow === rowToRender);
           triggerRow.childRows?.map((childRow: HierarchyGridRow, index: number) => {
-            childRow.rowLevel = triggerRow.rowLevel ? triggerRow.rowLevel + 1 : 1;
+            childRow.rowLevel =
+              triggerRow.rowLevel && typeof triggerRow.rowLevel === "number" ? triggerRow.rowLevel + 1 : 1;
             childRow.parentKey = rowKeyGetter(triggerRow, uniqueRowId);
             addRow(newRowsToRender, rowIndex + 1 + index, childRow);
           });
