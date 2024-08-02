@@ -48,7 +48,7 @@ const columns: GridColumn[] = [
     sortable: true,
     draggable: true,
     alignment: "right",
-    summaryKeyToRender: "label",
+    summaryKey: "label",
   },
   {
     key: "priority",
@@ -56,7 +56,7 @@ const columns: GridColumn[] = [
     resizable: true,
     draggable: true,
     alignment: "center",
-    summaryKeyToRender: "total",
+    summaryKey: "total",
   },
 ];
 
