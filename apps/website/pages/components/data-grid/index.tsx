@@ -7,7 +7,7 @@ const Usage = () => {
   return (
     <>
       <Head>
-        <title>Date Input — Halstack Design System</title>
+        <title>Data Grid — Halstack Design System</title>
       </Head>
       <DataGridCodePage />
     </>

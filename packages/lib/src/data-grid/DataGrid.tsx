@@ -225,7 +225,7 @@ const ActionContainer = styled.div`
 const HierarchyContainer = styled.div<{
   level: number;
 }>`
-  padding-left: calc(10px * ${(props) => props.level});
+  padding-left: calc(24px * ${(props) => props.level});
   button {
     padding: 0px;
     background: transparent;

@@ -40,8 +40,19 @@ const sections = [
     title: "Accessibility",
     subSections: [
       {
-        title: "WCAG 2.2",
-        content: <></>,
+        title: "WAI-ARIA",
+        content: (
+          <>
+            <DxcBulletedList>
+              <DxcBulletedList.Item>
+                WAI-ARIA authoring practices -{" "}
+                <DxcLink href="https://www.w3.org/WAI/ARIA/apg/patterns/grid/examples/data-grids/" newWindow>
+                  Data Grid Examples
+                </DxcLink>
+              </DxcBulletedList.Item>
+            </DxcBulletedList>
+          </>
+        ),
       },
     ],
   },
