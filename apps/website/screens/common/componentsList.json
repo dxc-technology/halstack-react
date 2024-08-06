@@ -11,11 +11,6 @@
     "path": "/components/badge",
     "status": "new"
   },
-  {
-    "label": "Bar Chart",
-    "path": "/components/bar-chart",
-    "status": "new"
-  },
   { "label": "Bleed", "path": "/components/bleed", "status": "stable" },
   { "label": "Box", "path": "/components/box", "status": "deprecated" },
   {
