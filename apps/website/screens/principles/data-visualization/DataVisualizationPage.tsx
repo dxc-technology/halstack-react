@@ -11,6 +11,7 @@ import colorPalette from "./images/bar_chart_color_palette.png";
 import barChartVariants from "./images/bar_chart_variants.png";
 import Example from "@/common/example/Example";
 import themeBarChart from "./examples/barChart";
+import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
 
 const sections = [
   {
@@ -129,9 +130,61 @@ const sections = [
       {
         title: "Variants",
         content: (
-          <Figure caption="Summary of all the Bar Chart variants">
+          <>
             <Image src={barChartVariants} alt="Bar chart variants" />
-          </Figure>
+            <DxcTable>
+              <thead>
+                <tr>
+                  <th>Variant</th>
+                  <HeaderDescriptionCell>Description</HeaderDescriptionCell>
+                  <th>Use case</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <strong>Vertical</strong>
+                  </td>
+                  <td>
+                    Bars are oriented vertically with the X-axis representing categories and the Y-axis representing
+                    values.
+                  </td>
+                  <td>Comparing quantities across different categories.</td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong>Stacked</strong>
+                  </td>
+                  <td>
+                    Bars are stacked on top of each other. Each stack segment represents a different sub-category.
+                  </td>
+                  <td>
+                    Showing the composition of each category, as well as comparing total values across categories.
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong>Grouped</strong>
+                  </td>
+                  <td>
+                    In a grouped bar chart, bars representing different sub-categories are placed next to each other,
+                    rather than stacked, for each main category.
+                  </td>
+                  <td>More direct comparison of sub-category values across different main categories.</td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong>Horizontal</strong>
+                  </td>
+                  <td>
+                    Bars are oriented horizontally with the Y-axis representing categories and the X-axis representing
+                    values.
+                  </td>
+                  <td>Comparing quantities across different categories, especially when category names are long.</td>
+                </tr>
+              </tbody>
+            </DxcTable>
+          </>
         ),
       },
     ],
@@ -256,7 +309,17 @@ const sections = [
         <DxcParagraph>
           Here is an example on how to apply our design tokens to a bar chart using the Cloudscape theming strategy.
         </DxcParagraph>
-        {/* <Example example={themeBarChart} defaultIsVisible /> */}
+        <DxcParagraph>
+          For a more detailed explanation on how to style Cloudscape components, please refer to their{" "}
+          <Link href="https://cloudscape.design/foundation/visual-foundation/theming/" passHref legacyBehavior>
+            <DxcLink>theming documentation</DxcLink>
+          </Link>
+          . The complete list of data visualization color design tokens can be found{" "}
+          <Link href="https://cloudscape.design/foundation/visual-foundation/data-vis-colors/" passHref legacyBehavior>
+            <DxcLink>here</DxcLink>
+          </Link>.
+        </DxcParagraph>
+        <Example example={themeBarChart} defaultIsVisible />
       </>
     ),
   },

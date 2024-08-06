@@ -1,4 +1,4 @@
-import { applyTheme } from '@cloudscape-design/components/theming';
+import { applyTheme } from "@cloudscape-design/components/theming";
 import { BarChart } from "@cloudscape-design/components";
 import { DxcHeading, DxcInset } from "@dxc-technology/halstack-react";
 
@@ -45,10 +45,7 @@ const code = `() => {
       colorChartsPaletteCategorical11: CoreColorTokens.color_orange_800,
       colorChartsPaletteCategorical12: CoreColorTokens.color_yellow_900,
       colorChartsThresholdNeutral: CoreColorTokens.color_grey_700,
-      fontFamilyBase: "Open Sans, sans-serif",
-      fontSizeBodyS: "12px",
       colorTextBodySecondary: CoreColorTokens.color_grey_700,
-      fontSizeBodyM: "14px",
       colorTextBodyDefault: CoreColorTokens.color_grey_900,
     },
   };
@@ -56,9 +53,9 @@ const code = `() => {
 
   return (
     <DxcInset space="2rem">
-      <DxcHeading text="Bar chart theming example" level={2} />
+      <DxcHeading text="Bar chart themed" level={2} margin={{ bottom: "medium" }} />
       <BarChart
-        data={[
+        series={[
           {
             title: "Series 1",
             type: "bar",
@@ -81,6 +78,7 @@ const code = `() => {
         xTitle="X Axis"
         yTitle="Y Axis"
         legendTitle="Legend"
+        hideFilter
       />
     </DxcInset>
   );
