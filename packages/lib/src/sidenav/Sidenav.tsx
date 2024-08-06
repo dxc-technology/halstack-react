@@ -18,7 +18,7 @@ const DxcSidenav = ({ title, children }: SidenavPropsType): JSX.Element => {
   const colorsTheme = useTheme();
 
   return (
-    <ThemeProvider theme={colorsTheme.sidenav}>
+    <ThemeProvider theme={colorsTheme?.sidenav}>
       <SidenavContainer>
         {title}
         <DxcFlex direction="column" gap="1rem">

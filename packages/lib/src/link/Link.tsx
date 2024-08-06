@@ -41,7 +41,7 @@ const DxcLink = forwardRef(
     const colorsTheme = useTheme();
 
     return (
-      <ThemeProvider theme={colorsTheme.link}>
+      <ThemeProvider theme={colorsTheme?.link}>
         <StyledLink
           as={href ? "a" : "button"}
           tabIndex={tabIndex}

@@ -82,7 +82,7 @@ type Props = {
    * This function will be called when the user hovers a tab.The index of the
    * hovered tab will be passed as a parameter.
    */
-  onTabHover?: (index: number) => void;
+  onTabHover?: (index: number | null) => void;
   /**
    * Size of the margin to be applied to the component ('xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge').
    * You can pass an object with 'top', 'bottom', 'left' and 'right' properties in order to specify different margin sizes.

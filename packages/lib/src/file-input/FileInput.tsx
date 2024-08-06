@@ -17,7 +17,7 @@ const getFilePreview = async (file: File): Promise<string> =>
             const reader = new FileReader();
             reader.readAsDataURL(file);
             reader.onload = (e) => {
-              resolve(e.target.result as string);
+              resolve(e?.target?.result as string);
             };
           })
         : "draft";
@@ -62,10 +62,10 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
     const translatedLabels = useTranslatedLabels();
 
     const checkFileSize = (file: File) =>
-      file.size < minSize
-        ? translatedLabels.fileInput.fileSizeGreaterThanErrorMessage
-        : file.size > maxSize
-          ? translatedLabels.fileInput.fileSizeLessThanErrorMessage
+      minSize && file.size < minSize
+        ? translatedLabels?.fileInput?.fileSizeGreaterThanErrorMessage
+        : maxSize && file.size > maxSize
+          ? translatedLabels?.fileInput?.fileSizeLessThanErrorMessage
           : undefined;
 
     const getFilesToAdd = async (selectedFiles: File[]) => {
@@ -157,7 +157,7 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
     }, [value]);
 
     return (
-      <ThemeProvider theme={colorsTheme.fileInput}>
+      <ThemeProvider theme={colorsTheme?.fileInput}>
         <FileInputContainer margin={margin} ref={ref}>
           <Label htmlFor={fileInputId} disabled={disabled}>
             {label}
@@ -179,8 +179,8 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
                 label={
                   buttonLabel ??
                   (multiple
-                    ? translatedLabels.fileInput.multipleButtonLabelDefault
-                    : translatedLabels.fileInput.singleButtonLabelDefault)
+                    ? translatedLabels?.fileInput?.multipleButtonLabelDefault
+                    : translatedLabels?.fileInput?.singleButtonLabelDefault)
                 }
                 onClick={handleClick}
                 disabled={disabled}
@@ -227,7 +227,7 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
               >
                 <DxcButton
                   mode="secondary"
-                  label={buttonLabel ?? translatedLabels.fileInput.dropAreaButtonLabelDefault}
+                  label={buttonLabel ?? translatedLabels?.fileInput?.dropAreaButtonLabelDefault}
                   onClick={handleClick}
                   disabled={disabled}
                   size={{ width: "fitContent" }}
@@ -236,15 +236,15 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
                   <DropzoneLabel disabled={disabled}>
                     {dropAreaLabel ??
                       (multiple
-                        ? translatedLabels.fileInput.multipleDropAreaLabelDefault
-                        : translatedLabels.fileInput.singleDropAreaLabelDefault)}
+                        ? translatedLabels?.fileInput?.multipleDropAreaLabelDefault
+                        : translatedLabels?.fileInput?.singleDropAreaLabelDefault)}
                   </DropzoneLabel>
                 ) : (
                   <FiledropLabel disabled={disabled}>
                     {dropAreaLabel ??
                       (multiple
-                        ? translatedLabels.fileInput.multipleDropAreaLabelDefault
-                        : translatedLabels.fileInput.singleDropAreaLabelDefault)}
+                        ? translatedLabels?.fileInput?.multipleDropAreaLabelDefault
+                        : translatedLabels?.fileInput?.singleDropAreaLabelDefault)}
                   </FiledropLabel>
                 )}
               </DragDropArea>

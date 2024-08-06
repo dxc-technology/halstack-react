@@ -11,12 +11,12 @@ import TablePropsType, { ActionCellsPropsType } from "./types";
 
 const overwriteTheme = (theme: DeepPartial<AdvancedTheme>) => {
   const newTheme = dropdownTheme;
-  newTheme.dropdown.buttonBackgroundColor = theme.table.actionBackgroundColor;
-  newTheme.dropdown.hoverButtonBackgroundColor = theme.table.hoverActionBackgroundColor;
-  newTheme.dropdown.activeButtonBackgroundColor = theme.table.activeActionBackgroundColor;
-  newTheme.dropdown.buttonIconColor = theme.table.actionIconColor;
-  newTheme.dropdown.disabledColor = theme.table.disabledActionIconColor;
-  newTheme.dropdown.disabledButtonBackgroundColor = theme.table.disabledActionBackgroundColor;
+  newTheme.dropdown.buttonBackgroundColor = theme?.table?.actionBackgroundColor ?? "";
+  newTheme.dropdown.hoverButtonBackgroundColor = theme?.table?.hoverActionBackgroundColor ?? "";
+  newTheme.dropdown.activeButtonBackgroundColor = theme?.table?.activeActionBackgroundColor ?? "";
+  newTheme.dropdown.buttonIconColor = theme?.table?.actionIconColor ?? "";
+  newTheme.dropdown.disabledColor = theme?.table?.disabledActionIconColor ?? "";
+  newTheme.dropdown.disabledButtonBackgroundColor = theme?.table?.disabledActionBackgroundColor ?? "";
   return newTheme;
 };
 
@@ -44,7 +44,7 @@ export const DxcActionsCell = ({ actions }: ActionCellsPropsType): JSX.Element =
       {actionDropdown && (
         <HalstackProvider advancedTheme={overwriteTheme(colorsTheme)} key="provider-dropdown">
           <DxcDropdown
-            options={actionDropdown.options}
+            options={actionDropdown.options ?? []}
             onSelectOption={actionDropdown.onClick}
             disabled={actionDropdown.disabled}
             icon="more_vert"
@@ -61,7 +61,7 @@ const DxcTable = ({ children, margin, mode = "default" }: TablePropsType): JSX.E
   const colorsTheme = useTheme();
 
   return (
-    <ThemeProvider theme={colorsTheme.table}>
+    <ThemeProvider theme={colorsTheme?.table}>
       <DxcTableContainer margin={margin}>
         <DxcTableContent mode={mode}>{children}</DxcTableContent>
       </DxcTableContainer>

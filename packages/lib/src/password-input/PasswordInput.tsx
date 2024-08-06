@@ -36,7 +36,7 @@ const DxcPasswordInput = forwardRef<RefType, PasswordInputPropsType>(
     ref
   ) => {
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-    const inputRef = useRef<HTMLDivElement>(null);
+    const inputRef = useRef<HTMLDivElement | null>(null);
     const { passwordInput } = useTranslatedLabels();
 
     useEffect(() => {

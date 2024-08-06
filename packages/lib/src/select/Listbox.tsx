@@ -111,7 +111,7 @@ const Listbox = ({
           <NoMatchesFoundIcon>
             <DxcIcon icon="search_off" />
           </NoMatchesFoundIcon>
-          {translatedLabels.select.noMatchesErrorMessage}
+          {translatedLabels?.select?.noMatchesErrorMessage}
         </OptionsSystemMessage>
       ) : (
         optional &&

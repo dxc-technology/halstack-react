@@ -115,7 +115,7 @@ const DxcResultsetTable = ({
   }, [rows.length]);
 
   return (
-    <ThemeProvider theme={colorsTheme.table}>
+    <ThemeProvider theme={colorsTheme?.table}>
       <DxcResultsetTableContainer margin={margin}>
         <DxcTable mode={mode}>
           <thead>
@@ -179,7 +179,7 @@ const DxcResultsetTable = ({
   );
 };
 
-const calculateWidth = (margin: string | object) =>
+const calculateWidth = (margin: ResultsetTablePropsType["margin"]) =>
   `calc(100% - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`;
 
 const DxcResultsetTableContainer = styled.div<{

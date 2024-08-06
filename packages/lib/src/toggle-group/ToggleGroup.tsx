@@ -24,7 +24,7 @@ const DxcToggleGroup = ({
 
   const colorsTheme = useTheme();
 
-  const handleToggleChange = (selectedOption) => {
+  const handleToggleChange = (selectedOption: number) => {
     let newSelectedOptions;
 
     if (value == null) {
@@ -53,7 +53,7 @@ const DxcToggleGroup = ({
     onChange?.(multiple ? newSelectedOptions : selectedOption);
   };
 
-  const handleOnKeyDown = (event, optionValue) => {
+  const handleOnKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>, optionValue: number) => {
     switch (event.key) {
       case "Enter":
       case " ":
@@ -66,7 +66,7 @@ const DxcToggleGroup = ({
   };
 
   return (
-    <ThemeProvider theme={colorsTheme.toggleGroup}>
+    <ThemeProvider theme={colorsTheme?.toggleGroup}>
       <ToggleGroup margin={margin}>
         <Label id={toggleGroupLabelId} disabled={disabled}>
           {label}
@@ -95,7 +95,7 @@ const DxcToggleGroup = ({
                 }}
                 tabIndex={!disabled ? tabIndex : -1}
                 hasIcon={option.icon}
-                optionLabel={option.label}
+                optionLabel={option.label ?? ""}
                 selected={
                   multiple
                     ? value
@@ -108,7 +108,7 @@ const DxcToggleGroup = ({
               >
                 <DxcFlex alignItems="center">
                   {option.icon && (
-                    <IconContainer optionLabel={option.label}>
+                    <IconContainer optionLabel={option.label ?? ""}>
                       {typeof option.icon === "string" ? <DxcIcon icon={option.icon} /> : option.icon}
                     </IconContainer>
                   )}

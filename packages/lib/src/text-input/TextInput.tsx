@@ -27,9 +27,9 @@ const AutosuggestWrapper = ({ condition, wrapper, children }: AutosuggestWrapper
 const calculateWidth = (margin, size) =>
   size === "fillParent"
     ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
-    : sizes[size];
+    : size && sizes[size];
 
-const makeCancelable = (promise) => {
+const makeCancelable = (promise: Promise<string[]>) => {
   let hasCanceled_ = false;
   const wrappedPromise = new Promise<string[]>((resolve, reject) => {
     promise.then(
@@ -46,7 +46,7 @@ const makeCancelable = (promise) => {
 };
 
 const hasSuggestions = (suggestions: TextInputPropsType["suggestions"]) =>
-  typeof suggestions === "function" || suggestions?.length > 0;
+  typeof suggestions === "function" || (suggestions && suggestions?.length > 0);
 
 const isRequired = (value: string, optional: boolean) => value === "" && !optional;
 
@@ -99,9 +99,9 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
     const [filteredSuggestions, changeFilteredSuggestions] = useState([]);
     const [visualFocusIndex, changeVisualFocusIndex] = useState(-1);
 
-    const inputRef = useRef(null);
-    const inputContainerRef = useRef(null);
-    const actionRef = useRef(null);
+    const inputRef = useRef<HTMLInputElement | null>(null);
+    const inputContainerRef = useRef<HTMLDivElement | null>(null);
+    const actionRef = useRef<HTMLButtonElement | null>(null);
 
     const width = useWidth(inputContainerRef.current);
     const colorsTheme = useTheme();
@@ -151,14 +151,16 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
       </Popover.Root>
     );
     const getNumberErrorMessage = (checkedValue: number) =>
-      checkedValue < numberInputContext?.minNumber
-        ? translatedLabels.numberInput.valueGreaterThanOrEqualToErrorMessage(numberInputContext.minNumber)
-        : checkedValue > numberInputContext?.maxNumber
-          ? translatedLabels.numberInput.valueLessThanOrEqualToErrorMessage(numberInputContext.maxNumber)
-          : undefined;
+      numberInputContext?.minNumber && numberInputContext?.maxNumber
+        ? checkedValue < numberInputContext?.minNumber
+          ? translatedLabels?.numberInput?.valueGreaterThanOrEqualToErrorMessage?.(numberInputContext.minNumber)
+          : checkedValue > numberInputContext?.maxNumber
+            ? translatedLabels?.numberInput?.valueLessThanOrEqualToErrorMessage?.(numberInputContext.maxNumber)
+            : undefined
+        : undefined;
 
     const openSuggestions = () => {
-      if (hasSuggestions) {
+      if (hasSuggestions(suggestions)) {
         changeIsOpen(true);
       }
     };
@@ -179,20 +181,22 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
       if (isRequired(formattedValue, optional)) {
         onChange?.({
           value: formattedValue,
-          error: translatedLabels.formFields.requiredValueErrorMessage,
+          error: translatedLabels?.formFields?.requiredValueErrorMessage,
         });
-      } else if (isLengthIncorrect(formattedValue, minLength, maxLength)) {
+      } else if (minLength != null && maxLength != null && isLengthIncorrect(formattedValue, minLength, maxLength)) {
         onChange?.({
           value: formattedValue,
-          error: translatedLabels.formFields.lengthErrorMessage(minLength, maxLength),
+          error: translatedLabels?.formFields?.lengthErrorMessage?.(minLength, maxLength),
         });
-      } else if (patternMismatch(pattern, formattedValue)) {
+      } else if (pattern != null && patternMismatch(pattern, formattedValue)) {
         onChange?.({
           value: formattedValue,
-          error: translatedLabels.formFields.formatRequestedErrorMessage,
+          error: translatedLabels?.formFields?.formatRequestedErrorMessage,
         });
       } else if (
         numberInputContext?.typeNumber === "number" &&
+        numberInputContext?.minNumber != null &&
+        numberInputContext?.maxNumber != null &&
         isNumberIncorrect(Number(newValue), numberInputContext?.minNumber, numberInputContext?.maxNumber)
       ) {
         onChange?.({
@@ -211,20 +215,23 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
           Math.round((numberValue - (numberInputContext?.stepNumber || 1) + Number.EPSILON) * 100) / 100;
 
         if (currentValue !== "") {
-          if (numberValue < numberInputContext?.minNumber || steppedValue < numberInputContext?.minNumber) {
+          if (
+            numberInputContext?.minNumber != null &&
+            (numberValue < numberInputContext?.minNumber || steppedValue < numberInputContext?.minNumber)
+          ) {
             changeValue(numberValue);
-          } else if (numberValue > numberInputContext?.maxNumber) {
+          } else if (numberInputContext?.maxNumber != null && numberValue > numberInputContext?.maxNumber) {
             changeValue(numberInputContext?.maxNumber);
-          } else if (numberValue === numberInputContext?.minNumber) {
+          } else if (numberInputContext?.minNumber != null && numberValue === numberInputContext?.minNumber) {
             changeValue(numberInputContext?.minNumber);
           } else {
             changeValue(steppedValue);
           }
-        } else if (numberInputContext?.minNumber >= 0) {
+        } else if (numberInputContext?.minNumber != null && numberInputContext?.minNumber >= 0) {
           changeValue(numberInputContext?.minNumber);
-        } else if (numberInputContext?.maxNumber < 0) {
+        } else if (numberInputContext?.maxNumber != null && numberInputContext?.maxNumber < 0) {
           changeValue(numberInputContext?.maxNumber);
-        } else {
+        } else if (numberInputContext?.stepNumber != null) {
           changeValue(-numberInputContext.stepNumber);
         }
       }
@@ -236,20 +243,23 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
           Math.round((numberValue + (numberInputContext?.stepNumber || 1) + Number.EPSILON) * 100) / 100;
 
         if (currentValue !== "") {
-          if (numberValue > numberInputContext?.maxNumber || steppedValue > numberInputContext?.maxNumber) {
+          if (
+            numberInputContext?.maxNumber != null &&
+            (numberValue > numberInputContext?.maxNumber || steppedValue > numberInputContext?.maxNumber)
+          ) {
             changeValue(numberValue);
-          } else if (numberValue < numberInputContext?.minNumber) {
+          } else if (numberInputContext?.minNumber != null && numberValue < numberInputContext?.minNumber) {
             changeValue(numberInputContext?.minNumber);
-          } else if (numberValue === numberInputContext?.maxNumber) {
+          } else if (numberInputContext?.maxNumber != null && numberValue === numberInputContext?.maxNumber) {
             changeValue(numberInputContext?.maxNumber);
           } else {
             changeValue(steppedValue);
           }
-        } else if (numberInputContext?.minNumber > 0) {
+        } else if (numberInputContext?.minNumber != null && numberInputContext?.minNumber > 0) {
           changeValue(numberInputContext?.minNumber);
-        } else if (numberInputContext?.maxNumber <= 0) {
+        } else if (numberInputContext?.maxNumber != null && numberInputContext?.maxNumber <= 0) {
           changeValue(numberInputContext?.maxNumber);
-        } else {
+        } else if (numberInputContext?.stepNumber != null) {
           changeValue(numberInputContext.stepNumber);
         }
       }
@@ -257,7 +267,7 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
 
     const handleInputContainerOnClick = () => {
       if (document.activeElement !== actionRef.current) {
-        inputRef.current.focus();
+        inputRef?.current?.focus();
       }
     };
     const handleInputContainerOnMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
@@ -277,21 +287,27 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
       if (isRequired(event.target.value, optional)) {
         onBlur?.({
           value: event.target.value,
-          error: translatedLabels.formFields.requiredValueErrorMessage,
+          error: translatedLabels?.formFields?.requiredValueErrorMessage,
         });
-      } else if (isLengthIncorrect(event.target.value, minLength, maxLength)) {
+      } else if (
+        minLength != null &&
+        maxLength != null &&
+        isLengthIncorrect(event.target.value, minLength, maxLength)
+      ) {
         onBlur?.({
           value: event.target.value,
-          error: translatedLabels.formFields.lengthErrorMessage(minLength, maxLength),
+          error: translatedLabels?.formFields?.lengthErrorMessage?.(minLength, maxLength),
         });
-      } else if (patternMismatch(pattern, event.target.value)) {
+      } else if (pattern != null && patternMismatch(pattern, event.target.value)) {
         onBlur?.({
           value: event.target.value,
-          error: translatedLabels.formFields.formatRequestedErrorMessage,
+          error: translatedLabels?.formFields?.formatRequestedErrorMessage,
         });
       } else if (
         numberInputContext?.typeNumber === "number" &&
-        isNumberIncorrect(Number(event.target.value), numberInputContext?.minNumber, numberInputContext?.maxNumber)
+        numberInputContext?.minNumber != null &&
+        numberInputContext?.maxNumber != null &&
+        (Number(event.target.value), numberInputContext?.minNumber, numberInputContext?.maxNumber)
       ) {
         onBlur?.({
           value: event.target.value,
@@ -311,12 +327,12 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
           } else {
             openSuggestions();
             if (!isAutosuggestError && !isSearching && filteredSuggestions.length > 0) {
-              changeVisualFocusIndex((visualFocusedSuggIndex) =>
+              changeVisualFocusIndex((visualFocusedSuggIndex: number) =>
                 visualFocusedSuggIndex < filteredSuggestions.length - 1
                   ? visualFocusedSuggIndex + 1
                   : visualFocusedSuggIndex === filteredSuggestions.length - 1
                     ? 0
-                    : undefined
+                    : -1
               );
             }
           }
@@ -333,7 +349,7 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
                 visualFocusedSuggIndex === 0 || visualFocusedSuggIndex === -1
                   ? filteredSuggestions.length > 0
                     ? filteredSuggestions.length - 1
-                    : suggestions.length - 1
+                    : (suggestions?.length ?? 0) - 1
                   : visualFocusedSuggIndex - 1
               );
             }
@@ -371,16 +387,16 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
     const handleNumberInputWheel = (event: React.WheelEvent<HTMLInputElement>) => {
       if (document.activeElement === inputRef.current) {
         if (event.deltaY < 0) {
-          incrementNumber(inputRef.current.value);
+          incrementNumber(inputRef?.current?.value);
         } else {
-          decrementNumber(inputRef.current.value);
+          decrementNumber(inputRef?.current?.value);
         }
       }
     };
 
     const handleClearActionOnClick = () => {
       changeValue("");
-      inputRef.current.focus();
+      inputRef?.current?.focus();
       if (suggestions) {
         closeSuggestions();
       }
@@ -388,21 +404,21 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
 
     const handleDecrementActionOnClick = () => {
       decrementNumber();
-      inputRef.current.focus();
+      inputRef?.current?.focus();
     };
     const handleIncrementActionOnClick = () => {
       incrementNumber();
-      inputRef.current.focus();
+      inputRef?.current?.focus();
     };
 
     const setNumberProps = (type: string, min: number, max: number, step: number) => {
       if (min) {
-        inputRef?.current?.setAttribute("min", min);
+        inputRef?.current?.setAttribute("min", min.toString());
       }
       if (max) {
-        inputRef?.current?.setAttribute("max", max);
+        inputRef?.current?.setAttribute("max", max.toString());
       }
-      inputRef?.current?.setAttribute("step", step);
+      inputRef?.current?.setAttribute("step", step.toString());
       inputRef?.current?.setAttribute("type", type);
     };
 
@@ -430,7 +446,7 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
           cancelablePromise.cancel();
         };
       }
-      if (suggestions?.length > 0) {
+      if (suggestions && suggestions?.length > 0) {
         changeFilteredSuggestions(
           suggestions.filter((suggestion) => suggestion.toUpperCase().startsWith((value ?? innerValue).toUpperCase()))
         );
@@ -448,11 +464,11 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
     }, [value, innerValue, suggestions, numberInputContext]);
 
     return (
-      <ThemeProvider theme={colorsTheme.textInput}>
+      <ThemeProvider theme={colorsTheme?.textInput}>
         <TextInputContainer margin={margin} size={size} ref={ref}>
           {label && (
             <Label htmlFor={inputId} disabled={disabled} hasHelperText={!!helperText}>
-              {label} {optional && <OptionalLabel>{translatedLabels.formFields.optionalLabel}</OptionalLabel>}
+              {label} {optional && <OptionalLabel>{translatedLabels?.formFields?.optionalLabel}</OptionalLabel>}
             </Label>
           )}
           {helperText && <HelperText disabled={disabled}>{helperText}</HelperText>}
@@ -513,7 +529,7 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
                     onClick={handleClearActionOnClick}
                     icon="close"
                     tabIndex={tabIndex}
-                    title={translatedLabels.textInput.clearFieldActionTitle}
+                    title={translatedLabels?.textInput?.clearFieldActionTitle ?? ""}
                   />
                 )}
                 {numberInputContext?.typeNumber === "number" && (
@@ -523,7 +539,7 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
                       icon="remove"
                       tabIndex={tabIndex}
                       ref={actionRef}
-                      title={translatedLabels.numberInput.decrementValueTitle}
+                      title={translatedLabels?.numberInput?.decrementValueTitle ?? ""}
                       disabled={disabled}
                     />
                     <DxcActionIcon
@@ -531,7 +547,7 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
                       icon="add"
                       tabIndex={tabIndex}
                       ref={actionRef}
-                      title={translatedLabels.numberInput.incrementValueTitle}
+                      title={translatedLabels?.numberInput?.incrementValueTitle ?? ""}
                       disabled={disabled}
                     />
                   </>
@@ -542,7 +558,7 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
                     icon={action.icon}
                     tabIndex={tabIndex}
                     ref={actionRef}
-                    title={action.title}
+                    title={action.title ?? ""}
                     disabled={disabled}
                   />
                 )}

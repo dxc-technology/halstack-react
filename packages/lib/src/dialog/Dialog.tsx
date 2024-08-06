@@ -34,7 +34,7 @@ const DxcDialog = ({
   }, [onCloseClick]);
 
   return (
-    <ThemeProvider theme={colorsTheme.dialog}>
+    <ThemeProvider theme={colorsTheme?.dialog}>
       <BodyStyle />
       {createPortal(
         <DialogContainer>
@@ -53,7 +53,7 @@ const DxcDialog = ({
                   onClick={() => {
                     onCloseClick?.();
                   }}
-                  aria-label={translatedLabels.dialog.closeIconAriaLabel}
+                  aria-label={translatedLabels?.dialog?.closeIconAriaLabel}
                   tabIndex={tabIndex}
                 >
                   <DxcIcon icon="close" />

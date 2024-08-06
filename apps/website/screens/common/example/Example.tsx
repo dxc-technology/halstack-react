@@ -34,7 +34,7 @@ const Example = ({ actionsVisible = true, defaultIsVisible = false, example }: E
   const [isCodeVisible, changeIsCodeVisible] = useState(defaultIsVisible);
   const [copied, changeCopied] = useState(false);
 
-  const liveEditorRef = useRef<HTMLDivElement>(null);
+  const liveEditorRef = useRef<HTMLDivElement | null>(null);
 
   const handleCodeOnClick = () => {
     changeIsCodeVisible(!isCodeVisible);

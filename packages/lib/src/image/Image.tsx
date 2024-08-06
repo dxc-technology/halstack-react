@@ -28,12 +28,12 @@ const DxcImage = ({
       {children}
       <BaseTypography
         as="figcaption"
-        color={colorsTheme.image.captionFontColor}
-        fontFamily={colorsTheme.image.captionFontFamily}
-        fontSize={colorsTheme.image.captionFontSize}
-        fontStyle={colorsTheme.image.captionFontStyle}
-        fontWeight={colorsTheme.image.captionFontWeight}
-        lineHeight={colorsTheme.image.captionLineHeight}
+        color={colorsTheme?.image?.captionFontColor}
+        fontFamily={colorsTheme?.image?.captionFontFamily}
+        fontSize={colorsTheme?.image?.captionFontSize}
+        fontStyle={colorsTheme?.image?.captionFontStyle}
+        fontWeight={colorsTheme?.image?.captionFontWeight}
+        lineHeight={colorsTheme?.image?.captionLineHeight}
       >
         {caption}
       </BaseTypography>
@@ -41,7 +41,7 @@ const DxcImage = ({
   );
 
   return (
-    <ThemeProvider theme={colorsTheme.image}>
+    <ThemeProvider theme={colorsTheme?.image}>
       <CaptionWrapper condition={caption !== undefined} wrapper={wrapperFunction}>
         <img
           alt={alt}

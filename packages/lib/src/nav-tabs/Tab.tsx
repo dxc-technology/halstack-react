@@ -16,7 +16,7 @@ const DxcTab = forwardRef(
     const tabRef = useRef<HTMLAnchorElement>();
     const colorsTheme = useTheme();
     const { iconPosition, tabIndex, focusedLabel } = useContext(NavTabsContext);
-    const innerRef = useRef<HTMLAnchorElement>(null);
+    const innerRef = useRef<HTMLAnchorElement | null>(null);
     useImperativeHandle(ref, () => innerRef.current!, []);
 
     useEffect(() => {
@@ -72,15 +72,15 @@ const DxcTab = forwardRef(
             <BaseTypography
               color={
                 disabled
-                  ? colorsTheme.navTabs.disabledFontColor
+                  ? colorsTheme?.navTabs?.disabledFontColor
                   : active
-                    ? colorsTheme.navTabs.selectedFontColor
-                    : colorsTheme.navTabs.unselectedFontColor
+                    ? colorsTheme?.navTabs?.selectedFontColor
+                    : colorsTheme?.navTabs?.unselectedFontColor
               }
-              fontFamily={colorsTheme.navTabs.fontFamily}
-              fontSize={colorsTheme.navTabs.fontSize}
-              fontStyle={colorsTheme.navTabs.fontStyle}
-              fontWeight={colorsTheme.navTabs.fontWeight}
+              fontFamily={colorsTheme?.navTabs?.fontFamily}
+              fontSize={colorsTheme?.navTabs?.fontSize}
+              fontStyle={colorsTheme?.navTabs?.fontStyle}
+              fontWeight={colorsTheme?.navTabs?.fontWeight}
               textAlign="center"
               letterSpacing="0.025em"
               lineHeight="1.715em"

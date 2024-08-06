@@ -7,10 +7,10 @@ const DxcParagraph = ({ children }: { children: React.ReactNode }): JSX.Element 
   return (
     <BaseTypography
       as="p"
-      display={colorsTheme.paragraph.display}
-      fontSize={colorsTheme.paragraph.fontSize}
-      fontWeight={colorsTheme.paragraph.fontWeight}
-      color={colorsTheme.paragraph.fontColor}
+      display={colorsTheme?.paragraph?.display}
+      fontSize={colorsTheme?.paragraph?.fontSize}
+      fontWeight={colorsTheme?.paragraph?.fontWeight}
+      color={colorsTheme?.paragraph?.fontColor}
     >
       {children}
     </BaseTypography>

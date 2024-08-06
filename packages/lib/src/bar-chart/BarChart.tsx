@@ -61,7 +61,7 @@ const DxcBarChart = <X extends DataTypes>({
   return loading ? (
     <LoadingContainer>
       <DxcSpinner mode="small" />
-      {translatedLabels.barChart.loadingDataMessage}
+      {translatedLabels?.barChart?.loadingDataMessage}
     </LoadingContainer>
   ) : error ? (
     <ErrorStatus>
@@ -71,7 +71,7 @@ const DxcBarChart = <X extends DataTypes>({
       </Label>
       {onRetry && (
         <DxcButton
-          label={translatedLabels.barChart.retryButtonLabel}
+          label={translatedLabels?.barChart?.retryButtonLabel}
           mode="secondary"
           onClick={() => {
             onRetry();
@@ -88,7 +88,7 @@ const DxcBarChart = <X extends DataTypes>({
       )}
       {showFilter && (
         <DxcSelect
-          label={translatedLabels.barChart.filterLabel}
+          label={translatedLabels?.barChart?.filterLabel}
           multiple
           onChange={({ value: visibleSeries }) => {
             filterData(visibleSeries);
@@ -98,18 +98,18 @@ const DxcBarChart = <X extends DataTypes>({
             label: filter,
             value: filter,
           }))}
-          placeholder={translatedLabels.barChart.filterPlaceholder}
+          placeholder={translatedLabels?.barChart?.filterPlaceholder}
           searchable
           value={selectedFilters}
         />
       )}
       <InsetWrapper condition={!yTitle && !horizontalBars}>
         <BarChart
-          ariaLabel={translatedLabels.barChart.ariaLabel}
+          ariaLabel={translatedLabels?.barChart?.ariaLabel}
           empty={
             <StatusMessage
-              title={translatedLabels.barChart.noDataMessageTitle}
-              description={translatedLabels.barChart.noDataMessageBody}
+              title={translatedLabels?.barChart?.noDataMessageTitle ?? ""}
+              description={translatedLabels?.barChart?.noDataMessageBody ?? ""}
             />
           }
           hideFilter
@@ -118,8 +118,8 @@ const DxcBarChart = <X extends DataTypes>({
           legendTitle={legendTitle}
           noMatch={
             <StatusMessage
-              title={translatedLabels.barChart.noMatchesMessageTitle}
-              description={translatedLabels.barChart.noMatchesMessageBody}
+              title={translatedLabels?.barChart?.noMatchesMessageTitle ?? ""}
+              description={translatedLabels?.barChart?.noMatchesMessageBody ?? ""}
             />
           }
           onHighlightChange={(highlightedSeries) => {

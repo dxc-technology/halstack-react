@@ -109,7 +109,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
       if (notOptionalCheck(newValue, multiple, optional)) {
         onChange?.({
           value: newValue as string & string[],
-          error: translatedLabels.formFields.requiredValueErrorMessage,
+          error: translatedLabels?.formFields?.requiredValueErrorMessage,
         });
       } else {
         onChange?.({ value: newValue as string & string[] });
@@ -140,7 +140,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
         if (notOptionalCheck(currentValue, multiple, optional)) {
           onBlur?.({
             value: currentValue as string & string[],
-            error: translatedLabels.formFields.requiredValueErrorMessage,
+            error: translatedLabels?.formFields?.requiredValueErrorMessage,
           });
         } else {
           onBlur?.({ value: currentValue as string & string[] });
@@ -256,7 +256,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
       if (!optional) {
         onChange?.({
           value: [] as string & string[],
-          error: translatedLabels.formFields.requiredValueErrorMessage,
+          error: translatedLabels?.formFields?.requiredValueErrorMessage,
         });
       } else {
         onChange?.({ value: [] as string & string[] });
@@ -290,7 +290,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
     }, [placeholder, selectedOption]);
 
     return (
-      <ThemeProvider theme={colorsTheme.select}>
+      <ThemeProvider theme={colorsTheme?.select}>
         <SelectContainer margin={margin} size={size} ref={ref}>
           {label && (
             <Label
@@ -301,7 +301,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
               }}
               helperText={helperText}
             >
-              {label} {optional && <OptionalLabel>{translatedLabels.formFields.optionalLabel}</OptionalLabel>}
+              {label} {optional && <OptionalLabel>{translatedLabels?.formFields?.optionalLabel}</OptionalLabel>}
             </Label>
           )}
           {helperText && <HelperText disabled={disabled}>{helperText}</HelperText>}
@@ -331,7 +331,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
                 {multiple && Array.isArray(selectedOption) && selectedOption.length > 0 && (
                   <SelectionIndicator>
                     <SelectionNumber disabled={disabled}>{selectedOption.length}</SelectionNumber>
-                    <DxcTooltip label={translatedLabels.select.actionClearSelectionTitle}>
+                    <DxcTooltip label={translatedLabels?.select?.actionClearSelectionTitle}>
                       <ClearOptionsAction
                         disabled={disabled}
                         onMouseDown={(event) => {
@@ -340,7 +340,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
                         }}
                         onClick={handleClearOptionsActionOnClick}
                         tabIndex={-1}
-                        aria-label={translatedLabels.select.actionClearSelectionTitle}
+                        aria-label={translatedLabels?.select?.actionClearSelectionTitle}
                       >
                         <DxcIcon icon="clear" />
                       </ClearOptionsAction>
@@ -395,7 +395,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
                   </ErrorIcon>
                 )}
                 {searchable && searchValue.length > 0 && (
-                  <DxcTooltip label={translatedLabels.select.actionClearSelectionTitle}>
+                  <DxcTooltip label={translatedLabels?.select?.actionClearSelectionTitle}>
                     <ClearSearchAction
                       onMouseDown={(event) => {
                         // Avoid input to lose focus
@@ -403,7 +403,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
                       }}
                       onClick={handleClearSearchActionOnClick}
                       tabIndex={-1}
-                      aria-label={translatedLabels.select.actionClearSearchTitle}
+                      aria-label={translatedLabels?.select?.actionClearSearchTitle}
                     >
                       <DxcIcon icon="clear" />
                     </ClearSearchAction>
@@ -464,7 +464,7 @@ const sizes = {
 const calculateWidth = (margin: SelectPropsType["margin"], size: SelectPropsType["size"]) =>
   size === "fillParent"
     ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
-    : sizes[size];
+    : size && sizes[size];
 
 const SelectContainer = styled.div<{
   margin: SelectPropsType["margin"];

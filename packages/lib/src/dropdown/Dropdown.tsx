@@ -30,8 +30,8 @@ const DxcDropdown = ({
   const [visualFocusIndex, setVisualFocusIndex] = useState(0);
 
   const colorsTheme = useTheme();
-  const triggerRef = useRef(null);
-  const menuRef = useRef(null);
+  const triggerRef = useRef<HTMLButtonElement | null>(null);
+  const menuRef = useRef<HTMLUListElement | null>(null);
   const width = useWidth(triggerRef.current);
 
   const handleOnOpenMenu = () => {
@@ -42,14 +42,16 @@ const DxcDropdown = ({
     setVisualFocusIndex(0);
   };
   const handleMenuItemOnClick = useCallback(
-    (value) => {
-      onSelectOption(value);
-      handleOnCloseMenu();
-      triggerRef.current?.focus();
+    (value?: string) => {
+      if (value) {
+        onSelectOption(value);
+        handleOnCloseMenu();
+        triggerRef.current?.focus();
+      }
     },
     [onSelectOption]
   );
-  const handleOnBlur = (event) => {
+  const handleOnBlur = (event: React.FocusEvent) => {
     if (!event.currentTarget.contains(event.relatedTarget)) {
       handleOnCloseMenu();
     }
@@ -58,7 +60,7 @@ const DxcDropdown = ({
   const handleTriggerOnClick = () => {
     changeIsOpen((isCurrentlyOpen) => !isCurrentlyOpen);
   };
-  const handleTriggerOnKeyDown = (event) => {
+  const handleTriggerOnKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
     switch (event.key) {
       case "Up":
       case "ArrowUp":
@@ -106,7 +108,7 @@ const DxcDropdown = ({
         case " ":
         case "Enter":
           event.preventDefault();
-          handleMenuItemOnClick(options[visualFocusIndex].value);
+          handleMenuItemOnClick(options[visualFocusIndex]?.value);
           break;
         case "Esc":
         case "Escape":
@@ -147,7 +149,7 @@ const DxcDropdown = ({
   }, [visualFocusIndex]);
 
   return (
-    <ThemeProvider theme={colorsTheme.dropdown}>
+    <ThemeProvider theme={colorsTheme?.dropdown}>
       <DropdownContainer
         onMouseEnter={!disabled && expandOnHover ? handleOnOpenMenu : undefined}
         onMouseLeave={!disabled && expandOnHover ? handleOnCloseMenu : undefined}
@@ -227,7 +229,7 @@ const sizes = {
 const calculateWidth = (margin, size) =>
   size === "fillParent"
     ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
-    : sizes[size];
+    : size && sizes[size];
 
 const DropdownContainer = styled.div<{
   margin: DropdownPropsType["margin"];

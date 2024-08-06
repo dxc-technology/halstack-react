@@ -8,6 +8,7 @@ import CoreTokens from "../common/coreTokens";
 import DxcIcon from "../icon/Icon";
 import Item from "./Item";
 import DxcFlex from "../flex/Flex";
+import { Option } from "../dropdown/types";
 
 const DxcBreadcrumbs = ({
   ariaLabel = "Breadcrumbs",
@@ -32,19 +33,21 @@ const DxcBreadcrumbs = ({
       <OrderedList>
         {items && items.length > Math.max(itemsBeforeCollapse, 2) ? (
           <>
-            {showRoot && <Item href={items[0].href} label={items[0].label} />}
+            {showRoot && <Item href={items[0]?.href} label={items[0]?.label ?? ""} />}
             <DxcFlex alignItems="center" as="li">
               <HalstackProvider advancedTheme={dropdownTheme}>
                 <DxcDropdown
                   caretHidden
                   icon={<DxcIcon icon="more_horiz" />}
-                  margin={showRoot && { left: "small" }}
+                  margin={showRoot ? { left: "small" } : undefined}
                   onSelectOption={handleOnSelectOption}
-                  options={items.slice(showRoot ? 1 : 0, -1).map(({ label, href }) => ({ label, value: href }))}
+                  options={items
+                    .slice(showRoot ? 1 : 0, -1)
+                    .map(({ label, href }) => ({ label, value: href }) as Option)}
                 />
               </HalstackProvider>
             </DxcFlex>
-            <Item isCurrentPage label={items[items.length - 1].label} />
+            <Item isCurrentPage label={items[items.length - 1]?.label ?? ""} />
           </>
         ) : (
           items.map((item, index, { length }) => (

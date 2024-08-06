@@ -82,13 +82,13 @@ const DxcHeader = ({
   };
 
   const headerLogo = useMemo(
-    () => getLogoElement(colorsTheme.header.logo, translatedLabels.formFields.logoAlternativeText),
-    [colorsTheme.header.logo]
+    () => getLogoElement(colorsTheme?.header?.logo, translatedLabels?.formFields?.logoAlternativeText),
+    [colorsTheme?.header?.logo]
   );
 
   const headerResponsiveLogo = useMemo(
-    () => getLogoElement(colorsTheme.header.logoResponsive, translatedLabels.formFields.logoAlternativeText),
-    [colorsTheme.header.logoResponsive]
+    () => getLogoElement(colorsTheme?.header?.logoResponsive, translatedLabels?.formFields?.logoAlternativeText),
+    [colorsTheme?.header?.logoResponsive]
   );
 
   useEffect(() => {
@@ -106,7 +106,7 @@ const DxcHeader = ({
   }, [isResponsive]);
 
   return (
-    <ThemeProvider theme={colorsTheme.header}>
+    <ThemeProvider theme={colorsTheme?.header}>
       <HeaderContainer underlined={underlined} margin={margin} ref={ref}>
         <LogoAnchor tabIndex={onClick ? tabIndex : -1} interactuable={!!onClick} onClick={onClick}>
           <LogoContainer>{headerLogo}</LogoContainer>
@@ -116,14 +116,18 @@ const DxcHeader = ({
             <ChildContainer>
               <HamburgerTrigger tabIndex={tabIndex} onClick={handleMenu} aria-label="Show options">
                 <DxcIcon icon="menu" />
-                {translatedLabels.header.hamburguerTitle}
+                {translatedLabels?.header?.hamburguerTitle}
               </HamburgerTrigger>
             </ChildContainer>
             <ResponsiveMenu hasVisibility={isMenuVisible}>
               <DxcFlex justifyContent="space-between" alignItems="center">
                 <ResponsiveLogoContainer>{headerResponsiveLogo}</ResponsiveLogoContainer>
-                <DxcTooltip label={translatedLabels.header.closeIcon}>
-                  <CloseAction tabIndex={tabIndex} onClick={handleMenu} aria-label={translatedLabels.header.closeIcon}>
+                <DxcTooltip label={translatedLabels?.header?.closeIcon}>
+                  <CloseAction
+                    tabIndex={tabIndex}
+                    onClick={handleMenu}
+                    aria-label={translatedLabels?.header?.closeIcon}
+                  >
                     <DxcIcon icon="close" />
                   </CloseAction>
                 </DxcTooltip>

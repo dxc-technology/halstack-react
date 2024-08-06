@@ -7,10 +7,10 @@ import SpinnerPropsType from "./types";
 const DxcSpinner = ({ label, value, showValue = false, mode = "large", margin }: SpinnerPropsType): JSX.Element => {
   const labelId = useId();
   const colorsTheme = useTheme();
-  const determinated = useMemo(() => value >= 0 && value <= 100, [value]);
+  const determinated = useMemo(() => value != null && value >= 0 && value <= 100, [value]);
 
   return (
-    <ThemeProvider theme={colorsTheme.spinner}>
+    <ThemeProvider theme={colorsTheme?.spinner}>
       <DXCSpinner margin={margin} mode={mode}>
         <SpinnerContainer mode={mode}>
           {mode === "overlay" && <BackOverlay />}
@@ -63,7 +63,7 @@ const DxcSpinner = ({ label, value, showValue = false, mode = "large", margin }:
 
 const determinateValue = (value: SpinnerPropsType["value"], strokeDashArray: number) => {
   let val = 0;
-  if (value >= 0 && value <= 100) val = strokeDashArray * (1 - value / 100);
+  if (value != null && value >= 0 && value <= 100) val = strokeDashArray * (1 - value / 100);
   return val;
 };
 

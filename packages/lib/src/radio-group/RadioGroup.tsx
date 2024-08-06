@@ -47,7 +47,7 @@ const DxcRadioGroup = forwardRef<RefType, RadioGroupPropsType>(
           ? [
               ...options,
               {
-                label: optionalItemLabel ?? translatedLabels.radioGroup.optionalItemLabelDefault,
+                label: optionalItemLabel ?? translatedLabels?.radioGroup?.optionalItemLabelDefault ?? "",
                 value: "",
                 disabled,
               },
@@ -78,7 +78,7 @@ const DxcRadioGroup = forwardRef<RefType, RadioGroupPropsType>(
         if (!optional && !currentValue) {
           onBlur?.({
             value: currentValue,
-            error: translatedLabels.formFields.requiredSelectionErrorMessage,
+            error: translatedLabels?.formFields?.requiredSelectionErrorMessage,
           });
         } else {
           onBlur?.({ value: currentValue });
@@ -94,20 +94,26 @@ const DxcRadioGroup = forwardRef<RefType, RadioGroupPropsType>(
     const setPreviousRadioChecked = () => {
       setCurrentFocusIndex((currentFocusIndexValue) => {
         let index = currentFocusIndexValue === 0 ? innerOptions.length - 1 : currentFocusIndexValue - 1;
-        while (innerOptions[index].disabled) {
+        while (innerOptions[index]?.disabled) {
           index = index === 0 ? innerOptions.length - 1 : index - 1;
         }
-        handleOnChange(innerOptions[index].value);
+        const option = innerOptions[index];
+        if (option != null) {
+          handleOnChange(option.value);
+        }
         return index;
       });
     };
     const setNextRadioChecked = () => {
       setCurrentFocusIndex((currentFocusIndexValue) => {
         let index = currentFocusIndexValue === innerOptions.length - 1 ? 0 : currentFocusIndexValue + 1;
-        while (innerOptions[index].disabled) {
+        while (innerOptions[index]?.disabled) {
           index = index === innerOptions.length - 1 ? 0 : index + 1;
         }
-        handleOnChange(innerOptions[index].value);
+        const option = innerOptions[index];
+        if (option != null) {
+          handleOnChange(option.value);
+        }
         return index;
       });
     };
@@ -129,7 +135,9 @@ const DxcRadioGroup = forwardRef<RefType, RadioGroupPropsType>(
           break;
         case " ":
           event.preventDefault();
-          handleOnChange(innerOptions[currentFocusIndex].value);
+          if (innerOptions[currentFocusIndex] != null) {
+            handleOnChange(innerOptions[currentFocusIndex].value);
+          }
           break;
         default:
           break;
@@ -137,12 +145,12 @@ const DxcRadioGroup = forwardRef<RefType, RadioGroupPropsType>(
     };
 
     return (
-      <ThemeProvider theme={colorsTheme.radioGroup}>
+      <ThemeProvider theme={colorsTheme?.radioGroup}>
         <RadioGroupContainer ref={ref}>
           {label && (
             <Label id={radioGroupLabelId} helperText={helperText} disabled={disabled}>
               {label}
-              {optional && <OptionalLabel>{` ${translatedLabels.formFields.optionalLabel}`}</OptionalLabel>}
+              {optional && <OptionalLabel>{` ${translatedLabels?.formFields?.optionalLabel}`}</OptionalLabel>}
             </Label>
           )}
           {helperText && <HelperText disabled={disabled}>{helperText}</HelperText>}
@@ -165,7 +173,7 @@ const DxcRadioGroup = forwardRef<RefType, RadioGroupPropsType>(
               // TODO: Remove index from key
               <DxcRadio
                 key={`radio-${index}`}
-                label={option.label}
+                label={option.label ?? ""}
                 checked={(value ?? innerValue) === option.value}
                 onClick={() => {
                   handleOnChange(option.value);

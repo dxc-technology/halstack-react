@@ -23,7 +23,7 @@ const FileItem = ({
   const getIconAriaLabel = () => (type.includes("video") ? "video" : type.includes("audio") ? "audio" : "file");
 
   return (
-    <ThemeProvider theme={colorsTheme.fileInput}>
+    <ThemeProvider theme={colorsTheme?.fileInput}>
       <MainContainer error={error} singleFileMode={singleFileMode} showPreview={showPreview}>
         {showPreview &&
           (type.includes("image") ? (
@@ -45,7 +45,7 @@ const FileItem = ({
               onClick={() => onDelete(fileName)}
               icon="close"
               tabIndex={tabIndex}
-              title={translatedLabels.fileInput.deleteFileActionTitle}
+              title={translatedLabels?.fileInput?.deleteFileActionTitle}
             />
           </DxcFlex>
           {error && !singleFileMode && (

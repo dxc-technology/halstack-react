@@ -343,7 +343,7 @@ const AutosuggestListbox = () => {
   const colorsTheme = useTheme();
 
   return (
-    <ThemeProvider theme={colorsTheme.textInput}>
+    <ThemeProvider theme={colorsTheme?.textInput}>
       <ExampleContainer>
         <Title title="Autosuggest listbox" theme="light" level={2} />
         <ExampleContainer>

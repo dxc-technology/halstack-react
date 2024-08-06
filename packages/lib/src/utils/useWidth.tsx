@@ -1,6 +1,6 @@
 import { useLayoutEffect, useState } from "react";
 
-const useWidth = <T extends Element>(target: T) => {
+const useWidth = <T extends Element>(target: T | null) => {
   const [width, setWidth] = useState(0);
 
   useLayoutEffect(() => {

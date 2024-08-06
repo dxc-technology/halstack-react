@@ -1,4 +1,4 @@
-import { memo, useState  } from "react";
+import { memo, useState } from "react";
 import dayjs, { Dayjs } from "dayjs";
 import styled from "styled-components";
 import { DatePickerPropsType } from "./types";
@@ -33,9 +33,9 @@ const DatePicker = ({ date, onDateSelect, id }: DatePickerPropsType): JSX.Elemen
   return (
     <DatePickerContainer id={id}>
       <PickerHeader>
-        <DxcTooltip label={translatedLabels.calendar.previousMonthTitle}>
+        <DxcTooltip label={translatedLabels?.calendar?.previousMonthTitle}>
           <HeaderButton
-            aria-label={translatedLabels.calendar.previousMonthTitle}
+            aria-label={translatedLabels?.calendar?.previousMonthTitle}
             onClick={() => handleMonthChange(innerDate.set("month", innerDate.get("month") - 1))}
           >
             <DxcIcon icon="keyboard_arrow_left" />
@@ -46,13 +46,13 @@ const DatePicker = ({ date, onDateSelect, id }: DatePickerPropsType): JSX.Elemen
           onClick={() => setContent((currentContent) => (currentContent === "yearPicker" ? "calendar" : "yearPicker"))}
         >
           <HeaderYearTriggerLabel>
-            {translatedLabels.calendar.months[innerDate.get("month")]} {innerDate.format("YYYY")}
+            {translatedLabels?.calendar?.months[innerDate.get("month")]} {innerDate.format("YYYY")}
           </HeaderYearTriggerLabel>
           <DxcIcon icon={content === "yearPicker" ? "arrow_drop_up" : "arrow_drop_down"} />
         </HeaderYearTrigger>
-        <DxcTooltip label={translatedLabels.calendar.nextMonthTitle}>
+        <DxcTooltip label={translatedLabels?.calendar?.nextMonthTitle}>
           <HeaderButton
-            aria-label={translatedLabels.calendar.nextMonthTitle}
+            aria-label={translatedLabels?.calendar?.nextMonthTitle}
             onClick={() => handleMonthChange(innerDate.set("month", innerDate.get("month") + 1))}
           >
             <DxcIcon icon="keyboard_arrow_right" />

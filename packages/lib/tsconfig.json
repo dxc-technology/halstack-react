@@ -1,14 +1,9 @@
 {
   "extends": "@dxc-technology/typescript-config/react-library.json",
   "compilerOptions": {
-    "outDir": "dist"
-    // "strict": false,
+    "outDir": "dist",
+    // "strict": false
   },
-  "include": [
-    "src",
-    "test",
-    ".",
-    ".storybook/**/*"
-  ],
+  "include": ["src", "test", ".", ".storybook/**/*"],
   "exclude": ["node_modules", "dist", ".turbo"]
 }

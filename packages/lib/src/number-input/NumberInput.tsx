@@ -31,7 +31,7 @@ const DxcNumberInput = forwardRef<RefType, NumberInputPropsType>(
     },
     ref
   ) => {
-    const numberInputRef = useRef<HTMLInputElement>(null);
+    const numberInputRef = useRef<HTMLInputElement | null>(null);
 
     const contextValue = useMemo(
       () => ({

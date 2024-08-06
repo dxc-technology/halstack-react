@@ -22,7 +22,7 @@ const DxcProgressBar = ({
   }, [value]);
 
   return (
-    <ThemeProvider theme={colorsTheme.progressBar}>
+    <ThemeProvider theme={colorsTheme?.progressBar}>
       <BackgroundProgressBar overlay={overlay}>
         <ProgressBarContainer overlay={overlay} margin={margin}>
           <InfoProgressBar>

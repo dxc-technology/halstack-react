@@ -31,7 +31,7 @@ const DxcAccordion = ({
   };
 
   return (
-    <ThemeProvider theme={colorsTheme.accordion}>
+    <ThemeProvider theme={colorsTheme?.accordion}>
       <AccordionContainer isExpanded={isExpanded ?? innerIsExpanded} margin={margin}>
         <AccordionHeader>
           <AccordionTrigger
@@ -53,13 +53,13 @@ const DxcAccordion = ({
                 <BaseTypography
                   color={
                     disabled
-                      ? colorsTheme.accordion.disabledTitleLabelFontColor
-                      : colorsTheme.accordion.titleLabelFontColor
+                      ? colorsTheme?.accordion?.disabledTitleLabelFontColor
+                      : colorsTheme?.accordion?.titleLabelFontColor
                   }
-                  fontFamily={colorsTheme.accordion.titleLabelFontFamily}
-                  fontSize={colorsTheme.accordion.titleLabelFontSize}
-                  fontStyle={colorsTheme.accordion.titleLabelFontStyle}
-                  fontWeight={colorsTheme.accordion.titleLabelFontWeight}
+                  fontFamily={colorsTheme?.accordion?.titleLabelFontFamily}
+                  fontSize={colorsTheme?.accordion?.titleLabelFontSize}
+                  fontStyle={colorsTheme?.accordion?.titleLabelFontStyle}
+                  fontWeight={colorsTheme?.accordion?.titleLabelFontWeight}
                   lineHeight="1.5em"
                 >
                   {label}
@@ -70,14 +70,14 @@ const DxcAccordion = ({
                   <BaseTypography
                     color={
                       disabled
-                        ? colorsTheme.accordion.disabledAssistiveTextFontColor
-                        : colorsTheme.accordion.assistiveTextFontColor
+                        ? colorsTheme?.accordion?.disabledAssistiveTextFontColor
+                        : colorsTheme?.accordion?.assistiveTextFontColor
                     }
-                    fontFamily={colorsTheme.accordion.assistiveTextFontFamily}
-                    fontSize={colorsTheme.accordion.assistiveTextFontSize}
-                    fontStyle={colorsTheme.accordion.assistiveTextFontStyle}
-                    fontWeight={colorsTheme.accordion.assistiveTextFontWeight}
-                    letterSpacing={colorsTheme.accordion.assistiveTextLetterSpacing}
+                    fontFamily={colorsTheme?.accordion?.assistiveTextFontFamily}
+                    fontSize={colorsTheme?.accordion?.assistiveTextFontSize}
+                    fontStyle={colorsTheme?.accordion?.assistiveTextFontStyle}
+                    fontWeight={colorsTheme?.accordion?.assistiveTextFontWeight}
+                    letterSpacing={colorsTheme?.accordion?.assistiveTextLetterSpacing}
                     lineHeight="1.5em"
                   >
                     {assistiveText}

@@ -6,7 +6,7 @@ type Props = {
   /**
    * Text to be displayed inside the tooltip.
    */
-  label: string;
+  label?: string;
   /**
    * Content in which the Tooltip will be displayed.
    */

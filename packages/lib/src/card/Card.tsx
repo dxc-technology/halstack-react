@@ -33,7 +33,7 @@ const DxcCard = ({
       href={linkHref}
     >
       <DxcBox shadowDepth={!outlined ? 0 : isHovered && (onClick || linkHref) ? 2 : 1}>
-        <ThemeProvider theme={colorsTheme.card}>
+        <ThemeProvider theme={colorsTheme?.card}>
           <CardContainer hasAction={!!(onClick || linkHref)} imagePosition={imageSrc ? imagePosition : "none"}>
             {imageSrc && (
               <ImageContainer imageBgColor={imageBgColor}>

@@ -417,7 +417,7 @@ const SelectListbox = () => {
 
   return (
     <>
-      <ThemeProvider theme={colorsTheme.select}>
+      <ThemeProvider theme={colorsTheme?.select}>
         <Title title="Listbox" theme="light" level={2} />
         <ExampleContainer>
           <Title
@@ -578,7 +578,7 @@ const SelectListbox = () => {
           />
         </ExampleContainer>
       </ThemeProvider>
-      <ThemeProvider theme={colorsTheme.select}>
+      <ThemeProvider theme={colorsTheme?.select}>
         <Title title="Opinionated theme" theme="light" level={2} />
         <ExampleContainer pseudoState="pseudo-hover">
           <Title title="Hovered option" theme="light" level={4} />

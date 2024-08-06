@@ -61,17 +61,17 @@ const DxcTextarea = forwardRef<RefType, TextareaPropsType>(
       if (isNotOptional(newValue)) {
         onChange?.({
           value: newValue,
-          error: translatedLabels.formFields.requiredValueErrorMessage,
+          error: translatedLabels?.formFields?.requiredValueErrorMessage,
         });
       } else if (isLengthIncorrect(newValue)) {
         onChange?.({
           value: newValue,
-          error: translatedLabels.formFields.lengthErrorMessage(minLength, maxLength),
+          error: translatedLabels?.formFields?.lengthErrorMessage(minLength, maxLength),
         });
       } else if (newValue && pattern && !patternMatch(pattern, newValue)) {
         onChange?.({
           value: newValue,
-          error: translatedLabels.formFields.formatRequestedErrorMessage,
+          error: translatedLabels?.formFields?.formatRequestedErrorMessage,
         });
       } else {
         onChange?.({ value: newValue });
@@ -90,17 +90,17 @@ const DxcTextarea = forwardRef<RefType, TextareaPropsType>(
       if (isNotOptional(event.target.value)) {
         onBlur?.({
           value: event.target.value,
-          error: translatedLabels.formFields.requiredValueErrorMessage,
+          error: translatedLabels?.formFields?.requiredValueErrorMessage,
         });
       } else if (isLengthIncorrect(event.target.value)) {
         onBlur?.({
           value: event.target.value,
-          error: translatedLabels.formFields.lengthErrorMessage(minLength, maxLength),
+          error: translatedLabels?.formFields?.lengthErrorMessage(minLength, maxLength),
         });
       } else if (event.target.value && pattern && !patternMatch(pattern, event.target.value)) {
         onBlur?.({
           value: event.target.value,
-          error: translatedLabels.formFields.formatRequestedErrorMessage,
+          error: translatedLabels?.formFields?.formatRequestedErrorMessage,
         });
       } else {
         onBlur?.({ value: event.target.value });
@@ -126,11 +126,11 @@ const DxcTextarea = forwardRef<RefType, TextareaPropsType>(
     }, [verticalGrow, value, innerValue, rows]);
 
     return (
-      <ThemeProvider theme={colorsTheme.textarea}>
+      <ThemeProvider theme={colorsTheme?.textarea}>
         <TextareaContainer margin={margin} size={size} ref={ref}>
           {label && (
             <Label htmlFor={textareaId} disabled={disabled} helperText={helperText}>
-              {label} {optional && <OptionalLabel>{translatedLabels.formFields.optionalLabel}</OptionalLabel>}
+              {label} {optional && <OptionalLabel>{translatedLabels?.formFields?.optionalLabel}</OptionalLabel>}
             </Label>
           )}
           {helperText && <HelperText disabled={disabled}>{helperText}</HelperText>}
@@ -176,7 +176,7 @@ const sizes = {
 const calculateWidth = (margin: TextareaPropsType["margin"], size: TextareaPropsType["size"]) =>
   size === "fillParent"
     ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
-    : sizes[size];
+    : size && sizes[size];
 
 const TextareaContainer = styled.div<{
   margin: TextareaPropsType["margin"];

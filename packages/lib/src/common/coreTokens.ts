@@ -106,7 +106,7 @@ const CoreColorTokens = {
   color_orange_900: "#613605",
 };
 export type CoreColorTokensType = keyof typeof CoreColorTokens;
-export const getCoreColorToken = (key: CoreColorTokensType) => CoreColorTokens[key];
+export const getCoreColorToken = (key: CoreColorTokensType) => CoreColorTokens[key] ?? "";
 
 /**
  * Halstack Spacing Values

@@ -30,7 +30,7 @@ const DxcSwitch = forwardRef<RefType, SwitchPropsType>(
 
     const colorsTheme = useTheme();
     const translatedLabels = useTranslatedLabels();
-    const refTrack = useRef(null);
+    const refTrack = useRef<HTMLSpanElement | null>(null);
 
     const handleOnKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
       switch (event.key) {
@@ -38,7 +38,7 @@ const DxcSwitch = forwardRef<RefType, SwitchPropsType>(
         case " ": {
           // Space
           event.preventDefault();
-          refTrack.current.focus();
+          refTrack?.current?.focus();
           setInnerChecked(!(checked ?? innerChecked));
           onChange?.(!(checked ?? innerChecked));
           break;
@@ -56,7 +56,7 @@ const DxcSwitch = forwardRef<RefType, SwitchPropsType>(
     };
 
     return (
-      <ThemeProvider theme={colorsTheme.switch}>
+      <ThemeProvider theme={colorsTheme?.switch}>
         <SwitchContainer
           margin={margin}
           size={size}
@@ -67,7 +67,7 @@ const DxcSwitch = forwardRef<RefType, SwitchPropsType>(
         >
           {labelPosition === "before" && label && (
             <LabelContainer id={labelId} labelPosition={labelPosition} disabled={disabled} label={label}>
-              {label} {optional && <>{translatedLabels.formFields.optionalLabel}</>}
+              {label} {optional && <>{translatedLabels?.formFields?.optionalLabel}</>}
             </LabelContainer>
           )}
           <ValueInput
@@ -92,7 +92,7 @@ const DxcSwitch = forwardRef<RefType, SwitchPropsType>(
           </SwitchBase>
           {labelPosition === "after" && label && (
             <LabelContainer id={labelId} labelPosition={labelPosition} disabled={disabled} label={label}>
-              {optional && <>{translatedLabels.formFields.optionalLabel}</>} {label}
+              {optional && <>{translatedLabels?.formFields?.optionalLabel}</>} {label}
             </LabelContainer>
           )}
         </SwitchContainer>
@@ -112,7 +112,7 @@ const sizes = {
 const calculateWidth = (margin, size) =>
   size === "fillParent"
     ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
-    : sizes[size];
+    : size && sizes[size];
 
 const getDisabledColor = (
   theme: AdvancedTheme["switch"],

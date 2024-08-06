@@ -66,26 +66,27 @@ const DxcSlider = forwardRef<RefType, SliderPropsType>(
       return null;
     }, [minValue, maxValue, step, value, innerValue]);
 
-    const handleSliderChange = (event) => {
-      const valueToCheck = event.target.value;
-      if (valueToCheck !== value || valueToCheck !== innerValue) {
-        setInnerValue(valueToCheck);
+    const handleSliderChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+      const intValue = parseInt(event.target.value, 10);
+      if (intValue !== value || intValue !== innerValue) {
+        setInnerValue(intValue);
       }
-      onChange?.(valueToCheck);
+      onChange?.(intValue);
     };
 
     const handleSliderDragging = () => {
       setDragging(true);
     };
 
-    const handleSliderOnChangeCommitted = (event) => {
+    const handleSliderOnChangeCommitted = (event: React.MouseEvent<HTMLInputElement>) => {
+      const intValue = parseInt((event.target as HTMLInputElement).value, 10);
       if (dragging) {
         setDragging(false);
-        onDragEnd?.(event.target.value);
+        onDragEnd?.(intValue);
       }
     };
 
-    const handlerInputChange = (event) => {
+    const handlerInputChange = (event: { value: string; error?: string }) => {
       const intValue = parseInt(event.value, 10);
       if (value == null) {
         if (!Number.isNaN(intValue)) {
@@ -98,7 +99,7 @@ const DxcSlider = forwardRef<RefType, SliderPropsType>(
     };
 
     return (
-      <ThemeProvider theme={colorsTheme.slider}>
+      <ThemeProvider theme={colorsTheme?.slider}>
         <Container margin={margin} size={size} ref={ref}>
           <Label id={labelId} disabled={disabled}>
             {label}
@@ -158,7 +159,7 @@ const sizes = {
 const calculateWidth = (margin: SliderPropsType["margin"], size: SliderPropsType["size"]) =>
   size === "fillParent"
     ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
-    : sizes[size];
+    : size && sizes[size];
 
 const getChromeStyles = () => `
   width: 100%;
@@ -223,7 +224,8 @@ const SliderInput = styled.input<{
       ? `linear-gradient(${props.theme.disabledTrackLineColor}, ${props.theme.disabledTrackLineColor})`
       : `linear-gradient(${props.theme.trackLineColor}, ${props.theme.trackLineColor})`};
   background-repeat: no-repeat;
-  background-size: ${(props) => `${((props.value - props.min) * 100) / (props.max - props.min)}% 100%`};
+  background-size: ${(props) =>
+    props.value && props.max && props.min && `${((props.value - props.min) * 100) / (props.max - props.min)}% 100%`};
   border-radius: 5px;
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
   &::-webkit-slider-runnable-track {
@@ -359,7 +361,7 @@ const TickMark = styled.span<{
   width: ${(props) => props.theme.tickWidth};
   border-radius: 18px;
   left: ${(props) => `calc(${props.stepPosition} * 100%)`};
-  z-index: ${(props) => `${props.stepPosition <= props.stepValue ? "-1" : "0"}`};
+  z-index: ${(props) => props.stepValue && `${props.stepPosition <= props.stepValue ? "-1" : "0"}`};
 `;
 
 const StyledTextInput = styled.div`

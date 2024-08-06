@@ -65,7 +65,7 @@ const Calendar = ({
   const [isFocusable, setIsFocusable] = useState(false);
   const dayCells = useMemo(() => getDays(innerDate), [innerDate]);
   const translatedLabels = useTranslatedLabels();
-  const weekDays = translatedLabels.calendar.daysShort;
+  const weekDays = translatedLabels?.calendar?.daysShort;
 
   const onDateClickHandler = (date: Date) => {
     const newDate = innerDate.set("month", date.month).set("date", date.day);

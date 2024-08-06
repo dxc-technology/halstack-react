@@ -16,7 +16,7 @@ const DxcRadio = ({
   tabIndex,
 }: RadioProps): JSX.Element => {
   const radioLabelId = `radio-${useId()}`;
-  const ref = useRef<HTMLSpanElement>(null);
+  const ref = useRef<HTMLSpanElement | null>(null);
   const colorsTheme = useTheme();
 
   const handleOnClick = () => {
@@ -39,7 +39,7 @@ const DxcRadio = ({
   }, [focused]);
 
   return (
-    <ThemeProvider theme={colorsTheme.radioGroup}>
+    <ThemeProvider theme={colorsTheme?.radioGroup}>
       <DxcFlex>
         <RadioContainer
           error={error}

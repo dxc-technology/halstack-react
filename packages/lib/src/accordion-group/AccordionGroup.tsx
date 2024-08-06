@@ -57,7 +57,7 @@ const DxcAccordionGroup = ({
   );
 
   return (
-    <ThemeProvider theme={colorsTheme.accordion}>
+    <ThemeProvider theme={colorsTheme?.accordion}>
       <AccordionGroupContainer margin={margin} disabled={disabled}>
         {Children.map(children, (accordion, index) => (
           <AccordionProvider index={index} contextValue={contextValue}>

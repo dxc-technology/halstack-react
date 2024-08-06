@@ -102,7 +102,7 @@ const DxcDateInput = forwardRef<RefType, DateInputPropsType>(
       }
       const newDate = getDate(newValue, format, lastValidYear, setLastValidYear);
       const invalidDateMessage =
-        newValue !== "" && !newDate.isValid() && translatedLabels.dateInput.invalidDateErrorMessage;
+        newValue !== "" && !newDate.isValid() && translatedLabels?.dateInput?.invalidDateErrorMessage;
       const callbackParams =
         inputError || invalidDateMessage
           ? { value: newValue, error: inputError || invalidDateMessage }
@@ -122,7 +122,7 @@ const DxcDateInput = forwardRef<RefType, DateInputPropsType>(
     const handleOnBlur = ({ value: blurValue, error: inputError }) => {
       const date = getDate(blurValue, format, lastValidYear, setLastValidYear);
       const invalidDateMessage =
-        blurValue !== "" && !date.isValid() && translatedLabels.dateInput.invalidDateErrorMessage;
+        blurValue !== "" && !date.isValid() && translatedLabels?.dateInput?.invalidDateErrorMessage;
       const callbackParams =
         inputError || invalidDateMessage
           ? { value: blurValue, error: inputError || invalidDateMessage }
@@ -209,7 +209,7 @@ const DxcDateInput = forwardRef<RefType, DateInputPropsType>(
               disabled={disabled}
               hasHelperText={!!helperText}
             >
-              {label} {optional && <OptionalLabel>{translatedLabels.formFields.optionalLabel}</OptionalLabel>}
+              {label} {optional && <OptionalLabel>{translatedLabels?.formFields?.optionalLabel}</OptionalLabel>}
             </Label>
           )}
           {helperText && <HelperText disabled={disabled}>{helperText}</HelperText>}
@@ -267,14 +267,14 @@ const sizes = {
 const calculateWidth = (margin, size) =>
   size === "fillParent"
     ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
-    : sizes[size];
+    : size && sizes[size];
 
 const DateInputContainer = styled.div<{ margin: DateInputPropsType["margin"]; size: DateInputPropsType["size"] }>`
   ${(props) => props.size === "fillParent" && "width: 100%;"}
   display: flex;
   flex-direction: column;
   width: ${(props) => calculateWidth(props.margin, props.size)};
-  ${(props) => props.size !== "fillParent" && `min-width:${  calculateWidth(props.margin, props.size)}`};
+  ${(props) => props.size !== "fillParent" && `min-width:${calculateWidth(props.margin, props.size)}`};
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};

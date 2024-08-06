@@ -21,15 +21,15 @@ const DxcAlert = ({
 
   const getTypeText = () =>
     type === "info"
-      ? translatedLabels.alert.infoTitleText
+      ? translatedLabels?.alert?.infoTitleText
       : type === "confirm"
-        ? translatedLabels.alert.successTitleText
+        ? translatedLabels?.alert?.successTitleText
         : type === "warning"
-          ? translatedLabels.alert.warningTitleText
-          : translatedLabels.alert.errorTitleText;
+          ? translatedLabels?.alert?.warningTitleText
+          : translatedLabels?.alert?.errorTitleText;
 
   return (
-    <ThemeProvider theme={colorsTheme.alert}>
+    <ThemeProvider theme={colorsTheme?.alert}>
       <AlertModal mode={mode}>
         {mode === "modal" && <OverlayContainer mode={mode} onClick={onClose}></OverlayContainer>}
         <AlertContainer
@@ -76,7 +76,7 @@ const sizes = {
 const calculateWidth = (margin, size) =>
   size === "fillParent"
     ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
-    : sizes[size];
+    : size && sizes[size];
 
 const AlertModal = styled.div<{ mode: AlertPropsType["mode"] }>`
   font-size: ${(props) => props.theme.fontSizeBase};

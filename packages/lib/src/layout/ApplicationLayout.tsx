@@ -99,10 +99,12 @@ const DxcApplicationLayout = ({
       <HeaderContainer>{headerContent}</HeaderContainer>
       {sidenav && isResponsive && (
         <VisibilityToggle>
-          <DxcTooltip label={translatedLabels.applicationLayout.visibilityToggleTitle}>
+          <DxcTooltip label={translatedLabels?.applicationLayout?.visibilityToggleTitle}>
             <HamburgerTrigger
               onClick={handleSidenavVisibility}
-              aria-label={visibilityToggleLabel ? undefined : translatedLabels.applicationLayout.visibilityToggleTitle}
+              aria-label={
+                visibilityToggleLabel ? undefined : translatedLabels?.applicationLayout?.visibilityToggleTitle
+              }
             >
               <DxcIcon icon="Menu" />
               {visibilityToggleLabel}

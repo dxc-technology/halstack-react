@@ -47,15 +47,15 @@ const Tab = forwardRef(
           <BaseTypography
             color={
               tab.isDisabled
-                ? colorsTheme.tabs.disabledFontColor
+                ? colorsTheme?.tabs?.disabledFontColor
                 : active
-                  ? colorsTheme.tabs.selectedFontColor
-                  : colorsTheme.tabs.unselectedFontColor
+                  ? colorsTheme?.tabs?.selectedFontColor
+                  : colorsTheme?.tabs?.unselectedFontColor
             }
-            fontFamily={colorsTheme.tabs.fontFamily}
-            fontSize={colorsTheme.tabs.fontSize}
-            fontStyle={tab.isDisabled ? colorsTheme.tabs.disabledFontStyle : colorsTheme.tabs.fontStyle}
-            fontWeight={active ? colorsTheme.tabs.pressedFontWeight : colorsTheme.tabs.fontWeight}
+            fontFamily={colorsTheme?.tabs?.fontFamily}
+            fontSize={colorsTheme?.tabs?.fontSize}
+            fontStyle={tab.isDisabled ? colorsTheme?.tabs?.disabledFontStyle : colorsTheme?.tabs?.fontStyle}
+            fontWeight={active ? colorsTheme?.tabs?.pressedFontWeight : colorsTheme?.tabs?.fontWeight}
             textAlign="center"
             letterSpacing="0.025em"
             lineHeight="1.715em"

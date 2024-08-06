@@ -33,7 +33,7 @@ const DxcCheckbox = forwardRef<RefType, CheckboxPropsType>(
   ): JSX.Element => {
     const labelId = `label-checkbox-${useId()}`;
     const [innerChecked, setInnerChecked] = useState(defaultChecked);
-    const checkboxRef = useRef(null);
+    const checkboxRef = useRef<HTMLSpanElement | null>(null);
     const colorsTheme = useTheme();
     const translatedLabels = useTranslatedLabels();
 
@@ -50,7 +50,7 @@ const DxcCheckbox = forwardRef<RefType, CheckboxPropsType>(
       }
     };
 
-    const handleKeyboard = (event) => {
+    const handleKeyboard = (event: React.KeyboardEvent) => {
       switch (event.key) {
         case " ":
           event.preventDefault();
@@ -62,7 +62,7 @@ const DxcCheckbox = forwardRef<RefType, CheckboxPropsType>(
     };
 
     return (
-      <ThemeProvider theme={colorsTheme.checkbox}>
+      <ThemeProvider theme={colorsTheme?.checkbox}>
         <MainContainer
           disabled={disabled}
           readOnly={readOnly}
@@ -75,7 +75,7 @@ const DxcCheckbox = forwardRef<RefType, CheckboxPropsType>(
           {label && (
             <LabelContainer id={labelId} disabled={disabled} labelPosition={labelPosition} aria-label={label}>
               {label}
-              {optional && ` ${translatedLabels.formFields.optionalLabel}`}
+              {optional && ` ${translatedLabels?.formFields?.optionalLabel}`}
             </LabelContainer>
           )}
           <ValueInput
@@ -122,7 +122,7 @@ const sizes = {
 const calculateWidth = (margin: CheckboxPropsType["margin"], size: CheckboxPropsType["size"]) =>
   size === "fillParent"
     ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
-    : sizes[size];
+    : size && sizes[size];
 
 const getDisabledColor = (theme: AdvancedTheme["checkbox"], element: string) => {
   switch (element) {

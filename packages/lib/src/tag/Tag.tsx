@@ -42,7 +42,7 @@ const DxcTag = ({
   );
 
   return (
-    <ThemeProvider theme={colorsTheme.tag}>
+    <ThemeProvider theme={colorsTheme?.tag}>
       <StyledDxcTag
         margin={margin}
         size={size}
@@ -76,7 +76,7 @@ const sizes = {
 const calculateWidth = (margin, size) =>
   size === "fillParent"
     ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
-    : sizes[size];
+    : size && sizes[size];
 
 const StyledDxcTag = styled.div<{
   margin: TagPropsType["margin"];

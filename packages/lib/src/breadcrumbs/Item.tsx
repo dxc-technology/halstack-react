@@ -4,7 +4,7 @@ import CoreTokens from "../common/coreTokens";
 import { ItemPropsType } from "./types";
 
 const Item = ({ isCurrentPage = false, href, label, onClick }: ItemPropsType) => {
-  const currentItemRef = useRef<HTMLSpanElement>(null);
+  const currentItemRef = useRef<HTMLSpanElement | null>(null);
 
   const handleOnMouseEnter = (event: MouseEvent<HTMLAnchorElement>) => {
     const labelContainer = event.currentTarget;

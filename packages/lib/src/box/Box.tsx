@@ -17,7 +17,7 @@ const DxcBox = ({
   const colorsTheme = useTheme();
 
   return (
-    <ThemeProvider theme={colorsTheme.box}>
+    <ThemeProvider theme={colorsTheme?.box}>
       <Box shadowDepth={shadowDepth} display={display} margin={margin} size={size}>
         {children}
       </Box>
@@ -36,7 +36,7 @@ const sizes = {
 const calculateWidth = (margin: BoxPropsType["margin"], size: BoxPropsType["size"]) =>
   size === "fillParent"
     ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
-    : sizes[size];
+    : size && sizes[size];
 
 const Box = styled.div<BoxPropsType>`
   display: ${(props) => props.display};

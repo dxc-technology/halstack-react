@@ -199,7 +199,7 @@ export const SingleItemStates = () => {
   const value2 = useMemo(() => ({ selectedItemId: 0, setSelectedItemId: () => {} }), []);
 
   return (
-    <ThemeProvider theme={colorsTheme.contextualMenu}>
+    <ThemeProvider theme={colorsTheme?.contextualMenu}>
       <DxcContainer width="300px">
         <ContextualMenuContext.Provider value={value1}>
           <Title title="Default" theme="light" level={3} />
