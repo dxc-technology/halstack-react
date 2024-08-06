@@ -34,6 +34,7 @@ const utilitiesLinks: LinkDetails[] = [
 
 const principlesLinks: LinkDetails[] = [
   { label: "Color", path: "/principles/color" },
+  { label: "Data visualization", path: "/principles/data-visualization" },
   { label: "Iconography", path: "/principles/iconography" },
   { label: "Layout", path: "/principles/layout" },
   { label: "Localization", path: "/principles/localization" },
