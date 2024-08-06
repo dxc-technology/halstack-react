@@ -925,3 +925,22 @@ MultipleGroupedOptionsDisplayedOpinionated.play = async ({ canvasElement }) => {
   const select = canvas.getByRole("combobox");
   await userEvent.click(select);
 };
+
+const Tooltip = () => {
+  const colorsTheme: any = useTheme();
+  return (
+    <ThemeProvider theme={colorsTheme}>
+      <Title title="Default tooltip" theme="light" level={2} />
+      <ExampleContainer>
+        <DxcSelect label="Label" options={single_options} multiple defaultValue={["1", "2", "3", "4"]} />
+      </ExampleContainer>
+    </ThemeProvider>
+  );
+};
+
+export const SelectTooltip = Tooltip.bind({});
+SelectTooltip.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  const clearSelectionButton = canvas.getByRole("button");
+  await userEvent.hover(clearSelectionButton);
+};

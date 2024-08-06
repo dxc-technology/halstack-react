@@ -2,6 +2,9 @@ import DxcBadge from "./Badge";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DxcFlex from "../flex/Flex";
+import DxcInset from "../inset/Inset";
+import { userEvent, within } from "@storybook/test";
+import DxcTooltip from "../tooltip/Tooltip";
 
 export default {
   title: "Badge",
@@ -207,3 +210,39 @@ export const Chromatic = () => (
     </ExampleContainer>
   </>
 );
+
+const Tooltip = () => (
+  <>
+    <Title title="Default tooltip" theme="light" level={2} />
+    <ExampleContainer>
+      <DxcBadge label="Tooltip label" title="Label" />
+    </ExampleContainer>
+  </>
+);
+
+const NestedTooltip = () => (
+  <>
+    <Title title="Nested tooltip" theme="light" level={2} />
+    <ExampleContainer>
+      <DxcInset top="3rem">
+        <DxcTooltip label="Tooltip label" position="top">
+          <DxcBadge label="Tooltip label" title="Label" />
+        </DxcTooltip>
+      </DxcInset>
+    </ExampleContainer>
+  </>
+);
+
+export const BadgeTooltip = Tooltip.bind({});
+BadgeTooltip.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  const div = canvas.getByText("Tooltip label")
+  await userEvent.hover(div);
+};
+
+export const NestedBadgeTooltip = NestedTooltip.bind({});
+NestedBadgeTooltip.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  const div = canvas.getByText("Tooltip label")
+  await userEvent.hover(div);
+};

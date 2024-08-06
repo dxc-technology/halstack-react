@@ -1,6 +1,7 @@
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import Title from "../../.storybook/components/Title";
 import DxcApplicationLayout from "./ApplicationLayout";
+import { userEvent, within } from "@storybook/test";
 
 export default {
   title: "Application Layout",
@@ -159,3 +160,34 @@ export const ApplicationLayoutWithCustomFooter = () => (
     </DxcApplicationLayout>
   </>
 );
+
+const Tooltip = () => (
+  <>
+    <DxcApplicationLayout
+      sidenav={
+        <DxcApplicationLayout.SideNav>
+          <DxcApplicationLayout.SideNav.Section>
+            <p>SideNav Content</p>
+          </DxcApplicationLayout.SideNav.Section>
+        </DxcApplicationLayout.SideNav>
+      }
+    >
+      <DxcApplicationLayout.Main>
+        <p>Main Content</p>
+      </DxcApplicationLayout.Main>
+    </DxcApplicationLayout>
+  </>
+);
+
+export const ApplicationLayoutTooltip = Tooltip.bind({});
+ApplicationLayoutTooltip.parameters = {
+  viewport: {
+    defaultViewport: "pixel",
+  },
+  chromatic: { viewports: [540] },
+};
+ApplicationLayoutTooltip.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  const toggleVisibility = await canvas.findByRole("button");
+  await userEvent.hover(toggleVisibility);
+};
