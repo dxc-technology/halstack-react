@@ -23,19 +23,15 @@ export type ExpandableGridRow = GridRow & {
 };
 
 export type ExpandableRows = {
-  columns: GridColumn[];
   rows: ExpandableGridRow[];
   expandable: true;
   uniqueRowId: string;
-  summaryRow?: GridRow;
 };
 
 export type HierarchyRows = {
-  columns: GridColumn[];
   rows: HierarchyGridRow[];
   uniqueRowId: string;
   expandable?: false;
-  summaryRow?: GridRow;
 };
 
 export type SelectableGridProps =
@@ -52,14 +48,18 @@ export type SelectableGridProps =
       uniqueRowId?: string;
     };
 
-type Props =
+type Props = {
+  mode?: "default" | "reduced";
+  columns: GridColumn[];
+  summaryRow?: GridRow;
+  onGridRowsChange?: (rows: GridRow[] | HierarchyGridRow[] | ExpandableGridRow[]) => void;
+} & (
   | ({
-      columns: GridColumn[];
       rows: GridRow[];
       expandable?: never | false;
-      summaryRow?: GridRow;
     } & SelectableGridProps)
   | (ExpandableRows & SelectableGridProps)
-  | (HierarchyRows & SelectableGridProps);
+  | (HierarchyRows & SelectableGridProps)
+);
 
 export default Props;

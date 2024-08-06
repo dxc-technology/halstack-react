@@ -165,10 +165,8 @@ export const renderHierarchyTrigger = (
         setRowsToRender(newRowsToRender);
       }}
     >
-      <DxcFlex gap="0.5rem">
-        <DxcIcon icon={triggerRow.visibleChildren ? "Keyboard_Arrow_Down" : "Chevron_Right"} />
-        {triggerRow[columnKey]}
-      </DxcFlex>
+      <DxcIcon icon={triggerRow.visibleChildren ? "Keyboard_Arrow_Down" : "Chevron_Right"} />
+      {triggerRow[columnKey]}
     </button>
   );
 };

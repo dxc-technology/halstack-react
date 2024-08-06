@@ -9,7 +9,7 @@ import preview from "../../.storybook/preview";
 import { userEvent, within } from "@storybook/test";
 
 export default {
-  title: "Datagrid",
+  title: "Data Grid",
   component: DxcDataGrid,
   parameters: {
     a11y: {
@@ -274,6 +274,19 @@ export const Chromatic = () => {
           rows={expandableRows}
           summaryRow={{ label: "Total", total: 100 }}
           uniqueRowId="id"
+        />
+      </ExampleContainer>
+      <ExampleContainer>
+        <Title title="Reduced Data Grid" theme="light" level={4} />
+        <DxcDataGrid
+          columns={childcolumns}
+          rows={childRows}
+          uniqueRowId="value"
+          selectable
+          selectedRows={selectedChildRows}
+          onSelectRows={setSelectedChildRows}
+          summaryRow={{ label: "Total", total: 100 }}
+          mode="reduced"
         />
       </ExampleContainer>
     </>

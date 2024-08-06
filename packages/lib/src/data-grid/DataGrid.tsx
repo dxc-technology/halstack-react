@@ -27,6 +27,8 @@ const DxcDataGrid = ({
   selectedRows,
   uniqueRowId,
   summaryRow,
+  mode = "default",
+  onGridRowsChange,
 }: DataGridPropsType): JSX.Element => {
   const [rowsToRender, setRowsToRender] = useState<GridRow[] | HierarchyGridRow[] | ExpandableGridRow[]>(rows);
   // Proccess columns prop into usable columns based on other props
@@ -62,7 +64,7 @@ const DxcDataGrid = ({
             }
             // if row has expandable content
             return (
-              <ActionContainer>
+              <ActionContainer id="action">
                 {row.expandedContent && renderExpandableTrigger(row, rowsToRender, uniqueRowId, setRowsToRender)}
               </ActionContainer>
             );
@@ -79,13 +81,13 @@ const DxcDataGrid = ({
         renderCell({ row }) {
           if (row.childRows?.length) {
             return (
-              <HierarchyContainer level={row.rowLevel || 0}>
+              <HierarchyContainer level={row.rowLevel || 0} mode={mode}>
                 {renderHierarchyTrigger(rowsToRender, row, uniqueRowId, firstColumnKey, setRowsToRender)}
               </HierarchyContainer>
             );
           }
           return (
-            <HierarchyContainer level={row.rowLevel || 0} className="ellipsis-cell">
+            <HierarchyContainer level={row.rowLevel || 0} className="ellipsis-cell" mode={mode}>
               {row[firstColumnKey]}
             </HierarchyContainer>
           );
@@ -102,13 +104,17 @@ const DxcDataGrid = ({
           renderCell({ row }) {
             if (!row.isExpandedChildContent) {
               return (
-                <ActionContainer>{renderCheckbox(rows, row, uniqueRowId, selectedRows, onSelectRows)}</ActionContainer>
+                <ActionContainer id="action">
+                  {renderCheckbox(rows, row, uniqueRowId, selectedRows, onSelectRows)}
+                </ActionContainer>
               );
             }
           },
           renderHeaderCell: () => {
             return (
-              <ActionContainer>{renderHeaderCheckbox(rows, uniqueRowId, selectedRows, onSelectRows)}</ActionContainer>
+              <ActionContainer id="action">
+                {renderHeaderCheckbox(rows, uniqueRowId, selectedRows, onSelectRows)}
+              </ActionContainer>
             );
           },
         },
@@ -146,10 +152,9 @@ const DxcDataGrid = ({
     });
   };
 
-  const onRowsChange = (newRows: { [key: string]: string | number | React.ReactNode }[]) => {
+  const onRowsChange = (newRows: GridRow[] | HierarchyGridRow[] | ExpandableGridRow[]) => {
     // call function to change rows, like when they have been edited
-    console.log("new rows: ");
-    console.log(newRows);
+    onGridRowsChange(newRows);
   };
 
   const sortedRows = useMemo((): readonly GridRow[] => {
@@ -201,12 +206,12 @@ const DxcDataGrid = ({
           ) {
             return row.expandedContentHeight;
           }
-          return 60;
+          return mode === "default" ? 60 : 36;
         }}
         selectedRows={selectedRows}
         bottomSummaryRows={summaryRow ? [summaryRow] : undefined}
-        headerRowHeight={60}
-        summaryRowHeight={60}
+        headerRowHeight={mode === "default" ? 60 : 36}
+        summaryRowHeight={mode === "default" ? 60 : 36}
         className="fill-grid"
       />
     </DataGridContainer>
@@ -224,16 +229,22 @@ const ActionContainer = styled.div`
 
 const HierarchyContainer = styled.div<{
   level: number;
+  mode: "default" | "reduced";
 }>`
   padding-left: calc(24px * ${(props) => props.level});
   button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     padding: 0px;
-    background: transparent;
     border: 0px;
-    cursor: pointer;
     width: 100%;
-    height: 60px;
+    height: ${(props) => (props.mode === "default" ? 60 : 36)}px;
+    background: transparent;
     text-align: left;
+    font-size: 14px;
+    font-family: inherit;
+    cursor: pointer;
   }
 `;
 
@@ -244,15 +255,20 @@ const DataGridContainer = styled.div`
     height: 100%;
     border: 0px;
   }
+  .rdg-cell {
+    padding: 0px 24px;
+    font-family: "Open Sans", sans-serif;
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 400;
+  }
+  .rdg-cell:has(> #action) {
+    padding: 0px;
+  }
   .rdg-header-row {
     background-color: rgb(95, 36, 159);
     .rdg-cell {
-      font-family: "Open Sans", sans-serif;
-      font-size: 0.875rem;
-      font-style: normal;
-      font-weight: 400;
       color: rgb(255, 255, 255);
-      text-transform: none;
       .sortIconContainer {
         margin-left: 0.5rem;
         display: flex;
@@ -275,9 +291,8 @@ const DataGridContainer = styled.div`
   .rdg-summary-row {
     background-color: #fafafa;
     .rdg-cell {
-      border-top: 0px;
+      border: 0px;
       font-weight: 600;
-      border-right: 0px;
     }
   }
   .rdg-row {
