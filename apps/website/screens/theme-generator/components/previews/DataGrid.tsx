@@ -3,7 +3,11 @@ import { DxcContainer, DxcDataGrid } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
 import PreviewContainer from "./PreviewContainer";
 
-const columns = [
+type DataGridPropsType = React.ComponentProps<typeof DxcDataGrid>;
+type DataGridColumnsPropsType = DataGridPropsType["columns"];
+type DataGridRowsPropsType = DataGridPropsType["rows"];
+
+const columns: DataGridColumnsPropsType = [
   {
     key: "id",
     label: "ID",
@@ -115,7 +119,7 @@ const expandableRows = [
   },
 ];
 
-const childcolumns = [
+const childcolumns: DataGridColumnsPropsType = [
   {
     key: "name",
     label: "Name",
@@ -134,7 +138,7 @@ const childcolumns = [
   },
 ];
 
-const childRows = [
+const childRows: DataGridRowsPropsType = [
   {
     name: "Root Node 1",
     value: "1",
@@ -193,7 +197,7 @@ const childRows = [
       },
     ],
   },
-];
+] as DataGridRowsPropsType;
 
 const DataGridPreview = () => {
   const [selectedRows, setSelectedRows] = useState((): Set<number | string> => new Set());

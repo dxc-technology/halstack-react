@@ -46,7 +46,6 @@ import DxcTextarea from "./textarea/Textarea";
 import DxcTextInput from "./text-input/TextInput";
 import DxcToggleGroup from "./toggle-group/ToggleGroup";
 import DxcTooltip from "./tooltip/Tooltip";
-
 import DxcTypography from "./typography/Typography";
 import DxcWizard from "./wizard/Wizard";
 
