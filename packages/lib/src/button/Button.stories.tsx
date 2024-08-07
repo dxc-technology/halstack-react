@@ -3,6 +3,9 @@ import DxcFlex from "../flex/Flex";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import { HalstackProvider } from "../HalstackContext";
+import DxcInset from "../inset/Inset";
+import DxcTooltip from "../tooltip/Tooltip";
+import { userEvent, within } from "@storybook/test";
 
 export default {
   title: "Button",
@@ -4962,3 +4965,39 @@ export const Chromatic = () => (
     </DxcFlex>
   </>
 );
+
+const Tooltip = () => (
+  <>
+    <Title title="Default tooltip" theme="light" level={2} />
+    <ExampleContainer>
+      <DxcButton label="Button" title="Button" />
+    </ExampleContainer>
+  </>
+);
+
+const NestedTooltip = () => (
+  <>
+    <Title title="Nested tooltip" theme="light" level={2} />
+    <ExampleContainer>
+      <DxcInset top="3rem">
+        <DxcTooltip label="Button" position="top">
+          <DxcButton label="Button" title="Button" />
+        </DxcTooltip>
+      </DxcInset>
+    </ExampleContainer>
+  </>
+);
+
+export const ButtonTooltip = Tooltip.bind({});
+ButtonTooltip.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  const button = canvas.getByRole("button");
+  await userEvent.hover(button);
+};
+
+export const NestedButtonTooltip = NestedTooltip.bind({});
+NestedButtonTooltip.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  const button = canvas.getByRole("button");
+  await userEvent.hover(button);
+};

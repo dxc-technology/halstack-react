@@ -1538,17 +1538,6 @@ export const defaultTranslatedComponentLabels = {
     warningTitleText: "warning",
     errorTitleText: "error",
   },
-  barChart: {
-    ariaLabel: "Single data series line chart",
-    filterLabel: "Filter displayed data",
-    filterPlaceholder: "Select series...",
-    loadingDataMessage: "Loading data...",
-    noDataMessageBody: "There is no data available.",
-    noDataMessageTitle: "No data available",
-    noMatchesMessageBody: "Try changing the filters or reloading the data.",
-    noMatchesMessageTitle: "No matching data",
-    retryButtonLabel: "Retry",
-  },
   dateInput: {
     invalidDateErrorMessage: "Invalid date.",
   },

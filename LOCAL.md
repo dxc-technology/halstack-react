@@ -22,7 +22,6 @@ The monorepo is structured as follows (some folders and files are omitted for ex
 📂 apps
     📂 website             # Contains our Next.js documentation site application
 📂 packages
-    📂 cloudscape-themed   # Contains Cloudscape components themed by Halstack
     📂 lib                 # Contains halstack-react component library
 📄 package.json       # Root package.json
 📄 package-lock.json  # Root package-lock.json

@@ -1,6 +1,9 @@
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DxcActionIcon from "./ActionIcon";
+import { userEvent, within } from "@storybook/test";
+import DxcTooltip from "../tooltip/Tooltip";
+import DxcInset from "../inset/Inset";
 
 export default {
   title: "Action Icon ",
@@ -38,3 +41,39 @@ export const Chromatic = () => (
     </ExampleContainer>
   </>
 );
+
+const Tooltip = () => (
+  <>
+    <Title title="Default tooltip" theme="light" level={2} />
+    <ExampleContainer>
+      <DxcActionIcon icon="favorite" title="Favourite" />
+    </ExampleContainer>
+  </>
+);
+
+const NestedTooltip = () => (
+  <>
+    <Title title="Nested tooltip" theme="light" level={2} />
+    <ExampleContainer>
+      <DxcInset top="3rem">
+        <DxcTooltip label="Favourite" position="top">
+          <DxcActionIcon icon="favorite" title="Favourite" />
+        </DxcTooltip>
+      </DxcInset>
+    </ExampleContainer>
+  </>
+);
+
+export const ActionIconTooltip = Tooltip.bind({});
+ActionIconTooltip.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  const button = canvas.getByRole("button");
+  await userEvent.hover(button);
+};
+
+export const NestedActionIconTooltip = NestedTooltip.bind({});
+NestedActionIconTooltip.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  const button = canvas.getByRole("button");
+  await userEvent.hover(button);
+};
