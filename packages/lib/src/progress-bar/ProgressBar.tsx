@@ -161,7 +161,7 @@ const LinearProgressBar = styled.span<{
   container: string;
 }>`
   background-color: ${(props) => props.theme.trackLineColor};
-  transform: ${(props) => `translateX(-${props.variant === "determinate" ? 100 - props.value : 0}%)`};
+  transform: ${(props) => `translateX(-${props.variant === "determinate" ? 100 - (props.value ?? 0) : 0}%)`};
   top: 0;
   left: 0;
   width: 100%;

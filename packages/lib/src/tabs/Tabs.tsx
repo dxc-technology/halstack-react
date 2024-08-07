@@ -198,7 +198,7 @@ const DxcTabs = ({
   };
 
   const isTabActive = (index: number) =>
-    activeTabIndex && activeTabIndex >= 0 ? activeTabIndex === index : innerActiveTabIndex === index;
+    activeTabIndex != null && activeTabIndex >= 0 ? activeTabIndex === index : innerActiveTabIndex === index;
   const isActiveIndicatorDisabled =
     firstFocus === -1 ||
     (tabs && activeTabIndex !== undefined && activeTabIndex >= 0 && !!tabs[activeTabIndex]?.isDisabled);

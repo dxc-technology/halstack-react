@@ -49,13 +49,14 @@ const subLightness = (newLightness: number, hexColor?: string) => {
 };
 
 const parseAdvancedTheme = (advancedTheme: DeepPartial<AdvancedTheme>): AdvancedTheme => {
-  const allTokensCopy = JSON.parse(JSON.stringify(componentTokens));
+  const allTokensCopy: AdvancedTheme = JSON.parse(JSON.stringify(componentTokens));
 
-  Object.keys(allTokensCopy).forEach((component) => {
-    if (advancedTheme[component]) {
-      Object.keys(advancedTheme[component]).forEach((objectKey) => {
-        if (advancedTheme[component][objectKey]) {
-          allTokensCopy[component][objectKey] = advancedTheme[component][objectKey];
+  (Object.keys(allTokensCopy) as (keyof AdvancedTheme)[]).forEach((component) => {
+    const componentTheme = advancedTheme[component];
+    if (componentTheme != null) {
+      (Object.keys(componentTheme) as (keyof typeof componentTheme)[]).forEach((objectKey) => {
+        if (componentTheme[objectKey]) {
+          allTokensCopy[component][objectKey] = componentTheme[objectKey];
         }
       });
     }
@@ -393,13 +394,16 @@ const parseTheme = (theme: DeepPartial<OpinionatedTheme>): AdvancedTheme => {
 
 const parseLabels = (labels: DeepPartial<TranslatedLabels>): TranslatedLabels => {
   const parsedLabels = defaultTranslatedComponentLabels;
-  Object.keys(labels).forEach((component) => {
+  (Object.keys(labels) as (keyof TranslatedLabels)[]).forEach((component) => {
     if (parsedLabels[component]) {
-      Object.keys(parsedLabels[component]).forEach((label) => {
-        if (labels[component][label]) {
-          parsedLabels[component][label] = labels[component][label];
-        }
-      });
+      const componentLabels = labels[component];
+      if (componentLabels != null) {
+        (Object.keys(parsedLabels[component]) as (keyof typeof componentLabels)[]).forEach((label) => {
+          if (componentLabels[label]) {
+            parsedLabels[component][label] = componentLabels[label];
+          }
+        });
+      }
     }
   });
   return parsedLabels;

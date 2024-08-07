@@ -13,6 +13,8 @@ import useWidth from "../utils/useWidth";
 import Suggestions from "./Suggestions";
 import TextInputPropsType, { AutosuggestWrapperProps, RefType } from "./types";
 
+// TODO: FIND THE BUG WITH NUMBERINPUT
+
 const sizes = {
   small: "240px",
   medium: "360px",
@@ -24,9 +26,9 @@ const AutosuggestWrapper = ({ condition, wrapper, children }: AutosuggestWrapper
   <>{condition ? wrapper(children) : children}</>
 );
 
-const calculateWidth = (margin, size) =>
+const calculateWidth = (margin: TextInputPropsType["margin"], size: TextInputPropsType["size"]) =>
   size === "fillParent"
-    ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
+    ? `calc(${sizes[size]} - ${getMargin(margin as string | object, "left")} - ${getMargin(margin as string | object, "right")})`
     : size && sizes[size];
 
 const makeCancelable = (promise: Promise<string[]>) => {
@@ -50,13 +52,14 @@ const hasSuggestions = (suggestions: TextInputPropsType["suggestions"]) =>
 
 const isRequired = (value: string, optional: boolean) => value === "" && !optional;
 
-const isLengthIncorrect = (value: string, minLength: number, maxLength: number) =>
-  value != null && (value.length < minLength || value.length > maxLength);
+const isLengthIncorrect = (value: string, minLength: number | undefined, maxLength: number | undefined) =>
+  value != null && ((minLength != null && value.length < minLength) || (maxLength != null && value.length > maxLength));
 
-const isNumberIncorrect = (value: number, minNumber: number, maxNumber: number) =>
-  value < minNumber || value > maxNumber;
+const isNumberIncorrect = (value: number, minNumber: number | undefined, maxNumber: number | undefined) =>
+  (minNumber != null && value < minNumber) || (maxNumber != null && value > maxNumber);
 
-const patternMismatch = (pattern: string, value: string) => pattern != null && !new RegExp(pattern).test(value);
+const patternMismatch = (pattern: string | undefined, value: string) =>
+  pattern != null && !new RegExp(pattern).test(value);
 
 const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
   (
@@ -96,7 +99,7 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
     const [isOpen, changeIsOpen] = useState(false);
     const [isSearching, changeIsSearching] = useState(false);
     const [isAutosuggestError, changeIsAutosuggestError] = useState(false);
-    const [filteredSuggestions, changeFilteredSuggestions] = useState([]);
+    const [filteredSuggestions, changeFilteredSuggestions] = useState<string[]>([]);
     const [visualFocusIndex, changeVisualFocusIndex] = useState(-1);
 
     const inputRef = useRef<HTMLInputElement | null>(null);
@@ -151,13 +154,11 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
       </Popover.Root>
     );
     const getNumberErrorMessage = (checkedValue: number) =>
-      numberInputContext?.minNumber && numberInputContext?.maxNumber
-        ? checkedValue < numberInputContext?.minNumber
-          ? translatedLabels?.numberInput?.valueGreaterThanOrEqualToErrorMessage?.(numberInputContext.minNumber)
-          : checkedValue > numberInputContext?.maxNumber
-            ? translatedLabels?.numberInput?.valueLessThanOrEqualToErrorMessage?.(numberInputContext.maxNumber)
-            : undefined
-        : undefined;
+      numberInputContext?.minNumber != null && checkedValue < numberInputContext?.minNumber
+        ? translatedLabels?.numberInput?.valueGreaterThanOrEqualToErrorMessage?.(numberInputContext.minNumber)
+        : numberInputContext?.maxNumber != null && checkedValue > numberInputContext?.maxNumber
+          ? translatedLabels?.numberInput?.valueLessThanOrEqualToErrorMessage?.(numberInputContext.maxNumber)
+          : undefined;
 
     const openSuggestions = () => {
       if (hasSuggestions(suggestions)) {
@@ -183,26 +184,18 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
           value: formattedValue,
           error: translatedLabels?.formFields?.requiredValueErrorMessage,
         });
-      } else if (minLength != null && maxLength != null && isLengthIncorrect(formattedValue, minLength, maxLength)) {
+      } else if (isLengthIncorrect(formattedValue, minLength, maxLength)) {
         onChange?.({
           value: formattedValue,
           error: translatedLabels?.formFields?.lengthErrorMessage?.(minLength, maxLength),
         });
-      } else if (pattern != null && patternMismatch(pattern, formattedValue)) {
-        onChange?.({
-          value: formattedValue,
-          error: translatedLabels?.formFields?.formatRequestedErrorMessage,
-        });
+      } else if (patternMismatch(pattern, formattedValue)) {
+        onChange?.({ value: formattedValue, error: translatedLabels?.formFields?.formatRequestedErrorMessage });
       } else if (
         numberInputContext?.typeNumber === "number" &&
-        numberInputContext?.minNumber != null &&
-        numberInputContext?.maxNumber != null &&
         isNumberIncorrect(Number(newValue), numberInputContext?.minNumber, numberInputContext?.maxNumber)
       ) {
-        onChange?.({
-          value: formattedValue,
-          error: getNumberErrorMessage(Number(newValue)),
-        });
+        onChange?.({ value: formattedValue, error: getNumberErrorMessage(Number(newValue)) });
       } else {
         onChange?.({ value: formattedValue });
       }
@@ -212,7 +205,7 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
       if (!disabled && !readOnly) {
         const numberValue = Number(currentValue);
         const steppedValue =
-          Math.round((numberValue - (numberInputContext?.stepNumber || 1) + Number.EPSILON) * 100) / 100;
+          Math.round((numberValue - (numberInputContext?.stepNumber ?? 0) + Number.EPSILON) * 100) / 100;
 
         if (currentValue !== "") {
           if (
@@ -222,7 +215,7 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
             changeValue(numberValue);
           } else if (numberInputContext?.maxNumber != null && numberValue > numberInputContext?.maxNumber) {
             changeValue(numberInputContext?.maxNumber);
-          } else if (numberInputContext?.minNumber != null && numberValue === numberInputContext?.minNumber) {
+          } else if (numberValue === numberInputContext?.minNumber) {
             changeValue(numberInputContext?.minNumber);
           } else {
             changeValue(steppedValue);
@@ -236,11 +229,12 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
         }
       }
     };
+
     const incrementNumber = (currentValue = value ?? innerValue) => {
       if (!disabled && !readOnly) {
         const numberValue = Number(currentValue);
         const steppedValue =
-          Math.round((numberValue + (numberInputContext?.stepNumber || 1) + Number.EPSILON) * 100) / 100;
+          Math.round((numberValue + (numberInputContext?.stepNumber ?? 0) + Number.EPSILON) * 100) / 100;
 
         if (currentValue !== "") {
           if (
@@ -250,7 +244,7 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
             changeValue(numberValue);
           } else if (numberInputContext?.minNumber != null && numberValue < numberInputContext?.minNumber) {
             changeValue(numberInputContext?.minNumber);
-          } else if (numberInputContext?.maxNumber != null && numberValue === numberInputContext?.maxNumber) {
+          } else if (numberValue === numberInputContext?.maxNumber) {
             changeValue(numberInputContext?.maxNumber);
           } else {
             changeValue(steppedValue);
@@ -285,34 +279,19 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
       closeSuggestions();
 
       if (isRequired(event.target.value, optional)) {
-        onBlur?.({
-          value: event.target.value,
-          error: translatedLabels?.formFields?.requiredValueErrorMessage,
-        });
-      } else if (
-        minLength != null &&
-        maxLength != null &&
-        isLengthIncorrect(event.target.value, minLength, maxLength)
-      ) {
+        onBlur?.({ value: event.target.value, error: translatedLabels?.formFields?.requiredValueErrorMessage });
+      } else if (isLengthIncorrect(event.target.value, minLength, maxLength)) {
         onBlur?.({
           value: event.target.value,
           error: translatedLabels?.formFields?.lengthErrorMessage?.(minLength, maxLength),
         });
-      } else if (pattern != null && patternMismatch(pattern, event.target.value)) {
-        onBlur?.({
-          value: event.target.value,
-          error: translatedLabels?.formFields?.formatRequestedErrorMessage,
-        });
+      } else if (patternMismatch(pattern, event.target.value)) {
+        onBlur?.({ value: event.target.value, error: translatedLabels?.formFields?.formatRequestedErrorMessage });
       } else if (
         numberInputContext?.typeNumber === "number" &&
-        numberInputContext?.minNumber != null &&
-        numberInputContext?.maxNumber != null &&
-        (Number(event.target.value), numberInputContext?.minNumber, numberInputContext?.maxNumber)
+        isNumberIncorrect(Number(event.target.value), numberInputContext?.minNumber, numberInputContext?.maxNumber)
       ) {
-        onBlur?.({
-          value: event.target.value,
-          error: getNumberErrorMessage(Number(event.target.value)),
-        });
+        onBlur?.({ value: event.target.value, error: getNumberErrorMessage(Number(event.target.value)) });
       } else {
         onBlur?.({ value: event.target.value });
       }
@@ -372,7 +351,7 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
           if (hasSuggestions(suggestions) && !isSearching) {
             const validFocusedSuggestion =
               filteredSuggestions.length > 0 && visualFocusIndex >= 0 && visualFocusIndex < filteredSuggestions.length;
-            if (validFocusedSuggestion) {
+            if (validFocusedSuggestion && filteredSuggestions[visualFocusIndex] != null) {
               changeValue(filteredSuggestions[visualFocusIndex]);
             }
             if (isOpen) {

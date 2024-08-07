@@ -55,7 +55,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
 
     const selectRef = useRef<HTMLDivElement | null>(null);
     const selectSearchInputRef = useRef<HTMLInputElement | null>(null);
-    const selectedOptionLabelRef = useRef(null);
+    const selectedOptionLabelRef = useRef<HTMLSpanElement | null>(null);
 
     const width = useWidth(selectRef.current);
     const colorsTheme = useTheme();
@@ -297,7 +297,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
               id={selectLabelId}
               disabled={disabled}
               onClick={() => {
-                selectRef.current.focus();
+                selectRef?.current?.focus();
               }}
               helperText={helperText}
             >
@@ -463,7 +463,7 @@ const sizes = {
 
 const calculateWidth = (margin: SelectPropsType["margin"], size: SelectPropsType["size"]) =>
   size === "fillParent"
-    ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
+    ? `calc(${sizes[size]} - ${getMargin(margin as string | object, "left")} - ${getMargin(margin as string | object, "right")})`
     : size && sizes[size];
 
 const SelectContainer = styled.div<{

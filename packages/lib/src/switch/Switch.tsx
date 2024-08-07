@@ -109,9 +109,9 @@ const sizes = {
   fitContent: "fit-content",
 };
 
-const calculateWidth = (margin, size) =>
+const calculateWidth = (margin: SwitchPropsType["margin"], size: SwitchPropsType["size"]) =>
   size === "fillParent"
-    ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
+    ? `calc(${sizes[size]} - ${getMargin(margin as string | object, "left")} - ${getMargin(margin as string | object, "right")})`
     : size && sizes[size];
 
 const getDisabledColor = (

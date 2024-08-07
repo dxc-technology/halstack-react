@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import BleedPropsType from "./types";
+import BleedPropsType, { Spacing } from "./types";
 
 const Bleed = ({ space, horizontal, vertical, top, right, bottom, left, children }: BleedPropsType): JSX.Element => (
   <StyledBleed
@@ -15,8 +15,8 @@ const Bleed = ({ space, horizontal, vertical, top, right, bottom, left, children
   </StyledBleed>
 );
 
-function getSpacingValue(spacingName) {
-  return spacingName || "0rem";
+function getSpacingValue(spacingName: Spacing | undefined) {
+  return spacingName ?? "0rem";
 }
 
 const StyledBleed = styled.div<BleedPropsType>`

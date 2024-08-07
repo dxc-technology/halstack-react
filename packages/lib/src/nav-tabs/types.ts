@@ -45,7 +45,7 @@ type Props = {
   /**
    * Contains one or more DxcNavTabs.Tab.
    */
-  children: React.ReactElement;
+  children: React.ReactNode;
   /**
    * Value of the tabindex attribute applied to each tab.
    */

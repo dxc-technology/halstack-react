@@ -1,4 +1,4 @@
-import { Children, useCallback, useEffect, useRef, useState } from "react";
+import { Children, FC, ReactElement, useCallback, useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { responsiveSizes } from "../common/variables";
 import DxcFooter from "../footer/Footer";
@@ -52,7 +52,8 @@ const defaultFooter = () => (
   />
 );
 
-const childTypeExists = (children, childType) => children.find((child) => child?.type === childType);
+const childTypeExists = (children: ReactElement[], childType: FC<AppLayoutMainPropsType>) =>
+  children.find((child) => child?.type === childType);
 
 const DxcApplicationLayout = ({
   visibilityToggleLabel = "",
@@ -66,7 +67,7 @@ const DxcApplicationLayout = ({
   const ref = useRef(null);
   const translatedLabels = useTranslatedLabels();
 
-  const childrenArray = Children.toArray(children);
+  const childrenArray = Children.toArray(children) as ReactElement[];
   const headerContent = header || defaultHeader();
   const footerContent = footer || defaultFooter();
 

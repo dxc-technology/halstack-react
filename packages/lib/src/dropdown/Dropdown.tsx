@@ -226,9 +226,9 @@ const sizes = {
   fitContent: "fit-content",
 };
 
-const calculateWidth = (margin, size) =>
+const calculateWidth = (margin: DropdownPropsType["margin"], size: DropdownPropsType["size"]) =>
   size === "fillParent"
-    ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
+    ? `calc(${sizes[size]} - ${getMargin(margin as string | object, "left")} - ${getMargin(margin as string | object, "right")})`
     : size && sizes[size];
 
 const DropdownContainer = styled.div<{

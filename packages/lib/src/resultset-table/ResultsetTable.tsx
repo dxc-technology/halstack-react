@@ -16,8 +16,8 @@ const isDateType = (value: React.ReactNode | Date): boolean => value instanceof 
 
 const sortArray = (index: number, order: "ascending" | "descending", resultset: { id: string; cells: Row }[]) =>
   resultset.slice().sort((element1, element2) => {
-    const sortValueA = normalizeSortValue(element1.cells[index].sortValue || element1[index].displayValue);
-    const sortValueB = normalizeSortValue(element2.cells[index].sortValue || element2[index].displayValue);
+    const sortValueA = normalizeSortValue(element1?.cells[index]?.sortValue || element1[index].displayValue);
+    const sortValueB = normalizeSortValue(element2?.cells[index]?.sortValue || element2[index].displayValue);
     let comparison = 0;
     if (typeof sortValueA === "object" && !isDateType(sortValueA)) {
       comparison = -1;
@@ -180,7 +180,7 @@ const DxcResultsetTable = ({
 };
 
 const calculateWidth = (margin: ResultsetTablePropsType["margin"]) =>
-  `calc(100% - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`;
+  `calc(100% - ${getMargin(margin as string | object, "left")} - ${getMargin(margin as string | object, "right")})`;
 
 const DxcResultsetTableContainer = styled.div<{
   margin: ResultsetTablePropsType["margin"];

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import InsetPropsType from "./types";
+import InsetPropsType, { Spacing } from "./types";
 
 const Inset = ({ space, horizontal, vertical, top, right, bottom, left, children }: InsetPropsType): JSX.Element => (
   <StyledInset
@@ -15,7 +15,7 @@ const Inset = ({ space, horizontal, vertical, top, right, bottom, left, children
   </StyledInset>
 );
 
-function getSpacingValue(spacingName) {
+function getSpacingValue(spacingName: Spacing | undefined) {
   return spacingName || "0rem";
 }
 

@@ -61,7 +61,7 @@ module.exports = {
     },
   ],
   rules: {
-    curly: "warn",
+    curly: ["warn", "all"],
     "no-plusplus": ["error", { allowForLoopAfterthoughts: true }],
     "no-use-before-define": [
       "error",

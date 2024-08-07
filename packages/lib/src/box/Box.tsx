@@ -35,7 +35,7 @@ const sizes = {
 
 const calculateWidth = (margin: BoxPropsType["margin"], size: BoxPropsType["size"]) =>
   size === "fillParent"
-    ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
+    ? `calc(${sizes[size]} - ${getMargin(margin as string | object, "left")} - ${getMargin(margin as string | object, "right")})`
     : size && sizes[size];
 
 const Box = styled.div<BoxPropsType>`

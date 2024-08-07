@@ -102,7 +102,7 @@ describe("Slider component tests", () => {
     act(() => {
       fireEvent.mouseUp(slider, { target: { value: 120 } });
     });
-    expect(onDragEnd).toHaveBeenCalledWith("120");
+    expect(onDragEnd).toHaveBeenCalledWith(120);
   });
 
   test("Calls correct function onDragEnd when it is controlled", () => {
@@ -115,7 +115,7 @@ describe("Slider component tests", () => {
     act(() => {
       fireEvent.mouseUp(slider, { target: { value: 120 } });
     });
-    expect(onDragEnd).toHaveBeenCalledWith("120");
+    expect(onDragEnd).toHaveBeenCalledWith(120);
     expect(slider.getAttribute("aria-valuenow")).toBe("50");
   });
 

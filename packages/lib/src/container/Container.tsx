@@ -45,7 +45,7 @@ const Container = styled.div<StyledProps>`
 
   background-attachment: ${({ background }) => background?.attachment};
   background-clip: ${({ background }) => background?.clip};
-  background-color: ${({ background }) => background?.color ? getCoreColorToken(background?.color): ""};
+  background-color: ${({ background }) => (background?.color ? getCoreColorToken(background?.color) : "")};
   background-image: ${({ background }) => background?.image};
   background-origin: ${({ background }) => background?.origin};
   background-position: ${({ background }) => background?.position};
@@ -55,7 +55,8 @@ const Container = styled.div<StyledProps>`
   border-radius: ${({ borderRadius }) => borderRadius};
   border-width: ${({ border }) => (border && "width" in border ? `${border?.width}` : "")};
   border-style: ${({ border }) => (border && "style" in border ? `${border?.style}` : "")};
-  border-color: ${({ border }) => (border && "color" in border ? `${getCoreColorToken(border?.color)}` : "")};
+  border-color: ${({ border }) =>
+    border && "color" in border && border?.color ? `${getCoreColorToken(border?.color)}` : ""};
 
   ${({ border }) => {
     if (border != null) {

@@ -51,7 +51,7 @@ const DxcChip = ({
 };
 
 const calculateWidth = (margin: ChipPropsType["margin"]) =>
-  `calc(100% - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`;
+  `calc(100% - ${getMargin(margin as string | object, "left")} - ${getMargin(margin as string | object, "right")})`;
 
 const Chip = styled.div<{ margin: ChipPropsType["margin"]; disabled: ChipPropsType["disabled"] }>`
   box-sizing: border-box;
