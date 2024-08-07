@@ -49,11 +49,11 @@ const code = `() => {
       colorTextBodyDefault: CoreColorTokens.color_grey_900,
     },
   };
-  const { reset } = applyTheme({ theme });
+  applyTheme({ theme });
 
   return (
     <DxcInset space="2rem">
-      <DxcHeading text="Bar chart themed" level={2} margin={{ bottom: "medium" }} />
+      <DxcHeading text="Themed bar chart" level={2} margin={{ bottom: "large" }} />
       <BarChart
         series={[
           {
@@ -82,7 +82,7 @@ const code = `() => {
       />
     </DxcInset>
   );
-};`;
+}`;
 
 const scope = {
   applyTheme,

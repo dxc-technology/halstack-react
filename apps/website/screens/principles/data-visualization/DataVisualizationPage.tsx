@@ -26,7 +26,7 @@ const sections = [
         </DxcParagraph>
         <DxcParagraph>
           As we consider data visualisation a tremendously dense and complex design pattern, we have decided to rely on
-          another design system for this task. Our choice was{" "}
+          another design system for this task. Our choice is{" "}
           <Link href="https://cloudscape.design/" passHref legacyBehavior>
             <DxcLink>Cloudscape</DxcLink>
           </Link>
@@ -73,11 +73,11 @@ const sections = [
           </DxcBulletedList.Item>
         </DxcBulletedList>
         <DxcParagraph>
-          For a better understanding of all these components, how to use them and other general guidelines and
-          fundamentals, please look at{" "}
+          All the information presented below complements the{" "}
           <Link href="https://cloudscape.design/patterns/general/data-vis/" passHref legacyBehavior>
-            <DxcLink>Cloudscape data visualization pattern.</DxcLink>
+            <DxcLink>Cloudscape data visualization pattern</DxcLink>
           </Link>
+          . We strongly recommend reading it in parallel.
         </DxcParagraph>
       </>
     ),
@@ -317,7 +317,8 @@ const sections = [
           . The complete list of data visualization color design tokens can be found{" "}
           <Link href="https://cloudscape.design/foundation/visual-foundation/data-vis-colors/" passHref legacyBehavior>
             <DxcLink>here</DxcLink>
-          </Link>.
+          </Link>
+          .
         </DxcParagraph>
         <Example example={themeBarChart} defaultIsVisible />
       </>
