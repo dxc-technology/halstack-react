@@ -137,6 +137,11 @@ const parseTheme = (theme: DeepPartial<OpinionatedTheme>): AdvancedTheme => {
   contextualMenu.sectionTitleFontColor = theme?.contextualMenu?.fontColor ?? contextualMenu.sectionTitleFontColor;
   contextualMenu.iconColor = theme?.contextualMenu?.iconColor ?? contextualMenu.iconColor;
 
+  const dataGridTokens = componentTokensCopy.dataGrid;
+  dataGridTokens.headerBackgroundColor = theme?.dataGrid?.baseColor ?? dataGridTokens.headerBackgroundColor;
+  dataGridTokens.headerFontColor = theme?.dataGrid?.headerFontColor ?? dataGridTokens.headerFontColor;
+  dataGridTokens.dataFontColor = theme?.dataGrid?.cellFontColor ?? dataGridTokens.dataFontColor;
+
   const dateTokens = componentTokensCopy.dateInput;
   dateTokens.pickerSelectedBackgroundColor = theme?.dateInput?.baseColor ?? dateTokens.pickerSelectedBackgroundColor;
   dateTokens.pickerSelectedFontColor = theme?.dateInput?.selectedFontColor ?? dateTokens.pickerSelectedFontColor;

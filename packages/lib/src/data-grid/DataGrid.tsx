@@ -16,7 +16,8 @@ import {
   renderHierarchyTrigger,
   renderExpandableTrigger,
 } from "./utils";
-import styled from "styled-components";
+import styled, { ThemeProvider } from "styled-components";
+import useTheme from "../useTheme";
 
 const DxcDataGrid = ({
   columns,
@@ -179,9 +180,12 @@ const DxcDataGrid = ({
     return rowsToRender;
   }, [expandable, rowsToRender, sortColumns, uniqueRowId]);
 
+  const colorsTheme = useTheme();
+
   return (
-    <DataGridContainer>
-      {/* {columnsVisibilityFilter && (
+    <ThemeProvider theme={colorsTheme.dataGrid}>
+      <DataGridContainer mode={mode}>
+        {/* {columnsVisibilityFilter && (
         <DxcSelect
           multiple
           options={columnsNamesIntoOptions(columns)}
@@ -189,32 +193,33 @@ const DxcDataGrid = ({
           onChange={(event) => setVisibleColumns(event.value)}
         />
       )} */}
-      <DataGrid
-        columns={reorderedColumns}
-        rows={sortedRows}
-        onColumnsReorder={onColumnsReorder}
-        onRowsChange={onRowsChange}
-        renderers={{ renderSortStatus }}
-        sortColumns={sortColumns}
-        onSortColumnsChange={setSortColumns}
-        rowKeyGetter={(row) => uniqueRowId && rowKeyGetter(row, uniqueRowId)}
-        rowHeight={(row) => {
-          if (
-            row.isExpandedChildContent &&
-            typeof row.expandedContentHeight === "number" &&
-            row.expandedContentHeight > 0
-          ) {
-            return row.expandedContentHeight;
-          }
-          return mode === "default" ? 60 : 36;
-        }}
-        selectedRows={selectedRows}
-        bottomSummaryRows={summaryRow ? [summaryRow] : undefined}
-        headerRowHeight={mode === "default" ? 60 : 36}
-        summaryRowHeight={mode === "default" ? 60 : 36}
-        className="fill-grid"
-      />
-    </DataGridContainer>
+        <DataGrid
+          columns={reorderedColumns}
+          rows={sortedRows}
+          onColumnsReorder={onColumnsReorder}
+          onRowsChange={onRowsChange}
+          renderers={{ renderSortStatus }}
+          sortColumns={sortColumns}
+          onSortColumnsChange={setSortColumns}
+          rowKeyGetter={(row) => uniqueRowId && rowKeyGetter(row, uniqueRowId)}
+          rowHeight={(row) => {
+            if (
+              row.isExpandedChildContent &&
+              typeof row.expandedContentHeight === "number" &&
+              row.expandedContentHeight > 0
+            ) {
+              return row.expandedContentHeight;
+            }
+            return mode === "default" ? 60 : 36;
+          }}
+          selectedRows={selectedRows}
+          bottomSummaryRows={summaryRow ? [summaryRow] : undefined}
+          headerRowHeight={mode === "default" ? 60 : 36}
+          summaryRowHeight={mode === "default" ? 60 : 36}
+          className="fill-grid"
+        />
+      </DataGridContainer>
+    </ThemeProvider>
   );
 };
 
@@ -223,7 +228,7 @@ const ActionContainer = styled.div`
   height: 100%;
   align-items: center;
   justify-content: center;
-  font-size: 24px;
+  font-size: 14px;
   width: 100%;
 `;
 
@@ -231,7 +236,8 @@ const HierarchyContainer = styled.div<{
   level: number;
   mode: "default" | "reduced";
 }>`
-  padding-left: calc(24px * ${(props) => props.level});
+  padding-left: ${(props) =>
+    `calc(${props.mode === "reduced" ? props.theme.dataPaddingLeftReduced : props.theme.dataPaddingLeft} * ${props.level})`};
   button {
     display: flex;
     align-items: center;
@@ -242,13 +248,14 @@ const HierarchyContainer = styled.div<{
     height: ${(props) => (props.mode === "default" ? 60 : 36)}px;
     background: transparent;
     text-align: left;
-    font-size: 14px;
+    font-size: ${(props) => props.theme.dataFontSize};
     font-family: inherit;
+    color: inherit;
     cursor: pointer;
   }
 `;
 
-const DataGridContainer = styled.div`
+const DataGridContainer = styled.div<{ mode: "default" | "reduced" }>`
   width: 100%;
   .rdg {
     border-radius: 4px;
@@ -256,19 +263,44 @@ const DataGridContainer = styled.div`
     border: 0px;
   }
   .rdg-cell {
-    padding: 0px 24px;
-    font-family: "Open Sans", sans-serif;
-    font-size: 0.875rem;
-    font-style: normal;
-    font-weight: 400;
+    display: flex;
+    align-items: center;
+    padding: 0px
+      ${(props) => (props.mode === "default" ? props.theme.dataPaddingRight : props.theme.dataPaddingRightReduced)} 0
+      ${(props) => (props.mode === "default" ? props.theme.dataPaddingLeft : props.theme.dataPaddingLeftReduced)};
+    font-family: ${(props) => props.theme.dataFontFamily};
+    font-size: ${(props) => props.theme.dataFontSize};
+    font-style: ${(props) => props.theme.dataFontStyle};
+    font-weight: ${(props) => props.theme.dataFontWeight};
+    color: ${(props) => props.theme.dataFontColor};
+    text-transform: ${(props) => props.theme.dataFontTextTransform};
+    line-height: ${(props) => props.theme.dataTextLineHeight};
+    border-bottom: ${(props) =>
+      `${props.theme.rowSeparatorThickness} ${props.theme.rowSeparatorStyle} ${props.theme.rowSeparatorColor}`};
+    border-right: ${(props) =>
+      `${props.theme.rowSeparatorThickness} ${props.theme.rowSeparatorStyle} ${props.theme.rowSeparatorColor}`};
+    background-color: ${(props) => props.theme.dataBackgroundColor};
   }
   .rdg-cell:has(> #action) {
     padding: 0px;
   }
   .rdg-header-row {
-    background-color: rgb(95, 36, 159);
+    border-top-left-radius: ${(props) => props.theme.headerBorderRadius};
+    border-top-right-radius: ${(props) => props.theme.headerBorderRadius};
     .rdg-cell {
-      color: rgb(255, 255, 255);
+      font-family: ${(props) => props.theme.headerFontFamily};
+      font-size: ${(props) => props.theme.headerFontSize};
+      font-style: ${(props) => props.theme.headerFontStyle};
+      font-weight: ${(props) => props.theme.headerFontWeight};
+      color: ${(props) => props.theme.headerFontColor};
+      text-transform: ${(props) => props.theme.headerFontTextTransform};
+      padding: 0px
+        ${(props) =>
+          props.mode === "default" ? props.theme.headerPaddingRight : props.theme.headerPaddingRightReduced}
+        0
+        ${(props) => (props.mode === "default" ? props.theme.headerPaddingLeft : props.theme.headerPaddingLeftReduced)};
+      line-height: ${(props) => props.theme.headerTextLineHeight};
+      background-color: ${(props) => props.theme.headerBackgroundColor};
       .sortIconContainer {
         margin-left: 0.5rem;
         display: flex;
@@ -276,17 +308,11 @@ const DataGridContainer = styled.div`
         align-items: center;
       }
     }
-    .rdg-cell:first-child {
-      border-top-left-radius: 4px;
-    }
-    .rdg-cell:last-child {
-      border-top-right-radius: 4px;
-    }
   }
-  .ellipsis-cell {
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
+  .rdg-row {
+    .rdg-cell:last-child {
+      border-right: 0px;
+    }
   }
   .rdg-summary-row {
     background-color: #fafafa;
@@ -295,10 +321,10 @@ const DataGridContainer = styled.div`
       font-weight: 600;
     }
   }
-  .rdg-row {
-    .rdg-cell:last-child {
-      border-right: 0px;
-    }
+  .ellipsis-cell {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
   }
   .align-left {
     text-align: left;
