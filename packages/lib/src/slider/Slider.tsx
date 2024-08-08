@@ -225,7 +225,10 @@ const SliderInput = styled.input<{
       : `linear-gradient(${props.theme.trackLineColor}, ${props.theme.trackLineColor})`};
   background-repeat: no-repeat;
   background-size: ${(props) =>
-    props.value && props.max && props.min && `${((props.value - props.min) * 100) / (props.max - props.min)}% 100%`};
+    props?.value != null &&
+    props?.min != null &&
+    props?.max != null &&
+    `${((props.value - props.min) * 100) / (props.max - props.min)}% 100%`};
   border-radius: 5px;
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
   &::-webkit-slider-runnable-track {
@@ -247,7 +250,8 @@ const SliderInput = styled.input<{
     &:active {
       ${(props) =>
         !props.disabled &&
-        `background: ${props.theme.activeThumbBackgroundColor};
+        `
+          background: ${props.theme.activeThumbBackgroundColor};
             transform: scale(1.16667);`}
     }
     &:hover {
@@ -361,7 +365,7 @@ const TickMark = styled.span<{
   width: ${(props) => props.theme.tickWidth};
   border-radius: 18px;
   left: ${(props) => `calc(${props.stepPosition} * 100%)`};
-  z-index: ${(props) => props.stepValue && `${props.stepPosition <= props.stepValue ? "-1" : "0"}`};
+  z-index: ${(props) => props.stepValue != null && `${props.stepPosition <= props.stepValue ? "-1" : "0"}`};
 `;
 
 const StyledTextInput = styled.div`
