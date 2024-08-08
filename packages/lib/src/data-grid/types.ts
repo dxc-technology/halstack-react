@@ -48,18 +48,23 @@ export type SelectableGridProps =
       uniqueRowId?: string;
     };
 
-type Props = {
+export type CommonProps = {
   mode?: "default" | "reduced";
   columns: GridColumn[];
   summaryRow?: GridRow;
   onGridRowsChange?: (rows: GridRow[] | HierarchyGridRow[] | ExpandableGridRow[]) => void;
-} & (
-  | ({
-      rows: GridRow[];
-      expandable?: never | false;
-    } & SelectableGridProps)
-  | (ExpandableRows & SelectableGridProps)
-  | (HierarchyRows & SelectableGridProps)
-);
+};
+
+export type BasicGridProps = {
+  rows: GridRow[];
+  expandable?: false;
+};
+
+type Props = CommonProps &
+  (
+    | (BasicGridProps & SelectableGridProps)
+    | (ExpandableRows & SelectableGridProps)
+    | (HierarchyRows & SelectableGridProps)
+  );
 
 export default Props;
