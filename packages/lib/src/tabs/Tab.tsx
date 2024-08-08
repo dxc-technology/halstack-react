@@ -1,4 +1,4 @@
-import { forwardRef, memo } from "react";
+import { forwardRef, memo, Ref } from "react";
 import styled from "styled-components";
 import DxcBadge from "../badge/Badge";
 import DxcIcon from "../icon/Icon";
@@ -9,7 +9,7 @@ import { TabProps } from "./types";
 const Tab = forwardRef(
   (
     { active, tab, tabIndex, hasLabelAndIcon, iconPosition, onClick, onMouseEnter, onMouseLeave }: TabProps,
-    ref: React.Ref<HTMLButtonElement>
+    ref: Ref<HTMLButtonElement>
   ): JSX.Element => {
     const colorsTheme = useTheme();
 

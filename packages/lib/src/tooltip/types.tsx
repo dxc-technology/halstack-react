@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 type Props = {
   /**
    * Preferred position for displaying the tooltip. It may adjust automatically based on available space.
@@ -10,7 +12,7 @@ type Props = {
   /**
    * Content in which the Tooltip will be displayed.
    */
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
 export default Props;

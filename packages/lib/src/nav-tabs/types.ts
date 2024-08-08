@@ -1,4 +1,6 @@
-type SVG = React.ReactNode & React.SVGProps<SVGSVGElement>;
+import { ReactNode, SVGProps } from "react";
+
+type SVG = ReactNode & SVGProps<SVGSVGElement>;
 
 export type NavTabsContextProps = {
   iconPosition: "top" | "left";
@@ -45,7 +47,7 @@ type Props = {
   /**
    * Contains one or more DxcNavTabs.Tab.
    */
-  children: React.ReactNode;
+  children: ReactNode;
   /**
    * Value of the tabindex attribute applied to each tab.
    */

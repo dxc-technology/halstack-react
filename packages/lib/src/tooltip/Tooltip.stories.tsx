@@ -77,34 +77,34 @@ const RightTooltip = () => (
 export const Chromatic = Tooltip.bind({});
 Chromatic.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
-  const buttonList = canvas.getByRole("button");
-  await userEvent.hover(buttonList);
+  const button = canvas.getByRole("button");
+  await userEvent.hover(button);
 };
 
 export const LargeTextTooltip = LargeTextWithinTooltip.bind({});
 LargeTextTooltip.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
-  const buttonList = canvas.getByRole("button");
-  await userEvent.hover(buttonList);
+  const button = canvas.getByRole("button");
+  await userEvent.hover(button);
 };
 
 export const TooltipPositionTop = TopTooltip.bind({});
 TooltipPositionTop.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
-  const buttonList = canvas.getByRole("button");
-  await userEvent.hover(buttonList);
+  const button = canvas.getByRole("button");
+  await userEvent.hover(button);
 };
 
 export const TooltipPositionLeft = LeftTooltip.bind({});
 TooltipPositionLeft.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
-  const buttonList = canvas.getByRole("button");
-  await userEvent.hover(buttonList);
+  const button = canvas.getByRole("button");
+  await userEvent.hover(button);
 };
 
 export const TooltipPositionRight = RightTooltip.bind({});
 TooltipPositionRight.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
-  const buttonList = canvas.getByRole("button");
-  await userEvent.hover(buttonList);
+  const button = canvas.getByRole("button");
+  await userEvent.hover(button);
 };

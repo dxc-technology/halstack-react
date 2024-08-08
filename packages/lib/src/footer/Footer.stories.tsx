@@ -1,3 +1,4 @@
+import { userEvent, within } from "@storybook/test";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import preview from "../../.storybook/preview";
@@ -205,3 +206,24 @@ export const Chromatic = () => (
     </ExampleContainer>
   </>
 );
+
+const Tooltip = () => (
+  <ExampleContainer>
+    <Title title="Default tooltip" theme="light" level={2} />
+    <DxcFooter socialLinks={social.slice(0, 2)}></DxcFooter>
+  </ExampleContainer>
+);
+
+export const FooterTooltipFirst = Tooltip.bind({});
+FooterTooltipFirst.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  const link = canvas.getAllByRole("link")[0];
+  await userEvent.hover(link);
+};
+
+export const FooterTooltipSecond = Tooltip.bind({});
+FooterTooltipSecond.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  const link = canvas.getAllByRole("link")[1];
+  await userEvent.hover(link);
+};

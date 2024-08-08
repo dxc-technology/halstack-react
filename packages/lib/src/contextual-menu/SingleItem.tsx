@@ -12,7 +12,9 @@ const SingleItem = ({ id, onSelect, selectedByDefault, ...props }: SingleItemPro
   };
 
   useEffect(() => {
-    if (selectedItemId === -1 && selectedByDefault) setSelectedItemId(id);
+    if (selectedItemId === -1 && selectedByDefault) {
+      setSelectedItemId(id);
+    }
   }, [selectedItemId, selectedByDefault, id]);
 
   return (

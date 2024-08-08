@@ -4,8 +4,6 @@ import QuickNavContainer from "@/common/QuickNavContainer";
 import TableCode, { ExtendedTableCode } from "@/common/TableCode";
 import DocFooter from "@/common/DocFooter";
 import Code from "@/common/Code";
-import Example from "@/common/example/Example";
-import complete from "./examples/complete";
 
 const thresholdSeriesTypeString = `{
   title: string;
@@ -217,12 +215,7 @@ const sections = [
   },
   {
     title: "Examples",
-    subSections: [
-      {
-        title: "Complete bar chart",
-        content: <Example example={complete} defaultIsVisible />,
-      },
-    ],
+    content: "Right now there are no examples for this component.",
   },
 ];
 

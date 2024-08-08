@@ -1,5 +1,5 @@
 import * as Popover from "@radix-ui/react-popover";
-import { useCallback, useId, useLayoutEffect, useRef, useState } from "react";
+import { FocusEvent, KeyboardEvent, useCallback, useId, useLayoutEffect, useRef, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import getMargin from "../common/utils";
 import { spaces } from "../common/variables";
@@ -51,7 +51,7 @@ const DxcDropdown = ({
     },
     [onSelectOption]
   );
-  const handleOnBlur = (event: React.FocusEvent) => {
+  const handleOnBlur = (event: FocusEvent<HTMLDivElement>) => {
     if (!event.currentTarget.contains(event.relatedTarget)) {
       handleOnCloseMenu();
     }
@@ -60,7 +60,7 @@ const DxcDropdown = ({
   const handleTriggerOnClick = () => {
     changeIsOpen((isCurrentlyOpen) => !isCurrentlyOpen);
   };
-  const handleTriggerOnKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
+  const handleTriggerOnKeyDown = (event: KeyboardEvent<HTMLButtonElement>) => {
     switch (event.key) {
       case "Up":
       case "ArrowUp":
@@ -93,7 +93,7 @@ const DxcDropdown = ({
     });
   };
   const handleMenuOnKeyDown = useCallback(
-    (event: React.KeyboardEvent<HTMLUListElement>) => {
+    (event: KeyboardEvent<HTMLUListElement>) => {
       switch (event.key) {
         case "Up":
         case "ArrowUp":

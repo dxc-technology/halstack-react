@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { MouseEvent } from "react";
 import { OptionProps } from "./types";
 import DxcCheckbox from "../checkbox/Checkbox";
 import DxcIcon from "../icon/Icon";
@@ -13,11 +14,11 @@ const ListOption = ({
   isLastOption,
   isSelected,
 }: OptionProps): JSX.Element => {
-  const handleOnMouseEnter = (event: React.MouseEvent) => {
+  const handleOnMouseEnter = (event: MouseEvent<HTMLSpanElement>) => {
     const label = event.currentTarget;
     const optionElement = document.getElementById(id);
 
-    if (optionElement.title === "" && label.scrollWidth > label.clientWidth) {
+    if (optionElement?.title === "" && label.scrollWidth > label.clientWidth) {
       optionElement.title = option.label;
     }
   };

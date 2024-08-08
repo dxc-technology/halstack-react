@@ -1,3 +1,5 @@
+import { ReactNode, SVGProps } from "react";
+
 type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
 type Margin = {
   top?: Space;
@@ -6,7 +8,7 @@ type Margin = {
   right?: Space;
 };
 
-type SVG = React.ReactNode & React.SVGProps<SVGSVGElement>;
+type SVG = ReactNode & SVGProps<SVGSVGElement>;
 
 type Props = {
   /**

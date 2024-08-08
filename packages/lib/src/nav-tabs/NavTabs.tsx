@@ -1,4 +1,4 @@
-import { Children, ReactElement, ReactNode, useEffect, useMemo, useRef, useState } from "react";
+import { Children, KeyboardEvent, ReactElement, ReactNode, useEffect, useMemo, useRef, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme";
 import NavTabsPropsType from "./types";
@@ -71,7 +71,7 @@ const DxcNavTabs = ({ iconPosition = "top", tabIndex = 0, children }: NavTabsPro
     [iconPosition, tabIndex, innerFocusIndex]
   );
 
-  const handleOnKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+  const handleOnKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
     const activeTab = childArray.findIndex((child) => getPropInChild(child, "active"));
 
     switch (event.key) {

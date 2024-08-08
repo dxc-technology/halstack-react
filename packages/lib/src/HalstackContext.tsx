@@ -1,4 +1,4 @@
-import { createContext, useMemo } from "react";
+import { createContext, ReactNode, useMemo } from "react";
 import Color from "color";
 import styled from "styled-components";
 import {
@@ -413,7 +413,7 @@ type HalstackProviderPropsType = {
   theme?: DeepPartial<OpinionatedTheme>;
   advancedTheme?: DeepPartial<AdvancedTheme>;
   labels?: DeepPartial<TranslatedLabels>;
-  children: React.ReactNode;
+  children: ReactNode;
 };
 const HalstackProvider = ({ theme, advancedTheme, labels, children }: HalstackProviderPropsType): JSX.Element => {
   const parsedTheme = useMemo(

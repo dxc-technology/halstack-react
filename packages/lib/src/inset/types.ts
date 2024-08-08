@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export type Spacing = "0rem" | "0.125rem" | "0.25rem" | "0.5rem" | "1rem" | "1.5rem" | "2rem" | "3rem" | "4rem" | "5rem";
 
 type Props = {
@@ -32,7 +34,7 @@ type Props = {
   /**
    * Custom content inside the inset.
    */
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
 export default Props;

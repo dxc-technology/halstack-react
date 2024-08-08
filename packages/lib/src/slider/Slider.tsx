@@ -1,4 +1,4 @@
-import { forwardRef, useId, useMemo, useState } from "react";
+import { ChangeEvent, forwardRef, MouseEvent, useId, useMemo, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import DxcTextInput from "../text-input/TextInput";
 import { spaces } from "../common/variables";
@@ -66,7 +66,7 @@ const DxcSlider = forwardRef<RefType, SliderPropsType>(
       return null;
     }, [minValue, maxValue, step, value, innerValue]);
 
-    const handleSliderChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleSliderChange = (event: ChangeEvent<HTMLInputElement>) => {
       const intValue = parseInt(event.target.value, 10);
       if (intValue !== value || intValue !== innerValue) {
         setInnerValue(intValue);
@@ -78,7 +78,7 @@ const DxcSlider = forwardRef<RefType, SliderPropsType>(
       setDragging(true);
     };
 
-    const handleSliderOnChangeCommitted = (event: React.MouseEvent<HTMLInputElement>) => {
+    const handleSliderOnChangeCommitted = (event: MouseEvent<HTMLInputElement>) => {
       const intValue = parseInt((event.target as HTMLInputElement).value, 10);
       if (dragging) {
         setDragging(false);

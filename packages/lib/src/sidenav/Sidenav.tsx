@@ -1,4 +1,4 @@
-import { createContext, forwardRef, useContext, useEffect, useState } from "react";
+import { createContext, Dispatch, forwardRef, MouseEvent, SetStateAction, useContext, useEffect, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import DxcBleed from "../bleed/Bleed";
 import CoreTokens from "../common/coreTokens";
@@ -44,7 +44,7 @@ const Section = ({ children }: SidenavSectionPropsType): JSX.Element => (
   </>
 );
 
-const GroupContext = createContext<React.Dispatch<React.SetStateAction<boolean>> | null>(null);
+const GroupContext = createContext<Dispatch<SetStateAction<boolean>> | null>(null);
 const Group = ({ title, collapsable = false, icon, children }: SidenavGroupPropsType): JSX.Element => {
   const [collapsed, setCollapsed] = useState(false);
   const [isSelected, changeIsSelected] = useState(false);
@@ -85,7 +85,7 @@ const Link = forwardRef<HTMLAnchorElement, SidenavLinkPropsType>(
   ): JSX.Element => {
     const changeIsGroupSelected = useContext(GroupContext);
     const setIsSidenavVisibleResponsive = useResponsiveSidenavVisibility();
-    const handleClick = ($event: React.MouseEvent<HTMLAnchorElement>) => {
+    const handleClick = ($event: MouseEvent<HTMLAnchorElement>) => {
       onClick?.($event);
       setIsSidenavVisibleResponsive?.(false);
     };

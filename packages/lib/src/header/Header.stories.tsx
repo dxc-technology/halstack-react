@@ -264,3 +264,18 @@ ResponsiveHeaderMenuOpinionated.play = async ({ canvasElement }) => {
   await waitFor(() => canvas.findByText("Menu"));
   await userEvent.click(canvas.getByText("Menu"));
 };
+
+export const ResponsiveHeaderTooltip = RespHeaderMenuMobile.bind({});
+ResponsiveHeaderTooltip.parameters = {
+  viewport: {
+    defaultViewport: "iphonex",
+  },
+  chromatic: { viewports: [375] },
+};
+ResponsiveHeaderTooltip.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  await waitFor(() => canvas.findByText("Menu"));
+  await userEvent.click(canvas.getByText("Menu"));
+  const closeButton = canvas.getAllByRole("button")[1];
+  await userEvent.hover(closeButton);
+};

@@ -1,5 +1,5 @@
 import * as Popover from "@radix-ui/react-popover";
-import { forwardRef, useCallback, useId, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { FocusEvent, forwardRef, KeyboardEvent, MouseEvent, useCallback, useId, useLayoutEffect, useMemo, useRef, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables";
 import getMargin from "../common/utils";
@@ -126,12 +126,12 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
         openListbox();
       }
     };
-    const handleSelectOnFocus = (event: React.FocusEvent<HTMLInputElement>) => {
+    const handleSelectOnFocus = (event: FocusEvent<HTMLInputElement>) => {
       if (!event.currentTarget.contains(event.relatedTarget) && searchable) {
         selectSearchInputRef.current.focus();
       }
     };
-    const handleSelectOnBlur = (event: React.FocusEvent<HTMLInputElement>) => {
+    const handleSelectOnBlur = (event: FocusEvent<HTMLInputElement>) => {
       if (!event.currentTarget.contains(event.relatedTarget)) {
         closeListbox();
         setSearchValue("");
@@ -147,7 +147,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
         }
       }
     };
-    const handleSelectOnKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
+    const handleSelectOnKeyDown = (event: KeyboardEvent<HTMLElement>) => {
       switch (event.key) {
         case "Down":
         case "ArrowDown":
@@ -242,13 +242,13 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
       }
     };
 
-    const handleSearchIOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleSearchIOnChange = (event: ChangeEvent<HTMLInputElement>) => {
       setSearchValue(event.target.value);
       changeVisualFocusIndex(-1);
       openListbox();
     };
 
-    const handleClearOptionsActionOnClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const handleClearOptionsActionOnClick = (event: MouseEvent<HTMLButtonElement>) => {
       event.stopPropagation();
       if (value == null) {
         setInnerValue([]);
@@ -263,7 +263,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
       }
     };
 
-    const handleClearSearchActionOnClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const handleClearSearchActionOnClick = (event: MouseEvent<HTMLButtonElement>) => {
       event.stopPropagation();
       setSearchValue("");
     };

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { ReactNode, useEffect, useMemo, useRef, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import CoreTokens from "../common/coreTokens";
 import getMargin from "../common/utils";
@@ -9,10 +9,10 @@ import useTheme from "../useTheme";
 import icons from "./Icons";
 import ResultsetTablePropsType, { Column, Row } from "./types";
 
-const normalizeSortValue = (sortValue: string | React.ReactNode) =>
+const normalizeSortValue = (sortValue: string | ReactNode) =>
   typeof sortValue === "string" ? sortValue.toUpperCase() : sortValue;
 
-const isDateType = (value: React.ReactNode | Date): boolean => value instanceof Date;
+const isDateType = (value: ReactNode | Date): boolean => value instanceof Date;
 
 const sortArray = (index: number, order: "ascending" | "descending", resultset: { id: string; cells: Row }[]) =>
   resultset.slice().sort((element1, element2) => {

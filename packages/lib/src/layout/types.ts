@@ -1,19 +1,21 @@
+import { ReactElement, ReactNode } from "react";
+
 export type AppLayoutMainPropsType = {
   /**
    * Everything between the tags will be displayed as the content of the main part of the application.
    */
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
 export type AppLayoutSidenavPropsType = {
   /**
    * The area inside the sidenav. This area can be used to render the content inside the sidenav.
    */
-  children: React.ReactNode;
+  children: ReactNode;
   /**
    * The area assigned to render the sidenav title. It is highly recommended to use the sidenav title.
    */
-  title?: React.ReactNode;
+  title?: ReactNode;
 };
 
 type AppLayoutPropsType = {
@@ -25,19 +27,19 @@ type AppLayoutPropsType = {
   /**
    * Header content.
    */
-  header?: React.ReactNode;
+  header?: ReactNode;
   /**
    * Sidenav content
    */
-  sidenav?: React.ReactNode;
+  sidenav?: ReactNode;
   /**
    * Footer content
    */
-  footer?: React.ReactNode;
+  footer?: ReactNode;
   /**
    * Use the DxcApplicationLayout.Main provided to render main content.
    */
-  children: React.ReactElement<AppLayoutMainPropsType>;
+  children: ReactElement<AppLayoutMainPropsType>;
 };
 
 export default AppLayoutPropsType;

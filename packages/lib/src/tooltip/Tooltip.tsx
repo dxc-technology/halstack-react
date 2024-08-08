@@ -1,7 +1,9 @@
 import * as Tooltip from "@radix-ui/react-tooltip";
 import styled from "styled-components";
+import { useContext } from "react";
 import CoreTokens from "../common/coreTokens";
 import TooltipPropsType from "./types";
+import TooltipContext from "./TooltipContext";
 
 const triangleIcon = (
   <svg
@@ -19,26 +21,33 @@ const triangleIcon = (
   </svg>
 );
 
-const DxcTooltip = ({ position = "bottom", label, children }: TooltipPropsType): JSX.Element =>
-  label ? (
-    <Tooltip.Provider delayDuration={300}>
-      <Tooltip.Root>
-        <Tooltip.Trigger asChild>
-          <TooltipTriggerContainer>{children}</TooltipTriggerContainer>
-        </Tooltip.Trigger>
-        <Tooltip.Portal>
-          <StyledTooltipContent side={position} sideOffset={8}>
-            <TooltipContainer>{label}</TooltipContainer>
-            <Tooltip.Arrow asChild aria-hidden>
-              {triangleIcon}
-            </Tooltip.Arrow>
-          </StyledTooltipContent>
-        </Tooltip.Portal>
-      </Tooltip.Root>
-    </Tooltip.Provider>
-  ) : (
-    <>{children}</>
+const DxcTooltip = ({ position = "bottom", label, children }: TooltipPropsType): JSX.Element => {
+  const hasTooltip = useContext(TooltipContext);
+
+  return (
+    <TooltipContext.Provider value>
+      {label && !hasTooltip ? (
+        <Tooltip.Provider delayDuration={300}>
+          <Tooltip.Root>
+            <Tooltip.Trigger asChild>
+              <TooltipTriggerContainer>{children}</TooltipTriggerContainer>
+            </Tooltip.Trigger>
+            <Tooltip.Portal>
+              <StyledTooltipContent side={position} sideOffset={8}>
+                <TooltipContainer>{label}</TooltipContainer>
+                <Tooltip.Arrow asChild aria-hidden>
+                  {triangleIcon}
+                </Tooltip.Arrow>
+              </StyledTooltipContent>
+            </Tooltip.Portal>
+          </Tooltip.Root>
+        </Tooltip.Provider>
+      ) : (
+        <>{children}</>
+      )}
+    </TooltipContext.Provider>
   );
+};
 
 const TooltipTriggerContainer = styled.div`
   display: inline-flex;

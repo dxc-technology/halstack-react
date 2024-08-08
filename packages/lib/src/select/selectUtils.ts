@@ -38,8 +38,8 @@ const filterOptionsBySearchValue = (
   searchValue: string
 ): ListOptionType[] | ListOptionGroupType[] => {
   if (options?.length > 0) {
-    if (isArrayOfOptionGroups(options))
-      {return options.map((optionGroup) => {
+    if (isArrayOfOptionGroups(options)) {
+      return options.map((optionGroup) => {
         const group = {
           label: optionGroup.label,
           options: optionGroup.options.filter((option) =>
@@ -47,7 +47,8 @@ const filterOptionsBySearchValue = (
           ),
         };
         return group;
-      });}
+      });
+    }
     return options.filter((option) => option.label.toUpperCase().includes(searchValue.toUpperCase()));
   }
   return [];
@@ -99,37 +100,41 @@ const getSelectedOption = (
   if (multiple) {
     if (options?.length > 0) {
       options.forEach((option: ListOptionType | ListOptionGroupType) => {
-        if (isOptionGroup(option))
-          {option.options.forEach((singleOption) => {
-            if (value.includes(singleOption.value) && Array.isArray(selectedOption)) selectedOption.push(singleOption);
-          });}
-        else if (value.includes(option.value) && Array.isArray(selectedOption)) selectedOption.push(option);
+        if (isOptionGroup(option)) {
+          option.options.forEach((singleOption) => {
+            if (value.includes(singleOption.value) && Array.isArray(selectedOption)) {
+              selectedOption.push(singleOption);
+            }
+          });
+        } else if (value.includes(option.value) && Array.isArray(selectedOption)) {
+          selectedOption.push(option);
+        }
       });
     }
   } else if (optional && value === "") {
-      selectedOption = optionalItem;
-      singleSelectionIndex = 0;
-    } else if (options?.length > 0) {
-      let groupIndex = 0;
-      options.some((option: ListOptionType | ListOptionGroupType, index: number) => {
-        if (isOptionGroup(option)) {
-          option.options.some((singleOption) => {
-            if (singleOption.value === value) {
-              selectedOption = singleOption;
-              singleSelectionIndex = optional ? groupIndex + 1 : groupIndex;
-              return true;
-            }
-            groupIndex += 1;
-            return false;
-          });
-        } else if (option.value === value) {
-          selectedOption = option;
-          singleSelectionIndex = optional ? index + 1 : index;
-          return true;
-        }
-        return false;
-      });
-    }
+    selectedOption = optionalItem;
+    singleSelectionIndex = 0;
+  } else if (options?.length > 0) {
+    let groupIndex = 0;
+    options.some((option: ListOptionType | ListOptionGroupType, index: number) => {
+      if (isOptionGroup(option)) {
+        option.options.some((singleOption) => {
+          if (singleOption.value === value) {
+            selectedOption = singleOption;
+            singleSelectionIndex = optional ? groupIndex + 1 : groupIndex;
+            return true;
+          }
+          groupIndex += 1;
+          return false;
+        });
+      } else if (option.value === value) {
+        selectedOption = option;
+        singleSelectionIndex = optional ? index + 1 : index;
+        return true;
+      }
+      return false;
+    });
+  }
 
   return {
     selectedOption,
@@ -145,7 +150,7 @@ const getSelectedOptionLabel = (placeholder: string, selectedOption: ListOptionT
     ? selectedOption.length === 0
       ? placeholder
       : selectedOption.map((option) => option.label).join(", ")
-    : selectedOption?.label ?? placeholder;
+    : (selectedOption?.label ?? placeholder);
 
 export {
   isOptionGroup,

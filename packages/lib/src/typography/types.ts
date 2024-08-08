@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 type Props = {
   as?: keyof HTMLElementTagNameMap;
   display?: "inline" | "block";
@@ -12,7 +14,7 @@ type Props = {
   textDecoration?: "none" | "underline" | "line-through";
   textOverflow?: "clip" | "ellipsis" | "unset";
   whiteSpace?: "normal" | "nowrap" | "pre" | "pre-line" | "pre-wrap";
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
 export default Props;

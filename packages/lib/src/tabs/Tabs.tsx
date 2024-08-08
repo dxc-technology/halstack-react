@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { KeyboardEvent, MutableRefObject, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables";
 import DxcIcon from "../icon/Icon";
@@ -7,7 +7,7 @@ import useTranslatedLabels from "../useTranslatedLabels";
 import Tab from "./Tab";
 import TabsPropsType from "./types";
 
-const useResize = (refTabList: React.MutableRefObject<HTMLDivElement | null>) => {
+const useResize = (refTabList: MutableRefObject<HTMLDivElement | null>) => {
   const [viewWidth, setViewWidth] = useState(0);
 
   const handleWindowSizeChange = useCallback(() => {
@@ -166,7 +166,7 @@ const DxcTabs = ({
     setCountClick(moveX);
   };
 
-  const handleOnKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+  const handleOnKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
     switch (event.key) {
       case "Left":
       case "ArrowLeft":

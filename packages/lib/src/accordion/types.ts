@@ -1,3 +1,5 @@
+import { ReactNode, SVGProps } from "react";
+
 type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
 type Margin = {
   top?: Space;
@@ -5,7 +7,7 @@ type Margin = {
   left?: Space;
   right?: Space;
 };
-type SVG = React.ReactNode & React.SVGProps<SVGSVGElement>;
+type SVG = ReactNode & SVGProps<SVGSVGElement>;
 
 type Props = {
   /**
@@ -43,7 +45,7 @@ type Props = {
    * The expanded panel of the accordion. This area can be used to render
    * custom content.
    */
-  children: React.ReactNode;
+  children: ReactNode;
   /**
    * Size of the margin to be applied to the component ('xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge').
    * You can pass an object with 'top', 'bottom', 'left' and 'right' properties in order to specify different margin sizes.

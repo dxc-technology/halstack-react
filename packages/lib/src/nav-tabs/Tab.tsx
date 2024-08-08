@@ -1,4 +1,4 @@
-import React, { useEffect, forwardRef, Ref, useContext, useRef, useImperativeHandle } from "react";
+import React, { useEffect, forwardRef, Ref, useContext, useRef, useImperativeHandle, KeyboardEvent } from "react";
 import styled from "styled-components";
 import DxcBadge from "../badge/Badge";
 import DxcFlex from "../flex/Flex";
@@ -25,7 +25,7 @@ const DxcTab = forwardRef(
       }
     }, [focusedLabel]);
 
-    const handleOnKeyDown = (event: React.KeyboardEvent<HTMLAnchorElement>) => {
+    const handleOnKeyDown = (event: KeyboardEvent<HTMLAnchorElement>) => {
       switch (event.key) {
         case " ":
         case "Enter":

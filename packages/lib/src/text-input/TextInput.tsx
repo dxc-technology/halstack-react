@@ -1,5 +1,5 @@
 import * as Popover from "@radix-ui/react-popover";
-import { forwardRef, useContext, useEffect, useId, useRef, useState } from "react";
+import { ChangeEvent, FocusEvent, forwardRef, KeyboardEvent, MouseEvent, ReactNode, useContext, useEffect, useId, useRef, useState, WheelEvent } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import DxcActionIcon from "../action-icon/ActionIcon";
 import getMargin from "../common/utils";
@@ -111,7 +111,7 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
     const translatedLabels = useTranslatedLabels();
     const numberInputContext = useContext(NumberInputContext);
     // Define the wrapper function outside of the parent component
-    const autosuggestWrapperFunction = (children: React.ReactNode) => (
+    const autosuggestWrapperFunction = (children: ReactNode) => (
       <Popover.Root open={isOpen && (filteredSuggestions.length > 0 || isSearching || isAutosuggestError)}>
         <Popover.Trigger
           asChild
@@ -264,18 +264,18 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
         inputRef?.current?.focus();
       }
     };
-    const handleInputContainerOnMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
+    const handleInputContainerOnMouseDown = (event: MouseEvent<HTMLDivElement>) => {
       // Avoid input to lose the focus when the container is pressed
       if (document.activeElement === inputRef.current) {
         event.preventDefault();
       }
     };
 
-    const handleInputOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleInputOnChange = (event: ChangeEvent<HTMLInputElement>) => {
       openSuggestions();
       changeValue(event.target.value);
     };
-    const handleInputOnBlur = (event: React.FocusEvent<HTMLInputElement>) => {
+    const handleInputOnBlur = (event: FocusEvent<HTMLInputElement>) => {
       closeSuggestions();
 
       if (isRequired(event.target.value, optional)) {
@@ -296,7 +296,7 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
         onBlur?.({ value: event.target.value });
       }
     };
-    const handleInputOnKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    const handleInputOnKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
       switch (event.key) {
         case "Down":
         case "ArrowDown":
@@ -363,7 +363,7 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
           break;
       }
     };
-    const handleNumberInputWheel = (event: React.WheelEvent<HTMLInputElement>) => {
+    const handleNumberInputWheel = (event: WheelEvent<HTMLInputElement>) => {
       if (document.activeElement === inputRef.current) {
         if (event.deltaY < 0) {
           incrementNumber(inputRef?.current?.value);

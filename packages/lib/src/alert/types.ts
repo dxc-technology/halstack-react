@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
 type Margin = {
   top?: Space;
@@ -31,7 +33,7 @@ type Props = {
   /**
    * The details section of the alert. Can be used to render custom content in this area.
    */
-  children?: React.ReactNode;
+  children?: ReactNode;
   /**
    * Size of the margin to be applied to the component ('xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge').
    * You can pass an object with 'top', 'bottom', 'left' and 'right' properties in order to specify different margin sizes.

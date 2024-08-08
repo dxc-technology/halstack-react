@@ -1,3 +1,5 @@
+import { CSSProperties, ReactNode, SVGProps } from "react";
+
 type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
 type Margin = {
   top?: Space;
@@ -5,7 +7,7 @@ type Margin = {
   left?: Space;
   right?: Space;
 };
-type SVG = React.ReactNode & React.SVGProps<SVGSVGElement>;
+type SVG = ReactNode & SVGProps<SVGSVGElement>;
 
 export type ListOptionType = {
   /**
@@ -194,7 +196,7 @@ export type ListboxProps = {
   optionalItem: ListOptionType;
   searchable: boolean;
   handleOptionOnClick: (option: ListOptionType) => void;
-  styles: React.CSSProperties;
+  styles: CSSProperties;
 };
 
 /**

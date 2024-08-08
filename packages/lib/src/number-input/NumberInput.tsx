@@ -1,4 +1,4 @@
-import { forwardRef, useEffect, useMemo, useRef } from "react";
+import { forwardRef, useEffect, useMemo, useRef, WheelEvent } from "react";
 import styled from "styled-components";
 import DxcTextInput from "../text-input/TextInput";
 import NumberInputPropsType, { RefType } from "./types";
@@ -45,7 +45,7 @@ const DxcNumberInput = forwardRef<RefType, NumberInputPropsType>(
 
     useEffect(() => {
       const input = numberInputRef.current?.getElementsByTagName("input")[0] as HTMLInputElement;
-      const preventDefault = (event: WheelEvent) => {
+      const preventDefault = (event: WheelEvent<HTMLInputElement>) => {
         event.preventDefault();
       };
       input?.addEventListener("wheel", preventDefault, { passive: false });

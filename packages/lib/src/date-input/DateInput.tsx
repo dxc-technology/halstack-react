@@ -1,4 +1,15 @@
-import { useState, useRef, useEffect, useId, useCallback, forwardRef } from "react";
+import {
+  useState,
+  useRef,
+  useEffect,
+  useId,
+  useCallback,
+  forwardRef,
+  Dispatch,
+  SetStateAction,
+  FocusEvent,
+  KeyboardEvent,
+} from "react";
 import dayjs from "dayjs";
 import styled, { ThemeProvider } from "styled-components";
 import * as Popover from "@radix-ui/react-popover";
@@ -21,7 +32,7 @@ const getDate = (
   value: string,
   format: string,
   lastValidYear: number | undefined,
-  setLastValidYear: React.Dispatch<React.SetStateAction<number | undefined>>
+  setLastValidYear: Dispatch<SetStateAction<number | undefined>>
 ) => {
   if ((value || value === "") && format.toUpperCase().includes("YYYY")) {
     return getValueForPicker(value, format);
@@ -171,7 +182,7 @@ const DxcDateInput = forwardRef<RefType, DateInputPropsType>(
       setIsOpen(false);
     };
 
-    const handleDatePickerEscKeydown = (event: React.KeyboardEvent) => {
+    const handleDatePickerEscKeydown = (event: KeyboardEvent<HTMLDivElement>) => {
       if (event.key === "Escape") {
         event.preventDefault();
         if (isOpen) {
@@ -181,7 +192,7 @@ const DxcDateInput = forwardRef<RefType, DateInputPropsType>(
         dateRef?.current?.getElementsByTagName("input")[0]?.focus();
       }
     };
-    const handleDatePickerOnBlur = (event: React.FocusEvent<HTMLDivElement>) => {
+    const handleDatePickerOnBlur = (event: FocusEvent<HTMLDivElement>) => {
       if (!event?.currentTarget.contains(event.relatedTarget)) {
         closeCalendar();
       }

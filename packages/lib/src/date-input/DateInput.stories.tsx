@@ -296,3 +296,29 @@ export const DatePickerWithToday = () => {
     </ThemeProvider>
   );
 };
+
+const Tooltip = () => {
+  const colorsTheme: any = useTheme();
+  return (
+    <ThemeProvider theme={colorsTheme}>
+      <Title title="Default tooltip" theme="light" level={2} />
+      <ExampleContainer>
+        <DxcDatePicker date={dayjs("06-04-1950", "DD-MM-YYYY")} onDateSelect={() => {}} id="test-calendar-tooltip" />
+      </ExampleContainer>
+    </ThemeProvider>
+  );
+};
+
+export const DatePickerTooltipPrevious = Tooltip.bind({});
+DatePickerTooltipPrevious.play = async ({ canvasElement }) => {
+const canvas = within(canvasElement);
+const previousMonthButton = canvas.getAllByRole("button")[0];
+await userEvent.hover(previousMonthButton);
+};
+
+export const DatePickerTooltipAfter = Tooltip.bind({});
+DatePickerTooltipAfter.play = async ({ canvasElement }) => {
+const canvas = within(canvasElement);
+const afterMonthButton = canvas.getAllByRole("button")[2];
+await userEvent.hover(afterMonthButton);
+};

@@ -1,4 +1,4 @@
-import { useState, useRef, useId, forwardRef } from "react";
+import { useState, useRef, useId, forwardRef, KeyboardEvent } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { AdvancedTheme, spaces } from "../common/variables";
 import getMargin from "../common/utils";
@@ -50,7 +50,7 @@ const DxcCheckbox = forwardRef<RefType, CheckboxPropsType>(
       }
     };
 
-    const handleKeyboard = (event: React.KeyboardEvent) => {
+    const handleKeyboard = (event: KeyboardEvent<HTMLSpanElement>) => {
       switch (event.key) {
         case " ":
           event.preventDefault();

@@ -1,4 +1,4 @@
-import { forwardRef, useCallback, useId, useMemo, useState } from "react";
+import { FocusEvent, forwardRef, KeyboardEvent, useCallback, useId, useMemo, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
@@ -70,7 +70,7 @@ const DxcRadioGroup = forwardRef<RefType, RadioGroupPropsType>(
       },
       [value, innerValue, onChange]
     );
-    const handleOnBlur = (event: React.FocusEvent<HTMLDivElement>) => {
+    const handleOnBlur = (event: FocusEvent<HTMLDivElement>) => {
       // If the radio group loses the focus to an element not contained inside it...
       if (!event.currentTarget.contains(event.relatedTarget as Node)) {
         setFirstTimeFocus(true);
@@ -117,7 +117,7 @@ const DxcRadioGroup = forwardRef<RefType, RadioGroupPropsType>(
         return index;
       });
     };
-    const handleOnKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    const handleOnKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
       switch (event.key) {
         case "Left":
         case "ArrowLeft":

@@ -1,4 +1,4 @@
-import { forwardRef, useId, useRef, useState } from "react";
+import { forwardRef, KeyboardEvent, useId, useRef, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { AdvancedTheme, spaces } from "../common/variables";
 import getMargin from "../common/utils";
@@ -32,7 +32,7 @@ const DxcSwitch = forwardRef<RefType, SwitchPropsType>(
     const translatedLabels = useTranslatedLabels();
     const refTrack = useRef<HTMLSpanElement | null>(null);
 
-    const handleOnKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    const handleOnKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
       switch (event.key) {
         case "Enter":
         case " ": {

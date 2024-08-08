@@ -1,7 +1,8 @@
+import { ReactNode } from "react";
 import useTheme from "../useTheme";
 import BaseTypography from "../utils/BaseTypography";
 
-const DxcParagraph = ({ children }: { children: React.ReactNode }): JSX.Element => {
+const DxcParagraph = ({ children }: { children: ReactNode }): JSX.Element => {
   const colorsTheme = useTheme();
 
   return (

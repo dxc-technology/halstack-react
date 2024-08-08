@@ -1,4 +1,4 @@
-import { useId, useState } from "react";
+import { KeyboardEvent, useId, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables";
 import DxcFlex from "../flex/Flex";
@@ -53,7 +53,7 @@ const DxcToggleGroup = ({
     onChange?.(multiple ? newSelectedOptions : selectedOption);
   };
 
-  const handleOnKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>, optionValue: number) => {
+  const handleOnKeyDown = (event: KeyboardEvent<HTMLButtonElement>, optionValue: number) => {
     switch (event.key) {
       case "Enter":
       case " ":

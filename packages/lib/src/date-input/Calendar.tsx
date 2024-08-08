@@ -1,5 +1,5 @@
 import { Dayjs } from "dayjs";
-import { useState, useMemo, useEffect, useId, memo } from "react";
+import { useState, useMemo, useEffect, useId, memo, KeyboardEvent } from "react";
 import styled from "styled-components";
 import { CalendarPropsType } from "./types";
 import useTranslatedLabels from "../useTranslatedLabels";
@@ -100,7 +100,7 @@ const Calendar = ({
     }
   }, [innerDate, dateToFocus, selectedDate, today]);
 
-  const handleDayKeyboardEvent = (event, date) => {
+  const handleDayKeyboardEvent = (event: KeyboardEvent<HTMLButtonElement>, date: Date) => {
     let dateToFocusTemp =
       date.month === innerDate.get("month")
         ? innerDate.set("date", date.day)

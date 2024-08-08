@@ -1,4 +1,5 @@
 import styled, { ThemeProvider } from "styled-components";
+import { ReactNode } from "react";
 import useTheme from "../useTheme";
 import BaseTypography from "../utils/BaseTypography";
 import ImagePropsType, { CaptionWrapperProps } from "./types";
@@ -23,7 +24,7 @@ const DxcImage = ({
 }: ImagePropsType) => {
   const colorsTheme = useTheme();
 
-  const wrapperFunction = (children: React.ReactNode) => (
+  const wrapperFunction = (children: ReactNode) => (
     <Figure>
       {children}
       <BaseTypography
