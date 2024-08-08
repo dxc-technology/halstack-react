@@ -70,7 +70,7 @@ const DxcTable = ({ children, margin, mode = "default" }: TablePropsType): JSX.E
 };
 
 const calculateWidth = (margin: TablePropsType["margin"]) =>
-  `calc(100% - ${getMargin(margin as string | object, "left")} - ${getMargin(margin as string | object, "right")})`;
+  `calc(100% - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`;
 
 const DxcTableContainer = styled.div<{ margin: TablePropsType["margin"] }>`
   width: ${(props) => calculateWidth(props.margin)};

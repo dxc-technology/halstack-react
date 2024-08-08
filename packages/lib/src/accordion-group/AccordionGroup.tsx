@@ -72,7 +72,7 @@ const DxcAccordionGroup = ({
 DxcAccordionGroup.Accordion = AccordionGroupAccordion;
 
 const calculateWidth = (margin: AccordionGroupPropsType["margin"]) =>
-  `calc(100% - ${getMargin(margin as string | object, "left")} - ${getMargin(margin as string | object, "right")})`;
+  `calc(100% - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`;
 
 const AccordionGroupContainer = styled.div<{
   margin: AccordionGroupPropsType["margin"];

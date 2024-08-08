@@ -102,7 +102,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
         const newValue = multiple
           ? (currentValue as string[]).includes(newOption.value)
             ? (currentValue as string[]).filter((optionVal: string) => optionVal !== newOption.value)
-            : [...currentValue, newOption.value]
+            : [...(currentValue as string[]), newOption.value]
           : newOption.value;
 
         if (value == null) {
@@ -155,7 +155,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
         case "ArrowDown":
           event.preventDefault();
           if (
-            singleSelectionIndex !== undefined &&
+            singleSelectionIndex != null &&
             (!isOpen ||
               (visualFocusIndex === -1 && singleSelectionIndex > -1 && singleSelectionIndex <= lastOptionIndex))
           ) {
@@ -174,7 +174,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
         case "ArrowUp":
           event.preventDefault();
           if (
-            singleSelectionIndex !== undefined &&
+            singleSelectionIndex != null &&
             (!isOpen ||
               (visualFocusIndex === -1 && singleSelectionIndex > -1 && singleSelectionIndex <= lastOptionIndex))
           ) {
@@ -470,7 +470,7 @@ const sizes = {
 
 const calculateWidth = (margin: SelectPropsType["margin"], size: SelectPropsType["size"]) =>
   size === "fillParent"
-    ? `calc(${sizes[size]} - ${getMargin(margin as string | object, "left")} - ${getMargin(margin as string | object, "right")})`
+    ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
     : size && sizes[size];
 
 const SelectContainer = styled.div<{

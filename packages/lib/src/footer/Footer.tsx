@@ -69,7 +69,7 @@ const DxcFooter = ({
                 </span>
               ))}
             </BottomLinks>
-            <Copyright>{copyright || translatedLabels?.footer?.copyrightText(new Date().getFullYear())}</Copyright>
+            <Copyright>{copyright || translatedLabels?.footer?.copyrightText?.(new Date().getFullYear())}</Copyright>
           </BottomContainer>
         )}
       </FooterContainer>

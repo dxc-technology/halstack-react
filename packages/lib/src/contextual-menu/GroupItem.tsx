@@ -7,7 +7,7 @@ import ItemAction from "./ItemAction";
 import MenuItem from "./MenuItem";
 import { GroupItemProps, ItemWithId } from "./types";
 
-const isGroupSelected = (items: GroupItemProps["items"], selectedItemId: number): boolean =>
+const isGroupSelected = (items: GroupItemProps["items"], selectedItemId: number | undefined): boolean =>
   items.some((item) =>
     "items" in item
       ? isGroupSelected(item.items, selectedItemId)
@@ -18,7 +18,7 @@ const isGroupSelected = (items: GroupItemProps["items"], selectedItemId: number)
 
 const GroupItem = ({ items, ...props }: GroupItemProps) => {
   const groupMenuId = `group-menu-${props.label}`;
-  const { selectedItemId } = useContext(ContextualMenuContext);
+  const { selectedItemId } = useContext(ContextualMenuContext) ?? {};
   const groupSelected = useMemo(() => isGroupSelected(items, selectedItemId), [items, selectedItemId]);
   const [isOpen, setIsOpen] = useState(groupSelected && selectedItemId === -1);
 

@@ -68,7 +68,7 @@ const Tab = forwardRef(
             <DxcBadge
               mode="notification"
               size="small"
-              label={typeof tab.notificationNumber === "number" && tab.notificationNumber}
+              label={typeof tab.notificationNumber === "number" ? tab.notificationNumber : undefined}
             />
           </BadgeContainer>
         )}

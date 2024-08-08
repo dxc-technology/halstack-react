@@ -16,7 +16,7 @@ const isOptionGroup = (option: ListOptionType | ListOptionGroupType): option is 
  * Checks if the options are an array of groups.
  */
 const isArrayOfOptionGroups = (options: ListOptionType[] | ListOptionGroupType[]): options is ListOptionGroupType[] =>
-  isOptionGroup(options[0]);
+  options[0] != null && isOptionGroup(options[0]);
 
 /**
  * Checks if the groups have options.
@@ -95,7 +95,7 @@ const getSelectedOption = (
   optionalItem: ListOptionType
 ) => {
   let selectedOption: ListOptionType | ListOptionType[] = multiple ? [] : ({} as ListOptionType);
-  let singleSelectionIndex: number;
+  let singleSelectionIndex: number | null = null;
 
   if (multiple) {
     if (options?.length > 0) {

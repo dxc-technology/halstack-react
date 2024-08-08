@@ -61,7 +61,7 @@ const widths = {
 
 const calculateWidth = (margin: ButtonPropsType["margin"], size: ButtonPropsType["size"]) =>
   size?.width === "fillParent"
-    ? `calc(${widths[size?.width]} - ${getMargin(margin as string | object, "left")} - ${getMargin(margin as string | object, "right")})`
+    ? `calc(${widths[size?.width]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
     : size?.width && widths[size?.width];
 
 const getHeight = (height?: string) => {

@@ -15,7 +15,7 @@ const Dropdown = (props: ComponentProps<typeof DxcDropdown>) => (
   </HeaderDropdown>
 );
 
-const getLogoElement = (themeInput, logoLabel) =>
+const getLogoElement = (themeInput: string | undefined, logoLabel: string | undefined) =>
   !themeInput ? (
     <svg xmlns="http://www.w3.org/2000/svg" width="73" height="40" viewBox="0 0 73 40">
       <title>DXC Logo</title>
@@ -49,7 +49,7 @@ type ContentProps = {
 
 const Content = ({ isResponsive, responsiveContent, handleMenu, content }: ContentProps) =>
   isResponsive ? (
-    <MenuContent>{responsiveContent(handleMenu)}</MenuContent>
+    <MenuContent>{responsiveContent?.(handleMenu)}</MenuContent>
   ) : (
     <ContentContainer>{content}</ContentContainer>
   );

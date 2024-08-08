@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 
-type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
+import { Space } from "../common/utils";
+
 type Size = {
   top?: Space;
   bottom?: Space;

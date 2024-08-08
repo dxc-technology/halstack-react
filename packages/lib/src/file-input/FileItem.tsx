@@ -45,7 +45,7 @@ const FileItem = ({
               onClick={() => onDelete(fileName)}
               icon="close"
               tabIndex={tabIndex}
-              title={translatedLabels?.fileInput?.deleteFileActionTitle}
+              title={translatedLabels?.fileInput?.deleteFileActionTitle ?? ""}
             />
           </DxcFlex>
           {error && !singleFileMode && (

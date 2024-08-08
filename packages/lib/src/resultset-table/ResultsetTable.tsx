@@ -182,7 +182,7 @@ const DxcResultsetTable = ({
 };
 
 const calculateWidth = (margin: ResultsetTablePropsType["margin"]) =>
-  `calc(100% - ${getMargin(margin as string | object, "left")} - ${getMargin(margin as string | object, "right")})`;
+  `calc(100% - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`;
 
 const DxcResultsetTableContainer = styled.div<{
   margin: ResultsetTablePropsType["margin"];

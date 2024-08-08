@@ -17,7 +17,7 @@ const Suggestions = ({
   styles,
 }: SuggestionsProps): JSX.Element => {
   const translatedLabels = useTranslatedLabels();
-  const listboxRef = useRef(null);
+  const listboxRef = useRef<HTMLUListElement | null>(null);
 
   useEffect(() => {
     const visualFocusedOptionEl = listboxRef?.current?.querySelectorAll("[role='option']")[visualFocusIndex];

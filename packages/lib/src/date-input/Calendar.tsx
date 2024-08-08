@@ -1,5 +1,5 @@
 import { Dayjs } from "dayjs";
-import { useState, useMemo, useEffect, useId, memo, KeyboardEvent } from "react";
+import { useState, useMemo, useEffect, useId, memo, KeyboardEvent, FocusEvent } from "react";
 import styled from "styled-components";
 import { CalendarPropsType } from "./types";
 import useTranslatedLabels from "../useTranslatedLabels";
@@ -36,14 +36,14 @@ const getDays = (innerDate: Dayjs) => {
   return monthDayCells;
 };
 
-const getDateToFocus = (selectedDate, innerDate, today) =>
+const getDateToFocus = (selectedDate: Dayjs, innerDate: Dayjs, today: Dayjs) =>
   selectedDate?.get("month") === innerDate.get("month") && selectedDate?.get("year") === innerDate.get("year")
     ? selectedDate
     : today.get("month") === innerDate.get("month") && today.get("year") === innerDate.get("year")
       ? today
       : innerDate.set("date", 1);
 
-const isDaySelected = (date: Date, selectedDate) =>
+const isDaySelected = (date: Date, selectedDate: Dayjs) =>
   selectedDate?.get("month") === date.month &&
   selectedDate?.get("year") === date.year &&
   selectedDate?.get("date") === date.day;
@@ -65,7 +65,7 @@ const Calendar = ({
   const [isFocusable, setIsFocusable] = useState(false);
   const dayCells = useMemo(() => getDays(innerDate), [innerDate]);
   const translatedLabels = useTranslatedLabels();
-  const weekDays = translatedLabels?.calendar?.daysShort;
+  const weekDays = translatedLabels?.calendar?.daysShort ?? [];
 
   const onDateClickHandler = (date: Date) => {
     const newDate = innerDate.set("month", date.month).set("date", date.day);
@@ -73,7 +73,7 @@ const Calendar = ({
     setDateToFocus(newDate);
   };
 
-  const handleOnBlur = (event) => {
+  const handleOnBlur = (event: FocusEvent<HTMLDivElement>) => {
     if (!event?.currentTarget.contains(event.relatedTarget)) {
       setDateToFocus(getDateToFocus(selectedDate, innerDate, today));
     }

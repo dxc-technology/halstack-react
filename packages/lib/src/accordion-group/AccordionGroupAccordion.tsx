@@ -4,13 +4,15 @@ import { AccordionPropsType } from "./types";
 import AccordionGroupAccordionContext from "./AccordionGroupContext";
 
 const AccordionGroupAccordion = ({ ...childProps }: AccordionPropsType): JSX.Element => {
-  const { activeIndex, handlerActiveChange, disabled, index } = useContext(AccordionGroupAccordionContext);
+  const { activeIndex, handlerActiveChange, disabled, index } = useContext(AccordionGroupAccordionContext) ?? {};
 
   return (
     <DxcAccordion
       isExpanded={activeIndex === index}
       onChange={() => {
-        handlerActiveChange(index);
+        if (index != null) {
+          handlerActiveChange?.(index);
+        }
       }}
       disabled={disabled}
       {...childProps}

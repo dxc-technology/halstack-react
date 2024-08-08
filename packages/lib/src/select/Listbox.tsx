@@ -4,7 +4,7 @@ import DxcIcon from "../icon/Icon";
 import useTranslatedLabels from "../useTranslatedLabels";
 import ListOption from "./ListOption";
 import { groupsHaveOptions } from "./selectUtils";
-import { ListboxProps } from "./types";
+import { ListboxProps, ListOptionGroupType, ListOptionType } from "./types";
 
 const Listbox = ({
   id,
@@ -20,12 +20,12 @@ const Listbox = ({
   styles,
 }: ListboxProps): JSX.Element => {
   const translatedLabels = useTranslatedLabels();
-  const listboxRef = useRef(null);
+  const listboxRef = useRef<HTMLUListElement | null>(null);
 
   let globalIndex = optional && !multiple ? 0 : -1;
-  const mapOptionFunc = (option, mapIndex) => {
+  const mapOptionFunc = (option: ListOptionType | ListOptionGroupType, mapIndex: number) => {
     const groupId = `${id}-group-${mapIndex}`;
-    if (option.options) {
+    if ("options" in option && option.options) {
       return (
         option.options.length > 0 && (
           <li key={groupId}>
@@ -59,14 +59,18 @@ const Listbox = ({
     globalIndex += 1;
     return (
       <ListOption
-        key={`${id}-option-${option.value}`}
+        key={`${id}-option-${(option as ListOptionType).value}`}
         id={`${id}-option-${globalIndex}`}
-        option={option}
+        option={option as ListOptionType}
         onClick={handleOptionOnClick}
         multiple={multiple}
         visualFocused={visualFocusIndex === globalIndex}
         isLastOption={lastOptionIndex === globalIndex}
-        isSelected={multiple ? currentValue.includes(option.value) : currentValue === option.value}
+        isSelected={
+          multiple
+            ? currentValue.includes((option as ListOptionType).value)
+            : currentValue === (option as ListOptionType).value
+        }
       />
     );
   };
@@ -74,7 +78,7 @@ const Listbox = ({
   useLayoutEffect(() => {
     if (currentValue && !multiple) {
       const listEl = listboxRef?.current;
-      const selectedListOptionEl = listEl?.querySelector("[aria-selected='true']");
+      const selectedListOptionEl = listEl?.querySelector("[aria-selected='true']") as HTMLUListElement;
       listEl?.scrollTo?.({
         top: (selectedListOptionEl?.offsetTop || 0) - (listEl?.clientHeight || 0) / 2,
       });
@@ -89,7 +93,7 @@ const Listbox = ({
     });
   }, [visualFocusIndex]);
 
-  const hasOptionGroups = options.some((option) => option.options?.length > 0);
+  const hasOptionGroups = options.some((option) => (option as ListOptionGroupType).options?.length > 0);
 
   return (
     <ListboxContainer

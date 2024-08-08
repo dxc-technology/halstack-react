@@ -101,7 +101,7 @@ const DxcAccordion = ({
 };
 
 const calculateWidth = (margin: AccordionPropsType["margin"]) =>
-  `calc(100% - ${getMargin(margin as string | object, "left")} - ${getMargin(margin as string | object, "right")})`;
+  `calc(100% - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`;
 
 const AccordionContainer = styled.div<{
   isExpanded: AccordionPropsType["isExpanded"];

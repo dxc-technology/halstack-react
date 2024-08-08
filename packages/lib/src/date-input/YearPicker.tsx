@@ -39,7 +39,7 @@ const YearPicker = ({ onYearSelect, selectedDate, today }: YearPickerPropsType):
     <YearPickerContainer role="listbox" aria-label="Year Picker">
       {yearList.map((year) => (
         <YearPickerButton
-          aria-label={year}
+          aria-label={year.toString()}
           key={year}
           selected={selectedDate?.get("year") === year}
           aria-selected={selectedDate?.get("year") === year}

@@ -15,7 +15,7 @@ const DxcTab = forwardRef(
   ): JSX.Element => {
     const tabRef = useRef<HTMLAnchorElement>();
     const colorsTheme = useTheme();
-    const { iconPosition, tabIndex, focusedLabel } = useContext(NavTabsContext);
+    const { iconPosition, tabIndex, focusedLabel } = useContext(NavTabsContext) ?? {};
     const innerRef = useRef<HTMLAnchorElement | null>(null);
     useImperativeHandle(ref, () => innerRef.current!, []);
 
@@ -45,7 +45,7 @@ const DxcTab = forwardRef(
           active={active}
           iconPosition={iconPosition}
           hasIcon={icon != null}
-          ref={(anchorRef) => {
+          ref={(anchorRef: HTMLAnchorElement) => {
             tabRef.current = anchorRef;
 
             if (ref) {
@@ -91,7 +91,7 @@ const DxcTab = forwardRef(
               <DxcBadge
                 mode="notification"
                 size="small"
-                label={typeof notificationNumber === "number" && notificationNumber}
+                label={typeof notificationNumber === "number" ? notificationNumber : undefined}
               />
             )}
           </DxcFlex>

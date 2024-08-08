@@ -9,13 +9,13 @@ const Item = ({ isCurrentPage = false, href, label, onClick }: ItemPropsType) =>
   const handleOnMouseEnter = (event: MouseEvent<HTMLAnchorElement>) => {
     const labelContainer = event.currentTarget;
     const optionElement = currentItemRef?.current;
-    if (optionElement.title === "" && labelContainer.scrollWidth > labelContainer.clientWidth) {
+    if (optionElement?.title === "" && labelContainer.scrollWidth > labelContainer.clientWidth) {
       optionElement.title = label;
     }
   };
 
   const handleOnClick = (event: MouseEvent<HTMLAnchorElement>) => {
-    if (onClick) {
+    if (onClick && href) {
       event.preventDefault();
       onClick(href);
     }

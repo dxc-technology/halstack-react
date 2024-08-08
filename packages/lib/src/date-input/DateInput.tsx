@@ -10,7 +10,7 @@ import {
   FocusEvent,
   KeyboardEvent,
 } from "react";
-import dayjs from "dayjs";
+import dayjs, { Dayjs } from "dayjs";
 import styled, { ThemeProvider } from "styled-components";
 import * as Popover from "@radix-ui/react-popover";
 import customParseFormat from "dayjs/plugin/customParseFormat";
@@ -93,7 +93,7 @@ const DxcDateInput = forwardRef<RefType, DateInputPropsType>(
     const dateRef = useRef<HTMLDivElement | null>(null);
     const popoverContentRef = useRef<HTMLDivElement | null>(null);
 
-    const handleCalendarOnClick = (newDate: dayjs.Dayjs) => {
+    const handleCalendarOnClick = (newDate: Dayjs) => {
       const newValue = newDate.format(format.toUpperCase());
       if (!value) {
         setDayjsDate(newDate);
@@ -290,7 +290,7 @@ const sizes = {
 
 const calculateWidth = (margin: DateInputPropsType["margin"], size: DateInputPropsType["size"]) =>
   size === "fillParent"
-    ? `calc(${sizes[size]} - ${getMargin(margin as string | object, "left")} - ${getMargin(margin as string | object, "right")})`
+    ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
     : size && sizes[size];
 
 const DateInputContainer = styled.div<{ margin: DateInputPropsType["margin"]; size: DateInputPropsType["size"] }>`

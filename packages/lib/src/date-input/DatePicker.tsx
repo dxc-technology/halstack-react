@@ -13,7 +13,7 @@ const today = dayjs();
 const DatePicker = ({ date, onDateSelect, id }: DatePickerPropsType): JSX.Element => {
   const [innerDate, setInnerDate] = useState(date?.isValid() ? date : dayjs());
   const [content, setContent] = useState("calendar");
-  const selectedDate = date?.isValid() ? date : null;
+  const selectedDate = date?.isValid() ? date : dayjs(null);
   const translatedLabels = useTranslatedLabels();
 
   const handleDateSelect = (chosenDate: Dayjs) => {
@@ -21,7 +21,7 @@ const DatePicker = ({ date, onDateSelect, id }: DatePickerPropsType): JSX.Elemen
     onDateSelect(chosenDate);
   };
 
-  const handleOnYearSelect = (year) => {
+  const handleOnYearSelect = (year: number) => {
     setInnerDate(innerDate.set("year", year));
     setContent("calendar");
   };
@@ -46,7 +46,7 @@ const DatePicker = ({ date, onDateSelect, id }: DatePickerPropsType): JSX.Elemen
           onClick={() => setContent((currentContent) => (currentContent === "yearPicker" ? "calendar" : "yearPicker"))}
         >
           <HeaderYearTriggerLabel>
-            {translatedLabels?.calendar?.months[innerDate.get("month")]} {innerDate.format("YYYY")}
+            {translatedLabels?.calendar?.months?.[innerDate.get("month")]} {innerDate.format("YYYY")}
           </HeaderYearTriggerLabel>
           <DxcIcon icon={content === "yearPicker" ? "arrow_drop_up" : "arrow_drop_down"} />
         </HeaderYearTrigger>

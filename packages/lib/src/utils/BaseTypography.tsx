@@ -44,7 +44,8 @@ const ValidTypographyTags = [
   "strong",
 ];
 
-const isValidTypography = (tag: keyof HTMLElementTagNameMap) => ValidTypographyTags.includes(tag);
+const isValidTypography = (tag: keyof HTMLElementTagNameMap | undefined) =>
+  tag != null && ValidTypographyTags.includes(tag);
 
 const BaseTypography = ({
   as,
