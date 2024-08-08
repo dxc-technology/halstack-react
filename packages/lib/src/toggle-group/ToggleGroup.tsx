@@ -25,7 +25,7 @@ const DxcToggleGroup = ({
   const colorsTheme = useTheme();
 
   const handleToggleChange = (selectedOption: number) => {
-    let newSelectedOptions;
+    let newSelectedOptions: number[] = [];
 
     if (value == null) {
       if (multiple && Array.isArray(selectedValue)) {
@@ -38,10 +38,10 @@ const DxcToggleGroup = ({
         }
         setSelectedValue(newSelectedOptions);
       } else {
-        setSelectedValue(selectedOption === selectedValue ? null : selectedOption);
+        setSelectedValue(selectedOption === selectedValue ? -1 : selectedOption);
       }
     } else if (multiple) {
-      newSelectedOptions = Array.isArray(value) ? value.map((v) => v) : value;
+      newSelectedOptions = Array.isArray(value) ? value.map((v) => v) : [value];
       if (newSelectedOptions.includes(selectedOption)) {
         const index = newSelectedOptions.indexOf(selectedOption);
         newSelectedOptions.splice(index, 1);
@@ -50,7 +50,7 @@ const DxcToggleGroup = ({
       }
     }
 
-    onChange?.(multiple ? newSelectedOptions : selectedOption);
+    onChange?.((multiple ? newSelectedOptions : selectedOption) as number & number[]);
   };
 
   const handleOnKeyDown = (event: KeyboardEvent<HTMLButtonElement>, optionValue: number) => {

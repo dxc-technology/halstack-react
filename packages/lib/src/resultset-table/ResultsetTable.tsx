@@ -9,24 +9,26 @@ import useTheme from "../useTheme";
 import icons from "./Icons";
 import ResultsetTablePropsType, { Column, Row } from "./types";
 
-const normalizeSortValue = (sortValue: string | ReactNode) =>
+const normalizeSortValue = (sortValue: string | Date | ReactNode) =>
   typeof sortValue === "string" ? sortValue.toUpperCase() : sortValue;
 
 const isDateType = (value: ReactNode | Date): boolean => value instanceof Date;
 
 const sortArray = (index: number, order: "ascending" | "descending", resultset: { id: string; cells: Row }[]) =>
   resultset.slice().sort((element1, element2) => {
-    const sortValueA = normalizeSortValue(element1?.cells[index]?.sortValue || element1[index].displayValue);
-    const sortValueB = normalizeSortValue(element2?.cells[index]?.sortValue || element2[index].displayValue);
+    const sortValueA = normalizeSortValue(element1?.cells[index]?.sortValue || element1?.cells[index]?.displayValue);
+    const sortValueB = normalizeSortValue(element2?.cells[index]?.sortValue || element2?.cells[index]?.displayValue);
     let comparison = 0;
-    if (typeof sortValueA === "object" && !isDateType(sortValueA)) {
-      comparison = -1;
-    } else if (typeof sortValueB === "object" && !isDateType(sortValueB)) {
-      comparison = 1;
-    } else if (sortValueA > sortValueB) {
-      comparison = 1;
-    } else if (sortValueA < sortValueB) {
-      comparison = -1;
+    if (sortValueA != null && sortValueB != null) {
+      if (typeof sortValueA === "object" && !isDateType(sortValueA)) {
+        comparison = -1;
+      } else if (typeof sortValueB === "object" && !isDateType(sortValueB)) {
+        comparison = 1;
+      } else if (sortValueA > sortValueB) {
+        comparison = 1;
+      } else if (sortValueA < sortValueB) {
+        comparison = -1;
+      }
     }
     return order === "descending" ? comparison * -1 : comparison;
   });

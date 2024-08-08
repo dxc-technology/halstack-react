@@ -1,5 +1,17 @@
 import * as Popover from "@radix-ui/react-popover";
-import { FocusEvent, forwardRef, KeyboardEvent, MouseEvent, useCallback, useId, useLayoutEffect, useMemo, useRef, useState } from "react";
+import {
+  ChangeEvent,
+  FocusEvent,
+  forwardRef,
+  KeyboardEvent,
+  MouseEvent,
+  useCallback,
+  useId,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables";
 import getMargin from "../common/utils";
@@ -84,40 +96,30 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
       }
     };
 
-    const handleSelectChangeValue = (newOption: ListOptionType) => {
-      let newValue: string | string[];
+    const handleSelectChangeValue = (newOption: ListOptionType | undefined) => {
+      if (newOption) {
+        const currentValue = value ?? innerValue;
+        const newValue = multiple
+          ? (currentValue as string[]).includes(newOption.value)
+            ? (currentValue as string[]).filter((optionVal: string) => optionVal !== newOption.value)
+            : [...currentValue, newOption.value]
+          : newOption.value;
 
-      if (multiple) {
-        if ((value ?? innerValue).includes(newOption.value)) {
-          newValue = (
-            (value && Array.isArray(value) && value) ??
-            (innerValue && Array.isArray(innerValue) && innerValue)
-          ).filter((optionVal) => optionVal !== newOption.value);
-        } else {
-          newValue = [
-            ...((value && Array.isArray(value) && value) ?? (innerValue && Array.isArray(innerValue) && innerValue)),
-            newOption.value,
-          ];
+        if (value == null) {
+          setInnerValue(newValue);
         }
-      } else {
-        newValue = newOption.value;
-      }
 
-      if (value == null) {
-        setInnerValue(newValue);
-      }
-      if (notOptionalCheck(newValue, multiple, optional)) {
         onChange?.({
           value: newValue as string & string[],
-          error: translatedLabels?.formFields?.requiredValueErrorMessage,
+          ...(notOptionalCheck(newValue, multiple, optional) && {
+            error: translatedLabels?.formFields?.requiredValueErrorMessage,
+          }),
         });
-      } else {
-        onChange?.({ value: newValue as string & string[] });
       }
     };
     const handleSelectOnClick = () => {
       if (searchable) {
-        selectSearchInputRef.current.focus();
+        selectSearchInputRef?.current?.focus();
       }
       if (isOpen) {
         closeListbox();
@@ -128,7 +130,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
     };
     const handleSelectOnFocus = (event: FocusEvent<HTMLInputElement>) => {
       if (!event.currentTarget.contains(event.relatedTarget) && searchable) {
-        selectSearchInputRef.current.focus();
+        selectSearchInputRef?.current?.focus();
       }
     };
     const handleSelectOnBlur = (event: FocusEvent<HTMLInputElement>) => {
@@ -147,7 +149,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
         }
       }
     };
-    const handleSelectOnKeyDown = (event: KeyboardEvent<HTMLElement>) => {
+    const handleSelectOnKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
       switch (event.key) {
         case "Down":
         case "ArrowDown":
@@ -255,11 +257,11 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
       }
       if (!optional) {
         onChange?.({
-          value: [] as string & string[],
+          value: [] as string[] as string & string[],
           error: translatedLabels?.formFields?.requiredValueErrorMessage,
         });
       } else {
-        onChange?.({ value: [] as string & string[] });
+        onChange?.({ value: [] as string[] as string & string[] });
       }
     };
 
@@ -352,13 +354,18 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
                     style={{ display: "none" }}
                     name={name}
                     disabled={disabled}
+                    // value={
+                    //   multiple
+                    //     ? (
+                    //         (value && Array.isArray(value) && value) ??
+                    //         (innerValue && Array.isArray(innerValue) && innerValue)
+                    //       ).join(",")
+                    //     : (value ?? innerValue)
+                    // }
                     value={
                       multiple
-                        ? (
-                            (value && Array.isArray(value) && value) ??
-                            (innerValue && Array.isArray(innerValue) && innerValue)
-                          ).join(",")
-                        : value ?? innerValue
+                        ? (Array.isArray(value) ? value : Array.isArray(innerValue) ? innerValue : []).join(",")
+                        : (value ?? innerValue)
                     }
                     readOnly
                     aria-hidden="true"

@@ -127,7 +127,7 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
     };
     const handleDragOut = (e: DragEvent<HTMLDivElement>) => {
       // only if dragged items leave container (outside, not to childs)
-      if (!e.currentTarget?.contains(e.relatedTarget as HTMLElement)) {
+      if (!e.currentTarget?.contains(e.relatedTarget as HTMLDivElement)) {
         setIsDragging(false);
       }
     };

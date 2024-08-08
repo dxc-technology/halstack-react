@@ -1,4 +1,4 @@
-import { KeyboardEvent, useEffect } from "react";
+import { useEffect } from "react";
 import { createPortal } from "react-dom";
 import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
 import { responsiveSizes } from "../common/variables";
@@ -20,7 +20,7 @@ const DxcDialog = ({
   const translatedLabels = useTranslatedLabels();
 
   useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
+    const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         event.preventDefault();
         onCloseClick?.();

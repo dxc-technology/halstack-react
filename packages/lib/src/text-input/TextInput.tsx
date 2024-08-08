@@ -1,5 +1,18 @@
 import * as Popover from "@radix-ui/react-popover";
-import { ChangeEvent, FocusEvent, forwardRef, KeyboardEvent, MouseEvent, ReactNode, useContext, useEffect, useId, useRef, useState, WheelEvent } from "react";
+import {
+  ChangeEvent,
+  FocusEvent,
+  forwardRef,
+  KeyboardEvent,
+  MouseEvent,
+  ReactNode,
+  useContext,
+  useEffect,
+  useId,
+  useRef,
+  useState,
+  WheelEvent,
+} from "react";
 import styled, { ThemeProvider } from "styled-components";
 import DxcActionIcon from "../action-icon/ActionIcon";
 import getMargin from "../common/utils";
@@ -48,7 +61,7 @@ const makeCancelable = (promise: Promise<string[]>) => {
 };
 
 const hasSuggestions = (suggestions: TextInputPropsType["suggestions"]) =>
-  typeof suggestions === "function" || (suggestions && suggestions?.length > 0);
+  typeof suggestions === "function" || (suggestions ? suggestions?.length > 0 : false);
 
 const isRequired = (value: string, optional: boolean) => value === "" && !optional;
 
@@ -390,15 +403,24 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
       inputRef?.current?.focus();
     };
 
-    const setNumberProps = (type: string, min: number, max: number, step: number) => {
-      if (min) {
+    const setNumberProps = (
+      type: string | undefined,
+      min: number | undefined,
+      max: number | undefined,
+      step: number | undefined
+    ) => {
+      if (min != null) {
         inputRef?.current?.setAttribute("min", min.toString());
       }
-      if (max) {
+      if (max != null) {
         inputRef?.current?.setAttribute("max", max.toString());
       }
-      inputRef?.current?.setAttribute("step", step.toString());
-      inputRef?.current?.setAttribute("type", type);
+      if (step != null) {
+        inputRef?.current?.setAttribute("step", step.toString());
+      }
+      if (type != null) {
+        inputRef?.current?.setAttribute("type", type);
+      }
     };
 
     useEffect(() => {

@@ -56,7 +56,7 @@ const DxcWizard = ({
   const renderedCurrent = currentStep == null ? innerCurrent : currentStep;
   const colorsTheme = useTheme();
 
-  const handleStepClick = (newValue) => {
+  const handleStepClick = (newValue: number) => {
     if (currentStep == null) {
       setInnerCurrentStep(newValue);
     }
@@ -70,55 +70,55 @@ const DxcWizard = ({
     <ThemeProvider theme={colorsTheme?.wizard}>
       <StepsContainer mode={mode} margin={margin} role="group">
         {steps?.map((step, i) => (
-            <StepContainer key={`step${i}`} mode={mode} lastStep={steps && i === (steps?.length || 0) - 1}>
-              <Step
-                onClick={() => {
-                  handleStepClick(i);
-                }}
-                disabled={step.disabled}
-                mode={mode}
-                first={i === 0}
-                last={i === (steps?.length || 0) - 1}
-                aria-current={renderedCurrent === i ? "step" : "false"}
-                tabIndex={tabIndex}
-              >
-                <StepHeader validityIcon={step.valid !== undefined}>
-                  <IconContainer current={i === renderedCurrent} visited={i < renderedCurrent} disabled={step.disabled}>
-                    {step.icon ? (
-                      typeof step.icon === "string" ? (
-                        <DxcIcon icon={step.icon} />
-                      ) : (
-                        step.icon
-                      )
+          <StepContainer key={`step${i}`} mode={mode} lastStep={steps && i === (steps?.length || 0) - 1}>
+            <Step
+              onClick={() => {
+                handleStepClick(i);
+              }}
+              disabled={step.disabled}
+              mode={mode}
+              first={i === 0}
+              last={i === (steps?.length || 0) - 1}
+              aria-current={renderedCurrent === i ? "step" : "false"}
+              tabIndex={tabIndex}
+            >
+              <StepHeader validityIcon={step.valid !== undefined}>
+                <IconContainer current={i === renderedCurrent} visited={i < renderedCurrent} disabled={step.disabled}>
+                  {step.icon ? (
+                    typeof step.icon === "string" ? (
+                      <DxcIcon icon={step.icon} />
                     ) : (
-                      <Number>{i + 1}</Number>
-                    )}
-                  </IconContainer>
-                  {step.valid !== undefined &&
-                    (step.valid ? (
-                      <ValidityIconContainer>{icons.validIcon}</ValidityIconContainer>
-                    ) : (
-                      <ValidityIconContainer>{icons.invalidIcon}</ValidityIconContainer>
-                    ))}
-                </StepHeader>
-                {(step.label || step.description) && (
-                  <InfoContainer>
-                    {step.label && (
-                      <Label current={i === renderedCurrent} disabled={step.disabled} visited={i <= innerCurrent}>
-                        {step.label}
-                      </Label>
-                    )}
-                    {step.description && (
-                      <Description current={i === renderedCurrent} disabled={step.disabled} visited={i <= innerCurrent}>
-                        {step.description}
-                      </Description>
-                    )}
-                  </InfoContainer>
-                )}
-              </Step>
-              {i === steps.length - 1 ? "" : <StepSeparator mode={mode} />}
-            </StepContainer>
-          ))}
+                      step.icon
+                    )
+                  ) : (
+                    <Number>{i + 1}</Number>
+                  )}
+                </IconContainer>
+                {step.valid !== undefined &&
+                  (step.valid ? (
+                    <ValidityIconContainer>{icons.validIcon}</ValidityIconContainer>
+                  ) : (
+                    <ValidityIconContainer>{icons.invalidIcon}</ValidityIconContainer>
+                  ))}
+              </StepHeader>
+              {(step.label || step.description) && (
+                <InfoContainer>
+                  {step.label && (
+                    <Label current={i === renderedCurrent} disabled={step.disabled} visited={i <= innerCurrent}>
+                      {step.label}
+                    </Label>
+                  )}
+                  {step.description && (
+                    <Description current={i === renderedCurrent} disabled={step.disabled} visited={i <= innerCurrent}>
+                      {step.description}
+                    </Description>
+                  )}
+                </InfoContainer>
+              )}
+            </Step>
+            {i === steps.length - 1 ? "" : <StepSeparator mode={mode} />}
+          </StepContainer>
+        ))}
       </StepsContainer>
     </ThemeProvider>
   );
