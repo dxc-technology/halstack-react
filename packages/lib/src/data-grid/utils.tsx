@@ -1,6 +1,5 @@
 import DxcActionIcon from "../action-icon/ActionIcon";
 import DxcCheckbox from "../checkbox/Checkbox";
-import DxcFlex from "../flex/Flex";
 import { HalstackProvider } from "../HalstackContext";
 import DxcIcon from "../icon/Icon";
 import { GridColumn, HierarchyGridRow, GridRow, ExpandableGridRow } from "./types";
