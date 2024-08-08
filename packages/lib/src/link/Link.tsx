@@ -86,6 +86,7 @@ const StyledLink = styled.div<{
   font-family: ${(props) => props.theme.fontFamily};
   text-decoration: none;
   width: fit-content;
+  line-height: 100%;
   ${(props) => props.disabled && "cursor: default;"}
   color: ${(props) =>
     props.inheritColor ? "inherit" : !props.disabled ? props.theme.fontColor : props.theme.disabledFontColor};
