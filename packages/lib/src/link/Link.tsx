@@ -97,12 +97,6 @@ const StyledLink = styled.div<{
                     border-bottom-color: ${props.theme.visitedUnderlineColor};`}
     }
   }
-  &:active {
-    & > span {
-      ${(props) => `color: ${props.theme.activeFontColor} !important;
-                    border-bottom-color: ${props.theme.activeUnderlineColor} !important;`}
-    }
-  }
   &:focus {
     border-radius: 4px;
     outline: 2px solid ${(props) => props.theme.focusColor};
@@ -138,6 +132,10 @@ const LinkContainer = styled.span<{
       `color: ${props.theme.hoverFontColor};
        cursor: pointer;
        border-bottom-color: ${props.theme.hoverUnderlineColor};`}
+  }
+  &:active {
+    ${(props) => `color: ${props.theme.activeFontColor} !important;
+                    border-bottom-color: ${props.theme.activeUnderlineColor} !important;`}
   }
 `;
 
