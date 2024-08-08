@@ -170,7 +170,6 @@ const DxcRadioGroup = forwardRef<RefType, RadioGroupPropsType>(
           >
             <ValueInput name={name} disabled={disabled} value={value ?? innerValue ?? ""} readOnly />
             {innerOptions.map((option, index) => (
-              // TODO: Remove index from key
               <DxcRadio
                 key={`radio-${index}`}
                 label={option.label ?? ""}

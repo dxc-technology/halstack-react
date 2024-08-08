@@ -26,8 +26,6 @@ import useWidth from "../utils/useWidth";
 import Suggestions from "./Suggestions";
 import TextInputPropsType, { AutosuggestWrapperProps, RefType } from "./types";
 
-// TODO: FIND THE BUG WITH NUMBERINPUT
-
 const sizes = {
   small: "240px",
   medium: "360px",
