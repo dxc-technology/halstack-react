@@ -36,7 +36,7 @@ jobs:
 
       - name: Build library and website
         env:
-          SITE_VERSION: next
+          NEXT_PUBLIC_SITE_VERSION: next
         run: npm run build
 
       - name: Move website to S3

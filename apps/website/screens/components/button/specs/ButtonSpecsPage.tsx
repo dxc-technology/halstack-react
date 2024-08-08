@@ -19,7 +19,7 @@ const sections = [
     ),
   },
   {
-    title: "States",
+    title: "States and semantics",
     content: (
       <>
         <DxcParagraph>
@@ -30,8 +30,12 @@ const sections = [
           States: <strong>enabled</strong>, <strong>hover</strong>, <strong>focus</strong>, <strong>active</strong> and{" "}
           <strong>disabled</strong>.
         </DxcParagraph>
-        <Figure caption="Button states">
-          <Image src={buttonStatesImage} alt="Button states" />
+        <DxcParagraph>
+          Semantics: <strong>default</strong>, <strong>error</strong>, <strong>warning</strong>,{" "}
+          <strong>success</strong> and <strong>info</strong>.
+        </DxcParagraph>
+        <Figure caption="Button states and semantics">
+          <Image src={buttonStatesImage} alt="Button states and semantics" />
         </Figure>
       </>
     ),
@@ -56,6 +60,33 @@ const sections = [
         title: "General",
         subSections: [
           {
+            title: "Color",
+            content: (
+              <DxcTable>
+                <thead>
+                  <tr>
+                    <th>Component token</th>
+                    <th>Element</th>
+                    <th>Core token</th>
+                    <th>Value</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <Code>focusBorderColor</Code>
+                    </td>
+                    <td>Container border:focus</td>
+                    <td>
+                      <Code>color-blue-500</Code>
+                    </td>
+                    <td>#33aaff</td>
+                  </tr>
+                </tbody>
+              </DxcTable>
+            ),
+          },
+          {
             title: "Spacing",
             content: (
               <DxcTable>
@@ -70,41 +101,241 @@ const sections = [
                 <tbody>
                   <tr>
                     <td>
-                      <Code>paddingLeft</Code>
+                      <Code>paddingSmallTop</Code>
                     </td>
-                    <td>Container</td>
+                    <td>Container (small height)</td>
                     <td>
-                      <Code>spacing-03</Code>
+                      <Code>spacing-0</Code>
+                    </td>
+                    <td>0rem / 0px</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>paddingSmallLeft</Code>
+                    </td>
+                    <td>Container (small height)</td>
+                    <td>
+                      <Code>spacing-08</Code>
                     </td>
                     <td>0.5rem / 8px</td>
                   </tr>
                   <tr>
                     <td>
-                      <Code>paddingRight</Code>
+                      <Code>paddingSmallBottom</Code>
                     </td>
-                    <td>Container</td>
+                    <td>Container (small height)</td>
                     <td>
-                      <Code>spacing-03</Code>
+                      <Code>spacing-0</Code>
+                    </td>
+                    <td>0rem / 0px</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>paddingSmallRight</Code>
+                    </td>
+                    <td>Container (small height)</td>
+                    <td>
+                      <Code>spacing-08</Code>
                     </td>
                     <td>0.5rem / 8px</td>
                   </tr>
                   <tr>
                     <td>
-                      <Code>paddingTop</Code>
+                      <Code>paddingSmallOnlyIconTop</Code>
                     </td>
-                    <td>Container</td>
+                    <td>Container (small height)</td>
                     <td>
-                      <Code>spacing-03</Code>
+                      <Code>spacing-0</Code>
+                    </td>
+                    <td>0rem / 0px</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>paddingSmallOnlyIconLeft</Code>
+                    </td>
+                    <td>Container (small height)</td>
+                    <td>
+                      <Code>spacing-04</Code>
+                    </td>
+                    <td>0.25rem / 4px</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>paddingSmallOnlyIconBottom</Code>
+                    </td>
+                    <td>Container (small height)</td>
+                    <td>
+                      <Code>spacing-0</Code>
+                    </td>
+                    <td>0rem / 0px</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>paddingSmallOnlyIconRight</Code>
+                    </td>
+                    <td>Container (small height)</td>
+                    <td>
+                      <Code>spacing-04</Code>
+                    </td>
+                    <td>0.25rem / 4px</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>paddingMediumTop</Code>
+                    </td>
+                    <td>Container (medium height)</td>
+                    <td>
+                      <Code>spacing-0</Code>
+                    </td>
+                    <td>0rem / 0px</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>paddingMediumLeft</Code>
+                    </td>
+                    <td>Container (medium height)</td>
+                    <td>
+                      <Code>spacing-08</Code>
                     </td>
                     <td>0.5rem / 8px</td>
                   </tr>
                   <tr>
                     <td>
-                      <Code>paddingBottom</Code>
+                      <Code>paddingMediumBottom</Code>
                     </td>
-                    <td>Container</td>
+                    <td>Container (medium height)</td>
                     <td>
-                      <Code>spacing-03</Code>
+                      <Code>spacing-0</Code>
+                    </td>
+                    <td>0rem / 0px</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>paddingMediumRight</Code>
+                    </td>
+                    <td>Container (medium height)</td>
+                    <td>
+                      <Code>spacing-08</Code>
+                    </td>
+                    <td>0.5rem / 8px</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>paddingMediumOnlyIconTop</Code>
+                    </td>
+                    <td>Container (medium height)</td>
+                    <td>
+                      <Code>spacing-0</Code>
+                    </td>
+                    <td>0rem / 0px</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>paddingMediumOnlyIconLeft</Code>
+                    </td>
+                    <td>Container (medium height)</td>
+                    <td>
+                      <Code>spacing-08</Code>
+                    </td>
+                    <td>0.5rem / 8px</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>paddingMediumOnlyIconBottom</Code>
+                    </td>
+                    <td>Container (medium height)</td>
+                    <td>
+                      <Code>spacing-0</Code>
+                    </td>
+                    <td>0rem / 0px</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>paddingMediumOnlyIconRight</Code>
+                    </td>
+                    <td>Container (medium height)</td>
+                    <td>
+                      <Code>spacing-08</Code>
+                    </td>
+                    <td>0.5rem / 8px</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>paddingLargeTop</Code>
+                    </td>
+                    <td>Container (large height)</td>
+                    <td>
+                      <Code>spacing-0</Code>
+                    </td>
+                    <td>0rem / 0px</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>paddingLargeLeft</Code>
+                    </td>
+                    <td>Container (large height)</td>
+                    <td>
+                      <Code>spacing-16</Code>
+                    </td>
+                    <td>1rem / 16px</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>paddingLargeBottom</Code>
+                    </td>
+                    <td>Container (large height)</td>
+                    <td>
+                      <Code>spacing-0</Code>
+                    </td>
+                    <td>0rem / 0px</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>paddingLargeRight</Code>
+                    </td>
+                    <td>Container (large height)</td>
+                    <td>
+                      <Code>spacing-16</Code>
+                    </td>
+                    <td>1rem / 16px</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>paddingLargeOnlyIconTop</Code>
+                    </td>
+                    <td>Container (large height)</td>
+                    <td>
+                      <Code>spacing-0</Code>
+                    </td>
+                    <td>0rem / 0px</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>paddingLargeOnlyIconLeft</Code>
+                    </td>
+                    <td>Container (large height)</td>
+                    <td>
+                      <Code>spacing-08</Code>
+                    </td>
+                    <td>0.5rem / 8px</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>paddingLargeOnlyIconBottom</Code>
+                    </td>
+                    <td>Container (large height)</td>
+                    <td>
+                      <Code>spacing-0</Code>
+                    </td>
+                    <td>0rem / 0px</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>paddingLargeOnlyIconRight</Code>
+                    </td>
+                    <td>Container (large height)</td>
+                    <td>
+                      <Code>spacing-08</Code>
                     </td>
                     <td>0.5rem / 8px</td>
                   </tr>
@@ -113,7 +344,7 @@ const sections = [
             ),
           },
           {
-            title: "Size",
+            title: "Width",
             content: (
               <>
                 <DxcParagraph>
@@ -265,7 +496,7 @@ const sections = [
                     <td>
                       <Code>font-leading-normal</Code>
                     </td>
-                    <td>1.5 em</td>
+                    <td>1.5em</td>
                   </tr>
                   <tr>
                     <td>
@@ -275,7 +506,7 @@ const sections = [
                     <td>
                       <Code>font-spacing-wide-01</Code>
                     </td>
-                    <td>0.025 em</td>
+                    <td>0.025em</td>
                   </tr>
                 </tbody>
               </DxcTable>
@@ -301,9 +532,9 @@ const sections = [
                 <tbody>
                   <tr>
                     <td>
-                      <Code>primaryBackgroundColor</Code>
+                      <Code>primaryDefaultBackgroundColor</Code>
                     </td>
-                    <td>Button container</td>
+                    <td>Button container (default)</td>
                     <td>
                       <Code>color-purple-700</Code>
                     </td>
@@ -311,9 +542,49 @@ const sections = [
                   </tr>
                   <tr>
                     <td>
-                      <Code>primaryFontColor</Code>
+                      <Code>primaryErrorBackgroundColor</Code>
                     </td>
-                    <td>Label</td>
+                    <td>Button container (error)</td>
+                    <td>
+                      <Code>color-red-700</Code>
+                    </td>
+                    <td>#d0011b</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>primaryWarningBackgroundColor</Code>
+                    </td>
+                    <td>Button container (warning)</td>
+                    <td>
+                      <Code>color-orange-700</Code>
+                    </td>
+                    <td>#c26c0a</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>primarySuccessBackgroundColor</Code>
+                    </td>
+                    <td>Button container (success)</td>
+                    <td>
+                      <Code>color-green-700</Code>
+                    </td>
+                    <td>#24a148</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>primaryInfoBackgroundColor</Code>
+                    </td>
+                    <td>Button container (info)</td>
+                    <td>
+                      <Code>color-blue-700</Code>
+                    </td>
+                    <td>#0086e6</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>primaryDefaultFontColor</Code>
+                    </td>
+                    <td>Label (default)</td>
                     <td>
                       <Code>color-white</Code>
                     </td>
@@ -321,9 +592,49 @@ const sections = [
                   </tr>
                   <tr>
                     <td>
-                      <Code>primaryHoverBackgroundColor</Code>
+                      <Code>primaryErrorFontColor</Code>
                     </td>
-                    <td>Container fill:hover</td>
+                    <td>Label (error)</td>
+                    <td>
+                      <Code>color-white</Code>
+                    </td>
+                    <td>#ffffff</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>primaryWarningFontColor</Code>
+                    </td>
+                    <td>Label (warning)</td>
+                    <td>
+                      <Code>color-white</Code>
+                    </td>
+                    <td>#ffffff</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>primarySuccessFontColor</Code>
+                    </td>
+                    <td>Label (success)</td>
+                    <td>
+                      <Code>color-white</Code>
+                    </td>
+                    <td>#ffffff</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>primaryInfoFontColor</Code>
+                    </td>
+                    <td>Label (info)</td>
+                    <td>
+                      <Code>color-white</Code>
+                    </td>
+                    <td>#ffffff</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>primaryHoverDefaultBackgroundColor</Code>
+                    </td>
+                    <td>Container fill:hover (default)</td>
                     <td>
                       <Code>color-purple-800</Code>
                     </td>
@@ -331,9 +642,49 @@ const sections = [
                   </tr>
                   <tr>
                     <td>
-                      <Code>primaryActiveBackgroundColor</Code>
+                      <Code>primaryHoverErrorBackgroundColor</Code>
                     </td>
-                    <td>Container fill:active</td>
+                    <td>Container fill:hover (error)</td>
+                    <td>
+                      <Code>color-red-800</Code>
+                    </td>
+                    <td>#980115</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>primaryHoverWarningBackgroundColor</Code>
+                    </td>
+                    <td>Container fill:hover (warning)</td>
+                    <td>
+                      <Code>color-orange-800</Code>
+                    </td>
+                    <td>#915108</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>primaryHoverSuccessBackgroundColor</Code>
+                    </td>
+                    <td>Container fill:hover (success)</td>
+                    <td>
+                      <Code>color-green-800</Code>
+                    </td>
+                    <td>#1c7d38</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>primaryHoverInfoBackgroundColor</Code>
+                    </td>
+                    <td>Container fill:hover (info)</td>
+                    <td>
+                      <Code>color-blue-800</Code>
+                    </td>
+                    <td>#0067b3</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>primaryActiveDefaultBackgroundColor</Code>
+                    </td>
+                    <td>Container fill:active (default)</td>
                     <td>
                       <Code>color-purple-900</Code>
                     </td>
@@ -341,33 +692,143 @@ const sections = [
                   </tr>
                   <tr>
                     <td>
-                      <Code>primaryDisabledBackgroundColor</Code>
+                      <Code>primaryActiveErrorBackgroundColor</Code>
                     </td>
-                    <td>Container fill:disabled</td>
+                    <td>Container fill:active (error)</td>
                     <td>
-                      <Code>color-grey-100</Code>
+                      <Code>color-red-900</Code>
                     </td>
-                    <td>#f2f2f2</td>
+                    <td>#65010e</td>
                   </tr>
                   <tr>
                     <td>
-                      <Code>primaryDisabledFontColor</Code>
+                      <Code>primaryActiveWarningBackgroundColor</Code>
                     </td>
-                    <td>Label:disabled</td>
+                    <td>Container fill:active (warning)</td>
                     <td>
-                      <Code>color-grey-500</Code>
+                      <Code>color-orange-900</Code>
                     </td>
-                    <td>#999999</td>
+                    <td>#613605</td>
                   </tr>
                   <tr>
                     <td>
-                      <Code>primaryFocusBorderColor</Code>
+                      <Code>primaryActiveSuccessBackgroundColor</Code>
                     </td>
-                    <td>Container border:focus</td>
+                    <td>Container fill:active (success)</td>
                     <td>
-                      <Code>color-blue-600</Code>
+                      <Code>color-green-900</Code>
                     </td>
-                    <td>#0095ff</td>
+                    <td>#135325</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>primaryActiveInfoBackgroundColor</Code>
+                    </td>
+                    <td>Container fill:active (info)</td>
+                    <td>
+                      <Code>color-blue-900</Code>
+                    </td>
+                    <td>#003c66</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>primaryDisabledDefaultBackgroundColor</Code>
+                    </td>
+                    <td>Container fill:disabled (default)</td>
+                    <td>
+                      <Code>color-purple-100</Code>
+                    </td>
+                    <td>#f2eafa</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>primaryDisabledErrorBackgroundColor</Code>
+                    </td>
+                    <td>Container fill:disabled (error)</td>
+                    <td>
+                      <Code>color-red-100</Code>
+                    </td>
+                    <td>#ffe6e9</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>primaryDisabledWarningBackgroundColor</Code>
+                    </td>
+                    <td>Container fill:disabled (warning)</td>
+                    <td>
+                      <Code>color-orange-100</Code>
+                    </td>
+                    <td>#fef3e7</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>primaryDisabledSuccessBackgroundColor</Code>
+                    </td>
+                    <td>Container fill:disabled (success)</td>
+                    <td>
+                      <Code>color-green-100</Code>
+                    </td>
+                    <td>#eafaef</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>primaryDisabledInfoBackgroundColor</Code>
+                    </td>
+                    <td>Container fill:disabled (info)</td>
+                    <td>
+                      <Code>color-blue-100</Code>
+                    </td>
+                    <td>#e6f4ff</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>primaryDisabledDefaultFontColor</Code>
+                    </td>
+                    <td>Label:disabled (default)</td>
+                    <td>
+                      <Code>color-purple-300</Code>
+                    </td>
+                    <td>#cbacec</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>primaryDisabledErrorFontColor</Code>
+                    </td>
+                    <td>Label:disabled (error)</td>
+                    <td>
+                      <Code>color-red-300</Code>
+                    </td>
+                    <td>#fe9aa7</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>primaryDisabledWarningFontColor</Code>
+                    </td>
+                    <td>Label:disabled (warning)</td>
+                    <td>
+                      <Code>color-orange-300</Code>
+                    </td>
+                    <td>#facf9e</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>primaryDisabledSuccessFontColor</Code>
+                    </td>
+                    <td>Label:disabled (success)</td>
+                    <td>
+                      <Code>color-green-300</Code>
+                    </td>
+                    <td>#acecbe</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>primaryDisabledInfoFontColor</Code>
+                    </td>
+                    <td>Label:disabled (info)</td>
+                    <td>
+                      <Code>color-blue-300</Code>
+                    </td>
+                    <td>#99d5ff</td>
                   </tr>
                 </tbody>
               </DxcTable>
@@ -394,7 +855,7 @@ const sections = [
                     <td>
                       <Code>border-width-0</Code>
                     </td>
-                    <td>0</td>
+                    <td>0rem / 0px</td>
                   </tr>
                   <tr>
                     <td>
@@ -445,9 +906,29 @@ const sections = [
                   </tr>
                   <tr>
                     <td>
-                      <Code>primaryFontSize</Code>
+                      <Code>primarySmallFontSize</Code>
                     </td>
-                    <td>Label</td>
+                    <td>Label (small height)</td>
+                    <td>
+                      <Code>font-scale-02</Code>
+                    </td>
+                    <td>0.875 rem / 14px</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>primaryMediumFontSize</Code>
+                    </td>
+                    <td>Label (medium height)</td>
+                    <td>
+                      <Code>font-scale-02</Code>
+                    </td>
+                    <td>0.875 rem / 14px</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>primaryLargeFontSize</Code>
+                    </td>
+                    <td>Label (large height)</td>
                     <td>
                       <Code>font-scale-03</Code>
                     </td>
@@ -459,9 +940,9 @@ const sections = [
                     </td>
                     <td>Label</td>
                     <td>
-                      <Code>font-regular</Code>
+                      <Code>font-semibold</Code>
                     </td>
-                    <td>400</td>
+                    <td>600</td>
                   </tr>
                 </tbody>
               </DxcTable>
@@ -487,9 +968,9 @@ const sections = [
                 <tbody>
                   <tr>
                     <td>
-                      <Code>secondaryBackgroundColor</Code>
+                      <Code>secondaryDefaultBackgroundColor</Code>
                     </td>
-                    <td>Container fill</td>
+                    <td>Container fill (default)</td>
                     <td>
                       <Code>color-transparent</Code>
                     </td>
@@ -497,9 +978,49 @@ const sections = [
                   </tr>
                   <tr>
                     <td>
-                      <Code>secondaryFontColor</Code>
+                      <Code>secondaryErrorBackgroundColor</Code>
                     </td>
-                    <td>Label</td>
+                    <td>Container fill (error)</td>
+                    <td>
+                      <Code>color-transparent</Code>
+                    </td>
+                    <td>transparent</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>secondaryWarningBackgroundColor</Code>
+                    </td>
+                    <td>Container fill (warning)</td>
+                    <td>
+                      <Code>color-transparent</Code>
+                    </td>
+                    <td>transparent</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>secondarySuccessBackgroundColor</Code>
+                    </td>
+                    <td>Container fill (success)</td>
+                    <td>
+                      <Code>color-transparent</Code>
+                    </td>
+                    <td>transparent</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>secondaryInfoBackgroundColor</Code>
+                    </td>
+                    <td>Container fill (info)</td>
+                    <td>
+                      <Code>color-transparent</Code>
+                    </td>
+                    <td>transparent</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>secondaryDefaultFontColor</Code>
+                    </td>
+                    <td>Label (default)</td>
                     <td>
                       <Code>color-purple-700</Code>
                     </td>
@@ -507,9 +1028,49 @@ const sections = [
                   </tr>
                   <tr>
                     <td>
-                      <Code>secondaryBorderColor</Code>
+                      <Code>secondaryErrorFontColor</Code>
                     </td>
-                    <td>Container border</td>
+                    <td>Label (error)</td>
+                    <td>
+                      <Code>color-red-700</Code>
+                    </td>
+                    <td>#d0011b</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>secondaryWarningFontColor</Code>
+                    </td>
+                    <td>Label (warning)</td>
+                    <td>
+                      <Code>color-orange-700</Code>
+                    </td>
+                    <td>#c26c0a</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>secondarySuccessFontColor</Code>
+                    </td>
+                    <td>Label (success)</td>
+                    <td>
+                      <Code>color-green-700</Code>
+                    </td>
+                    <td>#24a148</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>secondaryInfoFontColor</Code>
+                    </td>
+                    <td>Label (info)</td>
+                    <td>
+                      <Code>color-blue-700</Code>
+                    </td>
+                    <td>#0086e6</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>secondaryDefaultBorderColor</Code>
+                    </td>
+                    <td>Container border (default)</td>
                     <td>
                       <Code>color-purple-700</Code>
                     </td>
@@ -517,9 +1078,49 @@ const sections = [
                   </tr>
                   <tr>
                     <td>
-                      <Code>secondaryHoverBackgroundColor</Code>
+                      <Code>secondaryErrorBorderColor</Code>
                     </td>
-                    <td>Container fill:hover</td>
+                    <td>Container border (error)</td>
+                    <td>
+                      <Code>color-red-700</Code>
+                    </td>
+                    <td>#d0011b</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>secondaryWarningBorderColor</Code>
+                    </td>
+                    <td>Container border (warning)</td>
+                    <td>
+                      <Code>color-orange-700</Code>
+                    </td>
+                    <td>#c26c0a</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>secondarySuccessBorderColor</Code>
+                    </td>
+                    <td>Container border (success)</td>
+                    <td>
+                      <Code>color-green-700</Code>
+                    </td>
+                    <td>#24a148</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>secondaryInfoBorderColor</Code>
+                    </td>
+                    <td>Container border (info)</td>
+                    <td>
+                      <Code>color-blue-700</Code>
+                    </td>
+                    <td>#0086e6</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>secondaryHoverDefaultBackgroundColor</Code>
+                    </td>
+                    <td>Container fill:hover (default)</td>
                     <td>
                       <Code>color-purple-700</Code>
                     </td>
@@ -527,9 +1128,49 @@ const sections = [
                   </tr>
                   <tr>
                     <td>
-                      <Code>secondaryHoverFontColor</Code>
+                      <Code>secondaryHoverErrorBackgroundColor</Code>
                     </td>
-                    <td>Label:hover</td>
+                    <td>Container fill:hover (error)</td>
+                    <td>
+                      <Code>color-red-700</Code>
+                    </td>
+                    <td>#d0011b</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>secondaryHoverWarningBackgroundColor</Code>
+                    </td>
+                    <td>Container fill:hover (warning)</td>
+                    <td>
+                      <Code>color-orange-700</Code>
+                    </td>
+                    <td>#c26c0a</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>secondaryHoverSuccessBackgroundColor</Code>
+                    </td>
+                    <td>Container fill:hover (success)</td>
+                    <td>
+                      <Code>color-green-700</Code>
+                    </td>
+                    <td>#24a148</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>secondaryHoverInfoBackgroundColor</Code>
+                    </td>
+                    <td>Container fill:hover (info)</td>
+                    <td>
+                      <Code>color-blue-700</Code>
+                    </td>
+                    <td>#0086e6</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>secondaryHoverDefaultFontColor</Code>
+                    </td>
+                    <td>Label:hover (default)</td>
                     <td>
                       <Code>color-white</Code>
                     </td>
@@ -537,19 +1178,99 @@ const sections = [
                   </tr>
                   <tr>
                     <td>
-                      <Code>secondaryActiveBackgroundColor</Code>
+                      <Code>secondaryHoverErrorFontColor</Code>
                     </td>
-                    <td>Container fill:active</td>
+                    <td>Label:hover (error)</td>
                     <td>
-                      <Code>color-purple-900</Code>
+                      <Code>color-white</Code>
                     </td>
-                    <td>#321353</td>
+                    <td>#ffffff</td>
                   </tr>
                   <tr>
                     <td>
-                      <Code>secondaryDisabledBackgroundColor</Code>
+                      <Code>secondaryHoverWarningFontColor</Code>
                     </td>
-                    <td>Container fill:disabled</td>
+                    <td>Label:hover (warning)</td>
+                    <td>
+                      <Code>color-white</Code>
+                    </td>
+                    <td>#ffffff</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>secondaryHoverSuccessFontColor</Code>
+                    </td>
+                    <td>Label:hover (success)</td>
+                    <td>
+                      <Code>color-white</Code>
+                    </td>
+                    <td>#ffffff</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>secondaryHoverInfoFontColor</Code>
+                    </td>
+                    <td>Label:hover (info)</td>
+                    <td>
+                      <Code>color-white</Code>
+                    </td>
+                    <td>#ffffff</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>secondaryActiveDefaultBackgroundColor</Code>
+                    </td>
+                    <td>Container fill:active (default)</td>
+                    <td>
+                      <Code>color-purple-800</Code>
+                    </td>
+                    <td>#4b1c7d</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>secondaryActiveErrorBackgroundColor</Code>
+                    </td>
+                    <td>Container fill:active (error)</td>
+                    <td>
+                      <Code>color-red-800</Code>
+                    </td>
+                    <td>#980115</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>secondaryActiveWarningBackgroundColor</Code>
+                    </td>
+                    <td>Container fill:active (warning)</td>
+                    <td>
+                      <Code>color-orange-800</Code>
+                    </td>
+                    <td>#915108</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>secondaryActiveSuccessBackgroundColor</Code>
+                    </td>
+                    <td>Container fill:active (success)</td>
+                    <td>
+                      <Code>color-green-800</Code>
+                    </td>
+                    <td>#1c7d38</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>secondaryActiveInfoBackgroundColor</Code>
+                    </td>
+                    <td>Container fill:active (info)</td>
+                    <td>
+                      <Code>color-blue-800</Code>
+                    </td>
+                    <td>#0067b3</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>secondaryDisabledDefaultBackgroundColor</Code>
+                    </td>
+                    <td>Container fill:disabled (default)</td>
                     <td>
                       <Code>color-transparent</Code>
                     </td>
@@ -557,33 +1278,143 @@ const sections = [
                   </tr>
                   <tr>
                     <td>
-                      <Code>secondaryDisabledFontColor</Code>
+                      <Code>secondaryDisabledErrorBackgroundColor</Code>
                     </td>
-                    <td>Label:disabled</td>
+                    <td>Container fill:disabled (error)</td>
                     <td>
-                      <Code>color-grey-500</Code>
+                      <Code>color-transparent</Code>
                     </td>
-                    <td>#999999</td>
+                    <td>transparent</td>
                   </tr>
                   <tr>
                     <td>
-                      <Code>secondaryFocusBorderColor</Code>
+                      <Code>secondaryDisabledWarningBackgroundColor</Code>
                     </td>
-                    <td>Container border:focus</td>
+                    <td>Container fill:disabled (warning)</td>
                     <td>
-                      <Code>color-blue-600</Code>
+                      <Code>color-transparent</Code>
                     </td>
-                    <td>#0095ff</td>
+                    <td>transparent</td>
                   </tr>
                   <tr>
                     <td>
-                      <Code>secondaryDisabledBorderColor</Code>
+                      <Code>secondaryDisabledSuccessBackgroundColor</Code>
                     </td>
-                    <td>Container border:disabled</td>
+                    <td>Container fill:disabled (success)</td>
                     <td>
-                      <Code>color-grey-500</Code>
+                      <Code>color-transparent</Code>
                     </td>
-                    <td>#999999</td>
+                    <td>transparent</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>secondaryDisabledInfoBackgroundColor</Code>
+                    </td>
+                    <td>Container fill:disabled (info)</td>
+                    <td>
+                      <Code>color-transparent</Code>
+                    </td>
+                    <td>transparent</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>secondaryDisabledDefaultFontColor</Code>
+                    </td>
+                    <td>Label:disabled (default)</td>
+                    <td>
+                      <Code>color-purple-300</Code>
+                    </td>
+                    <td>#cbacec</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>secondaryDisabledErrorFontColor</Code>
+                    </td>
+                    <td>Label:disabled (error)</td>
+                    <td>
+                      <Code>color-red-300</Code>
+                    </td>
+                    <td>#fe9aa7</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>secondaryDisabledWarningFontColor</Code>
+                    </td>
+                    <td>Label:disabled (warning)</td>
+                    <td>
+                      <Code>color-orange-300</Code>
+                    </td>
+                    <td>#facf9e</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>secondaryDisabledSuccessFontColor</Code>
+                    </td>
+                    <td>Label:disabled (success)</td>
+                    <td>
+                      <Code>color-green-300</Code>
+                    </td>
+                    <td>#acecbe</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>secondaryDisabledInfoFontColor</Code>
+                    </td>
+                    <td>Label:disabled (info)</td>
+                    <td>
+                      <Code>color-blue-300</Code>
+                    </td>
+                    <td>#99d5ff</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>secondaryDisabledDefaultBorderColor</Code>
+                    </td>
+                    <td>Container border:disabled (default)</td>
+                    <td>
+                      <Code>color-purple-300</Code>
+                    </td>
+                    <td>#cbacec</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>secondaryDisabledErrorBorderColor</Code>
+                    </td>
+                    <td>Container border:disabled (error)</td>
+                    <td>
+                      <Code>color-red-300</Code>
+                    </td>
+                    <td>#fe9aa7</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>secondaryDisabledWarningBorderColor</Code>
+                    </td>
+                    <td>Container border:disabled (warning)</td>
+                    <td>
+                      <Code>color-orange-300</Code>
+                    </td>
+                    <td>#facf9e</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>secondaryDisabledSuccessBorderColor</Code>
+                    </td>
+                    <td>Container border:disabled (success)</td>
+                    <td>
+                      <Code>color-green-300</Code>
+                    </td>
+                    <td>#acecbe</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>secondaryDisabledInfoBorderColor</Code>
+                    </td>
+                    <td>Container border:disabled (info)</td>
+                    <td>
+                      <Code>color-blue-300</Code>
+                    </td>
+                    <td>#99d5ff</td>
                   </tr>
                 </tbody>
               </DxcTable>
@@ -661,13 +1492,33 @@ const sections = [
                   </tr>
                   <tr>
                     <td>
-                      <Code>secondaryFontSize</Code>
+                      <Code>secondarySmallFontSize</Code>
+                    </td>
+                    <td>Label (small height)</td>
+                    <td>
+                      <Code>font-scale-02</Code>
+                    </td>
+                    <td>0.875rem / 14px</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>secondaryMediumFontSize</Code>
+                    </td>
+                    <td>Label (small height)</td>
+                    <td>
+                      <Code>font-scale-02</Code>
+                    </td>
+                    <td>0.875rem / 14px</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>secondaryLargeFontSize</Code>
                     </td>
                     <td>Label</td>
                     <td>
                       <Code>font-scale-03</Code>
                     </td>
-                    <td>16px / 1 rem</td>
+                    <td>1rem / 16px</td>
                   </tr>
                   <tr>
                     <td>
@@ -675,9 +1526,9 @@ const sections = [
                     </td>
                     <td>Label</td>
                     <td>
-                      <Code>font-regular</Code>
+                      <Code>font-semibold</Code>
                     </td>
-                    <td>400</td>
+                    <td>600</td>
                   </tr>
                 </tbody>
               </DxcTable>
@@ -686,7 +1537,7 @@ const sections = [
         ],
       },
       {
-        title: "Text",
+        title: "Tertiary",
         subSections: [
           {
             title: "Color",
@@ -703,9 +1554,9 @@ const sections = [
                 <tbody>
                   <tr>
                     <td>
-                      <Code>textBackgroundColor</Code>
+                      <Code>tertiaryDefaultBackgroundColor</Code>
                     </td>
-                    <td>Container fill</td>
+                    <td>Container fill (default)</td>
                     <td>
                       <Code>color-transparent</Code>
                     </td>
@@ -713,9 +1564,49 @@ const sections = [
                   </tr>
                   <tr>
                     <td>
-                      <Code>textFontColor</Code>
+                      <Code>tertiaryErrorBackgroundColor</Code>
                     </td>
-                    <td>Label</td>
+                    <td>Container fill (error)</td>
+                    <td>
+                      <Code>color-transparent</Code>
+                    </td>
+                    <td>transparent</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>tertiaryWarningBackgroundColor</Code>
+                    </td>
+                    <td>Container fill (warning)</td>
+                    <td>
+                      <Code>color-transparent</Code>
+                    </td>
+                    <td>transparent</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>tertiarySuccessBackgroundColor</Code>
+                    </td>
+                    <td>Container fill (success)</td>
+                    <td>
+                      <Code>color-transparent</Code>
+                    </td>
+                    <td>transparent</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>tertiaryInfoBackgroundColor</Code>
+                    </td>
+                    <td>Container fill (info)</td>
+                    <td>
+                      <Code>color-transparent</Code>
+                    </td>
+                    <td>transparent</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>tertiaryDefaultFontColor</Code>
+                    </td>
+                    <td>Label (default)</td>
                     <td>
                       <Code>color-purple-700</Code>
                     </td>
@@ -723,9 +1614,49 @@ const sections = [
                   </tr>
                   <tr>
                     <td>
-                      <Code>textHoverBackgroundColor</Code>
+                      <Code>tertiaryErrorFontColor</Code>
                     </td>
-                    <td>Container fill:hover</td>
+                    <td>Label (error)</td>
+                    <td>
+                      <Code>color-red-700</Code>
+                    </td>
+                    <td>#d0011b</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>tertiaryWarningFontColor</Code>
+                    </td>
+                    <td>Label (warning)</td>
+                    <td>
+                      <Code>color-orange-700</Code>
+                    </td>
+                    <td>#c26c0a</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>tertiarySuccessFontColor</Code>
+                    </td>
+                    <td>Label (success)</td>
+                    <td>
+                      <Code>color-green-700</Code>
+                    </td>
+                    <td>#24a148</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>tertiaryInfoFontColor</Code>
+                    </td>
+                    <td>Label (info)</td>
+                    <td>
+                      <Code>color-blue-700</Code>
+                    </td>
+                    <td>#0086e6</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>tertiaryHoverDefaultBackgroundColor</Code>
+                    </td>
+                    <td>Container fill:hover (default)</td>
                     <td>
                       <Code>color-purple-100</Code>
                     </td>
@@ -733,9 +1664,49 @@ const sections = [
                   </tr>
                   <tr>
                     <td>
-                      <Code>textActiveBackgroundColor</Code>
+                      <Code>tertiaryHoverErrorBackgroundColor</Code>
                     </td>
-                    <td>Container fill:active</td>
+                    <td>Container fill:hover (error)</td>
+                    <td>
+                      <Code>color-red-100</Code>
+                    </td>
+                    <td>#ffe6e9</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>tertiaryHoverWarningBackgroundColor</Code>
+                    </td>
+                    <td>Container fill:hover (warning)</td>
+                    <td>
+                      <Code>color-orange-100</Code>
+                    </td>
+                    <td>#fef3e7</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>tertiaryHoverSuccessBackgroundColor</Code>
+                    </td>
+                    <td>Container fill:hover (Success)</td>
+                    <td>
+                      <Code>color-green-100</Code>
+                    </td>
+                    <td>#eafaef</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>tertiaryHoverInfoBackgroundColor</Code>
+                    </td>
+                    <td>Container fill:hover (info)</td>
+                    <td>
+                      <Code>color-blue-100</Code>
+                    </td>
+                    <td>#e6f4ff</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>tertiaryActiveDefaultBackgroundColor</Code>
+                    </td>
+                    <td>Container fill:active (default)</td>
                     <td>
                       <Code>color-purple-200</Code>
                     </td>
@@ -743,9 +1714,49 @@ const sections = [
                   </tr>
                   <tr>
                     <td>
-                      <Code>textDisabledBackgroundColor</Code>
+                      <Code>tertiaryActiveErrorBackgroundColor</Code>
                     </td>
-                    <td>Container fill:disabled</td>
+                    <td>Container fill:active (error)</td>
+                    <td>
+                      <Code>color-red-200</Code>
+                    </td>
+                    <td>#ffccd3</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>tertiaryActiveWarningBackgroundColor</Code>
+                    </td>
+                    <td>Container fill:active (warning)</td>
+                    <td>
+                      <Code>color-orange-200</Code>
+                    </td>
+                    <td>#fce7cf</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>tertiaryActiveSuccessBackgroundColor</Code>
+                    </td>
+                    <td>Container fill:active (success)</td>
+                    <td>
+                      <Code>color-green-200</Code>
+                    </td>
+                    <td>#d5f6df</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>tertiaryActiveInfoBackgroundColor</Code>
+                    </td>
+                    <td>Container fill:active (info)</td>
+                    <td>
+                      <Code>color-blue-200</Code>
+                    </td>
+                    <td>#cceaff</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>tertiaryDisabledDefaultBackgroundColor</Code>
+                    </td>
+                    <td>Container fill:disabled (default)</td>
                     <td>
                       <Code>color-transparent</Code>
                     </td>
@@ -753,23 +1764,93 @@ const sections = [
                   </tr>
                   <tr>
                     <td>
-                      <Code>textDisabledFontColor</Code>
+                      <Code>tertiaryDisabledErrorBackgroundColor</Code>
                     </td>
-                    <td>Label:disabled</td>
+                    <td>Container fill:disabled (error)</td>
                     <td>
-                      <Code>color-grey-500</Code>
+                      <Code>color-transparent</Code>
                     </td>
-                    <td>#999999</td>
+                    <td>transparent</td>
                   </tr>
                   <tr>
                     <td>
-                      <Code>textFocusBorderColor</Code>
+                      <Code>tertiaryDisabledWarningBackgroundColor</Code>
                     </td>
-                    <td>Container border:focus</td>
+                    <td>Container fill:disabled (warning)</td>
                     <td>
-                      <Code>color-blue-600</Code>
+                      <Code>color-transparent</Code>
                     </td>
-                    <td>#0095ff</td>
+                    <td>transparent</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>tertiaryDisabledSuccessBackgroundColor</Code>
+                    </td>
+                    <td>Container fill:disabled (success)</td>
+                    <td>
+                      <Code>color-transparent</Code>
+                    </td>
+                    <td>transparent</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>tertiaryDisabledInfoBackgroundColor</Code>
+                    </td>
+                    <td>Container fill:disabled (info)</td>
+                    <td>
+                      <Code>color-transparent</Code>
+                    </td>
+                    <td>transparent</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>tertiaryDisabledDefaultFontColor</Code>
+                    </td>
+                    <td>Label:disabled (default)</td>
+                    <td>
+                      <Code>color-purple-300</Code>
+                    </td>
+                    <td>#cbacec</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>tertiaryDisabledErrorFontColor</Code>
+                    </td>
+                    <td>Label:disabled (error)</td>
+                    <td>
+                      <Code>color-red-300</Code>
+                    </td>
+                    <td>#fe9aa7</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>tertiaryDisabledWarningFontColor</Code>
+                    </td>
+                    <td>Label:disabled (warning)</td>
+                    <td>
+                      <Code>color-orange-300</Code>
+                    </td>
+                    <td>#facf9e</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>tertiaryDisabledSuccessFontColor</Code>
+                    </td>
+                    <td>Label:disabled (success)</td>
+                    <td>
+                      <Code>color-green-300</Code>
+                    </td>
+                    <td>#acecbe</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>tertiaryDisabledInfoFontColor</Code>
+                    </td>
+                    <td>Label:disabled (info)</td>
+                    <td>
+                      <Code>color-blue-300</Code>
+                    </td>
+                    <td>#99d5ff</td>
                   </tr>
                 </tbody>
               </DxcTable>
@@ -790,17 +1871,17 @@ const sections = [
                 <tbody>
                   <tr>
                     <td>
-                      <Code>textBorderThickness</Code>
+                      <Code>tertiaryBorderThickness</Code>
                     </td>
                     <td>Container</td>
                     <td>
                       <Code>border-width-0</Code>
                     </td>
-                    <td>0</td>
+                    <td>0rem / 0px</td>
                   </tr>
                   <tr>
                     <td>
-                      <Code>textBorderStyle</Code>
+                      <Code>tertiaryBorderStyle</Code>
                     </td>
                     <td>Container</td>
                     <td>
@@ -810,7 +1891,7 @@ const sections = [
                   </tr>
                   <tr>
                     <td>
-                      <Code>textBorderRadius</Code>
+                      <Code>tertiaryBorderRadius</Code>
                     </td>
                     <td>Container</td>
                     <td>
@@ -837,7 +1918,7 @@ const sections = [
                 <tbody>
                   <tr>
                     <td>
-                      <Code>textFontFamily</Code>
+                      <Code>tertiaryFontFamily</Code>
                     </td>
                     <td>Label</td>
                     <td>
@@ -847,23 +1928,43 @@ const sections = [
                   </tr>
                   <tr>
                     <td>
-                      <Code>textFontSize</Code>
+                      <Code>tertiarySmallFontSize</Code>
                     </td>
-                    <td>Label</td>
+                    <td>Label (small height)</td>
                     <td>
-                      <Code>font-scale-03</Code>
+                      <Code>font-scale-02</Code>
                     </td>
-                    <td>16px / 1 rem</td>
+                    <td>0.875rem / 14px</td>
                   </tr>
                   <tr>
                     <td>
-                      <Code>textFontWeight</Code>
+                      <Code>tertiaryMediumFontSize</Code>
+                    </td>
+                    <td>Label (medium height)</td>
+                    <td>
+                      <Code>font-scale-03</Code>
+                    </td>
+                    <td>0.875rem / 14px</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>tertiaryLargeFontSize</Code>
+                    </td>
+                    <td>Label (large height)</td>
+                    <td>
+                      <Code>font-scale-03</Code>
+                    </td>
+                    <td>1 rem / 16px</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>tertiaryFontWeight</Code>
                     </td>
                     <td>Label</td>
                     <td>
-                      <Code>font-regular</Code>
+                      <Code>font-semibold</Code>
                     </td>
-                    <td>400</td>
+                    <td>600</td>
                   </tr>
                 </tbody>
               </DxcTable>
