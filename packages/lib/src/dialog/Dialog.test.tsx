@@ -13,16 +13,12 @@ import DxcTextInput from "../text-input/TextInput";
 import DxcTextarea from "../textarea/Textarea";
 import DxcDialog from "./Dialog";
 
-// Mocking DOMRect for Radix Primitive Popover
 (global as any).globalThis = global;
-(global as any).DOMRect = {
-  fromRect: () => ({ top: 0, left: 0, bottom: 0, right: 0, width: 0, height: 0 }),
-};
-(global as any).ResizeObserver = class ResizeObserver {
-  observe() {}
-  unobserve() {}
-  disconnect() {}
-};
+global.ResizeObserver = jest.fn().mockImplementation(() => ({
+  observe: jest.fn(),
+  unobserve: jest.fn(),
+  disconnect: jest.fn(),
+}));
 
 const options = [
   { label: "Female", value: "female" },
@@ -65,7 +61,12 @@ describe("Dialog component tests", () => {
   test("Calls correct function onCloseClick when 'Escape' key is pressed", () => {
     const onCloseClick = jest.fn();
     const { getByRole } = render(<DxcDialog onCloseClick={onCloseClick}>dialog-text</DxcDialog>);
-    fireEvent.keyDown(getByRole("dialog"), { key: "Escape", code: "Escape", keyCode: 27, charCode: 27 });
+    fireEvent.keyDown(getByRole("dialog"), {
+      key: "Escape",
+      code: "Escape",
+      keyCode: 27,
+      charCode: 27,
+    });
     expect(onCloseClick).toHaveBeenCalled();
   });
 
@@ -78,7 +79,12 @@ describe("Dialog component tests", () => {
     );
     const calendarAction = getByRole("combobox");
     await userEvent.click(calendarAction);
-    fireEvent.keyDown(document.activeElement, { key: "Escape", code: "Escape", keyCode: 27, charCode: 27 });
+    fireEvent.keyDown(document.activeElement, {
+      key: "Escape",
+      code: "Escape",
+      keyCode: 27,
+      charCode: 27,
+    });
     expect(onCloseClick).not.toHaveBeenCalled();
   });
 });

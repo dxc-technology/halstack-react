@@ -1,4 +1,4 @@
-import { forwardRef, memo } from "react";
+import { forwardRef, memo, Ref } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables";
 import DxcIcon from "../icon/Icon";
@@ -19,6 +19,8 @@ const LinkContent = memo(
   )
 );
 
+LinkContent.displayName = "LinkContent";
+
 const DxcLink = forwardRef(
   (
     {
@@ -34,12 +36,12 @@ const DxcLink = forwardRef(
       children,
       ...otherProps
     }: LinkProps,
-    ref: React.Ref<HTMLAnchorElement>
+    ref: Ref<HTMLAnchorElement>
   ): JSX.Element => {
     const colorsTheme = useTheme();
 
     return (
-      <ThemeProvider theme={colorsTheme.link}>
+      <ThemeProvider theme={colorsTheme?.link}>
         <StyledLink
           as={href ? "a" : "button"}
           tabIndex={tabIndex}
@@ -52,7 +54,9 @@ const DxcLink = forwardRef(
           ref={ref}
           {...otherProps}
         >
-          <LinkContent iconPosition={iconPosition} icon={icon} children={children} />
+          <LinkContent iconPosition={iconPosition} icon={icon}>
+            {children}
+          </LinkContent>
         </StyledLink>
       </ThemeProvider>
     );
@@ -118,7 +122,9 @@ const StyledLink = styled.div<{
   }
 `;
 
-const LinkIconContainer = styled.div<{ iconPosition: LinkProps["iconPosition"] }>`
+const LinkIconContainer = styled.div<{
+  iconPosition: LinkProps["iconPosition"];
+}>`
   width: ${(props) => props.theme.iconSize};
   height: ${(props) => props.theme.iconSize};
   ${(props) => `${props.iconPosition === "before" ? "margin-right" : "margin-left"}: ${props.theme.iconSpacing}`};
@@ -131,5 +137,7 @@ const LinkIconContainer = styled.div<{ iconPosition: LinkProps["iconPosition"] }
     width: 100%;
   }
 `;
+
+DxcLink.displayName = "DxcLink";
 
 export default DxcLink;

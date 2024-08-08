@@ -1,4 +1,6 @@
-type SVG = React.ReactNode & React.SVGProps<SVGSVGElement>;
+import { ReactNode, SVGProps } from "react";
+
+type SVG = ReactNode & SVGProps<SVGSVGElement>;
 
 type Props = {
   /**

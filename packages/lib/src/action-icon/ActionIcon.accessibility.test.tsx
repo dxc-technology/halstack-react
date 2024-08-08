@@ -1,6 +1,6 @@
 import { render } from "@testing-library/react";
 import DxcActionIcon from "./ActionIcon";
-import { axe } from "../../test/accessibility/axe-helper.js";
+import { axe } from "../../test/accessibility/axe-helper";
 
 const iconSVG = (
   <svg width="24px" height="24px" viewBox="0 0 24 24" fill="currentColor">

@@ -1,8 +1,7 @@
-import { HalstackProvider } from "../src/HalstackContext";
 import styled from "styled-components";
 import type { Preview } from "@storybook/react";
-import React from "react";
-import { disabledRules } from "../test/accessibility/rules/common/disabledRules";
+import { HalstackProvider } from "../src/HalstackContext";
+import disabledRules from "../test/accessibility/rules/common/disabledRules";
 
 const preview: Preview = {
   parameters: {

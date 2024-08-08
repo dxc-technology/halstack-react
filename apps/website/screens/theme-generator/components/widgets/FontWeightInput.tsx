@@ -1,4 +1,3 @@
-import React from "react";
 import StyledSelect from "./common/StyledSelect";
 import ThemeInputWidgetProps from "./common/types";
 

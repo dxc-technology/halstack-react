@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 import slugify from "slugify";
 import { DxcBleed, DxcHeading } from "@dxc-technology/halstack-react";

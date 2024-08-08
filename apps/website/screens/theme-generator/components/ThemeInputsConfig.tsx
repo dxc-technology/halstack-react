@@ -1,5 +1,4 @@
 import { DxcInset } from "@dxc-technology/halstack-react";
-import React from "react";
 import styled from "styled-components";
 import { IndexedThemeInput } from "../types";
 import ThemeInput from "./ThemeInput";
@@ -7,7 +6,7 @@ import ThemeInput from "./ThemeInput";
 type ThemeInputsConfigProps = {
   componentInputs: IndexedThemeInput;
   componentInputsTypes: IndexedThemeInput;
-  onChangeCustomTheme: (propertyName: string, propertyValue: string) => void;
+  onChangeCustomTheme: (_propertyName: string, _propertyValue: string) => void;
 };
 
 const ThemeInputsConfig = ({

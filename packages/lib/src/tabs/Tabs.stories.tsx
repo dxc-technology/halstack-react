@@ -20,7 +20,7 @@ const iconSVG = (
   </svg>
 );
 
-const tabs: any = [
+const tabs = [
   {
     label: "Tab 1",
   },
@@ -45,7 +45,7 @@ const tabs: any = [
   },
 ];
 
-const disabledTabs: any = [
+const disabledTabs = [
   {
     label: "Tab 1",
     isDisabled: true,
@@ -60,7 +60,7 @@ const disabledTabs: any = [
   },
 ];
 
-const firstDisabledTabs: any = [
+const firstDisabledTabs = [
   {
     label: "Tab 1",
     isDisabled: true,
@@ -83,7 +83,10 @@ const tabsIcon = tabs.map((tab, index) =>
   index > tabs.length / 2 ? { ...tab, icon: "mail" } : { ...tab, icon: iconSVG }
 );
 
-const tabsNotificationIcon = tabsNotification.map((tab) => ({ ...tab, icon: iconSVG }));
+const tabsNotificationIcon = tabsNotification.map((tab) => ({
+  ...tab,
+  icon: iconSVG,
+}));
 
 const opinionatedTheme = {
   tabs: {

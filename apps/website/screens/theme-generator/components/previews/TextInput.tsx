@@ -1,4 +1,3 @@
-import React from "react";
 import { DxcTextInput } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
 import PreviewContainer from "./PreviewContainer";
@@ -40,7 +39,7 @@ const action = {
   ),
 };
 
-const errorCallbackFunc: (value: string) => Promise<string[]> = (): Promise<string[]> => {
+const errorCallbackFunc: (_value: string) => Promise<string[]> = (): Promise<string[]> => {
   const result = new Promise<string[]>((resolve, reject) =>
     setTimeout(() => {
       reject("err");

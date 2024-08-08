@@ -1,4 +1,4 @@
-import { createContext, forwardRef, useContext, useEffect, useState } from "react";
+import { createContext, Dispatch, forwardRef, MouseEvent, SetStateAction, useContext, useEffect, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import DxcBleed from "../bleed/Bleed";
 import CoreTokens from "../common/coreTokens";
@@ -12,13 +12,13 @@ import SidenavPropsType, {
   SidenavLinkPropsType,
   SidenavSectionPropsType,
   SidenavTitlePropsType,
-} from "./types.js";
+} from "./types";
 
 const DxcSidenav = ({ title, children }: SidenavPropsType): JSX.Element => {
   const colorsTheme = useTheme();
 
   return (
-    <ThemeProvider theme={colorsTheme.sidenav}>
+    <ThemeProvider theme={colorsTheme?.sidenav}>
       <SidenavContainer>
         {title}
         <DxcFlex direction="column" gap="1rem">
@@ -44,7 +44,7 @@ const Section = ({ children }: SidenavSectionPropsType): JSX.Element => (
   </>
 );
 
-const GroupContext = createContext<React.Dispatch<React.SetStateAction<boolean>> | null>(null);
+const GroupContext = createContext<Dispatch<SetStateAction<boolean>> | null>(null);
 const Group = ({ title, collapsable = false, icon, children }: SidenavGroupPropsType): JSX.Element => {
   const [collapsed, setCollapsed] = useState(false);
   const [isSelected, changeIsSelected] = useState(false);
@@ -85,7 +85,7 @@ const Link = forwardRef<HTMLAnchorElement, SidenavLinkPropsType>(
   ): JSX.Element => {
     const changeIsGroupSelected = useContext(GroupContext);
     const setIsSidenavVisibleResponsive = useResponsiveSidenavVisibility();
-    const handleClick = ($event: React.MouseEvent<HTMLAnchorElement>) => {
+    const handleClick = ($event: MouseEvent<HTMLAnchorElement>) => {
       onClick?.($event);
       setIsSidenavVisibleResponsive?.(false);
     };
@@ -97,7 +97,7 @@ const Link = forwardRef<HTMLAnchorElement, SidenavLinkPropsType>(
     return (
       <SidenavLink
         selected={selected}
-        href={href ? href : undefined}
+        href={href || undefined}
         target={href ? (newWindow ? "_blank" : "_self") : undefined}
         ref={ref}
         tabIndex={tabIndex}
@@ -113,6 +113,8 @@ const Link = forwardRef<HTMLAnchorElement, SidenavLinkPropsType>(
     );
   }
 );
+
+Link.displayName = "Link";
 
 const SidenavContainer = styled.div`
   box-sizing: border-box;

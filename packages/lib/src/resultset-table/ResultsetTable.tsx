@@ -1,7 +1,7 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { ReactNode, useEffect, useMemo, useRef, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import CoreTokens from "../common/coreTokens";
-import { getMargin } from "../common/utils";
+import getMargin from "../common/utils";
 import { spaces } from "../common/variables";
 import DxcPaginator from "../paginator/Paginator";
 import DxcTable, { DxcActionsCell } from "../table/Table";
@@ -9,26 +9,26 @@ import useTheme from "../useTheme";
 import icons from "./Icons";
 import ResultsetTablePropsType, { Column, Row } from "./types";
 
-const normalizeSortValue = (sortValue: string | React.ReactNode) =>
+const normalizeSortValue = (sortValue: string | Date | ReactNode) =>
   typeof sortValue === "string" ? sortValue.toUpperCase() : sortValue;
 
-const isDateType = (value: React.ReactNode | Date): boolean => {
-  return value instanceof Date;
-};
+const isDateType = (value: ReactNode | Date): boolean => value instanceof Date;
 
 const sortArray = (index: number, order: "ascending" | "descending", resultset: { id: string; cells: Row }[]) =>
   resultset.slice().sort((element1, element2) => {
-    const sortValueA = normalizeSortValue(element1.cells[index].sortValue || element1[index].displayValue);
-    const sortValueB = normalizeSortValue(element2.cells[index].sortValue || element2[index].displayValue);
+    const sortValueA = normalizeSortValue(element1?.cells[index]?.sortValue || element1?.cells[index]?.displayValue);
+    const sortValueB = normalizeSortValue(element2?.cells[index]?.sortValue || element2?.cells[index]?.displayValue);
     let comparison = 0;
-    if (typeof sortValueA === "object" && !isDateType(sortValueA)) {
-      comparison = -1;
-    } else if (typeof sortValueB === "object" && !isDateType(sortValueB)) {
-      comparison = 1;
-    } else if (sortValueA > sortValueB) {
-      comparison = 1;
-    } else if (sortValueA < sortValueB) {
-      comparison = -1;
+    if (sortValueA != null && sortValueB != null) {
+      if (typeof sortValueA === "object" && !isDateType(sortValueA)) {
+        comparison = -1;
+      } else if (typeof sortValueB === "object" && !isDateType(sortValueB)) {
+        comparison = 1;
+      } else if (sortValueA > sortValueB) {
+        comparison = 1;
+      } else if (sortValueA < sortValueB) {
+        comparison = -1;
+      }
     }
     return order === "descending" ? comparison * -1 : comparison;
   });
@@ -117,7 +117,7 @@ const DxcResultsetTable = ({
   }, [rows.length]);
 
   return (
-    <ThemeProvider theme={colorsTheme.table}>
+    <ThemeProvider theme={colorsTheme?.table}>
       <DxcResultsetTableContainer margin={margin}>
         <DxcTable mode={mode}>
           <thead>
@@ -129,9 +129,10 @@ const DxcResultsetTable = ({
                 >
                   <HeaderContainer
                     role={column.isSortable ? "button" : undefined}
-                    key={`headerContainer_${index}`}
                     onClick={() => {
-                      column.isSortable && changeSorting(index);
+                      if (column.isSortable) {
+                        changeSorting(index);
+                      }
                     }}
                     tabIndex={column.isSortable ? tabIndex : -1}
                     isSortable={column.isSortable}
@@ -180,10 +181,12 @@ const DxcResultsetTable = ({
   );
 };
 
-const calculateWidth = (margin: string | object) =>
+const calculateWidth = (margin: ResultsetTablePropsType["margin"]) =>
   `calc(100% - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`;
 
-const DxcResultsetTableContainer = styled.div<{ margin: ResultsetTablePropsType["margin"] }>`
+const DxcResultsetTableContainer = styled.div<{
+  margin: ResultsetTablePropsType["margin"];
+}>`
   width: ${(props) => calculateWidth(props.margin)};
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
@@ -196,7 +199,10 @@ const DxcResultsetTableContainer = styled.div<{ margin: ResultsetTablePropsType[
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
 `;
 
-const HeaderContainer = styled.span<{ isSortable: Column["isSortable"]; mode: ResultsetTablePropsType["mode"] }>`
+const HeaderContainer = styled.span<{
+  isSortable: Column["isSortable"];
+  mode: ResultsetTablePropsType["mode"];
+}>`
   display: flex;
   align-items: center;
   justify-content: ${(props) =>

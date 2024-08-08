@@ -1,4 +1,3 @@
-import React from "react";
 import DxcIcon from "./Icon";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";

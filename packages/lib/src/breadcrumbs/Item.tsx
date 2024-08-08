@@ -1,21 +1,21 @@
-import { MouseEvent } from "react";
+import { useRef, MouseEvent } from "react";
 import styled from "styled-components";
 import CoreTokens from "../common/coreTokens";
 import { ItemPropsType } from "./types";
-import { useRef } from "react";
 
 const Item = ({ isCurrentPage = false, href, label, onClick }: ItemPropsType) => {
-  const currentItemRef = useRef<HTMLSpanElement>(null);
+  const currentItemRef = useRef<HTMLSpanElement | null>(null);
 
   const handleOnMouseEnter = (event: MouseEvent<HTMLAnchorElement>) => {
     const labelContainer = event.currentTarget;
     const optionElement = currentItemRef?.current;
-    if (optionElement.title === "" && labelContainer.scrollWidth > labelContainer.clientWidth)
+    if (optionElement?.title === "" && labelContainer.scrollWidth > labelContainer.clientWidth) {
       optionElement.title = label;
+    }
   };
 
   const handleOnClick = (event: MouseEvent<HTMLAnchorElement>) => {
-    if (onClick) {
+    if (onClick && href) {
       event.preventDefault();
       onClick(href);
     }

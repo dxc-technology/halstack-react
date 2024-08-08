@@ -1,6 +1,6 @@
 import { useLayoutEffect, useState } from "react";
 
-const useWidth = <T extends Element>(target: T) => {
+const useWidth = <T extends Element>(target: T | null) => {
   const [width, setWidth] = useState(0);
 
   useLayoutEffect(() => {
@@ -16,6 +16,7 @@ const useWidth = <T extends Element>(target: T) => {
         triggerObserver.unobserve(target);
       };
     }
+    return undefined;
   }, [target]);
 
   return width;

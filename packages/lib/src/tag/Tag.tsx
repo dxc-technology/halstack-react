@@ -1,10 +1,10 @@
 import { useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import DxcBox from "../box/Box";
-import { getMargin } from "../common/utils";
 import { spaces } from "../common/variables";
-import DxcIcon from "../icon/Icon";
 import useTheme from "../useTheme";
+import getMargin from "../common/utils";
+import DxcBox from "../box/Box";
+import DxcIcon from "../icon/Icon";
 import TagPropsType from "./types";
 
 const DxcTag = ({
@@ -22,7 +22,9 @@ const DxcTag = ({
   const colorsTheme = useTheme();
   const [isHovered, changeIsHovered] = useState(false);
   const clickHandler = () => {
-    onClick && onClick();
+    if (onClick) {
+      onClick();
+    }
   };
 
   const tagContent = (
@@ -40,7 +42,7 @@ const DxcTag = ({
   );
 
   return (
-    <ThemeProvider theme={colorsTheme.tag}>
+    <ThemeProvider theme={colorsTheme?.tag}>
       <StyledDxcTag
         margin={margin}
         size={size}
@@ -71,10 +73,10 @@ const sizes = {
   fitContent: "fit-content",
 };
 
-const calculateWidth = (margin, size) =>
+const calculateWidth = (margin: TagPropsType["margin"], size: TagPropsType["size"]) =>
   size === "fillParent"
     ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
-    : sizes[size];
+    : size && sizes[size];
 
 const StyledDxcTag = styled.div<{
   margin: TagPropsType["margin"];

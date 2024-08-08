@@ -1,8 +1,8 @@
 import { userEvent, within } from "@storybook/test";
+import disabledRules from "../../test/accessibility/rules/specific/table/disabledRules";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import preview from "../../.storybook/preview";
-import { disabledRules } from "../../test/accessibility/rules/specific/table/disabledRules";
 import { HalstackProvider } from "../HalstackContext";
 import DxcTable from "./Table";
 
@@ -13,8 +13,11 @@ export default {
     a11y: {
       config: {
         rules: [
-          ...disabledRules.map((ruleId) => ({ id: ruleId, reviewOnFail: true })),
-          ...preview?.parameters?.a11y?.config?.rules,
+          ...disabledRules.map((ruleId) => ({
+            id: ruleId,
+            reviewOnFail: true,
+          })),
+          ...(preview?.parameters?.a11y?.config?.rules || []),
         ],
       },
     },
@@ -42,9 +45,7 @@ const advancedTheme = {
 const actions = [
   {
     title: "icon",
-    onClick: (value?) => {
-      console.log(value);
-    },
+    onClick: () => {},
     options: [
       {
         value: "1",
@@ -62,9 +63,7 @@ const actions = [
   },
   {
     title: "icon",
-    onClick: (value?) => {
-      console.log(value);
-    },
+    onClick: () => {},
     options: [
       {
         value: "1",
@@ -83,9 +82,7 @@ const actions = [
   {
     disabled: true,
     title: "icon",
-    onClick: (value?) => {
-      console.log(value);
-    },
+    onClick: () => {},
     options: [
       {
         value: "1",
@@ -127,21 +124,21 @@ export const Chromatic = () => (
         <tr>
           <td>cell 1</td>
           <td>cell 2</td>
-          <td>
+          <td aria-label="actions">
             <DxcTable.ActionsCell actions={actions as any} />
           </td>
         </tr>
         <tr>
           <td>cell 4</td>
           <td>cell 5</td>
-          <td>
+          <td aria-label="actions">
             <DxcTable.ActionsCell actions={actions as any} />
           </td>
         </tr>
         <tr>
           <td>cell 7</td>
           <td>cell 8</td>
-          <td>
+          <td aria-label="actions">
             <DxcTable.ActionsCell actions={actions as any} />
           </td>
         </tr>
@@ -159,21 +156,21 @@ export const Chromatic = () => (
           <tr>
             <td>cell 1</td>
             <td>cell 2</td>
-            <td>
+            <td aria-label="actions">
               <DxcTable.ActionsCell actions={actions as any} />
             </td>
           </tr>
           <tr>
             <td>cell 4</td>
             <td>cell 5</td>
-            <td>
+            <td aria-label="actions">
               <DxcTable.ActionsCell actions={actions as any} />
             </td>
           </tr>
           <tr>
             <td>cell 7</td>
             <td>cell 8</td>
-            <td>
+            <td aria-label="actions">
               <DxcTable.ActionsCell actions={actions as any} />
             </td>
           </tr>
@@ -183,7 +180,13 @@ export const Chromatic = () => (
     <ExampleContainer>
       <Title title="With scrollbar" theme="light" level={4} />
       <div
-        style={{ height: 200 + "px", display: "flex", flexDirection: "row", width: 100 + "%", marginBottom: 50 + "px" }}
+        style={{
+          height: `${200}px`,
+          display: "flex",
+          flexDirection: "row",
+          width: `${100}%`,
+          marginBottom: `${50}px`,
+        }}
       >
         <DxcTable>
           <tr>
@@ -281,7 +284,13 @@ export const Chromatic = () => (
     <ExampleContainer>
       <Title title="Reduced with scrollbar" theme="light" level={4} />
       <div
-        style={{ height: 200 + "px", display: "flex", flexDirection: "row", width: 100 + "%", marginBottom: 50 + "px" }}
+        style={{
+          height: `${200}px`,
+          display: "flex",
+          flexDirection: "row",
+          width: `${100}%`,
+          marginBottom: `${50}px`,
+        }}
       >
         <DxcTable mode="reduced">
           <tr>
@@ -362,21 +371,21 @@ export const Chromatic = () => (
         <tr>
           <td>cell 1</td>
           <td>cell 2</td>
-          <td>
+          <td aria-label="actions">
             <DxcTable.ActionsCell actions={actions as any} />
           </td>
         </tr>
         <tr>
           <td>cell 4</td>
           <td>cell 5</td>
-          <td>
+          <td aria-label="actions">
             <DxcTable.ActionsCell actions={actions as any} />
           </td>
         </tr>
         <tr>
           <td>cell 7</td>
           <td>cell 8</td>
-          <td>
+          <td aria-label="actions">
             <DxcTable.ActionsCell actions={actions as any} />
           </td>
         </tr>
@@ -632,21 +641,21 @@ const ActionsCellDropdown = () => (
       <tr>
         <td>cell 1</td>
         <td>cell 2</td>
-        <td>
+        <td aria-label="actions">
           <DxcTable.ActionsCell actions={actions as any} />
         </td>
       </tr>
       <tr>
         <td>cell 4</td>
         <td>cell 5</td>
-        <td>
+        <td aria-label="actions">
           <DxcTable.ActionsCell actions={actions as any} />
         </td>
       </tr>
       <tr>
         <td>cell 7</td>
         <td>cell 8</td>
-        <td>
+        <td aria-label="actions">
           <DxcTable.ActionsCell actions={actions as any} />
         </td>
       </tr>

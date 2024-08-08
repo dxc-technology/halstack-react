@@ -1,13 +1,14 @@
+import { useMemo } from "react";
 import { ThemeProvider } from "styled-components";
-import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
-import preview from "../../.storybook/preview";
-import { disabledRules } from "../../test/accessibility/rules/specific/contextual-menu/disabledRules";
-import DxcBadge from "../badge/Badge";
+import DxcContextualMenu, { ContextualMenuContext } from "./ContextualMenu";
 import DxcContainer from "../container/Container";
 import useTheme from "../useTheme";
-import DxcContextualMenu, { ContextualMenuContext } from "./ContextualMenu";
 import SingleItem from "./SingleItem";
+import ExampleContainer from "../../.storybook/components/ExampleContainer";
+import DxcBadge from "../badge/Badge";
+import disabledRules from "../../test/accessibility/rules/specific/contextual-menu/disabledRules";
+import preview from "../../.storybook/preview";
 
 export default {
   title: "Contextual Menu",
@@ -17,8 +18,11 @@ export default {
     a11y: {
       config: {
         rules: [
-          ...disabledRules.map((ruleId) => ({ id: ruleId, reviewOnFail: true })),
-          ...preview?.parameters?.a11y?.config?.rules,
+          ...disabledRules.map((ruleId) => ({
+            id: ruleId,
+            reviewOnFail: true,
+          })),
+          ...(preview?.parameters?.a11y?.config?.rules || []),
         ],
       },
     },
@@ -67,7 +71,10 @@ const groupItems = [
     title: "Section 2",
     items: [
       { label: "Item 5" },
-      { label: "Grouped Item 6", items: [{ label: "Item 7" }, { label: "Item 8" }] },
+      {
+        label: "Grouped Item 6",
+        items: [{ label: "Item 7" }, { label: "Item 8" }],
+      },
       { label: "Item 9" },
     ],
   },
@@ -188,11 +195,13 @@ export const Chromatic = () => (
 
 export const SingleItemStates = () => {
   const colorsTheme = useTheme();
+  const value1 = useMemo(() => ({ selectedItemId: -1, setSelectedItemId: () => {} }), []);
+  const value2 = useMemo(() => ({ selectedItemId: 0, setSelectedItemId: () => {} }), []);
 
   return (
-    <ThemeProvider theme={colorsTheme.contextualMenu}>
+    <ThemeProvider theme={colorsTheme?.contextualMenu}>
       <DxcContainer width="300px">
-        <ContextualMenuContext.Provider value={{ selectedItemId: -1, setSelectedItemId: () => {} }}>
+        <ContextualMenuContext.Provider value={value1}>
           <Title title="Default" theme="light" level={3} />
           <ExampleContainer>
             <SingleItem {...items[0]} id={0} depthLevel={0} />
@@ -210,7 +219,7 @@ export const SingleItemStates = () => {
             <SingleItem {...items[0]} id={0} depthLevel={0} />
           </ExampleContainer>
         </ContextualMenuContext.Provider>
-        <ContextualMenuContext.Provider value={{ selectedItemId: 0, setSelectedItemId: () => {} }}>
+        <ContextualMenuContext.Provider value={value2}>
           <Title title="Selected" theme="light" level={3} />
           <ExampleContainer>
             <SingleItem {...items[0]} id={0} depthLevel={0} />

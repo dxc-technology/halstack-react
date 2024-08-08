@@ -1,4 +1,4 @@
-import React from "react";
+import { ReactNode } from "react";
 import styled from "styled-components";
 
 type PseudoStates =
@@ -12,7 +12,7 @@ type PseudoStates =
   | "pseudo-visited";
 
 type Props = {
-  children?: React.ReactNode;
+  children?: ReactNode;
   pseudoState?: PseudoStates;
   expanded?: boolean;
 };

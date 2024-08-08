@@ -1,17 +1,19 @@
-type SVG = React.ReactNode & React.SVGProps<SVGSVGElement>;
+import { MouseEvent, ReactNode, SVGProps } from "react";
+
+type SVG = ReactNode & SVGProps<SVGSVGElement>;
 
 export type SidenavTitlePropsType = {
   /**
    * The area inside the sidenav title. This area can be used to render custom content.
    */
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
 export type SidenavSectionPropsType = {
   /**
    * The area inside the sidenav section. This area can be used to render sidenav groups, links and custom content.
    */
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
 export type SidenavGroupPropsType = {
@@ -31,7 +33,7 @@ export type SidenavGroupPropsType = {
   /**
    * The area inside the sidenav group. This area can be used to render sidenav links.
    */
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
 export type SidenavLinkPropsType = {
@@ -56,11 +58,11 @@ export type SidenavLinkPropsType = {
   /**
    * This function will be called when the user clicks the link and the event will be passed to this function.
    */
-  onClick?: (event: React.MouseEvent<HTMLAnchorElement>) => void;
+  onClick?: (event: MouseEvent<HTMLAnchorElement>) => void;
   /**
    * The area inside the sidenav link.
    */
-  children: React.ReactNode;
+  children: ReactNode;
   /**
    * Value of the tabindex.
    */
@@ -71,11 +73,11 @@ type Props = {
   /**
    * The area assigned to render the sidenav title. It is highly recommended to use the sidenav title.
    */
-  title?: React.ReactNode;
+  title?: ReactNode;
   /**
    * The area inside the sidenav. This area can be used to render the content inside the sidenav.
    */
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
 export default Props;

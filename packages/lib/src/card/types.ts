@@ -1,4 +1,7 @@
-type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
+import { ReactNode } from "react";
+
+import { Space } from "../common/utils";
+
 type Size = {
   top?: Space;
   bottom?: Space;
@@ -57,7 +60,7 @@ type Props = {
   /**
    * Custom content that will be placed inside the component.
    */
-  children?: React.ReactNode;
+  children?: ReactNode;
 };
 
 export default Props;

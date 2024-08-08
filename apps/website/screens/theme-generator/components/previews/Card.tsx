@@ -1,4 +1,3 @@
-import React from "react";
 import { DxcCard, DxcInset, DxcParagraph } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
 import PreviewContainer from "./PreviewContainer";

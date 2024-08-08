@@ -1,4 +1,4 @@
-import { createContext, useContext, useMemo } from "react";
+import { createContext, ReactNode, useContext, useMemo } from "react";
 import styled from "styled-components";
 
 type TypographyContextProps = {
@@ -20,7 +20,7 @@ type TypographyContextProps = {
 const TypographyContext = createContext<TypographyContextProps | null>(null);
 
 type BaseTypographyProps = TypographyContextProps & {
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
 const ValidTypographyTags = [
@@ -44,9 +44,8 @@ const ValidTypographyTags = [
   "strong",
 ];
 
-const isValidTypography = (tag: keyof HTMLElementTagNameMap) => {
-  return ValidTypographyTags.includes(tag);
-};
+const isValidTypography = (tag: keyof HTMLElementTagNameMap | undefined) =>
+  tag != null && ValidTypographyTags.includes(tag);
 
 const BaseTypography = ({
   as,

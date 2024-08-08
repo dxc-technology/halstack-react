@@ -1,6 +1,6 @@
 import { render } from "@testing-library/react";
-import { axe } from "../../test/accessibility/axe-helper.js";
-import DxcBox from "../box/Box";
+import { axe } from "../../test/accessibility/axe-helper";
+import DxcBox from "./Box";
 
 describe("Box component accessibility tests", () => {
   it("Should not have basic accessibility issues", async () => {

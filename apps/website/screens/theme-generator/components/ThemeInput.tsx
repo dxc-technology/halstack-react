@@ -1,4 +1,4 @@
-import React from "react";
+import { memo } from "react";
 import styled from "styled-components";
 import ImageConfig from "./widgets/ImageConfig";
 import ColorPicker from "./widgets/ColorPicker";
@@ -18,7 +18,7 @@ import { makeReadable } from "../utils";
 type ThemeInputProps = {
   propertyName: string;
   propertyValue: string;
-  onChangeCustomTheme: (propertyName: string, propertyValue: string) => void;
+  onChangeCustomTheme: (_propertyName: string, _propertyValue: string) => void;
   tokenType: string;
 };
 
@@ -149,4 +149,4 @@ const PropertyName = styled.span`
   line-height: 14px;
 `;
 
-export default React.memo(ThemeInput);
+export default memo(ThemeInput);

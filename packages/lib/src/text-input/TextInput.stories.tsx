@@ -340,10 +340,10 @@ export const Chromatic = () => (
 );
 
 const AutosuggestListbox = () => {
-  const colorsTheme: any = useTheme();
+  const colorsTheme = useTheme();
 
   return (
-    <ThemeProvider theme={colorsTheme.textInput}>
+    <ThemeProvider theme={colorsTheme?.textInput}>
       <ExampleContainer>
         <Title title="Autosuggest listbox" theme="light" level={2} />
         <ExampleContainer>
@@ -375,7 +375,9 @@ const AutosuggestListbox = () => {
               placeholder="Choose an option"
               size="fillParent"
             />
-            <button style={{ zIndex: "1", width: "100px" }}>Submit</button>
+            <button type="submit" style={{ zIndex: "1", width: "100px" }}>
+              Submit
+            </button>
           </div>
         </ExampleContainer>
         <Title title="Listbox suggestion states" theme="light" level={3} />
@@ -403,7 +405,7 @@ const AutosuggestListbox = () => {
             highlightedSuggestions={false}
             searchHasErrors={false}
             isSearching={false}
-            suggestionOnClick={(suggestion) => {}}
+            suggestionOnClick={() => {}}
             styles={{ width: 350 }}
           />
         </ExampleContainer>
@@ -417,7 +419,7 @@ const AutosuggestListbox = () => {
             highlightedSuggestions={false}
             searchHasErrors={false}
             isSearching={false}
-            suggestionOnClick={(suggestion) => {}}
+            suggestionOnClick={() => {}}
             styles={{ width: 350 }}
           />
         </ExampleContainer>
@@ -428,10 +430,10 @@ const AutosuggestListbox = () => {
             value="Afgh"
             suggestions={country}
             visualFocusIndex={-1}
-            highlightedSuggestions={true}
+            highlightedSuggestions
             searchHasErrors={false}
             isSearching={false}
-            suggestionOnClick={(suggestion) => {}}
+            suggestionOnClick={() => {}}
             styles={{ width: 350 }}
           />
         </ExampleContainer>
@@ -444,9 +446,9 @@ const AutosuggestListbox = () => {
           suggestions={country}
           visualFocusIndex={-1}
           highlightedSuggestions={false}
-          searchHasErrors={true}
+          searchHasErrors
           isSearching={false}
-          suggestionOnClick={(suggestion) => {}}
+          suggestionOnClick={() => {}}
           styles={{ width: 350 }}
         />
       </ExampleContainer>
@@ -459,8 +461,8 @@ const AutosuggestListbox = () => {
           visualFocusIndex={-1}
           highlightedSuggestions={false}
           searchHasErrors={false}
-          isSearching={true}
-          suggestionOnClick={(suggestion) => {}}
+          isSearching
+          suggestionOnClick={() => {}}
           styles={{ width: 350 }}
         />
       </ExampleContainer>
