@@ -38,6 +38,11 @@
     "status": "new"
   },
   {
+    "label": "Data Grid",
+    "path": "/components/data-grid",
+    "status": "experimental"
+  },
+  {
     "label": "Date Input",
     "path": "/components/date-input",
     "status": "stable"

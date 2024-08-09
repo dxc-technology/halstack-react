@@ -13,6 +13,7 @@ import DxcCheckbox from "./checkbox/Checkbox";
 import DxcChip from "./chip/Chip";
 import DxcContainer from "./container/Container";
 import DxcContextualMenu from "./contextual-menu/ContextualMenu";
+import DxcDataGrid from "./data-grid/DataGrid";
 import DxcDateInput from "./date-input/DateInput";
 import DxcDialog from "./dialog/Dialog";
 import DxcDivider from "./divider/Divider";
@@ -66,6 +67,7 @@ export {
   DxcChip,
   DxcContainer,
   DxcContextualMenu,
+  DxcDataGrid,
   DxcDateInput,
   DxcDialog,
   DxcDivider,

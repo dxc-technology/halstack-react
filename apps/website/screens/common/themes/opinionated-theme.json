@@ -33,6 +33,11 @@
     "fontColor": "#333333",
     "iconColor": "#333333"
   },
+  "dataGrid": {
+    "baseColor": "#5f249f",
+    "headerFontColor": "#ffffff",
+    "cellFontColor": "#000000"
+  },
   "dateInput": {
     "baseColor": "#5f249f",
     "selectedFontColor": "#ffffff"

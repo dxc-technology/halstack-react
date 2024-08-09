@@ -352,6 +352,64 @@ export const componentTokens = {
     iconColor: CoreTokens.color_grey_900,
     iconSize: "16px",
   },
+  dataGrid: {
+    rowSeparatorThickness: "1px",
+    rowSeparatorStyle: CoreTokens.border_solid,
+    rowSeparatorColor: CoreTokens.color_grey_300,
+    dataBackgroundColor: CoreTokens.color_white,
+    dataFontFamily: CoreTokens.type_sans,
+    dataFontSize: CoreTokens.type_scale_02,
+    dataFontStyle: CoreTokens.type_normal,
+    dataFontWeight: CoreTokens.type_regular,
+    dataFontColor: CoreTokens.color_black,
+    dataFontTextTransform: "none",
+    // dataPaddingTop: CoreTokens.spacing_16,?
+    // dataPaddingBottom: CoreTokens.spacing_16,?
+    dataPaddingRight: CoreTokens.spacing_24,
+    dataPaddingLeft: CoreTokens.spacing_24,
+    // dataPaddingTopReduced: CoreTokens.spacing_8,?
+    // dataPaddingBottomReduced: CoreTokens.spacing_8,?
+    dataPaddingRightReduced: CoreTokens.spacing_16,
+    dataPaddingLeftReduced: CoreTokens.spacing_16,
+    // dataTextAlign: "left",?
+    dataTextLineHeight: "normal",
+    // firstChildPaddingLeft: CoreTokens.spacing_24,?
+    // lastChildPaddingRight: CoreTokens.spacing_24,?
+    // firstChildPaddingLeftReduced: "20px",?
+    // lastChildPaddingRightReduced: "20px",?
+    headerBackgroundColor: CoreTokens.color_purple_700,
+    headerBorderRadius: "4px",
+    headerFontFamily: CoreTokens.type_sans,
+    headerFontSize: CoreTokens.type_scale_02,
+    headerFontStyle: CoreTokens.type_normal,
+    headerFontWeight: CoreTokens.type_regular,
+    headerFontColor: CoreTokens.color_white,
+    headerFontTextTransform: "none",
+    // headerPaddingTop: CoreTokens.spacing_16,?
+    // headerPaddingBottom: CoreTokens.spacing_16,?
+    headerPaddingRight: CoreTokens.spacing_24,
+    headerPaddingLeft: CoreTokens.spacing_24,
+    // headerPaddingTopReduced: CoreTokens.spacing_8,?
+    // headerPaddingBottomReduced: CoreTokens.spacing_8,?
+    headerPaddingRightReduced: CoreTokens.spacing_16,
+    headerPaddingLeftReduced: CoreTokens.spacing_16,
+    // headerTextAlign: "left",?
+    headerTextLineHeight: "normal",
+    // missing summary tokens
+    // scrollBarThumbColor: CoreTokens.color_grey_700,
+    // scrollBarTrackColor: CoreTokens.color_grey_300,
+    // sortIconColor: CoreTokens.color_white,
+    // actionIconColor: CoreTokens.color_purple_700,
+    // disabledActionIconColor: CoreTokens.color_grey_500,
+    // hoverActionIconColor: CoreTokens.color_purple_700,
+    // focusActionIconColor: CoreTokens.color_purple_700,
+    // activeActionIconColor: CoreTokens.color_purple_700,
+    // actionBackgroundColor: CoreTokens.color_transparent,
+    // disabledActionBackgroundColor: CoreTokens.color_transparent,
+    // hoverActionBackgroundColor: CoreTokens.color_grey_100,
+    // focusActionBorderColor: CoreTokens.color_blue_600,
+    // activeActionBackgroundColor: CoreTokens.color_grey_300,
+  },
   dateInput: {
     pickerBackgroundColor: CoreTokens.color_white,
     pickerFontColor: CoreTokens.color_black,
@@ -1320,6 +1378,11 @@ export type OpinionatedTheme = {
     baseColor: string;
     fontColor: string;
     iconColor: string;
+  };
+  dataGrid: {
+    baseColor: string;
+    headerFontColor: string;
+    cellFontColor: string;
   };
   dateInput: {
     baseColor: string;
