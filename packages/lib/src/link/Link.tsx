@@ -77,20 +77,20 @@ const StyledLink = styled.div<{
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
   background: none;
   border: none;
-  padding: 0;
+  border-radius: 4px;
+  width: fit-content;
+  padding: 0 2px;
   ${(props) => `padding-bottom: ${props.theme.underlineSpacing};`}
-  cursor: pointer;
   font-size: ${(props) => props.theme.fontSize};
   font-weight: ${(props) => props.theme.fontWeight};
   font-style: ${(props) => props.theme.fontStyle};
   font-family: ${(props) => props.theme.fontFamily};
   text-decoration: none;
-  width: fit-content;
-  line-height: 100%;
-  ${(props) => props.disabled && "cursor: default;"}
   color: ${(props) =>
     props.inheritColor ? "inherit" : !props.disabled ? props.theme.fontColor : props.theme.disabledFontColor};
+  ${(props) => (props.disabled ? "cursor: default;" : "cursor: pointer;")}
   ${(props) => (props.disabled ? "pointer-events: none;" : "")}
+
   &:visited {
     color: ${(props) => (!props.inheritColor && !props.disabled ? props.theme.visitedFontColor : "")};
     & > span:hover {
@@ -99,9 +99,7 @@ const StyledLink = styled.div<{
     }
   }
   &:focus {
-    border-radius: 4px;
     outline: 2px solid ${(props) => props.theme.focusColor};
-    outline-offset: 2px;
     ${(props) => props.disabled && "outline: none"}
   }
 `;
@@ -128,6 +126,7 @@ const LinkContainer = styled.span<{
   padding: 0;
   ${(props) => `border-bottom: ${props.theme.underlineThickness} ${props.theme.underlineStyle};`}
   border-bottom-color: transparent;
+
   &:hover {
     ${(props) =>
       `color: ${props.theme.hoverFontColor};
