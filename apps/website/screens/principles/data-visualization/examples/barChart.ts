@@ -49,6 +49,7 @@ const code = `() => {
       colorTextBodyDefault: CoreColorTokens.color_grey_900,
     },
   };
+  
   applyTheme({ theme });
 
   return (

@@ -21,11 +21,11 @@ const sections = [
         <DxcParagraph>
           At Halstack, we believe that effective data visualization is crucial for transforming complex data into clear,
           actionable insights. Our principles focus on clarity, accuracy, accessibility, and interactivity. By adhering
-          to these guidelines, you can create visual representations that are not only aesthetically pleasing but also
+          to these guidelines, you can create visual representations that are not only aesthetically pleasing, but also
           highly functional, ensuring that users can easily understand and interact with the data presented.
         </DxcParagraph>
         <DxcParagraph>
-          As we consider data visualisation a tremendously dense and complex design pattern, we have decided to rely on
+          As we consider data visualization a tremendously dense and complex design pattern, we have decided to rely on
           another design system for this task. Our choice is{" "}
           <Link href="https://cloudscape.design/" passHref legacyBehavior>
             <DxcLink>Cloudscape</DxcLink>
@@ -106,7 +106,7 @@ const sections = [
             </DxcBulletedList.Item>
             <DxcBulletedList.Item>
               When constructing a bar chart, consider the order in which you will plot the bars. A common convention is
-              to sort the bars from longest to shortest. While comparisons can be made regardless of order, this
+              to sort the bars from longest to shortest. While comparisons can be made regardless of the order, this
               approach can ease the reader's task. However, if the category labels have an inherent order, this should
               typically take precedence.
             </DxcBulletedList.Item>
@@ -307,10 +307,10 @@ const sections = [
     content: (
       <>
         <DxcParagraph>
-          Here is an example on how to apply our design tokens to a bar chart using the Cloudscape theming strategy.
+          Here is an example of how to apply our design tokens to a bar chart using the Cloudscape theming strategy.
         </DxcParagraph>
         <DxcParagraph>
-          For a more detailed explanation on how to style Cloudscape components, please refer to their{" "}
+          For a more detailed explanation of how Cloudscape components are styled, please refer to their{" "}
           <Link href="https://cloudscape.design/foundation/visual-foundation/theming/" passHref legacyBehavior>
             <DxcLink>theming documentation</DxcLink>
           </Link>
