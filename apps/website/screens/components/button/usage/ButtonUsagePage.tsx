@@ -42,9 +42,6 @@ const sections = [
           We can identify three different variants that imply some visual changes according to color and border
           attributes.
         </DxcParagraph>
-        <DxcParagraph>
-          Variants: <strong>primary</strong>, <strong>secondary</strong> and <strong>tertiary</strong>.
-        </DxcParagraph>
         <Example example={variants} />
         <DxcTable>
           <thead>
@@ -55,21 +52,27 @@ const sections = [
           </thead>
           <tbody>
             <tr>
-              <td>Primary</td>
+              <td>
+                <strong>Primary</strong>
+              </td>
               <td>
                 For the principal call to action on the page; primary buttons should only appear once per screen (not
                 including the application header or in a modal dialog).
               </td>
             </tr>
             <tr>
-              <td>Secondary</td>
+              <td>
+                <strong>Secondary</strong>
+              </td>
               <td>
                 For less prominent actions; secondary buttons can be used in isolation or paired with a primary button
                 when there are multiple calls to action.
               </td>
             </tr>
             <tr>
-              <td>Text</td>
+              <td>
+                <strong>Text</strong>
+              </td>
               <td>
                 For the least pronounced actions; often used in conjunction with a primary button (e.g. cancel in a
                 modal dialog).
@@ -290,7 +293,7 @@ const sections = [
     ],
   },
   {
-    title: "Best practices for button labels:",
+    title: "Best practices for button labels",
     subSections: [
       {
         title: "Be clear and concise",

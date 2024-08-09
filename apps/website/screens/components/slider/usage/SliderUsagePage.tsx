@@ -29,7 +29,10 @@ const sections = [
     title: "Variants",
     content: (
       <>
-        <DxcParagraph>The slider has two variants:</DxcParagraph>
+        <DxcParagraph>
+          The slider component has two variants that can be used depending on the requirements of the application.
+        </DxcParagraph>
+        <Example example={variants} />
         <DxcTable>
           <thead>
             <tr>
@@ -42,17 +45,16 @@ const sections = [
               <td>
                 <strong>Discrete</strong>
               </td>
-              <td>Slider can only get the value marked alongside the total line</td>
+              <td>Slider can only get the value marked alongside the total line.</td>
             </tr>
             <tr>
               <td>
-                <strong>Continous</strong>
+                <strong>Continuos</strong>
               </td>
-              <td>Slider can take every value mapped</td>
+              <td>Slider can take every value mapped.</td>
             </tr>
           </tbody>
         </DxcTable>
-        <Example example={variants} />
       </>
     ),
   },
