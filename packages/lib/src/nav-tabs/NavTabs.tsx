@@ -47,7 +47,6 @@ const DxcNavTabs = ({ iconPosition = "top", tabIndex = 0, children }: NavTabsPro
   const colorsTheme = useTheme();
 
   useEffect(() => {
-    console.log(refNavTabList?.current?.scrollWidth);
     setUnderlineWidth(refNavTabList?.current?.scrollWidth);
   }, [children]);
 
