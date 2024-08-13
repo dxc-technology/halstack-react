@@ -365,12 +365,13 @@ export const componentTokens = {
     dataFontTextTransform: "none",
     // dataPaddingTop: CoreTokens.spacing_16,?
     // dataPaddingBottom: CoreTokens.spacing_16,?
-    dataPaddingRight: CoreTokens.spacing_24,
-    dataPaddingLeft: CoreTokens.spacing_24,
+    dataPaddingRight: CoreTokens.spacing_8,
+    dataPaddingLeft: CoreTokens.spacing_16,
+    dataRowHeight: 36,
     // dataPaddingTopReduced: CoreTokens.spacing_8,?
     // dataPaddingBottomReduced: CoreTokens.spacing_8,?
-    dataPaddingRightReduced: CoreTokens.spacing_16,
-    dataPaddingLeftReduced: CoreTokens.spacing_16,
+    // dataPaddingRightReduced: CoreTokens.spacing_16,
+    // dataPaddingLeftReduced: CoreTokens.spacing_16,
     // dataTextAlign: "left",?
     dataTextLineHeight: "normal",
     // firstChildPaddingLeft: CoreTokens.spacing_24,?
@@ -382,22 +383,29 @@ export const componentTokens = {
     headerFontFamily: CoreTokens.type_sans,
     headerFontSize: CoreTokens.type_scale_02,
     headerFontStyle: CoreTokens.type_normal,
-    headerFontWeight: CoreTokens.type_regular,
+    headerFontWeight: CoreTokens.type_bold,
     headerFontColor: CoreTokens.color_white,
     headerFontTextTransform: "none",
     // headerPaddingTop: CoreTokens.spacing_16,?
     // headerPaddingBottom: CoreTokens.spacing_16,?
-    headerPaddingRight: CoreTokens.spacing_24,
-    headerPaddingLeft: CoreTokens.spacing_24,
+    headerPaddingRight: CoreTokens.spacing_8,
+    headerPaddingLeft: CoreTokens.spacing_8,
+    headerRowHeight: 36,
     // headerPaddingTopReduced: CoreTokens.spacing_8,?
     // headerPaddingBottomReduced: CoreTokens.spacing_8,?
-    headerPaddingRightReduced: CoreTokens.spacing_16,
-    headerPaddingLeftReduced: CoreTokens.spacing_16,
+    // headerPaddingRightReduced: CoreTokens.spacing_16,
+    // headerPaddingLeftReduced: CoreTokens.spacing_16,
     // headerTextAlign: "left",?
     headerTextLineHeight: "normal",
-    // missing summary tokens
-    // scrollBarThumbColor: CoreTokens.color_grey_700,
-    // scrollBarTrackColor: CoreTokens.color_grey_300,
+    headerCheckboxBackgroundColorChecked: CoreTokens.color_white,
+    headerCheckboxHoverBackgroundColorChecked: CoreTokens.color_grey_200,
+    headerCheckboxBorderColor: CoreTokens.color_white,
+    headerCheckboxHoverBorderColor: CoreTokens.color_white,
+    headerCheckboxCheckColor: CoreTokens.color_purple_700,
+    summaryRowHeight: 36,
+    focusColor: CoreTokens.color_blue_600,
+    scrollBarThumbColor: CoreTokens.color_grey_700,
+    scrollBarTrackColor: CoreTokens.color_grey_300,
     // sortIconColor: CoreTokens.color_white,
     // actionIconColor: CoreTokens.color_purple_700,
     // disabledActionIconColor: CoreTokens.color_grey_500,

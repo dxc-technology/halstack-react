@@ -229,7 +229,6 @@ const DataGridPreview = () => {
           rows={childRows}
           uniqueRowId="value"
           summaryRow={{ label: "Total", total: 100, value: "summary" }}
-          mode="reduced"
         />
       </Mode>
     </PreviewContainer>

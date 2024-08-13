@@ -141,6 +141,7 @@ const parseTheme = (theme: DeepPartial<OpinionatedTheme>): AdvancedTheme => {
   dataGridTokens.headerBackgroundColor = theme?.dataGrid?.baseColor ?? dataGridTokens.headerBackgroundColor;
   dataGridTokens.headerFontColor = theme?.dataGrid?.headerFontColor ?? dataGridTokens.headerFontColor;
   dataGridTokens.dataFontColor = theme?.dataGrid?.cellFontColor ?? dataGridTokens.dataFontColor;
+  dataGridTokens.headerCheckboxCheckColor = theme?.dataGrid?.baseColor ?? dataGridTokens.headerCheckboxCheckColor;
 
   const dateTokens = componentTokensCopy.dateInput;
   dateTokens.pickerSelectedBackgroundColor = theme?.dateInput?.baseColor ?? dateTokens.pickerSelectedBackgroundColor;

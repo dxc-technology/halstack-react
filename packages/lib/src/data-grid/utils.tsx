@@ -1,33 +1,25 @@
+import { Checkbox } from "@cloudscape-design/components";
 import DxcActionIcon from "../action-icon/ActionIcon";
 import DxcCheckbox from "../checkbox/Checkbox";
-import { HalstackProvider } from "../HalstackContext";
+import { AdvancedTheme } from "../common/variables";
+import { DeepPartial, HalstackProvider } from "../HalstackContext";
 import DxcIcon from "../icon/Icon";
 import { GridColumn, HierarchyGridRow, GridRow, ExpandableGridRow } from "./types";
 import { Column, RenderSortStatusProps, SortColumn, textEditor } from "react-data-grid";
 
-const checkboxTheme = {
-  checkbox: {
-    backgroundColorChecked: "#ffffff",
-    hoverBackgroundColorChecked: "#e6e6e6",
-    disabledBackgroundColorChecked: "#999999",
-    readOnlyBackgroundColorChecked: "#999999",
-    hoverReadOnlyBackgroundColorChecked: "#808080",
-    borderColor: "#ffffff",
-    hoverBorderColor: "#ffffff",
-    disabledBorderColor: "#999999",
-    readOnlyBorderColor: "#999999",
-    hoverReadOnlyBorderColor: "#808080",
-    checkColor: "#5f249f",
-    disabledCheckColor: "#ffffff",
-    readOnlyCheckColor: "#ffffff",
-    fontFamily: "Open Sans, sans-serif",
-    fontSize: "0.875rem",
-    fontWeight: "400",
-    fontColor: "#ffffff",
-    disabledFontColor: "#999999",
-    focusColor: "#0095ff",
-    checkLabelSpacing: "8px",
-  },
+const overwriteTheme = (theme: DeepPartial<AdvancedTheme>) => {
+  const newTheme = {
+    checkbox: {
+      backgroundColorChecked: theme.dataGrid.headerCheckboxBackgroundColorChecked,
+      hoverBackgroundColorChecked: theme.dataGrid.headerCheckboxHoverBackgroundColorChecked,
+      borderColor: theme.dataGrid.headerCheckboxBorderColor,
+      hoverBorderColor: theme.dataGrid.headerCheckboxHoverBorderColor,
+      checkColor: theme.dataGrid.headerCheckboxCheckColor,
+      focusColor: theme.dataGrid.focusColor,
+    },
+  };
+
+  return newTheme;
 };
 
 // Column<any, any> type added to avoid conflicts with SelectColumn typing from RDG
@@ -165,7 +157,7 @@ export const renderHierarchyTrigger = (
       }}
     >
       <DxcIcon icon={triggerRow.visibleChildren ? "Keyboard_Arrow_Down" : "Chevron_Right"} />
-      {triggerRow[columnKey]}
+      <span className="ellipsis-cell">{triggerRow[columnKey]}</span>
     </button>
   );
 };
@@ -205,10 +197,11 @@ export const renderHeaderCheckbox = (
   rows: GridRow[] | HierarchyGridRow[] | ExpandableGridRow[],
   uniqueRowId: string,
   selectedRows: Set<number | string>,
+  colorsTheme: DeepPartial<AdvancedTheme>,
   onSelectRows: (selected: Set<number | string>) => void
 ) => {
   return (
-    <HalstackProvider advancedTheme={checkboxTheme}>
+    <HalstackProvider advancedTheme={overwriteTheme(colorsTheme)}>
       <DxcCheckbox
         checked={!rows.some((row) => !selectedRows.has(rowKeyGetter(row, uniqueRowId)))}
         onChange={(checked) => {

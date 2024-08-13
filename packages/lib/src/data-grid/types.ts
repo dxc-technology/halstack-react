@@ -49,7 +49,6 @@ export type SelectableGridProps =
     };
 
 export type CommonProps = {
-  mode?: "default" | "reduced";
   columns: GridColumn[];
   summaryRow?: GridRow;
   onGridRowsChange?: (rows: GridRow[] | HierarchyGridRow[] | ExpandableGridRow[]) => void;

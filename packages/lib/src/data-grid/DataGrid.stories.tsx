@@ -277,17 +277,10 @@ export const Chromatic = () => {
         />
       </ExampleContainer>
       <ExampleContainer>
-        <Title title="Reduced Data Grid" theme="light" level={4} />
-        <DxcDataGrid
-          columns={childcolumns}
-          rows={childRows}
-          uniqueRowId="value"
-          selectable
-          selectedRows={selectedChildRows}
-          onSelectRows={setSelectedChildRows}
-          summaryRow={{ label: "Total", total: 100 }}
-          mode="reduced"
-        />
+        <Title title="Scrollable Data Grid" theme="light" level={4} />
+        <DxcContainer height="250px">
+          <DxcDataGrid columns={columns} rows={expandableRows} uniqueRowId="id" />
+        </DxcContainer>
       </ExampleContainer>
     </>
   );

@@ -28,10 +28,10 @@ const DxcDataGrid = ({
   selectedRows,
   uniqueRowId,
   summaryRow,
-  mode = "default",
   onGridRowsChange,
 }: DataGridPropsType): JSX.Element => {
   const [rowsToRender, setRowsToRender] = useState<GridRow[] | HierarchyGridRow[] | ExpandableGridRow[]>(rows);
+  const colorsTheme = useTheme();
   // Proccess columns prop into usable columns based on other props
   const columnsToRender = useMemo(() => {
     let expectedColumns = columns
@@ -53,8 +53,9 @@ const DxcDataGrid = ({
         {
           key: "expanded",
           name: "",
-          maxWidth: 50,
-          width: 50,
+          maxWidth: 36,
+          width: 36,
+          minWidth: 36,
           colSpan(args) {
             return args.type === "ROW" && args.row.isExpandedChildContent ? columns.length + 1 : undefined;
           },
@@ -82,13 +83,13 @@ const DxcDataGrid = ({
         renderCell({ row }) {
           if (row.childRows?.length) {
             return (
-              <HierarchyContainer level={row.rowLevel || 0} mode={mode}>
+              <HierarchyContainer level={row.rowLevel || 0}>
                 {renderHierarchyTrigger(rowsToRender, row, uniqueRowId, firstColumnKey, setRowsToRender)}
               </HierarchyContainer>
             );
           }
           return (
-            <HierarchyContainer level={row.rowLevel || 0} className="ellipsis-cell" mode={mode}>
+            <HierarchyContainer level={row.rowLevel || 0} className="ellipsis-cell">
               {row[firstColumnKey]}
             </HierarchyContainer>
           );
@@ -100,8 +101,9 @@ const DxcDataGrid = ({
         {
           key: "selected",
           name: "",
-          maxWidth: 50,
-          width: 50,
+          maxWidth: 36,
+          width: 36,
+          minWidth: 36,
           renderCell({ row }) {
             if (!row.isExpandedChildContent) {
               return (
@@ -114,7 +116,7 @@ const DxcDataGrid = ({
           renderHeaderCell: () => {
             return (
               <ActionContainer id="action">
-                {renderHeaderCheckbox(rows, uniqueRowId, selectedRows, onSelectRows)}
+                {renderHeaderCheckbox(rows, uniqueRowId, selectedRows, colorsTheme, onSelectRows)}
               </ActionContainer>
             );
           },
@@ -180,11 +182,9 @@ const DxcDataGrid = ({
     return rowsToRender;
   }, [expandable, rowsToRender, sortColumns, uniqueRowId]);
 
-  const colorsTheme = useTheme();
-
   return (
     <ThemeProvider theme={colorsTheme.dataGrid}>
-      <DataGridContainer mode={mode}>
+      <DataGridContainer className="here">
         {/* {columnsVisibilityFilter && (
         <DxcSelect
           multiple
@@ -210,12 +210,12 @@ const DxcDataGrid = ({
             ) {
               return row.expandedContentHeight;
             }
-            return mode === "default" ? 60 : 36;
+            return colorsTheme.dataGrid.dataRowHeight;
           }}
           selectedRows={selectedRows}
           bottomSummaryRows={summaryRow ? [summaryRow] : undefined}
-          headerRowHeight={mode === "default" ? 60 : 36}
-          summaryRowHeight={mode === "default" ? 60 : 36}
+          headerRowHeight={colorsTheme.dataGrid.headerRowHeight}
+          summaryRowHeight={colorsTheme.dataGrid.summaryRowHeight}
           className="fill-grid"
         />
       </DataGridContainer>
@@ -234,18 +234,17 @@ const ActionContainer = styled.div`
 
 const HierarchyContainer = styled.div<{
   level: number;
-  mode: "default" | "reduced";
 }>`
-  padding-left: ${(props) =>
-    `calc(${props.mode === "reduced" ? props.theme.dataPaddingLeftReduced : props.theme.dataPaddingLeft} * ${props.level})`};
+  padding-left: ${(props) => `calc(${props.theme.dataPaddingLeft} * ${props.level})`};
   button {
-    display: flex;
+    display: grid;
+    grid-template-columns: auto 1fr;
     align-items: center;
     gap: 0.5rem;
     padding: 0px;
     border: 0px;
     width: 100%;
-    height: ${(props) => (props.mode === "default" ? 60 : 36)}px;
+    height: ${(props) => props.theme.dataRowHeight}px;
     background: transparent;
     text-align: left;
     font-size: ${(props) => props.theme.dataFontSize};
@@ -255,19 +254,34 @@ const HierarchyContainer = styled.div<{
   }
 `;
 
-const DataGridContainer = styled.div<{ mode: "default" | "reduced" }>`
+const DataGridContainer = styled.div`
   width: 100%;
+  height: 100%;
   .rdg {
     border-radius: 4px;
     height: 100%;
     border: 0px;
+    &::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: ${(props) => props.theme.scrollBarThumbColor};
+      border-radius: 6px;
+    }
+    &::-webkit-scrollbar-track {
+      background-color: ${(props) => props.theme.scrollBarTrackColor};
+      border-radius: 6px;
+    }
+  }
+  .rdg-cell:has(> #action) {
+    padding: 0px;
   }
   .rdg-cell {
-    display: flex;
+    display: grid;
     align-items: center;
-    padding: 0px
-      ${(props) => (props.mode === "default" ? props.theme.dataPaddingRight : props.theme.dataPaddingRightReduced)} 0
-      ${(props) => (props.mode === "default" ? props.theme.dataPaddingLeft : props.theme.dataPaddingLeftReduced)};
+    width: 100%;
+    padding: 0px ${(props) => props.theme.dataPaddingRight} 0 ${(props) => props.theme.dataPaddingLeft};
     font-family: ${(props) => props.theme.dataFontFamily};
     font-size: ${(props) => props.theme.dataFontSize};
     font-style: ${(props) => props.theme.dataFontStyle};
@@ -281,9 +295,6 @@ const DataGridContainer = styled.div<{ mode: "default" | "reduced" }>`
       `${props.theme.rowSeparatorThickness} ${props.theme.rowSeparatorStyle} ${props.theme.rowSeparatorColor}`};
     background-color: ${(props) => props.theme.dataBackgroundColor};
   }
-  .rdg-cell:has(> #action) {
-    padding: 0px;
-  }
   .rdg-header-row {
     border-top-left-radius: ${(props) => props.theme.headerBorderRadius};
     border-top-right-radius: ${(props) => props.theme.headerBorderRadius};
@@ -294,11 +305,7 @@ const DataGridContainer = styled.div<{ mode: "default" | "reduced" }>`
       font-weight: ${(props) => props.theme.headerFontWeight};
       color: ${(props) => props.theme.headerFontColor};
       text-transform: ${(props) => props.theme.headerFontTextTransform};
-      padding: 0px
-        ${(props) =>
-          props.mode === "default" ? props.theme.headerPaddingRight : props.theme.headerPaddingRightReduced}
-        0
-        ${(props) => (props.mode === "default" ? props.theme.headerPaddingLeft : props.theme.headerPaddingLeftReduced)};
+      padding: 0px ${(props) => props.theme.headerPaddingRight} 0 ${(props) => props.theme.headerPaddingLeft};
       line-height: ${(props) => props.theme.headerTextLineHeight};
       background-color: ${(props) => props.theme.headerBackgroundColor};
       .sortIconContainer {
@@ -325,6 +332,7 @@ const DataGridContainer = styled.div<{ mode: "default" | "reduced" }>`
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
+    width: 100%;
   }
   .align-left {
     text-align: left;
