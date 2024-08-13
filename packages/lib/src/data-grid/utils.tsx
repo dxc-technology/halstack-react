@@ -1,4 +1,3 @@
-import { Checkbox } from "@cloudscape-design/components";
 import DxcActionIcon from "../action-icon/ActionIcon";
 import DxcCheckbox from "../checkbox/Checkbox";
 import { AdvancedTheme } from "../common/variables";

@@ -184,7 +184,7 @@ const DxcDataGrid = ({
 
   return (
     <ThemeProvider theme={colorsTheme.dataGrid}>
-      <DataGridContainer className="here">
+      <DataGridContainer>
         {/* {columnsVisibilityFilter && (
         <DxcSelect
           multiple
