@@ -33,6 +33,7 @@ import BulletedListPreview from "./previews/BulletedList";
 import ParagraphPreview from "./previews/Paragraph";
 import NavTabsPreview from "./previews/NavTabs";
 import ContextualMenu from "./previews/ContextualMenu";
+import DataGridPreview from "./previews/DataGrid";
 
 const SampleComponents = [
   {
@@ -70,6 +71,10 @@ const SampleComponents = [
   {
     name: "contextualMenu",
     preview: ContextualMenu,
+  },
+  {
+    name: "dataGrid",
+    preview: DataGridPreview,
   },
   {
     name: "dateInput",
