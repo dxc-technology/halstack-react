@@ -31,8 +31,7 @@
   "peerDependencies": {
     "react": "^18.x",
     "react-dom": "^18.x",
-    "styled-components": "^5.0.1",
-    "@cloudscape-design/components": "3.0.677"
+    "styled-components": "^5.0.1"
   },
   "dependencies": {
     "@radix-ui/react-popover": "^1.1.0",
