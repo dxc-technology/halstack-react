@@ -62,6 +62,7 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
     <>
       <Head>
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
+        <link rel="stylesheet" href="/styles.css" />
       </Head>
       <HalstackProvider>
         <ApplicationLayoutWrapper
