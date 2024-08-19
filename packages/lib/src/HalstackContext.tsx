@@ -148,6 +148,12 @@ const parseTheme = (theme: DeepPartial<OpinionatedTheme>): AdvancedTheme => {
   contextualMenu.sectionTitleFontColor = theme?.contextualMenu?.fontColor ?? contextualMenu.sectionTitleFontColor;
   contextualMenu.iconColor = theme?.contextualMenu?.iconColor ?? contextualMenu.iconColor;
 
+  const dataGridTokens = componentTokensCopy.dataGrid;
+  dataGridTokens.headerBackgroundColor = theme?.dataGrid?.baseColor ?? dataGridTokens.headerBackgroundColor;
+  dataGridTokens.headerFontColor = theme?.dataGrid?.headerFontColor ?? dataGridTokens.headerFontColor;
+  dataGridTokens.dataFontColor = theme?.dataGrid?.cellFontColor ?? dataGridTokens.dataFontColor;
+  dataGridTokens.headerCheckboxCheckColor = theme?.dataGrid?.baseColor ?? dataGridTokens.headerCheckboxCheckColor;
+
   const dateTokens = componentTokensCopy.dateInput;
   dateTokens.pickerSelectedBackgroundColor = theme?.dateInput?.baseColor ?? dateTokens.pickerSelectedBackgroundColor;
   dateTokens.pickerSelectedFontColor = theme?.dateInput?.selectedFontColor ?? dateTokens.pickerSelectedFontColor;
@@ -432,7 +438,7 @@ const HalstackProvider = ({ theme, advancedTheme, labels, children }: HalstackPr
 };
 
 const Halstack = styled.div`
-  @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap");
+  @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap&family=Material+Symbols+Outlined:FILL@0..1");
 `;
 
 export { HalstackProvider, HalstackLanguageContext };

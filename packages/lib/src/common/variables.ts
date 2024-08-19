@@ -352,6 +352,43 @@ export const componentTokens = {
     iconColor: CoreTokens.color_grey_900,
     iconSize: "16px",
   },
+  dataGrid: {
+    rowSeparatorThickness: "1px",
+    rowSeparatorStyle: CoreTokens.border_solid,
+    rowSeparatorColor: CoreTokens.color_grey_300,
+    dataBackgroundColor: CoreTokens.color_white,
+    dataFontFamily: CoreTokens.type_sans,
+    dataFontSize: CoreTokens.type_scale_02,
+    dataFontStyle: CoreTokens.type_normal,
+    dataFontWeight: CoreTokens.type_regular,
+    dataFontColor: CoreTokens.color_black,
+    dataFontTextTransform: "none",
+    dataPaddingRight: CoreTokens.spacing_8,
+    dataPaddingLeft: CoreTokens.spacing_8,
+    dataRowHeight: 36,
+    dataTextLineHeight: "normal",
+    headerBackgroundColor: CoreTokens.color_purple_700,
+    headerBorderRadius: "4px",
+    headerFontFamily: CoreTokens.type_sans,
+    headerFontSize: CoreTokens.type_scale_02,
+    headerFontStyle: CoreTokens.type_normal,
+    headerFontWeight: CoreTokens.type_bold,
+    headerFontColor: CoreTokens.color_white,
+    headerFontTextTransform: "none",
+    headerPaddingRight: CoreTokens.spacing_8,
+    headerPaddingLeft: CoreTokens.spacing_8,
+    headerRowHeight: 36,
+    headerTextLineHeight: "normal",
+    headerCheckboxBackgroundColorChecked: CoreTokens.color_white,
+    headerCheckboxHoverBackgroundColorChecked: CoreTokens.color_grey_200,
+    headerCheckboxBorderColor: CoreTokens.color_white,
+    headerCheckboxHoverBorderColor: CoreTokens.color_white,
+    headerCheckboxCheckColor: CoreTokens.color_purple_700,
+    summaryRowHeight: 36,
+    focusColor: CoreTokens.color_blue_600,
+    scrollBarThumbColor: CoreTokens.color_grey_700,
+    scrollBarTrackColor: CoreTokens.color_grey_300,
+  },
   dateInput: {
     pickerBackgroundColor: CoreTokens.color_white,
     pickerFontColor: CoreTokens.color_black,
@@ -1320,6 +1357,11 @@ export type OpinionatedTheme = {
     baseColor: string;
     fontColor: string;
     iconColor: string;
+  };
+  dataGrid: {
+    baseColor: string;
+    headerFontColor: string;
+    cellFontColor: string;
   };
   dateInput: {
     baseColor: string;

@@ -11,11 +11,6 @@
     "path": "/components/badge",
     "status": "new"
   },
-  {
-    "label": "Bar Chart",
-    "path": "/components/bar-chart",
-    "status": "new"
-  },
   { "label": "Bleed", "path": "/components/bleed", "status": "stable" },
   { "label": "Box", "path": "/components/box", "status": "deprecated" },
   {
@@ -41,6 +36,11 @@
     "label": "Contextual Menu",
     "path": "/components/contextual-menu",
     "status": "new"
+  },
+  {
+    "label": "Data Grid",
+    "path": "/components/data-grid",
+    "status": "experimental"
   },
   {
     "label": "Date Input",

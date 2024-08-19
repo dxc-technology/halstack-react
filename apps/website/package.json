@@ -8,6 +8,7 @@
     "lint": "eslint . --max-warnings 0"
   },
   "dependencies": {
+    "@cloudscape-design/components": "^3.0.706",
     "@dxc-technology/halstack-react": "*",
     "@radix-ui/react-popover": "^1.0.7",
     "@types/styled-components": "5.1.29",

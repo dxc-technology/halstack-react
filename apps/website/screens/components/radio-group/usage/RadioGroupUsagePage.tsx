@@ -39,14 +39,18 @@ const sections = [
           </thead>
           <tbody>
             <tr>
-              <td>Vertical</td>
+              <td>
+                <strong>Vertical</strong>
+              </td>
               <td>
                 Short lists of radio buttons should be stacked vertically below a descriptive label to better associate
                 the group. Options that are listed vertically are easier to read.
               </td>
             </tr>
             <tr>
-              <td>Horizontal</td>
+              <td>
+                <strong>Horizontal</strong>
+              </td>
               <td>
                 Multiple radio buttons may be displayed horizontally across the page while keeping them aligned within
                 their respective columns. Here, it is needed to have in consideration that the linear radio buttons

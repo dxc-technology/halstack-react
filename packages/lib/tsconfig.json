@@ -3,7 +3,13 @@
   "compilerOptions": {
     "outDir": "dist",
     "strict": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "target": "es5",
+    "module": "ESNext", // or "es2020"
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true
   },
   "include": ["src", "test", ".", ".storybook/**/*"],
   "exclude": ["node_modules", "dist", ".turbo"]

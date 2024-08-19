@@ -7,7 +7,6 @@ const config: Config = {
     "\\.(png)$": "<rootDir>/test/mocks/pngMock.ts",
   },
   testMatch: ["**/?(*.)+(spec|test).[jt]s?(x)", "!**/?(*.)+(accessibility.)(spec|test).[jt]s?(x)"],
-  transformIgnorePatterns: ["/node_modules/(?!(jest-)?@cloudscape-design)/"],
   transform: {
     "^.+\\.[tj]sx?$": "babel-jest",
   },

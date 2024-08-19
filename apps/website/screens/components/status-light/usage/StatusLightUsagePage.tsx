@@ -64,10 +64,6 @@ const sections = [
         <DxcParagraph>
           The Status light component has five different modes, each one corresponding to its semantic meaning.
         </DxcParagraph>
-        <DxcParagraph>
-          Variants: <strong>default</strong>, <strong>info</strong>, <strong>success</strong>, <strong>warning</strong>{" "}
-          and <strong>error</strong>.
-        </DxcParagraph>
         <Example example={variants} />
         <DxcTable>
           <thead>
@@ -78,23 +74,33 @@ const sections = [
           </thead>
           <tbody>
             <tr>
-              <td>Default</td>
+              <td>
+                <strong>Default</strong>
+              </td>
               <td>For neutral statuses, like archived, draft, paused...</td>
             </tr>
             <tr>
-              <td>Info</td>
+              <td>
+                <strong>Info</strong>
+              </td>
               <td>For live statuses, like active, in use, uploaded...</td>
             </tr>
             <tr>
-              <td>Success</td>
+              <td>
+                <strong>Success</strong>
+              </td>
               <td>For positive statuses, like finished, approved, completed...</td>
             </tr>
             <tr>
-              <td>Warning</td>
+              <td>
+                <strong>Warning</strong>
+              </td>
               <td>For pending or critical statuses, like scheduled, in progress, processing...</td>
             </tr>
             <tr>
-              <td>Error</td>
+              <td>
+                <strong>Error</strong>
+              </td>
               <td>For negative statuses, like incomplete, rejected, failed...</td>
             </tr>
           </tbody>
