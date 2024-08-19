@@ -2,7 +2,6 @@ import { DxcParagraph, DxcFlex } from "@dxc-technology/halstack-react";
 import PageHeading from "@/common/PageHeading";
 import TabsPageHeading from "@/common/TabsPageLayout";
 import ComponentHeading from "@/common/ComponentHeading";
-import "react-data-grid/lib/styles.css";
 
 const DataGridPageHeading = ({ children }: { children: React.ReactNode }) => {
   const tabs = [
