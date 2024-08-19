@@ -27,7 +27,7 @@ const DxcAccordion = ({
     if (isExpanded == null) {
       setInnerIsExpanded((innerIsCurrentlyExpanded) => !innerIsCurrentlyExpanded);
     }
-    onChange?.(!isExpanded ?? !innerIsExpanded);
+    onChange?.(isExpanded != null ? !isExpanded : !innerIsExpanded);
   };
 
   return (
