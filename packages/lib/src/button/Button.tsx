@@ -373,11 +373,11 @@ const getButtonStyles = (
       }
       return `${commonTertiaryStyles}
         ${enabled}
-        &:active {
-          ${active}
-        }
         &:hover {
           ${hover}
+        }
+        &:active {
+          ${active}
         }
         &:focus {
           ${focus}
