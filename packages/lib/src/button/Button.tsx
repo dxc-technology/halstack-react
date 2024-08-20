@@ -6,7 +6,7 @@ import ButtonPropsType from "./types";
 import DxcIcon from "../icon/Icon";
 import DxcTooltip from "../tooltip/Tooltip";
 
-const DxcButton = ({
+const DxcButton = ({ 
   label = "",
   mode = "primary",
   semantic = "default",
