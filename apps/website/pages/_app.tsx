@@ -11,7 +11,7 @@ import { LinksSectionDetails, LinksSections, themeGeneratorLinks } from "@/commo
 import Link from "next/link";
 import StatusBadge from "@/common/StatusBadge";
 import "../global-styles.css";
-import "/data-grid-styles.css";
+import "../public/data-grid-styles.css";
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode;
