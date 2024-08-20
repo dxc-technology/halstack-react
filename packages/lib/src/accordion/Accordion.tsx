@@ -86,7 +86,7 @@ const DxcAccordion = ({
               )}
             </AccordionInfo>
             <CollapseIndicator disabled={disabled}>
-              <DxcIcon icon={isExpanded ?? innerIsExpanded ? "expand_less" : "expand_more"} />
+              <DxcIcon icon={(isExpanded ?? innerIsExpanded) ? "expand_less" : "expand_more"} />
             </CollapseIndicator>
           </AccordionTrigger>
         </AccordionHeader>
