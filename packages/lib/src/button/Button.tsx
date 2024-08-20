@@ -373,7 +373,7 @@ const getButtonStyles = (
       }
       return `${commonTertiaryStyles}
         ${enabled}
-          &:hover {
+        &:hover {
           ${hover}
         }
         &:active {
