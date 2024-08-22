@@ -359,6 +359,7 @@ const ResultsetTableAsc = () => (
   <ExampleContainer>
     <Title title="Ascendant sorting" theme="light" level={4} />
     <DxcResultsetTable columns={columnsSortable} rows={rowsSortable} />
+    <DxcResultsetTable columns={columnsSortable} rows={rowsSortableMissingSortValues} />
   </ExampleContainer>
 );
 
@@ -366,13 +367,16 @@ export const AscendentSorting = ResultsetTableAsc.bind({});
 AscendentSorting.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const idHeader = canvas.getAllByRole("button")[0];
+  const idHeader2 = canvas.getAllByRole("button")[6];
   await userEvent.click(idHeader);
+  await userEvent.click(idHeader2);
 };
 
 const ResultsetTableDesc = () => (
   <ExampleContainer>
     <Title title="Descendant sorting" theme="light" level={4} />
     <DxcResultsetTable columns={columnsSortable} rows={rowsSortable} />
+    <DxcResultsetTable columns={columnsSortable} rows={rowsSortableMissingSortValues} />
   </ExampleContainer>
 );
 
@@ -380,37 +384,11 @@ export const DescendantSorting = ResultsetTableDesc.bind({});
 DescendantSorting.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const nameHeader = canvas.getAllByRole("button")[1];
+  const nameHeader2 = canvas.getAllByRole("button")[7];
   await userEvent.click(nameHeader);
   await userEvent.click(nameHeader);
-};
-
-const ResultsetTableAscMissing = () => (
-  <ExampleContainer>
-    <Title title="Ascendant sorting" theme="light" level={4} />
-    <DxcResultsetTable columns={columnsSortable} rows={rowsSortableMissingSortValues} />
-  </ExampleContainer>
-);
-
-export const AscendentSortingMissing = ResultsetTableAscMissing.bind({});
-AscendentSorting.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const idHeader = canvas.getAllByRole("button")[0];
-  await userEvent.click(idHeader);
-};
-
-const ResultsetTableDescMissing = () => (
-  <ExampleContainer>
-    <Title title="Descendant sorting" theme="light" level={4} />
-    <DxcResultsetTable columns={columnsSortable} rows={rowsSortableMissingSortValues} />
-  </ExampleContainer>
-);
-
-export const DescendantSortingMissing = ResultsetTableDescMissing.bind({});
-DescendantSorting.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const nameHeader = canvas.getAllByRole("button")[1];
-  await userEvent.click(nameHeader);
-  await userEvent.click(nameHeader);
+  await userEvent.click(nameHeader2);
+  await userEvent.click(nameHeader2);
 };
 
 const ResultsetTableMiddle = () => (
