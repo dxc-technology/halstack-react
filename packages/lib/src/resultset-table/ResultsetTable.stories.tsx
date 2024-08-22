@@ -384,6 +384,35 @@ DescendantSorting.play = async ({ canvasElement }) => {
   await userEvent.click(nameHeader);
 };
 
+const ResultsetTableAscMissing = () => (
+  <ExampleContainer>
+    <Title title="Ascendant sorting" theme="light" level={4} />
+    <DxcResultsetTable columns={columnsSortable} rows={rowsSortableMissingSortValues} />
+  </ExampleContainer>
+);
+
+export const AscendentSortingMissing = ResultsetTableAscMissing.bind({});
+AscendentSorting.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  const idHeader = canvas.getAllByRole("button")[0];
+  await userEvent.click(idHeader);
+};
+
+const ResultsetTableDescMissing = () => (
+  <ExampleContainer>
+    <Title title="Descendant sorting" theme="light" level={4} />
+    <DxcResultsetTable columns={columnsSortable} rows={rowsSortableMissingSortValues} />
+  </ExampleContainer>
+);
+
+export const DescendantSortingMissing = ResultsetTableDescMissing.bind({});
+DescendantSorting.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  const nameHeader = canvas.getAllByRole("button")[1];
+  await userEvent.click(nameHeader);
+  await userEvent.click(nameHeader);
+};
+
 const ResultsetTableMiddle = () => (
   <ExampleContainer>
     <Title title="Middle page" theme="light" level={4} />
