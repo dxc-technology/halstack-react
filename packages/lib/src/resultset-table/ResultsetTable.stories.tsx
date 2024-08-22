@@ -161,6 +161,21 @@ const rowsSortable = [
   ],
 ];
 
+const rowsSortableMissingSortValues = [
+  [{ displayValue: "001" }, { displayValue: "Peter" }, { displayValue: "Miami" }],
+  [{ displayValue: "002" }, { displayValue: "Louis" }, { displayValue: "London" }],
+  [
+    { displayValue: "003", sortValue: "003" },
+    { displayValue: "Aida", sortValue: "Aida" },
+    { displayValue: "Wroclaw", sortValue: "Wroclaw" },
+  ],
+  [
+    { displayValue: "004", sortValue: "004" },
+    { displayValue: "Lana", sortValue: "Lana" },
+    { displayValue: "Amsterdam", sortValue: "Amsterdam" },
+  ],
+];
+
 const longColumns = [
   { displayValue: "Column1" },
   { displayValue: "Column2" },
@@ -258,6 +273,10 @@ export const Chromatic = () => (
     <ExampleContainer>
       <Title title="Sortable table" theme="light" level={4} />
       <DxcResultsetTable columns={columnsSortable} rows={rowsSortable} />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Sortable table with missing sortValues" theme="light" level={4} />
+      <DxcResultsetTable columns={columnsSortable} rows={rowsSortableMissingSortValues} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With action" theme="light" level={4} />
