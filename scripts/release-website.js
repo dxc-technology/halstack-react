@@ -8,10 +8,7 @@ const PREVDIRECTORY = "tools/react/";
 const processListObjectsResponse = (response, directory) => {
   return response.CommonPrefixes.map((commonPrefix) => {
     const prefix = commonPrefix.Prefix;
-    return prefix.substring(
-      prefix.lastIndexOf(directory) + directory.length,
-      prefix.length - 1
-    );
+    return prefix.substring(prefix.lastIndexOf(directory) + directory.length, prefix.length - 1);
   })
     .filter((version) => version !== "latest")
     .map((version) => Number(version));
@@ -24,29 +21,23 @@ const getVersionsInS3Bucket = async () => {
   };
 
   const versionsFromPrevDirectory = await new Promise((resolve, reject) => {
-    new AWS.S3().listObjectsV2(
-      { ...params, Prefix: PREVDIRECTORY },
-      (error, data) => {
-        if (error) {
-          reject(new Error(error));
-        } else {
-          resolve(processListObjectsResponse(data, PREVDIRECTORY));
-        }
+    new AWS.S3().listObjectsV2({ ...params, Prefix: PREVDIRECTORY }, (error, data) => {
+      if (error) {
+        reject(new Error(error));
+      } else {
+        resolve(processListObjectsResponse(data, PREVDIRECTORY));
       }
-    );
+    });
   });
 
   const versions = await new Promise((resolve, reject) => {
-    new AWS.S3().listObjectsV2(
-      { ...params, Prefix: DIRECTORY },
-      (error, data) => {
-        if (error) {
-          reject(new Error(error));
-        } else {
-          resolve(processListObjectsResponse(data, DIRECTORY));
-        }
+    new AWS.S3().listObjectsV2({ ...params, Prefix: DIRECTORY }, (error, data) => {
+      if (error) {
+        reject(new Error(error));
+      } else {
+        resolve(processListObjectsResponse(data, DIRECTORY));
       }
-    );
+    });
   });
 
   return versionsFromPrevDirectory.concat(versions);
@@ -55,36 +46,30 @@ const getVersionsInS3Bucket = async () => {
 const buildSite = (version) => {
   return new Promise((resolve, reject) => {
     console.log(`Building site with version ${version}`);
-    exec(
-      `cd apps/website && NEXT_PUBLIC_SITE_VERSION=${version} npm run build`,
-      (error, stdout, stderr) => {
-        if (error) {
-          throw new Error(error.message);
-        }
-        if (stderr) {
-          throw new Error(stderr);
-        }
-        resolve(stdout);
+    exec(`cd apps/website && NEXT_PUBLIC_SITE_VERSION=${version} npm run build`, (error, stdout, stderr) => {
+      if (error) {
+        throw new Error(error.message);
       }
-    );
+      if (stderr) {
+        throw new Error(stderr);
+      }
+      resolve(stdout);
+    });
   });
 };
 
 const removeBucket = (version) => {
   return new Promise((resolve, reject) => {
     console.log(`Removing s3://${BUCKET_NAME}/${DIRECTORY}${version}/`);
-    exec(
-      `aws s3 rm s3://${BUCKET_NAME}/${DIRECTORY}${version}/ --recursive`,
-      (error, stdout, stderr) => {
-        if (error) {
-          throw new Error(error.message);
-        }
-        if (stderr) {
-          throw new Error(stderr);
-        }
-        resolve(stdout);
+    exec(`aws s3 rm s3://${BUCKET_NAME}/${DIRECTORY}${version}/ --recursive`, (error, stdout, stderr) => {
+      if (error) {
+        throw new Error(error.message);
       }
-    );
+      if (stderr) {
+        throw new Error(stderr);
+      }
+      resolve(stdout);
+    });
   });
 };
 
@@ -109,29 +94,24 @@ const moveToBucket = (version) => {
 const updateRedirectionToLatest = (version) => {
   const redirection = `window.location.replace("https://developer.dxc.com/halstack/${version}/");`;
   return new Promise((resolve, reject) => {
-    exec(
-      `echo '${redirection}' | aws s3 cp - s3://${BUCKET_NAME}/${DIRECTORY}redirect.js`,
-      (error, stdout, stderr) => {
-        if (error) {
-          throw new Error(error.message);
-        }
-        if (stderr) {
-          throw new Error(stderr);
-        }
-        resolve(stdout);
+    exec(`echo '${redirection}' | aws s3 cp - s3://${BUCKET_NAME}/${DIRECTORY}redirect.js`, (error, stdout, stderr) => {
+      if (error) {
+        throw new Error(error.message);
       }
-    );
+      if (stderr) {
+        throw new Error(stderr);
+      }
+      resolve(stdout);
+    });
   });
 };
 
 const deploy = async () => {
   const versionToDeploy = process.argv[2];
-  const majorVersionToDeploy = Number(
-    versionToDeploy.substring(0, versionToDeploy.indexOf("."))
-  );
+  const majorVersionToDeploy = Number(versionToDeploy.split(".")[0]);
   const existingVersionsInBucket = await getVersionsInS3Bucket();
   const isNewLatest = !existingVersionsInBucket.includes(majorVersionToDeploy);
-  await buildSite(majorVersionToDeploy);
+  await buildSite(versionToDeploy);
   await removeBucket(majorVersionToDeploy);
   await moveToBucket(majorVersionToDeploy);
   const listAvailableVersions = await getVersionsInS3Bucket();
@@ -154,9 +134,7 @@ const updateAvailableVersions = async (versions, currentVersion) => {
   });
   return new Promise((resolve, reject) => {
     exec(
-      `echo '${JSON.stringify(
-        versionItems
-      )}' | aws s3 cp - s3://${BUCKET_NAME}/${DIRECTORY}versions.json`,
+      `echo '${JSON.stringify(versionItems)}' | aws s3 cp - s3://${BUCKET_NAME}/${DIRECTORY}versions.json`,
       (error, stdout, stderr) => {
         if (error) {
           throw new Error(error.message);

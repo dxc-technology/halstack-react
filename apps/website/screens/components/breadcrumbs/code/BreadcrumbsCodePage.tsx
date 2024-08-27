@@ -71,7 +71,7 @@ const sections = [
           <tr>
             <td>onItemClick</td>
             <td>
-              <TableCode>number</TableCode>
+              <TableCode>{"(value: string) => void"}</TableCode>
             </td>
             <td>
               Callback for custom navigation with third-party libraries such as Next (<Code>useRouter</Code>) or React

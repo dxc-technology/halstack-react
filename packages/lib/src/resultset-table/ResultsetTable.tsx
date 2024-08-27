@@ -9,7 +9,7 @@ import useTheme from "../useTheme";
 import icons from "./Icons";
 import ResultsetTablePropsType, { Column, Row } from "./types";
 
-const normalizeSortValue = (sortValue: string | React.ReactNode) =>
+const normalizeSortValue = (sortValue: string | Date | React.ReactNode) =>
   typeof sortValue === "string" ? sortValue.toUpperCase() : sortValue;
 
 const isDateType = (value: React.ReactNode | Date): boolean => {
@@ -18,8 +18,8 @@ const isDateType = (value: React.ReactNode | Date): boolean => {
 
 const sortArray = (index: number, order: "ascending" | "descending", resultset: { id: string; cells: Row }[]) =>
   resultset.slice().sort((element1, element2) => {
-    const sortValueA = normalizeSortValue(element1.cells[index].sortValue || element1[index].displayValue);
-    const sortValueB = normalizeSortValue(element2.cells[index].sortValue || element2[index].displayValue);
+    const sortValueA = normalizeSortValue(element1?.cells[index]?.sortValue || element1?.cells[index]?.displayValue);
+    const sortValueB = normalizeSortValue(element2?.cells[index]?.sortValue || element2?.cells[index]?.displayValue);
     let comparison = 0;
     if (typeof sortValueA === "object" && !isDateType(sortValueA)) {
       comparison = -1;

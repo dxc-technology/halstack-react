@@ -6,7 +6,7 @@ import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import Image from "@/common/Image";
 import Code from "@/common/Code";
 import linkSpecs from "./images/link_specs.png";
-import linkStatesNoIcon from "./images/link_states_noIcon.png";
+import linkStates from "./images/link_states.png";
 
 const sections = [
   {
@@ -26,7 +26,7 @@ const sections = [
           <strong>visited</strong> and <strong>disabled</strong>.
         </DxcParagraph>
         <Figure caption="Link states">
-          <Image src={linkStatesNoIcon} alt="Link states" />
+          <Image src={linkStates} alt="Link states" />
         </Figure>
       </>
     ),
