@@ -6,7 +6,7 @@ import CoreTokens from "../common/coreTokens";
 
 export const ToastContext = createContext<ToastContextType | null>(null);
 
-const DxcToastsQueue = ({ children, duration = 3000, position = "bottom" }: ToastsQueuePropsType) => {
+const DxcToastsQueue = ({ children, duration = 3000 }: ToastsQueuePropsType) => {
   const [toasts, setToasts] = useState<ToastType[]>([]);
 
   const push = useCallback((toast: ToastType) => {
@@ -22,7 +22,7 @@ const DxcToastsQueue = ({ children, duration = 3000, position = "bottom" }: Toas
 
   return (
     <ToastContext.Provider value={{ push, pop }}>
-      <ToastsContainer position={position}>
+      <ToastsQueue>
         {toasts.map((t, i) => (
           <DxcToast
             key={i}
@@ -36,19 +36,19 @@ const DxcToastsQueue = ({ children, duration = 3000, position = "bottom" }: Toas
             {...t}
           />
         ))}
-      </ToastsContainer>
+      </ToastsQueue>
       {children}
     </ToastContext.Provider>
   );
 };
 
-const ToastsContainer = styled.section<{ position: ToastsQueuePropsType["position"] }>`
+const ToastsQueue = styled.section`
   position: fixed;
-  ${(props) => (props.position === "bottom" ? "bottom: 0;" : "top: 0;")}
+  bottom: 0;
   right: 0;
-  z-index: 9999;
+  z-index: 2147483647;
   display: flex;
-  flex-direction: ${(props) => (props.position === "top" ? "column-reverse" : "column")};
+  flex-direction: column-reverse;
   gap: ${CoreTokens.spacing_8};
   padding: ${CoreTokens.spacing_24};
 `;

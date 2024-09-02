@@ -59,17 +59,17 @@ const DxcToast = ({ action, icon, loading, message, onClear, semantic, showSeman
 const Toast = styled.output<{ semantic: ToastPropsType["semantic"] }>`
   min-width: 200px;
   max-width: 600px;
-  border-radius: 4px;
-  border-left: 2px solid ${({ semantic }) => getSemantic(semantic).primaryColor};
+  border-radius: ${CoreTokens.border_radius_medium};
+  border-left: ${CoreTokens.border_width_2} solid ${({ semantic }) => getSemantic(semantic).primaryColor};
   box-shadow: 0px 2px 2px 0px rgba(181, 181, 181, 0.4);
   display: inline-flex;
   justify-content: space-between;
-  gap: 24px;
-  padding: 8px 12px;
+  gap: ${CoreTokens.spacing_24};
+  padding: ${CoreTokens.spacing_8} ${CoreTokens.spacing_12};
   background-color: ${({ semantic }) => getSemantic(semantic).secondaryColor};
 
   color: ${({ semantic }) => getSemantic(semantic).primaryColor};
-  font-size: 24px;
+  font-size: ${CoreTokens.type_scale_05};
   svg {
     width: 24px;
     height: 24px;
@@ -78,7 +78,7 @@ const Toast = styled.output<{ semantic: ToastPropsType["semantic"] }>`
 
 const Message = styled.span`
   color: ${CoreTokens.color_black};
-  font-family: "Open Sans";
+  font-family: ${CoreTokens.type_sans};
   font-size: ${CoreTokens.type_scale_02};
   font-weight: ${CoreTokens.type_semibold};
   overflow: hidden;

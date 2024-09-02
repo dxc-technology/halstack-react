@@ -23,7 +23,7 @@ type WarningToast = CommonProps & {
   showSemanticIcon?: boolean;
 };
 
-type ToastsQueuePropsType = { duration?: number; position?: "top" | "bottom"; children: React.ReactNode };
+type ToastsQueuePropsType = { duration?: number; children: React.ReactNode };
 
 type Semantic = "default" | "info" | "success" | "warning";
 
