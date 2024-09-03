@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import ToastPropsType from "./types";
 import CoreTokens from "../common/coreTokens";
 import DxcButton from "../button/Button";
@@ -6,6 +6,7 @@ import DxcActionIcon from "../action-icon/ActionIcon";
 import DxcIcon from "../icon/Icon";
 import DxcFlex from "../flex/Flex";
 import DxcSpinner from "../spinner/Spinner";
+import { memo, useEffect, useState } from "react";
 
 const getSemantic = (semantic: ToastPropsType["semantic"]) => {
   switch (semantic) {
@@ -32,31 +33,69 @@ const getSemantic = (semantic: ToastPropsType["semantic"]) => {
   }
 };
 
-const DxcToast = ({ action, icon, loading, message, onClear, semantic, showSemanticIcon = true }: ToastPropsType) => (
-  <Toast semantic={semantic} role="status">
-    <DxcFlex alignItems="center" gap="0.5rem">
-      {semantic !== "default" && showSemanticIcon && <DxcIcon icon={getSemantic(semantic).icon} />}
-      {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
-      {loading && <DxcSpinner mode="small" />}
-      <Message>{message}</Message>
-    </DxcFlex>
-    <DxcFlex alignItems="center" gap="0.25rem">
-      {action && (
-        <DxcButton
-          semantic={semantic}
-          mode="tertiary"
-          size={{ height: "small" }}
-          label={action.label}
-          icon={action.icon}
-          onClick={action.onClick}
-        />
-      )}
-      <DxcActionIcon icon="clear" title="Clear toast" onClick={onClear} />
-    </DxcFlex>
-  </Toast>
-);
+const DxcToast = ({
+  action,
+  icon,
+  loading,
+  message,
+  onClear,
+  semantic,
+  showSemanticIcon = true,
+  visible,
+}: ToastPropsType) => {
+  const [animationEnds, setAnimationEnds] = useState(false);
 
-const Toast = styled.output<{ semantic: ToastPropsType["semantic"] }>`
+  useEffect(() => {
+    if (visible) {
+      setTimeout(() => {
+        setAnimationEnds(true);
+      }, 300);
+    }
+  }, [visible]);
+
+  return (
+    <Toast semantic={semantic} visible={visible} animationEnds={animationEnds} role="status">
+      <DxcFlex alignItems="center" gap="0.5rem">
+        {semantic !== "default" && showSemanticIcon && <DxcIcon icon={getSemantic(semantic).icon} />}
+        {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
+        {loading && <DxcSpinner mode="small" />}
+        <Message>{message}</Message>
+      </DxcFlex>
+      <DxcFlex alignItems="center" gap="0.25rem">
+        {action && (
+          <DxcButton
+            semantic={semantic}
+            mode="tertiary"
+            size={{ height: "small" }}
+            label={action.label}
+            icon={action.icon}
+            onClick={action.onClick}
+          />
+        )}
+        <DxcActionIcon icon="clear" title="Clear toast" onClick={onClear} />
+      </DxcFlex>
+    </Toast>
+  );
+};
+
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
+
+const fadeOut = keyframes`
+  to {
+    opacity: 0;
+  }
+`;
+
+const Toast = styled.output<{ semantic: ToastPropsType["semantic"]; visible: boolean; animationEnds: boolean }>`
   min-width: 200px;
   max-width: 600px;
   border-radius: ${CoreTokens.border_radius_medium};
@@ -67,6 +106,8 @@ const Toast = styled.output<{ semantic: ToastPropsType["semantic"] }>`
   gap: ${CoreTokens.spacing_24};
   padding: ${CoreTokens.spacing_8} ${CoreTokens.spacing_12};
   background-color: ${({ semantic }) => getSemantic(semantic).secondaryColor};
+  animation: ${({ visible, animationEnds }) => (visible ? !animationEnds && fadeIn : fadeOut)} .3s ease forwards;
+  pointer-events: ${({ visible }) => (visible ? "auto" : "none")};
 
   color: ${({ semantic }) => getSemantic(semantic).primaryColor};
   font-size: ${CoreTokens.type_scale_05};
@@ -85,4 +126,4 @@ const Message = styled.span`
   text-overflow: ellipsis;
 `;
 
-export default DxcToast;
+export default memo(DxcToast);

@@ -5,7 +5,7 @@ import { CommonProps, DefaultToast, InformationToast, Semantic, SuccessToast, Wa
 const useToast = () => {
   const { push } = useContext(ToastContext);
   const show = <T extends CommonProps>(toast: T, semantic: Semantic) => {
-    push({ ...toast, semantic });
+    push(toast, semantic);
   };
 
   return {

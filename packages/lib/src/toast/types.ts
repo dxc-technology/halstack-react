@@ -27,10 +27,16 @@ type ToastsQueuePropsType = { duration?: number; children: React.ReactNode };
 
 type Semantic = "default" | "info" | "success" | "warning";
 
-type ToastType = (DefaultToast | InformationToast | SuccessToast | WarningToast) & { semantic: Semantic };
+type ToastType = DefaultToast | InformationToast | SuccessToast | WarningToast;
+
+type ToastQueueType = ToastType & {
+  semantic: Semantic;
+  timeoutID: ReturnType<typeof setTimeout>;
+  visible: boolean;
+};
 
 type ToastContextType = {
-  push: (toast: ToastType) => void;
+  push: (toast: ToastType, semantic: Semantic) => void;
   pop: () => void;
 };
 
@@ -42,6 +48,7 @@ type ToastPropsType = {
   onClear: () => void;
   semantic: Semantic;
   showSemanticIcon?: boolean;
+  visible: boolean;
 };
 
 export default ToastPropsType;
@@ -54,6 +61,7 @@ export type {
   SuccessToast,
   ToastContextType,
   ToastsQueuePropsType,
+  ToastQueueType,
   ToastType,
   WarningToast,
 };
