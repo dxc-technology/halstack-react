@@ -14,6 +14,7 @@ const ToastsQueue = styled.section`
   z-index: 2147483647;
   display: flex;
   flex-direction: column;
+  align-items: flex-end;
   gap: ${CoreTokens.spacing_8};
   padding: ${CoreTokens.spacing_24};
 `;
@@ -21,7 +22,7 @@ const ToastsQueue = styled.section`
 const DxcToastsQueue = ({ children, duration = 3000 }: ToastsQueuePropsType) => {
   const [toasts, setToasts] = useState<ToastQueueType[]>([]);
   const [isMounted, setIsMounted] = useState(false); // Next.js SSR mounting issue
-  const delay = useMemo(() => duration > 5000 ? 5000 : duration < 3000 ? 3000 : duration, [duration]);
+  const delay = useMemo(() => (duration > 5000 ? 5000 : duration < 3000 ? 3000 : duration), [duration]);
 
   const add = useCallback(
     (toast: ToastType, semantic: Semantic) => {
