@@ -20,19 +20,19 @@ export const Chromatic = () => (
   <>
     <ExampleContainer>
       <Title title="Default" theme="light" level={4} />
-      <DxcToast message="This is a toast." semantic="default" action={action} onClear={onClear} />
+      <DxcToast delay={3000} message="This is a toast." semantic="default" action={action} onClear={onClear} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Info" theme="light" level={4} />
-      <DxcToast message="This is an info toast." semantic="info" action={action} onClear={onClear} />
+      <DxcToast delay={3000} message="This is an info toast." semantic="info" action={action} onClear={onClear} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Success" theme="light" level={4} />
-      <DxcToast message="This is a success toast." semantic="success" action={action} onClear={onClear} />
+      <DxcToast delay={3000} message="This is a success toast." semantic="success" action={action} onClear={onClear} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Warning" theme="light" level={4} />
-      <DxcToast message="This is a warning toast." semantic="warning" action={action} onClear={onClear} />
+      <DxcToast delay={3000} message="This is a warning toast." semantic="warning" action={action} onClear={onClear} />
     </ExampleContainer>
   </>
 );

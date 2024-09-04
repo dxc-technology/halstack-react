@@ -30,25 +30,23 @@ type Semantic = "default" | "info" | "success" | "warning";
 type ToastType = DefaultToast | InformationToast | SuccessToast | WarningToast;
 
 type ToastQueueType = ToastType & {
+  id: string;
   semantic: Semantic;
-  timeoutID: ReturnType<typeof setTimeout>;
-  visible: boolean;
 };
 
 type ToastContextType = {
-  push: (toast: ToastType, semantic: Semantic) => void;
-  pop: () => void;
+  add: (toast: ToastType, semantic: Semantic) => void;
 };
 
 type ToastPropsType = {
   action?: Action;
+  delay: number;
   icon?: string | SVG;
   loading?: boolean;
   message: string;
   onClear: () => void;
   semantic: Semantic;
   showSemanticIcon?: boolean;
-  visible: boolean;
 };
 
 export default ToastPropsType;

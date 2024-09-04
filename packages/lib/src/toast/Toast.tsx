@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import ToastPropsType from "./types";
 import CoreTokens from "../common/coreTokens";
 import DxcButton from "../button/Button";
@@ -7,6 +7,7 @@ import DxcIcon from "../icon/Icon";
 import DxcFlex from "../flex/Flex";
 import DxcSpinner from "../spinner/Spinner";
 import { memo, useEffect, useState } from "react";
+import useTimeout from "../utils/useTimeout";
 
 const getSemantic = (semantic: ToastPropsType["semantic"]) => {
   switch (semantic) {
@@ -33,6 +34,41 @@ const getSemantic = (semantic: ToastPropsType["semantic"]) => {
   }
 };
 
+const Message = styled.span`
+  color: ${CoreTokens.color_black};
+  font-family: ${CoreTokens.type_sans};
+  font-size: ${CoreTokens.type_scale_02};
+  font-weight: ${CoreTokens.type_semibold};
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
+
+const Toast = styled.output<{ semantic: ToastPropsType["semantic"]; isVisible: boolean; isClosing: boolean }>`
+  min-width: 200px;
+  max-width: 600px;
+  border-radius: ${CoreTokens.border_radius_medium};
+  border-left: ${CoreTokens.border_width_2} solid ${({ semantic }) => getSemantic(semantic).primaryColor};
+  box-shadow: 0px 2px 2px 0px rgba(181, 181, 181, 0.4);
+  display: inline-flex;
+  justify-content: space-between;
+  gap: ${CoreTokens.spacing_24};
+  padding: ${CoreTokens.spacing_8} ${CoreTokens.spacing_12};
+  background-color: ${({ semantic }) => getSemantic(semantic).secondaryColor};
+
+  transform: translateY(${({ isVisible }) => (isVisible ? "0" : "100%")});
+  transition:
+    transform 0.3s ease-out,
+    opacity 0.3s ease-in;
+  ${({ isClosing }) => isClosing && "opacity: 0; pointer-events: none;"}
+
+  color: ${({ semantic }) => getSemantic(semantic).primaryColor};
+  font-size: ${CoreTokens.type_scale_05};
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+`;
+
 const DxcToast = ({
   action,
   icon,
@@ -41,20 +77,25 @@ const DxcToast = ({
   onClear,
   semantic,
   showSemanticIcon = true,
-  visible,
+  delay,
 }: ToastPropsType) => {
-  const [animationEnds, setAnimationEnds] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+  const [isClosing, setIsClosing] = useState(false);
 
   useEffect(() => {
-    if (visible) {
-      setTimeout(() => {
-        setAnimationEnds(true);
-      }, 300);
-    }
-  }, [visible]);
+    setIsVisible(true);
+  }, []);
+
+  const clearClosingAnimationTimer = useTimeout(() => {
+    setIsClosing(true);
+  }, delay - 300);
+
+  const clearTimer = useTimeout(() => {
+    onClear();
+  }, delay);
 
   return (
-    <Toast semantic={semantic} visible={visible} animationEnds={animationEnds} role="status">
+    <Toast semantic={semantic} isVisible={isVisible} isClosing={isClosing} role="status">
       <DxcFlex alignItems="center" gap="0.5rem">
         {semantic !== "default" && showSemanticIcon && <DxcIcon icon={getSemantic(semantic).icon} />}
         {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
@@ -72,58 +113,22 @@ const DxcToast = ({
             onClick={action.onClick}
           />
         )}
-        <DxcActionIcon icon="clear" title="Clear toast" onClick={onClear} />
+        <DxcActionIcon
+          icon="clear"
+          title="Clear toast"
+          onClick={() => {
+            clearClosingAnimationTimer();
+            clearTimer();
+
+            setIsClosing(true);
+            setTimeout(() => {
+              onClear();
+            }, 300);
+          }}
+        />
       </DxcFlex>
     </Toast>
   );
 };
-
-const fadeIn = keyframes`
-  from {
-    opacity: 0;
-    transform: translateY(24px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-`;
-
-const fadeOut = keyframes`
-  to {
-    opacity: 0;
-  }
-`;
-
-const Toast = styled.output<{ semantic: ToastPropsType["semantic"]; visible: boolean; animationEnds: boolean }>`
-  min-width: 200px;
-  max-width: 600px;
-  border-radius: ${CoreTokens.border_radius_medium};
-  border-left: ${CoreTokens.border_width_2} solid ${({ semantic }) => getSemantic(semantic).primaryColor};
-  box-shadow: 0px 2px 2px 0px rgba(181, 181, 181, 0.4);
-  display: inline-flex;
-  justify-content: space-between;
-  gap: ${CoreTokens.spacing_24};
-  padding: ${CoreTokens.spacing_8} ${CoreTokens.spacing_12};
-  background-color: ${({ semantic }) => getSemantic(semantic).secondaryColor};
-  animation: ${({ visible, animationEnds }) => (visible ? !animationEnds && fadeIn : fadeOut)} .3s ease forwards;
-  pointer-events: ${({ visible }) => (visible ? "auto" : "none")};
-
-  color: ${({ semantic }) => getSemantic(semantic).primaryColor};
-  font-size: ${CoreTokens.type_scale_05};
-  svg {
-    width: 24px;
-    height: 24px;
-  }
-`;
-
-const Message = styled.span`
-  color: ${CoreTokens.color_black};
-  font-family: ${CoreTokens.type_sans};
-  font-size: ${CoreTokens.type_scale_02};
-  font-weight: ${CoreTokens.type_semibold};
-  overflow: hidden;
-  text-overflow: ellipsis;
-`;
 
 export default memo(DxcToast);

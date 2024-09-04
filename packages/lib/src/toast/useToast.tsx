@@ -3,9 +3,9 @@ import { ToastContext } from "./ToastsQueue";
 import { CommonProps, DefaultToast, InformationToast, Semantic, SuccessToast, WarningToast } from "./types";
 
 const useToast = () => {
-  const { push } = useContext(ToastContext);
+  const { add } = useContext(ToastContext);
   const show = <T extends CommonProps>(toast: T, semantic: Semantic) => {
-    push(toast, semantic);
+    add(toast, semantic);
   };
 
   return {
