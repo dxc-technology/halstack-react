@@ -18,7 +18,9 @@ const DxcTab = forwardRef(
       iconPosition,
       tabIndex,
       focusedLabel,
+      isControlled,
       activeLabel,
+      hasLabelAndIcon,
       setActiveLabel,
       setActiveIndicatorWidth,
       setActiveIndicatorLeft,
@@ -52,7 +54,7 @@ const DxcTab = forwardRef(
         tabIndex={activeLabel === label && !disabled ? tabIndex : -1}
         disabled={disabled}
         aria-selected={activeLabel === label}
-        hasLabelAndIcon={!!label && !!icon}
+        hasLabelAndIcon={hasLabelAndIcon}
         iconPosition={iconPosition}
         ref={(anchorRef) => {
           tabRef.current = anchorRef;
@@ -63,7 +65,7 @@ const DxcTab = forwardRef(
           }
         }}
         onClick={() => {
-          setActiveLabel(label);
+          if (!isControlled) setActiveLabel(label);
           onClick();
         }}
         onMouseEnter={() => onHover()}
@@ -71,12 +73,12 @@ const DxcTab = forwardRef(
       >
         <MainLabelContainer
           notificationNumber={notificationNumber}
-          hasLabelAndIcon={!!label && !!icon}
+          hasLabelAndIcon={hasLabelAndIcon}
           iconPosition={iconPosition}
           disabled={disabled}
         >
           {icon && (
-            <TabIconContainer hasLabelAndIcon={!!label && !!icon} iconPosition={iconPosition}>
+            <TabIconContainer hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
               {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
             </TabIconContainer>
           )}
@@ -100,7 +102,7 @@ const DxcTab = forwardRef(
           </BaseTypography>
         </MainLabelContainer>
         {notificationNumber && !disabled && (
-          <BadgeContainer hasLabelAndIcon={!!label && !!icon} iconPosition={iconPosition}>
+          <BadgeContainer hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
             <DxcBadge
               mode="notification"
               size="small"
@@ -187,6 +189,8 @@ const BadgeContainer = styled.div<{
   height: 100%;
   display: flex;
   align-items: ${(props) => (props.hasLabelAndIcon && props.iconPosition === "top" ? "flex-start" : "center")};
+  justify-content: flex-start;
+  flex-direction: column;
 `;
 
 const MainLabelContainer = styled.div<{

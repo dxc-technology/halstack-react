@@ -211,6 +211,16 @@ const sections = [
                 </td>
               </tr>
               <tr>
+                <td>defaultActive</td>
+                <td>
+                  <TableCode>boolean</TableCode>
+                </td>
+                <td>Whether the tab is active or not, but mantaining the uncontrolled behaviour.</td>
+                <td>
+                  <TableCode>false</TableCode>
+                </td>
+              </tr>
+              <tr>
                 <td>disabled</td>
                 <td>
                   <TableCode>boolean</TableCode>

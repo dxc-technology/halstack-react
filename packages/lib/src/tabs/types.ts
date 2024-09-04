@@ -26,8 +26,10 @@ export type TabsContextProps = {
   iconPosition: "top" | "left";
   tabIndex: number;
   focusedLabel: string;
+  isControlled: boolean;
   // setFocusedLabel: (_tab: string) => void;
   activeLabel: string;
+  hasLabelAndIcon: boolean;
   setActiveLabel: (_tab: string) => void;
   setActiveIndicatorWidth: (_width: number) => void;
   setActiveIndicatorLeft: (_left: number) => void;
@@ -67,6 +69,7 @@ export type TabPropsLegacy = {
 };
 
 export type TabProps = {
+  defaultActive?: boolean;
   active?: boolean;
   icon?: string | SVG;
   label?: string;

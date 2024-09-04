@@ -54,19 +54,19 @@ const DxcTabs = ({
   tabIndex = 0,
   children,
 }: TabsPropsType): JSX.Element => {
-  const hasLabelAndIcon = Children.toArray(children).some((child) => {
-    if (isValidElement(child)) {
-      return !!child.props.label && !!child.props.icon;
-    }
-    return false;
+  const hasLabelAndIcon = Children.toArray(children).some((tab) => {
+    return isValidElement(tab) && tab.props.label && tab.props.icon;
   });
 
   const childrenArray: ReactElement<TabProps>[] = Children.toArray(children) as ReactElement<TabProps>[];
 
-  const hasActiveChild = childrenArray.some((child) => isValidElement(child) && child.props.active);
-
+  const hasActiveChild = childrenArray.some(
+    (child) => isValidElement(child) && (child.props.active || child.props.defaultActive) && !child.props.disabled
+  );
   const initialActiveTab = hasActiveChild
-    ? childrenArray.find((child) => isValidElement(child) && child.props.active)
+    ? childrenArray.find(
+        (child) => isValidElement(child) && (child.props.active || child.props.defaultActive) && !child.props.disabled
+      )
     : childrenArray.find((child) => isValidElement(child) && !child.props.disabled);
 
   const initialActiveTabLabel = isValidElement(initialActiveTab) ? initialActiveTab.props.label : "";
@@ -94,7 +94,6 @@ const DxcTabs = ({
     return false;
   });
 
-  // TODO: Figure out a way to handle scroll with Compound Components
   useEffect(() => {
     setTotalTabsWidth(refTabList?.current?.firstElementChild?.offsetWidth);
   }, [refTabList]);
@@ -109,7 +108,9 @@ const DxcTabs = ({
       iconPosition,
       tabIndex,
       focusedLabel: isValidElement(focusedChild) && focusedChild.props.label,
+      isControlled: childrenArray.some((child) => isValidElement(child) && typeof child.props.active !== "undefined"),
       activeLabel: activeTabLabel,
+      hasLabelAndIcon: hasLabelAndIcon,
       setActiveLabel: setActiveTabLabel,
       setActiveIndicatorWidth,
       setActiveIndicatorLeft,
