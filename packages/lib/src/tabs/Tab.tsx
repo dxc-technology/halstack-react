@@ -9,7 +9,15 @@ import { TabProps, TabsContextProps } from "./types";
 
 const DxcTab = forwardRef(
   (
-    { icon, label, disabled = false, notificationNumber = false, onClick = () => {}, onHover = () => {} }: TabProps,
+    {
+      icon,
+      label,
+      disabled = false,
+      active,
+      notificationNumber = false,
+      onClick = () => {},
+      onHover = () => {},
+    }: TabProps,
     ref: Ref<HTMLButtonElement>
   ): JSX.Element => {
     const tabRef = useRef<HTMLButtonElement>();
@@ -36,6 +44,10 @@ const DxcTab = forwardRef(
         setActiveIndicatorLeft(tabRef?.current?.offsetLeft);
       }
     }, [activeLabel]);
+
+    useEffect(() => {
+      if (active) setActiveLabel(label);
+    }, [active]);
 
     const handleOnKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
       switch (event.key) {
