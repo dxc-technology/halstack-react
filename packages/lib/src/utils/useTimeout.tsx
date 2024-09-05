@@ -1,6 +1,6 @@
 import { useRef, useCallback, useEffect } from "react";
 
-type UseTimeoutType = (callback: () => void, delay: number) => () => void;
+type UseTimeoutType = (callback: () => void, delay?: number) => () => void;
 
 /**
  * Custom hook to handle setTimeout in a declarative way.
@@ -20,8 +20,10 @@ const useTimeout: UseTimeoutType = (callback, delay) => {
   }, [callback]);
 
   useEffect(() => {
-    timerRef.current = setTimeout(savedCallback.current!, delay);
-    return clearTimerCallback;
+    if (delay != null) {
+      timerRef.current = setTimeout(savedCallback.current, delay);
+      return clearTimerCallback;
+    }
   }, [delay, clearTimerCallback]);
 
   return clearTimerCallback;

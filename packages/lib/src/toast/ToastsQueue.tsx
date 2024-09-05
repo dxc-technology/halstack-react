@@ -26,7 +26,7 @@ const DxcToastsQueue = ({ children, duration = 3000 }: ToastsQueuePropsType) => 
 
   const add = useCallback(
     (toast: ToastType, semantic: Semantic) => {
-      const id = Math.random().toString(36).slice(2);
+      const id = `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
       setToasts((prevToasts) => [...prevToasts, { id, semantic, ...toast }].slice(-5));
     },
     [duration]
@@ -36,12 +36,16 @@ const DxcToastsQueue = ({ children, duration = 3000 }: ToastsQueuePropsType) => 
     setToasts((prevToasts) => prevToasts.filter((toast) => toast.id !== id));
   }, []);
 
+  const removeAll = useCallback(() => {
+    setToasts([]);
+  }, []);
+
   useEffect(() => {
     setIsMounted(true);
   }, []);
 
   return (
-    <ToastContext.Provider value={{ add }}>
+    <ToastContext.Provider value={{ add, removeAll }}>
       {isMounted &&
         createPortal(
           <ToastsQueue>

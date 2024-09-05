@@ -8,28 +8,7 @@ import DxcFlex from "../flex/Flex";
 import DxcSpinner from "../spinner/Spinner";
 import { memo, useEffect, useState } from "react";
 import useTimeout from "../utils/useTimeout";
-
-const fadeInUp = keyframes`
-  0% {
-    transform: translateY(100%);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-`;
-
-const fadeOutDown = keyframes`
-  0% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(100%);
-    opacity: 0;
-  }
-`;
+import { HalstackProvider } from "../HalstackContext";
 
 const getSemantic = (semantic: ToastPropsType["semantic"]) => {
   switch (semantic) {
@@ -56,6 +35,19 @@ const getSemantic = (semantic: ToastPropsType["semantic"]) => {
   }
 };
 
+const ContentContainer = styled.div<{ loading: ToastPropsType["loading"] }>`
+  display: flex;
+  align-items: center;
+  gap: ${CoreTokens.spacing_8};
+  overflow: hidden;
+
+  ${({ loading }) => !loading && `font-size: ${CoreTokens.type_scale_05}`};
+  > svg {
+    width: 24px;
+    height: 24px;
+  }
+`;
+
 const Message = styled.span`
   color: ${CoreTokens.color_black};
   font-family: ${CoreTokens.type_sans};
@@ -66,11 +58,26 @@ const Message = styled.span`
   white-space: nowrap;
 `;
 
-const ContentContainer = styled.div`
-  display: flex;
-  align-items: center;
-  gap: ${CoreTokens.spacing_8};
-  overflow: hidden;
+const fadeInUp = keyframes`
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+`;
+
+const fadeOutDown = keyframes`
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
 `;
 
 const Toast = styled.output<{ semantic: ToastPropsType["semantic"]; isVisible: boolean; isClosing: boolean }>`
@@ -89,13 +96,13 @@ const Toast = styled.output<{ semantic: ToastPropsType["semantic"]; isVisible: b
 
   animation: ${({ isVisible, isClosing }) => (isClosing ? fadeOutDown : isVisible ? fadeInUp : "none")} 0.3s ease
     forwards;
-
-  font-size: ${CoreTokens.type_scale_05};
-  svg {
-    width: 24px;
-    height: 24px;
-  }
 `;
+
+const spinnerTheme = {
+  spinner: {
+    accentColor: getSemantic("info").primaryColor,
+  },
+};
 
 const DxcToast = ({
   action,
@@ -114,20 +121,33 @@ const DxcToast = ({
     setIsVisible(true);
   }, []);
 
-  const clearClosingAnimationTimer = useTimeout(() => {
-    setIsClosing(true);
-  }, delay - 300);
+  const clearClosingAnimationTimer = useTimeout(
+    () => {
+      setIsClosing(true);
+    },
+    loading ? null : delay - 300
+  );
 
-  const clearTimer = useTimeout(() => {
-    onClear();
-  }, delay);
+  const clearTimer = useTimeout(
+    () => {
+      onClear();
+    },
+    loading ? null : delay
+  );
 
   return (
     <Toast semantic={semantic} isVisible={isVisible} isClosing={isClosing} role="status">
-      <ContentContainer>
-        {semantic !== "default" && showSemanticIcon && <DxcIcon icon={getSemantic(semantic).icon} />}
-        {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
-        {loading && <DxcSpinner mode="small" />}
+      <ContentContainer loading={loading}>
+        {(() => {
+          if (semantic === "default") return typeof icon === "string" ? <DxcIcon icon={icon} /> : icon;
+          else if (semantic === "info" && loading)
+            return (
+              <HalstackProvider theme={spinnerTheme}>
+                <DxcSpinner mode="small" />
+              </HalstackProvider>
+            );
+          else return showSemanticIcon && <DxcIcon icon={getSemantic(semantic).icon} />;
+        })()}
         <Message>{message}</Message>
       </ContentContainer>
       <DxcFlex alignItems="center" gap="0.25rem">
@@ -145,9 +165,10 @@ const DxcToast = ({
           icon="clear"
           title="Clear toast"
           onClick={() => {
-            clearClosingAnimationTimer();
-            clearTimer();
-
+            if (!loading) {
+              clearClosingAnimationTimer();
+              clearTimer();
+            }
             setIsClosing(true);
             setTimeout(() => {
               onClear();

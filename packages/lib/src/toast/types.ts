@@ -36,6 +36,7 @@ type ToastQueueType = ToastType & {
 
 type ToastContextType = {
   add: (toast: ToastType, semantic: Semantic) => void;
+  removeAll: () => void;
 };
 
 type ToastPropsType = {
