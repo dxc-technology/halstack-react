@@ -4,12 +4,13 @@ import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
 import Code from "@/common/Code";
 import Example from "@/common/example/Example";
-import controlled from "./examplesOld/controlled";
-import uncontrolled from "./examplesOld/uncontrolled";
-import iconsOld from "./examplesOld/icons";
+import controlledLegacy from "./examplesOld/controlled";
+import uncontrolledLegacy from "./examplesOld/uncontrolled";
+import iconsLegacy from "./examplesOld/icons";
 import TableCode from "@/common/TableCode";
 import StatusBadge from "@/common/StatusBadge";
-import basicUsage from "./examplesNew/basicUsage";
+import controlled from "./examplesNew/controlled";
+import uncontrolled from "./examplesNew/uncontrolled";
 import icons from "./examplesNew/icons";
 
 const sections = [
@@ -215,7 +216,7 @@ const sections = [
                 <td>
                   <TableCode>boolean</TableCode>
                 </td>
-                <td>Whether the tab is active or not, but mantaining the uncontrolled behaviour.</td>
+                <td>Whether the tab is active or not by default, but mantaining the uncontrolled behaviour.</td>
                 <td>
                   <TableCode>false</TableCode>
                 </td>
@@ -308,20 +309,7 @@ const sections = [
     ],
   },
   {
-    title: "Examples (New)",
-    subSections: [
-      {
-        title: "Basic Usage",
-        content: <Example example={basicUsage} defaultIsVisible />,
-      },
-      {
-        title: "Icons and notifications",
-        content: <Example example={icons} defaultIsVisible />,
-      },
-    ],
-  },
-  {
-    title: "Examples (Old)",
+    title: "Examples",
     subSections: [
       {
         title: "Controlled",
@@ -333,7 +321,24 @@ const sections = [
       },
       {
         title: "Icons and notifications",
-        content: <Example example={iconsOld} defaultIsVisible />,
+        content: <Example example={icons} defaultIsVisible />,
+      },
+    ],
+  },
+  {
+    title: "Examples (Legacy)",
+    subSections: [
+      {
+        title: "Controlled",
+        content: <Example example={controlledLegacy} defaultIsVisible />,
+      },
+      {
+        title: "Uncontrolled",
+        content: <Example example={uncontrolledLegacy} defaultIsVisible />,
+      },
+      {
+        title: "Icons and notifications",
+        content: <Example example={iconsLegacy} defaultIsVisible />,
       },
     ],
   },
