@@ -1,9 +1,9 @@
 import { createContext, useCallback, useEffect, useMemo, useState } from "react";
-import DxcToast from "./Toast";
-import styled from "styled-components";
-import { ToastType, ToastContextType, ToastsQueuePropsType, Semantic, ToastQueueType } from "./types";
-import CoreTokens from "../common/coreTokens";
 import { createPortal } from "react-dom";
+import styled from "styled-components";
+import CoreTokens from "../common/coreTokens";
+import DxcToast from "./Toast";
+import { QueuedToast, Semantic, ToastContextType, ToastsQueuePropsType, ToastType } from "./types";
 
 export const ToastContext = createContext<ToastContextType | null>(null);
 
@@ -20,7 +20,7 @@ const ToastsQueue = styled.section`
 `;
 
 const DxcToastsQueue = ({ children, duration = 3000 }: ToastsQueuePropsType) => {
-  const [toasts, setToasts] = useState<ToastQueueType[]>([]);
+  const [toasts, setToasts] = useState<QueuedToast[]>([]);
   const [isMounted, setIsMounted] = useState(false); // Next.js SSR mounting issue
   const delay = useMemo(() => (duration > 5000 ? 5000 : duration < 3000 ? 3000 : duration), [duration]);
 
@@ -28,6 +28,7 @@ const DxcToastsQueue = ({ children, duration = 3000 }: ToastsQueuePropsType) => 
     (toast: ToastType, semantic: Semantic) => {
       const id = `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
       setToasts((prevToasts) => [...prevToasts, { id, semantic, ...toast }].slice(-5));
+      return () => remove(id);
     },
     [duration]
   );
@@ -36,16 +37,12 @@ const DxcToastsQueue = ({ children, duration = 3000 }: ToastsQueuePropsType) => 
     setToasts((prevToasts) => prevToasts.filter((toast) => toast.id !== id));
   }, []);
 
-  const removeAll = useCallback(() => {
-    setToasts([]);
-  }, []);
-
   useEffect(() => {
     setIsMounted(true);
   }, []);
 
   return (
-    <ToastContext.Provider value={{ add, removeAll }}>
+    <ToastContext.Provider value={{ add }}>
       {isMounted &&
         createPortal(
           <ToastsQueue>

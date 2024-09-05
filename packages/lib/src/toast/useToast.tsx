@@ -1,19 +1,26 @@
 import { useContext } from "react";
 import { ToastContext } from "./ToastsQueue";
-import { CommonProps, DefaultToast, InformationToast, Semantic, SuccessToast, WarningToast } from "./types";
+import { ToastType, DefaultToast, Semantic, SemanticToast } from "./types";
 
 const useToast = () => {
-  const { add, removeAll } = useContext(ToastContext);
-  const show = <T extends CommonProps>(toast: T, semantic: Semantic) => {
-    add(toast, semantic);
-  };
+  const { add } = useContext(ToastContext);
+
+  const show = <T extends ToastType>(toast: T, semantic: Semantic) => add(toast, semantic);
 
   return {
-    default: (toast: DefaultToast) => show(toast, "default"),
-    info: (toast: InformationToast) => show(toast, "info"),
-    success: (toast: SuccessToast) => show(toast, "success"),
-    warning: (toast: WarningToast) => show(toast, "warning"),
-    destroy: removeAll,
+    default: (toast: DefaultToast) => {
+      show(toast, "default");
+    },
+    info: (toast: SemanticToast) => {
+      show(toast, "info");
+    },
+    success: (toast: SemanticToast) => {
+      show(toast, "success");
+    },
+    warning: (toast: SemanticToast) => {
+      show(toast, "warning");
+    },
+    loading: (toast: SemanticToast) => show({ ...toast, loading: true }, "info"),
   };
 };
 

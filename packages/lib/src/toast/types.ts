@@ -12,31 +12,23 @@ type CommonProps = {
 type DefaultToast = CommonProps & {
   icon?: string | SVG;
 };
-type SuccessToast = CommonProps & {
+type LoadingToast = SemanticToast & {
+  loading: boolean;
+};
+type SemanticToast = CommonProps & {
   showSemanticIcon?: boolean;
 };
-type InformationToast = CommonProps & {
-  loading?: boolean;
-  showSemanticIcon?: boolean;
-};
-type WarningToast = CommonProps & {
-  showSemanticIcon?: boolean;
-};
-
-type ToastsQueuePropsType = { duration?: number; children: React.ReactNode };
+type ToastType = DefaultToast | LoadingToast | SemanticToast;
 
 type Semantic = "default" | "info" | "success" | "warning";
 
-type ToastType = DefaultToast | InformationToast | SuccessToast | WarningToast;
-
-type ToastQueueType = ToastType & {
+type QueuedToast = ToastType & {
   id: string;
   semantic: Semantic;
 };
 
 type ToastContextType = {
-  add: (toast: ToastType, semantic: Semantic) => void;
-  removeAll: () => void;
+  add: (toast: ToastType, semantic: Semantic) => () => void;
 };
 
 type ToastPropsType = {
@@ -50,17 +42,17 @@ type ToastPropsType = {
   showSemanticIcon?: boolean;
 };
 
-export default ToastPropsType;
+type ToastsQueuePropsType = { duration?: number; children: React.ReactNode };
 
+export default ToastPropsType;
 export type {
   CommonProps,
   DefaultToast,
-  InformationToast,
+  LoadingToast,
+  QueuedToast,
   Semantic,
-  SuccessToast,
+  SemanticToast,
   ToastContextType,
   ToastsQueuePropsType,
-  ToastQueueType,
   ToastType,
-  WarningToast,
 };
