@@ -170,7 +170,6 @@ const DxcTabs = ({
         break;
       case "Tab":
         if (activeTab !== innerFocusIndex) {
-          console.log("INNERFOCUS", activeTab);
           setInnerFocusIndex(activeTab);
         }
         break;

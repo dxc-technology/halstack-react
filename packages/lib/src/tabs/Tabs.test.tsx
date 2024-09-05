@@ -4,7 +4,7 @@ import DxcTabs from "./Tabs";
 
 const sampleTabs = (
   <DxcTabs>
-    <DxcTabs.Tab label="Tab-1" notificationNumber={10} active>
+    <DxcTabs.Tab label="Tab-1" notificationNumber={10} defaultActive>
       <></>
     </DxcTabs.Tab>
     <DxcTabs.Tab label="Tab-2" notificationNumber={20}>
@@ -23,7 +23,7 @@ const sampleTabsWithBadge = (
     <DxcTabs.Tab label="Tab-2" notificationNumber={20}>
       <></>
     </DxcTabs.Tab>
-    <DxcTabs.Tab label="Tab-3" notificationNumber={101} active>
+    <DxcTabs.Tab label="Tab-3" notificationNumber={101} defaultActive>
       <></>
     </DxcTabs.Tab>
   </DxcTabs>
@@ -41,7 +41,7 @@ const sampleTabsFirstDisabled = (
 );
 const sampleTabsInteraction = (onTabClick: (() => void)[]) => (
   <DxcTabs>
-    <DxcTabs.Tab label="Tab-1" onClick={onTabClick[0]} active>
+    <DxcTabs.Tab label="Tab-1" onClick={onTabClick[0]} defaultActive>
       <></>
     </DxcTabs.Tab>
     <DxcTabs.Tab label="Tab-2" onClick={onTabClick[1]}>
@@ -72,6 +72,20 @@ const sampleTabsLastTabNonDisabledFirstActive = (onTabClick: (() => void)[]) => 
       <></>
     </DxcTabs.Tab>
     <DxcTabs.Tab label="Tab-2" onClick={onTabClick[1]} disabled>
+      <></>
+    </DxcTabs.Tab>
+    <DxcTabs.Tab label="Tab-3" onClick={onTabClick[2]}>
+      <></>
+    </DxcTabs.Tab>
+  </DxcTabs>
+);
+
+const sampleControlledTabsInteraction = (onTabClick: (() => void)[]) => (
+  <DxcTabs>
+    <DxcTabs.Tab label="Tab-1" onClick={onTabClick[0]} active>
+      <></>
+    </DxcTabs.Tab>
+    <DxcTabs.Tab label="Tab-2" onClick={onTabClick[1]}>
       <></>
     </DxcTabs.Tab>
     <DxcTabs.Tab label="Tab-3" onClick={onTabClick[2]}>
@@ -136,18 +150,10 @@ describe("Tabs component tests", () => {
     expect(tabs[2].getAttribute("aria-selected")).toBe("true");
   });
 
-  test("Tabs with active index in disabled tab should interact the same way", () => {
+  test("Tabs with active index in disabled tab should not be selectable", () => {
     const onTabClick = [jest.fn(), jest.fn(), jest.fn()];
     const { getAllByRole } = render(sampleTabsLastTabNonDisabledFirstActive(onTabClick));
     const tabs = getAllByRole("tab");
-    expect(tabs[0].getAttribute("aria-selected")).toBe("true");
-    expect(tabs[1].getAttribute("aria-selected")).toBe("false");
-    expect(tabs[2].getAttribute("aria-selected")).toBe("false");
-    expect(tabs[0].hasAttribute("disabled")).toBeTruthy();
-    expect(tabs[1].hasAttribute("disabled")).toBeTruthy();
-    expect(tabs[2].hasAttribute("disabled")).toBeFalsy();
-    fireEvent.click(tabs[2]);
-    expect(onTabClick[2]).toHaveBeenCalled();
     expect(tabs[0].getAttribute("aria-selected")).toBe("false");
     expect(tabs[1].getAttribute("aria-selected")).toBe("false");
     expect(tabs[2].getAttribute("aria-selected")).toBe("true");
@@ -229,5 +235,25 @@ describe("Tabs component tests", () => {
     expect(tabs[1].getAttribute("aria-selected")).toBe("false");
     expect(tabs[2].getAttribute("aria-selected")).toBe("true");
     expect(onTabClick[2]).toHaveBeenCalled();
+  });
+  test("Controlled tabs interaction", () => {
+    const onTabClick = [jest.fn(), jest.fn(), jest.fn()];
+    const { getAllByRole } = render(sampleControlledTabsInteraction(onTabClick));
+    const tabs = getAllByRole("tab");
+    fireEvent.click(tabs[0]);
+    expect(onTabClick[0]).toHaveBeenCalled();
+    expect(tabs[0].getAttribute("aria-selected")).toBe("true");
+    expect(tabs[1].getAttribute("aria-selected")).toBe("false");
+    expect(tabs[2].getAttribute("aria-selected")).toBe("false");
+    fireEvent.click(tabs[1]);
+    expect(onTabClick[1]).toHaveBeenCalled();
+    expect(tabs[0].getAttribute("aria-selected")).toBe("true");
+    expect(tabs[1].getAttribute("aria-selected")).toBe("false");
+    expect(tabs[2].getAttribute("aria-selected")).toBe("false");
+    fireEvent.click(tabs[2]);
+    expect(onTabClick[2]).toHaveBeenCalled();
+    expect(tabs[0].getAttribute("aria-selected")).toBe("true");
+    expect(tabs[1].getAttribute("aria-selected")).toBe("false");
+    expect(tabs[2].getAttribute("aria-selected")).toBe("false");
   });
 });
