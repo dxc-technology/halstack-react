@@ -68,7 +68,7 @@ const sampleTabsMiddleDisabled = (onTabClick: (() => void)[]) => (
 
 const sampleTabsLastTabNonDisabledFirstActive = (onTabClick: (() => void)[]) => (
   <DxcTabs>
-    <DxcTabs.Tab label="Tab-1" onClick={onTabClick[0]} disabled active>
+    <DxcTabs.Tab label="Tab-1" onClick={onTabClick[0]} disabled defaultActive>
       <></>
     </DxcTabs.Tab>
     <DxcTabs.Tab label="Tab-2" onClick={onTabClick[1]} disabled>
