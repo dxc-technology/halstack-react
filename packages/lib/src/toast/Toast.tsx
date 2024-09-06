@@ -81,6 +81,7 @@ const fadeOutDown = keyframes`
 `;
 
 const Toast = styled.output<{ semantic: ToastPropsType["semantic"]; isClosing: boolean }>`
+  box-sizing: border-box;
   min-width: 200px;
   max-width: 600px;
   width: fit-content;
@@ -94,6 +95,10 @@ const Toast = styled.output<{ semantic: ToastPropsType["semantic"]; isClosing: b
   background-color: ${({ semantic }) => getSemantic(semantic).secondaryColor};
   color: ${({ semantic }) => getSemantic(semantic).primaryColor};
   animation: ${({ isClosing }) => (isClosing ? fadeOutDown : fadeInUp)} 0.3s ease forwards;
+
+  @media (max-width: 600px) {
+    max-width: 100%;
+  }
 `;
 
 const spinnerTheme = {

@@ -1,6 +1,11 @@
+import { userEvent, within } from "@storybook/test";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
+import DxcButton from "../button/Button";
+import DxcFlex from "../flex/Flex";
 import DxcToast from "./Toast";
+import DxcToastsQueue from "./ToastsQueue";
+import useToast from "./useToast";
 
 export default {
   title: "Toast",
@@ -196,3 +201,46 @@ export const Chromatic = () => (
     </ExampleContainer>
   </>
 );
+
+const FullScreen = () => {
+  const toast = useToast();
+
+  return (
+    <ExampleContainer>
+      <Title title="Full screen placement" />
+      <DxcToastsQueue>
+        <DxcFlex gap="1rem" direction="column">
+          <DxcButton
+            label="Show default toast"
+            onClick={() => {
+              toast.default({ message: "This is a placed toast.", icon: "rocket", action });
+            }}
+          />
+          <DxcButton
+            label="Show info toast"
+            onClick={() => {
+              toast.info({
+                message:
+                  "This is a very long label for a Toast. Please, always try to avoid this king of messages, be brief and concise.",
+                action: actionIcon,
+              });
+            }}
+          />
+        </DxcFlex>
+      </DxcToastsQueue>
+    </ExampleContainer>
+  );
+};
+
+const ToastsQueue = () => (
+  <DxcToastsQueue>
+    <FullScreen />
+  </DxcToastsQueue>
+);
+
+export const FullScreenToast = ToastsQueue.bind({});
+FullScreenToast.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  await userEvent.click(canvas.getByText("Show default toast"));
+  await userEvent.click(canvas.getByText("Show info toast"));
+};

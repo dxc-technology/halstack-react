@@ -8,6 +8,7 @@ import { QueuedToast, Semantic, ToastContextType, ToastsQueuePropsType, ToastTyp
 export const ToastContext = createContext<ToastContextType | null>(null);
 
 const ToastsQueue = styled.section`
+  box-sizing: border-box;
   position: fixed;
   bottom: 0;
   right: 0;
@@ -17,6 +18,11 @@ const ToastsQueue = styled.section`
   align-items: flex-end;
   gap: ${CoreTokens.spacing_8};
   padding: ${CoreTokens.spacing_24};
+
+  @media (max-width: 600px) {
+    align-items: center;
+    width: 100%;
+  }
 `;
 
 const DxcToastsQueue = ({ children, duration = 3000 }: ToastsQueuePropsType) => {
