@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { ToastContext } from "./ToastsQueue";
-import { ToastType, DefaultToast, Semantic, SemanticToast } from "./types";
+import { ToastType, DefaultToast, Semantic, SemanticToast, LoadingToast } from "./types";
 
 const useToast = () => {
   const { add } = useContext(ToastContext);
@@ -14,13 +14,13 @@ const useToast = () => {
     info: (toast: SemanticToast) => {
       show(toast, "info");
     },
+    loading: (toast: Omit<LoadingToast, "loading">) => show({ ...toast, loading: true }, "info"),
     success: (toast: SemanticToast) => {
       show(toast, "success");
     },
     warning: (toast: SemanticToast) => {
       show(toast, "warning");
     },
-    loading: (toast: SemanticToast) => show({ ...toast, loading: true }, "info"),
   };
 };
 

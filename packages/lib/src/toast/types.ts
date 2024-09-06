@@ -12,11 +12,11 @@ type CommonProps = {
 type DefaultToast = CommonProps & {
   icon?: string | SVG;
 };
-type LoadingToast = SemanticToast & {
+type LoadingToast = CommonProps & {
   loading: boolean;
 };
 type SemanticToast = CommonProps & {
-  showSemanticIcon?: boolean;
+  hideSemanticIcon?: boolean;
 };
 type ToastType = DefaultToast | LoadingToast | SemanticToast;
 
@@ -39,7 +39,7 @@ type ToastPropsType = {
   message: string;
   onClear: () => void;
   semantic: Semantic;
-  showSemanticIcon?: boolean;
+  hideSemanticIcon?: boolean;
 };
 
 type ToastsQueuePropsType = { duration?: number; children: React.ReactNode };

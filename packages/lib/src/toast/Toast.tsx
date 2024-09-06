@@ -1,14 +1,14 @@
+import { memo, useState } from "react";
 import styled, { keyframes } from "styled-components";
-import ToastPropsType from "./types";
 import CoreTokens from "../common/coreTokens";
-import DxcButton from "../button/Button";
 import DxcActionIcon from "../action-icon/ActionIcon";
-import DxcIcon from "../icon/Icon";
+import DxcButton from "../button/Button";
 import DxcFlex from "../flex/Flex";
+import DxcIcon from "../icon/Icon";
 import DxcSpinner from "../spinner/Spinner";
-import { memo, useEffect, useState } from "react";
-import useTimeout from "../utils/useTimeout";
 import { HalstackProvider } from "../HalstackContext";
+import ToastPropsType from "./types";
+import useTimeout from "../utils/useTimeout";
 
 const getSemantic = (semantic: ToastPropsType["semantic"]) => {
   switch (semantic) {
@@ -18,17 +18,17 @@ const getSemantic = (semantic: ToastPropsType["semantic"]) => {
         secondaryColor: CoreTokens.color_blue_100,
         icon: "filled_info",
       };
-    case "warning":
-      return {
-        primaryColor: CoreTokens.color_orange_700,
-        secondaryColor: CoreTokens.color_orange_100,
-        icon: "filled_warning",
-      };
     case "success":
       return {
         primaryColor: CoreTokens.color_green_700,
         secondaryColor: CoreTokens.color_green_100,
         icon: "filled_check_circle",
+      };
+    case "warning":
+      return {
+        primaryColor: CoreTokens.color_orange_700,
+        secondaryColor: CoreTokens.color_orange_100,
+        icon: "filled_warning",
       };
     default:
       return { primaryColor: CoreTokens.color_purple_700, secondaryColor: CoreTokens.color_purple_100, icon: "" };
@@ -80,7 +80,7 @@ const fadeOutDown = keyframes`
   }
 `;
 
-const Toast = styled.output<{ semantic: ToastPropsType["semantic"]; isVisible: boolean; isClosing: boolean }>`
+const Toast = styled.output<{ semantic: ToastPropsType["semantic"]; isClosing: boolean }>`
   min-width: 200px;
   max-width: 600px;
   width: fit-content;
@@ -93,9 +93,7 @@ const Toast = styled.output<{ semantic: ToastPropsType["semantic"]; isVisible: b
   padding: ${CoreTokens.spacing_8} ${CoreTokens.spacing_12};
   background-color: ${({ semantic }) => getSemantic(semantic).secondaryColor};
   color: ${({ semantic }) => getSemantic(semantic).primaryColor};
-
-  animation: ${({ isVisible, isClosing }) => (isClosing ? fadeOutDown : isVisible ? fadeInUp : "none")} 0.3s ease
-    forwards;
+  animation: ${({ isClosing }) => (isClosing ? fadeOutDown : fadeInUp)} 0.3s ease forwards;
 `;
 
 const spinnerTheme = {
@@ -104,22 +102,8 @@ const spinnerTheme = {
   },
 };
 
-const DxcToast = ({
-  action,
-  icon,
-  loading,
-  message,
-  onClear,
-  semantic,
-  showSemanticIcon = true,
-  delay,
-}: ToastPropsType) => {
-  const [isVisible, setIsVisible] = useState(false);
+const DxcToast = ({ action, delay, hideSemanticIcon, icon, loading, message, onClear, semantic }: ToastPropsType) => {
   const [isClosing, setIsClosing] = useState(false);
-
-  useEffect(() => {
-    setIsVisible(true);
-  }, []);
 
   const clearClosingAnimationTimer = useTimeout(
     () => {
@@ -136,7 +120,7 @@ const DxcToast = ({
   );
 
   return (
-    <Toast semantic={semantic} isVisible={isVisible} isClosing={isClosing} role="status">
+    <Toast semantic={semantic} isClosing={isClosing} role="status">
       <ContentContainer loading={loading}>
         {(() => {
           if (semantic === "default") return typeof icon === "string" ? <DxcIcon icon={icon} /> : icon;
@@ -146,7 +130,7 @@ const DxcToast = ({
                 <DxcSpinner mode="small" />
               </HalstackProvider>
             );
-          else return showSemanticIcon && <DxcIcon icon={getSemantic(semantic).icon} />;
+          else return !hideSemanticIcon && <DxcIcon icon={getSemantic(semantic).icon} />;
         })()}
         <Message>{message}</Message>
       </ContentContainer>
