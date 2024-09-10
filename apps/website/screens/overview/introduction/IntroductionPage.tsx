@@ -1,17 +1,8 @@
-import {
-  DxcLink,
-  DxcHeading,
-  DxcParagraph,
-  DxcBulletedList,
-  DxcFlex,
-  useDxcToast,
-  DxcButton,
-} from "@dxc-technology/halstack-react";
+import { DxcLink, DxcHeading, DxcParagraph, DxcBulletedList, DxcFlex } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import PageHeading from "@/common/PageHeading";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
-import { useEffect, useState } from "react";
 
 const sections = [
   {
@@ -222,105 +213,17 @@ const sections = [
 ];
 
 const Introduction = () => {
-  const [index, setIndex] = useState(1);
-  const toast = useDxcToast();
-
-  const success = () => {
-    const removeLoadingToast = toast.loading({ message: `Loading an example process ${index}...` });
-    setIndex(prevIndex => prevIndex + 1);
-
-    setTimeout(() => {
-      removeLoadingToast();
-      toast.success({ message: `The process ${index} has been completed successfully.` });
-    }, 5000);
-  };
-
   return (
     <DxcFlex direction="column" gap="4rem">
       <PageHeading>
-        <DxcFlex direction="row" gap="1rem" alignItems="center" wrap="wrap">
-          <DxcButton
-            label="Load a process"
-            onClick={success}
-          />
-          <DxcButton
-            label="Show default"
-            onClick={() =>
-              toast.default({
-                message: "This is a toast.",
-                icon: "rocket_launch",
-                action: { label: "Default", onClick() {} },
-              })
-            }
-          />
-          <DxcButton
-            label="Show success"
-            onClick={() => toast.success({ message: "The process completed successfully." })}
-          />
-          <DxcButton
-            label="Show info"
-            onClick={() =>
-              toast.info({
-                message: "The 13.2.0 version of Halstack is now available!",
-                action: {
-                  label: "Action",
-                  onClick() {
-                    console.log("Action clicked");
-                  },
-                },
-              })
-            }
-          />
-          <DxcButton
-            label="Show warning"
-            onClick={() =>
-              toast.warning({
-                message:
-                  "This is a very long toast text, for ellipsis purposes and checks. Halstack is an Open Source Design System built and maintained by DXC Technology with the purpose of providing all the necessary tools for designing and implementing accessible, intuitive and consistent User Experiences with UXPin and React.",
-                action: {
-                  label: "Action",
-                  onClick: () => {
-                    console.log("Action clicked");
-                  },
-                },
-              })
-            }
-          />
+        <DxcFlex direction="column" gap="2rem">
+          <DxcHeading level={1} text="Introduction" weight="bold"></DxcHeading>
         </DxcFlex>
       </PageHeading>
-      <p>
-        Halstack is an Open Source Design System built and maintained by DXC Technology with the purpose of providing
-        all the necessary tools for designing and implementing accessible, intuitive and consistent User Experiences
-        with UXPin and React.
-      </p>
-      <p>
-        Halstack's first goal is to provide Product Designers with pre-created designs for the most common use-cases
-        they will face during the product design stage. Using Halstack, they don't need to reinvent the wheel looking
-        for a solution to these mundane problems, and can focus on adding business value. Also, by centralizing these
-        efforts in a Design System team, we can pay the right amount of attention to aspects as important as usability,
-        accessibility, or consistency.
-      </p>
-      <p>
-        Halstack's first goal is to provide Product Designers with pre-created designs for the most common use-cases
-        they will face during the product design stage. Using Halstack, they don't need to reinvent the wheel looking
-        for a solution to these mundane problems, and can focus on adding business value. Also, by centralizing these
-        efforts in a Design System team, we can pay the right amount of attention to aspects as important as usability,
-        accessibility, or consistency.
-      </p>
-      <p>
-        Halstack's first goal is to provide Product Designers with pre-created designs for the most common use-cases
-        they will face during the product design stage. Using Halstack, they don't need to reinvent the wheel looking
-        for a solution to these mundane problems, and can focus on adding business value. Also, by centralizing these
-        efforts in a Design System team, we can pay the right amount of attention to aspects as important as usability,
-        accessibility, or consistency.
-      </p>
-      <p>
-        Halstack's first goal is to provide Product Designers with pre-created designs for the most common use-cases
-        they will face during the product design stage. Using Halstack, they don't need to reinvent the wheel looking
-        for a solution to these mundane problems, and can focus on adding business value. Also, by centralizing these
-        efforts in a Design System team, we can pay the right amount of attention to aspects as important as usability,
-        accessibility, or consistency.
-      </p>
+      <QuickNavContainerLayout>
+        <QuickNavContainer sections={sections} startHeadingLevel={2} />
+      </QuickNavContainerLayout>
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/overview/introduction/IntroductionPage.tsx" />
     </DxcFlex>
   );
 };
