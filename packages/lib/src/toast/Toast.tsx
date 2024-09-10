@@ -9,6 +9,7 @@ import DxcSpinner from "../spinner/Spinner";
 import { HalstackProvider } from "../HalstackContext";
 import ToastPropsType from "./types";
 import useTimeout from "../utils/useTimeout";
+import { responsiveSizes } from "../common/variables";
 
 const getSemantic = (semantic: ToastPropsType["semantic"]) => {
   switch (semantic) {
@@ -96,7 +97,7 @@ const Toast = styled.output<{ semantic: ToastPropsType["semantic"]; isClosing: b
   color: ${({ semantic }) => getSemantic(semantic).primaryColor};
   animation: ${({ isClosing }) => (isClosing ? fadeOutDown : fadeInUp)} 0.3s ease forwards;
 
-  @media (max-width: 600px) {
+  @media (max-width: ${responsiveSizes.medium}rem) {
     max-width: 100%;
   }
 `;

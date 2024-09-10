@@ -3,7 +3,7 @@ import type { NextPage } from "next";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import styled from "styled-components";
-import { DxcApplicationLayout, DxcTextInput, HalstackProvider } from "@dxc-technology/halstack-react";
+import { DxcApplicationLayout, DxcToastsQueue, DxcTextInput, HalstackProvider } from "@dxc-technology/halstack-react";
 import { responsiveSizes } from "../screens/common/variables";
 import SidenavLogo from "@/common/sidenav/SidenavLogo";
 import { useRouter } from "next/router";
@@ -112,7 +112,9 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
               }
             >
               <DxcApplicationLayout.Main>
-                <MainContainer>{children}</MainContainer>
+                <DxcToastsQueue duration={5000}>
+                  <MainContainer>{children}</MainContainer>
+                </DxcToastsQueue>
               </DxcApplicationLayout.Main>
             </DxcApplicationLayout>
           )}

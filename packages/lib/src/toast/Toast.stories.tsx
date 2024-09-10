@@ -5,7 +5,8 @@ import DxcButton from "../button/Button";
 import DxcFlex from "../flex/Flex";
 import DxcToast from "./Toast";
 import DxcToastsQueue from "./ToastsQueue";
-import useToast from "./useToast";
+import useDxcToast from "./useToast";
+import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 
 export default {
   title: "Toast",
@@ -18,7 +19,6 @@ const action = {
     console.log("Action clicked");
   },
 };
-
 const actionIcon = {
   label: "Action",
   onClick: () => {
@@ -26,7 +26,6 @@ const actionIcon = {
   },
   icon: "restart_alt",
 };
-
 const onClear = () => {};
 
 export const Chromatic = () => (
@@ -202,18 +201,17 @@ export const Chromatic = () => (
   </>
 );
 
-const FullScreen = () => {
-  const toast = useToast();
-
+const Screens = () => {
+  const toast = useDxcToast();
   return (
     <ExampleContainer>
-      <Title title="Full screen placement" />
+      <Title title="Screen placement" />
       <DxcToastsQueue>
         <DxcFlex gap="1rem" direction="column">
           <DxcButton
             label="Show default toast"
             onClick={() => {
-              toast.default({ message: "This is a placed toast.", icon: "rocket", action });
+              toast.default({ message: "This is a simple placed toast." });
             }}
           />
           <DxcButton
@@ -226,21 +224,42 @@ const FullScreen = () => {
               });
             }}
           />
+          <DxcButton
+            label="Show success toast"
+            onClick={() => {
+              toast.success({
+                message:
+                  "This is another very long label for a Toast. Please, always try to avoid this king of messages, be brief and concise.",
+                action: action,
+              });
+            }}
+          />
         </DxcFlex>
       </DxcToastsQueue>
     </ExampleContainer>
   );
 };
-
 const ToastsQueue = () => (
   <DxcToastsQueue>
-    <FullScreen />
+    <Screens />
   </DxcToastsQueue>
 );
 
-export const FullScreenToast = ToastsQueue.bind({});
-FullScreenToast.play = async ({ canvasElement }) => {
+const playFunc = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   await userEvent.click(canvas.getByText("Show default toast"));
   await userEvent.click(canvas.getByText("Show info toast"));
+  await userEvent.click(canvas.getByText("Show success toast"));
 };
+
+export const FullScreenToast = ToastsQueue.bind({});
+FullScreenToast.play = playFunc;
+
+export const MobileScreenToast = ToastsQueue.bind({});
+MobileScreenToast.parameters = {
+  viewport: {
+    viewports: INITIAL_VIEWPORTS,
+    defaultViewport: "iphonex",
+  },
+};
+MobileScreenToast.play = playFunc;

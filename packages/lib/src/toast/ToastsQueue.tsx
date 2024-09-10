@@ -4,6 +4,7 @@ import styled from "styled-components";
 import CoreTokens from "../common/coreTokens";
 import DxcToast from "./Toast";
 import { QueuedToast, Semantic, ToastContextType, ToastsQueuePropsType, ToastType } from "./types";
+import { responsiveSizes } from "../common/variables";
 
 export const ToastContext = createContext<ToastContextType | null>(null);
 
@@ -19,7 +20,7 @@ const ToastsQueue = styled.section`
   gap: ${CoreTokens.spacing_8};
   padding: ${CoreTokens.spacing_24};
 
-  @media (max-width: 600px) {
+  @media (max-width: ${responsiveSizes.medium}rem) {
     align-items: center;
     width: 100%;
   }

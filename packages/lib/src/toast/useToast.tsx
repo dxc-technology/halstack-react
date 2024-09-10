@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { ToastContext } from "./ToastsQueue";
 import { ToastType, DefaultToast, Semantic, SemanticToast, LoadingToast } from "./types";
 
-const useToast = () => {
+const useDxcToast = () => {
   const { add } = useContext(ToastContext);
 
   const show = <T extends ToastType>(toast: T, semantic: Semantic) => add(toast, semantic);
@@ -24,4 +24,4 @@ const useToast = () => {
   };
 };
 
-export default useToast;
+export default useDxcToast;
