@@ -1,4 +1,5 @@
 module.exports = {
+  collectCoverage: true,
   moduleNameMapper: {
     "\\.(css|less|scss|sass)$": "identity-obj-proxy",
     "\\.(svg)$": "<rootDir>/test/mocks/svgMock.js",
