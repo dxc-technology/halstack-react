@@ -1,0 +1,70 @@
+import { render } from "@testing-library/react";
+import { axe } from "../../test/accessibility/axe-helper.js";
+import DxcToast from "./Toast";
+import DxcToastsQueue from "./ToastsQueue";
+import useDxcToast from "./useToast";
+import DxcButton from "../button/Button";
+import userEvent from "@testing-library/user-event";
+
+const actionIcon = {
+  label: "Action",
+  onClick: () => {
+    console.log("Action clicked");
+  },
+  icon: "restart_alt",
+};
+
+const ToastPage = () => {
+  const toast = useDxcToast();
+  return (
+    <DxcButton
+      label="Show toast"
+      onClick={() => {
+        toast.default({ message: "This is a simple placed toast." });
+      }}
+    />
+  );
+};
+const TestExample = () => (
+  <DxcToastsQueue>
+    <ToastPage />
+  </DxcToastsQueue>
+);
+
+describe("Toast component accessibility tests", () => {
+  it("Toast queue should not have accessibility issues", async () => {
+    const { container } = render(<TestExample />);
+    const results = await axe(container);
+    const button = container.querySelector("button");
+    userEvent.click(button);
+    expect(results).toHaveNoViolations();
+  });
+  it("Should not have basic accessibility issues", async () => {
+    const { container } = render(
+      <DxcToast
+        semantic="default"
+        delay={2147483647}
+        message="This is a toast."
+        onClear={() => {}}
+        icon="rocket"
+        action={actionIcon}
+      />
+    );
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
+  });
+  it("Should not have accessibility issues when loading", async () => {
+    const { container } = render(
+      <DxcToast
+        semantic="info"
+        delay={2147483647}
+        message="This is a toast."
+        onClear={() => {}}
+        action={actionIcon}
+        loading
+      />
+    );
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
+  });
+});

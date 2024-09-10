@@ -119,7 +119,6 @@ export const Chromatic = () => (
         delay={2147483647}
         message="This is a toast."
         onClear={onClear}
-        icon="rocket"
         action={actionIcon}
         loading
       />
