@@ -9,6 +9,7 @@ import DxcSpinner from "../spinner/Spinner";
 import { HalstackProvider } from "../HalstackContext";
 import ToastPropsType from "./types";
 import useTimeout from "../utils/useTimeout";
+import useTranslatedLabels from "../useTranslatedLabels";
 import { responsiveSizes } from "../common/variables";
 
 const getSemantic = (semantic: ToastPropsType["semantic"]) => {
@@ -108,21 +109,22 @@ const spinnerTheme = {
   },
 };
 
-const DxcToast = ({ action, delay, hideSemanticIcon, icon, loading, message, onClear, semantic }: ToastPropsType) => {
+const DxcToast = ({ action, duration, hideSemanticIcon, icon, loading, message, onClear, semantic }: ToastPropsType) => {
   const [isClosing, setIsClosing] = useState(false);
+  const translatedLabels = useTranslatedLabels();
 
   const clearClosingAnimationTimer = useTimeout(
     () => {
       setIsClosing(true);
     },
-    loading ? null : delay - 300
+    loading ? null : duration - 300
   );
 
   const clearTimer = useTimeout(
     () => {
       onClear();
     },
-    loading ? null : delay
+    loading ? null : duration
   );
 
   return (
@@ -153,7 +155,7 @@ const DxcToast = ({ action, delay, hideSemanticIcon, icon, loading, message, onC
         )}
         <DxcActionIcon
           icon="clear"
-          title="Clear toast"
+          title={translatedLabels.toast.clearToastActionTitle}
           onClick={() => {
             if (!loading) {
               clearClosingAnimationTimer();

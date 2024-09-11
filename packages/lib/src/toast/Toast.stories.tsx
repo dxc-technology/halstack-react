@@ -33,17 +33,17 @@ export const Chromatic = () => (
     <Title title="Default" level={2} />
     <ExampleContainer>
       <Title title="Simple" />
-      <DxcToast semantic="default" delay={2147483647} message="This is a toast." onClear={onClear} />
+      <DxcToast semantic="default" duration={2147483647} message="This is a toast." onClear={onClear} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With material icon" />
-      <DxcToast semantic="default" delay={2147483647} message="This is a toast." onClear={onClear} icon="rocket" />
+      <DxcToast semantic="default" duration={2147483647} message="This is a toast." onClear={onClear} icon="rocket" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With custom icon" />
       <DxcToast
         semantic="default"
-        delay={2147483647}
+        duration={2147483647}
         message="This is a toast."
         onClear={onClear}
         icon={
@@ -63,7 +63,7 @@ export const Chromatic = () => (
       <Title title="With action" />
       <DxcToast
         semantic="default"
-        delay={2147483647}
+        duration={2147483647}
         message="This is a toast."
         onClear={onClear}
         icon="rocket"
@@ -74,7 +74,7 @@ export const Chromatic = () => (
       <Title title="With action icon" />
       <DxcToast
         semantic="default"
-        delay={2147483647}
+        duration={2147483647}
         message="This is a toast."
         onClear={onClear}
         icon="rocket"
@@ -84,17 +84,17 @@ export const Chromatic = () => (
     <Title title="Info" level={2} />
     <ExampleContainer>
       <Title title="Simple" />
-      <DxcToast semantic="info" delay={2147483647} message="This is a toast." onClear={onClear} hideSemanticIcon />
+      <DxcToast semantic="info" duration={2147483647} message="This is a toast." onClear={onClear} hideSemanticIcon />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With icon" />
-      <DxcToast semantic="info" delay={2147483647} message="This is a toast." onClear={onClear} icon="rocket" />
+      <DxcToast semantic="info" duration={2147483647} message="This is a toast." onClear={onClear} icon="rocket" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With action" />
       <DxcToast
         semantic="info"
-        delay={2147483647}
+        duration={2147483647}
         message="This is a toast."
         onClear={onClear}
         icon="rocket"
@@ -105,7 +105,7 @@ export const Chromatic = () => (
       <Title title="With action icon" />
       <DxcToast
         semantic="info"
-        delay={2147483647}
+        duration={2147483647}
         message="This is a toast."
         onClear={onClear}
         icon="rocket"
@@ -116,7 +116,7 @@ export const Chromatic = () => (
       <Title title="With loading indicator" />
       <DxcToast
         semantic="info"
-        delay={2147483647}
+        duration={2147483647}
         message="This is a toast."
         onClear={onClear}
         action={actionIcon}
@@ -126,17 +126,17 @@ export const Chromatic = () => (
     <Title title="Success" level={2} />
     <ExampleContainer>
       <Title title="Simple" />
-      <DxcToast semantic="success" delay={2147483647} message="This is a toast." onClear={onClear} hideSemanticIcon />
+      <DxcToast semantic="success" duration={2147483647} message="This is a toast." onClear={onClear} hideSemanticIcon />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With icon" />
-      <DxcToast semantic="success" delay={2147483647} message="This is a toast." onClear={onClear} icon="rocket" />
+      <DxcToast semantic="success" duration={2147483647} message="This is a toast." onClear={onClear} icon="rocket" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With action" />
       <DxcToast
         semantic="success"
-        delay={2147483647}
+        duration={2147483647}
         message="This is a toast."
         onClear={onClear}
         icon="rocket"
@@ -147,7 +147,7 @@ export const Chromatic = () => (
       <Title title="With action icon" />
       <DxcToast
         semantic="success"
-        delay={2147483647}
+        duration={2147483647}
         message="This is a toast."
         onClear={onClear}
         icon="rocket"
@@ -157,17 +157,17 @@ export const Chromatic = () => (
     <Title title="Warning" level={2} />
     <ExampleContainer>
       <Title title="Simple" />
-      <DxcToast semantic="warning" delay={2147483647} message="This is a toast." onClear={onClear} hideSemanticIcon />
+      <DxcToast semantic="warning" duration={2147483647} message="This is a toast." onClear={onClear} hideSemanticIcon />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With icon" />
-      <DxcToast semantic="warning" delay={2147483647} message="This is a toast." onClear={onClear} icon="rocket" />
+      <DxcToast semantic="warning" duration={2147483647} message="This is a toast." onClear={onClear} icon="rocket" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With action" />
       <DxcToast
         semantic="warning"
-        delay={2147483647}
+        duration={2147483647}
         message="This is a toast."
         onClear={onClear}
         icon="rocket"
@@ -178,7 +178,7 @@ export const Chromatic = () => (
       <Title title="With action icon" />
       <DxcToast
         semantic="warning"
-        delay={2147483647}
+        duration={2147483647}
         message="This is a toast."
         onClear={onClear}
         icon="rocket"
@@ -190,7 +190,7 @@ export const Chromatic = () => (
       <Title title="Ellipsis" />
       <DxcToast
         semantic="default"
-        delay={2147483647}
+        duration={2147483647}
         message="This is a very long label for a Toast. Please, always try to avoid this king of messages, be brief and concise."
         onClear={onClear}
         icon="rocket"
@@ -202,39 +202,38 @@ export const Chromatic = () => (
 
 const Screens = () => {
   const toast = useDxcToast();
+
   return (
     <ExampleContainer>
       <Title title="Screen placement" />
-      <DxcToastsQueue>
-        <DxcFlex gap="1rem" direction="column">
-          <DxcButton
-            label="Show default toast"
-            onClick={() => {
-              toast.default({ message: "This is a simple placed toast." });
-            }}
-          />
-          <DxcButton
-            label="Show info toast"
-            onClick={() => {
-              toast.info({
-                message:
-                  "This is a very long label for a Toast. Please, always try to avoid this king of messages, be brief and concise.",
-                action: actionIcon,
-              });
-            }}
-          />
-          <DxcButton
-            label="Show success toast"
-            onClick={() => {
-              toast.success({
-                message:
-                  "This is another very long label for a Toast. Please, always try to avoid this king of messages, be brief and concise.",
-                action: action,
-              });
-            }}
-          />
-        </DxcFlex>
-      </DxcToastsQueue>
+      <DxcFlex gap="1rem" direction="column">
+        <DxcButton
+          label="Show default toast"
+          onClick={() => {
+            toast.default({ message: "This is a simple placed toast." });
+          }}
+        />
+        <DxcButton
+          label="Show info toast"
+          onClick={() => {
+            toast.info({
+              message:
+                "This is a very long label for a Toast. Please, always try to avoid this king of messages, be brief and concise.",
+              action: actionIcon,
+            });
+          }}
+        />
+        <DxcButton
+          label="Show success toast"
+          onClick={() => {
+            toast.success({
+              message:
+                "This is another very long label for a Toast. Please, always try to avoid this king of messages, be brief and concise.",
+              action: action,
+            });
+          }}
+        />
+      </DxcFlex>
     </ExampleContainer>
   );
 };

@@ -43,7 +43,7 @@ describe("Toast component accessibility tests", () => {
     const { container } = render(
       <DxcToast
         semantic="default"
-        delay={2147483647}
+        duration={2147483647}
         message="This is a toast."
         onClear={() => {}}
         icon="rocket"
@@ -57,7 +57,7 @@ describe("Toast component accessibility tests", () => {
     const { container } = render(
       <DxcToast
         semantic="info"
-        delay={2147483647}
+        duration={2147483647}
         message="This is a toast."
         onClear={() => {}}
         action={actionIcon}

@@ -33,7 +33,7 @@ type ToastContextType = {
 
 type ToastPropsType = {
   action?: Action;
-  delay: number;
+  duration: number;
   icon?: string | SVG;
   loading?: boolean;
   message: string;

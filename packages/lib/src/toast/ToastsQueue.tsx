@@ -56,7 +56,7 @@ const DxcToastsQueue = ({ children, duration = 3000 }: ToastsQueuePropsType) => 
             {toasts.map((t) => (
               <DxcToast
                 key={t.id}
-                delay={delay}
+                duration={delay}
                 onClear={() => {
                   remove(t.id);
                 }}
