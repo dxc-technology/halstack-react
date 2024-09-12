@@ -6,8 +6,6 @@ import DxcToast from "./Toast";
 import { QueuedToast, Semantic, ToastContextType, ToastsQueuePropsType, ToastType } from "./types";
 import { responsiveSizes } from "../common/variables";
 
-export const ToastContext = createContext<ToastContextType | null>(null);
-
 const ToastsQueue = styled.section`
   box-sizing: border-box;
   position: fixed;
@@ -26,14 +24,26 @@ const ToastsQueue = styled.section`
   }
 `;
 
+const generateUniqueToastId = (toasts: QueuedToast[]) => {
+  let id = "";
+  let exists = true;
+  while (exists) {
+    id = `${performance.now()}-${Math.random().toString(36).slice(2, 9)}`;
+    exists = toasts.some((toast) => toast.id === id);
+  }
+  return id;
+};
+
+export const ToastContext = createContext<ToastContextType | null>(null);
+
 const DxcToastsQueue = ({ children, duration = 3000 }: ToastsQueuePropsType) => {
   const [toasts, setToasts] = useState<QueuedToast[]>([]);
   const [isMounted, setIsMounted] = useState(false); // Next.js SSR mounting issue
-  const delay = useMemo(() => (duration > 5000 ? 5000 : duration < 3000 ? 3000 : duration), [duration]);
+  const adjustedDuration = useMemo(() => (duration > 5000 ? 5000 : duration < 3000 ? 3000 : duration), [duration]);
 
   const add = useCallback(
     (toast: ToastType, semantic: Semantic) => {
-      const id = `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
+      const id = generateUniqueToastId(toasts);
       setToasts((prevToasts) => [...prevToasts, { id, semantic, ...toast }].slice(-5));
       return () => remove(id);
     },
@@ -56,7 +66,7 @@ const DxcToastsQueue = ({ children, duration = 3000 }: ToastsQueuePropsType) => 
             {toasts.map((t) => (
               <DxcToast
                 key={t.id}
-                duration={delay}
+                duration={adjustedDuration}
                 onClear={() => {
                   remove(t.id);
                 }}

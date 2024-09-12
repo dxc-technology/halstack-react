@@ -8,6 +8,15 @@ import { act } from "@testing-library/react";
 const ToastPage = ({ onClick }: { onClick?: () => void }) => {
   const toast = useDxcToast();
 
+  const loadingFunc = () => {
+    const removeLoadingToast = toast.loading({ message: "Loading process..." });
+
+    setTimeout(() => {
+      removeLoadingToast();
+      toast.success({ message: "The process ended successfully." });
+    }, 5000);
+  };
+
   return (
     <>
       <DxcButton
@@ -30,6 +39,7 @@ const ToastPage = ({ onClick }: { onClick?: () => void }) => {
             : toast.default({ message: "This is a simple toast." });
         }}
       />
+      <DxcButton label="Load process" onClick={loadingFunc} />
     </>
   );
 };
@@ -50,7 +60,7 @@ describe("Toast component tests", () => {
   test("Toast disappears after the specified duration", async () => {
     jest.useFakeTimers();
     const { getByText, queryByText } = render(
-      <DxcToastsQueue duration={5000}>
+      <DxcToastsQueue duration={4250}>
         <ToastPage />
       </DxcToastsQueue>
     );
@@ -58,7 +68,7 @@ describe("Toast component tests", () => {
     userEvent.click(button);
 
     act(() => {
-      jest.advanceTimersByTime(4999);
+      jest.advanceTimersByTime(4249);
     });
     expect(getByText("This is a simple toast.")).toBeTruthy();
 
@@ -195,6 +205,22 @@ describe("Toast component tests", () => {
     });
   });
   test("Loading toast can be removed programmatically", async () => {
-    // ...
+    jest.useFakeTimers();
+    const { getByText, queryByText } = render(
+      <DxcToastsQueue>
+        <ToastPage />
+      </DxcToastsQueue>
+    );
+    const button = getByText("Load process");
+    userEvent.click(button);
+    await waitFor(() => {
+      expect(getByText("Loading process...")).toBeTruthy();
+    });
+    act(() => {
+      jest.advanceTimersByTime(5000);
+    });
+    expect(queryByText("Loading process...")).toBeFalsy();
+    expect(getByText("The process ended successfully.")).toBeTruthy();
+    jest.useRealTimers();
   });
 });
