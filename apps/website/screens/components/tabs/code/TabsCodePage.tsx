@@ -4,14 +4,14 @@ import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
 import Code from "@/common/Code";
 import Example from "@/common/example/Example";
-import controlledLegacy from "./examplesOld/controlled";
-import uncontrolledLegacy from "./examplesOld/uncontrolled";
-import iconsLegacy from "./examplesOld/icons";
+import controlledLegacy from "./examples-old/controlled";
+import uncontrolledLegacy from "./examples-old/uncontrolled";
+import iconsLegacy from "./examples-old/icons";
 import TableCode from "@/common/TableCode";
 import StatusBadge from "@/common/StatusBadge";
-import controlled from "./examplesNew/controlled";
-import uncontrolled from "./examplesNew/uncontrolled";
-import icons from "./examplesNew/icons";
+import controlled from "./examples-new/controlled";
+import uncontrolled from "./examples-new/uncontrolled";
+import icons from "./examples-new/icons";
 
 const sections = [
   {
