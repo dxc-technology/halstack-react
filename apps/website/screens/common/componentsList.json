@@ -115,6 +115,7 @@
     "status": "stable"
   },
   { "label": "Textarea", "path": "/components/textarea", "status": "stable" },
+  { "label": "Toast", "path": "/components/toast", "status": "experimental" },
   {
     "label": "Toggle Group",
     "path": "/components/toggle-group",
