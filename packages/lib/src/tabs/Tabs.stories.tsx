@@ -23,7 +23,7 @@ const iconSVG = (
 
 const tabs = (margin?: Space) => (
   <DxcTabs margin={margin}>
-    <DxcTabs.Tab label="Tab 1">
+    <DxcTabs.Tab label="Tab 1" title="test tooltip">
       <></>
     </DxcTabs.Tab>
     <DxcTabs.Tab label="Tab 2">
