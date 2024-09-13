@@ -73,6 +73,7 @@ export type TabProps = {
   active?: boolean;
   icon?: string | SVG;
   label?: string;
+  title?: string;
   disabled?: boolean;
   notificationNumber?: boolean | number;
   children: React.ReactNode;

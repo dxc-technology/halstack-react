@@ -245,6 +245,18 @@ const sections = [
                 <td>-</td>
               </tr>
               <tr>
+                <td>
+                  <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                    title
+                  </DxcFlex>
+                </td>
+                <td>
+                  <TableCode>string</TableCode>
+                </td>
+                <td>Tooltip text for the tab.</td>
+                <td>-</td>
+              </tr>
+              <tr>
                 <td>icon</td>
                 <td>
                   <TableCode>string | {"(React.ReactNode & React.SVGProps <SVGSVGElement>)"}</TableCode>
