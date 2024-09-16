@@ -95,12 +95,11 @@ const DxcTabs = ({
   });
 
   useEffect(() => {
-    setTotalTabsWidth(refTabList?.current?.firstElementChild?.offsetWidth);
-  }, [refTabList]);
-
-  useEffect(() => {
-    setMinHeightTabs(refTabList?.current?.offsetHeight + 1);
-  }, [refTabList]);
+    if (refTabList.current) {
+      setTotalTabsWidth(refTabList.current.firstElementChild?.offsetWidth);
+      setMinHeightTabs(refTabList?.current?.offsetHeight + 1);
+    }
+  }, []);
 
   const contextValue = useMemo(() => {
     const focusedChild = Children.toArray(children)[innerFocusIndex];
