@@ -265,11 +265,11 @@ const sections = [
     subSections: [
       {
         title: "Basic usage",
-        content: <Example example={basic} />,
+        content: <Example defaultIsVisible example={basic} />,
       },
       {
         title: "Semantic toasts",
-        content: <Example example={semantic} />,
+        content: <Example defaultIsVisible example={semantic} />,
       },
       {
         title: "Loading toast",
@@ -280,7 +280,7 @@ const sections = [
               the user, thanks to the function returned by the <Code>loading</Code> method. This allows users to have
               full control over the status of the process.
             </DxcParagraph>
-            <Example example={loading} />
+            <Example defaultIsVisible example={loading} />
           </>
         ),
       },
