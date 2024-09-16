@@ -2,7 +2,8 @@ import { DxcTabs, DxcInset } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 
 const code = `() => {
-const [selectedTab, setSelectedTab] = useState("Mail");
+  const [selectedTab, setSelectedTab] = useState("Mail");
+  
   return (
     <DxcInset space="2rem">
       <DxcTabs>
@@ -14,7 +15,8 @@ const [selectedTab, setSelectedTab] = useState("Mail");
         </DxcTabs.Tab>
         <DxcTabs.Tab label="Contacts" active={selectedTab === "Contacts"} onClick={() => setSelectedTab("Contacts")}>
           <></>
-        </DxcTabs.Tab></DxcTabs>
+        </DxcTabs.Tab>
+      </DxcTabs>
     </DxcInset>
   );
 }`;
