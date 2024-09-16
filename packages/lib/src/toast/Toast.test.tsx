@@ -1,12 +1,12 @@
 import userEvent from "@testing-library/user-event";
 import DxcButton from "../button/Button";
 import DxcToastsQueue from "./ToastsQueue";
-import useDxcToast from "./useToast";
+import useToast from "./useToast";
 import { render, waitFor } from "@testing-library/react";
 import { act } from "@testing-library/react";
 
 const ToastPage = ({ onClick }: { onClick?: () => void }) => {
-  const toast = useDxcToast();
+  const toast = useToast();
 
   const loadingFunc = () => {
     const removeLoadingToast = toast.loading({ message: "Loading process..." });

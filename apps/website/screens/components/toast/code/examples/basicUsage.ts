@@ -1,7 +1,7 @@
-import { DxcButton, DxcInset, useDxcToast } from "@dxc-technology/halstack-react";
+import { DxcButton, DxcInset, useToast } from "@dxc-technology/halstack-react";
 
 const code = `() => {
-  const toast = useDxcToast();
+  const toast = useToast();
 
   return (
     <DxcInset space="2rem">
@@ -18,7 +18,7 @@ const code = `() => {
 const scope = {
   DxcButton,
   DxcInset,
-  useDxcToast
+  useToast
 };
 
 export default { code, scope };

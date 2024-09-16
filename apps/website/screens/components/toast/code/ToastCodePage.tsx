@@ -8,6 +8,7 @@ import Example from "@/common/example/Example";
 import basic from "./examples/basicUsage";
 import semantic from "./examples/semantic";
 import loading from "./examples/loading";
+import Code from "@/common/Code";
 
 const actionTypeString = `{
   icon: string | 
@@ -20,7 +21,7 @@ const actionTypeString = `{
 const sections = [
   {
     title: "Toasts queue",
-    content: <DxcParagraph>A toast container to be rendered at the top level of the application.</DxcParagraph>,
+    content: <DxcParagraph>A component to be rendered at the top level of the application.</DxcParagraph>,
     subSections: [
       {
         title: "Props",
@@ -59,7 +60,8 @@ const sections = [
     content: (
       <>
         <DxcParagraph>
-          A hook to queue toasts from anywhere. It returns an object with five methods, each explained below:
+          A hook to queue toasts from any part of your application contained inside the Toast queue. It returns an
+          object with five methods, each explained below:
         </DxcParagraph>
         <DxcTable>
           <thead>
@@ -105,12 +107,15 @@ const sections = [
               </td>
               <td>
                 Shows a loading status toast. Visually and semantically, it is the same as an information toast, but
-                with the difference that this toast never disappears from the screen. Its removal from the screen will
-                always depend on the user, thanks to the function returned by this method.
+                with the difference that it never disappears from the screen. Its removal will always depend on the
+                user, thanks to the function returned by this method.
               </td>
             </tr>
           </tbody>
         </DxcTable>
+        <DxcParagraph>
+          Each method has a different argument type, which are detailed in the following sections.
+        </DxcParagraph>
       </>
     ),
     subSections: [
@@ -120,7 +125,7 @@ const sections = [
           <DxcTable>
             <thead>
               <tr>
-                <th>Argument</th>
+                <th>Name</th>
                 <th>Type</th>
                 <th>Description</th>
                 <th>Default</th>
@@ -173,7 +178,7 @@ const sections = [
           <DxcTable>
             <thead>
               <tr>
-                <th>Argument</th>
+                <th>Name</th>
                 <th>Type</th>
                 <th>Description</th>
                 <th>Default</th>
@@ -221,7 +226,7 @@ const sections = [
           <DxcTable>
             <thead>
               <tr>
-                <th>Argument</th>
+                <th>Name</th>
                 <th>Type</th>
                 <th>Description</th>
                 <th>Default</th>
@@ -268,7 +273,16 @@ const sections = [
       },
       {
         title: "Loading toast",
-        content: <Example example={loading} />,
+        content: (
+          <>
+            <DxcParagraph>
+              A loading toast is a toast that will never disappear from the screen. Its removal will always depend on
+              the user, thanks to the function returned by the <Code>loading</Code> method. This allows users to have
+              full control over the status of the process.
+            </DxcParagraph>
+            <Example example={loading} />
+          </>
+        ),
       },
     ],
   },

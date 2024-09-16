@@ -2,7 +2,7 @@ import { render } from "@testing-library/react";
 import { axe } from "../../test/accessibility/axe-helper.js";
 import DxcToast from "./Toast";
 import DxcToastsQueue from "./ToastsQueue";
-import useDxcToast from "./useToast";
+import useToast from "./useToast";
 import DxcButton from "../button/Button";
 import userEvent from "@testing-library/user-event";
 
@@ -15,7 +15,7 @@ const actionIcon = {
 };
 
 const ToastPage = () => {
-  const toast = useDxcToast();
+  const toast = useToast();
   return (
     <DxcButton
       label="Show toast"

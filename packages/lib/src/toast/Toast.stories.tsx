@@ -5,7 +5,7 @@ import DxcButton from "../button/Button";
 import DxcFlex from "../flex/Flex";
 import DxcToast from "./Toast";
 import DxcToastsQueue from "./ToastsQueue";
-import useDxcToast from "./useToast";
+import useToast from "./useToast";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 
 export default {
@@ -201,7 +201,7 @@ export const Chromatic = () => (
 );
 
 const Screens = () => {
-  const toast = useDxcToast();
+  const toast = useToast();
 
   return (
     <ExampleContainer>

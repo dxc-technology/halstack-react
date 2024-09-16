@@ -50,7 +50,7 @@ import DxcTooltip from "./tooltip/Tooltip";
 import DxcTypography from "./typography/Typography";
 import DxcWizard from "./wizard/Wizard";
 
-import useDxcToast from "./toast/useToast";
+import useToast from "./toast/useToast";
 
 import HalstackContext, { HalstackProvider, HalstackLanguageContext } from "./HalstackContext";
 
@@ -109,5 +109,5 @@ export {
   HalstackContext,
   HalstackLanguageContext,
   HalstackProvider,
-  useDxcToast,
+  useToast as useToast,
 };
