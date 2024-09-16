@@ -27,7 +27,6 @@ export type TabsContextProps = {
   tabIndex: number;
   focusedLabel: string;
   isControlled: boolean;
-  // setFocusedLabel: (_tab: string) => void;
   activeLabel: string;
   hasLabelAndIcon: boolean;
   setActiveLabel: (_tab: string) => void;
