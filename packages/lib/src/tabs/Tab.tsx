@@ -38,18 +38,20 @@ const DxcTab = forwardRef(
 
     useEffect(() => {
       focusedLabel === label && tabRef?.current?.focus();
-    }, [focusedLabel]);
+    }, [focusedLabel, label]);
 
     useEffect(() => {
       if (activeLabel === label) {
         setActiveIndicatorWidth(tabRef?.current?.offsetWidth);
         setActiveIndicatorLeft(tabRef?.current?.offsetLeft);
       }
-    }, [activeLabel]);
+    }, [activeLabel, label]);
 
     useEffect(() => {
-      if (active) setActiveLabel(label);
-    }, [active]);
+      if (active) {
+        setActiveLabel(label);
+      }
+    }, [active, label]);
 
     const handleOnKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
       switch (event.key) {
