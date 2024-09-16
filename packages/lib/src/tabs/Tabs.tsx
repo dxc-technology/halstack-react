@@ -110,7 +110,7 @@ const DxcTabs = ({
       focusedLabel: isValidElement(focusedChild) && focusedChild.props.label,
       isControlled: childrenArray.some((child) => isValidElement(child) && typeof child.props.active !== "undefined"),
       activeLabel: activeTabLabel,
-      hasLabelAndIcon: hasLabelAndIcon,
+      hasLabelAndIcon,
       setActiveLabel: setActiveTabLabel,
       setActiveIndicatorWidth,
       setActiveIndicatorLeft,
