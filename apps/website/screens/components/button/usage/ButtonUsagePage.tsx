@@ -14,6 +14,8 @@ import variants from "./examples/variants";
 import icons from "./examples/iconUsage";
 import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
 import Code from "@/common/Code";
+import Image from "@/common/Image";
+import semanticButtons from "./images/semantic_buttons.png";
 
 const sections = [
   {
@@ -141,7 +143,7 @@ const sections = [
               </td>
               <td>
                 Neutral action with no specific context. Typically used for general actions. Shown in the brand's
-                primary color. Use for neutral actions such as "Submit", "Save" or "Continue.”
+                primary color. Use for neutral actions such as "Submit", "Save" or "Continue.”.
               </td>
             </tr>
             <tr>
@@ -152,29 +154,7 @@ const sections = [
               </td>
               <td>
                 Indicates a destructive action or highlights a critical issue. Styled in red. Use for actions like
-                "Delete", "Remove" or "Cancel Subscription.”
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <DxcTypography color="#c26c0a" fontWeight="600">
-                  Warning
-                </DxcTypography>
-              </td>
-              <td>
-                Alerts the user to potential issues or actions that need caution. Styled in orange. Use for actions like
-                "Warning" or "Attention Needed.”
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <DxcTypography color="#24a148" fontWeight="600">
-                  Success
-                </DxcTypography>
-              </td>
-              <td>
-                Represents a positive action or confirms the completion of a task. Styled in green. Use for actions like
-                "Confirm", "Complete" or "Approve.”
+                "Delete", "Remove" or "Cancel Subscription.”.
               </td>
             </tr>
             <tr>
@@ -185,11 +165,34 @@ const sections = [
               </td>
               <td>
                 Provides additional information or context. Shown in blue, the brand's secondary color. Use for actions
-                like "More Info", "Details" or "Learn More.”
+                like "More Info", "Details" or "Learn More.”.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <DxcTypography color="#24a148" fontWeight="600">
+                  Success
+                </DxcTypography>
+              </td>
+              <td>
+                Represents a positive action or confirms the completion of a task. Styled in green. Use for actions like
+                "Confirm", "Complete" or "Approve.”.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <DxcTypography color="#c26c0a" fontWeight="600">
+                  Warning
+                </DxcTypography>
+              </td>
+              <td>
+                Alerts the user to potential issues or actions that need caution. Styled in orange. Use for actions like
+                "Warning" or "Attention Needed.”.
               </td>
             </tr>
           </tbody>
         </DxcTable>
+        <Image src={semanticButtons} alt="Semantic buttons based on their purpose" />
       </>
     ),
   },

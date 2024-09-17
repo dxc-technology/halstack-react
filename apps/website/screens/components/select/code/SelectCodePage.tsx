@@ -9,8 +9,14 @@ import uncontrolled from "./examples/uncontrolled";
 import errorHandling from "./examples/errorHandling";
 import groups from "./examples/groupedOptions";
 import icons from "./examples/icons";
-import TableCode from "@/common/TableCode";
+import TableCode, { ExtendedTableCode } from "@/common/TableCode";
 import StatusBadge from "@/common/StatusBadge";
+
+const optionsType = `{ 
+    label: string;
+    value: string; 
+    icon: string | Icon;
+}`;
 
 const sections = [
   {
@@ -74,11 +80,15 @@ const sections = [
               </DxcFlex>
             </td>
             <td>
-              <TableCode>
-                {
-                  "({ label: string, value: string, icon: (string | React.ReactNode & React.SVGProps <SVGSVGElement>) })[] | ({ label: string, options: Option[] })[]"
-                }
-              </TableCode>
+              <TableCode>{"Option[] | ({ label: string, options: Option[] })[]"}</TableCode>
+              <p>
+                being <Code>Option</Code> the following type:
+              </p>
+              <ExtendedTableCode>{optionsType}</ExtendedTableCode>
+              <p>
+                and <Code>Icon</Code>:
+              </p>
+              <TableCode>{`React.ReactNode & React.SVGProps<SVGSVGElement>`}</TableCode>
             </td>
             <td>
               An array of objects representing the selectable options. Each object has the following properties
@@ -253,7 +263,7 @@ const sections = [
           <tr>
             <td>ref</td>
             <td>
-              <TableCode>{"React.Ref <HTMLDivElement>"}</TableCode>
+              <TableCode>{"React.Ref<HTMLDivElement>"}</TableCode>
             </td>
             <td>Reference to the component.</td>
             <td>-</td>

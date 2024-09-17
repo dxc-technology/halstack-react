@@ -16,8 +16,9 @@ const ToastPageHeading = ({ children }: { children: React.ReactNode }) => {
         <DxcFlex direction="column" gap="2rem">
           <ComponentHeading name="Toast" />
           <DxcParagraph>
-            A Toast is a brief, non-intrusive notification that provides feedback to the user about an action or system
-            event. It appears temporarily and can be dismissed by user action or after a set period.
+            The toast component is a lightweight notification element that appears temporarily to provide feedback or
+            updates to the user. It is commonly used to communicate non-critical information, such as success messages,
+            warning alerts, or brief updates.
           </DxcParagraph>
           <TabsPageHeading tabs={tabs}></TabsPageHeading>
         </DxcFlex>
