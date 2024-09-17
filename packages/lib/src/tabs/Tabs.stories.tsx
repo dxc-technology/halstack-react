@@ -179,6 +179,96 @@ export const Chromatic = () => (
       <Title title="Only label" theme="light" level={4} />
       {tabs()}
     </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Disabled tabs" theme="light" level={4} />
+      {disabledTabs}
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="First two tabs disabled" theme="light" level={4} />
+      {firstDisabledTabs}
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-hover">
+      <Title title="Hovered tabs" theme="light" level={4} />
+      {tabs()}
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-focus">
+      <Title title="Focused tabs" theme="light" level={4} />
+      {tabs()}
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-active">
+      <Title title="Actived tabs" theme="light" level={4} />
+      {tabs()}
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="With notification number" theme="light" level={4} />
+      {tabsNotification()}
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="With icon position top" theme="light" level={4} />
+      {tabsIcon()}
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="With icon position left" theme="light" level={4} />
+      {tabsIcon("left")}
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="With icon and notification number" theme="light" level={4} />
+      {tabsNotificationIcon()}
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="With icon on the left and notification number" theme="light" level={4} />
+      {tabsNotificationIcon("left")}
+    </ExampleContainer>
+    <Title title="Margins" theme="light" level={2} />
+    <ExampleContainer>
+      <Title title="Xxsmall margin" theme="light" level={4} />
+      {tabs("xxsmall")}
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Xsmall margin" theme="light" level={4} />
+      {tabs("xsmall")}
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Small margin" theme="light" level={4} />
+      {tabs("small")}
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Medium margin" theme="light" level={4} />
+      {tabs("medium")}
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Large margin" theme="light" level={4} />
+      {tabs("large")}
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Xlarge margin" theme="light" level={4} />
+      {tabs("xlarge")}
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Xxlarge margin" theme="light" level={4} />
+      {tabs("xxlarge")}
+    </ExampleContainer>
+    <Title title="Opinionated theme" theme="light" level={2} />
+    <ExampleContainer>
+      <Title title="With icon and notification" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>{tabsNotificationIcon()}</HalstackProvider>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Disabled" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>{disabledTabsFirstActive}</HalstackProvider>
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-hover">
+      <Title title="Hovered" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>{tabs()}</HalstackProvider>
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-focus">
+      <Title title="Focused" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>{tabs()}</HalstackProvider>
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-active">
+      <Title title="Actived" theme="light" level={4} />
+      <HalstackProvider theme={opinionatedTheme}>{tabs()}</HalstackProvider>
+    </ExampleContainer>
   </>
 );
 
