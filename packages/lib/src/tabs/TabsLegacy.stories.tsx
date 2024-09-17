@@ -2,12 +2,11 @@ import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import { HalstackProvider } from "../HalstackContext";
-import DxcTabs from "./Tabs";
-import type { Space } from "./types";
+import DxcTabsLegacy from "./TabsLegacy";
 
 export default {
-  title: "Tabs",
-  component: DxcTabs,
+  title: "Tabs Legacy",
+  component: DxcTabsLegacy,
   parameters: {
     viewport: {
       viewports: INITIAL_VIEWPORTS,
@@ -21,151 +20,70 @@ const iconSVG = (
   </svg>
 );
 
-const tabs = (margin?: Space) => (
-  <DxcTabs margin={margin}>
-    <DxcTabs.Tab label="Tab 1" title="test tooltip">
-      <></>
-    </DxcTabs.Tab>
-    <DxcTabs.Tab label="Tab 2">
-      <></>
-    </DxcTabs.Tab>
-    <DxcTabs.Tab label="Tab 3" disabled>
-      <></>
-    </DxcTabs.Tab>
-    <DxcTabs.Tab label="Tab 4">
-      <></>
-    </DxcTabs.Tab>
-    <DxcTabs.Tab label="Tab 5">
-      <></>
-    </DxcTabs.Tab>
-    <DxcTabs.Tab label="Tab 6">
-      <></>
-    </DxcTabs.Tab>
-    <DxcTabs.Tab label="Tab 7">
-      <></>
-    </DxcTabs.Tab>
-  </DxcTabs>
+const tabs: any = [
+  {
+    label: "Tab 1",
+  },
+  {
+    label: "Tab 2",
+  },
+  {
+    label: "Tab 3",
+    isDisabled: true,
+  },
+  {
+    label: "Tab 4",
+  },
+  {
+    label: "Tab 5",
+  },
+  {
+    label: "Tab 6",
+  },
+  {
+    label: "Tab 7",
+  },
+];
+
+const disabledTabs: any = [
+  {
+    label: "Tab 1",
+    isDisabled: true,
+  },
+  {
+    label: "Tab 2",
+    isDisabled: true,
+  },
+  {
+    label: "Tab 3",
+    isDisabled: true,
+  },
+];
+
+const firstDisabledTabs: any = [
+  {
+    label: "Tab 1",
+    isDisabled: true,
+  },
+  {
+    label: "Tab 2",
+    isDisabled: true,
+  },
+  {
+    label: "Tab 3",
+  },
+];
+
+const tabsNotification = tabs.map((tab, index) => ({
+  ...tab,
+  notificationNumber: (index === 0 && true) || (index === 1 && 5) || (index === 2 && 100) || (index === 3 && 200),
+}));
+
+const tabsIcon = tabs.map((tab, index) =>
+  index > tabs.length / 2 ? { ...tab, icon: "mail" } : { ...tab, icon: iconSVG }
 );
 
-const disabledTabs = (
-  <DxcTabs>
-    <DxcTabs.Tab label="Tab 1" disabled>
-      <></>
-    </DxcTabs.Tab>
-    <DxcTabs.Tab label="Tab 2" disabled>
-      <></>
-    </DxcTabs.Tab>
-    <DxcTabs.Tab label="Tab 3" disabled>
-      <></>
-    </DxcTabs.Tab>
-  </DxcTabs>
-);
-
-const disabledTabsFirstActive = (
-  <DxcTabs>
-    <DxcTabs.Tab label="Tab 1" active disabled>
-      <></>
-    </DxcTabs.Tab>
-    <DxcTabs.Tab label="Tab 2" disabled>
-      <></>
-    </DxcTabs.Tab>
-    <DxcTabs.Tab label="Tab 3" disabled>
-      <></>
-    </DxcTabs.Tab>
-  </DxcTabs>
-);
-
-const firstDisabledTabs = (
-  <DxcTabs>
-    <DxcTabs.Tab label="Tab 1" disabled>
-      <></>
-    </DxcTabs.Tab>
-    <DxcTabs.Tab label="Tab 2" disabled>
-      <></>
-    </DxcTabs.Tab>
-    <DxcTabs.Tab label="Tab 3">
-      <></>
-    </DxcTabs.Tab>
-  </DxcTabs>
-);
-
-const tabsNotification = (iconPosition?: "top" | "left") => (
-  <DxcTabs iconPosition={iconPosition}>
-    <DxcTabs.Tab label="Tab 1" notificationNumber={true}>
-      <></>
-    </DxcTabs.Tab>
-    <DxcTabs.Tab label="Tab 2" notificationNumber={5}>
-      <></>
-    </DxcTabs.Tab>
-    <DxcTabs.Tab label="Tab 3" notificationNumber={100} disabled>
-      <></>
-    </DxcTabs.Tab>
-    <DxcTabs.Tab label="Tab 4" notificationNumber={200}>
-      <></>
-    </DxcTabs.Tab>
-    <DxcTabs.Tab label="Tab 5">
-      <></>
-    </DxcTabs.Tab>
-    <DxcTabs.Tab label="Tab 6">
-      <></>
-    </DxcTabs.Tab>
-    <DxcTabs.Tab label="Tab 7">
-      <></>
-    </DxcTabs.Tab>
-  </DxcTabs>
-);
-
-const tabsIcon = (iconPosition?: "top" | "left") => (
-  <DxcTabs iconPosition={iconPosition}>
-    <DxcTabs.Tab label="Tab 1" icon={iconSVG}>
-      <></>
-    </DxcTabs.Tab>
-    <DxcTabs.Tab label="Tab 2" icon={iconSVG}>
-      <></>
-    </DxcTabs.Tab>
-    <DxcTabs.Tab label="Tab 3" icon={iconSVG} disabled>
-      <></>
-    </DxcTabs.Tab>
-    <DxcTabs.Tab label="Tab 4" icon={iconSVG}>
-      <></>
-    </DxcTabs.Tab>
-    <DxcTabs.Tab label="Tab 5" icon="mail">
-      <></>
-    </DxcTabs.Tab>
-    <DxcTabs.Tab label="Tab 6" icon="mail">
-      <></>
-    </DxcTabs.Tab>
-    <DxcTabs.Tab label="Tab 7" icon="mail">
-      <></>
-    </DxcTabs.Tab>
-  </DxcTabs>
-);
-
-const tabsNotificationIcon = (iconPosition?: "top" | "left") => (
-  <DxcTabs iconPosition={iconPosition}>
-    <DxcTabs.Tab label="Tab 1" icon={iconSVG} notificationNumber={true}>
-      <></>
-    </DxcTabs.Tab>
-    <DxcTabs.Tab label="Tab 2" icon={iconSVG} notificationNumber={5}>
-      <></>
-    </DxcTabs.Tab>
-    <DxcTabs.Tab label="Tab 3" icon={iconSVG} notificationNumber={100} disabled>
-      <></>
-    </DxcTabs.Tab>
-    <DxcTabs.Tab label="Tab 4" icon={iconSVG} notificationNumber={200}>
-      <></>
-    </DxcTabs.Tab>
-    <DxcTabs.Tab label="Tab 5" icon={iconSVG}>
-      <></>
-    </DxcTabs.Tab>
-    <DxcTabs.Tab label="Tab 6" icon={iconSVG}>
-      <></>
-    </DxcTabs.Tab>
-    <DxcTabs.Tab label="Tab 7" icon={iconSVG}>
-      <></>
-    </DxcTabs.Tab>
-  </DxcTabs>
-);
+const tabsNotificationIcon = tabsNotification.map((tab) => ({ ...tab, icon: iconSVG }));
 
 const opinionatedTheme = {
   tabs: {
@@ -173,127 +91,137 @@ const opinionatedTheme = {
   },
 };
 
-export const Chromatic = () => (
+export const ChromaticLegacy = () => (
   <>
     <ExampleContainer>
       <Title title="Only label" theme="light" level={4} />
-      {tabs()}
+      <DxcTabsLegacy tabs={tabs} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Disabled tabs" theme="light" level={4} />
-      {disabledTabs}
+      <DxcTabsLegacy activeTabIndex={0} tabs={disabledTabs} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="First two tabs disabled" theme="light" level={4} />
-      {firstDisabledTabs}
+      <DxcTabsLegacy tabs={firstDisabledTabs} />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-hover">
       <Title title="Hovered tabs" theme="light" level={4} />
-      {tabs()}
+      <DxcTabsLegacy tabs={tabs} />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-focus">
       <Title title="Focused tabs" theme="light" level={4} />
-      {tabs()}
+      <DxcTabsLegacy tabs={tabs} />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-active">
       <Title title="Actived tabs" theme="light" level={4} />
-      {tabs()}
+      <DxcTabsLegacy tabs={tabs} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With notification number" theme="light" level={4} />
-      {tabsNotification()}
+      <DxcTabsLegacy tabs={tabsNotification} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With icon position top" theme="light" level={4} />
-      {tabsIcon()}
+      <DxcTabsLegacy tabs={tabsIcon} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With icon position left" theme="light" level={4} />
-      {tabsIcon("left")}
+      <DxcTabsLegacy tabs={tabsIcon} iconPosition="left" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With icon and notification number" theme="light" level={4} />
-      {tabsNotificationIcon()}
+      <DxcTabsLegacy tabs={tabsNotificationIcon} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With icon on the left and notification number" theme="light" level={4} />
-      {tabsNotificationIcon("left")}
+      <DxcTabsLegacy tabs={tabsNotificationIcon} iconPosition="left" />
     </ExampleContainer>
     <Title title="Margins" theme="light" level={2} />
     <ExampleContainer>
       <Title title="Xxsmall margin" theme="light" level={4} />
-      {tabs("xxsmall")}
+      <DxcTabsLegacy tabs={tabs} margin="xxsmall" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Xsmall margin" theme="light" level={4} />
-      {tabs("xsmall")}
+      <DxcTabsLegacy tabs={tabs} margin="xsmall" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Small margin" theme="light" level={4} />
-      {tabs("small")}
+      <DxcTabsLegacy tabs={tabs} margin="small" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Medium margin" theme="light" level={4} />
-      {tabs("medium")}
+      <DxcTabsLegacy tabs={tabs} margin="medium" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Large margin" theme="light" level={4} />
-      {tabs("large")}
+      <DxcTabsLegacy tabs={tabs} margin="large" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Xlarge margin" theme="light" level={4} />
-      {tabs("xlarge")}
+      <DxcTabsLegacy tabs={tabs} margin="xlarge" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Xxlarge margin" theme="light" level={4} />
-      {tabs("xxlarge")}
+      <DxcTabsLegacy tabs={tabs} margin="xxlarge" />
     </ExampleContainer>
     <Title title="Opinionated theme" theme="light" level={2} />
     <ExampleContainer>
       <Title title="With icon and notification" theme="light" level={4} />
-      <HalstackProvider theme={opinionatedTheme}>{tabsNotificationIcon()}</HalstackProvider>
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcTabsLegacy tabs={tabsNotificationIcon} />
+      </HalstackProvider>
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Disabled" theme="light" level={4} />
-      <HalstackProvider theme={opinionatedTheme}>{disabledTabsFirstActive}</HalstackProvider>
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcTabsLegacy activeTabIndex={0} tabs={disabledTabs} />
+      </HalstackProvider>
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-hover">
       <Title title="Hovered" theme="light" level={4} />
-      <HalstackProvider theme={opinionatedTheme}>{tabs()}</HalstackProvider>
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcTabsLegacy tabs={tabs} />
+      </HalstackProvider>
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-focus">
       <Title title="Focused" theme="light" level={4} />
-      <HalstackProvider theme={opinionatedTheme}>{tabs()}</HalstackProvider>
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcTabsLegacy tabs={tabs} />
+      </HalstackProvider>
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-active">
       <Title title="Actived" theme="light" level={4} />
-      <HalstackProvider theme={opinionatedTheme}>{tabs()}</HalstackProvider>
+      <HalstackProvider theme={opinionatedTheme}>
+        <DxcTabsLegacy tabs={tabs} />
+      </HalstackProvider>
     </ExampleContainer>
   </>
 );
 
-export const ScrollableTabs = () => (
+export const ScrollableTabsLegacy = () => (
   <>
     <ExampleContainer>
       <Title title="Only label" theme="light" level={4} />
-      {tabs()}
+      <DxcTabsLegacy tabs={tabs} />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-hover">
       <Title title="Hovered tabs" theme="light" level={4} />
-      {tabs()}
+      <DxcTabsLegacy tabs={tabs} />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-focus">
       <Title title="Focused tabs" theme="light" level={4} />
-      {tabs()}
+      <DxcTabsLegacy tabs={tabs} />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-active">
       <Title title="Actived tabs" theme="light" level={4} />
-      {tabs()}
+      <DxcTabsLegacy tabs={tabs} />
     </ExampleContainer>
   </>
 );
 
-ScrollableTabs.parameters = {
+ScrollableTabsLegacy.parameters = {
   viewport: {
     defaultViewport: "iphonex",
   },

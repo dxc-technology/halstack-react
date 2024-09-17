@@ -1,85 +1,141 @@
-import { forwardRef, memo } from "react";
+import { forwardRef, Ref, useContext, useEffect, useRef } from "react";
 import styled from "styled-components";
 import DxcBadge from "../badge/Badge";
 import DxcIcon from "../icon/Icon";
+import DxcTooltip from "../tooltip/Tooltip";
 import useTheme from "../useTheme";
 import BaseTypography from "../utils/BaseTypography";
-import { TabProps } from "./types";
+import { TabsContext } from "./TabsContext";
+import { TabProps, TabsContextProps } from "./types";
 
-const Tab = forwardRef(
+const DxcTab = forwardRef(
   (
-    { active, tab, tabIndex, hasLabelAndIcon, iconPosition, onClick, onMouseEnter, onMouseLeave }: TabProps,
-    ref: React.Ref<HTMLButtonElement>
+    {
+      icon,
+      label,
+      title,
+      disabled = false,
+      active,
+      notificationNumber = false,
+      onClick = () => {},
+      onHover = () => {},
+    }: TabProps,
+    ref: Ref<HTMLButtonElement>
   ): JSX.Element => {
+    const tabRef = useRef<HTMLButtonElement>();
     const colorsTheme = useTheme();
+    const {
+      iconPosition,
+      tabIndex,
+      focusedLabel,
+      isControlled,
+      activeLabel,
+      hasLabelAndIcon,
+      setActiveLabel,
+      setActiveIndicatorWidth,
+      setActiveIndicatorLeft,
+    } = useContext(TabsContext);
+
+    useEffect(() => {
+      focusedLabel === label && tabRef?.current?.focus();
+    }, [focusedLabel, label]);
+
+    useEffect(() => {
+      if (activeLabel === label) {
+        setActiveIndicatorWidth(tabRef?.current?.offsetWidth);
+        setActiveIndicatorLeft(tabRef?.current?.offsetLeft);
+      }
+    }, [activeLabel, label]);
+
+    useEffect(() => {
+      if (active) {
+        setActiveLabel(label);
+      }
+    }, [active, label]);
+
+    const handleOnKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
+      switch (event.key) {
+        case " ":
+        case "Enter":
+          event.preventDefault();
+          tabRef?.current?.click();
+          break;
+      }
+    };
 
     return (
-      <TabContainer
-        role="tab"
-        type="button"
-        tabIndex={tabIndex}
-        disabled={tab.isDisabled}
-        aria-selected={active}
-        hasLabelAndIcon={hasLabelAndIcon}
-        iconPosition={iconPosition}
-        ref={ref}
-        onClick={() => {
-          onClick();
-        }}
-        onMouseEnter={() => {
-          onMouseEnter();
-        }}
-        onMouseLeave={() => {
-          onMouseLeave();
-        }}
-      >
-        <MainLabelContainer
-          notificationNumber={tab.notificationNumber}
+      <DxcTooltip label={title}>
+        <TabContainer
+          role="tab"
+          type="button"
+          tabIndex={activeLabel === label && !disabled ? tabIndex : -1}
+          disabled={disabled}
+          aria-selected={activeLabel === label}
           hasLabelAndIcon={hasLabelAndIcon}
           iconPosition={iconPosition}
-          disabled={tab.isDisabled}
-        >
-          {tab.icon && (
-            <TabIconContainer hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
-              {typeof tab.icon === "string" ? <DxcIcon icon={tab.icon} /> : tab.icon}
-            </TabIconContainer>
-          )}
-          <BaseTypography
-            color={
-              tab.isDisabled
-                ? colorsTheme.tabs.disabledFontColor
-                : active
-                  ? colorsTheme.tabs.selectedFontColor
-                  : colorsTheme.tabs.unselectedFontColor
+          ref={(anchorRef) => {
+            tabRef.current = anchorRef;
+
+            if (ref) {
+              if (typeof ref === "function") ref(anchorRef);
+              else (ref as React.MutableRefObject<HTMLButtonElement | null>).current = anchorRef;
             }
-            fontFamily={colorsTheme.tabs.fontFamily}
-            fontSize={colorsTheme.tabs.fontSize}
-            fontStyle={tab.isDisabled ? colorsTheme.tabs.disabledFontStyle : colorsTheme.tabs.fontStyle}
-            fontWeight={active ? colorsTheme.tabs.pressedFontWeight : colorsTheme.tabs.fontWeight}
-            textAlign="center"
-            letterSpacing="0.025em"
-            lineHeight="1.715em"
+          }}
+          onClick={() => {
+            if (!isControlled) setActiveLabel(label);
+            onClick();
+          }}
+          onMouseEnter={() => onHover()}
+          onKeyDown={handleOnKeyDown}
+        >
+          <MainLabelContainer
+            notificationNumber={notificationNumber}
+            hasLabelAndIcon={hasLabelAndIcon}
+            iconPosition={iconPosition}
+            disabled={disabled}
           >
-            {tab.label}
-          </BaseTypography>
-        </MainLabelContainer>
-        {tab.notificationNumber && !tab.isDisabled && (
-          <BadgeContainer hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
-            <DxcBadge
-              mode="notification"
-              size="small"
-              label={typeof tab.notificationNumber === "number" && tab.notificationNumber}
-            />
-          </BadgeContainer>
-        )}
-      </TabContainer>
+            {icon && (
+              <TabIconContainer hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
+                {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
+              </TabIconContainer>
+            )}
+            <BaseTypography
+              color={
+                disabled
+                  ? colorsTheme.tabs.disabledFontColor
+                  : activeLabel === label
+                    ? colorsTheme.tabs.selectedFontColor
+                    : colorsTheme.tabs.unselectedFontColor
+              }
+              fontFamily={colorsTheme.tabs.fontFamily}
+              fontSize={colorsTheme.tabs.fontSize}
+              fontStyle={disabled ? colorsTheme.tabs.disabledFontStyle : colorsTheme.tabs.fontStyle}
+              fontWeight={activeLabel === label ? colorsTheme.tabs.pressedFontWeight : colorsTheme.tabs.fontWeight}
+              textAlign="center"
+              letterSpacing="0.025em"
+              lineHeight="1.715em"
+            >
+              {label}
+            </BaseTypography>
+          </MainLabelContainer>
+          {notificationNumber && !disabled && (
+            <BadgeContainer hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
+              <DxcBadge
+                mode="notification"
+                size="small"
+                label={typeof notificationNumber === "number" && notificationNumber}
+              />
+            </BadgeContainer>
+          )}
+        </TabContainer>
+      </DxcTooltip>
     );
   }
 );
 
 const TabContainer = styled.button<{
-  hasLabelAndIcon: TabProps["hasLabelAndIcon"];
-  iconPosition: TabProps["iconPosition"];
+  hasLabelAndIcon: boolean;
+  iconPosition: TabsContextProps["iconPosition"];
 }>`
   text-transform: ${(props) => props.theme.fontTextTransform};
   overflow: hidden;
@@ -144,20 +200,22 @@ const TabContainer = styled.button<{
 `;
 
 const BadgeContainer = styled.div<{
-  hasLabelAndIcon: TabProps["hasLabelAndIcon"];
-  iconPosition: TabProps["iconPosition"];
+  hasLabelAndIcon: boolean;
+  iconPosition: TabsContextProps["iconPosition"];
 }>`
   margin-left: 12px;
   height: 100%;
   display: flex;
   align-items: ${(props) => (props.hasLabelAndIcon && props.iconPosition === "top" ? "flex-start" : "center")};
+  justify-content: flex-start;
+  flex-direction: column;
 `;
 
 const MainLabelContainer = styled.div<{
-  notificationNumber: TabProps["tab"]["notificationNumber"];
-  hasLabelAndIcon: TabProps["hasLabelAndIcon"];
-  iconPosition: TabProps["iconPosition"];
-  disabled: TabProps["tab"]["isDisabled"];
+  notificationNumber: TabProps["notificationNumber"];
+  hasLabelAndIcon: boolean;
+  iconPosition: TabsContextProps["iconPosition"];
+  disabled: boolean;
 }>`
   display: flex;
   flex-direction: ${(props) => (props.hasLabelAndIcon && props.iconPosition === "top" && "column") || "row"};
@@ -171,8 +229,8 @@ const MainLabelContainer = styled.div<{
 `;
 
 const TabIconContainer = styled.div<{
-  hasLabelAndIcon: TabProps["hasLabelAndIcon"];
-  iconPosition: TabProps["iconPosition"];
+  hasLabelAndIcon: boolean;
+  iconPosition: TabsContextProps["iconPosition"];
 }>`
   display: flex;
   margin-bottom: ${(props) => (props.hasLabelAndIcon && props.iconPosition === "top" && "8px") || ""};
@@ -185,4 +243,4 @@ const TabIconContainer = styled.div<{
   }
 `;
 
-export default memo(Tab);
+export default DxcTab;

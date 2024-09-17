@@ -4,7 +4,7 @@ const code = `() => {
   return (
     <DxcInset space="2rem">
       <DxcTabs>
-        <DxcTabs.Tab label="Mail" active>
+        <DxcTabs.Tab label="Mail" defaultActive>
           <></>
         </DxcTabs.Tab>
         <DxcTabs.Tab label="Calendar">
@@ -12,11 +12,7 @@ const code = `() => {
         </DxcTabs.Tab>
         <DxcTabs.Tab label="Contacts">
           <></>
-        </DxcTabs.Tab>
-        <DxcTabs.Tab label="Facebook">
-          <></>
-        </DxcTabs.Tab>
-      </DxcTabs>
+        </DxcTabs.Tab></DxcTabs>
     </DxcInset>
   );
 }`;
