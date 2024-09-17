@@ -67,7 +67,7 @@ const sections = [
           <thead>
             <tr>
               <th>Method</th>
-              <th>Type</th>
+              <th style={{ minWidth: "224px" }}>Type</th>
               <th>Description</th>
             </tr>
           </thead>
@@ -89,7 +89,7 @@ const sections = [
             <tr>
               <td>loading</td>
               <td>
-                <ExtendedTableCode>{`(toast: Loading) => (() => void)`}</ExtendedTableCode>
+                <TableCode>{`(toast: Loading) => (() => void)`}</TableCode>
               </td>
               <td>
                 Shows a loading status toast. Visually and semantically, it is the same as an information toast, but
