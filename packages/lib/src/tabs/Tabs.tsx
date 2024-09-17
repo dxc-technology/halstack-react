@@ -54,20 +54,25 @@ const DxcTabs = ({
   tabIndex = 0,
   children,
 }: TabsPropsType): JSX.Element => {
-  const hasLabelAndIcon = Children.toArray(children).some((tab) => {
-    return isValidElement(tab) && tab.props.label && tab.props.icon;
-  });
+  const childrenArray: ReactElement<TabProps>[] = useMemo(() => {
+    return Children.toArray(children) as ReactElement<TabProps>[];
+  }, [children]);
+  const hasLabelAndIcon = useMemo(() => {
+    return childrenArray.some((child) => isValidElement(child) && child.props.icon && child.props.label);
+  }, [childrenArray]);
+  const hasActiveChild = useMemo(() => {
+    return childrenArray.some(
+      (child) => isValidElement(child) && (child.props.active || child.props.defaultActive) && !child.props.disabled
+    );
+  }, [childrenArray]);
 
-  const childrenArray: ReactElement<TabProps>[] = Children.toArray(children) as ReactElement<TabProps>[];
-
-  const hasActiveChild = childrenArray.some(
-    (child) => isValidElement(child) && (child.props.active || child.props.defaultActive) && !child.props.disabled
-  );
-  const initialActiveTab = hasActiveChild
-    ? childrenArray.find(
-        (child) => isValidElement(child) && (child.props.active || child.props.defaultActive) && !child.props.disabled
-      )
-    : childrenArray.find((child) => isValidElement(child) && !child.props.disabled);
+  const initialActiveTab = useMemo(() => {
+    return hasActiveChild
+      ? childrenArray.find(
+          (child) => isValidElement(child) && (child.props.active || child.props.defaultActive) && !child.props.disabled
+        )
+      : childrenArray.find((child) => isValidElement(child) && !child.props.disabled);
+  }, [hasActiveChild, childrenArray]);
 
   const initialActiveTabLabel = isValidElement(initialActiveTab) ? initialActiveTab.props.label : "";
 
@@ -87,22 +92,24 @@ const DxcTabs = ({
   const translatedLabels = useTranslatedLabels();
   const enabledIndicator = useMemo(() => viewWidth < totalTabsWidth, [viewWidth]);
 
-  const isActiveIndicatorDisabled = Children.toArray(children).some((child) => {
-    if (isValidElement(child)) {
-      return activeTabLabel === child.props.label && child.props.disabled;
-    }
-    return false;
-  });
+  const isActiveIndicatorDisabled = useMemo(() => {
+    return childrenArray.some((child) => {
+      if (isValidElement(child)) {
+        return activeTabLabel === child.props.label && child.props.disabled;
+      }
+      return false;
+    });
+  }, [childrenArray, activeTabLabel]);
 
   useEffect(() => {
     if (refTabList.current) {
       setTotalTabsWidth(refTabList.current.firstElementChild?.offsetWidth);
       setMinHeightTabs(refTabList?.current?.offsetHeight + 1);
     }
-  }, []);
+  }, [childrenArray]);
 
   const contextValue = useMemo(() => {
-    const focusedChild = Children.toArray(children)[innerFocusIndex];
+    const focusedChild = childrenArray[innerFocusIndex];
     return {
       iconPosition,
       tabIndex,
@@ -114,7 +121,7 @@ const DxcTabs = ({
       setActiveIndicatorWidth,
       setActiveIndicatorLeft,
     };
-  }, [iconPosition, tabIndex, innerFocusIndex, activeTabLabel]);
+  }, [iconPosition, tabIndex, innerFocusIndex, activeTabLabel, childrenArray, hasLabelAndIcon]);
 
   const scrollLeft = () => {
     const scrollWidth = refTabList?.current?.offsetWidth * 0.75;
@@ -149,23 +156,17 @@ const DxcTabs = ({
   };
 
   const handleOnKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    const activeTab = Children.toArray(children).findIndex(
-      (child: ReactElement) => child.props.label === activeTabLabel
-    );
+    const activeTab = childrenArray.findIndex((child: ReactElement) => child.props.label === activeTabLabel);
     switch (event.key) {
       case "Left":
       case "ArrowLeft":
         event.preventDefault();
-        setInnerFocusIndex(
-          getPreviousTabIndex(Children.toArray(children), innerFocusIndex === null ? activeTab : innerFocusIndex)
-        );
+        setInnerFocusIndex(getPreviousTabIndex(childrenArray, innerFocusIndex === null ? activeTab : innerFocusIndex));
         break;
       case "Right":
       case "ArrowRight":
         event.preventDefault();
-        setInnerFocusIndex(
-          getNextTabIndex(Children.toArray(children), innerFocusIndex === null ? activeTab : innerFocusIndex)
-        );
+        setInnerFocusIndex(getNextTabIndex(childrenArray, innerFocusIndex === null ? activeTab : innerFocusIndex));
         break;
       case "Tab":
         if (activeTab !== innerFocusIndex) {
