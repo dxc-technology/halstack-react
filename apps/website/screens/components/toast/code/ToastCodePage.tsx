@@ -87,6 +87,17 @@ const sections = [
               <td>Shows a toast with an information semantic.</td>
             </tr>
             <tr>
+              <td>loading</td>
+              <td>
+                <ExtendedTableCode>{`(toast: Loading) => (() => void)`}</ExtendedTableCode>
+              </td>
+              <td>
+                Shows a loading status toast. Visually and semantically, it is the same as an information toast, but
+                with the difference that it never disappears from the screen. Its removal will always depend on the
+                user, thanks to the function returned by this method.
+              </td>
+            </tr>
+            <tr>
               <td>success</td>
               <td>
                 <TableCode>{`(toast: Semantic) => void`}</TableCode>
@@ -99,17 +110,6 @@ const sections = [
                 <TableCode>{`(toast: Semantic) => void`}</TableCode>
               </td>
               <td>Shows a toast with a warning semantic.</td>
-            </tr>
-            <tr>
-              <td>loading</td>
-              <td>
-                <ExtendedTableCode>{`(toast: Loading) => (() => void)`}</ExtendedTableCode>
-              </td>
-              <td>
-                Shows a loading status toast. Visually and semantically, it is the same as an information toast, but
-                with the difference that it never disappears from the screen. Its removal will always depend on the
-                user, thanks to the function returned by this method.
-              </td>
             </tr>
           </tbody>
         </DxcTable>
@@ -173,6 +173,44 @@ const sections = [
         ),
       },
       {
+        title: "Loading",
+        content: (
+          <DxcTable>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Description</th>
+                <th>Default</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>action</td>
+                <td>
+                  <ExtendedTableCode>{actionTypeString}</ExtendedTableCode>
+                </td>
+                <td>Tertiary button which performs a custom action, specified by the user.</td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td>
+                  <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                    <StatusBadge status="required" />
+                    message
+                  </DxcFlex>
+                </td>
+                <td>
+                  <TableCode>string</TableCode>
+                </td>
+                <td>Message to be displayed as a toast.</td>
+                <td>-</td>
+              </tr>
+            </tbody>
+          </DxcTable>
+        ),
+      },
+      {
         title: "Semantic",
         content: (
           <DxcTable>
@@ -202,44 +240,6 @@ const sections = [
                 <td>
                   <TableCode>false</TableCode>
                 </td>
-              </tr>
-              <tr>
-                <td>
-                  <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                    <StatusBadge status="required" />
-                    message
-                  </DxcFlex>
-                </td>
-                <td>
-                  <TableCode>string</TableCode>
-                </td>
-                <td>Message to be displayed as a toast.</td>
-                <td>-</td>
-              </tr>
-            </tbody>
-          </DxcTable>
-        ),
-      },
-      {
-        title: "Loading",
-        content: (
-          <DxcTable>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Type</th>
-                <th>Description</th>
-                <th>Default</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>action</td>
-                <td>
-                  <ExtendedTableCode>{actionTypeString}</ExtendedTableCode>
-                </td>
-                <td>Tertiary button which performs a custom action, specified by the user.</td>
-                <td>-</td>
               </tr>
               <tr>
                 <td>
