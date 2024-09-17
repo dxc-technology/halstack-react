@@ -1,4 +1,4 @@
-type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
+export type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
 type Margin = {
   top?: Space;
   bottom?: Space;
@@ -22,7 +22,19 @@ type TabCommonProps = {
   notificationNumber?: boolean | number;
 };
 
-export type TabLabelProps = TabCommonProps & {
+export type TabsContextProps = {
+  iconPosition: "top" | "left";
+  tabIndex: number;
+  focusedLabel: string;
+  isControlled: boolean;
+  activeLabel: string;
+  hasLabelAndIcon: boolean;
+  setActiveLabel: (_tab: string) => void;
+  setActiveIndicatorWidth: (_width: number) => void;
+  setActiveIndicatorLeft: (_left: number) => void;
+};
+
+type TabLabelProps = TabCommonProps & {
   /**
    * Tab label.
    */
@@ -33,7 +45,7 @@ export type TabLabelProps = TabCommonProps & {
   icon?: string | SVG;
 };
 
-export type TabIconProps = TabCommonProps & {
+type TabIconProps = TabCommonProps & {
   /**
    * Tab label.
    */
@@ -44,7 +56,7 @@ export type TabIconProps = TabCommonProps & {
   icon: string | SVG;
 };
 
-export type TabProps = {
+export type TabPropsLegacy = {
   tab: TabLabelProps | TabIconProps;
   active: boolean;
   tabIndex: number;
@@ -55,7 +67,20 @@ export type TabProps = {
   onMouseLeave: () => void;
 };
 
-type Props = {
+export type TabProps = {
+  defaultActive?: boolean;
+  active?: boolean;
+  icon?: string | SVG;
+  label?: string;
+  title?: string;
+  disabled?: boolean;
+  notificationNumber?: boolean | number;
+  children: React.ReactNode;
+  onClick?: () => void;
+  onHover?: () => void;
+};
+
+type LegacyProps = {
   /**
    * Initially active tab, only when it is uncontrolled.
    */
@@ -68,7 +93,7 @@ type Props = {
   /**
    * An array of objects representing the tabs.
    */
-  tabs: (TabLabelProps | TabIconProps)[];
+  tabs?: (TabLabelProps | TabIconProps)[];
   /**
    * Whether the icon should appear above or to the left of the label.
    */
@@ -93,5 +118,28 @@ type Props = {
    */
   tabIndex?: number;
 };
+
+type NewProps = {
+  /**
+   * Whether the icon should appear above or to the left of the label.
+   */
+  iconPosition?: "top" | "left";
+  /**
+   * Size of the margin to be applied to the component ('xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge').
+   * You can pass an object with 'top', 'bottom', 'left' and 'right' properties in order to specify different margin sizes.
+   */
+  margin?: Space | Margin;
+  /**
+   * Value of the tabindex attribute applied to each tab.
+   */
+  tabIndex?: number;
+  /**
+   * Contains one or more DxcTabs.Tab.
+   */
+  // children?: React.ReactElement<TabProps>[];
+  children?: React.ReactNode;
+};
+
+type Props = LegacyProps & NewProps;
 
 export default Props;
