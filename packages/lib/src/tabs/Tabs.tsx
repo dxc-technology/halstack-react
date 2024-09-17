@@ -60,23 +60,19 @@ const DxcTabs = ({
   const hasLabelAndIcon = useMemo(() => {
     return childrenArray.some((child) => isValidElement(child) && child.props.icon && child.props.label);
   }, [childrenArray]);
-  const hasActiveChild = useMemo(() => {
-    return childrenArray.some(
+
+  const [activeTabLabel, setActiveTabLabel] = useState(() => {
+    const hasActiveChild = childrenArray.some(
       (child) => isValidElement(child) && (child.props.active || child.props.defaultActive) && !child.props.disabled
     );
-  }, [childrenArray]);
-
-  const initialActiveTab = useMemo(() => {
-    return hasActiveChild
+    const initialActiveTab = hasActiveChild
       ? childrenArray.find(
           (child) => isValidElement(child) && (child.props.active || child.props.defaultActive) && !child.props.disabled
         )
       : childrenArray.find((child) => isValidElement(child) && !child.props.disabled);
-  }, [hasActiveChild, childrenArray]);
 
-  const initialActiveTabLabel = isValidElement(initialActiveTab) ? initialActiveTab.props.label : "";
-
-  const [activeTabLabel, setActiveTabLabel] = useState(initialActiveTabLabel);
+    return isValidElement(initialActiveTab) ? initialActiveTab.props.label : "";
+  });
   const [innerFocusIndex, setInnerFocusIndex] = useState(null);
   const [activeIndicatorWidth, setActiveIndicatorWidth] = useState(0);
   const [activeIndicatorLeft, setActiveIndicatorLeft] = useState(0);
@@ -91,15 +87,6 @@ const DxcTabs = ({
   const viewWidth = useResize(refTabList);
   const translatedLabels = useTranslatedLabels();
   const enabledIndicator = useMemo(() => viewWidth < totalTabsWidth, [viewWidth]);
-
-  const isActiveIndicatorDisabled = useMemo(() => {
-    return childrenArray.some((child) => {
-      if (isValidElement(child)) {
-        return activeTabLabel === child.props.label && child.props.disabled;
-      }
-      return false;
-    });
-  }, [childrenArray, activeTabLabel]);
 
   useEffect(() => {
     if (refTabList.current) {
@@ -200,7 +187,9 @@ const DxcTabs = ({
                 <ActiveIndicator
                   tabWidth={activeIndicatorWidth}
                   tabLeft={activeIndicatorLeft}
-                  aria-disabled={isActiveIndicatorDisabled}
+                  aria-disabled={childrenArray.some(
+                    (child) => isValidElement(child) && activeTabLabel === child.props.label && child.props.disabled
+                  )}
                 />
               </TabsContentScroll>
             </TabsContent>
