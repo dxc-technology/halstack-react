@@ -108,21 +108,18 @@ const DxcTabs = ({
   }, [childrenArray]);
 
   const contextValue = useMemo(() => {
-    if (innerFocusIndex != null) {
-      const focusedChild = childrenArray[innerFocusIndex];
-      return {
-        iconPosition,
-        tabIndex,
-        focusedLabel: isValidElement(focusedChild) ? focusedChild.props.label : "",
-        isControlled: childrenArray.some((child) => isValidElement(child) && typeof child.props.active !== "undefined"),
-        activeLabel: activeTabLabel,
-        hasLabelAndIcon,
-        setActiveLabel: setActiveTabLabel,
-        setActiveIndicatorWidth,
-        setActiveIndicatorLeft,
-      };
-    }
-    return null;
+    const focusedChild = innerFocusIndex != null ? childrenArray[innerFocusIndex] : null;
+    return {
+      iconPosition,
+      tabIndex,
+      focusedLabel: isValidElement(focusedChild) ? focusedChild.props.label : "",
+      isControlled: childrenArray.some((child) => isValidElement(child) && typeof child.props.active !== "undefined"),
+      activeLabel: activeTabLabel,
+      hasLabelAndIcon,
+      setActiveLabel: setActiveTabLabel,
+      setActiveIndicatorWidth,
+      setActiveIndicatorLeft,
+    };
   }, [iconPosition, tabIndex, innerFocusIndex, activeTabLabel, childrenArray, hasLabelAndIcon]);
 
   const scrollLeft = () => {

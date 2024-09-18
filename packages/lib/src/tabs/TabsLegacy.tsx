@@ -197,14 +197,14 @@ const DxcTabs = ({
         break;
       case "Enter":
       case " ":
-        if (temporalFocusIndex) {
+        if (temporalFocusIndex != null) {
           event.preventDefault();
           setCurrentFocusIndex(temporalFocusIndex);
           handleSelected(temporalFocusIndex);
         }
         break;
       case "Tab":
-        if (currentFocusIndex) {
+        if (currentFocusIndex != null) {
           if (temporalFocusIndex !== currentFocusIndex) {
             event.preventDefault();
             setTemporalFocusIndex(currentFocusIndex);
