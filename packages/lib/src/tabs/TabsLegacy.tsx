@@ -60,8 +60,10 @@ const DxcTabs = ({
   useEffect(() => {
     const sumWidth = refTabs?.current?.reduce((count, obj) => count + obj.offsetWidth, 0);
     setTotalTabsWidth(sumWidth);
-    setActiveIndicatorWidth(refTabs?.current[activeTabIndex ?? innerActiveTabIndex]?.offsetWidth ?? 0);
-    setActiveIndicatorLeft(refTabs?.current[activeTabIndex ?? innerActiveTabIndex]?.offsetLeft ?? 0);
+    if (activeTabIndex != null || activeTabIndex != null) {
+      setActiveIndicatorWidth(refTabs?.current[activeTabIndex ?? innerActiveTabIndex]?.offsetWidth ?? 0);
+      setActiveIndicatorLeft(refTabs?.current[activeTabIndex ?? innerActiveTabIndex]?.offsetLeft ?? 0);
+    }
   }, [refTabs]);
 
   useEffect(() => {
@@ -119,51 +121,64 @@ const DxcTabs = ({
   };
 
   const setPreviousTabFocus = () => {
-    setTemporalFocusIndex((currentTemporalFocusIndex) => {
-      let index = currentTemporalFocusIndex === 0 ? tabs.length - 1 : currentTemporalFocusIndex - 1;
-      while (tabs[index]?.isDisabled) {
-        index = index === 0 ? tabs.length - 1 : index - 1;
-      }
-      refTabs?.current[index]?.focus({ preventScroll: true });
-      setScrollFocus(index);
-      return index;
-    });
+    if (tabs) {
+      setTemporalFocusIndex((currentTemporalFocusIndex) => {
+        if (currentTemporalFocusIndex != null) {
+          let index = currentTemporalFocusIndex === 0 ? tabs.length - 1 : currentTemporalFocusIndex - 1;
+          while (tabs[index]?.isDisabled) {
+            index = index === 0 ? tabs.length - 1 : index - 1;
+          }
+          refTabs?.current[index]?.focus({ preventScroll: true });
+          setScrollFocus(index);
+          return index;
+        }
+        return undefined;
+      });
+    }
   };
 
   const setNextTabFocus = () => {
-    setTemporalFocusIndex((currentTemporalFocusIndex) => {
-      let index = currentTemporalFocusIndex === tabs.length - 1 ? 0 : currentTemporalFocusIndex + 1;
-      while (tabs[index]?.isDisabled) {
-        index = index === tabs.length - 1 ? 0 : index + 1;
-      }
-      refTabs?.current[index]?.focus({ preventScroll: true });
-      setScrollFocus(index);
-      return index;
-    });
+    if (tabs) {
+      setTemporalFocusIndex((currentTemporalFocusIndex) => {
+        if (currentTemporalFocusIndex != null) {
+          let index = currentTemporalFocusIndex === tabs.length - 1 ? 0 : currentTemporalFocusIndex + 1;
+          while (tabs[index]?.isDisabled) {
+            index = index === tabs.length - 1 ? 0 : index + 1;
+          }
+          refTabs?.current[index]?.focus({ preventScroll: true });
+          setScrollFocus(index);
+          return index;
+        }
+        return undefined;
+      });
+    }
   };
 
   const setScrollFocus = (actualIndex: number) => {
-    let sumPrev = 0;
-    refTabs?.current?.forEach((item, index) => {
-      if (index <= actualIndex) {
-        sumPrev += item.offsetWidth;
+    if (tabs) {
+      let sumPrev = 0;
+      refTabs?.current?.forEach((item, index) => {
+        if (index <= actualIndex) {
+          sumPrev += item.offsetWidth;
+        }
+      });
+      let moveX = 0;
+
+      if (actualIndex === tabs.length - 1) {
+        moveX = totalTabsWidth - (refTabList?.current?.offsetHeight || 0);
+        setScrollLeftEnabled(true);
+        setScrollRightEnabled(false);
+      } else if (refTabList?.current?.offsetWidth && sumPrev > refTabList?.current?.offsetWidth) {
+        moveX = sumPrev - (refTabList?.current?.offsetHeight || 0) + 1; // plus 1px for the outline
+        setScrollLeftEnabled(true);
+        setScrollRightEnabled(true);
+      } else {
+        setScrollLeftEnabled(false);
+        setScrollRightEnabled(true);
       }
-    });
-    let moveX = 0;
-    if (actualIndex === tabs.length - 1) {
-      moveX = totalTabsWidth - (refTabList?.current?.offsetHeight || 0);
-      setScrollLeftEnabled(true);
-      setScrollRightEnabled(false);
-    } else if (refTabList?.current?.offsetWidth && sumPrev > refTabList?.current?.offsetWidth) {
-      moveX = sumPrev - (refTabList?.current?.offsetHeight || 0) + 1; // plus 1px for the outline
-      setScrollLeftEnabled(true);
-      setScrollRightEnabled(true);
-    } else {
-      setScrollLeftEnabled(false);
-      setScrollRightEnabled(true);
+      setTranslateScroll(-moveX);
+      setCountClick(moveX);
     }
-    setTranslateScroll(-moveX);
-    setCountClick(moveX);
   };
 
   const handleOnKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
