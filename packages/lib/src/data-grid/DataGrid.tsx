@@ -157,7 +157,9 @@ const DxcDataGrid = ({
 
   const onRowsChange = (newRows: GridRow[] | HierarchyGridRow[] | ExpandableGridRow[]) => {
     // call function to change rows, like when they have been edited
-    onGridRowsChange?.(newRows);
+    if (typeof onGridRowsChange === "function") {
+      onGridRowsChange(newRows);
+    }
   };
 
   const sortedRows = useMemo((): readonly GridRow[] => {

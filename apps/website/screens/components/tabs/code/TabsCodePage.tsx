@@ -1,14 +1,17 @@
-import { DxcFlex, DxcLink, DxcTable } from "@dxc-technology/halstack-react";
+import { DxcFlex, DxcLink, DxcParagraph, DxcTable } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
 import Code from "@/common/Code";
 import Example from "@/common/example/Example";
-import controlled from "./examples/controlled";
-import uncontrolled from "./examples/uncontrolled";
-import icons from "./examples/icons";
+import controlledLegacy from "./examples-old/controlled";
+import uncontrolledLegacy from "./examples-old/uncontrolled";
+import iconsLegacy from "./examples-old/icons";
 import TableCode from "@/common/TableCode";
 import StatusBadge from "@/common/StatusBadge";
+import controlled from "./examples-new/controlled";
+import uncontrolled from "./examples-new/uncontrolled";
+import icons from "./examples-new/icons";
 
 const sections = [
   {
@@ -25,7 +28,12 @@ const sections = [
         </thead>
         <tbody>
           <tr>
-            <td>defaultActiveTabIndex</td>
+            <td>
+              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                <StatusBadge status="legacy" />
+                defaultActiveTabIndex
+              </DxcFlex>
+            </td>
             <td>
               <TableCode>number</TableCode>
             </td>
@@ -33,7 +41,12 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
-            <td>activeTabIndex</td>
+            <td>
+              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                <StatusBadge status="legacy" />
+                activeTabIndex
+              </DxcFlex>
+            </td>
             <td>
               <TableCode>number</TableCode>
             </td>
@@ -46,7 +59,7 @@ const sections = [
           <tr>
             <td>
               <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                <StatusBadge status="required" />
+                <StatusBadge status="legacy" />
                 tabs
               </DxcFlex>
             </td>
@@ -87,6 +100,22 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
+            <td>
+              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                {/* TODO: Swap experimental for required once old logic is removed */}
+                <StatusBadge status="experimental" />
+                children
+              </DxcFlex>
+            </td>
+            <td>
+              <TableCode>React.ReactNode</TableCode>
+            </td>
+            <td>
+              Contains one or more <Code>DxcTabs.Tab</Code>.
+            </td>
+            <td>-</td>
+          </tr>
+          <tr>
             <td>iconPosition</td>
             <td>
               <TableCode>'top' | 'left'</TableCode>
@@ -97,7 +126,12 @@ const sections = [
             </td>
           </tr>
           <tr>
-            <td>onTabClick</td>
+            <td>
+              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                <StatusBadge status="legacy" />
+                onTabClick
+              </DxcFlex>
+            </td>
             <td>
               <TableCode>{"(index: number) => void"}</TableCode>
             </td>
@@ -108,7 +142,12 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
-            <td>onTabHover</td>
+            <td>
+              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                <StatusBadge status="legacy" />
+                onTabHover
+              </DxcFlex>
+            </td>
             <td>
               <TableCode>{"(index: number) => void"}</TableCode>
             </td>
@@ -146,6 +185,142 @@ const sections = [
     ),
   },
   {
+    title: "DxcTabs.Tab",
+    content: <DxcParagraph>Single tab, part of the set of Tabs.</DxcParagraph>,
+    subSections: [
+      {
+        title: "Props",
+        content: (
+          <DxcTable>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Description</th>
+                <th>Default</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>active</td>
+                <td>
+                  <TableCode>boolean</TableCode>
+                </td>
+                <td>Whether the tab is active or not.</td>
+                <td>
+                  <TableCode>false</TableCode>
+                </td>
+              </tr>
+              <tr>
+                <td>defaultActive</td>
+                <td>
+                  <TableCode>boolean</TableCode>
+                </td>
+                <td>Whether the tab is active or not by default, but mantaining the uncontrolled behaviour.</td>
+                <td>
+                  <TableCode>false</TableCode>
+                </td>
+              </tr>
+              <tr>
+                <td>disabled</td>
+                <td>
+                  <TableCode>boolean</TableCode>
+                </td>
+                <td>Whether the tab is disabled or not.</td>
+                <td>
+                  <TableCode>false</TableCode>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                    <StatusBadge status="required" />
+                    label
+                  </DxcFlex>
+                </td>
+                <td>
+                  <TableCode>string</TableCode>
+                </td>
+                <td>Tab label text.</td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td>
+                  <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                    title
+                  </DxcFlex>
+                </td>
+                <td>
+                  <TableCode>string</TableCode>
+                </td>
+                <td>Tooltip text for the tab.</td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td>icon</td>
+                <td>
+                  <TableCode>string | {"(React.ReactNode & React.SVGProps <SVGSVGElement>)"}</TableCode>
+                </td>
+                <td>
+                  <DxcLink newWindow href="https://fonts.google.com/icons">
+                    Material Symbol
+                  </DxcLink>{" "}
+                  name or SVG element as the icon that will be displayed in the tab. When using Material Symbols,
+                  replace spaces with underscores. By default they are outlined if you want it to be filled prefix the
+                  symbol name with <TableCode>"filled_"</TableCode>.
+                </td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td>onClick</td>
+                <td>
+                  <TableCode>{"() => void"}</TableCode>
+                </td>
+                <td>This function will be called when the user clicks on this tab. </td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td>onHover</td>
+                <td>
+                  <TableCode>{"() => void"}</TableCode>
+                </td>
+                <td>This function will be called when the user hovers this tab.</td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td>notificationNumber</td>
+                <td>
+                  <TableCode>boolean | number</TableCode>
+                </td>
+                <td>
+                  If true, an empty badge will appear. If false or if the tab is disabled, no badge will appear. If a
+                  number is specified, the component will display a badge with the value as its label. Take into account
+                  that if that number is greater than 99, it will appear as <TableCode>+99</TableCode> in the badge.
+                </td>
+                <td>
+                  <TableCode>false</TableCode>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                    <StatusBadge status="required" />
+                    children
+                  </DxcFlex>
+                </td>
+                <td>
+                  <TableCode>React.ReactNode</TableCode>
+                </td>
+                <td>Contains the component to be rendered when this tab is active.</td>
+                <td>-</td>
+              </tr>
+            </tbody>
+          </DxcTable>
+        ),
+      },
+    ],
+  },
+  {
     title: "Examples",
     subSections: [
       {
@@ -159,6 +334,23 @@ const sections = [
       {
         title: "Icons and notifications",
         content: <Example example={icons} defaultIsVisible />,
+      },
+    ],
+  },
+  {
+    title: "Examples (Legacy)",
+    subSections: [
+      {
+        title: "Controlled",
+        content: <Example example={controlledLegacy} defaultIsVisible />,
+      },
+      {
+        title: "Uncontrolled",
+        content: <Example example={uncontrolledLegacy} defaultIsVisible />,
+      },
+      {
+        title: "Icons and notifications",
+        content: <Example example={iconsLegacy} defaultIsVisible />,
       },
     ],
   },

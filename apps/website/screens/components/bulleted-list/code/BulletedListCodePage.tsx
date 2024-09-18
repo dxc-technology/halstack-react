@@ -48,6 +48,21 @@ const sections = [
             </td>
             <td>-</td>
           </tr>
+          <tr>
+            <td>
+              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                <StatusBadge status="required" />
+                children
+              </DxcFlex>
+            </td>
+            <td>
+              <TableCode>React.ReactNode</TableCode>
+            </td>
+            <td>
+              Contains one or more <Code>DxcBulletedList.Item</Code>.
+            </td>
+            <td>-</td>
+          </tr>
         </tbody>
       </DxcTable>
     ),

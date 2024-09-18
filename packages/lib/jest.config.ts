@@ -1,6 +1,7 @@
 import type { Config } from "jest";
 
 const config: Config = {
+  collectCoverage: true,
   moduleNameMapper: {
     "\\.(css|less|scss|sass)$": "identity-obj-proxy",
     "\\.(svg)$": "<rootDir>/test/mocks/svgMock.ts",

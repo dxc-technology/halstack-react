@@ -114,7 +114,7 @@ const Link = forwardRef<HTMLAnchorElement, SidenavLinkPropsType>(
   }
 );
 
-Link.displayName = "Link";
+Link.displayName = "SidenavLink";
 
 const SidenavContainer = styled.div`
   box-sizing: border-box;

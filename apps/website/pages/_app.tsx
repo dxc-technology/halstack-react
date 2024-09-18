@@ -4,13 +4,13 @@ import type { AppProps } from "next/app";
 import Head from "next/head";
 import styled from "styled-components";
 import { DxcApplicationLayout, DxcTextInput, HalstackProvider } from "@dxc-technology/halstack-react";
-import "../global-styles.css";
 import { responsiveSizes } from "../screens/common/variables";
 import SidenavLogo from "@/common/sidenav/SidenavLogo";
 import { useRouter } from "next/router";
 import { LinksSectionDetails, LinksSections, themeGeneratorLinks } from "@/common/pagesList";
 import Link from "next/link";
 import StatusBadge from "@/common/StatusBadge";
+import "../global-styles.css";
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (_page: ReactElement) => ReactNode;

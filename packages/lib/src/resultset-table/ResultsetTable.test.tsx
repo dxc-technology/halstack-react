@@ -175,6 +175,134 @@ const rows = [
   ],
 ];
 
+const rowsMissingSortValues = [
+  [
+    {
+      displayValue: "001",
+    },
+    {
+      displayValue: "Peter",
+    },
+    {
+      displayValue: "Oviedo",
+    },
+  ],
+  [
+    {
+      displayValue: "002",
+      sortValue: "002",
+    },
+    {
+      displayValue: "Louis",
+      sortValue: "Louis",
+    },
+    {
+      displayValue: "Oviedo",
+      sortValue: "Oviedo",
+    },
+  ],
+  [
+    {
+      displayValue: "003",
+    },
+    {
+      displayValue: "Lana",
+    },
+    {
+      displayValue: "Albacete",
+    },
+  ],
+  [
+    {
+      displayValue: "004",
+      sortValue: "004",
+    },
+    {
+      displayValue: "Rick",
+      sortValue: "Rick",
+    },
+    {
+      displayValue: "Albacete",
+      sortValue: "Albacete",
+    },
+  ],
+  [
+    {
+      displayValue: "005",
+    },
+    {
+      displayValue: "Mark",
+    },
+    {
+      displayValue: "Madrid",
+    },
+  ],
+  [
+    {
+      displayValue: "006",
+      sortValue: "006",
+    },
+    {
+      displayValue: "Cris",
+      sortValue: "Cris",
+    },
+    {
+      displayValue: "Barcelona",
+      sortValue: "Barcelona",
+    },
+  ],
+  [
+    {
+      displayValue: "007",
+    },
+    {
+      displayValue: "Susan",
+    },
+    {
+      displayValue: "Madrid",
+    },
+  ],
+  [
+    {
+      displayValue: "008",
+      sortValue: "008",
+    },
+    {
+      displayValue: "Tina",
+      sortValue: "Tina",
+    },
+    {
+      displayValue: "Barcelona",
+      sortValue: "Barcelona",
+    },
+  ],
+  [
+    {
+      displayValue: "009",
+    },
+    {
+      displayValue: "Kevin",
+    },
+    {
+      displayValue: "Oviedo",
+    },
+  ],
+  [
+    {
+      displayValue: "010",
+      sortValue: "010",
+    },
+    {
+      displayValue: "Cosmin",
+      sortValue: "Cosmin",
+    },
+    {
+      displayValue: "Barcelona",
+      sortValue: "Barcelona",
+    },
+  ],
+];
+
 const columnsWithCheckbox = [
   { displayValue: "Id", isSortable: true },
   { displayValue: "Checkbox", isSortable: false },
@@ -269,6 +397,18 @@ describe("Resultset table component tests", () => {
 
   test("Resultset table sort rows by column", () => {
     const component = render(<DxcResultsetTable columns={columns} rows={rows} itemsPerPage={3} />);
+    expect(component.queryByText("Peter")).toBeTruthy();
+    fireEvent.click(component.queryByText("Name"));
+    expect(component.queryByText("Tina")).not.toBeTruthy();
+    expect(component.queryByText("Cosmin")).toBeTruthy();
+
+    fireEvent.click(component.queryByText("Name"));
+    expect(component.queryByText("Tina")).toBeTruthy();
+    expect(component.queryByText("Cosmin")).not.toBeTruthy();
+  });
+
+  test("Resultset table sort rows by column even if they are missing sortValues", () => {
+    const component = render(<DxcResultsetTable columns={columns} rows={rowsMissingSortValues} itemsPerPage={3} />);
     expect(component.queryByText("Peter")).toBeTruthy();
     fireEvent.click(component.queryByText("Name"));
     expect(component.queryByText("Tina")).not.toBeTruthy();

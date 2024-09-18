@@ -19,7 +19,7 @@ const code = `() => {
           clearable
           ref={inputRef}
         />
-        <DxcButton label="Submit" onClick={handleSubmit} size={{width: "medium}}" />
+        <DxcButton label="Submit" onClick={handleSubmit} size={{width: "medium"}} />
       </DxcFlex>
     </DxcInset>
   );
