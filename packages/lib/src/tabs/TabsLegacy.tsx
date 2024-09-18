@@ -60,11 +60,11 @@ const DxcTabs = ({
   const enabledIndicator = useMemo(() => viewWidth < totalTabsWidth, [viewWidth]);
 
   useEffect(() => {
-    const sumWidth = refTabs?.current?.reduce((count, obj) => count + obj.offsetWidth, 0);
-    setTotalTabsWidth(sumWidth);
-    if (activeTabIndex != null || activeTabIndex != null) {
-      setActiveIndicatorWidth(refTabs?.current[activeTabIndex ?? innerActiveTabIndex]?.offsetWidth ?? 0);
-      setActiveIndicatorLeft(refTabs?.current[activeTabIndex ?? innerActiveTabIndex]?.offsetLeft ?? 0);
+    if (activeTabIndex != null || innerActiveTabIndex != null) {
+      const sumWidth = refTabs?.current?.reduce((count, obj) => count + obj.offsetWidth, 0);
+      setTotalTabsWidth(sumWidth);
+      setActiveIndicatorWidth(refTabs?.current[activeTabIndex ?? innerActiveTabIndex!]?.offsetWidth ?? 0);
+      setActiveIndicatorLeft(refTabs?.current[activeTabIndex ?? innerActiveTabIndex!]?.offsetLeft ?? 0);
     }
   }, [refTabs]);
 
