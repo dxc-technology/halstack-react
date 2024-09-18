@@ -96,21 +96,21 @@ const rowsIcon = [
     { displayValue: "001", sortValue: "001" },
     { displayValue: "Peter" },
     {
-      displayValue: <DxcResultsetTable.ActionsCell actions={actions as any} />,
+      displayValue: <DxcResultsetTable.ActionsCell actions={actions} />,
     },
   ],
   [
     { displayValue: "002", sortValue: "002" },
     { displayValue: "Louis" },
     {
-      displayValue: <DxcResultsetTable.ActionsCell actions={actions as any} />,
+      displayValue: <DxcResultsetTable.ActionsCell actions={actions} />,
     },
   ],
   [
     { displayValue: "003", sortValue: "003" },
     { displayValue: "Mark" },
     {
-      displayValue: <DxcResultsetTable.ActionsCell actions={actions as any} />,
+      displayValue: <DxcResultsetTable.ActionsCell actions={actions} />,
     },
   ],
 ];

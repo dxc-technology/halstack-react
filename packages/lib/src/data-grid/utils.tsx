@@ -193,66 +193,6 @@ export const renderHierarchyTrigger = (
   </button>
 );
 
-// export const renderHierarchyTrigger = (
-//   rows: HierarchyGridRow[],
-//   triggerRow: HierarchyGridRow,
-//   uniqueRowId: string,
-//   columnKey: string,
-//   setRowsToRender: (value: React.SetStateAction<GridRow[] | ExpandableGridRow[] | HierarchyGridRow[]>) => void
-// ) => {
-//   let rowsCopy = [...rows];
-//   const triggerRowCopy = { ...triggerRow };
-//   return (
-//     <button
-//       type="button"
-//       onClick={() => {
-//         if (!triggerRowCopy.visibleChildren) {
-//           const rowIndex = rowsCopy.findIndex((rowToRender) => triggerRowCopy === rowToRender);
-//           triggerRowCopy.childRows?.forEach((childRow: HierarchyGridRow, index: number) => {
-//             const childRowCopy = { ...childRow };
-//             childRowCopy.rowLevel =
-//               triggerRowCopy.rowLevel && typeof triggerRowCopy.rowLevel === "number" ? triggerRowCopy.rowLevel + 1 : 1;
-//             childRowCopy.parentKey = rowKeyGetter(triggerRowCopy, uniqueRowId);
-//             addRow(rowsCopy, rowIndex + 1 + index, childRowCopy);
-//           });
-//         } else {
-//           // The children of the row that is being collapsed are added to an array
-//           const rowsToRemove: HierarchyGridRow[] = rowsCopy.filter(
-//             (rowToRender) =>
-//               rowToRender.parentKey && rowToRender.parentKey === rowKeyGetter(triggerRowCopy, uniqueRowId)
-//           );
-//           // The children are checked if any of them has any other children of their own
-//           const rowsToCheck = [...rowsToRemove];
-//           while (rowsToCheck.length > 0) {
-//             const currentRow = rowsToCheck.pop();
-//             const childRows = currentRow?.visibleChildren && currentRow?.childRows ? currentRow.childRows : [];
-
-//             rowsToRemove.push(...childRows);
-//             rowsToCheck.push(...childRows);
-//           }
-//           rowsCopy = rowsCopy.filter(
-//             (row) =>
-//               !rowsToRemove
-//                 .map((rowToRemove) => {
-//                   const rowToRemoveCopy = { ...rowToRemove };
-//                   if (rowToRemoveCopy.visibleChildren) {
-//                     rowToRemoveCopy.visibleChildren = false;
-//                   }
-//                   return rowKeyGetter(rowToRemoveCopy, uniqueRowId);
-//                 })
-//                 .includes(rowKeyGetter(row, uniqueRowId))
-//           );
-//         }
-//         triggerRowCopy.visibleChildren = !triggerRowCopy.visibleChildren;
-//         setRowsToRender(rowsCopy);
-//       }}
-//     >
-//       <DxcIcon icon={triggerRowCopy.visibleChildren ? "Keyboard_Arrow_Down" : "Chevron_Right"} />
-//       <span className="ellipsis-cell">{triggerRowCopy[columnKey]}</span>
-//     </button>
-//   );
-// };
-
 export const renderCheckbox = (
   rows: GridRow[] | HierarchyGridRow[] | ExpandableGridRow[],
   row: GridRow | HierarchyGridRow | ExpandableGridRow,

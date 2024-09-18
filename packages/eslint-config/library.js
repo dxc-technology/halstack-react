@@ -36,6 +36,7 @@ module.exports = {
         "jsx-a11y/tabindex-no-positive": "off",
         "jsx-a11y/no-noninteractive-tabindex": "off",
         "@typescript-eslint/no-explicit-any": "off",
+        "react/jsx-no-useless-fragment": "off",
       },
     },
     {
@@ -49,6 +50,7 @@ module.exports = {
       files: ["**/?(*.)+(stories).[jt]s?(x)"],
       rules: {
         "jsx-a11y/no-noninteractive-tabindex": "off",
+        "react/jsx-no-useless-fragment": "off",
       },
     },
     // FocusLock file
@@ -112,7 +114,7 @@ module.exports = {
     // TODO: REMOVE
     "react/no-array-index-key": "off",
     "react-hooks/exhaustive-deps": "off",
-    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-explicit-any": "off"
   },
   settings: {
     "import/resolver": {

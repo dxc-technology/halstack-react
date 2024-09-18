@@ -78,8 +78,8 @@ const Tab = forwardRef(
 );
 
 const TabContainer = styled.button<{
-  hasLabelAndIcon: TabProps["hasLabelAndIcon"];
-  iconPosition: TabProps["iconPosition"];
+  hasLabelAndIcon: TabPropsLegacy["hasLabelAndIcon"];
+  iconPosition: TabPropsLegacy["iconPosition"];
 }>`
   text-transform: ${(props) => props.theme.fontTextTransform};
   overflow: hidden;

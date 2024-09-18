@@ -298,7 +298,7 @@ export const DatePickerWithToday = () => {
 };
 
 const Tooltip = () => {
-  const colorsTheme: any = useTheme();
+  const colorsTheme = useTheme();
   return (
     <ThemeProvider theme={colorsTheme}>
       <Title title="Default tooltip" theme="light" level={2} />

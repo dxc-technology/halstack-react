@@ -31,7 +31,7 @@ export type TabsContextProps = {
   setActiveIndicatorLeft: (_left: number) => void;
 };
 
-type TabLabelProps = TabCommonProps & {
+export type TabLabelProps = TabCommonProps & {
   /**
    * Tab label.
    */
@@ -42,7 +42,7 @@ type TabLabelProps = TabCommonProps & {
   icon?: string | SVG;
 };
 
-type TabIconProps = TabCommonProps & {
+export type TabIconProps = TabCommonProps & {
   /**
    * Tab label.
    */

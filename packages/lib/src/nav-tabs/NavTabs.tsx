@@ -5,7 +5,7 @@ import NavTabsPropsType from "./types";
 import DxcTab from "./Tab";
 import NavTabsContext from "./NavTabsContext";
 
-const getPropInChild = (child: ReactNode, propName: string): any => {
+const getPropInChild = (child: ReactNode, propName: string) => {
   if (child && typeof child === "object" && "props" in child) {
     const childWithProps = child as ReactElement;
     if (childWithProps.props[propName]) {
