@@ -109,7 +109,34 @@ const spinnerTheme = {
   },
 };
 
-const DxcToast = ({ action, duration, hideSemanticIcon, icon, loading, message, onClear, semantic }: ToastPropsType) => {
+const ToastIcon = memo(
+  ({
+    icon,
+    hideSemanticIcon,
+    loading,
+    semantic,
+  }: Pick<ToastPropsType, "icon" | "hideSemanticIcon" | "loading" | "semantic">) => {
+    if (semantic === "default") return typeof icon === "string" ? <DxcIcon icon={icon} /> : icon;
+    else if (semantic === "info" && loading)
+      return (
+        <HalstackProvider theme={spinnerTheme}>
+          <DxcSpinner mode="small" />
+        </HalstackProvider>
+      );
+    else return !hideSemanticIcon && <DxcIcon icon={getSemantic(semantic).icon} />;
+  }
+);
+
+const DxcToast = ({
+  action,
+  duration,
+  hideSemanticIcon,
+  icon,
+  loading,
+  message,
+  onClear,
+  semantic,
+}: ToastPropsType) => {
   const [isClosing, setIsClosing] = useState(false);
   const translatedLabels = useTranslatedLabels();
 
@@ -130,16 +157,7 @@ const DxcToast = ({ action, duration, hideSemanticIcon, icon, loading, message, 
   return (
     <Toast semantic={semantic} isClosing={isClosing} role="status">
       <ContentContainer loading={loading}>
-        {(() => {
-          if (semantic === "default") return typeof icon === "string" ? <DxcIcon icon={icon} /> : icon;
-          else if (semantic === "info" && loading)
-            return (
-              <HalstackProvider theme={spinnerTheme}>
-                <DxcSpinner mode="small" />
-              </HalstackProvider>
-            );
-          else return !hideSemanticIcon && <DxcIcon icon={getSemantic(semantic).icon} />;
-        })()}
+        <ToastIcon semantic={semantic} icon={icon} loading={loading} hideSemanticIcon={hideSemanticIcon} />
         <Message>{message}</Message>
       </ContentContainer>
       <DxcFlex alignItems="center" gap="0.25rem">
