@@ -68,7 +68,7 @@ export type TabProps = {
   defaultActive?: boolean;
   active?: boolean;
   icon?: string | SVG;
-  label?: string;
+  label: string;
   title?: string;
   disabled?: boolean;
   notificationNumber?: boolean | number;
@@ -90,7 +90,7 @@ type LegacyProps = {
   /**
    * An array of objects representing the tabs.
    */
-  tabs?: (TabLabelProps | TabIconProps)[];
+  tabs: (TabLabelProps | TabIconProps)[];
   /**
    * Whether the icon should appear above or to the left of the label.
    */

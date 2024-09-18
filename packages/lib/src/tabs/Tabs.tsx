@@ -37,17 +37,17 @@ const useResize = (refTabList: MutableRefObject<HTMLDivElement | null>) => {
   return viewWidth;
 };
 
-const getPreviousTabIndex = (array, initialIndex): number => {
+const getPreviousTabIndex = (array: ReactElement<TabProps>[], initialIndex: number): number => {
   let index = initialIndex === 0 ? array.length - 1 : initialIndex - 1;
-  while (array[index].props.disabled) {
+  while (array[index]?.props.disabled) {
     index = index === 0 ? array.length - 1 : index - 1;
   }
   return index;
 };
 
-const getNextTabIndex = (array, initialIndex): number => {
+const getNextTabIndex = (array: ReactElement<TabProps>[], initialIndex: number): number => {
   let index = initialIndex === array.length - 1 ? 0 : initialIndex + 1;
-  while (array[index].props.disabled) {
+  while (array[index]?.props.disabled) {
     index = index === array.length - 1 ? 0 : index + 1;
   }
   return index;
@@ -63,7 +63,7 @@ const DxcTabs = ({
   iconPosition = "top",
   tabIndex = 0,
   children,
-}: TabsPropsType): JSX.Element => {
+}: TabsPropsType) => {
   const childrenArray: ReactElement<TabProps>[] = useMemo(
     () => Children.toArray(children) as ReactElement<TabProps>[],
     [children]
@@ -85,7 +85,7 @@ const DxcTabs = ({
 
     return isValidElement(initialActiveTab) ? initialActiveTab.props.label : "";
   });
-  const [innerFocusIndex, setInnerFocusIndex] = useState(null);
+  const [innerFocusIndex, setInnerFocusIndex] = useState<number | null>(null);
   const [activeIndicatorWidth, setActiveIndicatorWidth] = useState(0);
   const [activeIndicatorLeft, setActiveIndicatorLeft] = useState(0);
   const [countClick, setCountClick] = useState(0);
@@ -102,24 +102,27 @@ const DxcTabs = ({
 
   useEffect(() => {
     if (refTabList.current) {
-      setTotalTabsWidth(refTabList.current.firstElementChild?.offsetWidth);
+      setTotalTabsWidth((refTabList.current.firstElementChild as HTMLElement)?.offsetWidth);
       setMinHeightTabs(refTabList?.current?.offsetHeight ?? 0 + 1);
     }
   }, [childrenArray]);
 
   const contextValue = useMemo(() => {
-    const focusedChild = childrenArray[innerFocusIndex];
-    return {
-      iconPosition,
-      tabIndex,
-      focusedLabel: isValidElement(focusedChild) && focusedChild.props.label,
-      isControlled: childrenArray.some((child) => isValidElement(child) && typeof child.props.active !== "undefined"),
-      activeLabel: activeTabLabel,
-      hasLabelAndIcon,
-      setActiveLabel: setActiveTabLabel,
-      setActiveIndicatorWidth,
-      setActiveIndicatorLeft,
-    };
+    if (innerFocusIndex != null) {
+      const focusedChild = childrenArray[innerFocusIndex];
+      return {
+        iconPosition,
+        tabIndex,
+        focusedLabel: isValidElement(focusedChild) ? focusedChild.props.label : "",
+        isControlled: childrenArray.some((child) => isValidElement(child) && typeof child.props.active !== "undefined"),
+        activeLabel: activeTabLabel,
+        hasLabelAndIcon,
+        setActiveLabel: setActiveTabLabel,
+        setActiveIndicatorWidth,
+        setActiveIndicatorLeft,
+      };
+    }
+    return null;
   }, [iconPosition, tabIndex, innerFocusIndex, activeTabLabel, childrenArray, hasLabelAndIcon]);
 
   const scrollLeft = () => {
@@ -187,7 +190,7 @@ const DxcTabs = ({
               onClick={scrollLeft}
               enabled={enabledIndicator}
               disabled={!scrollLeftEnabled}
-              aria-label={translatedLabels.tabs.scrollLeft}
+              aria-label={translatedLabels?.tabs?.scrollLeft}
               tabIndex={scrollLeftEnabled ? tabIndex : -1}
               minHeightTabs={minHeightTabs}
             >
@@ -211,7 +214,7 @@ const DxcTabs = ({
               onClick={scrollRight}
               enabled={enabledIndicator}
               disabled={!scrollRightEnabled}
-              aria-label={translatedLabels.tabs.scrollRight}
+              aria-label={translatedLabels?.tabs?.scrollRight}
               tabIndex={scrollRightEnabled ? tabIndex : -1}
               minHeightTabs={minHeightTabs}
             >
@@ -228,7 +231,7 @@ const DxcTabs = ({
       })}
     </>
   ) : (
-    tabs && (
+    tabs != null && (
       <DxcTabsLegacy
         defaultActiveTabIndex={defaultActiveTabIndex}
         activeTabIndex={activeTabIndex}

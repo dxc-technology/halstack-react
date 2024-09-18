@@ -4,7 +4,7 @@ import { spaces } from "../common/variables";
 import DxcIcon from "../icon/Icon";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
-import Tab from "./Tab";
+import Tab from "./TabLegacy";
 import TabsPropsType from "./types";
 
 const useResize = (refTabList: React.MutableRefObject<HTMLDivElement | null>) => {
@@ -36,10 +36,12 @@ const DxcTabs = ({
   tabIndex = 0,
 }: TabsPropsType): JSX.Element => {
   const colorsTheme = useTheme();
-  const hasLabelAndIcon = tabs && tabs.filter((tab) => tab.label && tab.icon).length > 0;
-  const firstFocus = tabs && tabs.findIndex((tab) => !tab.isDisabled);
+  const hasLabelAndIcon = tabs != null && tabs.filter((tab) => tab.label && tab.icon).length > 0;
+  const firstFocus = tabs != null ? tabs.findIndex((tab) => !tab.isDisabled) : null;
   const [innerActiveTabIndex, setInnerActiveTabIndex] = useState(
-    tabs && defaultActiveTabIndex && !tabs[defaultActiveTabIndex]?.isDisabled ? defaultActiveTabIndex : firstFocus
+    tabs != null && defaultActiveTabIndex && !tabs[defaultActiveTabIndex]?.isDisabled
+      ? defaultActiveTabIndex
+      : firstFocus
   );
   const [activeIndicatorWidth, setActiveIndicatorWidth] = useState(0);
   const [activeIndicatorLeft, setActiveIndicatorLeft] = useState(0);
@@ -132,7 +134,7 @@ const DxcTabs = ({
           setScrollFocus(index);
           return index;
         }
-        return undefined;
+        return null;
       });
     }
   };
@@ -149,7 +151,7 @@ const DxcTabs = ({
           setScrollFocus(index);
           return index;
         }
-        return undefined;
+        return null;
       });
     }
   };
@@ -195,17 +197,21 @@ const DxcTabs = ({
         break;
       case "Enter":
       case " ":
-        event.preventDefault();
-        setCurrentFocusIndex(temporalFocusIndex);
-        handleSelected(temporalFocusIndex);
+        if (temporalFocusIndex) {
+          event.preventDefault();
+          setCurrentFocusIndex(temporalFocusIndex);
+          handleSelected(temporalFocusIndex);
+        }
         break;
       case "Tab":
-        if (temporalFocusIndex !== currentFocusIndex) {
-          event.preventDefault();
-          setTemporalFocusIndex(currentFocusIndex);
-          refTabs?.current[currentFocusIndex]?.focus();
+        if (currentFocusIndex) {
+          if (temporalFocusIndex !== currentFocusIndex) {
+            event.preventDefault();
+            setTemporalFocusIndex(currentFocusIndex);
+            refTabs?.current[currentFocusIndex]?.focus();
+          }
+          handleSelected(currentFocusIndex);
         }
-        handleSelected(currentFocusIndex);
         break;
       default:
         break;
@@ -216,7 +222,7 @@ const DxcTabs = ({
     activeTabIndex != null && activeTabIndex >= 0 ? activeTabIndex === index : innerActiveTabIndex === index;
   const isActiveIndicatorDisabled =
     firstFocus === -1 ||
-    (tabs && activeTabIndex !== undefined && activeTabIndex >= 0 && !!tabs[activeTabIndex]?.isDisabled);
+    (tabs != null && activeTabIndex !== undefined && activeTabIndex >= 0 && !!tabs[activeTabIndex]?.isDisabled);
 
   return (
     <ThemeProvider theme={colorsTheme?.tabs}>
@@ -236,7 +242,7 @@ const DxcTabs = ({
           <TabsContent>
             <TabsContentScroll translateScroll={translateScroll} ref={refTabList} enabled={enabledIndicator}>
               <TabList role="tablist" onKeyDown={handleOnKeyDown} minHeightTabs={minHeightTabs}>
-                {tabs.map((tab, i) => (
+                {tabs?.map((tab, i) => (
                   <Tab
                     tab={tab}
                     key={`tab-${i}`}

@@ -25,16 +25,16 @@ const DxcTab = forwardRef(
     const tabRef = useRef<HTMLButtonElement | null>(null);
     const colorsTheme = useTheme();
     const {
-      iconPosition,
-      tabIndex,
+      iconPosition = "top",
+      tabIndex = 0,
       focusedLabel,
       isControlled,
       activeLabel,
-      hasLabelAndIcon,
+      hasLabelAndIcon = false,
       setActiveLabel,
       setActiveIndicatorWidth,
       setActiveIndicatorLeft,
-    } = useContext(TabsContext);
+    } = useContext(TabsContext) ?? {};
 
     useEffect(() => {
       if (focusedLabel === label) {
@@ -44,14 +44,14 @@ const DxcTab = forwardRef(
 
     useEffect(() => {
       if (activeLabel === label) {
-        setActiveIndicatorWidth(tabRef?.current?.offsetWidth);
-        setActiveIndicatorLeft(tabRef?.current?.offsetLeft);
+        setActiveIndicatorWidth?.(tabRef?.current?.offsetWidth ?? 0);
+        setActiveIndicatorLeft?.(tabRef?.current?.offsetLeft ?? 0);
       }
     }, [activeLabel, label]);
 
     useEffect(() => {
       if (active) {
-        setActiveLabel(label);
+        setActiveLabel?.(label);
       }
     }, [active, label]);
 
@@ -91,7 +91,7 @@ const DxcTab = forwardRef(
           }}
           onClick={() => {
             if (!isControlled) {
-              setActiveLabel(label);
+              setActiveLabel?.(label);
             }
             onClick();
           }}
@@ -112,15 +112,15 @@ const DxcTab = forwardRef(
             <BaseTypography
               color={
                 disabled
-                  ? colorsTheme.tabs.disabledFontColor
+                  ? colorsTheme?.tabs?.disabledFontColor
                   : activeLabel === label
-                    ? colorsTheme.tabs.selectedFontColor
-                    : colorsTheme.tabs.unselectedFontColor
+                    ? colorsTheme?.tabs?.selectedFontColor
+                    : colorsTheme?.tabs?.unselectedFontColor
               }
-              fontFamily={colorsTheme.tabs.fontFamily}
-              fontSize={colorsTheme.tabs.fontSize}
-              fontStyle={disabled ? colorsTheme.tabs.disabledFontStyle : colorsTheme.tabs.fontStyle}
-              fontWeight={activeLabel === label ? colorsTheme.tabs.pressedFontWeight : colorsTheme.tabs.fontWeight}
+              fontFamily={colorsTheme?.tabs?.fontFamily}
+              fontSize={colorsTheme?.tabs?.fontSize}
+              fontStyle={disabled ? colorsTheme?.tabs?.disabledFontStyle : colorsTheme?.tabs?.fontStyle}
+              fontWeight={activeLabel === label ? colorsTheme?.tabs?.pressedFontWeight : colorsTheme?.tabs?.fontWeight}
               textAlign="center"
               letterSpacing="0.025em"
               lineHeight="1.715em"
@@ -133,7 +133,7 @@ const DxcTab = forwardRef(
               <DxcBadge
                 mode="notification"
                 size="small"
-                label={typeof notificationNumber === "number" && notificationNumber}
+                label={typeof notificationNumber === "number" ? notificationNumber : undefined}
               />
             </BadgeContainer>
           )}
