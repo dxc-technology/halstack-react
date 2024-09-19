@@ -88,6 +88,7 @@ module.exports = {
           "**/*.@(test|stories).@(js|jsx|ts|tsx)",
           "**/axe-helper.@(js|ts)",
           "**/setupJestAxe.@(js|ts)",
+          "**/tsup.config.@(js|ts)",
           "**/.storybook/*.@(js|jsx|ts|tsx)",
         ],
       },

@@ -11,6 +11,9 @@ const preview: Preview = {
         date: /Date$/i,
       },
     },
+    viewport: {
+      defaultViewport: "reset",
+    },
     a11y: {
       config: {
         rules: disabledRules.map((ruleId) => ({ id: ruleId, enabled: false })),
