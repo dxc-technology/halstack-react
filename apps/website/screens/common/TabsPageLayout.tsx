@@ -1,6 +1,5 @@
 import { useRouter } from "next/router";
 import { DxcNavTabs } from "@dxc-technology/halstack-react";
-import React from "react";
 import Link from "next/link";
 
 type TabsPageLayoutProps = {

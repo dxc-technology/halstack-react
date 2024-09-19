@@ -3,7 +3,6 @@ import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import Link from "next/link";
-import React from "react";
 import TableCode from "@/common/TableCode";
 import Code from "@/common/Code";
 

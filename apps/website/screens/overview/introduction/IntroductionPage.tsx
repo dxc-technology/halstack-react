@@ -65,11 +65,10 @@ const sections = [
         content: (
           <>
             <DxcParagraph>
-              All the opinions provided by Halstack Design System always remain within the boundaries of the
-              generalistic UI/UX Design domain. Halstack will not get into business-specific elements even if they are
-              reusable. For example, Halstack might provide guidelines on using forms within the context of digital
-              applications. Still, it doesn't get into the specifics of designing a form for an insurance quote
-              application.
+              All the opinions provided by Halstack Design System always remain within the boundaries of the generalist
+              UI/UX Design domain. Halstack will not get into business-specific elements even if they are reusable. For
+              example, Halstack might provide guidelines on using forms within the context of digital applications.
+              Still, it doesn't get into the specifics of designing a form for an insurance quote application.
             </DxcParagraph>
             <DxcParagraph>
               This design domain is noticeable by looking at the different configuration parameters in the Halstack

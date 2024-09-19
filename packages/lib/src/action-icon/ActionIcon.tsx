@@ -43,12 +43,12 @@ const ActionIcon = styled.button`
   box-shadow: 0 0 0 2px transparent;
   background-color: ${(props) =>
     props.disabled
-      ? props.theme.disabledActionBackgroundColor ?? CoreTokens.color_transparent
-      : props.theme.actionBackgroundColor ?? CoreTokens.color_transparent};
+      ? (props.theme.disabledActionBackgroundColor ?? CoreTokens.color_transparent)
+      : (props.theme.actionBackgroundColor ?? CoreTokens.color_transparent)};
   color: ${(props) =>
     props.disabled
-      ? props.theme.disabledActionIconColor ?? CoreTokens.color_grey_500
-      : props.theme.actionIconColor ?? CoreTokens.color_black};
+      ? (props.theme.disabledActionIconColor ?? CoreTokens.color_grey_500)
+      : (props.theme.actionIconColor ?? CoreTokens.color_black)};
 
   ${(props) =>
     !props.disabled &&

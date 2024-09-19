@@ -1,4 +1,3 @@
-import React from "react";
 import { DxcDropdown } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
 import facebookIcon from "../../images/FacebookIcon";
