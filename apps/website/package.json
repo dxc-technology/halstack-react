@@ -11,7 +11,6 @@
     "@cloudscape-design/components": "^3.0.706",
     "@dxc-technology/halstack-react": "*",
     "@radix-ui/react-popover": "^1.0.7",
-    "@types/styled-components": "5.1.29",
     "cross-env": "^7.0.3",
     "next": "14.2.10",
     "raw-loader": "^4.0.2",
@@ -30,6 +29,7 @@
     "@types/react": "^18",
     "@types/react-color": "^3.0.6",
     "@types/react-dom": "^18",
+    "@types/styled-components": "5.1.29",
     "eslint": "^8",
     "eslint-config-next": "14.2.4",
     "typescript": "^5"

@@ -44,10 +44,13 @@ import DxcTabs from "./tabs/Tabs";
 import DxcTag from "./tag/Tag";
 import DxcTextarea from "./textarea/Textarea";
 import DxcTextInput from "./text-input/TextInput";
+import DxcToastsQueue from "./toast/ToastsQueue";
 import DxcToggleGroup from "./toggle-group/ToggleGroup";
 import DxcTooltip from "./tooltip/Tooltip";
 import DxcTypography from "./typography/Typography";
 import DxcWizard from "./wizard/Wizard";
+
+import useToast from "./toast/useToast";
 
 import HalstackContext, { HalstackProvider, HalstackLanguageContext } from "./HalstackContext";
 
@@ -98,6 +101,7 @@ export {
   DxcTag,
   DxcTextarea,
   DxcTextInput,
+  DxcToastsQueue,
   DxcToggleGroup,
   DxcTooltip,
   DxcTypography,
@@ -105,4 +109,5 @@ export {
   HalstackContext,
   HalstackLanguageContext,
   HalstackProvider,
+  useToast as useToast,
 };
