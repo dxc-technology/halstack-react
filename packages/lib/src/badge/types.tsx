@@ -23,7 +23,7 @@ export type NotificationProps = {
   /**
    * Text to be placed in the badge.
    */
-  label?: number;
+  label: number | "";
   /**
    * The available badge modes.
    */
