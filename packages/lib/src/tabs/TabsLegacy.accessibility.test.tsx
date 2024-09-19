@@ -1,6 +1,6 @@
 import { render } from "@testing-library/react";
 import { axe } from "../../test/accessibility/axe-helper";
-import DxcTabs from "./Tabs";
+import DxcTabsLegacy from "./TabsLegacy";
 
 const iconSVG = (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" height="20" width="20" fill="currentColor">
@@ -8,26 +8,31 @@ const iconSVG = (
   </svg>
 );
 
-const sampleTabs = (
-  <DxcTabs>
-    <DxcTabs.Tab label="Tab-1" icon={iconSVG} notificationNumber={10} active>
-      <></>
-    </DxcTabs.Tab>
-    <DxcTabs.Tab label="Tab-2" icon={iconSVG}>
-      <></>
-    </DxcTabs.Tab>
-    <DxcTabs.Tab label="Tab-3" notificationNumber={20}>
-      <></>
-    </DxcTabs.Tab>
-    <DxcTabs.Tab label="Tab-4" disabled>
-      <></>
-    </DxcTabs.Tab>
-  </DxcTabs>
-);
+const sampleTabs = [
+  {
+    label: "Tab-1",
+    icon: iconSVG,
+    notificationNumber: 10,
+  },
+  {
+    label: "Tab-2",
+    icon: iconSVG,
+  },
+  {
+    label: "Tab-3",
+    notificationNumber: 20,
+  },
+  {
+    label: "Tab-4",
+    isDisabled: true,
+  },
+];
 
 describe("Tabs component accessibility tests", () => {
   it("Should not have basic accessibility issues", async () => {
-    const { container } = render(sampleTabs);
+    const { container } = render(
+      <DxcTabsLegacy tabs={sampleTabs} margin="medium" iconPosition="left" defaultActiveTabIndex={0}></DxcTabsLegacy>
+    );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
   });
