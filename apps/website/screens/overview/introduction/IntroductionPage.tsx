@@ -100,7 +100,7 @@ const sections = [
     title: "Assets",
     subSections: [
       {
-        title: "Design Guidelines",
+        title: "Design guidelines",
         content: (
           <DxcParagraph>
             These are the pre-defined design opinions explained by writing. They are contained on this website and
@@ -124,17 +124,17 @@ const sections = [
         ),
         subSections: [
           {
-            title: "Classic Design Library",
+            title: "Classic design library",
             content: (
               <DxcParagraph>
-                Implementing the previously described Design Guidelines so that product designers can easily drag and
+                Implementing the previously described design guidelines so that product designers can easily drag and
                 drop the pre-created components into their designs, obtaining automatic updates of these components as
                 the Design System evolves.
               </DxcParagraph>
             ),
           },
           {
-            title: "Prototyping Library",
+            title: "Prototyping library",
             content: (
               <DxcParagraph>
                 The prototyping library is a Halstack CDK component-based design library for fast prototyping, reducing
@@ -150,7 +150,7 @@ const sections = [
         ],
       },
       {
-        title: "React Library",
+        title: "React library",
         content: (
           <DxcParagraph>
             Including tailored development tools that will assist React developers in implementing Halstack
