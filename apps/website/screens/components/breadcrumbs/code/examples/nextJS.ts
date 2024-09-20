@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 const code = `() => {
   const router = useRouter();
   const handleClick = (href) => {
-    router.push(href)
+    router.push(href);
   };
 
   const items = [

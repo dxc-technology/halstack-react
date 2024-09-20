@@ -59,7 +59,7 @@ const sections = [
     ),
   },
   {
-    title: "Opinionated Theme",
+    title: "Opinionated theme",
     content: (
       <>
         <DxcParagraph>

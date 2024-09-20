@@ -65,11 +65,10 @@ const sections = [
         content: (
           <>
             <DxcParagraph>
-              All the opinions provided by Halstack Design System always remain within the boundaries of the
-              generalistic UI/UX Design domain. Halstack will not get into business-specific elements even if they are
-              reusable. For example, Halstack might provide guidelines on using forms within the context of digital
-              applications. Still, it doesn't get into the specifics of designing a form for an insurance quote
-              application.
+              All the opinions provided by Halstack Design System always remain within the boundaries of the generalist
+              UI/UX Design domain. Halstack will not get into business-specific elements even if they are reusable. For
+              example, Halstack might provide guidelines on using forms within the context of digital applications.
+              Still, it doesn't get into the specifics of designing a form for an insurance quote application.
             </DxcParagraph>
             <DxcParagraph>
               This design domain is noticeable by looking at the different configuration parameters in the Halstack
@@ -101,7 +100,7 @@ const sections = [
     title: "Assets",
     subSections: [
       {
-        title: "Design Guidelines",
+        title: "Design guidelines",
         content: (
           <DxcParagraph>
             These are the pre-defined design opinions explained by writing. They are contained on this website and
@@ -125,17 +124,17 @@ const sections = [
         ),
         subSections: [
           {
-            title: "Classic Design Library",
+            title: "Classic design library",
             content: (
               <DxcParagraph>
-                Implementing the previously described Design Guidelines so that product designers can easily drag and
+                Implementing the previously described design guidelines so that product designers can easily drag and
                 drop the pre-created components into their designs, obtaining automatic updates of these components as
                 the Design System evolves.
               </DxcParagraph>
             ),
           },
           {
-            title: "Prototyping Library",
+            title: "Prototyping library",
             content: (
               <DxcParagraph>
                 The prototyping library is a Halstack CDK component-based design library for fast prototyping, reducing
@@ -151,7 +150,7 @@ const sections = [
         ],
       },
       {
-        title: "React Library",
+        title: "React library",
         content: (
           <DxcParagraph>
             Including tailored development tools that will assist React developers in implementing Halstack

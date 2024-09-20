@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 import { DxcGrid, DxcQuickNav } from "@dxc-technology/halstack-react";
 import Section, { SectionType } from "./Section";

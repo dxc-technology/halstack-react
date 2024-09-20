@@ -41,9 +41,9 @@ const Flex = styled.div<StyledProps>`
     align-items: ${alignItems};
     align-content: ${alignContent};
     align-self: ${alignSelf};
-    gap: ${props.$gap != null && typeof props.$gap === "string" ? props.$gap ?? "" : ""}}
-    row-gap: ${props.$gap != null && typeof props.$gap === "object" ? props.$gap.rowGap ?? "" : ""}}
-    column-gap: ${props.$gap != null && typeof props.$gap === "object" ? props.$gap.columnGap ?? "" : ""}}
+    gap: ${props.$gap != null && typeof props.$gap === "string" ? (props.$gap ?? "") : ""}}
+    row-gap: ${props.$gap != null && typeof props.$gap === "object" ? (props.$gap.rowGap ?? "") : ""}}
+    column-gap: ${props.$gap != null && typeof props.$gap === "object" ? (props.$gap.columnGap ?? "") : ""}}
     order: ${props.$order};
     flex-grow: ${props.$grow};
     flex-shrink: ${props.$shrink};
