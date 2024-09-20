@@ -84,7 +84,7 @@ const Label = ({ label, notificationLimit, size }) => {
 };
 
 const DxcBadge = ({
-  label = "",
+  label,
   title,
   mode = "contextual",
   color = "grey",
