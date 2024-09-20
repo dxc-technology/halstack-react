@@ -2,6 +2,7 @@ import { useToast } from "@dxc-technology/halstack-react";
 import { ReactNode, useMemo, useState, useEffect } from "react";
 import styled from "styled-components";
 import { responsiveSizes } from "./variables";
+import { useRouter } from "next/router";
 
 const MainContainer = styled.div`
   margin: 80px 0;
@@ -14,6 +15,8 @@ const MainContainer = styled.div`
 `;
 
 const MainContent = ({ children }: { children: ReactNode }) => {
+  const toast = useToast();
+  const router = useRouter();
   const pathVersion = useMemo(
     () =>
       process.env.NEXT_PUBLIC_SITE_VERSION === "next" || process.env.NODE_ENV === "development"
@@ -22,7 +25,6 @@ const MainContent = ({ children }: { children: ReactNode }) => {
 
     []
   );
-  const toast = useToast();
   const [latestRelease, setLatestRelease] = useState<number>(null);
 
   useEffect(() => {
@@ -39,12 +41,18 @@ const MainContent = ({ children }: { children: ReactNode }) => {
   }, []);
 
   useEffect(() => {
-    if (pathVersion && latestRelease > pathVersion) {
+    if (latestRelease > pathVersion) {
       toast.info({
         message: `Halstack ${latestRelease} is now available!`,
         action: {
           label: "Learn more",
-          onClick: () => {},
+          onClick: () => {
+            if (window) {
+              const currentUrl = window.location.href;
+              const newUrl = currentUrl.replace(/halstack\/\d+\//, `halstack/${latestRelease}/`);
+              window.location.href = newUrl;
+            }
+          },
         },
       });
     }
