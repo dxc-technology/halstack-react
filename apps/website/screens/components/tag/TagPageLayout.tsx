@@ -36,7 +36,7 @@ const TagPageHeading = ({ children }: { children: React.ReactNode }) => {
             <Link href="/components/chip" passHref legacyBehavior>
               <DxcLink href="/components/chip">Chip</DxcLink>
             </Link>
-            .
+            components.
           </DxcAlert>
           <TabsPageHeading tabs={tabs}></TabsPageHeading>
         </DxcFlex>
