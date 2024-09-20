@@ -85,28 +85,6 @@
     "focusActionBorderColor": "#0095ff",
     "overlayColor": "#000000b3"
   },
-  "box": {
-    "backgroundColor": "#ffffff",
-    "borderRadius": "0.25rem",
-    "borderThickness": "0px",
-    "borderStyle": "none",
-    "borderColor": "transparent",
-    "noneShadowDepthShadowOffsetX": "none",
-    "noneShadowDepthShadowOffsetY": "none",
-    "noneShadowDepthShadowBlur": "none",
-    "noneShadowDepthShadowSpread": "none",
-    "noneShadowDepthShadowColor": "transparent",
-    "oneShadowDepthShadowOffsetX": "0px",
-    "oneShadowDepthShadowOffsetY": "3px",
-    "oneShadowDepthShadowBlur": "6px",
-    "oneShadowDepthShadowSpread": "0px",
-    "oneShadowDepthShadowColor": "#00000033",
-    "twoShadowDepthShadowOffsetX": "0px",
-    "twoShadowDepthShadowOffsetY": "3px",
-    "twoShadowDepthShadowBlur": "10px",
-    "twoShadowDepthShadowSpread": "0px",
-    "twoShadowDepthShadowColor": "#00000033"
-  },
   "bulletedList": {
     "fontColor": "#000000",
     "bulletIconHeight": "1.5rem",

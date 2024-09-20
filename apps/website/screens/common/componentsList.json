@@ -12,7 +12,6 @@
     "status": "stable"
   },
   { "label": "Bleed", "path": "/components/bleed", "status": "stable" },
-  { "label": "Box", "path": "/components/box", "status": "deprecated" },
   {
     "label": "Breadcrumbs",
     "path": "/components/breadcrumbs",
@@ -30,7 +29,7 @@
   {
     "label": "Container",
     "path": "/components/container",
-    "status": "experimental"
+    "status": "new"
   },
   {
     "label": "Contextual Menu",

@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables";
 import useTheme from "../useTheme";
-import DxcBox from "../box/Box";
 import CardPropsType from "./types";
+import CoreTokens from "../common/coreTokens";
 
 const DxcCard = ({
   imageSrc,
@@ -22,38 +22,35 @@ const DxcCard = ({
   const [isHovered, changeIsHovered] = useState(false);
 
   return (
-    <Card
-      hasAction={onClick || linkHref ? true : false}
-      margin={margin}
-      onMouseEnter={() => changeIsHovered(true)}
-      onMouseLeave={() => changeIsHovered(false)}
-      onClick={onClick}
-      tabIndex={onClick || linkHref ? tabIndex : -1}
-      as={linkHref && "a"}
-      href={linkHref}
-    >
-      <DxcBox shadowDepth={!outlined ? 0 : isHovered && (onClick || linkHref) ? 2 : 1}>
-        <ThemeProvider theme={colorsTheme.card}>
-          <CardContainer
-            hasAction={onClick || linkHref ? true : false}
-            imagePosition={imageSrc ? imagePosition : "none"}
-          >
-            {imageSrc && (
-              <ImageContainer imageBgColor={imageBgColor}>
-                <TagImage imagePadding={imagePadding} imageCover={imageCover} src={imageSrc} alt="Card image" />
-              </ImageContainer>
-            )}
-            <CardContent>{children}</CardContent>
-          </CardContainer>
-        </ThemeProvider>
-      </DxcBox>
-    </Card>
+    <ThemeProvider theme={colorsTheme.card}>
+      <Card
+        hasAction={onClick || linkHref ? true : false}
+        margin={margin}
+        onMouseEnter={() => changeIsHovered(true)}
+        onMouseLeave={() => changeIsHovered(false)}
+        onClick={onClick}
+        tabIndex={onClick || linkHref ? tabIndex : -1}
+        as={linkHref && "a"}
+        href={linkHref}
+        shadowDepth={!outlined ? 0 : isHovered && (onClick || linkHref) ? 2 : 1}
+      >
+        <CardContainer hasAction={onClick || linkHref ? true : false} imagePosition={imageSrc ? imagePosition : "none"}>
+          {imageSrc && (
+            <ImageContainer imageBgColor={imageBgColor}>
+              <TagImage imagePadding={imagePadding} imageCover={imageCover} src={imageSrc} alt="Card image" />
+            </ImageContainer>
+          )}
+          <CardContent>{children}</CardContent>
+        </CardContainer>
+      </Card>
+    </ThemeProvider>
   );
 };
 
 const Card = styled.div<{
   hasAction: boolean;
   margin: CardPropsType["margin"];
+  shadowDepth: 0 | 1 | 2;
 }>`
   display: inline-flex;
   cursor: ${({ hasAction }) => (hasAction && "pointer") || "unset"};
@@ -70,6 +67,13 @@ const Card = styled.div<{
     `:focus {
       outline: #0095ff auto 1px;
     }`}
+
+  box-shadow: ${({ shadowDepth }) =>
+    shadowDepth === 1
+      ? `0px 3px 6px ${CoreTokens.color_grey_300_a}`
+      : shadowDepth === 2
+        ? `0px 3px 10px ${CoreTokens.color_grey_300_a}`
+        : "none"};
 `;
 
 const CardContainer = styled.div<{

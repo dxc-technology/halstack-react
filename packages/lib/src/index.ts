@@ -4,7 +4,6 @@ import DxcAlert from "./alert/Alert";
 import DxcApplicationLayout from "./layout/ApplicationLayout";
 import DxcBadge from "./badge/Badge";
 import DxcBleed from "./bleed/Bleed";
-import DxcBox from "./box/Box";
 import DxcBreadcrumbs from "./breadcrumbs/Breadcrumbs";
 import DxcBulletedList from "./bulleted-list/BulletedList";
 import DxcButton from "./button/Button";
@@ -61,7 +60,6 @@ export {
   DxcApplicationLayout,
   DxcBadge,
   DxcBleed,
-  DxcBox,
   DxcBreadcrumbs,
   DxcBulletedList,
   DxcButton,
@@ -109,5 +107,5 @@ export {
   HalstackContext,
   HalstackLanguageContext,
   HalstackProvider,
-  useToast as useToast,
+  useToast,
 };
