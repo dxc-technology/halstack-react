@@ -149,14 +149,14 @@ const DxcToast = ({
     () => {
       setIsClosing(true);
     },
-    loading ? null : duration - 300
+    loading ? undefined : duration - 300
   );
 
   const clearTimer = useTimeout(
     () => {
       onClear();
     },
-    loading ? null : duration
+    loading ? undefined : duration
   );
 
   return (
@@ -178,7 +178,7 @@ const DxcToast = ({
         )}
         <DxcActionIcon
           icon="clear"
-          title={translatedLabels.toast.clearToastActionTitle}
+          title={translatedLabels?.toast?.clearToastActionTitle ?? ""}
           onClick={() => {
             if (!loading) {
               clearClosingAnimationTimer();

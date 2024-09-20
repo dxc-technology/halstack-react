@@ -3,9 +3,9 @@ import { ToastContext } from "./ToastsQueue";
 import { ToastType, DefaultToast, Semantic, SemanticToast, LoadingToast } from "./types";
 
 const useToast = () => {
-  const { add } = useContext(ToastContext);
+  const { add } = useContext(ToastContext) ?? {};
 
-  const show = <T extends ToastType>(toast: T, semantic: Semantic) => add(toast, semantic);
+  const show = <T extends ToastType>(toast: T, semantic: Semantic) => add?.(toast, semantic);
 
   return {
     default: (toast: DefaultToast) => {
