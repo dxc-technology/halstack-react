@@ -1500,14 +1500,6 @@ export const responsiveSizes = {
 };
 
 export const defaultTranslatedComponentLabels = {
-  formFields: {
-    optionalLabel: "(Optional)",
-    requiredSelectionErrorMessage: "This field is required. Please, choose an option.",
-    requiredValueErrorMessage: "This field is required. Please, enter a value.",
-    formatRequestedErrorMessage: "Please match the format requested.",
-    lengthErrorMessage: (minLength?: number, maxLength?: number) => `Min length ${minLength}, max length ${maxLength}.`,
-    logoAlternativeText: "Logo",
-  },
   applicationLayout: {
     visibilityToggleTitle: "Toggle sidenav visibility",
   },
@@ -1516,6 +1508,25 @@ export const defaultTranslatedComponentLabels = {
     successTitleText: "success",
     warningTitleText: "warning",
     errorTitleText: "error",
+  },
+  calendar: {
+    daysShort: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
+    months: [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ],
+    previousMonthTitle: "Previous month",
+    nextMonthTitle: "Next month",
   },
   dateInput: {
     invalidDateErrorMessage: "Invalid date.",
@@ -1535,6 +1546,14 @@ export const defaultTranslatedComponentLabels = {
   },
   footer: {
     copyrightText: (year: number) => `© DXC Technology ${year}. All rights reserved.`,
+  },
+  formFields: {
+    optionalLabel: "(Optional)",
+    requiredSelectionErrorMessage: "This field is required. Please, choose an option.",
+    requiredValueErrorMessage: "This field is required. Please, enter a value.",
+    formatRequestedErrorMessage: "Please match the format requested.",
+    lengthErrorMessage: (minLength?: number, maxLength?: number) => `Min length ${minLength}, max length ${maxLength}.`,
+    logoAlternativeText: "Logo",
   },
   header: {
     closeIcon: "Close menu",
@@ -1577,24 +1596,8 @@ export const defaultTranslatedComponentLabels = {
     searchingMessage: "Searching...",
     fetchingDataErrorMessage: "Error fetching data",
   },
-  calendar: {
-    daysShort: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
-    months: [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December",
-    ],
-    previousMonthTitle: "Previous month",
-    nextMonthTitle: "Next month",
+  toast: {
+    clearToastActionTitle: "Clear toast",
   },
 };
 

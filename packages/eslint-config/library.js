@@ -37,6 +37,7 @@ module.exports = {
         "jsx-a11y/no-noninteractive-tabindex": "off",
         "@typescript-eslint/no-explicit-any": "off",
         "react/jsx-no-useless-fragment": "off",
+        "no-console": "off",
       },
     },
     {
@@ -51,6 +52,7 @@ module.exports = {
       rules: {
         "jsx-a11y/no-noninteractive-tabindex": "off",
         "react/jsx-no-useless-fragment": "off",
+        "no-console": "off",
       },
     },
     // FocusLock file

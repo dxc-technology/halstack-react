@@ -29,7 +29,7 @@ const sections = [
               the teams involved in the task, repositories, folders…).
             </DxcBulletedList.Item>
             <DxcBulletedList.Item>
-              Keep it concise: comprehensively use badges, only displaying essential information that adds value to the
+              Keep it concise. Comprehensively use badges, only displaying essential information that adds value to the
               user experience.
             </DxcBulletedList.Item>
             <DxcBulletedList.Item>
@@ -119,12 +119,12 @@ const sections = [
             </DxcParagraph>
             <DxcBulletedList>
               <DxcBulletedList.Item>
-                Non-semantic categorization: used in instances where the badge does not carry semantic meaning, it can
-                be employed in any color from the available palette.
+                <strong>Non-semantic categorization:</strong> used in instances where the badge does not carry semantic
+                meaning, it can be employed in any color from the available palette.
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
-                Semantic categorization: when the badge conveys semantic information, spacific semantic colors are
-                available:
+                <strong>Semantic categorization:</strong> when the badge conveys semantic information, specific semantic
+                colors are available:
                 <DxcBulletedList type="circle">
                   <DxcBulletedList.Item>
                     Green: positive actions, such as approved, completed, success…
