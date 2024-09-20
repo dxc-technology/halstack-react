@@ -18,7 +18,7 @@ const MainContent = ({ children }: { children: ReactNode }) => {
     () =>
       process.env.NEXT_PUBLIC_SITE_VERSION === "next" || process.env.NODE_ENV === "development"
         ? 0
-        : parseInt(process.env.NEXT_PUBLIC_SITE_VERSION.split(".")[0], 10),
+        : parseInt(process.env.NEXT_PUBLIC_SITE_VERSION?.split(".")[0], 10),
 
     []
   );
@@ -39,7 +39,7 @@ const MainContent = ({ children }: { children: ReactNode }) => {
   }, []);
 
   useEffect(() => {
-    if (pathVersion !== 0 && latestRelease > pathVersion) {
+    if (pathVersion && latestRelease > pathVersion) {
       toast.info({
         message: `Halstack ${latestRelease} is now available!`,
         action: {
