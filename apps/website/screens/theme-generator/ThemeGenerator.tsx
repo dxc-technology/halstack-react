@@ -4,12 +4,9 @@ import {
   DxcButton,
   DxcInset,
   DxcFlex,
-  DxcLink,
-  DxcTypography,
   DxcHeading,
   DxcBreadcrumbs,
 } from "@dxc-technology/halstack-react";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import opinionatedTheme from "@/common/themes/opinionated-theme.json";
 import advancedTheme from "@/common/themes/advanced-theme.json";
