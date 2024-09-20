@@ -288,7 +288,7 @@ const sections = [
   },
 ];
 
-const TextareaCodePage = () => {
+const ToastCodePage = () => {
   return (
     <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
@@ -299,4 +299,4 @@ const TextareaCodePage = () => {
   );
 };
 
-export default TextareaCodePage;
+export default ToastCodePage;
