@@ -6,7 +6,7 @@ import ComponentHeading from "@/common/ComponentHeading";
 const DataGridPageHeading = ({ children }: { children: React.ReactNode }) => {
   const tabs = [
     { label: "Code", path: "/components/data-grid" },
-    // { label: "Usage", path: "/components/data-grid/usage" },
+    { label: "Usage", path: "/components/data-grid/usage" },
     { label: "Specifications", path: "/components/data-grid/specifications" },
   ];
 

@@ -1,7 +1,9 @@
-import { DxcBulletedList, DxcFlex } from "@dxc-technology/halstack-react";
+import { DxcBulletedList, DxcFlex, DxcParagraph } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
+import Example from "@/common/example/Example";
+import expandedContent from "./examples/expandedContent";
 
 const sections = [
   {
@@ -10,6 +12,15 @@ const sections = [
       <DxcBulletedList>
         <DxcBulletedList.Item>Use the data grid (TODO).</DxcBulletedList.Item>
       </DxcBulletedList>
+    ),
+  },
+  {
+    title: "Expanded content",
+    content: (
+      <>
+        <DxcParagraph>The expanded content can contain any type of child element, but limited to a space.</DxcParagraph>
+        <Example example={expandedContent} />
+      </>
     ),
   },
 ];

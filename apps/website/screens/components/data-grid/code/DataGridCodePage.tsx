@@ -87,7 +87,7 @@ const sections = [
                   <b>summaryKey</b>: Value that will be rendered from the <TableCode>summaryRow</TableCode>
                 </li>
                 <li>
-                  <b>alignment</b>: St sets the alignment inside the cells.
+                  <b>alignment</b>: Sets the alignment inside the cells.
                 </li>
               </ul>
             </td>
@@ -172,6 +172,14 @@ const sections = [
               <Code>selectable</Code> is set to true, <Code>expandable</Code> is set to true or <Code>rows</Code> is of
               type <Code>HierarchyGridRow[]</Code>.
             </td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>onGridRowsChange</td>
+            <td>
+              <TableCode>{`(rows: GridRow[] | HierarchyGridRow[] | ExpandableGridRow[]) => void`}</TableCode>
+            </td>
+            <td>Function called whenever a cell is edited.</td>
             <td>-</td>
           </tr>
         </tbody>
