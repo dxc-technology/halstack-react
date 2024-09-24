@@ -20,7 +20,7 @@ const pathVersion =
 
 const MainContent = ({ children }: { children: ReactNode }) => {
   const toast = useToast();
-  const [latestRelease, setLatestRelease] = useState<number>(0);
+  const [latestRelease, setLatestRelease] = useState<number | null>(null);
 
   useEffect(() => {
     (async () => {

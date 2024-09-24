@@ -35,12 +35,12 @@ const sections = [
     content: (
       <>
         <DxcParagraph>
-          The Image component should always include an alt attribute to describe the content of the image. This is
-          important for users who rely on screen readers to understand the content of the page. The alt text should be a
-          short description of the image content.
+          The Image component should always include an <Code>alt</Code> property to describe the content of the image.
+          This is important for users who rely on screen readers to understand the content of the page. The alt text
+          should be a short description of the image content.
         </DxcParagraph>
         <DxcParagraph>
-          If an image is purely decorative, use an empty alt (<Code>alt=""</Code>) to indicate this to screen readers,
+          If an image is purely decorative, use an empty value (<Code>alt=""</Code>) to indicate this to screen readers,
           preventing unnecessary noise. Also, include captions when the image is an integral part of the content,
           providing users with additional context.
         </DxcParagraph>
@@ -56,12 +56,13 @@ const sections = [
           explicitly specified otherwise by the design.
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>
-          <strong>Avoid distortion.</strong> The aspect ratio of an image should generally be preserved, unless
-          explicitly specified otherwise by the design.
+          <strong>Avoid distortion.</strong> When resizing images, avoid stretching or squashing them to prevent
+          distortion. Instead, use <Code>object-fit</Code> to set how the image is displayed or control the dimensions
+          through the container.
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>
-          <strong>Thumbnails and zoom.</strong> The aspect ratio of an image should generally be preserved, unless
-          explicitly specified otherwise by the design.
+          <strong>Thumbnails and zoom.</strong> When displaying thumbnails or zoomed images, ensure that the image is
+          cropped appropriately to focus on the most relevant content.
         </DxcBulletedList.Item>
       </DxcBulletedList>
     ),
