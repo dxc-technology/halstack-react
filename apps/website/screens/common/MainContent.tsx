@@ -1,29 +1,26 @@
 import { useToast } from "@dxc-technology/halstack-react";
-import { ReactNode, useMemo, useState, useEffect } from "react";
+import { ReactNode, useState, useEffect } from "react";
 import styled from "styled-components";
 import { responsiveSizes } from "./variables";
 
 const MainContainer = styled.div`
-  margin: 80px 0;
+  margin: 80px auto;
   max-width: 1124px;
-  margin-inline: max(5%, 50% - 1124px/2);
+  padding: 0 5%;
 
   @media (max-width: ${responsiveSizes.laptop}px) {
     margin: 80px 32px;
   }
 `;
 
+const pathVersion =
+  process.env.NEXT_PUBLIC_SITE_VERSION === "next" || process.env.NODE_ENV === "development"
+    ? 0
+    : parseInt(process.env.NEXT_PUBLIC_SITE_VERSION?.split(".")[0], 10);
+
 const MainContent = ({ children }: { children: ReactNode }) => {
   const toast = useToast();
   const [latestRelease, setLatestRelease] = useState<number>(0);
-  const pathVersion = useMemo(
-    () =>
-      process.env.NEXT_PUBLIC_SITE_VERSION === "next" || process.env.NODE_ENV === "development"
-        ? 0
-        : parseInt(process.env.NEXT_PUBLIC_SITE_VERSION?.split(".")[0], 10),
-
-    []
-  );
 
   useEffect(() => {
     (async () => {
@@ -54,7 +51,7 @@ const MainContent = ({ children }: { children: ReactNode }) => {
         },
       });
     }
-  }, [latestRelease, pathVersion, toast]);
+  }, [latestRelease, toast]);
 
   return <MainContainer>{children}</MainContainer>;
 };
