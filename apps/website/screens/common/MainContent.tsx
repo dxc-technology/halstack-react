@@ -15,6 +15,7 @@ const MainContainer = styled.div`
 
 const MainContent = ({ children }: { children: ReactNode }) => {
   const toast = useToast();
+  const [latestRelease, setLatestRelease] = useState<number>(0);
   const pathVersion = useMemo(
     () =>
       process.env.NEXT_PUBLIC_SITE_VERSION === "next" || process.env.NODE_ENV === "development"
@@ -23,7 +24,6 @@ const MainContent = ({ children }: { children: ReactNode }) => {
 
     []
   );
-  const [latestRelease, setLatestRelease] = useState<number>(null);
 
   useEffect(() => {
     (async () => {
@@ -39,7 +39,7 @@ const MainContent = ({ children }: { children: ReactNode }) => {
   }, []);
 
   useEffect(() => {
-    if (latestRelease > pathVersion) {
+    if (pathVersion && latestRelease && latestRelease > pathVersion) {
       toast.info({
         message: `Halstack ${latestRelease} is now available!`,
         action: {
