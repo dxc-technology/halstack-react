@@ -29,7 +29,7 @@
   {
     "label": "Container",
     "path": "/components/container",
-    "status": "new"
+    "status": "stable"
   },
   {
     "label": "Contextual Menu",
@@ -63,7 +63,7 @@
   { "label": "Grid", "path": "/components/grid", "status": "stable" },
   { "label": "Header", "path": "/components/header", "status": "stable" },
   { "label": "Heading", "path": "/components/heading", "status": "stable" },
-  { "label": "Image", "path": "/components/image", "status": "experimental" },
+  { "label": "Image", "path": "/components/image", "status": "stable" },
   { "label": "Inset", "path": "/components/inset", "status": "stable" },
   { "label": "Link", "path": "/components/link", "status": "stable" },
   { "label": "Nav Tabs", "path": "/components/nav-tabs", "status": "stable" },
