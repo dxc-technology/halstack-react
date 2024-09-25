@@ -16,7 +16,6 @@ import AlertPreview from "./previews/Alert";
 import LinkPreview from "./previews/Link";
 import HeadingPreview from "./previews/Heading";
 import DialogPreview from "./previews/Dialog";
-import BoxPreview from "./previews/Box";
 import TagPreview from "./previews/Tag";
 import CardPreview from "./previews/Card";
 import DateInputPreview from "./previews/DateInput";
@@ -43,10 +42,6 @@ const SampleComponents = [
   {
     name: "alert",
     preview: AlertPreview,
-  },
-  {
-    name: "box",
-    preview: BoxPreview,
   },
   {
     name: "bulletedList",

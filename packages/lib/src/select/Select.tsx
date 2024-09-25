@@ -306,7 +306,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
                             (value && Array.isArray(value) && value) ??
                             (innerValue && Array.isArray(innerValue) && innerValue)
                           ).join(",")
-                        : value ?? innerValue
+                        : (value ?? innerValue)
                     }
                     readOnly
                     aria-hidden="true"

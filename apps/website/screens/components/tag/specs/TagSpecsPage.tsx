@@ -96,14 +96,6 @@ const sections = [
                 </tr>
               </tbody>
             </DxcTable>
-            <DxcParagraph>
-              *
-              <em>
-                The <Code>tag</Code> component is using the <Code>box</Code> underneath, the values for the background
-                are inherited from the definition in the component. By default, the background color is white and not
-                themable, so it will be the same for both components.
-              </em>
-            </DxcParagraph>
           </>
         ),
       },

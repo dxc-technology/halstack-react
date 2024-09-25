@@ -9,9 +9,6 @@
     "accentColor": "#0067b3",
     "overlayColor": "#000000b3"
   },
-  "box": {
-    "baseColor": "#ffffff"
-  },
   "button": {
     "baseColor": "#5f249f",
     "primaryFontColor": "#ffffff",

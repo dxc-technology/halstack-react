@@ -51,7 +51,7 @@ const expandableRows = [
     complete: 46,
     priority: "High",
     issueType: "Bug",
-    expandedContent: <DxcContainer> Custom content 1</DxcContainer>,
+    expandedContent: <DxcContainer>Custom content 1</DxcContainer>,
   },
   {
     id: 2,
@@ -59,7 +59,7 @@ const expandableRows = [
     complete: 51,
     priority: "High",
     issueType: "Epic",
-    expandedContent: <DxcContainer> Custom content 2</DxcContainer>,
+    expandedContent: <DxcContainer>Custom content 2</DxcContainer>,
   },
   {
     id: 3,
@@ -67,7 +67,7 @@ const expandableRows = [
     complete: 40,
     priority: "High",
     issueType: "Improvement",
-    expandedContent: <DxcContainer> Custom content 3</DxcContainer>,
+    expandedContent: <DxcContainer>Custom content 3</DxcContainer>,
   },
   {
     id: 4,
@@ -75,7 +75,7 @@ const expandableRows = [
     complete: 10,
     priority: "High",
     issueType: "Improvement",
-    expandedContent: <DxcContainer> Custom content 4</DxcContainer>,
+    expandedContent: <DxcContainer>Custom content 4</DxcContainer>,
   },
   {
     id: 5,
@@ -83,7 +83,7 @@ const expandableRows = [
     complete: 68,
     priority: "High",
     issueType: "Improvement",
-    expandedContent: <DxcContainer> Custom content 5</DxcContainer>,
+    expandedContent: <DxcContainer>Custom content 5</DxcContainer>,
   },
   {
     id: 6,
@@ -91,7 +91,7 @@ const expandableRows = [
     complete: 37,
     priority: "High",
     issueType: "Improvement",
-    expandedContent: <DxcContainer> Custom content 6</DxcContainer>,
+    expandedContent: <DxcContainer>Custom content 6</DxcContainer>,
   },
   {
     id: 7,
@@ -99,7 +99,7 @@ const expandableRows = [
     complete: 73,
     priority: "Medium",
     issueType: "Story",
-    expandedContent: <DxcContainer> Custom content 7</DxcContainer>,
+    expandedContent: <DxcContainer>Custom content 7</DxcContainer>,
   },
   {
     id: 8,
@@ -107,7 +107,7 @@ const expandableRows = [
     complete: 27,
     priority: "Medium",
     issueType: "Story",
-    expandedContent: <DxcContainer> Custom content 8</DxcContainer>,
+    expandedContent: <DxcContainer>Custom content 8</DxcContainer>,
   },
   {
     id: 9,
@@ -115,11 +115,11 @@ const expandableRows = [
     complete: 36,
     priority: "Critical",
     issueType: "Epic",
-    expandedContent: <DxcContainer> Custom content 9</DxcContainer>,
+    expandedContent: <DxcContainer>Custom content 9</DxcContainer>,
   },
 ];
 
-const childcolumns: DataGridColumnsPropsType = [
+const childColumns: DataGridColumnsPropsType = [
   {
     key: "name",
     label: "Name",
@@ -221,11 +221,11 @@ const DataGridPreview = () => {
         />
       </Mode>
       <Mode text="With child rows">
-        <DxcDataGrid columns={childcolumns} rows={childRows} uniqueRowId="id" />
+        <DxcDataGrid columns={childColumns} rows={childRows} uniqueRowId="id" />
       </Mode>
       <Mode text="With summary row">
         <DxcDataGrid
-          columns={childcolumns}
+          columns={childColumns}
           rows={childRows}
           uniqueRowId="value"
           summaryRow={{ label: "Total", total: 100, value: "summary" }}

@@ -7,7 +7,7 @@ import { LinkProps } from "./types";
 
 const LinkContent = memo(
   ({ iconPosition, icon, inheritColor, children }: LinkProps): JSX.Element => (
-    <LinkContainer inheritColor>
+    <LinkContainer inheritColor={inheritColor}>
       {iconPosition === "after" && children}
       {icon && (
         <LinkIconContainer iconPosition={iconPosition}>

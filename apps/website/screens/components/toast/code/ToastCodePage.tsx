@@ -1,4 +1,4 @@
-import { DxcFlex, DxcLink, DxcParagraph, DxcTable, DxcToastsQueue } from "@dxc-technology/halstack-react";
+import { DxcFlex, DxcLink, DxcParagraph, DxcTable } from "@dxc-technology/halstack-react";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import DocFooter from "@/common/DocFooter";
@@ -288,17 +288,15 @@ const sections = [
   },
 ];
 
-const TextareaCodePage = () => {
+const ToastCodePage = () => {
   return (
     <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
-        <DxcToastsQueue>
-          <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
-        </DxcToastsQueue>
+        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/toast/code/ToastCodePage.tsx" />
     </DxcFlex>
   );
 };
 
-export default TextareaCodePage;
+export default ToastCodePage;

@@ -1,4 +1,3 @@
-import React from "react";
 import { DxcBadge, DxcContextualMenu } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
 import PreviewContainer from "./PreviewContainer";
