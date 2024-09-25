@@ -1,5 +1,3 @@
-
-import React from "react";
 import { DxcButton, DxcFlex } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
 import PreviewContainer from "./PreviewContainer";

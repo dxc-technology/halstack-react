@@ -126,7 +126,13 @@ export const Chromatic = () => (
     <Title title="Success" level={2} />
     <ExampleContainer>
       <Title title="Simple" />
-      <DxcToast semantic="success" duration={2147483647} message="This is a toast." onClear={onClear} hideSemanticIcon />
+      <DxcToast
+        semantic="success"
+        duration={2147483647}
+        message="This is a toast."
+        onClear={onClear}
+        hideSemanticIcon
+      />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With icon" />
@@ -157,7 +163,13 @@ export const Chromatic = () => (
     <Title title="Warning" level={2} />
     <ExampleContainer>
       <Title title="Simple" />
-      <DxcToast semantic="warning" duration={2147483647} message="This is a toast." onClear={onClear} hideSemanticIcon />
+      <DxcToast
+        semantic="warning"
+        duration={2147483647}
+        message="This is a toast."
+        onClear={onClear}
+        hideSemanticIcon
+      />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With icon" />

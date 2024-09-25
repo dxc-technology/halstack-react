@@ -3,9 +3,9 @@ import { DxcApplicationLayout, DxcDropdown, DxcFlex, DxcLink, DxcParagraph } fro
 import Mode from "../Mode";
 import PreviewContainer from "./PreviewContainer";
 
-type dropdownTypes = ComponentProps<typeof DxcDropdown>;
+type DropdownTypes = ComponentProps<typeof DxcDropdown>;
 
-const options: dropdownTypes["options"] = [
+const options: DropdownTypes["options"] = [
   {
     value: "1",
     label: "Home",

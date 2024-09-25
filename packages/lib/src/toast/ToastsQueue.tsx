@@ -45,6 +45,10 @@ const DxcToastsQueue = ({ children, duration = 3000 }: ToastsQueuePropsType) => 
   const [isMounted, setIsMounted] = useState(false); // Next.js SSR mounting issue
   const adjustedDuration = useMemo(() => (duration > 5000 ? 5000 : duration < 3000 ? 3000 : duration), [duration]);
 
+  const remove = useCallback((id: string) => {
+    setToasts((prevToasts) => prevToasts.filter((toast) => toast.id !== id));
+  }, []);
+
   const add = useCallback(
     (toast: ToastType, semantic: Semantic) => {
       const id = generateUniqueToastId(toasts);
@@ -53,10 +57,6 @@ const DxcToastsQueue = ({ children, duration = 3000 }: ToastsQueuePropsType) => 
     },
     [duration]
   );
-
-  const remove = useCallback((id: string) => {
-    setToasts((prevToasts) => prevToasts.filter((toast) => toast.id !== id));
-  }, []);
 
   const contextValue = useMemo(
     () => ({

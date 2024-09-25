@@ -236,13 +236,13 @@ const NestedTooltip = () => (
 export const BadgeTooltip = Tooltip.bind({});
 BadgeTooltip.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
-  const div = canvas.getByText("Tooltip label")
+  const div = canvas.getByText("Tooltip label");
   await userEvent.hover(div);
 };
 
 export const NestedBadgeTooltip = NestedTooltip.bind({});
 NestedBadgeTooltip.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
-  const div = canvas.getByText("Tooltip label")
+  const div = canvas.getByText("Tooltip label");
   await userEvent.hover(div);
 };

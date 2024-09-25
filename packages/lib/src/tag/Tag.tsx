@@ -1,12 +1,25 @@
 import { useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
+import getMargin from "../common/utils";
 import { spaces } from "../common/variables";
 import useTheme from "../useTheme";
-import getMargin from "../common/utils";
-import DxcBox from "../box/Box";
 import DxcIcon from "../icon/Icon";
 import TagPropsType from "./types";
+import CoreTokens from "../common/coreTokens";
 
+type TagWrapperProps = {
+  condition: boolean;
+  wrapper: (_children: React.ReactNode) => JSX.Element;
+  children: React.ReactNode;
+};
+
+const TagWrapper = ({ condition, wrapper, children }: TagWrapperProps): JSX.Element => (
+  <>{condition ? wrapper(children) : children}</>
+);
+
+/**
+ * @deprecated
+ */
 const DxcTag = ({
   icon,
   label = "",
@@ -21,25 +34,20 @@ const DxcTag = ({
 }: TagPropsType): JSX.Element => {
   const colorsTheme = useTheme();
   const [isHovered, changeIsHovered] = useState(false);
-  const clickHandler = () => {
-    if (onClick) {
-      onClick();
-    }
-  };
 
-  const tagContent = (
-    <DxcBox size={size} shadowDepth={(isHovered && (onClick || linkHref) && 2) || 1}>
-      <TagContent>
-        {labelPosition === "before" && size !== "small" && label && <TagLabel>{label}</TagLabel>}
-        {icon && (
-          <IconContainer iconBgColor={iconBgColor}>
-            {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
-          </IconContainer>
-        )}
-        {labelPosition === "after" && size !== "small" && label && <TagLabel>{label}</TagLabel>}
-      </TagContent>
-    </DxcBox>
-  );
+  const wrapperComponent = (children: React.ReactNode) => {
+    if (onClick) {
+      return <StyledButton tabIndex={tabIndex}>{children}</StyledButton>;
+    }
+    if (linkHref) {
+      return (
+        <StyledLink tabIndex={tabIndex} href={linkHref} target={newWindow ? "_blank" : "_self"}>
+          {children}
+        </StyledLink>
+      );
+    }
+    return <>{children}</>;
+  };
 
   return (
     <ThemeProvider theme={colorsTheme?.tag}>
@@ -48,18 +56,23 @@ const DxcTag = ({
         size={size}
         onMouseEnter={() => changeIsHovered(true)}
         onMouseLeave={() => changeIsHovered(false)}
-        onClick={clickHandler}
+        onClick={() => {
+          onClick?.();
+        }}
         hasAction={onClick || linkHref}
+        shadowDepth={isHovered && (onClick || linkHref) ? 2 : 1}
       >
-        {onClick ? (
-          <StyledButton tabIndex={tabIndex}>{tagContent}</StyledButton>
-        ) : linkHref ? (
-          <StyledLink tabIndex={tabIndex} href={linkHref} target={newWindow ? "_blank" : "_self"}>
-            {tagContent}
-          </StyledLink>
-        ) : (
-          tagContent
-        )}
+        <TagWrapper condition={!!onClick || !!linkHref} wrapper={wrapperComponent}>
+          <TagContent>
+            {labelPosition === "before" && size !== "small" && label && <TagLabel>{label}</TagLabel>}
+            {icon && (
+              <IconContainer iconBgColor={iconBgColor}>
+                {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
+              </IconContainer>
+            )}
+            {labelPosition === "after" && size !== "small" && label && <TagLabel>{label}</TagLabel>}
+          </TagContent>
+        </TagWrapper>
       </StyledDxcTag>
     </ThemeProvider>
   );
@@ -82,6 +95,7 @@ const StyledDxcTag = styled.div<{
   margin: TagPropsType["margin"];
   size: TagPropsType["size"];
   hasAction: TagPropsType["onClick"] | TagPropsType["linkHref"];
+  shadowDepth: 1 | 2;
 }>`
   display: inline-flex;
   cursor: ${({ hasAction }) => (hasAction && "pointer") || "unset"};
@@ -93,6 +107,12 @@ const StyledDxcTag = styled.div<{
   margin-left: ${({ margin }) => (margin && typeof margin === "object" && margin.left ? spaces[margin.left] : "")};
   width: ${(props) => calculateWidth(props.margin, props.size)};
   height: ${(props) => props.theme.height};
+  box-shadow: ${({ shadowDepth }) =>
+    shadowDepth === 1
+      ? `0px 3px 6px ${CoreTokens.color_grey_300_a}`
+      : shadowDepth === 2
+        ? `0px 3px 10px ${CoreTokens.color_grey_300_a}`
+        : "none"};
 `;
 
 const TagContent = styled.div`

@@ -1,4 +1,3 @@
-import { memo } from "react";
 import styled from "styled-components";
 import ImageConfig from "./widgets/ImageConfig";
 import ColorPicker from "./widgets/ColorPicker";
@@ -14,6 +13,7 @@ import AlphaValueInput from "./widgets/AlphaValueInput";
 import IntegerInput from "./widgets/IntegerInput";
 import TextAlignInput from "./widgets/TextAlignInput";
 import { makeReadable } from "../utils";
+import { memo } from "react";
 
 type ThemeInputProps = {
   propertyName: string;

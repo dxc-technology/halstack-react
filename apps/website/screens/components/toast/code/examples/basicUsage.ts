@@ -18,7 +18,7 @@ const code = `() => {
 const scope = {
   DxcButton,
   DxcInset,
-  useToast
+  useToast,
 };
 
 export default { code, scope };

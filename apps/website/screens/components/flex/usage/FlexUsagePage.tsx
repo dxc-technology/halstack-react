@@ -6,6 +6,27 @@ import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 
 const sections = [
   {
+    title: "Overview",
+    content: (
+      <>
+        <DxcParagraph>
+          The Flex component is designed to provide a more efficient way to organize, align, and distribute space among
+          items within a container, even when their size is unknown or dynamic (hence the term 'flex').
+        </DxcParagraph>
+        <DxcParagraph>
+          By leveraging the capabilities of the Flex component, developers can create more flexible and responsive
+          layouts that adapt to different screen sizes and device types. This powerful tool enables the creation of
+          complex structures that can be easily adjusted to accommodate various content types and user interactions.
+        </DxcParagraph>
+        <DxcParagraph>
+          In the sections that follow, we'll explore the core concepts and best practices for using the Flex component.
+          By understanding these principles, you can optimize the layout of your application, enhance the user experience,
+          and create more engaging and visually appealing interfaces.
+        </DxcParagraph>
+      </>
+    ),
+  },
+  {
     title: "Axes",
     content: (
       <>

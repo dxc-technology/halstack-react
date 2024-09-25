@@ -1,27 +1,22 @@
-import { useContext } from "react";
+import { useContext, useMemo } from "react";
 import { ToastContext } from "./ToastsQueue";
-import { ToastType, DefaultToast, Semantic, SemanticToast, LoadingToast } from "./types";
+import { DefaultToast, SemanticToast, LoadingToast } from "./types";
 
 const useToast = () => {
   const { add } = useContext(ToastContext) ?? {};
 
-  const show = <T extends ToastType>(toast: T, semantic: Semantic) => add?.(toast, semantic);
+  const toast = useMemo(
+    () => ({
+      default: (defaultToast: DefaultToast) => add?.(defaultToast, "default"),
+      success: (semanticToast: SemanticToast) => add?.(semanticToast, "success"),
+      warning: (semanticToast: SemanticToast) => add?.(semanticToast, "warning"),
+      info: (semanticToast: SemanticToast) => add?.(semanticToast, "info"),
+      loading: (loadingToast: LoadingToast) => add?.({ ...loadingToast, loading: true }, "info"),
+    }),
+    [add]
+  );
 
-  return {
-    default: (toast: DefaultToast) => {
-      show(toast, "default");
-    },
-    info: (toast: SemanticToast) => {
-      show(toast, "info");
-    },
-    loading: (toast: Omit<LoadingToast, "loading">) => show({ ...toast, loading: true }, "info"),
-    success: (toast: SemanticToast) => {
-      show(toast, "success");
-    },
-    warning: (toast: SemanticToast) => {
-      show(toast, "warning");
-    },
-  };
+  return toast;
 };
 
 export default useToast;
