@@ -16,7 +16,6 @@ import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import JsonContainer from "@/common/JsonContainer";
 import bloomTheme from "./examples/bloomTheme";
 import defaultAdvancedTheme from "@/common/themes/advanced-theme.json";
-import content from "screens/components/alert/usage/examples/content";
 
 const sections = [
   {

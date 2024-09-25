@@ -1,3 +1,4 @@
+import { userEvent, within } from "@storybook/test";
 import DxcButton from "./Button";
 import DxcFlex from "../flex/Flex";
 import Title from "../../.storybook/components/Title";
@@ -5,7 +6,6 @@ import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import { HalstackProvider } from "../HalstackContext";
 import DxcInset from "../inset/Inset";
 import DxcTooltip from "../tooltip/Tooltip";
-import { userEvent, within } from "@storybook/test";
 
 export default {
   title: "Button",

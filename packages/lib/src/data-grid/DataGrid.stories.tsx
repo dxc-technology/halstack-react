@@ -1,12 +1,12 @@
+import { useState } from "react";
+import { userEvent, within } from "@storybook/test";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DxcDataGrid from "./DataGrid";
 import DxcContainer from "../container/Container";
 import { GridColumn, HierarchyGridRow } from "./types";
-import { useState } from "react";
-import { disabledRules } from "../../test/accessibility/rules/specific/data-grid/disabledRules";
+import disabledRules from "../../test/accessibility/rules/specific/data-grid/disabledRules";
 import preview from "../../.storybook/preview";
-import { userEvent, within } from "@storybook/test";
 
 export default {
   title: "Data Grid",
@@ -15,8 +15,11 @@ export default {
     a11y: {
       config: {
         rules: [
-          ...disabledRules.map((ruleId) => ({ id: ruleId, reviewOnFail: true })),
-          ...preview?.parameters?.a11y?.config?.rules,
+          ...disabledRules.map((ruleId) => ({
+            id: ruleId,
+            reviewOnFail: true,
+          })),
+          ...(preview?.parameters?.a11y?.config?.rules || []),
         ],
       },
     },

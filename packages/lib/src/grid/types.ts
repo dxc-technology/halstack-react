@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 type Spaces = "0rem" | "0.125rem" | "0.25rem" | "0.5rem" | "1rem" | "1.5rem" | "2rem" | "3rem" | "4rem" | "5rem";
 type Gap = { rowGap: Spaces; columnGap?: Spaces } | { rowGap?: Spaces; columnGap: Spaces } | Spaces;
 type GridCell = { start: number | string; end: number | string };
@@ -52,7 +54,7 @@ export type GridItemProps = {
   /**
    * Custom content inside the grid container.
    */
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
 type Props = GridItemProps & {

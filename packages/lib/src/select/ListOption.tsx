@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { MouseEvent } from "react";
 import { OptionProps } from "./types";
 import DxcCheckbox from "../checkbox/Checkbox";
 import DxcIcon from "../icon/Icon";
@@ -13,10 +14,13 @@ const ListOption = ({
   isLastOption,
   isSelected,
 }: OptionProps): JSX.Element => {
-  const handleOnMouseEnter = (event: React.MouseEvent) => {
+  const handleOnMouseEnter = (event: MouseEvent<HTMLSpanElement>) => {
     const label = event.currentTarget;
     const optionElement = document.getElementById(id);
-    if (optionElement.title === "" && label.scrollWidth > label.clientWidth) optionElement.title = option.label;
+
+    if (optionElement?.title === "" && label.scrollWidth > label.clientWidth) {
+      optionElement.title = option.label;
+    }
   };
 
   return (
@@ -47,7 +51,7 @@ const ListOption = ({
             {typeof option.icon === "string" ? <DxcIcon icon={option.icon} /> : option.icon}
           </OptionIcon>
         )}
-        <OptionContent grouped={isGroupedOption} hasIcon={option.icon ? true : false} multiple={multiple}>
+        <OptionContent grouped={isGroupedOption} hasIcon={!!option.icon} multiple={multiple}>
           <OptionLabel onMouseEnter={handleOnMouseEnter}>{option.label}</OptionLabel>
           {!multiple && isSelected && (
             <OptionSelectedIndicator>
@@ -60,7 +64,10 @@ const ListOption = ({
   );
 };
 
-const OptionItem = styled.li<{ visualFocused: OptionProps["visualFocused"]; selected: OptionProps["isSelected"] }>`
+const OptionItem = styled.li<{
+  visualFocused: OptionProps["visualFocused"];
+  selected: OptionProps["isSelected"];
+}>`
   padding: 0 0.5rem;
   box-shadow: inset 0 0 0 2px transparent;
   ${(props) => props.visualFocused && `box-shadow: inset 0 0 0 2px ${props.theme.focusListOptionBorderColor};`}

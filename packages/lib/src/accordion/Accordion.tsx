@@ -1,6 +1,6 @@
 import { useId, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import { getMargin } from "../common/utils";
+import getMargin from "../common/utils";
 import { spaces } from "../common/variables";
 import useTheme from "../useTheme";
 import AccordionPropsType from "./types";
@@ -24,12 +24,14 @@ const DxcAccordion = ({
   const colorsTheme = useTheme();
 
   const handleAccordionState = () => {
-    isExpanded ?? setInnerIsExpanded((innerIsExpanded) => !innerIsExpanded);
+    if (isExpanded == null) {
+      setInnerIsExpanded((innerIsCurrentlyExpanded) => !innerIsCurrentlyExpanded);
+    }
     onChange?.(isExpanded != null ? !isExpanded : !innerIsExpanded);
   };
 
   return (
-    <ThemeProvider theme={colorsTheme.accordion}>
+    <ThemeProvider theme={colorsTheme?.accordion}>
       <AccordionContainer isExpanded={isExpanded ?? innerIsExpanded} margin={margin}>
         <AccordionHeader>
           <AccordionTrigger
@@ -51,13 +53,13 @@ const DxcAccordion = ({
                 <BaseTypography
                   color={
                     disabled
-                      ? colorsTheme.accordion.disabledTitleLabelFontColor
-                      : colorsTheme.accordion.titleLabelFontColor
+                      ? colorsTheme?.accordion?.disabledTitleLabelFontColor
+                      : colorsTheme?.accordion?.titleLabelFontColor
                   }
-                  fontFamily={colorsTheme.accordion.titleLabelFontFamily}
-                  fontSize={colorsTheme.accordion.titleLabelFontSize}
-                  fontStyle={colorsTheme.accordion.titleLabelFontStyle}
-                  fontWeight={colorsTheme.accordion.titleLabelFontWeight}
+                  fontFamily={colorsTheme?.accordion?.titleLabelFontFamily}
+                  fontSize={colorsTheme?.accordion?.titleLabelFontSize}
+                  fontStyle={colorsTheme?.accordion?.titleLabelFontStyle}
+                  fontWeight={colorsTheme?.accordion?.titleLabelFontWeight}
                   lineHeight="1.5em"
                 >
                   {label}
@@ -68,14 +70,14 @@ const DxcAccordion = ({
                   <BaseTypography
                     color={
                       disabled
-                        ? colorsTheme.accordion.disabledAssistiveTextFontColor
-                        : colorsTheme.accordion.assistiveTextFontColor
+                        ? colorsTheme?.accordion?.disabledAssistiveTextFontColor
+                        : colorsTheme?.accordion?.assistiveTextFontColor
                     }
-                    fontFamily={colorsTheme.accordion.assistiveTextFontFamily}
-                    fontSize={colorsTheme.accordion.assistiveTextFontSize}
-                    fontStyle={colorsTheme.accordion.assistiveTextFontStyle}
-                    fontWeight={colorsTheme.accordion.assistiveTextFontWeight}
-                    letterSpacing={colorsTheme.accordion.assistiveTextLetterSpacing}
+                    fontFamily={colorsTheme?.accordion?.assistiveTextFontFamily}
+                    fontSize={colorsTheme?.accordion?.assistiveTextFontSize}
+                    fontStyle={colorsTheme?.accordion?.assistiveTextFontStyle}
+                    fontWeight={colorsTheme?.accordion?.assistiveTextFontWeight}
+                    letterSpacing={colorsTheme?.accordion?.assistiveTextLetterSpacing}
                     lineHeight="1.5em"
                   >
                     {assistiveText}
@@ -192,7 +194,9 @@ const AccordionAssistiveText = styled.span`
   padding-right: ${(props) => props.theme.assistiveTextPaddingRight};
 `;
 
-const CollapseIndicator = styled.span<{ disabled: AccordionPropsType["disabled"] }>`
+const CollapseIndicator = styled.span<{
+  disabled: AccordionPropsType["disabled"];
+}>`
   display: flex;
   flex-wrap: wrap;
   align-content: center;

@@ -1,7 +1,6 @@
-import { findAllByRole, fireEvent, getAllByRole, render, waitFor } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import { render } from "@testing-library/react";
 import DxcDataGrid from "./DataGrid";
-import { GridColumn, HierarchyGridRow } from "./types";
+import { GridColumn } from "./types";
 
 const columns: GridColumn[] = [
   {
@@ -49,49 +48,10 @@ const expandableRows = [
   },
 ];
 
-const rowsWithChildren: HierarchyGridRow[] = [
-  {
-    id: 1,
-    complete: 46,
-    childRows: [
-      {
-        id: 1.1,
-        complete: 46,
-        childRows: [
-          {
-            id: "1.1a",
-            complete: 46,
-          },
-        ],
-      },
-      {
-        complete: 46,
-        value: 1.2,
-      },
-    ],
-  },
-  {
-    id: 2,
-    complete: 51,
-  },
-  {
-    id: 3,
-    complete: 40,
-  },
-  {
-    id: 4,
-    complete: 10,
-  },
-  {
-    id: 5,
-    complete: 1,
-  },
-] as HierarchyGridRow[];
-
 describe("Data grid component tests", () => {
   beforeAll(() => {
-    global.CSS = {
-      escape: (str) => str,
+    (global as any).CSS = {
+      escape: (str: string) => str,
     };
     window.HTMLElement.prototype.scrollIntoView = jest.fn;
   });
@@ -101,16 +61,4 @@ describe("Data grid component tests", () => {
     const rows = getAllByRole("row");
     expect(rows.length).toBe(5);
   });
-  // test("Content is sorted correctly", async () => {
-  //   const { getByText, getAllByRole } = await render(<DxcDataGrid columns={columns} rows={expandableRows} />);
-  //   expect(getByText("% Complete")).toBeTruthy();
-  //   const headerCell = screen.getAllByRole("columnheader")[1];
-  //   expect(getAllByRole("gridcell")[0].textContent).toBe("1");
-  //   expect(headerCell.textContent).toBe(" % Complete");
-  //   await fireEvent.click(headerCell);
-  //   expect(headerCell.getAttribute("aria-sort")).toBe("ascending");
-  //   expect(getByText("5")).toBeTruthy();
-  //   // await waitFor(() => expect(getAllByRole("gridcell")[0].textContent).toBe("4"));
-  //   //waitFor(() => expect(getAllByRole("gridcell").length).toBe(8));
-  // });
 });

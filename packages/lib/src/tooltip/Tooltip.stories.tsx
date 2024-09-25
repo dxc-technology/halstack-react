@@ -1,10 +1,10 @@
 import { userEvent, within } from "@storybook/test";
+import DxcTooltip from "./Tooltip";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcButton from "../button/Button";
 import DxcFlex from "../flex/Flex";
 import DxcInset from "../inset/Inset";
-import DxcTooltip from "./Tooltip";
 
 export default {
   title: "Tooltip",

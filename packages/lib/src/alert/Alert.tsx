@@ -1,6 +1,6 @@
 import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables";
-import { getMargin } from "../common/utils";
+import getMargin from "../common/utils";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
 import AlertPropsType from "./types";
@@ -21,15 +21,15 @@ const DxcAlert = ({
 
   const getTypeText = () =>
     type === "info"
-      ? translatedLabels.alert.infoTitleText
+      ? translatedLabels?.alert?.infoTitleText
       : type === "confirm"
-        ? translatedLabels.alert.successTitleText
+        ? translatedLabels?.alert?.successTitleText
         : type === "warning"
-          ? translatedLabels.alert.warningTitleText
-          : translatedLabels.alert.errorTitleText;
+          ? translatedLabels?.alert?.warningTitleText
+          : translatedLabels?.alert?.errorTitleText;
 
   return (
-    <ThemeProvider theme={colorsTheme.alert}>
+    <ThemeProvider theme={colorsTheme?.alert}>
       <AlertModal mode={mode}>
         {mode === "modal" && <OverlayContainer mode={mode} onClick={onClose}></OverlayContainer>}
         <AlertContainer
@@ -73,10 +73,10 @@ const sizes = {
   fitContent: "fit-content",
 };
 
-const calculateWidth = (margin, size) =>
+const calculateWidth = (margin: AlertPropsType["margin"], size: AlertPropsType["size"]) =>
   size === "fillParent"
     ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
-    : sizes[size];
+    : size && sizes[size];
 
 const AlertModal = styled.div<{ mode: AlertPropsType["mode"] }>`
   font-size: ${(props) => props.theme.fontSizeBase};

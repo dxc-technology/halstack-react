@@ -1,9 +1,9 @@
 import * as Tooltip from "@radix-ui/react-tooltip";
 import styled from "styled-components";
+import { useContext } from "react";
 import CoreTokens from "../common/coreTokens";
 import TooltipPropsType from "./types";
-import { TooltipContext } from "./TooltipContext";
-import { useContext } from "react";
+import TooltipContext from "./TooltipContext";
 
 const triangleIcon = (
   <svg
@@ -25,7 +25,7 @@ const DxcTooltip = ({ position = "bottom", label, children }: TooltipPropsType):
   const hasTooltip = useContext(TooltipContext);
 
   return (
-    <TooltipContext.Provider value={true}>
+    <TooltipContext.Provider value>
       {label && !hasTooltip ? (
         <Tooltip.Provider delayDuration={300}>
           <Tooltip.Root>

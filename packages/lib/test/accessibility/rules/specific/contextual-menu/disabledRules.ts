@@ -2,7 +2,7 @@
  * Array of accessibility rule IDs to be disabled in both Jest and Storybook for the contextual menu component.
  *
  */
-export const disabledRules = [
+const disabledRules = [
   // TODO: REMOVE
   "aria-allowed-attr",
   "aria-allowed-role",
@@ -10,3 +10,5 @@ export const disabledRules = [
   "aria-required-parent",
   "list",
 ];
+
+export default disabledRules;

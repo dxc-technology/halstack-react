@@ -7,11 +7,14 @@ const DxcHeading = ({ level = 1, text = "", as, weight, margin }: HeadingPropsTy
   const colorsTheme = useTheme();
 
   const checkValidAs = () => {
-    if (as === "h1" || as === "h2" || as === "h3" || as === "h4" || as === "h5") return as;
+    if (as === "h1" || as === "h2" || as === "h3" || as === "h4" || as === "h5") {
+      return as;
+    }
+    return undefined;
   };
 
   return (
-    <ThemeProvider theme={colorsTheme.heading}>
+    <ThemeProvider theme={colorsTheme?.heading}>
       <HeadingContainer margin={margin}>
         {level === 1 ? (
           <HeadingLevel1 as={checkValidAs()} weight={weight}>

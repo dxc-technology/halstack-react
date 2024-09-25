@@ -1,3 +1,5 @@
 import { createContext } from "react";
 
-export const TooltipContext = createContext(false);
+const TooltipContext = createContext(false);
+
+export default TooltipContext;

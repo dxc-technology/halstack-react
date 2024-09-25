@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useMemo, useState } from "react";
-import DataGridPropsType, { HierarchyGridRow, GridRow, ExpandableGridRow } from "./types";
 import DataGrid, { SortColumn } from "react-data-grid";
+import styled, { ThemeProvider } from "styled-components";
+import DataGridPropsType, { HierarchyGridRow, GridRow, ExpandableGridRow } from "./types";
 import "react-data-grid/lib/styles.css";
 
 import {
@@ -16,7 +17,6 @@ import {
   renderHierarchyTrigger,
   renderExpandableTrigger,
 } from "./utils";
-import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme";
 
 const DxcDataGrid = ({
@@ -34,20 +34,7 @@ const DxcDataGrid = ({
   const colorsTheme = useTheme();
   // Proccess columns prop into usable columns based on other props
   const columnsToRender = useMemo(() => {
-    let expectedColumns = columns
-      // .filter((column) => visibleColumns.includes(column.name))
-      .map((column) => {
-        // if (!visibleColumns.includes(column.name))
-        //   return {
-        //     key: column.key,
-        //     name: column.name,
-        //     colSpan() {
-        //       return 0;
-        //     },
-        //   };
-
-        return convertToRDGColumns(column, summaryRow);
-      });
+    let expectedColumns = columns.map((column) => convertToRDGColumns(column, summaryRow));
     if (expandable) {
       expectedColumns = [
         {
@@ -62,7 +49,7 @@ const DxcDataGrid = ({
           renderCell({ row }) {
             if (row.isExpandedChildContent) {
               // if it is expanded content
-              return row.expandedChildContent || <></>;
+              return row.expandedChildContent || null;
             }
             // if row has expandable content
             return (
@@ -77,24 +64,26 @@ const DxcDataGrid = ({
     }
     if (!expandable && rows.some((row) => Array.isArray(row.childRows) && row.childRows.length > 0) && uniqueRowId) {
       // only the first column will be clickable and will expand the rows
-      const firstColumnKey = expectedColumns[0].key;
-      expectedColumns[0] = {
-        ...expectedColumns[0],
-        renderCell({ row }) {
-          if (row.childRows?.length) {
+      const firstColumnKey = expectedColumns[0]?.key;
+      if (firstColumnKey) {
+        expectedColumns[0] = {
+          ...expectedColumns[0],
+          renderCell({ row }: any) {
+            if (row.childRows?.length) {
+              return (
+                <HierarchyContainer level={row.rowLevel || 0}>
+                  {renderHierarchyTrigger(rowsToRender, row, uniqueRowId, firstColumnKey, setRowsToRender)}
+                </HierarchyContainer>
+              );
+            }
             return (
-              <HierarchyContainer level={row.rowLevel || 0}>
-                {renderHierarchyTrigger(rowsToRender, row, uniqueRowId, firstColumnKey, setRowsToRender)}
+              <HierarchyContainer level={row.rowLevel || 0} className="ellipsis-cell">
+                {row[firstColumnKey]}
               </HierarchyContainer>
             );
-          }
-          return (
-            <HierarchyContainer level={row.rowLevel || 0} className="ellipsis-cell">
-              {row[firstColumnKey]}
-            </HierarchyContainer>
-          );
-        },
-      };
+          },
+        } as any;
+      }
     }
     if (selectable) {
       expectedColumns = [
@@ -112,14 +101,13 @@ const DxcDataGrid = ({
                 </ActionContainer>
               );
             }
+            return null;
           },
-          renderHeaderCell: () => {
-            return (
-              <ActionContainer id="action">
-                {renderHeaderCheckbox(rows, uniqueRowId, selectedRows, colorsTheme, onSelectRows)}
-              </ActionContainer>
-            );
-          },
+          renderHeaderCell: () => (
+            <ActionContainer id="action">
+              {renderHeaderCheckbox(rows, uniqueRowId, selectedRows, colorsTheme, onSelectRows)}
+            </ActionContainer>
+          ),
         },
         ...expectedColumns,
       ];
@@ -139,30 +127,44 @@ const DxcDataGrid = ({
     setColumnsOrder(columnsToRender.map((_, index) => index));
   }, [columnsToRender]);
 
-  const reorderedColumns = useMemo(() => {
-    // Array ordered by columnsOrder
-    return columnsOrder.map((index) => columnsToRender[index]);
-  }, [columnsOrder, columnsToRender]);
+  const reorderedColumns = useMemo(
+    () =>
+      // Array ordered by columnsOrder
+      columnsOrder.map((index) => columnsToRender[index]),
+    [columnsOrder, columnsToRender]
+  );
 
   const onColumnsReorder = (sourceKey: string, targetKey: string) => {
-    setColumnsOrder((columnsOrder) => {
-      const sourceColumnOrderIndex = columnsOrder.findIndex((index) => columnsToRender[index].key === sourceKey);
-      const targetColumnOrderIndex = columnsOrder.findIndex((index) => columnsToRender[index].key === targetKey);
-      const newColumnsOrder = columnsOrder.slice();
-      newColumnsOrder.splice(sourceColumnOrderIndex, 1);
-      newColumnsOrder.splice(targetColumnOrderIndex, 0, columnsOrder[sourceColumnOrderIndex]);
+    setColumnsOrder((currentColumnsOrder) => {
+      const sourceColumnOrderIndex = currentColumnsOrder.findIndex(
+        (index) => columnsToRender[index]?.key === sourceKey
+      );
+      const targetColumnOrderIndex = currentColumnsOrder.findIndex(
+        (index) => columnsToRender[index]?.key === targetKey
+      );
+      const newColumnsOrder = currentColumnsOrder.slice();
+      if (sourceColumnOrderIndex === -1 || targetColumnOrderIndex === -1) {
+        return currentColumnsOrder; // Return the current order if an error is found
+      }
+      const itemToMove = currentColumnsOrder[sourceColumnOrderIndex];
+      if (itemToMove != null) {
+        newColumnsOrder.splice(sourceColumnOrderIndex, 1);
+        newColumnsOrder.splice(targetColumnOrderIndex, 0, itemToMove);
+      }
       return newColumnsOrder;
     });
   };
 
   const onRowsChange = (newRows: GridRow[] | HierarchyGridRow[] | ExpandableGridRow[]) => {
     // call function to change rows, like when they have been edited
-    if (typeof onGridRowsChange === "function") onGridRowsChange(newRows);
+    if (typeof onGridRowsChange === "function") {
+      onGridRowsChange(newRows);
+    }
   };
 
   const sortedRows = useMemo((): readonly GridRow[] => {
     if (expandable && sortColumns.length >= 0) {
-      const sortedRows = sortRows(
+      const processedRows = sortRows(
         rowsToRender.filter((row) => !row.isExpandedChildContent),
         sortColumns
       );
@@ -170,14 +172,15 @@ const DxcDataGrid = ({
         .filter((row) => row.isExpandedChildContent)
         .map((expandedRow) =>
           addRow(
-            sortedRows,
-            sortedRows.findIndex((trigger) => rowKeyGetter(trigger, uniqueRowId) === expandedRow.triggerRowKey) + 1,
+            processedRows,
+            processedRows.findIndex((trigger) => rowKeyGetter(trigger, uniqueRowId) === expandedRow.triggerRowKey) + 1,
             expandedRow
           )
         );
-      return sortedRows;
-    } else if (!expandable && sortColumns.length >= 0) {
-      if (uniqueRowId) return sortHierarchyRows(rowsToRender, sortColumns, uniqueRowId);
+      return processedRows;
+    }
+    if (!expandable && sortColumns.length >= 0 && uniqueRowId) {
+      return sortHierarchyRows(rowsToRender, sortColumns, uniqueRowId);
     }
     return rowsToRender;
   }, [expandable, rowsToRender, sortColumns, uniqueRowId]);
@@ -194,7 +197,7 @@ const DxcDataGrid = ({
         />
       )} */}
         <DataGrid
-          columns={reorderedColumns}
+          columns={reorderedColumns as any}
           rows={sortedRows}
           onColumnsReorder={onColumnsReorder}
           onRowsChange={onRowsChange}
@@ -210,12 +213,12 @@ const DxcDataGrid = ({
             ) {
               return row.expandedContentHeight;
             }
-            return colorsTheme.dataGrid.dataRowHeight;
+            return colorsTheme?.dataGrid?.dataRowHeight ?? 0;
           }}
           selectedRows={selectedRows}
           bottomSummaryRows={summaryRow ? [summaryRow] : undefined}
-          headerRowHeight={colorsTheme.dataGrid.headerRowHeight}
-          summaryRowHeight={colorsTheme.dataGrid.summaryRowHeight}
+          headerRowHeight={colorsTheme?.dataGrid?.headerRowHeight}
+          summaryRowHeight={colorsTheme?.dataGrid?.summaryRowHeight}
           className="fill-grid"
         />
       </DataGridContainer>

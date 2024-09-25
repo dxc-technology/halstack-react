@@ -29,7 +29,9 @@ const DropdownMenuItem = ({
   </DropdownMenuItemContainer>
 );
 
-const DropdownMenuItemContainer = styled.li<{ visuallyFocused: DropdownMenuItemProps["visuallyFocused"] }>`
+const DropdownMenuItemContainer = styled.li<{
+  visuallyFocused: DropdownMenuItemProps["visuallyFocused"];
+}>`
   box-sizing: border-box;
   display: flex;
   align-items: center;

@@ -6,7 +6,7 @@ import ThemeInput from "./ThemeInput";
 type ThemeInputsConfigProps = {
   componentInputs: IndexedThemeInput;
   componentInputsTypes: IndexedThemeInput;
-  onChangeCustomTheme: (propertyName: string, propertyValue: string) => void;
+  onChangeCustomTheme: (_propertyName: string, _propertyValue: string) => void;
 };
 
 const ThemeInputsConfig = ({
