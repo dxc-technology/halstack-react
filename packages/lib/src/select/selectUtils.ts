@@ -137,7 +137,7 @@ const getSelectedOptionLabel = (placeholder: string, selectedOption: ListOptionT
     ? selectedOption.length === 0
       ? placeholder
       : selectedOption.map((option) => option.label).join(", ")
-    : selectedOption?.label ?? placeholder;
+    : (selectedOption?.label ?? placeholder);
 
 export {
   isOptionGroup,

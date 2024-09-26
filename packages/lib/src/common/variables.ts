@@ -87,28 +87,6 @@ export const componentTokens = {
     focusActionBorderColor: CoreTokens.color_blue_600,
     overlayColor: CoreTokens.color_grey_800_a,
   },
-  box: {
-    backgroundColor: CoreTokens.color_white,
-    borderRadius: CoreTokens.border_radius_medium,
-    borderThickness: CoreTokens.border_width_0,
-    borderStyle: CoreTokens.border_none,
-    borderColor: CoreTokens.color_transparent,
-    noneShadowDepthShadowOffsetX: "none",
-    noneShadowDepthShadowOffsetY: "none",
-    noneShadowDepthShadowBlur: "none",
-    noneShadowDepthShadowSpread: "none",
-    noneShadowDepthShadowColor: CoreTokens.color_transparent,
-    oneShadowDepthShadowOffsetX: "0px",
-    oneShadowDepthShadowOffsetY: "3px",
-    oneShadowDepthShadowBlur: "6px",
-    oneShadowDepthShadowSpread: "0px",
-    oneShadowDepthShadowColor: CoreTokens.color_grey_300_a,
-    twoShadowDepthShadowOffsetX: "0px",
-    twoShadowDepthShadowOffsetY: "3px",
-    twoShadowDepthShadowBlur: "10px",
-    twoShadowDepthShadowSpread: "0px",
-    twoShadowDepthShadowColor: CoreTokens.color_grey_300_a,
-  },
   bulletedList: {
     fontColor: CoreTokens.color_black,
     bulletIconHeight: "1.5rem",
@@ -495,7 +473,7 @@ export const componentTokens = {
     helperTextFontColor: CoreTokens.color_black,
     dropLabelFontColor: CoreTokens.color_black,
     disabledLabelFontColor: CoreTokens.color_grey_500,
-    disabledHelperTextFontcolor: CoreTokens.color_grey_500,
+    disabledHelperTextFontColor: CoreTokens.color_grey_500,
     disabledDropLabelFontColor: CoreTokens.color_grey_500,
     focusDropBorderColor: CoreTokens.color_blue_600,
     disabledDropBorderColor: CoreTokens.color_grey_500,
@@ -1216,7 +1194,7 @@ export const componentTokens = {
     labelFontColor: CoreTokens.color_black,
     disabledLabelFontColor: CoreTokens.color_grey_500,
     helperTextFontColor: CoreTokens.color_black,
-    disabledHelperTextFontcolor: CoreTokens.color_grey_500,
+    disabledHelperTextFontColor: CoreTokens.color_grey_500,
     unselectedBackgroundColor: CoreTokens.color_grey_200,
     unselectedHoverBackgroundColor: CoreTokens.color_grey_300,
     unselectedActiveBackgroundColor: CoreTokens.color_purple_700,
@@ -1333,9 +1311,6 @@ export type OpinionatedTheme = {
     baseColor: string;
     accentColor: string;
     overlayColor: string;
-  };
-  box: {
-    baseColor: string;
   };
   button: {
     baseColor: string;

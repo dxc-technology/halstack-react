@@ -1,5 +1,3 @@
-import React from "react";
-
 const facebookIcon = (
   <svg
     version="1.1"

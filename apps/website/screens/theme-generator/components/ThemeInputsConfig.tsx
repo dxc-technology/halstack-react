@@ -1,5 +1,4 @@
 import { DxcInset } from "@dxc-technology/halstack-react";
-import React from "react";
 import styled from "styled-components";
 import { IndexedThemeInput } from "../types";
 import ThemeInput from "./ThemeInput";

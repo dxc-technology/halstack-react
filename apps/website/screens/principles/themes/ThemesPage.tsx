@@ -16,6 +16,7 @@ import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import JsonContainer from "@/common/JsonContainer";
 import bloomTheme from "./examples/bloomTheme";
 import defaultAdvancedTheme from "@/common/themes/advanced-theme.json";
+import content from "screens/components/alert/usage/examples/content";
 
 const sections = [
   {
@@ -60,7 +61,7 @@ const sections = [
     ),
     subSections: [
       {
-        title: "Opinionated Theme",
+        title: "Opinionated theme",
         content: (
           <>
             <DxcParagraph>
@@ -110,42 +111,6 @@ const sections = [
             ),
             subSections: [
               {
-                title: "Alert",
-                content: (
-                  <DxcTable>
-                    <thead>
-                      <tr>
-                        <th>Theme Input</th>
-                        <th>Tokens (calculation) </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>Base color</td>
-                        <td>
-                          <Code>infoBackgroundColor</Code>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Accent color</td>
-                        <td>
-                          <Code>infoIconColor</Code>
-                          <br />
-                          <br />
-                          <Code>infoBorderColor</Code>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Overlay color</td>
-                        <td>
-                          <Code>overlayColor</Code>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </DxcTable>
-                ),
-              },
-              {
                 title: "Accordion",
                 content: (
                   <DxcTable>
@@ -179,6 +144,42 @@ const sections = [
                         <td>Assistive text font color</td>
                         <td>
                           <Code>assistiveTextFontColor</Code>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </DxcTable>
+                ),
+              },
+              {
+                title: "Alert",
+                content: (
+                  <DxcTable>
+                    <thead>
+                      <tr>
+                        <th>Theme Input</th>
+                        <th>Tokens (calculation) </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Base color</td>
+                        <td>
+                          <Code>infoBackgroundColor</Code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Accent color</td>
+                        <td>
+                          <Code>infoIconColor</Code>
+                          <br />
+                          <br />
+                          <Code>infoBorderColor</Code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Overlay color</td>
+                        <td>
+                          <Code>overlayColor</Code>
                         </td>
                       </tr>
                     </tbody>
@@ -337,10 +338,10 @@ const sections = [
                           <Code>iconColor</Code>
                           <br />
                           <br />
-                          <Code>hoverIconColor</Code> (+10% lightness)
+                          <Code>hoverIconColor</Code> (-10% lightness)
                           <br />
                           <br />
-                          <Code>activeIconColor</Code> (+30% lightness)
+                          <Code>activeIconColor</Code> (-30% lightness)
                         </td>
                       </tr>
                     </tbody>
@@ -395,6 +396,42 @@ const sections = [
                         <td>Icon color</td>
                         <td>
                           <Code>iconColor</Code>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </DxcTable>
+                ),
+              },
+              {
+                title: "Data Grid",
+                content: (
+                  <DxcTable>
+                    <thead>
+                      <tr>
+                        <th>Theme Input</th>
+                        <th>Tokens (calculation)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Base color</td>
+                        <td>
+                          <Code>headerBackgroundColor</Code>
+                          <br />
+                          <br />
+                          <Code>headerCheckboxCheckColor</Code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Header font color</td>
+                        <td>
+                          <Code>headerFontColor</Code>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Cell font color</td>
+                        <td>
+                          <Code>dataFontColor</Code>
                         </td>
                       </tr>
                     </tbody>
@@ -1447,7 +1484,7 @@ const sections = [
         ],
       },
       {
-        title: "Advanced Theme",
+        title: "Advanced theme",
         content: (
           <>
             <DxcParagraph>

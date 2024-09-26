@@ -310,14 +310,14 @@ const Tooltip = () => {
 
 export const DatePickerTooltipPrevious = Tooltip.bind({});
 DatePickerTooltipPrevious.play = async ({ canvasElement }) => {
-const canvas = within(canvasElement);
-const previousMonthButton = canvas.getAllByRole("button")[0];
-await userEvent.hover(previousMonthButton);
+  const canvas = within(canvasElement);
+  const previousMonthButton = canvas.getAllByRole("button")[0];
+  await userEvent.hover(previousMonthButton);
 };
 
 export const DatePickerTooltipAfter = Tooltip.bind({});
 DatePickerTooltipAfter.play = async ({ canvasElement }) => {
-const canvas = within(canvasElement);
-const afterMonthButton = canvas.getAllByRole("button")[2];
-await userEvent.hover(afterMonthButton);
+  const canvas = within(canvasElement);
+  const afterMonthButton = canvas.getAllByRole("button")[2];
+  await userEvent.hover(afterMonthButton);
 };

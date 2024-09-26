@@ -1,4 +1,4 @@
-import { DxcParagraph, DxcFlex, DxcAlert } from "@dxc-technology/halstack-react";
+import { DxcParagraph, DxcFlex } from "@dxc-technology/halstack-react";
 import PageHeading from "@/common/PageHeading";
 import TabsPageHeading from "@/common/TabsPageLayout";
 import ComponentHeading from "@/common/ComponentHeading";
@@ -19,11 +19,6 @@ const ContainerPageHeading = ({ children }: { children: React.ReactNode }) => {
             container that allows for controlled use of our design tokens. Being generic in nature can be "over-used",
             so it's important to consider situations where more specific and expressive components could be used.
           </DxcParagraph>
-          <DxcAlert
-            type="warning"
-            size="fillParent"
-            inlineText="Our design tokens are still being developed, so this component may change over time."
-          />
           <TabsPageHeading tabs={tabs}></TabsPageHeading>
         </DxcFlex>
       </PageHeading>
