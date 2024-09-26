@@ -5,21 +5,18 @@ const code = `() => {
     {
       key: "label",
       label: "Name",
-      resizable: true,
       draggable: true,
     },
     {
       key: "id",
       label: "ID",
-      resizable: true,
       draggable: true,
     },
     {
       key: "complete",
       label: "% Complete",
-      resizable: true,
       draggable: true,
-      alignment: "center",
+
     },
   ];
   

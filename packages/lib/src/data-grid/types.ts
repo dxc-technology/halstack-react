@@ -16,7 +16,7 @@ export type GridColumn = {
    */
   sortable?: boolean;
   /**
-   * Whether the column is sortable or not.
+   * Whether the column is draggable or not.
    */
   draggable?: boolean;
   /**

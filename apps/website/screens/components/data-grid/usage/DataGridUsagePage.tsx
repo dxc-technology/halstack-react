@@ -5,7 +5,7 @@ import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import expandedContent from "./examples/expandedContent";
 import selectable from "./examples/selectable";
-import filterable from "./examples/fiterable";
+import filterable from "./examples/filterable";
 import draggable from "./examples/draggable";
 
 const sections = [
@@ -64,10 +64,6 @@ const sections = [
                 arranging data based on different criteria.
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
-                Users can apply sorting to multiple columns simultaneously, enabling more complex data analysis by
-                arranging data based on different criteria.
-              </DxcBulletedList.Item>
-              <DxcBulletedList.Item>
                 Filtering in our Datagrid is enabled through integrated Halstack components, such as Dropdowns, and is
                 applied at the row level for precise data refinement.
               </DxcBulletedList.Item>
@@ -92,7 +88,7 @@ const sections = [
                 need to be made directly within the data source for efficiency and real-time updates.
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
-                RChanges made through in-line editing are immediately reflected in the Datagrid, giving users real-time
+                Changes made through in-line editing are immediately reflected in the Datagrid, giving users real-time
                 feedback on their edits.
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
@@ -134,7 +130,7 @@ const sections = [
             <DxcBulletedList>
               <DxcBulletedList.Item>
                 The re-ordering feature of our Datagrid allows users to rearrange columns according to their preferences
-                by dragging and dropping them, enhancing the personalized data viewing experinece.
+                by dragging and dropping them, enhancing the personalized data viewing experience.
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
                 By letting users prioritize the most relevant columns, this feature helps them access and analyze data
@@ -163,11 +159,11 @@ const sections = [
       <>
         <DxcBulletedList>
           <DxcBulletedList.Item>
-            <strong>Data contextualization</strong>: Provide context within the grid by labeling columns clearly,
+            <strong>Data contextualization</strong>: provide context within the grid by labeling columns clearly,
             ensuring users understand the significance of the data they are viewing.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Column alignment</strong>: though data can be aligned in columns however the user chooses, it must
+            <strong>Column alignment</strong>: although data can be aligned in columns however the user chooses, it must
             be aligned consistently across columns to enhance readability:
             <DxcBulletedList type="circle">
               <DxcBulletedList.Item>
@@ -207,26 +203,26 @@ const sections = [
             quickly access the most relevant data when they first interact with the grid.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Clear filters option</strong>: When filtering data, include a button to clear all filters at once,
+            <strong>Clear filters option</strong>: when filtering data, include a button to clear all filters at once,
             allowing users to quickly reset their views and return to the unfiltered dataset.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Accessible bulk actions</strong>: Ensure that bulk actions, such as “Delete” or “Export,” are easily
+            <strong>Accessible bulk actions</strong>: ensure that bulk actions, such as “Delete” or “Export,” are easily
             accessible once rows are selected, facilitating efficient data management. Consider also implementing
             confirmation prompts for bulk actions to prevent accidental data loss and ensure users are intentional with
             their actions.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Use of expandable rows</strong>: Use expandable rows to display additional information that isn’t
+            <strong>Use of expandable rows</strong>: use expandable rows to display additional information that isn’t
             crucial for immediate viewing, but avoid overusing this feature to prevent increased cognitive load on
             users.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Limit expandable content</strong>: Use expandable rows sparingly to avoid overwhelming users,
+            <strong>Limit expandable content</strong>: use expandable rows sparingly to avoid overwhelming users,
             ensuring that only essential supplementary information is included.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Scrolling</strong>: The Datagrid supports both horizontal and vertical scrolling to handle extensive
+            <strong>Scrolling</strong>: the Datagrid supports both horizontal and vertical scrolling to handle extensive
             data sets, ensuring all rows and columns are accessible without cluttering the UI. While the component
             supports scrolling, it is designed to prioritize displaying the most essential data upfront, minimizing the
             need for scrolling to reduce potential user confusion and enhance accessibility.

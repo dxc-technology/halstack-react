@@ -8,10 +8,6 @@ import Figure from "@/common/Figure";
 import Code from "@/common/Code";
 
 const sections = [
-  // {
-  //   title: "Date input",
-  //   content: <>TODO</>,
-  // },
   {
     title: "Design tokens",
     subSections: [

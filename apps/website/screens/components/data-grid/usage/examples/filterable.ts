@@ -6,15 +6,10 @@ const code = `() => {
     {
       key: "id",
       label: "ID",
-      resizable: true,
-      draggable: true,
     },
     {
       key: "complete",
       label: "% Complete",
-      resizable: true,
-      draggable: true,
-      alignment: "center",
     },
   ];
   
