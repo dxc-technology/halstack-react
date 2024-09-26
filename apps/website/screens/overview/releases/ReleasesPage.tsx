@@ -90,6 +90,7 @@ const getReleasesPageSections = (releases: Release[]) => {
             <em>
               Released on{" "}
               {new Date(release.published_at).toLocaleDateString("en-US", {
+                year: "numeric",
                 weekday: "long",
                 month: "long",
                 day: "numeric",
