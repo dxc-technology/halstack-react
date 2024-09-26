@@ -1,18 +1,20 @@
 import { DxcDataGrid, DxcInset } from "@dxc-technology/halstack-react";
-import { useState } from "react";
 
 const code = `() => {
   const columns = [
     {
+      key: "label",
+      label: "Name",
+      draggable: true,
+    },
+    {
       key: "id",
       label: "ID",
-      resizable: true,
       draggable: true,
     },
     {
       key: "complete",
       label: "% Complete",
-      resizable: true,
       draggable: true,
       alignment: "right",
     },
@@ -20,34 +22,30 @@ const code = `() => {
   
   const rows = [
     {
-      id: "Row 1",
+      label: "Task 1",
+      id: "ID-1",
       complete: 46, 
     },
     {
-      id: "Row 2",
+      label: "Task 2",
+      id: "ID-2",
       complete: 51,
     },
     {
-      id: "Row 3",
+      label: "Task 3",
+      id: "ID-3",
       complete: 40,
     },
     {
-      id: "Row 4",
+      label: "Task 4",
+      id: "ID-4",
       complete: 10,
     },
   ];
-  
-  const [selectedRows, setSelectedRows] = useState(new Set());
+
   return (
     <DxcInset space="2rem">
-      <DxcDataGrid
-          columns={columns}
-          rows={rows}
-          uniqueRowId="id"
-          selectable
-          selectedRows={selectedRows}
-          onSelectRows={setSelectedRows}
-        />
+      <DxcDataGrid columns={columns} rows={rows} uniqueRowId="id" />
     </DxcInset>
   );
 }`;
@@ -55,7 +53,6 @@ const code = `() => {
 const scope = {
   DxcDataGrid,
   DxcInset,
-  useState,
 };
 
 export default { code, scope };

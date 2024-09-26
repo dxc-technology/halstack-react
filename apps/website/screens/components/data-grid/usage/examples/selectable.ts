@@ -6,14 +6,10 @@ const code = `() => {
     {
       key: "id",
       label: "ID",
-      resizable: true,
-      draggable: true,
     },
     {
       key: "complete",
       label: "% Complete",
-      resizable: true,
-      draggable: true,
       alignment: "right",
     },
   ];
@@ -37,7 +33,7 @@ const code = `() => {
     },
   ];
   
-  const [selectedRows, setSelectedRows] = useState(new Set());
+  const [selectedRows, setSelectedRows] = useState(new Set([1, 2]));
   return (
     <DxcInset space="2rem">
       <DxcDataGrid

@@ -139,6 +139,10 @@ const DxcDataGrid = ({
     setColumnsOrder(columnsToRender.map((_, index) => index));
   }, [columnsToRender]);
 
+  useEffect(() => {
+    setRowsToRender(rows);
+  }, [rows]);
+
   const reorderedColumns = useMemo(() => {
     // Array ordered by columnsOrder
     return columnsOrder.map((index) => columnsToRender[index]);
@@ -294,6 +298,10 @@ const DataGridContainer = styled.div`
     border-right: ${(props) =>
       `${props.theme.rowSeparatorThickness} ${props.theme.rowSeparatorStyle} ${props.theme.rowSeparatorColor}`};
     background-color: ${(props) => props.theme.dataBackgroundColor};
+    outline-color: ${(props) => props.theme.focusColor} !important;
+    .rdg-text-editor:focus {
+      border-color: transparent;
+    }
   }
   .rdg-header-row {
     border-top-left-radius: ${(props) => props.theme.headerBorderRadius};
