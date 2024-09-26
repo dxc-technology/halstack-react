@@ -10,27 +10,27 @@ const code = `() => {
     {
       key: "complete",
       label: "% Complete",
+      alignment: "right",
     },
   ];
   
   const rows = [
     {
-      id: 1,
+      id: "Row 1",
       complete: 46, 
     },
     {
-      id: 2,
+      id: "Row 2",
       complete: 51,
     },
     {
-      id: 3,
+      id: "Row 3",
       complete: 40,
     },
     {
-      id: 4,
+      id: "Row 4",
       complete: 10,
     },
-
   ];
   
   const [selectedRows, setSelectedRows] = useState(new Set([1, 2]));

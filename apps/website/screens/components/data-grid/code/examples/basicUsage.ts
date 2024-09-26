@@ -13,29 +13,29 @@ const code = `() => {
       label: "% Complete",
       resizable: true,
       draggable: true,
-      alignment: "center",
+      alignment: "right",
     },
   ];
   
   const rows = [
     {
-      id: 1,
+      id: "Row 1",
       complete: 46, 
     },
     {
-      id: 2,
+      id: "Row 2",
       complete: 51,
     },
     {
-      id: 3,
+      id: "Row 3",
       complete: 40,
     },
     {
-      id: 4,
+      id: "Row 4",
       complete: 10,
     },
-
   ];
+  
   return (
     <DxcInset space="2rem">
       <DxcDataGrid columns={columns} rows={rows} uniqueRowId="id" />

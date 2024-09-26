@@ -10,43 +10,44 @@ const code = `() => {
     {
       key: "complete",
       label: "% Complete",
+      alignment: "right",
     },
   ];
   
   const rows1 = [
     {
-      id: 1,
+      id: "Row 1",
       complete: 46, 
     },
     {
-      id: 2,
+      id: "Row 2",
       complete: 51,
     },
     {
-      id: 3,
+      id: "Row 3",
       complete: 40,
     },
     {
-      id: 4,
+      id: "Row 4",
       complete: 10,
     },
   ];
 
   const rows2 = [
     {
-      id: 11,
+      id: "Row 11",
       complete: 20, 
     },
     {
-      id: 12,
+      id: "Row 12",
       complete: 1,
     },
     {
-      id: 13,
+      id: "Row 13",
       complete: 67,
     },
     {
-      id: 14,
+      id: "Row 14",
       complete: 47,
     },
   ];

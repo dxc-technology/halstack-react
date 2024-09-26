@@ -16,29 +16,29 @@ const code = `() => {
       key: "complete",
       label: "% Complete",
       draggable: true,
-
+      alignment: "right",
     },
   ];
   
   const rows = [
     {
       label: "Task 1",
-      id: 1,
+      id: "ID-1",
       complete: 46, 
     },
     {
       label: "Task 2",
-      id: 2,
+      id: "ID-2",
       complete: 51,
     },
     {
       label: "Task 3",
-      id: 3,
+      id: "ID-3",
       complete: 40,
     },
     {
       label: "Task 4",
-      id: 4,
+      id: "ID-4",
       complete: 10,
     },
   ];
