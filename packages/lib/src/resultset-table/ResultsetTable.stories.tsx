@@ -435,5 +435,5 @@ DropdownAction.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const dropdown = canvas.getAllByRole("button")[5];
   await userEvent.click(dropdown);
-  await userEvent.hover(dropdown);
+  await userEvent.hover(dropdown.children[0]);
 };
