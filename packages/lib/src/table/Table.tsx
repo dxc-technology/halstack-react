@@ -4,7 +4,6 @@ import { getMargin } from "../common/utils";
 import { AdvancedTheme, spaces } from "../common/variables";
 import DxcDropdown from "../dropdown/Dropdown";
 import DxcFlex from "../flex/Flex";
-import DxcTooltip from "../tooltip/Tooltip";
 import { DeepPartial, HalstackProvider } from "../HalstackContext";
 import useTheme from "../useTheme";
 import dropdownTheme from "./dropdownTheme";
@@ -44,16 +43,15 @@ export const DxcActionsCell = ({ actions }: ActionCellsPropsType): JSX.Element =
       )}
       {actionDropdown && (
         <HalstackProvider advancedTheme={overwriteTheme(colorsTheme)} key={`provider-dropdown`}>
-          <DxcTooltip label={actionDropdown.title}>
-            <DxcDropdown
-              options={actionDropdown.options}
-              onSelectOption={actionDropdown.onClick}
-              disabled={actionDropdown.disabled}
-              icon="more_vert"
-              tabIndex={actionDropdown.tabIndex}
-              caretHidden
-            ></DxcDropdown>
-          </DxcTooltip>
+          <DxcDropdown
+            options={actionDropdown.options}
+            onSelectOption={actionDropdown.onClick}
+            disabled={actionDropdown.disabled}
+            icon="more_vert"
+            tabIndex={actionDropdown.tabIndex}
+            caretHidden
+            title={actionDropdown.title}
+          ></DxcDropdown>
         </HalstackProvider>
       )}
     </DxcFlex>

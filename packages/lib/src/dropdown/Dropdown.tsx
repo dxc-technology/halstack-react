@@ -8,6 +8,7 @@ import useTheme from "../useTheme";
 import useWidth from "../utils/useWidth";
 import DropdownMenu from "./DropdownMenu";
 import DropdownPropsType from "./types";
+import DxcTooltip from "../tooltip/Tooltip";
 
 const DxcDropdown = ({
   options,
@@ -22,6 +23,7 @@ const DxcDropdown = ({
   margin,
   size = "fitContent",
   tabIndex = 0,
+  title,
 }: DropdownPropsType): JSX.Element => {
   const id = useId();
   const triggerId = `trigger-${id}`;
@@ -164,24 +166,26 @@ const DxcDropdown = ({
               tabIndex={tabIndex}
               ref={triggerRef}
             >
-              <DropdownTriggerContent>
-                {label && iconPosition === "after" && <DropdownTriggerLabel>{label}</DropdownTriggerLabel>}
-                {icon && (
-                  <DropdownTriggerIcon
-                    disabled={disabled}
-                    role={typeof icon === "string" ? undefined : "img"}
-                    aria-hidden
-                  >
-                    {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
-                  </DropdownTriggerIcon>
+              <DxcTooltip label={title} position="top">
+                <DropdownTriggerContent>
+                  {label && iconPosition === "after" && <DropdownTriggerLabel>{label}</DropdownTriggerLabel>}
+                  {icon && (
+                    <DropdownTriggerIcon
+                      disabled={disabled}
+                      role={typeof icon === "string" ? undefined : "img"}
+                      aria-hidden
+                    >
+                      {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
+                    </DropdownTriggerIcon>
+                  )}
+                  {label && iconPosition === "before" && <DropdownTriggerLabel>{label}</DropdownTriggerLabel>}
+                </DropdownTriggerContent>
+                {!caretHidden && (
+                  <CaretIcon disabled={disabled}>
+                    <DxcIcon icon={isOpen ? "arrow_drop_up" : "arrow_drop_down"} />{" "}
+                  </CaretIcon>
                 )}
-                {label && iconPosition === "before" && <DropdownTriggerLabel>{label}</DropdownTriggerLabel>}
-              </DropdownTriggerContent>
-              {!caretHidden && (
-                <CaretIcon disabled={disabled}>
-                  <DxcIcon icon={isOpen ? "arrow_drop_up" : "arrow_drop_down"} />{" "}
-                </CaretIcon>
-              )}
+              </DxcTooltip>
             </DropdownTrigger>
           </Popover.Trigger>
           <Popover.Portal>

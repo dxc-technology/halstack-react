@@ -76,6 +76,10 @@ type Props = {
    * Value of the tabindex attribute.
    */
   tabIndex?: number;
+  /**
+   * The title of the dropdown.
+   */
+  title?: string;
 };
 
 export type DropdownMenuProps = {
