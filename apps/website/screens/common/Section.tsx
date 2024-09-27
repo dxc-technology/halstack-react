@@ -1,4 +1,3 @@
-import React from "react";
 import { DxcFlex } from "@dxc-technology/halstack-react";
 import HeadingLink from "./HeadingLink";
 

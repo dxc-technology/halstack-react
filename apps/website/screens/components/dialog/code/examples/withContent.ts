@@ -1,4 +1,12 @@
-import { DxcDialog, DxcButton, DxcTextInput, DxcInset, DxcFlex, DxcGrid, DxcHeading } from "@dxc-technology/halstack-react";
+import {
+  DxcDialog,
+  DxcButton,
+  DxcTextInput,
+  DxcInset,
+  DxcFlex,
+  DxcGrid,
+  DxcHeading,
+} from "@dxc-technology/halstack-react";
 import { useState } from "react";
 
 const code = `() => {
@@ -23,7 +31,7 @@ const code = `() => {
               </DxcGrid>
               <DxcFlex justifyContent="flex-end" gap="0.5rem">
                 <DxcButton label="Add client" onClick={handleClick} />
-                <DxcButton label="Cancel" onClick={handleClick} mode="text" />
+                <DxcButton label="Cancel" onClick={handleClick} mode="tertiary" />
               </DxcFlex>
             </DxcGrid>
           </DxcInset>

@@ -9,9 +9,6 @@
     "titleFontColor": "color",
     "assistiveTextFontColor": "color"
   },
-  "box": {
-    "baseColor": "color"
-  },
   "button": {
     "baseColor": "color",
     "primaryFontColor": "color",
@@ -32,6 +29,11 @@
     "baseColor": "color",
     "fontColor": "color",
     "iconColor": "color"
+  },
+  "dataGrid": {
+    "baseColor": "color",
+    "headerFontColor": "color",
+    "cellFontColor": "color"
   },
   "dateInput": {
     "baseColor": "color",

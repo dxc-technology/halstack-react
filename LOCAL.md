@@ -22,7 +22,6 @@ The monorepo is structured as follows (some folders and files are omitted for ex
 📂 apps
     📂 website             # Contains our Next.js documentation site application
 📂 packages
-    📂 cloudscape-themed   # Contains Cloudscape components themed by Halstack
     📂 lib                 # Contains halstack-react component library
 📄 package.json       # Root package.json
 📄 package-lock.json  # Root package-lock.json
@@ -56,7 +55,7 @@ Here is a list of the most common commands you will use:
 
 - `turbo build` - Build the library.
 - `turbo dev` - Start the development server.
-- `turbo format` - Run the Prettier formatter.
+- `npm run format` - Run the Prettier formatter.
 - `turbo lint` - Run the linter.
 - `turbo storybook` - Start the Storybook server.
 - `turbo storybook:accessibility` - Run the accessibility tests on Storybook.

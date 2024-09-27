@@ -1,6 +1,12 @@
 import React, { useState, useCallback } from "react";
-import { DxcApplicationLayout, DxcButton, DxcInset, DxcFlex, DxcLink, DxcTypography, DxcHeading } from "@dxc-technology/halstack-react";
-import Link from "next/link";
+import {
+  DxcApplicationLayout,
+  DxcButton,
+  DxcInset,
+  DxcFlex,
+  DxcHeading,
+  DxcBreadcrumbs,
+} from "@dxc-technology/halstack-react";
 import { useRouter } from "next/router";
 import opinionatedTheme from "@/common/themes/opinionated-theme.json";
 import advancedTheme from "@/common/themes/advanced-theme.json";
@@ -16,8 +22,8 @@ import styled from "styled-components";
 import { IndexedTheme } from "./types";
 
 const ThemeGenerator = () => {
-  const { asPath } = useRouter();
-  const pages = asPath.split("/");
+  const router = useRouter();
+  const pages = router.asPath.split("/");
   const type = pages[pages.length - 2];
 
   const [customTheme, setCustomTheme] = useState<IndexedTheme>(
@@ -47,17 +53,16 @@ const ThemeGenerator = () => {
       sidenav={
         <DxcApplicationLayout.SideNav
           title={
-            <DxcFlex direction="column" gap="0.5rem">
-              <DxcTypography fontSize="0.75rem" fontWeight="600" as="nav">
-                <Breadcrumbs>
-                  <li>
-                    <Link href="/principles/themes/" passHref legacyBehavior>
-                      <DxcLink>Themes</DxcLink>
-                    </Link>
-                  </li>
-                  <li>{type === "advanced-theme" ? "Advanced Theme Generator" : "Opinionated Theme Generator"}</li>
-                </Breadcrumbs>
-              </DxcTypography>
+            <DxcFlex direction="column" gap="1rem">
+              <DxcBreadcrumbs
+                items={[
+                  { label: "Themes", href: "/principles/themes/" },
+                  { label: type === "advanced-theme" ? "Advanced theme" : "Opinionated theme" },
+                ]}
+                onItemClick={(href) => {
+                  router.push(href);
+                }}
+              />
               <SidenavLogo subtitle="Theme Generator" />
             </DxcFlex>
           }
@@ -68,13 +73,13 @@ const ThemeGenerator = () => {
                 <DxcHeading text="Global Theme Actions" level={3} />
                 <DxcFlex direction="column" gap="0.25rem">
                   <DxcButton
-                    mode="text"
+                    mode="tertiary"
                     label="Reset"
                     onClick={() => {
                       setCustomTheme(type === "advanced-theme" ? advancedTheme : opinionatedTheme);
                     }}
                     icon={icons.reset}
-                    size="fillParent"
+                    size={{ width: "fillParent" }}
                   />
                   <DxcButton
                     mode="secondary"
@@ -83,7 +88,7 @@ const ThemeGenerator = () => {
                       setDialogVisible(true);
                     }}
                     icon={icons.import}
-                    size="fillParent"
+                    size={{ width: "fillParent" }}
                   />
                   <DxcButton
                     mode="primary"
@@ -92,7 +97,7 @@ const ThemeGenerator = () => {
                       downloadFile(customTheme);
                     }}
                     icon={icons.export}
-                    size="fillParent"
+                    size={{ width: "fillParent" }}
                   />
                 </DxcFlex>
               </DxcFlex>

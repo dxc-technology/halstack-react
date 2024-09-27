@@ -161,6 +161,21 @@ const rowsSortable = [
   ],
 ];
 
+const rowsSortableMissingSortValues = [
+  [{ displayValue: "001" }, { displayValue: "Peter" }, { displayValue: "Miami" }],
+  [{ displayValue: "002" }, { displayValue: "Louis" }, { displayValue: "London" }],
+  [
+    { displayValue: "003", sortValue: "003" },
+    { displayValue: "Aida", sortValue: "Aida" },
+    { displayValue: "Wroclaw", sortValue: "Wroclaw" },
+  ],
+  [
+    { displayValue: "004", sortValue: "004" },
+    { displayValue: "Lana", sortValue: "Lana" },
+    { displayValue: "Amsterdam", sortValue: "Amsterdam" },
+  ],
+];
+
 const longColumns = [
   { displayValue: "Column1" },
   { displayValue: "Column2" },
@@ -260,6 +275,10 @@ export const Chromatic = () => (
       <DxcResultsetTable columns={columnsSortable} rows={rowsSortable} />
     </ExampleContainer>
     <ExampleContainer>
+      <Title title="Sortable table with missing sortValues" theme="light" level={4} />
+      <DxcResultsetTable columns={columnsSortable} rows={rowsSortableMissingSortValues} />
+    </ExampleContainer>
+    <ExampleContainer>
       <Title title="With action" theme="light" level={4} />
       <DxcResultsetTable columns={columns} rows={rowsIcon} />
     </ExampleContainer>
@@ -340,6 +359,7 @@ const ResultsetTableAsc = () => (
   <ExampleContainer>
     <Title title="Ascendant sorting" theme="light" level={4} />
     <DxcResultsetTable columns={columnsSortable} rows={rowsSortable} />
+    <DxcResultsetTable columns={columnsSortable} rows={rowsSortableMissingSortValues} />
   </ExampleContainer>
 );
 
@@ -347,13 +367,16 @@ export const AscendentSorting = ResultsetTableAsc.bind({});
 AscendentSorting.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const idHeader = canvas.getAllByRole("button")[0];
+  const idHeader2 = canvas.getAllByRole("button")[6];
   await userEvent.click(idHeader);
+  await userEvent.click(idHeader2);
 };
 
 const ResultsetTableDesc = () => (
   <ExampleContainer>
     <Title title="Descendant sorting" theme="light" level={4} />
     <DxcResultsetTable columns={columnsSortable} rows={rowsSortable} />
+    <DxcResultsetTable columns={columnsSortable} rows={rowsSortableMissingSortValues} />
   </ExampleContainer>
 );
 
@@ -361,8 +384,11 @@ export const DescendantSorting = ResultsetTableDesc.bind({});
 DescendantSorting.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const nameHeader = canvas.getAllByRole("button")[1];
+  const nameHeader2 = canvas.getAllByRole("button")[7];
   await userEvent.click(nameHeader);
   await userEvent.click(nameHeader);
+  await userEvent.click(nameHeader2);
+  await userEvent.click(nameHeader2);
 };
 
 const ResultsetTableMiddle = () => (

@@ -6,10 +6,10 @@ const code = `() => {
     <DxcInset space="2rem">
       <DxcFlex direction="column" gap="1.5rem">
         <DxcFlex justifyContent="space-evenly">
-          <DxcButton label="Primary" size="large" icon="filled_home" />
+          <DxcButton label="Primary" size={{width: "large"}} icon="filled_home" />
           <DxcButton
             label="Primary"
-            size="large"
+            size={{width: "large"}}
             iconPosition="after"
             icon="filled_home"
           />
@@ -17,13 +17,13 @@ const code = `() => {
         </DxcFlex>
         <DxcFlex justifyContent="space-evenly">
           <DxcButton
-            size="large"
+            size={{width: "large"}}
             mode="secondary"
             label="Secondary"
             icon="filled_home"
           />
           <DxcButton
-            size="large"
+            size={{width: "large"}}
             mode="secondary"
             label="Secondary"
             iconPosition="after"
@@ -32,15 +32,15 @@ const code = `() => {
           <DxcButton mode="secondary" icon="filled_home" title="Go home" />
         </DxcFlex>
         <DxcFlex justifyContent="space-evenly">
-          <DxcButton label="Text" mode="text" size="large" icon="filled_home" />
+          <DxcButton label="Tertiary" mode="tertiary" size={{width: "large"}} icon="filled_home" />
           <DxcButton
-            label="Text"
-            mode="text"
-            size="large"
+            label="Tertiary"
+            mode="tertiary"
+            size={{width: "large"}}
             iconPosition="after"
             icon="filled_home"
           />
-          <DxcButton mode="text" icon="filled_home" title="Go home" />
+          <DxcButton mode="tertiary" icon="filled_home" title="Go home" />
         </DxcFlex>
       </DxcFlex>
     </DxcInset>

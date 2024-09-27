@@ -4,7 +4,10 @@ import TabsPageHeading from "@/common/TabsPageLayout";
 import ComponentHeading from "@/common/ComponentHeading";
 
 const ImagePageHeading = ({ children }: { children: React.ReactNode }) => {
-  const tabs = [{ label: "Code", path: "/components/image" }];
+  const tabs = [
+    { label: "Code", path: "/components/image" },
+    { label: "Usage", path: "/components/image/usage" },
+  ];
 
   return (
     <DxcFlex direction="column" gap="3rem">

@@ -4,8 +4,8 @@ import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import Figure from "@/common/Figure";
 import DocFooter from "@/common/DocFooter";
-import tabsUsage from "./examples/usage";
 import defaultUsage from "./examples/default";
+import scrollableUsage from "./examples/scrollable";
 import contentUsageTabImage from "./images/tabs_content.png";
 import typographyUsageTabImage from "./images/tabs_typography.png";
 import tabsPlacement from "./images/tabs_placement.png";
@@ -16,7 +16,6 @@ import tabsAlignment from "./images/tabs_alignment.png";
 import tabsPanelBehavior from "./images/tabs_panel_behavior.png";
 import tabsScrollablePanelBehavior from "./images/tabs_scrollable_panel_behavior.png";
 import Example from "@/common/example/Example";
-import scrollableUsage from "./examples/scrollable";
 
 const sections = [
   {
@@ -27,7 +26,6 @@ const sections = [
           Tabs organize and allow navigation between groups of content that are related and at the same level of
           hierarchy.
         </DxcParagraph>
-        <Example example={tabsUsage}></Example>
       </>
     ),
   },

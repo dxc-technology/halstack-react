@@ -33,31 +33,26 @@ const sections = [
     ),
   },
   {
-    title: "Formatting",
-    subSections: [
-      {
-        title: "Anatomy",
-        content: (
-          <>
-            <Image src={accordionAnatomy} alt="Accordion anatomy" />
-            <DxcBulletedList type="number">
-              <DxcBulletedList.Item>Header</DxcBulletedList.Item>
-              <DxcBulletedList.Item>
-                Custom icon <em>(Optional)</em>
-              </DxcBulletedList.Item>
-              <DxcBulletedList.Item>Title</DxcBulletedList.Item>
-              <DxcBulletedList.Item>
-                Helper text <em>(Optional)</em>
-              </DxcBulletedList.Item>
-              <DxcBulletedList.Item>
-                Caret icon <em>(Expand/collapse)</em>
-              </DxcBulletedList.Item>
-              <DxcBulletedList.Item>Expanded panel</DxcBulletedList.Item>
-            </DxcBulletedList>
-          </>
-        ),
-      },
-    ],
+    title: "Anatomy",
+    content: (
+      <>
+        <Image src={accordionAnatomy} alt="Accordion anatomy" />
+        <DxcBulletedList type="number">
+          <DxcBulletedList.Item>Header</DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            Custom icon <em>(Optional)</em>
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>Title</DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            Helper text <em>(Optional)</em>
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            Caret icon <em>(Expand/collapse)</em>
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>Expanded panel</DxcBulletedList.Item>
+        </DxcBulletedList>
+      </>
+    ),
   },
   {
     title: "Design tokens",

@@ -1,5 +1,5 @@
 import { render } from "@testing-library/react";
-import { axe } from "../../test/accessibility/axe-helper.js";
+import { axe } from "../../test/accessibility/axe-helper";
 import DxcTabs from "./Tabs";
 
 const iconSVG = (
@@ -8,31 +8,26 @@ const iconSVG = (
   </svg>
 );
 
-const sampleTabs = [
-  {
-    label: "Tab-1",
-    icon: iconSVG,
-    notificationNumber: 10,
-  },
-  {
-    label: "Tab-2",
-    icon: iconSVG,
-  },
-  {
-    label: "Tab-3",
-    notificationNumber: 20,
-  },
-  {
-    label: "Tab-4",
-    isDisabled: true,
-  },
-];
+const sampleTabs = (
+  <DxcTabs>
+    <DxcTabs.Tab label="Tab-1" icon={iconSVG} notificationNumber={10} active>
+      <></>
+    </DxcTabs.Tab>
+    <DxcTabs.Tab label="Tab-2" icon={iconSVG}>
+      <></>
+    </DxcTabs.Tab>
+    <DxcTabs.Tab label="Tab-3" notificationNumber={20}>
+      <></>
+    </DxcTabs.Tab>
+    <DxcTabs.Tab label="Tab-4" disabled>
+      <></>
+    </DxcTabs.Tab>
+  </DxcTabs>
+);
 
 describe("Tabs component accessibility tests", () => {
   it("Should not have basic accessibility issues", async () => {
-    const { container } = render(
-      <DxcTabs tabs={sampleTabs} margin="medium" iconPosition="left" defaultActiveTabIndex={0}></DxcTabs>
-    );
+    const { container } = render(sampleTabs);
     const results = await axe(container);
     expect(results).toHaveNoViolations();
   });

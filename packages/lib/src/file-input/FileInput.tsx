@@ -176,7 +176,7 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
                 }
                 onClick={handleClick}
                 disabled={disabled}
-                size="fitContent"
+                size={{ width: "fitContent" }}
                 tabIndex={tabIndex}
               />
               {files.length > 0 && (
@@ -222,7 +222,7 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
                   label={buttonLabel ?? translatedLabels.fileInput.dropAreaButtonLabelDefault}
                   onClick={handleClick}
                   disabled={disabled}
-                  size="fitContent"
+                  size={{ width: "fitContent" }}
                 />
                 {mode === "dropzone" ? (
                   <DropzoneLabel disabled={disabled}>
@@ -292,7 +292,7 @@ const Label = styled.label<{ disabled: FileInputPropsType["disabled"] }>`
 `;
 
 const HelperText = styled.span<{ disabled: FileInputPropsType["disabled"] }>`
-  color: ${(props) => (props.disabled ? props.theme.disabledHelperTextFontcolor : props.theme.helperTextFontColor)};
+  color: ${(props) => (props.disabled ? props.theme.disabledHelperTextFontColor : props.theme.helperTextFontColor)};
   font-family: ${(props) => props.theme.helperTextFontFamily};
   font-size: ${(props) => props.theme.helperTextFontSize};
   font-weight: ${(props) => props.theme.helperTextFontWeight};

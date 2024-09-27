@@ -71,27 +71,36 @@ const parseTheme = (theme: DeepPartial<OpinionatedTheme>): AdvancedTheme => {
   accordionTokens.hoverBackgroundColor =
     addLightness(57, theme?.accordion?.accentColor) ?? accordionTokens.hoverBackgroundColor;
 
-  const boxTokens = componentTokensCopy.box;
-  boxTokens.backgroundColor = theme?.box?.baseColor ?? boxTokens.backgroundColor;
-
   const buttonTokens = componentTokensCopy.button;
-  buttonTokens.primaryFontColor = theme?.button?.primaryFontColor ?? buttonTokens.primaryFontColor;
-  buttonTokens.primaryBackgroundColor = theme?.button?.baseColor ?? buttonTokens.primaryBackgroundColor;
-  buttonTokens.secondaryFontColor = theme?.button?.baseColor ?? buttonTokens.secondaryFontColor;
-  buttonTokens.secondaryHoverFontColor = theme?.button?.secondaryHoverFontColor ?? buttonTokens.secondaryHoverFontColor;
-  buttonTokens.secondaryBorderColor = theme?.button?.baseColor ?? buttonTokens.secondaryBorderColor;
-  buttonTokens.secondaryHoverBackgroundColor = theme?.button?.baseColor ?? buttonTokens.secondaryHoverBackgroundColor;
-  buttonTokens.textFontColor = theme?.button?.baseColor ?? buttonTokens.textFontColor;
-  buttonTokens.primaryHoverBackgroundColor =
-    subLightness(8, theme?.button?.baseColor) ?? buttonTokens.primaryHoverBackgroundColor;
-  buttonTokens.primaryActiveBackgroundColor =
-    subLightness(18, theme?.button?.baseColor) ?? buttonTokens.primaryActiveBackgroundColor;
-  buttonTokens.secondaryActiveBackgroundColor =
-    subLightness(18, theme?.button?.baseColor) ?? buttonTokens.secondaryActiveBackgroundColor;
-  buttonTokens.textHoverBackgroundColor =
-    addLightness(57, theme?.button?.baseColor) ?? buttonTokens.textHoverBackgroundColor;
-  buttonTokens.textActiveBackgroundColor =
-    addLightness(52, theme?.button?.baseColor) ?? buttonTokens.textActiveBackgroundColor;
+  buttonTokens.primaryDefaultFontColor = theme?.button?.primaryFontColor ?? buttonTokens.primaryDefaultFontColor;
+  buttonTokens.primaryDefaultBackgroundColor = theme?.button?.baseColor ?? buttonTokens.primaryDefaultBackgroundColor;
+  buttonTokens.secondaryDefaultFontColor = theme?.button?.baseColor ?? buttonTokens.secondaryDefaultFontColor;
+  buttonTokens.secondaryHoverDefaultFontColor =
+    theme?.button?.secondaryHoverFontColor ?? buttonTokens.secondaryHoverDefaultFontColor;
+  buttonTokens.secondaryDefaultBorderColor = theme?.button?.baseColor ?? buttonTokens.secondaryDefaultBorderColor;
+  buttonTokens.secondaryHoverDefaultBackgroundColor =
+    theme?.button?.baseColor ?? buttonTokens.secondaryHoverDefaultBackgroundColor;
+  buttonTokens.tertiaryDefaultFontColor = theme?.button?.baseColor ?? buttonTokens.tertiaryDefaultFontColor;
+  buttonTokens.primaryHoverDefaultBackgroundColor =
+    subLightness(8, theme?.button?.baseColor) ?? buttonTokens.primaryHoverDefaultBackgroundColor;
+  buttonTokens.primaryActiveDefaultBackgroundColor =
+    subLightness(18, theme?.button?.baseColor) ?? buttonTokens.primaryActiveDefaultBackgroundColor;
+  buttonTokens.secondaryActiveDefaultBackgroundColor =
+    subLightness(18, theme?.button?.baseColor) ?? buttonTokens.secondaryActiveDefaultBackgroundColor;
+  buttonTokens.tertiaryHoverDefaultBackgroundColor =
+    addLightness(57, theme?.button?.baseColor) ?? buttonTokens.tertiaryHoverDefaultBackgroundColor;
+  buttonTokens.tertiaryActiveDefaultBackgroundColor =
+    addLightness(52, theme?.button?.baseColor) ?? buttonTokens.tertiaryActiveDefaultBackgroundColor;
+  buttonTokens.primaryDisabledDefaultBackgroundColor =
+    addLightness(57, theme?.button?.baseColor) ?? buttonTokens.primaryDisabledDefaultBackgroundColor;
+  buttonTokens.primaryDisabledDefaultFontColor =
+    addLightness(42, theme?.button?.primaryFontColor) ?? buttonTokens.primaryDisabledDefaultFontColor;
+  buttonTokens.secondaryDisabledDefaultBorderColor =
+    addLightness(42, theme?.button?.baseColor) ?? buttonTokens.secondaryDisabledDefaultBorderColor;
+  buttonTokens.secondaryDisabledDefaultFontColor =
+    addLightness(42, theme?.button?.baseColor) ?? buttonTokens.secondaryDisabledDefaultFontColor;
+  buttonTokens.tertiaryDisabledDefaultFontColor =
+    addLightness(42, theme?.button?.baseColor) ?? buttonTokens.tertiaryDisabledDefaultFontColor;
 
   const checkboxTokens = componentTokensCopy.checkbox;
   checkboxTokens.backgroundColorChecked = theme?.checkbox?.baseColor ?? checkboxTokens.backgroundColorChecked;
@@ -124,6 +133,12 @@ const parseTheme = (theme: DeepPartial<OpinionatedTheme>): AdvancedTheme => {
   contextualMenu.menuItemFontColor = theme?.contextualMenu?.fontColor ?? contextualMenu.menuItemFontColor;
   contextualMenu.sectionTitleFontColor = theme?.contextualMenu?.fontColor ?? contextualMenu.sectionTitleFontColor;
   contextualMenu.iconColor = theme?.contextualMenu?.iconColor ?? contextualMenu.iconColor;
+
+  const dataGridTokens = componentTokensCopy.dataGrid;
+  dataGridTokens.headerBackgroundColor = theme?.dataGrid?.baseColor ?? dataGridTokens.headerBackgroundColor;
+  dataGridTokens.headerFontColor = theme?.dataGrid?.headerFontColor ?? dataGridTokens.headerFontColor;
+  dataGridTokens.dataFontColor = theme?.dataGrid?.cellFontColor ?? dataGridTokens.dataFontColor;
+  dataGridTokens.headerCheckboxCheckColor = theme?.dataGrid?.baseColor ?? dataGridTokens.headerCheckboxCheckColor;
 
   const dateTokens = componentTokensCopy.dateInput;
   dateTokens.pickerSelectedBackgroundColor = theme?.dateInput?.baseColor ?? dateTokens.pickerSelectedBackgroundColor;
@@ -289,6 +304,10 @@ const parseTheme = (theme: DeepPartial<OpinionatedTheme>): AdvancedTheme => {
   tableTokens.headerFontColor = theme?.table?.headerFontColor ?? tableTokens.headerFontColor;
   tableTokens.dataFontColor = theme?.table?.cellFontColor ?? tableTokens.dataFontColor;
   tableTokens.sortIconColor = theme?.table?.headerFontColor ?? tableTokens.sortIconColor;
+  tableTokens.actionIconColor = theme?.table?.baseColor ?? tableTokens.actionIconColor;
+  tableTokens.hoverActionIconColor = theme?.table?.baseColor ?? tableTokens.hoverActionIconColor;
+  tableTokens.focusActionIconColor = theme?.table?.baseColor ?? tableTokens.focusActionIconColor;
+  tableTokens.activeActionIconColor = theme?.table?.baseColor ?? tableTokens.activeActionIconColor;
 
   const tabsTokens = componentTokensCopy.tabs;
   tabsTokens.selectedFontColor = theme?.tabs?.baseColor ?? tabsTokens.selectedFontColor;
@@ -409,7 +428,7 @@ const HalstackProvider = ({ theme, advancedTheme, labels, children }: HalstackPr
 };
 
 const Halstack = styled.div`
-  @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap");
+  @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap&family=Material+Symbols+Outlined:FILL@0..1");
 `;
 
 export default HalstackContext;

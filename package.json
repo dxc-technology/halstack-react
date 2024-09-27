@@ -3,16 +3,15 @@
   "private": true,
   "scripts": {
     "build": "turbo build",
-    "build:cloudscape": "cd packages/cloudscape-themed && turbo build",
     "dev": "turbo dev",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "lint": "turbo lint",
-    "preinstall": "npm run build:cloudscape",
     "storybook": "turbo storybook",
     "storybook:accessibility": "turbo storybook:accessibility",
     "storybook:accessibility:ci": "turbo storybook:accessibility:ci",
     "test": "turbo test",
-    "test:accessibility": "turbo test:accessibility"
+    "test:accessibility": "turbo test:accessibility",
+    "test:watch": "turbo test:watch"
   },
   "devDependencies": {
     "prettier": "^3.2.5",

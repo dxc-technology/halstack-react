@@ -19,7 +19,6 @@ npm i @dxc-technology/halstack-react
 ### Usage
 
 ```jsx
-import React from "react";
 import { DxcButton, DxcTextInput } from "@dxc-technology/halstack-react";
 
 const App = () => (

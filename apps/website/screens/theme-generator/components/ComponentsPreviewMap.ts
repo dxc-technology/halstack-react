@@ -16,7 +16,6 @@ import AlertPreview from "./previews/Alert";
 import LinkPreview from "./previews/Link";
 import HeadingPreview from "./previews/Heading";
 import DialogPreview from "./previews/Dialog";
-import BoxPreview from "./previews/Box";
 import TagPreview from "./previews/Tag";
 import CardPreview from "./previews/Card";
 import DateInputPreview from "./previews/DateInput";
@@ -33,6 +32,7 @@ import BulletedListPreview from "./previews/BulletedList";
 import ParagraphPreview from "./previews/Paragraph";
 import NavTabsPreview from "./previews/NavTabs";
 import ContextualMenu from "./previews/ContextualMenu";
+import DataGridPreview from "./previews/DataGrid";
 
 const SampleComponents = [
   {
@@ -42,10 +42,6 @@ const SampleComponents = [
   {
     name: "alert",
     preview: AlertPreview,
-  },
-  {
-    name: "box",
-    preview: BoxPreview,
   },
   {
     name: "bulletedList",
@@ -70,6 +66,10 @@ const SampleComponents = [
   {
     name: "contextualMenu",
     preview: ContextualMenu,
+  },
+  {
+    name: "dataGrid",
+    preview: DataGridPreview,
   },
   {
     name: "dateInput",

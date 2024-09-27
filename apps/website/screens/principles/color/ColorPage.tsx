@@ -35,10 +35,10 @@ const sections = [
     ),
   },
   {
-    title: "Color Tokens",
+    title: "Color tokens",
     content: (
       <DxcParagraph>
-        Halstack uses tokens to manage color. Appart from a multi-purpose greyscale family, purple and blue are the core
+        Halstack uses tokens to manage color. Apart from a multi-purpose greyscale family, purple and blue are the core
         color families used in our set of components. Additional families as red, green and yellow help as feedback
         role-based color palettes and must not be used outside this context.
       </DxcParagraph>

@@ -83,10 +83,6 @@ const sections = [
                 </tr>
               </tbody>
             </DxcTable>
-            <DxcParagraph>
-              The <Code>background-color</Code> token belongs to the box component, changes made on that component will
-              affect the card element.
-            </DxcParagraph>
           </>
         ),
       },
@@ -111,7 +107,7 @@ const sections = [
                 <td>
                   <Code>border-width-0</Code>
                 </td>
-                <td>0</td>
+                <td>0rem / 0px</td>
               </tr>
               <tr>
                 <td>

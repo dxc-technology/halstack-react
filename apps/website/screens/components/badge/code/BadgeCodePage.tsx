@@ -22,7 +22,7 @@ const sections = [
         <tr>
           <td>label</td>
           <td>
-            <TableCode>string</TableCode>
+            <TableCode>string | number</TableCode>
           </td>
           <td>Text to be placed in the badge.</td>
           <td>-</td>

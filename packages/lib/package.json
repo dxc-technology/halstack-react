@@ -1,6 +1,10 @@
 {
   "name": "@dxc-technology/halstack-react",
   "version": "0.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dxc-technology/halstack-react"
+  },
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -12,9 +16,9 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "build": "tsup",
     "build-storybook": "storybook build",
-    "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
+    "dev": "tsup --watch",
     "lint": "eslint . --max-warnings 0",
     "prepublishOnly": "node ../../scripts/copy-readme.js",
     "storybook": "storybook dev -p 6006",
@@ -25,21 +29,19 @@
     "test:watch": "jest --env=jsdom --config=./jest.config.js --watch"
   },
   "peerDependencies": {
-    "react": "^18.x",
-    "react-dom": "^18.x",
-    "styled-components": "^5.0.1",
-    "@cloudscape-design/components": "3.0.677"
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "styled-components": "^5.0.1"
   },
   "dependencies": {
     "@radix-ui/react-popover": "^1.1.0",
     "@radix-ui/react-tooltip": "^1.1.0",
     "color": "^4.2.3",
     "dayjs": "^1.11.11",
+    "react-data-grid": "^7.0.0-beta.44",
     "slugify": "^1.6.6"
   },
   "devDependencies": {
-    "@cloudscape-design/components": "file:packages/cloudscape-themed/dist/themed/components",
-    "@cloudscape-design/design-tokens": "file:packages/cloudscape-themed/dist/themed/design-tokens",
     "@babel/cli": "^7.16.8",
     "@babel/core": "^7.16.7",
     "@babel/plugin-proposal-nullish-coalescing-operator": "^7.13.8",
@@ -55,12 +57,13 @@
     "@storybook/addon-essentials": "^8.1.10",
     "@storybook/addon-interactions": "^8.1.10",
     "@storybook/addon-links": "^8.1.10",
+    "@storybook/addon-viewport": "^8.2.9",
     "@storybook/blocks": "^8.1.10",
     "@storybook/react": "^8.1.10",
     "@storybook/react-vite": "^8.1.10",
     "@storybook/test": "^8.1.10",
     "@storybook/test-runner": "^0.18.2",
-    "@testing-library/react": "^13.0.0",
+    "@testing-library/react": "^16.0.1",
     "@testing-library/user-event": "^13.0.0",
     "@turbo/gen": "^1.12.4",
     "@types/eslint": "^8.56.5",

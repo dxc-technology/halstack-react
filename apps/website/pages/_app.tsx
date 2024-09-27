@@ -2,15 +2,14 @@ import { ReactElement, ReactNode, useMemo, useState } from "react";
 import type { NextPage } from "next";
 import type { AppProps } from "next/app";
 import Head from "next/head";
-import styled from "styled-components";
-import { DxcApplicationLayout, DxcTextInput, HalstackProvider } from "@dxc-technology/halstack-react";
-import "../global-styles.css";
-import { responsiveSizes } from "../screens/common/variables";
+import { DxcApplicationLayout, DxcTextInput, DxcToastsQueue, HalstackProvider } from "@dxc-technology/halstack-react";
 import SidenavLogo from "@/common/sidenav/SidenavLogo";
+import MainContent from "@/common/MainContent";
 import { useRouter } from "next/router";
 import { LinksSectionDetails, LinksSections, themeGeneratorLinks } from "@/common/pagesList";
 import Link from "next/link";
 import StatusBadge from "@/common/StatusBadge";
+import "../global-styles.css";
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -28,7 +27,7 @@ const ApplicationLayoutWrapper = ({ condition, wrapper, children }: ApplicationL
   <>{condition ? wrapper(children) : children}</>
 );
 
-const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
+const App = ({ Component, pageProps }: AppPropsWithLayout) => {
   const getLayout = Component.getLayout || ((page) => page);
   const componentWithLayout = getLayout(<Component {...pageProps} />);
 
@@ -112,7 +111,9 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
               }
             >
               <DxcApplicationLayout.Main>
-                <MainContainer>{children}</MainContainer>
+                <DxcToastsQueue duration={5000}>
+                  <MainContent>{children}</MainContent>
+                </DxcToastsQueue>
               </DxcApplicationLayout.Main>
             </DxcApplicationLayout>
           )}
@@ -124,14 +125,4 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
   );
 };
 
-const MainContainer = styled.div`
-  margin: 80px 0;
-  max-width: 1124px;
-  margin-inline: max(5%, 50% - 1124px/2);
-
-  @media (max-width: ${responsiveSizes.laptop}px) {
-    margin: 80px 32px;
-  }
-`;
-
-export default MyApp;
+export default App;

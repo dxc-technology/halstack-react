@@ -28,6 +28,9 @@ const sections = [
         <DxcParagraph>Every major release of Halstack is collected below:</DxcParagraph>
         <DxcBulletedList>
           <DxcBulletedList.Item>
+            <DxcLink href="https://developer.dxc.com/halstack/13/overview/introduction/">Halstack 13</DxcLink>
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
             <DxcLink href="https://developer.dxc.com/halstack/12/overview/introduction/">Halstack 12</DxcLink>
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
@@ -87,6 +90,7 @@ const getReleasesPageSections = (releases: Release[]) => {
             <em>
               Released on{" "}
               {new Date(release.published_at).toLocaleDateString("en-US", {
+                year: "numeric",
                 weekday: "long",
                 month: "long",
                 day: "numeric",

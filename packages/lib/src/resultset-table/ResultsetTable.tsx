@@ -9,7 +9,7 @@ import useTheme from "../useTheme";
 import icons from "./Icons";
 import ResultsetTablePropsType, { Column, Row } from "./types";
 
-const normalizeSortValue = (sortValue: string | React.ReactNode) =>
+const normalizeSortValue = (sortValue: string | Date | React.ReactNode) =>
   typeof sortValue === "string" ? sortValue.toUpperCase() : sortValue;
 
 const isDateType = (value: React.ReactNode | Date): boolean => {
@@ -18,8 +18,8 @@ const isDateType = (value: React.ReactNode | Date): boolean => {
 
 const sortArray = (index: number, order: "ascending" | "descending", resultset: { id: string; cells: Row }[]) =>
   resultset.slice().sort((element1, element2) => {
-    const sortValueA = normalizeSortValue(element1.cells[index].sortValue || element1[index].displayValue);
-    const sortValueB = normalizeSortValue(element2.cells[index].sortValue || element2[index].displayValue);
+    const sortValueA = normalizeSortValue(element1?.cells[index]?.sortValue || element1?.cells[index]?.displayValue);
+    const sortValueB = normalizeSortValue(element2?.cells[index]?.sortValue || element2?.cells[index]?.displayValue);
     let comparison = 0;
     if (typeof sortValueA === "object" && !isDateType(sortValueA)) {
       comparison = -1;
@@ -105,11 +105,15 @@ const DxcResultsetTable = ({
     if (!hidePaginator) {
       if (rows.length === 0) {
         changePage(0);
-      } else if (rows.length < prevRowCountRef.current) {
-        const lastPage = Math.ceil(rows.length / itemsPerPage);
-        const prevLastPage = Math.ceil(prevRowCountRef.current / itemsPerPage);
-        if (lastPage < prevLastPage) {
-          changePage(Math.min(lastPage, page));
+      } else {
+        if (page === 0) {
+          changePage(1);
+        } else if (rows.length < prevRowCountRef.current) {
+          const lastPage = Math.ceil(rows.length / itemsPerPage);
+          const prevLastPage = Math.ceil(prevRowCountRef.current / itemsPerPage);
+          if (lastPage < prevLastPage) {
+            changePage(Math.min(lastPage, page));
+          }
         }
       }
       prevRowCountRef.current = rows.length;
