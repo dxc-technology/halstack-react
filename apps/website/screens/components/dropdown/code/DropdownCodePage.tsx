@@ -104,6 +104,17 @@ const sections = [
               <td>-</td>
             </tr>
             <tr>
+              <td>title</td>
+              <td>
+                <TableCode>string</TableCode>
+              </td>
+              <td>
+                Text representing advisory information related to the tooltip. Under the hood, this prop also serves as
+                an accessible label for the component.
+              </td>
+              <td>-</td>
+            </tr>
+            <tr>
               <td>caretHidden</td>
               <td>
                 <TableCode>boolean</TableCode>

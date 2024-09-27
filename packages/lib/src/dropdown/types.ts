@@ -77,7 +77,8 @@ type Props = {
    */
   tabIndex?: number;
   /**
-   * The title of the dropdown.
+   * Text representing advisory information related to the dropdown. 
+   * Under the hood, this prop also serves as an accessible label for the component.
    */
   title?: string;
 };
