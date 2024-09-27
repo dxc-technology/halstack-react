@@ -148,25 +148,23 @@ const DxcDropdown = ({
       >
         <Popover.Root open={isOpen}>
           <Popover.Trigger asChild type={undefined}>
-            <DropdownTrigger
-              onClick={handleTriggerOnClick}
-              onKeyDown={handleTriggerOnKeyDown}
-              onBlur={(event) => {
-                event.stopPropagation();
-              }}
-              disabled={disabled}
-              label={label}
-              margin={margin}
-              size={size}
-              id={triggerId}
-              aria-haspopup="true"
-              aria-controls={isOpen ? menuId : undefined}
-              aria-expanded={isOpen ? true : undefined}
-              aria-label="Show options"
-              tabIndex={tabIndex}
-              ref={triggerRef}
-            >
-              <DxcTooltip label={title} position="top">
+            {/* <DxcTooltip label={title} position="top"> */}
+              <DropdownTrigger
+                onClick={handleTriggerOnClick}
+                onKeyDown={handleTriggerOnKeyDown}
+                onBlur={(event) => {
+                  event.stopPropagation();
+                }}
+                disabled={disabled}
+                label={label}
+                margin={margin}
+                size={size}
+                id={triggerId}
+                aria-haspopup="true"
+                aria-label="Show options"
+                tabIndex={tabIndex}
+                ref={triggerRef}
+              >
                 <DropdownTriggerContent>
                   {label && iconPosition === "after" && <DropdownTriggerLabel>{label}</DropdownTriggerLabel>}
                   {icon && (
@@ -185,11 +183,11 @@ const DxcDropdown = ({
                     <DxcIcon icon={isOpen ? "arrow_drop_up" : "arrow_drop_down"} />{" "}
                   </CaretIcon>
                 )}
-              </DxcTooltip>
-            </DropdownTrigger>
+              </DropdownTrigger>
+            {/* </DxcTooltip> */}
           </Popover.Trigger>
           <Popover.Portal>
-            <Popover.Content asChild sideOffset={1}>
+            <Popover.Content asChild onCloseAutoFocus={(e) => e.preventDefault()} sideOffset={1}>
               <DropdownMenu
                 id={menuId}
                 dropdownTriggerId={triggerId}

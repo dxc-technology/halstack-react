@@ -51,7 +51,7 @@ export const DxcActionsCell = ({ actions }: ActionCellsPropsType): JSX.Element =
             tabIndex={actionDropdown.tabIndex}
             caretHidden
             title={actionDropdown.title}
-          ></DxcDropdown>
+          />
         </HalstackProvider>
       )}
     </DxcFlex>
