@@ -5,6 +5,7 @@ import { ItemActionProps } from "./types";
 import DxcIcon from "../icon/Icon";
 import DxcTooltip from "../tooltip/Tooltip";
 
+// TODO: The tooltip is not working fine, text-overflow is not ellipsis due to wrapper container.
 const TooltipWrapper = ({
   condition,
   children,
@@ -21,7 +22,7 @@ const ItemAction = ({ badge, collapseIcon, icon, label, depthLevel, ...props }: 
 
   return (
     <TooltipWrapper condition={hasTooltip} label={label}>
-      <Action depthLevel={depthLevel} {...props}> 
+      <Action depthLevel={depthLevel} {...props}>
         <Label>
           {collapseIcon && <Icon>{collapseIcon}</Icon>}
           {icon && depthLevel === 0 && <Icon>{typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}</Icon>}
