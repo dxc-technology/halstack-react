@@ -35,8 +35,8 @@ const GroupItem = ({ items, ...props }: GroupItemProps) => {
       />
       {isOpen && (
         <ItemsList id={groupMenuId}>
-          {items.map((item) => (
-            <MenuItem item={item} depthLevel={props.depthLevel + 1} />
+          {items.map((item, index) => (
+            <MenuItem item={item} depthLevel={props.depthLevel + 1} key={`${item.label}-${index}`} />
           ))}
         </ItemsList>
       )}

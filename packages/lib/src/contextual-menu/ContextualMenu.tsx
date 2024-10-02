@@ -18,7 +18,7 @@ import ContextualMenuPropsType, {
 export const ContextualMenuContext = createContext<ContextualMenuContextProps | null>(null);
 
 const isGroupItem = (item: Item | GroupItem): item is GroupItem => "items" in item;
-const isSection = (item: Section | Item | GroupItem): item is Section => "items" in item && !("label" in item);
+const isSection = (item?: Section | Item | GroupItem): item is Section => item && "items" in item && !("label" in item);
 
 const addIdToItems = (items: ContextualMenuPropsType["items"]): (ItemWithId | GroupItemWithId)[] | SectionWithId[] => {
   let accId = 0;
@@ -41,21 +41,19 @@ const DxcContextualMenu = ({ items }: ContextualMenuPropsType) => {
   const colorsTheme = useTheme();
 
   const renderSection = (section: SectionWithId, currentSectionIndex: number, length: number) => (
-    <Fragment key={`section-${currentSectionIndex}`}>
-      <li role="group" aria-labelledby={section.title}>
-        {section.title != null && <Title id={section.title}>{section.title}</Title>}
-        <SectionList>
-          {section.items.map((item, index) => (
-            <MenuItem item={item} key={`${item.label}-${index}`} />
-          ))}
-        </SectionList>
-      </li>
+    <section aria-labelledby={section?.title} key={`section-${currentSectionIndex}`}>
+      {section.title != null && <Title id={section.title}>{section.title}</Title>}
+      <List>
+        {section.items.map((item, index) => (
+          <MenuItem item={item} key={`${item.label}-${index}`} />
+        ))}
+      </List>
       {currentSectionIndex !== length - 1 && (
         <DxcInset top="0.25rem" bottom="0.25rem">
           <DxcDivider color="lightGrey" />
         </DxcInset>
       )}
-    </Fragment>
+    </section>
   );
 
   const [firstUpdate, setFirstUpdate] = useState(true);
@@ -72,12 +70,14 @@ const DxcContextualMenu = ({ items }: ContextualMenuPropsType) => {
     <ThemeProvider theme={colorsTheme.contextualMenu}>
       <ContextualMenu role="menu" ref={contextualMenuRef}>
         <ContextualMenuContext.Provider value={{ selectedItemId, setSelectedItemId }}>
-          {itemsWithId.map((item: GroupItemWithId | ItemWithId | SectionWithId, index: number) =>
-            "items" in item && !("label" in item) ? (
-              renderSection(item, index, itemsWithId.length)
-            ) : (
-              <MenuItem item={item} key={`${item.label}-${index}`} />
-            )
+          {isSection(itemsWithId[0]) ? (
+            (itemsWithId as SectionWithId[]).map((item, index) => renderSection(item, index, itemsWithId.length))
+          ) : (
+            <List>
+              {(itemsWithId as (GroupItemWithId | ItemWithId)[]).map((item, index) => (
+                <MenuItem item={item} key={`${item.label}-${index}`} />
+              ))}
+            </List>
           )}
         </ContextualMenuContext.Provider>
       </ContextualMenu>
@@ -85,7 +85,7 @@ const DxcContextualMenu = ({ items }: ContextualMenuPropsType) => {
   );
 };
 
-const ContextualMenu = styled.ul`
+const ContextualMenu = styled.div`
   box-sizing: border-box;
   margin: 0;
   border: 1px solid ${({ theme }) => theme.borderColor};
@@ -97,6 +97,7 @@ const ContextualMenu = styled.ul`
   max-height: 100%;
   background-color: ${({ theme }) => theme.backgroundColor};
   overflow-y: auto;
+  overflow-x: hidden;
   &::-webkit-scrollbar {
     width: 8px;
     height: 8px;
@@ -111,7 +112,7 @@ const ContextualMenu = styled.ul`
   }
 `;
 
-const SectionList = styled.ul`
+const List = styled.ul`
   list-style: none;
   margin: 0;
   padding: 0;
