@@ -1,6 +1,4 @@
 import { useContext, useMemo, useState, memo } from "react";
-import styled from "styled-components";
-import CoreTokens from "../common/coreTokens";
 import DxcIcon from "../icon/Icon";
 import { ContextualMenuContext, List } from "./ContextualMenu";
 import ItemAction from "./ItemAction";
