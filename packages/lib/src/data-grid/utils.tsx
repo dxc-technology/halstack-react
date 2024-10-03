@@ -177,8 +177,9 @@ export const renderCheckbox = (
         if (row.childRows && Array.isArray(row.childRows)) {
           getChildrenSelection(row.childRows, uniqueRowId, selected, checked);
         }
-        if (row.parentKey)
+        if (row.parentKey) {
           getParentSelectedState(rows, rowKeyGetter(row, uniqueRowId), row.parentKey, uniqueRowId, selected, checked);
+        }
         onSelectRows(selected);
       }}
     />
@@ -192,6 +193,33 @@ export const renderCheckbox = (
  * @param selectedRows
  * @param onSelectRows
  */
+// export const renderHeaderCheckbox = (
+//   rows: GridRow[] | HierarchyGridRow[] | ExpandableGridRow[],
+//   uniqueRowId: string,
+//   selectedRows: Set<number | string>,
+//   colorsTheme: DeepPartial<AdvancedTheme>,
+//   onSelectRows: (selected: Set<number | string>) => void
+// ) => {
+//   return (
+//     <HalstackProvider advancedTheme={overwriteTheme(colorsTheme)}>
+//       <DxcCheckbox
+//         checked={!rows.some((row) => !selectedRows.has(rowKeyGetter(row, uniqueRowId)))}
+//         onChange={(checked) => {
+//           const selected = new Set<number | string>();
+//           if (checked) {
+//             rows.map((row) => {
+//               selected.add(rowKeyGetter(row, uniqueRowId));
+//               if (row.childRows && Array.isArray(row.childRows))
+//                 getChildrenSelection(row.childRows, uniqueRowId, selected, checked);
+//             });
+//           }
+//           onSelectRows(selected);
+//         }}
+//       />
+//     </HalstackProvider>
+//   );
+// };
+
 export const renderHeaderCheckbox = (
   rows: GridRow[] | HierarchyGridRow[] | ExpandableGridRow[],
   uniqueRowId: string,
@@ -204,15 +232,23 @@ export const renderHeaderCheckbox = (
       <DxcCheckbox
         checked={!rows.some((row) => !selectedRows.has(rowKeyGetter(row, uniqueRowId)))}
         onChange={(checked) => {
-          const selected = new Set<number | string>();
+          const updatedSelection = new Set(selectedRows);
+
           if (checked) {
-            rows.map((row) => {
-              selected.add(rowKeyGetter(row, uniqueRowId));
+            rows.forEach((row) => {
+              updatedSelection.add(rowKeyGetter(row, uniqueRowId));
               if (row.childRows && Array.isArray(row.childRows))
-                getChildrenSelection(row.childRows, uniqueRowId, selected, checked);
+                getChildrenSelection(row.childRows, uniqueRowId, updatedSelection, checked);
+            });
+          } else {
+            rows.forEach((row) => {
+              updatedSelection.delete(rowKeyGetter(row, uniqueRowId));
+              if (row.childRows && Array.isArray(row.childRows))
+                getChildrenSelection(row.childRows, uniqueRowId, updatedSelection, checked);
             });
           }
-          onSelectRows(selected);
+
+          onSelectRows(updatedSelection);
         }}
       />
     </HalstackProvider>
@@ -223,7 +259,26 @@ export const rowKeyGetter = (row: any, uniqueRowId: string) => {
   return row[uniqueRowId];
 };
 
-export const sortRows = (rows: GridRow[], sortColumns: readonly SortColumn[], reversed?: boolean) => {
+export const getCustomSortFn = (columns: any[]) => {
+  const customSortFunctions = [...columns]
+    .filter((column) => column.sortFn)
+    .map((column) => ({ column: column.key, sortFn: column.sortFn }));
+  return customSortFunctions;
+};
+
+export const compareRows = (rowA: any, rowB: any, sortFn?: (a: any, b: any) => number) => {
+  if (!sortFn) {
+    return rowA > rowB ? 1 : rowA < rowB ? -1 : 0;
+  }
+  return sortFn(rowA, rowB);
+};
+
+export const sortRows = (
+  rows: GridRow[],
+  sortColumns: readonly SortColumn[],
+  sortFunctions: { column: string; sortFn: (a, b) => number }[],
+  reversed?: boolean
+) => {
   return [...rows].sort((a, b) => {
     for (const sort of sortColumns) {
       const sortValueA = a[sort.columnKey];
@@ -231,7 +286,13 @@ export const sortRows = (rows: GridRow[], sortColumns: readonly SortColumn[], re
       let compResult = 0;
 
       if (sortValueA && sortValueB) {
-        compResult = sortValueA > sortValueB ? 1 : sortValueA < sortValueB ? -1 : 0;
+        compResult = compareRows(
+          sortValueA,
+          sortValueB,
+          sortFunctions?.find(({ column }) => {
+            return column === sort.columnKey;
+          })?.sortFn
+        );
       }
 
       if (compResult !== 0) {
@@ -246,11 +307,13 @@ export const sortRows = (rows: GridRow[], sortColumns: readonly SortColumn[], re
 export const sortHierarchyRows = (
   rows: HierarchyGridRow[],
   sortColumns: readonly SortColumn[],
+  sortFunctions: { column: string; sortFn: (a, b) => number }[],
   uniqueRowId: string
 ) => {
   const parentsSorted = sortRows(
     rows.filter((row) => !row.parentKey),
-    sortColumns
+    sortColumns,
+    sortFunctions
   );
   // check if there are child rows
   if (rows.length === parentsSorted.length) return parentsSorted;
@@ -258,6 +321,7 @@ export const sortHierarchyRows = (
     let sortedChildren = sortRows(
       rows.filter((row) => row.parentKey),
       sortColumns,
+      sortFunctions,
       true
     );
     // add children directly under the parent if it is available
@@ -375,36 +439,31 @@ export const getParentSelectedState = (
   checkedStateToMatch: boolean
 ) => {
   const parentRow = rowFinderBasedOnId(rowList, uniqueRowId, parentKeyValue);
-  // we are unselecting or any of the other childRows is unselected
-  if (
-    !checkedStateToMatch ||
-    (parentRow?.childRows &&
-      Array.isArray(parentRow.childRows) &&
-      parentRow.childRows
-        .filter((row) => rowKeyGetter(row, uniqueRowId) !== uniqueRowKeyValue)
-        .some((row) => !selectedRows.has(rowKeyGetter(row, uniqueRowId))))
-  ) {
+
+  if (!parentRow) return;
+
+  // Check if we are unselecting or any of the other direct childRows is unselected
+  const isAnyChildUnselected = (parentRow as HierarchyGridRow).childRows?.some((row) => {
+    return rowKeyGetter(row, uniqueRowId) !== uniqueRowKeyValue && !selectedRows.has(rowKeyGetter(row, uniqueRowId));
+  });
+
+  if (!checkedStateToMatch || isAnyChildUnselected) {
+    // If the parent is selected but should not be, deselect it
     if (selectedRows.has(rowKeyGetter(parentRow, uniqueRowId))) {
       selectedRows.delete(rowKeyGetter(parentRow, uniqueRowId));
     }
   } else {
-    if (parentRow?.childRows && Array.isArray(parentRow.childRows)) {
-      const isAnyChildUnselected = parentRow.childRows
-        .filter((row) => rowKeyGetter(row, uniqueRowId) !== uniqueRowKeyValue)
-        .some((row) => !selectedRows.has(rowKeyGetter(row, uniqueRowId)));
-
-      if (!isAnyChildUnselected) {
-        parentRow.selected = true;
-        // instead of pushing the row we should add it to the selected set
-        selectedRows.add(rowKeyGetter(parentRow, uniqueRowId));
-      }
+    // If all child rows are selected, we select the parent
+    if (parentRow.childRows && !isAnyChildUnselected) {
+      selectedRows.add(rowKeyGetter(parentRow, uniqueRowId));
     }
   }
-  // add recursiveness if there are more levels
-  if (parentRow && parentRow.parentKey) {
+
+  // Recursively check the parent's parent if necessary
+  if (parentRow.parentKey) {
     getParentSelectedState(
       rowList,
-      rowKeyGetter(parentRow, uniqueRowId),
+      uniqueRowId,
       parentRow.parentKey,
       uniqueRowId,
       selectedRows,

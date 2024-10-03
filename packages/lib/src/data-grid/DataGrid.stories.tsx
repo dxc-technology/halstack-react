@@ -7,6 +7,8 @@ import { useState } from "react";
 import { disabledRules } from "../../test/accessibility/rules/specific/data-grid/disabledRules";
 import preview from "../../.storybook/preview";
 import { userEvent, within } from "@storybook/test";
+import DxcBadge from "../badge/Badge";
+import DxcPaginator from "../paginator/Paginator";
 
 export default {
   title: "Data Grid",
@@ -214,6 +216,64 @@ const childRows: HierarchyGridRow[] = [
       },
     ],
   },
+  {
+    name: "Root Node 3",
+    value: "1",
+    id: "c",
+    childRows: [
+      {
+        name: "Child Node 3.1",
+        value: "1.1",
+        id: "cc",
+        childRows: [
+          {
+            name: "Grandchild Node 3.1.1",
+            value: "1.1.1",
+            id: "ccc",
+          },
+          {
+            name: "Grandchild Node 3.1.2",
+            value: "1.1.2",
+            id: "ccd",
+          },
+        ],
+      },
+      {
+        name: "Child Node 3.2",
+        value: "1.2",
+        id: "cd",
+      },
+    ],
+  },
+  {
+    name: "Root Node 4",
+    value: "2",
+    id: "d",
+    childRows: [
+      {
+        name: "Child Node 4.1",
+        value: "2.1",
+        id: "da",
+        childRows: [
+          {
+            name: "Grandchild Node 4.1.1",
+            value: "2.1.1",
+            id: "daa",
+          },
+        ],
+      },
+      {
+        name: "Child Node 4.2",
+        value: "2.2",
+        id: "dd",
+      },
+      {
+        name: "Child Node 4.3",
+        value: "2.3",
+        id: "de",
+      },
+    ],
+  },
 ] as HierarchyGridRow[];
 
 export const Chromatic = () => {
@@ -286,6 +346,167 @@ export const Chromatic = () => {
   );
 };
 
+const customSortColumns: GridColumn[] = [
+  {
+    key: "id",
+    label: "ID",
+    alignment: "left",
+  },
+  {
+    key: "task",
+    label: "Title",
+    alignment: "left",
+  },
+  {
+    key: "complete",
+    label: " % Complete",
+    alignment: "right",
+  },
+  {
+    key: "priority",
+    label: "Priority",
+    alignment: "center",
+  },
+  {
+    key: "component",
+    label: "Component",
+    alignment: "center",
+    summaryKey: "total",
+    sortable: true,
+    sortFn: (a, b) => (a.props.label < b.props.label ? -1 : a.props.label > b.props.label ? 1 : 0),
+  },
+];
+
+const customSortRows = [
+  {
+    id: 1,
+    task: "Task 1",
+    complete: 46,
+    priority: "High",
+    component: <DxcBadge label={"CCC"} />,
+  },
+  {
+    id: 2,
+    task: "Task 2",
+    complete: 51,
+    priority: "High",
+    component: <DxcBadge label={"BBB"} />,
+  },
+  {
+    id: 3,
+    task: "Task 3",
+    complete: 40,
+    priority: "High",
+    component: <DxcBadge label={"AAA"} />,
+  },
+  {
+    id: 4,
+    task: "Task 4",
+    complete: 10,
+    component: <DxcBadge label={"EEE"} />,
+    priority: "High",
+  },
+  {
+    id: 5,
+    task: "Task 5",
+    complete: 68,
+    priority: "High",
+    component: <DxcBadge label={"DDD"} />,
+  },
+  {
+    id: 6,
+    task: "Task 6",
+    complete: 37,
+    priority: "High",
+    component: <DxcBadge label={"FFF"} />,
+  },
+  {
+    id: 7,
+    task: "Task 7",
+    complete: 73,
+    priority: "Medium",
+    component: <DxcBadge label={"GGG"} />,
+  },
+];
+
+export const CustomSort = () => {
+  return (
+    <>
+      <ExampleContainer>
+        <Title title="Default" theme="light" level={4} />
+        <DxcDataGrid columns={customSortColumns} rows={customSortRows} uniqueRowId="id" />
+      </ExampleContainer>
+    </>
+  );
+};
+
+export const Paginator = () => {
+  return (
+    <>
+      <ExampleContainer>
+        <Title title="Default" theme="light" level={4} />
+        <DxcDataGrid columns={customSortColumns} rows={customSortRows} uniqueRowId="id" />
+      </ExampleContainer>
+    </>
+  );
+};
+const testColumns: GridColumn[] = [
+  {
+    key: "id",
+    label: "ID",
+    resizable: true,
+    sortable: true,
+    draggable: false,
+    alignment: "left",
+  },
+  {
+    key: "complete",
+    label: " % Complete",
+    resizable: true,
+    sortable: true,
+    draggable: true,
+  },
+];
+
+const testRows = [
+  {
+    id: 1,
+    complete: 46,
+    expandedContent: <div> Custom content 1</div>,
+  },
+  {
+    id: 2,
+    complete: 51,
+    expandedContent: <div> Custom content 2</div>,
+  },
+  {
+    id: 3,
+    complete: 40,
+    expandedContent: <div> Custom content 3</div>,
+  },
+  {
+    id: 4,
+    complete: 10,
+    expandedContent: <div> Custom content 4</div>,
+  },
+  {
+    id: 5,
+    complete: 1,
+    expandedContent: <div> Custom content 5</div>,
+  },
+];
+
+export const Test = () => {
+  return (
+    <>
+      <ExampleContainer>
+        <Title title="Default" theme="light" level={4} />
+        <DxcDataGrid columns={testColumns} rows={testRows} uniqueRowId="id" hidePaginator />
+      </ExampleContainer>
+    </>
+  );
+};
+
 const DataGridSortedChildren = () => {
   const [selectedChildRows, setSelectedChildRows] = useState((): Set<number | string> => new Set());
   return (
@@ -297,6 +518,7 @@ const DataGridSortedChildren = () => {
         selectable
         onSelectRows={setSelectedChildRows}
         selectedRows={selectedChildRows}
+        itemsPerPage={2}
       />
     </ExampleContainer>
   );

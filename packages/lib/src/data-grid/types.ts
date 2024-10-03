@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export type GridColumn = {
   /**
    * Key that will be rendered from each row in rows.
@@ -15,6 +17,10 @@ export type GridColumn = {
    * Whether the column is sortable or not.
    */
   sortable?: boolean;
+  /**
+   * Custom criteria for sorting the column.
+   */
+  sortFn?: (_a: any, _b: any) => number;
   /**
    * Whether the column is draggable or not.
    */
@@ -99,6 +105,51 @@ export type SelectableGridProps =
       uniqueRowId?: string;
     };
 
+type PaginatedProps = CommonProps & {
+  hidePaginator?: false;
+  /**
+   * If true, a select component for navigation between pages will be displayed.
+   */
+  showGoToPage?: boolean;
+  /**
+   * Number of items per page.
+   */
+  itemsPerPage?: number;
+  /**
+   * An array of numbers representing the items per page options.
+   */
+  itemsPerPageOptions?: number[];
+  /**
+   * This function will be called when the user selects an item per page
+   * option. The value selected will be passed as a parameter.
+   */
+  itemsPerPageFunction?: (value: number) => void;
+};
+
+type NonPaginatedProps = CommonProps & {
+  /**
+   * If true, paginator will not be displayed.
+   */
+  hidePaginator: true;
+  /**
+   * If true, a select component for navigation between pages will be displayed.
+   */
+  showGoToPage?: never;
+  /**
+   * Number of items per page.
+   */
+  itemsPerPage?: never;
+  /**
+   * An array of numbers representing the items per page options.
+   */
+  itemsPerPageOptions?: never;
+  /**
+   * This function will be called when the user selects an item per page
+   * option. The value selected will be passed as a parameter.
+   */
+  itemsPerPageFunction?: never;
+};
+
 export type CommonProps = {
   columns: GridColumn[];
   /**
@@ -120,6 +171,7 @@ export type BasicGridProps = {
 };
 
 type Props = CommonProps &
+  (PaginatedProps | NonPaginatedProps) &
   (
     | (BasicGridProps & SelectableGridProps)
     | (ExpandableRows & SelectableGridProps)
