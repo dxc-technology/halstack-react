@@ -1,4 +1,4 @@
-import { Fragment, createContext, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { createContext, useLayoutEffect, useMemo, useRef, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import CoreTokens from "../common/coreTokens";
 import DxcDivider from "../divider/Divider";
@@ -15,11 +15,8 @@ import ContextualMenuPropsType, {
   SectionWithId,
 } from "./types";
 
-export const ContextualMenuContext = createContext<ContextualMenuContextProps | null>(null);
-
 const isGroupItem = (item: Item | GroupItem): item is GroupItem => "items" in item;
 const isSection = (item?: Section | Item | GroupItem): item is Section => item && "items" in item && !("label" in item);
-
 const addIdToItems = (items: ContextualMenuPropsType["items"]): (ItemWithId | GroupItemWithId)[] | SectionWithId[] => {
   let accId = 0;
   const innerAddIdToItems = (items: ContextualMenuPropsType["items"]) => {
@@ -33,6 +30,14 @@ const addIdToItems = (items: ContextualMenuPropsType["items"]): (ItemWithId | Gr
   };
   return innerAddIdToItems(items);
 };
+
+export const List = ({ children, id }: { children: React.ReactNode; id?: string }) => (
+  <StyledList id={id} role="menu">
+    {children}
+  </StyledList>
+);
+
+export const ContextualMenuContext = createContext<ContextualMenuContextProps | null>(null);
 
 const DxcContextualMenu = ({ items }: ContextualMenuPropsType) => {
   const [selectedItemId, setSelectedItemId] = useState(-1);
@@ -112,12 +117,12 @@ const ContextualMenu = styled.div`
   }
 `;
 
-const List = styled.ul`
-  list-style: none;
+const StyledList = styled.ul`
   margin: 0;
   padding: 0;
   display: grid;
   gap: ${CoreTokens.spacing_4};
+  list-style: none;
 `;
 
 const Title = styled.h2`

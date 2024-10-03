@@ -2,7 +2,7 @@ import { useContext, useMemo, useState, memo } from "react";
 import styled from "styled-components";
 import CoreTokens from "../common/coreTokens";
 import DxcIcon from "../icon/Icon";
-import { ContextualMenuContext } from "./ContextualMenu";
+import { ContextualMenuContext, List } from "./ContextualMenu";
 import ItemAction from "./ItemAction";
 import MenuItem from "./MenuItem";
 import { GroupItemProps, ItemWithId } from "./types";
@@ -34,21 +34,14 @@ const GroupItem = ({ items, ...props }: GroupItemProps) => {
         {...props}
       />
       {isOpen && (
-        <ItemsList id={groupMenuId}>
+        <List id={groupMenuId}>
           {items.map((item, index) => (
             <MenuItem item={item} depthLevel={props.depthLevel + 1} key={`${item.label}-${index}`} />
           ))}
-        </ItemsList>
+        </List>
       )}
     </>
   );
 };
-
-const ItemsList = styled.ul`
-  padding: 0;
-  display: grid;
-  gap: ${CoreTokens.spacing_4};
-  list-style: none;
-`;
 
 export default memo(GroupItem);

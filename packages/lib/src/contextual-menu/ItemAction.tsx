@@ -28,10 +28,10 @@ const ItemAction = ({ badge, collapseIcon, icon, label, depthLevel, ...props }: 
           {icon && depthLevel === 0 && <Icon>{typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}</Icon>}
           <Text
             selected={props.selected}
-            onMouseEnter={(event: React.MouseEvent<HTMLSpanElement>) => {
-              const text = event.currentTarget;
-              if (text.title === "" && text.scrollWidth > text.clientWidth) setHasTooltip(true);
-            }}
+            // onMouseEnter={(event: React.MouseEvent<HTMLSpanElement>) => {
+            //   const text = event.currentTarget;
+            //   if (text.title === "" && text.scrollWidth > text.clientWidth) setHasTooltip(true);
+            // }}
           >
             {label}
           </Text>
