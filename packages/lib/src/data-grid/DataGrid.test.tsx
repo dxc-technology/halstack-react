@@ -2,12 +2,6 @@ import { render } from "@testing-library/react";
 import DxcDataGrid from "./DataGrid";
 import { GridColumn, HierarchyGridRow } from "./types";
 
-(global as any).ResizeObserver = class ResizeObserver {
-  observe() {}
-  unobserve() {}
-  disconnect() {}
-};
-
 const columns: GridColumn[] = [
   {
     key: "id",
@@ -95,14 +89,14 @@ const rowsWithChildren: HierarchyGridRow[] = [
 
 describe("Data grid component tests", () => {
   beforeAll(() => {
-    (global as any).CSS = {
+    global.CSS = {
       escape: (str) => str,
     };
     window.HTMLElement.prototype.scrollIntoView = jest.fn;
   });
   test("Renders with correct content", async () => {
     const { getByText, getAllByRole } = await render(
-      <DxcDataGrid columns={columns} rows={expandableRows} uniqueRowId="id" hidePaginator />
+      <DxcDataGrid columns={columns} rows={expandableRows} hidePaginator />
     );
     expect(getByText("46")).toBeTruthy();
     const rows = getAllByRole("row");

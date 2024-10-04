@@ -67,61 +67,13 @@ const DxcDataGrid = ({
   itemsPerPageOptions,
   itemsPerPageFunction,
 }: DataGridPropsType): JSX.Element => {
-  const [page, changePage] = useState(1);
   const [rowsToRender, setRowsToRender] = useState<GridRow[] | HierarchyGridRow[] | ExpandableGridRow[]>(rows);
   const colorsTheme = useTheme();
+  const [page, changePage] = useState(1);
 
   const goToPage = (newPage: number) => {
     changePage(newPage);
   };
-
-  // array with the order of the columns
-  const [sortColumns, setSortColumns] = useState<readonly SortColumn[]>([]);
-  // const [visibleColumns, setVisibleColumns] = useState(
-  //   columnsNamesIntoOptions(columns).map((visibleColumn) => {
-  //     return visibleColumn.value;
-  //   })
-  // );
-
-  const sortedRows = useMemo((): readonly GridRow[] | HierarchyGridRow[] | ExpandableGridRow[] => {
-    const sortFunctions = getCustomSortFn(columns);
-    if (expandable && sortColumns.length >= 0) {
-      const sortedRows = sortRows(
-        rowsToRender.filter((row) => !row.isExpandedChildContent),
-        sortColumns,
-        sortFunctions
-      );
-      rowsToRender
-        .filter((row) => row.isExpandedChildContent)
-        .map((expandedRow) =>
-          addRow(
-            sortedRows,
-            sortedRows.findIndex((trigger) => rowKeyGetter(trigger, uniqueRowId) === expandedRow.triggerRowKey) + 1,
-            expandedRow
-          )
-        );
-      return sortedRows;
-    } else if (!expandable && sortColumns.length >= 0) {
-      if (uniqueRowId) return sortHierarchyRows(rowsToRender, sortColumns, sortFunctions, uniqueRowId);
-    }
-    return rowsToRender;
-  }, [expandable, rowsToRender, sortColumns, uniqueRowId]);
-
-  const minItemsPerPageIndex = useMemo(() => getMinItemsPerPageIndex(page, itemsPerPage, page), [itemsPerPage, page]);
-  const maxItemsPerPageIndex = useMemo(
-    () => getMaxItemsPerPageIndex(minItemsPerPageIndex, itemsPerPage, rows, page),
-    [itemsPerPage, minItemsPerPageIndex, page, rows]
-  );
-
-  // const filteredRows = useMemo(
-  //   () => sortedRows && sortedRows.slice(minItemsPerPageIndex, maxItemsPerPageIndex + 1),
-  //   [sortedRows, minItemsPerPageIndex, maxItemsPerPageIndex]
-  // );
-
-  const filteredRows = useMemo(
-    () => getPaginatedNodes(sortedRows, minItemsPerPageIndex, maxItemsPerPageIndex + 1),
-    [sortedRows, minItemsPerPageIndex, maxItemsPerPageIndex]
-  );
 
   // Proccess columns prop into usable columns based on other props
   const columnsToRender = useMemo(() => {
@@ -207,7 +159,7 @@ const DxcDataGrid = ({
           renderHeaderCell: () => {
             return (
               <ActionContainer id="action">
-                {renderHeaderCheckbox(filteredRows as GridRow[], uniqueRowId, selectedRows, colorsTheme, onSelectRows)}
+                {renderHeaderCheckbox(rows, uniqueRowId, selectedRows, colorsTheme, onSelectRows)}
               </ActionContainer>
             );
           },
@@ -216,24 +168,19 @@ const DxcDataGrid = ({
       ];
     }
     return expectedColumns;
-  }, [
-    selectable,
-    expandable,
-    columns,
-    rowsToRender,
-    onSelectRows,
-    rows,
-    summaryRow,
-    uniqueRowId,
-    selectedRows,
-    filteredRows,
-  ]);
-
+  }, [selectable, expandable, columns, rowsToRender, onSelectRows, rows, summaryRow, uniqueRowId, selectedRows]);
+  // array with the order of the columns
   const [columnsOrder, setColumnsOrder] = useState((): number[] => columnsToRender.map((_, index) => index));
+  const [sortColumns, setSortColumns] = useState<readonly SortColumn[]>([]);
+  // const [visibleColumns, setVisibleColumns] = useState(
+  //   columnsNamesIntoOptions(columns).map((visibleColumn) => {
+  //     return visibleColumn.value;
+  //   })
+  // );
 
   useEffect(() => {
-    setColumnsOrder(columnsToRender.map((_, index) => index));
-  }, [columnsToRender]);
+    setColumnsOrder(Array.from({ length: columnsToRender.length }, (_, index) => index));
+  }, [columnsToRender.length]);
 
   useEffect(() => {
     setRowsToRender(rows);
@@ -259,6 +206,41 @@ const DxcDataGrid = ({
     // call function to change rows, like when they have been edited
     if (typeof onGridRowsChange === "function") onGridRowsChange(newRows);
   };
+
+  const sortedRows = useMemo((): readonly GridRow[] | HierarchyGridRow[] | ExpandableGridRow[] => {
+    const sortFunctions = getCustomSortFn(columns);
+    if (expandable && sortColumns.length >= 0) {
+      const sortedRows = sortRows(
+        rowsToRender.filter((row) => !row.isExpandedChildContent),
+        sortColumns,
+        sortFunctions
+      );
+      rowsToRender
+        .filter((row) => row.isExpandedChildContent)
+        .map((expandedRow) =>
+          addRow(
+            sortedRows,
+            sortedRows.findIndex((trigger) => rowKeyGetter(trigger, uniqueRowId) === expandedRow.triggerRowKey) + 1,
+            expandedRow
+          )
+        );
+      return sortedRows;
+    } else if (!expandable && sortColumns.length >= 0) {
+      if (uniqueRowId) return sortHierarchyRows(rowsToRender, sortColumns, sortFunctions, uniqueRowId);
+    }
+    return rowsToRender;
+  }, [expandable, rowsToRender, sortColumns, uniqueRowId]);
+
+  const minItemsPerPageIndex = useMemo(() => getMinItemsPerPageIndex(page, itemsPerPage, page), [itemsPerPage, page]);
+  const maxItemsPerPageIndex = useMemo(
+    () => getMaxItemsPerPageIndex(minItemsPerPageIndex, itemsPerPage, rows, page),
+    [itemsPerPage, minItemsPerPageIndex, page, rows]
+  );
+
+  const filteredRows = useMemo(
+    () => getPaginatedNodes(sortedRows, minItemsPerPageIndex, maxItemsPerPageIndex + 1),
+    [sortedRows, minItemsPerPageIndex, maxItemsPerPageIndex]
+  );
 
   return (
     <ThemeProvider theme={colorsTheme.dataGrid}>
@@ -296,18 +278,18 @@ const DxcDataGrid = ({
           summaryRowHeight={colorsTheme.dataGrid.summaryRowHeight}
           className="fill-grid"
         />
+        {!hidePaginator && (
+          <DxcPaginator
+            totalItems={rows.length}
+            itemsPerPage={itemsPerPage}
+            itemsPerPageOptions={itemsPerPageOptions}
+            itemsPerPageFunction={itemsPerPageFunction}
+            currentPage={page}
+            showGoToPage={showGoToPage}
+            onPageChange={goToPage}
+          />
+        )}
       </DataGridContainer>
-      {!hidePaginator && (
-        <DxcPaginator
-          totalItems={rows.length}
-          itemsPerPage={itemsPerPage}
-          itemsPerPageOptions={itemsPerPageOptions}
-          itemsPerPageFunction={itemsPerPageFunction}
-          currentPage={page}
-          showGoToPage={showGoToPage}
-          onPageChange={goToPage}
-        />
-      )}
     </ThemeProvider>
   );
 };
