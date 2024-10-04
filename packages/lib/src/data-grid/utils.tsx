@@ -462,14 +462,7 @@ export const getParentSelectedState = (
 
   // Recursively check the parent's parent if necessary
   if (parentRow.parentKey) {
-    getParentSelectedState(
-      rowList,
-      uniqueRowId,
-      parentRow.parentKey,
-      uniqueRowId,
-      selectedRows,
-      checkedStateToMatch
-    );
+    getParentSelectedState(rowList, uniqueRowId, parentRow.parentKey, uniqueRowId, selectedRows, checkedStateToMatch);
   }
 };
 
@@ -504,8 +497,9 @@ export const getPaginatedNodes = (
 
   return rows.filter((row) => {
     return rowsToPaginate.some(
-      ({ id, childRows }: HierarchyGridRow) =>
-        id === row[uniqueRowId] || childRows?.some((child) => isRowInHierarchy(child, row[uniqueRowId]))
+      (rowToPaginate: HierarchyGridRow) =>
+        rowToPaginate[uniqueRowId] === row[uniqueRowId] ||
+        rowToPaginate?.childRows?.some((child) => isRowInHierarchy(child, row[uniqueRowId]))
     );
   });
 };
