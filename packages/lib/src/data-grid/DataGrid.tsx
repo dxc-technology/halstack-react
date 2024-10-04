@@ -16,40 +16,13 @@ import {
   renderHierarchyTrigger,
   renderExpandableTrigger,
   getCustomSortFn,
+  getPaginatedNodes,
+  getMinItemsPerPageIndex,
+  getMaxItemsPerPageIndex,
 } from "./utils";
 import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme";
 import DxcPaginator from "../paginator/Paginator";
-
-const getMinItemsPerPageIndex = (currentPageInternal: number, itemsPerPage: number, page: number) =>
-  currentPageInternal === 1 ? 0 : itemsPerPage * (page - 1);
-
-const getMaxItemsPerPageIndex = (
-  minItemsPerPageIndex: number,
-  itemsPerPage: number,
-  rows: GridRow[] | ExpandableGridRow[] | HierarchyGridRow[],
-  page: number
-) => (minItemsPerPageIndex + itemsPerPage > rows.length ? rows.length : itemsPerPage * page - 1);
-
-const getPaginatedNodes = (rows: readonly GridRow[], start?: number, end?: number): readonly GridRow[] => {
-  const rowsToPaginate =
-    start != null && end != null ? rows.filter(({ parentKey }) => parentKey == null).slice(start, end) : [...rows];
-
-  // Recursive function to check childRows at any depth
-  const isRowInHierarchy = (row: GridRow, targetId: string): boolean => {
-    if (row.id === targetId) return true; // Base case: row found
-
-    // Check if the row has children and recursively check each child
-    return (row as HierarchyGridRow).childRows?.some((child) => isRowInHierarchy(child, targetId)) ?? false;
-  };
-
-  return rows.filter((row) => {
-    return rowsToPaginate.some(
-      ({ id, childRows }: HierarchyGridRow) =>
-        id === row.id || childRows?.some((child) => isRowInHierarchy(child, row.id))
-    );
-  });
-};
 
 const DxcDataGrid = ({
   columns,
@@ -238,7 +211,7 @@ const DxcDataGrid = ({
   );
 
   const filteredRows = useMemo(
-    () => getPaginatedNodes(sortedRows, minItemsPerPageIndex, maxItemsPerPageIndex + 1),
+    () => getPaginatedNodes(sortedRows, uniqueRowId, minItemsPerPageIndex, maxItemsPerPageIndex + 1),
     [sortedRows, minItemsPerPageIndex, maxItemsPerPageIndex]
   );
 

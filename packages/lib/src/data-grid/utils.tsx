@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import DxcActionIcon from "../action-icon/ActionIcon";
 import DxcCheckbox from "../checkbox/Checkbox";
 import { AdvancedTheme } from "../common/variables";
@@ -470,4 +471,41 @@ export const getParentSelectedState = (
       checkedStateToMatch
     );
   }
+};
+
+// TODO: ADD JSDOC
+
+export const getMinItemsPerPageIndex = (currentPageInternal: number, itemsPerPage: number, page: number) =>
+  currentPageInternal === 1 ? 0 : itemsPerPage * (page - 1);
+
+export const getMaxItemsPerPageIndex = (
+  minItemsPerPageIndex: number,
+  itemsPerPage: number,
+  rows: GridRow[] | ExpandableGridRow[] | HierarchyGridRow[],
+  page: number
+) => (minItemsPerPageIndex + itemsPerPage > rows.length ? rows.length : itemsPerPage * page - 1);
+
+export const getPaginatedNodes = (
+  rows: readonly GridRow[],
+  uniqueRowId: string,
+  start?: number,
+  end?: number
+): readonly GridRow[] => {
+  const rowsToPaginate =
+    start != null && end != null ? rows.filter(({ parentKey }) => parentKey == null).slice(start, end) : [...rows];
+
+  // Recursive function to check childRows at any depth
+  const isRowInHierarchy = (row: GridRow, targetId: ReactNode): boolean => {
+    if (row[uniqueRowId] === targetId) return true;
+
+    // Check if the row has children and recursively check each child
+    return (row as HierarchyGridRow).childRows?.some((child) => isRowInHierarchy(child, targetId));
+  };
+
+  return rows.filter((row) => {
+    return rowsToPaginate.some(
+      ({ id, childRows }: HierarchyGridRow) =>
+        id === row[uniqueRowId] || childRows?.some((child) => isRowInHierarchy(child, row[uniqueRowId]))
+    );
+  });
 };
