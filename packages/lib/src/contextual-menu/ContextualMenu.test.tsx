@@ -6,7 +6,7 @@ const items = [{ label: "Item 1" }, { label: "Item 2" }, { label: "Item 3" }, { 
 
 const sections = [
   {
-    title: "Team repositories",
+    title: "Section title",
     items: [{ label: "Approved locations" }, { label: "Approved locations" }, { label: "Approved locations" }],
   },
   {
@@ -68,7 +68,7 @@ describe("Contextual menu component tests", () => {
     const group1 = getAllByRole("button")[0];
     await userEvent.click(group1);
     expect(group1.getAttribute("aria-expanded")).toBeTruthy();
-    expect(group1.getAttribute("aria-controls")).toBe(getAllByRole("list")[0].id);
+    expect(group1.getAttribute("aria-controls")).toBe(group1.nextElementSibling.id);
     await userEvent.click(getAllByRole("button")[2]);
     await userEvent.click(getAllByRole("button")[6]);
     expect(getAllByRole("menuitem").length).toBe(10);
@@ -105,13 +105,14 @@ describe("Contextual menu component tests", () => {
   });
   test("Sections - Renders with correct aria attributes", async () => {
     const { getAllByRole } = render(<DxcContextualMenu items={sections} />);
+    expect(getAllByRole("region").length).toBe(2);
     expect(getAllByRole("menuitem").length).toBe(6);
     const actions = getAllByRole("button");
     await userEvent.click(actions[0]);
     expect(actions[0].getAttribute("aria-selected")).toBeTruthy();
-    expect(getAllByRole("group").length).toBe(2);
-    const section = getAllByRole("group")[0];
-    expect(section.getAttribute("aria-labelledby")).toBe("Team repositories");
+    expect(getAllByRole("menu").length).toBe(2);
+    const section = getAllByRole("region")[0];
+    expect(section.getAttribute("aria-labelledby")).toBe("Section title");
   });
   test("The onSelect event from each item is called correctly", () => {
     const test = [

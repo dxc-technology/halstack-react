@@ -1,8 +1,6 @@
 import { ThemeProvider } from "styled-components";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
-import preview from "../../.storybook/preview";
-import { disabledRules } from "../../test/accessibility/rules/specific/contextual-menu/disabledRules";
 import DxcBadge from "../badge/Badge";
 import DxcContainer from "../container/Container";
 import useTheme from "../useTheme";
@@ -12,17 +10,6 @@ import SingleItem from "./SingleItem";
 export default {
   title: "Contextual Menu",
   component: DxcContextualMenu,
-  parameters: {
-    // TODO: REMOVE
-    a11y: {
-      config: {
-        rules: [
-          ...disabledRules.map((ruleId) => ({ id: ruleId, reviewOnFail: true })),
-          ...preview?.parameters?.a11y?.config?.rules,
-        ],
-      },
-    },
-  },
 };
 
 const items = [{ label: "Item 1" }, { label: "Item 2" }, { label: "Item 3" }, { label: "Item 4" }];

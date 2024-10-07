@@ -11,6 +11,7 @@ import ContextualMenuPropsType, {
   GroupItemWithId,
   Item,
   ItemWithId,
+  SubMenuProps,
   Section,
   SectionWithId,
 } from "./types";
@@ -31,10 +32,10 @@ const addIdToItems = (items: ContextualMenuPropsType["items"]): (ItemWithId | Gr
   return innerAddIdToItems(items);
 };
 
-export const List = ({ children, id }: { children: React.ReactNode; id?: string }) => (
-  <StyledList id={id} role="menu">
+export const SubMenu = ({ children, id }: SubMenuProps) => (
+  <StyledSubMenu id={id} role="menu">
     {children}
-  </StyledList>
+  </StyledSubMenu>
 );
 
 export const ContextualMenuContext = createContext<ContextualMenuContextProps | null>(null);
@@ -46,13 +47,17 @@ const DxcContextualMenu = ({ items }: ContextualMenuPropsType) => {
   const colorsTheme = useTheme();
 
   const renderSection = (section: SectionWithId, currentSectionIndex: number, length: number) => (
-    <section aria-labelledby={section?.title} key={`section-${currentSectionIndex}`}>
+    <section
+      aria-label={section?.title ?? `section-${currentSectionIndex}`}
+      aria-labelledby={section?.title}
+      key={`section-${currentSectionIndex}`}
+    >
       {section.title != null && <Title id={section.title}>{section.title}</Title>}
-      <List>
+      <SubMenu>
         {section.items.map((item, index) => (
           <MenuItem item={item} key={`${item.label}-${index}`} />
         ))}
-      </List>
+      </SubMenu>
       {currentSectionIndex !== length - 1 && (
         <DxcInset top="0.25rem" bottom="0.25rem">
           <DxcDivider color="lightGrey" />
@@ -73,16 +78,16 @@ const DxcContextualMenu = ({ items }: ContextualMenuPropsType) => {
 
   return (
     <ThemeProvider theme={colorsTheme.contextualMenu}>
-      <ContextualMenu role="menu" ref={contextualMenuRef}>
+      <ContextualMenu ref={contextualMenuRef}>
         <ContextualMenuContext.Provider value={{ selectedItemId, setSelectedItemId }}>
           {isSection(itemsWithId[0]) ? (
             (itemsWithId as SectionWithId[]).map((item, index) => renderSection(item, index, itemsWithId.length))
           ) : (
-            <List>
+            <SubMenu>
               {(itemsWithId as (GroupItemWithId | ItemWithId)[]).map((item, index) => (
                 <MenuItem item={item} key={`${item.label}-${index}`} />
               ))}
-            </List>
+            </SubMenu>
           )}
         </ContextualMenuContext.Provider>
       </ContextualMenu>
@@ -117,7 +122,7 @@ const ContextualMenu = styled.div`
   }
 `;
 
-const StyledList = styled.ul`
+const StyledSubMenu = styled.ul`
   margin: 0;
   padding: 0;
   display: grid;

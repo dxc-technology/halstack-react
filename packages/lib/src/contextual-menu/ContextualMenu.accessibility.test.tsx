@@ -43,9 +43,59 @@ const itemsWithTruncatedText = [
   },
 ];
 
+const items = [
+  {
+    title: "Business services",
+    items: [
+      {
+        label: "Home",
+        icon: "home",
+        items: [
+          { label: "Data & statistics" },
+          {
+            label: "Apps",
+            items: [
+              {
+                label: "Sales data module",
+                badge: <DxcBadge color="purple" label="Experimental" />,
+              },
+              { label: "Central platform" },
+            ],
+          },
+        ],
+      },
+      {
+        label: "Data warehouse",
+        icon: "database",
+        items: [
+          {
+            label: "Data & statistics",
+          },
+          {
+            label: "Sales performance",
+          },
+          { 
+            label: "Key metrics" 
+          },
+        ],
+      },
+    ],
+  },
+  {
+    items: [
+      { label: "Support", icon: "support_agent" },
+    ],
+  },
+];
+
 describe("Context menu accessibility tests", () => {
   it("Should not have basic accessibility issues", async () => {
     const { container } = render(<DxcContextualMenu items={itemsWithTruncatedText} />);
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
+  });
+  it("A complex contextual menu should not have basic accessibility issues", async () => {
+    const { container } = render(<DxcContextualMenu items={items} />);
     const results = await axe(container);
     expect(results).toHaveNoViolations();
   });
