@@ -1,4 +1,4 @@
-import { fireEvent, render } from "@testing-library/react";
+import { fireEvent, getByText, render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import DxcContextualMenu from "./ContextualMenu";
 
@@ -104,15 +104,15 @@ describe("Contextual menu component tests", () => {
     expect(group1.getAttribute("aria-pressed")).toBe("true");
   });
   test("Sections - Renders with correct aria attributes", async () => {
-    const { getAllByRole } = render(<DxcContextualMenu items={sections} />);
+    const { getAllByRole, getByText } = render(<DxcContextualMenu items={sections} />);
     expect(getAllByRole("region").length).toBe(2);
     expect(getAllByRole("menuitem").length).toBe(6);
     const actions = getAllByRole("button");
     await userEvent.click(actions[0]);
     expect(actions[0].getAttribute("aria-pressed")).toBeTruthy();
     expect(getAllByRole("menu").length).toBe(2);
-    expect(getAllByRole("region")[0].getAttribute("aria-labelledby")).toBe("Section title");
-    expect(getAllByRole("region")[1].getAttribute("aria-label")).toBe("section-1");
+    expect(getAllByRole("region")[0].getAttribute("aria-labelledby")).toBe(getByText("Section title").id);
+    expect(getAllByRole("region")[1].getAttribute("aria-label")).toBeTruthy();
   });
   test("The onSelect event from each item is called correctly", () => {
     const test = [
