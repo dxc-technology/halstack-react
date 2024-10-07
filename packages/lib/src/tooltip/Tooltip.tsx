@@ -43,7 +43,7 @@ const DxcTooltip = ({ position = "bottom", label, children }: TooltipPropsType):
           </Tooltip.Root>
         </Tooltip.Provider>
       ) : (
-        <>{children}</>
+        children
       )}
     </TooltipContext.Provider>
   );

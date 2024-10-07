@@ -1,8 +1,6 @@
-import { useContext, useMemo, useState, memo } from "react";
-import styled from "styled-components";
-import CoreTokens from "../common/coreTokens";
+import { useContext, useMemo, useState, memo, useId } from "react";
 import DxcIcon from "../icon/Icon";
-import { ContextualMenuContext } from "./ContextualMenu";
+import { ContextualMenuContext, SubMenu } from "./ContextualMenu";
 import ItemAction from "./ItemAction";
 import MenuItem from "./MenuItem";
 import { GroupItemProps, ItemWithId } from "./types";
@@ -15,7 +13,7 @@ const isGroupSelected = (items: GroupItemProps["items"], selectedItemId: number)
   });
 
 const GroupItem = ({ items, ...props }: GroupItemProps) => {
-  const groupMenuId = `group-menu-${props.label}`;
+  const groupMenuId = `group-menu-${useId()}`;
   const { selectedItemId } = useContext(ContextualMenuContext);
   const groupSelected = useMemo(() => isGroupSelected(items, selectedItemId), [items, selectedItemId]);
   const [isOpen, setIsOpen] = useState(groupSelected && selectedItemId === -1 ? true : false);
@@ -23,9 +21,9 @@ const GroupItem = ({ items, ...props }: GroupItemProps) => {
   return (
     <>
       <ItemAction
-        aria-controls={groupMenuId}
+        aria-controls={isOpen ? groupMenuId : undefined}
         aria-expanded={isOpen ? true : undefined}
-        aria-selected={groupSelected && !isOpen}
+        aria-pressed={groupSelected && !isOpen}
         collapseIcon={isOpen ? <DxcIcon icon="filled_expand_less" /> : <DxcIcon icon="filled_expand_more" />}
         onClick={() => {
           setIsOpen((isOpen) => !isOpen);
@@ -34,21 +32,14 @@ const GroupItem = ({ items, ...props }: GroupItemProps) => {
         {...props}
       />
       {isOpen && (
-        <ItemsList id={groupMenuId}>
-          {items.map((item) => (
-            <MenuItem item={item} depthLevel={props.depthLevel + 1} />
+        <SubMenu id={groupMenuId}>
+          {items.map((item, index) => (
+            <MenuItem item={item} depthLevel={props.depthLevel + 1} key={`${item.label}-${index}`} />
           ))}
-        </ItemsList>
+        </SubMenu>
       )}
     </>
   );
 };
-
-const ItemsList = styled.ul`
-  padding: 0;
-  display: grid;
-  gap: ${CoreTokens.spacing_4};
-  list-style: none;
-`;
 
 export default memo(GroupItem);
