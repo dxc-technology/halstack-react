@@ -21,7 +21,7 @@ const GroupItem = ({ items, ...props }: GroupItemProps) => {
   return (
     <>
       <ItemAction
-        aria-controls={groupMenuId}
+        aria-controls={isOpen ? groupMenuId : undefined}
         aria-expanded={isOpen ? true : undefined}
         aria-pressed={groupSelected && !isOpen}
         collapseIcon={isOpen ? <DxcIcon icon="filled_expand_less" /> : <DxcIcon icon="filled_expand_more" />}

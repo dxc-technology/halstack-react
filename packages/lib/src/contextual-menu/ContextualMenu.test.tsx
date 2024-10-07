@@ -96,12 +96,12 @@ describe("Contextual menu component tests", () => {
     const item = getAllByRole("button")[3];
     await userEvent.click(item);
     expect(item.getAttribute("aria-selected")).toBeTruthy();
-    expect(group1.getAttribute("aria-selected")).toBe("false");
-    expect(group2.getAttribute("aria-selected")).toBe("false");
+    expect(group1.getAttribute("aria-pressed")).toBe("false");
+    expect(group2.getAttribute("aria-pressed")).toBe("false");
     await userEvent.click(group2);
-    expect(group2.getAttribute("aria-selected")).toBe("true");
+    expect(group2.getAttribute("aria-pressed")).toBe("true");
     await userEvent.click(group1);
-    expect(group1.getAttribute("aria-selected")).toBe("true");
+    expect(group1.getAttribute("aria-pressed")).toBe("true");
   });
   test("Sections - Renders with correct aria attributes", async () => {
     const { getAllByRole } = render(<DxcContextualMenu items={sections} />);
