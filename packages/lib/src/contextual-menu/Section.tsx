@@ -5,9 +5,10 @@ import DxcDivider from "../divider/Divider";
 import { SubMenu } from "./ContextualMenu";
 import MenuItem from "./MenuItem";
 import { SectionProps } from "./types";
+import { useId } from "react";
 
 const Section = ({ section, index, length }: SectionProps) => {
-  const id = `section-${index}`;
+  const id = `section-${useId()}`;
 
   return (
     <section aria-label={section?.title ?? id} aria-labelledby={section?.title}>
