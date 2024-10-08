@@ -89,7 +89,7 @@ const rowsWithChildren: HierarchyGridRow[] = [
 
 describe("Data grid component tests", () => {
   beforeAll(() => {
-    global.CSS = {
+    (global as any).CSS = {
       escape: (str) => str,
     };
     window.HTMLElement.prototype.scrollIntoView = jest.fn;
