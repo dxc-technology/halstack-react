@@ -20,7 +20,7 @@ export type GridColumn = {
   /**
    * Custom criteria for sorting the column.
    */
-  sortFn?: (_a: any, _b: any) => number;
+  sortFn?: (_a: ReactNode, _b: ReactNode) => number;
   /**
    * Whether the column is draggable or not.
    */
@@ -43,7 +43,7 @@ export type GridRow = {
   /**
    * List of rows that will be rendered in each cell based on the key in each column.
    */
-  [key: string]: React.ReactNode | undefined;
+  [key: string]: ReactNode | undefined;
 };
 
 export type HierarchyGridRow = GridRow & {
@@ -51,7 +51,7 @@ export type HierarchyGridRow = GridRow & {
 };
 
 export type ExpandableGridRow = GridRow & {
-  expandedContent?: React.ReactNode;
+  expandedContent?: ReactNode;
   expandedContentHeight?: number;
 };
 

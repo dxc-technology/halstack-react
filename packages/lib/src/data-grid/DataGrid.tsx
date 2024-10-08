@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useMemo, useState } from "react";
 import DataGridPropsType, { HierarchyGridRow, GridRow, ExpandableGridRow } from "./types";
 import DataGrid, { SortColumn } from "react-data-grid";
@@ -97,15 +96,15 @@ const DxcDataGrid = ({
       expectedColumns[0] = {
         ...expectedColumns[0],
         renderCell({ row }) {
-          if (row.childRows?.length) {
+          if ((row as HierarchyGridRow).childRows?.length) {
             return (
-              <HierarchyContainer level={row.rowLevel || 0}>
+              <HierarchyContainer level={typeof row.rowLevel === "number" ? row.rowLevel : 0}>
                 {renderHierarchyTrigger(rowsToRender, row, uniqueRowId, firstColumnKey, setRowsToRender)}
               </HierarchyContainer>
             );
           }
           return (
-            <HierarchyContainer level={row.rowLevel || 0} className="ellipsis-cell">
+            <HierarchyContainer level={typeof row.rowLevel === "number" ? row.rowLevel : 0} className="ellipsis-cell">
               {row[firstColumnKey]}
             </HierarchyContainer>
           );
@@ -145,11 +144,6 @@ const DxcDataGrid = ({
   // array with the order of the columns
   const [columnsOrder, setColumnsOrder] = useState((): number[] => columnsToRender.map((_, index) => index));
   const [sortColumns, setSortColumns] = useState<readonly SortColumn[]>([]);
-  // const [visibleColumns, setVisibleColumns] = useState(
-  //   columnsNamesIntoOptions(columns).map((visibleColumn) => {
-  //     return visibleColumn.value;
-  //   })
-  // );
 
   useEffect(() => {
     setColumnsOrder(Array.from({ length: columnsToRender.length }, (_, index) => index));
@@ -211,21 +205,16 @@ const DxcDataGrid = ({
   );
 
   const filteredRows = useMemo(
-    () => getPaginatedNodes(sortedRows, uniqueRowId, minItemsPerPageIndex, maxItemsPerPageIndex + 1),
+    () =>
+      hidePaginator
+        ? sortedRows
+        : getPaginatedNodes(sortedRows, uniqueRowId, minItemsPerPageIndex, maxItemsPerPageIndex + 1),
     [sortedRows, minItemsPerPageIndex, maxItemsPerPageIndex]
   );
 
   return (
     <ThemeProvider theme={colorsTheme.dataGrid}>
       <DataGridContainer>
-        {/* {columnsVisibilityFilter && (
-        <DxcSelect
-          multiple
-          options={columnsNamesIntoOptions(columns)}
-          defaultValue={visibleColumns}
-          onChange={(event) => setVisibleColumns(event.value)}
-        />
-      )} */}
         <DataGrid
           columns={reorderedColumns}
           rows={filteredRows}
