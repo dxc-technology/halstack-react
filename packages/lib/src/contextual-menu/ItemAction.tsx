@@ -3,18 +3,7 @@ import styled from "styled-components";
 import CoreTokens from "../common/coreTokens";
 import { ItemActionProps } from "./types";
 import DxcIcon from "../icon/Icon";
-import DxcTooltip from "../tooltip/Tooltip";
-
-// TODO: The tooltip is not working fine, text-overflow is not ellipsis due to wrapper container.
-const TooltipWrapper = ({
-  condition,
-  children,
-  label,
-}: {
-  condition: boolean;
-  children: React.ReactNode;
-  label: string;
-}) => (condition ? <DxcTooltip label={label}>{children}</DxcTooltip> : <>{children}</>);
+import { TooltipWrapper } from "../tooltip/Tooltip";
 
 const ItemAction = ({ badge, collapseIcon, icon, label, depthLevel, ...props }: ItemActionProps) => {
   const [hasTooltip, setHasTooltip] = useState(false);
@@ -28,10 +17,10 @@ const ItemAction = ({ badge, collapseIcon, icon, label, depthLevel, ...props }: 
           {icon && depthLevel === 0 && <Icon>{typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}</Icon>}
           <Text
             selected={props.selected}
-            // onMouseEnter={(event: React.MouseEvent<HTMLSpanElement>) => {
-            //   const text = event.currentTarget;
-            //   if (text.title === "" && text.scrollWidth > text.clientWidth) setHasTooltip(true);
-            // }}
+            onMouseEnter={(event: React.MouseEvent<HTMLSpanElement>) => {
+              const text = event.currentTarget;
+              if (text.title === "" && text.scrollWidth > text.clientWidth) setHasTooltip(true);
+            }}
           >
             {label}
           </Text>
