@@ -293,58 +293,58 @@ const childRows: HierarchyGridRow[] = [
   },
   {
     name: "Root Node 3",
-    value: "1",
+    value: "3",
     id: "c",
     childRows: [
       {
         name: "Child Node 3.1",
-        value: "1.1",
+        value: "3.1",
         id: "cc",
         childRows: [
           {
             name: "Grandchild Node 3.1.1",
-            value: "1.1.1",
+            value: "3.1.1",
             id: "ccc",
           },
           {
             name: "Grandchild Node 3.1.2",
-            value: "1.1.2",
+            value: "3.1.2",
             id: "ccd",
           },
         ],
       },
       {
         name: "Child Node 3.2",
-        value: "1.2",
+        value: "3.2",
         id: "cd",
       },
     ],
   },
   {
     name: "Root Node 4",
-    value: "2",
+    value: "4",
     id: "d",
     childRows: [
       {
         name: "Child Node 4.1",
-        value: "2.1",
+        value: "4.1",
         id: "da",
         childRows: [
           {
             name: "Grandchild Node 4.1.1",
-            value: "2.1.1",
+            value: "4.1.1",
             id: "daa",
           },
         ],
       },
       {
         name: "Child Node 4.2",
-        value: "2.2",
+        value: "4.2",
         id: "dd",
       },
       {
         name: "Child Node 4.3",
-        value: "2.3",
+        value: "4.3",
         id: "de",
       },
     ],
@@ -412,58 +412,58 @@ const childRowsPaginated: HierarchyGridRow[] = [
   },
   {
     name: "Paginated Node 3",
-    value: "1",
+    value: "3",
     id: "y",
     childRows: [
       {
         name: "Paginated Node 3.1",
-        value: "1.1",
+        value: "3.1",
         id: "yy",
         childRows: [
           {
             name: "Paginated Node 3.1.1",
-            value: "1.1.1",
+            value: "3.1.1",
             id: "yyy",
           },
           {
             name: "Paginated Node 3.1.2",
-            value: "1.1.2",
+            value: "3.1.2",
             id: "yyz",
           },
         ],
       },
       {
         name: "Paginated Node 3.2",
-        value: "1.2",
+        value: "3.2",
         id: "yz",
       },
     ],
   },
   {
     name: "Paginated Node 4",
-    value: "2",
+    value: "4",
     id: "z",
     childRows: [
       {
         name: "Paginated Node 4.1",
-        value: "2.1",
+        value: "4.1",
         id: "zw",
         childRows: [
           {
             name: "Paginated Node 4.1.1",
-            value: "2.1.1",
+            value: "4.1.1",
             id: "zww",
           },
         ],
       },
       {
         name: "Paginated Node 4.2",
-        value: "2.2",
+        value: "4.2",
         id: "zz",
       },
       {
         name: "Paginated Node 4.3",
-        value: "2.3",
+        value: "4.3",
         id: "za",
       },
     ],

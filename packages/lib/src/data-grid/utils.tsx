@@ -223,7 +223,7 @@ export const renderCheckbox = (
           getChildrenSelection(row.childRows, uniqueRowId, selected, checked);
         }
         if (row.parentKey) {
-          getParentSelectedState(rows, rowKeyGetter(row, uniqueRowId), row.parentKey, uniqueRowId, selected, checked);
+          getParentSelectedState(rows, row.parentKey, uniqueRowId, selected, checked);
         }
         onSelectRows(selected);
       }}
@@ -497,7 +497,6 @@ export const getChildrenSelection = (
  */
 export const getParentSelectedState = (
   rowList: HierarchyGridRow[],
-  uniqueRowKeyValue: ReactNode,
   parentKeyValue: ReactNode,
   uniqueRowId: string,
   selectedRows: Set<ReactNode>,
@@ -509,7 +508,7 @@ export const getParentSelectedState = (
 
   // Check if we are unselecting or any of the other direct childRows is unselected
   const isAnyChildUnselected = parentRow.childRows?.some((row) => {
-    return rowKeyGetter(row, uniqueRowId) !== uniqueRowKeyValue && !selectedRows.has(rowKeyGetter(row, uniqueRowId));
+    return !selectedRows.has(rowKeyGetter(row, uniqueRowId));
   });
 
   if (!checkedStateToMatch || isAnyChildUnselected) {
@@ -526,7 +525,7 @@ export const getParentSelectedState = (
 
   // Recursively check the parent's parent if necessary
   if (parentRow.parentKey) {
-    getParentSelectedState(rowList, uniqueRowId, parentRow.parentKey, uniqueRowId, selectedRows, checkedStateToMatch);
+    getParentSelectedState(rowList, parentRow.parentKey, uniqueRowId, selectedRows, checkedStateToMatch);
   }
 };
 
