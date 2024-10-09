@@ -212,7 +212,7 @@ const options_material = [
   },
 ];
 
-const optionsWithEllipsisMedium = [
+const optionsWithEllipsis = [
   { label: "Optiond1234567890123456789012345678901234", value: "1" },
   { label: "Optiond12345678901234567890123456789012345", value: "2" },
   { label: "Option 031111111111111111111111111111222", value: "3" },
@@ -347,13 +347,13 @@ const Select = () => (
       <Title title="Multiple selection with ellipsis" theme="light" level={4} />
       <DxcSelect label="Label" options={single_options} multiple defaultValue={["1", "2", "3", "4"]} />
       <Title title="Value with ellipsis" theme="light" level={4} />
-      <DxcSelect label="Label" options={optionsWithEllipsisMedium} defaultValue="1" />
+      <DxcSelect label="Label" options={optionsWithEllipsis} defaultValue="1" />
       <Title title="Options with ellipsis" theme="light" level={4} />
       <DxcSelect
         label="Label"
         placeholder="Choose an option"
         defaultValue="1"
-        options={optionsWithEllipsisMedium}
+        options={optionsWithEllipsis}
         margin={{ top: "xxlarge" }}
       />
     </ExampleContainer>
@@ -696,15 +696,6 @@ const SearchableSelect = () => (
   </ExampleContainer>
 );
 
-const SearchableSelectOpinionated = () => (
-  <ExampleContainer expanded>
-    <Title title="Searchable select" theme="light" level={4} />
-    <HalstackProvider theme={opinionatedTheme}>
-      <DxcSelect label="Select Label" searchable options={single_options} placeholder="Choose an option" />
-    </HalstackProvider>
-  </ExampleContainer>
-);
-
 const SearchValue = () => (
   <ExampleContainer expanded>
     <Title title="Searchable select with value" theme="light" level={4} />
@@ -715,21 +706,6 @@ const SearchValue = () => (
       options={single_options}
       placeholder="Choose an option"
     />
-  </ExampleContainer>
-);
-
-const SearchValueOpinionated = () => (
-  <ExampleContainer expanded>
-    <Title title="Searchable select with value" theme="light" level={4} />
-    <HalstackProvider theme={opinionatedTheme}>
-      <DxcSelect
-        label="Select Label"
-        searchable
-        defaultValue="1"
-        options={single_options}
-        placeholder="Choose an option"
-      />
-    </HalstackProvider>
   </ExampleContainer>
 );
 
@@ -746,21 +722,6 @@ const MultipleSelect = () => (
       />
     </ExampleContainer>
   </>
-);
-
-const MultipleSelectOpinionated = () => (
-  <ExampleContainer expanded>
-    <Title title="Multiple select" theme="light" level={4} />
-    <HalstackProvider theme={opinionatedTheme}>
-      <DxcSelect
-        label="Select label"
-        options={single_options}
-        defaultValue={["1", "4"]}
-        multiple
-        placeholder="Choose an option"
-      />
-    </HalstackProvider>
-  </ExampleContainer>
 );
 
 const DefaultGroupedOptionsSelect = () => (
@@ -792,21 +753,6 @@ const MultipleGroupedOptionsSelect = () => (
   </ExampleContainer>
 );
 
-const MultipleGroupedOptionsSelectOpinionated = () => (
-  <ExampleContainer expanded>
-    <Title title="Grouped options multiple select" theme="light" level={4} />
-    <HalstackProvider theme={opinionatedTheme}>
-      <DxcSelect
-        label="Label"
-        options={group_options}
-        defaultValue={["0", "2"]}
-        multiple
-        placeholder="Choose an option"
-      />
-    </HalstackProvider>
-  </ExampleContainer>
-);
-
 const MultipleSearchable = () => (
   <ExampleContainer expanded>
     <Title title="Searchable multiple select with value" theme="light" level={4} />
@@ -821,19 +767,42 @@ const MultipleSearchable = () => (
   </ExampleContainer>
 );
 
-const MultipleSearchableOpinionated = () => (
+const TooltipValue = () => (
   <ExampleContainer expanded>
-    <Title title="Searchable multiple select with value" theme="light" level={4} />
-    <HalstackProvider theme={opinionatedTheme}>
-      <DxcSelect
-        label="Select Label"
-        searchable
-        multiple
-        defaultValue={["1", "4"]}
-        options={single_options}
-        placeholder="Choose an option"
-      />
-    </HalstackProvider>
+    <Title title="Selected value(s) have tooltip when they overflow" theme="light" level={4} />
+    <DxcSelect label="Label" options={single_options} multiple defaultValue={["1", "2", "3", "4"]} />
+  </ExampleContainer>
+);
+
+const TooltipOption = () => {
+  const colorsTheme = useTheme();
+
+  return (
+    <ThemeProvider theme={colorsTheme.select}>
+      <ExampleContainer expanded>
+        <Title title="List option has tooltip when it overflows" theme="light" level={4} />{" "}
+        <Listbox
+          id="x8"
+          currentValue="1"
+          options={optionsWithEllipsis}
+          visualFocusIndex={-1}
+          lastOptionIndex={2}
+          multiple={false}
+          optional={false}
+          optionalItem={{ label: "Empty", value: "" }}
+          searchable={false}
+          handleOptionOnClick={() => {}}
+          styles={{ width: 360 }}
+        />
+      </ExampleContainer>
+    </ThemeProvider>
+  );
+};
+
+const TooltipClear = () => (
+  <ExampleContainer>
+    <Title title="Clear action tooltip" theme="light" level={4} />
+    <DxcSelect label="Label" options={single_options} multiple defaultValue={["1", "2", "3", "4"]} />
   </ExampleContainer>
 );
 
@@ -856,32 +825,14 @@ Searchable.play = async ({ canvasElement }) => {
   await userEvent.type(canvas.getByRole("combobox"), "r");
 };
 
-export const SearchableOpinionated = SearchableSelectOpinionated.bind({});
-SearchableOpinionated.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  await userEvent.type(canvas.getByRole("combobox"), "r");
-};
-
 export const SearchableWithValue = SearchValue.bind({});
 SearchableWithValue.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   await userEvent.click(canvas.getByRole("combobox"));
 };
 
-export const SearchableWithValueOpinionated = SearchValueOpinionated.bind({});
-SearchableWithValueOpinionated.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  await userEvent.click(canvas.getByRole("combobox"));
-};
-
 export const MultipleSearchableWithValue = MultipleSearchable.bind({});
 MultipleSearchableWithValue.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  await userEvent.click(canvas.getAllByRole("combobox")[0]);
-};
-
-export const MultipleSearchableWithValueOpinionated = MultipleSearchableOpinionated.bind({});
-MultipleSearchableWithValueOpinionated.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   await userEvent.click(canvas.getAllByRole("combobox")[0]);
 };
@@ -906,12 +857,6 @@ MultipleOptionsDisplayed.play = async ({ canvasElement }) => {
   await userEvent.click(canvas.getAllByRole("combobox")[0]);
 };
 
-export const MultipleOptionsDisplayedOpinionated = MultipleSelectOpinionated.bind({});
-MultipleOptionsDisplayedOpinionated.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  await userEvent.click(canvas.getAllByRole("combobox")[0]);
-};
-
 export const MultipleGroupedOptionsDisplayed = MultipleGroupedOptionsSelect.bind({});
 MultipleGroupedOptionsDisplayed.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
@@ -919,28 +864,31 @@ MultipleGroupedOptionsDisplayed.play = async ({ canvasElement }) => {
   await userEvent.click(select);
 };
 
-export const MultipleGroupedOptionsDisplayedOpinionated = MultipleGroupedOptionsSelectOpinionated.bind({});
-MultipleGroupedOptionsDisplayedOpinionated.play = async ({ canvasElement }) => {
+export const ValueWithEllipsisTooltip = TooltipValue.bind({});
+ValueWithEllipsisTooltip.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
-  const select = canvas.getByRole("combobox");
-  await userEvent.click(select);
+  await userEvent.hover(canvas.getByText("Option 01, Option 02, Option 03, Option 04"));
+  await userEvent.hover(canvas.getByText("Option 01, Option 02, Option 03, Option 04"));
 };
 
-const Tooltip = () => {
-  const colorsTheme: any = useTheme();
-  return (
-    <ThemeProvider theme={colorsTheme}>
-      <Title title="Default tooltip" theme="light" level={2} />
-      <ExampleContainer>
-        <DxcSelect label="Label" options={single_options} multiple defaultValue={["1", "2", "3", "4"]} />
-      </ExampleContainer>
-    </ThemeProvider>
-  );
+export const ListboxOptionWithEllipsisTooltip = TooltipOption.bind({});
+ListboxOptionWithEllipsisTooltip.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  await userEvent.hover(canvas.getByText("Optiond12345678901234567890123456789012345"));
+  await userEvent.hover(canvas.getByText("Optiond12345678901234567890123456789012345"));
 };
 
-export const SelectTooltip = Tooltip.bind({});
-SelectTooltip.play = async ({ canvasElement }) => {
+export const ClearActionTooltip = TooltipClear.bind({});
+ClearActionTooltip.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
+  const clearSelectionButton = canvas.getByRole("button");
+  await userEvent.hover(clearSelectionButton);
+};
+
+export const SearchableClearActionTooltip = SearchableSelect.bind({});
+SearchableClearActionTooltip.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  await userEvent.type(canvas.getByRole("combobox"), "r");
   const clearSelectionButton = canvas.getByRole("button");
   await userEvent.hover(clearSelectionButton);
 };

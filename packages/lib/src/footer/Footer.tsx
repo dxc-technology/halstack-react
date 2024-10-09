@@ -3,7 +3,7 @@ import styled, { ThemeProvider } from "styled-components";
 import { responsiveSizes, spaces } from "../common/variables";
 import DxcFlex from "../flex/Flex";
 import DxcIcon from "../icon/Icon";
-import DxcTooltip from "../tooltip/Tooltip";
+import { Tooltip } from "../tooltip/Tooltip";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
 import { dxcLogo, dxcSmallLogo } from "./Icons";
@@ -46,7 +46,7 @@ const DxcFooter = ({
           {mode === "default" && (
             <DxcFlex gap={colorsTheme.footer.socialLinksGutter as Spaces}>
               {socialLinks?.map((link, index) => (
-                <DxcTooltip label={link.title}>
+                <Tooltip label={link.title}>
                   <SocialAnchor
                     href={link.href}
                     tabIndex={tabIndex}
@@ -58,7 +58,7 @@ const DxcFooter = ({
                       {typeof link.logo === "string" ? <DxcIcon icon={link.logo} /> : link.logo}
                     </SocialIconContainer>
                   </SocialAnchor>
-                </DxcTooltip>
+                </Tooltip>
               ))}
             </DxcFlex>
           )}

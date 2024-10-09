@@ -21,6 +21,7 @@ const ListOption = ({
   const handleOnMouseEnter = (event: React.MouseEvent<HTMLSpanElement>) => {
     const text = event.currentTarget;
     if (text.title === "" && text.scrollWidth > text.clientWidth) setHasTooltip(true);
+    else setHasTooltip(false);
   };
 
   return (

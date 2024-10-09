@@ -84,6 +84,7 @@ const TooltipContainer = styled.div`
   font-family: ${CoreTokens.type_sans};
   color: ${CoreTokens.color_white};
   background-color: ${CoreTokens.color_grey_800};
+  overflow-wrap: break-word;
 `;
 
 const triangleIcon = (

@@ -1,10 +1,10 @@
 import * as Popover from "@radix-ui/react-popover";
-import { forwardRef, useCallback, useId, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { forwardRef, useCallback, useId, useMemo, useRef, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { getMargin } from "../common/utils";
 import { spaces } from "../common/variables";
 import DxcIcon from "../icon/Icon";
-import DxcTooltip, { TooltipWrapper } from "../tooltip/Tooltip";
+import { Tooltip, TooltipWrapper } from "../tooltip/Tooltip";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
 import useWidth from "../utils/useWidth";
@@ -231,6 +231,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
     const handleOnMouseEnter = (event: React.MouseEvent<HTMLSpanElement>) => {
       const text = event.currentTarget;
       if (text.title === "" && text.scrollWidth > text.clientWidth) setHasTooltip(true);
+      else setHasTooltip(false);
     };
 
     return (
@@ -251,47 +252,47 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
           {helperText && <HelperText disabled={disabled}>{helperText}</HelperText>}
           <Popover.Root open={isOpen}>
             <Popover.Trigger asChild type={undefined}>
-              <TooltipWrapper condition={hasTooltip} label={getSelectedOptionLabel(placeholder, selectedOption)}>
-                <Select
-                  id={selectId}
-                  disabled={disabled}
-                  error={error}
-                  onBlur={handleSelectOnBlur}
-                  onClick={handleSelectOnClick}
-                  onFocus={handleSelectOnFocus}
-                  onKeyDown={handleSelectOnKeyDown}
-                  ref={selectRef}
-                  tabIndex={disabled ? -1 : tabIndex}
-                  role="combobox"
-                  aria-controls={isOpen ? listboxId : undefined}
-                  aria-disabled={disabled}
-                  aria-expanded={isOpen}
-                  aria-haspopup="listbox"
-                  aria-labelledby={label ? selectLabelId : undefined}
-                  aria-activedescendant={visualFocusIndex >= 0 ? `option-${visualFocusIndex}` : undefined}
-                  aria-invalid={error ? true : false}
-                  aria-errormessage={error ? errorId : undefined}
-                  aria-required={!disabled && !optional}
-                >
-                  {multiple && Array.isArray(selectedOption) && selectedOption.length > 0 && (
-                    <SelectionIndicator>
-                      <SelectionNumber disabled={disabled}>{selectedOption.length}</SelectionNumber>
-                      <DxcTooltip label={translatedLabels.select.actionClearSelectionTitle}>
-                        <ClearOptionsAction
-                          disabled={disabled}
-                          onMouseDown={(event) => {
-                            // Avoid input to lose focus when pressed
-                            event.preventDefault();
-                          }}
-                          onClick={handleClearOptionsActionOnClick}
-                          tabIndex={-1}
-                          aria-label={translatedLabels.select.actionClearSelectionTitle}
-                        >
-                          <DxcIcon icon="clear" />
-                        </ClearOptionsAction>
-                      </DxcTooltip>
-                    </SelectionIndicator>
-                  )}
+              <Select
+                id={selectId}
+                disabled={disabled}
+                error={error}
+                onBlur={handleSelectOnBlur}
+                onClick={handleSelectOnClick}
+                onFocus={handleSelectOnFocus}
+                onKeyDown={handleSelectOnKeyDown}
+                ref={selectRef}
+                tabIndex={disabled ? -1 : tabIndex}
+                role="combobox"
+                aria-controls={isOpen ? listboxId : undefined}
+                aria-disabled={disabled}
+                aria-expanded={isOpen}
+                aria-haspopup="listbox"
+                aria-labelledby={label ? selectLabelId : undefined}
+                aria-activedescendant={visualFocusIndex >= 0 ? `option-${visualFocusIndex}` : undefined}
+                aria-invalid={error ? true : false}
+                aria-errormessage={error ? errorId : undefined}
+                aria-required={!disabled && !optional}
+              >
+                {multiple && Array.isArray(selectedOption) && selectedOption.length > 0 && (
+                  <SelectionIndicator>
+                    <SelectionNumber disabled={disabled}>{selectedOption.length}</SelectionNumber>
+                    <Tooltip label={translatedLabels.select.actionClearSelectionTitle}>
+                      <ClearOptionsAction
+                        disabled={disabled}
+                        onMouseDown={(event) => {
+                          // Avoid input to lose focus when pressed
+                          event.preventDefault();
+                        }}
+                        onClick={handleClearOptionsActionOnClick}
+                        tabIndex={-1}
+                        aria-label={translatedLabels.select.actionClearSelectionTitle}
+                      >
+                        <DxcIcon icon="clear" />
+                      </ClearOptionsAction>
+                    </Tooltip>
+                  </SelectionIndicator>
+                )}
+                <TooltipWrapper condition={hasTooltip} label={getSelectedOptionLabel(placeholder, selectedOption)}>
                   <SearchableValueContainer>
                     <input
                       style={{ display: "none" }}
@@ -334,31 +335,31 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
                       </SelectedOption>
                     )}
                   </SearchableValueContainer>
-                  {!disabled && error && (
-                    <ErrorIcon>
-                      <DxcIcon icon="filled_error" />
-                    </ErrorIcon>
-                  )}
-                  {searchable && searchValue.length > 0 && (
-                    <DxcTooltip label={translatedLabels.select.actionClearSelectionTitle}>
-                      <ClearSearchAction
-                        onMouseDown={(event) => {
-                          // Avoid input to lose focus
-                          event.preventDefault();
-                        }}
-                        onClick={handleClearSearchActionOnClick}
-                        tabIndex={-1}
-                        aria-label={translatedLabels.select.actionClearSearchTitle}
-                      >
-                        <DxcIcon icon="clear" />
-                      </ClearSearchAction>
-                    </DxcTooltip>
-                  )}
-                  <CollapseIndicator disabled={disabled}>
-                    <DxcIcon icon={isOpen ? "keyboard_arrow_up" : "keyboard_arrow_down"} />
-                  </CollapseIndicator>
-                </Select>
-              </TooltipWrapper>
+                </TooltipWrapper>
+                {!disabled && error && (
+                  <ErrorIcon>
+                    <DxcIcon icon="filled_error" />
+                  </ErrorIcon>
+                )}
+                {searchable && searchValue.length > 0 && (
+                  <Tooltip label={translatedLabels.select.actionClearSelectionTitle}>
+                    <ClearSearchAction
+                      onMouseDown={(event) => {
+                        // Avoid input to lose focus
+                        event.preventDefault();
+                      }}
+                      onClick={handleClearSearchActionOnClick}
+                      tabIndex={-1}
+                      aria-label={translatedLabels.select.actionClearSearchTitle}
+                    >
+                      <DxcIcon icon="clear" />
+                    </ClearSearchAction>
+                  </Tooltip>
+                )}
+                <CollapseIndicator disabled={disabled}>
+                  <DxcIcon icon={isOpen ? "keyboard_arrow_up" : "keyboard_arrow_down"} />
+                </CollapseIndicator>
+              </Select>
             </Popover.Trigger>
             <Popover.Portal>
               <Popover.Content
