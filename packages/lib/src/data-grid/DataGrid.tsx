@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useMemo, useState } from "react";
 import DataGridPropsType, { HierarchyGridRow, GridRow, ExpandableGridRow } from "./types";
 import DataGrid, { SortColumn } from "react-data-grid";
@@ -15,9 +14,14 @@ import {
   sortHierarchyRows,
   renderHierarchyTrigger,
   renderExpandableTrigger,
+  getCustomSortFn,
+  getPaginatedNodes,
+  getMinItemsPerPageIndex,
+  getMaxItemsPerPageIndex,
 } from "./utils";
 import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme";
+import DxcPaginator from "../paginator/Paginator";
 
 const DxcDataGrid = ({
   columns,
@@ -29,9 +33,20 @@ const DxcDataGrid = ({
   uniqueRowId,
   summaryRow,
   onGridRowsChange,
+  hidePaginator = false,
+  showGoToPage = true,
+  itemsPerPage = 5,
+  itemsPerPageOptions,
+  itemsPerPageFunction,
 }: DataGridPropsType): JSX.Element => {
   const [rowsToRender, setRowsToRender] = useState<GridRow[] | HierarchyGridRow[] | ExpandableGridRow[]>(rows);
   const colorsTheme = useTheme();
+  const [page, changePage] = useState(1);
+
+  const goToPage = (newPage: number) => {
+    changePage(newPage);
+  };
+
   // Proccess columns prop into usable columns based on other props
   const columnsToRender = useMemo(() => {
     let expectedColumns = columns
@@ -81,15 +96,15 @@ const DxcDataGrid = ({
       expectedColumns[0] = {
         ...expectedColumns[0],
         renderCell({ row }) {
-          if (row.childRows?.length) {
+          if ((row as HierarchyGridRow).childRows?.length) {
             return (
-              <HierarchyContainer level={row.rowLevel || 0}>
+              <HierarchyContainer level={typeof row.rowLevel === "number" ? row.rowLevel : 0}>
                 {renderHierarchyTrigger(rowsToRender, row, uniqueRowId, firstColumnKey, setRowsToRender)}
               </HierarchyContainer>
             );
           }
           return (
-            <HierarchyContainer level={row.rowLevel || 0} className="ellipsis-cell">
+            <HierarchyContainer level={typeof row.rowLevel === "number" ? row.rowLevel : 0} className="ellipsis-cell">
               {row[firstColumnKey]}
             </HierarchyContainer>
           );
@@ -129,15 +144,10 @@ const DxcDataGrid = ({
   // array with the order of the columns
   const [columnsOrder, setColumnsOrder] = useState((): number[] => columnsToRender.map((_, index) => index));
   const [sortColumns, setSortColumns] = useState<readonly SortColumn[]>([]);
-  // const [visibleColumns, setVisibleColumns] = useState(
-  //   columnsNamesIntoOptions(columns).map((visibleColumn) => {
-  //     return visibleColumn.value;
-  //   })
-  // );
 
   useEffect(() => {
-    setColumnsOrder(columnsToRender.map((_, index) => index));
-  }, [columnsToRender]);
+    setColumnsOrder(Array.from({ length: columnsToRender.length }, (_, index) => index));
+  }, [columnsToRender.length]);
 
   useEffect(() => {
     setRowsToRender(rows);
@@ -164,11 +174,13 @@ const DxcDataGrid = ({
     if (typeof onGridRowsChange === "function") onGridRowsChange(newRows);
   };
 
-  const sortedRows = useMemo((): readonly GridRow[] => {
+  const sortedRows = useMemo((): readonly GridRow[] | HierarchyGridRow[] | ExpandableGridRow[] => {
+    const sortFunctions = getCustomSortFn(columns);
     if (expandable && sortColumns.length >= 0) {
       const sortedRows = sortRows(
         rowsToRender.filter((row) => !row.isExpandedChildContent),
-        sortColumns
+        sortColumns,
+        sortFunctions
       );
       rowsToRender
         .filter((row) => row.isExpandedChildContent)
@@ -181,25 +193,31 @@ const DxcDataGrid = ({
         );
       return sortedRows;
     } else if (!expandable && sortColumns.length >= 0) {
-      if (uniqueRowId) return sortHierarchyRows(rowsToRender, sortColumns, uniqueRowId);
+      if (uniqueRowId) return sortHierarchyRows(rowsToRender, sortColumns, sortFunctions, uniqueRowId);
     }
     return rowsToRender;
   }, [expandable, rowsToRender, sortColumns, uniqueRowId]);
 
+  const minItemsPerPageIndex = useMemo(() => getMinItemsPerPageIndex(page, itemsPerPage, page), [itemsPerPage, page]);
+  const maxItemsPerPageIndex = useMemo(
+    () => getMaxItemsPerPageIndex(minItemsPerPageIndex, itemsPerPage, rows, page),
+    [itemsPerPage, minItemsPerPageIndex, page, rows]
+  );
+
+  const filteredRows = useMemo(
+    () =>
+      hidePaginator
+        ? sortedRows
+        : getPaginatedNodes(sortedRows, uniqueRowId, minItemsPerPageIndex, maxItemsPerPageIndex + 1),
+    [sortedRows, minItemsPerPageIndex, maxItemsPerPageIndex]
+  );
+
   return (
     <ThemeProvider theme={colorsTheme.dataGrid}>
       <DataGridContainer>
-        {/* {columnsVisibilityFilter && (
-        <DxcSelect
-          multiple
-          options={columnsNamesIntoOptions(columns)}
-          defaultValue={visibleColumns}
-          onChange={(event) => setVisibleColumns(event.value)}
-        />
-      )} */}
         <DataGrid
           columns={reorderedColumns}
-          rows={sortedRows}
+          rows={filteredRows}
           onColumnsReorder={onColumnsReorder}
           onRowsChange={onRowsChange}
           renderers={{ renderSortStatus }}
@@ -222,6 +240,17 @@ const DxcDataGrid = ({
           summaryRowHeight={colorsTheme.dataGrid.summaryRowHeight}
           className="fill-grid"
         />
+        {!hidePaginator && (
+          <DxcPaginator
+            totalItems={rows.length}
+            itemsPerPage={itemsPerPage}
+            itemsPerPageOptions={itemsPerPageOptions}
+            itemsPerPageFunction={itemsPerPageFunction}
+            currentPage={page}
+            showGoToPage={showGoToPage}
+            onPageChange={goToPage}
+          />
+        )}
       </DataGridContainer>
     </ThemeProvider>
   );
