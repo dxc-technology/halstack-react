@@ -33,7 +33,7 @@ const ListOption = ({
         visualFocused={visualFocused}
         selected={isSelected}
         role="option"
-        aria-pressed={!multiple ? isSelected : undefined}
+        aria-selected={!multiple ? isSelected : undefined}
       >
         <StyledOption
           visualFocused={visualFocused}
