@@ -5,7 +5,6 @@ import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
 import { FileItemProps } from "./types";
 import DxcIcon from "../icon/Icon";
-import DxcTooltip from "../tooltip/Tooltip";
 import DxcActionIcon from "../action-icon/ActionIcon";
 
 const FileItem = ({

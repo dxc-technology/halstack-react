@@ -76,6 +76,11 @@ type Props = {
    * Value of the tabindex attribute.
    */
   tabIndex?: number;
+  /**
+   * Text representing advisory information related to the dropdown's trigger action.
+   * Under the hood, this prop also serves as an accessible label for the component.
+   */
+  title?: string;
 };
 
 export type DropdownMenuProps = {

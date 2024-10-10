@@ -1,10 +1,10 @@
 import * as Popover from "@radix-ui/react-popover";
-import { forwardRef, useCallback, useId, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { forwardRef, useCallback, useId, useMemo, useRef, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { getMargin } from "../common/utils";
 import { spaces } from "../common/variables";
 import DxcIcon from "../icon/Icon";
-import DxcTooltip from "../tooltip/Tooltip";
+import { Tooltip, TooltipWrapper } from "../tooltip/Tooltip";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
 import useWidth from "../utils/useWidth";
@@ -52,10 +52,9 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
     const [searchValue, setSearchValue] = useState("");
     const [visualFocusIndex, changeVisualFocusIndex] = useState(-1);
     const [isOpen, changeIsOpen] = useState(false);
-
+    const [hasTooltip, setHasTooltip] = useState(false);
     const selectRef = useRef<HTMLDivElement | null>(null);
     const selectSearchInputRef = useRef<HTMLInputElement | null>(null);
-    const selectedOptionLabelRef = useRef(null);
 
     const width = useWidth(selectRef.current);
     const colorsTheme = useTheme();
@@ -229,13 +228,10 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
       [handleSelectChangeValue, closeListbox, multiple]
     );
 
-    useLayoutEffect(() => {
-      if (selectedOptionLabelRef?.current != null) {
-        if (selectedOptionLabelRef?.current.scrollWidth > selectedOptionLabelRef?.current.clientWidth)
-          selectedOptionLabelRef.current.title = getSelectedOptionLabel(placeholder, selectedOption);
-        else selectedOptionLabelRef.current.title = "";
-      }
-    }, [placeholder, selectedOption]);
+    const handleOnMouseEnter = (event: React.MouseEvent<HTMLSpanElement>) => {
+      const text = event.currentTarget;
+      setHasTooltip(text.scrollWidth > text.clientWidth);
+    };
 
     return (
       <ThemeProvider theme={colorsTheme.select}>
@@ -279,7 +275,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
                 {multiple && Array.isArray(selectedOption) && selectedOption.length > 0 && (
                   <SelectionIndicator>
                     <SelectionNumber disabled={disabled}>{selectedOption.length}</SelectionNumber>
-                    <DxcTooltip label={translatedLabels.select.actionClearSelectionTitle}>
+                    <Tooltip label={translatedLabels.select.actionClearSelectionTitle}>
                       <ClearOptionsAction
                         disabled={disabled}
                         onMouseDown={(event) => {
@@ -292,58 +288,60 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
                       >
                         <DxcIcon icon="clear" />
                       </ClearOptionsAction>
-                    </DxcTooltip>
+                    </Tooltip>
                   </SelectionIndicator>
                 )}
-                <SearchableValueContainer>
-                  <input
-                    style={{ display: "none" }}
-                    name={name}
-                    disabled={disabled}
-                    value={
-                      multiple
-                        ? (
-                            (value && Array.isArray(value) && value) ??
-                            (innerValue && Array.isArray(innerValue) && innerValue)
-                          ).join(",")
-                        : (value ?? innerValue)
-                    }
-                    readOnly
-                    aria-hidden="true"
-                  />
-                  {searchable && (
-                    <SearchInput
-                      value={searchValue}
+                <TooltipWrapper condition={hasTooltip} label={getSelectedOptionLabel(placeholder, selectedOption)}>
+                  <SearchableValueContainer>
+                    <input
+                      style={{ display: "none" }}
+                      name={name}
                       disabled={disabled}
-                      onChange={handleSearchIOnChange}
-                      ref={selectSearchInputRef}
-                      autoComplete="nope"
-                      autoCorrect="nope"
-                      size={1}
-                      aria-labelledby={label ? selectLabelId : undefined}
-                    />
-                  )}
-                  {(!searchable || searchValue === "") && (
-                    <SelectedOption
-                      disabled={disabled}
-                      atBackground={
-                        (multiple ? (value ?? innerValue).length === 0 : !(value ?? innerValue)) ||
-                        (searchable && isOpen)
+                      value={
+                        multiple
+                          ? (
+                              (value && Array.isArray(value) && value) ??
+                              (innerValue && Array.isArray(innerValue) && innerValue)
+                            ).join(",")
+                          : (value ?? innerValue)
                       }
-                    >
-                      <SelectedOptionLabel ref={selectedOptionLabelRef}>
-                        {getSelectedOptionLabel(placeholder, selectedOption)}
-                      </SelectedOptionLabel>
-                    </SelectedOption>
-                  )}
-                </SearchableValueContainer>
+                      readOnly
+                      aria-hidden="true"
+                    />
+                    {searchable && (
+                      <SearchInput
+                        value={searchValue}
+                        disabled={disabled}
+                        onChange={handleSearchIOnChange}
+                        ref={selectSearchInputRef}
+                        autoComplete="nope"
+                        autoCorrect="nope"
+                        size={1}
+                        aria-labelledby={label ? selectLabelId : undefined}
+                      />
+                    )}
+                    {(!searchable || searchValue === "") && (
+                      <SelectedOption
+                        disabled={disabled}
+                        atBackground={
+                          (multiple ? (value ?? innerValue).length === 0 : !(value ?? innerValue)) ||
+                          (searchable && isOpen)
+                        }
+                      >
+                        <SelectedOptionLabel onMouseEnter={handleOnMouseEnter}>
+                          {getSelectedOptionLabel(placeholder, selectedOption)}
+                        </SelectedOptionLabel>
+                      </SelectedOption>
+                    )}
+                  </SearchableValueContainer>
+                </TooltipWrapper>
                 {!disabled && error && (
                   <ErrorIcon>
                     <DxcIcon icon="filled_error" />
                   </ErrorIcon>
                 )}
                 {searchable && searchValue.length > 0 && (
-                  <DxcTooltip label={translatedLabels.select.actionClearSelectionTitle}>
+                  <Tooltip label={translatedLabels.select.actionClearSelectionTitle}>
                     <ClearSearchAction
                       onMouseDown={(event) => {
                         // Avoid input to lose focus
@@ -355,7 +353,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
                     >
                       <DxcIcon icon="clear" />
                     </ClearSearchAction>
-                  </DxcTooltip>
+                  </Tooltip>
                 )}
                 <CollapseIndicator disabled={disabled}>
                   <DxcIcon icon={isOpen ? "keyboard_arrow_up" : "keyboard_arrow_down"} />

@@ -39,7 +39,7 @@ const sections = [
           <>
             <DxcBulletedList>
               <DxcBulletedList.Item>
-                Use <Code>Heading</Code> componments from <Code>H1</Code> to <Code>H5</Code> when creating content
+                Use <Code>Heading</Code> components from <Code>H1</Code> to <Code>H5</Code> when creating content
                 hierarchy in the page.
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
