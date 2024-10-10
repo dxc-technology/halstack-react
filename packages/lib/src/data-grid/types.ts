@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { SortColumn } from "react-data-grid";
 
 export type GridColumn = {
   /**
@@ -159,7 +160,15 @@ export type CommonProps = {
   /**
    * Function called whenever a cell is edited.
    */
-  onGridRowsChange?: (rows: GridRow[] | HierarchyGridRow[] | ExpandableGridRow[]) => void;
+  onGridRowsChange?: (_rows: GridRow[] | HierarchyGridRow[] | ExpandableGridRow[]) => void;
+  /**
+   * Function called whenever a new sorting criteria is applied
+   */
+  onSort?: (_sortRows: SortColumn) => void;
+  /**
+   * Function called whenever the current page is changed
+   */
+  onPageChange?: (_page: number) => void;
 };
 
 export type BasicGridProps = {

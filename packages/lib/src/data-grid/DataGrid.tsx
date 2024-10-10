@@ -38,13 +38,30 @@ const DxcDataGrid = ({
   itemsPerPage = 5,
   itemsPerPageOptions,
   itemsPerPageFunction,
+  onSort,
+  onPageChange,
 }: DataGridPropsType): JSX.Element => {
   const [rowsToRender, setRowsToRender] = useState<GridRow[] | HierarchyGridRow[] | ExpandableGridRow[]>(rows);
   const colorsTheme = useTheme();
   const [page, changePage] = useState(1);
 
   const goToPage = (newPage: number) => {
-    changePage(newPage);
+    if (onPageChange) {
+      onPageChange(newPage);
+    } else {
+      changePage(newPage);
+    }
+  };
+
+  const handleSortChange = (newSortColumns: SortColumn[]) => {
+    if (onSort) {
+      if (newSortColumns.length > 0) {
+        const { columnKey, direction } = newSortColumns[0];
+        onSort({ columnKey, direction });
+      }
+    } else {
+      setSortColumns(newSortColumns);
+    }
   };
 
   // Proccess columns prop into usable columns based on other props
@@ -222,7 +239,7 @@ const DxcDataGrid = ({
           onRowsChange={onRowsChange}
           renderers={{ renderSortStatus }}
           sortColumns={sortColumns}
-          onSortColumnsChange={setSortColumns}
+          onSortColumnsChange={handleSortChange}
           rowKeyGetter={(row) => uniqueRowId && rowKeyGetter(row, uniqueRowId)}
           rowHeight={(row) => {
             if (
