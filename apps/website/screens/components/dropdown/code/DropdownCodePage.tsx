@@ -184,6 +184,17 @@ const sections = [
                 <TableCode>0</TableCode>
               </td>
             </tr>
+            <tr>
+              <td>title</td>
+              <td>
+                <TableCode>string</TableCode>
+              </td>
+              <td>
+                Text representing advisory information related to the dropdown's trigger action. Under the hood, this
+                prop also serves as an accessible label for the component.
+              </td>
+              <td>-</td>
+            </tr>
           </tbody>
         </DxcTable>
       </>

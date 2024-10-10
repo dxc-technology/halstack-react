@@ -230,8 +230,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
 
     const handleOnMouseEnter = (event: React.MouseEvent<HTMLSpanElement>) => {
       const text = event.currentTarget;
-      if (text.title === "" && text.scrollWidth > text.clientWidth) setHasTooltip(true);
-      else setHasTooltip(false);
+      setHasTooltip(text.scrollWidth > text.clientWidth);
     };
 
     return (

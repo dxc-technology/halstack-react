@@ -3,7 +3,7 @@ import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables";
 import DxcFlex from "../flex/Flex";
 import DxcIcon from "../icon/Icon";
-import { Tooltip } from "../tooltip/Tooltip";
+import { Tooltip, TooltipWrapper } from "../tooltip/Tooltip";
 import useTheme from "../useTheme";
 import ToggleGroupPropsType, { OptionLabel } from "./types";
 
@@ -67,7 +67,7 @@ const DxcToggleGroup = ({
         <HelperText disabled={disabled}>{helperText}</HelperText>
         <OptionsContainer aria-labelledby={toggleGroupLabelId}>
           {options.map((option, i) => (
-            <Tooltip label={option.title}>
+            <TooltipWrapper condition={Boolean(option.title)} label={option.title}>
               <ToggleButton
                 key={`toggle-${i}-${option.label}`}
                 aria-label={option.title}
@@ -109,7 +109,7 @@ const DxcToggleGroup = ({
                   {option.label && <LabelContainer>{option.label}</LabelContainer>}
                 </DxcFlex>
               </ToggleButton>
-            </Tooltip>
+            </TooltipWrapper>
           ))}
         </OptionsContainer>
       </ToggleGroup>

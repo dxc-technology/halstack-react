@@ -19,8 +19,7 @@ const ItemAction = ({ badge, collapseIcon, icon, label, depthLevel, ...props }: 
             selected={props.selected}
             onMouseEnter={(event: React.MouseEvent<HTMLSpanElement>) => {
               const text = event.currentTarget;
-              if (text.title === "" && text.scrollWidth > text.clientWidth) setHasTooltip(true);
-              else setHasTooltip(false);
+              setHasTooltip(text.scrollWidth > text.clientWidth);
             }}
           >
             {label}

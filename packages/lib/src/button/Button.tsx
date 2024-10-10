@@ -4,7 +4,7 @@ import { getMargin } from "../common/utils";
 import useTheme from "../useTheme";
 import ButtonPropsType from "./types";
 import DxcIcon from "../icon/Icon";
-import { Tooltip } from "../tooltip/Tooltip";
+import { TooltipWrapper } from "../tooltip/Tooltip";
 
 const DxcButton = ({
   label = "",
@@ -24,7 +24,7 @@ const DxcButton = ({
 
   return (
     <ThemeProvider theme={colorsTheme.button}>
-      <Tooltip label={title}>
+      <TooltipWrapper condition={Boolean(title)} label={title}>
         <Button
           aria-label={title}
           disabled={disabled}
@@ -46,7 +46,7 @@ const DxcButton = ({
             <IconContainer size={size}>{typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}</IconContainer>
           )}
         </Button>
-      </Tooltip>
+      </TooltipWrapper>
     </ThemeProvider>
   );
 };

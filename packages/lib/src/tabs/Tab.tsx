@@ -2,7 +2,7 @@ import { forwardRef, Ref, useContext, useEffect, useRef } from "react";
 import styled from "styled-components";
 import DxcBadge from "../badge/Badge";
 import DxcIcon from "../icon/Icon";
-import { Tooltip } from "../tooltip/Tooltip";
+import { TooltipWrapper } from "../tooltip/Tooltip";
 import useTheme from "../useTheme";
 import BaseTypography from "../utils/BaseTypography";
 import { TabsContext } from "./TabsContext";
@@ -64,7 +64,7 @@ const DxcTab = forwardRef(
     };
 
     return (
-      <Tooltip label={title}>
+      <TooltipWrapper condition={Boolean(title)} label={title}>
         <TabContainer
           role="tab"
           type="button"
@@ -128,7 +128,7 @@ const DxcTab = forwardRef(
             </BadgeContainer>
           )}
         </TabContainer>
-      </Tooltip>
+      </TooltipWrapper>
     );
   }
 );
