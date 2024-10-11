@@ -449,5 +449,5 @@ export const MenuTooltip = TooltipTitle.bind({});
 MenuTooltip.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   await userEvent.hover(canvas.getByRole("button"));
-  await new Promise((resolve) => setTimeout(resolve, 1000));
+  await new Promise((resolve) => setTimeout(resolve, 4000));
 };
