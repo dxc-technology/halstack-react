@@ -409,7 +409,14 @@ const OpinionatedTheme = () => (
 const TooltipTitle = () => (
   <ExampleContainer>
     <Title title="Tooltip" theme="light" level={3} />
-    <DxcDropdown title="Show options" options={options} onSelectOption={(value) => {}} icon="menu" caretHidden />
+    <DxcDropdown
+      title="Show options"
+      options={options}
+      onSelectOption={(value) => {}}
+      icon="menu"
+      caretHidden
+      margin="large"
+    />
   </ExampleContainer>
 );
 
@@ -449,5 +456,4 @@ export const MenuTooltip = TooltipTitle.bind({});
 MenuTooltip.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   await userEvent.hover(canvas.getByRole("button"));
-  await new Promise((resolve) => setTimeout(resolve, 4000));
 };

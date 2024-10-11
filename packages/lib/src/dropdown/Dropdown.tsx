@@ -139,15 +139,15 @@ const DxcDropdown = ({
 
   return (
     <ThemeProvider theme={colorsTheme.dropdown}>
-      <TooltipWrapper condition={Boolean(title)} label={title}>
-        <DropdownContainer
-          onMouseEnter={!disabled && expandOnHover ? handleOnOpenMenu : undefined}
-          onMouseLeave={!disabled && expandOnHover ? handleOnCloseMenu : undefined}
-          onBlur={!disabled ? handleOnBlur : undefined}
-          margin={margin}
-          size={size}
-        >
-          <Popover.Root open={isOpen}>
+      <DropdownContainer
+        onMouseEnter={!disabled && expandOnHover ? handleOnOpenMenu : undefined}
+        onMouseLeave={!disabled && expandOnHover ? handleOnCloseMenu : undefined}
+        onBlur={!disabled ? handleOnBlur : undefined}
+        margin={margin}
+        size={size}
+      >
+        <Popover.Root open={isOpen}>
+          <TooltipWrapper condition={Boolean(title)} label={title}>
             <Popover.Trigger asChild type={undefined}>
               <DropdownTrigger
                 onClick={handleTriggerOnClick}
@@ -187,24 +187,24 @@ const DxcDropdown = ({
                 )}
               </DropdownTrigger>
             </Popover.Trigger>
-            <Popover.Portal>
-              <Popover.Content asChild sideOffset={1}>
-                <DropdownMenu
-                  id={menuId}
-                  dropdownTriggerId={triggerId}
-                  options={options}
-                  iconsPosition={optionsIconPosition}
-                  visualFocusIndex={visualFocusIndex}
-                  menuItemOnClick={handleMenuItemOnClick}
-                  onKeyDown={handleMenuOnKeyDown}
-                  styles={{ width, zIndex: "2147483647" }}
-                  ref={menuRef}
-                />
-              </Popover.Content>
-            </Popover.Portal>
-          </Popover.Root>
-        </DropdownContainer>
-      </TooltipWrapper>
+          </TooltipWrapper>
+          <Popover.Portal>
+            <Popover.Content asChild sideOffset={1}>
+              <DropdownMenu
+                id={menuId}
+                dropdownTriggerId={triggerId}
+                options={options}
+                iconsPosition={optionsIconPosition}
+                visualFocusIndex={visualFocusIndex}
+                menuItemOnClick={handleMenuItemOnClick}
+                onKeyDown={handleMenuOnKeyDown}
+                styles={{ width, zIndex: "2147483647" }}
+                ref={menuRef}
+              />
+            </Popover.Content>
+          </Popover.Portal>
+        </Popover.Root>
+      </DropdownContainer>
     </ThemeProvider>
   );
 };
