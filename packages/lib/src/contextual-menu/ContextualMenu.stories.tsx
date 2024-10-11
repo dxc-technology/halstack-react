@@ -218,8 +218,8 @@ export const SingleItemStates = () => {
 };
 
 const ItemWithEllipsis = () => (
-  <ExampleContainer>
-    <Title title="Tooltip" theme="light" level={3} />
+  <ExampleContainer expanded>
+    <Title title="Tooltip in items with ellipsis" theme="light" level={3} />
     <DxcContainer width="300px">
       <DxcContextualMenu items={itemsWithTruncatedText} />
     </DxcContainer>
