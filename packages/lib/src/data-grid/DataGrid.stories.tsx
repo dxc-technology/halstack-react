@@ -482,7 +482,7 @@ export const Chromatic = () => {
     <>
       <ExampleContainer>
         <Title title="Default" theme="light" level={4} />
-        <DxcDataGrid columns={columns} rows={expandableRows} uniqueRowId="id" hidePaginator />
+        <DxcDataGrid columns={columns} rows={expandableRows} uniqueRowId="id" />
       </ExampleContainer>
       <ExampleContainer>
         <Title title="Expandable" theme="light" level={4} />
@@ -497,7 +497,6 @@ export const Chromatic = () => {
           selectable
           selectedRows={selectedRows}
           onSelectRows={setSelectedRows}
-          hidePaginator
         />
       </ExampleContainer>
       <ExampleContainer>
@@ -510,12 +509,11 @@ export const Chromatic = () => {
           selectable
           selectedRows={selectedRows}
           onSelectRows={setSelectedRows}
-          hidePaginator
         />
       </ExampleContainer>
       <ExampleContainer>
         <Title title="DataGrid with children" theme="light" level={4} />
-        <DxcDataGrid columns={childcolumns} rows={childRows} uniqueRowId="id" itemsPerPage={2} />
+        <DxcDataGrid columns={childcolumns} rows={childRows} uniqueRowId="id" />
       </ExampleContainer>
       <ExampleContainer>
         <Title title="DataGrid with children" theme="light" level={4} />
@@ -526,7 +524,6 @@ export const Chromatic = () => {
           selectable
           selectedRows={selectedChildRows}
           onSelectRows={setSelectedChildRows}
-          hidePaginator
         />
       </ExampleContainer>
       <ExampleContainer>
@@ -536,13 +533,12 @@ export const Chromatic = () => {
           rows={expandableRows}
           summaryRow={{ label: "Total", total: 100 }}
           uniqueRowId="id"
-          hidePaginator
         />
       </ExampleContainer>
       <ExampleContainer>
         <Title title="Scrollable Data Grid" theme="light" level={4} />
         <DxcContainer height="250px">
-          <DxcDataGrid columns={columns} rows={expandableRows} uniqueRowId="id" hidePaginator />
+          <DxcDataGrid columns={columns} rows={expandableRows} uniqueRowId="id" />
         </DxcContainer>
       </ExampleContainer>
       <ExampleContainer>
@@ -551,6 +547,7 @@ export const Chromatic = () => {
           columns={columns}
           rows={rowsControlled}
           uniqueRowId="id"
+          hidePaginator={false}
           onSort={(sortColumn) => {
             if (sortColumn) {
               const { columnKey, direction } = sortColumn;
@@ -678,7 +675,7 @@ export const CustomSort = () => {
     <>
       <ExampleContainer>
         <Title title="Default" theme="light" level={4} />
-        <DxcDataGrid columns={customSortColumns} rows={customSortRows} uniqueRowId="id" hidePaginator />
+        <DxcDataGrid columns={customSortColumns} rows={customSortRows} uniqueRowId="id" />
       </ExampleContainer>
     </>
   );
@@ -691,11 +688,11 @@ export const Paginator = () => {
     <>
       <ExampleContainer>
         <Title title="Default" theme="light" level={4} />
-        <DxcDataGrid columns={columns} rows={expandableRows} uniqueRowId="id" />
+        <DxcDataGrid columns={columns} rows={expandableRows} uniqueRowId="id" hidePaginator={false} />
       </ExampleContainer>
       <ExampleContainer>
         <Title title="Expandable" theme="light" level={4} />
-        <DxcDataGrid columns={columns} rows={expandableRows} uniqueRowId="id" expandable />
+        <DxcDataGrid columns={columns} rows={expandableRows} uniqueRowId="id" expandable hidePaginator={false} />
       </ExampleContainer>
       <ExampleContainer>
         <Title title="Selectable" theme="light" level={4} />
@@ -706,6 +703,7 @@ export const Paginator = () => {
           selectable
           selectedRows={selectedRows}
           onSelectRows={setSelectedRows}
+          hidePaginator={false}
         />
       </ExampleContainer>
       <ExampleContainer>
@@ -718,11 +716,12 @@ export const Paginator = () => {
           selectable
           selectedRows={selectedRows}
           onSelectRows={setSelectedRows}
+          hidePaginator={false}
         />
       </ExampleContainer>
       <ExampleContainer>
         <Title title="DataGrid with children" theme="light" level={4} />
-        <DxcDataGrid columns={childcolumns} rows={childRows} uniqueRowId="id" itemsPerPage={2} />
+        <DxcDataGrid columns={childcolumns} rows={childRows} uniqueRowId="id" hidePaginator={false} />
       </ExampleContainer>
       <ExampleContainer>
         <Title title="DataGrid with children" theme="light" level={4} />
@@ -733,6 +732,8 @@ export const Paginator = () => {
           selectable
           selectedRows={selectedChildRows}
           onSelectRows={setSelectedChildRows}
+          hidePaginator={false}
+          itemsPerPage={2}
         />
       </ExampleContainer>
       <ExampleContainer>
@@ -742,6 +743,7 @@ export const Paginator = () => {
           rows={expandableRows}
           summaryRow={{ label: "Total", total: 100 }}
           uniqueRowId="id"
+          hidePaginator={false}
         />
       </ExampleContainer>
     </>
@@ -761,7 +763,6 @@ const DataGridSortedChildren = () => {
           selectable
           onSelectRows={setSelectedChildRows}
           selectedRows={selectedChildRows}
-          hidePaginator
         />
       </ExampleContainer>
       <ExampleContainer>
@@ -770,6 +771,7 @@ const DataGridSortedChildren = () => {
           columns={childcolumns}
           rows={childRowsPaginated}
           uniqueRowId="id"
+          hidePaginator={false}
           selectable
           onSelectRows={setSelectedChildRows}
           selectedRows={selectedChildRows}
@@ -816,7 +818,6 @@ const DataGridSortedExpandable = () => {
           selectable
           onSelectRows={setSelectedRows}
           selectedRows={selectedRows}
-          hidePaginator
         />
       </ExampleContainer>
       <ExampleContainer>
@@ -827,6 +828,7 @@ const DataGridSortedExpandable = () => {
           uniqueRowId="task"
           expandable
           selectable
+          hidePaginator={false}
           onSelectRows={setSelectedRows}
           selectedRows={selectedRows}
           itemsPerPage={5}

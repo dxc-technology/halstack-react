@@ -33,7 +33,7 @@ const DxcDataGrid = ({
   uniqueRowId,
   summaryRow,
   onGridRowsChange,
-  hidePaginator = false,
+  hidePaginator = true,
   showGoToPage = true,
   itemsPerPage = 5,
   itemsPerPageOptions,

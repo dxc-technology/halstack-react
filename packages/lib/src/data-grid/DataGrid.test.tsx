@@ -96,7 +96,7 @@ describe("Data grid component tests", () => {
   });
   test("Renders with correct content", async () => {
     const { getByText, getAllByRole } = await render(
-      <DxcDataGrid columns={columns} rows={expandableRows} hidePaginator />
+      <DxcDataGrid columns={columns} rows={expandableRows} />
     );
     expect(getByText("46")).toBeTruthy();
     const rows = getAllByRole("row");

@@ -38,7 +38,7 @@ const code = `() => {
   
   return (
     <DxcInset space="2rem">
-      <DxcDataGrid columns={columns} rows={rows} uniqueRowId="id" hidePaginator />
+      <DxcDataGrid columns={columns} rows={rows} uniqueRowId="id" hidePaginator={false} itemsPerPage={2} />
     </DxcInset>
   );
 }`;

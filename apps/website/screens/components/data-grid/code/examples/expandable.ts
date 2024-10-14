@@ -41,7 +41,7 @@ const code = `() => {
   
   return (
     <DxcInset space="2rem">
-      <DxcDataGrid columns={columns} rows={rows} expandable uniqueRowId="id" itemsPerPage={2} />
+      <DxcDataGrid columns={columns} rows={rows} expandable uniqueRowId="id" />
     </DxcInset>
   );
 }`;

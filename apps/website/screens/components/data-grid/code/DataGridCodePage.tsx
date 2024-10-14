@@ -11,7 +11,7 @@ import selectable from "./examples/selectable";
 import expandable from "./examples/expandable";
 import hierarchical from "./examples/hierarchical";
 import hierarchicalSelectable from "./examples/hierarchicalSelectable";
-import paginatorHidden from "./examples/paginatorHidden";
+import paginator from "./examples/paginator";
 import controlled from "./examples/controlled";
 
 const columnsTypeString = `{
@@ -206,7 +206,7 @@ const sections = [
               <TableCode>boolean</TableCode>
             </td>
             <td>If true, paginator will not be displayed.</td>
-            <td>false</td>
+            <td>true</td>
           </tr>
           <tr>
             <td>totalItems</td>
@@ -284,8 +284,8 @@ const sections = [
         content: <Example example={controlled} defaultIsVisible />,
       },
       {
-        title: "No paginator",
-        content: <Example example={paginatorHidden} defaultIsVisible />,
+        title: "Paginator",
+        content: <Example example={paginator} defaultIsVisible />,
       },
     ],
   },

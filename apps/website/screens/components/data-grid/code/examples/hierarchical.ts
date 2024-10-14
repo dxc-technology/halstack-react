@@ -80,7 +80,7 @@ const code = `() => {
 
   return (
     <DxcInset space="2rem">
-      <DxcDataGrid columns={columns} rows={rows} summaryRow={summaryRow} uniqueRowId="id" itemsPerPage={2} />
+      <DxcDataGrid columns={columns} rows={rows} summaryRow={summaryRow} uniqueRowId="id" />
     </DxcInset>
   );
 }`;
