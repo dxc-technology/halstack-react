@@ -106,9 +106,9 @@ const triangleIcon = (
 const TooltipContext = createContext(false);
 
 export const Tooltip = ({
+  label,
   hasAdditionalContainer = false,
   position = "bottom",
-  label,
   children,
 }: { hasAdditionalContainer?: boolean } & TooltipPropsType): JSX.Element => {
   const hasTooltip = useContext(TooltipContext);

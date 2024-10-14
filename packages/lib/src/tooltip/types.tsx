@@ -14,9 +14,9 @@ type Props = {
 };
 
 export type TooltipWrapperProps = {
-  condition: boolean;
+  condition?: boolean;
   children: React.ReactNode;
-  label: string;
+  label?: string;
 };
 
 export default Props;
