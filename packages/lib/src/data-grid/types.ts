@@ -106,7 +106,7 @@ export type SelectableGridProps =
       uniqueRowId?: string;
     };
 
-type PaginatedProps = CommonProps & {
+type PaginatedProps = {
   /**
    * If true, paginator will not be displayed.
    */
@@ -132,9 +132,13 @@ type PaginatedProps = CommonProps & {
    * option. The value selected will be passed as a parameter.
    */
   itemsPerPageFunction?: (value: number) => void;
+  /**
+   * Function called whenever the current page is changed.
+   */
+  onPageChange?: (_page: number) => void;
 };
 
-type NonPaginatedProps = CommonProps & {
+type NonPaginatedProps = {
   /**
    * If true, paginator will not be displayed.
    */
@@ -160,6 +164,10 @@ type NonPaginatedProps = CommonProps & {
    * option. The value selected will be passed as a parameter.
    */
   itemsPerPageFunction?: never;
+  /**
+   * Function called whenever the current page is changed.
+   */
+  onPageChange?: never;
 };
 
 export type CommonProps = {
@@ -176,10 +184,6 @@ export type CommonProps = {
    * Function called whenever a new sorting criteria is applied.
    */
   onSort?: (_sortColumn?: SortColumn) => void;
-  /**
-   * Function called whenever the current page is changed.
-   */
-  onPageChange?: (_page: number) => void;
 };
 
 export type BasicGridProps = {
