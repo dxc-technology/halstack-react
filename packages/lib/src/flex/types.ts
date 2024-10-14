@@ -13,6 +13,7 @@ type CommonProps = {
     | "start"
     | "end"
     | "left"
+    | "normal"
     | "right"
     | "center"
     | "space-between"
@@ -32,7 +33,8 @@ type CommonProps = {
     | "self-start"
     | "self-end"
     | "center"
-    | "baseline";
+    | "baseline"
+    | "normal";
   /**
    * Sets the align-content CSS property.
    *
