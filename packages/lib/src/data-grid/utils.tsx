@@ -233,7 +233,6 @@ export const renderCheckbox = (
 
 /**
  * Renders a header checkbox that controls the selection of all rows.
- *
  * @param {GridRow[] | HierarchyGridRow[] | ExpandableGridRow[]} rows - Array of rows that are currently displayed.
  * @param {string} uniqueRowId - The key used to uniquely identify each row.
  * @param {Set<ReactNode>} selectedRows - Set containing the IDs of selected rows.
@@ -278,7 +277,6 @@ export const renderHeaderCheckbox = (
 
 /**
  * Retrieves the unique key for a row based on the given uniqueRowId.
- *
  * @param {GridRow | HierarchyGridRow | ExpandableGridRow} row - The row object from which to retrieve the key.
  * @param {string} uniqueRowId - The unique key used to identify the row.
  * @returns {string | number} The unique key of the row.
@@ -290,7 +288,6 @@ export const rowKeyGetter = (row: GridRow | HierarchyGridRow | ExpandableGridRow
 
 /**
  * Extracts and returns custom sorting functions from the given columns.
- *
  * @param {GridColumn[]} columns - Array of column definitions.
  * @returns {object[]} Array of objects, each containing a column key and its custom sort function.
  */
@@ -304,7 +301,6 @@ export const getCustomSortFn = (columns: GridColumn[]) => {
 /**
  * Compares two row values based on the given custom sort function.
  * If no sort function is provided, default comparison is used.
- *
  * @param {ReactNode} rowA - The first row value to compare.
  * @param {ReactNode} rowB - The second row value to compare.
  * @param {Function} sortFn - Optional custom sorting function.
@@ -319,7 +315,6 @@ export const compareRows = (rowA: ReactNode, rowB: ReactNode, sortFn?: (_a: Reac
 
 /**
  * Sorts an array of rows based on the specified sort columns and custom sort functions.
- *
  * @param {GridRow[] | ExpandableGridRow[] | HierarchyGridRow[]} rows - Array of rows to be sorted.
  * @param {SortColumn[]} sortColumns - Array of sort column definitions.
  * @param {Function[]} sortFunctions - Array of objects, each containing a column and its custom sort function.
@@ -359,7 +354,6 @@ export const sortRows = (
 
 /**
  * Sorts an array of rows, ensuring child rows are placed under their parents.
- *
  * @param {HierarchyGridRow[]} rows - Array of rows to be sorted.
  * @param {SortColumn[]} sortColumns - Array of sort column definitions.
  * @param {object[]} sortFunctions - Array of custom sort functions for specific columns.
@@ -414,7 +408,6 @@ export const sortHierarchyRows = (
 
 /**
  * Inserts a new row into the row list at the specified index.
- *
  * @param {GridRow[] | HierarchyGridRow[] | ExpandableGridRow[]} rowList - Array of rows to insert the new row into.
  * @param {number} index - Index where the new row should be added.
  * @param {GridRow | HierarchyGridRow | ExpandableGridRow} row - The row to be added.
@@ -429,7 +422,6 @@ export const addRow = (
 
 /**
  * Deletes a row from the specified index of a list of rows.
- *
  * @param {GridRow[] | HierarchyGridRow[] | ExpandableGridRow[]} rowList - Array rows from which to delete a row.
  * @param {number} index - Index where the row should be deleted.
  */
@@ -462,7 +454,6 @@ export const rowFinderBasedOnId = (
 
 /**
  * Recursively selects or deselects children rows based on the checked state.
- *
  * @param {HierarchyGridRow[]} rowList - List of child rows that need to be checked/unchecked.
  * @param {string} uniqueRowId - Key used to uniquely identify each row.
  * @param {Set<ReactNode>} selectedRows - Set of selected rows.
@@ -531,7 +522,6 @@ export const getParentSelectedState = (
 
 /**
  * Returns the starting index for paginated items on a specific page.
- *
  * @param {number} currentPageInternal - The current page number.
  * @param {number} itemsPerPage - Number of items per page.
  * @param {number} page - Target page number.
@@ -542,7 +532,6 @@ export const getMinItemsPerPageIndex = (currentPageInternal: number, itemsPerPag
 
 /**
  * Returns the ending index for paginated items on a specific page.
- *
  * @param {number} minItemsPerPageIndex - The starting index of items for the current page.
  * @param {number} itemsPerPage - Number of items per page.
  * @param {GridRow[] | ExpandableGridRow[] | HierarchyGridRow[]} rows - List of all rows to paginate.
@@ -558,7 +547,6 @@ export const getMaxItemsPerPageIndex = (
 
 /**
  * Filters and returns paginated rows along with their children rows if applicable.
- *
  * @param {GridRow[] | ExpandableGridRow[] | HierarchyGridRow[]} rows - All rows from which to select the paginated ones.
  * @param {string} uniqueRowId - The key used to uniquely identify each row.
  * @param {number} start - The starting index for pagination.

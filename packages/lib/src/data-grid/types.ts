@@ -107,7 +107,14 @@ export type SelectableGridProps =
     };
 
 type PaginatedProps = CommonProps & {
+  /**
+   * If true, paginator will not be displayed.
+   */
   hidePaginator?: false;
+  /**
+   * Number of total items.
+   */
+  totalItems?: number;
   /**
    * If true, a select component for navigation between pages will be displayed.
    */
@@ -132,6 +139,10 @@ type NonPaginatedProps = CommonProps & {
    * If true, paginator will not be displayed.
    */
   hidePaginator: true;
+  /**
+   * Number of total items.
+   */
+  totalItems?: never;
   /**
    * If true, a select component for navigation between pages will be displayed.
    */
@@ -162,11 +173,11 @@ export type CommonProps = {
    */
   onGridRowsChange?: (_rows: GridRow[] | HierarchyGridRow[] | ExpandableGridRow[]) => void;
   /**
-   * Function called whenever a new sorting criteria is applied
+   * Function called whenever a new sorting criteria is applied.
    */
-  onSort?: (_sortRows: SortColumn) => void;
+  onSort?: (_sortColumn?: SortColumn) => void;
   /**
-   * Function called whenever the current page is changed
+   * Function called whenever the current page is changed.
    */
   onPageChange?: (_page: number) => void;
 };

@@ -40,6 +40,7 @@ const DxcDataGrid = ({
   itemsPerPageFunction,
   onSort,
   onPageChange,
+  totalItems,
 }: DataGridPropsType): JSX.Element => {
   const [rowsToRender, setRowsToRender] = useState<GridRow[] | HierarchyGridRow[] | ExpandableGridRow[]>(rows);
   const colorsTheme = useTheme();
@@ -48,38 +49,27 @@ const DxcDataGrid = ({
   const goToPage = (newPage: number) => {
     if (onPageChange) {
       onPageChange(newPage);
-    } else {
-      changePage(newPage);
     }
+    changePage(newPage);
   };
 
   const handleSortChange = (newSortColumns: SortColumn[]) => {
     if (onSort) {
-      if (newSortColumns.length > 0) {
+      if (newSortColumns[0]) {
         const { columnKey, direction } = newSortColumns[0];
         onSort({ columnKey, direction });
+      } else {
+        onSort();
       }
-    } else {
-      setSortColumns(newSortColumns);
     }
+    setSortColumns(newSortColumns);
   };
 
   // Proccess columns prop into usable columns based on other props
   const columnsToRender = useMemo(() => {
-    let expectedColumns = columns
-      // .filter((column) => visibleColumns.includes(column.name))
-      .map((column) => {
-        // if (!visibleColumns.includes(column.name))
-        //   return {
-        //     key: column.key,
-        //     name: column.name,
-        //     colSpan() {
-        //       return 0;
-        //     },
-        //   };
-
-        return convertToRDGColumns(column, summaryRow);
-      });
+    let expectedColumns = columns.map((column) => {
+      return convertToRDGColumns(column, summaryRow);
+    });
     if (expandable) {
       expectedColumns = [
         {
@@ -193,24 +183,26 @@ const DxcDataGrid = ({
 
   const sortedRows = useMemo((): readonly GridRow[] | HierarchyGridRow[] | ExpandableGridRow[] => {
     const sortFunctions = getCustomSortFn(columns);
-    if (expandable && sortColumns.length >= 0) {
-      const sortedRows = sortRows(
-        rowsToRender.filter((row) => !row.isExpandedChildContent),
-        sortColumns,
-        sortFunctions
-      );
-      rowsToRender
-        .filter((row) => row.isExpandedChildContent)
-        .map((expandedRow) =>
-          addRow(
-            sortedRows,
-            sortedRows.findIndex((trigger) => rowKeyGetter(trigger, uniqueRowId) === expandedRow.triggerRowKey) + 1,
-            expandedRow
-          )
+    if (!onSort) {
+      if (expandable && sortColumns.length > 0) {
+        const sortedRows = sortRows(
+          rowsToRender.filter((row) => !row.isExpandedChildContent),
+          sortColumns,
+          sortFunctions
         );
-      return sortedRows;
-    } else if (!expandable && sortColumns.length >= 0) {
-      if (uniqueRowId) return sortHierarchyRows(rowsToRender, sortColumns, sortFunctions, uniqueRowId);
+        rowsToRender
+          .filter((row) => row.isExpandedChildContent)
+          .map((expandedRow) =>
+            addRow(
+              sortedRows,
+              sortedRows.findIndex((trigger) => rowKeyGetter(trigger, uniqueRowId) === expandedRow.triggerRowKey) + 1,
+              expandedRow
+            )
+          );
+        return sortedRows;
+      } else if (!expandable && sortColumns.length > 0) {
+        if (uniqueRowId) return sortHierarchyRows(rowsToRender, sortColumns, sortFunctions, uniqueRowId);
+      }
     }
     return rowsToRender;
   }, [expandable, rowsToRender, sortColumns, uniqueRowId]);
@@ -221,13 +213,14 @@ const DxcDataGrid = ({
     [itemsPerPage, minItemsPerPageIndex, page, rows]
   );
 
-  const filteredRows = useMemo(
-    () =>
-      hidePaginator
-        ? sortedRows
-        : getPaginatedNodes(sortedRows, uniqueRowId, minItemsPerPageIndex, maxItemsPerPageIndex + 1),
-    [sortedRows, minItemsPerPageIndex, maxItemsPerPageIndex]
-  );
+  const filteredRows = useMemo(() => {
+    if (onSort && sortColumns?.length > 0) {
+      onSort?.(sortColumns?.[0]);
+    }
+    return hidePaginator || onPageChange
+      ? sortedRows
+      : getPaginatedNodes(sortedRows, uniqueRowId, minItemsPerPageIndex, maxItemsPerPageIndex + 1);
+  }, [sortedRows, minItemsPerPageIndex, maxItemsPerPageIndex]);
 
   return (
     <ThemeProvider theme={colorsTheme.dataGrid}>
@@ -259,7 +252,7 @@ const DxcDataGrid = ({
         />
         {!hidePaginator && (
           <DxcPaginator
-            totalItems={rows.length}
+            totalItems={totalItems ?? rows.length}
             itemsPerPage={itemsPerPage}
             itemsPerPageOptions={itemsPerPageOptions}
             itemsPerPageFunction={itemsPerPageFunction}

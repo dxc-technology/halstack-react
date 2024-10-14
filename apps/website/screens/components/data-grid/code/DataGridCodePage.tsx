@@ -11,6 +11,8 @@ import selectable from "./examples/selectable";
 import expandable from "./examples/expandable";
 import hierarchical from "./examples/hierarchical";
 import hierarchicalSelectable from "./examples/hierarchicalSelectable";
+import paginatorHidden from "./examples/paginatorHidden";
+import controlled from "./examples/controlled";
 
 const columnsTypeString = `{
   key: string;
@@ -182,6 +184,73 @@ const sections = [
             <td>Function called whenever a cell is edited.</td>
             <td>-</td>
           </tr>
+          <tr>
+            <td>onSort</td>
+            <td>
+              <TableCode>{`(sortColumn?: { columnKey: string, direction: 'ASC' | 'DESC' }) => void`}</TableCode>
+            </td>
+            <td>Function called whenever a new sorting criteria is applied.</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>onPageChange</td>
+            <td>
+              <TableCode>{`(page: number) => void`}</TableCode>
+            </td>
+            <td>Function called whenever the current page is changed.</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>hidePaginator</td>
+            <td>
+              <TableCode>boolean</TableCode>
+            </td>
+            <td>If true, paginator will not be displayed.</td>
+            <td>false</td>
+          </tr>
+          <tr>
+            <td>totalItems</td>
+            <td>
+              <TableCode>number</TableCode>
+            </td>
+            <td>Number of total items.</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>showGoToPage</td>
+            <td>
+              <TableCode>boolean</TableCode>
+            </td>
+            <td>If true, a select component for navigation between pages will be displayed.</td>
+            <td>true</td>
+          </tr>
+          <tr>
+            <td>itemsPerPage</td>
+            <td>
+              <TableCode>number</TableCode>
+            </td>
+            <td>Number of items per page.</td>
+            <td>5</td>
+          </tr>
+          <tr>
+            <td>itemsPerPageOptions</td>
+            <td>
+              <TableCode>number[]</TableCode>
+            </td>
+            <td>An array of numbers representing the items per page options.</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>itemsPerPageFunction</td>
+            <td>
+              <TableCode>{`(value: number) => void`}</TableCode>
+            </td>
+            <td>
+              This function will be called when the user selects an item per page option. The value selected will be
+              passed as a parameter.
+            </td>
+            <td>-</td>
+          </tr>
         </tbody>
       </DxcTable>
     ),
@@ -209,6 +278,14 @@ const sections = [
       {
         title: "Hierarchical and selectable data grid",
         content: <Example example={hierarchicalSelectable} defaultIsVisible />,
+      },
+      {
+        title: "Controlled",
+        content: <Example example={controlled} defaultIsVisible />,
+      },
+      {
+        title: "No paginator",
+        content: <Example example={paginatorHidden} defaultIsVisible />,
       },
     ],
   },

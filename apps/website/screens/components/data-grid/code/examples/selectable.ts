@@ -47,6 +47,7 @@ const code = `() => {
           selectable
           selectedRows={selectedRows}
           onSelectRows={setSelectedRows}
+          itemsPerPage={2}
         />
     </DxcInset>
   );

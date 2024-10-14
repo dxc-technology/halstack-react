@@ -20,14 +20,11 @@ const code = `() => {
   const rows = [
     {
       id: "Row 1",
-      complete: 46,
-      expandedContent: "Expanded content"
+      complete: 46, 
     },
     {
       id: "Row 2",
       complete: 51,
-      expandedContent: "Expanded content",
-      expandedContentHeight: 100
     },
     {
       id: "Row 3",
@@ -41,7 +38,7 @@ const code = `() => {
   
   return (
     <DxcInset space="2rem">
-      <DxcDataGrid columns={columns} rows={rows} expandable uniqueRowId="id" itemsPerPage={2} />
+      <DxcDataGrid columns={columns} rows={rows} uniqueRowId="id" hidePaginator />
     </DxcInset>
   );
 }`;

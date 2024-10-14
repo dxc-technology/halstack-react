@@ -473,6 +473,11 @@ const childRowsPaginated: HierarchyGridRow[] = [
 export const Chromatic = () => {
   const [selectedRows, setSelectedRows] = useState((): Set<number | string> => new Set());
   const [selectedChildRows, setSelectedChildRows] = useState((): Set<number | string> => new Set());
+
+  const [itemsPerPage, setItemsPerPage] = useState(5);
+  const [rowsControlled, setRowsControlled] = useState(expandableRows.slice(0, itemsPerPage));
+  const [page, setPage] = useState(0);
+
   return (
     <>
       <ExampleContainer>
@@ -539,6 +544,46 @@ export const Chromatic = () => {
         <DxcContainer height="250px">
           <DxcDataGrid columns={columns} rows={expandableRows} uniqueRowId="id" hidePaginator />
         </DxcContainer>
+      </ExampleContainer>
+      <ExampleContainer>
+        <Title title="Controlled Rows" theme="light" level={4} />
+        <DxcDataGrid
+          columns={columns}
+          rows={rowsControlled}
+          uniqueRowId="id"
+          onSort={(sortColumn) => {
+            if (sortColumn) {
+              const { columnKey, direction } = sortColumn;
+              console.log(`Sorting the column '${columnKey}' by '${direction}' direction`);
+              setRowsControlled((currentRows) => {
+                return currentRows.sort((a, b) => {
+                  if (direction === "ASC") {
+                    return a[columnKey] < b[columnKey] ? -1 : a[columnKey] > b[columnKey] ? 1 : 0;
+                  } else {
+                    return a[columnKey] < b[columnKey] ? 1 : a[columnKey] > b[columnKey] ? -1 : 0;
+                  }
+                });
+              });
+            } else {
+              console.log("Removed sorting criteria");
+              setRowsControlled(expandableRows.slice(page * itemsPerPage, page * itemsPerPage + itemsPerPage));
+            }
+          }}
+          onPageChange={(page) => {
+            const internalPage = page - 1;
+            setPage(internalPage);
+            setRowsControlled(
+              expandableRows.slice(internalPage * itemsPerPage, internalPage * itemsPerPage + itemsPerPage)
+            );
+          }}
+          itemsPerPage={itemsPerPage}
+          itemsPerPageOptions={[5, 10]}
+          itemsPerPageFunction={(n) => {
+            setItemsPerPage(n);
+            setRowsControlled(expandableRows.slice(0, n));
+          }}
+          totalItems={expandableRows.length}
+        />
       </ExampleContainer>
     </>
   );
@@ -797,8 +842,6 @@ DataGridSortedExpanded.play = async ({ canvasElement }) => {
   await userEvent.click(canvas.getAllByRole("button")[0]);
   await userEvent.click(canvas.getAllByRole("button")[1]);
   await userEvent.click(canvas.getAllByRole("columnheader")[4]);
-  console.log("CANVAS", canvas.getAllByRole("button"));
-  console.log("CANVAS", canvas.getAllByRole("columnheader"));
   await userEvent.click(canvas.getAllByRole("button")[9]);
   await userEvent.click(canvas.getAllByRole("button")[10]);
   await userEvent.click(canvas.getAllByRole("columnheader")[10]);
