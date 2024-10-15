@@ -3,28 +3,26 @@ import ActionIconPropsTypes, { RefType } from "./types";
 import styled from "styled-components";
 import CoreTokens from "../common/coreTokens";
 import DxcIcon from "../icon/Icon";
-import { TooltipWrapper } from "../tooltip/Tooltip";
+import { Tooltip } from "../tooltip/Tooltip";
 
 const DxcActionIcon = forwardRef<RefType, ActionIconPropsTypes>(
-  ({ disabled = false, title, icon, onClick, tabIndex }, ref): JSX.Element => {
-    return (
-      <TooltipWrapper condition={Boolean(title)} label={title}>
-        <ActionIcon
-          aria-label={title}
-          disabled={disabled}
-          onClick={onClick}
-          onMouseDown={(event) => {
-            event.stopPropagation();
-          }}
-          tabIndex={tabIndex}
-          type="button"
-          ref={ref}
-        >
-          {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
-        </ActionIcon>
-      </TooltipWrapper>
-    );
-  }
+  ({ disabled = false, title, icon, onClick, tabIndex }, ref): JSX.Element => (
+    <Tooltip label={title}>
+      <ActionIcon
+        aria-label={title}
+        disabled={disabled}
+        onClick={onClick}
+        onMouseDown={(event) => {
+          event.stopPropagation();
+        }}
+        tabIndex={tabIndex}
+        type="button"
+        ref={ref}
+      >
+        {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
+      </ActionIcon>
+    </Tooltip>
+  )
 );
 
 const ActionIcon = styled.button`

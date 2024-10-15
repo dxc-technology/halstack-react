@@ -2,7 +2,7 @@ import styled from "styled-components";
 import BadgePropsType from "./types";
 import CoreTokens from "../common/coreTokens";
 import DxcIcon from "../icon/Icon";
-import { TooltipWrapper } from "../tooltip/Tooltip";
+import { Tooltip } from "../tooltip/Tooltip";
 
 const contextualColorMap = {
   grey: {
@@ -83,7 +83,7 @@ const DxcBadge = ({
   notificationLimit = 99,
   size = "medium",
 }: BadgePropsType): JSX.Element => (
-  <TooltipWrapper condition={Boolean(title)} label={title}>
+  <Tooltip label={title}>
     <BadgeContainer
       label={label}
       mode={mode}
@@ -100,7 +100,7 @@ const DxcBadge = ({
         </Label>
       )}
     </BadgeContainer>
-  </TooltipWrapper>
+  </Tooltip>
 );
 
 const getColor = (mode, color) => (mode === "contextual" ? contextualColorMap[color].text : CoreTokens.color_white);

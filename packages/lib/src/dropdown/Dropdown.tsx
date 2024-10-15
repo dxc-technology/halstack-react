@@ -8,7 +8,7 @@ import useTheme from "../useTheme";
 import useWidth from "../utils/useWidth";
 import DropdownMenu from "./DropdownMenu";
 import DropdownPropsType from "./types";
-import { TooltipWrapper } from "../tooltip/Tooltip";
+import { Tooltip } from "../tooltip/Tooltip";
 
 const DxcDropdown = ({
   options,
@@ -147,7 +147,7 @@ const DxcDropdown = ({
         size={size}
       >
         <Popover.Root open={isOpen}>
-          <TooltipWrapper condition={Boolean(title)} label={title}>
+          <Tooltip label={title}>
             <Popover.Trigger asChild type={undefined}>
               <DropdownTrigger
                 onClick={handleTriggerOnClick}
@@ -187,7 +187,7 @@ const DxcDropdown = ({
                 )}
               </DropdownTrigger>
             </Popover.Trigger>
-          </TooltipWrapper>
+          </Tooltip>
           <Popover.Portal>
             <Popover.Content asChild sideOffset={1}>
               <DropdownMenu

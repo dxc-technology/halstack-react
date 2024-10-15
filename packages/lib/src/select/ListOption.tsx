@@ -3,7 +3,6 @@ import { OptionProps } from "./types";
 import DxcCheckbox from "../checkbox/Checkbox";
 import DxcIcon from "../icon/Icon";
 import { useState } from "react";
-import { Tooltip } from "@radix-ui/react-tooltip";
 import { TooltipWrapper } from "../tooltip/Tooltip";
 
 const ListOption = ({
