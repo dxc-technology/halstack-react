@@ -8,6 +8,7 @@ import useTheme from "../useTheme";
 import DxcDropdown from "./Dropdown";
 import DropdownMenu from "./DropdownMenu";
 import { Option } from "./types";
+import { DxcInset } from "..";
 
 export default {
   title: "Dropdown",
@@ -409,14 +410,16 @@ const OpinionatedTheme = () => (
 const TooltipTitle = () => (
   <ExampleContainer>
     <Title title="Tooltip" theme="light" level={3} />
-    <DxcDropdown
-      title="Show options"
-      options={options}
-      onSelectOption={(value) => {}}
-      icon="menu"
-      caretHidden
-      margin="large"
-    />
+    <DxcInset bottom="3rem">
+      <DxcDropdown
+        title="Show options"
+        options={options}
+        onSelectOption={(value) => {}}
+        icon="menu"
+        caretHidden
+        margin="large"
+      />
+    </DxcInset>
   </ExampleContainer>
 );
 
