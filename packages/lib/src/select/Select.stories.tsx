@@ -9,7 +9,6 @@ import { HalstackProvider } from "../HalstackContext";
 import useTheme from "../useTheme";
 import Listbox from "./Listbox";
 import DxcSelect from "./Select";
-import { DxcInset } from "..";
 
 export default {
   title: "Select",
@@ -668,11 +667,9 @@ const TooltipOption = () => {
 };
 
 const TooltipClear = () => (
-  <ExampleContainer>
+  <ExampleContainer expanded>
     <Title title="Clear action tooltip" theme="light" level={4} />
-    <DxcInset bottom="3rem">
-      <DxcSelect label="Label" options={single_options} multiple defaultValue={["1", "2", "3", "4"]} />
-    </DxcInset>
+    <DxcSelect label="Label" options={single_options} multiple defaultValue={["1", "2", "3", "4"]} />
   </ExampleContainer>
 );
 
