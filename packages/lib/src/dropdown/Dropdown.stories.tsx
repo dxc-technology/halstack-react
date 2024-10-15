@@ -346,24 +346,6 @@ const DropdownListStates = () => {
   );
 };
 
-const DropdownRightAlignment = () => (
-  <ExampleContainer expanded>
-    <Title title="Dropdown collisions on the right boundary (right)" theme="light" level={4} />
-    <DxcFlex justifyContent="flex-end">
-      <DxcDropdown label="Label" options={options} onSelectOption={(value) => {}} />
-    </DxcFlex>
-  </ExampleContainer>
-);
-
-const DropdownCenterAlignment = () => (
-  <ExampleContainer expanded>
-    <Title title="Dropdown collisions on the right boundary (centered)" theme="light" level={4} />
-    <DxcFlex justifyContent="flex-end">
-      <DxcDropdown label="Label" options={defaultOptions} onSelectOption={(value) => {}} margin="small" />
-    </DxcFlex>
-  </ExampleContainer>
-);
-
 const OpinionatedTheme = () => (
   <>
     <Title title="Opinionated theme" theme="light" level={2} />
@@ -380,9 +362,9 @@ const OpinionatedTheme = () => (
       </HalstackProvider>
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-active">
-      <Title title="Actived" theme="light" level={4} />
+      <Title title="Active" theme="light" level={4} />
       <HalstackProvider theme={opinionatedTheme}>
-        <DxcDropdown label="Actived" options={options} onSelectOption={(value) => {}} icon={iconSVG} />
+        <DxcDropdown label="Active" options={options} onSelectOption={(value) => {}} icon={iconSVG} />
       </HalstackProvider>
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-focus">
@@ -427,8 +409,8 @@ Chromatic.play = async ({ canvasElement }) => {
   await userEvent.click(buttonList[buttonList.length - 1]);
 };
 
-export const Themed = OpinionatedTheme.bind({});
-Themed.play = async ({ canvasElement }) => {
+export const OpinionatedThemed = OpinionatedTheme.bind({});
+OpinionatedThemed.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const buttonList = canvas.getAllByRole("button");
   await userEvent.click(buttonList[buttonList.length - 1]);
@@ -438,18 +420,6 @@ export const MenuStates = DropdownListStates.bind({});
 MenuStates.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   await userEvent.click(canvas.getAllByRole("button")[0]);
-};
-
-export const MenuAlignedRight = DropdownRightAlignment.bind({});
-MenuAlignedRight.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  await userEvent.click(canvas.getByRole("button"));
-};
-
-export const MenuAlignedCenter = DropdownCenterAlignment.bind({});
-MenuAlignedCenter.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  await userEvent.click(canvas.getByRole("button"));
 };
 
 export const MenuTooltip = TooltipTitle.bind({});
