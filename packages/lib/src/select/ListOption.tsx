@@ -2,6 +2,8 @@ import styled from "styled-components";
 import { OptionProps } from "./types";
 import DxcCheckbox from "../checkbox/Checkbox";
 import DxcIcon from "../icon/Icon";
+import { useState } from "react";
+import { TooltipWrapper } from "../tooltip/Tooltip";
 
 const ListOption = ({
   id,
@@ -13,50 +15,53 @@ const ListOption = ({
   isLastOption,
   isSelected,
 }: OptionProps): JSX.Element => {
-  const handleOnMouseEnter = (event: React.MouseEvent) => {
-    const label = event.currentTarget;
-    const optionElement = document.getElementById(id);
-    if (optionElement.title === "" && label.scrollWidth > label.clientWidth) optionElement.title = option.label;
+  const [hasTooltip, setHasTooltip] = useState(false);
+
+  const handleOnMouseEnter = (event: React.MouseEvent<HTMLSpanElement>) => {
+    const text = event.currentTarget;
+    setHasTooltip(text.scrollWidth > text.clientWidth);
   };
 
   return (
-    <OptionItem
-      id={id}
-      onClick={() => {
-        onClick(option);
-      }}
-      visualFocused={visualFocused}
-      selected={isSelected}
-      role="option"
-      aria-selected={!multiple ? isSelected : undefined}
-    >
-      <StyledOption
+    <TooltipWrapper condition={hasTooltip} label={option.label}>
+      <OptionItem
+        id={id}
+        onClick={() => {
+          onClick(option);
+        }}
         visualFocused={visualFocused}
         selected={isSelected}
-        last={isLastOption}
-        grouped={isGroupedOption}
-        multiple={multiple}
+        role="option"
+        aria-selected={!multiple ? isSelected : undefined}
       >
-        {multiple && (
-          <div style={{ display: "flex", pointerEvents: "none" }}>
-            <DxcCheckbox checked={isSelected} tabIndex={-1} />
-          </div>
-        )}
-        {option.icon && (
-          <OptionIcon grouped={isGroupedOption} multiple={multiple}>
-            {typeof option.icon === "string" ? <DxcIcon icon={option.icon} /> : option.icon}
-          </OptionIcon>
-        )}
-        <OptionContent grouped={isGroupedOption} hasIcon={option.icon ? true : false} multiple={multiple}>
-          <OptionLabel onMouseEnter={handleOnMouseEnter}>{option.label}</OptionLabel>
-          {!multiple && isSelected && (
-            <OptionSelectedIndicator>
-              <DxcIcon icon="done" />
-            </OptionSelectedIndicator>
+        <StyledOption
+          visualFocused={visualFocused}
+          selected={isSelected}
+          last={isLastOption}
+          grouped={isGroupedOption}
+          multiple={multiple}
+        >
+          {multiple && (
+            <div style={{ display: "flex", pointerEvents: "none" }}>
+              <DxcCheckbox checked={isSelected} tabIndex={-1} />
+            </div>
           )}
-        </OptionContent>
-      </StyledOption>
-    </OptionItem>
+          {option.icon && (
+            <OptionIcon grouped={isGroupedOption} multiple={multiple}>
+              {typeof option.icon === "string" ? <DxcIcon icon={option.icon} /> : option.icon}
+            </OptionIcon>
+          )}
+          <OptionContent grouped={isGroupedOption} hasIcon={option.icon ? true : false} multiple={multiple}>
+            <OptionLabel onMouseEnter={handleOnMouseEnter}>{option.label}</OptionLabel>
+            {!multiple && isSelected && (
+              <OptionSelectedIndicator>
+                <DxcIcon icon="done" />
+              </OptionSelectedIndicator>
+            )}
+          </OptionContent>
+        </StyledOption>
+      </OptionItem>
+    </TooltipWrapper>
   );
 };
 

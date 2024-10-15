@@ -6,6 +6,7 @@ import DxcContainer from "../container/Container";
 import useTheme from "../useTheme";
 import DxcContextualMenu, { ContextualMenuContext } from "./ContextualMenu";
 import SingleItem from "./SingleItem";
+import { userEvent, within } from "@storybook/test";
 
 export default {
   title: "Contextual Menu",
@@ -214,4 +215,20 @@ export const SingleItemStates = () => {
       </DxcContainer>
     </ThemeProvider>
   );
+};
+
+const ItemWithEllipsis = () => (
+  <ExampleContainer expanded>
+    <Title title="Tooltip in items with ellipsis" theme="light" level={3} />
+    <DxcContainer width="300px">
+      <DxcContextualMenu items={itemsWithTruncatedText} />
+    </DxcContainer>
+  </ExampleContainer>
+);
+
+export const ContextualMenuTooltip = ItemWithEllipsis.bind({});
+ContextualMenuTooltip.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  await userEvent.hover(canvas.getByText("Item with a very long label that should be truncated"));
+  await userEvent.hover(canvas.getByText("Item with a very long label that should be truncated"));
 };
