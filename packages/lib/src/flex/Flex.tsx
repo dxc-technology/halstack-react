@@ -1,31 +1,6 @@
 import styled from "styled-components";
 import FlexPropsType, { StyledProps } from "./types";
 
-const DxcFlex = ({
-  direction = "row",
-  wrap = "nowrap",
-  gap = "0rem",
-  order = 0,
-  grow = 0,
-  shrink = 1,
-  basis = "auto",
-  children,
-  ...props
-}: FlexPropsType): JSX.Element => (
-  <Flex
-    $direction={direction}
-    $wrap={wrap}
-    $order={order}
-    $grow={grow}
-    $shrink={shrink}
-    $basis={basis}
-    $gap={gap}
-    {...props}
-  >
-    {children}
-  </Flex>
-);
-
 const Flex = styled.div<StyledProps>`
   display: flex;
   ${({
@@ -50,5 +25,30 @@ const Flex = styled.div<StyledProps>`
     flex-basis: ${props.$basis};
   `}
 `;
+
+const DxcFlex = ({
+  direction = "row",
+  wrap = "nowrap",
+  gap = "0rem",
+  order = 0,
+  grow = 0,
+  shrink = 1,
+  basis = "auto",
+  children,
+  ...props
+}: FlexPropsType) => (
+  <Flex
+    $direction={direction}
+    $wrap={wrap}
+    $order={order}
+    $grow={grow}
+    $shrink={shrink}
+    $basis={basis}
+    $gap={gap}
+    {...props}
+  >
+    {children}
+  </Flex>
+);
 
 export default DxcFlex;

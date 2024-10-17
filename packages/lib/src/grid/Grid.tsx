@@ -1,8 +1,6 @@
 import styled from "styled-components";
 import GridPropsType, { GridItemProps } from "./types";
 
-const DxcGrid = (props: GridPropsType): JSX.Element => <Grid {...props} />;
-
 const Grid = styled.div<GridPropsType>`
   display: grid;
   ${({ templateColumns }) => templateColumns && `grid-template-columns: ${templateColumns.join(" ")};`}
@@ -55,6 +53,8 @@ const GridItem = styled.div<GridItemProps>`
       ? `place-self: ${placeSelf}`
       : `align-self: ${placeSelf.alignSelf ?? ""}; justify-self: ${placeSelf.justifySelf ?? ""};`)}
 `;
+
+const DxcGrid = (props: GridPropsType) => <Grid {...props} />;
 
 DxcGrid.Item = GridItem;
 export default DxcGrid;
