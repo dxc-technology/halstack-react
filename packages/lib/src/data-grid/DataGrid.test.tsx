@@ -1,5 +1,4 @@
-import { findAllByRole, fireEvent, getAllByRole, render, waitFor } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import { render } from "@testing-library/react";
 import DxcDataGrid from "./DataGrid";
 import { GridColumn, HierarchyGridRow } from "./types";
 
@@ -90,13 +89,15 @@ const rowsWithChildren: HierarchyGridRow[] = [
 
 describe("Data grid component tests", () => {
   beforeAll(() => {
-    global.CSS = {
+    (global as any).CSS = {
       escape: (str) => str,
     };
     window.HTMLElement.prototype.scrollIntoView = jest.fn;
   });
   test("Renders with correct content", async () => {
-    const { getByText, getAllByRole } = await render(<DxcDataGrid columns={columns} rows={expandableRows} />);
+    const { getByText, getAllByRole } = await render(
+      <DxcDataGrid columns={columns} rows={expandableRows} />
+    );
     expect(getByText("46")).toBeTruthy();
     const rows = getAllByRole("row");
     expect(rows.length).toBe(5);
