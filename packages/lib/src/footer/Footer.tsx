@@ -8,7 +8,7 @@ import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
 import { dxcLogo, dxcSmallLogo } from "./Icons";
 import FooterPropsType from "./types";
-import type { Spaces } from "../flex/types";
+import { CoreSpacingTokensType } from "../common/coreTokens";
 
 const DxcFooter = ({
   socialLinks,
@@ -44,7 +44,7 @@ const DxcFooter = ({
         <DxcFlex justifyContent="space-between" alignItems="center" wrap="wrap" gap="1.5rem">
           <LogoContainer mode={mode}>{footerLogo}</LogoContainer>
           {mode === "default" && (
-            <DxcFlex gap={colorsTheme.footer.socialLinksGutter as Spaces}>
+            <DxcFlex gap={colorsTheme.footer.socialLinksGutter as CoreSpacingTokensType}>
               {socialLinks?.map((link, index) => (
                 <Tooltip label={link.title}>
                   <SocialAnchor
