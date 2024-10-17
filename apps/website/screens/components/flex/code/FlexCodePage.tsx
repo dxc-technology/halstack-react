@@ -40,7 +40,7 @@ const sections = [
           <td>justifyContent</td>
           <td>
             <TableCode>
-              'flex-start' | 'flex-end' | 'start' | 'end' | 'left' | 'right' | 'center' | 'space-between' |
+              'flex-start' | 'flex-end' | 'start' | 'end' | 'left' | 'normal' | 'right' | 'center' | 'space-between' |
               'space-around' | 'space-evenly'
             </TableCode>
           </td>
@@ -52,7 +52,7 @@ const sections = [
             for further information.
           </td>
           <td>
-            <TableCode>'flex-start'</TableCode>
+            <TableCode>'normal'</TableCode>
           </td>
         </tr>
         <tr>
@@ -60,7 +60,7 @@ const sections = [
           <td>
             <TableCode>
               'stretch' | 'flex-start' | 'flex-end' | 'start' | 'end' | 'self-start' | 'self-end' | 'center' |
-              'baseline'
+              'baseline' | 'normal'
             </TableCode>
           </td>
           <td>
@@ -71,7 +71,7 @@ const sections = [
             for further information.
           </td>
           <td>
-            <TableCode>'stretch'</TableCode>
+            <TableCode>'normal'</TableCode>
           </td>
         </tr>
         <tr>

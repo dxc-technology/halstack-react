@@ -209,7 +209,7 @@ const sections = [
           <tr>
             <td>size</td>
             <td>
-              <TableCode>'medium' | 'large' | 'fillParent'</TableCode>
+              <TableCode>'small' | 'medium' | 'large' | 'fillParent'</TableCode>
             </td>
             <td>Size of the component.</td>
             <td>
