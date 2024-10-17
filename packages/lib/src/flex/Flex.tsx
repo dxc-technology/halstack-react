@@ -28,7 +28,7 @@ const DxcFlex = ({
   shrink,
   wrap,
   ...props
-}: FlexPropsType): JSX.Element => (
+}: FlexPropsType) => (
   <Flex
     $basis={basis}
     $direction={direction}

@@ -5,7 +5,7 @@ import theme from "./liveEditorTheme";
 import { DxcButton, DxcFlex, useToast } from "@dxc-technology/halstack-react";
 
 type Example = {
-  scope?: object;
+  scope?: Record<string, any>;
   code?: string;
 };
 type ExamplePropTypes = {
@@ -50,7 +50,7 @@ const Example = ({ actionsVisible = true, defaultIsVisible = false, example }: E
 
   return (
     <DxcFlex direction="column" gap="1rem">
-      <LiveProvider scope={example.scope} theme={theme as any} code={example.code}>
+      <LiveProvider code={example.code} scope={example.scope} theme={theme}>
         <StyledPreview>
           <LivePreview />
           <StyledError>
@@ -68,11 +68,7 @@ const Example = ({ actionsVisible = true, defaultIsVisible = false, example }: E
             />
           </DxcFlex>
         )}
-        {isCodeVisible && (
-          <StyledEditor>
-            <LiveEditor />
-          </StyledEditor>
-        )}
+        {isCodeVisible && <StyledEditor><LiveEditor /></StyledEditor>}
       </LiveProvider>
     </DxcFlex>
   );

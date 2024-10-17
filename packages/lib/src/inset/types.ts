@@ -1,34 +1,34 @@
-type Spacing = "0rem" | "0.125rem" | "0.25rem" | "0.5rem" | "1rem" | "1.5rem" | "2rem" | "3rem" | "4rem" | "5rem";
+import { CoreSpacingTokensType } from "../common/coreTokens";
 
 type Props = {
   /**
    * Applies the spacing scale to all sides.
    */
-  space?: Spacing;
+  space?: CoreSpacingTokensType;
   /**
    * Applies the spacing scale to the left and right sides.
    */
-  horizontal?: Spacing;
+  horizontal?: CoreSpacingTokensType;
   /**
    * Applies the spacing scale to the top and bottom sides.
    */
-  vertical?: Spacing;
+  vertical?: CoreSpacingTokensType;
   /**
    * Applies the spacing scale to the top side.
    */
-  top?: Spacing;
+  top?: CoreSpacingTokensType;
   /**
    * Applies the spacing scale to the right side.
    */
-  right?: Spacing;
+  right?: CoreSpacingTokensType;
   /**
    * Applies the spacing scale to the bottom side.
    */
-  bottom?: Spacing;
+  bottom?: CoreSpacingTokensType;
   /**
    * Applies the spacing scale to the left side.
    */
-  left?: Spacing;
+  left?: CoreSpacingTokensType;
   /**
    * Custom content inside the inset.
    */
