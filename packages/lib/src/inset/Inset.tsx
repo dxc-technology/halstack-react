@@ -1,34 +1,8 @@
 import styled from "styled-components";
 import InsetPropsType from "./types";
+import { CoreSpacingTokensType } from "../common/coreTokens";
 
-export default function Inset({
-  space,
-  horizontal,
-  vertical,
-  top,
-  right,
-  bottom,
-  left,
-  children,
-}: InsetPropsType): JSX.Element {
-  return (
-    <StyledInset
-      space={space}
-      horizontal={horizontal}
-      vertical={vertical}
-      top={top}
-      right={right}
-      bottom={bottom}
-      left={left}
-    >
-      {children}
-    </StyledInset>
-  );
-}
-
-function getSpacingValue(spacingName) {
-  return spacingName ? spacingName : "0rem";
-}
+const getSpacingValue = (spacingName: CoreSpacingTokensType) => (spacingName ? spacingName : "0rem");
 
 const StyledInset = styled.div<InsetPropsType>`
   ${({ space, horizontal, vertical, top, right, bottom, left }) => `
@@ -36,3 +10,19 @@ const StyledInset = styled.div<InsetPropsType>`
     ${getSpacingValue(bottom || vertical || space)} ${getSpacingValue(left || horizontal || space)};
 `}
 `;
+
+const Inset = ({ space, horizontal, vertical, top, right, bottom, left, children }: InsetPropsType) => (
+  <StyledInset
+    space={space}
+    horizontal={horizontal}
+    vertical={vertical}
+    top={top}
+    right={right}
+    bottom={bottom}
+    left={left}
+  >
+    {children}
+  </StyledInset>
+);
+
+export default Inset;

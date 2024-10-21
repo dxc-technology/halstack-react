@@ -1,5 +1,9 @@
-export type Spaces = "0rem" | "0.125rem" | "0.25rem" | "0.5rem" | "1rem" | "1.5rem" | "2rem" | "3rem" | "4rem" | "5rem";
-type Gap = { rowGap: Spaces; columnGap?: Spaces } | { rowGap?: Spaces; columnGap: Spaces } | Spaces;
+import { CoreSpacingTokensType } from "../common/coreTokens";
+
+type Gap =
+  | { rowGap: CoreSpacingTokensType; columnGap?: CoreSpacingTokensType }
+  | { rowGap?: CoreSpacingTokensType; columnGap: CoreSpacingTokensType }
+  | CoreSpacingTokensType;
 
 type CommonProps = {
   /**
@@ -13,6 +17,7 @@ type CommonProps = {
     | "start"
     | "end"
     | "left"
+    | "normal"
     | "right"
     | "center"
     | "space-between"
@@ -32,7 +37,8 @@ type CommonProps = {
     | "self-start"
     | "self-end"
     | "center"
-    | "baseline";
+    | "baseline"
+    | "normal";
   /**
    * Sets the align-content CSS property.
    *
@@ -113,7 +119,7 @@ type Props = CommonProps & {
 export type StyledProps = CommonProps & {
   $direction?: "row" | "row-reverse" | "column" | "column-reverse";
   $wrap?: "nowrap" | "wrap" | "wrap-reverse";
-  $gap?: Spaces | Gap;
+  $gap?: CoreSpacingTokensType | Gap;
   $order?: number;
   $grow?: number;
   $shrink?: number;

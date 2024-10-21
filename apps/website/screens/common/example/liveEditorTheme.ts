@@ -1,8 +1,9 @@
 const theme = {
   plain: {
-    color: "#9CDCFE",
-    backgroundColor: "#333333",
+    backgroundColor: "#333",
     borderRadius: "0.25rem",
+    color: "#fff",
+    fontFamily: "Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace",
     fontSize: "0.875rem",
   },
   styles: [

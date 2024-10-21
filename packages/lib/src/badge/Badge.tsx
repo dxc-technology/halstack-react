@@ -1,9 +1,8 @@
 import styled from "styled-components";
 import BadgePropsType from "./types";
-import DxcFlex from "../flex/Flex";
 import CoreTokens from "../common/coreTokens";
 import DxcIcon from "../icon/Icon";
-import DxcTooltip from "../tooltip/Tooltip";
+import { Tooltip } from "../tooltip/Tooltip";
 
 const contextualColorMap = {
   grey: {
@@ -75,14 +74,6 @@ const sizeMap = {
   },
 };
 
-const Label = ({ label, notificationLimit, size }) => {
-  return (
-    <LabelContainer size={size}>
-      {typeof label === "number" ? (label > notificationLimit ? "+" + notificationLimit : label) : label}
-    </LabelContainer>
-  );
-};
-
 const DxcBadge = ({
   label,
   title,
@@ -91,28 +82,26 @@ const DxcBadge = ({
   icon,
   notificationLimit = 99,
   size = "medium",
-}: BadgePropsType): JSX.Element => {
-  return (
-    <DxcTooltip label={title}>
-      <BadgeContainer
-        label={label}
-        mode={mode}
-        color={(mode === "contextual" && color) || undefined}
-        size={size}
-        aria-label={title}
-      >
-        {(mode === "contextual" && (
-          <DxcFlex gap="0.125rem" alignItems="center">
-            {icon && (
-              <IconContainer size={size}>{typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}</IconContainer>
-            )}
-            <Label label={label} notificationLimit={notificationLimit} size={size} />
-          </DxcFlex>
-        )) || <Label label={label} notificationLimit={notificationLimit} size={size} />}
-      </BadgeContainer>
-    </DxcTooltip>
-  );
-};
+}: BadgePropsType): JSX.Element => (
+  <Tooltip label={title}>
+    <BadgeContainer
+      label={label}
+      mode={mode}
+      color={(mode === "contextual" && color) || undefined}
+      size={size}
+      aria-label={title}
+    >
+      {mode === "contextual" && icon && (
+        <IconContainer size={size}>{typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}</IconContainer>
+      )}
+      {label && (
+        <Label size={size}>
+          {typeof label === "number" ? (label > notificationLimit ? "+" + notificationLimit : label) : label}
+        </Label>
+      )}
+    </BadgeContainer>
+  </Tooltip>
+);
 
 const getColor = (mode, color) => (mode === "contextual" ? contextualColorMap[color].text : CoreTokens.color_white);
 
@@ -128,17 +117,18 @@ const BadgeContainer = styled.div<{
   color: BadgePropsType["color"];
   size: BadgePropsType["size"];
 }>`
-  display: flex;
-  color: ${(props) => getColor(props.mode, props.color)};
-  background-color: ${(props) => getBackgroundColor(props.mode, props.color)};
+  box-sizing: border-box;
   border-radius: ${(props) => sizeMap[props.size].borderRadius};
+  padding: ${(props) => (props.label ? getPadding(props.mode, props.size) : "")};
   width: ${(props) => (!props.label && props.mode === "notification" ? sizeMap[props.size].width : "fit-content")};
   min-width: ${(props) => props.mode === "notification" && sizeMap[props.size].minWidth};
   height: ${(props) => sizeMap[props.size].height};
-  padding: ${(props) => (props.label ? getPadding(props.mode, props.size) : "")};
+  display: flex;
   align-items: center;
+  gap: ${CoreTokens.spacing_2};
   justify-content: center;
-  box-sizing: border-box;
+  background-color: ${(props) => getBackgroundColor(props.mode, props.color)};
+  color: ${(props) => getColor(props.mode, props.color)};
 `;
 
 const IconContainer = styled.div<{ size: BadgePropsType["size"] }>`
@@ -151,7 +141,7 @@ const IconContainer = styled.div<{ size: BadgePropsType["size"] }>`
   }
 `;
 
-const LabelContainer = styled.span<{ size: BadgePropsType["size"] }>`
+const Label = styled.span<{ size: BadgePropsType["size"] }>`
   font-family: ${CoreTokens.type_sans};
   font-size: ${(props) => sizeMap[props.size].fontSize};
   font-weight: ${CoreTokens.type_semibold};

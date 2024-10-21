@@ -1,28 +1,16 @@
 import { ThemeProvider } from "styled-components";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
-import preview from "../../.storybook/preview";
-import { disabledRules } from "../../test/accessibility/rules/specific/contextual-menu/disabledRules";
 import DxcBadge from "../badge/Badge";
 import DxcContainer from "../container/Container";
 import useTheme from "../useTheme";
 import DxcContextualMenu, { ContextualMenuContext } from "./ContextualMenu";
 import SingleItem from "./SingleItem";
+import { userEvent, within } from "@storybook/test";
 
 export default {
   title: "Contextual Menu",
   component: DxcContextualMenu,
-  parameters: {
-    // TODO: REMOVE
-    a11y: {
-      config: {
-        rules: [
-          ...disabledRules.map((ruleId) => ({ id: ruleId, reviewOnFail: true })),
-          ...preview?.parameters?.a11y?.config?.rules,
-        ],
-      },
-    },
-  },
 };
 
 const items = [{ label: "Item 1" }, { label: "Item 2" }, { label: "Item 3" }, { label: "Item 4" }];
@@ -227,4 +215,20 @@ export const SingleItemStates = () => {
       </DxcContainer>
     </ThemeProvider>
   );
+};
+
+const ItemWithEllipsis = () => (
+  <ExampleContainer expanded>
+    <Title title="Tooltip in items with ellipsis" theme="light" level={3} />
+    <DxcContainer width="300px">
+      <DxcContextualMenu items={itemsWithTruncatedText} />
+    </DxcContainer>
+  </ExampleContainer>
+);
+
+export const ContextualMenuTooltip = ItemWithEllipsis.bind({});
+ContextualMenuTooltip.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  await userEvent.hover(canvas.getByText("Item with a very long label that should be truncated"));
+  await userEvent.hover(canvas.getByText("Item with a very long label that should be truncated"));
 };
