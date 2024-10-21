@@ -12,13 +12,14 @@ import expandable from "./examples/expandable";
 import hierarchical from "./examples/hierarchical";
 import hierarchicalSelectable from "./examples/hierarchicalSelectable";
 import paginator from "./examples/paginator";
-import controlled from "./examples/controlled";
+import customSorting from "./examples/customSort";
 
 const columnsTypeString = `{
   key: string;
   label: string;
   resizable?: boolean;
   sortable?: boolean;
+  sortFn?: (a: ReactNode, b: ReactNode) => number;
   draggable?: boolean;
   textEditable?: boolean;
   summaryKey?: string;
@@ -78,6 +79,9 @@ const sections = [
                 </li>
                 <li>
                   <b>sortable</b>: Whether the column is sortable or not.
+                </li>
+                <li>
+                  <b>sortFn</b>: Custom function with the criteria for the column sorting.
                 </li>
                 <li>
                   <b>draggable</b>: Whether the column can be dragged or not to another position or not.
@@ -167,7 +171,7 @@ const sections = [
           <tr>
             <td>uniqueRowId</td>
             <td>
-              <TableCode>string</TableCode>
+              <TableCode>string | number</TableCode>
             </td>
             <td>
               This prop indicates the unique key that can be used to identify each row. This prop is mandatory if{" "}
@@ -189,7 +193,10 @@ const sections = [
             <td>
               <TableCode>{`(sortColumn?: { columnKey: string, direction: 'ASC' | 'DESC' }) => void`}</TableCode>
             </td>
-            <td>Function called whenever a new sorting criteria is applied.</td>
+            <td>
+              Function called whenever a column is sorted. Receives the sorted column and direction, or `undefined` if
+              no sorting is applied.
+            </td>
             <td>-</td>
           </tr>
           <tr>
@@ -201,12 +208,12 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
-            <td>hidePaginator</td>
+            <td>showPaginator</td>
             <td>
               <TableCode>boolean</TableCode>
             </td>
-            <td>If true, paginator will not be displayed.</td>
-            <td>true</td>
+            <td>If true, paginator will be displayed.</td>
+            <td>false</td>
           </tr>
           <tr>
             <td>totalItems</td>
@@ -280,12 +287,12 @@ const sections = [
         content: <Example example={hierarchicalSelectable} defaultIsVisible />,
       },
       {
-        title: "Controlled",
-        content: <Example example={controlled} defaultIsVisible />,
-      },
-      {
         title: "Paginator",
         content: <Example example={paginator} defaultIsVisible />,
+      },
+      {
+        title: "Custom sorting",
+        content: <Example example={customSorting} defaultIsVisible />,
       },
     ],
   },

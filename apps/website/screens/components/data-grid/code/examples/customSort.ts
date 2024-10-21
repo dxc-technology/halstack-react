@@ -73,7 +73,7 @@ const code = `() => {
             setPage(internalPage);
             setRowsControlled(rows.slice(internalPage * itemsPerPage, internalPage * itemsPerPage + itemsPerPage));
           }}
-          hidePaginator={false}
+          showPaginator
           itemsPerPage={itemsPerPage}
           itemsPerPageOptions={[2, 4]}
           itemsPerPageFunction={(n) => 

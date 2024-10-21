@@ -65,7 +65,7 @@ export type ExpandableRows = {
   /**
    * This prop indicates the unique key that can be used to identify each row. This prop is mandatory if selectable is set to true, expandable is set to true or rows is of type HierarchyGridRow[].
    */
-  uniqueRowId: string;
+  uniqueRowId: string | number;
 };
 
 export type HierarchyRows = {
@@ -73,7 +73,7 @@ export type HierarchyRows = {
   /**
    * This prop indicates the unique key that can be used to identify each row. This prop is mandatory if selectable is set to true, expandable is set to true or rows is of type HierarchyGridRow[].
    */
-  uniqueRowId: string;
+  uniqueRowId: string | number;
   /**
    * Whether the rows can expand or not.
    */
@@ -97,7 +97,7 @@ export type SelectableGridProps =
       /**
        * This prop indicates the unique key that can be used to identify each row. This prop is mandatory if selectable is set to true, expandable is set to true or rows is of type HierarchyGridRow[].
        */
-      uniqueRowId: string;
+      uniqueRowId: string | number;
     }
   | {
       selectable?: false;
@@ -108,9 +108,9 @@ export type SelectableGridProps =
 
 type PaginatedProps = {
   /**
-   * If true, paginator will not be displayed.
+   * If true, paginator will be displayed.
    */
-  hidePaginator?: false;
+  showPaginator?: true;
   /**
    * Number of total items.
    */
@@ -140,9 +140,9 @@ type PaginatedProps = {
 
 type NonPaginatedProps = {
   /**
-   * If true, paginator will not be displayed.
+   * If true, paginator will be displayed.
    */
-  hidePaginator: true;
+  showPaginator: false;
   /**
    * Number of total items.
    */
@@ -181,7 +181,8 @@ export type CommonProps = {
    */
   onGridRowsChange?: (_rows: GridRow[] | HierarchyGridRow[] | ExpandableGridRow[]) => void;
   /**
-   * Function called whenever a new sorting criteria is applied.
+   * Function called whenever a column is sorted. Receives the sorted
+   * column and direction, or `undefined` if no sorting is applied.
    */
   onSort?: (_sortColumn?: SortColumn) => void;
 };

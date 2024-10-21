@@ -33,7 +33,7 @@ const DxcDataGrid = ({
   uniqueRowId,
   summaryRow,
   onGridRowsChange,
-  hidePaginator = true,
+  showPaginator = false,
   showGoToPage = true,
   itemsPerPage = 5,
   itemsPerPageOptions,
@@ -217,7 +217,7 @@ const DxcDataGrid = ({
     if (onSort && sortColumns?.length > 0) {
       onSort?.(sortColumns?.[0]);
     }
-    return hidePaginator || onPageChange
+    return !showPaginator || onPageChange
       ? sortedRows
       : getPaginatedNodes(sortedRows, uniqueRowId, minItemsPerPageIndex, maxItemsPerPageIndex + 1);
   }, [sortedRows, minItemsPerPageIndex, maxItemsPerPageIndex]);
@@ -250,7 +250,7 @@ const DxcDataGrid = ({
           summaryRowHeight={colorsTheme.dataGrid.summaryRowHeight}
           className="fill-grid"
         />
-        {!hidePaginator && (
+        {showPaginator && (
           <DxcPaginator
             totalItems={totalItems ?? rows.length}
             itemsPerPage={itemsPerPage}

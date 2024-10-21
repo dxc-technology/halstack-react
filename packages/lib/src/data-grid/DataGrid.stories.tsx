@@ -547,7 +547,7 @@ export const Chromatic = () => {
           columns={columns}
           rows={rowsControlled}
           uniqueRowId="id"
-          hidePaginator={false}
+          showPaginator
           onSort={(sortColumn) => {
             if (sortColumn) {
               const { columnKey, direction } = sortColumn;
@@ -688,11 +688,11 @@ export const Paginator = () => {
     <>
       <ExampleContainer>
         <Title title="Default" theme="light" level={4} />
-        <DxcDataGrid columns={columns} rows={expandableRows} uniqueRowId="id" hidePaginator={false} />
+        <DxcDataGrid columns={columns} rows={expandableRows} uniqueRowId="id" />
       </ExampleContainer>
       <ExampleContainer>
         <Title title="Expandable" theme="light" level={4} />
-        <DxcDataGrid columns={columns} rows={expandableRows} uniqueRowId="id" expandable hidePaginator={false} />
+        <DxcDataGrid columns={columns} rows={expandableRows} uniqueRowId="id" expandable showPaginator />
       </ExampleContainer>
       <ExampleContainer>
         <Title title="Selectable" theme="light" level={4} />
@@ -703,7 +703,7 @@ export const Paginator = () => {
           selectable
           selectedRows={selectedRows}
           onSelectRows={setSelectedRows}
-          hidePaginator={false}
+          showPaginator
         />
       </ExampleContainer>
       <ExampleContainer>
@@ -716,12 +716,12 @@ export const Paginator = () => {
           selectable
           selectedRows={selectedRows}
           onSelectRows={setSelectedRows}
-          hidePaginator={false}
+          showPaginator
         />
       </ExampleContainer>
       <ExampleContainer>
         <Title title="DataGrid with children" theme="light" level={4} />
-        <DxcDataGrid columns={childcolumns} rows={childRows} uniqueRowId="id" hidePaginator={false} />
+        <DxcDataGrid columns={childcolumns} rows={childRows} uniqueRowId="id" showPaginator />
       </ExampleContainer>
       <ExampleContainer>
         <Title title="DataGrid with children" theme="light" level={4} />
@@ -732,7 +732,7 @@ export const Paginator = () => {
           selectable
           selectedRows={selectedChildRows}
           onSelectRows={setSelectedChildRows}
-          hidePaginator={false}
+          showPaginator
           itemsPerPage={2}
         />
       </ExampleContainer>
@@ -743,7 +743,7 @@ export const Paginator = () => {
           rows={expandableRows}
           summaryRow={{ label: "Total", total: 100 }}
           uniqueRowId="id"
-          hidePaginator={false}
+          showPaginator
         />
       </ExampleContainer>
     </>
@@ -771,7 +771,7 @@ const DataGridSortedChildren = () => {
           columns={childcolumns}
           rows={childRowsPaginated}
           uniqueRowId="id"
-          hidePaginator={false}
+          showPaginator
           selectable
           onSelectRows={setSelectedChildRows}
           selectedRows={selectedChildRows}
@@ -828,7 +828,7 @@ const DataGridSortedExpandable = () => {
           uniqueRowId="task"
           expandable
           selectable
-          hidePaginator={false}
+          showPaginator
           onSelectRows={setSelectedRows}
           selectedRows={selectedRows}
           itemsPerPage={5}
