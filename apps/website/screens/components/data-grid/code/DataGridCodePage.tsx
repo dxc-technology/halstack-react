@@ -174,9 +174,9 @@ const sections = [
               <TableCode>string</TableCode>
             </td>
             <td>
-              This prop indicates the unique key that can be used to identify each row. This prop is mandatory if{" "}
-              <Code>selectable</Code> is set to true, <Code>expandable</Code> is set to true or <Code>rows</Code> is of
-              type <Code>HierarchyGridRow[]</Code>.
+              This prop indicates the unique key that can be used to identify each row. The value of that key can be
+              either a number or a string. This prop is mandatory if <Code>selectable</Code> is set to true,{" "}
+              <Code>expandable</Code> is set to true or <Code>rows</Code> is of type <Code>HierarchyGridRow[]</Code>.
             </td>
             <td>-</td>
           </tr>
