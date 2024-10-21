@@ -11,12 +11,15 @@ import selectable from "./examples/selectable";
 import expandable from "./examples/expandable";
 import hierarchical from "./examples/hierarchical";
 import hierarchicalSelectable from "./examples/hierarchicalSelectable";
+import paginator from "./examples/paginator";
+import customSorting from "./examples/customSort";
 
 const columnsTypeString = `{
   key: string;
   label: string;
   resizable?: boolean;
   sortable?: boolean;
+  sortFn?: (a: ReactNode, b: ReactNode) => number;
   draggable?: boolean;
   textEditable?: boolean;
   summaryKey?: string;
@@ -76,6 +79,9 @@ const sections = [
                 </li>
                 <li>
                   <b>sortable</b>: Whether the column is sortable or not.
+                </li>
+                <li>
+                  <b>sortFn</b>: Custom function with the criteria for the column sorting.
                 </li>
                 <li>
                   <b>draggable</b>: Whether the column can be dragged or not to another position or not.
@@ -168,9 +174,9 @@ const sections = [
               <TableCode>string</TableCode>
             </td>
             <td>
-              This prop indicates the unique key that can be used to identify each row. This prop is mandatory if{" "}
-              <Code>selectable</Code> is set to true, <Code>expandable</Code> is set to true or <Code>rows</Code> is of
-              type <Code>HierarchyGridRow[]</Code>.
+              This prop indicates the unique key that can be used to identify each row. The value of that key can be
+              either a number or a string. This prop is mandatory if <Code>selectable</Code> is set to true,{" "}
+              <Code>expandable</Code> is set to true or <Code>rows</Code> is of type <Code>HierarchyGridRow[]</Code>.
             </td>
             <td>-</td>
           </tr>
@@ -180,6 +186,76 @@ const sections = [
               <TableCode>{`(rows: GridRow[] | HierarchyGridRow[] | ExpandableGridRow[]) => void`}</TableCode>
             </td>
             <td>Function called whenever a cell is edited.</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>onSort</td>
+            <td>
+              <TableCode>{`(sortColumn?: { columnKey: string, direction: 'ASC' | 'DESC' }) => void`}</TableCode>
+            </td>
+            <td>
+              Function called whenever a column is sorted. Receives the sorted column and direction, or `undefined` if
+              no sorting is applied.
+            </td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>onPageChange</td>
+            <td>
+              <TableCode>{`(page: number) => void`}</TableCode>
+            </td>
+            <td>Function called whenever the current page is changed.</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>showPaginator</td>
+            <td>
+              <TableCode>boolean</TableCode>
+            </td>
+            <td>If true, paginator will be displayed.</td>
+            <td>false</td>
+          </tr>
+          <tr>
+            <td>totalItems</td>
+            <td>
+              <TableCode>number</TableCode>
+            </td>
+            <td>Number of total items.</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>showGoToPage</td>
+            <td>
+              <TableCode>boolean</TableCode>
+            </td>
+            <td>If true, a select component for navigation between pages will be displayed.</td>
+            <td>true</td>
+          </tr>
+          <tr>
+            <td>itemsPerPage</td>
+            <td>
+              <TableCode>number</TableCode>
+            </td>
+            <td>Number of items per page.</td>
+            <td>5</td>
+          </tr>
+          <tr>
+            <td>itemsPerPageOptions</td>
+            <td>
+              <TableCode>number[]</TableCode>
+            </td>
+            <td>An array of numbers representing the items per page options.</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>itemsPerPageFunction</td>
+            <td>
+              <TableCode>{`(value: number) => void`}</TableCode>
+            </td>
+            <td>
+              This function will be called when the user selects an item per page option. The value selected will be
+              passed as a parameter.
+            </td>
             <td>-</td>
           </tr>
         </tbody>
@@ -209,6 +285,14 @@ const sections = [
       {
         title: "Hierarchical and selectable data grid",
         content: <Example example={hierarchicalSelectable} defaultIsVisible />,
+      },
+      {
+        title: "Paginator",
+        content: <Example example={paginator} defaultIsVisible />,
+      },
+      {
+        title: "Custom sorting",
+        content: <Example example={customSorting} defaultIsVisible />,
       },
     ],
   },

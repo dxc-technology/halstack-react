@@ -1,3 +1,6 @@
+import { ReactNode } from "react";
+import { SortColumn } from "react-data-grid";
+
 export type GridColumn = {
   /**
    * Key that will be rendered from each row in rows.
@@ -15,6 +18,10 @@ export type GridColumn = {
    * Whether the column is sortable or not.
    */
   sortable?: boolean;
+  /**
+   * Custom criteria for sorting the column.
+   */
+  sortFn?: (_a: ReactNode, _b: ReactNode) => number;
   /**
    * Whether the column is draggable or not.
    */
@@ -37,7 +44,7 @@ export type GridRow = {
   /**
    * List of rows that will be rendered in each cell based on the key in each column.
    */
-  [key: string]: React.ReactNode | undefined;
+  [key: string]: ReactNode | undefined;
 };
 
 export type HierarchyGridRow = GridRow & {
@@ -45,7 +52,7 @@ export type HierarchyGridRow = GridRow & {
 };
 
 export type ExpandableGridRow = GridRow & {
-  expandedContent?: React.ReactNode;
+  expandedContent?: ReactNode;
   expandedContentHeight?: number;
 };
 
@@ -99,6 +106,70 @@ export type SelectableGridProps =
       uniqueRowId?: string;
     };
 
+type PaginatedProps = {
+  /**
+   * If true, paginator will be displayed.
+   */
+  showPaginator?: true;
+  /**
+   * Number of total items.
+   */
+  totalItems?: number;
+  /**
+   * If true, a select component for navigation between pages will be displayed.
+   */
+  showGoToPage?: boolean;
+  /**
+   * Number of items per page.
+   */
+  itemsPerPage?: number;
+  /**
+   * An array of numbers representing the items per page options.
+   */
+  itemsPerPageOptions?: number[];
+  /**
+   * This function will be called when the user selects an item per page
+   * option. The value selected will be passed as a parameter.
+   */
+  itemsPerPageFunction?: (value: number) => void;
+  /**
+   * Function called whenever the current page is changed.
+   */
+  onPageChange?: (_page: number) => void;
+};
+
+type NonPaginatedProps = {
+  /**
+   * If true, paginator will be displayed.
+   */
+  showPaginator: false;
+  /**
+   * Number of total items.
+   */
+  totalItems?: never;
+  /**
+   * If true, a select component for navigation between pages will be displayed.
+   */
+  showGoToPage?: never;
+  /**
+   * Number of items per page.
+   */
+  itemsPerPage?: never;
+  /**
+   * An array of numbers representing the items per page options.
+   */
+  itemsPerPageOptions?: never;
+  /**
+   * This function will be called when the user selects an item per page
+   * option. The value selected will be passed as a parameter.
+   */
+  itemsPerPageFunction?: never;
+  /**
+   * Function called whenever the current page is changed.
+   */
+  onPageChange?: never;
+};
+
 export type CommonProps = {
   columns: GridColumn[];
   /**
@@ -108,7 +179,12 @@ export type CommonProps = {
   /**
    * Function called whenever a cell is edited.
    */
-  onGridRowsChange?: (rows: GridRow[] | HierarchyGridRow[] | ExpandableGridRow[]) => void;
+  onGridRowsChange?: (_rows: GridRow[] | HierarchyGridRow[] | ExpandableGridRow[]) => void;
+  /**
+   * Function called whenever a column is sorted. Receives the sorted
+   * column and direction, or `undefined` if no sorting is applied.
+   */
+  onSort?: (_sortColumn?: SortColumn) => void;
 };
 
 export type BasicGridProps = {
@@ -120,6 +196,7 @@ export type BasicGridProps = {
 };
 
 type Props = CommonProps &
+  (PaginatedProps | NonPaginatedProps) &
   (
     | (BasicGridProps & SelectableGridProps)
     | (ExpandableRows & SelectableGridProps)
