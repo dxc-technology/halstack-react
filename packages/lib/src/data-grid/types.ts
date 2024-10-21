@@ -65,7 +65,7 @@ export type ExpandableRows = {
   /**
    * This prop indicates the unique key that can be used to identify each row. This prop is mandatory if selectable is set to true, expandable is set to true or rows is of type HierarchyGridRow[].
    */
-  uniqueRowId: string | number;
+  uniqueRowId: string;
 };
 
 export type HierarchyRows = {
@@ -73,7 +73,7 @@ export type HierarchyRows = {
   /**
    * This prop indicates the unique key that can be used to identify each row. This prop is mandatory if selectable is set to true, expandable is set to true or rows is of type HierarchyGridRow[].
    */
-  uniqueRowId: string | number;
+  uniqueRowId: string;
   /**
    * Whether the rows can expand or not.
    */
@@ -97,7 +97,7 @@ export type SelectableGridProps =
       /**
        * This prop indicates the unique key that can be used to identify each row. This prop is mandatory if selectable is set to true, expandable is set to true or rows is of type HierarchyGridRow[].
        */
-      uniqueRowId: string | number;
+      uniqueRowId: string;
     }
   | {
       selectable?: false;

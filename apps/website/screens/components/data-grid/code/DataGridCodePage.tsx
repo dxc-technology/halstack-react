@@ -171,7 +171,7 @@ const sections = [
           <tr>
             <td>uniqueRowId</td>
             <td>
-              <TableCode>string | number</TableCode>
+              <TableCode>string</TableCode>
             </td>
             <td>
               This prop indicates the unique key that can be used to identify each row. This prop is mandatory if{" "}
