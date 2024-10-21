@@ -95,7 +95,7 @@ type Props = {
   /**
    * Size of the component.
    */
-  size?: "medium" | "large" | "fillParent";
+  size?: "small" | "medium" | "large" | "fillParent";
   /**
    * Value of the tabindex attribute.
    */

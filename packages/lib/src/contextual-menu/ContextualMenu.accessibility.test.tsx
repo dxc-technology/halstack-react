@@ -3,16 +3,6 @@ import { axe } from "../../test/accessibility/axe-helper.js";
 import DxcBadge from "../badge/Badge";
 import DxcContextualMenu from "./ContextualMenu";
 
-// TODO: REMOVE
-import { disabledRules as rules } from "../../test/accessibility/rules/specific/contextual-menu/disabledRules.js";
-
-const disabledRules = {
-  rules: rules.reduce((rulesObj, rule) => {
-    rulesObj[rule] = { enabled: false };
-    return rulesObj;
-  }, {}),
-};
-
 const badge_icon = (
   <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
     <path d="M11 17H13V11H11V17ZM12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20ZM11 9H13V7H11V9Z" />
@@ -53,10 +43,60 @@ const itemsWithTruncatedText = [
   },
 ];
 
+const items = [
+  {
+    title: "Business services",
+    items: [
+      {
+        label: "Home",
+        icon: "home",
+        items: [
+          { label: "Data & statistics" },
+          {
+            label: "Apps",
+            items: [
+              {
+                label: "Sales data module",
+                badge: <DxcBadge color="purple" label="Experimental" />,
+              },
+              { label: "Central platform" },
+            ],
+          },
+        ],
+      },
+      {
+        label: "Data warehouse",
+        icon: "database",
+        items: [
+          {
+            label: "Data & statistics",
+          },
+          {
+            label: "Sales performance",
+          },
+          { 
+            label: "Key metrics" 
+          },
+        ],
+      },
+    ],
+  },
+  {
+    items: [
+      { label: "Support", icon: "support_agent" },
+    ],
+  },
+];
+
 describe("Context menu accessibility tests", () => {
   it("Should not have basic accessibility issues", async () => {
     const { container } = render(<DxcContextualMenu items={itemsWithTruncatedText} />);
-    const results = await axe(container, disabledRules);
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
+  });
+  it("A complex contextual menu should not have basic accessibility issues", async () => {
+    const { container } = render(<DxcContextualMenu items={items} />);
+    const results = await axe(container);
     expect(results).toHaveNoViolations();
   });
 });

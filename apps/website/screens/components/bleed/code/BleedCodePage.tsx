@@ -8,6 +8,8 @@ import basicUsage from "./examples/basicUsage";
 import customSizes from "./examples/customSides";
 import StatusBadge from "@/common/StatusBadge";
 
+const coreSpacingTokensTypeString = `'0rem' | '0.125rem' | '0.25rem' | '0.5rem' | '0.75rem' | '1rem' | '1.5rem' | '2rem' | '2.5rem' | '3rem' | '3.5rem' | '4rem' | '5rem' | '6rem' | '7rem'`;
+
 const sections = [
   {
     title: "Props",
@@ -22,86 +24,58 @@ const sections = [
         <tr>
           <td>space</td>
           <td>
-            <TableCode>
-              '0rem' | '0.125rem' | '0.25rem' | '0.5rem' | '1rem' | '1.5rem' | '2rem' | '3rem' | '4rem' | '5rem'
-            </TableCode>
+            <TableCode>{coreSpacingTokensTypeString}</TableCode>
           </td>
           <td>Applies the spacing scale to all sides.</td>
-          <td>
-            <TableCode>'0rem'</TableCode>
-          </td>
+          <td>-</td>
         </tr>
         <tr>
           <td>horizontal</td>
           <td>
-            <TableCode>
-              '0rem' | '0.125rem' | '0.25rem' | '0.5rem' | '1rem' | '1.5rem' | '2rem' | '3rem' | '4rem' | '5rem'
-            </TableCode>
+            <TableCode>{coreSpacingTokensTypeString}</TableCode>
           </td>
           <td>Applies the spacing scale to the left and right sides.</td>
-          <td>
-            <TableCode>'0rem'</TableCode>
-          </td>
+          <td>-</td>
         </tr>
         <tr>
           <td>vertical</td>
           <td>
-            <TableCode>
-              '0rem' | '0.125rem' | '0.25rem' | '0.5rem' | '1rem' | '1.5rem' | '2rem' | '3rem' | '4rem' | '5rem'
-            </TableCode>
+            <TableCode>{coreSpacingTokensTypeString}</TableCode>
           </td>
           <td>Applies the spacing scale to the top and bottom sides.</td>
-          <td>
-            <TableCode>'0rem'</TableCode>
-          </td>
+          <td>-</td>
         </tr>
         <tr>
           <td>top</td>
           <td>
-            <TableCode>
-              '0rem' | '0.125rem' | '0.25rem' | '0.5rem' | '1rem' | '1.5rem' | '2rem' | '3rem' | '4rem' | '5rem'
-            </TableCode>
+            <TableCode>{coreSpacingTokensTypeString}</TableCode>
           </td>
           <td>Applies the spacing scale to the top side.</td>
-          <td>
-            <TableCode>'0rem'</TableCode>
-          </td>
+          <td>-</td>
         </tr>
         <tr>
           <td>right</td>
           <td>
-            <TableCode>
-              '0rem' | '0.125rem' | '0.25rem' | '0.5rem' | '1rem' | '1.5rem' | '2rem' | '3rem' | '4rem' | '5rem'
-            </TableCode>
+            <TableCode>{coreSpacingTokensTypeString}</TableCode>
           </td>
           <td>Applies the spacing scale to the right side.</td>
-          <td>
-            <TableCode>'0rem'</TableCode>
-          </td>
+          <td>-</td>
         </tr>
         <tr>
           <td>bottom</td>
           <td>
-            <TableCode>
-              '0rem' | '0.125rem' | '0.25rem' | '0.5rem' | '1rem' | '1.5rem' | '2rem' | '3rem' | '4rem' | '5rem'
-            </TableCode>
+            <TableCode>{coreSpacingTokensTypeString}</TableCode>
           </td>
           <td>Applies the spacing scale to the bottom side.</td>
-          <td>
-            <TableCode>'0rem'</TableCode>
-          </td>
+          <td>-</td>
         </tr>
         <tr>
           <td>left</td>
           <td>
-            <TableCode>
-              '0rem' | '0.125rem' | '0.25rem' | '0.5rem' | '1rem' | '1.5rem' | '2rem' | '3rem' | '4rem' | '5rem'
-            </TableCode>
+            <TableCode>{coreSpacingTokensTypeString}</TableCode>
           </td>
           <td>Applies the spacing scale to the left side.</td>
-          <td>
-            <TableCode>'0rem'</TableCode>
-          </td>
+          <td>-</td>
         </tr>
         <tr>
           <td>

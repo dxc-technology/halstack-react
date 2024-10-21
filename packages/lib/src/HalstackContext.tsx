@@ -255,6 +255,7 @@ const parseTheme = (theme: DeepPartial<OpinionatedTheme>): AdvancedTheme => {
   selectTokens.labelFontColor = theme?.select?.fontColor ?? selectTokens.labelFontColor;
   selectTokens.helperTextFontColor = theme?.select?.fontColor ?? selectTokens.helperTextFontColor;
   selectTokens.listOptionFontColor = theme?.select?.optionFontColor ?? selectTokens.listOptionFontColor;
+  selectTokens.listOptionIconColor = theme?.select?.optionFontColor ?? selectTokens.listOptionIconColor;
   selectTokens.placeholderFontColor = addLightness(30, theme?.select?.fontColor) ?? selectTokens.placeholderFontColor;
   selectTokens.collapseIndicatorColor = theme?.select?.fontColor ?? selectTokens.collapseIndicatorColor;
   selectTokens.hoverInputBorderColor = theme?.select?.hoverBorderColor ?? selectTokens.hoverInputBorderColor;

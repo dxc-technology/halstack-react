@@ -1,12 +1,11 @@
-//@ts-nocheck
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from "react-live";
 import theme from "./liveEditorTheme";
-import { DxcButton } from "@dxc-technology/halstack-react";
+import { DxcButton, DxcFlex, useToast } from "@dxc-technology/halstack-react";
 
 type Example = {
-  scope?: object;
+  scope?: Record<string, any>;
   code?: string;
 };
 type ExamplePropTypes = {
@@ -31,43 +30,27 @@ const icons = {
 };
 
 const Example = ({ actionsVisible = true, defaultIsVisible = false, example }: ExamplePropTypes): JSX.Element => {
+  const toast = useToast();
   const [isCodeVisible, changeIsCodeVisible] = useState(defaultIsVisible);
-  const [copied, changeCopied] = useState(false);
-
-  const liveEditorRef = useRef<HTMLDivElement>(null);
 
   const handleCodeOnClick = () => {
     changeIsCodeVisible(!isCodeVisible);
   };
-  const copyCode = () => {
-    // Accessing DOM manually to the textarea value (current code) inside the LiveEditor of react-live
-    const currentCode = (liveEditorRef?.current?.children[0].children[0] as HTMLTextAreaElement).value;
-    navigator.clipboard.writeText(currentCode);
-    changeCopied(true);
+
+  const handleCopy = () => {
+    navigator.clipboard
+      .writeText(example.code)
+      .then(() => {
+        toast.success({ message: "Code copied to the clipboard." });
+      })
+      .catch(() => {
+        toast.warning({ message: "Failed to copy the text to the clipboard." });
+      });
   };
 
-  const [firstUpdate, setFirstUpdate] = useState(true);
-  useEffect(() => {
-    // Don't apply in the first render
-    if (firstUpdate) {
-      setFirstUpdate(false);
-      return;
-    }
-    // Accessing DOM manually to add focus to the textarea inside the LiveEditor of react-live
-    isCodeVisible && (liveEditorRef?.current?.children[0].children[0] as HTMLTextAreaElement).focus();
-  }, [isCodeVisible]);
-
-  useEffect(() => {
-    if (copied) {
-      setTimeout(() => {
-        changeCopied(false);
-      }, 1000);
-    }
-  }, [copied]);
-
   return (
-    <ExampleContainer>
-      <LiveProvider scope={example.scope} theme={theme} code={example.code}>
+    <DxcFlex direction="column" gap="1rem">
+      <LiveProvider code={example.code} scope={example.scope} theme={theme}>
         <StyledPreview>
           <LivePreview />
           <StyledError>
@@ -75,40 +58,21 @@ const Example = ({ actionsVisible = true, defaultIsVisible = false, example }: E
           </StyledError>
         </StyledPreview>
         {actionsVisible && (
-          <CodeActionsContainer isCodeVisible={isCodeVisible}>
-            {isCodeVisible && <DxcButton label="Copy code" icon={icons.copy} mode="tertiary" onClick={copyCode} />}
+          <DxcFlex justifyContent="flex-end" gap="0.5rem">
+            {isCodeVisible && <DxcButton label="Copy code" icon={icons.copy} mode="tertiary" onClick={handleCopy} />}
             <DxcButton
               label={isCodeVisible ? "Hide code" : "View code"}
               icon={icons.code}
               mode="tertiary"
               onClick={handleCodeOnClick}
             />
-          </CodeActionsContainer>
+          </DxcFlex>
         )}
-        {isCodeVisible && (
-          <LiveEditorContainer ref={liveEditorRef}>
-            {copied && (
-              <BackgroundOverlay>
-                <span>
-                  Copied!{" "}
-                  <span role="img" aria-label="emoji">
-                    🎉
-                  </span>
-                </span>
-              </BackgroundOverlay>
-            )}
-            <LiveEditor />
-          </LiveEditorContainer>
-        )}
+        {isCodeVisible && <StyledEditor><LiveEditor /></StyledEditor>}
       </LiveProvider>
-    </ExampleContainer>
+    </DxcFlex>
   );
 };
-
-const ExampleContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
 
 const StyledPreview = styled.div`
   background-color: #ffffff;
@@ -123,7 +87,6 @@ const StyledPreview = styled.div`
     0px 10px;
   border: 1px solid #707070;
   border-radius: 0.25rem;
-  margin-bottom: 0.5rem;
   overflow: auto;
   > div {
     min-width: min-content;
@@ -137,39 +100,10 @@ const StyledError = styled.div`
   padding: 0px 0.5rem;
 `;
 
-const LiveEditorContainer = styled.div`
-  display: flex;
-  position: relative;
-  margin-bottom: 0.5rem;
-  textarea,
+const StyledEditor = styled.div`
   pre {
-    padding: 2rem !important;
+    padding: 1rem !important;
   }
-  > div {
-    width: 100% !important;
-  }
-`;
-
-const CodeActionsContainer = styled.div<{ isCodeVisible: boolean }>`
-  display: flex;
-  column-gap: 0.5rem;
-  justify-content: flex-end;
-  ${({ isCodeVisible }) => isCodeVisible && "margin-bottom: 0.5rem;"};
-`;
-
-const BackgroundOverlay = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  color: #fff;
-  font-size: 1.5rem;
-  background-color: #000000b3;
-  transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  z-index: 1;
-  user-select: none;
 `;
 
 export default Example;
