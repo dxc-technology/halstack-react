@@ -1,4 +1,4 @@
-import { DxcFlex, DxcTable } from "@dxc-technology/halstack-react";
+import { DxcFlex, DxcLink, DxcParagraph, DxcTable } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
@@ -13,6 +13,8 @@ import hierarchical from "./examples/hierarchical";
 import hierarchicalSelectable from "./examples/hierarchicalSelectable";
 import paginator from "./examples/paginator";
 import customSorting from "./examples/customSort";
+import Link from "next/link";
+import actionsCell from "./examples/actionsCell";
 
 const columnsTypeString = `{
   key: string;
@@ -38,6 +40,20 @@ const ExpandableGridRowTypeString = `GridRow & {
   expandedContent?: React.ReactNode;
   expandedContentHeight?: number;
 }`;
+
+const actionsType = `{
+  icon: string | SVG;
+  title: string;
+  onClick: () => void;
+  disabled?: boolean;
+  tabIndex?: number;
+}[] | {
+  title: string;
+  onClick: (value?: string) => void;
+  disabled?: boolean;
+  tabIndex?: number;
+  options: Option[];
+}[]`;
 
 const sections = [
   {
@@ -262,13 +278,73 @@ const sections = [
       </DxcTable>
     ),
   },
-
+  ,
+  {
+    title: "DxcDataGrid.ActionsCell",
+    content: (
+      <DxcParagraph>
+        A compound component aimed to be used inside the table to display up to three actions.
+      </DxcParagraph>
+    ),
+    subSections: [
+      {
+        title: "Props",
+        content: (
+          <DxcTable>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Description</th>
+                <th>Default</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                    <StatusBadge status="required" />
+                    actions
+                  </DxcFlex>
+                </td>
+                <td>
+                  <ExtendedTableCode>{actionsType}</ExtendedTableCode>
+                </td>
+                <td>
+                  <p>
+                    It represents a list of interactuable elements that will work as buttons or as a dropdown. Those
+                    with an <TableCode>icon</TableCode> from{" "}
+                    <DxcLink newWindow href="https://fonts.google.com/icons">
+                      Material Symbols
+                    </DxcLink>{" "}
+                    or a <TableCode>SVG</TableCode> are treated as buttons. If any element lacks an{" "}
+                    <TableCode>icon</TableCode> and includes <TableCode>options</TableCode>, it is interpreted as a
+                    dropdown. Only the first action with options will be displayed and only up to 3 actions. In the case
+                    of the dropdown the click function will pass the value assigned to the option, click{" "}
+                    <Link href="/components/dropdown" passHref legacyBehavior>
+                      <DxcLink>here</DxcLink>
+                    </Link>{" "}
+                    for more details.
+                  </p>
+                </td>
+                <td>-</td>
+              </tr>
+            </tbody>
+          </DxcTable>
+        ),
+      },
+    ],
+  },
   {
     title: "Examples",
     subSections: [
       {
         title: "Basic usage",
         content: <Example example={basicUsage} defaultIsVisible />,
+      },
+      {
+        title: "Actions cell",
+        content: <Example example={actionsCell} defaultIsVisible />,
       },
       {
         title: "Selectable data grid",
