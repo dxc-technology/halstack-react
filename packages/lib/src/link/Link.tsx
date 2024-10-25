@@ -79,7 +79,6 @@ const StyledLink = styled.div<{
   border: none;
   border-radius: 4px;
   width: fit-content;
-  padding: 0 2px;
   ${(props) => `padding-bottom: ${props.theme.underlineSpacing};`}
   font-size: ${(props) => props.theme.fontSize};
   font-weight: ${(props) => props.theme.fontWeight};

@@ -11,7 +11,7 @@ const sections = [
       <DxcParagraph>
         Halstack is an Open Source Design System built and maintained by DXC Technology with the purpose of providing
         all the necessary tools for designing and implementing accessible, intuitive and consistent User Experiences
-        with UXPin and React.
+        with Figma, UXPin and React.
       </DxcParagraph>
     ),
     subSections: [
@@ -110,29 +110,25 @@ const sections = [
         ),
       },
       {
+        title: "Figma",
+        content: (
+          <DxcParagraph>
+            Halstack's Design System is built on top of Figma, a web-based design tool that allows designers to create
+            designs and prototypes. The Halstack Figma library contains all the design assets that are part of the
+            Design System, and it is the source of truth for all the design decisions made by the Design System team.
+          </DxcParagraph>
+        ),
+      },
+      {
         title: "UXPin",
         content: (
           <DxcParagraph>
-            In the past, we used to rely on Adobe XD for our Design UI Kit. But we recently decided to migrate all the
-            assets to{" "}
-            <DxcLink href="https://www.uxpin.com/" newWindow>
-              UXPin
-            </DxcLink>{" "}
-            to start a new and exciting journey. This decision brings, in addition to the well-known image-based classic
-            design library, a new feature, the prototyping library.
+            UXPin is a low-code solution that can be leveraged to generate React code on top of Halstack components
+            directly from the prototypes. This tool is used to generate the React code for the components that are part
+            of the Halstack Design System.
           </DxcParagraph>
         ),
         subSections: [
-          {
-            title: "Classic design library",
-            content: (
-              <DxcParagraph>
-                Implementing the previously described design guidelines so that product designers can easily drag and
-                drop the pre-created components into their designs, obtaining automatic updates of these components as
-                the Design System evolves.
-              </DxcParagraph>
-            ),
-          },
           {
             title: "Prototyping library",
             content: (

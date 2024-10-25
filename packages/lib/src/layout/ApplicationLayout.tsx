@@ -73,7 +73,7 @@ const DxcApplicationLayout = ({
   const main = childTypeExists(childrenArray, Main);
 
   const handleResize = useCallback(() => {
-    setIsResponsive(window.matchMedia(`(max-width: ${responsiveSizes.medium}rem)`).matches);
+    setIsResponsive(window.matchMedia(`(max-width: ${responsiveSizes.large}rem)`).matches);
   }, []);
 
   const handleSidenavVisibility = () => {
