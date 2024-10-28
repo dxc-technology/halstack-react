@@ -386,13 +386,25 @@ const DataGridContainer = styled.div`
     align-items: center;
   }
   .align-left {
+    text-align: left;
     justify-content: flex-start;
   }
   .align-center {
+    text-align: center;
     justify-content: center;
   }
   .align-right {
+    text-align: right;
     justify-content: flex-end;
+  }
+  .header-align-left {
+    text-align: left;
+  }
+  .header-align-center {
+    text-align: center;
+  }
+  .header-align-right {
+    text-align: right;
   }
 `;
 

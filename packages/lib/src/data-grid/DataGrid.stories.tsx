@@ -8,7 +8,6 @@ import { disabledRules } from "../../test/accessibility/rules/specific/data-grid
 import preview from "../../.storybook/preview";
 import { userEvent, within } from "@storybook/test";
 import DxcBadge from "../badge/Badge";
-import DxcTable from "../table/Table";
 
 export default {
   title: "Data Grid",

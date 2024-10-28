@@ -44,7 +44,7 @@ export const convertToRDGColumns = (
     sortable: gridColumn.sortable,
     draggable: gridColumn.draggable,
     editable: gridColumn.textEditable,
-    headerCellClass: gridColumn.alignment ? `align-${gridColumn.alignment}` : `align-left`,
+    headerCellClass: gridColumn.alignment ? `header-align-${gridColumn.alignment}` : `header-align-left`,
     renderEditCell: gridColumn.textEditable ? textEditor : undefined,
     renderCell: ({ row }) => {
       return (

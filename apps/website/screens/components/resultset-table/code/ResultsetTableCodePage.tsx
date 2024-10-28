@@ -245,8 +245,8 @@ const sections = [
                 </td>
                 <td>
                   <p>
-                    It represents a list of interactuable elements that will work as buttons or as a dropdown. Those
-                    with an <TableCode>icon</TableCode> from{" "}
+                    It represents a list of interactive elements that will work as buttons or as a dropdown. Those with
+                    an <TableCode>icon</TableCode> from{" "}
                     <DxcLink newWindow href="https://fonts.google.com/icons">
                       Material Symbols
                     </DxcLink>{" "}
