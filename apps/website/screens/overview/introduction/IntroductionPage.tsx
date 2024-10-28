@@ -113,7 +113,7 @@ const sections = [
         title: "Figma",
         content: (
           <DxcParagraph>
-            Halstack's Design System is built on top of Figma, a web-based design tool that allows designers to create
+            Halstack Design System is built on top of Figma, a web-based design tool that allows designers to create
             designs and prototypes. The Halstack Figma library contains all the design assets that are part of the
             Design System, and it is the source of truth for all the design decisions made by the Design System team.
           </DxcParagraph>
