@@ -939,7 +939,6 @@ DataGridSortedExpanded.play = async ({ canvasElement }) => {
   await userEvent.click(canvas.getAllByRole("columnheader")[10]);
   await userEvent.click(canvas.getAllByRole("button")[16]);
   await userEvent.click(canvas.getAllByRole("button")[43]);
-  console.log("GETALL", canvas.getAllByRole("button"))
   await userEvent.click(canvas.getAllByRole("button")[36]);
   await userEvent.click(canvas.getAllByRole("button")[37]);
 };
