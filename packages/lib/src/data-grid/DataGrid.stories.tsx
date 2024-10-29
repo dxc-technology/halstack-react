@@ -8,6 +8,7 @@ import { disabledRules } from "../../test/accessibility/rules/specific/data-grid
 import preview from "../../.storybook/preview";
 import { userEvent, within } from "@storybook/test";
 import DxcBadge from "../badge/Badge";
+import { ActionsPropsType } from "../table/types";
 
 export default {
   title: "Data Grid",
@@ -24,7 +25,7 @@ export default {
   },
 };
 
-const actions = [
+const actions: ActionsPropsType = [
   {
     title: "icon",
     onClick: (value?) => {
@@ -150,7 +151,7 @@ const expandableRows = [
     issueType: "Bug",
     expandedContent: <DxcContainer> Custom content 1</DxcContainer>,
     expandedContentHeight: 470,
-    actions: <DxcDataGrid.ActionsCell actions={actions as any} />,
+    actions: <DxcDataGrid.ActionsCell actions={actions} />,
   },
   {
     id: 2,
@@ -159,7 +160,7 @@ const expandableRows = [
     priority: "High",
     issueType: "Epic",
     expandedContent: <DxcContainer> Custom content 1</DxcContainer>,
-    actions: <DxcDataGrid.ActionsCell actions={actions as any} />,
+    actions: <DxcDataGrid.ActionsCell actions={actions} />,
   },
   {
     id: 3,
@@ -168,7 +169,7 @@ const expandableRows = [
     priority: "High",
     issueType: "Improvement",
     expandedContent: <DxcContainer> Custom content 1</DxcContainer>,
-    actions: <DxcDataGrid.ActionsCell actions={actions as any} />,
+    actions: <DxcDataGrid.ActionsCell actions={actions} />,
   },
   {
     id: 4,
@@ -177,7 +178,7 @@ const expandableRows = [
     priority: "High",
     issueType: "Improvement",
     expandedContent: <DxcContainer> Custom content 1</DxcContainer>,
-    actions: <DxcDataGrid.ActionsCell actions={actions as any} />,
+    actions: <DxcDataGrid.ActionsCell actions={actions} />,
   },
   {
     id: 5,
@@ -186,7 +187,7 @@ const expandableRows = [
     priority: "High",
     issueType: "Improvement",
     expandedContent: <DxcContainer> Custom content 1</DxcContainer>,
-    actions: <DxcDataGrid.ActionsCell actions={actions as any} />,
+    actions: <DxcDataGrid.ActionsCell actions={actions} />,
   },
   {
     id: 6,
@@ -195,7 +196,7 @@ const expandableRows = [
     priority: "High",
     issueType: "Improvement",
     expandedContent: <DxcContainer> Custom content 1</DxcContainer>,
-    actions: <DxcDataGrid.ActionsCell actions={actions as any} />,
+    actions: <DxcDataGrid.ActionsCell actions={actions} />,
   },
   {
     id: 7,
@@ -204,7 +205,7 @@ const expandableRows = [
     priority: "Medium",
     issueType: "Story",
     expandedContent: <DxcContainer> Custom content 1</DxcContainer>,
-    actions: <DxcDataGrid.ActionsCell actions={actions as any} />,
+    actions: <DxcDataGrid.ActionsCell actions={actions} />,
   },
   {
     id: 8,
@@ -213,7 +214,7 @@ const expandableRows = [
     priority: "Medium",
     issueType: "Story",
     expandedContent: <DxcContainer> Custom content 1</DxcContainer>,
-    actions: <DxcDataGrid.ActionsCell actions={actions as any} />,
+    actions: <DxcDataGrid.ActionsCell actions={actions} />,
   },
   {
     id: 9,
@@ -222,7 +223,7 @@ const expandableRows = [
     priority: "Critical",
     issueType: "Epic",
     expandedContent: <DxcContainer> Custom content 1</DxcContainer>,
-    actions: <DxcDataGrid.ActionsCell actions={actions as any} />,
+    actions: <DxcDataGrid.ActionsCell actions={actions} />,
   },
 ];
 

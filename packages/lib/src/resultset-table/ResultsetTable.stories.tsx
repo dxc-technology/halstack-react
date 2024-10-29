@@ -6,6 +6,7 @@ import preview from "../../.storybook/preview";
 import { disabledRules } from "../../test/accessibility/rules/specific/resultset-table/disabledRules";
 import { HalstackProvider } from "../HalstackContext";
 import DxcResultsetTable from "./ResultsetTable";
+import { ActionsPropsType } from "../table/types";
 
 export default {
   title: "Resultset Table",
@@ -51,7 +52,7 @@ const advancedTheme = {
   },
 };
 
-const actions = [
+const actions: ActionsPropsType = [
   {
     title: "icon",
     onClick: (value?) => {
@@ -95,21 +96,21 @@ const rowsIcon = [
     { displayValue: "001", sortValue: "001" },
     { displayValue: "Peter" },
     {
-      displayValue: <DxcResultsetTable.ActionsCell actions={actions as any} />,
+      displayValue: <DxcResultsetTable.ActionsCell actions={actions} />,
     },
   ],
   [
     { displayValue: "002", sortValue: "002" },
     { displayValue: "Louis" },
     {
-      displayValue: <DxcResultsetTable.ActionsCell actions={actions as any} />,
+      displayValue: <DxcResultsetTable.ActionsCell actions={actions} />,
     },
   ],
   [
     { displayValue: "003", sortValue: "003" },
     { displayValue: "Mark" },
     {
-      displayValue: <DxcResultsetTable.ActionsCell actions={actions as any} />,
+      displayValue: <DxcResultsetTable.ActionsCell actions={actions} />,
     },
   ],
 ];
