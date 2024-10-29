@@ -21,7 +21,7 @@ const icon = (
 
 const opinionatedTheme = {
   link: {
-    baseColor: "#5f249f",
+    baseColor: "#fabada",
   },
 };
 
@@ -29,18 +29,18 @@ export const Chromatic = () => (
   <>
     <Title title="With anchor" theme="light" level={2} />
     <ExampleContainer>
+      <Title title="Default" theme="light" level={4} />
+      <DxcLink href="#">Test</DxcLink>
       <Title title="Disabled" theme="light" level={4} />
-      <DxcLink disabled>Test</DxcLink>
+      <DxcLink disabled href="#">
+        Test
+      </DxcLink>
       <Title title="Icon before" theme="light" level={4} />
       <DxcLink href="https://www.google.com" icon="lock" iconPosition="before">
         Test
       </DxcLink>
       <Title title="Icon after" theme="light" level={4} />
-      <DxcLink
-        href="https://www.youtube.com/"
-        icon="https://iconape.com/wp-content/files/yd/367773/svg/logo-linkedin-logo-icon-png-svg.png"
-        iconPosition="after"
-      >
+      <DxcLink href="https://www.youtube.com/" icon="check" iconPosition="after">
         Test
       </DxcLink>
     </ExampleContainer>
@@ -97,6 +97,8 @@ export const Chromatic = () => (
     </ExampleContainer>
     <Title title="With button" theme="light" level={2} />
     <ExampleContainer>
+      <Title title="Default" theme="light" level={4} />
+      <DxcLink onClick={() => {}}>Test</DxcLink>
       <Title title="Disabled" theme="light" level={4} />
       <DxcLink onClick={() => {}} disabled>
         Test
@@ -196,52 +198,6 @@ export const Chromatic = () => (
       </DxcLink>
     </ExampleContainer>
     <Title title="Opinionated theme" theme="light" level={2} />
-    <ExampleContainer>
-      <Title title="Disabled" theme="light" level={4} />
-      <HalstackProvider theme={opinionatedTheme}>
-        <DxcLink disabled>Test</DxcLink>
-      </HalstackProvider>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Icon before" theme="light" level={4} />
-      <HalstackProvider theme={opinionatedTheme}>
-        <DxcLink href="https://www.google.com" icon={icon} iconPosition="before">
-          Test
-        </DxcLink>
-      </HalstackProvider>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Disabled" theme="light" level={4} />
-      <HalstackProvider theme={opinionatedTheme}>
-        <DxcLink disabled>Test</DxcLink>
-      </HalstackProvider>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Icon after" theme="light" level={4} />{" "}
-      <HalstackProvider theme={opinionatedTheme}>
-        <DxcLink onClick={() => {}} icon={icon} iconPosition="after">
-          Test
-        </DxcLink>
-      </HalstackProvider>
-    </ExampleContainer>
-    <ExampleContainer pseudoState="pseudo-hover">
-      <Title title="With link hovered" theme="light" level={4} />
-      <HalstackProvider theme={opinionatedTheme}>
-        <DxcLink onClick={() => {}}>Test</DxcLink>
-      </HalstackProvider>
-    </ExampleContainer>
-    <ExampleContainer pseudoState="pseudo-focus">
-      <Title title="With link focused" theme="light" level={4} />
-      <HalstackProvider theme={opinionatedTheme}>
-        <DxcLink onClick={() => {}}>Test</DxcLink>
-      </HalstackProvider>
-    </ExampleContainer>
-    <ExampleContainer pseudoState="pseudo-active">
-      <Title title="With link active" theme="light" level={4} />
-      <HalstackProvider theme={opinionatedTheme}>
-        <DxcLink onClick={() => {}}>Test</DxcLink>
-      </HalstackProvider>
-    </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-visited">
       <HalstackProvider theme={opinionatedTheme}>
         <Title title="With link visited" theme="light" level={4} />

@@ -22,6 +22,7 @@ import {
 } from "./utils";
 import useTheme from "../useTheme";
 import DxcPaginator from "../paginator/Paginator";
+import { DxcActionsCell } from "../table/Table";
 
 const DxcDataGrid = ({
   columns,
@@ -395,16 +396,33 @@ const DataGridContainer = styled.div`
     overflow: hidden;
     white-space: nowrap;
     width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
   }
   .align-left {
     text-align: left;
+    justify-content: flex-start;
   }
   .align-center {
     text-align: center;
+    justify-content: center;
   }
   .align-right {
     text-align: right;
+    justify-content: flex-end;
+  }
+  .header-align-left {
+    text-align: left;
+  }
+  .header-align-center {
+    text-align: center;
+  }
+  .header-align-right {
+    text-align: right;
   }
 `;
+
+DxcDataGrid.ActionsCell = DxcActionsCell;
 
 export default DxcDataGrid;

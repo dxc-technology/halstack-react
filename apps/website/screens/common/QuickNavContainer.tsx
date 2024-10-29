@@ -55,7 +55,7 @@ const MainContainer = styled.div`
   @media (max-width: ${responsiveSizes.desktop}px) {
     grid-template-columns: 75% 25%;
   }
-  @media (max-width: ${responsiveSizes.laptop}px) {
+  @media (max-width: ${responsiveSizes.tablet}px) {
     grid-template-columns: minmax(0, 1fr);
   }
 `;
@@ -68,7 +68,7 @@ const QuickNavContainer = styled.div`
   overflow-x: hidden;
   overflow-y: auto;
 
-  @media (max-width: ${responsiveSizes.laptop}px) {
+  @media (max-width: ${responsiveSizes.tablet}px) {
     display: none;
   }
   @media (max-height: 656px) {

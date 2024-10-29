@@ -6,6 +6,7 @@ import disabledRules from "../../test/accessibility/rules/specific/resultset-tab
 import preview from "../../.storybook/preview";
 import { HalstackProvider } from "../HalstackContext";
 import DxcResultsetTable from "./ResultsetTable";
+import { ActionsPropsType } from "../table/types";
 
 export default {
   title: "Resultset Table",
@@ -54,7 +55,7 @@ const advancedTheme = {
   },
 };
 
-const actions = [
+const actions: ActionsPropsType = [
   {
     title: "icon",
     onClick: () => {},

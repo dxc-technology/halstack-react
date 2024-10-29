@@ -108,7 +108,7 @@ const DxcHeader = ({
   return (
     <ThemeProvider theme={colorsTheme?.header}>
       <HeaderContainer underlined={underlined} margin={margin} ref={ref}>
-        <LogoAnchor tabIndex={onClick ? tabIndex : -1} interactuable={!!onClick} onClick={onClick}>
+        <LogoAnchor tabIndex={onClick ? tabIndex : -1} interactive={!!onClick} onClick={onClick}>
           <LogoContainer>{headerLogo}</LogoContainer>
         </LogoAnchor>
         {isResponsive && responsiveContent && (
@@ -153,6 +153,16 @@ const DxcHeader = ({
 
 DxcHeader.Dropdown = Dropdown;
 
+const HeaderDropdown = styled.div`
+  display: flex;
+  button {
+    background-color: transparent;
+    :hover {
+      background-color: transparent;
+    }
+  }
+`;
+
 const HeaderContainer = styled.header<{
   margin: HeaderPropsType["margin"];
   underlined: HeaderPropsType["underlined"];
@@ -172,18 +182,8 @@ const HeaderContainer = styled.header<{
     `${props.theme.underlinedThickness} ${props.theme.underlinedStyle} ${props.theme.underlinedColor}`};
 `;
 
-const HeaderDropdown = styled.div`
-  display: flex;
-  button {
-    background-color: transparent;
-    :hover {
-      background-color: transparent;
-    }
-  }
-`;
-
-const LogoAnchor = styled.a<{ interactuable: boolean }>`
-  ${(props) => (props.interactuable ? "cursor: pointer" : "cursor: default; outline:none;")};
+const LogoAnchor = styled.a<{ interactive: boolean }>`
+  ${(props) => (props.interactive ? "cursor: pointer" : "cursor: default; outline:none;")};
 `;
 
 const LogoImg = styled.img`

@@ -1,29 +1,31 @@
-import { ReactNode, SVGProps } from 'react';
+import { ReactNode, SVGProps } from "react";
 import { Option } from "../dropdown/types";
 
 import { Space, Margin } from "../common/utils";
 
 type SVG = ReactNode & SVGProps<SVGSVGElement>;
 
+export type ActionsPropsType = Array<
+  | {
+      icon: string | SVG;
+      title: string;
+      onClick: () => void;
+      disabled?: boolean;
+      tabIndex?: number;
+      options?: never;
+    }
+  | {
+      icon?: never;
+      title: string;
+      onClick: (value?: string) => void;
+      disabled?: boolean;
+      tabIndex?: number;
+      options: Option[];
+    }
+>;
+
 export type ActionCellsPropsType = {
-  actions: Array<
-    | {
-        icon: string | SVG;
-        title: string;
-        onClick: () => void;
-        disabled?: boolean;
-        tabIndex?: number;
-        options?: never;
-      }
-    | {
-        icon?: never;
-        title: string;
-        onClick: (value?: string) => void;
-        disabled?: boolean;
-        tabIndex?: number;
-        options: Option[];
-      }
-  >;
+  actions: ActionsPropsType;
 };
 
 type Props = {

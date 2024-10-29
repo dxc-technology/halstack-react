@@ -5,6 +5,7 @@ import Title from "../../.storybook/components/Title";
 import preview from "../../.storybook/preview";
 import { HalstackProvider } from "../HalstackContext";
 import DxcTable from "./Table";
+import { ActionsPropsType } from "./types";
 
 export default {
   title: "Table",
@@ -42,7 +43,7 @@ const advancedTheme = {
   },
 };
 
-const actions = [
+const actions: ActionsPropsType = [
   {
     title: "icon",
     onClick: () => {},
