@@ -11,25 +11,27 @@ type Margin = {
 type SVG = React.ReactNode & React.SVGProps<SVGSVGElement>;
 
 export type ActionCellsPropsType = {
-  actions: Array<
-    | {
-        icon: string | SVG;
-        title: string;
-        onClick: () => void;
-        disabled?: boolean;
-        tabIndex?: number;
-        options?: never;
-      }
-    | {
-        icon?: never;
-        title: string;
-        onClick: (value?: string) => void;
-        disabled?: boolean;
-        tabIndex?: number;
-        options: Option[];
-      }
-  >;
+  actions: ActionsPropsType;
 };
+
+export type ActionsPropsType = Array<
+  | {
+      icon: string | SVG;
+      title: string;
+      onClick: () => void;
+      disabled?: boolean;
+      tabIndex?: number;
+      options?: never;
+    }
+  | {
+      icon?: never;
+      title: string;
+      onClick: (value?: string) => void;
+      disabled?: boolean;
+      tabIndex?: number;
+      options: Option[];
+    }
+>;
 
 type Props = {
   /**

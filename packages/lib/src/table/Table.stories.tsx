@@ -5,6 +5,7 @@ import preview from "../../.storybook/preview";
 import { disabledRules } from "../../test/accessibility/rules/specific/table/disabledRules";
 import { HalstackProvider } from "../HalstackContext";
 import DxcTable from "./Table";
+import { ActionsPropsType } from "./types";
 
 export default {
   title: "Table",
@@ -39,7 +40,7 @@ const advancedTheme = {
   },
 };
 
-const actions = [
+const actions: ActionsPropsType = [
   {
     title: "icon",
     onClick: (value?) => {
@@ -128,21 +129,21 @@ export const Chromatic = () => (
           <td>cell 1</td>
           <td>cell 2</td>
           <td>
-            <DxcTable.ActionsCell actions={actions as any} />
+            <DxcTable.ActionsCell actions={actions} />
           </td>
         </tr>
         <tr>
           <td>cell 4</td>
           <td>cell 5</td>
           <td>
-            <DxcTable.ActionsCell actions={actions as any} />
+            <DxcTable.ActionsCell actions={actions} />
           </td>
         </tr>
         <tr>
           <td>cell 7</td>
           <td>cell 8</td>
           <td>
-            <DxcTable.ActionsCell actions={actions as any} />
+            <DxcTable.ActionsCell actions={actions} />
           </td>
         </tr>
       </DxcTable>
@@ -160,21 +161,21 @@ export const Chromatic = () => (
             <td>cell 1</td>
             <td>cell 2</td>
             <td>
-              <DxcTable.ActionsCell actions={actions as any} />
+              <DxcTable.ActionsCell actions={actions} />
             </td>
           </tr>
           <tr>
             <td>cell 4</td>
             <td>cell 5</td>
             <td>
-              <DxcTable.ActionsCell actions={actions as any} />
+              <DxcTable.ActionsCell actions={actions} />
             </td>
           </tr>
           <tr>
             <td>cell 7</td>
             <td>cell 8</td>
             <td>
-              <DxcTable.ActionsCell actions={actions as any} />
+              <DxcTable.ActionsCell actions={actions} />
             </td>
           </tr>
         </DxcTable>
@@ -363,21 +364,21 @@ export const Chromatic = () => (
           <td>cell 1</td>
           <td>cell 2</td>
           <td>
-            <DxcTable.ActionsCell actions={actions as any} />
+            <DxcTable.ActionsCell actions={actions} />
           </td>
         </tr>
         <tr>
           <td>cell 4</td>
           <td>cell 5</td>
           <td>
-            <DxcTable.ActionsCell actions={actions as any} />
+            <DxcTable.ActionsCell actions={actions} />
           </td>
         </tr>
         <tr>
           <td>cell 7</td>
           <td>cell 8</td>
           <td>
-            <DxcTable.ActionsCell actions={actions as any} />
+            <DxcTable.ActionsCell actions={actions} />
           </td>
         </tr>
       </DxcTable>
@@ -633,21 +634,21 @@ const ActionsCellDropdown = () => (
         <td>cell 1</td>
         <td>cell 2</td>
         <td>
-          <DxcTable.ActionsCell actions={actions as any} />
+          <DxcTable.ActionsCell actions={actions} />
         </td>
       </tr>
       <tr>
         <td>cell 4</td>
         <td>cell 5</td>
         <td>
-          <DxcTable.ActionsCell actions={actions as any} />
+          <DxcTable.ActionsCell actions={actions} />
         </td>
       </tr>
       <tr>
         <td>cell 7</td>
         <td>cell 8</td>
         <td>
-          <DxcTable.ActionsCell actions={actions as any} />
+          <DxcTable.ActionsCell actions={actions} />
         </td>
       </tr>
     </DxcTable>

@@ -366,6 +366,17 @@ export const componentTokens = {
     focusColor: CoreTokens.color_blue_600,
     scrollBarThumbColor: CoreTokens.color_grey_700,
     scrollBarTrackColor: CoreTokens.color_grey_300,
+    // action icon tokens
+    actionIconColor: CoreTokens.color_purple_700,
+    disabledActionIconColor: CoreTokens.color_grey_500,
+    hoverActionIconColor: CoreTokens.color_purple_700,
+    focusActionIconColor: CoreTokens.color_purple_700,
+    activeActionIconColor: CoreTokens.color_purple_700,
+    actionBackgroundColor: CoreTokens.color_transparent,
+    disabledActionBackgroundColor: CoreTokens.color_transparent,
+    hoverActionBackgroundColor: CoreTokens.color_grey_100,
+    focusActionBorderColor: CoreTokens.color_blue_600,
+    activeActionBackgroundColor: CoreTokens.color_grey_300,
   },
   dateInput: {
     pickerBackgroundColor: CoreTokens.color_white,

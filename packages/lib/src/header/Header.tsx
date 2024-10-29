@@ -105,7 +105,7 @@ const DxcHeader = ({
   return (
     <ThemeProvider theme={colorsTheme.header}>
       <HeaderContainer underlined={underlined} margin={margin} ref={ref}>
-        <LogoAnchor tabIndex={onClick ? tabIndex : -1} interactuable={onClick ? true : false} onClick={onClick}>
+        <LogoAnchor tabIndex={onClick ? tabIndex : -1} interactive={onClick ? true : false} onClick={onClick}>
           <LogoContainer>{headerLogo}</LogoContainer>
         </LogoAnchor>
         {isResponsive && responsiveContent && (
@@ -176,8 +176,8 @@ const HeaderContainer = styled.header<{ margin: HeaderPropsType["margin"]; under
     `${props.theme.underlinedThickness} ${props.theme.underlinedStyle} ${props.theme.underlinedColor}`};
 `;
 
-const LogoAnchor = styled.a<{ interactuable: boolean }>`
-  ${(props) => (props.interactuable ? "cursor: pointer" : "cursor: default; outline:none;")};
+const LogoAnchor = styled.a<{ interactive: boolean }>`
+  ${(props) => (props.interactive ? "cursor: pointer" : "cursor: default; outline:none;")};
 `;
 
 const LogoImg = styled.img`

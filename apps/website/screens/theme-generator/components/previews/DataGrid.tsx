@@ -6,6 +6,21 @@ import PreviewContainer from "./PreviewContainer";
 type DataGridPropsType = React.ComponentProps<typeof DxcDataGrid>;
 type DataGridColumnsPropsType = DataGridPropsType["columns"];
 type DataGridRowsPropsType = DataGridPropsType["rows"];
+type DataGridActionsPropType = React.ComponentProps<typeof DxcDataGrid.ActionsCell>["actions"];
+
+const actions: DataGridActionsPropType = [
+  {
+    icon: "filled_edit",
+    title: "icon",
+    onClick: () => {},
+  },
+  {
+    icon: "filled_delete",
+    title: "icon",
+    onClick: () => {},
+    disabled: true,
+  },
+];
 
 const columns: DataGridColumnsPropsType = [
   {
@@ -42,6 +57,11 @@ const columns: DataGridColumnsPropsType = [
     alignment: "center",
     summaryKey: "total",
   },
+  {
+    key: "actions",
+    label: "Actions",
+    alignment: "center",
+  },
 ];
 
 const expandableRows = [
@@ -52,6 +72,7 @@ const expandableRows = [
     priority: "High",
     issueType: "Bug",
     expandedContent: <DxcContainer>Custom content 1</DxcContainer>,
+    actions: <DxcDataGrid.ActionsCell actions={actions} />,
   },
   {
     id: 2,
@@ -60,6 +81,7 @@ const expandableRows = [
     priority: "High",
     issueType: "Epic",
     expandedContent: <DxcContainer>Custom content 2</DxcContainer>,
+    actions: <DxcDataGrid.ActionsCell actions={actions} />,
   },
   {
     id: 3,
@@ -68,6 +90,7 @@ const expandableRows = [
     priority: "High",
     issueType: "Improvement",
     expandedContent: <DxcContainer>Custom content 3</DxcContainer>,
+    actions: <DxcDataGrid.ActionsCell actions={actions} />,
   },
   {
     id: 4,
@@ -76,6 +99,7 @@ const expandableRows = [
     priority: "High",
     issueType: "Improvement",
     expandedContent: <DxcContainer>Custom content 4</DxcContainer>,
+    actions: <DxcDataGrid.ActionsCell actions={actions} />,
   },
   {
     id: 5,
@@ -84,6 +108,7 @@ const expandableRows = [
     priority: "High",
     issueType: "Improvement",
     expandedContent: <DxcContainer>Custom content 5</DxcContainer>,
+    actions: <DxcDataGrid.ActionsCell actions={actions} />,
   },
   {
     id: 6,
@@ -92,6 +117,7 @@ const expandableRows = [
     priority: "High",
     issueType: "Improvement",
     expandedContent: <DxcContainer>Custom content 6</DxcContainer>,
+    actions: <DxcDataGrid.ActionsCell actions={actions} />,
   },
   {
     id: 7,
@@ -100,6 +126,7 @@ const expandableRows = [
     priority: "Medium",
     issueType: "Story",
     expandedContent: <DxcContainer>Custom content 7</DxcContainer>,
+    actions: <DxcDataGrid.ActionsCell actions={actions} />,
   },
   {
     id: 8,
@@ -108,6 +135,7 @@ const expandableRows = [
     priority: "Medium",
     issueType: "Story",
     expandedContent: <DxcContainer>Custom content 8</DxcContainer>,
+    actions: <DxcDataGrid.ActionsCell actions={actions} />,
   },
   {
     id: 9,
@@ -116,6 +144,7 @@ const expandableRows = [
     priority: "Critical",
     issueType: "Epic",
     expandedContent: <DxcContainer>Custom content 9</DxcContainer>,
+    actions: <DxcDataGrid.ActionsCell actions={actions} />,
   },
 ];
 
