@@ -161,7 +161,7 @@ type Props = {
 };
 
 /**
- * List of suggestions of an Text Input component.
+ * List of suggestions of a Text Input component.
  */
 export type SuggestionsProps = {
   id: string;
@@ -181,7 +181,7 @@ export type SuggestionsProps = {
 export type RefType = HTMLDivElement;
 
 /**
- * Single suggestion of an Text Input component.
+ * Single suggestion of a Text Input component.
  */
 export type SuggestionProps = {
   id: string;

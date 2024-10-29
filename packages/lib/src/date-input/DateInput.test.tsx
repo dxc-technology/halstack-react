@@ -151,7 +151,7 @@ describe("DateInput component tests", () => {
     expect(getByText(d.format("MMMM YYYY"))).toBeTruthy();
   });
 
-  test("Selecting a date from the calendar with an specific format", async () => {
+  test("Selecting a date from the calendar with a specific format", async () => {
     const { getAllByText, getByText, getByRole } = render(
       <DxcDateInput label="With format M-dd-yyyy" format="M-dd-yyyy" />
     );

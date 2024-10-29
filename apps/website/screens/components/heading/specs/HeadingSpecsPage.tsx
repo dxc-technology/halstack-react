@@ -334,8 +334,8 @@ const sections = [
     content: (
       <DxcBulletedList>
         <DxcBulletedList.Item>
-          Heading components should be in order. That means an <Code>Headings-H1</Code> is followed by an{" "}
-          <Code>Headings-H2</Code>, an <Code>Headings-H2</Code> is followed by a <Code>Headings-H2</Code> or{" "}
+          Heading components should be in order. That means a <Code>Headings-H1</Code> is followed by an{" "}
+          <Code>Headings-H2</Code>, a <Code>Headings-H2</Code> is followed by a <Code>Headings-H2</Code> or{" "}
           <Code>Headings-H3</Code> and so on.
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>

@@ -231,7 +231,7 @@ const sections = [
               Interacting with the tabs makes the content scrolls to the point that is associated with that specific
               tab, while the tabs keep fixed at the top of the container.
             </DxcParagraph>
-            <Figure caption="Do not use main navigation if they only affect an specific panel">
+            <Figure caption="Do not use main navigation if they only affect a specific panel">
               <Image src={tabsPanelBehavior} alt="Panel navigation" />
             </Figure>
             <Figure
@@ -240,7 +240,7 @@ const sections = [
                   <DxcParagraph>
                     The use of scrollable tabs in panel navigation could cause swipe interferences with OS navigation.
                   </DxcParagraph>
-                  <DxcParagraph>Do not use main navigation if they only affect an specific panel.</DxcParagraph>
+                  <DxcParagraph>Do not use main navigation if they only affect a specific panel.</DxcParagraph>
                 </>
               }
             >
