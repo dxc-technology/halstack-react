@@ -1,31 +1,33 @@
-import { cloneElement, MouseEvent } from "react";
+import { cloneElement, useState, MouseEvent } from "react";
 import styled from "styled-components";
 import CoreTokens from "../common/coreTokens";
 import { ItemActionProps } from "./types";
 import DxcIcon from "../icon/Icon";
+import { TooltipWrapper } from "../tooltip/Tooltip";
 
 const ItemAction = ({ badge, collapseIcon, icon, label, depthLevel, ...props }: ItemActionProps) => {
+  const [hasTooltip, setHasTooltip] = useState(false);
   const modifiedBadge = badge && cloneElement(badge, { size: "small" });
 
   return (
-    <Action depthLevel={depthLevel} {...props}>
-      <Label>
-        {collapseIcon && <Icon>{collapseIcon}</Icon>}
-        {icon && depthLevel === 0 && <Icon>{typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}</Icon>}
-        <Text
-          selected={props.selected}
-          onMouseEnter={(event: MouseEvent<HTMLSpanElement>) => {
-            const text = event.currentTarget;
-            if (text.title === "" && text.scrollWidth > text.clientWidth) {
-              text.title = label;
-            }
-          }}
-        >
-          {label}
-        </Text>
-      </Label>
-      {modifiedBadge}
-    </Action>
+    <TooltipWrapper condition={hasTooltip} label={label}>
+      <Action depthLevel={depthLevel} {...props}>
+        <Label>
+          {collapseIcon && <Icon>{collapseIcon}</Icon>}
+          {icon && depthLevel === 0 && <Icon>{typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}</Icon>}
+          <Text
+            selected={props.selected}
+            onMouseEnter={(event: MouseEvent<HTMLSpanElement>) => {
+              const text = event.currentTarget;
+              setHasTooltip(text.scrollWidth > text.clientWidth);
+            }}
+          >
+            {label}
+          </Text>
+        </Label>
+        {modifiedBadge}
+      </Action>
+    </TooltipWrapper>
   );
 };
 
@@ -35,7 +37,6 @@ const Action = styled.button<{
 }>`
   border: none;
   border-radius: 4px;
-  width: 100%;
   padding: ${(props) =>
     `${CoreTokens.spacing_4} ${CoreTokens.spacing_8} ${CoreTokens.spacing_4} ${`
     calc(${CoreTokens.spacing_8} + (${CoreTokens.spacing_24} * ${props.depthLevel}))

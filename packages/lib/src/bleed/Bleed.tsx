@@ -1,7 +1,18 @@
 import styled from "styled-components";
-import BleedPropsType, { Spacing } from "./types";
+import BleedPropsType from "./types";
+import { CoreSpacingTokensType } from "../common/coreTokens";
 
-const Bleed = ({ space, horizontal, vertical, top, right, bottom, left, children }: BleedPropsType): JSX.Element => (
+const getSpacingValue = (spacingName: CoreSpacingTokensType) => (spacingName ?? "0rem");
+
+const StyledBleed = styled.div<BleedPropsType>`
+  ${({ space, horizontal, vertical, top, right, bottom, left }) => `
+    margin: -${getSpacingValue(top || vertical || space)} -${getSpacingValue(
+      right || horizontal || space
+    )} -${getSpacingValue(bottom || vertical || space)} -${getSpacingValue(left || horizontal || space)};
+  `}
+`;
+
+const Bleed = ({ space, horizontal, vertical, top, right, bottom, left, children }: BleedPropsType) => (
   <StyledBleed
     space={space}
     horizontal={horizontal}
@@ -14,17 +25,5 @@ const Bleed = ({ space, horizontal, vertical, top, right, bottom, left, children
     {children}
   </StyledBleed>
 );
-
-function getSpacingValue(spacingName: Spacing | undefined) {
-  return spacingName ?? "0rem";
-}
-
-const StyledBleed = styled.div<BleedPropsType>`
-  ${({ space, horizontal, vertical, top, right, bottom, left }) => `
-    margin: -${getSpacingValue(top || vertical || space)} -${getSpacingValue(
-      right || horizontal || space
-    )} -${getSpacingValue(bottom || vertical || space)} -${getSpacingValue(left || horizontal || space)};
-`}
-`;
 
 export default Bleed;

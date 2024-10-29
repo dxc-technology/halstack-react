@@ -3,11 +3,11 @@ import styled from "styled-components";
 import ActionIconPropsTypes, { RefType } from "./types";
 import CoreTokens from "../common/coreTokens";
 import DxcIcon from "../icon/Icon";
-import DxcTooltip from "../tooltip/Tooltip";
+import { Tooltip } from "../tooltip/Tooltip";
 
 const DxcActionIcon = forwardRef<RefType, ActionIconPropsTypes>(
   ({ disabled = false, title, icon, onClick, tabIndex }, ref): JSX.Element => (
-    <DxcTooltip label={title}>
+    <Tooltip label={title}>
       <ActionIcon
         aria-label={title}
         disabled={disabled}
@@ -21,7 +21,7 @@ const DxcActionIcon = forwardRef<RefType, ActionIconPropsTypes>(
       >
         {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
       </ActionIcon>
-    </DxcTooltip>
+    </Tooltip>
   )
 );
 

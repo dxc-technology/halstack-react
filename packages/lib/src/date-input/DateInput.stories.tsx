@@ -103,6 +103,10 @@ const DateInputChromatic = () => (
     </ExampleContainer>
     <Title title="Sizes" theme="light" level={2} />
     <ExampleContainer>
+      <Title title="Small size" theme="light" level={4} />
+      <DxcDateInput label="Small" size="small" />
+    </ExampleContainer>
+    <ExampleContainer>
       <Title title="Medium size" theme="light" level={4} />
       <DxcDateInput label="Medium" size="medium" />
     </ExampleContainer>

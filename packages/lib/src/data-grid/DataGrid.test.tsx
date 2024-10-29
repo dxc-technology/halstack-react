@@ -56,7 +56,9 @@ describe("Data grid component tests", () => {
     window.HTMLElement.prototype.scrollIntoView = jest.fn;
   });
   test("Renders with correct content", async () => {
-    const { getByText, getAllByRole } = await render(<DxcDataGrid columns={columns} rows={expandableRows} />);
+    const { getByText, getAllByRole } = await render(
+      <DxcDataGrid columns={columns} rows={expandableRows} />
+    );
     expect(getByText("46")).toBeTruthy();
     const rows = getAllByRole("row");
     expect(rows.length).toBe(5);

@@ -3,12 +3,12 @@ import styled, { ThemeProvider } from "styled-components";
 import { responsiveSizes, spaces } from "../common/variables";
 import DxcFlex from "../flex/Flex";
 import DxcIcon from "../icon/Icon";
-import DxcTooltip from "../tooltip/Tooltip";
+import { Tooltip } from "../tooltip/Tooltip";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
 import { dxcLogo, dxcSmallLogo } from "./Icons";
 import FooterPropsType from "./types";
-import type { Spaces } from "../flex/types";
+import { CoreSpacingTokensType } from "../common/coreTokens";
 
 const DxcFooter = ({
   socialLinks,
@@ -44,15 +44,21 @@ const DxcFooter = ({
         <DxcFlex justifyContent="space-between" alignItems="center" wrap="wrap" gap="1.5rem">
           <LogoContainer mode={mode}>{footerLogo}</LogoContainer>
           {mode === "default" && (
-            <DxcFlex gap={colorsTheme?.footer?.socialLinksGutter as Spaces}>
+            <DxcFlex gap={colorsTheme?.footer?.socialLinksGutter as CoreSpacingTokensType}>
               {socialLinks?.map((link, index) => (
-                <DxcTooltip label={link.title} key={`social${index}${link.href}`}>
-                  <SocialAnchor href={link.href} tabIndex={tabIndex} aria-label={link.title} index={index}>
+                <Tooltip label={link.title} key={`social${index}${link.href}`}>
+                  <SocialAnchor
+                    href={link.href}
+                    tabIndex={tabIndex}
+                    aria-label={link.title}
+                    key={`social${index}${link.href}`}
+                    index={index}
+                  >
                     <SocialIconContainer>
                       {typeof link.logo === "string" ? <DxcIcon icon={link.logo} /> : link.logo}
                     </SocialIconContainer>
                   </SocialAnchor>
-                </DxcTooltip>
+                </Tooltip>
               ))}
             </DxcFlex>
           )}

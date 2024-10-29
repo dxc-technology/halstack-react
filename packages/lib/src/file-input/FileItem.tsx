@@ -121,7 +121,7 @@ const FileName = styled.span`
   font-size: ${(props) => props.theme.fileItemFontSize};
   font-weight: ${(props) => props.theme.fileItemFontWeight};
   line-height: ${(props) => props.theme.fileItemLineHeight};
-  white-space: nowrap;
+  white-space: pre;
   overflow: hidden;
   text-overflow: ellipsis;
 `;

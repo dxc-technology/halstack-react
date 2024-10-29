@@ -1,54 +1,44 @@
 import styled from "styled-components";
 import FlexPropsType, { StyledProps } from "./types";
 
-const DxcFlex = ({
-  direction = "row",
-  wrap = "nowrap",
-  gap = "0rem",
-  order = 0,
-  grow = 0,
-  shrink = 1,
-  basis = "auto",
-  children,
-  ...props
-}: FlexPropsType): JSX.Element => (
-  <Flex
-    $direction={direction}
-    $wrap={wrap}
-    $order={order}
-    $grow={grow}
-    $shrink={shrink}
-    $basis={basis}
-    $gap={gap}
-    {...props}
-  >
-    {children}
-  </Flex>
-);
-
 const Flex = styled.div<StyledProps>`
   display: flex;
-  ${({
-    justifyContent = "flex-start",
-    alignItems = "stretch",
-    alignContent = "normal",
-    alignSelf = "auto",
-    ...props
-  }) => `
-    flex-direction: ${props.$direction}; 
-    flex-wrap: ${props.$wrap}; 
-    justify-content: ${justifyContent}; 
-    align-items: ${alignItems};
-    align-content: ${alignContent};
-    align-self: ${alignSelf};
-    gap: ${props.$gap != null && typeof props.$gap === "string" ? (props.$gap ?? "") : ""}}
-    row-gap: ${props.$gap != null && typeof props.$gap === "object" ? (props.$gap.rowGap ?? "") : ""}}
-    column-gap: ${props.$gap != null && typeof props.$gap === "object" ? (props.$gap.columnGap ?? "") : ""}}
-    order: ${props.$order};
-    flex-grow: ${props.$grow};
-    flex-shrink: ${props.$shrink};
-    flex-basis: ${props.$basis};
+  ${(props) => `
+    ${typeof props.alignContent === "string" ? `align-content: ${props.alignContent};` : ""}
+    ${typeof props.alignItems === "string" ? `align-items: ${props.alignItems};` : ""}
+    ${typeof props.alignSelf === "string" ? `align-self: ${props.alignSelf};` : ""}
+    ${typeof props.$basis === "string" ? `flex-basis: ${props.$basis};` : ""}
+    ${typeof props.$direction === "string" ? `flex-direction: ${props.$direction};` : ""}
+    ${typeof props.$gap === "string" ? `gap: ${props.$gap};` : ""}
+    ${typeof props.$gap === "object" ? `column-gap: ${props.$gap.columnGap}; row-gap: ${props.$gap.rowGap};` : ""}
+    ${typeof props.$grow === "number" ? `flex-grow: ${props.$grow};` : ""}
+    ${typeof props.justifyContent === "string" ? `justify-content: ${props.justifyContent};` : ""}
+    ${typeof props.$order === "number" ? `order: ${props.$order};` : ""}
+    ${typeof props.$shrink === "number" ? `flex-shrink: ${props.$shrink};` : ""}
+    ${typeof props.$wrap === "string" ? `flex-wrap: ${props.$wrap};` : ""}
   `}
 `;
+
+const DxcFlex = ({
+  basis,
+  direction,
+  gap,
+  grow,
+  order,
+  shrink,
+  wrap,
+  ...props
+}: FlexPropsType) => (
+  <Flex
+    $basis={basis}
+    $direction={direction}
+    $gap={gap}
+    $grow={grow}
+    $order={order}
+    $shrink={shrink}
+    $wrap={wrap}
+    {...props}
+  />
+);
 
 export default DxcFlex;

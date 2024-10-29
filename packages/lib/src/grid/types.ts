@@ -1,7 +1,10 @@
 import { ReactNode } from "react";
+import { CoreSpacingTokensType } from "../common/coreTokens";
 
-type Spaces = "0rem" | "0.125rem" | "0.25rem" | "0.5rem" | "1rem" | "1.5rem" | "2rem" | "3rem" | "4rem" | "5rem";
-type Gap = { rowGap: Spaces; columnGap?: Spaces } | { rowGap?: Spaces; columnGap: Spaces } | Spaces;
+type Gap =
+  | { rowGap: CoreSpacingTokensType; columnGap?: CoreSpacingTokensType }
+  | { rowGap?: CoreSpacingTokensType; columnGap: CoreSpacingTokensType }
+  | CoreSpacingTokensType;
 type GridCell = { start: number | string; end: number | string };
 
 type PlaceSelfValues = "auto" | "start" | "end" | "center" | "stretch" | "baseline";
@@ -81,7 +84,7 @@ type Props = GridItemProps & {
    *
    * See MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/gap
    */
-  gap?: Spaces | Gap;
+  gap?: CoreSpacingTokensType | Gap;
   /**
    * Sets the place-content CSS property.
    *

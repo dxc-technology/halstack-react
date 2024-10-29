@@ -1,18 +1,50 @@
-import { ReactElement } from "react";
+import { ReactNode, ReactElement } from "react";
+import { SortColumn } from "react-data-grid";
 
 export type GridColumn = {
+  /**
+   * Key that will be rendered from each row in rows.
+   */
   key: string;
+  /**
+   * Label that will be used for the column header.
+   */
   label: string;
+  /**
+   * Whether the column is resizable or not.
+   */
   resizable?: boolean;
+  /**
+   * Whether the column is sortable or not.
+   */
   sortable?: boolean;
+  /**
+   * Custom criteria for sorting the column.
+   */
+  sortFn?: (_a: ReactNode, _b: ReactNode) => number;
+  /**
+   * Whether the column is draggable or not.
+   */
   draggable?: boolean;
+  /**
+   * Whether the column cells are editable or not.
+   */
   textEditable?: boolean;
+  /**
+   * Value that will be rendered from the summaryRow.
+   */
   summaryKey?: string;
+  /**
+   * Sets the alignment inside the cells.
+   */
   alignment?: "left" | "right" | "center";
 };
 
 export type GridRow = {
-  [key: string]: React.ReactNode | undefined;
+  /**
+   * List of rows that will be rendered in each cell based on the key in each column.
+   */
+  [key: string]: ReactNode | undefined;
 };
 
 export type HierarchyGridRow = GridRow & {
@@ -20,27 +52,51 @@ export type HierarchyGridRow = GridRow & {
 };
 
 export type ExpandableGridRow = GridRow & {
-  expandedContent?: React.ReactNode;
+  expandedContent?: ReactNode;
   expandedContentHeight?: number;
 };
 
 export type ExpandableRows = {
   rows: ExpandableGridRow[];
+  /**
+   * Whether the rows can expand or not.
+   */
   expandable: true;
+  /**
+   * This prop indicates the unique key that can be used to identify each row. This prop is mandatory if selectable is set to true, expandable is set to true or rows is of type HierarchyGridRow[].
+   */
   uniqueRowId: string;
 };
 
 export type HierarchyRows = {
   rows: HierarchyGridRow[];
+  /**
+   * This prop indicates the unique key that can be used to identify each row. This prop is mandatory if selectable is set to true, expandable is set to true or rows is of type HierarchyGridRow[].
+   */
   uniqueRowId: string;
+  /**
+   * Whether the rows can expand or not.
+   */
   expandable?: false;
 };
 
 export type SelectableGridProps =
   | {
+      /**
+       * Whether the rows are selectable or not.
+       */
       selectable: true;
+      /**
+       * Set of selected rows. This prop is mandatory if selectable is set to true. The uniqueRowId key will be used to identify the each row.
+       */
       selectedRows: Set<string | number>;
+      /**
+       * Function called whenever the selected values changes. This prop is mandatory if selectable is set to true.The uniqueRowId key will be used to identify the rows.
+       */
       onSelectRows: (selectedRows: Set<number | string>) => void;
+      /**
+       * This prop indicates the unique key that can be used to identify each row. This prop is mandatory if selectable is set to true, expandable is set to true or rows is of type HierarchyGridRow[].
+       */
       uniqueRowId: string;
     }
   | {
@@ -50,18 +106,97 @@ export type SelectableGridProps =
       uniqueRowId?: string;
     };
 
+type PaginatedProps = {
+  /**
+   * If true, paginator will be displayed.
+   */
+  showPaginator?: true;
+  /**
+   * Number of total items.
+   */
+  totalItems?: number;
+  /**
+   * If true, a select component for navigation between pages will be displayed.
+   */
+  showGoToPage?: boolean;
+  /**
+   * Number of items per page.
+   */
+  itemsPerPage?: number;
+  /**
+   * An array of numbers representing the items per page options.
+   */
+  itemsPerPageOptions?: number[];
+  /**
+   * This function will be called when the user selects an item per page
+   * option. The value selected will be passed as a parameter.
+   */
+  itemsPerPageFunction?: (value: number) => void;
+  /**
+   * Function called whenever the current page is changed.
+   */
+  onPageChange?: (_page: number) => void;
+};
+
+type NonPaginatedProps = {
+  /**
+   * If true, paginator will be displayed.
+   */
+  showPaginator: false;
+  /**
+   * Number of total items.
+   */
+  totalItems?: never;
+  /**
+   * If true, a select component for navigation between pages will be displayed.
+   */
+  showGoToPage?: never;
+  /**
+   * Number of items per page.
+   */
+  itemsPerPage?: never;
+  /**
+   * An array of numbers representing the items per page options.
+   */
+  itemsPerPageOptions?: never;
+  /**
+   * This function will be called when the user selects an item per page
+   * option. The value selected will be passed as a parameter.
+   */
+  itemsPerPageFunction?: never;
+  /**
+   * Function called whenever the current page is changed.
+   */
+  onPageChange?: never;
+};
+
 export type CommonProps = {
   columns: GridColumn[];
+  /**
+   * Extra row that will be always visible.
+   */
   summaryRow?: GridRow;
-  onGridRowsChange?: (rows: GridRow[] | HierarchyGridRow[] | ExpandableGridRow[]) => void;
+  /**
+   * Function called whenever a cell is edited.
+   */
+  onGridRowsChange?: (_rows: GridRow[] | HierarchyGridRow[] | ExpandableGridRow[]) => void;
+  /**
+   * Function called whenever a column is sorted. Receives the sorted
+   * column and direction, or `undefined` if no sorting is applied.
+   */
+  onSort?: (_sortColumn?: SortColumn) => void;
 };
 
 export type BasicGridProps = {
   rows: GridRow[];
+  /**
+   * Whether the rows can expand or not.
+   */
   expandable?: false;
 };
 
 type Props = CommonProps &
+  (PaginatedProps | NonPaginatedProps) &
   (
     | (BasicGridProps & SelectableGridProps)
     | (ExpandableRows & SelectableGridProps)
@@ -69,25 +204,25 @@ type Props = CommonProps &
   );
 
 export type ColSpanArgs<TRow, TSummaryRow> =
-  | { type: 'HEADER' }
-  | { type: 'ROW'; row: TRow }
-  | { type: 'SUMMARY'; row: TSummaryRow };
+  | { type: "HEADER" }
+  | { type: "ROW"; row: TRow }
+  | { type: "SUMMARY"; row: TSummaryRow };
 
 export interface Column<TRow, TSummaryRow = unknown> {
   name: string | ReactElement;
   key: string;
   width?: number | string;
-  minWidth?: number
-  maxWidth?: number
-  cellClass?: string | ((row: TRow) => string)
-  headerCellClass?: string
-  summaryCellClass?: string | ((row: TSummaryRow) => string)
+  minWidth?: number;
+  maxWidth?: number;
+  cellClass?: string | ((row: TRow) => string);
+  headerCellClass?: string;
+  summaryCellClass?: string | ((row: TSummaryRow) => string);
   // renderHeaderCell?: (props: RenderHeaderCellProps<TRow, TSummaryRow>) => ReactNode
   // renderCell?: (props: RenderCellProps<TRow, TSummaryRow>) => ReactNode
   // renderSummaryCell?: (props: RenderSummaryCellProps<TSummaryRow, TRow>) => ReactNode
   // renderGroupCell?: (props: RenderGroupCellProps<TRow, TSummaryRow>) => ReactNode
   // renderEditCell?: (props: RenderEditCellProps<TRow, TSummaryRow>) => ReactNode
-  editable?: boolean | ((row: TRow) => boolean)
+  editable?: boolean | ((row: TRow) => boolean);
   colSpan?: (args: ColSpanArgs<TRow, TSummaryRow>) => number;
   frozen?: boolean;
   resizable?: boolean;
@@ -97,7 +232,7 @@ export interface Column<TRow, TSummaryRow = unknown> {
   editorOptions?: {
     displayCellContent?: boolean;
     commitOnOutsideClick?: boolean;
-  }
+  };
 }
 
 export default Props;

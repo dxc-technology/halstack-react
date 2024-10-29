@@ -1,7 +1,17 @@
 import styled from "styled-components";
-import InsetPropsType, { Spacing } from "./types";
+import InsetPropsType from "./types";
+import { CoreSpacingTokensType } from "../common/coreTokens";
 
-const Inset = ({ space, horizontal, vertical, top, right, bottom, left, children }: InsetPropsType): JSX.Element => (
+const getSpacingValue = (spacingName?: CoreSpacingTokensType) => spacingName ?? "0rem";
+
+const StyledInset = styled.div<InsetPropsType>`
+  ${({ space, horizontal, vertical, top, right, bottom, left }) => `
+  padding: ${getSpacingValue(top || vertical || space)} ${getSpacingValue(right || horizontal || space)}
+    ${getSpacingValue(bottom || vertical || space)} ${getSpacingValue(left || horizontal || space)};
+`}
+`;
+
+const Inset = ({ space, horizontal, vertical, top, right, bottom, left, children }: InsetPropsType) => (
   <StyledInset
     space={space}
     horizontal={horizontal}
@@ -14,16 +24,5 @@ const Inset = ({ space, horizontal, vertical, top, right, bottom, left, children
     {children}
   </StyledInset>
 );
-
-function getSpacingValue(spacingName: Spacing | undefined) {
-  return spacingName || "0rem";
-}
-
-const StyledInset = styled.div<InsetPropsType>`
-  ${({ space, horizontal, vertical, top, right, bottom, left }) => `
-  padding: ${getSpacingValue(top || vertical || space)} ${getSpacingValue(right || horizontal || space)}
-    ${getSpacingValue(bottom || vertical || space)} ${getSpacingValue(left || horizontal || space)};
-`}
-`;
 
 export default Inset;

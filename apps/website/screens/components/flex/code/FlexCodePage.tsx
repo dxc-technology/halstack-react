@@ -9,6 +9,8 @@ import gapOrderGrow from "./examples/gapOrderGrow";
 import TableCode from "@/common/TableCode";
 import StatusBadge from "@/common/StatusBadge";
 
+const coreSpacingTokensTypeString = `'0rem' | '0.125rem' | '0.25rem' | '0.5rem' | '0.75rem' | '1rem' | '1.5rem' | '2rem' | '2.5rem' | '3rem' | '3.5rem' | '4rem' | '5rem' | '6rem' | '7rem'`;
+
 const sections = [
   {
     title: "Props",
@@ -43,7 +45,7 @@ const sections = [
             <td>justifyContent</td>
             <td>
               <TableCode>
-                'flex-start' | 'flex-end' | 'start' | 'end' | 'left' | 'right' | 'center' | 'space-between' |
+                'flex-start' | 'flex-end' | 'start' | 'end' | 'left' | 'normal' | 'right' | 'center' | 'space-between' |
                 'space-around' | 'space-evenly'
               </TableCode>
             </td>
@@ -55,7 +57,7 @@ const sections = [
               for further information.
             </td>
             <td>
-              <TableCode>'flex-start'</TableCode>
+              <TableCode>'normal'</TableCode>
             </td>
           </tr>
           <tr>
@@ -63,7 +65,7 @@ const sections = [
             <td>
               <TableCode>
                 'stretch' | 'flex-start' | 'flex-end' | 'start' | 'end' | 'self-start' | 'self-end' | 'center' |
-                'baseline'
+                'baseline' | 'normal'
               </TableCode>
             </td>
             <td>
@@ -74,7 +76,7 @@ const sections = [
               for further information.
             </td>
             <td>
-              <TableCode>'stretch'</TableCode>
+              <TableCode>'normal'</TableCode>
             </td>
           </tr>
           <tr>
@@ -131,9 +133,7 @@ const sections = [
           <tr>
             <td>gap</td>
             <td>
-              <TableCode>
-                '0rem' | '0.125rem' | '0.25rem' | '0.5rem' | '1rem' | '1.5rem' | '2rem' | '3rem' | '4rem' | '5rem' | Gap
-              </TableCode>
+              <TableCode>{coreSpacingTokensTypeString} | Gap</TableCode>
             </td>
             <td>
               Sets <Code>gap</Code> CSS property. See{" "}
@@ -151,9 +151,7 @@ const sections = [
                 </li>
               </ul>
             </td>
-            <td>
-              <TableCode>'0rem'</TableCode>
-            </td>
+            <td>-</td>
           </tr>
           <tr>
             <td>grow</td>

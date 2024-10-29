@@ -143,7 +143,7 @@ const getSelectedOption = (
 };
 
 /**
- * Return the label or labels of the selected option(s) for the internal input.
+ * Return the label or labels of the selected option(s), separated by commas.
  */
 const getSelectedOptionLabel = (placeholder: string, selectedOption: ListOptionType | ListOptionType[]) =>
   Array.isArray(selectedOption)

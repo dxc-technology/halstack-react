@@ -1,14 +1,7 @@
 import { render } from "@testing-library/react";
-import { axe, formatRules } from "../../test/accessibility/axe-helper";
+import { axe } from "../../test/accessibility/axe-helper";
 import DxcBadge from "../badge/Badge";
 import DxcContextualMenu from "./ContextualMenu";
-
-// TODO: REMOVE
-import rules from "../../test/accessibility/rules/specific/contextual-menu/disabledRules";
-
-const disabledRules = {
-  rules: formatRules(rules),
-};
 
 const badgeIcon = (
   <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
@@ -50,10 +43,60 @@ const itemsWithTruncatedText = [
   },
 ];
 
+const items = [
+  {
+    title: "Business services",
+    items: [
+      {
+        label: "Home",
+        icon: "home",
+        items: [
+          { label: "Data & statistics" },
+          {
+            label: "Apps",
+            items: [
+              {
+                label: "Sales data module",
+                badge: <DxcBadge color="purple" label="Experimental" />,
+              },
+              { label: "Central platform" },
+            ],
+          },
+        ],
+      },
+      {
+        label: "Data warehouse",
+        icon: "database",
+        items: [
+          {
+            label: "Data & statistics",
+          },
+          {
+            label: "Sales performance",
+          },
+          { 
+            label: "Key metrics" 
+          },
+        ],
+      },
+    ],
+  },
+  {
+    items: [
+      { label: "Support", icon: "support_agent" },
+    ],
+  },
+];
+
 describe("Context menu accessibility tests", () => {
   it("Should not have basic accessibility issues", async () => {
     const { container } = render(<DxcContextualMenu items={itemsWithTruncatedText} />);
-    const results = await axe(container, disabledRules);
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
+  });
+  it("A complex contextual menu should not have basic accessibility issues", async () => {
+    const { container } = render(<DxcContextualMenu items={items} />);
+    const results = await axe(container);
     expect(results).toHaveNoViolations();
   });
 });

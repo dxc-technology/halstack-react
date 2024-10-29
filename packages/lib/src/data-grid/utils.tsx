@@ -1,5 +1,7 @@
+// TODO: Remove eslint disable
 /* eslint-disable no-param-reassign */
 
+import { ReactNode, SetStateAction } from "react";
 import { Column, RenderSortStatusProps, SortColumn, textEditor } from "react-data-grid";
 import DxcActionIcon from "../action-icon/ActionIcon";
 import DxcCheckbox from "../checkbox/Checkbox";
@@ -8,6 +10,11 @@ import { DeepPartial, HalstackProvider } from "../HalstackContext";
 import DxcIcon from "../icon/Icon";
 import { GridColumn, HierarchyGridRow, GridRow, ExpandableGridRow } from "./types";
 
+/**
+ * Function to overwrite the checkbox theme based on a passed theme object.
+ * @param {DeepPartial<AdvancedTheme>} theme - Theme object with dataGrid properties.
+ * @returns {object} New theme object with customized checkbox styles.
+ */
 const overwriteTheme = (theme: DeepPartial<AdvancedTheme>) => {
   const newTheme = {
     checkbox: {
@@ -23,8 +30,16 @@ const overwriteTheme = (theme: DeepPartial<AdvancedTheme>) => {
   return newTheme;
 };
 
-// Column<any, any> type added to avoid conflicts with SelectColumn typing from RDG
-export const convertToRDGColumns = (gridColumn: GridColumn, summaryRow?: GridRow): Column<any, any> => ({
+/**
+ * Converts grid columns into react-data-grid column format.
+ * @param {GridColumn} gridColumn - Object representing the properties of a grid column.
+ * @param {GridRow} [summaryRow] - Optional summary row to render at the end.
+ * @returns {Column<GridRow | HierarchyGridRow | ExpandableGridRow, GridRow | HierarchyGridRow | ExpandableGridRow>} Formatted column object for react-data-grid.
+ */
+export const convertToRDGColumns = (
+  gridColumn: GridColumn,
+  summaryRow?: GridRow
+): Column<GridRow | HierarchyGridRow | ExpandableGridRow, GridRow | HierarchyGridRow | ExpandableGridRow> => ({
   key: gridColumn.key,
   name: gridColumn.label,
   resizable: gridColumn.resizable,
@@ -46,6 +61,11 @@ export const convertToRDGColumns = (gridColumn: GridColumn, summaryRow?: GridRow
     ) : undefined,
 });
 
+/**
+ * Renders sort status icon for a column based on the sort direction.
+ * @param {RenderSortStatusProps} props - Properties including sortDirection to render the appropriate sort icon.
+ * @returns {JSX.Element} Icon indicating the current sort status.
+ */
 export const renderSortStatus = ({ sortDirection }: RenderSortStatusProps) => (
   <div className="sortIconContainer">
     {sortDirection !== undefined ? (
@@ -60,11 +80,19 @@ export const renderSortStatus = ({ sortDirection }: RenderSortStatusProps) => (
   </div>
 );
 
+/**
+ * Renders an expandable trigger icon that toggles row expansion.
+ * @param {ExpandableGridRow} row - Row object that can be expanded or collapsed.
+ * @param {ExpandableGridRow[]} rows - List of all rows.
+ * @param {string} uniqueRowId - Unique identifier for each row.
+ * @param {Function} setRowsToRender - Function to update the rows being rendered.
+ * @returns {JSX.Element} Icon with functionality to toggle the expanded content of the row.
+ */
 export const renderExpandableTrigger = (
   row: ExpandableGridRow,
   rows: ExpandableGridRow[],
   uniqueRowId: string,
-  setRowsToRender: (value: React.SetStateAction<ExpandableGridRow[] | GridRow[] | HierarchyGridRow[]>) => void
+  setRowsToRender: (_value: SetStateAction<GridRow[] | ExpandableGridRow[] | HierarchyGridRow[]>) => void
 ) => (
   <DxcActionIcon
     icon={row.contentIsExpanded ? "arrow_drop_down" : "arrow_right"}
@@ -97,52 +125,21 @@ export const renderExpandableTrigger = (
   />
 );
 
-// export const renderExpandableTrigger = (
-//   row: ExpandableGridRow,
-//   rows: ExpandableGridRow[],
-//   uniqueRowId: string,
-//   setRowsToRender: (value: React.SetStateAction<ExpandableGridRow[] | GridRow[] | HierarchyGridRow[]>) => void
-// ) => {
-//   const rowCopy = { ...row };
-//   return (
-//     <DxcActionIcon
-//       icon={rowCopy.contentIsExpanded ? "arrow_drop_down" : "arrow_right"}
-//       title="Expand content"
-//       aria-expanded={rowCopy.contentIsExpanded}
-//       onClick={() => {
-//         rowCopy.contentIsExpanded = !rowCopy.contentIsExpanded;
-//         if (rowCopy.contentIsExpanded) {
-//           const rowIndex = rows.findIndex((rowToRender) => rowCopy === rowToRender);
-//           setRowsToRender((currentRows) => {
-//             const newRows = [...currentRows];
-//             addRow(newRows, rowIndex + 1, {
-//               isExpandedChildContent: rowCopy.contentIsExpanded,
-//               [uniqueRowId]: `${rowKeyGetter(rowCopy, uniqueRowId)}_expanded`,
-//               expandedChildContent: rowCopy.expandedContent,
-//               triggerRowKey: rowKeyGetter(rowCopy, uniqueRowId),
-//               expandedContentHeight: rowCopy.expandedContentHeight,
-//             });
-//             return newRows;
-//           });
-//         } else {
-//           const rowIndex = rows.findIndex((rowToRender) => rowCopy === rowToRender);
-//           setRowsToRender((currentRows) => {
-//             const newRows = [...currentRows];
-//             deleteRow(newRows, rowIndex + 1);
-//             return newRows;
-//           });
-//         }
-//       }}
-//     />
-//   );
-// };
-
+/**
+ * Renders a trigger for hierarchical row expansion in the grid.
+ * @param {HierarchyGridRow[]} rows - List of all hierarchy grid rows.
+ * @param {HierarchyGridRow} triggerRow - Row object with children that can be expanded or collapsed.
+ * @param {string} uniqueRowId - Unique identifier for each row.
+ * @param {string} columnKey - Key of the column that displays the hierarchy trigger.
+ * @param {Function} setRowsToRender - Function to update the rows being rendered.
+ * @returns {JSX.Element} Button that toggles visibility of child rows.
+ */
 export const renderHierarchyTrigger = (
   rows: HierarchyGridRow[],
   triggerRow: HierarchyGridRow,
   uniqueRowId: string,
   columnKey: string,
-  setRowsToRender: (value: React.SetStateAction<GridRow[] | ExpandableGridRow[] | HierarchyGridRow[]>) => void
+  setRowsToRender: (_value: SetStateAction<GridRow[] | ExpandableGridRow[] | HierarchyGridRow[]>) => void
 ) => (
   <button
     type="button"
@@ -193,12 +190,21 @@ export const renderHierarchyTrigger = (
   </button>
 );
 
+/**
+ * Renders a checkbox for row selection.
+ * @param {GridRow[] | HierarchyGridRow[] | ExpandableGridRow[]} rows - Array of rows that are currently displayed.
+ * @param {GridRow | HierarchyGridRow | ExpandableGridRow} row - Row object to render the checkbox for.
+ * @param {string} uniqueRowId - The key used to uniquely identify each row.
+ * @param {Set<ReactNode>} selectedRows - Set containing the IDs of selected rows.
+ * @param {Function} onSelectRows - Callback function that triggers when rows are selected/deselected.
+ * @returns {JSX.Element} Checkbox for selecting the row.
+ */
 export const renderCheckbox = (
   rows: GridRow[] | HierarchyGridRow[] | ExpandableGridRow[],
   row: GridRow | HierarchyGridRow | ExpandableGridRow,
   uniqueRowId: string,
-  selectedRows: Set<number | string>,
-  onSelectRows: (_selectedRows: Set<number | string>) => void
+  selectedRows: Set<ReactNode>,
+  onSelectRows: (_selected: Set<ReactNode>) => void
 ) => (
   <DxcCheckbox
     checked={selectedRows.has(rowKeyGetter(row, uniqueRowId))}
@@ -213,7 +219,7 @@ export const renderCheckbox = (
         getChildrenSelection(row.childRows, uniqueRowId, selected, checked);
       }
       if (row.parentKey) {
-        getParentSelectedState(rows, rowKeyGetter(row, uniqueRowId), row.parentKey, uniqueRowId, selected, checked);
+        getParentSelectedState(rows, row.parentKey, uniqueRowId, selected, checked);
       }
       onSelectRows(selected);
     }}
@@ -221,84 +227,154 @@ export const renderCheckbox = (
 );
 
 /**
- * Render the specific checkbox in the header
- * @param rows
- * @param uniqueRowId
- * @param selectedRows
- * @param onSelectRows
+ * Renders a header checkbox that controls the selection of all rows.
+ * @param {GridRow[] | HierarchyGridRow[] | ExpandableGridRow[]} rows - Array of rows that are currently displayed.
+ * @param {string} uniqueRowId - The key used to uniquely identify each row.
+ * @param {Set<ReactNode>} selectedRows - Set containing the IDs of selected rows.
+ * @param {DeepPartial<AdvancedTheme>} colorsTheme - Custom theme colors for the checkbox.
+ * @param {Function} onSelectRows - Callback function that triggers when rows are selected/deselected.
+ * @returns {JSX.Element} Checkbox for the header checkbox.
  */
 export const renderHeaderCheckbox = (
   rows: GridRow[] | HierarchyGridRow[] | ExpandableGridRow[],
   uniqueRowId: string,
-  selectedRows: Set<number | string>,
+  selectedRows: Set<ReactNode>,
   colorsTheme: DeepPartial<AdvancedTheme>,
-  onSelectRows: (selected: Set<number | string>) => void
+  onSelectRows: (_selected: Set<ReactNode>) => void
 ) => (
-  <HalstackProvider advancedTheme={overwriteTheme(colorsTheme)}>
-    <DxcCheckbox
-      checked={!rows.some((row) => !selectedRows.has(rowKeyGetter(row, uniqueRowId)))}
-      onChange={(checked) => {
-        const selected = new Set<number | string>();
-        if (checked) {
-          rows.forEach((row) => {
-            selected.add(rowKeyGetter(row, uniqueRowId));
-            if (row.childRows && Array.isArray(row.childRows)) {
-              getChildrenSelection(row.childRows, uniqueRowId, selected, checked);
-            }
-          });
-        }
-        onSelectRows(selected);
-      }}
-    />
-  </HalstackProvider>
-);
+    <HalstackProvider advancedTheme={overwriteTheme(colorsTheme)}>
+      <DxcCheckbox
+        checked={!rows.some((row) => !selectedRows.has(rowKeyGetter(row, uniqueRowId)))}
+        onChange={(checked) => {
+          const updatedSelection = new Set(selectedRows);
 
-export const rowKeyGetter = (row: any, uniqueRowId: string) => row[uniqueRowId];
+          if (checked) {
+            rows.forEach((row) => {
+              updatedSelection.add(rowKeyGetter(row, uniqueRowId));
+              if (row.childRows && Array.isArray(row.childRows))
+                {getChildrenSelection(row.childRows, uniqueRowId, updatedSelection, checked);}
+            });
+          } else {
+            rows.forEach((row) => {
+              updatedSelection.delete(rowKeyGetter(row, uniqueRowId));
+              if (row.childRows && Array.isArray(row.childRows))
+                {getChildrenSelection(row.childRows, uniqueRowId, updatedSelection, checked);}
+            });
+          }
 
-export const sortRows = (rows: GridRow[], sortColumns: readonly SortColumn[], reversed?: boolean) =>
+          onSelectRows(updatedSelection);
+        }}
+      />
+    </HalstackProvider>
+  );
+
+/**
+ * Retrieves the unique key for a row based on the given uniqueRowId.
+ * @param {GridRow | HierarchyGridRow | ExpandableGridRow} row - The row object from which to retrieve the key.
+ * @param {string} uniqueRowId - The unique key used to identify the row.
+ * @returns {string | number} The unique key of the row.
+ */
+export const rowKeyGetter = (row: GridRow | HierarchyGridRow | ExpandableGridRow, uniqueRowId: string) => {
+  const keyValue = row[uniqueRowId];
+  return typeof keyValue === "string" || typeof keyValue === "number" ? keyValue : null;
+};
+
+/**
+ * Extracts and returns custom sorting functions from the given columns.
+ * @param {GridColumn[]} columns - Array of column definitions.
+ * @returns {object[]} Array of objects, each containing a column key and its custom sort function.
+ */
+export const getCustomSortFn = (columns: GridColumn[]) => {
+  const customSortFunctions = [...columns]
+    .filter((column) => column.sortFn)
+    .map((column) => ({ column: column.key, sortFn: column.sortFn! }));
+  return customSortFunctions;
+};
+
+/**
+ * Compares two row values based on the given custom sort function.
+ * If no sort function is provided, default comparison is used.
+ * @param {ReactNode} rowA - The first row value to compare.
+ * @param {ReactNode} rowB - The second row value to compare.
+ * @param {Function} sortFn - Optional custom sorting function.
+ * @returns {number} -1 if rowA < rowB, 1 if rowA > rowB, or 0 if they are equal.
+ */
+export const compareRows = (rowA: ReactNode, rowB: ReactNode, sortFn?: (_a: ReactNode, _b: ReactNode) => number) => {
+  if (!sortFn) {
+    return rowA > rowB ? 1 : rowA < rowB ? -1 : 0;
+  }
+  return sortFn(rowA, rowB);
+};
+
+/**
+ * Sorts an array of rows based on the specified sort columns and custom sort functions.
+ * @param {GridRow[] | ExpandableGridRow[] | HierarchyGridRow[]} rows - Array of rows to be sorted.
+ * @param {SortColumn[]} sortColumns - Array of sort column definitions.
+ * @param {Function[]} sortFunctions - Array of objects, each containing a column and its custom sort function.
+ * @param {boolean} reversed - Boolean indicating whether the sort order should be reversed.
+ * @returns {GridRow[] | ExpandableGridRow[] | HierarchyGridRow[]} The sorted array of rows.
+ */
+export const sortRows = (
+  rows: GridRow[] | ExpandableGridRow[] | HierarchyGridRow[],
+  sortColumns: readonly SortColumn[],
+  sortFunctions?: { column: string; sortFn: (_a: ReactNode, _b: ReactNode) => number }[],
+  reversed?: boolean
+) =>
   [...rows].sort((a, b) =>
     sortColumns.reduce((compResult, sort) => {
       if (compResult !== 0) {
         return compResult;
       }
 
-      let newCompResult = compResult;
-
       const sortValueA = a[sort.columnKey];
       const sortValueB = b[sort.columnKey];
+      let newCompResult = compResult;
 
       if (sortValueA && sortValueB) {
-        newCompResult = sortValueA > sortValueB ? 1 : sortValueA < sortValueB ? -1 : 0;
+        const sortFn = sortFunctions?.find(({ column }) => column === sort.columnKey)?.sortFn;
+        newCompResult = compareRows(sortValueA, sortValueB, sortFn);
       }
 
       if (newCompResult !== 0) {
-        if (reversed) {
-          return sort.direction === "ASC" ? -newCompResult : newCompResult;
-        }
-        return sort.direction === "ASC" ? newCompResult : -newCompResult;
+        return reversed
+          ? sort.direction === "ASC"
+            ? -newCompResult
+            : newCompResult
+          : sort.direction === "ASC"
+            ? newCompResult
+            : -newCompResult;
       }
-
       return newCompResult;
     }, 0)
   );
 
+/**
+ * Sorts an array of rows, ensuring child rows are placed under their parents.
+ * @param {HierarchyGridRow[]} rows - Array of rows to be sorted.
+ * @param {SortColumn[]} sortColumns - Array of sort column definitions.
+ * @param {object[]} sortFunctions - Array of custom sort functions for specific columns.
+ * @param {string} uniqueRowId - Unique key used to identify rows.
+ * @returns {GridRow[] | ExpandableGridRow[] | HierarchyGridRow[]} The sorted array of rows, with children positioned under their parents.
+ */
 export const sortHierarchyRows = (
   rows: HierarchyGridRow[],
   sortColumns: readonly SortColumn[],
+  sortFunctions: { column: string; sortFn: (_a: ReactNode, _b: ReactNode) => number }[],
   uniqueRowId: string
 ) => {
   const parentsSorted = sortRows(
     rows.filter((row) => !row.parentKey),
-    sortColumns
+    sortColumns,
+    sortFunctions
   );
   // check if there are child rows
   if (rows.length === parentsSorted.length) {
     return parentsSorted;
   }
-
   let sortedChildren = sortRows(
     rows.filter((row) => row.parentKey),
     sortColumns,
+    sortFunctions,
     true
   );
   // add children directly under the parent if it is available
@@ -326,25 +402,12 @@ export const sortHierarchyRows = (
   return parentsSorted;
 };
 
-// function columnsNamesIntoOptions(columns: GridColumn[]) {
-//   return columns.map((column) => {
-//     return { label: column.name, value: column.name };
-//   });
-// }
-
-// export function addUniqueId(
-//   row: GridRow | HierarchyGridRow | ExpandableGridRow,
-//   counter: number | string,
-//   expandable?: boolean
-// ) {
-//   row.uniqueRowId = counter;
-//   if (!expandable && row.childRows && Array.isArray(row.childRows)) {
-//     row.childRows.forEach((childRow: HierarchyGridRow, index) =>
-//       addUniqueId(childRow, `${counter}_${index}`)
-//     );
-//   }
-// }
-
+/**
+ * Inserts a new row into the row list at the specified index.
+ * @param {GridRow[] | HierarchyGridRow[] | ExpandableGridRow[]} rowList - Array of rows to insert the new row into.
+ * @param {number} index - Index where the new row should be added.
+ * @param {GridRow | HierarchyGridRow | ExpandableGridRow} row - The row to be added.
+ */
 export const addRow = (
   rowList: GridRow[] | HierarchyGridRow[] | ExpandableGridRow[],
   index: number,
@@ -353,20 +416,25 @@ export const addRow = (
   rowList.splice(index, 0, row);
 };
 
+/**
+ * Deletes a row from the specified index of a list of rows.
+ * @param {GridRow[] | HierarchyGridRow[] | ExpandableGridRow[]} rowList - Array rows from which to delete a row.
+ * @param {number} index - Index where the row should be deleted.
+ */
 export const deleteRow = (rowList: GridRow[] | HierarchyGridRow[] | ExpandableGridRow[], index: number) => {
   rowList.splice(index, 1);
 };
 
 /**
- * @param rowList List of rows in which to look for the row, it will also look for the row in the childRows
- * @param uniqueRowId The key that contains the unique value of the row
- * @param uniqueRowIdValue Unique value to identify the row
- * @returns A copy of the Row
+ * @param {GridRow[] | HierarchyGridRow[] | ExpandableGridRow[]} rowList List of rows in which to look for the row, it will also look for the row in the childRows
+ * @param {string} uniqueRowId The key that contains the unique value of the row
+ * @param {ReactNode} uniqueRowIdValue Unique value to identify the row
+ * @returns {GridRow | HierarchyGridRow | ExpandableGridRow | undefined} A copy of the Row or undefined if not found
  */
 export const rowFinderBasedOnId = (
   rowList: GridRow[] | HierarchyGridRow[] | ExpandableGridRow[],
   uniqueRowId: string,
-  uniqueRowIdValue: React.ReactNode
+  uniqueRowIdValue: ReactNode
 ): GridRow | HierarchyGridRow | ExpandableGridRow | undefined => {
   let foundRow: GridRow | HierarchyGridRow | ExpandableGridRow | undefined;
   rowList.forEach((row) => {
@@ -377,17 +445,28 @@ export const rowFinderBasedOnId = (
       foundRow = rowFinderBasedOnId(row.childRows, uniqueRowId, uniqueRowIdValue);
     }
   });
-  return foundRow;
+  if (foundRow) {
+    return foundRow;
+  }
+  return undefined;
 };
 
+/**
+ * Recursively selects or deselects children rows based on the checked state.
+ * @param {HierarchyGridRow[]} rowList - List of child rows that need to be checked/unchecked.
+ * @param {string} uniqueRowId - Key used to uniquely identify each row.
+ * @param {Set<ReactNode>} selectedRows - Set of selected rows.
+ * @param {boolean} checked - Boolean indicating whether the rows should be selected (true) or deselected (false).
+ */
 export const getChildrenSelection = (
   rowList: HierarchyGridRow[],
   uniqueRowId: string,
-  selectedRows: Set<number | string>,
+  selectedRows: Set<ReactNode>,
   checked: boolean
 ) => {
   rowList.forEach((row) => {
     if (row.childRows) {
+      // Recursively select/deselect child rows
       getChildrenSelection(row.childRows, uniqueRowId, selectedRows, checked);
     }
     if (checked) {
@@ -400,54 +479,108 @@ export const getChildrenSelection = (
 
 /**
  * Check if the parent and its parent should be selected/unselected
- * @param rowList
- * @param uniqueRowKeyValue Unique value of the selected row
- * @param parentKeyValue Unique value of the parent Row
- * @param uniqueRowId Key where the unique value is located
- * @param changedRows
- * @param checkedStateToMatch
+ * @param {HierarchyGridRow[]} rowList
+ * @param {ReactNode} uniqueRowKeyValue Unique value of the selected row
+ * @param {ReactNode} parentKeyValue Unique value of the parent Row
+ * @param {string} uniqueRowId Key where the unique value is located
+ * @param {Set<ReactNode>} changedRows
+ * @param {boolean} checkedStateToMatch
  */
 export const getParentSelectedState = (
   rowList: HierarchyGridRow[],
-  uniqueRowKeyValue: React.ReactNode,
-  parentKeyValue: React.ReactNode,
+  parentKeyValue: ReactNode,
   uniqueRowId: string,
-  selectedRows: Set<number | string>,
+  selectedRows: Set<ReactNode>,
   checkedStateToMatch: boolean
 ) => {
-  const parentRow = rowFinderBasedOnId(rowList, uniqueRowId, parentKeyValue);
-  // we are unselecting or any of the other childRows is unselected
-  if (
-    !checkedStateToMatch ||
-    (parentRow?.childRows &&
-      Array.isArray(parentRow.childRows) &&
-      parentRow.childRows
-        .filter((row) => rowKeyGetter(row, uniqueRowId) !== uniqueRowKeyValue)
-        .some((row) => !selectedRows.has(rowKeyGetter(row, uniqueRowId))))
-  ) {
+  const parentRow: HierarchyGridRow = rowFinderBasedOnId(rowList, uniqueRowId, parentKeyValue);
+
+  if (!parentRow) {
+    return;
+  }
+
+  // Check if we are unselecting or any of the other direct childRows is unselected
+  const isAnyChildUnselected = parentRow.childRows?.some((row) => !selectedRows.has(rowKeyGetter(row, uniqueRowId)));
+
+  if (!checkedStateToMatch || isAnyChildUnselected) {
+    // If the parent is selected but should not be, deselect it
     if (selectedRows.has(rowKeyGetter(parentRow, uniqueRowId))) {
       selectedRows.delete(rowKeyGetter(parentRow, uniqueRowId));
     }
-  } else if (parentRow?.childRows && Array.isArray(parentRow.childRows)) {
-    const isAnyChildUnselected = parentRow.childRows
-      .filter((row) => rowKeyGetter(row, uniqueRowId) !== uniqueRowKeyValue)
-      .some((row) => !selectedRows.has(rowKeyGetter(row, uniqueRowId)));
+  } else if (parentRow.childRows && !isAnyChildUnselected) {
+    // If all child rows are selected, we select the parent
+    selectedRows.add(rowKeyGetter(parentRow, uniqueRowId));
+  }
 
-    if (!isAnyChildUnselected) {
-      parentRow.selected = true;
-      // instead of pushing the row we should add it to the selected set
-      selectedRows.add(rowKeyGetter(parentRow, uniqueRowId));
+  // Recursively check the parent's parent if necessary
+  if (parentRow.parentKey) {
+    getParentSelectedState(rowList, parentRow.parentKey, uniqueRowId, selectedRows, checkedStateToMatch);
+  }
+};
+
+/**
+ * Returns the starting index for paginated items on a specific page.
+ * @param {number} currentPageInternal - The current page number.
+ * @param {number} itemsPerPage - Number of items per page.
+ * @param {number} page - Target page number.
+ * @returns {number} The starting index of items for the given page.
+ */
+export const getMinItemsPerPageIndex = (currentPageInternal: number, itemsPerPage: number, page: number) =>
+  currentPageInternal === 1 ? 0 : itemsPerPage * (page - 1);
+
+/**
+ * Returns the ending index for paginated items on a specific page.
+ * @param {number} minItemsPerPageIndex - The starting index of items for the current page.
+ * @param {number} itemsPerPage - Number of items per page.
+ * @param {GridRow[] | ExpandableGridRow[] | HierarchyGridRow[]} rows - List of all rows to paginate.
+ * @param {number} page - Target page number.
+ * @returns {number} The ending index of items for the given page.
+ */
+export const getMaxItemsPerPageIndex = (
+  minItemsPerPageIndex: number,
+  itemsPerPage: number,
+  rows: GridRow[] | ExpandableGridRow[] | HierarchyGridRow[],
+  page: number
+) => (minItemsPerPageIndex + itemsPerPage > rows.length ? rows.length : itemsPerPage * page - 1);
+
+/**
+ * Filters and returns paginated rows along with their children rows if applicable.
+ * @param {GridRow[] | ExpandableGridRow[] | HierarchyGridRow[]} rows - All rows from which to select the paginated ones.
+ * @param {string} uniqueRowId - The key used to uniquely identify each row.
+ * @param {number} start - The starting index for pagination.
+ * @param {number} end - The ending index for pagination.
+ * @returns {GridRow[] | ExpandableGridRow[] | HierarchyGridRow[]} List of rows that should be rendered in the current pagination view, including child rows.
+ */
+export const getPaginatedNodes = (
+  rows: readonly GridRow[] | ExpandableGridRow[] | HierarchyGridRow[],
+  uniqueRowId: string,
+  start?: number,
+  end?: number
+): readonly GridRow[] | ExpandableGridRow[] | HierarchyGridRow[] => {
+  const rowsToPaginate: HierarchyGridRow[] =
+    start != null && end != null
+      ? rows
+          .filter(({ parentKey, isExpandedChildContent }) => parentKey == null && isExpandedChildContent == null)
+          .slice(start, end)
+      : [...rows];
+
+  // Recursive function to check childRows at any depth
+  const isRowInHierarchy = (row: HierarchyGridRow, targetId: ReactNode): boolean => {
+    if (row[uniqueRowId] === targetId) {
+      return true;
     }
-  }
-  // add recursiveness if there are more levels
-  if (parentRow && parentRow.parentKey) {
-    getParentSelectedState(
-      rowList,
-      rowKeyGetter(parentRow, uniqueRowId),
-      parentRow.parentKey,
-      uniqueRowId,
-      selectedRows,
-      checkedStateToMatch
-    );
-  }
+    return row.childRows?.some((child) => isRowInHierarchy(child, targetId));
+  };
+
+  // Filter rows to include only those that are within the pagination range or are child rows
+  return rows.filter((row) =>
+    rowsToPaginate.some(
+      (rowToPaginate) =>
+        rowToPaginate[uniqueRowId] === row[uniqueRowId] ||
+        (rowToPaginate.contentIsExpanded &&
+          row?.triggerRowKey === rowToPaginate[uniqueRowId] &&
+          row?.isExpandedChildContent) ||
+        rowToPaginate?.childRows?.some((child) => isRowInHierarchy(child, row[uniqueRowId]))
+    )
+  );
 };

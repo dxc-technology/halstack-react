@@ -10,7 +10,7 @@ const code = `() => {
     {
       key: "value",
       label: "Value",
-      alignment: "center",
+      alignment: "right",
       summaryKey: "total"
     },
   ];

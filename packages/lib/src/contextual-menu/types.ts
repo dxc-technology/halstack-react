@@ -47,6 +47,12 @@ type ItemActionProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   label: Item["label"];
   selected: boolean;
 };
+type SectionProps = {
+  section: SectionWithId;
+  index: number;
+  length: number;
+};
+type SubMenuProps = { children: React.ReactNode; id?: string };
 type ContextualMenuContextProps = {
   selectedItemId: number;
   setSelectedItemId: Dispatch<SetStateAction<number>>;
@@ -61,8 +67,10 @@ export type {
   Item,
   ItemActionProps,
   ItemWithId,
+  SubMenuProps,
   MenuItemProps,
   Section,
   SectionWithId,
+  SectionProps,
   SingleItemProps,
 };

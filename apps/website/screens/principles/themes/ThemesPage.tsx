@@ -977,6 +977,9 @@ const sections = [
                         <td>Option font color</td>
                         <td>
                           <Code>listOptionFontColor</Code>
+                          <br />
+                          <br />
+                          <Code>listOptionIconColor</Code>
                         </td>
                       </tr>
                       <tr>

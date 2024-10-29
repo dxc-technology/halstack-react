@@ -3,7 +3,7 @@ import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables";
 import DxcFlex from "../flex/Flex";
 import DxcIcon from "../icon/Icon";
-import DxcTooltip from "../tooltip/Tooltip";
+import { Tooltip } from "../tooltip/Tooltip";
 import useTheme from "../useTheme";
 import ToggleGroupPropsType, { OptionLabel } from "./types";
 
@@ -74,7 +74,7 @@ const DxcToggleGroup = ({
         <HelperText disabled={disabled}>{helperText}</HelperText>
         <OptionsContainer aria-labelledby={toggleGroupLabelId}>
           {options.map((option, i) => (
-            <DxcTooltip label={option.title} key={`toggle-${i}-${option.label}`}>
+            <Tooltip label={option.title} key={`toggle-${i}-${option.label}`}>
               <ToggleButton
                 aria-label={option.title}
                 aria-pressed={
@@ -115,7 +115,7 @@ const DxcToggleGroup = ({
                   {option.label && <LabelContainer>{option.label}</LabelContainer>}
                 </DxcFlex>
               </ToggleButton>
-            </DxcTooltip>
+            </Tooltip>
           ))}
         </OptionsContainer>
       </ToggleGroup>

@@ -1,8 +1,6 @@
-import { Fragment, createContext, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { createContext, useLayoutEffect, useMemo, useRef, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import CoreTokens from "../common/coreTokens";
-import DxcDivider from "../divider/Divider";
-import DxcInset from "../inset/Inset";
 import useTheme from "../useTheme";
 import MenuItem from "./MenuItem";
 import ContextualMenuPropsType, {
@@ -11,14 +9,14 @@ import ContextualMenuPropsType, {
   GroupItemWithId,
   Item,
   ItemWithId,
-  Section,
+  SubMenuProps,
+  Section as SectionType,
   SectionWithId,
 } from "./types";
-
-export const ContextualMenuContext = createContext<ContextualMenuContextProps | null>(null);
+import Section from "./Section";
 
 const isGroupItem = (item: Item | GroupItem): item is GroupItem => "items" in item;
-const isSection = (item: Section | Item | GroupItem): item is Section => "items" in item && !("label" in item);
+const isSection = (item: SectionType | Item | GroupItem): item is SectionType => "items" in item && !("label" in item);
 
 const addIdToItems = (items: ContextualMenuPropsType["items"]): (ItemWithId | GroupItemWithId | SectionWithId)[] => {
   let accId = 0;
@@ -26,7 +24,7 @@ const addIdToItems = (items: ContextualMenuPropsType["items"]): (ItemWithId | Gr
   const innerAddIdToItems = (
     innerItems: ContextualMenuPropsType["items"]
   ): (ItemWithId | GroupItemWithId | SectionWithId)[] =>
-    innerItems.map((item: Item | GroupItem | Section) => {
+    innerItems.map((item: Item | GroupItem | SectionType) => {
       let newItem;
       if (isSection(item)) {
         newItem = {
@@ -48,6 +46,14 @@ const addIdToItems = (items: ContextualMenuPropsType["items"]): (ItemWithId | Gr
   return innerAddIdToItems(items);
 };
 
+export const SubMenu = ({ children, id }: SubMenuProps) => (
+  <StyledSubMenu id={id} role="menu">
+    {children}
+  </StyledSubMenu>
+);
+
+export const ContextualMenuContext = createContext<ContextualMenuContextProps | null>(null);
+
 const DxcContextualMenu = ({ items }: ContextualMenuPropsType) => {
   const [selectedItemId, setSelectedItemId] = useState(-1);
   const contextualMenuRef = useRef<HTMLUListElement | null>(null);
@@ -55,29 +61,11 @@ const DxcContextualMenu = ({ items }: ContextualMenuPropsType) => {
   const contextValue = useMemo(() => ({ selectedItemId, setSelectedItemId }), [selectedItemId, setSelectedItemId]);
   const colorsTheme = useTheme();
 
-  const renderSection = (section: SectionWithId, currentSectionIndex: number, length: number) => (
-    <Fragment key={`section-${currentSectionIndex}`}>
-      <li role="group" aria-labelledby={section.title}>
-        {section.title != null && <Title id={section.title}>{section.title}</Title>}
-        <SectionList>
-          {section.items.map((item, index) => (
-            <MenuItem item={item} key={`item-${index}`} />
-          ))}
-        </SectionList>
-      </li>
-      {currentSectionIndex !== length - 1 && (
-        <DxcInset top="0.25rem" bottom="0.25rem">
-          <DxcDivider color="lightGrey" />
-        </DxcInset>
-      )}
-    </Fragment>
-  );
-
   const [firstUpdate, setFirstUpdate] = useState(true);
   useLayoutEffect(() => {
     if (selectedItemId !== -1 && firstUpdate) {
       const contextualMenuEl = contextualMenuRef?.current;
-      const selectedItemEl = contextualMenuEl?.querySelector("[aria-selected='true']") as HTMLUListElement;
+      const selectedItemEl = contextualMenuEl?.querySelector("[aria-pressed='true']");
       contextualMenuEl?.scrollTo?.({
         top: (selectedItemEl?.offsetTop || 0) - (contextualMenuEl?.clientHeight || 0) / 2,
       });
@@ -86,15 +74,19 @@ const DxcContextualMenu = ({ items }: ContextualMenuPropsType) => {
   }, [firstUpdate, selectedItemId]);
 
   return (
-    <ThemeProvider theme={colorsTheme?.contextualMenu}>
-      <ContextualMenu role="menu" ref={contextualMenuRef}>
+    <ThemeProvider theme={colorsTheme.contextualMenu}>
+      <ContextualMenu ref={contextualMenuRef}>
         <ContextualMenuContext.Provider value={contextValue}>
-          {itemsWithId.map((item: GroupItemWithId | ItemWithId | SectionWithId, index: number) =>
-            "items" in item && !("label" in item) ? (
-              renderSection(item, index, itemsWithId.length)
-            ) : (
-              <MenuItem item={item} key={`${item.label}-${index}`} />
-            )
+          {isSection(itemsWithId[0]) ? (
+            (itemsWithId as SectionWithId[]).map((item, index) => (
+              <Section key={`section-${index}`} section={item} index={index} length={itemsWithId.length} />
+            ))
+          ) : (
+            <SubMenu>
+              {(itemsWithId as (GroupItemWithId | ItemWithId)[]).map((item, index) => (
+                <MenuItem item={item} key={`${item.label}-${index}`} />
+              ))}
+            </SubMenu>
           )}
         </ContextualMenuContext.Provider>
       </ContextualMenu>
@@ -102,7 +94,7 @@ const DxcContextualMenu = ({ items }: ContextualMenuPropsType) => {
   );
 };
 
-const ContextualMenu = styled.ul`
+const ContextualMenu = styled.div`
   box-sizing: border-box;
   margin: 0;
   border: 1px solid ${({ theme }) => theme.borderColor};
@@ -114,6 +106,7 @@ const ContextualMenu = styled.ul`
   max-height: 100%;
   background-color: ${({ theme }) => theme.backgroundColor};
   overflow-y: auto;
+  overflow-x: hidden;
   &::-webkit-scrollbar {
     width: 8px;
     height: 8px;
@@ -128,23 +121,12 @@ const ContextualMenu = styled.ul`
   }
 `;
 
-const SectionList = styled.ul`
-  list-style: none;
+const StyledSubMenu = styled.ul`
   margin: 0;
   padding: 0;
   display: grid;
   gap: ${CoreTokens.spacing_4};
-`;
-
-const Title = styled.h2`
-  margin: 0 0 ${CoreTokens.spacing_4} 0;
-  padding: ${CoreTokens.spacing_4};
-  color: ${({ theme }) => theme.sectionTitleFontColor};
-  font-family: ${({ theme }) => theme.fontFamily};
-  font-size: ${({ theme }) => theme.sectionTitleFontSize};
-  font-style: ${({ theme }) => theme.sectionTitleFontStyle};
-  font-weight: ${({ theme }) => theme.sectionTitleFontWeight};
-  line-height: ${({ theme }) => theme.sectionTitleLineHeight};
+  list-style: none;
 `;
 
 export default DxcContextualMenu;

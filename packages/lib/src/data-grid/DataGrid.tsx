@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useMemo, useState } from "react";
 import DataGrid, { SortColumn } from "react-data-grid";
 import styled, { ThemeProvider } from "styled-components";
@@ -16,8 +15,13 @@ import {
   sortHierarchyRows,
   renderHierarchyTrigger,
   renderExpandableTrigger,
+  getCustomSortFn,
+  getPaginatedNodes,
+  getMinItemsPerPageIndex,
+  getMaxItemsPerPageIndex,
 } from "./utils";
 import useTheme from "../useTheme";
+import DxcPaginator from "../paginator/Paginator";
 
 const DxcDataGrid = ({
   columns,
@@ -29,9 +33,38 @@ const DxcDataGrid = ({
   uniqueRowId,
   summaryRow,
   onGridRowsChange,
+  showPaginator = false,
+  showGoToPage = true,
+  itemsPerPage = 5,
+  itemsPerPageOptions,
+  itemsPerPageFunction,
+  onSort,
+  onPageChange,
+  totalItems,
 }: DataGridPropsType): JSX.Element => {
   const [rowsToRender, setRowsToRender] = useState<GridRow[] | HierarchyGridRow[] | ExpandableGridRow[]>(rows);
   const colorsTheme = useTheme();
+  const [page, changePage] = useState(1);
+
+  const goToPage = (newPage: number) => {
+    if (onPageChange) {
+      onPageChange(newPage);
+    }
+    changePage(newPage);
+  };
+
+  const handleSortChange = (newSortColumns: SortColumn[]) => {
+    if (onSort) {
+      if (newSortColumns[0]) {
+        const { columnKey, direction } = newSortColumns[0];
+        onSort({ columnKey, direction });
+      } else {
+        onSort();
+      }
+    }
+    setSortColumns(newSortColumns);
+  };
+
   // Proccess columns prop into usable columns based on other props
   const columnsToRender = useMemo(() => {
     let expectedColumns = columns.map((column) => convertToRDGColumns(column, summaryRow));
@@ -65,25 +98,23 @@ const DxcDataGrid = ({
     if (!expandable && rows.some((row) => Array.isArray(row.childRows) && row.childRows.length > 0) && uniqueRowId) {
       // only the first column will be clickable and will expand the rows
       const firstColumnKey = expectedColumns[0]?.key;
-      if (firstColumnKey) {
-        expectedColumns[0] = {
-          ...expectedColumns[0],
-          renderCell({ row }: any) {
-            if (row.childRows?.length) {
-              return (
-                <HierarchyContainer level={row.rowLevel || 0}>
-                  {renderHierarchyTrigger(rowsToRender, row, uniqueRowId, firstColumnKey, setRowsToRender)}
-                </HierarchyContainer>
-              );
-            }
+      expectedColumns[0] = {
+        ...expectedColumns[0],
+        renderCell({ row }) {
+          if ((row as HierarchyGridRow).childRows?.length) {
             return (
-              <HierarchyContainer level={row.rowLevel || 0} className="ellipsis-cell">
-                {row[firstColumnKey]}
+              <HierarchyContainer level={typeof row.rowLevel === "number" ? row.rowLevel : 0}>
+                {renderHierarchyTrigger(rowsToRender, row, uniqueRowId, firstColumnKey, setRowsToRender)}
               </HierarchyContainer>
             );
-          },
-        } as any;
-      }
+          }
+          return (
+            <HierarchyContainer level={typeof row.rowLevel === "number" ? row.rowLevel : 0} className="ellipsis-cell">
+              {row[firstColumnKey]}
+            </HierarchyContainer>
+          );
+        },
+      };
     }
     if (selectable) {
       expectedColumns = [
@@ -117,15 +148,14 @@ const DxcDataGrid = ({
   // array with the order of the columns
   const [columnsOrder, setColumnsOrder] = useState((): number[] => columnsToRender.map((_, index) => index));
   const [sortColumns, setSortColumns] = useState<readonly SortColumn[]>([]);
-  // const [visibleColumns, setVisibleColumns] = useState(
-  //   columnsNamesIntoOptions(columns).map((visibleColumn) => {
-  //     return visibleColumn.value;
-  //   })
-  // );
 
   useEffect(() => {
-    setColumnsOrder(columnsToRender.map((_, index) => index));
-  }, [columnsToRender]);
+    setColumnsOrder(Array.from({ length: columnsToRender.length }, (_, index) => index));
+  }, [columnsToRender.length]);
+
+  useEffect(() => {
+    setRowsToRender(rows);
+  }, [rows]);
 
   const reorderedColumns = useMemo(
     () =>
@@ -162,48 +192,59 @@ const DxcDataGrid = ({
     }
   };
 
-  const sortedRows = useMemo((): readonly GridRow[] => {
-    if (expandable && sortColumns.length >= 0) {
-      const processedRows = sortRows(
-        rowsToRender.filter((row) => !row.isExpandedChildContent),
-        sortColumns
-      );
-      rowsToRender
-        .filter((row) => row.isExpandedChildContent)
-        .map((expandedRow) =>
-          addRow(
-            processedRows,
-            processedRows.findIndex((trigger) => rowKeyGetter(trigger, uniqueRowId) === expandedRow.triggerRowKey) + 1,
-            expandedRow
-          )
+  const sortedRows = useMemo((): readonly GridRow[] | HierarchyGridRow[] | ExpandableGridRow[] => {
+    const sortFunctions = getCustomSortFn(columns);
+    if (!onSort) {
+      if (expandable && sortColumns.length > 0) {
+        const innerSortedRows = sortRows(
+          rowsToRender.filter((row) => !row.isExpandedChildContent),
+          sortColumns,
+          sortFunctions
         );
-      return processedRows;
-    }
-    if (!expandable && sortColumns.length >= 0 && uniqueRowId) {
-      return sortHierarchyRows(rowsToRender, sortColumns, uniqueRowId);
+        rowsToRender
+          .filter((row) => row.isExpandedChildContent)
+          .map((expandedRow) =>
+            addRow(
+              innerSortedRows,
+              innerSortedRows.findIndex((trigger) => rowKeyGetter(trigger, uniqueRowId) === expandedRow.triggerRowKey) + 1,
+              expandedRow
+            )
+          );
+        return innerSortedRows;
+      }
+      if (!expandable && sortColumns.length > 0 && uniqueRowId) {
+        return sortHierarchyRows(rowsToRender, sortColumns, sortFunctions, uniqueRowId);
+      }
     }
     return rowsToRender;
   }, [expandable, rowsToRender, sortColumns, uniqueRowId]);
 
+  const minItemsPerPageIndex = useMemo(() => getMinItemsPerPageIndex(page, itemsPerPage, page), [itemsPerPage, page]);
+  const maxItemsPerPageIndex = useMemo(
+    () => getMaxItemsPerPageIndex(minItemsPerPageIndex, itemsPerPage, rows, page),
+    [itemsPerPage, minItemsPerPageIndex, page, rows]
+  );
+
+  const filteredRows = useMemo(() => {
+    if (onSort && sortColumns?.length > 0) {
+      onSort?.(sortColumns?.[0]);
+    }
+    return !showPaginator || onPageChange
+      ? sortedRows
+      : getPaginatedNodes(sortedRows, uniqueRowId, minItemsPerPageIndex, maxItemsPerPageIndex + 1);
+  }, [sortedRows, minItemsPerPageIndex, maxItemsPerPageIndex]);
+
   return (
     <ThemeProvider theme={colorsTheme.dataGrid}>
       <DataGridContainer>
-        {/* {columnsVisibilityFilter && (
-        <DxcSelect
-          multiple
-          options={columnsNamesIntoOptions(columns)}
-          defaultValue={visibleColumns}
-          onChange={(event) => setVisibleColumns(event.value)}
-        />
-      )} */}
         <DataGrid
-          columns={reorderedColumns as any}
-          rows={sortedRows}
+          columns={reorderedColumns}
+          rows={filteredRows}
           onColumnsReorder={onColumnsReorder}
           onRowsChange={onRowsChange}
           renderers={{ renderSortStatus }}
           sortColumns={sortColumns}
-          onSortColumnsChange={setSortColumns}
+          onSortColumnsChange={handleSortChange}
           rowKeyGetter={(row) => uniqueRowId && rowKeyGetter(row, uniqueRowId)}
           rowHeight={(row) => {
             if (
@@ -221,6 +262,17 @@ const DxcDataGrid = ({
           summaryRowHeight={colorsTheme?.dataGrid?.summaryRowHeight}
           className="fill-grid"
         />
+        {showPaginator && (
+          <DxcPaginator
+            totalItems={totalItems ?? rows.length}
+            itemsPerPage={itemsPerPage}
+            itemsPerPageOptions={itemsPerPageOptions}
+            itemsPerPageFunction={itemsPerPageFunction}
+            currentPage={page}
+            showGoToPage={showGoToPage}
+            onPageChange={goToPage}
+          />
+        )}
       </DataGridContainer>
     </ThemeProvider>
   );
@@ -297,6 +349,10 @@ const DataGridContainer = styled.div`
     border-right: ${(props) =>
       `${props.theme.rowSeparatorThickness} ${props.theme.rowSeparatorStyle} ${props.theme.rowSeparatorColor}`};
     background-color: ${(props) => props.theme.dataBackgroundColor};
+    outline-color: ${(props) => props.theme.focusColor} !important;
+    .rdg-text-editor:focus {
+      border-color: transparent;
+    }
   }
   .rdg-header-row {
     border-top-left-radius: ${(props) => props.theme.headerBorderRadius};

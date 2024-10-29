@@ -8,6 +8,7 @@ import useTheme from "../useTheme";
 import useWidth from "../utils/useWidth";
 import DropdownMenu from "./DropdownMenu";
 import DropdownPropsType from "./types";
+import { Tooltip } from "../tooltip/Tooltip";
 
 const DxcDropdown = ({
   options,
@@ -22,6 +23,7 @@ const DxcDropdown = ({
   margin,
   size = "fitContent",
   tabIndex = 0,
+  title,
 }: DropdownPropsType): JSX.Element => {
   const id = useId();
   const triggerId = `trigger-${id}`;
@@ -158,45 +160,47 @@ const DxcDropdown = ({
         size={size}
       >
         <Popover.Root open={isOpen}>
-          <Popover.Trigger asChild type={undefined}>
-            <DropdownTrigger
-              onClick={handleTriggerOnClick}
-              onKeyDown={handleTriggerOnKeyDown}
-              onBlur={(event) => {
-                event.stopPropagation();
-              }}
-              disabled={disabled}
-              label={label}
-              margin={margin}
-              size={size}
-              id={triggerId}
-              aria-haspopup="true"
-              aria-controls={isOpen ? menuId : undefined}
-              aria-expanded={isOpen ? true : undefined}
-              aria-label="Show options"
-              tabIndex={tabIndex}
-              ref={triggerRef}
-            >
-              <DropdownTriggerContent>
-                {label && iconPosition === "after" && <DropdownTriggerLabel>{label}</DropdownTriggerLabel>}
-                {icon && (
-                  <DropdownTriggerIcon
-                    disabled={disabled}
-                    role={typeof icon === "string" ? undefined : "img"}
-                    aria-hidden
-                  >
-                    {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
-                  </DropdownTriggerIcon>
+          <Tooltip label={title}>
+            <Popover.Trigger asChild type={undefined}>
+              <DropdownTrigger
+                onClick={handleTriggerOnClick}
+                onKeyDown={handleTriggerOnKeyDown}
+                onBlur={(event) => {
+                  event.stopPropagation();
+                }}
+                disabled={disabled}
+                label={label}
+                margin={margin}
+                size={size}
+                id={triggerId}
+                aria-haspopup="true"
+                aria-controls={isOpen ? menuId : undefined}
+                aria-expanded={isOpen ? true : undefined}
+                aria-label="Show options"
+                tabIndex={tabIndex}
+                ref={triggerRef}
+              >
+                <DropdownTriggerContent>
+                  {label && iconPosition === "after" && <DropdownTriggerLabel>{label}</DropdownTriggerLabel>}
+                  {icon && (
+                    <DropdownTriggerIcon
+                      disabled={disabled}
+                      role={typeof icon === "string" ? undefined : "img"}
+                      aria-hidden
+                    >
+                      {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
+                    </DropdownTriggerIcon>
+                  )}
+                  {label && iconPosition === "before" && <DropdownTriggerLabel>{label}</DropdownTriggerLabel>}
+                </DropdownTriggerContent>
+                {!caretHidden && (
+                  <CaretIcon disabled={disabled}>
+                    <DxcIcon icon={isOpen ? "arrow_drop_up" : "arrow_drop_down"} />{" "}
+                  </CaretIcon>
                 )}
-                {label && iconPosition === "before" && <DropdownTriggerLabel>{label}</DropdownTriggerLabel>}
-              </DropdownTriggerContent>
-              {!caretHidden && (
-                <CaretIcon disabled={disabled}>
-                  <DxcIcon icon={isOpen ? "arrow_drop_up" : "arrow_drop_down"} />{" "}
-                </CaretIcon>
-              )}
-            </DropdownTrigger>
-          </Popover.Trigger>
+              </DropdownTrigger>
+            </Popover.Trigger>
+          </Tooltip>
           <Popover.Portal>
             <Popover.Content asChild sideOffset={1}>
               <DropdownMenu

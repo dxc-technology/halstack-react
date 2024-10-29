@@ -9,6 +9,8 @@ import layout from "./examples/layout";
 import TableCode from "@/common/TableCode";
 import StatusBadge from "@/common/StatusBadge";
 
+const coreSpacingTokensTypeString = `'0rem' | '0.125rem' | '0.25rem' | '0.5rem' | '0.75rem' | '1rem' | '1.5rem' | '2rem' | '2.5rem' | '3rem' | '3.5rem' | '4rem' | '5rem' | '6rem' | '7rem'`;
+
 const sections = [
   {
     title: "Props",
@@ -74,9 +76,7 @@ const sections = [
           <tr>
             <td>gap</td>
             <td>
-              <TableCode>
-                '0rem' | '0.125rem' | '0.25rem' | '0.5rem' | '1rem' | '1.5rem' | '2rem' | '3rem' | '4rem' | '5rem' | Gap
-              </TableCode>
+              <TableCode>{coreSpacingTokensTypeString} | Gap</TableCode>
             </td>
             <td>
               Sets the <Code>gap</Code> CSS property. See{" "}

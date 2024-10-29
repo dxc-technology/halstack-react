@@ -24,10 +24,17 @@ const file4 = new File(["file4"], "file4file4file4file4file4file4file4file4file4
 const file5 = new File(["file5"], "file5file5file5file5file5file5file5file5file5.mp4", {
   type: "video",
 });
+const fileWithSpaces = new File(["fileSpaces"], "  f i l e     s  p    a    c  e s.png", { type: "image/png" });
 
 const fileExample = [
   {
     file: file1,
+  },
+];
+
+const fileWithSpacesExample = [
+  {
+    file: fileWithSpaces,
   },
 ];
 
@@ -130,6 +137,16 @@ export const Chromatic = () => (
         label="File input"
         helperText="Please select files"
         value={fileExample}
+        multiple={false}
+        callbackFile={() => {}}
+      />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Single file (with spaces)" theme="light" level={4} />
+      <DxcFileInput
+        label="File input"
+        helperText="Please select files"
+        value={fileWithSpacesExample}
         multiple={false}
         callbackFile={() => {}}
       />

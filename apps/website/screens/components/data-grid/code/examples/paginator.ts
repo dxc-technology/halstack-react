@@ -1,5 +1,4 @@
 import { DxcDataGrid, DxcInset } from "@dxc-technology/halstack-react";
-import { useState } from "react";
 
 const code = `() => {
   const columns = [
@@ -37,17 +36,9 @@ const code = `() => {
     },
   ];
   
-  const [selectedRows, setSelectedRows] = useState(new Set());
   return (
     <DxcInset space="2rem">
-      <DxcDataGrid
-          columns={columns}
-          rows={rows}
-          uniqueRowId="id"
-          selectable
-          selectedRows={selectedRows}
-          onSelectRows={setSelectedRows}
-        />
+      <DxcDataGrid columns={columns} rows={rows} uniqueRowId="id" showPaginator itemsPerPage={2} />
     </DxcInset>
   );
 }`;
@@ -55,7 +46,6 @@ const code = `() => {
 const scope = {
   DxcDataGrid,
   DxcInset,
-  useState,
 };
 
 export default { code, scope };
