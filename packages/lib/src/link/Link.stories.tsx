@@ -26,7 +26,7 @@ const opinionatedTheme = {
   },
 };
 
-const LinkStories = () => (
+export const Chromatic = () => (
   <>
     <Title title="With anchor" theme="light" level={2} />
     <ExampleContainer>
