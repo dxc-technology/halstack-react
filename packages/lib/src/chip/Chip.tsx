@@ -25,7 +25,7 @@ const DxcChip = ({
             role={typeof onClickPrefix === "function" ? "button" : undefined}
             aria-label={typeof onClickPrefix === "function" ? "Prefix Action" : undefined}
             disabled={disabled}
-            interactuable={typeof onClickPrefix === "function" && !disabled}
+            interactive={typeof onClickPrefix === "function" && !disabled}
             tabIndex={typeof onClickPrefix === "function" && !disabled ? tabIndex : -1}
             onClick={() => onClickPrefix && !disabled && onClickPrefix()}
           >
@@ -38,7 +38,7 @@ const DxcChip = ({
             role={typeof onClickSuffix === "function" ? "button" : undefined}
             aria-label={typeof onClickSuffix === "function" ? "Suffix Action" : undefined}
             disabled={disabled}
-            interactuable={typeof onClickSuffix === "function" && !disabled}
+            interactive={typeof onClickSuffix === "function" && !disabled}
             tabIndex={typeof onClickSuffix === "function" && !disabled ? tabIndex : -1}
             onClick={() => !disabled && onClickSuffix?.()}
           >
@@ -96,15 +96,15 @@ const LabelContainer = styled.span<{ disabled: ChipPropsType["disabled"] }>`
 
 const IconContainer = styled.div<{
   disabled: ChipPropsType["disabled"];
-  interactuable: boolean;
+  interactive: boolean;
 }>`
   display: flex;
   border-radius: 0.25rem;
   color: ${(props) => (props.disabled ? props.theme.disabledIconColor : props.theme.iconColor)};
-  ${({ interactuable }) => interactuable && "cursor: pointer;"}
+  ${({ interactive }) => interactive && "cursor: pointer;"}
 
   ${(props) =>
-    props.interactuable &&
+    props.interactive &&
     `
       &:hover {
         color: ${props.theme.hoverIconColor};
