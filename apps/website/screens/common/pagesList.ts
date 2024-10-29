@@ -22,6 +22,7 @@ export const themeGeneratorLinks = ["/theme-generator/opinionated-theme/", "/the
 
 const overviewLinks: LinkDetails[] = [
   { label: "Introduction", path: "/overview/introduction" },
+  { label: "Installation", path: "/overview/installation" },
   { label: "Component lifecycle", path: "/overview/component-lifecycle" },
   { label: "Releases", path: "/overview/releases" },
 ];
