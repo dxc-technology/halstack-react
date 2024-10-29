@@ -1,5 +1,5 @@
 import * as Popover from "@radix-ui/react-popover";
-import { forwardRef, useCallback, useId, useMemo, useRef, useState } from "react";
+import { ChangeEvent, FocusEvent, forwardRef, KeyboardEvent, MouseEvent, useCallback, useId, useMemo, useRef, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables";
 import getMargin from "../common/utils";

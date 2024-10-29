@@ -195,7 +195,7 @@ export const renderHierarchyTrigger = (
  * @param {GridRow[] | HierarchyGridRow[] | ExpandableGridRow[]} rows - Array of rows that are currently displayed.
  * @param {GridRow | HierarchyGridRow | ExpandableGridRow} row - Row object to render the checkbox for.
  * @param {string} uniqueRowId - The key used to uniquely identify each row.
- * @param {Set<ReactNode>} selectedRows - Set containing the IDs of selected rows.
+ * @param {Set<string | number>} selectedRows - Set containing the IDs of selected rows.
  * @param {Function} onSelectRows - Callback function that triggers when rows are selected/deselected.
  * @returns {JSX.Element} Checkbox for selecting the row.
  */
@@ -203,8 +203,8 @@ export const renderCheckbox = (
   rows: GridRow[] | HierarchyGridRow[] | ExpandableGridRow[],
   row: GridRow | HierarchyGridRow | ExpandableGridRow,
   uniqueRowId: string,
-  selectedRows: Set<ReactNode>,
-  onSelectRows: (_selected: Set<ReactNode>) => void
+  selectedRows: Set<string | number>,
+  onSelectRows: (_selected: Set<string | number>) => void
 ) => (
   <DxcCheckbox
     checked={selectedRows.has(rowKeyGetter(row, uniqueRowId))}
@@ -230,7 +230,7 @@ export const renderCheckbox = (
  * Renders a header checkbox that controls the selection of all rows.
  * @param {GridRow[] | HierarchyGridRow[] | ExpandableGridRow[]} rows - Array of rows that are currently displayed.
  * @param {string} uniqueRowId - The key used to uniquely identify each row.
- * @param {Set<ReactNode>} selectedRows - Set containing the IDs of selected rows.
+ * @param {Set<string | number>} selectedRows - Set containing the IDs of selected rows.
  * @param {DeepPartial<AdvancedTheme>} colorsTheme - Custom theme colors for the checkbox.
  * @param {Function} onSelectRows - Callback function that triggers when rows are selected/deselected.
  * @returns {JSX.Element} Checkbox for the header checkbox.
@@ -238,35 +238,37 @@ export const renderCheckbox = (
 export const renderHeaderCheckbox = (
   rows: GridRow[] | HierarchyGridRow[] | ExpandableGridRow[],
   uniqueRowId: string,
-  selectedRows: Set<ReactNode>,
+  selectedRows: Set<string | number>,
   colorsTheme: DeepPartial<AdvancedTheme>,
-  onSelectRows: (_selected: Set<ReactNode>) => void
+  onSelectRows: (_selected: Set<string | number>) => void
 ) => (
-    <HalstackProvider advancedTheme={overwriteTheme(colorsTheme)}>
-      <DxcCheckbox
-        checked={!rows.some((row) => !selectedRows.has(rowKeyGetter(row, uniqueRowId)))}
-        onChange={(checked) => {
-          const updatedSelection = new Set(selectedRows);
+  <HalstackProvider advancedTheme={overwriteTheme(colorsTheme)}>
+    <DxcCheckbox
+      checked={!rows.some((row) => !selectedRows.has(rowKeyGetter(row, uniqueRowId)))}
+      onChange={(checked) => {
+        const updatedSelection = new Set(selectedRows);
 
-          if (checked) {
-            rows.forEach((row) => {
-              updatedSelection.add(rowKeyGetter(row, uniqueRowId));
-              if (row.childRows && Array.isArray(row.childRows))
-                {getChildrenSelection(row.childRows, uniqueRowId, updatedSelection, checked);}
-            });
-          } else {
-            rows.forEach((row) => {
-              updatedSelection.delete(rowKeyGetter(row, uniqueRowId));
-              if (row.childRows && Array.isArray(row.childRows))
-                {getChildrenSelection(row.childRows, uniqueRowId, updatedSelection, checked);}
-            });
-          }
+        if (checked) {
+          rows.forEach((row) => {
+            updatedSelection.add(rowKeyGetter(row, uniqueRowId));
+            if (row.childRows && Array.isArray(row.childRows)) {
+              getChildrenSelection(row.childRows, uniqueRowId, updatedSelection, checked);
+            }
+          });
+        } else {
+          rows.forEach((row) => {
+            updatedSelection.delete(rowKeyGetter(row, uniqueRowId));
+            if (row.childRows && Array.isArray(row.childRows)) {
+              getChildrenSelection(row.childRows, uniqueRowId, updatedSelection, checked);
+            }
+          });
+        }
 
-          onSelectRows(updatedSelection);
-        }}
-      />
-    </HalstackProvider>
-  );
+        onSelectRows(updatedSelection);
+      }}
+    />
+  </HalstackProvider>
+);
 
 /**
  * Retrieves the unique key for a row based on the given uniqueRowId.
@@ -276,7 +278,7 @@ export const renderHeaderCheckbox = (
  */
 export const rowKeyGetter = (row: GridRow | HierarchyGridRow | ExpandableGridRow, uniqueRowId: string) => {
   const keyValue = row[uniqueRowId];
-  return typeof keyValue === "string" || typeof keyValue === "number" ? keyValue : null;
+  return typeof keyValue === "string" || typeof keyValue === "number" ? keyValue : "";
 };
 
 /**
@@ -300,10 +302,13 @@ export const getCustomSortFn = (columns: GridColumn[]) => {
  * @returns {number} -1 if rowA < rowB, 1 if rowA > rowB, or 0 if they are equal.
  */
 export const compareRows = (rowA: ReactNode, rowB: ReactNode, sortFn?: (_a: ReactNode, _b: ReactNode) => number) => {
-  if (!sortFn) {
-    return rowA > rowB ? 1 : rowA < rowB ? -1 : 0;
+  if (rowA != null && rowB != null) {
+    if (!sortFn) {
+      return rowA > rowB ? 1 : rowA < rowB ? -1 : 0;
+    }
+    return sortFn(rowA, rowB);
   }
-  return sortFn(rowA, rowB);
+  return 0;
 };
 
 /**
@@ -493,7 +498,7 @@ export const getParentSelectedState = (
   selectedRows: Set<ReactNode>,
   checkedStateToMatch: boolean
 ) => {
-  const parentRow: HierarchyGridRow = rowFinderBasedOnId(rowList, uniqueRowId, parentKeyValue);
+  const parentRow = rowFinderBasedOnId(rowList, uniqueRowId, parentKeyValue) as HierarchyGridRow;
 
   if (!parentRow) {
     return;
@@ -553,10 +558,13 @@ export const getMaxItemsPerPageIndex = (
  */
 export const getPaginatedNodes = (
   rows: readonly GridRow[] | ExpandableGridRow[] | HierarchyGridRow[],
-  uniqueRowId: string,
+  uniqueRowId?: string,
   start?: number,
   end?: number
 ): readonly GridRow[] | ExpandableGridRow[] | HierarchyGridRow[] => {
+  if (!uniqueRowId) {
+    return rows.slice(start, end);
+  }
   const rowsToPaginate: HierarchyGridRow[] =
     start != null && end != null
       ? rows
@@ -569,7 +577,7 @@ export const getPaginatedNodes = (
     if (row[uniqueRowId] === targetId) {
       return true;
     }
-    return row.childRows?.some((child) => isRowInHierarchy(child, targetId));
+    return !!row?.childRows?.some((child) => isRowInHierarchy(child, targetId));
   };
 
   // Filter rows to include only those that are within the pagination range or are child rows

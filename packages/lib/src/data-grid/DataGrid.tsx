@@ -98,23 +98,25 @@ const DxcDataGrid = ({
     if (!expandable && rows.some((row) => Array.isArray(row.childRows) && row.childRows.length > 0) && uniqueRowId) {
       // only the first column will be clickable and will expand the rows
       const firstColumnKey = expectedColumns[0]?.key;
-      expectedColumns[0] = {
-        ...expectedColumns[0],
-        renderCell({ row }) {
-          if ((row as HierarchyGridRow).childRows?.length) {
+      if (firstColumnKey) {
+        expectedColumns[0] = {
+          ...expectedColumns[0]!,
+          renderCell({ row }) {
+            if ((row as HierarchyGridRow).childRows?.length) {
+              return (
+                <HierarchyContainer level={typeof row.rowLevel === "number" ? row.rowLevel : 0}>
+                  {renderHierarchyTrigger(rowsToRender, row, uniqueRowId, firstColumnKey, setRowsToRender)}
+                </HierarchyContainer>
+              );
+            }
             return (
-              <HierarchyContainer level={typeof row.rowLevel === "number" ? row.rowLevel : 0}>
-                {renderHierarchyTrigger(rowsToRender, row, uniqueRowId, firstColumnKey, setRowsToRender)}
+              <HierarchyContainer level={typeof row.rowLevel === "number" ? row.rowLevel : 0} className="ellipsis-cell">
+                {row[firstColumnKey]}
               </HierarchyContainer>
             );
-          }
-          return (
-            <HierarchyContainer level={typeof row.rowLevel === "number" ? row.rowLevel : 0} className="ellipsis-cell">
-              {row[firstColumnKey]}
-            </HierarchyContainer>
-          );
-        },
-      };
+          },
+        };
+      }
     }
     if (selectable) {
       expectedColumns = [
@@ -160,7 +162,7 @@ const DxcDataGrid = ({
   const reorderedColumns = useMemo(
     () =>
       // Array ordered by columnsOrder
-      columnsOrder.map((index) => columnsToRender[index]),
+      columnsOrder.map((index) => columnsToRender[index]!),
     [columnsOrder, columnsToRender]
   );
 
@@ -206,7 +208,8 @@ const DxcDataGrid = ({
           .map((expandedRow) =>
             addRow(
               innerSortedRows,
-              innerSortedRows.findIndex((trigger) => rowKeyGetter(trigger, uniqueRowId) === expandedRow.triggerRowKey) + 1,
+              innerSortedRows.findIndex((trigger) => rowKeyGetter(trigger, uniqueRowId) === expandedRow.triggerRowKey) +
+                1,
               expandedRow
             )
           );
@@ -245,7 +248,7 @@ const DxcDataGrid = ({
           renderers={{ renderSortStatus }}
           sortColumns={sortColumns}
           onSortColumnsChange={handleSortChange}
-          rowKeyGetter={(row) => uniqueRowId && rowKeyGetter(row, uniqueRowId)}
+          rowKeyGetter={(row) => (uniqueRowId ? rowKeyGetter(row, uniqueRowId) : "")}
           rowHeight={(row) => {
             if (
               row.isExpandedChildContent &&

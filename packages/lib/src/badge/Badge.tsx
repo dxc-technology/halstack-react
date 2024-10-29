@@ -119,11 +119,12 @@ const BadgeContainer = styled.div<{
   size: BadgePropsType["size"];
 }>`
   box-sizing: border-box;
-  border-radius: ${({ props }) => sizeMap[props.size].borderRadius};
+  border-radius: ${(props) => props.size && sizeMap[props.size].borderRadius};
   padding: ${(props) => (props.label ? getPadding(props.mode, props.size) : "")};
-  width: ${(props) => (!props.label && props.mode === "notification" ? sizeMap[props.size].width : "fit-content")};
-  min-width: ${(props) => props.mode === "notification" && sizeMap[props.size].minWidth};
-  height: ${(props) => sizeMap[props.size].height};
+  width: ${(props) =>
+    !props.label && props.mode === "notification" ? props.size && sizeMap[props.size].width : "fit-content"};
+  min-width: ${(props) => props.mode === "notification" && props.size && sizeMap[props.size].minWidth};
+  height: ${(props) => props.size && sizeMap[props.size].height};
   display: flex;
   align-items: center;
   gap: ${CoreTokens.spacing_2};

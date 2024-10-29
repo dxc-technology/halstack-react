@@ -38,19 +38,21 @@ const Example = ({ actionsVisible = true, defaultIsVisible = false, example }: E
   };
 
   const handleCopy = () => {
-    navigator.clipboard
-      .writeText(example.code)
-      .then(() => {
-        toast.success({ message: "Code copied to the clipboard." });
-      })
-      .catch(() => {
-        toast.warning({ message: "Failed to copy the text to the clipboard." });
-      });
+    if (example.code) {
+      navigator.clipboard
+        .writeText(example.code)
+        .then(() => {
+          toast.success({ message: "Code copied to the clipboard." });
+        })
+        .catch(() => {
+          toast.warning({ message: "Failed to copy the text to the clipboard." });
+        });
+    }
   };
 
   return (
     <DxcFlex direction="column" gap="1rem">
-      <LiveProvider code={example.code} scope={example.scope} theme={theme}>
+      <LiveProvider code={example.code} scope={example.scope as Record<string, unknown>} theme={theme}>
         <StyledPreview>
           <LivePreview />
           <StyledError>
@@ -68,7 +70,11 @@ const Example = ({ actionsVisible = true, defaultIsVisible = false, example }: E
             />
           </DxcFlex>
         )}
-        {isCodeVisible && <StyledEditor><LiveEditor /></StyledEditor>}
+        {isCodeVisible && (
+          <StyledEditor>
+            <LiveEditor />
+          </StyledEditor>
+        )}
       </LiveProvider>
     </DxcFlex>
   );

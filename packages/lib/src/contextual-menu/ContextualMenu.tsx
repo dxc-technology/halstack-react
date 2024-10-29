@@ -56,7 +56,7 @@ export const ContextualMenuContext = createContext<ContextualMenuContextProps | 
 
 const DxcContextualMenu = ({ items }: ContextualMenuPropsType) => {
   const [selectedItemId, setSelectedItemId] = useState(-1);
-  const contextualMenuRef = useRef<HTMLUListElement | null>(null);
+  const contextualMenuRef = useRef<HTMLDivElement | null>(null);
   const itemsWithId = useMemo(() => addIdToItems(items), [items]);
   const contextValue = useMemo(() => ({ selectedItemId, setSelectedItemId }), [selectedItemId, setSelectedItemId]);
   const colorsTheme = useTheme();
@@ -65,7 +65,7 @@ const DxcContextualMenu = ({ items }: ContextualMenuPropsType) => {
   useLayoutEffect(() => {
     if (selectedItemId !== -1 && firstUpdate) {
       const contextualMenuEl = contextualMenuRef?.current;
-      const selectedItemEl = contextualMenuEl?.querySelector("[aria-pressed='true']");
+      const selectedItemEl = contextualMenuEl?.querySelector("[aria-pressed='true']") as HTMLButtonElement;
       contextualMenuEl?.scrollTo?.({
         top: (selectedItemEl?.offsetTop || 0) - (contextualMenuEl?.clientHeight || 0) / 2,
       });
@@ -77,7 +77,7 @@ const DxcContextualMenu = ({ items }: ContextualMenuPropsType) => {
     <ThemeProvider theme={colorsTheme.contextualMenu}>
       <ContextualMenu ref={contextualMenuRef}>
         <ContextualMenuContext.Provider value={contextValue}>
-          {isSection(itemsWithId[0]) ? (
+          {isSection(itemsWithId[0] as SectionWithId) ? (
             (itemsWithId as SectionWithId[]).map((item, index) => (
               <Section key={`section-${index}`} section={item} index={index} length={itemsWithId.length} />
             ))
