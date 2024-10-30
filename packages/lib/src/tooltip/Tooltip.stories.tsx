@@ -5,6 +5,8 @@ import DxcButton from "../button/Button";
 import DxcFlex from "../flex/Flex";
 import DxcInset from "../inset/Inset";
 import DxcTooltip from "./Tooltip";
+import { useState } from "react";
+import useEffect from "react";
 
 export default {
   title: "Tooltip",
@@ -42,7 +44,7 @@ const TopTooltip = () => (
     <Title title="Top tooltip" theme="light" level={4} />
     <ExampleContainer>
       <DxcInset top="3rem">
-        <DxcTooltip label="Tooltip Test" position="top">
+        <DxcTooltip label="Tooltip Test" position="top" onClose={() => {console.log("CLOSE")}} onOpen={() => {console.log("OPEN")}}>
           <DxcButton label="Hoverable button" />
         </DxcTooltip>
       </DxcInset>
@@ -73,6 +75,38 @@ const RightTooltip = () => (
     </ExampleContainer>
   </>
 );
+
+const ControlledTooltip = () => {
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+    setTimeout(() => {
+      setOpen(false);
+    }, 2000);
+  };
+
+  return (
+    <>
+      <Title title="Controlled tooltip" theme="light" level={4} />
+      <ExampleContainer>
+        <DxcButton label="Trigger tooltip here" onClick={handleOpen} />
+        <DxcTooltip
+          label="Tooltip Test"
+          open={open}
+          onOpen={() => {
+            console.log("Tooltip opened");
+          }}
+          onClose={() => {
+            console.log("Tooltip closed");
+          }}
+        >
+          <DxcButton label="Button with controlled tooltip" />
+        </DxcTooltip>
+      </ExampleContainer>
+    </>
+  );
+};
 
 export const Chromatic = Tooltip.bind({});
 Chromatic.play = async ({ canvasElement }) => {
@@ -107,4 +141,11 @@ TooltipPositionRight.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const button = canvas.getByRole("button");
   await userEvent.hover(button);
+};
+
+export const TooltipControlled = ControlledTooltip.bind({});
+TooltipControlled.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  const button = canvas.getAllByRole("button")[0];
+  await userEvent.click(button);
 };

@@ -4,6 +4,7 @@ import TooltipPropsType, { TooltipWrapperProps } from "./types";
 import { createContext, useContext } from "react";
 import { Root, Trigger, Portal, Arrow, Content } from "@radix-ui/react-tooltip";
 import { Provider } from "@radix-ui/react-tooltip";
+import { useEffect } from "react";
 
 const TooltipTriggerContainer = styled.div`
   position: relative;
@@ -109,15 +110,34 @@ export const Tooltip = ({
   label,
   hasAdditionalContainer = false,
   position = "bottom",
+  open,
+  defaultOpen = false,
+  onOpen,
+  onClose,
   children,
 }: { hasAdditionalContainer?: boolean } & TooltipPropsType): JSX.Element => {
   const hasTooltip = useContext(TooltipContext);
+
+  useEffect(() => {
+    if (open !== undefined) {
+      open ? onOpen?.() : onClose?.();
+    }
+  }, [open]);
 
   return (
     <TooltipContext.Provider value={true}>
       {label && !hasTooltip ? (
         <Provider delayDuration={300}>
-          <Root>
+          <Root
+            open={open}
+            defaultOpen={defaultOpen}
+            onOpenChange={(status) => {
+              // Only works for uncontrolled mode
+              if (open === undefined) {
+                status ? onOpen?.() : onClose?.();
+              }
+            }}
+          >
             <Trigger asChild>
               {hasAdditionalContainer ? <TooltipTriggerContainer>{children}</TooltipTriggerContainer> : children}
             </Trigger>

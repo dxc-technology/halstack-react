@@ -41,6 +41,38 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
+            <td>open</td>
+            <td>
+              <TableCode>boolean</TableCode>
+            </td>
+            <td>If true, the component will be displayed.</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>defaultOpen</td>
+            <td>
+              <TableCode>boolean</TableCode>
+            </td>
+            <td>Initial status of the tooltip, only when it is uncontrolled.</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>onOpen</td>
+            <td>
+              <TableCode>{"() => void"}</TableCode>
+            </td>
+            <td>This function will be called when the tooltip starts being shown.</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>onClose</td>
+            <td>
+              <TableCode>{"() => void"}</TableCode>
+            </td>
+            <td>This function will be called when the tooltip stops being shown.</td>
+            <td>-</td>
+          </tr>
+          <tr>
             <td>children</td>
             <td>
               <TableCode>React.ReactNode</TableCode>
