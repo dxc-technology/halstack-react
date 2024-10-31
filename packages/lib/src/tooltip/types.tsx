@@ -1,30 +1,3 @@
-// type Props = {
-//   /**
-//    * Preferred position for displaying the tooltip. It may adjust automatically based on available space.
-//    */
-//   position?: "bottom" | "top" | "left" | "right";
-//   /**
-//    * Text to be displayed inside the tooltip.
-//    */
-//   label: string;
-//   /**
-//    * If true, the component will be displayed.
-//    */
-//   open?: boolean;
-//   /**
-//    * This function will be called when the tooltip starts being shown.
-//    */
-//   onOpen?: () => void;
-//   /**
-//    * This function will be called when the tooltip stops being shown.
-//    */
-//   onClose?: () => void;
-//   /**
-//    * Content in which the Tooltip will be displayed.
-//    */
-//   children: React.ReactNode;
-// };
-
 type CommonProps = {
   /**
    * Preferred position for displaying the tooltip. It may adjust automatically based on available space.
@@ -38,6 +11,14 @@ type CommonProps = {
    * Content in which the Tooltip will be displayed.
    */
   children: React.ReactNode;
+  /**
+   * This function will be called when the tooltip starts being shown.
+   */
+  onOpen?: () => void;
+  /**
+   * This function will be called when the tooltip stops being shown.
+   */
+  onClose?: () => void;
 };
 
 type ControlledProps = {
@@ -49,14 +30,6 @@ type ControlledProps = {
    * If true, the component will be displayed.
    */
   open: boolean;
-  /**
-   * This function will be called when the tooltip starts being shown.
-   */
-  onOpen?: () => void;
-  /**
-   * This function will be called when the tooltip stops being shown.
-   */
-  onClose?: () => void;
 };
 
 type UnControlledProps = {
@@ -68,14 +41,6 @@ type UnControlledProps = {
    * If true, the component will be displayed.
    */
   open?: never;
-  /**
-   * This function will be called when the tooltip starts being shown.
-   */
-  onOpen?: () => void;
-  /**
-   * This function will be called when the tooltip stops being shown.
-   */
-  onClose?: () => void;
 };
 
 type Props = CommonProps & (ControlledProps | UnControlledProps);

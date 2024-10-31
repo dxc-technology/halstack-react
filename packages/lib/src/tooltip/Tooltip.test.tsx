@@ -53,4 +53,40 @@ describe("Tooltip component tests", () => {
       expect(tooltipElement).toBeFalsy();
     });
   });
+
+  test("Calls correct function (onOpen/onClose) in controlled mode", async () => {
+    const onOpen = jest.fn();
+    const onClose = jest.fn();
+    const { rerender, queryByRole } = render(
+      <DxcTooltip label="Tooltip Test" open={false} onOpen={onOpen} onClose={onClose}>
+        <DxcButton label="Button with controlled tooltip" />
+      </DxcTooltip>
+    );
+
+    await waitFor(() => {
+      const tooltipElement = queryByRole("tooltip");
+      expect(tooltipElement).toBeFalsy();
+    });
+
+    rerender(
+      <DxcTooltip label="Tooltip Test" open={true} onOpen={onOpen} onClose={onClose}>
+        <DxcButton label="Button with controlled tooltip" />
+      </DxcTooltip>
+    );
+
+    await screen.findByRole("tooltip", { name: "Tooltip Test" });
+    expect(onOpen).toHaveBeenCalledTimes(1);
+
+    rerender(
+      <DxcTooltip label="Tooltip Test" open={false} onOpen={onOpen} onClose={onClose}>
+        <DxcButton label="Button with controlled tooltip" />
+      </DxcTooltip>
+    );
+
+    await waitFor(() => {
+      const tooltipElement = queryByRole("tooltip");
+      expect(tooltipElement).toBeFalsy();
+    });
+    expect(onClose).toHaveBeenCalledTimes(1);
+  });
 });

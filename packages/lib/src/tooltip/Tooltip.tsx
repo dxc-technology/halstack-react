@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import CoreTokens from "../common/coreTokens";
 import TooltipPropsType, { TooltipWrapperProps } from "./types";
-import { createContext, useContext } from "react";
+import { createContext, useContext, useState } from "react";
 import { Root, Trigger, Portal, Arrow, Content } from "@radix-ui/react-tooltip";
 import { Provider } from "@radix-ui/react-tooltip";
 import { useEffect } from "react";
@@ -111,33 +111,41 @@ export const Tooltip = ({
   hasAdditionalContainer = false,
   position = "bottom",
   open,
-  defaultOpen = false,
+  defaultOpen,
   onOpen,
   onClose,
   children,
 }: { hasAdditionalContainer?: boolean } & TooltipPropsType): JSX.Element => {
   const hasTooltip = useContext(TooltipContext);
-
+  const [isFirstRender, setIsFirstRender] = useState(true);
   useEffect(() => {
     if (open !== undefined) {
-      open ? onOpen?.() : onClose?.();
+      if (isFirstRender) {
+        setIsFirstRender(false);
+      } else {
+        if (open) {
+          onOpen?.();
+        } else {
+          onClose?.();
+        }
+      }
     }
   }, [open]);
+
+  const handleOpenChange = (status: boolean) => {
+    if(status) {
+      onOpen?.();
+    }
+    else {
+      onClose?.()
+    }
+  };
 
   return (
     <TooltipContext.Provider value={true}>
       {label && !hasTooltip ? (
         <Provider delayDuration={300}>
-          <Root
-            open={open}
-            defaultOpen={defaultOpen}
-            onOpenChange={(status) => {
-              // Only works for uncontrolled mode
-              if (open === undefined) {
-                status ? onOpen?.() : onClose?.();
-              }
-            }}
-          >
+          <Root open={open} defaultOpen={defaultOpen} onOpenChange={open === undefined ? handleOpenChange : undefined}>
             <Trigger asChild>
               {hasAdditionalContainer ? <TooltipTriggerContainer>{children}</TooltipTriggerContainer> : children}
             </Trigger>

@@ -44,7 +44,16 @@ const TopTooltip = () => (
     <Title title="Top tooltip" theme="light" level={4} />
     <ExampleContainer>
       <DxcInset top="3rem">
-        <DxcTooltip label="Tooltip Test" position="top" onClose={() => {console.log("CLOSE")}} onOpen={() => {console.log("OPEN")}}>
+        <DxcTooltip
+          label="Tooltip Test"
+          position="top"
+          onClose={() => {
+            console.log("CLOSE");
+          }}
+          onOpen={() => {
+            console.log("OPEN");
+          }}
+        >
           <DxcButton label="Hoverable button" />
         </DxcTooltip>
       </DxcInset>
@@ -90,19 +99,21 @@ const ControlledTooltip = () => {
     <>
       <Title title="Controlled tooltip" theme="light" level={4} />
       <ExampleContainer>
-        <DxcButton label="Trigger tooltip here" onClick={handleOpen} />
-        <DxcTooltip
-          label="Tooltip Test"
-          open={open}
-          onOpen={() => {
-            console.log("Tooltip opened");
-          }}
-          onClose={() => {
-            console.log("Tooltip closed");
-          }}
-        >
-          <DxcButton label="Button with controlled tooltip" />
-        </DxcTooltip>
+        <DxcFlex gap={"1rem"}>
+          <DxcButton label="Trigger tooltip here" onClick={handleOpen} />
+          <DxcTooltip
+            label="Tooltip Test"
+            open={open}
+            onOpen={() => {
+              console.log("Tooltip opened");
+            }}
+            onClose={() => {
+              console.log("Tooltip closed");
+            }}
+          >
+            <DxcButton label="Button with controlled tooltip" />
+          </DxcTooltip>
+        </DxcFlex>
       </ExampleContainer>
     </>
   );
