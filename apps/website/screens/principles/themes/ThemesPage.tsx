@@ -187,27 +187,6 @@ const sections = [
                 ),
               },
               {
-                title: "Box",
-                content: (
-                  <DxcTable>
-                    <thead>
-                      <tr>
-                        <th>Theme Input</th>
-                        <th>Tokens (calculation) </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>Base color</td>
-                        <td>
-                          <Code>backgroundColor</Code>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </DxcTable>
-                ),
-              },
-              {
                 title: "Button",
                 content: (
                   <DxcTable>
@@ -221,46 +200,67 @@ const sections = [
                       <tr>
                         <td>Base color</td>
                         <td>
-                          <Code>primaryBackgroundColor</Code>
+                          <Code>primaryDefaultFontColor</Code>
                           <br />
                           <br />
-                          <Code>secondaryFontColor</Code>
+                          <Code>primaryDefaultBackgroundColor</Code>
                           <br />
                           <br />
-                          <Code>secondaryBorderColor</Code>
+                          <Code>secondaryDefaultFontColor</Code>
                           <br />
                           <br />
-                          <Code>secondaryHoverBackgroundColor</Code>
+                          <Code>secondaryDefaultBorderColor</Code>
                           <br />
                           <br />
-                          <Code>textFontColor</Code>
+                          <Code>secondaryHoverDefaultBackgroundColor</Code>
                           <br />
                           <br />
-                          <Code>primaryHoverBackgroundColor</Code> (-8% of lightness)
+                          <Code>tertiaryDefaultFontColor</Code>
                           <br />
                           <br />
-                          <Code>primaryActiveBackgroundColor</Code> (-18% of lightness)
+                          <Code>primaryHoverDefaultBackgroundColor</Code> (-8% of lightness)
                           <br />
                           <br />
-                          <Code>secondaryActiveBackgroundColor</Code> (-18% of lightness)
+                          <Code>primaryActiveDefaultBackgroundColor</Code> (-18% of lightness)
                           <br />
                           <br />
-                          <Code>textHoverBackgroundColor</Code> (+57% of lightness)
+                          <Code>secondaryActiveDefaultBackgroundColor</Code> (-18% of lightness)
                           <br />
                           <br />
-                          <Code>textActiveBackgroundColor</Code> (+52% of lightness)
+                          <Code>tertiaryHoverDefaultBackgroundColor</Code> (+57% of lightness)
+                          <br />
+                          <br />
+                          <Code>tertiaryActiveDefaultBackgroundColor</Code> (+52% of lightness)
+                          <br />
+                          <br />
+                          <Code>primaryDisabledDefaultBackgroundColor</Code> (+42% of lightness)
+                          <br />
+                          <br />
+                          <Code>primaryDisabledDefaultFontColor</Code> (+42% of lightness)
+                          <br />
+                          <br />
+                          <Code>secondaryDisabledDefaultBorderColor</Code> (+42% of lightness)
+                          <br />
+                          <br />
+                          <Code>secondaryDisabledDefaultFontColor</Code> (+42% of lightness)
+                          <br />
+                          <br />
+                          <Code>tertiaryDisabledDefaultFontColor</Code> (+42% of lightness)
                         </td>
                       </tr>
                       <tr>
                         <td>Primary font color</td>
                         <td>
-                          <Code>primaryFontColor</Code>
+                          <Code>primaryDefaultFontColor</Code>
+                          <br />
+                          <br />
+                          <Code>primaryDisabledDefaultFontColor</Code> (+42% of lightness)
                         </td>
                       </tr>
                       <tr>
                         <td>Secondary hover font color</td>
                         <td>
-                          <Code>secondaryHoverFontColor</Code>
+                          <Code>secondaryHoverDefaultFontColor</Code>
                         </td>
                       </tr>
                     </tbody>
@@ -420,6 +420,18 @@ const sections = [
                           <br />
                           <br />
                           <Code>headerCheckboxCheckColor</Code>
+                          <br />
+                          <br />
+                          <Code>actionIconColor</Code>
+                          <br />
+                          <br />
+                          <Code>hoverActionIconColor</Code>
+                          <br />
+                          <br />
+                          <Code>focusActionIconColor</Code>
+                          <br />
+                          <br />
+                          <Code>activeActionIconColor</Code>
                         </td>
                       </tr>
                       <tr>

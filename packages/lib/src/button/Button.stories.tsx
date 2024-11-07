@@ -37,9 +37,9 @@ const facebookIcon = (
 
 const opinionatedTheme = {
   button: {
-    baseColor: "#d0021b",
-    primaryFontColor: "#000000",
-    secondaryHoverFontColor: "#ffffff",
+    baseColor: "#5f249f",
+    primaryFontColor: "#fff",
+    secondaryHoverFontColor: "#fff",
   },
 };
 
