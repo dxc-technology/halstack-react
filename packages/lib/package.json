@@ -42,8 +42,6 @@
     "slugify": "^1.6.6"
   },
   "devDependencies": {
-    "@babel/cli": "^7.16.8",
-    "@babel/core": "^7.16.7",
     "@babel/plugin-proposal-nullish-coalescing-operator": "^7.13.8",
     "@babel/plugin-proposal-optional-chaining": "^7.13.8",
     "@babel/plugin-transform-runtime": "^7.16.8",
@@ -65,7 +63,6 @@
     "@storybook/test-runner": "^0.18.2",
     "@testing-library/react": "^16.0.1",
     "@testing-library/user-event": "^13.0.0",
-    "@turbo/gen": "^1.12.4",
     "@types/eslint": "^8.56.5",
     "@types/jest": "^29.5.12",
     "@types/jest-axe": "^3.5.9",
