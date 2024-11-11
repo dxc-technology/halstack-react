@@ -93,7 +93,7 @@ const DxcTabs = ({
       setTotalTabsWidth(refTabList.current.firstElementChild?.offsetWidth);
       setMinHeightTabs(refTabList?.current?.offsetHeight + 1);
     }
-  }, [refTabList]);
+  }, []);
 
   const contextValue = useMemo(() => {
     const focusedChild = childrenArray[innerFocusIndex];
