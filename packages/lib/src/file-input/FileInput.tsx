@@ -8,9 +8,9 @@ import FileItem from "./FileItem";
 import FileInputPropsType, { FileData, RefType } from "./types";
 
 const getFilePreview = async (file: File): Promise<string> => {
-  if (file.type.includes("video")) return "filled_movie";
-  else if (file.type.includes("audio")) return "music_video";
-  else if (file.type.includes("image")) {
+  if (file?.type?.includes("video")) return "filled_movie";
+  else if (file?.type?.includes("audio")) return "music_video";
+  else if (file?.type?.includes("image")) {
     return new Promise<string>((resolve) => {
       const reader = new FileReader();
       reader.readAsDataURL(file);
