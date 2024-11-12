@@ -21,8 +21,8 @@ const FileItem = ({
   const translatedLabels = useTranslatedLabels();
 
   const getIconAriaLabel = () => {
-    if (type.includes("video")) return "video";
-    else if (type.includes("audio")) return "audio";
+    if (type?.includes("video")) return "video";
+    else if (type?.includes("audio")) return "audio";
     else return "file";
   };
 
