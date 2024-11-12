@@ -21,8 +21,8 @@ const FileItem = ({
   const translatedLabels = useTranslatedLabels();
 
   const getIconAriaLabel = () => {
-    if (type.includes("video")) return "video";
-    else if (type.includes("audio")) return "audio";
+    if (type?.includes("video")) return "video";
+    else if (type?.includes("audio")) return "audio";
     else return "file";
   };
 
@@ -30,7 +30,7 @@ const FileItem = ({
     <ThemeProvider theme={colorsTheme.fileInput}>
       <MainContainer error={error} singleFileMode={singleFileMode} showPreview={showPreview}>
         {showPreview &&
-          (type.includes("image") ? (
+          (type?.includes("image") ? (
             <ImagePreview src={preview} alt={fileName} />
           ) : (
             <IconPreview error={error} role="document" aria-label={getIconAriaLabel()}>
