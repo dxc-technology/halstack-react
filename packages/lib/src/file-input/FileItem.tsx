@@ -30,7 +30,7 @@ const FileItem = ({
     <ThemeProvider theme={colorsTheme.fileInput}>
       <MainContainer error={error} singleFileMode={singleFileMode} showPreview={showPreview}>
         {showPreview &&
-          (type.includes("image") ? (
+          (type?.includes("image") ? (
             <ImagePreview src={preview} alt={fileName} />
           ) : (
             <IconPreview error={error} role="document" aria-label={getIconAriaLabel()}>
