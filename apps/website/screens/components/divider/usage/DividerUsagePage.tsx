@@ -29,7 +29,7 @@ const DividerUsagePage = () => {
       <QuickNavContainerLayout>
         <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/divider/usage/DividerUsagePage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/divider/usage/DividerUsagePage.tsx" />
     </DxcFlex>
   );
 };

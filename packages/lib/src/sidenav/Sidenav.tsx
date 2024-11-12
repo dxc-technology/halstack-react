@@ -119,7 +119,7 @@ const SidenavContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 280px;
-  @media (max-width: ${responsiveSizes.medium}rem) {
+  @media (max-width: ${responsiveSizes.large}rem) {
     width: 100vw;
   }
   padding: 2rem 1rem;
