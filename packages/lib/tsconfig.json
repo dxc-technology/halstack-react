@@ -1,15 +1,7 @@
 {
   "extends": "@dxc-technology/typescript-config/react-library.json",
   "compilerOptions": {
-    "jsx": "react-jsx",
-    "outDir": "dist",
-    "strict": false,
-    "target": "es5",
-    "module": "ESNext", // or "es2020"
-    "moduleResolution": "node",
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "skipLibCheck": true
+    "outDir": "dist"
   },
   "include": ["src"],
   "exclude": ["node_modules", "dist"]
