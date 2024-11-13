@@ -67,12 +67,6 @@ const parseAdvancedTheme = (advancedTheme: DeepPartial<AdvancedTheme>): Advanced
 const parseTheme = (theme: DeepPartial<OpinionatedTheme>): AdvancedTheme => {
   const componentTokensCopy: AdvancedTheme = JSON.parse(JSON.stringify(componentTokens));
 
-  const alertTokens = componentTokensCopy.alert;
-  alertTokens.infoBackgroundColor = theme?.alert?.baseColor ?? alertTokens.infoBackgroundColor;
-  alertTokens.infoIconColor = theme?.alert?.accentColor ?? alertTokens.infoIconColor;
-  alertTokens.infoBorderColor = theme?.alert?.accentColor ?? alertTokens.infoBorderColor;
-  alertTokens.overlayColor = theme?.alert?.overlayColor ?? alertTokens.overlayColor;
-
   const accordionTokens = componentTokensCopy.accordion;
   accordionTokens.assistiveTextFontColor =
     theme?.accordion?.assistiveTextFontColor ?? accordionTokens.assistiveTextFontColor;
@@ -81,6 +75,12 @@ const parseTheme = (theme: DeepPartial<OpinionatedTheme>): AdvancedTheme => {
   accordionTokens.iconColor = theme?.accordion?.accentColor ?? accordionTokens.iconColor;
   accordionTokens.hoverBackgroundColor =
     addLightness(57, theme?.accordion?.accentColor) ?? accordionTokens.hoverBackgroundColor;
+
+  const alertTokens = componentTokensCopy.alert;
+  alertTokens.infoBackgroundColor = theme?.alert?.baseColor ?? alertTokens.infoBackgroundColor;
+  alertTokens.infoIconColor = theme?.alert?.accentColor ?? alertTokens.infoIconColor;
+  alertTokens.infoBorderColor = theme?.alert?.accentColor ?? alertTokens.infoBorderColor;
+  alertTokens.overlayColor = theme?.alert?.overlayColor ?? alertTokens.overlayColor;
 
   const buttonTokens = componentTokensCopy.button;
   buttonTokens.primaryDefaultFontColor = theme?.button?.primaryFontColor ?? buttonTokens.primaryDefaultFontColor;
@@ -103,7 +103,7 @@ const parseTheme = (theme: DeepPartial<OpinionatedTheme>): AdvancedTheme => {
   buttonTokens.tertiaryActiveDefaultBackgroundColor =
     addLightness(52, theme?.button?.baseColor) ?? buttonTokens.tertiaryActiveDefaultBackgroundColor;
   buttonTokens.primaryDisabledDefaultBackgroundColor =
-    addLightness(57, theme?.button?.baseColor) ?? buttonTokens.primaryDisabledDefaultBackgroundColor;
+    addLightness(42, theme?.button?.baseColor) ?? buttonTokens.primaryDisabledDefaultBackgroundColor;
   buttonTokens.primaryDisabledDefaultFontColor =
     addLightness(42, theme?.button?.primaryFontColor) ?? buttonTokens.primaryDisabledDefaultFontColor;
   buttonTokens.secondaryDisabledDefaultBorderColor =

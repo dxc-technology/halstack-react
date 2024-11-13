@@ -122,7 +122,7 @@ const Releases = ({ releases }: { releases: Release[] }) => (
     <QuickNavContainerLayout>
       <QuickNavContainer sections={getReleasesPageSections(releases)} startHeadingLevel={2} />
     </QuickNavContainerLayout>
-    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/overview/releases/ReleasesPage.tsx" />
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/overview/releases/ReleasesPage.tsx" />
   </DxcFlex>
 );
 

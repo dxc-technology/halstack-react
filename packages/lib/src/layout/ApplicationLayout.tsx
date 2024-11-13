@@ -1,4 +1,4 @@
-import { Children, FC, ReactElement, useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { responsiveSizes } from "../common/variables";
 import DxcFooter from "../footer/Footer";
@@ -8,125 +8,8 @@ import DxcSidenav from "../sidenav/Sidenav";
 import { SidenavContextProvider, useResponsiveSidenavVisibility } from "../sidenav/SidenavContext";
 import useTranslatedLabels from "../useTranslatedLabels";
 import { Tooltip } from "../tooltip/Tooltip";
-import layoutIcons from "./Icons";
-import AppLayoutPropsType, { AppLayoutMainPropsType } from "./types";
-
-const year = new Date().getFullYear();
-const Main = ({ children }: AppLayoutMainPropsType): JSX.Element => <>{children}</>;
-const defaultHeader = () => <DxcHeader underlined />;
-
-const defaultFooter = () => (
-  <DxcFooter
-    copyright={`© DXC Technology ${year}. All rights reserved.`}
-    bottomLinks={[
-      {
-        href: "https://www.linkedin.com/company/dxctechnology",
-        text: "Linkedin",
-      },
-      {
-        href: "https://x.com/dxctechnology",
-        text: "X",
-      },
-      {
-        href: "https://www.facebook.com/DXCTechnology/",
-        text: "Facebook",
-      },
-    ]}
-    socialLinks={[
-      {
-        href: "https://www.linkedin.com/company/dxctechnology",
-        logo: layoutIcons.linkedinLogo,
-        title: "Linkedin",
-      },
-      {
-        href: "https://x.com/dxctechnology",
-        logo: layoutIcons.xLogo,
-        title: "X",
-      },
-      {
-        href: "https://www.facebook.com/DXCTechnology/",
-        logo: layoutIcons.facebookLogo,
-        title: "Facebook",
-      },
-    ]}
-  />
-);
-
-const childTypeExists = (children: ReactElement[], childType: FC<AppLayoutMainPropsType>) =>
-  children.find((child) => child?.type === childType);
-
-const DxcApplicationLayout = ({
-  visibilityToggleLabel = "",
-  header,
-  sidenav,
-  footer,
-  children,
-}: AppLayoutPropsType): JSX.Element => {
-  const [isSidenavVisibleResponsive, setIsSidenavVisibleResponsive] = useState(false);
-  const [isResponsive, setIsResponsive] = useState(false);
-  const ref = useRef(null);
-  const translatedLabels = useTranslatedLabels();
-
-  const childrenArray = Children.toArray(children) as ReactElement[];
-  const headerContent = header || defaultHeader();
-  const footerContent = footer || defaultFooter();
-
-  const main = childTypeExists(childrenArray, Main);
-
-  const handleResize = useCallback(() => {
-    setIsResponsive(window.matchMedia(`(max-width: ${responsiveSizes.large}rem)`).matches);
-  }, []);
-
-  const handleSidenavVisibility = () => {
-    setIsSidenavVisibleResponsive((isSidenavVisibleCurrentlyResponsive) => !isSidenavVisibleCurrentlyResponsive);
-  };
-
-  useEffect(() => {
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, [handleResize]);
-
-  useEffect(() => {
-    if (!isResponsive) {
-      setIsSidenavVisibleResponsive(false);
-    }
-  }, [isResponsive]);
-
-  return (
-    <ApplicationLayoutContainer hasSidenav={!!sidenav} isSidenavVisible={isSidenavVisibleResponsive} ref={ref}>
-      <HeaderContainer>{headerContent}</HeaderContainer>
-      {sidenav && isResponsive && (
-        <VisibilityToggle>
-          <Tooltip label={translatedLabels?.applicationLayout?.visibilityToggleTitle}>
-            <HamburgerTrigger
-              onClick={handleSidenavVisibility}
-              aria-label={
-                visibilityToggleLabel ? undefined : translatedLabels?.applicationLayout?.visibilityToggleTitle
-              }
-            >
-              <DxcIcon icon="Menu" />
-              {visibilityToggleLabel}
-            </HamburgerTrigger>
-          </Tooltip>
-        </VisibilityToggle>
-      )}
-      <BodyContainer>
-        <SidenavContextProvider value={setIsSidenavVisibleResponsive}>
-          {sidenav && (isResponsive ? isSidenavVisibleResponsive : true) && (
-            <SidenavContainer>{sidenav}</SidenavContainer>
-          )}
-        </SidenavContextProvider>
-        <MainContainer>
-          <MainContentContainer>{main}</MainContentContainer>
-          {footerContent}
-        </MainContainer>
-      </BodyContainer>
-    </ApplicationLayoutContainer>
-  );
-};
+import ApplicationLayoutPropsType, { AppLayoutMainPropsType } from "./types";
+import { bottomLinks, findChildType, socialLinks, useResponsive, year } from "./utils";
 
 const ApplicationLayoutContainer = styled.div<{
   isSidenavVisible: boolean;
@@ -140,7 +23,7 @@ const ApplicationLayoutContainer = styled.div<{
   display: flex;
   flex-direction: column;
 
-  @media (max-width: ${responsiveSizes.medium}rem) {
+  @media (max-width: ${responsiveSizes.large}rem) {
     ${(props) => props.hasSidenav && "top: 116px"};
     ${(props) => props.isSidenavVisible && "overflow: hidden;"}
   }
@@ -212,7 +95,7 @@ const SidenavContainer = styled.div`
   height: calc(100vh - 64px);
   z-index: 1;
 
-  @media (max-width: ${responsiveSizes.medium}rem) {
+  @media (max-width: ${responsiveSizes.large}rem) {
     position: absolute;
     top: 0px;
     height: 100%;
@@ -230,9 +113,72 @@ const MainContentContainer = styled.main`
   background-color: #fff;
 `;
 
+const Main = ({ children }: AppLayoutMainPropsType): JSX.Element => <>{children}</>;
+
+const DxcApplicationLayout = ({
+  visibilityToggleLabel = "",
+  header,
+  sidenav,
+  footer,
+  children,
+}: ApplicationLayoutPropsType): JSX.Element => {
+  const [isSidenavVisibleResponsive, setIsSidenavVisibleResponsive] = useState(false);
+  const isResponsive = useResponsive(responsiveSizes.large);
+  const ref = useRef(null);
+  const translatedLabels = useTranslatedLabels();
+
+  const handleSidenavVisibility = () => {
+    setIsSidenavVisibleResponsive((currentIsSidenavVisibleResponsive) => !currentIsSidenavVisibleResponsive);
+  };
+
+  useEffect(() => {
+    if (!isResponsive) {
+      setIsSidenavVisibleResponsive(false);
+    }
+  }, [isResponsive]);
+
+  return (
+    <ApplicationLayoutContainer hasSidenav={!!sidenav} isSidenavVisible={isSidenavVisibleResponsive} ref={ref}>
+      <HeaderContainer>{header ?? <DxcHeader underlined />}</HeaderContainer>
+      {sidenav && isResponsive && (
+        <VisibilityToggle>
+          <Tooltip label={translatedLabels?.applicationLayout?.visibilityToggleTitle}>
+            <HamburgerTrigger
+              onClick={handleSidenavVisibility}
+              aria-label={
+                visibilityToggleLabel ? undefined : translatedLabels?.applicationLayout?.visibilityToggleTitle
+              }
+            >
+              <DxcIcon icon="Menu" />
+              {visibilityToggleLabel}
+            </HamburgerTrigger>
+          </Tooltip>
+        </VisibilityToggle>
+      )}
+      <BodyContainer>
+        <SidenavContextProvider value={setIsSidenavVisibleResponsive}>
+          {sidenav && (isResponsive ? isSidenavVisibleResponsive : true) && (
+            <SidenavContainer>{sidenav}</SidenavContainer>
+          )}
+        </SidenavContextProvider>
+        <MainContainer>
+          <MainContentContainer>{findChildType(children, Main)}</MainContentContainer>
+          {footer ?? (
+            <DxcFooter
+              copyright={`© DXC Technology ${year}. All rights reserved.`}
+              bottomLinks={bottomLinks}
+              socialLinks={socialLinks}
+            />
+          )}
+        </MainContainer>
+      </BodyContainer>
+    </ApplicationLayoutContainer>
+  );
+};
+
+DxcApplicationLayout.Footer = DxcFooter;
 DxcApplicationLayout.Header = DxcHeader;
 DxcApplicationLayout.Main = Main;
-DxcApplicationLayout.Footer = DxcFooter;
 DxcApplicationLayout.SideNav = DxcSidenav;
 DxcApplicationLayout.useResponsiveSidenavVisibility = useResponsiveSidenavVisibility;
 

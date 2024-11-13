@@ -18,7 +18,7 @@ export type AppLayoutSidenavPropsType = {
   title?: ReactNode;
 };
 
-type AppLayoutPropsType = {
+type ApplicationLayoutPropsType = {
   /**
    * Text to be placed next to the hamburger button that toggles the
    * visibility of the sidenav.
@@ -42,4 +42,4 @@ type AppLayoutPropsType = {
   children: ReactElement<AppLayoutMainPropsType>;
 };
 
-export default AppLayoutPropsType;
+export default ApplicationLayoutPropsType;

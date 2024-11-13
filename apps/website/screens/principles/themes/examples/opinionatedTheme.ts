@@ -10,6 +10,7 @@ const code = `() => {
       fontColor: "#f80808",
     },
   };
+  
   return (
     <HalstackProvider theme={customTheme}>
       <DxcInset space="2rem">

@@ -122,7 +122,7 @@ const IconographyPage = () => {
       <QuickNavContainerLayout>
         <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/principles/iconography/IconographyPage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/principles/iconography/IconographyPage.tsx" />
     </DxcFlex>
   );
 };

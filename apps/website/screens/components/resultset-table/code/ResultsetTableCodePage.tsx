@@ -297,7 +297,7 @@ const ResultsetTableCodePage = () => {
       <QuickNavContainerLayout>
         <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/resultset-table/code/ResultsetTableCodePage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/resultset-table/code/ResultsetTableCodePage.tsx" />
     </DxcFlex>
   );
 };

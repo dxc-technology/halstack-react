@@ -11,7 +11,7 @@ const useToast = () => {
       success: (semanticToast: SemanticToast) => add?.(semanticToast, "success"),
       warning: (semanticToast: SemanticToast) => add?.(semanticToast, "warning"),
       info: (semanticToast: SemanticToast) => add?.(semanticToast, "info"),
-      loading: (loadingToast: LoadingToast) => add?.({ ...loadingToast, loading: true }, "info"),
+      loading: (loadingToast: Omit<LoadingToast, "loading">) => add?.({ ...loadingToast, loading: true } as LoadingToast, "info"),
     }),
     [add]
   );

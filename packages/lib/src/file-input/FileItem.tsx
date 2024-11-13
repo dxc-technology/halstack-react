@@ -20,13 +20,13 @@ const FileItem = ({
   const colorsTheme = useTheme();
   const translatedLabels = useTranslatedLabels();
 
-  const getIconAriaLabel = () => (type.includes("video") ? "video" : type.includes("audio") ? "audio" : "file");
+  const getIconAriaLabel = () => (type?.includes("video") ? "video" : type?.includes("audio") ? "audio" : "file");
 
   return (
     <ThemeProvider theme={colorsTheme?.fileInput}>
       <MainContainer error={error} singleFileMode={singleFileMode} showPreview={showPreview}>
         {showPreview &&
-          (type.includes("image") ? (
+          (type?.includes("image") ? (
             <ImagePreview src={preview} alt={fileName} />
           ) : (
             <IconPreview error={error} role="document" aria-label={getIconAriaLabel()}>
