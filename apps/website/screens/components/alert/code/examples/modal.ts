@@ -12,10 +12,9 @@ const code = `() => {
       <DxcButton label="Show information" onClick={handleVisibility} />
       {isVisible && (
         <DxcAlert
-          type="info"
           mode="modal"
-          onClose={handleVisibility}
-          inlineText="Please read the documents carefully before the submission of the data."
+          title="Information"
+          message={{ messageText: "Please read the documents carefully before the submission of the data.", onClose: handleVisibility }}
         />
       )}
     </DxcInset>

@@ -5,8 +5,6 @@
     "assistiveTextFontColor": "color"
   },
   "alert": {
-    "baseColor": "color",
-    "accentColor": "color",
     "overlayColor": "color"
   },
   "button": {

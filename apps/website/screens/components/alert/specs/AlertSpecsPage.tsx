@@ -1,37 +1,33 @@
 import Image from "@/common/Image";
-import { DxcLink, DxcBulletedList, DxcFlex, DxcTable, DxcParagraph } from "@dxc-technology/halstack-react";
+import { DxcLink, DxcBulletedList, DxcFlex, DxcTable } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
 import Figure from "@/common/Figure";
 import AlertAnatomyImage from "./images/alert_anatomy.png";
-import AlertStatesImage from "./images/alert_states.png";
-import AlertSpecsImage from "./images/alert_specs.png";
+import BannerAlertSpecsImage from "./images/alert_banner_specs.png";
+import InlineAlertSpecsImage from "./images/alert_inline_specs.png";
+import ModalAlertSpecsImage from "./images/alert_modal_specs.png";
 
 const sections = [
   {
     title: "Specifications",
     content: (
-      <Figure caption="Alert design specifications">
-        <Image src={AlertSpecsImage} alt="Alert design specifications" />
-      </Figure>
-    ),
-  },
-  {
-    title: "States",
-    content: (
       <>
-        <DxcParagraph>
-          States for the close action of the alert component: <strong>enabled</strong>, <strong>hover</strong>,{" "}
-          <strong>focus</strong>, and <strong>active</strong>.
-        </DxcParagraph>
-        <Figure caption="Alert states">
-          <Image src={AlertStatesImage} alt="Alert states" />
+        <Figure caption="Banner alert design specifications">
+          <Image src={BannerAlertSpecsImage} alt="Banner alert design specifications" />
+        </Figure>
+        <Figure caption="Modal alert design specifications">
+          <Image src={ModalAlertSpecsImage} alt="Modal alert design specifications" />
+        </Figure>
+        <Figure caption="Inline alert design specifications">
+          <Image src={InlineAlertSpecsImage} alt="Inline alert design specifications" />
         </Figure>
       </>
     ),
   },
+
   {
     title: "Anatomy",
     content: (
@@ -41,11 +37,11 @@ const sections = [
           <DxcBulletedList.Item>Container</DxcBulletedList.Item>
           <DxcBulletedList.Item>Icon</DxcBulletedList.Item>
           <DxcBulletedList.Item>Title</DxcBulletedList.Item>
-          <DxcBulletedList.Item>Inline text</DxcBulletedList.Item>
-          <DxcBulletedList.Item>Close action</DxcBulletedList.Item>
-          <DxcBulletedList.Item>
-            Content <em>(Optional)</em>
-          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>Pagination</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Divider</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Close action icon</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Buttons</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Description</DxcBulletedList.Item>
         </DxcBulletedList>
       </>
     ),
@@ -68,49 +64,29 @@ const sections = [
             <tbody>
               <tr>
                 <td>
-                  <Code>infoIconColor</Code>
+                  <Code>overlayColor</Code>
                 </td>
-                <td>Icon</td>
+                <td>Overlay</td>
                 <td>
-                  <Code>color-blue-800</Code>
+                  <Code>color-grey-800-a</Code>
                 </td>
-                <td>#0067b3</td>
+                <td>#000000b3</td>
               </tr>
               <tr>
                 <td>
-                  <Code>successIconColor</Code>
+                  <Code>modalBackgroundColor</Code>
                 </td>
-                <td>Icon</td>
+                <td>Container (modal)</td>
                 <td>
-                  <Code>color-green-700</Code>
+                  <Code>color-white</Code>
                 </td>
-                <td>#24a148</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>warningIconColor</Code>
-                </td>
-                <td>Icon</td>
-                <td>
-                  <Code>color-yellow-700</Code>
-                </td>
-                <td>#c59f07</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>errorIconColor</Code>
-                </td>
-                <td>Icon</td>
-                <td>
-                  <Code>color-red-700</Code>
-                </td>
-                <td>#d0011b</td>
+                <td>#ffffff</td>
               </tr>
               <tr>
                 <td>
                   <Code>infoBackgroundColor</Code>
                 </td>
-                <td>Container background</td>
+                <td>Container (info)</td>
                 <td>
                   <Code>color-blue-100</Code>
                 </td>
@@ -120,7 +96,7 @@ const sections = [
                 <td>
                   <Code>successBackgroundColor</Code>
                 </td>
-                <td>Container background</td>
+                <td>Container (success)</td>
                 <td>
                   <Code>color-green-100</Code>
                 </td>
@@ -130,7 +106,7 @@ const sections = [
                 <td>
                   <Code>warningBackgroundColor</Code>
                 </td>
-                <td>Container background</td>
+                <td>Container (warning)</td>
                 <td>
                   <Code>color-yellow-100</Code>
                 </td>
@@ -140,7 +116,7 @@ const sections = [
                 <td>
                   <Code>errorBackgroundColor</Code>
                 </td>
-                <td>Container background</td>
+                <td>Container (error)</td>
                 <td>
                   <Code>color-red-100</Code>
                 </td>
@@ -148,19 +124,19 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <Code>infoBorderColor</Code>
+                  <Code>infoIconColor</Code>
                 </td>
-                <td>Container border</td>
+                <td>Icon (info)</td>
                 <td>
-                  <Code>color-blue-800</Code>
+                  <Code>color-blue-700</Code>
                 </td>
-                <td>#0067b3</td>
+                <td>#0086e6</td>
               </tr>
               <tr>
                 <td>
-                  <Code>successBorderColor</Code>
+                  <Code>successIconColor</Code>
                 </td>
-                <td>Container border</td>
+                <td>Icon (success)</td>
                 <td>
                   <Code>color-green-700</Code>
                 </td>
@@ -168,7 +144,7 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <Code>warningBorderColor</Code>
+                  <Code>warningIconColor</Code>
                 </td>
                 <td>Container border</td>
                 <td>
@@ -178,9 +154,9 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <Code>errorBorderColor</Code>
+                  <Code>errorIconColor</Code>
                 </td>
-                <td>Container border</td>
+                <td>Icon (error)</td>
                 <td>
                   <Code>color-red-700</Code>
                 </td>
@@ -192,59 +168,29 @@ const sections = [
                 </td>
                 <td>Title</td>
                 <td>
+                  <Code>color-grey-900</Code>
+                </td>
+                <td>#333333</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>messageFontColor</Code>
+                </td>
+                <td>Message</td>
+                <td>
+                  <Code>color-grey-900</Code>
+                </td>
+                <td>#333333</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>navigationTextFontColor</Code>
+                </td>
+                <td>Navigation text</td>
+                <td>
                   <Code>color-black</Code>
                 </td>
                 <td>#000000</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>inlineTextFontColor</Code>
-                </td>
-                <td>Inline text</td>
-                <td>
-                  <Code>color-black</Code>
-                </td>
-                <td>#000000</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>hoverActionBackgroundColor</Code>
-                </td>
-                <td>Action:hover</td>
-                <td>
-                  <Code>color-grey-100-a</Code>
-                </td>
-                <td>#0000000d</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>activeActionBackgroundColor</Code>
-                </td>
-                <td>Action:active</td>
-                <td>
-                  <Code>color-grey-200-a</Code>
-                </td>
-                <td>#0000001a</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>focusActionBorderColor</Code>
-                </td>
-                <td>Action:focus</td>
-                <td>
-                  <Code>color-blue-600</Code>
-                </td>
-                <td>#0095ff</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>overlayColor</Code>
-                </td>
-                <td>Overlay</td>
-                <td>
-                  <Code>color-grey-800-a</Code>
-                </td>
-                <td>#000000b3</td>
               </tr>
             </tbody>
           </DxcTable>
@@ -279,9 +225,29 @@ const sections = [
                 </td>
                 <td>Title</td>
                 <td>
-                  <Code>font-scale-01</Code>
+                  <Code>font-scale-02</Code>
                 </td>
-                <td>0.75rem / 12px</td>
+                <td>0.875rem / 14px</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>modalTitleFontSize</Code>
+                </td>
+                <td>Title (modal)</td>
+                <td>
+                  <Code>font-scale-05</Code>
+                </td>
+                <td>1.5rem / 24px</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>titleFontStyle</Code>
+                </td>
+                <td>Title</td>
+                <td>
+                  <Code>font-normal</Code>
+                </td>
+                <td>normal</td>
               </tr>
               <tr>
                 <td>
@@ -291,13 +257,13 @@ const sections = [
                 <td>
                   <Code>font-bold</Code>
                 </td>
-                <td>600</td>
+                <td>bold</td>
               </tr>
               <tr>
                 <td>
-                  <Code>inlineTextFontFamily</Code>
+                  <Code>messageFontFamily</Code>
                 </td>
-                <td>Inline text</td>
+                <td>Message</td>
                 <td>
                   <Code>font-family-sans</Code>
                 </td>
@@ -305,9 +271,49 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <Code>inlineTextFontSize</Code>
+                  <Code>messageFontSize</Code>
                 </td>
-                <td>Inline text</td>
+                <td>Message</td>
+                <td>
+                  <Code>font-scale-02</Code>
+                </td>
+                <td>0.875rem / 14px</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>messageFontStyle</Code>
+                </td>
+                <td>Message</td>
+                <td>
+                  <Code>font-normal</Code>
+                </td>
+                <td>400</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>messageFontWeight</Code>
+                </td>
+                <td>Message</td>
+                <td>
+                  <Code>font-regular</Code>
+                </td>
+                <td>400</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>navigationTextFontFamily</Code>
+                </td>
+                <td>Navigation text</td>
+                <td>
+                  <Code>font-family-sans</Code>
+                </td>
+                <td>&#39;Open Sans&#39;, sans-serif</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>navigationTextFontSize</Code>
+                </td>
+                <td>Navigation text</td>
                 <td>
                   <Code>font-scale-01</Code>
                 </td>
@@ -315,9 +321,19 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <Code>inlineTextFontWeight</Code>
+                  <Code>navigationTextFontStyle</Code>
                 </td>
-                <td>Inline text</td>
+                <td>Message</td>
+                <td>
+                  <Code>font-normal</Code>
+                </td>
+                <td>normal</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>navigationTextFontWeight</Code>
+                </td>
+                <td>Message</td>
                 <td>
                   <Code>font-regular</Code>
                 </td>
@@ -352,23 +368,53 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <Code>borderThickness</Code>
+                  <Code>boxShadowOffsetX</Code>
                 </td>
-                <td>Container border</td>
+                <td>Container shadow</td>
                 <td>
-                  <Code>border-width-1</Code>
+                  <Code>-</Code>
                 </td>
                 <td>1px</td>
               </tr>
               <tr>
                 <td>
-                  <Code>borderStyle</Code>
+                  <Code>boxShadowOffsetY</Code>
                 </td>
-                <td>Container border</td>
+                <td>Container shadow</td>
                 <td>
-                  <Code>border-style-solid</Code>
+                  <Code>-</Code>
                 </td>
-                <td>solid</td>
+                <td>4px</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>boxShadowBlur</Code>
+                </td>
+                <td>Container shadow</td>
+                <td>
+                  <Code>-</Code>
+                </td>
+                <td>6px</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>boxShadowSpreadRadius</Code>
+                </td>
+                <td>Container shadow</td>
+                <td>
+                  <Code>-</Code>
+                </td>
+                <td>0px</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>boxShadowColor</Code>
+                </td>
+                <td>Container shadow</td>
+                <td>
+                  <Code></Code>
+                </td>
+                <td></td>
               </tr>
             </tbody>
           </DxcTable>
@@ -389,7 +435,57 @@ const sections = [
             <tbody>
               <tr>
                 <td>
-                  <Code>containerPaddingLeft</Code>
+                  <Code>modalPaddingTop</Code>
+                </td>
+                <td>Container</td>
+                <td>
+                  <Code>spacing-24</Code>
+                </td>
+                <td>1.5rem / 24px</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>modalPaddingRight</Code>
+                </td>
+                <td>Container</td>
+                <td>
+                  <Code>spacing-24</Code>
+                </td>
+                <td>1.5rem / 24px</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>modalPaddingBottom</Code>
+                </td>
+                <td>Container</td>
+                <td>
+                  <Code>spacing-24</Code>
+                </td>
+                <td>1.5rem / 24px</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>modalPaddingLeft</Code>
+                </td>
+                <td>Container</td>
+                <td>
+                  <Code>spacing-24</Code>
+                </td>
+                <td>1.5rem / 24px</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>paddingTop</Code>
+                </td>
+                <td>Container</td>
+                <td>
+                  <Code>spacing-8</Code>
+                </td>
+                <td>0.5rem / 8px</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>paddingRight</Code>
                 </td>
                 <td>Container</td>
                 <td>
@@ -399,7 +495,17 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <Code>containerPaddingRight</Code>
+                  <Code>paddingBottom</Code>
+                </td>
+                <td>Container</td>
+                <td>
+                  <Code>spacing-8</Code>
+                </td>
+                <td>0.5rem / 8px</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>paddingLeft</Code>
                 </td>
                 <td>Container</td>
                 <td>
@@ -409,33 +515,43 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <Code>iconMarginRight</Code>
+                  <Code>iconPaddingRight</Code>
                 </td>
                 <td>Icon</td>
                 <td>
                   <Code>spacing-8</Code>
                 </td>
-                <td>0.75rem / 12px</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>inlineTextPaddingLeft</Code>
-                </td>
-                <td>Inline text</td>
-                <td>
-                  <Code>spacing-8</Code>
-                </td>
                 <td>0.5rem / 8px</td>
               </tr>
               <tr>
                 <td>
-                  <Code>titlePaddingLeft</Code>
+                  <Code>titlePaddingRight</Code>
                 </td>
                 <td>Title</td>
                 <td>
-                  <Code>spacing-8</Code>
+                  <Code>spacing-4</Code>
                 </td>
-                <td>0.5rem / 8px</td>
+                <td>0.25rem / 4px</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>messagePaddingLeft</Code>
+                </td>
+                <td>Message</td>
+                <td>
+                  <Code>spacing-4</Code>
+                </td>
+                <td>0.25rem / 4px</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>messagePaddingRight</Code>
+                </td>
+                <td>Message</td>
+                <td>
+                  <Code>spacing-12</Code>
+                </td>
+                <td>0.75rem / 12px</td>
               </tr>
             </tbody>
           </DxcTable>
@@ -464,58 +580,6 @@ const sections = [
               </tr>
             </tbody>
           </DxcTable>
-        ),
-      },
-      {
-        title: "Width",
-        content: (
-          <>
-            <DxcParagraph>
-              The alert component has a property that is customizable depending on the context and the scenario where
-              the component is used. This property defines the size of the alert and it can get multiple values
-              according to the needs of the application.
-            </DxcParagraph>
-            <DxcTable>
-              <thead>
-                <tr>
-                  <th>Width</th>
-                  <th>Value</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <Code>small</Code>
-                  </td>
-                  <td>280px</td>
-                </tr>
-                <tr>
-                  <td>
-                    <Code>medium</Code>
-                  </td>
-                  <td>480px</td>
-                </tr>
-                <tr>
-                  <td>
-                    <Code>large</Code>
-                  </td>
-                  <td>820px</td>
-                </tr>
-                <tr>
-                  <td>
-                    <Code>fillParent</Code>
-                  </td>
-                  <td>-</td>
-                </tr>
-                <tr>
-                  <td>
-                    <Code>fitContent</Code>
-                  </td>
-                  <td>-</td>
-                </tr>
-              </tbody>
-            </DxcTable>
-          </>
         ),
       },
     ],
@@ -580,7 +644,7 @@ const AlertSpecsPage = () => {
       <QuickNavContainerLayout>
         <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/alert/specs/AlertSpecsPage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/alert/specs/AlertSpecsPage.tsx" />
     </DxcFlex>
   );
 };

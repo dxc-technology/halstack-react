@@ -1,9 +1,14 @@
+import React, { useState } from "react";
 import { DxcFlex, DxcTable } from "@dxc-technology/halstack-react";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import basicUsage from "./examples/basicUsage";
+import banner from "./examples/banner";
 import modal from "./examples/modal";
+import semantic from "./examples/semantic";
+import actions from "./examples/actions";
+import severalMessages from "./examples/severalMessages";
 import Example from "@/common/example/Example";
 import TableCode from "@/common/TableCode";
 import Code from "@/common/Code";
@@ -23,11 +28,34 @@ const sections = [
         </thead>
         <tbody>
           <tr>
-            <td>type</td>
+            <td>title</td>
             <td>
-              <TableCode>'info' | 'confirm' | 'warning' | 'error'</TableCode>
+              <TableCode>string</TableCode>
             </td>
-            <td>Uses one of the available alert types.</td>
+            <td>Title of the alert.</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>message</td>
+            <td>
+              <td>
+                <TableCode>{"{ messageText: string; onClose: () => void }"}</TableCode>
+              </td>
+            </td>
+            <td>
+              Object used to define the message of the alert and the onClose function related to it. If defined, a close
+              button will be displayed and this function will be executed when the action is clicked. (When{" "}
+              <Code>mode="modal"</Code> this function will also be executed when the background overlay is clicked. The
+              user has the responsibility of hiding the modal, otherwise it will remain visible.???)
+            </td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>semantic</td>
+            <td>
+              <TableCode>'success' | 'info' | 'warning' | 'error'</TableCode>
+            </td>
+            <td>Uses one of the available alert semantic types.</td>
             <td>
               <TableCode>'info'</TableCode>
             </td>
@@ -35,19 +63,21 @@ const sections = [
           <tr>
             <td>mode</td>
             <td>
-              <TableCode>'inline' | 'modal'</TableCode>
+              <TableCode>'inline' | 'modal' | 'banner'</TableCode>
             </td>
             <td>
               Uses one of the available alert modes:
               <ul>
                 <li>
-                  <b>inline:</b> Renders as a regular component, following the natural order of the elements in the
-                  document tree.
+                  <b>inline:</b>
                 </li>
                 <li>
                   <b>modal:</b> The alert will be displayed in the middle of the screen with an overlay layer behind. In
                   this mode, the user has the responsibility of hiding the alert with the <Code>onClose</Code> event,
                   otherwise the overlaid modal will remain visible.
+                </li>
+                <li>
+                  <b>banner:</b>
                 </li>
               </ul>
             </td>
@@ -56,53 +86,20 @@ const sections = [
             </td>
           </tr>
           <tr>
-            <td>inlineText</td>
+            <td>primaryAction</td>
             <td>
-              <TableCode>string</TableCode>
+              <TableCode>{"{ label: string; icon?: string | SVG; onClick: () => void; }"}</TableCode>
             </td>
-            <td>Message of the alert.</td>
-            <td>-</td>
+            <td>Primary action.</td>
+            <td>- </td>
           </tr>
           <tr>
-            <td>onClose</td>
+            <td>secondaryAction</td>
             <td>
-              <TableCode>{"() => void"}</TableCode>
+              <TableCode>{"{ label: string; icon?: string | SVG; onClick: () => void; }"}</TableCode>
             </td>
-            <td>
-              If defined, a close button will be displayed and this function will be executed when the action is
-              clicked. When <Code>mode="modal"</Code> this function will also be executed when the background overlay is
-              clicked. The user has the responsibility of hiding the modal, otherwise it will remain visible.
-            </td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td>children</td>
-            <td>
-              <TableCode>React.ReactNode</TableCode>
-            </td>
-            <td>The details section of the alert. Can be used to render custom content in this area.</td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td>margin</td>
-            <td>
-              <TableCode>'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge' | Margin</TableCode>
-            </td>
-            <td>
-              Size of the margin to be applied to the component. You can pass an object with 'top', 'bottom', 'left' and
-              'right' properties in order to specify different margin sizes.
-            </td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td>size</td>
-            <td>
-              <TableCode>'small' | 'medium' | 'large' | 'fillParent' | 'fitContent'</TableCode>
-            </td>
-            <td>Size of the component.</td>
-            <td>
-              <TableCode>'fitContent'</TableCode>
-            </td>
+            <td>Secondary action.</td>
+            <td>- </td>
           </tr>
           <tr>
             <td>tabIndex</td>
@@ -128,20 +125,65 @@ const sections = [
         content: <Example example={basicUsage} defaultIsVisible />,
       },
       {
+        title: "Banner",
+        content: <Example example={banner} defaultIsVisible />,
+      },
+      {
         title: "Modal",
         content: <Example example={modal} defaultIsVisible />,
+      },
+      {
+        title: "Semantic",
+        content: <Example example={semantic} defaultIsVisible />,
+      },
+      {
+        title: "Actions",
+        content: <Example example={actions} defaultIsVisible />,
+      },
+      {
+        title: "Several messages",
+        content: <Example example={severalMessages} defaultIsVisible />,
       },
     ],
   },
 ];
 
 const AlertCodePage = () => {
+  const [messages, setMessages] = useState([
+    {
+      messageText:
+        "Message 1, Message 1,  Message 1, Message 1, Message 1, Message 1, Message 1, Message 1, Message 1, Message 1, Message 1, Message 1,",
+      onClose: () => handleAlertClose(0),
+    },
+    {
+      messageText: "Message 2, Message 2, Message 2, Message 2, Message 2, Message 2, ",
+      onClose: () => handleAlertClose(1),
+    },
+    {
+      messageText:
+        "Message 3, Message 3,  Message 3, Message 3, Message 3, Message 3, Message 3, Message 3, Message 3, Message 3, Message 3, Message 3,",
+      onClose: () => handleAlertClose(0),
+    },
+    {
+      messageText:
+        "Message 4, Message 4,  Message 4, Message 4, Message 4, Message 4, Message 4, Message 4, Message 4, Message 4, Message 4, Message 4,",
+      onClose: () => handleAlertClose(0),
+    },
+  ]);
+
+  const handleAlertClose = (index) => {
+    setMessages((prevMessages) => {
+      const updatedMessages = prevMessages.filter((_, i) => i !== index);
+      return updatedMessages;
+    });
+  };
+
   return (
     <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/alert/code/AlertCodePage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/alert/code/AlertCodePage.tsx" />
     </DxcFlex>
   );
 };

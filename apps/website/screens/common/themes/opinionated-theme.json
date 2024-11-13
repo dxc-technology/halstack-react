@@ -5,8 +5,6 @@
     "assistiveTextFontColor": "#666666"
   },
   "alert": {
-    "baseColor": "#e6f4ff",
-    "accentColor": "#0067b3",
     "overlayColor": "#000000b3"
   },
   "button": {

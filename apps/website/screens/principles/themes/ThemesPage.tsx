@@ -16,7 +16,7 @@ import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import JsonContainer from "@/common/JsonContainer";
 import bloomTheme from "./examples/bloomTheme";
 import defaultAdvancedTheme from "@/common/themes/advanced-theme.json";
-import content from "screens/components/alert/usage/examples/content";
+import content from "screens/components/alert/usage/examples/types";
 
 const sections = [
   {
@@ -69,13 +69,21 @@ const sections = [
               the ones we consider fundamental. The list of configurable properties is small, but it applies at the
               component level.
             </DxcParagraph>
-            <DxcAlert type="info" size="fillParent">
-              We strongly recommend using the{" "}
-              <Link href="/theme-generator/opinionated-theme" passHref legacyBehavior>
-                <DxcLink>opinionated theme generator</DxcLink>
-              </Link>{" "}
-              to create the theme, but you can also create it yourself from scratch.{" "}
-            </DxcAlert>
+            <DxcAlert
+              title="Opinionated theme"
+              semantic="info"
+              message={{
+                messageText: (
+                  <>
+                    We strongly recommend using the{" "}
+                    <Link href="/theme-generator/opinionated-theme" passHref legacyBehavior>
+                      <DxcLink>opinionated theme generator</DxcLink>
+                    </Link>{" "}
+                    to create the theme, but you can also create it yourself from scratch.
+                  </>
+                ),
+              }}
+            />
             <DxcParagraph>
               Either through the theme-generator or by creating it from scratch, you will have to build a theme
               containing as many objects as components you want to customize. The props of each component are a
@@ -187,6 +195,27 @@ const sections = [
                 ),
               },
               {
+                title: "Box",
+                content: (
+                  <DxcTable>
+                    <thead>
+                      <tr>
+                        <th>Theme Input</th>
+                        <th>Tokens (calculation) </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Base color</td>
+                        <td>
+                          <Code>backgroundColor</Code>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </DxcTable>
+                ),
+              },
+              {
                 title: "Button",
                 content: (
                   <DxcTable>
@@ -200,67 +229,46 @@ const sections = [
                       <tr>
                         <td>Base color</td>
                         <td>
-                          <Code>primaryDefaultFontColor</Code>
+                          <Code>primaryBackgroundColor</Code>
                           <br />
                           <br />
-                          <Code>primaryDefaultBackgroundColor</Code>
+                          <Code>secondaryFontColor</Code>
                           <br />
                           <br />
-                          <Code>secondaryDefaultFontColor</Code>
+                          <Code>secondaryBorderColor</Code>
                           <br />
                           <br />
-                          <Code>secondaryDefaultBorderColor</Code>
+                          <Code>secondaryHoverBackgroundColor</Code>
                           <br />
                           <br />
-                          <Code>secondaryHoverDefaultBackgroundColor</Code>
+                          <Code>textFontColor</Code>
                           <br />
                           <br />
-                          <Code>tertiaryDefaultFontColor</Code>
+                          <Code>primaryHoverBackgroundColor</Code> (-8% of lightness)
                           <br />
                           <br />
-                          <Code>primaryHoverDefaultBackgroundColor</Code> (-8% of lightness)
+                          <Code>primaryActiveBackgroundColor</Code> (-18% of lightness)
                           <br />
                           <br />
-                          <Code>primaryActiveDefaultBackgroundColor</Code> (-18% of lightness)
+                          <Code>secondaryActiveBackgroundColor</Code> (-18% of lightness)
                           <br />
                           <br />
-                          <Code>secondaryActiveDefaultBackgroundColor</Code> (-18% of lightness)
+                          <Code>textHoverBackgroundColor</Code> (+57% of lightness)
                           <br />
                           <br />
-                          <Code>tertiaryHoverDefaultBackgroundColor</Code> (+57% of lightness)
-                          <br />
-                          <br />
-                          <Code>tertiaryActiveDefaultBackgroundColor</Code> (+52% of lightness)
-                          <br />
-                          <br />
-                          <Code>primaryDisabledDefaultBackgroundColor</Code> (+42% of lightness)
-                          <br />
-                          <br />
-                          <Code>primaryDisabledDefaultFontColor</Code> (+42% of lightness)
-                          <br />
-                          <br />
-                          <Code>secondaryDisabledDefaultBorderColor</Code> (+42% of lightness)
-                          <br />
-                          <br />
-                          <Code>secondaryDisabledDefaultFontColor</Code> (+42% of lightness)
-                          <br />
-                          <br />
-                          <Code>tertiaryDisabledDefaultFontColor</Code> (+42% of lightness)
+                          <Code>textActiveBackgroundColor</Code> (+52% of lightness)
                         </td>
                       </tr>
                       <tr>
                         <td>Primary font color</td>
                         <td>
-                          <Code>primaryDefaultFontColor</Code>
-                          <br />
-                          <br />
-                          <Code>primaryDisabledDefaultFontColor</Code> (+42% of lightness)
+                          <Code>primaryFontColor</Code>
                         </td>
                       </tr>
                       <tr>
                         <td>Secondary hover font color</td>
                         <td>
-                          <Code>secondaryHoverDefaultFontColor</Code>
+                          <Code>secondaryHoverFontColor</Code>
                         </td>
                       </tr>
                     </tbody>
@@ -420,18 +428,6 @@ const sections = [
                           <br />
                           <br />
                           <Code>headerCheckboxCheckColor</Code>
-                          <br />
-                          <br />
-                          <Code>actionIconColor</Code>
-                          <br />
-                          <br />
-                          <Code>hoverActionIconColor</Code>
-                          <br />
-                          <br />
-                          <Code>focusActionIconColor</Code>
-                          <br />
-                          <br />
-                          <Code>activeActionIconColor</Code>
                         </td>
                       </tr>
                       <tr>
@@ -990,9 +986,6 @@ const sections = [
                         <td>Option font color</td>
                         <td>
                           <Code>listOptionFontColor</Code>
-                          <br />
-                          <br />
-                          <Code>listOptionIconColor</Code>
                         </td>
                       </tr>
                       <tr>
@@ -1508,13 +1501,21 @@ const sections = [
               components 100% configurable without writing actual code, since some design decisions are structural to
               the component. The list of configurable properties is large, and it applies at the component level.
             </DxcParagraph>
-            <DxcAlert type="info" size="fillParent">
-              We strongly recommend using the{" "}
-              <Link href="/theme-generator/advanced-theme" passHref legacyBehavior>
-                <DxcLink>advanced theme generator</DxcLink>
-              </Link>{" "}
-              to create the theme, but you can also create it yourself from scratch.{" "}
-            </DxcAlert>
+            <DxcAlert
+              title="Advanced theme"
+              semantic="info"
+              message={{
+                messageText: (
+                  <>
+                    We strongly recommend using the{" "}
+                    <Link href="/theme-generator/advanced-theme" passHref legacyBehavior>
+                      <DxcLink>advanced theme generator</DxcLink>
+                    </Link>{" "}
+                    to create the theme, but you can also create it yourself from scratch.
+                  </>
+                ),
+              }}
+            />
             <DxcParagraph>
               Below is an example of a default advanced theme. The number of configurable properties is significantly
               higher than in the previous strategy.
@@ -1547,7 +1548,7 @@ const Themes = () => {
       <QuickNavContainerLayout>
         <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/principles/themes/ThemesPage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/principles/themes/ThemesPage.tsx" />
     </DxcFlex>
   );
 };

@@ -1,4 +1,4 @@
-import { DxcParagraph, DxcFlex, DxcAlert, DxcLink } from "@dxc-technology/halstack-react";
+import { DxcParagraph, DxcFlex, DxcAlert, DxcLink, DxcTypography } from "@dxc-technology/halstack-react";
 import PageHeading from "@/common/PageHeading";
 import TabsPageHeading from "@/common/TabsPageLayout";
 import ComponentHeading from "@/common/ComponentHeading";
@@ -22,22 +22,30 @@ const TagPageHeading = ({ children }: { children: React.ReactNode }) => {
             and multiple tags can be concatenated to generate a series of resources displayed with a visual hierarchy
             that calls the user&#39;s attention.
           </DxcParagraph>
-          <DxcAlert type="warning" size="fillParent">
-            This component will be removed from Halstack Design System in the next major release. Please start
-            considering alternatives such as the{" "}
-            <Link href="/components/badge" passHref legacyBehavior>
-              <DxcLink href="/components/badge">Badge</DxcLink>
-            </Link>
-            , the{" "}
-            <Link href="/components/button" passHref legacyBehavior>
-              <DxcLink href="/components/button">Button</DxcLink>
-            </Link>{" "}
-            or the{" "}
-            <Link href="/components/chip" passHref legacyBehavior>
-              <DxcLink href="/components/chip">Chip</DxcLink>
-            </Link>
-            components.
-          </DxcAlert>
+          <DxcAlert
+            title="Deprecated"
+            semantic="warning"
+            message={{
+              messageText: (
+                <>
+                  This component will be removed from Halstack Design System in the next major release. Please start
+                  considering alternatives such as the{" "}
+                  <Link href="/components/badge" passHref legacyBehavior>
+                    <DxcLink href="/components/badge">Badge</DxcLink>
+                  </Link>{" "}
+                  , the{" "}
+                  <Link href="/components/button" passHref legacyBehavior>
+                    <DxcLink href="/components/button">Button</DxcLink>
+                  </Link>{" "}
+                  or the{" "}
+                  <Link href="/components/chip" passHref legacyBehavior>
+                    <DxcLink href="/components/chip">Chip</DxcLink>
+                  </Link>{" "}
+                  components.
+                </>
+              ),
+            }}
+          />
           <TabsPageHeading tabs={tabs}></TabsPageHeading>
         </DxcFlex>
       </PageHeading>

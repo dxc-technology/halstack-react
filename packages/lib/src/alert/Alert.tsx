@@ -1,87 +1,17 @@
+import { memo, useState, useEffect } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import { spaces } from "../common/variables";
-import { getMargin } from "../common/utils";
 import useTheme from "../useTheme";
-import useTranslatedLabels from "../useTranslatedLabels";
 import AlertPropsType from "./types";
 import DxcIcon from "../icon/Icon";
+import DxcButton from "../button/Button";
+import DxcDivider from "../divider/Divider";
+import DxcFlex from "../flex/Flex";
+import DxcActionIcon from "../action-icon/ActionIcon";
+import CoreTokens from "../common/coreTokens";
 
-const DxcAlert = ({
-  type = "info",
-  mode = "inline",
-  inlineText = "",
-  onClose,
-  children,
-  margin,
-  size = "fitContent",
-  tabIndex,
-}: AlertPropsType): JSX.Element => {
-  const colorsTheme = useTheme();
-  const translatedLabels = useTranslatedLabels();
-
-  const getTypeText = () =>
-    type === "info"
-      ? translatedLabels.alert.infoTitleText
-      : type === "confirm"
-        ? translatedLabels.alert.successTitleText
-        : type === "warning"
-          ? translatedLabels.alert.warningTitleText
-          : translatedLabels.alert.errorTitleText;
-
-  return (
-    <ThemeProvider theme={colorsTheme.alert}>
-      <AlertModal mode={mode}>
-        {mode === "modal" && <OverlayContainer mode={mode} onClick={onClose}></OverlayContainer>}
-        <AlertContainer
-          mode={mode}
-          type={type}
-          margin={margin}
-          size={size}
-          role={type === "error" ? "alert" : "status"}
-          aria-live={type === "error" ? "assertive" : "off"}
-        >
-          <AlertInfo>
-            <AlertIcon type={type}>
-              {(type === "info" && <DxcIcon icon="filled_info" />) ||
-                (type === "confirm" && <DxcIcon icon="filled_check_circle" />) ||
-                (type === "warning" && <DxcIcon icon="filled_warning" />) ||
-                (type === "error" && <DxcIcon icon="filled_cancel" />)}
-            </AlertIcon>
-            <AlertText>
-              <AlertTitle>{getTypeText()}</AlertTitle>
-              {inlineText && inlineText !== "" && "-"}
-              <AlertInlineText>{inlineText}</AlertInlineText>
-            </AlertText>
-            {typeof onClose === "function" && (
-              <AlertCloseAction onClick={onClose} tabIndex={tabIndex} aria-label="Close alert">
-                <DxcIcon icon="close" />
-              </AlertCloseAction>
-            )}
-          </AlertInfo>
-          {children && <AlertContent>{children}</AlertContent>}
-        </AlertContainer>
-      </AlertModal>
-    </ThemeProvider>
-  );
-};
-
-const sizes = {
-  small: "280px",
-  medium: "480px",
-  large: "820px",
-  fillParent: "100%",
-  fitContent: "fit-content",
-};
-
-const calculateWidth = (margin, size) =>
-  size === "fillParent"
-    ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
-    : sizes[size];
-
-const AlertModal = styled.div<{ mode: AlertPropsType["mode"] }>`
-  font-size: ${(props) => props.theme.fontSizeBase};
-  width: ${(props) => (props.mode === "modal" ? "100%" : "")};
-  height: ${(props) => (props.mode === "modal" ? "100%" : "")};
+const Modal = styled.div<{ mode: AlertPropsType["mode"] }>`
+  width: ${(props) => (props.mode === "modal" || props.mode === "inline" ? "100%" : "")};
+  height: ${(props) => (props.mode === "modal" || props.mode === "inline" ? "100%" : "")};
   justify-content: ${(props) => (props.mode === "modal" ? "center" : "")};
   align-items: ${(props) => (props.mode === "modal" ? "center" : "")};
   top: ${(props) => (props.mode === "modal" ? "0" : "")};
@@ -101,143 +31,321 @@ const OverlayContainer = styled.div<{ mode: AlertPropsType["mode"] }>`
 `;
 
 const AlertContainer = styled.div<{
-  margin: AlertPropsType["margin"];
-  size: AlertPropsType["size"];
-  type: AlertPropsType["type"];
+  semantic: AlertPropsType["semantic"];
   mode: AlertPropsType["mode"];
 }>`
-  margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
-  margin-top: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
-  margin-right: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
-  margin-bottom: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
-  margin-left: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
-  display: ${(props) => (props.size === "fitContent" ? "inline-block" : "block")};
+  display: flex;
+  flex-direction: ${(props) => (props.mode === "banner" ? "column" : "row")};
+  min-width: ${(props) => (props.mode === "inline" || props.mode === "modal") && "696px"};
+  max-width: ${(props) => (props.mode === "inline" || props.mode === "modal") && "80%"};
+  width: ${(props) => (props.mode === "banner" && "100%") || "fit-content"};
+  padding-top: ${(props) =>
+    (props.mode === "modal" && `${props.theme.modalPaddingTop}`) || `${props.theme.paddingTop}`};
+  padding-right: ${(props) =>
+    (props.mode === "modal" && `${props.theme.modalPaddingRight}`) || `${props.theme.paddingRight}`};
+  padding-bottom: ${(props) =>
+    (props.mode === "modal" && `${props.theme.modalPaddingBottom}`) || `${props.theme.paddingBottom}`};
+  padding-left: ${(props) =>
+    (props.mode === "modal" && `${props.theme.modalPaddingLeft}`) || `${props.theme.paddingLeft}`};
   overflow: hidden;
   box-sizing: border-box;
-
+  border-radius: ${(props) => (props.mode === "modal" || props.mode === "inline") && `${props.theme.borderRadius}`};
+  box-shadow: ${(props) =>
+    props.mode === "modal" &&
+    `${props.theme.boxShadowOffsetX} ${props.theme.boxShadowOffsetY} ${props.theme.boxShadowBlur} ${props.theme.boxShadowSpreadRadius} rgba(0, 0, 0, 0.25)`};
   background-color: ${(props) =>
-    (props.type === "info" && props.theme.infoBackgroundColor) ||
-    (props.type === "confirm" && props.theme.successBackgroundColor) ||
-    (props.type === "warning" && props.theme.warningBackgroundColor) ||
-    (props.type === "error" && props.theme.errorBackgroundColor)};
-
-  border-radius: ${(props) => props.theme.borderRadius};
-  border-width: ${(props) => props.theme.borderThickness};
-  border-style: ${(props) => props.theme.borderStyle};
-  border-color: ${(props) =>
-    (props.type === "info" && props.theme.infoBorderColor) ||
-    (props.type === "confirm" && props.theme.successBorderColor) ||
-    (props.type === "warning" && props.theme.warningBorderColor) ||
-    (props.type === "error" && props.theme.errorBorderColor)};
-
-  padding-left: 12px;
-  padding-right: 12px;
+    (props.mode === "modal" && props.theme.modalBackgroundColor) ||
+    (props.semantic === "info" && props.theme.infoBackgroundColor) ||
+    (props.semantic === "success" && props.theme.successBackgroundColor) ||
+    (props.semantic === "warning" && props.theme.warningBackgroundColor) ||
+    (props.semantic === "error" && props.theme.errorBackgroundColor)};
   justify-content: ${(props) => (props.mode === "modal" ? "center" : "")};
   align-items: ${(props) => (props.mode === "modal" ? "center" : "")};
-  max-width: ${(props) => props.size !== "fillParent" && calculateWidth(props.margin, "fillParent")};
-  width: ${(props) => props.size !== "fillParent" && calculateWidth(props.margin, props.size)};
   z-index: ${(props) => (props.mode === "modal" ? "1300" : "")};
 `;
 
-const AlertInfo = styled.div`
+const BannerContent = styled.div`
   display: flex;
-  flex-direction: row;
-  height: calc(48px - calc(${(props) => props.theme.borderThickness} * 2));
+  justify-content: space-between;
   align-items: center;
   width: 100%;
 `;
 
-const AlertTitle = styled.div`
-  margin-right: 8px;
-  padding-right: ${(props) => props.theme.titlePaddingRight};
-  padding-left: ${(props) => props.theme.titlePaddingLeft};
-  font-family: ${(props) => props.theme.titleFontFamily};
-  font-size: ${(props) => props.theme.titleFontSize};
-  font-style: ${(props) => props.theme.titleFontStyle};
-  font-weight: ${(props) => props.theme.titleFontWeight};
-  color: ${(props) => props.theme.titleFontColor};
-  text-transform: ${(props) => props.theme.titleTextTransform};
-`;
-
-const AlertInlineText = styled.div`
-  margin-left: 8px;
-  padding-right: ${(props) => props.theme.inlineTextPaddingRight};
-  padding-left: ${(props) => props.theme.inlineTextPaddingLeft};
+const BannerLeftContent = styled.div`
+  display: flex;
+  align-items: center;
   flex-grow: 1;
-  white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;
-  font-family: ${(props) => props.theme.inlineTextFontFamily};
-  font-size: ${(props) => props.theme.inlineTextFontSize};
-  font-style: ${(props) => props.theme.inlineTextFontStyle};
-  font-weight: ${(props) => props.theme.inlineTextFontWeight};
-  color: ${(props) => props.theme.inlineTextFontColor};
 `;
 
-const AlertIcon = styled.span<{ type: AlertPropsType["type"] }>`
+const RightActionsBanner = styled.div`
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: ${CoreTokens.spacing_4};
+`;
+
+const TextContent = styled.div`
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+`;
+
+const TextContentInline = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  overflow: hidden;
+  gap: 8px;
+  margin-top: 8px;
+`;
+
+const ActionsContainer = styled.div<{
+  mode: AlertPropsType["mode"];
+}>`
+  display: flex;
+  justify-content: flex-end;
+  margin-top: ${(props) => props.mode !== "banner" && "8px"};
+  gap: 8px;
+`;
+
+const ContentWrapper = styled.div`
+  width: 100%;
+`;
+
+const Icon = styled.span<{ semantic: AlertPropsType["semantic"] }>`
   display: flex;
   flex-wrap: wrap;
-  align-content: center;
-  margin-right: 12px;
+  width: 24px;
+  height: 24px;
   padding-right: ${(props) => props.theme.iconPaddingRight};
-  padding-left: ${(props) => props.theme.iconPaddingLeft};
-
   color: ${(props) =>
-    (props.type === "info" && props.theme.infoIconColor) ||
-    (props.type === "confirm" && props.theme.successIconColor) ||
-    (props.type === "warning" && props.theme.warningIconColor) ||
-    (props.type === "error" && props.theme.errorIconColor)};
-
+    (props.semantic === "info" && props.theme.infoIconColor) ||
+    (props.semantic === "success" && props.theme.successIconColor) ||
+    (props.semantic === "warning" && props.theme.warningIconColor) ||
+    (props.semantic === "error" && props.theme.errorIconColor)};
   font-size: ${(props) => props.theme.iconSize};
 `;
 
-const AlertText = styled.div`
-  display: flex;
-  flex-direction: row;
+const Title = styled.div<{ mode: AlertPropsType["mode"] }>`
+  font-family: ${(props) => props.theme.titleFontFamily};
+  font-size: ${(props) => (props.mode === "modal" && props.theme.modalTitleFontSize) || props.theme.titleFontSize};
+  font-style: ${(props) => props.theme.titleFontStyle};
+  font-weight: ${(props) => props.theme.titleFontWeight};
+  color: ${(props) => props.theme.titleFontColor};
+  /* padding-right: ${(props) => props.mode === "banner" && `${(props) => props.theme.titlePaddingRight}`}; */
+  padding-right: 4px;
+`;
+
+const Message = styled.div<{ mode: AlertPropsType["mode"] }>`
+  padding-right: ${(props) => props.theme.messagePaddingRight};
+  padding-left: ${(props) => props.theme.messagePaddingLeft};
   flex-grow: 1;
-  align-items: center;
-  overflow: hidden;
+  white-space: ${(props) => props.mode === "banner" && "nowrap"};
+  overflow: ${(props) => props.mode === "banner" && "hidden"};
+  text-overflow: ${(props) => props.mode === "banner" && "ellipsis"};
+  font-family: ${(props) => props.theme.messageFontFamily};
+  font-size: ${(props) => props.theme.messageFontSize};
+  font-style: ${(props) => props.theme.messageFontStyle};
+  font-weight: ${(props) => props.theme.messageFontWeight};
+  color: ${(props) => props.theme.messageFontColor};
 `;
 
-const AlertContent = styled.div`
-  flex: 1 1 auto;
-  padding: ${(props) =>
-    `${props.theme.contentPaddingTop} ${props.theme.contentPaddingRight} ${props.theme.contentPaddingBottom} ${props.theme.contentPaddingLeft}`};
-  overflow-y: auto;
+const PrevAction = styled.div`
+  margin-right: 4px;
 `;
 
-const AlertCloseAction = styled.button`
+const NextAction = styled.div`
+  margin-left: 4px;
+  margin-right: 12px;
+`;
+
+const NavigationText = styled.span`
   display: flex;
-  flex-wrap: wrap;
-  align-content: center;
-  justify-content: center;
-  height: 24px;
-  width: 24px;
-  font-size: 20px;
-  border: 1px solid transparent;
-  border-radius: 2px;
-  box-shadow: 0 0 0 2px transparent;
-  padding: 3px;
-  margin-left: 12px;
-  background-color: transparent;
-  color: #000000;
-  cursor: pointer;
-
-  &:hover {
-    background-color: ${(props) => props.theme.hoverActionBackgroundColor};
-  }
-  &:focus,
-  &:focus-visible {
-    outline: none;
-    box-shadow: 0 0 0 2px ${(props) => props.theme.focusActionBorderColor};
-  }
-  &:active {
-    background-color: ${(props) => props.theme.activeActionBackgroundColor};
-  }
+  align-items: center;
+  font-family: ${(props) => props.theme.navigationTextFontFamily};
+  font-size: ${(props) => props.theme.navigationTextFontSize};
+  font-style: ${(props) => props.theme.navigationTextFontStyle};
+  font-weight: ${(props) => props.theme.navigationTextFontWeight};
+  color: ${(props) => props.theme.navigationTextFontColor};
 `;
+
+const CloseAction = styled.div`
+  margin-left: 4px;
+`;
+
+const getIcon = (semantic: string) => {
+  switch (semantic) {
+    case "info":
+      return <DxcIcon icon="filled_info" />;
+    case "success":
+      return <DxcIcon icon="filled_check_circle" />;
+    case "warning":
+      return <DxcIcon icon="filled_warning" />;
+    case "error":
+      return <DxcIcon icon="filled_cancel" />;
+    default:
+      return null;
+  }
+};
+
+const DxcAlert = ({
+  title = "",
+  message = { messageText: "", onClose: () => {} },
+  semantic = "info",
+  mode = "inline",
+  primaryAction,
+  secondaryAction,
+  tabIndex,
+}: AlertPropsType): JSX.Element => {
+  const colorsTheme = useTheme();
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isFirstMessage, setIsFirstMessage] = useState(true);
+  const [isLastMessage, setIsLastMessage] = useState(false);
+  const [activeMessages, setActiveMessages] = useState(Array.isArray(message) ? message : [message]);
+
+  const handleClose = (index: number) => {
+    if (activeMessages[index]?.onClose) activeMessages[index].onClose();
+  };
+
+  const handlePrev = () => {
+    if (Array.isArray(activeMessages)) {
+      setCurrentIndex((prevIndex) => {
+        const newIndex = (prevIndex - 1 + activeMessages.length) % activeMessages.length;
+        setIsFirstMessage(newIndex === 0);
+        setIsLastMessage(false);
+        return newIndex;
+      });
+    }
+  };
+
+  const handleNext = () => {
+    if (Array.isArray(activeMessages)) {
+      setCurrentIndex((prevIndex) => {
+        const newIndex = (prevIndex + 1) % activeMessages.length;
+        setIsLastMessage(newIndex === activeMessages.length - 1);
+        setIsFirstMessage(false);
+        return newIndex;
+      });
+    }
+  };
+
+  useEffect(() => {
+    setActiveMessages(Array.isArray(message) ? message : [message]);
+    if (activeMessages.length === 0) return null;
+  }, [message]);
+
+  return (
+    <ThemeProvider theme={colorsTheme.alert}>
+      <Modal mode={mode}>
+        {mode === "modal" && <OverlayContainer mode={mode} onClick={activeMessages[currentIndex]?.onClose} />}
+        <AlertContainer semantic={semantic} mode={mode}>
+          <ContentWrapper>
+            <BannerContent>
+              <BannerLeftContent>
+                <Icon semantic={semantic}>{getIcon(semantic)}</Icon>
+                <TextContent>
+                  <Title mode={mode}>{title}</Title>-
+                  {mode === "banner" && Array.isArray(activeMessages) && (
+                    <Message mode={mode}>{activeMessages[currentIndex]?.messageText}</Message>
+                  )}
+                </TextContent>
+              </BannerLeftContent>
+              <RightActionsBanner>
+                {mode === "banner" && (
+                  <ActionsContainer mode={mode}>
+                    {secondaryAction?.onClick && typeof secondaryAction?.onClick === "function" && (
+                      <DxcButton
+                        label={secondaryAction?.label}
+                        mode="secondary"
+                        semantic={semantic}
+                        size={{ height: "small" }}
+                        onClick={secondaryAction?.onClick}
+                      />
+                    )}
+                    {primaryAction?.onClick && typeof primaryAction?.onClick === "function" && (
+                      <DxcButton
+                        label={primaryAction?.label}
+                        semantic={semantic}
+                        size={{ height: "small" }}
+                        margin={{ right: "small" }}
+                        onClick={primaryAction?.onClick}
+                      />
+                    )}
+                  </ActionsContainer>
+                )}
+                {activeMessages.length > 1 && (
+                  <>
+                    <PrevAction>
+                      <DxcActionIcon
+                        icon="chevron_left"
+                        title="Previous message"
+                        onClick={Array.isArray(activeMessages) && handlePrev}
+                        disabled={isFirstMessage ?? false}
+                        tabIndex={tabIndex}
+                      />
+                    </PrevAction>
+                    <NavigationText>
+                      {currentIndex + 1} of {Array.isArray(activeMessages) ? activeMessages.length : 1}
+                    </NavigationText>
+                    <NextAction>
+                      <DxcActionIcon
+                        icon="chevron_right"
+                        title="Next message"
+                        onClick={handleNext}
+                        disabled={isLastMessage ?? false}
+                        tabIndex={tabIndex}
+                      />
+                    </NextAction>
+                  </>
+                )}
+                {mode !== "modal" && <DxcDivider orientation="vertical" />}
+                <DxcActionIcon
+                  icon="close"
+                  title="Close alert"
+                  onClick={() => handleClose(currentIndex)}
+                  tabIndex={tabIndex}
+                />
+              </RightActionsBanner>
+            </BannerContent>
+            {(mode === "inline" || mode === "modal") && (
+              <TextContentInline>
+                {mode === "modal" && <DxcDivider />}
+                {Array.isArray(activeMessages) && (
+                  <Message mode={mode}>{activeMessages[currentIndex]?.messageText}</Message>
+                )}
+              </TextContentInline>
+            )}
+            {mode !== "banner" && (
+              <ActionsContainer mode={mode}>
+                {secondaryAction?.onClick && typeof secondaryAction?.onClick === "function" && (
+                  <DxcButton
+                    label={secondaryAction?.label}
+                    mode="secondary"
+                    semantic={semantic}
+                    size={{ height: mode === "modal" ? "medium" : "small" }}
+                    onClick={secondaryAction?.onClick}
+                  />
+                )}
+                {primaryAction?.onClick && typeof primaryAction?.onClick === "function" && (
+                  <DxcButton
+                    label={primaryAction?.label}
+                    semantic={semantic}
+                    size={{ height: mode === "modal" ? "medium" : "small" }}
+                    margin={{ right: "small" }}
+                    onClick={primaryAction?.onClick}
+                  />
+                )}
+              </ActionsContainer>
+            )}
+          </ContentWrapper>
+        </AlertContainer>
+      </Modal>
+    </ThemeProvider>
+  );
+};
 
 export default DxcAlert;

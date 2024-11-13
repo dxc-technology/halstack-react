@@ -252,10 +252,12 @@ export const DialogWithInputs = () => (
             <DxcTextInput size="fillParent" label="Surname" />
           </DxcFlex>
           <DxcAlert
-            type="error"
-            inlineText="User: arn:aws:xxx::xxxxxxxxxxxx:assumed-role/assure-sandbox-xxxx-xxxxxxxxxxxxxxxxxxxxxxxxxx/sandbox-xxxx-xxxxxxxxxxxxxxxxxx is not authorized to perform: lambda:xxxxxxxxxxxxxx on resource: arn:aws:lambda:us-east-1:xxxxxxxxxxxx:function:sandbox-xxxx-xx-xxxxxxx-xxxxxxx-lambda because no identity-based policy allows the lambda:xxxxxxxxxxxxxx action"
-            size="fillParent"
-            margin={{ bottom: "xsmall" }}
+            semantic="error"
+            title="Error"
+            message={{
+              messageText:
+                "User: arn:aws:xxx::xxxxxxxxxxxx:assumed-role/assure-sandbox-xxxx-xxxxxxxxxxxxxxxxxxxxxxxxxx/sandbox-xxxx-xxxxxxxxxxxxxxxxxx is not authorized to perform: lambda:xxxxxxxxxxxxxx on resource: arn:aws:lambda:us-east-1:xxxxxxxxxxxx:function:sandbox-xxxx-xx-xxxxxxx-xxxxxxx-lambda because no identity-based policy allows the lambda:xxxxxxxxxxxxxx action",
+            }}
           />
           <DxcFlex justifyContent="flex-end" gap="0.5rem">
             <DxcButton label="Cancel" mode="tertiary" />

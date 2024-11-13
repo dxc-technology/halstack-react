@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
 import DataGridSpecsPage from "screens/components/data-grid/specs/DataGridSpecsPage";
-import DataGridPageLayout from "screens/components/data-grid/DatagridPageLayout";
+import DataGridPageLayout from "screens/components/data-grid/DataGridPageLayout";
 
 const Specifications = () => {
   return (
