@@ -1,15 +1,26 @@
+import "../global-styles.css";
+
 import { ReactElement, ReactNode, useMemo, useState } from "react";
 import type { NextPage } from "next";
 import type { AppProps } from "next/app";
 import Head from "next/head";
-import { DxcApplicationLayout, DxcTextInput, DxcToastsQueue, HalstackProvider } from "@dxc-technology/halstack-react";
+import {
+  DxcApplicationLayout,
+  DxcTextInput,
+  DxcToastsQueue,
+  HalstackProvider,
+  setCustomTheme,
+} from "@dxc-technology/halstack-react";
 import SidenavLogo from "@/common/sidenav/SidenavLogo";
 import MainContent from "@/common/MainContent";
 import { useRouter } from "next/router";
 import { LinksSectionDetails, LinksSections, themeGeneratorLinks } from "@/common/pagesList";
 import Link from "next/link";
 import StatusBadge from "@/common/StatusBadge";
-import "../global-styles.css";
+
+setCustomTheme({
+  "--color-purple-700": "#5f249f",
+});
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode;

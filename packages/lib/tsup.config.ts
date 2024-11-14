@@ -7,4 +7,5 @@ export default defineConfig({
   minify: true,
   splitting: false,
   clean: true,
+  injectStyle: true,
 });

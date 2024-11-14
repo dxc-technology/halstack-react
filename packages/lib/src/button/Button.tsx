@@ -117,7 +117,7 @@ const getButtonStyles = (
     case "primary":
       switch (semantic) {
         case "default":
-          enabled = `background-color: ${theme.primaryDefaultBackgroundColor};
+          enabled = `background-color: var(--color-purple-700);
           color: ${theme.primaryDefaultFontColor};`;
           hover = `background-color: ${theme.primaryHoverDefaultBackgroundColor};`;
           active = `background-color: ${theme.primaryActiveDefaultBackgroundColor};
