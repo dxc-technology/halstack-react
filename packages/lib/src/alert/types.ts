@@ -1,8 +1,8 @@
 type SVG = React.ReactNode & React.SVGProps<SVGSVGElement>;
 
 type Action = {
-  label: string;
   icon?: string | SVG;
+  label: string;
   onClick: () => void;
 };
 
@@ -12,28 +12,23 @@ type Message = {
 };
 
 type CommonProps = {
-  title: string;
-  semantic?: "success" | "info" | "warning" | "error";
   primaryAction?: Action;
   secondaryAction?: Action;
+  semantic?: "success" | "info" | "warning" | "error";
   tabIndex?: number;
+  title: string;
 };
 
 type InlineProps = CommonProps & {
-  mode?: "inline";
   message: Message | Message[];
-};
-
-type BannerProps = CommonProps & {
-  mode: "banner";
-  message: Message | Message[];
+  mode?: "inline" | "banner";
 };
 
 type ModalProps = CommonProps & {
-  mode: "modal";
   message: Message;
+  mode: "modal";
 };
 
-type Props = InlineProps | BannerProps | ModalProps;
+type Props = InlineProps | ModalProps;
 
 export default Props;

@@ -1,11 +1,10 @@
-import { memo, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme";
 import AlertPropsType from "./types";
 import DxcIcon from "../icon/Icon";
 import DxcButton from "../button/Button";
 import DxcDivider from "../divider/Divider";
-import DxcFlex from "../flex/Flex";
 import DxcActionIcon from "../action-icon/ActionIcon";
 import CoreTokens from "../common/coreTokens";
 
@@ -173,10 +172,6 @@ const NavigationText = styled.span`
   color: ${(props) => props.theme.navigationTextFontColor};
 `;
 
-const CloseAction = styled.div`
-  margin-left: 4px;
-`;
-
 const getIcon = (semantic: string) => {
   switch (semantic) {
     case "info":
@@ -193,13 +188,13 @@ const getIcon = (semantic: string) => {
 };
 
 const DxcAlert = ({
-  title = "",
-  message = { messageText: "", onClose: () => {} },
-  semantic = "info",
+  message,
   mode = "inline",
   primaryAction,
   secondaryAction,
+  semantic = "info",
   tabIndex,
+  title = "",
 }: AlertPropsType): JSX.Element => {
   const colorsTheme = useTheme();
   const [currentIndex, setCurrentIndex] = useState(0);
