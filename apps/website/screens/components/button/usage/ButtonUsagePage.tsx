@@ -214,7 +214,7 @@ const sections = [
           title="Sizes"
           semantic="warning"
           message={{
-            messageText:
+            text:
               "To maintain a clear and effective visual hierarchy, avoid overusing different button sizes within a single interface.",
           }}
         />

@@ -73,7 +73,7 @@ const sections = [
           title="Opinionated theme"
           semantic="info"
           message={{
-            messageText: (
+            text: (
               <>
                 Remember that you can use the{" "}
                 <Link href="/theme-generator/opinionated-theme" passHref legacyBehavior>
@@ -112,7 +112,7 @@ const sections = [
           title="Advanced theme"
           semantic="info"
           message={{
-            messageText: (
+            text: (
               <>
                 Remember that you can use the{" "}
                 <Link href="/theme-generator/advanced-theme" passHref legacyBehavior>
@@ -144,7 +144,7 @@ const sections = [
           title="Localization"
           semantic="info"
           message={{
-            messageText: (
+            text: (
               <>
                 To find out the list of labels that are translatable we should refer to the documentation in the{" "}
                 <Link href="/principles/localization" passHref legacyBehavior>

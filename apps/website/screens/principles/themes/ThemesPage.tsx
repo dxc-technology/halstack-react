@@ -73,7 +73,7 @@ const sections = [
               title="Opinionated theme"
               semantic="info"
               message={{
-                messageText: (
+                text: (
                   <>
                     We strongly recommend using the{" "}
                     <Link href="/theme-generator/opinionated-theme" passHref legacyBehavior>
@@ -1505,7 +1505,7 @@ const sections = [
               title="Advanced theme"
               semantic="info"
               message={{
-                messageText: (
+                text: (
                   <>
                     We strongly recommend using the{" "}
                     <Link href="/theme-generator/advanced-theme" passHref legacyBehavior>

@@ -4,21 +4,21 @@ import { useState } from "react";
 const code = `() => {
   const [messages, setMessages] = useState([
     {
-      messageText:
+      text:
         "Your document as been auto-saved. You can continue working without worry, as all changes are being saved automatically.",
       onClose: () => handleAlertClose(0),
     },
     {
-      messageText: "Your document as been auto-saved. You can continue working without worry, as all changes are being saved automatically.",
+      text: "Your document as been auto-saved. You can continue working without worry, as all changes are being saved automatically.",
       onClose: () => handleAlertClose(1),
     },
     {
-      messageText:
+      text:
         "Your document as been auto-saved. You can continue working without worry, as all changes are being saved automatically.",
       onClose: () => handleAlertClose(0),
     },
     {
-      messageText:
+      text:
         "Your document as been auto-saved. You can continue working without worry, as all changes are being saved automatically.",
       onClose: () => handleAlertClose(0),
     },

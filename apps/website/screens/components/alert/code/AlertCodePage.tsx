@@ -39,7 +39,7 @@ const sections = [
             <td>message</td>
             <td>
               <td>
-                <TableCode>{"{ messageText: string; onClose: () => void }"}</TableCode>
+                <TableCode>{"{ text: string; onClose: () => void }"}</TableCode>
               </td>
             </td>
             <td>
@@ -151,21 +151,21 @@ const sections = [
 const AlertCodePage = () => {
   const [messages, setMessages] = useState([
     {
-      messageText:
+      text:
         "Message 1, Message 1,  Message 1, Message 1, Message 1, Message 1, Message 1, Message 1, Message 1, Message 1, Message 1, Message 1,",
       onClose: () => handleAlertClose(0),
     },
     {
-      messageText: "Message 2, Message 2, Message 2, Message 2, Message 2, Message 2, ",
+      text: "Message 2, Message 2, Message 2, Message 2, Message 2, Message 2, ",
       onClose: () => handleAlertClose(1),
     },
     {
-      messageText:
+      text:
         "Message 3, Message 3,  Message 3, Message 3, Message 3, Message 3, Message 3, Message 3, Message 3, Message 3, Message 3, Message 3,",
       onClose: () => handleAlertClose(0),
     },
     {
-      messageText:
+      text:
         "Message 4, Message 4,  Message 4, Message 4, Message 4, Message 4, Message 4, Message 4, Message 4, Message 4, Message 4, Message 4,",
       onClose: () => handleAlertClose(0),
     },

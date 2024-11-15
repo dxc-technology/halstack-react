@@ -4,10 +4,10 @@ import Mode from "../Mode";
 import PreviewContainer from "./PreviewContainer";
 
 const messages = [
-  { messageText: "Please read the documents carefully before the submission of the data.", onClose: () => {} },
-  { messageText: "Your document has been saved successfuly.", onClose: () => {} },
-  { messageText: "Your document as been auto-saved.", onClose: () => {} },
-  { messageText: "You have unsaved changes in your document.", onClose: () => {} },
+  { text: "Please read the documents carefully before the submission of the data.", onClose: () => {} },
+  { text: "Your document has been saved successfuly.", onClose: () => {} },
+  { text: "Your document as been auto-saved.", onClose: () => {} },
+  { text: "You have unsaved changes in your document.", onClose: () => {} },
 ];
 
 const Alert = () => {
@@ -66,7 +66,7 @@ const Alert = () => {
             semantic="info"
             mode="modal"
             message={{
-              messageText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+              text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
               onClose: handleVisibility,
             }}
             primaryAction={{ label: "Primary action", onClick: () => {} }}

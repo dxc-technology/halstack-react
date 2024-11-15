@@ -18,7 +18,7 @@ const DataGridPageHeading = ({ children }: { children: React.ReactNode }) => {
           <DxcAlert
             title="Issues"
             semantic="warning"
-            message={{ messageText: "There are known styling issues with sortable columns when used in a NextJS app." }}
+            message={{ text: "There are known styling issues with sortable columns when used in a NextJS app." }}
           />
           <DxcParagraph>
             A data grid is a component designed to display large volumes in a structured and organized manner. It

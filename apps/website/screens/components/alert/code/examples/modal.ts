@@ -14,7 +14,7 @@ const code = `() => {
         <DxcAlert
           mode="modal"
           title="Information"
-          message={{ messageText: "Please read the documents carefully before the submission of the data.", onClose: handleVisibility }}
+          message={{ text: "Please read the documents carefully before the submission of the data.", onClose: handleVisibility }}
         />
       )}
     </DxcInset>

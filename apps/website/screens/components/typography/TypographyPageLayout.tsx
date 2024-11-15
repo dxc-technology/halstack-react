@@ -19,7 +19,7 @@ const TypographyPageHeading = ({ children }: { children: React.ReactNode }) => {
             title="Usage"
             semantic="warning"
             message={{
-              messageText:
+              text:
                 "Use this component only if all other Halstack Design System components for adding text DO NOT meet your requirements. This component should always be the LAST OPTION to use.",
             }}
           />

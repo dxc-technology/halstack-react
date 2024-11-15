@@ -26,7 +26,7 @@ const TagPageHeading = ({ children }: { children: React.ReactNode }) => {
             title="Deprecated"
             semantic="warning"
             message={{
-              messageText: (
+              text: (
                 <>
                   This component will be removed from Halstack Design System in the next major release. Please start
                   considering alternatives such as the{" "}
