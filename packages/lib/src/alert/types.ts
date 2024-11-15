@@ -2,26 +2,26 @@ type SVG = React.ReactNode & React.SVGProps<SVGSVGElement>;
 
 type Action = {
   icon?: string | SVG;
-  label: string;
+  label: string; // no puede ser solo icono?
   onClick: () => void;
 };
 
 type Message = {
-  messageText: React.ReactNode;
+  text: React.ReactNode;
   onClose?: () => void;
 };
 
 type CommonProps = {
   primaryAction?: Action;
   secondaryAction?: Action;
-  semantic?: "success" | "info" | "warning" | "error";
+  semantic?: "error" | "info" | "success" | "warning";
   tabIndex?: number;
   title: string;
 };
 
 type InlineProps = CommonProps & {
   message: Message | Message[];
-  mode?: "inline" | "banner";
+  mode?:  "banner" | "inline";
 };
 
 type ModalProps = CommonProps & {

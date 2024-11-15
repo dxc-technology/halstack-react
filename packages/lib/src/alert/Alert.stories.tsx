@@ -17,14 +17,14 @@ const opinionatedTheme = {
 };
 
 const messages = [
-  { messageText: "Message 1", onClose: () => {} },
-  { messageText: "Message 2", onClose: () => {} },
-  { messageText: "Message 3", onClose: () => {} },
-  { messageText: "Message 4", onClose: () => {} },
+  { text: "Message 1", onClose: () => {} },
+  { text: "Message 2", onClose: () => {} },
+  { text: "Message 3", onClose: () => {} },
+  { text: "Message 4", onClose: () => {} },
 ];
 
 const message = {
-  messageText:
+  text:
     "Message Message Message Message Message Message Message Message Message Message Message MessageMessage Message Message Message Message Message Message Message Message Message MessageMessage Message Message Message Message Message Message Message Message Message MessageMessage Message Message Message Message Message Message Message Message Message MessageMessage Message Message Message Message Message Message Message Message Message MessageMessage Message Message Message Message Message Message Message Message Message MessageMessage Message Message Message Message Message Message Message Message Message MessageMessage Message Message Message Message Message Message Message Message Message MessageMessage Message Message Message Message Message Message Message Message Message MessageMessage Message Message Message Message Message Message Message Message Message MessageMessage Message Message Message Message Message Message Message Message Message MessageMessage Message Message Message Message Message Message Message Message Message MessageMessage Message Message Message Message Message Message Message Message Message MessageMessage Message Message Message Message Message Message Message Message Message MessageMessage Message Message Message Message Message Message Message Message Message MessageMessage Message Message Message Message Message Message Message Message Message MessageMessage Message Message Message Message Message Message Message Message Message MessageMessage Message Message Message Message Message Message Message Message Message Message Message Message Message Message Message Message Message Message Message Message Message Message",
 };
 

@@ -1,10 +1,10 @@
 import { render, fireEvent } from "@testing-library/react";
-import DxcAlert from "./Alert";
+import DxcAlert from "./Old Alert";
 
 describe("Alert component tests", () => {
   test("Info alert renders with correct text", () => {
     const { getByText } = render(
-      <DxcAlert title="Info" semantic="info" message={{ messageText: "info-alert-text" }} />
+      <DxcAlert title="Info" semantic="info" message={{ text: "info-alert-text" }} />
     );
     expect(getByText("information")).toBeTruthy();
     expect(getByText("info-alert-text")).toBeTruthy();
@@ -12,7 +12,7 @@ describe("Alert component tests", () => {
 
   test("Confirm alert renders with correct text", () => {
     const { getByText } = render(
-      <DxcAlert title="Success" semantic="success" message={{ messageText: "success-alert-text" }} />
+      <DxcAlert title="Success" semantic="success" message={{ text: "success-alert-text" }} />
     );
     expect(getByText("success")).toBeTruthy();
     expect(getByText("confirm-alert-text")).toBeTruthy();
@@ -20,7 +20,7 @@ describe("Alert component tests", () => {
 
   test("Warning alert renders with correct text", () => {
     const { getByText } = render(
-      <DxcAlert title="Warning" semantic="warning" message={{ messageText: "warning-alert-text" }} />
+      <DxcAlert title="Warning" semantic="warning" message={{ text: "warning-alert-text" }} />
     );
     expect(getByText("warning")).toBeTruthy();
     expect(getByText("warning-alert-text")).toBeTruthy();
@@ -28,14 +28,14 @@ describe("Alert component tests", () => {
 
   test("Error alert renders with correct text", () => {
     const { getByText } = render(
-      <DxcAlert title="Error" semantic="error" message={{ messageText: "error-alert-text" }} />
+      <DxcAlert title="Error" semantic="error" message={{ text: "error-alert-text" }} />
     );
     expect(getByText("error")).toBeTruthy();
     expect(getByText("error-alert-text")).toBeTruthy();
   });
 
   test("Alert renders with correct children", () => {
-    const { getByText } = render(<DxcAlert title="Info" message={{ messageText: "alert-text" }} />);
+    const { getByText } = render(<DxcAlert title="Info" message={{ text: "alert-text" }} />);
     expect(getByText("alert-text")).toBeTruthy();
     expect(getByText("sample-children")).toBeTruthy();
   });
@@ -43,7 +43,7 @@ describe("Alert component tests", () => {
   test("Calls correct function on close", () => {
     const onClose = jest.fn();
     const { getByRole } = render(
-      <DxcAlert title="Info" message={{ messageText: "info-alert-text", onClose: () => onClose }} />
+      <DxcAlert title="Info" message={{ text: "info-alert-text", onClose: () => onClose }} />
     );
 
     const closeButton = getByRole("button");
@@ -54,7 +54,7 @@ describe("Alert component tests", () => {
   test("Modal alert calls correct function on close", () => {
     const onClose = jest.fn();
     const { getByRole } = render(
-      <DxcAlert title="Info" message={{ messageText: "info-alert-text", onClose: () => onClose }} mode="modal" />
+      <DxcAlert title="Info" message={{ text: "info-alert-text", onClose: () => onClose }} mode="modal" />
     );
 
     const closeButton = getByRole("button");
