@@ -23,11 +23,9 @@ const preview: Preview = {
   },
   decorators: [
     (Story) => (
-      <HalstackProvider>
-        <Container>
-          <Story />
-        </Container>
-      </HalstackProvider>
+      <Container>
+        <Story />
+      </Container>
     ),
   ],
 };
