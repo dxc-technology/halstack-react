@@ -213,9 +213,9 @@ const options_material = [
 ];
 
 const optionsWithEllipsis = [
-  { label: "Optiond1234567890123456789012345678901234", value: "1" },
-  { label: "Optiond12345678901234567890123456789012345", value: "2" },
-  { label: "Option 031111111111111111111111111111222", value: "3" },
+  { label: "Optiond1234567890123456789012345678901234123123", value: "1" },
+  { label: "Optiond123456789012345678901234567890123451231231", value: "2" },
+  { label: "Option 03111111111111111111111111111122222222", value: "3" },
 ];
 
 const opinionatedTheme = {
@@ -647,7 +647,7 @@ const TooltipOption = () => {
   return (
     <ThemeProvider theme={colorsTheme.select}>
       <ExampleContainer expanded>
-        <Title title="List option has tooltip when it overflows" theme="light" level={4} />{" "}
+        <Title title="List option has tooltip when it overflows" theme="light" level={4} />
         <Listbox
           id="x8"
           currentValue="1"
