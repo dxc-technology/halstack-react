@@ -1,4 +1,4 @@
-import { useState, memo, useMemo } from "react";
+import { useState, memo, useMemo, useId } from "react";
 import styled, { css, ThemeProvider } from "styled-components";
 import useTheme from "../useTheme";
 import AlertPropsType from "./types";
@@ -128,6 +128,7 @@ const DxcAlert = ({
   tabIndex,
   title = "",
 }: AlertPropsType): JSX.Element => {
+  const id = useId();
   const colorsTheme = useTheme();
   const [currentIndex, setCurrentIndex] = useState(0);
   const messages = useMemo(() => (Array.isArray(message) ? message : [message]), [message]);
@@ -142,7 +143,16 @@ const DxcAlert = ({
   return (
     <ThemeProvider theme={colorsTheme.alert}>
       <ModalAlertWrapper condition={mode === "modal"} onClose={messages[currentIndex]?.onClose}>
-        <AlertContainer semantic={semantic} mode={mode}>
+        <AlertContainer
+          role={mode === "modal" ? "alertdialog" : "alert"}
+          aria-live={mode !== "modal" ? "assertive" : undefined}
+          aria-atomic={mode !== "modal"}
+          aria-modal={mode === "modal"}
+          aria-labelledby={mode === "modal" ? `${id}-title` : undefined}
+          aria-describedby={mode === "modal" ? `${id}-message` : undefined}
+          semantic={semantic}
+          mode={mode}
+        >
           <DxcFlex gap="0.75rem" alignItems="center">
             <TitleContainer mode={mode} semantic={semantic}>
               {getIcon(semantic)}
@@ -151,7 +161,9 @@ const DxcAlert = ({
                   <strong>{title}</strong> - {messages[currentIndex]?.text}
                 </Message>
               ) : (
-                <Title mode={mode}>{title}</Title>
+                <Title id={`${id}-title`} mode={mode}>
+                  {title}
+                </Title>
               )}
             </TitleContainer>
             {mode === "banner" && (
@@ -196,7 +208,9 @@ const DxcAlert = ({
           {mode === "modal" && <DxcDivider />}
           {mode !== "banner" && (
             <>
-              <Message mode={mode}>{messages[currentIndex]?.text}</Message>
+              <Message id={`${id}-message`} mode={mode}>
+                {messages[currentIndex]?.text}
+              </Message>
               <Actions
                 semantic={semantic}
                 mode={mode}

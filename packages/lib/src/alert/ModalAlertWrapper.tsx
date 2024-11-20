@@ -1,6 +1,7 @@
 import { createPortal } from "react-dom";
 import styled, { createGlobalStyle } from "styled-components";
 import { responsiveSizes } from "../common/variables";
+import FocusLock from "../utils/FocusLock";
 
 const BodyStyle = createGlobalStyle`
   body {
@@ -46,7 +47,9 @@ const ModalAlertWrapper = ({ condition, onClose, children }) =>
       {createPortal(
         <Modal>
           {condition && <Overlay onClick={onClose} />}
-          <ModalAlertContainer>{children}</ModalAlertContainer>
+          <ModalAlertContainer>
+            <FocusLock>{children}</FocusLock>
+          </ModalAlertContainer>
         </Modal>,
         document.body
       )}
