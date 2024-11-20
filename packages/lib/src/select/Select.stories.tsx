@@ -747,8 +747,8 @@ ValueWithEllipsisTooltip.play = async ({ canvasElement }) => {
 export const ListboxOptionWithEllipsisTooltip = TooltipOption.bind({});
 ListboxOptionWithEllipsisTooltip.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
-  await userEvent.hover(canvas.getByText("Optiond12345678901234567890123456789012345"));
-  await userEvent.hover(canvas.getByText("Optiond12345678901234567890123456789012345"));
+  await userEvent.hover(canvas.getByText("Optiond123456789012345678901234567890123451231231"));
+  await userEvent.hover(canvas.getByText("Optiond123456789012345678901234567890123451231231"));
 };
 
 export const ClearActionTooltip = TooltipClear.bind({});
