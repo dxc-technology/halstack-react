@@ -30,8 +30,7 @@ const ModalAlertContainer = styled.div`
   box-sizing: border-box;
   max-width: 80%;
   min-width: 696px;
-  box-shadow: ${(props) =>
-    `${props.theme.boxShadowOffsetX} ${props.theme.boxShadowOffsetY} ${props.theme.boxShadowBlur} ${props.theme.boxShadowSpreadRadius} rgba(0, 0, 0, 0.25)`};
+  box-shadow: 1px 4px 6px 0px rgba(0, 0, 0, 0.25);
   z-index: 2147483647;
 
   @media (max-width: ${responsiveSizes.medium}rem) {

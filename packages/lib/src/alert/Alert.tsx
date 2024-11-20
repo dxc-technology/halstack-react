@@ -8,6 +8,7 @@ import DxcDivider from "../divider/Divider";
 import DxcActionIcon from "../action-icon/ActionIcon";
 import DxcFlex from "../flex/Flex";
 import ModalAlertWrapper from "./ModalAlertWrapper";
+import CoreTokens from "../common/coreTokens";
 
 const AlertContainer = styled.div<{
   semantic: AlertPropsType["semantic"];
@@ -16,10 +17,11 @@ const AlertContainer = styled.div<{
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: ${CoreTokens.spacing_8};
   ${(props) =>
-    (props.mode === "modal" || props.mode === "inline") && `border-radius: ${props.theme.inlineBannerBorderRadius};`};
-  padding: ${(props) => (props.mode === "modal" ? "1.5rem" : "0.5rem 0.75rem")};
+    (props.mode === "modal" || props.mode === "inline") && `border-radius: ${CoreTokens.border_radius_medium};`};
+  padding: ${(props) =>
+    props.mode === "modal" ? CoreTokens.spacing_24 : `${CoreTokens.spacing_8} ${CoreTokens.spacing_12}`};
   background-color: ${(props) =>
     (props.mode === "modal" && props.theme.modalBackgroundColor) ||
     (props.semantic === "info" && props.theme.infoBackgroundColor) ||
@@ -30,10 +32,10 @@ const AlertContainer = styled.div<{
 `;
 
 const TitleContainer = styled.div<{ mode: AlertPropsType["mode"]; semantic: AlertPropsType["semantic"] }>`
-  display: flex;
   flex-grow: 1;
+  display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: ${CoreTokens.spacing_8};
   color: ${(props) =>
     (props.semantic === "info" && props.theme.infoIconColor) ||
     (props.semantic === "success" && props.theme.successIconColor) ||
@@ -58,10 +60,11 @@ const Title = styled.span<{ mode: AlertPropsType["mode"] }>`
 `;
 
 const Message = styled.div<{ mode: AlertPropsType["mode"] }>`
+  ${typographyStyles}
   white-space: ${(props) => props.mode === "banner" && "nowrap"};
   text-overflow: ${(props) => props.mode === "banner" && "ellipsis"};
   overflow: ${(props) => props.mode === "banner" && "hidden"};
-  ${typographyStyles}
+
   > strong {
     font-weight: ${(props) => props.theme.modalTitleFontWeight};
   }
@@ -74,11 +77,11 @@ const NavigationText = styled.span`
 
 const Actions = memo(
   ({
-    semantic,
     mode,
     primaryAction,
     secondaryAction,
-  }: Pick<AlertPropsType, "semantic" | "mode" | "primaryAction" | "secondaryAction">) => (
+    semantic,
+  }: Pick<AlertPropsType, "mode" | "primaryAction" | "secondaryAction" | "semantic">) => (
     <DxcFlex gap="0.5rem" alignSelf={mode === "inline" || mode === "modal" ? "flex-end" : undefined}>
       {secondaryAction?.onClick && (
         <DxcButton
@@ -130,10 +133,10 @@ const DxcAlert = ({
   const messages = useMemo(() => (Array.isArray(message) ? message : [message]), [message]);
 
   const handleNextOnClick = () => {
-    if (currentIndex + 1 < messages.length) setCurrentIndex(currentIndex + 1);
+    setCurrentIndex((prevIndex) => (prevIndex < messages.length ? prevIndex + 1 : prevIndex));
   };
   const handlePrevOnClick = () => {
-    if (currentIndex > 0) setCurrentIndex(currentIndex - 1);
+    setCurrentIndex((prevIndex) => (prevIndex > 0 ? prevIndex - 1 : prevIndex));
   };
 
   return (

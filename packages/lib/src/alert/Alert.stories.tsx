@@ -1,19 +1,10 @@
 import DxcAlert from "./Alert";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
-import { HalstackProvider } from "../HalstackContext";
 
 export default {
   title: "Alert",
   component: DxcAlert,
-};
-
-const opinionatedTheme = {
-  alert: {
-    baseColor: "#e6f4ff",
-    accentColor: "#0067b3",
-    overlayColor: "#000000b3",
-  },
 };
 
 const messages = [
@@ -24,8 +15,7 @@ const messages = [
 ];
 
 const message = {
-  text:
-    "Message Message Message Message Message Message Message Message Message Message Message MessageMessage Message Message Message Message Message Message Message Message Message MessageMessage Message Message Message Message Message Message Message Message Message MessageMessage Message Message Message Message Message Message Message Message Message MessageMessage Message Message Message Message Message Message Message Message Message MessageMessage Message Message Message Message Message Message Message Message Message MessageMessage Message Message Message Message Message Message Message Message Message MessageMessage Message Message Message Message Message Message Message Message Message MessageMessage Message Message Message Message Message Message Message Message Message MessageMessage Message Message Message Message Message Message Message Message Message MessageMessage Message Message Message Message Message Message Message Message Message MessageMessage Message Message Message Message Message Message Message Message Message MessageMessage Message Message Message Message Message Message Message Message Message MessageMessage Message Message Message Message Message Message Message Message Message MessageMessage Message Message Message Message Message Message Message Message Message MessageMessage Message Message Message Message Message Message Message Message Message MessageMessage Message Message Message Message Message Message Message Message Message MessageMessage Message Message Message Message Message Message Message Message Message Message Message Message Message Message Message Message Message Message Message Message Message Message",
+  text: "Message Message Message Message Message Message Message Message Message Message Message MessageMessage Message Message Message Message Message Message Message Message Message MessageMessage Message Message Message Message Message Message Message Message Message MessageMessage Message Message Message Message Message Message Message Message Message MessageMessage Message Message Message Message Message Message Message Message Message MessageMessage Message Message Message Message Message Message Message Message Message MessageMessage Message Message Message Message Message Message Message Message Message MessageMessage Message Message Message Message Message Message Message Message Message MessageMessage Message Message Message Message Message Message Message Message Message MessageMessage Message Message Message Message Message Message Message Message Message MessageMessage Message Message Message Message Message Message Message Message Message MessageMessage Message Message Message Message Message Message Message Message Message MessageMessage Message Message Message Message Message Message Message Message Message MessageMessage Message Message Message Message Message Message Message Message Message MessageMessage Message Message Message Message Message Message Message Message Message MessageMessage Message Message Message Message Message Message Message Message Message MessageMessage Message Message Message Message Message Message Message Message Message MessageMessage Message Message Message Message Message Message Message Message Message Message Message Message Message Message Message Message Message Message Message Message Message Message",
 };
 
 export const Chromatic = () => (
@@ -231,13 +221,7 @@ export const Chromatic = () => (
   </>
 );
 
-export const InfoModal = () => (
-  <ExampleContainer>
-    <DxcAlert title="Info" mode="modal" message={message} />
-  </ExampleContainer>
-);
-
-export const InfoActionsModal = () => (
+export const InformationModal = () => (
   <ExampleContainer>
     <DxcAlert
       title="Info"
@@ -250,12 +234,6 @@ export const InfoActionsModal = () => (
 );
 
 export const SuccessModal = () => (
-  <ExampleContainer>
-    <DxcAlert title="Success" semantic="success" mode="modal" message={message} />
-  </ExampleContainer>
-);
-
-export const SuccessActionsModal = () => (
   <ExampleContainer>
     <DxcAlert
       title="Success"
@@ -270,12 +248,6 @@ export const SuccessActionsModal = () => (
 
 export const WarningModal = () => (
   <ExampleContainer>
-    <DxcAlert title="Warning" semantic="warning" mode="modal" message={message} />
-  </ExampleContainer>
-);
-
-export const WarningActionsModal = () => (
-  <ExampleContainer>
     <DxcAlert
       title="Warning"
       semantic="warning"
@@ -288,12 +260,6 @@ export const WarningActionsModal = () => (
 );
 
 export const ErrorModal = () => (
-  <ExampleContainer>
-    <DxcAlert title="Error" semantic="error" mode="modal" message={message} />
-  </ExampleContainer>
-);
-
-export const ErrorActionsModal = () => (
   <ExampleContainer>
     <DxcAlert
       title="Error"
