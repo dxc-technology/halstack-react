@@ -1,6 +1,6 @@
 import { render } from "@testing-library/react";
-import { axe } from "../../test/accessibility/axe-helper.js";
-import { disabledRules as rules } from "../../test/accessibility/rules/specific/footer/disabledRules.js";
+import { axe } from "../../test/accessibility/axe-helper";
+import { disabledRules as rules } from "../../test/accessibility/rules/specific/footer/disabledRules";
 import DxcFooter from "./Footer";
 
 const disabledRules = {

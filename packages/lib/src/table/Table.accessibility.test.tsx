@@ -1,9 +1,9 @@
 import { render } from "@testing-library/react";
-import { axe } from "../../test/accessibility/axe-helper.js";
+import { axe } from "../../test/accessibility/axe-helper";
 import DxcTable from "./Table";
 
 // TODO: REMOVE
-import { disabledRules as rules } from "../../test/accessibility/rules/specific/table/disabledRules.js";
+import { disabledRules as rules } from "../../test/accessibility/rules/specific/table/disabledRules";
 
 const disabledRules = {
   rules: rules.reduce((rulesObj, rule) => {

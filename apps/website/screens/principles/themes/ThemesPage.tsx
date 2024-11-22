@@ -16,7 +16,6 @@ import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import JsonContainer from "@/common/JsonContainer";
 import bloomTheme from "./examples/bloomTheme";
 import defaultAdvancedTheme from "@/common/themes/advanced-theme.json";
-import content from "screens/components/alert/usage/examples/types";
 
 const sections = [
   {
@@ -161,37 +160,11 @@ const sections = [
               {
                 title: "Alert",
                 content: (
-                  <DxcTable>
-                    <thead>
-                      <tr>
-                        <th>Theme Input</th>
-                        <th>Tokens (calculation) </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>Base color</td>
-                        <td>
-                          <Code>infoBackgroundColor</Code>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Accent color</td>
-                        <td>
-                          <Code>infoIconColor</Code>
-                          <br />
-                          <br />
-                          <Code>infoBorderColor</Code>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Overlay color</td>
-                        <td>
-                          <Code>overlayColor</Code>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </DxcTable>
+                  <DxcParagraph>
+                    The Alert component does not include theme inputs. The colors used in this component are universal
+                    semantic colors, which we believe should remain unchanged to prevent confusion and ensure
+                    consistency.
+                  </DxcParagraph>
                 ),
               },
               {

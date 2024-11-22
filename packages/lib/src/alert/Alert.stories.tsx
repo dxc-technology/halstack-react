@@ -1,6 +1,7 @@
 import DxcAlert from "./Alert";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
+import DxcLink from "../link/Link";
 
 export default {
   title: "Alert",
@@ -15,7 +16,26 @@ const messages = [
 ];
 
 const message = {
-  text: "Message Message Message Message Message Message Message Message Message Message Message MessageMessage Message Message Message Message Message Message Message Message Message MessageMessage Message Message Message Message Message Message Message Message Message MessageMessage Message Message Message Message Message Message Message Message Message MessageMessage Message Message Message Message Message Message Message Message Message MessageMessage Message Message Message Message Message Message Message Message Message MessageMessage Message Message Message Message Message Message Message Message Message MessageMessage Message Message Message Message Message Message Message Message Message MessageMessage Message Message Message Message Message Message Message Message Message MessageMessage Message Message Message Message Message Message Message Message Message MessageMessage Message Message Message Message Message Message Message Message Message MessageMessage Message Message Message Message Message Message Message Message Message MessageMessage Message Message Message Message Message Message Message Message Message MessageMessage Message Message Message Message Message Message Message Message Message MessageMessage Message Message Message Message Message Message Message Message Message MessageMessage Message Message Message Message Message Message Message Message Message MessageMessage Message Message Message Message Message Message Message Message Message MessageMessage Message Message Message Message Message Message Message Message Message Message Message Message Message Message Message Message Message Message Message Message Message Message",
+  text: (
+    <>
+      Message Message <DxcLink>Message</DxcLink> Message Message Message Message Message Message Message Message
+      MessageMessage Message Message Message Message Message Message Message Message Message MessageMessage Message
+      Message Message Message Message Message Message Message Message MessageMessage Message Message Message Message
+      Message Message Message Message Message MessageMessage Message Message Message Message Message Message Message
+      Message Message MessageMessage Message Message Message Message Message Message Message Message Message
+      MessageMessage Message Message Message Message Message Message Message Message Message MessageMessage Message
+      Message Message Message Message Message Message Message Message MessageMessage Message Message Message Message
+      Message Message Message Message Message MessageMessage Message Message Message Message Message Message Message
+      Message Message MessageMessage Message Message Message Message Message Message Message Message Message
+      MessageMessage Message Message Message Message Message Message Message Message Message MessageMessage Message
+      Message Message Message Message Message Message Message Message MessageMessage Message Message Message Message
+      Message Message Message Message Message MessageMessage Message Message Message Message Message Message Message
+      Message Message MessageMessage Message Message Message Message Message Message Message Message Message
+      MessageMessage Message Message Message Message Message Message Message Message Message MessageMessage Message
+      Message Message Message Message Message Message Message Message Message Message Message Message Message Message
+      Message Message Message Message Message Message Message
+    </>
+  ),
 };
 
 export const Chromatic = () => (
@@ -144,6 +164,16 @@ export const Chromatic = () => (
         message={messages}
         primaryAction={{ label: "Primary action", onClick: () => {} }}
         secondaryAction={{ label: "Secondary action", onClick: () => {} }}
+      />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Info with actions, list of messages and non-closable" theme="light" level={4} />
+      <DxcAlert
+        title="Info"
+        message={messages}
+        primaryAction={{ label: "Primary action", onClick: () => {} }}
+        secondaryAction={{ label: "Secondary action", onClick: () => {} }}
+        closable={false}
       />
     </ExampleContainer>
     <ExampleContainer>

@@ -2,7 +2,7 @@ import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import { userEvent } from "@storybook/test";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
-import DxcAlert from "../alert/Old Alert";
+import DxcAlert from "../alert/Alert";
 import DxcButton from "../button/Button";
 import DxcFlex from "../flex/Flex";
 import { HalstackProvider } from "../HalstackContext";

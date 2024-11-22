@@ -1,6 +1,6 @@
 import { render } from "@testing-library/react";
-import { axe } from "../../test/accessibility/axe-helper.js";
-import { disabledRules as rules } from "../../test/accessibility/rules/specific/switch/disabledRules.js";
+import { axe } from "../../test/accessibility/axe-helper";
+import { disabledRules as rules } from "../../test/accessibility/rules/specific/switch/disabledRules";
 import DxcSwitch from "./Switch";
 
 const disabledRules = {

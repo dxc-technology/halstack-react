@@ -1,6 +1,6 @@
 import DxcAccordion from "./accordion/Accordion";
 import DxcAccordionGroup from "./accordion-group/AccordionGroup";
-import DxcAlert from "./alert/Old Alert";
+import DxcAlert from "./alert/Alert";
 import DxcApplicationLayout from "./layout/ApplicationLayout";
 import DxcBadge from "./badge/Badge";
 import DxcBleed from "./bleed/Bleed";

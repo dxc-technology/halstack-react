@@ -2,7 +2,7 @@ type SVG = React.ReactNode & React.SVGProps<SVGSVGElement>;
 
 type Action = {
   icon?: string | SVG;
-  label?: string;
+  label: string;
   onClick: () => void;
 };
 
@@ -19,16 +19,27 @@ type CommonProps = {
   title: string;
 };
 
-type InlineProps = {
-  message: Message | Message[];
-  mode?: "banner" | "inline";
-};
+type ModeSpecificProps =
+  | {
+      closable?: boolean;
+      message?: Message | Message[];
+      mode?: "inline";
+    }
+  | {
+      message: Message | Message[];
+      mode: "banner";
+    }
+  | {
+      message: Message;
+      mode: "modal";
+    };
 
-type ModalProps = {
-  message: Message;
-  mode: "modal";
-};
-
-type Props = CommonProps & (InlineProps | ModalProps);
+type Props = CommonProps & ModeSpecificProps;
 
 export default Props;
+
+export type ModalAlertWrapperProps = {
+  condition: boolean;
+  onClose?: () => void;
+  children: React.ReactNode;
+};

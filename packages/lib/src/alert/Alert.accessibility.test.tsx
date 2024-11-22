@@ -1,6 +1,12 @@
 import { render } from "@testing-library/react";
-import { axe } from "../../test/accessibility/axe-helper.js";
-import DxcAlert from "./Alert.js";
+import { axe } from "../../test/accessibility/axe-helper";
+import DxcAlert from "./Alert";
+
+(global as any).ResizeObserver = class ResizeObserver {
+  observe() {}
+  unobserve() {}
+  disconnect() {}
+};
 
 const messages = [
   { text: "Message 1", onClose: () => {} },

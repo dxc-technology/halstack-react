@@ -2,6 +2,7 @@ import { createPortal } from "react-dom";
 import styled, { createGlobalStyle } from "styled-components";
 import { responsiveSizes } from "../common/variables";
 import FocusLock from "../utils/FocusLock";
+import { ModalAlertWrapperProps } from "./types";
 
 const BodyStyle = createGlobalStyle`
   body {
@@ -31,7 +32,6 @@ const ModalAlertContainer = styled.div`
   box-sizing: border-box;
   max-width: 80%;
   min-width: 696px;
-  box-shadow: 1px 4px 6px 0px rgba(0, 0, 0, 0.25);
   z-index: 2147483647;
 
   @media (max-width: ${responsiveSizes.medium}rem) {
@@ -40,7 +40,11 @@ const ModalAlertContainer = styled.div`
   }
 `;
 
-const ModalAlertWrapper = ({ condition, onClose, children }) =>
+const ModalAlertWrapper = ({
+  condition,
+  onClose,
+  children,
+}: ModalAlertWrapperProps) =>
   condition ? (
     <>
       <BodyStyle />

@@ -119,19 +119,14 @@ const getIcon = (semantic: string) => {
   }
 };
 
-const DxcAlert = ({
-  message,
-  mode = "inline",
-  primaryAction,
-  secondaryAction,
-  semantic = "info",
-  tabIndex,
-  title = "",
-}: AlertPropsType): JSX.Element => {
-  const id = useId();
-  const colorsTheme = useTheme();
-  const [currentIndex, setCurrentIndex] = useState(0);
+export default function DxcAlert(props: AlertPropsType) {
+  const { message, mode = "inline", primaryAction, secondaryAction, semantic = "info", tabIndex, title = "" } = props;
+  const closable = props.mode === undefined || props.mode === "inline" ? (props.closable ?? true) : true;
   const messages = useMemo(() => (Array.isArray(message) ? message : [message]), [message]);
+
+  const id = useId();
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const colorsTheme = useTheme();
 
   const handleNextOnClick = () => {
     setCurrentIndex((prevIndex) => (prevIndex < messages.length ? prevIndex + 1 : prevIndex));
@@ -145,9 +140,7 @@ const DxcAlert = ({
       <ModalAlertWrapper condition={mode === "modal"} onClose={messages[currentIndex]?.onClose}>
         <AlertContainer
           role={mode === "modal" ? "alertdialog" : "alert"}
-          aria-live={mode !== "modal" ? "assertive" : undefined}
-          aria-atomic={mode !== "modal"}
-          aria-modal={mode === "modal"}
+          aria-modal={mode === "modal" ? true : undefined}
           aria-labelledby={mode === "modal" ? `${id}-title` : undefined}
           aria-describedby={mode === "modal" ? `${id}-message` : undefined}
           semantic={semantic}
@@ -195,15 +188,17 @@ const DxcAlert = ({
                 />
               </DxcFlex>
             )}
-            <DxcFlex gap="0.25rem">
-              {mode !== "modal" && <DxcDivider orientation="vertical" />}
-              <DxcActionIcon
-                icon="close"
-                title="Close alert"
-                onClick={messages[currentIndex]?.onClose}
-                tabIndex={tabIndex}
-              />
-            </DxcFlex>
+            {closable ? (
+              <DxcFlex gap="0.25rem">
+                {mode !== "modal" && <DxcDivider orientation="vertical" />}
+                <DxcActionIcon
+                  icon="close"
+                  title="Close alert"
+                  onClick={messages[currentIndex]?.onClose}
+                  tabIndex={tabIndex}
+                />
+              </DxcFlex>
+            ) : null}
           </DxcFlex>
           {mode === "modal" && <DxcDivider />}
           {mode !== "banner" && (
@@ -223,6 +218,4 @@ const DxcAlert = ({
       </ModalAlertWrapper>
     </ThemeProvider>
   );
-};
-
-export default DxcAlert;
+}

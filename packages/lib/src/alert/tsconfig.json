@@ -1,0 +1,5 @@
+// This file must be deleted when strict is set to true in the root tsconfig.json file.
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": { "strict": true }
+}
