@@ -1,14 +1,14 @@
 {
   "extends": "@dxc-technology/typescript-config/nextjs.json",
   "compilerOptions": {
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "strict": false,
+    "baseUrl": ".",
     "forceConsistentCasingInFileNames": true,
     "incremental": true,
-    "baseUrl": ".",
+    "lib": ["dom", "dom.iterable", "esnext"],
     "paths": {
       "@/common/*": ["screens/common/*"]
-    }
+    },
+    "strict": false
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]
