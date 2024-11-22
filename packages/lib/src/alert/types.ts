@@ -21,7 +21,6 @@ type CommonProps = {
 
 type ModeSpecificProps =
   | {
-      closable?: boolean;
       message?: Message | Message[];
       mode?: "inline";
     }
@@ -30,7 +29,7 @@ type ModeSpecificProps =
       mode: "banner";
     }
   | {
-      message: Message;
+      message: Required<Message>;
       mode: "modal";
     };
 

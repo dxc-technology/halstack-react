@@ -104,7 +104,7 @@ const Actions = memo(
   )
 );
 
-const getIcon = (semantic: string) => {
+const getIcon = (semantic: AlertPropsType["semantic"]) => {
   switch (semantic) {
     case "info":
       return <DxcIcon icon="filled_info" />;
@@ -114,14 +114,18 @@ const getIcon = (semantic: string) => {
       return <DxcIcon icon="filled_warning" />;
     case "error":
       return <DxcIcon icon="filled_cancel" />;
-    default:
-      return null;
   }
 };
 
-export default function DxcAlert(props: AlertPropsType) {
-  const { message, mode = "inline", primaryAction, secondaryAction, semantic = "info", tabIndex, title = "" } = props;
-  const closable = props.mode === undefined || props.mode === "inline" ? (props.closable ?? true) : true;
+export default function DxcAlert({
+  message,
+  mode = "inline",
+  primaryAction,
+  secondaryAction,
+  semantic = "info",
+  tabIndex,
+  title = "",
+}: AlertPropsType) {
   const messages = useMemo(() => (Array.isArray(message) ? message : [message]), [message]);
 
   const id = useId();
@@ -188,13 +192,13 @@ export default function DxcAlert(props: AlertPropsType) {
                 />
               </DxcFlex>
             )}
-            {closable ? (
+            {messages[currentIndex]?.onClose ? (
               <DxcFlex gap="0.25rem">
                 {mode !== "modal" && <DxcDivider orientation="vertical" />}
                 <DxcActionIcon
                   icon="close"
                   title="Close alert"
-                  onClick={messages[currentIndex]?.onClose}
+                  onClick={messages[currentIndex].onClose}
                   tabIndex={tabIndex}
                 />
               </DxcFlex>
