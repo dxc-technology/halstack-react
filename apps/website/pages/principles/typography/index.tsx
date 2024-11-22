@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import TypographyCodePage from "../../../screens/principles/typography/code/TypographyCodePage";
-import TypographyPageLayout from "../../../screens/principles/typography/TypographyPageLayout";
+import TypographyCodePage from "screens/principles/typography/code/TypographyCodePage";
+import TypographyPageLayout from "screens/principles/typography/TypographyPageLayout";
 
 const Index = () => {
   return (

@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import ChipCodePage from "../../../screens/components/chip/code/ChipCodePage";
-import ChipPageLayout from "../../../screens/components/chip/ChipPageLayout";
+import ChipCodePage from "screens/components/chip/code/ChipCodePage";
+import ChipPageLayout from "screens/components/chip/ChipPageLayout";
 
 const Index = () => {
   return (

@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import FooterPageLayout from "../../../screens/components/footer/FooterPageLayout";
-import FooterSpecsPage from "../../../screens/components/footer/specs/FooterSpecsPage";
+import FooterPageLayout from "screens/components/footer/FooterPageLayout";
+import FooterSpecsPage from "screens/components/footer/specs/FooterSpecsPage";
 
 const Specifications = () => {
   return (

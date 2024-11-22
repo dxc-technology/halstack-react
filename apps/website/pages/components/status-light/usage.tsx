@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import StatusLightPageLayout from "../../../screens/components/status-light/StatusLightPageLayout";
-import StatusLightUsagePage from "../../../screens/components/status-light/usage/StatusLightUsagePage";
+import StatusLightPageLayout from "screens/components/status-light/StatusLightPageLayout";
+import StatusLightUsagePage from "screens/components/status-light/usage/StatusLightUsagePage";
 
 const Usage = () => {
   return (

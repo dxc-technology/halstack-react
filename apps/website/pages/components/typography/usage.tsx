@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import TypographyPageLayout from "../../../screens/components/typography/TypographyPageLayout";
-import TypographyUsagePage from "../../../screens/components/typography/usage/TypographyUsagePage";
+import TypographyPageLayout from "screens/components/typography/TypographyPageLayout";
+import TypographyUsagePage from "screens/components/typography/usage/TypographyUsagePage";
 
 const Usage = () => {
   return (

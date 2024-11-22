@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import CardSpecsPage from "../../../screens/components/card/specs/CardSpecsPage";
-import CardPageLayout from "../../../screens/components/card/CardPageLayout";
+import CardSpecsPage from "screens/components/card/specs/CardSpecsPage";
+import CardPageLayout from "screens/components/card/CardPageLayout";
 
 const Specifications = () => {
   return (

@@ -1,5 +1,5 @@
 import Head from "next/head";
-import DataVisualizationPage from "../../screens/principles/data-visualization/DataVisualizationPage";
+import DataVisualizationPage from "screens/principles/data-visualization/DataVisualizationPage";
 
 const DataVisualization = () => {
   return (

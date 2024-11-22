@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import ContainerUsagePage from "../../../screens/components/container/usage/ContainerUsagePage";
-import ContainerPageLayout from "../../../screens/components/container/ContainerPageLayout";
+import ContainerUsagePage from "screens/components/container/usage/ContainerUsagePage";
+import ContainerPageLayout from "screens/components/container/ContainerPageLayout";
 
 const Usage = () => {
   return (

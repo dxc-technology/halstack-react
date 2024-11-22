@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import TextareaPageLayout from "../../../screens/components/textarea/TextareaPageLayout";
-import TextareaUsagePage from "../../../screens/components/textarea/usage/TextareaUsagePage";
+import TextareaPageLayout from "screens/components/textarea/TextareaPageLayout";
+import TextareaUsagePage from "screens/components/textarea/usage/TextareaUsagePage";
 
 const Usage = () => {
   return (

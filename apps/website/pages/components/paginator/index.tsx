@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import PaginatorPageLayout from "../../../screens/components/paginator/PaginatorPageLayout";
-import PaginatorCodePage from "../../../screens/components/paginator/code/PaginatorCodePage";
+import PaginatorPageLayout from "screens/components/paginator/PaginatorPageLayout";
+import PaginatorCodePage from "screens/components/paginator/code/PaginatorCodePage";
 
 const Index = () => {
   return (

@@ -1,5 +1,5 @@
 import Head from "next/head";
-import IntroductionPage from "../../screens/overview/introduction/IntroductionPage";
+import IntroductionPage from "screens/overview/introduction/IntroductionPage";
 
 const Introduction = () => {
   return (

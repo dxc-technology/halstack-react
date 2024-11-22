@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import SidenavPageLayout from "../../../screens/components/sidenav/SidenavPageLayout";
-import SidenavCodePage from "../../../screens/components/sidenav/code/SidenavCodePage";
+import SidenavPageLayout from "screens/components/sidenav/SidenavPageLayout";
+import SidenavCodePage from "screens/components/sidenav/code/SidenavCodePage";
 
 const Index = () => {
   return (

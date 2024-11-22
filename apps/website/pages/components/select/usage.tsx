@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import SelectPageLayout from "../../../screens/components/select/SelectPageLayout";
-import SelectUsagePage from "../../../screens/components/select/usage/SelectUsagePage";
+import SelectPageLayout from "screens/components/select/SelectPageLayout";
+import SelectUsagePage from "screens/components/select/usage/SelectUsagePage";
 
 const Usage = () => {
   return (

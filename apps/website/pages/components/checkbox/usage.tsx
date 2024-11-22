@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import CheckboxPageLayout from "../../../screens/components/checkbox/CheckboxPageLayout";
-import CheckboxUsagePage from "../../../screens/components/checkbox/usage/CheckboxUsagePage";
+import CheckboxPageLayout from "screens/components/checkbox/CheckboxPageLayout";
+import CheckboxUsagePage from "screens/components/checkbox/usage/CheckboxUsagePage";
 
 const Usage = () => {
   return (

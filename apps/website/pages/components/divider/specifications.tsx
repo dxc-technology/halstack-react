@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import DividerPageLayout from "../../../screens/components/divider/DividerPageLayout";
-import DividerSpecsPage from "../../../screens/components/divider/specs/DividerSpecsPage";
+import DividerPageLayout from "screens/components/divider/DividerPageLayout";
+import DividerSpecsPage from "screens/components/divider/specs/DividerSpecsPage";
 
 const Specifications = () => {
   return (

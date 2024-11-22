@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import SliderPageLayout from "../../../screens/components/slider/SliderPageLayout";
-import SliderUsagePage from "../../../screens/components/slider/usage/SliderUsagePage";
+import SliderPageLayout from "screens/components/slider/SliderPageLayout";
+import SliderUsagePage from "screens/components/slider/usage/SliderUsagePage";
 
 const Usage = () => {
   return (

@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import PasswordInputSpecsPage from "../../../screens/components/password-input/specs/PasswordInputSpecsPage";
-import PasswordInputPageLayout from "../../../screens/components/password-input/PasswordInputPageLayout";
+import PasswordInputSpecsPage from "screens/components/password-input/specs/PasswordInputSpecsPage";
+import PasswordInputPageLayout from "screens/components/password-input/PasswordInputPageLayout";
 
 const Specifications = () => {
   return (

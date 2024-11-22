@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import ContextualMenuSpecsPage from "../../../screens/components/contextual-menu/specs/ContextualMenuSpecsPage";
-import ContextualMenuPageLayout from "../../../screens/components/contextual-menu/ContextualMenuPageLayout";
+import ContextualMenuSpecsPage from "screens/components/contextual-menu/specs/ContextualMenuSpecsPage";
+import ContextualMenuPageLayout from "screens/components/contextual-menu/ContextualMenuPageLayout";
 
 const Specifications = () => {
   return (

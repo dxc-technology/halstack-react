@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import SwitchPageLayout from "../../../screens/components/switch/SwitchPageLayout";
-import SwitchSpecsPage from "../../../screens/components/switch/specs/SwitchSpecsPage";
+import SwitchPageLayout from "screens/components/switch/SwitchPageLayout";
+import SwitchSpecsPage from "screens/components/switch/specs/SwitchSpecsPage";
 
 const Specifications = () => {
   return (

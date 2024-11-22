@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import AccordionPageLayout from "../../../screens/components/accordion/AccordionPageLayout";
-import AccordionSpecsPage from "../../../screens/components/accordion/specs/AccordionSpecsPage";
+import AccordionPageLayout from "screens/components/accordion/AccordionPageLayout";
+import AccordionSpecsPage from "screens/components/accordion/specs/AccordionSpecsPage";
 
 const Specifications = () => {
   return (

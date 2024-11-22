@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import DateInputUsagePage from "../../../screens/components/date-input/usage/DateInputUsagePage";
-import DateInputPageLayout from "../../../screens/components/date-input/DateInputPageLayout";
+import DateInputUsagePage from "screens/components/date-input/usage/DateInputUsagePage";
+import DateInputPageLayout from "screens/components/date-input/DateInputPageLayout";
 
 const Usage = () => {
   return (

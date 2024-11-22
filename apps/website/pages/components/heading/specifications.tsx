@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import HeadingPageLayout from "../../../screens/components/heading/HeadingPageLayout";
-import HeadingSpecsPage from "../../../screens/components/heading/specs/HeadingSpecsPage";
+import HeadingPageLayout from "screens/components/heading/HeadingPageLayout";
+import HeadingSpecsPage from "screens/components/heading/specs/HeadingSpecsPage";
 
 const Specifications = () => {
   return (

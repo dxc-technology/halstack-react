@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import PaginatorPageLayout from "../../../screens/components/paginator/PaginatorPageLayout";
-import PaginatorUsagePage from "../../../screens/components/paginator/usage/PaginatorUsagePage";
+import PaginatorPageLayout from "screens/components/paginator/PaginatorPageLayout";
+import PaginatorUsagePage from "screens/components/paginator/usage/PaginatorUsagePage";
 
 const Usage = () => {
   return (

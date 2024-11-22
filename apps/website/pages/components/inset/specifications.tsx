@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import InsetPageLayout from "../../../screens/components/inset/InsetPageLayout";
-import InsetSpecsPage from "../../../screens/components/inset/specs/InsetSpecsPage";
+import InsetPageLayout from "screens/components/inset/InsetPageLayout";
+import InsetSpecsPage from "screens/components/inset/specs/InsetSpecsPage";
 
 const Specifications = () => {
   return (

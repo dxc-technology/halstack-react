@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import NumberInputPageLayout from "../../../screens/components/number-input/NumberInputPageLayout";
-import NumberInputUsagePage from "../../../screens/components/number-input/usage/NumberInputUsagePage";
+import NumberInputPageLayout from "screens/components/number-input/NumberInputPageLayout";
+import NumberInputUsagePage from "screens/components/number-input/usage/NumberInputUsagePage";
 
 const Usage = () => {
   return (

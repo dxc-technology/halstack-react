@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import ButtonPageLayout from "../../../screens/components/button/ButtonPageLayout";
-import ButtonSpecsPage from "../../../screens/components/button/specs/ButtonSpecsPage";
+import ButtonPageLayout from "screens/components/button/ButtonPageLayout";
+import ButtonSpecsPage from "screens/components/button/specs/ButtonSpecsPage";
 
 const Specifications = () => {
   return (

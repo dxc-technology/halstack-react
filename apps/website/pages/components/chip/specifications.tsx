@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import ChipSpecsPage from "../../../screens/components/chip/specs/ChipSpecsPage";
-import ChipPageLayout from "../../../screens/components/chip/ChipPageLayout";
+import ChipSpecsPage from "screens/components/chip/specs/ChipSpecsPage";
+import ChipPageLayout from "screens/components/chip/ChipPageLayout";
 
 const Specifications = () => {
   return (

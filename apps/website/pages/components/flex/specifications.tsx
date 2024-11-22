@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import FlexPageLayout from "../../../screens/components/flex/FlexPageLayout";
-import FlexSpecsPage from "../../../screens/components/flex/specs/FlexSpecsPage";
+import FlexPageLayout from "screens/components/flex/FlexPageLayout";
+import FlexSpecsPage from "screens/components/flex/specs/FlexSpecsPage";
 
 const Specifications = () => {
   return (
