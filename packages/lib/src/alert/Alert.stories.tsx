@@ -15,6 +15,13 @@ const messages = [
   { text: "Message 4", onClose: () => {} },
 ];
 
+const nonClosableMessages = [
+  { text: "Message 1" },
+  { text: "Message 2" },
+  { text: "Message 3" },
+  { text: "Message 4" },
+];
+
 const message = {
   text: (
     <>
@@ -36,6 +43,7 @@ const message = {
       Message Message Message Message Message Message Message
     </>
   ),
+  onClose: () => {},
 };
 
 export const Chromatic = () => (
@@ -61,6 +69,16 @@ export const Chromatic = () => (
         title="Info"
         mode="banner"
         message={messages}
+        primaryAction={{ label: "Primary action", onClick: () => {} }}
+        secondaryAction={{ label: "Secondary action", onClick: () => {} }}
+      />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Info with actions, list of messages and non-closable" theme="light" level={4} />
+      <DxcAlert
+        title="Info"
+        mode="banner"
+        message={nonClosableMessages}
         primaryAction={{ label: "Primary action", onClick: () => {} }}
         secondaryAction={{ label: "Secondary action", onClick: () => {} }}
       />
@@ -170,10 +188,9 @@ export const Chromatic = () => (
       <Title title="Info with actions, list of messages and non-closable" theme="light" level={4} />
       <DxcAlert
         title="Info"
-        message={messages}
+        message={nonClosableMessages}
         primaryAction={{ label: "Primary action", onClick: () => {} }}
         secondaryAction={{ label: "Secondary action", onClick: () => {} }}
-        closable={false}
       />
     </ExampleContainer>
     <ExampleContainer>
