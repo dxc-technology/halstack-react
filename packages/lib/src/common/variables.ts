@@ -1466,10 +1466,10 @@ export const defaultTranslatedComponentLabels = {
     visibilityToggleTitle: "Toggle sidenav visibility",
   },
   alert: {
-    infoTitleText: "information",
-    successTitleText: "success",
-    warningTitleText: "warning",
-    errorTitleText: "error",
+    previousMessageActionTitle: "Previous message",
+    nextMessageActionTitle: "Next message",
+    closeAlertActionTitle: "Close alert",
+    closeMessageActionTitle: "Close message",
   },
   calendar: {
     daysShort: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],

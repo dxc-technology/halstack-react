@@ -1,4 +1,11 @@
-import { DxcParagraph, DxcBulletedList, DxcFlex, DxcTable, DxcTypography } from "@dxc-technology/halstack-react";
+import {
+  DxcParagraph,
+  DxcBulletedList,
+  DxcFlex,
+  DxcTable,
+  DxcTypography,
+  DxcLink,
+} from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
@@ -7,6 +14,8 @@ import Image from "@/common/Image";
 import banner from "./images/alert_banner.png";
 import modal from "./images/alert_modal.png";
 import inline from "./images/alert_inline.png";
+import Link from "next/link";
+import Code from "@/common/Code";
 
 const sections = [
   {
@@ -16,7 +25,7 @@ const sections = [
         <DxcParagraph>The key characteristics of our alert component are the following:</DxcParagraph>
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
-            <strong>Visibility</strong>: alerts should be positioned in a place where it can attract the user’s eye
+            <strong>Visibility</strong>: alerts should be positioned in a place where it can attract the user's eye
             without too much effort, as it will convey critical messages about the system or important features.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
@@ -47,7 +56,7 @@ const sections = [
     ),
     subSections: [
       {
-        title: "Semantic types",
+        title: "Semantic alerts",
         content: (
           <>
             <DxcParagraph>
@@ -182,11 +191,11 @@ const sections = [
                 with an action, with options to save changes or discard them.
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
-                <strong>Permission request</strong>: requesting user permission for access to sensitive data or devide
+                <strong>Permission request</strong>: requesting user permission for access to sensitive data or device
                 features, with actions to grant or deny permission.
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
-                <strong>Policy renewal reminder</strong>: notifying users that a client’s insurance policy is about to
+                <strong>Policy renewal reminder</strong>: notifying users that a client's insurance policy is about to
                 expire, with options to renew the policy or contact support for assistance.
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
@@ -205,7 +214,7 @@ const sections = [
             <DxcParagraph>
               The inline alert is displayed in a non-modal manner and is typically used within other components (such as
               within a card, table, or container). These alerts provide contextual feedback related to the component
-              they are embedded in, informing the user about the status of an action. Like other alert variants, inline
+              they are embedded in, informing the user about the status of an action. Like other alert variants, Inline
               alerts can include up to two actions, and the close action is optional. They also support pagination for
               scenarios where multiple related alerts need to be managed.
             </DxcParagraph>
@@ -234,163 +243,167 @@ const sections = [
           </>
         ),
       },
+    ],
+  },
+
+  {
+    title: "Best practices",
+    subSections: [
       {
-        title: "Best practices",
+        title: "Be clear and concise",
+        content: (
+          <DxcBulletedList>
+            <DxcBulletedList.Item>
+              Make sure that alert messages are brief and direct. Avoid overloading alert messages with unnecessary
+              information for the user, as they should be able to understand the message quickly and directly.
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
+              Use clear language that is easy for all users to understand. Avoid technical terms unless necessary.
+            </DxcBulletedList.Item>
+          </DxcBulletedList>
+        ),
+      },
+      {
+        title: "Prioritize alerts",
+        content: (
+          <DxcBulletedList>
+            <DxcBulletedList.Item>
+              Alerts cannot be displayed in a stacked manner. Make sure to prioritize alerts that compete at the same
+              level so the user will assess the most important one first.
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
+              Only use alerts for critical messages that requires immediate attention from the user. Overusing the
+              component can desensitize users to their importance and increase the cognitive load.
+            </DxcBulletedList.Item>
+          </DxcBulletedList>
+        ),
+      },
+      {
+        title: "Actionable feedback",
+        content: (
+          <DxcBulletedList>
+            <DxcBulletedList.Item>
+              Whenever possible, include actions that users can take to address the alert. This help them resolve issues
+              directly from the alert.
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
+              Among the actions within an alert, try to give alternatives to solve the problem.
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
+              Visit our{" "}
+              <Link href="/components/button/usage/#best-practices-for-button-labels" passHref legacyBehavior>
+                <DxcLink>Best practices for button labels</DxcLink>
+              </Link>{" "}
+              section from our Button component to tailor the best label for each button to make labels consistent and
+              concise.
+            </DxcBulletedList.Item>
+          </DxcBulletedList>
+        ),
+      },
+      {
+        title: "Semantic modes",
+        content: (
+          <DxcBulletedList>
+            <DxcBulletedList.Item>
+              Select the appropriate alert type (success, error, warning, information) based on the nature and urgency
+              of the message. This will help users quickly understand the context and importance of the alert.
+            </DxcBulletedList.Item>
+          </DxcBulletedList>
+        ),
+      },
+      {
+        title: "Only text in the message",
+        content: (
+          <DxcBulletedList>
+            <DxcBulletedList.Item>
+              The only Halstack component allowed within the text of an alert is the <Code>Link</Code> component, and it
+              should be used exclusively to direct users to additional resources or relevant pages.{" "}
+              <strong>No other components are permitted within the content of an alert.</strong>
+            </DxcBulletedList.Item>
+          </DxcBulletedList>
+        ),
+      },
+      {
+        title: "Best practices of each variant",
         subSections: [
           {
-            title: "Be clear and concise",
+            title: "Banner alert",
+            content: (
+              <DxcBulletedList>
+                <DxcBulletedList.Item>
+                  <strong>Position and visibility</strong>: banner alerts must always be placed on top of the interface,
+                  right below the header of the application. This is particularly important for system-wide alerts that
+                  impact the user's ability to interact with the application.
+                </DxcBulletedList.Item>
+                <DxcBulletedList.Item>
+                  <strong>Navigation</strong>: if multiple critical alerts exist, enable the option to paginate them so
+                  they can assess each message one by one, in priority order.
+                </DxcBulletedList.Item>
+                <DxcBulletedList.Item>
+                  <strong>Persistence</strong>: keep the banner alert visible until the issue is resolved. Users should
+                  not be able to dismiss it without taking action. This ensures that critical issues are addressed and
+                  not overlooked. The persistent nature of the banner reinforces the importance of the alert.
+                </DxcBulletedList.Item>
+                <DxcBulletedList.Item>
+                  <strong>Clarity</strong>: use the description of the alert to briefly explain the issue, but avoid
+                  overloading the user with unnecessary descriptions. If further details are needed to fully understand
+                  or assess the alert, provide a button to see the details on a separate screen.
+                </DxcBulletedList.Item>
+              </DxcBulletedList>
+            ),
+          },
+          {
+            title: "Modal alert",
             content: (
               <>
                 <DxcBulletedList>
                   <DxcBulletedList.Item>
-                    Make sure that alert messages are brief and direct. Avoid overloading alert messages with
-                    unnecessary information for the user, as they should be able to understand the message quickly and
-                    directly.
+                    <strong>Immediate action</strong>: use modal alert for issues that need the user’s immediate
+                    attention and action. Ensure they cannot proceed without addressing the alert. This prevents users
+                    from ignoring critical messages and helps in timely resolution of issues.
                   </DxcBulletedList.Item>
                   <DxcBulletedList.Item>
-                    Use clear language that is easy for all users to understand. Avoid technical terms unless necessary.
+                    <strong>Clear actions</strong>: if actions are needed (besides the close action), ensure these
+                    actions are accurate to resolve the issue, such as “Save changes” or “View details”. Actions should
+                    be easy to understand and immediately executable, guiding the user through the necessary steps to
+                    resolve the alert.
+                  </DxcBulletedList.Item>
+                  <DxcBulletedList.Item>
+                    <strong>Accurate focus</strong>: each modal alert must focus on a single important message to avoid
+                    overwhelming the user. Avoid combining multiple issues in one alert, as it can cause confusion and
+                    reduce the effectiveness of the alert.
                   </DxcBulletedList.Item>
                 </DxcBulletedList>
               </>
             ),
           },
           {
-            title: "Prioritize alerts",
+            title: "Inline alert",
             content: (
               <>
                 <DxcBulletedList>
                   <DxcBulletedList.Item>
-                    Alerts cannot be displayed in a stacked manner. Make sure to prioritize alerts that compete at the
-                    same level so the user will assess the most important one first.
+                    <strong>Placement</strong>: place inline alerts near the relevant content or component to provide
+                    immediate and contextual feedback. This helps users associate the alert with the specific action or
+                    data that it relates to, making it more intuitive to understand and act upon.
                   </DxcBulletedList.Item>
                   <DxcBulletedList.Item>
-                    Only use alerts for critical messages that requires immediate attention from the user. Overusing the
-                    component can desensitize users to their importance and increase the cognitive load.
+                    <strong>Non-intrusive</strong>: ensure inline alerts do not disrupt the user’s workflow but are
+                    noticeable enough to provide the necessary feedback.
+                  </DxcBulletedList.Item>
+                  <DxcBulletedList.Item>
+                    <strong>Dismissive alerts</strong>: allow users to close the inline alert if it is not critical to
+                    keep it visible at all times. This gives users control over their interface and prevents frustration
+                    from persistent alerts.
+                  </DxcBulletedList.Item>
+                  <DxcBulletedList.Item>
+                    <strong>Multiple alerts handling</strong>: if multiple inline alerts are necessary, allow users to
+                    navigate through them. This can be achieved through the navigation option built within the
+                    component.
                   </DxcBulletedList.Item>
                 </DxcBulletedList>
               </>
             ),
-          },
-          {
-            title: "Actionable feedback",
-            content: (
-              <>
-                <DxcBulletedList>
-                  <DxcBulletedList.Item>
-                    Whenever possible, include actions that users can take to address the alert. This help them resolve
-                    issues directly from the alert.
-                  </DxcBulletedList.Item>
-                  <DxcBulletedList.Item>
-                    Among the actions within an alert, try to give alternatives to solve the problem.
-                  </DxcBulletedList.Item>
-                  <DxcBulletedList.Item>
-                    Visit our “Best practices for button labels” section from our Button component to tailor the best
-                    label for each button to make labels consistent and concise.
-                  </DxcBulletedList.Item>
-                </DxcBulletedList>
-              </>
-            ),
-          },
-          {
-            title: "Semantic modes",
-            content: (
-              <>
-                <DxcBulletedList>
-                  <DxcBulletedList.Item>
-                    The only Halstack component allowed within the text of an alert is the Link component, and it should
-                    be used exclusively to direct users to additional resources or relevant pages. No other components
-                    are permitted within the content of an alert.
-                  </DxcBulletedList.Item>
-                </DxcBulletedList>
-              </>
-            ),
-          },
-          {
-            title: "Variants best practices",
-            subSections: [
-              {
-                title: "Banner alert",
-                content: (
-                  <>
-                    <DxcBulletedList>
-                      <DxcBulletedList.Item>
-                        <strong>Position and visibility</strong>: banner alerts must always be placed on top of the
-                        interface, right below the header of the application. This is particularly important for
-                        system-wide alerts that impact the user's ability to interact with the application.
-                      </DxcBulletedList.Item>
-                      <DxcBulletedList.Item>
-                        <strong>Navigation</strong>: if multiple critical alerts exist, enable the option to paginate
-                        them so they can assess each message one by one, in priority order.
-                      </DxcBulletedList.Item>
-                      <DxcBulletedList.Item>
-                        <strong>Persistence</strong>: keep the banner alert visible until the issue is resolved. Users
-                        should not be able to dismiss it without taking action. This ensures that critical issues are
-                        addressed and not overlooked. The persistent nature of the banner reinforces the importance of
-                        the alert.
-                      </DxcBulletedList.Item>
-                      <DxcBulletedList.Item>
-                        <strong>Clarity</strong>: use the description of the alert to briefly explain the issue, but
-                        avoid overloading the user with unnecessary descriptions. If further details are needed to fully
-                        understand or assess the alert, provide a button to see the details on a separate screen.
-                      </DxcBulletedList.Item>
-                    </DxcBulletedList>
-                  </>
-                ),
-              },
-              {
-                title: "Modal alert",
-                content: (
-                  <>
-                    <DxcBulletedList>
-                      <DxcBulletedList.Item>
-                        <strong>Immediate action</strong>: use modal alert for issues that need the user’s immediate
-                        attention and action. Ensure they cannot proceed without addressing the alert. This prevents
-                        users from ignoring critical messages and helps in timely resolution of issues.
-                      </DxcBulletedList.Item>
-                      <DxcBulletedList.Item>
-                        <strong>Clear actions</strong>: if actions are needed (besides the close action), ensure these
-                        actions are accurate to resolve the issue, such as “Save changes” or “View details”. Actions
-                        should be easy to understand and immediately executable, guiding the user through the necessary
-                        steps to resolve the alert.
-                      </DxcBulletedList.Item>
-                      <DxcBulletedList.Item>
-                        <strong>Accurate focus</strong>: each modal alert must focus on a single important message to
-                        avoid overwhelming the user. Avoid combining multiple issues in one alert, as it can cause
-                        confusion and reduce the effectiveness of the alert.
-                      </DxcBulletedList.Item>
-                    </DxcBulletedList>
-                  </>
-                ),
-              },
-              {
-                title: "Inline alert",
-                content: (
-                  <>
-                    <DxcBulletedList>
-                      <DxcBulletedList.Item>
-                        <strong>Placement</strong>: place inline alerts near the relevant content or component to
-                        provide immediate and contextual feedback. This helps users associate the alert with the
-                        specific action or data that it relates to, making it more intuitive to understand and act upon.
-                      </DxcBulletedList.Item>
-                      <DxcBulletedList.Item>
-                        <strong>Non-intrusive</strong>: ensure inline alerts do not disrupt the user’s workflow but are
-                        noticeable enough to provide the necessary feedback.
-                      </DxcBulletedList.Item>
-                      <DxcBulletedList.Item>
-                        <strong>Dismissive alerts</strong>: allow users to close the inline alert if it is not critical
-                        to keep it visible at all times. This gives users control over their interface and prevents
-                        frustration from persistent alerts.
-                      </DxcBulletedList.Item>
-                      <DxcBulletedList.Item>
-                        <strong>Multiple alerts handling</strong>: if multiple inline alerts are necessary, allow users
-                        to navigate through them. This can be achieved through the navigation option built within the
-                        component.
-                      </DxcBulletedList.Item>
-                    </DxcBulletedList>
-                  </>
-                ),
-              },
-            ],
           },
         ],
       },
@@ -404,7 +417,7 @@ const AlertUsagePage = () => {
       <QuickNavContainerLayout>
         <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/alert/usage/AlertUsagePage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/alert/usage/AlertUsagePage.tsx" />
     </DxcFlex>
   );
 };

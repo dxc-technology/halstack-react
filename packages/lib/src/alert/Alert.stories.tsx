@@ -50,11 +50,20 @@ export const Chromatic = () => (
   <>
     <Title title="Banner" theme="light" level={2} />
     <ExampleContainer>
-      <Title title="Info" theme="light" level={4} />
-      <DxcAlert title="Info" mode="banner" message={message} />
+      <Title title="Basic" theme="light" level={4} />
+      <DxcAlert title="Info" mode="banner" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Info with actions" theme="light" level={4} />
+      <DxcAlert
+        title="Info"
+        mode="banner"
+        primaryAction={{ label: "Primary action", onClick: () => {} }}
+        secondaryAction={{ label: "Secondary action", onClick: () => {} }}
+      />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Info with actions and message" theme="light" level={4} />
       <DxcAlert
         title="Info"
         mode="banner"
@@ -163,11 +172,19 @@ export const Chromatic = () => (
     </ExampleContainer>
     <Title title="Inline" theme="light" level={2} />
     <ExampleContainer>
-      <Title title="Info" theme="light" level={4} />
-      <DxcAlert title="Info" message={message} />
+      <Title title="Basic" theme="light" level={4} />
+      <DxcAlert title="Info" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Info with actions" theme="light" level={4} />
+      <DxcAlert
+        title="Info"
+        primaryAction={{ label: "Primary action", onClick: () => {} }}
+        secondaryAction={{ label: "Secondary action", onClick: () => {} }}
+      />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Info with actions and message" theme="light" level={4} />
       <DxcAlert
         title="Info"
         message={message}

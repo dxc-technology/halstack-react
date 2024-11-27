@@ -40,17 +40,13 @@ const ModalAlertContainer = styled.div`
   }
 `;
 
-const ModalAlertWrapper = ({
-  condition,
-  onClose,
-  children,
-}: ModalAlertWrapperProps) =>
+const ModalAlertWrapper = ({ condition, onClose, children }: ModalAlertWrapperProps) =>
   condition ? (
     <>
       <BodyStyle />
       {createPortal(
         <Modal>
-          {condition && <Overlay onClick={onClose} />}
+          <Overlay onClick={onClose} />
           <ModalAlertContainer>
             <FocusLock>{children}</FocusLock>
           </ModalAlertContainer>

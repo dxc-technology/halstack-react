@@ -137,27 +137,27 @@ const sections = [
             <tbody>
               <tr>
                 <td>
-                  <Code>infoTitleText</Code>
+                  <Code>previousMessageActionTitle</Code>
                 </td>
-                <td>information</td>
+                <td>Previous message</td>
               </tr>
               <tr>
                 <td>
-                  <Code>successTitleText</Code>
+                  <Code>nextMessageActionTitle</Code>
                 </td>
-                <td>success</td>
+                <td>Next message</td>
               </tr>
               <tr>
                 <td>
-                  <Code>warningTitleText</Code>
+                  <Code>closeAlertActionTitle</Code>
                 </td>
-                <td>warning</td>
+                <td>Close alert</td>
               </tr>
               <tr>
                 <td>
-                  <Code>errorTitleText</Code>
+                  <Code>closeMessageActionTitle</Code>
                 </td>
-                <td>error</td>
+                <td>Close message</td>
               </tr>
             </tbody>
           </DxcTable>

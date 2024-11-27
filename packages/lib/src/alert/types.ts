@@ -15,18 +15,13 @@ type CommonProps = {
   primaryAction?: Action;
   secondaryAction?: Action;
   semantic?: "error" | "info" | "success" | "warning";
-  tabIndex?: number;
   title: string;
 };
 
 type ModeSpecificProps =
   | {
       message?: Message | Message[];
-      mode?: "inline";
-    }
-  | {
-      message: Message | Message[];
-      mode: "banner";
+      mode?: "inline" | "banner";
     }
   | {
       message: Required<Message>;

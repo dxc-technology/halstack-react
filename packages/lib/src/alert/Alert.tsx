@@ -1,6 +1,7 @@
-import { useState, memo, useMemo, useId } from "react";
+import { useState, memo, useMemo, useId, useEffect } from "react";
 import styled, { css, ThemeProvider } from "styled-components";
 import useTheme from "../useTheme";
+import useTranslatedLabels from "../useTranslatedLabels";
 import AlertPropsType from "./types";
 import DxcIcon from "../icon/Icon";
 import DxcButton from "../button/Button";
@@ -81,27 +82,30 @@ const Actions = memo(
     primaryAction,
     secondaryAction,
     semantic,
-  }: Pick<AlertPropsType, "mode" | "primaryAction" | "secondaryAction" | "semantic">) => (
-    <DxcFlex gap="0.5rem" alignSelf={mode === "inline" || mode === "modal" ? "flex-end" : undefined}>
-      {secondaryAction?.onClick && (
-        <DxcButton
-          label={secondaryAction?.label}
-          mode="secondary"
-          semantic={semantic}
-          size={{ height: mode === "modal" ? "medium" : "small" }}
-          onClick={secondaryAction?.onClick}
-        />
-      )}
-      {primaryAction?.onClick && (
-        <DxcButton
-          label={primaryAction?.label}
-          semantic={semantic}
-          size={{ height: mode === "modal" ? "medium" : "small" }}
-          onClick={primaryAction?.onClick}
-        />
-      )}
-    </DxcFlex>
-  )
+  }: Pick<AlertPropsType, "mode" | "primaryAction" | "secondaryAction" | "semantic">) =>
+    (primaryAction != null || secondaryAction != null) && (
+      <DxcFlex gap="0.5rem" alignSelf={mode === "inline" || mode === "modal" ? "flex-end" : undefined}>
+        {secondaryAction?.onClick && (
+          <DxcButton
+            icon={secondaryAction.icon}
+            label={secondaryAction.label}
+            mode="secondary"
+            semantic={semantic}
+            size={{ height: mode === "modal" ? "medium" : "small" }}
+            onClick={secondaryAction.onClick}
+          />
+        )}
+        {primaryAction?.onClick && (
+          <DxcButton
+            icon={primaryAction.icon}
+            label={primaryAction.label}
+            semantic={semantic}
+            size={{ height: mode === "modal" ? "medium" : "small" }}
+            onClick={primaryAction.onClick}
+          />
+        )}
+      </DxcFlex>
+    )
 );
 
 const getIcon = (semantic: AlertPropsType["semantic"]) => {
@@ -118,19 +122,19 @@ const getIcon = (semantic: AlertPropsType["semantic"]) => {
 };
 
 export default function DxcAlert({
-  message,
+  message = [],
   mode = "inline",
   primaryAction,
   secondaryAction,
   semantic = "info",
-  tabIndex,
   title = "",
 }: AlertPropsType) {
-  const messages = useMemo(() => (Array.isArray(message) ? message : [message]), [message]);
+  const [messages, setMessages] = useState(Array.isArray(message) ? message : [message]);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   const id = useId();
-  const [currentIndex, setCurrentIndex] = useState(0);
   const colorsTheme = useTheme();
+  const translatedLabels = useTranslatedLabels();
 
   const handleNextOnClick = () => {
     setCurrentIndex((prevIndex) => (prevIndex < messages.length ? prevIndex + 1 : prevIndex));
@@ -138,10 +142,18 @@ export default function DxcAlert({
   const handlePrevOnClick = () => {
     setCurrentIndex((prevIndex) => (prevIndex > 0 ? prevIndex - 1 : prevIndex));
   };
+  const handleOnClose = () => {
+    messages[currentIndex]?.onClose?.();
+    mode !== "modal" && setMessages((prevMessages) => prevMessages.filter((_, index) => index !== currentIndex));
+  };
+
+  useEffect(() => {
+    if (currentIndex === messages.length) handlePrevOnClick();
+  }, [currentIndex, messages]);
 
   return (
     <ThemeProvider theme={colorsTheme.alert}>
-      <ModalAlertWrapper condition={mode === "modal"} onClose={messages[currentIndex]?.onClose}>
+      <ModalAlertWrapper condition={mode === "modal"} onClose={handleOnClose}>
         <AlertContainer
           role={mode === "modal" ? "alertdialog" : "alert"}
           aria-modal={mode === "modal" ? true : undefined}
@@ -155,7 +167,8 @@ export default function DxcAlert({
               {getIcon(semantic)}
               {mode === "banner" ? (
                 <Message mode={mode}>
-                  <strong>{title}</strong> - {messages[currentIndex]?.text}
+                  <strong>{title}</strong>
+                  {messages.length > 0 && <> - {messages[currentIndex]?.text}</>}
                 </Message>
               ) : (
                 <Title id={`${id}-title`} mode={mode}>
@@ -175,41 +188,42 @@ export default function DxcAlert({
               <DxcFlex alignItems="center" gap="0.25rem">
                 <DxcActionIcon
                   icon="chevron_left"
-                  title="Previous message"
+                  title={translatedLabels.alert.previousMessageActionTitle}
                   onClick={handlePrevOnClick}
                   disabled={currentIndex === 0}
-                  tabIndex={tabIndex}
                 />
                 <NavigationText>
                   {currentIndex + 1} of {messages.length}
                 </NavigationText>
                 <DxcActionIcon
                   icon="chevron_right"
-                  title="Next message"
+                  title={translatedLabels.alert.nextMessageActionTitle}
                   onClick={handleNextOnClick}
                   disabled={currentIndex === messages.length - 1}
-                  tabIndex={tabIndex}
                 />
               </DxcFlex>
             )}
-            {messages[currentIndex]?.onClose ? (
-              <DxcFlex gap="0.25rem">
-                {mode !== "modal" && <DxcDivider orientation="vertical" />}
-                <DxcActionIcon
-                  icon="close"
-                  title="Close alert"
-                  onClick={messages[currentIndex].onClose}
-                  tabIndex={tabIndex}
-                />
-              </DxcFlex>
-            ) : null}
+            <DxcFlex gap="0.25rem">
+              {mode !== "modal" && <DxcDivider orientation="vertical" />}
+              <DxcActionIcon
+                icon="close"
+                title={
+                  messages.length > 1
+                    ? translatedLabels.alert.closeMessageActionTitle
+                    : translatedLabels.alert.closeAlertActionTitle
+                }
+                onClick={handleOnClose}
+              />
+            </DxcFlex>
           </DxcFlex>
           {mode === "modal" && <DxcDivider />}
           {mode !== "banner" && (
             <>
-              <Message id={`${id}-message`} mode={mode}>
-                {messages[currentIndex]?.text}
-              </Message>
+              {messages.length > 0 && (
+                <Message id={`${id}-message`} mode={mode}>
+                  {messages[currentIndex]?.text}
+                </Message>
+              )}
               <Actions
                 semantic={semantic}
                 mode={mode}
