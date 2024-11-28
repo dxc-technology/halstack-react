@@ -10,8 +10,8 @@ const code = `() => {
   return (
     <DxcInset space="2rem">
       <DxcFlex direction="column" gap="1.5rem">
-        <DxcAlert 
-          title="Auto-saved document" 
+        <DxcAlert
+          title="Auto-saved document"
           message={messages}
           primaryAction={{ label: "Continue", onClick: () => {} }}
           secondaryAction={{ label: "Back", onClick: () => {} }}

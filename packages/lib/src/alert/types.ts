@@ -12,6 +12,7 @@ type Message = {
 };
 
 type CommonProps = {
+  closable?: boolean;
   primaryAction?: Action;
   secondaryAction?: Action;
   semantic?: "error" | "info" | "success" | "warning";

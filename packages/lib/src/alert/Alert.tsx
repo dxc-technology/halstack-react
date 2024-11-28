@@ -22,7 +22,11 @@ const AlertContainer = styled.div<{
   ${(props) =>
     (props.mode === "modal" || props.mode === "inline") && `border-radius: ${CoreTokens.border_radius_medium};`};
   padding: ${(props) =>
-    props.mode === "modal" ? CoreTokens.spacing_24 : `${CoreTokens.spacing_8} ${CoreTokens.spacing_12}`};
+    props.mode === "modal"
+      ? CoreTokens.spacing_24
+      : props.mode === "inline"
+        ? CoreTokens.spacing_12
+        : `${CoreTokens.spacing_8} ${CoreTokens.spacing_12}`};
   background-color: ${(props) =>
     (props.mode === "modal" && props.theme.modalBackgroundColor) ||
     (props.semantic === "info" && props.theme.infoBackgroundColor) ||
@@ -122,6 +126,7 @@ const getIcon = (semantic: AlertPropsType["semantic"]) => {
 };
 
 export default function DxcAlert({
+  closable = true,
   message = [],
   mode = "inline",
   primaryAction,
@@ -203,18 +208,20 @@ export default function DxcAlert({
                 />
               </DxcFlex>
             )}
-            <DxcFlex gap="0.25rem">
-              {mode !== "modal" && <DxcDivider orientation="vertical" />}
-              <DxcActionIcon
-                icon="close"
-                title={
-                  messages.length > 1
-                    ? translatedLabels.alert.closeMessageActionTitle
-                    : translatedLabels.alert.closeAlertActionTitle
-                }
-                onClick={handleOnClose}
-              />
-            </DxcFlex>
+            {closable && (
+              <DxcFlex gap="0.25rem">
+                {mode !== "modal" && <DxcDivider orientation="vertical" />}
+                <DxcActionIcon
+                  icon="close"
+                  title={
+                    messages.length > 1
+                      ? translatedLabels.alert.closeMessageActionTitle
+                      : translatedLabels.alert.closeAlertActionTitle
+                  }
+                  onClick={handleOnClose}
+                />
+              </DxcFlex>
+            )}
           </DxcFlex>
           {mode === "modal" && <DxcDivider />}
           {mode !== "banner" && (

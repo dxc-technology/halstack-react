@@ -32,6 +32,20 @@ const sections = [
         </thead>
         <tbody>
           <tr>
+            <td>closable</td>
+            <td>
+              <TableCode>boolean</TableCode>
+            </td>
+            <td>
+              If true, the alert will have a close button that will remove the message from the alert, only in banner
+              and inline modes. The rest of the functionality will depend on the <Code>onClose</Code> event of each
+              message (e.g. closing the modal alert).
+            </td>
+            <td>
+              <TableCode>false</TableCode>
+            </td>
+          </tr>
+          <tr>
             <td>message</td>
             <td>
               <td>

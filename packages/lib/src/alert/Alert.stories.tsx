@@ -90,6 +90,7 @@ export const Chromatic = () => (
         message={nonClosableMessages}
         primaryAction={{ label: "Primary action", onClick: () => {} }}
         secondaryAction={{ label: "Secondary action", onClick: () => {} }}
+        closable={false}
       />
     </ExampleContainer>
     <ExampleContainer>
@@ -208,6 +209,7 @@ export const Chromatic = () => (
         message={nonClosableMessages}
         primaryAction={{ label: "Primary action", onClick: () => {} }}
         secondaryAction={{ label: "Secondary action", onClick: () => {} }}
+        closable={false}
       />
     </ExampleContainer>
     <ExampleContainer>
@@ -306,6 +308,7 @@ export const SuccessModal = () => (
       message={message}
       primaryAction={{ label: "Primary action", onClick: () => {} }}
       secondaryAction={{ label: "Secondary action", onClick: () => {} }}
+      closable={false}
     />
   </ExampleContainer>
 );
