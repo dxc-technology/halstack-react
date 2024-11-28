@@ -6,6 +6,5 @@ export default defineConfig({
   entry: ["src/index.ts"],
   format: ["cjs", "esm"],
   injectStyle: true,
-  minify: true,
   splitting: false,
 });
