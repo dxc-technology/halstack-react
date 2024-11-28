@@ -45,7 +45,7 @@ describe("Alert component tests", () => {
     expect(alert).toHaveTextContent("1 of 4");
     expect(prevButton).toBeDisabled();
   });
-  test("Modal alert calls correct function onClose", () => {
+  test("Inline alert calls correctly the function onClose of several messages", () => {
     const onClose1 = jest.fn();
     const onClose2 = jest.fn();
     const messages = [
@@ -53,7 +53,7 @@ describe("Alert component tests", () => {
       { text: "Message 2", onClose: onClose2 },
     ];
     const { getByRole } = render(<DxcAlert title="Info" message={messages} />);
-    const closeButton = getByRole("button", { name: "Close alert" });
+    const closeButton = getByRole("button", { name: "Close message" });
     const nextButton = getByRole("button", { name: "Next message" });
     fireEvent.click(closeButton);
     expect(onClose1).toHaveBeenCalled();
@@ -61,12 +61,32 @@ describe("Alert component tests", () => {
     fireEvent.click(closeButton);
     expect(onClose2).toHaveBeenCalled();
   });
-  test("Modal alert calls correct function onClose", () => {
+  test("Modal alert calls correctly the function onClose of a message", () => {
     const onClose = jest.fn();
     const { getByRole } = render(<DxcAlert title="Info" message={{ text: "info-alert-text", onClose }} mode="modal" />);
     const closeButton = getByRole("button", { name: "Close alert" });
     fireEvent.click(closeButton);
     expect(onClose).toHaveBeenCalled();
+  });
+  test("Alert with several messages closes properly each one", () => {
+    const { getByRole, getByText } = render(<DxcAlert title="Info" message={messages} />);
+    let closeButton = getByRole("button", { name: "Close message" });
+    const nextButton = getByRole("button", { name: "Next message" });
+    expect(getByText("1 of 4")).toBeTruthy();
+    expect(getByText("Message 1")).toBeTruthy();
+    fireEvent.click(closeButton);
+    expect(getByText("Message 2")).toBeTruthy();
+    expect(getByText("1 of 3")).toBeTruthy();
+    fireEvent.click(nextButton);
+    fireEvent.click(nextButton);
+    expect(getByText("Message 4")).toBeTruthy();
+    expect(getByText("3 of 3")).toBeTruthy();
+    fireEvent.click(closeButton);
+    expect(getByText("Message 3")).toBeTruthy();
+    expect(getByText("2 of 2")).toBeTruthy();
+    fireEvent.click(closeButton);
+    expect(getByRole("button", { name: "Close alert" })).toBeTruthy();
+    expect(getByText("Message 2")).toBeTruthy();
   });
   test("Alert actions are correctly called when pressed", () => {
     const primaryAction = jest.fn();
