@@ -1,111 +1,54 @@
-import DxcAccordion from "./accordion/Accordion";
-import DxcAccordionGroup from "./accordion-group/AccordionGroup";
-import DxcAlert from "./alert/Alert";
-import DxcApplicationLayout from "./layout/ApplicationLayout";
-import DxcBadge from "./badge/Badge";
-import DxcBleed from "./bleed/Bleed";
-import DxcBreadcrumbs from "./breadcrumbs/Breadcrumbs";
-import DxcBulletedList from "./bulleted-list/BulletedList";
-import DxcButton from "./button/Button";
-import DxcCard from "./card/Card";
-import DxcCheckbox from "./checkbox/Checkbox";
-import DxcChip from "./chip/Chip";
-import DxcContainer from "./container/Container";
-import DxcContextualMenu from "./contextual-menu/ContextualMenu";
-import DxcDataGrid from "./data-grid/DataGrid";
-import DxcDateInput from "./date-input/DateInput";
-import DxcDialog from "./dialog/Dialog";
-import DxcDivider from "./divider/Divider";
-import DxcDropdown from "./dropdown/Dropdown";
-import DxcFileInput from "./file-input/FileInput";
-import DxcFlex from "./flex/Flex";
-import DxcGrid from "./grid/Grid";
-import DxcHeading from "./heading/Heading";
-import DxcImage from "./image/Image";
-import DxcInset from "./inset/Inset";
-import DxcLink from "./link/Link";
-import DxcNavTabs from "./nav-tabs/NavTabs";
-import DxcNumberInput from "./number-input/NumberInput";
-import DxcPaginator from "./paginator/Paginator";
-import DxcParagraph from "./paragraph/Paragraph";
-import DxcPasswordInput from "./password-input/PasswordInput";
-import DxcProgressBar from "./progress-bar/ProgressBar";
-import DxcQuickNav from "./quick-nav/QuickNav";
-import DxcRadioGroup from "./radio-group/RadioGroup";
-import DxcResultsetTable from "./resultset-table/ResultsetTable";
-import DxcSelect from "./select/Select";
-import DxcSlider from "./slider/Slider";
-import DxcSpinner from "./spinner/Spinner";
-import DxcStatusLight from "./status-light/StatusLight";
-import DxcSwitch from "./switch/Switch";
-import DxcTable from "./table/Table";
-import DxcTabs from "./tabs/Tabs";
-import DxcTag from "./tag/Tag";
-import DxcTextarea from "./textarea/Textarea";
-import DxcTextInput from "./text-input/TextInput";
-import DxcToastsQueue from "./toast/ToastsQueue";
-import DxcToggleGroup from "./toggle-group/ToggleGroup";
-import DxcTooltip from "./tooltip/Tooltip";
-import DxcTypography from "./typography/Typography";
-import DxcWizard from "./wizard/Wizard";
+import "./fonts.css";
 
-import useToast from "./toast/useToast";
-
-import HalstackContext, { HalstackProvider, HalstackLanguageContext } from "./HalstackContext";
-
-export {
-  DxcAccordion,
-  DxcAccordionGroup,
-  DxcAlert,
-  DxcApplicationLayout,
-  DxcBadge,
-  DxcBleed,
-  DxcBreadcrumbs,
-  DxcBulletedList,
-  DxcButton,
-  DxcCard,
-  DxcCheckbox,
-  DxcChip,
-  DxcContainer,
-  DxcContextualMenu,
-  DxcDataGrid,
-  DxcDateInput,
-  DxcDialog,
-  DxcDivider,
-  DxcDropdown,
-  DxcFileInput,
-  DxcFlex,
-  DxcGrid,
-  DxcHeading,
-  DxcImage,
-  DxcInset,
-  DxcLink,
-  DxcNavTabs,
-  DxcNumberInput,
-  DxcPaginator,
-  DxcParagraph,
-  DxcPasswordInput,
-  DxcProgressBar,
-  DxcQuickNav,
-  DxcRadioGroup,
-  DxcResultsetTable,
-  DxcSelect,
-  DxcSlider,
-  DxcSpinner,
-  DxcStatusLight,
-  DxcSwitch,
-  DxcTable,
-  DxcTabs,
-  DxcTag,
-  DxcTextarea,
-  DxcTextInput,
-  DxcToastsQueue,
-  DxcToggleGroup,
-  DxcTooltip,
-  DxcTypography,
-  DxcWizard,
-  HalstackContext,
-  HalstackLanguageContext,
-  HalstackProvider,
-  useToast,
-};
+export { default as DxcAccordion } from "./accordion/Accordion";
+export { default as DxcAccordionGroup } from "./accordion-group/AccordionGroup";
+export { default as DxcAlert } from "./alert/Alert";
+export { default as DxcApplicationLayout } from "./layout/ApplicationLayout";
+export { default as DxcBadge } from "./badge/Badge";
+export { default as DxcBleed } from "./bleed/Bleed";
+export { default as DxcBreadcrumbs } from "./breadcrumbs/Breadcrumbs";
+export { default as DxcBulletedList } from "./bulleted-list/BulletedList";
+export { default as DxcButton } from "./button/Button";
+export { default as DxcCard } from "./card/Card";
+export { default as DxcCheckbox } from "./checkbox/Checkbox";
+export { default as DxcChip } from "./chip/Chip";
+export { default as DxcContainer } from "./container/Container";
+export { default as DxcContextualMenu } from "./contextual-menu/ContextualMenu";
+export { default as DxcDataGrid } from "./data-grid/DataGrid";
+export { default as DxcDateInput } from "./date-input/DateInput";
+export { default as DxcDialog } from "./dialog/Dialog";
+export { default as DxcDivider } from "./divider/Divider";
+export { default as DxcDropdown } from "./dropdown/Dropdown";
+export { default as DxcFileInput } from "./file-input/FileInput";
+export { default as DxcFlex } from "./flex/Flex";
+export { default as DxcGrid } from "./grid/Grid";
+export { default as DxcHeading } from "./heading/Heading";
+export { default as DxcImage } from "./image/Image";
+export { default as DxcInset } from "./inset/Inset";
+export { default as DxcLink } from "./link/Link";
+export { default as DxcNavTabs } from "./nav-tabs/NavTabs";
+export { default as DxcNumberInput } from "./number-input/NumberInput";
+export { default as DxcPaginator } from "./paginator/Paginator";
+export { default as DxcParagraph } from "./paragraph/Paragraph";
+export { default as DxcPasswordInput } from "./password-input/PasswordInput";
+export { default as DxcProgressBar } from "./progress-bar/ProgressBar";
+export { default as DxcQuickNav } from "./quick-nav/QuickNav";
+export { default as DxcRadioGroup } from "./radio-group/RadioGroup";
+export { default as DxcResultsetTable } from "./resultset-table/ResultsetTable";
+export { default as DxcSelect } from "./select/Select";
+export { default as DxcSlider } from "./slider/Slider";
+export { default as DxcSpinner } from "./spinner/Spinner";
+export { default as DxcStatusLight } from "./status-light/StatusLight";
+export { default as DxcSwitch } from "./switch/Switch";
+export { default as DxcTable } from "./table/Table";
+export { default as DxcTabs } from "./tabs/Tabs";
+export { default as DxcTag } from "./tag/Tag";
+export { default as DxcTextarea } from "./textarea/Textarea";
+export { default as DxcTextInput } from "./text-input/TextInput";
+export { default as DxcToastsQueue } from "./toast/ToastsQueue";
+export { default as DxcToggleGroup } from "./toggle-group/ToggleGroup";
+export { default as DxcTooltip } from "./tooltip/Tooltip";
+export { default as DxcTypography } from "./typography/Typography";
+export { default as DxcWizard } from "./wizard/Wizard";
+export { default as HalstackContext, HalstackProvider, HalstackLanguageContext } from "./HalstackContext";
+export { default as useToast } from "./toast/useToast";
