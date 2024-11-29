@@ -214,9 +214,9 @@ const sections = [
           title="Sizes"
           semantic="warning"
           message={{
-            text:
-              "To maintain a clear and effective visual hierarchy, avoid overusing different button sizes within a single interface.",
+            text: "To maintain a clear and effective visual hierarchy, avoid overusing different button sizes within a single interface.",
           }}
+          closable={false}
         />
       </>
     ),
@@ -421,7 +421,7 @@ const ButtonUsagePage = () => {
       <QuickNavContainerLayout>
         <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/button/usage/ButtonUsagePage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/button/usage/ButtonUsagePage.tsx" />
     </DxcFlex>
   );
 };

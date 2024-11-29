@@ -4,9 +4,6 @@
     "titleFontColor": "#000000",
     "assistiveTextFontColor": "#666666"
   },
-  "alert": {
-    "overlayColor": "#000000b3"
-  },
   "button": {
     "baseColor": "#5f249f",
     "primaryFontColor": "#ffffff",

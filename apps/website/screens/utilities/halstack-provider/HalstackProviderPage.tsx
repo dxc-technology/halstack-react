@@ -83,6 +83,7 @@ const sections = [
               </>
             ),
           }}
+          closable={false}
         />
         <DxcParagraph>
           Below is an example of customizing the colours of a <Code>DxcAccordion</Code> and a <Code>DxcTextInput</Code>:
@@ -122,6 +123,7 @@ const sections = [
               </>
             ),
           }}
+          closable={false}
         />
 
         <Example example={advancedTheme} defaultIsVisible />
@@ -154,6 +156,7 @@ const sections = [
               </>
             ),
           }}
+          closable={false}
         />
         <DxcParagraph>
           Let's imagine that we want to translate the '(Optional)' label of a <Code>DxcTextInput</Code>, as well as the
@@ -187,7 +190,7 @@ const HalstackProvider = () => {
       <QuickNavContainerLayout>
         <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/utilities/halstack-provider/HalstackProviderPage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/utilities/halstack-provider/HalstackProviderPage.tsx" />
     </DxcFlex>
   );
 };

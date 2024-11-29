@@ -45,6 +45,7 @@ const TagPageHeading = ({ children }: { children: React.ReactNode }) => {
                 </>
               ),
             }}
+            closable={false}
           />
           <TabsPageHeading tabs={tabs}></TabsPageHeading>
         </DxcFlex>
