@@ -139,7 +139,7 @@ const sections = [
         content: (
           <>
             <DxcParagraph>
-              Displayed always bellow the header of the site, the banner alert is used for critical system or
+              Displayed always below the header of the site, the banner alert is used for critical system or
               application messages. These alerts are actionable, meaning the user can interact with the message to
               resolve the issue directly from the alert itself. However, closing the message is not considered an action
               and is mandatory, as the message remains visible and cannot be dismissed until addressed. Additionally, if
@@ -272,7 +272,7 @@ const sections = [
               level so the user will assess the most important one first.
             </DxcBulletedList.Item>
             <DxcBulletedList.Item>
-              Only use alerts for critical messages that requires immediate attention from the user. Overusing the
+              Only use alerts for critical messages that require immediate attention from the user. Overusing the
               component can desensitize users to their importance and increase the cognitive load.
             </DxcBulletedList.Item>
           </DxcBulletedList>

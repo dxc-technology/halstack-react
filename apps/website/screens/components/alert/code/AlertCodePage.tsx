@@ -17,6 +17,11 @@ const actionTypeString = `{
   onClick: () => void;
 }`;
 
+const messageTypeString = `{
+  onClose?: () => void;
+  text: React.ReactNode;
+}`;
+
 const sections = [
   {
     title: "Props",
@@ -50,15 +55,10 @@ const sections = [
             <td>
               <td>
                 <TableCode>{"Message | Message[]"}</TableCode>
-                <dl>
-                  <dt>
-                    <TableCode>Message</TableCode>
-                  </dt>
-                  <dd>
-                    An object type with the following attributes:{" "}
-                    <TableCode>{"{ text: React.ReactNode; onClose?: () => void; }"}</TableCode>
-                  </dd>
-                </dl>
+                <p>
+                  being <Code>Message</Code> an object with the following properties:
+                </p>
+                <ExtendedTableCode>{messageTypeString}</ExtendedTableCode>
               </td>
             </td>
             <td>
@@ -117,7 +117,7 @@ const sections = [
           <tr>
             <td>semantic</td>
             <td>
-              <TableCode>'error' | 'info" | 'success' | 'warning'</TableCode>
+              <TableCode>'error' | 'info' | 'success' | 'warning'</TableCode>
             </td>
             <td>Specifies the semantic meaning of the alert.</td>
             <td>
