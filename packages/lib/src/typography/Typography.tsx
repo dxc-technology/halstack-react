@@ -5,6 +5,31 @@ import TypographyContextPropTypes from "./types";
 
 const TypographyContext = React.createContext<TypographyContextPropTypes | null>(null);
 
+const ValidTypographyTags = [
+  "a",
+  "blockquote",
+  "cite",
+  "code",
+  "div",
+  "em",
+  "figcaption",
+  "h1",
+  "h2",
+  "h3",
+  "h4",
+  "h5",
+  "h6",
+  "p",
+  "pre",
+  "small",
+  "span",
+  "strong",
+];
+
+const isValidTypography = (tag: keyof HTMLElementTagNameMap) => {
+  return ValidTypographyTags.includes(tag);
+};
+
 const DxcTypography = ({
   as,
   display,
@@ -22,7 +47,7 @@ const DxcTypography = ({
   children,
 }: TypographyPropsTypes): JSX.Element => {
   const componentContext = useContext(TypographyContext);
-  const asValue = as ?? (componentContext?.as || "span");
+  const asValue = isValidTypography(as) ? as : isValidTypography(componentContext?.as) ? componentContext?.as : "span";
   const displayValue = display ?? (componentContext?.display || "inline");
   const fontFamilyValue = fontFamily ?? (componentContext?.fontFamily || "Open Sans, sans-serif");
   const fontSizeValue = fontSize ?? (componentContext?.fontSize || "1rem");
