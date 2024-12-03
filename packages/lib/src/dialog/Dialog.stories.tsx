@@ -11,9 +11,6 @@ import DxcInset from "../inset/Inset";
 import DxcParagraph from "../paragraph/Paragraph";
 import DxcTextInput from "../text-input/TextInput";
 import DxcDialog from "./Dialog";
-import DxcDateInput from "../date-input/DateInput";
-import DxcSelect from "../select/Select";
-import DxcTooltip from "../tooltip/Tooltip";
 
 export default {
   title: "Dialog",
@@ -247,20 +244,26 @@ export const DialogWithInputs = () => (
   <ExampleContainer expanded={true}>
     <Title title="Dialog with inputs" theme="light" level={4} />
     <DxcDialog>
-      <DxcSelect label="Accept" options={[{ label: "Test", value: "test" }]} />
-      <DxcDateInput label="Older age" />
-      <DxcTooltip label="Text input tooltip label">
-        <DxcTextInput label="Name" />
-      </DxcTooltip>
-      <DxcAlert
-        semantic="error"
-        title="Error"
-        message={{
-          text: "User: arn:aws:xxx::xxxxxxxxxxxx:assumed-role/assure-sandbox-xxxx-xxxxxxxxxxxxxxxxxxxxxxxxxx/sandbox-xxxx-xxxxxxxxxxxxxxxxxx is not authorized to perform: lambda:xxxxxxxxxxxxxx on resource: arn:aws:lambda:us-east-1:xxxxxxxxxxxx:function:sandbox-xxxx-xx-xxxxxxx-xxxxxxx-lambda because no identity-based policy allows the lambda:xxxxxxxxxxxxxx action",
-        }}
-      />
-      <DxcButton label="Cancel" />
-      <DxcButton label="Save" />
+      <DxcInset space="1.5rem">
+        <DxcFlex gap="2rem" direction="column">
+          <DxcHeading level={4} text="Example form" />
+          <DxcFlex gap="1rem" direction="column">
+            <DxcTextInput size="fillParent" label="Name" />
+            <DxcTextInput size="fillParent" label="Surname" />
+          </DxcFlex>
+          <DxcAlert
+            semantic="error"
+            title="Error"
+            message={{
+              text: "User: arn:aws:xxx::xxxxxxxxxxxx:assumed-role/assure-sandbox-xxxx-xxxxxxxxxxxxxxxxxxxxxxxxxx/sandbox-xxxx-xxxxxxxxxxxxxxxxxx is not authorized to perform: lambda:xxxxxxxxxxxxxx on resource: arn:aws:lambda:us-east-1:xxxxxxxxxxxx:function:sandbox-xxxx-xx-xxxxxxx-xxxxxxx-lambda because no identity-based policy allows the lambda:xxxxxxxxxxxxxx action",
+            }}
+          />
+          <DxcFlex justifyContent="flex-end" gap="0.5rem">
+            <DxcButton label="Cancel" mode="tertiary" />
+            <DxcButton label="Save" />
+          </DxcFlex>
+        </DxcFlex>
+      </DxcInset>
     </DxcDialog>
   </ExampleContainer>
 );
