@@ -45,7 +45,7 @@ const attemptFocus = (element: HTMLElement): boolean => {
  * @param element: HTMLElement
  * @returns boolean: true if element is contained inside a Radix Portal, false otherwise.
  */
-const radixPortalContains = (activeElement: Element): boolean => {
+const radixPortalContains = (activeElement: Node): boolean => {
   const radixPortals = document.querySelectorAll("[data-radix-portal]");
   const radixPoppers = document.querySelectorAll("[data-radix-popper-content-wrapper]");
   return (
@@ -98,7 +98,7 @@ const FocusLock = ({ children }: { children: React.ReactNode }): JSX.Element => 
   }, [focusableElements]);
 
   const focusLast = () => {
-    focusableElements?.reverse()?.some((element) => attemptFocus(element));
+    focusableElements?.slice().reverse()?.some((element) => attemptFocus(element));
   };
 
   const focusLock = (event: React.KeyboardEvent<HTMLDivElement>) => {
@@ -111,6 +111,23 @@ const FocusLock = ({ children }: { children: React.ReactNode }): JSX.Element => 
       focusFirst();
     }
   }, [focusableElements, focusFirst]);
+
+  useEffect(() => {
+    const focusGuardHandler = (event: FocusEvent) => {
+      if (
+        !childrenContainerRef.current?.contains(event.relatedTarget as Node) &&
+        !childrenContainerRef.current?.nextElementSibling?.contains(event.relatedTarget as Node) &&
+        !childrenContainerRef.current?.previousElementSibling?.contains(event.relatedTarget as Node) &&
+        !radixPortalContains(event.relatedTarget as Node)
+      )
+        focusFirst();
+    };
+
+    document.addEventListener("focusout", focusGuardHandler);
+    return () => {
+      document.removeEventListener("focusout", focusGuardHandler);
+    };
+  }, [focusFirst]);
 
   return (
     <>

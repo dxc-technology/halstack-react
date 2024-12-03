@@ -13,7 +13,12 @@ import DxcTextInput from "../text-input/TextInput";
 import DxcTextarea from "../textarea/Textarea";
 import DxcDialog from "./Dialog";
 import DxcTooltip from "../tooltip/Tooltip";
+import DxcAlert from "../alert/Alert";
 
+(global as any).globalThis = global;
+(global as any).DOMRect = {
+  fromRect: () => ({ top: 0, left: 0, bottom: 0, right: 0, width: 0, height: 0 }),
+};
 (global as any).ResizeObserver = class ResizeObserver {
   observe() {}
   unobserve() {}
@@ -216,17 +221,13 @@ describe("Dialog component: Focus lock tests", () => {
         <DxcCheckbox label="Older age" disabled />
         <DxcSelect label="Country" options={options} disabled />
         <DxcRadioGroup label="Country" options={options} disabled />
-        <DxcTooltip label="Text input tooltip label">
-          <DxcTextInput label="Name" disabled />
-        </DxcTooltip>
+        <DxcTextInput label="Name" disabled />
         <DxcButton label="Accept" tabIndex={-1} />
         <DxcCheckbox label="Older age" tabIndex={-1} />
         <DxcSelect label="Country" options={options} tabIndex={-1} />
         <DxcRadioGroup label="Country" options={options} tabIndex={-1} />
         <DxcTextInput label="Name" tabIndex={-1} />
-        <DxcTooltip label="Text input tooltip label">
-          <DxcTextarea label="Description" />
-        </DxcTooltip>
+        <DxcTextarea label="Description" />
       </DxcDialog>
     );
     const textarea = getAllByRole("textbox")[2];
@@ -284,5 +285,48 @@ describe("Dialog component: Focus lock tests", () => {
     fireEvent.keyDown(dialog, { key: "Tab", shiftKey: true });
     fireEvent.keyDown(dialog, { key: "Tab", shiftKey: true });
     expect(document.activeElement).not.toEqual(inputs[0]);
+  });
+  test("Focus travels correctly in a complex tab sequence", async () => {
+    const { getAllByRole, queryByRole, getByRole } = render(
+      <DxcDialog>
+        <DxcSelect label="Accept" options={options} />
+        <DxcDateInput label="Older age" />
+        <DxcTooltip label="Text input tooltip label">
+          <DxcTextInput label="Name" />
+        </DxcTooltip>
+        <DxcAlert
+          semantic="error"
+          title="Error"
+          message={{
+            text: "User: arn:aws:xxx::xxxxxxxxxxxx:assumed-role/assure-sandbox-xxxx-xxxxxxxxxxxxxxxxxxxxxxxxxx/sandbox-xxxx-xxxxxxxxxxxxxxxxxx is not authorized to perform: lambda:xxxxxxxxxxxxxx on resource: arn:aws:lambda:us-east-1:xxxxxxxxxxxx:function:sandbox-xxxx-xx-xxxxxxx-xxxxxxx-lambda because no identity-based policy allows the lambda:xxxxxxxxxxxxxx action",
+          }}
+        />
+        <DxcButton label="Cancel" />
+        <DxcButton label="Save" />
+      </DxcDialog>
+    );
+    const select = getAllByRole("combobox")[0];
+    expect(document.activeElement).toEqual(select);
+    fireEvent.keyDown(select, { key: "ArrowDown", code: "ArrowDown", keyCode: 40, charCode: 40 });
+    expect(queryByRole("listbox")).toBeTruthy();
+    userEvent.tab();
+    userEvent.tab();
+    await userEvent.keyboard('{Enter}');
+    expect(getAllByRole("dialog")[1]).toBeTruthy();
+    userEvent.click(getAllByRole("dialog")[0]);
+    userEvent.tab();
+    userEvent.tab();
+    userEvent.tab();
+    userEvent.tab();
+    expect(document.activeElement).toEqual(getByRole("button", { name: "Close alert" }));
+    userEvent.tab();
+    userEvent.tab();
+    expect(document.activeElement).toEqual(getByRole("button", { name: "Save" }));
+    userEvent.tab();
+    userEvent.tab();
+    expect(document.activeElement).toEqual(select);
+    userEvent.tab({ shift: true });
+    userEvent.tab({ shift: true });
+    expect(getByRole("button", { name: "Save" })).toBeTruthy();
   });
 });
