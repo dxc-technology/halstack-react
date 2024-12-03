@@ -56,7 +56,7 @@ const DxcWizard = ({
   const renderedCurrent = currentStep == null ? innerCurrent : currentStep;
   const colorsTheme = useTheme();
 
-  const handleStepClick = (newValue) => {
+  const handleStepClick = (newValue: number) => {
     if (currentStep == null) {
       setInnerCurrentStep(newValue);
     }
@@ -67,10 +67,10 @@ const DxcWizard = ({
   };
 
   return (
-    <ThemeProvider theme={colorsTheme.wizard}>
+    <ThemeProvider theme={colorsTheme?.wizard}>
       <StepsContainer mode={mode} margin={margin} role="group">
         {steps?.map((step, i) => (
-          <StepContainer key={`step${i}`} mode={mode} lastStep={i === steps?.length - 1}>
+          <StepContainer key={`step${i}`} mode={mode} lastStep={steps && i === (steps?.length || 0) - 1}>
             <Step
               onClick={() => {
                 handleStepClick(i);
@@ -78,7 +78,7 @@ const DxcWizard = ({
               disabled={step.disabled}
               mode={mode}
               first={i === 0}
-              last={i === steps?.length - 1}
+              last={i === (steps?.length || 0) - 1}
               aria-current={renderedCurrent === i ? "step" : "false"}
               tabIndex={tabIndex}
             >
@@ -124,7 +124,10 @@ const DxcWizard = ({
   );
 };
 
-const StepsContainer = styled.div<{ mode: WizardPropsType["mode"]; margin: WizardPropsType["margin"] }>`
+const StepsContainer = styled.div<{
+  mode: WizardPropsType["mode"];
+  margin: WizardPropsType["margin"];
+}>`
   display: flex;
   flex-direction: ${(props) => (props.mode === "vertical" ? "column" : "row")};
   justify-content: center;
@@ -141,7 +144,10 @@ const StepsContainer = styled.div<{ mode: WizardPropsType["mode"]; margin: Wizar
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
 `;
 
-const StepContainer = styled.div<{ mode: WizardPropsType["mode"]; lastStep: boolean }>`
+const StepContainer = styled.div<{
+  mode: WizardPropsType["mode"];
+  lastStep: boolean;
+}>`
   display: inline-flex;
   ${(props) => props.mode !== "vertical" && "align-items: center;"}
   flex-grow: ${(props) => (props.lastStep ? "0" : "1")};
@@ -191,7 +197,11 @@ const StepHeader = styled.div<{ validityIcon: boolean }>`
   ${(props) => props.validityIcon && "padding-bottom: 4px;"}
 `;
 
-const IconContainer = styled.div<{ current: boolean; visited: boolean; disabled: StepProps["disabled"] }>`
+const IconContainer = styled.div<{
+  current: boolean;
+  visited: boolean;
+  disabled: StepProps["disabled"];
+}>`
   width: ${(props) =>
     props.disabled
       ? props.theme.disabledStepWidth
@@ -278,7 +288,11 @@ const InfoContainer = styled.div`
   margin-left: 12px;
 `;
 
-const Label = styled.p<{ current: boolean; visited: boolean; disabled: StepProps["disabled"] }>`
+const Label = styled.p<{
+  current: boolean;
+  visited: boolean;
+  disabled: StepProps["disabled"];
+}>`
   text-align: ${(props) => props.theme.labelTextAlign};
   font-family: ${(props) => props.theme.labelFontFamily};
   font-size: ${(props) => props.theme.labelFontSize};
@@ -299,7 +313,11 @@ const Label = styled.p<{ current: boolean; visited: boolean; disabled: StepProps
   margin: 0;
 `;
 
-const Description = styled.p<{ current: boolean; visited: boolean; disabled: StepProps["disabled"] }>`
+const Description = styled.p<{
+  current: boolean;
+  visited: boolean;
+  disabled: StepProps["disabled"];
+}>`
   text-align: ${(props) => props.theme.helperTextTextAlign};
   font-family: ${(props) => props.theme.helperTextFontFamily};
   font-size: ${(props) => props.theme.helperTextFontSize};

@@ -6,7 +6,7 @@
     "declaration": true,
     "declarationMap": true,
     "jsx": "react-jsx",
-    "strict": false,
+    "strict": true,
     "allowSyntheticDefaultImports": true
   }
 }

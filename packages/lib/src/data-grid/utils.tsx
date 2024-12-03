@@ -1,11 +1,14 @@
+// TODO: Remove eslint disable
+/* eslint-disable no-param-reassign */
+
 import { ReactNode, SetStateAction } from "react";
+import { Column, RenderSortStatusProps, SortColumn, textEditor } from "react-data-grid";
 import DxcActionIcon from "../action-icon/ActionIcon";
 import DxcCheckbox from "../checkbox/Checkbox";
 import { AdvancedTheme } from "../common/variables";
 import { DeepPartial, HalstackProvider } from "../HalstackContext";
 import DxcIcon from "../icon/Icon";
 import { GridColumn, HierarchyGridRow, GridRow, ExpandableGridRow } from "./types";
-import { Column, RenderSortStatusProps, SortColumn, textEditor } from "react-data-grid";
 
 /**
  * Function to overwrite the checkbox theme based on a passed theme object.
@@ -15,12 +18,12 @@ import { Column, RenderSortStatusProps, SortColumn, textEditor } from "react-dat
 const overwriteTheme = (theme: DeepPartial<AdvancedTheme>) => {
   const newTheme = {
     checkbox: {
-      backgroundColorChecked: theme.dataGrid.headerCheckboxBackgroundColorChecked,
-      hoverBackgroundColorChecked: theme.dataGrid.headerCheckboxHoverBackgroundColorChecked,
-      borderColor: theme.dataGrid.headerCheckboxBorderColor,
-      hoverBorderColor: theme.dataGrid.headerCheckboxHoverBorderColor,
-      checkColor: theme.dataGrid.headerCheckboxCheckColor,
-      focusColor: theme.dataGrid.focusColor,
+      backgroundColorChecked: theme?.dataGrid?.headerCheckboxBackgroundColorChecked,
+      hoverBackgroundColorChecked: theme?.dataGrid?.headerCheckboxHoverBackgroundColorChecked,
+      borderColor: theme?.dataGrid?.headerCheckboxBorderColor,
+      hoverBorderColor: theme?.dataGrid?.headerCheckboxHoverBorderColor,
+      checkColor: theme?.dataGrid?.headerCheckboxCheckColor,
+      focusColor: theme?.dataGrid?.focusColor,
     },
   };
 
@@ -36,53 +39,45 @@ const overwriteTheme = (theme: DeepPartial<AdvancedTheme>) => {
 export const convertToRDGColumns = (
   gridColumn: GridColumn,
   summaryRow?: GridRow
-): Column<GridRow | HierarchyGridRow | ExpandableGridRow, GridRow | HierarchyGridRow | ExpandableGridRow> => {
-  return {
-    key: gridColumn.key,
-    name: gridColumn.label,
-    resizable: gridColumn.resizable,
-    sortable: gridColumn.sortable,
-    draggable: gridColumn.draggable,
-    editable: gridColumn.textEditable,
-    headerCellClass: gridColumn.alignment ? `header-align-${gridColumn.alignment}` : `header-align-left`,
-    renderEditCell: gridColumn.textEditable ? textEditor : undefined,
-    renderCell: ({ row }) => {
-      return (
-        <div className={`ellipsis-cell ${gridColumn.alignment ? "align-" + gridColumn.alignment : "align-left"}`}>
-          {row[gridColumn.key]}
-        </div>
-      );
-    },
-    renderSummaryCell: () => {
-      return gridColumn.summaryKey ? (
-        <div className={`ellipsis-cell ${gridColumn.alignment ? "align-" + gridColumn.alignment : "align-left"}`}>
-          {summaryRow?.[gridColumn.summaryKey]}
-        </div>
-      ) : undefined;
-    },
-  };
-};
+): Column<GridRow | HierarchyGridRow | ExpandableGridRow, GridRow | HierarchyGridRow | ExpandableGridRow> => ({
+  key: gridColumn.key,
+  name: gridColumn.label,
+  resizable: gridColumn.resizable,
+  sortable: gridColumn.sortable,
+  draggable: gridColumn.draggable,
+  editable: gridColumn.textEditable,
+  headerCellClass: gridColumn.alignment ? `header-align-${gridColumn.alignment}` : `header-align-left`,
+  renderEditCell: gridColumn.textEditable ? textEditor : undefined,
+  renderCell: ({ row }) => (
+      <div className={`ellipsis-cell ${gridColumn.alignment ? `align-${  gridColumn.alignment}` : "align-left"}`}>
+        {row[gridColumn.key]}
+      </div>
+    ),
+  renderSummaryCell: () => gridColumn.summaryKey ? (
+      <div className={`ellipsis-cell ${gridColumn.alignment ? `align-${  gridColumn.alignment}` : "align-left"}`}>
+        {summaryRow?.[gridColumn.summaryKey]}
+      </div>
+    ) : undefined,
+});
 
 /**
  * Renders sort status icon for a column based on the sort direction.
  * @param {RenderSortStatusProps} props - Properties including sortDirection to render the appropriate sort icon.
  * @returns {JSX.Element} Icon indicating the current sort status.
  */
-export const renderSortStatus = ({ sortDirection }: RenderSortStatusProps) => {
-  return (
-    <div className="sortIconContainer">
-      {sortDirection !== undefined ? (
-        sortDirection === "ASC" ? (
-          <DxcIcon icon="Keyboard_Arrow_Up" />
-        ) : (
-          <DxcIcon icon="Keyboard_Arrow_Down" />
-        )
+export const renderSortStatus = ({ sortDirection }: RenderSortStatusProps) => (
+  <div className="sortIconContainer">
+    {sortDirection !== undefined ? (
+      sortDirection === "ASC" ? (
+        <DxcIcon icon="Keyboard_Arrow_Up" />
       ) : (
-        <DxcIcon icon="Expand_All" />
-      )}
-    </div>
-  );
-};
+        <DxcIcon icon="Keyboard_Arrow_Down" />
+      )
+    ) : (
+      <DxcIcon icon="Expand_All" />
+    )}
+  </div>
+);
 
 /**
  * Renders an expandable trigger icon that toggles row expansion.
@@ -97,39 +92,37 @@ export const renderExpandableTrigger = (
   rows: ExpandableGridRow[],
   uniqueRowId: string,
   setRowsToRender: (_value: SetStateAction<GridRow[] | ExpandableGridRow[] | HierarchyGridRow[]>) => void
-) => {
-  return (
-    <DxcActionIcon
-      icon={row.contentIsExpanded ? "arrow_drop_down" : "arrow_right"}
-      title="Expand content"
-      aria-expanded={row.contentIsExpanded}
-      onClick={() => {
-        row.contentIsExpanded = !row.contentIsExpanded;
-        if (row.contentIsExpanded) {
-          const rowIndex = rows.findIndex((rowToRender) => row === rowToRender);
-          setRowsToRender((rows) => {
-            const newRows = [...rows];
-            addRow(newRows, rowIndex + 1, {
-              isExpandedChildContent: row.contentIsExpanded,
-              [uniqueRowId]: rowKeyGetter(row, uniqueRowId) + "_expanded",
-              expandedChildContent: row.expandedContent,
-              triggerRowKey: rowKeyGetter(row, uniqueRowId),
-              expandedContentHeight: row.expandedContentHeight,
-            });
-            return newRows;
+) => (
+  <DxcActionIcon
+    icon={row.contentIsExpanded ? "arrow_drop_down" : "arrow_right"}
+    title="Expand content"
+    aria-expanded={row.contentIsExpanded}
+    onClick={() => {
+      row.contentIsExpanded = !row.contentIsExpanded;
+      if (row.contentIsExpanded) {
+        const rowIndex = rows.findIndex((rowToRender) => row === rowToRender);
+        setRowsToRender((currentRows) => {
+          const newRows = [...currentRows];
+          addRow(newRows, rowIndex + 1, {
+            isExpandedChildContent: row.contentIsExpanded,
+            [uniqueRowId]: `${rowKeyGetter(row, uniqueRowId)}_expanded`,
+            expandedChildContent: row.expandedContent,
+            triggerRowKey: rowKeyGetter(row, uniqueRowId),
+            expandedContentHeight: row.expandedContentHeight,
           });
-        } else {
-          const rowIndex = rows.findIndex((rowToRender) => row === rowToRender);
-          setRowsToRender((rows) => {
-            const newRows = [...rows];
-            deleteRow(newRows, rowIndex + 1);
-            return newRows;
-          });
-        }
-      }}
-    />
-  );
-};
+          return newRows;
+        });
+      } else {
+        const rowIndex = rows.findIndex((rowToRender) => row === rowToRender);
+        setRowsToRender((currentRows) => {
+          const newRows = [...currentRows];
+          deleteRow(newRows, rowIndex + 1);
+          return newRows;
+        });
+      }
+    }}
+  />
+);
 
 /**
  * Renders a trigger for hierarchical row expansion in the grid.
@@ -146,63 +139,62 @@ export const renderHierarchyTrigger = (
   uniqueRowId: string,
   columnKey: string,
   setRowsToRender: (_value: SetStateAction<GridRow[] | ExpandableGridRow[] | HierarchyGridRow[]>) => void
-) => {
-  return (
-    <button
-      onClick={() => {
-        let newRowsToRender = [...rows];
-        if (!triggerRow.visibleChildren) {
-          const rowIndex = rows.findIndex((rowToRender) => triggerRow === rowToRender);
-          triggerRow.childRows?.map((childRow: HierarchyGridRow, index: number) => {
-            childRow.rowLevel =
-              triggerRow.rowLevel && typeof triggerRow.rowLevel === "number" ? triggerRow.rowLevel + 1 : 1;
-            childRow.parentKey = rowKeyGetter(triggerRow, uniqueRowId);
-            addRow(newRowsToRender, rowIndex + 1 + index, childRow);
-          });
-        } else {
-          // The children of the row that is being collapsed are added to an array
-          const rowsToRemove: HierarchyGridRow[] = [
-            ...rows.filter(
-              (rowToRender) => rowToRender.parentKey && rowToRender.parentKey === rowKeyGetter(triggerRow, uniqueRowId)
-            ),
-          ];
-          // The children are checked if any of them has any other children of their own
-          const rowsToCheck = [...rowsToRemove];
-          while (rowsToCheck.length > 0) {
-            const currentRow = rowsToCheck.pop();
-            const childRows = currentRow?.visibleChildren && currentRow?.childRows ? currentRow.childRows : [];
+) => (
+  <button
+    type="button"
+    onClick={() => {
+      let newRowsToRender = [...rows];
+      if (!triggerRow.visibleChildren) {
+        const rowIndex = rows.findIndex((rowToRender) => triggerRow === rowToRender);
+        triggerRow.childRows?.forEach((childRow: HierarchyGridRow, index: number) => {
+          childRow.rowLevel =
+            triggerRow.rowLevel && typeof triggerRow.rowLevel === "number" ? triggerRow.rowLevel + 1 : 1;
+          childRow.parentKey = rowKeyGetter(triggerRow, uniqueRowId);
+          addRow(newRowsToRender, rowIndex + 1 + index, childRow);
+        });
+      } else {
+        // The children of the row that is being collapsed are added to an array
+        const rowsToRemove: HierarchyGridRow[] = [
+          ...rows.filter(
+            (rowToRender) => rowToRender.parentKey && rowToRender.parentKey === rowKeyGetter(triggerRow, uniqueRowId)
+          ),
+        ];
+        // The children are checked if any of them has any other children of their own
+        const rowsToCheck = [...rowsToRemove];
+        while (rowsToCheck.length > 0) {
+          const currentRow = rowsToCheck.pop();
+          const childRows = currentRow?.visibleChildren && currentRow?.childRows ? currentRow.childRows : [];
 
-            rowsToRemove.push(...childRows);
-            rowsToCheck.push(...childRows);
-          }
-          newRowsToRender = rows.filter(
-            (row) =>
-              !rowsToRemove
-                .map((rowToRemove) => {
-                  if (rowToRemove.visibleChildren) {
-                    rowToRemove.visibleChildren = false;
-                  }
-                  return rowKeyGetter(rowToRemove, uniqueRowId);
-                })
-                .includes(rowKeyGetter(row, uniqueRowId))
-          );
+          rowsToRemove.push(...childRows);
+          rowsToCheck.push(...childRows);
         }
-        triggerRow.visibleChildren = !triggerRow.visibleChildren;
-        setRowsToRender(newRowsToRender);
-      }}
-    >
-      <DxcIcon icon={triggerRow.visibleChildren ? "Keyboard_Arrow_Down" : "Chevron_Right"} />
-      <span className="ellipsis-cell">{triggerRow[columnKey]}</span>
-    </button>
-  );
-};
+        newRowsToRender = rows.filter(
+          (row) =>
+            !rowsToRemove
+              .map((rowToRemove) => {
+                if (rowToRemove.visibleChildren) {
+                  rowToRemove.visibleChildren = false;
+                }
+                return rowKeyGetter(rowToRemove, uniqueRowId);
+              })
+              .includes(rowKeyGetter(row, uniqueRowId))
+        );
+      }
+      triggerRow.visibleChildren = !triggerRow.visibleChildren;
+      setRowsToRender(newRowsToRender);
+    }}
+  >
+    <DxcIcon icon={triggerRow.visibleChildren ? "Keyboard_Arrow_Down" : "Chevron_Right"} />
+    <span className="ellipsis-cell">{triggerRow[columnKey]}</span>
+  </button>
+);
 
 /**
  * Renders a checkbox for row selection.
  * @param {GridRow[] | HierarchyGridRow[] | ExpandableGridRow[]} rows - Array of rows that are currently displayed.
  * @param {GridRow | HierarchyGridRow | ExpandableGridRow} row - Row object to render the checkbox for.
  * @param {string} uniqueRowId - The key used to uniquely identify each row.
- * @param {Set<ReactNode>} selectedRows - Set containing the IDs of selected rows.
+ * @param {Set<string | number>} selectedRows - Set containing the IDs of selected rows.
  * @param {Function} onSelectRows - Callback function that triggers when rows are selected/deselected.
  * @returns {JSX.Element} Checkbox for selecting the row.
  */
@@ -210,32 +202,34 @@ export const renderCheckbox = (
   rows: GridRow[] | HierarchyGridRow[] | ExpandableGridRow[],
   row: GridRow | HierarchyGridRow | ExpandableGridRow,
   uniqueRowId: string,
-  selectedRows: Set<ReactNode>,
-  onSelectRows: (_selected: Set<ReactNode>) => void
-) => {
-  return (
-    <DxcCheckbox
-      checked={selectedRows.has(rowKeyGetter(row, uniqueRowId))}
-      onChange={(checked) => {
-        const selected = new Set(selectedRows);
-        checked ? selected.add(rowKeyGetter(row, uniqueRowId)) : selected.delete(rowKeyGetter(row, uniqueRowId));
-        if (row.childRows && Array.isArray(row.childRows)) {
-          getChildrenSelection(row.childRows, uniqueRowId, selected, checked);
-        }
-        if (row.parentKey) {
-          getParentSelectedState(rows, row.parentKey, uniqueRowId, selected, checked);
-        }
-        onSelectRows(selected);
-      }}
-    />
-  );
-};
+  selectedRows: Set<string | number>,
+  onSelectRows: (_selected: Set<string | number>) => void
+) => (
+  <DxcCheckbox
+    checked={selectedRows.has(rowKeyGetter(row, uniqueRowId))}
+    onChange={(checked) => {
+      const selected = new Set(selectedRows);
+      if (checked) {
+        selected.add(rowKeyGetter(row, uniqueRowId));
+      } else {
+        selected.delete(rowKeyGetter(row, uniqueRowId));
+      }
+      if (row.childRows && Array.isArray(row.childRows)) {
+        getChildrenSelection(row.childRows, uniqueRowId, selected, checked);
+      }
+      if (row.parentKey) {
+        getParentSelectedState(rows, row.parentKey, uniqueRowId, selected, checked);
+      }
+      onSelectRows(selected);
+    }}
+  />
+);
 
 /**
  * Renders a header checkbox that controls the selection of all rows.
  * @param {GridRow[] | HierarchyGridRow[] | ExpandableGridRow[]} rows - Array of rows that are currently displayed.
  * @param {string} uniqueRowId - The key used to uniquely identify each row.
- * @param {Set<ReactNode>} selectedRows - Set containing the IDs of selected rows.
+ * @param {Set<string | number>} selectedRows - Set containing the IDs of selected rows.
  * @param {DeepPartial<AdvancedTheme>} colorsTheme - Custom theme colors for the checkbox.
  * @param {Function} onSelectRows - Callback function that triggers when rows are selected/deselected.
  * @returns {JSX.Element} Checkbox for the header checkbox.
@@ -243,37 +237,37 @@ export const renderCheckbox = (
 export const renderHeaderCheckbox = (
   rows: GridRow[] | HierarchyGridRow[] | ExpandableGridRow[],
   uniqueRowId: string,
-  selectedRows: Set<ReactNode>,
+  selectedRows: Set<string | number>,
   colorsTheme: DeepPartial<AdvancedTheme>,
-  onSelectRows: (_selected: Set<ReactNode>) => void
-) => {
-  return (
-    <HalstackProvider advancedTheme={overwriteTheme(colorsTheme)}>
-      <DxcCheckbox
-        checked={!rows.some((row) => !selectedRows.has(rowKeyGetter(row, uniqueRowId)))}
-        onChange={(checked) => {
-          const updatedSelection = new Set(selectedRows);
+  onSelectRows: (_selected: Set<string | number>) => void
+) => (
+  <HalstackProvider advancedTheme={overwriteTheme(colorsTheme)}>
+    <DxcCheckbox
+      checked={!rows.some((row) => !selectedRows.has(rowKeyGetter(row, uniqueRowId)))}
+      onChange={(checked) => {
+        const updatedSelection = new Set(selectedRows);
 
-          if (checked) {
-            rows.forEach((row) => {
-              updatedSelection.add(rowKeyGetter(row, uniqueRowId));
-              if (row.childRows && Array.isArray(row.childRows))
-                getChildrenSelection(row.childRows, uniqueRowId, updatedSelection, checked);
-            });
-          } else {
-            rows.forEach((row) => {
-              updatedSelection.delete(rowKeyGetter(row, uniqueRowId));
-              if (row.childRows && Array.isArray(row.childRows))
-                getChildrenSelection(row.childRows, uniqueRowId, updatedSelection, checked);
-            });
-          }
+        if (checked) {
+          rows.forEach((row) => {
+            updatedSelection.add(rowKeyGetter(row, uniqueRowId));
+            if (row.childRows && Array.isArray(row.childRows)) {
+              getChildrenSelection(row.childRows, uniqueRowId, updatedSelection, checked);
+            }
+          });
+        } else {
+          rows.forEach((row) => {
+            updatedSelection.delete(rowKeyGetter(row, uniqueRowId));
+            if (row.childRows && Array.isArray(row.childRows)) {
+              getChildrenSelection(row.childRows, uniqueRowId, updatedSelection, checked);
+            }
+          });
+        }
 
-          onSelectRows(updatedSelection);
-        }}
-      />
-    </HalstackProvider>
-  );
-};
+        onSelectRows(updatedSelection);
+      }}
+    />
+  </HalstackProvider>
+);
 
 /**
  * Retrieves the unique key for a row based on the given uniqueRowId.
@@ -283,7 +277,7 @@ export const renderHeaderCheckbox = (
  */
 export const rowKeyGetter = (row: GridRow | HierarchyGridRow | ExpandableGridRow, uniqueRowId: string) => {
   const keyValue = row[uniqueRowId];
-  return typeof keyValue === "string" || typeof keyValue === "number" ? keyValue : null;
+  return typeof keyValue === "string" || typeof keyValue === "number" ? keyValue : "";
 };
 
 /**
@@ -294,7 +288,7 @@ export const rowKeyGetter = (row: GridRow | HierarchyGridRow | ExpandableGridRow
 export const getCustomSortFn = (columns: GridColumn[]) => {
   const customSortFunctions = [...columns]
     .filter((column) => column.sortFn)
-    .map((column) => ({ column: column.key, sortFn: column.sortFn }));
+    .map((column) => ({ column: column.key, sortFn: column.sortFn! }));
   return customSortFunctions;
 };
 
@@ -307,10 +301,13 @@ export const getCustomSortFn = (columns: GridColumn[]) => {
  * @returns {number} -1 if rowA < rowB, 1 if rowA > rowB, or 0 if they are equal.
  */
 export const compareRows = (rowA: ReactNode, rowB: ReactNode, sortFn?: (_a: ReactNode, _b: ReactNode) => number) => {
-  if (!sortFn) {
-    return rowA > rowB ? 1 : rowA < rowB ? -1 : 0;
+  if (rowA != null && rowB != null) {
+    if (!sortFn) {
+      return rowA > rowB ? 1 : rowA < rowB ? -1 : 0;
+    }
+    return sortFn(rowA, rowB);
   }
-  return sortFn(rowA, rowB);
+  return 0;
 };
 
 /**
@@ -324,33 +321,36 @@ export const compareRows = (rowA: ReactNode, rowB: ReactNode, sortFn?: (_a: Reac
 export const sortRows = (
   rows: GridRow[] | ExpandableGridRow[] | HierarchyGridRow[],
   sortColumns: readonly SortColumn[],
-  sortFunctions: { column: string; sortFn: (_a: ReactNode, _b: ReactNode) => number }[],
+  sortFunctions?: { column: string; sortFn: (_a: ReactNode, _b: ReactNode) => number }[],
   reversed?: boolean
-) => {
-  return [...rows].sort((a, b) => {
-    for (const sort of sortColumns) {
+) =>
+  [...rows].sort((a, b) =>
+    sortColumns.reduce((compResult, sort) => {
+      if (compResult !== 0) {
+        return compResult;
+      }
+
       const sortValueA = a[sort.columnKey];
       const sortValueB = b[sort.columnKey];
-      let compResult = 0;
+      let newCompResult = compResult;
 
       if (sortValueA && sortValueB) {
-        compResult = compareRows(
-          sortValueA,
-          sortValueB,
-          sortFunctions?.find(({ column }) => {
-            return column === sort.columnKey;
-          })?.sortFn
-        );
+        const sortFn = sortFunctions?.find(({ column }) => column === sort.columnKey)?.sortFn;
+        newCompResult = compareRows(sortValueA, sortValueB, sortFn);
       }
 
-      if (compResult !== 0) {
-        if (reversed) return sort.direction === "ASC" ? -compResult : compResult;
-        return sort.direction === "ASC" ? compResult : -compResult;
+      if (newCompResult !== 0) {
+        return reversed
+          ? sort.direction === "ASC"
+            ? -newCompResult
+            : newCompResult
+          : sort.direction === "ASC"
+            ? newCompResult
+            : -newCompResult;
       }
-    }
-    return 0;
-  });
-};
+      return newCompResult;
+    }, 0)
+  );
 
 /**
  * Sorts an array of rows, ensuring child rows are placed under their parents.
@@ -372,38 +372,38 @@ export const sortHierarchyRows = (
     sortFunctions
   );
   // check if there are child rows
-  if (rows.length === parentsSorted.length) return parentsSorted;
-  else {
-    let sortedChildren = sortRows(
-      rows.filter((row) => row.parentKey),
-      sortColumns,
-      sortFunctions,
-      true
-    );
-    // add children directly under the parent if it is available
-    while (sortedChildren.length) {
-      if (uniqueRowId) {
-        sortedChildren = sortedChildren.reduce(
-          (
-            remainingChilds: GridRow[] | HierarchyGridRow[] | ExpandableGridRow[],
-            child: GridRow | HierarchyGridRow | ExpandableGridRow
-          ) => {
-            const parentIndex = parentsSorted.findIndex(
-              (parent) => rowKeyGetter(parent, uniqueRowId) === child.parentKey
-            );
-            if (parentIndex >= 0) {
-              parentsSorted.splice(parentIndex + 1, 0, child);
-            } else {
-              remainingChilds.push(child);
-            }
-            return remainingChilds;
-          },
-          []
-        );
-      }
-    }
+  if (rows.length === parentsSorted.length) {
     return parentsSorted;
   }
+  let sortedChildren = sortRows(
+    rows.filter((row) => row.parentKey),
+    sortColumns,
+    sortFunctions,
+    true
+  );
+  // add children directly under the parent if it is available
+  while (sortedChildren.length) {
+    if (uniqueRowId) {
+      sortedChildren = sortedChildren.reduce(
+        (
+          remainingChilds: GridRow[] | HierarchyGridRow[] | ExpandableGridRow[],
+          child: GridRow | HierarchyGridRow | ExpandableGridRow
+        ) => {
+          const parentIndex = parentsSorted.findIndex(
+            (parent) => rowKeyGetter(parent, uniqueRowId) === child.parentKey
+          );
+          if (parentIndex >= 0) {
+            parentsSorted.splice(parentIndex + 1, 0, child);
+          } else {
+            remainingChilds.push(child);
+          }
+          return remainingChilds;
+        },
+        []
+      );
+    }
+  }
+  return parentsSorted;
 };
 
 /**
@@ -440,7 +440,7 @@ export const rowFinderBasedOnId = (
   uniqueRowId: string,
   uniqueRowIdValue: ReactNode
 ): GridRow | HierarchyGridRow | ExpandableGridRow | undefined => {
-  let foundRow: GridRow | HierarchyGridRow | ExpandableGridRow | undefined = undefined;
+  let foundRow: GridRow | HierarchyGridRow | ExpandableGridRow | undefined;
   rowList.forEach((row) => {
     if (rowKeyGetter(row, uniqueRowId) === uniqueRowIdValue) {
       foundRow = { ...row };
@@ -449,7 +449,10 @@ export const rowFinderBasedOnId = (
       foundRow = rowFinderBasedOnId(row.childRows, uniqueRowId, uniqueRowIdValue);
     }
   });
-  if (foundRow) return foundRow;
+  if (foundRow) {
+    return foundRow;
+  }
+  return undefined;
 };
 
 /**
@@ -470,8 +473,9 @@ export const getChildrenSelection = (
       // Recursively select/deselect child rows
       getChildrenSelection(row.childRows, uniqueRowId, selectedRows, checked);
     }
-    if (checked) selectedRows.add(rowKeyGetter(row, uniqueRowId));
-    else {
+    if (checked) {
+      selectedRows.add(rowKeyGetter(row, uniqueRowId));
+    } else {
       selectedRows.delete(rowKeyGetter(row, uniqueRowId));
     }
   });
@@ -493,25 +497,23 @@ export const getParentSelectedState = (
   selectedRows: Set<ReactNode>,
   checkedStateToMatch: boolean
 ) => {
-  const parentRow: HierarchyGridRow = rowFinderBasedOnId(rowList, uniqueRowId, parentKeyValue);
+  const parentRow = rowFinderBasedOnId(rowList, uniqueRowId, parentKeyValue) as HierarchyGridRow;
 
-  if (!parentRow) return;
+  if (!parentRow) {
+    return;
+  }
 
   // Check if we are unselecting or any of the other direct childRows is unselected
-  const isAnyChildUnselected = parentRow.childRows?.some((row) => {
-    return !selectedRows.has(rowKeyGetter(row, uniqueRowId));
-  });
+  const isAnyChildUnselected = parentRow.childRows?.some((row) => !selectedRows.has(rowKeyGetter(row, uniqueRowId)));
 
   if (!checkedStateToMatch || isAnyChildUnselected) {
     // If the parent is selected but should not be, deselect it
     if (selectedRows.has(rowKeyGetter(parentRow, uniqueRowId))) {
       selectedRows.delete(rowKeyGetter(parentRow, uniqueRowId));
     }
-  } else {
+  } else if (parentRow.childRows && !isAnyChildUnselected) {
     // If all child rows are selected, we select the parent
-    if (parentRow.childRows && !isAnyChildUnselected) {
-      selectedRows.add(rowKeyGetter(parentRow, uniqueRowId));
-    }
+    selectedRows.add(rowKeyGetter(parentRow, uniqueRowId));
   }
 
   // Recursively check the parent's parent if necessary
@@ -555,10 +557,13 @@ export const getMaxItemsPerPageIndex = (
  */
 export const getPaginatedNodes = (
   rows: readonly GridRow[] | ExpandableGridRow[] | HierarchyGridRow[],
-  uniqueRowId: string,
+  uniqueRowId?: string,
   start?: number,
   end?: number
 ): readonly GridRow[] | ExpandableGridRow[] | HierarchyGridRow[] => {
+  if (!uniqueRowId) {
+    return rows.slice(start, end);
+  }
   const rowsToPaginate: HierarchyGridRow[] =
     start != null && end != null
       ? rows
@@ -571,18 +576,18 @@ export const getPaginatedNodes = (
     if (row[uniqueRowId] === targetId) {
       return true;
     }
-    return row.childRows?.some((child) => isRowInHierarchy(child, targetId));
+    return !!row?.childRows?.some((child) => isRowInHierarchy(child, targetId));
   };
 
   // Filter rows to include only those that are within the pagination range or are child rows
-  return rows.filter((row) => {
-    return rowsToPaginate.some(
+  return rows.filter((row) =>
+    rowsToPaginate.some(
       (rowToPaginate) =>
         rowToPaginate[uniqueRowId] === row[uniqueRowId] ||
         (rowToPaginate.contentIsExpanded &&
           row?.triggerRowKey === rowToPaginate[uniqueRowId] &&
           row?.isExpandedChildContent) ||
         rowToPaginate?.childRows?.some((child) => isRowInHierarchy(child, row[uniqueRowId]))
-    );
-  });
+    )
+  );
 };

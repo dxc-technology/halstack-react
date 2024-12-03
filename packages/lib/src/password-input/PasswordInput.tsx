@@ -5,7 +5,7 @@ import useTranslatedLabels from "../useTranslatedLabels";
 import PasswordInputPropsType, { RefType } from "./types";
 
 const setInputType = (type: string, element: HTMLDivElement | null) => {
-  element?.getElementsByTagName("input")[0].setAttribute("type", type);
+  element?.getElementsByTagName("input")[0]?.setAttribute("type", type);
 };
 
 const setAriaAttributes = (ariaExpanded: "true" | "false", ariaLabel: string, element: HTMLDivElement | null) => {
@@ -36,17 +36,21 @@ const DxcPasswordInput = forwardRef<RefType, PasswordInputPropsType>(
     ref
   ) => {
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-    const inputRef = useRef<HTMLDivElement>(null);
+    const inputRef = useRef<HTMLDivElement | null>(null);
     const { passwordInput } = useTranslatedLabels();
 
     useEffect(() => {
       (() => {
         if (isPasswordVisible) {
           setInputType("text", inputRef.current);
-          setAriaAttributes("true", passwordInput.inputHidePasswordTitle, inputRef.current);
+          if (passwordInput?.inputHidePasswordTitle) {
+            setAriaAttributes("true", passwordInput.inputHidePasswordTitle, inputRef.current);
+          }
         } else {
           setInputType("password", inputRef.current);
-          setAriaAttributes("false", passwordInput.inputShowPasswordTitle, inputRef.current);
+          if (passwordInput?.inputShowPasswordTitle) {
+            setAriaAttributes("false", passwordInput.inputShowPasswordTitle, inputRef.current);
+          }
         }
       })();
     }, [isPasswordVisible, passwordInput]);
@@ -60,10 +64,10 @@ const DxcPasswordInput = forwardRef<RefType, PasswordInputPropsType>(
           helperText={helperText}
           action={{
             onClick: () => {
-              setIsPasswordVisible((isPasswordVisible) => !isPasswordVisible);
+              setIsPasswordVisible((isPasswordCurrentlyVisible) => !isPasswordCurrentlyVisible);
             },
             icon: isPasswordVisible ? "Visibility_Off" : "Visibility",
-            title: isPasswordVisible ? passwordInput.inputHidePasswordTitle : passwordInput.inputShowPasswordTitle,
+            title: isPasswordVisible ? passwordInput?.inputHidePasswordTitle : passwordInput?.inputShowPasswordTitle,
           }}
           error={error}
           clearable={clearable}
@@ -84,7 +88,7 @@ const DxcPasswordInput = forwardRef<RefType, PasswordInputPropsType>(
 );
 
 const PasswordInput = styled.div<{ size: PasswordInputPropsType["size"] }>`
-  ${(props) => props.size == "fillParent" && "width: 100%;"}
+  ${(props) => props.size === "fillParent" && "width: 100%;"}
   & ::-ms-reveal {
     display: none;
   }

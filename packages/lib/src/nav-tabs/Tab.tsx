@@ -1,12 +1,12 @@
-import React, { forwardRef, Ref, useContext, useEffect, useRef } from "react";
+import React, { useEffect, forwardRef, Ref, useContext, useRef, useImperativeHandle, KeyboardEvent } from "react";
 import styled from "styled-components";
 import DxcBadge from "../badge/Badge";
 import DxcFlex from "../flex/Flex";
-import DxcIcon from "../icon/Icon";
-import useTheme from "../useTheme";
-import BaseTypography from "../utils/BaseTypography";
-import { NavTabsContext } from "./NavTabsContext";
 import NavTabsPropsType, { TabProps } from "./types";
+import BaseTypography from "../utils/BaseTypography";
+import useTheme from "../useTheme";
+import NavTabsContext from "./NavTabsContext";
+import DxcIcon from "../icon/Icon";
 
 const DxcTab = forwardRef(
   (
@@ -15,18 +15,24 @@ const DxcTab = forwardRef(
   ): JSX.Element => {
     const tabRef = useRef<HTMLAnchorElement>();
     const colorsTheme = useTheme();
-    const { iconPosition, tabIndex, focusedLabel } = useContext(NavTabsContext);
+    const { iconPosition, tabIndex, focusedLabel } = useContext(NavTabsContext) ?? {};
+    const innerRef = useRef<HTMLAnchorElement | null>(null);
+    useImperativeHandle(ref, () => innerRef.current!, []);
 
     useEffect(() => {
-      focusedLabel === children.toString() && tabRef?.current?.focus();
+      if (focusedLabel === children.toString()) {
+        tabRef?.current?.focus();
+      }
     }, [focusedLabel]);
 
-    const handleOnKeyDown = (event: React.KeyboardEvent<HTMLAnchorElement>) => {
+    const handleOnKeyDown = (event: KeyboardEvent<HTMLAnchorElement>) => {
       switch (event.key) {
         case " ":
         case "Enter":
           event.preventDefault();
           tabRef?.current?.click();
+          break;
+        default:
           break;
       }
     };
@@ -38,13 +44,16 @@ const DxcTab = forwardRef(
           disabled={disabled}
           active={active}
           iconPosition={iconPosition}
-          hasIcon={icon != null ? true : false}
-          ref={(anchorRef) => {
+          hasIcon={icon != null}
+          ref={(anchorRef: HTMLAnchorElement) => {
             tabRef.current = anchorRef;
 
             if (ref) {
-              if (typeof ref === "function") ref(anchorRef);
-              else (ref as React.MutableRefObject<HTMLAnchorElement | null>).current = anchorRef;
+              if (typeof ref === "function") {
+                ref(anchorRef);
+              } else {
+                innerRef.current = anchorRef;
+              }
             }
           }}
           onKeyDown={handleOnKeyDown}
@@ -63,15 +72,15 @@ const DxcTab = forwardRef(
             <BaseTypography
               color={
                 disabled
-                  ? colorsTheme.navTabs.disabledFontColor
+                  ? colorsTheme?.navTabs?.disabledFontColor
                   : active
-                    ? colorsTheme.navTabs.selectedFontColor
-                    : colorsTheme.navTabs.unselectedFontColor
+                    ? colorsTheme?.navTabs?.selectedFontColor
+                    : colorsTheme?.navTabs?.unselectedFontColor
               }
-              fontFamily={colorsTheme.navTabs.fontFamily}
-              fontSize={colorsTheme.navTabs.fontSize}
-              fontStyle={colorsTheme.navTabs.fontStyle}
-              fontWeight={colorsTheme.navTabs.fontWeight}
+              fontFamily={colorsTheme?.navTabs?.fontFamily}
+              fontSize={colorsTheme?.navTabs?.fontSize}
+              fontStyle={colorsTheme?.navTabs?.fontStyle}
+              fontWeight={colorsTheme?.navTabs?.fontWeight}
               textAlign="center"
               letterSpacing="0.025em"
               lineHeight="1.715em"
@@ -82,7 +91,7 @@ const DxcTab = forwardRef(
               <DxcBadge
                 mode="notification"
                 size="small"
-                label={typeof notificationNumber === "number" && notificationNumber}
+                label={typeof notificationNumber === "number" ? notificationNumber : undefined}
               />
             )}
           </DxcFlex>

@@ -1,8 +1,8 @@
-import { forwardRef, useId, useMemo, useState } from "react";
+import { ChangeEvent, forwardRef, MouseEvent, useId, useMemo, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import { getMargin } from "../common/utils";
-import { spaces } from "../common/variables";
 import DxcTextInput from "../text-input/TextInput";
+import { spaces } from "../common/variables";
+import getMargin from "../common/utils";
 import useTheme from "../useTheme";
 import SliderPropsType, { RefType } from "./types";
 
@@ -49,10 +49,9 @@ const DxcSlider = forwardRef<RefType, SliderPropsType>(
       const numberOfMarks = Math.floor(maxValue / step - minValue / step);
       const range = maxValue - minValue;
       const ticks = [];
-      let index = 0;
 
       if (marks) {
-        while (index <= numberOfMarks) {
+        for (let index = 0; index <= numberOfMarks; index++) {
           ticks.push(
             <TickMark
               disabled={disabled}
@@ -61,34 +60,38 @@ const DxcSlider = forwardRef<RefType, SliderPropsType>(
               key={`tickmark-${index}-${labelId}`}
             />
           );
-
-          index++;
         }
         return ticks;
-      } else return null;
+      }
+      return null;
     }, [minValue, maxValue, step, value, innerValue]);
 
-    const handleSliderChange = (event) => {
-      const valueToCheck = event.target.value;
-      (valueToCheck !== value || valueToCheck !== innerValue) && setInnerValue(valueToCheck);
-      onChange?.(valueToCheck);
+    const handleSliderChange = (event: ChangeEvent<HTMLInputElement>) => {
+      const intValue = parseInt(event.target.value, 10);
+      if (intValue !== value || intValue !== innerValue) {
+        setInnerValue(intValue);
+      }
+      onChange?.(intValue);
     };
 
     const handleSliderDragging = () => {
       setDragging(true);
     };
 
-    const handleSliderOnChangeCommitted = (event) => {
+    const handleSliderOnChangeCommitted = (event: MouseEvent<HTMLInputElement>) => {
+      const intValue = parseInt((event.target as HTMLInputElement).value, 10);
       if (dragging) {
         setDragging(false);
-        onDragEnd?.(event.target.value);
+        onDragEnd?.(intValue);
       }
     };
 
-    const handlerInputChange = (event) => {
+    const handlerInputChange = (event: { value: string; error?: string }) => {
       const intValue = parseInt(event.value, 10);
       if (value == null) {
-        if (!Number.isNaN(intValue)) setInnerValue(intValue > maxValue ? maxValue : intValue);
+        if (!Number.isNaN(intValue)) {
+          setInnerValue(intValue > maxValue ? maxValue : intValue);
+        }
       }
       if (!Number.isNaN(intValue)) {
         onChange?.(intValue > maxValue ? maxValue : intValue);
@@ -96,7 +99,7 @@ const DxcSlider = forwardRef<RefType, SliderPropsType>(
     };
 
     return (
-      <ThemeProvider theme={colorsTheme.slider}>
+      <ThemeProvider theme={colorsTheme?.slider}>
         <Container margin={margin} size={size} ref={ref}>
           <Label id={labelId} disabled={disabled}>
             {label}
@@ -156,7 +159,7 @@ const sizes = {
 const calculateWidth = (margin: SliderPropsType["margin"], size: SliderPropsType["size"]) =>
   size === "fillParent"
     ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
-    : sizes[size];
+    : size && sizes[size];
 
 const getChromeStyles = () => `
   width: 100%;
@@ -166,7 +169,10 @@ const getFireFoxStyles = () => `
   width: calc(100% - 16px);
   margin-right: 3px;`;
 
-const Container = styled.div<{ margin: SliderPropsType["margin"]; size: SliderPropsType["size"] }>`
+const Container = styled.div<{
+  margin: SliderPropsType["margin"];
+  size: SliderPropsType["size"];
+}>`
   display: flex;
   flex-direction: column;
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
@@ -212,13 +218,17 @@ const SliderInput = styled.input<{
   vertical-align: middle;
   -webkit-appearance: none;
   background-color: ${(props) =>
-    props.disabled ? props.theme.disabledTotalLineColor + "61" : props.theme.totalLineColor};
+    props.disabled ? `${props.theme.disabledTotalLineColor}61` : props.theme.totalLineColor};
   background-image: ${(props) =>
     props.disabled
       ? `linear-gradient(${props.theme.disabledTrackLineColor}, ${props.theme.disabledTrackLineColor})`
       : `linear-gradient(${props.theme.trackLineColor}, ${props.theme.trackLineColor})`};
   background-repeat: no-repeat;
-  background-size: ${(props) => ((props.value - props.min) * 100) / (props.max - props.min) + "% 100%"};
+  background-size: ${(props) =>
+    props?.value != null &&
+    props?.min != null &&
+    props?.max != null &&
+    `${((props.value - props.min) * 100) / (props.max - props.min)}% 100%`};
   border-radius: 5px;
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
   &::-webkit-slider-runnable-track {
@@ -238,24 +248,20 @@ const SliderInput = styled.input<{
     background: ${(props) =>
       props.disabled ? props.theme.disabledThumbBackgroundColor : props.theme.thumbBackgroundColor};
     &:active {
-      ${(props) => {
-        if (!props.disabled) {
-          return `
+      ${(props) =>
+        !props.disabled &&
+        `
           background: ${props.theme.activeThumbBackgroundColor};
-            transform: scale(1.16667);`;
-        }
-      }}
+            transform: scale(1.16667);`}
     }
     &:hover {
-      ${(props) => {
-        if (!props.disabled) {
-          return `height: ${props.theme.hoverThumbHeight};
+      ${(props) =>
+        !props.disabled &&
+        `height: ${props.theme.hoverThumbHeight};
           width: ${props.theme.hoverThumbWidth};
           transform: scale(1.16667);
           transform-origin: center center;
-          background: ${props.theme.hoverThumbBackgroundColor};`;
-        }
-      }}
+          background: ${props.theme.hoverThumbBackgroundColor};`}
     }
   }
   &::-moz-range-track {
@@ -277,15 +283,13 @@ const SliderInput = styled.input<{
       transform: scale(1.16667);
     }
     &:hover {
-      ${(props) => {
-        if (!props.disabled) {
-          return `height: ${props.theme.hoverThumbHeight};
+      ${(props) =>
+        !props.disabled &&
+        `height: ${props.theme.hoverThumbHeight};
           width: ${props.theme.hoverThumbWidth};
           transform: scale(1.16667);
           transform-origin: center center;
-          background: ${props.theme.hoverThumbBackgroundColor};`;
-        }
-      }}
+          background: ${props.theme.hoverThumbBackgroundColor};`}
     }
   }
   &:focus {
@@ -361,7 +365,7 @@ const TickMark = styled.span<{
   width: ${(props) => props.theme.tickWidth};
   border-radius: 18px;
   left: ${(props) => `calc(${props.stepPosition} * 100%)`};
-  z-index: ${(props) => `${props.stepPosition <= props.stepValue ? "-1" : "0"}`};
+  z-index: ${(props) => props.stepValue != null && `${props.stepPosition <= props.stepValue ? "-1" : "0"}`};
 `;
 
 const StyledTextInput = styled.div`

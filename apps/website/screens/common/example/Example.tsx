@@ -55,14 +55,16 @@ const Example = ({ actionsVisible = true, defaultIsVisible = false, example }: E
   };
 
   const handleCopy = () => {
-    navigator.clipboard
-      .writeText(example.code)
-      .then(() => {
-        toast.success({ message: "Code copied to the clipboard." });
-      })
-      .catch(() => {
-        toast.warning({ message: "Failed to copy the text to the clipboard." });
-      });
+    if (example.code) {
+      navigator.clipboard
+        .writeText(example.code)
+        .then(() => {
+          toast.success({ message: "Code copied to the clipboard." });
+        })
+        .catch(() => {
+          toast.warning({ message: "Failed to copy the text to the clipboard." });
+        });
+    }
   };
 
   return (

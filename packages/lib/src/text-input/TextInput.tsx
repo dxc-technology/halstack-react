@@ -1,12 +1,25 @@
 import * as Popover from "@radix-ui/react-popover";
-import { forwardRef, useContext, useEffect, useId, useRef, useState } from "react";
+import {
+  ChangeEvent,
+  FocusEvent,
+  forwardRef,
+  KeyboardEvent,
+  MouseEvent,
+  ReactNode,
+  useContext,
+  useEffect,
+  useId,
+  useRef,
+  useState,
+  WheelEvent,
+} from "react";
 import styled, { ThemeProvider } from "styled-components";
 import DxcActionIcon from "../action-icon/ActionIcon";
-import { getMargin } from "../common/utils";
+import getMargin from "../common/utils";
 import { spaces } from "../common/variables";
 import DxcFlex from "../flex/Flex";
 import DxcIcon from "../icon/Icon";
-import { NumberInputContext } from "../number-input/NumberInputContext";
+import NumberInputContext from "../number-input/NumberInputContext";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
 import useWidth from "../utils/useWidth";
@@ -24,17 +37,17 @@ const AutosuggestWrapper = ({ condition, wrapper, children }: AutosuggestWrapper
   <>{condition ? wrapper(children) : children}</>
 );
 
-const calculateWidth = (margin, size) =>
+const calculateWidth = (margin: TextInputPropsType["margin"], size: TextInputPropsType["size"]) =>
   size === "fillParent"
     ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
-    : sizes[size];
+    : size && sizes[size];
 
-const makeCancelable = (promise) => {
+const makeCancelable = (promise: Promise<string[]>) => {
   let hasCanceled_ = false;
   const wrappedPromise = new Promise<string[]>((resolve, reject) => {
     promise.then(
-      (val) => (hasCanceled_ ? reject({ isCanceled: true }) : resolve(val)),
-      (promiseError) => (hasCanceled_ ? reject({ isCanceled: true }) : reject(promiseError))
+      (val) => (hasCanceled_ ? reject(Error("Is canceled")) : resolve(val)),
+      (promiseError) => (hasCanceled_ ? reject(Error("Is canceled")) : reject(promiseError))
     );
   });
   return {
@@ -46,17 +59,18 @@ const makeCancelable = (promise) => {
 };
 
 const hasSuggestions = (suggestions: TextInputPropsType["suggestions"]) =>
-  typeof suggestions === "function" || suggestions?.length > 0;
+  typeof suggestions === "function" || (suggestions ? suggestions?.length > 0 : false);
 
 const isRequired = (value: string, optional: boolean) => value === "" && !optional;
 
-const isLengthIncorrect = (value: string, minLength: number, maxLength: number) =>
-  value != null && (value.length < minLength || value.length > maxLength);
+const isLengthIncorrect = (value: string, minLength: number | undefined, maxLength: number | undefined) =>
+  value != null && ((minLength != null && value.length < minLength) || (maxLength != null && value.length > maxLength));
 
-const isNumberIncorrect = (value: number, minNumber: number, maxNumber: number) =>
-  value < minNumber || value > maxNumber;
+const isNumberIncorrect = (value: number, minNumber: number | undefined, maxNumber: number | undefined) =>
+  (minNumber != null && value < minNumber) || (maxNumber != null && value > maxNumber);
 
-const patternMismatch = (pattern: string, value: string) => pattern != null && !new RegExp(pattern).test(value);
+const patternMismatch = (pattern: string | undefined, value: string) =>
+  pattern != null && !new RegExp(pattern).test(value);
 
 const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
   (
@@ -96,27 +110,71 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
     const [isOpen, changeIsOpen] = useState(false);
     const [isSearching, changeIsSearching] = useState(false);
     const [isAutosuggestError, changeIsAutosuggestError] = useState(false);
-    const [filteredSuggestions, changeFilteredSuggestions] = useState([]);
+    const [filteredSuggestions, changeFilteredSuggestions] = useState<string[]>([]);
     const [visualFocusIndex, changeVisualFocusIndex] = useState(-1);
 
-    const inputRef = useRef(null);
-    const inputContainerRef = useRef(null);
-    const actionRef = useRef(null);
+    const inputRef = useRef<HTMLInputElement | null>(null);
+    const inputContainerRef = useRef<HTMLDivElement | null>(null);
+    const actionRef = useRef<HTMLButtonElement | null>(null);
 
     const width = useWidth(inputContainerRef.current);
     const colorsTheme = useTheme();
     const translatedLabels = useTranslatedLabels();
     const numberInputContext = useContext(NumberInputContext);
-
-    const getNumberErrorMessage = (value: number) => {
-      if (value < numberInputContext?.minNumber)
-        return translatedLabels.numberInput.valueGreaterThanOrEqualToErrorMessage(numberInputContext.minNumber);
-      else if (value > numberInputContext?.maxNumber)
-        return translatedLabels.numberInput.valueLessThanOrEqualToErrorMessage(numberInputContext.maxNumber);
-    };
+    // Define the wrapper function outside of the parent component
+    const autosuggestWrapperFunction = (children: ReactNode) => (
+      <Popover.Root open={isOpen && (filteredSuggestions.length > 0 || isSearching || isAutosuggestError)}>
+        <Popover.Trigger
+          asChild
+          type={undefined}
+          aria-controls={undefined}
+          aria-haspopup={undefined}
+          aria-expanded={undefined}
+        >
+          {children}
+        </Popover.Trigger>
+        <Popover.Portal>
+          <Popover.Content
+            sideOffset={5}
+            style={{ zIndex: "2147483647" }}
+            onOpenAutoFocus={(event) => {
+              // Avoid select to lose focus when the list is opened
+              event.preventDefault();
+            }}
+            onCloseAutoFocus={(event) => {
+              // Avoid select to lose focus when the list is closed
+              event.preventDefault();
+            }}
+          >
+            <Suggestions
+              id={autosuggestId}
+              value={value ?? innerValue}
+              suggestions={filteredSuggestions}
+              visualFocusIndex={visualFocusIndex}
+              highlightedSuggestions={typeof suggestions !== "function"}
+              searchHasErrors={isAutosuggestError}
+              isSearching={isSearching}
+              suggestionOnClick={(suggestion) => {
+                changeValue(suggestion);
+                closeSuggestions();
+              }}
+              styles={{ width }}
+            />
+          </Popover.Content>
+        </Popover.Portal>
+      </Popover.Root>
+    );
+    const getNumberErrorMessage = (checkedValue: number) =>
+      numberInputContext?.minNumber != null && checkedValue < numberInputContext?.minNumber
+        ? translatedLabels?.numberInput?.valueGreaterThanOrEqualToErrorMessage?.(numberInputContext.minNumber)
+        : numberInputContext?.maxNumber != null && checkedValue > numberInputContext?.maxNumber
+          ? translatedLabels?.numberInput?.valueLessThanOrEqualToErrorMessage?.(numberInputContext.maxNumber)
+          : undefined;
 
     const openSuggestions = () => {
-      hasSuggestions(suggestions) && changeIsOpen(true);
+      if (hasSuggestions(suggestions)) {
+        changeIsOpen(true);
+      }
     };
 
     const closeSuggestions = () => {
@@ -128,168 +186,239 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
 
     const changeValue = (newValue: number | string) => {
       const formattedValue = typeof newValue === "number" ? newValue.toString() : newValue;
-      value ?? setInnerValue(formattedValue);
+      if (value == null) {
+        setInnerValue(formattedValue);
+      }
 
-      if (isRequired(formattedValue, optional))
-        onChange?.({ value: formattedValue, error: translatedLabels.formFields.requiredValueErrorMessage });
-      else if (isLengthIncorrect(formattedValue, minLength, maxLength))
+      if (isRequired(formattedValue, optional)) {
         onChange?.({
           value: formattedValue,
-          error: translatedLabels.formFields.lengthErrorMessage(minLength, maxLength),
+          error: translatedLabels?.formFields?.requiredValueErrorMessage,
         });
-      else if (patternMismatch(pattern, formattedValue))
-        onChange?.({ value: formattedValue, error: translatedLabels.formFields.formatRequestedErrorMessage });
-      else if (
+      } else if (isLengthIncorrect(formattedValue, minLength, maxLength)) {
+        onChange?.({
+          value: formattedValue,
+          error: translatedLabels?.formFields?.lengthErrorMessage?.(minLength, maxLength),
+        });
+      } else if (patternMismatch(pattern, formattedValue)) {
+        onChange?.({ value: formattedValue, error: translatedLabels?.formFields?.formatRequestedErrorMessage });
+      } else if (
         numberInputContext?.typeNumber === "number" &&
         isNumberIncorrect(Number(newValue), numberInputContext?.minNumber, numberInputContext?.maxNumber)
-      )
+      ) {
         onChange?.({ value: formattedValue, error: getNumberErrorMessage(Number(newValue)) });
-      else onChange?.({ value: formattedValue });
+      } else {
+        onChange?.({ value: formattedValue });
+      }
     };
 
     const decrementNumber = (currentValue = value ?? innerValue) => {
       if (!disabled && !readOnly) {
         const numberValue = Number(currentValue);
-        const steppedValue = Math.round((numberValue - numberInputContext?.stepNumber + Number.EPSILON) * 100) / 100;
+        const steppedValue =
+          Math.round((numberValue - (numberInputContext?.stepNumber ?? 0) + Number.EPSILON) * 100) / 100;
 
         if (currentValue !== "") {
-          if (numberValue < numberInputContext?.minNumber || steppedValue < numberInputContext?.minNumber)
+          if (
+            numberInputContext?.minNumber != null &&
+            (numberValue < numberInputContext?.minNumber || steppedValue < numberInputContext?.minNumber)
+          ) {
             changeValue(numberValue);
-          else if (numberValue > numberInputContext?.maxNumber) changeValue(numberInputContext?.maxNumber);
-          else if (numberValue === numberInputContext?.minNumber) changeValue(numberInputContext?.minNumber);
-          else changeValue(steppedValue);
-        } else {
-          if (numberInputContext?.minNumber >= 0) changeValue(numberInputContext?.minNumber);
-          else if (numberInputContext?.maxNumber < 0) changeValue(numberInputContext?.maxNumber);
-          else changeValue(-numberInputContext.stepNumber);
+          } else if (numberInputContext?.maxNumber != null && numberValue > numberInputContext?.maxNumber) {
+            changeValue(numberInputContext?.maxNumber);
+          } else if (numberValue === numberInputContext?.minNumber) {
+            changeValue(numberInputContext?.minNumber);
+          } else {
+            changeValue(steppedValue);
+          }
+        } else if (numberInputContext?.minNumber != null && numberInputContext?.minNumber >= 0) {
+          changeValue(numberInputContext?.minNumber);
+        } else if (numberInputContext?.maxNumber != null && numberInputContext?.maxNumber < 0) {
+          changeValue(numberInputContext?.maxNumber);
+        } else if (numberInputContext?.stepNumber != null) {
+          changeValue(-numberInputContext.stepNumber);
         }
       }
     };
+
     const incrementNumber = (currentValue = value ?? innerValue) => {
       if (!disabled && !readOnly) {
         const numberValue = Number(currentValue);
-        const steppedValue = Math.round((numberValue + numberInputContext?.stepNumber + Number.EPSILON) * 100) / 100;
+        const steppedValue =
+          Math.round((numberValue + (numberInputContext?.stepNumber ?? 0) + Number.EPSILON) * 100) / 100;
 
         if (currentValue !== "") {
-          if (numberValue > numberInputContext?.maxNumber || steppedValue > numberInputContext?.maxNumber)
+          if (
+            numberInputContext?.maxNumber != null &&
+            (numberValue > numberInputContext?.maxNumber || steppedValue > numberInputContext?.maxNumber)
+          ) {
             changeValue(numberValue);
-          else if (numberValue < numberInputContext?.minNumber) changeValue(numberInputContext?.minNumber);
-          else if (numberValue === numberInputContext?.maxNumber) changeValue(numberInputContext?.maxNumber);
-          else changeValue(steppedValue);
-        } else {
-          if (numberInputContext?.minNumber > 0) changeValue(numberInputContext?.minNumber);
-          else if (numberInputContext?.maxNumber <= 0) changeValue(numberInputContext?.maxNumber);
-          else changeValue(numberInputContext.stepNumber);
+          } else if (numberInputContext?.minNumber != null && numberValue < numberInputContext?.minNumber) {
+            changeValue(numberInputContext?.minNumber);
+          } else if (numberValue === numberInputContext?.maxNumber) {
+            changeValue(numberInputContext?.maxNumber);
+          } else {
+            changeValue(steppedValue);
+          }
+        } else if (numberInputContext?.minNumber != null && numberInputContext?.minNumber > 0) {
+          changeValue(numberInputContext?.minNumber);
+        } else if (numberInputContext?.maxNumber != null && numberInputContext?.maxNumber <= 0) {
+          changeValue(numberInputContext?.maxNumber);
+        } else if (numberInputContext?.stepNumber != null) {
+          changeValue(numberInputContext.stepNumber);
         }
       }
     };
 
     const handleInputContainerOnClick = () => {
-      document.activeElement !== actionRef.current && inputRef.current.focus();
+      if (document.activeElement !== actionRef.current) {
+        inputRef?.current?.focus();
+      }
     };
-    const handleInputContainerOnMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
+    const handleInputContainerOnMouseDown = (event: MouseEvent<HTMLDivElement>) => {
       // Avoid input to lose the focus when the container is pressed
-      document.activeElement === inputRef.current && event.preventDefault();
+      if (document.activeElement === inputRef.current) {
+        event.preventDefault();
+      }
     };
 
-    const handleInputOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleInputOnChange = (event: ChangeEvent<HTMLInputElement>) => {
       openSuggestions();
       changeValue(event.target.value);
     };
-    const handleInputOnBlur = (event: React.FocusEvent<HTMLInputElement>) => {
+    const handleInputOnBlur = (event: FocusEvent<HTMLInputElement>) => {
       closeSuggestions();
 
-      if (isRequired(event.target.value, optional))
-        onBlur?.({ value: event.target.value, error: translatedLabels.formFields.requiredValueErrorMessage });
-      else if (isLengthIncorrect(event.target.value, minLength, maxLength))
+      if (isRequired(event.target.value, optional)) {
+        onBlur?.({ value: event.target.value, error: translatedLabels?.formFields?.requiredValueErrorMessage });
+      } else if (isLengthIncorrect(event.target.value, minLength, maxLength)) {
         onBlur?.({
           value: event.target.value,
-          error: translatedLabels.formFields.lengthErrorMessage(minLength, maxLength),
+          error: translatedLabels?.formFields?.lengthErrorMessage?.(minLength, maxLength),
         });
-      else if (patternMismatch(pattern, event.target.value))
-        onBlur?.({ value: event.target.value, error: translatedLabels.formFields.formatRequestedErrorMessage });
-      else if (
+      } else if (patternMismatch(pattern, event.target.value)) {
+        onBlur?.({ value: event.target.value, error: translatedLabels?.formFields?.formatRequestedErrorMessage });
+      } else if (
         numberInputContext?.typeNumber === "number" &&
         isNumberIncorrect(Number(event.target.value), numberInputContext?.minNumber, numberInputContext?.maxNumber)
-      )
+      ) {
         onBlur?.({ value: event.target.value, error: getNumberErrorMessage(Number(event.target.value)) });
-      else onBlur?.({ value: event.target.value });
+      } else {
+        onBlur?.({ value: event.target.value });
+      }
     };
-    const handleInputOnKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    const handleInputOnKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
       switch (event.key) {
         case "Down":
         case "ArrowDown":
           event.preventDefault();
-          if (numberInputContext?.typeNumber === "number") decrementNumber();
-          else {
+          if (numberInputContext?.typeNumber === "number") {
+            decrementNumber();
+          } else {
             openSuggestions();
             if (!isAutosuggestError && !isSearching && filteredSuggestions.length > 0) {
-              changeVisualFocusIndex((visualFocusedSuggIndex) => {
-                if (visualFocusedSuggIndex < filteredSuggestions.length - 1) return visualFocusedSuggIndex + 1;
-                else if (visualFocusedSuggIndex === filteredSuggestions.length - 1) return 0;
-              });
+              changeVisualFocusIndex((visualFocusedSuggIndex: number) =>
+                visualFocusedSuggIndex < filteredSuggestions.length - 1
+                  ? visualFocusedSuggIndex + 1
+                  : visualFocusedSuggIndex === filteredSuggestions.length - 1
+                    ? 0
+                    : -1
+              );
             }
           }
           break;
         case "Up":
         case "ArrowUp":
           event.preventDefault();
-          if (numberInputContext?.typeNumber === "number") incrementNumber();
-          else {
+          if (numberInputContext?.typeNumber === "number") {
+            incrementNumber();
+          } else {
             openSuggestions();
             if (!isAutosuggestError && !isSearching && filteredSuggestions.length > 0) {
-              changeVisualFocusIndex((visualFocusedSuggIndex) => {
-                if (visualFocusedSuggIndex === 0 || visualFocusedSuggIndex === -1)
-                  return filteredSuggestions.length > 0 ? filteredSuggestions.length - 1 : suggestions.length - 1;
-                else return visualFocusedSuggIndex - 1;
-              });
+              changeVisualFocusIndex((visualFocusedSuggIndex) =>
+                visualFocusedSuggIndex === 0 || visualFocusedSuggIndex === -1
+                  ? filteredSuggestions.length > 0
+                    ? filteredSuggestions.length - 1
+                    : (suggestions?.length ?? 0) - 1
+                  : visualFocusedSuggIndex - 1
+              );
             }
           }
           break;
         case "Esc":
         case "Escape":
           event.preventDefault();
-          isOpen && event.stopPropagation();
+          if (isOpen) {
+            event.stopPropagation();
+          }
           if (hasSuggestions(suggestions)) {
             changeValue("");
-            isOpen && closeSuggestions();
+            if (isOpen) {
+              closeSuggestions();
+            }
           }
           break;
         case "Enter":
           if (hasSuggestions(suggestions) && !isSearching) {
             const validFocusedSuggestion =
               filteredSuggestions.length > 0 && visualFocusIndex >= 0 && visualFocusIndex < filteredSuggestions.length;
-            validFocusedSuggestion && changeValue(filteredSuggestions[visualFocusIndex]);
-            isOpen && closeSuggestions();
+            if (validFocusedSuggestion && filteredSuggestions[visualFocusIndex] != null) {
+              changeValue(filteredSuggestions[visualFocusIndex]);
+            }
+            if (isOpen) {
+              closeSuggestions();
+            }
           }
+          break;
+        default:
           break;
       }
     };
-    const handleNumberInputWheel = (event: React.WheelEvent<HTMLInputElement>) => {
-      if (document.activeElement === inputRef.current)
-        event.deltaY < 0 ? incrementNumber(inputRef.current.value) : decrementNumber(inputRef.current.value);
+    const handleNumberInputWheel = (event: WheelEvent<HTMLInputElement>) => {
+      if (document.activeElement === inputRef.current) {
+        if (event.deltaY < 0) {
+          incrementNumber(inputRef?.current?.value);
+        } else {
+          decrementNumber(inputRef?.current?.value);
+        }
+      }
     };
 
     const handleClearActionOnClick = () => {
       changeValue("");
-      inputRef.current.focus();
-      suggestions && closeSuggestions();
+      inputRef?.current?.focus();
+      if (suggestions) {
+        closeSuggestions();
+      }
     };
 
     const handleDecrementActionOnClick = () => {
       decrementNumber();
-      inputRef.current.focus();
+      inputRef?.current?.focus();
     };
     const handleIncrementActionOnClick = () => {
       incrementNumber();
-      inputRef.current.focus();
+      inputRef?.current?.focus();
     };
 
-    const setNumberProps = (type: string, min: number, max: number, step: number) => {
-      min && inputRef?.current?.setAttribute("min", min);
-      max && inputRef?.current?.setAttribute("max", max);
-      inputRef?.current?.setAttribute("step", step);
-      inputRef?.current?.setAttribute("type", type);
+    const setNumberProps = (
+      type: string | undefined,
+      min: number | undefined,
+      max: number | undefined,
+      step: number | undefined
+    ) => {
+      if (min != null) {
+        inputRef?.current?.setAttribute("min", min.toString());
+      }
+      if (max != null) {
+        inputRef?.current?.setAttribute("max", max.toString());
+      }
+      if (step != null) {
+        inputRef?.current?.setAttribute("step", step.toString());
+      }
+      if (type != null) {
+        inputRef?.current?.setAttribute("type", type);
+      }
     };
 
     useEffect(() => {
@@ -306,7 +435,7 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
             changeFilteredSuggestions(promiseResponse);
           })
           .catch((err) => {
-            if (!err.isCanceled) {
+            if (err.message !== "Is canceled") {
               changeIsSearching(false);
               changeIsAutosuggestError(true);
             }
@@ -315,78 +444,36 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
         return () => {
           cancelablePromise.cancel();
         };
-      } else if (suggestions?.length > 0) {
+      }
+      if (suggestions && suggestions?.length > 0) {
         changeFilteredSuggestions(
           suggestions.filter((suggestion) => suggestion.toUpperCase().startsWith((value ?? innerValue).toUpperCase()))
         );
         changeVisualFocusIndex(-1);
       }
-
-      numberInputContext != null &&
+      if (numberInputContext != null) {
         setNumberProps(
           numberInputContext.typeNumber,
           numberInputContext.minNumber,
           numberInputContext.maxNumber,
           numberInputContext.stepNumber
         );
+      }
+      return undefined;
     }, [value, innerValue, suggestions, numberInputContext]);
 
     return (
-      <ThemeProvider theme={colorsTheme.textInput}>
+      <ThemeProvider theme={colorsTheme?.textInput}>
         <TextInputContainer margin={margin} size={size} ref={ref}>
           {label && (
-            <Label htmlFor={inputId} disabled={disabled} hasHelperText={helperText ? true : false}>
-              {label} {optional && <OptionalLabel>{translatedLabels.formFields.optionalLabel}</OptionalLabel>}
+            <Label htmlFor={inputId} disabled={disabled} hasHelperText={!!helperText}>
+              {label} {optional && <OptionalLabel>{translatedLabels?.formFields?.optionalLabel}</OptionalLabel>}
             </Label>
           )}
           {helperText && <HelperText disabled={disabled}>{helperText}</HelperText>}
-          <AutosuggestWrapper
-            condition={hasSuggestions(suggestions)}
-            wrapper={(children) => (
-              <Popover.Root open={isOpen && (filteredSuggestions.length > 0 || isSearching || isAutosuggestError)}>
-                <Popover.Trigger
-                  asChild
-                  type={undefined}
-                  aria-controls={undefined}
-                  aria-haspopup={undefined}
-                  aria-expanded={undefined}
-                >
-                  {children}
-                </Popover.Trigger>
-                <Popover.Portal>
-                  <Popover.Content
-                    sideOffset={5}
-                    style={{ zIndex: "2147483647" }}
-                    onOpenAutoFocus={(event) => {
-                      // Avoid select to lose focus when the list is opened
-                      event.preventDefault();
-                    }}
-                    onCloseAutoFocus={(event) => {
-                      // Avoid select to lose focus when the list is closed
-                      event.preventDefault();
-                    }}
-                  >
-                    <Suggestions
-                      id={autosuggestId}
-                      value={value ?? innerValue}
-                      suggestions={filteredSuggestions}
-                      visualFocusIndex={visualFocusIndex}
-                      highlightedSuggestions={typeof suggestions !== "function"}
-                      searchHasErrors={isAutosuggestError}
-                      isSearching={isSearching}
-                      suggestionOnClick={(suggestion) => {
-                        changeValue(suggestion);
-                        closeSuggestions();
-                      }}
-                      styles={{ width }}
-                    />
-                  </Popover.Content>
-                </Popover.Portal>
-              </Popover.Root>
-            )}
-          >
+          <AutosuggestWrapper condition={hasSuggestions(suggestions)} wrapper={autosuggestWrapperFunction}>
             <InputContainer
-              error={error ? true : false}
+              error={!!error}
               disabled={disabled}
               readOnly={readOnly}
               onClick={handleInputContainerOnClick}
@@ -394,7 +481,7 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
               ref={inputContainerRef}
             >
               {prefix && <Prefix disabled={disabled}>{prefix}</Prefix>}
-              <DxcFlex gap={"0.25rem"} alignItems="center" grow={1}>
+              <DxcFlex gap="0.25rem" alignItems="center" grow={1}>
                 <Input
                   id={inputId}
                   name={name}
@@ -427,7 +514,7 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
                       ? `suggestion-${visualFocusIndex}`
                       : undefined
                   }
-                  aria-invalid={error ? true : false}
+                  aria-invalid={!!error}
                   aria-errormessage={error ? errorId : undefined}
                   aria-required={!disabled && !optional}
                 />
@@ -441,7 +528,7 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
                     onClick={handleClearActionOnClick}
                     icon="close"
                     tabIndex={tabIndex}
-                    title={translatedLabels.textInput.clearFieldActionTitle}
+                    title={translatedLabels?.textInput?.clearFieldActionTitle ?? ""}
                   />
                 )}
                 {numberInputContext?.typeNumber === "number" && (
@@ -451,7 +538,7 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
                       icon="remove"
                       tabIndex={tabIndex}
                       ref={actionRef}
-                      title={translatedLabels.numberInput.decrementValueTitle}
+                      title={translatedLabels?.numberInput?.decrementValueTitle ?? ""}
                       disabled={disabled}
                     />
                     <DxcActionIcon
@@ -459,7 +546,7 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
                       icon="add"
                       tabIndex={tabIndex}
                       ref={actionRef}
-                      title={translatedLabels.numberInput.incrementValueTitle}
+                      title={translatedLabels?.numberInput?.incrementValueTitle ?? ""}
                       disabled={disabled}
                     />
                   </>
@@ -470,7 +557,7 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
                     icon={action.icon}
                     tabIndex={tabIndex}
                     ref={actionRef}
-                    title={action.title}
+                    title={action.title ?? ""}
                     disabled={disabled}
                   />
                 )}
@@ -489,12 +576,15 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
   }
 );
 
-const TextInputContainer = styled.div<{ margin: TextInputPropsType["margin"]; size: TextInputPropsType["size"] }>`
+const TextInputContainer = styled.div<{
+  margin: TextInputPropsType["margin"];
+  size: TextInputPropsType["size"];
+}>`
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   width: ${(props) => calculateWidth(props.margin, props.size)};
-  ${(props) => props.size !== "fillParent" && "min-width:" + calculateWidth(props.margin, props.size)};
+  ${(props) => props.size !== "fillParent" && `min-width:${calculateWidth(props.margin, props.size)}`};
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
@@ -542,17 +632,17 @@ const InputContainer = styled.div<{
   align-items: center;
   height: calc(2.5rem - 2px);
   padding: 0 0.5rem;
-  ${(props) => {
-    if (props.disabled) return `background-color: ${props.theme.disabledContainerFillColor};`;
-  }}
+
+  ${(props) => props.disabled && `background-color: ${props.theme.disabledContainerFillColor};`}
   box-shadow: 0 0 0 2px transparent;
   border-radius: 4px;
   border: 1px solid
-    ${(props) => {
-      if (props.disabled) return props.theme.disabledBorderColor;
-      else if (props.readOnly) return props.theme.readOnlyBorderColor;
-      else return props.theme.enabledBorderColor;
-    }};
+    ${(props) =>
+      props.disabled
+        ? props.theme.disabledBorderColor
+        : props.readOnly
+          ? props.theme.readOnlyBorderColor
+          : props.theme.enabledBorderColor};
   ${(props) =>
     props.error &&
     !props.disabled &&

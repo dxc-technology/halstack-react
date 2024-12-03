@@ -11,10 +11,13 @@ const ImageConfig = ({ propertyName, propertyValue, onChangeCustomTheme }: Theme
     input.click();
   };
   const upload = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const files = event.target.files as FileList;
-    const url = URL.createObjectURL(files[0]);
-    onChangeCustomTheme(propertyName, url);
-    setLogoImage(url);
+    const files = event.target.files;
+    if (files && files[0]) {
+      const url = URL.createObjectURL(files[0]);
+      onChangeCustomTheme(propertyName, url);
+      setLogoImage(url);
+      return () => URL.revokeObjectURL(url);
+    }
   };
 
   useEffect(() => {

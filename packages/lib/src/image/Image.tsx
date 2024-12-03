@@ -1,4 +1,5 @@
 import styled, { ThemeProvider } from "styled-components";
+import { ReactNode } from "react";
 import useTheme from "../useTheme";
 import BaseTypography from "../utils/BaseTypography";
 import ImagePropsType, { CaptionWrapperProps } from "./types";
@@ -23,27 +24,26 @@ const DxcImage = ({
 }: ImagePropsType) => {
   const colorsTheme = useTheme();
 
-  return (
-    <ThemeProvider theme={colorsTheme.image}>
-      <CaptionWrapper
-        condition={caption != undefined}
-        wrapper={(children: React.ReactNode) => (
-          <Figure>
-            {children}
-            <BaseTypography
-              as="figcaption"
-              color={colorsTheme.image.captionFontColor}
-              fontFamily={colorsTheme.image.captionFontFamily}
-              fontSize={colorsTheme.image.captionFontSize}
-              fontStyle={colorsTheme.image.captionFontStyle}
-              fontWeight={colorsTheme.image.captionFontWeight}
-              lineHeight={colorsTheme.image.captionLineHeight}
-            >
-              {caption}
-            </BaseTypography>
-          </Figure>
-        )}
+  const wrapperFunction = (children: ReactNode) => (
+    <Figure>
+      {children}
+      <BaseTypography
+        as="figcaption"
+        color={colorsTheme?.image?.captionFontColor}
+        fontFamily={colorsTheme?.image?.captionFontFamily}
+        fontSize={colorsTheme?.image?.captionFontSize}
+        fontStyle={colorsTheme?.image?.captionFontStyle}
+        fontWeight={colorsTheme?.image?.captionFontWeight}
+        lineHeight={colorsTheme?.image?.captionLineHeight}
       >
+        {caption}
+      </BaseTypography>
+    </Figure>
+  );
+
+  return (
+    <ThemeProvider theme={colorsTheme?.image}>
+      <CaptionWrapper condition={caption !== undefined} wrapper={wrapperFunction}>
         <img
           alt={alt}
           loading={lazyLoading ? "lazy" : undefined}

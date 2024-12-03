@@ -278,7 +278,6 @@ const sections = [
       </DxcTable>
     ),
   },
-  ,
   {
     title: "DxcDataGrid.ActionsCell",
     content: (

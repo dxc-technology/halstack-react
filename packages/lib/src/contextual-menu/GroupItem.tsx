@@ -5,18 +5,20 @@ import ItemAction from "./ItemAction";
 import MenuItem from "./MenuItem";
 import { GroupItemProps, ItemWithId } from "./types";
 
-const isGroupSelected = (items: GroupItemProps["items"], selectedItemId: number): boolean =>
-  items.some((item) => {
-    if ("items" in item) return isGroupSelected(item.items, selectedItemId);
-    else if (selectedItemId !== -1) return item.id === selectedItemId;
-    else return (item as ItemWithId).selectedByDefault;
-  });
+const isGroupSelected = (items: GroupItemProps["items"], selectedItemId: number | undefined): boolean =>
+  items.some((item) =>
+    "items" in item
+      ? isGroupSelected(item.items, selectedItemId)
+      : selectedItemId !== -1
+        ? item.id === selectedItemId
+        : (item as ItemWithId).selectedByDefault
+  );
 
 const GroupItem = ({ items, ...props }: GroupItemProps) => {
   const groupMenuId = `group-menu-${useId()}`;
-  const { selectedItemId } = useContext(ContextualMenuContext);
+  const { selectedItemId } = useContext(ContextualMenuContext) ?? {};
   const groupSelected = useMemo(() => isGroupSelected(items, selectedItemId), [items, selectedItemId]);
-  const [isOpen, setIsOpen] = useState(groupSelected && selectedItemId === -1 ? true : false);
+  const [isOpen, setIsOpen] = useState(groupSelected && selectedItemId === -1);
 
   return (
     <>
@@ -26,7 +28,7 @@ const GroupItem = ({ items, ...props }: GroupItemProps) => {
         aria-pressed={groupSelected && !isOpen}
         collapseIcon={isOpen ? <DxcIcon icon="filled_expand_less" /> : <DxcIcon icon="filled_expand_more" />}
         onClick={() => {
-          setIsOpen((isOpen) => !isOpen);
+          setIsOpen((isCurrentlyOpen) => !isCurrentlyOpen);
         }}
         selected={groupSelected && !isOpen}
         {...props}

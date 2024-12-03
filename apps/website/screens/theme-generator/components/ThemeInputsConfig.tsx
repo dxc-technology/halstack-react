@@ -6,7 +6,7 @@ import ThemeInput from "./ThemeInput";
 type ThemeInputsConfigProps = {
   componentInputs: IndexedThemeInput;
   componentInputsTypes: IndexedThemeInput;
-  onChangeCustomTheme: (propertyName: string, propertyValue: string) => void;
+  onChangeCustomTheme: (_propertyName: string, _propertyValue: string) => void;
 };
 
 const ThemeInputsConfig = ({
@@ -22,9 +22,9 @@ const ThemeInputsConfig = ({
           <ThemeInput
             key={`themeInput-${index}`}
             propertyName={propertyName}
-            propertyValue={componentInputs[propertyName]}
+            propertyValue={componentInputs[propertyName]!}
             onChangeCustomTheme={onChangeCustomTheme}
-            tokenType={componentInputsTypes[propertyName]}
+            tokenType={componentInputsTypes[propertyName]!}
           />
         ))}
       </ThemeInputsList>

@@ -2,7 +2,7 @@ import styled from "styled-components";
 import InsetPropsType from "./types";
 import { CoreSpacingTokensType } from "../common/coreTokens";
 
-const getSpacingValue = (spacingName: CoreSpacingTokensType) => (spacingName ? spacingName : "0rem");
+const getSpacingValue = (spacingName?: CoreSpacingTokensType) => spacingName ?? "0rem";
 
 const StyledInset = styled.div<InsetPropsType>`
   ${({ space, horizontal, vertical, top, right, bottom, left }) => `

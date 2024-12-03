@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useId, useState, forwardRef } from "react";
+import { useCallback, useEffect, useId, useState, forwardRef, DragEvent, ChangeEvent } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import DxcButton from "../button/Button";
 import { spaces } from "../common/variables";
@@ -7,19 +7,20 @@ import useTranslatedLabels from "../useTranslatedLabels";
 import FileItem from "./FileItem";
 import FileInputPropsType, { FileData, RefType } from "./types";
 
-const getFilePreview = async (file: File): Promise<string> => {
-  if (file?.type?.includes("video")) return "filled_movie";
-  else if (file?.type?.includes("audio")) return "music_video";
-  else if (file?.type?.includes("image")) {
-    return new Promise<string>((resolve) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = (e) => {
-        resolve(e.target.result as string);
-      };
-    });
-  } else return "draft";
-};
+const getFilePreview = async (file: File): Promise<string> =>
+  file?.type?.includes("video")
+    ? "filled_movie"
+    : file?.type?.includes("audio")
+      ? "music_video"
+      : file?.type?.includes("image")
+        ? new Promise<string>((resolve) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = (e) => {
+              resolve(e?.target?.result as string);
+            };
+          })
+        : "draft";
 
 const isFileIncluded = (file: FileData, fileList: FileData[]) => {
   const fileListInfo = fileList.map((existingFile) => existingFile.file);
@@ -60,16 +61,22 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
     const colorsTheme = useTheme();
     const translatedLabels = useTranslatedLabels();
 
-    const checkFileSize = (file: File) => {
-      if (file.size < minSize) return translatedLabels.fileInput.fileSizeGreaterThanErrorMessage;
-      else if (file.size > maxSize) return translatedLabels.fileInput.fileSizeLessThanErrorMessage;
-    };
+    const checkFileSize = (file: File) =>
+      minSize && file.size < minSize
+        ? translatedLabels?.fileInput?.fileSizeGreaterThanErrorMessage
+        : maxSize && file.size > maxSize
+          ? translatedLabels?.fileInput?.fileSizeLessThanErrorMessage
+          : undefined;
 
     const getFilesToAdd = async (selectedFiles: File[]) => {
       const filesToAdd = await Promise.all(selectedFiles.map((selectedFile) => getFilePreview(selectedFile))).then(
         (previews: string[]) =>
           selectedFiles.map((file, index) => {
-            const fileInfo = { file, error: checkFileSize(file), preview: previews[index] };
+            const fileInfo = {
+              file,
+              error: checkFileSize(file),
+              preview: previews[index],
+            };
             return fileInfo;
           })
       );
@@ -78,53 +85,59 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
 
     const addFile = async (selectedFiles: File[]) => {
       const filesToAdd = await getFilesToAdd(
-        multiple ? selectedFiles : selectedFiles.length === 1 ? selectedFiles : [selectedFiles[0]]
+        multiple ? selectedFiles : selectedFiles.length === 1 ? selectedFiles : [selectedFiles[0] as File]
       );
       const finalFiles = multiple ? [...files, ...filesToAdd] : filesToAdd;
       callbackFile?.(finalFiles);
     };
 
-    const selectFiles = (e) => {
+    const selectFiles = (e: ChangeEvent<HTMLInputElement>) => {
       const selectedFiles = e.target.files;
-      const filesArray = Object.keys(selectedFiles).map((key) => selectedFiles[key]);
-      addFile(filesArray);
-      e.target.value = null;
+      if (selectedFiles) {
+        const filesArray = Array.from(selectedFiles);
+        addFile(filesArray);
+        e.target.value = "";
+      }
     };
 
     const onDelete = useCallback(
-      (fileName) => {
+      (fileName: string) => {
         const filesCopy = [...files];
-        const fileToRemove = filesCopy.find((file) => {
-          return file.file.name === fileName;
-        });
-        const fileIndex = filesCopy.indexOf(fileToRemove);
-        filesCopy.splice(fileIndex, 1);
-        callbackFile?.(filesCopy);
+        const fileToRemove = filesCopy.find((file) => file.file.name === fileName);
+        if (fileToRemove) {
+          const fileIndex = filesCopy.indexOf(fileToRemove);
+          filesCopy.splice(fileIndex, 1);
+          callbackFile?.(filesCopy);
+        }
       },
       [files, callbackFile]
     );
 
     const handleClick = () => {
-      document.getElementById(fileInputId).click();
+      document?.getElementById(fileInputId)?.click();
     };
-    const handleDrag = (e) => {
+    const handleDrag = (e: DragEvent<HTMLDivElement>) => {
       e.preventDefault();
       e.stopPropagation();
     };
-    const handleDragIn = (e) => {
-      if (e.dataTransfer.items?.length > 0) setIsDragging(true);
+    const handleDragIn = (e: DragEvent<HTMLDivElement>) => {
+      if (e?.dataTransfer?.items?.length > 0) {
+        setIsDragging(true);
+      }
     };
-    const handleDragOut = (e) => {
+    const handleDragOut = (e: DragEvent<HTMLDivElement>) => {
       // only if dragged items leave container (outside, not to childs)
-      if (!e.currentTarget.contains(e.relatedTarget)) setIsDragging(false);
+      if (!e.currentTarget?.contains(e.relatedTarget as HTMLDivElement)) {
+        setIsDragging(false);
+      }
     };
-    const handleDrop = (e) => {
+    const handleDrop = (e: DragEvent<HTMLDivElement>) => {
       e.preventDefault();
       e.stopPropagation();
       setIsDragging(false);
       const filesObject = e.dataTransfer.files;
       if (filesObject?.length > 0) {
-        const filesArray = Object.keys(filesObject).map((key) => filesObject[key]);
+        const filesArray = Array.from(filesObject);
         addFile(filesArray);
       }
     };
@@ -136,10 +149,9 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
             value.map(async (file) => {
               if (file.preview) {
                 return file;
-              } else {
-                const preview = await getFilePreview(file.file);
-                return { ...file, preview };
               }
+              const preview = await getFilePreview(file.file);
+              return { ...file, preview };
             })
           )) as FileData[];
           setFiles(valueFiles);
@@ -149,7 +161,7 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
     }, [value]);
 
     return (
-      <ThemeProvider theme={colorsTheme.fileInput}>
+      <ThemeProvider theme={colorsTheme?.fileInput}>
         <FileInputContainer margin={margin} ref={ref}>
           <Label htmlFor={fileInputId} disabled={disabled}>
             {label}
@@ -171,8 +183,8 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
                 label={
                   buttonLabel ??
                   (multiple
-                    ? translatedLabels.fileInput.multipleButtonLabelDefault
-                    : translatedLabels.fileInput.singleButtonLabelDefault)
+                    ? translatedLabels?.fileInput?.multipleButtonLabelDefault
+                    : translatedLabels?.fileInput?.singleButtonLabelDefault)
                 }
                 onClick={handleClick}
                 disabled={disabled}
@@ -187,7 +199,7 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
                       error={file.error}
                       singleFileMode={!multiple && files.length === 1}
                       showPreview={mode === "file" && !multiple ? false : showPreview}
-                      preview={file.preview}
+                      preview={file.preview ?? ""}
                       type={file.file.type}
                       onDelete={onDelete}
                       tabIndex={tabIndex}
@@ -219,7 +231,7 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
               >
                 <DxcButton
                   mode="secondary"
-                  label={buttonLabel ?? translatedLabels.fileInput.dropAreaButtonLabelDefault}
+                  label={buttonLabel ?? translatedLabels?.fileInput?.dropAreaButtonLabelDefault}
                   onClick={handleClick}
                   disabled={disabled}
                   size={{ width: "fitContent" }}
@@ -228,15 +240,15 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
                   <DropzoneLabel disabled={disabled}>
                     {dropAreaLabel ??
                       (multiple
-                        ? translatedLabels.fileInput.multipleDropAreaLabelDefault
-                        : translatedLabels.fileInput.singleDropAreaLabelDefault)}
+                        ? translatedLabels?.fileInput?.multipleDropAreaLabelDefault
+                        : translatedLabels?.fileInput?.singleDropAreaLabelDefault)}
                   </DropzoneLabel>
                 ) : (
                   <FiledropLabel disabled={disabled}>
                     {dropAreaLabel ??
                       (multiple
-                        ? translatedLabels.fileInput.multipleDropAreaLabelDefault
-                        : translatedLabels.fileInput.singleDropAreaLabelDefault)}
+                        ? translatedLabels?.fileInput?.multipleDropAreaLabelDefault
+                        : translatedLabels?.fileInput?.singleDropAreaLabelDefault)}
                   </FiledropLabel>
                 )}
               </DragDropArea>
@@ -248,7 +260,7 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
                       error={file.error}
                       singleFileMode={false}
                       showPreview={showPreview}
-                      preview={file.preview}
+                      preview={file.preview ?? ""}
                       type={file.file.type}
                       onDelete={onDelete}
                       tabIndex={tabIndex}
@@ -259,8 +271,8 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
               )}
             </Container>
           )}
-          {mode === "file" && !multiple && files.length === 1 && files[0].error && (
-            <ErrorMessage>{files[0].error}</ErrorMessage>
+          {mode === "file" && !multiple && files.length === 1 && files[0]?.error && (
+            <ErrorMessage>{files[0]?.error}</ErrorMessage>
           )}
         </FileInputContainer>
       </ThemeProvider>

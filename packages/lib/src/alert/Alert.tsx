@@ -1,5 +1,5 @@
-import { useState, memo, useMemo, useId, useEffect } from "react";
 import styled, { css, ThemeProvider } from "styled-components";
+import { useState, memo, useId, useEffect } from "react";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
 import AlertPropsType from "./types";
@@ -125,7 +125,7 @@ const getIcon = (semantic: AlertPropsType["semantic"]) => {
   }
 };
 
-export default function DxcAlert({
+const DxcAlert = ({
   closable = true,
   message = [],
   mode = "inline",
@@ -133,7 +133,7 @@ export default function DxcAlert({
   secondaryAction,
   semantic = "info",
   title = "",
-}: AlertPropsType) {
+}: AlertPropsType) => {
   const [messages, setMessages] = useState(Array.isArray(message) ? message : [message]);
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -149,11 +149,15 @@ export default function DxcAlert({
   };
   const handleOnClose = () => {
     messages[currentIndex]?.onClose?.();
-    mode !== "modal" && setMessages((prevMessages) => prevMessages.filter((_, index) => index !== currentIndex));
+    if (mode !== "modal") {
+      setMessages((prevMessages) => prevMessages.filter((_, index) => index !== currentIndex));
+    }
   };
 
   useEffect(() => {
-    if (currentIndex === messages.length) handlePrevOnClick();
+    if (currentIndex === messages.length) {
+      handlePrevOnClick();
+    }
   }, [currentIndex, messages]);
 
   return (
@@ -193,7 +197,7 @@ export default function DxcAlert({
               <DxcFlex alignItems="center" gap="0.25rem">
                 <DxcActionIcon
                   icon="chevron_left"
-                  title={translatedLabels.alert.previousMessageActionTitle}
+                  title={translatedLabels?.alert?.previousMessageActionTitle ?? ""}
                   onClick={handlePrevOnClick}
                   disabled={currentIndex === 0}
                 />
@@ -202,7 +206,7 @@ export default function DxcAlert({
                 </NavigationText>
                 <DxcActionIcon
                   icon="chevron_right"
-                  title={translatedLabels.alert.nextMessageActionTitle}
+                  title={translatedLabels?.alert?.nextMessageActionTitle ?? ""}
                   onClick={handleNextOnClick}
                   disabled={currentIndex === messages.length - 1}
                 />
@@ -215,8 +219,8 @@ export default function DxcAlert({
                   icon="close"
                   title={
                     messages.length > 1
-                      ? translatedLabels.alert.closeMessageActionTitle
-                      : translatedLabels.alert.closeAlertActionTitle
+                      ? (translatedLabels?.alert?.closeMessageActionTitle ?? "")
+                      : (translatedLabels?.alert?.closeAlertActionTitle ?? "")
                   }
                   onClick={handleOnClose}
                 />
@@ -243,4 +247,6 @@ export default function DxcAlert({
       </ModalAlertWrapper>
     </ThemeProvider>
   );
-}
+};
+
+export default DxcAlert;

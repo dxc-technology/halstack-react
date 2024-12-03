@@ -1,22 +1,22 @@
 import styled, { ThemeProvider } from "styled-components";
-import DxcActionIcon from "../action-icon/ActionIcon";
-import { getMargin } from "../common/utils";
-import { AdvancedTheme, spaces } from "../common/variables";
+import { spaces, AdvancedTheme } from "../common/variables";
+import getMargin from "../common/utils";
 import DxcDropdown from "../dropdown/Dropdown";
 import DxcFlex from "../flex/Flex";
 import { DeepPartial, HalstackProvider } from "../HalstackContext";
 import useTheme from "../useTheme";
 import dropdownTheme from "./dropdownTheme";
+import DxcActionIcon from "../action-icon/ActionIcon";
 import TablePropsType, { ActionCellsPropsType } from "./types";
 
 const overwriteTheme = (theme: DeepPartial<AdvancedTheme>) => {
   const newTheme = dropdownTheme;
-  newTheme.dropdown.buttonBackgroundColor = theme.table.actionBackgroundColor;
-  newTheme.dropdown.hoverButtonBackgroundColor = theme.table.hoverActionBackgroundColor;
-  newTheme.dropdown.activeButtonBackgroundColor = theme.table.activeActionBackgroundColor;
-  newTheme.dropdown.buttonIconColor = theme.table.actionIconColor;
-  newTheme.dropdown.disabledColor = theme.table.disabledActionIconColor;
-  newTheme.dropdown.disabledButtonBackgroundColor = theme.table.disabledActionBackgroundColor;
+  newTheme.dropdown.buttonBackgroundColor = theme?.table?.actionBackgroundColor ?? "";
+  newTheme.dropdown.hoverButtonBackgroundColor = theme?.table?.hoverActionBackgroundColor ?? "";
+  newTheme.dropdown.activeButtonBackgroundColor = theme?.table?.activeActionBackgroundColor ?? "";
+  newTheme.dropdown.buttonIconColor = theme?.table?.actionIconColor ?? "";
+  newTheme.dropdown.disabledColor = theme?.table?.disabledActionIconColor ?? "";
+  newTheme.dropdown.disabledButtonBackgroundColor = theme?.table?.disabledActionBackgroundColor ?? "";
   return newTheme;
 };
 
@@ -27,7 +27,7 @@ export const DxcActionsCell = ({ actions }: ActionCellsPropsType): JSX.Element =
   const colorsTheme = useTheme();
 
   return (
-    <DxcFlex gap={"0.5rem"} alignItems="center">
+    <DxcFlex gap="0.5rem" alignItems="center">
       {actionIcons.map(
         (action, index) =>
           index < maxNumberOfActions && (
@@ -42,9 +42,9 @@ export const DxcActionsCell = ({ actions }: ActionCellsPropsType): JSX.Element =
           )
       )}
       {actionDropdown && (
-        <HalstackProvider advancedTheme={overwriteTheme(colorsTheme)} key={`provider-dropdown`}>
+        <HalstackProvider advancedTheme={overwriteTheme(colorsTheme)} key="provider-dropdown">
           <DxcDropdown
-            options={actionDropdown.options}
+            options={actionDropdown.options ?? []}
             onSelectOption={actionDropdown.onClick}
             disabled={actionDropdown.disabled}
             icon="more_vert"
@@ -61,7 +61,7 @@ const DxcTable = ({ children, margin, mode = "default" }: TablePropsType): JSX.E
   const colorsTheme = useTheme();
 
   return (
-    <ThemeProvider theme={colorsTheme.table}>
+    <ThemeProvider theme={colorsTheme?.table}>
       <DxcTableContainer margin={margin}>
         <DxcTableContent mode={mode}>{children}</DxcTableContent>
       </DxcTableContainer>
@@ -69,9 +69,8 @@ const DxcTable = ({ children, margin, mode = "default" }: TablePropsType): JSX.E
   );
 };
 
-const calculateWidth = (margin) => {
-  return `calc(100% - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`;
-};
+const calculateWidth = (margin: TablePropsType["margin"]) =>
+  `calc(100% - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`;
 
 const DxcTableContainer = styled.div<{ margin: TablePropsType["margin"] }>`
   width: ${(props) => calculateWidth(props.margin)};
