@@ -18,7 +18,7 @@ const DxcParagraph = ({ children }: { children: React.ReactNode }): JSX.Element 
 
 const ParagraphContainer = styled.p<{ display: string; fontSize: string; fontWeight: string; fontColor: string }>`
   display: ${(props) => props.display};
-  font-family: "Open Sans, sans-serif";
+  font-family: "Open Sans", sans-serif;
   font-size: ${(props) => props.fontSize};
   font-style: "normal";
   font-weight: ${(props) => props.fontWeight};
