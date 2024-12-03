@@ -69,13 +69,22 @@ const sections = [
           </Link>{" "}
           page, you can apply the opinionated theming strategy to customize the components.
         </DxcParagraph>
-        <DxcAlert type="info" size="fillParent">
-          Remember that you can use the{" "}
-          <Link href="/theme-generator/opinionated-theme" passHref legacyBehavior>
-            <DxcLink>opinionated theme generator</DxcLink>
-          </Link>{" "}
-          to help you create themes.
-        </DxcAlert>
+        <DxcAlert
+          title="Opinionated theme"
+          semantic="info"
+          message={{
+            text: (
+              <>
+                Remember that you can use the{" "}
+                <Link href="/theme-generator/opinionated-theme" passHref legacyBehavior>
+                  <DxcLink>opinionated theme generator</DxcLink>
+                </Link>{" "}
+                to help you create themes.
+              </>
+            ),
+          }}
+          closable={false}
+        />
         <DxcParagraph>
           Below is an example of customizing the colours of a <Code>DxcAccordion</Code> and a <Code>DxcTextInput</Code>:
         </DxcParagraph>
@@ -100,13 +109,23 @@ const sections = [
           </Link>{" "}
           page.
         </DxcParagraph>
-        <DxcAlert type="info" size="fillParent">
-          Remember that you can use the{" "}
-          <Link href="/theme-generator/advanced-theme" passHref legacyBehavior>
-            <DxcLink>advanced theme generator</DxcLink>
-          </Link>{" "}
-          to help you create themes.
-        </DxcAlert>
+        <DxcAlert
+          title="Advanced theme"
+          semantic="info"
+          message={{
+            text: (
+              <>
+                Remember that you can use the{" "}
+                <Link href="/theme-generator/advanced-theme" passHref legacyBehavior>
+                  <DxcLink>advanced theme generator</DxcLink>
+                </Link>{" "}
+                to help you create themes.
+              </>
+            ),
+          }}
+          closable={false}
+        />
+
         <Example example={advancedTheme} defaultIsVisible />
         <DxcParagraph>
           In the example above we have customized some of the <Code>DxcAccordion</Code> tokens. As you can see, it is
@@ -123,13 +142,22 @@ const sections = [
         <DxcParagraph>
           Halstack Provider can be used to translate all the labels that cannot be changed by the component properties.
         </DxcParagraph>
-        <DxcAlert type="info" size="fillParent">
-          To find out the list of labels that are translatable we should refer to the documentation in the{" "}
-          <Link href="/principles/localization" passHref legacyBehavior>
-            <DxcLink>Localization</DxcLink>
-          </Link>{" "}
-          section.
-        </DxcAlert>
+        <DxcAlert
+          title="Localization"
+          semantic="info"
+          message={{
+            text: (
+              <>
+                To find out the list of labels that are translatable we should refer to the documentation in the{" "}
+                <Link href="/principles/localization" passHref legacyBehavior>
+                  <DxcLink>Localization</DxcLink>
+                </Link>{" "}
+                section.
+              </>
+            ),
+          }}
+          closable={false}
+        />
         <DxcParagraph>
           Let's imagine that we want to translate the '(Optional)' label of a <Code>DxcTextInput</Code>, as well as the
           error messages of our <Code>DxcFileInput</Code> component. To do so, we need to create an object with the

@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import ContextualMenuPageLayout from "../../../screens/components/contextual-menu/ContextualMenuPageLayout";
-import ContextualMenuUsagePage from "../../../screens/components/contextual-menu/usage/ContextualMenuUsagePage";
+import ContextualMenuPageLayout from "screens/components/contextual-menu/ContextualMenuPageLayout";
+import ContextualMenuUsagePage from "screens/components/contextual-menu/usage/ContextualMenuUsagePage";
 
 const Usage = () => {
   return (

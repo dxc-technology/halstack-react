@@ -12,7 +12,7 @@ import SidenavPropsType, {
   SidenavLinkPropsType,
   SidenavSectionPropsType,
   SidenavTitlePropsType,
-} from "./types.js";
+} from "./types";
 
 const DxcSidenav = ({ title, children }: SidenavPropsType): JSX.Element => {
   const colorsTheme = useTheme();

@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import QuickNavPageLayout from "../../../screens/components/quick-nav/QuickNavPageLayout";
-import QuickNavSpecsPage from "../../../screens/components/quick-nav/specs/QuickNavSpecsPage";
+import QuickNavPageLayout from "screens/components/quick-nav/QuickNavPageLayout";
+import QuickNavSpecsPage from "screens/components/quick-nav/specs/QuickNavSpecsPage";
 
 const Specifications = () => {
   return (

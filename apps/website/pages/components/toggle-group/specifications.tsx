@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import ToggleGroupPageLayout from "../../../screens/components/toggle-group/ToggleGroupPageLayout";
-import ToggleGroupSpecsPage from "../../../screens/components/toggle-group/specs/ToggleGroupSpecsPage";
+import ToggleGroupPageLayout from "screens/components/toggle-group/ToggleGroupPageLayout";
+import ToggleGroupSpecsPage from "screens/components/toggle-group/specs/ToggleGroupSpecsPage";
 
 const Specifications = () => {
   return (

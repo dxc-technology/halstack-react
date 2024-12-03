@@ -1,6 +1,6 @@
 [
   { "label": "Accordion", "path": "/components/accordion", "status": "stable" },
-  { "label": "Alert", "path": "/components/alert", "status": "stable" },
+  { "label": "Alert", "path": "/components/alert", "status": "new" },
   {
     "label": "Application Layout",
     "path": "/components/application-layout",

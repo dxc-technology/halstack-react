@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import AlertPageLayout from "../../../screens/components/alert/AlertPageLayout";
-import AlertUsagePage from "../../../screens/components/alert/usage/AlertUsagePage";
+import AlertPageLayout from "screens/components/alert/AlertPageLayout";
+import AlertUsagePage from "screens/components/alert/usage/AlertUsagePage";
 
 const Usage = () => {
   return (

@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import FileInputPageLayout from "../../../screens/components/file-input/FileInputPageLayout";
-import FileInputUsagePage from "../../../screens/components/file-input/usage/FileInputUsagePage";
+import FileInputPageLayout from "screens/components/file-input/FileInputPageLayout";
+import FileInputUsagePage from "screens/components/file-input/usage/FileInputUsagePage";
 
 const Usage = () => {
   return (

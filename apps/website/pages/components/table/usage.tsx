@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import TablePageLayout from "../../../screens/components/table/TablePageLayout";
-import TableUsagePage from "../../../screens/components/table/usage/TableUsagePage";
+import TablePageLayout from "screens/components/table/TablePageLayout";
+import TableUsagePage from "screens/components/table/usage/TableUsagePage";
 
 const Usage = () => {
   return (

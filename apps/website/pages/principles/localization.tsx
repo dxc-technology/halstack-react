@@ -1,5 +1,5 @@
 import Head from "next/head";
-import LocalizationPage from "../../screens/principles/localization/LocalizationPage";
+import LocalizationPage from "screens/principles/localization/LocalizationPage";
 
 const Localization = () => {
   return (

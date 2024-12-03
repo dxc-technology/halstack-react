@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import FlexPageLayout from "../../../screens/components/flex/FlexPageLayout";
-import FlexUsagePage from "../../../screens/components/flex/usage/FlexUsagePage";
+import FlexPageLayout from "screens/components/flex/FlexPageLayout";
+import FlexUsagePage from "screens/components/flex/usage/FlexUsagePage";
 
 const Usage = () => {
   return (

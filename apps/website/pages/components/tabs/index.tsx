@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import TabsCodePage from "../../../screens/components/tabs/code/TabsCodePage";
-import TabsPageLayout from "../../../screens/components/tabs/TabsPageLayout";
+import TabsCodePage from "screens/components/tabs/code/TabsCodePage";
+import TabsPageLayout from "screens/components/tabs/TabsPageLayout";
 
 const Index = () => {
   return (

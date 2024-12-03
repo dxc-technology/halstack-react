@@ -16,7 +16,9 @@ const AlertPageHeading = ({ children }: { children: React.ReactNode }) => {
         <DxcFlex direction="column" gap="2rem">
           <ComponentHeading name="Alert" />
           <DxcParagraph>
-            Alert messages are meant to provide contextual feedback about important changes in the interface.
+            Alert messages are meant to provide contextual feedback about important changes in the interface. They are
+            used to convey essential information to the user, ensuring that critical updates or warnings are immediately
+            noticeable.
           </DxcParagraph>
           <TabsPageHeading tabs={tabs}></TabsPageHeading>
         </DxcFlex>

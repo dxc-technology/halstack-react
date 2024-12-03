@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import FileInputSpecsPage from "../../../screens/components/file-input/specs/FileInputSpecsPage";
-import FileInputPageLayout from "../../../screens/components/file-input/FileInputPageLayout";
+import FileInputSpecsPage from "screens/components/file-input/specs/FileInputSpecsPage";
+import FileInputPageLayout from "screens/components/file-input/FileInputPageLayout";
 
 const Specifications = () => {
   return (

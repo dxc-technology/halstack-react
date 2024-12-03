@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import TextareaSpecsPage from "../../../screens/components/textarea/specs/TextareaSpecsPage";
-import TextareaPageLayout from "../../../screens/components/textarea/TextareaPageLayout";
+import TextareaSpecsPage from "screens/components/textarea/specs/TextareaSpecsPage";
+import TextareaPageLayout from "screens/components/textarea/TextareaPageLayout";
 
 const Specifications = () => {
   return (

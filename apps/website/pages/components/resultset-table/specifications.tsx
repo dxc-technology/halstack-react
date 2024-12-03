@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import ResultsetTableSpecsPage from "../../../screens/components/resultset-table/specs/ResultsetTableSpecsPage";
-import ResultsetTablePageLayout from "../../../screens/components/resultset-table/ResultsetTablePageLayout";
+import ResultsetTableSpecsPage from "screens/components/resultset-table/specs/ResultsetTableSpecsPage";
+import ResultsetTablePageLayout from "screens/components/resultset-table/ResultsetTablePageLayout";
 
 const Specifications = () => {
   return (

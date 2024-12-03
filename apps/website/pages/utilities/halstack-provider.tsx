@@ -1,5 +1,5 @@
 import Head from "next/head";
-import HalstackProviderPage from "../../screens/utilities/halstack-provider/HalstackProviderPage";
+import HalstackProviderPage from "screens/utilities/halstack-provider/HalstackProviderPage";
 
 const Index = () => {
   return (

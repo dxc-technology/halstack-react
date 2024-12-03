@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import SelectPageLayout from "../../../screens/components/select/SelectPageLayout";
-import SelectSpecsPage from "../../../screens/components/select/specs/SelectSpecsPage";
+import SelectPageLayout from "screens/components/select/SelectPageLayout";
+import SelectSpecsPage from "screens/components/select/specs/SelectSpecsPage";
 
 const Specifications = () => {
   return (

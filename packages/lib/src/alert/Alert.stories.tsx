@@ -1,197 +1,340 @@
 import DxcAlert from "./Alert";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
-import { HalstackProvider } from "../HalstackContext";
+import DxcLink from "../link/Link";
 
 export default {
   title: "Alert",
   component: DxcAlert,
 };
 
-const opinionatedTheme = {
-  alert: {
-    baseColor: "#e6f4ff",
-    accentColor: "#0067b3",
-    overlayColor: "#000000b3",
-  },
+const messages = [
+  { text: "Message 1", onClose: () => {} },
+  { text: "Message 2", onClose: () => {} },
+  { text: "Message 3", onClose: () => {} },
+  { text: "Message 4", onClose: () => {} },
+];
+
+const nonClosableMessages = [
+  { text: "Message 1" },
+  { text: "Message 2" },
+  { text: "Message 3" },
+  { text: "Message 4" },
+];
+
+const message = {
+  text: (
+    <>
+      Message Message <DxcLink>Message</DxcLink> Message Message Message Message Message Message Message Message
+      MessageMessage Message Message Message Message Message Message Message Message Message MessageMessage Message
+      Message Message Message Message Message Message Message Message MessageMessage Message Message Message Message
+      Message Message Message Message Message MessageMessage Message Message Message Message Message Message Message
+      Message Message MessageMessage Message Message Message Message Message Message Message Message Message
+      MessageMessage Message Message Message Message Message Message Message Message Message MessageMessage Message
+      Message Message Message Message Message Message Message Message MessageMessage Message Message Message Message
+      Message Message Message Message Message MessageMessage Message Message Message Message Message Message Message
+      Message Message MessageMessage Message Message Message Message Message Message Message Message Message
+      MessageMessage Message Message Message Message Message Message Message Message Message MessageMessage Message
+      Message Message Message Message Message Message Message Message MessageMessage Message Message Message Message
+      Message Message Message Message Message MessageMessage Message Message Message Message Message Message Message
+      Message Message MessageMessage Message Message Message Message Message Message Message Message Message
+      MessageMessage Message Message Message Message Message Message Message Message Message MessageMessage Message
+      Message Message Message Message Message Message Message Message Message Message Message Message Message Message
+      Message Message Message Message Message Message Message
+    </>
+  ),
+  onClose: () => {},
 };
 
 export const Chromatic = () => (
   <>
+    <Title title="Banner" theme="light" level={2} />
     <ExampleContainer>
-      <Title title="Info" theme="light" level={4} />
-      <DxcAlert inlineText="Info type alert with inline text." />
+      <Title title="Basic" theme="light" level={4} />
+      <DxcAlert title="Info" mode="banner" />
     </ExampleContainer>
     <ExampleContainer>
-      <Title title="Confirm" theme="light" level={4} />
-      <DxcAlert type="confirm" inlineText="Confirm type alert with inline text." />
+      <Title title="Info with actions" theme="light" level={4} />
+      <DxcAlert
+        title="Info"
+        mode="banner"
+        primaryAction={{ label: "Primary action", onClick: () => {} }}
+        secondaryAction={{ label: "Secondary action", onClick: () => {} }}
+      />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Info with actions and message" theme="light" level={4} />
+      <DxcAlert
+        title="Info"
+        mode="banner"
+        message={message}
+        primaryAction={{ label: "Primary action", onClick: () => {} }}
+        secondaryAction={{ label: "Secondary action", onClick: () => {} }}
+      />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Info with actions and list of messages" theme="light" level={4} />
+      <DxcAlert
+        title="Info"
+        mode="banner"
+        message={messages}
+        primaryAction={{ label: "Primary action", onClick: () => {} }}
+        secondaryAction={{ label: "Secondary action", onClick: () => {} }}
+      />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Info with actions, list of messages and non-closable" theme="light" level={4} />
+      <DxcAlert
+        title="Info"
+        mode="banner"
+        message={nonClosableMessages}
+        primaryAction={{ label: "Primary action", onClick: () => {} }}
+        secondaryAction={{ label: "Secondary action", onClick: () => {} }}
+        closable={false}
+      />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Success" theme="light" level={4} />
+      <DxcAlert mode="banner" semantic="success" title="Success" message={message} />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Success with actions" theme="light" level={4} />
+      <DxcAlert
+        semantic="success"
+        title="Success"
+        mode="banner"
+        message={message}
+        primaryAction={{ label: "Primary action", onClick: () => {} }}
+        secondaryAction={{ label: "Secondary action", onClick: () => {} }}
+      />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Success with actions and list of messages" theme="light" level={4} />
+      <DxcAlert
+        semantic="success"
+        title="Success"
+        mode="banner"
+        message={messages}
+        primaryAction={{ label: "Primary action", onClick: () => {} }}
+        secondaryAction={{ label: "Secondary action", onClick: () => {} }}
+      />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Warning" theme="light" level={4} />
-      <DxcAlert type="warning" inlineText="Warning type alert with inline text." />
+      <DxcAlert semantic="warning" title="Warning" mode="banner" message={message} />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Warning with actions" theme="light" level={4} />
+      <DxcAlert
+        semantic="warning"
+        title="Warning"
+        mode="banner"
+        message={message}
+        primaryAction={{ label: "Primary action", onClick: () => {} }}
+        secondaryAction={{ label: "Secondary action", onClick: () => {} }}
+      />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Warning with actions and list of messages" theme="light" level={4} />
+      <DxcAlert
+        semantic="warning"
+        title="Warning"
+        mode="banner"
+        message={messages}
+        primaryAction={{ label: "Primary action", onClick: () => {} }}
+        secondaryAction={{ label: "Secondary action", onClick: () => {} }}
+      />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Error" theme="light" level={4} />
-      <DxcAlert type="error" inlineText="Error type alert with inline text." />
+      <DxcAlert semantic="error" title="Error" mode="banner" message={message} />
     </ExampleContainer>
     <ExampleContainer>
-      <Title title="With close button" theme="light" level={4} />
-      <DxcAlert inlineText="Info type alert with inline text and close button." onClose={() => {}} />
-    </ExampleContainer>
-    <ExampleContainer pseudoState="pseudo-hover">
-      <Title title="With hovered close button" theme="light" level={4} />
-      <DxcAlert inlineText="Info type alert with inline text and close button." onClose={() => {}} />
-    </ExampleContainer>
-    <ExampleContainer pseudoState="pseudo-focus">
-      <Title title="With focused close button" theme="light" level={4} />
-      <DxcAlert inlineText="Info type alert with inline text and close button." onClose={() => {}} />
-    </ExampleContainer>
-    <ExampleContainer pseudoState="pseudo-active">
-      <Title title="With actived close button" theme="light" level={4} />
-      <DxcAlert inlineText="Info type alert with inline text and close button." onClose={() => {}} />
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="With children" theme="light" level={4} />
-      <DxcAlert>
-        <div>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo
-          lobortis eget.
-        </div>
-      </DxcAlert>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="With inline text and children" theme="light" level={4} />
-      <DxcAlert inlineText="Info type alert with inline text.">
-        <div>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo
-          lobortis eget.
-        </div>
-      </DxcAlert>
-    </ExampleContainer>
-    <Title title="Margins" theme="light" level={2} />
-    <ExampleContainer>
-      <Title title="Xxsmall" theme="light" level={4} />
-      <DxcAlert margin="xxsmall" inlineText="Info type alert with inline text and xxsmall margin." />
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Xsmall" theme="light" level={4} />
-      <DxcAlert margin="xsmall" inlineText="Info type alert with inline text and xsmall margin." />
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Small" theme="light" level={4} />
-      <DxcAlert margin="small" inlineText="Info type alert with inline text and small margin." />
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Medium" theme="light" level={4} />
-      <DxcAlert margin="medium" inlineText="Info type alert with inline text and medium margin." />
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Large" theme="light" level={4} />
-      <DxcAlert margin="large" inlineText="Info type alert with inline text and large margin." />
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Xlarge" theme="light" level={4} />
-      <DxcAlert margin="xlarge" inlineText="Info type alert with inline text and xlarge margin." />
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Xxlarge" theme="light" level={4} />
-      <DxcAlert margin="xxlarge" inlineText="Info type alert with inline text and xxlarge margin." />
-    </ExampleContainer>
-    <Title title="Sizes" theme="light" level={2} />
-    <ExampleContainer>
-      <Title title="FitContent" theme="light" level={4} />
+      <Title title="Error with actions" theme="light" level={4} />
       <DxcAlert
-        size="fitContent"
-        inlineText="Info type alert with inline text, children, close button and fitContent size."
-        onClose={() => {}}
-      >
-        <div>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo
-          lobortis eget.
-        </div>
-      </DxcAlert>
+        semantic="error"
+        title="Error"
+        mode="banner"
+        message={message}
+        primaryAction={{ label: "Primary action", onClick: () => {} }}
+        secondaryAction={{ label: "Secondary action", onClick: () => {} }}
+      />
     </ExampleContainer>
     <ExampleContainer>
-      <Title title="Small" theme="light" level={4} />
+      <Title title="Error with actions and list of messages" theme="light" level={4} />
       <DxcAlert
-        size="small"
-        inlineText="Info type alert with inline text, children, close button and small size."
-        onClose={() => {}}
-      >
-        <div>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo
-          lobortis eget.
-        </div>
-      </DxcAlert>
+        semantic="error"
+        title="Error"
+        mode="banner"
+        message={messages}
+        primaryAction={{ label: "Primary action", onClick: () => {} }}
+        secondaryAction={{ label: "Secondary action", onClick: () => {} }}
+      />
+    </ExampleContainer>
+    <Title title="Inline" theme="light" level={2} />
+    <ExampleContainer>
+      <Title title="Basic" theme="light" level={4} />
+      <DxcAlert title="Info" />
     </ExampleContainer>
     <ExampleContainer>
-      <Title title="Medium" theme="light" level={4} />
+      <Title title="Info with actions" theme="light" level={4} />
       <DxcAlert
-        size="medium"
-        inlineText="Info type alert with inline text, children, close button and medium size."
-        onClose={() => {}}
-      >
-        <div>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo
-          lobortis eget.
-        </div>
-      </DxcAlert>
+        title="Info"
+        primaryAction={{ label: "Primary action", onClick: () => {} }}
+        secondaryAction={{ label: "Secondary action", onClick: () => {} }}
+      />
     </ExampleContainer>
     <ExampleContainer>
-      <Title title="Large" theme="light" level={4} />
+      <Title title="Info with actions and message" theme="light" level={4} />
       <DxcAlert
-        size="large"
-        inlineText="Info type alert with inline text, children, close button and large size."
-        onClose={() => {}}
-      >
-        <div>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo
-          lobortis eget.
-        </div>
-      </DxcAlert>
+        title="Info"
+        message={message}
+        primaryAction={{ label: "Primary action", onClick: () => {} }}
+        secondaryAction={{ label: "Secondary action", onClick: () => {} }}
+      />
     </ExampleContainer>
     <ExampleContainer>
-      <Title title="FillParent" theme="light" level={4} />
+      <Title title="Info with actions and list of messages" theme="light" level={4} />
       <DxcAlert
-        size="fillParent"
-        inlineText="Info type alert with inline text, children, close button and fillParent size."
-        onClose={() => {}}
-      >
-        <div>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo
-          lobortis eget.
-        </div>
-      </DxcAlert>
+        title="Info"
+        message={messages}
+        primaryAction={{ label: "Primary action", onClick: () => {} }}
+        secondaryAction={{ label: "Secondary action", onClick: () => {} }}
+      />
     </ExampleContainer>
-    <Title title="Opinionated theme" theme="light" level={2} />
     <ExampleContainer>
-      <HalstackProvider theme={opinionatedTheme}>
-        <DxcAlert inlineText="Info type alert with inline text." />
-      </HalstackProvider>
+      <Title title="Info with actions, list of messages and non-closable" theme="light" level={4} />
+      <DxcAlert
+        title="Info"
+        message={nonClosableMessages}
+        primaryAction={{ label: "Primary action", onClick: () => {} }}
+        secondaryAction={{ label: "Secondary action", onClick: () => {} }}
+        closable={false}
+      />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Success" theme="light" level={4} />
+      <DxcAlert title="Success" semantic="success" message={message} />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Success with actions" theme="light" level={4} />
+      <DxcAlert
+        title="Success"
+        semantic="success"
+        message={message}
+        primaryAction={{ label: "Primary action", onClick: () => {} }}
+        secondaryAction={{ label: "Secondary action", onClick: () => {} }}
+      />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Success with actions and list of messages" theme="light" level={4} />
+      <DxcAlert
+        title="Success"
+        semantic="success"
+        message={messages}
+        primaryAction={{ label: "Primary action", onClick: () => {} }}
+        secondaryAction={{ label: "Secondary action", onClick: () => {} }}
+      />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Warning" theme="light" level={4} />
+      <DxcAlert title="Warning" mode="banner" semantic="warning" message={message} />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Warning with actions" theme="light" level={4} />
+      <DxcAlert
+        title="Warning"
+        semantic="warning"
+        message={message}
+        primaryAction={{ label: "Primary action", onClick: () => {} }}
+        secondaryAction={{ label: "Secondary action", onClick: () => {} }}
+      />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Warning with actions and list of messages" theme="light" level={4} />
+      <DxcAlert
+        title="Warning"
+        semantic="warning"
+        message={messages}
+        primaryAction={{ label: "Primary", onClick: () => {} }}
+        secondaryAction={{ label: "Secondary", onClick: () => {} }}
+      />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Error" theme="light" level={4} />
+      <DxcAlert title="Error" semantic="error" message={message} />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Error with actions" theme="light" level={4} />
+      <DxcAlert
+        title="Error"
+        semantic="error"
+        message={message}
+        primaryAction={{ label: "Primary action", onClick: () => {} }}
+        secondaryAction={{ label: "Secondary action", onClick: () => {} }}
+      />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Error with actions and list of messages" theme="light" level={4} />
+      <DxcAlert
+        title="Error"
+        semantic="error"
+        message={messages}
+        primaryAction={{ label: "Primary action", onClick: () => {} }}
+        secondaryAction={{ label: "Secondary action", onClick: () => {} }}
+      />
     </ExampleContainer>
   </>
 );
 
-export const ModalAlert = () => (
+export const InformationModal = () => (
   <ExampleContainer>
-    <DxcAlert inlineText="Modal alert." mode="modal" onClose={() => {}}>
-      <div>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo
-        lobortis eget.
-      </div>
-    </DxcAlert>
+    <DxcAlert
+      title="Info"
+      mode="modal"
+      message={message}
+      primaryAction={{ label: "Primary action", onClick: () => {} }}
+      secondaryAction={{ label: "Secondary action", onClick: () => {} }}
+    />
   </ExampleContainer>
 );
 
-export const ModalAlertOpinionated = () => (
+export const SuccessModal = () => (
   <ExampleContainer>
-    <HalstackProvider theme={opinionatedTheme}>
-      <DxcAlert inlineText="Modal alert." mode="modal" onClose={() => {}}>
-        <div>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo
-          lobortis eget.
-        </div>
-      </DxcAlert>
-    </HalstackProvider>
+    <DxcAlert
+      title="Success"
+      semantic="success"
+      mode="modal"
+      message={message}
+      primaryAction={{ label: "Primary action", onClick: () => {} }}
+      secondaryAction={{ label: "Secondary action", onClick: () => {} }}
+      closable={false}
+    />
+  </ExampleContainer>
+);
+
+export const WarningModal = () => (
+  <ExampleContainer>
+    <DxcAlert
+      title="Warning"
+      semantic="warning"
+      mode="modal"
+      message={message}
+      primaryAction={{ label: "Primary action", onClick: () => {} }}
+      secondaryAction={{ label: "Secondary action", onClick: () => {} }}
+    />
+  </ExampleContainer>
+);
+
+export const ErrorModal = () => (
+  <ExampleContainer>
+    <DxcAlert
+      title="Error"
+      semantic="error"
+      mode="modal"
+      message={message}
+      primaryAction={{ label: "Primary action", onClick: () => {} }}
+      secondaryAction={{ label: "Secondary action", onClick: () => {} }}
+    />
   </ExampleContainer>
 );

@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import DividerPageLayout from "../../../screens/components/divider/DividerPageLayout";
-import DividerUsagePage from "../../../screens/components/divider/usage/DividerUsagePage";
+import DividerPageLayout from "screens/components/divider/DividerPageLayout";
+import DividerUsagePage from "screens/components/divider/usage/DividerUsagePage";
 
 const Usage = () => {
   return (

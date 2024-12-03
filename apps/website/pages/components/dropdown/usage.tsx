@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import DropdownPageLayout from "../../../screens/components/dropdown/DropdownPageLayout";
-import DropdownUsagePage from "../../../screens/components/dropdown/usage/DropdownUsagePage";
+import DropdownPageLayout from "screens/components/dropdown/DropdownPageLayout";
+import DropdownUsagePage from "screens/components/dropdown/usage/DropdownUsagePage";
 
 const Usage = () => {
   return (

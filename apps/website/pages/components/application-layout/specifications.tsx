@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import ApplicationLayoutPageLayout from "../../../screens/components/application-layout/ApplicationLayoutPageLayout";
-import ApplicationLayoutSpecsPage from "../../../screens/components/application-layout/specs/ApplicationLayoutSpecsPage";
+import ApplicationLayoutPageLayout from "screens/components/application-layout/ApplicationLayoutPageLayout";
+import ApplicationLayoutSpecsPage from "screens/components/application-layout/specs/ApplicationLayoutSpecsPage";
 
 const Specifications = () => {
   return (

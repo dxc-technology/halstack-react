@@ -23,7 +23,12 @@ const ComponentPreview = ({ customTheme, componentId }: ComponentPreviewProps) =
       <ErrorBoundary
         fallbackRender={() => (
           <DxcFlex alignItems="center" justifyContent="center">
-            <DxcAlert type="error" mode="inline" inlineText="Unable to render the theme." margin="xxlarge" />
+            <DxcAlert
+              title="Error"
+              semantic="error"
+              message={{ text: "Unable to render the theme." }}
+              closable={false}
+            />
           </DxcFlex>
         )}
         resetKeys={[customTheme]}

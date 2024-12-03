@@ -65,12 +65,6 @@ const parseTheme = (theme: DeepPartial<OpinionatedTheme>): AdvancedTheme => {
   accordionTokens.hoverBackgroundColor =
     addLightness(57, theme?.accordion?.accentColor) ?? accordionTokens.hoverBackgroundColor;
 
-  const alertTokens = componentTokensCopy.alert;
-  alertTokens.infoBackgroundColor = theme?.alert?.baseColor ?? alertTokens.infoBackgroundColor;
-  alertTokens.infoIconColor = theme?.alert?.accentColor ?? alertTokens.infoIconColor;
-  alertTokens.infoBorderColor = theme?.alert?.accentColor ?? alertTokens.infoBorderColor;
-  alertTokens.overlayColor = theme?.alert?.overlayColor ?? alertTokens.overlayColor;
-
   const buttonTokens = componentTokensCopy.button;
   buttonTokens.primaryDefaultFontColor = theme?.button?.primaryFontColor ?? buttonTokens.primaryDefaultFontColor;
   buttonTokens.primaryDefaultBackgroundColor = theme?.button?.baseColor ?? buttonTokens.primaryDefaultBackgroundColor;

@@ -1,5 +1,5 @@
 import Head from "next/head";
-import IconographyPage from "../../screens/principles/iconography/IconographyPage";
+import IconographyPage from "screens/principles/iconography/IconographyPage";
 
 const Iconography = () => {
   return (

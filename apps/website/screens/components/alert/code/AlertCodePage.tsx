@@ -3,10 +3,24 @@ import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import basicUsage from "./examples/basicUsage";
-import modal from "./examples/modal";
+import semantic from "./examples/semantic";
+import severalMessages from "./examples/severalMessages";
 import Example from "@/common/example/Example";
-import TableCode from "@/common/TableCode";
+import TableCode, { ExtendedTableCode } from "@/common/TableCode";
 import Code from "@/common/Code";
+import StatusBadge from "@/common/StatusBadge";
+
+const actionTypeString = `{
+  icon?: (React.ReactNode 
+    & React.SVGProps<SVGSVGElement>); 
+  label: string;
+  onClick: () => void;
+}`;
+
+const messageTypeString = `{
+  onClose?: () => void;
+  text: React.ReactNode;
+}`;
 
 const sections = [
   {
@@ -23,31 +37,60 @@ const sections = [
         </thead>
         <tbody>
           <tr>
-            <td>type</td>
+            <td>closable</td>
             <td>
-              <TableCode>'info' | 'confirm' | 'warning' | 'error'</TableCode>
+              <TableCode>boolean</TableCode>
             </td>
-            <td>Uses one of the available alert types.</td>
             <td>
-              <TableCode>'info'</TableCode>
+              If true, the alert will have a close button that will remove the message from the alert, only in banner
+              and inline modes. The rest of the functionality will depend on the <Code>onClose</Code> event of each
+              message (e.g. closing the modal alert).
             </td>
+            <td>
+              <TableCode>false</TableCode>
+            </td>
+          </tr>
+          <tr>
+            <td>message</td>
+            <td>
+              <td>
+                <TableCode>{"Message | Message[]"}</TableCode>
+                <p>
+                  being <Code>Message</Code> an object with the following properties:
+                </p>
+                <ExtendedTableCode>{messageTypeString}</ExtendedTableCode>
+              </td>
+            </td>
+            <td>
+              List of messages to be displayed. Each message has a close action that will, apart from remove from the
+              alert the current message, call the <Code>onClose</Code> if it is defined. If the message is an array, the
+              alert will show a navigation bar to move between the messages. <br />
+              The <Code>modal</Code> mode only allows one message per alert. In this case, the message must be an object
+              and the presence of the <Code>onClose</Code> attribute is mandatory, since the management of the closing
+              of the alert relies completely on the user.
+            </td>
+            <td>-</td>
           </tr>
           <tr>
             <td>mode</td>
             <td>
-              <TableCode>'inline' | 'modal'</TableCode>
+              <TableCode>'inline' | 'modal' | 'banner'</TableCode>
             </td>
             <td>
-              Uses one of the available alert modes:
+              The mode of the alert. The possible values are:
               <ul>
                 <li>
-                  <b>inline:</b> Renders as a regular component, following the natural order of the elements in the
-                  document tree.
+                  <b>inline:</b> The alert must be displayed in the same place where it is declared. The user can
+                  navigate between the messages if the message is an array.
                 </li>
                 <li>
                   <b>modal:</b> The alert will be displayed in the middle of the screen with an overlay layer behind. In
-                  this mode, the user has the responsibility of hiding the alert with the <Code>onClose</Code> event,
-                  otherwise the overlaid modal will remain visible.
+                  this mode, the user has the responsibility of hiding the alert with the <Code>onClose</Code> event of
+                  the message, otherwise the overlaid modal will remain visible.
+                </li>
+                <li>
+                  <b>banner:</b> The alert must be displayed at the top of the screen. The user can navigate between the
+                  messages if the message is an array.
                 </li>
               </ul>
             </td>
@@ -56,65 +99,43 @@ const sections = [
             </td>
           </tr>
           <tr>
-            <td>inlineText</td>
+            <td>primaryAction</td>
+            <td>
+              <ExtendedTableCode>{actionTypeString}</ExtendedTableCode>
+            </td>
+            <td>Primary action of the alert.</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>secondaryAction</td>
+            <td>
+              <ExtendedTableCode>{actionTypeString}</ExtendedTableCode>
+            </td>
+            <td>Secondary action of the alert.</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>semantic</td>
+            <td>
+              <TableCode>'error' | 'info' | 'success' | 'warning'</TableCode>
+            </td>
+            <td>Specifies the semantic meaning of the alert.</td>
+            <td>
+              <TableCode>'info'</TableCode>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                <StatusBadge status="required" />
+                title
+              </DxcFlex>
+            </td>
             <td>
               <TableCode>string</TableCode>
             </td>
-            <td>Message of the alert.</td>
+            <td>Title of the alert.</td>
             <td>-</td>
-          </tr>
-          <tr>
-            <td>onClose</td>
-            <td>
-              <TableCode>{"() => void"}</TableCode>
-            </td>
-            <td>
-              If defined, a close button will be displayed and this function will be executed when the action is
-              clicked. When <Code>mode="modal"</Code> this function will also be executed when the background overlay is
-              clicked. The user has the responsibility of hiding the modal, otherwise it will remain visible.
-            </td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td>children</td>
-            <td>
-              <TableCode>React.ReactNode</TableCode>
-            </td>
-            <td>The details section of the alert. Can be used to render custom content in this area.</td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td>margin</td>
-            <td>
-              <TableCode>'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge' | Margin</TableCode>
-            </td>
-            <td>
-              Size of the margin to be applied to the component. You can pass an object with 'top', 'bottom', 'left' and
-              'right' properties in order to specify different margin sizes.
-            </td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td>size</td>
-            <td>
-              <TableCode>'small' | 'medium' | 'large' | 'fillParent' | 'fitContent'</TableCode>
-            </td>
-            <td>Size of the component.</td>
-            <td>
-              <TableCode>'fitContent'</TableCode>
-            </td>
-          </tr>
-          <tr>
-            <td>tabIndex</td>
-            <td>
-              <TableCode>number</TableCode>
-            </td>
-            <td>
-              Value of the <Code>tabindex</Code> attribute applied to the close button.
-            </td>
-            <td>
-              <TableCode>0</TableCode>
-            </td>
           </tr>
         </tbody>
       </DxcTable>
@@ -128,8 +149,12 @@ const sections = [
         content: <Example example={basicUsage} defaultIsVisible />,
       },
       {
-        title: "Modal",
-        content: <Example example={modal} defaultIsVisible />,
+        title: "Semantics",
+        content: <Example example={semantic} defaultIsVisible />,
+      },
+      {
+        title: "Several messages",
+        content: <Example example={severalMessages} defaultIsVisible />,
       },
     ],
   },

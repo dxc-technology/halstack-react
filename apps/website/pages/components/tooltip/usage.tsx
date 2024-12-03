@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import TooltipPageLayout from "../../../screens/components/tooltip/TooltipPageLayout";
-import TooltipUsagePage from "../../../screens/components/tooltip/usage/TooltipUsagePage";
+import TooltipPageLayout from "screens/components/tooltip/TooltipPageLayout";
+import TooltipUsagePage from "screens/components/tooltip/usage/TooltipUsagePage";
 
 const Usage = () => {
   return (

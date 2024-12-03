@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import LinkPageLayout from "../../../screens/components/link/LinkPageLayout";
-import LinkSpecsPage from "../../../screens/components/link/specs/LinkSpecsPage";
+import LinkPageLayout from "screens/components/link/LinkPageLayout";
+import LinkSpecsPage from "screens/components/link/specs/LinkSpecsPage";
 
 const Specifications = () => {
   return (

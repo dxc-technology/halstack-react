@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import BreadcrumbsPageLayout from "../../../screens/components/breadcrumbs/BreadcrumbsPageLayout";
-import BreadcrumbsSpecsPage from "../../../screens/components/breadcrumbs/specs/BreadcrumbsSpecsPage";
+import BreadcrumbsPageLayout from "screens/components/breadcrumbs/BreadcrumbsPageLayout";
+import BreadcrumbsSpecsPage from "screens/components/breadcrumbs/specs/BreadcrumbsSpecsPage";
 
 const Specifications = () => {
   return (

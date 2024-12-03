@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import TooltipPageLayout from "../../../screens/components/tooltip/TooltipPageLayout";
-import TooltipCodePage from "../../../screens/components/tooltip/code/TooltipCodePage";
+import TooltipPageLayout from "screens/components/tooltip/TooltipPageLayout";
+import TooltipCodePage from "screens/components/tooltip/code/TooltipCodePage";
 
 const Index = () => {
   return (

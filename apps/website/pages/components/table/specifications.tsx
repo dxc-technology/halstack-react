@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import TableSpecsPage from "../../../screens/components/table/specs/TableSpecsPage";
-import TablePageLayout from "../../../screens/components/table/TablePageLayout";
+import TableSpecsPage from "screens/components/table/specs/TableSpecsPage";
+import TablePageLayout from "screens/components/table/TablePageLayout";
 
 const Specifications = () => {
   return (

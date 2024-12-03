@@ -1,5 +1,5 @@
 import { fireEvent, render } from "@testing-library/react";
-import { axe } from "../../test/accessibility/axe-helper.js";
+import { axe } from "../../test/accessibility/axe-helper";
 import DxcButton from "../button/Button";
 import DxcTooltip from "./Tooltip";
 

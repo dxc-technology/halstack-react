@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import TextInputCodePage from "../../../screens/components/text-input/code/TextInputCodePage";
-import TextInputPageLayout from "../../../screens/components/text-input/TextInputPageLayout";
+import TextInputCodePage from "screens/components/text-input/code/TextInputCodePage";
+import TextInputPageLayout from "screens/components/text-input/TextInputPageLayout";
 
 const Index = () => {
   return (
