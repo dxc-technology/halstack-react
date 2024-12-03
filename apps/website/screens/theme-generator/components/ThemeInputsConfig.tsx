@@ -22,9 +22,9 @@ const ThemeInputsConfig = ({
           <ThemeInput
             key={`themeInput-${index}`}
             propertyName={propertyName}
-            propertyValue={componentInputs[propertyName]}
+            propertyValue={componentInputs[propertyName]!}
             onChangeCustomTheme={onChangeCustomTheme}
-            tokenType={componentInputsTypes[propertyName]}
+            tokenType={componentInputsTypes[propertyName]!}
           />
         ))}
       </ThemeInputsList>

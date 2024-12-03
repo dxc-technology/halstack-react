@@ -8,8 +8,10 @@ const useWidth = <T extends Element>(target: T | null) => {
       setWidth(target.getBoundingClientRect().width);
 
       const triggerObserver = new ResizeObserver((entries) => {
-        const rect = entries[0].target.getBoundingClientRect();
-        setWidth(rect?.width);
+        const rect = entries[0]?.target.getBoundingClientRect();
+        if (rect) {
+          setWidth(rect?.width);
+        }
       });
       triggerObserver.observe(target);
       return () => {

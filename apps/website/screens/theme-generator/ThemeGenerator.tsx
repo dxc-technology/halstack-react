@@ -124,8 +124,8 @@ const ThemeGenerator = () => {
         <DxcFlex>
           <ComponentPreview customTheme={customTheme} componentId={currentComponent} />
           <ThemeInputsConfig
-            componentInputs={customTheme[currentComponent]}
-            componentInputsTypes={customThemeSchema[currentComponent]}
+            componentInputs={customTheme[currentComponent]!}
+            componentInputsTypes={customThemeSchema[currentComponent]!}
             onChangeCustomTheme={setComponentProperty}
           />
         </DxcFlex>
