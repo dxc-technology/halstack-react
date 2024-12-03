@@ -11,6 +11,7 @@ import DxcInset from "../inset/Inset";
 import DxcParagraph from "../paragraph/Paragraph";
 import DxcTextInput from "../text-input/TextInput";
 import DxcDialog from "./Dialog";
+import DxcTooltip from "../tooltip/Tooltip";
 
 export default {
   title: "Dialog",
@@ -249,14 +250,15 @@ export const DialogWithInputs = () => (
           <DxcHeading level={4} text="Example form" />
           <DxcFlex gap="1rem" direction="column">
             <DxcTextInput size="fillParent" label="Name" />
-            <DxcTextInput size="fillParent" label="Surname" />
+            <DxcTooltip label="Input">
+              <DxcTextInput size="fillParent" label="Surname" />
+            </DxcTooltip>
           </DxcFlex>
           <DxcAlert
             semantic="error"
             title="Error"
             message={{
-              text:
-                "User: arn:aws:xxx::xxxxxxxxxxxx:assumed-role/assure-sandbox-xxxx-xxxxxxxxxxxxxxxxxxxxxxxxxx/sandbox-xxxx-xxxxxxxxxxxxxxxxxx is not authorized to perform: lambda:xxxxxxxxxxxxxx on resource: arn:aws:lambda:us-east-1:xxxxxxxxxxxx:function:sandbox-xxxx-xx-xxxxxxx-xxxxxxx-lambda because no identity-based policy allows the lambda:xxxxxxxxxxxxxx action",
+              text: "User: arn:aws:xxx::xxxxxxxxxxxx:assumed-role/assure-sandbox-xxxx-xxxxxxxxxxxxxxxxxxxxxxxxxx/sandbox-xxxx-xxxxxxxxxxxxxxxxxx is not authorized to perform: lambda:xxxxxxxxxxxxxx on resource: arn:aws:lambda:us-east-1:xxxxxxxxxxxx:function:sandbox-xxxx-xx-xxxxxxx-xxxxxxx-lambda because no identity-based policy allows the lambda:xxxxxxxxxxxxxx action",
             }}
           />
           <DxcFlex justifyContent="flex-end" gap="0.5rem">
@@ -317,7 +319,7 @@ export const DialogWithoutOverlay = () => (
 export const DialogCloseVisibleFalse = () => (
   <ExampleContainer expanded={true}>
     <Title title="Dialog Close Visible" theme="dark" level={4} />
-    <DxcDialog isCloseVisible={false}>
+    <DxcDialog closable={false}>
       <DxcInset space="1.5rem">
         <DxcParagraph>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi egestas luctus porttitor. Donec massa magna,

@@ -69,7 +69,7 @@ const useFocusableElements = (ref: React.MutableRefObject<HTMLDivElement>): HTML
       const observer = new MutationObserver(() => {
         setFocusableElements(getFocusableElements(ref.current));
       });
-      observer.observe(ref.current, { childList: true, subtree: true, attributes: true });
+      observer.observe(ref.current, { childList: true, subtree: true });
       return () => {
         observer.disconnect();
       };
@@ -90,6 +90,7 @@ const useFocusableElements = (ref: React.MutableRefObject<HTMLDivElement>): HTML
 const FocusLock = ({ children }: { children: React.ReactNode }): JSX.Element => {
   const childrenContainerRef = useRef<HTMLDivElement>();
   const focusableElements = useFocusableElements(childrenContainerRef);
+  const initialFocus = useRef(false);
 
   const focusFirst = useCallback(() => {
     if (focusableElements?.length === 0) childrenContainerRef.current?.focus();
@@ -101,13 +102,15 @@ const FocusLock = ({ children }: { children: React.ReactNode }): JSX.Element => 
   };
 
   const focusLock = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    if (event.key === "Tab") focusableElements.length === 0 && event.preventDefault();
+    if (event.key === "Tab" && focusableElements.length === 0) event.preventDefault();
   };
 
   useEffect(() => {
-    if (!childrenContainerRef.current?.contains(document.activeElement) && !radixPortalContains(document.activeElement))
+    if (focusableElements !== undefined && !initialFocus.current) {
+      initialFocus.current = true;
       focusFirst();
-  }, [focusFirst]);
+    }
+  }, [focusableElements, focusFirst]);
 
   return (
     <>

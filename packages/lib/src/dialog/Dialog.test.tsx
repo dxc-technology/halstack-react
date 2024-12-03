@@ -12,6 +12,7 @@ import DxcSwitch from "../switch/Switch";
 import DxcTextInput from "../text-input/TextInput";
 import DxcTextarea from "../textarea/Textarea";
 import DxcDialog from "./Dialog";
+import DxcTooltip from "../tooltip/Tooltip";
 
 (global as any).ResizeObserver = class ResizeObserver {
   observe() {}
@@ -35,13 +36,13 @@ describe("Dialog component tests", () => {
   });
 
   test("Dialog renders without close button", () => {
-    const { queryByRole } = render(<DxcDialog isCloseVisible={false}>dialog-text</DxcDialog>);
+    const { queryByRole } = render(<DxcDialog closable={false}>dialog-text</DxcDialog>);
     expect(queryByRole("button")).toBeFalsy();
   });
 
   test("Dialog renders with aria-modal false when overlay is not used", () => {
     const { getByRole } = render(
-      <DxcDialog isCloseVisible={false} overlay={false}>
+      <DxcDialog closable={false} overlay={false}>
         dialog-text
       </DxcDialog>
     );
@@ -215,13 +216,17 @@ describe("Dialog component: Focus lock tests", () => {
         <DxcCheckbox label="Older age" disabled />
         <DxcSelect label="Country" options={options} disabled />
         <DxcRadioGroup label="Country" options={options} disabled />
-        <DxcTextInput label="Name" disabled />
+        <DxcTooltip label="Text input tooltip label">
+          <DxcTextInput label="Name" disabled />
+        </DxcTooltip>
         <DxcButton label="Accept" tabIndex={-1} />
         <DxcCheckbox label="Older age" tabIndex={-1} />
         <DxcSelect label="Country" options={options} tabIndex={-1} />
         <DxcRadioGroup label="Country" options={options} tabIndex={-1} />
         <DxcTextInput label="Name" tabIndex={-1} />
-        <DxcTextarea label="Description" />
+        <DxcTooltip label="Text input tooltip label">
+          <DxcTextarea label="Description" />
+        </DxcTooltip>
       </DxcDialog>
     );
     const textarea = getAllByRole("textbox")[2];
@@ -264,7 +269,7 @@ describe("Dialog component: Focus lock tests", () => {
     const { getAllByRole } = render(
       <>
         <DxcTextInput label="Name" />
-        <DxcDialog isCloseVisible={false}>
+        <DxcDialog closable={false}>
           <h2>Policy agreement</h2>
           <p>Sample text.</p>
         </DxcDialog>
