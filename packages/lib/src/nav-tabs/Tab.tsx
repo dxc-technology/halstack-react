@@ -4,7 +4,6 @@ import DxcBadge from "../badge/Badge";
 import DxcFlex from "../flex/Flex";
 import DxcIcon from "../icon/Icon";
 import useTheme from "../useTheme";
-import BaseTypography from "../utils/BaseTypography";
 import { NavTabsContext } from "./NavTabsContext";
 import NavTabsPropsType, { TabProps } from "./types";
 
@@ -60,7 +59,7 @@ const DxcTab = forwardRef(
             </TabIconContainer>
           )}
           <DxcFlex alignItems="center" gap="0.5rem">
-            <BaseTypography
+            <LabelContainer
               color={
                 disabled
                   ? colorsTheme.navTabs.disabledFontColor
@@ -72,12 +71,9 @@ const DxcTab = forwardRef(
               fontSize={colorsTheme.navTabs.fontSize}
               fontStyle={colorsTheme.navTabs.fontStyle}
               fontWeight={colorsTheme.navTabs.fontWeight}
-              textAlign="center"
-              letterSpacing="0.025em"
-              lineHeight="1.715em"
             >
               {children}
-            </BaseTypography>
+            </LabelContainer>
             {notificationNumber && !disabled && (
               <DxcBadge
                 mode="notification"
@@ -135,6 +131,28 @@ const Tab = styled.a<{
         outline: 2px solid #33aaff};
       }
   `}
+`;
+
+const LabelContainer = styled.span<{
+  color: string;
+  fontFamily: string;
+  fontSize: string;
+  fontStyle: string;
+  fontWeight: string;
+}>`
+  display: "inline";
+  color: ${(props) => props.color};
+  font-family: ${(props) => props.fontFamily};
+  font-size: ${(props) => props.fontSize};
+  font-style: ${(props) => props.fontStyle};
+  font-weight: ${(props) => props.fontWeight};
+  text-align: "center";
+  letter-spacing: "0.025em";
+  line-height: "1.715em";
+  text-decoration: "none";
+  text-overflow: "unset";
+  white-space: "normal";
+  margin: 0;
 `;
 
 const TabIconContainer = styled.div<{

@@ -3,7 +3,6 @@ import styled from "styled-components";
 import DxcBadge from "../badge/Badge";
 import DxcIcon from "../icon/Icon";
 import useTheme from "../useTheme";
-import BaseTypography from "../utils/BaseTypography";
 import { TabPropsLegacy } from "./types";
 
 const Tab = forwardRef(
@@ -44,7 +43,7 @@ const Tab = forwardRef(
               {typeof tab.icon === "string" ? <DxcIcon icon={tab.icon} /> : tab.icon}
             </TabIconContainer>
           )}
-          <BaseTypography
+          <LabelContainer
             color={
               tab.isDisabled
                 ? colorsTheme.tabs.disabledFontColor
@@ -56,12 +55,9 @@ const Tab = forwardRef(
             fontSize={colorsTheme.tabs.fontSize}
             fontStyle={tab.isDisabled ? colorsTheme.tabs.disabledFontStyle : colorsTheme.tabs.fontStyle}
             fontWeight={active ? colorsTheme.tabs.pressedFontWeight : colorsTheme.tabs.fontWeight}
-            textAlign="center"
-            letterSpacing="0.025em"
-            lineHeight="1.715em"
           >
             {tab.label}
-          </BaseTypography>
+          </LabelContainer>
         </MainLabelContainer>
         {tab.notificationNumber && !tab.isDisabled && (
           <BadgeContainer hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
@@ -168,6 +164,28 @@ const MainLabelContainer = styled.div<{
         ? "36px"
         : "18px"
       : "unset"};
+`;
+
+const LabelContainer = styled.span<{
+  color: string;
+  fontFamily: string;
+  fontSize: string;
+  fontStyle: string;
+  fontWeight: string;
+}>`
+  display: "inline";
+  color: ${(props) => props.color};
+  font-family: ${(props) => props.fontFamily};
+  font-size: ${(props) => props.fontSize};
+  font-style: ${(props) => props.fontStyle};
+  font-weight: ${(props) => props.fontWeight};
+  text-align: "center";
+  letter-spacing: "0.025em";
+  line-height: "1.715em";
+  text-decoration: "none";
+  text-overflow: "unset";
+  white-space: "normal";
+  margin: 0;
 `;
 
 const TabIconContainer = styled.div<{

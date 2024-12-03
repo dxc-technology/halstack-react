@@ -4,7 +4,6 @@ import DxcBadge from "../badge/Badge";
 import DxcIcon from "../icon/Icon";
 import { Tooltip } from "../tooltip/Tooltip";
 import useTheme from "../useTheme";
-import BaseTypography from "../utils/BaseTypography";
 import { TabsContext } from "./TabsContext";
 import { TabProps, TabsContextProps } from "./types";
 
@@ -99,7 +98,7 @@ const DxcTab = forwardRef(
                 {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
               </TabIconContainer>
             )}
-            <BaseTypography
+            <LabelContainer
               color={
                 disabled
                   ? colorsTheme.tabs.disabledFontColor
@@ -111,12 +110,9 @@ const DxcTab = forwardRef(
               fontSize={colorsTheme.tabs.fontSize}
               fontStyle={disabled ? colorsTheme.tabs.disabledFontStyle : colorsTheme.tabs.fontStyle}
               fontWeight={activeLabel === label ? colorsTheme.tabs.pressedFontWeight : colorsTheme.tabs.fontWeight}
-              textAlign="center"
-              letterSpacing="0.025em"
-              lineHeight="1.715em"
             >
               {label}
-            </BaseTypography>
+            </LabelContainer>
           </MainLabelContainer>
           {notificationNumber && !disabled && (
             <BadgeContainer hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
@@ -226,6 +222,28 @@ const MainLabelContainer = styled.div<{
         ? "36px"
         : "18px"
       : "unset"};
+`;
+
+const LabelContainer = styled.span<{
+  color: string;
+  fontFamily: string;
+  fontSize: string;
+  fontStyle: string;
+  fontWeight: string;
+}>`
+  display: "inline";
+  color: ${(props) => props.color};
+  font-family: ${(props) => props.fontFamily};
+  font-size: ${(props) => props.fontSize};
+  font-style: ${(props) => props.fontStyle};
+  font-weight: ${(props) => props.fontWeight};
+  text-align: "center";
+  letter-spacing: "0.025em";
+  line-height: "1.715em";
+  text-decoration: "none";
+  text-overflow: "unset";
+  white-space: "normal";
+  margin: 0;
 `;
 
 const TabIconContainer = styled.div<{
