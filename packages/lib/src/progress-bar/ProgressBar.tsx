@@ -22,7 +22,7 @@ const DxcProgressBar = ({
   }, [value]);
 
   return (
-    <ThemeProvider theme={colorsTheme.progressBar}>
+    <ThemeProvider theme={colorsTheme?.progressBar}>
       <BackgroundProgressBar overlay={overlay}>
         <ProgressBarContainer overlay={overlay} margin={margin}>
           <InfoProgressBar>
@@ -52,7 +52,9 @@ const DxcProgressBar = ({
   );
 };
 
-const BackgroundProgressBar = styled.div<{ overlay: ProgressBarPropsType["overlay"] }>`
+const BackgroundProgressBar = styled.div<{
+  overlay: ProgressBarPropsType["overlay"];
+}>`
   ${({ overlay, theme }) =>
     overlay
       ? `background-color: ${theme.overlayColor};
@@ -102,7 +104,9 @@ const InfoProgressBar = styled.div`
   justify-content: space-between;
 `;
 
-const ProgressBarLabel = styled.div<{ overlay: ProgressBarPropsType["overlay"] }>`
+const ProgressBarLabel = styled.div<{
+  overlay: ProgressBarPropsType["overlay"];
+}>`
   font-family: ${(props) => props.theme.labelFontFamily};
   font-style: ${(props) => props.theme.labelFontStyle};
   font-size: ${(props) => props.theme.labelFontSize};
@@ -140,7 +144,9 @@ const HelperText = styled.span<{ overlay: ProgressBarPropsType["overlay"] }>`
   line-height: 1.5em;
 `;
 
-const LinearProgress = styled.div<{ helperText: ProgressBarPropsType["helperText"] }>`
+const LinearProgress = styled.div<{
+  helperText: ProgressBarPropsType["helperText"];
+}>`
   height: ${(props) => props.theme.thickness};
   background-color: ${(props) => props.theme.totalLineColor};
   border-radius: ${(props) => props.theme.borderRadius};
@@ -155,7 +161,7 @@ const LinearProgressBar = styled.span<{
   container: string;
 }>`
   background-color: ${(props) => props.theme.trackLineColor};
-  transform: ${(props) => `translateX(-${props.variant === "determinate" ? 100 - props.value : 0}%)`};
+  transform: ${(props) => `translateX(-${props.variant === "determinate" ? 100 - (props.value ?? 0) : 0}%)`};
   top: 0;
   left: 0;
   width: 100%;

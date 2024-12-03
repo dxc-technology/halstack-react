@@ -1,11 +1,8 @@
-type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
-type Margin = {
-  top?: Space;
-  bottom?: Space;
-  left?: Space;
-  right?: Space;
-};
-type SVG = React.ReactNode & React.SVGProps<SVGSVGElement>;
+import { CSSProperties, ReactNode, SVGProps } from "react";
+
+import { Space, Margin } from "../common/utils";
+
+type SVG = ReactNode & SVGProps<SVGSVGElement>;
 
 type Action = {
   /**
@@ -164,7 +161,7 @@ type Props = {
 };
 
 /**
- * List of suggestions of an Text Input component.
+ * List of suggestions of a Text Input component.
  */
 export type SuggestionsProps = {
   id: string;
@@ -175,7 +172,7 @@ export type SuggestionsProps = {
   searchHasErrors: boolean;
   isSearching: boolean;
   suggestionOnClick: (suggestion: string) => void;
-  styles: React.CSSProperties;
+  styles: CSSProperties;
 };
 
 /**
@@ -184,7 +181,7 @@ export type SuggestionsProps = {
 export type RefType = HTMLDivElement;
 
 /**
- * Single suggestion of an Text Input component.
+ * Single suggestion of a Text Input component.
  */
 export type SuggestionProps = {
   id: string;
@@ -198,8 +195,8 @@ export type SuggestionProps = {
 
 export type AutosuggestWrapperProps = {
   condition: boolean;
-  wrapper: (children: React.ReactNode) => JSX.Element;
-  children: React.ReactNode;
+  wrapper: (children: ReactNode) => JSX.Element;
+  children: ReactNode;
 };
 
 export default Props;

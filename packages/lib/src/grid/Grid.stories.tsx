@@ -199,7 +199,11 @@ const Container = styled.div<{ height?: string }>`
   ${({ height }) => height && `height: ${height}`};
 `;
 
-const ColoredContainer = styled.div<{ color?: string; width?: string; height?: string }>`
+const ColoredContainer = styled.div<{
+  color?: string;
+  width?: string;
+  height?: string;
+}>`
   box-sizing: border-box;
   display: flex;
   justify-content: center;

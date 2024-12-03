@@ -13,11 +13,12 @@ import DxcTextInput from "../text-input/TextInput";
 import DxcTextarea from "../textarea/Textarea";
 import DxcDialog from "./Dialog";
 
-(global as any).ResizeObserver = class ResizeObserver {
-  observe() {}
-  unobserve() {}
-  disconnect() {}
-};
+(global as any).globalThis = global;
+global.ResizeObserver = jest.fn().mockImplementation(() => ({
+  observe: jest.fn(),
+  unobserve: jest.fn(),
+  disconnect: jest.fn(),
+}));
 
 const options = [
   { label: "Female", value: "female" },
@@ -60,7 +61,12 @@ describe("Dialog component tests", () => {
   test("Calls correct function onCloseClick when 'Escape' key is pressed", () => {
     const onCloseClick = jest.fn();
     const { getByRole } = render(<DxcDialog onCloseClick={onCloseClick}>dialog-text</DxcDialog>);
-    fireEvent.keyDown(getByRole("dialog"), { key: "Escape", code: "Escape", keyCode: 27, charCode: 27 });
+    fireEvent.keyDown(getByRole("dialog"), {
+      key: "Escape",
+      code: "Escape",
+      keyCode: 27,
+      charCode: 27,
+    });
     expect(onCloseClick).toHaveBeenCalled();
   });
 
@@ -73,7 +79,12 @@ describe("Dialog component tests", () => {
     );
     const calendarAction = getByRole("combobox");
     await userEvent.click(calendarAction);
-    fireEvent.keyDown(document.activeElement, { key: "Escape", code: "Escape", keyCode: 27, charCode: 27 });
+    fireEvent.keyDown(document.activeElement!, {
+      key: "Escape",
+      code: "Escape",
+      keyCode: 27,
+      charCode: 27,
+    });
     expect(onCloseClick).not.toHaveBeenCalled();
   });
 });
@@ -99,7 +110,7 @@ describe("Dialog component: Focus lock tests", () => {
     );
     const button = getAllByRole("button")[0];
     expect(document.activeElement).toEqual(button);
-    expect(button.getAttribute("aria-label")).not.toBe("Close dialog");
+    expect(button?.getAttribute("aria-label")).not.toBe("Close dialog");
   });
 
   test("Autofocus with Card component", () => {
@@ -276,8 +287,8 @@ describe("Dialog component: Focus lock tests", () => {
     userEvent.tab();
     userEvent.tab();
     expect(document.activeElement).not.toEqual(inputs[1]);
-    fireEvent.keyDown(dialog, { key: "Tab", shiftKey: true });
-    fireEvent.keyDown(dialog, { key: "Tab", shiftKey: true });
+    fireEvent.keyDown(dialog!, { key: "Tab", shiftKey: true });
+    fireEvent.keyDown(dialog!, { key: "Tab", shiftKey: true });
     expect(document.activeElement).not.toEqual(inputs[0]);
   });
 });

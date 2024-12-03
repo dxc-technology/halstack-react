@@ -19,7 +19,7 @@ const validateInputTheme = (json: string, customThemeSchema: IndexedTheme) => {
     inputComponentNames.forEach((componentName) => {
       const errorMessage =
         (!schemaComponentNames.includes(componentName) && "Invalid component name.") ||
-        (!isArrayIncluded(inputTheme[componentName], customThemeSchema[componentName]) &&
+        (!isArrayIncluded(inputTheme[componentName]!, customThemeSchema[componentName]!) &&
           `Invalid theme input name in the ${componentName} component.`);
 
       if (errorMessage) throw new Error(errorMessage);

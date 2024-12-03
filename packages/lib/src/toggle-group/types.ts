@@ -1,11 +1,8 @@
-type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
-type Margin = {
-  top?: Space;
-  bottom?: Space;
-  left?: Space;
-  right?: Space;
-};
-type SVG = React.ReactNode & React.SVGProps<SVGSVGElement>;
+import { ReactNode, SVGProps } from "react";
+
+import { Space, Margin } from "../common/utils";
+
+type SVG = ReactNode & SVGProps<SVGSVGElement>;
 
 type OptionIcon = {
   /**

@@ -5,13 +5,20 @@ import DxcSelect from "./Select";
 // Mocking DOMRect for Radix Primitive Popover
 (global as any).globalThis = global;
 (global as any).DOMRect = {
-  fromRect: () => ({ top: 0, left: 0, bottom: 0, right: 0, width: 0, height: 0 }),
+  fromRect: () => ({
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
+    width: 0,
+    height: 0,
+  }),
 };
-(global as any).ResizeObserver = class ResizeObserver {
-  observe() {}
-  unobserve() {}
-  disconnect() {}
-};
+global.ResizeObserver = jest.fn().mockImplementation(() => ({
+  observe: jest.fn(),
+  unobserve: jest.fn(),
+  disconnect: jest.fn(),
+}));
 
 const singleOptions = [
   { label: "Option 01", value: "1" },
@@ -223,7 +230,12 @@ describe("Select component tests", () => {
     );
     const select = getByRole("combobox");
     await userEvent.click(select);
-    fireEvent.keyDown(getByRole("combobox"), { key: "Tab", code: "Tab", keyCode: 9, charCode: 9 });
+    fireEvent.keyDown(getByRole("combobox"), {
+      key: "Tab",
+      code: "Tab",
+      keyCode: 9,
+      charCode: 9,
+    });
     expect(onBlur).not.toHaveBeenCalled();
   });
 
@@ -265,7 +277,10 @@ describe("Select component tests", () => {
     fireEvent.focus(select);
     fireEvent.blur(select);
     expect(onBlur).toHaveBeenCalled();
-    expect(onBlur).toHaveBeenCalledWith({ value: "", error: "This field is required. Please, enter a value." });
+    expect(onBlur).toHaveBeenCalledWith({
+      value: "",
+      error: "This field is required. Please, enter a value.",
+    });
     await userEvent.click(select);
     await userEvent.click(getAllByRole("option")[0]);
     expect(onChange).toHaveBeenCalled();
@@ -286,7 +301,10 @@ describe("Select component tests", () => {
     fireEvent.focus(select);
     fireEvent.blur(select);
     expect(onBlur).toHaveBeenCalled();
-    expect(onBlur).toHaveBeenCalledWith({ value: [], error: "This field is required. Please, enter a value." });
+    expect(onBlur).toHaveBeenCalledWith({
+      value: [],
+      error: "This field is required. Please, enter a value.",
+    });
     await userEvent.click(select);
     await userEvent.click(getAllByRole("option")[0]);
     await userEvent.click(getAllByRole("option")[1]);
@@ -299,10 +317,16 @@ describe("Select component tests", () => {
     await userEvent.click(getAllByRole("option")[0]);
     await userEvent.click(getAllByRole("option")[1]);
     expect(onChange).toHaveBeenCalled();
-    expect(onChange).toHaveBeenCalledWith({ value: [], error: "This field is required. Please, enter a value." });
+    expect(onChange).toHaveBeenCalledWith({
+      value: [],
+      error: "This field is required. Please, enter a value.",
+    });
     fireEvent.blur(select);
     expect(onBlur).toHaveBeenCalled();
-    expect(onBlur).toHaveBeenCalledWith({ value: [], error: "This field is required. Please, enter a value." });
+    expect(onBlur).toHaveBeenCalledWith({
+      value: [],
+      error: "This field is required. Please, enter a value.",
+    });
   });
 
   test("Controlled - Optional constraint", () => {
@@ -381,12 +405,27 @@ describe("Select component tests", () => {
     await userEvent.click(getAllByRole("option")[0]);
     expect(onChange).toHaveBeenCalledWith({ value: "" });
     expect(getAllByText("Choose an option").length).toBe(1);
-    fireEvent.keyDown(select, { key: "ArrowDown", code: "ArrowDown", keyCode: 40, charCode: 40 });
+    fireEvent.keyDown(select, {
+      key: "ArrowDown",
+      code: "ArrowDown",
+      keyCode: 40,
+      charCode: 40,
+    });
     expect(select.getAttribute("aria-activedescendant")).toBe("option-0");
-    fireEvent.keyDown(select, { key: "Enter", code: "Enter", keyCode: 13, charCode: 13 });
+    fireEvent.keyDown(select, {
+      key: "Enter",
+      code: "Enter",
+      keyCode: 13,
+      charCode: 13,
+    });
     expect(onChange).toHaveBeenCalledWith({ value: "" });
     expect(getAllByText("Choose an option").length).toBe(1);
-    fireEvent.keyDown(select, { key: "ArrowUp", code: "ArrowUp", keyCode: 38, charCode: 38 });
+    fireEvent.keyDown(select, {
+      key: "ArrowUp",
+      code: "ArrowUp",
+      keyCode: 38,
+      charCode: 38,
+    });
     expect(select.getAttribute("aria-activedescendant")).toBe("option-0");
   });
 
@@ -416,7 +455,12 @@ describe("Select component tests", () => {
   test("Non-Grouped Options: Arrow up key - Opens the listbox and visually focus the last option", () => {
     const { getByRole, queryByRole } = render(<DxcSelect label="test-select-label" options={singleOptions} />);
     const select = getByRole("combobox");
-    fireEvent.keyDown(select, { key: "ArrowUp", code: "ArrowUp", keyCode: 38, charCode: 38 });
+    fireEvent.keyDown(select, {
+      key: "ArrowUp",
+      code: "ArrowUp",
+      keyCode: 38,
+      charCode: 38,
+    });
     expect(queryByRole("listbox")).toBeTruthy();
     expect(select.getAttribute("aria-activedescendant")).toBe("option-19");
   });
@@ -424,8 +468,18 @@ describe("Select component tests", () => {
   test("Non-Grouped Options: Arrow up key - Puts the focus in last option when the first one is visually focused", () => {
     const { getByRole, queryByRole } = render(<DxcSelect label="test-select-label" options={singleOptions} />);
     const select = getByRole("combobox");
-    fireEvent.keyDown(select, { key: "ArrowDown", code: "ArrowDown", keyCode: 40, charCode: 40 });
-    fireEvent.keyDown(select, { key: "ArrowUp", code: "ArrowUp", keyCode: 38, charCode: 38 });
+    fireEvent.keyDown(select, {
+      key: "ArrowDown",
+      code: "ArrowDown",
+      keyCode: 40,
+      charCode: 40,
+    });
+    fireEvent.keyDown(select, {
+      key: "ArrowUp",
+      code: "ArrowUp",
+      keyCode: 38,
+      charCode: 38,
+    });
     expect(queryByRole("listbox")).toBeTruthy();
     expect(select.getAttribute("aria-activedescendant")).toBe("option-19");
   });
@@ -433,7 +487,12 @@ describe("Select component tests", () => {
   test("Non-Grouped Options: Arrow down key - Opens the listbox and visually focus the first option", () => {
     const { getByRole, queryByRole } = render(<DxcSelect label="test-select-label" options={singleOptions} />);
     const select = getByRole("combobox");
-    fireEvent.keyDown(select, { key: "ArrowDown", code: "ArrowDown", keyCode: 40, charCode: 40 });
+    fireEvent.keyDown(select, {
+      key: "ArrowDown",
+      code: "ArrowDown",
+      keyCode: 40,
+      charCode: 40,
+    });
     expect(queryByRole("listbox")).toBeTruthy();
     expect(select.getAttribute("aria-activedescendant")).toBe("option-0");
   });
@@ -441,8 +500,18 @@ describe("Select component tests", () => {
   test("Non-Grouped Options: Arrow down key - Puts the focus in the first option when the last one is visually focused", () => {
     const { getByRole, queryByRole } = render(<DxcSelect label="test-select-label" options={singleOptions} />);
     const select = getByRole("combobox");
-    fireEvent.keyDown(select, { key: "ArrowUp", code: "ArrowUp", keyCode: 38, charCode: 38 });
-    fireEvent.keyDown(select, { key: "ArrowDown", code: "ArrowDown", keyCode: 40, charCode: 40 });
+    fireEvent.keyDown(select, {
+      key: "ArrowUp",
+      code: "ArrowUp",
+      keyCode: 38,
+      charCode: 38,
+    });
+    fireEvent.keyDown(select, {
+      key: "ArrowDown",
+      code: "ArrowDown",
+      keyCode: 40,
+      charCode: 40,
+    });
     expect(queryByRole("listbox")).toBeTruthy();
     expect(select.getAttribute("aria-activedescendant")).toBe("option-0");
   });
@@ -453,11 +522,36 @@ describe("Select component tests", () => {
       <DxcSelect label="test-select-label" options={singleOptions} onChange={onChange} optional />
     );
     const select = getByRole("combobox");
-    fireEvent.keyDown(select, { key: "ArrowUp", code: "ArrowUp", keyCode: 38, charCode: 38 });
-    fireEvent.keyDown(select, { key: "ArrowUp", code: "ArrowUp", keyCode: 38, charCode: 38 });
-    fireEvent.keyDown(select, { key: "ArrowUp", code: "ArrowUp", keyCode: 38, charCode: 38 });
-    fireEvent.keyDown(select, { key: "ArrowDown", code: "ArrowDown", keyCode: 40, charCode: 40 });
-    fireEvent.keyDown(select, { key: "Enter", code: "Enter", keyCode: 13, charCode: 13 });
+    fireEvent.keyDown(select, {
+      key: "ArrowUp",
+      code: "ArrowUp",
+      keyCode: 38,
+      charCode: 38,
+    });
+    fireEvent.keyDown(select, {
+      key: "ArrowUp",
+      code: "ArrowUp",
+      keyCode: 38,
+      charCode: 38,
+    });
+    fireEvent.keyDown(select, {
+      key: "ArrowUp",
+      code: "ArrowUp",
+      keyCode: 38,
+      charCode: 38,
+    });
+    fireEvent.keyDown(select, {
+      key: "ArrowDown",
+      code: "ArrowDown",
+      keyCode: 40,
+      charCode: 40,
+    });
+    fireEvent.keyDown(select, {
+      key: "Enter",
+      code: "Enter",
+      keyCode: 13,
+      charCode: 13,
+    });
     expect(onChange).toHaveBeenCalledWith({ value: "20" });
     expect(queryByRole("listbox")).toBeFalsy();
     expect(getByText("Option 20")).toBeTruthy();
@@ -540,7 +634,12 @@ describe("Select component tests", () => {
     const select = getByRole("combobox");
     const searchInput = container.querySelectorAll("input")[1];
     await userEvent.type(searchInput, "Option 02");
-    fireEvent.keyDown(select, { key: "Esc", code: "Esc", keyCode: 27, charCode: 27 });
+    fireEvent.keyDown(select, {
+      key: "Esc",
+      code: "Esc",
+      keyCode: 27,
+      charCode: 27,
+    });
     expect(searchInput.value).toBe("");
     expect(queryByRole("listbox")).toBeFalsy();
   });
@@ -574,9 +673,24 @@ describe("Select component tests", () => {
     expect(onChange).toHaveBeenCalledWith({ value: ["11"] });
     expect(queryByRole("listbox")).toBeTruthy();
     expect(getAllByText("Option 11").length).toBe(2);
-    fireEvent.keyDown(select, { key: "ArrowUp", code: "ArrowUp", keyCode: 38, charCode: 38 });
-    fireEvent.keyDown(select, { key: "ArrowUp", code: "ArrowUp", keyCode: 38, charCode: 38 });
-    fireEvent.keyDown(select, { key: "Enter", code: "Enter", keyCode: 13, charCode: 13 });
+    fireEvent.keyDown(select, {
+      key: "ArrowUp",
+      code: "ArrowUp",
+      keyCode: 38,
+      charCode: 38,
+    });
+    fireEvent.keyDown(select, {
+      key: "ArrowUp",
+      code: "ArrowUp",
+      keyCode: 38,
+      charCode: 38,
+    });
+    fireEvent.keyDown(select, {
+      key: "Enter",
+      code: "Enter",
+      keyCode: 13,
+      charCode: 13,
+    });
     expect(onChange).toHaveBeenCalledWith({ value: ["11", "19"] });
     expect(queryByRole("listbox")).toBeTruthy();
     expect(getByText("Option 11, Option 19")).toBeTruthy();
@@ -636,16 +750,51 @@ describe("Select component tests", () => {
     await userEvent.click(select);
     await userEvent.click(getAllByRole("option")[4]);
     expect(getByText("Option 05")).toBeTruthy();
-    fireEvent.keyDown(select, { key: "ArrowUp", code: "ArrowUp", keyCode: 38, charCode: 38 });
+    fireEvent.keyDown(select, {
+      key: "ArrowUp",
+      code: "ArrowUp",
+      keyCode: 38,
+      charCode: 38,
+    });
     expect(select.getAttribute("aria-activedescendant")).toBe("option-4");
-    fireEvent.keyDown(select, { key: "ArrowUp", code: "ArrowUp", keyCode: 38, charCode: 38 });
-    fireEvent.keyDown(select, { key: "Enter", code: "Enter", keyCode: 13, charCode: 13 });
+    fireEvent.keyDown(select, {
+      key: "ArrowUp",
+      code: "ArrowUp",
+      keyCode: 38,
+      charCode: 38,
+    });
+    fireEvent.keyDown(select, {
+      key: "Enter",
+      code: "Enter",
+      keyCode: 13,
+      charCode: 13,
+    });
     expect(getByText("Option 04")).toBeTruthy();
-    fireEvent.keyDown(select, { key: "ArrowDown", code: "ArrowDown", keyCode: 40, charCode: 40 });
+    fireEvent.keyDown(select, {
+      key: "ArrowDown",
+      code: "ArrowDown",
+      keyCode: 40,
+      charCode: 40,
+    });
     expect(select.getAttribute("aria-activedescendant")).toBe("option-3");
-    fireEvent.keyDown(select, { key: "ArrowDown", code: "ArrowDown", keyCode: 40, charCode: 40 });
-    fireEvent.keyDown(select, { key: "ArrowDown", code: "ArrowDown", keyCode: 40, charCode: 40 });
-    fireEvent.keyDown(select, { key: "Enter", code: "Enter", keyCode: 13, charCode: 13 });
+    fireEvent.keyDown(select, {
+      key: "ArrowDown",
+      code: "ArrowDown",
+      keyCode: 40,
+      charCode: 40,
+    });
+    fireEvent.keyDown(select, {
+      key: "ArrowDown",
+      code: "ArrowDown",
+      keyCode: 40,
+      charCode: 40,
+    });
+    fireEvent.keyDown(select, {
+      key: "Enter",
+      code: "Enter",
+      keyCode: 13,
+      charCode: 13,
+    });
     expect(getByText("Option 06")).toBeTruthy();
   });
 
@@ -660,16 +809,46 @@ describe("Select component tests", () => {
     expect(getByText("Option 16")).toBeTruthy();
     await userEvent.click(select);
     expect(select.getAttribute("aria-activedescendant")).toBeNull();
-    fireEvent.keyDown(select, { key: "ArrowUp", code: "ArrowUp", keyCode: 38, charCode: 38 });
+    fireEvent.keyDown(select, {
+      key: "ArrowUp",
+      code: "ArrowUp",
+      keyCode: 38,
+      charCode: 38,
+    });
     expect(select.getAttribute("aria-activedescendant")).toBe("option-15");
     await userEvent.click(select);
     expect(queryByRole("listbox")).toBeFalsy();
-    fireEvent.keyDown(select, { key: "ArrowDown", code: "ArrowDown", keyCode: 40, charCode: 40 });
+    fireEvent.keyDown(select, {
+      key: "ArrowDown",
+      code: "ArrowDown",
+      keyCode: 40,
+      charCode: 40,
+    });
     expect(select.getAttribute("aria-activedescendant")).toBe("option-15");
-    fireEvent.keyDown(select, { key: "ArrowDown", code: "ArrowDown", keyCode: 40, charCode: 40 });
-    fireEvent.keyDown(select, { key: "ArrowDown", code: "ArrowDown", keyCode: 40, charCode: 40 });
-    fireEvent.keyDown(select, { key: "ArrowUp", code: "ArrowUp", keyCode: 38, charCode: 38 });
-    fireEvent.keyDown(select, { key: "Enter", code: "Enter", keyCode: 13, charCode: 13 });
+    fireEvent.keyDown(select, {
+      key: "ArrowDown",
+      code: "ArrowDown",
+      keyCode: 40,
+      charCode: 40,
+    });
+    fireEvent.keyDown(select, {
+      key: "ArrowDown",
+      code: "ArrowDown",
+      keyCode: 40,
+      charCode: 40,
+    });
+    fireEvent.keyDown(select, {
+      key: "ArrowUp",
+      code: "ArrowUp",
+      keyCode: 38,
+      charCode: 38,
+    });
+    fireEvent.keyDown(select, {
+      key: "Enter",
+      code: "Enter",
+      keyCode: 13,
+      charCode: 13,
+    });
     expect(getByText("Option 17")).toBeTruthy();
   });
 
@@ -752,12 +931,27 @@ describe("Select component tests", () => {
     await userEvent.click(getAllByRole("option")[0]);
     expect(onChange).toHaveBeenCalledWith({ value: "" });
     expect(getAllByText("Placeholder example").length).toBe(1);
-    fireEvent.keyDown(select, { key: "ArrowDown", code: "ArrowDown", keyCode: 40, charCode: 40 });
+    fireEvent.keyDown(select, {
+      key: "ArrowDown",
+      code: "ArrowDown",
+      keyCode: 40,
+      charCode: 40,
+    });
     expect(select.getAttribute("aria-activedescendant")).toBe("option-0");
-    fireEvent.keyDown(select, { key: "Enter", code: "Enter", keyCode: 13, charCode: 13 });
+    fireEvent.keyDown(select, {
+      key: "Enter",
+      code: "Enter",
+      keyCode: 13,
+      charCode: 13,
+    });
     expect(onChange).toHaveBeenCalledWith({ value: "" });
     expect(getAllByText("Placeholder example").length).toBe(1);
-    fireEvent.keyDown(select, { key: "ArrowUp", code: "ArrowUp", keyCode: 38, charCode: 38 });
+    fireEvent.keyDown(select, {
+      key: "ArrowUp",
+      code: "ArrowUp",
+      keyCode: 38,
+      charCode: 38,
+    });
     expect(select.getAttribute("aria-activedescendant")).toBe("option-0");
   });
 
@@ -785,7 +979,12 @@ describe("Select component tests", () => {
   test("Grouped Options: Arrow up key - Opens the listbox and visually focus the last option", () => {
     const { getByRole, queryByRole } = render(<DxcSelect label="test-select-label" options={groupOptions} />);
     const select = getByRole("combobox");
-    fireEvent.keyDown(select, { key: "ArrowUp", code: "ArrowUp", keyCode: 38, charCode: 38 });
+    fireEvent.keyDown(select, {
+      key: "ArrowUp",
+      code: "ArrowUp",
+      keyCode: 38,
+      charCode: 38,
+    });
     expect(queryByRole("list")).toBeTruthy();
     expect(select.getAttribute("aria-activedescendant")).toBe("option-17");
   });
@@ -793,8 +992,18 @@ describe("Select component tests", () => {
   test("Grouped Options: Arrow up key - Puts the focus in last option when the first one is visually focused", () => {
     const { getByRole, queryByRole } = render(<DxcSelect label="test-select-label" options={groupOptions} />);
     const select = getByRole("combobox");
-    fireEvent.keyDown(select, { key: "ArrowDown", code: "ArrowDown", keyCode: 40, charCode: 40 });
-    fireEvent.keyDown(select, { key: "ArrowUp", code: "ArrowUp", keyCode: 38, charCode: 38 });
+    fireEvent.keyDown(select, {
+      key: "ArrowDown",
+      code: "ArrowDown",
+      keyCode: 40,
+      charCode: 40,
+    });
+    fireEvent.keyDown(select, {
+      key: "ArrowUp",
+      code: "ArrowUp",
+      keyCode: 38,
+      charCode: 38,
+    });
     expect(queryByRole("list")).toBeTruthy();
     expect(select.getAttribute("aria-activedescendant")).toBe("option-17");
   });
@@ -802,7 +1011,12 @@ describe("Select component tests", () => {
   test("Grouped Options: Arrow down key - Opens the listbox and visually focus the first option", () => {
     const { getByRole, queryByRole } = render(<DxcSelect label="test-select-label" options={groupOptions} />);
     const select = getByRole("combobox");
-    fireEvent.keyDown(select, { key: "ArrowDown", code: "ArrowDown", keyCode: 40, charCode: 40 });
+    fireEvent.keyDown(select, {
+      key: "ArrowDown",
+      code: "ArrowDown",
+      keyCode: 40,
+      charCode: 40,
+    });
     expect(queryByRole("list")).toBeTruthy();
     expect(select.getAttribute("aria-activedescendant")).toBe("option-0");
   });
@@ -810,8 +1024,18 @@ describe("Select component tests", () => {
   test("Grouped Options: Arrow down key - Puts the focus in the first option when the last one is visually focused", () => {
     const { getByRole, queryByRole } = render(<DxcSelect label="test-select-label" options={groupOptions} />);
     const select = getByRole("combobox");
-    fireEvent.keyDown(select, { key: "ArrowUp", code: "ArrowUp", keyCode: 38, charCode: 38 });
-    fireEvent.keyDown(select, { key: "ArrowDown", code: "ArrowDown", keyCode: 40, charCode: 40 });
+    fireEvent.keyDown(select, {
+      key: "ArrowUp",
+      code: "ArrowUp",
+      keyCode: 38,
+      charCode: 38,
+    });
+    fireEvent.keyDown(select, {
+      key: "ArrowDown",
+      code: "ArrowDown",
+      keyCode: 40,
+      charCode: 40,
+    });
     expect(queryByRole("list")).toBeTruthy();
     expect(select.getAttribute("aria-activedescendant")).toBe("option-0");
   });
@@ -822,11 +1046,36 @@ describe("Select component tests", () => {
       <DxcSelect label="test-select-label" options={groupOptions} onChange={onChange} optional />
     );
     const select = getByRole("combobox");
-    fireEvent.keyDown(select, { key: "ArrowUp", code: "ArrowUp", keyCode: 38, charCode: 38 });
-    fireEvent.keyDown(select, { key: "ArrowUp", code: "ArrowUp", keyCode: 38, charCode: 38 });
-    fireEvent.keyDown(select, { key: "ArrowUp", code: "ArrowUp", keyCode: 38, charCode: 38 });
-    fireEvent.keyDown(select, { key: "ArrowDown", code: "ArrowDown", keyCode: 40, charCode: 40 });
-    fireEvent.keyDown(select, { key: "Enter", code: "Enter", keyCode: 13, charCode: 13 });
+    fireEvent.keyDown(select, {
+      key: "ArrowUp",
+      code: "ArrowUp",
+      keyCode: 38,
+      charCode: 38,
+    });
+    fireEvent.keyDown(select, {
+      key: "ArrowUp",
+      code: "ArrowUp",
+      keyCode: 38,
+      charCode: 38,
+    });
+    fireEvent.keyDown(select, {
+      key: "ArrowUp",
+      code: "ArrowUp",
+      keyCode: 38,
+      charCode: 38,
+    });
+    fireEvent.keyDown(select, {
+      key: "ArrowDown",
+      code: "ArrowDown",
+      keyCode: 40,
+      charCode: 40,
+    });
+    fireEvent.keyDown(select, {
+      key: "Enter",
+      code: "Enter",
+      keyCode: 13,
+      charCode: 13,
+    });
     expect(onChange).toHaveBeenCalledWith({ value: "ebro" });
     expect(queryByRole("list")).toBeFalsy();
     expect(getByText("Ebro")).toBeTruthy();
@@ -882,10 +1131,27 @@ describe("Select component tests", () => {
     expect(onChange).toHaveBeenCalledWith({ value: ["bilbao"] });
     expect(queryByRole("list")).toBeTruthy();
     expect(getAllByText("Bilbao").length).toBe(2);
-    fireEvent.keyDown(select, { key: "ArrowUp", code: "ArrowUp", keyCode: 38, charCode: 38 });
-    fireEvent.keyDown(select, { key: "ArrowUp", code: "ArrowUp", keyCode: 38, charCode: 38 });
-    fireEvent.keyDown(select, { key: "Enter", code: "Enter", keyCode: 13, charCode: 13 });
-    expect(onChange).toHaveBeenCalledWith({ value: ["bilbao", "guadalquivir"] });
+    fireEvent.keyDown(select, {
+      key: "ArrowUp",
+      code: "ArrowUp",
+      keyCode: 38,
+      charCode: 38,
+    });
+    fireEvent.keyDown(select, {
+      key: "ArrowUp",
+      code: "ArrowUp",
+      keyCode: 38,
+      charCode: 38,
+    });
+    fireEvent.keyDown(select, {
+      key: "Enter",
+      code: "Enter",
+      keyCode: 13,
+      charCode: 13,
+    });
+    expect(onChange).toHaveBeenCalledWith({
+      value: ["bilbao", "guadalquivir"],
+    });
     expect(queryByRole("list")).toBeTruthy();
     expect(getByText("Bilbao, Guadalquivir")).toBeTruthy();
     expect(submitInput.value).toBe("bilbao,guadalquivir");
@@ -902,7 +1168,9 @@ describe("Select component tests", () => {
     await userEvent.click(getAllByRole("option")[8]);
     await userEvent.click(getAllByRole("option")[13]);
     await userEvent.click(getAllByRole("option")[17]);
-    expect(onChange).toHaveBeenCalledWith({ value: ["blanco", "oviedo", "duero", "ebro"] });
+    expect(onChange).toHaveBeenCalledWith({
+      value: ["blanco", "oviedo", "duero", "ebro"],
+    });
     expect(queryByRole("list")).toBeTruthy();
     expect(getByText("Blanco, Oviedo, Duero, Ebro")).toBeTruthy();
     expect(getByText("4", { exact: true })).toBeTruthy();
@@ -944,16 +1212,51 @@ describe("Select component tests", () => {
     await userEvent.click(select);
     await userEvent.click(getAllByRole("option")[2]);
     expect(getByText("Rosa")).toBeTruthy();
-    fireEvent.keyDown(select, { key: "ArrowUp", code: "ArrowUp", keyCode: 38, charCode: 38 });
+    fireEvent.keyDown(select, {
+      key: "ArrowUp",
+      code: "ArrowUp",
+      keyCode: 38,
+      charCode: 38,
+    });
     expect(select.getAttribute("aria-activedescendant")).toBe("option-2");
-    fireEvent.keyDown(select, { key: "ArrowUp", code: "ArrowUp", keyCode: 38, charCode: 38 });
-    fireEvent.keyDown(select, { key: "Enter", code: "Enter", keyCode: 13, charCode: 13 });
+    fireEvent.keyDown(select, {
+      key: "ArrowUp",
+      code: "ArrowUp",
+      keyCode: 38,
+      charCode: 38,
+    });
+    fireEvent.keyDown(select, {
+      key: "Enter",
+      code: "Enter",
+      keyCode: 13,
+      charCode: 13,
+    });
     expect(getByText("Rojo")).toBeTruthy();
-    fireEvent.keyDown(select, { key: "ArrowDown", code: "ArrowDown", keyCode: 40, charCode: 40 });
+    fireEvent.keyDown(select, {
+      key: "ArrowDown",
+      code: "ArrowDown",
+      keyCode: 40,
+      charCode: 40,
+    });
     expect(select.getAttribute("aria-activedescendant")).toBe("option-1");
-    fireEvent.keyDown(select, { key: "ArrowDown", code: "ArrowDown", keyCode: 40, charCode: 40 });
-    fireEvent.keyDown(select, { key: "ArrowDown", code: "ArrowDown", keyCode: 40, charCode: 40 });
-    fireEvent.keyDown(select, { key: "Enter", code: "Enter", keyCode: 13, charCode: 13 });
+    fireEvent.keyDown(select, {
+      key: "ArrowDown",
+      code: "ArrowDown",
+      keyCode: 40,
+      charCode: 40,
+    });
+    fireEvent.keyDown(select, {
+      key: "ArrowDown",
+      code: "ArrowDown",
+      keyCode: 40,
+      charCode: 40,
+    });
+    fireEvent.keyDown(select, {
+      key: "Enter",
+      code: "Enter",
+      keyCode: 13,
+      charCode: 13,
+    });
     expect(getByText("Verde")).toBeTruthy();
   });
 
@@ -967,15 +1270,45 @@ describe("Select component tests", () => {
     expect(getByText("Ebro")).toBeTruthy();
     await userEvent.click(select);
     expect(select.getAttribute("aria-activedescendant")).toBeNull();
-    fireEvent.keyDown(select, { key: "ArrowUp", code: "ArrowUp", keyCode: 38, charCode: 38 });
+    fireEvent.keyDown(select, {
+      key: "ArrowUp",
+      code: "ArrowUp",
+      keyCode: 38,
+      charCode: 38,
+    });
     expect(select.getAttribute("aria-activedescendant")).toBe("option-17");
     await userEvent.click(select);
-    fireEvent.keyDown(select, { key: "ArrowDown", code: "ArrowDown", keyCode: 40, charCode: 40 });
+    fireEvent.keyDown(select, {
+      key: "ArrowDown",
+      code: "ArrowDown",
+      keyCode: 40,
+      charCode: 40,
+    });
     expect(select.getAttribute("aria-activedescendant")).toBe("option-17");
-    fireEvent.keyDown(select, { key: "ArrowDown", code: "ArrowDown", keyCode: 40, charCode: 40 });
-    fireEvent.keyDown(select, { key: "ArrowDown", code: "ArrowDown", keyCode: 40, charCode: 40 });
-    fireEvent.keyDown(select, { key: "ArrowUp", code: "ArrowUp", keyCode: 38, charCode: 38 });
-    fireEvent.keyDown(select, { key: "Enter", code: "Enter", keyCode: 13, charCode: 13 });
+    fireEvent.keyDown(select, {
+      key: "ArrowDown",
+      code: "ArrowDown",
+      keyCode: 40,
+      charCode: 40,
+    });
+    fireEvent.keyDown(select, {
+      key: "ArrowDown",
+      code: "ArrowDown",
+      keyCode: 40,
+      charCode: 40,
+    });
+    fireEvent.keyDown(select, {
+      key: "ArrowUp",
+      code: "ArrowUp",
+      keyCode: 38,
+      charCode: 38,
+    });
+    fireEvent.keyDown(select, {
+      key: "Enter",
+      code: "Enter",
+      keyCode: 13,
+      charCode: 13,
+    });
     expect(getByText("Azul")).toBeTruthy();
   });
 

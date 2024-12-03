@@ -1,6 +1,6 @@
 import styled, { ThemeProvider } from "styled-components";
-import { getMargin } from "../common/utils";
 import { spaces } from "../common/variables";
+import getMargin from "../common/utils";
 import DxcIcon from "../icon/Icon";
 import useTheme from "../useTheme";
 import ChipPropsType from "./types";
@@ -18,7 +18,7 @@ const DxcChip = ({
   const colorsTheme = useTheme();
 
   return (
-    <ThemeProvider theme={colorsTheme.chip}>
+    <ThemeProvider theme={colorsTheme?.chip}>
       <Chip disabled={disabled} margin={margin}>
         {prefixIcon && (
           <IconContainer

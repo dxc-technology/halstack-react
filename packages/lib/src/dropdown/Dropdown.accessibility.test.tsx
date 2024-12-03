@@ -14,13 +14,20 @@ const iconUrl = "https://iconape.com/wp-content/files/yd/367773/svg/logo-linkedi
 // Mocking DOMRect for Radix Primitive Popover
 (global as any).globalThis = global;
 (global as any).DOMRect = {
-  fromRect: () => ({ top: 0, left: 0, bottom: 0, right: 0, width: 0, height: 0 }),
+  fromRect: () => ({
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
+    width: 0,
+    height: 0,
+  }),
 };
-(global as any).ResizeObserver = class ResizeObserver {
-  observe() {}
-  unobserve() {}
-  disconnect() {}
-};
+global.ResizeObserver = jest.fn().mockImplementation(() => ({
+  observe: jest.fn(),
+  unobserve: jest.fn(),
+  disconnect: jest.fn(),
+}));
 
 const options = [
   {

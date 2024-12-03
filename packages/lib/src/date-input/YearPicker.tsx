@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import { useEffect, useId, useState, memo } from "react";
+import { useEffect, useId, useState, memo, KeyboardEvent } from "react";
 import styled from "styled-components";
 import { YearPickerPropsType } from "./types";
 
@@ -22,13 +22,15 @@ const YearPicker = ({ onYearSelect, selectedDate, today }: YearPickerPropsType):
     yearToFocusEl?.focus();
   }, [yearToFocus]);
 
-  const handleDayKeyboardEvent = (event) => {
+  const handleDayKeyboardEvent = (event: KeyboardEvent<HTMLButtonElement>) => {
     switch (event.key) {
       case "ArrowUp":
         setYearToFocus((prev) => (prev > 1899 ? prev - 1 : prev));
         break;
       case "ArrowDown":
         setYearToFocus((prev) => (prev < 2100 ? prev + 1 : prev));
+        break;
+      default:
         break;
     }
   };
@@ -37,7 +39,7 @@ const YearPicker = ({ onYearSelect, selectedDate, today }: YearPickerPropsType):
     <YearPickerContainer role="listbox" aria-label="Year Picker">
       {yearList.map((year) => (
         <YearPickerButton
-          aria-label={year}
+          aria-label={year.toString()}
           key={year}
           selected={selectedDate?.get("year") === year}
           aria-selected={selectedDate?.get("year") === year}
@@ -69,7 +71,10 @@ const YearPickerContainer = styled.div`
   padding: 2px 8px 8px 8px;
 `;
 
-const YearPickerButton = styled.button<{ selected: boolean; isCurrentYear: boolean }>`
+const YearPickerButton = styled.button<{
+  selected: boolean;
+  isCurrentYear: boolean;
+}>`
   display: flex;
   align-items: center;
   justify-content: center;

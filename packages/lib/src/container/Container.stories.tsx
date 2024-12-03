@@ -193,7 +193,7 @@ const Listbox = ({ suggestions = [] }: { suggestions: string[] }): JSX.Element =
     overflow={{ x: "hidden", y: "auto" }}
   >
     {suggestions.map((suggestion, index) => (
-      <DxcContainer padding={{ left: "xsmall", right: "xsmall" }}>
+      <DxcContainer key={`container-${index}`} padding={{ left: "xsmall", right: "xsmall" }}>
         <DxcContainer
           border={
             index !== suggestions.length - 1

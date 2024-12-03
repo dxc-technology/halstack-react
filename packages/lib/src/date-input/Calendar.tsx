@@ -1,11 +1,13 @@
 import { Dayjs } from "dayjs";
-import { useState, useMemo, useEffect, useId, memo } from "react";
+import { useState, useMemo, useEffect, useId, memo, KeyboardEvent, FocusEvent } from "react";
 import styled from "styled-components";
 import { CalendarPropsType } from "./types";
 import useTranslatedLabels from "../useTranslatedLabels";
 
+type Date = { day: number; month: number; year: number };
+
 const getDays = (innerDate: Dayjs) => {
-  const monthDayCells = [];
+  const monthDayCells: Date[] = [];
   const lastMonthNumberOfDays = innerDate.set("month", innerDate.get("month") - 1).endOf("month");
   const firstDayOfMonth = innerDate.startOf("month").day() === 0 ? 6 : innerDate.startOf("month").day() - 1;
   const daysInMonth = firstDayOfMonth + innerDate.daysInMonth();
@@ -34,24 +36,22 @@ const getDays = (innerDate: Dayjs) => {
   return monthDayCells;
 };
 
-const getDateToFocus = (selectedDate, innerDate, today) => {
-  return selectedDate?.get("month") === innerDate.get("month") && selectedDate?.get("year") === innerDate.get("year")
+const getDateToFocus = (selectedDate: Dayjs, innerDate: Dayjs, today: Dayjs) =>
+  selectedDate?.get("month") === innerDate.get("month") && selectedDate?.get("year") === innerDate.get("year")
     ? selectedDate
     : today.get("month") === innerDate.get("month") && today.get("year") === innerDate.get("year")
       ? today
       : innerDate.set("date", 1);
-};
 
-const isDaySelected = (date: { day: number; month: number; year: number }, selectedDate) =>
+const isDaySelected = (date: Date, selectedDate: Dayjs) =>
   selectedDate?.get("month") === date.month &&
   selectedDate?.get("year") === date.year &&
   selectedDate?.get("date") === date.day;
 
-const divideDaysIntoWeeks = (data: any[], weekSize: number) => {
-  return Array.from({ length: Math.ceil(data.length / weekSize) }, (_, rowIndex) =>
+const divideDaysIntoWeeks = (data: Date[], weekSize: number) =>
+  Array.from({ length: Math.ceil(data.length / weekSize) }, (_, rowIndex) =>
     data.slice(rowIndex * weekSize, (rowIndex + 1) * weekSize)
   );
-};
 
 const Calendar = ({
   selectedDate,
@@ -65,15 +65,15 @@ const Calendar = ({
   const [isFocusable, setIsFocusable] = useState(false);
   const dayCells = useMemo(() => getDays(innerDate), [innerDate]);
   const translatedLabels = useTranslatedLabels();
-  const weekDays = translatedLabels.calendar.daysShort;
+  const weekDays = translatedLabels?.calendar?.daysShort ?? [];
 
-  const onDateClickHandler = (date: { day: number; month: number; year: number }) => {
+  const onDateClickHandler = (date: Date) => {
     const newDate = innerDate.set("month", date.month).set("date", date.day);
     onDaySelect(newDate);
     setDateToFocus(newDate);
   };
 
-  const handleOnBlur = (event) => {
+  const handleOnBlur = (event: FocusEvent<HTMLDivElement>) => {
     if (!event?.currentTarget.contains(event.relatedTarget)) {
       setDateToFocus(getDateToFocus(selectedDate, innerDate, today));
     }
@@ -100,7 +100,7 @@ const Calendar = ({
     }
   }, [innerDate, dateToFocus, selectedDate, today]);
 
-  const handleDayKeyboardEvent = (event, date) => {
+  const handleDayKeyboardEvent = (event: KeyboardEvent<HTMLButtonElement>, date: Date) => {
     let dateToFocusTemp =
       date.month === innerDate.get("month")
         ? innerDate.set("date", date.day)
@@ -109,16 +109,20 @@ const Calendar = ({
     switch (event.key) {
       case "PageUp":
         event.preventDefault();
-        event.shiftKey
-          ? (dateToFocusTemp = dateToFocusTemp.set("year", dateToFocusTemp.get("year") - 1))
-          : (dateToFocusTemp = dateToFocusTemp.set("month", dateToFocusTemp.get("month") - 1));
+        if (event.shiftKey) {
+          dateToFocusTemp = dateToFocusTemp.set("year", dateToFocusTemp.get("year") - 1);
+        } else {
+          dateToFocusTemp = dateToFocusTemp.set("month", dateToFocusTemp.get("month") - 1);
+        }
         focusDate(dateToFocusTemp);
         break;
       case "PageDown":
         event.preventDefault();
-        event.shiftKey
-          ? (dateToFocusTemp = dateToFocusTemp.set("year", dateToFocusTemp.get("year") + 1))
-          : (dateToFocusTemp = dateToFocusTemp.set("month", dateToFocusTemp.get("month") + 1));
+        if (event.shiftKey) {
+          dateToFocusTemp = dateToFocusTemp.set("year", dateToFocusTemp.get("year") + 1);
+        } else {
+          dateToFocusTemp = dateToFocusTemp.set("month", dateToFocusTemp.get("month") + 1);
+        }
         focusDate(dateToFocusTemp);
         break;
       case "ArrowLeft":
@@ -143,19 +147,25 @@ const Calendar = ({
         break;
       case "Home":
         event.preventDefault();
-        dateToFocus.get("day") !== 0
-          ? (dateToFocusTemp = dateToFocusTemp.day(1))
-          : (dateToFocusTemp = innerDate.date(date.day - 1).day(1));
+        if (dateToFocus.get("day") !== 0) {
+          dateToFocusTemp = dateToFocusTemp.day(1);
+        } else {
+          dateToFocusTemp = innerDate.date(date.day - 1).day(1);
+        }
         focusDate(dateToFocusTemp);
         break;
       case "End":
         event.preventDefault();
-        dateToFocusTemp.get("day") !== 0 && (dateToFocusTemp = dateToFocusTemp.day(7));
+        if (dateToFocusTemp.get("day") !== 0) {
+          dateToFocusTemp = dateToFocusTemp.day(7);
+        }
         focusDate(dateToFocusTemp);
         break;
       case " ":
         event.preventDefault();
         onDaySelect(dateToFocusTemp);
+        break;
+      default:
         break;
     }
   };
@@ -174,6 +184,7 @@ const Calendar = ({
             {week.map((date) => (
               <DayCellButton
                 id={`${id}_day_${date.day}_month${date.month}`}
+                key={`${id}_day_${date.day}_month${date.month}`}
                 role="gridcell"
                 aria-selected={isDaySelected(date, selectedDate)}
                 onKeyDown={(event) => handleDayKeyboardEvent(event, date)}

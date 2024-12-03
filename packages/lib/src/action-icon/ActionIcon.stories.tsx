@@ -1,7 +1,7 @@
+import { userEvent, within } from "@storybook/test";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DxcActionIcon from "./ActionIcon";
-import { userEvent, within } from "@storybook/test";
 import DxcTooltip from "../tooltip/Tooltip";
 import DxcInset from "../inset/Inset";
 

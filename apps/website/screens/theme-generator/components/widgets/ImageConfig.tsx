@@ -12,7 +12,7 @@ const ImageConfig = ({ propertyName, propertyValue, onChangeCustomTheme }: Theme
   };
   const upload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files as FileList;
-    const url = URL.createObjectURL(files[0]);
+    const url = URL.createObjectURL(files[0]!);
     onChangeCustomTheme(propertyName, url);
     setLogoImage(url);
   };

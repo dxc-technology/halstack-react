@@ -1,4 +1,6 @@
-type SVG = React.ReactNode & React.SVGProps<SVGSVGElement>;
+import { ReactNode, SVGProps } from "react";
+
+type SVG = ReactNode & SVGProps<SVGSVGElement>;
 
 type IconProps = {
   /**
@@ -12,7 +14,7 @@ type IconProps = {
   /**
    * Text to be shown in the list.
    */
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
 type OtherProps = {
@@ -27,7 +29,7 @@ type OtherProps = {
   /**
    * Text to be shown in the list.
    */
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
 type Props = IconProps | OtherProps;
@@ -38,5 +40,5 @@ export type BulletedListItemPropsType = {
   /**
    * Text to be shown in the list.
    */
-  children?: React.ReactNode;
+  children?: ReactNode;
 };

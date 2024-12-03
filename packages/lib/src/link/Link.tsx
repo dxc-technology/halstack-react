@@ -1,4 +1,4 @@
-import { forwardRef } from "react";
+import { forwardRef, Ref } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables";
 import DxcIcon from "../icon/Icon";
@@ -99,12 +99,12 @@ const DxcLink = forwardRef(
       children,
       ...otherProps
     }: LinkProps,
-    ref: React.Ref<HTMLAnchorElement>
+    ref: Ref<HTMLAnchorElement>
   ): JSX.Element => {
     const colorsTheme = useTheme();
 
     return (
-      <ThemeProvider theme={colorsTheme.link}>
+      <ThemeProvider theme={colorsTheme?.link}>
         <StyledLink
           as={onClick && !href ? "button" : "a"}
           tabIndex={tabIndex}
@@ -126,5 +126,7 @@ const DxcLink = forwardRef(
     );
   }
 );
+
+DxcLink.displayName = "DxcLink";
 
 export default DxcLink;

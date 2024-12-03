@@ -1,7 +1,7 @@
+import { userEvent, within } from "@storybook/test";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DxcCard from "./Card";
-import { userEvent, within } from "@storybook/test";
 
 export default {
   title: "Card",

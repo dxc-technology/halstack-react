@@ -1,12 +1,12 @@
+import { useState } from "react";
+import { userEvent, within } from "@storybook/test";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DxcDataGrid from "./DataGrid";
 import DxcContainer from "../container/Container";
 import { GridColumn, HierarchyGridRow } from "./types";
-import { useState } from "react";
-import { disabledRules } from "../../test/accessibility/rules/specific/data-grid/disabledRules";
+import disabledRules from "../../test/accessibility/rules/specific/data-grid/disabledRules";
 import preview from "../../.storybook/preview";
-import { userEvent, within } from "@storybook/test";
 import DxcBadge from "../badge/Badge";
 import { ActionsPropsType } from "../table/types";
 
@@ -17,8 +17,11 @@ export default {
     a11y: {
       config: {
         rules: [
-          ...disabledRules.map((ruleId) => ({ id: ruleId, reviewOnFail: true })),
-          ...preview?.parameters?.a11y?.config?.rules,
+          ...disabledRules.map((ruleId) => ({
+            id: ruleId,
+            reviewOnFail: true,
+          })),
+          ...(preview?.parameters?.a11y?.config?.rules || []),
         ],
       },
     },
@@ -642,22 +645,20 @@ export const Chromatic = () => {
             if (sortColumn) {
               const { columnKey, direction } = sortColumn;
               console.log(`Sorting the column '${columnKey}' by '${direction}' direction`);
-              setRowsControlled((currentRows) => {
-                return currentRows.sort((a, b) => {
+              setRowsControlled((currentRows) => currentRows.sort((a, b) => {
                   if (direction === "ASC") {
                     return a[columnKey] < b[columnKey] ? -1 : a[columnKey] > b[columnKey] ? 1 : 0;
-                  } else {
+                  } 
                     return a[columnKey] < b[columnKey] ? 1 : a[columnKey] > b[columnKey] ? -1 : 0;
-                  }
-                });
-              });
+                  
+                }));
             } else {
               console.log("Removed sorting criteria");
               setRowsControlled(expandableRows.slice(page * itemsPerPage, page * itemsPerPage + itemsPerPage));
             }
           }}
-          onPageChange={(page) => {
-            const internalPage = page - 1;
+          onPageChange={(newPage) => {
+            const internalPage = newPage - 1;
             setPage(internalPage);
             setRowsControlled(
               expandableRows.slice(internalPage * itemsPerPage, internalPage * itemsPerPage + itemsPerPage)
@@ -714,27 +715,27 @@ const customSortRows = [
     task: "Task 1",
     complete: 46,
     priority: "High",
-    component: <DxcBadge label={"CCC"} />,
+    component: <DxcBadge label="CCC" />,
   },
   {
     id: 2,
     task: "Task 2",
     complete: 51,
     priority: "High",
-    component: <DxcBadge label={"BBB"} />,
+    component: <DxcBadge label="BBB" />,
   },
   {
     id: 3,
     task: "Task 3",
     complete: 40,
     priority: "High",
-    component: <DxcBadge label={"AAA"} />,
+    component: <DxcBadge label="AAA" />,
   },
   {
     id: 4,
     task: "Task 4",
     complete: 10,
-    component: <DxcBadge label={"EEE"} />,
+    component: <DxcBadge label="EEE" />,
     priority: "High",
   },
   {
@@ -742,26 +743,25 @@ const customSortRows = [
     task: "Task 5",
     complete: 68,
     priority: "High",
-    component: <DxcBadge label={"DDD"} />,
+    component: <DxcBadge label="DDD" />,
   },
   {
     id: 6,
     task: "Task 6",
     complete: 37,
     priority: "High",
-    component: <DxcBadge label={"FFF"} />,
+    component: <DxcBadge label="FFF" />,
   },
   {
     id: 7,
     task: "Task 7",
     complete: 73,
     priority: "Medium",
-    component: <DxcBadge label={"GGG"} />,
+    component: <DxcBadge label="GGG" />,
   },
 ];
 
-export const CustomSort = () => {
-  return (
+export const CustomSort = () => (
     <>
       <ExampleContainer>
         <Title title="Default" theme="light" level={4} />
@@ -769,7 +769,6 @@ export const CustomSort = () => {
       </ExampleContainer>
     </>
   );
-};
 
 export const Paginator = () => {
   const [selectedRows, setSelectedRows] = useState((): Set<number | string> => new Set());

@@ -4,7 +4,7 @@ import DxcIcon from "../icon/Icon";
 import useTranslatedLabels from "../useTranslatedLabels";
 import ListOption from "./ListOption";
 import { groupsHaveOptions } from "./selectUtils";
-import { ListboxProps } from "./types";
+import { ListboxProps, ListOptionGroupType, ListOptionType } from "./types";
 
 const Listbox = ({
   id,
@@ -20,12 +20,12 @@ const Listbox = ({
   styles,
 }: ListboxProps): JSX.Element => {
   const translatedLabels = useTranslatedLabels();
-  const listboxRef = useRef(null);
+  const listboxRef = useRef<HTMLUListElement | null>(null);
 
   let globalIndex = optional && !multiple ? 0 : -1;
-  const mapOptionFunc = (option, mapIndex) => {
+  const mapOptionFunc = (option: ListOptionType | ListOptionGroupType, mapIndex: number) => {
     const groupId = `${id}-group-${mapIndex}`;
-    if (option.options) {
+    if ("options" in option && option.options) {
       return (
         option.options.length > 0 && (
           <li key={groupId}>
@@ -34,7 +34,7 @@ const Listbox = ({
                 {option.label}
               </GroupLabel>
               {option.options.map((singleOption) => {
-                globalIndex++;
+                globalIndex += 1;
                 return (
                   <ListOption
                     key={`${id}-option-${singleOption.value}`}
@@ -43,7 +43,7 @@ const Listbox = ({
                     onClick={handleOptionOnClick}
                     multiple={multiple}
                     visualFocused={visualFocusIndex === globalIndex}
-                    isGroupedOption={true}
+                    isGroupedOption
                     isLastOption={lastOptionIndex === globalIndex}
                     isSelected={
                       multiple ? currentValue.includes(singleOption.value) : currentValue === singleOption.value
@@ -55,37 +55,45 @@ const Listbox = ({
           </li>
         )
       );
-    } else {
-      globalIndex++;
-      return (
-        <ListOption
-          key={`${id}-option-${option.value}`}
-          id={`${id}-option-${globalIndex}`}
-          option={option}
-          onClick={handleOptionOnClick}
-          multiple={multiple}
-          visualFocused={visualFocusIndex === globalIndex}
-          isLastOption={lastOptionIndex === globalIndex}
-          isSelected={multiple ? currentValue.includes(option.value) : currentValue === option.value}
-        />
-      );
     }
+    globalIndex += 1;
+    return (
+      <ListOption
+        key={`${id}-option-${(option as ListOptionType).value}`}
+        id={`${id}-option-${globalIndex}`}
+        option={option as ListOptionType}
+        onClick={handleOptionOnClick}
+        multiple={multiple}
+        visualFocused={visualFocusIndex === globalIndex}
+        isLastOption={lastOptionIndex === globalIndex}
+        isSelected={
+          multiple
+            ? currentValue.includes((option as ListOptionType).value)
+            : currentValue === (option as ListOptionType).value
+        }
+      />
+    );
   };
 
   useLayoutEffect(() => {
     if (currentValue && !multiple) {
       const listEl = listboxRef?.current;
-      const selectedListOptionEl = listEl?.querySelector("[aria-selected='true']");
-      listEl?.scrollTo?.({ top: selectedListOptionEl?.offsetTop - listEl?.clientHeight / 2 });
+      const selectedListOptionEl = listEl?.querySelector("[aria-selected='true']") as HTMLUListElement;
+      listEl?.scrollTo?.({
+        top: (selectedListOptionEl?.offsetTop || 0) - (listEl?.clientHeight || 0) / 2,
+      });
     }
   }, [currentValue, multiple]);
 
   useLayoutEffect(() => {
     const visualFocusedOptionEl = listboxRef?.current?.querySelectorAll("[role='option']")[visualFocusIndex];
-    visualFocusedOptionEl?.scrollIntoView?.({ block: "nearest", inline: "start" });
+    visualFocusedOptionEl?.scrollIntoView?.({
+      block: "nearest",
+      inline: "start",
+    });
   }, [visualFocusIndex]);
 
-  const hasOptionGroups = options.some((option) => option.options?.length > 0);
+  const hasOptionGroups = options.some((option) => (option as ListOptionGroupType).options?.length > 0);
 
   return (
     <ListboxContainer
@@ -107,7 +115,7 @@ const Listbox = ({
           <NoMatchesFoundIcon>
             <DxcIcon icon="search_off" />
           </NoMatchesFoundIcon>
-          {translatedLabels.select.noMatchesErrorMessage}
+          {translatedLabels?.select?.noMatchesErrorMessage}
         </OptionsSystemMessage>
       ) : (
         optional &&

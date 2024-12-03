@@ -1,6 +1,6 @@
 import { forwardRef } from "react";
-import ActionIconPropsTypes, { RefType } from "./types";
 import styled from "styled-components";
+import ActionIconPropsTypes, { RefType } from "./types";
 import CoreTokens from "../common/coreTokens";
 import DxcIcon from "../icon/Icon";
 import { Tooltip } from "../tooltip/Tooltip";
@@ -72,5 +72,7 @@ const ActionIcon = styled.button`
     height: 16px;
   }
 `;
+
+DxcActionIcon.displayName = "DxcActionIcon";
 
 export default DxcActionIcon;

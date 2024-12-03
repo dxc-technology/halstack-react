@@ -16,19 +16,33 @@ import ContextualMenuPropsType, {
 import Section from "./Section";
 
 const isGroupItem = (item: Item | GroupItem): item is GroupItem => "items" in item;
-const isSection = (item?: SectionType | Item | GroupItem): item is SectionType =>
-  item && "items" in item && !("label" in item);
-const addIdToItems = (items: ContextualMenuPropsType["items"]): (ItemWithId | GroupItemWithId)[] | SectionWithId[] => {
+const isSection = (item: SectionType | Item | GroupItem): item is SectionType => "items" in item && !("label" in item);
+
+const addIdToItems = (items: ContextualMenuPropsType["items"]): (ItemWithId | GroupItemWithId | SectionWithId)[] => {
   let accId = 0;
-  const innerAddIdToItems = (items: ContextualMenuPropsType["items"]) => {
-    return items.map((item: Item | GroupItem | SectionType) =>
-      isSection(item)
-        ? { ...item, items: innerAddIdToItems(item.items) }
-        : isGroupItem(item)
-          ? { ...item, items: innerAddIdToItems(item.items) }
-          : { ...item, id: accId++ }
-    );
-  };
+
+  const innerAddIdToItems = (
+    innerItems: ContextualMenuPropsType["items"]
+  ): (ItemWithId | GroupItemWithId | SectionWithId)[] =>
+    innerItems.map((item: Item | GroupItem | SectionType) => {
+      let newItem;
+      if (isSection(item)) {
+        newItem = {
+          ...item,
+          id: (accId += 1),
+          items: innerAddIdToItems(item.items),
+        } as SectionWithId;
+      } else if (isGroupItem(item)) {
+        newItem = {
+          ...item,
+          id: (accId += 1),
+          items: innerAddIdToItems(item.items),
+        } as GroupItemWithId;
+      } else {
+        newItem = { ...item, id: (accId += 1) } as ItemWithId;
+      }
+      return newItem;
+    });
   return innerAddIdToItems(items);
 };
 
@@ -42,16 +56,19 @@ export const ContextualMenuContext = createContext<ContextualMenuContextProps | 
 
 const DxcContextualMenu = ({ items }: ContextualMenuPropsType) => {
   const [selectedItemId, setSelectedItemId] = useState(-1);
-  const contextualMenuRef = useRef(null);
+  const contextualMenuRef = useRef<HTMLDivElement | null>(null);
   const itemsWithId = useMemo(() => addIdToItems(items), [items]);
+  const contextValue = useMemo(() => ({ selectedItemId, setSelectedItemId }), [selectedItemId, setSelectedItemId]);
   const colorsTheme = useTheme();
 
   const [firstUpdate, setFirstUpdate] = useState(true);
   useLayoutEffect(() => {
     if (selectedItemId !== -1 && firstUpdate) {
       const contextualMenuEl = contextualMenuRef?.current;
-      const selectedItemEl = contextualMenuEl?.querySelector("[aria-pressed='true']");
-      contextualMenuEl?.scrollTo?.({ top: selectedItemEl?.offsetTop - contextualMenuEl?.clientHeight / 2 });
+      const selectedItemEl = contextualMenuEl?.querySelector("[aria-pressed='true']") as HTMLButtonElement;
+      contextualMenuEl?.scrollTo?.({
+        top: (selectedItemEl?.offsetTop || 0) - (contextualMenuEl?.clientHeight || 0) / 2,
+      });
       setFirstUpdate(false);
     }
   }, [firstUpdate, selectedItemId]);
@@ -59,8 +76,8 @@ const DxcContextualMenu = ({ items }: ContextualMenuPropsType) => {
   return (
     <ThemeProvider theme={colorsTheme.contextualMenu}>
       <ContextualMenu ref={contextualMenuRef}>
-        <ContextualMenuContext.Provider value={{ selectedItemId, setSelectedItemId }}>
-          {isSection(itemsWithId[0]) ? (
+        <ContextualMenuContext.Provider value={contextValue}>
+          {isSection(itemsWithId[0] as SectionWithId) ? (
             (itemsWithId as SectionWithId[]).map((item, index) => (
               <Section key={`section-${index}`} section={item} index={index} length={itemsWithId.length} />
             ))

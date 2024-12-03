@@ -18,7 +18,6 @@ import defaultSchema from "./themes/schemas/opinionated.schema.json";
 import advancedSchema from "./themes/schemas/advanced.schema.json";
 import icons from "./images/GlobalActionsIcons";
 import SidenavLogo from "@/common/sidenav/SidenavLogo";
-import styled from "styled-components";
 import { IndexedTheme } from "./types";
 
 const ThemeGenerator = () => {
@@ -125,8 +124,8 @@ const ThemeGenerator = () => {
         <DxcFlex>
           <ComponentPreview customTheme={customTheme} componentId={currentComponent} />
           <ThemeInputsConfig
-            componentInputs={customTheme[currentComponent]}
-            componentInputsTypes={customThemeSchema[currentComponent]}
+            componentInputs={customTheme[currentComponent]!}
+            componentInputsTypes={customThemeSchema[currentComponent]!}
             onChangeCustomTheme={setComponentProperty}
           />
         </DxcFlex>
@@ -141,17 +140,5 @@ const ThemeGenerator = () => {
     </DxcApplicationLayout>
   );
 };
-
-const Breadcrumbs = styled.ol`
-  display: flex;
-  list-style-type: none;
-  padding-left: 0;
-  margin: 0;
-
-  > li:not(:first-child):before {
-    content: ">";
-    padding: 0 0.5rem;
-  }
-`;
 
 export default ThemeGenerator;

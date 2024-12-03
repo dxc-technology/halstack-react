@@ -16,7 +16,7 @@ const isOptionGroup = (option: ListOptionType | ListOptionGroupType): option is 
  * Checks if the options are an array of groups.
  */
 const isArrayOfOptionGroups = (options: ListOptionType[] | ListOptionGroupType[]): options is ListOptionGroupType[] =>
-  isOptionGroup(options[0]);
+  options[0] != null && isOptionGroup(options[0]);
 
 /**
  * Checks if the groups have options.
@@ -38,7 +38,7 @@ const filterOptionsBySearchValue = (
   searchValue: string
 ): ListOptionType[] | ListOptionGroupType[] => {
   if (options?.length > 0) {
-    if (isArrayOfOptionGroups(options))
+    if (isArrayOfOptionGroups(options)) {
       return options.map((optionGroup) => {
         const group = {
           label: optionGroup.label,
@@ -48,8 +48,10 @@ const filterOptionsBySearchValue = (
         };
         return group;
       });
-    else return options.filter((option) => option.label.toUpperCase().includes(searchValue.toUpperCase()));
+    }
+    return options.filter((option) => option.label.toUpperCase().includes(searchValue.toUpperCase()));
   }
+  return [];
 };
 
 /**
@@ -63,14 +65,21 @@ const getLastOptionIndex = (
   multiple: boolean
 ) => {
   let last = 0;
-  const reducer = (acc: number, current: ListOptionGroupType) => acc + current.options?.length;
+  const reducer = (acc: number, current: ListOptionGroupType) => acc + (current?.options?.length || 0);
 
-  if (searchable && filteredOptions?.length > 0)
-    isArrayOfOptionGroups(filteredOptions)
-      ? (last = filteredOptions.reduce(reducer, 0) - 1)
-      : (last = filteredOptions.length - 1);
-  else if (options?.length > 0)
-    isArrayOfOptionGroups(options) ? (last = options.reduce(reducer, 0) - 1) : (last = options.length - 1);
+  if (searchable && filteredOptions?.length > 0) {
+    if (isArrayOfOptionGroups(filteredOptions)) {
+      last = filteredOptions.reduce(reducer, 0) - 1;
+    } else {
+      last = filteredOptions.length - 1;
+    }
+  } else if (options?.length > 0) {
+    if (isArrayOfOptionGroups(options)) {
+      last = options.reduce(reducer, 0) - 1;
+    } else {
+      last = options.length - 1;
+    }
+  }
 
   return optional && !multiple ? last + 1 : last;
 };
@@ -86,41 +95,45 @@ const getSelectedOption = (
   optionalItem: ListOptionType
 ) => {
   let selectedOption: ListOptionType | ListOptionType[] = multiple ? [] : ({} as ListOptionType);
-  let singleSelectionIndex: number;
+  let singleSelectionIndex: number | null = null;
 
   if (multiple) {
     if (options?.length > 0) {
       options.forEach((option: ListOptionType | ListOptionGroupType) => {
-        if (isOptionGroup(option))
-          option.options.forEach((singleOption) => {
-            if (value.includes(singleOption.value) && Array.isArray(selectedOption)) selectedOption.push(singleOption);
-          });
-        else if (value.includes(option.value) && Array.isArray(selectedOption)) selectedOption.push(option);
-      });
-    }
-  } else {
-    if (optional && value === "") {
-      selectedOption = optionalItem;
-      singleSelectionIndex = 0;
-    } else if (options?.length > 0) {
-      let group_index = 0;
-      options.some((option: ListOptionType | ListOptionGroupType, index: number) => {
         if (isOptionGroup(option)) {
-          option.options.some((singleOption) => {
-            if (singleOption.value === value) {
-              selectedOption = singleOption;
-              singleSelectionIndex = optional ? group_index + 1 : group_index;
-              return true;
+          option.options.forEach((singleOption) => {
+            if (value.includes(singleOption.value) && Array.isArray(selectedOption)) {
+              selectedOption.push(singleOption);
             }
-            group_index++;
           });
-        } else if (option.value === value) {
-          selectedOption = option;
-          singleSelectionIndex = optional ? index + 1 : index;
-          return true;
+        } else if (value.includes(option.value) && Array.isArray(selectedOption)) {
+          selectedOption.push(option);
         }
       });
     }
+  } else if (optional && value === "") {
+    selectedOption = optionalItem;
+    singleSelectionIndex = 0;
+  } else if (options?.length > 0) {
+    let groupIndex = 0;
+    options.some((option: ListOptionType | ListOptionGroupType, index: number) => {
+      if (isOptionGroup(option)) {
+        option.options.some((singleOption) => {
+          if (singleOption.value === value) {
+            selectedOption = singleOption;
+            singleSelectionIndex = optional ? groupIndex + 1 : groupIndex;
+            return true;
+          }
+          groupIndex += 1;
+          return false;
+        });
+      } else if (option.value === value) {
+        selectedOption = option;
+        singleSelectionIndex = optional ? index + 1 : index;
+        return true;
+      }
+      return false;
+    });
   }
 
   return {
