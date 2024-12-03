@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import TextareaCodePage from "../../../screens/components/textarea/code/TextareaCodePage";
-import TextareaPageLayout from "../../../screens/components/textarea/TextareaPageLayout";
+import TextareaCodePage from "screens/components/textarea/code/TextareaCodePage";
+import TextareaPageLayout from "screens/components/textarea/TextareaPageLayout";
 
 const Index = () => {
   return (

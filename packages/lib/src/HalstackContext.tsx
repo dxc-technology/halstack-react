@@ -1,6 +1,5 @@
 import { createContext, ReactNode, useMemo } from "react";
 import Color from "color";
-import styled from "styled-components";
 import {
   AdvancedTheme,
   OpinionatedTheme,
@@ -75,12 +74,6 @@ const parseTheme = (theme: DeepPartial<OpinionatedTheme>): AdvancedTheme => {
   accordionTokens.iconColor = theme?.accordion?.accentColor ?? accordionTokens.iconColor;
   accordionTokens.hoverBackgroundColor =
     addLightness(57, theme?.accordion?.accentColor) ?? accordionTokens.hoverBackgroundColor;
-
-  const alertTokens = componentTokensCopy.alert;
-  alertTokens.infoBackgroundColor = theme?.alert?.baseColor ?? alertTokens.infoBackgroundColor;
-  alertTokens.infoIconColor = theme?.alert?.accentColor ?? alertTokens.infoIconColor;
-  alertTokens.infoBorderColor = theme?.alert?.accentColor ?? alertTokens.infoBorderColor;
-  alertTokens.overlayColor = theme?.alert?.overlayColor ?? alertTokens.overlayColor;
 
   const buttonTokens = componentTokensCopy.button;
   buttonTokens.primaryDefaultFontColor = theme?.button?.primaryFontColor ?? buttonTokens.primaryDefaultFontColor;
@@ -437,4 +430,6 @@ const HalstackProvider = ({ theme, advancedTheme, labels, children }: HalstackPr
   );
 };
 
-export { HalstackContext as default, HalstackProvider, HalstackLanguageContext };
+export { HalstackProvider, HalstackLanguageContext };
+
+export default HalstackContext;

@@ -1,6 +1,6 @@
 import { GetStaticProps, InferGetStaticPropsType } from "next";
 import Head from "next/head";
-import ReleasesPage from "../../screens/overview/releases/ReleasesPage";
+import ReleasesPage from "screens/overview/releases/ReleasesPage";
 
 type Release = {
   name: string;

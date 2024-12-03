@@ -1,5 +1,5 @@
 import Head from "next/head";
-import ThemesPage from "../../screens/principles/themes/ThemesPage";
+import ThemesPage from "screens/principles/themes/ThemesPage";
 
 const Themes = () => {
   return (

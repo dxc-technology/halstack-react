@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import GridPageLayout from "../../../screens/components/grid/GridPageLayout";
-import GridCodePage from "../../../screens/components/grid/code/GridCodePage";
+import GridPageLayout from "screens/components/grid/GridPageLayout";
+import GridCodePage from "screens/components/grid/code/GridCodePage";
 
 const Index = () => {
   return (

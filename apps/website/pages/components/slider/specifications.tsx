@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import SliderPageLayout from "../../../screens/components/slider/SliderPageLayout";
-import SliderSpecsPage from "../../../screens/components/slider/specs/SliderSpecsPage";
+import SliderPageLayout from "screens/components/slider/SliderPageLayout";
+import SliderSpecsPage from "screens/components/slider/specs/SliderSpecsPage";
 
 const Specifications = () => {
   return (

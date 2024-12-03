@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import ToastSpecsPage from "../../../screens/components/toast/specs/ToastSpecsPage";
-import ToastPageLayout from "../../../screens/components/toast/ToastPageLayout";
+import ToastSpecsPage from "screens/components/toast/specs/ToastSpecsPage";
+import ToastPageLayout from "screens/components/toast/ToastPageLayout";
 
 const Specifications = () => {
   return (

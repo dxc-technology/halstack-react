@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import DateInputSpecsPage from "../../../screens/components/date-input/specs/DateInputSpecsPage";
-import DateInputPageLayout from "../../../screens/components/date-input/DateInputPageLayout";
+import DateInputSpecsPage from "screens/components/date-input/specs/DateInputSpecsPage";
+import DateInputPageLayout from "screens/components/date-input/DateInputPageLayout";
 
 const Specifications = () => {
   return (

@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import TabsUsagePage from "../../../screens/components/tabs/usage/TabsUsagePage";
-import TabsPageLayout from "../../../screens/components/tabs/TabsPageLayout";
+import TabsUsagePage from "screens/components/tabs/usage/TabsUsagePage";
+import TabsPageLayout from "screens/components/tabs/TabsPageLayout";
 
 const Usage = () => {
   return (

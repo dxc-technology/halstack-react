@@ -1,243 +1,256 @@
-import styled, { ThemeProvider } from "styled-components";
-import { spaces } from "../common/variables";
-import getMargin from "../common/utils";
+import styled, { css, ThemeProvider } from "styled-components";
+import { useState, memo, useId, useEffect } from "react";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
 import AlertPropsType from "./types";
 import DxcIcon from "../icon/Icon";
+import DxcButton from "../button/Button";
+import DxcDivider from "../divider/Divider";
+import DxcActionIcon from "../action-icon/ActionIcon";
+import DxcFlex from "../flex/Flex";
+import ModalAlertWrapper from "./ModalAlertWrapper";
+import CoreTokens from "../common/coreTokens";
+
+const AlertContainer = styled.div<{
+  semantic: AlertPropsType["semantic"];
+  mode: AlertPropsType["mode"];
+}>`
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: ${CoreTokens.spacing_8};
+  ${(props) =>
+    (props.mode === "modal" || props.mode === "inline") && `border-radius: ${CoreTokens.border_radius_medium};`};
+  padding: ${(props) =>
+    props.mode === "modal"
+      ? CoreTokens.spacing_24
+      : props.mode === "inline"
+        ? CoreTokens.spacing_12
+        : `${CoreTokens.spacing_8} ${CoreTokens.spacing_12}`};
+  background-color: ${(props) =>
+    (props.mode === "modal" && props.theme.modalBackgroundColor) ||
+    (props.semantic === "info" && props.theme.infoBackgroundColor) ||
+    (props.semantic === "success" && props.theme.successBackgroundColor) ||
+    (props.semantic === "warning" && props.theme.warningBackgroundColor) ||
+    (props.semantic === "error" && props.theme.errorBackgroundColor)};
+  overflow: hidden;
+`;
+
+const TitleContainer = styled.div<{ mode: AlertPropsType["mode"]; semantic: AlertPropsType["semantic"] }>`
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  gap: ${CoreTokens.spacing_8};
+  color: ${(props) =>
+    (props.semantic === "info" && props.theme.infoIconColor) ||
+    (props.semantic === "success" && props.theme.successIconColor) ||
+    (props.semantic === "warning" && props.theme.warningIconColor) ||
+    (props.semantic === "error" && props.theme.errorIconColor)};
+  font-size: ${(props) => props.theme.iconSize};
+  overflow: hidden;
+`;
+
+const typographyStyles = css`
+  font-family: ${(props) => props.theme.fontFamily};
+  font-size: ${(props) => props.theme.fontSize};
+  font-style: ${(props) => props.theme.fontStyle};
+  font-weight: ${(props) => props.theme.fontWeight};
+  color: ${(props) => props.theme.fontColor};
+`;
+
+const Title = styled.span<{ mode: AlertPropsType["mode"] }>`
+  ${typographyStyles}
+  ${(props) => props.mode === "modal" && `font-size: ${props.theme.modalTitleFontSize}`};
+  font-weight: ${(props) => props.theme.modalTitleFontWeight};
+`;
+
+const Message = styled.div<{ mode: AlertPropsType["mode"] }>`
+  ${typographyStyles}
+  white-space: ${(props) => props.mode === "banner" && "nowrap"};
+  text-overflow: ${(props) => props.mode === "banner" && "ellipsis"};
+  overflow: ${(props) => props.mode === "banner" && "hidden"};
+
+  > strong {
+    font-weight: ${(props) => props.theme.modalTitleFontWeight};
+  }
+`;
+
+const NavigationText = styled.span`
+  ${typographyStyles}
+  white-space: nowrap;
+`;
+
+const Actions = memo(
+  ({
+    mode,
+    primaryAction,
+    secondaryAction,
+    semantic,
+  }: Pick<AlertPropsType, "mode" | "primaryAction" | "secondaryAction" | "semantic">) =>
+    (primaryAction != null || secondaryAction != null) && (
+      <DxcFlex gap="0.5rem" alignSelf={mode === "inline" || mode === "modal" ? "flex-end" : undefined}>
+        {secondaryAction?.onClick && (
+          <DxcButton
+            icon={secondaryAction.icon}
+            label={secondaryAction.label}
+            mode="secondary"
+            semantic={semantic}
+            size={{ height: mode === "modal" ? "medium" : "small" }}
+            onClick={secondaryAction.onClick}
+          />
+        )}
+        {primaryAction?.onClick && (
+          <DxcButton
+            icon={primaryAction.icon}
+            label={primaryAction.label}
+            semantic={semantic}
+            size={{ height: mode === "modal" ? "medium" : "small" }}
+            onClick={primaryAction.onClick}
+          />
+        )}
+      </DxcFlex>
+    )
+);
+
+Actions.displayName = "Actions";
+
+const getIcon = (semantic: AlertPropsType["semantic"]) => {
+  switch (semantic) {
+    case "info":
+      return <DxcIcon icon="filled_info" />;
+    case "success":
+      return <DxcIcon icon="filled_check_circle" />;
+    case "warning":
+      return <DxcIcon icon="filled_warning" />;
+    case "error":
+      return <DxcIcon icon="filled_cancel" />;
+    default:
+      return undefined;
+  }
+};
 
 const DxcAlert = ({
-  type = "info",
+  closable = true,
+  message = [],
   mode = "inline",
-  inlineText = "",
-  onClose,
-  children,
-  margin,
-  size = "fitContent",
-  tabIndex,
-}: AlertPropsType): JSX.Element => {
+  primaryAction,
+  secondaryAction,
+  semantic = "info",
+  title = "",
+}: AlertPropsType) => {
+  const [messages, setMessages] = useState(Array.isArray(message) ? message : [message]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const id = useId();
   const colorsTheme = useTheme();
   const translatedLabels = useTranslatedLabels();
 
-  const getTypeText = () =>
-    type === "info"
-      ? translatedLabels?.alert?.infoTitleText
-      : type === "confirm"
-        ? translatedLabels?.alert?.successTitleText
-        : type === "warning"
-          ? translatedLabels?.alert?.warningTitleText
-          : translatedLabels?.alert?.errorTitleText;
+  const handleNextOnClick = () => {
+    setCurrentIndex((prevIndex) => (prevIndex < messages.length ? prevIndex + 1 : prevIndex));
+  };
+  const handlePrevOnClick = () => {
+    setCurrentIndex((prevIndex) => (prevIndex > 0 ? prevIndex - 1 : prevIndex));
+  };
+  const handleOnClose = () => {
+    messages[currentIndex]?.onClose?.();
+    if (mode !== "modal") {
+      setMessages((prevMessages) => prevMessages.filter((_, index) => index !== currentIndex));
+    }
+  };
+
+  useEffect(() => {
+    if (currentIndex === messages.length) {
+      handlePrevOnClick();
+    }
+  }, [currentIndex, messages]);
 
   return (
-    <ThemeProvider theme={colorsTheme?.alert}>
-      <AlertModal mode={mode}>
-        {mode === "modal" && <OverlayContainer mode={mode} onClick={onClose}></OverlayContainer>}
+    <ThemeProvider theme={colorsTheme.alert}>
+      <ModalAlertWrapper condition={mode === "modal"} onClose={handleOnClose}>
         <AlertContainer
+          role={mode === "modal" ? "alertdialog" : "alert"}
+          aria-modal={mode === "modal" ? true : undefined}
+          aria-labelledby={mode === "modal" ? `${id}-title` : undefined}
+          aria-describedby={mode === "modal" ? `${id}-message` : undefined}
+          semantic={semantic}
           mode={mode}
-          type={type}
-          margin={margin}
-          size={size}
-          role={type === "error" ? "alert" : "status"}
-          aria-live={type === "error" ? "assertive" : "off"}
         >
-          <AlertInfo>
-            <AlertIcon type={type}>
-              {(type === "info" && <DxcIcon icon="filled_info" />) ||
-                (type === "confirm" && <DxcIcon icon="filled_check_circle" />) ||
-                (type === "warning" && <DxcIcon icon="filled_warning" />) ||
-                (type === "error" && <DxcIcon icon="filled_cancel" />)}
-            </AlertIcon>
-            <AlertText>
-              <AlertTitle>{getTypeText()}</AlertTitle>
-              {inlineText && inlineText !== "" && "-"}
-              <AlertInlineText>{inlineText}</AlertInlineText>
-            </AlertText>
-            {typeof onClose === "function" && (
-              <AlertCloseAction onClick={onClose} tabIndex={tabIndex} aria-label="Close alert">
-                <DxcIcon icon="close" />
-              </AlertCloseAction>
+          <DxcFlex gap="0.75rem" alignItems="center">
+            <TitleContainer mode={mode} semantic={semantic}>
+              {getIcon(semantic)}
+              {mode === "banner" ? (
+                <Message mode={mode}>
+                  <strong>{title}</strong>
+                  {messages.length > 0 && <> - {messages[currentIndex]?.text}</>}
+                </Message>
+              ) : (
+                <Title id={`${id}-title`} mode={mode}>
+                  {title}
+                </Title>
+              )}
+            </TitleContainer>
+            {mode === "banner" && (
+              <Actions
+                semantic={semantic}
+                mode={mode}
+                primaryAction={primaryAction}
+                secondaryAction={secondaryAction}
+              />
             )}
-          </AlertInfo>
-          {children && <AlertContent>{children}</AlertContent>}
+            {messages.length > 1 && (
+              <DxcFlex alignItems="center" gap="0.25rem">
+                <DxcActionIcon
+                  icon="chevron_left"
+                  title={translatedLabels?.alert?.previousMessageActionTitle ?? ""}
+                  onClick={handlePrevOnClick}
+                  disabled={currentIndex === 0}
+                />
+                <NavigationText>
+                  {currentIndex + 1} of {messages.length}
+                </NavigationText>
+                <DxcActionIcon
+                  icon="chevron_right"
+                  title={translatedLabels?.alert?.nextMessageActionTitle ?? ""}
+                  onClick={handleNextOnClick}
+                  disabled={currentIndex === messages.length - 1}
+                />
+              </DxcFlex>
+            )}
+            {closable && (
+              <DxcFlex gap="0.25rem">
+                {mode !== "modal" && <DxcDivider orientation="vertical" />}
+                <DxcActionIcon
+                  icon="close"
+                  title={
+                    messages.length > 1
+                      ? (translatedLabels?.alert?.closeMessageActionTitle ?? "")
+                      : (translatedLabels?.alert?.closeAlertActionTitle ?? "")
+                  }
+                  onClick={handleOnClose}
+                />
+              </DxcFlex>
+            )}
+          </DxcFlex>
+          {mode === "modal" && <DxcDivider />}
+          {mode !== "banner" && (
+            <>
+              {messages.length > 0 && (
+                <Message id={`${id}-message`} mode={mode}>
+                  {messages[currentIndex]?.text}
+                </Message>
+              )}
+              <Actions
+                semantic={semantic}
+                mode={mode}
+                primaryAction={primaryAction}
+                secondaryAction={secondaryAction}
+              />
+            </>
+          )}
         </AlertContainer>
-      </AlertModal>
+      </ModalAlertWrapper>
     </ThemeProvider>
   );
 };
-
-const sizes = {
-  small: "280px",
-  medium: "480px",
-  large: "820px",
-  fillParent: "100%",
-  fitContent: "fit-content",
-};
-
-const calculateWidth = (margin: AlertPropsType["margin"], size: AlertPropsType["size"]) =>
-  size === "fillParent"
-    ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
-    : size && sizes[size];
-
-const AlertModal = styled.div<{ mode: AlertPropsType["mode"] }>`
-  font-size: ${(props) => props.theme.fontSizeBase};
-  width: ${(props) => (props.mode === "modal" ? "100%" : "")};
-  height: ${(props) => (props.mode === "modal" ? "100%" : "")};
-  justify-content: ${(props) => (props.mode === "modal" ? "center" : "")};
-  align-items: ${(props) => (props.mode === "modal" ? "center" : "")};
-  top: ${(props) => (props.mode === "modal" ? "0" : "")};
-  left: ${(props) => (props.mode === "modal" ? "0" : "")};
-  position: ${(props) => (props.mode === "modal" ? "fixed" : "")};
-  display: ${(props) => (props.mode === "modal" ? "flex" : "")};
-  z-index: ${(props) => (props.mode === "modal" ? "1200" : "")};
-`;
-
-const OverlayContainer = styled.div<{ mode: AlertPropsType["mode"] }>`
-  background-color: ${(props) => (props.mode === "modal" ? `${props.theme.overlayColor}` : "transparent")};
-  position: ${(props) => (props.mode === "modal" ? "fixed" : "")};
-  top: ${(props) => (props.mode === "modal" ? "0" : "")};
-  bottom: ${(props) => (props.mode === "modal" ? "0" : "")};
-  left: ${(props) => (props.mode === "modal" ? "0" : "")};
-  right: ${(props) => (props.mode === "modal" ? "0" : "")};
-`;
-
-const AlertContainer = styled.div<{
-  margin: AlertPropsType["margin"];
-  size: AlertPropsType["size"];
-  type: AlertPropsType["type"];
-  mode: AlertPropsType["mode"];
-}>`
-  margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
-  margin-top: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
-  margin-right: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
-  margin-bottom: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
-  margin-left: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
-  display: ${(props) => (props.size === "fitContent" ? "inline-block" : "block")};
-  overflow: hidden;
-  box-sizing: border-box;
-
-  background-color: ${(props) =>
-    (props.type === "info" && props.theme.infoBackgroundColor) ||
-    (props.type === "confirm" && props.theme.successBackgroundColor) ||
-    (props.type === "warning" && props.theme.warningBackgroundColor) ||
-    (props.type === "error" && props.theme.errorBackgroundColor)};
-
-  border-radius: ${(props) => props.theme.borderRadius};
-  border-width: ${(props) => props.theme.borderThickness};
-  border-style: ${(props) => props.theme.borderStyle};
-  border-color: ${(props) =>
-    (props.type === "info" && props.theme.infoBorderColor) ||
-    (props.type === "confirm" && props.theme.successBorderColor) ||
-    (props.type === "warning" && props.theme.warningBorderColor) ||
-    (props.type === "error" && props.theme.errorBorderColor)};
-
-  padding-left: 12px;
-  padding-right: 12px;
-  justify-content: ${(props) => (props.mode === "modal" ? "center" : "")};
-  align-items: ${(props) => (props.mode === "modal" ? "center" : "")};
-  max-width: ${(props) => props.size !== "fillParent" && calculateWidth(props.margin, "fillParent")};
-  width: ${(props) => props.size !== "fillParent" && calculateWidth(props.margin, props.size)};
-  z-index: ${(props) => (props.mode === "modal" ? "1300" : "")};
-`;
-
-const AlertInfo = styled.div`
-  display: flex;
-  flex-direction: row;
-  height: calc(48px - calc(${(props) => props.theme.borderThickness} * 2));
-  align-items: center;
-  width: 100%;
-`;
-
-const AlertTitle = styled.div`
-  margin-right: 8px;
-  padding-right: ${(props) => props.theme.titlePaddingRight};
-  padding-left: ${(props) => props.theme.titlePaddingLeft};
-  font-family: ${(props) => props.theme.titleFontFamily};
-  font-size: ${(props) => props.theme.titleFontSize};
-  font-style: ${(props) => props.theme.titleFontStyle};
-  font-weight: ${(props) => props.theme.titleFontWeight};
-  color: ${(props) => props.theme.titleFontColor};
-  text-transform: ${(props) => props.theme.titleTextTransform};
-`;
-
-const AlertInlineText = styled.div`
-  margin-left: 8px;
-  padding-right: ${(props) => props.theme.inlineTextPaddingRight};
-  padding-left: ${(props) => props.theme.inlineTextPaddingLeft};
-  flex-grow: 1;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  font-family: ${(props) => props.theme.inlineTextFontFamily};
-  font-size: ${(props) => props.theme.inlineTextFontSize};
-  font-style: ${(props) => props.theme.inlineTextFontStyle};
-  font-weight: ${(props) => props.theme.inlineTextFontWeight};
-  color: ${(props) => props.theme.inlineTextFontColor};
-`;
-
-const AlertIcon = styled.span<{ type: AlertPropsType["type"] }>`
-  display: flex;
-  flex-wrap: wrap;
-  align-content: center;
-  margin-right: 12px;
-  padding-right: ${(props) => props.theme.iconPaddingRight};
-  padding-left: ${(props) => props.theme.iconPaddingLeft};
-
-  color: ${(props) =>
-    (props.type === "info" && props.theme.infoIconColor) ||
-    (props.type === "confirm" && props.theme.successIconColor) ||
-    (props.type === "warning" && props.theme.warningIconColor) ||
-    (props.type === "error" && props.theme.errorIconColor)};
-
-  font-size: ${(props) => props.theme.iconSize};
-`;
-
-const AlertText = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-grow: 1;
-  align-items: center;
-  overflow: hidden;
-`;
-
-const AlertContent = styled.div`
-  flex: 1 1 auto;
-  padding: ${(props) =>
-    `${props.theme.contentPaddingTop} ${props.theme.contentPaddingRight} ${props.theme.contentPaddingBottom} ${props.theme.contentPaddingLeft}`};
-  overflow-y: auto;
-`;
-
-const AlertCloseAction = styled.button`
-  display: flex;
-  flex-wrap: wrap;
-  align-content: center;
-  justify-content: center;
-  height: 24px;
-  width: 24px;
-  font-size: 20px;
-  border: 1px solid transparent;
-  border-radius: 2px;
-  box-shadow: 0 0 0 2px transparent;
-  padding: 3px;
-  margin-left: 12px;
-  background-color: transparent;
-  color: #000000;
-  cursor: pointer;
-
-  &:hover {
-    background-color: ${(props) => props.theme.hoverActionBackgroundColor};
-  }
-  &:focus,
-  &:focus-visible {
-    outline: none;
-    box-shadow: 0 0 0 2px ${(props) => props.theme.focusActionBorderColor};
-  }
-  &:active {
-    background-color: ${(props) => props.theme.activeActionBackgroundColor};
-  }
-`;
 
 export default DxcAlert;

@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import TabsSpecsPage from "../../../screens/components/tabs/specs/TabsSpecsPage";
-import TabsPageLayout from "../../../screens/components/tabs/TabsPageLayout";
+import TabsSpecsPage from "screens/components/tabs/specs/TabsSpecsPage";
+import TabsPageLayout from "screens/components/tabs/TabsPageLayout";
 
 const Specifications = () => {
   return (

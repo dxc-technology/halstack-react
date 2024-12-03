@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import FooterPageLayout from "../../../screens/components/footer/FooterPageLayout";
-import FooterUsagePage from "../../../screens/components/footer/usage/FooterUsagePage";
+import FooterPageLayout from "screens/components/footer/FooterPageLayout";
+import FooterUsagePage from "screens/components/footer/usage/FooterUsagePage";
 
 const Usage = () => {
   return (

@@ -1,6 +1,5 @@
 /**
  * Array of accessibility rule IDs to be disabled in both Jest and Storybook.
- *
  */
 const disabledRules = [
   // Disable heading order rule to prevent errors from using h2 and h4 in the titles of the stories

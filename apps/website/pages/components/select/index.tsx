@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import SelectPageLayout from "../../../screens/components/select/SelectPageLayout";
-import SelectCodePage from "../../../screens/components/select/code/SelectCodePage";
+import SelectPageLayout from "screens/components/select/SelectPageLayout";
+import SelectCodePage from "screens/components/select/code/SelectCodePage";
 
 const Index = () => {
   return (

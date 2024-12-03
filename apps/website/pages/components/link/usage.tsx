@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import LinkPageLayout from "../../../screens/components/link/LinkPageLayout";
-import LinkUsagePage from "../../../screens/components/link/usage/LinkUsagePage";
+import LinkPageLayout from "screens/components/link/LinkPageLayout";
+import LinkUsagePage from "screens/components/link/usage/LinkUsagePage";
 
 const Index = () => {
   return (

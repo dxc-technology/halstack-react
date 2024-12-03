@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import SidenavPageLayout from "../../../screens/components/sidenav/SidenavPageLayout";
-import SidenavSpecsPage from "../../../screens/components/sidenav/specs/SidenavSpecsPage";
+import SidenavPageLayout from "screens/components/sidenav/SidenavPageLayout";
+import SidenavSpecsPage from "screens/components/sidenav/specs/SidenavSpecsPage";
 
 const Specifications = () => {
   return (

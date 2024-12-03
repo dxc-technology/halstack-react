@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import StatusLightCodePage from "../../../screens/components/status-light/code/StatusLightCodePage";
-import StatusLightPageLayout from "../../../screens/components/status-light/StatusLightPageLayout";
+import StatusLightCodePage from "screens/components/status-light/code/StatusLightCodePage";
+import StatusLightPageLayout from "screens/components/status-light/StatusLightPageLayout";
 
 const Index = () => {
   return (

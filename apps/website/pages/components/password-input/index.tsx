@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import PasswordInputCodePage from "../../../screens/components/password-input/code/PasswordInputCodePage";
-import PasswordInputPageLayout from "../../../screens/components/password-input/PasswordInputPageLayout";
+import PasswordInputCodePage from "screens/components/password-input/code/PasswordInputCodePage";
+import PasswordInputPageLayout from "screens/components/password-input/PasswordInputPageLayout";
 
 const Index = () => {
   return (

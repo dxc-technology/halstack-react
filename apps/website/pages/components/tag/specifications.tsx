@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import TagSpecsPage from "../../../screens/components/tag/specs/TagSpecsPage";
-import TagPageLayout from "../../../screens/components/tag/TagPageLayout";
+import TagSpecsPage from "screens/components/tag/specs/TagSpecsPage";
+import TagPageLayout from "screens/components/tag/TagPageLayout";
 
 const Specifications = () => {
   return (

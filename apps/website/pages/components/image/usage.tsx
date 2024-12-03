@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import ImagePageLayout from "../../../screens/components/image/ImagePageLayout";
-import ImageUsagePage from "../../../screens/components/image/usage/ImageUsagePage";
+import ImagePageLayout from "screens/components/image/ImagePageLayout";
+import ImageUsagePage from "screens/components/image/usage/ImageUsagePage";
 
 const Usage = () => {
   return (

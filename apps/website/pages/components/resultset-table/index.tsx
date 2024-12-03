@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import ResultsetTableCodePage from "../../../screens/components/resultset-table/code/ResultsetTableCodePage";
-import ResultsetTablePageLayout from "../../../screens/components/resultset-table/ResultsetTablePageLayout";
+import ResultsetTableCodePage from "screens/components/resultset-table/code/ResultsetTableCodePage";
+import ResultsetTablePageLayout from "screens/components/resultset-table/ResultsetTablePageLayout";
 
 const Usage = () => {
   return (

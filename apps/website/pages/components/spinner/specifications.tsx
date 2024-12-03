@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import SpinnerSpecsPage from "../../../screens/components/spinner/specs/SpinnerSpecsPage";
-import SpinnerPageLayout from "../../../screens/components/spinner/SpinnerPageLayout";
+import SpinnerSpecsPage from "screens/components/spinner/specs/SpinnerSpecsPage";
+import SpinnerPageLayout from "screens/components/spinner/SpinnerPageLayout";
 
 const Specifications = () => {
   return (

@@ -1,37 +1,33 @@
 import Image from "@/common/Image";
-import { DxcLink, DxcBulletedList, DxcFlex, DxcTable, DxcParagraph } from "@dxc-technology/halstack-react";
+import { DxcLink, DxcBulletedList, DxcFlex, DxcTable } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
 import Figure from "@/common/Figure";
 import AlertAnatomyImage from "./images/alert_anatomy.png";
-import AlertStatesImage from "./images/alert_states.png";
-import AlertSpecsImage from "./images/alert_specs.png";
+import BannerAlertSpecsImage from "./images/alert_banner_specs.png";
+import InlineAlertSpecsImage from "./images/alert_inline_specs.png";
+import ModalAlertSpecsImage from "./images/alert_modal_specs.png";
 
 const sections = [
   {
     title: "Specifications",
     content: (
-      <Figure caption="Alert design specifications">
-        <Image src={AlertSpecsImage} alt="Alert design specifications" />
-      </Figure>
-    ),
-  },
-  {
-    title: "States",
-    content: (
       <>
-        <DxcParagraph>
-          States for the close action of the alert component: <strong>enabled</strong>, <strong>hover</strong>,{" "}
-          <strong>focus</strong>, and <strong>active</strong>.
-        </DxcParagraph>
-        <Figure caption="Alert states">
-          <Image src={AlertStatesImage} alt="Alert states" />
+        <Figure caption="Banner alert design specifications">
+          <Image src={BannerAlertSpecsImage} alt="Banner alert design specifications" />
+        </Figure>
+        <Figure caption="Modal alert design specifications">
+          <Image src={ModalAlertSpecsImage} alt="Modal alert design specifications" />
+        </Figure>
+        <Figure caption="Inline alert design specifications">
+          <Image src={InlineAlertSpecsImage} alt="Inline alert design specifications" />
         </Figure>
       </>
     ),
   },
+
   {
     title: "Anatomy",
     content: (
@@ -41,11 +37,11 @@ const sections = [
           <DxcBulletedList.Item>Container</DxcBulletedList.Item>
           <DxcBulletedList.Item>Icon</DxcBulletedList.Item>
           <DxcBulletedList.Item>Title</DxcBulletedList.Item>
-          <DxcBulletedList.Item>Inline text</DxcBulletedList.Item>
-          <DxcBulletedList.Item>Close action</DxcBulletedList.Item>
-          <DxcBulletedList.Item>
-            Content <em>(Optional)</em>
-          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>Pagination</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Divider</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Close action icon</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Buttons</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Description</DxcBulletedList.Item>
         </DxcBulletedList>
       </>
     ),
@@ -68,79 +64,9 @@ const sections = [
             <tbody>
               <tr>
                 <td>
-                  <Code>infoIconColor</Code>
-                </td>
-                <td>Icon</td>
-                <td>
-                  <Code>color-blue-800</Code>
-                </td>
-                <td>#0067b3</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>successIconColor</Code>
-                </td>
-                <td>Icon</td>
-                <td>
-                  <Code>color-green-700</Code>
-                </td>
-                <td>#24a148</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>warningIconColor</Code>
-                </td>
-                <td>Icon</td>
-                <td>
-                  <Code>color-yellow-700</Code>
-                </td>
-                <td>#c59f07</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>errorIconColor</Code>
-                </td>
-                <td>Icon</td>
-                <td>
-                  <Code>color-red-700</Code>
-                </td>
-                <td>#d0011b</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>infoBackgroundColor</Code>
-                </td>
-                <td>Container background</td>
-                <td>
-                  <Code>color-blue-100</Code>
-                </td>
-                <td>#e6f4ff</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>successBackgroundColor</Code>
-                </td>
-                <td>Container background</td>
-                <td>
-                  <Code>color-green-100</Code>
-                </td>
-                <td>#eafaef</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>warningBackgroundColor</Code>
-                </td>
-                <td>Container background</td>
-                <td>
-                  <Code>color-yellow-100</Code>
-                </td>
-                <td>#fef9e6</td>
-              </tr>
-              <tr>
-                <td>
                   <Code>errorBackgroundColor</Code>
                 </td>
-                <td>Container background</td>
+                <td>Container (error)</td>
                 <td>
                   <Code>color-red-100</Code>
                 </td>
@@ -148,39 +74,9 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <Code>infoBorderColor</Code>
+                  <Code>errorIconColor</Code>
                 </td>
-                <td>Container border</td>
-                <td>
-                  <Code>color-blue-800</Code>
-                </td>
-                <td>#0067b3</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>successBorderColor</Code>
-                </td>
-                <td>Container border</td>
-                <td>
-                  <Code>color-green-700</Code>
-                </td>
-                <td>#24a148</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>warningBorderColor</Code>
-                </td>
-                <td>Container border</td>
-                <td>
-                  <Code>color-yellow-700</Code>
-                </td>
-                <td>#c59f07</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>errorBorderColor</Code>
-                </td>
-                <td>Container border</td>
+                <td>Icon (error)</td>
                 <td>
                   <Code>color-red-700</Code>
                 </td>
@@ -188,53 +84,43 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <Code>titleFontColor</Code>
+                  <Code>fontColor</Code>
                 </td>
-                <td>Title</td>
+                <td>Alert</td>
                 <td>
-                  <Code>color-black</Code>
+                  <Code>color-grey-900</Code>
                 </td>
-                <td>#000000</td>
+                <td>#333333</td>
               </tr>
               <tr>
                 <td>
-                  <Code>inlineTextFontColor</Code>
+                  <Code>infoBackgroundColor</Code>
                 </td>
-                <td>Inline text</td>
+                <td>Container (info)</td>
                 <td>
-                  <Code>color-black</Code>
+                  <Code>color-blue-100</Code>
                 </td>
-                <td>#000000</td>
+                <td>#e6f4ff</td>
               </tr>
               <tr>
                 <td>
-                  <Code>hoverActionBackgroundColor</Code>
+                  <Code>infoIconColor</Code>
                 </td>
-                <td>Action:hover</td>
+                <td>Icon (info)</td>
                 <td>
-                  <Code>color-grey-100-a</Code>
+                  <Code>color-blue-700</Code>
                 </td>
-                <td>#0000000d</td>
+                <td>#0086e6</td>
               </tr>
               <tr>
                 <td>
-                  <Code>activeActionBackgroundColor</Code>
+                  <Code>modalBackgroundColor</Code>
                 </td>
-                <td>Action:active</td>
+                <td>Container (modal)</td>
                 <td>
-                  <Code>color-grey-200-a</Code>
+                  <Code>color-white</Code>
                 </td>
-                <td>#0000001a</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>focusActionBorderColor</Code>
-                </td>
-                <td>Action:focus</td>
-                <td>
-                  <Code>color-blue-600</Code>
-                </td>
-                <td>#0095ff</td>
+                <td>#ffffff</td>
               </tr>
               <tr>
                 <td>
@@ -246,196 +132,45 @@ const sections = [
                 </td>
                 <td>#000000b3</td>
               </tr>
-            </tbody>
-          </DxcTable>
-        ),
-      },
-      {
-        title: "Typography",
-        content: (
-          <DxcTable>
-            <thead>
-              <tr>
-                <th>Component token</th>
-                <th>Element</th>
-                <th>Core token</th>
-                <th>Value</th>
-              </tr>
-            </thead>
-            <tbody>
               <tr>
                 <td>
-                  <Code>titleFontFamily</Code>
+                  <Code>successBackgroundColor</Code>
                 </td>
-                <td>Title</td>
+                <td>Container (success)</td>
                 <td>
-                  <Code>font-family-sans</Code>
+                  <Code>color-green-100</Code>
                 </td>
-                <td>&#39;Open Sans&#39;, sans-serif</td>
+                <td>#eafaef</td>
               </tr>
               <tr>
                 <td>
-                  <Code>titleFontSize</Code>
+                  <Code>successIconColor</Code>
                 </td>
-                <td>Title</td>
+                <td>Icon (success)</td>
                 <td>
-                  <Code>font-scale-01</Code>
+                  <Code>color-green-700</Code>
                 </td>
-                <td>0.75rem / 12px</td>
+                <td>#24a148</td>
               </tr>
               <tr>
                 <td>
-                  <Code>titleFontWeight</Code>
+                  <Code>warningBackgroundColor</Code>
                 </td>
-                <td>Title</td>
+                <td>Container (warning)</td>
                 <td>
-                  <Code>font-bold</Code>
+                  <Code>color-yellow-100</Code>
                 </td>
-                <td>600</td>
+                <td>#fef9e6</td>
               </tr>
               <tr>
                 <td>
-                  <Code>inlineTextFontFamily</Code>
+                  <Code>warningIconColor</Code>
                 </td>
-                <td>Inline text</td>
+                <td>Icon (warning)</td>
                 <td>
-                  <Code>font-family-sans</Code>
+                  <Code>color-yellow-700</Code>
                 </td>
-                <td>&#39;Open Sans&#39;, sans-serif;</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>inlineTextFontSize</Code>
-                </td>
-                <td>Inline text</td>
-                <td>
-                  <Code>font-scale-01</Code>
-                </td>
-                <td>0.75rem / 12px</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>inlineTextFontWeight</Code>
-                </td>
-                <td>Inline text</td>
-                <td>
-                  <Code>font-regular</Code>
-                </td>
-                <td>400</td>
-              </tr>
-            </tbody>
-          </DxcTable>
-        ),
-      },
-      {
-        title: "Border",
-        content: (
-          <DxcTable>
-            <thead>
-              <tr>
-                <th>Component token</th>
-                <th>Element</th>
-                <th>Core token</th>
-                <th>Value</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <Code>borderRadius</Code>
-                </td>
-                <td>Container border</td>
-                <td>
-                  <Code>border-radius-medium</Code>
-                </td>
-                <td>0.25rem / 4px</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>borderThickness</Code>
-                </td>
-                <td>Container border</td>
-                <td>
-                  <Code>border-width-1</Code>
-                </td>
-                <td>1px</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>borderStyle</Code>
-                </td>
-                <td>Container border</td>
-                <td>
-                  <Code>border-style-solid</Code>
-                </td>
-                <td>solid</td>
-              </tr>
-            </tbody>
-          </DxcTable>
-        ),
-      },
-      {
-        title: "Spacing",
-        content: (
-          <DxcTable>
-            <thead>
-              <tr>
-                <th>Component token</th>
-                <th>Element</th>
-                <th>Core token</th>
-                <th>Value</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <Code>containerPaddingLeft</Code>
-                </td>
-                <td>Container</td>
-                <td>
-                  <Code>spacing-12</Code>
-                </td>
-                <td>0.75rem / 12px</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>containerPaddingRight</Code>
-                </td>
-                <td>Container</td>
-                <td>
-                  <Code>spacing-12</Code>
-                </td>
-                <td>0.75rem / 12px</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>iconMarginRight</Code>
-                </td>
-                <td>Icon</td>
-                <td>
-                  <Code>spacing-8</Code>
-                </td>
-                <td>0.75rem / 12px</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>inlineTextPaddingLeft</Code>
-                </td>
-                <td>Inline text</td>
-                <td>
-                  <Code>spacing-8</Code>
-                </td>
-                <td>0.5rem / 8px</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>titlePaddingLeft</Code>
-                </td>
-                <td>Title</td>
-                <td>
-                  <Code>spacing-8</Code>
-                </td>
-                <td>0.5rem / 8px</td>
+                <td>#c59f07</td>
               </tr>
             </tbody>
           </DxcTable>
@@ -460,62 +195,87 @@ const sections = [
                 </td>
                 <td>Icon</td>
                 <td>-</td>
-                <td>24x24px</td>
+                <td>24px</td>
               </tr>
             </tbody>
           </DxcTable>
         ),
       },
       {
-        title: "Width",
+        title: "Typography",
         content: (
-          <>
-            <DxcParagraph>
-              The alert component has a property that is customizable depending on the context and the scenario where
-              the component is used. This property defines the size of the alert and it can get multiple values
-              according to the needs of the application.
-            </DxcParagraph>
-            <DxcTable>
-              <thead>
-                <tr>
-                  <th>Width</th>
-                  <th>Value</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <Code>small</Code>
-                  </td>
-                  <td>280px</td>
-                </tr>
-                <tr>
-                  <td>
-                    <Code>medium</Code>
-                  </td>
-                  <td>480px</td>
-                </tr>
-                <tr>
-                  <td>
-                    <Code>large</Code>
-                  </td>
-                  <td>820px</td>
-                </tr>
-                <tr>
-                  <td>
-                    <Code>fillParent</Code>
-                  </td>
-                  <td>-</td>
-                </tr>
-                <tr>
-                  <td>
-                    <Code>fitContent</Code>
-                  </td>
-                  <td>-</td>
-                </tr>
-              </tbody>
-            </DxcTable>
-          </>
+          <DxcTable>
+            <thead>
+              <tr>
+                <th>Component token</th>
+                <th>Element</th>
+                <th>Core token</th>
+                <th>Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <Code>fontFamily</Code>
+                </td>
+                <td>Alert</td>
+                <td>
+                  <Code>font-family-sans</Code>
+                </td>
+                <td>'Open Sans', sans-serif</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>fontSize</Code>
+                </td>
+                <td>Alert</td>
+                <td>
+                  <Code>font-scale-02</Code>
+                </td>
+                <td>0.875rem / 14px</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>fontStyle</Code>
+                </td>
+                <td>Alert</td>
+                <td>
+                  <Code>font-style-normal</Code>
+                </td>
+                <td>normal</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>fontWeight</Code>
+                </td>
+                <td>Alert</td>
+                <td>
+                  <Code>font-weight-regular</Code>
+                </td>
+                <td>400</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>modalTitleFontSize</Code>
+                </td>
+                <td>Title</td>
+                <td>
+                  <Code>font-scale-05</Code>
+                </td>
+                <td>1.5rem / 24px</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>modalTitleFontWeight</Code>
+                </td>
+                <td>Title</td>
+                <td>
+                  <Code>font-weight-bold</Code>
+                </td>
+                <td>700</td>
+              </tr>
+            </tbody>
+          </DxcTable>
         ),
       },
     ],
@@ -524,51 +284,35 @@ const sections = [
     title: "Accessibility",
     subSections: [
       {
-        title: "WCWAG",
-        content: (
-          <DxcBulletedList>
-            <DxcBulletedList.Item>
-              Understanding WCAG 2.2 -{" "}
-              <DxcLink newWindow href="https://www.w3.org/WAI/WCAG21/Understanding/status-messages.html">
-                SC 4.1.3 Status Messages
-              </DxcLink>
-            </DxcBulletedList.Item>
-          </DxcBulletedList>
-        ),
-      },
-      {
         title: "WAI-ARIA",
         content: (
           <DxcBulletedList>
             <DxcBulletedList.Item>
-              WAI-ARIA Authoring practices 1.2 -{" "}
-              <DxcLink newWindow href="https://www.w3.org/TR/wai-aria-practices-1.2/#alert">
-                3.2 Alert
-              </DxcLink>
-            </DxcBulletedList.Item>
-            <DxcBulletedList.Item>
-              WAI-ARIA Authoring practices 1.2 -{" "}
-              <DxcLink newWindow href="https://www.w3.org/TR/wai-aria-practices-1.2/#alertdialog">
-                3.3 Alert and Message dialogs
-              </DxcLink>
-            </DxcBulletedList.Item>
-            <DxcBulletedList.Item>
-              WAI-ARIA Authoring practices 1.2 -{" "}
-              <DxcLink newWindow href="https://www.w3.org/TR/wai-aria-practices/examples/alert/alert.html">
-                Alert design pattern
-              </DxcLink>
-            </DxcBulletedList.Item>
-            <DxcBulletedList.Item>
-              WAI-ARIA Authoring practices 1.2 -{" "}
-              <DxcLink
-                newWindow
-                href="https://www.w3.org/TR/wai-aria-practices-1.2/examples/dialog-modal/alertdialog.html"
-              >
-                Alert Dialog design pattern
+              <DxcLink newWindow href="https://w3c.github.io/aria/#alert">
+                Alert role
               </DxcLink>
             </DxcBulletedList.Item>
           </DxcBulletedList>
         ),
+        subSections: [
+          {
+            title: "Authoring Practices Guide (APG)",
+            content: (
+              <DxcBulletedList>
+                <DxcBulletedList.Item>
+                  <DxcLink newWindow href="https://www.w3.org/WAI/ARIA/apg/patterns/alert/">
+                    Alert pattern
+                  </DxcLink>
+                </DxcBulletedList.Item>
+                <DxcBulletedList.Item>
+                  <DxcLink newWindow href="https://www.w3.org/WAI/ARIA/apg/patterns/alertdialog/">
+                    Alert and message dialogs pattern
+                  </DxcLink>
+                </DxcBulletedList.Item>
+              </DxcBulletedList>
+            ),
+          },
+        ],
       },
     ],
   },

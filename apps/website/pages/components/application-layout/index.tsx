@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import ApplicationLayoutPageLayout from "../../../screens/components/application-layout/ApplicationLayoutPageLayout";
-import ApplicationLayoutCodePage from "../../../screens/components/application-layout/code/ApplicationLayoutCodePage";
+import ApplicationLayoutPageLayout from "screens/components/application-layout/ApplicationLayoutPageLayout";
+import ApplicationLayoutCodePage from "screens/components/application-layout/code/ApplicationLayoutCodePage";
 
 const Index = () => {
   return (

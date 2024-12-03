@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import SpinnerUsagePage from "../../../screens/components/spinner/usage/SpinnerUsagePage";
-import SpinnerPageLayout from "../../../screens/components/spinner/SpinnerPageLayout";
+import SpinnerUsagePage from "screens/components/spinner/usage/SpinnerUsagePage";
+import SpinnerPageLayout from "screens/components/spinner/SpinnerPageLayout";
 
 const Usage = () => {
   return (

@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import BulletedListPageLayout from "../../../screens/components/bulleted-list/BulletedListPageLayout";
-import BulletedListCodePage from "../../../screens/components/bulleted-list/code/BulletedListCodePage";
+import BulletedListPageLayout from "screens/components/bulleted-list/BulletedListPageLayout";
+import BulletedListCodePage from "screens/components/bulleted-list/code/BulletedListCodePage";
 
 const Index = () => {
   return (

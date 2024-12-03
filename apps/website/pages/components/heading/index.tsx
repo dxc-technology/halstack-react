@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import HeadingPageLayout from "../../../screens/components/heading/HeadingPageLayout";
-import HeadingCodePage from "../../../screens/components/heading/code/HeadingCodePage";
+import HeadingPageLayout from "screens/components/heading/HeadingPageLayout";
+import HeadingCodePage from "screens/components/heading/code/HeadingCodePage";
 
 const Index = () => {
   return (

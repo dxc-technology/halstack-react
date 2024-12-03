@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import DropdownPageLayout from "../../../screens/components/dropdown/DropdownPageLayout";
-import DropdownSpecsPage from "../../../screens/components/dropdown/specs/DropdownSpecsPage";
+import DropdownPageLayout from "screens/components/dropdown/DropdownPageLayout";
+import DropdownSpecsPage from "screens/components/dropdown/specs/DropdownSpecsPage";
 
 const Specifications = () => {
   return (

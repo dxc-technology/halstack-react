@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import QuickNavPageLayout from "../../../screens/components/quick-nav/QuickNavPageLayout";
-import QuickNavCodePage from "../../../screens/components/quick-nav/code/QuickNavCodePage";
+import QuickNavPageLayout from "screens/components/quick-nav/QuickNavPageLayout";
+import QuickNavCodePage from "screens/components/quick-nav/code/QuickNavCodePage";
 
 const Index = () => {
   return (

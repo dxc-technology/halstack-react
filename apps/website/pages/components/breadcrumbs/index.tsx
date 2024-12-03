@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import BreadcrumbsCodePage from "../../../screens/components/breadcrumbs/code/BreadcrumbsCodePage";
-import BreadcrumbsPageLayout from "../../../screens/components/breadcrumbs/BreadcrumbsPageLayout";
+import BreadcrumbsCodePage from "screens/components/breadcrumbs/code/BreadcrumbsCodePage";
+import BreadcrumbsPageLayout from "screens/components/breadcrumbs/BreadcrumbsPageLayout";
 
 const Usage = () => {
   return (

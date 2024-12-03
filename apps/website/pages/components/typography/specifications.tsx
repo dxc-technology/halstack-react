@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import TypographyPageLayout from "../../../screens/components/typography/TypographyPageLayout";
-import TypographySpecsPage from "../../../screens/components/typography/specs/TypographySpecsPage";
+import TypographyPageLayout from "screens/components/typography/TypographyPageLayout";
+import TypographySpecsPage from "screens/components/typography/specs/TypographySpecsPage";
 
 const Specifications = () => {
   return (

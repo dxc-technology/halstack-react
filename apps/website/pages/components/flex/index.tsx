@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import FlexPageLayout from "../../../screens/components/flex/FlexPageLayout";
-import FlexCodePage from "../../../screens/components/flex/code/FlexCodePage";
+import FlexPageLayout from "screens/components/flex/FlexPageLayout";
+import FlexCodePage from "screens/components/flex/code/FlexCodePage";
 
 const Index = () => {
   return (

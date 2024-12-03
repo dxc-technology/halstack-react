@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import GridPageLayout from "../../../screens/components/grid/GridPageLayout";
-import GridUsagePage from "../../../screens/components/grid/usage/GridUsagePage";
+import GridPageLayout from "screens/components/grid/GridPageLayout";
+import GridUsagePage from "screens/components/grid/usage/GridUsagePage";
 
 const Usage = () => {
   return (
