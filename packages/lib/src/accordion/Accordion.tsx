@@ -166,11 +166,11 @@ const AccordionAssistiveText = styled.span<{ disabled: boolean }>`
   padding-right: ${(props) => props.theme.assistiveTextPaddingRight};
   color: ${(props) =>
     props.disabled ? props.theme.disabledAssistiveTextFontColor : props.theme.assistiveTextFontColor};
-  font-family: ${(props) => props.theme.accordion.assistiveTextFontFamily};
-  font-size: ${(props) => props.theme.accordion.assistiveTextFontSize};
-  font-style: ${(props) => props.theme.accordion.assistiveTextFontStyle};
-  font-weight: ${(props) => props.theme.accordion.assistiveTextFontWeight};
-  letter-spacing: ${(props) => props.theme.accordion.assistiveTextLetterSpacing};
+  font-family: ${(props) => props.theme.assistiveTextFontFamily};
+  font-size: ${(props) => props.theme.assistiveTextFontSize};
+  font-style: ${(props) => props.theme.assistiveTextFontStyle};
+  font-weight: ${(props) => props.theme.assistiveTextFontWeight};
+  letter-spacing: ${(props) => props.theme.assistiveTextLetterSpacing};
   line-height: 1.5em;
 `;
 
