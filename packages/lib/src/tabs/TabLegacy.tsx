@@ -173,18 +173,18 @@ const LabelContainer = styled.span<{
   fontStyle: string;
   fontWeight: string;
 }>`
-  display: "inline";
+  display: inline;
   color: ${(props) => props.color};
   font-family: ${(props) => props.fontFamily};
   font-size: ${(props) => props.fontSize};
   font-style: ${(props) => props.fontStyle};
   font-weight: ${(props) => props.fontWeight};
-  text-align: "center";
-  letter-spacing: "0.025em";
-  line-height: "1.715em";
-  text-decoration: "none";
-  text-overflow: "unset";
-  white-space: "normal";
+  text-align: center;
+  letter-spacing: 0.025em;
+  line-height: 1.715em;
+  text-decoration: none;
+  text-overflow: unset;
+  white-space: normal;
   margin: 0;
 `;
 
