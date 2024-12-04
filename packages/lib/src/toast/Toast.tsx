@@ -130,8 +130,6 @@ const ToastIcon = memo(
   }
 );
 
-ToastIcon.displayName = "ToastIcon";
-
 const DxcToast = ({
   action,
   duration,
@@ -194,7 +192,5 @@ const DxcToast = ({
     </Toast>
   );
 };
-
-DxcToast.displayName = "DxcToast";
 
 export default memo(DxcToast);
