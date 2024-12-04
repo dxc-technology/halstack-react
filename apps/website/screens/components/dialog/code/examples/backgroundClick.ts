@@ -11,7 +11,7 @@ const code = `() => {
     <DxcInset space="2rem">
       <DxcButton label="Enter your data" onClick={handleClick} />
       {isDialogVisible && (
-        <DxcDialog onBackgroundClick={handleClick} isCloseVisible={false}>
+        <DxcDialog onBackgroundClick={handleClick} closable={false}>
           <DxcInset space="1.5rem">
             Please enter your personal information.
           </DxcInset>
