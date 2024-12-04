@@ -98,7 +98,10 @@ const FocusLock = ({ children }: { children: React.ReactNode }): JSX.Element => 
   }, [focusableElements]);
 
   const focusLast = () => {
-    focusableElements?.slice().reverse()?.some((element) => attemptFocus(element));
+    focusableElements
+      ?.slice()
+      .reverse()
+      ?.some((element) => attemptFocus(element));
   };
 
   const focusLock = (event: React.KeyboardEvent<HTMLDivElement>) => {
@@ -114,11 +117,17 @@ const FocusLock = ({ children }: { children: React.ReactNode }): JSX.Element => 
 
   useEffect(() => {
     const focusGuardHandler = (event: FocusEvent) => {
+      const target = event.relatedTarget as Node | null;
+      const container = childrenContainerRef.current;
+
       if (
-        !childrenContainerRef.current?.contains(event.relatedTarget as Node) &&
-        !childrenContainerRef.current?.nextElementSibling?.contains(event.relatedTarget as Node) &&
-        !childrenContainerRef.current?.previousElementSibling?.contains(event.relatedTarget as Node) &&
-        !radixPortalContains(event.relatedTarget as Node)
+        target &&
+        !(
+          container?.contains(target) ||
+          container?.nextElementSibling?.contains(target) ||
+          container?.previousElementSibling?.contains(target) ||
+          radixPortalContains(target)
+        )
       )
         focusFirst();
     };
