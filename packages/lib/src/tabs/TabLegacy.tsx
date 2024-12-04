@@ -1,4 +1,4 @@
-import { forwardRef, memo } from "react";
+import { forwardRef, memo, Ref } from "react";
 import styled from "styled-components";
 import DxcBadge from "../badge/Badge";
 import DxcIcon from "../icon/Icon";
@@ -9,7 +9,7 @@ import { TabPropsLegacy } from "./types";
 const Tab = forwardRef(
   (
     { active, tab, tabIndex, hasLabelAndIcon, iconPosition, onClick, onMouseEnter, onMouseLeave }: TabPropsLegacy,
-    ref: React.Ref<HTMLButtonElement>
+    ref: Ref<HTMLButtonElement>
   ): JSX.Element => {
     const colorsTheme = useTheme();
 
@@ -47,15 +47,15 @@ const Tab = forwardRef(
           <BaseTypography
             color={
               tab.isDisabled
-                ? colorsTheme.tabs.disabledFontColor
+                ? colorsTheme?.tabs?.disabledFontColor
                 : active
-                  ? colorsTheme.tabs.selectedFontColor
-                  : colorsTheme.tabs.unselectedFontColor
+                  ? colorsTheme?.tabs?.selectedFontColor
+                  : colorsTheme?.tabs?.unselectedFontColor
             }
-            fontFamily={colorsTheme.tabs.fontFamily}
-            fontSize={colorsTheme.tabs.fontSize}
-            fontStyle={tab.isDisabled ? colorsTheme.tabs.disabledFontStyle : colorsTheme.tabs.fontStyle}
-            fontWeight={active ? colorsTheme.tabs.pressedFontWeight : colorsTheme.tabs.fontWeight}
+            fontFamily={colorsTheme?.tabs?.fontFamily}
+            fontSize={colorsTheme?.tabs?.fontSize}
+            fontStyle={tab.isDisabled ? colorsTheme?.tabs?.disabledFontStyle : colorsTheme?.tabs?.fontStyle}
+            fontWeight={active ? colorsTheme?.tabs?.pressedFontWeight : colorsTheme?.tabs?.fontWeight}
             textAlign="center"
             letterSpacing="0.025em"
             lineHeight="1.715em"
@@ -68,7 +68,7 @@ const Tab = forwardRef(
             <DxcBadge
               mode="notification"
               size="small"
-              label={typeof tab.notificationNumber === "number" && tab.notificationNumber}
+              label={typeof tab.notificationNumber === "number" ? tab.notificationNumber : undefined}
             />
           </BadgeContainer>
         )}

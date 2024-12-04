@@ -1,6 +1,5 @@
-import { memo } from "react";
+import { memo, useState } from "react";
 import dayjs, { Dayjs } from "dayjs";
-import { useState } from "react";
 import styled from "styled-components";
 import { DatePickerPropsType } from "./types";
 import Calendar from "./Calendar";
@@ -14,29 +13,29 @@ const today = dayjs();
 const DatePicker = ({ date, onDateSelect, id }: DatePickerPropsType): JSX.Element => {
   const [innerDate, setInnerDate] = useState(date?.isValid() ? date : dayjs());
   const [content, setContent] = useState("calendar");
-  const selectedDate = date?.isValid() ? date : null;
+  const selectedDate = date?.isValid() ? date : dayjs(null);
   const translatedLabels = useTranslatedLabels();
 
-  const handleDateSelect = (date: Dayjs) => {
-    setInnerDate(date);
-    onDateSelect(date);
+  const handleDateSelect = (chosenDate: Dayjs) => {
+    setInnerDate(chosenDate);
+    onDateSelect(chosenDate);
   };
 
-  const handleOnYearSelect = (year) => {
+  const handleOnYearSelect = (year: number) => {
     setInnerDate(innerDate.set("year", year));
     setContent("calendar");
   };
 
-  const handleMonthChange = (date: Dayjs) => {
-    setInnerDate(date);
+  const handleMonthChange = (chosenDate: Dayjs) => {
+    setInnerDate(chosenDate);
   };
 
   return (
     <DatePickerContainer id={id}>
       <PickerHeader>
-        <Tooltip label={translatedLabels.calendar.previousMonthTitle}>
+        <Tooltip label={translatedLabels?.calendar?.previousMonthTitle}>
           <HeaderButton
-            aria-label={translatedLabels.calendar.previousMonthTitle}
+            aria-label={translatedLabels?.calendar?.previousMonthTitle}
             onClick={() => handleMonthChange(innerDate.set("month", innerDate.get("month") - 1))}
           >
             <DxcIcon icon="keyboard_arrow_left" />
@@ -44,16 +43,16 @@ const DatePicker = ({ date, onDateSelect, id }: DatePickerPropsType): JSX.Elemen
         </Tooltip>
         <HeaderYearTrigger
           aria-live="polite"
-          onClick={() => setContent((content) => (content === "yearPicker" ? "calendar" : "yearPicker"))}
+          onClick={() => setContent((currentContent) => (currentContent === "yearPicker" ? "calendar" : "yearPicker"))}
         >
           <HeaderYearTriggerLabel>
-            {translatedLabels.calendar.months[innerDate.get("month")]} {innerDate.format("YYYY")}
+            {translatedLabels?.calendar?.months?.[innerDate.get("month")]} {innerDate.format("YYYY")}
           </HeaderYearTriggerLabel>
           <DxcIcon icon={content === "yearPicker" ? "arrow_drop_up" : "arrow_drop_down"} />
         </HeaderYearTrigger>
-        <Tooltip label={translatedLabels.calendar.nextMonthTitle}>
+        <Tooltip label={translatedLabels?.calendar?.nextMonthTitle}>
           <HeaderButton
-            aria-label={translatedLabels.calendar.nextMonthTitle}
+            aria-label={translatedLabels?.calendar?.nextMonthTitle}
             onClick={() => handleMonthChange(innerDate.set("month", innerDate.get("month") + 1))}
           >
             <DxcIcon icon="keyboard_arrow_right" />

@@ -116,16 +116,21 @@ const ToastIcon = memo(
     loading,
     semantic,
   }: Pick<ToastPropsType, "icon" | "hideSemanticIcon" | "loading" | "semantic">) => {
-    if (semantic === "default") return typeof icon === "string" ? <DxcIcon icon={icon} /> : icon;
-    else if (semantic === "info" && loading)
+    if (semantic === "default") {
+      return typeof icon === "string" ? <DxcIcon icon={icon} /> : icon;
+    }
+    if (semantic === "info" && loading) {
       return (
         <HalstackProvider theme={spinnerTheme}>
           <DxcSpinner mode="small" />
         </HalstackProvider>
       );
-    else return !hideSemanticIcon && <DxcIcon icon={getSemantic(semantic).icon} />;
+    }
+    return !hideSemanticIcon && <DxcIcon icon={getSemantic(semantic).icon} />;
   }
 );
+
+ToastIcon.displayName = "ToastIcon";
 
 const DxcToast = ({
   action,
@@ -144,14 +149,14 @@ const DxcToast = ({
     () => {
       setIsClosing(true);
     },
-    loading ? null : duration - 300
+    loading ? undefined : duration - 300
   );
 
   const clearTimer = useTimeout(
     () => {
       onClear();
     },
-    loading ? null : duration
+    loading ? undefined : duration
   );
 
   return (
@@ -173,7 +178,7 @@ const DxcToast = ({
         )}
         <DxcActionIcon
           icon="clear"
-          title={translatedLabels.toast.clearToastActionTitle}
+          title={translatedLabels?.toast?.clearToastActionTitle ?? ""}
           onClick={() => {
             if (!loading) {
               clearClosingAnimationTimer();
@@ -189,5 +194,7 @@ const DxcToast = ({
     </Toast>
   );
 };
+
+DxcToast.displayName = "DxcToast";
 
 export default memo(DxcToast);

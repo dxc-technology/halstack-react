@@ -7,7 +7,7 @@ import useTranslatedLabels from "../useTranslatedLabels";
 import Tab from "./TabLegacy";
 import TabsPropsType from "./types";
 
-const useResize = (refTabList) => {
+const useResize = (refTabList: React.MutableRefObject<HTMLDivElement | null>) => {
   const [viewWidth, setViewWidth] = useState(0);
 
   const handleWindowSizeChange = useCallback(() => {
@@ -36,10 +36,12 @@ const DxcTabs = ({
   tabIndex = 0,
 }: TabsPropsType): JSX.Element => {
   const colorsTheme = useTheme();
-  const hasLabelAndIcon = tabs && tabs.filter((tab) => tab.label && tab.icon).length > 0;
-  const firstFocus = tabs && tabs.findIndex((tab) => !tab.isDisabled);
+  const hasLabelAndIcon = tabs != null && tabs.filter((tab) => tab.label && tab.icon).length > 0;
+  const firstFocus = tabs != null ? tabs.findIndex((tab) => !tab.isDisabled) : null;
   const [innerActiveTabIndex, setInnerActiveTabIndex] = useState(
-    tabs && defaultActiveTabIndex && !tabs[defaultActiveTabIndex].isDisabled ? defaultActiveTabIndex : firstFocus
+    tabs != null && defaultActiveTabIndex && !tabs[defaultActiveTabIndex]?.isDisabled
+      ? defaultActiveTabIndex
+      : firstFocus
   );
   const [activeIndicatorWidth, setActiveIndicatorWidth] = useState(0);
   const [activeIndicatorLeft, setActiveIndicatorLeft] = useState(0);
@@ -51,43 +53,45 @@ const DxcTabs = ({
   const [currentFocusIndex, setCurrentFocusIndex] = useState(activeTabIndex ?? innerActiveTabIndex);
   const [temporalFocusIndex, setTemporalFocusIndex] = useState(activeTabIndex ?? innerActiveTabIndex);
   const [minHeightTabs, setMinHeightTabs] = useState(0);
-  const refTabs = useRef([]);
-  const refTabList = useRef(null);
+  const refTabs = useRef<HTMLButtonElement[]>([]);
+  const refTabList = useRef<HTMLDivElement | null>(null);
   const viewWidth = useResize(refTabList);
   const translatedLabels = useTranslatedLabels();
   const enabledIndicator = useMemo(() => viewWidth < totalTabsWidth, [viewWidth]);
 
   useEffect(() => {
-    let sumWidth = refTabs?.current?.reduce(function (count, obj) {
-      return count + obj.offsetWidth;
-    }, 0);
-    setTotalTabsWidth(sumWidth);
-    setActiveIndicatorWidth(refTabs?.current[activeTabIndex ?? innerActiveTabIndex]?.offsetWidth);
-    setActiveIndicatorLeft(refTabs?.current[activeTabIndex ?? innerActiveTabIndex]?.offsetLeft);
+    if (activeTabIndex != null || innerActiveTabIndex != null) {
+      const sumWidth = refTabs?.current?.reduce((count, obj) => count + obj.offsetWidth, 0);
+      setTotalTabsWidth(sumWidth);
+      setActiveIndicatorWidth(refTabs?.current[activeTabIndex ?? innerActiveTabIndex!]?.offsetWidth ?? 0);
+      setActiveIndicatorLeft(refTabs?.current[activeTabIndex ?? innerActiveTabIndex!]?.offsetLeft ?? 0);
+    }
   }, [refTabs]);
 
   useEffect(() => {
-    setMinHeightTabs(refTabList?.current?.offsetHeight + 1);
+    setMinHeightTabs((refTabList?.current?.offsetHeight || 0) + 1);
   }, [refTabList]);
 
   useEffect(() => {
-    if (activeTabIndex >= 0) {
-      setActiveIndicatorWidth(refTabs?.current[activeTabIndex]?.offsetWidth);
-      setActiveIndicatorLeft(refTabs?.current[activeTabIndex]?.offsetLeft);
+    if (activeTabIndex && activeTabIndex >= 0) {
+      setActiveIndicatorWidth(refTabs?.current[activeTabIndex]?.offsetWidth ?? 0);
+      setActiveIndicatorLeft(refTabs?.current[activeTabIndex]?.offsetLeft ?? 0);
     }
   }, [activeTabIndex]);
 
-  const handleSelected = (newValue) => {
-    activeTabIndex ?? setInnerActiveTabIndex(newValue);
+  const handleSelected = (newValue: number) => {
+    if (activeTabIndex == null) {
+      setInnerActiveTabIndex(newValue);
+    }
     onTabClick?.(newValue);
     if (activeTabIndex === undefined) {
-      setActiveIndicatorWidth(refTabs?.current[newValue]?.offsetWidth);
-      setActiveIndicatorLeft(refTabs?.current[newValue]?.offsetLeft);
+      setActiveIndicatorWidth(refTabs?.current[newValue]?.offsetWidth ?? 0);
+      setActiveIndicatorLeft(refTabs?.current[newValue]?.offsetLeft ?? 0);
     }
   };
 
   const scrollLeft = () => {
-    const scrollWidth = refTabList?.current?.offsetWidth * 0.75;
+    const scrollWidth = (refTabList?.current?.offsetHeight || 0) * 0.75;
     let moveX = 0;
     if (countClick <= scrollWidth) {
       moveX = 0;
@@ -103,10 +107,10 @@ const DxcTabs = ({
   };
 
   const scrollRight = () => {
-    const scrollWidth = refTabList?.current?.offsetWidth * 0.75;
+    const scrollWidth = (refTabList?.current?.offsetHeight || 0) * 0.75;
     let moveX = 0;
-    if (countClick + scrollWidth + refTabList?.current?.offsetWidth >= totalTabsWidth) {
-      moveX = totalTabsWidth - refTabList?.current?.offsetWidth;
+    if (countClick + scrollWidth + (refTabList?.current?.offsetHeight || 0) >= totalTabsWidth) {
+      moveX = totalTabsWidth - (refTabList?.current?.offsetHeight || 0);
       setScrollRightEnabled(false);
       setScrollLeftEnabled(true);
     } else {
@@ -119,51 +123,64 @@ const DxcTabs = ({
   };
 
   const setPreviousTabFocus = () => {
-    setTemporalFocusIndex((temporalFocusIndex) => {
-      let index = temporalFocusIndex === 0 ? tabs.length - 1 : temporalFocusIndex - 1;
-      while (tabs[index].isDisabled) {
-        index = index === 0 ? tabs.length - 1 : index - 1;
-      }
-      refTabs?.current[index].focus({ preventScroll: true });
-      setScrollFocus(index);
-      return index;
-    });
+    if (tabs) {
+      setTemporalFocusIndex((currentTemporalFocusIndex) => {
+        if (currentTemporalFocusIndex != null) {
+          let index = currentTemporalFocusIndex === 0 ? tabs.length - 1 : currentTemporalFocusIndex - 1;
+          while (tabs[index]?.isDisabled) {
+            index = index === 0 ? tabs.length - 1 : index - 1;
+          }
+          refTabs?.current[index]?.focus({ preventScroll: true });
+          setScrollFocus(index);
+          return index;
+        }
+        return null;
+      });
+    }
   };
 
   const setNextTabFocus = () => {
-    setTemporalFocusIndex((temporalFocusIndex) => {
-      let index = temporalFocusIndex === tabs.length - 1 ? 0 : temporalFocusIndex + 1;
-      while (tabs[index].isDisabled) {
-        index = index === tabs.length - 1 ? 0 : index + 1;
-      }
-      refTabs?.current[index].focus({ preventScroll: true });
-      setScrollFocus(index);
-      return index;
-    });
+    if (tabs) {
+      setTemporalFocusIndex((currentTemporalFocusIndex) => {
+        if (currentTemporalFocusIndex != null) {
+          let index = currentTemporalFocusIndex === tabs.length - 1 ? 0 : currentTemporalFocusIndex + 1;
+          while (tabs[index]?.isDisabled) {
+            index = index === tabs.length - 1 ? 0 : index + 1;
+          }
+          refTabs?.current[index]?.focus({ preventScroll: true });
+          setScrollFocus(index);
+          return index;
+        }
+        return null;
+      });
+    }
   };
 
   const setScrollFocus = (actualIndex: number) => {
-    let sumPrev = 0;
-    refTabs?.current?.map((item, index) => {
-      if (index <= actualIndex) {
-        sumPrev += item.offsetWidth;
+    if (tabs) {
+      let sumPrev = 0;
+      refTabs?.current?.forEach((item, index) => {
+        if (index <= actualIndex) {
+          sumPrev += item.offsetWidth;
+        }
+      });
+      let moveX = 0;
+
+      if (actualIndex === tabs.length - 1) {
+        moveX = totalTabsWidth - (refTabList?.current?.offsetHeight || 0);
+        setScrollLeftEnabled(true);
+        setScrollRightEnabled(false);
+      } else if (refTabList?.current?.offsetWidth && sumPrev > refTabList?.current?.offsetWidth) {
+        moveX = sumPrev - (refTabList?.current?.offsetHeight || 0) + 1; // plus 1px for the outline
+        setScrollLeftEnabled(true);
+        setScrollRightEnabled(true);
+      } else {
+        setScrollLeftEnabled(false);
+        setScrollRightEnabled(true);
       }
-    });
-    let moveX = 0;
-    if (actualIndex === tabs.length - 1) {
-      moveX = totalTabsWidth - refTabList?.current?.offsetWidth;
-      setScrollLeftEnabled(true);
-      setScrollRightEnabled(false);
-    } else if (sumPrev > refTabList?.current?.offsetWidth) {
-      moveX = sumPrev - refTabList?.current?.offsetWidth + 1; //plus 1px for the outline
-      setScrollLeftEnabled(true);
-      setScrollRightEnabled(true);
-    } else {
-      setScrollLeftEnabled(false);
-      setScrollRightEnabled(true);
+      setTranslateScroll(-moveX);
+      setCountClick(moveX);
     }
-    setTranslateScroll(-moveX);
-    setCountClick(moveX);
   };
 
   const handleOnKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
@@ -180,27 +197,35 @@ const DxcTabs = ({
         break;
       case "Enter":
       case " ":
-        event.preventDefault();
-        setCurrentFocusIndex(temporalFocusIndex);
-        handleSelected(temporalFocusIndex);
+        if (temporalFocusIndex != null) {
+          event.preventDefault();
+          setCurrentFocusIndex(temporalFocusIndex);
+          handleSelected(temporalFocusIndex);
+        }
         break;
       case "Tab":
-        if (temporalFocusIndex !== currentFocusIndex) {
-          event.preventDefault();
-          setTemporalFocusIndex(currentFocusIndex);
-          refTabs?.current[currentFocusIndex].focus();
+        if (currentFocusIndex != null) {
+          if (temporalFocusIndex !== currentFocusIndex) {
+            event.preventDefault();
+            setTemporalFocusIndex(currentFocusIndex);
+            refTabs?.current[currentFocusIndex]?.focus();
+          }
+          handleSelected(currentFocusIndex);
         }
-        handleSelected(currentFocusIndex);
+        break;
+      default:
         break;
     }
   };
 
-  const isTabActive = (index) => (activeTabIndex >= 0 ? activeTabIndex === index : innerActiveTabIndex === index);
+  const isTabActive = (index: number) =>
+    activeTabIndex != null && activeTabIndex >= 0 ? activeTabIndex === index : innerActiveTabIndex === index;
   const isActiveIndicatorDisabled =
-    firstFocus === -1 || (tabs && activeTabIndex >= 0 && tabs[activeTabIndex].isDisabled);
+    firstFocus === -1 ||
+    (tabs != null && activeTabIndex !== undefined && activeTabIndex >= 0 && !!tabs[activeTabIndex]?.isDisabled);
 
   return (
-    <ThemeProvider theme={colorsTheme.tabs}>
+    <ThemeProvider theme={colorsTheme?.tabs}>
       <TabsContainer margin={margin}>
         <Underline />
         <Tabs hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
@@ -208,24 +233,24 @@ const DxcTabs = ({
             onClick={scrollLeft}
             enabled={enabledIndicator}
             disabled={!scrollLeftEnabled}
-            aria-label={translatedLabels.tabs.scrollLeft}
+            aria-label={translatedLabels?.tabs?.scrollLeft}
             tabIndex={scrollLeftEnabled ? tabIndex : -1}
             minHeightTabs={minHeightTabs}
           >
-            <DxcIcon icon={"keyboard_arrow_left"} />
+            <DxcIcon icon="keyboard_arrow_left" />
           </ScrollIndicator>
           <TabsContent>
             <TabsContentScroll translateScroll={translateScroll} ref={refTabList} enabled={enabledIndicator}>
               <TabList role="tablist" onKeyDown={handleOnKeyDown} minHeightTabs={minHeightTabs}>
-                {tabs.map((tab, i) => (
+                {tabs?.map((tab, i) => (
                   <Tab
                     tab={tab}
-                    key={`tab${i}${tab.label}`}
+                    key={`tab-${i}`}
                     active={isTabActive(i)}
                     tabIndex={isTabActive(i) && !tab.isDisabled ? tabIndex : -1}
                     hasLabelAndIcon={hasLabelAndIcon}
                     iconPosition={iconPosition}
-                    ref={(el) => {
+                    ref={(el: HTMLButtonElement) => {
                       refTabs.current[i] = el;
                     }}
                     onClick={() => {
@@ -253,11 +278,11 @@ const DxcTabs = ({
             onClick={scrollRight}
             enabled={enabledIndicator}
             disabled={!scrollRightEnabled}
-            aria-label={translatedLabels.tabs.scrollRight}
+            aria-label={translatedLabels?.tabs?.scrollRight}
             tabIndex={scrollRightEnabled ? tabIndex : -1}
             minHeightTabs={minHeightTabs}
           >
-            <DxcIcon icon={"keyboard_arrow_right"} />
+            <DxcIcon icon="keyboard_arrow_right" />
           </ScrollIndicator>
         </Tabs>
       </TabsContainer>
