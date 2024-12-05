@@ -8,66 +8,6 @@ import useTranslatedLabels from "../useTranslatedLabels";
 import FocusLock from "../utils/FocusLock";
 import DialogPropsType from "./types";
 
-const DxcDialog = ({
-  isCloseVisible = true,
-  onCloseClick,
-  children,
-  overlay = true,
-  onBackgroundClick,
-  tabIndex = 0,
-}: DialogPropsType): JSX.Element => {
-  const colorsTheme = useTheme();
-  const translatedLabels = useTranslatedLabels();
-
-  useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        event.preventDefault();
-        onCloseClick?.();
-      }
-    };
-
-    document.addEventListener("keydown", handleKeyDown);
-    return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [onCloseClick]);
-
-  return (
-    <ThemeProvider theme={colorsTheme?.dialog}>
-      <BodyStyle />
-      {createPortal(
-        <DialogContainer>
-          {overlay && (
-            <Overlay
-              onClick={() => {
-                onBackgroundClick?.();
-              }}
-            />
-          )}
-          <Dialog role="dialog" aria-modal={overlay} isCloseVisible={isCloseVisible} aria-label="Dialog">
-            <FocusLock>
-              {children}
-              {isCloseVisible && (
-                <CloseIconAction
-                  onClick={() => {
-                    onCloseClick?.();
-                  }}
-                  aria-label={translatedLabels?.dialog?.closeIconAriaLabel}
-                  tabIndex={tabIndex}
-                >
-                  <DxcIcon icon="close" />
-                </CloseIconAction>
-              )}
-            </FocusLock>
-          </Dialog>
-        </DialogContainer>,
-        document.body
-      )}
-    </ThemeProvider>
-  );
-};
-
 const BodyStyle = createGlobalStyle`
   body {
     overflow: hidden;
@@ -91,16 +31,14 @@ const Overlay = styled.div`
   background-color: ${(props) => props.theme.overlayColor};
 `;
 
-const Dialog = styled.div<{
-  isCloseVisible: DialogPropsType["isCloseVisible"];
-}>`
+const Dialog = styled.div<{ closable: DialogPropsType["closable"] }>`
   position: relative;
   box-sizing: border-box;
   max-width: 80%;
   min-width: 696px;
   border-radius: 4px;
   background-color: ${(props) => props.theme.backgroundColor};
-  ${(props) => props.isCloseVisible && "min-height: 72px;"}
+  ${(props) => props.closable && "min-height: 72px;"}
   box-shadow: ${(props) =>
     `${props.theme.boxShadowOffsetX} ${props.theme.boxShadowOffsetY} ${props.theme.boxShadowBlur} ${props.theme.boxShadowColor}`};
   z-index: 2147483647;
@@ -143,5 +81,65 @@ const CloseIconAction = styled.button`
     font-size: ${(props) => props.theme.closeIconSize};
   }
 `;
+
+const DxcDialog = ({
+  closable = true,
+  onCloseClick,
+  children,
+  overlay = true,
+  onBackgroundClick,
+  tabIndex = 0,
+}: DialogPropsType): JSX.Element => {
+  const colorsTheme = useTheme();
+  const translatedLabels = useTranslatedLabels();
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        onCloseClick?.();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [onCloseClick]);
+
+  return (
+    <ThemeProvider theme={colorsTheme.dialog}>
+      <BodyStyle />
+      {createPortal(
+        <DialogContainer>
+          {overlay && (
+            <Overlay
+              onClick={() => {
+                onBackgroundClick?.();
+              }}
+            />
+          )}
+          <Dialog role="dialog" aria-modal={overlay} closable={closable} aria-label="Dialog">
+            <FocusLock>
+              {children}
+              {closable && (
+                <CloseIconAction
+                  onClick={() => {
+                    onCloseClick?.();
+                  }}
+                  aria-label={translatedLabels?.dialog?.closeIconAriaLabel}
+                  tabIndex={tabIndex}
+                >
+                  <DxcIcon icon="close" />
+                </CloseIconAction>
+              )}
+            </FocusLock>
+          </Dialog>
+        </DialogContainer>,
+        document.body
+      )}
+    </ThemeProvider>
+  );
+};
 
 export default DxcDialog;

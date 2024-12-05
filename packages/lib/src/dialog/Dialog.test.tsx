@@ -12,7 +12,13 @@ import DxcSwitch from "../switch/Switch";
 import DxcTextInput from "../text-input/TextInput";
 import DxcTextarea from "../textarea/Textarea";
 import DxcDialog from "./Dialog";
+import DxcTooltip from "../tooltip/Tooltip";
+import DxcAlert from "../alert/Alert";
 
+(global as any).globalThis = global;
+(global as any).DOMRect = {
+  fromRect: () => ({ top: 0, left: 0, bottom: 0, right: 0, width: 0, height: 0 }),
+};
 (global as any).ResizeObserver = class ResizeObserver {
   observe() {}
   unobserve() {}
@@ -35,13 +41,13 @@ describe("Dialog component tests", () => {
   });
 
   test("Dialog renders without close button", () => {
-    const { queryByRole } = render(<DxcDialog isCloseVisible={false}>dialog-text</DxcDialog>);
+    const { queryByRole } = render(<DxcDialog closable={false}>dialog-text</DxcDialog>);
     expect(queryByRole("button")).toBeFalsy();
   });
 
   test("Dialog renders with aria-modal false when overlay is not used", () => {
     const { getByRole } = render(
-      <DxcDialog isCloseVisible={false} overlay={false}>
+      <DxcDialog closable={false} overlay={false}>
         dialog-text
       </DxcDialog>
     );
@@ -264,7 +270,7 @@ describe("Dialog component: Focus lock tests", () => {
     const { getAllByRole } = render(
       <>
         <DxcTextInput label="Name" />
-        <DxcDialog isCloseVisible={false}>
+        <DxcDialog closable={false}>
           <h2>Policy agreement</h2>
           <p>Sample text.</p>
         </DxcDialog>
@@ -279,5 +285,48 @@ describe("Dialog component: Focus lock tests", () => {
     fireEvent.keyDown(dialog, { key: "Tab", shiftKey: true });
     fireEvent.keyDown(dialog, { key: "Tab", shiftKey: true });
     expect(document.activeElement).not.toEqual(inputs[0]);
+  });
+  test("Focus travels correctly in a complex tab sequence", async () => {
+    const { getAllByRole, queryByRole, getByRole } = render(
+      <DxcDialog>
+        <DxcSelect label="Accept" options={options} />
+        <DxcDateInput label="Older age" />
+        <DxcTooltip label="Text input tooltip label">
+          <DxcTextInput label="Name" />
+        </DxcTooltip>
+        <DxcAlert
+          semantic="error"
+          title="Error"
+          message={{
+            text: "User: arn:aws:xxx::xxxxxxxxxxxx:assumed-role/assure-sandbox-xxxx-xxxxxxxxxxxxxxxxxxxxxxxxxx/sandbox-xxxx-xxxxxxxxxxxxxxxxxx is not authorized to perform: lambda:xxxxxxxxxxxxxx on resource: arn:aws:lambda:us-east-1:xxxxxxxxxxxx:function:sandbox-xxxx-xx-xxxxxxx-xxxxxxx-lambda because no identity-based policy allows the lambda:xxxxxxxxxxxxxx action",
+          }}
+        />
+        <DxcButton label="Cancel" />
+        <DxcButton label="Save" />
+      </DxcDialog>
+    );
+    const select = getAllByRole("combobox")[0];
+    expect(document.activeElement).toEqual(select);
+    fireEvent.keyDown(select, { key: "ArrowDown", code: "ArrowDown", keyCode: 40, charCode: 40 });
+    expect(queryByRole("listbox")).toBeTruthy();
+    userEvent.tab();
+    userEvent.tab();
+    await userEvent.keyboard('{Enter}');
+    expect(getAllByRole("dialog")[1]).toBeTruthy();
+    userEvent.click(getAllByRole("dialog")[0]);
+    userEvent.tab();
+    userEvent.tab();
+    userEvent.tab();
+    userEvent.tab();
+    expect(document.activeElement).toEqual(getByRole("button", { name: "Close alert" }));
+    userEvent.tab();
+    userEvent.tab();
+    expect(document.activeElement).toEqual(getByRole("button", { name: "Save" }));
+    userEvent.tab();
+    userEvent.tab();
+    expect(document.activeElement).toEqual(select);
+    userEvent.tab({ shift: true });
+    userEvent.tab({ shift: true });
+    expect(getByRole("button", { name: "Save" })).toBeTruthy();
   });
 });

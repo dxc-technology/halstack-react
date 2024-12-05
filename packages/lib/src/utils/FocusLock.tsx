@@ -49,7 +49,7 @@ const attemptFocus = (element: HTMLElement): boolean => {
  * @param element: HTMLElement
  * @returns boolean: true if element is contained inside a Radix Portal, false otherwise.
  */
-const radixPortalContains = (activeElement: Element): boolean => {
+const radixPortalContains = (activeElement: Node): boolean => {
   const radixPortals = document.querySelectorAll("[data-radix-portal]");
   const radixPoppers = document.querySelectorAll("[data-radix-popper-content-wrapper]");
   return (
@@ -78,6 +78,7 @@ const useFocusableElements = (ref: MutableRefObject<HTMLDivElement | null>): HTM
         subtree: true,
         attributes: true,
       });
+      observer.observe(ref.current, { childList: true, subtree: true });
       return () => {
         observer.disconnect();
       };
@@ -99,6 +100,7 @@ const useFocusableElements = (ref: MutableRefObject<HTMLDivElement | null>): HTM
 const FocusLock = ({ children }: { children: ReactNode }): JSX.Element => {
   const childrenContainerRef = useRef<HTMLDivElement | null>(null);
   const focusableElements = useFocusableElements(childrenContainerRef);
+  const initialFocus = useRef(false);
 
   const focusFirst = useCallback(() => {
     if (focusableElements?.length === 0) {
@@ -109,7 +111,10 @@ const FocusLock = ({ children }: { children: ReactNode }): JSX.Element => {
   }, [focusableElements]);
 
   const focusLast = () => {
-    focusableElements?.reverse()?.some((element) => attemptFocus(element));
+    focusableElements
+      ?.slice()
+      .reverse()
+      ?.some((element) => attemptFocus(element));
   };
 
   const focusLock = (event: KeyboardEvent<HTMLDivElement>) => {
@@ -119,13 +124,33 @@ const FocusLock = ({ children }: { children: ReactNode }): JSX.Element => {
   };
 
   useEffect(() => {
-    if (
-      document?.activeElement &&
-      !childrenContainerRef.current?.contains(document.activeElement) &&
-      !radixPortalContains(document.activeElement)
-    ) {
+    if (focusableElements !== undefined && !initialFocus.current) {
+      initialFocus.current = true;
       focusFirst();
     }
+  }, [focusableElements, focusFirst]);
+
+  useEffect(() => {
+    const focusGuardHandler = (event: FocusEvent) => {
+      const target = event.relatedTarget as Node | null;
+      const container = childrenContainerRef.current;
+
+      if (
+        target &&
+        !(
+          container?.contains(target) ||
+          container?.nextElementSibling?.contains(target) ||
+          container?.previousElementSibling?.contains(target) ||
+          radixPortalContains(target)
+        )
+      )
+        focusFirst();
+    };
+
+    document.addEventListener("focusout", focusGuardHandler);
+    return () => {
+      document.removeEventListener("focusout", focusGuardHandler);
+    };
   }, [focusFirst]);
 
   return (

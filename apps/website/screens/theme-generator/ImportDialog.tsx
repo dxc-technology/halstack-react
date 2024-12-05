@@ -53,7 +53,7 @@ const ImportDialog = ({ customThemeSchema, setCustomTheme, setDialogVisible }: I
   };
 
   return (
-    <DxcDialog isCloseVisible={false} onBackgroundClick={closeDialog}>
+    <DxcDialog closable={false} onBackgroundClick={closeDialog}>
       <ImportDialogContainer>
         <DxcHeading text="Import theme" level={2} weight="normal" />
         <DxcTextarea
