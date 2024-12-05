@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme";
 
@@ -17,7 +18,7 @@ const Paragraph = styled.p`
   margin: 0;
 `;
 
-export default function DxcParagraph({ children }: { children: React.ReactNode }) {
+export default function DxcParagraph({ children }: { children: ReactNode }) {
   const colorsTheme = useTheme();
 
   return (

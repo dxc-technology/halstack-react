@@ -17,17 +17,20 @@ const Suggestions = ({
   styles,
 }: SuggestionsProps): JSX.Element => {
   const translatedLabels = useTranslatedLabels();
-  const listboxRef = useRef(null);
+  const listboxRef = useRef<HTMLUListElement | null>(null);
 
   useEffect(() => {
     const visualFocusedOptionEl = listboxRef?.current?.querySelectorAll("[role='option']")[visualFocusIndex];
-    visualFocusedOptionEl?.scrollIntoView?.({ block: "nearest", inline: "start" });
+    visualFocusedOptionEl?.scrollIntoView?.({
+      block: "nearest",
+      inline: "start",
+    });
   }, [visualFocusIndex]);
 
   return (
     <SuggestionsContainer
       id={id}
-      error={searchHasErrors ? true : false}
+      error={!!searchHasErrors}
       onMouseDown={(event) => {
         event.preventDefault();
       }}
@@ -52,7 +55,9 @@ const Suggestions = ({
           />
         ))}
       {isSearching && (
-        <SuggestionsSystemMessage role="option">{translatedLabels.textInput.searchingMessage}</SuggestionsSystemMessage>
+        <SuggestionsSystemMessage role="option">
+          {translatedLabels?.textInput?.searchingMessage}
+        </SuggestionsSystemMessage>
       )}
       {searchHasErrors && (
         <span role="option">
@@ -60,7 +65,7 @@ const Suggestions = ({
             <SuggestionsErrorIcon>
               <DxcIcon icon="filled_error" />
             </SuggestionsErrorIcon>
-            {translatedLabels.textInput.fetchingDataErrorMessage}
+            {translatedLabels?.textInput?.fetchingDataErrorMessage}
           </SuggestionsError>
         </span>
       )}

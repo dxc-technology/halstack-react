@@ -1,12 +1,12 @@
-import { forwardRef, useEffect, useId, useRef, useState } from "react";
+import { ChangeEvent, FocusEvent, forwardRef, useEffect, useId, useRef, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import { getMargin } from "../common/utils";
+import getMargin from "../common/utils";
 import { spaces } from "../common/variables";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
 import TextareaPropsType, { RefType } from "./types";
 
-const patternMatch = (pattern, value) => new RegExp(pattern).test(value);
+const patternMatch = (pattern: string, value: string) => new RegExp(pattern).test(value);
 
 const DxcTextarea = forwardRef<RefType, TextareaPropsType>(
   (
@@ -41,61 +41,100 @@ const DxcTextarea = forwardRef<RefType, TextareaPropsType>(
     const colorsTheme = useTheme();
     const translatedLabels = useTranslatedLabels();
 
-    const textareaRef = useRef(null);
-    const prevValueRef = useRef(null);
+    const textareaRef = useRef<HTMLTextAreaElement | null>(null);
+    const prevValueRef = useRef<string | null>(null);
     const errorId = `error-${textareaId}`;
 
-    const isNotOptional = (value) => value === "" && !optional;
+    const isNotOptional = (checkedValue: string) => checkedValue === "" && !optional;
 
-    const isLengthIncorrect = (value) =>
-      value !== "" && minLength && maxLength && (value.length < minLength || value.length > maxLength);
+    const isLengthIncorrect = (checkedValue: string) =>
+      checkedValue !== "" &&
+      minLength &&
+      maxLength &&
+      (checkedValue.length < minLength || checkedValue.length > maxLength);
 
-    const changeValue = (newValue) => {
-      value ?? setInnerValue(newValue);
+    const changeValue = (newValue: string) => {
+      if (value == null) {
+        setInnerValue(newValue);
+      }
 
-      if (isNotOptional(newValue))
-        onChange?.({ value: newValue, error: translatedLabels.formFields.requiredValueErrorMessage });
-      else if (isLengthIncorrect(newValue))
-        onChange?.({ value: newValue, error: translatedLabels.formFields.lengthErrorMessage(minLength, maxLength) });
-      else if (newValue && pattern && !patternMatch(pattern, newValue))
-        onChange?.({ value: newValue, error: translatedLabels.formFields.formatRequestedErrorMessage });
-      else onChange?.({ value: newValue });
+      if (isNotOptional(newValue)) {
+        onChange?.({
+          value: newValue,
+          error: translatedLabels?.formFields?.requiredValueErrorMessage,
+        });
+      } else if (isLengthIncorrect(newValue)) {
+        onChange?.({
+          value: newValue,
+          error: translatedLabels?.formFields?.lengthErrorMessage?.(minLength, maxLength),
+        });
+      } else if (newValue && pattern && !patternMatch(pattern, newValue)) {
+        onChange?.({
+          value: newValue,
+          error: translatedLabels?.formFields?.formatRequestedErrorMessage,
+        });
+      } else {
+        onChange?.({ value: newValue });
+      }
     };
 
-    const handleOnBlur = (event) => {
-      if (isNotOptional(event.target.value))
-        onBlur?.({ value: event.target.value, error: translatedLabels.formFields.requiredValueErrorMessage });
-      else if (isLengthIncorrect(event.target.value))
+    const autoVerticalGrow = () => {
+      if (textareaRef?.current) {
+        const computedStyle = window.getComputedStyle(textareaRef?.current);
+        const textareaLineHeight = parseInt(computedStyle.lineHeight || "0", 10);
+        const textareaPaddingTopBottom = parseInt(computedStyle.paddingTop || "0", 10) * 2;
+        textareaRef.current.style.height = `${textareaLineHeight * rows}px`;
+        const newHeight = textareaRef.current.scrollHeight - textareaPaddingTopBottom;
+        textareaRef.current.style.height = `${newHeight}px`;
+      }
+    };
+
+    const handleOnBlur = (event: FocusEvent<HTMLTextAreaElement>) => {
+      if (isNotOptional(event.target.value)) {
         onBlur?.({
           value: event.target.value,
-          error: translatedLabels.formFields.lengthErrorMessage(minLength, maxLength),
+          error: translatedLabels?.formFields?.requiredValueErrorMessage,
         });
-      else if (event.target.value && pattern && !patternMatch(pattern, event.target.value))
-        onBlur?.({ value: event.target.value, error: translatedLabels.formFields.formatRequestedErrorMessage });
-      else onBlur?.({ value: event.target.value });
+      } else if (isLengthIncorrect(event.target.value)) {
+        onBlur?.({
+          value: event.target.value,
+          error: translatedLabels?.formFields?.lengthErrorMessage?.(minLength, maxLength),
+        });
+      } else if (event.target.value && pattern && !patternMatch(pattern, event.target.value)) {
+        onBlur?.({
+          value: event.target.value,
+          error: translatedLabels?.formFields?.formatRequestedErrorMessage,
+        });
+      } else {
+        onBlur?.({ value: event.target.value });
+      }
     };
 
-    const handleOnChange = (event) => {
+    const handleOnChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
       changeValue(event.target.value);
+      if (verticalGrow === "auto") {
+        autoVerticalGrow();
+      }
     };
 
     useEffect(() => {
-      if (verticalGrow === "auto" && prevValueRef.current !== (value ?? innerValue)) {
-        const textareaLineHeight = parseInt(window.getComputedStyle(textareaRef.current)["line-height"]);
-        const textareaPaddingTopBottom = parseInt(window.getComputedStyle(textareaRef.current)["padding-top"]) * 2;
+      if (verticalGrow === "auto" && prevValueRef.current !== (value ?? innerValue) && textareaRef?.current) {
+        const computedStyle = window.getComputedStyle(textareaRef?.current);
+        const textareaLineHeight = parseInt(computedStyle.lineHeight || "0", 10);
+        const textareaPaddingTopBottom = parseInt(computedStyle.paddingTop || "0", 10) * 2;
         textareaRef.current.style.height = `${textareaLineHeight * rows}px`;
-        const newHeight = textareaRef.current.scrollHeight - textareaPaddingTopBottom;
+        const newHeight = (textareaRef?.current?.scrollHeight ?? 0) - textareaPaddingTopBottom;
         textareaRef.current.style.height = `${newHeight}px`;
         prevValueRef.current = value ?? innerValue;
       }
     }, [verticalGrow, value, innerValue, rows]);
 
     return (
-      <ThemeProvider theme={colorsTheme.textarea}>
+      <ThemeProvider theme={colorsTheme?.textarea}>
         <TextareaContainer margin={margin} size={size} ref={ref}>
           {label && (
             <Label htmlFor={textareaId} disabled={disabled} helperText={helperText}>
-              {label} {optional && <OptionalLabel>{translatedLabels.formFields.optionalLabel}</OptionalLabel>}
+              {label} {optional && <OptionalLabel>{translatedLabels?.formFields?.optionalLabel}</OptionalLabel>}
             </Label>
           )}
           {helperText && <HelperText disabled={disabled}>{helperText}</HelperText>}
@@ -116,7 +155,7 @@ const DxcTextarea = forwardRef<RefType, TextareaPropsType>(
             autoComplete={autocomplete}
             ref={textareaRef}
             tabIndex={tabIndex}
-            aria-invalid={error ? true : false}
+            aria-invalid={!!error}
             aria-errormessage={error ? errorId : undefined}
             aria-required={!disabled && !optional}
           />
@@ -138,10 +177,10 @@ const sizes = {
   fillParent: "100%",
 };
 
-const calculateWidth = (margin, size) =>
+const calculateWidth = (margin: TextareaPropsType["margin"], size: TextareaPropsType["size"]) =>
   size === "fillParent"
     ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
-    : sizes[size];
+    : size && sizes[size];
 
 const TextareaContainer = styled.div<{
   margin: TextareaPropsType["margin"];
@@ -194,12 +233,14 @@ const Textarea = styled.textarea<{
   verticalGrow: TextareaPropsType["verticalGrow"];
   error: TextareaPropsType["error"];
 }>`
-  ${({ verticalGrow }) => {
-    if (verticalGrow === "none") return "resize: none;";
-    else if (verticalGrow === "auto") return `resize: none; overflow: hidden;`;
-    else if (verticalGrow === "manual") return "resize: vertical;";
-    else return `resize: none;`;
-  }};
+  ${({ verticalGrow }) =>
+    verticalGrow === "none"
+      ? "resize: none;"
+      : verticalGrow === "auto"
+        ? `resize: none; overflow: hidden;`
+        : verticalGrow === "manual"
+          ? "resize: vertical;"
+          : `resize: none;`};
 
   ${(props) =>
     props.disabled ? `background-color: ${props.theme.disabledContainerFillColor};` : `background-color: transparent;`}
@@ -208,12 +249,14 @@ const Textarea = styled.textarea<{
   box-shadow: 0 0 0 2px transparent;
   border-radius: 0.25rem;
   border: 1px solid
-    ${(props) => {
-      if (props.disabled) return props.theme.disabledBorderColor;
-      else if (props.error) return "transparent";
-      else if (props.readOnly) return props.theme.readOnlyBorderColor;
-      else props.theme.enabledBorderColor;
-    }};
+    ${(props) =>
+      props.disabled
+        ? props.theme.disabledBorderColor
+        : props.error
+          ? "transparent"
+          : props.readOnly
+            ? props.theme.readOnlyBorderColor
+            : props.theme.enabledBorderColor};
 
   ${(props) =>
     props.error &&

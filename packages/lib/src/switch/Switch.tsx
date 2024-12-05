@@ -1,7 +1,7 @@
-import { forwardRef, useId, useRef, useState } from "react";
+import { forwardRef, KeyboardEvent, useId, useRef, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import { getMargin } from "../common/utils";
 import { AdvancedTheme, spaces } from "../common/variables";
+import getMargin from "../common/utils";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
 import SwitchPropsType, { RefType } from "./types";
@@ -30,27 +30,33 @@ const DxcSwitch = forwardRef<RefType, SwitchPropsType>(
 
     const colorsTheme = useTheme();
     const translatedLabels = useTranslatedLabels();
-    const refTrack = useRef(null);
+    const refTrack = useRef<HTMLSpanElement | null>(null);
 
-    const handleOnKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    const handleOnKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
       switch (event.key) {
         case "Enter":
-        case " ": // Space
+        case " ": {
+          // Space
           event.preventDefault();
-          refTrack.current.focus();
+          refTrack?.current?.focus();
           setInnerChecked(!(checked ?? innerChecked));
           onChange?.(!(checked ?? innerChecked));
+          break;
+        }
+        default:
           break;
       }
     };
 
     const handlerSwitchChange = () => {
-      checked ?? setInnerChecked((innerChecked) => !innerChecked);
+      if (checked == null) {
+        setInnerChecked((currentInnerChecked) => !currentInnerChecked);
+      }
       onChange?.(checked ? !checked : !innerChecked);
     };
 
     return (
-      <ThemeProvider theme={colorsTheme.switch}>
+      <ThemeProvider theme={colorsTheme?.switch}>
         <SwitchContainer
           margin={margin}
           size={size}
@@ -61,13 +67,13 @@ const DxcSwitch = forwardRef<RefType, SwitchPropsType>(
         >
           {labelPosition === "before" && label && (
             <LabelContainer id={labelId} labelPosition={labelPosition} disabled={disabled} label={label}>
-              {label} {optional && <>{translatedLabels.formFields.optionalLabel}</>}
+              {label} {optional && <>{translatedLabels?.formFields?.optionalLabel}</>}
             </LabelContainer>
           )}
           <ValueInput
             type="checkbox"
             name={name}
-            aria-hidden={true}
+            aria-hidden
             value={value}
             disabled={disabled}
             checked={checked ?? innerChecked}
@@ -86,7 +92,7 @@ const DxcSwitch = forwardRef<RefType, SwitchPropsType>(
           </SwitchBase>
           {labelPosition === "after" && label && (
             <LabelContainer id={labelId} labelPosition={labelPosition} disabled={disabled} label={label}>
-              {optional && <>{translatedLabels.formFields.optionalLabel}</>} {label}
+              {optional && <>{translatedLabels?.formFields?.optionalLabel}</>} {label}
             </LabelContainer>
           )}
         </SwitchContainer>
@@ -103,10 +109,10 @@ const sizes = {
   fitContent: "fit-content",
 };
 
-const calculateWidth = (margin, size) =>
+const calculateWidth = (margin: SwitchPropsType["margin"], size: SwitchPropsType["size"]) =>
   size === "fillParent"
     ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
-    : sizes[size];
+    : size && sizes[size];
 
 const getDisabledColor = (
   theme: AdvancedTheme["switch"],
@@ -120,6 +126,8 @@ const getDisabledColor = (
           return theme.disabledCheckedTrackBackgroundColor;
         case "uncheck":
           return theme.disabledUncheckedTrackBackgroundColor;
+        default:
+          return undefined;
       }
     case "thumb":
       switch (subElement) {
@@ -127,9 +135,13 @@ const getDisabledColor = (
           return theme.disabledCheckedThumbBackgroundColor;
         case "uncheck":
           return theme.disabledUncheckedThumbBackgroundColor;
+        default:
+          return undefined;
       }
     case "label":
       return theme.disabledLabelFontColor;
+    default:
+      return undefined;
   }
 };
 
@@ -145,16 +157,24 @@ const getNotDisabledColor = (
           return theme.checkedTrackBackgroundColor;
         case "uncheck":
           return theme.uncheckedTrackBackgroundColor;
+        default:
+          return undefined;
       }
+      break;
     case "thumb":
       switch (subElement) {
         case "check":
           return theme.checkedThumbBackgroundColor;
         case "uncheck":
           return theme.uncheckedThumbBackgroundColor;
+        default:
+          return undefined;
       }
+      break;
     case "label":
       return theme.labelFontColor;
+    default:
+      return undefined;
   }
 };
 

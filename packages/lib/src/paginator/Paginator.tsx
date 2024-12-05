@@ -15,7 +15,7 @@ const DxcPaginator = ({
   itemsPerPageFunction,
   tabIndex = 0,
 }: PaginatorPropsType): JSX.Element => {
-  const totalPages = itemsPerPage > 0 && Math.ceil(totalItems / itemsPerPage);
+  const totalPages = itemsPerPage > 0 ? Math.ceil(totalItems / itemsPerPage) : 0;
   const currentPageInternal = currentPage === -1 ? totalPages : currentPage;
   const minItemsPerPage =
     currentPageInternal === 1 || currentPageInternal === 0
@@ -28,17 +28,20 @@ const DxcPaginator = ({
   const translatedLabels = useTranslatedLabels();
 
   return (
-    <ThemeProvider theme={colorsTheme.paginator}>
+    <ThemeProvider theme={colorsTheme?.paginator}>
       <DxcPaginatorContainer>
         <LabelsContainer>
           {itemsPerPageOptions && (
             <ItemsPageContainer>
-              <ItemsLabel>{translatedLabels.paginator.itemsPerPageText}</ItemsLabel>
+              <ItemsLabel>{translatedLabels?.paginator?.itemsPerPageText}</ItemsLabel>
               <SelectContainer>
                 <DxcSelect
-                  options={itemsPerPageOptions.map((num) => ({ label: num.toString(), value: num.toString() }))}
+                  options={itemsPerPageOptions.map((num) => ({
+                    label: num.toString(),
+                    value: num.toString(),
+                  }))}
                   onChange={(newValue) => {
-                    itemsPerPageFunction(Number(newValue.value));
+                    itemsPerPageFunction?.(Number(newValue.value));
                   }}
                   value={itemsPerPage.toString()}
                   size="fillParent"
@@ -48,7 +51,7 @@ const DxcPaginator = ({
             </ItemsPageContainer>
           )}
           <TotalItemsContainer>
-            {translatedLabels.paginator.minToMaxOfText(minItemsPerPage, maxItemsPerPage, totalItems)}
+            {translatedLabels?.paginator?.minToMaxOfText?.(minItemsPerPage, maxItemsPerPage, totalItems)}
           </TotalItemsContainer>
           {onPageChange && (
             <DxcButton
@@ -76,7 +79,7 @@ const DxcPaginator = ({
           )}
           {showGoToPage ? (
             <PageToSelectContainer>
-              <GoToLabel>{translatedLabels.paginator.goToPageText} </GoToLabel>
+              <GoToLabel>{translatedLabels?.paginator?.goToPageText} </GoToLabel>
               <SelectContainer>
                 <DxcSelect
                   options={Array.from(Array(totalPages), (e, num) => ({
@@ -84,7 +87,7 @@ const DxcPaginator = ({
                     value: (num + 1).toString(),
                   }))}
                   onChange={(newValue) => {
-                    onPageChange(Number(newValue.value));
+                    onPageChange?.(Number(newValue.value));
                   }}
                   value={currentPage.toString()}
                   size="fillParent"
@@ -93,7 +96,7 @@ const DxcPaginator = ({
               </SelectContainer>
             </PageToSelectContainer>
           ) : (
-            <span>{translatedLabels.paginator.pageOfText(currentPageInternal, totalPages)}</span>
+            <span>{translatedLabels?.paginator?.pageOfText?.(currentPageInternal, totalPages)}</span>
           )}
           {onPageChange && (
             <DxcButton

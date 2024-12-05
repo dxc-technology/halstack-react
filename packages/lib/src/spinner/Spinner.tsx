@@ -7,10 +7,10 @@ import SpinnerPropsType from "./types";
 const DxcSpinner = ({ label, value, showValue = false, mode = "large", margin }: SpinnerPropsType): JSX.Element => {
   const labelId = useId();
   const colorsTheme = useTheme();
-  const determinated = useMemo(() => value >= 0 && value <= 100, [value]);
+  const determinated = useMemo(() => value != null && value >= 0 && value <= 100, [value]);
 
   return (
-    <ThemeProvider theme={colorsTheme.spinner}>
+    <ThemeProvider theme={colorsTheme?.spinner}>
       <DXCSpinner margin={margin} mode={mode}>
         <SpinnerContainer mode={mode}>
           {mode === "overlay" && <BackOverlay />}
@@ -63,11 +63,16 @@ const DxcSpinner = ({ label, value, showValue = false, mode = "large", margin }:
 
 const determinateValue = (value: SpinnerPropsType["value"], strokeDashArray: number) => {
   let val = 0;
-  if (value >= 0 && value <= 100) val = strokeDashArray * (1 - value / 100);
+  if (value != null && value >= 0 && value <= 100) {
+    val = strokeDashArray * (1 - value / 100);
+  }
   return val;
 };
 
-const DXCSpinner = styled.div<{ mode: SpinnerPropsType["mode"]; margin: SpinnerPropsType["margin"] }>`
+const DXCSpinner = styled.div<{
+  mode: SpinnerPropsType["mode"];
+  margin: SpinnerPropsType["margin"];
+}>`
   height: ${(props) => (props.mode === "overlay" ? "100vh" : "")};
   width: ${(props) => (props.mode === "overlay" ? "100vw" : "")};
   display: ${(props) => (props.mode === "overlay" ? "flex" : "")};
@@ -79,27 +84,27 @@ const DXCSpinner = styled.div<{ mode: SpinnerPropsType["mode"]; margin: SpinnerP
   z-index: ${(props) => (props.mode === "overlay" ? 1300 : "")};
 
   margin: ${(props) =>
-    props.mode != "overlay" ? (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px") : ""};
+    props.mode !== "overlay" ? (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px") : ""};
   margin-top: ${(props) =>
-    props.mode != "overlay"
+    props.mode !== "overlay"
       ? props.margin && typeof props.margin === "object" && props.margin.top
         ? spaces[props.margin.top]
         : ""
       : ""};
   margin-right: ${(props) =>
-    props.mode != "overlay"
+    props.mode !== "overlay"
       ? props.margin && typeof props.margin === "object" && props.margin.right
         ? spaces[props.margin.right]
         : ""
       : ""};
   margin-bottom: ${(props) =>
-    props.mode != "overlay"
+    props.mode !== "overlay"
       ? props.margin && typeof props.margin === "object" && props.margin.bottom
         ? spaces[props.margin.bottom]
         : ""
       : ""};
   margin-left: ${(props) =>
-    props.mode != "overlay"
+    props.mode !== "overlay"
       ? props.margin && typeof props.margin === "object" && props.margin.left
         ? spaces[props.margin.left]
         : ""

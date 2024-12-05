@@ -9,13 +9,17 @@ import { responsiveSizes } from "../common/variables";
 export const ToastContext = createContext<ToastContextType | null>(null);
 
 const generateUniqueToastId = (toasts: QueuedToast[]) => {
-  let id = "";
-  let exists = true;
-  while (exists) {
-    id = `${performance.now()}-${Math.random().toString(36).slice(2, 9)}`;
-    exists = toasts.some((toast) => toast.id === id);
-  }
-  return id;
+  let uniqueId: string;
+  let exists: boolean;
+
+  const isIdTaken = (id: string) => toasts.some((toast) => toast.id === id);
+
+  do {
+    uniqueId = `${performance.now()}-${Math.random().toString(36).slice(2, 9)}`;
+    exists = isIdTaken(uniqueId);
+  } while (exists);
+
+  return uniqueId;
 };
 
 const ToastsQueue = styled.section`
@@ -54,12 +58,19 @@ const DxcToastsQueue = ({ children, duration = 3000 }: ToastsQueuePropsType) => 
     [duration]
   );
 
+  const contextValue = useMemo(
+    () => ({
+      add,
+    }),
+    [add]
+  );
+
   useEffect(() => {
     setIsMounted(true);
   }, []);
 
   return (
-    <ToastContext.Provider value={{ add }}>
+    <ToastContext.Provider value={contextValue}>
       {isMounted &&
         createPortal(
           <ToastsQueue>

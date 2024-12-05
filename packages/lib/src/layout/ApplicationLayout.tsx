@@ -11,7 +11,10 @@ import { Tooltip } from "../tooltip/Tooltip";
 import ApplicationLayoutPropsType, { AppLayoutMainPropsType } from "./types";
 import { bottomLinks, findChildType, socialLinks, useResponsive, year } from "./utils";
 
-const ApplicationLayoutContainer = styled.div<{ isSidenavVisible: boolean; hasSidenav: boolean }>`
+const ApplicationLayoutContainer = styled.div<{
+  isSidenavVisible: boolean;
+  hasSidenav: boolean;
+}>`
   position: absolute;
   top: 64px;
   bottom: 0;
@@ -125,26 +128,26 @@ const DxcApplicationLayout = ({
   const translatedLabels = useTranslatedLabels();
 
   const handleSidenavVisibility = () => {
-    setIsSidenavVisibleResponsive((isSidenavVisibleResponsive) => !isSidenavVisibleResponsive);
+    setIsSidenavVisibleResponsive((currentIsSidenavVisibleResponsive) => !currentIsSidenavVisibleResponsive);
   };
 
   useEffect(() => {
-    !isResponsive && setIsSidenavVisibleResponsive(false);
+    if (!isResponsive) {
+      setIsSidenavVisibleResponsive(false);
+    }
   }, [isResponsive]);
 
   return (
-    <ApplicationLayoutContainer
-      hasSidenav={sidenav ? true : false}
-      isSidenavVisible={isSidenavVisibleResponsive}
-      ref={ref}
-    >
+    <ApplicationLayoutContainer hasSidenav={!!sidenav} isSidenavVisible={isSidenavVisibleResponsive} ref={ref}>
       <HeaderContainer>{header ?? <DxcHeader underlined />}</HeaderContainer>
       {sidenav && isResponsive && (
         <VisibilityToggle>
-          <Tooltip label={translatedLabels.applicationLayout.visibilityToggleTitle}>
+          <Tooltip label={translatedLabels?.applicationLayout?.visibilityToggleTitle}>
             <HamburgerTrigger
               onClick={handleSidenavVisibility}
-              aria-label={visibilityToggleLabel ? undefined : translatedLabels.applicationLayout.visibilityToggleTitle}
+              aria-label={
+                visibilityToggleLabel ? undefined : translatedLabels?.applicationLayout?.visibilityToggleTitle
+              }
             >
               <DxcIcon icon="Menu" />
               {visibilityToggleLabel}
@@ -162,7 +165,7 @@ const DxcApplicationLayout = ({
           <MainContentContainer>{findChildType(children, Main)}</MainContentContainer>
           {footer ?? (
             <DxcFooter
-              copyright={`© DXC Technology ${year}​​​​. All rights reserved.`}
+              copyright={`© DXC Technology ${year}. All rights reserved.`}
               bottomLinks={bottomLinks}
               socialLinks={socialLinks}
             />

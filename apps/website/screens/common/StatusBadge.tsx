@@ -42,7 +42,7 @@ const getBadgeTitle = (status: StatusBadgeProps["status"]) => {
 
 const StatusBadge = ({ hasTitle = false, status }: StatusBadgeProps) => (
   <DxcBadge
-    label={status[0].toUpperCase() + status.slice(1)}
+    label={status[0]?.toUpperCase() + status.slice(1)}
     color={getBadgeColor(status)}
     title={hasTitle ? getBadgeTitle(status) : undefined}
     size="small"

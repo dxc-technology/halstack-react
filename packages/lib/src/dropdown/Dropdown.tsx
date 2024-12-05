@@ -1,7 +1,7 @@
 import * as Popover from "@radix-ui/react-popover";
-import { useCallback, useId, useLayoutEffect, useRef, useState } from "react";
+import { FocusEvent, KeyboardEvent, useCallback, useId, useLayoutEffect, useRef, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import { getMargin } from "../common/utils";
+import getMargin from "../common/utils";
 import { spaces } from "../common/variables";
 import DxcIcon from "../icon/Icon";
 import useTheme from "../useTheme";
@@ -32,8 +32,8 @@ const DxcDropdown = ({
   const [visualFocusIndex, setVisualFocusIndex] = useState(0);
 
   const colorsTheme = useTheme();
-  const triggerRef = useRef(null);
-  const menuRef = useRef(null);
+  const triggerRef = useRef<HTMLButtonElement | null>(null);
+  const menuRef = useRef<HTMLUListElement | null>(null);
   const width = useWidth(triggerRef.current);
 
   const handleOnOpenMenu = () => {
@@ -44,21 +44,25 @@ const DxcDropdown = ({
     setVisualFocusIndex(0);
   };
   const handleMenuItemOnClick = useCallback(
-    (value) => {
-      onSelectOption(value);
-      handleOnCloseMenu();
-      triggerRef.current?.focus();
+    (value?: string) => {
+      if (value) {
+        onSelectOption(value);
+        handleOnCloseMenu();
+        triggerRef.current?.focus();
+      }
     },
     [onSelectOption]
   );
-  const handleOnBlur = (event) => {
-    !event.currentTarget.contains(event.relatedTarget) && handleOnCloseMenu();
+  const handleOnBlur = (event: FocusEvent<HTMLDivElement>) => {
+    if (!event.currentTarget.contains(event.relatedTarget)) {
+      handleOnCloseMenu();
+    }
   };
 
   const handleTriggerOnClick = () => {
-    changeIsOpen((isOpen) => !isOpen);
+    changeIsOpen((isCurrentlyOpen) => !isCurrentlyOpen);
   };
-  const handleTriggerOnKeyDown = (event) => {
+  const handleTriggerOnKeyDown = (event: KeyboardEvent<HTMLButtonElement>) => {
     switch (event.key) {
       case "Up":
       case "ArrowUp":
@@ -73,23 +77,25 @@ const DxcDropdown = ({
         event.preventDefault();
         handleOnOpenMenu();
         break;
+      default:
+        break;
     }
   };
 
   const setPreviousIndexFocus = () => {
     setVisualFocusIndex((currentFocusIndex) => {
-      let index = currentFocusIndex === 0 ? options.length - 1 : currentFocusIndex - 1;
+      const index = currentFocusIndex === 0 ? options.length - 1 : currentFocusIndex - 1;
       return index;
     });
   };
   const setNextIndexFocus = () => {
     setVisualFocusIndex((currentFocusIndex) => {
-      let index = currentFocusIndex === options.length - 1 ? 0 : currentFocusIndex + 1;
+      const index = currentFocusIndex === options.length - 1 ? 0 : currentFocusIndex + 1;
       return index;
     });
   };
   const handleMenuOnKeyDown = useCallback(
-    (event: React.KeyboardEvent<HTMLUListElement>) => {
+    (event: KeyboardEvent<HTMLUListElement>) => {
       switch (event.key) {
         case "Up":
         case "ArrowUp":
@@ -104,12 +110,14 @@ const DxcDropdown = ({
         case " ":
         case "Enter":
           event.preventDefault();
-          handleMenuItemOnClick(options[visualFocusIndex].value);
+          handleMenuItemOnClick(options[visualFocusIndex]?.value);
           break;
         case "Esc":
         case "Escape":
           event.preventDefault();
-          isOpen && event.stopPropagation();
+          if (isOpen) {
+            event.stopPropagation();
+          }
           handleOnCloseMenu();
           triggerRef.current?.focus();
           break;
@@ -127,6 +135,8 @@ const DxcDropdown = ({
           handleOnCloseMenu();
           triggerRef.current?.focus();
           break;
+        default:
+          break;
       }
     },
     [onSelectOption, visualFocusIndex, options]
@@ -134,11 +144,14 @@ const DxcDropdown = ({
 
   useLayoutEffect(() => {
     const visualFocusedMenuItem = menuRef?.current?.querySelectorAll("[role='menuitem']")[visualFocusIndex];
-    visualFocusedMenuItem?.scrollIntoView?.({ block: "nearest", inline: "start" });
+    visualFocusedMenuItem?.scrollIntoView?.({
+      block: "nearest",
+      inline: "start",
+    });
   }, [visualFocusIndex]);
 
   return (
-    <ThemeProvider theme={colorsTheme.dropdown}>
+    <ThemeProvider theme={colorsTheme?.dropdown}>
       <DropdownContainer
         onMouseEnter={!disabled && expandOnHover ? handleOnOpenMenu : undefined}
         onMouseLeave={!disabled && expandOnHover ? handleOnCloseMenu : undefined}
@@ -217,12 +230,15 @@ const sizes = {
   fitContent: "fit-content",
 };
 
-const calculateWidth = (margin, size) =>
+const calculateWidth = (margin: DropdownPropsType["margin"], size: DropdownPropsType["size"]) =>
   size === "fillParent"
     ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
-    : sizes[size];
+    : size && sizes[size];
 
-const DropdownContainer = styled.div<{ margin: DropdownPropsType["margin"]; size: DropdownPropsType["size"] }>`
+const DropdownContainer = styled.div<{
+  margin: DropdownPropsType["margin"];
+  size: DropdownPropsType["size"];
+}>`
   width: ${(props) => calculateWidth(props.margin, props.size)};
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
@@ -295,7 +311,9 @@ const DropdownTriggerLabel = styled.span`
   overflow: hidden;
 `;
 
-const DropdownTriggerIcon = styled.span<{ disabled: DropdownPropsType["disabled"] }>`
+const DropdownTriggerIcon = styled.span<{
+  disabled: DropdownPropsType["disabled"];
+}>`
   display: flex;
   color: ${(props) => (props.disabled ? props.theme.disabledColor : props.theme.buttonIconColor)};
   font-size: ${(props) => props.theme.buttonIconSize};
