@@ -1,4 +1,4 @@
-import { KeyboardEvent, MutableRefObject, ReactNode, useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 const not = {
   negTabIndex: ':not([tabindex^="-"])',
@@ -19,19 +19,15 @@ const focusableQuery = [
   `[tabindex]${not.negTabIndex}${not.disabled}`,
 ].join(",");
 
-const getFocusableElements = (container: HTMLElement | null): HTMLElement[] | null => {
-  if (container != null) {
-    return Array.prototype.slice
-      .call(container.querySelectorAll(focusableQuery))
-      .filter(
-        (element: HTMLElement) =>
-          element.getAttribute("aria-hidden") !== "true" &&
-          window.getComputedStyle(element).display !== "none" &&
-          window.getComputedStyle(element).visibility !== "hidden"
-      );
-  }
-  return null;
-};
+const getFocusableElements = (container: HTMLElement | null): HTMLElement[] =>
+  Array.prototype.slice
+    .call(container?.querySelectorAll(focusableQuery))
+    .filter(
+      (element: HTMLElement) =>
+        element.getAttribute("aria-hidden") !== "true" &&
+        window.getComputedStyle(element).display !== "none" &&
+        window.getComputedStyle(element).visibility !== "hidden"
+    );
 
 /**
  * This function will try to focus the element and return true if it was able to receive the focus.
@@ -60,10 +56,10 @@ const radixPortalContains = (activeElement: Node): boolean => {
 
 /**
  * Custom hook that returns an array of focusable elements inside a container.
- * @param ref: MutableRefObject<HTMLDivElement>
+ * @param ref: React.MutableRefObject<HTMLDivElement>
  * @returns
  */
-const useFocusableElements = (ref: MutableRefObject<HTMLDivElement | null>): HTMLElement[] | null => {
+const useFocusableElements = (ref: React.MutableRefObject<HTMLDivElement | null>): HTMLElement[] | null => {
   const [focusableElements, setFocusableElements] = useState<HTMLElement[] | null>(null);
 
   useEffect(() => {
@@ -73,17 +69,11 @@ const useFocusableElements = (ref: MutableRefObject<HTMLDivElement | null>): HTM
       const observer = new MutationObserver(() => {
         setFocusableElements(getFocusableElements(ref?.current));
       });
-      observer.observe(ref.current, {
-        childList: true,
-        subtree: true,
-        attributes: true,
-      });
       observer.observe(ref.current, { childList: true, subtree: true });
       return () => {
         observer.disconnect();
       };
     }
-    return undefined;
   }, []);
 
   return focusableElements;
@@ -94,20 +84,18 @@ const useFocusableElements = (ref: MutableRefObject<HTMLDivElement | null>): HTM
  * When the focus is on the last focusable element and the user tries to focus the next element, it will focus the first element.
  * When the focus is on the first focusable element and the user tries to focus the previous element, it will focus the last element.
  * The focus can't be moved outside the children unless the children are removed from the DOM (for example, a Dialog, a Modal, etc).
- * @param children: ReactNode
+ * @param children: React.ReactNode
  * @returns
  */
-const FocusLock = ({ children }: { children: ReactNode }): JSX.Element => {
+const FocusLock = ({ children }: { children: React.ReactNode }): JSX.Element => {
   const childrenContainerRef = useRef<HTMLDivElement | null>(null);
   const focusableElements = useFocusableElements(childrenContainerRef);
   const initialFocus = useRef(false);
 
   const focusFirst = useCallback(() => {
-    if (focusableElements?.length === 0) {
-      childrenContainerRef.current?.focus();
-    } else if (focusableElements && focusableElements?.length > 0) {
+    if (focusableElements?.length === 0) childrenContainerRef.current?.focus();
+    else if (focusableElements && focusableElements?.length > 0)
       focusableElements.some((element) => attemptFocus(element));
-    }
   }, [focusableElements]);
 
   const focusLast = () => {
@@ -117,14 +105,12 @@ const FocusLock = ({ children }: { children: ReactNode }): JSX.Element => {
       ?.some((element) => attemptFocus(element));
   };
 
-  const focusLock = (event: KeyboardEvent<HTMLDivElement>) => {
-    if (event.key === "Tab" && focusableElements && focusableElements.length === 0) {
-      event.preventDefault();
-    }
+  const focusLock = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (event.key === "Tab" && focusableElements && focusableElements.length === 0) event.preventDefault();
   };
 
   useEffect(() => {
-    if (focusableElements !== undefined && !initialFocus.current) {
+    if (focusableElements != null && !initialFocus.current) {
       initialFocus.current = true;
       focusFirst();
     }
