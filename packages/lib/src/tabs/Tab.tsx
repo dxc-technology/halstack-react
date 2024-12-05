@@ -3,7 +3,6 @@ import styled from "styled-components";
 import DxcBadge from "../badge/Badge";
 import DxcIcon from "../icon/Icon";
 import { Tooltip } from "../tooltip/Tooltip";
-import useTheme from "../useTheme";
 import { TabsContext } from "./TabsContext";
 import { TabProps, TabsContextProps } from "./types";
 
@@ -22,7 +21,7 @@ const DxcTab = forwardRef(
     ref: Ref<HTMLButtonElement>
   ): JSX.Element => {
     const tabRef = useRef<HTMLButtonElement>();
-    const colorsTheme = useTheme();
+
     const {
       iconPosition,
       tabIndex,
@@ -98,9 +97,9 @@ const DxcTab = forwardRef(
                 {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
               </TabIconContainer>
             )}
-            <LabelContainer disabled={disabled} activeLabel={activeLabel} label={label}>
+            <Label disabled={disabled} activeLabel={activeLabel} label={label}>
               {label}
-            </LabelContainer>
+            </Label>
           </MainLabelContainer>
           {notificationNumber && !disabled && (
             <BadgeContainer hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
@@ -212,7 +211,7 @@ const MainLabelContainer = styled.div<{
       : "unset"};
 `;
 
-const LabelContainer = styled.span<{
+const Label = styled.span<{
   disabled: TabProps["disabled"];
   label: TabProps["label"];
   activeLabel: string;

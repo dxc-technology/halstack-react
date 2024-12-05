@@ -2,63 +2,58 @@ import { forwardRef, memo } from "react";
 import styled from "styled-components";
 import DxcBadge from "../badge/Badge";
 import DxcIcon from "../icon/Icon";
-import useTheme from "../useTheme";
 import { TabPropsLegacy } from "./types";
 
 const Tab = forwardRef(
   (
     { active, tab, tabIndex, hasLabelAndIcon, iconPosition, onClick, onMouseEnter, onMouseLeave }: TabPropsLegacy,
     ref: React.Ref<HTMLButtonElement>
-  ): JSX.Element => {
-    const colorsTheme = useTheme();
-
-    return (
-      <TabContainer
-        role="tab"
-        type="button"
-        tabIndex={tabIndex}
-        disabled={tab.isDisabled}
-        aria-selected={active}
+  ): JSX.Element => (
+    <TabContainer
+      role="tab"
+      type="button"
+      tabIndex={tabIndex}
+      disabled={tab.isDisabled}
+      aria-selected={active}
+      hasLabelAndIcon={hasLabelAndIcon}
+      iconPosition={iconPosition}
+      ref={ref}
+      onClick={() => {
+        onClick();
+      }}
+      onMouseEnter={() => {
+        onMouseEnter();
+      }}
+      onMouseLeave={() => {
+        onMouseLeave();
+      }}
+    >
+      <MainLabelContainer
+        notificationNumber={tab.notificationNumber}
         hasLabelAndIcon={hasLabelAndIcon}
         iconPosition={iconPosition}
-        ref={ref}
-        onClick={() => {
-          onClick();
-        }}
-        onMouseEnter={() => {
-          onMouseEnter();
-        }}
-        onMouseLeave={() => {
-          onMouseLeave();
-        }}
+        disabled={tab.isDisabled}
       >
-        <MainLabelContainer
-          notificationNumber={tab.notificationNumber}
-          hasLabelAndIcon={hasLabelAndIcon}
-          iconPosition={iconPosition}
-          disabled={tab.isDisabled}
-        >
-          {tab.icon && (
-            <TabIconContainer hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
-              {typeof tab.icon === "string" ? <DxcIcon icon={tab.icon} /> : tab.icon}
-            </TabIconContainer>
-          )}
-          <LabelContainer disabled={tab.isDisabled} active={active}>
-            {tab.label}
-          </LabelContainer>
-        </MainLabelContainer>
-        {tab.notificationNumber && !tab.isDisabled && (
-          <BadgeContainer hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
-            <DxcBadge
-              mode="notification"
-              size="small"
-              label={typeof tab.notificationNumber === "number" && tab.notificationNumber}
-            />
-          </BadgeContainer>
+        {tab.icon && (
+          <TabIconContainer hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
+            {typeof tab.icon === "string" ? <DxcIcon icon={tab.icon} /> : tab.icon}
+          </TabIconContainer>
         )}
-      </TabContainer>
-    );
-  }
+        <LabelContainer disabled={tab.isDisabled} active={active}>
+          {tab.label}
+        </LabelContainer>
+      </MainLabelContainer>
+      {tab.notificationNumber && !tab.isDisabled && (
+        <BadgeContainer hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
+          <DxcBadge
+            mode="notification"
+            size="small"
+            label={typeof tab.notificationNumber === "number" && tab.notificationNumber}
+          />
+        </BadgeContainer>
+      )}
+    </TabContainer>
+  )
 );
 
 const TabContainer = styled.button<{

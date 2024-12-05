@@ -1,17 +1,7 @@
 import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme";
 
-const DxcParagraph = ({ children }: { children: React.ReactNode }): JSX.Element => {
-  const colorsTheme = useTheme();
-
-  return (
-    <ThemeProvider theme={colorsTheme.paragraph}>
-      <ParagraphContainer>{children}</ParagraphContainer>
-    </ThemeProvider>
-  );
-};
-
-const ParagraphContainer = styled.p`
+const Paragraph = styled.p`
   display: ${(props) => props.theme.display};
   font-family: "Open Sans", sans-serif;
   font-size: ${(props) => props.theme.fontSize};
@@ -27,4 +17,12 @@ const ParagraphContainer = styled.p`
   margin: 0;
 `;
 
-export default DxcParagraph;
+export default function DxcParagraph({ children }: { children: React.ReactNode }) {
+  const colorsTheme = useTheme();
+
+  return (
+    <ThemeProvider theme={colorsTheme.paragraph}>
+      <Paragraph>{children}</Paragraph>
+    </ThemeProvider>
+  );
+}

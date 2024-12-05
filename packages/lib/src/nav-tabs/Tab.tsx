@@ -3,7 +3,6 @@ import styled from "styled-components";
 import DxcBadge from "../badge/Badge";
 import DxcFlex from "../flex/Flex";
 import DxcIcon from "../icon/Icon";
-import useTheme from "../useTheme";
 import { NavTabsContext } from "./NavTabsContext";
 import NavTabsPropsType, { TabProps } from "./types";
 
@@ -13,7 +12,6 @@ const DxcTab = forwardRef(
     ref: Ref<HTMLAnchorElement>
   ): JSX.Element => {
     const tabRef = useRef<HTMLAnchorElement>();
-    const colorsTheme = useTheme();
     const { iconPosition, tabIndex, focusedLabel } = useContext(NavTabsContext);
 
     useEffect(() => {
@@ -59,9 +57,9 @@ const DxcTab = forwardRef(
             </TabIconContainer>
           )}
           <DxcFlex alignItems="center" gap="0.5rem">
-            <LabelContainer active={active} disabled={disabled}>
+            <Label active={active} disabled={disabled}>
               {children}
-            </LabelContainer>
+            </Label>
             {notificationNumber && !disabled && (
               <DxcBadge
                 mode="notification"
@@ -121,7 +119,7 @@ const Tab = styled.a<{
   `}
 `;
 
-const LabelContainer = styled.span<{
+const Label = styled.span<{
   disabled: TabProps["disabled"];
   active: TabProps["active"];
 }>`
