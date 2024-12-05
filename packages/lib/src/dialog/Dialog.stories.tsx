@@ -255,8 +255,7 @@ export const DialogWithInputs = () => (
             semantic="error"
             title="Error"
             message={{
-              text:
-                "User: arn:aws:xxx::xxxxxxxxxxxx:assumed-role/assure-sandbox-xxxx-xxxxxxxxxxxxxxxxxxxxxxxxxx/sandbox-xxxx-xxxxxxxxxxxxxxxxxx is not authorized to perform: lambda:xxxxxxxxxxxxxx on resource: arn:aws:lambda:us-east-1:xxxxxxxxxxxx:function:sandbox-xxxx-xx-xxxxxxx-xxxxxxx-lambda because no identity-based policy allows the lambda:xxxxxxxxxxxxxx action",
+              text: "User: arn:aws:xxx::xxxxxxxxxxxx:assumed-role/assure-sandbox-xxxx-xxxxxxxxxxxxxxxxxxxxxxxxxx/sandbox-xxxx-xxxxxxxxxxxxxxxxxx is not authorized to perform: lambda:xxxxxxxxxxxxxx on resource: arn:aws:lambda:us-east-1:xxxxxxxxxxxx:function:sandbox-xxxx-xx-xxxxxxx-xxxxxxx-lambda because no identity-based policy allows the lambda:xxxxxxxxxxxxxx action",
             }}
           />
           <DxcFlex justifyContent="flex-end" gap="0.5rem">
@@ -317,7 +316,7 @@ export const DialogWithoutOverlay = () => (
 export const DialogCloseVisibleFalse = () => (
   <ExampleContainer expanded={true}>
     <Title title="Dialog Close Visible" theme="dark" level={4} />
-    <DxcDialog isCloseVisible={false}>
+    <DxcDialog closable={false}>
       <DxcInset space="1.5rem">
         <DxcParagraph>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi egestas luctus porttitor. Donec massa magna,
