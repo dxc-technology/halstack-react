@@ -43,19 +43,7 @@ const Tab = forwardRef(
               {typeof tab.icon === "string" ? <DxcIcon icon={tab.icon} /> : tab.icon}
             </TabIconContainer>
           )}
-          <LabelContainer
-            color={
-              tab.isDisabled
-                ? colorsTheme.tabs.disabledFontColor
-                : active
-                  ? colorsTheme.tabs.selectedFontColor
-                  : colorsTheme.tabs.unselectedFontColor
-            }
-            fontFamily={colorsTheme.tabs.fontFamily}
-            fontSize={colorsTheme.tabs.fontSize}
-            fontStyle={tab.isDisabled ? colorsTheme.tabs.disabledFontStyle : colorsTheme.tabs.fontStyle}
-            fontWeight={active ? colorsTheme.tabs.pressedFontWeight : colorsTheme.tabs.fontWeight}
-          >
+          <LabelContainer disabled={tab.isDisabled} active={active}>
             {tab.label}
           </LabelContainer>
         </MainLabelContainer>
@@ -167,18 +155,20 @@ const MainLabelContainer = styled.div<{
 `;
 
 const LabelContainer = styled.span<{
-  color: string;
-  fontFamily: string;
-  fontSize: string;
-  fontStyle: string;
-  fontWeight: string;
+  disabled: TabPropsLegacy["tab"]["isDisabled"];
+  active: TabPropsLegacy["active"];
 }>`
   display: inline;
-  color: ${(props) => props.color};
-  font-family: ${(props) => props.fontFamily};
-  font-size: ${(props) => props.fontSize};
-  font-style: ${(props) => props.fontStyle};
-  font-weight: ${(props) => props.fontWeight};
+  color: ${(props) =>
+    props.disabled
+      ? props.theme.disabledFontColor
+      : props.active
+        ? props.theme.selectedFontColor
+        : props.theme.unselectedFontColor};
+  font-family: ${(props) => props.theme.fontFamily};
+  font-size: ${(props) => props.theme.fontSize};
+  font-style: ${(props) => (props.disabled ? props.theme.disabledFontStyle : props.theme.fontStyle)};
+  font-weight: ${(props) => (props.active ? props.theme.pressedFontWeight : props.theme.fontWeight)};
   text-align: center;
   letter-spacing: 0.025em;
   line-height: 1.715em;

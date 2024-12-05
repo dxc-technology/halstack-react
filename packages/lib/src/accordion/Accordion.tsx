@@ -133,7 +133,7 @@ const AccordionInfo = styled.span`
   width: 100%;
 `;
 
-const AccordionLabel = styled.span<{ disabled: boolean }>`
+const AccordionLabel = styled.span<{ disabled: AccordionPropsType["disabled"] }>`
   display: flex;
   padding-top: ${(props) => props.theme.titleLabelPaddingTop};
   padding-bottom: ${(props) => props.theme.titleLabelPaddingBottom};
@@ -160,7 +160,7 @@ const IconContainer = styled.span<{ disabled: AccordionPropsType["disabled"] }>`
   }
 `;
 
-const AccordionAssistiveText = styled.span<{ disabled: boolean }>`
+const AccordionAssistiveText = styled.span<{ disabled: AccordionPropsType["disabled"] }>`
   min-width: ${(props) => props.theme.assistiveTextMinWidth};
   padding-left: ${(props) => props.theme.assistiveTextPaddingLeft};
   padding-right: ${(props) => props.theme.assistiveTextPaddingRight};

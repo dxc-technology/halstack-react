@@ -59,19 +59,7 @@ const DxcTab = forwardRef(
             </TabIconContainer>
           )}
           <DxcFlex alignItems="center" gap="0.5rem">
-            <LabelContainer
-              color={
-                disabled
-                  ? colorsTheme.navTabs.disabledFontColor
-                  : active
-                    ? colorsTheme.navTabs.selectedFontColor
-                    : colorsTheme.navTabs.unselectedFontColor
-              }
-              fontFamily={colorsTheme.navTabs.fontFamily}
-              fontSize={colorsTheme.navTabs.fontSize}
-              fontStyle={colorsTheme.navTabs.fontStyle}
-              fontWeight={colorsTheme.navTabs.fontWeight}
-            >
+            <LabelContainer active={active} disabled={disabled}>
               {children}
             </LabelContainer>
             {notificationNumber && !disabled && (
@@ -134,18 +122,20 @@ const Tab = styled.a<{
 `;
 
 const LabelContainer = styled.span<{
-  color: string;
-  fontFamily: string;
-  fontSize: string;
-  fontStyle: string;
-  fontWeight: string;
+  disabled: TabProps["disabled"];
+  active: TabProps["active"];
 }>`
   display: inline;
-  color: ${(props) => props.color};
-  font-family: ${(props) => props.fontFamily};
-  font-size: ${(props) => props.fontSize};
-  font-style: ${(props) => props.fontStyle};
-  font-weight: ${(props) => props.fontWeight};
+  color: ${(props) =>
+    props.disabled
+      ? props.theme.disabledFontColor
+      : props.active
+        ? props.theme.selectedFontColor
+        : props.theme.unselectedFontColor};
+  font-family: ${(props) => props.theme.fontFamily};
+  font-size: ${(props) => props.theme.fontSize};
+  font-style: ${(props) => props.theme.fontStyle};
+  font-weight: ${(props) => props.theme.fontWeight};
   text-align: center;
   letter-spacing: 0.025em;
   line-height: 1.715em;

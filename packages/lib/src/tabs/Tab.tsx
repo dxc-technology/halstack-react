@@ -98,19 +98,7 @@ const DxcTab = forwardRef(
                 {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
               </TabIconContainer>
             )}
-            <LabelContainer
-              color={
-                disabled
-                  ? colorsTheme.tabs.disabledFontColor
-                  : activeLabel === label
-                    ? colorsTheme.tabs.selectedFontColor
-                    : colorsTheme.tabs.unselectedFontColor
-              }
-              fontFamily={colorsTheme.tabs.fontFamily}
-              fontSize={colorsTheme.tabs.fontSize}
-              fontStyle={disabled ? colorsTheme.tabs.disabledFontStyle : colorsTheme.tabs.fontStyle}
-              fontWeight={activeLabel === label ? colorsTheme.tabs.pressedFontWeight : colorsTheme.tabs.fontWeight}
-            >
+            <LabelContainer disabled={disabled} activeLabel={activeLabel} label={label}>
               {label}
             </LabelContainer>
           </MainLabelContainer>
@@ -225,18 +213,21 @@ const MainLabelContainer = styled.div<{
 `;
 
 const LabelContainer = styled.span<{
-  color: string;
-  fontFamily: string;
-  fontSize: string;
-  fontStyle: string;
-  fontWeight: string;
+  disabled: TabProps["disabled"];
+  label: TabProps["label"];
+  activeLabel: string;
 }>`
   display: inline;
-  color: ${(props) => props.color};
-  font-family: ${(props) => props.fontFamily};
-  font-size: ${(props) => props.fontSize};
-  font-style: ${(props) => props.fontStyle};
-  font-weight: ${(props) => props.fontWeight};
+  color: ${(props) =>
+    props.disabled
+      ? props.theme.disabledFontColor
+      : props.activeLabel === props.label
+        ? props.theme.selectedFontColor
+        : props.theme.unselectedFontColor};
+  font-family: ${(props) => props.theme.fontFamily};
+  font-size: ${(props) => props.theme.fontSize};
+  font-style: ${(props) => (props.disabled ? props.theme.disabledFontStyle : props.theme.fontStyle)};
+  font-weight: ${(props) => props.theme.fontWeight};
   text-align: center;
   letter-spacing: 0.025em;
   line-height: 1.715em;

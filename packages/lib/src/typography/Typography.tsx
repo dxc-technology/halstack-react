@@ -1,11 +1,10 @@
-import React, { useContext } from "react";
+import React, { useContext, useMemo } from "react";
 import styled from "styled-components";
-import TypographyPropsTypes from "./types";
-import TypographyContextPropTypes from "./types";
+import TypographyPropsTypes, { TypographyContextProps } from "./types";
 
-const TypographyContext = React.createContext<TypographyContextPropTypes | null>(null);
+const TypographyContext = React.createContext<TypographyContextProps | null>(null);
 
-const ValidTypographyTags = [
+const validTypographyTags = [
   "a",
   "blockquote",
   "cite",
@@ -27,7 +26,7 @@ const ValidTypographyTags = [
 ];
 
 const isValidTypography = (tag: keyof HTMLElementTagNameMap) => {
-  return ValidTypographyTags.includes(tag);
+  return validTypographyTags.includes(tag);
 };
 
 const DxcTypography = ({
@@ -47,59 +46,46 @@ const DxcTypography = ({
   children,
 }: TypographyPropsTypes): JSX.Element => {
   const componentContext = useContext(TypographyContext);
-  const asValue = isValidTypography(as) ? as : isValidTypography(componentContext?.as) ? componentContext?.as : "span";
-  const displayValue = display ?? (componentContext?.display || "inline");
-  const fontFamilyValue = fontFamily ?? (componentContext?.fontFamily || "Open Sans, sans-serif");
-  const fontSizeValue = fontSize ?? (componentContext?.fontSize || "1rem");
-  const fontStyleValue = fontStyle ?? (componentContext?.fontStyle || "normal");
-  const fontWeightValue = fontWeight ?? (componentContext?.fontWeight || "400");
-  const letterSpacingValue = letterSpacing ?? (componentContext?.letterSpacing || "0em");
-  const lineHeightValue = lineHeight ?? (componentContext?.lineHeight || "1.5em");
-  const textAlignValue = textAlign ?? (componentContext?.textAlign || "left");
-  const colorValue = color ?? (componentContext?.color || "#000000");
-  const textDecorationValue = textDecoration ?? (componentContext?.textDecoration || "none");
-  const textOverflowValue = textOverflow ?? (componentContext?.textOverflow || "unset");
-  const whiteSpaceValue = whiteSpace ?? (componentContext?.whiteSpace || "normal");
-  const childrenValue = children || undefined;
+  const contextValue = useMemo(
+    () => ({
+      as: isValidTypography(as) ? as : isValidTypography(componentContext?.as) ? componentContext?.as : "span",
+      display: display ?? componentContext?.display ?? "inline",
+      fontFamily: fontFamily ?? componentContext?.fontFamily ?? "Open Sans, sans-serif",
+      fontSize: fontSize ?? componentContext?.fontSize ?? "1rem",
+      fontStyle: fontStyle ?? componentContext?.fontStyle ?? "normal",
+      fontWeight: fontWeight ?? componentContext?.fontWeight ?? "400",
+      letterSpacing: letterSpacing ?? componentContext?.letterSpacing ?? "0em",
+      lineHeight: lineHeight ?? componentContext?.lineHeight ?? "1.5em",
+      textAlign: textAlign ?? componentContext?.textAlign ?? "left",
+      color: color ?? componentContext?.color ?? "#000000",
+      textDecoration: textDecoration ?? componentContext?.textDecoration ?? "none",
+      textOverflow: textOverflow ?? componentContext?.textOverflow ?? "unset",
+      whiteSpace: whiteSpace ?? componentContext?.whiteSpace ?? "normal",
+    }),
+    [
+      as,
+      display,
+      fontFamily,
+      fontSize,
+      fontStyle,
+      fontWeight,
+      letterSpacing,
+      lineHeight,
+      textAlign,
+      color,
+      textDecoration,
+      textOverflow,
+      whiteSpace,
+    ]
+  );
+
   return (
-    <TypographyContext.Provider
-      value={{
-        as: asValue,
-        display: displayValue,
-        fontFamily: fontFamilyValue,
-        fontSize: fontSizeValue,
-        fontStyle: fontStyleValue,
-        fontWeight: fontWeightValue,
-        letterSpacing: letterSpacingValue,
-        lineHeight: lineHeightValue,
-        textAlign: textAlignValue,
-        color: colorValue,
-        textDecoration: textDecorationValue,
-        textOverflow: textOverflowValue,
-        whiteSpace: whiteSpaceValue,
-        children: childrenValue,
-      }}
-    >
-      <StyledTypography
-        as={asValue}
-        display={displayValue}
-        fontFamily={fontFamilyValue}
-        fontSize={fontSizeValue}
-        fontStyle={fontStyleValue}
-        fontWeight={fontWeightValue}
-        letterSpacing={letterSpacingValue}
-        lineHeight={lineHeightValue}
-        textAlign={textAlignValue}
-        color={colorValue}
-        textDecoration={textDecorationValue}
-        textOverflow={textOverflowValue}
-        whiteSpace={whiteSpaceValue}
-      >
-        {children}
-      </StyledTypography>
+    <TypographyContext.Provider value={contextValue}>
+      <StyledTypography {...contextValue}>{children}</StyledTypography>
     </TypographyContext.Provider>
   );
 };
+
 const StyledTypography = styled.span<TypographyPropsTypes>`
   margin: 0px;
   display: ${({ display }) => display};
