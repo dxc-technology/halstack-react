@@ -4,7 +4,6 @@ import { getMargin } from "../common/utils";
 import { spaces } from "../common/variables";
 import useTheme from "../useTheme";
 import AccordionPropsType from "./types";
-import BaseTypography from "../utils/BaseTypography";
 import DxcIcon from "../icon/Icon";
 
 const DxcAccordion = ({
@@ -42,46 +41,15 @@ const DxcAccordion = ({
             isExpanded={isExpanded ?? innerIsExpanded}
           >
             <AccordionInfo>
-              <AccordionLabel>
+              <AccordionLabel disabled={disabled}>
                 {icon && (
                   <IconContainer disabled={disabled}>
                     {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
                   </IconContainer>
                 )}
-                <BaseTypography
-                  color={
-                    disabled
-                      ? colorsTheme.accordion.disabledTitleLabelFontColor
-                      : colorsTheme.accordion.titleLabelFontColor
-                  }
-                  fontFamily={colorsTheme.accordion.titleLabelFontFamily}
-                  fontSize={colorsTheme.accordion.titleLabelFontSize}
-                  fontStyle={colorsTheme.accordion.titleLabelFontStyle}
-                  fontWeight={colorsTheme.accordion.titleLabelFontWeight}
-                  lineHeight="1.5em"
-                >
-                  {label}
-                </BaseTypography>
+                {label}
               </AccordionLabel>
-              {assistiveText && (
-                <AccordionAssistiveText>
-                  <BaseTypography
-                    color={
-                      disabled
-                        ? colorsTheme.accordion.disabledAssistiveTextFontColor
-                        : colorsTheme.accordion.assistiveTextFontColor
-                    }
-                    fontFamily={colorsTheme.accordion.assistiveTextFontFamily}
-                    fontSize={colorsTheme.accordion.assistiveTextFontSize}
-                    fontStyle={colorsTheme.accordion.assistiveTextFontStyle}
-                    fontWeight={colorsTheme.accordion.assistiveTextFontWeight}
-                    letterSpacing={colorsTheme.accordion.assistiveTextLetterSpacing}
-                    lineHeight="1.5em"
-                  >
-                    {assistiveText}
-                  </BaseTypography>
-                </AccordionAssistiveText>
-              )}
+              {assistiveText && <AccordionAssistiveText disabled={disabled}>{assistiveText}</AccordionAssistiveText>}
             </AccordionInfo>
             <CollapseIndicator disabled={disabled}>
               <DxcIcon icon={(isExpanded ?? innerIsExpanded) ? "expand_less" : "expand_more"} />
@@ -165,12 +133,18 @@ const AccordionInfo = styled.span`
   width: 100%;
 `;
 
-const AccordionLabel = styled.span`
+const AccordionLabel = styled.span<{ disabled: AccordionPropsType["disabled"] }>`
   display: flex;
   padding-top: ${(props) => props.theme.titleLabelPaddingTop};
   padding-bottom: ${(props) => props.theme.titleLabelPaddingBottom};
   padding-right: ${(props) => props.theme.titleLabelPaddingRight};
   padding-left: ${(props) => props.theme.titleLabelPaddingLeft};
+  color: ${(props) => (props.disabled ? props.theme.disabledTitleLabelFontColor : props.theme.titleLabelFontColor)};
+  font-family: ${(props) => props.theme.titleLabelFontFamily};
+  font-size: ${(props) => props.theme.titleLabelFontSize};
+  font-style: ${(props) => props.theme.titleLabelFontStyle};
+  font-weight: ${(props) => props.theme.titleLabelFontWeight};
+  line-height: 1.5em;
 `;
 
 const IconContainer = styled.span<{ disabled: AccordionPropsType["disabled"] }>`
@@ -186,10 +160,18 @@ const IconContainer = styled.span<{ disabled: AccordionPropsType["disabled"] }>`
   }
 `;
 
-const AccordionAssistiveText = styled.span`
+const AccordionAssistiveText = styled.span<{ disabled: AccordionPropsType["disabled"] }>`
   min-width: ${(props) => props.theme.assistiveTextMinWidth};
   padding-left: ${(props) => props.theme.assistiveTextPaddingLeft};
   padding-right: ${(props) => props.theme.assistiveTextPaddingRight};
+  color: ${(props) =>
+    props.disabled ? props.theme.disabledAssistiveTextFontColor : props.theme.assistiveTextFontColor};
+  font-family: ${(props) => props.theme.assistiveTextFontFamily};
+  font-size: ${(props) => props.theme.assistiveTextFontSize};
+  font-style: ${(props) => props.theme.assistiveTextFontStyle};
+  font-weight: ${(props) => props.theme.assistiveTextFontWeight};
+  letter-spacing: ${(props) => props.theme.assistiveTextLetterSpacing};
+  line-height: 1.5em;
 `;
 
 const CollapseIndicator = styled.span<{ disabled: AccordionPropsType["disabled"] }>`
