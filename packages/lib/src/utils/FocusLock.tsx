@@ -45,7 +45,7 @@ const attemptFocus = (element: HTMLElement): boolean => {
  * @param element: HTMLElement
  * @returns boolean: true if element is contained inside a Radix Portal, false otherwise.
  */
-const radixPortalContains = (activeElement: Element): boolean => {
+const radixPortalContains = (activeElement: Node): boolean => {
   const radixPortals = document.querySelectorAll("[data-radix-portal]");
   const radixPoppers = document.querySelectorAll("[data-radix-popper-content-wrapper]");
   return (
@@ -69,7 +69,7 @@ const useFocusableElements = (ref: React.MutableRefObject<HTMLDivElement>): HTML
       const observer = new MutationObserver(() => {
         setFocusableElements(getFocusableElements(ref.current));
       });
-      observer.observe(ref.current, { childList: true, subtree: true, attributes: true });
+      observer.observe(ref.current, { childList: true, subtree: true });
       return () => {
         observer.disconnect();
       };
@@ -90,6 +90,7 @@ const useFocusableElements = (ref: React.MutableRefObject<HTMLDivElement>): HTML
 const FocusLock = ({ children }: { children: React.ReactNode }): JSX.Element => {
   const childrenContainerRef = useRef<HTMLDivElement>();
   const focusableElements = useFocusableElements(childrenContainerRef);
+  const initialFocus = useRef(false);
 
   const focusFirst = useCallback(() => {
     if (focusableElements?.length === 0) childrenContainerRef.current?.focus();
@@ -97,16 +98,44 @@ const FocusLock = ({ children }: { children: React.ReactNode }): JSX.Element => 
   }, [focusableElements]);
 
   const focusLast = () => {
-    focusableElements?.reverse()?.some((element) => attemptFocus(element));
+    focusableElements
+      ?.slice()
+      .reverse()
+      ?.some((element) => attemptFocus(element));
   };
 
   const focusLock = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    if (event.key === "Tab") focusableElements.length === 0 && event.preventDefault();
+    if (event.key === "Tab" && focusableElements.length === 0) event.preventDefault();
   };
 
   useEffect(() => {
-    if (!childrenContainerRef.current?.contains(document.activeElement) && !radixPortalContains(document.activeElement))
+    if (focusableElements !== undefined && !initialFocus.current) {
+      initialFocus.current = true;
       focusFirst();
+    }
+  }, [focusableElements, focusFirst]);
+
+  useEffect(() => {
+    const focusGuardHandler = (event: FocusEvent) => {
+      const target = event.relatedTarget as Node | null;
+      const container = childrenContainerRef.current;
+
+      if (
+        target &&
+        !(
+          container?.contains(target) ||
+          container?.nextElementSibling?.contains(target) ||
+          container?.previousElementSibling?.contains(target) ||
+          radixPortalContains(target)
+        )
+      )
+        focusFirst();
+    };
+
+    document.addEventListener("focusout", focusGuardHandler);
+    return () => {
+      document.removeEventListener("focusout", focusGuardHandler);
+    };
   }, [focusFirst]);
 
   return (
