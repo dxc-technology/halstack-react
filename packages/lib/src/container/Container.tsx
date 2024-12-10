@@ -1,24 +1,7 @@
 import styled from "styled-components";
 import { getCoreColorToken } from "../common/coreTokens";
 import ContainerPropsType, { BorderProperties, StyledProps } from "./types";
-
-/**
- * This values correspond to the spaces defined in the design system
- * https://developer.dxc.com/halstack/next/principles/spacing/#component-spacing-tokens
- */
-const spaces = {
-  xxsmall: "4px",
-  xsmall: "8px",
-  small: "12px",
-  medium: "16px",
-  large: "24px",
-  xlarge: "32px",
-  xxlarge: "48px",
-};
-
-const DxcContainer = ({ display, width, height, overflow, ...props }: ContainerPropsType) => (
-  <Container $display={display} $width={width} $height={height} $overflow={overflow} {...props} />
-);
+import { spaces } from "../common/variables";
 
 const getBorderStyles = (direction: "top" | "bottom" | "left" | "right", borderProperties: BorderProperties) =>
   `border-${direction}: ${borderProperties?.width ?? ""} ${borderProperties?.style ?? ""} ${
@@ -95,4 +78,6 @@ const Container = styled.div<StyledProps>`
   padding-left: ${({ padding }) => (typeof padding === "object" ? spaces[padding.left] : "")};
 `;
 
-export default DxcContainer;
+export default function DxcContainer({ display, width, height, overflow, ...props }: ContainerPropsType) {
+  return <Container $display={display} $width={width} $height={height} $overflow={overflow} {...props} />;
+}

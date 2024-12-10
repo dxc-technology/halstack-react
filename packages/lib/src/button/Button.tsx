@@ -33,7 +33,7 @@ const DxcButton = ({
           }}
           tabIndex={disabled ? -1 : tabIndex}
           type={type}
-          $mode={mode === "primary" || mode === "secondary" || mode === "tertiary" ? mode : "primary"}
+          $mode={mode}
           hasLabel={label ? true : false}
           hasIcon={icon ? true : false}
           iconPosition={iconPosition}
@@ -64,7 +64,7 @@ const calculateWidth = (margin: ButtonPropsType["margin"], size: ButtonPropsType
     ? `calc(${widths[size?.width]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
     : widths[size?.width];
 
-const getHeight = (height) => {
+const getHeight = (height: ButtonPropsType["size"]["height"]) => {
   switch (height) {
     case "small":
       return 1.5;
@@ -403,7 +403,7 @@ const Button = styled.button<{
   gap: 0.5rem;
   align-items: center;
   justify-content: center;
-  height: ${(props) => getHeight(props.size?.height && props.size?.height) + "rem"};
+  height: ${(props) => getHeight(props.size?.height) + "rem"};
   width: ${(props) => calculateWidth(props.margin, props.size)};
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
