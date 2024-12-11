@@ -54,7 +54,7 @@ const sections = [
                     <td>
                       <Code>font-size</Code>
                     </td>
-                    <td>32px / 2.5rem</td>
+                    <td>40px / 2.5rem</td>
                     <td>
                       <Code>font-scale-07</Code>
                     </td>
