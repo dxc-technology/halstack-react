@@ -1,5 +1,5 @@
 import styled, { ThemeProvider } from "styled-components";
-import getMargin from "../common/utils";
+import { getMargin } from "../common/utils";
 import { spaces } from "../common/variables";
 import DxcIcon from "../icon/Icon";
 import useTheme from "../useTheme";

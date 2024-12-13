@@ -1,7 +1,7 @@
 import * as Popover from "@radix-ui/react-popover";
 import { FocusEvent, KeyboardEvent, useCallback, useId, useLayoutEffect, useRef, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import getMargin from "../common/utils";
+import { getMargin } from "../common/utils";
 import { spaces } from "../common/variables";
 import DxcIcon from "../icon/Icon";
 import useTheme from "../useTheme";

@@ -10,7 +10,7 @@ export const makeReadableSidenav = (token: string) =>
     return i === 0 ? v.toUpperCase() : " " + v;
   });
 
-const isObject = (item: unknown) => item && typeof item === "object" && !Array.isArray(item);
+const isObject = (item: unknown) => item != null && typeof item === "object" && !Array.isArray(item);
 
 export const deepMerge = <T extends object>(target: T, ...sources: Partial<T>[]): T => {
   if (!sources.length) return target;

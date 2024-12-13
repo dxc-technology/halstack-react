@@ -1,7 +1,7 @@
 import { ReactNode, useEffect, useMemo, useRef, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import CoreTokens from "../common/coreTokens";
-import getMargin from "../common/utils";
+import { getMargin } from "../common/utils";
 import { spaces } from "../common/variables";
 import DxcPaginator from "../paginator/Paginator";
 import DxcTable, { DxcActionsCell } from "../table/Table";

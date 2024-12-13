@@ -1,6 +1,6 @@
 import styled, { ThemeProvider } from "styled-components";
 import { AdvancedTheme, spaces } from "../common/variables";
-import getMargin from "../common/utils";
+import { getMargin } from "../common/utils";
 import useTheme from "../useTheme";
 import type ButtonPropsType from "./types";
 import DxcIcon from "../icon/Icon";

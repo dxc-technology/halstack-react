@@ -15,7 +15,7 @@ import {
 } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import DxcActionIcon from "../action-icon/ActionIcon";
-import getMargin from "../common/utils";
+import { getMargin } from "../common/utils";
 import { spaces } from "../common/variables";
 import DxcFlex from "../flex/Flex";
 import DxcIcon from "../icon/Icon";

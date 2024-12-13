@@ -125,7 +125,7 @@ const getIcon = (semantic: AlertPropsType["semantic"]) => {
   }
 };
 
-const DxcAlert = ({
+export default function DxcAlert({
   closable = true,
   message = [],
   mode = "inline",
@@ -133,7 +133,7 @@ const DxcAlert = ({
   secondaryAction,
   semantic = "info",
   title = "",
-}: AlertPropsType) => {
+}: AlertPropsType) {
   const [messages, setMessages] = useState(Array.isArray(message) ? message : [message]);
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -245,6 +245,4 @@ const DxcAlert = ({
       </ModalAlertWrapper>
     </ThemeProvider>
   );
-};
-
-export default DxcAlert;
+}

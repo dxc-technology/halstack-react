@@ -2,7 +2,7 @@ import { ChangeEvent, forwardRef, MouseEvent, useId, useMemo, useState } from "r
 import styled, { ThemeProvider } from "styled-components";
 import DxcTextInput from "../text-input/TextInput";
 import { spaces } from "../common/variables";
-import getMargin from "../common/utils";
+import { getMargin } from "../common/utils";
 import useTheme from "../useTheme";
 import SliderPropsType, { RefType } from "./types";
 

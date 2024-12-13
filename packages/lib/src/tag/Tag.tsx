@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import getMargin from "../common/utils";
+import { getMargin } from "../common/utils";
 import { spaces } from "../common/variables";
 import useTheme from "../useTheme";
 import DxcIcon from "../icon/Icon";

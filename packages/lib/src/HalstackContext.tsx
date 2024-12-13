@@ -430,6 +430,4 @@ const HalstackProvider = ({ theme, advancedTheme, labels, children }: HalstackPr
   );
 };
 
-export { HalstackProvider, HalstackLanguageContext };
-
-export default HalstackContext;
+export { HalstackContext as default, HalstackProvider, HalstackLanguageContext };

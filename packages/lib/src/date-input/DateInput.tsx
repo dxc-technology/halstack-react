@@ -18,7 +18,7 @@ import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
 import DateInputPropsType, { RefType } from "./types";
 import DatePicker from "./DatePicker";
-import getMargin from "../common/utils";
+import { getMargin } from "../common/utils";
 import { spaces } from "../common/variables";
 import DxcTextInput from "../text-input/TextInput";
 

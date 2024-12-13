@@ -10,11 +10,9 @@ export type Margin = {
 export type SVG = React.ReactNode & React.SVGProps<SVGSVGElement>;
 export type Side = keyof Margin;
 
-const getMargin = (marginProp: Space | Margin | undefined, side: Side) =>
+export const getMargin = (marginProp: Space | Margin | undefined, side: Side) =>
   marginProp && typeof marginProp === "object"
     ? (marginProp[side] && spaces[marginProp[side]]) || "0px"
     : marginProp && typeof marginProp === "string"
       ? spaces[marginProp]
       : "0px";
-
-export default getMargin;
