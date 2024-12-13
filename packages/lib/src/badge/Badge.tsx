@@ -104,10 +104,10 @@ const DxcBadge = ({
 );
 
 const getColor = (mode: BadgePropsType["mode"], color: BadgePropsType["color"]) =>
-  mode === "contextual" ? color && contextualColorMap[color].text : CoreTokens.color_white;
+  mode === "contextual" && color ? contextualColorMap[color].text : CoreTokens.color_white;
 
 const getBackgroundColor = (mode: BadgePropsType["mode"], color: BadgePropsType["color"]) =>
-  mode === "contextual" ? color && contextualColorMap[color].background : CoreTokens.color_red_700;
+  mode === "contextual" && color ? contextualColorMap[color].background : CoreTokens.color_red_700;
 
 const getPadding = (mode: BadgePropsType["mode"], size: BadgePropsType["size"]) =>
   size && (mode === "contextual" ? sizeMap[size].padding.contextual : sizeMap[size].padding.notification);
