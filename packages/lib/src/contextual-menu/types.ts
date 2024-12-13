@@ -21,9 +21,6 @@ type Props = {
   items: (Item | GroupItem)[] | Section[];
 };
 
-/**
- * Contextual menu internal types.
- */
 type ItemWithId = Item & { id: number };
 type GroupItemWithId = {
   badge?: React.ReactElement;
@@ -32,6 +29,7 @@ type GroupItemWithId = {
   label: string;
 };
 type SectionWithId = { items: (ItemWithId | GroupItemWithId)[]; title?: string };
+
 type SingleItemProps = ItemWithId & { depthLevel: number };
 type GroupItemProps = GroupItemWithId & { depthLevel: number };
 type MenuItemProps = { item: ItemWithId | GroupItemWithId; depthLevel?: number };
