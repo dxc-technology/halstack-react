@@ -122,21 +122,22 @@ const parseTheme = (theme: DeepPartial<OpinionatedTheme>): AdvancedTheme => {
   chipTokens.hoverIconColor = subLightness(10, theme?.chip?.iconColor) ?? chipTokens.hoverIconColor;
   chipTokens.activeIconColor = subLightness(30, theme?.chip?.iconColor) ?? chipTokens.activeIconColor;
 
-  const { contextualMenu } = componentTokensCopy;
-  contextualMenu.selectedMenuItemBackgroundColor =
-    theme?.contextualMenu?.accentColor ?? contextualMenu.selectedMenuItemBackgroundColor;
-  contextualMenu.hoverSelectedMenuItemBackgroundColor =
-    subLightness(5, theme?.contextualMenu?.accentColor) ?? contextualMenu.hoverSelectedMenuItemBackgroundColor;
-  contextualMenu.activeSelectedMenuItemBackgroundColor =
-    subLightness(5, theme?.contextualMenu?.accentColor) ?? contextualMenu.activeSelectedMenuItemBackgroundColor;
-  contextualMenu.backgroundColor = theme?.contextualMenu?.baseColor ?? contextualMenu.backgroundColor;
-  contextualMenu.hoverMenuItemBackgroundColor =
-    subLightness(5, theme?.contextualMenu?.baseColor) ?? contextualMenu.hoverMenuItemBackgroundColor;
-  contextualMenu.activeMenuItemBackgroundColor =
-    subLightness(5, theme?.contextualMenu?.baseColor) ?? contextualMenu.activeMenuItemBackgroundColor;
-  contextualMenu.menuItemFontColor = theme?.contextualMenu?.fontColor ?? contextualMenu.menuItemFontColor;
-  contextualMenu.sectionTitleFontColor = theme?.contextualMenu?.fontColor ?? contextualMenu.sectionTitleFontColor;
-  contextualMenu.iconColor = theme?.contextualMenu?.iconColor ?? contextualMenu.iconColor;
+  const contextualMenuTokens = componentTokensCopy.contextualMenu;
+  contextualMenuTokens.selectedMenuItemBackgroundColor =
+    theme?.contextualMenu?.accentColor ?? contextualMenuTokens.selectedMenuItemBackgroundColor;
+  contextualMenuTokens.hoverSelectedMenuItemBackgroundColor =
+    subLightness(5, theme?.contextualMenu?.accentColor) ?? contextualMenuTokens.hoverSelectedMenuItemBackgroundColor;
+  contextualMenuTokens.activeSelectedMenuItemBackgroundColor =
+    subLightness(5, theme?.contextualMenu?.accentColor) ?? contextualMenuTokens.activeSelectedMenuItemBackgroundColor;
+  contextualMenuTokens.backgroundColor = theme?.contextualMenu?.baseColor ?? contextualMenuTokens.backgroundColor;
+  contextualMenuTokens.hoverMenuItemBackgroundColor =
+    subLightness(5, theme?.contextualMenu?.baseColor) ?? contextualMenuTokens.hoverMenuItemBackgroundColor;
+  contextualMenuTokens.activeMenuItemBackgroundColor =
+    subLightness(5, theme?.contextualMenu?.baseColor) ?? contextualMenuTokens.activeMenuItemBackgroundColor;
+  contextualMenuTokens.menuItemFontColor = theme?.contextualMenu?.fontColor ?? contextualMenuTokens.menuItemFontColor;
+  contextualMenuTokens.sectionTitleFontColor =
+    theme?.contextualMenu?.fontColor ?? contextualMenuTokens.sectionTitleFontColor;
+  contextualMenuTokens.iconColor = theme?.contextualMenu?.iconColor ?? contextualMenuTokens.iconColor;
 
   const dataGridTokens = componentTokensCopy.dataGrid;
   dataGridTokens.headerBackgroundColor = theme?.dataGrid?.baseColor ?? dataGridTokens.headerBackgroundColor;
