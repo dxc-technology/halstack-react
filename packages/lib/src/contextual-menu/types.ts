@@ -1,4 +1,5 @@
-type SVG = React.ReactNode & React.SVGProps<SVGSVGElement>;
+import { SVG } from "../common/utils";
+
 type CommonItemProps = {
   badge?: React.ReactElement;
   icon?: string | SVG;

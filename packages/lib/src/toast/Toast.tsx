@@ -37,29 +37,6 @@ const getSemantic = (semantic: ToastPropsType["semantic"]) => {
   }
 };
 
-const ContentContainer = styled.div<{ loading: ToastPropsType["loading"] }>`
-  display: flex;
-  align-items: center;
-  gap: ${CoreTokens.spacing_8};
-  overflow: hidden;
-
-  ${({ loading }) => !loading && `font-size: ${CoreTokens.type_scale_05}`};
-  > svg {
-    width: 24px;
-    height: 24px;
-  }
-`;
-
-const Message = styled.span`
-  color: ${CoreTokens.color_black};
-  font-family: ${CoreTokens.type_sans};
-  font-size: ${CoreTokens.type_scale_02};
-  font-weight: ${CoreTokens.type_semibold};
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-`;
-
 const fadeInUp = keyframes`
   0% {
     transform: translateY(100%);
@@ -95,12 +72,35 @@ const Toast = styled.output<{ semantic: ToastPropsType["semantic"]; isClosing: b
   gap: ${CoreTokens.spacing_24};
   padding: ${CoreTokens.spacing_8} ${CoreTokens.spacing_12};
   background-color: ${({ semantic }) => getSemantic(semantic).secondaryColor};
-  color: ${({ semantic }) => getSemantic(semantic).primaryColor};
   animation: ${({ isClosing }) => (isClosing ? fadeOutDown : fadeInUp)} 0.3s ease forwards;
 
   @media (max-width: ${responsiveSizes.medium}rem) {
     max-width: 100%;
   }
+`;
+
+const ContentContainer = styled.div<{ loading: ToastPropsType["loading"]; semantic: ToastPropsType["semantic"] }>`
+  display: flex;
+  align-items: center;
+  gap: ${CoreTokens.spacing_8};
+  overflow: hidden;
+  color: ${({ semantic }) => getSemantic(semantic).primaryColor};
+
+  ${({ loading }) => !loading && `font-size: ${CoreTokens.type_scale_05}`};
+  > svg {
+    width: 24px;
+    height: 24px;
+  }
+`;
+
+const Message = styled.span`
+  color: ${CoreTokens.color_grey_900};
+  font-family: ${CoreTokens.type_sans};
+  font-size: ${CoreTokens.type_scale_02};
+  font-weight: ${CoreTokens.type_semibold};
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 const spinnerTheme = {
@@ -159,19 +159,19 @@ const DxcToast = ({
 
   return (
     <Toast semantic={semantic} isClosing={isClosing} role="status">
-      <ContentContainer loading={loading}>
-        <ToastIcon semantic={semantic} icon={icon} loading={loading} hideSemanticIcon={hideSemanticIcon} />
+      <ContentContainer loading={loading} semantic={semantic}>
+        <ToastIcon hideSemanticIcon={hideSemanticIcon} icon={icon} loading={loading} semantic={semantic} />
         <Message>{message}</Message>
       </ContentContainer>
       <DxcFlex alignItems="center" gap="0.25rem">
         {action && (
           <DxcButton
-            semantic={semantic}
-            mode="tertiary"
-            size={{ height: "small" }}
-            label={action.label}
             icon={action.icon}
+            label={action.label}
+            mode="tertiary"
             onClick={action.onClick}
+            semantic={semantic}
+            size={{ height: "small" }}
           />
         )}
         <DxcActionIcon

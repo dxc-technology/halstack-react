@@ -1,6 +1,5 @@
 import { CoreColorTokensType } from "../common/coreTokens";
-
-type SpacingValues = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
+import { Space as SpacingValues } from "../common/utils"
 type Space =
   | SpacingValues
   | {

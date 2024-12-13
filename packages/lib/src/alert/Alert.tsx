@@ -155,9 +155,7 @@ const DxcAlert = ({
   };
 
   useEffect(() => {
-    if (currentIndex === messages.length) {
-      handlePrevOnClick();
-    }
+    if (currentIndex === messages.length) handlePrevOnClick();
   }, [currentIndex, messages]);
 
   return (

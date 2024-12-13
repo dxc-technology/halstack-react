@@ -7,6 +7,7 @@ export type Margin = {
   left?: Space;
   right?: Space;
 };
+export type SVG = React.ReactNode & React.SVGProps<SVGSVGElement>;
 export type Side = keyof Margin;
 
 const getMargin = (marginProp: Space | Margin | undefined, side: Side) =>

@@ -1,4 +1,4 @@
-type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
+import { Space } from "../common/utils";
 
 type Props = {
   /**

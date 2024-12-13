@@ -1,8 +1,6 @@
 import { ReactNode, SVGProps } from "react";
 
-import type { Space, Margin } from "../common/utils";
-
-type SVG = ReactNode & SVGProps<SVGSVGElement>;
+import type { Space, Margin, SVG } from "../common/utils";
 
 type TabCommonProps = {
   /**

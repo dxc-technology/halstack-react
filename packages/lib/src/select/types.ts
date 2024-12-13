@@ -1,11 +1,4 @@
-type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
-type Margin = {
-  top?: Space;
-  bottom?: Space;
-  left?: Space;
-  right?: Space;
-};
-type SVG = React.ReactNode & React.SVGProps<SVGSVGElement>;
+import { Margin, SVG, Space } from "../common/utils";
 
 export type ListOptionGroupType = {
   /**

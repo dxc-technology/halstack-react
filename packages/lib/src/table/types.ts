@@ -1,14 +1,5 @@
+import { Margin, SVG, Space } from "../common/utils";
 import { Option } from "../dropdown/types";
-
-type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
-type Margin = {
-  top?: Space;
-  bottom?: Space;
-  left?: Space;
-  right?: Space;
-};
-
-type SVG = React.ReactNode & React.SVGProps<SVGSVGElement>;
 
 export type ActionCellsPropsType = {
   actions: ActionsPropsType;

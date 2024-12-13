@@ -1,10 +1,4 @@
-type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
-type Margin = {
-  top?: Space;
-  bottom?: Space;
-  left?: Space;
-  right?: Space;
-};
+import { Margin, Space } from "../common/utils";
 
 export type Column = {
   /**

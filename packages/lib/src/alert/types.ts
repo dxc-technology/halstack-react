@@ -1,4 +1,4 @@
-type SVG = React.ReactNode & React.SVGProps<SVGSVGElement>;
+import { SVG } from "../common/utils";
 
 type Action = {
   icon?: string | SVG;

@@ -2,7 +2,7 @@ import styled, { ThemeProvider } from "styled-components";
 import { AdvancedTheme, spaces } from "../common/variables";
 import getMargin from "../common/utils";
 import useTheme from "../useTheme";
-import ButtonPropsType from "./types";
+import type ButtonPropsType from "./types";
 import DxcIcon from "../icon/Icon";
 import { Tooltip } from "../tooltip/Tooltip";
 
@@ -33,7 +33,7 @@ const DxcButton = ({
           }}
           tabIndex={disabled ? -1 : tabIndex}
           type={type}
-          $mode={mode === "primary" || mode === "secondary" || mode === "tertiary" ? mode : "primary"}
+          $mode={mode}
           hasLabel={!!label}
           hasIcon={!!icon}
           iconPosition={iconPosition}
@@ -64,7 +64,7 @@ const calculateWidth = (margin: ButtonPropsType["margin"], size: ButtonPropsType
     ? `calc(${widths[size?.width]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
     : size?.width && widths[size?.width];
 
-const getHeight = (height?: string) => {
+const getHeight = (height: Required<ButtonPropsType>["size"]["height"]) => {
   switch (height) {
     case "small":
       return 1.5;

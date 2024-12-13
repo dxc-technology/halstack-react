@@ -1,8 +1,6 @@
 import { ReactElement, ReactNode, SVGProps } from "react";
 
-import { Space, Margin } from "../common/utils";
-
-type SVG = ReactNode & SVGProps<SVGSVGElement>;
+import { Space, Margin, SVG } from "../common/utils";
 
 export type AccordionPropsType = {
   /**

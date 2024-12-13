@@ -14,11 +14,11 @@ const MainContainer = styled.div`
 `;
 
 const pathVersion =
-  process.env.NEXT_PUBLIC_SITE_VERSION === "next" || process.env.NODE_ENV === "development"
-    ? 0
-    : process.env.NEXT_PUBLIC_SITE_VERSION != null
-      ? parseInt(process.env.NEXT_PUBLIC_SITE_VERSION.split(".")[0]!, 10)
-      : null;
+  process.env.NEXT_PUBLIC_SITE_VERSION == null
+    ? null
+    : process.env.NEXT_PUBLIC_SITE_VERSION === "next" || process.env.NODE_ENV === "development"
+      ? 0
+      : parseInt(process.env.NEXT_PUBLIC_SITE_VERSION.split(".")[0]!, 10);
 
 const MainContent = ({ children }: { children: ReactNode }) => {
   const toast = useToast();
