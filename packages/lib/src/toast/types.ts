@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode, SVGProps } from "react";
 
 type SVG = ReactNode & SVGProps<SVGSVGElement>;
 type Action = {

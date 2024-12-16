@@ -75,7 +75,7 @@ const DxcTab = forwardRef(
           aria-selected={activeLabel === label}
           hasLabelAndIcon={hasLabelAndIcon}
           iconPosition={iconPosition}
-          ref={(anchorRef) => {
+          ref={(anchorRef: HTMLButtonElement) => {
             tabRef.current = anchorRef;
 
             if (ref) {
@@ -224,7 +224,7 @@ const MainLabelContainer = styled.div<{
 const Label = styled.span<{
   disabled: TabProps["disabled"];
   label: TabProps["label"];
-  activeLabel: string;
+  activeLabel?: string;
 }>`
   display: inline;
   color: ${(props) =>
