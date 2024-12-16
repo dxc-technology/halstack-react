@@ -1,4 +1,4 @@
-import React, { useContext, useMemo } from "react";
+import { useContext, useMemo, createContext } from "react";
 import styled from "styled-components";
 import TypographyPropsTypes, { TypographyContextProps } from "./types";
 
@@ -20,9 +20,9 @@ const Typography = styled.span<TypographyPropsTypes>`
   overflow: ${({ textOverflow }) => (textOverflow !== "unset" ? "hidden" : "visible")};
 `;
 
-const TypographyContext = React.createContext<TypographyContextProps | null>(null);
+const TypographyContext = createContext<TypographyContextProps | null>(null);
 
-export default function DxcTypography({
+const DxcTypography = ({
   as,
   color,
   children,
@@ -37,7 +37,7 @@ export default function DxcTypography({
   textDecoration,
   textOverflow,
   whiteSpace,
-}: TypographyPropsTypes) {
+}: TypographyPropsTypes) => {
   const componentContext = useContext(TypographyContext);
 
   const contextValue = useMemo(
@@ -78,4 +78,6 @@ export default function DxcTypography({
       <Typography {...contextValue}>{children}</Typography>
     </TypographyContext.Provider>
   );
-}
+};
+
+export default DxcTypography;

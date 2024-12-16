@@ -1,4 +1,5 @@
 import styled, { ThemeProvider } from "styled-components";
+import { ReactNode } from "react";
 import useTheme from "../useTheme";
 import ImagePropsType, { CaptionWrapperProps } from "./types";
 
@@ -24,7 +25,7 @@ const CaptionWrapper = ({ condition, wrapper, children }: CaptionWrapperProps) =
   <>{condition ? wrapper(children) : children}</>
 );
 
-export default function DxcImage({
+const DxcImage = ({
   alt,
   caption,
   lazyLoading = false,
@@ -37,20 +38,19 @@ export default function DxcImage({
   objectPosition,
   onLoad,
   onError,
-}: ImagePropsType) {
+}: ImagePropsType) => {
   const colorsTheme = useTheme();
 
+  const wrapperFunction = (children: ReactNode) => (
+    <Figure>
+      {children}
+      <CaptionContainer>{caption}</CaptionContainer>
+    </Figure>
+  );
+
   return (
-    <ThemeProvider theme={colorsTheme.image}>
-      <CaptionWrapper
-        condition={caption != undefined}
-        wrapper={(children: React.ReactNode) => (
-          <Figure>
-            {children}
-            <CaptionContainer>{caption}</CaptionContainer>
-          </Figure>
-        )}
-      >
+    <ThemeProvider theme={colorsTheme?.image}>
+      <CaptionWrapper condition={caption !== undefined} wrapper={wrapperFunction}>
         <img
           alt={alt}
           loading={lazyLoading ? "lazy" : undefined}
@@ -69,4 +69,6 @@ export default function DxcImage({
       </CaptionWrapper>
     </ThemeProvider>
   );
-}
+};
+
+export default DxcImage;

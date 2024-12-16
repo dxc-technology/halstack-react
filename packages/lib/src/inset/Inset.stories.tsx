@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Title from "../../.storybook/components/Title";
-import DxcFlex from "./../flex/Flex";
+import DxcFlex from "../flex/Flex";
 import DxcInset from "./Inset";
 
 export default {

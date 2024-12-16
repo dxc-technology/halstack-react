@@ -1,10 +1,10 @@
+import { userEvent, within } from "@storybook/test";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DxcBreadcrumbs from "./Breadcrumbs";
 import DxcContainer from "../container/Container";
 import { HalstackProvider } from "../HalstackContext";
-import { userEvent, within } from "@storybook/test";
-import { disabledRules } from "../../test/accessibility/rules/specific/breadcrumbs/disabledRules";
+import disabledRules from "../../test/accessibility/rules/specific/breadcrumbs/disabledRules";
 import preview from "../../.storybook/preview";
 
 export default {
@@ -15,7 +15,7 @@ export default {
       config: {
         rules: [
           ...disabledRules.map((ruleId) => ({ id: ruleId, enabled: false })),
-          ...preview?.parameters?.a11y?.config?.rules,
+          ...(preview?.parameters?.a11y?.config?.rules || []),
         ],
       },
     },

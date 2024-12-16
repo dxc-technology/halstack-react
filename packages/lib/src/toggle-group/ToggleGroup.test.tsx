@@ -39,7 +39,11 @@ describe("Toggle group component tests", () => {
         label="Toggle group label"
         helperText="Toggle group helper text"
         options={[
-          { value: 1, icon: "https://cdn.icon-icons.com/icons2/2645/PNG/512/mic_mute_icon_159965.png", title: "Mute" },
+          {
+            value: 1,
+            icon: "https://cdn.icon-icons.com/icons2/2645/PNG/512/mic_mute_icon_159965.png",
+            title: "Mute",
+          },
         ]}
       />
     );

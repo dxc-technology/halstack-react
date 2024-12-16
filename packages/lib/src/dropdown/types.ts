@@ -1,12 +1,9 @@
-type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
-type Margin = {
-  top?: Space;
-  bottom?: Space;
-  left?: Space;
-  right?: Space;
-};
+import { CSSProperties, KeyboardEvent, ReactNode, SVGProps } from "react";
+
+import { Space, Margin } from "../common/utils";
+
 type Size = "small" | "medium" | "large" | "fillParent" | "fitContent";
-type SVG = React.ReactNode & React.SVGProps<SVGSVGElement>;
+type SVG = ReactNode & SVGProps<SVGSVGElement>;
 
 export type Option = {
   /**
@@ -89,9 +86,9 @@ export type DropdownMenuProps = {
   iconsPosition: "before" | "after";
   visualFocusIndex: number;
   menuItemOnClick: (value: string) => void;
-  onKeyDown: (event: React.KeyboardEvent<HTMLUListElement>) => void;
+  onKeyDown: (event: KeyboardEvent<HTMLUListElement>) => void;
   options: Option[];
-  styles: React.CSSProperties;
+  styles: CSSProperties;
 };
 
 export type DropdownMenuItemProps = {

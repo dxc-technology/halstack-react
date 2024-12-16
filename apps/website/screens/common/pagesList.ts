@@ -76,7 +76,7 @@ export const getNavigationLinks = (currentPath: string): NavigationLinks => {
   const previousLinkIndex = currentLinkIndex - 1;
   const previousLinkExists = previousLinkIndex >= 0;
   return {
-    previousLink: previousLinkExists ? links[previousLinkIndex] : null,
-    nextLink: nextLinkExists ? links[nextLinkIndex] : null,
+    previousLink: previousLinkExists ? (links[previousLinkIndex] ?? null) : null,
+    nextLink: nextLinkExists ? (links[nextLinkIndex] ?? null) : null,
   };
 };

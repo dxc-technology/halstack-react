@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { DxcContainer, DxcDataGrid } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
 import PreviewContainer from "./PreviewContainer";
+import { ComponentProps } from "react";
 
-type DataGridPropsType = React.ComponentProps<typeof DxcDataGrid>;
+type DataGridPropsType = ComponentProps<typeof DxcDataGrid>;
 type DataGridColumnsPropsType = DataGridPropsType["columns"];
 type DataGridRowsPropsType = DataGridPropsType["rows"];
-type DataGridActionsPropType = React.ComponentProps<typeof DxcDataGrid.ActionsCell>["actions"];
+type DataGridActionsPropType = ComponentProps<typeof DxcDataGrid.ActionsCell>["actions"];
 
 const actions: DataGridActionsPropType = [
   {

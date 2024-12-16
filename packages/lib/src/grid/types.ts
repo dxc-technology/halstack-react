@@ -1,6 +1,10 @@
+import { ReactNode } from "react";
 import { CoreSpacingTokensType } from "../common/coreTokens";
 
-type Gap = { rowGap: CoreSpacingTokensType; columnGap?: CoreSpacingTokensType } | { rowGap?: CoreSpacingTokensType; columnGap: CoreSpacingTokensType } | CoreSpacingTokensType;
+type Gap =
+  | { rowGap: CoreSpacingTokensType; columnGap?: CoreSpacingTokensType }
+  | { rowGap?: CoreSpacingTokensType; columnGap: CoreSpacingTokensType }
+  | CoreSpacingTokensType;
 type GridCell = { start: number | string; end: number | string };
 
 type PlaceSelfValues = "auto" | "start" | "end" | "center" | "stretch" | "baseline";
@@ -53,7 +57,7 @@ export type GridItemProps = {
   /**
    * Custom content inside the grid container.
    */
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
 type Props = GridItemProps & {

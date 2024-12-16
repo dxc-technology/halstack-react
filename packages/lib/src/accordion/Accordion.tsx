@@ -23,12 +23,14 @@ const DxcAccordion = ({
   const colorsTheme = useTheme();
 
   const handleAccordionState = () => {
-    isExpanded ?? setInnerIsExpanded((innerIsExpanded) => !innerIsExpanded);
+    if (isExpanded == null) {
+      setInnerIsExpanded((innerIsCurrentlyExpanded) => !innerIsCurrentlyExpanded);
+    }
     onChange?.(isExpanded != null ? !isExpanded : !innerIsExpanded);
   };
 
   return (
-    <ThemeProvider theme={colorsTheme.accordion}>
+    <ThemeProvider theme={colorsTheme?.accordion}>
       <AccordionContainer isExpanded={isExpanded ?? innerIsExpanded} margin={margin}>
         <AccordionHeader>
           <AccordionTrigger
@@ -174,7 +176,9 @@ const AccordionAssistiveText = styled.span<{ disabled: AccordionPropsType["disab
   line-height: 1.5em;
 `;
 
-const CollapseIndicator = styled.span<{ disabled: AccordionPropsType["disabled"] }>`
+const CollapseIndicator = styled.span<{
+  disabled: AccordionPropsType["disabled"];
+}>`
   display: flex;
   flex-wrap: wrap;
   align-content: center;

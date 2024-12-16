@@ -1,8 +1,8 @@
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
+import { HalstackProvider } from "../HalstackContext";
+import disabledRules from "../../test/accessibility/rules/specific/switch/disabledRules";
 import Title from "../../.storybook/components/Title";
 import preview from "../../.storybook/preview";
-import { disabledRules } from "../../test/accessibility/rules/specific/switch/disabledRules";
-import { HalstackProvider } from "../HalstackContext";
 import DxcSwitch from "./Switch";
 
 export default {
@@ -13,7 +13,7 @@ export default {
       config: {
         rules: [
           ...disabledRules.map((ruleId) => ({ id: ruleId, enabled: false })),
-          ...preview?.parameters?.a11y?.config?.rules,
+          ...(preview?.parameters?.a11y?.config?.rules || []),
         ],
       },
     },

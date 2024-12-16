@@ -5,7 +5,25 @@ import { spaces } from "../common/variables";
 import useTheme from "../useTheme";
 import AccordionGroupAccordion from "./AccordionGroupAccordion";
 import AccordionGroupPropsType from "./types";
-import { AccordionGroupAccordionContext } from "./AccordionGroupContext";
+import AccordionGroupAccordionContext from "./AccordionGroupContext";
+
+type AccordionProviderType = {
+  children: AccordionGroupPropsType["children"];
+  index: number;
+  contextValue: {
+    activeIndex: number;
+    handlerActiveChange: (index: number) => void;
+    disabled: boolean;
+  };
+};
+const AccordionProvider = ({ children, index, contextValue }: AccordionProviderType) => {
+  const contextProviderValue = useMemo(() => ({ index, ...contextValue }), [index, contextValue]);
+  return (
+    <AccordionGroupAccordionContext.Provider key={`accordion-${index}`} value={contextProviderValue}>
+      {children}
+    </AccordionGroupAccordionContext.Provider>
+  );
+};
 
 const DxcAccordionGroup = ({
   defaultIndexActive,
@@ -20,23 +38,31 @@ const DxcAccordionGroup = ({
 
   const handlerActiveChange = useCallback(
     (index: number) => {
-      indexActive ?? setInnerIndexActive((prev) => (index === prev ? -1 : index));
-      !disabled && onActiveChange?.(index);
+      if (indexActive == null) {
+        setInnerIndexActive((prev) => (index === prev ? -1 : index));
+      }
+      if (!disabled) {
+        onActiveChange?.(index);
+      }
     },
     [disabled, indexActive, onActiveChange]
   );
   const contextValue = useMemo(
-    () => ({ activeIndex: indexActive ?? innerIndexActive, handlerActiveChange, disabled }),
+    () => ({
+      activeIndex: indexActive ?? innerIndexActive,
+      handlerActiveChange,
+      disabled,
+    }),
     [indexActive, innerIndexActive, handlerActiveChange, disabled]
   );
 
   return (
-    <ThemeProvider theme={colorsTheme.accordion}>
+    <ThemeProvider theme={colorsTheme?.accordion}>
       <AccordionGroupContainer margin={margin} disabled={disabled}>
         {Children.map(children, (accordion, index) => (
-          <AccordionGroupAccordionContext.Provider key={`accordion-${index}`} value={{ index, ...contextValue }}>
+          <AccordionProvider index={index} contextValue={contextValue}>
             {accordion}
-          </AccordionGroupAccordionContext.Provider>
+          </AccordionProvider>
         ))}
       </AccordionGroupContainer>
     </ThemeProvider>

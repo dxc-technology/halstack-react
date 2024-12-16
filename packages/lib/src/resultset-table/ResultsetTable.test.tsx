@@ -4,16 +4,12 @@ import DxcCheckbox from "../checkbox/Checkbox";
 import { ActionCellsPropsType } from "../table/types";
 import DxcResultsetTable from "./ResultsetTable";
 
-// Mocking DOMRect for Radix Primitive Popover
 (global as any).globalThis = global;
-(global as any).DOMRect = {
-  fromRect: () => ({ top: 0, left: 0, bottom: 0, right: 0, width: 0, height: 0 }),
-};
-(global as any).ResizeObserver = class ResizeObserver {
-  observe() {}
-  unobserve() {}
-  disconnect() {}
-};
+global.ResizeObserver = jest.fn().mockImplementation(() => ({
+  observe: jest.fn(),
+  unobserve: jest.fn(),
+  disconnect: jest.fn(),
+}));
 
 const icon = (
   <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
@@ -318,7 +314,7 @@ const rowsWithCheckbox = [
   [
     { displayValue: "001", sortValue: "001" },
     {
-      displayValue: <DxcCheckbox size="fillParent" defaultChecked={true} />,
+      displayValue: <DxcCheckbox size="fillParent" defaultChecked />,
     },
     { displayValue: "Peter" },
     { displayValue: "Miami" },
@@ -510,9 +506,9 @@ describe("Resultset table component tests", () => {
         ],
       },
       {
-        icon: icon,
+        icon,
         title: "icon2",
-        onClick: onClick,
+        onClick,
       },
     ];
     const actionRows = [

@@ -1,9 +1,9 @@
-import { forwardRef, Ref, useContext, useEffect, useRef } from "react";
+import { forwardRef, Ref, useContext, useEffect, useRef, KeyboardEvent, MutableRefObject } from "react";
 import styled from "styled-components";
 import DxcBadge from "../badge/Badge";
 import DxcIcon from "../icon/Icon";
 import { Tooltip } from "../tooltip/Tooltip";
-import { TabsContext } from "./TabsContext";
+import TabsContext from "./TabsContext";
 import { TabProps, TabsContextProps } from "./types";
 
 const DxcTab = forwardRef(
@@ -23,40 +23,44 @@ const DxcTab = forwardRef(
     const tabRef = useRef<HTMLButtonElement>();
 
     const {
-      iconPosition,
-      tabIndex,
+      iconPosition = "top",
+      tabIndex = 0,
       focusedLabel,
       isControlled,
       activeLabel,
-      hasLabelAndIcon,
+      hasLabelAndIcon = false,
       setActiveLabel,
       setActiveIndicatorWidth,
       setActiveIndicatorLeft,
-    } = useContext(TabsContext);
+    } = useContext(TabsContext) ?? {};
 
     useEffect(() => {
-      focusedLabel === label && tabRef?.current?.focus();
+      if (focusedLabel === label) {
+        tabRef?.current?.focus();
+      }
     }, [focusedLabel, label]);
 
     useEffect(() => {
       if (activeLabel === label) {
-        setActiveIndicatorWidth(tabRef?.current?.offsetWidth);
-        setActiveIndicatorLeft(tabRef?.current?.offsetLeft);
+        setActiveIndicatorWidth?.(tabRef?.current?.offsetWidth ?? 0);
+        setActiveIndicatorLeft?.(tabRef?.current?.offsetLeft ?? 0);
       }
     }, [activeLabel, label]);
 
     useEffect(() => {
       if (active) {
-        setActiveLabel(label);
+        setActiveLabel?.(label);
       }
     }, [active, label]);
 
-    const handleOnKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
+    const handleOnKeyDown = (event: KeyboardEvent<HTMLButtonElement>) => {
       switch (event.key) {
         case " ":
         case "Enter":
           event.preventDefault();
           tabRef?.current?.click();
+          break;
+        default:
           break;
       }
     };
@@ -71,16 +75,22 @@ const DxcTab = forwardRef(
           aria-selected={activeLabel === label}
           hasLabelAndIcon={hasLabelAndIcon}
           iconPosition={iconPosition}
-          ref={(anchorRef) => {
+          ref={(anchorRef: HTMLButtonElement) => {
             tabRef.current = anchorRef;
 
             if (ref) {
-              if (typeof ref === "function") ref(anchorRef);
-              else (ref as React.MutableRefObject<HTMLButtonElement | null>).current = anchorRef;
+              if (typeof ref === "function") {
+                ref(anchorRef);
+              } else {
+                const currentRef = ref as MutableRefObject<HTMLButtonElement | null>;
+                currentRef.current = anchorRef;
+              }
             }
           }}
           onClick={() => {
-            if (!isControlled) setActiveLabel(label);
+            if (!isControlled) {
+              setActiveLabel?.(label);
+            }
             onClick();
           }}
           onMouseEnter={() => onHover()}
@@ -106,7 +116,7 @@ const DxcTab = forwardRef(
               <DxcBadge
                 mode="notification"
                 size="small"
-                label={typeof notificationNumber === "number" && notificationNumber}
+                label={typeof notificationNumber === "number" ? notificationNumber : undefined}
               />
             </BadgeContainer>
           )}
@@ -214,7 +224,7 @@ const MainLabelContainer = styled.div<{
 const Label = styled.span<{
   disabled: TabProps["disabled"];
   label: TabProps["label"];
-  activeLabel: string;
+  activeLabel?: string;
 }>`
   display: inline;
   color: ${(props) =>
@@ -250,5 +260,7 @@ const TabIconContainer = styled.div<{
     width: 22px;
   }
 `;
+
+DxcTab.displayName = "DxcTab";
 
 export default DxcTab;
