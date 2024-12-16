@@ -52,7 +52,7 @@ type SectionProps = {
   index: number;
   length: number;
 };
-type SubMenuProps = { children: React.ReactNode; id?: string };
+type SubMenuProps = { children: ReactNode; id?: string };
 type ContextualMenuContextProps = {
   selectedItemId: number;
   setSelectedItemId: Dispatch<SetStateAction<number>>;

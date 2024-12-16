@@ -72,7 +72,7 @@ export type TabProps = {
   title?: string;
   disabled?: boolean;
   notificationNumber?: boolean | number;
-  children: React.ReactNode;
+  children: ReactNode;
   onClick?: () => void;
   onHover?: () => void;
 };
@@ -133,8 +133,7 @@ type NewProps = {
   /**
    * Contains one or more DxcTabs.Tab.
    */
-  // children?: React.ReactElement<TabProps>[];
-  children?: React.ReactNode;
+  children?: ReactNode;
 };
 
 type Props = LegacyProps & NewProps;

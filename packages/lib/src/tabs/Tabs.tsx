@@ -8,6 +8,7 @@ import {
   useMemo,
   useRef,
   useState,
+  KeyboardEvent
 } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme";
@@ -154,7 +155,7 @@ const DxcTabs = ({
     setCountClick(moveX);
   };
 
-  const handleOnKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+  const handleOnKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
     const activeTab = childrenArray.findIndex((child: ReactElement) => child.props.label === activeTabLabel);
     switch (event.key) {
       case "Left":

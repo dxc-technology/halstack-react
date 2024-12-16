@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { DxcButton, DxcDialog, DxcTextarea, DxcHeading, DxcFlex } from "@dxc-technology/halstack-react";
 import { deepMerge } from "./utils";
 import ImportDialogProps, { IndexedThemeInput, IndexedTheme } from "./types";
@@ -53,7 +53,7 @@ const ImportDialog = ({ customThemeSchema, setCustomTheme, setDialogVisible }: I
   };
 
   return (
-    <DxcDialog isCloseVisible={false} onBackgroundClick={closeDialog}>
+    <DxcDialog closable={false} onBackgroundClick={closeDialog}>
       <ImportDialogContainer>
         <DxcHeading text="Import theme" level={2} weight="normal" />
         <DxcTextarea

@@ -1,6 +1,6 @@
 import styled, { ThemeProvider } from "styled-components";
 import { spaces, AdvancedTheme } from "../common/variables";
-import getMargin from "../common/utils";
+import { getMargin } from "../common/utils";
 import DxcDropdown from "../dropdown/Dropdown";
 import DxcFlex from "../flex/Flex";
 import { DeepPartial, HalstackProvider } from "../HalstackContext";

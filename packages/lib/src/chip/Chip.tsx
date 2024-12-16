@@ -1,6 +1,6 @@
 import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables";
-import getMargin from "../common/utils";
+import { getMargin } from "../common/utils";
 import DxcIcon from "../icon/Icon";
 import useTheme from "../useTheme";
 import ChipPropsType from "./types";

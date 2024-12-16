@@ -1,6 +1,5 @@
 import { DxcLink, DxcInset } from "@dxc-technology/halstack-react";
 import Link from "next/link";
-import React from "react";
 
 const code = `() => {
   const CustomLink = React.forwardRef(

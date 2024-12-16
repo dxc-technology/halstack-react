@@ -1,10 +1,27 @@
 import styled, { ThemeProvider } from "styled-components";
 import { ReactNode } from "react";
 import useTheme from "../useTheme";
-import BaseTypography from "../utils/BaseTypography";
 import ImagePropsType, { CaptionWrapperProps } from "./types";
 
-const CaptionWrapper = ({ condition, wrapper, children }: CaptionWrapperProps): JSX.Element => (
+const Figure = styled.figure`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: fit-content;
+  margin: 0;
+  padding: 0;
+`;
+
+const CaptionContainer = styled.figcaption`
+  color: ${(props) => props.theme.captionFontColor};
+  font-family: ${(props) => props.theme.captionFontFamily};
+  font-size: ${(props) => props.theme.captionFontSize};
+  font-style: ${(props) => props.theme.captionFontStyle};
+  font-weight: ${(props) => props.theme.captionFontWeight};
+  line-height: ${(props) => props.theme.captionLineHeight};
+`;
+
+const CaptionWrapper = ({ condition, wrapper, children }: CaptionWrapperProps) => (
   <>{condition ? wrapper(children) : children}</>
 );
 
@@ -27,17 +44,7 @@ const DxcImage = ({
   const wrapperFunction = (children: ReactNode) => (
     <Figure>
       {children}
-      <BaseTypography
-        as="figcaption"
-        color={colorsTheme?.image?.captionFontColor}
-        fontFamily={colorsTheme?.image?.captionFontFamily}
-        fontSize={colorsTheme?.image?.captionFontSize}
-        fontStyle={colorsTheme?.image?.captionFontStyle}
-        fontWeight={colorsTheme?.image?.captionFontWeight}
-        lineHeight={colorsTheme?.image?.captionLineHeight}
-      >
-        {caption}
-      </BaseTypography>
+      <CaptionContainer>{caption}</CaptionContainer>
     </Figure>
   );
 
@@ -63,14 +70,5 @@ const DxcImage = ({
     </ThemeProvider>
   );
 };
-
-const Figure = styled.figure`
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  width: fit-content;
-  margin: 0;
-  padding: 0;
-`;
 
 export default DxcImage;

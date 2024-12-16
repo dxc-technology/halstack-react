@@ -1,8 +1,9 @@
 import { DxcHeading, DxcParagraph, DxcFlex } from "@dxc-technology/halstack-react";
 import PageHeading from "@/common/PageHeading";
 import TabsPageHeading from "@/common/TabsPageLayout";
+import { ReactNode } from "react";
 
-const TypographyPageHeading = ({ children }: { children: React.ReactNode }) => {
+const TypographyPageHeading = ({ children }: { children: ReactNode }) => {
   const tabs = [
     { label: "Code", path: "/principles/typography" },
     { label: "Usage", path: "/principles/typography/usage" },

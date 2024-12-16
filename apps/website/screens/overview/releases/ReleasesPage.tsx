@@ -6,11 +6,12 @@ import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import HalstackMarkdownParser from "@/common/HalstackMarkdownParser";
 import Link from "next/link";
 import Code from "@/common/Code";
+import { ReactNode } from "react";
 
 type Section = {
   title: string;
   level?: 1 | 2 | 3 | 4 | 5;
-  content?: React.ReactNode;
+  content?: ReactNode;
   subSections?: Section[];
   navSubtitle?: string;
 };
