@@ -87,7 +87,7 @@ export default function DxcContextualMenu({ items }: ContextualMenuPropsType) {
       const contextualMenuEl = contextualMenuRef?.current;
       const selectedItemEl = contextualMenuEl?.querySelector("[aria-pressed='true']") as HTMLButtonElement;
       contextualMenuEl?.scrollTo?.({
-        top: (selectedItemEl?.offsetTop || 0) - (contextualMenuEl?.clientHeight || 0) / 2,
+        top: (selectedItemEl?.offsetTop ?? 0) - (contextualMenuEl?.clientHeight ?? 0) / 2,
       });
       setFirstUpdate(false);
     }
