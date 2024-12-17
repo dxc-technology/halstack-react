@@ -1,10 +1,9 @@
-import { createContext, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { useLayoutEffect, useMemo, useRef, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import CoreTokens from "../common/coreTokens";
 import useTheme from "../useTheme";
 import MenuItem from "./MenuItem";
 import ContextualMenuPropsType, {
-  ContextualMenuContextProps,
   GroupItem,
   GroupItemWithId,
   Item,
@@ -14,6 +13,7 @@ import ContextualMenuPropsType, {
   SectionWithId,
 } from "./types";
 import Section from "./Section";
+import ContextualMenuContext from "./ContextualMenuContext";
 
 const ContextualMenu = styled.div`
   box-sizing: border-box;
@@ -73,8 +73,6 @@ export const SubMenu = ({ children, id }: SubMenuProps) => (
     {children}
   </StyledSubMenu>
 );
-
-export const ContextualMenuContext = createContext<ContextualMenuContextProps | null>(null);
 
 export default function DxcContextualMenu({ items }: ContextualMenuPropsType) {
   const [selectedItemId, setSelectedItemId] = useState(-1);

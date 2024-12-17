@@ -28,9 +28,7 @@ type QueuedToast = ToastType & {
   semantic: Semantic;
 };
 
-type ToastContextType = {
-  add: (toast: ToastType, semantic: Semantic) => () => void;
-};
+type ToastContextType = (toast: ToastType, semantic: Semantic) => () => void;
 
 type ToastPropsType = {
   action?: Action;

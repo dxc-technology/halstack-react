@@ -1,9 +1,10 @@
 import { useContext, useMemo, useState, memo, useId } from "react";
 import DxcIcon from "../icon/Icon";
-import { ContextualMenuContext, SubMenu } from "./ContextualMenu";
+import { SubMenu } from "./ContextualMenu";
 import ItemAction from "./ItemAction";
 import MenuItem from "./MenuItem";
 import { GroupItemProps, ItemWithId } from "./types";
+import ContextualMenuContext from "./ContextualMenuContext";
 
 const isGroupSelected = (items: GroupItemProps["items"], selectedItemId?: number): boolean =>
   items.some((item) => {

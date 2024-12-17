@@ -1,9 +1,9 @@
 import { useContext, useEffect } from "react";
-import { ContextualMenuContext } from "./ContextualMenu";
 import ItemAction from "./ItemAction";
 import { SingleItemProps } from "./types";
+import ContextualMenuContext from "./ContextualMenuContext";
 
-const SingleItem = ({ id, onSelect, selectedByDefault, ...props }: SingleItemProps) => {
+const SingleItem = ({ id, onSelect, selectedByDefault = false, ...props }: SingleItemProps) => {
   const { selectedItemId, setSelectedItemId } = useContext(ContextualMenuContext) ?? {};
 
   const handleClick = () => {
@@ -21,7 +21,7 @@ const SingleItem = ({ id, onSelect, selectedByDefault, ...props }: SingleItemPro
     <ItemAction
       aria-pressed={selectedItemId === -1 ? selectedByDefault : selectedItemId === id}
       onClick={handleClick}
-      selected={selectedItemId === -1 ? (selectedByDefault ?? false) : selectedItemId === id}
+      selected={selectedItemId === -1 ? selectedByDefault : selectedItemId === id}
       {...props}
     />
   );

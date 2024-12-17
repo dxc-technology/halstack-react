@@ -12,6 +12,28 @@ import useTimeout from "../utils/useTimeout";
 import useTranslatedLabels from "../useTranslatedLabels";
 import { responsiveSizes } from "../common/variables";
 
+const fadeInUp = keyframes`
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+`;
+
+const fadeOutDown = keyframes`
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+`;
+
 const getSemantic = (semantic: ToastPropsType["semantic"]) => {
   switch (semantic) {
     case "info":
@@ -36,28 +58,6 @@ const getSemantic = (semantic: ToastPropsType["semantic"]) => {
       return { primaryColor: CoreTokens.color_purple_700, secondaryColor: CoreTokens.color_purple_100, icon: "" };
   }
 };
-
-const fadeInUp = keyframes`
-  0% {
-    transform: translateY(100%);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-`;
-
-const fadeOutDown = keyframes`
-  0% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(100%);
-    opacity: 0;
-  }
-`;
 
 const Toast = styled.output<{ semantic: ToastPropsType["semantic"]; isClosing: boolean }>`
   box-sizing: border-box;
@@ -116,17 +116,14 @@ const ToastIcon = memo(
     loading,
     semantic,
   }: Pick<ToastPropsType, "icon" | "hideSemanticIcon" | "loading" | "semantic">) => {
-    if (semantic === "default") {
-      return typeof icon === "string" ? <DxcIcon icon={icon} /> : icon;
-    }
-    if (semantic === "info" && loading) {
+    if (semantic === "default") return typeof icon === "string" ? <DxcIcon icon={icon} /> : icon;
+    else if (semantic === "info" && loading)
       return (
         <HalstackProvider theme={spinnerTheme}>
           <DxcSpinner mode="small" />
         </HalstackProvider>
       );
-    }
-    return !hideSemanticIcon && <DxcIcon icon={getSemantic(semantic).icon} />;
+    else return !hideSemanticIcon && <DxcIcon icon={getSemantic(semantic).icon} />;
   }
 );
 
@@ -176,7 +173,6 @@ const DxcToast = ({
         )}
         <DxcActionIcon
           icon="clear"
-          title={translatedLabels?.toast?.clearToastActionTitle ?? ""}
           onClick={() => {
             if (!loading) {
               clearClosingAnimationTimer();
@@ -187,6 +183,7 @@ const DxcToast = ({
               onClear();
             }, 300);
           }}
+          title={translatedLabels?.toast?.clearToastActionTitle ?? ""}
         />
       </DxcFlex>
     </Toast>
