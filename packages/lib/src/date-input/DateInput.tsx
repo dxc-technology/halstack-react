@@ -118,7 +118,7 @@ const DxcDateInput = forwardRef<RefType, DateInputPropsType>(
       }
       const newDate = getDate(newValue, format, lastValidYear, setLastValidYear);
       const invalidDateMessage =
-        newValue !== "" && !newDate.isValid() && translatedLabels?.dateInput?.invalidDateErrorMessage;
+        newValue !== "" && !newDate.isValid() && translatedLabels.dateInput.invalidDateErrorMessage;
       const callbackParams = {
         value: newValue,
         error: inputError || invalidDateMessage || undefined,
@@ -138,7 +138,7 @@ const DxcDateInput = forwardRef<RefType, DateInputPropsType>(
     const handleOnBlur = ({ value: blurValue, error: inputError }: { value: string; error?: string }) => {
       const date = getDate(blurValue, format, lastValidYear, setLastValidYear);
       const invalidDateMessage =
-        blurValue !== "" && !date.isValid() && translatedLabels?.dateInput?.invalidDateErrorMessage;
+        blurValue !== "" && !date.isValid() && translatedLabels.dateInput.invalidDateErrorMessage;
       const callbackParams = {
         value: blurValue,
         error: inputError || invalidDateMessage || undefined,
@@ -233,7 +233,7 @@ const DxcDateInput = forwardRef<RefType, DateInputPropsType>(
               disabled={disabled}
               hasHelperText={!!helperText}
             >
-              {label} {optional && <OptionalLabel>{translatedLabels?.formFields?.optionalLabel}</OptionalLabel>}
+              {label} {optional && <OptionalLabel>{translatedLabels.formFields.optionalLabel}</OptionalLabel>}
             </Label>
           )}
           {helperText && <HelperText disabled={disabled}>{helperText}</HelperText>}

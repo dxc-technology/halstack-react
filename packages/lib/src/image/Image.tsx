@@ -52,7 +52,7 @@ export default function DxcImage({
   );
 
   return (
-    <ThemeProvider theme={colorsTheme?.image}>
+    <ThemeProvider theme={colorsTheme.image}>
       <CaptionWrapper condition={caption !== undefined} wrapper={figureWrapper}>
         <img
           alt={alt}

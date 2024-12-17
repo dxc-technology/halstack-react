@@ -151,7 +151,7 @@ const DxcDropdown = ({
   }, [visualFocusIndex]);
 
   return (
-    <ThemeProvider theme={colorsTheme?.dropdown}>
+    <ThemeProvider theme={colorsTheme.dropdown}>
       <DropdownContainer
         onMouseEnter={!disabled && expandOnHover ? handleOnOpenMenu : undefined}
         onMouseLeave={!disabled && expandOnHover ? handleOnCloseMenu : undefined}

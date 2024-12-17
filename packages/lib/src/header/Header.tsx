@@ -62,16 +62,11 @@ const DxcHeader = ({
   margin,
   tabIndex = 0,
 }: HeaderPropsType): JSX.Element => {
-  const colorsTheme = useTheme();
-  const translatedLabels = useTranslatedLabels();
-
-  const ref = useRef(null);
   const [isResponsive, setIsResponsive] = useState(false);
   const [isMenuVisible, setIsMenuVisible] = useState(false);
-
-  const handleResize = useCallback(() => {
-    setIsResponsive(window.matchMedia(`(max-width: ${responsiveSizes.medium}rem)`).matches);
-  }, []);
+  const colorsTheme = useTheme();
+  const translatedLabels = useTranslatedLabels();
+  const ref = useRef(null);
 
   const handleMenu = () => {
     if (isResponsive && !isMenuVisible) {
@@ -82,22 +77,26 @@ const DxcHeader = ({
   };
 
   const headerLogo = useMemo(
-    () => getLogoElement(colorsTheme?.header?.logo, translatedLabels?.formFields?.logoAlternativeText),
-    [colorsTheme?.header?.logo]
+    () => getLogoElement(colorsTheme.header.logo, translatedLabels.formFields.logoAlternativeText),
+    [colorsTheme, translatedLabels]
   );
 
   const headerResponsiveLogo = useMemo(
-    () => getLogoElement(colorsTheme?.header?.logoResponsive, translatedLabels?.formFields?.logoAlternativeText),
-    [colorsTheme?.header?.logoResponsive]
+    () => getLogoElement(colorsTheme.header?.logoResponsive, translatedLabels.formFields.logoAlternativeText),
+    [colorsTheme, translatedLabels]
   );
 
   useEffect(() => {
+    const handleResize = () => {
+      setIsResponsive(window.matchMedia(`(max-width: ${responsiveSizes.medium}rem)`).matches);
+    };
+
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, [handleResize]);
+  }, []);
 
   useEffect(() => {
     if (!isResponsive) {
@@ -106,7 +105,7 @@ const DxcHeader = ({
   }, [isResponsive]);
 
   return (
-    <ThemeProvider theme={colorsTheme?.header}>
+    <ThemeProvider theme={colorsTheme.header}>
       <HeaderContainer underlined={underlined} margin={margin} ref={ref}>
         <LogoAnchor tabIndex={onClick ? tabIndex : -1} interactive={!!onClick} onClick={onClick}>
           <LogoContainer>{headerLogo}</LogoContainer>
@@ -116,18 +115,14 @@ const DxcHeader = ({
             <ChildContainer>
               <HamburgerTrigger tabIndex={tabIndex} onClick={handleMenu} aria-label="Show options">
                 <DxcIcon icon="menu" />
-                {translatedLabels?.header?.hamburguerTitle}
+                {translatedLabels.header.hamburguerTitle}
               </HamburgerTrigger>
             </ChildContainer>
             <ResponsiveMenu hasVisibility={isMenuVisible}>
               <DxcFlex justifyContent="space-between" alignItems="center">
                 <ResponsiveLogoContainer>{headerResponsiveLogo}</ResponsiveLogoContainer>
-                <Tooltip label={translatedLabels?.header?.closeIcon}>
-                  <CloseAction
-                    tabIndex={tabIndex}
-                    onClick={handleMenu}
-                    aria-label={translatedLabels?.header?.closeIcon}
-                  >
+                <Tooltip label={translatedLabels.header.closeIcon}>
+                  <CloseAction tabIndex={tabIndex} onClick={handleMenu} aria-label={translatedLabels.header.closeIcon}>
                     <DxcIcon icon="close" />
                   </CloseAction>
                 </Tooltip>

@@ -24,27 +24,27 @@ const DxcFooter = ({
 
   const footerLogo = useMemo(
     () =>
-      !colorsTheme?.footer?.logo ? (
+      !colorsTheme.footer.logo ? (
         mode === "default" ? (
           dxcLogo
         ) : (
           dxcSmallLogo
         )
-      ) : typeof colorsTheme?.footer?.logo === "string" ? (
-        <LogoImg mode={mode} alt={translatedLabels?.formFields?.logoAlternativeText} src={colorsTheme?.footer?.logo} />
+      ) : typeof colorsTheme.footer.logo === "string" ? (
+        <LogoImg mode={mode} alt={translatedLabels.formFields.logoAlternativeText} src={colorsTheme.footer.logo} />
       ) : (
-        colorsTheme?.footer?.logo
+        colorsTheme.footer.logo
       ),
-    [colorsTheme]
+    [colorsTheme, translatedLabels]
   );
 
   return (
-    <ThemeProvider theme={colorsTheme?.footer}>
+    <ThemeProvider theme={colorsTheme.footer}>
       <FooterContainer margin={margin} mode={mode}>
         <DxcFlex justifyContent="space-between" alignItems="center" wrap="wrap" gap="1.5rem">
           <LogoContainer mode={mode}>{footerLogo}</LogoContainer>
           {mode === "default" && (
-            <DxcFlex gap={colorsTheme?.footer?.socialLinksGutter as CoreSpacingTokensType}>
+            <DxcFlex gap={colorsTheme.footer.socialLinksGutter as CoreSpacingTokensType}>
               {socialLinks?.map((link, index) => (
                 <Tooltip label={link.title} key={`social${index}${link.href}`}>
                   <SocialAnchor
@@ -75,7 +75,7 @@ const DxcFooter = ({
                 </span>
               ))}
             </BottomLinks>
-            <Copyright>{copyright || translatedLabels?.footer?.copyrightText?.(new Date().getFullYear())}</Copyright>
+            <Copyright>{copyright ?? translatedLabels.footer.copyrightText(new Date().getFullYear())}</Copyright>
           </BottomContainer>
         )}
       </FooterContainer>

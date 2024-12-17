@@ -66,7 +66,7 @@ const DxcDataGrid = ({
     setSortColumns(newSortColumns);
   };
 
-  // Proccess columns prop into usable columns based on other props
+  // Process columns prop into usable columns based on other props
   const columnsToRender = useMemo(() => {
     let expectedColumns = columns.map((column) => convertToRDGColumns(column, summaryRow));
     if (expandable) {
@@ -250,20 +250,15 @@ const DxcDataGrid = ({
           sortColumns={sortColumns}
           onSortColumnsChange={handleSortChange}
           rowKeyGetter={(row) => (uniqueRowId ? rowKeyGetter(row, uniqueRowId) : "")}
-          rowHeight={(row) => {
-            if (
-              row.isExpandedChildContent &&
-              typeof row.expandedContentHeight === "number" &&
-              row.expandedContentHeight > 0
-            ) {
-              return row.expandedContentHeight;
-            }
-            return colorsTheme?.dataGrid?.dataRowHeight ?? 0;
-          }}
+          rowHeight={(row) =>
+            row.isExpandedChildContent && typeof row.expandedContentHeight === "number" && row.expandedContentHeight > 0
+              ? row.expandedContentHeight
+              : (colorsTheme.dataGrid?.dataRowHeight ?? 0)
+          }
           selectedRows={selectedRows}
           bottomSummaryRows={summaryRow ? [summaryRow] : undefined}
-          headerRowHeight={colorsTheme?.dataGrid?.headerRowHeight}
-          summaryRowHeight={colorsTheme?.dataGrid?.summaryRowHeight}
+          headerRowHeight={colorsTheme.dataGrid.headerRowHeight}
+          summaryRowHeight={colorsTheme.dataGrid.summaryRowHeight}
           className="fill-grid"
         />
         {showPaginator && (

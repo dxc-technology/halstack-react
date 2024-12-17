@@ -62,7 +62,7 @@ const DxcCheckbox = forwardRef<RefType, CheckboxPropsType>(
     };
 
     return (
-      <ThemeProvider theme={colorsTheme?.checkbox}>
+      <ThemeProvider theme={colorsTheme.checkbox}>
         <MainContainer
           disabled={disabled}
           readOnly={readOnly}
@@ -75,7 +75,7 @@ const DxcCheckbox = forwardRef<RefType, CheckboxPropsType>(
           {label && (
             <LabelContainer id={labelId} disabled={disabled} labelPosition={labelPosition} aria-label={label}>
               {label}
-              {optional && ` ${translatedLabels?.formFields?.optionalLabel}`}
+              {optional && ` ${translatedLabels.formFields.optionalLabel}`}
             </LabelContainer>
           )}
           <ValueInput

@@ -30,7 +30,7 @@ const DxcAccordion = ({
   };
 
   return (
-    <ThemeProvider theme={colorsTheme?.accordion}>
+    <ThemeProvider theme={colorsTheme.accordion}>
       <AccordionContainer isExpanded={isExpanded ?? innerIsExpanded} margin={margin}>
         <AccordionHeader>
           <AccordionTrigger
