@@ -16,8 +16,8 @@ export type DeepPartial<T> = {
   [P in keyof T]?: Partial<T[P]>;
 };
 
-const HalstackContext = createContext<DeepPartial<AdvancedTheme> | null>(null);
-const HalstackLanguageContext = createContext<DeepPartial<TranslatedLabels> | null>(null);
+const HalstackContext = createContext<AdvancedTheme>(componentTokens);
+const HalstackLanguageContext = createContext<TranslatedLabels>(defaultTranslatedComponentLabels);
 
 const addLightness = (newLightness: number, hexColor?: string) => {
   try {
@@ -45,22 +45,6 @@ const subLightness = (newLightness: number, hexColor?: string) => {
   } catch (e) {
     return null;
   }
-};
-
-const parseAdvancedTheme = (advancedTheme: DeepPartial<AdvancedTheme>): AdvancedTheme => {
-  const allTokensCopy: AdvancedTheme = JSON.parse(JSON.stringify(componentTokens));
-
-  (Object.keys(allTokensCopy) as (keyof AdvancedTheme)[]).forEach((component) => {
-    const componentTheme = advancedTheme[component];
-    if (componentTheme != null) {
-      (Object.keys(componentTheme) as (keyof typeof componentTheme)[]).forEach((objectKey) => {
-        if (componentTheme[objectKey]) {
-          allTokensCopy[component][objectKey] = componentTheme[objectKey];
-        }
-      });
-    }
-  });
-  return allTokensCopy;
 };
 
 const parseTheme = (theme: DeepPartial<OpinionatedTheme>): AdvancedTheme => {
@@ -394,6 +378,22 @@ const parseTheme = (theme: DeepPartial<OpinionatedTheme>): AdvancedTheme => {
   return componentTokensCopy;
 };
 
+const parseAdvancedTheme = (advancedTheme: DeepPartial<AdvancedTheme>): AdvancedTheme => {
+  const allTokensCopy: AdvancedTheme = JSON.parse(JSON.stringify(componentTokens));
+
+  (Object.keys(allTokensCopy) as (keyof AdvancedTheme)[]).forEach((component) => {
+    const componentTheme = advancedTheme[component];
+    if (componentTheme != null) {
+      (Object.keys(componentTheme) as (keyof typeof componentTheme)[]).forEach((objectKey) => {
+        if (componentTheme[objectKey]) {
+          allTokensCopy[component][objectKey] = componentTheme[objectKey];
+        }
+      });
+    }
+  });
+  return allTokensCopy;
+};
+
 const parseLabels = (labels: DeepPartial<TranslatedLabels>): TranslatedLabels => {
   const parsedLabels = defaultTranslatedComponentLabels;
   (Object.keys(labels) as (keyof TranslatedLabels)[]).forEach((component) => {
@@ -419,15 +419,27 @@ type HalstackProviderPropsType = {
 };
 const HalstackProvider = ({ theme, advancedTheme, labels, children }: HalstackProviderPropsType): JSX.Element => {
   const parsedTheme = useMemo(
-    () => (theme ? parseTheme(theme) : advancedTheme ? parseAdvancedTheme(advancedTheme) : componentTokens),
+    () => (theme ? parseTheme(theme) : advancedTheme ? parseAdvancedTheme(advancedTheme) : null),
     [theme, advancedTheme]
   );
-  const parsedLabels = useMemo(() => (labels ? parseLabels(labels) : defaultTranslatedComponentLabels), [labels]);
+  const parsedLabels = useMemo(() => (labels ? parseLabels(labels) : null), [labels]);
 
   return (
-    <HalstackContext.Provider value={parsedTheme}>
-      <HalstackLanguageContext.Provider value={parsedLabels}>{children}</HalstackLanguageContext.Provider>
-    </HalstackContext.Provider>
+    <>
+      {parsedTheme ? (
+        <HalstackContext.Provider value={parsedTheme}>
+          {parsedLabels ? (
+            <HalstackLanguageContext.Provider value={parsedLabels}>{children}</HalstackLanguageContext.Provider>
+          ) : (
+            children
+          )}
+        </HalstackContext.Provider>
+      ) : parsedLabels ? (
+        <HalstackLanguageContext.Provider value={parsedLabels}>{children}</HalstackLanguageContext.Provider>
+      ) : (
+        children
+      )}
+    </>
   );
 };
 

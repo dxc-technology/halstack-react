@@ -4,8 +4,8 @@ import DxcFlex from "../flex/Flex";
 import DxcHeading from "../heading/Heading";
 import DxcInset from "../inset/Inset";
 import DxcTypography from "../typography/Typography";
-import useTheme from "../useTheme";
-import useTranslatedLabels from "../useTranslatedLabels";
+import useTheme from "../utils/useTheme";
+import useTranslatedLabels from "../utils/useTranslatedLabels";
 import QuickNavTypes from "./types";
 
 const DxcQuickNav = ({ title, links }: QuickNavTypes): JSX.Element => {

@@ -1,7 +1,7 @@
 import styled, { css, ThemeProvider } from "styled-components";
-import { useState, memo, useId, useEffect } from "react";
-import useTheme from "../useTheme";
-import useTranslatedLabels from "../useTranslatedLabels";
+import { useState, memo, useId, useEffect, useCallback } from "react";
+import useTheme from "../utils/useTheme";
+import useTranslatedLabels from "../utils/useTranslatedLabels";
 import AlertPropsType from "./types";
 import DxcIcon from "../icon/Icon";
 import DxcButton from "../button/Button";
@@ -144,9 +144,9 @@ export default function DxcAlert({
   const handleNextOnClick = () => {
     setCurrentIndex((prevIndex) => (prevIndex < messages.length ? prevIndex + 1 : prevIndex));
   };
-  const handlePrevOnClick = () => {
+  const handlePrevOnClick = useCallback(() => {
     setCurrentIndex((prevIndex) => (prevIndex > 0 ? prevIndex - 1 : prevIndex));
-  };
+  }, []);
   const handleOnClose = () => {
     messages[currentIndex]?.onClose?.();
     if (mode !== "modal") {
@@ -156,7 +156,7 @@ export default function DxcAlert({
 
   useEffect(() => {
     if (currentIndex === messages.length) handlePrevOnClick();
-  }, [currentIndex, messages]);
+  }, [currentIndex, messages, handlePrevOnClick]);
 
   return (
     <ThemeProvider theme={colorsTheme.alert}>
@@ -195,7 +195,7 @@ export default function DxcAlert({
               <DxcFlex alignItems="center" gap="0.25rem">
                 <DxcActionIcon
                   icon="chevron_left"
-                  title={translatedLabels?.alert?.previousMessageActionTitle ?? ""}
+                  title={translatedLabels.alert.previousMessageActionTitle}
                   onClick={handlePrevOnClick}
                   disabled={currentIndex === 0}
                 />
@@ -204,7 +204,7 @@ export default function DxcAlert({
                 </NavigationText>
                 <DxcActionIcon
                   icon="chevron_right"
-                  title={translatedLabels?.alert?.nextMessageActionTitle ?? ""}
+                  title={translatedLabels.alert.nextMessageActionTitle}
                   onClick={handleNextOnClick}
                   disabled={currentIndex === messages.length - 1}
                 />
@@ -217,8 +217,8 @@ export default function DxcAlert({
                   icon="close"
                   title={
                     messages.length > 1
-                      ? (translatedLabels?.alert?.closeMessageActionTitle ?? "")
-                      : (translatedLabels?.alert?.closeAlertActionTitle ?? "")
+                      ? translatedLabels.alert.closeMessageActionTitle
+                      : translatedLabels.alert.closeAlertActionTitle
                   }
                   onClick={handleOnClose}
                 />

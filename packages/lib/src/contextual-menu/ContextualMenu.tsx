@@ -1,7 +1,7 @@
 import { useLayoutEffect, useMemo, useRef, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import CoreTokens from "../common/coreTokens";
-import useTheme from "../useTheme";
+import useTheme from "../utils/useTheme";
 import MenuItem from "./MenuItem";
 import ContextualMenuPropsType, {
   GroupItem,

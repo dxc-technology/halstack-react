@@ -20,7 +20,7 @@ import {
   getMinItemsPerPageIndex,
   getMaxItemsPerPageIndex,
 } from "./utils";
-import useTheme from "../useTheme";
+import useTheme from "../utils/useTheme";
 import DxcPaginator from "../paginator/Paginator";
 import { DxcActionsCell } from "../table/Table";
 

@@ -6,7 +6,7 @@ import DxcHeader from "../header/Header";
 import DxcIcon from "../icon/Icon";
 import DxcSidenav from "../sidenav/Sidenav";
 import { SidenavContextProvider, useResponsiveSidenavVisibility } from "../sidenav/SidenavContext";
-import useTranslatedLabels from "../useTranslatedLabels";
+import useTranslatedLabels from "../utils/useTranslatedLabels";
 import { Tooltip } from "../tooltip/Tooltip";
 import ApplicationLayoutPropsType, { AppLayoutMainPropsType } from "./types";
 import { bottomLinks, findChildType, socialLinks, useResponsive, year } from "./utils";

@@ -1,7 +1,7 @@
 import { useId, useMemo } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables";
-import useTheme from "../useTheme";
+import useTheme from "../utils/useTheme";
 import SpinnerPropsType from "./types";
 
 const DxcSpinner = ({ label, value, showValue = false, mode = "large", margin }: SpinnerPropsType): JSX.Element => {

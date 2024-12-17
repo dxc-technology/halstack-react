@@ -1,8 +1,8 @@
 import { memo } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import DxcFlex from "../flex/Flex";
-import useTheme from "../useTheme";
-import useTranslatedLabels from "../useTranslatedLabels";
+import useTheme from "../utils/useTheme";
+import useTranslatedLabels from "../utils/useTranslatedLabels";
 import { FileItemProps } from "./types";
 import DxcIcon from "../icon/Icon";
 import DxcActionIcon from "../action-icon/ActionIcon";

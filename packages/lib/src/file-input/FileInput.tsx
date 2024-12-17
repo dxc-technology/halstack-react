@@ -2,8 +2,8 @@ import { useCallback, useEffect, useId, useState, forwardRef, DragEvent, ChangeE
 import styled, { ThemeProvider } from "styled-components";
 import DxcButton from "../button/Button";
 import { spaces } from "../common/variables";
-import useTheme from "../useTheme";
-import useTranslatedLabels from "../useTranslatedLabels";
+import useTheme from "../utils/useTheme";
+import useTranslatedLabels from "../utils/useTranslatedLabels";
 import FileItem from "./FileItem";
 import FileInputPropsType, { FileData, RefType } from "./types";
 

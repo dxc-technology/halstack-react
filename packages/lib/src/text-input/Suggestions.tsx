@@ -1,6 +1,6 @@
 import { memo, useEffect, useRef } from "react";
 import styled from "styled-components";
-import useTranslatedLabels from "../useTranslatedLabels";
+import useTranslatedLabels from "../utils/useTranslatedLabels";
 import Suggestion from "./Suggestion";
 import { SuggestionsProps } from "./types";
 import DxcIcon from "../icon/Icon";

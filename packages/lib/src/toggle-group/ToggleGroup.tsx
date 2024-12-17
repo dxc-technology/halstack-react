@@ -4,7 +4,7 @@ import { spaces } from "../common/variables";
 import DxcFlex from "../flex/Flex";
 import DxcIcon from "../icon/Icon";
 import { Tooltip } from "../tooltip/Tooltip";
-import useTheme from "../useTheme";
+import useTheme from "../utils/useTheme";
 import ToggleGroupPropsType, { OptionLabel } from "./types";
 
 const DxcToggleGroup = ({

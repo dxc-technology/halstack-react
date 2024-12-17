@@ -2,8 +2,8 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables";
 import DxcIcon from "../icon/Icon";
-import useTheme from "../useTheme";
-import useTranslatedLabels from "../useTranslatedLabels";
+import useTheme from "../utils/useTheme";
+import useTranslatedLabels from "../utils/useTranslatedLabels";
 import Tab from "./TabLegacy";
 import TabsPropsType from "./types";
 

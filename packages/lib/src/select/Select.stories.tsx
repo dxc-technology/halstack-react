@@ -6,7 +6,7 @@ import preview from "../../.storybook/preview";
 import { disabledRules } from "../../test/accessibility/rules/specific/select/disabledRules";
 import DxcFlex from "../flex/Flex";
 import { HalstackProvider } from "../HalstackContext";
-import useTheme from "../useTheme";
+import useTheme from "../utils/useTheme";
 import Listbox from "./Listbox";
 import DxcSelect from "./Select";
 

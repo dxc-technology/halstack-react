@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { DatePickerPropsType } from "./types";
 import Calendar from "./Calendar";
 import YearPicker from "./YearPicker";
-import useTranslatedLabels from "../useTranslatedLabels";
+import useTranslatedLabels from "../utils/useTranslatedLabels";
 import DxcIcon from "../icon/Icon";
 import {Tooltip} from "../tooltip/Tooltip";
 

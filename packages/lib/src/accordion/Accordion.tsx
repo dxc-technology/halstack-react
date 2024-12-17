@@ -2,7 +2,7 @@ import { useId, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { getMargin } from "../common/utils";
 import { spaces } from "../common/variables";
-import useTheme from "../useTheme";
+import useTheme from "../utils/useTheme";
 import AccordionPropsType from "./types";
 import DxcIcon from "../icon/Icon";
 

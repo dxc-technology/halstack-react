@@ -9,7 +9,7 @@ import DxcSpinner from "../spinner/Spinner";
 import { HalstackProvider } from "../HalstackContext";
 import ToastPropsType from "./types";
 import useTimeout from "../utils/useTimeout";
-import useTranslatedLabels from "../useTranslatedLabels";
+import useTranslatedLabels from "../utils/useTranslatedLabels";
 import { responsiveSizes } from "../common/variables";
 
 const fadeInUp = keyframes`

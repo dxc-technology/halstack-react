@@ -2,7 +2,7 @@ import { Dayjs } from "dayjs";
 import { useState, useMemo, useEffect, useId, memo, KeyboardEvent, FocusEvent } from "react";
 import styled from "styled-components";
 import { CalendarPropsType, DateType } from "./types";
-import useTranslatedLabels from "../useTranslatedLabels";
+import useTranslatedLabels from "../utils/useTranslatedLabels";
 
 const getDays = (innerDate: Dayjs) => {
   const monthDayCells: DateType[] = [];

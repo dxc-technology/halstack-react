@@ -1,7 +1,7 @@
 import { forwardRef, useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import DxcTextInput from "../text-input/TextInput";
-import useTranslatedLabels from "../useTranslatedLabels";
+import useTranslatedLabels from "../utils/useTranslatedLabels";
 import PasswordInputPropsType, { RefType } from "./types";
 
 const setInputType = (type: string, element: HTMLDivElement | null) => {

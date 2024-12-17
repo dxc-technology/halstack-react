@@ -3,7 +3,7 @@ import styled from "styled-components";
 import DxcBadge from "../badge/Badge";
 import DxcFlex from "../flex/Flex";
 import NavTabsPropsType, { TabProps } from "./types";
-import useTheme from "../useTheme";
+import useTheme from "../utils/useTheme";
 import NavTabsContext from "./NavTabsContext";
 import DxcIcon from "../icon/Icon";
 

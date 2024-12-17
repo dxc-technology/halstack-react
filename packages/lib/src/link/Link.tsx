@@ -2,7 +2,7 @@ import { forwardRef } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables";
 import DxcIcon from "../icon/Icon";
-import useTheme from "../useTheme";
+import useTheme from "../utils/useTheme";
 import { LinkProps } from "./types";
 import CoreTokens from "../common/coreTokens";
 

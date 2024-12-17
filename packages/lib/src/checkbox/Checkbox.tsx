@@ -2,8 +2,8 @@ import { useState, useRef, useId, forwardRef, KeyboardEvent } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { AdvancedTheme, spaces } from "../common/variables";
 import { getMargin } from "../common/utils";
-import useTheme from "../useTheme";
-import useTranslatedLabels from "../useTranslatedLabels";
+import useTheme from "../utils/useTheme";
+import useTranslatedLabels from "../utils/useTranslatedLabels";
 import CheckboxPropsType, { RefType } from "./types";
 
 const checkedIcon = (

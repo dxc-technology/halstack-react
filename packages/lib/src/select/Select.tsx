@@ -5,8 +5,8 @@ import { spaces } from "../common/variables";
 import { getMargin } from "../common/utils";
 import DxcIcon from "../icon/Icon";
 import { Tooltip, TooltipWrapper } from "../tooltip/Tooltip";
-import useTheme from "../useTheme";
-import useTranslatedLabels from "../useTranslatedLabels";
+import useTheme from "../utils/useTheme";
+import useTranslatedLabels from "../utils/useTranslatedLabels";
 import useWidth from "../utils/useWidth";
 import Listbox from "./Listbox";
 import {

@@ -1,6 +1,6 @@
 import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables";
-import useTheme from "../useTheme";
+import useTheme from "../utils/useTheme";
 import HeadingPropsType from "./types";
 
 const DxcHeading = ({ level = 1, text = "", as, weight, margin }: HeadingPropsType): JSX.Element => {

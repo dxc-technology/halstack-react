@@ -2,8 +2,8 @@ import { forwardRef, KeyboardEvent, useId, useRef, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { AdvancedTheme, spaces } from "../common/variables";
 import { getMargin } from "../common/utils";
-import useTheme from "../useTheme";
-import useTranslatedLabels from "../useTranslatedLabels";
+import useTheme from "../utils/useTheme";
+import useTranslatedLabels from "../utils/useTranslatedLabels";
 import SwitchPropsType, { RefType } from "./types";
 
 const DxcSwitch = forwardRef<RefType, SwitchPropsType>(
