@@ -2,13 +2,14 @@ import DxcAccordionGroup from "./AccordionGroup";
 import DxcInset from "../inset/Inset";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
+import { Meta, StoryObj } from "@storybook/react/*";
 
 export default {
   title: "Accordion Group",
   component: DxcAccordionGroup,
-};
+} as Meta<typeof DxcAccordionGroup>;
 
-export const Chromatic = () => (
+const AccordionGroup = () => (
   <>
     <Title title="States" theme="light" level={2} />
     <ExampleContainer>
@@ -249,3 +250,9 @@ export const Chromatic = () => (
     </ExampleContainer>
   </>
 );
+
+type Story = StoryObj<typeof DxcAccordionGroup>;
+
+export const Chromatic: Story = {
+  render: AccordionGroup,
+};

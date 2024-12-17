@@ -12,8 +12,6 @@ import Calendar from "./Calendar";
 import DxcDateInput from "./DateInput";
 import DxcDatePicker from "./DatePicker";
 import YearPicker from "./YearPicker";
-import DxcTooltip from "../tooltip/Tooltip";
-import DxcInset from "../inset/Inset";
 
 export default {
   title: "Date Input",

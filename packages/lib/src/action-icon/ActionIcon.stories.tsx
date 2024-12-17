@@ -4,11 +4,12 @@ import DxcActionIcon from "./ActionIcon";
 import { userEvent, within } from "@storybook/test";
 import DxcTooltip from "../tooltip/Tooltip";
 import DxcInset from "../inset/Inset";
+import { Meta, StoryObj } from "@storybook/react/*";
 
 export default {
   title: "Action Icon ",
   component: DxcActionIcon,
-};
+} as Meta<typeof DxcActionIcon>;
 
 const iconSVG = (
   <svg width="24px" height="24px" viewBox="0 0 24 24" fill="currentColor">
@@ -64,16 +65,22 @@ const NestedTooltip = () => (
   </>
 );
 
-export const ActionIconTooltip = Tooltip.bind({});
-ActionIconTooltip.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const button = canvas.getByRole("button");
-  await userEvent.hover(button);
+type Story = StoryObj<typeof DxcActionIcon>;
+
+export const ActionIconTooltip: Story = {
+  render: Tooltip,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const button = canvas.getByRole("button");
+    await userEvent.hover(button);
+  },
 };
 
-export const NestedActionIconTooltip = NestedTooltip.bind({});
-NestedActionIconTooltip.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const button = canvas.getByRole("button");
-  await userEvent.hover(button);
+export const NestedActionIconTooltip: Story = {
+  render: NestedTooltip,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const button = canvas.getByRole("button");
+    await userEvent.hover(button);
+  },
 };

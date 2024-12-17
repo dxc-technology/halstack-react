@@ -8,6 +8,7 @@ import DxcContextualMenu from "./ContextualMenu";
 import SingleItem from "./SingleItem";
 import { userEvent, within } from "@storybook/test";
 import ContextualMenuContext from "./ContextualMenuContext";
+import { StoryObj } from "@storybook/react/*";
 
 export default {
   title: "Contextual Menu",
@@ -124,7 +125,7 @@ const itemsWithTruncatedText = [
   },
 ];
 
-export const Chromatic = () => (
+const ContextualMenu = () => (
   <>
     <Title title="Default" theme="light" level={3} />
     <ExampleContainer>
@@ -175,7 +176,7 @@ export const Chromatic = () => (
   </>
 );
 
-export const SingleItemStates = () => {
+const Single = () => {
   const colorsTheme = useTheme();
 
   return (
@@ -227,9 +228,21 @@ const ItemWithEllipsis = () => (
   </ExampleContainer>
 );
 
-export const ContextualMenuTooltip = ItemWithEllipsis.bind({});
-ContextualMenuTooltip.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  await userEvent.hover(canvas.getByText("Item with a very long label that should be truncated"));
-  await userEvent.hover(canvas.getByText("Item with a very long label that should be truncated"));
+type Story = StoryObj<typeof DxcContextualMenu>;
+
+export const Chromatic: Story = {
+  render: ContextualMenu,
+};
+
+export const SingleItemStates: Story = {
+  render: Single,
+};
+
+export const ContextualMenuTooltip: Story = {
+  render: ItemWithEllipsis,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await userEvent.hover(canvas.getByText("Item with a very long label that should be truncated"));
+    await userEvent.hover(canvas.getByText("Item with a very long label that should be truncated"));
+  },
 };
