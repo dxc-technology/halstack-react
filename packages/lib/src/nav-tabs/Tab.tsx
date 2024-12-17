@@ -13,7 +13,6 @@ const DxcTab = forwardRef(
     ref: Ref<HTMLAnchorElement>
   ): JSX.Element => {
     const tabRef = useRef<HTMLAnchorElement>();
-    const colorsTheme = useTheme();
     const { iconPosition, tabIndex, focusedLabel } = useContext(NavTabsContext) ?? {};
     const innerRef = useRef<HTMLAnchorElement | null>(null);
     useImperativeHandle(ref, () => innerRef.current!, []);

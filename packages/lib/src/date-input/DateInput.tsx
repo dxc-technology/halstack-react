@@ -31,8 +31,8 @@ const getValueForPicker = (value: string, format: string) => dayjs(value, format
 const getDate = (
   value: string,
   format: string,
-  lastValidYear: number | undefined,
-  setLastValidYear: Dispatch<SetStateAction<number | undefined>>
+  lastValidYear: number | null,
+  setLastValidYear: Dispatch<SetStateAction<number | null>>
 ) => {
   if ((value || value === "") && format.toUpperCase().includes("YYYY")) {
     return getValueForPicker(value, format);
@@ -80,12 +80,12 @@ const DxcDateInput = forwardRef<RefType, DateInputPropsType>(
     const [isOpen, setIsOpen] = useState(false);
     const calendarId = `date-picker-${useId()}`;
     const [dayjsDate, setDayjsDate] = useState(getValueForPicker(value ?? defaultValue ?? "", format));
-    const [lastValidYear, setLastValidYear] = useState<number | undefined>(
+    const [lastValidYear, setLastValidYear] = useState<number | null>(
       innerValue || value
         ? !format.toUpperCase().includes("YYYY") && +getValueForPicker(value ?? innerValue, format).format("YY") < 68
           ? 2000
           : 1900
-        : undefined
+        : null
     );
     const [sideOffset, setSideOffset] = useState(SIDEOFFSET);
     const colorsTheme = useTheme();

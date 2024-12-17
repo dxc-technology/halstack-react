@@ -38,7 +38,7 @@ const filterOptionsBySearchValue = (
   searchValue: string
 ): ListOptionType[] | ListOptionGroupType[] => {
   if (options?.length > 0) {
-    if (isArrayOfOptionGroups(options)) {
+    if (isArrayOfOptionGroups(options))
       return options.map((optionGroup) => {
         const group = {
           label: optionGroup.label,
@@ -48,10 +48,10 @@ const filterOptionsBySearchValue = (
         };
         return group;
       });
-    }
-    return options.filter((option) => option.label.toUpperCase().includes(searchValue.toUpperCase()));
+    else return options.filter((option) => option.label.toUpperCase().includes(searchValue.toUpperCase()));
+  } else {
+    return [];
   }
-  return [];
 };
 
 /**
@@ -65,7 +65,7 @@ const getLastOptionIndex = (
   multiple: boolean
 ) => {
   let last = 0;
-  const reducer = (acc: number, current: ListOptionGroupType) => acc + (current?.options?.length || 0);
+  const reducer = (acc: number, current: ListOptionGroupType) => acc + (current?.options?.length ?? 0);
 
   if (searchable && filteredOptions?.length > 0) {
     if (isArrayOfOptionGroups(filteredOptions)) {
@@ -124,7 +124,7 @@ const getSelectedOption = (
             singleSelectionIndex = optional ? groupIndex + 1 : groupIndex;
             return true;
           }
-          groupIndex += 1;
+          groupIndex++;
           return false;
         });
       } else if (option.value === value) {

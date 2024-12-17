@@ -95,6 +95,8 @@ type Props = {
   tabIndex?: number;
 };
 
+export type DateType = { day: number; month: number; year: number };
+
 export type DatePickerPropsType = {
   /**
    * Initial selected date value. If invalid the actual date will be used instead.

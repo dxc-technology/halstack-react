@@ -21,9 +21,7 @@ const SingleItem = ({ id, onSelect, selectedByDefault, ...props }: SingleItemPro
     <ItemAction
       aria-pressed={selectedItemId === -1 ? selectedByDefault : selectedItemId === id}
       onClick={handleClick}
-      selected={
-        selectedItemId != null && (selectedItemId === -1 ? (selectedByDefault ?? false) : selectedItemId === id)
-      }
+      selected={selectedItemId === -1 ? (selectedByDefault ?? false) : selectedItemId === id}
       {...props}
     />
   );

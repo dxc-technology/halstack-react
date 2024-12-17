@@ -4,9 +4,9 @@ import ContainerPropsType, { BorderProperties, StyledProps } from "./types";
 import { spaces } from "../common/variables";
 
 const getBorderStyles = (direction: "top" | "bottom" | "left" | "right", borderProperties: BorderProperties) =>
-  `border-${direction}-width: ${borderProperties?.width ?? ""};
-   border-${direction}-style: ${borderProperties?.style ?? ""};
-   border-${direction}-color: ${borderProperties?.color ? getCoreColorToken(borderProperties?.color) : ""};`;
+  `border-${direction}: ${borderProperties?.width ?? ""} ${borderProperties?.style ?? ""} ${
+    borderProperties?.color ? (getCoreColorToken(borderProperties?.color) ?? "") : ""
+  };`;
 
 const Container = styled.div<StyledProps>`
   box-sizing: ${({ boxSizing }) => boxSizing};
@@ -67,9 +67,8 @@ const Container = styled.div<StyledProps>`
   margin-bottom: ${({ margin }) => (typeof margin === "object" && margin.bottom ? spaces[margin.bottom] : "")};
   margin-left: ${({ margin }) => (typeof margin === "object" && margin.left ? spaces[margin.left] : "")};
 
-  outline-width: ${({ outline }) => `${outline?.width ?? ""}`};
-  outline-style: ${({ outline }) => `${outline?.style ?? ""}`};
-  outline-color: ${({ outline }) => (outline?.color ? `${getCoreColorToken(outline?.color)}` : "")};
+  outline: ${({ outline }) =>
+    `${outline?.width ?? ""} ${outline?.style ?? ""} ${outline?.color ? (getCoreColorToken(outline?.color) ?? "") : ""}`};
   outline-offset: ${({ outline }) => outline?.offset};
 
   overflow: ${({ $overflow }) => (typeof $overflow === "string" ? $overflow : "")};

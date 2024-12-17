@@ -7,20 +7,19 @@ import useTranslatedLabels from "../useTranslatedLabels";
 import FileItem from "./FileItem";
 import FileInputPropsType, { FileData, RefType } from "./types";
 
-const getFilePreview = async (file: File): Promise<string> =>
-  file?.type?.includes("video")
-    ? "filled_movie"
-    : file?.type?.includes("audio")
-      ? "music_video"
-      : file?.type?.includes("image")
-        ? new Promise<string>((resolve) => {
-            const reader = new FileReader();
-            reader.readAsDataURL(file);
-            reader.onload = (e) => {
-              resolve(e?.target?.result as string);
-            };
-          })
-        : "draft";
+const getFilePreview = async (file: File): Promise<string> => {
+  if (file?.type?.includes("video")) return "filled_movie";
+  else if (file?.type?.includes("audio")) return "music_video";
+  else if (file?.type?.includes("image")) {
+    return new Promise<string>((resolve) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = (e) => {
+        resolve(e?.target?.result as string);
+      };
+    });
+  } else return "draft";
+};
 
 const isFileIncluded = (file: FileData, fileList: FileData[]) => {
   const fileListInfo = fileList.map((existingFile) => existingFile.file);
@@ -61,12 +60,10 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
     const colorsTheme = useTheme();
     const translatedLabels = useTranslatedLabels();
 
-    const checkFileSize = (file: File) =>
-      minSize && file.size < minSize
-        ? translatedLabels?.fileInput?.fileSizeGreaterThanErrorMessage
-        : maxSize && file.size > maxSize
-          ? translatedLabels?.fileInput?.fileSizeLessThanErrorMessage
-          : undefined;
+    const checkFileSize = (file: File) => {
+      if (minSize && file.size < minSize) return translatedLabels?.fileInput?.fileSizeGreaterThanErrorMessage;
+      else if (maxSize && file.size > maxSize) return translatedLabels?.fileInput?.fileSizeLessThanErrorMessage;
+    };
 
     const getFilesToAdd = async (selectedFiles: File[]) => {
       const filesToAdd = await Promise.all(selectedFiles.map((selectedFile) => getFilePreview(selectedFile))).then(

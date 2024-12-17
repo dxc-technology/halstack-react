@@ -34,7 +34,7 @@ const Listbox = ({
                 {option.label}
               </GroupLabel>
               {option.options.map((singleOption) => {
-                globalIndex += 1;
+                globalIndex++;
                 return (
                   <ListOption
                     key={`${id}-option-${singleOption.value}`}
@@ -55,24 +55,25 @@ const Listbox = ({
           </li>
         )
       );
+    } else {
+      globalIndex++;
+      return (
+        <ListOption
+          key={`${id}-option-${(option as ListOptionType).value}`}
+          id={`${id}-option-${globalIndex}`}
+          option={option as ListOptionType}
+          onClick={handleOptionOnClick}
+          multiple={multiple}
+          visualFocused={visualFocusIndex === globalIndex}
+          isLastOption={lastOptionIndex === globalIndex}
+          isSelected={
+            multiple
+              ? currentValue.includes((option as ListOptionType).value)
+              : currentValue === (option as ListOptionType).value
+          }
+        />
+      );
     }
-    globalIndex += 1;
-    return (
-      <ListOption
-        key={`${id}-option-${(option as ListOptionType).value}`}
-        id={`${id}-option-${globalIndex}`}
-        option={option as ListOptionType}
-        onClick={handleOptionOnClick}
-        multiple={multiple}
-        visualFocused={visualFocusIndex === globalIndex}
-        isLastOption={lastOptionIndex === globalIndex}
-        isSelected={
-          multiple
-            ? currentValue.includes((option as ListOptionType).value)
-            : currentValue === (option as ListOptionType).value
-        }
-      />
-    );
   };
 
   useLayoutEffect(() => {
@@ -80,7 +81,7 @@ const Listbox = ({
       const listEl = listboxRef?.current;
       const selectedListOptionEl = listEl?.querySelector("[aria-selected='true']") as HTMLUListElement;
       listEl?.scrollTo?.({
-        top: (selectedListOptionEl?.offsetTop || 0) - (listEl?.clientHeight || 0) / 2,
+        top: (selectedListOptionEl?.offsetTop ?? 0) - (listEl?.clientHeight ?? 0) / 2,
       });
     }
   }, [currentValue, multiple]);

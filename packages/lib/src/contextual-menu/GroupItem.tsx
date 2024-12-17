@@ -5,14 +5,12 @@ import ItemAction from "./ItemAction";
 import MenuItem from "./MenuItem";
 import { GroupItemProps, ItemWithId } from "./types";
 
-const isGroupSelected = (items: GroupItemProps["items"], selectedItemId: number | undefined): boolean =>
-  items.some((item) =>
-    "items" in item
-      ? isGroupSelected(item.items, selectedItemId)
-      : selectedItemId !== -1
-        ? item.id === selectedItemId
-        : (item as ItemWithId).selectedByDefault
-  );
+const isGroupSelected = (items: GroupItemProps["items"], selectedItemId?: number): boolean =>
+  items.some((item) => {
+    if ("items" in item) return isGroupSelected(item.items, selectedItemId);
+    else if (selectedItemId !== -1) return item.id === selectedItemId;
+    else return (item as ItemWithId).selectedByDefault;
+  });
 
 const GroupItem = ({ items, ...props }: GroupItemProps) => {
   const groupMenuId = `group-menu-${useId()}`;
