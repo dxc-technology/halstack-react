@@ -4,7 +4,7 @@ import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcFlex from "../flex/Flex";
 import { HalstackProvider } from "../HalstackContext";
-import useTheme from "../useTheme";
+import useTheme from "../utils/useTheme";
 import DxcDropdown from "./Dropdown";
 import DropdownMenu from "./DropdownMenu";
 import { Option } from "./types";

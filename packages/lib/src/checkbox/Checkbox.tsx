@@ -2,8 +2,8 @@ import { useState, useRef, useId, forwardRef, KeyboardEvent } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { AdvancedTheme, spaces } from "../common/variables";
 import { getMargin } from "../common/utils";
-import useTheme from "../useTheme";
-import useTranslatedLabels from "../useTranslatedLabels";
+import useTheme from "../utils/useTheme";
+import useTranslatedLabels from "../utils/useTranslatedLabels";
 import CheckboxPropsType, { RefType } from "./types";
 
 const checkedIcon = (
@@ -62,7 +62,7 @@ const DxcCheckbox = forwardRef<RefType, CheckboxPropsType>(
     };
 
     return (
-      <ThemeProvider theme={colorsTheme?.checkbox}>
+      <ThemeProvider theme={colorsTheme.checkbox}>
         <MainContainer
           disabled={disabled}
           readOnly={readOnly}
@@ -75,7 +75,7 @@ const DxcCheckbox = forwardRef<RefType, CheckboxPropsType>(
           {label && (
             <LabelContainer id={labelId} disabled={disabled} labelPosition={labelPosition} aria-label={label}>
               {label}
-              {optional && ` ${translatedLabels?.formFields?.optionalLabel}`}
+              {optional && ` ${translatedLabels.formFields.optionalLabel}`}
             </LabelContainer>
           )}
           <ValueInput

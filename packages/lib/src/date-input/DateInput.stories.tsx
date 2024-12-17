@@ -7,7 +7,7 @@ import preview from "../../.storybook/preview";
 import { disabledRules } from "../../test/accessibility/rules/specific/date-input/disabledRules";
 import DxcContainer from "../container/Container";
 import { HalstackProvider } from "../HalstackContext";
-import useTheme from "../useTheme";
+import useTheme from "../utils/useTheme";
 import Calendar from "./Calendar";
 import DxcDateInput from "./DateInput";
 import DxcDatePicker from "./DatePicker";

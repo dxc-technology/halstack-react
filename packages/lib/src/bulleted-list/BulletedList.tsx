@@ -3,7 +3,7 @@ import styled, { ThemeProvider } from "styled-components";
 import DxcFlex from "../flex/Flex";
 import DxcTypography from "../typography/Typography";
 import BulletedListPropsType, { BulletedListItemPropsType } from "./types";
-import useTheme from "../useTheme";
+import useTheme from "../utils/useTheme";
 import DxcIcon from "../icon/Icon";
 
 const BulletedListItem = ({ children }: BulletedListItemPropsType): JSX.Element => <>{children}</>;
@@ -12,7 +12,7 @@ const DxcBulletedList = ({ children, type = "disc", icon = "" }: BulletedListPro
   const colorsTheme = useTheme();
 
   return (
-    <ThemeProvider theme={colorsTheme?.bulletedList}>
+    <ThemeProvider theme={colorsTheme.bulletedList}>
       <ListContainer>
         <DxcFlex direction="column" as={type === "number" ? "ol" : "ul"} gap="0.125rem">
           {Children.map(children, (child, index) => (
@@ -20,7 +20,7 @@ const DxcBulletedList = ({ children, type = "disc", icon = "" }: BulletedListPro
               <GeneralContent>
                 {type === "number" ? (
                   <Number>
-                    <DxcTypography color={colorsTheme?.bulletedList?.fontColor}>{index + 1}.</DxcTypography>
+                    <DxcTypography color={colorsTheme.bulletedList.fontColor}>{index + 1}.</DxcTypography>
                   </Number>
                 ) : type === "square" ? (
                   <Bullet>
@@ -39,7 +39,7 @@ const DxcBulletedList = ({ children, type = "disc", icon = "" }: BulletedListPro
                     <Disc />
                   </Bullet>
                 )}
-                <DxcTypography color={colorsTheme?.bulletedList?.fontColor}>{child}</DxcTypography>
+                <DxcTypography color={colorsTheme.bulletedList.fontColor}>{child}</DxcTypography>
               </GeneralContent>
             </ListItem>
           ))}

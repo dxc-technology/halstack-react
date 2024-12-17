@@ -4,7 +4,7 @@ import { getMargin } from "../common/utils";
 import DxcDropdown from "../dropdown/Dropdown";
 import DxcFlex from "../flex/Flex";
 import { DeepPartial, HalstackProvider } from "../HalstackContext";
-import useTheme from "../useTheme";
+import useTheme from "../utils/useTheme";
 import dropdownTheme from "./dropdownTheme";
 import DxcActionIcon from "../action-icon/ActionIcon";
 import TablePropsType, { ActionCellsPropsType } from "./types";

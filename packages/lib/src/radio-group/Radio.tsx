@@ -2,7 +2,7 @@ import { memo, useEffect, useId, useRef, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { AdvancedTheme } from "../common/variables";
 import DxcFlex from "../flex/Flex";
-import useTheme from "../useTheme";
+import useTheme from "../utils/useTheme";
 import { RadioProps } from "./types";
 
 const DxcRadio = ({

@@ -1,6 +1,6 @@
 import { Children, KeyboardEvent, ReactElement, ReactNode, useEffect, useMemo, useRef, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import useTheme from "../useTheme";
+import useTheme from "../utils/useTheme";
 import NavTabsPropsType from "./types";
 import DxcTab from "./Tab";
 import NavTabsContext from "./NavTabsContext";

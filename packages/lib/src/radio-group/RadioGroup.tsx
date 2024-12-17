@@ -1,7 +1,7 @@
 import { FocusEvent, forwardRef, KeyboardEvent, useCallback, useId, useMemo, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import useTheme from "../useTheme";
-import useTranslatedLabels from "../useTranslatedLabels";
+import useTheme from "../utils/useTheme";
+import useTranslatedLabels from "../utils/useTranslatedLabels";
 import DxcRadio from "./Radio";
 import RadioGroupPropsType, { RadioOption, RefType } from "./types";
 

@@ -3,7 +3,7 @@ import styled, { ThemeProvider } from "styled-components";
 import DxcTextInput from "../text-input/TextInput";
 import { spaces } from "../common/variables";
 import { getMargin } from "../common/utils";
-import useTheme from "../useTheme";
+import useTheme from "../utils/useTheme";
 import SliderPropsType, { RefType } from "./types";
 
 const DxcSlider = forwardRef<RefType, SliderPropsType>(

@@ -1,8 +1,8 @@
 import styled, { ThemeProvider } from "styled-components";
 import DxcButton from "../button/Button";
 import DxcSelect from "../select/Select";
-import useTheme from "../useTheme";
-import useTranslatedLabels from "../useTranslatedLabels";
+import useTheme from "../utils/useTheme";
+import useTranslatedLabels from "../utils/useTranslatedLabels";
 import PaginatorPropsType from "./types";
 
 const DxcPaginator = ({

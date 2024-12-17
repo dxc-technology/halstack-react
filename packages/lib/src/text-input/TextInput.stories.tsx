@@ -4,7 +4,7 @@ import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import { HalstackProvider } from "../HalstackContext";
 import DxcFlex from "../flex/Flex";
-import useTheme from "../useTheme";
+import useTheme from "../utils/useTheme";
 import Suggestions from "./Suggestions";
 import DxcTextInput from "./TextInput";
 

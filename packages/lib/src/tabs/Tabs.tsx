@@ -10,13 +10,13 @@ import {
   useState,
 } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import useTheme from "../useTheme";
+import useTheme from "../utils/useTheme";
 import TabsContext from "./TabsContext";
 import DxcTab from "./Tab";
 import TabsPropsType, { TabProps } from "./types";
 import DxcTabsLegacy from "./TabsLegacy";
 import { spaces } from "../common/variables";
-import useTranslatedLabels from "../useTranslatedLabels";
+import useTranslatedLabels from "../utils/useTranslatedLabels";
 import DxcIcon from "../icon/Icon";
 
 const useResize = (refTabList: MutableRefObject<HTMLDivElement | null>) => {

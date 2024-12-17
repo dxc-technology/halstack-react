@@ -4,7 +4,7 @@ import styled, { ThemeProvider } from "styled-components";
 import { getMargin } from "../common/utils";
 import { spaces } from "../common/variables";
 import DxcIcon from "../icon/Icon";
-import useTheme from "../useTheme";
+import useTheme from "../utils/useTheme";
 import useWidth from "../utils/useWidth";
 import DropdownMenu from "./DropdownMenu";
 import DropdownPropsType from "./types";
@@ -151,7 +151,7 @@ const DxcDropdown = ({
   }, [visualFocusIndex]);
 
   return (
-    <ThemeProvider theme={colorsTheme?.dropdown}>
+    <ThemeProvider theme={colorsTheme.dropdown}>
       <DropdownContainer
         onMouseEnter={!disabled && expandOnHover ? handleOnOpenMenu : undefined}
         onMouseLeave={!disabled && expandOnHover ? handleOnCloseMenu : undefined}

@@ -59,8 +59,8 @@ const radixPortalContains = (activeElement: Node): boolean => {
  * @param ref: React.MutableRefObject<HTMLDivElement>
  * @returns
  */
-const useFocusableElements = (ref: React.MutableRefObject<HTMLDivElement | null>): HTMLElement[] | null => {
-  const [focusableElements, setFocusableElements] = useState<HTMLElement[] | null>(null);
+const useFocusableElements = (ref: React.MutableRefObject<HTMLDivElement | null>): HTMLElement[] => {
+  const [focusableElements, setFocusableElements] = useState<HTMLElement[]>([]);
 
   useEffect(() => {
     if (ref?.current != null) {
@@ -93,24 +93,23 @@ const FocusLock = ({ children }: { children: React.ReactNode }): JSX.Element => 
   const initialFocus = useRef(false);
 
   const focusFirst = useCallback(() => {
-    if (focusableElements?.length === 0) childrenContainerRef.current?.focus();
-    else if (focusableElements && focusableElements?.length > 0)
-      focusableElements.some((element) => attemptFocus(element));
+    if (focusableElements.length === 0) childrenContainerRef.current?.focus();
+    else if (focusableElements.length > 0) focusableElements.some((element) => attemptFocus(element));
   }, [focusableElements]);
 
   const focusLast = () => {
     focusableElements
-      ?.slice()
+      .slice()
       .reverse()
       ?.some((element) => attemptFocus(element));
   };
 
   const focusLock = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    if (event.key === "Tab" && focusableElements && focusableElements.length === 0) event.preventDefault();
+    if (event.key === "Tab" && focusableElements.length === 0) event.preventDefault();
   };
 
   useEffect(() => {
-    if (focusableElements != null && !initialFocus.current) {
+    if (focusableElements.length > 0 && !initialFocus.current) {
       initialFocus.current = true;
       focusFirst();
     }

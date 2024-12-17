@@ -3,8 +3,8 @@ import { createPortal } from "react-dom";
 import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
 import { responsiveSizes } from "../common/variables";
 import DxcIcon from "../icon/Icon";
-import useTheme from "../useTheme";
-import useTranslatedLabels from "../useTranslatedLabels";
+import useTheme from "../utils/useTheme";
+import useTranslatedLabels from "../utils/useTranslatedLabels";
 import FocusLock from "../utils/FocusLock";
 import DialogPropsType from "./types";
 
@@ -127,7 +127,7 @@ const DxcDialog = ({
                   onClick={() => {
                     onCloseClick?.();
                   }}
-                  aria-label={translatedLabels?.dialog?.closeIconAriaLabel}
+                  aria-label={translatedLabels.dialog.closeIconAriaLabel}
                   tabIndex={tabIndex}
                 >
                   <DxcIcon icon="close" />

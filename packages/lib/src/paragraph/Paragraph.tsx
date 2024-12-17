@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import useTheme from "../useTheme";
+import useTheme from "../utils/useTheme";
 
 const Paragraph = styled.p`
   display: ${(props) => props.theme.display};

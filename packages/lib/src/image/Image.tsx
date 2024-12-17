@@ -1,6 +1,6 @@
 import styled, { ThemeProvider } from "styled-components";
 import { ReactNode, useCallback } from "react";
-import useTheme from "../useTheme";
+import useTheme from "../utils/useTheme";
 import ImagePropsType, { CaptionWrapperProps } from "./types";
 
 const Figure = styled.figure`
@@ -52,7 +52,7 @@ export default function DxcImage({
   );
 
   return (
-    <ThemeProvider theme={colorsTheme?.image}>
+    <ThemeProvider theme={colorsTheme.image}>
       <CaptionWrapper condition={caption !== undefined} wrapper={figureWrapper}>
         <img
           alt={alt}

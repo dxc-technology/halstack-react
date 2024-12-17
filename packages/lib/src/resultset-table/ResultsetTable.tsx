@@ -5,7 +5,7 @@ import { getMargin } from "../common/utils";
 import { spaces } from "../common/variables";
 import DxcPaginator from "../paginator/Paginator";
 import DxcTable, { DxcActionsCell } from "../table/Table";
-import useTheme from "../useTheme";
+import useTheme from "../utils/useTheme";
 import icons from "./Icons";
 import ResultsetTablePropsType, { Column, Row } from "./types";
 

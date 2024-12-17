@@ -5,7 +5,7 @@ import CoreTokens from "../common/coreTokens";
 import { responsiveSizes } from "../common/variables";
 import DxcFlex from "../flex/Flex";
 import DxcIcon from "../icon/Icon";
-import useTheme from "../useTheme";
+import useTheme from "../utils/useTheme";
 import { useResponsiveSidenavVisibility } from "./SidenavContext";
 import SidenavPropsType, {
   SidenavGroupPropsType,

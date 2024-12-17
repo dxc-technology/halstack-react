@@ -1,7 +1,7 @@
 import { useLayoutEffect, useRef } from "react";
 import styled from "styled-components";
 import DxcIcon from "../icon/Icon";
-import useTranslatedLabels from "../useTranslatedLabels";
+import useTranslatedLabels from "../utils/useTranslatedLabels";
 import ListOption from "./ListOption";
 import { groupsHaveOptions } from "./selectUtils";
 import { ListboxProps, ListOptionGroupType, ListOptionType } from "./types";

@@ -2,8 +2,8 @@ import { ChangeEvent, FocusEvent, forwardRef, useEffect, useId, useRef, useState
 import styled, { ThemeProvider } from "styled-components";
 import { getMargin } from "../common/utils";
 import { spaces } from "../common/variables";
-import useTheme from "../useTheme";
-import useTranslatedLabels from "../useTranslatedLabels";
+import useTheme from "../utils/useTheme";
+import useTranslatedLabels from "../utils/useTranslatedLabels";
 import TextareaPropsType, { RefType } from "./types";
 
 const patternMatch = (pattern: string, value: string) => new RegExp(pattern).test(value);

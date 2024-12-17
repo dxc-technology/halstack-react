@@ -3,7 +3,7 @@ import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcBadge from "../badge/Badge";
 import DxcContainer from "../container/Container";
-import useTheme from "../useTheme";
+import useTheme from "../utils/useTheme";
 import DxcContextualMenu from "./ContextualMenu";
 import SingleItem from "./SingleItem";
 import { userEvent, within } from "@storybook/test";
