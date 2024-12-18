@@ -84,7 +84,7 @@ const Spinner = () => (
   </>
 );
 
-const SpinnerOverlay = () => (
+const SpinnerWithOverlay = () => (
   <ExampleContainer>
     <Title title="Mode overlay" theme="light" level={4} />
     <DxcSpinner mode="overlay" value={25}></DxcSpinner>
@@ -134,8 +134,8 @@ export const Chromatic: Story = {
   render: Spinner,
 };
 
-export const SpinnerWithOverlay: Story = {
-  render: SpinnerOverlay,
+export const SpinnerOverlay: Story = {
+  render: SpinnerWithOverlay,
 };
 export const SpinnerOverlayWith100: Story = {
   render: SpinnerOverlay100,
