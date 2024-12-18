@@ -69,10 +69,10 @@ describe("Contextual menu component tests", () => {
     group1 != null && userEvent.click(group1);
     expect(group1?.getAttribute("aria-expanded")).toBeTruthy();
     expect(group1?.getAttribute("aria-controls")).toBe(group1?.nextElementSibling?.id);
-    const groupedItem1 = getAllByRole("button")[2];
-    const groupedItem2 = getAllByRole("button")[6];
-    groupedItem1 != null && userEvent.click(groupedItem1);
-    groupedItem2 != null && userEvent.click(groupedItem2);
+    const expandedGroupItem1 = getAllByRole("button")[2];
+    expandedGroupItem1 != null && userEvent.click(expandedGroupItem1);
+    const expandedGroupedItem2 = getAllByRole("button")[6];
+    expandedGroupedItem2 != null && userEvent.click(expandedGroupedItem2);
     expect(getAllByRole("menuitem").length).toBe(10);
     const optionToBeClicked = getAllByRole("button")[4];
     optionToBeClicked != null && userEvent.click(optionToBeClicked);
