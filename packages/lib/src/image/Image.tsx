@@ -1,7 +1,7 @@
 import styled, { ThemeProvider } from "styled-components";
-import { ReactNode, useCallback } from "react";
-import useTheme from "../utils/useTheme";
+import { ReactNode, useCallback, useContext } from "react";
 import ImagePropsType, { CaptionWrapperProps } from "./types";
+import HalstackContext from "../HalstackContext";
 
 const Figure = styled.figure`
   display: flex;
@@ -39,7 +39,7 @@ export default function DxcImage({
   onLoad,
   onError,
 }: ImagePropsType) {
-  const colorsTheme = useTheme();
+  const colorsTheme = useContext(HalstackContext);
 
   const figureWrapper = useCallback(
     (children: ReactNode) => (

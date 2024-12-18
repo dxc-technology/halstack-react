@@ -35,14 +35,12 @@ const DxcSwitch = forwardRef<RefType, SwitchPropsType>(
     const handleOnKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
       switch (event.key) {
         case "Enter":
-        case " ": {
-          // Space
+        case " ":
           event.preventDefault();
           refTrack?.current?.focus();
           setInnerChecked(!(checked ?? innerChecked));
           onChange?.(!(checked ?? innerChecked));
           break;
-        }
         default:
           break;
       }

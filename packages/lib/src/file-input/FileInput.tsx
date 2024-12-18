@@ -1,11 +1,10 @@
-import { useCallback, useEffect, useId, useState, forwardRef, DragEvent, ChangeEvent } from "react";
+import { useCallback, useContext, useEffect, useId, useState, forwardRef, DragEvent, ChangeEvent } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import DxcButton from "../button/Button";
 import { spaces } from "../common/variables";
-import useTheme from "../utils/useTheme";
-import useTranslatedLabels from "../utils/useTranslatedLabels";
 import FileItem from "./FileItem";
 import FileInputPropsType, { FileData, RefType } from "./types";
+import HalstackContext, { HalstackLanguageContext } from "../HalstackContext";
 
 const getFilePreview = async (file: File): Promise<string> => {
   if (file?.type?.includes("video")) return "filled_movie";
@@ -57,8 +56,8 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
     const [isDragging, setIsDragging] = useState(false);
     const [files, setFiles] = useState<FileData[]>([]);
     const fileInputId = `file-input-${useId()}`;
-    const colorsTheme = useTheme();
-    const translatedLabels = useTranslatedLabels();
+    const colorsTheme = useContext(HalstackContext);
+    const translatedLabels = useContext(HalstackLanguageContext);
 
     const checkFileSize = (file: File) => {
       if (minSize && file.size < minSize) return translatedLabels.fileInput.fileSizeGreaterThanErrorMessage;

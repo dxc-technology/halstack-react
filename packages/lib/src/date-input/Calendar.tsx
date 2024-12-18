@@ -1,8 +1,8 @@
 import { Dayjs } from "dayjs";
-import { useState, useMemo, useEffect, useId, memo, KeyboardEvent, FocusEvent } from "react";
+import { useState, useMemo, useEffect, useId, memo, KeyboardEvent, FocusEvent, useContext } from "react";
 import styled from "styled-components";
 import { CalendarPropsType, DateType } from "./types";
-import useTranslatedLabels from "../utils/useTranslatedLabels";
+import { HalstackLanguageContext } from "../HalstackContext";
 
 const getDays = (innerDate: Dayjs) => {
   const monthDayCells: DateType[] = [];
@@ -61,7 +61,7 @@ const Calendar = ({
   const [dateToFocus, setDateToFocus] = useState(getDateToFocus(selectedDate, innerDate, today));
   const [isFocusable, setIsFocusable] = useState(false);
   const id = useId();
-  const translatedLabels = useTranslatedLabels();
+  const translatedLabels = useContext(HalstackLanguageContext);
   const dayCells = useMemo(() => getDays(innerDate), [innerDate]);
 
   const onDateClickHandler = (date: DateType) => {

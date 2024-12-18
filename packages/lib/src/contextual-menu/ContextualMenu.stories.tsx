@@ -176,7 +176,7 @@ export const Chromatic = () => (
 );
 
 export const SingleItemStates = () => {
-  const colorsTheme = useTheme();
+  const colorsTheme = useContext(HalstackContext);
 
   return (
     <ThemeProvider theme={colorsTheme.contextualMenu}>

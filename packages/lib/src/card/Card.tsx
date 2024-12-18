@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables";
-import useTheme from "../utils/useTheme";
 import CardPropsType from "./types";
 import CoreTokens from "../common/coreTokens";
+import HalstackContext from "../HalstackContext";
 
 const DxcCard = ({
   imageSrc,
@@ -18,7 +18,7 @@ const DxcCard = ({
   outlined = true,
   children,
 }: CardPropsType): JSX.Element => {
-  const colorsTheme = useTheme();
+  const colorsTheme = useContext(HalstackContext);
   const [isHovered, changeIsHovered] = useState(false);
 
   return (
