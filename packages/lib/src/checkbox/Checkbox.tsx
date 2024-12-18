@@ -1,9 +1,8 @@
-import { useState, useRef, useId, forwardRef, KeyboardEvent } from "react";
+import { useContext, useState, useRef, useId, forwardRef, KeyboardEvent } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { AdvancedTheme, spaces } from "../common/variables";
 import { getMargin } from "../common/utils";
-import useTheme from "../utils/useTheme";
-import useTranslatedLabels from "../utils/useTranslatedLabels";
+import HalstackContext, { HalstackLanguageContext } from "../HalstackContext";
 import CheckboxPropsType, { RefType } from "./types";
 
 const checkedIcon = (
@@ -34,19 +33,18 @@ const DxcCheckbox = forwardRef<RefType, CheckboxPropsType>(
     const labelId = `label-checkbox-${useId()}`;
     const [innerChecked, setInnerChecked] = useState(defaultChecked);
     const checkboxRef = useRef<HTMLSpanElement | null>(null);
-    const colorsTheme = useTheme();
-    const translatedLabels = useTranslatedLabels();
+    const colorsTheme = useContext(HalstackContext);
+    const translatedLabels = useContext(HalstackLanguageContext);
 
     const handleCheckboxChange = () => {
       if (!disabled && !readOnly) {
-        if (document.activeElement !== checkboxRef?.current) {
-          checkboxRef?.current?.focus();
+        if (document.activeElement !== checkboxRef.current) {
+          checkboxRef.current?.focus();
         }
-        const newChecked = checked ?? innerChecked;
         if (checked == null) {
           setInnerChecked((innerCurrentlyChecked) => !innerCurrentlyChecked);
         }
-        onChange?.(!newChecked);
+        onChange?.(!(checked ?? innerChecked));
       }
     };
 

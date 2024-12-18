@@ -1,11 +1,11 @@
-import { Children, useCallback, useMemo, useState } from "react";
+import { Children, useCallback, useContext, useMemo, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { getMargin } from "../common/utils";
 import { spaces } from "../common/variables";
-import useTheme from "../utils/useTheme";
 import AccordionGroupAccordion from "./AccordionGroupAccordion";
 import AccordionGroupPropsType from "./types";
 import AccordionGroupAccordionContext from "./AccordionGroupContext";
+import HalstackContext from "../HalstackContext";
 
 const DxcAccordionGroup = ({
   defaultIndexActive,
@@ -15,8 +15,8 @@ const DxcAccordionGroup = ({
   margin,
   children,
 }: AccordionGroupPropsType): JSX.Element => {
-  const colorsTheme = useTheme();
   const [innerIndexActive, setInnerIndexActive] = useState(defaultIndexActive ?? -1);
+  const colorsTheme = useContext(HalstackContext);
 
   const handlerActiveChange = useCallback(
     (index: number) => {

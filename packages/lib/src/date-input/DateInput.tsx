@@ -4,6 +4,7 @@ import {
   useEffect,
   useId,
   useCallback,
+  useContext,
   forwardRef,
   Dispatch,
   SetStateAction,
@@ -14,8 +15,7 @@ import dayjs, { Dayjs } from "dayjs";
 import styled, { ThemeProvider } from "styled-components";
 import * as Popover from "@radix-ui/react-popover";
 import customParseFormat from "dayjs/plugin/customParseFormat";
-import useTheme from "../utils/useTheme";
-import useTranslatedLabels from "../utils/useTranslatedLabels";
+import HalstackContext, { HalstackLanguageContext } from "../HalstackContext";
 import DateInputPropsType, { RefType } from "./types";
 import DatePicker from "./DatePicker";
 import { getMargin } from "../common/utils";
@@ -88,8 +88,8 @@ const DxcDateInput = forwardRef<RefType, DateInputPropsType>(
         : null
     );
     const [sideOffset, setSideOffset] = useState(SIDEOFFSET);
-    const colorsTheme = useTheme();
-    const translatedLabels = useTranslatedLabels();
+    const colorsTheme = useContext(HalstackContext);
+    const translatedLabels = useContext(HalstackLanguageContext);
     const dateRef = useRef<HTMLDivElement | null>(null);
     const popoverContentRef = useRef<HTMLDivElement | null>(null);
 

@@ -68,12 +68,12 @@ describe("Checkbox component tests", () => {
     const input = component.getByRole("checkbox");
     const submitInput = component.container.querySelector<HTMLInputElement>(`input[name="test"]`);
     expect(input.getAttribute("aria-checked")).toBe("false");
-    expect(submitInput.checked).toBe(false);
+    expect(submitInput?.checked).toBe(false);
     fireEvent.click(visibleCheckbox);
     expect(onChange).toHaveBeenCalled();
     expect(onChange).toHaveBeenCalledWith(true);
     expect(input.getAttribute("aria-checked")).toBe("true");
-    expect(submitInput.checked).toBe(true);
+    expect(submitInput?.checked).toBe(true);
   });
 
   test("Controlled checkbox", () => {
@@ -86,7 +86,7 @@ describe("Checkbox component tests", () => {
     expect(onChange).toHaveBeenCalled();
     expect(onChange).toHaveBeenCalledWith(true);
     expect(input.getAttribute("aria-checked")).toBe("false");
-    expect(submitInput.checked).toBe(false);
+    expect(submitInput?.checked).toBe(false);
   });
 
   test("Renders with correct initial value and initial state when it is uncontrolled", () => {
@@ -95,9 +95,9 @@ describe("Checkbox component tests", () => {
     );
     const checkbox = getByRole("checkbox");
     const submitInput = container.querySelector<HTMLInputElement>(`input[name="test"]`);
-    expect(submitInput.value).toBe("test-defaultChecked");
+    expect(submitInput?.value).toBe("test-defaultChecked");
     expect(checkbox.getAttribute("aria-checked")).toBe("true");
-    expect(submitInput.checked).toBe(true);
+    expect(submitInput?.checked).toBe(true);
   });
 
   test("Test disable keyboard and mouse interactions", () => {
@@ -112,7 +112,7 @@ describe("Checkbox component tests", () => {
     expect(onChange).toHaveBeenCalledTimes(0);
     expect(input.getAttribute("aria-checked")).toBe("false");
     expect(input.getAttribute("aria-disabled")).toBe("true");
-    expect(submitInput.checked).toBe(false);
+    expect(submitInput?.checked).toBe(false);
     userEvent.tab();
     expect(document.activeElement === input).toBeFalsy();
   });

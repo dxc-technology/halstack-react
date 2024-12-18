@@ -1,13 +1,13 @@
-import { ComponentProps, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { ComponentProps, useEffect, useMemo, useRef, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { responsiveSizes, spaces } from "../common/variables";
 import DxcDropdown from "../dropdown/Dropdown";
 import DxcIcon from "../icon/Icon";
-import useTheme from "../utils/useTheme";
-import useTranslatedLabels from "../utils/useTranslatedLabels";
 import HeaderPropsType from "./types";
 import { Tooltip } from "../tooltip/Tooltip";
 import DxcFlex from "../flex/Flex";
+import { useContext } from "react";
+import HalstackContext, { HalstackLanguageContext } from "../HalstackContext";
 
 const Dropdown = (props: ComponentProps<typeof DxcDropdown>) => (
   <HeaderDropdown>
@@ -64,8 +64,8 @@ const DxcHeader = ({
 }: HeaderPropsType): JSX.Element => {
   const [isResponsive, setIsResponsive] = useState(false);
   const [isMenuVisible, setIsMenuVisible] = useState(false);
-  const colorsTheme = useTheme();
-  const translatedLabels = useTranslatedLabels();
+  const colorsTheme = useContext(HalstackContext);
+  const translatedLabels = useContext(HalstackLanguageContext);
   const ref = useRef(null);
 
   const handleMenu = () => {

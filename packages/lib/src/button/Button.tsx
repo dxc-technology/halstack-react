@@ -1,10 +1,11 @@
+import { useContext } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { AdvancedTheme, spaces } from "../common/variables";
 import { getMargin } from "../common/utils";
-import useTheme from "../utils/useTheme";
 import type ButtonPropsType from "./types";
 import DxcIcon from "../icon/Icon";
 import { Tooltip } from "../tooltip/Tooltip";
+import HalstackContext from "../HalstackContext";
 
 const DxcButton = ({
   label = "",
@@ -20,7 +21,7 @@ const DxcButton = ({
   size = { height: "large", width: "fitContent" },
   tabIndex = 0,
 }: ButtonPropsType): JSX.Element => {
-  const colorsTheme = useTheme();
+  const colorsTheme = useContext(HalstackContext);
 
   return (
     <ThemeProvider theme={colorsTheme.button}>
@@ -195,7 +196,6 @@ const getButtonStyles = (
         &:disabled {
           ${disabled}
         }`;
-
     case "secondary":
       switch (semantic) {
         case "default":
@@ -303,7 +303,6 @@ const getButtonStyles = (
         &:disabled {
           ${disabled}
         }`;
-
     case "tertiary":
       switch (semantic) {
         case "default":
@@ -418,50 +417,50 @@ const Button = styled.button<{
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
   padding-top: ${(props) =>
     props.hasIcon && !props.hasLabel
-      ? props?.size?.height === "small"
+      ? props.size?.height === "small"
         ? props.theme.paddingSmallOnlyIconTop
-        : props?.size?.height === "medium"
+        : props.size?.height === "medium"
           ? props.theme.paddingMediumOnlyIconTop
           : props.theme.paddingLargeOnlyIconTop
-      : props?.size?.height === "small"
+      : props.size?.height === "small"
         ? props.theme.paddingSmallTop
-        : props?.size?.height === "medium"
+        : props.size?.height === "medium"
           ? props.theme.paddingMediumTop
           : props.theme.paddingLargeTop};
   padding-bottom: ${(props) =>
     props.hasIcon && !props.hasLabel
-      ? props?.size?.height === "small"
+      ? props.size?.height === "small"
         ? props.theme.paddingSmallOnlyIconBottom
-        : props?.size?.height === "medium"
+        : props.size?.height === "medium"
           ? props.theme.paddingMediumOnlyIconBottom
           : props.theme.paddingLargeOnlyIconBottom
-      : props?.size?.height === "small"
+      : props.size?.height === "small"
         ? props.theme.paddingSmallBottom
-        : props?.size?.height === "medium"
+        : props.size?.height === "medium"
           ? props.theme.paddingMediumBottom
           : props.theme.paddingLargeBottom};
   padding-left: ${(props) =>
     props.hasIcon && !props.hasLabel
-      ? props?.size?.height === "small"
+      ? props.size?.height === "small"
         ? props.theme.paddingSmallOnlyIconLeft
-        : props?.size?.height === "medium"
+        : props.size?.height === "medium"
           ? props.theme.paddingMediumOnlyIconLeft
           : props.theme.paddingLargeOnlyIconLeft
-      : props?.size?.height === "small"
+      : props.size?.height === "small"
         ? props.theme.paddingSmallLeft
-        : props?.size?.height === "medium"
+        : props.size?.height === "medium"
           ? props.theme.paddingMediumLeft
           : props.theme.paddingLargeLeft};
   padding-right: ${(props) =>
     props.hasIcon && !props.hasLabel
-      ? props?.size?.height === "small"
+      ? props.size?.height === "small"
         ? props.theme.paddingSmallOnlyIconRight
-        : props?.size?.height === "medium"
+        : props.size?.height === "medium"
           ? props.theme.paddingMediumOnlyIconRight
           : props.theme.paddingLargeOnlyIconRight
-      : props?.size?.height === "small"
+      : props.size?.height === "small"
         ? props.theme.paddingSmallRight
-        : props?.size?.height === "medium"
+        : props.size?.height === "medium"
           ? props.theme.paddingMediumRight
           : props.theme.paddingLargeRight};
 
@@ -493,10 +492,10 @@ const IconContainer = styled.div<{
   size: ButtonPropsType["size"];
 }>`
   display: flex;
-  font-size: ${(props) => (props?.size?.height === "small" ? "16" : props?.size?.height === "medium" ? "16" : "24")}px;
+  font-size: ${(props) => (props.size?.height === "small" ? "16" : props.size?.height === "medium" ? "16" : "24")}px;
   svg {
-    height: ${(props) => (props?.size?.height === "small" ? "16" : props?.size?.height === "medium" ? "16" : "24")}px;
-    width: ${(props) => (props?.size?.height === "small" ? "16" : props?.size?.height === "medium" ? "16" : "24")}px;
+    height: ${(props) => (props.size?.height === "small" ? "16" : props.size?.height === "medium" ? "16" : "24")}px;
+    width: ${(props) => (props.size?.height === "small" ? "16" : props.size?.height === "medium" ? "16" : "24")}px;
   }
 `;
 

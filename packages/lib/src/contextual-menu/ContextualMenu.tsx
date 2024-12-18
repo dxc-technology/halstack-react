@@ -1,7 +1,6 @@
-import { useLayoutEffect, useMemo, useRef, useState } from "react";
+import { useContext, useLayoutEffect, useMemo, useRef, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import CoreTokens from "../common/coreTokens";
-import useTheme from "../utils/useTheme";
 import MenuItem from "./MenuItem";
 import ContextualMenuPropsType, {
   GroupItem,
@@ -14,6 +13,7 @@ import ContextualMenuPropsType, {
 } from "./types";
 import Section from "./Section";
 import ContextualMenuContext from "./ContextualMenuContext";
+import HalstackContext from "../HalstackContext";
 
 const ContextualMenu = styled.div`
   box-sizing: border-box;
@@ -79,7 +79,7 @@ export default function DxcContextualMenu({ items }: ContextualMenuPropsType) {
   const contextualMenuRef = useRef<HTMLDivElement | null>(null);
   const itemsWithId = useMemo(() => addIdToItems(items), [items]);
   const contextValue = useMemo(() => ({ selectedItemId, setSelectedItemId }), [selectedItemId, setSelectedItemId]);
-  const colorsTheme = useTheme();
+  const colorsTheme = useContext(HalstackContext);
 
   const [firstUpdate, setFirstUpdate] = useState(true);
   useLayoutEffect(() => {

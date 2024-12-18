@@ -1,8 +1,8 @@
-import { useId, useState } from "react";
+import { useContext, useId, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { getMargin } from "../common/utils";
 import { spaces } from "../common/variables";
-import useTheme from "../utils/useTheme";
+import HalstackContext from "../HalstackContext";
 import AccordionPropsType from "./types";
 import DxcIcon from "../icon/Icon";
 
@@ -20,7 +20,7 @@ const DxcAccordion = ({
 }: AccordionPropsType): JSX.Element => {
   const id = useId();
   const [innerIsExpanded, setInnerIsExpanded] = useState(defaultIsExpanded ?? false);
-  const colorsTheme = useTheme();
+  const colorsTheme = useContext(HalstackContext);
 
   const handleAccordionState = () => {
     if (isExpanded == null) {

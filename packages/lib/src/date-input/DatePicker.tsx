@@ -1,12 +1,12 @@
-import { memo, useState } from "react";
+import { memo, useContext, useState } from "react";
 import dayjs, { Dayjs } from "dayjs";
 import styled from "styled-components";
 import { DatePickerPropsType } from "./types";
 import Calendar from "./Calendar";
 import YearPicker from "./YearPicker";
-import useTranslatedLabels from "../utils/useTranslatedLabels";
 import DxcIcon from "../icon/Icon";
 import { Tooltip } from "../tooltip/Tooltip";
+import { HalstackLanguageContext } from "../HalstackContext";
 
 const today = dayjs();
 
@@ -14,7 +14,7 @@ const DatePicker = ({ date, onDateSelect, id }: DatePickerPropsType): JSX.Elemen
   const [innerDate, setInnerDate] = useState(date?.isValid() ? date : dayjs());
   const [content, setContent] = useState("calendar");
   const selectedDate = date?.isValid() ? date : dayjs(null);
-  const translatedLabels = useTranslatedLabels();
+  const translatedLabels = useContext(HalstackLanguageContext);
 
   const handleDateSelect = (chosenDate: Dayjs) => {
     setInnerDate(chosenDate);

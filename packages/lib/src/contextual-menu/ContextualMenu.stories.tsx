@@ -3,12 +3,13 @@ import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcBadge from "../badge/Badge";
 import DxcContainer from "../container/Container";
-import useTheme from "../utils/useTheme";
 import DxcContextualMenu from "./ContextualMenu";
 import SingleItem from "./SingleItem";
 import { userEvent, within } from "@storybook/test";
 import ContextualMenuContext from "./ContextualMenuContext";
 import { Meta, StoryObj } from "@storybook/react";
+import { useContext } from "react";
+import HalstackContext from "../HalstackContext";
 
 export default {
   title: "Contextual Menu",
@@ -177,7 +178,7 @@ const ContextualMenu = () => (
 );
 
 const Single = () => {
-  const colorsTheme = useTheme();
+  const colorsTheme = useContext(HalstackContext);
 
   return (
     <ThemeProvider theme={colorsTheme.contextualMenu}>

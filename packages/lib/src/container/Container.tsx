@@ -5,7 +5,7 @@ import { spaces } from "../common/variables";
 
 const getBorderStyles = (direction: "top" | "bottom" | "left" | "right", borderProperties: BorderProperties) =>
   `border-${direction}: ${borderProperties?.width ?? ""} ${borderProperties?.style ?? ""} ${
-    borderProperties?.color ? (getCoreColorToken(borderProperties?.color) ?? "") : ""
+    borderProperties?.color ? getCoreColorToken(borderProperties?.color) : ""
   };`;
 
 const Container = styled.div<StyledProps>`
@@ -42,23 +42,20 @@ const Container = styled.div<StyledProps>`
     border && "color" in border && border?.color ? `${getCoreColorToken(border?.color)}` : ""};
 
   ${({ border }) => {
+    let styles = "";
     if (border != null) {
-      let styles = "";
-      if ("top" in border) {
-        styles += border?.top ? getBorderStyles("top", border.top) : "";
+      switch (true) {
+        case "top" in border:
+          styles += border?.top ? getBorderStyles("top", border.top) : "";
+        case "right" in border:
+          styles += border?.right ? getBorderStyles("right", border.right) : "";
+        case "left" in border:
+          styles += border?.left ? getBorderStyles("left", border.left) : "";
+        case "bottom" in border:
+          styles += border?.bottom ? getBorderStyles("bottom", border.bottom) : "";
       }
-      if ("right" in border) {
-        styles += border?.right ? getBorderStyles("right", border.right) : "";
-      }
-      if ("left" in border) {
-        styles += border?.left ? getBorderStyles("left", border.left) : "";
-      }
-      if ("bottom" in border) {
-        styles += border?.bottom ? getBorderStyles("bottom", border.bottom) : "";
-      }
-      return styles;
     }
-    return undefined;
+    return styles;
   }};
 
   margin: ${({ margin }) => (typeof margin === "string" ? spaces[margin] : "")};
@@ -68,7 +65,7 @@ const Container = styled.div<StyledProps>`
   margin-left: ${({ margin }) => (typeof margin === "object" && margin.left ? spaces[margin.left] : "")};
 
   outline: ${({ outline }) =>
-    `${outline?.width ?? ""} ${outline?.style ?? ""} ${outline?.color ? (getCoreColorToken(outline?.color) ?? "") : ""}`};
+    `${outline?.width ?? ""} ${outline?.style ?? ""} ${outline?.color ? getCoreColorToken(outline?.color) : ""}`};
   outline-offset: ${({ outline }) => outline?.offset};
 
   overflow: ${({ $overflow }) => (typeof $overflow === "string" ? $overflow : "")};

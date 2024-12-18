@@ -1,7 +1,5 @@
 import styled, { css, ThemeProvider } from "styled-components";
-import { useState, memo, useId, useEffect, useCallback } from "react";
-import useTheme from "../utils/useTheme";
-import useTranslatedLabels from "../utils/useTranslatedLabels";
+import { useState, memo, useId, useEffect, useCallback, useContext } from "react";
 import AlertPropsType from "./types";
 import DxcIcon from "../icon/Icon";
 import DxcButton from "../button/Button";
@@ -10,6 +8,7 @@ import DxcActionIcon from "../action-icon/ActionIcon";
 import DxcFlex from "../flex/Flex";
 import ModalAlertWrapper from "./ModalAlertWrapper";
 import CoreTokens from "../common/coreTokens";
+import HalstackContext, { HalstackLanguageContext } from "../HalstackContext";
 
 const AlertContainer = styled.div<{
   semantic: AlertPropsType["semantic"];
@@ -138,8 +137,8 @@ export default function DxcAlert({
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const id = useId();
-  const colorsTheme = useTheme();
-  const translatedLabels = useTranslatedLabels();
+  const colorsTheme = useContext(HalstackContext);
+  const translatedLabels = useContext(HalstackLanguageContext);
 
   const handleNextOnClick = () => {
     setCurrentIndex((prevIndex) => (prevIndex < messages.length ? prevIndex + 1 : prevIndex));

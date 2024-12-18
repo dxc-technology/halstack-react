@@ -1,15 +1,15 @@
-import { Children } from "react";
+import { Children, useContext } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import DxcFlex from "../flex/Flex";
 import DxcTypography from "../typography/Typography";
 import BulletedListPropsType, { BulletedListItemPropsType } from "./types";
-import useTheme from "../utils/useTheme";
 import DxcIcon from "../icon/Icon";
+import HalstackContext from "../HalstackContext";
 
 const BulletedListItem = ({ children }: BulletedListItemPropsType): JSX.Element => <>{children}</>;
 
 const DxcBulletedList = ({ children, type = "disc", icon = "" }: BulletedListPropsType): JSX.Element => {
-  const colorsTheme = useTheme();
+  const colorsTheme = useContext(HalstackContext);
 
   return (
     <ThemeProvider theme={colorsTheme.bulletedList}>

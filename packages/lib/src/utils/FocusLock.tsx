@@ -19,9 +19,9 @@ const focusableQuery = [
   `[tabindex]${not.negTabIndex}${not.disabled}`,
 ].join(",");
 
-const getFocusableElements = (container: HTMLElement | null): HTMLElement[] =>
+const getFocusableElements = (container: HTMLElement): HTMLElement[] =>
   Array.prototype.slice
-    .call(container?.querySelectorAll(focusableQuery))
+    .call(container.querySelectorAll(focusableQuery))
     .filter(
       (element: HTMLElement) =>
         element.getAttribute("aria-hidden") !== "true" &&
@@ -37,7 +37,7 @@ const getFocusableElements = (container: HTMLElement | null): HTMLElement[] =>
  * @returns
  */
 const attemptFocus = (element: HTMLElement): boolean => {
-  element?.focus();
+  element.focus();
   return document.activeElement === element;
 };
 
@@ -59,15 +59,15 @@ const radixPortalContains = (activeElement: Node): boolean => {
  * @param ref: React.MutableRefObject<HTMLDivElement>
  * @returns
  */
-const useFocusableElements = (ref: React.MutableRefObject<HTMLDivElement | null>): HTMLElement[] => {
-  const [focusableElements, setFocusableElements] = useState<HTMLElement[]>([]);
+const useFocusableElements = (ref: React.MutableRefObject<HTMLDivElement | null>): HTMLElement[] | null => {
+  const [focusableElements, setFocusableElements] = useState<HTMLElement[] | null>(null);
 
   useEffect(() => {
-    if (ref?.current != null) {
+    if (ref.current != null) {
       setFocusableElements(getFocusableElements(ref.current));
 
       const observer = new MutationObserver(() => {
-        setFocusableElements(getFocusableElements(ref?.current));
+        if (ref.current != null) setFocusableElements(getFocusableElements(ref.current));
       });
       observer.observe(ref.current, { childList: true, subtree: true });
       return () => {
@@ -93,23 +93,25 @@ const FocusLock = ({ children }: { children: React.ReactNode }): JSX.Element => 
   const initialFocus = useRef(false);
 
   const focusFirst = useCallback(() => {
-    if (focusableElements.length === 0) childrenContainerRef.current?.focus();
-    else if (focusableElements.length > 0) focusableElements.some((element) => attemptFocus(element));
+    if (focusableElements != null) {
+      if (focusableElements.length === 0) childrenContainerRef.current?.focus();
+      else if (focusableElements.length > 0) focusableElements.some((element) => attemptFocus(element));
+    }
   }, [focusableElements]);
 
   const focusLast = () => {
     focusableElements
-      .slice()
+      ?.slice()
       .reverse()
-      ?.some((element) => attemptFocus(element));
+      .some((element) => attemptFocus(element));
   };
 
   const focusLock = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    if (event.key === "Tab" && focusableElements.length === 0) event.preventDefault();
+    if (event.key === "Tab" && focusableElements?.length === 0) event.preventDefault();
   };
 
   useEffect(() => {
-    if (focusableElements.length > 0 && !initialFocus.current) {
+    if (focusableElements != null && !initialFocus.current) {
       initialFocus.current = true;
       focusFirst();
     }
@@ -121,7 +123,7 @@ const FocusLock = ({ children }: { children: React.ReactNode }): JSX.Element => 
       const container = childrenContainerRef.current;
 
       if (
-        target &&
+        target != null &&
         !(
           container?.contains(target) ||
           container?.nextElementSibling?.contains(target) ||
