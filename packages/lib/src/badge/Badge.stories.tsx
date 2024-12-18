@@ -5,7 +5,7 @@ import DxcFlex from "../flex/Flex";
 import DxcInset from "../inset/Inset";
 import { userEvent, within } from "@storybook/test";
 import DxcTooltip from "../tooltip/Tooltip";
-import { Meta, StoryObj } from "@storybook/react/*";
+import { Meta, StoryObj } from "@storybook/react";
 
 export default {
   title: "Badge",

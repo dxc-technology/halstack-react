@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DxcBulletedList from "./BulletedList";
-import { Meta, StoryObj } from "@storybook/react/*";
+import { Meta, StoryObj } from "@storybook/react";
 
 export default {
   title: "Bulleted List",

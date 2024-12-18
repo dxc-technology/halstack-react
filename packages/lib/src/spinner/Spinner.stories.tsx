@@ -1,3 +1,4 @@
+import { Meta, StoryObj } from "@storybook/react";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import { HalstackProvider } from "../HalstackContext";
@@ -6,7 +7,7 @@ import DxcSpinner from "./Spinner";
 export default {
   title: "Spinner",
   component: DxcSpinner,
-};
+} as Meta<typeof DxcSpinner>;
 
 const opinionatedTheme = {
   spinner: {
@@ -18,7 +19,7 @@ const opinionatedTheme = {
   },
 };
 
-export const Chromatic = () => (
+const Spinner = () => (
   <>
     <ExampleContainer>
       <Title title="With label" theme="light" level={4} />
@@ -83,42 +84,42 @@ export const Chromatic = () => (
   </>
 );
 
-export const SpinnerOverlay = () => (
+const SpinnerOverlay = () => (
   <ExampleContainer>
     <Title title="Mode overlay" theme="light" level={4} />
     <DxcSpinner mode="overlay" value={25}></DxcSpinner>
   </ExampleContainer>
 );
 
-export const SpinnerOverlayWith100 = () => (
+const SpinnerOverlay100 = () => (
   <ExampleContainer>
     <Title title="Mode overlay" theme="light" level={4} />
     <DxcSpinner mode="overlay" value={100}></DxcSpinner>
   </ExampleContainer>
 );
 
-export const SpinnerOverlayWithLabel = () => (
+const SpinnerOverlayLabel = () => (
   <ExampleContainer>
     <Title title="Mode overlay" theme="light" level={4} />
     <DxcSpinner mode="overlay" value={50} label="Label"></DxcSpinner>
   </ExampleContainer>
 );
 
-export const SpinnerOverlayWithValue = () => (
+const SpinnerOverlayValue = () => (
   <ExampleContainer>
     <Title title="Mode overlay" theme="light" level={4} />
     <DxcSpinner mode="overlay" value={50} showValue></DxcSpinner>
   </ExampleContainer>
 );
 
-export const SpinnerOverlayWithValueAndLabel = () => (
+const SpinnerOverlayValueAndLabel = () => (
   <ExampleContainer>
     <Title title="Mode overlay" theme="light" level={4} />
     <DxcSpinner mode="overlay" label="Label" value={50} showValue></DxcSpinner>
   </ExampleContainer>
 );
 
-export const SpinnerOverlayWithValueAndLabelOpinionated = () => (
+const SpinnerOverlayValueAndLabelOpinionated = () => (
   <ExampleContainer>
     <HalstackProvider theme={opinionatedTheme}>
       <Title title="Mode overlay" theme="light" level={4} />
@@ -126,3 +127,29 @@ export const SpinnerOverlayWithValueAndLabelOpinionated = () => (
     </HalstackProvider>
   </ExampleContainer>
 );
+
+type Story = StoryObj<typeof DxcSpinner>;
+
+export const Chromatic: Story = {
+  render: Spinner,
+};
+
+export const SpinnerWithOverlay: Story = {
+  render: SpinnerOverlay,
+};
+export const SpinnerOverlayWith100: Story = {
+  render: SpinnerOverlay100,
+};
+export const SpinnerOverlayWithLabel: Story = {
+  render: SpinnerOverlayLabel,
+};
+
+export const SpinnerOverlayWithValue: Story = {
+  render: SpinnerOverlayValue,
+};
+export const SpinnerOverlayWithValueAndLabel: Story = {
+  render: SpinnerOverlayValueAndLabel,
+};
+export const SpinnerOverlayWithValueAndLabelOpinionated: Story = {
+  render: SpinnerOverlayValueAndLabelOpinionated,
+};

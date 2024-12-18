@@ -8,12 +8,12 @@ import DxcContextualMenu from "./ContextualMenu";
 import SingleItem from "./SingleItem";
 import { userEvent, within } from "@storybook/test";
 import ContextualMenuContext from "./ContextualMenuContext";
-import { StoryObj } from "@storybook/react/*";
+import { Meta, StoryObj } from "@storybook/react";
 
 export default {
   title: "Contextual Menu",
   component: DxcContextualMenu,
-};
+} as Meta<typeof DxcContextualMenu>;
 
 const items = [{ label: "Item 1" }, { label: "Item 2" }, { label: "Item 3" }, { label: "Item 4" }];
 

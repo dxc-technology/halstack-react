@@ -8,11 +8,12 @@ import useTheme from "../utils/useTheme";
 import DxcDropdown from "./Dropdown";
 import DropdownMenu from "./DropdownMenu";
 import { Option } from "./types";
+import { Meta, StoryObj } from "@storybook/react";
 
 export default {
   title: "Dropdown",
   component: DxcDropdown,
-};
+} as Meta<typeof DxcDropdown>;
 
 const iconSVG = (
   <svg viewBox="0 0 24 24" height="24" width="24" fill="currentColor">
@@ -402,28 +403,38 @@ const TooltipTitle = () => (
   </ExampleContainer>
 );
 
-export const Chromatic = Dropdown.bind({});
-Chromatic.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const buttonList = canvas.getAllByRole("button");
-  await userEvent.click(buttonList[buttonList.length - 1]);
+type Story = StoryObj<typeof DxcDropdown>;
+
+export const Chromatic: Story = {
+  render: Dropdown,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const buttonList = canvas.getAllByRole("button");
+    await userEvent.click(buttonList[buttonList.length - 1]);
+  },
 };
 
-export const OpinionatedThemed = OpinionatedTheme.bind({});
-OpinionatedThemed.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const buttonList = canvas.getAllByRole("button");
-  await userEvent.click(buttonList[buttonList.length - 1]);
+export const OpinionatedThemed: Story = {
+  render: OpinionatedTheme,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const buttonList = canvas.getAllByRole("button");
+    await userEvent.click(buttonList[buttonList.length - 1]);
+  },
 };
 
-export const MenuStates = DropdownListStates.bind({});
-MenuStates.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  await userEvent.click(canvas.getAllByRole("button")[0]);
+export const MenuStates: Story = {
+  render: DropdownListStates,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await userEvent.click(canvas.getAllByRole("button")[0]);
+  },
 };
 
-export const MenuTooltip = TooltipTitle.bind({});
-MenuTooltip.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  await userEvent.hover(canvas.getByRole("button"));
+export const MenuTooltip: Story = {
+  render: TooltipTitle,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await userEvent.hover(canvas.getByRole("button"));
+  },
 };

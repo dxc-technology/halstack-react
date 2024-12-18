@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Title from "../../.storybook/components/Title";
 import DxcBleed from "./Bleed";
 import DxcFlex from "../flex/Flex";
-import { Meta, StoryObj } from "@storybook/react/*";
+import { Meta, StoryObj } from "@storybook/react";
 
 export default {
   title: "Bleed",

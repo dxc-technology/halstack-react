@@ -1,3 +1,4 @@
+import { Meta, StoryObj } from "@storybook/react";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcParagraph from "./Paragraph";
@@ -5,9 +6,9 @@ import DxcParagraph from "./Paragraph";
 export default {
   title: "Paragraph",
   component: DxcParagraph,
-};
+} as Meta<typeof DxcParagraph>;
 
-export const Chromatic = () => (
+const Paragraph = () => (
   <>
     <ExampleContainer>
       <Title title="Default Paragraph" level={4} />
@@ -24,3 +25,9 @@ export const Chromatic = () => (
     </ExampleContainer>
   </>
 );
+
+type Story = StoryObj<typeof DxcParagraph>;
+
+export const Chromatic: Story = {
+  render: Paragraph,
+};

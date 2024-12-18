@@ -1,3 +1,4 @@
+import { Meta, StoryObj } from "@storybook/react";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcHeading from "./Heading";
@@ -5,9 +6,9 @@ import DxcHeading from "./Heading";
 export default {
   title: "Heading",
   component: DxcHeading,
-};
+} as Meta<typeof DxcHeading>;
 
-export const Chromatic = () => (
+const Heading = () => (
   <>
     <Title title="Levels" theme="light" level={2} />
     <ExampleContainer>
@@ -51,3 +52,9 @@ export const Chromatic = () => (
     </ExampleContainer>
   </>
 );
+
+type Story = StoryObj<typeof DxcHeading>;
+
+export const Chromatic: Story = {
+  render: Heading,
+};

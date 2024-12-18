@@ -6,7 +6,7 @@ import { HalstackProvider } from "../HalstackContext";
 import { userEvent, within } from "@storybook/test";
 import { disabledRules } from "../../test/accessibility/rules/specific/breadcrumbs/disabledRules";
 import preview from "../../.storybook/preview";
-import { Meta, StoryObj } from "@storybook/react/*";
+import { Meta, StoryObj } from "@storybook/react";
 
 export default {
   title: "Breadcrumbs",

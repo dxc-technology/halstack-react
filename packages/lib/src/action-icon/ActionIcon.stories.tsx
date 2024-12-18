@@ -4,7 +4,7 @@ import DxcActionIcon from "./ActionIcon";
 import { userEvent, within } from "@storybook/test";
 import DxcTooltip from "../tooltip/Tooltip";
 import DxcInset from "../inset/Inset";
-import { Meta, StoryObj } from "@storybook/react/*";
+import { Meta, StoryObj } from "@storybook/react";
 
 export default {
   title: "Action Icon ",
@@ -18,7 +18,7 @@ const iconSVG = (
   </svg>
 );
 
-export const Chromatic = () => (
+const ActionIcon = () => (
   <>
     <Title title="Default" theme="light" level={2} />
     <ExampleContainer>
@@ -66,6 +66,10 @@ const NestedTooltip = () => (
 );
 
 type Story = StoryObj<typeof DxcActionIcon>;
+
+export const Chromatic: Story = {
+  render: ActionIcon,
+};
 
 export const ActionIconTooltip: Story = {
   render: Tooltip,

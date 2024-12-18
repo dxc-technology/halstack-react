@@ -6,7 +6,7 @@ import { HalstackProvider } from "../HalstackContext";
 import DxcInset from "../inset/Inset";
 import DxcTooltip from "../tooltip/Tooltip";
 import { userEvent, within } from "@storybook/test";
-import { Meta, StoryObj } from "@storybook/react/*";
+import { Meta, StoryObj } from "@storybook/react";
 
 export default {
   title: "Button",
