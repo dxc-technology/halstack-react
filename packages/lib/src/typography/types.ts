@@ -1,6 +1,8 @@
+import { ReactNode } from "react";
+
 export type Props = {
   as?: "a" | "blockquote" | "cite" | "code" | "div" | "em" | "figcaption" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "pre" | "small" | "span" | "strong";
-  children: React.ReactNode;
+  children: ReactNode;
   color?: string;
   display?: "inline" | "block";
   fontFamily?: "Open Sans, sans-serif" | "Source Code Pro, monospace";

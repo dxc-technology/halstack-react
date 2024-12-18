@@ -1,4 +1,4 @@
-import { createContext, useMemo } from "react";
+import { createContext, ReactNode, useMemo } from "react";
 import Color from "color";
 
 type BackgroundColors = "dark" | "light";
@@ -18,7 +18,7 @@ const getColorType = (hexColor: string): BackgroundColors => {
 
 type BackgroundColorProviderPropsType = {
   color: string;
-  children: React.ReactNode;
+  children: ReactNode;
 };
 const BackgroundColorProvider = ({ color, children }: BackgroundColorProviderPropsType): JSX.Element => {
   const colorType = useMemo(() => getColorType(color), [color]);

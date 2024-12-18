@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { getMargin } from "../common/utils";
 import { spaces } from "../common/variables";
@@ -9,8 +9,8 @@ import CoreTokens from "../common/coreTokens";
 
 type TagWrapperProps = {
   condition: boolean;
-  wrapper: (_children: React.ReactNode) => JSX.Element;
-  children: React.ReactNode;
+  wrapper: (_children: ReactNode) => JSX.Element;
+  children: ReactNode;
 };
 
 const TagWrapper = ({ condition, wrapper, children }: TagWrapperProps): JSX.Element => (
@@ -35,7 +35,7 @@ const DxcTag = ({
   const colorsTheme = useTheme();
   const [isHovered, changeIsHovered] = useState(false);
 
-  const wrapperComponent = (children: React.ReactNode) => {
+  const wrapperComponent = (children: ReactNode) => {
     if (onClick) {
       return <StyledButton tabIndex={tabIndex}>{children}</StyledButton>;
     }

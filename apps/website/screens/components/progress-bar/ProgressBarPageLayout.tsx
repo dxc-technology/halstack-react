@@ -2,8 +2,9 @@ import { DxcParagraph, DxcFlex } from "@dxc-technology/halstack-react";
 import PageHeading from "@/common/PageHeading";
 import TabsPageHeading from "@/common/TabsPageLayout";
 import ComponentHeading from "@/common/ComponentHeading";
+import { ReactNode } from "react";
 
-const ProgressBarPageHeading = ({ children }: { children: React.ReactNode }) => {
+const ProgressBarPageHeading = ({ children }: { children: ReactNode }) => {
   const tabs = [
     { label: "Code", path: "/components/progress-bar" },
     { label: "Usage", path: "/components/progress-bar/usage" },

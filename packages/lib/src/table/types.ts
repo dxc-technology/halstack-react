@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import { Margin, SVG, Space } from "../common/utils";
 import { Option } from "../dropdown/types";
 
@@ -29,7 +30,7 @@ type Props = {
    * The center section of the table. Can be used to render custom
    * content in this area.
    */
-  children: React.ReactNode;
+  children: ReactNode;
   /**
    * Size of the margin to be applied to the component ('xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge').
    * You can pass an object with 'top', 'bottom', 'left' and 'right' properties in order to specify different margin sizes.

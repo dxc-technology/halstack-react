@@ -7,7 +7,7 @@ import { TabPropsLegacy } from "./types";
 const Tab = forwardRef(
   (
     { active, tab, tabIndex, hasLabelAndIcon, iconPosition, onClick, onMouseEnter, onMouseLeave }: TabPropsLegacy,
-    ref: React.Ref<HTMLButtonElement>
+    ref: Ref<HTMLButtonElement>
   ): JSX.Element => (
     <TabContainer
       role="tab"

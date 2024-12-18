@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { KeyboardEvent, MutableRefObject, ReactNode, useCallback, useEffect, useRef, useState } from "react";
 
 const not = {
   negTabIndex: ':not([tabindex^="-"])',
@@ -59,7 +59,7 @@ const radixPortalContains = (activeElement: Node): boolean => {
  * @param ref: React.MutableRefObject<HTMLDivElement>
  * @returns
  */
-const useFocusableElements = (ref: React.MutableRefObject<HTMLDivElement | null>): HTMLElement[] | null => {
+const useFocusableElements = (ref: MutableRefObject<HTMLDivElement | null>): HTMLElement[] | null => {
   const [focusableElements, setFocusableElements] = useState<HTMLElement[] | null>(null);
 
   useEffect(() => {
@@ -87,7 +87,7 @@ const useFocusableElements = (ref: React.MutableRefObject<HTMLDivElement | null>
  * @param children: React.ReactNode
  * @returns
  */
-const FocusLock = ({ children }: { children: React.ReactNode }): JSX.Element => {
+const FocusLock = ({ children }: { children: ReactNode }): JSX.Element => {
   const childrenContainerRef = useRef<HTMLDivElement | null>(null);
   const focusableElements = useFocusableElements(childrenContainerRef);
   const initialFocus = useRef(false);
@@ -106,7 +106,7 @@ const FocusLock = ({ children }: { children: React.ReactNode }): JSX.Element => 
       .some((element) => attemptFocus(element));
   };
 
-  const focusLock = (event: React.KeyboardEvent<HTMLDivElement>) => {
+  const focusLock = (event: KeyboardEvent<HTMLDivElement>) => {
     if (event.key === "Tab" && focusableElements?.length === 0) event.preventDefault();
   };
 

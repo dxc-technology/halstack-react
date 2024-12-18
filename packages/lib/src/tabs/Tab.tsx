@@ -1,4 +1,4 @@
-import { forwardRef, Ref, useContext, useEffect, useRef } from "react";
+import { forwardRef, KeyboardEvent, MutableRefObject, Ref, useContext, useEffect, useRef } from "react";
 import styled from "styled-components";
 import DxcBadge from "../badge/Badge";
 import DxcIcon from "../icon/Icon";
@@ -53,7 +53,7 @@ const DxcTab = forwardRef(
       }
     }, [active, label]);
 
-    const handleOnKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
+    const handleOnKeyDown = (event: KeyboardEvent<HTMLButtonElement>) => {
       switch (event.key) {
         case " ":
         case "Enter":
@@ -82,7 +82,7 @@ const DxcTab = forwardRef(
               if (typeof ref === "function") {
                 ref(anchorRef);
               } else {
-                const currentRef = ref as React.MutableRefObject<HTMLButtonElement | null>;
+                const currentRef = ref as MutableRefObject<HTMLButtonElement | null>;
                 currentRef.current = anchorRef;
               }
             }

@@ -1,4 +1,4 @@
-import { useContext, useMemo } from "react";
+import { createContext, useContext, useMemo } from "react";
 import styled from "styled-components";
 import TypographyPropsTypes, { TypographyContextProps } from "./types";
 
@@ -20,7 +20,7 @@ const Typography = styled.span<TypographyPropsTypes>`
   overflow: ${({ textOverflow }) => (textOverflow !== "unset" ? "hidden" : "visible")};
 `;
 
-const TypographyContext = React.createContext<TypographyContextProps | null>(null);
+const TypographyContext = createContext<TypographyContextProps | null>(null);
 
 export default function DxcTypography({
   as,

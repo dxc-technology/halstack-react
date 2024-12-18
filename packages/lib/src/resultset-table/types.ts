@@ -1,10 +1,11 @@
+import { ReactNode } from "react";
 import { Margin, Space } from "../common/utils";
 
 export type Column = {
   /**
    * Column display value.
    */
-  displayValue: React.ReactNode;
+  displayValue: ReactNode;
   /**
    * Boolean value to indicate whether the column is sortable or not.
    */
@@ -15,7 +16,7 @@ type Cell = {
   /**
    * Value to be displayed in the cell.
    */
-  displayValue: React.ReactNode;
+  displayValue: ReactNode;
   /**
    * Value to be used when sorting the table by that
    * column. If not indicated displayValue will be used for sorting.

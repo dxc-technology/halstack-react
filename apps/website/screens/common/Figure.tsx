@@ -1,9 +1,10 @@
 import styled from "styled-components";
 import { DxcFlex } from "@dxc-technology/halstack-react";
+import { ReactNode } from "react";
 
 type DocImageProps = {
-  children: React.ReactNode;
-  caption: string | React.ReactNode;
+  children: ReactNode;
+  caption: string | ReactNode;
 };
 const Figure = ({ caption, children }: DocImageProps) => {
   return (

@@ -1,3 +1,4 @@
+import { CSSProperties, ReactNode } from "react";
 import { Margin, SVG, Space } from "../common/utils";
 
 type Action = {
@@ -168,7 +169,7 @@ export type SuggestionsProps = {
   searchHasErrors: boolean;
   isSearching: boolean;
   suggestionOnClick: (suggestion: string) => void;
-  styles: React.CSSProperties;
+  styles: CSSProperties;
 };
 
 /**
@@ -191,8 +192,8 @@ export type SuggestionProps = {
 
 export type AutosuggestWrapperProps = {
   condition: boolean;
-  wrapper: (children: React.ReactNode) => JSX.Element;
-  children: React.ReactNode;
+  wrapper: (children: ReactNode) => JSX.Element;
+  children: ReactNode;
 };
 
 export default Props;

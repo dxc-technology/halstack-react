@@ -1,3 +1,4 @@
+import { CSSProperties, KeyboardEvent } from "react";
 import { Margin, SVG, Space } from "../common/utils";
 
 type Size = "small" | "medium" | "large" | "fillParent" | "fitContent";
@@ -83,9 +84,9 @@ export type DropdownMenuProps = {
   iconsPosition: "before" | "after";
   visualFocusIndex: number;
   menuItemOnClick: (value: string) => void;
-  onKeyDown: (event: React.KeyboardEvent<HTMLUListElement>) => void;
+  onKeyDown: (event: KeyboardEvent<HTMLUListElement>) => void;
   options: Option[];
-  styles: React.CSSProperties;
+  styles: CSSProperties;
 };
 
 export type DropdownMenuItemProps = {

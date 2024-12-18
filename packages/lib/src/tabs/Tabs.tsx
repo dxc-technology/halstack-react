@@ -1,6 +1,7 @@
 import {
   Children,
   isValidElement,
+  KeyboardEvent,
   MutableRefObject,
   ReactElement,
   useCallback,
@@ -154,7 +155,7 @@ const DxcTabs = ({
     setCountClick(moveX);
   };
 
-  const handleOnKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+  const handleOnKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
     const activeTab = childrenArray.findIndex((child: ReactElement) => child.props.label === activeTabLabel);
     switch (event.key) {
       case "Left":

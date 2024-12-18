@@ -1,4 +1,4 @@
-import { forwardRef } from "react";
+import { forwardRef, Ref } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables";
 import DxcIcon from "../icon/Icon";
@@ -99,7 +99,7 @@ const DxcLink = forwardRef(
       children,
       ...otherProps
     }: LinkProps,
-    ref: React.Ref<HTMLAnchorElement>
+    ref: Ref<HTMLAnchorElement>
   ): JSX.Element => {
     const colorsTheme = useTheme();
 

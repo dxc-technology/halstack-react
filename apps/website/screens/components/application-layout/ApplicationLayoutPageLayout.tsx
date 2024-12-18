@@ -2,8 +2,9 @@ import { DxcParagraph, DxcFlex } from "@dxc-technology/halstack-react";
 import PageHeading from "@/common/PageHeading";
 import TabsPageHeading from "@/common/TabsPageLayout";
 import ComponentHeading from "@/common/ComponentHeading";
+import { ReactNode } from "react";
 
-const ApplicationLayoutPageHeading = ({ children }: { children: React.ReactNode }) => {
+const ApplicationLayoutPageHeading = ({ children }: { children: ReactNode }) => {
   const tabs = [
     { label: "Code", path: "/components/application-layout" },
     { label: "Usage", path: "/components/application-layout/usage" },

@@ -1,3 +1,4 @@
+import { CSSProperties } from "react";
 import { Margin, SVG, Space } from "../common/utils";
 
 export type ListOptionGroupType = {
@@ -186,7 +187,7 @@ export type ListboxProps = {
   optionalItem: ListOptionType;
   searchable: boolean;
   handleOptionOnClick: (option: ListOptionType) => void;
-  styles: React.CSSProperties;
+  styles: CSSProperties;
 };
 
 /**

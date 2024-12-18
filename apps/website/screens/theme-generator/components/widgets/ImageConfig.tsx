@@ -1,16 +1,16 @@
 import { DxcFlex } from "@dxc-technology/halstack-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, MouseEvent, ChangeEvent } from "react";
 import styled from "styled-components";
 import ThemeInputWidgetProps from "./common/types";
 
 const ImageConfig = ({ propertyName, propertyValue, onChangeCustomTheme }: ThemeInputWidgetProps): JSX.Element => {
   const [logoImage, setLogoImage] = useState(propertyValue);
 
-  const clickToUpload = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const clickToUpload = (event: MouseEvent<HTMLButtonElement>) => {
     const input = event.currentTarget.previousSibling as HTMLInputElement;
     input.click();
   };
-  const upload = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const upload = (event: ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
     if (files && files[0]) {
       const url = URL.createObjectURL(files[0]);
