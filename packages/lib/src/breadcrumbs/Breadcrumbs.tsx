@@ -43,6 +43,7 @@ const DxcBreadcrumbs = ({
                   onSelectOption={handleOnSelectOption}
                   options={items
                     .slice(showRoot ? 1 : 0, -1)
+                    // TODO: Remove type assertion
                     .map(({ label, href }) => ({ label, value: href }) as Option)}
                 />
               </HalstackProvider>

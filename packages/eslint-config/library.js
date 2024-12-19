@@ -66,12 +66,11 @@ module.exports = {
   ],
   rules: {
     curly: ["warn", "all"],
-    "no-plusplus": ["error", { allowForLoopAfterthoughts: true }],
     "no-use-before-define": [
       "error",
       {
         functions: false,
-        // TODO: Put Styled-Components variables in a separate file and import them
+        // TODO: Move Styled-Components to be defined before using
         variables: false,
       },
     ],
@@ -119,6 +118,7 @@ module.exports = {
     "react-hooks/exhaustive-deps": "off",
     "@typescript-eslint/no-explicit-any": "off",
     "no-shadow": "off",
+    // "no-plusplus": ["error", { allowForLoopAfterthoughts: true }],
     "no-plusplus": "off",
     // TODO: REMOVE CHANGES CAUSED BY THIS
     "react/function-component-definition": "off",

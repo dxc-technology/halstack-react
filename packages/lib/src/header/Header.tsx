@@ -117,17 +117,17 @@ const DxcHeader = ({
             <ChildContainer>
               <HamburgerTrigger tabIndex={tabIndex} onClick={handleMenu} aria-label="Show options">
                 <DxcIcon icon="menu" />
-                {translatedLabels?.header?.hamburguerTitle}
+                {translatedLabels.header.hamburguerTitle}
               </HamburgerTrigger>
             </ChildContainer>
             <ResponsiveMenu hasVisibility={isMenuVisible}>
               <DxcFlex justifyContent="space-between" alignItems="center">
                 <ResponsiveLogoContainer>{headerResponsiveLogo}</ResponsiveLogoContainer>
-                <Tooltip label={translatedLabels?.header?.closeIcon}>
+                <Tooltip label={translatedLabels.header.closeIcon}>
                   <CloseAction
                     tabIndex={tabIndex}
                     onClick={handleMenu}
-                    aria-label={translatedLabels?.header?.closeIcon}
+                    aria-label={translatedLabels.header.closeIcon}
                   >
                     <DxcIcon icon="close" />
                   </CloseAction>

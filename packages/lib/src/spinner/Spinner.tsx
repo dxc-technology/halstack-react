@@ -10,7 +10,7 @@ const DxcSpinner = ({ label, value, showValue = false, mode = "large", margin }:
   const determinated = useMemo(() => value != null && value >= 0 && value <= 100, [value]);
 
   return (
-    <ThemeProvider theme={colorsTheme?.spinner}>
+    <ThemeProvider theme={colorsTheme.spinner}>
       <DXCSpinner margin={margin} mode={mode}>
         <SpinnerContainer mode={mode}>
           {mode === "overlay" && <BackOverlay />}

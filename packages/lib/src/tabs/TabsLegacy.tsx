@@ -224,7 +224,7 @@ const DxcTabs = ({
     (tabs != null && activeTabIndex !== undefined && activeTabIndex >= 0 && !!tabs[activeTabIndex]?.isDisabled);
 
   return (
-    <ThemeProvider theme={colorsTheme?.tabs}>
+    <ThemeProvider theme={colorsTheme.tabs}>
       <TabsContainer margin={margin}>
         <Underline />
         <Tabs hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
@@ -232,7 +232,7 @@ const DxcTabs = ({
             onClick={scrollLeft}
             enabled={enabledIndicator}
             disabled={!scrollLeftEnabled}
-            aria-label={translatedLabels?.tabs?.scrollLeft}
+            aria-label={translatedLabels.tabs.scrollLeft}
             tabIndex={scrollLeftEnabled ? tabIndex : -1}
             minHeightTabs={minHeightTabs}
           >
@@ -277,7 +277,7 @@ const DxcTabs = ({
             onClick={scrollRight}
             enabled={enabledIndicator}
             disabled={!scrollRightEnabled}
-            aria-label={translatedLabels?.tabs?.scrollRight}
+            aria-label={translatedLabels.tabs.scrollRight}
             tabIndex={scrollRightEnabled ? tabIndex : -1}
             minHeightTabs={minHeightTabs}
           >

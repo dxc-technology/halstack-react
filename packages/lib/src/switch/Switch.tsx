@@ -53,7 +53,7 @@ const DxcSwitch = forwardRef<RefType, SwitchPropsType>(
     };
 
     return (
-      <ThemeProvider theme={colorsTheme?.switch}>
+      <ThemeProvider theme={colorsTheme.switch}>
         <SwitchContainer
           margin={margin}
           size={size}
@@ -64,7 +64,7 @@ const DxcSwitch = forwardRef<RefType, SwitchPropsType>(
         >
           {labelPosition === "before" && label && (
             <LabelContainer id={labelId} labelPosition={labelPosition} disabled={disabled} label={label}>
-              {label} {optional && <>{translatedLabels?.formFields?.optionalLabel}</>}
+              {label} {optional && <>{translatedLabels.formFields.optionalLabel}</>}
             </LabelContainer>
           )}
           <ValueInput
@@ -89,7 +89,7 @@ const DxcSwitch = forwardRef<RefType, SwitchPropsType>(
           </SwitchBase>
           {labelPosition === "after" && label && (
             <LabelContainer id={labelId} labelPosition={labelPosition} disabled={disabled} label={label}>
-              {optional && <>{translatedLabels?.formFields?.optionalLabel}</>} {label}
+              {optional && <>{translatedLabels.formFields.optionalLabel}</>} {label}
             </LabelContainer>
           )}
         </SwitchContainer>

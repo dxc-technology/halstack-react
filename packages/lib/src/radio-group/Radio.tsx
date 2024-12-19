@@ -39,7 +39,7 @@ const DxcRadio = ({
   }, [focused]);
 
   return (
-    <ThemeProvider theme={colorsTheme?.radioGroup}>
+    <ThemeProvider theme={colorsTheme.radioGroup}>
       <DxcFlex>
         <RadioContainer
           error={error}

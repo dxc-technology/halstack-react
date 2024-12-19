@@ -462,7 +462,7 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
     }, [value, innerValue, suggestions, numberInputContext]);
 
     return (
-      <ThemeProvider theme={colorsTheme?.textInput}>
+      <ThemeProvider theme={colorsTheme.textInput}>
         <TextInputContainer margin={margin} size={size} ref={ref}>
           {label && (
             <Label htmlFor={inputId} disabled={disabled} hasHelperText={!!helperText}>
@@ -527,7 +527,7 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
                     onClick={handleClearActionOnClick}
                     icon="close"
                     tabIndex={tabIndex}
-                    title={translatedLabels.textInput.clearFieldActionTitle ?? ""}
+                    title={translatedLabels.textInput.clearFieldActionTitle}
                   />
                 )}
                 {numberInputContext?.typeNumber === "number" && (
@@ -537,7 +537,7 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
                       icon="remove"
                       tabIndex={tabIndex}
                       ref={actionRef}
-                      title={translatedLabels.numberInput.decrementValueTitle ?? ""}
+                      title={translatedLabels.numberInput.decrementValueTitle}
                       disabled={disabled}
                     />
                     <DxcActionIcon
@@ -545,7 +545,7 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
                       icon="add"
                       tabIndex={tabIndex}
                       ref={actionRef}
-                      title={translatedLabels.numberInput.incrementValueTitle ?? ""}
+                      title={translatedLabels.numberInput.incrementValueTitle}
                       disabled={disabled}
                     />
                   </>

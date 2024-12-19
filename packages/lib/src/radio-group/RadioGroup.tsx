@@ -144,12 +144,12 @@ const DxcRadioGroup = forwardRef<RefType, RadioGroupPropsType>(
     };
 
     return (
-      <ThemeProvider theme={colorsTheme?.radioGroup}>
+      <ThemeProvider theme={colorsTheme.radioGroup}>
         <RadioGroupContainer ref={ref}>
           {label && (
             <Label id={radioGroupLabelId} helperText={helperText} disabled={disabled}>
               {label}
-              {optional && <OptionalLabel>{` ${translatedLabels?.formFields?.optionalLabel}`}</OptionalLabel>}
+              {optional && <OptionalLabel>{` ${translatedLabels.formFields.optionalLabel}`}</OptionalLabel>}
             </Label>
           )}
           {helperText && <HelperText disabled={disabled}>{helperText}</HelperText>}
@@ -171,7 +171,7 @@ const DxcRadioGroup = forwardRef<RefType, RadioGroupPropsType>(
             {innerOptions.map((option, index) => (
               <DxcRadio
                 key={`radio-${index}`}
-                label={option.label ?? ""}
+                label={option.label}
                 checked={(value ?? innerValue) === option.value}
                 onClick={() => {
                   handleOnChange(option.value);

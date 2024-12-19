@@ -15,7 +15,7 @@ const DxcHeading = ({ level = 1, text = "", as, weight, margin }: HeadingPropsTy
   };
 
   return (
-    <ThemeProvider theme={colorsTheme?.heading}>
+    <ThemeProvider theme={colorsTheme.heading}>
       <HeadingContainer margin={margin}>
         {level === 1 ? (
           <HeadingLevel1 as={checkValidAs()} weight={weight}>

@@ -126,7 +126,7 @@ const DxcDialog = ({
                   onClick={() => {
                     onCloseClick?.();
                   }}
-                  aria-label={translatedLabels?.dialog?.closeIconAriaLabel}
+                  aria-label={translatedLabels.dialog.closeIconAriaLabel}
                   tabIndex={tabIndex}
                 >
                   <DxcIcon icon="close" />

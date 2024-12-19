@@ -129,11 +129,11 @@ const DxcTextarea = forwardRef<RefType, TextareaPropsType>(
     }, [verticalGrow, value, innerValue, rows]);
 
     return (
-      <ThemeProvider theme={colorsTheme?.textarea}>
+      <ThemeProvider theme={colorsTheme.textarea}>
         <TextareaContainer margin={margin} size={size} ref={ref}>
           {label && (
             <Label htmlFor={textareaId} disabled={disabled} helperText={helperText}>
-              {label} {optional && <OptionalLabel>{translatedLabels?.formFields?.optionalLabel}</OptionalLabel>}
+              {label} {optional && <OptionalLabel>{translatedLabels.formFields.optionalLabel}</OptionalLabel>}
             </Label>
           )}
           {helperText && <HelperText disabled={disabled}>{helperText}</HelperText>}

@@ -62,7 +62,7 @@ const DxcWizard = ({
   };
 
   return (
-    <ThemeProvider theme={colorsTheme?.wizard}>
+    <ThemeProvider theme={colorsTheme.wizard}>
       <StepsContainer mode={mode} margin={margin} role="group">
         {steps.map((step, i) => (
           <StepContainer key={`step${i}`} mode={mode} lastStep={i === steps.length - 1}>

@@ -50,7 +50,7 @@ const DxcTag = ({
   };
 
   return (
-    <ThemeProvider theme={colorsTheme?.tag}>
+    <ThemeProvider theme={colorsTheme.tag}>
       <StyledDxcTag
         margin={margin}
         size={size}

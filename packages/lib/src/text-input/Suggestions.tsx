@@ -56,7 +56,7 @@ const Suggestions = ({
         ))}
       {isSearching && (
         <SuggestionsSystemMessage role="option">
-          {translatedLabels?.textInput?.searchingMessage}
+          {translatedLabels.textInput.searchingMessage}
         </SuggestionsSystemMessage>
       )}
       {searchHasErrors && (
@@ -65,7 +65,7 @@ const Suggestions = ({
             <SuggestionsErrorIcon>
               <DxcIcon icon="filled_error" />
             </SuggestionsErrorIcon>
-            {translatedLabels?.textInput?.fetchingDataErrorMessage}
+            {translatedLabels.textInput.fetchingDataErrorMessage}
           </SuggestionsError>
         </ErrorMessage>
       )}

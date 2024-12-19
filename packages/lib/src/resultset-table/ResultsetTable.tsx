@@ -119,7 +119,7 @@ const DxcResultsetTable = ({
   }, [rows.length]);
 
   return (
-    <ThemeProvider theme={colorsTheme?.table}>
+    <ThemeProvider theme={colorsTheme.table}>
       <DxcResultsetTableContainer margin={margin}>
         <DxcTable mode={mode}>
           <thead>

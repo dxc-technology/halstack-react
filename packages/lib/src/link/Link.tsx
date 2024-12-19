@@ -104,7 +104,7 @@ const DxcLink = forwardRef(
     const colorsTheme = useContext(HalstackContext);
 
     return (
-      <ThemeProvider theme={colorsTheme?.link}>
+      <ThemeProvider theme={colorsTheme.link}>
         <StyledLink
           as={onClick && !href ? "button" : "a"}
           tabIndex={tabIndex}

@@ -60,7 +60,7 @@ const DxcCheckbox = forwardRef<RefType, CheckboxPropsType>(
     };
 
     return (
-      <ThemeProvider theme={colorsTheme?.checkbox}>
+      <ThemeProvider theme={colorsTheme.checkbox}>
         <MainContainer
           disabled={disabled}
           readOnly={readOnly}

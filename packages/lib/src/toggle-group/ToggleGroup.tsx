@@ -66,7 +66,7 @@ const DxcToggleGroup = ({
   };
 
   return (
-    <ThemeProvider theme={colorsTheme?.toggleGroup}>
+    <ThemeProvider theme={colorsTheme.toggleGroup}>
       <ToggleGroup margin={margin}>
         <Label id={toggleGroupLabelId} disabled={disabled}>
           {label}

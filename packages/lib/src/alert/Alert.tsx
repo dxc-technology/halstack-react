@@ -200,7 +200,7 @@ const DxcAlert = ({
               <DxcFlex alignItems="center" gap="0.25rem">
                 <DxcActionIcon
                   icon="chevron_left"
-                  title={translatedLabels.alert.previousMessageActionTitle ?? ""}
+                  title={translatedLabels.alert.previousMessageActionTitle}
                   onClick={handlePrevOnClick}
                   disabled={currentIndex === 0}
                 />
@@ -209,7 +209,7 @@ const DxcAlert = ({
                 </NavigationText>
                 <DxcActionIcon
                   icon="chevron_right"
-                  title={translatedLabels.alert.nextMessageActionTitle ?? ""}
+                  title={translatedLabels.alert.nextMessageActionTitle}
                   onClick={handleNextOnClick}
                   disabled={currentIndex === messages.length - 1}
                 />
@@ -222,8 +222,8 @@ const DxcAlert = ({
                   icon="close"
                   title={
                     messages.length > 1
-                      ? (translatedLabels.alert.closeMessageActionTitle ?? "")
-                      : (translatedLabels.alert.closeAlertActionTitle ?? "")
+                      ? (translatedLabels.alert.closeMessageActionTitle)
+                      : (translatedLabels.alert.closeAlertActionTitle)
                   }
                   onClick={handleOnClose}
                 />

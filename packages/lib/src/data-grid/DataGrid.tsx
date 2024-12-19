@@ -256,8 +256,8 @@ const DxcDataGrid = ({
           }
           selectedRows={selectedRows}
           bottomSummaryRows={summaryRow ? [summaryRow] : undefined}
-          headerRowHeight={colorsTheme?.dataGrid?.headerRowHeight}
-          summaryRowHeight={colorsTheme?.dataGrid?.summaryRowHeight}
+          headerRowHeight={colorsTheme.dataGrid.headerRowHeight}
+          summaryRowHeight={colorsTheme.dataGrid.summaryRowHeight}
           className="fill-grid"
         />
         {showPaginator && (

@@ -19,7 +19,7 @@ const DxcChip = ({
   const colorsTheme = useContext(HalstackContext);
 
   return (
-    <ThemeProvider theme={colorsTheme?.chip}>
+    <ThemeProvider theme={colorsTheme.chip}>
       <Chip disabled={disabled} margin={margin}>
         {prefixIcon && (
           <IconContainer

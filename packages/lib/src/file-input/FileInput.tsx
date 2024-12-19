@@ -166,7 +166,7 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
     }, [value]);
 
     return (
-      <ThemeProvider theme={colorsTheme?.fileInput}>
+      <ThemeProvider theme={colorsTheme.fileInput}>
         <FileInputContainer margin={margin} ref={ref}>
           <Label htmlFor={fileInputId} disabled={disabled}>
             {label}
@@ -188,8 +188,8 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
                 label={
                   buttonLabel ??
                   (multiple
-                    ? translatedLabels?.fileInput?.multipleButtonLabelDefault
-                    : translatedLabels?.fileInput?.singleButtonLabelDefault)
+                    ? translatedLabels.fileInput.multipleButtonLabelDefault
+                    : translatedLabels.fileInput.singleButtonLabelDefault)
                 }
                 onClick={handleClick}
                 disabled={disabled}
@@ -236,7 +236,7 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
               >
                 <DxcButton
                   mode="secondary"
-                  label={buttonLabel ?? translatedLabels?.fileInput?.dropAreaButtonLabelDefault}
+                  label={buttonLabel ?? translatedLabels.fileInput.dropAreaButtonLabelDefault}
                   onClick={handleClick}
                   disabled={disabled}
                   size={{ width: "fitContent" }}
@@ -245,15 +245,15 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
                   <DropzoneLabel disabled={disabled}>
                     {dropAreaLabel ??
                       (multiple
-                        ? translatedLabels?.fileInput?.multipleDropAreaLabelDefault
-                        : translatedLabels?.fileInput?.singleDropAreaLabelDefault)}
+                        ? translatedLabels.fileInput.multipleDropAreaLabelDefault
+                        : translatedLabels.fileInput.singleDropAreaLabelDefault)}
                   </DropzoneLabel>
                 ) : (
                   <FiledropLabel disabled={disabled}>
                     {dropAreaLabel ??
                       (multiple
-                        ? translatedLabels?.fileInput?.multipleDropAreaLabelDefault
-                        : translatedLabels?.fileInput?.singleDropAreaLabelDefault)}
+                        ? translatedLabels.fileInput.multipleDropAreaLabelDefault
+                        : translatedLabels.fileInput.singleDropAreaLabelDefault)}
                   </FiledropLabel>
                 )}
               </DragDropArea>

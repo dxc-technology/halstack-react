@@ -99,7 +99,7 @@ const DxcSlider = forwardRef<RefType, SliderPropsType>(
     };
 
     return (
-      <ThemeProvider theme={colorsTheme?.slider}>
+      <ThemeProvider theme={colorsTheme.slider}>
         <Container margin={margin} size={size} ref={ref}>
           <Label id={labelId} disabled={disabled}>
             {label}

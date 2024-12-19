@@ -12,7 +12,7 @@ const DxcBulletedList = ({ children, type = "disc", icon = "" }: BulletedListPro
   const colorsTheme = useContext(HalstackContext);
 
   return (
-    <ThemeProvider theme={colorsTheme?.bulletedList}>
+    <ThemeProvider theme={colorsTheme.bulletedList}>
       <ListContainer>
         <DxcFlex direction="column" as={type === "number" ? "ol" : "ul"} gap="0.125rem">
           {Children.map(children, (child, index) => (
