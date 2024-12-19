@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables";
 import DxcIcon from "../icon/Icon";
-import useTheme from "../utils/useTheme";
+import HalstackContext from "../HalstackContext";
 import WizardPropsType, { StepProps } from "./types";
 
 const icons = {
@@ -54,7 +54,7 @@ const DxcWizard = ({
 }: WizardPropsType): JSX.Element => {
   const [innerCurrent, setInnerCurrentStep] = useState(currentStep ?? defaultCurrentStep ?? 0);
   const renderedCurrent = currentStep ?? innerCurrent;
-  const colorsTheme = useTheme();
+  const colorsTheme = useContext(HalstackContext);
 
   const handleStepClick = (newValue: number) => {
     setInnerCurrentStep(newValue);

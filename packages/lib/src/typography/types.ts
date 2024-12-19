@@ -1,7 +1,25 @@
 import { ReactNode } from "react";
 
 export type Props = {
-  as?: "a" | "blockquote" | "cite" | "code" | "div" | "em" | "figcaption" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "pre" | "small" | "span" | "strong";
+  as?:
+    | "a"
+    | "blockquote"
+    | "cite"
+    | "code"
+    | "div"
+    | "em"
+    | "figcaption"
+    | "h1"
+    | "h2"
+    | "h3"
+    | "h4"
+    | "h5"
+    | "h6"
+    | "p"
+    | "pre"
+    | "small"
+    | "span"
+    | "strong";
   children: ReactNode;
   color?: string;
   display?: "inline" | "block";
@@ -19,4 +37,4 @@ export type Props = {
 
 export default Props;
 
-export type TypographyContextProps = Omit<Props, "children">;
+export type TypographyContextProps = Required<Omit<Props, "children">>;

@@ -1,8 +1,8 @@
-import { forwardRef, useEffect, useRef, useState } from "react";
+import { forwardRef, useContext, useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import DxcTextInput from "../text-input/TextInput";
-import useTranslatedLabels from "../utils/useTranslatedLabels";
 import PasswordInputPropsType, { RefType } from "./types";
+import { HalstackLanguageContext } from "../HalstackContext";
 
 const setInputType = (type: string, element: HTMLDivElement | null) => {
   element?.getElementsByTagName("input")[0]?.setAttribute("type", type);
@@ -37,18 +37,18 @@ const DxcPasswordInput = forwardRef<RefType, PasswordInputPropsType>(
   ) => {
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
     const inputRef = useRef<HTMLDivElement | null>(null);
-    const { passwordInput } = useTranslatedLabels();
+    const { passwordInput } = useContext(HalstackLanguageContext);
 
     useEffect(() => {
       (() => {
         if (isPasswordVisible) {
           setInputType("text", inputRef.current);
-          if (passwordInput?.inputHidePasswordTitle) {
+          if (passwordInput.inputHidePasswordTitle) {
             setAriaAttributes("true", passwordInput.inputHidePasswordTitle, inputRef.current);
           }
         } else {
           setInputType("password", inputRef.current);
-          if (passwordInput?.inputShowPasswordTitle) {
+          if (passwordInput.inputShowPasswordTitle) {
             setAriaAttributes("false", passwordInput.inputShowPasswordTitle, inputRef.current);
           }
         }
@@ -67,7 +67,7 @@ const DxcPasswordInput = forwardRef<RefType, PasswordInputPropsType>(
               setIsPasswordVisible((isPasswordCurrentlyVisible) => !isPasswordCurrentlyVisible);
             },
             icon: isPasswordVisible ? "Visibility_Off" : "Visibility",
-            title: isPasswordVisible ? passwordInput?.inputHidePasswordTitle : passwordInput?.inputShowPasswordTitle,
+            title: isPasswordVisible ? passwordInput.inputHidePasswordTitle : passwordInput.inputShowPasswordTitle,
           }}
           error={error}
           clearable={clearable}

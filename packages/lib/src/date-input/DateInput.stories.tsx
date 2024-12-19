@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import { fireEvent, screen, userEvent, within } from "@storybook/test";
 import dayjs from "dayjs";
 import { ThemeProvider } from "styled-components";
@@ -7,7 +8,7 @@ import preview from "../../.storybook/preview";
 import { disabledRules } from "../../test/accessibility/rules/specific/date-input/disabledRules";
 import DxcContainer from "../container/Container";
 import { HalstackProvider } from "../HalstackContext";
-import useTheme from "../utils/useTheme";
+import HalstackContext from "../HalstackContext";
 import Calendar from "./Calendar";
 import DxcDateInput from "./DateInput";
 import DxcDatePicker from "./DatePicker";
@@ -168,7 +169,7 @@ const YearPickerOpinionatedTheme = () => (
 );
 
 const DatePickerButtonStates = () => {
-  const colorsTheme: any = useTheme();
+  const colorsTheme: any = useContext(HalstackContext);
   return (
     <>
       <ExampleContainer>
@@ -213,7 +214,7 @@ const DatePickerButtonStates = () => {
 };
 
 const YearPickerButtonStates = () => {
-  const colorsTheme: any = useTheme();
+  const colorsTheme: any = useContext(HalstackContext);
   return (
     <>
       <ThemeProvider theme={colorsTheme}>
@@ -247,7 +248,7 @@ const YearPickerButtonStates = () => {
 };
 
 const DatePickerToday = () => {
-  const colorsTheme: any = useTheme();
+  const colorsTheme: any = useContext(HalstackContext);
   return (
     <ThemeProvider theme={colorsTheme}>
       <ExampleContainer>
@@ -273,7 +274,7 @@ const DatePickerToday = () => {
 };
 
 const Tooltip = () => {
-  const colorsTheme: any = useTheme();
+  const colorsTheme: any = useContext(HalstackContext);
   return (
     <ThemeProvider theme={colorsTheme}>
       <Title title="Default tooltip" theme="light" level={2} />

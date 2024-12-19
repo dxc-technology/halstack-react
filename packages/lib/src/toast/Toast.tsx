@@ -1,4 +1,4 @@
-import { memo, useState } from "react";
+import { memo, useContext, useState } from "react";
 import styled, { keyframes } from "styled-components";
 import CoreTokens from "../common/coreTokens";
 import DxcActionIcon from "../action-icon/ActionIcon";
@@ -9,7 +9,7 @@ import DxcSpinner from "../spinner/Spinner";
 import { HalstackProvider } from "../HalstackContext";
 import ToastPropsType from "./types";
 import useTimeout from "../utils/useTimeout";
-import useTranslatedLabels from "../utils/useTranslatedLabels";
+import { HalstackLanguageContext } from "../HalstackContext";
 import { responsiveSizes } from "../common/variables";
 
 const fadeInUp = keyframes`
@@ -138,7 +138,7 @@ const DxcToast = ({
   semantic,
 }: ToastPropsType) => {
   const [isClosing, setIsClosing] = useState(false);
-  const translatedLabels = useTranslatedLabels();
+  const translatedLabels = useContext(HalstackLanguageContext);
 
   const clearClosingAnimationTimer = useTimeout(
     () => {
@@ -183,7 +183,7 @@ const DxcToast = ({
               onClear();
             }, 300);
           }}
-          title={translatedLabels?.toast?.clearToastActionTitle ?? ""}
+          title={translatedLabels.toast.clearToastActionTitle}
         />
       </DxcFlex>
     </Toast>

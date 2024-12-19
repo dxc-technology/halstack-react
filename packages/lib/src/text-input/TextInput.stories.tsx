@@ -1,14 +1,13 @@
+import { useContext } from "react";
 import { userEvent, within } from "@storybook/test";
 import { ThemeProvider } from "styled-components";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
-import { HalstackProvider } from "../HalstackContext";
+import HalstackContext, { HalstackProvider } from "../HalstackContext";
 import DxcFlex from "../flex/Flex";
-import useTheme from "../utils/useTheme";
 import Suggestions from "./Suggestions";
 import DxcTextInput from "./TextInput";
 import { Meta, StoryObj } from "@storybook/react";
-
 export default {
   title: "Text Input",
   component: DxcTextInput,
@@ -342,7 +341,7 @@ const TextInput = () => (
 );
 
 const AutosuggestListbox = () => {
-  const colorsTheme: any = useTheme();
+  const colorsTheme: any = useContext(HalstackContext);
 
   return (
     <ThemeProvider theme={colorsTheme.textInput}>

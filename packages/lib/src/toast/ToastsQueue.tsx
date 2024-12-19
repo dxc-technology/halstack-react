@@ -1,9 +1,9 @@
-import { createContext, useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { createPortal } from "react-dom";
 import styled from "styled-components";
 import CoreTokens from "../common/coreTokens";
 import DxcToast from "./Toast";
-import { QueuedToast, Semantic, ToastContextType, ToastsQueuePropsType, ToastType } from "./types";
+import { QueuedToast, Semantic, ToastsQueuePropsType, ToastType } from "./types";
 import { responsiveSizes } from "../common/variables";
 import ToastContext from "./ToastContext";
 

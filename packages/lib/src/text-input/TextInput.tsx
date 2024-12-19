@@ -20,8 +20,7 @@ import { spaces } from "../common/variables";
 import DxcFlex from "../flex/Flex";
 import DxcIcon from "../icon/Icon";
 import NumberInputContext from "../number-input/NumberInputContext";
-import useTheme from "../utils/useTheme";
-import useTranslatedLabels from "../utils/useTranslatedLabels";
+import HalstackContext, { HalstackLanguageContext } from "../HalstackContext";
 import useWidth from "../utils/useWidth";
 import Suggestions from "./Suggestions";
 import TextInputPropsType, { AutosuggestWrapperProps, RefType } from "./types";
@@ -59,7 +58,7 @@ const makeCancelable = (promise: Promise<string[]>) => {
 };
 
 const hasSuggestions = (suggestions: TextInputPropsType["suggestions"]) =>
-  typeof suggestions === "function" || (suggestions ? suggestions?.length > 0 : false);
+  typeof suggestions === "function" || (suggestions ? suggestions.length > 0 : false);
 
 const isRequired = (value: string, optional: boolean) => value === "" && !optional;
 
@@ -118,8 +117,8 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
     const actionRef = useRef<HTMLButtonElement | null>(null);
 
     const width = useWidth(inputContainerRef.current);
-    const colorsTheme = useTheme();
-    const translatedLabels = useTranslatedLabels();
+    const colorsTheme = useContext(HalstackContext);
+    const translatedLabels = useContext(HalstackLanguageContext);
     const numberInputContext = useContext(NumberInputContext);
     // Define the wrapper function outside of the parent component
     const autosuggestWrapperFunction = (children: ReactNode) => (
@@ -166,9 +165,9 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
     );
     const getNumberErrorMessage = (checkedValue: number) =>
       numberInputContext?.minNumber != null && checkedValue < numberInputContext?.minNumber
-        ? translatedLabels?.numberInput?.valueGreaterThanOrEqualToErrorMessage?.(numberInputContext.minNumber)
+        ? translatedLabels.numberInput.valueGreaterThanOrEqualToErrorMessage?.(numberInputContext.minNumber)
         : numberInputContext?.maxNumber != null && checkedValue > numberInputContext?.maxNumber
-          ? translatedLabels?.numberInput?.valueLessThanOrEqualToErrorMessage?.(numberInputContext.maxNumber)
+          ? translatedLabels.numberInput.valueLessThanOrEqualToErrorMessage?.(numberInputContext.maxNumber)
           : undefined;
 
     const openSuggestions = () => {
@@ -193,15 +192,15 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
       if (isRequired(formattedValue, optional)) {
         onChange?.({
           value: formattedValue,
-          error: translatedLabels?.formFields?.requiredValueErrorMessage,
+          error: translatedLabels.formFields.requiredValueErrorMessage,
         });
       } else if (isLengthIncorrect(formattedValue, minLength, maxLength)) {
         onChange?.({
           value: formattedValue,
-          error: translatedLabels?.formFields?.lengthErrorMessage?.(minLength, maxLength),
+          error: translatedLabels.formFields.lengthErrorMessage?.(minLength, maxLength),
         });
       } else if (patternMismatch(pattern, formattedValue)) {
-        onChange?.({ value: formattedValue, error: translatedLabels?.formFields?.formatRequestedErrorMessage });
+        onChange?.({ value: formattedValue, error: translatedLabels.formFields.formatRequestedErrorMessage });
       } else if (
         numberInputContext?.typeNumber === "number" &&
         isNumberIncorrect(Number(newValue), numberInputContext?.minNumber, numberInputContext?.maxNumber)
@@ -290,14 +289,14 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
       closeSuggestions();
 
       if (isRequired(event.target.value, optional)) {
-        onBlur?.({ value: event.target.value, error: translatedLabels?.formFields?.requiredValueErrorMessage });
+        onBlur?.({ value: event.target.value, error: translatedLabels.formFields.requiredValueErrorMessage });
       } else if (isLengthIncorrect(event.target.value, minLength, maxLength)) {
         onBlur?.({
           value: event.target.value,
-          error: translatedLabels?.formFields?.lengthErrorMessage?.(minLength, maxLength),
+          error: translatedLabels.formFields.lengthErrorMessage?.(minLength, maxLength),
         });
       } else if (patternMismatch(pattern, event.target.value)) {
-        onBlur?.({ value: event.target.value, error: translatedLabels?.formFields?.formatRequestedErrorMessage });
+        onBlur?.({ value: event.target.value, error: translatedLabels.formFields.formatRequestedErrorMessage });
       } else if (
         numberInputContext?.typeNumber === "number" &&
         isNumberIncorrect(Number(event.target.value), numberInputContext?.minNumber, numberInputContext?.maxNumber)
@@ -445,7 +444,7 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
           cancelablePromise.cancel();
         };
       }
-      if (suggestions && suggestions?.length > 0) {
+      if (suggestions && suggestions.length > 0) {
         changeFilteredSuggestions(
           suggestions.filter((suggestion) => suggestion.toUpperCase().startsWith((value ?? innerValue).toUpperCase()))
         );
@@ -463,11 +462,11 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
     }, [value, innerValue, suggestions, numberInputContext]);
 
     return (
-      <ThemeProvider theme={colorsTheme?.textInput}>
+      <ThemeProvider theme={colorsTheme.textInput}>
         <TextInputContainer margin={margin} size={size} ref={ref}>
           {label && (
             <Label htmlFor={inputId} disabled={disabled} hasHelperText={!!helperText}>
-              {label} {optional && <OptionalLabel>{translatedLabels?.formFields?.optionalLabel}</OptionalLabel>}
+              {label} {optional && <OptionalLabel>{translatedLabels.formFields.optionalLabel}</OptionalLabel>}
             </Label>
           )}
           {helperText && <HelperText disabled={disabled}>{helperText}</HelperText>}
@@ -528,7 +527,7 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
                     onClick={handleClearActionOnClick}
                     icon="close"
                     tabIndex={tabIndex}
-                    title={translatedLabels?.textInput?.clearFieldActionTitle ?? ""}
+                    title={translatedLabels.textInput.clearFieldActionTitle ?? ""}
                   />
                 )}
                 {numberInputContext?.typeNumber === "number" && (
@@ -538,7 +537,7 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
                       icon="remove"
                       tabIndex={tabIndex}
                       ref={actionRef}
-                      title={translatedLabels?.numberInput?.decrementValueTitle ?? ""}
+                      title={translatedLabels.numberInput.decrementValueTitle ?? ""}
                       disabled={disabled}
                     />
                     <DxcActionIcon
@@ -546,7 +545,7 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
                       icon="add"
                       tabIndex={tabIndex}
                       ref={actionRef}
-                      title={translatedLabels?.numberInput?.incrementValueTitle ?? ""}
+                      title={translatedLabels.numberInput.incrementValueTitle ?? ""}
                       disabled={disabled}
                     />
                   </>

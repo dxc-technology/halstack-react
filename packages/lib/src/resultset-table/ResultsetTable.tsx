@@ -1,11 +1,11 @@
-import { ReactNode, useEffect, useMemo, useRef, useState } from "react";
+import { ReactNode, useContext, useEffect, useMemo, useRef, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import CoreTokens from "../common/coreTokens";
 import { getMargin } from "../common/utils";
 import { spaces } from "../common/variables";
 import DxcPaginator from "../paginator/Paginator";
 import DxcTable, { DxcActionsCell } from "../table/Table";
-import useTheme from "../utils/useTheme";
+import HalstackContext from "../HalstackContext";
 import icons from "./Icons";
 import ResultsetTablePropsType, { Column, Row } from "./types";
 
@@ -16,8 +16,8 @@ const isDateType = (value: ReactNode | Date): boolean => value instanceof Date;
 
 const sortArray = (index: number, order: "ascending" | "descending", resultset: { id: string; cells: Row }[]) =>
   resultset.slice().sort((element1, element2) => {
-    const sortValueA = normalizeSortValue(element1?.cells[index]?.sortValue || element1?.cells[index]?.displayValue);
-    const sortValueB = normalizeSortValue(element2?.cells[index]?.sortValue || element2?.cells[index]?.displayValue);
+    const sortValueA = normalizeSortValue(element1.cells[index]?.sortValue || element1.cells[index]?.displayValue);
+    const sortValueB = normalizeSortValue(element2.cells[index]?.sortValue || element2.cells[index]?.displayValue);
     let comparison = 0;
     if (sortValueA != null && sortValueB != null) {
       if (typeof sortValueA === "object" && !isDateType(sortValueA)) {
@@ -61,7 +61,7 @@ const DxcResultsetTable = ({
   tabIndex = 0,
   mode = "default",
 }: ResultsetTablePropsType): JSX.Element => {
-  const colorsTheme = useTheme();
+  const colorsTheme = useContext(HalstackContext);
   const [page, changePage] = useState(1);
   const [sortColumnIndex, changeSortColumnIndex] = useState(-1);
   const [sortOrder, changeSortOrder] = useState<"ascending" | "descending">("ascending");
@@ -119,7 +119,7 @@ const DxcResultsetTable = ({
   }, [rows.length]);
 
   return (
-    <ThemeProvider theme={colorsTheme?.table}>
+    <ThemeProvider theme={colorsTheme.table}>
       <DxcResultsetTableContainer margin={margin}>
         <DxcTable mode={mode}>
           <thead>

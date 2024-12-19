@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import { userEvent, within } from "@storybook/test";
 import { ThemeProvider } from "styled-components";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
@@ -5,8 +6,7 @@ import Title from "../../.storybook/components/Title";
 import preview from "../../.storybook/preview";
 import { disabledRules } from "../../test/accessibility/rules/specific/select/disabledRules";
 import DxcFlex from "../flex/Flex";
-import { HalstackProvider } from "../HalstackContext";
-import useTheme from "../utils/useTheme";
+import HalstackContext, { HalstackProvider } from "../HalstackContext";
 import Listbox from "./Listbox";
 import DxcSelect from "./Select";
 import { Meta, StoryObj } from "@storybook/react";
@@ -392,7 +392,7 @@ const Opinionated = () => (
 );
 
 const SelectListbox = () => {
-  const colorsTheme = useTheme();
+  const colorsTheme = useContext(HalstackContext);
 
   return (
     <ThemeProvider theme={colorsTheme.select}>
@@ -643,7 +643,7 @@ const TooltipValue = () => (
 );
 
 const TooltipOption = () => {
-  const colorsTheme = useTheme();
+  const colorsTheme = useContext(HalstackContext);
 
   return (
     <ThemeProvider theme={colorsTheme.select}>

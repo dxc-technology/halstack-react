@@ -1,10 +1,10 @@
+import { useContext } from "react";
 import { userEvent, within } from "@storybook/test";
 import { ThemeProvider } from "styled-components";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
-import DxcFlex from "../flex/Flex";
 import { HalstackProvider } from "../HalstackContext";
-import useTheme from "../utils/useTheme";
+import HalstackContext from "../HalstackContext";
 import DxcDropdown from "./Dropdown";
 import DropdownMenu from "./DropdownMenu";
 import { Option } from "./types";
@@ -240,7 +240,7 @@ const Dropdown = () => (
 );
 
 const DropdownListStates = () => {
-  const colorsTheme: any = useTheme();
+  const colorsTheme: any = useContext(HalstackContext);
 
   return (
     <>

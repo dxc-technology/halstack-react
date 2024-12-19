@@ -1,6 +1,6 @@
-import { Children, KeyboardEvent, ReactElement, ReactNode, useEffect, useMemo, useRef, useState } from "react";
+import { Children, KeyboardEvent, ReactElement, ReactNode, useContext, useEffect, useMemo, useRef, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import useTheme from "../utils/useTheme";
+import HalstackContext from "../HalstackContext";
 import NavTabsPropsType from "./types";
 import DxcTab from "./Tab";
 import NavTabsContext from "./NavTabsContext";
@@ -49,7 +49,7 @@ const DxcNavTabs = ({ iconPosition = "top", tabIndex = 0, children }: NavTabsPro
   const [innerFocusIndex, setInnerFocusIndex] = useState<number | null>(null);
   const [underlineWidth, setUnderlineWidth] = useState<number | null>(null);
   const refNavTabList = useRef<HTMLDivElement | null>(null);
-  const colorsTheme = useTheme();
+  const colorsTheme = useContext(HalstackContext);
 
   const childArray = Children.toArray(children).filter(
     (child) => typeof child === "object" && "props" in child
@@ -88,7 +88,7 @@ const DxcNavTabs = ({ iconPosition = "top", tabIndex = 0, children }: NavTabsPro
   };
 
   return (
-    <ThemeProvider theme={colorsTheme?.navTabs}>
+    <ThemeProvider theme={colorsTheme.navTabs}>
       <NavTabsContainer onKeyDown={handleOnKeyDown} ref={refNavTabList} role="tablist" aria-label="Navigation tabs">
         <NavTabsContext.Provider value={contextValue}>{children}</NavTabsContext.Provider>
         <Underline underlineWidth={underlineWidth ?? 0} />

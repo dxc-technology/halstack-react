@@ -1,6 +1,6 @@
-import { ReactNode } from "react";
+import { ReactNode, useContext } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import useTheme from "../utils/useTheme";
+import HalstackContext from "../HalstackContext";
 
 const Paragraph = styled.p`
   display: ${(props) => props.theme.display};
@@ -19,7 +19,7 @@ const Paragraph = styled.p`
 `;
 
 export default function DxcParagraph({ children }: { children: ReactNode }) {
-  const colorsTheme = useTheme();
+  const colorsTheme = useContext(HalstackContext);
 
   return (
     <ThemeProvider theme={colorsTheme.paragraph}>

@@ -1,6 +1,6 @@
-import { memo, useEffect, useRef } from "react";
+import { memo, useContext, useEffect, useRef } from "react";
 import styled from "styled-components";
-import useTranslatedLabels from "../utils/useTranslatedLabels";
+import { HalstackLanguageContext } from "../HalstackContext";
 import Suggestion from "./Suggestion";
 import { SuggestionsProps } from "./types";
 import DxcIcon from "../icon/Icon";
@@ -16,7 +16,7 @@ const Suggestions = ({
   suggestionOnClick,
   styles,
 }: SuggestionsProps): JSX.Element => {
-  const translatedLabels = useTranslatedLabels();
+  const translatedLabels = useContext(HalstackLanguageContext);
   const listboxRef = useRef<HTMLUListElement | null>(null);
 
   useEffect(() => {
@@ -55,9 +55,7 @@ const Suggestions = ({
           />
         ))}
       {isSearching && (
-        <SuggestionsSystemMessage role="option">
-          {translatedLabels?.textInput?.searchingMessage}
-        </SuggestionsSystemMessage>
+        <SuggestionsSystemMessage role="option">{translatedLabels.textInput.searchingMessage}</SuggestionsSystemMessage>
       )}
       {searchHasErrors && (
         <span role="option">
@@ -65,7 +63,7 @@ const Suggestions = ({
             <SuggestionsErrorIcon>
               <DxcIcon icon="filled_error" />
             </SuggestionsErrorIcon>
-            {translatedLabels?.textInput?.fetchingDataErrorMessage}
+            {translatedLabels.textInput.fetchingDataErrorMessage}
           </SuggestionsError>
         </span>
       )}
