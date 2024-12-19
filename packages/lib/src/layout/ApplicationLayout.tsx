@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { responsiveSizes } from "../common/variables";
 import DxcFooter from "../footer/Footer";
@@ -6,10 +6,10 @@ import DxcHeader from "../header/Header";
 import DxcIcon from "../icon/Icon";
 import DxcSidenav from "../sidenav/Sidenav";
 import { SidenavContextProvider, useResponsiveSidenavVisibility } from "../sidenav/SidenavContext";
-import useTranslatedLabels from "../useTranslatedLabels";
 import { Tooltip } from "../tooltip/Tooltip";
 import ApplicationLayoutPropsType, { AppLayoutMainPropsType } from "./types";
 import { bottomLinks, findChildType, socialLinks, useResponsive, year } from "./utils";
+import { HalstackLanguageContext } from "../HalstackContext";
 
 const ApplicationLayoutContainer = styled.div<{
   isSidenavVisible: boolean;
@@ -125,7 +125,7 @@ const DxcApplicationLayout = ({
   const [isSidenavVisibleResponsive, setIsSidenavVisibleResponsive] = useState(false);
   const isResponsive = useResponsive(responsiveSizes.large);
   const ref = useRef(null);
-  const translatedLabels = useTranslatedLabels();
+  const translatedLabels = useContext(HalstackLanguageContext);
 
   const handleSidenavVisibility = () => {
     setIsSidenavVisibleResponsive((currentIsSidenavVisibleResponsive) => !currentIsSidenavVisibleResponsive);

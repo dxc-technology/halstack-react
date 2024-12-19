@@ -1,12 +1,11 @@
 import * as Popover from "@radix-ui/react-popover";
-import { ChangeEvent, FocusEvent, forwardRef, KeyboardEvent, MouseEvent, useCallback, useId, useMemo, useRef, useState } from "react";
+import { ChangeEvent, FocusEvent, forwardRef, KeyboardEvent, MouseEvent, useCallback, useContext, useId, useMemo, useRef, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables";
 import { getMargin } from "../common/utils";
 import DxcIcon from "../icon/Icon";
 import { Tooltip, TooltipWrapper } from "../tooltip/Tooltip";
-import useTheme from "../useTheme";
-import useTranslatedLabels from "../useTranslatedLabels";
+import HalstackContext, { HalstackLanguageContext } from "../HalstackContext";
 import useWidth from "../utils/useWidth";
 import Listbox from "./Listbox";
 import {
@@ -57,8 +56,8 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
     const selectSearchInputRef = useRef<HTMLInputElement | null>(null);
 
     const width = useWidth(selectRef.current);
-    const colorsTheme = useTheme();
-    const translatedLabels = useTranslatedLabels();
+    const colorsTheme = useContext(HalstackContext);
+    const translatedLabels = useContext(HalstackLanguageContext);
 
     const optionalItem = { label: placeholder, value: "" };
     const filteredOptions = useMemo(() => filterOptionsBySearchValue(options, searchValue), [options, searchValue]);
@@ -99,7 +98,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
         onChange?.({
           value: newValue as string & string[],
           ...(notOptionalCheck(newValue, multiple, optional) && {
-            error: translatedLabels?.formFields?.requiredValueErrorMessage,
+            error: translatedLabels.formFields.requiredValueErrorMessage,
           }),
         });
       }
@@ -129,7 +128,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
         if (notOptionalCheck(currentValue, multiple, optional)) {
           onBlur?.({
             value: currentValue as string & string[],
-            error: translatedLabels?.formFields?.requiredValueErrorMessage,
+            error: translatedLabels.formFields.requiredValueErrorMessage,
           });
         } else {
           onBlur?.({ value: currentValue as string & string[] });
@@ -245,7 +244,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
       if (!optional) {
         onChange?.({
           value: [] as string[] as string & string[],
-          error: translatedLabels?.formFields?.requiredValueErrorMessage,
+          error: translatedLabels.formFields.requiredValueErrorMessage,
         });
       } else {
         onChange?.({ value: [] as string[] as string & string[] });

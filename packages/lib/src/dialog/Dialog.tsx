@@ -1,10 +1,9 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { createPortal } from "react-dom";
 import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
 import { responsiveSizes } from "../common/variables";
 import DxcIcon from "../icon/Icon";
-import useTheme from "../useTheme";
-import useTranslatedLabels from "../useTranslatedLabels";
+import HalstackContext, { HalstackLanguageContext } from "../HalstackContext";
 import FocusLock from "../utils/FocusLock";
 import DialogPropsType from "./types";
 
@@ -90,8 +89,8 @@ const DxcDialog = ({
   onBackgroundClick,
   tabIndex = 0,
 }: DialogPropsType): JSX.Element => {
-  const colorsTheme = useTheme();
-  const translatedLabels = useTranslatedLabels();
+  const colorsTheme = useContext(HalstackContext);
+  const translatedLabels = useContext(HalstackLanguageContext);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {

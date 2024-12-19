@@ -1,3 +1,4 @@
+import { Meta, StoryObj } from "@storybook/react";
 import { userEvent, within } from "@storybook/test";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
@@ -20,7 +21,7 @@ export default {
       },
     },
   },
-};
+} as Meta<typeof DxcBreadcrumbs>;
 
 const items = [
   {
@@ -185,9 +186,13 @@ const Breadcrumbs = () => (
   </>
 );
 
-export const Chromatic = Breadcrumbs.bind({});
-Chromatic.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const dropdowns = canvas.getAllByRole("button");
-  await userEvent.click(dropdowns[2]);
+type Story = StoryObj<typeof DxcBreadcrumbs>;
+
+export const Chromatic: Story = {
+  render: Breadcrumbs,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const dropdowns = canvas.getAllByRole("button");
+    await userEvent.click(dropdowns[2]);
+  },
 };

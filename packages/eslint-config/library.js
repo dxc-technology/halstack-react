@@ -117,7 +117,15 @@ module.exports = {
     // TODO: REMOVE
     "react/no-array-index-key": "off",
     "react-hooks/exhaustive-deps": "off",
-    "@typescript-eslint/no-explicit-any": "off"
+    "@typescript-eslint/no-explicit-any": "off",
+    "no-shadow": "off",
+    "no-plusplus": "off",
+    // TODO: REMOVE CHANGES CAUSED BY THIS
+    "react/function-component-definition": "off",
+    // TODO: REMOVE CHANGES CAUSED BY THIS
+    "no-else-return": "off",
+    // TODO: REMOVE CHANGES CAUSED BY THIS
+    "consistent-return": "off",
   },
   settings: {
     "import/resolver": {

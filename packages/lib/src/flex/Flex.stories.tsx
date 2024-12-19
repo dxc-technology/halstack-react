@@ -1,3 +1,4 @@
+import { Meta, StoryObj } from "@storybook/react";
 import styled from "styled-components";
 import Title from "../../.storybook/components/Title";
 import DxcFlex from "./Flex";
@@ -5,9 +6,25 @@ import DxcFlex from "./Flex";
 export default {
   title: "Flex",
   component: DxcFlex,
-};
+} as Meta<typeof DxcFlex>;
 
-export const Chromatic = () => (
+const Container = styled.div<{ height?: string }>`
+  display: flex;
+  background: #f2eafa;
+  margin: 2.5rem;
+  ${({ height }) => (height ? `height: ${height}` : "max-height: 150px")};
+`;
+
+const Placeholder = styled.div<{ minWidth?: string; width?: string }>`
+  height: 40px;
+  min-width: ${({ minWidth }) => minWidth ?? "200px"};
+  width: ${({ width }) => width};
+  border: 1px solid #a46ede;
+  border-radius: 0.5rem;
+  background-color: #e5d5f6;
+`;
+
+const Flex = () => (
   <>
     <Title title="Default" level={4} />
     <Container>
@@ -94,18 +111,8 @@ export const Chromatic = () => (
   </>
 );
 
-const Container = styled.div<{ height?: string }>`
-  display: flex;
-  background: #f2eafa;
-  margin: 2.5rem;
-  ${({ height }) => (height ? `height: ${height}` : "max-height: 150px")};
-`;
+type Story = StoryObj<typeof DxcFlex>;
 
-const Placeholder = styled.div<{ minWidth?: string; width?: string }>`
-  height: 40px;
-  min-width: ${({ minWidth }) => minWidth ?? "200px"};
-  width: ${({ width }) => width};
-  border: 1px solid #a46ede;
-  border-radius: 0.5rem;
-  background-color: #e5d5f6;
-`;
+export const Chromatic: Story = {
+  render: Flex,
+};

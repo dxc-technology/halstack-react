@@ -1,8 +1,7 @@
 import { DxcFlex } from "@dxc-technology/halstack-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, MouseEvent, ChangeEvent } from "react";
 import styled from "styled-components";
 import ThemeInputWidgetProps from "./common/types";
-import { MouseEvent, ChangeEvent } from "react";
 
 const ImageConfig = ({ propertyName, propertyValue, onChangeCustomTheme }: ThemeInputWidgetProps): JSX.Element => {
   const [logoImage, setLogoImage] = useState(propertyValue);
@@ -12,10 +11,13 @@ const ImageConfig = ({ propertyName, propertyValue, onChangeCustomTheme }: Theme
     input.click();
   };
   const upload = (event: ChangeEvent<HTMLInputElement>) => {
-    const files = event.target.files as FileList;
-    const url = URL.createObjectURL(files[0]!);
-    onChangeCustomTheme(propertyName, url);
-    setLogoImage(url);
+    const files = event.target.files;
+    if (files && files[0]) {
+      const url = URL.createObjectURL(files[0]);
+      onChangeCustomTheme(propertyName, url);
+      setLogoImage(url);
+      return () => URL.revokeObjectURL(url);
+    }
   };
 
   useEffect(() => {

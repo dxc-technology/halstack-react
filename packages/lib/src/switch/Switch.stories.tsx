@@ -1,3 +1,4 @@
+import { Meta, StoryObj } from "@storybook/react";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import { HalstackProvider } from "../HalstackContext";
 import disabledRules from "../../test/accessibility/rules/specific/switch/disabledRules";
@@ -18,7 +19,7 @@ export default {
       },
     },
   },
-};
+} as Meta<typeof DxcSwitch>;
 
 const opinionatedTheme = {
   switch: {
@@ -27,7 +28,7 @@ const opinionatedTheme = {
   },
 };
 
-export const Chromatic = () => (
+const Switch = () => (
   <>
     <ExampleContainer>
       <Title title="With label after" theme="light" level={4} />
@@ -146,3 +147,9 @@ export const Chromatic = () => (
     </ExampleContainer>
   </>
 );
+
+type Story = StoryObj<typeof DxcSwitch>;
+
+export const Chromatic: Story = {
+  render: Switch,
+};

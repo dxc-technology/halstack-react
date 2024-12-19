@@ -1,4 +1,4 @@
-import { forwardRef, Ref, useContext, useEffect, useRef, KeyboardEvent, MutableRefObject } from "react";
+import { forwardRef, KeyboardEvent, MutableRefObject, Ref, useContext, useEffect, useRef } from "react";
 import styled from "styled-components";
 import DxcBadge from "../badge/Badge";
 import DxcIcon from "../icon/Icon";
@@ -20,7 +20,7 @@ const DxcTab = forwardRef(
     }: TabProps,
     ref: Ref<HTMLButtonElement>
   ): JSX.Element => {
-    const tabRef = useRef<HTMLButtonElement>();
+    const tabRef = useRef<HTMLButtonElement | null>(null);
 
     const {
       iconPosition = "top",

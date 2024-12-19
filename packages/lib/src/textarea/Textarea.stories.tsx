@@ -1,3 +1,4 @@
+import { Meta, StoryObj } from "@storybook/react";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import { HalstackProvider } from "../HalstackContext";
@@ -6,7 +7,7 @@ import DxcTextarea from "./Textarea";
 export default {
   title: "Textarea",
   component: DxcTextarea,
-};
+} as Meta<typeof DxcTextarea>;
 
 const opinionatedTheme = {
   textarea: {
@@ -15,7 +16,7 @@ const opinionatedTheme = {
   },
 };
 
-export const Chromatic = () => (
+const TextArea = () => (
   <>
     <ExampleContainer pseudoState="pseudo-hover">
       <Title title="Hovered" theme="light" level={4} />
@@ -171,3 +172,9 @@ export const Chromatic = () => (
     </ExampleContainer>
   </>
 );
+
+type Story = StoryObj<typeof DxcTextarea>;
+
+export const Chromatic: Story = {
+  render: TextArea,
+};

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Meta, StoryObj } from "@storybook/react";
 import { userEvent, within } from "@storybook/test";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
@@ -17,16 +18,13 @@ export default {
     a11y: {
       config: {
         rules: [
-          ...disabledRules.map((ruleId) => ({
-            id: ruleId,
-            reviewOnFail: true,
-          })),
+          ...disabledRules.map((ruleId) => ({ id: ruleId, reviewOnFail: true })),
           ...(preview?.parameters?.a11y?.config?.rules || []),
         ],
       },
     },
   },
-};
+} as Meta<typeof DxcDataGrid>;
 
 const actions: ActionsPropsType = [
   {
@@ -563,120 +561,6 @@ const childRowsPaginated: HierarchyGridRow[] = [
   },
 ] as HierarchyGridRow[];
 
-export const Chromatic = () => {
-  const [selectedRows, setSelectedRows] = useState((): Set<number | string> => new Set());
-  const [selectedChildRows, setSelectedChildRows] = useState((): Set<number | string> => new Set());
-
-  const [itemsPerPage, setItemsPerPage] = useState(5);
-  const [rowsControlled, setRowsControlled] = useState(expandableRows.slice(0, itemsPerPage));
-  const [page, setPage] = useState(0);
-
-  return (
-    <>
-      <ExampleContainer>
-        <Title title="Default" theme="light" level={4} />
-        <DxcDataGrid columns={columns} rows={expandableRows} uniqueRowId="id" />
-      </ExampleContainer>
-      <ExampleContainer>
-        <Title title="Expandable" theme="light" level={4} />
-        <DxcDataGrid columns={columns} rows={expandableRows} uniqueRowId="id" expandable />
-      </ExampleContainer>
-      <ExampleContainer>
-        <Title title="Selectable" theme="light" level={4} />
-        <DxcDataGrid
-          columns={columns}
-          rows={expandableRows}
-          uniqueRowId="task"
-          selectable
-          selectedRows={selectedRows}
-          onSelectRows={setSelectedRows}
-        />
-      </ExampleContainer>
-      <ExampleContainer>
-        <Title title="Selectable & expandable" theme="light" level={4} />
-        <DxcDataGrid
-          columns={columns}
-          rows={expandableRows}
-          uniqueRowId="task"
-          expandable
-          selectable
-          selectedRows={selectedRows}
-          onSelectRows={setSelectedRows}
-        />
-      </ExampleContainer>
-      <ExampleContainer>
-        <Title title="DataGrid with children" theme="light" level={4} />
-        <DxcDataGrid columns={childcolumns} rows={childRows} uniqueRowId="id" />
-      </ExampleContainer>
-      <ExampleContainer>
-        <Title title="DataGrid with children" theme="light" level={4} />
-        <DxcDataGrid
-          columns={childcolumns}
-          rows={childRows}
-          uniqueRowId="value"
-          selectable
-          selectedRows={selectedChildRows}
-          onSelectRows={setSelectedChildRows}
-        />
-      </ExampleContainer>
-      <ExampleContainer>
-        <Title title="Summary row" theme="light" level={4} />
-        <DxcDataGrid
-          columns={columns}
-          rows={expandableRows}
-          summaryRow={{ label: "Total", total: 100 }}
-          uniqueRowId="id"
-        />
-      </ExampleContainer>
-      <ExampleContainer>
-        <Title title="Scrollable Data Grid" theme="light" level={4} />
-        <DxcContainer height="250px">
-          <DxcDataGrid columns={columns} rows={expandableRows} uniqueRowId="id" />
-        </DxcContainer>
-      </ExampleContainer>
-      <ExampleContainer>
-        <Title title="Controlled Rows" theme="light" level={4} />
-        <DxcDataGrid
-          columns={columns}
-          rows={rowsControlled}
-          uniqueRowId="id"
-          showPaginator
-          onSort={(sortColumn) => {
-            if (sortColumn) {
-              const { columnKey, direction } = sortColumn;
-              console.log(`Sorting the column '${columnKey}' by '${direction}' direction`);
-              setRowsControlled((currentRows) => currentRows.sort((a, b) => {
-                  if (direction === "ASC") {
-                    return a[columnKey] < b[columnKey] ? -1 : a[columnKey] > b[columnKey] ? 1 : 0;
-                  } 
-                    return a[columnKey] < b[columnKey] ? 1 : a[columnKey] > b[columnKey] ? -1 : 0;
-                  
-                }));
-            } else {
-              console.log("Removed sorting criteria");
-              setRowsControlled(expandableRows.slice(page * itemsPerPage, page * itemsPerPage + itemsPerPage));
-            }
-          }}
-          onPageChange={(newPage) => {
-            const internalPage = newPage - 1;
-            setPage(internalPage);
-            setRowsControlled(
-              expandableRows.slice(internalPage * itemsPerPage, internalPage * itemsPerPage + itemsPerPage)
-            );
-          }}
-          itemsPerPage={itemsPerPage}
-          itemsPerPageOptions={[5, 10]}
-          itemsPerPageFunction={(n) => {
-            setItemsPerPage(n);
-            setRowsControlled(expandableRows.slice(0, n));
-          }}
-          totalItems={expandableRows.length}
-        />
-      </ExampleContainer>
-    </>
-  );
-};
-
 const customSortColumns: GridColumn[] = [
   {
     key: "id",
@@ -761,16 +645,132 @@ const customSortRows = [
   },
 ];
 
-export const CustomSort = () => (
+const DataGrid = () => {
+  const [selectedRows, setSelectedRows] = useState((): Set<number | string> => new Set());
+  const [selectedChildRows, setSelectedChildRows] = useState((): Set<number | string> => new Set());
+
+  const [itemsPerPage, setItemsPerPage] = useState(5);
+  const [rowsControlled, setRowsControlled] = useState(expandableRows.slice(0, itemsPerPage));
+  const [page, setPage] = useState(0);
+
+  return (
     <>
       <ExampleContainer>
         <Title title="Default" theme="light" level={4} />
-        <DxcDataGrid columns={customSortColumns} rows={customSortRows} uniqueRowId="id" />
+        <DxcDataGrid columns={columns} rows={expandableRows} uniqueRowId="id" />
+      </ExampleContainer>
+      <ExampleContainer>
+        <Title title="Expandable" theme="light" level={4} />
+        <DxcDataGrid columns={columns} rows={expandableRows} uniqueRowId="id" expandable />
+      </ExampleContainer>
+      <ExampleContainer>
+        <Title title="Selectable" theme="light" level={4} />
+        <DxcDataGrid
+          columns={columns}
+          rows={expandableRows}
+          uniqueRowId="task"
+          selectable
+          selectedRows={selectedRows}
+          onSelectRows={setSelectedRows}
+        />
+      </ExampleContainer>
+      <ExampleContainer>
+        <Title title="Selectable & expandable" theme="light" level={4} />
+        <DxcDataGrid
+          columns={columns}
+          rows={expandableRows}
+          uniqueRowId="task"
+          expandable
+          selectable
+          selectedRows={selectedRows}
+          onSelectRows={setSelectedRows}
+        />
+      </ExampleContainer>
+      <ExampleContainer>
+        <Title title="DataGrid with children" theme="light" level={4} />
+        <DxcDataGrid columns={childcolumns} rows={childRows} uniqueRowId="id" />
+      </ExampleContainer>
+      <ExampleContainer>
+        <Title title="DataGrid with children" theme="light" level={4} />
+        <DxcDataGrid
+          columns={childcolumns}
+          rows={childRows}
+          uniqueRowId="value"
+          selectable
+          selectedRows={selectedChildRows}
+          onSelectRows={setSelectedChildRows}
+        />
+      </ExampleContainer>
+      <ExampleContainer>
+        <Title title="Summary row" theme="light" level={4} />
+        <DxcDataGrid
+          columns={columns}
+          rows={expandableRows}
+          summaryRow={{ label: "Total", total: 100 }}
+          uniqueRowId="id"
+        />
+      </ExampleContainer>
+      <ExampleContainer>
+        <Title title="Scrollable Data Grid" theme="light" level={4} />
+        <DxcContainer height="250px">
+          <DxcDataGrid columns={columns} rows={expandableRows} uniqueRowId="id" />
+        </DxcContainer>
+      </ExampleContainer>
+      <ExampleContainer>
+        <Title title="Controlled Rows" theme="light" level={4} />
+        <DxcDataGrid
+          columns={columns}
+          rows={rowsControlled}
+          uniqueRowId="id"
+          showPaginator
+          onSort={(sortColumn) => {
+            if (sortColumn) {
+              const { columnKey, direction } = sortColumn;
+              console.log(`Sorting the column '${columnKey}' by '${direction}' direction`);
+              setRowsControlled((currentRows) =>
+                currentRows.sort((a, b) => {
+                  if (direction === "ASC") {
+                    return a[columnKey] < b[columnKey] ? -1 : a[columnKey] > b[columnKey] ? 1 : 0;
+                  } else {
+                    return a[columnKey] < b[columnKey] ? 1 : a[columnKey] > b[columnKey] ? -1 : 0;
+                  }
+                })
+              );
+            } else {
+              console.log("Removed sorting criteria");
+              setRowsControlled(expandableRows.slice(page * itemsPerPage, page * itemsPerPage + itemsPerPage));
+            }
+          }}
+          onPageChange={(page) => {
+            const internalPage = page - 1;
+            setPage(internalPage);
+            setRowsControlled(
+              expandableRows.slice(internalPage * itemsPerPage, internalPage * itemsPerPage + itemsPerPage)
+            );
+          }}
+          itemsPerPage={itemsPerPage}
+          itemsPerPageOptions={[5, 10]}
+          itemsPerPageFunction={(n) => {
+            setItemsPerPage(n);
+            setRowsControlled(expandableRows.slice(0, n));
+          }}
+          totalItems={expandableRows.length}
+        />
       </ExampleContainer>
     </>
   );
+};
 
-export const Paginator = () => {
+const DataGridSort = () => (
+  <>
+    <ExampleContainer>
+      <Title title="Default" theme="light" level={4} />
+      <DxcDataGrid columns={customSortColumns} rows={customSortRows} uniqueRowId="id" />
+    </ExampleContainer>
+  </>
+);
+
+const DataGridPaginator = () => {
   const [selectedRows, setSelectedRows] = useState((): Set<number | string> => new Set());
   const [selectedChildRows, setSelectedChildRows] = useState((): Set<number | string> => new Set());
   return (
@@ -871,28 +871,6 @@ const DataGridSortedChildren = () => {
   );
 };
 
-export const DataGridSortedWithChildren = DataGridSortedChildren.bind({});
-DataGridSortedWithChildren.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-
-  await userEvent.click(canvas.getAllByRole("checkbox")[0]);
-  await userEvent.click(canvas.getByText("Root Node 1"));
-  await userEvent.click(canvas.getByText("Root Node 2"));
-  await userEvent.click(canvas.getByText("Child Node 1.1"));
-  await userEvent.click(canvas.getByText("Child Node 2.1"));
-  await userEvent.click(canvas.getAllByRole("columnheader")[1]);
-  await userEvent.click(canvas.getAllByRole("columnheader")[1]);
-  await userEvent.click(canvas.getAllByRole("checkbox")[5]);
-
-  await userEvent.click(canvas.getAllByRole("checkbox")[13]);
-  await userEvent.click(canvas.getByText("Paginated Node 1"));
-  await userEvent.click(canvas.getByText("Paginated Node 2"));
-  await userEvent.click(canvas.getByText("Paginated Node 1.1"));
-  await userEvent.click(canvas.getByText("Paginated Node 2.1"));
-  await userEvent.click(canvas.getAllByRole("columnheader")[4]);
-  await userEvent.click(canvas.getAllByRole("checkbox")[18]);
-};
-
 const DataGridSortedExpandable = () => {
   const [selectedRows, setSelectedRows] = useState((): Set<number | string> => new Set());
   return (
@@ -927,17 +905,57 @@ const DataGridSortedExpandable = () => {
   );
 };
 
-export const DataGridSortedExpanded = DataGridSortedExpandable.bind({});
-DataGridSortedExpanded.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  await userEvent.click(canvas.getAllByRole("button")[0]);
-  await userEvent.click(canvas.getAllByRole("button")[1]);
-  await userEvent.click(canvas.getAllByRole("columnheader")[4]);
-  await userEvent.click(canvas.getAllByRole("button")[9]);
-  await userEvent.click(canvas.getAllByRole("button")[10]);
-  await userEvent.click(canvas.getAllByRole("columnheader")[10]);
-  await userEvent.click(canvas.getAllByRole("button")[16]);
-  await userEvent.click(canvas.getAllByRole("button")[43]);
-  await userEvent.click(canvas.getAllByRole("button")[36]);
-  await userEvent.click(canvas.getAllByRole("button")[37]);
+type Story = StoryObj<typeof DxcDataGrid>;
+
+export const Chromatic: Story = {
+  render: DataGrid,
+};
+
+export const CustomSort: Story = {
+  render: DataGridSort,
+};
+
+export const Paginator: Story = {
+  render: DataGridPaginator,
+};
+
+export const DataGridSortedWithChildren: Story = {
+  render: DataGridSortedChildren,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+
+    await userEvent.click(canvas.getAllByRole("checkbox")[0]);
+    await userEvent.click(canvas.getByText("Root Node 1"));
+    await userEvent.click(canvas.getByText("Root Node 2"));
+    await userEvent.click(canvas.getByText("Child Node 1.1"));
+    await userEvent.click(canvas.getByText("Child Node 2.1"));
+    await userEvent.click(canvas.getAllByRole("columnheader")[1]);
+    await userEvent.click(canvas.getAllByRole("columnheader")[1]);
+    await userEvent.click(canvas.getAllByRole("checkbox")[5]);
+
+    await userEvent.click(canvas.getAllByRole("checkbox")[13]);
+    await userEvent.click(canvas.getByText("Paginated Node 1"));
+    await userEvent.click(canvas.getByText("Paginated Node 2"));
+    await userEvent.click(canvas.getByText("Paginated Node 1.1"));
+    await userEvent.click(canvas.getByText("Paginated Node 2.1"));
+    await userEvent.click(canvas.getAllByRole("columnheader")[4]);
+    await userEvent.click(canvas.getAllByRole("checkbox")[18]);
+  },
+};
+
+export const DataGridSortedExpanded: Story = {
+  render: DataGridSortedExpandable,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await userEvent.click(canvas.getAllByRole("button")[0]);
+    await userEvent.click(canvas.getAllByRole("button")[1]);
+    await userEvent.click(canvas.getAllByRole("columnheader")[4]);
+    await userEvent.click(canvas.getAllByRole("button")[9]);
+    await userEvent.click(canvas.getAllByRole("button")[10]);
+    await userEvent.click(canvas.getAllByRole("columnheader")[10]);
+    await userEvent.click(canvas.getAllByRole("button")[16]);
+    await userEvent.click(canvas.getAllByRole("button")[43]);
+    await userEvent.click(canvas.getAllByRole("button")[36]);
+    await userEvent.click(canvas.getAllByRole("button")[37]);
+  },
 };

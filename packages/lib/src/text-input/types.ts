@@ -1,8 +1,5 @@
-import { CSSProperties, ReactNode, SVGProps } from "react";
-
-import { Space, Margin } from "../common/utils";
-
-type SVG = ReactNode & SVGProps<SVGSVGElement>;
+import { CSSProperties, ReactNode } from "react";
+import { Margin, SVG, Space } from "../common/utils";
 
 type Action = {
   /**

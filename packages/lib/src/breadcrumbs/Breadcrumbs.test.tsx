@@ -33,7 +33,7 @@ describe("Breadcrumbs component tests", () => {
     const { getByText, getByRole } = render(<DxcBreadcrumbs items={items} ariaLabel="example" />);
     const breadcrumbs = getByRole("navigation");
     expect(breadcrumbs.getAttribute("aria-label")).toBe("example");
-    expect(getByText("Dark Mode").parentElement.getAttribute("aria-current")).toBe("page");
+    expect(getByText("Dark Mode").parentElement?.getAttribute("aria-current")).toBe("page");
   });
   test("Collapsed variant renders all the items inside the dropdown menu except the root and the current page", async () => {
     const { queryByText, getByText, getByRole } = render(<DxcBreadcrumbs items={items} itemsBeforeCollapse={3} />);

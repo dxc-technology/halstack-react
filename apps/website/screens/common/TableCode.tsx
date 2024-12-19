@@ -1,5 +1,5 @@
-import styled from "styled-components";
 import { ReactNode } from "react";
+import styled from "styled-components";
 
 const TableCode = styled.code`
   background-color: #f2eafa;

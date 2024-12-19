@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables";
-import useTheme from "../useTheme";
+import HalstackContext from "../HalstackContext";
 import ProgressBarPropsType from "./types";
 
 const DxcProgressBar = ({
@@ -12,7 +12,7 @@ const DxcProgressBar = ({
   showValue = false,
   margin,
 }: ProgressBarPropsType): JSX.Element => {
-  const colorsTheme = useTheme();
+  const colorsTheme = useContext(HalstackContext);
   const [valueProgressBar, setValueProgressBar] = useState(0);
 
   useEffect(() => {

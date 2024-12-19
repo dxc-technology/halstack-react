@@ -1,23 +1,23 @@
 import {
   Children,
   isValidElement,
+  KeyboardEvent,
   MutableRefObject,
   ReactElement,
   useCallback,
+  useContext,
   useEffect,
   useMemo,
   useRef,
   useState,
-  KeyboardEvent
 } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import useTheme from "../useTheme";
 import TabsContext from "./TabsContext";
 import DxcTab from "./Tab";
 import TabsPropsType, { TabProps } from "./types";
 import DxcTabsLegacy from "./TabsLegacy";
 import { spaces } from "../common/variables";
-import useTranslatedLabels from "../useTranslatedLabels";
+import HalstackContext, { HalstackLanguageContext } from "../HalstackContext";
 import DxcIcon from "../icon/Icon";
 
 const useResize = (refTabList: MutableRefObject<HTMLDivElement | null>) => {
@@ -96,9 +96,9 @@ const DxcTabs = ({
   const [scrollLeftEnabled, setScrollLeftEnabled] = useState(false);
   const [minHeightTabs, setMinHeightTabs] = useState(0);
   const refTabList = useRef<HTMLDivElement | null>(null);
-  const colorsTheme = useTheme();
+  const colorsTheme = useContext(HalstackContext);
   const viewWidth = useResize(refTabList);
-  const translatedLabels = useTranslatedLabels();
+  const translatedLabels = useContext(HalstackLanguageContext);
   const enabledIndicator = useMemo(() => viewWidth < totalTabsWidth, [viewWidth]);
 
   useEffect(() => {

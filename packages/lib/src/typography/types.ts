@@ -37,4 +37,4 @@ export type Props = {
 
 export default Props;
 
-export type TypographyContextProps = Omit<Props, "children">;
+export type TypographyContextProps = Required<Omit<Props, "children">>;

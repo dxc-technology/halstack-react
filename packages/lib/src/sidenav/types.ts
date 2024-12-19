@@ -1,6 +1,5 @@
-import { MouseEvent, ReactNode, SVGProps } from "react";
-
-type SVG = ReactNode & SVGProps<SVGSVGElement>;
+import { MouseEvent, ReactNode } from "react";
+import { SVG } from "../common/utils";
 
 export type SidenavTitlePropsType = {
   /**

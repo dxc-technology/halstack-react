@@ -1,8 +1,4 @@
-import { ReactNode, SVGProps } from "react";
-
-import { Space, Margin } from "../common/utils";
-
-type SVG = ReactNode & SVGProps<SVGSVGElement>;
+import { Margin, SVG, Space } from "../common/utils";
 
 type TagCommonProps = {
   /**

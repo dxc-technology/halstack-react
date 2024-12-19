@@ -1,3 +1,4 @@
+import { Meta, StoryObj } from "@storybook/react";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import { HalstackProvider } from "../HalstackContext";
@@ -6,7 +7,7 @@ import DxcSlider from "./Slider";
 export default {
   title: "Slider",
   component: DxcSlider,
-};
+} as Meta<typeof DxcSlider>;
 
 const labelFormat = (value) => `${value}E100000000000000000000000`;
 
@@ -18,7 +19,7 @@ const opinionatedTheme = {
   },
 };
 
-export const Chromatic = () => (
+const Slider = () => (
   <>
     <Title title="States" theme="light" level={2} />
     <ExampleContainer pseudoState="pseudo-hover">
@@ -177,3 +178,9 @@ export const Chromatic = () => (
     </ExampleContainer>
   </>
 );
+
+type Story = StoryObj<typeof DxcSlider>;
+
+export const Chromatic: Story = {
+  render: Slider,
+};

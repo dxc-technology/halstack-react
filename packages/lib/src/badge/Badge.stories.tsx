@@ -1,3 +1,4 @@
+import { Meta, StoryObj } from "@storybook/react";
 import { userEvent, within } from "@storybook/test";
 import DxcBadge from "./Badge";
 import Title from "../../.storybook/components/Title";
@@ -9,7 +10,7 @@ import DxcTooltip from "../tooltip/Tooltip";
 export default {
   title: "Badge",
   component: DxcBadge,
-};
+} as Meta<typeof DxcBadge>;
 
 const icon = (
   <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
@@ -19,7 +20,7 @@ const icon = (
   </svg>
 );
 
-export const Chromatic = () => (
+const Badge = () => (
   <>
     <Title title="Notification" theme="light" level={2} />
     <ExampleContainer>
@@ -233,16 +234,26 @@ const NestedTooltip = () => (
   </>
 );
 
-export const BadgeTooltip = Tooltip.bind({});
-BadgeTooltip.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const div = canvas.getByText("Tooltip label");
-  await userEvent.hover(div);
+type Story = StoryObj<typeof DxcBadge>;
+
+export const Chromatic: Story = {
+  render: Badge,
 };
 
-export const NestedBadgeTooltip = NestedTooltip.bind({});
-NestedBadgeTooltip.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const div = canvas.getByText("Tooltip label");
-  await userEvent.hover(div);
+export const BadgeTooltip: Story = {
+  render: Tooltip,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const div = canvas.getByText("Tooltip label");
+    await userEvent.hover(div);
+  },
+};
+
+export const NestedBadgeTooltip: Story = {
+  render: NestedTooltip,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const div = canvas.getByText("Tooltip label");
+    await userEvent.hover(div);
+  },
 };

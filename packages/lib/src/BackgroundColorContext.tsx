@@ -1,4 +1,4 @@
-// import { createContext, useMemo } from "react";
+// import { createContext, ReactNode, useMemo } from "react";
 // import Color from "color";
 
 // type BackgroundColors = "dark" | "light";
@@ -21,17 +21,9 @@
 
 // type BackgroundColorProviderPropsType = {
 //   color: string;
-//   children: React.ReactNode;
+//   children: ReactNode;
 // };
-
-// const BackgroundColorProvider = ({
-//   color,
-//   children,
-// }: BackgroundColorProviderPropsType): JSX.Element => {
+// const BackgroundColorProvider = ({ color, children }: BackgroundColorProviderPropsType): JSX.Element => {
 //   const colorType = useMemo(() => getColorType(color), [color]);
-//   return (
-//     <BackgroundColorContext.Provider value={colorType}>
-//       {children}
-//     </BackgroundColorContext.Provider>
-//   );
+//   return <BackgroundColorContext.Provider value={colorType}>{children}</BackgroundColorContext.Provider>;
 // };

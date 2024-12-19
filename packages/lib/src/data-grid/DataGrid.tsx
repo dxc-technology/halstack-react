@@ -1,9 +1,8 @@
-import { useEffect, useMemo, useState } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import DataGrid, { SortColumn } from "react-data-grid";
 import styled, { ThemeProvider } from "styled-components";
 import DataGridPropsType, { HierarchyGridRow, GridRow, ExpandableGridRow } from "./types";
 import "react-data-grid/lib/styles.css";
-
 import {
   convertToRDGColumns,
   rowKeyGetter,
@@ -20,9 +19,9 @@ import {
   getMinItemsPerPageIndex,
   getMaxItemsPerPageIndex,
 } from "./utils";
-import useTheme from "../useTheme";
 import DxcPaginator from "../paginator/Paginator";
 import { DxcActionsCell } from "../table/Table";
+import HalstackContext from "../HalstackContext";
 
 const DxcDataGrid = ({
   columns,
@@ -44,7 +43,7 @@ const DxcDataGrid = ({
   totalItems,
 }: DataGridPropsType): JSX.Element => {
   const [rowsToRender, setRowsToRender] = useState<GridRow[] | HierarchyGridRow[] | ExpandableGridRow[]>(rows);
-  const colorsTheme = useTheme();
+  const colorsTheme = useContext(HalstackContext);
   const [page, changePage] = useState(1);
 
   const goToPage = (newPage: number) => {
@@ -66,7 +65,7 @@ const DxcDataGrid = ({
     setSortColumns(newSortColumns);
   };
 
-  // Proccess columns prop into usable columns based on other props
+  // Process columns prop into usable columns based on other props
   const columnsToRender = useMemo(() => {
     let expectedColumns = columns.map((column) => convertToRDGColumns(column, summaryRow));
     if (expandable) {
@@ -250,16 +249,11 @@ const DxcDataGrid = ({
           sortColumns={sortColumns}
           onSortColumnsChange={handleSortChange}
           rowKeyGetter={(row) => (uniqueRowId ? rowKeyGetter(row, uniqueRowId) : "")}
-          rowHeight={(row) => {
-            if (
-              row.isExpandedChildContent &&
-              typeof row.expandedContentHeight === "number" &&
-              row.expandedContentHeight > 0
-            ) {
-              return row.expandedContentHeight;
-            }
-            return colorsTheme?.dataGrid?.dataRowHeight ?? 0;
-          }}
+          rowHeight={(row) =>
+            row.isExpandedChildContent && typeof row.expandedContentHeight === "number" && row.expandedContentHeight > 0
+              ? row.expandedContentHeight
+              : (colorsTheme.dataGrid.dataRowHeight)
+          }
           selectedRows={selectedRows}
           bottomSummaryRows={summaryRow ? [summaryRow] : undefined}
           headerRowHeight={colorsTheme?.dataGrid?.headerRowHeight}

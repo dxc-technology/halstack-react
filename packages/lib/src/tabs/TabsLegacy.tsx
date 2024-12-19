@@ -1,9 +1,8 @@
-import { useCallback, useEffect, useMemo, useRef, useState, MutableRefObject, KeyboardEvent } from "react";
+import { KeyboardEvent, MutableRefObject, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables";
 import DxcIcon from "../icon/Icon";
-import useTheme from "../useTheme";
-import useTranslatedLabels from "../useTranslatedLabels";
+import HalstackContext, { HalstackLanguageContext } from "../HalstackContext";
 import Tab from "./TabLegacy";
 import TabsPropsType from "./types";
 
@@ -35,7 +34,7 @@ const DxcTabs = ({
   iconPosition = "top",
   tabIndex = 0,
 }: TabsPropsType): JSX.Element => {
-  const colorsTheme = useTheme();
+  const colorsTheme = useContext(HalstackContext);
   const hasLabelAndIcon = tabs != null && tabs.filter((tab) => tab.label && tab.icon).length > 0;
   const firstFocus = tabs != null ? tabs.findIndex((tab) => !tab.isDisabled) : null;
   const [innerActiveTabIndex, setInnerActiveTabIndex] = useState(
@@ -56,7 +55,7 @@ const DxcTabs = ({
   const refTabs = useRef<HTMLButtonElement[]>([]);
   const refTabList = useRef<HTMLDivElement | null>(null);
   const viewWidth = useResize(refTabList);
-  const translatedLabels = useTranslatedLabels();
+  const translatedLabels = useContext(HalstackLanguageContext);
   const enabledIndicator = useMemo(() => viewWidth < totalTabsWidth, [viewWidth]);
 
   useEffect(() => {

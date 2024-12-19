@@ -1,3 +1,4 @@
+import { Meta, StoryObj } from "@storybook/react";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DxcContainer from "./Container";
@@ -6,9 +7,52 @@ import DxcTypography from "../typography/Typography";
 export default {
   title: "Container",
   component: DxcContainer,
-};
+} as Meta<typeof DxcContainer>;
 
-export const Chromatic = () => (
+const Listbox = ({ suggestions = [] }: { suggestions: string[] }): JSX.Element => (
+  <DxcContainer
+    boxSizing="border-box"
+    boxShadow="0 4px 6px -1px rgba(0, 0, 0, 0.1)"
+    border={{ width: "1px", style: "solid", color: "color_grey_400" }}
+    borderRadius="0.25rem"
+    background={{ color: "color_white" }}
+    padding={{ top: "xxsmall", bottom: "xxsmall" }}
+    maxHeight="304px"
+    width="250px"
+    overflow={{ x: "hidden", y: "auto" }}
+  >
+    {suggestions.map((suggestion, index) => (
+      <DxcContainer key={`container-${index}`} padding={{ left: "xsmall", right: "xsmall" }}>
+        <DxcContainer
+          border={
+            index !== suggestions.length - 1
+              ? {
+                  bottom: {
+                    width: "1px",
+                    style: "solid",
+                    color: "color_grey_200",
+                  },
+                }
+              : undefined
+          }
+          padding={{
+            top: "xxsmall",
+            bottom: "xxsmall",
+            left: "xxsmall",
+            right: "xxsmall",
+          }}
+          overflow="hidden"
+        >
+          <DxcTypography whiteSpace="nowrap" textOverflow="ellipsis" lineHeight="1.715em">
+            {suggestion}
+          </DxcTypography>
+        </DxcContainer>
+      </DxcContainer>
+    ))}
+  </DxcContainer>
+);
+
+const Container = () => (
   <>
     <Title title="Box sizing border box" level={4} />
     <ExampleContainer>
@@ -180,45 +224,8 @@ export const Chromatic = () => (
   </>
 );
 
-const Listbox = ({ suggestions = [] }: { suggestions: string[] }): JSX.Element => (
-  <DxcContainer
-    boxSizing="border-box"
-    boxShadow="0 4px 6px -1px rgba(0, 0, 0, 0.1)"
-    border={{ width: "1px", style: "solid", color: "color_grey_400" }}
-    borderRadius="0.25rem"
-    background={{ color: "color_white" }}
-    padding={{ top: "xxsmall", bottom: "xxsmall" }}
-    maxHeight="304px"
-    width="250px"
-    overflow={{ x: "hidden", y: "auto" }}
-  >
-    {suggestions.map((suggestion, index) => (
-      <DxcContainer key={`container-${index}`} padding={{ left: "xsmall", right: "xsmall" }}>
-        <DxcContainer
-          border={
-            index !== suggestions.length - 1
-              ? {
-                  bottom: {
-                    width: "1px",
-                    style: "solid",
-                    color: "color_grey_200",
-                  },
-                }
-              : undefined
-          }
-          padding={{
-            top: "xxsmall",
-            bottom: "xxsmall",
-            left: "xxsmall",
-            right: "xxsmall",
-          }}
-          overflow="hidden"
-        >
-          <DxcTypography whiteSpace="nowrap" textOverflow="ellipsis" lineHeight="1.715em">
-            {suggestion}
-          </DxcTypography>
-        </DxcContainer>
-      </DxcContainer>
-    ))}
-  </DxcContainer>
-);
+type Story = StoryObj<typeof DxcContainer>;
+
+export const Chromatic: Story = {
+  render: Container,
+};

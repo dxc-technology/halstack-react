@@ -1,9 +1,8 @@
-import { forwardRef, KeyboardEvent, useId, useRef, useState } from "react";
+import { forwardRef, KeyboardEvent, useContext, useId, useRef, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { AdvancedTheme, spaces } from "../common/variables";
 import { getMargin } from "../common/utils";
-import useTheme from "../useTheme";
-import useTranslatedLabels from "../useTranslatedLabels";
+import HalstackContext, { HalstackLanguageContext } from "../HalstackContext";
 import SwitchPropsType, { RefType } from "./types";
 
 const DxcSwitch = forwardRef<RefType, SwitchPropsType>(
@@ -28,21 +27,19 @@ const DxcSwitch = forwardRef<RefType, SwitchPropsType>(
     const labelId = `label-${switchId}`;
     const [innerChecked, setInnerChecked] = useState(defaultChecked ?? false);
 
-    const colorsTheme = useTheme();
-    const translatedLabels = useTranslatedLabels();
+    const colorsTheme = useContext(HalstackContext);
+    const translatedLabels = useContext(HalstackLanguageContext);
     const refTrack = useRef<HTMLSpanElement | null>(null);
 
     const handleOnKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
       switch (event.key) {
         case "Enter":
-        case " ": {
-          // Space
+        case " ":
           event.preventDefault();
           refTrack?.current?.focus();
           setInnerChecked(!(checked ?? innerChecked));
           onChange?.(!(checked ?? innerChecked));
           break;
-        }
         default:
           break;
       }

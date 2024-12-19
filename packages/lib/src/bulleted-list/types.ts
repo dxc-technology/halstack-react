@@ -1,6 +1,5 @@
-import { ReactNode, SVGProps } from "react";
-
-type SVG = ReactNode & SVGProps<SVGSVGElement>;
+import { ReactNode } from "react";
+import { SVG } from "../common/utils";
 
 type IconProps = {
   /**

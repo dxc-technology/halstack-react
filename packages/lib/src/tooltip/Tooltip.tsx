@@ -1,8 +1,9 @@
 import styled from "styled-components";
-import { createContext, useContext } from "react";
+import { useContext } from "react";
 import { Root, Trigger, Portal, Arrow, Content, Provider } from "@radix-ui/react-tooltip";
 import CoreTokens from "../common/coreTokens";
 import TooltipPropsType, { TooltipWrapperProps } from "./types";
+import TooltipContext from "./TooltipContext";
 
 const TooltipTriggerContainer = styled.div`
   position: relative;
@@ -102,8 +103,6 @@ const triangleIcon = (
   </svg>
 );
 
-const TooltipContext = createContext(false);
-
 export const Tooltip = ({
   label,
   hasAdditionalContainer = false,
@@ -139,7 +138,6 @@ export const Tooltip = ({
 
 export const TooltipWrapper = ({ condition, children, label }: TooltipWrapperProps) =>
   condition ? <Tooltip label={label}>{children}</Tooltip> : <>{children}</>;
-
 
 const DxcTooltip = (props: TooltipPropsType) => <Tooltip {...props} hasAdditionalContainer />;
 

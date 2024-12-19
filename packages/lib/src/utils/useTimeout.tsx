@@ -1,7 +1,5 @@
 import { useRef, useCallback, useEffect } from "react";
 
-type UseTimeoutType = (callback: () => void, delay?: number) => () => void;
-
 /**
  * Custom hook to handle setTimeout in a declarative way.
  * Inspired by Dan Abramov's article: https://overreacted.io/making-setinterval-declarative-with-react-hooks/
@@ -10,7 +8,7 @@ type UseTimeoutType = (callback: () => void, delay?: number) => () => void;
  * @param delay Time in milliseconds to wait before executing the callback
  * @returns Function to clear the timeout
  */
-const useTimeout: UseTimeoutType = (callback, delay) => {
+export default function useTimeout(callback: () => void, delay?: number) {
   const savedCallback = useRef<() => void>();
   const timerRef = useRef<ReturnType<typeof setTimeout>>();
   const clearTimerCallback = useCallback(() => clearTimeout(timerRef.current), []);
@@ -20,14 +18,15 @@ const useTimeout: UseTimeoutType = (callback, delay) => {
   }, [callback]);
 
   useEffect(() => {
+    function tick() {
+      savedCallback.current?.();
+    }
     if (delay != null) {
-      timerRef.current = setTimeout((savedCallback.current!), delay);
+      timerRef.current = setTimeout(tick, delay);
       return clearTimerCallback;
     }
     return undefined;
   }, [delay, clearTimerCallback]);
 
   return clearTimerCallback;
-};
-
-export default useTimeout;
+}

@@ -4,6 +4,7 @@ import {
   useEffect,
   useId,
   useCallback,
+  useContext,
   forwardRef,
   Dispatch,
   SetStateAction,
@@ -14,8 +15,7 @@ import dayjs, { Dayjs } from "dayjs";
 import styled, { ThemeProvider } from "styled-components";
 import * as Popover from "@radix-ui/react-popover";
 import customParseFormat from "dayjs/plugin/customParseFormat";
-import useTheme from "../useTheme";
-import useTranslatedLabels from "../useTranslatedLabels";
+import HalstackContext, { HalstackLanguageContext } from "../HalstackContext";
 import DateInputPropsType, { RefType } from "./types";
 import DatePicker from "./DatePicker";
 import { getMargin } from "../common/utils";
@@ -31,8 +31,8 @@ const getValueForPicker = (value: string, format: string) => dayjs(value, format
 const getDate = (
   value: string,
   format: string,
-  lastValidYear: number | undefined,
-  setLastValidYear: Dispatch<SetStateAction<number | undefined>>
+  lastValidYear: number | null,
+  setLastValidYear: Dispatch<SetStateAction<number | null>>
 ) => {
   if ((value || value === "") && format.toUpperCase().includes("YYYY")) {
     return getValueForPicker(value, format);
@@ -80,16 +80,16 @@ const DxcDateInput = forwardRef<RefType, DateInputPropsType>(
     const [isOpen, setIsOpen] = useState(false);
     const calendarId = `date-picker-${useId()}`;
     const [dayjsDate, setDayjsDate] = useState(getValueForPicker(value ?? defaultValue ?? "", format));
-    const [lastValidYear, setLastValidYear] = useState<number | undefined>(
+    const [lastValidYear, setLastValidYear] = useState<number | null>(
       innerValue || value
         ? !format.toUpperCase().includes("YYYY") && +getValueForPicker(value ?? innerValue, format).format("YY") < 68
           ? 2000
           : 1900
-        : undefined
+        : null
     );
     const [sideOffset, setSideOffset] = useState(SIDEOFFSET);
-    const colorsTheme = useTheme();
-    const translatedLabels = useTranslatedLabels();
+    const colorsTheme = useContext(HalstackContext);
+    const translatedLabels = useContext(HalstackLanguageContext);
     const dateRef = useRef<HTMLDivElement | null>(null);
     const popoverContentRef = useRef<HTMLDivElement | null>(null);
 
@@ -118,7 +118,7 @@ const DxcDateInput = forwardRef<RefType, DateInputPropsType>(
       }
       const newDate = getDate(newValue, format, lastValidYear, setLastValidYear);
       const invalidDateMessage =
-        newValue !== "" && !newDate.isValid() && translatedLabels?.dateInput?.invalidDateErrorMessage;
+        newValue !== "" && !newDate.isValid() && translatedLabels.dateInput.invalidDateErrorMessage;
       const callbackParams = {
         value: newValue,
         error: inputError || invalidDateMessage || undefined,
@@ -138,7 +138,7 @@ const DxcDateInput = forwardRef<RefType, DateInputPropsType>(
     const handleOnBlur = ({ value: blurValue, error: inputError }: { value: string; error?: string }) => {
       const date = getDate(blurValue, format, lastValidYear, setLastValidYear);
       const invalidDateMessage =
-        blurValue !== "" && !date.isValid() && translatedLabels?.dateInput?.invalidDateErrorMessage;
+        blurValue !== "" && !date.isValid() && translatedLabels.dateInput.invalidDateErrorMessage;
       const callbackParams = {
         value: blurValue,
         error: inputError || invalidDateMessage || undefined,
@@ -233,7 +233,7 @@ const DxcDateInput = forwardRef<RefType, DateInputPropsType>(
               disabled={disabled}
               hasHelperText={!!helperText}
             >
-              {label} {optional && <OptionalLabel>{translatedLabels?.formFields?.optionalLabel}</OptionalLabel>}
+              {label} {optional && <OptionalLabel>{translatedLabels.formFields.optionalLabel}</OptionalLabel>}
             </Label>
           )}
           {helperText && <HelperText disabled={disabled}>{helperText}</HelperText>}

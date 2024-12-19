@@ -1,12 +1,12 @@
-import { useId, useMemo } from "react";
+import { useContext, useId, useMemo } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables";
-import useTheme from "../useTheme";
+import HalstackContext from "../HalstackContext";
 import SpinnerPropsType from "./types";
 
 const DxcSpinner = ({ label, value, showValue = false, mode = "large", margin }: SpinnerPropsType): JSX.Element => {
   const labelId = useId();
-  const colorsTheme = useTheme();
+  const colorsTheme = useContext(HalstackContext);
   const determinated = useMemo(() => value != null && value >= 0 && value <= 100, [value]);
 
   return (

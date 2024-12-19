@@ -1,12 +1,12 @@
-import { createContext, Dispatch, forwardRef, MouseEvent, SetStateAction, useContext, useEffect, useState } from "react";
+import { forwardRef, MouseEvent, useContext, useEffect, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import DxcBleed from "../bleed/Bleed";
 import CoreTokens from "../common/coreTokens";
 import { responsiveSizes } from "../common/variables";
 import DxcFlex from "../flex/Flex";
 import DxcIcon from "../icon/Icon";
-import useTheme from "../useTheme";
-import { useResponsiveSidenavVisibility } from "./SidenavContext";
+import HalstackContext from "../HalstackContext";
+import { GroupContext, GroupContextProvider, useResponsiveSidenavVisibility } from "./SidenavContext";
 import SidenavPropsType, {
   SidenavGroupPropsType,
   SidenavLinkPropsType,
@@ -15,7 +15,7 @@ import SidenavPropsType, {
 } from "./types";
 
 const DxcSidenav = ({ title, children }: SidenavPropsType): JSX.Element => {
-  const colorsTheme = useTheme();
+  const colorsTheme = useContext(HalstackContext);
 
   return (
     <ThemeProvider theme={colorsTheme?.sidenav}>
@@ -44,13 +44,12 @@ const Section = ({ children }: SidenavSectionPropsType): JSX.Element => (
   </>
 );
 
-const GroupContext = createContext<Dispatch<SetStateAction<boolean>> | null>(null);
 const Group = ({ title, collapsable = false, icon, children }: SidenavGroupPropsType): JSX.Element => {
   const [collapsed, setCollapsed] = useState(false);
   const [isSelected, changeIsSelected] = useState(false);
 
   return (
-    <GroupContext.Provider value={changeIsSelected}>
+    <GroupContextProvider value={changeIsSelected}>
       <SidenavGroup>
         {collapsable && title ? (
           <SidenavGroupTitleButton
@@ -74,7 +73,7 @@ const Group = ({ title, collapsable = false, icon, children }: SidenavGroupProps
         )}
         {!collapsed && children}
       </SidenavGroup>
-    </GroupContext.Provider>
+    </GroupContextProvider>
   );
 };
 

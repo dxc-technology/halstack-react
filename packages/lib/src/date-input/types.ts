@@ -1,6 +1,5 @@
 import { Dayjs } from "dayjs";
-
-import { Space, Margin } from "../common/utils";
+import { Margin, Space } from "../common/utils";
 
 type Props = {
   /**
@@ -95,6 +94,8 @@ type Props = {
    */
   tabIndex?: number;
 };
+
+export type DateType = { day: number; month: number; year: number };
 
 export type DatePickerPropsType = {
   /**

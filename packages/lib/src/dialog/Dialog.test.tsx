@@ -277,7 +277,7 @@ describe("Dialog component: Focus lock tests", () => {
   });
 
   test("Focus gets trapped in the Dialog when there are not focusable elements inside until it is closed", () => {
-    const { getAllByRole } = render(
+    const { getAllByRole, getByRole } = render(
       <>
         <DxcTextInput label="Name" />
         <DxcDialog closable={false}>
@@ -288,7 +288,7 @@ describe("Dialog component: Focus lock tests", () => {
       </>
     );
     const inputs = getAllByRole("textbox");
-    const dialog = getAllByRole("dialog")[0];
+    const dialog = getByRole("dialog");
     userEvent.tab();
     userEvent.tab();
     expect(document.activeElement).not.toEqual(inputs[1]);

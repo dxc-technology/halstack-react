@@ -1,10 +1,10 @@
-import { KeyboardEvent, useId, useState } from "react";
+import { KeyboardEvent, useContext, useId, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables";
 import DxcFlex from "../flex/Flex";
 import DxcIcon from "../icon/Icon";
 import { Tooltip } from "../tooltip/Tooltip";
-import useTheme from "../useTheme";
+import HalstackContext from "../HalstackContext";
 import ToggleGroupPropsType, { OptionLabel } from "./types";
 
 const DxcToggleGroup = ({
@@ -22,7 +22,7 @@ const DxcToggleGroup = ({
   const toggleGroupLabelId = `label-toggle-group-${useId()}`;
   const [selectedValue, setSelectedValue] = useState(defaultValue ?? (multiple ? [] : -1));
 
-  const colorsTheme = useTheme();
+  const colorsTheme = useContext(HalstackContext);
 
   const handleToggleChange = (selectedOption: number) => {
     let newSelectedOptions: number[] = [];

@@ -1,9 +1,9 @@
 import { useContext, useEffect } from "react";
-import { ContextualMenuContext } from "./ContextualMenu";
 import ItemAction from "./ItemAction";
 import { SingleItemProps } from "./types";
+import ContextualMenuContext from "./ContextualMenuContext";
 
-const SingleItem = ({ id, onSelect, selectedByDefault, ...props }: SingleItemProps) => {
+const SingleItem = ({ id, onSelect, selectedByDefault = false, ...props }: SingleItemProps) => {
   const { selectedItemId, setSelectedItemId } = useContext(ContextualMenuContext) ?? {};
 
   const handleClick = () => {

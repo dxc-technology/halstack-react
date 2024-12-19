@@ -1,15 +1,15 @@
+import { useContext } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { spaces, AdvancedTheme } from "../common/variables";
 import { getMargin } from "../common/utils";
 import DxcDropdown from "../dropdown/Dropdown";
 import DxcFlex from "../flex/Flex";
-import { DeepPartial, HalstackProvider } from "../HalstackContext";
-import useTheme from "../useTheme";
+import HalstackContext, { DeepPartial, HalstackProvider } from "../HalstackContext";
 import dropdownTheme from "./dropdownTheme";
 import DxcActionIcon from "../action-icon/ActionIcon";
 import TablePropsType, { ActionCellsPropsType } from "./types";
 
-const overwriteTheme = (theme: DeepPartial<AdvancedTheme>) => {
+const overwriteTheme = (theme: AdvancedTheme): DeepPartial<AdvancedTheme> => {
   const newTheme = dropdownTheme;
   newTheme.dropdown.buttonBackgroundColor = theme?.table?.actionBackgroundColor ?? "";
   newTheme.dropdown.hoverButtonBackgroundColor = theme?.table?.hoverActionBackgroundColor ?? "";
@@ -24,7 +24,7 @@ export const DxcActionsCell = ({ actions }: ActionCellsPropsType): JSX.Element =
   const actionIcons = actions.filter((action) => !action.options);
   const actionDropdown = actions.find((action) => action.options);
   const maxNumberOfActions = actionDropdown ? 2 : 3;
-  const colorsTheme = useTheme();
+  const colorsTheme = useContext(HalstackContext);
 
   return (
     <DxcFlex gap="0.5rem" alignItems="center">
@@ -58,7 +58,7 @@ export const DxcActionsCell = ({ actions }: ActionCellsPropsType): JSX.Element =
 };
 
 const DxcTable = ({ children, margin, mode = "default" }: TablePropsType): JSX.Element => {
-  const colorsTheme = useTheme();
+  const colorsTheme = useContext(HalstackContext);
 
   return (
     <ThemeProvider theme={colorsTheme?.table}>

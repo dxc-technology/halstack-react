@@ -41,8 +41,8 @@ type ExamplePropTypes = {
   actionsVisible?: boolean;
   defaultIsVisible?: boolean;
   example: {
-    scope?: Record<string, any>;
-    code?: string;
+    scope: Record<string, any>;
+    code: string;
   };
 };
 

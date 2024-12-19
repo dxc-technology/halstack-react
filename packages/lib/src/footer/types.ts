@@ -1,8 +1,5 @@
-import { ReactNode, SVGProps } from "react";
-
-import { Space } from "../common/utils";
-
-type SVG = ReactNode & SVGProps<SVGSVGElement>;
+import { ReactNode } from "react";
+import { SVG, Space } from "../common/utils";
 
 type SocialLink = {
   /**

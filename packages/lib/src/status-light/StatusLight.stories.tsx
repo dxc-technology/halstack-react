@@ -1,3 +1,4 @@
+import { Meta, StoryObj } from "@storybook/react";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcStatusLight from "./StatusLight";
@@ -5,9 +6,9 @@ import DxcStatusLight from "./StatusLight";
 export default {
   title: "Status Light",
   component: DxcStatusLight,
-};
+} as Meta<typeof DxcStatusLight>;
 
-export const Chromatic = () => (
+const StatusLight = () => (
   <>
     <ExampleContainer>
       <Title title="Default light small" theme="light" level={4} />
@@ -71,3 +72,9 @@ export const Chromatic = () => (
     </ExampleContainer>
   </>
 );
+
+type Story = StoryObj<typeof DxcStatusLight>;
+
+export const Chromatic: Story = {
+  render: StatusLight,
+};

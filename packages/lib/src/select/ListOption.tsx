@@ -1,5 +1,5 @@
-import styled from "styled-components";
 import { MouseEvent, useState } from "react";
+import styled from "styled-components";
 import { OptionProps } from "./types";
 import DxcCheckbox from "../checkbox/Checkbox";
 import DxcIcon from "../icon/Icon";

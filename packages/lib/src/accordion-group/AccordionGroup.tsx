@@ -1,29 +1,11 @@
-import { Children, useCallback, useMemo, useState } from "react";
+import { Children, useCallback, useContext, useMemo, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { getMargin } from "../common/utils";
 import { spaces } from "../common/variables";
-import useTheme from "../useTheme";
 import AccordionGroupAccordion from "./AccordionGroupAccordion";
 import AccordionGroupPropsType from "./types";
 import AccordionGroupAccordionContext from "./AccordionGroupContext";
-
-type AccordionProviderType = {
-  children: AccordionGroupPropsType["children"];
-  index: number;
-  contextValue: {
-    activeIndex: number;
-    handlerActiveChange: (index: number) => void;
-    disabled: boolean;
-  };
-};
-const AccordionProvider = ({ children, index, contextValue }: AccordionProviderType) => {
-  const contextProviderValue = useMemo(() => ({ index, ...contextValue }), [index, contextValue]);
-  return (
-    <AccordionGroupAccordionContext.Provider key={`accordion-${index}`} value={contextProviderValue}>
-      {children}
-    </AccordionGroupAccordionContext.Provider>
-  );
-};
+import HalstackContext from "../HalstackContext";
 
 const DxcAccordionGroup = ({
   defaultIndexActive,
@@ -33,8 +15,8 @@ const DxcAccordionGroup = ({
   margin,
   children,
 }: AccordionGroupPropsType): JSX.Element => {
-  const colorsTheme = useTheme();
   const [innerIndexActive, setInnerIndexActive] = useState(defaultIndexActive ?? -1);
+  const colorsTheme = useContext(HalstackContext);
 
   const handlerActiveChange = useCallback(
     (index: number) => {
@@ -48,21 +30,19 @@ const DxcAccordionGroup = ({
     [disabled, indexActive, onActiveChange]
   );
   const contextValue = useMemo(
-    () => ({
-      activeIndex: indexActive ?? innerIndexActive,
-      handlerActiveChange,
-      disabled,
-    }),
+    () => ({ activeIndex: indexActive ?? innerIndexActive, handlerActiveChange, disabled }),
     [indexActive, innerIndexActive, handlerActiveChange, disabled]
   );
 
   return (
-    <ThemeProvider theme={colorsTheme?.accordion}>
+    <ThemeProvider theme={colorsTheme.accordion}>
       <AccordionGroupContainer margin={margin} disabled={disabled}>
         {Children.map(children, (accordion, index) => (
-          <AccordionProvider index={index} contextValue={contextValue}>
+          // TODO: Find an alternative to the eslint-disable
+          // eslint-disable-next-line react/jsx-no-constructed-context-values
+          <AccordionGroupAccordionContext.Provider key={`accordion-${index}`} value={{ index, ...contextValue }}>
             {accordion}
-          </AccordionProvider>
+          </AccordionGroupAccordionContext.Provider>
         ))}
       </AccordionGroupContainer>
     </ThemeProvider>

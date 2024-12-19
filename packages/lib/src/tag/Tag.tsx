@@ -1,8 +1,8 @@
-import { useState, ReactNode } from "react";
+import { ReactNode, useContext, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { getMargin } from "../common/utils";
 import { spaces } from "../common/variables";
-import useTheme from "../useTheme";
+import HalstackContext from "../HalstackContext";
 import DxcIcon from "../icon/Icon";
 import TagPropsType from "./types";
 import CoreTokens from "../common/coreTokens";
@@ -32,7 +32,7 @@ const DxcTag = ({
   size = "fitContent",
   tabIndex = 0,
 }: TagPropsType): JSX.Element => {
-  const colorsTheme = useTheme();
+  const colorsTheme = useContext(HalstackContext);
   const [isHovered, changeIsHovered] = useState(false);
 
   const wrapperComponent = (children: ReactNode) => {

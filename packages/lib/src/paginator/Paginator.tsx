@@ -1,9 +1,8 @@
+import { useContext } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import DxcButton from "../button/Button";
 import DxcSelect from "../select/Select";
-import useTheme from "../useTheme";
-import useTranslatedLabels from "../useTranslatedLabels";
-import PaginatorPropsType from "./types";
+import HalstackContext, { HalstackLanguageContext } from "../HalstackContext";
 
 const DxcPaginator = ({
   currentPage = 1,
@@ -24,8 +23,8 @@ const DxcPaginator = ({
   const maxItemsPerPage =
     minItemsPerPage - 1 + itemsPerPage > totalItems ? totalItems : minItemsPerPage - 1 + itemsPerPage;
 
-  const colorsTheme = useTheme();
-  const translatedLabels = useTranslatedLabels();
+  const colorsTheme = useContext(HalstackContext);
+  const translatedLabels = useContext(HalstackLanguageContext);
 
   return (
     <ThemeProvider theme={colorsTheme?.paginator}>

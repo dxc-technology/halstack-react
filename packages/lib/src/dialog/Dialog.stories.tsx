@@ -1,3 +1,4 @@
+import { Meta, StoryObj } from "@storybook/react";
 import { userEvent } from "@storybook/test";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
@@ -20,6 +21,16 @@ export default {
       viewports: INITIAL_VIEWPORTS,
     },
   },
+} as Meta<typeof DxcDialog>;
+
+const customViewports = {
+  resizedScreen: {
+    name: "Custom viewport",
+    styles: {
+      width: "720px",
+      height: "900px",
+    },
+  },
 };
 
 const opinionatedTheme = {
@@ -30,7 +41,7 @@ const opinionatedTheme = {
   },
 };
 
-export const DefaultDialog = () => (
+const Dialog = () => (
   <ExampleContainer expanded>
     <Title title="Default dialog" theme="light" level={4} />
     <DxcDialog>
@@ -54,7 +65,7 @@ export const DefaultDialog = () => (
   </ExampleContainer>
 );
 
-export const DefaultDialogOpinionated = () => (
+const DialogOpinionated = () => (
   <ExampleContainer expanded>
     <Title title="Default dialog" theme="light" level={4} />
     <HalstackProvider theme={opinionatedTheme}>
@@ -77,6 +88,100 @@ export const DefaultDialogOpinionated = () => (
         </DxcInset>
       </DxcDialog>
     </HalstackProvider>
+  </ExampleContainer>
+);
+
+const DialogInput = () => (
+  <ExampleContainer expanded>
+    <Title title="Dialog with inputs" theme="light" level={4} />
+    <DxcDialog>
+      <DxcInset space="1.5rem">
+        <DxcFlex gap="2rem" direction="column">
+          <DxcHeading level={4} text="Example form" />
+          <DxcFlex gap="1rem" direction="column">
+            <DxcTextInput size="fillParent" label="Name" />
+            <DxcTextInput size="fillParent" label="Surname" />
+          </DxcFlex>
+          <DxcAlert
+            semantic="error"
+            title="Error"
+            message={{
+              text: "User: arn:aws:xxx::xxxxxxxxxxxx:assumed-role/assure-sandbox-xxxx-xxxxxxxxxxxxxxxxxxxxxxxxxx/sandbox-xxxx-xxxxxxxxxxxxxxxxxx is not authorized to perform: lambda:xxxxxxxxxxxxxx on resource: arn:aws:lambda:us-east-1:xxxxxxxxxxxx:function:sandbox-xxxx-xx-xxxxxxx-xxxxxxx-lambda because no identity-based policy allows the lambda:xxxxxxxxxxxxxx action",
+            }}
+          />
+          <DxcFlex justifyContent="flex-end" gap="0.5rem">
+            <DxcButton label="Cancel" mode="tertiary" />
+            <DxcButton label="Save" />
+          </DxcFlex>
+        </DxcFlex>
+      </DxcInset>
+    </DxcDialog>
+  </ExampleContainer>
+);
+
+const DialogNoOverlay = () => (
+  <ExampleContainer expanded>
+    <Title title="Dialog Without Overlay" theme="light" level={4} />
+    <DxcDialog overlay={false}>
+      <DxcInset space="1.5rem">
+        <DxcFlex direction="column" gap="1rem">
+          <DxcHeading level={4} text="Example title" />
+          <DxcParagraph>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi egestas luctus porttitor. Donec massa magna,
+            placerat sit amet felis eget, venenatis fringilla ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing
+            elit. Donec congue laoreet orci, nec elementum dolor consequat quis. Curabitur rhoncus justo sed dapibus
+            tincidunt. Vestibulum cursus ut risus sit amet congue. Nunc luctus, urna ullamcorper facilisis Jia Le, risus
+            eros aliquam erat, ut efficitur ante neque id odio. Nam orci leo, dignissim sit amet dolor ut, congue
+            gravida enim. Donec rhoncus aliquam nisl, ac cursus enim bibendum vitae. Nunc sit amet elit ornare,
+            malesuada urna eu, fringilla mauris. Vivamus bibendum turpis est, id elementum purus euismod sit amet. Etiam
+            sit amet maximus augue. Vivamus erat sapien, ultricies fringilla tellus id, condimentum blandit justo.
+            Praesent quis nunc dignissim, pharetra neque molestie, molestie lectus.
+          </DxcParagraph>
+        </DxcFlex>
+      </DxcInset>
+    </DxcDialog>
+  </ExampleContainer>
+);
+
+const DialogCloseNoVisible = () => (
+  <ExampleContainer expanded>
+    <Title title="Dialog Close Visible" theme="dark" level={4} />
+    <DxcDialog closable={false}>
+      <DxcInset space="1.5rem">
+        <DxcParagraph>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi egestas luctus porttitor. Donec massa magna,
+          placerat sit amet felis eget, venenatis fringilla ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing
+          elit. Donec congue laoreet orci, nec elementum dolor consequat quis. Curabitur rhoncus justo sed dapibus
+          tincidunt. Vestibulum cursus ut risus sit amet congue. Nunc luctus, urna ullamcorper facilisis Jia Le, risus
+          eros aliquam erat, ut efficitur ante neque id odio. Nam orci leo, dignissim sit amet dolor ut, congue gravida
+          enim. Donec rhoncus aliquam nisl, ac cursus enim bibendum vitae. Nunc sit amet elit ornare, malesuada urna eu,
+          fringilla mauris. Vivamus bibendum turpis est, id elementum purus euismod sit amet. Etiam sit amet maximus
+          augue. Vivamus erat sapien, ultricies fringilla tellus id, condimentum blandit justo. Praesent quis nunc
+          dignissim, pharetra neque molestie, molestie lectus.
+        </DxcParagraph>
+      </DxcInset>
+    </DxcDialog>
+  </ExampleContainer>
+);
+
+const RespDialog = () => (
+  <ExampleContainer expanded>
+    <Title title="Responsive dialog" theme="light" level={4} />
+    <DxcDialog>
+      <DxcInset space="1.5rem">
+        <DxcFlex gap="2rem" direction="column">
+          <DxcHeading level={4} text="Example form" />
+          <DxcFlex gap="1rem" direction="column">
+            <DxcTextInput size="fillParent" label="Name" />
+            <DxcTextInput size="fillParent" label="Surname" />
+          </DxcFlex>
+          <DxcFlex justifyContent="flex-end" gap="0.5rem">
+            <DxcButton label="Cancel" mode="tertiary" />
+            <DxcButton label="Save" />
+          </DxcFlex>
+        </DxcFlex>
+      </DxcInset>
+    </DxcDialog>
   </ExampleContainer>
 );
 
@@ -240,130 +345,54 @@ const ScrollingDialog = () => (
   </ExampleContainer>
 );
 
-export const DialogWithInputs = () => (
-  <ExampleContainer expanded>
-    <Title title="Dialog with inputs" theme="light" level={4} />
-    <DxcDialog>
-      <DxcInset space="1.5rem">
-        <DxcFlex gap="2rem" direction="column">
-          <DxcHeading level={4} text="Example form" />
-          <DxcFlex gap="1rem" direction="column">
-            <DxcTextInput size="fillParent" label="Name" />
-            <DxcTextInput size="fillParent" label="Surname" />
-          </DxcFlex>
-          <DxcAlert
-            semantic="error"
-            title="Error"
-            message={{
-              text: "User: arn:aws:xxx::xxxxxxxxxxxx:assumed-role/assure-sandbox-xxxx-xxxxxxxxxxxxxxxxxxxxxxxxxx/sandbox-xxxx-xxxxxxxxxxxxxxxxxx is not authorized to perform: lambda:xxxxxxxxxxxxxx on resource: arn:aws:lambda:us-east-1:xxxxxxxxxxxx:function:sandbox-xxxx-xx-xxxxxxx-xxxxxxx-lambda because no identity-based policy allows the lambda:xxxxxxxxxxxxxx action",
-            }}
-          />
-          <DxcFlex justifyContent="flex-end" gap="0.5rem">
-            <DxcButton label="Cancel" mode="tertiary" />
-            <DxcButton label="Save" />
-          </DxcFlex>
-        </DxcFlex>
-      </DxcInset>
-    </DxcDialog>
-  </ExampleContainer>
-);
+type Story = StoryObj<typeof DxcDialog>;
 
-const RespDialog = () => (
-  <ExampleContainer expanded>
-    <Title title="Responsive dialog" theme="light" level={4} />
-    <DxcDialog>
-      <DxcInset space="1.5rem">
-        <DxcFlex gap="2rem" direction="column">
-          <DxcHeading level={4} text="Example form" />
-          <DxcFlex gap="1rem" direction="column">
-            <DxcTextInput size="fillParent" label="Name" />
-            <DxcTextInput size="fillParent" label="Surname" />
-          </DxcFlex>
-          <DxcFlex justifyContent="flex-end" gap="0.5rem">
-            <DxcButton label="Cancel" mode="tertiary" />
-            <DxcButton label="Save" />
-          </DxcFlex>
-        </DxcFlex>
-      </DxcInset>
-    </DxcDialog>
-  </ExampleContainer>
-);
+export const DefaultDialog: Story = {
+  render: Dialog,
+};
 
-export const DialogWithoutOverlay = () => (
-  <ExampleContainer expanded>
-    <Title title="Dialog Without Overlay" theme="light" level={4} />
-    <DxcDialog overlay={false}>
-      <DxcInset space="1.5rem">
-        <DxcFlex direction="column" gap="1rem">
-          <DxcHeading level={4} text="Example title" />
-          <DxcParagraph>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi egestas luctus porttitor. Donec massa magna,
-            placerat sit amet felis eget, venenatis fringilla ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing
-            elit. Donec congue laoreet orci, nec elementum dolor consequat quis. Curabitur rhoncus justo sed dapibus
-            tincidunt. Vestibulum cursus ut risus sit amet congue. Nunc luctus, urna ullamcorper facilisis Jia Le, risus
-            eros aliquam erat, ut efficitur ante neque id odio. Nam orci leo, dignissim sit amet dolor ut, congue
-            gravida enim. Donec rhoncus aliquam nisl, ac cursus enim bibendum vitae. Nunc sit amet elit ornare,
-            malesuada urna eu, fringilla mauris. Vivamus bibendum turpis est, id elementum purus euismod sit amet. Etiam
-            sit amet maximus augue. Vivamus erat sapien, ultricies fringilla tellus id, condimentum blandit justo.
-            Praesent quis nunc dignissim, pharetra neque molestie, molestie lectus.
-          </DxcParagraph>
-        </DxcFlex>
-      </DxcInset>
-    </DxcDialog>
-  </ExampleContainer>
-);
+export const DefaultDialogOpinionated: Story = {
+  render: DialogOpinionated,
+};
 
-export const DialogCloseVisibleFalse = () => (
-  <ExampleContainer expanded>
-    <Title title="Dialog Close Visible" theme="dark" level={4} />
-    <DxcDialog closable={false}>
-      <DxcInset space="1.5rem">
-        <DxcParagraph>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi egestas luctus porttitor. Donec massa magna,
-          placerat sit amet felis eget, venenatis fringilla ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing
-          elit. Donec congue laoreet orci, nec elementum dolor consequat quis. Curabitur rhoncus justo sed dapibus
-          tincidunt. Vestibulum cursus ut risus sit amet congue. Nunc luctus, urna ullamcorper facilisis Jia Le, risus
-          eros aliquam erat, ut efficitur ante neque id odio. Nam orci leo, dignissim sit amet dolor ut, congue gravida
-          enim. Donec rhoncus aliquam nisl, ac cursus enim bibendum vitae. Nunc sit amet elit ornare, malesuada urna eu,
-          fringilla mauris. Vivamus bibendum turpis est, id elementum purus euismod sit amet. Etiam sit amet maximus
-          augue. Vivamus erat sapien, ultricies fringilla tellus id, condimentum blandit justo. Praesent quis nunc
-          dignissim, pharetra neque molestie, molestie lectus.
-        </DxcParagraph>
-      </DxcInset>
-    </DxcDialog>
-  </ExampleContainer>
-);
+export const DialogWithInputs: Story = {
+  render: DialogInput,
+};
 
-const customViewports = {
-  resizedScreen: {
-    name: "Custom viewport",
-    styles: {
-      width: "720px",
-      height: "900px",
+export const DialogWithoutOverlay: Story = {
+  render: DialogNoOverlay,
+};
+
+export const DialogCloseVisibleFalse: Story = {
+  render: DialogCloseNoVisible,
+};
+
+export const ResponsiveDialog: Story = {
+  render: Dialog,
+  parameters: {
+    viewport: {
+      viewports: customViewports,
+      defaultViewport: "resizedScreen",
     },
+    chromatic: { viewports: [720] },
   },
 };
 
-export const ResponsiveDialog = DefaultDialog.bind({});
-ResponsiveDialog.parameters = {
-  viewport: {
-    viewports: customViewports,
-    defaultViewport: "resizedScreen",
+export const MobileResponsiveDialog: Story = {
+  render: RespDialog,
+  parameters: {
+    viewport: {
+      defaultViewport: "iphonex",
+    },
+    chromatic: { viewports: [375] },
   },
-  chromatic: { viewports: [720] },
 };
 
-export const MobileResponsiveDialog = RespDialog.bind({});
-MobileResponsiveDialog.parameters = {
-  viewport: {
-    defaultViewport: "iphonex",
+export const ScrollDialog: Story = {
+  render: ScrollingDialog,
+  play: async () => {
+    await userEvent.tab();
+    await userEvent.tab();
+    await userEvent.tab();
   },
-  chromatic: { viewports: [375] },
-};
-
-export const ScrollDialog = ScrollingDialog.bind({});
-ScrollDialog.play = async () => {
-  await userEvent.tab();
-  await userEvent.tab();
-  await userEvent.tab();
 };

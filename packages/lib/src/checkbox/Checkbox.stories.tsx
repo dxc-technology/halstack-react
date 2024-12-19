@@ -1,3 +1,4 @@
+import { Meta, StoryObj } from "@storybook/react";
 import styled from "styled-components";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
@@ -7,7 +8,7 @@ import DxcCheckbox from "./Checkbox";
 export default {
   title: "Checkbox",
   component: DxcCheckbox,
-};
+} as Meta<typeof DxcCheckbox>;
 
 const opinionatedTheme = {
   checkbox: {
@@ -16,6 +17,25 @@ const opinionatedTheme = {
     fontColor: "#000000",
   },
 };
+
+const ScrollableContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 200px;
+  height: 200px;
+  border: 1px solid #000;
+  padding: 14px;
+  overflow: auto;
+`;
+
+const SmallContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 150px;
+  height: 150px;
+`;
 
 const Checkbox = () => (
   <>
@@ -194,28 +214,12 @@ const Checkbox = () => (
   </>
 );
 
-export const Chromatic = Checkbox.bind({});
+type Story = StoryObj<typeof DxcCheckbox>;
 
-Chromatic.play = async () => {
-  const listEl = document.getElementById("scroll-container");
-  listEl?.scrollTo?.({ top: 50 });
+export const Chromatic: Story = {
+  render: Checkbox,
+  play: async () => {
+    const listEl = document.getElementById("scroll-container");
+    listEl?.scrollTo?.({ top: 50 });
+  },
 };
-
-const ScrollableContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  width: 200px;
-  height: 200px;
-  border: 1px solid #000;
-  padding: 14px;
-  overflow: auto;
-`;
-
-const SmallContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  width: 150px;
-  height: 150px;
-`;

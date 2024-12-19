@@ -1,7 +1,6 @@
-import { FocusEvent, forwardRef, KeyboardEvent, useCallback, useId, useMemo, useState } from "react";
+import { FocusEvent, forwardRef, KeyboardEvent, useCallback, useContext, useId, useMemo, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import useTheme from "../useTheme";
-import useTranslatedLabels from "../useTranslatedLabels";
+import HalstackContext, { HalstackLanguageContext } from "../HalstackContext";
 import DxcRadio from "./Radio";
 import RadioGroupPropsType, { RadioOption, RefType } from "./types";
 
@@ -38,8 +37,8 @@ const DxcRadioGroup = forwardRef<RefType, RadioGroupPropsType>(
     const [innerValue, setInnerValue] = useState(defaultValue);
     const [firstTimeFocus, setFirstTimeFocus] = useState(true);
 
-    const colorsTheme = useTheme();
-    const translatedLabels = useTranslatedLabels();
+    const colorsTheme = useContext(HalstackContext);
+    const translatedLabels = useContext(HalstackLanguageContext);
 
     const innerOptions = useMemo(
       () =>
@@ -47,7 +46,7 @@ const DxcRadioGroup = forwardRef<RefType, RadioGroupPropsType>(
           ? [
               ...options,
               {
-                label: optionalItemLabel ?? translatedLabels?.radioGroup?.optionalItemLabelDefault ?? "",
+                label: optionalItemLabel ?? translatedLabels.radioGroup.optionalItemLabelDefault,
                 value: "",
                 disabled,
               },
@@ -78,7 +77,7 @@ const DxcRadioGroup = forwardRef<RefType, RadioGroupPropsType>(
         if (!optional && !currentValue) {
           onBlur?.({
             value: currentValue,
-            error: translatedLabels?.formFields?.requiredSelectionErrorMessage,
+            error: translatedLabels.formFields.requiredSelectionErrorMessage,
           });
         } else {
           onBlur?.({ value: currentValue });

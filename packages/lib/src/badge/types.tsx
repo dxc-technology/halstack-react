@@ -1,6 +1,4 @@
-import { ReactNode, SVGProps } from "react";
-
-type SVG = ReactNode & SVGProps<SVGSVGElement>;
+import { SVG } from "../common/utils";
 
 export type ContextualProps = {
   /**
