@@ -1,8 +1,8 @@
-import { forwardRef, useEffect, useRef } from "react";
+import { forwardRef, useEffect, useMemo, useRef } from "react";
 import styled from "styled-components";
 import DxcTextInput from "../text-input/TextInput";
-import { NumberInputContext } from "./NumberInputContext";
 import NumberInputPropsType, { RefType } from "./types";
+import NumberInputContext from "./NumberInputContext";
 
 const DxcNumberInput = forwardRef<RefType, NumberInputPropsType>(
   (
@@ -31,7 +31,17 @@ const DxcNumberInput = forwardRef<RefType, NumberInputPropsType>(
     },
     ref
   ) => {
-    const numberInputRef = useRef<HTMLInputElement>(null);
+    const numberInputRef = useRef<HTMLInputElement | null>(null);
+
+    const contextValue = useMemo(
+      () => ({
+        typeNumber: "number",
+        minNumber: min,
+        maxNumber: max,
+        stepNumber: step,
+      }),
+      [min, max, step]
+    );
 
     useEffect(() => {
       const input = numberInputRef.current?.getElementsByTagName("input")[0] as HTMLInputElement;
@@ -45,7 +55,7 @@ const DxcNumberInput = forwardRef<RefType, NumberInputPropsType>(
     }, []);
 
     return (
-      <NumberInputContext.Provider value={{ typeNumber: "number", minNumber: min, maxNumber: max, stepNumber: step }}>
+      <NumberInputContext.Provider value={contextValue}>
         <NumberInputContainer ref={numberInputRef} size={size}>
           <DxcTextInput
             label={label}
@@ -75,7 +85,7 @@ const DxcNumberInput = forwardRef<RefType, NumberInputPropsType>(
 );
 
 const NumberInputContainer = styled.div<{ size: NumberInputPropsType["size"] }>`
-  ${(props) => props.size == "fillParent" && "width: 100%;"}
+  ${(props) => props.size === "fillParent" && "width: 100%;"}
   // Chrome, Safari, Edge, Opera
   input::-webkit-outer-spin-button,
   input::-webkit-inner-spin-button {

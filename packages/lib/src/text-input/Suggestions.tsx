@@ -1,6 +1,6 @@
-import { memo, useEffect, useRef } from "react";
+import { memo, useContext, useEffect, useRef } from "react";
 import styled from "styled-components";
-import useTranslatedLabels from "../useTranslatedLabels";
+import { HalstackLanguageContext } from "../HalstackContext";
 import Suggestion from "./Suggestion";
 import { SuggestionsProps } from "./types";
 import DxcIcon from "../icon/Icon";
@@ -16,18 +16,21 @@ const Suggestions = ({
   suggestionOnClick,
   styles,
 }: SuggestionsProps): JSX.Element => {
-  const translatedLabels = useTranslatedLabels();
-  const listboxRef = useRef(null);
+  const translatedLabels = useContext(HalstackLanguageContext);
+  const listboxRef = useRef<HTMLUListElement | null>(null);
 
   useEffect(() => {
     const visualFocusedOptionEl = listboxRef?.current?.querySelectorAll("[role='option']")[visualFocusIndex];
-    visualFocusedOptionEl?.scrollIntoView?.({ block: "nearest", inline: "start" });
+    visualFocusedOptionEl?.scrollIntoView?.({
+      block: "nearest",
+      inline: "start",
+    });
   }, [visualFocusIndex]);
 
   return (
     <SuggestionsContainer
       id={id}
-      error={searchHasErrors ? true : false}
+      error={!!searchHasErrors}
       onMouseDown={(event) => {
         event.preventDefault();
       }}

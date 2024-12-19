@@ -7,6 +7,7 @@ import { HalstackProvider } from "../HalstackContext";
 import DxcFlex from "../flex/Flex";
 import DxcTypography from "../typography/Typography";
 import DxcFooter from "./Footer";
+import { Meta, StoryObj } from "@storybook/react";
 
 const social = [
   {
@@ -119,7 +120,7 @@ export default {
       },
     },
   },
-};
+} as Meta<typeof DxcFooter>;
 
 const opinionatedTheme = {
   footer: {
@@ -135,7 +136,7 @@ const info = [
   { label: "Example Label", text: "Example" },
 ];
 
-export const Chromatic = () => (
+const Footer = () => (
   <>
     <ExampleContainer>
       <Title title="Default" theme="light" level={4} />
@@ -216,16 +217,26 @@ const Tooltip = () => {
   );
 };
 
-export const FooterTooltipFirst = Tooltip.bind({});
-FooterTooltipFirst.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const link = canvas.getAllByRole("link")[0];
-  await userEvent.hover(link);
+type Story = StoryObj<typeof DxcFooter>;
+
+export const Chromatic: Story = {
+  render: Footer,
 };
 
-export const FooterTooltipSecond = Tooltip.bind({});
-FooterTooltipSecond.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const link = canvas.getAllByRole("link")[1];
-  await userEvent.hover(link);
+export const FooterTooltipFirst: Story = {
+  render: Tooltip,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const link = canvas.getAllByRole("link")[0];
+    await userEvent.hover(link);
+  },
+};
+
+export const FooterTooltipSecond: Story = {
+  render: Tooltip,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const link = canvas.getAllByRole("link")[1];
+    await userEvent.hover(link);
+  },
 };

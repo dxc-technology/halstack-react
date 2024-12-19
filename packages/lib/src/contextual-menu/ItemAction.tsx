@@ -1,4 +1,4 @@
-import { cloneElement, useState } from "react";
+import { cloneElement, MouseEvent, useState } from "react";
 import styled from "styled-components";
 import CoreTokens from "../common/coreTokens";
 import { ItemActionProps } from "./types";
@@ -17,7 +17,7 @@ const ItemAction = ({ badge, collapseIcon, icon, label, depthLevel, ...props }: 
           {icon && depthLevel === 0 && <Icon>{typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}</Icon>}
           <Text
             selected={props.selected}
-            onMouseEnter={(event: React.MouseEvent<HTMLSpanElement>) => {
+            onMouseEnter={(event: MouseEvent<HTMLSpanElement>) => {
               const text = event.currentTarget;
               setHasTooltip(text.scrollWidth > text.clientWidth);
             }}

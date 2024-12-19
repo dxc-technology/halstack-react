@@ -3,6 +3,7 @@ import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import { HalstackProvider } from "../HalstackContext";
 import DxcTabsLegacy from "./TabsLegacy";
+import { Meta, StoryObj } from "@storybook/react/*";
 
 export default {
   title: "Tabs Legacy",
@@ -12,7 +13,7 @@ export default {
       viewports: INITIAL_VIEWPORTS,
     },
   },
-};
+} as Meta<typeof DxcTabsLegacy>;
 
 const iconSVG = (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" height="20" width="20" fill="currentColor">
@@ -91,7 +92,7 @@ const opinionatedTheme = {
   },
 };
 
-export const ChromaticLegacy = () => (
+const Chromatic = () => (
   <>
     <ExampleContainer>
       <Title title="Only label" theme="light" level={4} />
@@ -200,7 +201,7 @@ export const ChromaticLegacy = () => (
   </>
 );
 
-export const ScrollableTabsLegacy = () => (
+const Scrollable = () => (
   <>
     <ExampleContainer>
       <Title title="Only label" theme="light" level={4} />
@@ -221,9 +222,18 @@ export const ScrollableTabsLegacy = () => (
   </>
 );
 
-ScrollableTabsLegacy.parameters = {
-  viewport: {
-    defaultViewport: "iphonex",
+type Story = StoryObj<typeof DxcTabsLegacy>;
+
+export const ChromaticLegacy: Story = {
+  render: Chromatic,
+};
+
+export const ScrollableTabsLegacy: Story = {
+  render: Scrollable,
+  parameters: {
+    viewport: {
+      defaultViewport: "iphonex",
+    },
+    chromatic: { viewports: [375], delay: 5000 },
   },
-  chromatic: { viewports: [375], delay: 5000 },
 };

@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import { CoreSpacingTokensType } from "../common/coreTokens";
 
 type Props = {
@@ -32,7 +33,7 @@ type Props = {
   /**
    * Custom content inside the inset.
    */
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
 export default Props;

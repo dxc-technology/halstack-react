@@ -3,11 +3,12 @@ import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import { HalstackProvider } from "../HalstackContext";
 import DxcToggleGroup from "./ToggleGroup";
+import { Meta, StoryObj } from "@storybook/react";
 
 export default {
   title: "Toggle Group",
   component: DxcToggleGroup,
-};
+} as Meta<typeof DxcToggleGroup>;
 
 const ethernetSVG = (
   <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
@@ -102,7 +103,7 @@ const opinionatedTheme = {
   },
 };
 
-export const Chromatic = () => (
+const ToggleGroup = () => (
   <>
     <ExampleContainer>
       <Title title="Basic toggle group" theme="light" level={4} />
@@ -200,18 +201,30 @@ export const Chromatic = () => (
     </ExampleContainer>
   </>
 );
+
 const OptionSelected = () => <DxcToggleGroup label="Toggle group" helperText="HelperText" options={options} />;
 
-export const ToggleGroupSelectedActived = OptionSelected.bind({});
-ToggleGroupSelectedActived.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const option = canvas.getByText("Linkedin");
-  await userEvent.click(option);
+type Story = StoryObj<typeof DxcToggleGroup>;
+
+export const Chromatic: Story = {
+  render: ToggleGroup,
 };
-export const ToggleGroupUnselectedActived = OptionSelected.bind({});
-ToggleGroupUnselectedActived.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const option = canvas.getByText("X");
-  await userEvent.click(option);
-  userEvent.tab();
+
+export const ToggleGroupSelectedActived: Story = {
+  render: OptionSelected,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const option = canvas.getByText("Linkedin");
+    await userEvent.click(option);
+  },
+};
+
+export const ToggleGroupUnselectedActived: Story = {
+  render: OptionSelected,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const option = canvas.getByText("X");
+    await userEvent.click(option);
+    userEvent.tab();
+  },
 };

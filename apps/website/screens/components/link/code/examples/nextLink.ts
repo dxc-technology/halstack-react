@@ -1,9 +1,9 @@
 import { DxcLink, DxcInset } from "@dxc-technology/halstack-react";
 import Link from "next/link";
-import React from "react";
+import { forwardRef } from "react";
 
 const code = `() => {
-  const CustomLink = React.forwardRef(
+  const CustomLink = forwardRef(
     ({ onClick, href, children, ...other }, ref) => {
       return (
         <DxcLink {...other} href={href} onClick={onClick} ref={ref}>
@@ -26,7 +26,7 @@ const code = `() => {
 const scope = {
   DxcLink,
   Link,
-  React,
+  forwardRef,
   DxcInset,
 };
 
