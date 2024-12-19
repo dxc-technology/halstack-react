@@ -1,8 +1,9 @@
+import { Meta, StoryObj } from "@storybook/react";
 import { userEvent, within } from "@storybook/test";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import preview from "../../.storybook/preview";
-import { disabledRules } from "../../test/accessibility/rules/specific/footer/disabledRules";
+import disabledRules from "../../test/accessibility/rules/specific/footer/disabledRules";
 import { HalstackProvider } from "../HalstackContext";
 import DxcFlex from "../flex/Flex";
 import DxcTypography from "../typography/Typography";
@@ -114,12 +115,12 @@ export default {
       config: {
         rules: [
           ...disabledRules.map((ruleId) => ({ id: ruleId, enabled: false })),
-          ...preview?.parameters?.a11y?.config?.rules,
+          ...(preview?.parameters?.a11y?.config?.rules || []),
         ],
       },
     },
   },
-};
+} as Meta<typeof DxcFooter>;
 
 const opinionatedTheme = {
   footer: {
@@ -135,7 +136,7 @@ const info = [
   { label: "Example Label", text: "Example" },
 ];
 
-export const Chromatic = () => (
+const Footer = () => (
   <>
     <ExampleContainer>
       <Title title="Default" theme="light" level={4} />
@@ -168,7 +169,7 @@ export const Chromatic = () => (
     <ExampleContainer>
       <Title title="Reduced" theme="light" level={4} />
       <DxcFooter mode="reduced">
-        <DxcFlex justifyContent="center" alignItems="center" gap={"1rem"}>
+        <DxcFlex justifyContent="center" alignItems="center" gap="1rem">
           {info.map((tag, index) => (
             <DxcTypography color="white" key={`tag${index}${tag.label}${tag.text}`}>
               {tag.label}: {tag.text}
@@ -207,25 +208,33 @@ export const Chromatic = () => (
   </>
 );
 
-const Tooltip = () => {
-  return (
-    <ExampleContainer>
-      <Title title="Default tooltip" theme="light" level={2} />
-      <DxcFooter socialLinks={social.slice(0, 2)}></DxcFooter>
-    </ExampleContainer>
-  );
+const Tooltip = () => (
+  <ExampleContainer>
+    <Title title="Default tooltip" theme="light" level={2} />
+    <DxcFooter socialLinks={social.slice(0, 2)}></DxcFooter>
+  </ExampleContainer>
+);
+
+type Story = StoryObj<typeof DxcFooter>;
+
+export const Chromatic: Story = {
+  render: Footer,
 };
 
-export const FooterTooltipFirst = Tooltip.bind({});
-FooterTooltipFirst.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const link = canvas.getAllByRole("link")[0];
-  await userEvent.hover(link);
+export const FooterTooltipFirst: Story = {
+  render: Tooltip,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const link = canvas.getAllByRole("link")[0];
+    await userEvent.hover(link);
+  },
 };
 
-export const FooterTooltipSecond = Tooltip.bind({});
-FooterTooltipSecond.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const link = canvas.getAllByRole("link")[1];
-  await userEvent.hover(link);
+export const FooterTooltipSecond: Story = {
+  render: Tooltip,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const link = canvas.getAllByRole("link")[1];
+    await userEvent.hover(link);
+  },
 };

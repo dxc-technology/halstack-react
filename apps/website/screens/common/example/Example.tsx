@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from "react-live";
 import theme from "./liveEditorTheme";
@@ -41,8 +41,8 @@ type ExamplePropTypes = {
   actionsVisible?: boolean;
   defaultIsVisible?: boolean;
   example: {
-    scope?: Record<string, any>;
-    code?: string;
+    scope: Record<string, any>;
+    code: string;
   };
 };
 
@@ -55,14 +55,16 @@ const Example = ({ actionsVisible = true, defaultIsVisible = false, example }: E
   };
 
   const handleCopy = () => {
-    navigator.clipboard
-      .writeText(example.code)
-      .then(() => {
-        toast.success({ message: "Code copied to the clipboard." });
-      })
-      .catch(() => {
-        toast.warning({ message: "Failed to copy the text to the clipboard." });
-      });
+    if (example.code) {
+      navigator.clipboard
+        .writeText(example.code)
+        .then(() => {
+          toast.success({ message: "Code copied to the clipboard." });
+        })
+        .catch(() => {
+          toast.warning({ message: "Failed to copy the text to the clipboard." });
+        });
+    }
   };
 
   return (

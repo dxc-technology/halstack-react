@@ -57,7 +57,12 @@ describe("Checkbox component tests", () => {
     const checkbox = getByRole("checkbox");
     userEvent.tab();
     expect(document.activeElement === checkbox).toBeTruthy();
-    fireEvent.keyDown(checkbox, { key: " ", code: "Space", keyCode: 32, charCode: 32 });
+    fireEvent.keyDown(checkbox, {
+      key: " ",
+      code: "Space",
+      keyCode: 32,
+      charCode: 32,
+    });
     expect(onChange).not.toHaveBeenCalled();
   });
 
@@ -68,12 +73,12 @@ describe("Checkbox component tests", () => {
     const input = component.getByRole("checkbox");
     const submitInput = component.container.querySelector<HTMLInputElement>(`input[name="test"]`);
     expect(input.getAttribute("aria-checked")).toBe("false");
-    expect(submitInput.checked).toBe(false);
+    expect(submitInput?.checked).toBe(false);
     fireEvent.click(visibleCheckbox);
     expect(onChange).toHaveBeenCalled();
     expect(onChange).toHaveBeenCalledWith(true);
     expect(input.getAttribute("aria-checked")).toBe("true");
-    expect(submitInput.checked).toBe(true);
+    expect(submitInput?.checked).toBe(true);
   });
 
   test("Controlled checkbox", () => {
@@ -86,7 +91,7 @@ describe("Checkbox component tests", () => {
     expect(onChange).toHaveBeenCalled();
     expect(onChange).toHaveBeenCalledWith(true);
     expect(input.getAttribute("aria-checked")).toBe("false");
-    expect(submitInput.checked).toBe(false);
+    expect(submitInput?.checked).toBe(false);
   });
 
   test("Renders with correct initial value and initial state when it is uncontrolled", () => {
@@ -95,12 +100,12 @@ describe("Checkbox component tests", () => {
     );
     const checkbox = getByRole("checkbox");
     const submitInput = container.querySelector<HTMLInputElement>(`input[name="test"]`);
-    expect(submitInput.value).toBe("test-defaultChecked");
+    expect(submitInput?.value).toBe("test-defaultChecked");
     expect(checkbox.getAttribute("aria-checked")).toBe("true");
-    expect(submitInput.checked).toBe(true);
+    expect(submitInput?.checked).toBe(true);
   });
 
-  test("Test disable keyboard and mouse interactions", () => {
+  test("disable keyboard and mouse interactions", () => {
     const onChange = jest.fn();
     const { getByRole, getByText, container } = render(
       <DxcCheckbox label="Checkbox" onChange={onChange} disabled name="test" />
@@ -112,18 +117,23 @@ describe("Checkbox component tests", () => {
     expect(onChange).toHaveBeenCalledTimes(0);
     expect(input.getAttribute("aria-checked")).toBe("false");
     expect(input.getAttribute("aria-disabled")).toBe("true");
-    expect(submitInput.checked).toBe(false);
+    expect(submitInput?.checked).toBe(false);
     userEvent.tab();
     expect(document.activeElement === input).toBeFalsy();
   });
 
-  test("Test keyboard interactions", () => {
+  test("keyboard interactions", () => {
     const onChange = jest.fn();
     const { getByRole } = render(<DxcCheckbox label="Checkbox" name="test" onChange={onChange} />);
     const checkbox = getByRole("checkbox");
     userEvent.tab();
     expect(document.activeElement === checkbox).toBeTruthy();
-    fireEvent.keyDown(checkbox, { key: " ", code: "Space", keyCode: 32, charCode: 32 });
+    fireEvent.keyDown(checkbox, {
+      key: " ",
+      code: "Space",
+      keyCode: 32,
+      charCode: 32,
+    });
     expect(onChange).toHaveBeenCalledWith(true);
   });
 });

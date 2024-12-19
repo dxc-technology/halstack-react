@@ -1,6 +1,7 @@
 import styled, { ThemeProvider } from "styled-components";
-import useTheme from "../useTheme";
+import { ReactNode, useCallback, useContext } from "react";
 import ImagePropsType, { CaptionWrapperProps } from "./types";
+import HalstackContext from "../HalstackContext";
 
 const Figure = styled.figure`
   display: flex;
@@ -38,19 +39,21 @@ export default function DxcImage({
   onLoad,
   onError,
 }: ImagePropsType) {
-  const colorsTheme = useTheme();
+  const colorsTheme = useContext(HalstackContext);
+
+  const figureWrapper = useCallback(
+    (children: ReactNode) => (
+      <Figure>
+        {children}
+        <CaptionContainer>{caption}</CaptionContainer>
+      </Figure>
+    ),
+    [caption]
+  );
 
   return (
     <ThemeProvider theme={colorsTheme.image}>
-      <CaptionWrapper
-        condition={caption != undefined}
-        wrapper={(children: React.ReactNode) => (
-          <Figure>
-            {children}
-            <CaptionContainer>{caption}</CaptionContainer>
-          </Figure>
-        )}
-      >
+      <CaptionWrapper condition={caption !== undefined} wrapper={figureWrapper}>
         <img
           alt={alt}
           loading={lazyLoading ? "lazy" : undefined}

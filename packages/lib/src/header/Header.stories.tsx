@@ -1,9 +1,10 @@
-import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
+import { Meta, StoryObj } from "@storybook/react";
 import { userEvent, waitFor, within } from "@storybook/test";
-import ExampleContainer from "../../.storybook/components/ExampleContainer";
+import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import Title from "../../.storybook/components/Title";
+import ExampleContainer from "../../.storybook/components/ExampleContainer";
+import disabledRules from "../../test/accessibility/rules/specific/header/disabledRules";
 import preview from "../../.storybook/preview";
-import { disabledRules } from "../../test/accessibility/rules/specific/header/disabledRules";
 import DxcButton from "../button/Button";
 import DxcFlex from "../flex/Flex";
 import { HalstackProvider } from "../HalstackContext";
@@ -18,7 +19,7 @@ export default {
       config: {
         rules: [
           ...disabledRules.map((ruleId) => ({ id: ruleId, enabled: false })),
-          ...preview?.parameters?.a11y?.config?.rules,
+          ...(preview?.parameters?.a11y?.config?.rules || []),
         ],
       },
     },
@@ -26,26 +27,26 @@ export default {
       viewports: INITIAL_VIEWPORTS,
     },
   },
-};
+} as Meta<typeof DxcHeader>;
 
-const options: any = [
+const options = [
   {
-    value: 1,
+    value: "1",
     label: "Amazon",
   },
 ];
 
-const options2: any = [
+const options2 = [
   {
-    value: 1,
+    value: "1",
     label: "Home",
   },
   {
-    value: 2,
+    value: "2",
     label: "Release notes",
   },
   {
-    value: 3,
+    value: "3",
     label: "Sign out",
   },
 ];
@@ -65,7 +66,16 @@ const opinionatedTheme = {
   },
 };
 
-export const Chromatic = () => (
+const responsiveContentFunctionWithHandler = (closeHandler: () => void) => (
+  <>
+    <DxcButton label="Custom Button" onClick={closeHandler} />
+    Custom content
+  </>
+);
+
+const responsiveContentFunction = () => <p>Lorem ipsum dolor sit amet.</p>;
+
+const Header = () => (
   <>
     <ExampleContainer>
       <Title title="Default with dropdown" theme="light" level={4} />
@@ -132,27 +142,20 @@ export const Chromatic = () => (
       <HalstackProvider theme={opinionatedTheme}>
         <DxcHeader
           underlined
-          content={<DxcButton label={"Custom Button"} />}
-          responsiveContent={(closeHandler) => (
-            <>
-              <DxcButton label={"Custom Button"} onClick={closeHandler} />
-              Custom content
-            </>
-          )}
+          content={<DxcButton label="Custom Button" />}
+          responsiveContent={responsiveContentFunctionWithHandler}
         />
       </HalstackProvider>
     </ExampleContainer>
   </>
 );
 
-export const ResponsiveHeader = () => (
+const Responsive = () => (
   <ExampleContainer>
     <Title title="Responsive" theme="light" level={4} />
     <DxcHeader
       content={<DxcHeader.Dropdown options={options} label="Default Dropdown" onSelectOption={() => {}} />}
-      responsiveContent={(closeHandler) => (
-        <DxcHeader.Dropdown options={options} label="Default Dropdown" onSelectOption={() => {}} />
-      )}
+      responsiveContent={responsiveContentFunction}
       underlined
     />
   </ExampleContainer>
@@ -161,28 +164,26 @@ export const ResponsiveHeader = () => (
 const RespHeaderFocus = () => (
   <ExampleContainer pseudoState="pseudo-focus">
     <Title title="Responsive focus" theme="light" level={4} />
-    <DxcHeader responsiveContent={(closeHandler) => <p>Lorem ipsum dolor sit amet.</p>} underlined />
+    <DxcHeader responsiveContent={responsiveContentFunction} underlined />
   </ExampleContainer>
 );
-
 const RespHeaderHover = () => (
   <ExampleContainer pseudoState="pseudo-hover">
     <Title title="Responsive hover" theme="light" level={4} />
-    <DxcHeader responsiveContent={(closeHandler) => <p>Lorem ipsum dolor sit amet.</p>} underlined />
+    <DxcHeader responsiveContent={responsiveContentFunction} underlined />
   </ExampleContainer>
 );
-
 const RespHeaderMenuMobile = () => (
   <ExampleContainer>
     <Title title="Responsive menu" theme="light" level={4} />
-    <DxcHeader responsiveContent={(closeHandler) => <p>Lorem ipsum dolor sit amet.</p>} underlined />
+    <DxcHeader responsiveContent={responsiveContentFunction} underlined />
   </ExampleContainer>
 );
 
 const RespHeaderMenuTablet = () => (
   <ExampleContainer>
     <Title title="Responsive menu" theme="light" level={4} />
-    <DxcHeader responsiveContent={(closeHandler) => <p>Lorem ipsum dolor sit amet.</p>} underlined />
+    <DxcHeader responsiveContent={responsiveContentFunction} underlined />
   </ExampleContainer>
 );
 
@@ -190,92 +191,113 @@ const RespHeaderMenuOpinionated = () => (
   <ExampleContainer>
     <Title title="Responsive menu" theme="light" level={4} />
     <HalstackProvider theme={opinionatedTheme}>
-      <DxcHeader responsiveContent={(closeHandler) => <p>Lorem ipsum dolor sit amet.</p>} underlined />
+      <DxcHeader responsiveContent={responsiveContentFunction} underlined />
     </HalstackProvider>
   </ExampleContainer>
 );
 
-ResponsiveHeader.parameters = {
-  viewport: {
-    defaultViewport: "iphonex",
-  },
-  chromatic: { viewports: [375] },
+type Story = StoryObj<typeof DxcHeader>;
+
+export const Chromatic: Story = {
+  render: Header,
 };
 
-export const ResponsiveHeaderFocus = RespHeaderFocus.bind({});
-ResponsiveHeaderFocus.parameters = {
-  viewport: {
-    defaultViewport: "iphonex",
+export const ResponsiveHeader: Story = {
+  render: Responsive,
+  parameters: {
+    viewport: {
+      defaultViewport: "iphonex",
+    },
+    chromatic: { viewports: [375] },
   },
-  chromatic: { viewports: [375] },
-};
-ResponsiveHeaderFocus.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  await waitFor(() => canvas.findByText("Menu"));
 };
 
-export const ResponsiveHeaderHover = RespHeaderHover.bind({});
-ResponsiveHeaderHover.parameters = {
-  viewport: {
-    defaultViewport: "iphonex",
+export const ResponsiveHeaderFocus: Story = {
+  render: RespHeaderFocus,
+  parameters: {
+    viewport: {
+      defaultViewport: "iphonex",
+    },
+    chromatic: { viewports: [375] },
   },
-  chromatic: { viewports: [375] },
-};
-ResponsiveHeaderHover.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  await waitFor(() => canvas.findByText("Menu"));
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await waitFor(() => canvas.findByText("Menu"));
+  },
 };
 
-export const ResponsiveHeaderMenuMobile = RespHeaderMenuMobile.bind({});
-ResponsiveHeaderMenuMobile.parameters = {
-  viewport: {
-    defaultViewport: "iphonex",
+export const ResponsiveHeaderHover: Story = {
+  render: RespHeaderHover,
+  parameters: {
+    viewport: {
+      defaultViewport: "iphonex",
+    },
+    chromatic: { viewports: [375] },
   },
-  chromatic: { viewports: [375] },
-};
-ResponsiveHeaderMenuMobile.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  await waitFor(() => canvas.findByText("Menu"));
-  await userEvent.click(canvas.getByText("Menu"));
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await waitFor(() => canvas.findByText("Menu"));
+  },
 };
 
-export const ResponsiveHeaderMenuTablet = RespHeaderMenuTablet.bind({});
-ResponsiveHeaderMenuTablet.parameters = {
-  viewport: {
-    defaultViewport: "pixelxl",
+export const ResponsiveHeaderMenuMobile: Story = {
+  render: RespHeaderMenuMobile,
+  parameters: {
+    viewport: {
+      defaultViewport: "iphonex",
+    },
+    chromatic: { viewports: [375] },
   },
-  chromatic: { viewports: [720] },
-};
-ResponsiveHeaderMenuTablet.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  await waitFor(() => canvas.findByText("Menu"));
-  await userEvent.click(canvas.getByText("Menu"));
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await waitFor(() => canvas.findByText("Menu"));
+    await userEvent.click(canvas.getByText("Menu"));
+  },
 };
 
-export const ResponsiveHeaderMenuOpinionated = RespHeaderMenuOpinionated.bind({});
-ResponsiveHeaderMenuOpinionated.parameters = {
-  viewport: {
-    defaultViewport: "pixelxl",
+export const ResponsiveHeaderMenuTablet: Story = {
+  render: RespHeaderMenuTablet,
+  parameters: {
+    viewport: {
+      defaultViewport: "pixelxl",
+    },
+    chromatic: { viewports: [720] },
   },
-  chromatic: { viewports: [720] },
-};
-ResponsiveHeaderMenuOpinionated.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  await waitFor(() => canvas.findByText("Menu"));
-  await userEvent.click(canvas.getByText("Menu"));
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await waitFor(() => canvas.findByText("Menu"));
+    await userEvent.click(canvas.getByText("Menu"));
+  },
 };
 
-export const ResponsiveHeaderTooltip = RespHeaderMenuMobile.bind({});
-ResponsiveHeaderTooltip.parameters = {
-  viewport: {
-    defaultViewport: "iphonex",
+export const ResponsiveHeaderMenuOpinionated: Story = {
+  render: RespHeaderMenuOpinionated,
+  parameters: {
+    viewport: {
+      defaultViewport: "pixelxl",
+    },
+    chromatic: { viewports: [720] },
   },
-  chromatic: { viewports: [375] },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await waitFor(() => canvas.findByText("Menu"));
+    await userEvent.click(canvas.getByText("Menu"));
+  },
 };
-ResponsiveHeaderTooltip.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  await waitFor(() => canvas.findByText("Menu"));
-  await userEvent.click(canvas.getByText("Menu"));
-  const closeButton = canvas.getAllByRole("button")[1];
-  await userEvent.hover(closeButton);
+
+export const ResponsiveHeaderTooltip: Story = {
+  render: RespHeaderMenuMobile,
+  parameters: {
+    viewport: {
+      defaultViewport: "iphonex",
+    },
+    chromatic: { viewports: [375] },
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await waitFor(() => canvas.findByText("Menu"));
+    await userEvent.click(canvas.getByText("Menu"));
+    const closeButton = canvas.getAllByRole("button")[1];
+    await userEvent.hover(closeButton);
+  },
 };

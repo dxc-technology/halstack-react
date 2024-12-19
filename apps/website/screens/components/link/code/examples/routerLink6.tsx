@@ -10,7 +10,7 @@ type routerProps = {
   target: string;
 };
 
-const useLinkClickHandler = (to: string, { replace, state, target }: routerProps) => {
+const useLinkClickHandler = (_to: string, _routerProps: routerProps) => {
   console.log("useClickHandler");
 };
 

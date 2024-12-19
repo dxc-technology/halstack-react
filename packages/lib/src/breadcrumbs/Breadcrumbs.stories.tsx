@@ -1,10 +1,11 @@
+import { Meta, StoryObj } from "@storybook/react";
+import { userEvent, within } from "@storybook/test";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DxcBreadcrumbs from "./Breadcrumbs";
 import DxcContainer from "../container/Container";
 import { HalstackProvider } from "../HalstackContext";
-import { userEvent, within } from "@storybook/test";
-import { disabledRules } from "../../test/accessibility/rules/specific/breadcrumbs/disabledRules";
+import disabledRules from "../../test/accessibility/rules/specific/breadcrumbs/disabledRules";
 import preview from "../../.storybook/preview";
 
 export default {
@@ -15,12 +16,12 @@ export default {
       config: {
         rules: [
           ...disabledRules.map((ruleId) => ({ id: ruleId, enabled: false })),
-          ...preview?.parameters?.a11y?.config?.rules,
+          ...(preview?.parameters?.a11y?.config?.rules || []),
         ],
       },
     },
   },
-};
+} as Meta<typeof DxcBreadcrumbs>;
 
 const items = [
   {
@@ -185,9 +186,13 @@ const Breadcrumbs = () => (
   </>
 );
 
-export const Chromatic = Breadcrumbs.bind({});
-Chromatic.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const dropdowns = canvas.getAllByRole("button");
-  await userEvent.click(dropdowns[2]);
+type Story = StoryObj<typeof DxcBreadcrumbs>;
+
+export const Chromatic: Story = {
+  render: Breadcrumbs,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const dropdowns = canvas.getAllByRole("button");
+    await userEvent.click(dropdowns[2]);
+  },
 };

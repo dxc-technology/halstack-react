@@ -13,8 +13,8 @@ const TextTransformInput = ({
       onChangeCustomTheme(propertyName, event.target.value);
     }}
   >
-    {transformOptions.map((transformOption) => (
-      <option value={transformOption} selected={transformOption === propertyValue}>
+    {transformOptions.map((transformOption, index) => (
+      <option key={`option${index}`} value={transformOption} selected={transformOption === propertyValue}>
         {transformOption}
       </option>
     ))}

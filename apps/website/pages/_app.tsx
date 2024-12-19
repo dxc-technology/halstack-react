@@ -12,14 +12,14 @@ import StatusBadge from "@/common/StatusBadge";
 import "../global-styles.css";
 
 type NextPageWithLayout = NextPage & {
-  getLayout?: (page: ReactElement) => ReactNode;
+  getLayout?: (_page: ReactElement) => ReactNode;
 };
 type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
 };
 type ApplicationLayoutWrapperProps = {
   condition: boolean;
-  wrapper: (children: React.ReactNode) => JSX.Element;
+  wrapper: (_children: ReactNode) => JSX.Element;
   children: ReactNode;
 };
 
@@ -52,9 +52,12 @@ const App = ({ Component, pageProps }: AppPropsWithLayout) => {
   };
 
   const matchPaths = (linkPath: string) => {
-    const pathToBeMatched = currentPath.split("#")[0].slice(0, -1);
+    const pathToBeMatched = currentPath?.split("#")[0]?.slice(0, -1);
     const desiredPaths = [linkPath, `${linkPath}/specifications`, `${linkPath}/usage`];
-    return desiredPaths.includes(pathToBeMatched);
+    if (pathToBeMatched) {
+      return desiredPaths.includes(pathToBeMatched);
+    }
+    return false;
   };
 
   return (

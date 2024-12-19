@@ -107,7 +107,10 @@ describe("Textarea component tests", () => {
     fireEvent.focus(textarea);
     fireEvent.blur(textarea);
     expect(onBlur).toHaveBeenCalled();
-    expect(onBlur).toHaveBeenCalledWith({ value: "", error: "This field is required. Please, enter a value." });
+    expect(onBlur).toHaveBeenCalledWith({
+      value: "",
+      error: "This field is required. Please, enter a value.",
+    });
     fireEvent.change(textarea, { target: { value: "Test" } });
     fireEvent.blur(textarea);
     expect(onBlur).toHaveBeenCalled();
@@ -126,7 +129,10 @@ describe("Textarea component tests", () => {
     expect(onChange).toHaveBeenCalledWith({ value: "Test" });
     userEvent.clear(textarea);
     expect(onChange).toHaveBeenCalled();
-    expect(onChange).toHaveBeenCalledWith({ value: "", error: "This field is required. Please, enter a value." });
+    expect(onChange).toHaveBeenCalledWith({
+      value: "",
+      error: "This field is required. Please, enter a value.",
+    });
   });
 
   test("Pattern constraint", () => {
@@ -145,10 +151,16 @@ describe("Textarea component tests", () => {
     const textarea = getByLabelText("Example label");
     fireEvent.change(textarea, { target: { value: "pattern test" } });
     expect(onChange).toHaveBeenCalled();
-    expect(onChange).toHaveBeenCalledWith({ value: "pattern test", error: "Please match the format requested." });
+    expect(onChange).toHaveBeenCalledWith({
+      value: "pattern test",
+      error: "Please match the format requested.",
+    });
     fireEvent.blur(textarea);
     expect(onBlur).toHaveBeenCalled();
-    expect(onBlur).toHaveBeenCalledWith({ value: "pattern test", error: "Please match the format requested." });
+    expect(onBlur).toHaveBeenCalledWith({
+      value: "pattern test",
+      error: "Please match the format requested.",
+    });
     userEvent.clear(textarea);
     fireEvent.change(textarea, { target: { value: "pattern4&" } });
     expect(onChange).toHaveBeenCalled();
@@ -175,10 +187,16 @@ describe("Textarea component tests", () => {
     const textarea = getByLabelText("Example label");
     fireEvent.change(textarea, { target: { value: "test" } });
     expect(onChange).toHaveBeenCalled();
-    expect(onChange).toHaveBeenCalledWith({ value: "test", error: "Min length 5, max length 10." });
+    expect(onChange).toHaveBeenCalledWith({
+      value: "test",
+      error: "Min length 5, max length 10.",
+    });
     fireEvent.blur(textarea);
     expect(onBlur).toHaveBeenCalled();
-    expect(onBlur).toHaveBeenCalledWith({ value: "test", error: "Min length 5, max length 10." });
+    expect(onBlur).toHaveBeenCalledWith({
+      value: "test",
+      error: "Min length 5, max length 10.",
+    });
     userEvent.clear(textarea);
     fireEvent.change(textarea, { target: { value: "length" } });
     expect(onChange).toHaveBeenCalled();
@@ -206,16 +224,28 @@ describe("Textarea component tests", () => {
     const textarea = getByLabelText("Example label");
     fireEvent.change(textarea, { target: { value: "test" } });
     expect(onChange).toHaveBeenCalled();
-    expect(onChange).toHaveBeenCalledWith({ value: "test", error: "Min length 5, max length 10." });
+    expect(onChange).toHaveBeenCalledWith({
+      value: "test",
+      error: "Min length 5, max length 10.",
+    });
     fireEvent.blur(textarea);
     expect(onBlur).toHaveBeenCalled();
-    expect(onBlur).toHaveBeenCalledWith({ value: "test", error: "Min length 5, max length 10." });
+    expect(onBlur).toHaveBeenCalledWith({
+      value: "test",
+      error: "Min length 5, max length 10.",
+    });
     fireEvent.change(textarea, { target: { value: "tests" } });
     expect(onChange).toHaveBeenCalled();
-    expect(onChange).toHaveBeenCalledWith({ value: "tests", error: "Please match the format requested." });
+    expect(onChange).toHaveBeenCalledWith({
+      value: "tests",
+      error: "Please match the format requested.",
+    });
     fireEvent.blur(textarea);
     expect(onBlur).toHaveBeenCalled();
-    expect(onBlur).toHaveBeenCalledWith({ value: "tests", error: "Please match the format requested." });
+    expect(onBlur).toHaveBeenCalledWith({
+      value: "tests",
+      error: "Please match the format requested.",
+    });
     fireEvent.change(textarea, { target: { value: "tests4&" } });
     expect(onChange).toHaveBeenCalled();
     expect(onChange).toHaveBeenCalledWith({ value: "tests4&" });

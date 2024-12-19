@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from "react";
+
 export type IndexedThemeInput = {
   [key: string]: string;
 };
@@ -7,8 +9,8 @@ export type IndexedTheme = {
 
 type ImportDialogProps = {
   customThemeSchema: IndexedTheme;
-  setCustomTheme: React.Dispatch<React.SetStateAction<IndexedTheme>>;
-  setDialogVisible: (isVisible: boolean) => void;
+  setCustomTheme: Dispatch<SetStateAction<IndexedTheme>>;
+  setDialogVisible: (_isVisible: boolean) => void;
 };
 
 export default ImportDialogProps;
