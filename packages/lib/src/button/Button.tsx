@@ -384,8 +384,6 @@ const getButtonStyles = (
         &:disabled {
           ${disabled}
         }`;
-    default:
-      return undefined;
   }
 };
 

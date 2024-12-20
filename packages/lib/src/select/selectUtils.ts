@@ -97,7 +97,7 @@ const getSelectedOption = (
   optional: boolean,
   optionalItem: ListOptionType
 ) => {
-  let selectedOption: ListOptionType | ListOptionType[] = multiple ? [] : ({} as ListOptionType);
+  let selectedOption: ListOptionType | ListOptionType[] | null = multiple ? [] : null;
   let singleSelectionIndex: number | null = null;
 
   if (multiple) {
@@ -148,12 +148,12 @@ const getSelectedOption = (
 /**
  * Return the label or labels of the selected option(s), separated by commas.
  */
-const getSelectedOptionLabel = (placeholder: string, selectedOption: ListOptionType | ListOptionType[]) =>
+const getSelectedOptionLabel = (placeholder: string, selectedOption: ListOptionType | ListOptionType[] | null) =>
   Array.isArray(selectedOption)
     ? selectedOption.length === 0
       ? placeholder
       : selectedOption.map((option) => option.label).join(", ")
-    : (selectedOption.label ?? placeholder);
+    : (selectedOption?.label ?? placeholder);
 
 export {
   isOptionGroup,

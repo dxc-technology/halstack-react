@@ -33,11 +33,11 @@ type OtherProps = {
 
 type Props = IconProps | OtherProps;
 
-export default Props;
-
 export type BulletedListItemPropsType = {
   /**
    * Text to be shown in the list.
    */
   children?: ReactNode;
 };
+
+export default Props;

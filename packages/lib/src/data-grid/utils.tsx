@@ -49,12 +49,13 @@ export const convertToRDGColumns = (
   headerCellClass: gridColumn.alignment ? `header-align-${gridColumn.alignment}` : `header-align-left`,
   renderEditCell: gridColumn.textEditable ? textEditor : undefined,
   renderCell: ({ row }) => (
-      <div className={`ellipsis-cell ${gridColumn.alignment ? `align-${  gridColumn.alignment}` : "align-left"}`}>
-        {row[gridColumn.key]}
-      </div>
-    ),
-  renderSummaryCell: () => gridColumn.summaryKey ? (
-      <div className={`ellipsis-cell ${gridColumn.alignment ? `align-${  gridColumn.alignment}` : "align-left"}`}>
+    <div className={`ellipsis-cell ${gridColumn.alignment ? `align-${gridColumn.alignment}` : "align-left"}`}>
+      {row[gridColumn.key]}
+    </div>
+  ),
+  renderSummaryCell: () =>
+    gridColumn.summaryKey ? (
+      <div className={`ellipsis-cell ${gridColumn.alignment ? `align-${gridColumn.alignment}` : "align-left"}`}>
         {summaryRow?.[gridColumn.summaryKey]}
       </div>
     ) : undefined,
@@ -452,7 +453,6 @@ export const rowFinderBasedOnId = (
   if (foundRow) {
     return foundRow;
   }
-  return undefined;
 };
 
 /**
@@ -482,6 +482,18 @@ export const getChildrenSelection = (
 };
 
 /**
+ * Determines if the given row is a `HierarchyGridRow`.
+ *
+ * A `HierarchyGridRow` is identified by having a `childRows` property
+ * that is an array with at least one element.
+ *
+ * @param {GridRow} row - The row to check.
+ * @returns {row is HierarchyGridRow} - Returns `true` if the row is a `HierarchyGridRow`, otherwise `false`.
+ */
+export const isHierarchyGridRow = (row: GridRow): row is HierarchyGridRow =>
+  Array.isArray(row.childRows) && row.childRows.length > 0;
+
+/**
  * Check if the parent and its parent should be selected/unselected
  * @param {HierarchyGridRow[]} rowList
  * @param {ReactNode} uniqueRowKeyValue Unique value of the selected row
@@ -497,9 +509,9 @@ export const getParentSelectedState = (
   selectedRows: Set<ReactNode>,
   checkedStateToMatch: boolean
 ) => {
-  const parentRow = rowFinderBasedOnId(rowList, uniqueRowId, parentKeyValue) as HierarchyGridRow;
+  const parentRow = rowFinderBasedOnId(rowList, uniqueRowId, parentKeyValue);
 
-  if (!parentRow) {
+  if (!parentRow || !isHierarchyGridRow(parentRow)) {
     return;
   }
 

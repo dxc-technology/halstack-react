@@ -22,7 +22,9 @@ const validateInputTheme = (json: string, customThemeSchema: IndexedTheme) => {
         (!isArrayIncluded(inputTheme[componentName]!, customThemeSchema[componentName] ?? {}) &&
           `Invalid theme input name in the ${componentName} component.`);
 
-      if (errorMessage) throw new Error(errorMessage);
+      if (errorMessage) {
+        throw new Error(errorMessage);
+      }
     });
   } catch (e: any) {
     errMessage = e.name === "SyntaxError" ? "Invalid JSON input." : e.message;
@@ -36,7 +38,9 @@ const ImportDialog = ({ customThemeSchema, setCustomTheme, setDialogVisible }: I
 
   const onChange = ({ value }: { value: string }) => {
     setValue(value);
-    if (validationErrorMessage !== "") setValidationErrorMessage("");
+    if (validationErrorMessage !== "") {
+      setValidationErrorMessage("");
+    }
   };
   const closeDialog = () => {
     setDialogVisible(false);
@@ -49,7 +53,9 @@ const ImportDialog = ({ customThemeSchema, setCustomTheme, setDialogVisible }: I
     if (errMessage === "") {
       setCustomTheme((prevTheme: IndexedTheme) => deepMerge({}, prevTheme, inputTheme));
       closeDialog();
-    } else setValidationErrorMessage(errMessage);
+    } else {
+      setValidationErrorMessage(errMessage);
+    }
   };
 
   return (

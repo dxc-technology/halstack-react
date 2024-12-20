@@ -18,6 +18,7 @@ import {
   getPaginatedNodes,
   getMinItemsPerPageIndex,
   getMaxItemsPerPageIndex,
+  isHierarchyGridRow,
 } from "./utils";
 import DxcPaginator from "../paginator/Paginator";
 import { DxcActionsCell } from "../table/Table";
@@ -95,25 +96,30 @@ const DxcDataGrid = ({
         ...expectedColumns,
       ];
     }
-    if (!expandable && rows.some((row) => Array.isArray(row.childRows) && row.childRows.length > 0) && uniqueRowId) {
+    
+    if (!expandable && rows.some((row) => isHierarchyGridRow(row)) && uniqueRowId) {
       // only the first column will be clickable and will expand the rows
       const firstColumnKey = expectedColumns[0]?.key;
       if (firstColumnKey) {
         expectedColumns[0] = {
           ...expectedColumns[0]!,
           renderCell({ row }) {
-            if ((row as HierarchyGridRow).childRows?.length) {
+            if (isHierarchyGridRow(row)) {
               return (
                 <HierarchyContainer level={typeof row.rowLevel === "number" ? row.rowLevel : 0}>
                   {renderHierarchyTrigger(rowsToRender, row, uniqueRowId, firstColumnKey, setRowsToRender)}
                 </HierarchyContainer>
               );
+            } else {
+              return (
+                <HierarchyContainer
+                  level={typeof row.rowLevel === "number" ? row.rowLevel : 0}
+                  className="ellipsis-cell"
+                >
+                  {row[firstColumnKey]}
+                </HierarchyContainer>
+              );
             }
-            return (
-              <HierarchyContainer level={typeof row.rowLevel === "number" ? row.rowLevel : 0} className="ellipsis-cell">
-                {row[firstColumnKey]}
-              </HierarchyContainer>
-            );
           },
         };
       }
@@ -252,7 +258,7 @@ const DxcDataGrid = ({
           rowHeight={(row) =>
             row.isExpandedChildContent && typeof row.expandedContentHeight === "number" && row.expandedContentHeight > 0
               ? row.expandedContentHeight
-              : (colorsTheme.dataGrid.dataRowHeight)
+              : colorsTheme.dataGrid.dataRowHeight
           }
           selectedRows={selectedRows}
           bottomSummaryRows={summaryRow ? [summaryRow] : undefined}

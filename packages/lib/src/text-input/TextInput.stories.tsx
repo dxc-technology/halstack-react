@@ -342,7 +342,7 @@ const TextInput = () => (
 );
 
 const AutosuggestListbox = () => {
-  const colorsTheme: any = useContext(HalstackContext);
+  const colorsTheme = useContext(HalstackContext);
 
   return (
     <ThemeProvider theme={colorsTheme.textInput}>

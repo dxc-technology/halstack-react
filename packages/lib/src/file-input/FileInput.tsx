@@ -68,8 +68,6 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
         return translatedLabels.fileInput.fileSizeGreaterThanErrorMessage;
       } else if (maxSize && file.size > maxSize) {
         return translatedLabels.fileInput.fileSizeLessThanErrorMessage;
-      } else {
-        return undefined;
       }
     };
 

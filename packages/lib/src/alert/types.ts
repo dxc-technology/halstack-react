@@ -32,10 +32,10 @@ type ModeSpecificProps =
 
 type Props = CommonProps & ModeSpecificProps;
 
-export default Props;
-
 export type ModalAlertWrapperProps = {
   condition: boolean;
   onClose?: () => void;
   children: ReactNode;
 };
+
+export default Props;

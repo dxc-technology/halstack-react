@@ -123,8 +123,6 @@ const getIcon = (semantic: AlertPropsType["semantic"]) => {
       return <DxcIcon icon="filled_warning" />;
     case "error":
       return <DxcIcon icon="filled_cancel" />;
-    default:
-      return undefined;
   }
 };
 

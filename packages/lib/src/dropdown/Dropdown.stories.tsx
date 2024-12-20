@@ -83,7 +83,7 @@ const optionWithIcon: Option[] = [
   },
 ];
 
-const optionsIcon: any = options.map((op, i) => ({ ...op, icon: icons[i] }));
+const optionsIcon = options.map((op, i) => ({ ...op, icon: icons[i] }));
 
 const opinionatedTheme = {
   dropdown: {
@@ -221,7 +221,7 @@ const Dropdown = () => (
 );
 
 const DropdownListStates = () => {
-  const colorsTheme: any = useContext(HalstackContext);
+  const colorsTheme = useContext(HalstackContext);
 
   return (
     <>

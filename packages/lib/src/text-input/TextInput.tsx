@@ -458,7 +458,6 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
           numberInputContext.stepNumber
         );
       }
-      return undefined;
     }, [value, innerValue, suggestions, numberInputContext]);
 
     return (

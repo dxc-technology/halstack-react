@@ -25,7 +25,6 @@ export default function useTimeout(callback: () => void, delay?: number) {
       timerRef.current = setTimeout(tick, delay);
       return clearTimerCallback;
     }
-    return undefined;
   }, [delay, clearTimerCallback]);
 
   return clearTimerCallback;

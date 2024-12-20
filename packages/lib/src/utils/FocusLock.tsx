@@ -76,7 +76,6 @@ const useFocusableElements = (ref: MutableRefObject<HTMLDivElement | null>): HTM
         observer.disconnect();
       };
     }
-    return undefined;
   }, []);
 
   return focusableElements;

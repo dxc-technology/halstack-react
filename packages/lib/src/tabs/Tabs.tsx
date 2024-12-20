@@ -103,7 +103,10 @@ const DxcTabs = ({
 
   useEffect(() => {
     if (refTabList.current) {
-      setTotalTabsWidth((refTabList.current.firstElementChild as HTMLElement)?.offsetWidth);
+      if (refTabList.current.firstElementChild instanceof HTMLElement) {
+        setTotalTabsWidth(refTabList.current.firstElementChild?.offsetWidth);
+      }
+      // TODO: Check if this is really needed
       setMinHeightTabs(refTabList.current.offsetHeight + 1);
     }
   }, []);

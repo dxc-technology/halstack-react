@@ -113,6 +113,18 @@ module.exports = {
     "react/no-array-index-key": "warn",
     "react/require-default-props": "off",
     "@typescript-eslint/no-explicit-any": "warn",
+    // "no-restricted-exports": [
+    //   "error",
+    //   {
+    //     restrictDefaultExports: "named",
+    //   },
+    // ],
+    "no-restricted-exports": [
+      "error",
+      {
+        restrictedNamedExports: ["then"],
+      },
+    ],
     // TODO: REMOVE
     "react/no-array-index-key": "off",
     "react-hooks/exhaustive-deps": "off",
@@ -120,12 +132,12 @@ module.exports = {
     "no-shadow": "off",
     // "no-plusplus": ["error", { allowForLoopAfterthoughts: true }],
     "no-plusplus": "off",
+    "consistent-return": "off",
+    "default-case": "off",
     // TODO: REMOVE CHANGES CAUSED BY THIS
     "react/function-component-definition": "off",
     // TODO: REMOVE CHANGES CAUSED BY THIS
     "no-else-return": "off",
-    // TODO: REMOVE CHANGES CAUSED BY THIS
-    "consistent-return": "off",
   },
   settings: {
     "import/resolver": {

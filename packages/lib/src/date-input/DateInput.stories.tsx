@@ -171,7 +171,7 @@ const YearPickerOpinionatedTheme = () => (
 );
 
 const DatePickerButtonStates = () => {
-  const colorsTheme: any = useContext(HalstackContext);
+  const colorsTheme = useContext(HalstackContext);
   return (
     <>
       <ExampleContainer>
@@ -218,7 +218,7 @@ const DatePickerButtonStates = () => {
 };
 
 const YearPickerButtonStates = () => {
-  const colorsTheme: any = useContext(HalstackContext);
+  const colorsTheme = useContext(HalstackContext);
   return (
     <ThemeProvider theme={colorsTheme}>
       <ExampleContainer pseudoState="pseudo-focus">
@@ -250,7 +250,7 @@ const YearPickerButtonStates = () => {
 };
 
 const DatePickerToday = () => {
-  const colorsTheme: any = useContext(HalstackContext);
+  const colorsTheme = useContext(HalstackContext);
   return (
     <ThemeProvider theme={colorsTheme}>
       <ExampleContainer>
@@ -276,7 +276,7 @@ const DatePickerToday = () => {
 };
 
 const Tooltip = () => {
-  const colorsTheme: any = useContext(HalstackContext);
+  const colorsTheme = useContext(HalstackContext);
   return (
     <ThemeProvider theme={colorsTheme}>
       <Title title="Default tooltip" theme="light" level={2} />

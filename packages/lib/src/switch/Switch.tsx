@@ -123,22 +123,18 @@ const getDisabledColor = (
           return theme.disabledCheckedTrackBackgroundColor;
         case "uncheck":
           return theme.disabledUncheckedTrackBackgroundColor;
-        default:
-          return undefined;
       }
+      break;
     case "thumb":
       switch (subElement) {
         case "check":
           return theme.disabledCheckedThumbBackgroundColor;
         case "uncheck":
           return theme.disabledUncheckedThumbBackgroundColor;
-        default:
-          return undefined;
       }
+      break;
     case "label":
       return theme.disabledLabelFontColor;
-    default:
-      return undefined;
   }
 };
 
@@ -154,8 +150,6 @@ const getNotDisabledColor = (
           return theme.checkedTrackBackgroundColor;
         case "uncheck":
           return theme.uncheckedTrackBackgroundColor;
-        default:
-          return undefined;
       }
       break;
     case "thumb":
@@ -164,14 +158,10 @@ const getNotDisabledColor = (
           return theme.checkedThumbBackgroundColor;
         case "uncheck":
           return theme.uncheckedThumbBackgroundColor;
-        default:
-          return undefined;
       }
       break;
     case "label":
       return theme.labelFontColor;
-    default:
-      return undefined;
   }
 };
 
