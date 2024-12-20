@@ -6,7 +6,6 @@ describe("Chip component tests", () => {
     const { getByText } = render(<DxcChip label="Chip" />);
     expect(getByText("Chip")).toBeTruthy();
   });
-
   test("Calls correct function when clicking on prefix icon", () => {
     const onClick = jest.fn();
     const { getByText, getByRole } = render(<DxcChip label="Chip" prefixIcon="nutrition" onClickPrefix={onClick} />);
@@ -14,7 +13,6 @@ describe("Chip component tests", () => {
     fireEvent.click(getByRole("button"));
     expect(onClick).toHaveBeenCalled();
   });
-
   test("Calls correct function when clicking on suffix icon", () => {
     const onClick = jest.fn();
     const { getByText, getByRole } = render(<DxcChip label="Chip" suffixIcon="nutrition" onClickSuffix={onClick} />);

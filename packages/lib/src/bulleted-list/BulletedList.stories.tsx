@@ -2,11 +2,12 @@ import styled from "styled-components";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DxcBulletedList from "./BulletedList";
+import { Meta, StoryObj } from "@storybook/react";
 
 export default {
   title: "Bulleted List",
   component: DxcBulletedList,
-};
+} as Meta<typeof DxcBulletedList>;
 
 const icon = (
   <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
@@ -15,7 +16,11 @@ const icon = (
   </svg>
 );
 
-export const Chromatic = () => (
+const Container = styled.div`
+  width: 400px;
+`;
+
+const BulletedList = () => (
   <>
     <ExampleContainer>
       <Title title="Icon list (SVG)" level={4} />
@@ -109,6 +114,8 @@ export const Chromatic = () => (
   </>
 );
 
-const Container = styled.div`
-  width: 400px;
-`;
+type Story = StoryObj<typeof DxcBulletedList>;
+
+export const Chromatic: Story = {
+  render: BulletedList,
+};

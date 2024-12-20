@@ -3,8 +3,9 @@ import PageHeading from "@/common/PageHeading";
 import TabsPageHeading from "@/common/TabsPageLayout";
 import ComponentHeading from "@/common/ComponentHeading";
 import Link from "next/link";
+import { ReactNode } from "react";
 
-const TagPageHeading = ({ children }: { children: React.ReactNode }) => {
+const TagPageHeading = ({ children }: { children: ReactNode }) => {
   const tabs = [
     { label: "Code", path: "/components/tag" },
     { label: "Usage", path: "/components/tag/usage" },

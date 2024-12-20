@@ -1,11 +1,6 @@
-type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
-type Margin = {
-  top?: Space;
-  bottom?: Space;
-  left?: Space;
-  right?: Space;
-};
-type SVG = React.ReactNode & React.SVGProps<SVGSVGElement>;
+import { ReactElement, ReactNode, SVGProps } from "react";
+
+import { Space, Margin, SVG } from "../common/utils";
 
 export type AccordionPropsType = {
   /**
@@ -28,7 +23,7 @@ export type AccordionPropsType = {
    * The expanded panel of the accordion. This area can be used to render
    * custom content.
    */
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
 type Props = {
@@ -57,7 +52,7 @@ type Props = {
   /**
    * Customized accordion(s) that are allowed inside an Accordion Group.
    */
-  children: React.ReactElement<AccordionPropsType>[] | React.ReactElement<AccordionPropsType>;
+  children: ReactElement<AccordionPropsType>[] | ReactElement<AccordionPropsType>;
 };
 
 export type AccordionGroupAccordionContextProps = {

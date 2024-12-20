@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import { CoreSpacingTokensType } from "../common/coreTokens";
 
 type Gap =
@@ -113,7 +114,7 @@ type Props = CommonProps & {
   /**
    * Custom content inside the flex container.
    */
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
 export type StyledProps = CommonProps & {

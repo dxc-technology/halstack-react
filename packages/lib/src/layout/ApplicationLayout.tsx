@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { responsiveSizes } from "../common/variables";
 import DxcFooter from "../footer/Footer";
@@ -6,12 +6,15 @@ import DxcHeader from "../header/Header";
 import DxcIcon from "../icon/Icon";
 import DxcSidenav from "../sidenav/Sidenav";
 import { SidenavContextProvider, useResponsiveSidenavVisibility } from "../sidenav/SidenavContext";
-import useTranslatedLabels from "../useTranslatedLabels";
 import { Tooltip } from "../tooltip/Tooltip";
 import ApplicationLayoutPropsType, { AppLayoutMainPropsType } from "./types";
 import { bottomLinks, findChildType, socialLinks, useResponsive, year } from "./utils";
+import { HalstackLanguageContext } from "../HalstackContext";
 
-const ApplicationLayoutContainer = styled.div<{ isSidenavVisible: boolean; hasSidenav: boolean }>`
+const ApplicationLayoutContainer = styled.div<{
+  isSidenavVisible: boolean;
+  hasSidenav: boolean;
+}>`
   position: absolute;
   top: 64px;
   bottom: 0;
@@ -122,22 +125,20 @@ const DxcApplicationLayout = ({
   const [isSidenavVisibleResponsive, setIsSidenavVisibleResponsive] = useState(false);
   const isResponsive = useResponsive(responsiveSizes.large);
   const ref = useRef(null);
-  const translatedLabels = useTranslatedLabels();
+  const translatedLabels = useContext(HalstackLanguageContext);
 
   const handleSidenavVisibility = () => {
-    setIsSidenavVisibleResponsive((isSidenavVisibleResponsive) => !isSidenavVisibleResponsive);
+    setIsSidenavVisibleResponsive((currentIsSidenavVisibleResponsive) => !currentIsSidenavVisibleResponsive);
   };
 
   useEffect(() => {
-    !isResponsive && setIsSidenavVisibleResponsive(false);
+    if (!isResponsive) {
+      setIsSidenavVisibleResponsive(false);
+    }
   }, [isResponsive]);
 
   return (
-    <ApplicationLayoutContainer
-      hasSidenav={sidenav ? true : false}
-      isSidenavVisible={isSidenavVisibleResponsive}
-      ref={ref}
-    >
+    <ApplicationLayoutContainer hasSidenav={!!sidenav} isSidenavVisible={isSidenavVisibleResponsive} ref={ref}>
       <HeaderContainer>{header ?? <DxcHeader underlined />}</HeaderContainer>
       {sidenav && isResponsive && (
         <VisibilityToggle>
@@ -162,7 +163,7 @@ const DxcApplicationLayout = ({
           <MainContentContainer>{findChildType(children, Main)}</MainContentContainer>
           {footer ?? (
             <DxcFooter
-              copyright={`© DXC Technology ${year}​​​​. All rights reserved.`}
+              copyright={`© DXC Technology ${year}. All rights reserved.`}
               bottomLinks={bottomLinks}
               socialLinks={socialLinks}
             />

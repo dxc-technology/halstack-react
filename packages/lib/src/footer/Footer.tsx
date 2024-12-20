@@ -1,14 +1,13 @@
-import { useMemo } from "react";
+import { useMemo, useContext } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { responsiveSizes, spaces } from "../common/variables";
 import DxcFlex from "../flex/Flex";
 import DxcIcon from "../icon/Icon";
 import { Tooltip } from "../tooltip/Tooltip";
-import useTheme from "../useTheme";
-import useTranslatedLabels from "../useTranslatedLabels";
 import { dxcLogo, dxcSmallLogo } from "./Icons";
 import FooterPropsType from "./types";
 import { CoreSpacingTokensType } from "../common/coreTokens";
+import HalstackContext, { HalstackLanguageContext } from "../HalstackContext";
 
 const DxcFooter = ({
   socialLinks,
@@ -19,8 +18,8 @@ const DxcFooter = ({
   tabIndex = 0,
   mode = "default",
 }: FooterPropsType): JSX.Element => {
-  const colorsTheme = useTheme();
-  const translatedLabels = useTranslatedLabels();
+  const colorsTheme = useContext(HalstackContext);
+  const translatedLabels = useContext(HalstackLanguageContext);
 
   const footerLogo = useMemo(
     () =>
@@ -35,7 +34,7 @@ const DxcFooter = ({
       ) : (
         colorsTheme.footer.logo
       ),
-    [colorsTheme]
+    [colorsTheme, translatedLabels]
   );
 
   return (
@@ -46,7 +45,7 @@ const DxcFooter = ({
           {mode === "default" && (
             <DxcFlex gap={colorsTheme.footer.socialLinksGutter as CoreSpacingTokensType}>
               {socialLinks?.map((link, index) => (
-                <Tooltip label={link.title}>
+                <Tooltip label={link.title} key={`social${index}${link.href}`}>
                   <SocialAnchor
                     href={link.href}
                     tabIndex={tabIndex}
@@ -75,7 +74,7 @@ const DxcFooter = ({
                 </span>
               ))}
             </BottomLinks>
-            <Copyright>{copyright || translatedLabels.footer.copyrightText(new Date().getFullYear())}</Copyright>
+            <Copyright>{copyright ?? translatedLabels.footer.copyrightText(new Date().getFullYear())}</Copyright>
           </BottomContainer>
         )}
       </FooterContainer>
@@ -83,7 +82,10 @@ const DxcFooter = ({
   );
 };
 
-const FooterContainer = styled.footer<{ margin: FooterPropsType["margin"]; mode?: FooterPropsType["mode"] }>`
+const FooterContainer = styled.footer<{
+  margin: FooterPropsType["margin"];
+  mode?: FooterPropsType["mode"];
+}>`
   background-color: ${(props) => props.theme.backgroundColor};
   box-sizing: border-box;
   display: flex;

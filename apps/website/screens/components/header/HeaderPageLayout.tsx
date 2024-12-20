@@ -3,8 +3,9 @@ import PageHeading from "@/common/PageHeading";
 import TabsPageHeading from "@/common/TabsPageLayout";
 import ComponentHeading from "@/common/ComponentHeading";
 import Link from "next/link";
+import { ReactNode } from "react";
 
-const HeaderPageHeading = ({ children }: { children: React.ReactNode }) => {
+const HeaderPageHeading = ({ children }: { children: ReactNode }) => {
   const tabs = [
     { label: "Code", path: "/components/header" },
     { label: "Usage", path: "/components/header/usage" },

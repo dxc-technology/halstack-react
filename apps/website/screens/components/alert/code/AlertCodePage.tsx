@@ -47,7 +47,7 @@ const sections = [
               message (e.g. closing the modal alert).
             </td>
             <td>
-              <TableCode>false</TableCode>
+              <TableCode>true</TableCode>
             </td>
           </tr>
           <tr>

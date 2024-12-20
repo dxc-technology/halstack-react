@@ -1,5 +1,5 @@
 import { render } from "@testing-library/react";
-import { axe } from "../../test/accessibility/axe-helper";
+import { axe, formatRules } from "../../test/accessibility/axe-helper";
 import DxcDateInput from "./DateInput";
 
 // Mocking DOMRect for Radix Primitive Popover
@@ -17,11 +17,9 @@ import DxcDateInput from "./DateInput";
 import { disabledRules as rules } from "../../test/accessibility/rules/specific/date-input/disabledRules";
 
 const disabledRules = {
-  rules: rules.reduce((rulesObj, rule) => {
-    rulesObj[rule] = { enabled: false };
-    return rulesObj;
-  }, {}),
+  rules: formatRules(rules),
 };
+
 
 describe("DateInput component accessibility tests", () => {
   it("Should not have basic accessibility issues", async () => {

@@ -1,22 +1,11 @@
-import { createContext, useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { createPortal } from "react-dom";
 import styled from "styled-components";
 import CoreTokens from "../common/coreTokens";
 import DxcToast from "./Toast";
-import { QueuedToast, Semantic, ToastContextType, ToastsQueuePropsType, ToastType } from "./types";
+import { QueuedToast, Semantic, ToastsQueuePropsType, ToastType } from "./types";
 import { responsiveSizes } from "../common/variables";
-
-export const ToastContext = createContext<ToastContextType | null>(null);
-
-const generateUniqueToastId = (toasts: QueuedToast[]) => {
-  let id = "";
-  let exists = true;
-  while (exists) {
-    id = `${performance.now()}-${Math.random().toString(36).slice(2, 9)}`;
-    exists = toasts.some((toast) => toast.id === id);
-  }
-  return id;
-};
+import ToastContext from "./ToastContext";
 
 const ToastsQueue = styled.section`
   box-sizing: border-box;
@@ -35,6 +24,16 @@ const ToastsQueue = styled.section`
     width: 100%;
   }
 `;
+
+const generateUniqueToastId = (toasts: QueuedToast[]) => {
+  let id = "";
+  let exists = true;
+  while (exists) {
+    id = `${performance.now()}-${Math.random().toString(36).slice(2, 9)}`;
+    exists = toasts.some((toast) => toast.id === id);
+  }
+  return id;
+};
 
 const DxcToastsQueue = ({ children, duration = 3000 }: ToastsQueuePropsType) => {
   const [toasts, setToasts] = useState<QueuedToast[]>([]);
@@ -59,7 +58,7 @@ const DxcToastsQueue = ({ children, duration = 3000 }: ToastsQueuePropsType) => 
   }, []);
 
   return (
-    <ToastContext.Provider value={{ add }}>
+    <ToastContext.Provider value={add}>
       {isMounted &&
         createPortal(
           <ToastsQueue>

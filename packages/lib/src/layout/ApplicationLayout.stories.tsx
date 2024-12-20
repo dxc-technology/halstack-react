@@ -2,6 +2,7 @@ import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import Title from "../../.storybook/components/Title";
 import DxcApplicationLayout from "./ApplicationLayout";
 import { userEvent, within } from "@storybook/test";
+import { Meta, StoryObj } from "@storybook/react";
 
 export default {
   title: "Application Layout",
@@ -11,9 +12,9 @@ export default {
       viewports: INITIAL_VIEWPORTS,
     },
   },
-};
+} as Meta<typeof DxcApplicationLayout>;
 
-export const DefaultApplicationLayout = () => (
+const ApplicationLayout = () => (
   <>
     <DxcApplicationLayout>
       <DxcApplicationLayout.Main>
@@ -27,7 +28,7 @@ export const DefaultApplicationLayout = () => (
   </>
 );
 
-export const ApplicationLayoutWithDefaultSidenav = () => (
+const ApplicationLayoutDefaultSidenav = () => (
   <>
     <DxcApplicationLayout
       sidenav={
@@ -58,7 +59,7 @@ export const ApplicationLayoutWithDefaultSidenav = () => (
   </>
 );
 
-export const ApplicationLayoutWithResponsiveSidenav = () => (
+const ApplicationLayoutResponsiveSidenav = () => (
   <>
     <DxcApplicationLayout
       visibilityToggleLabel="Example"
@@ -90,14 +91,7 @@ export const ApplicationLayoutWithResponsiveSidenav = () => (
   </>
 );
 
-ApplicationLayoutWithResponsiveSidenav.parameters = {
-  viewport: {
-    defaultViewport: "pixel",
-  },
-  chromatic: { viewports: [540] },
-};
-
-export const ApplicationLayoutWithCustomHeader = () => (
+const ApplicationLayoutCustomHeader = () => (
   <>
     <DxcApplicationLayout
       header={<p>Custom Header</p>}
@@ -129,7 +123,7 @@ export const ApplicationLayoutWithCustomHeader = () => (
   </>
 );
 
-export const ApplicationLayoutWithCustomFooter = () => (
+const ApplicationLayoutCustomFooter = () => (
   <>
     <DxcApplicationLayout
       footer={<p>Custom Footer</p>}
@@ -179,15 +173,43 @@ const Tooltip = () => (
   </>
 );
 
-export const ApplicationLayoutTooltip = Tooltip.bind({});
-ApplicationLayoutTooltip.parameters = {
-  viewport: {
-    defaultViewport: "pixel",
-  },
-  chromatic: { viewports: [540] },
+type Story = StoryObj<typeof DxcApplicationLayout>;
+
+export const DefaultApplicationLayout: Story = {
+  render: ApplicationLayout,
 };
-ApplicationLayoutTooltip.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const toggleVisibility = await canvas.findByRole("button");
-  await userEvent.hover(toggleVisibility);
+export const ApplicationLayoutWithDefaultSidenav: Story = {
+  render: ApplicationLayoutDefaultSidenav,
+};
+export const ApplicationLayoutWithResponsiveSidenav: Story = {
+  render: ApplicationLayoutResponsiveSidenav,
+  parameters: {
+    viewport: {
+      defaultViewport: "pixel",
+    },
+    chromatic: { viewports: [540] },
+  },
+};
+
+export const ApplicationLayoutWithCustomHeader: Story = {
+  render: ApplicationLayoutCustomHeader,
+};
+
+export const ApplicationLayoutWithCustomFooter: Story = {
+  render: ApplicationLayoutCustomFooter,
+};
+
+export const ApplicationLayoutTooltip: Story = {
+  render: Tooltip,
+  parameters: {
+    viewport: {
+      defaultViewport: "pixel",
+    },
+    chromatic: { viewports: [540] },
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const toggleVisibility = await canvas.findByRole("button");
+    await userEvent.hover(toggleVisibility);
+  },
 };

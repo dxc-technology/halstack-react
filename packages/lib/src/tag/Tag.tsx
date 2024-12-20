@@ -1,16 +1,16 @@
-import { useState } from "react";
+import { ReactNode, useContext, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { getMargin } from "../common/utils";
 import { spaces } from "../common/variables";
+import HalstackContext from "../HalstackContext";
 import DxcIcon from "../icon/Icon";
-import useTheme from "../useTheme";
 import TagPropsType from "./types";
 import CoreTokens from "../common/coreTokens";
 
 type TagWrapperProps = {
   condition: boolean;
-  wrapper: (children: React.ReactNode) => JSX.Element;
-  children: React.ReactNode;
+  wrapper: (_children: ReactNode) => JSX.Element;
+  children: ReactNode;
 };
 
 const TagWrapper = ({ condition, wrapper, children }: TagWrapperProps): JSX.Element => (
@@ -32,8 +32,22 @@ const DxcTag = ({
   size = "fitContent",
   tabIndex = 0,
 }: TagPropsType): JSX.Element => {
-  const colorsTheme = useTheme();
+  const colorsTheme = useContext(HalstackContext);
   const [isHovered, changeIsHovered] = useState(false);
+
+  const wrapperComponent = (children: ReactNode) => {
+    if (onClick) {
+      return <StyledButton tabIndex={tabIndex}>{children}</StyledButton>;
+    }
+    if (linkHref) {
+      return (
+        <StyledLink tabIndex={tabIndex} href={linkHref} target={newWindow ? "_blank" : "_self"}>
+          {children}
+        </StyledLink>
+      );
+    }
+    return <>{children}</>;
+  };
 
   return (
     <ThemeProvider theme={colorsTheme.tag}>
@@ -48,20 +62,7 @@ const DxcTag = ({
         hasAction={onClick || linkHref}
         shadowDepth={isHovered && (onClick || linkHref) ? 2 : 1}
       >
-        <TagWrapper
-          condition={Boolean(onClick) || Boolean(linkHref)}
-          wrapper={(children) =>
-            onClick ? (
-              <StyledButton tabIndex={tabIndex}>{children}</StyledButton>
-            ) : linkHref ? (
-              <StyledLink tabIndex={tabIndex} href={linkHref} target={newWindow ? "_blank" : "_self"}>
-                {children}
-              </StyledLink>
-            ) : (
-              <></>
-            )
-          }
-        >
+        <TagWrapper condition={!!onClick || !!linkHref} wrapper={wrapperComponent}>
           <TagContent>
             {labelPosition === "before" && size !== "small" && label && <TagLabel>{label}</TagLabel>}
             {icon && (
@@ -85,10 +86,10 @@ const sizes = {
   fitContent: "fit-content",
 };
 
-const calculateWidth = (margin, size) =>
+const calculateWidth = (margin: TagPropsType["margin"], size: TagPropsType["size"]) =>
   size === "fillParent"
     ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
-    : sizes[size];
+    : size && sizes[size];
 
 const StyledDxcTag = styled.div<{
   margin: TagPropsType["margin"];
