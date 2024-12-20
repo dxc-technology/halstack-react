@@ -15,9 +15,9 @@ const Item = ({ isCurrentPage = false, href, label, onClick }: ItemPropsType) =>
   };
 
   const handleOnClick = (event: MouseEvent<HTMLAnchorElement>) => {
-    if (onClick && href) {
-      event.preventDefault();
-      onClick(href);
+    event.preventDefault();
+    if (href) {
+      onClick?.(href);
     }
   };
 

@@ -21,9 +21,15 @@ const CaptionContainer = styled.figcaption`
   line-height: ${(props) => props.theme.captionLineHeight};
 `;
 
-const CaptionWrapper = ({ condition, wrapper, children }: CaptionWrapperProps) => (
-  <>{condition ? wrapper(children) : children}</>
-);
+const CaptionWrapper = ({ caption, children }: { caption: ImagePropsType["caption"]; children: ReactNode }) =>
+  caption != null ? (
+    <Figure>
+      {children}
+      <CaptionContainer>{caption}</CaptionContainer>
+    </Figure>
+  ) : (
+    children
+  );
 
 export default function DxcImage({
   alt,
@@ -41,19 +47,9 @@ export default function DxcImage({
 }: ImagePropsType) {
   const colorsTheme = useContext(HalstackContext);
 
-  const figureWrapper = useCallback(
-    (children: ReactNode) => (
-      <Figure>
-        {children}
-        <CaptionContainer>{caption}</CaptionContainer>
-      </Figure>
-    ),
-    [caption]
-  );
-
   return (
     <ThemeProvider theme={colorsTheme.image}>
-      <CaptionWrapper condition={caption !== undefined} wrapper={figureWrapper}>
+      <CaptionWrapper caption={caption}>
         <img
           alt={alt}
           loading={lazyLoading ? "lazy" : undefined}
