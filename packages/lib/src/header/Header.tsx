@@ -82,7 +82,7 @@ const DxcHeader = ({
   );
 
   const headerResponsiveLogo = useMemo(
-    () => getLogoElement(colorsTheme.header?.logoResponsive, translatedLabels.formFields.logoAlternativeText),
+    () => getLogoElement(colorsTheme.header.logoResponsive, translatedLabels.formFields.logoAlternativeText),
     [colorsTheme, translatedLabels]
   );
 

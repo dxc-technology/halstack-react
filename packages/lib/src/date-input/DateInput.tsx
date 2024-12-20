@@ -100,7 +100,7 @@ const DxcDateInput = forwardRef<RefType, DateInputPropsType>(
         setInnerValue(newValue);
       }
       setLastValidYear(newDate.get("year"));
-      if (newDate?.set("day", newDate.get("date")).toJSON()) {
+      if (newDate.set("day", newDate.get("date")).toJSON()) {
         onChange?.({
           value: newValue,
           date: newDate.toDate(),
@@ -131,7 +131,7 @@ const DxcDateInput = forwardRef<RefType, DateInputPropsType>(
         });
       } else {
         onChange?.(callbackParams);
-        setLastValidYear((validYear) => dayjsDate?.get("year") ?? validYear);
+        setLastValidYear((validYear) => dayjsDate.get("year") ?? validYear);
         setDayjsDate(dayjs(null));
       }
     };
@@ -189,11 +189,11 @@ const DxcDateInput = forwardRef<RefType, DateInputPropsType>(
           event.stopPropagation();
         }
         closeCalendar();
-        dateRef?.current?.getElementsByTagName("input")[0]?.focus();
+        dateRef.current?.getElementsByTagName("input")[0]?.focus();
       }
     };
     const handleDatePickerOnBlur = (event: FocusEvent<HTMLDivElement>) => {
-      if (!event?.currentTarget.contains(event.relatedTarget)) {
+      if (!event.currentTarget.contains(event.relatedTarget)) {
         closeCalendar();
       }
     };
@@ -213,13 +213,13 @@ const DxcDateInput = forwardRef<RefType, DateInputPropsType>(
 
     useEffect(() => {
       if (!disabled) {
-        const actionButtonRef = dateRef?.current?.querySelector("[aria-label='Select date']");
-        actionButtonRef?.setAttribute("aria-haspopup", "true");
-        actionButtonRef?.setAttribute("role", "combobox");
-        actionButtonRef?.setAttribute("aria-expanded", `${isOpen}`);
-        actionButtonRef?.setAttribute("aria-controls", calendarId);
+        const actionButtonElement = dateRef.current?.querySelector("[aria-label='Select date']");
+        actionButtonElement?.setAttribute("aria-haspopup", "true");
+        actionButtonElement?.setAttribute("role", "combobox");
+        actionButtonElement?.setAttribute("aria-expanded", `${isOpen}`);
+        actionButtonElement?.setAttribute("aria-controls", calendarId);
         if (isOpen) {
-          actionButtonRef?.setAttribute("aria-describedby", calendarId);
+          actionButtonElement?.setAttribute("aria-describedby", calendarId);
         }
       }
     }, [isOpen, disabled, calendarId]);

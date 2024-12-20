@@ -7,14 +7,14 @@ import FileInputPropsType, { FileData, RefType } from "./types";
 import HalstackContext, { HalstackLanguageContext } from "../HalstackContext";
 
 const getFilePreview = async (file: File): Promise<string> => {
-  if (file?.type?.includes("video")) return "filled_movie";
-  else if (file?.type?.includes("audio")) return "music_video";
-  else if (file?.type?.includes("image")) {
+  if (file.type.includes("video")) return "filled_movie";
+  else if (file.type.includes("audio")) return "music_video";
+  else if (file.type.includes("image")) {
     return new Promise<string>((resolve) => {
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = (e) => {
-        resolve(e?.target?.result as string);
+        resolve(e.target?.result as string);
       };
     });
   } else return "draft";
@@ -110,20 +110,20 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
     );
 
     const handleClick = () => {
-      document?.getElementById(fileInputId)?.click();
+      document.getElementById(fileInputId)?.click();
     };
     const handleDrag = (e: DragEvent<HTMLDivElement>) => {
       e.preventDefault();
       e.stopPropagation();
     };
     const handleDragIn = (e: DragEvent<HTMLDivElement>) => {
-      if (e?.dataTransfer?.items?.length > 0) {
+      if (e.dataTransfer.items.length > 0) {
         setIsDragging(true);
       }
     };
     const handleDragOut = (e: DragEvent<HTMLDivElement>) => {
       // only if dragged items leave container (outside, not to children)
-      if (!e.currentTarget?.contains(e.relatedTarget as HTMLDivElement)) {
+      if (!e.currentTarget.contains(e.relatedTarget as HTMLDivElement)) {
         setIsDragging(false);
       }
     };
@@ -132,7 +132,7 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
       e.stopPropagation();
       setIsDragging(false);
       const filesObject = e.dataTransfer.files;
-      if (filesObject?.length > 0) {
+      if (filesObject.length > 0) {
         const filesArray = Array.from(filesObject);
         addFile(filesArray);
       }
@@ -268,7 +268,7 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
             </Container>
           )}
           {mode === "file" && !multiple && files.length === 1 && files[0]?.error && (
-            <ErrorMessage>{files[0]?.error}</ErrorMessage>
+            <ErrorMessage>{files[0].error}</ErrorMessage>
           )}
         </FileInputContainer>
       </ThemeProvider>

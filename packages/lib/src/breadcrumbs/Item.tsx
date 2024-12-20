@@ -8,7 +8,7 @@ const Item = ({ isCurrentPage = false, href, label, onClick }: ItemPropsType) =>
 
   const handleOnMouseEnter = (event: MouseEvent<HTMLAnchorElement>) => {
     const labelContainer = event.currentTarget;
-    const optionElement = currentItemRef?.current;
+    const optionElement = currentItemRef.current;
     if (optionElement?.title === "" && labelContainer.scrollWidth > labelContainer.clientWidth) {
       optionElement.title = label;
     }

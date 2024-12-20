@@ -9,14 +9,12 @@ describe("Button component tests", () => {
     fireEvent.click(button);
     expect(onClick).toHaveBeenCalled();
   });
-
   test("Renders with correct accessibility attributes", () => {
     const { getByRole } = render(<DxcButton label="Home" title="Go home" tabIndex={1} semantic="error" />);
     const button = getByRole("button");
     expect(button.getAttribute("aria-label")).toBe("Go home");
     expect(button.getAttribute("tabindex")).toBe("1");
   });
-
   test("Triggers form submit event on button click", () => {
     const handleSubmit = jest.fn();
     const { getByRole } = render(

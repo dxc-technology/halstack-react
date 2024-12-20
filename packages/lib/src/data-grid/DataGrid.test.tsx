@@ -48,49 +48,10 @@ const expandableRows = [
   },
 ];
 
-const rowsWithChildren: HierarchyGridRow[] = [
-  {
-    id: 1,
-    complete: 46,
-    childRows: [
-      {
-        id: 1.1,
-        complete: 46,
-        childRows: [
-          {
-            id: "1.1a",
-            complete: 46,
-          },
-        ],
-      },
-      {
-        complete: 46,
-        value: 1.2,
-      },
-    ],
-  },
-  {
-    id: 2,
-    complete: 51,
-  },
-  {
-    id: 3,
-    complete: 40,
-  },
-  {
-    id: 4,
-    complete: 10,
-  },
-  {
-    id: 5,
-    complete: 1,
-  },
-] as HierarchyGridRow[];
-
 describe("Data grid component tests", () => {
   beforeAll(() => {
     (global as any).CSS = {
-      escape: (str) => str,
+      escape: (str: string): string => str,
     };
     window.HTMLElement.prototype.scrollIntoView = jest.fn;
   });

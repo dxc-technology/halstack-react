@@ -45,11 +45,9 @@ const DxcDropdown = ({
   };
   const handleMenuItemOnClick = useCallback(
     (value?: string) => {
-      if (value) {
-        onSelectOption(value);
-        handleOnCloseMenu();
-        triggerRef.current?.focus();
-      }
+      if (value) onSelectOption(value);
+      handleOnCloseMenu();
+      triggerRef.current?.focus();
     },
     [onSelectOption]
   );
@@ -143,7 +141,7 @@ const DxcDropdown = ({
   );
 
   useLayoutEffect(() => {
-    const visualFocusedMenuItem = menuRef?.current?.querySelectorAll("[role='menuitem']")[visualFocusIndex];
+    const visualFocusedMenuItem = menuRef.current?.querySelectorAll("[role='menuitem']")[visualFocusIndex];
     visualFocusedMenuItem?.scrollIntoView?.({
       block: "nearest",
       inline: "start",
@@ -231,9 +229,10 @@ const sizes = {
 };
 
 const calculateWidth = (margin: DropdownPropsType["margin"], size: DropdownPropsType["size"]) =>
-  size === "fillParent"
+  size != null &&
+  (size === "fillParent"
     ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
-    : size && sizes[size];
+    : sizes[size]);
 
 const DropdownContainer = styled.div<{
   margin: DropdownPropsType["margin"];

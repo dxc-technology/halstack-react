@@ -10,12 +10,10 @@ describe("Header component tests", () => {
       })),
     });
   });
-
   test("Header renders with default logo", () => {
     const { getByTitle } = render(<DxcHeader></DxcHeader>);
     expect(getByTitle("DXC Logo")).toBeTruthy();
   });
-
   test("Call correct function on logo click", () => {
     const onClick = jest.fn();
     const { getByTitle } = render(<DxcHeader onClick={onClick}></DxcHeader>);
@@ -23,7 +21,6 @@ describe("Header component tests", () => {
     fireEvent.click(logo);
     expect(onClick).toHaveBeenCalled();
   });
-
   test("Header renders with correct children", () => {
     // We need to force the offsetWidth value
     Object.defineProperty(HTMLElement.prototype, "offsetWidth", { configurable: true, value: 1024 });
@@ -31,7 +28,6 @@ describe("Header component tests", () => {
     const { getByText } = render(<DxcHeader content={<p>header-child-text</p>}></DxcHeader>);
     expect(getByText("header-child-text")).toBeTruthy();
   });
-
   test("Header renders menu button in mobile", () => {
     Object.defineProperty(HTMLElement.prototype, "offsetWidth", { configurable: true, value: 425 });
     Object.defineProperty(window, "matchMedia", {

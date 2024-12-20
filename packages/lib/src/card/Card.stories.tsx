@@ -151,11 +151,6 @@ const actionCard = () => (
   </>
 );
 
-const linkStates = async (focusCard, hoverCard) => {
-  await focusCard.focus();
-  await userEvent.hover(hoverCard);
-};
-
 type Story = StoryObj<typeof DxcCard>;
 
 export const ActionCardStates: Story = {
@@ -163,7 +158,8 @@ export const ActionCardStates: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     await userEvent.tab();
-    await userEvent.hover(canvas.getAllByText("Hovered default with action")[1]);
+    const card = canvas.getAllByText("Hovered default with action")[1];
+    card != null && (await userEvent.hover(card));
   },
 };
 
@@ -172,6 +168,7 @@ export const Chromatic: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const linkCards = canvas.getAllByRole("link");
-    await linkStates(linkCards[1], linkCards[2]);
+    linkCards[1] != null && linkCards[1].focus();
+    linkCards[2] != null && (await userEvent.hover(linkCards[2]));
   },
 };
