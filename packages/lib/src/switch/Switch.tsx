@@ -1,9 +1,8 @@
-import { forwardRef, useId, useRef, useState } from "react";
+import { forwardRef, KeyboardEvent, useContext, useId, useRef, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import { getMargin } from "../common/utils";
 import { AdvancedTheme, spaces } from "../common/variables";
-import useTheme from "../useTheme";
-import useTranslatedLabels from "../useTranslatedLabels";
+import { getMargin } from "../common/utils";
+import HalstackContext, { HalstackLanguageContext } from "../HalstackContext";
 import SwitchPropsType, { RefType } from "./types";
 
 const DxcSwitch = forwardRef<RefType, SwitchPropsType>(
@@ -28,24 +27,28 @@ const DxcSwitch = forwardRef<RefType, SwitchPropsType>(
     const labelId = `label-${switchId}`;
     const [innerChecked, setInnerChecked] = useState(defaultChecked ?? false);
 
-    const colorsTheme = useTheme();
-    const translatedLabels = useTranslatedLabels();
-    const refTrack = useRef(null);
+    const colorsTheme = useContext(HalstackContext);
+    const translatedLabels = useContext(HalstackLanguageContext);
+    const refTrack = useRef<HTMLSpanElement | null>(null);
 
-    const handleOnKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    const handleOnKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
       switch (event.key) {
         case "Enter":
-        case " ": // Space
+        case " ":
           event.preventDefault();
-          refTrack.current.focus();
+          refTrack?.current?.focus();
           setInnerChecked(!(checked ?? innerChecked));
           onChange?.(!(checked ?? innerChecked));
+          break;
+        default:
           break;
       }
     };
 
     const handlerSwitchChange = () => {
-      checked ?? setInnerChecked((innerChecked) => !innerChecked);
+      if (checked == null) {
+        setInnerChecked((currentInnerChecked) => !currentInnerChecked);
+      }
       onChange?.(checked ? !checked : !innerChecked);
     };
 
@@ -67,7 +70,7 @@ const DxcSwitch = forwardRef<RefType, SwitchPropsType>(
           <ValueInput
             type="checkbox"
             name={name}
-            aria-hidden={true}
+            aria-hidden
             value={value}
             disabled={disabled}
             checked={checked ?? innerChecked}
@@ -103,10 +106,10 @@ const sizes = {
   fitContent: "fit-content",
 };
 
-const calculateWidth = (margin, size) =>
+const calculateWidth = (margin: SwitchPropsType["margin"], size: SwitchPropsType["size"]) =>
   size === "fillParent"
     ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
-    : sizes[size];
+    : size && sizes[size];
 
 const getDisabledColor = (
   theme: AdvancedTheme["switch"],
@@ -121,6 +124,7 @@ const getDisabledColor = (
         case "uncheck":
           return theme.disabledUncheckedTrackBackgroundColor;
       }
+      break;
     case "thumb":
       switch (subElement) {
         case "check":
@@ -128,6 +132,7 @@ const getDisabledColor = (
         case "uncheck":
           return theme.disabledUncheckedThumbBackgroundColor;
       }
+      break;
     case "label":
       return theme.disabledLabelFontColor;
   }
@@ -146,6 +151,7 @@ const getNotDisabledColor = (
         case "uncheck":
           return theme.uncheckedTrackBackgroundColor;
       }
+      break;
     case "thumb":
       switch (subElement) {
         case "check":
@@ -153,6 +159,7 @@ const getNotDisabledColor = (
         case "uncheck":
           return theme.uncheckedThumbBackgroundColor;
       }
+      break;
     case "label":
       return theme.labelFontColor;
   }
@@ -275,5 +282,7 @@ const SwitchTrack = styled.span<{ disabled: SwitchPropsType["disabled"] }>`
     }
   }
 `;
+
+DxcSwitch.displayName = "DxcSwitch";
 
 export default DxcSwitch;

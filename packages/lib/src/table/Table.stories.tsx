@@ -1,8 +1,9 @@
+import { Meta, StoryObj } from "@storybook/react";
 import { userEvent, within } from "@storybook/test";
+import disabledRules from "../../test/accessibility/rules/specific/table/disabledRules";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import preview from "../../.storybook/preview";
-import { disabledRules } from "../../test/accessibility/rules/specific/table/disabledRules";
 import { HalstackProvider } from "../HalstackContext";
 import DxcTable from "./Table";
 import { ActionsPropsType } from "./types";
@@ -14,13 +15,16 @@ export default {
     a11y: {
       config: {
         rules: [
-          ...disabledRules.map((ruleId) => ({ id: ruleId, reviewOnFail: true })),
-          ...preview?.parameters?.a11y?.config?.rules,
+          ...disabledRules.map((ruleId) => ({
+            id: ruleId,
+            reviewOnFail: true,
+          })),
+          ...(preview?.parameters?.a11y?.config?.rules || []),
         ],
       },
     },
   },
-};
+} as Meta<typeof DxcTable>;
 
 const opinionatedTheme = {
   table: {
@@ -43,9 +47,7 @@ const advancedTheme = {
 const actions: ActionsPropsType = [
   {
     title: "icon",
-    onClick: (value?) => {
-      console.log(value);
-    },
+    onClick: () => {},
     options: [
       {
         value: "1",
@@ -63,9 +65,7 @@ const actions: ActionsPropsType = [
   },
   {
     title: "icon",
-    onClick: (value?) => {
-      console.log(value);
-    },
+    onClick: () => {},
     options: [
       {
         value: "1",
@@ -84,9 +84,7 @@ const actions: ActionsPropsType = [
   {
     disabled: true,
     title: "icon",
-    onClick: (value?) => {
-      console.log(value);
-    },
+    onClick: () => {},
     options: [
       {
         value: "1",
@@ -115,7 +113,7 @@ const actions: ActionsPropsType = [
   },
 ];
 
-export const Chromatic = () => (
+const Table = () => (
   <>
     <ExampleContainer>
       <Title title="Default" theme="light" level={4} />
@@ -128,21 +126,21 @@ export const Chromatic = () => (
         <tr>
           <td>cell 1</td>
           <td>cell 2</td>
-          <td>
+          <td aria-label="actions">
             <DxcTable.ActionsCell actions={actions} />
           </td>
         </tr>
         <tr>
           <td>cell 4</td>
           <td>cell 5</td>
-          <td>
+          <td aria-label="actions">
             <DxcTable.ActionsCell actions={actions} />
           </td>
         </tr>
         <tr>
           <td>cell 7</td>
           <td>cell 8</td>
-          <td>
+          <td aria-label="actions">
             <DxcTable.ActionsCell actions={actions} />
           </td>
         </tr>
@@ -160,21 +158,21 @@ export const Chromatic = () => (
           <tr>
             <td>cell 1</td>
             <td>cell 2</td>
-            <td>
+            <td aria-label="actions">
               <DxcTable.ActionsCell actions={actions} />
             </td>
           </tr>
           <tr>
             <td>cell 4</td>
             <td>cell 5</td>
-            <td>
+            <td aria-label="actions">
               <DxcTable.ActionsCell actions={actions} />
             </td>
           </tr>
           <tr>
             <td>cell 7</td>
             <td>cell 8</td>
-            <td>
+            <td aria-label="actions">
               <DxcTable.ActionsCell actions={actions} />
             </td>
           </tr>
@@ -184,7 +182,13 @@ export const Chromatic = () => (
     <ExampleContainer>
       <Title title="With scrollbar" theme="light" level={4} />
       <div
-        style={{ height: 200 + "px", display: "flex", flexDirection: "row", width: 100 + "%", marginBottom: 50 + "px" }}
+        style={{
+          height: `${200}px`,
+          display: "flex",
+          flexDirection: "row",
+          width: `${100}%`,
+          marginBottom: `${50}px`,
+        }}
       >
         <DxcTable>
           <tr>
@@ -282,7 +286,13 @@ export const Chromatic = () => (
     <ExampleContainer>
       <Title title="Reduced with scrollbar" theme="light" level={4} />
       <div
-        style={{ height: 200 + "px", display: "flex", flexDirection: "row", width: 100 + "%", marginBottom: 50 + "px" }}
+        style={{
+          height: `${200}px`,
+          display: "flex",
+          flexDirection: "row",
+          width: `${100}%`,
+          marginBottom: `${50}px`,
+        }}
       >
         <DxcTable mode="reduced">
           <tr>
@@ -363,21 +373,21 @@ export const Chromatic = () => (
         <tr>
           <td>cell 1</td>
           <td>cell 2</td>
-          <td>
+          <td aria-label="actions">
             <DxcTable.ActionsCell actions={actions} />
           </td>
         </tr>
         <tr>
           <td>cell 4</td>
           <td>cell 5</td>
-          <td>
+          <td aria-label="actions">
             <DxcTable.ActionsCell actions={actions} />
           </td>
         </tr>
         <tr>
           <td>cell 7</td>
           <td>cell 8</td>
-          <td>
+          <td aria-label="actions">
             <DxcTable.ActionsCell actions={actions} />
           </td>
         </tr>
@@ -633,21 +643,21 @@ const ActionsCellDropdown = () => (
       <tr>
         <td>cell 1</td>
         <td>cell 2</td>
-        <td>
+        <td aria-label="actions">
           <DxcTable.ActionsCell actions={actions} />
         </td>
       </tr>
       <tr>
         <td>cell 4</td>
         <td>cell 5</td>
-        <td>
+        <td aria-label="actions">
           <DxcTable.ActionsCell actions={actions} />
         </td>
       </tr>
       <tr>
         <td>cell 7</td>
         <td>cell 8</td>
-        <td>
+        <td aria-label="actions">
           <DxcTable.ActionsCell actions={actions} />
         </td>
       </tr>
@@ -655,9 +665,17 @@ const ActionsCellDropdown = () => (
   </ExampleContainer>
 );
 
-export const DropdownAction = ActionsCellDropdown.bind({});
-DropdownAction.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const nextButton = canvas.getAllByRole("button")[8];
-  await userEvent.click(nextButton);
+type Story = StoryObj<typeof DxcTable>;
+
+export const Chromatic: Story = {
+  render: Table,
+};
+
+export const DropdownAction: Story = {
+  render: ActionsCellDropdown,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const nextButton = canvas.getAllByRole("button")[8];
+    await userEvent.click(nextButton);
+  },
 };

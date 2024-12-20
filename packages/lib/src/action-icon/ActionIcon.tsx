@@ -1,6 +1,6 @@
 import { forwardRef } from "react";
-import ActionIconPropsTypes, { RefType } from "./types";
 import styled from "styled-components";
+import ActionIconPropsTypes, { RefType } from "./types";
 import CoreTokens from "../common/coreTokens";
 import DxcIcon from "../icon/Icon";
 import { Tooltip } from "../tooltip/Tooltip";
@@ -44,14 +44,14 @@ const ActionIcon = styled.button`
       }
     `}
 
-  font-size: 16px;  
+  font-size: 16px;
   > svg {
     width: 16px;
     height: 16px;
   }
 `;
 
-export default forwardRef<RefType, ActionIconPropsTypes>(
+const ForwardedActionIcon = forwardRef<RefType, ActionIconPropsTypes>(
   ({ disabled = false, title, icon, onClick, tabIndex }, ref) => (
     <Tooltip label={title}>
       <ActionIcon
@@ -70,3 +70,7 @@ export default forwardRef<RefType, ActionIconPropsTypes>(
     </Tooltip>
   )
 );
+
+ForwardedActionIcon.displayName = "ActionIcon";
+
+export default ForwardedActionIcon;

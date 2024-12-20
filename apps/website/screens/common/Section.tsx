@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import { DxcFlex } from "@dxc-technology/halstack-react";
 import HeadingLink from "./HeadingLink";
 
@@ -7,7 +8,7 @@ export type SectionType = {
   title: string;
   level?: LevelEnum;
   subSections?: SectionType[];
-  content?: React.ReactNode;
+  content?: ReactNode;
   navSubtitle?: string;
 };
 

@@ -1,3 +1,4 @@
+import { Meta, StoryObj } from "@storybook/react";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcFlex from "../flex/Flex";
@@ -6,9 +7,9 @@ import DxcNumberInput from "./NumberInput";
 export default {
   title: "Number Input",
   component: DxcNumberInput,
-};
+} as Meta<typeof DxcNumberInput>;
 
-export const Chromatic = () => (
+const NumberInput = () => (
   <>
     <ExampleContainer>
       <Title title="Without label" theme="light" level={4} />
@@ -123,3 +124,9 @@ export const Chromatic = () => (
     </ExampleContainer>
   </>
 );
+
+type Story = StoryObj<typeof DxcNumberInput>;
+
+export const Chromatic: Story = {
+  render: NumberInput,
+};

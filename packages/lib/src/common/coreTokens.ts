@@ -105,8 +105,8 @@ const CoreColorTokens = {
   color_orange_800: "#915108",
   color_orange_900: "#613605",
 };
-export const getCoreColorToken = (key: CoreColorTokensType) => CoreColorTokens[key];
 export type CoreColorTokensType = keyof typeof CoreColorTokens;
+export const getCoreColorToken = (key: CoreColorTokensType) => CoreColorTokens[key] ?? "";
 
 /**
  * Halstack Spacing Values
@@ -128,24 +128,9 @@ const CoreSpacingTokens = {
   spacing_80: "5rem",
   spacing_96: "6rem",
   spacing_112: "7rem",
-};
+} as const;
 
-export type CoreSpacingTokensType =
-  | "0rem"
-  | "0.125rem"
-  | "0.25rem"
-  | "0.5rem"
-  | "0.75rem"
-  | "1rem"
-  | "1.5rem"
-  | "2rem"
-  | "2.5rem"
-  | "3rem"
-  | "3.5rem"
-  | "4rem"
-  | "5rem"
-  | "6rem"
-  | "7rem";
+export type CoreSpacingTokensType = typeof CoreSpacingTokens[keyof typeof CoreSpacingTokens];
 
 const CoreTokens = {
   ...CoreColorTokens,

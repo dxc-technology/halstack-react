@@ -1,9 +1,8 @@
+import { act, render, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import DxcButton from "../button/Button";
 import DxcToastsQueue from "./ToastsQueue";
 import useToast from "./useToast";
-import { render, waitFor } from "@testing-library/react";
-import { act } from "@testing-library/react";
 
 const ToastPage = ({ onClick }: { onClick?: () => void }) => {
   const toast = useToast();
@@ -34,9 +33,11 @@ const ToastPage = ({ onClick }: { onClick?: () => void }) => {
       <DxcButton
         label="Show toast"
         onClick={() => {
-          onClick
-            ? toast.default({ message: "This is a simple toast.", action: { label: "Action", onClick } })
-            : toast.default({ message: "This is a simple toast." });
+          if (onClick) {
+            toast.default({ message: "This is a simple toast.", action: { label: "Action", onClick } });
+          } else {
+            toast.default({ message: "This is a simple toast." });
+          }
         }}
       />
       <DxcButton label="Load process" onClick={loadingFunc} />

@@ -1,3 +1,4 @@
+import { Meta, StoryObj } from "@storybook/react";
 import DxcAlert from "./Alert";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
@@ -6,7 +7,7 @@ import DxcLink from "../link/Link";
 export default {
   title: "Alert",
   component: DxcAlert,
-};
+} as Meta<typeof DxcAlert>;
 
 const messages = [
   { text: "Message 1", onClose: () => {} },
@@ -46,7 +47,7 @@ const message = {
   onClose: () => {},
 };
 
-export const Chromatic = () => (
+const Alert = () => (
   <>
     <Title title="Banner" theme="light" level={2} />
     <ExampleContainer>
@@ -287,7 +288,7 @@ export const Chromatic = () => (
   </>
 );
 
-export const InformationModal = () => (
+const AlertInfo = () => (
   <ExampleContainer>
     <DxcAlert
       title="Info"
@@ -299,7 +300,7 @@ export const InformationModal = () => (
   </ExampleContainer>
 );
 
-export const SuccessModal = () => (
+const AlertSuccess = () => (
   <ExampleContainer>
     <DxcAlert
       title="Success"
@@ -313,7 +314,7 @@ export const SuccessModal = () => (
   </ExampleContainer>
 );
 
-export const WarningModal = () => (
+const AlertWarning = () => (
   <ExampleContainer>
     <DxcAlert
       title="Warning"
@@ -326,7 +327,7 @@ export const WarningModal = () => (
   </ExampleContainer>
 );
 
-export const ErrorModal = () => (
+const AlertError = () => (
   <ExampleContainer>
     <DxcAlert
       title="Error"
@@ -338,3 +339,25 @@ export const ErrorModal = () => (
     />
   </ExampleContainer>
 );
+
+type Story = StoryObj<typeof DxcAlert>;
+
+export const Chromatic: Story = {
+  render: Alert,
+};
+
+export const InformationModal: Story = {
+  render: AlertInfo,
+};
+
+export const SuccessModal: Story = {
+  render: AlertSuccess,
+};
+
+export const WarningModal: Story = {
+  render: AlertWarning,
+};
+
+export const ErrorModal: Story = {
+  render: AlertError,
+};

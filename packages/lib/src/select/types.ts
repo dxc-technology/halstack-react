@@ -1,22 +1,6 @@
-type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
-type Margin = {
-  top?: Space;
-  bottom?: Space;
-  left?: Space;
-  right?: Space;
-};
-type SVG = React.ReactNode & React.SVGProps<SVGSVGElement>;
+import { CSSProperties } from "react";
+import { Margin, SVG, Space } from "../common/utils";
 
-export type ListOptionGroupType = {
-  /**
-   * Label of the group to be shown in the select's listbox.
-   */
-  label: string;
-  /**
-   * List of the grouped options.
-   */
-  options: ListOptionType[];
-};
 export type ListOptionType = {
   /**
    * Element used as the icon that will be placed before the option label.
@@ -35,6 +19,17 @@ export type ListOptionType = {
    * by optional prop.
    */
   value: string;
+};
+
+export type ListOptionGroupType = {
+  /**
+   * Label of the group to be shown in the select's listbox.
+   */
+  label: string;
+  /**
+   * List of the grouped options.
+   */
+  options: ListOptionType[];
 };
 
 type CommonProps = {
@@ -193,7 +188,7 @@ export type ListboxProps = {
   optionalItem: ListOptionType;
   searchable: boolean;
   handleOptionOnClick: (option: ListOptionType) => void;
-  styles: React.CSSProperties;
+  styles: CSSProperties;
 };
 
 /**

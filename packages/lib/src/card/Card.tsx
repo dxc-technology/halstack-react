@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables";
-import useTheme from "../useTheme";
 import CardPropsType from "./types";
 import CoreTokens from "../common/coreTokens";
+import HalstackContext from "../HalstackContext";
 
 const DxcCard = ({
   imageSrc,
@@ -18,13 +18,13 @@ const DxcCard = ({
   outlined = true,
   children,
 }: CardPropsType): JSX.Element => {
-  const colorsTheme = useTheme();
+  const colorsTheme = useContext(HalstackContext);
   const [isHovered, changeIsHovered] = useState(false);
 
   return (
     <ThemeProvider theme={colorsTheme.card}>
       <Card
-        hasAction={onClick || linkHref ? true : false}
+        hasAction={!!(onClick || linkHref)}
         margin={margin}
         onMouseEnter={() => changeIsHovered(true)}
         onMouseLeave={() => changeIsHovered(false)}
@@ -34,7 +34,7 @@ const DxcCard = ({
         href={linkHref}
         shadowDepth={!outlined ? 0 : isHovered && (onClick || linkHref) ? 2 : 1}
       >
-        <CardContainer hasAction={onClick || linkHref ? true : false} imagePosition={imageSrc ? imagePosition : "none"}>
+        <CardContainer hasAction={!!(onClick || linkHref)} imagePosition={imageSrc ? imagePosition : "none"}>
           {imageSrc && (
             <ImageContainer imageBgColor={imageBgColor}>
               <TagImage imagePadding={imagePadding} imageCover={imageCover} src={imageSrc} alt="Card image" />
@@ -89,7 +89,10 @@ const CardContainer = styled.div<{
   }
 `;
 
-const TagImage = styled.img<{ imagePadding: CardPropsType["imagePadding"]; imageCover: CardPropsType["imageCover"] }>`
+const TagImage = styled.img<{
+  imagePadding: CardPropsType["imagePadding"];
+  imageCover: CardPropsType["imageCover"];
+}>`
   height: ${({ imagePadding }) =>
     !imagePadding
       ? "100%"
@@ -101,7 +104,9 @@ const TagImage = styled.img<{ imagePadding: CardPropsType["imagePadding"]; image
   object-fit: ${({ imageCover }) => (imageCover ? "cover" : "contain")};
 `;
 
-const ImageContainer = styled.div<{ imageBgColor: CardPropsType["imageBgColor"] }>`
+const ImageContainer = styled.div<{
+  imageBgColor: CardPropsType["imageBgColor"];
+}>`
   display: inline-flex;
   justify-content: center;
   align-items: center;

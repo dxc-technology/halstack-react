@@ -1,15 +1,12 @@
 import { render } from "@testing-library/react";
-import { axe } from "../../test/accessibility/axe-helper";
-import { disabledRules as rules } from "../../test/accessibility/rules/specific/header/disabledRules";
+import { axe, formatRules } from "../../test/accessibility/axe-helper";
+import DxcHeader from "./Header";
 import DxcFlex from "../flex/Flex";
 import DxcLink from "../link/Link";
-import DxcHeader from "./Header";
+import rules from "../../test/accessibility/rules/specific/header/disabledRules";
 
 const disabledRules = {
-  rules: rules.reduce((rulesObj, rule) => {
-    rulesObj[rule] = { enabled: false };
-    return rulesObj;
-  }, {}),
+  rules: formatRules(rules),
 };
 
 const iconSVG = (

@@ -1,4 +1,4 @@
-import { memo, useState } from "react";
+import { memo, useContext, useState } from "react";
 import styled, { keyframes } from "styled-components";
 import CoreTokens from "../common/coreTokens";
 import DxcActionIcon from "../action-icon/ActionIcon";
@@ -6,11 +6,32 @@ import DxcButton from "../button/Button";
 import DxcFlex from "../flex/Flex";
 import DxcIcon from "../icon/Icon";
 import DxcSpinner from "../spinner/Spinner";
-import { HalstackProvider } from "../HalstackContext";
+import { HalstackLanguageContext, HalstackProvider } from "../HalstackContext";
 import ToastPropsType from "./types";
 import useTimeout from "../utils/useTimeout";
-import useTranslatedLabels from "../useTranslatedLabels";
 import { responsiveSizes } from "../common/variables";
+
+const fadeInUp = keyframes`
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+`;
+
+const fadeOutDown = keyframes`
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+`;
 
 const getSemantic = (semantic: ToastPropsType["semantic"]) => {
   switch (semantic) {
@@ -36,28 +57,6 @@ const getSemantic = (semantic: ToastPropsType["semantic"]) => {
       return { primaryColor: CoreTokens.color_purple_700, secondaryColor: CoreTokens.color_purple_100, icon: "" };
   }
 };
-
-const fadeInUp = keyframes`
-  0% {
-    transform: translateY(100%);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-`;
-
-const fadeOutDown = keyframes`
-  0% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(100%);
-    opacity: 0;
-  }
-`;
 
 const Toast = styled.output<{ semantic: ToastPropsType["semantic"]; isClosing: boolean }>`
   box-sizing: border-box;
@@ -116,16 +115,21 @@ const ToastIcon = memo(
     loading,
     semantic,
   }: Pick<ToastPropsType, "icon" | "hideSemanticIcon" | "loading" | "semantic">) => {
-    if (semantic === "default") return typeof icon === "string" ? <DxcIcon icon={icon} /> : icon;
-    else if (semantic === "info" && loading)
+    if (semantic === "default") {
+      return typeof icon === "string" ? <DxcIcon icon={icon} /> : icon;
+    }
+    if (semantic === "info" && loading) {
       return (
         <HalstackProvider theme={spinnerTheme}>
           <DxcSpinner mode="small" />
         </HalstackProvider>
       );
-    else return !hideSemanticIcon && <DxcIcon icon={getSemantic(semantic).icon} />;
+    }
+    return !hideSemanticIcon && <DxcIcon icon={getSemantic(semantic).icon} />;
   }
 );
+
+ToastIcon.displayName = "ToastIcon";
 
 const DxcToast = ({
   action,
@@ -138,20 +142,20 @@ const DxcToast = ({
   semantic,
 }: ToastPropsType) => {
   const [isClosing, setIsClosing] = useState(false);
-  const translatedLabels = useTranslatedLabels();
+  const translatedLabels = useContext(HalstackLanguageContext);
 
   const clearClosingAnimationTimer = useTimeout(
     () => {
       setIsClosing(true);
     },
-    loading ? null : duration - 300
+    loading ? undefined : duration - 300
   );
 
   const clearTimer = useTimeout(
     () => {
       onClear();
     },
-    loading ? null : duration
+    loading ? undefined : duration
   );
 
   return (
@@ -189,5 +193,7 @@ const DxcToast = ({
     </Toast>
   );
 };
+
+DxcToast.displayName = "DxcToast";
 
 export default memo(DxcToast);

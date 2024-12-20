@@ -1,3 +1,5 @@
+import { ReactEventHandler, ReactNode } from "react";
+
 type Props = {
   /**
    * Alternative text description displayed when the specified image is not loaded.
@@ -57,17 +59,17 @@ type Props = {
   /**
    * This function will be called when the image is loaded.
    */
-  onLoad?: React.ReactEventHandler<HTMLImageElement>;
+  onLoad?: ReactEventHandler<HTMLImageElement>;
   /**
    * This function will be called when the image fails to load.
    */
-  onError?: React.ReactEventHandler<HTMLImageElement>;
+  onError?: ReactEventHandler<HTMLImageElement>;
 };
 
 export type CaptionWrapperProps = {
   condition: boolean;
-  wrapper: (children: React.ReactNode) => JSX.Element;
-  children: React.ReactNode;
+  wrapper: (children: ReactNode) => JSX.Element;
+  children: ReactNode;
 };
 
 export default Props;

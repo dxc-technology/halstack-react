@@ -20,12 +20,12 @@ describe("Accordion component tests", () => {
         </DxcAccordionGroup.Accordion>
       </DxcAccordionGroup>
     );
-    expect(getAllByRole("button")[0].getAttribute("aria-expanded")).toBe("false");
-    expect(getAllByRole("button")[1].getAttribute("aria-expanded")).toBe("false");
+    expect(getAllByRole("button")[0]?.getAttribute("aria-expanded")).toBe("false");
+    expect(getAllByRole("button")[1]?.getAttribute("aria-expanded")).toBe("false");
     fireEvent.click(getByText("Accordion1"));
     expect(onActiveChange).toHaveBeenCalled();
-    expect(getAllByRole("button")[0].getAttribute("aria-expanded")).toBe("true");
-    expect(getAllByRole("button")[1].getAttribute("aria-expanded")).toBe("false");
+    expect(getAllByRole("button")[0]?.getAttribute("aria-expanded")).toBe("true");
+    expect(getAllByRole("button")[1]?.getAttribute("aria-expanded")).toBe("false");
   });
 
   test("Uncontrolled accordion group renders initially with an accordion expanded using defaultIndexActive", () => {
@@ -39,8 +39,8 @@ describe("Accordion component tests", () => {
         </DxcAccordionGroup.Accordion>
       </DxcAccordionGroup>
     );
-    expect(getAllByRole("button")[0].getAttribute("aria-expanded")).toBe("false");
-    expect(getAllByRole("button")[1].getAttribute("aria-expanded")).toBe("true");
+    expect(getAllByRole("button")[0]?.getAttribute("aria-expanded")).toBe("false");
+    expect(getAllByRole("button")[1]?.getAttribute("aria-expanded")).toBe("true");
     expect(getByText("Second accordion")).toBeTruthy();
     expect(queryByText("First accordion")).toBeFalsy();
   });
@@ -63,8 +63,8 @@ describe("Accordion component tests", () => {
     fireEvent.click(getByText("Accordion2"));
     expect(onActiveChange.mock.calls[0][0]).toBe(0);
     expect(onActiveChange.mock.calls[1][0]).toBe(1);
-    expect(getAllByRole("button")[0].getAttribute("aria-expanded")).toBe("false");
-    expect(getAllByRole("button")[1].getAttribute("aria-expanded")).toBe("true");
+    expect(getAllByRole("button")[0]?.getAttribute("aria-expanded")).toBe("false");
+    expect(getAllByRole("button")[1]?.getAttribute("aria-expanded")).toBe("true");
 
     rerender(
       <DxcAccordionGroup margin="large" indexActive={0} onActiveChange={onActiveChange}>
@@ -76,8 +76,8 @@ describe("Accordion component tests", () => {
         </DxcAccordionGroup.Accordion>
       </DxcAccordionGroup>
     );
-    expect(getAllByRole("button")[0].getAttribute("aria-expanded")).toBe("true");
-    expect(getAllByRole("button")[1].getAttribute("aria-expanded")).toBe("false");
+    expect(getAllByRole("button")[0]?.getAttribute("aria-expanded")).toBe("true");
+    expect(getAllByRole("button")[1]?.getAttribute("aria-expanded")).toBe("false");
   });
 
   test("Disabled uncontrolled accordion group", () => {
