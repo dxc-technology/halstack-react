@@ -940,25 +940,28 @@ export const DataGridSortedWithChildren: Story = {
   render: DataGridSortedChildren,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const checkboxes = canvas.getAllByRole("checkbox");
-    const columnheaders = canvas.getAllByRole("columnheader");
-
-    checkboxes[0] && (await userEvent.click(checkboxes[0]));
+    const checkbox0 = canvas.getAllByRole("checkbox")[0];
+    checkbox0 && (await userEvent.click(checkbox0));
     await userEvent.click(canvas.getByText("Root Node 1"));
     await userEvent.click(canvas.getByText("Root Node 2"));
     await userEvent.click(canvas.getByText("Child Node 1.1"));
     await userEvent.click(canvas.getByText("Child Node 2.1"));
-    columnheaders[1] && (await userEvent.click(columnheaders[1]));
-    columnheaders[1] && (await userEvent.click(columnheaders[1]));
-    checkboxes[5] && (await userEvent.click(checkboxes[5]));
-
-    checkboxes[13] && (await userEvent.click(checkboxes[13]));
+    const columnheader1_1 = canvas.getAllByRole("columnheader")[1];
+    columnheader1_1 && (await userEvent.click(columnheader1_1));
+    const columnheader1_2 = canvas.getAllByRole("columnheader")[1];
+    columnheader1_2 && (await userEvent.click(columnheader1_2));
+    const checkbox5 = canvas.getAllByRole("checkbox")[5];
+    checkbox5 && (await userEvent.click(checkbox5));
+    const checkbox13 = canvas.getAllByRole("checkbox")[13];
+    checkbox13 && (await userEvent.click(checkbox13));
     await userEvent.click(canvas.getByText("Paginated Node 1"));
     await userEvent.click(canvas.getByText("Paginated Node 2"));
     await userEvent.click(canvas.getByText("Paginated Node 1.1"));
     await userEvent.click(canvas.getByText("Paginated Node 2.1"));
-    columnheaders[4] && (await userEvent.click(columnheaders[4]));
-    checkboxes[18] && (await userEvent.click(checkboxes[18]));
+    const columnheader4 = canvas.getAllByRole("columnheader")[4];
+    columnheader4 && (await userEvent.click(columnheader4));
+    const checkbox18 = canvas.getAllByRole("checkbox")[18];
+    checkbox18 && (await userEvent.click(checkbox18));
   },
 };
 
