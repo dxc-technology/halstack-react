@@ -966,17 +966,24 @@ export const DataGridSortedExpanded: Story = {
   render: DataGridSortedExpandable,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const buttons = canvas.getAllByRole("button");
     const columnHeaders = canvas.getAllByRole("columnheader");
-    buttons[0] && (await userEvent.click(buttons[0]));
-    buttons[1] && (await userEvent.click(buttons[1]));
+    const button0 = canvas.getAllByRole("button")[0];
+    button0 && (await userEvent.click(button0));
+    const button1 = canvas.getAllByRole("button")[1];
+    button1 && (await userEvent.click(button1));
     columnHeaders[4] && (await userEvent.click(columnHeaders[4]));
-    buttons[9] && (await userEvent.click(buttons[9]));
-    buttons[10] && (await userEvent.click(buttons[10]));
+    const button9 = canvas.getAllByRole("button")[9];
+    button9 && (await userEvent.click(button9));
+    const button10 = canvas.getAllByRole("button")[10];
+    button10 && (await userEvent.click(button10));
     columnHeaders[10] && (await userEvent.click(columnHeaders[10]));
-    buttons[16] && (await userEvent.click(buttons[16]));
-    buttons[43] && (await userEvent.click(buttons[43]));
-    buttons[36] && (await userEvent.click(buttons[36]));
-    buttons[37] && (await userEvent.click(buttons[37]));
+    const button16 = canvas.getAllByRole("button")[16];
+    button16 && (await userEvent.click(button16));
+    const button43 = canvas.getAllByRole("button")[43];
+    button43 && (await userEvent.click(button43));
+    const button36 = canvas.getAllByRole("button")[36];
+    button36 && (await userEvent.click(button36));
+    const button37 = canvas.getAllByRole("button")[37];
+    button37 && (await userEvent.click(button37));
   },
 };
