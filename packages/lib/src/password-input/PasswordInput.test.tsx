@@ -50,7 +50,7 @@ describe("Password input component tests", () => {
     userEvent.type(passwordInput, "Pa$$w0rd");
     expect(passwordInput.value).toBe("Pa$$w0rd");
     const clearButton = getAllByRole("button")[0];
-    await userEvent.click(clearButton);
+    clearButton && await userEvent.click(clearButton);
     expect(passwordInput.value).toBe("");
   });
 
@@ -70,7 +70,7 @@ describe("Password input component tests", () => {
     expect(passwordInput.value).toBe("Pa$$w0rd");
     expect(passwordInput.type).toBe("password");
     const showButton = getAllByRole("button")[1];
-    await userEvent.click(showButton);
+    showButton && await userEvent.click(showButton);
     expect(passwordInput.type).toBe("text");
   });
 

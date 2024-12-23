@@ -49,12 +49,13 @@ export const convertToRDGColumns = (
   headerCellClass: gridColumn.alignment ? `header-align-${gridColumn.alignment}` : `header-align-left`,
   renderEditCell: gridColumn.textEditable ? textEditor : undefined,
   renderCell: ({ row }) => (
-      <div className={`ellipsis-cell ${gridColumn.alignment ? `align-${  gridColumn.alignment}` : "align-left"}`}>
-        {row[gridColumn.key]}
-      </div>
-    ),
-  renderSummaryCell: () => gridColumn.summaryKey ? (
-      <div className={`ellipsis-cell ${gridColumn.alignment ? `align-${  gridColumn.alignment}` : "align-left"}`}>
+    <div className={`ellipsis-cell ${gridColumn.alignment ? `align-${gridColumn.alignment}` : "align-left"}`}>
+      {row[gridColumn.key]}
+    </div>
+  ),
+  renderSummaryCell: () =>
+    gridColumn.summaryKey ? (
+      <div className={`ellipsis-cell ${gridColumn.alignment ? `align-${gridColumn.alignment}` : "align-left"}`}>
         {summaryRow?.[gridColumn.summaryKey]}
       </div>
     ) : undefined,
@@ -590,4 +591,18 @@ export const getPaginatedNodes = (
         rowToPaginate?.childRows?.some((child) => isRowInHierarchy(child, row[uniqueRowId]))
     )
   );
+};
+
+/**
+ * Type guard to ensure `key` is a valid key of the `row` object.
+ * This function checks if the given `key` exists within the provided object `obj`.
+ *
+ * @template T - The type of the row object.
+ * @param {string} key - The key to check if it exists in the row object.
+ * @param {T} obj - The row object to check the key against.
+ * @returns {boolean} - Returns `true` if `key` is a valid key of `obj`, otherwise `false`.
+ * 
+ */
+export const isKeyOfRow = <T extends GridRow>(key: string, obj: T): key is Extract<keyof T, string> => {
+  return key in obj;
 };

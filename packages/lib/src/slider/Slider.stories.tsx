@@ -9,7 +9,7 @@ export default {
   component: DxcSlider,
 } as Meta<typeof DxcSlider>;
 
-const labelFormat = (value) => `${value}E100000000000000000000000`;
+const labelFormat = (value: number) => `${value}E100000000000000000000000`;
 
 const opinionatedTheme = {
   slider: {

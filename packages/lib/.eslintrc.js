@@ -7,4 +7,7 @@ module.exports = {
     project: "./tsconfig.lint.json",
     tsconfigRootDir: __dirname,
   },
+  env: {
+    "jest/globals": true,
+  },
 };

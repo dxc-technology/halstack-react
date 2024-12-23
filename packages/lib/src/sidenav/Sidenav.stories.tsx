@@ -284,6 +284,6 @@ export const CollapsedActiveGroup: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const collapsableGroups = canvas.getAllByText("Collapsed Group");
-    userEvent.click(collapsableGroups[0]);
+    collapsableGroups[0] && userEvent.click(collapsableGroups[0]);
   },
 };

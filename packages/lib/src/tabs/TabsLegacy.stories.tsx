@@ -21,7 +21,7 @@ const iconSVG = (
   </svg>
 );
 
-const tabs: any = [
+const tabs = [
   {
     label: "Tab 1",
   },
@@ -46,7 +46,7 @@ const tabs: any = [
   },
 ];
 
-const disabledTabs: any = [
+const disabledTabs = [
   {
     label: "Tab 1",
     isDisabled: true,
@@ -61,7 +61,7 @@ const disabledTabs: any = [
   },
 ];
 
-const firstDisabledTabs: any = [
+const firstDisabledTabs = [
   {
     label: "Tab 1",
     isDisabled: true,
