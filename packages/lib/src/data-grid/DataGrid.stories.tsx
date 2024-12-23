@@ -971,12 +971,14 @@ export const DataGridSortedExpanded: Story = {
     button0 && (await userEvent.click(button0));
     const button1 = canvas.getAllByRole("button")[1];
     button1 && (await userEvent.click(button1));
-    columnHeaders[4] && (await userEvent.click(columnHeaders[4]));
+    const columnHeaders4 = canvas.getAllByRole("columnheader")[4];
+    columnHeaders4 && (await userEvent.click(columnHeaders4));
     const button9 = canvas.getAllByRole("button")[9];
     button9 && (await userEvent.click(button9));
     const button10 = canvas.getAllByRole("button")[10];
     button10 && (await userEvent.click(button10));
-    columnHeaders[10] && (await userEvent.click(columnHeaders[10]));
+    const columnHeaders10 = canvas.getAllByRole("columnheader")[10];
+    columnHeaders10 && (await userEvent.click(columnHeaders10));
     const button16 = canvas.getAllByRole("button")[16];
     button16 && (await userEvent.click(button16));
     const button43 = canvas.getAllByRole("button")[43];
