@@ -11,7 +11,7 @@ const ToastPage = ({ onClick }: { onClick?: () => void }) => {
     const removeLoadingToast = toast.loading({ message: "Loading process..." });
 
     setTimeout(() => {
-      removeLoadingToast();
+      removeLoadingToast?.();
       toast.success({ message: "The process ended successfully." });
     }, 5000);
   };

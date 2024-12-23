@@ -108,14 +108,18 @@ describe("Table component tests", () => {
 
     const dropdown = getAllByRole("button")[1];
     act(() => {
-      userEvent.click(dropdown);
+      if (dropdown) {
+        userEvent.click(dropdown);
+      }
     });
     expect(getByRole("menu")).toBeTruthy();
     const option = getByText("Aliexpress");
     userEvent.click(option);
     expect(onSelectOption).toHaveBeenCalledWith("3");
     const action = getAllByRole("button")[0];
-    userEvent.click(action);
+    if (action) {
+      userEvent.click(action);
+    }
     expect(onClick).toHaveBeenCalled();
   });
 });

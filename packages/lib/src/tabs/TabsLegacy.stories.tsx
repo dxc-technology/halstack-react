@@ -4,7 +4,6 @@ import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import { HalstackProvider } from "../HalstackContext";
 import DxcTabsLegacy from "./TabsLegacy";
-import { TabIconProps, TabLabelProps } from "./types";
 
 export default {
   title: "Tabs Legacy",
@@ -22,7 +21,7 @@ const iconSVG = (
   </svg>
 );
 
-const tabs: (TabLabelProps | TabIconProps)[] = [
+const tabs = [
   {
     label: "Tab 1",
   },
@@ -47,7 +46,7 @@ const tabs: (TabLabelProps | TabIconProps)[] = [
   },
 ];
 
-const disabledTabs: (TabLabelProps | TabIconProps)[] = [
+const disabledTabs = [
   {
     label: "Tab 1",
     isDisabled: true,
@@ -62,7 +61,7 @@ const disabledTabs: (TabLabelProps | TabIconProps)[] = [
   },
 ];
 
-const firstDisabledTabs: (TabLabelProps | TabIconProps)[] = [
+const firstDisabledTabs = [
   {
     label: "Tab 1",
     isDisabled: true,

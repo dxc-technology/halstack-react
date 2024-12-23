@@ -36,7 +36,9 @@ describe("Toast component accessibility tests", () => {
     const { container } = render(<TestExample />);
     const results = await axe(container);
     const button = container.querySelector("button");
-    userEvent.click(button);
+    if (button) {
+      userEvent.click(button);
+    }
     expect(results).toHaveNoViolations();
   });
   it("Should not have basic accessibility issues", async () => {

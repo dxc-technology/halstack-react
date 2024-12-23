@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { isValidElement, useState } from "react";
 import { Meta, StoryObj } from "@storybook/react";
 import { userEvent, within } from "@storybook/test";
 import Title from "../../.storybook/components/Title";
@@ -10,6 +10,7 @@ import disabledRules from "../../test/accessibility/rules/specific/data-grid/dis
 import preview from "../../.storybook/preview";
 import DxcBadge from "../badge/Badge";
 import { ActionsPropsType } from "../table/types";
+import { isKeyOfRow } from "./utils";
 
 export default {
   title: "Data Grid",
@@ -588,8 +589,12 @@ const customSortColumns: GridColumn[] = [
     alignment: "center",
     summaryKey: "total",
     sortable: true,
-    sortFn: (a: JSX.Element, b: JSX.Element) =>
-      a.props.label < b.props.label ? -1 : a.props.label > b.props.label ? 1 : 0,
+    sortFn: (a, b) => {
+      if (isValidElement(a) && isValidElement(b)) {
+        return a.props.label < b.props.label ? -1 : a.props.label > b.props.label ? 1 : 0;
+      }
+      return 0;
+    },
   },
 ];
 
@@ -729,10 +734,20 @@ const DataGrid = () => {
               console.log(`Sorting the column '${columnKey}' by '${direction}' direction`);
               setRowsControlled((currentRows) =>
                 currentRows.sort((a, b) => {
-                  if (direction === "ASC") {
-                    return a[columnKey] < b[columnKey] ? -1 : a[columnKey] > b[columnKey] ? 1 : 0;
+                  if (isKeyOfRow(columnKey, a) && isKeyOfRow(columnKey, b)) {
+                    const valueA = a[columnKey];
+                    const valueB = b[columnKey];
+                    if (valueA != null && valueB != null) {
+                      if (direction === "ASC") {
+                        return valueA < valueB ? -1 : valueA > valueB ? 1 : 0;
+                      } else {
+                        return valueA < valueB ? 1 : valueA > valueB ? -1 : 0;
+                      }
+                    } else {
+                      return 0;
+                    }
                   } else {
-                    return a[columnKey] < b[columnKey] ? 1 : a[columnKey] > b[columnKey] ? -1 : 0;
+                    return 0;
                   }
                 })
               );
@@ -923,23 +938,42 @@ export const DataGridSortedWithChildren: Story = {
   render: DataGridSortedChildren,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-
-    await userEvent.click(canvas.getAllByRole("checkbox")[0]);
+    const checkbox0 = canvas.getAllByRole("checkbox")[0];
+    if (checkbox0) {
+      await userEvent.click(checkbox0);
+    }
     await userEvent.click(canvas.getByText("Root Node 1"));
     await userEvent.click(canvas.getByText("Root Node 2"));
     await userEvent.click(canvas.getByText("Child Node 1.1"));
     await userEvent.click(canvas.getByText("Child Node 2.1"));
-    await userEvent.click(canvas.getAllByRole("columnheader")[1]);
-    await userEvent.click(canvas.getAllByRole("columnheader")[1]);
-    await userEvent.click(canvas.getAllByRole("checkbox")[5]);
-
-    await userEvent.click(canvas.getAllByRole("checkbox")[13]);
+    let columnheader1 = canvas.getAllByRole("columnheader")[1];
+    if (columnheader1) {
+      await userEvent.click(columnheader1);
+    }
+    columnheader1 = canvas.getAllByRole("columnheader")[1];
+    if (columnheader1) {
+      await userEvent.click(columnheader1);
+    }
+    const checkbox5 = canvas.getAllByRole("checkbox")[5];
+    if (checkbox5) {
+      await userEvent.click(checkbox5);
+    }
+    const checkbox13 = canvas.getAllByRole("checkbox")[13];
+    if (checkbox13) {
+      await userEvent.click(checkbox13);
+    }
     await userEvent.click(canvas.getByText("Paginated Node 1"));
     await userEvent.click(canvas.getByText("Paginated Node 2"));
     await userEvent.click(canvas.getByText("Paginated Node 1.1"));
     await userEvent.click(canvas.getByText("Paginated Node 2.1"));
-    await userEvent.click(canvas.getAllByRole("columnheader")[4]);
-    await userEvent.click(canvas.getAllByRole("checkbox")[18]);
+    const columnheader4 = canvas.getAllByRole("columnheader")[4];
+    if (columnheader4) {
+      await userEvent.click(columnheader4);
+    }
+    const checkbox18 = canvas.getAllByRole("checkbox")[18];
+    if (checkbox18) {
+      await userEvent.click(checkbox18);
+    }
   },
 };
 
@@ -947,15 +981,45 @@ export const DataGridSortedExpanded: Story = {
   render: DataGridSortedExpandable,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    await userEvent.click(canvas.getAllByRole("button")[0]);
-    await userEvent.click(canvas.getAllByRole("button")[1]);
-    await userEvent.click(canvas.getAllByRole("columnheader")[4]);
-    await userEvent.click(canvas.getAllByRole("button")[9]);
-    await userEvent.click(canvas.getAllByRole("button")[10]);
-    await userEvent.click(canvas.getAllByRole("columnheader")[10]);
-    await userEvent.click(canvas.getAllByRole("button")[16]);
-    await userEvent.click(canvas.getAllByRole("button")[43]);
-    await userEvent.click(canvas.getAllByRole("button")[36]);
-    await userEvent.click(canvas.getAllByRole("button")[37]);
+    const button0 = canvas.getAllByRole("button")[0];
+    if (button0) {
+      await userEvent.click(button0);
+    }
+    const button1 = canvas.getAllByRole("button")[1];
+    if (button1) {
+      await userEvent.click(button1);
+    }
+    const columnHeaders4 = canvas.getAllByRole("columnheader")[4];
+    if (columnHeaders4) {
+      await userEvent.click(columnHeaders4);
+    }
+    const button9 = canvas.getAllByRole("button")[9];
+    if (button9) {
+      await userEvent.click(button9);
+    }
+    const button10 = canvas.getAllByRole("button")[10];
+    if (button10) {
+      await userEvent.click(button10);
+    }
+    const columnHeaders10 = canvas.getAllByRole("columnheader")[10];
+    if (columnHeaders10) {
+      await userEvent.click(columnHeaders10);
+    }
+    const button16 = canvas.getAllByRole("button")[16];
+    if (button16) {
+      await userEvent.click(button16);
+    }
+    const button43 = canvas.getAllByRole("button")[43];
+    if (button43) {
+      await userEvent.click(button43);
+    }
+    const button36 = canvas.getAllByRole("button")[36];
+    if (button36) {
+      await userEvent.click(button36);
+    }
+    const button37 = canvas.getAllByRole("button")[37];
+    if (button37) {
+      await userEvent.click(button37);
+    }
   },
 };

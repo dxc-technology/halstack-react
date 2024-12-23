@@ -38,15 +38,19 @@ describe("Number input component tests", () => {
     expect(number.disabled).toBeTruthy();
   });
 
-  test("Number input is read only and cannot be incremented or decremented using the actions", async () => {
+  test("Number input is read only and cannot be incremented or decremented using the actions", () => {
     const { getByLabelText, getAllByRole } = render(<DxcNumberInput label="Number label" readOnly />);
     const number = getByLabelText("Number label") as HTMLInputElement;
     expect(number.readOnly).toBeTruthy();
     const decrement = getAllByRole("button")[0];
-    await userEvent.click(decrement);
+    if (decrement) {
+      userEvent.click(decrement);
+    }
     expect(number.value).toBe("");
     const increment = getAllByRole("button")[1];
-    await userEvent.click(increment);
+    if (increment) {
+      userEvent.click(increment);
+    }
     expect(number.value).toBe("");
   });
 
@@ -127,25 +131,29 @@ describe("Number input component tests", () => {
     fireEvent.blur(number);
   });
 
-  test("Cannot decrement the value if it is less than the min value", async () => {
+  test("Cannot decrement the value if it is less than the min value", () => {
     const { getByLabelText, getAllByRole } = render(<DxcNumberInput label="Number input label" min={5} />);
     const number = getByLabelText("Number input label") as HTMLInputElement;
     userEvent.type(number, "1");
     fireEvent.blur(number);
     expect(number.value).toBe("1");
     const decrement = getAllByRole("button")[0];
-    await userEvent.click(decrement);
+    if (decrement) {
+      userEvent.click(decrement);
+    }
     expect(number.value).toBe("1");
   });
 
-  test("Increment the value when it is less than the min value", async () => {
+  test("Increment the value when it is less than the min value", () => {
     const { getByLabelText, getAllByRole } = render(<DxcNumberInput label="Number input label" min={5} />);
     const number = getByLabelText("Number input label") as HTMLInputElement;
     userEvent.type(number, "1");
     fireEvent.blur(number);
     expect(number.value).toBe("1");
     const increment = getAllByRole("button")[1];
-    await userEvent.click(increment);
+    if (increment) {
+      userEvent.click(increment);
+    }
     expect(number.value).toBe("5");
   });
 
@@ -170,89 +178,117 @@ describe("Number input component tests", () => {
     });
   });
 
-  test("Cannot increment the value if it is greater than the max value", async () => {
+  test("Cannot increment the value if it is greater than the max value", () => {
     const { getByLabelText, getAllByRole } = render(<DxcNumberInput label="Number input label" max={10} />);
     const number = getByLabelText("Number input label") as HTMLInputElement;
     userEvent.type(number, "12");
     fireEvent.blur(number);
     expect(number.value).toBe("12");
     const decrement = getAllByRole("button")[1];
-    await userEvent.click(decrement);
+    if (decrement) {
+      userEvent.click(decrement);
+    }
     expect(number.value).toBe("12");
   });
 
-  test("Decrement the value when it is greater than the max value", async () => {
+  test("Decrement the value when it is greater than the max value", () => {
     const { getByLabelText, getAllByRole } = render(<DxcNumberInput label="Number input label" max={10} />);
     const number = getByLabelText("Number input label") as HTMLInputElement;
     userEvent.type(number, "120");
     fireEvent.blur(number);
     expect(number.value).toBe("120");
     const decrement = getAllByRole("button")[0];
-    await userEvent.click(decrement);
+    if (decrement) {
+      userEvent.click(decrement);
+    }
     expect(number.value).toBe("10");
   });
 
-  test("Increment and decrement the value with min and max values", async () => {
+  test("Increment and decrement the value with min and max values", () => {
     const { getByLabelText, getAllByRole } = render(<DxcNumberInput label="Number input label" min={5} max={10} />);
     const number = getByLabelText("Number input label") as HTMLInputElement;
     userEvent.type(number, "1");
     fireEvent.blur(number);
     expect(number.value).toBe("1");
     const decrement = getAllByRole("button")[0];
-    await userEvent.click(decrement);
+    if (decrement) {
+      userEvent.click(decrement);
+    }
     expect(number.value).toBe("1");
     const increment = getAllByRole("button")[1];
-    await userEvent.click(increment);
+    if (increment) {
+      userEvent.click(increment);
+    }
     expect(number.value).toBe("5");
-    await userEvent.click(increment);
-    await userEvent.click(increment);
-    await userEvent.click(increment);
-    await userEvent.click(increment);
-    await userEvent.click(increment);
+    if (increment) {
+      userEvent.click(increment);
+      userEvent.click(increment);
+      userEvent.click(increment);
+      userEvent.click(increment);
+      userEvent.click(increment);
+    }
     expect(number.value).toBe("10");
-    await userEvent.click(increment);
+    if (increment) {
+      userEvent.click(increment);
+    }
     expect(number.value).toBe("10");
   });
 
-  test("Increment and decrement the value with an integer step", async () => {
+  test("Increment and decrement the value with an integer step", () => {
     const { getByLabelText, getAllByRole } = render(<DxcNumberInput label="Number input label" step={5} />);
     const number = getByLabelText("Number input label") as HTMLInputElement;
     userEvent.type(number, "10");
     fireEvent.blur(number);
     expect(number.value).toBe("10");
     const increment = getAllByRole("button")[1];
-    await userEvent.click(increment);
+    if (increment) {
+      userEvent.click(increment);
+    }
     expect(number.value).toBe("15");
-    await userEvent.click(increment);
+    if (increment) {
+      userEvent.click(increment);
+    }
     expect(number.value).toBe("20");
     const decrement = getAllByRole("button")[0];
-    await userEvent.click(decrement);
+    if (decrement) {
+      userEvent.click(decrement);
+    }
     expect(number.value).toBe("15");
-    await userEvent.click(decrement);
+    if (decrement) {
+      userEvent.click(decrement);
+    }
     expect(number.value).toBe("10");
   });
 
-  test("Increment and decrement the value with a decimal step", async () => {
+  test("Increment and decrement the value with a decimal step", () => {
     const { getByLabelText, getAllByRole } = render(<DxcNumberInput label="Number input label" step={0.5} />);
     const number = getByLabelText("Number input label") as HTMLInputElement;
     userEvent.type(number, "-9");
     fireEvent.blur(number);
     expect(number.value).toBe("-9");
     const increment = getAllByRole("button")[1];
-    await userEvent.click(increment);
+    if (increment) {
+      userEvent.click(increment);
+    }
     expect(number.value).toBe("-8.5");
-    await userEvent.click(increment);
+    if (increment) {
+      userEvent.click(increment);
+    }
     expect(number.value).toBe("-8");
     const decrement = getAllByRole("button")[0];
-    await userEvent.click(decrement);
-    await userEvent.click(decrement);
-    await userEvent.click(decrement);
+    if (decrement) {
+      userEvent.click(decrement);
+      userEvent.click(decrement);
+      userEvent.click(decrement);
+    }
     expect(number.value).toBe("-9.5");
-    await userEvent.click(decrement);
+    if (decrement) {
+      userEvent.click(decrement);
+    }
     expect(number.value).toBe("-10");
   });
 
-  test("Increment and decrement the value with min, max and step", async () => {
+  test("Increment and decrement the value with min, max and step", () => {
     const onBlur = jest.fn();
     const { getByLabelText, getAllByRole } = render(
       <DxcNumberInput label="Number input label" min={5} max={20} step={8} onBlur={onBlur} />
@@ -265,112 +301,154 @@ describe("Number input component tests", () => {
       error: "Value must be greater than or equal to 5.",
     });
     const increment = getAllByRole("button")[1];
-    await userEvent.click(increment);
+    if (increment) {
+      userEvent.click(increment);
+    }
     expect(number.value).toBe("5");
-    await userEvent.click(increment);
+    if (increment) {
+      userEvent.click(increment);
+    }
     expect(number.value).toBe("13");
-    await userEvent.click(increment);
+    if (increment) {
+      userEvent.click(increment);
+    }
     expect(number.value).toBe("13");
-    await userEvent.click(increment);
+    if (increment) {
+      userEvent.click(increment);
+    }
     expect(number.value).toBe("13");
     const decrement = getAllByRole("button")[0];
-    await userEvent.click(decrement);
+    if (decrement) {
+      userEvent.click(decrement);
+    }
     expect(number.value).toBe("5");
-    await userEvent.click(decrement);
+    if (decrement) {
+      userEvent.click(decrement);
+    }
     expect(number.value).toBe("5");
-    await userEvent.click(decrement);
+    if (decrement) {
+      userEvent.click(decrement);
+    }
   });
 
-  test("Start incrementing from 0 when the min value is less than 0 and the max value is bigger than 0", async () => {
+  test("Start incrementing from 0 when the min value is less than 0 and the max value is bigger than 0", () => {
     const onBlur = jest.fn();
     const { getByLabelText, getAllByRole } = render(
       <DxcNumberInput label="Number input label" min={-10} max={10} step={1} onBlur={onBlur} />
     );
     const number = getByLabelText("Number input label") as HTMLInputElement;
     const increment = getAllByRole("button")[1];
-    await userEvent.click(increment);
+    if (increment) {
+      userEvent.click(increment);
+    }
     expect(number.value).toBe("1");
-    await userEvent.click(increment);
+    if (increment) {
+      userEvent.click(increment);
+    }
     expect(number.value).toBe("2");
   });
 
-  test("Start incrementing from 0 when the min value is less than 0 and the max is 0", async () => {
+  test("Start incrementing from 0 when the min value is less than 0 and the max is 0", () => {
     const { getByLabelText, getAllByRole } = render(
       <DxcNumberInput label="Number input label" min={-10} max={0} step={1} />
     );
     const number = getByLabelText("Number input label") as HTMLInputElement;
     const increment = getAllByRole("button")[1];
-    await userEvent.click(increment);
+    if (increment) {
+      userEvent.click(increment);
+    }
     expect(number.value).toBe("0");
-    await userEvent.click(increment);
+    if (increment) {
+      userEvent.click(increment);
+    }
     expect(number.value).toBe("0");
   });
 
-  test("Start incrementing from the min value when it is bigger than 0", async () => {
+  test("Start incrementing from the min value when it is bigger than 0", () => {
     const { getByLabelText, getAllByRole } = render(
       <DxcNumberInput label="Number input label" min={2} max={10} step={0.5} />
     );
     const number = getByLabelText("Number input label") as HTMLInputElement;
     const increment = getAllByRole("button")[1];
-    await userEvent.click(increment);
+    if (increment) {
+      userEvent.click(increment);
+    }
     expect(number.value).toBe("2");
-    await userEvent.click(increment);
+    if (increment) {
+      userEvent.click(increment);
+    }
     expect(number.value).toBe("2.5");
   });
 
-  test("Start incrementing from the max value when it is less than 0", async () => {
+  test("Start incrementing from the max value when it is less than 0", () => {
     const { getByLabelText, getAllByRole } = render(
       <DxcNumberInput label="Number input label" min={-10} max={-1} step={0.5} />
     );
     const number = getByLabelText("Number input label") as HTMLInputElement;
     const increment = getAllByRole("button")[1];
-    await userEvent.click(increment);
+    if (increment) {
+      userEvent.click(increment);
+    }
     expect(number.value).toBe("-1");
-    await userEvent.click(increment);
+    if (increment) {
+      userEvent.click(increment);
+    }
     expect(number.value).toBe("-1");
   });
 
-  test("Start decrementing from 0 when the min value is less than 0 and the max value is bigger than 0", async () => {
+  test("Start decrementing from 0 when the min value is less than 0 and the max value is bigger than 0", () => {
     const { getByLabelText, getAllByRole } = render(
       <DxcNumberInput label="Number input label" min={-10} max={10} step={1} />
     );
     const number = getByLabelText("Number input label") as HTMLInputElement;
     const decrement = getAllByRole("button")[0];
-    await userEvent.click(decrement);
+    if (decrement) {
+      userEvent.click(decrement);
+    }
     expect(number.value).toBe("-1");
   });
 
-  test("Start decrementing from 0 when the min value is 0 and the max value is bigger than 0", async () => {
+  test("Start decrementing from 0 when the min value is 0 and the max value is bigger than 0", () => {
     const { getByLabelText, getAllByRole } = render(
       <DxcNumberInput label="Number input label" min={0} max={10} step={1} />
     );
     const number = getByLabelText("Number input label") as HTMLInputElement;
     const decrement = getAllByRole("button")[0];
-    await userEvent.click(decrement);
+    if (decrement) {
+      userEvent.click(decrement);
+    }
     expect(number.value).toBe("0");
   });
 
-  test("Start decrementing from the min value when it is bigger than 0", async () => {
+  test("Start decrementing from the min value when it is bigger than 0", () => {
     const { getByLabelText, getAllByRole } = render(
       <DxcNumberInput label="Number input label" min={2} max={10} step={0.5} />
     );
     const number = getByLabelText("Number input label") as HTMLInputElement;
     const decrement = getAllByRole("button")[0];
-    await userEvent.click(decrement);
+    if (decrement) {
+      userEvent.click(decrement);
+    }
     expect(number.value).toBe("2");
-    await userEvent.click(decrement);
+    if (decrement) {
+      userEvent.click(decrement);
+    }
     expect(number.value).toBe("2");
   });
 
-  test("Start decrementing from the max value when it is less than 0", async () => {
+  test("Start decrementing from the max value when it is less than 0", () => {
     const { getByLabelText, getAllByRole } = render(
       <DxcNumberInput label="Number input label" min={-10} max={-1} step={0.5} />
     );
     const number = getByLabelText("Number input label") as HTMLInputElement;
     const decrement = getAllByRole("button")[0];
-    await userEvent.click(decrement);
+    if (decrement) {
+      userEvent.click(decrement);
+    }
     expect(number.value).toBe("-1");
-    await userEvent.click(decrement);
+    if (decrement) {
+      userEvent.click(decrement);
+    }
     expect(number.value).toBe("-1.5");
   });
 
@@ -490,12 +568,12 @@ describe("Number input component tests", () => {
     expect(number.getAttribute("aria-controls")).toBeNull();
     expect(number.getAttribute("aria-expanded")).toBeNull();
     const decrement = getAllByRole("button")[0];
-    expect(decrement.getAttribute("aria-label")).toBe("Decrement value");
+    expect(decrement?.getAttribute("aria-label")).toBe("Decrement value");
     const increment = getAllByRole("button")[1];
-    expect(increment.getAttribute("aria-label")).toBe("Increment value");
+    expect(increment?.getAttribute("aria-label")).toBe("Increment value");
   });
 
-  test("Number input submits correct values inside a form and actions don't trigger the submit event", async () => {
+  test("Number input submits correct values inside a form and actions don't trigger the submit event", () => {
     const handlerOnSubmit = jest.fn((e) => {
       e.preventDefault();
       const formData = new FormData(e.target);
@@ -511,11 +589,17 @@ describe("Number input component tests", () => {
     const less = getAllByRole("button")[0];
     const more = getAllByRole("button")[1];
     const submit = getByText("Submit");
-    await userEvent.click(more);
+    if (more) {
+      userEvent.click(more);
+    }
     expect(handlerOnSubmit).not.toHaveBeenCalled();
-    await userEvent.click(less);
+    if (less) {
+      userEvent.click(less);
+    }
     expect(handlerOnSubmit).not.toHaveBeenCalled();
-    await userEvent.click(submit);
+    if (submit) {
+      userEvent.click(submit);
+    }
     expect(handlerOnSubmit).toHaveBeenCalled();
   });
 });

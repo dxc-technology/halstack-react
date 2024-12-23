@@ -676,6 +676,8 @@ export const DropdownAction: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const nextButton = canvas.getAllByRole("button")[8];
-    await userEvent.click(nextButton);
+    if (nextButton) {
+      await userEvent.click(nextButton);
+    }
   },
 };

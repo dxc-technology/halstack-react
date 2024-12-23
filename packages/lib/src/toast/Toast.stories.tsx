@@ -257,7 +257,7 @@ const ToastsQueue = () => (
   </DxcToastsQueue>
 );
 
-const playFunc = async ({ canvasElement }) => {
+const playFunc = async ({ canvasElement }: { canvasElement: HTMLElement }) => {
   const canvas = within(canvasElement);
   await userEvent.click(canvas.getByText("Show default toast"));
   await userEvent.click(canvas.getByText("Show info toast"));

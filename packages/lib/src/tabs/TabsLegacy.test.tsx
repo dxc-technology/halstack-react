@@ -59,9 +59,9 @@ describe("Tabs component tests (Legacy)", () => {
     expect(getByText("Tab-1")).toBeTruthy();
     expect(getByText("Tab-2")).toBeTruthy();
     expect(getByText("Tab-3")).toBeTruthy();
-    expect(tabs[0].getAttribute("aria-selected")).toBe("true");
-    expect(tabs[1].getAttribute("aria-selected")).toBe("false");
-    expect(tabs[2].getAttribute("aria-selected")).toBe("false");
+    expect(tabs[0]?.getAttribute("aria-selected")).toBe("true");
+    expect(tabs[1]?.getAttribute("aria-selected")).toBe("false");
+    expect(tabs[2]?.getAttribute("aria-selected")).toBe("false");
   });
 
   test("Tabs render with correct labels and badges", () => {
@@ -74,9 +74,9 @@ describe("Tabs component tests (Legacy)", () => {
   test("Tabs render with an initially active tab", () => {
     const { getAllByRole } = render(<DxcTabsLegacy defaultActiveTabIndex={2} tabs={sampleTabsWithBadgeLegacy} />);
     const tabs = getAllByRole("tab");
-    expect(tabs[0].getAttribute("aria-selected")).toBe("false");
-    expect(tabs[1].getAttribute("aria-selected")).toBe("false");
-    expect(tabs[2].getAttribute("aria-selected")).toBe("true");
+    expect(tabs[0]?.getAttribute("aria-selected")).toBe("false");
+    expect(tabs[1]?.getAttribute("aria-selected")).toBe("false");
+    expect(tabs[2]?.getAttribute("aria-selected")).toBe("true");
   });
 
   test("Tabs render with disabled tab", () => {
@@ -93,8 +93,9 @@ describe("Tabs component tests (Legacy)", () => {
         ]}
       />
     );
-    expect(getAllByRole("tab")[0].hasAttribute("disabled")).toBeTruthy();
-    expect(getAllByRole("tab")[1].hasAttribute("disabled")).toBeFalsy();
+    const tabs = getAllByRole("tab");
+    expect(tabs[0]?.hasAttribute("disabled")).toBeTruthy();
+    expect(tabs[1]?.hasAttribute("disabled")).toBeFalsy();
   });
 
   test("Uncontrolled tabs", () => {
@@ -107,14 +108,14 @@ describe("Tabs component tests (Legacy)", () => {
     const tab2 = getByText("Tab-2");
     fireEvent.click(tab2);
     expect(onTabClick).toHaveBeenCalledWith(1);
-    expect(tabs[0].getAttribute("aria-selected")).toBe("false");
-    expect(tabs[1].getAttribute("aria-selected")).toBe("true");
-    expect(tabs[2].getAttribute("aria-selected")).toBe("false");
+    expect(tabs[0]?.getAttribute("aria-selected")).toBe("false");
+    expect(tabs[1]?.getAttribute("aria-selected")).toBe("true");
+    expect(tabs[2]?.getAttribute("aria-selected")).toBe("false");
     fireEvent.click(tab1);
     expect(onTabClick).toHaveBeenCalledWith(0);
-    expect(tabs[0].getAttribute("aria-selected")).toBe("true");
-    expect(tabs[1].getAttribute("aria-selected")).toBe("false");
-    expect(tabs[2].getAttribute("aria-selected")).toBe("false");
+    expect(tabs[0]?.getAttribute("aria-selected")).toBe("true");
+    expect(tabs[1]?.getAttribute("aria-selected")).toBe("false");
+    expect(tabs[2]?.getAttribute("aria-selected")).toBe("false");
   });
 
   test("Controlled tabs", () => {
@@ -123,16 +124,20 @@ describe("Tabs component tests (Legacy)", () => {
       <DxcTabsLegacy tabs={sampleTabsLegacy} onTabClick={onTabClick} activeTabIndex={0}></DxcTabsLegacy>
     );
     const tabs = getAllByRole("tab");
-    fireEvent.click(tabs[1]);
+    if (tabs[1]) {
+      fireEvent.click(tabs[1]);
+    }
     expect(onTabClick).toHaveBeenCalledWith(1);
-    expect(tabs[0].getAttribute("aria-selected")).toBe("true");
-    expect(tabs[1].getAttribute("aria-selected")).toBe("false");
-    expect(tabs[2].getAttribute("aria-selected")).toBe("false");
-    fireEvent.click(tabs[2]);
+    expect(tabs[0]?.getAttribute("aria-selected")).toBe("true");
+    expect(tabs[1]?.getAttribute("aria-selected")).toBe("false");
+    expect(tabs[2]?.getAttribute("aria-selected")).toBe("false");
+    if (tabs[2]) {
+      fireEvent.click(tabs[2]);
+    }
     expect(onTabClick).toHaveBeenCalledWith(2);
-    expect(tabs[0].getAttribute("aria-selected")).toBe("true");
-    expect(tabs[1].getAttribute("aria-selected")).toBe("false");
-    expect(tabs[2].getAttribute("aria-selected")).toBe("false");
+    expect(tabs[0]?.getAttribute("aria-selected")).toBe("true");
+    expect(tabs[1]?.getAttribute("aria-selected")).toBe("false");
+    expect(tabs[2]?.getAttribute("aria-selected")).toBe("false");
   });
 
   test("Uncontrolled tabs should have focus in the first non-disabled tab", () => {
@@ -141,12 +146,12 @@ describe("Tabs component tests (Legacy)", () => {
       <DxcTabsLegacy tabs={sampleTabsLastTabNonDisabledLegacy} onTabClick={onTabClick}></DxcTabsLegacy>
     );
     const tabs = getAllByRole("tab");
-    expect(tabs[0].hasAttribute("disabled")).toBeTruthy();
-    expect(tabs[1].hasAttribute("disabled")).toBeTruthy();
-    expect(tabs[2].hasAttribute("disabled")).toBeFalsy();
-    expect(tabs[0].getAttribute("aria-selected")).toBe("false");
-    expect(tabs[1].getAttribute("aria-selected")).toBe("false");
-    expect(tabs[2].getAttribute("aria-selected")).toBe("true");
+    expect(tabs[0]?.hasAttribute("disabled")).toBeTruthy();
+    expect(tabs[1]?.hasAttribute("disabled")).toBeTruthy();
+    expect(tabs[2]?.hasAttribute("disabled")).toBeFalsy();
+    expect(tabs[0]?.getAttribute("aria-selected")).toBe("false");
+    expect(tabs[1]?.getAttribute("aria-selected")).toBe("false");
+    expect(tabs[2]?.getAttribute("aria-selected")).toBe("true");
   });
 
   test("Controlled tabs with active index in disabled tab should not change focus to the first available tab", () => {
@@ -159,20 +164,22 @@ describe("Tabs component tests (Legacy)", () => {
       ></DxcTabsLegacy>
     );
     const tabs = getAllByRole("tab");
-    expect(tabs[0].getAttribute("aria-selected")).toBe("true");
-    expect(tabs[1].getAttribute("aria-selected")).toBe("false");
-    expect(tabs[2].getAttribute("aria-selected")).toBe("false");
-    expect(tabs[0].hasAttribute("disabled")).toBeTruthy();
-    expect(tabs[1].hasAttribute("disabled")).toBeTruthy();
-    expect(tabs[2].hasAttribute("disabled")).toBeFalsy();
-    fireEvent.click(tabs[2]);
+    expect(tabs[0]?.getAttribute("aria-selected")).toBe("true");
+    expect(tabs[1]?.getAttribute("aria-selected")).toBe("false");
+    expect(tabs[2]?.getAttribute("aria-selected")).toBe("false");
+    expect(tabs[0]?.hasAttribute("disabled")).toBeTruthy();
+    expect(tabs[1]?.hasAttribute("disabled")).toBeTruthy();
+    expect(tabs[2]?.hasAttribute("disabled")).toBeFalsy();
+    if (tabs[2]) {
+      fireEvent.click(tabs[2]);
+    }
     expect(onTabClick).toHaveBeenCalledWith(2);
-    expect(tabs[0].getAttribute("aria-selected")).toBe("true");
-    expect(tabs[1].getAttribute("aria-selected")).toBe("false");
-    expect(tabs[2].getAttribute("aria-selected")).toBe("false");
-    expect(tabs[0].hasAttribute("disabled")).toBeTruthy();
-    expect(tabs[1].hasAttribute("disabled")).toBeTruthy();
-    expect(tabs[2].hasAttribute("disabled")).toBeFalsy();
+    expect(tabs[0]?.getAttribute("aria-selected")).toBe("true");
+    expect(tabs[1]?.getAttribute("aria-selected")).toBe("false");
+    expect(tabs[2]?.getAttribute("aria-selected")).toBe("false");
+    expect(tabs[0]?.hasAttribute("disabled")).toBeTruthy();
+    expect(tabs[1]?.hasAttribute("disabled")).toBeTruthy();
+    expect(tabs[2]?.hasAttribute("disabled")).toBeFalsy();
   });
 
   test("Select tabs with keyboard event arrows", () => {
@@ -184,45 +191,45 @@ describe("Tabs component tests (Legacy)", () => {
     const tab1 = getByText("Tab-1");
     const tabs = getAllByRole("tab");
     fireEvent.click(tab1);
-    expect(tabs[0].getAttribute("aria-selected")).toBe("true");
-    expect(tabs[1].getAttribute("aria-selected")).toBe("false");
-    expect(tabs[2].getAttribute("aria-selected")).toBe("false");
+    expect(tabs[0]?.getAttribute("aria-selected")).toBe("true");
+    expect(tabs[1]?.getAttribute("aria-selected")).toBe("false");
+    expect(tabs[2]?.getAttribute("aria-selected")).toBe("false");
     expect(onTabClick).toHaveBeenCalledWith(0);
     fireEvent.keyDown(tabList, { key: "ArrowRight" });
     fireEvent.keyDown(tabList, { key: "Enter" });
-    expect(tabs[0].getAttribute("aria-selected")).toBe("false");
-    expect(tabs[1].getAttribute("aria-selected")).toBe("true");
-    expect(tabs[2].getAttribute("aria-selected")).toBe("false");
+    expect(tabs[0]?.getAttribute("aria-selected")).toBe("false");
+    expect(tabs[1]?.getAttribute("aria-selected")).toBe("true");
+    expect(tabs[2]?.getAttribute("aria-selected")).toBe("false");
     expect(onTabClick).toHaveBeenCalledWith(1);
     fireEvent.keyDown(tabList, { key: "ArrowRight" });
     fireEvent.keyDown(tabList, { key: "Enter" });
-    expect(tabs[0].getAttribute("aria-selected")).toBe("false");
-    expect(tabs[1].getAttribute("aria-selected")).toBe("false");
-    expect(tabs[2].getAttribute("aria-selected")).toBe("true");
+    expect(tabs[0]?.getAttribute("aria-selected")).toBe("false");
+    expect(tabs[1]?.getAttribute("aria-selected")).toBe("false");
+    expect(tabs[2]?.getAttribute("aria-selected")).toBe("true");
     expect(onTabClick).toHaveBeenCalledWith(2);
     fireEvent.keyDown(tabList, { key: "ArrowLeft" });
     fireEvent.keyDown(tabList, { key: "Enter" });
-    expect(tabs[0].getAttribute("aria-selected")).toBe("false");
-    expect(tabs[1].getAttribute("aria-selected")).toBe("true");
-    expect(tabs[2].getAttribute("aria-selected")).toBe("false");
+    expect(tabs[0]?.getAttribute("aria-selected")).toBe("false");
+    expect(tabs[1]?.getAttribute("aria-selected")).toBe("true");
+    expect(tabs[2]?.getAttribute("aria-selected")).toBe("false");
     expect(onTabClick).toHaveBeenCalledWith(1);
     fireEvent.keyDown(tabList, { key: "ArrowLeft" });
     fireEvent.keyDown(tabList, { key: "Enter" });
-    expect(tabs[0].getAttribute("aria-selected")).toBe("true");
-    expect(tabs[1].getAttribute("aria-selected")).toBe("false");
-    expect(tabs[2].getAttribute("aria-selected")).toBe("false");
+    expect(tabs[0]?.getAttribute("aria-selected")).toBe("true");
+    expect(tabs[1]?.getAttribute("aria-selected")).toBe("false");
+    expect(tabs[2]?.getAttribute("aria-selected")).toBe("false");
     expect(onTabClick).toHaveBeenCalledWith(0);
     fireEvent.keyDown(tabList, { key: "ArrowLeft" });
     fireEvent.keyDown(tabList, { key: "Enter" });
-    expect(tabs[0].getAttribute("aria-selected")).toBe("false");
-    expect(tabs[1].getAttribute("aria-selected")).toBe("false");
-    expect(tabs[2].getAttribute("aria-selected")).toBe("true");
+    expect(tabs[0]?.getAttribute("aria-selected")).toBe("false");
+    expect(tabs[1]?.getAttribute("aria-selected")).toBe("false");
+    expect(tabs[2]?.getAttribute("aria-selected")).toBe("true");
     expect(onTabClick).toHaveBeenCalledWith(2);
     fireEvent.keyDown(tabList, { key: "ArrowRight" });
     fireEvent.keyDown(tabList, { key: "Enter" });
-    expect(tabs[0].getAttribute("aria-selected")).toBe("true");
-    expect(tabs[1].getAttribute("aria-selected")).toBe("false");
-    expect(tabs[2].getAttribute("aria-selected")).toBe("false");
+    expect(tabs[0]?.getAttribute("aria-selected")).toBe("true");
+    expect(tabs[1]?.getAttribute("aria-selected")).toBe("false");
+    expect(tabs[2]?.getAttribute("aria-selected")).toBe("false");
     expect(onTabClick).toHaveBeenCalledWith(0);
   });
 
@@ -235,15 +242,15 @@ describe("Tabs component tests (Legacy)", () => {
     const tab1 = getByText("Tab-1");
     const tabs = getAllByRole("tab");
     fireEvent.click(tab1);
-    expect(tabs[0].getAttribute("aria-selected")).toBe("true");
-    expect(tabs[1].getAttribute("aria-selected")).toBe("false");
-    expect(tabs[2].getAttribute("aria-selected")).toBe("false");
+    expect(tabs[0]?.getAttribute("aria-selected")).toBe("true");
+    expect(tabs[1]?.getAttribute("aria-selected")).toBe("false");
+    expect(tabs[2]?.getAttribute("aria-selected")).toBe("false");
     expect(onTabClick).toHaveBeenCalledWith(0);
     fireEvent.keyDown(tabList, { key: "ArrowRight" });
     fireEvent.keyDown(tabList, { key: " " });
-    expect(tabs[0].getAttribute("aria-selected")).toBe("false");
-    expect(tabs[1].getAttribute("aria-selected")).toBe("false");
-    expect(tabs[2].getAttribute("aria-selected")).toBe("true");
+    expect(tabs[0]?.getAttribute("aria-selected")).toBe("false");
+    expect(tabs[1]?.getAttribute("aria-selected")).toBe("false");
+    expect(tabs[2]?.getAttribute("aria-selected")).toBe("true");
     expect(onTabClick).toHaveBeenCalledWith(2);
   });
 });

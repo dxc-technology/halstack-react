@@ -29,6 +29,7 @@ const disabledRules = {
   rules: formatRules(rules),
 };
 
+
 describe("DateInput component accessibility tests", () => {
   it("Should not have basic accessibility issues", async () => {
     // baseElement is needed when using React Portals

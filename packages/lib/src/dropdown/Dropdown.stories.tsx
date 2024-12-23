@@ -388,7 +388,10 @@ export const Chromatic: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const buttonList = canvas.getAllByRole("button");
-    await userEvent.click(buttonList[buttonList.length - 1]);
+    const lastButton = buttonList[buttonList.length - 1];
+    if (lastButton != null) {
+      await userEvent.click(lastButton);
+    }
   },
 };
 
@@ -397,7 +400,10 @@ export const OpinionatedThemed: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const buttonList = canvas.getAllByRole("button");
-    await userEvent.click(buttonList[buttonList.length - 1]);
+    const lastButton = buttonList[buttonList.length - 1];
+    if (lastButton != null) {
+      await userEvent.click(lastButton);
+    }
   },
 };
 
@@ -405,7 +411,10 @@ export const MenuStates: Story = {
   render: DropdownListStates,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    await userEvent.click(canvas.getAllByRole("button")[0]);
+    const dropdownTrigger = canvas.getAllByRole("button")[0];
+    if (dropdownTrigger != null) {
+      await userEvent.click(dropdownTrigger);
+    }
   },
 };
 

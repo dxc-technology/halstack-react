@@ -128,9 +128,9 @@ const CoreSpacingTokens = {
   spacing_80: "5rem",
   spacing_96: "6rem",
   spacing_112: "7rem",
-} as const;
+};
 
-export type CoreSpacingTokensType = typeof CoreSpacingTokens[keyof typeof CoreSpacingTokens];
+export type CoreSpacingTokensType = (typeof CoreSpacingTokens)[keyof typeof CoreSpacingTokens];
 
 const CoreTokens = {
   ...CoreColorTokens,

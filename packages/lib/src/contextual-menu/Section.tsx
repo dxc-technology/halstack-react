@@ -11,7 +11,7 @@ const Section = ({ section, index, length }: SectionProps) => {
   const id = `section-${useId()}`;
 
   return (
-    <section aria-label={section?.title ?? id} aria-labelledby={id}>
+    <section aria-label={section.title ?? id} aria-labelledby={id}>
       {section.title && <Title id={id}>{section.title}</Title>}
       <SubMenu>
         {section.items.map((item, i) => (

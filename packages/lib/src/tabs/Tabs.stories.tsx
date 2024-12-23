@@ -4,7 +4,7 @@ import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import { HalstackProvider } from "../HalstackContext";
 import DxcTabs from "./Tabs";
-import { Space } from "../common/utils";
+import type { Space } from "../common/utils";
 
 export default {
   title: "Tabs",

@@ -219,7 +219,6 @@ type Story = StoryObj<typeof DxcCheckbox>;
 export const Chromatic: Story = {
   render: Checkbox,
   play: async () => {
-    const listEl = document.getElementById("scroll-container");
-    listEl?.scrollTo?.({ top: 50 });
+    document.getElementById("scroll-container")?.scrollTo({ top: 50 });
   },
 };

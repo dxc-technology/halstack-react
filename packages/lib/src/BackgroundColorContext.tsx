@@ -2,9 +2,7 @@
 // import Color from "color";
 
 // type BackgroundColors = "dark" | "light";
-// const BackgroundColorContext = React.createContext<BackgroundColors | null>(
-//   null
-// );
+// const BackgroundColorContext = createContext<BackgroundColors | null>(null);
 
 // const getColorType = (hexColor: string): BackgroundColors => {
 //   try {
@@ -12,8 +10,9 @@
 //       const hslColor = Color(hexColor).hsl();
 //       const lightnessColor = hslColor.lightness();
 //       return lightnessColor <= 30 ? "dark" : "light";
+//     } else {
+//       return "light";
 //     }
-//     return "light";
 //   } catch (e) {
 //     return "light";
 //   }

@@ -298,6 +298,8 @@ export const ResponsiveHeaderTooltip: Story = {
     await waitFor(() => canvas.findByText("Menu"));
     await userEvent.click(canvas.getByText("Menu"));
     const closeButton = canvas.getAllByRole("button")[1];
-    await userEvent.hover(closeButton);
+    if (closeButton != null) {
+      await userEvent.hover(closeButton);
+    }
   },
 };

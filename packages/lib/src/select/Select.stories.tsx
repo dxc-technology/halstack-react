@@ -677,7 +677,10 @@ export const Chromatic: Story = {
   render: Select,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    await userEvent.click(canvas.getAllByRole("combobox")[24]);
+    const combobox = canvas.getAllByRole("combobox")[24];
+    if (combobox) {
+      await userEvent.click(combobox);
+    }
   },
 };
 
@@ -685,7 +688,10 @@ export const OpinionatedTheme: Story = {
   render: Opinionated,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    await userEvent.click(canvas.getAllByRole("combobox")[2]);
+    const combobox = canvas.getAllByRole("combobox")[2];
+    if (combobox) {
+      await userEvent.click(combobox);
+    }
   },
 };
 
@@ -718,7 +724,10 @@ export const MultipleSearchableWithValue: Story = {
   render: MultipleSearchable,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    await userEvent.click(canvas.getAllByRole("combobox")[0]);
+    const combobox = canvas.getAllByRole("combobox")[0];
+    if (combobox) {
+      await userEvent.click(combobox);
+    }
   },
 };
 
@@ -744,7 +753,10 @@ export const MultipleOptionsDisplayed: Story = {
   render: MultipleSelect,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    await userEvent.click(canvas.getAllByRole("combobox")[0]);
+    const combobox = canvas.getAllByRole("combobox")[0];
+    if (combobox) {
+      await userEvent.click(combobox);
+    }
   },
 };
 

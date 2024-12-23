@@ -125,6 +125,7 @@ module.exports = {
         restrictedNamedExports: ["then"],
       },
     ],
+    "prefer-destructuring": ["error", { "object": true, "array": false }],
     // TODO: REMOVE
     "react/no-array-index-key": "off",
     "react-hooks/exhaustive-deps": "off",
