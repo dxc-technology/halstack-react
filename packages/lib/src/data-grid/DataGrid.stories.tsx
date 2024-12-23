@@ -966,7 +966,6 @@ export const DataGridSortedExpanded: Story = {
   render: DataGridSortedExpandable,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const columnHeaders = canvas.getAllByRole("columnheader");
     const button0 = canvas.getAllByRole("button")[0];
     button0 && (await userEvent.click(button0));
     const button1 = canvas.getAllByRole("button")[1];
