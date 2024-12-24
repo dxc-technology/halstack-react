@@ -1,4 +1,4 @@
-import Popover from "@radix-ui/react-popover";
+import * as Popover from "@radix-ui/react-popover";
 import {
   ChangeEvent,
   FocusEvent,

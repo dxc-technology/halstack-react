@@ -13,7 +13,7 @@ import {
 } from "react";
 import dayjs, { Dayjs } from "dayjs";
 import styled, { ThemeProvider } from "styled-components";
-import Popover from "@radix-ui/react-popover";
+import * as Popover from "@radix-ui/react-popover";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import HalstackContext, { HalstackLanguageContext } from "../HalstackContext";
 import DateInputPropsType, { RefType } from "./types";
