@@ -2,7 +2,7 @@ import styled from "styled-components";
 import BleedPropsType from "./types";
 import { CoreSpacingTokensType } from "../common/coreTokens";
 
-const getSpacingValue = (spacingName: CoreSpacingTokensType) => (spacingName ? spacingName : "0rem");
+const getSpacingValue = (spacingName?: CoreSpacingTokensType) => (spacingName ?? "0rem");
 
 const StyledBleed = styled.div<BleedPropsType>`
   ${({ space, horizontal, vertical, top, right, bottom, left }) => `

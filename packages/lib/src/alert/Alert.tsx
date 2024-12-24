@@ -1,7 +1,5 @@
-import { useState, memo, useMemo, useId, useEffect } from "react";
 import styled, { css, ThemeProvider } from "styled-components";
-import useTheme from "../useTheme";
-import useTranslatedLabels from "../useTranslatedLabels";
+import { useState, memo, useId, useEffect, useCallback, useContext } from "react";
 import AlertPropsType from "./types";
 import DxcIcon from "../icon/Icon";
 import DxcButton from "../button/Button";
@@ -10,6 +8,7 @@ import DxcActionIcon from "../action-icon/ActionIcon";
 import DxcFlex from "../flex/Flex";
 import ModalAlertWrapper from "./ModalAlertWrapper";
 import CoreTokens from "../common/coreTokens";
+import HalstackContext, { HalstackLanguageContext } from "../HalstackContext";
 
 const AlertContainer = styled.div<{
   semantic: AlertPropsType["semantic"];
@@ -112,6 +111,8 @@ const Actions = memo(
     )
 );
 
+Actions.displayName = "Actions";
+
 const getIcon = (semantic: AlertPropsType["semantic"]) => {
   switch (semantic) {
     case "info":
@@ -125,7 +126,7 @@ const getIcon = (semantic: AlertPropsType["semantic"]) => {
   }
 };
 
-export default function DxcAlert({
+const DxcAlert = ({
   closable = true,
   message = [],
   mode = "inline",
@@ -133,28 +134,32 @@ export default function DxcAlert({
   secondaryAction,
   semantic = "info",
   title = "",
-}: AlertPropsType) {
+}: AlertPropsType) => {
   const [messages, setMessages] = useState(Array.isArray(message) ? message : [message]);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const id = useId();
-  const colorsTheme = useTheme();
-  const translatedLabels = useTranslatedLabels();
+  const colorsTheme = useContext(HalstackContext);
+  const translatedLabels = useContext(HalstackLanguageContext);
 
   const handleNextOnClick = () => {
     setCurrentIndex((prevIndex) => (prevIndex < messages.length ? prevIndex + 1 : prevIndex));
   };
-  const handlePrevOnClick = () => {
+  const handlePrevOnClick = useCallback(() => {
     setCurrentIndex((prevIndex) => (prevIndex > 0 ? prevIndex - 1 : prevIndex));
-  };
+  }, []);
   const handleOnClose = () => {
     messages[currentIndex]?.onClose?.();
-    mode !== "modal" && setMessages((prevMessages) => prevMessages.filter((_, index) => index !== currentIndex));
+    if (mode !== "modal") {
+      setMessages((prevMessages) => prevMessages.filter((_, index) => index !== currentIndex));
+    }
   };
 
   useEffect(() => {
-    if (currentIndex === messages.length) handlePrevOnClick();
-  }, [currentIndex, messages]);
+    if (currentIndex === messages.length) {
+      handlePrevOnClick();
+    }
+  }, [currentIndex, messages, handlePrevOnClick]);
 
   return (
     <ThemeProvider theme={colorsTheme.alert}>
@@ -215,8 +220,8 @@ export default function DxcAlert({
                   icon="close"
                   title={
                     messages.length > 1
-                      ? translatedLabels.alert.closeMessageActionTitle
-                      : translatedLabels.alert.closeAlertActionTitle
+                      ? (translatedLabels.alert.closeMessageActionTitle)
+                      : (translatedLabels.alert.closeAlertActionTitle)
                   }
                   onClick={handleOnClose}
                 />
@@ -243,4 +248,6 @@ export default function DxcAlert({
       </ModalAlertWrapper>
     </ThemeProvider>
   );
-}
+};
+
+export default DxcAlert;

@@ -1,9 +1,10 @@
+import { Meta, StoryObj } from "@storybook/react";
 import { userEvent, within } from "@storybook/test";
 import styled from "styled-components";
-import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
+import ExampleContainer from "../../.storybook/components/ExampleContainer";
+import disabledRules from "../../test/accessibility/rules/specific/resultset-table/disabledRules";
 import preview from "../../.storybook/preview";
-import { disabledRules } from "../../test/accessibility/rules/specific/resultset-table/disabledRules";
 import { HalstackProvider } from "../HalstackContext";
 import DxcResultsetTable from "./ResultsetTable";
 import { ActionsPropsType } from "../table/types";
@@ -15,13 +16,16 @@ export default {
     a11y: {
       config: {
         rules: [
-          ...disabledRules.map((ruleId) => ({ id: ruleId, reviewOnFail: true })),
-          ...preview?.parameters?.a11y?.config?.rules,
+          ...disabledRules.map((ruleId) => ({
+            id: ruleId,
+            reviewOnFail: true,
+          })),
+          ...(preview?.parameters?.a11y?.config?.rules || []),
         ],
       },
     },
   },
-};
+} as Meta<typeof DxcResultsetTable>;
 
 const deleteIcon = (
   <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
@@ -55,9 +59,7 @@ const advancedTheme = {
 const actions: ActionsPropsType = [
   {
     title: "icon",
-    onClick: (value?) => {
-      console.log(value);
-    },
+    onClick: () => {},
     options: [
       {
         value: "1",
@@ -269,7 +271,11 @@ const longRows = [
   ],
 ];
 
-export const Chromatic = () => (
+const SmallContainer = styled.div`
+  width: 500px;
+`;
+
+const ResultsetTable = () => (
   <>
     <ExampleContainer>
       <Title title="Sortable table" theme="light" level={4} />
@@ -323,38 +329,34 @@ export const Chromatic = () => (
     <Title title="Margins" theme="light" level={2} />
     <ExampleContainer>
       <Title title="Xxsmall" theme="light" level={4} />
-      <DxcResultsetTable columns={columns} rows={rows} margin={"xxsmall"} />
+      <DxcResultsetTable columns={columns} rows={rows} margin="xxsmall" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Xsmall" theme="light" level={4} />
-      <DxcResultsetTable columns={columns} rows={rows} margin={"xsmall"} />
+      <DxcResultsetTable columns={columns} rows={rows} margin="xsmall" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Small" theme="light" level={4} />
-      <DxcResultsetTable columns={columns} rows={rows} margin={"small"} />
+      <DxcResultsetTable columns={columns} rows={rows} margin="small" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Medium" theme="light" level={4} />
-      <DxcResultsetTable columns={columns} rows={rows} margin={"medium"} />
+      <DxcResultsetTable columns={columns} rows={rows} margin="medium" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Large" theme="light" level={4} />
-      <DxcResultsetTable columns={columns} rows={rows} margin={"large"} />
+      <DxcResultsetTable columns={columns} rows={rows} margin="large" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Xlarge" theme="light" level={4} />
-      <DxcResultsetTable columns={columns} rows={rows} margin={"xlarge"} />
+      <DxcResultsetTable columns={columns} rows={rows} margin="xlarge" />
     </ExampleContainer>
     <ExampleContainer expanded>
       <Title title="Xxlarge" theme="light" level={4} />
-      <DxcResultsetTable columns={columns} rows={rows} margin={"xxlarge"} />
+      <DxcResultsetTable columns={columns} rows={rows} margin="xxlarge" />
     </ExampleContainer>
   </>
 );
-
-const SmallContainer = styled.div`
-  width: 500px;
-`;
 
 const ResultsetTableAsc = () => (
   <ExampleContainer>
@@ -364,15 +366,6 @@ const ResultsetTableAsc = () => (
   </ExampleContainer>
 );
 
-export const AscendentSorting = ResultsetTableAsc.bind({});
-AscendentSorting.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const idHeader = canvas.getAllByRole("button")[0];
-  const idHeader2 = canvas.getAllByRole("button")[6];
-  await userEvent.click(idHeader);
-  await userEvent.click(idHeader2);
-};
-
 const ResultsetTableDesc = () => (
   <ExampleContainer>
     <Title title="Descendant sorting" theme="light" level={4} />
@@ -381,17 +374,6 @@ const ResultsetTableDesc = () => (
   </ExampleContainer>
 );
 
-export const DescendantSorting = ResultsetTableDesc.bind({});
-DescendantSorting.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const nameHeader = canvas.getAllByRole("button")[1];
-  const nameHeader2 = canvas.getAllByRole("button")[7];
-  await userEvent.click(nameHeader);
-  await userEvent.click(nameHeader);
-  await userEvent.click(nameHeader2);
-  await userEvent.click(nameHeader2);
-};
-
 const ResultsetTableMiddle = () => (
   <ExampleContainer>
     <Title title="Middle page" theme="light" level={4} />
@@ -399,26 +381,12 @@ const ResultsetTableMiddle = () => (
   </ExampleContainer>
 );
 
-export const MiddlePage = ResultsetTableMiddle.bind({});
-MiddlePage.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const nextButton = canvas.getAllByRole("button")[2];
-  await userEvent.click(nextButton);
-};
-
 const ResultsetTableLast = () => (
   <ExampleContainer>
     <Title title="Last page" theme="light" level={4} />
     <DxcResultsetTable columns={columns} rows={rows} itemsPerPage={2} />
   </ExampleContainer>
 );
-
-export const LastPage = ResultsetTableLast.bind({});
-LastPage.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const nextButton = canvas.getAllByRole("button")[3];
-  await userEvent.click(nextButton);
-};
 
 const ResultsetActionsCellDropdown = () => (
   <ExampleContainer>
@@ -431,9 +399,77 @@ const ResultsetActionsCellDropdown = () => (
   </ExampleContainer>
 );
 
-export const DropdownAction = ResultsetActionsCellDropdown.bind({});
-DropdownAction.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const dropdown = canvas.getAllByRole("button")[5];
-  userEvent.click(dropdown);
+type Story = StoryObj<typeof DxcResultsetTable>;
+
+export const Chromatic: Story = {
+  render: ResultsetTable,
+};
+
+export const AscendentSorting: Story = {
+  render: ResultsetTableAsc,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const idHeader = canvas.getAllByRole("button")[0];
+    const idHeader2 = canvas.getAllByRole("button")[6];
+    if (idHeader) {
+      await userEvent.click(idHeader);
+    }
+    if (idHeader2) {
+      await userEvent.click(idHeader2);
+    }
+  },
+};
+
+export const DescendantSorting: Story = {
+  render: ResultsetTableDesc,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const nameHeader = canvas.getAllByRole("button")[1];
+    const nameHeader2 = canvas.getAllByRole("button")[7];
+    if (nameHeader) {
+      await userEvent.click(nameHeader);
+    }
+    if (nameHeader) {
+      await userEvent.click(nameHeader);
+    }
+    if (nameHeader2) {
+      await userEvent.click(nameHeader2);
+    }
+    if (nameHeader2) {
+      await userEvent.click(nameHeader2);
+    }
+  },
+};
+
+export const MiddlePage: Story = {
+  render: ResultsetTableMiddle,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const nextButton = canvas.getAllByRole("button")[2];
+    if (nextButton) {
+      await userEvent.click(nextButton);
+    }
+  },
+};
+
+export const LastPage: Story = {
+  render: ResultsetTableLast,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const nextButton = canvas.getAllByRole("button")[3];
+    if (nextButton) {
+      await userEvent.click(nextButton);
+    }
+  },
+};
+
+export const DropdownAction: Story = {
+  render: ResultsetActionsCellDropdown,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const dropdown = canvas.getAllByRole("button")[5];
+    if (dropdown) {
+      userEvent.click(dropdown);
+    }
+  },
 };

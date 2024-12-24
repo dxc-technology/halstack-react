@@ -1,3 +1,4 @@
+import { Meta, StoryObj } from "@storybook/react";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import { HalstackProvider } from "../HalstackContext";
@@ -6,7 +7,7 @@ import DxcPaginator from "./Paginator";
 export default {
   title: "Paginator",
   component: DxcPaginator,
-};
+} as Meta<typeof DxcPaginator>;
 
 const opinionatedTheme = {
   paginator: {
@@ -15,7 +16,7 @@ const opinionatedTheme = {
   },
 };
 
-export const Chromatic = () => (
+const Paginator = () => (
   <>
     <ExampleContainer>
       <Title title="Default" theme="light" level={4} />
@@ -84,3 +85,9 @@ export const Chromatic = () => (
     </ExampleContainer>
   </>
 );
+
+type Story = StoryObj<typeof DxcPaginator>;
+
+export const Chromatic: Story = {
+  render: Paginator,
+};

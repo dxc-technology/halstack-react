@@ -25,15 +25,15 @@ const DropdownMenu = forwardRef<HTMLUListElement, DropdownMenuProps>(
       style={styles}
     >
       {options.map((option, index) => (
-        <DropdownMenuItem
-          id={`${id}-option-${index}`}
-          key={`${id}-option-${index}`}
-          visuallyFocused={index === visualFocusIndex}
-          iconPosition={iconsPosition}
-          onClick={menuItemOnClick}
-          option={option}
-        />
-      ))}
+          <DropdownMenuItem
+            id={`${id}-option-${index}`}
+            key={`${id}-option-${index}`}
+            visuallyFocused={index === visualFocusIndex}
+            iconPosition={iconsPosition}
+            onClick={menuItemOnClick}
+            option={option}
+          />
+        ))}
     </DropdownMenuContainer>
   )
 );
@@ -68,5 +68,7 @@ const DropdownMenuContainer = styled.ul`
     border-radius: 6px;
   }
 `;
+
+DropdownMenu.displayName = "DropdownMenu";
 
 export default memo(DropdownMenu);

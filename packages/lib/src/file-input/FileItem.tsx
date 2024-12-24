@@ -1,11 +1,10 @@
-import { memo } from "react";
+import { memo, useContext } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import DxcFlex from "../flex/Flex";
-import useTheme from "../useTheme";
-import useTranslatedLabels from "../useTranslatedLabels";
 import { FileItemProps } from "./types";
 import DxcIcon from "../icon/Icon";
 import DxcActionIcon from "../action-icon/ActionIcon";
+import HalstackContext, { HalstackLanguageContext } from "../HalstackContext";
 
 const FileItem = ({
   fileName = "",
@@ -17,20 +16,16 @@ const FileItem = ({
   onDelete,
   tabIndex,
 }: FileItemProps): JSX.Element => {
-  const colorsTheme = useTheme();
-  const translatedLabels = useTranslatedLabels();
+  const colorsTheme = useContext(HalstackContext);
+  const translatedLabels = useContext(HalstackLanguageContext);
 
-  const getIconAriaLabel = () => {
-    if (type?.includes("video")) return "video";
-    else if (type?.includes("audio")) return "audio";
-    else return "file";
-  };
+  const getIconAriaLabel = () => (type.includes("video") ? "video" : type.includes("audio") ? "audio" : "file");
 
   return (
     <ThemeProvider theme={colorsTheme.fileInput}>
       <MainContainer error={error} singleFileMode={singleFileMode} showPreview={showPreview}>
         {showPreview &&
-          (type?.includes("image") ? (
+          (type.includes("image") ? (
             <ImagePreview src={preview} alt={fileName} />
           ) : (
             <IconPreview error={error} role="document" aria-label={getIconAriaLabel()}>

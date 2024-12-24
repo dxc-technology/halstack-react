@@ -1,8 +1,8 @@
-import { useId, useState } from "react";
+import { useContext, useId, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { getMargin } from "../common/utils";
 import { spaces } from "../common/variables";
-import useTheme from "../useTheme";
+import HalstackContext from "../HalstackContext";
 import AccordionPropsType from "./types";
 import DxcIcon from "../icon/Icon";
 
@@ -20,10 +20,12 @@ const DxcAccordion = ({
 }: AccordionPropsType): JSX.Element => {
   const id = useId();
   const [innerIsExpanded, setInnerIsExpanded] = useState(defaultIsExpanded ?? false);
-  const colorsTheme = useTheme();
+  const colorsTheme = useContext(HalstackContext);
 
   const handleAccordionState = () => {
-    isExpanded ?? setInnerIsExpanded((innerIsExpanded) => !innerIsExpanded);
+    if (isExpanded == null) {
+      setInnerIsExpanded((innerIsCurrentlyExpanded) => !innerIsCurrentlyExpanded);
+    }
     onChange?.(isExpanded != null ? !isExpanded : !innerIsExpanded);
   };
 
@@ -174,7 +176,9 @@ const AccordionAssistiveText = styled.span<{ disabled: AccordionPropsType["disab
   line-height: 1.5em;
 `;
 
-const CollapseIndicator = styled.span<{ disabled: AccordionPropsType["disabled"] }>`
+const CollapseIndicator = styled.span<{
+  disabled: AccordionPropsType["disabled"];
+}>`
   display: flex;
   flex-wrap: wrap;
   align-content: center;

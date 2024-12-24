@@ -1,12 +1,16 @@
-module.exports = {
+import type { Config } from "jest";
+
+const config: Config = {
   collectCoverage: true,
   moduleNameMapper: {
     "\\.(css|less|scss|sass)$": "identity-obj-proxy",
-    "\\.(svg)$": "<rootDir>/test/mocks/svgMock.js",
-    "\\.(png)$": "<rootDir>/test/mocks/pngMock.js",
+    "\\.(svg)$": "<rootDir>/test/mocks/svgMock.ts",
+    "\\.(png)$": "<rootDir>/test/mocks/pngMock.ts",
   },
   testMatch: ["**/?(*.)+(spec|test).[jt]s?(x)", "!**/?(*.)+(accessibility.)(spec|test).[jt]s?(x)"],
   transform: {
     "^.+\\.[tj]sx?$": "babel-jest",
   },
 };
+
+export default config;

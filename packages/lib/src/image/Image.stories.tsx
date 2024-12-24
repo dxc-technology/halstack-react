@@ -1,3 +1,4 @@
+import { Meta, StoryObj } from "@storybook/react";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcFlex from "../flex/Flex";
@@ -8,9 +9,9 @@ import DxcImage from "./Image";
 export default {
   title: "Image",
   component: DxcImage,
-};
+} as Meta<typeof DxcImage>;
 
-export const Chromatic = () => (
+const Image = () => (
   <>
     <Title title="Image component" theme="light" level={2} />
     <ExampleContainer>
@@ -92,7 +93,14 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Object fit: contain" theme="light" level={4} />
-      <div style={{ display: "flex", width: "fit-content", border: "1px solid #000", padding: "0.5rem" }}>
+      <div
+        style={{
+          display: "flex",
+          width: "fit-content",
+          border: "1px solid #000",
+          padding: "0.5rem",
+        }}
+      >
         <DxcImage
           alt="Dog pic"
           src="https://cc-prod.scene7.com/is/image/CCProdAuthor/What-is-Stock-Photography_P1_mobile?$pjpeg$&jpegSize=200&wid=720"
@@ -126,3 +134,9 @@ export const Chromatic = () => (
     </ExampleContainer>
   </>
 );
+
+type Story = StoryObj<typeof DxcImage>;
+
+export const Chromatic: Story = {
+  render: Image,
+};

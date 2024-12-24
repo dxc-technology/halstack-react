@@ -1,16 +1,16 @@
+import { useContext } from "react";
 import slugify from "slugify";
 import styled, { ThemeProvider } from "styled-components";
 import DxcFlex from "../flex/Flex";
 import DxcHeading from "../heading/Heading";
 import DxcInset from "../inset/Inset";
 import DxcTypography from "../typography/Typography";
-import useTheme from "../useTheme";
-import useTranslatedLabels from "../useTranslatedLabels";
+import HalstackContext, { HalstackLanguageContext } from "../HalstackContext";
 import QuickNavTypes from "./types";
 
 const DxcQuickNav = ({ title, links }: QuickNavTypes): JSX.Element => {
-  const translatedLabels = useTranslatedLabels();
-  const colorsTheme = useTheme();
+  const translatedLabels = useContext(HalstackLanguageContext);
+  const colorsTheme = useContext(HalstackContext);
 
   return (
     <ThemeProvider theme={colorsTheme.quickNav}>
@@ -22,7 +22,7 @@ const DxcQuickNav = ({ title, links }: QuickNavTypes): JSX.Element => {
               <li key={link.label}>
                 <DxcInset space="0.25rem">
                   <DxcTypography>
-                    <Link href={`#${slugify(link?.label, { lower: true })}`}>{link?.label}</Link>
+                    <Link href={`#${slugify(link.label, { lower: true })}`}>{link.label}</Link>
                     <ListSecondColumn>
                       {link.links?.map((sublink) => (
                         <li key={sublink.label}>
@@ -33,7 +33,7 @@ const DxcQuickNav = ({ title, links }: QuickNavTypes): JSX.Element => {
                                   lower: true,
                                 })}`}
                               >
-                                {sublink?.label}
+                                {sublink.label}
                               </Link>
                             </DxcTypography>
                           </DxcInset>

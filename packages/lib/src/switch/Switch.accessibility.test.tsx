@@ -1,13 +1,10 @@
 import { render } from "@testing-library/react";
-import { axe } from "../../test/accessibility/axe-helper";
-import { disabledRules as rules } from "../../test/accessibility/rules/specific/switch/disabledRules";
+import { axe, formatRules } from "../../test/accessibility/axe-helper";
 import DxcSwitch from "./Switch";
+import rules from "../../test/accessibility/rules/specific/switch/disabledRules";
 
 const disabledRules = {
-  rules: rules.reduce((rulesObj, rule) => {
-    rulesObj[rule] = { enabled: false };
-    return rulesObj;
-  }, {}),
+  rules: formatRules(rules),
 };
 
 describe("Switch component accessibility tests", () => {

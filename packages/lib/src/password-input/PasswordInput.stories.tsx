@@ -1,3 +1,4 @@
+import { Meta, StoryObj } from "@storybook/react";
 import { userEvent, within } from "@storybook/test";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
@@ -7,9 +8,9 @@ import DxcPasswordInput from "./PasswordInput";
 export default {
   title: "Password Input",
   component: DxcPasswordInput,
-};
+} as Meta<typeof DxcPasswordInput>;
 
-export const Chromatic = () => (
+const PasswordInput = () => (
   <>
     <ExampleContainer>
       <Title title="Without label" theme="light" level={4} />
@@ -92,16 +93,24 @@ export const Chromatic = () => (
   </>
 );
 
-const Password = () => (
+const PasswordInteraction = () => (
   <ExampleContainer expanded>
     <Title title="Show password" theme="light" level={4} />
     <DxcPasswordInput label="Password input" value="Password" />
   </ExampleContainer>
 );
 
-export const ShowPassword = Password.bind({});
-ShowPassword.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const passwordBtn = canvas.getByRole("button");
-  await userEvent.click(passwordBtn);
+type Story = StoryObj<typeof DxcPasswordInput>;
+
+export const Chromatic: Story = {
+  render: PasswordInput,
+};
+
+export const ShowPassword: Story = {
+  render: PasswordInteraction,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const passwordBtn = canvas.getByRole("button");
+    await userEvent.click(passwordBtn);
+  },
 };

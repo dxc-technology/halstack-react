@@ -1,3 +1,4 @@
+import { Meta, StoryObj } from "@storybook/react";
 import DxcAccordion from "./Accordion";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
@@ -6,7 +7,7 @@ import { HalstackProvider } from "../HalstackContext";
 export default {
   title: "Accordion",
   component: DxcAccordion,
-};
+} as Meta<typeof DxcAccordion>;
 
 const smallIcon = (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" height="20" width="20">
@@ -45,7 +46,7 @@ const opinionatedTheme = {
   },
 };
 
-export const Chromatic = () => (
+const Accordion = () => (
   <>
     <Title title="Component anatomy" theme="light" level={2} />
     <ExampleContainer>
@@ -238,3 +239,9 @@ export const Chromatic = () => (
     </ExampleContainer>
   </>
 );
+
+type Story = StoryObj<typeof DxcAccordion>;
+
+export const Chromatic: Story = {
+  render: Accordion,
+};

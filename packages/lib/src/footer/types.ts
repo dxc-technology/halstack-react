@@ -1,5 +1,5 @@
-type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
-type SVG = React.ReactNode & React.SVGProps<SVGSVGElement>;
+import { ReactNode } from "react";
+import { SVG, Space } from "../common/utils";
 
 type SocialLink = {
   /**
@@ -46,7 +46,7 @@ type FooterPropsType = {
    * The center section of the footer. Can be used to render custom
    * content in this area.
    */
-  children?: React.ReactNode;
+  children?: ReactNode;
   /**
    * Size of the top margin to be applied to the footer.
    */
