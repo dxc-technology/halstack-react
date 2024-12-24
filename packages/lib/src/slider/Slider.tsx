@@ -79,10 +79,13 @@ const DxcSlider = forwardRef<RefType, SliderPropsType>(
     };
 
     const handleSliderOnChangeCommitted = (event: MouseEvent<HTMLInputElement>) => {
-      const intValue = parseInt((event.target as HTMLInputElement).value, 10);
-      if (dragging) {
-        setDragging(false);
-        onDragEnd?.(intValue);
+      const { target } = event;
+      if (target instanceof HTMLInputElement) {
+        const intValue = parseInt(target.value, 10);
+        if (dragging) {
+          setDragging(false);
+          onDragEnd?.(intValue);
+        }
       }
     };
 

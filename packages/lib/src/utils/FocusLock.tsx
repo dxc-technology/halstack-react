@@ -126,11 +126,11 @@ const FocusLock = ({ children }: { children: ReactNode }): JSX.Element => {
 
   useEffect(() => {
     const focusGuardHandler = (event: FocusEvent) => {
-      const target = event.relatedTarget as Node | null;
+      const target = event.relatedTarget;
       const container = childrenContainerRef.current;
 
       if (
-        target != null &&
+        target instanceof Node &&
         !(
           container?.contains(target) ||
           container?.nextElementSibling?.contains(target) ||

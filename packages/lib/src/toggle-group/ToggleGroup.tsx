@@ -49,7 +49,7 @@ const DxcToggleGroup = ({
         newSelectedOptions.push(selectedOption);
       }
     }
-
+    // TODO: Fix types
     onChange?.((multiple ? newSelectedOptions : selectedOption) as number & number[]);
   };
 

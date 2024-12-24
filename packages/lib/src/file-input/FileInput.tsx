@@ -12,11 +12,19 @@ const getFilePreview = async (file: File): Promise<string> => {
   } else if (file?.type?.includes("audio")) {
     return "music_video";
   } else if (file?.type?.includes("image")) {
-    return new Promise<string>((resolve) => {
+    return new Promise<string>((resolve, reject) => {
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = (e) => {
-        resolve(e.target?.result as string);
+        const result = e.target?.result;
+        if (typeof result === "string") {
+          resolve(result);
+        } else {
+          reject(new Error("Failed to generate file preview as a string."));
+        }
+      };
+      reader.onerror = () => {
+        reject(new Error("Error reading file."));
       };
     });
   } else {
@@ -87,9 +95,7 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
     };
 
     const addFile = async (selectedFiles: File[]) => {
-      const filesToAdd = await getFilesToAdd(
-        multiple ? selectedFiles : selectedFiles.length === 1 ? selectedFiles : [selectedFiles[0] as File]
-      );
+      const filesToAdd = await getFilesToAdd(multiple ? selectedFiles : selectedFiles.slice(0, 1));
       const finalFiles = multiple ? [...files, ...filesToAdd] : filesToAdd;
       callbackFile?.(finalFiles);
     };
@@ -130,7 +136,8 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
     };
     const handleDragOut = (e: DragEvent<HTMLDivElement>) => {
       // only if dragged items leave container (outside, not to children)
-      if (!e.currentTarget.contains(e.relatedTarget as HTMLDivElement)) {
+      const { relatedTarget } = e;
+      if (relatedTarget instanceof Node && !e.currentTarget.contains(relatedTarget)) {
         setIsDragging(false);
       }
     };
@@ -148,7 +155,7 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
     useEffect(() => {
       const getFiles = async () => {
         if (value) {
-          const valueFiles = (await Promise.all(
+          const valueFiles = await Promise.all(
             value.map(async (file) => {
               if (file.preview) {
                 return file;
@@ -156,7 +163,7 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
               const preview = await getFilePreview(file.file);
               return { ...file, preview };
             })
-          )) as FileData[];
+          );
           setFiles(valueFiles);
         }
       };

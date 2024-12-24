@@ -82,6 +82,7 @@ const DxcTab = forwardRef(
               if (typeof ref === "function") {
                 ref(anchorRef);
               } else {
+                // TODO: Check if this is the correct approach
                 const currentRef = ref as MutableRefObject<HTMLButtonElement | null>;
                 currentRef.current = anchorRef;
               }

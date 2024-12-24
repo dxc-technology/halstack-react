@@ -79,10 +79,12 @@ const Listbox = ({
   useLayoutEffect(() => {
     if (currentValue && !multiple) {
       const listEl = listboxRef?.current;
-      const selectedListOptionEl = listEl?.querySelector("[aria-selected='true']") as HTMLUListElement;
-      listEl?.scrollTo?.({
-        top: (selectedListOptionEl.offsetTop ?? 0) - (listEl.clientHeight ?? 0) / 2,
-      });
+      const selectedListOptionEl = listEl?.querySelector("[aria-selected='true']");
+      if (selectedListOptionEl instanceof HTMLUListElement) {
+        listEl?.scrollTo?.({
+          top: (selectedListOptionEl.offsetTop ?? 0) - (listEl.clientHeight ?? 0) / 2,
+        });
+      }
     }
   }, [currentValue, multiple]);
 

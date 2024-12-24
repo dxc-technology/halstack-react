@@ -65,26 +65,27 @@ const DxcTabs = ({
   tabIndex = 0,
   children,
 }: TabsPropsType) => {
-  const childrenArray: ReactElement<TabProps>[] = useMemo(
-    () => Children.toArray(children) as ReactElement<TabProps>[],
-    [children]
-  );
+  const childrenArray = useMemo(() => Children.toArray(children), [children]);
   const hasLabelAndIcon = useMemo(
-    () => childrenArray.some((child) => isValidElement(child) && child.props.icon && child.props.label),
+    () => childrenArray.some((child) => isValidElement<TabProps>(child) && child.props.icon && child.props.label),
     [childrenArray]
   );
 
   const [activeTabLabel, setActiveTabLabel] = useState(() => {
     const hasActiveChild = childrenArray.some(
-      (child) => isValidElement(child) && (child.props.active || child.props.defaultActive) && !child.props.disabled
+      (child) =>
+        isValidElement<TabProps>(child) && (child.props.active || child.props.defaultActive) && !child.props.disabled
     );
     const initialActiveTab = hasActiveChild
       ? childrenArray.find(
-          (child) => isValidElement(child) && (child.props.active || child.props.defaultActive) && !child.props.disabled
+          (child) =>
+            isValidElement<TabProps>(child) &&
+            (child.props.active || child.props.defaultActive) &&
+            !child.props.disabled
         )
-      : childrenArray.find((child) => isValidElement(child) && !child.props.disabled);
+      : childrenArray.find((child) => isValidElement<TabProps>(child) && !child.props.disabled);
 
-    return isValidElement(initialActiveTab) ? initialActiveTab.props.label : "";
+    return isValidElement<TabProps>(initialActiveTab) ? initialActiveTab.props.label : "";
   });
   const [innerFocusIndex, setInnerFocusIndex] = useState<number | null>(null);
   const [activeIndicatorWidth, setActiveIndicatorWidth] = useState(0);
@@ -116,8 +117,10 @@ const DxcTabs = ({
     return {
       iconPosition,
       tabIndex,
-      focusedLabel: isValidElement(focusedChild) ? focusedChild.props.label : "",
-      isControlled: childrenArray.some((child) => isValidElement(child) && typeof child.props.active !== "undefined"),
+      focusedLabel: isValidElement<TabProps>(focusedChild) ? focusedChild.props.label : "",
+      isControlled: childrenArray.some(
+        (child) => isValidElement<TabProps>(child) && typeof child.props.active !== "undefined"
+      ),
       activeLabel: activeTabLabel,
       hasLabelAndIcon,
       setActiveLabel: setActiveTabLabel,
@@ -159,7 +162,9 @@ const DxcTabs = ({
   };
 
   const handleOnKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
-    const activeTab = childrenArray.findIndex((child: ReactElement) => child.props.label === activeTabLabel);
+    const activeTab = childrenArray.findIndex(
+      (child) => isValidElement<TabProps>(child) && child.props.label === activeTabLabel
+    );
     switch (event.key) {
       case "Left":
       case "ArrowLeft":
@@ -206,7 +211,8 @@ const DxcTabs = ({
                   tabWidth={activeIndicatorWidth}
                   tabLeft={activeIndicatorLeft}
                   aria-disabled={childrenArray.some(
-                    (child) => isValidElement(child) && activeTabLabel === child.props.label && child.props.disabled
+                    (child) =>
+                      isValidElement<TabProps>(child) && activeTabLabel === child.props.label && child.props.disabled
                   )}
                 />
               </TabsContentScroll>
@@ -225,7 +231,7 @@ const DxcTabs = ({
         </TabsContainer>
       </ThemeProvider>
       {Children.map(children, (child) => {
-        if (isValidElement(child) && child.props.label === activeTabLabel) {
+        if (isValidElement<TabProps>(child) && child.props.label === activeTabLabel) {
           return child.props.children;
         }
         return null;

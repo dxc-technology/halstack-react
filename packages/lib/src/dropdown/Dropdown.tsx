@@ -1,4 +1,4 @@
-import * as Popover from "@radix-ui/react-popover";
+import Popover from "@radix-ui/react-popover";
 import { FocusEvent, KeyboardEvent, useCallback, useId, useLayoutEffect, useRef, useState, useContext } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { getMargin } from "../common/utils";

@@ -1,5 +1,17 @@
-import * as Popover from "@radix-ui/react-popover";
-import { ChangeEvent, FocusEvent, forwardRef, KeyboardEvent, MouseEvent, useCallback, useContext, useId, useMemo, useRef, useState } from "react";
+import Popover from "@radix-ui/react-popover";
+import {
+  ChangeEvent,
+  FocusEvent,
+  forwardRef,
+  KeyboardEvent,
+  MouseEvent,
+  useCallback,
+  useContext,
+  useId,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables";
 import { getMargin } from "../common/utils";
@@ -86,15 +98,15 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
       if (newOption) {
         const currentValue = value ?? innerValue;
         const newValue = multiple
-          ? (currentValue as string[]).includes(newOption.value)
-            ? (currentValue as string[]).filter((optionVal: string) => optionVal !== newOption.value)
-            : [...(currentValue as string[]), newOption.value]
+          ? Array.isArray(currentValue) && currentValue.includes(newOption.value)
+            ? currentValue.filter((optionVal: string) => optionVal !== newOption.value)
+            : [...currentValue, newOption.value]
           : newOption.value;
 
         if (value == null) {
           setInnerValue(newValue);
         }
-
+        // TODO: Fix types
         onChange?.({
           value: newValue as string & string[],
           ...(notOptionalCheck(newValue, multiple, optional) && {
@@ -126,11 +138,13 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
 
         const currentValue = value ?? innerValue;
         if (notOptionalCheck(currentValue, multiple, optional)) {
+          // TODO: Fix types
           onBlur?.({
             value: currentValue as string & string[],
             error: translatedLabels.formFields.requiredValueErrorMessage,
           });
         } else {
+          // TODO: Fix types
           onBlur?.({ value: currentValue as string & string[] });
         }
       }
@@ -242,11 +256,13 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
         setInnerValue([]);
       }
       if (!optional) {
+        // TODO: Fix types
         onChange?.({
           value: [] as string[] as string & string[],
           error: translatedLabels.formFields.requiredValueErrorMessage,
         });
       } else {
+        // TODO: Fix types
         onChange?.({ value: [] as string[] as string & string[] });
       }
     };
