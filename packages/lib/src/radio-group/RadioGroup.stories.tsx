@@ -1,3 +1,4 @@
+import { Meta, StoryObj } from "@storybook/react";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import { HalstackProvider } from "../HalstackContext";
@@ -6,7 +7,7 @@ import DxcRadioGroup from "./RadioGroup";
 export default {
   title: "Radio Group",
   component: DxcRadioGroup,
-};
+} as Meta<typeof DxcRadioGroup>;
 
 const single_option = [{ label: "Option A", value: "A" }];
 
@@ -26,7 +27,7 @@ const opinionatedTheme = {
   },
 };
 
-export const Chromatic = () => (
+const RadioGroup = () => (
   <>
     <Title title="Radio input states" theme="light" level={2} />
     <ExampleContainer>
@@ -211,3 +212,9 @@ export const Chromatic = () => (
     </ExampleContainer>
   </>
 );
+
+type Story = StoryObj<typeof DxcRadioGroup>;
+
+export const Chromatic: Story = {
+  render: RadioGroup,
+};

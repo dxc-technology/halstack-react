@@ -1,5 +1,5 @@
 import { render } from "@testing-library/react";
-import { axe } from "../../test/accessibility/axe-helper";
+import { axe, formatRules } from "../../test/accessibility/axe-helper";
 import DxcResultsetTable from "./ResultsetTable";
 
 // TODO: REMOVE
@@ -7,10 +7,7 @@ import { disabledRules as rules } from "../../test/accessibility/rules/specific/
 import { ActionCellsPropsType } from "../table/types";
 
 const disabledRules = {
-  rules: rules.reduce((rulesObj, rule) => {
-    rulesObj[rule] = { enabled: false };
-    return rulesObj;
-  }, {}),
+  rules: formatRules(rules),
 };
 
 const deleteIcon = (

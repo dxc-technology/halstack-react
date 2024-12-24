@@ -1,9 +1,8 @@
-import { useState, useRef, useId, forwardRef } from "react";
+import { useContext, useState, useRef, useId, forwardRef, KeyboardEvent } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { AdvancedTheme, spaces } from "../common/variables";
 import { getMargin } from "../common/utils";
-import useTheme from "../useTheme";
-import useTranslatedLabels from "../useTranslatedLabels";
+import HalstackContext, { HalstackLanguageContext } from "../HalstackContext";
 import CheckboxPropsType, { RefType } from "./types";
 
 const checkedIcon = (
@@ -33,24 +32,30 @@ const DxcCheckbox = forwardRef<RefType, CheckboxPropsType>(
   ): JSX.Element => {
     const labelId = `label-checkbox-${useId()}`;
     const [innerChecked, setInnerChecked] = useState(defaultChecked);
-    const checkboxRef = useRef(null);
-    const colorsTheme = useTheme();
-    const translatedLabels = useTranslatedLabels();
+    const checkboxRef = useRef<HTMLSpanElement | null>(null);
+    const colorsTheme = useContext(HalstackContext);
+    const translatedLabels = useContext(HalstackLanguageContext);
 
     const handleCheckboxChange = () => {
       if (!disabled && !readOnly) {
-        document.activeElement !== checkboxRef?.current && checkboxRef?.current?.focus();
-        const newChecked = checked ?? innerChecked;
-        checked ?? setInnerChecked((innerChecked) => !innerChecked);
-        onChange?.(!newChecked);
+        if (document.activeElement !== checkboxRef.current) {
+          checkboxRef.current?.focus();
+        }
+        if (checked == null) {
+          setInnerChecked((innerCurrentlyChecked) => !innerCurrentlyChecked);
+        }
+        onChange?.(!(checked ?? innerChecked));
       }
     };
 
-    const handleKeyboard = (event) => {
+    const handleKeyboard = (event: KeyboardEvent<HTMLSpanElement>) => {
       switch (event.key) {
         case " ":
           event.preventDefault();
           handleCheckboxChange();
+          break;
+        default:
+          break;
       }
     };
 
@@ -115,7 +120,7 @@ const sizes = {
 const calculateWidth = (margin: CheckboxPropsType["margin"], size: CheckboxPropsType["size"]) =>
   size === "fillParent"
     ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
-    : sizes[size];
+    : size && sizes[size];
 
 const getDisabledColor = (theme: AdvancedTheme["checkbox"], element: string) => {
   switch (element) {
@@ -127,6 +132,8 @@ const getDisabledColor = (theme: AdvancedTheme["checkbox"], element: string) => 
       return theme.disabledBorderColor;
     case "label":
       return theme.disabledFontColor;
+    default:
+      return undefined;
   }
 };
 
@@ -142,6 +149,8 @@ const getReadOnlyColor = (theme: AdvancedTheme["checkbox"], element: string) => 
       return theme.readOnlyBorderColor;
     case "hoverBorder":
       return theme.hoverReadOnlyBorderColor;
+    default:
+      return undefined;
   }
 };
 
@@ -159,6 +168,8 @@ const getEnabledColor = (theme: AdvancedTheme["checkbox"], element: string) => {
       return theme.hoverBorderColor;
     case "label":
       return theme.fontColor;
+    default:
+      return undefined;
   }
 };
 

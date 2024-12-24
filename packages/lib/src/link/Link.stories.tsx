@@ -1,13 +1,13 @@
-import { fireEvent, userEvent, within } from "@storybook/test";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import { HalstackProvider } from "../HalstackContext";
 import DxcLink from "./Link";
+import { Meta, StoryObj } from "@storybook/react";
 
 export default {
   title: "Link",
   component: DxcLink,
-};
+} as Meta<typeof DxcLink>;
 
 const icon = (
   <svg viewBox="0 0 24 24" enableBackground="new 0 0 24 24" fill="currentColor">
@@ -26,7 +26,7 @@ const opinionatedTheme = {
   },
 };
 
-export const Chromatic = () => (
+const Link = () => (
   <>
     <Title title="With anchor" theme="light" level={2} />
     <ExampleContainer>
@@ -207,3 +207,9 @@ export const Chromatic = () => (
     </ExampleContainer>
   </>
 );
+
+type Story = StoryObj<typeof DxcLink>;
+
+export const Chromatic: Story = {
+  render: Link,
+};

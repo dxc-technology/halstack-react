@@ -1,6 +1,7 @@
 import styled, { ThemeProvider } from "styled-components";
-import useTheme from "../useTheme";
+import { ReactNode, useCallback, useContext } from "react";
 import ImagePropsType, { CaptionWrapperProps } from "./types";
+import HalstackContext from "../HalstackContext";
 
 const Figure = styled.figure`
   display: flex;
@@ -20,9 +21,15 @@ const CaptionContainer = styled.figcaption`
   line-height: ${(props) => props.theme.captionLineHeight};
 `;
 
-const CaptionWrapper = ({ condition, wrapper, children }: CaptionWrapperProps) => (
-  <>{condition ? wrapper(children) : children}</>
-);
+const CaptionWrapper = ({ caption, children }: { caption: ImagePropsType["caption"]; children: ReactNode }) =>
+  caption != null ? (
+    <Figure>
+      {children}
+      <CaptionContainer>{caption}</CaptionContainer>
+    </Figure>
+  ) : (
+    children
+  );
 
 export default function DxcImage({
   alt,
@@ -38,19 +45,11 @@ export default function DxcImage({
   onLoad,
   onError,
 }: ImagePropsType) {
-  const colorsTheme = useTheme();
+  const colorsTheme = useContext(HalstackContext);
 
   return (
     <ThemeProvider theme={colorsTheme.image}>
-      <CaptionWrapper
-        condition={caption != undefined}
-        wrapper={(children: React.ReactNode) => (
-          <Figure>
-            {children}
-            <CaptionContainer>{caption}</CaptionContainer>
-          </Figure>
-        )}
-      >
+      <CaptionWrapper caption={caption}>
         <img
           alt={alt}
           loading={lazyLoading ? "lazy" : undefined}

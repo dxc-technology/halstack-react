@@ -128,12 +128,13 @@ describe("Select component tests", () => {
     const submitInput = container.querySelector<HTMLInputElement>(`input[name="test"]`);
     expect(queryByRole("listbox")).toBeFalsy();
     expect(getByText("Option 04")).toBeTruthy();
-    expect(submitInput.value).toBe("4");
+    expect(submitInput?.value).toBe("4");
     await userEvent.click(select);
-    expect(getAllByRole("option")[3].getAttribute("aria-selected")).toBe("true");
-    await userEvent.click(getAllByRole("option")[7]);
+    const options = getAllByRole("option");
+    expect(options[3]?.getAttribute("aria-selected")).toBe("true");
+    options[7] && (await userEvent.click(options[7]));
     expect(getByText("Option 08")).toBeTruthy();
-    expect(submitInput.value).toBe("8");
+    expect(submitInput?.value).toBe("8");
   });
 
   test("Multiple selection: Renders with correct default value", async () => {
@@ -150,11 +151,12 @@ describe("Select component tests", () => {
     const submitInput = container.querySelector<HTMLInputElement>(`input[name="test"]`);
     expect(queryByRole("listbox")).toBeFalsy();
     expect(getByText("Option 02, Option 04, Option 06")).toBeTruthy();
-    expect(submitInput.value).toBe("4,2,6");
+    expect(submitInput?.value).toBe("4,2,6");
     await userEvent.click(select);
-    await userEvent.click(getAllByRole("option")[2]);
+    const options = getAllByRole("option");
+    options[2] && (await userEvent.click(options[2]));
     expect(getByText("Option 02, Option 03, Option 04, Option 06")).toBeTruthy();
-    expect(submitInput.value).toBe("4,2,6,3");
+    expect(submitInput?.value).toBe("4,2,6,3");
   });
 
   test("Sends its value when submitted", async () => {
@@ -179,7 +181,8 @@ describe("Select component tests", () => {
     const select = getByRole("combobox");
     const submit = getByText("Submit");
     await userEvent.click(select);
-    await userEvent.click(getAllByRole("option")[2]);
+    const options = getAllByRole("option");
+    options[2] && (await userEvent.click(options[2]));
     await userEvent.click(submit);
   });
 
@@ -191,7 +194,7 @@ describe("Select component tests", () => {
     const searchInput = container.querySelectorAll("input")[1];
     await userEvent.click(select);
     await act(async () => {
-      userEvent.type(searchInput, "test");
+      searchInput && userEvent.type(searchInput, "test");
     });
     expect(queryByRole("listbox")).toBeFalsy();
     expect(select.getAttribute("aria-expanded")).toBe("false");
@@ -267,7 +270,8 @@ describe("Select component tests", () => {
     expect(onBlur).toHaveBeenCalled();
     expect(onBlur).toHaveBeenCalledWith({ value: "", error: "This field is required. Please, enter a value." });
     await userEvent.click(select);
-    await userEvent.click(getAllByRole("option")[0]);
+    const options = getAllByRole("option");
+    options[0] && (await userEvent.click(options[0]));
     expect(onChange).toHaveBeenCalled();
     expect(onChange).toHaveBeenCalledWith({ value: "1" });
     fireEvent.blur(select);
@@ -288,16 +292,18 @@ describe("Select component tests", () => {
     expect(onBlur).toHaveBeenCalled();
     expect(onBlur).toHaveBeenCalledWith({ value: [], error: "This field is required. Please, enter a value." });
     await userEvent.click(select);
-    await userEvent.click(getAllByRole("option")[0]);
-    await userEvent.click(getAllByRole("option")[1]);
+    let options = getAllByRole("option");
+    options[0] && (await userEvent.click(options[0]));
+    options[1] && (await userEvent.click(options[1]));
     expect(onChange).toHaveBeenCalled();
     expect(onChange).toHaveBeenCalledWith({ value: ["1", "2"] });
     fireEvent.blur(select);
     expect(onBlur).toHaveBeenCalled();
     expect(onBlur).toHaveBeenCalledWith({ value: ["1", "2"] });
     await userEvent.click(select);
-    await userEvent.click(getAllByRole("option")[0]);
-    await userEvent.click(getAllByRole("option")[1]);
+    options = getAllByRole("option");
+    options[0] && (await userEvent.click(options[0]));
+    options[1] && (await userEvent.click(options[1]));
     expect(onChange).toHaveBeenCalled();
     expect(onChange).toHaveBeenCalledWith({ value: [], error: "This field is required. Please, enter a value." });
     fireEvent.blur(select);
@@ -354,13 +360,15 @@ describe("Select component tests", () => {
     const select = getByRole("combobox");
     const submitInput = container.querySelector<HTMLInputElement>(`input[name="test"]`);
     await userEvent.click(select);
-    await userEvent.click(getAllByRole("option")[2]);
+    let options = getAllByRole("option");
+    options[2] && (await userEvent.click(options[2]));
     expect(onChange).toHaveBeenCalledWith({ value: "3" });
     expect(queryByRole("listbox")).toBeFalsy();
     expect(getByText("Option 03")).toBeTruthy();
     await userEvent.click(select);
-    expect(getAllByRole("option")[2].getAttribute("aria-selected")).toBe("true");
-    expect(submitInput.value).toBe("3");
+    options = getAllByRole("option");
+    expect(options[2]?.getAttribute("aria-selected")).toBe("true");
+    expect(submitInput?.value).toBe("3");
   });
 
   test("Non-Grouped Options - Optional renders an empty first option (selected by default) with the placeholder as its label", async () => {
@@ -377,8 +385,9 @@ describe("Select component tests", () => {
     const select = getByRole("combobox");
     await userEvent.click(select);
     expect(getAllByText("Choose an option").length).toBe(2);
-    expect(getAllByRole("option")[0].getAttribute("aria-selected")).toBe("true");
-    await userEvent.click(getAllByRole("option")[0]);
+    const options = getAllByRole("option");
+    expect(options[0]?.getAttribute("aria-selected")).toBe("true");
+    options[0] && (await userEvent.click(options[0]));
     expect(onChange).toHaveBeenCalledWith({ value: "" });
     expect(getAllByText("Choose an option").length).toBe(1);
     fireEvent.keyDown(select, { key: "ArrowDown", code: "ArrowDown", keyCode: 40, charCode: 40 });
@@ -402,12 +411,12 @@ describe("Select component tests", () => {
     );
     const searchInput = container.querySelectorAll("input")[1];
     await act(async () => {
-      userEvent.type(searchInput, "1");
+      searchInput && userEvent.type(searchInput, "1");
     });
     expect(getByText("Placeholder example")).toBeTruthy();
     expect(getAllByRole("option").length).toBe(12);
     await act(async () => {
-      userEvent.type(searchInput, "123");
+      searchInput && userEvent.type(searchInput, "123");
     });
     expect(queryByText("Placeholder example")).toBeFalsy();
     expect(getByText("No matches found")).toBeTruthy();
@@ -462,7 +471,8 @@ describe("Select component tests", () => {
     expect(queryByRole("listbox")).toBeFalsy();
     expect(getByText("Option 20")).toBeTruthy();
     await userEvent.click(select);
-    expect(getAllByRole("option")[20].getAttribute("aria-selected")).toBe("true");
+    const options = getAllByRole("option");
+    expect(options[20]?.getAttribute("aria-selected")).toBe("true");
   });
 
   test("Non-Grouped Options: Searchable - Displays an input for filtering the list of options", async () => {
@@ -474,14 +484,15 @@ describe("Select component tests", () => {
     const searchInput = container.querySelectorAll("input")[1];
     await userEvent.click(select);
     expect(getByRole("listbox")).toBeTruthy();
-    await userEvent.type(searchInput, "08");
+    searchInput && (await userEvent.type(searchInput, "08"));
     await userEvent.click(getByRole("option"));
     expect(onChange).toHaveBeenCalledWith({ value: "8" });
     expect(queryByRole("listbox")).toBeFalsy();
     expect(getByText("Option 08")).toBeTruthy();
-    expect(searchInput.value).toBe("");
+    expect(searchInput?.value).toBe("");
     await userEvent.click(select);
-    expect(getAllByRole("option")[7].getAttribute("aria-selected")).toBe("true");
+    const options = getAllByRole("option");
+    expect(options[7]?.getAttribute("aria-selected")).toBe("true");
   });
 
   test("Non-Grouped Options: Searchable - Displays 'No matches found' when there are no filtering results", async () => {
@@ -493,7 +504,7 @@ describe("Select component tests", () => {
     const searchInput = container.querySelectorAll("input")[1];
     await userEvent.click(select);
     expect(getByRole("listbox")).toBeTruthy();
-    await userEvent.type(searchInput, "abc");
+    searchInput && (await userEvent.type(searchInput, "abc"));
     expect(getByText("No matches found")).toBeTruthy();
   });
 
@@ -505,7 +516,7 @@ describe("Select component tests", () => {
     const select = getByRole("combobox");
     const searchInput = container.querySelectorAll("input")[1];
     await act(async () => {
-      userEvent.type(searchInput, "2");
+      searchInput && userEvent.type(searchInput, "2");
     });
     expect(getByRole("listbox")).toBeTruthy();
     expect(getByText("Option 02")).toBeTruthy();
@@ -515,7 +526,7 @@ describe("Select component tests", () => {
     await act(async () => {
       userEvent.click(select);
     });
-    expect(searchInput.value).toBe("");
+    expect(searchInput?.value).toBe("");
   });
 
   test("Non-Grouped Options: Searchable - Writing displays the listbox, if it was not open", async () => {
@@ -528,7 +539,7 @@ describe("Select component tests", () => {
     await userEvent.click(select);
     await userEvent.click(select);
     expect(queryByRole("listbox")).toBeFalsy();
-    await userEvent.type(searchInput, "2");
+    searchInput && (await userEvent.type(searchInput, "2"));
     expect(getByRole("listbox")).toBeTruthy();
   });
 
@@ -539,9 +550,9 @@ describe("Select component tests", () => {
     );
     const select = getByRole("combobox");
     const searchInput = container.querySelectorAll("input")[1];
-    await userEvent.type(searchInput, "Option 02");
+    searchInput && (await userEvent.type(searchInput, "Option 02"));
     fireEvent.keyDown(select, { key: "Esc", code: "Esc", keyCode: 27, charCode: 27 });
-    expect(searchInput.value).toBe("");
+    expect(searchInput?.value).toBe("");
     expect(queryByRole("listbox")).toBeFalsy();
   });
 
@@ -551,7 +562,7 @@ describe("Select component tests", () => {
       <DxcSelect label="test-select-label" options={singleOptions} onChange={onChange} searchable />
     );
     const searchInput = container.querySelectorAll("input")[1];
-    await userEvent.type(searchInput, "Option 02");
+    searchInput && (await userEvent.type(searchInput, "Option 02"));
     expect(getAllByRole("option").length).toBe(1);
     const clearSearchButton = getByRole("button");
     expect(clearSearchButton.getAttribute("aria-label")).toBe("Clear search");
@@ -570,7 +581,8 @@ describe("Select component tests", () => {
     const submitInput = container.querySelector<HTMLInputElement>(`input[name="test"]`);
     await userEvent.click(select);
     expect(getByRole("listbox").getAttribute("aria-multiselectable")).toBe("true");
-    await userEvent.click(getAllByRole("option")[10]);
+    const options = getAllByRole("option");
+    options[10] && (await userEvent.click(options[10]));
     expect(onChange).toHaveBeenCalledWith({ value: ["11"] });
     expect(queryByRole("listbox")).toBeTruthy();
     expect(getAllByText("Option 11").length).toBe(2);
@@ -580,7 +592,7 @@ describe("Select component tests", () => {
     expect(onChange).toHaveBeenCalledWith({ value: ["11", "19"] });
     expect(queryByRole("listbox")).toBeTruthy();
     expect(getByText("Option 11, Option 19")).toBeTruthy();
-    expect(submitInput.value).toBe("11,19");
+    expect(submitInput?.value).toBe("11,19");
   });
 
   test("Non-Grouped Options: Multiple selection - Clear action and selection indicator", async () => {
@@ -590,9 +602,10 @@ describe("Select component tests", () => {
     );
     const select = getByRole("combobox");
     await userEvent.click(select);
-    await userEvent.click(getAllByRole("option")[5]);
-    await userEvent.click(getAllByRole("option")[8]);
-    await userEvent.click(getAllByRole("option")[13]);
+    const options = getAllByRole("option");
+    options[5] && (await userEvent.click(options[5]));
+    options[8] && (await userEvent.click(options[8]));
+    options[13] && (await userEvent.click(options[13]));
     expect(onChange).toHaveBeenCalledWith({ value: ["6", "9", "14"] });
     expect(queryByRole("listbox")).toBeTruthy();
     expect(getByText("Option 06, Option 09, Option 14")).toBeTruthy();
@@ -623,7 +636,8 @@ describe("Select component tests", () => {
     expect(getByText("(Optional)")).toBeTruthy();
     await userEvent.click(select);
     expect(getAllByText("Choose an option").length).toBe(1);
-    await userEvent.click(getAllByRole("option")[0]);
+    const options = getAllByRole("option");
+    options[0] && (await userEvent.click(options[0]));
     expect(onChange).toHaveBeenCalledWith({ value: ["1"] });
     expect(getAllByText("Option 01").length).toBe(2);
   });
@@ -634,7 +648,8 @@ describe("Select component tests", () => {
     );
     const select = getByRole("combobox");
     await userEvent.click(select);
-    await userEvent.click(getAllByRole("option")[4]);
+    const options = getAllByRole("option");
+    options[4] && (await userEvent.click(options[4]));
     expect(getByText("Option 05")).toBeTruthy();
     fireEvent.keyDown(select, { key: "ArrowUp", code: "ArrowUp", keyCode: 38, charCode: 38 });
     expect(select.getAttribute("aria-activedescendant")).toBe("option-4");
@@ -655,7 +670,8 @@ describe("Select component tests", () => {
     );
     const select = getByRole("combobox");
     await userEvent.click(select);
-    await userEvent.click(getAllByRole("option")[15]);
+    const options = getAllByRole("option");
+    options[15] && (await userEvent.click(options[15]));
     expect(queryByRole("listbox")).toBeFalsy();
     expect(getByText("Option 16")).toBeTruthy();
     await userEvent.click(select);
@@ -690,9 +706,9 @@ describe("Select component tests", () => {
     const groups = getAllByRole("listbox");
     expect(groups.length).toBe(3);
     const groupLabels = getAllByRole("presentation");
-    expect(groups[0].getAttribute("aria-labelledby")).toBe(groupLabels[0].id);
-    expect(groups[1].getAttribute("aria-labelledby")).toBe(groupLabels[1].id);
-    expect(groups[2].getAttribute("aria-labelledby")).toBe(groupLabels[2].id);
+    expect(groups[0]?.getAttribute("aria-labelledby")).toBe(groupLabels[0]?.id);
+    expect(groups[1]?.getAttribute("aria-labelledby")).toBe(groupLabels[1]?.id);
+    expect(groups[2]?.getAttribute("aria-labelledby")).toBe(groupLabels[2]?.id);
     expect(getAllByRole("option").length).toBe(18);
     await userEvent.click(select);
     expect(queryByRole("list")).toBeFalsy();
@@ -725,13 +741,15 @@ describe("Select component tests", () => {
     const select = getByRole("combobox");
     const submitInput = container.querySelector<HTMLInputElement>(`input[name="test"]`);
     await userEvent.click(select);
-    await userEvent.click(getAllByRole("option")[8]);
+    let options = getAllByRole("option");
+    options[8] && (await userEvent.click(options[8]));
     expect(onChange).toHaveBeenCalledWith({ value: "oviedo" });
     expect(queryByRole("list")).toBeFalsy();
     expect(getByText("Oviedo")).toBeTruthy();
     await userEvent.click(select);
-    expect(getAllByRole("option")[8].getAttribute("aria-selected")).toBe("true");
-    expect(submitInput.value).toBe("oviedo");
+    options = getAllByRole("option");
+    expect(options[8]?.getAttribute("aria-selected")).toBe("true");
+    expect(submitInput?.value).toBe("oviedo");
   });
 
   test("Grouped Options - Optional renders an empty first option (out of any group) with the placeholder as its label", async () => {
@@ -748,8 +766,9 @@ describe("Select component tests", () => {
     const select = getByRole("combobox");
     await userEvent.click(select);
     expect(getAllByText("Placeholder example").length).toBe(2);
-    expect(getAllByRole("option")[0].getAttribute("aria-selected")).toBe("true");
-    await userEvent.click(getAllByRole("option")[0]);
+    const options = getAllByRole("option");
+    expect(options[0]?.getAttribute("aria-selected")).toBe("true");
+    options[0] && (await userEvent.click(options[0]));
     expect(onChange).toHaveBeenCalledWith({ value: "" });
     expect(getAllByText("Placeholder example").length).toBe(1);
     fireEvent.keyDown(select, { key: "ArrowDown", code: "ArrowDown", keyCode: 40, charCode: 40 });
@@ -774,10 +793,10 @@ describe("Select component tests", () => {
     const select = getByRole("combobox");
     const searchInput = container.querySelectorAll("input")[1];
     await userEvent.click(select);
-    await userEvent.type(searchInput, "ro");
+    searchInput && (await userEvent.type(searchInput, "ro"));
     expect(getByText("Placeholder example")).toBeTruthy();
     expect(getAllByRole("option").length).toBe(6);
-    await userEvent.type(searchInput, "roro");
+    searchInput && (await userEvent.type(searchInput, "roro"));
     expect(queryByText("Placeholder example")).toBeFalsy();
     expect(getByText("No matches found")).toBeTruthy();
   });
@@ -831,7 +850,8 @@ describe("Select component tests", () => {
     expect(queryByRole("list")).toBeFalsy();
     expect(getByText("Ebro")).toBeTruthy();
     await userEvent.click(select);
-    expect(getAllByRole("option")[18].getAttribute("aria-selected")).toBe("true");
+    const options = getAllByRole("option");
+    expect(options[18]?.getAttribute("aria-selected")).toBe("true");
   });
 
   test("Grouped Options: Searchable - Displays an input for filtering the list of options", async () => {
@@ -843,18 +863,20 @@ describe("Select component tests", () => {
     const searchInput = container.querySelectorAll("input")[1];
     await userEvent.click(select);
     expect(getByRole("list")).toBeTruthy();
-    await userEvent.type(searchInput, "ro");
+    searchInput && (await userEvent.type(searchInput, "ro"));
     expect(getAllByRole("presentation").length).toBe(2);
     expect(getAllByRole("option").length).toBe(5);
     expect(getByText("Colores")).toBeTruthy();
     expect(getByText("Ríos españoles")).toBeTruthy();
-    await userEvent.click(getAllByRole("option")[4]);
+    let options = getAllByRole("option");
+    options[4] && (await userEvent.click(options[4]));
     expect(onChange).toHaveBeenCalledWith({ value: "ebro" });
     expect(queryByRole("list")).toBeFalsy();
     expect(getByText("Ebro")).toBeTruthy();
-    expect(searchInput.value).toBe("");
+    expect(searchInput?.value).toBe("");
     await userEvent.click(select);
-    expect(getAllByRole("option")[17].getAttribute("aria-selected")).toBe("true");
+    options = getAllByRole("option");
+    expect(options[17]?.getAttribute("aria-selected")).toBe("true");
   });
 
   test("Grouped Options: Searchable - Displays 'No matches found' when there are no filtering results", async () => {
@@ -866,7 +888,7 @@ describe("Select component tests", () => {
     const searchInput = container.querySelectorAll("input")[1];
     await userEvent.click(select);
     expect(getByRole("list")).toBeTruthy();
-    await userEvent.type(searchInput, "very long string");
+    searchInput && (await userEvent.type(searchInput, "very long string"));
     expect(getByText("No matches found")).toBeTruthy();
   });
 
@@ -878,7 +900,8 @@ describe("Select component tests", () => {
     const select = getByRole("combobox");
     const submitInput = container.querySelector<HTMLInputElement>(`input[name="test"]`);
     await userEvent.click(select);
-    await userEvent.click(getAllByRole("option")[10]);
+    const options = getAllByRole("option");
+    options[10] && (await userEvent.click(options[10]));
     expect(onChange).toHaveBeenCalledWith({ value: ["bilbao"] });
     expect(queryByRole("list")).toBeTruthy();
     expect(getAllByText("Bilbao").length).toBe(2);
@@ -888,7 +911,7 @@ describe("Select component tests", () => {
     expect(onChange).toHaveBeenCalledWith({ value: ["bilbao", "guadalquivir"] });
     expect(queryByRole("list")).toBeTruthy();
     expect(getByText("Bilbao, Guadalquivir")).toBeTruthy();
-    expect(submitInput.value).toBe("bilbao,guadalquivir");
+    expect(submitInput?.value).toBe("bilbao,guadalquivir");
   });
 
   test("Grouped Options: Multiple selection - Clear action and selection indicator", async () => {
@@ -898,10 +921,11 @@ describe("Select component tests", () => {
     );
     const select = getByRole("combobox");
     await userEvent.click(select);
-    await userEvent.click(getAllByRole("option")[5]);
-    await userEvent.click(getAllByRole("option")[8]);
-    await userEvent.click(getAllByRole("option")[13]);
-    await userEvent.click(getAllByRole("option")[17]);
+    const options = getAllByRole("option");
+    options[5] && (await userEvent.click(options[5]));
+    options[8] && (await userEvent.click(options[8]));
+    options[13] && (await userEvent.click(options[13]));
+    options[17] && (await userEvent.click(options[17]));
     expect(onChange).toHaveBeenCalledWith({ value: ["blanco", "oviedo", "duero", "ebro"] });
     expect(queryByRole("list")).toBeTruthy();
     expect(getByText("Blanco, Oviedo, Duero, Ebro")).toBeTruthy();
@@ -931,7 +955,8 @@ describe("Select component tests", () => {
     expect(getByText("(Optional)")).toBeTruthy();
     await userEvent.click(select);
     expect(getAllByText("Choose an option").length).toBe(1);
-    await userEvent.click(getAllByRole("option")[0]);
+    const options = getAllByRole("option");
+    options[0] && (await userEvent.click(options[0]));
     expect(onChange).toHaveBeenCalledWith({ value: ["azul"] });
     expect(getAllByText("Azul").length).toBe(2);
   });
@@ -942,7 +967,8 @@ describe("Select component tests", () => {
     );
     const select = getByRole("combobox");
     await userEvent.click(select);
-    await userEvent.click(getAllByRole("option")[2]);
+    const options = getAllByRole("option");
+    options[2] && (await userEvent.click(options[2]));
     expect(getByText("Rosa")).toBeTruthy();
     fireEvent.keyDown(select, { key: "ArrowUp", code: "ArrowUp", keyCode: 38, charCode: 38 });
     expect(select.getAttribute("aria-activedescendant")).toBe("option-2");
@@ -963,7 +989,8 @@ describe("Select component tests", () => {
     );
     const select = getByRole("combobox");
     await userEvent.click(select);
-    await userEvent.click(getAllByRole("option")[17]);
+    const options = getAllByRole("option");
+    options[17] && (await userEvent.click(options[17]));
     expect(getByText("Ebro")).toBeTruthy();
     await userEvent.click(select);
     expect(select.getAttribute("aria-activedescendant")).toBeNull();
@@ -986,9 +1013,10 @@ describe("Select component tests", () => {
     );
     const select = getByRole("combobox");
     await userEvent.click(select);
-    await userEvent.click(getAllByRole("option")[5]);
-    await userEvent.click(getAllByRole("option")[8]);
-    await userEvent.click(getAllByRole("option")[13]);
+    const options = getAllByRole("option");
+    options[5] && (await userEvent.click(options[5]));
+    options[8] && (await userEvent.click(options[8]));
+    options[13] && (await userEvent.click(options[13]));
     expect(onChange).toHaveBeenCalledWith({ value: ["6", "9", "14"] });
     const clearSelectionButton = getByRole("button");
     expect(clearSelectionButton.getAttribute("aria-label")).toBe("Clear selection");

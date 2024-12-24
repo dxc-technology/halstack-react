@@ -1,5 +1,5 @@
 import { render } from "@testing-library/react";
-import { axe } from "../../test/accessibility/axe-helper";
+import { axe, formatRules } from "../../test/accessibility/axe-helper";
 import DxcFlex from "../flex/Flex";
 import DxcSelect from "./Select";
 
@@ -7,10 +7,7 @@ import DxcSelect from "./Select";
 import { disabledRules as rules } from "../../test/accessibility/rules/specific/select/disabledRules";
 
 const disabledRules = {
-  rules: rules.reduce((rulesObj, rule) => {
-    rulesObj[rule] = { enabled: false };
-    return rulesObj;
-  }, {}),
+  rules: formatRules(rules),
 };
 
 const iconSVG = (

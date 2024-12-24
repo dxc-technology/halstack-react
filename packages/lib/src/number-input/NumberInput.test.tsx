@@ -36,10 +36,10 @@ describe("Number input component tests", () => {
     const number = getByLabelText("Number label") as HTMLInputElement;
     expect(number.readOnly).toBeTruthy();
     const decrement = getAllByRole("button")[0];
-    await userEvent.click(decrement);
+    decrement && (await userEvent.click(decrement));
     expect(number.value).toBe("");
     const increment = getAllByRole("button")[1];
-    await userEvent.click(increment);
+    increment && (await userEvent.click(increment));
     expect(number.value).toBe("");
   });
 
@@ -121,7 +121,7 @@ describe("Number input component tests", () => {
     fireEvent.blur(number);
     expect(number.value).toBe("1");
     const decrement = getAllByRole("button")[0];
-    await userEvent.click(decrement);
+    decrement && (await userEvent.click(decrement));
     expect(number.value).toBe("1");
   });
 
@@ -132,7 +132,7 @@ describe("Number input component tests", () => {
     fireEvent.blur(number);
     expect(number.value).toBe("1");
     const increment = getAllByRole("button")[1];
-    await userEvent.click(increment);
+    increment && (await userEvent.click(increment));
     expect(number.value).toBe("5");
   });
 
@@ -158,7 +158,7 @@ describe("Number input component tests", () => {
     fireEvent.blur(number);
     expect(number.value).toBe("12");
     const decrement = getAllByRole("button")[1];
-    await userEvent.click(decrement);
+    decrement && (await userEvent.click(decrement));
     expect(number.value).toBe("12");
   });
 
@@ -169,7 +169,7 @@ describe("Number input component tests", () => {
     fireEvent.blur(number);
     expect(number.value).toBe("120");
     const decrement = getAllByRole("button")[0];
-    await userEvent.click(decrement);
+    decrement && (await userEvent.click(decrement));
     expect(number.value).toBe("10");
   });
 
@@ -180,18 +180,18 @@ describe("Number input component tests", () => {
     fireEvent.blur(number);
     expect(number.value).toBe("1");
     const decrement = getAllByRole("button")[0];
-    await userEvent.click(decrement);
+    decrement && (await userEvent.click(decrement));
     expect(number.value).toBe("1");
     const increment = getAllByRole("button")[1];
-    await userEvent.click(increment);
+    increment && (await userEvent.click(increment));
     expect(number.value).toBe("5");
-    await userEvent.click(increment);
-    await userEvent.click(increment);
-    await userEvent.click(increment);
-    await userEvent.click(increment);
-    await userEvent.click(increment);
+    increment && (await userEvent.click(increment));
+    increment && (await userEvent.click(increment));
+    increment && (await userEvent.click(increment));
+    increment && (await userEvent.click(increment));
+    increment && (await userEvent.click(increment));
     expect(number.value).toBe("10");
-    await userEvent.click(increment);
+    increment && (await userEvent.click(increment));
     expect(number.value).toBe("10");
   });
 
@@ -202,14 +202,14 @@ describe("Number input component tests", () => {
     fireEvent.blur(number);
     expect(number.value).toBe("10");
     const increment = getAllByRole("button")[1];
-    await userEvent.click(increment);
+    increment && (await userEvent.click(increment));
     expect(number.value).toBe("15");
-    await userEvent.click(increment);
+    increment && (await userEvent.click(increment));
     expect(number.value).toBe("20");
     const decrement = getAllByRole("button")[0];
-    await userEvent.click(decrement);
+    decrement && (await userEvent.click(decrement));
     expect(number.value).toBe("15");
-    await userEvent.click(decrement);
+    decrement && (await userEvent.click(decrement));
     expect(number.value).toBe("10");
   });
 
@@ -220,16 +220,16 @@ describe("Number input component tests", () => {
     fireEvent.blur(number);
     expect(number.value).toBe("-9");
     const increment = getAllByRole("button")[1];
-    await userEvent.click(increment);
+    increment && (await userEvent.click(increment));
     expect(number.value).toBe("-8.5");
-    await userEvent.click(increment);
+    increment && (await userEvent.click(increment));
     expect(number.value).toBe("-8");
     const decrement = getAllByRole("button")[0];
-    await userEvent.click(decrement);
-    await userEvent.click(decrement);
-    await userEvent.click(decrement);
+    decrement && (await userEvent.click(decrement));
+    decrement && (await userEvent.click(decrement));
+    decrement && (await userEvent.click(decrement));
     expect(number.value).toBe("-9.5");
-    await userEvent.click(decrement);
+    decrement && (await userEvent.click(decrement));
     expect(number.value).toBe("-10");
   });
 
@@ -243,20 +243,20 @@ describe("Number input component tests", () => {
     fireEvent.blur(number);
     expect(onBlur).toHaveBeenCalledWith({ value: "1", error: "Value must be greater than or equal to 5." });
     const increment = getAllByRole("button")[1];
-    await userEvent.click(increment);
+    increment && (await userEvent.click(increment));
     expect(number.value).toBe("5");
-    await userEvent.click(increment);
+    increment && (await userEvent.click(increment));
     expect(number.value).toBe("13");
-    await userEvent.click(increment);
+    increment && (await userEvent.click(increment));
     expect(number.value).toBe("13");
-    await userEvent.click(increment);
+    increment && (await userEvent.click(increment));
     expect(number.value).toBe("13");
     const decrement = getAllByRole("button")[0];
-    await userEvent.click(decrement);
+    decrement && (await userEvent.click(decrement));
     expect(number.value).toBe("5");
-    await userEvent.click(decrement);
+    decrement && (await userEvent.click(decrement));
     expect(number.value).toBe("5");
-    await userEvent.click(decrement);
+    decrement && (await userEvent.click(decrement));
   });
 
   test("Start incrementing from 0 when the min value is less than 0 and the max value is bigger than 0", async () => {
@@ -266,9 +266,9 @@ describe("Number input component tests", () => {
     );
     const number = getByLabelText("Number input label") as HTMLInputElement;
     const increment = getAllByRole("button")[1];
-    await userEvent.click(increment);
+    increment && (await userEvent.click(increment));
     expect(number.value).toBe("1");
-    await userEvent.click(increment);
+    increment && (await userEvent.click(increment));
     expect(number.value).toBe("2");
   });
 
@@ -278,9 +278,9 @@ describe("Number input component tests", () => {
     );
     const number = getByLabelText("Number input label") as HTMLInputElement;
     const increment = getAllByRole("button")[1];
-    await userEvent.click(increment);
+    increment && (await userEvent.click(increment));
     expect(number.value).toBe("0");
-    await userEvent.click(increment);
+    increment && (await userEvent.click(increment));
     expect(number.value).toBe("0");
   });
 
@@ -290,9 +290,9 @@ describe("Number input component tests", () => {
     );
     const number = getByLabelText("Number input label") as HTMLInputElement;
     const increment = getAllByRole("button")[1];
-    await userEvent.click(increment);
+    increment && (await userEvent.click(increment));
     expect(number.value).toBe("2");
-    await userEvent.click(increment);
+    increment && (await userEvent.click(increment));
     expect(number.value).toBe("2.5");
   });
 
@@ -302,9 +302,9 @@ describe("Number input component tests", () => {
     );
     const number = getByLabelText("Number input label") as HTMLInputElement;
     const increment = getAllByRole("button")[1];
-    await userEvent.click(increment);
+    increment && (await userEvent.click(increment));
     expect(number.value).toBe("-1");
-    await userEvent.click(increment);
+    increment && (await userEvent.click(increment));
     expect(number.value).toBe("-1");
   });
 
@@ -314,7 +314,7 @@ describe("Number input component tests", () => {
     );
     const number = getByLabelText("Number input label") as HTMLInputElement;
     const decrement = getAllByRole("button")[0];
-    await userEvent.click(decrement);
+    decrement && (await userEvent.click(decrement));
     expect(number.value).toBe("-1");
   });
 
@@ -324,7 +324,7 @@ describe("Number input component tests", () => {
     );
     const number = getByLabelText("Number input label") as HTMLInputElement;
     const decrement = getAllByRole("button")[0];
-    await userEvent.click(decrement);
+    decrement && (await userEvent.click(decrement));
     expect(number.value).toBe("0");
   });
 
@@ -334,9 +334,9 @@ describe("Number input component tests", () => {
     );
     const number = getByLabelText("Number input label") as HTMLInputElement;
     const decrement = getAllByRole("button")[0];
-    await userEvent.click(decrement);
+    decrement && (await userEvent.click(decrement));
     expect(number.value).toBe("2");
-    await userEvent.click(decrement);
+    decrement && (await userEvent.click(decrement));
     expect(number.value).toBe("2");
   });
 
@@ -346,9 +346,9 @@ describe("Number input component tests", () => {
     );
     const number = getByLabelText("Number input label") as HTMLInputElement;
     const decrement = getAllByRole("button")[0];
-    await userEvent.click(decrement);
+    decrement && (await userEvent.click(decrement));
     expect(number.value).toBe("-1");
-    await userEvent.click(decrement);
+    decrement && (await userEvent.click(decrement));
     expect(number.value).toBe("-1.5");
   });
 
@@ -468,9 +468,9 @@ describe("Number input component tests", () => {
     expect(number.getAttribute("aria-controls")).toBeNull();
     expect(number.getAttribute("aria-expanded")).toBeNull();
     const decrement = getAllByRole("button")[0];
-    expect(decrement.getAttribute("aria-label")).toBe("Decrement value");
+    expect(decrement?.getAttribute("aria-label")).toBe("Decrement value");
     const increment = getAllByRole("button")[1];
-    expect(increment.getAttribute("aria-label")).toBe("Increment value");
+    expect(increment?.getAttribute("aria-label")).toBe("Increment value");
   });
 
   test("Number input submits correct values inside a form and actions don't trigger the submit event", async () => {
@@ -489,11 +489,11 @@ describe("Number input component tests", () => {
     const less = getAllByRole("button")[0];
     const more = getAllByRole("button")[1];
     const submit = getByText("Submit");
-    await userEvent.click(more);
+    more && (await userEvent.click(more));
     expect(handlerOnSubmit).not.toHaveBeenCalled();
-    await userEvent.click(less);
+    less && (await userEvent.click(less));
     expect(handlerOnSubmit).not.toHaveBeenCalled();
-    await userEvent.click(submit);
+    submit && (await userEvent.click(submit));
     expect(handlerOnSubmit).toHaveBeenCalled();
   });
 });

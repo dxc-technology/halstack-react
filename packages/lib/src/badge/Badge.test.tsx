@@ -7,7 +7,6 @@ describe("Badge component tests", () => {
     const { getByText } = render(<DxcBadge label={99} mode="notification" />);
     expect(getByText("99")).toBeTruthy();
   });
-
   test("Badge renders +99 as label when it is greater than notification limit", () => {
     const { getByText } = render(
       <DxcFlex>

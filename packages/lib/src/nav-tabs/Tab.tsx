@@ -1,10 +1,10 @@
-import React, { forwardRef, Ref, useContext, useEffect, useRef } from "react";
+import { useEffect, forwardRef, Ref, useContext, useRef, useImperativeHandle, KeyboardEvent } from "react";
 import styled from "styled-components";
 import DxcBadge from "../badge/Badge";
 import DxcFlex from "../flex/Flex";
-import DxcIcon from "../icon/Icon";
-import { NavTabsContext } from "./NavTabsContext";
 import NavTabsPropsType, { TabProps } from "./types";
+import NavTabsContext from "./NavTabsContext";
+import DxcIcon from "../icon/Icon";
 
 const DxcTab = forwardRef(
   (
@@ -12,18 +12,24 @@ const DxcTab = forwardRef(
     ref: Ref<HTMLAnchorElement>
   ): JSX.Element => {
     const tabRef = useRef<HTMLAnchorElement>();
-    const { iconPosition, tabIndex, focusedLabel } = useContext(NavTabsContext);
+    const { iconPosition, tabIndex, focusedLabel } = useContext(NavTabsContext) ?? {};
+    const innerRef = useRef<HTMLAnchorElement | null>(null);
+    useImperativeHandle(ref, () => innerRef.current!, []);
 
     useEffect(() => {
-      focusedLabel === children.toString() && tabRef?.current?.focus();
+      if (focusedLabel === children.toString()) {
+        tabRef?.current?.focus();
+      }
     }, [focusedLabel]);
 
-    const handleOnKeyDown = (event: React.KeyboardEvent<HTMLAnchorElement>) => {
+    const handleOnKeyDown = (event: KeyboardEvent<HTMLAnchorElement>) => {
       switch (event.key) {
         case " ":
         case "Enter":
           event.preventDefault();
           tabRef?.current?.click();
+          break;
+        default:
           break;
       }
     };
@@ -35,13 +41,16 @@ const DxcTab = forwardRef(
           disabled={disabled}
           active={active}
           iconPosition={iconPosition}
-          hasIcon={icon != null ? true : false}
-          ref={(anchorRef) => {
+          hasIcon={icon != null}
+          ref={(anchorRef: HTMLAnchorElement) => {
             tabRef.current = anchorRef;
 
             if (ref) {
-              if (typeof ref === "function") ref(anchorRef);
-              else (ref as React.MutableRefObject<HTMLAnchorElement | null>).current = anchorRef;
+              if (typeof ref === "function") {
+                ref(anchorRef);
+              } else {
+                innerRef.current = anchorRef;
+              }
             }
           }}
           onKeyDown={handleOnKeyDown}
@@ -64,7 +73,7 @@ const DxcTab = forwardRef(
               <DxcBadge
                 mode="notification"
                 size="small"
-                label={typeof notificationNumber === "number" && notificationNumber}
+                label={typeof notificationNumber === "number" ? notificationNumber : undefined}
               />
             )}
           </DxcFlex>
