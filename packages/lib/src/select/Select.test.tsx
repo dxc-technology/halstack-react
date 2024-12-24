@@ -292,18 +292,18 @@ describe("Select component tests", () => {
     expect(onBlur).toHaveBeenCalled();
     expect(onBlur).toHaveBeenCalledWith({ value: [], error: "This field is required. Please, enter a value." });
     await userEvent.click(select);
-    const optionsFirst = getAllByRole("option");
-    optionsFirst[0] && (await userEvent.click(optionsFirst[0]));
-    optionsFirst[1] && (await userEvent.click(optionsFirst[1]));
+    let options = getAllByRole("option");
+    options[0] && (await userEvent.click(options[0]));
+    options[1] && (await userEvent.click(options[1]));
     expect(onChange).toHaveBeenCalled();
     expect(onChange).toHaveBeenCalledWith({ value: ["1", "2"] });
     fireEvent.blur(select);
     expect(onBlur).toHaveBeenCalled();
     expect(onBlur).toHaveBeenCalledWith({ value: ["1", "2"] });
     await userEvent.click(select);
-    const optionsSecond = getAllByRole("option");
-    optionsSecond[0] && (await userEvent.click(optionsSecond[0]));
-    optionsSecond[1] && (await userEvent.click(optionsSecond[1]));
+    options = getAllByRole("option");
+    options[0] && (await userEvent.click(options[0]));
+    options[1] && (await userEvent.click(options[1]));
     expect(onChange).toHaveBeenCalled();
     expect(onChange).toHaveBeenCalledWith({ value: [], error: "This field is required. Please, enter a value." });
     fireEvent.blur(select);
@@ -360,14 +360,14 @@ describe("Select component tests", () => {
     const select = getByRole("combobox");
     const submitInput = container.querySelector<HTMLInputElement>(`input[name="test"]`);
     await userEvent.click(select);
-    const optionsFirst = getAllByRole("option");
-    optionsFirst[2] && (await userEvent.click(optionsFirst[2]));
+    let options = getAllByRole("option");
+    options[2] && (await userEvent.click(options[2]));
     expect(onChange).toHaveBeenCalledWith({ value: "3" });
     expect(queryByRole("listbox")).toBeFalsy();
     expect(getByText("Option 03")).toBeTruthy();
     await userEvent.click(select);
-    const optionsSecond = getAllByRole("option");
-    expect(optionsSecond[2]?.getAttribute("aria-selected")).toBe("true");
+    options = getAllByRole("option");
+    expect(options[2]?.getAttribute("aria-selected")).toBe("true");
     expect(submitInput?.value).toBe("3");
   });
 
@@ -741,14 +741,14 @@ describe("Select component tests", () => {
     const select = getByRole("combobox");
     const submitInput = container.querySelector<HTMLInputElement>(`input[name="test"]`);
     await userEvent.click(select);
-    const optionsFirst = getAllByRole("option");
-    optionsFirst[8] && (await userEvent.click(optionsFirst[8]));
+    let options = getAllByRole("option");
+    options[8] && (await userEvent.click(options[8]));
     expect(onChange).toHaveBeenCalledWith({ value: "oviedo" });
     expect(queryByRole("list")).toBeFalsy();
     expect(getByText("Oviedo")).toBeTruthy();
     await userEvent.click(select);
-    const optionsSecond = getAllByRole("option");
-    expect(optionsSecond[8]?.getAttribute("aria-selected")).toBe("true");
+    options = getAllByRole("option");
+    expect(options[8]?.getAttribute("aria-selected")).toBe("true");
     expect(submitInput?.value).toBe("oviedo");
   });
 
@@ -868,15 +868,15 @@ describe("Select component tests", () => {
     expect(getAllByRole("option").length).toBe(5);
     expect(getByText("Colores")).toBeTruthy();
     expect(getByText("Ríos españoles")).toBeTruthy();
-    const optionsFirst = getAllByRole("option");
-    optionsFirst[4] && (await userEvent.click(optionsFirst[4]));
+    let options = getAllByRole("option");
+    options[4] && (await userEvent.click(options[4]));
     expect(onChange).toHaveBeenCalledWith({ value: "ebro" });
     expect(queryByRole("list")).toBeFalsy();
     expect(getByText("Ebro")).toBeTruthy();
     expect(searchInput?.value).toBe("");
     await userEvent.click(select);
-    const optionsSecond = getAllByRole("option");
-    expect(optionsSecond[17]?.getAttribute("aria-selected")).toBe("true");
+    options = getAllByRole("option");
+    expect(options[17]?.getAttribute("aria-selected")).toBe("true");
   });
 
   test("Grouped Options: Searchable - Displays 'No matches found' when there are no filtering results", async () => {
