@@ -320,12 +320,12 @@ describe("Select component tests", () => {
       error: "This field is required. Please, enter a value.",
     });
     userEvent.click(select);
-    const optionsFirst = getAllByRole("option");
-    if (optionsFirst[0]) {
-      userEvent.click(optionsFirst[0]);
+    let options = getAllByRole("option");
+    if (options[0]) {
+      userEvent.click(options[0]);
     }
-    if (optionsFirst[1]) {
-      userEvent.click(optionsFirst[1]);
+    if (options[1]) {
+      userEvent.click(options[1]);
     }
     expect(onChange).toHaveBeenCalled();
     expect(onChange).toHaveBeenCalledWith({ value: ["1", "2"] });
@@ -333,12 +333,12 @@ describe("Select component tests", () => {
     expect(onBlur).toHaveBeenCalled();
     expect(onBlur).toHaveBeenCalledWith({ value: ["1", "2"] });
     userEvent.click(select);
-    const optionsSecond = getAllByRole("option");
-    if (optionsSecond[0]) {
-      userEvent.click(optionsSecond[0]);
+    options = getAllByRole("option");
+    if (options[0]) {
+      userEvent.click(options[0]);
     }
-    if (optionsSecond[1]) {
-      userEvent.click(optionsSecond[1]);
+    if (options[1]) {
+      userEvent.click(options[1]);
     }
     expect(onChange).toHaveBeenCalled();
     expect(onChange).toHaveBeenCalledWith({
@@ -402,16 +402,16 @@ describe("Select component tests", () => {
     const select = getByRole("combobox");
     const submitInput = container.querySelector<HTMLInputElement>(`input[name="test"]`);
     userEvent.click(select);
-    const optionsFirst = getAllByRole("option");
-    if (optionsFirst[2]) {
-      userEvent.click(optionsFirst[2]);
+    let options = getAllByRole("option");
+    if (options[2]) {
+      userEvent.click(options[2]);
     }
     expect(onChange).toHaveBeenCalledWith({ value: "3" });
     expect(queryByRole("listbox")).toBeFalsy();
     expect(getByText("Option 03")).toBeTruthy();
     userEvent.click(select);
-    const optionsSecond = getAllByRole("option");
-    expect(optionsSecond[2]?.getAttribute("aria-selected")).toBe("true");
+    options = getAllByRole("option");
+    expect(options[2]?.getAttribute("aria-selected")).toBe("true");
     expect(submitInput?.value).toBe("3");
   });
 
@@ -967,16 +967,16 @@ describe("Select component tests", () => {
     const select = getByRole("combobox");
     const submitInput = container.querySelector<HTMLInputElement>(`input[name="test"]`);
     userEvent.click(select);
-    const optionsFirst = getAllByRole("option");
-    if (optionsFirst[8]) {
-      userEvent.click(optionsFirst[8]);
+    let options = getAllByRole("option");
+    if (options[8]) {
+      userEvent.click(options[8]);
     }
     expect(onChange).toHaveBeenCalledWith({ value: "oviedo" });
     expect(queryByRole("list")).toBeFalsy();
     expect(getByText("Oviedo")).toBeTruthy();
     userEvent.click(select);
-    const optionsSecond = getAllByRole("option");
-    expect(optionsSecond[8]?.getAttribute("aria-selected")).toBe("true");
+    options = getAllByRole("option");
+    expect(options[8]?.getAttribute("aria-selected")).toBe("true");
     expect(submitInput?.value).toBe("oviedo");
   });
 
@@ -1174,17 +1174,17 @@ describe("Select component tests", () => {
     expect(getAllByRole("option").length).toBe(5);
     expect(getByText("Colores")).toBeTruthy();
     expect(getByText("Ríos españoles")).toBeTruthy();
-    const optionsFirst = getAllByRole("option");
-    if (optionsFirst[4]) {
-      userEvent.click(optionsFirst[4]);
+    let options = getAllByRole("option");
+    if (options[4]) {
+      userEvent.click(options[4]);
     }
     expect(onChange).toHaveBeenCalledWith({ value: "ebro" });
     expect(queryByRole("list")).toBeFalsy();
     expect(getByText("Ebro")).toBeTruthy();
     expect(searchInput?.value).toBe("");
     userEvent.click(select);
-    const optionsSecond = getAllByRole("option");
-    expect(optionsSecond[17]?.getAttribute("aria-selected")).toBe("true");
+    options = getAllByRole("option");
+    expect(options[17]?.getAttribute("aria-selected")).toBe("true");
   });
 
   test("Grouped Options: Searchable - Displays 'No matches found' when there are no filtering results", () => {

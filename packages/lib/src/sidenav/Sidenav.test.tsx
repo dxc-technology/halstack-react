@@ -31,10 +31,10 @@ describe("Sidenav component tests", () => {
       </DxcSidenav>
     );
     expect(sidenav.getByText("Collapsable")).toBeTruthy();
-    const buttonsFirst = sidenav.getAllByRole("button");
-    expect(buttonsFirst[0]?.getAttribute("aria-expanded")).toBe("true");
+    let buttons = sidenav.getAllByRole("button");
+    expect(buttons[0]?.getAttribute("aria-expanded")).toBe("true");
     fireEvent.click(sidenav.getByText("Collapsable"));
-    const buttonsSecond = sidenav.getAllByRole("button");
-    expect(buttonsSecond[0]?.getAttribute("aria-expanded")).toBe("false");
+    buttons = sidenav.getAllByRole("button");
+    expect(buttons[0]?.getAttribute("aria-expanded")).toBe("false");
   });
 });
