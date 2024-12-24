@@ -97,10 +97,11 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
     const handleSelectChangeValue = (newOption: ListOptionType | undefined) => {
       if (newOption) {
         const currentValue = value ?? innerValue;
+        // TODO: Fix types
         const newValue = multiple
-          ? Array.isArray(currentValue) && currentValue.includes(newOption.value)
-            ? currentValue.filter((optionVal: string) => optionVal !== newOption.value)
-            : [...currentValue, newOption.value]
+          ? (currentValue as string[]).includes(newOption.value)
+            ? (currentValue as string[]).filter((optionVal: string) => optionVal !== newOption.value)
+            : [...(currentValue as string[]), newOption.value]
           : newOption.value;
 
         if (value == null) {
