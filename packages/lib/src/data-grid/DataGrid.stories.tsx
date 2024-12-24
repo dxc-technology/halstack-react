@@ -946,10 +946,10 @@ export const DataGridSortedWithChildren: Story = {
     await userEvent.click(canvas.getByText("Root Node 2"));
     await userEvent.click(canvas.getByText("Child Node 1.1"));
     await userEvent.click(canvas.getByText("Child Node 2.1"));
-    const columnheader1_1 = canvas.getAllByRole("columnheader")[1];
-    columnheader1_1 && (await userEvent.click(columnheader1_1));
-    const columnheader1_2 = canvas.getAllByRole("columnheader")[1];
-    columnheader1_2 && (await userEvent.click(columnheader1_2));
+    let columnheader1 = canvas.getAllByRole("columnheader")[1];
+    columnheader1 && (await userEvent.click(columnheader1));
+    columnheader1 = canvas.getAllByRole("columnheader")[1];
+    columnheader1 && (await userEvent.click(columnheader1));
     const checkbox5 = canvas.getAllByRole("checkbox")[5];
     checkbox5 && (await userEvent.click(checkbox5));
     const checkbox13 = canvas.getAllByRole("checkbox")[13];
