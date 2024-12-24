@@ -65,7 +65,11 @@ const DxcTabs = ({
   tabIndex = 0,
   children,
 }: TabsPropsType) => {
-  const childrenArray = useMemo(() => Children.toArray(children), [children]);
+  // TODO: Find a way to remove this type assertion (should not be needed)
+  const childrenArray: ReactElement<TabProps>[] = useMemo(
+    () => Children.toArray(children) as ReactElement<TabProps>[],
+    [children]
+  );
   const hasLabelAndIcon = useMemo(
     () => childrenArray.some((child) => isValidElement<TabProps>(child) && child.props.icon && child.props.label),
     [childrenArray]
