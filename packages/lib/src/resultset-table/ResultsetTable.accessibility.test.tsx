@@ -1,10 +1,10 @@
 import { render } from "@testing-library/react";
 import { axe, formatRules } from "../../test/accessibility/axe-helper";
 import DxcResultsetTable from "./ResultsetTable";
+import { ActionCellsPropsType } from "../table/types";
 
 // TODO: REMOVE
 import rules from "../../test/accessibility/rules/specific/resultset-table/disabledRules";
-import { ActionCellsPropsType } from "../table/types";
 
 const disabledRules = {
   rules: formatRules(rules),
