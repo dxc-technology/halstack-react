@@ -1,9 +1,10 @@
+import { Meta, StoryObj } from "@storybook/react";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import { HalstackProvider } from "../HalstackContext";
 import DxcTabs from "./Tabs";
-import type { Space } from "./types";
+import type { Space } from "../common/utils";
 
 export default {
   title: "Tabs",
@@ -13,7 +14,7 @@ export default {
       viewports: INITIAL_VIEWPORTS,
     },
   },
-};
+} as Meta<typeof DxcTabs>;
 
 const iconSVG = (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" height="20" width="20" fill="currentColor">
@@ -91,7 +92,7 @@ const firstDisabledTabs = (
 
 const tabsNotification = (iconPosition?: "top" | "left") => (
   <DxcTabs iconPosition={iconPosition}>
-    <DxcTabs.Tab label="Tab 1" notificationNumber={true}>
+    <DxcTabs.Tab label="Tab 1" notificationNumber>
       <></>
     </DxcTabs.Tab>
     <DxcTabs.Tab label="Tab 2" notificationNumber={5}>
@@ -143,7 +144,7 @@ const tabsIcon = (iconPosition?: "top" | "left") => (
 
 const tabsNotificationIcon = (iconPosition?: "top" | "left") => (
   <DxcTabs iconPosition={iconPosition}>
-    <DxcTabs.Tab label="Tab 1" icon={iconSVG} notificationNumber={true}>
+    <DxcTabs.Tab label="Tab 1" icon={iconSVG} notificationNumber>
       <></>
     </DxcTabs.Tab>
     <DxcTabs.Tab label="Tab 2" icon={iconSVG} notificationNumber={5}>
@@ -173,7 +174,7 @@ const opinionatedTheme = {
   },
 };
 
-export const Chromatic = () => (
+const Tabs = () => (
   <>
     <ExampleContainer>
       <Title title="Only label" theme="light" level={4} />
@@ -272,7 +273,7 @@ export const Chromatic = () => (
   </>
 );
 
-export const ScrollableTabs = () => (
+const Scroll = () => (
   <>
     <ExampleContainer>
       <Title title="Only label" theme="light" level={4} />
@@ -293,9 +294,18 @@ export const ScrollableTabs = () => (
   </>
 );
 
-ScrollableTabs.parameters = {
-  viewport: {
-    defaultViewport: "iphonex",
+type Story = StoryObj<typeof DxcTabs>;
+
+export const Chromatic: Story = {
+  render: Tabs,
+};
+
+export const ScrollableTabs: Story = {
+  render: Scroll,
+  parameters: {
+    viewport: {
+      defaultViewport: "iphonex",
+    },
+    chromatic: { viewports: [375], delay: 5000 },
   },
-  chromatic: { viewports: [375], delay: 5000 },
 };

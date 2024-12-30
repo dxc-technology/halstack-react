@@ -1,8 +1,8 @@
-import { memo, useEffect, useId, useRef, useState } from "react";
+import { memo, useContext, useEffect, useId, useRef, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { AdvancedTheme } from "../common/variables";
 import DxcFlex from "../flex/Flex";
-import useTheme from "../useTheme";
+import HalstackContext from "../HalstackContext";
 import { RadioProps } from "./types";
 
 const DxcRadio = ({
@@ -17,11 +17,13 @@ const DxcRadio = ({
 }: RadioProps): JSX.Element => {
   const radioLabelId = `radio-${useId()}`;
   const ref = useRef<HTMLSpanElement>(null);
-  const colorsTheme = useTheme();
+  const colorsTheme = useContext(HalstackContext);
 
   const handleOnClick = () => {
     onClick();
-    document.activeElement !== ref?.current && ref?.current?.focus();
+    if (document.activeElement !== ref.current) {
+      ref.current?.focus();
+    }
   };
 
   const [firstUpdate, setFirstUpdate] = useState(true);
@@ -31,7 +33,9 @@ const DxcRadio = ({
       setFirstUpdate(false);
       return;
     }
-    focused && ref?.current?.focus();
+    if (focused) {
+      ref.current?.focus();
+    }
   }, [focused]);
 
   return (
@@ -77,14 +81,6 @@ const getRadioInputStateColor = (
   state: "enabled" | "hover" | "active"
 ) => {
   switch (state) {
-    case "enabled":
-      return props.disabled
-        ? props.theme.disabledRadioInputColor
-        : props.error
-          ? props.theme.errorRadioInputColor
-          : props.readOnly
-            ? props.theme.readOnlyRadioInputColor
-            : props.theme.radioInputColor;
     case "hover":
       return props.error
         ? props.theme.hoverErrorRadioInputColor
@@ -97,6 +93,14 @@ const getRadioInputStateColor = (
         : props.readOnly
           ? props.theme.activeReadOnlyRadioInputColor
           : props.theme.activeRadioInputColor;
+    case "enabled":
+      return props.disabled
+        ? props.theme.disabledRadioInputColor
+        : props.error
+          ? props.theme.errorRadioInputColor
+          : props.readOnly
+            ? props.theme.readOnlyRadioInputColor
+            : props.theme.radioInputColor;
   }
 };
 

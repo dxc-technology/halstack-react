@@ -53,7 +53,7 @@ const sections = [
         </DxcParagraph>
         <DxcParagraph>
           While an extensive library of over three thousand icons is available, there may arise situations necessitating
-          custom icons—particularly those representing brands, companies, or organizations. In such cases, an SVG
+          custom icons—particularly those representing brands, companies, or organizations. In such cases, a SVG
           implementation option is provided. However, it's recommended to limit the use of custom icons to these
           specific scenarios, as adherence to the existing icon set is strongly encouraged for design consistency.
         </DxcParagraph>

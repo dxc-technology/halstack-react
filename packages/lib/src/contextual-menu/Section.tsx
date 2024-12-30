@@ -1,21 +1,21 @@
 import styled from "styled-components";
+import { useId } from "react";
 import { DxcInset } from "..";
 import CoreTokens from "../common/coreTokens";
 import DxcDivider from "../divider/Divider";
 import { SubMenu } from "./ContextualMenu";
 import MenuItem from "./MenuItem";
 import { SectionProps } from "./types";
-import { useId } from "react";
 
 const Section = ({ section, index, length }: SectionProps) => {
   const id = `section-${useId()}`;
 
   return (
-    <section aria-label={section?.title ?? id} aria-labelledby={id}>
+    <section aria-label={section.title ?? id} aria-labelledby={id}>
       {section.title && <Title id={id}>{section.title}</Title>}
       <SubMenu>
-        {section.items.map((item, index) => (
-          <MenuItem item={item} key={`${item.label}-${index}`} />
+        {section.items.map((item, i) => (
+          <MenuItem item={item} key={`${item.label}-${i}`} />
         ))}
       </SubMenu>
       {index !== length - 1 && (

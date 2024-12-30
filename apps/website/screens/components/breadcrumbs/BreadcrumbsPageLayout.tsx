@@ -2,8 +2,9 @@ import PageHeading from "@/common/PageHeading";
 import { DxcFlex, DxcParagraph } from "@dxc-technology/halstack-react";
 import TabsPageHeading from "@/common/TabsPageLayout";
 import ComponentHeading from "@/common/ComponentHeading";
+import { ReactNode } from "react";
 
-const BreadcrumbsPageHeading = ({ children }: { children: React.ReactNode }) => {
+const BreadcrumbsPageHeading = ({ children }: { children: ReactNode }) => {
   const tabs = [
     { label: "Code", path: "/components/breadcrumbs" },
     { label: "Usage", path: "/components/breadcrumbs/usage" },

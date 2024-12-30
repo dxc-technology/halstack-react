@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import { DxcTable, DxcResultsetTable } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";

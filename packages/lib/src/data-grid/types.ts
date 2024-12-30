@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode, ReactElement } from "react";
 import { SortColumn } from "react-data-grid";
 
 export type GridColumn = {
@@ -21,7 +21,7 @@ export type GridColumn = {
   /**
    * Custom criteria for sorting the column.
    */
-  sortFn?: (_a: ReactNode, _b: ReactNode) => number;
+  sortFn?: (_a: ReactNode, _b: ReactNode) => 0 | 1 | -1;
   /**
    * Whether the column is draggable or not.
    */
@@ -202,5 +202,37 @@ type Props = CommonProps &
     | (ExpandableRows & SelectableGridProps)
     | (HierarchyRows & SelectableGridProps)
   );
+
+export type ColSpanArgs<TRow, TSummaryRow> =
+  | { type: "HEADER" }
+  | { type: "ROW"; row: TRow }
+  | { type: "SUMMARY"; row: TSummaryRow };
+
+export interface Column<TRow, TSummaryRow = unknown> {
+  name: string | ReactElement;
+  key: string;
+  width?: number | string;
+  minWidth?: number;
+  maxWidth?: number;
+  cellClass?: string | ((row: TRow) => string);
+  headerCellClass?: string;
+  summaryCellClass?: string | ((row: TSummaryRow) => string);
+  // renderHeaderCell?: (props: RenderHeaderCellProps<TRow, TSummaryRow>) => ReactNode
+  // renderCell?: (props: RenderCellProps<TRow, TSummaryRow>) => ReactNode
+  // renderSummaryCell?: (props: RenderSummaryCellProps<TSummaryRow, TRow>) => ReactNode
+  // renderGroupCell?: (props: RenderGroupCellProps<TRow, TSummaryRow>) => ReactNode
+  // renderEditCell?: (props: RenderEditCellProps<TRow, TSummaryRow>) => ReactNode
+  editable?: boolean | ((row: TRow) => boolean);
+  colSpan?: (args: ColSpanArgs<TRow, TSummaryRow>) => number;
+  frozen?: boolean;
+  resizable?: boolean;
+  sortable?: boolean;
+  draggable?: boolean;
+  sortDescendingFirst?: boolean;
+  editorOptions?: {
+    displayCellContent?: boolean;
+    commitOnOutsideClick?: boolean;
+  };
+}
 
 export default Props;

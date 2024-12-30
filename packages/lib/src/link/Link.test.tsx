@@ -6,12 +6,10 @@ describe("Link component tests", () => {
     const { getByText } = render(<DxcLink>Link</DxcLink>);
     expect(getByText("Link")).toBeTruthy();
   });
-
   test("Link renders with correct href", () => {
     const { getByRole } = render(<DxcLink href="/testPage">Link</DxcLink>);
     expect(getByRole("link").getAttribute("href")).toEqual("/testPage");
   });
-
   test("Link renders with correct disabled state", () => {
     const { getByText } = render(
       <DxcLink href="/testPage" disabled>
@@ -26,7 +24,6 @@ describe("Link component tests", () => {
     );
     expect(getByTextLinkButton("LinkButton").hasAttribute("onclick")).toBeFalsy();
   });
-
   test("Link open new tab", () => {
     const { getByRole } = render(
       <DxcLink href="/testPage" newWindow>
@@ -35,7 +32,6 @@ describe("Link component tests", () => {
     );
     expect(getByRole("link").getAttribute("target")).toEqual("_blank");
   });
-
   test("Link onClick called", () => {
     const onClick = jest.fn();
     const { getByText } = render(<DxcLink onClick={onClick}>Link</DxcLink>);
@@ -43,7 +39,6 @@ describe("Link component tests", () => {
     fireEvent.click(link);
     expect(onClick).toHaveBeenCalled();
   });
-
   test("Disabled link onClick not called", () => {
     const onClick = jest.fn();
     const { getByText } = render(
