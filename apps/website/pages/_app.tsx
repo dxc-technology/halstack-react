@@ -57,6 +57,7 @@ const App = ({ Component, pageProps }: AppPropsWithLayout) => {
     if (pathToBeMatched) {
       return desiredPaths.includes(pathToBeMatched);
     }
+    return false;
   };
 
   return (
