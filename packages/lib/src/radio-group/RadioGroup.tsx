@@ -46,7 +46,7 @@ const DxcRadioGroup = forwardRef<RefType, RadioGroupPropsType>(
           ? [
               ...options,
               {
-                label: optionalItemLabel ?? translatedLabels.radioGroup.optionalItemLabelDefault ?? "",
+                label: optionalItemLabel ?? translatedLabels.radioGroup.optionalItemLabelDefault,
                 value: "",
                 disabled,
               },
