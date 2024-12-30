@@ -1,8 +1,8 @@
-import { memo, useEffect, useId, useRef, useState } from "react";
+import { memo, useContext, useEffect, useId, useRef, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { AdvancedTheme } from "../common/variables";
 import DxcFlex from "../flex/Flex";
-import useTheme from "../useTheme";
+import HalstackContext from "../HalstackContext";
 import { RadioProps } from "./types";
 
 const DxcRadio = ({
@@ -16,13 +16,13 @@ const DxcRadio = ({
   tabIndex,
 }: RadioProps): JSX.Element => {
   const radioLabelId = `radio-${useId()}`;
-  const ref = useRef<HTMLSpanElement | null>(null);
-  const colorsTheme = useTheme();
+  const ref = useRef<HTMLSpanElement>(null);
+  const colorsTheme = useContext(HalstackContext);
 
   const handleOnClick = () => {
     onClick();
-    if (document.activeElement !== ref?.current) {
-      ref?.current?.focus();
+    if (document.activeElement !== ref.current) {
+      ref.current?.focus();
     }
   };
 
@@ -34,12 +34,12 @@ const DxcRadio = ({
       return;
     }
     if (focused) {
-      ref?.current?.focus();
+      ref.current?.focus();
     }
   }, [focused]);
 
   return (
-    <ThemeProvider theme={colorsTheme?.radioGroup}>
+    <ThemeProvider theme={colorsTheme.radioGroup}>
       <DxcFlex>
         <RadioContainer
           error={error}

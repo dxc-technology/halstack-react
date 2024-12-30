@@ -1,6 +1,5 @@
 import { ReactNode } from "react";
-
-import { Space, Margin } from "../common/utils";
+import { Margin, Space } from "../common/utils";
 
 export type Column = {
   /**

@@ -1,9 +1,7 @@
-import { CSSProperties, KeyboardEvent, ReactNode, SVGProps } from "react";
-
-import { Space, Margin } from "../common/utils";
+import { CSSProperties, KeyboardEvent } from "react";
+import { Margin, SVG, Space } from "../common/utils";
 
 type Size = "small" | "medium" | "large" | "fillParent" | "fitContent";
-type SVG = ReactNode & SVGProps<SVGSVGElement>;
 
 export type Option = {
   /**

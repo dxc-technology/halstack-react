@@ -1,12 +1,23 @@
 import * as Popover from "@radix-ui/react-popover";
-import { ChangeEvent, FocusEvent, forwardRef, KeyboardEvent, MouseEvent, useCallback, useId, useMemo, useRef, useState } from "react";
+import {
+  ChangeEvent,
+  FocusEvent,
+  forwardRef,
+  KeyboardEvent,
+  MouseEvent,
+  useCallback,
+  useContext,
+  useId,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables";
-import getMargin from "../common/utils";
+import { getMargin } from "../common/utils";
 import DxcIcon from "../icon/Icon";
 import { Tooltip, TooltipWrapper } from "../tooltip/Tooltip";
-import useTheme from "../useTheme";
-import useTranslatedLabels from "../useTranslatedLabels";
+import HalstackContext, { HalstackLanguageContext } from "../HalstackContext";
 import useWidth from "../utils/useWidth";
 import Listbox from "./Listbox";
 import {
@@ -57,8 +68,8 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
     const selectSearchInputRef = useRef<HTMLInputElement | null>(null);
 
     const width = useWidth(selectRef.current);
-    const colorsTheme = useTheme();
-    const translatedLabels = useTranslatedLabels();
+    const colorsTheme = useContext(HalstackContext);
+    const translatedLabels = useContext(HalstackLanguageContext);
 
     const optionalItem = { label: placeholder, value: "" };
     const filteredOptions = useMemo(() => filterOptionsBySearchValue(options, searchValue), [options, searchValue]);
@@ -86,6 +97,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
     const handleSelectChangeValue = (newOption: ListOptionType | undefined) => {
       if (newOption) {
         const currentValue = value ?? innerValue;
+        // TODO: Fix types
         const newValue = multiple
           ? (currentValue as string[]).includes(newOption.value)
             ? (currentValue as string[]).filter((optionVal: string) => optionVal !== newOption.value)
@@ -95,11 +107,11 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
         if (value == null) {
           setInnerValue(newValue);
         }
-
+        // TODO: Fix types
         onChange?.({
           value: newValue as string & string[],
           ...(notOptionalCheck(newValue, multiple, optional) && {
-            error: translatedLabels?.formFields?.requiredValueErrorMessage,
+            error: translatedLabels.formFields.requiredValueErrorMessage,
           }),
         });
       }
@@ -127,11 +139,13 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
 
         const currentValue = value ?? innerValue;
         if (notOptionalCheck(currentValue, multiple, optional)) {
+          // TODO: Fix types
           onBlur?.({
             value: currentValue as string & string[],
-            error: translatedLabels?.formFields?.requiredValueErrorMessage,
+            error: translatedLabels.formFields.requiredValueErrorMessage,
           });
         } else {
+          // TODO: Fix types
           onBlur?.({ value: currentValue as string & string[] });
         }
       }
@@ -243,11 +257,13 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
         setInnerValue([]);
       }
       if (!optional) {
+        // TODO: Fix types
         onChange?.({
           value: [] as string[] as string & string[],
-          error: translatedLabels?.formFields?.requiredValueErrorMessage,
+          error: translatedLabels.formFields.requiredValueErrorMessage,
         });
       } else {
+        // TODO: Fix types
         onChange?.({ value: [] as string[] as string & string[] });
       }
     };
@@ -274,7 +290,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
     };
 
     return (
-      <ThemeProvider theme={colorsTheme?.select}>
+      <ThemeProvider theme={colorsTheme.select}>
         <SelectContainer margin={margin} size={size} ref={ref}>
           {label && (
             <Label
@@ -285,7 +301,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
               }}
               helperText={helperText}
             >
-              {label} {optional && <OptionalLabel>{translatedLabels?.formFields?.optionalLabel}</OptionalLabel>}
+              {label} {optional && <OptionalLabel>{translatedLabels.formFields.optionalLabel}</OptionalLabel>}
             </Label>
           )}
           {helperText && <HelperText disabled={disabled}>{helperText}</HelperText>}
@@ -315,7 +331,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
                 {multiple && Array.isArray(selectedOption) && selectedOption.length > 0 && (
                   <SelectionIndicator>
                     <SelectionNumber disabled={disabled}>{selectedOption.length}</SelectionNumber>
-                    <Tooltip label={translatedLabels?.select?.actionClearSelectionTitle}>
+                    <Tooltip label={translatedLabels.select.actionClearSelectionTitle}>
                       <ClearOptionsAction
                         disabled={disabled}
                         onMouseDown={(event) => {
@@ -324,7 +340,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
                         }}
                         onClick={handleClearOptionsActionOnClick}
                         tabIndex={-1}
-                        aria-label={translatedLabels?.select?.actionClearSelectionTitle}
+                        aria-label={translatedLabels.select.actionClearSelectionTitle}
                       >
                         <DxcIcon icon="clear" />
                       </ClearOptionsAction>
@@ -378,7 +394,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
                   </ErrorIcon>
                 )}
                 {searchable && searchValue.length > 0 && (
-                  <Tooltip label={translatedLabels?.select?.actionClearSelectionTitle}>
+                  <Tooltip label={translatedLabels.select.actionClearSelectionTitle}>
                     <ClearSearchAction
                       onMouseDown={(event) => {
                         // Avoid input to lose focus
@@ -386,7 +402,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
                       }}
                       onClick={handleClearSearchActionOnClick}
                       tabIndex={-1}
-                      aria-label={translatedLabels?.select?.actionClearSearchTitle}
+                      aria-label={translatedLabels.select.actionClearSearchTitle}
                     >
                       <DxcIcon icon="clear" />
                     </ClearSearchAction>

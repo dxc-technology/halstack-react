@@ -1,31 +1,41 @@
-import { Children, KeyboardEvent, ReactElement, ReactNode, useEffect, useMemo, useRef, useState } from "react";
+import {
+  Children,
+  KeyboardEvent,
+  ReactElement,
+  ReactNode,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import styled, { ThemeProvider } from "styled-components";
-import useTheme from "../useTheme";
+import HalstackContext from "../HalstackContext";
 import NavTabsPropsType from "./types";
 import DxcTab from "./Tab";
 import NavTabsContext from "./NavTabsContext";
 
 const getPropInChild = (child: ReactNode, propName: string) => {
   if (child && typeof child === "object" && "props" in child) {
-    const childWithProps = child as ReactElement;
+    const childWithProps = child;
     if (childWithProps.props[propName]) {
       return childWithProps.props[propName];
-    }
-    if (childWithProps.props.children) {
+    } else if (childWithProps.props.children) {
       return getPropInChild(childWithProps.props.children, propName);
     }
   }
 };
+
 const getLabelFromTab = (child: ReactNode) => {
   if (typeof child === "string") {
     return child;
-  }
-  if (child && typeof child === "object" && "props" in child) {
-    const childWithProps = child as ReactElement;
+  } else if (child && typeof child === "object" && "props" in child) {
+    const childWithProps = child;
     if (Array.isArray(childWithProps.props.children)) {
       return getLabelFromTab(childWithProps.props.children[0]);
+    } else {
+      return getLabelFromTab(childWithProps.props.children);
     }
-    return getLabelFromTab(childWithProps.props.children);
   }
 };
 
@@ -49,11 +59,11 @@ const DxcNavTabs = ({ iconPosition = "top", tabIndex = 0, children }: NavTabsPro
   const [innerFocusIndex, setInnerFocusIndex] = useState<number | null>(null);
   const [underlineWidth, setUnderlineWidth] = useState<number | null>(null);
   const refNavTabList = useRef<HTMLDivElement | null>(null);
-  const colorsTheme = useTheme();
+  const colorsTheme = useContext(HalstackContext);
 
   const childArray = Children.toArray(children).filter(
     (child) => typeof child === "object" && "props" in child
-  ) as ReactElement[];
+  );
 
   useEffect(() => {
     setUnderlineWidth(refNavTabList?.current?.scrollWidth ?? null);
@@ -88,7 +98,7 @@ const DxcNavTabs = ({ iconPosition = "top", tabIndex = 0, children }: NavTabsPro
   };
 
   return (
-    <ThemeProvider theme={colorsTheme?.navTabs}>
+    <ThemeProvider theme={colorsTheme.navTabs}>
       <NavTabsContainer onKeyDown={handleOnKeyDown} ref={refNavTabList} role="tablist" aria-label="Navigation tabs">
         <NavTabsContext.Provider value={contextValue}>{children}</NavTabsContext.Provider>
         <Underline underlineWidth={underlineWidth ?? 0} />

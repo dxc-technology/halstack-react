@@ -1,14 +1,37 @@
 import styled, { ThemeProvider } from "styled-components";
-import { ReactNode } from "react";
-import useTheme from "../useTheme";
-import BaseTypography from "../utils/BaseTypography";
-import ImagePropsType, { CaptionWrapperProps } from "./types";
+import { ReactNode, useContext } from "react";
+import ImagePropsType from "./types";
+import HalstackContext from "../HalstackContext";
 
-const CaptionWrapper = ({ condition, wrapper, children }: CaptionWrapperProps): JSX.Element => (
-  <>{condition ? wrapper(children) : children}</>
-);
+const Figure = styled.figure`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: fit-content;
+  margin: 0;
+  padding: 0;
+`;
 
-const DxcImage = ({
+const CaptionContainer = styled.figcaption`
+  color: ${(props) => props.theme.captionFontColor};
+  font-family: ${(props) => props.theme.captionFontFamily};
+  font-size: ${(props) => props.theme.captionFontSize};
+  font-style: ${(props) => props.theme.captionFontStyle};
+  font-weight: ${(props) => props.theme.captionFontWeight};
+  line-height: ${(props) => props.theme.captionLineHeight};
+`;
+
+const CaptionWrapper = ({ caption, children }: { caption: ImagePropsType["caption"]; children: ReactNode }) =>
+  caption != null ? (
+    <Figure>
+      {children}
+      <CaptionContainer>{caption}</CaptionContainer>
+    </Figure>
+  ) : (
+    children
+  );
+
+export default function DxcImage({
   alt,
   caption,
   lazyLoading = false,
@@ -21,29 +44,12 @@ const DxcImage = ({
   objectPosition,
   onLoad,
   onError,
-}: ImagePropsType) => {
-  const colorsTheme = useTheme();
-
-  const wrapperFunction = (children: ReactNode) => (
-    <Figure>
-      {children}
-      <BaseTypography
-        as="figcaption"
-        color={colorsTheme?.image?.captionFontColor}
-        fontFamily={colorsTheme?.image?.captionFontFamily}
-        fontSize={colorsTheme?.image?.captionFontSize}
-        fontStyle={colorsTheme?.image?.captionFontStyle}
-        fontWeight={colorsTheme?.image?.captionFontWeight}
-        lineHeight={colorsTheme?.image?.captionLineHeight}
-      >
-        {caption}
-      </BaseTypography>
-    </Figure>
-  );
+}: ImagePropsType) {
+  const colorsTheme = useContext(HalstackContext);
 
   return (
-    <ThemeProvider theme={colorsTheme?.image}>
-      <CaptionWrapper condition={caption !== undefined} wrapper={wrapperFunction}>
+    <ThemeProvider theme={colorsTheme.image}>
+      <CaptionWrapper caption={caption}>
         <img
           alt={alt}
           loading={lazyLoading ? "lazy" : undefined}
@@ -62,15 +68,4 @@ const DxcImage = ({
       </CaptionWrapper>
     </ThemeProvider>
   );
-};
-
-const Figure = styled.figure`
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  width: fit-content;
-  margin: 0;
-  padding: 0;
-`;
-
-export default DxcImage;
+}

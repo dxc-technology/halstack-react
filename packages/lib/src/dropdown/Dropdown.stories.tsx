@@ -1,17 +1,18 @@
+import { useContext } from "react";
+import { Meta, StoryObj } from "@storybook/react";
 import { userEvent, within } from "@storybook/test";
 import { ThemeProvider } from "styled-components";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
-import { HalstackProvider } from "../HalstackContext";
-import useTheme from "../useTheme";
+import HalstackContext, { HalstackProvider } from "../HalstackContext";
 import DxcDropdown from "./Dropdown";
 import DropdownMenu from "./DropdownMenu";
-import { Option as DropdownOption } from "./types";
+import { Option } from "./types";
 
 export default {
   title: "Dropdown",
   component: DxcDropdown,
-};
+} as Meta<typeof DxcDropdown>;
 
 const iconSVG = (
   <svg viewBox="0 0 24 24" height="24" width="24" fill="currentColor">
@@ -26,7 +27,7 @@ const iconSVGLarge = (
 );
 const icons = [iconSVG, iconSVGLarge, "nutrition"];
 
-const defaultOptions: DropdownOption[] = [
+const defaultOptions: Option[] = [
   {
     value: "1",
     label: "Amazon",
@@ -60,7 +61,7 @@ const defaultOptions: DropdownOption[] = [
     label: "Gearbest shop",
   },
 ];
-const options: DropdownOption[] = [
+const options: Option[] = [
   {
     value: "1",
     label: "Amazon with a very long text",
@@ -74,7 +75,7 @@ const options: DropdownOption[] = [
     label: "Apple",
   },
 ];
-const optionWithIcon: DropdownOption[] = [
+const optionWithIcon: Option[] = [
   {
     value: "1",
     label: "Ebay",
@@ -220,7 +221,7 @@ const Dropdown = () => (
 );
 
 const DropdownListStates = () => {
-  const colorsTheme = useTheme();
+  const colorsTheme = useContext(HalstackContext);
 
   return (
     <>
@@ -253,7 +254,7 @@ const DropdownListStates = () => {
           </button>
         </div>
       </ExampleContainer>
-      <ThemeProvider theme={colorsTheme?.dropdown}>
+      <ThemeProvider theme={colorsTheme.dropdown}>
         <Title title="Option states" theme="light" level={3} />
         <ExampleContainer pseudoState="pseudo-hover">
           <Title title="Hovered option" theme="light" level={4} />
@@ -380,28 +381,47 @@ const TooltipTitle = () => (
   </ExampleContainer>
 );
 
-export const Chromatic = Dropdown.bind({});
-Chromatic.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const buttonList = canvas.getAllByRole("button");
-  await userEvent.click(buttonList[buttonList.length - 1]);
+type Story = StoryObj<typeof DxcDropdown>;
+
+export const Chromatic: Story = {
+  render: Dropdown,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const buttonList = canvas.getAllByRole("button");
+    const lastButton = buttonList[buttonList.length - 1];
+    if (lastButton != null) {
+      await userEvent.click(lastButton);
+    }
+  },
 };
 
-export const OpinionatedThemed = OpinionatedTheme.bind({});
-OpinionatedThemed.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const buttonList = canvas.getAllByRole("button");
-  await userEvent.click(buttonList[buttonList.length - 1]);
+export const OpinionatedThemed: Story = {
+  render: OpinionatedTheme,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const buttonList = canvas.getAllByRole("button");
+    const lastButton = buttonList[buttonList.length - 1];
+    if (lastButton != null) {
+      await userEvent.click(lastButton);
+    }
+  },
 };
 
-export const MenuStates = DropdownListStates.bind({});
-MenuStates.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  await userEvent.click(canvas.getAllByRole("button")[0]);
+export const MenuStates: Story = {
+  render: DropdownListStates,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const dropdownTrigger = canvas.getAllByRole("button")[0];
+    if (dropdownTrigger != null) {
+      await userEvent.click(dropdownTrigger);
+    }
+  },
 };
 
-export const MenuTooltip = TooltipTitle.bind({});
-MenuTooltip.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  await userEvent.hover(canvas.getByRole("button"));
+export const MenuTooltip: Story = {
+  render: TooltipTitle,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await userEvent.hover(canvas.getByRole("button"));
+  },
 };

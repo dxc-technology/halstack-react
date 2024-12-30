@@ -1,3 +1,4 @@
+import { Meta, StoryObj } from "@storybook/react";
 import { userEvent, within } from "@storybook/test";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
@@ -11,7 +12,7 @@ import useToast from "./useToast";
 export default {
   title: "Toast",
   component: DxcToast,
-};
+} as Meta<typeof DxcToast>;
 
 const action = {
   label: "Action",
@@ -28,7 +29,7 @@ const actionIcon = {
 };
 const onClear = () => {};
 
-export const Chromatic = () => (
+const Toast = () => (
   <>
     <Title title="Default" level={2} />
     <ExampleContainer>
@@ -249,27 +250,38 @@ const Screens = () => {
     </ExampleContainer>
   );
 };
+
 const ToastsQueue = () => (
   <DxcToastsQueue>
     <Screens />
   </DxcToastsQueue>
 );
 
-const playFunc = async ({ canvasElement }) => {
+const playFunc = async ({ canvasElement }: { canvasElement: HTMLElement }) => {
   const canvas = within(canvasElement);
   await userEvent.click(canvas.getByText("Show default toast"));
   await userEvent.click(canvas.getByText("Show info toast"));
   await userEvent.click(canvas.getByText("Show success toast"));
 };
 
-export const FullScreenToast = ToastsQueue.bind({});
-FullScreenToast.play = playFunc;
+type Story = StoryObj<typeof DxcToast>;
 
-export const MobileScreenToast = ToastsQueue.bind({});
-MobileScreenToast.parameters = {
-  viewport: {
-    viewports: INITIAL_VIEWPORTS,
-    defaultViewport: "iphonex",
+export const Chromatic: Story = {
+  render: Toast,
+};
+
+export const FullScreenToast: Story = {
+  render: ToastsQueue,
+  play: playFunc,
+};
+
+export const MobileScreenToast: Story = {
+  render: ToastsQueue,
+  play: playFunc,
+  parameters: {
+    viewport: {
+      viewports: INITIAL_VIEWPORTS,
+      defaultViewport: "iphonex",
+    },
   },
 };
-MobileScreenToast.play = playFunc;

@@ -1,10 +1,8 @@
-import React, { useEffect, forwardRef, Ref, useContext, useRef, useImperativeHandle, KeyboardEvent } from "react";
+import { useEffect, forwardRef, Ref, useContext, useRef, useImperativeHandle, KeyboardEvent } from "react";
 import styled from "styled-components";
 import DxcBadge from "../badge/Badge";
 import DxcFlex from "../flex/Flex";
 import NavTabsPropsType, { TabProps } from "./types";
-import BaseTypography from "../utils/BaseTypography";
-import useTheme from "../useTheme";
 import NavTabsContext from "./NavTabsContext";
 import DxcIcon from "../icon/Icon";
 
@@ -14,7 +12,6 @@ const DxcTab = forwardRef(
     ref: Ref<HTMLAnchorElement>
   ): JSX.Element => {
     const tabRef = useRef<HTMLAnchorElement>();
-    const colorsTheme = useTheme();
     const { iconPosition, tabIndex, focusedLabel } = useContext(NavTabsContext) ?? {};
     const innerRef = useRef<HTMLAnchorElement | null>(null);
     useImperativeHandle(ref, () => innerRef.current!, []);
@@ -69,24 +66,9 @@ const DxcTab = forwardRef(
             </TabIconContainer>
           )}
           <DxcFlex alignItems="center" gap="0.5rem">
-            <BaseTypography
-              color={
-                disabled
-                  ? colorsTheme?.navTabs?.disabledFontColor
-                  : active
-                    ? colorsTheme?.navTabs?.selectedFontColor
-                    : colorsTheme?.navTabs?.unselectedFontColor
-              }
-              fontFamily={colorsTheme?.navTabs?.fontFamily}
-              fontSize={colorsTheme?.navTabs?.fontSize}
-              fontStyle={colorsTheme?.navTabs?.fontStyle}
-              fontWeight={colorsTheme?.navTabs?.fontWeight}
-              textAlign="center"
-              letterSpacing="0.025em"
-              lineHeight="1.715em"
-            >
+            <Label active={active} disabled={disabled}>
               {children}
-            </BaseTypography>
+            </Label>
             {notificationNumber && !disabled && (
               <DxcBadge
                 mode="notification"
@@ -144,6 +126,30 @@ const Tab = styled.a<{
         outline: 2px solid #33aaff};
       }
   `}
+`;
+
+const Label = styled.span<{
+  disabled: TabProps["disabled"];
+  active: TabProps["active"];
+}>`
+  display: inline;
+  color: ${(props) =>
+    props.disabled
+      ? props.theme.disabledFontColor
+      : props.active
+        ? props.theme.selectedFontColor
+        : props.theme.unselectedFontColor};
+  font-family: ${(props) => props.theme.fontFamily};
+  font-size: ${(props) => props.theme.fontSize};
+  font-style: ${(props) => props.theme.fontStyle};
+  font-weight: ${(props) => props.theme.fontWeight};
+  text-align: center;
+  letter-spacing: 0.025em;
+  line-height: 1.715em;
+  text-decoration: none;
+  text-overflow: unset;
+  white-space: normal;
+  margin: 0;
 `;
 
 const TabIconContainer = styled.div<{

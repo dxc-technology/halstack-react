@@ -1,13 +1,12 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { KeyboardEvent, MutableRefObject, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables";
 import DxcIcon from "../icon/Icon";
-import useTheme from "../useTheme";
-import useTranslatedLabels from "../useTranslatedLabels";
+import HalstackContext, { HalstackLanguageContext } from "../HalstackContext";
 import Tab from "./TabLegacy";
 import TabsPropsType from "./types";
 
-const useResize = (refTabList: React.MutableRefObject<HTMLDivElement | null>) => {
+const useResize = (refTabList: MutableRefObject<HTMLDivElement | null>) => {
   const [viewWidth, setViewWidth] = useState(0);
 
   const handleWindowSizeChange = useCallback(() => {
@@ -35,7 +34,7 @@ const DxcTabs = ({
   iconPosition = "top",
   tabIndex = 0,
 }: TabsPropsType): JSX.Element => {
-  const colorsTheme = useTheme();
+  const colorsTheme = useContext(HalstackContext);
   const hasLabelAndIcon = tabs != null && tabs.filter((tab) => tab.label && tab.icon).length > 0;
   const firstFocus = tabs != null ? tabs.findIndex((tab) => !tab.isDisabled) : null;
   const [innerActiveTabIndex, setInnerActiveTabIndex] = useState(
@@ -56,7 +55,7 @@ const DxcTabs = ({
   const refTabs = useRef<HTMLButtonElement[]>([]);
   const refTabList = useRef<HTMLDivElement | null>(null);
   const viewWidth = useResize(refTabList);
-  const translatedLabels = useTranslatedLabels();
+  const translatedLabels = useContext(HalstackLanguageContext);
   const enabledIndicator = useMemo(() => viewWidth < totalTabsWidth, [viewWidth]);
 
   useEffect(() => {
@@ -183,7 +182,7 @@ const DxcTabs = ({
     }
   };
 
-  const handleOnKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+  const handleOnKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
     switch (event.key) {
       case "Left":
       case "ArrowLeft":
@@ -225,7 +224,7 @@ const DxcTabs = ({
     (tabs != null && activeTabIndex !== undefined && activeTabIndex >= 0 && !!tabs[activeTabIndex]?.isDisabled);
 
   return (
-    <ThemeProvider theme={colorsTheme?.tabs}>
+    <ThemeProvider theme={colorsTheme.tabs}>
       <TabsContainer margin={margin}>
         <Underline />
         <Tabs hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
@@ -233,7 +232,7 @@ const DxcTabs = ({
             onClick={scrollLeft}
             enabled={enabledIndicator}
             disabled={!scrollLeftEnabled}
-            aria-label={translatedLabels?.tabs?.scrollLeft}
+            aria-label={translatedLabels.tabs.scrollLeft}
             tabIndex={scrollLeftEnabled ? tabIndex : -1}
             minHeightTabs={minHeightTabs}
           >
@@ -278,7 +277,7 @@ const DxcTabs = ({
             onClick={scrollRight}
             enabled={enabledIndicator}
             disabled={!scrollRightEnabled}
-            aria-label={translatedLabels?.tabs?.scrollRight}
+            aria-label={translatedLabels.tabs.scrollRight}
             tabIndex={scrollRightEnabled ? tabIndex : -1}
             minHeightTabs={minHeightTabs}
           >

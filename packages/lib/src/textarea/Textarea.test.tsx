@@ -79,7 +79,7 @@ describe("Textarea component tests", () => {
     expect(onChange).not.toHaveBeenCalled();
   });
 
-  test("Read-only textarea sends its value on submit", async () => {
+  test("Read-only textarea sends its value on submit", () => {
     const handlerOnSubmit = jest.fn((e) => {
       e.preventDefault();
       const formData = new FormData(e.target);
@@ -93,7 +93,7 @@ describe("Textarea component tests", () => {
       </form>
     );
     const submit = getByText("Submit");
-    await userEvent.click(submit);
+    userEvent.click(submit);
     expect(handlerOnSubmit).toHaveBeenCalled();
   });
 

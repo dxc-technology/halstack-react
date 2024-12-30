@@ -47,7 +47,7 @@ describe("Paginator component tests", () => {
     expect(getByText("Go to page:")).toBeTruthy();
   });
 
-  test("Paginator goToPage call correct function", async () => {
+  test("Paginator goToPage call correct function", () => {
     const onClick = jest.fn();
     window.HTMLElement.prototype.scrollIntoView = () => {};
     window.HTMLElement.prototype.scrollTo = () => {};
@@ -55,23 +55,29 @@ describe("Paginator component tests", () => {
       <DxcPaginator currentPage={1} itemsPerPage={10} totalItems={27} showGoToPage onPageChange={onClick} />
     );
     const goToPageSelect = getAllByRole("combobox")[0];
-    await userEvent.click(goToPageSelect);
+    if (goToPageSelect) {
+      userEvent.click(goToPageSelect);
+    }
     const goToPageOption = getByText("2");
-    await userEvent.click(goToPageOption);
+    if (goToPageOption) {
+      userEvent.click(goToPageOption);
+    }
     expect(onClick).toHaveBeenCalledWith(2);
   });
 
-  test("Call correct goToPageFunction", async () => {
+  test("Call correct goToPageFunction", () => {
     const onClick = jest.fn();
     const { getAllByRole } = render(
       <DxcPaginator onPageChange={onClick} currentPage={1} itemsPerPage={10} totalItems={20} />
     );
     const nextButton = getAllByRole("button")[2];
-    await userEvent.click(nextButton);
+    if (nextButton) {
+      userEvent.click(nextButton);
+    }
     expect(onClick).toHaveBeenCalled();
   });
 
-  test("Call correct itemsPerPageFunction", async () => {
+  test("Call correct itemsPerPageFunction", () => {
     const onClick = jest.fn();
     window.HTMLElement.prototype.scrollIntoView = () => {};
     window.HTMLElement.prototype.scrollTo = () => {};
@@ -85,53 +91,65 @@ describe("Paginator component tests", () => {
       />
     );
     const select = getAllByText("10")[0];
-    await userEvent.click(select);
+    if (select) {
+      userEvent.click(select);
+    }
     const itemPerPageOption = getByText("15");
-    await userEvent.click(itemPerPageOption);
+    if (itemPerPageOption) {
+      userEvent.click(itemPerPageOption);
+    }
     expect(onClick).toHaveBeenCalledWith(15);
   });
 
-  test("Next button is disable in last page", async () => {
+  test("Next button is disable in last page", () => {
     const onClick = jest.fn();
     const { getAllByRole } = render(
       <DxcPaginator onPageChange={onClick} currentPage={2} itemsPerPage={10} totalItems={20} />
     );
     const nextButton = getAllByRole("button")[2];
-    expect(nextButton.hasAttribute("disabled")).toBeTruthy();
-    await userEvent.click(nextButton);
+    expect(nextButton?.hasAttribute("disabled")).toBeTruthy();
+    if (nextButton) {
+      userEvent.click(nextButton);
+    }
     expect(onClick).toHaveBeenCalledTimes(0);
   });
 
-  test("Last button is disable in last page", async () => {
+  test("Last button is disable in last page", () => {
     const onClick = jest.fn();
     const { getAllByRole } = render(
       <DxcPaginator onPageChange={onClick} currentPage={2} itemsPerPage={10} totalItems={20} />
     );
     const lastButton = getAllByRole("button")[3];
-    expect(lastButton.hasAttribute("disabled")).toBeTruthy();
-    await userEvent.click(lastButton);
+    expect(lastButton?.hasAttribute("disabled")).toBeTruthy();
+    if (lastButton) {
+      userEvent.click(lastButton);
+    }
     expect(onClick).toHaveBeenCalledTimes(0);
   });
 
-  test("First button is disable in first page", async () => {
+  test("First button is disable in first page", () => {
     const onClick = jest.fn();
     const { getAllByRole } = render(
       <DxcPaginator onPageChange={onClick} currentPage={1} itemsPerPage={10} totalItems={20} />
     );
     const lastButton = getAllByRole("button")[0];
-    expect(lastButton.hasAttribute("disabled")).toBeTruthy();
-    await userEvent.click(lastButton);
+    expect(lastButton?.hasAttribute("disabled")).toBeTruthy();
+    if (lastButton) {
+      userEvent.click(lastButton);
+    }
     expect(onClick).toHaveBeenCalledTimes(0);
   });
 
-  test("Previous button is disable in first page", async () => {
+  test("Previous button is disable in first page", () => {
     const onClick = jest.fn();
     const { getAllByRole } = render(
       <DxcPaginator onPageChange={onClick} currentPage={1} itemsPerPage={10} totalItems={20} />
     );
     const lastButton = getAllByRole("button")[1];
-    expect(lastButton.hasAttribute("disabled")).toBeTruthy();
-    await userEvent.click(lastButton);
+    expect(lastButton?.hasAttribute("disabled")).toBeTruthy();
+    if (lastButton) {
+      userEvent.click(lastButton);
+    }
     expect(onClick).toHaveBeenCalledTimes(0);
   });
 
@@ -144,10 +162,10 @@ describe("Paginator component tests", () => {
     const prevButton = getAllByRole("button")[1];
     const nextButton = getAllByRole("button")[2];
     const lastButton = getAllByRole("button")[3];
-    expect(firstButton.hasAttribute("disabled")).toBeFalsy();
-    expect(prevButton.hasAttribute("disabled")).toBeFalsy();
-    expect(nextButton.hasAttribute("disabled")).toBeTruthy();
-    expect(lastButton.hasAttribute("disabled")).toBeTruthy();
+    expect(firstButton?.hasAttribute("disabled")).toBeFalsy();
+    expect(prevButton?.hasAttribute("disabled")).toBeFalsy();
+    expect(nextButton?.hasAttribute("disabled")).toBeTruthy();
+    expect(lastButton?.hasAttribute("disabled")).toBeTruthy();
   });
 
   test("First and previous buttons are disable in first page", () => {
@@ -159,10 +177,10 @@ describe("Paginator component tests", () => {
     const prevButton = getAllByRole("button")[1];
     const nextButton = getAllByRole("button")[2];
     const lastButton = getAllByRole("button")[3];
-    expect(firstButton.hasAttribute("disabled")).toBeTruthy();
-    expect(prevButton.hasAttribute("disabled")).toBeTruthy();
-    expect(nextButton.hasAttribute("disabled")).toBeFalsy();
-    expect(lastButton.hasAttribute("disabled")).toBeFalsy();
+    expect(firstButton?.hasAttribute("disabled")).toBeTruthy();
+    expect(prevButton?.hasAttribute("disabled")).toBeTruthy();
+    expect(nextButton?.hasAttribute("disabled")).toBeFalsy();
+    expect(lastButton?.hasAttribute("disabled")).toBeFalsy();
   });
 
   test("itemsPerPage is 0 and showGoToPage is true", () => {

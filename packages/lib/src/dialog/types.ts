@@ -4,7 +4,7 @@ type Props = {
   /**
    * If true, the close button will be visible.
    */
-  isCloseVisible?: boolean;
+  closable?: boolean;
   /**
    * This function will be called when the user clicks the close button.
    * The responsibility of hiding the dialog lies with the user.

@@ -1,9 +1,6 @@
-import { ReactNode, SVGProps } from "react";
+import { ReactNode } from "react";
+import { Margin, SVG, Space } from "../common/utils";
 import { Option } from "../dropdown/types";
-
-import { Space, Margin } from "../common/utils";
-
-type SVG = ReactNode & SVGProps<SVGSVGElement>;
 
 export type ActionsPropsType = Array<
   | {

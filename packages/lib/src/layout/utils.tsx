@@ -1,4 +1,4 @@
-import { Children, isValidElement, useState, useEffect } from "react";
+import { Children, isValidElement, useState, useEffect, ElementType } from "react";
 import layoutIcons from "./Icons";
 import ApplicationLayoutPropsType from "./types";
 
@@ -37,7 +37,7 @@ export const socialLinks = [
   },
 ];
 
-export const findChildType = (children: ApplicationLayoutPropsType["children"], childType: React.ElementType) =>
+export const findChildType = (children: ApplicationLayoutPropsType["children"], childType: ElementType) =>
   Children.toArray(children).find((child) => isValidElement(child) && child.type === childType);
 
 export const useResponsive = (breakpoint: string) => {

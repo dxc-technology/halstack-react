@@ -1,16 +1,16 @@
-import { useState } from "react";
+import { ReactNode, useContext, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import getMargin from "../common/utils";
+import { getMargin } from "../common/utils";
 import { spaces } from "../common/variables";
-import useTheme from "../useTheme";
+import HalstackContext from "../HalstackContext";
 import DxcIcon from "../icon/Icon";
 import TagPropsType from "./types";
 import CoreTokens from "../common/coreTokens";
 
 type TagWrapperProps = {
   condition: boolean;
-  wrapper: (_children: React.ReactNode) => JSX.Element;
-  children: React.ReactNode;
+  wrapper: (_children: ReactNode) => JSX.Element;
+  children: ReactNode;
 };
 
 const TagWrapper = ({ condition, wrapper, children }: TagWrapperProps): JSX.Element => (
@@ -32,25 +32,25 @@ const DxcTag = ({
   size = "fitContent",
   tabIndex = 0,
 }: TagPropsType): JSX.Element => {
-  const colorsTheme = useTheme();
+  const colorsTheme = useContext(HalstackContext);
   const [isHovered, changeIsHovered] = useState(false);
 
-  const wrapperComponent = (children: React.ReactNode) => {
+  const wrapperComponent = (children: ReactNode) => {
     if (onClick) {
       return <StyledButton tabIndex={tabIndex}>{children}</StyledButton>;
-    }
-    if (linkHref) {
+    } else if (linkHref) {
       return (
         <StyledLink tabIndex={tabIndex} href={linkHref} target={newWindow ? "_blank" : "_self"}>
           {children}
         </StyledLink>
       );
+    } else {
+      return <>{children}</>;
     }
-    return <>{children}</>;
   };
 
   return (
-    <ThemeProvider theme={colorsTheme?.tag}>
+    <ThemeProvider theme={colorsTheme.tag}>
       <StyledDxcTag
         margin={margin}
         size={size}

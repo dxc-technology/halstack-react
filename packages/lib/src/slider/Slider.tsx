@@ -1,9 +1,9 @@
-import { ChangeEvent, forwardRef, MouseEvent, useId, useMemo, useState } from "react";
+import { ChangeEvent, forwardRef, MouseEvent, useContext, useId, useMemo, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import DxcTextInput from "../text-input/TextInput";
 import { spaces } from "../common/variables";
-import getMargin from "../common/utils";
-import useTheme from "../useTheme";
+import { getMargin } from "../common/utils";
+import HalstackContext from "../HalstackContext";
 import SliderPropsType, { RefType } from "./types";
 
 const DxcSlider = forwardRef<RefType, SliderPropsType>(
@@ -32,8 +32,8 @@ const DxcSlider = forwardRef<RefType, SliderPropsType>(
     const labelId = `label-${useId()}`;
     const [innerValue, setInnerValue] = useState(defaultValue ?? 0);
     const [dragging, setDragging] = useState(false);
-    const colorsTheme = useTheme();
-    const isFirefox = navigator?.userAgent.indexOf("Firefox") !== -1;
+    const colorsTheme = useContext(HalstackContext);
+    const isFirefox = navigator.userAgent.indexOf("Firefox") !== -1;
 
     const minLabel = useMemo(
       () => (labelFormatCallback ? labelFormatCallback(minValue) : minValue),
@@ -79,10 +79,13 @@ const DxcSlider = forwardRef<RefType, SliderPropsType>(
     };
 
     const handleSliderOnChangeCommitted = (event: MouseEvent<HTMLInputElement>) => {
-      const intValue = parseInt((event.target as HTMLInputElement).value, 10);
-      if (dragging) {
-        setDragging(false);
-        onDragEnd?.(intValue);
+      const { target } = event;
+      if (target instanceof HTMLInputElement) {
+        const intValue = parseInt(target.value, 10);
+        if (dragging) {
+          setDragging(false);
+          onDragEnd?.(intValue);
+        }
       }
     };
 
@@ -99,7 +102,7 @@ const DxcSlider = forwardRef<RefType, SliderPropsType>(
     };
 
     return (
-      <ThemeProvider theme={colorsTheme?.slider}>
+      <ThemeProvider theme={colorsTheme.slider}>
         <Container margin={margin} size={size} ref={ref}>
           <Label id={labelId} disabled={disabled}>
             {label}
@@ -225,9 +228,9 @@ const SliderInput = styled.input<{
       : `linear-gradient(${props.theme.trackLineColor}, ${props.theme.trackLineColor})`};
   background-repeat: no-repeat;
   background-size: ${(props) =>
-    props?.value != null &&
-    props?.min != null &&
-    props?.max != null &&
+    props.value != null &&
+    props.min != null &&
+    props.max != null &&
     `${((props.value - props.min) * 100) / (props.max - props.min)}% 100%`};
   border-radius: 5px;
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};

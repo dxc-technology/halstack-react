@@ -1,26 +1,11 @@
-import { createContext, useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { createPortal } from "react-dom";
 import styled from "styled-components";
 import CoreTokens from "../common/coreTokens";
 import DxcToast from "./Toast";
-import { QueuedToast, Semantic, ToastContextType, ToastsQueuePropsType, ToastType } from "./types";
+import { QueuedToast, Semantic, ToastsQueuePropsType, ToastType } from "./types";
 import { responsiveSizes } from "../common/variables";
-
-export const ToastContext = createContext<ToastContextType | null>(null);
-
-const generateUniqueToastId = (toasts: QueuedToast[]) => {
-  let uniqueId: string;
-  let exists: boolean;
-
-  const isIdTaken = (id: string) => toasts.some((toast) => toast.id === id);
-
-  do {
-    uniqueId = `${performance.now()}-${Math.random().toString(36).slice(2, 9)}`;
-    exists = isIdTaken(uniqueId);
-  } while (exists);
-
-  return uniqueId;
-};
+import ToastContext from "./ToastContext";
 
 const ToastsQueue = styled.section`
   box-sizing: border-box;
@@ -40,6 +25,20 @@ const ToastsQueue = styled.section`
   }
 `;
 
+const generateUniqueToastId = (toasts: QueuedToast[]) => {
+  let uniqueId: string;
+  let exists: boolean;
+
+  const isIdTaken = (id: string) => toasts.some((toast) => toast.id === id);
+
+  do {
+    uniqueId = `${performance.now()}-${Math.random().toString(36).slice(2, 9)}`;
+    exists = isIdTaken(uniqueId);
+  } while (exists);
+
+  return uniqueId;
+};
+
 const DxcToastsQueue = ({ children, duration = 3000 }: ToastsQueuePropsType) => {
   const [toasts, setToasts] = useState<QueuedToast[]>([]);
   const [isMounted, setIsMounted] = useState(false); // Next.js SSR mounting issue
@@ -58,19 +57,12 @@ const DxcToastsQueue = ({ children, duration = 3000 }: ToastsQueuePropsType) => 
     [duration]
   );
 
-  const contextValue = useMemo(
-    () => ({
-      add,
-    }),
-    [add]
-  );
-
   useEffect(() => {
     setIsMounted(true);
   }, []);
 
   return (
-    <ToastContext.Provider value={contextValue}>
+    <ToastContext.Provider value={add}>
       {isMounted &&
         createPortal(
           <ToastsQueue>

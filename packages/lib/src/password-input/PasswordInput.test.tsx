@@ -40,17 +40,19 @@ describe("Password input component tests", () => {
     expect(passwordInput.value).toBe("Pa$$w0rd");
   });
 
-  test("Clear password input value", async () => {
+  test("Clear password input value", () => {
     const { getAllByRole, getByLabelText } = render(<DxcPasswordInput label="Password input" clearable />);
     const passwordInput = getByLabelText("Password input") as HTMLInputElement;
     userEvent.type(passwordInput, "Pa$$w0rd");
     expect(passwordInput.value).toBe("Pa$$w0rd");
     const clearButton = getAllByRole("button")[0];
-    await userEvent.click(clearButton);
+    if (clearButton) {
+      userEvent.click(clearButton);
+    }
     expect(passwordInput.value).toBe("");
   });
 
-  test("Non clearable password input has no clear icon", async () => {
+  test("Non clearable password input has no clear icon", () => {
     const { getAllByRole, getByLabelText } = render(<DxcPasswordInput label="Password input" />);
     const passwordInput = getByLabelText("Password input") as HTMLInputElement;
     userEvent.type(passwordInput, "Pa$$w0rd");
@@ -59,24 +61,26 @@ describe("Password input component tests", () => {
     expect(buttons.length).toBe(1);
   });
 
-  test("Show/hide password input button works correctly", async () => {
+  test("Show/hide password input button works correctly", () => {
     const { getAllByRole, getByLabelText } = render(<DxcPasswordInput label="Password input" clearable />);
     const passwordInput = getByLabelText("Password input") as HTMLInputElement;
     userEvent.type(passwordInput, "Pa$$w0rd");
     expect(passwordInput.value).toBe("Pa$$w0rd");
     expect(passwordInput.type).toBe("password");
     const showButton = getAllByRole("button")[1];
-    await userEvent.click(showButton);
+    if (showButton) {
+      userEvent.click(showButton);
+    }
     expect(passwordInput.type).toBe("text");
   });
 
-  test("Password input has correct accessibility attributes", async () => {
+  test("Password input has correct accessibility attributes", () => {
     const { getByRole, getByLabelText } = render(<DxcPasswordInput label="Password input" />);
     const showButton = getByRole("button");
     expect(getByLabelText("Password input")).toBeTruthy();
     expect(showButton.getAttribute("aria-expanded")).toBe("false");
     expect(showButton.getAttribute("aria-label")).toBe("Show password");
-    await userEvent.click(showButton);
+    userEvent.click(showButton);
     expect(showButton.getAttribute("aria-expanded")).toBe("true");
     expect(showButton.getAttribute("aria-label")).toBe("Hide password");
   });

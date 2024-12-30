@@ -1,10 +1,10 @@
 import * as Popover from "@radix-ui/react-popover";
-import { FocusEvent, KeyboardEvent, useCallback, useId, useLayoutEffect, useRef, useState } from "react";
+import { FocusEvent, KeyboardEvent, useCallback, useId, useLayoutEffect, useRef, useState, useContext } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import getMargin from "../common/utils";
+import { getMargin } from "../common/utils";
 import { spaces } from "../common/variables";
 import DxcIcon from "../icon/Icon";
-import useTheme from "../useTheme";
+import HalstackContext from "../HalstackContext";
 import useWidth from "../utils/useWidth";
 import DropdownMenu from "./DropdownMenu";
 import DropdownPropsType from "./types";
@@ -31,7 +31,7 @@ const DxcDropdown = ({
   const [isOpen, changeIsOpen] = useState(false);
   const [visualFocusIndex, setVisualFocusIndex] = useState(0);
 
-  const colorsTheme = useTheme();
+  const colorsTheme = useContext(HalstackContext);
   const triggerRef = useRef<HTMLButtonElement | null>(null);
   const menuRef = useRef<HTMLUListElement | null>(null);
   const width = useWidth(triggerRef.current);
@@ -47,9 +47,9 @@ const DxcDropdown = ({
     (value?: string) => {
       if (value) {
         onSelectOption(value);
-        handleOnCloseMenu();
-        triggerRef.current?.focus();
       }
+      handleOnCloseMenu();
+      triggerRef.current?.focus();
     },
     [onSelectOption]
   );
@@ -143,7 +143,7 @@ const DxcDropdown = ({
   );
 
   useLayoutEffect(() => {
-    const visualFocusedMenuItem = menuRef?.current?.querySelectorAll("[role='menuitem']")[visualFocusIndex];
+    const visualFocusedMenuItem = menuRef.current?.querySelectorAll("[role='menuitem']")[visualFocusIndex];
     visualFocusedMenuItem?.scrollIntoView?.({
       block: "nearest",
       inline: "start",
@@ -151,7 +151,7 @@ const DxcDropdown = ({
   }, [visualFocusIndex]);
 
   return (
-    <ThemeProvider theme={colorsTheme?.dropdown}>
+    <ThemeProvider theme={colorsTheme.dropdown}>
       <DropdownContainer
         onMouseEnter={!disabled && expandOnHover ? handleOnOpenMenu : undefined}
         onMouseLeave={!disabled && expandOnHover ? handleOnCloseMenu : undefined}
@@ -231,9 +231,10 @@ const sizes = {
 };
 
 const calculateWidth = (margin: DropdownPropsType["margin"], size: DropdownPropsType["size"]) =>
-  size === "fillParent"
+  size != null &&
+  (size === "fillParent"
     ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
-    : size && sizes[size];
+    : sizes[size]);
 
 const DropdownContainer = styled.div<{
   margin: DropdownPropsType["margin"];

@@ -33,8 +33,8 @@ const DxcBreadcrumbs = ({
       <OrderedList>
         {items && items.length > Math.max(itemsBeforeCollapse, 2) ? (
           <>
-            {showRoot && <Item href={items[0]?.href} label={items[0]?.label ?? ""} />}
-            <DxcFlex alignItems="center" as="li">
+            {showRoot && <Item href={items[0]?.href} key={0} label={items[0]?.label ?? ""} />}
+            <DxcFlex alignItems="center" as="li" key={1}>
               <HalstackProvider advancedTheme={dropdownTheme}>
                 <DxcDropdown
                   caretHidden
@@ -43,11 +43,12 @@ const DxcBreadcrumbs = ({
                   onSelectOption={handleOnSelectOption}
                   options={items
                     .slice(showRoot ? 1 : 0, -1)
+                    // TODO: Remove type assertion
                     .map(({ label, href }) => ({ label, value: href }) as Option)}
                 />
               </HalstackProvider>
             </DxcFlex>
-            <Item isCurrentPage label={items[items.length - 1]?.label ?? ""} />
+            <Item isCurrentPage key={2} label={items[items.length - 1]?.label ?? ""} />
           </>
         ) : (
           items.map((item, index, { length }) => (

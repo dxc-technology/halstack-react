@@ -1,10 +1,11 @@
+import { useContext } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables";
-import useTheme from "../useTheme";
 import HeadingPropsType from "./types";
+import HalstackContext from "../HalstackContext";
 
 const DxcHeading = ({ level = 1, text = "", as, weight, margin }: HeadingPropsType): JSX.Element => {
-  const colorsTheme = useTheme();
+  const colorsTheme = useContext(HalstackContext);
 
   const checkValidAs = () => {
     if (as === "h1" || as === "h2" || as === "h3" || as === "h4" || as === "h5") {
@@ -13,7 +14,7 @@ const DxcHeading = ({ level = 1, text = "", as, weight, margin }: HeadingPropsTy
   };
 
   return (
-    <ThemeProvider theme={colorsTheme?.heading}>
+    <ThemeProvider theme={colorsTheme.heading}>
       <HeadingContainer margin={margin}>
         {level === 1 ? (
           <HeadingLevel1 as={checkValidAs()} weight={weight}>

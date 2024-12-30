@@ -1,3 +1,4 @@
+import { Meta, StoryObj } from "@storybook/react";
 import { userEvent, within } from "@storybook/test";
 import disabledRules from "../../test/accessibility/rules/specific/table/disabledRules";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
@@ -23,7 +24,7 @@ export default {
       },
     },
   },
-};
+} as Meta<typeof DxcTable>;
 
 const opinionatedTheme = {
   table: {
@@ -112,7 +113,7 @@ const actions: ActionsPropsType = [
   },
 ];
 
-export const Chromatic = () => (
+const Table = () => (
   <>
     <ExampleContainer>
       <Title title="Default" theme="light" level={4} />
@@ -664,9 +665,19 @@ const ActionsCellDropdown = () => (
   </ExampleContainer>
 );
 
-export const DropdownAction = ActionsCellDropdown.bind({});
-DropdownAction.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const nextButton = canvas.getAllByRole("button")[8];
-  await userEvent.click(nextButton);
+type Story = StoryObj<typeof DxcTable>;
+
+export const Chromatic: Story = {
+  render: Table,
+};
+
+export const DropdownAction: Story = {
+  render: ActionsCellDropdown,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const nextButton = canvas.getAllByRole("button")[8];
+    if (nextButton) {
+      await userEvent.click(nextButton);
+    }
+  },
 };

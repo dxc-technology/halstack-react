@@ -1,22 +1,23 @@
 import {
   Children,
   isValidElement,
+  KeyboardEvent,
   MutableRefObject,
   ReactElement,
   useCallback,
+  useContext,
   useEffect,
   useMemo,
   useRef,
   useState,
 } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import useTheme from "../useTheme";
 import TabsContext from "./TabsContext";
 import DxcTab from "./Tab";
 import TabsPropsType, { TabProps } from "./types";
 import DxcTabsLegacy from "./TabsLegacy";
 import { spaces } from "../common/variables";
-import useTranslatedLabels from "../useTranslatedLabels";
+import HalstackContext, { HalstackLanguageContext } from "../HalstackContext";
 import DxcIcon from "../icon/Icon";
 
 const useResize = (refTabList: MutableRefObject<HTMLDivElement | null>) => {
@@ -64,26 +65,31 @@ const DxcTabs = ({
   tabIndex = 0,
   children,
 }: TabsPropsType) => {
+  // TODO: Find a way to remove this type assertion (should not be needed)
   const childrenArray: ReactElement<TabProps>[] = useMemo(
     () => Children.toArray(children) as ReactElement<TabProps>[],
     [children]
   );
   const hasLabelAndIcon = useMemo(
-    () => childrenArray.some((child) => isValidElement(child) && child.props.icon && child.props.label),
+    () => childrenArray.some((child) => isValidElement<TabProps>(child) && child.props.icon && child.props.label),
     [childrenArray]
   );
 
   const [activeTabLabel, setActiveTabLabel] = useState(() => {
     const hasActiveChild = childrenArray.some(
-      (child) => isValidElement(child) && (child.props.active || child.props.defaultActive) && !child.props.disabled
+      (child) =>
+        isValidElement<TabProps>(child) && (child.props.active || child.props.defaultActive) && !child.props.disabled
     );
     const initialActiveTab = hasActiveChild
       ? childrenArray.find(
-          (child) => isValidElement(child) && (child.props.active || child.props.defaultActive) && !child.props.disabled
+          (child) =>
+            isValidElement<TabProps>(child) &&
+            (child.props.active || child.props.defaultActive) &&
+            !child.props.disabled
         )
-      : childrenArray.find((child) => isValidElement(child) && !child.props.disabled);
+      : childrenArray.find((child) => isValidElement<TabProps>(child) && !child.props.disabled);
 
-    return isValidElement(initialActiveTab) ? initialActiveTab.props.label : "";
+    return isValidElement<TabProps>(initialActiveTab) ? initialActiveTab.props.label : "";
   });
   const [innerFocusIndex, setInnerFocusIndex] = useState<number | null>(null);
   const [activeIndicatorWidth, setActiveIndicatorWidth] = useState(0);
@@ -95,14 +101,17 @@ const DxcTabs = ({
   const [scrollLeftEnabled, setScrollLeftEnabled] = useState(false);
   const [minHeightTabs, setMinHeightTabs] = useState(0);
   const refTabList = useRef<HTMLDivElement | null>(null);
-  const colorsTheme = useTheme();
+  const colorsTheme = useContext(HalstackContext);
   const viewWidth = useResize(refTabList);
-  const translatedLabels = useTranslatedLabels();
+  const translatedLabels = useContext(HalstackLanguageContext);
   const enabledIndicator = useMemo(() => viewWidth < totalTabsWidth, [viewWidth]);
 
   useEffect(() => {
     if (refTabList.current) {
-      setTotalTabsWidth((refTabList.current.firstElementChild as HTMLElement)?.offsetWidth);
+      if (refTabList.current.firstElementChild instanceof HTMLElement) {
+        setTotalTabsWidth(refTabList.current.firstElementChild?.offsetWidth);
+      }
+      // TODO: Check if this is really needed
       setMinHeightTabs(refTabList.current.offsetHeight + 1);
     }
   }, []);
@@ -112,8 +121,10 @@ const DxcTabs = ({
     return {
       iconPosition,
       tabIndex,
-      focusedLabel: isValidElement(focusedChild) ? focusedChild.props.label : "",
-      isControlled: childrenArray.some((child) => isValidElement(child) && typeof child.props.active !== "undefined"),
+      focusedLabel: isValidElement<TabProps>(focusedChild) ? focusedChild.props.label : "",
+      isControlled: childrenArray.some(
+        (child) => isValidElement<TabProps>(child) && typeof child.props.active !== "undefined"
+      ),
       activeLabel: activeTabLabel,
       hasLabelAndIcon,
       setActiveLabel: setActiveTabLabel,
@@ -154,8 +165,10 @@ const DxcTabs = ({
     setCountClick(moveX);
   };
 
-  const handleOnKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    const activeTab = childrenArray.findIndex((child: ReactElement) => child.props.label === activeTabLabel);
+  const handleOnKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
+    const activeTab = childrenArray.findIndex(
+      (child) => isValidElement<TabProps>(child) && child.props.label === activeTabLabel
+    );
     switch (event.key) {
       case "Left":
       case "ArrowLeft":
@@ -187,7 +200,7 @@ const DxcTabs = ({
               onClick={scrollLeft}
               enabled={enabledIndicator}
               disabled={!scrollLeftEnabled}
-              aria-label={translatedLabels?.tabs?.scrollLeft}
+              aria-label={translatedLabels.tabs.scrollLeft}
               tabIndex={scrollLeftEnabled ? tabIndex : -1}
               minHeightTabs={minHeightTabs}
             >
@@ -202,7 +215,8 @@ const DxcTabs = ({
                   tabWidth={activeIndicatorWidth}
                   tabLeft={activeIndicatorLeft}
                   aria-disabled={childrenArray.some(
-                    (child) => isValidElement(child) && activeTabLabel === child.props.label && child.props.disabled
+                    (child) =>
+                      isValidElement<TabProps>(child) && activeTabLabel === child.props.label && child.props.disabled
                   )}
                 />
               </TabsContentScroll>
@@ -211,7 +225,7 @@ const DxcTabs = ({
               onClick={scrollRight}
               enabled={enabledIndicator}
               disabled={!scrollRightEnabled}
-              aria-label={translatedLabels?.tabs?.scrollRight}
+              aria-label={translatedLabels.tabs.scrollRight}
               tabIndex={scrollRightEnabled ? tabIndex : -1}
               minHeightTabs={minHeightTabs}
             >
@@ -221,7 +235,7 @@ const DxcTabs = ({
         </TabsContainer>
       </ThemeProvider>
       {Children.map(children, (child) => {
-        if (isValidElement(child) && child.props.label === activeTabLabel) {
+        if (isValidElement<TabProps>(child) && child.props.label === activeTabLabel) {
           return child.props.children;
         }
         return null;

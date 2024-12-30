@@ -53,8 +53,8 @@ const App = ({ Component, pageProps }: AppPropsWithLayout) => {
 
   const matchPaths = (linkPath: string) => {
     const pathToBeMatched = currentPath?.split("#")[0]?.slice(0, -1);
+    const desiredPaths = [linkPath, `${linkPath}/specifications`, `${linkPath}/usage`];
     if (pathToBeMatched) {
-      const desiredPaths = [linkPath, `${linkPath}/specifications`, `${linkPath}/usage`];
       return desiredPaths.includes(pathToBeMatched);
     }
   };

@@ -1,6 +1,6 @@
-import { ButtonHTMLAttributes, Dispatch, ReactElement, ReactNode, SetStateAction, SVGProps } from "react";
+import { ButtonHTMLAttributes, Dispatch, ReactElement, ReactNode, SetStateAction } from "react";
+import { SVG } from "../common/utils";
 
-type SVG = ReactNode & SVGProps<SVGSVGElement>;
 type CommonItemProps = {
   badge?: ReactElement;
   icon?: string | SVG;
@@ -22,9 +22,6 @@ type Props = {
   items: (Item | GroupItem)[] | Section[];
 };
 
-/**
- * Contextual menu internal types.
- */
 type ItemWithId = Item & { id: number };
 type GroupItemWithId = {
   badge?: ReactElement;
@@ -32,10 +29,8 @@ type GroupItemWithId = {
   items: (ItemWithId | GroupItemWithId)[];
   label: string;
 };
-type SectionWithId = {
-  items: (ItemWithId | GroupItemWithId)[];
-  title?: string;
-};
+type SectionWithId = { items: (ItemWithId | GroupItemWithId)[]; title?: string };
+
 type SingleItemProps = ItemWithId & { depthLevel: number };
 type GroupItemProps = GroupItemWithId & { depthLevel: number };
 type MenuItemProps = { item: ItemWithId | GroupItemWithId; depthLevel?: number };
@@ -52,13 +47,12 @@ type SectionProps = {
   index: number;
   length: number;
 };
-type SubMenuProps = { children: React.ReactNode; id?: string };
+type SubMenuProps = { children: ReactNode; id?: string };
 type ContextualMenuContextProps = {
   selectedItemId: number;
   setSelectedItemId: Dispatch<SetStateAction<number>>;
 };
 
-export default Props;
 export type {
   ContextualMenuContextProps,
   GroupItem,
@@ -74,3 +68,5 @@ export type {
   SectionProps,
   SingleItemProps,
 };
+
+export default Props;

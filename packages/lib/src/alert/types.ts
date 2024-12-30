@@ -1,4 +1,5 @@
-type SVG = React.ReactNode & React.SVGProps<SVGSVGElement>;
+import { ReactNode } from "react";
+import { SVG } from "../common/utils";
 
 type Action = {
   icon?: string | SVG;
@@ -8,7 +9,7 @@ type Action = {
 
 type Message = {
   onClose?: () => void;
-  text: React.ReactNode;
+  text: ReactNode;
 };
 
 type CommonProps = {
@@ -31,10 +32,10 @@ type ModeSpecificProps =
 
 type Props = CommonProps & ModeSpecificProps;
 
-export default Props;
-
 export type ModalAlertWrapperProps = {
   condition: boolean;
   onClose?: () => void;
-  children: React.ReactNode;
+  children: ReactNode;
 };
+
+export default Props;

@@ -10,17 +10,22 @@ export const makeReadableSidenav = (token: string) =>
     return i === 0 ? v.toUpperCase() : " " + v;
   });
 
-const isObject = (item: unknown) => item && typeof item === "object" && !Array.isArray(item);
+const isObject = (item: unknown): item is object => item != null && typeof item === "object" && !Array.isArray(item);
 
 export const deepMerge = <T extends object>(target: T, ...sources: Partial<T>[]): T => {
-  if (!sources.length) return target;
+  if (!sources.length) {
+    return target;
+  }
   const source = sources.shift();
 
   if (isObject(target) && isObject(source)) {
     for (const key in source) {
       if (isObject(source[key])) {
-        if (!target[key]) Object.assign(target, { [key]: {} });
-        deepMerge(target[key] as object, source[key] as object);
+        if (!target[key]) {
+          Object.assign(target, { [key]: {} });
+        }
+        // TODO: Find a way to remove this type assertion (should not be needed)
+        deepMerge(target[key] as object, source[key]);
       } else {
         Object.assign(target, { [key]: source[key] });
       }
@@ -40,4 +45,5 @@ export const downloadFile = (content: IndexedTheme) => {
   element.download = "theme.json";
   document.body.appendChild(element);
   element.click();
+  return () => URL.revokeObjectURL(element.href);
 };

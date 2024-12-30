@@ -1,3 +1,4 @@
+import { Meta, StoryObj } from "@storybook/react";
 import { userEvent } from "@storybook/test";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
@@ -7,7 +8,7 @@ import DxcChip from "./Chip";
 export default {
   title: "Chip",
   component: DxcChip,
-};
+} as Meta<typeof DxcChip>;
 
 const iconSVG = (
   <svg
@@ -46,7 +47,7 @@ const opinionatedTheme = {
   },
 };
 
-export const Chromatic = () => (
+const Chip = () => (
   <>
     <ExampleContainer>
       <Title title="Basic chip" theme="light" level={4} />
@@ -170,12 +171,14 @@ export const Chromatic = () => (
     </ExampleContainer>
   </>
 );
+
 const ChipPrefixFocused = () => (
   <ExampleContainer>
     <Title title="Chip with prefix" theme="light" level={4} />
     <DxcChip label="Chip with prefix" prefixIcon={iconSVG} onClickPrefix={() => {}} />
   </ExampleContainer>
 );
+
 const ChipSuffixFocused = () => (
   <ExampleContainer>
     <Title title="Chip with suffix" theme="light" level={4} />
@@ -183,12 +186,22 @@ const ChipSuffixFocused = () => (
   </ExampleContainer>
 );
 
-export const PrefixFocused = ChipPrefixFocused.bind({});
-PrefixFocused.play = async () => {
-  await userEvent.tab();
+type Story = StoryObj<typeof DxcChip>;
+
+export const Chromatic: Story = {
+  render: Chip,
 };
 
-export const SuffixFocused = ChipSuffixFocused.bind({});
-SuffixFocused.play = async () => {
-  await userEvent.tab();
+export const PrefixFocused: Story = {
+  render: ChipPrefixFocused,
+  play: async () => {
+    await userEvent.tab();
+  },
+};
+
+export const SuffixFocused: Story = {
+  render: ChipSuffixFocused,
+  play: async () => {
+    await userEvent.tab();
+  },
 };

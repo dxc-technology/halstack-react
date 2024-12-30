@@ -25,7 +25,7 @@ const sections = [
         </thead>
         <tbody>
           <tr>
-            <td>isCloseVisible</td>
+            <td>closable</td>
             <td>
               <TableCode>boolean</TableCode>
             </td>

@@ -1,8 +1,6 @@
-import { ReactNode, SVGProps } from "react";
+import { ReactNode } from "react";
 
-import type { Space, Margin } from "../common/utils";
-
-type SVG = ReactNode & SVGProps<SVGSVGElement>;
+import type { Space, Margin, SVG } from "../common/utils";
 
 type TabCommonProps = {
   /**
@@ -72,7 +70,7 @@ export type TabProps = {
   title?: string;
   disabled?: boolean;
   notificationNumber?: boolean | number;
-  children: React.ReactNode;
+  children: ReactNode;
   onClick?: () => void;
   onHover?: () => void;
 };
@@ -90,7 +88,7 @@ type LegacyProps = {
   /**
    * An array of objects representing the tabs.
    */
-  tabs: (TabLabelProps | TabIconProps)[];
+  tabs?: (TabLabelProps | TabIconProps)[];
   /**
    * Whether the icon should appear above or to the left of the label.
    */
@@ -134,7 +132,7 @@ type NewProps = {
    * Contains one or more DxcTabs.Tab.
    */
   // children?: React.ReactElement<TabProps>[];
-  children?: React.ReactNode;
+  children?: ReactNode;
 };
 
 type Props = LegacyProps & NewProps;

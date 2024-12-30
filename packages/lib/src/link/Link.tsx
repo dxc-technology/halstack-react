@@ -1,8 +1,8 @@
-import { forwardRef, Ref } from "react";
+import { forwardRef, Ref, useContext } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables";
 import DxcIcon from "../icon/Icon";
-import useTheme from "../useTheme";
+import HalstackContext from "../HalstackContext";
 import { LinkProps } from "./types";
 import CoreTokens from "../common/coreTokens";
 
@@ -101,10 +101,10 @@ const DxcLink = forwardRef(
     }: LinkProps,
     ref: Ref<HTMLAnchorElement>
   ): JSX.Element => {
-    const colorsTheme = useTheme();
+    const colorsTheme = useContext(HalstackContext);
 
     return (
-      <ThemeProvider theme={colorsTheme?.link}>
+      <ThemeProvider theme={colorsTheme.link}>
         <StyledLink
           as={onClick && !href ? "button" : "a"}
           tabIndex={tabIndex}

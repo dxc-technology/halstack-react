@@ -1,3 +1,4 @@
+import { Meta, StoryObj } from "@storybook/react";
 import { userEvent, within } from "@storybook/test";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
@@ -119,7 +120,7 @@ export default {
       },
     },
   },
-};
+} as Meta<typeof DxcFooter>;
 
 const opinionatedTheme = {
   footer: {
@@ -135,7 +136,7 @@ const info = [
   { label: "Example Label", text: "Example" },
 ];
 
-export const Chromatic = () => (
+const Footer = () => (
   <>
     <ExampleContainer>
       <Title title="Default" theme="light" level={4} />
@@ -214,16 +215,30 @@ const Tooltip = () => (
   </ExampleContainer>
 );
 
-export const FooterTooltipFirst = Tooltip.bind({});
-FooterTooltipFirst.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const link = canvas.getAllByRole("link")[0];
-  await userEvent.hover(link);
+type Story = StoryObj<typeof DxcFooter>;
+
+export const Chromatic: Story = {
+  render: Footer,
 };
 
-export const FooterTooltipSecond = Tooltip.bind({});
-FooterTooltipSecond.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const link = canvas.getAllByRole("link")[1];
-  await userEvent.hover(link);
+export const FooterTooltipFirst: Story = {
+  render: Tooltip,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const link = canvas.getAllByRole("link")[0];
+    if (link != null) {
+      await userEvent.hover(link);
+    }
+  },
+};
+
+export const FooterTooltipSecond: Story = {
+  render: Tooltip,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const link = canvas.getAllByRole("link")[1];
+    if (link != null) {
+      await userEvent.hover(link);
+    }
+  },
 };

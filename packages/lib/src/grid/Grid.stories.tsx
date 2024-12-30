@@ -1,3 +1,4 @@
+import { Meta, StoryObj } from "@storybook/react";
 import styled from "styled-components";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
@@ -7,9 +8,36 @@ import DxcGrid from "./Grid";
 export default {
   title: "Grid",
   component: DxcGrid,
-};
+} as Meta<typeof DxcGrid>;
 
-export const Chromatic = () => (
+const Container = styled.div<{ height?: string }>`
+  display: grid;
+  overflow: auto;
+  margin: 2.5rem;
+  ${({ height }) => height && `height: ${height}`};
+`;
+
+const ColoredContainer = styled.div<{ color?: string; width?: string; height?: string }>`
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: ${({ color }) => color ?? "#e5d5f6"};
+  padding: 1rem;
+  border: 1px solid #a46ede;
+  border-radius: 0.5rem;
+  font-family:
+    Open Sans,
+    sans-serif;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #a46ede;
+
+  ${({ width }) => width && `width: ${width}`};
+  ${({ height }) => height && `height: ${height}`};
+`;
+
+const Grid = () => (
   <>
     <Title title="Default" level={4} />
     <ExampleContainer>
@@ -192,33 +220,8 @@ export const Chromatic = () => (
   </>
 );
 
-const Container = styled.div<{ height?: string }>`
-  display: grid;
-  overflow: auto;
-  margin: 2.5rem;
-  ${({ height }) => height && `height: ${height}`};
-`;
+type Story = StoryObj<typeof DxcGrid>;
 
-const ColoredContainer = styled.div<{
-  color?: string;
-  width?: string;
-  height?: string;
-}>`
-  box-sizing: border-box;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: ${({ color }) => color ?? "#e5d5f6"};
-  padding: 1rem;
-  border: 1px solid #a46ede;
-  border-radius: 0.5rem;
-  font-family:
-    Open Sans,
-    sans-serif;
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #a46ede;
-
-  ${({ width }) => width && `width: ${width}`};
-  ${({ height }) => height && `height: ${height}`};
-`;
+export const Chromatic: Story = {
+  render: Grid,
+};

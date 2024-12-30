@@ -1,3 +1,4 @@
+import { Meta, StoryObj } from "@storybook/react";
 import styled from "styled-components";
 import Title from "../../.storybook/components/Title";
 import DxcFlex from "../flex/Flex";
@@ -6,9 +7,22 @@ import DxcInset from "./Inset";
 export default {
   title: "Inset",
   component: DxcInset,
-};
+} as Meta<typeof DxcInset>;
 
-export const Chromatic = () => (
+const Container = styled.div`
+  background: #f2eafa;
+  margin: 2.5rem;
+`;
+
+const Placeholder = styled.div`
+  min-height: 40px;
+  min-width: 120px;
+  border: 1px solid #a46ede;
+  border-radius: 0.5rem;
+  background-color: #e5d5f6;
+`;
+
+const Inset = () => (
   <>
     <Title title="Default" level={4} />
     <Container>
@@ -215,15 +229,8 @@ export const Chromatic = () => (
   </>
 );
 
-const Container = styled.div`
-  background: #f2eafa;
-  margin: 2.5rem;
-`;
+type Story = StoryObj<typeof DxcInset>;
 
-const Placeholder = styled.div`
-  min-height: 40px;
-  min-width: 120px;
-  border: 1px solid #a46ede;
-  border-radius: 0.5rem;
-  background-color: #e5d5f6;
-`;
+export const Chromatic: Story = {
+  render: Inset,
+};

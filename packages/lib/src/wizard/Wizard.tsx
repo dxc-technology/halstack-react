@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables";
 import DxcIcon from "../icon/Icon";
-import useTheme from "../useTheme";
+import HalstackContext from "../HalstackContext";
 import WizardPropsType, { StepProps } from "./types";
 
 const icons = {
@@ -53,24 +53,19 @@ const DxcWizard = ({
   tabIndex = 0,
 }: WizardPropsType): JSX.Element => {
   const [innerCurrent, setInnerCurrentStep] = useState(currentStep ?? defaultCurrentStep ?? 0);
-  const renderedCurrent = currentStep == null ? innerCurrent : currentStep;
-  const colorsTheme = useTheme();
+  const renderedCurrent = currentStep ?? innerCurrent;
+  const colorsTheme = useContext(HalstackContext);
 
   const handleStepClick = (newValue: number) => {
-    if (currentStep == null) {
-      setInnerCurrentStep(newValue);
-    }
-
-    if (onStepClick) {
-      onStepClick(newValue);
-    }
+    setInnerCurrentStep(newValue);
+    onStepClick?.(newValue);
   };
 
   return (
-    <ThemeProvider theme={colorsTheme?.wizard}>
+    <ThemeProvider theme={colorsTheme.wizard}>
       <StepsContainer mode={mode} margin={margin} role="group">
-        {steps?.map((step, i) => (
-          <StepContainer key={`step${i}`} mode={mode} lastStep={steps && i === (steps?.length || 0) - 1}>
+        {steps.map((step, i) => (
+          <StepContainer key={`step${i}`} mode={mode} lastStep={i === steps.length - 1}>
             <Step
               onClick={() => {
                 handleStepClick(i);
@@ -78,7 +73,7 @@ const DxcWizard = ({
               disabled={step.disabled}
               mode={mode}
               first={i === 0}
-              last={i === (steps?.length || 0) - 1}
+              last={i === steps.length - 1}
               aria-current={renderedCurrent === i ? "step" : "false"}
               tabIndex={tabIndex}
             >

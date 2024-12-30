@@ -18,6 +18,7 @@
     "husky": "^9.0.11",
     "identity-obj-proxy": "^3.0.0",
     "lint-staged": "^15.2.7",
+    "@types/color": "^4.2.0",
     "prettier": "^3.2.5",
     "turbo": "^2.0.4",
     "typescript": "^5.6.3"

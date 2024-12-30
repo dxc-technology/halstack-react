@@ -1,3 +1,4 @@
+import { Meta, StoryObj } from "@storybook/react";
 import styled from "styled-components";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
@@ -9,7 +10,7 @@ import DxcQuickNav from "./QuickNav";
 export default {
   title: "Quick Nav",
   component: DxcQuickNav,
-};
+} as Meta<typeof DxcQuickNav>;
 
 const opinionatedTheme = {
   quickNav: {
@@ -77,7 +78,30 @@ const links = [
   },
 ];
 
-export const Chromatic = () => (
+const Container = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+`;
+
+const ContentContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 60px;
+  margin: 0 auto;
+  width: 800px;
+`;
+
+const Content = styled.div``;
+
+const QuickNavContainer = styled.div`
+  max-height: calc(100vh - 100px);
+  position: sticky;
+  top: 100px;
+  width: 300px;
+`;
+
+const QuickNav = () => (
   <>
     <ExampleContainer>
       <Title title="Default" level={4} />
@@ -333,25 +357,8 @@ export const Chromatic = () => (
   </>
 );
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-`;
+type Story = StoryObj<typeof DxcQuickNav>;
 
-const ContentContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding: 60px;
-  margin: 0 auto;
-  width: 800px;
-`;
-
-const Content = styled.div``;
-
-const QuickNavContainer = styled.div`
-  max-height: calc(100vh - 100px);
-  position: sticky;
-  top: 100px;
-  width: 300px;
-`;
+export const Chromatic: Story = {
+  render: QuickNav,
+};

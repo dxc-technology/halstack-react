@@ -4,6 +4,7 @@ import {
   useEffect,
   useId,
   useCallback,
+  useContext,
   forwardRef,
   Dispatch,
   SetStateAction,
@@ -14,11 +15,10 @@ import dayjs, { Dayjs } from "dayjs";
 import styled, { ThemeProvider } from "styled-components";
 import * as Popover from "@radix-ui/react-popover";
 import customParseFormat from "dayjs/plugin/customParseFormat";
-import useTheme from "../useTheme";
-import useTranslatedLabels from "../useTranslatedLabels";
+import HalstackContext, { HalstackLanguageContext } from "../HalstackContext";
 import DateInputPropsType, { RefType } from "./types";
 import DatePicker from "./DatePicker";
-import getMargin from "../common/utils";
+import { getMargin } from "../common/utils";
 import { spaces } from "../common/variables";
 import DxcTextInput from "../text-input/TextInput";
 
@@ -31,8 +31,8 @@ const getValueForPicker = (value: string, format: string) => dayjs(value, format
 const getDate = (
   value: string,
   format: string,
-  lastValidYear: number | undefined,
-  setLastValidYear: Dispatch<SetStateAction<number | undefined>>
+  lastValidYear: number | null,
+  setLastValidYear: Dispatch<SetStateAction<number | null>>
 ) => {
   if ((value || value === "") && format.toUpperCase().includes("YYYY")) {
     return getValueForPicker(value, format);
@@ -80,16 +80,16 @@ const DxcDateInput = forwardRef<RefType, DateInputPropsType>(
     const [isOpen, setIsOpen] = useState(false);
     const calendarId = `date-picker-${useId()}`;
     const [dayjsDate, setDayjsDate] = useState(getValueForPicker(value ?? defaultValue ?? "", format));
-    const [lastValidYear, setLastValidYear] = useState<number | undefined>(
+    const [lastValidYear, setLastValidYear] = useState<number | null>(
       innerValue || value
         ? !format.toUpperCase().includes("YYYY") && +getValueForPicker(value ?? innerValue, format).format("YY") < 68
           ? 2000
           : 1900
-        : undefined
+        : null
     );
     const [sideOffset, setSideOffset] = useState(SIDEOFFSET);
-    const colorsTheme = useTheme();
-    const translatedLabels = useTranslatedLabels();
+    const colorsTheme = useContext(HalstackContext);
+    const translatedLabels = useContext(HalstackLanguageContext);
     const dateRef = useRef<HTMLDivElement | null>(null);
     const popoverContentRef = useRef<HTMLDivElement | null>(null);
 
@@ -100,7 +100,7 @@ const DxcDateInput = forwardRef<RefType, DateInputPropsType>(
         setInnerValue(newValue);
       }
       setLastValidYear(newDate.get("year"));
-      if (newDate?.set("day", newDate.get("date")).toJSON()) {
+      if (newDate.set("day", newDate.get("date")).toJSON()) {
         onChange?.({
           value: newValue,
           date: newDate.toDate(),
@@ -118,7 +118,7 @@ const DxcDateInput = forwardRef<RefType, DateInputPropsType>(
       }
       const newDate = getDate(newValue, format, lastValidYear, setLastValidYear);
       const invalidDateMessage =
-        newValue !== "" && !newDate.isValid() && translatedLabels?.dateInput?.invalidDateErrorMessage;
+        newValue !== "" && !newDate.isValid() && translatedLabels.dateInput.invalidDateErrorMessage;
       const callbackParams = {
         value: newValue,
         error: inputError || invalidDateMessage || undefined,
@@ -131,14 +131,14 @@ const DxcDateInput = forwardRef<RefType, DateInputPropsType>(
         });
       } else {
         onChange?.(callbackParams);
-        setLastValidYear((validYear) => dayjsDate?.get("year") ?? validYear);
+        setLastValidYear((validYear) => dayjsDate.get("year") ?? validYear);
         setDayjsDate(dayjs(null));
       }
     };
     const handleOnBlur = ({ value: blurValue, error: inputError }: { value: string; error?: string }) => {
       const date = getDate(blurValue, format, lastValidYear, setLastValidYear);
       const invalidDateMessage =
-        blurValue !== "" && !date.isValid() && translatedLabels?.dateInput?.invalidDateErrorMessage;
+        blurValue !== "" && !date.isValid() && translatedLabels.dateInput.invalidDateErrorMessage;
       const callbackParams = {
         value: blurValue,
         error: inputError || invalidDateMessage || undefined,
@@ -189,11 +189,11 @@ const DxcDateInput = forwardRef<RefType, DateInputPropsType>(
           event.stopPropagation();
         }
         closeCalendar();
-        dateRef?.current?.getElementsByTagName("input")[0]?.focus();
+        dateRef.current?.getElementsByTagName("input")[0]?.focus();
       }
     };
     const handleDatePickerOnBlur = (event: FocusEvent<HTMLDivElement>) => {
-      if (!event?.currentTarget.contains(event.relatedTarget)) {
+      if (!event.currentTarget.contains(event.relatedTarget)) {
         closeCalendar();
       }
     };
@@ -213,13 +213,13 @@ const DxcDateInput = forwardRef<RefType, DateInputPropsType>(
 
     useEffect(() => {
       if (!disabled) {
-        const actionButtonRef = dateRef?.current?.querySelector("[aria-label='Select date']");
-        actionButtonRef?.setAttribute("aria-haspopup", "true");
-        actionButtonRef?.setAttribute("role", "combobox");
-        actionButtonRef?.setAttribute("aria-expanded", `${isOpen}`);
-        actionButtonRef?.setAttribute("aria-controls", calendarId);
+        const actionButtonElement = dateRef.current?.querySelector("[aria-label='Select date']");
+        actionButtonElement?.setAttribute("aria-haspopup", "true");
+        actionButtonElement?.setAttribute("role", "combobox");
+        actionButtonElement?.setAttribute("aria-expanded", `${isOpen}`);
+        actionButtonElement?.setAttribute("aria-controls", calendarId);
         if (isOpen) {
-          actionButtonRef?.setAttribute("aria-describedby", calendarId);
+          actionButtonElement?.setAttribute("aria-describedby", calendarId);
         }
       }
     }, [isOpen, disabled, calendarId]);
@@ -233,7 +233,7 @@ const DxcDateInput = forwardRef<RefType, DateInputPropsType>(
               disabled={disabled}
               hasHelperText={!!helperText}
             >
-              {label} {optional && <OptionalLabel>{translatedLabels?.formFields?.optionalLabel}</OptionalLabel>}
+              {label} {optional && <OptionalLabel>{translatedLabels.formFields.optionalLabel}</OptionalLabel>}
             </Label>
           )}
           {helperText && <HelperText disabled={disabled}>{helperText}</HelperText>}

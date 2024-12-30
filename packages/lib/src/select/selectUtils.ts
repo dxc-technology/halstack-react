@@ -22,13 +22,13 @@ const isArrayOfOptionGroups = (options: ListOptionType[] | ListOptionGroupType[]
  * Checks if the groups have options.
  */
 const groupsHaveOptions = (options: ListOptionType[] | ListOptionGroupType[]) =>
-  isArrayOfOptionGroups(options) ? options.some((groupOption) => groupOption.options?.length > 0) : true;
+  isArrayOfOptionGroups(options) ? options.some((groupOption) => groupOption.options.length > 0) : true;
 
 /**
  * Checks if the listbox can be opened.
  */
 const canOpenListbox = (options: ListOptionType[] | ListOptionGroupType[], disabled: boolean) =>
-  !disabled && options?.length > 0 && groupsHaveOptions(options);
+  !disabled && options.length > 0 && groupsHaveOptions(options);
 
 /**
  * Filters the options by the search value.
@@ -37,7 +37,7 @@ const filterOptionsBySearchValue = (
   options: ListOptionType[] | ListOptionGroupType[],
   searchValue: string
 ): ListOptionType[] | ListOptionGroupType[] => {
-  if (options?.length > 0) {
+  if (options.length > 0) {
     if (isArrayOfOptionGroups(options)) {
       return options.map((optionGroup) => {
         const group = {
@@ -48,10 +48,12 @@ const filterOptionsBySearchValue = (
         };
         return group;
       });
+    } else {
+      return options.filter((option) => option.label.toUpperCase().includes(searchValue.toUpperCase()));
     }
-    return options.filter((option) => option.label.toUpperCase().includes(searchValue.toUpperCase()));
+  } else {
+    return [];
   }
-  return [];
 };
 
 /**
@@ -65,15 +67,15 @@ const getLastOptionIndex = (
   multiple: boolean
 ) => {
   let last = 0;
-  const reducer = (acc: number, current: ListOptionGroupType) => acc + (current?.options?.length || 0);
+  const reducer = (acc: number, current: ListOptionGroupType) => acc + (current.options.length ?? 0);
 
-  if (searchable && filteredOptions?.length > 0) {
+  if (searchable && filteredOptions.length > 0) {
     if (isArrayOfOptionGroups(filteredOptions)) {
       last = filteredOptions.reduce(reducer, 0) - 1;
     } else {
       last = filteredOptions.length - 1;
     }
-  } else if (options?.length > 0) {
+  } else if (options.length > 0) {
     if (isArrayOfOptionGroups(options)) {
       last = options.reduce(reducer, 0) - 1;
     } else {
@@ -94,11 +96,11 @@ const getSelectedOption = (
   optional: boolean,
   optionalItem: ListOptionType
 ) => {
-  let selectedOption: ListOptionType | ListOptionType[] = multiple ? [] : ({} as ListOptionType);
+  let selectedOption: ListOptionType | ListOptionType[] | null = multiple ? [] : null;
   let singleSelectionIndex: number | null = null;
 
   if (multiple) {
-    if (options?.length > 0) {
+    if (options.length > 0) {
       options.forEach((option: ListOptionType | ListOptionGroupType) => {
         if (isOptionGroup(option)) {
           option.options.forEach((singleOption) => {
@@ -114,7 +116,7 @@ const getSelectedOption = (
   } else if (optional && value === "") {
     selectedOption = optionalItem;
     singleSelectionIndex = 0;
-  } else if (options?.length > 0) {
+  } else if (options.length > 0) {
     let groupIndex = 0;
     options.some((option: ListOptionType | ListOptionGroupType, index: number) => {
       if (isOptionGroup(option)) {
@@ -124,15 +126,17 @@ const getSelectedOption = (
             singleSelectionIndex = optional ? groupIndex + 1 : groupIndex;
             return true;
           }
-          groupIndex += 1;
+          groupIndex++;
           return false;
         });
+        return false;
       } else if (option.value === value) {
         selectedOption = option;
         singleSelectionIndex = optional ? index + 1 : index;
         return true;
+      } else {
+        return false;
       }
-      return false;
     });
   }
 
@@ -145,7 +149,7 @@ const getSelectedOption = (
 /**
  * Return the label or labels of the selected option(s), separated by commas.
  */
-const getSelectedOptionLabel = (placeholder: string, selectedOption: ListOptionType | ListOptionType[]) =>
+const getSelectedOptionLabel = (placeholder: string, selectedOption: ListOptionType | ListOptionType[] | null) =>
   Array.isArray(selectedOption)
     ? selectedOption.length === 0
       ? placeholder

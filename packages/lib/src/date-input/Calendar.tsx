@@ -1,13 +1,11 @@
 import { Dayjs } from "dayjs";
-import { useState, useMemo, useEffect, useId, memo, KeyboardEvent, FocusEvent } from "react";
+import { useContext, useState, useMemo, useEffect, useId, memo, KeyboardEvent, FocusEvent } from "react";
 import styled from "styled-components";
-import { CalendarPropsType } from "./types";
-import useTranslatedLabels from "../useTranslatedLabels";
-
-type Date = { day: number; month: number; year: number };
+import { CalendarPropsType, DateType } from "./types";
+import { HalstackLanguageContext } from "../HalstackContext";
 
 const getDays = (innerDate: Dayjs) => {
-  const monthDayCells: Date[] = [];
+  const monthDayCells: DateType[] = [];
   const lastMonthNumberOfDays = innerDate.set("month", innerDate.get("month") - 1).endOf("month");
   const firstDayOfMonth = innerDate.startOf("month").day() === 0 ? 6 : innerDate.startOf("month").day() - 1;
   const daysInMonth = firstDayOfMonth + innerDate.daysInMonth();
@@ -43,12 +41,12 @@ const getDateToFocus = (selectedDate: Dayjs, innerDate: Dayjs, today: Dayjs) =>
       ? today
       : innerDate.set("date", 1);
 
-const isDaySelected = (date: Date, selectedDate: Dayjs) =>
+const isDaySelected = (date: DateType, selectedDate: Dayjs) =>
   selectedDate?.get("month") === date.month &&
   selectedDate?.get("year") === date.year &&
   selectedDate?.get("date") === date.day;
 
-const divideDaysIntoWeeks = (data: Date[], weekSize: number) =>
+const divideDaysIntoWeeks = (data: DateType[], weekSize: number) =>
   Array.from({ length: Math.ceil(data.length / weekSize) }, (_, rowIndex) =>
     data.slice(rowIndex * weekSize, (rowIndex + 1) * weekSize)
   );
@@ -60,14 +58,13 @@ const Calendar = ({
   onDaySelect,
   today,
 }: CalendarPropsType): JSX.Element => {
-  const id = useId();
   const [dateToFocus, setDateToFocus] = useState(getDateToFocus(selectedDate, innerDate, today));
   const [isFocusable, setIsFocusable] = useState(false);
+  const id = useId();
+  const translatedLabels = useContext(HalstackLanguageContext);
   const dayCells = useMemo(() => getDays(innerDate), [innerDate]);
-  const translatedLabels = useTranslatedLabels();
-  const weekDays = translatedLabels?.calendar?.daysShort ?? [];
 
-  const onDateClickHandler = (date: Date) => {
+  const onDateClickHandler = (date: DateType) => {
     const newDate = innerDate.set("month", date.month).set("date", date.day);
     onDaySelect(newDate);
     setDateToFocus(newDate);
@@ -100,7 +97,7 @@ const Calendar = ({
     }
   }, [innerDate, dateToFocus, selectedDate, today]);
 
-  const handleDayKeyboardEvent = (event: KeyboardEvent<HTMLButtonElement>, date: Date) => {
+  const handleDayKeyboardEvent = (event: KeyboardEvent<HTMLButtonElement>, date: DateType) => {
     let dateToFocusTemp =
       date.month === innerDate.get("month")
         ? innerDate.set("date", date.day)
@@ -172,14 +169,14 @@ const Calendar = ({
   return (
     <CalendarContainer role="grid">
       <CalendarHeaderRow role="row">
-        {weekDays.map((weekDay) => (
+        {translatedLabels.calendar.daysShort.map((weekDay) => (
           <WeekHeaderCell key={weekDay} role="columnheader">
             {weekDay}
           </WeekHeaderCell>
         ))}
       </CalendarHeaderRow>
       <MonthContainer onBlur={handleOnBlur} role="rowgroup">
-        {divideDaysIntoWeeks(dayCells, weekDays.length).map((week, rowIndex) => (
+        {divideDaysIntoWeeks(dayCells, translatedLabels.calendar.daysShort.length).map((week, rowIndex) => (
           <WeekContainer key={`${id}_week_${rowIndex}`} role="row">
             {week.map((date) => (
               <DayCellButton

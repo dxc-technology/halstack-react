@@ -1,5 +1,9 @@
 {
-  "extends": ["next/core-web-vitals", "@dxc-technology/eslint-config/react-internal.js", "@dxc-technology/eslint-config/next.js"],
+  "extends": [
+    "next/core-web-vitals",
+    "@dxc-technology/eslint-config/react-internal.js",
+    "@dxc-technology/eslint-config/next.js"
+  ],
   "rules": {
     "no-unused-vars": [
       "warn",
@@ -7,6 +11,7 @@
         "argsIgnorePattern": "^_"
       }
     ],
+    "curly": ["warn", "all"],
     // TODO: Remove rules
     "react/no-unescaped-entities": "off",
     "import/no-anonymous-default-export": "off",

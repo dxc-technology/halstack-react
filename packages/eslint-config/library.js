@@ -66,12 +66,11 @@ module.exports = {
   ],
   rules: {
     curly: ["warn", "all"],
-    "no-plusplus": ["error", { allowForLoopAfterthoughts: true }],
     "no-use-before-define": [
       "error",
       {
         functions: false,
-        // TODO: Put Styled-Components variables in a separate file and import them
+        // TODO: Move Styled-Components to be defined before using
         variables: false,
       },
     ],
@@ -114,12 +113,25 @@ module.exports = {
     "react/no-array-index-key": "warn",
     "react/require-default-props": "off",
     "@typescript-eslint/no-explicit-any": "warn",
-    "default-case": "off",
+    "no-restricted-exports": [
+      "error",
+      {
+        restrictedNamedExports: ["then"],
+      },
+    ],
+    "prefer-destructuring": ["error", { object: true, array: false }],
     "consistent-return": "off",
+    "default-case": "off",
+    "no-else-return": "off",
     // TODO: REMOVE
     "react/no-array-index-key": "off",
     "react-hooks/exhaustive-deps": "off",
     "@typescript-eslint/no-explicit-any": "off",
+    "no-shadow": "off",
+    "no-plusplus": "off",
+    // "no-plusplus": ["error", { allowForLoopAfterthoughts: true }],
+    // TODO: REMOVE CHANGES CAUSED BY THIS
+    "react/function-component-definition": "off",
   },
   settings: {
     "import/resolver": {

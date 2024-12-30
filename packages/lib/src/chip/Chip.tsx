@@ -1,8 +1,9 @@
+import { useContext } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables";
-import getMargin from "../common/utils";
+import { getMargin } from "../common/utils";
 import DxcIcon from "../icon/Icon";
-import useTheme from "../useTheme";
+import HalstackContext from "../HalstackContext";
 import ChipPropsType from "./types";
 
 const DxcChip = ({
@@ -15,10 +16,10 @@ const DxcChip = ({
   margin,
   tabIndex = 0,
 }: ChipPropsType): JSX.Element => {
-  const colorsTheme = useTheme();
+  const colorsTheme = useContext(HalstackContext);
 
   return (
-    <ThemeProvider theme={colorsTheme?.chip}>
+    <ThemeProvider theme={colorsTheme.chip}>
       <Chip disabled={disabled} margin={margin}>
         {prefixIcon && (
           <IconContainer

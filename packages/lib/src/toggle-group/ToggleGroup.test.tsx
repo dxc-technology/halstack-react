@@ -78,14 +78,20 @@ describe("Toggle group component tests", () => {
     const onChange = jest.fn();
     const { getAllByRole } = render(<DxcToggleGroup options={options} onChange={onChange} multiple />);
     const toggleOptions = getAllByRole("button");
-    fireEvent.click(toggleOptions[0]);
+    if (toggleOptions[0]) {
+      fireEvent.click(toggleOptions[0]);
+    }
     expect(onChange).toHaveBeenCalledWith([1]);
-    fireEvent.click(toggleOptions[1]);
-    fireEvent.click(toggleOptions[3]);
+    if (toggleOptions[1]) {
+      fireEvent.click(toggleOptions[1]);
+    }
+    if (toggleOptions[3]) {
+      fireEvent.click(toggleOptions[3]);
+    }
     expect(onChange).toHaveBeenCalledWith([1, 2, 4]);
-    expect(toggleOptions[0].getAttribute("aria-pressed")).toBe("true");
-    expect(toggleOptions[1].getAttribute("aria-pressed")).toBe("true");
-    expect(toggleOptions[3].getAttribute("aria-pressed")).toBe("true");
+    expect(toggleOptions[0]?.getAttribute("aria-pressed")).toBe("true");
+    expect(toggleOptions[1]?.getAttribute("aria-pressed")).toBe("true");
+    expect(toggleOptions[3]?.getAttribute("aria-pressed")).toBe("true");
   });
 
   test("Controlled multiple toggle returns always same values", () => {
@@ -102,13 +108,13 @@ describe("Toggle group component tests", () => {
   test("Single selection: Renders with correct default value", () => {
     const { getAllByRole } = render(<DxcToggleGroup options={options} defaultValue={2} />);
     const toggleOptions = getAllByRole("button");
-    expect(toggleOptions[1].getAttribute("aria-pressed")).toBe("true");
+    expect(toggleOptions[1]?.getAttribute("aria-pressed")).toBe("true");
   });
 
   test("Multiple selection: Renders with correct default value", () => {
     const { getAllByRole } = render(<DxcToggleGroup options={options} defaultValue={[2, 4]} multiple />);
     const toggleOptions = getAllByRole("button");
-    expect(toggleOptions[1].getAttribute("aria-pressed")).toBe("true");
-    expect(toggleOptions[3].getAttribute("aria-pressed")).toBe("true");
+    expect(toggleOptions[1]?.getAttribute("aria-pressed")).toBe("true");
+    expect(toggleOptions[3]?.getAttribute("aria-pressed")).toBe("true");
   });
 });

@@ -1,10 +1,8 @@
-// import { createContext, useMemo } from "react";
+// import { createContext, ReactNode, useMemo } from "react";
 // import Color from "color";
 
 // type BackgroundColors = "dark" | "light";
-// const BackgroundColorContext = React.createContext<BackgroundColors | null>(
-//   null
-// );
+// const BackgroundColorContext = createContext<BackgroundColors | null>(null);
 
 // const getColorType = (hexColor: string): BackgroundColors => {
 //   try {
@@ -12,8 +10,9 @@
 //       const hslColor = Color(hexColor).hsl();
 //       const lightnessColor = hslColor.lightness();
 //       return lightnessColor <= 30 ? "dark" : "light";
+//     } else {
+//       return "light";
 //     }
-//     return "light";
 //   } catch (e) {
 //     return "light";
 //   }
@@ -21,17 +20,9 @@
 
 // type BackgroundColorProviderPropsType = {
 //   color: string;
-//   children: React.ReactNode;
+//   children: ReactNode;
 // };
-
-// const BackgroundColorProvider = ({
-//   color,
-//   children,
-// }: BackgroundColorProviderPropsType): JSX.Element => {
+// const BackgroundColorProvider = ({ color, children }: BackgroundColorProviderPropsType): JSX.Element => {
 //   const colorType = useMemo(() => getColorType(color), [color]);
-//   return (
-//     <BackgroundColorContext.Provider value={colorType}>
-//       {children}
-//     </BackgroundColorContext.Provider>
-//   );
+//   return <BackgroundColorContext.Provider value={colorType}>{children}</BackgroundColorContext.Provider>;
 // };

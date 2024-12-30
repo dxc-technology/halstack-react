@@ -1,10 +1,8 @@
-import { forwardRef, Ref, useContext, useEffect, useRef } from "react";
+import { forwardRef, KeyboardEvent, MutableRefObject, Ref, useContext, useEffect, useRef } from "react";
 import styled from "styled-components";
 import DxcBadge from "../badge/Badge";
 import DxcIcon from "../icon/Icon";
 import { Tooltip } from "../tooltip/Tooltip";
-import useTheme from "../useTheme";
-import BaseTypography from "../utils/BaseTypography";
 import TabsContext from "./TabsContext";
 import { TabProps, TabsContextProps } from "./types";
 
@@ -23,7 +21,7 @@ const DxcTab = forwardRef(
     ref: Ref<HTMLButtonElement>
   ): JSX.Element => {
     const tabRef = useRef<HTMLButtonElement | null>(null);
-    const colorsTheme = useTheme();
+
     const {
       iconPosition = "top",
       tabIndex = 0,
@@ -55,7 +53,7 @@ const DxcTab = forwardRef(
       }
     }, [active, label]);
 
-    const handleOnKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
+    const handleOnKeyDown = (event: KeyboardEvent<HTMLButtonElement>) => {
       switch (event.key) {
         case " ":
         case "Enter":
@@ -77,14 +75,15 @@ const DxcTab = forwardRef(
           aria-selected={activeLabel === label}
           hasLabelAndIcon={hasLabelAndIcon}
           iconPosition={iconPosition}
-          ref={(anchorRef) => {
+          ref={(anchorRef: HTMLButtonElement) => {
             tabRef.current = anchorRef;
 
             if (ref) {
               if (typeof ref === "function") {
                 ref(anchorRef);
               } else {
-                const currentRef = ref as React.MutableRefObject<HTMLButtonElement | null>;
+                // TODO: Check if this is the correct approach
+                const currentRef = ref as MutableRefObject<HTMLButtonElement | null>;
                 currentRef.current = anchorRef;
               }
             }
@@ -109,24 +108,9 @@ const DxcTab = forwardRef(
                 {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
               </TabIconContainer>
             )}
-            <BaseTypography
-              color={
-                disabled
-                  ? colorsTheme?.tabs?.disabledFontColor
-                  : activeLabel === label
-                    ? colorsTheme?.tabs?.selectedFontColor
-                    : colorsTheme?.tabs?.unselectedFontColor
-              }
-              fontFamily={colorsTheme?.tabs?.fontFamily}
-              fontSize={colorsTheme?.tabs?.fontSize}
-              fontStyle={disabled ? colorsTheme?.tabs?.disabledFontStyle : colorsTheme?.tabs?.fontStyle}
-              fontWeight={activeLabel === label ? colorsTheme?.tabs?.pressedFontWeight : colorsTheme?.tabs?.fontWeight}
-              textAlign="center"
-              letterSpacing="0.025em"
-              lineHeight="1.715em"
-            >
+            <Label disabled={disabled} activeLabel={activeLabel} label={label}>
               {label}
-            </BaseTypography>
+            </Label>
           </MainLabelContainer>
           {notificationNumber && !disabled && (
             <BadgeContainer hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
@@ -236,6 +220,31 @@ const MainLabelContainer = styled.div<{
         ? "36px"
         : "18px"
       : "unset"};
+`;
+
+const Label = styled.span<{
+  disabled: TabProps["disabled"];
+  label: TabProps["label"];
+  activeLabel?: string;
+}>`
+  display: inline;
+  color: ${(props) =>
+    props.disabled
+      ? props.theme.disabledFontColor
+      : props.activeLabel === props.label
+        ? props.theme.selectedFontColor
+        : props.theme.unselectedFontColor};
+  font-family: ${(props) => props.theme.fontFamily};
+  font-size: ${(props) => props.theme.fontSize};
+  font-style: ${(props) => (props.disabled ? props.theme.disabledFontStyle : props.theme.fontStyle)};
+  font-weight: ${(props) => props.theme.fontWeight};
+  text-align: center;
+  letter-spacing: 0.025em;
+  line-height: 1.715em;
+  text-decoration: none;
+  text-overflow: unset;
+  white-space: normal;
+  margin: 0;
 `;
 
 const TabIconContainer = styled.div<{

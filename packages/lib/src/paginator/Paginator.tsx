@@ -1,8 +1,8 @@
+import { useContext } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import DxcButton from "../button/Button";
 import DxcSelect from "../select/Select";
-import useTheme from "../useTheme";
-import useTranslatedLabels from "../useTranslatedLabels";
+import HalstackContext, { HalstackLanguageContext } from "../HalstackContext";
 import PaginatorPropsType from "./types";
 
 const DxcPaginator = ({
@@ -24,16 +24,16 @@ const DxcPaginator = ({
   const maxItemsPerPage =
     minItemsPerPage - 1 + itemsPerPage > totalItems ? totalItems : minItemsPerPage - 1 + itemsPerPage;
 
-  const colorsTheme = useTheme();
-  const translatedLabels = useTranslatedLabels();
+  const colorsTheme = useContext(HalstackContext);
+  const translatedLabels = useContext(HalstackLanguageContext);
 
   return (
-    <ThemeProvider theme={colorsTheme?.paginator}>
+    <ThemeProvider theme={colorsTheme.paginator}>
       <DxcPaginatorContainer>
         <LabelsContainer>
           {itemsPerPageOptions && (
             <ItemsPageContainer>
-              <ItemsLabel>{translatedLabels?.paginator?.itemsPerPageText}</ItemsLabel>
+              <ItemsLabel>{translatedLabels.paginator.itemsPerPageText}</ItemsLabel>
               <SelectContainer>
                 <DxcSelect
                   options={itemsPerPageOptions.map((num) => ({
@@ -51,7 +51,7 @@ const DxcPaginator = ({
             </ItemsPageContainer>
           )}
           <TotalItemsContainer>
-            {translatedLabels?.paginator?.minToMaxOfText?.(minItemsPerPage, maxItemsPerPage, totalItems)}
+            {translatedLabels.paginator.minToMaxOfText(minItemsPerPage, maxItemsPerPage, totalItems)}
           </TotalItemsContainer>
           {onPageChange && (
             <DxcButton
@@ -79,7 +79,7 @@ const DxcPaginator = ({
           )}
           {showGoToPage ? (
             <PageToSelectContainer>
-              <GoToLabel>{translatedLabels?.paginator?.goToPageText} </GoToLabel>
+              <GoToLabel>{translatedLabels.paginator.goToPageText} </GoToLabel>
               <SelectContainer>
                 <DxcSelect
                   options={Array.from(Array(totalPages), (e, num) => ({
@@ -96,7 +96,7 @@ const DxcPaginator = ({
               </SelectContainer>
             </PageToSelectContainer>
           ) : (
-            <span>{translatedLabels?.paginator?.pageOfText?.(currentPageInternal, totalPages)}</span>
+            <span>{translatedLabels.paginator.pageOfText(currentPageInternal, totalPages)}</span>
           )}
           {onPageChange && (
             <DxcButton
