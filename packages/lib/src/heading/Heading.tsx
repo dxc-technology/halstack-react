@@ -10,7 +10,6 @@ const DxcHeading = ({ level = 1, text = "", as, weight, margin }: HeadingPropsTy
     if (as === "h1" || as === "h2" || as === "h3" || as === "h4" || as === "h5") {
       return as;
     }
-    return undefined;
   };
 
   return (

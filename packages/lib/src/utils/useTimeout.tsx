@@ -21,10 +21,9 @@ const useTimeout: UseTimeoutType = (callback, delay) => {
 
   useEffect(() => {
     if (delay != null) {
-      timerRef.current = setTimeout((savedCallback.current!), delay);
+      timerRef.current = setTimeout(savedCallback.current!, delay);
       return clearTimerCallback;
     }
-    return undefined;
   }, [delay, clearTimerCallback]);
 
   return clearTimerCallback;

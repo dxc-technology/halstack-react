@@ -57,7 +57,6 @@ const App = ({ Component, pageProps }: AppPropsWithLayout) => {
       const desiredPaths = [linkPath, `${linkPath}/specifications`, `${linkPath}/usage`];
       return desiredPaths.includes(pathToBeMatched);
     }
-    return false;
   };
 
   return (

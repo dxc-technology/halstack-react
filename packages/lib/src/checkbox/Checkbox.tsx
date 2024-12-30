@@ -134,8 +134,6 @@ const getDisabledColor = (theme: AdvancedTheme["checkbox"], element: string) => 
       return theme.disabledBorderColor;
     case "label":
       return theme.disabledFontColor;
-    default:
-      return undefined;
   }
 };
 
@@ -151,8 +149,6 @@ const getReadOnlyColor = (theme: AdvancedTheme["checkbox"], element: string) => 
       return theme.readOnlyBorderColor;
     case "hoverBorder":
       return theme.hoverReadOnlyBorderColor;
-    default:
-      return undefined;
   }
 };
 
@@ -170,8 +166,6 @@ const getEnabledColor = (theme: AdvancedTheme["checkbox"], element: string) => {
       return theme.hoverBorderColor;
     case "label":
       return theme.fontColor;
-    default:
-      return undefined;
   }
 };
 

@@ -15,10 +15,8 @@ const getPropInChild = (child: ReactNode, propName: string) => {
       return getPropInChild(childWithProps.props.children, propName);
     }
   }
-  return undefined;
 };
-
-const getLabelFromTab = (child: ReactNode): string | undefined => {
+const getLabelFromTab = (child: ReactNode) => {
   if (typeof child === "string") {
     return child;
   }
@@ -29,7 +27,6 @@ const getLabelFromTab = (child: ReactNode): string | undefined => {
     }
     return getLabelFromTab(childWithProps.props.children);
   }
-  return undefined;
 };
 
 const getPreviousTabIndex = (array: ReactElement[], initialIndex: number): number => {

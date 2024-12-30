@@ -75,7 +75,6 @@ const Container = styled.div<StyledProps>`
       }
       return styles;
     }
-    return undefined;
   }};
 
   margin: ${({ margin }) => (typeof margin === "string" ? spaces[margin] : "")};

@@ -49,12 +49,13 @@ export const convertToRDGColumns = (
   headerCellClass: gridColumn.alignment ? `header-align-${gridColumn.alignment}` : `header-align-left`,
   renderEditCell: gridColumn.textEditable ? textEditor : undefined,
   renderCell: ({ row }) => (
-      <div className={`ellipsis-cell ${gridColumn.alignment ? `align-${  gridColumn.alignment}` : "align-left"}`}>
-        {row[gridColumn.key]}
-      </div>
-    ),
-  renderSummaryCell: () => gridColumn.summaryKey ? (
-      <div className={`ellipsis-cell ${gridColumn.alignment ? `align-${  gridColumn.alignment}` : "align-left"}`}>
+    <div className={`ellipsis-cell ${gridColumn.alignment ? `align-${gridColumn.alignment}` : "align-left"}`}>
+      {row[gridColumn.key]}
+    </div>
+  ),
+  renderSummaryCell: () =>
+    gridColumn.summaryKey ? (
+      <div className={`ellipsis-cell ${gridColumn.alignment ? `align-${gridColumn.alignment}` : "align-left"}`}>
         {summaryRow?.[gridColumn.summaryKey]}
       </div>
     ) : undefined,
@@ -452,7 +453,6 @@ export const rowFinderBasedOnId = (
   if (foundRow) {
     return foundRow;
   }
-  return undefined;
 };
 
 /**

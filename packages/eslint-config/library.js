@@ -114,10 +114,12 @@ module.exports = {
     "react/no-array-index-key": "warn",
     "react/require-default-props": "off",
     "@typescript-eslint/no-explicit-any": "warn",
+    "default-case": "off",
+    "consistent-return": "off",
     // TODO: REMOVE
     "react/no-array-index-key": "off",
     "react-hooks/exhaustive-deps": "off",
-    "@typescript-eslint/no-explicit-any": "off"
+    "@typescript-eslint/no-explicit-any": "off",
   },
   settings: {
     "import/resolver": {

@@ -18,7 +18,6 @@ const useWidth = <T extends Element>(target: T | null) => {
         triggerObserver.unobserve(target);
       };
     }
-    return undefined;
   }, [target]);
 
   return width;

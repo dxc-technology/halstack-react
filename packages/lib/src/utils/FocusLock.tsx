@@ -19,19 +19,15 @@ const focusableQuery = [
   `[tabindex]${not.negTabIndex}${not.disabled}`,
 ].join(",");
 
-const getFocusableElements = (container: HTMLElement | null): HTMLElement[] | null => {
-  if (container != null) {
-    return Array.prototype.slice
-      .call(container.querySelectorAll(focusableQuery))
-      .filter(
-        (element: HTMLElement) =>
-          element.getAttribute("aria-hidden") !== "true" &&
-          window.getComputedStyle(element).display !== "none" &&
-          window.getComputedStyle(element).visibility !== "hidden"
-      );
-  }
-  return null;
-};
+const getFocusableElements = (container: HTMLElement | null): HTMLElement[] =>
+  Array.prototype.slice
+    .call(container?.querySelectorAll(focusableQuery))
+    .filter(
+      (element: HTMLElement) =>
+        element.getAttribute("aria-hidden") !== "true" &&
+        window.getComputedStyle(element).display !== "none" &&
+        window.getComputedStyle(element).visibility !== "hidden"
+    );
 
 /**
  * This function will try to focus the element and return true if it was able to receive the focus.
@@ -49,7 +45,7 @@ const attemptFocus = (element: HTMLElement): boolean => {
  * @param element: HTMLElement
  * @returns boolean: true if element is contained inside a Radix Portal, false otherwise.
  */
-const radixPortalContains = (activeElement: Element): boolean => {
+const radixPortalContains = (activeElement: Node): boolean => {
   const radixPortals = document.querySelectorAll("[data-radix-portal]");
   const radixPoppers = document.querySelectorAll("[data-radix-popper-content-wrapper]");
   return (
@@ -60,7 +56,7 @@ const radixPortalContains = (activeElement: Element): boolean => {
 
 /**
  * Custom hook that returns an array of focusable elements inside a container.
- * @param ref: MutableRefObject<HTMLDivElement>
+ * @param ref: React.MutableRefObject<HTMLDivElement>
  * @returns
  */
 const useFocusableElements = (ref: MutableRefObject<HTMLDivElement | null>): HTMLElement[] | null => {
@@ -82,7 +78,6 @@ const useFocusableElements = (ref: MutableRefObject<HTMLDivElement | null>): HTM
         observer.disconnect();
       };
     }
-    return undefined;
   }, []);
 
   return focusableElements;
@@ -93,7 +88,7 @@ const useFocusableElements = (ref: MutableRefObject<HTMLDivElement | null>): HTM
  * When the focus is on the last focusable element and the user tries to focus the next element, it will focus the first element.
  * When the focus is on the first focusable element and the user tries to focus the previous element, it will focus the last element.
  * The focus can't be moved outside the children unless the children are removed from the DOM (for example, a Dialog, a Modal, etc).
- * @param children: ReactNode
+ * @param children: React.ReactNode
  * @returns
  */
 const FocusLock = ({ children }: { children: ReactNode }): JSX.Element => {
