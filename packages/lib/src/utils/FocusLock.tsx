@@ -19,9 +19,9 @@ const focusableQuery = [
   `[tabindex]${not.negTabIndex}${not.disabled}`,
 ].join(",");
 
-const getFocusableElements = (container: HTMLElement | null): HTMLElement[] =>
+const getFocusableElements = (container: HTMLElement): HTMLElement[] =>
   Array.prototype.slice
-    .call(container?.querySelectorAll(focusableQuery))
+    .call(container.querySelectorAll(focusableQuery))
     .filter(
       (element: HTMLElement) =>
         element.getAttribute("aria-hidden") !== "true" &&
@@ -37,7 +37,7 @@ const getFocusableElements = (container: HTMLElement | null): HTMLElement[] =>
  * @returns
  */
 const attemptFocus = (element: HTMLElement): boolean => {
-  element?.focus();
+  element.focus();
   return document.activeElement === element;
 };
 
@@ -63,17 +63,15 @@ const useFocusableElements = (ref: MutableRefObject<HTMLDivElement | null>): HTM
   const [focusableElements, setFocusableElements] = useState<HTMLElement[] | null>(null);
 
   useEffect(() => {
-    if (ref?.current != null) {
+    if (ref.current != null) {
       setFocusableElements(getFocusableElements(ref.current));
 
       const observer = new MutationObserver(() => {
-        setFocusableElements(getFocusableElements(ref?.current));
+        if (ref.current != null) {
+          setFocusableElements(getFocusableElements(ref.current));
+        }
       });
-      observer.observe(ref.current, {
-        childList: true,
-        subtree: true,
-        attributes: true,
-      });
+      observer.observe(ref.current, { childList: true, subtree: true });
       return () => {
         observer.disconnect();
       };
@@ -94,33 +92,60 @@ const useFocusableElements = (ref: MutableRefObject<HTMLDivElement | null>): HTM
 const FocusLock = ({ children }: { children: ReactNode }): JSX.Element => {
   const childrenContainerRef = useRef<HTMLDivElement | null>(null);
   const focusableElements = useFocusableElements(childrenContainerRef);
+  const initialFocus = useRef(false);
 
   const focusFirst = useCallback(() => {
-    if (focusableElements?.length === 0) {
-      childrenContainerRef.current?.focus();
-    } else if (focusableElements && focusableElements?.length > 0) {
-      focusableElements.some((element) => attemptFocus(element));
+    if (focusableElements != null) {
+      if (focusableElements.length === 0) {
+        childrenContainerRef.current?.focus();
+      } else if (focusableElements.length > 0) {
+        focusableElements.some((element) => attemptFocus(element));
+      }
     }
   }, [focusableElements]);
 
   const focusLast = () => {
-    focusableElements?.reverse()?.some((element) => attemptFocus(element));
+    focusableElements
+      ?.slice()
+      .reverse()
+      .some((element) => attemptFocus(element));
   };
 
   const focusLock = (event: KeyboardEvent<HTMLDivElement>) => {
-    if (event.key === "Tab" && focusableElements && focusableElements.length === 0) {
+    if (event.key === "Tab" && focusableElements?.length === 0) {
       event.preventDefault();
     }
   };
 
   useEffect(() => {
-    if (
-      document?.activeElement &&
-      !childrenContainerRef.current?.contains(document.activeElement) &&
-      !radixPortalContains(document.activeElement)
-    ) {
+    if (focusableElements != null && !initialFocus.current) {
+      initialFocus.current = true;
       focusFirst();
     }
+  }, [focusableElements, focusFirst]);
+
+  useEffect(() => {
+    const focusGuardHandler = (event: FocusEvent) => {
+      const target = event.relatedTarget as Node | null;
+      const container = childrenContainerRef.current;
+
+      if (
+        target != null &&
+        !(
+          container?.contains(target) ||
+          container?.nextElementSibling?.contains(target) ||
+          container?.previousElementSibling?.contains(target) ||
+          radixPortalContains(target)
+        )
+      ) {
+        focusFirst();
+      }
+    };
+
+    document.addEventListener("focusout", focusGuardHandler);
+    return () => {
+      document.removeEventListener("focusout", focusGuardHandler);
+    };
   }, [focusFirst]);
 
   return (
