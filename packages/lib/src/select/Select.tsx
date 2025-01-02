@@ -17,7 +17,7 @@ import {
   groupsHaveOptions,
   isArrayOfOptionGroups,
   notOptionalCheck,
-} from "./selectUtils";
+} from "./utils";
 import SelectPropsType, { ListOptionType, RefType } from "./types";
 
 const DxcSelect = forwardRef<RefType, SelectPropsType>(
