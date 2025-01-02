@@ -1,17 +1,17 @@
+import { useContext } from "react";
 import { userEvent, within } from "@storybook/test";
 import { ThemeProvider } from "styled-components";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
-import { HalstackProvider } from "../HalstackContext";
+import HalstackContext, { HalstackProvider } from "../HalstackContext";
 import DxcFlex from "../flex/Flex";
-import useTheme from "../useTheme";
 import Suggestions from "./Suggestions";
 import DxcTextInput from "./TextInput";
-
+import { Meta, StoryObj } from "@storybook/react";
 export default {
   title: "Text Input",
   component: DxcTextInput,
-};
+} as Meta<typeof DxcTextInput>;
 
 const action = {
   onClick: () => {},
@@ -42,6 +42,7 @@ const actionLargeIconURL = {
 };
 
 const country = ["Afghanistan"];
+
 const countries = [
   "Afghanistan",
   "Albania",
@@ -74,7 +75,7 @@ const opinionatedTheme = {
   },
 };
 
-export const Chromatic = () => (
+const TextInput = () => (
   <>
     <ExampleContainer pseudoState="pseudo-hover">
       <Title title="Hovered input" theme="light" level={4} />
@@ -340,7 +341,7 @@ export const Chromatic = () => (
 );
 
 const AutosuggestListbox = () => {
-  const colorsTheme: any = useTheme();
+  const colorsTheme: any = useContext(HalstackContext);
 
   return (
     <ThemeProvider theme={colorsTheme.textInput}>
@@ -468,9 +469,17 @@ const AutosuggestListbox = () => {
   );
 };
 
-export const AutosuggestListboxStates = AutosuggestListbox.bind({});
-AutosuggestListboxStates.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const select = canvas.getByRole("combobox");
-  await userEvent.click(select);
+type Story = StoryObj<typeof DxcTextInput>;
+
+export const Chromatic: Story = {
+  render: TextInput,
+};
+
+export const AutosuggestListboxStates: Story = {
+  render: AutosuggestListbox,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const select = canvas.getByRole("combobox");
+    await userEvent.click(select);
+  },
 };

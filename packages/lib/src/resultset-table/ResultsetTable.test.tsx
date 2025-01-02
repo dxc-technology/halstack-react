@@ -361,7 +361,7 @@ describe("Resultset table component tests", () => {
     expect(getByText("Lana")).toBeTruthy();
     expect(getAllByRole("row").length - 1).toEqual(3);
     const nextButton = getAllByRole("button")[3];
-    fireEvent.click(nextButton);
+    nextButton && fireEvent.click(nextButton);
     expect(getByText("4 to 6 of 10")).toBeTruthy();
     expect(getByText("Rick")).toBeTruthy();
     expect(getByText("Mark")).toBeTruthy();
@@ -380,7 +380,7 @@ describe("Resultset table component tests", () => {
     expect(getByText("Lana")).toBeTruthy();
     expect(getAllByRole("row").length - 1).toEqual(3);
     const goToPageSelect = getAllByRole("button")[3];
-    await userEvent.click(goToPageSelect);
+    goToPageSelect && (await userEvent.click(goToPageSelect));
     const goToPageOption = getByText("2");
     await userEvent.click(goToPageOption);
     expect(getByText("4 to 6 of 10")).toBeTruthy();
@@ -393,7 +393,7 @@ describe("Resultset table component tests", () => {
   test("Resultset table going to the last page shows only one row", () => {
     const { getByText, getAllByRole } = render(<DxcResultsetTable columns={columns} rows={rows} itemsPerPage={3} />);
     const lastButton = getAllByRole("button")[4];
-    fireEvent.click(lastButton);
+    lastButton && fireEvent.click(lastButton);
     expect(getByText("10 to 10 of 10")).toBeTruthy();
     expect(getAllByRole("row")).toHaveLength(2);
     expect(getByText("Cosmin")).toBeTruthy();
@@ -401,24 +401,26 @@ describe("Resultset table component tests", () => {
 
   test("Resultset table sort rows by column", () => {
     const component = render(<DxcResultsetTable columns={columns} rows={rows} itemsPerPage={3} />);
+    const name = component.queryByText("Name");
     expect(component.queryByText("Peter")).toBeTruthy();
-    fireEvent.click(component.queryByText("Name"));
+    name && fireEvent.click(name);
     expect(component.queryByText("Tina")).not.toBeTruthy();
     expect(component.queryByText("Cosmin")).toBeTruthy();
 
-    fireEvent.click(component.queryByText("Name"));
+    name && fireEvent.click(name);
     expect(component.queryByText("Tina")).toBeTruthy();
     expect(component.queryByText("Cosmin")).not.toBeTruthy();
   });
 
   test("Resultset table sort rows by column even if they are missing sortValues", () => {
     const component = render(<DxcResultsetTable columns={columns} rows={rowsMissingSortValues} itemsPerPage={3} />);
+    const name = component.queryByText("Name");
     expect(component.queryByText("Peter")).toBeTruthy();
-    fireEvent.click(component.queryByText("Name"));
+    name && fireEvent.click(name);
     expect(component.queryByText("Tina")).not.toBeTruthy();
     expect(component.queryByText("Cosmin")).toBeTruthy();
 
-    fireEvent.click(component.queryByText("Name"));
+    name && fireEvent.click(name);
     expect(component.queryByText("Tina")).toBeTruthy();
     expect(component.queryByText("Cosmin")).not.toBeTruthy();
   });
@@ -430,7 +432,7 @@ describe("Resultset table component tests", () => {
     expect(queryByText("1 to 3 of 10")).toBeTruthy();
     const lastButton = getAllByRole("button")[4];
     expect(queryByText("Peter")).toBeTruthy();
-    fireEvent.click(lastButton);
+    lastButton && fireEvent.click(lastButton);
     expect(queryByText("10 to 10 of 10")).toBeTruthy();
     rerender(<DxcResultsetTable columns={columns} rows={rows2} itemsPerPage={3} />);
     expect(queryByText("7 to 9 of 9")).toBeTruthy();
@@ -443,7 +445,7 @@ describe("Resultset table component tests", () => {
     expect(queryByText("1 to 2 of 10")).toBeTruthy();
     const lastButton = getAllByRole("button")[4];
     expect(queryByText("Peter")).toBeTruthy();
-    fireEvent.click(lastButton);
+    lastButton && fireEvent.click(lastButton);
     expect(queryByText("9 to 10 of 10")).toBeTruthy();
     rerender(<DxcResultsetTable columns={columns} rows={rows2} itemsPerPage={2} />);
     expect(queryByText("9 to 9 of 9")).toBeTruthy();
@@ -456,19 +458,19 @@ describe("Resultset table component tests", () => {
     const columnHeader = getAllByRole("columnheader")[0];
     const sortButton = getAllByRole("button")[0];
 
-    expect(getAllByRole("checkbox")[0].getAttribute("aria-checked")).toBe("true");
+    expect(getAllByRole("checkbox")[0]?.getAttribute("aria-checked")).toBe("true");
 
-    expect(columnHeader.getAttribute("aria-sort")).toBe("none");
+    expect(columnHeader?.getAttribute("aria-sort")).toBe("none");
 
-    fireEvent.click(sortButton);
+    sortButton && fireEvent.click(sortButton);
 
-    expect(columnHeader.getAttribute("aria-sort")).toBe("ascending");
+    expect(columnHeader?.getAttribute("aria-sort")).toBe("ascending");
 
-    fireEvent.click(sortButton);
+    sortButton && fireEvent.click(sortButton);
 
-    expect(columnHeader.getAttribute("aria-sort")).toBe("descending");
+    expect(columnHeader?.getAttribute("aria-sort")).toBe("descending");
 
-    expect(getAllByRole("checkbox")[0].getAttribute("aria-checked")).toBe("false");
+    expect(getAllByRole("checkbox")[0]?.getAttribute("aria-checked")).toBe("false");
   });
 
   test("Resultset table change itemsPerPage should go to first page", () => {
@@ -477,7 +479,7 @@ describe("Resultset table component tests", () => {
     );
     const lastButton = getAllByRole("button")[4];
     expect(getAllByRole("row").length - 1).toEqual(3);
-    fireEvent.click(lastButton);
+    lastButton && fireEvent.click(lastButton);
     expect(getAllByRole("row").length - 1).toEqual(1);
   });
 
@@ -536,14 +538,14 @@ describe("Resultset table component tests", () => {
     );
     const dropdown = getAllByRole("button")[2];
     act(() => {
-      userEvent.click(dropdown);
+      dropdown && userEvent.click(dropdown);
     });
     expect(getByRole("menu")).toBeTruthy();
     const option = getByText("Aliexpress");
     userEvent.click(option);
     expect(onSelectOption).toHaveBeenCalledWith("3");
     const action = getAllByRole("button")[1];
-    userEvent.click(action);
+    action && userEvent.click(action);
     expect(onClick).toHaveBeenCalled();
   });
 });

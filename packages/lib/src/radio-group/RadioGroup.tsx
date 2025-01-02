@@ -1,7 +1,6 @@
-import { forwardRef, useCallback, useId, useMemo, useState } from "react";
+import { FocusEvent, forwardRef, KeyboardEvent, useCallback, useContext, useId, useMemo, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import useTheme from "../useTheme";
-import useTranslatedLabels from "../useTranslatedLabels";
+import HalstackContext, { HalstackLanguageContext } from "../HalstackContext";
 import DxcRadio from "./Radio";
 import RadioGroupPropsType, { RadioOption, RefType } from "./types";
 
@@ -38,8 +37,8 @@ const DxcRadioGroup = forwardRef<RefType, RadioGroupPropsType>(
     const [innerValue, setInnerValue] = useState(defaultValue);
     const [firstTimeFocus, setFirstTimeFocus] = useState(true);
 
-    const colorsTheme = useTheme();
-    const translatedLabels = useTranslatedLabels();
+    const colorsTheme = useContext(HalstackContext);
+    const translatedLabels = useContext(HalstackLanguageContext);
 
     const innerOptions = useMemo(
       () =>
@@ -62,47 +61,62 @@ const DxcRadioGroup = forwardRef<RefType, RadioGroupPropsType>(
       (newValue: string) => {
         const currentValue = value ?? innerValue;
         if (newValue !== currentValue && !readOnly) {
-          value ?? setInnerValue(newValue);
+          if (value == null) {
+            setInnerValue(newValue);
+          }
           onChange?.(newValue);
         }
       },
       [value, innerValue, onChange]
     );
-    const handleOnBlur = (event: React.FocusEvent<HTMLDivElement>) => {
+    const handleOnBlur = (event: FocusEvent<HTMLDivElement>) => {
       // If the radio group loses the focus to an element not contained inside it...
       if (!event.currentTarget.contains(event.relatedTarget as Node)) {
         setFirstTimeFocus(true);
         const currentValue = value ?? innerValue;
-        !optional && !currentValue
-          ? onBlur?.({ value: currentValue, error: translatedLabels.formFields.requiredSelectionErrorMessage })
-          : onBlur?.({ value: currentValue });
+        if (!optional && !currentValue) {
+          onBlur?.({
+            value: currentValue,
+            error: translatedLabels.formFields.requiredSelectionErrorMessage,
+          });
+        } else {
+          onBlur?.({ value: currentValue });
+        }
       }
     };
     const handleOnFocus = () => {
-      firstTimeFocus && setFirstTimeFocus(false);
+      if (firstTimeFocus) {
+        setFirstTimeFocus(false);
+      }
     };
 
     const setPreviousRadioChecked = () => {
-      setCurrentFocusIndex((currentFocusIndex) => {
-        let index = currentFocusIndex === 0 ? innerOptions.length - 1 : currentFocusIndex - 1;
-        while (innerOptions[index].disabled) {
+      setCurrentFocusIndex((currentFocusIndexValue) => {
+        let index = currentFocusIndexValue === 0 ? innerOptions.length - 1 : currentFocusIndexValue - 1;
+        while (innerOptions[index]?.disabled) {
           index = index === 0 ? innerOptions.length - 1 : index - 1;
         }
-        handleOnChange(innerOptions[index].value);
+        const option = innerOptions[index];
+        if (option != null) {
+          handleOnChange(option.value);
+        }
         return index;
       });
     };
     const setNextRadioChecked = () => {
-      setCurrentFocusIndex((currentFocusIndex) => {
-        let index = currentFocusIndex === innerOptions.length - 1 ? 0 : currentFocusIndex + 1;
-        while (innerOptions[index].disabled) {
+      setCurrentFocusIndex((currentFocusIndexValue) => {
+        let index = currentFocusIndexValue === innerOptions.length - 1 ? 0 : currentFocusIndexValue + 1;
+        while (innerOptions[index]?.disabled) {
           index = index === innerOptions.length - 1 ? 0 : index + 1;
         }
-        handleOnChange(innerOptions[index].value);
+        const option = innerOptions[index];
+        if (option != null) {
+          handleOnChange(option.value);
+        }
         return index;
       });
     };
-    const handleOnKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    const handleOnKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
       switch (event.key) {
         case "Left":
         case "ArrowLeft":
@@ -120,7 +134,11 @@ const DxcRadioGroup = forwardRef<RefType, RadioGroupPropsType>(
           break;
         case " ":
           event.preventDefault();
-          handleOnChange(innerOptions[currentFocusIndex].value);
+          if (innerOptions[currentFocusIndex] != null) {
+            handleOnChange(innerOptions[currentFocusIndex].value);
+          }
+          break;
+        default:
           break;
       }
     };
@@ -143,7 +161,7 @@ const DxcRadioGroup = forwardRef<RefType, RadioGroupPropsType>(
             role="radiogroup"
             aria-disabled={disabled}
             aria-labelledby={radioGroupLabelId}
-            aria-invalid={error ? true : false}
+            aria-invalid={!!error}
             aria-errormessage={error ? errorId : undefined}
             aria-required={!disabled && !readOnly && !optional}
             aria-readonly={readOnly}
@@ -153,7 +171,7 @@ const DxcRadioGroup = forwardRef<RefType, RadioGroupPropsType>(
             {innerOptions.map((option, index) => (
               <DxcRadio
                 key={`radio-${index}`}
-                label={option.label}
+                label={option.label ?? ""}
                 checked={(value ?? innerValue) === option.value}
                 onClick={() => {
                   handleOnChange(option.value);
@@ -184,7 +202,10 @@ const RadioGroupContainer = styled.div`
   flex-direction: column;
 `;
 
-const Label = styled.span<{ helperText: RadioGroupPropsType["helperText"]; disabled: RadioGroupPropsType["disabled"] }>`
+const Label = styled.span<{
+  helperText: RadioGroupPropsType["helperText"];
+  disabled: RadioGroupPropsType["disabled"];
+}>`
   color: ${(props) => (props.disabled ? props.theme.disabledLabelFontColor : props.theme.labelFontColor)};
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.labelFontSize};

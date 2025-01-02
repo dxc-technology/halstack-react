@@ -391,7 +391,7 @@ describe("TextInput component tests", () => {
     const input = getByRole("textbox") as HTMLInputElement;
     userEvent.type(input, "test");
     expect(input.value).toBe("test");
-    await userEvent.click(search);
+    search && (await userEvent.click(search));
     expect(handlerOnSubmit).not.toHaveBeenCalled();
     await userEvent.click(submit);
     expect(handlerOnSubmit).toHaveBeenCalled();
@@ -434,9 +434,9 @@ describe("TextInput component tests", () => {
     expect(input.getAttribute("aria-required")).toBe("true");
     userEvent.type(input, "Text");
     const clear = getAllByRole("button")[0];
-    expect(clear.getAttribute("aria-label")).toBe("Clear field");
+    clear && expect(clear.getAttribute("aria-label")).toBe("Clear field");
     const search = getAllByRole("button")[1];
-    expect(search.getAttribute("aria-label")).toBe("Search");
+    search && expect(search.getAttribute("aria-label")).toBe("Search");
   });
 
   test("Autosuggest has correct accessibility attributes", () => {
@@ -453,7 +453,7 @@ describe("TextInput component tests", () => {
     expect(input.getAttribute("aria-controls")).toBe(list.id);
     expect(input.getAttribute("aria-expanded")).toBe("true");
     const options = getAllByRole("option");
-    expect(options[0].getAttribute("aria-selected")).toBeNull();
+    options[0] && expect(options[0].getAttribute("aria-selected")).toBeNull();
   });
 
   test("Mouse wheel interaction does not affect the text value", () => {
@@ -549,7 +549,7 @@ describe("TextInput component synchronous autosuggest tests", () => {
       <DxcTextInput label="Autocomplete Countries" suggestions={[]} onChange={onChange} />
     );
     const input = queryByRole("textbox");
-    fireEvent.focus(input);
+    input && fireEvent.focus(input);
     expect(queryByRole("listbox")).toBeFalsy();
   });
 

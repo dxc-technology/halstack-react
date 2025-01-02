@@ -5,11 +5,12 @@ import DxcButton from "../button/Button";
 import DxcFlex from "../flex/Flex";
 import DxcInset from "../inset/Inset";
 import DxcTooltip from "./Tooltip";
+import { Meta, StoryObj } from "@storybook/react";
 
 export default {
   title: "Tooltip",
   component: DxcTooltip,
-};
+} as Meta<typeof DxcTooltip>;
 
 const Tooltip = () => (
   <>
@@ -74,37 +75,49 @@ const RightTooltip = () => (
   </>
 );
 
-export const Chromatic = Tooltip.bind({});
-Chromatic.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const button = canvas.getByRole("button");
-  await userEvent.hover(button);
+type Story = StoryObj<typeof DxcTooltip>;
+
+export const Chromatic: Story = {
+  render: Tooltip,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const button = canvas.getByRole("button");
+    await userEvent.hover(button);
+  },
 };
 
-export const LargeTextTooltip = LargeTextWithinTooltip.bind({});
-LargeTextTooltip.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const button = canvas.getByRole("button");
-  await userEvent.hover(button);
+export const LargeTextTooltip: Story = {
+  render: LargeTextWithinTooltip,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const button = canvas.getByRole("button");
+    await userEvent.hover(button);
+  },
 };
 
-export const TooltipPositionTop = TopTooltip.bind({});
-TooltipPositionTop.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const button = canvas.getByRole("button");
-  await userEvent.hover(button);
+export const TooltipPositionTop: Story = {
+  render: TopTooltip,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const button = canvas.getByRole("button");
+    await userEvent.hover(button);
+  },
 };
 
-export const TooltipPositionLeft = LeftTooltip.bind({});
-TooltipPositionLeft.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const button = canvas.getByRole("button");
-  await userEvent.hover(button);
+export const TooltipPositionLeft: Story = {
+  render: LeftTooltip,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const button = canvas.getByRole("button");
+    await userEvent.hover(button);
+  },
 };
 
-export const TooltipPositionRight = RightTooltip.bind({});
-TooltipPositionRight.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const button = canvas.getByRole("button");
-  await userEvent.hover(button);
+export const TooltipPositionRight: Story = {
+  render: RightTooltip,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const button = canvas.getByRole("button");
+    await userEvent.hover(button);
+  },
 };

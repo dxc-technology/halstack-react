@@ -1,7 +1,7 @@
 import { DxcBulletedList, DxcHeading, DxcLink } from "@dxc-technology/halstack-react";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import Code from "./Code";
-import React, { Children } from "react";
+import { Children } from "react";
 
 const HalstackMarkdownParser = ({ markdown }: { markdown: string }) => (
   <ReactMarkdown
@@ -15,7 +15,7 @@ const HalstackMarkdownParser = ({ markdown }: { markdown: string }) => (
       h3: ({ children }) => (
         <DxcHeading
           level={4}
-          text={Children.map(children, (child) => (child as string).replace(/[^\x00-\x7F]/g, "")).join("")}
+          text={Children?.map(children, (child) => (child as string).replace(/[^\x00-\x7F]/g, ""))?.join("") ?? ""}
         />
       ),
       ul: ({ children }) => (

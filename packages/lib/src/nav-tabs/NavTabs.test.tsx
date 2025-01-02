@@ -25,12 +25,12 @@ describe("Tabs component tests", () => {
     });
     const anchors = getAllByRole("tab");
     expect(anchors.length).toBe(3);
-    expect(anchors[0].getAttribute("href")).toBe("/test1");
-    expect(anchors[1].getAttribute("href")).toBeFalsy();
-    expect(anchors[2].getAttribute("href")).toBe("/test3");
-    expect(anchors[0].getAttribute("tabindex")).toBe("0");
-    expect(anchors[1].getAttribute("tabindex")).toBe("-1");
-    expect(anchors[2].getAttribute("tabindex")).toBe("-1");
+    expect(anchors[0]?.getAttribute("href")).toBe("/test1");
+    expect(anchors[1]?.getAttribute("href")).toBeFalsy();
+    expect(anchors[2]?.getAttribute("href")).toBe("/test3");
+    expect(anchors[0]?.getAttribute("tabindex")).toBe("0");
+    expect(anchors[1]?.getAttribute("tabindex")).toBe("-1");
+    expect(anchors[2]?.getAttribute("tabindex")).toBe("-1");
   });
 
   test("Tabs render with correct labels, badges and icons", () => {
@@ -65,8 +65,8 @@ describe("Tabs component tests", () => {
       </DxcNavTabs>
     );
     const tabs = getAllByRole("tab");
-    expect(tabs[0].getAttribute("tabindex")).toBe("-1");
-    expect(tabs[1].getAttribute("tabindex")).toBe("-1");
-    expect(tabs[2].getAttribute("tabindex")).toBe("3");
+    expect(tabs[0]?.getAttribute("tabindex")).toBe("-1");
+    expect(tabs[1]?.getAttribute("tabindex")).toBe("-1");
+    expect(tabs[2]?.getAttribute("tabindex")).toBe("3");
   });
 });

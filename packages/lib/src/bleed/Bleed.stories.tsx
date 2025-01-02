@@ -2,13 +2,28 @@ import styled from "styled-components";
 import Title from "../../.storybook/components/Title";
 import DxcBleed from "./Bleed";
 import DxcFlex from "../flex/Flex";
+import { Meta, StoryObj } from "@storybook/react";
 
 export default {
   title: "Bleed",
   component: DxcBleed,
-};
+} as Meta<typeof DxcBleed>;
 
-export const Chromatic = () => (
+const Container = styled.div`
+  background: #f2eafa;
+  padding: 5rem;
+  margin: 2.5rem;
+`;
+
+const Placeholder = styled.div`
+  min-height: 40px;
+  min-width: 120px;
+  border: 1px solid #a46ede;
+  border-radius: 0.5rem;
+  background-color: #e5d5f6;
+`;
+
+const Bleed = () => (
   <>
     <Title title="Space = none" theme="light" level={4} />
     <Container>
@@ -325,16 +340,8 @@ export const Chromatic = () => (
   </>
 );
 
-const Container = styled.div`
-  background: #f2eafa;
-  padding: 5rem;
-  margin: 2.5rem;
-`;
+type Story = StoryObj<typeof DxcBleed>;
 
-const Placeholder = styled.div`
-  min-height: 40px;
-  min-width: 120px;
-  border: 1px solid #a46ede;
-  border-radius: 0.5rem;
-  background-color: #e5d5f6;
-`;
+export const Chromatic: Story = {
+  render: Bleed,
+};

@@ -1,6 +1,6 @@
+import { ReactNode } from "react";
 import { CoreColorTokensType } from "../common/coreTokens";
-
-type SpacingValues = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
+import { Space as SpacingValues } from "../common/utils"
 type Space =
   | SpacingValues
   | {
@@ -81,7 +81,7 @@ type Props = {
   /**
    * Custom content inside the container.
    */
-  children: React.ReactNode;
+  children: ReactNode;
   /**
    * Sets the display CSS property.
    * The set of values is limited to the ones related to the outer display type.

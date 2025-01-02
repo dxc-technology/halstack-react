@@ -21,7 +21,7 @@ export type GridColumn = {
   /**
    * Custom criteria for sorting the column.
    */
-  sortFn?: (_a: ReactNode, _b: ReactNode) => number;
+  sortFn?: (_a: ReactNode, _b: ReactNode) => 0 | 1 | -1;
   /**
    * Whether the column is draggable or not.
    */

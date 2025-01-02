@@ -1,3 +1,4 @@
+import { Meta, StoryObj } from "@storybook/react";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcFlex from "../flex/Flex";
@@ -7,9 +8,9 @@ import DxcDivider from "./Divider";
 export default {
   title: "Divider",
   component: DxcDivider,
-};
+} as Meta<typeof DxcDivider>;
 
-export const Chromatic = () => (
+const Divider = () => (
   <>
     <Title title="Default" level={4} />
     <ExampleContainer>
@@ -221,3 +222,9 @@ export const Chromatic = () => (
     </ExampleContainer>
   </>
 );
+
+type Story = StoryObj<typeof DxcDivider>;
+
+export const Chromatic: Story = {
+  render: Divider,
+};

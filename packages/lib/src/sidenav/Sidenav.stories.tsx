@@ -5,11 +5,12 @@ import { HalstackProvider } from "../HalstackContext";
 import DxcInset from "../inset/Inset";
 import DxcSelect from "../select/Select";
 import DxcSidenav from "./Sidenav";
+import { Meta, StoryObj } from "@storybook/react";
 
 export default {
   title: "Sidenav",
   component: DxcSidenav,
-};
+} as Meta<typeof DxcSidenav>;
 
 const iconSVG = (
   <svg
@@ -44,7 +45,7 @@ const opinionatedTheme = {
   },
 };
 
-export const Chromatic = () => (
+const SideNav = () => (
   <>
     <ExampleContainer>
       <Title title="Default sidenav" theme="light" level={4} />
@@ -249,28 +250,40 @@ const ActiveGroupSidenav = () => (
   </ExampleContainer>
 );
 
-export const CollapsableGroup = CollapsedGroupSidenav.bind({});
-CollapsableGroup.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const collapsableGroups = canvas.getAllByText("Collapsed Group");
-  collapsableGroups.forEach((group) => {
-    userEvent.click(group);
-  });
+type Story = StoryObj<typeof DxcSidenav>;
+
+export const Chromatic: Story = {
+  render: SideNav,
 };
 
-export const CollapsedHoverGroup = HoveredGroupSidenav.bind({});
-CollapsedHoverGroup.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const collapsableGroups = canvas.getAllByText("Collapsed Group");
-  collapsableGroups.forEach((group) => {
-    userEvent.click(group);
-  });
-  await new Promise((resolve) => setTimeout(resolve, 1000));
+export const CollapsableGroup: Story = {
+  render: CollapsedGroupSidenav,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const collapsableGroups = canvas.getAllByText("Collapsed Group");
+    collapsableGroups.forEach((group) => {
+      userEvent.click(group);
+    });
+  },
 };
 
-export const CollapsedActiveGroup = ActiveGroupSidenav.bind({});
-CollapsedActiveGroup.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const collapsableGroups = canvas.getAllByText("Collapsed Group");
-  userEvent.click(collapsableGroups[0]);
+export const CollapsedHoverGroup: Story = {
+  render: HoveredGroupSidenav,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const collapsableGroups = canvas.getAllByText("Collapsed Group");
+    collapsableGroups.forEach((group) => {
+      userEvent.click(group);
+    });
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+  },
+};
+
+export const CollapsedActiveGroup: Story = {
+  render: ActiveGroupSidenav,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const collapsableGroups = canvas.getAllByText("Collapsed Group");
+    collapsableGroups[0] && userEvent.click(collapsableGroups[0]);
+  },
 };
