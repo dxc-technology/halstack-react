@@ -36,7 +36,7 @@ const DxcSwitch = forwardRef<RefType, SwitchPropsType>(
         case "Enter":
         case " ":
           event.preventDefault();
-          refTrack?.current?.focus();
+          refTrack.current?.focus();
           setInnerChecked(!(checked ?? innerChecked));
           onChange?.(!(checked ?? innerChecked));
           break;

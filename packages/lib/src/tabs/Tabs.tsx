@@ -124,7 +124,7 @@ const DxcTabs = ({
   }, [iconPosition, tabIndex, innerFocusIndex, activeTabLabel, childrenArray, hasLabelAndIcon]);
 
   const scrollLeft = () => {
-    const scrollWidth = (refTabList?.current?.offsetHeight || 0) * 0.75;
+    const scrollWidth = (refTabList?.current?.offsetHeight ?? 0) * 0.75;
     let moveX = 0;
     if (countClick <= scrollWidth) {
       moveX = 0;
@@ -140,10 +140,11 @@ const DxcTabs = ({
   };
 
   const scrollRight = () => {
-    const scrollWidth = (refTabList?.current?.offsetHeight || 0) * 0.75;
+    const offsetHeight = refTabList?.current?.offsetHeight ?? 0;
+    const scrollWidth = offsetHeight * 0.75;
     let moveX = 0;
-    if (countClick + scrollWidth + (refTabList?.current?.offsetHeight || 0) >= totalTabsWidth) {
-      moveX = totalTabsWidth - (refTabList?.current?.offsetHeight || 0);
+    if (countClick + scrollWidth + offsetHeight >= totalTabsWidth) {
+      moveX = totalTabsWidth - offsetHeight;
       setScrollRightEnabled(false);
       setScrollLeftEnabled(true);
     } else {
@@ -188,7 +189,7 @@ const DxcTabs = ({
               onClick={scrollLeft}
               enabled={enabledIndicator}
               disabled={!scrollLeftEnabled}
-              aria-label={translatedLabels?.tabs?.scrollLeft}
+              aria-label={translatedLabels.tabs.scrollLeft}
               tabIndex={scrollLeftEnabled ? tabIndex : -1}
               minHeightTabs={minHeightTabs}
             >
@@ -212,7 +213,7 @@ const DxcTabs = ({
               onClick={scrollRight}
               enabled={enabledIndicator}
               disabled={!scrollRightEnabled}
-              aria-label={translatedLabels?.tabs?.scrollRight}
+              aria-label={translatedLabels.tabs.scrollRight}
               tabIndex={scrollRightEnabled ? tabIndex : -1}
               minHeightTabs={minHeightTabs}
             >
@@ -243,8 +244,6 @@ const DxcTabs = ({
     )
   );
 };
-
-DxcTabs.Tab = DxcTab;
 
 const Underline = styled.div`
   position: absolute;
@@ -370,4 +369,5 @@ const TabsContentScroll = styled.div<{
   transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 `;
 
+DxcTabs.Tab = DxcTab;
 export default DxcTabs;

@@ -10,7 +10,7 @@ const useResize = (refTabList: MutableRefObject<HTMLDivElement | null>) => {
   const [viewWidth, setViewWidth] = useState(0);
 
   const handleWindowSizeChange = useCallback(() => {
-    setViewWidth(refTabList?.current?.offsetWidth ?? 0);
+    setViewWidth(refTabList.current?.offsetWidth ?? 0);
   }, [refTabList]);
 
   useEffect(() => {
@@ -60,21 +60,21 @@ const DxcTabs = ({
 
   useEffect(() => {
     if (activeTabIndex != null || innerActiveTabIndex != null) {
-      const sumWidth = refTabs?.current?.reduce((count, obj) => count + obj.offsetWidth, 0);
+      const sumWidth = refTabs.current?.reduce((count, obj) => count + obj.offsetWidth, 0);
       setTotalTabsWidth(sumWidth);
-      setActiveIndicatorWidth(refTabs?.current[activeTabIndex ?? innerActiveTabIndex!]?.offsetWidth ?? 0);
-      setActiveIndicatorLeft(refTabs?.current[activeTabIndex ?? innerActiveTabIndex!]?.offsetLeft ?? 0);
+      setActiveIndicatorWidth(refTabs.current[activeTabIndex ?? innerActiveTabIndex!]?.offsetWidth ?? 0);
+      setActiveIndicatorLeft(refTabs.current[activeTabIndex ?? innerActiveTabIndex!]?.offsetLeft ?? 0);
     }
-  }, [refTabs]);
+  }, [activeTabIndex, innerActiveTabIndex]);
 
   useEffect(() => {
-    setMinHeightTabs((refTabList?.current?.offsetHeight || 0) + 1);
-  }, [refTabList]);
+    setMinHeightTabs((refTabList.current?.offsetHeight ?? 0) + 1);
+  }, []);
 
   useEffect(() => {
     if (activeTabIndex && activeTabIndex >= 0) {
-      setActiveIndicatorWidth(refTabs?.current[activeTabIndex]?.offsetWidth ?? 0);
-      setActiveIndicatorLeft(refTabs?.current[activeTabIndex]?.offsetLeft ?? 0);
+      setActiveIndicatorWidth(refTabs.current[activeTabIndex]?.offsetWidth ?? 0);
+      setActiveIndicatorLeft(refTabs.current[activeTabIndex]?.offsetLeft ?? 0);
     }
   }, [activeTabIndex]);
 
@@ -84,13 +84,13 @@ const DxcTabs = ({
     }
     onTabClick?.(newValue);
     if (activeTabIndex === undefined) {
-      setActiveIndicatorWidth(refTabs?.current[newValue]?.offsetWidth ?? 0);
-      setActiveIndicatorLeft(refTabs?.current[newValue]?.offsetLeft ?? 0);
+      setActiveIndicatorWidth(refTabs.current[newValue]?.offsetWidth ?? 0);
+      setActiveIndicatorLeft(refTabs.current[newValue]?.offsetLeft ?? 0);
     }
   };
 
   const scrollLeft = () => {
-    const scrollWidth = (refTabList?.current?.offsetHeight || 0) * 0.75;
+    const scrollWidth = (refTabList?.current?.offsetHeight ?? 0) * 0.75;
     let moveX = 0;
     if (countClick <= scrollWidth) {
       moveX = 0;
@@ -106,10 +106,11 @@ const DxcTabs = ({
   };
 
   const scrollRight = () => {
-    const scrollWidth = (refTabList?.current?.offsetHeight || 0) * 0.75;
+    const offsetHeight = refTabList?.current?.offsetHeight ?? 0;
+    const scrollWidth = offsetHeight * 0.75;
     let moveX = 0;
-    if (countClick + scrollWidth + (refTabList?.current?.offsetHeight || 0) >= totalTabsWidth) {
-      moveX = totalTabsWidth - (refTabList?.current?.offsetHeight || 0);
+    if (countClick + scrollWidth + offsetHeight >= totalTabsWidth) {
+      moveX = totalTabsWidth - offsetHeight;
       setScrollRightEnabled(false);
       setScrollLeftEnabled(true);
     } else {
@@ -129,7 +130,7 @@ const DxcTabs = ({
           while (tabs[index]?.isDisabled) {
             index = index === 0 ? tabs.length - 1 : index - 1;
           }
-          refTabs?.current[index]?.focus({ preventScroll: true });
+          refTabs.current[index]?.focus({ preventScroll: true });
           setScrollFocus(index);
           return index;
         }
@@ -146,7 +147,7 @@ const DxcTabs = ({
           while (tabs[index]?.isDisabled) {
             index = index === tabs.length - 1 ? 0 : index + 1;
           }
-          refTabs?.current[index]?.focus({ preventScroll: true });
+          refTabs.current[index]?.focus({ preventScroll: true });
           setScrollFocus(index);
           return index;
         }
@@ -158,7 +159,7 @@ const DxcTabs = ({
   const setScrollFocus = (actualIndex: number) => {
     if (tabs) {
       let sumPrev = 0;
-      refTabs?.current?.forEach((item, index) => {
+      refTabs.current?.forEach((item, index) => {
         if (index <= actualIndex) {
           sumPrev += item.offsetWidth;
         }
@@ -207,7 +208,7 @@ const DxcTabs = ({
           if (temporalFocusIndex !== currentFocusIndex) {
             event.preventDefault();
             setTemporalFocusIndex(currentFocusIndex);
-            refTabs?.current[currentFocusIndex]?.focus();
+            refTabs.current[currentFocusIndex]?.focus();
           }
           handleSelected(currentFocusIndex);
         }
@@ -224,7 +225,7 @@ const DxcTabs = ({
     (tabs != null && activeTabIndex !== undefined && activeTabIndex >= 0 && !!tabs[activeTabIndex]?.isDisabled);
 
   return (
-    <ThemeProvider theme={colorsTheme?.tabs}>
+    <ThemeProvider theme={colorsTheme.tabs}>
       <TabsContainer margin={margin}>
         <Underline />
         <Tabs hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
@@ -232,7 +233,7 @@ const DxcTabs = ({
             onClick={scrollLeft}
             enabled={enabledIndicator}
             disabled={!scrollLeftEnabled}
-            aria-label={translatedLabels?.tabs?.scrollLeft}
+            aria-label={translatedLabels.tabs.scrollLeft}
             tabIndex={scrollLeftEnabled ? tabIndex : -1}
             minHeightTabs={minHeightTabs}
           >
@@ -277,7 +278,7 @@ const DxcTabs = ({
             onClick={scrollRight}
             enabled={enabledIndicator}
             disabled={!scrollRightEnabled}
-            aria-label={translatedLabels?.tabs?.scrollRight}
+            aria-label={translatedLabels.tabs.scrollRight}
             tabIndex={scrollRightEnabled ? tabIndex : -1}
             minHeightTabs={minHeightTabs}
           >
