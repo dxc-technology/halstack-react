@@ -236,7 +236,7 @@ const Textarea = styled.textarea<{
       if (props.disabled) return props.theme.disabledBorderColor;
       else if (props.error) return "transparent";
       else if (props.readOnly) return props.theme.readOnlyBorderColor;
-      else props.theme.enabledBorderColor;
+      else return props.theme.enabledBorderColor;
     }};
 
   ${(props) =>
