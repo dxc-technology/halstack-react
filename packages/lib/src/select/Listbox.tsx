@@ -3,7 +3,7 @@ import styled from "styled-components";
 import DxcIcon from "../icon/Icon";
 import { HalstackLanguageContext } from "../HalstackContext";
 import ListOption from "./ListOption";
-import { groupsHaveOptions } from "./selectUtils";
+import { groupsHaveOptions } from "./utils";
 import { ListboxProps, ListOptionGroupType, ListOptionType } from "./types";
 
 const Listbox = ({
@@ -24,12 +24,9 @@ const Listbox = ({
 
   let globalIndex = optional && !multiple ? 0 : -1;
 
-  const isListOptionGroupType = (option: ListOptionType | ListOptionGroupType): option is ListOptionGroupType =>
-    "options" in option && Array.isArray(option.options);
-
   const mapOptionFunc = (option: ListOptionType | ListOptionGroupType, mapIndex: number) => {
     const groupId = `${id}-group-${mapIndex}`;
-    if (isListOptionGroupType(option)) {
+    if ("options" in option) {
       return (
         option.options.length > 0 && (
           <li key={groupId}>

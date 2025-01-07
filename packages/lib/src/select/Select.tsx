@@ -29,7 +29,7 @@ import {
   groupsHaveOptions,
   isArrayOfOptionGroups,
   notOptionalCheck,
-} from "./selectUtils";
+} from "./utils";
 import SelectPropsType, { ListOptionType, RefType } from "./types";
 
 const DxcSelect = forwardRef<RefType, SelectPropsType>(
@@ -94,28 +94,34 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
       }
     };
 
-    const handleSelectChangeValue = (newOption: ListOptionType | undefined) => {
-      if (newOption) {
-        const currentValue = value ?? innerValue;
-        // TODO: Fix types
-        const newValue = multiple
-          ? (currentValue as string[]).includes(newOption.value)
-            ? (currentValue as string[]).filter((optionVal: string) => optionVal !== newOption.value)
-            : [...(currentValue as string[]), newOption.value]
-          : newOption.value;
+    const handleSelectChangeValue = useCallback(
+      (newOption: ListOptionType | undefined) => {
+        if (newOption) {
+          let newValue: string | string[];
 
-        if (value == null) {
-          setInnerValue(newValue);
+          if (multiple) {
+            const currentValue = (value ?? innerValue) as string[];
+            newValue = currentValue.includes(newOption.value)
+              ? currentValue.filter((optionVal) => optionVal !== newOption.value)
+              : [...currentValue, newOption.value];
+          } else {
+            newValue = newOption.value;
+          }
+
+          if (value == null) {
+            setInnerValue(newValue);
+          }
+          onChange?.({
+            value: newValue as string & string[],
+            error: notOptionalCheck(newValue, multiple, optional)
+              ? translatedLabels.formFields.requiredValueErrorMessage
+              : undefined,
+          });
         }
-        // TODO: Fix types
-        onChange?.({
-          value: newValue as string & string[],
-          ...(notOptionalCheck(newValue, multiple, optional) && {
-            error: translatedLabels.formFields.requiredValueErrorMessage,
-          }),
-        });
-      }
-    };
+      },
+      [multiple, value, innerValue, onChange, optional, translatedLabels]
+    );
+
     const handleSelectOnClick = () => {
       if (searchable) {
         selectSearchInputRef?.current?.focus();

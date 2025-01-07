@@ -62,13 +62,20 @@ const hasSuggestions = (suggestions: TextInputPropsType["suggestions"]) =>
 
 const isRequired = (value: string, optional: boolean) => value === "" && !optional;
 
-const isLengthIncorrect = (value: string, minLength: number | undefined, maxLength: number | undefined) =>
+const isLengthIncorrect = (
+  value: string,
+  minLength: TextInputPropsType["minLength"],
+  maxLength: TextInputPropsType["maxLength"]
+) =>
   value != null && ((minLength != null && value.length < minLength) || (maxLength != null && value.length > maxLength));
 
-const isNumberIncorrect = (value: number, minNumber: number | undefined, maxNumber: number | undefined) =>
-  (minNumber != null && value < minNumber) || (maxNumber != null && value > maxNumber);
+const isNumberIncorrect = (
+  value: number,
+  minNumber: TextInputPropsType["minLength"],
+  maxNumber: TextInputPropsType["maxLength"]
+) => (minNumber != null && value < minNumber) || (maxNumber != null && value > maxNumber);
 
-const patternMismatch = (pattern: string | undefined, value: string) =>
+const patternMismatch = (pattern: TextInputPropsType["pattern"], value: string) =>
   pattern != null && !new RegExp(pattern).test(value);
 
 const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
@@ -120,7 +127,7 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
     const colorsTheme = useContext(HalstackContext);
     const translatedLabels = useContext(HalstackLanguageContext);
     const numberInputContext = useContext(NumberInputContext);
-    // Define the wrapper function outside of the parent component
+
     const autosuggestWrapperFunction = (children: ReactNode) => (
       <Popover.Root open={isOpen && (filteredSuggestions.length > 0 || isSearching || isAutosuggestError)}>
         <Popover.Trigger
@@ -163,6 +170,7 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
         </Popover.Portal>
       </Popover.Root>
     );
+
     const getNumberErrorMessage = (checkedValue: number) =>
       numberInputContext?.minNumber != null && checkedValue < numberInputContext?.minNumber
         ? translatedLabels.numberInput.valueGreaterThanOrEqualToErrorMessage?.(numberInputContext.minNumber)
@@ -271,7 +279,7 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
 
     const handleInputContainerOnClick = () => {
       if (document.activeElement !== actionRef.current) {
-        inputRef?.current?.focus();
+        inputRef.current?.focus();
       }
     };
     const handleInputContainerOnMouseDown = (event: MouseEvent<HTMLDivElement>) => {
@@ -376,16 +384,16 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
     const handleNumberInputWheel = (event: WheelEvent<HTMLInputElement>) => {
       if (document.activeElement === inputRef.current) {
         if (event.deltaY < 0) {
-          incrementNumber(inputRef?.current?.value);
+          incrementNumber(inputRef.current?.value);
         } else {
-          decrementNumber(inputRef?.current?.value);
+          decrementNumber(inputRef.current?.value);
         }
       }
     };
 
     const handleClearActionOnClick = () => {
       changeValue("");
-      inputRef?.current?.focus();
+      inputRef.current?.focus();
       if (suggestions) {
         closeSuggestions();
       }
@@ -393,30 +401,25 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
 
     const handleDecrementActionOnClick = () => {
       decrementNumber();
-      inputRef?.current?.focus();
+      inputRef.current?.focus();
     };
     const handleIncrementActionOnClick = () => {
       incrementNumber();
-      inputRef?.current?.focus();
+      inputRef.current?.focus();
     };
 
-    const setNumberProps = (
-      type: string | undefined,
-      min: number | undefined,
-      max: number | undefined,
-      step: number | undefined
-    ) => {
+    const setNumberProps = (type?: string, min?: number, max?: number, step?: number) => {
       if (min != null) {
-        inputRef?.current?.setAttribute("min", min.toString());
+        inputRef.current?.setAttribute("min", min.toString());
       }
       if (max != null) {
-        inputRef?.current?.setAttribute("max", max.toString());
+        inputRef.current?.setAttribute("max", max.toString());
       }
       if (step != null) {
-        inputRef?.current?.setAttribute("step", step.toString());
+        inputRef.current?.setAttribute("step", step.toString());
       }
       if (type != null) {
-        inputRef?.current?.setAttribute("type", type);
+        inputRef.current?.setAttribute("type", type);
       }
     };
 

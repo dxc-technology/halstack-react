@@ -2,7 +2,7 @@ import { ChangeEvent, FocusEvent, forwardRef, useContext, useEffect, useId, useR
 import styled, { ThemeProvider } from "styled-components";
 import { getMargin } from "../common/utils";
 import { spaces } from "../common/variables";
-import HalstackContext,{ HalstackLanguageContext } from "../HalstackContext";
+import HalstackContext, { HalstackLanguageContext } from "../HalstackContext";
 import TextareaPropsType, { RefType } from "./types";
 
 const patternMatch = (pattern: string, value: string) => new RegExp(pattern).test(value);
@@ -44,13 +44,10 @@ const DxcTextarea = forwardRef<RefType, TextareaPropsType>(
     const prevValueRef = useRef<string | null>(null);
     const errorId = `error-${textareaId}`;
 
-    const isNotOptional = (checkedValue: string) => checkedValue === "" && !optional;
+    const isNotOptional = (value: string) => value === "" && !optional;
 
-    const isLengthIncorrect = (checkedValue: string) =>
-      checkedValue !== "" &&
-      minLength &&
-      maxLength &&
-      (checkedValue.length < minLength || checkedValue.length > maxLength);
+    const isLengthIncorrect = (value: string) =>
+      value !== "" && minLength && maxLength && (value.length < minLength || value.length > maxLength);
 
     const changeValue = (newValue: string) => {
       if (value == null) {
@@ -77,17 +74,6 @@ const DxcTextarea = forwardRef<RefType, TextareaPropsType>(
       }
     };
 
-    const autoVerticalGrow = () => {
-      if (textareaRef?.current) {
-        const computedStyle = window.getComputedStyle(textareaRef?.current);
-        const textareaLineHeight = parseInt(computedStyle.lineHeight || "0", 10);
-        const textareaPaddingTopBottom = parseInt(computedStyle.paddingTop || "0", 10) * 2;
-        textareaRef.current.style.height = `${textareaLineHeight * rows}px`;
-        const newHeight = textareaRef.current.scrollHeight - textareaPaddingTopBottom;
-        textareaRef.current.style.height = `${newHeight}px`;
-      }
-    };
-
     const handleOnBlur = (event: FocusEvent<HTMLTextAreaElement>) => {
       if (isNotOptional(event.target.value)) {
         onBlur?.({
@@ -111,14 +97,11 @@ const DxcTextarea = forwardRef<RefType, TextareaPropsType>(
 
     const handleOnChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
       changeValue(event.target.value);
-      if (verticalGrow === "auto") {
-        autoVerticalGrow();
-      }
     };
 
     useEffect(() => {
-      if (verticalGrow === "auto" && prevValueRef.current !== (value ?? innerValue) && textareaRef?.current) {
-        const computedStyle = window.getComputedStyle(textareaRef?.current);
+      if (verticalGrow === "auto" && prevValueRef.current !== (value ?? innerValue) && textareaRef.current) {
+        const computedStyle = window.getComputedStyle(textareaRef.current);
         const textareaLineHeight = parseInt(computedStyle.lineHeight || "0", 10);
         const textareaPaddingTopBottom = parseInt(computedStyle.paddingTop || "0", 10) * 2;
         textareaRef.current.style.height = `${textareaLineHeight * rows}px`;
@@ -232,14 +215,12 @@ const Textarea = styled.textarea<{
   verticalGrow: TextareaPropsType["verticalGrow"];
   error: TextareaPropsType["error"];
 }>`
-  ${({ verticalGrow }) =>
-    verticalGrow === "none"
-      ? "resize: none;"
-      : verticalGrow === "auto"
-        ? `resize: none; overflow: hidden;`
-        : verticalGrow === "manual"
-          ? "resize: vertical;"
-          : `resize: none;`};
+  ${({ verticalGrow }) => {
+    if (verticalGrow === "none") return "resize: none;";
+    else if (verticalGrow === "auto") return `resize: none; overflow: hidden;`;
+    else if (verticalGrow === "manual") return "resize: vertical;";
+    else return `resize: none;`;
+  }};
 
   ${(props) =>
     props.disabled ? `background-color: ${props.theme.disabledContainerFillColor};` : `background-color: transparent;`}
@@ -248,14 +229,12 @@ const Textarea = styled.textarea<{
   box-shadow: 0 0 0 2px transparent;
   border-radius: 0.25rem;
   border: 1px solid
-    ${(props) =>
-      props.disabled
-        ? props.theme.disabledBorderColor
-        : props.error
-          ? "transparent"
-          : props.readOnly
-            ? props.theme.readOnlyBorderColor
-            : props.theme.enabledBorderColor};
+    ${(props) => {
+      if (props.disabled) return props.theme.disabledBorderColor;
+      else if (props.error) return "transparent";
+      else if (props.readOnly) return props.theme.readOnlyBorderColor;
+      else return props.theme.enabledBorderColor;
+    }};
 
   ${(props) =>
     props.error &&
