@@ -24,13 +24,9 @@ const Listbox = ({
 
   let globalIndex = optional && !multiple ? 0 : -1;
 
-  const isListOptionGroupType = (option: ListOptionType | ListOptionGroupType): option is ListOptionGroupType => {
-    return "options" in option && Array.isArray(option.options);
-  };
-
   const mapOptionFunc = (option: ListOptionType | ListOptionGroupType, mapIndex: number) => {
     const groupId = `${id}-group-${mapIndex}`;
-    if (isListOptionGroupType(option)) {
+    if ("options" in option) {
       return (
         option.options.length > 0 && (
           <li key={groupId}>

@@ -2,7 +2,7 @@ import { ChangeEvent, FocusEvent, forwardRef, useContext, useEffect, useId, useR
 import styled, { ThemeProvider } from "styled-components";
 import { getMargin } from "../common/utils";
 import { spaces } from "../common/variables";
-import HalstackContext,{ HalstackLanguageContext } from "../HalstackContext";
+import HalstackContext, { HalstackLanguageContext } from "../HalstackContext";
 import TextareaPropsType, { RefType } from "./types";
 
 const patternMatch = (pattern: string, value: string) => new RegExp(pattern).test(value);
@@ -232,14 +232,12 @@ const Textarea = styled.textarea<{
   verticalGrow: TextareaPropsType["verticalGrow"];
   error: TextareaPropsType["error"];
 }>`
-  ${({ verticalGrow }) =>
-    verticalGrow === "none"
-      ? "resize: none;"
-      : verticalGrow === "auto"
-        ? `resize: none; overflow: hidden;`
-        : verticalGrow === "manual"
-          ? "resize: vertical;"
-          : `resize: none;`};
+  ${({ verticalGrow }) => {
+    if (verticalGrow === "none") return "resize: none;";
+    else if (verticalGrow === "auto") return `resize: none; overflow: hidden;`;
+    else if (verticalGrow === "manual") return "resize: vertical;";
+    else return `resize: none;`;
+  }};
 
   ${(props) =>
     props.disabled ? `background-color: ${props.theme.disabledContainerFillColor};` : `background-color: transparent;`}
@@ -248,14 +246,12 @@ const Textarea = styled.textarea<{
   box-shadow: 0 0 0 2px transparent;
   border-radius: 0.25rem;
   border: 1px solid
-    ${(props) =>
-      props.disabled
-        ? props.theme.disabledBorderColor
-        : props.error
-          ? "transparent"
-          : props.readOnly
-            ? props.theme.readOnlyBorderColor
-            : props.theme.enabledBorderColor};
+    ${(props) => {
+      if (props.disabled) return props.theme.disabledBorderColor;
+      else if (props.error) return "transparent";
+      else if (props.readOnly) return props.theme.readOnlyBorderColor;
+      else props.theme.enabledBorderColor;
+    }};
 
   ${(props) =>
     props.error &&

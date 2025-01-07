@@ -35,20 +35,6 @@ const DxcTag = ({
   const colorsTheme = useContext(HalstackContext);
   const [isHovered, changeIsHovered] = useState(false);
 
-  const wrapperComponent = (children: ReactNode) => {
-    if (onClick) {
-      return <StyledButton tabIndex={tabIndex}>{children}</StyledButton>;
-    }
-    if (linkHref) {
-      return (
-        <StyledLink tabIndex={tabIndex} href={linkHref} target={newWindow ? "_blank" : "_self"}>
-          {children}
-        </StyledLink>
-      );
-    }
-    return <>{children}</>;
-  };
-
   return (
     <ThemeProvider theme={colorsTheme.tag}>
       <StyledDxcTag
@@ -62,7 +48,20 @@ const DxcTag = ({
         hasAction={onClick || linkHref}
         shadowDepth={isHovered && (onClick || linkHref) ? 2 : 1}
       >
-        <TagWrapper condition={!!onClick || !!linkHref} wrapper={wrapperComponent}>
+        <TagWrapper
+          condition={!!onClick || !!linkHref}
+          wrapper={(children) =>
+            onClick ? (
+              <StyledButton tabIndex={tabIndex}>{children}</StyledButton>
+            ) : linkHref ? (
+              <StyledLink tabIndex={tabIndex} href={linkHref} target={newWindow ? "_blank" : "_self"}>
+                {children}
+              </StyledLink>
+            ) : (
+              <></>
+            )
+          }
+        >
           <TagContent>
             {labelPosition === "before" && size !== "small" && label && <TagLabel>{label}</TagLabel>}
             {icon && (
