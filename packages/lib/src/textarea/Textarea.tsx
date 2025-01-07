@@ -44,13 +44,13 @@ const DxcTextarea = forwardRef<RefType, TextareaPropsType>(
     const prevValueRef = useRef<string | null>(null);
     const errorId = `error-${textareaId}`;
 
-    const isNotOptional = (checkedValue: string) => checkedValue === "" && !optional;
+    const isNotOptional = (value: string) => value === "" && !optional;
 
-    const isLengthIncorrect = (checkedValue: string) =>
-      checkedValue !== "" &&
+    const isLengthIncorrect = (value: string) =>
+      value !== "" &&
       minLength &&
       maxLength &&
-      (checkedValue.length < minLength || checkedValue.length > maxLength);
+      (value.length < minLength || value.length > maxLength);
 
     const changeValue = (newValue: string) => {
       if (value == null) {
@@ -77,17 +77,6 @@ const DxcTextarea = forwardRef<RefType, TextareaPropsType>(
       }
     };
 
-    const autoVerticalGrow = () => {
-      if (textareaRef?.current) {
-        const computedStyle = window.getComputedStyle(textareaRef?.current);
-        const textareaLineHeight = parseInt(computedStyle.lineHeight || "0", 10);
-        const textareaPaddingTopBottom = parseInt(computedStyle.paddingTop || "0", 10) * 2;
-        textareaRef.current.style.height = `${textareaLineHeight * rows}px`;
-        const newHeight = textareaRef.current.scrollHeight - textareaPaddingTopBottom;
-        textareaRef.current.style.height = `${newHeight}px`;
-      }
-    };
-
     const handleOnBlur = (event: FocusEvent<HTMLTextAreaElement>) => {
       if (isNotOptional(event.target.value)) {
         onBlur?.({
@@ -111,14 +100,11 @@ const DxcTextarea = forwardRef<RefType, TextareaPropsType>(
 
     const handleOnChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
       changeValue(event.target.value);
-      if (verticalGrow === "auto") {
-        autoVerticalGrow();
-      }
     };
 
     useEffect(() => {
-      if (verticalGrow === "auto" && prevValueRef.current !== (value ?? innerValue) && textareaRef?.current) {
-        const computedStyle = window.getComputedStyle(textareaRef?.current);
+      if (verticalGrow === "auto" && prevValueRef.current !== (value ?? innerValue) && textareaRef.current) {
+        const computedStyle = window.getComputedStyle(textareaRef.current);
         const textareaLineHeight = parseInt(computedStyle.lineHeight || "0", 10);
         const textareaPaddingTopBottom = parseInt(computedStyle.paddingTop || "0", 10) * 2;
         textareaRef.current.style.height = `${textareaLineHeight * rows}px`;
