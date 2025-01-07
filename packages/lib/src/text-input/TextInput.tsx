@@ -236,7 +236,7 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
 
     const handleInputContainerOnClick = () => {
       if (document.activeElement !== actionRef.current) {
-        inputRef?.current?.focus();
+        inputRef.current?.focus();
       }
     };
     const handleInputContainerOnMouseDown = (event: MouseEvent<HTMLDivElement>) => {
@@ -341,16 +341,16 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
     const handleNumberInputWheel = (event: WheelEvent<HTMLInputElement>) => {
       if (document.activeElement === inputRef.current) {
         if (event.deltaY < 0) {
-          incrementNumber(inputRef?.current?.value);
+          incrementNumber(inputRef.current?.value);
         } else {
-          decrementNumber(inputRef?.current?.value);
+          decrementNumber(inputRef.current?.value);
         }
       }
     };
 
     const handleClearActionOnClick = () => {
       changeValue("");
-      inputRef?.current?.focus();
+      inputRef.current?.focus();
       if (suggestions) {
         closeSuggestions();
       }
@@ -358,30 +358,25 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
 
     const handleDecrementActionOnClick = () => {
       decrementNumber();
-      inputRef?.current?.focus();
+      inputRef.current?.focus();
     };
     const handleIncrementActionOnClick = () => {
       incrementNumber();
-      inputRef?.current?.focus();
+      inputRef.current?.focus();
     };
 
-    const setNumberProps = (
-      type: string | undefined,
-      min: number | undefined,
-      max: number | undefined,
-      step: number | undefined
-    ) => {
+    const setNumberProps = (type?: string, min?: number, max?: number, step?: number) => {
       if (min != null) {
-        inputRef?.current?.setAttribute("min", min.toString());
+        inputRef.current?.setAttribute("min", min.toString());
       }
       if (max != null) {
-        inputRef?.current?.setAttribute("max", max.toString());
+        inputRef.current?.setAttribute("max", max.toString());
       }
       if (step != null) {
-        inputRef?.current?.setAttribute("step", step.toString());
+        inputRef.current?.setAttribute("step", step.toString());
       }
       if (type != null) {
-        inputRef?.current?.setAttribute("type", type);
+        inputRef.current?.setAttribute("type", type);
       }
     };
 
