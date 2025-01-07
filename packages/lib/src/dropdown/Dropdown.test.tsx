@@ -51,7 +51,6 @@ describe("Dropdown component tests", () => {
     expect(menu.getAttribute("aria-labelledby")).toBe(dropdown.id);
     expect(getAllByRole("menuitem").length).toBe(4);
   });
-
   test("Button trigger opens and closes the menu options when clicked", async () => {
     const onSelectOption = jest.fn();
     const { getByRole, queryByRole, getByText } = render(
@@ -68,7 +67,6 @@ describe("Dropdown component tests", () => {
     await userEvent.click(dropdown);
     expect(queryByRole("menu")).toBeFalsy();
   });
-
   test("Button trigger is not interactive when disabled", async () => {
     const onSelectOption = jest.fn();
     const { getByRole, queryByRole, queryByText } = render(
@@ -83,7 +81,6 @@ describe("Dropdown component tests", () => {
     expect(queryByRole("menu")).toBeFalsy();
     expect(dropdown.getAttribute("aria-expanded")).toBeNull();
   });
-
   test("onSelectOption function is called correctly when an option is clicked", async () => {
     const onSelectOption = jest.fn();
     const { getByText } = render(
@@ -95,7 +92,6 @@ describe("Dropdown component tests", () => {
     await userEvent.click(option);
     expect(onSelectOption).toHaveBeenCalledWith("4");
   });
-
   test("When expandOnHover is true, the dropdown trigger shows and hides the menu when it is hovered", () => {
     const onSelectOption = jest.fn();
     const { queryByText, getByRole, queryByRole } = render(
@@ -109,7 +105,6 @@ describe("Dropdown component tests", () => {
     expect(document.activeElement === menu).toBeTruthy();
     expect(menu.getAttribute("aria-activedescendant")).toBe(`${menu.id}-option-0`);
   });
-
   test("The menu is closed when the dropdown loses the focus (blur)", async () => {
     const onSelectOption = jest.fn();
     const { getByRole, queryByRole } = render(
@@ -121,7 +116,6 @@ describe("Dropdown component tests", () => {
     fireEvent.blur(getByRole("menu"));
     expect(queryByRole("menu")).toBeFalsy();
   });
-
   test("Menu button key events - Arrow up opens the list and moves the focus to the last menu item", () => {
     const onSelectOption = jest.fn();
     const { getByRole } = render(
@@ -134,7 +128,6 @@ describe("Dropdown component tests", () => {
     expect(document.activeElement === menu).toBeTruthy();
     expect(getByRole("menu").getAttribute("aria-activedescendant")).toBe(`${menu.id}-option-3`);
   });
-
   test("Menu button key events - Arrow down opens the list and moves the focus to the first menu item", () => {
     const onSelectOption = jest.fn();
     const { getByRole } = render(
@@ -147,7 +140,6 @@ describe("Dropdown component tests", () => {
     expect(document.activeElement === menu).toBeTruthy();
     expect(getByRole("menu").getAttribute("aria-activedescendant")).toBe(`${menu.id}-option-0`);
   });
-
   test("Menu button key events - Enter opens the list and moves the focus to the first menu item", () => {
     const onSelectOption = jest.fn();
     const { getByRole } = render(
@@ -160,7 +152,6 @@ describe("Dropdown component tests", () => {
     expect(document.activeElement === menu).toBeTruthy();
     expect(getByRole("menu").getAttribute("aria-activedescendant")).toBe(`${menu.id}-option-0`);
   });
-
   test("Menu button key events - Space opens the list and moves the focus to the first menu item", () => {
     const onSelectOption = jest.fn();
     const { getByRole } = render(
@@ -173,7 +164,6 @@ describe("Dropdown component tests", () => {
     expect(document.activeElement === menu).toBeTruthy();
     expect(getByRole("menu").getAttribute("aria-activedescendant")).toBe(`${menu.id}-option-0`);
   });
-
   test("Menu key events - Arrow up moves the focus to the previous menu item", () => {
     const onSelectOption = jest.fn();
     const { getByRole } = render(
@@ -187,7 +177,6 @@ describe("Dropdown component tests", () => {
     fireEvent.keyDown(menu, { key: "Enter", code: "Enter", keyCode: 13, charCode: 13 });
     expect(onSelectOption).toHaveBeenCalledWith("3");
   });
-
   test("Menu key events - Arrow up, if focus is on the first menu item, moves focus to the last menu item.", async () => {
     const onSelectOption = jest.fn();
     const { getByRole } = render(
@@ -201,7 +190,6 @@ describe("Dropdown component tests", () => {
     fireEvent.keyDown(menu, { key: "Enter", code: "Enter", keyCode: 13, charCode: 13 });
     expect(onSelectOption).toHaveBeenCalledWith("4");
   });
-
   test("Menu key events - Arrow down moves the focus to the next menu item", async () => {
     const onSelectOption = jest.fn();
     const { getByRole } = render(
@@ -216,7 +204,6 @@ describe("Dropdown component tests", () => {
     fireEvent.keyDown(menu, { key: "Enter", code: "Enter", keyCode: 13, charCode: 13 });
     expect(onSelectOption).toHaveBeenCalledWith("3");
   });
-
   test("Menu key events - Arrow down, if focus is on the last menu item, moves focus to the first menu item. ", () => {
     const onSelectOption = jest.fn();
     const { getByRole } = render(
@@ -230,7 +217,6 @@ describe("Dropdown component tests", () => {
     fireEvent.keyDown(menu, { key: "Enter", code: "Enter", keyCode: 13, charCode: 13 });
     expect(onSelectOption).toHaveBeenCalledWith("1");
   });
-
   test("Menu key events - Enter key selects the current focused item and closes the menu", async () => {
     const onSelectOption = jest.fn();
     const { getByRole, queryByRole } = render(
@@ -242,7 +228,6 @@ describe("Dropdown component tests", () => {
     expect(queryByRole("menu")).toBeFalsy();
     expect(document.activeElement === getByRole("button")).toBeTruthy();
   });
-
   test("Menu key events - Esc closes the menu and sets focus on the menu button", async () => {
     const onSelectOption = jest.fn();
     const { getByRole, queryByRole } = render(
@@ -253,7 +238,6 @@ describe("Dropdown component tests", () => {
     expect(queryByRole("menu")).toBeFalsy();
     expect(document.activeElement === getByRole("button")).toBeTruthy();
   });
-
   test("Menu key events - Home moves the focus to the first menu item", () => {
     const onSelectOption = jest.fn();
     const { getByRole } = render(
@@ -265,7 +249,6 @@ describe("Dropdown component tests", () => {
     fireEvent.keyDown(menu, { key: "Home", code: "Home", keyCode: 36, charCode: 36 });
     expect(menu.getAttribute("aria-activedescendant")).toBe(`${menu.id}-option-0`);
   });
-
   test("Menu key events - End moves the focus to the last menu item", async () => {
     const onSelectOption = jest.fn();
     const { getByRole } = render(
@@ -277,7 +260,6 @@ describe("Dropdown component tests", () => {
     fireEvent.keyDown(menu, { key: "End", code: "End", keyCode: 35, charCode: 35 });
     expect(menu.getAttribute("aria-activedescendant")).toBe(`${menu.id}-option-3`);
   });
-
   test("Menu key events - PageUp moves the focus to the first menu item", () => {
     const onSelectOption = jest.fn();
     const { getByRole } = render(
@@ -289,7 +271,6 @@ describe("Dropdown component tests", () => {
     fireEvent.keyDown(menu, { key: "PageUp", code: "PageUp", keyCode: 33, charCode: 33 });
     expect(menu.getAttribute("aria-activedescendant")).toBe(`${menu.id}-option-0`);
   });
-
   test("Menu key events - PageDown moves the focus to the last menu item", async () => {
     const onSelectOption = jest.fn();
     const { getByRole } = render(
@@ -301,7 +282,6 @@ describe("Dropdown component tests", () => {
     fireEvent.keyDown(menu, { key: "PageDown", code: "PageDown", keyCode: 34, charCode: 34 });
     expect(menu.getAttribute("aria-activedescendant")).toBe(`${menu.id}-option-3`);
   });
-
   test("Menu key events - Tab closes the menu and sets focus to the next element", async () => {
     const onSelectOption = jest.fn();
     const { getByRole, queryByRole } = render(

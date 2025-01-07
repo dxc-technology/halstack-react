@@ -13,7 +13,6 @@ describe("Accordion component tests", () => {
     expect(accordion.getAttribute("aria-controls")).toBe(panel.id);
     expect(panel.getAttribute("aria-labelledby")).toBe(accordion.id);
   });
-
   test("Renders expanded by default when it is uncontrolled", () => {
     const { getByRole } = render(
       <DxcAccordion label="Accordion" defaultIsExpanded>
@@ -23,7 +22,6 @@ describe("Accordion component tests", () => {
     const accordion = getByRole("button");
     expect(accordion.getAttribute("aria-expanded")).toBe("true");
   });
-
   test("Calls correct function on click", () => {
     const onChange = jest.fn();
     const { getByText } = render(
@@ -34,7 +32,6 @@ describe("Accordion component tests", () => {
     fireEvent.click(getByText("Accordion"));
     expect(onChange).toHaveBeenCalled();
   });
-
   test("Controlled accordion", () => {
     const onChange = jest.fn();
     const { getByText, getByRole } = render(

@@ -6,11 +6,12 @@ import { HalstackProvider } from "../HalstackContext";
 import DxcInset from "../inset/Inset";
 import DxcTooltip from "../tooltip/Tooltip";
 import { userEvent, within } from "@storybook/test";
+import { Meta, StoryObj } from "@storybook/react";
 
 export default {
   title: "Button",
   component: DxcButton,
-};
+} as Meta<typeof DxcButton>;
 
 const facebookIcon = (
   <svg
@@ -43,7 +44,7 @@ const opinionatedTheme = {
   },
 };
 
-export const Chromatic = () => (
+const Button = () => (
   <>
     <>
       <Title title="Default" theme="light" level={2} />
@@ -4988,16 +4989,26 @@ const NestedTooltip = () => (
   </>
 );
 
-export const ButtonTooltip = Tooltip.bind({});
-ButtonTooltip.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const button = canvas.getByRole("button");
-  await userEvent.hover(button);
+type Story = StoryObj<typeof DxcButton>;
+
+export const Chromatic: Story = {
+  render: Button,
 };
 
-export const NestedButtonTooltip = NestedTooltip.bind({});
-NestedButtonTooltip.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const button = canvas.getByRole("button");
-  await userEvent.hover(button);
+export const ButtonTooltip: Story = {
+  render: Tooltip,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const button = canvas.getByRole("button");
+    await userEvent.hover(button);
+  },
+};
+
+export const NestedButtonTooltip: Story = {
+  render: NestedTooltip,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const button = canvas.getByRole("button");
+    await userEvent.hover(button);
+  },
 };

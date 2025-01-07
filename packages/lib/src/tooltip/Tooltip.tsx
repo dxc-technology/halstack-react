@@ -4,6 +4,7 @@ import TooltipPropsType, { TooltipWrapperProps } from "./types";
 import { createContext, useContext } from "react";
 import { Root, Trigger, Portal, Arrow, Content } from "@radix-ui/react-tooltip";
 import { Provider } from "@radix-ui/react-tooltip";
+import { TooltipContext } from "./TooltipContext";
 
 const TooltipTriggerContainer = styled.div`
   position: relative;
@@ -102,8 +103,6 @@ const triangleIcon = (
     />
   </svg>
 );
-
-const TooltipContext = createContext(false);
 
 export const Tooltip = ({
   label,

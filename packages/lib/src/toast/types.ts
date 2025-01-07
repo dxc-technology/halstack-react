@@ -1,4 +1,6 @@
-type SVG = React.ReactNode & React.SVGProps<SVGSVGElement>;
+import { ReactNode } from "react";
+import { SVG } from "../common/utils";
+
 type Action = {
   icon?: string | SVG;
   label: string;
@@ -27,9 +29,7 @@ type QueuedToast = ToastType & {
   semantic: Semantic;
 };
 
-type ToastContextType = {
-  add: (toast: ToastType, semantic: Semantic) => () => void;
-};
+type ToastContextType = (toast: ToastType, semantic: Semantic) => () => void;
 
 type ToastPropsType = {
   action?: Action;
@@ -42,7 +42,7 @@ type ToastPropsType = {
   hideSemanticIcon?: boolean;
 };
 
-type ToastsQueuePropsType = { duration?: number; children: React.ReactNode };
+type ToastsQueuePropsType = { duration?: number; children: ReactNode };
 
 export default ToastPropsType;
 export type {

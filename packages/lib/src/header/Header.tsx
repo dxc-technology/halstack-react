@@ -1,13 +1,13 @@
-import { ComponentProps, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { ComponentProps, useEffect, useMemo, useRef, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { responsiveSizes, spaces } from "../common/variables";
 import DxcDropdown from "../dropdown/Dropdown";
 import DxcIcon from "../icon/Icon";
-import useTheme from "../useTheme";
-import useTranslatedLabels from "../useTranslatedLabels";
 import HeaderPropsType from "./types";
 import { Tooltip } from "../tooltip/Tooltip";
 import DxcFlex from "../flex/Flex";
+import { useContext } from "react";
+import HalstackContext, { HalstackLanguageContext } from "../HalstackContext";
 
 const Dropdown = (props: ComponentProps<typeof DxcDropdown>) => (
   <HeaderDropdown>
@@ -15,8 +15,8 @@ const Dropdown = (props: ComponentProps<typeof DxcDropdown>) => (
   </HeaderDropdown>
 );
 
-const getLogoElement = (themeInput, logoLabel) => {
-  if (!themeInput)
+const getLogoElement = (themeInput?: string, logoLabel?: string) => {
+  if (!themeInput) {
     return (
       <svg xmlns="http://www.w3.org/2000/svg" width="73" height="40" viewBox="0 0 73 40">
         <title>DXC Logo</title>
@@ -36,7 +36,7 @@ const getLogoElement = (themeInput, logoLabel) => {
         </g>
       </svg>
     );
-  else if (typeof themeInput === "string") return <LogoImg alt={logoLabel} src={themeInput}></LogoImg>;
+  } else if (typeof themeInput === "string") return <LogoImg alt={logoLabel} src={themeInput}></LogoImg>;
   else return themeInput;
 };
 
@@ -47,13 +47,12 @@ type ContentProps = {
   content: HeaderPropsType["content"];
 };
 
-const Content = ({ isResponsive, responsiveContent, handleMenu, content }: ContentProps) => {
-  return isResponsive ? (
-    <MenuContent>{responsiveContent(handleMenu)}</MenuContent>
+const Content = ({ isResponsive, responsiveContent, handleMenu, content }: ContentProps) =>
+  isResponsive ? (
+    <MenuContent>{responsiveContent?.(handleMenu)}</MenuContent>
   ) : (
     <ContentContainer>{content}</ContentContainer>
   );
-};
 
 const DxcHeader = ({
   underlined = false,
@@ -63,16 +62,11 @@ const DxcHeader = ({
   margin,
   tabIndex = 0,
 }: HeaderPropsType): JSX.Element => {
-  const colorsTheme = useTheme();
-  const translatedLabels = useTranslatedLabels();
-
-  const ref = useRef(null);
   const [isResponsive, setIsResponsive] = useState(false);
   const [isMenuVisible, setIsMenuVisible] = useState(false);
-
-  const handleResize = useCallback(() => {
-    setIsResponsive(window.matchMedia(`(max-width: ${responsiveSizes.medium}rem)`).matches);
-  }, []);
+  const colorsTheme = useContext(HalstackContext);
+  const translatedLabels = useContext(HalstackLanguageContext);
+  const ref = useRef(null);
 
   const handleMenu = () => {
     if (isResponsive && !isMenuVisible) {
@@ -82,30 +76,38 @@ const DxcHeader = ({
     }
   };
 
-  const headerLogo = useMemo(() => {
-    return getLogoElement(colorsTheme.header.logo, translatedLabels.formFields.logoAlternativeText);
-  }, [colorsTheme.header.logo]);
+  const headerLogo = useMemo(
+    () => getLogoElement(colorsTheme.header.logo, translatedLabels.formFields.logoAlternativeText),
+    [colorsTheme, translatedLabels]
+  );
 
-  const headerResponsiveLogo = useMemo(() => {
-    return getLogoElement(colorsTheme.header.logoResponsive, translatedLabels.formFields.logoAlternativeText);
-  }, [colorsTheme.header.logoResponsive]);
+  const headerResponsiveLogo = useMemo(
+    () => getLogoElement(colorsTheme.header.logoResponsive, translatedLabels.formFields.logoAlternativeText),
+    [colorsTheme, translatedLabels]
+  );
 
   useEffect(() => {
+    const handleResize = () => {
+      setIsResponsive(window.matchMedia(`(max-width: ${responsiveSizes.medium}rem)`).matches);
+    };
+
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, [handleResize]);
+  }, []);
 
   useEffect(() => {
-    !isResponsive && setIsMenuVisible(false);
+    if (!isResponsive) {
+      setIsMenuVisible(false);
+    }
   }, [isResponsive]);
 
   return (
     <ThemeProvider theme={colorsTheme.header}>
       <HeaderContainer underlined={underlined} margin={margin} ref={ref}>
-        <LogoAnchor tabIndex={onClick ? tabIndex : -1} interactive={onClick ? true : false} onClick={onClick}>
+        <LogoAnchor tabIndex={onClick ? tabIndex : -1} interactive={!!onClick} onClick={onClick}>
           <LogoContainer>{headerLogo}</LogoContainer>
         </LogoAnchor>
         {isResponsive && responsiveContent && (
@@ -160,7 +162,10 @@ const HeaderDropdown = styled.div`
   }
 `;
 
-const HeaderContainer = styled.header<{ margin: HeaderPropsType["margin"]; underlined: HeaderPropsType["underlined"] }>`
+const HeaderContainer = styled.header<{
+  margin: HeaderPropsType["margin"];
+  underlined: HeaderPropsType["underlined"];
+}>`
   box-sizing: border-box;
   display: flex;
   flex-direction: row;

@@ -3,11 +3,12 @@ import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import { HalstackProvider } from "../HalstackContext";
 import DxcWizard from "./Wizard";
+import { Meta, StoryObj } from "@storybook/react";
 
 export default {
   title: "Wizard",
   component: DxcWizard,
-};
+} as Meta<typeof DxcWizard>;
 
 const favoriteSVG = (
   <svg viewBox="0 0 24 24" fill="currentColor">
@@ -155,7 +156,7 @@ const opinionatedTheme = {
   },
 };
 
-export const Chromatic = () => (
+const Wizard = () => (
   <>
     <ExampleContainer>
       <Title title="Current step in the third step, labels and description" theme="light" level={4} />
@@ -263,9 +264,17 @@ const WizardSelected = () => (
   </ExampleContainer>
 );
 
-export const WizardStepActived = WizardSelected.bind({});
-WizardStepActived.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const option = canvas.getByText("Third step");
-  await userEvent.click(option);
+type Story = StoryObj<typeof DxcWizard>;
+
+export const Chromatic: Story = {
+  render: Wizard,
+};
+
+export const WizardStepActived: Story = {
+  render: WizardSelected,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const option = canvas.getByText("Third step");
+    await userEvent.click(option);
+  },
 };

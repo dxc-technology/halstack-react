@@ -41,7 +41,12 @@ describe("Slider component tests", () => {
     expect(slider.getAttribute("aria-valuemin")).toBe("30");
     expect(slider.getAttribute("aria-valuemax")).toBe("125");
     userEvent.tab();
-    fireEvent.keyDown(slider, { key: "ArrowRight", code: "ArrowRight", keyCode: 39, charCode: 39 });
+    fireEvent.keyDown(slider, {
+      key: "ArrowRight",
+      code: "ArrowRight",
+      keyCode: 39,
+      charCode: 39,
+    });
     expect(slider.getAttribute("aria-valuenow")).toBe("125");
     expect(getByText("30")).toBeTruthy();
     expect(getByText("125")).toBeTruthy();
@@ -101,7 +106,7 @@ describe("Slider component tests", () => {
     act(() => {
       fireEvent.mouseUp(slider, { target: { value: 120 } });
     });
-    expect(onDragEnd).toHaveBeenCalledWith("120");
+    expect(onDragEnd).toHaveBeenCalledWith(120);
   });
 
   test("Calls correct function onDragEnd when it is controlled", () => {
@@ -114,7 +119,7 @@ describe("Slider component tests", () => {
     act(() => {
       fireEvent.mouseUp(slider, { target: { value: 120 } });
     });
-    expect(onDragEnd).toHaveBeenCalledWith("120");
+    expect(onDragEnd).toHaveBeenCalledWith(120);
     expect(slider.getAttribute("aria-valuenow")).toBe("50");
   });
 
@@ -142,7 +147,12 @@ describe("Slider component tests", () => {
     );
     const slider = getByRole("slider");
     userEvent.tab();
-    fireEvent.keyDown(slider, { key: "ArrowRight", code: "ArrowRight", keyCode: 39, charCode: 39 });
+    fireEvent.keyDown(slider, {
+      key: "ArrowRight",
+      code: "ArrowRight",
+      keyCode: 39,
+      charCode: 39,
+    });
     rerender(<DxcSlider minValue={0} maxValue={100} onChange={onChange} showLimitsValues value={0} showInput />);
     expect(slider.getAttribute("aria-valuenow")).toBe("0");
   });

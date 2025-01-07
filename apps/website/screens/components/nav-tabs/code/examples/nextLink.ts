@@ -1,9 +1,9 @@
 import { DxcNavTabs, DxcInset } from "@dxc-technology/halstack-react";
 import Link from "next/link";
-import React from "react";
+import { forwardRef } from "react";
 
 const code = `() => {
-  const CustomNavTab = React.forwardRef(({ href, children, ...other }, ref) => {
+  const CustomNavTab = forwardRef(({ href, children, ...other }, ref) => {
     return (
       <DxcNavTabs.Tab {...other} href={href}>
         {children}
@@ -32,7 +32,7 @@ const scope = {
   DxcNavTabs,
   DxcInset,
   Link,
-  React,
+  forwardRef,
 };
 
 export default { code, scope };

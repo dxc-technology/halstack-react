@@ -3,11 +3,12 @@ import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import { HalstackProvider } from "../HalstackContext";
 import DxcTag from "./Tag";
+import { Meta, StoryObj } from "@storybook/react";
 
 export default {
   title: "Tag",
   component: DxcTag,
-};
+} as Meta<typeof DxcTag>;
 
 const icon = (
   <svg viewBox="0 0 24 24" fill="currentColor">
@@ -30,7 +31,7 @@ const opinionatedTheme = {
   },
 };
 
-export const Chromatic = () => (
+const Tag = () => (
   <>
     <ExampleContainer>
       <Title title="With icon" theme="light" level={4} />
@@ -144,8 +145,16 @@ const LinkTag = () => (
   </ExampleContainer>
 );
 
-export const HoverLinkTag = LinkTag.bind({});
-HoverLinkTag.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  await userEvent.hover(canvas.getByText("Tag"));
+type Story = StoryObj<typeof DxcTag>;
+
+export const Chromatic: Story = {
+  render: Tag,
+};
+
+export const HoverLinkTag: Story = {
+  render: LinkTag,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await userEvent.hover(canvas.getByText("Tag"));
+  },
 };

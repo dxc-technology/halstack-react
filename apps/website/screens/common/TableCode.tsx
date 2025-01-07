@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import styled from "styled-components";
 
 const TableCode = styled.code`
@@ -8,7 +9,7 @@ const TableCode = styled.code`
   border-radius: 0.25rem;
 `;
 
-export const ExtendedTableCode = ({ children }: { children: React.ReactNode }) => (
+export const ExtendedTableCode = ({ children }: { children: ReactNode }) => (
   <ExtendedCodeContainer>
     <StyledExtendedCode>{children}</StyledExtendedCode>
   </ExtendedCodeContainer>

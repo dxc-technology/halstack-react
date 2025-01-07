@@ -1,12 +1,11 @@
-import { forwardRef, useEffect, useId, useRef, useState } from "react";
+import { ChangeEvent, FocusEvent, forwardRef, useContext, useEffect, useId, useRef, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { getMargin } from "../common/utils";
 import { spaces } from "../common/variables";
-import useTheme from "../useTheme";
-import useTranslatedLabels from "../useTranslatedLabels";
+import HalstackContext, { HalstackLanguageContext } from "../HalstackContext";
 import TextareaPropsType, { RefType } from "./types";
 
-const patternMatch = (pattern, value) => new RegExp(pattern).test(value);
+const patternMatch = (pattern: string, value: string) => new RegExp(pattern).test(value);
 
 const DxcTextarea = forwardRef<RefType, TextareaPropsType>(
   (
@@ -38,53 +37,78 @@ const DxcTextarea = forwardRef<RefType, TextareaPropsType>(
     const [innerValue, setInnerValue] = useState(defaultValue);
     const textareaId = `textarea-${useId()}`;
 
-    const colorsTheme = useTheme();
-    const translatedLabels = useTranslatedLabels();
+    const colorsTheme = useContext(HalstackContext);
+    const translatedLabels = useContext(HalstackLanguageContext);
 
-    const textareaRef = useRef(null);
-    const prevValueRef = useRef(null);
+    const textareaRef = useRef<HTMLTextAreaElement | null>(null);
+    const prevValueRef = useRef<string | null>(null);
     const errorId = `error-${textareaId}`;
 
-    const isNotOptional = (value) => value === "" && !optional;
+    const isNotOptional = (value: string) => value === "" && !optional;
 
-    const isLengthIncorrect = (value) =>
-      value !== "" && minLength && maxLength && (value.length < minLength || value.length > maxLength);
+    const isLengthIncorrect = (value: string) =>
+      value !== "" &&
+      minLength &&
+      maxLength &&
+      (value.length < minLength || value.length > maxLength);
 
-    const changeValue = (newValue) => {
-      value ?? setInnerValue(newValue);
+    const changeValue = (newValue: string) => {
+      if (value == null) {
+        setInnerValue(newValue);
+      }
 
-      if (isNotOptional(newValue))
-        onChange?.({ value: newValue, error: translatedLabels.formFields.requiredValueErrorMessage });
-      else if (isLengthIncorrect(newValue))
-        onChange?.({ value: newValue, error: translatedLabels.formFields.lengthErrorMessage(minLength, maxLength) });
-      else if (newValue && pattern && !patternMatch(pattern, newValue))
-        onChange?.({ value: newValue, error: translatedLabels.formFields.formatRequestedErrorMessage });
-      else onChange?.({ value: newValue });
+      if (isNotOptional(newValue)) {
+        onChange?.({
+          value: newValue,
+          error: translatedLabels.formFields.requiredValueErrorMessage,
+        });
+      } else if (isLengthIncorrect(newValue)) {
+        onChange?.({
+          value: newValue,
+          error: translatedLabels.formFields.lengthErrorMessage?.(minLength, maxLength),
+        });
+      } else if (newValue && pattern && !patternMatch(pattern, newValue)) {
+        onChange?.({
+          value: newValue,
+          error: translatedLabels.formFields.formatRequestedErrorMessage,
+        });
+      } else {
+        onChange?.({ value: newValue });
+      }
     };
 
-    const handleOnBlur = (event) => {
-      if (isNotOptional(event.target.value))
-        onBlur?.({ value: event.target.value, error: translatedLabels.formFields.requiredValueErrorMessage });
-      else if (isLengthIncorrect(event.target.value))
+    const handleOnBlur = (event: FocusEvent<HTMLTextAreaElement>) => {
+      if (isNotOptional(event.target.value)) {
         onBlur?.({
           value: event.target.value,
-          error: translatedLabels.formFields.lengthErrorMessage(minLength, maxLength),
+          error: translatedLabels.formFields.requiredValueErrorMessage,
         });
-      else if (event.target.value && pattern && !patternMatch(pattern, event.target.value))
-        onBlur?.({ value: event.target.value, error: translatedLabels.formFields.formatRequestedErrorMessage });
-      else onBlur?.({ value: event.target.value });
+      } else if (isLengthIncorrect(event.target.value)) {
+        onBlur?.({
+          value: event.target.value,
+          error: translatedLabels.formFields.lengthErrorMessage?.(minLength, maxLength),
+        });
+      } else if (event.target.value && pattern && !patternMatch(pattern, event.target.value)) {
+        onBlur?.({
+          value: event.target.value,
+          error: translatedLabels.formFields.formatRequestedErrorMessage,
+        });
+      } else {
+        onBlur?.({ value: event.target.value });
+      }
     };
 
-    const handleOnChange = (event) => {
+    const handleOnChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
       changeValue(event.target.value);
     };
 
     useEffect(() => {
-      if (verticalGrow === "auto" && prevValueRef.current !== (value ?? innerValue)) {
-        const textareaLineHeight = parseInt(window.getComputedStyle(textareaRef.current)["line-height"]);
-        const textareaPaddingTopBottom = parseInt(window.getComputedStyle(textareaRef.current)["padding-top"]) * 2;
+      if (verticalGrow === "auto" && prevValueRef.current !== (value ?? innerValue) && textareaRef.current) {
+        const computedStyle = window.getComputedStyle(textareaRef.current);
+        const textareaLineHeight = parseInt(computedStyle.lineHeight || "0", 10);
+        const textareaPaddingTopBottom = parseInt(computedStyle.paddingTop || "0", 10) * 2;
         textareaRef.current.style.height = `${textareaLineHeight * rows}px`;
-        const newHeight = textareaRef.current.scrollHeight - textareaPaddingTopBottom;
+        const newHeight = (textareaRef.current.scrollHeight ?? 0) - textareaPaddingTopBottom;
         textareaRef.current.style.height = `${newHeight}px`;
         prevValueRef.current = value ?? innerValue;
       }
@@ -116,7 +140,7 @@ const DxcTextarea = forwardRef<RefType, TextareaPropsType>(
             autoComplete={autocomplete}
             ref={textareaRef}
             tabIndex={tabIndex}
-            aria-invalid={error ? true : false}
+            aria-invalid={!!error}
             aria-errormessage={error ? errorId : undefined}
             aria-required={!disabled && !optional}
           />
@@ -138,10 +162,10 @@ const sizes = {
   fillParent: "100%",
 };
 
-const calculateWidth = (margin, size) =>
+const calculateWidth = (margin: TextareaPropsType["margin"], size: TextareaPropsType["size"]) =>
   size === "fillParent"
     ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
-    : sizes[size];
+    : size && sizes[size];
 
 const TextareaContainer = styled.div<{
   margin: TextareaPropsType["margin"];

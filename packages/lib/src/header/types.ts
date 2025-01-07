@@ -1,4 +1,5 @@
-type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
+import { ReactNode } from "react";
+import { Space } from "../common/utils";
 
 type Props = {
   /**
@@ -10,12 +11,12 @@ type Props = {
    * for the first child in the content, so we recommend the use of React.Fragment
    * to be applied correctly. Otherwise, the styles can be modified.
    */
-  content?: React.ReactNode;
+  content?: ReactNode;
   /**
    * Content shown in responsive version. It receives the close menu handler that can
    * be used to add that functionality when a element is clicked.
    */
-  responsiveContent?: (closeHandler: () => void) => React.ReactNode;
+  responsiveContent?: (closeHandler: () => void) => ReactNode;
   /**
    * This function will be called when the user clicks the header logo.
    */

@@ -1,3 +1,4 @@
+import { Meta, StoryObj } from "@storybook/react";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcContainer from "../container/Container";
@@ -7,7 +8,7 @@ import DxcNavTabs from "./NavTabs";
 export default {
   title: "Nav Tabs",
   component: DxcNavTabs,
-};
+} as Meta<typeof DxcNavTabs>;
 
 const iconSVG = (
   <svg viewBox="0 0 24 24" fill="currentColor">
@@ -27,7 +28,7 @@ const opinionatedTheme = {
   },
 };
 
-export const Chromatic = () => (
+const NavTabs = () => (
   <>
     <ExampleContainer>
       <Title title="Only label" theme="light" level={4} />
@@ -291,3 +292,9 @@ export const Chromatic = () => (
     </ExampleContainer>
   </>
 );
+
+type Story = StoryObj<typeof DxcNavTabs>;
+
+export const Chromatic: Story = {
+  render: NavTabs,
+};

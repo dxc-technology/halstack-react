@@ -2,13 +2,14 @@ import DxcIcon from "./Icon";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DxcTypography from "../typography/Typography";
+import { Meta, StoryObj } from "@storybook/react";
 
 export default {
   title: "Icon",
   component: DxcIcon,
-};
+} as Meta<typeof DxcIcon>;
 
-export const Chromatic = () => (
+const Icon = () => (
   <>
     <Title title="Icon component" theme="light" level={2} />
     <ExampleContainer>
@@ -25,3 +26,9 @@ export const Chromatic = () => (
     </ExampleContainer>
   </>
 );
+
+type Story = StoryObj<typeof DxcIcon>;
+
+export const Chromatic: Story = {
+  render: Icon,
+};

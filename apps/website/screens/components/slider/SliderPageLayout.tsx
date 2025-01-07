@@ -2,8 +2,9 @@ import { DxcParagraph, DxcFlex } from "@dxc-technology/halstack-react";
 import PageHeading from "@/common/PageHeading";
 import TabsPageHeading from "@/common/TabsPageLayout";
 import ComponentHeading from "@/common/ComponentHeading";
+import { ReactNode } from "react";
 
-const SliderPageHeading = ({ children }: { children: React.ReactNode }) => {
+const SliderPageHeading = ({ children }: { children: ReactNode }) => {
   const tabs = [
     { label: "Code", path: "/components/slider" },
     { label: "Usage", path: "/components/slider/usage" },

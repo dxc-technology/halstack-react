@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import { CoreSpacingTokensType } from "../common/coreTokens";
 
 type Gap = { rowGap: CoreSpacingTokensType; columnGap?: CoreSpacingTokensType } | { rowGap?: CoreSpacingTokensType; columnGap: CoreSpacingTokensType } | CoreSpacingTokensType;
@@ -53,7 +54,7 @@ export type GridItemProps = {
   /**
    * Custom content inside the grid container.
    */
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
 type Props = GridItemProps & {

@@ -1,34 +1,33 @@
-import { memo } from "react";
+import { memo, useContext, useState } from "react";
 import dayjs, { Dayjs } from "dayjs";
-import { useState } from "react";
 import styled from "styled-components";
 import { DatePickerPropsType } from "./types";
 import Calendar from "./Calendar";
 import YearPicker from "./YearPicker";
-import useTranslatedLabels from "../useTranslatedLabels";
 import DxcIcon from "../icon/Icon";
-import {Tooltip} from "../tooltip/Tooltip";
+import { Tooltip } from "../tooltip/Tooltip";
+import { HalstackLanguageContext } from "../HalstackContext";
 
 const today = dayjs();
 
 const DatePicker = ({ date, onDateSelect, id }: DatePickerPropsType): JSX.Element => {
   const [innerDate, setInnerDate] = useState(date?.isValid() ? date : dayjs());
   const [content, setContent] = useState("calendar");
-  const selectedDate = date?.isValid() ? date : null;
-  const translatedLabels = useTranslatedLabels();
+  const selectedDate = date?.isValid() ? date : dayjs(null);
+  const translatedLabels = useContext(HalstackLanguageContext);
 
-  const handleDateSelect = (date: Dayjs) => {
-    setInnerDate(date);
-    onDateSelect(date);
+  const handleDateSelect = (chosenDate: Dayjs) => {
+    setInnerDate(chosenDate);
+    onDateSelect(chosenDate);
   };
 
-  const handleOnYearSelect = (year) => {
+  const handleOnYearSelect = (year: number) => {
     setInnerDate(innerDate.set("year", year));
     setContent("calendar");
   };
 
-  const handleMonthChange = (date: Dayjs) => {
-    setInnerDate(date);
+  const handleMonthChange = (chosenDate: Dayjs) => {
+    setInnerDate(chosenDate);
   };
 
   return (
@@ -44,7 +43,7 @@ const DatePicker = ({ date, onDateSelect, id }: DatePickerPropsType): JSX.Elemen
         </Tooltip>
         <HeaderYearTrigger
           aria-live="polite"
-          onClick={() => setContent((content) => (content === "yearPicker" ? "calendar" : "yearPicker"))}
+          onClick={() => setContent((currentContent) => (currentContent === "yearPicker" ? "calendar" : "yearPicker"))}
         >
           <HeaderYearTriggerLabel>
             {translatedLabels.calendar.months[innerDate.get("month")]} {innerDate.format("YYYY")}

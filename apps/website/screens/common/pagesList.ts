@@ -14,8 +14,8 @@ export type LinksSectionDetails = {
 };
 
 type NavigationLinks = {
-  previousLink: LinkDetails | null;
-  nextLink: LinkDetails | null;
+  previousLink?: LinkDetails;
+  nextLink?: LinkDetails;
 };
 
 export const themeGeneratorLinks = ["/theme-generator/opinionated-theme/", "/theme-generator/advanced-theme/"];
@@ -69,14 +69,10 @@ export const getNavigationLinks = (currentPath: string): NavigationLinks => {
   const links = LinksSections.flatMap((section) => section.links);
   const currentLinkIndex = getCurrentLinkIndex(links, currentPath);
   if (currentLinkIndex === -1) {
-    return { previousLink: null, nextLink: null };
+    return {};
   }
-  const nextLinkIndex = currentLinkIndex + 1;
-  const nextLinkExists = nextLinkIndex < links.length;
-  const previousLinkIndex = currentLinkIndex - 1;
-  const previousLinkExists = previousLinkIndex >= 0;
   return {
-    previousLink: previousLinkExists ? links[previousLinkIndex] : null,
-    nextLink: nextLinkExists ? links[nextLinkIndex] : null,
+    previousLink: currentLinkIndex + 1 < links.length ? links[currentLinkIndex + 1] : undefined,
+    nextLink: currentLinkIndex - 1 >= 0 ? links[currentLinkIndex - 1] : undefined,
   };
 };

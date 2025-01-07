@@ -279,7 +279,7 @@ describe("FileInput component tests", () => {
       expect(getByText("file2.txt")).toBeTruthy();
       expect(getByText("Error message")).toBeTruthy();
       const removeBtn = getAllByRole("button")[1];
-      userEvent.click(removeBtn);
+      removeBtn != null && userEvent.click(removeBtn);
       expect(callbackFile).toHaveBeenCalledWith([
         {
           error: "Error message",

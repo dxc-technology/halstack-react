@@ -1,10 +1,11 @@
+import { useContext } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { AdvancedTheme, spaces } from "../common/variables";
 import { getMargin } from "../common/utils";
-import useTheme from "../useTheme";
-import ButtonPropsType from "./types";
+import type ButtonPropsType from "./types";
 import DxcIcon from "../icon/Icon";
 import { Tooltip } from "../tooltip/Tooltip";
+import HalstackContext from "../HalstackContext";
 
 const DxcButton = ({
   label = "",
@@ -20,7 +21,7 @@ const DxcButton = ({
   size = { height: "large", width: "fitContent" },
   tabIndex = 0,
 }: ButtonPropsType): JSX.Element => {
-  const colorsTheme = useTheme();
+  const colorsTheme = useContext(HalstackContext);
 
   return (
     <ThemeProvider theme={colorsTheme.button}>
@@ -34,8 +35,8 @@ const DxcButton = ({
           tabIndex={disabled ? -1 : tabIndex}
           type={type}
           $mode={mode}
-          hasLabel={label ? true : false}
-          hasIcon={icon ? true : false}
+          hasLabel={!!label}
+          hasIcon={!!icon}
           iconPosition={iconPosition}
           size={size}
           margin={margin}
@@ -62,9 +63,9 @@ const widths = {
 const calculateWidth = (margin: ButtonPropsType["margin"], size: ButtonPropsType["size"]) =>
   size?.width === "fillParent"
     ? `calc(${widths[size?.width]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
-    : widths[size?.width];
+    : size?.width && widths[size?.width];
 
-const getHeight = (height: ButtonPropsType["size"]["height"]) => {
+const getHeight = (height: Required<ButtonPropsType>["size"]["height"]) => {
   switch (height) {
     case "small":
       return 1.5;
@@ -89,7 +90,7 @@ const getButtonStyles = (
   let focus = "";
   let disabled = "";
 
-  let commonPrimaryStyles = `
+  const commonPrimaryStyles = `
     font-weight: ${theme.primaryFontWeight};
     font-size: ${size?.height === "small" ? theme.primarySmallFontSize : size?.height === "medium" ? theme.primaryMediumFontSize : theme.primaryLargeFontSize};
     font-family: ${theme.primaryFontFamily};
@@ -97,7 +98,7 @@ const getButtonStyles = (
     border-width ${theme.primaryBorderThickness};
     border-style: ${theme.primaryBorderStyle};`;
 
-  let commonSecondaryStyles = `
+  const commonSecondaryStyles = `
     font-weight: ${theme.secondaryFontWeight};
     font-size: ${size?.height === "small" ? theme.secondarySmallFontSize : size?.height === "medium" ? theme.secondaryMediumFontSize : theme.secondaryLargeFontSize};
     font-family: ${theme.secondaryFontFamily};
@@ -105,7 +106,7 @@ const getButtonStyles = (
     border-width ${theme.secondaryBorderThickness};
     border-style: ${theme.secondaryBorderStyle};`;
 
-  let commonTertiaryStyles = `
+  const commonTertiaryStyles = `
     font-weight: ${theme.tertiaryFontWeight};
     font-size: ${size?.height === "small" ? theme.tertiarySmallFontSize : size?.height === "medium" ? theme.tertiaryMediumFontSize : theme.tertiaryLargeFontSize};
     font-family: ${theme.tertiaryFontFamily};
@@ -195,7 +196,6 @@ const getButtonStyles = (
         &:disabled {
           ${disabled}
         }`;
-
     case "secondary":
       switch (semantic) {
         case "default":
@@ -303,7 +303,6 @@ const getButtonStyles = (
         &:disabled {
           ${disabled}
         }`;
-
     case "tertiary":
       switch (semantic) {
         case "default":
@@ -385,6 +384,8 @@ const getButtonStyles = (
         &:disabled {
           ${disabled}
         }`;
+    default:
+      return undefined;
   }
 };
 
@@ -403,7 +404,7 @@ const Button = styled.button<{
   gap: 0.5rem;
   align-items: center;
   justify-content: center;
-  height: ${(props) => getHeight(props.size?.height) + "rem"};
+  height: ${(props) => `${getHeight(props.size?.height && props.size?.height)}rem`};
   width: ${(props) => calculateWidth(props.margin, props.size)};
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
@@ -416,50 +417,50 @@ const Button = styled.button<{
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
   padding-top: ${(props) =>
     props.hasIcon && !props.hasLabel
-      ? props.size.height === "small"
+      ? props.size?.height === "small"
         ? props.theme.paddingSmallOnlyIconTop
-        : props.size.height === "medium"
+        : props.size?.height === "medium"
           ? props.theme.paddingMediumOnlyIconTop
           : props.theme.paddingLargeOnlyIconTop
-      : props.size.height === "small"
+      : props.size?.height === "small"
         ? props.theme.paddingSmallTop
-        : props.size.height === "medium"
+        : props.size?.height === "medium"
           ? props.theme.paddingMediumTop
           : props.theme.paddingLargeTop};
   padding-bottom: ${(props) =>
     props.hasIcon && !props.hasLabel
-      ? props.size.height === "small"
+      ? props.size?.height === "small"
         ? props.theme.paddingSmallOnlyIconBottom
-        : props.size.height === "medium"
+        : props.size?.height === "medium"
           ? props.theme.paddingMediumOnlyIconBottom
           : props.theme.paddingLargeOnlyIconBottom
-      : props.size.height === "small"
+      : props.size?.height === "small"
         ? props.theme.paddingSmallBottom
-        : props.size.height === "medium"
+        : props.size?.height === "medium"
           ? props.theme.paddingMediumBottom
           : props.theme.paddingLargeBottom};
   padding-left: ${(props) =>
     props.hasIcon && !props.hasLabel
-      ? props.size.height === "small"
+      ? props.size?.height === "small"
         ? props.theme.paddingSmallOnlyIconLeft
-        : props.size.height === "medium"
+        : props.size?.height === "medium"
           ? props.theme.paddingMediumOnlyIconLeft
           : props.theme.paddingLargeOnlyIconLeft
-      : props.size.height === "small"
+      : props.size?.height === "small"
         ? props.theme.paddingSmallLeft
-        : props.size.height === "medium"
+        : props.size?.height === "medium"
           ? props.theme.paddingMediumLeft
           : props.theme.paddingLargeLeft};
   padding-right: ${(props) =>
     props.hasIcon && !props.hasLabel
-      ? props.size.height === "small"
+      ? props.size?.height === "small"
         ? props.theme.paddingSmallOnlyIconRight
-        : props.size.height === "medium"
+        : props.size?.height === "medium"
           ? props.theme.paddingMediumOnlyIconRight
           : props.theme.paddingLargeOnlyIconRight
-      : props.size.height === "small"
+      : props.size?.height === "small"
         ? props.theme.paddingSmallRight
-        : props.size.height === "medium"
+        : props.size?.height === "medium"
           ? props.theme.paddingMediumRight
           : props.theme.paddingLargeRight};
 
@@ -491,10 +492,10 @@ const IconContainer = styled.div<{
   size: ButtonPropsType["size"];
 }>`
   display: flex;
-  font-size: ${(props) => (props.size.height === "small" ? "16" : props.size.height === "medium" ? "16" : "24")}px;
+  font-size: ${(props) => (props.size?.height === "small" ? "16" : props.size?.height === "medium" ? "16" : "24")}px;
   svg {
-    height: ${(props) => (props.size.height === "small" ? "16" : props.size.height === "medium" ? "16" : "24")}px;
-    width: ${(props) => (props.size.height === "small" ? "16" : props.size.height === "medium" ? "16" : "24")}px;
+    height: ${(props) => (props.size?.height === "small" ? "16" : props.size?.height === "medium" ? "16" : "24")}px;
+    width: ${(props) => (props.size?.height === "small" ? "16" : props.size?.height === "medium" ? "16" : "24")}px;
   }
 `;
 

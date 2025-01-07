@@ -91,7 +91,7 @@ describe("Switch component tests", () => {
     );
     const switchEl = component.getByRole("switch");
     const inputEl = component.container.querySelector<HTMLInputElement>(`input[name="test"]`);
-    expect(inputEl.value).toBe("test-defaultChecked");
+    expect(inputEl?.value).toBe("test-defaultChecked");
     expect(switchEl.getAttribute("aria-checked")).toBe("true");
   });
 

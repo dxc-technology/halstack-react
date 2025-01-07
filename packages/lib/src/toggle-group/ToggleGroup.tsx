@@ -1,10 +1,10 @@
-import { useId, useState } from "react";
+import { KeyboardEvent, useContext, useId, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables";
 import DxcFlex from "../flex/Flex";
 import DxcIcon from "../icon/Icon";
 import { Tooltip } from "../tooltip/Tooltip";
-import useTheme from "../useTheme";
+import HalstackContext from "../HalstackContext";
 import ToggleGroupPropsType, { OptionLabel } from "./types";
 
 const DxcToggleGroup = ({
@@ -22,14 +22,14 @@ const DxcToggleGroup = ({
   const toggleGroupLabelId = `label-toggle-group-${useId()}`;
   const [selectedValue, setSelectedValue] = useState(defaultValue ?? (multiple ? [] : -1));
 
-  const colorsTheme = useTheme();
+  const colorsTheme = useContext(HalstackContext);
 
-  const handleToggleChange = (selectedOption) => {
-    let newSelectedOptions;
+  const handleToggleChange = (selectedOption: number) => {
+    let newSelectedOptions: number[] = [];
 
     if (value == null) {
       if (multiple && Array.isArray(selectedValue)) {
-        newSelectedOptions = selectedValue.map((value) => value);
+        newSelectedOptions = selectedValue.map((singleValue) => singleValue);
         if (newSelectedOptions.includes(selectedOption)) {
           const index = newSelectedOptions.indexOf(selectedOption);
           newSelectedOptions.splice(index, 1);
@@ -37,24 +37,31 @@ const DxcToggleGroup = ({
           newSelectedOptions.push(selectedOption);
         }
         setSelectedValue(newSelectedOptions);
-      } else setSelectedValue(selectedOption === selectedValue ? null : selectedOption);
+      } else {
+        setSelectedValue(selectedOption === selectedValue ? -1 : selectedOption);
+      }
     } else if (multiple) {
-      newSelectedOptions = Array.isArray(value) ? value.map((v) => v) : value;
+      newSelectedOptions = Array.isArray(value) ? value.map((v) => v) : [value];
       if (newSelectedOptions.includes(selectedOption)) {
         const index = newSelectedOptions.indexOf(selectedOption);
         newSelectedOptions.splice(index, 1);
-      } else newSelectedOptions.push(selectedOption);
+      } else {
+        newSelectedOptions.push(selectedOption);
+      }
     }
 
-    onChange?.(multiple ? newSelectedOptions : selectedOption);
+    onChange?.((multiple ? newSelectedOptions : selectedOption) as number & number[]);
   };
 
-  const handleOnKeyDown = (event, optionValue) => {
+  const handleOnKeyDown = (event: KeyboardEvent<HTMLButtonElement>, optionValue: number) => {
     switch (event.key) {
       case "Enter":
       case " ":
         event.preventDefault();
         handleToggleChange(optionValue);
+        break;
+      default:
+        break;
     }
   };
 
@@ -67,9 +74,8 @@ const DxcToggleGroup = ({
         <HelperText disabled={disabled}>{helperText}</HelperText>
         <OptionsContainer aria-labelledby={toggleGroupLabelId}>
           {options.map((option, i) => (
-            <Tooltip label={option.title}>
+            <Tooltip label={option.title} key={`toggle-${i}-${option.label}`}>
               <ToggleButton
-                key={`toggle-${i}-${option.label}`}
                 aria-label={option.title}
                 aria-pressed={
                   multiple
@@ -89,7 +95,7 @@ const DxcToggleGroup = ({
                 }}
                 tabIndex={!disabled ? tabIndex : -1}
                 hasIcon={option.icon}
-                optionLabel={option.label}
+                optionLabel={option.label ?? ""}
                 selected={
                   multiple
                     ? value
@@ -102,7 +108,7 @@ const DxcToggleGroup = ({
               >
                 <DxcFlex alignItems="center">
                   {option.icon && (
-                    <IconContainer optionLabel={option.label}>
+                    <IconContainer optionLabel={option.label ?? ""}>
                       {typeof option.icon === "string" ? <DxcIcon icon={option.icon} /> : option.icon}
                     </IconContainer>
                   )}
