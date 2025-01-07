@@ -345,4 +345,6 @@ const StyledPopoverContent = styled(Popover.Content)`
   }
 `;
 
+DxcDateInput.displayName = "DxcDateInput";
+
 export default DxcDateInput;

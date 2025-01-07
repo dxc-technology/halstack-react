@@ -1,7 +1,7 @@
 import { render } from "@testing-library/react";
 import { axe, formatRules } from "../../test/accessibility/axe-helper";
-import { disabledRules as rules } from "../../test/accessibility/rules/specific/footer/disabledRules";
 import DxcFooter from "./Footer";
+import rules from "../../test/accessibility/rules/specific/footer/disabledRules";
 
 const disabledRules = {
   rules: formatRules(rules),

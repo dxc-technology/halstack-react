@@ -1,10 +1,10 @@
+import { Meta, StoryObj } from "@storybook/react";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import { HalstackProvider } from "../HalstackContext";
 import DxcTabs from "./Tabs";
 import type { Space } from "../common/utils";
-import { Meta, StoryObj } from "@storybook/react/*";
 
 export default {
   title: "Tabs",
@@ -92,7 +92,7 @@ const firstDisabledTabs = (
 
 const tabsNotification = (iconPosition?: "top" | "left") => (
   <DxcTabs iconPosition={iconPosition}>
-    <DxcTabs.Tab label="Tab 1" notificationNumber={true}>
+    <DxcTabs.Tab label="Tab 1" notificationNumber>
       <></>
     </DxcTabs.Tab>
     <DxcTabs.Tab label="Tab 2" notificationNumber={5}>
@@ -144,7 +144,7 @@ const tabsIcon = (iconPosition?: "top" | "left") => (
 
 const tabsNotificationIcon = (iconPosition?: "top" | "left") => (
   <DxcTabs iconPosition={iconPosition}>
-    <DxcTabs.Tab label="Tab 1" icon={iconSVG} notificationNumber={true}>
+    <DxcTabs.Tab label="Tab 1" icon={iconSVG} notificationNumber>
       <></>
     </DxcTabs.Tab>
     <DxcTabs.Tab label="Tab 2" icon={iconSVG} notificationNumber={5}>

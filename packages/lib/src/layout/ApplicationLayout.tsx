@@ -145,7 +145,9 @@ const DxcApplicationLayout = ({
           <Tooltip label={translatedLabels.applicationLayout.visibilityToggleTitle}>
             <HamburgerTrigger
               onClick={handleSidenavVisibility}
-              aria-label={visibilityToggleLabel ? undefined : translatedLabels.applicationLayout.visibilityToggleTitle}
+              aria-label={
+                visibilityToggleLabel ? undefined : translatedLabels.applicationLayout.visibilityToggleTitle
+              }
             >
               <DxcIcon icon="Menu" />
               {visibilityToggleLabel}

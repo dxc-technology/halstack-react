@@ -41,15 +41,17 @@ const Container = styled.div<StyledProps>`
   ${({ border }) => {
     let styles = "";
     if (border != null) {
-      switch (true) {
-        case "top" in border:
-          styles += border.top ? getBorderStyles("top", border.top) : "";
-        case "right" in border:
-          styles += border.right ? getBorderStyles("right", border.right) : "";
-        case "left" in border:
-          styles += border.left ? getBorderStyles("left", border.left) : "";
-        case "bottom" in border:
-          styles += border.bottom ? getBorderStyles("bottom", border.bottom) : "";
+      if ("top" in border) {
+        styles += border.top ? getBorderStyles("top", border.top) : "";
+      }
+      if ("right" in border) {
+        styles += border.right ? getBorderStyles("right", border.right) : "";
+      }
+      if ("left" in border) {
+        styles += border.left ? getBorderStyles("left", border.left) : "";
+      }
+      if ("bottom" in border) {
+        styles += border.bottom ? getBorderStyles("bottom", border.bottom) : "";
       }
     }
     return styles;

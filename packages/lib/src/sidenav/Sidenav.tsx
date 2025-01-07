@@ -96,7 +96,7 @@ const Link = forwardRef<HTMLAnchorElement, SidenavLinkPropsType>(
     return (
       <SidenavLink
         selected={selected}
-        href={href ? href : undefined}
+        href={href || undefined}
         target={href ? (newWindow ? "_blank" : "_self") : undefined}
         ref={ref}
         tabIndex={tabIndex}
@@ -112,6 +112,8 @@ const Link = forwardRef<HTMLAnchorElement, SidenavLinkPropsType>(
     );
   }
 );
+
+Link.displayName = "SidenavLink";
 
 const SidenavContainer = styled.div`
   box-sizing: border-box;

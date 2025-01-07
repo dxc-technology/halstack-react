@@ -1,4 +1,14 @@
-import { Children, KeyboardEvent, ReactElement, ReactNode, useContext, useEffect, useMemo, useRef, useState } from "react";
+import {
+  Children,
+  KeyboardEvent,
+  ReactElement,
+  ReactNode,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import styled, { ThemeProvider } from "styled-components";
 import HalstackContext from "../HalstackContext";
 import NavTabsPropsType from "./types";
@@ -7,7 +17,7 @@ import NavTabsContext from "./NavTabsContext";
 
 const getPropInChild = (child: ReactNode, propName: string) => {
   if (child && typeof child === "object" && "props" in child) {
-    const childWithProps = child as ReactElement;
+    const childWithProps = child;
     if (childWithProps.props[propName]) {
       return childWithProps.props[propName];
     } else if (childWithProps.props.children) {
@@ -20,7 +30,7 @@ const getLabelFromTab = (child: ReactNode) => {
   if (typeof child === "string") {
     return child;
   } else if (child && typeof child === "object" && "props" in child) {
-    const childWithProps = child as ReactElement;
+    const childWithProps = child;
     if (Array.isArray(childWithProps.props.children)) {
       return getLabelFromTab(childWithProps.props.children[0]);
     } else {
@@ -53,7 +63,7 @@ const DxcNavTabs = ({ iconPosition = "top", tabIndex = 0, children }: NavTabsPro
 
   const childArray = Children.toArray(children).filter(
     (child) => typeof child === "object" && "props" in child
-  ) as ReactElement[];
+  );
 
   useEffect(() => {
     setUnderlineWidth(refNavTabList?.current?.scrollWidth ?? null);

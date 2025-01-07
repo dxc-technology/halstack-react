@@ -4,16 +4,12 @@ import DxcCheckbox from "../checkbox/Checkbox";
 import { ActionCellsPropsType } from "../table/types";
 import DxcResultsetTable from "./ResultsetTable";
 
-// Mocking DOMRect for Radix Primitive Popover
 (global as any).globalThis = global;
-(global as any).DOMRect = {
-  fromRect: () => ({ top: 0, left: 0, bottom: 0, right: 0, width: 0, height: 0 }),
-};
-(global as any).ResizeObserver = class ResizeObserver {
-  observe() {}
-  unobserve() {}
-  disconnect() {}
-};
+global.ResizeObserver = jest.fn().mockImplementation(() => ({
+  observe: jest.fn(),
+  unobserve: jest.fn(),
+  disconnect: jest.fn(),
+}));
 
 const icon = (
   <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
@@ -318,7 +314,7 @@ const rowsWithCheckbox = [
   [
     { displayValue: "001", sortValue: "001" },
     {
-      displayValue: <DxcCheckbox size="fillParent" defaultChecked={true} />,
+      displayValue: <DxcCheckbox size="fillParent" defaultChecked />,
     },
     { displayValue: "Peter" },
     { displayValue: "Miami" },
@@ -361,7 +357,9 @@ describe("Resultset table component tests", () => {
     expect(getByText("Lana")).toBeTruthy();
     expect(getAllByRole("row").length - 1).toEqual(3);
     const nextButton = getAllByRole("button")[3];
-    nextButton && fireEvent.click(nextButton);
+    if (nextButton) {
+      fireEvent.click(nextButton);
+    }
     expect(getByText("4 to 6 of 10")).toBeTruthy();
     expect(getByText("Rick")).toBeTruthy();
     expect(getByText("Mark")).toBeTruthy();
@@ -369,7 +367,7 @@ describe("Resultset table component tests", () => {
     expect(getAllByRole("row").length - 1).toEqual(3);
   });
 
-  test("Resultset table goToPage works as expected", async () => {
+  test("Resultset table goToPage works as expected", () => {
     window.HTMLElement.prototype.scrollIntoView = () => {};
     window.HTMLElement.prototype.scrollTo = () => {};
     const { getByText, getAllByRole } = render(
@@ -380,9 +378,11 @@ describe("Resultset table component tests", () => {
     expect(getByText("Lana")).toBeTruthy();
     expect(getAllByRole("row").length - 1).toEqual(3);
     const goToPageSelect = getAllByRole("button")[3];
-    goToPageSelect && (await userEvent.click(goToPageSelect));
+    if (goToPageSelect) {
+      userEvent.click(goToPageSelect);
+    }
     const goToPageOption = getByText("2");
-    await userEvent.click(goToPageOption);
+    userEvent.click(goToPageOption);
     expect(getByText("4 to 6 of 10")).toBeTruthy();
     expect(getByText("Rick")).toBeTruthy();
     expect(getByText("Mark")).toBeTruthy();
@@ -393,7 +393,9 @@ describe("Resultset table component tests", () => {
   test("Resultset table going to the last page shows only one row", () => {
     const { getByText, getAllByRole } = render(<DxcResultsetTable columns={columns} rows={rows} itemsPerPage={3} />);
     const lastButton = getAllByRole("button")[4];
-    lastButton && fireEvent.click(lastButton);
+    if (lastButton) {
+      fireEvent.click(lastButton);
+    }
     expect(getByText("10 to 10 of 10")).toBeTruthy();
     expect(getAllByRole("row")).toHaveLength(2);
     expect(getByText("Cosmin")).toBeTruthy();
@@ -403,11 +405,15 @@ describe("Resultset table component tests", () => {
     const component = render(<DxcResultsetTable columns={columns} rows={rows} itemsPerPage={3} />);
     const name = component.queryByText("Name");
     expect(component.queryByText("Peter")).toBeTruthy();
-    name && fireEvent.click(name);
+    if (name) {
+      fireEvent.click(name);
+    }
     expect(component.queryByText("Tina")).not.toBeTruthy();
     expect(component.queryByText("Cosmin")).toBeTruthy();
 
-    name && fireEvent.click(name);
+    if (name) {
+      fireEvent.click(name);
+    }
     expect(component.queryByText("Tina")).toBeTruthy();
     expect(component.queryByText("Cosmin")).not.toBeTruthy();
   });
@@ -416,11 +422,15 @@ describe("Resultset table component tests", () => {
     const component = render(<DxcResultsetTable columns={columns} rows={rowsMissingSortValues} itemsPerPage={3} />);
     const name = component.queryByText("Name");
     expect(component.queryByText("Peter")).toBeTruthy();
-    name && fireEvent.click(name);
+    if (name) {
+      fireEvent.click(name);
+    }
     expect(component.queryByText("Tina")).not.toBeTruthy();
     expect(component.queryByText("Cosmin")).toBeTruthy();
 
-    name && fireEvent.click(name);
+    if (name) {
+      fireEvent.click(name);
+    }
     expect(component.queryByText("Tina")).toBeTruthy();
     expect(component.queryByText("Cosmin")).not.toBeTruthy();
   });
@@ -432,7 +442,9 @@ describe("Resultset table component tests", () => {
     expect(queryByText("1 to 3 of 10")).toBeTruthy();
     const lastButton = getAllByRole("button")[4];
     expect(queryByText("Peter")).toBeTruthy();
-    lastButton && fireEvent.click(lastButton);
+    if (lastButton) {
+      fireEvent.click(lastButton);
+    }
     expect(queryByText("10 to 10 of 10")).toBeTruthy();
     rerender(<DxcResultsetTable columns={columns} rows={rows2} itemsPerPage={3} />);
     expect(queryByText("7 to 9 of 9")).toBeTruthy();
@@ -445,13 +457,15 @@ describe("Resultset table component tests", () => {
     expect(queryByText("1 to 2 of 10")).toBeTruthy();
     const lastButton = getAllByRole("button")[4];
     expect(queryByText("Peter")).toBeTruthy();
-    lastButton && fireEvent.click(lastButton);
+    if (lastButton) {
+      fireEvent.click(lastButton);
+    }
     expect(queryByText("9 to 10 of 10")).toBeTruthy();
     rerender(<DxcResultsetTable columns={columns} rows={rows2} itemsPerPage={2} />);
     expect(queryByText("9 to 9 of 9")).toBeTruthy();
   });
 
-  test("Resultset table uncontrolled components maintain its value when sorting", async () => {
+  test("Resultset table uncontrolled components maintain its value when sorting", () => {
     const { getAllByRole } = render(
       <DxcResultsetTable columns={columnsWithCheckbox} rows={rowsWithCheckbox} itemsPerPage={3} />
     );
@@ -462,11 +476,15 @@ describe("Resultset table component tests", () => {
 
     expect(columnHeader?.getAttribute("aria-sort")).toBe("none");
 
-    sortButton && fireEvent.click(sortButton);
+    if (sortButton) {
+      fireEvent.click(sortButton);
+    }
 
     expect(columnHeader?.getAttribute("aria-sort")).toBe("ascending");
 
-    sortButton && fireEvent.click(sortButton);
+    if (sortButton) {
+      fireEvent.click(sortButton);
+    }
 
     expect(columnHeader?.getAttribute("aria-sort")).toBe("descending");
 
@@ -479,7 +497,9 @@ describe("Resultset table component tests", () => {
     );
     const lastButton = getAllByRole("button")[4];
     expect(getAllByRole("row").length - 1).toEqual(3);
-    lastButton && fireEvent.click(lastButton);
+    if (lastButton) {
+      fireEvent.click(lastButton);
+    }
     expect(getAllByRole("row").length - 1).toEqual(1);
   });
 
@@ -512,9 +532,9 @@ describe("Resultset table component tests", () => {
         ],
       },
       {
-        icon: icon,
+        icon,
         title: "icon2",
-        onClick: onClick,
+        onClick,
       },
     ];
     const actionRows = [
@@ -538,14 +558,18 @@ describe("Resultset table component tests", () => {
     );
     const dropdown = getAllByRole("button")[2];
     act(() => {
-      dropdown && userEvent.click(dropdown);
+      if (dropdown) {
+        userEvent.click(dropdown);
+      }
     });
     expect(getByRole("menu")).toBeTruthy();
     const option = getByText("Aliexpress");
     userEvent.click(option);
     expect(onSelectOption).toHaveBeenCalledWith("3");
     const action = getAllByRole("button")[1];
-    action && userEvent.click(action);
+    if (action) {
+      userEvent.click(action);
+    }
     expect(onClick).toHaveBeenCalled();
   });
 });

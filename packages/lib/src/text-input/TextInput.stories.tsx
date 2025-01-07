@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { Meta, StoryObj } from "@storybook/react";
 import { userEvent, within } from "@storybook/test";
 import { ThemeProvider } from "styled-components";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
@@ -7,7 +8,7 @@ import HalstackContext, { HalstackProvider } from "../HalstackContext";
 import DxcFlex from "../flex/Flex";
 import Suggestions from "./Suggestions";
 import DxcTextInput from "./TextInput";
-import { Meta, StoryObj } from "@storybook/react";
+
 export default {
   title: "Text Input",
   component: DxcTextInput,
@@ -341,7 +342,7 @@ const TextInput = () => (
 );
 
 const AutosuggestListbox = () => {
-  const colorsTheme: any = useContext(HalstackContext);
+  const colorsTheme = useContext(HalstackContext);
 
   return (
     <ThemeProvider theme={colorsTheme.textInput}>
@@ -376,7 +377,9 @@ const AutosuggestListbox = () => {
               placeholder="Choose an option"
               size="fillParent"
             />
-            <button style={{ zIndex: "1", width: "100px" }}>Submit</button>
+            <button type="submit" style={{ zIndex: "1", width: "100px" }}>
+              Submit
+            </button>
           </div>
         </ExampleContainer>
         <Title title="Listbox suggestion states" theme="light" level={3} />
@@ -404,7 +407,7 @@ const AutosuggestListbox = () => {
             highlightedSuggestions={false}
             searchHasErrors={false}
             isSearching={false}
-            suggestionOnClick={(suggestion) => {}}
+            suggestionOnClick={() => {}}
             styles={{ width: 350 }}
           />
         </ExampleContainer>
@@ -418,7 +421,7 @@ const AutosuggestListbox = () => {
             highlightedSuggestions={false}
             searchHasErrors={false}
             isSearching={false}
-            suggestionOnClick={(suggestion) => {}}
+            suggestionOnClick={() => {}}
             styles={{ width: 350 }}
           />
         </ExampleContainer>
@@ -429,10 +432,10 @@ const AutosuggestListbox = () => {
             value="Afgh"
             suggestions={country}
             visualFocusIndex={-1}
-            highlightedSuggestions={true}
+            highlightedSuggestions
             searchHasErrors={false}
             isSearching={false}
-            suggestionOnClick={(suggestion) => {}}
+            suggestionOnClick={() => {}}
             styles={{ width: 350 }}
           />
         </ExampleContainer>
@@ -445,9 +448,9 @@ const AutosuggestListbox = () => {
           suggestions={country}
           visualFocusIndex={-1}
           highlightedSuggestions={false}
-          searchHasErrors={true}
+          searchHasErrors
           isSearching={false}
-          suggestionOnClick={(suggestion) => {}}
+          suggestionOnClick={() => {}}
           styles={{ width: 350 }}
         />
       </ExampleContainer>
@@ -460,8 +463,8 @@ const AutosuggestListbox = () => {
           visualFocusIndex={-1}
           highlightedSuggestions={false}
           searchHasErrors={false}
-          isSearching={true}
-          suggestionOnClick={(suggestion) => {}}
+          isSearching
+          suggestionOnClick={() => {}}
           styles={{ width: 350 }}
         />
       </ExampleContainer>

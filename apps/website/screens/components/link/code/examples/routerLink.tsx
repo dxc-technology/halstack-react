@@ -7,7 +7,7 @@ type routerProps = {
   children: string;
 };
 
-const RouterLink = ({ to, component, children }: routerProps) => {
+const RouterLink = ({ to, children }: routerProps) => {
   return <DxcLink href={to}>{children}</DxcLink>;
 };
 

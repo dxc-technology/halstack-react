@@ -10,7 +10,7 @@ const useHref = (to: string) => {
   console.log(to);
 };
 
-const useLinkClickHandler = (to: string, { replace, state, target }: routerProps) => {};
+const useLinkClickHandler = (_to: string, _routerProps: routerProps) => {};
 
 const code = `() => {
   const CustomTab = React.forwardRef(

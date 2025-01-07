@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import { CoreColorTokensType } from "../common/coreTokens";
-import { Space as SpacingValues } from "../common/utils"
+import { Space as SpacingValues } from "../common/utils";
+
 type Space =
   | SpacingValues
   | {

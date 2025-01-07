@@ -7,17 +7,29 @@ import FileInputPropsType, { FileData, RefType } from "./types";
 import HalstackContext, { HalstackLanguageContext } from "../HalstackContext";
 
 const getFilePreview = async (file: File): Promise<string> => {
-  if (file.type.includes("video")) return "filled_movie";
-  else if (file.type.includes("audio")) return "music_video";
-  else if (file.type.includes("image")) {
-    return new Promise<string>((resolve) => {
+  if (file?.type?.includes("video")) {
+    return "filled_movie";
+  } else if (file?.type?.includes("audio")) {
+    return "music_video";
+  } else if (file?.type?.includes("image")) {
+    return new Promise<string>((resolve, reject) => {
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = (e) => {
-        resolve(e.target?.result as string);
+        const result = e.target?.result;
+        if (typeof result === "string") {
+          resolve(result);
+        } else {
+          reject(new Error("Failed to generate file preview as a string."));
+        }
+      };
+      reader.onerror = () => {
+        reject(new Error("Error reading file."));
       };
     });
-  } else return "draft";
+  } else {
+    return "draft";
+  }
 };
 
 const isFileIncluded = (file: FileData, fileList: FileData[]) => {
@@ -60,8 +72,11 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
     const translatedLabels = useContext(HalstackLanguageContext);
 
     const checkFileSize = (file: File) => {
-      if (minSize && file.size < minSize) return translatedLabels.fileInput.fileSizeGreaterThanErrorMessage;
-      else if (maxSize && file.size > maxSize) return translatedLabels.fileInput.fileSizeLessThanErrorMessage;
+      if (minSize && file.size < minSize) {
+        return translatedLabels.fileInput.fileSizeGreaterThanErrorMessage;
+      } else if (maxSize && file.size > maxSize) {
+        return translatedLabels.fileInput.fileSizeLessThanErrorMessage;
+      }
     };
 
     const getFilesToAdd = async (selectedFiles: File[]) => {
@@ -80,9 +95,7 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
     };
 
     const addFile = async (selectedFiles: File[]) => {
-      const filesToAdd = await getFilesToAdd(
-        multiple ? selectedFiles : selectedFiles.length === 1 ? selectedFiles : [selectedFiles[0] as File]
-      );
+      const filesToAdd = await getFilesToAdd(multiple ? selectedFiles : selectedFiles.slice(0, 1));
       const finalFiles = multiple ? [...files, ...filesToAdd] : filesToAdd;
       callbackFile?.(finalFiles);
     };
@@ -123,7 +136,8 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
     };
     const handleDragOut = (e: DragEvent<HTMLDivElement>) => {
       // only if dragged items leave container (outside, not to children)
-      if (!e.currentTarget.contains(e.relatedTarget as HTMLDivElement)) {
+      const { relatedTarget } = e;
+      if (relatedTarget instanceof Node && !e.currentTarget.contains(relatedTarget)) {
         setIsDragging(false);
       }
     };
@@ -141,7 +155,7 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
     useEffect(() => {
       const getFiles = async () => {
         if (value) {
-          const valueFiles = (await Promise.all(
+          const valueFiles = await Promise.all(
             value.map(async (file) => {
               if (file.preview) {
                 return file;
@@ -149,7 +163,7 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
               const preview = await getFilePreview(file.file);
               return { ...file, preview };
             })
-          )) as FileData[];
+          );
           setFiles(valueFiles);
         }
       };
@@ -395,5 +409,7 @@ const ErrorMessage = styled.div`
   line-height: ${(props) => props.theme.errorMessageLineHeight};
   margin-top: 0.25rem;
 `;
+
+DxcFileInput.displayName = "DxcFileInput";
 
 export default DxcFileInput;

@@ -171,4 +171,6 @@ const TabIconContainer = styled.div<{
   }
 `;
 
+DxcTab.displayName = "DxcTab";
+
 export default DxcTab;

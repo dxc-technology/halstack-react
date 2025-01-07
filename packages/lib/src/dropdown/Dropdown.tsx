@@ -45,7 +45,9 @@ const DxcDropdown = ({
   };
   const handleMenuItemOnClick = useCallback(
     (value?: string) => {
-      if (value) onSelectOption(value);
+      if (value) {
+        onSelectOption(value);
+      }
       handleOnCloseMenu();
       triggerRef.current?.focus();
     },

@@ -38,7 +38,7 @@ const filterOptionsBySearchValue = (
   searchValue: string
 ): ListOptionType[] | ListOptionGroupType[] => {
   if (options.length > 0) {
-    if (isArrayOfOptionGroups(options))
+    if (isArrayOfOptionGroups(options)) {
       return options.map((optionGroup) => {
         const group = {
           label: optionGroup.label,
@@ -48,7 +48,9 @@ const filterOptionsBySearchValue = (
         };
         return group;
       });
-    else return options.filter((option) => option.label.toUpperCase().includes(searchValue.toUpperCase()));
+    } else {
+      return options.filter((option) => option.label.toUpperCase().includes(searchValue.toUpperCase()));
+    }
   } else {
     return [];
   }
@@ -94,7 +96,7 @@ const getSelectedOption = (
   optional: boolean,
   optionalItem: ListOptionType
 ) => {
-  let selectedOption: ListOptionType | ListOptionType[] = multiple ? [] : ({} as ListOptionType);
+  let selectedOption: ListOptionType | ListOptionType[] | null = multiple ? [] : null;
   let singleSelectionIndex: number | null = null;
 
   if (multiple) {
@@ -127,12 +129,14 @@ const getSelectedOption = (
           groupIndex++;
           return false;
         });
+        return false;
       } else if (option.value === value) {
         selectedOption = option;
         singleSelectionIndex = optional ? index + 1 : index;
         return true;
+      } else {
+        return false;
       }
-      return false;
     });
   }
 
@@ -145,12 +149,12 @@ const getSelectedOption = (
 /**
  * Return the label or labels of the selected option(s), separated by commas.
  */
-const getSelectedOptionLabel = (placeholder: string, selectedOption: ListOptionType | ListOptionType[]) =>
+const getSelectedOptionLabel = (placeholder: string, selectedOption: ListOptionType | ListOptionType[] | null) =>
   Array.isArray(selectedOption)
     ? selectedOption.length === 0
       ? placeholder
       : selectedOption.map((option) => option.label).join(", ")
-    : (selectedOption.label ?? placeholder);
+    : (selectedOption?.label ?? placeholder);
 
 export {
   isOptionGroup,

@@ -1,4 +1,4 @@
-import { ReactElement, ReactNode, SVGProps } from "react";
+import { ReactElement, ReactNode } from "react";
 
 import { Space, Margin, SVG } from "../common/utils";
 

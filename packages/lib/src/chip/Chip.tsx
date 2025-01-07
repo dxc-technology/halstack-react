@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import { getMargin } from "../common/utils";
 import { spaces } from "../common/variables";
+import { getMargin } from "../common/utils";
 import DxcIcon from "../icon/Icon";
 import HalstackContext from "../HalstackContext";
 import ChipPropsType from "./types";

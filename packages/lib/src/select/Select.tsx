@@ -104,7 +104,9 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
             newValue = currentValue.includes(newOption.value)
               ? currentValue.filter((optionVal) => optionVal !== newOption.value)
               : [...currentValue, newOption.value];
-          } else newValue = newOption.value;
+          } else {
+            newValue = newOption.value;
+          }
 
           if (value == null) {
             setInnerValue(newValue);
@@ -143,11 +145,13 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
 
         const currentValue = value ?? innerValue;
         if (notOptionalCheck(currentValue, multiple, optional)) {
+          // TODO: Fix types
           onBlur?.({
             value: currentValue as string & string[],
             error: translatedLabels.formFields.requiredValueErrorMessage,
           });
         } else {
+          // TODO: Fix types
           onBlur?.({ value: currentValue as string & string[] });
         }
       }
@@ -259,11 +263,13 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
         setInnerValue([]);
       }
       if (!optional) {
+        // TODO: Fix types
         onChange?.({
           value: [] as string[] as string & string[],
           error: translatedLabels.formFields.requiredValueErrorMessage,
         });
       } else {
+        // TODO: Fix types
         onChange?.({ value: [] as string[] as string & string[] });
       }
     };
@@ -704,5 +710,7 @@ const ClearSearchAction = styled.button`
     color: ${(props) => props.theme.activeActionIconColor};
   }
 `;
+
+DxcSelect.displayName = "DxcSelect";
 
 export default DxcSelect;

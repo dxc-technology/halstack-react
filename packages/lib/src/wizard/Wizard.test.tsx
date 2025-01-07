@@ -130,8 +130,12 @@ describe("Wizard components tests", () => {
       />
     );
     const steps = getAllByRole("button");
-    steps[1] && fireEvent.click(steps[1]);
-    steps[0] && fireEvent.click(steps[0]);
+    if (steps[1]) {
+      fireEvent.click(steps[1]);
+    }
+    if (steps[0]) {
+      fireEvent.click(steps[0]);
+    }
     expect(onClick).toHaveBeenCalledTimes(2);
     expect(onClick).toHaveBeenNthCalledWith(1, 1);
     expect(onClick).toHaveBeenNthCalledWith(2, 0);

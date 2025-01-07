@@ -1,8 +1,8 @@
+import { Meta, StoryObj } from "@storybook/react";
 import DxcAccordion from "./Accordion";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import { HalstackProvider } from "../HalstackContext";
-import { Meta, StoryObj } from "@storybook/react";
 
 export default {
   title: "Accordion",

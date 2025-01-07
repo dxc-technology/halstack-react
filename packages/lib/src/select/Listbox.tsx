@@ -67,11 +67,7 @@ const Listbox = ({
           multiple={multiple}
           visualFocused={visualFocusIndex === globalIndex}
           isLastOption={lastOptionIndex === globalIndex}
-          isSelected={
-            multiple
-              ? currentValue.includes(option.value)
-              : currentValue === option.value
-          }
+          isSelected={multiple ? currentValue.includes(option.value) : currentValue === option.value}
         />
       );
     }
@@ -80,10 +76,12 @@ const Listbox = ({
   useLayoutEffect(() => {
     if (currentValue && !multiple) {
       const listEl = listboxRef?.current;
-      const selectedListOptionEl = listEl?.querySelector("[aria-selected='true']") as HTMLUListElement;
-      listEl?.scrollTo?.({
-        top: (selectedListOptionEl.offsetTop ?? 0) - (listEl.clientHeight ?? 0) / 2,
-      });
+      const selectedListOptionEl = listEl?.querySelector("[aria-selected='true']");
+      if (selectedListOptionEl instanceof HTMLUListElement) {
+        listEl?.scrollTo?.({
+          top: (selectedListOptionEl.offsetTop ?? 0) - (listEl.clientHeight ?? 0) / 2,
+        });
+      }
     }
   }, [currentValue, multiple]);
 

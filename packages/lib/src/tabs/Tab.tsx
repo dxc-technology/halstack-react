@@ -75,13 +75,14 @@ const DxcTab = forwardRef(
           aria-selected={activeLabel === label}
           hasLabelAndIcon={hasLabelAndIcon}
           iconPosition={iconPosition}
-          ref={(anchorRef) => {
+          ref={(anchorRef: HTMLButtonElement) => {
             tabRef.current = anchorRef;
 
             if (ref) {
               if (typeof ref === "function") {
                 ref(anchorRef);
               } else {
+                // TODO: Check if this is the correct approach
                 const currentRef = ref as MutableRefObject<HTMLButtonElement | null>;
                 currentRef.current = anchorRef;
               }
@@ -260,5 +261,7 @@ const TabIconContainer = styled.div<{
     width: 22px;
   }
 `;
+
+DxcTab.displayName = "DxcTab";
 
 export default DxcTab;

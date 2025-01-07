@@ -2,16 +2,14 @@ import styled from "styled-components";
 import CoreTokens from "../common/coreTokens";
 import StatusLightPropsType from "./types";
 
-const DxcStatusLight = ({ mode = "default", label, size = "medium" }: StatusLightPropsType): JSX.Element => {
-  return (
-    <StatusLightContainer size={size} aria-label={`${mode}: ${label}`} role="status">
-      <StatusDot mode={mode} size={size} aria-hidden="true" />
-      <StatusLabel mode={mode} size={size}>
-        {label}
-      </StatusLabel>
-    </StatusLightContainer>
-  );
-};
+const DxcStatusLight = ({ mode = "default", label, size = "medium" }: StatusLightPropsType): JSX.Element => (
+  <StatusLightContainer size={size} aria-label={`${mode}: ${label}`} role="status">
+    <StatusDot mode={mode} size={size} aria-hidden="true" />
+    <StatusLabel mode={mode} size={size}>
+      {label}
+    </StatusLabel>
+  </StatusLightContainer>
+);
 
 const StatusLightContainer = styled.div<{ size: StatusLightPropsType["size"] }>`
   display: inline-flex;

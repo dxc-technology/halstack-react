@@ -18,7 +18,7 @@ import { memo } from "react";
 type ThemeInputProps = {
   propertyName: string;
   propertyValue: string;
-  onChangeCustomTheme: (propertyName: string, propertyValue: string) => void;
+  onChangeCustomTheme: (_propertyName: string, _propertyValue: string) => void;
   tokenType: string;
 };
 

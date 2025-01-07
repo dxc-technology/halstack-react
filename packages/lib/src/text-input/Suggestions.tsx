@@ -55,17 +55,19 @@ const Suggestions = ({
           />
         ))}
       {isSearching && (
-        <SuggestionsSystemMessage role="option">{translatedLabels.textInput.searchingMessage}</SuggestionsSystemMessage>
+        <SuggestionsSystemMessage role="option">
+          {translatedLabels.textInput.searchingMessage}
+        </SuggestionsSystemMessage>
       )}
       {searchHasErrors && (
-        <span role="option">
+        <ErrorMessage role="option">
           <SuggestionsError role="alert" aria-live="assertive">
             <SuggestionsErrorIcon>
               <DxcIcon icon="filled_error" />
             </SuggestionsErrorIcon>
             {translatedLabels.textInput.fetchingDataErrorMessage}
           </SuggestionsError>
-        </span>
+        </ErrorMessage>
       )}
     </SuggestionsContainer>
   );
@@ -97,6 +99,8 @@ const SuggestionsSystemMessage = styled.span`
   color: ${(props) => props.theme.systemMessageFontColor};
   line-height: 1.715em;
 `;
+
+const ErrorMessage = styled.span``;
 
 const SuggestionsErrorIcon = styled.span`
   display: flex;
