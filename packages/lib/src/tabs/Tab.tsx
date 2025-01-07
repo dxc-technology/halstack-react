@@ -42,16 +42,16 @@ const DxcTab = forwardRef(
 
     useEffect(() => {
       if (activeLabel === label) {
-        setActiveIndicatorWidth?.(tabRef?.current?.offsetWidth ?? 0);
-        setActiveIndicatorLeft?.(tabRef?.current?.offsetLeft ?? 0);
+        setActiveIndicatorWidth?.(tabRef.current?.offsetWidth ?? 0);
+        setActiveIndicatorLeft?.(tabRef.current?.offsetLeft ?? 0);
       }
-    }, [activeLabel, label]);
+    }, [activeLabel, label, setActiveIndicatorWidth, setActiveIndicatorLeft]);
 
     useEffect(() => {
       if (active) {
         setActiveLabel?.(label);
       }
-    }, [active, label]);
+    }, [active, label, setActiveLabel]);
 
     const handleOnKeyDown = (event: KeyboardEvent<HTMLButtonElement>) => {
       switch (event.key) {

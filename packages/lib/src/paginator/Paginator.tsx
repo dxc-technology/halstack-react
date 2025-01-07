@@ -29,12 +29,12 @@ const DxcPaginator = ({
   const translatedLabels = useContext(HalstackLanguageContext);
 
   return (
-    <ThemeProvider theme={colorsTheme?.paginator}>
+    <ThemeProvider theme={colorsTheme.paginator}>
       <DxcPaginatorContainer>
         <LabelsContainer>
           {itemsPerPageOptions && (
             <ItemsPageContainer>
-              <ItemsLabel>{translatedLabels?.paginator?.itemsPerPageText}</ItemsLabel>
+              <ItemsLabel>{translatedLabels.paginator.itemsPerPageText}</ItemsLabel>
               <SelectContainer>
                 <DxcSelect
                   options={itemsPerPageOptions.map((num) => ({

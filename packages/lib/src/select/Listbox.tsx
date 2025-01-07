@@ -3,7 +3,7 @@ import styled from "styled-components";
 import DxcIcon from "../icon/Icon";
 import { HalstackLanguageContext } from "../HalstackContext";
 import ListOption from "./ListOption";
-import { groupsHaveOptions } from "./selectUtils";
+import { groupsHaveOptions } from "./utils";
 import { ListboxProps, ListOptionGroupType, ListOptionType } from "./types";
 
 const Listbox = ({
