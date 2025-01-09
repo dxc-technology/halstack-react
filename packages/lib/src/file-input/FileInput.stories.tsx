@@ -79,46 +79,6 @@ const opinionatedTheme = {
 
 const FileInput = () => (
   <>
-    <Title title="File item states" theme="light" level={2} />
-    <ExampleContainer pseudoState="pseudo-hover">
-      <Title title="Hovered" theme="light" level={4} />
-      <FileItem
-        fileName="file"
-        error=""
-        singleFileMode={false}
-        showPreview={false}
-        preview={picPreview}
-        type="image/png"
-        onDelete={() => {}}
-        tabIndex={0}
-      />
-    </ExampleContainer>
-    <ExampleContainer pseudoState="pseudo-focus">
-      <Title title="Focused" theme="light" level={4} />
-      <FileItem
-        fileName="file"
-        error=""
-        singleFileMode={false}
-        showPreview={false}
-        preview={picPreview}
-        type="image/png"
-        onDelete={() => {}}
-        tabIndex={0}
-      />
-    </ExampleContainer>
-    <ExampleContainer pseudoState="pseudo-active">
-      <Title title="Actived" theme="light" level={4} />
-      <FileItem
-        fileName="file"
-        error=""
-        singleFileMode={false}
-        showPreview={false}
-        preview={picPreview}
-        type="image/png"
-        onDelete={() => {}}
-        tabIndex={0}
-      />
-    </ExampleContainer>
     <Title title="File" theme="light" level={2} />
     <ExampleContainer>
       <Title title="Without label" theme="light" level={4} />

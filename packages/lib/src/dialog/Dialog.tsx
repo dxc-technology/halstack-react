@@ -88,21 +88,23 @@ const DxcDialog = ({
           <Dialog aria-modal={overlay} closable={closable} role="dialog">
             <FocusLock>
               {children}
-              <ThemeProvider
-                theme={{
-                  actionBackgroundColor: colorsTheme.dialog.closeIconBackgroundColor,
-                  actionIconColor: colorsTheme.dialog.closeIconColor,
-                }}
-              >
-                <CloseIconActionContainer>
-                  <DxcActionIcon
-                    icon="close"
-                    onClick={onCloseClick}
-                    tabIndex={tabIndex}
-                    title={translatedLabels.dialog.closeIconAriaLabel}
-                  />
-                </CloseIconActionContainer>
-              </ThemeProvider>
+              {closable && (
+                <ThemeProvider
+                  theme={{
+                    actionBackgroundColor: colorsTheme.dialog.closeIconBackgroundColor,
+                    actionIconColor: colorsTheme.dialog.closeIconColor,
+                  }}
+                >
+                  <CloseIconActionContainer>
+                    <DxcActionIcon
+                      icon="close"
+                      onClick={onCloseClick}
+                      tabIndex={tabIndex}
+                      title={translatedLabels.dialog.closeIconAriaLabel}
+                    />
+                  </CloseIconActionContainer>
+                </ThemeProvider>
+              )}
             </FocusLock>
           </Dialog>
         </DialogContainer>,

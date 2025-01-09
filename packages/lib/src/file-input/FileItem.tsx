@@ -1,10 +1,10 @@
 import { memo, useContext, useId } from "react";
-import styled, { ThemeProvider } from "styled-components";
+import styled from "styled-components";
 import DxcFlex from "../flex/Flex";
 import { FileItemProps } from "./types";
 import DxcIcon from "../icon/Icon";
 import DxcActionIcon from "../action-icon/ActionIcon";
-import HalstackContext, { HalstackLanguageContext } from "../HalstackContext";
+import { HalstackLanguageContext } from "../HalstackContext";
 
 const MainContainer = styled.div<{
   error: FileItemProps["error"];
@@ -102,45 +102,41 @@ const FileItem = ({
   onDelete,
   tabIndex,
 }: FileItemProps): JSX.Element => {
-  const colorsTheme = useContext(HalstackContext);
   const translatedLabels = useContext(HalstackLanguageContext);
-
   const fileNameId = useId();
 
   return (
-    <ThemeProvider theme={colorsTheme.fileInput}>
-      <MainContainer error={error} singleFileMode={singleFileMode} showPreview={showPreview}>
-        {showPreview &&
-          (type.includes("image") ? (
-            <ImagePreview src={preview} alt={fileName} />
-          ) : (
-            <IconPreview error={error} aria-labelledby={fileNameId}>
-              <DxcIcon icon={preview} />
-            </IconPreview>
-          ))}
-        <FileItemContent>
-          <FileName id={fileNameId}>{fileName}</FileName>
-          <DxcFlex gap="0.25rem">
-            {error && (
-              <ErrorIcon>
-                <DxcIcon icon="filled_error" />
-              </ErrorIcon>
-            )}
-            <DxcActionIcon
-              onClick={() => onDelete(fileName)}
-              icon="close"
-              tabIndex={tabIndex}
-              title={translatedLabels.fileInput.deleteFileActionTitle}
-            />
-          </DxcFlex>
-          {error && !singleFileMode && (
-            <ErrorMessage role="alert" aria-live="assertive">
-              {error}
-            </ErrorMessage>
+    <MainContainer error={error} role="listitem" singleFileMode={singleFileMode} showPreview={showPreview}>
+      {showPreview &&
+        (type.includes("image") ? (
+          <ImagePreview src={preview} alt={fileName} />
+        ) : (
+          <IconPreview error={error} aria-labelledby={fileNameId}>
+            <DxcIcon icon={preview} />
+          </IconPreview>
+        ))}
+      <FileItemContent>
+        <FileName id={fileNameId}>{fileName}</FileName>
+        <DxcFlex gap="0.25rem">
+          {error && (
+            <ErrorIcon>
+              <DxcIcon icon="filled_error" />
+            </ErrorIcon>
           )}
-        </FileItemContent>
-      </MainContainer>
-    </ThemeProvider>
+          <DxcActionIcon
+            onClick={() => onDelete(fileName)}
+            icon="close"
+            tabIndex={tabIndex}
+            title={translatedLabels.fileInput.deleteFileActionTitle}
+          />
+        </DxcFlex>
+        {error && !singleFileMode && (
+          <ErrorMessage role="alert" aria-live="assertive">
+            {error}
+          </ErrorMessage>
+        )}
+      </FileItemContent>
+    </MainContainer>
   );
 };
 

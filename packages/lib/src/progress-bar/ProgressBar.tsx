@@ -1,10 +1,11 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useId, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables";
 import HalstackContext from "../HalstackContext";
 import ProgressBarPropsType from "./types";
+import DxcFlex from "../flex/Flex";
 
-const BackgroundProgressBar = styled.div<{
+const Overlay = styled.div<{
   overlay: ProgressBarPropsType["overlay"];
 }>`
   ${({ overlay, theme }) =>
@@ -28,12 +29,11 @@ const BackgroundProgressBar = styled.div<{
   width: 100%;
 `;
 
-const ProgressBarContainer = styled.div<{
+const MainContainer = styled.div<{
   overlay: ProgressBarPropsType["overlay"];
   margin: ProgressBarPropsType["margin"];
 }>`
-  z-index: ${(props) => (props.overlay === true && "100") || "0"};
-  width: ${(props) => (props.overlay === true ? "80%" : "100%")};
+  width: ${(props) => (props.overlay ? "80%" : "100%")};
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
@@ -43,17 +43,10 @@ const ProgressBarContainer = styled.div<{
     props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
   margin-left: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
-`;
-
-const InfoProgressBar = styled.div`
   display: flex;
-  flex-direction: row;
-  width: 685px;
-  flex-wrap: wrap;
-  width: 100%;
-  margin-bottom: 8px;
-  align-items: baseline;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 0.5rem;
+  z-index: ${(props) => props.overlay ? "100" : "0"};
 `;
 
 const ProgressBarLabel = styled.div<{
@@ -73,7 +66,6 @@ const ProgressBarLabel = styled.div<{
 
 const ProgressBarProgress = styled.div<{
   overlay: ProgressBarPropsType["overlay"];
-  value: ProgressBarPropsType["value"];
 }>`
   flex-shrink: 0;
   color: ${(props) => (props.overlay ? props.theme.overlayFontColor : props.theme.valueFontColor)};
@@ -96,28 +88,26 @@ const HelperText = styled.span<{ overlay: ProgressBarPropsType["overlay"] }>`
 const LinearProgress = styled.div<{
   helperText: ProgressBarPropsType["helperText"];
 }>`
+  position: relative;
+  border-radius: ${(props) => props.theme.borderRadius};
   height: ${(props) => props.theme.thickness};
   background-color: ${(props) => props.theme.totalLineColor};
-  border-radius: ${(props) => props.theme.borderRadius};
-  margin-bottom: ${(props) => props.helperText !== "" && "8px"};
   overflow: hidden;
-  position: relative;
 `;
 
 const LinearProgressBar = styled.span<{
   variant: "determinate" | "indeterminate";
   value: ProgressBarPropsType["value"];
 }>`
-  background-color: ${(props) => props.theme.trackLineColor};
-  transform: ${(props) => `translateX(-${props.variant === "determinate" ? 100 - (props.value ?? 0) : 0}%)`};
-  top: 0;
-  left: 0;
-  width: 100%;
-  bottom: 0;
   position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: ${(props) => props.variant === "indeterminate" ? "auto" : "100%"};
+  transform: ${(props) => `translateX(-${props.variant === "determinate" ? 100 - (props.value ?? 0) : 0}%)`};
   transition: ${(props) => (props.variant === "determinate" ? "transform .4s linear" : "transform 0.2s linear")};
   transform-origin: left;
-  ${(props) => props.variant === "indeterminate" && "width: auto;"};
+  background-color: ${(props) => props.theme.trackLineColor};
   ${(props) =>
     props.variant === "indeterminate"
       ? "animation: keyframes-indeterminate-first 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite;"
@@ -163,40 +153,40 @@ const DxcProgressBar = ({
   margin,
 }: ProgressBarPropsType): JSX.Element => {
   const colorsTheme = useContext(HalstackContext);
-  const [valueProgressBar, setValueProgressBar] = useState(0);
+  const labelId = `label-${useId()}`;
+  const [innerValue, setInnerValue] = useState<number | undefined>();
 
   useEffect(() => {
-    setValueProgressBar(value == null || value < 0 ? 0 : value > 100 ? 100 : value);
+    if (value != null) setInnerValue(value < 0 ? 0 : value > 100 ? 100 : value);
   }, [value]);
 
   return (
     <ThemeProvider theme={colorsTheme.progressBar}>
-      <BackgroundProgressBar overlay={overlay}>
-        <ProgressBarContainer overlay={overlay} margin={margin}>
-          <InfoProgressBar>
-            {label && <ProgressBarLabel overlay={overlay}>{label}</ProgressBarLabel>}
-            {value != null && showValue && (
-              <ProgressBarProgress overlay={overlay} value={valueProgressBar}>
-                {valueProgressBar} %
-              </ProgressBarProgress>
+      <Overlay overlay={overlay}>
+        <MainContainer overlay={overlay} margin={margin}>
+          <DxcFlex justifyContent="space-between" gap="0.5rem">
+            {label && (
+              <ProgressBarLabel id={labelId} overlay={overlay}>
+                {label}
+              </ProgressBarLabel>
             )}
-          </InfoProgressBar>
+            {innerValue != null && showValue && (
+              <ProgressBarProgress overlay={overlay}>{innerValue} %</ProgressBarProgress>
+            )}
+          </DxcFlex>
           <LinearProgress
             role="progressbar"
             helperText={helperText}
-            aria-valuenow={showValue ? valueProgressBar : undefined}
+            aria-labelledby={labelId}
+            aria-valuenow={innerValue != null ? innerValue : undefined}
             aria-valuemin={0}
             aria-valuemax={100}
-            aria-label={label ?? "Progress Bar"}
           >
-            <LinearProgressBar
-              variant={value == null ? "indeterminate" : "determinate"}
-              value={valueProgressBar}
-            />
+            <LinearProgressBar variant={innerValue == null ? "indeterminate" : "determinate"} value={innerValue} />
           </LinearProgress>
           {helperText && <HelperText overlay={overlay}>{helperText}</HelperText>}
-        </ProgressBarContainer>
-      </BackgroundProgressBar>
+        </MainContainer>
+      </Overlay>
     </ThemeProvider>
   );
 };

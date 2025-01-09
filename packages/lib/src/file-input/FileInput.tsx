@@ -282,7 +282,7 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
                 tabIndex={tabIndex}
               />
               {files.length > 0 && (
-                <FileItemListContainer>
+                <FileItemListContainer role="list">
                   {files.map((file, index) => (
                     <FileItem
                       fileName={file.file.name}
