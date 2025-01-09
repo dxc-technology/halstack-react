@@ -4,54 +4,6 @@ import { spaces } from "../common/variables";
 import HalstackContext from "../HalstackContext";
 import ProgressBarPropsType from "./types";
 
-const DxcProgressBar = ({
-  label = "",
-  helperText = "",
-  overlay = false,
-  value,
-  showValue = false,
-  margin,
-}: ProgressBarPropsType): JSX.Element => {
-  const colorsTheme = useContext(HalstackContext);
-  const [valueProgressBar, setValueProgressBar] = useState(0);
-
-  useEffect(() => {
-    setValueProgressBar(
-      value === null || value === undefined || value < 0 ? 0 : value >= 0 && value <= 100 ? value : 100
-    );
-  }, [value]);
-
-  return (
-    <ThemeProvider theme={colorsTheme.progressBar}>
-      <BackgroundProgressBar overlay={overlay}>
-        <ProgressBarContainer overlay={overlay} margin={margin}>
-          <InfoProgressBar>
-            <ProgressBarLabel overlay={overlay}>{label}</ProgressBarLabel>
-            <ProgressBarProgress overlay={overlay} showValue={showValue} value={valueProgressBar}>
-              {valueProgressBar} %
-            </ProgressBarProgress>
-          </InfoProgressBar>
-          <LinearProgress
-            role="progressbar"
-            helperText={helperText}
-            aria-valuenow={showValue ? valueProgressBar : undefined}
-            aria-valuemin={0}
-            aria-valuemax={100}
-            aria-label={label || "Progress Bar"}
-          >
-            <LinearProgressBar
-              variant={value === null || value === undefined ? "indeterminate" : "determinate"}
-              container="first"
-              value={valueProgressBar}
-            ></LinearProgressBar>
-          </LinearProgress>
-          {helperText && <HelperText overlay={overlay}>{helperText}</HelperText>}
-        </ProgressBarContainer>
-      </BackgroundProgressBar>
-    </ThemeProvider>
-  );
-};
-
 const BackgroundProgressBar = styled.div<{
   overlay: ProgressBarPropsType["overlay"];
 }>`
@@ -69,7 +21,7 @@ const BackgroundProgressBar = styled.div<{
       left: 0;
       right: 0;
       z-index: 1300;`
-      : `background-color: "transparent";`}
+      : `background-color: transparent;`}
   display: flex;
   flex-wrap: wrap;
   min-width: 100px;
@@ -112,7 +64,7 @@ const ProgressBarLabel = styled.div<{
   font-size: ${(props) => props.theme.labelFontSize};
   font-weight: ${(props) => props.theme.labelFontWeight};
   text-transform: ${(props) => props.theme.labelFontTextTransform};
-  color: ${(props) => (props.overlay === true ? props.theme.overlayFontColor : props.theme.labelFontColor)};
+  color: ${(props) => (props.overlay ? props.theme.overlayFontColor : props.theme.labelFontColor)};
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -121,22 +73,19 @@ const ProgressBarLabel = styled.div<{
 
 const ProgressBarProgress = styled.div<{
   overlay: ProgressBarPropsType["overlay"];
-  showValue: ProgressBarPropsType["showValue"];
   value: ProgressBarPropsType["value"];
 }>`
+  flex-shrink: 0;
+  color: ${(props) => (props.overlay ? props.theme.overlayFontColor : props.theme.valueFontColor)};
   font-family: ${(props) => props.theme.valueFontFamily};
   font-style: ${(props) => props.theme.valueFontStyle};
   font-size: ${(props) => props.theme.valueFontSize};
   font-weight: ${(props) => props.theme.valueFontWeight};
   text-transform: ${(props) => props.theme.valueFontTextTransform};
-  color: ${(props) => (props.overlay === true ? props.theme.overlayFontColor : props.theme.valueFontColor)};
-  display: ${(props) =>
-    (props.value !== undefined && props.value !== null && props.showValue === true && "block") || "none"};
-  flex-shrink: 0;
 `;
 
 const HelperText = styled.span<{ overlay: ProgressBarPropsType["overlay"] }>`
-  color: ${(props) => (props.overlay === true ? props.theme.overlayFontColor : props.theme.helperTextFontColor)};
+  color: ${(props) => (props.overlay ? props.theme.overlayFontColor : props.theme.helperTextFontColor)};
   font-family: ${(props) => props.theme.helperTextFontFamily};
   font-size: ${(props) => props.theme.helperTextFontSize};
   font-style: ${(props) => props.theme.helperTextFontStyle};
@@ -158,7 +107,6 @@ const LinearProgress = styled.div<{
 const LinearProgressBar = styled.span<{
   variant: "determinate" | "indeterminate";
   value: ProgressBarPropsType["value"];
-  container: string;
 }>`
   background-color: ${(props) => props.theme.trackLineColor};
   transform: ${(props) => `translateX(-${props.variant === "determinate" ? 100 - (props.value ?? 0) : 0}%)`};
@@ -172,9 +120,7 @@ const LinearProgressBar = styled.span<{
   ${(props) => props.variant === "indeterminate" && "width: auto;"};
   ${(props) =>
     props.variant === "indeterminate"
-      ? props.container === "first"
-        ? "animation: keyframes-indeterminate-first 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite;"
-        : "animation: keyframes-indeterminate-second 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) 1.15s infinite;"
+      ? "animation: keyframes-indeterminate-first 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite;"
       : ""};
 
   @keyframes keyframes-indeterminate-first {
@@ -207,5 +153,52 @@ const LinearProgressBar = styled.span<{
     }
   }
 `;
+
+const DxcProgressBar = ({
+  label,
+  helperText,
+  overlay,
+  value,
+  showValue,
+  margin,
+}: ProgressBarPropsType): JSX.Element => {
+  const colorsTheme = useContext(HalstackContext);
+  const [valueProgressBar, setValueProgressBar] = useState(0);
+
+  useEffect(() => {
+    setValueProgressBar(value == null || value < 0 ? 0 : value > 100 ? 100 : value);
+  }, [value]);
+
+  return (
+    <ThemeProvider theme={colorsTheme.progressBar}>
+      <BackgroundProgressBar overlay={overlay}>
+        <ProgressBarContainer overlay={overlay} margin={margin}>
+          <InfoProgressBar>
+            {label && <ProgressBarLabel overlay={overlay}>{label}</ProgressBarLabel>}
+            {value != null && showValue && (
+              <ProgressBarProgress overlay={overlay} value={valueProgressBar}>
+                {valueProgressBar} %
+              </ProgressBarProgress>
+            )}
+          </InfoProgressBar>
+          <LinearProgress
+            role="progressbar"
+            helperText={helperText}
+            aria-valuenow={showValue ? valueProgressBar : undefined}
+            aria-valuemin={0}
+            aria-valuemax={100}
+            aria-label={label ?? "Progress Bar"}
+          >
+            <LinearProgressBar
+              variant={value == null ? "indeterminate" : "determinate"}
+              value={valueProgressBar}
+            />
+          </LinearProgress>
+          {helperText && <HelperText overlay={overlay}>{helperText}</HelperText>}
+        </ProgressBarContainer>
+      </BackgroundProgressBar>
+    </ThemeProvider>
+  );
+};
 
 export default DxcProgressBar;

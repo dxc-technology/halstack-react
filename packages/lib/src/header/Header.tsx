@@ -115,7 +115,7 @@ const DxcHeader = ({
             <ChildContainer>
               <HamburgerTrigger tabIndex={tabIndex} onClick={handleMenu} aria-label="Show options">
                 <DxcIcon icon="menu" />
-                {translatedLabels.header.hamburguerTitle}
+                {translatedLabels.header.hamburgerTitle}
               </HamburgerTrigger>
             </ChildContainer>
             <ResponsiveMenu hasVisibility={isMenuVisible}>
@@ -224,23 +224,23 @@ const HamburgerTrigger = styled.button`
   border-radius: 2px;
   background-color: transparent;
   :hover {
-    background-color: ${(props) => props.theme.hamburguerHoverColor};
+    background-color: ${(props) => props.theme.hamburgerHoverColor};
   }
   &:focus {
-    outline: ${(props) => props.theme.hamburguerFocusColor} auto 1px;
+    outline: ${(props) => props.theme.hamburgerFocusColor} auto 1px;
   }
   & > svg {
-    fill: ${(props) => props.theme.hamburguerIconColor};
+    fill: ${(props) => props.theme.hamburgerIconColor};
   }
   & > span {
     font-size: 24px;
   }
-  font-family: ${(props) => props.theme.hamburguerFontFamily};
-  font-style: ${(props) => props.theme.hamburguerFontStyle};
-  font-size: ${(props) => props.theme.hamburguerFontSize};
-  text-transform: ${(props) => props.theme.hamburguerTextTransform};
-  font-weight: ${(props) => props.theme.hamburguerFontWeight};
-  color: ${(props) => props.theme.hamburguerFontColor};
+  font-family: ${(props) => props.theme.hamburgerFontFamily};
+  font-style: ${(props) => props.theme.hamburgerFontStyle};
+  font-size: ${(props) => props.theme.hamburgerFontSize};
+  text-transform: ${(props) => props.theme.hamburgerTextTransform};
+  font-weight: ${(props) => props.theme.hamburgerFontWeight};
+  color: ${(props) => props.theme.hamburgerFontColor};
 `;
 
 const ResponsiveMenu = styled.div<{ hasVisibility: boolean }>`
@@ -288,7 +288,7 @@ const CloseAction = styled.button`
 
   :focus,
   :focus-visible {
-    outline: ${(props) => props.theme.hamburguerFocusColor} auto 1px;
+    outline: ${(props) => props.theme.hamburgerFocusColor} auto 1px;
   }
   font-size: 24px;
   svg {

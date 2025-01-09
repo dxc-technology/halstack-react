@@ -2,7 +2,7 @@ import { useContext, useEffect } from "react";
 import { createPortal } from "react-dom";
 import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
 import { responsiveSizes } from "../common/variables";
-import DxcIcon from "../icon/Icon";
+import DxcActionIcon from "../action-icon/ActionIcon";
 import HalstackContext, { HalstackLanguageContext } from "../HalstackContext";
 import FocusLock from "../utils/FocusLock";
 import DialogPropsType from "./types";
@@ -48,37 +48,10 @@ const Dialog = styled.div<{ closable: DialogPropsType["closable"] }>`
   }
 `;
 
-const CloseIconAction = styled.button`
-  all: unset;
+const CloseIconActionContainer = styled.div`
   position: absolute;
   top: 24px;
   right: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: ${(props) => props.theme.closeIconBackgroundColor};
-  box-shadow: 0 0 0 2px transparent;
-  color: ${(props) => props.theme.closeIconColor};
-  border-radius: ${(props) => props.theme.closeIconBorderRadius};
-  border-width: ${(props) => props.theme.closeIconBorderThickness};
-  border-style: ${(props) => props.theme.closeIconBorderStyle};
-  border-color: ${(props) => props.theme.closeIconBorderColor};
-  cursor: pointer;
-  z-index: 1;
-
-  &:focus {
-    outline: none;
-    box-shadow: 0 0 0 2px #0095ff;
-  }
-  &:hover {
-    background-color: #f2f2f2;
-  }
-  &:active {
-    background-color: #cccccc;
-  }
-  span {
-    font-size: ${(props) => props.theme.closeIconSize};
-  }
 `;
 
 const DxcDialog = ({
@@ -111,27 +84,25 @@ const DxcDialog = ({
       <BodyStyle />
       {createPortal(
         <DialogContainer>
-          {overlay && (
-            <Overlay
-              onClick={() => {
-                onBackgroundClick?.();
-              }}
-            />
-          )}
-          <Dialog role="dialog" aria-modal={overlay} closable={closable} aria-label="Dialog">
+          {overlay && <Overlay onClick={onBackgroundClick} />}
+          <Dialog aria-modal={overlay} closable={closable} role="dialog">
             <FocusLock>
               {children}
-              {closable && (
-                <CloseIconAction
-                  onClick={() => {
-                    onCloseClick?.();
-                  }}
-                  aria-label={translatedLabels.dialog.closeIconAriaLabel}
-                  tabIndex={tabIndex}
-                >
-                  <DxcIcon icon="close" />
-                </CloseIconAction>
-              )}
+              <ThemeProvider
+                theme={{
+                  actionBackgroundColor: colorsTheme.dialog.closeIconBackgroundColor,
+                  actionIconColor: colorsTheme.dialog.closeIconColor,
+                }}
+              >
+                <CloseIconActionContainer>
+                  <DxcActionIcon
+                    icon="close"
+                    onClick={onCloseClick}
+                    tabIndex={tabIndex}
+                    title={translatedLabels.dialog.closeIconAriaLabel}
+                  />
+                </CloseIconActionContainer>
+              </ThemeProvider>
             </FocusLock>
           </Dialog>
         </DialogContainer>,
