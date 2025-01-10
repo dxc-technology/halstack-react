@@ -31,7 +31,7 @@ const DxcTextarea = forwardRef<RefType, TextareaPropsType>(
       margin,
       size = "medium",
       tabIndex = 0,
-      ariaLabel = "Text Area",
+      ariaLabel = "Text area",
     },
     ref
   ) => {

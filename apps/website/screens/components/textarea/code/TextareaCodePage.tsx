@@ -277,6 +277,17 @@ const sections = [
             <td>Reference to the component.</td>
             <td>-</td>
           </tr>
+          <tr>
+            <td>ariaLabel</td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
+            <td>
+              A string of text that will be the accessible name for the textarea. Consider using this prop in case there
+              is no label available.
+            </td>
+            <td>'Text area'</td>
+          </tr>
         </tbody>
       </DxcTable>
     ),
