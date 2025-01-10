@@ -111,7 +111,7 @@ const FileItem = ({
         (type.includes("image") ? (
           <ImagePreview src={preview} alt={fileName} />
         ) : (
-          <IconPreview error={error} aria-labelledby={fileNameId}>
+          <IconPreview aria-labelledby={fileNameId} error={error} role="img">
             <DxcIcon icon={preview} />
           </IconPreview>
         ))}
