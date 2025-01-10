@@ -343,7 +343,7 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
                 )}
               </DragDropArea>
               {files.length > 0 && (
-                <FileItemListContainer>
+                <FileItemListContainer role="list">
                   {files.map((file, index) => (
                     <FileItem
                       fileName={file.file.name}

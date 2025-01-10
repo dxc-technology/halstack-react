@@ -3,7 +3,6 @@ import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import { HalstackProvider } from "../HalstackContext";
 import DxcFileInput from "./FileInput";
-import FileItem from "./FileItem";
 
 export default {
   title: "File Input",

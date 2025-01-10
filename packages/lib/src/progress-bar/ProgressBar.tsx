@@ -177,8 +177,9 @@ const DxcProgressBar = ({
           <LinearProgress
             role="progressbar"
             helperText={helperText}
+            aria-label="Progress bar"
             aria-labelledby={labelId}
-            aria-valuenow={innerValue != null ? innerValue : undefined}
+            aria-valuenow={innerValue}
             aria-valuemin={0}
             aria-valuemax={100}
           >
