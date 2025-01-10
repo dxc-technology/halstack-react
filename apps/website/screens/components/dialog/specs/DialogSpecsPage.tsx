@@ -98,14 +98,6 @@ const sections = [
                 </td>
                 <td>transparent</td>
               </tr>
-              <tr>
-                <td>
-                  <Code>closeIconBorderColor</Code>
-                </td>
-                <td>Icon close</td>
-                <td>-</td>
-                <td>-</td>
-              </tr>
             </tbody>
           </DxcTable>
         ),
@@ -161,48 +153,6 @@ const sections = [
         title: "Border",
         content: (
           <>
-            <DxcTable>
-              <thead>
-                <tr>
-                  <th>Component token</th>
-                  <th>Element</th>
-                  <th>Core token</th>
-                  <th>Value</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <Code>closeIconBorderThickness</Code>
-                  </td>
-                  <td>Icon close</td>
-                  <td>
-                    <Code>border-width-0</Code>
-                  </td>
-                  <td>0px</td>
-                </tr>
-                <tr>
-                  <td>
-                    <Code>closeIconBorderStyle</Code>
-                  </td>
-                  <td>Icon close</td>
-                  <td>
-                    <Code>border-style-solid</Code>
-                  </td>
-                  <td>solid</td>
-                </tr>
-                <tr>
-                  <td>
-                    <Code>closeIconBorderRadius</Code>
-                  </td>
-                  <td>Icon close</td>
-                  <td>
-                    <Code>border-radius-small</Code>
-                  </td>
-                  <td>0.125rem / 2px</td>
-                </tr>
-              </tbody>
-            </DxcTable>
             <DxcTable>
               <thead>
                 <tr>

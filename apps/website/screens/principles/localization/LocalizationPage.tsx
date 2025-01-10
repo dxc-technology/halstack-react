@@ -353,7 +353,7 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <Code>hamburguerTitle</Code>
+                  <Code>hamburgerTitle</Code>
                 </td>
                 <td>Menu</td>
               </tr>

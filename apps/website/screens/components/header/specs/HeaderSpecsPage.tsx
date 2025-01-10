@@ -80,7 +80,7 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <Code>hamburguerHoverColor</Code>
+                  <Code>hamburgerHoverColor</Code>
                 </td>
                 <td>Menu:hover</td>
                 <td>
@@ -90,7 +90,7 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <Code>hamburguerFocusColor</Code>
+                  <Code>hamburgerFocusColor</Code>
                 </td>
                 <td>Menu:focus</td>
                 <td>
@@ -100,7 +100,7 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <Code>hamburguerFontColor</Code>
+                  <Code>hamburgerFontColor</Code>
                 </td>
                 <td>Menu label</td>
                 <td>
@@ -110,7 +110,7 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <Code>hamburguerIconColor</Code>
+                  <Code>hamburgerIconColor</Code>
                 </td>
                 <td>Menu icon</td>
                 <td>
@@ -157,7 +157,7 @@ const sections = [
             <tbody>
               <tr>
                 <td>
-                  <Code>hamburguerFontFamily</Code>
+                  <Code>hamburgerFontFamily</Code>
                 </td>
                 <td>Menu label</td>
                 <td>
@@ -167,7 +167,7 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <Code>hamburguerFontStyle</Code>
+                  <Code>hamburgerFontStyle</Code>
                 </td>
                 <td>Menu label</td>
                 <td>
@@ -177,7 +177,7 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <Code>hamburguerFontSize</Code>
+                  <Code>hamburgerFontSize</Code>
                 </td>
                 <td>Menu label</td>
                 <td>
@@ -187,7 +187,7 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <Code>hamburguerFontWeight</Code>
+                  <Code>hamburgerFontWeight</Code>
                 </td>
                 <td>Menu label</td>
                 <td>

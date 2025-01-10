@@ -45,7 +45,9 @@ const sections = [
               <TableCode>boolean</TableCode>
             </td>
             <td>Initial state of the panel, only when it is uncontrolled.</td>
-            <td>-</td>
+            <td>
+              <TableCode>false</TableCode>
+            </td>
           </tr>
           <tr>
             <td>isExpanded</td>

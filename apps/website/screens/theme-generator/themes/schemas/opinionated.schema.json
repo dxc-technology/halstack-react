@@ -58,7 +58,7 @@
     "accentColor": "color",
     "fontColor": "color",
     "menuBaseColor": "color",
-    "hamburguerColor": "color",
+    "hamburgerColor": "color",
     "logo": "image",
     "logoResponsive": "image",
     "contentColor": "color",

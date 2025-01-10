@@ -190,10 +190,10 @@ const parseTheme = (theme: DeepPartial<OpinionatedTheme>): AdvancedTheme => {
   headerTokens.backgroundColor = theme.header?.baseColor ?? headerTokens.backgroundColor;
   headerTokens.underlinedColor = theme.header?.accentColor ?? headerTokens.underlinedColor;
   headerTokens.menuBackgroundColor = theme.header?.menuBaseColor ?? headerTokens.menuBackgroundColor;
-  headerTokens.hamburguerFontColor = theme.header?.fontColor ?? headerTokens.hamburguerFontColor;
-  headerTokens.hamburguerIconColor = theme.header?.hamburguerColor ?? headerTokens.hamburguerIconColor;
-  headerTokens.hamburguerHoverColor =
-    addLightness(90, theme.header?.hamburguerColor) ?? headerTokens.hamburguerHoverColor;
+  headerTokens.hamburgerFontColor = theme.header?.fontColor ?? headerTokens.hamburgerFontColor;
+  headerTokens.hamburgerIconColor = theme.header?.hamburgerColor ?? headerTokens.hamburgerIconColor;
+  headerTokens.hamburgerHoverColor =
+    addLightness(90, theme.header?.hamburgerColor) ?? headerTokens.hamburgerHoverColor;
   headerTokens.logo = theme.header?.logo ?? headerTokens.logo;
   headerTokens.logoResponsive = theme.header?.logoResponsive ?? headerTokens.logoResponsive;
   headerTokens.contentColor = theme.header?.contentColor ?? headerTokens.contentColor;

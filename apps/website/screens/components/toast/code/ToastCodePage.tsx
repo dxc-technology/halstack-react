@@ -49,6 +49,14 @@ const sections = [
                   <TableCode>3000</TableCode>
                 </td>
               </tr>
+              <tr>
+                <td>children</td>
+                <td>
+                  <TableCode>ReactNode</TableCode>
+                </td>
+                <td>Tree of components from which the <Code>useToast</Code> hook can be triggered.</td>
+                <td>-</td>
+              </tr>
             </tbody>
           </DxcTable>
         ),

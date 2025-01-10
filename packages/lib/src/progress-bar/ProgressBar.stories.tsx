@@ -22,14 +22,16 @@ const opinionatedTheme = {
 const ProgressBar = () => (
   <>
     <ExampleContainer>
-      <Title title="Without labels" theme="light" level={4} />
+      <Title title="Default" theme="light" level={4} />
+      <DxcProgressBar />
+      <Title title="Value only" theme="light" level={4} />
       <DxcProgressBar value={50} showValue />
       <Title title="With helperText" theme="light" level={4} />
       <DxcProgressBar helperText="Helper text" value={24} showValue />
-      <Title title="Without default value" theme="light" level={4} />
-      <DxcProgressBar label="Loading..." showValue />
-      <Title title="With full value" theme="light" level={4} />
-      <DxcProgressBar label="Loading..." value={100} showValue />
+      <Title title="Label only" theme="light" level={4} />
+      <DxcProgressBar label="Loading..." />
+      <Title title="Complete progress bar" theme="light" level={4} />
+      <DxcProgressBar label="Loading..." value={100} showValue helperText="Helper text" />
     </ExampleContainer>
     <Title title="Margins" theme="light" level={2} />
     <ExampleContainer>

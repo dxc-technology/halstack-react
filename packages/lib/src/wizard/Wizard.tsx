@@ -1,123 +1,10 @@
-import { useContext, useState } from "react";
+import { useContext, useMemo, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables";
 import DxcIcon from "../icon/Icon";
 import HalstackContext from "../HalstackContext";
 import WizardPropsType, { StepProps } from "./types";
-
-const icons = {
-  validIcon: (
-    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
-      <path data-name="Path 2946" d="M0,0H18V18H0Z" fill="none" />
-      <path
-        data-name="Path 2947"
-        d="M9.986,4a5.986,5.986,0,1,0,5.986,5.986A5.994,5.994,0,0,0,9.986,4Zm-1.5,9.727L5.5,10.734,6.551,9.679l1.938,1.93L13.42,6.679l1.055,1.063Z"
-        transform="translate(-0.986 -0.986)"
-        fill="#eafaef"
-        opacity="0.999"
-      />
-      <path
-        data-name="Path 2948"
-        d="M9.493,2a7.493,7.493,0,1,0,7.493,7.493A7.5,7.5,0,0,0,9.493,2Zm0,13.487a5.994,5.994,0,1,1,5.994-5.994A6,6,0,0,1,9.493,15.487Zm3.439-9.306L7.994,11.119,6.054,9.186,5,10.242l3,3,5.994-5.994Z"
-        transform="translate(-0.493 -0.493)"
-        fill="#24a148"
-      />
-    </svg>
-  ),
-  invalidIcon: (
-    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
-      <path data-name="Path 2943" d="M0,0H18V18H0Z" fill="none" />
-      <path
-        data-name="Path 2944"
-        d="M10,4a6,6,0,1,0,6,6A6.01,6.01,0,0,0,10,4Zm3,7.945L11.945,13,10,11.06,8.059,13,7,11.945,8.944,10,7,8.059,8.059,7,10,8.944,11.945,7,13,8.059,11.06,10Z"
-        transform="translate(-1.002 -1.002)"
-        fill="#ffe6e9"
-      />
-      <path
-        data-name="Path 2945"
-        d="M11.444,6.5,9.5,8.443,7.558,6.5,6.5,7.558,8.443,9.5,6.5,11.444,7.558,12.5,9.5,10.558,11.444,12.5,12.5,11.444,10.558,9.5,12.5,7.558ZM9.5,2A7.5,7.5,0,1,0,17,9.5,7.494,7.494,0,0,0,9.5,2Zm0,13.5a6,6,0,1,1,6-6A6.009,6.009,0,0,1,9.5,15.5Z"
-        transform="translate(-0.501 -0.501)"
-        fill="#d0011b"
-      />
-    </svg>
-  ),
-};
-
-const DxcWizard = ({
-  mode = "horizontal",
-  defaultCurrentStep,
-  currentStep,
-  onStepClick,
-  steps,
-  margin,
-  tabIndex = 0,
-}: WizardPropsType): JSX.Element => {
-  const [innerCurrent, setInnerCurrentStep] = useState(currentStep ?? defaultCurrentStep ?? 0);
-  const renderedCurrent = currentStep ?? innerCurrent;
-  const colorsTheme = useContext(HalstackContext);
-
-  const handleStepClick = (newValue: number) => {
-    setInnerCurrentStep(newValue);
-    onStepClick?.(newValue);
-  };
-
-  return (
-    <ThemeProvider theme={colorsTheme.wizard}>
-      <StepsContainer mode={mode} margin={margin} role="group">
-        {steps.map((step, i) => (
-          <StepContainer key={`step${i}`} mode={mode} lastStep={i === steps.length - 1}>
-            <Step
-              onClick={() => {
-                handleStepClick(i);
-              }}
-              disabled={step.disabled}
-              mode={mode}
-              first={i === 0}
-              last={i === steps.length - 1}
-              aria-current={renderedCurrent === i ? "step" : "false"}
-              tabIndex={tabIndex}
-            >
-              <StepHeader validityIcon={step.valid !== undefined}>
-                <IconContainer current={i === renderedCurrent} visited={i < renderedCurrent} disabled={step.disabled}>
-                  {step.icon ? (
-                    typeof step.icon === "string" ? (
-                      <DxcIcon icon={step.icon} />
-                    ) : (
-                      step.icon
-                    )
-                  ) : (
-                    <Number>{i + 1}</Number>
-                  )}
-                </IconContainer>
-                {step.valid !== undefined &&
-                  (step.valid ? (
-                    <ValidityIconContainer>{icons.validIcon}</ValidityIconContainer>
-                  ) : (
-                    <ValidityIconContainer>{icons.invalidIcon}</ValidityIconContainer>
-                  ))}
-              </StepHeader>
-              {(step.label || step.description) && (
-                <InfoContainer>
-                  {step.label && (
-                    <Label current={i === renderedCurrent} disabled={step.disabled} visited={i <= innerCurrent}>
-                      {step.label}
-                    </Label>
-                  )}
-                  {step.description && (
-                    <Description current={i === renderedCurrent} disabled={step.disabled} visited={i <= innerCurrent}>
-                      {step.description}
-                    </Description>
-                  )}
-                </InfoContainer>
-              )}
-            </Step>
-            {i === steps.length - 1 ? "" : <StepSeparator mode={mode} />}
-          </StepContainer>
-        ))}
-      </StepsContainer>
-    </ThemeProvider>
-  );
-};
+import icons from "./Icons";
 
 const StepsContainer = styled.div<{
   mode: WizardPropsType["mode"];
@@ -159,6 +46,7 @@ const Step = styled.button<{
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  gap: 0.75rem;
   border: none;
   border-radius: 0.25rem;
   background: inherit;
@@ -279,10 +167,6 @@ const ValidityIconContainer = styled.div`
   left: 22.5px;
 `;
 
-const InfoContainer = styled.div`
-  margin-left: 12px;
-`;
-
 const Label = styled.p<{
   current: boolean;
   visited: boolean;
@@ -341,5 +225,79 @@ const StepSeparator = styled.div<{ mode: WizardPropsType["mode"] }>`
   opacity: 1;
   flex-grow: 1;
 `;
+
+const DxcWizard = ({
+  mode = "horizontal",
+  defaultCurrentStep = 0,
+  currentStep,
+  onStepClick,
+  steps,
+  margin,
+  tabIndex = 0,
+}: WizardPropsType): JSX.Element => {
+  const colorsTheme = useContext(HalstackContext);
+  const [innerCurrent, setInnerCurrentStep] = useState(defaultCurrentStep);
+
+  const renderedCurrent = useMemo(() => currentStep ?? innerCurrent, [currentStep, innerCurrent]);
+
+  const handleStepClick = (newValue: number) => {
+    setInnerCurrentStep(newValue);
+    onStepClick?.(newValue);
+  };
+
+  return (
+    <ThemeProvider theme={colorsTheme.wizard}>
+      <StepsContainer mode={mode} margin={margin} role="group">
+        {steps.map((step, i) => (
+          <StepContainer key={`step${i}`} mode={mode} lastStep={i === steps.length - 1}>
+            <Step
+              onClick={() => {
+                handleStepClick(i);
+              }}
+              disabled={step.disabled}
+              mode={mode}
+              first={i === 0}
+              last={i === steps.length - 1}
+              aria-current={renderedCurrent === i ? "step" : "false"}
+              tabIndex={tabIndex}
+            >
+              <StepHeader validityIcon={step.valid != null}>
+                <IconContainer current={i === renderedCurrent} visited={i < renderedCurrent} disabled={step.disabled}>
+                  {step.icon ? (
+                    typeof step.icon === "string" ? (
+                      <DxcIcon icon={step.icon} />
+                    ) : (
+                      step.icon
+                    )
+                  ) : (
+                    <Number>{i + 1}</Number>
+                  )}
+                </IconContainer>
+                {step.valid != null && (
+                  <ValidityIconContainer>{step.valid ? icons.valid : icons.invalid}</ValidityIconContainer>
+                )}
+              </StepHeader>
+              {(step.label || step.description) && (
+                <div>
+                  {step.label && (
+                    <Label current={i === renderedCurrent} disabled={step.disabled} visited={i <= innerCurrent}>
+                      {step.label}
+                    </Label>
+                  )}
+                  {step.description && (
+                    <Description current={i === renderedCurrent} disabled={step.disabled} visited={i <= innerCurrent}>
+                      {step.description}
+                    </Description>
+                  )}
+                </div>
+              )}
+            </Step>
+            {i === steps.length - 1 ? "" : <StepSeparator mode={mode} />}
+          </StepContainer>
+        ))}
+      </StepsContainer>
+    </ThemeProvider>
+  );
+};
 
 export default DxcWizard;

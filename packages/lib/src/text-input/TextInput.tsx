@@ -5,7 +5,6 @@ import {
   forwardRef,
   KeyboardEvent,
   MouseEvent,
-  ReactNode,
   useContext,
   useEffect,
   useId,
@@ -15,7 +14,6 @@ import {
 } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import DxcActionIcon from "../action-icon/ActionIcon";
-import { getMargin } from "../common/utils";
 import { spaces } from "../common/variables";
 import DxcFlex from "../flex/Flex";
 import DxcIcon from "../icon/Icon";
@@ -24,59 +22,182 @@ import HalstackContext, { HalstackLanguageContext } from "../HalstackContext";
 import useWidth from "../utils/useWidth";
 import Suggestions from "./Suggestions";
 import TextInputPropsType, { AutosuggestWrapperProps, RefType } from "./types";
+import {
+  calculateWidth,
+  hasSuggestions,
+  isLengthIncorrect,
+  isNumberIncorrect,
+  isRequired,
+  makeCancelable,
+  patternMismatch,
+} from "./utils";
 
-const sizes = {
-  small: "240px",
-  medium: "360px",
-  large: "480px",
-  fillParent: "100%",
-};
+const TextInputContainer = styled.div<{
+  margin: TextInputPropsType["margin"];
+  size: TextInputPropsType["size"];
+}>`
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  width: ${(props) => calculateWidth(props.margin, props.size)};
+  ${(props) => props.size !== "fillParent" && `min-width:${calculateWidth(props.margin, props.size)}`};
+  margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
+  margin-top: ${(props) =>
+    props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
+  margin-right: ${(props) =>
+    props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
+  margin-bottom: ${(props) =>
+    props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
+  margin-left: ${(props) =>
+    props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
+  font-family: ${(props) => props.theme.fontFamily};
+`;
+
+const Label = styled.label<{
+  disabled: TextInputPropsType["disabled"];
+  hasHelperText: boolean;
+}>`
+  color: ${(props) => (props.disabled ? props.theme.disabledLabelFontColor : props.theme.labelFontColor)};
+  font-size: ${(props) => props.theme.labelFontSize};
+  font-style: ${(props) => props.theme.labelFontStyle};
+  font-weight: ${(props) => props.theme.labelFontWeight};
+  line-height: ${(props) => props.theme.labelLineHeight};
+  ${(props) => !props.hasHelperText && `margin-bottom: 0.25rem`}
+`;
+
+const OptionalLabel = styled.span`
+  font-weight: ${(props) => props.theme.optionalLabelFontWeight};
+`;
+
+const HelperText = styled.span<{ disabled: TextInputPropsType["disabled"] }>`
+  color: ${(props) => (props.disabled ? props.theme.disabledHelperTextFontColor : props.theme.helperTextFontColor)};
+  font-size: ${(props) => props.theme.helperTextFontSize};
+  font-style: ${(props) => props.theme.helperTextFontStyle};
+  font-weight: ${(props) => props.theme.helperTextFontWeight};
+  line-height: ${(props) => props.theme.helperTextLineHeight};
+  margin-bottom: 0.25rem;
+`;
+
+const InputContainer = styled.div<{
+  disabled: TextInputPropsType["disabled"];
+  readOnly: TextInputPropsType["readOnly"];
+  error: boolean;
+}>`
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: calc(2.5rem - 2px);
+  padding: 0 0.5rem;
+
+  ${(props) => props.disabled && `background-color: ${props.theme.disabledContainerFillColor};`}
+  box-shadow: 0 0 0 2px transparent;
+  border-radius: 4px;
+  border: 1px solid
+    ${(props) =>
+      props.disabled
+        ? props.theme.disabledBorderColor
+        : props.readOnly
+          ? props.theme.readOnlyBorderColor
+          : props.theme.enabledBorderColor};
+  ${(props) =>
+    props.error &&
+    !props.disabled &&
+    `border-color: transparent;
+     box-shadow: 0 0 0 2px ${props.theme.errorBorderColor};
+  `}
+  ${(props) =>
+    !props.disabled
+      ? `
+      &:hover {
+        border-color: ${
+          props.error
+            ? "transparent"
+            : props.readOnly
+              ? props.theme.hoverReadOnlyBorderColor
+              : props.theme.hoverBorderColor
+        };
+        ${props.error ? `box-shadow: 0 0 0 2px ${props.theme.hoverErrorBorderColor};` : ""}
+      }
+      &:focus-within {
+        border-color: transparent;
+        box-shadow: 0 0 0 2px ${props.theme.focusBorderColor};
+      }
+    `
+      : "cursor: not-allowed;"};
+`;
+
+const Input = styled.input`
+  height: calc(2.5rem - 2px);
+  width: 100%;
+  background: none;
+  border: none;
+  outline: none;
+  padding: 0 0.5rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: ${(props) => (props.disabled ? props.theme.disabledValueFontColor : props.theme.valueFontColor)};
+  font-family: ${(props) => props.theme.fontFamily};
+  font-size: ${(props) => props.theme.valueFontSize};
+  font-style: ${(props) => props.theme.valueFontStyle};
+  font-weight: ${(props) => props.theme.valueFontWeight};
+  line-height: 1.5em;
+  ${(props) => props.disabled && `cursor: not-allowed;`}
+
+  ::placeholder {
+    color: ${(props) => (props.disabled ? props.theme.disabledPlaceholderFontColor : props.theme.placeholderFontColor)};
+  }
+`;
+
+const Prefix = styled.span<{ disabled: TextInputPropsType["disabled"] }>`
+  height: 1.5rem;
+  margin-left: 0.25rem;
+  padding-right: ${(props) => props.theme.prefixDividerPaddingRight};
+  ${(props) => {
+    const color = props.disabled ? props.theme.disabledPrefixColor : props.theme.prefixColor;
+    return `color: ${color}; border-right: ${props.theme.prefixDividerBorderWidth} ${props.theme.prefixDividerBorderStyle} ${color};`;
+  }};
+  font-size: 1rem;
+  line-height: 1.5rem;
+  pointer-events: none;
+`;
+
+const Suffix = styled.span<{ disabled: TextInputPropsType["disabled"] }>`
+  height: 1.5rem;
+  margin: 0 0.25rem;
+  padding-left: ${(props) => props.theme.suffixDividerPaddingLeft};
+  ${(props) => {
+    const color = props.disabled ? props.theme.disabledSuffixColor : props.theme.suffixColor;
+    return `color: ${color}; border-left: ${props.theme.suffixDividerBorderWidth} ${props.theme.suffixDividerBorderStyle} ${color};`;
+  }};
+  font-size: 1rem;
+  line-height: 1.5rem;
+  pointer-events: none;
+`;
+
+const ErrorIcon = styled.span`
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  padding: 3px;
+  height: 18px;
+  width: 18px;
+  font-size: 18px;
+  color: ${(props) => props.theme.errorIconColor};
+`;
+
+const ErrorMessageContainer = styled.span`
+  min-height: 1.5em;
+  color: ${(props) => props.theme.errorMessageColor};
+  font-size: 0.75rem;
+  font-weight: 400;
+  line-height: 1.5em;
+  margin-top: 0.25rem;
+`;
 
 const AutosuggestWrapper = ({ condition, wrapper, children }: AutosuggestWrapperProps): JSX.Element => (
   <>{condition ? wrapper(children) : children}</>
 );
-
-const calculateWidth = (margin: TextInputPropsType["margin"], size: TextInputPropsType["size"]) =>
-  size === "fillParent"
-    ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
-    : size && sizes[size];
-
-const makeCancelable = (promise: Promise<string[]>) => {
-  let hasCanceled_ = false;
-  const wrappedPromise = new Promise<string[]>((resolve, reject) => {
-    promise.then(
-      (val) => (hasCanceled_ ? reject(Error("Is canceled")) : resolve(val)),
-      (promiseError) => (hasCanceled_ ? reject(Error("Is canceled")) : reject(promiseError))
-    );
-  });
-  return {
-    promise: wrappedPromise,
-    cancel() {
-      hasCanceled_ = true;
-    },
-  };
-};
-
-const hasSuggestions = (suggestions: TextInputPropsType["suggestions"]) =>
-  typeof suggestions === "function" || (suggestions ? suggestions.length > 0 : false);
-
-const isRequired = (value: string, optional: boolean) => value === "" && !optional;
-
-const isLengthIncorrect = (
-  value: string,
-  minLength: TextInputPropsType["minLength"],
-  maxLength: TextInputPropsType["maxLength"]
-) =>
-  value != null && ((minLength != null && value.length < minLength) || (maxLength != null && value.length > maxLength));
-
-const isNumberIncorrect = (
-  value: number,
-  minNumber: TextInputPropsType["minLength"],
-  maxNumber: TextInputPropsType["maxLength"]
-) => (minNumber != null && value < minNumber) || (maxNumber != null && value > maxNumber);
-
-const patternMismatch = (pattern: TextInputPropsType["pattern"], value: string) =>
-  pattern != null && !new RegExp(pattern).test(value);
 
 const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
   (
@@ -112,6 +233,14 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
     const autosuggestId = `suggestions-${inputId}`;
     const errorId = `error-${inputId}`;
 
+    const colorsTheme = useContext(HalstackContext);
+    const translatedLabels = useContext(HalstackLanguageContext);
+    const numberInputContext = useContext(NumberInputContext);
+
+    const inputRef = useRef<HTMLInputElement | null>(null);
+    const inputContainerRef = useRef<HTMLDivElement | null>(null);
+    const actionRef = useRef<HTMLButtonElement | null>(null);
+
     const [innerValue, setInnerValue] = useState(defaultValue);
     const [isOpen, changeIsOpen] = useState(false);
     const [isSearching, changeIsSearching] = useState(false);
@@ -119,14 +248,7 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
     const [filteredSuggestions, changeFilteredSuggestions] = useState<string[]>([]);
     const [visualFocusIndex, changeVisualFocusIndex] = useState(-1);
 
-    const inputRef = useRef<HTMLInputElement | null>(null);
-    const inputContainerRef = useRef<HTMLDivElement | null>(null);
-    const actionRef = useRef<HTMLButtonElement | null>(null);
-
     const width = useWidth(inputContainerRef.current);
-    const colorsTheme = useContext(HalstackContext);
-    const translatedLabels = useContext(HalstackLanguageContext);
-    const numberInputContext = useContext(NumberInputContext);
 
     const getNumberErrorMessage = (checkedValue: number) =>
       numberInputContext?.minNumber != null && checkedValue < numberInputContext?.minNumber
@@ -281,10 +403,10 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
           } else {
             openSuggestions();
             if (!isAutosuggestError && !isSearching && filteredSuggestions.length > 0) {
-              changeVisualFocusIndex((visualFocusedSuggIndex: number) =>
-                visualFocusedSuggIndex < filteredSuggestions.length - 1
-                  ? visualFocusedSuggIndex + 1
-                  : visualFocusedSuggIndex === filteredSuggestions.length - 1
+              changeVisualFocusIndex((visualFocusedSuggestionIndex: number) =>
+                visualFocusedSuggestionIndex < filteredSuggestions.length - 1
+                  ? visualFocusedSuggestionIndex + 1
+                  : visualFocusedSuggestionIndex === filteredSuggestions.length - 1
                     ? 0
                     : -1
               );
@@ -299,12 +421,12 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
           } else {
             openSuggestions();
             if (!isAutosuggestError && !isSearching && filteredSuggestions.length > 0) {
-              changeVisualFocusIndex((visualFocusedSuggIndex) =>
-                visualFocusedSuggIndex === 0 || visualFocusedSuggIndex === -1
+              changeVisualFocusIndex((visualFocusedSuggestionIndex) =>
+                visualFocusedSuggestionIndex === 0 || visualFocusedSuggestionIndex === -1
                   ? filteredSuggestions.length > 0
                     ? filteredSuggestions.length - 1
                     : (suggestions?.length ?? 0) - 1
-                  : visualFocusedSuggIndex - 1
+                  : visualFocusedSuggestionIndex - 1
               );
             }
           }
@@ -578,168 +700,5 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
     );
   }
 );
-
-const TextInputContainer = styled.div<{
-  margin: TextInputPropsType["margin"];
-  size: TextInputPropsType["size"];
-}>`
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  width: ${(props) => calculateWidth(props.margin, props.size)};
-  ${(props) => props.size !== "fillParent" && `min-width:${calculateWidth(props.margin, props.size)}`};
-  margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
-  margin-top: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
-  margin-right: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
-  margin-bottom: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
-  margin-left: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
-  font-family: ${(props) => props.theme.fontFamily};
-`;
-
-const Label = styled.label<{
-  disabled: TextInputPropsType["disabled"];
-  hasHelperText: boolean;
-}>`
-  color: ${(props) => (props.disabled ? props.theme.disabledLabelFontColor : props.theme.labelFontColor)};
-  font-size: ${(props) => props.theme.labelFontSize};
-  font-style: ${(props) => props.theme.labelFontStyle};
-  font-weight: ${(props) => props.theme.labelFontWeight};
-  line-height: ${(props) => props.theme.labelLineHeight};
-  ${(props) => !props.hasHelperText && `margin-bottom: 0.25rem`}
-`;
-
-const OptionalLabel = styled.span`
-  font-weight: ${(props) => props.theme.optionalLabelFontWeight};
-`;
-
-const HelperText = styled.span<{ disabled: TextInputPropsType["disabled"] }>`
-  color: ${(props) => (props.disabled ? props.theme.disabledHelperTextFontColor : props.theme.helperTextFontColor)};
-  font-size: ${(props) => props.theme.helperTextFontSize};
-  font-style: ${(props) => props.theme.helperTextFontStyle};
-  font-weight: ${(props) => props.theme.helperTextFontWeight};
-  line-height: ${(props) => props.theme.helperTextLineHeight};
-  margin-bottom: 0.25rem;
-`;
-
-const InputContainer = styled.div<{
-  disabled: TextInputPropsType["disabled"];
-  readOnly: TextInputPropsType["readOnly"];
-  error: boolean;
-}>`
-  position: relative;
-  display: flex;
-  align-items: center;
-  height: calc(2.5rem - 2px);
-  padding: 0 0.5rem;
-
-  ${(props) => props.disabled && `background-color: ${props.theme.disabledContainerFillColor};`}
-  box-shadow: 0 0 0 2px transparent;
-  border-radius: 4px;
-  border: 1px solid
-    ${(props) =>
-      props.disabled
-        ? props.theme.disabledBorderColor
-        : props.readOnly
-          ? props.theme.readOnlyBorderColor
-          : props.theme.enabledBorderColor};
-  ${(props) =>
-    props.error &&
-    !props.disabled &&
-    `border-color: transparent;
-     box-shadow: 0 0 0 2px ${props.theme.errorBorderColor};
-  `}
-  ${(props) =>
-    !props.disabled
-      ? `
-      &:hover {
-        border-color: ${
-          props.error
-            ? "transparent"
-            : props.readOnly
-              ? props.theme.hoverReadOnlyBorderColor
-              : props.theme.hoverBorderColor
-        };
-        ${props.error ? `box-shadow: 0 0 0 2px ${props.theme.hoverErrorBorderColor};` : ""}
-      }
-      &:focus-within {
-        border-color: transparent;
-        box-shadow: 0 0 0 2px ${props.theme.focusBorderColor};
-      }
-    `
-      : "cursor: not-allowed;"};
-`;
-
-const Input = styled.input`
-  height: calc(2.5rem - 2px);
-  width: 100%;
-  background: none;
-  border: none;
-  outline: none;
-  padding: 0 0.5rem;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  color: ${(props) => (props.disabled ? props.theme.disabledValueFontColor : props.theme.valueFontColor)};
-  font-family: ${(props) => props.theme.fontFamily};
-  font-size: ${(props) => props.theme.valueFontSize};
-  font-style: ${(props) => props.theme.valueFontStyle};
-  font-weight: ${(props) => props.theme.valueFontWeight};
-  line-height: 1.5em;
-  ${(props) => props.disabled && `cursor: not-allowed;`}
-
-  ::placeholder {
-    color: ${(props) => (props.disabled ? props.theme.disabledPlaceholderFontColor : props.theme.placeholderFontColor)};
-  }
-`;
-
-const Prefix = styled.span<{ disabled: TextInputPropsType["disabled"] }>`
-  height: 1.5rem;
-  margin-left: 0.25rem;
-  padding-right: ${(props) => props.theme.prefixDividerPaddingRight};
-  ${(props) => {
-    const color = props.disabled ? props.theme.disabledPrefixColor : props.theme.prefixColor;
-    return `color: ${color}; border-right: ${props.theme.prefixDividerBorderWidth} ${props.theme.prefixDividerBorderStyle} ${color};`;
-  }};
-  font-size: 1rem;
-  line-height: 1.5rem;
-  pointer-events: none;
-`;
-
-const Suffix = styled.span<{ disabled: TextInputPropsType["disabled"] }>`
-  height: 1.5rem;
-  margin: 0 0.25rem;
-  padding-left: ${(props) => props.theme.suffixDividerPaddingLeft};
-  ${(props) => {
-    const color = props.disabled ? props.theme.disabledSuffixColor : props.theme.suffixColor;
-    return `color: ${color}; border-left: ${props.theme.suffixDividerBorderWidth} ${props.theme.suffixDividerBorderStyle} ${color};`;
-  }};
-  font-size: 1rem;
-  line-height: 1.5rem;
-  pointer-events: none;
-`;
-
-const ErrorIcon = styled.span`
-  display: flex;
-  flex-wrap: wrap;
-  align-content: center;
-  padding: 3px;
-  height: 18px;
-  width: 18px;
-  font-size: 18px;
-  color: ${(props) => props.theme.errorIconColor};
-`;
-
-const ErrorMessageContainer = styled.span`
-  min-height: 1.5em;
-  color: ${(props) => props.theme.errorMessageColor};
-  font-size: 0.75rem;
-  font-weight: 400;
-  line-height: 1.5em;
-  margin-top: 0.25rem;
-`;
 
 export default DxcTextInput;
