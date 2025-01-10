@@ -48,11 +48,12 @@ describe("Textarea component tests", () => {
   });
 
   test("Renders with correct accessibility attributes", () => {
-    const { getByLabelText } = render(<DxcTextarea label="Example label" />);
+    const { getByLabelText } = render(<DxcTextarea label="Example label" ariaLabel="Example aria label" />);
     const textarea = getByLabelText("Example label");
     expect(textarea.getAttribute("aria-invalid")).toBe("false");
     expect(textarea.getAttribute("aria-describedBy")).toBeNull();
     expect(textarea.getAttribute("aria-required")).toBe("true");
+    expect(textarea.getAttribute("aria-label")).toBe("Example aria label");
   });
 
   test("Renders with correct initial value", () => {

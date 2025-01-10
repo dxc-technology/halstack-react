@@ -122,6 +122,10 @@ type Props = {
    * Value of the tabindex attribute.
    */
   tabIndex?: number;
+  /**
+   * A string of text that will be the accessible name for the textarea.
+   */
+  ariaLabel?: string;
 };
 /**
  * Reference to the component.
