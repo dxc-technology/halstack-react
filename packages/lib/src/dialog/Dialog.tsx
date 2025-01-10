@@ -55,11 +55,11 @@ const CloseIconActionContainer = styled.div`
 `;
 
 const DxcDialog = ({
-  closable = true,
-  onCloseClick,
   children,
-  overlay = true,
+  closable = true,
   onBackgroundClick,
+  onCloseClick,
+  overlay = true,
   tabIndex = 0,
 }: DialogPropsType): JSX.Element => {
   const colorsTheme = useContext(HalstackContext);
@@ -85,7 +85,7 @@ const DxcDialog = ({
       {createPortal(
         <DialogContainer>
           {overlay && <Overlay onClick={onBackgroundClick} />}
-          <Dialog aria-modal={overlay} closable={closable} role="dialog">
+          <Dialog aria-label="Dialog" aria-modal={overlay} closable={closable} role="dialog">
             <FocusLock>
               {children}
               {closable && (
