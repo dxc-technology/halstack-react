@@ -388,7 +388,6 @@ export const componentTokens = {
   dialog: {
     overlayColor: CoreTokens.color_grey_800_a,
     backgroundColor: CoreTokens.color_white,
-    closeIconSize: "24px",
     closeIconBackgroundColor: CoreTokens.color_transparent,
     closeIconColor: CoreTokens.color_black,
     boxShadowOffsetX: "0px",

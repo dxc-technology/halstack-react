@@ -403,7 +403,6 @@
   "dialog": {
     "overlayColor": "#000000b3",
     "backgroundColor": "#ffffff",
-    "closeIconSize": "24px",
     "closeIconBackgroundColor": "transparent",
     "closeIconColor": "#000000",
     "boxShadowOffsetX": "0px",

@@ -234,7 +234,7 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
     };
 
     useEffect(() => {
-      (async () => {
+      const getFiles = async () => {
         if (value) {
           const valueFiles = (await Promise.all(
             value.map(async (file) => {
@@ -247,7 +247,8 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
           )) as FileData[];
           setFiles(valueFiles);
         }
-      })();
+      };
+      getFiles();
     }, [value]);
 
     return (
