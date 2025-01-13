@@ -31,6 +31,7 @@ const DxcTextarea = forwardRef<RefType, TextareaPropsType>(
       margin,
       size = "medium",
       tabIndex = 0,
+      ariaLabel = "Text area",
     },
     ref
   ) => {
@@ -47,10 +48,7 @@ const DxcTextarea = forwardRef<RefType, TextareaPropsType>(
     const isNotOptional = (value: string) => value === "" && !optional;
 
     const isLengthIncorrect = (value: string) =>
-      value !== "" &&
-      minLength &&
-      maxLength &&
-      (value.length < minLength || value.length > maxLength);
+      value !== "" && minLength && maxLength && (value.length < minLength || value.length > maxLength);
 
     const changeValue = (newValue: string) => {
       if (value == null) {
@@ -143,6 +141,7 @@ const DxcTextarea = forwardRef<RefType, TextareaPropsType>(
             aria-invalid={!!error}
             aria-errormessage={error ? errorId : undefined}
             aria-required={!disabled && !optional}
+            aria-label={label ? undefined : ariaLabel}
           />
           {!disabled && typeof error === "string" && (
             <ErrorMessageContainer id={errorId} role="alert" aria-live={error ? "assertive" : "off"}>
