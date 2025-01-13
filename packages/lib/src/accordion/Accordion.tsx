@@ -6,68 +6,6 @@ import HalstackContext from "../HalstackContext";
 import AccordionPropsType from "./types";
 import DxcIcon from "../icon/Icon";
 
-const DxcAccordion = ({
-  label = "",
-  defaultIsExpanded,
-  isExpanded,
-  icon,
-  assistiveText = "",
-  disabled = false,
-  onChange,
-  children,
-  margin,
-  tabIndex = 0,
-}: AccordionPropsType): JSX.Element => {
-  const id = useId();
-  const [innerIsExpanded, setInnerIsExpanded] = useState(defaultIsExpanded ?? false);
-  const colorsTheme = useContext(HalstackContext);
-
-  const handleAccordionState = () => {
-    if (isExpanded == null) {
-      setInnerIsExpanded((innerIsCurrentlyExpanded) => !innerIsCurrentlyExpanded);
-    }
-    onChange?.(isExpanded != null ? !isExpanded : !innerIsExpanded);
-  };
-
-  return (
-    <ThemeProvider theme={colorsTheme.accordion}>
-      <AccordionContainer isExpanded={isExpanded ?? innerIsExpanded} margin={margin}>
-        <AccordionHeader>
-          <AccordionTrigger
-            id={`accordion-${id}`}
-            onClick={disabled ? undefined : handleAccordionState}
-            disabled={disabled}
-            tabIndex={disabled ? -1 : tabIndex}
-            aria-expanded={isExpanded ?? innerIsExpanded}
-            aria-controls={`accordion-panel-${id}`}
-            isExpanded={isExpanded ?? innerIsExpanded}
-          >
-            <AccordionInfo>
-              <AccordionLabel disabled={disabled}>
-                {icon && (
-                  <IconContainer disabled={disabled}>
-                    {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
-                  </IconContainer>
-                )}
-                {label}
-              </AccordionLabel>
-              {assistiveText && <AccordionAssistiveText disabled={disabled}>{assistiveText}</AccordionAssistiveText>}
-            </AccordionInfo>
-            <CollapseIndicator disabled={disabled}>
-              <DxcIcon icon={(isExpanded ?? innerIsExpanded) ? "expand_less" : "expand_more"} />
-            </CollapseIndicator>
-          </AccordionTrigger>
-        </AccordionHeader>
-        {(isExpanded ?? innerIsExpanded) && (
-          <AccordionPanel id={`accordion-panel-${id}`} role="region" aria-labelledby={`accordion-${id}`}>
-            {children}
-          </AccordionPanel>
-        )}
-      </AccordionContainer>
-    </ThemeProvider>
-  );
-};
-
 const calculateWidth = (margin: AccordionPropsType["margin"]) =>
   `calc(100% - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`;
 
@@ -190,5 +128,67 @@ const AccordionPanel = styled.div`
   border-bottom-left-radius: ${(props) => props.theme.borderRadius};
   border-bottom-right-radius: ${(props) => props.theme.borderRadius};
 `;
+
+const DxcAccordion = ({
+  label = "",
+  defaultIsExpanded = false,
+  isExpanded,
+  icon,
+  assistiveText = "",
+  disabled = false,
+  onChange,
+  children,
+  margin,
+  tabIndex = 0,
+}: AccordionPropsType): JSX.Element => {
+  const id = useId();
+  const [innerIsExpanded, setInnerIsExpanded] = useState(defaultIsExpanded);
+  const colorsTheme = useContext(HalstackContext);
+
+  const handleAccordionState = () => {
+    if (isExpanded == null) {
+      setInnerIsExpanded((innerIsCurrentlyExpanded) => !innerIsCurrentlyExpanded);
+    }
+    onChange?.(isExpanded != null ? !isExpanded : !innerIsExpanded);
+  };
+
+  return (
+    <ThemeProvider theme={colorsTheme.accordion}>
+      <AccordionContainer isExpanded={isExpanded ?? innerIsExpanded} margin={margin}>
+        <AccordionHeader>
+          <AccordionTrigger
+            id={`accordion-${id}`}
+            onClick={disabled ? undefined : handleAccordionState}
+            disabled={disabled}
+            tabIndex={disabled ? -1 : tabIndex}
+            aria-expanded={isExpanded ?? innerIsExpanded}
+            aria-controls={`accordion-panel-${id}`}
+            isExpanded={isExpanded ?? innerIsExpanded}
+          >
+            <AccordionInfo>
+              <AccordionLabel disabled={disabled}>
+                {icon && (
+                  <IconContainer disabled={disabled}>
+                    {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
+                  </IconContainer>
+                )}
+                {label}
+              </AccordionLabel>
+              {assistiveText && <AccordionAssistiveText disabled={disabled}>{assistiveText}</AccordionAssistiveText>}
+            </AccordionInfo>
+            <CollapseIndicator disabled={disabled}>
+              <DxcIcon icon={(isExpanded ?? innerIsExpanded) ? "expand_less" : "expand_more"} />
+            </CollapseIndicator>
+          </AccordionTrigger>
+        </AccordionHeader>
+        {(isExpanded ?? innerIsExpanded) && (
+          <AccordionPanel id={`accordion-panel-${id}`} role="region" aria-labelledby={`accordion-${id}`}>
+            {children}
+          </AccordionPanel>
+        )}
+      </AccordionContainer>
+    </ThemeProvider>
+  );
+};
 
 export default DxcAccordion;

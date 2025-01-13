@@ -42,7 +42,7 @@ const sections = [
               managed internally by the component.
             </td>
             <td>
-              <TableCode>false</TableCode>
+              -
             </td>
           </tr>
           <tr>

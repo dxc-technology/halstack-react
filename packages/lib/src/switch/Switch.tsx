@@ -8,7 +8,7 @@ import SwitchPropsType, { RefType } from "./types";
 const DxcSwitch = forwardRef<RefType, SwitchPropsType>(
   (
     {
-      defaultChecked,
+      defaultChecked = false,
       checked,
       value,
       label = "",
@@ -25,7 +25,7 @@ const DxcSwitch = forwardRef<RefType, SwitchPropsType>(
   ): JSX.Element => {
     const switchId = `switch-${useId()}`;
     const labelId = `label-${switchId}`;
-    const [innerChecked, setInnerChecked] = useState(defaultChecked ?? false);
+    const [innerChecked, setInnerChecked] = useState(defaultChecked);
 
     const colorsTheme = useContext(HalstackContext);
     const translatedLabels = useContext(HalstackLanguageContext);
