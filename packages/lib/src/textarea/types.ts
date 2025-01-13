@@ -123,7 +123,7 @@ type Props = {
    */
   tabIndex?: number;
   /**
-   * A string of text that will be the accessible name for the textarea.
+   * Specifies a string to be used as the name for the textarea element when no `label` is provided.
    */
   ariaLabel?: string;
 };

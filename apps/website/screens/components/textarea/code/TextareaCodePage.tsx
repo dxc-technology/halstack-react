@@ -283,8 +283,7 @@ const sections = [
               <TableCode>string</TableCode>
             </td>
             <td>
-              A string of text that will be the accessible name for the textarea. Consider using this prop in case there
-              is no label available.
+              Specifies a string to be used as the name for the textarea element when no <Code>label</Code> is provided.
             </td>
             <td>'Text area'</td>
           </tr>

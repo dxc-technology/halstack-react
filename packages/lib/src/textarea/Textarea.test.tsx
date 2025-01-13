@@ -53,6 +53,12 @@ describe("Textarea component tests", () => {
     expect(textarea.getAttribute("aria-invalid")).toBe("false");
     expect(textarea.getAttribute("aria-describedBy")).toBeNull();
     expect(textarea.getAttribute("aria-required")).toBe("true");
+    expect(textarea.getAttribute("aria-label")).toBeNull();
+  });
+
+  test("Renders with correct aria-label", () => {
+    const { getByRole } = render(<DxcTextarea ariaLabel="Example aria label" />);
+    const textarea = getByRole("textbox");
     expect(textarea.getAttribute("aria-label")).toBe("Example aria label");
   });
 

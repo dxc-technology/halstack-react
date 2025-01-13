@@ -141,7 +141,7 @@ const DxcTextarea = forwardRef<RefType, TextareaPropsType>(
             aria-invalid={!!error}
             aria-errormessage={error ? errorId : undefined}
             aria-required={!disabled && !optional}
-            aria-label={ariaLabel}
+            aria-label={label ? undefined : ariaLabel}
           />
           {!disabled && typeof error === "string" && (
             <ErrorMessageContainer id={errorId} role="alert" aria-live={error ? "assertive" : "off"}>
