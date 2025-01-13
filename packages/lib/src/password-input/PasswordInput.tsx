@@ -32,6 +32,7 @@ const DxcPasswordInput = forwardRef<RefType, PasswordInputPropsType>(
       margin,
       size = "medium",
       tabIndex = 0,
+      ariaLabel = "Password input",
     },
     ref
   ) => {
@@ -81,6 +82,7 @@ const DxcPasswordInput = forwardRef<RefType, PasswordInputPropsType>(
           autocomplete={autocomplete}
           ref={inputRef}
           tabIndex={tabIndex}
+          ariaLabel={ariaLabel}
         />
       </PasswordInput>
     );

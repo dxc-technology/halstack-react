@@ -73,6 +73,7 @@ const DxcDateInput = forwardRef<RefType, DateInputPropsType>(
       margin,
       size,
       tabIndex,
+      ariaLabel,
     },
     ref
   ): JSX.Element => {
@@ -260,6 +261,7 @@ const DxcDateInput = forwardRef<RefType, DateInputPropsType>(
                 size={size}
                 tabIndex={tabIndex}
                 ref={dateRef}
+                ariaLabel={ariaLabel}
               />
             </Popover.Trigger>
             <Popover.Portal>

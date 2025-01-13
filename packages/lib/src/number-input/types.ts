@@ -111,6 +111,10 @@ type Props = {
    * Value of the tabindex attribute.
    */
   tabIndex?: number;
+  /**
+   * Specifies a string to be used as the name for the number input element when no `label` is provided.
+   */
+  ariaLabel?: string;
 };
 
 export type NumberInputContextProps = {
