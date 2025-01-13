@@ -27,6 +27,7 @@ const DxcCheckbox = forwardRef<RefType, CheckboxPropsType>(
       margin,
       size = "fitContent",
       tabIndex = 0,
+      ariaLabel = "Checkbox",
     },
     ref
   ): JSX.Element => {
@@ -94,7 +95,7 @@ const DxcCheckbox = forwardRef<RefType, CheckboxPropsType>(
               aria-readonly={readOnly}
               aria-required={!disabled && !optional}
               aria-labelledby={label ? labelId : undefined}
-              aria-label={label ? undefined : "Checkbox"}
+              aria-label={label ? undefined : ariaLabel}
               checked={checked ?? innerChecked}
               disabled={disabled}
               readOnly={readOnly}
