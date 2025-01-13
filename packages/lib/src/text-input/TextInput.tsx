@@ -105,6 +105,7 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
       margin,
       size = "medium",
       tabIndex = 0,
+      ariaLabel = "Text input",
     },
     ref
   ): JSX.Element => {
@@ -520,6 +521,7 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
                   aria-invalid={!!error}
                   aria-errormessage={error ? errorId : undefined}
                   aria-required={!disabled && !optional}
+                  aria-label={label ? undefined : ariaLabel}
                 />
                 {!disabled && error && (
                   <ErrorIcon aria-hidden="true">
