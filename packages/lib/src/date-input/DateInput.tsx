@@ -73,7 +73,7 @@ const DxcDateInput = forwardRef<RefType, DateInputPropsType>(
       margin,
       size,
       tabIndex,
-      ariaLabel,
+      ariaLabel = "Date input",
     },
     ref
   ): JSX.Element => {
