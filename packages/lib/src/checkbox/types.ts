@@ -1,10 +1,4 @@
-type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
-type Margin = {
-  top?: Space;
-  bottom?: Space;
-  left?: Space;
-  right?: Space;
-};
+import { Margin, Space } from "../common/utils";
 
 type Props = {
   /**
@@ -65,6 +59,10 @@ type Props = {
    * Value of the tabindex.
    */
   tabIndex?: number;
+  /**
+   * Specifies a string to be used as the name for the checkbox element when no `label` is provided.
+   */
+  ariaLabel?: string;
 };
 
 /**

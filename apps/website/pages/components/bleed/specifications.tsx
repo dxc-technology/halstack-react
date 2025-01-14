@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import BleedPageLayout from "../../../screens/components/bleed/BleedPageLayout";
-import BleedSpecsPage from "../../../screens/components/bleed/specs/BleedSpecsPage";
+import BleedPageLayout from "screens/components/bleed/BleedPageLayout";
+import BleedSpecsPage from "screens/components/bleed/specs/BleedSpecsPage";
 
 const Specifications = () => {
   return (

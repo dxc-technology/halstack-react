@@ -18,8 +18,8 @@ describe("Wizard components tests", () => {
     const steps = getAllByRole("button");
     expect(getByText("first-step")).toBeTruthy();
     expect(getByText("second-step")).toBeTruthy();
-    expect(steps[0].getAttribute("aria-current")).toBe("step");
-    expect(steps[1].getAttribute("aria-current")).toBe("false");
+    expect(steps[0]?.getAttribute("aria-current")).toBe("step");
+    expect(steps[1]?.getAttribute("aria-current")).toBe("false");
   });
 
   test("Wizard renders with initially selected step", () => {
@@ -37,7 +37,7 @@ describe("Wizard components tests", () => {
       />
     );
     const steps = getAllByRole("button");
-    expect(steps[1].getAttribute("aria-current")).toBe("step");
+    expect(steps[1]?.getAttribute("aria-current")).toBe("step");
   });
 
   test("Click on step text", () => {
@@ -130,8 +130,8 @@ describe("Wizard components tests", () => {
       />
     );
     const steps = getAllByRole("button");
-    fireEvent.click(steps[1]);
-    fireEvent.click(steps[0]);
+    steps[1] && fireEvent.click(steps[1]);
+    steps[0] && fireEvent.click(steps[0]);
     expect(onClick).toHaveBeenCalledTimes(2);
     expect(onClick).toHaveBeenNthCalledWith(1, 1);
     expect(onClick).toHaveBeenNthCalledWith(2, 0);

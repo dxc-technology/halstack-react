@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import StatusLightPageLayout from "../../../screens/components/status-light/StatusLightPageLayout";
-import StatusLightSpecsPage from "../../../screens/components/status-light/specs/StatusLightSpecsPage";
+import StatusLightPageLayout from "screens/components/status-light/StatusLightPageLayout";
+import StatusLightSpecsPage from "screens/components/status-light/specs/StatusLightSpecsPage";
 
 const Specifications = () => {
   return (

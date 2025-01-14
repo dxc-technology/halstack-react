@@ -63,7 +63,7 @@ const sections = [
             <td>
               <TableCode>boolean</TableCode>
             </td>
-            <td>If true, the value is displayed above the progress bar.</td>
+            <td>If true, the determined value is displayed above the progress bar.</td>
             <td>
               <TableCode>false</TableCode>
             </td>

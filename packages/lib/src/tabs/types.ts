@@ -1,11 +1,6 @@
-export type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
-type Margin = {
-  top?: Space;
-  bottom?: Space;
-  left?: Space;
-  right?: Space;
-};
-type SVG = React.ReactNode & React.SVGProps<SVGSVGElement>;
+import { ReactNode } from "react";
+
+import type { Space, Margin, SVG } from "../common/utils";
 
 type TabCommonProps = {
   /**
@@ -34,7 +29,7 @@ export type TabsContextProps = {
   setActiveIndicatorLeft: (_left: number) => void;
 };
 
-type TabLabelProps = TabCommonProps & {
+export type TabLabelProps = TabCommonProps & {
   /**
    * Tab label.
    */
@@ -45,7 +40,7 @@ type TabLabelProps = TabCommonProps & {
   icon?: string | SVG;
 };
 
-type TabIconProps = TabCommonProps & {
+export type TabIconProps = TabCommonProps & {
   /**
    * Tab label.
    */
@@ -71,11 +66,11 @@ export type TabProps = {
   defaultActive?: boolean;
   active?: boolean;
   icon?: string | SVG;
-  label?: string;
+  label: string;
   title?: string;
   disabled?: boolean;
   notificationNumber?: boolean | number;
-  children: React.ReactNode;
+  children: ReactNode;
   onClick?: () => void;
   onHover?: () => void;
 };
@@ -107,7 +102,7 @@ type LegacyProps = {
    * This function will be called when the user hovers a tab.The index of the
    * hovered tab will be passed as a parameter.
    */
-  onTabHover?: (index: number) => void;
+  onTabHover?: (index: number | null) => void;
   /**
    * Size of the margin to be applied to the component ('xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge').
    * You can pass an object with 'top', 'bottom', 'left' and 'right' properties in order to specify different margin sizes.
@@ -137,7 +132,7 @@ type NewProps = {
    * Contains one or more DxcTabs.Tab.
    */
   // children?: React.ReactElement<TabProps>[];
-  children?: React.ReactNode;
+  children?: ReactNode;
 };
 
 type Props = LegacyProps & NewProps;

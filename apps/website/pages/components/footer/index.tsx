@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import FooterPageLayout from "../../../screens/components/footer/FooterPageLayout";
-import FooterCodePage from "../../../screens/components/footer/code/FooterCodePage";
+import FooterPageLayout from "screens/components/footer/FooterPageLayout";
+import FooterCodePage from "screens/components/footer/code/FooterCodePage";
 
 const Index = () => {
   return (

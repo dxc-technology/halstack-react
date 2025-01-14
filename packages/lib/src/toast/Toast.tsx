@@ -1,4 +1,4 @@
-import { memo, useState } from "react";
+import { memo, useContext, useState } from "react";
 import styled, { keyframes } from "styled-components";
 import CoreTokens from "../common/coreTokens";
 import DxcActionIcon from "../action-icon/ActionIcon";
@@ -9,8 +9,30 @@ import DxcSpinner from "../spinner/Spinner";
 import { HalstackProvider } from "../HalstackContext";
 import ToastPropsType from "./types";
 import useTimeout from "../utils/useTimeout";
-import useTranslatedLabels from "../useTranslatedLabels";
+import { HalstackLanguageContext } from "../HalstackContext";
 import { responsiveSizes } from "../common/variables";
+
+const fadeInUp = keyframes`
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+`;
+
+const fadeOutDown = keyframes`
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+`;
 
 const getSemantic = (semantic: ToastPropsType["semantic"]) => {
   switch (semantic) {
@@ -37,51 +59,6 @@ const getSemantic = (semantic: ToastPropsType["semantic"]) => {
   }
 };
 
-const ContentContainer = styled.div<{ loading: ToastPropsType["loading"] }>`
-  display: flex;
-  align-items: center;
-  gap: ${CoreTokens.spacing_8};
-  overflow: hidden;
-
-  ${({ loading }) => !loading && `font-size: ${CoreTokens.type_scale_05}`};
-  > svg {
-    width: 24px;
-    height: 24px;
-  }
-`;
-
-const Message = styled.span`
-  color: ${CoreTokens.color_black};
-  font-family: ${CoreTokens.type_sans};
-  font-size: ${CoreTokens.type_scale_02};
-  font-weight: ${CoreTokens.type_semibold};
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-`;
-
-const fadeInUp = keyframes`
-  0% {
-    transform: translateY(100%);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-`;
-
-const fadeOutDown = keyframes`
-  0% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(100%);
-    opacity: 0;
-  }
-`;
-
 const Toast = styled.output<{ semantic: ToastPropsType["semantic"]; isClosing: boolean }>`
   box-sizing: border-box;
   min-width: 200px;
@@ -95,12 +72,35 @@ const Toast = styled.output<{ semantic: ToastPropsType["semantic"]; isClosing: b
   gap: ${CoreTokens.spacing_24};
   padding: ${CoreTokens.spacing_8} ${CoreTokens.spacing_12};
   background-color: ${({ semantic }) => getSemantic(semantic).secondaryColor};
-  color: ${({ semantic }) => getSemantic(semantic).primaryColor};
   animation: ${({ isClosing }) => (isClosing ? fadeOutDown : fadeInUp)} 0.3s ease forwards;
 
   @media (max-width: ${responsiveSizes.medium}rem) {
     max-width: 100%;
   }
+`;
+
+const ContentContainer = styled.div<{ loading: ToastPropsType["loading"]; semantic: ToastPropsType["semantic"] }>`
+  display: flex;
+  align-items: center;
+  gap: ${CoreTokens.spacing_8};
+  overflow: hidden;
+  color: ${({ semantic }) => getSemantic(semantic).primaryColor};
+
+  ${({ loading }) => !loading && `font-size: ${CoreTokens.type_scale_05}`};
+  > svg {
+    width: 24px;
+    height: 24px;
+  }
+`;
+
+const Message = styled.span`
+  color: ${CoreTokens.color_grey_900};
+  font-family: ${CoreTokens.type_sans};
+  font-size: ${CoreTokens.type_scale_02};
+  font-weight: ${CoreTokens.type_semibold};
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 const spinnerTheme = {
@@ -138,42 +138,41 @@ const DxcToast = ({
   semantic,
 }: ToastPropsType) => {
   const [isClosing, setIsClosing] = useState(false);
-  const translatedLabels = useTranslatedLabels();
+  const translatedLabels = useContext(HalstackLanguageContext);
 
   const clearClosingAnimationTimer = useTimeout(
     () => {
       setIsClosing(true);
     },
-    loading ? null : duration - 300
+    loading ? undefined : duration - 300
   );
 
   const clearTimer = useTimeout(
     () => {
       onClear();
     },
-    loading ? null : duration
+    loading ? undefined : duration
   );
 
   return (
     <Toast semantic={semantic} isClosing={isClosing} role="status">
-      <ContentContainer loading={loading}>
-        <ToastIcon semantic={semantic} icon={icon} loading={loading} hideSemanticIcon={hideSemanticIcon} />
+      <ContentContainer loading={loading} semantic={semantic}>
+        <ToastIcon hideSemanticIcon={hideSemanticIcon} icon={icon} loading={loading} semantic={semantic} />
         <Message>{message}</Message>
       </ContentContainer>
       <DxcFlex alignItems="center" gap="0.25rem">
         {action && (
           <DxcButton
-            semantic={semantic}
-            mode="tertiary"
-            size={{ height: "small" }}
-            label={action.label}
             icon={action.icon}
+            label={action.label}
+            mode="tertiary"
             onClick={action.onClick}
+            semantic={semantic}
+            size={{ height: "small" }}
           />
         )}
         <DxcActionIcon
           icon="clear"
-          title={translatedLabels.toast.clearToastActionTitle}
           onClick={() => {
             if (!loading) {
               clearClosingAnimationTimer();
@@ -184,6 +183,7 @@ const DxcToast = ({
               onClear();
             }, 300);
           }}
+          title={translatedLabels.toast.clearToastActionTitle}
         />
       </DxcFlex>
     </Toast>

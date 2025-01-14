@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import CardUsagePage from "../../../screens/components/card/usage/CardUsagePage";
-import CardPageLayout from "../../../screens/components/card/CardPageLayout";
+import CardUsagePage from "screens/components/card/usage/CardUsagePage";
+import CardPageLayout from "screens/components/card/CardPageLayout";
 
 const Usage = () => {
   return (

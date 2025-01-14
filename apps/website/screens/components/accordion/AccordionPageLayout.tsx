@@ -2,8 +2,9 @@ import { DxcParagraph, DxcFlex } from "@dxc-technology/halstack-react";
 import TabsPageHeading from "@/common/TabsPageLayout";
 import PageHeading from "@/common/PageHeading";
 import ComponentHeading from "@/common/ComponentHeading";
+import { ReactNode } from "react";
 
-const AccordionPageHeading = ({ children }: { children: React.ReactNode }) => {
+const AccordionPageHeading = ({ children }: { children: ReactNode }) => {
   const tabs = [
     { label: "Code", path: "/components/accordion" },
     { label: "Usage", path: "/components/accordion/usage" },

@@ -12,8 +12,9 @@ import DxcSwitch from "../switch/Switch";
 import DxcTextInput from "../text-input/TextInput";
 import DxcTextarea from "../textarea/Textarea";
 import DxcDialog from "./Dialog";
+import DxcTooltip from "../tooltip/Tooltip";
+import DxcAlert from "../alert/Alert";
 
-// Mocking DOMRect for Radix Primitive Popover
 (global as any).globalThis = global;
 (global as any).DOMRect = {
   fromRect: () => ({ top: 0, left: 0, bottom: 0, right: 0, width: 0, height: 0 }),
@@ -38,22 +39,19 @@ describe("Dialog component tests", () => {
     expect(getByRole("dialog").getAttribute("aria-modal")).toBe("true");
     expect(getByText("dialog-text")).toBeTruthy();
   });
-
   test("Dialog renders without close button", () => {
-    const { queryByRole } = render(<DxcDialog isCloseVisible={false}>dialog-text</DxcDialog>);
+    const { queryByRole } = render(<DxcDialog closable={false}>dialog-text</DxcDialog>);
     expect(queryByRole("button")).toBeFalsy();
   });
-
   test("Dialog renders with aria-modal false when overlay is not used", () => {
     const { getByRole } = render(
-      <DxcDialog isCloseVisible={false} overlay={false}>
+      <DxcDialog closable={false} overlay={false}>
         dialog-text
       </DxcDialog>
     );
     expect(getByRole("dialog")).toBeTruthy();
     expect(getByRole("dialog").getAttribute("aria-modal")).toBe("false");
   });
-
   test("Calls correct function onCloseClick", () => {
     const onCloseClick = jest.fn();
     const { getByRole } = render(<DxcDialog onCloseClick={onCloseClick}>dialog-text</DxcDialog>);
@@ -61,15 +59,13 @@ describe("Dialog component tests", () => {
     fireEvent.click(closeButton);
     expect(onCloseClick).toHaveBeenCalled();
   });
-
   test("Calls correct function onCloseClick when 'Escape' key is pressed", () => {
     const onCloseClick = jest.fn();
     const { getByRole } = render(<DxcDialog onCloseClick={onCloseClick}>dialog-text</DxcDialog>);
     fireEvent.keyDown(getByRole("dialog"), { key: "Escape", code: "Escape", keyCode: 27, charCode: 27 });
     expect(onCloseClick).toHaveBeenCalled();
   });
-
-  test("Does not call function onCloseClick when 'Escape' key is pressed while a child popover is opened", async () => {
+  test("Does not call function onCloseClick when 'Escape' key is pressed while a child popover is opened", () => {
     const onCloseClick = jest.fn();
     const { getByRole } = render(
       <DxcDialog onCloseClick={onCloseClick}>
@@ -77,8 +73,9 @@ describe("Dialog component tests", () => {
       </DxcDialog>
     );
     const calendarAction = getByRole("combobox");
-    await userEvent.click(calendarAction);
-    fireEvent.keyDown(document.activeElement, { key: "Escape", code: "Escape", keyCode: 27, charCode: 27 });
+    userEvent.click(calendarAction);
+    document.activeElement != null &&
+      fireEvent.keyDown(document.activeElement, { key: "Escape", code: "Escape", keyCode: 27, charCode: 27 });
     expect(onCloseClick).not.toHaveBeenCalled();
   });
 });
@@ -95,7 +92,6 @@ describe("Dialog component: Focus lock tests", () => {
     fireEvent.keyDown(dialog, { key: "Tab", shiftKey: true });
     expect(document.activeElement).toEqual(button);
   });
-
   test("Autofocus with Button component", () => {
     const { getAllByRole } = render(
       <DxcDialog>
@@ -104,9 +100,8 @@ describe("Dialog component: Focus lock tests", () => {
     );
     const button = getAllByRole("button")[0];
     expect(document.activeElement).toEqual(button);
-    expect(button.getAttribute("aria-label")).not.toBe("Close dialog");
+    expect(button?.getAttribute("aria-label")).not.toBe("Close dialog");
   });
-
   test("Autofocus with Card component", () => {
     const { getByRole } = render(
       <DxcDialog>
@@ -116,7 +111,6 @@ describe("Dialog component: Focus lock tests", () => {
     const card = getByRole("link");
     expect(document.activeElement).toEqual(card);
   });
-
   test("Autofocus with Checkbox component", () => {
     const { getByRole } = render(
       <DxcDialog>
@@ -126,7 +120,6 @@ describe("Dialog component: Focus lock tests", () => {
     const checkbox = getByRole("checkbox");
     expect(document.activeElement).toEqual(checkbox);
   });
-
   test("Autofocus with Link component", () => {
     const { getByRole } = render(
       <DxcDialog>
@@ -136,7 +129,6 @@ describe("Dialog component: Focus lock tests", () => {
     const link = getByRole("link");
     expect(document.activeElement).toEqual(link);
   });
-
   test("Autofocus with RadioGroup component", () => {
     const { getAllByRole } = render(
       <DxcDialog>
@@ -146,7 +138,6 @@ describe("Dialog component: Focus lock tests", () => {
     const checkedRadio = getAllByRole("radio")[0];
     expect(document.activeElement).toEqual(checkedRadio);
   });
-
   test("Autofocus with Select component", () => {
     const { getByRole } = render(
       <DxcDialog>
@@ -156,7 +147,6 @@ describe("Dialog component: Focus lock tests", () => {
     const select = getByRole("combobox");
     expect(document.activeElement).toEqual(select);
   });
-
   test("Autofocus with Slider component", () => {
     const { getByRole } = render(
       <DxcDialog>
@@ -166,7 +156,6 @@ describe("Dialog component: Focus lock tests", () => {
     const slider = getByRole("slider");
     expect(document.activeElement).toEqual(slider);
   });
-
   test("Autofocus with Switch component", () => {
     const { getByRole } = render(
       <DxcDialog>
@@ -176,7 +165,6 @@ describe("Dialog component: Focus lock tests", () => {
     const switchButton = getByRole("switch");
     expect(document.activeElement).toEqual(switchButton);
   });
-
   test("Autofocus with Text Input component", () => {
     const { getByRole } = render(
       <DxcDialog>
@@ -186,7 +174,6 @@ describe("Dialog component: Focus lock tests", () => {
     const input = getByRole("textbox");
     expect(document.activeElement).toEqual(input);
   });
-
   test("Autofocus with Textarea component", () => {
     const { getByRole } = render(
       <DxcDialog>
@@ -196,7 +183,6 @@ describe("Dialog component: Focus lock tests", () => {
     const textarea = getByRole("textbox");
     expect(document.activeElement).toEqual(textarea);
   });
-
   test("Negative tabindex elements are not automatically focused, even if it is enabled and a valid focusable item (programatically and by click)", () => {
     const { getAllByRole, getByRole } = render(
       <DxcDialog>
@@ -212,7 +198,6 @@ describe("Dialog component: Focus lock tests", () => {
     userEvent.tab();
     expect(document.activeElement).toEqual(inputs[1]);
   });
-
   test("Focus jumps disabled components and negative tabIndexes when autofocusing first item", () => {
     const { getAllByRole } = render(
       <DxcDialog>
@@ -232,7 +217,6 @@ describe("Dialog component: Focus lock tests", () => {
     const textarea = getAllByRole("textbox")[2];
     expect(document.activeElement).toEqual(textarea);
   });
-
   test("Focus jumps from last element to the first", () => {
     const { getByRole } = render(
       <DxcDialog>
@@ -250,7 +234,6 @@ describe("Dialog component: Focus lock tests", () => {
     userEvent.tab();
     expect(document.activeElement).toEqual(textarea);
   });
-
   test("'display: none;', 'visibility: hidden;' and 'type = 'hidden'' elements are never autofocused", () => {
     const { getByRole } = render(
       <DxcDialog>
@@ -264,12 +247,11 @@ describe("Dialog component: Focus lock tests", () => {
     userEvent.tab();
     expect(document.activeElement).toEqual(closeAction);
   });
-
   test("Focus gets trapped in the Dialog when there are not focusable elements inside until it is closed", () => {
-    const { getAllByRole } = render(
+    const { getAllByRole, getByRole } = render(
       <>
         <DxcTextInput label="Name" />
-        <DxcDialog isCloseVisible={false}>
+        <DxcDialog closable={false}>
           <h2>Policy agreement</h2>
           <p>Sample text.</p>
         </DxcDialog>
@@ -277,12 +259,56 @@ describe("Dialog component: Focus lock tests", () => {
       </>
     );
     const inputs = getAllByRole("textbox");
-    const dialog = getAllByRole("dialog")[0];
+    const dialog = getByRole("dialog");
     userEvent.tab();
     userEvent.tab();
     expect(document.activeElement).not.toEqual(inputs[1]);
     fireEvent.keyDown(dialog, { key: "Tab", shiftKey: true });
     fireEvent.keyDown(dialog, { key: "Tab", shiftKey: true });
     expect(document.activeElement).not.toEqual(inputs[0]);
+  });
+  test("Focus travels correctly in a complex tab sequence", () => {
+    const { getAllByRole, queryByRole, getByRole } = render(
+      <DxcDialog>
+        <DxcSelect label="Accept" options={options} />
+        <DxcDateInput label="Older age" />
+        <DxcTooltip label="Text input tooltip label">
+          <DxcTextInput label="Name" />
+        </DxcTooltip>
+        <DxcAlert
+          semantic="error"
+          title="Error"
+          message={{
+            text: "User: arn:aws:xxx::xxxxxxxxxxxx:assumed-role/assure-sandbox-xxxx-xxxxxxxxxxxxxxxxxxxxxxxxxx/sandbox-xxxx-xxxxxxxxxxxxxxxxxx is not authorized to perform: lambda:xxxxxxxxxxxxxx on resource: arn:aws:lambda:us-east-1:xxxxxxxxxxxx:function:sandbox-xxxx-xx-xxxxxxx-xxxxxxx-lambda because no identity-based policy allows the lambda:xxxxxxxxxxxxxx action",
+          }}
+        />
+        <DxcButton label="Cancel" />
+        <DxcButton label="Save" />
+      </DxcDialog>
+    );
+    const select = getAllByRole("combobox")[0];
+    expect(document.activeElement).toEqual(select);
+    select != null && fireEvent.keyDown(select, { key: "ArrowDown", code: "ArrowDown", keyCode: 40, charCode: 40 });
+    expect(queryByRole("listbox")).toBeTruthy();
+    userEvent.tab();
+    userEvent.tab();
+    userEvent.keyboard("{Enter}");
+    expect(getAllByRole("dialog")[1]).toBeTruthy();
+    const dialog = getAllByRole("dialog")[0];
+    dialog != null && userEvent.click(dialog);
+    userEvent.tab();
+    userEvent.tab();
+    userEvent.tab();
+    userEvent.tab();
+    expect(document.activeElement).toEqual(getByRole("button", { name: "Close alert" }));
+    userEvent.tab();
+    userEvent.tab();
+    expect(document.activeElement).toEqual(getByRole("button", { name: "Save" }));
+    userEvent.tab();
+    userEvent.tab();
+    expect(document.activeElement).toEqual(select);
+    userEvent.tab({ shift: true });
+    userEvent.tab({ shift: true });
+    expect(getByRole("button", { name: "Save" })).toBeTruthy();
   });
 });

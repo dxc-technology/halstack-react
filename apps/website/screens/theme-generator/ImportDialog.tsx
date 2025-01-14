@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { DxcButton, DxcDialog, DxcTextarea, DxcHeading, DxcFlex } from "@dxc-technology/halstack-react";
 import { deepMerge } from "./utils";
 import ImportDialogProps, { IndexedThemeInput, IndexedTheme } from "./types";
@@ -19,7 +19,7 @@ const validateInputTheme = (json: string, customThemeSchema: IndexedTheme) => {
     inputComponentNames.forEach((componentName) => {
       const errorMessage =
         (!schemaComponentNames.includes(componentName) && "Invalid component name.") ||
-        (!isArrayIncluded(inputTheme[componentName], customThemeSchema[componentName]) &&
+        (!isArrayIncluded(inputTheme[componentName]!, customThemeSchema[componentName] ?? {}) &&
           `Invalid theme input name in the ${componentName} component.`);
 
       if (errorMessage) throw new Error(errorMessage);
@@ -53,7 +53,7 @@ const ImportDialog = ({ customThemeSchema, setCustomTheme, setDialogVisible }: I
   };
 
   return (
-    <DxcDialog isCloseVisible={false} onBackgroundClick={closeDialog}>
+    <DxcDialog closable={false} onBackgroundClick={closeDialog}>
       <ImportDialogContainer>
         <DxcHeading text="Import theme" level={2} weight="normal" />
         <DxcTextarea

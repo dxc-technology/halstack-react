@@ -1,8 +1,10 @@
+import { ReactNode } from "react";
+
 type Props = {
   /**
    * If true, the close button will be visible.
    */
-  isCloseVisible?: boolean;
+  closable?: boolean;
   /**
    * This function will be called when the user clicks the close button.
    * The responsibility of hiding the dialog lies with the user.
@@ -24,7 +26,7 @@ type Props = {
    * can lead to unpredictable behaviour for keyboard users, affecting
    * the order of focus and focus locking within the dialog.
    */
-  children: React.ReactNode;
+  children: ReactNode;
   /**
    * Value of the tabindex applied to the close button.
    * Note that values greater than 0 are strongly discouraged. It can

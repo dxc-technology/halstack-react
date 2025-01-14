@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import DialogPageLayout from "../../../screens/components/dialog/DialogPageLayout";
-import DialogSpecsPage from "../../../screens/components/dialog/specs/DialogSpecsPage";
+import DialogPageLayout from "screens/components/dialog/DialogPageLayout";
+import DialogSpecsPage from "screens/components/dialog/specs/DialogSpecsPage";
 
 const Specifications = () => {
   return (

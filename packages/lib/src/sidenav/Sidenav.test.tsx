@@ -13,7 +13,7 @@ describe("Sidenav component tests", () => {
     );
     expect(getByText("nav-content-test")).toBeTruthy();
     const link = getByText("Link");
-    expect(link.closest("a").getAttribute("href")).toBe("#");
+    expect(link.closest("a")?.getAttribute("href")).toBe("#");
   });
 
   test("Sidenav renders groups correctly", () => {
@@ -31,8 +31,10 @@ describe("Sidenav component tests", () => {
       </DxcSidenav>
     );
     expect(sidenav.getByText("Collapsable")).toBeTruthy();
-    expect(sidenav.getAllByRole("button")[0].getAttribute("aria-expanded")).toBe("true");
+    let buttons = sidenav.getAllByRole("button");
+    expect(buttons[0]?.getAttribute("aria-expanded")).toBe("true");
     fireEvent.click(sidenav.getByText("Collapsable"));
-    expect(sidenav.getAllByRole("button")[0].getAttribute("aria-expanded")).toBe("false");
+    buttons = sidenav.getAllByRole("button");
+    expect(buttons[0]?.getAttribute("aria-expanded")).toBe("false");
   });
 });

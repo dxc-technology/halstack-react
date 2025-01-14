@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import ProgressBarPageLayout from "../../../screens/components/progress-bar/ProgressBarPageLayout";
-import ProgressBarUsagePage from "../../../screens/components/progress-bar/usage/ProgressBarUsagePage";
+import ProgressBarPageLayout from "screens/components/progress-bar/ProgressBarPageLayout";
+import ProgressBarUsagePage from "screens/components/progress-bar/usage/ProgressBarUsagePage";
 
 const Usage = () => {
   return (

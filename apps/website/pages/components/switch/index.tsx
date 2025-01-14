@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import SwitchPageLayout from "../../../screens/components/switch/SwitchPageLayout";
-import SwitchCodePage from "../../../screens/components/switch/code/SwitchCodePage";
+import SwitchPageLayout from "screens/components/switch/SwitchPageLayout";
+import SwitchCodePage from "screens/components/switch/code/SwitchCodePage";
 
 const Index = () => {
   return (

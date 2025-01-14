@@ -1,12 +1,10 @@
-import React, { forwardRef, Ref, useContext, useEffect, useRef } from "react";
+import { useEffect, forwardRef, Ref, useContext, useRef, useImperativeHandle, KeyboardEvent } from "react";
 import styled from "styled-components";
 import DxcBadge from "../badge/Badge";
 import DxcFlex from "../flex/Flex";
-import DxcIcon from "../icon/Icon";
-import useTheme from "../useTheme";
-import BaseTypography from "../utils/BaseTypography";
-import { NavTabsContext } from "./NavTabsContext";
 import NavTabsPropsType, { TabProps } from "./types";
+import NavTabsContext from "./NavTabsContext";
+import DxcIcon from "../icon/Icon";
 
 const DxcTab = forwardRef(
   (
@@ -14,19 +12,24 @@ const DxcTab = forwardRef(
     ref: Ref<HTMLAnchorElement>
   ): JSX.Element => {
     const tabRef = useRef<HTMLAnchorElement>();
-    const colorsTheme = useTheme();
-    const { iconPosition, tabIndex, focusedLabel } = useContext(NavTabsContext);
+    const { iconPosition, tabIndex, focusedLabel } = useContext(NavTabsContext) ?? {};
+    const innerRef = useRef<HTMLAnchorElement | null>(null);
+    useImperativeHandle(ref, () => innerRef.current!, []);
 
     useEffect(() => {
-      focusedLabel === children.toString() && tabRef?.current?.focus();
+      if (focusedLabel === children.toString()) {
+        tabRef?.current?.focus();
+      }
     }, [focusedLabel]);
 
-    const handleOnKeyDown = (event: React.KeyboardEvent<HTMLAnchorElement>) => {
+    const handleOnKeyDown = (event: KeyboardEvent<HTMLAnchorElement>) => {
       switch (event.key) {
         case " ":
         case "Enter":
           event.preventDefault();
           tabRef?.current?.click();
+          break;
+        default:
           break;
       }
     };
@@ -38,13 +41,16 @@ const DxcTab = forwardRef(
           disabled={disabled}
           active={active}
           iconPosition={iconPosition}
-          hasIcon={icon != null ? true : false}
-          ref={(anchorRef) => {
+          hasIcon={icon != null}
+          ref={(anchorRef: HTMLAnchorElement) => {
             tabRef.current = anchorRef;
 
             if (ref) {
-              if (typeof ref === "function") ref(anchorRef);
-              else (ref as React.MutableRefObject<HTMLAnchorElement | null>).current = anchorRef;
+              if (typeof ref === "function") {
+                ref(anchorRef);
+              } else {
+                innerRef.current = anchorRef;
+              }
             }
           }}
           onKeyDown={handleOnKeyDown}
@@ -60,29 +66,14 @@ const DxcTab = forwardRef(
             </TabIconContainer>
           )}
           <DxcFlex alignItems="center" gap="0.5rem">
-            <BaseTypography
-              color={
-                disabled
-                  ? colorsTheme.navTabs.disabledFontColor
-                  : active
-                    ? colorsTheme.navTabs.selectedFontColor
-                    : colorsTheme.navTabs.unselectedFontColor
-              }
-              fontFamily={colorsTheme.navTabs.fontFamily}
-              fontSize={colorsTheme.navTabs.fontSize}
-              fontStyle={colorsTheme.navTabs.fontStyle}
-              fontWeight={colorsTheme.navTabs.fontWeight}
-              textAlign="center"
-              letterSpacing="0.025em"
-              lineHeight="1.715em"
-            >
+            <Label active={active} disabled={disabled}>
               {children}
-            </BaseTypography>
+            </Label>
             {notificationNumber && !disabled && (
               <DxcBadge
                 mode="notification"
                 size="small"
-                label={typeof notificationNumber === "number" && notificationNumber}
+                label={typeof notificationNumber === "number" ? notificationNumber : undefined}
               />
             )}
           </DxcFlex>
@@ -135,6 +126,30 @@ const Tab = styled.a<{
         outline: 2px solid #33aaff};
       }
   `}
+`;
+
+const Label = styled.span<{
+  disabled: TabProps["disabled"];
+  active: TabProps["active"];
+}>`
+  display: inline;
+  color: ${(props) =>
+    props.disabled
+      ? props.theme.disabledFontColor
+      : props.active
+        ? props.theme.selectedFontColor
+        : props.theme.unselectedFontColor};
+  font-family: ${(props) => props.theme.fontFamily};
+  font-size: ${(props) => props.theme.fontSize};
+  font-style: ${(props) => props.theme.fontStyle};
+  font-weight: ${(props) => props.theme.fontWeight};
+  text-align: center;
+  letter-spacing: 0.025em;
+  line-height: 1.715em;
+  text-decoration: none;
+  text-overflow: unset;
+  white-space: normal;
+  margin: 0;
 `;
 
 const TabIconContainer = styled.div<{

@@ -16,7 +16,6 @@ import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import JsonContainer from "@/common/JsonContainer";
 import bloomTheme from "./examples/bloomTheme";
 import defaultAdvancedTheme from "@/common/themes/advanced-theme.json";
-import content from "screens/components/alert/usage/examples/content";
 
 const sections = [
   {
@@ -69,13 +68,22 @@ const sections = [
               the ones we consider fundamental. The list of configurable properties is small, but it applies at the
               component level.
             </DxcParagraph>
-            <DxcAlert type="info" size="fillParent">
-              We strongly recommend using the{" "}
-              <Link href="/theme-generator/opinionated-theme" passHref legacyBehavior>
-                <DxcLink>opinionated theme generator</DxcLink>
-              </Link>{" "}
-              to create the theme, but you can also create it yourself from scratch.{" "}
-            </DxcAlert>
+            <DxcAlert
+              title="Opinionated theming"
+              semantic="info"
+              message={{
+                text: (
+                  <>
+                    We strongly recommend using the{" "}
+                    <Link href="/theme-generator/opinionated-theme" passHref legacyBehavior>
+                      <DxcLink>opinionated theme generator</DxcLink>
+                    </Link>{" "}
+                    to create the theme, but you can also create it yourself from scratch.{" "}
+                  </>
+                ),
+              }}
+              closable={false}
+            />
             <DxcParagraph>
               Either through the theme-generator or by creating it from scratch, you will have to build a theme
               containing as many objects as components you want to customize. The props of each component are a
@@ -153,37 +161,11 @@ const sections = [
               {
                 title: "Alert",
                 content: (
-                  <DxcTable>
-                    <thead>
-                      <tr>
-                        <th>Theme Input</th>
-                        <th>Tokens (calculation) </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>Base color</td>
-                        <td>
-                          <Code>infoBackgroundColor</Code>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Accent color</td>
-                        <td>
-                          <Code>infoIconColor</Code>
-                          <br />
-                          <br />
-                          <Code>infoBorderColor</Code>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Overlay color</td>
-                        <td>
-                          <Code>overlayColor</Code>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </DxcTable>
+                  <DxcParagraph>
+                    The Alert component does not include theme inputs. The colors used in this component are universal
+                    semantic colors, which we believe should remain unchanged to prevent confusion and ensure
+                    consistency.
+                  </DxcParagraph>
                 ),
               },
               {
@@ -689,7 +671,7 @@ const sections = [
                       <tr>
                         <td>Font color</td>
                         <td>
-                          <Code>hamburguerFontColor</Code>
+                          <Code>hamburgerFontColor</Code>
                         </td>
                       </tr>
                       <tr>
@@ -699,12 +681,12 @@ const sections = [
                         </td>
                       </tr>
                       <tr>
-                        <td>Hamburguer color</td>
+                        <td>Hamburger color</td>
                         <td>
-                          <Code>hamburguerIconColor</Code>
+                          <Code>hamburgerIconColor</Code>
                           <br />
                           <br />
-                          <Code>hamburguerHoverColor</Code> (+90% of lightness)
+                          <Code>hamburgerHoverColor</Code> (+90% of lightness)
                         </td>
                       </tr>
                       <tr>
@@ -1508,13 +1490,22 @@ const sections = [
               components 100% configurable without writing actual code, since some design decisions are structural to
               the component. The list of configurable properties is large, and it applies at the component level.
             </DxcParagraph>
-            <DxcAlert type="info" size="fillParent">
-              We strongly recommend using the{" "}
-              <Link href="/theme-generator/advanced-theme" passHref legacyBehavior>
-                <DxcLink>advanced theme generator</DxcLink>
-              </Link>{" "}
-              to create the theme, but you can also create it yourself from scratch.{" "}
-            </DxcAlert>
+            <DxcAlert
+              title="Advanced theming"
+              semantic="info"
+              message={{
+                text: (
+                  <>
+                    We strongly recommend using the{" "}
+                    <Link href="/theme-generator/advanced-theme" passHref legacyBehavior>
+                      <DxcLink>advanced theme generator</DxcLink>
+                    </Link>{" "}
+                    to create the theme, but you can also create it yourself from scratch.
+                  </>
+                ),
+              }}
+              closable={false}
+            />
             <DxcParagraph>
               Below is an example of a default advanced theme. The number of configurable properties is significantly
               higher than in the previous strategy.

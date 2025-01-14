@@ -1,12 +1,23 @@
 import * as Popover from "@radix-ui/react-popover";
-import { forwardRef, useCallback, useId, useMemo, useRef, useState } from "react";
+import {
+  ChangeEvent,
+  FocusEvent,
+  forwardRef,
+  KeyboardEvent,
+  MouseEvent,
+  useCallback,
+  useContext,
+  useId,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import styled, { ThemeProvider } from "styled-components";
-import { getMargin } from "../common/utils";
 import { spaces } from "../common/variables";
+import { getMargin } from "../common/utils";
 import DxcIcon from "../icon/Icon";
 import { Tooltip, TooltipWrapper } from "../tooltip/Tooltip";
-import useTheme from "../useTheme";
-import useTranslatedLabels from "../useTranslatedLabels";
+import HalstackContext, { HalstackLanguageContext } from "../HalstackContext";
 import useWidth from "../utils/useWidth";
 import Listbox from "./Listbox";
 import {
@@ -18,7 +29,7 @@ import {
   groupsHaveOptions,
   isArrayOfOptionGroups,
   notOptionalCheck,
-} from "./selectUtils";
+} from "./utils";
 import SelectPropsType, { ListOptionType, RefType } from "./types";
 
 const DxcSelect = forwardRef<RefType, SelectPropsType>(
@@ -57,8 +68,8 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
     const selectSearchInputRef = useRef<HTMLInputElement | null>(null);
 
     const width = useWidth(selectRef.current);
-    const colorsTheme = useTheme();
-    const translatedLabels = useTranslatedLabels();
+    const colorsTheme = useContext(HalstackContext);
+    const translatedLabels = useContext(HalstackLanguageContext);
 
     const optionalItem = { label: placeholder, value: "" };
     const filteredOptions = useMemo(() => filterOptionsBySearchValue(options, searchValue), [options, searchValue]);
@@ -72,7 +83,9 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
     );
 
     const openListbox = () => {
-      if (!isOpen && canOpenOptions(options, disabled)) changeIsOpen(true);
+      if (!isOpen && canOpenOptions(options, disabled)) {
+        changeIsOpen(true);
+      }
     };
     const closeListbox = () => {
       if (isOpen) {
@@ -81,83 +94,109 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
       }
     };
 
-    const handleSelectChangeValue = (newOption: ListOptionType) => {
-      let newValue: string | string[];
+    const handleSelectChangeValue = useCallback(
+      (newOption: ListOptionType | undefined) => {
+        if (newOption) {
+          let newValue: string | string[];
 
-      if (multiple) {
-        if ((value ?? innerValue).includes(newOption.value))
-          newValue = (
-            (value && Array.isArray(value) && value) ??
-            (innerValue && Array.isArray(innerValue) && innerValue)
-          ).filter((optionVal) => optionVal !== newOption.value);
-        else
-          newValue = [
-            ...((value && Array.isArray(value) && value) ?? (innerValue && Array.isArray(innerValue) && innerValue)),
-            newOption.value,
-          ];
-      } else newValue = newOption.value;
+          if (multiple) {
+            const currentValue = (value ?? innerValue) as string[];
+            newValue = currentValue.includes(newOption.value)
+              ? currentValue.filter((optionVal) => optionVal !== newOption.value)
+              : [...currentValue, newOption.value];
+          } else newValue = newOption.value;
 
-      value ?? setInnerValue(newValue);
-      notOptionalCheck(newValue, multiple, optional)
-        ? onChange?.({
+          if (value == null) {
+            setInnerValue(newValue);
+          }
+          onChange?.({
             value: newValue as string & string[],
-            error: translatedLabels.formFields.requiredValueErrorMessage,
-          })
-        : onChange?.({ value: newValue as string & string[] });
-    };
+            error: notOptionalCheck(newValue, multiple, optional)
+              ? translatedLabels.formFields.requiredValueErrorMessage
+              : undefined,
+          });
+        }
+      },
+      [multiple, value, innerValue, onChange, optional, translatedLabels]
+    );
+
     const handleSelectOnClick = () => {
-      searchable && selectSearchInputRef.current.focus();
+      if (searchable) {
+        selectSearchInputRef?.current?.focus();
+      }
       if (isOpen) {
         closeListbox();
         setSearchValue("");
-      } else openListbox();
+      } else {
+        openListbox();
+      }
     };
-    const handleSelectOnFocus = (event: React.FocusEvent<HTMLInputElement>) => {
-      if (!event.currentTarget.contains(event.relatedTarget)) searchable && selectSearchInputRef.current.focus();
+    const handleSelectOnFocus = (event: FocusEvent<HTMLInputElement>) => {
+      if (!event.currentTarget.contains(event.relatedTarget) && searchable) {
+        selectSearchInputRef?.current?.focus();
+      }
     };
-    const handleSelectOnBlur = (event: React.FocusEvent<HTMLInputElement>) => {
+    const handleSelectOnBlur = (event: FocusEvent<HTMLInputElement>) => {
       if (!event.currentTarget.contains(event.relatedTarget)) {
         closeListbox();
         setSearchValue("");
 
         const currentValue = value ?? innerValue;
-        notOptionalCheck(currentValue, multiple, optional)
-          ? onBlur?.({
-              value: currentValue as string & string[],
-              error: translatedLabels.formFields.requiredValueErrorMessage,
-            })
-          : onBlur?.({ value: currentValue as string & string[] });
+        if (notOptionalCheck(currentValue, multiple, optional)) {
+          onBlur?.({
+            value: currentValue as string & string[],
+            error: translatedLabels.formFields.requiredValueErrorMessage,
+          });
+        } else {
+          onBlur?.({ value: currentValue as string & string[] });
+        }
       }
     };
-    const handleSelectOnKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
+    const handleSelectOnKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
       switch (event.key) {
         case "Down":
         case "ArrowDown":
           event.preventDefault();
-          singleSelectionIndex !== undefined &&
-          (!isOpen || (visualFocusIndex === -1 && singleSelectionIndex > -1 && singleSelectionIndex <= lastOptionIndex))
-            ? changeVisualFocusIndex(singleSelectionIndex)
-            : changeVisualFocusIndex((visualFocusIndex) => {
-                if (visualFocusIndex < lastOptionIndex) return visualFocusIndex + 1;
-                else if (visualFocusIndex === lastOptionIndex) return 0;
-              });
+          if (
+            singleSelectionIndex != null &&
+            (!isOpen ||
+              (visualFocusIndex === -1 && singleSelectionIndex > -1 && singleSelectionIndex <= lastOptionIndex))
+          ) {
+            changeVisualFocusIndex(singleSelectionIndex);
+          } else {
+            changeVisualFocusIndex((currentVisualFocusIndex) => {
+              if (currentVisualFocusIndex < lastOptionIndex) {
+                return currentVisualFocusIndex + 1;
+              }
+              return 0;
+            });
+          }
           openListbox();
           break;
         case "Up":
         case "ArrowUp":
           event.preventDefault();
-          singleSelectionIndex !== undefined &&
-          (!isOpen || (visualFocusIndex === -1 && singleSelectionIndex > -1 && singleSelectionIndex <= lastOptionIndex))
-            ? changeVisualFocusIndex(singleSelectionIndex)
-            : changeVisualFocusIndex((visualFocusIndex) =>
-                visualFocusIndex === 0 || visualFocusIndex === -1 ? lastOptionIndex : visualFocusIndex - 1
-              );
+          if (
+            singleSelectionIndex != null &&
+            (!isOpen ||
+              (visualFocusIndex === -1 && singleSelectionIndex > -1 && singleSelectionIndex <= lastOptionIndex))
+          ) {
+            changeVisualFocusIndex(singleSelectionIndex);
+          } else {
+            changeVisualFocusIndex((currentVisualFocusIndex) =>
+              currentVisualFocusIndex === 0 || currentVisualFocusIndex === -1
+                ? lastOptionIndex
+                : currentVisualFocusIndex - 1
+            );
+          }
           openListbox();
           break;
         case "Esc":
         case "Escape":
           event.preventDefault();
-          isOpen && event.stopPropagation();
+          if (isOpen) {
+            event.stopPropagation();
+          }
           closeListbox();
           setSearchValue("");
           break;
@@ -166,55 +205,70 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
             let accLength = optional && !multiple ? 1 : 0;
             if (searchable) {
               if (filteredOptions.length > 0) {
-                if (optional && !multiple && visualFocusIndex === 0 && groupsHaveOptions(filteredOptions))
+                if (optional && !multiple && visualFocusIndex === 0 && groupsHaveOptions(filteredOptions)) {
                   handleSelectChangeValue(optionalItem);
-                else
-                  isArrayOfOptionGroups(filteredOptions)
-                    ? groupsHaveOptions(filteredOptions) &&
-                      filteredOptions.some((groupOption) => {
-                        const groupLength = accLength + groupOption.options.length;
-                        groupLength > visualFocusIndex &&
-                          handleSelectChangeValue(groupOption.options[visualFocusIndex - accLength]);
-                        accLength = groupLength;
-                        return groupLength > visualFocusIndex;
-                      })
-                    : handleSelectChangeValue(filteredOptions[visualFocusIndex - accLength]);
-              }
-            } else {
-              if (optional && !multiple && visualFocusIndex === 0) handleSelectChangeValue(optionalItem);
-              else
-                isArrayOfOptionGroups(options)
-                  ? options.some((groupOption) => {
+                } else if (isArrayOfOptionGroups(filteredOptions)) {
+                  if (groupsHaveOptions(filteredOptions)) {
+                    filteredOptions.some((groupOption) => {
                       const groupLength = accLength + groupOption.options.length;
-                      groupLength > visualFocusIndex &&
+                      if (groupLength > visualFocusIndex) {
                         handleSelectChangeValue(groupOption.options[visualFocusIndex - accLength]);
+                      }
                       accLength = groupLength;
                       return groupLength > visualFocusIndex;
-                    })
-                  : handleSelectChangeValue(options[visualFocusIndex - accLength]);
+                    });
+                  }
+                } else {
+                  handleSelectChangeValue(filteredOptions[visualFocusIndex - accLength]);
+                }
+              }
+            } else if (optional && !multiple && visualFocusIndex === 0) {
+              handleSelectChangeValue(optionalItem);
+            } else if (isArrayOfOptionGroups(options)) {
+              options.some((groupOption) => {
+                const groupLength = accLength + groupOption.options.length;
+                if (groupLength > visualFocusIndex) {
+                  handleSelectChangeValue(groupOption.options[visualFocusIndex - accLength]);
+                }
+                accLength = groupLength;
+                return groupLength > visualFocusIndex;
+              });
+            } else {
+              handleSelectChangeValue(options[visualFocusIndex - accLength]);
             }
-            !multiple && closeListbox();
+            if (!multiple) {
+              closeListbox();
+            }
             setSearchValue("");
           }
+          break;
+        default:
           break;
       }
     };
 
-    const handleSearchIOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleSearchIOnChange = (event: ChangeEvent<HTMLInputElement>) => {
       setSearchValue(event.target.value);
       changeVisualFocusIndex(-1);
       openListbox();
     };
 
-    const handleClearOptionsActionOnClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const handleClearOptionsActionOnClick = (event: MouseEvent<HTMLButtonElement>) => {
       event.stopPropagation();
-      value ?? setInnerValue([]);
-      !optional
-        ? onChange?.({ value: [] as string & string[], error: translatedLabels.formFields.requiredValueErrorMessage })
-        : onChange?.({ value: [] as string & string[] });
+      if (value == null) {
+        setInnerValue([]);
+      }
+      if (!optional) {
+        onChange?.({
+          value: [] as string[] as string & string[],
+          error: translatedLabels.formFields.requiredValueErrorMessage,
+        });
+      } else {
+        onChange?.({ value: [] as string[] as string & string[] });
+      }
     };
 
-    const handleClearSearchActionOnClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const handleClearSearchActionOnClick = (event: MouseEvent<HTMLButtonElement>) => {
       event.stopPropagation();
       setSearchValue("");
     };
@@ -222,13 +276,15 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
     const handleOptionOnClick = useCallback(
       (option: ListOptionType) => {
         handleSelectChangeValue(option);
-        !multiple && closeListbox();
+        if (!multiple) {
+          closeListbox();
+        }
         setSearchValue("");
       },
       [handleSelectChangeValue, closeListbox, multiple]
     );
 
-    const handleOnMouseEnter = (event: React.MouseEvent<HTMLSpanElement>) => {
+    const handleOnMouseEnter = (event: MouseEvent<HTMLSpanElement>) => {
       const text = event.currentTarget;
       setHasTooltip(text.scrollWidth > text.clientWidth);
     };
@@ -241,7 +297,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
               id={selectLabelId}
               disabled={disabled}
               onClick={() => {
-                selectRef.current.focus();
+                selectRef?.current?.focus();
               }}
               helperText={helperText}
             >
@@ -268,7 +324,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
                 aria-haspopup="listbox"
                 aria-labelledby={label ? selectLabelId : undefined}
                 aria-activedescendant={visualFocusIndex >= 0 ? `option-${visualFocusIndex}` : undefined}
-                aria-invalid={error ? true : false}
+                aria-invalid={!!error}
                 aria-errormessage={error ? errorId : undefined}
                 aria-required={!disabled && !optional}
               >
@@ -299,10 +355,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
                       disabled={disabled}
                       value={
                         multiple
-                          ? (
-                              (value && Array.isArray(value) && value) ??
-                              (innerValue && Array.isArray(innerValue) && innerValue)
-                            ).join(",")
+                          ? (Array.isArray(value) ? value : Array.isArray(innerValue) ? innerValue : []).join(",")
                           : (value ?? innerValue)
                       }
                       readOnly
@@ -410,14 +463,17 @@ const sizes = {
 const calculateWidth = (margin: SelectPropsType["margin"], size: SelectPropsType["size"]) =>
   size === "fillParent"
     ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
-    : sizes[size];
+    : size && sizes[size];
 
-const SelectContainer = styled.div<{ margin: SelectPropsType["margin"]; size: SelectPropsType["size"] }>`
+const SelectContainer = styled.div<{
+  margin: SelectPropsType["margin"];
+  size: SelectPropsType["size"];
+}>`
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   width: ${(props) => calculateWidth(props.margin, props.size)};
-  ${(props) => props.size !== "fillParent" && "min-width:" + calculateWidth(props.margin, props.size)};
+  ${(props) => props.size !== "fillParent" && `min-width:${calculateWidth(props.margin, props.size)}`};
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
@@ -430,7 +486,10 @@ const SelectContainer = styled.div<{ margin: SelectPropsType["margin"]; size: Se
   font-family: ${(props) => props.theme.fontFamily};
 `;
 
-const Label = styled.label<{ disabled: SelectPropsType["disabled"]; helperText: SelectPropsType["helperText"] }>`
+const Label = styled.label<{
+  disabled: SelectPropsType["disabled"];
+  helperText: SelectPropsType["helperText"];
+}>`
   color: ${(props) => (props.disabled ? props.theme.disabledColor : props.theme.labelFontColor)};
   font-size: ${(props) => props.theme.labelFontSize};
   font-style: ${(props) => props.theme.labelFontStyle};
@@ -453,7 +512,10 @@ const HelperText = styled.span<{ disabled: SelectPropsType["disabled"] }>`
   margin-bottom: 0.25rem;
 `;
 
-const Select = styled.div<{ disabled: SelectPropsType["disabled"]; error: SelectPropsType["error"] }>`
+const Select = styled.div<{
+  disabled: SelectPropsType["disabled"];
+  error: SelectPropsType["error"];
+}>`
   display: flex;
   position: relative;
   align-items: center;
@@ -545,7 +607,10 @@ const SearchableValueContainer = styled.div`
   width: 100%;
 `;
 
-const SelectedOption = styled.span<{ disabled: SelectPropsType["disabled"]; atBackground: boolean }>`
+const SelectedOption = styled.span<{
+  disabled: SelectPropsType["disabled"];
+  atBackground: boolean;
+}>`
   grid-area: 1 / 1 / 1 / 1;
   display: inline-flex;
   align-items: center;
@@ -554,11 +619,14 @@ const SelectedOption = styled.span<{ disabled: SelectPropsType["disabled"]; atBa
   user-select: none;
   overflow: hidden;
 
-  color: ${(props) => {
-    if (props.disabled) return props.theme.disabledColor;
-    else if (props.atBackground) return props.theme.placeholderFontColor;
-    else return props.theme.valueFontColor;
-  }};
+  color: ${(props) =>
+    props.disabled
+      ? props.theme.disabledColor
+      : props.atBackground
+        ? props.theme.placeholderFontColor
+        : props.theme.valueFontColor};
+
+  font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.valueFontSize};
   font-style: ${(props) => props.theme.valueFontStyle};
   font-weight: ${(props) => props.theme.valueFontWeight};

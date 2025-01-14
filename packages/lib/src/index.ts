@@ -1,4 +1,5 @@
 import "./tokens.css";
+import "./fonts.css";
 
 export { default as DxcAccordion } from "./accordion/Accordion";
 export { default as DxcAccordionGroup } from "./accordion-group/AccordionGroup";

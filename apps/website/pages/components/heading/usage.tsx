@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import HeadingPageLayout from "../../../screens/components/heading/HeadingPageLayout";
-import HeadingUsagePage from "../../../screens/components/heading/usage/HeadingUsagePage";
+import HeadingPageLayout from "screens/components/heading/HeadingPageLayout";
+import HeadingUsagePage from "screens/components/heading/usage/HeadingUsagePage";
 
 const Usage = () => {
   return (

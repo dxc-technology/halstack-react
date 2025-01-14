@@ -1,3 +1,4 @@
+import { Meta, StoryObj } from "@storybook/react";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcTypography from "./Typography";
@@ -5,9 +6,9 @@ import DxcTypography from "./Typography";
 export default {
   title: "Typography",
   component: DxcTypography,
-};
+} as Meta<typeof DxcTypography>;
 
-export const Chromatic = () => (
+const Typography = () => (
   <>
     <ExampleContainer>
       <Title title="Default Typography" theme="light" level={4} />
@@ -193,3 +194,9 @@ export const Chromatic = () => (
     </ExampleContainer>
   </>
 );
+
+type Story = StoryObj<typeof DxcTypography>;
+
+export const Chromatic: Story = {
+  render: Typography,
+};

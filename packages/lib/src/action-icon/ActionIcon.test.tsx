@@ -15,7 +15,6 @@ describe("Action icon component tests", () => {
     fireEvent.click(action);
     expect(onClick).toHaveBeenCalled();
   });
-
   test("On click is not called when disabled", () => {
     const onClick = jest.fn();
     const { getByRole } = render(<DxcActionIcon disabled icon={iconSVG} title="favourite" onClick={onClick} />);
@@ -23,7 +22,6 @@ describe("Action icon component tests", () => {
     fireEvent.click(action);
     expect(onClick).toHaveBeenCalledTimes(0);
   });
-
   test("Renders with correct accessibility attributes", () => {
     const { getByRole } = render(<DxcActionIcon icon={iconSVG} title="favourite" tabIndex={1} />);
 

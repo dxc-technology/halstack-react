@@ -1,4 +1,4 @@
 import { createContext } from "react";
 import { NumberInputContextProps } from "./types";
 
-export const NumberInputContext = createContext<NumberInputContextProps | null>(null);
+export default createContext<NumberInputContextProps | null>(null);

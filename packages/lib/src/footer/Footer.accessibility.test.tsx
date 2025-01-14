@@ -1,13 +1,10 @@
 import { render } from "@testing-library/react";
-import { axe } from "../../test/accessibility/axe-helper.js";
-import { disabledRules as rules } from "../../test/accessibility/rules/specific/footer/disabledRules.js";
+import { axe, formatRules } from "../../test/accessibility/axe-helper";
+import { disabledRules as rules } from "../../test/accessibility/rules/specific/footer/disabledRules";
 import DxcFooter from "./Footer";
 
 const disabledRules = {
-  rules: rules.reduce((rulesObj, rule) => {
-    rulesObj[rule] = { enabled: false };
-    return rulesObj;
-  }, {}),
+  rules: formatRules(rules),
 };
 
 const social = [

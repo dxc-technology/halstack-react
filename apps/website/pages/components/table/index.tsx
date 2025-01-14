@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import TableCodePage from "../../../screens/components/table/code/TableCodePage";
-import TablePageLayout from "../../../screens/components/table/TablePageLayout";
+import TableCodePage from "screens/components/table/code/TableCodePage";
+import TablePageLayout from "screens/components/table/TablePageLayout";
 
 const Index = () => {
   return (

@@ -1,18 +1,13 @@
 import styled from "styled-components";
 
-type IconPropsType = {
-  icon: string;
-};
-
-const DxcIcon = ({ icon }: IconPropsType): JSX.Element => {
-  let filled = false;
-  let iconName = icon;
-  if (icon.startsWith("filled_")) {
-    filled = true;
-    iconName = icon.replace(/filled_/g, "");
-  }
-  return <IconContainer role="img" aria-label={icon} filled={filled} icon={iconName} aria-hidden="true" />;
-};
+const DxcIcon = ({ icon }: { icon: string }): JSX.Element => (
+  <IconContainer
+    role="img"
+    filled={icon.startsWith("filled_")}
+    icon={icon.startsWith("filled_") ? icon.replace(/filled_/g, "") : icon}
+    aria-hidden="true"
+  />
+);
 
 const IconContainer = styled.span<{
   icon: string;

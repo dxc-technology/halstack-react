@@ -65,9 +65,9 @@ describe("Paginator component tests", () => {
       <DxcPaginator currentPage={1} itemsPerPage={10} totalItems={27} showGoToPage onPageChange={onClick} />
     );
     const goToPageSelect = getAllByRole("combobox")[0];
-    await userEvent.click(goToPageSelect);
+    goToPageSelect && (await userEvent.click(goToPageSelect));
     const goToPageOption = getByText("2");
-    await userEvent.click(goToPageOption);
+    goToPageOption && (await userEvent.click(goToPageOption));
     expect(onClick).toHaveBeenCalledWith(2);
   });
 
@@ -77,7 +77,7 @@ describe("Paginator component tests", () => {
       <DxcPaginator onPageChange={onClick} currentPage={1} itemsPerPage={10} totalItems={20} />
     );
     const nextButton = getAllByRole("button")[2];
-    await userEvent.click(nextButton);
+    nextButton && (await userEvent.click(nextButton));
     expect(onClick).toHaveBeenCalled();
   });
 
@@ -95,9 +95,9 @@ describe("Paginator component tests", () => {
       />
     );
     const select = getAllByText("10")[0];
-    await userEvent.click(select);
+    select && (await userEvent.click(select));
     const itemPerPageOption = getByText("15");
-    await userEvent.click(itemPerPageOption);
+    itemPerPageOption && (await userEvent.click(itemPerPageOption));
     expect(onClick).toHaveBeenCalledWith(15);
   });
 
@@ -107,8 +107,8 @@ describe("Paginator component tests", () => {
       <DxcPaginator onPageChange={onClick} currentPage={2} itemsPerPage={10} totalItems={20} />
     );
     const nextButton = getAllByRole("button")[2];
-    expect(nextButton.hasAttribute("disabled")).toBeTruthy();
-    await userEvent.click(nextButton);
+    expect(nextButton?.hasAttribute("disabled")).toBeTruthy();
+    nextButton && (await userEvent.click(nextButton));
     expect(onClick).toHaveBeenCalledTimes(0);
   });
 
@@ -118,8 +118,8 @@ describe("Paginator component tests", () => {
       <DxcPaginator onPageChange={onClick} currentPage={2} itemsPerPage={10} totalItems={20} />
     );
     const lastButton = getAllByRole("button")[3];
-    expect(lastButton.hasAttribute("disabled")).toBeTruthy();
-    await userEvent.click(lastButton);
+    expect(lastButton?.hasAttribute("disabled")).toBeTruthy();
+    lastButton && (await userEvent.click(lastButton));
     expect(onClick).toHaveBeenCalledTimes(0);
   });
 
@@ -129,8 +129,8 @@ describe("Paginator component tests", () => {
       <DxcPaginator onPageChange={onClick} currentPage={1} itemsPerPage={10} totalItems={20} />
     );
     const lastButton = getAllByRole("button")[0];
-    expect(lastButton.hasAttribute("disabled")).toBeTruthy();
-    await userEvent.click(lastButton);
+    expect(lastButton?.hasAttribute("disabled")).toBeTruthy();
+    lastButton && (await userEvent.click(lastButton));
     expect(onClick).toHaveBeenCalledTimes(0);
   });
 
@@ -140,8 +140,8 @@ describe("Paginator component tests", () => {
       <DxcPaginator onPageChange={onClick} currentPage={1} itemsPerPage={10} totalItems={20} />
     );
     const lastButton = getAllByRole("button")[1];
-    expect(lastButton.hasAttribute("disabled")).toBeTruthy();
-    await userEvent.click(lastButton);
+    expect(lastButton?.hasAttribute("disabled")).toBeTruthy();
+    lastButton && (await userEvent.click(lastButton));
     expect(onClick).toHaveBeenCalledTimes(0);
   });
 
@@ -154,10 +154,10 @@ describe("Paginator component tests", () => {
     const prevButton = getAllByRole("button")[1];
     const nextButton = getAllByRole("button")[2];
     const lastButton = getAllByRole("button")[3];
-    expect(firstButton.hasAttribute("disabled")).toBeFalsy();
-    expect(prevButton.hasAttribute("disabled")).toBeFalsy();
-    expect(nextButton.hasAttribute("disabled")).toBeTruthy();
-    expect(lastButton.hasAttribute("disabled")).toBeTruthy();
+    expect(firstButton?.hasAttribute("disabled")).toBeFalsy();
+    expect(prevButton?.hasAttribute("disabled")).toBeFalsy();
+    expect(nextButton?.hasAttribute("disabled")).toBeTruthy();
+    expect(lastButton?.hasAttribute("disabled")).toBeTruthy();
   });
 
   test("First and previous buttons are disable in first page", () => {
@@ -169,10 +169,10 @@ describe("Paginator component tests", () => {
     const prevButton = getAllByRole("button")[1];
     const nextButton = getAllByRole("button")[2];
     const lastButton = getAllByRole("button")[3];
-    expect(firstButton.hasAttribute("disabled")).toBeTruthy();
-    expect(prevButton.hasAttribute("disabled")).toBeTruthy();
-    expect(nextButton.hasAttribute("disabled")).toBeFalsy();
-    expect(lastButton.hasAttribute("disabled")).toBeFalsy();
+    expect(firstButton?.hasAttribute("disabled")).toBeTruthy();
+    expect(prevButton?.hasAttribute("disabled")).toBeTruthy();
+    expect(nextButton?.hasAttribute("disabled")).toBeFalsy();
+    expect(lastButton?.hasAttribute("disabled")).toBeFalsy();
   });
 
   test("itemsPerPage is 0 and showGoToPage is true", () => {

@@ -1,21 +1,46 @@
-type SVG = React.ReactNode & React.SVGProps<SVGSVGElement>;
+import { ReactNode } from "react";
+import { SVG } from "../common/utils";
+
 type Action = {
+  /**
+   * The icon of the action. It can be a string with the name of the icon or an SVG component.
+   */
   icon?: string | SVG;
+  /**
+   * The label of the action.
+   */
   label: string;
+  /**
+   * The function that will be executed when the user clicks on the action button.
+   */
   onClick: () => void;
 };
 
 type CommonProps = {
+  /**
+   * Tertiary button which performs a custom action, specified by the user.
+   */
   action?: Action;
+  /**
+   * Message to be displayed as a toast.
+   */
   message: string;
 };
 type DefaultToast = CommonProps & {
+  /**
+   * Material Symbol name or SVG element as the icon that will be placed next to the panel label. 
+   * When using Material Symbols, replace spaces with underscores. 
+   * By default they are outlined if you want it to be filled prefix the symbol name with "filled_".
+   */
   icon?: string | SVG;
 };
 type LoadingToast = CommonProps & {
   loading: boolean;
 };
 type SemanticToast = CommonProps & {
+  /**
+   * Flag that allows to hide the semantic icon of the toast.
+   */
   hideSemanticIcon?: boolean;
 };
 type ToastType = DefaultToast | LoadingToast | SemanticToast;
@@ -27,9 +52,7 @@ type QueuedToast = ToastType & {
   semantic: Semantic;
 };
 
-type ToastContextType = {
-  add: (toast: ToastType, semantic: Semantic) => () => void;
-};
+type ToastContextType = (toast: ToastType, semantic: Semantic) => () => void;
 
 type ToastPropsType = {
   action?: Action;
@@ -42,7 +65,17 @@ type ToastPropsType = {
   hideSemanticIcon?: boolean;
 };
 
-type ToastsQueuePropsType = { duration?: number; children: React.ReactNode };
+type ToastsQueuePropsType = { 
+  /**
+   * Duration in milliseconds before a toast automatically hides itself. 
+   * The range goes from 3000ms to 5000ms, any other value will not be taken into consideration.
+   */
+  duration?: number;
+  /**
+   * Tree of components from which the useToast hook can be triggered.
+   */
+  children: ReactNode;
+};
 
 export default ToastPropsType;
 export type {

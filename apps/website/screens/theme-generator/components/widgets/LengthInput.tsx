@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import StyledInput from "./common/StyledInput";
 import StyledSelect from "./common/StyledSelect";
 import ThemeInputWidgetProps from "./common/types";

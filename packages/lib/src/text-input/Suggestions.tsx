@@ -1,72 +1,9 @@
-import { memo, useEffect, useRef } from "react";
+import { memo, useContext, useEffect, useRef } from "react";
 import styled from "styled-components";
-import useTranslatedLabels from "../useTranslatedLabels";
+import { HalstackLanguageContext } from "../HalstackContext";
 import Suggestion from "./Suggestion";
 import { SuggestionsProps } from "./types";
 import DxcIcon from "../icon/Icon";
-
-const Suggestions = ({
-  id,
-  value,
-  suggestions,
-  visualFocusIndex,
-  highlightedSuggestions,
-  searchHasErrors,
-  isSearching,
-  suggestionOnClick,
-  styles,
-}: SuggestionsProps): JSX.Element => {
-  const translatedLabels = useTranslatedLabels();
-  const listboxRef = useRef(null);
-
-  useEffect(() => {
-    const visualFocusedOptionEl = listboxRef?.current?.querySelectorAll("[role='option']")[visualFocusIndex];
-    visualFocusedOptionEl?.scrollIntoView?.({ block: "nearest", inline: "start" });
-  }, [visualFocusIndex]);
-
-  return (
-    <SuggestionsContainer
-      id={id}
-      error={searchHasErrors ? true : false}
-      onMouseDown={(event) => {
-        event.preventDefault();
-      }}
-      ref={listboxRef}
-      role="listbox"
-      style={styles}
-      aria-label="Suggestions"
-    >
-      {!isSearching &&
-        !searchHasErrors &&
-        suggestions.length > 0 &&
-        suggestions.map((suggestion, index) => (
-          <Suggestion
-            key={`${id}-suggestion-${index}`}
-            id={`${id}-suggestion-${index}`}
-            value={value}
-            onClick={suggestionOnClick}
-            suggestion={suggestion}
-            isLast={index === suggestions.length - 1}
-            visuallyFocused={visualFocusIndex === index}
-            highlighted={highlightedSuggestions}
-          />
-        ))}
-      {isSearching && (
-        <SuggestionsSystemMessage role="option">{translatedLabels.textInput.searchingMessage}</SuggestionsSystemMessage>
-      )}
-      {searchHasErrors && (
-        <span role="option">
-          <SuggestionsError role="alert" aria-live="assertive">
-            <SuggestionsErrorIcon>
-              <DxcIcon icon="filled_error" />
-            </SuggestionsErrorIcon>
-            {translatedLabels.textInput.fetchingDataErrorMessage}
-          </SuggestionsError>
-        </span>
-      )}
-    </SuggestionsContainer>
-  );
-};
 
 const SuggestionsContainer = styled.ul<{ error: boolean }>`
   box-sizing: border-box;
@@ -113,5 +50,71 @@ const SuggestionsError = styled.span`
   line-height: 1.715em;
   color: ${(props) => props.theme.errorListDialogFontColor};
 `;
+
+const Suggestions = ({
+  id,
+  value,
+  suggestions,
+  visualFocusIndex,
+  highlightedSuggestions,
+  searchHasErrors,
+  isSearching,
+  suggestionOnClick,
+  styles,
+}: SuggestionsProps): JSX.Element => {
+  const translatedLabels = useContext(HalstackLanguageContext);
+  const listboxRef = useRef<HTMLUListElement | null>(null);
+
+  useEffect(() => {
+    const visualFocusedOptionEl = listboxRef?.current?.querySelectorAll("[role='option']")[visualFocusIndex];
+    visualFocusedOptionEl?.scrollIntoView?.({
+      block: "nearest",
+      inline: "start",
+    });
+  }, [visualFocusIndex]);
+
+  return (
+    <SuggestionsContainer
+      id={id}
+      error={!!searchHasErrors}
+      onMouseDown={(event) => {
+        event.preventDefault();
+      }}
+      ref={listboxRef}
+      role="listbox"
+      style={styles}
+      aria-label="Suggestions"
+    >
+      {!isSearching &&
+        !searchHasErrors &&
+        suggestions.length > 0 &&
+        suggestions.map((suggestion, index) => (
+          <Suggestion
+            key={`${id}-suggestion-${index}`}
+            id={`${id}-suggestion-${index}`}
+            value={value}
+            onClick={suggestionOnClick}
+            suggestion={suggestion}
+            isLast={index === suggestions.length - 1}
+            visuallyFocused={visualFocusIndex === index}
+            highlighted={highlightedSuggestions}
+          />
+        ))}
+      {isSearching && (
+        <SuggestionsSystemMessage role="option">{translatedLabels.textInput.searchingMessage}</SuggestionsSystemMessage>
+      )}
+      {searchHasErrors && (
+        <span role="option">
+          <SuggestionsError role="alert" aria-live="assertive">
+            <SuggestionsErrorIcon>
+              <DxcIcon icon="filled_error" />
+            </SuggestionsErrorIcon>
+            {translatedLabels.textInput.fetchingDataErrorMessage}
+          </SuggestionsError>
+        </span>
+      )}
+    </SuggestionsContainer>
+  );
+};
 
 export default memo(Suggestions);

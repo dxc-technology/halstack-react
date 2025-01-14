@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import TextInputPageLayout from "../../../screens/components/text-input/TextInputPageLayout";
-import TextInputUsagePage from "../../../screens/components/text-input/usage/TextInputUsagePage";
+import TextInputPageLayout from "screens/components/text-input/TextInputPageLayout";
+import TextInputUsagePage from "screens/components/text-input/usage/TextInputUsagePage";
 
 const Usage = () => {
   return (

@@ -1,5 +1,5 @@
 import { render } from "@testing-library/react";
-import { axe } from "../../test/accessibility/axe-helper.js";
+import { axe } from "../../test/accessibility/axe-helper";
 import DxcBadge from "./Badge";
 import DxcFlex from "../flex/Flex";
 

@@ -1,151 +1,10 @@
-import { forwardRef, useId, useMemo, useState } from "react";
+import { ChangeEvent, forwardRef, MouseEvent, useContext, useId, useMemo, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import { getMargin } from "../common/utils";
-import { spaces } from "../common/variables";
 import DxcTextInput from "../text-input/TextInput";
-import useTheme from "../useTheme";
+import { spaces } from "../common/variables";
+import { getMargin } from "../common/utils";
+import HalstackContext from "../HalstackContext";
 import SliderPropsType, { RefType } from "./types";
-
-const DxcSlider = forwardRef<RefType, SliderPropsType>(
-  (
-    {
-      label = "",
-      name = "",
-      defaultValue,
-      value,
-      helperText = "",
-      minValue = 0,
-      maxValue = 100,
-      step = 1,
-      showLimitsValues = false,
-      showInput = false,
-      disabled = false,
-      marks = false,
-      onChange,
-      onDragEnd,
-      labelFormatCallback,
-      margin,
-      size = "fillParent",
-    },
-    ref
-  ): JSX.Element => {
-    const labelId = `label-${useId()}`;
-    const [innerValue, setInnerValue] = useState(defaultValue ?? 0);
-    const [dragging, setDragging] = useState(false);
-    const colorsTheme = useTheme();
-    const isFirefox = navigator?.userAgent.indexOf("Firefox") !== -1;
-
-    const minLabel = useMemo(
-      () => (labelFormatCallback ? labelFormatCallback(minValue) : minValue),
-      [labelFormatCallback, minValue]
-    );
-
-    const maxLabel = useMemo(
-      () => (labelFormatCallback ? labelFormatCallback(maxValue) : maxValue),
-      [labelFormatCallback, maxValue]
-    );
-
-    const tickMarks = useMemo(() => {
-      const numberOfMarks = Math.floor(maxValue / step - minValue / step);
-      const range = maxValue - minValue;
-      const ticks = [];
-      let index = 0;
-
-      if (marks) {
-        while (index <= numberOfMarks) {
-          ticks.push(
-            <TickMark
-              disabled={disabled}
-              stepPosition={(step * index) / range}
-              stepValue={(value ?? innerValue) / maxValue}
-              key={`tickmark-${index}-${labelId}`}
-            />
-          );
-
-          index++;
-        }
-        return ticks;
-      } else return null;
-    }, [minValue, maxValue, step, value, innerValue]);
-
-    const handleSliderChange = (event) => {
-      const valueToCheck = event.target.value;
-      (valueToCheck !== value || valueToCheck !== innerValue) && setInnerValue(valueToCheck);
-      onChange?.(valueToCheck);
-    };
-
-    const handleSliderDragging = () => {
-      setDragging(true);
-    };
-
-    const handleSliderOnChangeCommitted = (event) => {
-      if (dragging) {
-        setDragging(false);
-        onDragEnd?.(event.target.value);
-      }
-    };
-
-    const handlerInputChange = (event) => {
-      const intValue = parseInt(event.value, 10);
-      if (value == null) {
-        if (!Number.isNaN(intValue)) setInnerValue(intValue > maxValue ? maxValue : intValue);
-      }
-      if (!Number.isNaN(intValue)) {
-        onChange?.(intValue > maxValue ? maxValue : intValue);
-      }
-    };
-
-    return (
-      <ThemeProvider theme={colorsTheme.slider}>
-        <Container margin={margin} size={size} ref={ref}>
-          <Label id={labelId} disabled={disabled}>
-            {label}
-          </Label>
-          <HelperText disabled={disabled}>{helperText}</HelperText>
-          <SliderContainer>
-            {showLimitsValues && <MinLabelContainer disabled={disabled}>{minLabel}</MinLabelContainer>}
-            <SliderInputContainer>
-              <SliderInput
-                role="slider"
-                type="range"
-                value={value != null && value >= 0 ? value : innerValue}
-                min={minValue}
-                max={maxValue}
-                step={step}
-                disabled={disabled}
-                aria-labelledby={labelId}
-                aria-orientation="horizontal"
-                aria-valuemax={maxValue}
-                aria-valuemin={minValue}
-                aria-valuenow={value != null && value >= 0 ? value : innerValue}
-                onChange={handleSliderChange}
-                onMouseUp={handleSliderOnChangeCommitted}
-                onMouseDown={handleSliderDragging}
-              />
-              {marks && <MarksContainer isFirefox={isFirefox}>{tickMarks}</MarksContainer>}
-            </SliderInputContainer>
-            {showLimitsValues && (
-              <MaxLabelContainer disabled={disabled} step={step}>
-                {maxLabel}
-              </MaxLabelContainer>
-            )}
-            {showInput && (
-              <StyledTextInput>
-                <DxcTextInput
-                  name={name}
-                  value={value != null && value >= 0 ? value.toString() : innerValue.toString()}
-                  disabled={disabled}
-                  onChange={handlerInputChange}
-                  size="fillParent"
-                />
-              </StyledTextInput>
-            )}
-          </SliderContainer>
-        </Container>
-      </ThemeProvider>
-    );
-  }
-);
 
 const sizes = {
   medium: "360px",
@@ -156,17 +15,20 @@ const sizes = {
 const calculateWidth = (margin: SliderPropsType["margin"], size: SliderPropsType["size"]) =>
   size === "fillParent"
     ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
-    : sizes[size];
+    : size && sizes[size];
 
 const getChromeStyles = () => `
   width: 100%;
   margin-right: 4px;`;
 
-const getFireFoxStyles = () => `
+const getFirefoxStyles = () => `
   width: calc(100% - 16px);
   margin-right: 3px;`;
 
-const Container = styled.div<{ margin: SliderPropsType["margin"]; size: SliderPropsType["size"] }>`
+const Container = styled.div<{
+  margin: SliderPropsType["margin"];
+  size: SliderPropsType["size"];
+}>`
   display: flex;
   flex-direction: column;
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
@@ -212,13 +74,17 @@ const SliderInput = styled.input<{
   vertical-align: middle;
   -webkit-appearance: none;
   background-color: ${(props) =>
-    props.disabled ? props.theme.disabledTotalLineColor + "61" : props.theme.totalLineColor};
+    props.disabled ? `${props.theme.disabledTotalLineColor}61` : props.theme.totalLineColor};
   background-image: ${(props) =>
     props.disabled
       ? `linear-gradient(${props.theme.disabledTrackLineColor}, ${props.theme.disabledTrackLineColor})`
       : `linear-gradient(${props.theme.trackLineColor}, ${props.theme.trackLineColor})`};
   background-repeat: no-repeat;
-  background-size: ${(props) => ((props.value - props.min) * 100) / (props.max - props.min) + "% 100%"};
+  background-size: ${(props) =>
+    props.value != null &&
+    props.min != null &&
+    props.max != null &&
+    `${((props.value - props.min) * 100) / (props.max - props.min)}% 100%`};
   border-radius: 5px;
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
   &::-webkit-slider-runnable-track {
@@ -238,24 +104,20 @@ const SliderInput = styled.input<{
     background: ${(props) =>
       props.disabled ? props.theme.disabledThumbBackgroundColor : props.theme.thumbBackgroundColor};
     &:active {
-      ${(props) => {
-        if (!props.disabled) {
-          return `
+      ${(props) =>
+        !props.disabled &&
+        `
           background: ${props.theme.activeThumbBackgroundColor};
-            transform: scale(1.16667);`;
-        }
-      }}
+            transform: scale(1.16667);`}
     }
     &:hover {
-      ${(props) => {
-        if (!props.disabled) {
-          return `height: ${props.theme.hoverThumbHeight};
+      ${(props) =>
+        !props.disabled &&
+        `height: ${props.theme.hoverThumbHeight};
           width: ${props.theme.hoverThumbWidth};
           transform: scale(1.16667);
           transform-origin: center center;
-          background: ${props.theme.hoverThumbBackgroundColor};`;
-        }
-      }}
+          background: ${props.theme.hoverThumbBackgroundColor};`}
     }
   }
   &::-moz-range-track {
@@ -277,15 +139,13 @@ const SliderInput = styled.input<{
       transform: scale(1.16667);
     }
     &:hover {
-      ${(props) => {
-        if (!props.disabled) {
-          return `height: ${props.theme.hoverThumbHeight};
+      ${(props) =>
+        !props.disabled &&
+        `height: ${props.theme.hoverThumbHeight};
           width: ${props.theme.hoverThumbWidth};
           transform: scale(1.16667);
           transform-origin: center center;
-          background: ${props.theme.hoverThumbBackgroundColor};`;
-        }
-      }}
+          background: ${props.theme.hoverThumbBackgroundColor};`}
     }
   }
   &:focus {
@@ -311,7 +171,6 @@ const LimitLabelContainer = styled.span<{
   disabled: SliderPropsType["disabled"];
 }>`
   color: ${(props) => (props.disabled ? props.theme.disabledLimitValuesFontColor : props.theme.limitValuesFontColor)};
-
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.limitValuesFontSize};
   font-style: ${(props) => props.theme.limitValuesFontStyle};
@@ -341,7 +200,7 @@ const SliderInputContainer = styled.div`
 `;
 
 const MarksContainer = styled.div<{ isFirefox: boolean }>`
-  ${(props) => (props.isFirefox ? getFireFoxStyles() : getChromeStyles())}
+  ${(props) => (props.isFirefox ? getFirefoxStyles() : getChromeStyles())}
   position: absolute;
   pointer-events: none;
   height: 100%;
@@ -361,12 +220,152 @@ const TickMark = styled.span<{
   width: ${(props) => props.theme.tickWidth};
   border-radius: 18px;
   left: ${(props) => `calc(${props.stepPosition} * 100%)`};
-  z-index: ${(props) => `${props.stepPosition <= props.stepValue ? "-1" : "0"}`};
+  z-index: ${(props) => props.stepValue != null && `${props.stepPosition <= props.stepValue ? "-1" : "0"}`};
 `;
 
-const StyledTextInput = styled.div`
+const TextInputContainer = styled.div`
   margin-left: ${(props) => props.theme.inputMarginLeft};
   max-width: 70px;
 `;
+
+const DxcSlider = forwardRef<RefType, SliderPropsType>(
+  (
+    {
+      label = "",
+      name = "",
+      defaultValue,
+      value,
+      helperText = "",
+      minValue = 0,
+      maxValue = 100,
+      step = 1,
+      showLimitsValues = false,
+      showInput = false,
+      disabled = false,
+      marks = false,
+      onChange,
+      onDragEnd,
+      labelFormatCallback,
+      margin,
+      size = "fillParent",
+    },
+    ref
+  ): JSX.Element => {
+    const labelId = `label-${useId()}`;
+    const [innerValue, setInnerValue] = useState(defaultValue ?? 0);
+    const [dragging, setDragging] = useState(false);
+    const colorsTheme = useContext(HalstackContext);
+    const isFirefox = navigator.userAgent.indexOf("Firefox") !== -1;
+
+    const minLabel = useMemo(
+      () => (labelFormatCallback ? labelFormatCallback(minValue) : minValue),
+      [labelFormatCallback, minValue]
+    );
+
+    const maxLabel = useMemo(
+      () => (labelFormatCallback ? labelFormatCallback(maxValue) : maxValue),
+      [labelFormatCallback, maxValue]
+    );
+
+    const tickMarks = useMemo(() => {
+      const numberOfMarks = Math.floor(maxValue / step - minValue / step);
+      const range = maxValue - minValue;
+      const ticks = [];
+
+      if (marks) {
+        for (let index = 0; index <= numberOfMarks; index++) {
+          ticks.push(
+            <TickMark
+              disabled={disabled}
+              stepPosition={(step * index) / range}
+              stepValue={(value ?? innerValue) / maxValue}
+              key={`tickmark-${index}`}
+            />
+          );
+        }
+        return ticks;
+      }
+      return null;
+    }, [minValue, maxValue, step, value, innerValue]);
+
+    const handleSliderChange = (event: ChangeEvent<HTMLInputElement>) => {
+      const intValue = parseInt(event.target.value, 10);
+      if (intValue !== value || intValue !== innerValue) {
+        setInnerValue(intValue);
+      }
+      onChange?.(intValue);
+    };
+
+    const handleSliderDragging = () => {
+      setDragging(true);
+    };
+
+    const handleSliderOnChangeCommitted = (event: MouseEvent<HTMLInputElement>) => {
+      const intValue = parseInt((event.target as HTMLInputElement).value, 10);
+      if (dragging) {
+        setDragging(false);
+        onDragEnd?.(intValue);
+      }
+    };
+
+    const handlerInputChange = (event: { value: string; error?: string }) => {
+      const intValue = parseInt(event.value, 10);
+      if (!Number.isNaN(intValue)) {
+        if (value == null) setInnerValue(intValue > maxValue ? maxValue : intValue);
+        onChange?.(intValue > maxValue ? maxValue : intValue);
+      }
+    };
+
+    return (
+      <ThemeProvider theme={colorsTheme.slider}>
+        <Container margin={margin} size={size} ref={ref}>
+          <Label id={labelId} disabled={disabled}>
+            {label}
+          </Label>
+          <HelperText disabled={disabled}>{helperText}</HelperText>
+          <SliderContainer>
+            {showLimitsValues && <MinLabelContainer disabled={disabled}>{minLabel}</MinLabelContainer>}
+            <SliderInputContainer>
+              <SliderInput
+                role="slider"
+                type="range"
+                value={value != null && value >= 0 ? value : innerValue}
+                min={minValue}
+                max={maxValue}
+                step={step}
+                disabled={disabled}
+                aria-labelledby={labelId}
+                aria-orientation="horizontal"
+                aria-valuemax={maxValue}
+                aria-valuemin={minValue}
+                aria-valuenow={value != null && value >= 0 ? value : innerValue}
+                onChange={handleSliderChange}
+                onMouseUp={handleSliderOnChangeCommitted}
+                onMouseDown={handleSliderDragging}
+              />
+              {marks && <MarksContainer isFirefox={isFirefox}>{tickMarks}</MarksContainer>}
+            </SliderInputContainer>
+            {showLimitsValues && (
+              <MaxLabelContainer disabled={disabled} step={step}>
+                {maxLabel}
+              </MaxLabelContainer>
+            )}
+            {showInput && (
+              <TextInputContainer>
+                <DxcTextInput
+                  name={name}
+                  value={value != null && value >= 0 ? value.toString() : innerValue.toString()}
+                  disabled={disabled}
+                  onChange={handlerInputChange}
+                  size="fillParent"
+                />
+              </TextInputContainer>
+            )}
+          </SliderContainer>
+        </Container>
+      </ThemeProvider>
+    );
+  }
+);
 
 export default DxcSlider;

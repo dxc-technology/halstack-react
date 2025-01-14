@@ -1,5 +1,6 @@
 import { DxcFlex } from "@dxc-technology/halstack-react";
 import HeadingLink from "./HeadingLink";
+import { ReactNode } from "react";
 
 type LevelEnum = 1 | 2 | 3 | 4 | 5;
 
@@ -7,7 +8,7 @@ export type SectionType = {
   title: string;
   level?: LevelEnum;
   subSections?: SectionType[];
-  content?: React.ReactNode;
+  content?: ReactNode;
   navSubtitle?: string;
 };
 

@@ -4,11 +4,6 @@
     "titleFontColor": "color",
     "assistiveTextFontColor": "color"
   },
-  "alert": {
-    "baseColor": "color",
-    "accentColor": "color",
-    "overlayColor": "color"
-  },
   "button": {
     "baseColor": "color",
     "primaryFontColor": "color",
@@ -63,7 +58,7 @@
     "accentColor": "color",
     "fontColor": "color",
     "menuBaseColor": "color",
-    "hamburguerColor": "color",
+    "hamburgerColor": "color",
     "logo": "image",
     "logoResponsive": "image",
     "contentColor": "color",

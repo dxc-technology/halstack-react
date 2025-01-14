@@ -210,10 +210,14 @@ const sections = [
           Primary actions are made more prominent with larger buttons, while secondary actions use smaller buttons to
           avoid distraction.
         </DxcParagraph>
-        <DxcAlert type="warning">
-          To maintain a clear and effective visual hierarchy, avoid overusing different button sizes within a single
-          interface.
-        </DxcAlert>
+        <DxcAlert
+          title="Sizes"
+          semantic="warning"
+          message={{
+            text: "To maintain a clear and effective visual hierarchy, avoid overusing different button sizes within a single interface.",
+          }}
+          closable={false}
+        />
       </>
     ),
     subSections: [

@@ -1,13 +1,13 @@
+import { Meta, StoryObj } from "@storybook/react";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import { HalstackProvider } from "../HalstackContext";
 import DxcFileInput from "./FileInput";
-import FileItem from "./FileItem";
 
 export default {
   title: "File Input",
   component: DxcFileInput,
-};
+} as Meta<typeof DxcFileInput>;
 
 const picPreview = "https://cdn.mos.cms.futurecdn.net/CAZ6JXi6huSuN4QGE627NR.jpg";
 
@@ -76,48 +76,8 @@ const opinionatedTheme = {
   },
 };
 
-export const Chromatic = () => (
+const FileInput = () => (
   <>
-    <Title title="File item states" theme="light" level={2} />
-    <ExampleContainer pseudoState="pseudo-hover">
-      <Title title="Hovered" theme="light" level={4} />
-      <FileItem
-        fileName="file"
-        error=""
-        singleFileMode={false}
-        showPreview={false}
-        preview={picPreview}
-        type="image/png"
-        onDelete={() => {}}
-        tabIndex={0}
-      />
-    </ExampleContainer>
-    <ExampleContainer pseudoState="pseudo-focus">
-      <Title title="Focused" theme="light" level={4} />
-      <FileItem
-        fileName="file"
-        error=""
-        singleFileMode={false}
-        showPreview={false}
-        preview={picPreview}
-        type="image/png"
-        onDelete={() => {}}
-        tabIndex={0}
-      />
-    </ExampleContainer>
-    <ExampleContainer pseudoState="pseudo-active">
-      <Title title="Actived" theme="light" level={4} />
-      <FileItem
-        fileName="file"
-        error=""
-        singleFileMode={false}
-        showPreview={false}
-        preview={picPreview}
-        type="image/png"
-        onDelete={() => {}}
-        tabIndex={0}
-      />
-    </ExampleContainer>
     <Title title="File" theme="light" level={2} />
     <ExampleContainer>
       <Title title="Without label" theme="light" level={4} />
@@ -632,3 +592,9 @@ export const Chromatic = () => (
     </ExampleContainer>
   </>
 );
+
+type Story = StoryObj<typeof DxcFileInput>;
+
+export const Chromatic: Story = {
+  render: FileInput,
+};

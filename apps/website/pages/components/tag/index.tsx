@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import TagCodePage from "../../../screens/components/tag/code/TagCodePage";
-import TagPageLayout from "../../../screens/components/tag/TagPageLayout";
+import TagCodePage from "screens/components/tag/code/TagCodePage";
+import TagPageLayout from "screens/components/tag/TagPageLayout";
 
 const Index = () => {
   return (

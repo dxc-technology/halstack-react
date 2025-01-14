@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import QuickNavPageLayout from "../../../screens/components/quick-nav/QuickNavPageLayout";
-import QuickNavUsagePage from "../../../screens/components/quick-nav/usage/QuickNavUsagePage";
+import QuickNavPageLayout from "screens/components/quick-nav/QuickNavPageLayout";
+import QuickNavUsagePage from "screens/components/quick-nav/usage/QuickNavUsagePage";
 
 const Usage = () => {
   return (

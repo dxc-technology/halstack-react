@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import { fireEvent, screen, userEvent, within } from "@storybook/test";
 import dayjs from "dayjs";
 import { ThemeProvider } from "styled-components";
@@ -7,13 +8,12 @@ import preview from "../../.storybook/preview";
 import { disabledRules } from "../../test/accessibility/rules/specific/date-input/disabledRules";
 import DxcContainer from "../container/Container";
 import { HalstackProvider } from "../HalstackContext";
-import useTheme from "../useTheme";
+import HalstackContext from "../HalstackContext";
 import Calendar from "./Calendar";
 import DxcDateInput from "./DateInput";
 import DxcDatePicker from "./DatePicker";
 import YearPicker from "./YearPicker";
-import DxcTooltip from "../tooltip/Tooltip";
-import DxcInset from "../inset/Inset";
+import { Meta, StoryObj } from "@storybook/react";
 
 export default {
   title: "Date Input",
@@ -28,7 +28,7 @@ export default {
       },
     },
   },
-};
+} as Meta<typeof DxcDateInput>;
 
 const opinionatedTheme = {
   dateInput: {
@@ -120,13 +120,6 @@ const DateInputChromatic = () => (
   </>
 );
 
-export const Chromatic = DateInputChromatic.bind({});
-Chromatic.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  await userEvent.click(canvas.getAllByRole("combobox")[0]);
-  await fireEvent.click(screen.getByText("April 1905"));
-};
-
 const DateInputOpinionatedTheme = () => (
   <>
     <Title title="Opinionated theme" theme="light" level={2} />
@@ -166,12 +159,6 @@ const DateInputOpinionatedTheme = () => (
   </>
 );
 
-export const DateInputOpinionated = DateInputOpinionatedTheme.bind({});
-DateInputOpinionated.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  await userEvent.click(canvas.getAllByRole("combobox")[3]);
-};
-
 const YearPickerOpinionatedTheme = () => (
   <ExampleContainer expanded>
     <Title title="Year picker" theme="light" level={4} />
@@ -181,15 +168,8 @@ const YearPickerOpinionatedTheme = () => (
   </ExampleContainer>
 );
 
-export const YearPickerOpinionated = YearPickerOpinionatedTheme.bind({});
-YearPickerOpinionated.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  await userEvent.click(canvas.getByRole("combobox"));
-  await fireEvent.click(screen.getByText("April 1905"));
-};
-
 const DatePickerButtonStates = () => {
-  const colorsTheme: any = useTheme();
+  const colorsTheme: any = useContext(HalstackContext);
   return (
     <>
       <ExampleContainer>
@@ -233,15 +213,8 @@ const DatePickerButtonStates = () => {
   );
 };
 
-export const DatePickerStates = DatePickerButtonStates.bind({});
-DatePickerStates.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const dateBtn = canvas.getAllByRole("combobox")[0];
-  await userEvent.click(dateBtn);
-};
-
-export const YearPickerStates = () => {
-  const colorsTheme: any = useTheme();
+const YearPickerButtonStates = () => {
+  const colorsTheme: any = useContext(HalstackContext);
   return (
     <>
       <ThemeProvider theme={colorsTheme}>
@@ -274,8 +247,8 @@ export const YearPickerStates = () => {
   );
 };
 
-export const DatePickerWithToday = () => {
-  const colorsTheme: any = useTheme();
+const DatePickerToday = () => {
+  const colorsTheme: any = useContext(HalstackContext);
   return (
     <ThemeProvider theme={colorsTheme}>
       <ExampleContainer>
@@ -301,7 +274,7 @@ export const DatePickerWithToday = () => {
 };
 
 const Tooltip = () => {
-  const colorsTheme: any = useTheme();
+  const colorsTheme: any = useContext(HalstackContext);
   return (
     <ThemeProvider theme={colorsTheme}>
       <Title title="Default tooltip" theme="light" level={2} />
@@ -312,16 +285,67 @@ const Tooltip = () => {
   );
 };
 
-export const DatePickerTooltipPrevious = Tooltip.bind({});
-DatePickerTooltipPrevious.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const previousMonthButton = canvas.getAllByRole("button")[0];
-  await userEvent.hover(previousMonthButton);
+type Story = StoryObj<typeof DxcDateInput>;
+
+export const Chromatic: Story = {
+  render: DateInputChromatic,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const firstDateInput = canvas.getAllByRole("combobox")[0];
+    firstDateInput != null && (await userEvent.click(firstDateInput));
+    await fireEvent.click(screen.getByText("April 1905"));
+  },
 };
 
-export const DatePickerTooltipAfter = Tooltip.bind({});
-DatePickerTooltipAfter.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const afterMonthButton = canvas.getAllByRole("button")[2];
-  await userEvent.hover(afterMonthButton);
+export const DateInputOpinionated: Story = {
+  render: DateInputOpinionatedTheme,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const dateInput = canvas.getAllByRole("combobox")[3];
+    dateInput != null && (await userEvent.click(dateInput));
+  },
+};
+
+export const YearPickerOpinionated: Story = {
+  render: YearPickerOpinionatedTheme,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await userEvent.click(canvas.getByRole("combobox"));
+    await fireEvent.click(screen.getByText("April 1905"));
+  },
+};
+
+export const DatePickerStates: Story = {
+  render: DatePickerButtonStates,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const dateBtn = canvas.getAllByRole("combobox")[0];
+    dateBtn != null && (await userEvent.click(dateBtn));
+  },
+};
+
+export const YearPickerStates: Story = {
+  render: YearPickerButtonStates,
+};
+
+export const DatePickerWithToday: Story = {
+  render: DatePickerToday,
+};
+
+export const DatePickerTooltipPrevious: Story = {
+  render: Tooltip,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const previousMonthButton = canvas.getAllByRole("button")[0];
+    previousMonthButton != null && (await userEvent.hover(previousMonthButton));
+  },
+};
+
+export const DatePickerTooltipAfter: Story = {
+  render: Tooltip,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const afterMonthButton = canvas.getAllByRole("button")[2];
+    afterMonthButton != null && (await userEvent.hover(afterMonthButton));
+  },
 };

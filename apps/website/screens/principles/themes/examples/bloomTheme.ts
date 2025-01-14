@@ -40,7 +40,7 @@ export default {
     accentColor: "#000000",
     fontColor: "#000000",
     menuBaseColor: "#ffffff",
-    hamburguerColor: "#000000",
+    hamburgerColor: "#000000",
     logo: "https://assure.proxy.lambda/image/image_1674206652560.jpg",
     logoResponsive: "https://assure.proxy.lambda/image/image_1674206660896.jpg",
     contentColor: "#000000",

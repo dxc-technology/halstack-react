@@ -1,6 +1,7 @@
+import { ReactNode } from "react";
 import styled from "styled-components";
 
-const PageHeading = ({ children }: { children: React.ReactNode }) => {
+const PageHeading = ({ children }: { children: ReactNode }) => {
   return <PageHeadingContainer>{children}</PageHeadingContainer>;
 };
 

@@ -1,10 +1,10 @@
-import { useLayoutEffect, useRef } from "react";
+import { useContext, useLayoutEffect, useRef } from "react";
 import styled from "styled-components";
 import DxcIcon from "../icon/Icon";
-import useTranslatedLabels from "../useTranslatedLabels";
+import { HalstackLanguageContext } from "../HalstackContext";
 import ListOption from "./ListOption";
-import { groupsHaveOptions } from "./selectUtils";
-import { ListboxProps } from "./types";
+import { groupsHaveOptions } from "./utils";
+import { ListboxProps, ListOptionGroupType, ListOptionType } from "./types";
 
 const Listbox = ({
   id,
@@ -19,13 +19,14 @@ const Listbox = ({
   handleOptionOnClick,
   styles,
 }: ListboxProps): JSX.Element => {
-  const translatedLabels = useTranslatedLabels();
-  const listboxRef = useRef(null);
+  const translatedLabels = useContext(HalstackLanguageContext);
+  const listboxRef = useRef<HTMLUListElement | null>(null);
 
   let globalIndex = optional && !multiple ? 0 : -1;
-  const mapOptionFunc = (option, mapIndex) => {
+
+  const mapOptionFunc = (option: ListOptionType | ListOptionGroupType, mapIndex: number) => {
     const groupId = `${id}-group-${mapIndex}`;
-    if (option.options) {
+    if ("options" in option) {
       return (
         option.options.length > 0 && (
           <li key={groupId}>
@@ -43,7 +44,7 @@ const Listbox = ({
                     onClick={handleOptionOnClick}
                     multiple={multiple}
                     visualFocused={visualFocusIndex === globalIndex}
-                    isGroupedOption={true}
+                    isGroupedOption
                     isLastOption={lastOptionIndex === globalIndex}
                     isSelected={
                       multiple ? currentValue.includes(singleOption.value) : currentValue === singleOption.value
@@ -66,7 +67,11 @@ const Listbox = ({
           multiple={multiple}
           visualFocused={visualFocusIndex === globalIndex}
           isLastOption={lastOptionIndex === globalIndex}
-          isSelected={multiple ? currentValue.includes(option.value) : currentValue === option.value}
+          isSelected={
+            multiple
+              ? currentValue.includes(option.value)
+              : currentValue === option.value
+          }
         />
       );
     }
@@ -75,17 +80,22 @@ const Listbox = ({
   useLayoutEffect(() => {
     if (currentValue && !multiple) {
       const listEl = listboxRef?.current;
-      const selectedListOptionEl = listEl?.querySelector("[aria-selected='true']");
-      listEl?.scrollTo?.({ top: selectedListOptionEl?.offsetTop - listEl?.clientHeight / 2 });
+      const selectedListOptionEl = listEl?.querySelector("[aria-selected='true']") as HTMLUListElement;
+      listEl?.scrollTo?.({
+        top: (selectedListOptionEl.offsetTop ?? 0) - (listEl.clientHeight ?? 0) / 2,
+      });
     }
   }, [currentValue, multiple]);
 
   useLayoutEffect(() => {
-    const visualFocusedOptionEl = listboxRef?.current?.querySelectorAll("[role='option']")[visualFocusIndex];
-    visualFocusedOptionEl?.scrollIntoView?.({ block: "nearest", inline: "start" });
+    const visualFocusedOptionEl = listboxRef.current?.querySelectorAll("[role='option']")[visualFocusIndex];
+    visualFocusedOptionEl?.scrollIntoView?.({
+      block: "nearest",
+      inline: "start",
+    });
   }, [visualFocusIndex]);
 
-  const hasOptionGroups = options.some((option) => option.options?.length > 0);
+  const hasOptionGroups = options.some((option) => "options" in option && option.options.length > 0);
 
   return (
     <ListboxContainer

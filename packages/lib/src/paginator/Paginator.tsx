@@ -1,9 +1,10 @@
+import { useContext } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import DxcButton from "../button/Button";
 import DxcSelect from "../select/Select";
-import useTheme from "../useTheme";
-import useTranslatedLabels from "../useTranslatedLabels";
+import HalstackContext from "../HalstackContext";
 import PaginatorPropsType from "./types";
+import { HalstackLanguageContext } from "../HalstackContext";
 
 const DxcPaginator = ({
   currentPage = 1,
@@ -15,7 +16,7 @@ const DxcPaginator = ({
   itemsPerPageFunction,
   tabIndex = 0,
 }: PaginatorPropsType): JSX.Element => {
-  const totalPages = itemsPerPage > 0 && Math.ceil(totalItems / itemsPerPage);
+  const totalPages = itemsPerPage > 0 ? Math.ceil(totalItems / itemsPerPage) : 0;
   const currentPageInternal = currentPage === -1 ? totalPages : currentPage;
   const minItemsPerPage =
     currentPageInternal === 1 || currentPageInternal === 0
@@ -24,8 +25,8 @@ const DxcPaginator = ({
   const maxItemsPerPage =
     minItemsPerPage - 1 + itemsPerPage > totalItems ? totalItems : minItemsPerPage - 1 + itemsPerPage;
 
-  const colorsTheme = useTheme();
-  const translatedLabels = useTranslatedLabels();
+  const colorsTheme = useContext(HalstackContext);
+  const translatedLabels = useContext(HalstackLanguageContext);
 
   return (
     <ThemeProvider theme={colorsTheme.paginator}>
@@ -36,9 +37,12 @@ const DxcPaginator = ({
               <ItemsLabel>{translatedLabels.paginator.itemsPerPageText}</ItemsLabel>
               <SelectContainer>
                 <DxcSelect
-                  options={itemsPerPageOptions.map((num) => ({ label: num.toString(), value: num.toString() }))}
+                  options={itemsPerPageOptions.map((num) => ({
+                    label: num.toString(),
+                    value: num.toString(),
+                  }))}
                   onChange={(newValue) => {
-                    itemsPerPageFunction(Number(newValue.value));
+                    itemsPerPageFunction?.(Number(newValue.value));
                   }}
                   value={itemsPerPage.toString()}
                   size="fillParent"
@@ -84,7 +88,7 @@ const DxcPaginator = ({
                     value: (num + 1).toString(),
                   }))}
                   onChange={(newValue) => {
-                    onPageChange(Number(newValue.value));
+                    onPageChange?.(Number(newValue.value));
                   }}
                   value={currentPage.toString()}
                   size="fillParent"

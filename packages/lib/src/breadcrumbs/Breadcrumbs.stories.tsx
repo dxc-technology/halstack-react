@@ -6,6 +6,7 @@ import { HalstackProvider } from "../HalstackContext";
 import { userEvent, within } from "@storybook/test";
 import { disabledRules } from "../../test/accessibility/rules/specific/breadcrumbs/disabledRules";
 import preview from "../../.storybook/preview";
+import { Meta, StoryObj } from "@storybook/react";
 
 export default {
   title: "Breadcrumbs",
@@ -20,7 +21,7 @@ export default {
       },
     },
   },
-};
+} as Meta<typeof DxcBreadcrumbs>;
 
 const items = [
   {
@@ -185,9 +186,13 @@ const Breadcrumbs = () => (
   </>
 );
 
-export const Chromatic = Breadcrumbs.bind({});
-Chromatic.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const dropdowns = canvas.getAllByRole("button");
-  await userEvent.click(dropdowns[2]);
+type Story = StoryObj<typeof DxcBreadcrumbs>;
+
+export const Chromatic: Story = {
+  render: Breadcrumbs,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const dropdowns = canvas.getAllByRole("button");
+    dropdowns[2] != null && await userEvent.click(dropdowns[2]);
+  },
 };

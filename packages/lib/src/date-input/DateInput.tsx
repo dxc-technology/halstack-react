@@ -1,12 +1,23 @@
-import { useState, useRef, useEffect, useId, useCallback, forwardRef } from "react";
-import dayjs from "dayjs";
+import {
+  useState,
+  useRef,
+  useEffect,
+  useId,
+  useCallback,
+  useContext,
+  forwardRef,
+  Dispatch,
+  SetStateAction,
+  FocusEvent,
+  KeyboardEvent,
+} from "react";
+import dayjs, { Dayjs } from "dayjs";
 import styled, { ThemeProvider } from "styled-components";
-import useTheme from "../useTheme";
-import useTranslatedLabels from "../useTranslatedLabels";
-import DateInputPropsType, { RefType } from "./types";
-import DatePicker from "./DatePicker";
 import * as Popover from "@radix-ui/react-popover";
 import customParseFormat from "dayjs/plugin/customParseFormat";
+import HalstackContext, { HalstackLanguageContext } from "../HalstackContext";
+import DateInputPropsType, { RefType } from "./types";
+import DatePicker from "./DatePicker";
 import { getMargin } from "../common/utils";
 import { spaces } from "../common/variables";
 import DxcTextInput from "../text-input/TextInput";
@@ -15,23 +26,30 @@ dayjs.extend(customParseFormat);
 
 const SIDEOFFSET = 4;
 
-const getValueForPicker = (value, format) => dayjs(value, format.toUpperCase(), true);
+const getValueForPicker = (value: string, format: string) => dayjs(value, format.toUpperCase(), true);
 
-const getDate = (value, format, lastValidYear, setLastValidYear) => {
-  if ((value || value === "") && format.toUpperCase().includes("YYYY")) return getValueForPicker(value, format);
-  else {
-    let newDate = getValueForPicker(value, format);
-    if (!lastValidYear) {
-      if (+newDate.format("YY") < 68) {
-        setLastValidYear(2000 + +newDate.format("YY"));
-        newDate = newDate.set("year", 2000 + +newDate.format("YY"));
-      } else {
-        setLastValidYear(1900 + +newDate.format("YY"));
-        newDate = newDate.set("year", 1900 + +newDate.format("YY"));
-      }
-    } else newDate = newDate.set("year", (lastValidYear <= 1999 ? 1900 : 2000) + +newDate.format("YY"));
-    return newDate;
+const getDate = (
+  value: string,
+  format: string,
+  lastValidYear: number | null,
+  setLastValidYear: Dispatch<SetStateAction<number | null>>
+) => {
+  if ((value || value === "") && format.toUpperCase().includes("YYYY")) {
+    return getValueForPicker(value, format);
   }
+  let newDate = getValueForPicker(value, format);
+  if (lastValidYear == null) {
+    if (+newDate.format("YY") < 68) {
+      setLastValidYear(2000 + +newDate.format("YY"));
+      newDate = newDate.set("year", 2000 + +newDate.format("YY"));
+    } else {
+      setLastValidYear(1900 + +newDate.format("YY"));
+      newDate = newDate.set("year", 1900 + +newDate.format("YY"));
+    }
+  } else {
+    newDate = newDate.set("year", (lastValidYear <= 1999 ? 1900 : 2000) + +newDate.format("YY"));
+  }
+  return newDate;
 };
 
 const DxcDateInput = forwardRef<RefType, DateInputPropsType>(
@@ -62,45 +80,49 @@ const DxcDateInput = forwardRef<RefType, DateInputPropsType>(
     const [isOpen, setIsOpen] = useState(false);
     const calendarId = `date-picker-${useId()}`;
     const [dayjsDate, setDayjsDate] = useState(getValueForPicker(value ?? defaultValue ?? "", format));
-    const [lastValidYear, setLastValidYear] = useState(
+    const [lastValidYear, setLastValidYear] = useState<number | null>(
       innerValue || value
         ? !format.toUpperCase().includes("YYYY") && +getValueForPicker(value ?? innerValue, format).format("YY") < 68
           ? 2000
           : 1900
-        : undefined
+        : null
     );
     const [sideOffset, setSideOffset] = useState(SIDEOFFSET);
-    const colorsTheme = useTheme();
-    const translatedLabels = useTranslatedLabels();
-    const dateRef = useRef(null);
-    const popoverContentRef = useRef(null);
+    const colorsTheme = useContext(HalstackContext);
+    const translatedLabels = useContext(HalstackLanguageContext);
+    const dateRef = useRef<HTMLDivElement | null>(null);
+    const popoverContentRef = useRef<HTMLDivElement | null>(null);
 
-    const handleCalendarOnClick = (newDate) => {
+    const handleCalendarOnClick = (newDate: Dayjs) => {
       const newValue = newDate.format(format.toUpperCase());
       if (!value) {
         setDayjsDate(newDate);
         setInnerValue(newValue);
       }
       setLastValidYear(newDate.get("year"));
-      newDate?.set("day", newDate.get("date")).toJSON()
-        ? onChange?.({
-            value: newValue,
-            date: newDate.toDate(),
-          })
-        : onChange?.({
-            value: newValue,
-          });
+      if (newDate.set("day", newDate.get("date")).toJSON()) {
+        onChange?.({
+          value: newValue,
+          date: newDate.toDate(),
+        });
+      } else {
+        onChange?.({
+          value: newValue,
+        });
+      }
     };
 
-    const handleOnChange = ({ value: newValue, error: inputError }) => {
-      value ?? setInnerValue(newValue);
+    const handleOnChange = ({ value: newValue, error: inputError }: { value: string; error?: string }) => {
+      if (value == null) {
+        setInnerValue(newValue);
+      }
       const newDate = getDate(newValue, format, lastValidYear, setLastValidYear);
       const invalidDateMessage =
         newValue !== "" && !newDate.isValid() && translatedLabels.dateInput.invalidDateErrorMessage;
-      const callbackParams =
-        inputError || invalidDateMessage
-          ? { value: newValue, error: inputError || invalidDateMessage }
-          : { value: newValue };
+      const callbackParams = {
+        value: newValue,
+        error: inputError || invalidDateMessage || undefined,
+      };
       if (newDate.isValid()) {
         setDayjsDate(newDate);
         onChange?.({
@@ -109,21 +131,26 @@ const DxcDateInput = forwardRef<RefType, DateInputPropsType>(
         });
       } else {
         onChange?.(callbackParams);
-        setLastValidYear((validYear) => dayjsDate?.get("year") ?? validYear);
-        setDayjsDate(null);
+        setLastValidYear((validYear) => dayjsDate.get("year") ?? validYear);
+        setDayjsDate(dayjs(null));
       }
     };
-    const handleOnBlur = ({ value, error: inputError }) => {
-      const date = getDate(value, format, lastValidYear, setLastValidYear);
-      const invalidDateMessage = value !== "" && !date.isValid() && translatedLabels.dateInput.invalidDateErrorMessage;
-      const callbackParams =
-        inputError || invalidDateMessage ? { value, error: inputError || invalidDateMessage } : { value };
-      date.isValid()
-        ? onBlur?.({
-            ...callbackParams,
-            date: date.toDate(),
-          })
-        : onBlur?.(callbackParams);
+    const handleOnBlur = ({ value: blurValue, error: inputError }: { value: string; error?: string }) => {
+      const date = getDate(blurValue, format, lastValidYear, setLastValidYear);
+      const invalidDateMessage =
+        blurValue !== "" && !date.isValid() && translatedLabels.dateInput.invalidDateErrorMessage;
+      const callbackParams = {
+        value: blurValue,
+        error: inputError || invalidDateMessage || undefined,
+      };
+      if (date.isValid()) {
+        onBlur?.({
+          ...callbackParams,
+          date: date.toDate(),
+        });
+      } else {
+        onBlur?.(callbackParams);
+      }
     };
 
     const adjustSideOffset = useCallback(() => {
@@ -135,7 +162,13 @@ const DxcDateInput = forwardRef<RefType, DateInputPropsType>(
             const errorMessageHeight = dateRef.current
               .querySelector('[id^="error-input"]')
               ?.getBoundingClientRect().height;
-            setSideOffset(popoverRect.top > triggerRect.bottom ? -errorMessageHeight : SIDEOFFSET);
+            setSideOffset(
+              triggerRect?.bottom != null && popoverRect.top > triggerRect.bottom
+                ? errorMessageHeight != null
+                  ? -errorMessageHeight
+                  : 0
+                : SIDEOFFSET
+            );
           }
         }, 0);
       }
@@ -149,16 +182,20 @@ const DxcDateInput = forwardRef<RefType, DateInputPropsType>(
       setIsOpen(false);
     };
 
-    const handleDatePickerEscKeydown = (event: React.KeyboardEvent) => {
+    const handleDatePickerEscKeydown = (event: KeyboardEvent<HTMLDivElement>) => {
       if (event.key === "Escape") {
         event.preventDefault();
-        isOpen && event.stopPropagation();
+        if (isOpen) {
+          event.stopPropagation();
+        }
         closeCalendar();
-        dateRef?.current.getElementsByTagName("input")[0].focus();
+        dateRef.current?.getElementsByTagName("input")[0]?.focus();
       }
     };
-    const handleDatePickerOnBlur = (event) => {
-      if (!event?.currentTarget.contains(event.relatedTarget)) closeCalendar();
+    const handleDatePickerOnBlur = (event: FocusEvent<HTMLDivElement>) => {
+      if (!event.currentTarget.contains(event.relatedTarget)) {
+        closeCalendar();
+      }
     };
 
     useEffect(() => {
@@ -169,18 +206,20 @@ const DxcDateInput = forwardRef<RefType, DateInputPropsType>(
     }, [adjustSideOffset]);
 
     useEffect(() => {
-      if (value || value === "") setDayjsDate(getDate(value, format, lastValidYear, setLastValidYear));
+      if (value || value === "") {
+        setDayjsDate(getDate(value, format, lastValidYear, setLastValidYear));
+      }
     }, [value, format, lastValidYear]);
 
     useEffect(() => {
       if (!disabled) {
-        const actionButtonRef = dateRef?.current.querySelector("[aria-label='Select date']");
-        actionButtonRef?.setAttribute("aria-haspopup", true);
-        actionButtonRef?.setAttribute("role", "combobox");
-        actionButtonRef?.setAttribute("aria-expanded", isOpen);
-        actionButtonRef?.setAttribute("aria-controls", calendarId);
+        const actionButtonElement = dateRef.current?.querySelector("[aria-label='Select date']");
+        actionButtonElement?.setAttribute("aria-haspopup", "true");
+        actionButtonElement?.setAttribute("role", "combobox");
+        actionButtonElement?.setAttribute("aria-expanded", `${isOpen}`);
+        actionButtonElement?.setAttribute("aria-controls", calendarId);
         if (isOpen) {
-          actionButtonRef?.setAttribute("aria-describedby", calendarId);
+          actionButtonElement?.setAttribute("aria-describedby", calendarId);
         }
       }
     }, [isOpen, disabled, calendarId]);
@@ -190,9 +229,9 @@ const DxcDateInput = forwardRef<RefType, DateInputPropsType>(
         <DateInputContainer margin={margin} size={size} ref={ref}>
           {label && (
             <Label
-              htmlFor={dateRef.current?.getElementsByTagName("input")[0].id}
+              htmlFor={dateRef.current?.getElementsByTagName("input")[0]?.id}
               disabled={disabled}
-              hasHelperText={helperText ? true : false}
+              hasHelperText={!!helperText}
             >
               {label} {optional && <OptionalLabel>{translatedLabels.formFields.optionalLabel}</OptionalLabel>}
             </Label>
@@ -204,7 +243,7 @@ const DxcDateInput = forwardRef<RefType, DateInputPropsType>(
                 name={name}
                 defaultValue={defaultValue}
                 value={value ?? innerValue}
-                placeholder={placeholder ? format.toUpperCase() : null}
+                placeholder={placeholder ? format.toUpperCase() : undefined}
                 action={{
                   onClick: openCalendar,
                   icon: "filled_calendar_today",
@@ -227,7 +266,7 @@ const DxcDateInput = forwardRef<RefType, DateInputPropsType>(
               <StyledPopoverContent
                 sideOffset={sideOffset}
                 align="end"
-                aria-modal={true}
+                aria-modal
                 onBlur={handleDatePickerOnBlur}
                 onKeyDown={handleDatePickerEscKeydown}
                 ref={popoverContentRef}
@@ -249,17 +288,17 @@ const sizes = {
   fillParent: "100%",
 };
 
-const calculateWidth = (margin, size) =>
+const calculateWidth = (margin: DateInputPropsType["margin"], size: DateInputPropsType["size"]) =>
   size === "fillParent"
     ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
-    : sizes[size];
+    : size && sizes[size];
 
 const DateInputContainer = styled.div<{ margin: DateInputPropsType["margin"]; size: DateInputPropsType["size"] }>`
-  ${(props) => props.size == "fillParent" && "width: 100%;"}
+  ${(props) => props.size === "fillParent" && "width: 100%;"}
   display: flex;
   flex-direction: column;
   width: ${(props) => calculateWidth(props.margin, props.size)};
-  ${(props) => props.size !== "fillParent" && "min-width:" + calculateWidth(props.margin, props.size)};
+  ${(props) => props.size !== "fillParent" && `min-width:${calculateWidth(props.margin, props.size)}`};
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};

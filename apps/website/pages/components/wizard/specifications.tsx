@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import WizardPageLayout from "../../../screens/components/wizard/WizardPageLayout";
-import WizardSpecsPage from "../../../screens/components/wizard/specs/WizardSpecsPage";
+import WizardPageLayout from "screens/components/wizard/WizardPageLayout";
+import WizardSpecsPage from "screens/components/wizard/specs/WizardSpecsPage";
 
 const Specifications = () => {
   return (

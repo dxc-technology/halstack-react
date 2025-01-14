@@ -1,8 +1,9 @@
 import { DxcLink, DxcInset } from "@dxc-technology/halstack-react";
+import { ReactNode } from "react";
 
 type routerProps = {
   to: string;
-  component: React.ReactNode;
+  component: ReactNode;
   children: string;
 };
 

@@ -33,21 +33,21 @@ jobs:
 
       - name: Install dependencies
         run: npm install
-    
+
       - name: Build library and website
         env:
           NEXT_PUBLIC_SITE_VERSION: next
         run: npm run build
-    
+
       - name: Test library
         run: npm run test
-    
+
       - name: Test library accessibility
         run: npm run test:accessibility
 
       - name: Publish NEXT version to npm
         run: |
-          sed -i "s#\"version\": \"0.0.0\"#\"version\": \"0.0.0-${GITHUB_SHA:0:7}\"#" ./packages/lib/package.json
+          sed -i "s#\"version\": \".*\"#\"version\": \"$(jq -r .version ./packages/lib/package.json)-${GITHUB_SHA:0:7}\"#" ./packages/lib/package.json
           cd packages/lib
           npm publish --tag next --access public
         env:

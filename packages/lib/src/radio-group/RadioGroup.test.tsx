@@ -64,8 +64,9 @@ describe("Radio Group component tests", () => {
     );
     const radioGroup = getByRole("radiogroup");
     const submit = getByText("Submit");
+    const radio = getAllByRole("radio")[4];
     await userEvent.click(radioGroup);
-    await userEvent.click(getAllByRole("radio")[4]);
+    radio && (await userEvent.click(radio));
     await userEvent.click(submit);
   });
 
@@ -93,15 +94,15 @@ describe("Radio Group component tests", () => {
     );
     const radioGroup = getByRole("radiogroup");
     const radios = getAllByRole("radio");
-    expect(radios[2].getAttribute("aria-disabled")).toBe("true");
-    expect(radios[0].tabIndex).toBe(0);
-    expect(radios[1].tabIndex).toBe(-1);
-    expect(radios[2].tabIndex).toBe(-1);
+    expect(radios[2]?.getAttribute("aria-disabled")).toBe("true");
+    expect(radios[0]?.tabIndex).toBe(0);
+    expect(radios[1]?.tabIndex).toBe(-1);
+    expect(radios[2]?.tabIndex).toBe(-1);
     fireEvent.keyDown(radioGroup, { key: "ArrowDown", code: "ArrowDown", keyCode: 40, charCode: 40 });
     fireEvent.keyDown(radioGroup, { key: "ArrowDown", code: "ArrowDown", keyCode: 40, charCode: 40 });
-    expect(radios[0].tabIndex).toBe(0);
-    expect(radios[1].tabIndex).toBe(-1);
-    expect(radios[2].tabIndex).toBe(-1);
+    expect(radios[0]?.tabIndex).toBe(0);
+    expect(radios[1]?.tabIndex).toBe(-1);
+    expect(radios[2]?.tabIndex).toBe(-1);
   });
 
   test("Disabled radio group doesn't send its value when submitted", async () => {
@@ -139,11 +140,12 @@ describe("Radio Group component tests", () => {
       <DxcRadioGroup label="test-radioGroup-label" options={options} onChange={onChange} onBlur={onBlur} />
     );
     const radioGroup = getByRole("radiogroup");
+    const radio = getAllByRole("radio")[0];
     expect(radioGroup.getAttribute("aria-required")).toBe("true");
     fireEvent.blur(radioGroup);
     expect(onBlur).toHaveBeenCalledWith({ error: "This field is required. Please, choose an option." });
     await userEvent.click(radioGroup);
-    await userEvent.click(getAllByRole("radio")[0]);
+    radio && (await userEvent.click(radio));
     expect(onChange).toHaveBeenCalledWith("1");
     fireEvent.blur(radioGroup);
     expect(onBlur).toHaveBeenCalledWith({ value: "1" });
@@ -156,10 +158,11 @@ describe("Radio Group component tests", () => {
       <DxcRadioGroup label="test-radioGroup-label" value="" options={options} onChange={onChange} onBlur={onBlur} />
     );
     const radioGroup = getByRole("radiogroup");
+    const radio = getAllByRole("radio")[0];
     expect(radioGroup.getAttribute("aria-required")).toBe("true");
     fireEvent.blur(radioGroup);
     expect(onBlur).toHaveBeenCalledWith({ value: "", error: "This field is required. Please, choose an option." });
-    await userEvent.click(getAllByRole("radio")[0]);
+    radio && (await userEvent.click(radio));
     expect(onChange).toHaveBeenCalledWith("1");
   });
 
@@ -177,9 +180,9 @@ describe("Radio Group component tests", () => {
     );
     const radio = getAllByRole("radio")[1];
     const submitInput = container.querySelector<HTMLInputElement>(`input[name="test"]`);
-    expect(radio.tabIndex).toBe(0);
-    expect(radio.getAttribute("aria-checked")).toBe("true");
-    expect(submitInput.value).toBe("2");
+    expect(radio?.tabIndex).toBe(0);
+    expect(radio?.getAttribute("aria-checked")).toBe("true");
+    expect(submitInput?.value).toBe("2");
   });
 
   test("Optional radio group conditions: onBlur event doesn't send an error when no radio was checked, has correct aria attributes, custom label and its value is the empty string", async () => {
@@ -206,7 +209,7 @@ describe("Radio Group component tests", () => {
     const submitInput = container.querySelector<HTMLInputElement>(`input[name="test"]`);
     await userEvent.click(optionalLabel);
     expect(onChange).toHaveBeenCalledWith("");
-    expect(submitInput.value).toBe("");
+    expect(submitInput?.value).toBe("");
   });
 
   test("Controlled radio group", async () => {
@@ -226,10 +229,10 @@ describe("Radio Group component tests", () => {
     const radioGroup = getByRole("radiogroup");
     const radios = getAllByRole("radio");
     const submitInput = container.querySelector<HTMLInputElement>(`input[name="test"]`);
-    expect(submitInput.value).toBe("2");
-    expect(radios[1].tabIndex).toBe(0);
-    expect(radios[1].getAttribute("aria-checked")).toBe("true");
-    await userEvent.click(radios[6]);
+    expect(submitInput?.value).toBe("2");
+    expect(radios[1]?.tabIndex).toBe(0);
+    expect(radios[1]?.getAttribute("aria-checked")).toBe("true");
+    radios[6] && (await userEvent.click(radios[6]));
     expect(onChange).toHaveBeenCalledWith("7");
     fireEvent.blur(radioGroup);
     expect(onBlur).toHaveBeenCalledWith({ value: "2" });
@@ -249,13 +252,13 @@ describe("Radio Group component tests", () => {
     const radioLabel = getByText("Option 09");
     const checkedRadio = getAllByRole("radio")[8];
     const submitInput = container.querySelector<HTMLInputElement>(`input[name="test"]`);
-    expect(checkedRadio.tabIndex).toBe(-1);
+    expect(checkedRadio?.tabIndex).toBe(-1);
     await userEvent.click(radioLabel);
     expect(onChange).toHaveBeenCalledWith("9");
-    expect(checkedRadio.getAttribute("aria-checked")).toBe("true");
-    expect(checkedRadio.tabIndex).toBe(0);
+    expect(checkedRadio?.getAttribute("aria-checked")).toBe("true");
+    expect(checkedRadio?.tabIndex).toBe(0);
     expect(document.activeElement).toEqual(checkedRadio);
-    expect(submitInput.value).toBe("9");
+    expect(submitInput?.value).toBe("9");
   });
 
   test("Select an option by clicking on its radio input", async () => {
@@ -271,13 +274,13 @@ describe("Radio Group component tests", () => {
     );
     const checkedRadio = getAllByRole("radio")[6];
     const submitInput = container.querySelector<HTMLInputElement>(`input[name="test"]`);
-    expect(checkedRadio.tabIndex).toBe(-1);
-    await userEvent.click(checkedRadio);
+    expect(checkedRadio?.tabIndex).toBe(-1);
+    checkedRadio && (await userEvent.click(checkedRadio));
     expect(onChange).toHaveBeenCalledWith("7");
-    expect(checkedRadio.getAttribute("aria-checked")).toBe("true");
-    expect(checkedRadio.tabIndex).toBe(0);
+    expect(checkedRadio?.getAttribute("aria-checked")).toBe("true");
+    expect(checkedRadio?.tabIndex).toBe(0);
     expect(document.activeElement).toEqual(checkedRadio);
-    expect(submitInput.value).toBe("7");
+    expect(submitInput?.value).toBe("7");
   });
 
   test("Select an option that is already checked does not call onChange event but gives the focus", async () => {
@@ -293,9 +296,9 @@ describe("Radio Group component tests", () => {
       />
     );
     const checkedRadio = getAllByRole("radio")[1];
-    expect(checkedRadio.tabIndex).toBe(0);
-    expect(checkedRadio.getAttribute("aria-checked")).toBe("true");
-    await userEvent.click(checkedRadio);
+    expect(checkedRadio?.tabIndex).toBe(0);
+    expect(checkedRadio?.getAttribute("aria-checked")).toBe("true");
+    checkedRadio && (await userEvent.click(checkedRadio));
     expect(onChange).not.toHaveBeenCalled();
     expect(document.activeElement).toEqual(checkedRadio);
   });
@@ -316,9 +319,9 @@ describe("Radio Group component tests", () => {
     const submitInput = container.querySelector<HTMLInputElement>(`input[name="test"]`);
     fireEvent.keyDown(radioGroup, { key: " ", code: "Space", keyCode: 32, charCode: 32 });
     expect(onChange).toHaveBeenCalledWith("1");
-    expect(checkedRadio.getAttribute("aria-checked")).toBe("true");
-    expect(checkedRadio.tabIndex).toBe(0);
-    expect(submitInput.value).toBe("1");
+    expect(checkedRadio?.getAttribute("aria-checked")).toBe("true");
+    expect(checkedRadio?.tabIndex).toBe(0);
+    expect(submitInput?.value).toBe("1");
   });
 
   test("When the radio group gains the focus by keyboard ('tab' key), it goes to the first option (if no one was previously selected), without selecting it", () => {
@@ -340,17 +343,17 @@ describe("Radio Group component tests", () => {
     const checkedRadio = getAllByRole("radio")[0];
     userEvent.tab();
     expect(onChange).not.toHaveBeenCalled();
-    expect(submitInput.value).toBe("");
-    expect(checkedRadio.tabIndex).toBe(0);
-    expect(checkedRadio.getAttribute("aria-checked")).toBe("false");
+    expect(submitInput?.value).toBe("");
+    expect(checkedRadio?.tabIndex).toBe(0);
+    expect(checkedRadio?.getAttribute("aria-checked")).toBe("false");
     expect(document.activeElement).toEqual(checkedRadio);
     fireEvent.keyDown(radioGroup, { key: "ArrowRight", code: "ArrowRight", keyCode: 39, charCode: 39 });
     expect(onBlur).not.toHaveBeenCalled();
     expect(onChange).toHaveBeenCalledTimes(1);
-    expect(radios[1].getAttribute("aria-checked")).toBe("true");
+    expect(radios[1]?.getAttribute("aria-checked")).toBe("true");
     expect(document.activeElement).toEqual(radios[1]);
-    expect(radios[1].tabIndex).toBe(0);
-    expect(submitInput.value).toBe("2");
+    expect(radios[1]?.tabIndex).toBe(0);
+    expect(submitInput?.value).toBe("2");
   });
 
   test("The 'arrowDown' and 'arrowRight' keys move the selection to the next radio. When the last radio is reached, moves the selection to the first one", () => {
@@ -373,17 +376,17 @@ describe("Radio Group component tests", () => {
     fireEvent.keyDown(radioGroup, { key: "ArrowDown", code: "ArrowDown", keyCode: 40, charCode: 40 });
     expect(onBlur).not.toHaveBeenCalled();
     expect(onChange).toHaveBeenCalledTimes(1);
-    expect(radios[8].getAttribute("aria-checked")).toBe("true");
+    expect(radios[8]?.getAttribute("aria-checked")).toBe("true");
     expect(document.activeElement).toEqual(radios[8]);
-    expect(radios[8].tabIndex).toBe(0);
-    expect(submitInput.value).toBe("9");
+    expect(radios[8]?.tabIndex).toBe(0);
+    expect(submitInput?.value).toBe("9");
     fireEvent.keyDown(radioGroup, { key: "ArrowRight", code: "ArrowRight", keyCode: 39, charCode: 39 });
     expect(onBlur).not.toHaveBeenCalled();
     expect(onChange).toHaveBeenCalledTimes(2);
-    expect(radios[0].getAttribute("aria-checked")).toBe("true");
+    expect(radios[0]?.getAttribute("aria-checked")).toBe("true");
     expect(document.activeElement).toEqual(radios[0]);
-    expect(radios[0].tabIndex).toBe(0);
-    expect(submitInput.value).toBe("1");
+    expect(radios[0]?.tabIndex).toBe(0);
+    expect(submitInput?.value).toBe("1");
   });
 
   test("The 'arrowUp' and 'arrowLeft' keys move the selection to the previous radio. When the first radio is reached, moves the selection to the last one", () => {
@@ -406,17 +409,17 @@ describe("Radio Group component tests", () => {
     fireEvent.keyDown(radioGroup, { key: "ArrowUp", code: "ArrowUp", keyCode: 38, charCode: 38 });
     expect(onBlur).not.toHaveBeenCalled();
     expect(onChange).toHaveBeenCalledTimes(1);
-    expect(radios[0].getAttribute("aria-checked")).toBe("true");
+    expect(radios[0]?.getAttribute("aria-checked")).toBe("true");
     expect(document.activeElement).toEqual(radios[0]);
-    expect(radios[0].tabIndex).toBe(0);
-    expect(submitInput.value).toBe("1");
+    expect(radios[0]?.tabIndex).toBe(0);
+    expect(submitInput?.value).toBe("1");
     fireEvent.keyDown(radioGroup, { key: "ArrowLeft", code: "ArrowLeft", keyCode: 37, charCode: 37 });
     expect(onBlur).not.toHaveBeenCalled();
     expect(onChange).toHaveBeenCalledTimes(2);
-    expect(radios[8].getAttribute("aria-checked")).toBe("true");
+    expect(radios[8]?.getAttribute("aria-checked")).toBe("true");
     expect(document.activeElement).toEqual(radios[8]);
-    expect(radios[8].tabIndex).toBe(0);
-    expect(submitInput.value).toBe("9");
+    expect(radios[8]?.tabIndex).toBe(0);
+    expect(submitInput?.value).toBe("9");
   });
 
   test("Keyboard focus movement continues from the last radio input clicked", async () => {
@@ -433,20 +436,20 @@ describe("Radio Group component tests", () => {
     const radioGroup = getByRole("radiogroup");
     const radios = getAllByRole("radio");
     const submitInput = container.querySelector<HTMLInputElement>(`input[name="test"]`);
-    await userEvent.click(radios[3]);
+    radios[3] && (await userEvent.click(radios[3]));
     fireEvent.keyDown(radioGroup, { key: "ArrowDown", code: "ArrowDown", keyCode: 40, charCode: 40 });
     expect(onChange).toHaveBeenCalledWith("5");
-    expect(radios[4].getAttribute("aria-checked")).toBe("true");
+    expect(radios[4]?.getAttribute("aria-checked")).toBe("true");
     expect(document.activeElement).toEqual(radios[4]);
-    expect(radios[4].tabIndex).toBe(0);
-    expect(submitInput.value).toBe("5");
-    await userEvent.click(radios[8]);
+    expect(radios[4]?.tabIndex).toBe(0);
+    expect(submitInput?.value).toBe("5");
+    radios[8] && (await userEvent.click(radios[8]));
     fireEvent.keyDown(radioGroup, { key: "ArrowLeft", code: "ArrowLeft", keyCode: 37, charCode: 37 });
     expect(onChange).toHaveBeenCalledWith("8");
-    expect(radios[7].getAttribute("aria-checked")).toBe("true");
+    expect(radios[7]?.getAttribute("aria-checked")).toBe("true");
     expect(document.activeElement).toEqual(radios[7]);
-    expect(radios[7].tabIndex).toBe(0);
-    expect(submitInput.value).toBe("8");
+    expect(radios[7]?.tabIndex).toBe(0);
+    expect(submitInput?.value).toBe("8");
   });
 
   test("Read-only radio group lets the user move the focus, but neither click nor keyboard press changes the value", async () => {
@@ -464,18 +467,18 @@ describe("Radio Group component tests", () => {
     const radioGroup = getByRole("radiogroup");
     const radios = getAllByRole("radio");
     const submitInput = container.querySelector<HTMLInputElement>(`input[name="test"]`);
-    await userEvent.click(radios[5]);
+    radios[5] && (await userEvent.click(radios[5]));
     expect(onChange).not.toHaveBeenCalled();
-    expect(radios[5].getAttribute("aria-checked")).toBe("false");
+    expect(radios[5]?.getAttribute("aria-checked")).toBe("false");
     expect(document.activeElement).toEqual(radios[5]);
-    expect(radios[5].tabIndex).toBe(0);
-    expect(submitInput.value).toBe("");
+    expect(radios[5]?.tabIndex).toBe(0);
+    expect(submitInput?.value).toBe("");
     fireEvent.keyDown(radioGroup, { key: "ArrowUp", code: "ArrowUp", keyCode: 38, charCode: 38 });
     expect(onChange).not.toHaveBeenCalled();
-    expect(radios[4].getAttribute("aria-checked")).toBe("false");
+    expect(radios[4]?.getAttribute("aria-checked")).toBe("false");
     expect(document.activeElement).toEqual(radios[4]);
-    expect(radios[4].tabIndex).toBe(0);
-    expect(submitInput.value).toBe("");
+    expect(radios[4]?.tabIndex).toBe(0);
+    expect(submitInput?.value).toBe("");
   });
 
   test("Read-only radio group sends its value on submit", async () => {

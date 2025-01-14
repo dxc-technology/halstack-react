@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import BulletedListUsagePage from "../../../screens/components/bulleted-list/usage/BulletedListUsagePage";
-import BulletedListPageLayout from "../../../screens/components/bulleted-list/BulletedListPageLayout";
+import BulletedListUsagePage from "screens/components/bulleted-list/usage/BulletedListUsagePage";
+import BulletedListPageLayout from "screens/components/bulleted-list/BulletedListPageLayout";
 
 const Usage = () => {
   return (

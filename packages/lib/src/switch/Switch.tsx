@@ -1,15 +1,14 @@
-import { forwardRef, useId, useRef, useState } from "react";
+import { forwardRef, KeyboardEvent, useContext, useId, useRef, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import { getMargin } from "../common/utils";
 import { AdvancedTheme, spaces } from "../common/variables";
-import useTheme from "../useTheme";
-import useTranslatedLabels from "../useTranslatedLabels";
+import { getMargin } from "../common/utils";
+import HalstackContext, { HalstackLanguageContext } from "../HalstackContext";
 import SwitchPropsType, { RefType } from "./types";
 
 const DxcSwitch = forwardRef<RefType, SwitchPropsType>(
   (
     {
-      defaultChecked,
+      defaultChecked = false,
       checked,
       value,
       label = "",
@@ -26,26 +25,30 @@ const DxcSwitch = forwardRef<RefType, SwitchPropsType>(
   ): JSX.Element => {
     const switchId = `switch-${useId()}`;
     const labelId = `label-${switchId}`;
-    const [innerChecked, setInnerChecked] = useState(defaultChecked ?? false);
+    const [innerChecked, setInnerChecked] = useState(defaultChecked);
 
-    const colorsTheme = useTheme();
-    const translatedLabels = useTranslatedLabels();
-    const refTrack = useRef(null);
+    const colorsTheme = useContext(HalstackContext);
+    const translatedLabels = useContext(HalstackLanguageContext);
+    const refTrack = useRef<HTMLSpanElement | null>(null);
 
-    const handleOnKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    const handleOnKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
       switch (event.key) {
         case "Enter":
-        case " ": // Space
+        case " ":
           event.preventDefault();
-          refTrack.current.focus();
+          refTrack.current?.focus();
           setInnerChecked(!(checked ?? innerChecked));
           onChange?.(!(checked ?? innerChecked));
+          break;
+        default:
           break;
       }
     };
 
     const handlerSwitchChange = () => {
-      checked ?? setInnerChecked((innerChecked) => !innerChecked);
+      if (checked == null) {
+        setInnerChecked((currentInnerChecked) => !currentInnerChecked);
+      }
       onChange?.(checked ? !checked : !innerChecked);
     };
 
@@ -67,7 +70,7 @@ const DxcSwitch = forwardRef<RefType, SwitchPropsType>(
           <ValueInput
             type="checkbox"
             name={name}
-            aria-hidden={true}
+            aria-hidden
             value={value}
             disabled={disabled}
             checked={checked ?? innerChecked}
@@ -103,10 +106,10 @@ const sizes = {
   fitContent: "fit-content",
 };
 
-const calculateWidth = (margin, size) =>
+const calculateWidth = (margin: SwitchPropsType["margin"], size: SwitchPropsType["size"]) =>
   size === "fillParent"
     ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
-    : sizes[size];
+    : size && sizes[size];
 
 const getDisabledColor = (
   theme: AdvancedTheme["switch"],
@@ -120,6 +123,8 @@ const getDisabledColor = (
           return theme.disabledCheckedTrackBackgroundColor;
         case "uncheck":
           return theme.disabledUncheckedTrackBackgroundColor;
+        default:
+          return undefined;
       }
     case "thumb":
       switch (subElement) {
@@ -127,9 +132,13 @@ const getDisabledColor = (
           return theme.disabledCheckedThumbBackgroundColor;
         case "uncheck":
           return theme.disabledUncheckedThumbBackgroundColor;
+        default:
+          return undefined;
       }
     case "label":
       return theme.disabledLabelFontColor;
+    default:
+      return undefined;
   }
 };
 
@@ -145,16 +154,24 @@ const getNotDisabledColor = (
           return theme.checkedTrackBackgroundColor;
         case "uncheck":
           return theme.uncheckedTrackBackgroundColor;
+        default:
+          return undefined;
       }
+      break;
     case "thumb":
       switch (subElement) {
         case "check":
           return theme.checkedThumbBackgroundColor;
         case "uncheck":
           return theme.uncheckedThumbBackgroundColor;
+        default:
+          return undefined;
       }
+      break;
     case "label":
       return theme.labelFontColor;
+    default:
+      return undefined;
   }
 };
 

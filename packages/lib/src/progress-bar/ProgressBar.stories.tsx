@@ -1,3 +1,4 @@
+import { Meta, StoryObj } from "@storybook/react";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import { HalstackProvider } from "../HalstackContext";
@@ -6,7 +7,7 @@ import DxcProgressBar from "./ProgressBar";
 export default {
   title: "Progress Bar",
   component: DxcProgressBar,
-};
+} as Meta<typeof DxcProgressBar>;
 
 const opinionatedTheme = {
   progressBar: {
@@ -18,17 +19,19 @@ const opinionatedTheme = {
   },
 };
 
-export const Chromatic = () => (
+const ProgressBar = () => (
   <>
     <ExampleContainer>
-      <Title title="Without labels" theme="light" level={4} />
+      <Title title="Default" theme="light" level={4} />
+      <DxcProgressBar />
+      <Title title="Value only" theme="light" level={4} />
       <DxcProgressBar value={50} showValue />
       <Title title="With helperText" theme="light" level={4} />
       <DxcProgressBar helperText="Helper text" value={24} showValue />
-      <Title title="Without default value" theme="light" level={4} />
-      <DxcProgressBar label="Loading..." showValue />
-      <Title title="With full value" theme="light" level={4} />
-      <DxcProgressBar label="Loading..." value={100} showValue />
+      <Title title="Label only" theme="light" level={4} />
+      <DxcProgressBar label="Loading..." />
+      <Title title="Complete progress bar" theme="light" level={4} />
+      <DxcProgressBar label="Loading..." value={100} showValue helperText="Helper text" />
     </ExampleContainer>
     <Title title="Margins" theme="light" level={2} />
     <ExampleContainer>
@@ -75,14 +78,14 @@ export const Chromatic = () => (
   </>
 );
 
-export const ProgressBarOverlay = () => (
+const ProgressBarWithOverlay = () => (
   <ExampleContainer>
     <Title title="Overlay" theme="dark" level={4} />
     <DxcProgressBar label="Overlay" helperText="Helper text" overlay showValue value={50} />
   </ExampleContainer>
 );
 
-export const ProgressBarOverlayOpinionated = () => (
+const ProgressBarWithOverlayOpinionated = () => (
   <ExampleContainer>
     <Title title="Overlay" theme="dark" level={4} />
     <HalstackProvider theme={opinionatedTheme}>
@@ -90,3 +93,17 @@ export const ProgressBarOverlayOpinionated = () => (
     </HalstackProvider>
   </ExampleContainer>
 );
+
+type Story = StoryObj<typeof DxcProgressBar>;
+
+export const Chromatic: Story = {
+  render: ProgressBar,
+};
+
+export const ProgressBarOverlay: Story = {
+  render: ProgressBarWithOverlay,
+};
+
+export const ProgressBarOverlayOpinionated: Story = {
+  render: ProgressBarWithOverlayOpinionated,
+};

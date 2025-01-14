@@ -1,5 +1,5 @@
 import { render } from "@testing-library/react";
-import { axe } from "../../test/accessibility/axe-helper.js";
+import { axe } from "../../test/accessibility/axe-helper";
 import DxcSlider from "./Slider";
 
 // Mocking DOMRect for Radix Primitive Popover

@@ -28,7 +28,9 @@ const sections = [
               <TableCode>boolean</TableCode>
             </td>
             <td>Initial state of the switch, only when it is uncontrolled.</td>
-            <td>-</td>
+            <td>
+              <TableCode>false</TableCode>
+            </td>
           </tr>
           <tr>
             <td>checked</td>
@@ -39,9 +41,7 @@ const sections = [
               If true, the component is checked. If undefined, the component will be uncontrolled and the checked
               attribute will be managed internally by the component.
             </td>
-            <td>
-              <TableCode>false</TableCode>
-            </td>
+            <td>-</td>
           </tr>
           <tr>
             <td>value</td>

@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import ToastPageLayout from "../../../screens/components/toast/ToastPageLayout";
-import ToastUsagePage from "../../../screens/components/toast/usage/ToastUsagePage";
+import ToastPageLayout from "screens/components/toast/ToastPageLayout";
+import ToastUsagePage from "screens/components/toast/usage/ToastUsagePage";
 
 const Usage = () => {
   return (

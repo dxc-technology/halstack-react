@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import NavTabsPageLayout from "../../../screens/components/nav-tabs/NavTabsPageLayout";
-import NavTabsUsagePage from "../../../screens/components/nav-tabs/usage/NavTabsUsagePage";
+import NavTabsPageLayout from "screens/components/nav-tabs/NavTabsPageLayout";
+import NavTabsUsagePage from "screens/components/nav-tabs/usage/NavTabsUsagePage";
 
 const Usage = () => {
   return (

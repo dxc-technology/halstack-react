@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import DropdownPageLayout from "../../../screens/components/dropdown/DropdownPageLayout";
-import DropdownCodePage from "../../../screens/components/dropdown/code/DropdownCodePage";
+import DropdownPageLayout from "screens/components/dropdown/DropdownPageLayout";
+import DropdownCodePage from "screens/components/dropdown/code/DropdownCodePage";
 
 const Index = () => {
   return (

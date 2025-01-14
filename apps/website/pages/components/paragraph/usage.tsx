@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import ParagraphPageLayout from "../../../screens/components/paragraph/ParagraphPageLayout";
-import ParagraphUsagePage from "../../../screens/components/paragraph/usage/ParagraphUsagePage";
+import ParagraphPageLayout from "screens/components/paragraph/ParagraphPageLayout";
+import ParagraphUsagePage from "screens/components/paragraph/usage/ParagraphUsagePage";
 const Usage = () => {
   return (
     <>
