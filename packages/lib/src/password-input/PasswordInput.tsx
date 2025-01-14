@@ -8,10 +8,9 @@ const setInputType = (type: string, element: HTMLDivElement | null) => {
   element?.getElementsByTagName("input")[0]?.setAttribute("type", type);
 };
 
-const setAriaAttributes = (ariaExpanded: "true" | "false", ariaLabel: string, element: HTMLDivElement | null) => {
+const setAriaAttributes = (ariaExpanded: "true" | "false", element: HTMLDivElement | null) => {
   const buttonElement = element?.getElementsByTagName("button")[0];
   buttonElement?.setAttribute("aria-expanded", ariaExpanded);
-  buttonElement?.setAttribute("aria-label", ariaLabel);
 };
 
 const DxcPasswordInput = forwardRef<RefType, PasswordInputPropsType>(
@@ -32,6 +31,7 @@ const DxcPasswordInput = forwardRef<RefType, PasswordInputPropsType>(
       margin,
       size = "medium",
       tabIndex = 0,
+      ariaLabel = "Password input",
     },
     ref
   ) => {
@@ -44,12 +44,12 @@ const DxcPasswordInput = forwardRef<RefType, PasswordInputPropsType>(
         if (isPasswordVisible) {
           setInputType("text", inputRef.current);
           if (passwordInput.inputHidePasswordTitle) {
-            setAriaAttributes("true", passwordInput.inputHidePasswordTitle, inputRef.current);
+            setAriaAttributes("true", inputRef.current);
           }
         } else {
           setInputType("password", inputRef.current);
           if (passwordInput.inputShowPasswordTitle) {
-            setAriaAttributes("false", passwordInput.inputShowPasswordTitle, inputRef.current);
+            setAriaAttributes("false", inputRef.current);
           }
         }
       })();
@@ -81,6 +81,7 @@ const DxcPasswordInput = forwardRef<RefType, PasswordInputPropsType>(
           autocomplete={autocomplete}
           ref={inputRef}
           tabIndex={tabIndex}
+          ariaLabel={ariaLabel}
         />
       </PasswordInput>
     );
