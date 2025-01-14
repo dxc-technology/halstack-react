@@ -57,7 +57,7 @@ const opinionatedTheme = {
     accentColor: "#000000",
     fontColor: "#000000",
     menuBaseColor: "#ffffff",
-    hamburguerColor: "#000000",
+    hamburgerColor: "#000000",
     logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/2021_Facebook_icon.svg/2048px-2021_Facebook_icon.svg.png",
     logoResponsive:
       "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/2021_Facebook_icon.svg/2048px-2021_Facebook_icon.svg.png",

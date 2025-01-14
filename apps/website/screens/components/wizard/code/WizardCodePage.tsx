@@ -30,7 +30,9 @@ const sections = [
               <TableCode>number</TableCode>
             </td>
             <td>Initially selected step, only when it is uncontrolled.</td>
-            <td>-</td>
+            <td>
+              <TableCode>0</TableCode>
+            </td>
           </tr>
           <tr>
             <td>currentStep</td>
@@ -41,9 +43,7 @@ const sections = [
               Defines which step is marked as the current. The numeration starts at 0. If undefined, the component will
               be uncontrolled and the step will be managed internally by the component.
             </td>
-            <td>
-              <TableCode>0</TableCode>
-            </td>
+            <td>-</td>
           </tr>
           <tr>
             <td>mode</td>

@@ -25,11 +25,10 @@ const code = `() => {
           label="Show Progress Bar for 3 seconds"
           onClick={showModal}
         />
-
         {isVisible && (
           <DxcProgressBar
             label="Loading"
-            overlay={true}
+            overlay
           />
         )}
       </DxcFlex>
