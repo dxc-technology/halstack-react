@@ -59,6 +59,10 @@ type Props = {
    * Value of the tabindex.
    */
   tabIndex?: number;
+  /**
+   * Specifies a string to be used as the name for the checkbox element when no `label` is provided.
+   */
+  ariaLabel?: string;
 };
 
 /**

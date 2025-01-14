@@ -671,7 +671,7 @@ const sections = [
                       <tr>
                         <td>Font color</td>
                         <td>
-                          <Code>hamburguerFontColor</Code>
+                          <Code>hamburgerFontColor</Code>
                         </td>
                       </tr>
                       <tr>
@@ -681,12 +681,12 @@ const sections = [
                         </td>
                       </tr>
                       <tr>
-                        <td>Hamburguer color</td>
+                        <td>Hamburger color</td>
                         <td>
-                          <Code>hamburguerIconColor</Code>
+                          <Code>hamburgerIconColor</Code>
                           <br />
                           <br />
-                          <Code>hamburguerHoverColor</Code> (+90% of lightness)
+                          <Code>hamburgerHoverColor</Code> (+90% of lightness)
                         </td>
                       </tr>
                       <tr>

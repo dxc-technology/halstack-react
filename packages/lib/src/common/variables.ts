@@ -388,15 +388,8 @@ export const componentTokens = {
   dialog: {
     overlayColor: CoreTokens.color_grey_800_a,
     backgroundColor: CoreTokens.color_white,
-    closeIconSize: "24px",
-    closeIconTopPosition: "20px",
-    closeIconRightPosition: "20px",
     closeIconBackgroundColor: CoreTokens.color_transparent,
-    closeIconBorderColor: CoreTokens.border_none,
     closeIconColor: CoreTokens.color_black,
-    closeIconBorderThickness: CoreTokens.border_width_0,
-    closeIconBorderStyle: CoreTokens.border_solid,
-    closeIconBorderRadius: "2px",
     boxShadowOffsetX: "0px",
     boxShadowOffsetY: "1px",
     boxShadowBlur: "3px",
@@ -531,15 +524,15 @@ export const componentTokens = {
   },
   header: {
     backgroundColor: CoreTokens.color_white,
-    hamburguerFocusColor: CoreTokens.color_blue_600,
-    hamburguerFontFamily: CoreTokens.type_sans,
-    hamburguerFontStyle: CoreTokens.type_normal,
-    hamburguerFontColor: CoreTokens.color_black,
-    hamburguerFontSize: "10px",
-    hamburguerFontWeight: CoreTokens.type_semibold,
-    hamburguerTextTransform: CoreTokens.type_uppercase,
-    hamburguerIconColor: CoreTokens.color_black,
-    hamburguerHoverColor: CoreTokens.color_grey_200,
+    hamburgerFocusColor: CoreTokens.color_blue_600,
+    hamburgerFontFamily: CoreTokens.type_sans,
+    hamburgerFontStyle: CoreTokens.type_normal,
+    hamburgerFontColor: CoreTokens.color_black,
+    hamburgerFontSize: "10px",
+    hamburgerFontWeight: CoreTokens.type_semibold,
+    hamburgerTextTransform: CoreTokens.type_uppercase,
+    hamburgerIconColor: CoreTokens.color_black,
+    hamburgerHoverColor: CoreTokens.color_grey_200,
     logo: "",
     logoResponsive: "",
     logoHeight: "40px",
@@ -1353,7 +1346,7 @@ export type OpinionatedTheme = {
     accentColor: string;
     fontColor: string;
     menuBaseColor: string;
-    hamburguerColor: string;
+    hamburgerColor: string;
     logo: string;
     logoResponsive: string;
     contentColor: string;
@@ -1519,7 +1512,7 @@ export const defaultTranslatedComponentLabels = {
   },
   header: {
     closeIcon: "Close menu",
-    hamburguerTitle: "Menu",
+    hamburgerTitle: "Menu",
   },
   numberInput: {
     valueGreaterThanOrEqualToErrorMessage: (value: number) => `Value must be greater than or equal to ${value}.`,

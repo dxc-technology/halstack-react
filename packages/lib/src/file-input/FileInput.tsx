@@ -5,32 +5,127 @@ import { spaces } from "../common/variables";
 import FileItem from "./FileItem";
 import FileInputPropsType, { FileData, RefType } from "./types";
 import HalstackContext, { HalstackLanguageContext } from "../HalstackContext";
+import { getFilePreview, isFileIncluded } from "./utils";
 
-const getFilePreview = async (file: File): Promise<string> => {
-  if (file.type.includes("video")) return "filled_movie";
-  else if (file.type.includes("audio")) return "music_video";
-  else if (file.type.includes("image")) {
-    return new Promise<string>((resolve) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = (e) => {
-        resolve(e.target?.result as string);
-      };
-    });
-  } else return "draft";
-};
+const FileInputContainer = styled.div<{ margin: FileInputPropsType["margin"] }>`
+  display: flex;
+  flex-direction: column;
+  margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
+  margin-top: ${(props) =>
+    props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
+  margin-right: ${(props) =>
+    props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
+  margin-bottom: ${(props) =>
+    props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
+  margin-left: ${(props) =>
+    props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
+  width: fit-content;
+`;
 
-const isFileIncluded = (file: FileData, fileList: FileData[]) => {
-  const fileListInfo = fileList.map((existingFile) => existingFile.file);
-  return fileListInfo.some(
-    ({ name, size, type, lastModified, webkitRelativePath }) =>
-      name === file.file.name &&
-      size === file.file.size &&
-      type === file.file.type &&
-      lastModified === file.file.lastModified &&
-      webkitRelativePath === file.file.webkitRelativePath
-  );
-};
+const Label = styled.label<{ disabled: FileInputPropsType["disabled"] }>`
+  color: ${(props) => (props.disabled ? props.theme.disabledLabelFontColor : props.theme.labelFontColor)};
+  font-family: ${(props) => props.theme.labelFontFamily};
+  font-size: ${(props) => props.theme.labelFontSize};
+  font-weight: ${(props) => props.theme.labelFontWeight};
+  line-height: ${(props) => props.theme.labelLineHeight};
+`;
+
+const HelperText = styled.span<{ disabled: FileInputPropsType["disabled"] }>`
+  color: ${(props) => (props.disabled ? props.theme.disabledHelperTextFontColor : props.theme.helperTextFontColor)};
+  font-family: ${(props) => props.theme.helperTextFontFamily};
+  font-size: ${(props) => props.theme.helperTextFontSize};
+  font-weight: ${(props) => props.theme.helperTextFontWeight};
+  line-height: ${(props) => props.theme.helperTextLineHeight};
+`;
+
+const FileContainer = styled.div<{ singleFileMode: boolean }>`
+  display: flex;
+  ${(props) =>
+    props.singleFileMode ? "flex-direction: row; column-gap: 0.25rem;" : "flex-direction: column; row-gap: 0.25rem;"}
+  margin-top: 0.25rem;
+`;
+
+const ValueInput = styled.input`
+  display: none;
+`;
+
+const FileItemListContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.25rem;
+`;
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.25rem;
+  margin-top: 0.25rem;
+`;
+
+const DragDropArea = styled.div<{
+  mode: FileInputPropsType["mode"];
+  disabled: FileInputPropsType["disabled"];
+  isDragging: boolean;
+}>`
+  box-sizing: border-box;
+  display: flex;
+  ${(props) =>
+    props.mode === "filedrop"
+      ? "flex-direction: row; column-gap: 0.75rem; height: 48px;"
+      : "justify-content: center; flex-direction: column; row-gap: 0.5rem; height: 160px;"}
+  align-items: center;
+  width: 320px;
+  padding: ${(props) =>
+    props.mode === "filedrop"
+      ? `calc(4px - ${props.theme.dropBorderThickness}) 1rem calc(4px - ${props.theme.dropBorderThickness}) calc(4px - ${props.theme.dropBorderThickness})`
+      : "1rem"};
+  overflow: hidden;
+  box-shadow: 0 0 0 2px transparent;
+  border-radius: ${(props) => props.theme.dropBorderRadius};
+  border-width: ${(props) => props.theme.dropBorderThickness};
+  border-style: ${(props) => props.theme.dropBorderStyle};
+  border-color: ${(props) => (props.disabled ? props.theme.disabledDropBorderColor : props.theme.dropBorderColor)};
+  ${(props) =>
+    props.isDragging &&
+    `
+      background-color: ${props.theme.dragoverDropBackgroundColor};
+      border-color: transparent;
+      box-shadow: 0 0 0 2px ${props.theme.focusDropBorderColor};
+    `}
+  cursor: ${(props) => props.disabled && "not-allowed"};
+`;
+
+const DropzoneLabel = styled.div<{ disabled: FileInputPropsType["disabled"] }>`
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 3;
+  text-align: center;
+  color: ${(props) => (props.disabled ? props.theme.disabledDropLabelFontColor : props.theme.dropLabelFontColor)};
+  font-family: ${(props) => props.theme.dropLabelFontFamily};
+  font-size: ${(props) => props.theme.dropLabelFontSize};
+  font-weight: ${(props) => props.theme.dropLabelFontWeight};
+`;
+
+const FiledropLabel = styled.span<{ disabled: FileInputPropsType["disabled"] }>`
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: ${(props) => (props.disabled ? props.theme.disabledDropLabelFontColor : props.theme.dropLabelFontColor)};
+  font-family: ${(props) => props.theme.dropLabelFontFamily};
+  font-size: ${(props) => props.theme.dropLabelFontSize};
+  font-weight: ${(props) => props.theme.dropLabelFontWeight};
+`;
+
+const ErrorMessage = styled.div`
+  color: ${(props) => props.theme.errorMessageFontColor};
+  font-family: ${(props) => props.theme.errorMessageFontFamily};
+  font-size: ${(props) => props.theme.errorMessageFontSize};
+  font-weight: ${(props) => props.theme.errorMessageFontWeight};
+  line-height: ${(props) => props.theme.errorMessageLineHeight};
+  margin-top: 0.25rem;
+`;
 
 const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
   (
@@ -188,7 +283,7 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
                 tabIndex={tabIndex}
               />
               {files.length > 0 && (
-                <FileItemListContainer>
+                <FileItemListContainer role="list">
                   {files.map((file, index) => (
                     <FileItem
                       fileName={file.file.name}
@@ -249,7 +344,7 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
                 )}
               </DragDropArea>
               {files.length > 0 && (
-                <FileItemListContainer>
+                <FileItemListContainer role="list">
                   {files.map((file, index) => (
                     <FileItem
                       fileName={file.file.name}
@@ -275,125 +370,5 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
     );
   }
 );
-
-const FileInputContainer = styled.div<{ margin: FileInputPropsType["margin"] }>`
-  display: flex;
-  flex-direction: column;
-  margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
-  margin-top: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
-  margin-right: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
-  margin-bottom: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
-  margin-left: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
-  width: fit-content;
-`;
-
-const Label = styled.label<{ disabled: FileInputPropsType["disabled"] }>`
-  color: ${(props) => (props.disabled ? props.theme.disabledLabelFontColor : props.theme.labelFontColor)};
-  font-family: ${(props) => props.theme.labelFontFamily};
-  font-size: ${(props) => props.theme.labelFontSize};
-  font-weight: ${(props) => props.theme.labelFontWeight};
-  line-height: ${(props) => props.theme.labelLineHeight};
-`;
-
-const HelperText = styled.span<{ disabled: FileInputPropsType["disabled"] }>`
-  color: ${(props) => (props.disabled ? props.theme.disabledHelperTextFontColor : props.theme.helperTextFontColor)};
-  font-family: ${(props) => props.theme.helperTextFontFamily};
-  font-size: ${(props) => props.theme.helperTextFontSize};
-  font-weight: ${(props) => props.theme.helperTextFontWeight};
-  line-height: ${(props) => props.theme.helperTextLineHeight};
-`;
-
-const FileContainer = styled.div<{ singleFileMode: boolean }>`
-  display: flex;
-  ${(props) =>
-    props.singleFileMode ? "flex-direction: row; column-gap: 0.25rem;" : "flex-direction: column; row-gap: 0.25rem;"}
-  margin-top: 0.25rem;
-`;
-
-const ValueInput = styled.input`
-  display: none;
-`;
-
-const FileItemListContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  row-gap: 0.25rem;
-`;
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  row-gap: 0.25rem;
-  margin-top: 0.25rem;
-`;
-
-const DragDropArea = styled.div<{
-  mode: FileInputPropsType["mode"];
-  disabled: FileInputPropsType["disabled"];
-  isDragging: boolean;
-}>`
-  box-sizing: border-box;
-  display: flex;
-  ${(props) =>
-    props.mode === "filedrop"
-      ? "flex-direction: row; column-gap: 0.75rem; height: 48px;"
-      : "justify-content: center; flex-direction: column; row-gap: 0.5rem; height: 160px;"}
-  align-items: center;
-  width: 320px;
-  padding: ${(props) =>
-    props.mode === "filedrop"
-      ? `calc(4px - ${props.theme.dropBorderThickness}) 1rem calc(4px - ${props.theme.dropBorderThickness}) calc(4px - ${props.theme.dropBorderThickness})`
-      : "1rem"};
-  overflow: hidden;
-  box-shadow: 0 0 0 2px transparent;
-  border-radius: ${(props) => props.theme.dropBorderRadius};
-  border-width: ${(props) => props.theme.dropBorderThickness};
-  border-style: ${(props) => props.theme.dropBorderStyle};
-  border-color: ${(props) => (props.disabled ? props.theme.disabledDropBorderColor : props.theme.dropBorderColor)};
-  ${(props) =>
-    props.isDragging &&
-    `
-      background-color: ${props.theme.dragoverDropBackgroundColor};
-      border-color: transparent;
-      box-shadow: 0 0 0 2px ${props.theme.focusDropBorderColor};
-    `}
-  cursor: ${(props) => props.disabled && "not-allowed"};
-`;
-
-const DropzoneLabel = styled.div<{ disabled: FileInputPropsType["disabled"] }>`
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  -webkit-line-clamp: 3;
-  text-align: center;
-  color: ${(props) => (props.disabled ? props.theme.disabledDropLabelFontColor : props.theme.dropLabelFontColor)};
-  font-family: ${(props) => props.theme.dropLabelFontFamily};
-  font-size: ${(props) => props.theme.dropLabelFontSize};
-  font-weight: ${(props) => props.theme.dropLabelFontWeight};
-`;
-
-const FiledropLabel = styled.span<{ disabled: FileInputPropsType["disabled"] }>`
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  color: ${(props) => (props.disabled ? props.theme.disabledDropLabelFontColor : props.theme.dropLabelFontColor)};
-  font-family: ${(props) => props.theme.dropLabelFontFamily};
-  font-size: ${(props) => props.theme.dropLabelFontSize};
-  font-weight: ${(props) => props.theme.dropLabelFontWeight};
-`;
-
-const ErrorMessage = styled.div`
-  color: ${(props) => props.theme.errorMessageFontColor};
-  font-family: ${(props) => props.theme.errorMessageFontFamily};
-  font-size: ${(props) => props.theme.errorMessageFontSize};
-  font-weight: ${(props) => props.theme.errorMessageFontWeight};
-  line-height: ${(props) => props.theme.errorMessageLineHeight};
-  margin-top: 0.25rem;
-`;
 
 export default DxcFileInput;

@@ -3,7 +3,6 @@ import styled from "styled-components";
 const DxcIcon = ({ icon }: { icon: string }): JSX.Element => (
   <IconContainer
     role="img"
-    aria-label={icon}
     filled={icon.startsWith("filled_")}
     icon={icon.startsWith("filled_") ? icon.replace(/filled_/g, "") : icon}
     aria-hidden="true"
