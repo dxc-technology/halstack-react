@@ -155,7 +155,7 @@ const sections = [
           <tr>
             <td>ariaLabel</td>
             <td>
-              <TableCode>{"strig"}</TableCode>
+              <TableCode>{"string"}</TableCode>
             </td>
             <td>Specifies a string to be used as the name for the switch element when no `label` is provided.</td>
             <td>'Switch'</td>
