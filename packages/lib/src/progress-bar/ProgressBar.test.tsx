@@ -38,4 +38,19 @@ describe("ProgressBar component tests", () => {
     expect(getByText("25 %")).toBeTruthy();
     expect(progressBar.getAttribute("aria-valuenow")).toEqual(value.toString());
   });
+
+  test("Overlay progressBar renders with correct aria-label", () => {
+    const value = 25;
+    const { getByRole } = render(<DxcProgressBar showValue ariaLabel="Example aria label" value={value} overlay />);
+    const progressBar = getByRole("progressbar");
+    expect(progressBar.getAttribute("aria-label")).toBe("Example aria label");
+  });
+
+  test("Overlay progressBar renders with correct label", () => {
+    const value = 25;
+    const { getByRole, getByText } = render(<DxcProgressBar showValue label="Example label" value={value} overlay />);
+    const progressBar = getByRole("progressbar");
+    expect(getByText("Example label")).toBeTruthy();
+    expect(progressBar.getAttribute("aria-label")).toBeNull();
+  });
 });

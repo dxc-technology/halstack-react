@@ -79,6 +79,17 @@ const sections = [
             </td>
             <td>-</td>
           </tr>
+          <tr>
+            <td>ariaLabel</td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
+            <td>
+              Specifies a string to be used as the name for the progress bar element when no <Code>label</Code> is
+              provided.
+            </td>
+            <td>'Progress bar'</td>
+          </tr>
         </tbody>
       </DxcTable>
     ),

@@ -46,7 +46,7 @@ const MainContainer = styled.div<{
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  z-index: ${(props) => props.overlay ? "100" : "0"};
+  z-index: ${(props) => (props.overlay ? "100" : "0")};
 `;
 
 const ProgressBarLabel = styled.div<{
@@ -103,7 +103,7 @@ const LinearProgressBar = styled.span<{
   top: 0;
   bottom: 0;
   left: 0;
-  width: ${(props) => props.variant === "indeterminate" ? "auto" : "100%"};
+  width: ${(props) => (props.variant === "indeterminate" ? "auto" : "100%")};
   transform: ${(props) => `translateX(-${props.variant === "determinate" ? 100 - (props.value ?? 0) : 0}%)`};
   transition: ${(props) => (props.variant === "determinate" ? "transform .4s linear" : "transform 0.2s linear")};
   transform-origin: left;
@@ -151,6 +151,7 @@ const DxcProgressBar = ({
   value,
   showValue,
   margin,
+  ariaLabel = "Progress bar",
 }: ProgressBarPropsType): JSX.Element => {
   const colorsTheme = useContext(HalstackContext);
   const labelId = `label-${useId()}`;
@@ -177,8 +178,8 @@ const DxcProgressBar = ({
           <LinearProgress
             role="progressbar"
             helperText={helperText}
-            aria-label="Progress bar"
-            aria-labelledby={labelId}
+            aria-label={label ? undefined : ariaLabel}
+            aria-labelledby={label ? labelId : undefined}
             aria-valuenow={innerValue}
             aria-valuemin={0}
             aria-valuemax={100}
