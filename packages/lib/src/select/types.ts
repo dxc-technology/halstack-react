@@ -94,6 +94,10 @@ type CommonProps = {
    * Value of the tabindex attribute.
    */
   tabIndex?: number;
+  /**
+   * Specifies a string to be used as the name for the select element when no `label` is provided.
+   */
+  ariaLabel?: string;
 };
 
 type SingleSelect = CommonProps & {
