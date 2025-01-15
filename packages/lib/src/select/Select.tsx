@@ -52,7 +52,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
       margin,
       size = "medium",
       tabIndex = 0,
-      ariaLabel = "Select input",
+      ariaLabel = "Select",
     },
     ref
   ): JSX.Element => {

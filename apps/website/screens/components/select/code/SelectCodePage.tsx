@@ -276,7 +276,7 @@ const sections = [
             <td>
               Specifies a string to be used as the name for the select element when no <Code>label</Code> is provided.
             </td>
-            <td>'Select input'</td>
+            <td>'Select'</td>
           </tr>
         </tbody>
       </DxcTable>
