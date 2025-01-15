@@ -101,6 +101,13 @@ describe("Switch component tests", () => {
     const label = getByText("Default label");
     expect(switchEl.getAttribute("aria-labelledby")).toBe(label.id);
     expect(switchEl.getAttribute("aria-checked")).toBe("false");
+    expect(switchEl.getAttribute("aria-label")).toBeNull();
+  });
+
+  test("Renders with correct aria-label", () => {
+    const { getByRole } = render(<DxcSwitch ariaLabel="Example aria label" />);
+    const switchEl = getByRole("switch");
+    expect(switchEl.getAttribute("aria-label")).toBe("Example aria label");
   });
 
   test("Renders disabled switch correctly", () => {
