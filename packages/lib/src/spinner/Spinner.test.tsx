@@ -28,4 +28,20 @@ describe("Spinner component tests", () => {
     const { getByRole } = render(<DxcSpinner label="test-loading" value={75} showValue></DxcSpinner>);
     expect(getByRole("progressbar")).toBeTruthy();
   });
+
+  test("Test spinner aria-label to be undefined", () => {
+    const { getByRole } = render(<DxcSpinner label="test-loading" value={75} showValue></DxcSpinner>);
+    const spinner = getByRole("progressbar");
+    expect(spinner.getAttribute("aria-label")).toBeNull();
+    expect(spinner.getAttribute("aria-labelledby")).toBeTruthy();
+  });
+
+  test("Test spinner aria-label to be applied correctly when mode is small", () => {
+    const { getByRole } = render(
+      <DxcSpinner label="test-loading" ariaLabel="Example aria label" value={75} mode="small" showValue></DxcSpinner>
+    );
+    const spinner = getByRole("progressbar");
+    expect(spinner.getAttribute("aria-label")).toBe("Example aria label");
+    expect(spinner.getAttribute("aria-labelledby")).toBeNull();
+  });
 });

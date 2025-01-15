@@ -23,6 +23,10 @@ type Props = {
    * You can pass an object with 'top', 'bottom', 'left' and 'right' properties in order to specify different margin sizes.
    */
   margin?: Space | Margin;
+  /**
+   * Specifies a string to be used as the name for the spinner element when no `label` is provided or the `mode` is set to small.
+   */
+  ariaLabel?: string;
 };
 
 export default Props;

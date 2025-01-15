@@ -75,6 +75,17 @@ const sections = [
             </td>
             <td>-</td>
           </tr>
+          <tr>
+            <td>ariaLabel</td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
+            <td>
+              Specifies a string to be used as the name for the spinner element when no `label` is provided or the
+              `mode` is set to small.
+            </td>
+            <td>'Spinner'</td>
+          </tr>
         </tbody>
       </DxcTable>
     ),
