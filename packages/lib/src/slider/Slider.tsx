@@ -248,7 +248,7 @@ const DxcSlider = forwardRef<RefType, SliderPropsType>(
       labelFormatCallback,
       margin,
       size = "fillParent",
-      ariaLabel = "Slider input",
+      ariaLabel = "Slider",
     },
     ref
   ): JSX.Element => {
