@@ -152,6 +152,14 @@ const sections = [
             <td>Reference to the component.</td>
             <td>-</td>
           </tr>
+          <tr>
+            <td>ariaLabel</td>
+            <td>
+              <TableCode>{"strig"}</TableCode>
+            </td>
+            <td>Specifies a string to be used as the name for the switch element when no `label` is provided.</td>
+            <td>'Switch'</td>
+          </tr>
         </tbody>
       </DxcTable>
     ),

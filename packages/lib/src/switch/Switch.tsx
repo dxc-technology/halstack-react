@@ -20,6 +20,7 @@ const DxcSwitch = forwardRef<RefType, SwitchPropsType>(
       margin,
       size = "fitContent",
       tabIndex = 0,
+      ariaLabel = "Switch",
     },
     ref
   ): JSX.Element => {
@@ -83,6 +84,7 @@ const DxcSwitch = forwardRef<RefType, SwitchPropsType>(
               aria-disabled={disabled}
               disabled={disabled}
               aria-labelledby={labelId}
+              aria-label={label ? undefined : ariaLabel}
               tabIndex={!disabled ? tabIndex : -1}
               ref={refTrack}
             />
