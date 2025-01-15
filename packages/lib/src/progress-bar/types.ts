@@ -35,6 +35,10 @@ type Props = {
    * in order to specify different margin sizes.
    */
   margin?: Space | Size;
+  /**
+   * Specifies a string to be used as the name for the progress bar element when no `label` is provided.
+   */
+  ariaLabel?: string;
 };
 
 export default Props;
