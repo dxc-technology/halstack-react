@@ -21,6 +21,15 @@ describe("Slider component tests", () => {
     const sliderId = getByText("label").getAttribute("id");
     expect(getByRole("slider").getAttribute("aria-labelledby")).toBe(sliderId);
     expect(getByRole("slider").getAttribute("aria-orientation")).toBe("horizontal");
+    expect(getByRole("slider").getAttribute("aria-label")).toBeNull();
+  });
+
+  test("Renders with correct error aria label", () => {
+    const { getByRole } = render(
+      <DxcSlider ariaLabel="Example aria label" minValue={0} maxValue={100} showLimitsValues />
+    );
+    const slider = getByRole("slider");
+    expect(slider.getAttribute("aria-label")).toBe("Example aria label");
   });
 
   test("Slider renders with correct initial value when it is uncontrolled", () => {

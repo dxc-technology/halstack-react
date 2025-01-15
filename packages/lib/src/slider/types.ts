@@ -73,6 +73,10 @@ type Props = {
    * Size of the component.
    */
   size?: "medium" | "large" | "fillParent";
+  /**
+   * Specifies a string to be used as the name for the slider element when no `label` is provided.
+   */
+  ariaLabel?: string;
 };
 
 /**
