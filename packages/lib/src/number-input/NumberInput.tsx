@@ -28,6 +28,7 @@ const DxcNumberInput = forwardRef<RefType, NumberInputPropsType>(
       margin,
       size,
       tabIndex,
+      ariaLabel = "Number input",
     },
     ref
   ) => {
@@ -77,6 +78,7 @@ const DxcNumberInput = forwardRef<RefType, NumberInputPropsType>(
             size={size}
             tabIndex={tabIndex}
             ref={ref}
+            ariaLabel={ariaLabel}
           />
         </NumberInputContainer>
       </NumberInputContext.Provider>

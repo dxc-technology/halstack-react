@@ -122,6 +122,10 @@ type Props = {
    * Value of the tabindex attribute.
    */
   tabIndex?: number;
+  /**
+   * Specifies a string to be used as the name for the textarea element when no `label` is provided.
+   */
+  ariaLabel?: string;
 };
 /**
  * Reference to the component.

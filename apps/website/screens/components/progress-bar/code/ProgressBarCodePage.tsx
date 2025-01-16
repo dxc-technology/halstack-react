@@ -1,4 +1,5 @@
 import { DxcFlex, DxcTable } from "@dxc-technology/halstack-react";
+import Code from "@/common/Code";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import DocFooter from "@/common/DocFooter";
@@ -63,7 +64,7 @@ const sections = [
             <td>
               <TableCode>boolean</TableCode>
             </td>
-            <td>If true, the value is displayed above the progress bar.</td>
+            <td>If true, the determined value is displayed above the progress bar.</td>
             <td>
               <TableCode>false</TableCode>
             </td>
@@ -78,6 +79,17 @@ const sections = [
               'right' properties in order to specify different margin sizes.
             </td>
             <td>-</td>
+          </tr>
+          <tr>
+            <td>ariaLabel</td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
+            <td>
+              Specifies a string to be used as the name for the progress bar element when no <Code>label</Code> is
+              provided.
+            </td>
+            <td>'Progress bar'</td>
           </tr>
         </tbody>
       </DxcTable>

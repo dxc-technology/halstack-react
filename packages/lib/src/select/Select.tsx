@@ -52,6 +52,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
       margin,
       size = "medium",
       tabIndex = 0,
+      ariaLabel = "Select",
     },
     ref
   ): JSX.Element => {
@@ -333,6 +334,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
                 aria-invalid={!!error}
                 aria-errormessage={error ? errorId : undefined}
                 aria-required={!disabled && !optional}
+                aria-label={label ? undefined : ariaLabel}
               >
                 {multiple && Array.isArray(selectedOption) && selectedOption.length > 0 && (
                   <SelectionIndicator>

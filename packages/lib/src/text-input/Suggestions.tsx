@@ -5,6 +5,52 @@ import Suggestion from "./Suggestion";
 import { SuggestionsProps } from "./types";
 import DxcIcon from "../icon/Icon";
 
+const SuggestionsContainer = styled.ul<{ error: boolean }>`
+  box-sizing: border-box;
+  max-height: 304px;
+  overflow-y: auto;
+  margin: 0;
+  padding: 0.25rem 0;
+  background-color: ${(props) =>
+    props.error ? props.theme.errorListDialogBackgroundColor : props.theme.listDialogBackgroundColor};
+  border: 1px solid
+    ${(props) => (props.error ? props.theme.errorListDialogBorderColor : props.theme.listDialogBorderColor)};
+
+  border-radius: 0.25rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  color: ${(props) => props.theme.listOptionFontColor};
+  font-family: ${(props) => props.theme.fontFamily};
+  font-size: ${(props) => props.theme.listOptionFontSize};
+  font-style: ${(props) => props.theme.listOptionFontStyle};
+  font-weight: ${(props) => props.theme.listOptionFontWeight};
+`;
+
+const SuggestionsSystemMessage = styled.span`
+  display: flex;
+  padding: 0.25rem 1rem;
+  color: ${(props) => props.theme.systemMessageFontColor};
+  line-height: 1.715em;
+`;
+
+const SuggestionsErrorIcon = styled.span`
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  margin-right: 0.5rem;
+  height: 18px;
+  width: 18px;
+  font-size: 18px;
+  color: ${(props) => props.theme.errorIconColor};
+`;
+
+const SuggestionsError = styled.span`
+  display: flex;
+  padding: 0.25rem 1rem;
+  align-items: center;
+  line-height: 1.715em;
+  color: ${(props) => props.theme.errorListDialogFontColor};
+`;
+
 const Suggestions = ({
   id,
   value,
@@ -55,70 +101,20 @@ const Suggestions = ({
           />
         ))}
       {isSearching && (
-        <SuggestionsSystemMessage role="option">
-          {translatedLabels.textInput.searchingMessage}
-        </SuggestionsSystemMessage>
+        <SuggestionsSystemMessage role="option">{translatedLabels.textInput.searchingMessage}</SuggestionsSystemMessage>
       )}
       {searchHasErrors && (
-        <ErrorMessage role="option">
+        <span role="option" aria-selected="false">
           <SuggestionsError role="alert" aria-live="assertive">
             <SuggestionsErrorIcon>
               <DxcIcon icon="filled_error" />
             </SuggestionsErrorIcon>
             {translatedLabels.textInput.fetchingDataErrorMessage}
           </SuggestionsError>
-        </ErrorMessage>
+        </span>
       )}
     </SuggestionsContainer>
   );
 };
-
-const SuggestionsContainer = styled.ul<{ error: boolean }>`
-  box-sizing: border-box;
-  max-height: 304px;
-  overflow-y: auto;
-  margin: 0;
-  padding: 0.25rem 0;
-  background-color: ${(props) =>
-    props.error ? props.theme.errorListDialogBackgroundColor : props.theme.listDialogBackgroundColor};
-  border: 1px solid
-    ${(props) => (props.error ? props.theme.errorListDialogBorderColor : props.theme.listDialogBorderColor)};
-
-  border-radius: 0.25rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  color: ${(props) => props.theme.listOptionFontColor};
-  font-family: ${(props) => props.theme.fontFamily};
-  font-size: ${(props) => props.theme.listOptionFontSize};
-  font-style: ${(props) => props.theme.listOptionFontStyle};
-  font-weight: ${(props) => props.theme.listOptionFontWeight};
-`;
-
-const SuggestionsSystemMessage = styled.span`
-  display: flex;
-  padding: 0.25rem 1rem;
-  color: ${(props) => props.theme.systemMessageFontColor};
-  line-height: 1.715em;
-`;
-
-const ErrorMessage = styled.span``;
-
-const SuggestionsErrorIcon = styled.span`
-  display: flex;
-  flex-wrap: wrap;
-  align-content: center;
-  margin-right: 0.5rem;
-  height: 18px;
-  width: 18px;
-  font-size: 18px;
-  color: ${(props) => props.theme.errorIconColor};
-`;
-
-const SuggestionsError = styled.span`
-  display: flex;
-  padding: 0.25rem 1rem;
-  align-items: center;
-  line-height: 1.715em;
-  color: ${(props) => props.theme.errorListDialogFontColor};
-`;
 
 export default memo(Suggestions);

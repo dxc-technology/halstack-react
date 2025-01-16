@@ -57,6 +57,15 @@ describe("TextInput component tests", () => {
     expect(input.getAttribute("aria-errormessage")).toBe(errorMessage.id);
     expect(input.getAttribute("aria-invalid")).toBe("true");
     expect(errorMessage.getAttribute("aria-live")).toBe("assertive");
+    expect(input.getAttribute("aria-label")).toBeNull();
+  });
+
+  test("Renders with correct error aria label", () => {
+    const { getByRole } = render(
+      <DxcTextInput placeholder="Placeholder" error="Error message." ariaLabel="Example aria label" />
+    );
+    const input = getByRole("textbox");
+    expect(input.getAttribute("aria-label")).toBe("Example aria label");
   });
 
   test("Renders with correct initial value", () => {

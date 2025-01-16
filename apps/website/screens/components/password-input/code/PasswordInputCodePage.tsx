@@ -204,6 +204,17 @@ const sections = [
             <td>Reference to the component.</td>
             <td>-</td>
           </tr>
+          <tr>
+            <td>ariaLabel</td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
+            <td>
+              Specifies a string to be used as the name for the password input element when no <Code>label</Code> is
+              provided.
+            </td>
+            <td>'Password input'</td>
+          </tr>
         </tbody>
       </DxcTable>
     ),

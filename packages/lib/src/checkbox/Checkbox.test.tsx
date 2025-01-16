@@ -10,6 +10,12 @@ describe("Checkbox component tests", () => {
     expect(getByRole("checkbox").getAttribute("aria-required")).toBe("true");
     expect(getByRole("checkbox").getAttribute("aria-readonly")).toBe("false");
     expect(getByRole("checkbox").getAttribute("aria-disabled")).toBe("false");
+    expect(getByRole("checkbox").getAttribute("aria-label")).toBeNull();
+  });
+  test("Renders with correct aria-label", () => {
+    const { getByRole } = render(<DxcCheckbox ariaLabel="Example aria label" />);
+    const checkbox = getByRole("checkbox");
+    expect(checkbox.getAttribute("aria-label")).toBe("Example aria label");
   });
   test("Optional checkbox renders with correct aria-required", () => {
     const { getByRole } = render(<DxcCheckbox label="Checkbox" optional />);

@@ -206,6 +206,14 @@ const sections = [
             <td>Reference to the component.</td>
             <td>-</td>
           </tr>
+          <tr>
+            <td>ariaLabel</td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
+            <td>Specifies a string to be used as the name for the radio group when no `label` is provided.</td>
+            <td>'Radio group'</td>
+          </tr>
         </tbody>
       </DxcTable>
     ),

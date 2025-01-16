@@ -93,6 +93,10 @@ type Props = {
    * Value of the tabindex attribute.
    */
   tabIndex?: number;
+  /**
+   * Specifies a string to be used as the name for the date input element when no `label` is provided.
+   */
+  ariaLabel?: string;
 };
 
 export type DateType = { day: number; month: number; year: number };

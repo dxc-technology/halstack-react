@@ -8,7 +8,7 @@ import SwitchPropsType, { RefType } from "./types";
 const DxcSwitch = forwardRef<RefType, SwitchPropsType>(
   (
     {
-      defaultChecked,
+      defaultChecked = false,
       checked,
       value,
       label = "",
@@ -20,12 +20,13 @@ const DxcSwitch = forwardRef<RefType, SwitchPropsType>(
       margin,
       size = "fitContent",
       tabIndex = 0,
+      ariaLabel = "Switch",
     },
     ref
   ): JSX.Element => {
     const switchId = `switch-${useId()}`;
     const labelId = `label-${switchId}`;
-    const [innerChecked, setInnerChecked] = useState(defaultChecked ?? false);
+    const [innerChecked, setInnerChecked] = useState(defaultChecked);
 
     const colorsTheme = useContext(HalstackContext);
     const translatedLabels = useContext(HalstackLanguageContext);
@@ -83,6 +84,7 @@ const DxcSwitch = forwardRef<RefType, SwitchPropsType>(
               aria-disabled={disabled}
               disabled={disabled}
               aria-labelledby={labelId}
+              aria-label={label ? undefined : ariaLabel}
               tabIndex={!disabled ? tabIndex : -1}
               ref={refTrack}
             />

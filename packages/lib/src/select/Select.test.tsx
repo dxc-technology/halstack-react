@@ -121,13 +121,22 @@ describe("Select component tests", () => {
     expect(select.getAttribute("aria-labelledby")).toBe(label.id);
     expect(select.getAttribute("aria-activedescendant")).toBeNull();
     expect(select.getAttribute("aria-invalid")).toBe("false");
+    expect(select.getAttribute("aria-label")).toBeNull();
     userEvent.click(select);
     const list = getByRole("listbox");
     expect(select.getAttribute("aria-controls")).toBe(list.id);
     expect(list.getAttribute("aria-multiselectable")).toBe("false");
   });
 
-  test("Single selection: Renders with correct default value", () => {
+  test("Renders with correct error aria label", () => {
+    const { getByRole } = render(
+      <DxcSelect ariaLabel="Example aria label" placeholder="Example" options={singleOptions} />
+    );
+    const select = getByRole("combobox");
+    expect(select.getAttribute("aria-label")).toBe("Example aria label");
+  });
+
+  test("Single selection: Renders with correct default value", async () => {
     const { getByText, getByRole, getAllByRole, queryByRole, container } = render(
       <DxcSelect label="test-select-label" name="test" defaultValue="4" options={singleOptions} />
     );
