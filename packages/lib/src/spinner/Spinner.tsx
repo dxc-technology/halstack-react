@@ -4,7 +4,14 @@ import { spaces } from "../common/variables";
 import HalstackContext from "../HalstackContext";
 import SpinnerPropsType from "./types";
 
-const DxcSpinner = ({ label, value, showValue = false, mode = "large", margin }: SpinnerPropsType): JSX.Element => {
+const DxcSpinner = ({
+  label,
+  value,
+  showValue = false,
+  mode = "large",
+  margin,
+  ariaLabel = "Spinner",
+}: SpinnerPropsType): JSX.Element => {
   const labelId = useId();
   const colorsTheme = useContext(HalstackContext);
   const determinated = useMemo(() => value != null && value >= 0 && value <= 100, [value]);
@@ -31,7 +38,7 @@ const DxcSpinner = ({ label, value, showValue = false, mode = "large", margin }:
             aria-valuemin={determinated ? 0 : undefined}
             aria-valuemax={determinated ? 100 : undefined}
             aria-labelledby={label && mode !== "small" ? labelId : undefined}
-            aria-label={!label ? "Loading indicator" : mode === "small" ? label : undefined}
+            aria-label={!label ? ariaLabel : mode === "small" ? ariaLabel : undefined}
           >
             {mode === "small" ? (
               <SVGSpinner viewBox="0 0 16 16" determinated={determinated}>
@@ -45,9 +52,11 @@ const DxcSpinner = ({ label, value, showValue = false, mode = "large", margin }:
           </Spinner>
           {mode !== "small" && (
             <LabelsContainer>
-              <SpinnerLabel id={labelId} mode={mode}>
-                {label}
-              </SpinnerLabel>
+              {label && (
+                <SpinnerLabel id={labelId} mode={mode}>
+                  {label}
+                </SpinnerLabel>
+              )}
               {(value || value === 0) && showValue && (
                 <SpinnerProgress value={value} mode={mode} showValue={showValue}>
                   {value}%
