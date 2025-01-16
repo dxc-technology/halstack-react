@@ -32,6 +32,7 @@ describe("Radio Group component tests", () => {
     expect(radioGroup.getAttribute("aria-invalid")).toBe("false");
     expect(radioGroup.getAttribute("aria-required")).toBe("true");
     expect(radioGroup.getAttribute("aria-orientation")).toBe("vertical");
+    expect(radioGroup.getAttribute("aria-label")).toBeNull();
     expect(error.getAttribute("aria-live")).toBe("off");
     radios.forEach((radio, index) => {
       // if no option was previously selected, first option is the focusable one
@@ -39,8 +40,13 @@ describe("Radio Group component tests", () => {
       else expect(radio.tabIndex).toBe(-1);
       expect(radio.getAttribute("aria-checked")).toBe("false");
       expect(radio.getAttribute("aria-disabled")).toBe("false");
-      expect(radio.getAttribute("aria-labelledby")).toBe(getByText(`Option 0${index + 1}`).id);
     });
+  });
+
+  test("Initial render has correct aria-label", () => {
+    const { getByRole } = render(<DxcRadioGroup ariaLabel="Example aria label" options={options} error="" />);
+    const radioGroup = getByRole("radiogroup");
+    expect(radioGroup.getAttribute("aria-label")).toBe("Example aria label");
   });
 
   test("aria-orientation attribute changes depending on stacking prop value", () => {

@@ -91,6 +91,10 @@ type RadioGroupProps = {
    * Value of the tabindex attribute.
    */
   tabIndex?: number;
+  /**
+   * Specifies a string to be used as the name for the radio group when no `label` is provided.
+   */
+  ariaLabel?: string;
 };
 
 /**
