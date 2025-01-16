@@ -13,9 +13,12 @@ describe("Spinner component tests", () => {
   });
 
   test("Small spinner hides value and label correctly", () => {
-    const { queryByText } = render(<DxcSpinner mode="small" label="test-loading" value={75} showValue></DxcSpinner>);
+    const { queryByText, getByRole } = render(
+      <DxcSpinner mode="small" label="test-loading" value={75} showValue></DxcSpinner>
+    );
     expect(queryByText("test-loading")).toBeFalsy();
     expect(queryByText("75%")).toBeFalsy();
+    expect(getByRole("progressbar").getAttribute("aria-label")).toBe("Spinner");
   });
 
   test("Overlay spinner shows value and label correctly", () => {
