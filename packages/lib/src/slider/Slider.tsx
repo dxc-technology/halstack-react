@@ -248,6 +248,7 @@ const DxcSlider = forwardRef<RefType, SliderPropsType>(
       labelFormatCallback,
       margin,
       size = "fillParent",
+      ariaLabel = "Slider",
     },
     ref
   ): JSX.Element => {
@@ -319,9 +320,11 @@ const DxcSlider = forwardRef<RefType, SliderPropsType>(
     return (
       <ThemeProvider theme={colorsTheme.slider}>
         <Container margin={margin} size={size} ref={ref}>
-          <Label id={labelId} disabled={disabled}>
-            {label}
-          </Label>
+          {label && (
+            <Label id={labelId} disabled={disabled}>
+              {label}
+            </Label>
+          )}
           <HelperText disabled={disabled}>{helperText}</HelperText>
           <SliderContainer>
             {showLimitsValues && <MinLabelContainer disabled={disabled}>{minLabel}</MinLabelContainer>}
@@ -334,11 +337,12 @@ const DxcSlider = forwardRef<RefType, SliderPropsType>(
                 max={maxValue}
                 step={step}
                 disabled={disabled}
-                aria-labelledby={labelId}
+                aria-labelledby={label ? labelId : undefined}
                 aria-orientation="horizontal"
                 aria-valuemax={maxValue}
                 aria-valuemin={minValue}
                 aria-valuenow={value != null && value >= 0 ? value : innerValue}
+                aria-label={label ? undefined : ariaLabel}
                 onChange={handleSliderChange}
                 onMouseUp={handleSliderOnChangeCommitted}
                 onMouseDown={handleSliderDragging}

@@ -27,6 +27,7 @@ const DxcRadioGroup = forwardRef<RefType, RadioGroupPropsType>(
       onBlur,
       error,
       tabIndex = 0,
+      ariaLabel = "Radio group",
     },
     ref
   ): JSX.Element => {
@@ -160,12 +161,13 @@ const DxcRadioGroup = forwardRef<RefType, RadioGroupPropsType>(
             stacking={stacking}
             role="radiogroup"
             aria-disabled={disabled}
-            aria-labelledby={radioGroupLabelId}
+            aria-labelledby={label ? radioGroupLabelId : undefined}
             aria-invalid={!!error}
             aria-errormessage={error ? errorId : undefined}
             aria-required={!disabled && !readOnly && !optional}
             aria-readonly={readOnly}
             aria-orientation={stacking === "column" ? "vertical" : "horizontal"}
+            aria-label={label ? undefined : ariaLabel}
           >
             <ValueInput name={name} disabled={disabled} value={value ?? innerValue ?? ""} readOnly />
             {innerOptions.map((option, index) => (
