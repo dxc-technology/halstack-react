@@ -134,17 +134,23 @@ describe("Tabs component tests", () => {
     const onTabClick = [jest.fn(), jest.fn(), jest.fn()];
     const { getAllByRole } = render(sampleTabsInteraction(onTabClick));
     const tabs = getAllByRole("tab");
-    tabs[0] && fireEvent.click(tabs[0]);
+    if (tabs[0]) {
+      fireEvent.click(tabs[0]);
+    }
     expect(onTabClick[0]).toHaveBeenCalled();
     expect(tabs[0]?.getAttribute("aria-selected")).toBe("true");
     expect(tabs[1]?.getAttribute("aria-selected")).toBe("false");
     expect(tabs[2]?.getAttribute("aria-selected")).toBe("false");
-    tabs[1] && fireEvent.click(tabs[1]);
+    if (tabs[1]) {
+      fireEvent.click(tabs[1]);
+    }
     expect(onTabClick[1]).toHaveBeenCalled();
     expect(tabs[0]?.getAttribute("aria-selected")).toBe("false");
     expect(tabs[1]?.getAttribute("aria-selected")).toBe("true");
     expect(tabs[2]?.getAttribute("aria-selected")).toBe("false");
-    tabs[2] && fireEvent.click(tabs[2]);
+    if (tabs[2]) {
+      fireEvent.click(tabs[2]);
+    }
     expect(onTabClick[2]).toHaveBeenCalled();
     expect(tabs[0]?.getAttribute("aria-selected")).toBe("false");
     expect(tabs[1]?.getAttribute("aria-selected")).toBe("false");
@@ -176,42 +182,54 @@ describe("Tabs component tests", () => {
     expect(onTabClick[0]).toHaveBeenCalled();
     fireEvent.keyDown(tabList, { key: "ArrowRight" });
     expect(tabs[1]).toHaveFocus();
-    tabs[1] && fireEvent.keyDown(tabs[1], { key: "Enter" });
+    if (tabs[1]) {
+      fireEvent.keyDown(tabs[1], { key: "Enter" });
+    }
     expect(tabs[0]?.getAttribute("aria-selected")).toBe("false");
     expect(tabs[1]?.getAttribute("aria-selected")).toBe("true");
     expect(tabs[2]?.getAttribute("aria-selected")).toBe("false");
     expect(onTabClick[1]).toHaveBeenCalled();
     fireEvent.keyDown(tabList, { key: "ArrowRight" });
     expect(tabs[2]).toHaveFocus();
-    tabs[2] && fireEvent.keyDown(tabs[2], { key: "Enter" });
+    if (tabs[2]) {
+      fireEvent.keyDown(tabs[2], { key: "Enter" });
+    }
     expect(tabs[0]?.getAttribute("aria-selected")).toBe("false");
     expect(tabs[1]?.getAttribute("aria-selected")).toBe("false");
     expect(tabs[2]?.getAttribute("aria-selected")).toBe("true");
     expect(onTabClick[2]).toHaveBeenCalled();
     fireEvent.keyDown(tabList, { key: "ArrowLeft" });
     expect(tabs[1]).toHaveFocus();
-    tabs[1] && fireEvent.keyDown(tabs[1], { key: "Enter" });
+    if (tabs[1]) {
+      fireEvent.keyDown(tabs[1], { key: "Enter" });
+    }
     expect(tabs[0]?.getAttribute("aria-selected")).toBe("false");
     expect(tabs[1]?.getAttribute("aria-selected")).toBe("true");
     expect(tabs[2]?.getAttribute("aria-selected")).toBe("false");
     expect(onTabClick[1]).toHaveBeenCalled();
     fireEvent.keyDown(tabList, { key: "ArrowLeft" });
     expect(tabs[0]).toHaveFocus();
-    tabs[0] && fireEvent.keyDown(tabs[0], { key: "Enter" });
+    if (tabs[0]) {
+      fireEvent.keyDown(tabs[0], { key: "Enter" });
+    }
     expect(tabs[0]?.getAttribute("aria-selected")).toBe("true");
     expect(tabs[1]?.getAttribute("aria-selected")).toBe("false");
     expect(tabs[2]?.getAttribute("aria-selected")).toBe("false");
     expect(onTabClick[0]).toHaveBeenCalled();
     fireEvent.keyDown(tabList, { key: "ArrowLeft" });
     expect(tabs[2]).toHaveFocus();
-    tabs[2] && fireEvent.keyDown(tabs[2], { key: "Enter" });
+    if (tabs[2]) {
+      fireEvent.keyDown(tabs[2], { key: "Enter" });
+    }
     expect(tabs[0]?.getAttribute("aria-selected")).toBe("false");
     expect(tabs[1]?.getAttribute("aria-selected")).toBe("false");
     expect(tabs[2]?.getAttribute("aria-selected")).toBe("true");
     expect(onTabClick[2]).toHaveBeenCalled();
     fireEvent.keyDown(tabList, { key: "ArrowRight" });
     expect(tabs[0]).toHaveFocus();
-    tabs[0] && fireEvent.keyDown(tabs[0], { key: "Enter" });
+    if (tabs[0]) {
+      fireEvent.keyDown(tabs[0], { key: "Enter" });
+    }
     expect(tabs[0]?.getAttribute("aria-selected")).toBe("true");
     expect(tabs[1]?.getAttribute("aria-selected")).toBe("false");
     expect(tabs[2]?.getAttribute("aria-selected")).toBe("false");
@@ -231,7 +249,9 @@ describe("Tabs component tests", () => {
     expect(onTabClick[0]).toHaveBeenCalled();
     fireEvent.keyDown(tabList, { key: "ArrowRight" });
     expect(tabs[2]).toHaveFocus();
-    tabs[2] && fireEvent.keyDown(tabs[2], { key: " " });
+    if (tabs[2]) {
+      fireEvent.keyDown(tabs[2], { key: " " });
+    }
     expect(tabs[0]?.getAttribute("aria-selected")).toBe("false");
     expect(tabs[1]?.getAttribute("aria-selected")).toBe("false");
     expect(tabs[2]?.getAttribute("aria-selected")).toBe("true");
@@ -241,17 +261,23 @@ describe("Tabs component tests", () => {
     const onTabClick = [jest.fn(), jest.fn(), jest.fn()];
     const { getAllByRole } = render(sampleControlledTabsInteraction(onTabClick));
     const tabs = getAllByRole("tab");
-    tabs[0] && fireEvent.click(tabs[0]);
+    if (tabs[0]) {
+      fireEvent.click(tabs[0]);
+    }
     expect(onTabClick[0]).toHaveBeenCalled();
     expect(tabs[0]?.getAttribute("aria-selected")).toBe("true");
     expect(tabs[1]?.getAttribute("aria-selected")).toBe("false");
     expect(tabs[2]?.getAttribute("aria-selected")).toBe("false");
-    tabs[1] && fireEvent.click(tabs[1]);
+    if (tabs[1]) {
+      fireEvent.click(tabs[1]);
+    }
     expect(onTabClick[1]).toHaveBeenCalled();
     expect(tabs[0]?.getAttribute("aria-selected")).toBe("true");
     expect(tabs[1]?.getAttribute("aria-selected")).toBe("false");
     expect(tabs[2]?.getAttribute("aria-selected")).toBe("false");
-    tabs[2] && fireEvent.click(tabs[2]);
+    if (tabs[2]) {
+      fireEvent.click(tabs[2]);
+    }
     expect(onTabClick[2]).toHaveBeenCalled();
     expect(tabs[0]?.getAttribute("aria-selected")).toBe("true");
     expect(tabs[1]?.getAttribute("aria-selected")).toBe("false");

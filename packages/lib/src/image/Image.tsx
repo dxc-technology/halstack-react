@@ -1,6 +1,6 @@
 import styled, { ThemeProvider } from "styled-components";
-import { ReactNode, useCallback, useContext } from "react";
-import ImagePropsType, { CaptionWrapperProps } from "./types";
+import { ReactNode, useContext } from "react";
+import ImagePropsType from "./types";
 import HalstackContext from "../HalstackContext";
 
 const Figure = styled.figure`

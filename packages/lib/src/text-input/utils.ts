@@ -57,7 +57,9 @@ export const transformSpecialChars = (str: string) => {
     const regexAsString = specialCharsRegex.toString().split("");
     const uniqueSpecialChars = regexAsString.filter((item, index) => regexAsString.indexOf(item) === index);
     uniqueSpecialChars.forEach((specialChar) => {
-      if (str.includes(specialChar)) value = value.replace(specialChar, "\\" + specialChar);
+      if (str.includes(specialChar)) {
+        value = value.replace(specialChar, `\\${specialChar}`);
+      }
     });
   }
   return value;

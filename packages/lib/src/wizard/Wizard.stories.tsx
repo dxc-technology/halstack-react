@@ -1,9 +1,9 @@
+import { Meta, StoryObj } from "@storybook/react";
 import { userEvent, within } from "@storybook/test";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import { HalstackProvider } from "../HalstackContext";
 import DxcWizard from "./Wizard";
-import { Meta, StoryObj } from "@storybook/react";
 
 export default {
   title: "Wizard",

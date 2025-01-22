@@ -453,7 +453,6 @@ export const rowFinderBasedOnId = (
   if (foundRow) {
     return foundRow;
   }
-  return undefined;
 };
 
 /**
@@ -483,6 +482,18 @@ export const getChildrenSelection = (
 };
 
 /**
+ * Determines if the given row is a `HierarchyGridRow`.
+ *
+ * A `HierarchyGridRow` is identified by having a `childRows` property
+ * that is an array with at least one element.
+ *
+ * @param {GridRow} row - The row to check.
+ * @returns {row is HierarchyGridRow} - Returns `true` if the row is a `HierarchyGridRow`, otherwise `false`.
+ */
+export const isHierarchyGridRow = (row: GridRow): row is HierarchyGridRow =>
+  Array.isArray(row.childRows) && row.childRows.length > 0;
+
+/**
  * Check if the parent and its parent should be selected/unselected
  * @param {HierarchyGridRow[]} rowList
  * @param {ReactNode} uniqueRowKeyValue Unique value of the selected row
@@ -498,9 +509,9 @@ export const getParentSelectedState = (
   selectedRows: Set<ReactNode>,
   checkedStateToMatch: boolean
 ) => {
-  const parentRow = rowFinderBasedOnId(rowList, uniqueRowId, parentKeyValue) as HierarchyGridRow;
+  const parentRow = rowFinderBasedOnId(rowList, uniqueRowId, parentKeyValue);
 
-  if (!parentRow) {
+  if (!parentRow || !isHierarchyGridRow(parentRow)) {
     return;
   }
 
@@ -601,8 +612,6 @@ export const getPaginatedNodes = (
  * @param {string} key - The key to check if it exists in the row object.
  * @param {T} obj - The row object to check the key against.
  * @returns {boolean} - Returns `true` if `key` is a valid key of `obj`, otherwise `false`.
- * 
+ *
  */
-export const isKeyOfRow = <T extends GridRow>(key: string, obj: T): key is Extract<keyof T, string> => {
-  return key in obj;
-};
+export const isKeyOfRow = <T extends GridRow>(key: string, obj: T): key is Extract<keyof T, string> => key in obj;

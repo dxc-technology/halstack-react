@@ -1,8 +1,8 @@
+import { Meta, StoryObj } from "@storybook/react";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DxcContainer from "./Container";
 import DxcTypography from "../typography/Typography";
-import { Meta, StoryObj } from "@storybook/react";
 
 export default {
   title: "Container",
@@ -22,7 +22,7 @@ const Listbox = ({ suggestions = [] }: { suggestions: string[] }): JSX.Element =
     overflow={{ x: "hidden", y: "auto" }}
   >
     {suggestions.map((suggestion, index) => (
-      <DxcContainer padding={{ left: "xsmall", right: "xsmall" }}>
+      <DxcContainer key={`container-${index}`} padding={{ left: "xsmall", right: "xsmall" }}>
         <DxcContainer
           border={
             index !== suggestions.length - 1

@@ -5,6 +5,7 @@ import {
   forwardRef,
   KeyboardEvent,
   MouseEvent,
+  ReactNode,
   useContext,
   useEffect,
   useId,
@@ -250,6 +251,49 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
     const [visualFocusIndex, changeVisualFocusIndex] = useState(-1);
 
     const width = useWidth(inputContainerRef.current);
+
+    const autosuggestWrapperFunction = (children: ReactNode) => (
+      <Popover.Root open={isOpen && (filteredSuggestions.length > 0 || isSearching || isAutosuggestError)}>
+        <Popover.Trigger
+          asChild
+          type={undefined}
+          aria-controls={undefined}
+          aria-haspopup={undefined}
+          aria-expanded={undefined}
+        >
+          {children}
+        </Popover.Trigger>
+        <Popover.Portal>
+          <Popover.Content
+            sideOffset={5}
+            style={{ zIndex: "2147483647" }}
+            onOpenAutoFocus={(event) => {
+              // Avoid select to lose focus when the list is opened
+              event.preventDefault();
+            }}
+            onCloseAutoFocus={(event) => {
+              // Avoid select to lose focus when the list is closed
+              event.preventDefault();
+            }}
+          >
+            <Suggestions
+              id={autosuggestId}
+              value={value ?? innerValue}
+              suggestions={filteredSuggestions}
+              visualFocusIndex={visualFocusIndex}
+              highlightedSuggestions={typeof suggestions !== "function"}
+              searchHasErrors={isAutosuggestError}
+              isSearching={isSearching}
+              suggestionOnClick={(suggestion) => {
+                changeValue(suggestion);
+                closeSuggestions();
+              }}
+              styles={{ width }}
+            />
+          </Popover.Content>
+        </Popover.Portal>
+      </Popover.Root>
+    );
 
     const getNumberErrorMessage = (checkedValue: number) =>
       numberInputContext?.minNumber != null && checkedValue < numberInputContext?.minNumber
@@ -541,7 +585,6 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
           numberInputContext.stepNumber
         );
       }
-      return undefined;
     }, [value, innerValue, suggestions, numberInputContext]);
 
     return (
@@ -553,51 +596,7 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
             </Label>
           )}
           {helperText && <HelperText disabled={disabled}>{helperText}</HelperText>}
-          <AutosuggestWrapper
-            condition={hasSuggestions(suggestions)}
-            wrapper={(children) => (
-              <Popover.Root open={isOpen && (filteredSuggestions.length > 0 || isSearching || isAutosuggestError)}>
-                <Popover.Trigger
-                  asChild
-                  type={undefined}
-                  aria-controls={undefined}
-                  aria-haspopup={undefined}
-                  aria-expanded={undefined}
-                >
-                  {children}
-                </Popover.Trigger>
-                <Popover.Portal>
-                  <Popover.Content
-                    sideOffset={5}
-                    style={{ zIndex: "2147483647" }}
-                    onOpenAutoFocus={(event) => {
-                      // Avoid select to lose focus when the list is opened
-                      event.preventDefault();
-                    }}
-                    onCloseAutoFocus={(event) => {
-                      // Avoid select to lose focus when the list is closed
-                      event.preventDefault();
-                    }}
-                  >
-                    <Suggestions
-                      id={autosuggestId}
-                      value={value ?? innerValue}
-                      suggestions={filteredSuggestions}
-                      visualFocusIndex={visualFocusIndex}
-                      highlightedSuggestions={typeof suggestions !== "function"}
-                      searchHasErrors={isAutosuggestError}
-                      isSearching={isSearching}
-                      suggestionOnClick={(suggestion) => {
-                        changeValue(suggestion);
-                        closeSuggestions();
-                      }}
-                      styles={{ width }}
-                    />
-                  </Popover.Content>
-                </Popover.Portal>
-              </Popover.Root>
-            )}
-          >
+          <AutosuggestWrapper condition={hasSuggestions(suggestions)} wrapper={autosuggestWrapperFunction}>
             <InputContainer
               error={!!error}
               disabled={disabled}
@@ -702,5 +701,7 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
     );
   }
 );
+
+DxcTextInput.displayName = "DxcTextInput";
 
 export default DxcTextInput;

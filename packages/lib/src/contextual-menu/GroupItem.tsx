@@ -3,14 +3,18 @@ import DxcIcon from "../icon/Icon";
 import { SubMenu } from "./ContextualMenu";
 import ItemAction from "./ItemAction";
 import MenuItem from "./MenuItem";
-import { GroupItemProps, ItemWithId } from "./types";
+import { GroupItemProps } from "./types";
 import ContextualMenuContext from "./ContextualMenuContext";
 
 const isGroupSelected = (items: GroupItemProps["items"], selectedItemId?: number): boolean =>
   items.some((item) => {
-    if ("items" in item) return isGroupSelected(item.items, selectedItemId);
-    else if (selectedItemId !== -1) return item.id === selectedItemId;
-    else return (item as ItemWithId).selectedByDefault;
+    if ("items" in item) {
+      return isGroupSelected(item.items, selectedItemId);
+    } else if (selectedItemId !== -1) {
+      return item.id === selectedItemId;
+    } else {
+      return item.selectedByDefault;
+    }
   });
 
 const GroupItem = ({ items, ...props }: GroupItemProps) => {

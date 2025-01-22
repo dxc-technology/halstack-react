@@ -72,7 +72,7 @@ const DxcRadioGroup = forwardRef<RefType, RadioGroupPropsType>(
     );
     const handleOnBlur = (event: FocusEvent<HTMLDivElement>) => {
       // If the radio group loses the focus to an element not contained inside it...
-      if (!event.currentTarget.contains(event.relatedTarget as Node)) {
+      if (!event.currentTarget.contains(event.relatedTarget)) {
         setFirstTimeFocus(true);
         const currentValue = value ?? innerValue;
         if (!optional && !currentValue) {
@@ -173,7 +173,7 @@ const DxcRadioGroup = forwardRef<RefType, RadioGroupPropsType>(
             {innerOptions.map((option, index) => (
               <DxcRadio
                 key={`radio-${index}`}
-                label={option.label ?? ""}
+                label={option.label}
                 checked={(value ?? innerValue) === option.value}
                 onClick={() => {
                   handleOnChange(option.value);
@@ -252,5 +252,7 @@ const ErrorMessageContainer = styled.span`
   line-height: 1.5em;
   margin-top: 0.5rem;
 `;
+
+DxcRadioGroup.displayName = "DxcRadioGroup";
 
 export default DxcRadioGroup;

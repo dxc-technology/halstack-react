@@ -111,6 +111,8 @@ const Actions = memo(
     )
 );
 
+Actions.displayName = "Actions";
+
 const getIcon = (semantic: AlertPropsType["semantic"]) => {
   switch (semantic) {
     case "info":
@@ -124,7 +126,7 @@ const getIcon = (semantic: AlertPropsType["semantic"]) => {
   }
 };
 
-export default function DxcAlert({
+const DxcAlert = ({
   closable = true,
   message = [],
   mode = "inline",
@@ -132,7 +134,7 @@ export default function DxcAlert({
   secondaryAction,
   semantic = "info",
   title = "",
-}: AlertPropsType) {
+}: AlertPropsType) => {
   const [messages, setMessages] = useState(Array.isArray(message) ? message : [message]);
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -154,7 +156,9 @@ export default function DxcAlert({
   };
 
   useEffect(() => {
-    if (currentIndex === messages.length) handlePrevOnClick();
+    if (currentIndex === messages.length) {
+      handlePrevOnClick();
+    }
   }, [currentIndex, messages, handlePrevOnClick]);
 
   return (
@@ -216,8 +220,8 @@ export default function DxcAlert({
                   icon="close"
                   title={
                     messages.length > 1
-                      ? translatedLabels.alert.closeMessageActionTitle
-                      : translatedLabels.alert.closeAlertActionTitle
+                      ? (translatedLabels.alert.closeMessageActionTitle)
+                      : (translatedLabels.alert.closeAlertActionTitle)
                   }
                   onClick={handleOnClose}
                 />
@@ -244,4 +248,6 @@ export default function DxcAlert({
       </ModalAlertWrapper>
     </ThemeProvider>
   );
-}
+};
+
+export default DxcAlert;

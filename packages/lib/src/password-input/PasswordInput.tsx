@@ -67,7 +67,7 @@ const DxcPasswordInput = forwardRef<RefType, PasswordInputPropsType>(
               setIsPasswordVisible((isPasswordCurrentlyVisible) => !isPasswordCurrentlyVisible);
             },
             icon: isPasswordVisible ? "Visibility_Off" : "Visibility",
-            title: isPasswordVisible ? passwordInput.inputHidePasswordTitle : passwordInput.inputShowPasswordTitle,
+            title: isPasswordVisible ? passwordInput?.inputHidePasswordTitle : passwordInput?.inputShowPasswordTitle,
           }}
           error={error}
           clearable={clearable}
@@ -94,5 +94,7 @@ const PasswordInput = styled.div<{ size: PasswordInputPropsType["size"] }>`
     display: none;
   }
 `;
+
+DxcPasswordInput.displayName = "DxcPasswordInput";
 
 export default DxcPasswordInput;

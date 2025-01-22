@@ -104,7 +104,7 @@ const Suggestions = ({
         <SuggestionsSystemMessage role="option">{translatedLabels.textInput.searchingMessage}</SuggestionsSystemMessage>
       )}
       {searchHasErrors && (
-        <span role="option">
+        <span role="option" aria-selected="false">
           <SuggestionsError role="alert" aria-live="assertive">
             <SuggestionsErrorIcon>
               <DxcIcon icon="filled_error" />

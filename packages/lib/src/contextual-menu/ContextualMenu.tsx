@@ -56,15 +56,14 @@ const addIdToItems = (items: ContextualMenuPropsType["items"]): (ItemWithId | Gr
   let accId = 0;
   const innerAddIdToItems = (
     items: ContextualMenuPropsType["items"]
-  ): (ItemWithId | GroupItemWithId | SectionWithId)[] => {
-    return items.map((item: Item | GroupItem | SectionType) =>
-      isSection(item)
+  ): (ItemWithId | GroupItemWithId | SectionWithId)[] =>
+    items.map((item: Item | GroupItem | SectionType) =>
+      isSection(item) // TODO: Fix typing (type assertion should not be needed here)
         ? ({ ...item, items: innerAddIdToItems(item.items) } as SectionWithId)
-        : isGroupItem(item)
+        : isGroupItem(item) // TODO: Fix typing (type assertion should not be needed here)
           ? ({ ...item, items: innerAddIdToItems(item.items) } as GroupItemWithId)
           : { ...item, id: accId++ }
     );
-  };
   return innerAddIdToItems(items);
 };
 
@@ -85,10 +84,12 @@ export default function DxcContextualMenu({ items }: ContextualMenuPropsType) {
   useLayoutEffect(() => {
     if (selectedItemId !== -1 && firstUpdate) {
       const contextualMenuEl = contextualMenuRef.current;
-      const selectedItemEl = contextualMenuEl?.querySelector("[aria-pressed='true']") as HTMLButtonElement;
-      contextualMenuEl?.scrollTo?.({
-        top: (selectedItemEl?.offsetTop ?? 0) - (contextualMenuEl?.clientHeight ?? 0) / 2,
-      });
+      const selectedItemEl = contextualMenuEl?.querySelector("[aria-pressed='true']");
+      if (selectedItemEl instanceof HTMLButtonElement) {
+        contextualMenuEl?.scrollTo?.({
+          top: (selectedItemEl?.offsetTop ?? 0) - (contextualMenuEl?.clientHeight ?? 0) / 2,
+        });
+      }
       setFirstUpdate(false);
     }
   }, [firstUpdate, selectedItemId]);
@@ -98,10 +99,12 @@ export default function DxcContextualMenu({ items }: ContextualMenuPropsType) {
       <ContextualMenu ref={contextualMenuRef}>
         <ContextualMenuContext.Provider value={contextValue}>
           {itemsWithId[0] && isSection(itemsWithId[0]) ? (
+            // TODO: Fix typing (type assertion should not be needed here)
             (itemsWithId as SectionWithId[]).map((item, index) => (
               <Section key={`section-${index}`} section={item} index={index} length={itemsWithId.length} />
             ))
           ) : (
+            // TODO: Fix typing (type assertion should not be needed here)
             <SubMenu>
               {(itemsWithId as (GroupItemWithId | ItemWithId)[]).map((item, index) => (
                 <MenuItem item={item} key={`${item.label}-${index}`} />

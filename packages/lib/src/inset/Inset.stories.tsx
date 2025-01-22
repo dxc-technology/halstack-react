@@ -1,8 +1,8 @@
+import { Meta, StoryObj } from "@storybook/react";
 import styled from "styled-components";
 import Title from "../../.storybook/components/Title";
-import DxcFlex from "./../flex/Flex";
+import DxcFlex from "../flex/Flex";
 import DxcInset from "./Inset";
-import { Meta, StoryObj } from "@storybook/react";
 
 export default {
   title: "Inset",

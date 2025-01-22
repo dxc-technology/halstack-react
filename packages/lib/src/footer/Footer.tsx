@@ -6,7 +6,6 @@ import DxcIcon from "../icon/Icon";
 import { Tooltip } from "../tooltip/Tooltip";
 import { dxcLogo, dxcSmallLogo } from "./Icons";
 import FooterPropsType from "./types";
-import { CoreSpacingTokensType } from "../common/coreTokens";
 import HalstackContext, { HalstackLanguageContext } from "../HalstackContext";
 
 const DxcFooter = ({
@@ -43,7 +42,7 @@ const DxcFooter = ({
         <DxcFlex justifyContent="space-between" alignItems="center" wrap="wrap" gap="1.5rem">
           <LogoContainer mode={mode}>{footerLogo}</LogoContainer>
           {mode === "default" && (
-            <DxcFlex gap={colorsTheme.footer.socialLinksGutter as CoreSpacingTokensType}>
+            <DxcFlex gap={colorsTheme.footer.socialLinksGutter}>
               {socialLinks?.map((link, index) => (
                 <Tooltip label={link.title} key={`social${index}${link.href}`}>
                   <SocialAnchor

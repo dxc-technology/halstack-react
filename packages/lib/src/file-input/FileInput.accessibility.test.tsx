@@ -55,7 +55,7 @@ describe("FileInput component accessibility tests", () => {
         dropAreaLabel="Drop Area"
         margin="medium"
         mode="dropzone"
-        multiple={true}
+        multiple
         callbackFile={callbackFile}
         minSize={1000}
         maxSize={20000}
@@ -76,7 +76,7 @@ describe("FileInput component accessibility tests", () => {
         dropAreaLabel="Drop Area"
         margin="medium"
         mode="dropzone"
-        multiple={true}
+        multiple
         callbackFile={callbackFile}
         minSize={1000}
         maxSize={20000}
@@ -96,7 +96,7 @@ describe("FileInput component accessibility tests", () => {
         buttonLabel="Button Label"
         margin="medium"
         mode="file"
-        multiple={true}
+        multiple
         callbackFile={callbackFile}
         minSize={1000}
         maxSize={20000}
@@ -117,7 +117,7 @@ describe("FileInput component accessibility tests", () => {
         dropAreaLabel="Drop Area"
         margin="medium"
         mode="filedrop"
-        multiple={true}
+        multiple
         callbackFile={callbackFile}
         minSize={1000}
         maxSize={20000}

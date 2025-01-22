@@ -45,7 +45,7 @@ const DxcNumberInput = forwardRef<RefType, NumberInputPropsType>(
     );
 
     useEffect(() => {
-      const input = numberInputRef.current?.getElementsByTagName("input")[0] as HTMLInputElement;
+      const input = numberInputRef.current?.getElementsByTagName("input")[0];
       const preventDefault = (event: WheelEvent) => {
         event.preventDefault();
       };
@@ -100,5 +100,7 @@ const NumberInputContainer = styled.div<{ size: NumberInputPropsType["size"] }>`
     -moz-appearance: textfield;
   }
 `;
+
+DxcNumberInput.displayName = "DxcNumberInput";
 
 export default DxcNumberInput;

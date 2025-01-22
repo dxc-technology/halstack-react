@@ -1,8 +1,8 @@
+import { Meta, StoryObj } from "@storybook/react";
 import DxcAlert from "./Alert";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DxcLink from "../link/Link";
-import { Meta, StoryObj } from "@storybook/react";
 
 export default {
   title: "Alert",

@@ -53,7 +53,6 @@ type ContextualMenuContextProps = {
   setSelectedItemId: Dispatch<SetStateAction<number>>;
 };
 
-export default Props;
 export type {
   ContextualMenuContextProps,
   GroupItem,
@@ -69,3 +68,5 @@ export type {
   SectionProps,
   SingleItemProps,
 };
+
+export default Props;

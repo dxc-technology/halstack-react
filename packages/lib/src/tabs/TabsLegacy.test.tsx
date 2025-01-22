@@ -124,12 +124,16 @@ describe("Tabs component tests (Legacy)", () => {
       <DxcTabsLegacy tabs={sampleTabsLegacy} onTabClick={onTabClick} activeTabIndex={0}></DxcTabsLegacy>
     );
     const tabs = getAllByRole("tab");
-    tabs[1] && fireEvent.click(tabs[1]);
+    if (tabs[1]) {
+      fireEvent.click(tabs[1]);
+    }
     expect(onTabClick).toHaveBeenCalledWith(1);
     expect(tabs[0]?.getAttribute("aria-selected")).toBe("true");
     expect(tabs[1]?.getAttribute("aria-selected")).toBe("false");
     expect(tabs[2]?.getAttribute("aria-selected")).toBe("false");
-    tabs[2] && fireEvent.click(tabs[2]);
+    if (tabs[2]) {
+      fireEvent.click(tabs[2]);
+    }
     expect(onTabClick).toHaveBeenCalledWith(2);
     expect(tabs[0]?.getAttribute("aria-selected")).toBe("true");
     expect(tabs[1]?.getAttribute("aria-selected")).toBe("false");
@@ -166,7 +170,9 @@ describe("Tabs component tests (Legacy)", () => {
     expect(tabs[0]?.hasAttribute("disabled")).toBeTruthy();
     expect(tabs[1]?.hasAttribute("disabled")).toBeTruthy();
     expect(tabs[2]?.hasAttribute("disabled")).toBeFalsy();
-    tabs[2] && fireEvent.click(tabs[2]);
+    if (tabs[2]) {
+      fireEvent.click(tabs[2]);
+    }
     expect(onTabClick).toHaveBeenCalledWith(2);
     expect(tabs[0]?.getAttribute("aria-selected")).toBe("true");
     expect(tabs[1]?.getAttribute("aria-selected")).toBe("false");

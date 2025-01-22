@@ -47,7 +47,10 @@ const Suggestion = ({
 }: SuggestionProps): JSX.Element => {
   const matchedSuggestion = useMemo(() => {
     const regEx = new RegExp(transformSpecialChars(value), "i");
-    return { matchedWords: suggestion.match(regEx), noMatchedWords: suggestion.replace(regEx, "") };
+    return {
+      matchedWords: suggestion.match(regEx),
+      noMatchedWords: suggestion.replace(regEx, ""),
+    };
   }, [value, suggestion]);
 
   return (

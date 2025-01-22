@@ -20,8 +20,12 @@ const DxcAccordionGroup = ({
 
   const handlerActiveChange = useCallback(
     (index: number) => {
-      indexActive ?? setInnerIndexActive((prev) => (index === prev ? -1 : index));
-      !disabled && onActiveChange?.(index);
+      if (indexActive == null) {
+        setInnerIndexActive((prev) => (index === prev ? -1 : index));
+      }
+      if (!disabled) {
+        onActiveChange?.(index);
+      }
     },
     [disabled, indexActive, onActiveChange]
   );
@@ -34,6 +38,8 @@ const DxcAccordionGroup = ({
     <ThemeProvider theme={colorsTheme.accordion}>
       <AccordionGroupContainer margin={margin} disabled={disabled}>
         {Children.map(children, (accordion, index) => (
+          // TODO: Find an alternative to the eslint-disable
+          // eslint-disable-next-line react/jsx-no-constructed-context-values
           <AccordionGroupAccordionContext.Provider key={`accordion-${index}`} value={{ index, ...contextValue }}>
             {accordion}
           </AccordionGroupAccordionContext.Provider>

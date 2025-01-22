@@ -285,4 +285,6 @@ const ErrorMessageContainer = styled.span`
   margin-top: 0.25rem;
 `;
 
+DxcTextarea.displayName = "DxcTextarea";
+
 export default DxcTextarea;

@@ -6,10 +6,9 @@ import DxcButton from "../button/Button";
 import DxcFlex from "../flex/Flex";
 import DxcIcon from "../icon/Icon";
 import DxcSpinner from "../spinner/Spinner";
-import { HalstackProvider } from "../HalstackContext";
+import { HalstackLanguageContext, HalstackProvider } from "../HalstackContext";
 import ToastPropsType from "./types";
 import useTimeout from "../utils/useTimeout";
-import { HalstackLanguageContext } from "../HalstackContext";
 import { responsiveSizes } from "../common/variables";
 
 const fadeInUp = keyframes`
@@ -116,16 +115,21 @@ const ToastIcon = memo(
     loading,
     semantic,
   }: Pick<ToastPropsType, "icon" | "hideSemanticIcon" | "loading" | "semantic">) => {
-    if (semantic === "default") return typeof icon === "string" ? <DxcIcon icon={icon} /> : icon;
-    else if (semantic === "info" && loading)
+    if (semantic === "default") {
+      return typeof icon === "string" ? <DxcIcon icon={icon} /> : icon;
+    } else if (semantic === "info" && loading) {
       return (
         <HalstackProvider theme={spinnerTheme}>
           <DxcSpinner mode="small" />
         </HalstackProvider>
       );
-    else return !hideSemanticIcon && <DxcIcon icon={getSemantic(semantic).icon} />;
+    } else {
+      return !hideSemanticIcon && <DxcIcon icon={getSemantic(semantic).icon} />;
+    }
   }
 );
+
+ToastIcon.displayName = "ToastIcon";
 
 const DxcToast = ({
   action,
@@ -189,5 +193,7 @@ const DxcToast = ({
     </Toast>
   );
 };
+
+DxcToast.displayName = "DxcToast";
 
 export default memo(DxcToast);
