@@ -22,3 +22,13 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
+
+.theme-1 {
+  --color-purple-700: #fabada;
+  --color-absolutes-hal-white: #f5f5f5;
+}
+
+.theme-2 {
+  --color-purple-700: #575757;
+  --color-absolutes-hal-white: #f5f5f5;
+}
