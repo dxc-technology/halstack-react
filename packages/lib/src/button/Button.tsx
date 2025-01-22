@@ -6,6 +6,7 @@ import type ButtonPropsType from "./types";
 import DxcIcon from "../icon/Icon";
 import { Tooltip } from "../tooltip/Tooltip";
 import HalstackContext from "../HalstackContext";
+import HalstackThemeContext from "../HalstackThemeContext";
 
 const DxcButton = ({
   label = "",
@@ -22,12 +23,14 @@ const DxcButton = ({
   tabIndex = 0,
 }: ButtonPropsType): JSX.Element => {
   const colorsTheme = useContext(HalstackContext);
+  const themeClass = useContext(HalstackThemeContext);
 
   return (
     <ThemeProvider theme={colorsTheme.button}>
       <Tooltip label={title}>
         <Button
           aria-label={title}
+          className={themeClass}
           disabled={disabled}
           onClick={() => {
             onClick();
@@ -118,7 +121,7 @@ const getButtonStyles = (
     case "primary":
       switch (semantic) {
         case "default":
-          enabled = `background-color: ${theme.primaryDefaultBackgroundColor};
+          enabled = `background-color: var(--color-purple-700);
           color: ${theme.primaryDefaultFontColor};`;
           hover = `background-color: ${theme.primaryHoverDefaultBackgroundColor};`;
           active = `background-color: ${theme.primaryActiveDefaultBackgroundColor};
@@ -486,6 +489,7 @@ const LabelContainer = styled.span`
   overflow: hidden;
   text-transform: none;
   white-space: nowrap;
+  color: var(--color-absolutes-hal-white);
 `;
 
 const IconContainer = styled.div<{

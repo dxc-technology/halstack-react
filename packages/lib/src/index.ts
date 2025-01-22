@@ -1,4 +1,5 @@
-import "./fonts.css";
+import "./styles/tokens.css";
+import "./styles/fonts.css";
 
 export { default as DxcAccordion } from "./accordion/Accordion";
 export { default as DxcAccordionGroup } from "./accordion-group/AccordionGroup";
@@ -51,4 +52,6 @@ export { default as DxcTooltip } from "./tooltip/Tooltip";
 export { default as DxcTypography } from "./typography/Typography";
 export { default as DxcWizard } from "./wizard/Wizard";
 export { default as HalstackContext, HalstackProvider, HalstackLanguageContext } from "./HalstackContext";
+export { HalstackThemeProvider } from "./HalstackThemeContext";
 export { default as useToast } from "./toast/useToast";
+export { default as setCustomTheme } from "./common/theme";
