@@ -44,12 +44,7 @@ const sections = [
             </td>
           </tr>
           <tr>
-            <td>
-              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                <StatusBadge status="new" />
-                semantic
-              </DxcFlex>
-            </td>
+            <td>semantic</td>
             <td>
               <TableCode>'default' | 'error' | 'warning' | 'success' | 'info'</TableCode>
             </td>
@@ -140,12 +135,7 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
-            <td>
-              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                <StatusBadge status="new" />
-                size
-              </DxcFlex>
-            </td>
+            <td>size</td>
             <td>
               <TableCode>
                 {

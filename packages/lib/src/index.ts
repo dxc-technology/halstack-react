@@ -1,4 +1,5 @@
-import "./fonts.css";
+import "./styles/fonts.css";
+import "./styles/variables.css";
 
 export { default as DxcAccordion } from "./accordion/Accordion";
 export { default as DxcAccordionGroup } from "./accordion-group/AccordionGroup";

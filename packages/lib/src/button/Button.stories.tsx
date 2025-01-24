@@ -2,7 +2,6 @@ import DxcButton from "./Button";
 import DxcFlex from "../flex/Flex";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
-import { HalstackProvider } from "../HalstackContext";
 import DxcInset from "../inset/Inset";
 import DxcTooltip from "../tooltip/Tooltip";
 import { userEvent, within } from "@storybook/test";
@@ -35,14 +34,6 @@ const facebookIcon = (
     </g>
   </svg>
 );
-
-const opinionatedTheme = {
-  button: {
-    baseColor: "#5f249f",
-    primaryFontColor: "#fff",
-    secondaryHoverFontColor: "#fff",
-  },
-};
 
 const Button = () => (
   <>
@@ -4927,43 +4918,6 @@ const Button = () => (
         </DxcFlex>
       </>
     </>
-    <Title title="Opinionated theme" theme="light" level={4} />
-    <DxcFlex direction="column">
-      <DxcFlex gap="1rem">
-        <ExampleContainer>
-          <HalstackProvider theme={opinionatedTheme}>
-            <DxcButton label="Primary" icon="home" />
-          </HalstackProvider>
-        </ExampleContainer>
-        <ExampleContainer>
-          <HalstackProvider theme={opinionatedTheme}>
-            <DxcButton label="Secondary" icon="home" mode="secondary" />
-          </HalstackProvider>
-        </ExampleContainer>
-        <ExampleContainer>
-          <HalstackProvider theme={opinionatedTheme}>
-            <DxcButton label="Tertiary" icon="home" mode="tertiary" />
-          </HalstackProvider>
-        </ExampleContainer>
-      </DxcFlex>
-      <DxcFlex gap="1rem">
-        <ExampleContainer>
-          <HalstackProvider theme={opinionatedTheme}>
-            <DxcButton label="Primary" icon="home" disabled />
-          </HalstackProvider>
-        </ExampleContainer>
-        <ExampleContainer>
-          <HalstackProvider theme={opinionatedTheme}>
-            <DxcButton label="Secondary" icon="home" mode="secondary" disabled />
-          </HalstackProvider>
-        </ExampleContainer>
-        <ExampleContainer>
-          <HalstackProvider theme={opinionatedTheme}>
-            <DxcButton label="Tertiary" icon="home" mode="tertiary" disabled />
-          </HalstackProvider>
-        </ExampleContainer>
-      </DxcFlex>
-    </DxcFlex>
   </>
 );
 
