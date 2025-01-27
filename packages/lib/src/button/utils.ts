@@ -9,7 +9,6 @@ export const getButtonStyles = (
   let enabled = "";
   let hover = "";
   let active = "";
-  let focus = "";
   let disabled = "";
 
   const commonStyles = `
@@ -19,7 +18,12 @@ export const getButtonStyles = (
     font-weight: var(--typography-label-semibold);
     line-height: normal;
     border: 0px none transparent;
-    border-radius: var(--border-radius-s);`;
+    border-radius: var(--border-radius-s);
+
+    &:focus:enabled {
+      outline: 2px solid var(--border-color-secondary-medium);
+      outline-offset: -2px;
+    }`;
 
   switch (mode) {
     case "primary":
@@ -68,11 +72,6 @@ export const getButtonStyles = (
         }
         &:active:enabled {
           ${active}
-        }
-        &:focus:enabled {
-          ${focus}
-          outline: none;
-          box-shadow: 0 0 0 2px var(--border-color-secondary-medium);
         }
         &:disabled {
           cursor: not-allowed;
@@ -141,11 +140,6 @@ export const getButtonStyles = (
           border-color: transparent;
           ${active}
         }
-        &:focus:enabled {
-          border-color: transparent;
-          box-shadow: 0 0 0 2px var(--border-color-secondary-medium);
-          outline: none;
-        }
         &:disabled {
           cursor: not-allowed;
           ${disabled}
@@ -193,11 +187,6 @@ export const getButtonStyles = (
         &:active:enabled {
           border-color: transparent;
           ${active}
-        }
-        &:focus:enabled {
-          ${focus}
-          outline: none;
-          box-shadow: 0 0 0 2px var(--border-color-secondary-medium);
         }
         &:disabled {
           cursor: not-allowed;
