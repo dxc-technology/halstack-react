@@ -110,7 +110,7 @@ export const getButtonStyles = (
           color: var(--color-fg-warning-light);`;
           break;
         case "success":
-          enabled = `border: var(--border-width-s, 1px) solid var(--border-color-success-medium);
+          enabled = `border: var(--border-width-s) solid var(--border-color-success-medium);
           color: var(--color-fg-success-medium);`;
           hover = `background-color: var(--color-bg-success-strong);
           color: var(--color-fg-neutral-bright);`;
@@ -120,7 +120,7 @@ export const getButtonStyles = (
           color: var(--color-fg-success-light);`;
           break;
         case "info":
-          enabled = `border: var(--border-width-s, 1px) solid var(--border-color-secondary-strong);
+          enabled = `border: var(--border-width-s) solid var(--border-color-secondary-strong);
           color: var(--color-fg-secondary-medium);`;
           hover = `background: var(--color-bg-secondary-strong);
           color: var(--color-fg-neutral-bright);`;
