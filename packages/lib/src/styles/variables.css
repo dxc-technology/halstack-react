@@ -114,12 +114,12 @@
   --font-weight-regular: 400;
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
-  --border-dashed: dashed;
-  --border-solid: solid;
   --font-family-mono: Source Code Pro, mono;
   --font-family-sans: Open Sans, sans-serif;
   --font-style-lightitalic: light italic;
   --font-style-normal: normal;
+  --line-style-dashed: dashed;
+  --line-style-solid: solid;
   
   /* Alias */
   --border-color-error-light: var(--color-red-300);
@@ -318,8 +318,8 @@
   --typography-title-l: var(--font-size-20);
   --typography-title-xl: var(--font-size-24);
   --typography-title-bold: var(--font-weight-bold);
-  --border-style-dashed: var(--border-dashed);
-  --border-style-default: var(--border-solid);
+  --border-style-default: var(--line-style-solid);
+  --border-style-outline: var(--line-style-dashed);
   --typography-font-family: var(--font-family-sans);
   --typography-helper-text-italic: var(--font-style-lightitalic);
 }
