@@ -1,7 +1,6 @@
 import { forwardRef } from "react";
 import ActionIconPropsTypes, { RefType } from "./types";
 import styled from "styled-components";
-import CoreTokens from "../common/coreTokens";
 import DxcIcon from "../icon/Icon";
 import { Tooltip } from "../tooltip/Tooltip";
 

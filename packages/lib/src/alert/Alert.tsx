@@ -1,4 +1,4 @@
-import styled, { css, ThemeProvider } from "styled-components";
+import styled, { css } from "styled-components";
 import { useState, memo, useId, useEffect, useCallback, useContext } from "react";
 import AlertPropsType from "./types";
 import DxcIcon from "../icon/Icon";
