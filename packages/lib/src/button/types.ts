@@ -1,12 +1,14 @@
 import { Margin, SVG, Space } from "../common/utils";
 
-type Size = {
+export type Semantic = "default" | "error" | "warning" | "success" | "info";
+export type Mode = "primary" | "secondary" | "tertiary";
+export type Size = {
   /**
-   * Height of the component.
+   * Height of the button.
    */
   height?: "small" | "medium" | "large";
   /*
-   * Width of the component.
+   * Width of the button.
    */
   width?: "small" | "medium" | "large" | "fillParent" | "fitContent";
 };
@@ -19,11 +21,11 @@ type Props = {
   /**
    * The available button modes.
    */
-  mode?: "primary" | "secondary" | "tertiary";
+  mode?: Mode;
   /**
    * Specifies the semantic meaning of the buttons, which determines its color.
    */
-  semantic?: "default" | "error" | "warning" | "success" | "info";
+  semantic?: Semantic;
   /**
    * If true, the component will be disabled.
    */
