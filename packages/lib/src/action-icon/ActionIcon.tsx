@@ -13,10 +13,10 @@ const ActionIcon = styled.button`
   border-radius: var(--border-radius-xs);
   width: var(--height-s);
   height: var(--height-s);
-  border: var(--border-width-m) var(--border_solid) var(--color_transparent);
+  border: var(--border-width-m) var(--border-style-default) transparent;
   ${(props) => (props.disabled ? `cursor: not-allowed;` : `cursor: pointer;`)}
-  background-color: var(--color_transparent);
-  color: ${(props) => (props.disabled ? "var(--color_grey_500)" : "var(--color_grey_900)")};
+  background-color: transparent;
+  color: ${(props) => (props.disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-dark)")};
 
   ${(props) =>
     !props.disabled &&
@@ -24,23 +24,21 @@ const ActionIcon = styled.button`
       &:focus,
       &:focus-visible {
         outline: none;
-        border: var(--border-width-m) var(--border_solid) var(--border-color-secondary-medium);
-        color: var(--color_grey_900);
+        border: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
+        color: var(--color-fg-neutral-dark);
       }
       &:hover {
         background-color: var(--color-bg-alpha-light);
-        color: var(--color_grey_900);
+        color: var(--color-fg-neutral-dark);
       }
       &:active {
         background-color: var(--color-bg-alpha-light);
-        color: var(--color_grey_900);
+        color: var(--color-fg-neutral-dark);
       }
     `}
-
-  font-size: 16px;
+  font-size: var(--height-xxs);
   > svg {
-    width: 16px;
-    height: 16px;
+    height: var(--height-xxs);
   }
 `;
 

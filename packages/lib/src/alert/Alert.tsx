@@ -26,7 +26,7 @@ const AlertContainer = styled.div<{
         : "var(--spacing-padding-xs) var(--spacing-padding-s)"};
 
   background-color: ${(props) =>
-    (props.mode === "modal" && "var(--color-absolutes-white)") ||
+    (props.mode === "modal" && "var(--color-bg-neutral-lightest)") ||
     (props.semantic === "info" && "var(--color-bg-secondary-lighter)") ||
     (props.semantic === "success" && "var(--color-bg-success-lighter)") ||
     (props.semantic === "warning" && "var(--color-bg-warning-lighter)") ||
@@ -50,7 +50,7 @@ const TitleContainer = styled.div<{ mode: AlertPropsType["mode"]; semantic: Aler
 
 const typographyStyles = css`
   font-family: var(--typography-font-family);
-  font-style: var(--type_normal);
+  font-style: var(--font-style-normal);
   color: var(--color-fg-neutral-dark);
   font-weight: var(--typography-helper-text-regular);
 `;
