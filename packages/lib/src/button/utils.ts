@@ -13,7 +13,7 @@ export const getButtonStyles = (
 
   const commonStyles = `
     font-family: var(--typography-font-family);
-    font-size: ${size?.height === "large" ? "var(--typography-label-l)" : "var(--typography-label-m)"};
+    font-size: var(${size?.height === "large" ? "--typography-label-l" : "--typography-label-m"});
     font-style: normal;
     font-weight: var(--typography-label-semibold);
     line-height: normal;
@@ -21,7 +21,7 @@ export const getButtonStyles = (
     border-radius: var(--border-radius-s);
 
     &:focus:enabled {
-      outline: 2px solid var(--border-color-secondary-medium);
+      outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
       outline-offset: -2px;
     }`;
 
@@ -80,7 +80,7 @@ export const getButtonStyles = (
     case "secondary":
       switch (semantic) {
         case "default":
-          enabled = `border: var(--border-width-s) solid var(--border-color-primary-stronger);
+          enabled = `border: var(--border-width-s) var(--border-style-default) var(--border-color-primary-stronger);
           color: var(--color-fg-primary-strong);`;
           hover = `background-color: var(--color-bg-primary-strong); 
           color: var(--color-fg-neutral-bright);`;
@@ -90,7 +90,7 @@ export const getButtonStyles = (
           color: var(--color-fg-primary-light);`;
           break;
         case "error":
-          enabled = `border: var(--border-width-s) solid var(--border-color-error-medium);
+          enabled = `border: var(--border-width-s) var(--border-style-default) var(--border-color-error-medium);
           color: var(--color-fg-error-medium);`;
           hover = `background-color: var(--color-bg-error-strong);
           color: var(--color-fg-neutral-bright);`;
@@ -100,7 +100,7 @@ export const getButtonStyles = (
           color: var(--color-fg-error-light);`;
           break;
         case "warning":
-          enabled = `border: var(--border-width-s) solid var(--border-color-warning-medium);
+          enabled = `border: var(--border-width-s) var(--border-style-default) var(--border-color-warning-medium);
           color: var(--color-fg-warning-medium);`;
           hover = `background-color: var(--color-bg-warning-stronger);
           color: var(--color-fg-neutral-bright);`;
@@ -110,7 +110,7 @@ export const getButtonStyles = (
           color: var(--color-fg-warning-light);`;
           break;
         case "success":
-          enabled = `border: var(--border-width-s) solid var(--border-color-success-medium);
+          enabled = `border: var(--border-width-s) var(--border-style-default) var(--border-color-success-medium);
           color: var(--color-fg-success-medium);`;
           hover = `background-color: var(--color-bg-success-strong);
           color: var(--color-fg-neutral-bright);`;
@@ -120,7 +120,7 @@ export const getButtonStyles = (
           color: var(--color-fg-success-light);`;
           break;
         case "info":
-          enabled = `border: var(--border-width-s) solid var(--border-color-secondary-strong);
+          enabled = `border: var(--border-width-s) var(--border-style-default) var(--border-color-secondary-strong);
           color: var(--color-fg-secondary-medium);`;
           hover = `background: var(--color-bg-secondary-strong);
           color: var(--color-fg-neutral-bright);`;
@@ -211,12 +211,12 @@ export const calculateWidth = (margin: ButtonPropsType["margin"], size: ButtonPr
 export const getHeight = (height: Size["height"]) => {
   switch (height) {
     case "small":
-      return "24px";
+      return "var(--height-s)";
     case "medium":
-      return "32px";
+      return "var(--height-m)";
     case "large":
-      return "40px";
+      return "var(--height-xl)";
     default:
-      return "40px";
+      return "var(--height-xl)";
   }
 };

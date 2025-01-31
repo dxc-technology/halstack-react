@@ -17,7 +17,7 @@ const Button = styled.button<{
   align-items: center;
   justify-content: center;
   flex-direction: ${({ iconPosition }) => (iconPosition === "after" ? "row" : "row-reverse")};
-  gap: ${({ size }) => (size.height === "large" ? "var(--spacing-gap-s)" : "var(--spacing-gap-xs)")};
+  gap: var(${({ size }) => (size.height === "large" ? "--spacing-gap-s" : "--spacing-gap-xs")});
   height: ${({ size }) => getHeight(size.height)};
   width: ${(props) => calculateWidth(props.margin, props.size)};
   cursor: pointer;
@@ -32,11 +32,11 @@ const Button = styled.button<{
   ${({ size, iconOnly }) => {
     switch (size.height) {
       case "small":
-        return `padding: var(--spacing-padding-none) ${iconOnly ? "var(--spacing-padding-xxs)" : "var(--spacing-padding-xs)"};`;
+        return `padding: var(--spacing-padding-none) var(${iconOnly ? "--spacing-padding-xxs" : "--spacing-padding-xs"});`;
       case "medium":
         return "padding: var(--spacing-padding-none) var(--spacing-padding-xs)";
       case "large":
-        return `padding: var(--spacing-padding-none) ${iconOnly ? "var(--spacing-padding-xs)" : "var(--spacing-padding-m)"};`;
+        return `padding: var(--spacing-padding-none) var(${iconOnly ? "--spacing-padding-xs" : "--spacing-padding-m"});`;
     }
   }};
 
@@ -54,26 +54,25 @@ const IconContainer = styled.div<{
   size: Size;
 }>`
   display: flex;
-  font-size: ${({ size }) => (size?.height === "large" ? "24" : "16")}px;
+  font-size: var(${({ size }) => (size?.height === "large" ? "--height-s" : "--height-xxs")});
   svg {
-    height: ${({ size }) => (size?.height === "large" ? "24" : "16")}px;
-    width: ${({ size }) => (size?.height === "large" ? "24" : "16")}px;
+    height: var(${({ size }) => (size?.height === "large" ? "--height-s" : "--height-xxs")});
   }
 `;
 
 const DxcButton = ({
-  label,
-  mode = "primary",
-  semantic = "default",
   disabled,
-  iconPosition = "before",
-  title,
-  type = "button",
   icon,
-  onClick,
+  iconPosition = "before",
+  label,
   margin,
+  mode = "primary",
+  onClick,
+  semantic = "default",
   size = { height: "large", width: "fitContent" },
   tabIndex = 0,
+  title,
+  type = "button",
 }: ButtonPropsType): JSX.Element => (
   <Tooltip label={title}>
     <Button
