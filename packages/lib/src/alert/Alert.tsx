@@ -7,8 +7,7 @@ import DxcDivider from "../divider/Divider";
 import DxcActionIcon from "../action-icon/ActionIcon";
 import DxcFlex from "../flex/Flex";
 import ModalAlertWrapper from "./ModalAlertWrapper";
-import CoreTokens from "../common/coreTokens";
-import HalstackContext, { HalstackLanguageContext } from "../HalstackContext";
+import { HalstackLanguageContext } from "../HalstackContext";
 
 const AlertContainer = styled.div<{
   semantic: AlertPropsType["semantic"];
@@ -17,7 +16,7 @@ const AlertContainer = styled.div<{
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  gap: ${CoreTokens.spacing_8};
+  gap: ${(props) => (props.mode === "banner" ? "var(--spacing-gap-m)" : "var(--spacing-gap-s)")};
   ${(props) => (props.mode === "modal" || props.mode === "inline") && `border-radius: var(--border-radius-s);`};
   padding: ${(props) =>
     props.mode === "modal"
@@ -51,10 +50,9 @@ const TitleContainer = styled.div<{ mode: AlertPropsType["mode"]; semantic: Aler
 
 const typographyStyles = css`
   font-family: var(--typography-font-family);
-  font-style: normal;
+  font-style: var(--type_normal);
   color: var(--color-fg-neutral-dark);
   font-weight: var(--typography-helper-text-regular);
-  line-height: normal;
 `;
 
 const Title = styled.span<{ mode: AlertPropsType["mode"] }>`

@@ -11,19 +11,13 @@ const ActionIcon = styled.button`
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  border-radius: 2px;
-  width: 24px;
-  height: 24px;
+  border-radius: var(--border-radius-xs);
+  width: var(--height-s);
+  height: var(--height-s);
+  border: var(--border-width-m) var(--border_solid) var(--color_transparent);
   ${(props) => (props.disabled ? `cursor: not-allowed;` : `cursor: pointer;`)}
-  box-shadow: 0 0 0 2px transparent;
-  background-color: ${(props) =>
-    props.disabled
-      ? (props.theme.disabledActionBackgroundColor ?? CoreTokens.color_transparent)
-      : (props.theme.actionBackgroundColor ?? CoreTokens.color_transparent)};
-  color: ${(props) =>
-    props.disabled
-      ? (props.theme.disabledActionIconColor ?? CoreTokens.color_grey_500)
-      : (props.theme.actionIconColor ?? CoreTokens.color_grey_900)};
+  background-color: var(--color_transparent);
+  color: ${(props) => (props.disabled ? "var(--color_grey_500)" : "var(--color_grey_900)")};
 
   ${(props) =>
     !props.disabled &&
@@ -31,20 +25,20 @@ const ActionIcon = styled.button`
       &:focus,
       &:focus-visible {
         outline: none;
-        box-shadow: 0 0 0 2px ${props.theme.focusActionBorderColor ?? CoreTokens.color_blue_600};
-        color: ${props.theme.focusActionIconColor ?? CoreTokens.color_grey_900};
+        border: var(--border-width-m) var(--border_solid) var(--border-color-secondary-medium);
+        color: var(--color_grey_900);
       }
       &:hover {
-        background-color: ${props.theme.hoverActionBackgroundColor ?? CoreTokens.color_grey_100};
-        color: ${props.theme.hoverActionIconColor ?? CoreTokens.color_grey_900};
+        background-color: var(--color-bg-alpha-light);
+        color: var(--color_grey_900);
       }
       &:active {
-        background-color: ${props.theme.activeActionBackgroundColor ?? CoreTokens.color_grey_300};
-        color: ${props.theme.activeActionIconColor ?? CoreTokens.color_grey_900};
+        background-color: var(--color-bg-alpha-light);
+        color: var(--color_grey_900);
       }
     `}
 
-  font-size: 16px;  
+  font-size: 16px;
   > svg {
     width: 16px;
     height: 16px;
