@@ -11,7 +11,6 @@ const ActionIcon = styled.button`
   justify-content: center;
   flex-shrink: 0;
   border-radius: var(--border-radius-xs);
-  width: var(--height-s);
   height: var(--height-s);
   border: var(--border-width-m) var(--border-style-default) transparent;
   ${(props) => (props.disabled ? `cursor: not-allowed;` : `cursor: pointer;`)}
