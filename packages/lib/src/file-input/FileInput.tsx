@@ -23,19 +23,19 @@ const FileInputContainer = styled.div<{ margin: FileInputPropsType["margin"] }>`
 `;
 
 const Label = styled.label<{ disabled: FileInputPropsType["disabled"] }>`
-  color: ${(props) => (props.disabled ? props.theme.disabledLabelFontColor : props.theme.labelFontColor)};
-  font-family: ${(props) => props.theme.labelFontFamily};
-  font-size: ${(props) => props.theme.labelFontSize};
-  font-weight: ${(props) => props.theme.labelFontWeight};
-  line-height: ${(props) => props.theme.labelLineHeight};
+  color: ${(props) => (props.disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-dark)")};
+  font-family: var(--typography-font-family);
+  font-size: var(--typography-label-m);
+  font-weight: var(--typography-label-semibold);
+  line-height: normal;
 `;
 
 const HelperText = styled.span<{ disabled: FileInputPropsType["disabled"] }>`
-  color: ${(props) => (props.disabled ? props.theme.disabledHelperTextFontColor : props.theme.helperTextFontColor)};
-  font-family: ${(props) => props.theme.helperTextFontFamily};
-  font-size: ${(props) => props.theme.helperTextFontSize};
-  font-weight: ${(props) => props.theme.helperTextFontWeight};
-  line-height: ${(props) => props.theme.helperTextLineHeight};
+  color: var(--color-fg-neutral-stronger);
+  font-family: var(--typography-font-family);
+  font-size: var(--typography-helper-text-s);
+  font-weight: var(--typography-helper-text-regular);
+  line-height: normal;
 `;
 
 const FileContainer = styled.div<{ singleFileMode: boolean }>`
@@ -75,22 +75,17 @@ const DragDropArea = styled.div<{
       : "justify-content: center; flex-direction: column; row-gap: 0.5rem; height: 160px;"}
   align-items: center;
   width: 320px;
-  padding: ${(props) =>
-    props.mode === "filedrop"
-      ? `calc(4px - ${props.theme.dropBorderThickness}) 1rem calc(4px - ${props.theme.dropBorderThickness}) calc(4px - ${props.theme.dropBorderThickness})`
-      : "1rem"};
+  padding: ${(props) => (props.mode === "filedrop" ? `var(--spacing-gap-xs)` : "var(--spacing-padding-m)")};
   overflow: hidden;
-  box-shadow: 0 0 0 2px transparent;
-  border-radius: ${(props) => props.theme.dropBorderRadius};
-  border-width: ${(props) => props.theme.dropBorderThickness};
-  border-style: ${(props) => props.theme.dropBorderStyle};
-  border-color: ${(props) => (props.disabled ? props.theme.disabledDropBorderColor : props.theme.dropBorderColor)};
+  border-radius: var(--border-radius-m);
+  border-width: var(--border-width-s);
+  border-style: var(--border-style-outline);
+  border-color: var(--border-color-neutral-dark);
   ${(props) =>
     props.isDragging &&
     `
-      background-color: ${props.theme.dragoverDropBackgroundColor};
-      border-color: transparent;
-      box-shadow: 0 0 0 2px ${props.theme.focusDropBorderColor};
+      background-color: var(--color-bg-secondary-lightest);
+      border: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
     `}
   cursor: ${(props) => props.disabled && "not-allowed"};
 `;
@@ -102,28 +97,29 @@ const DropzoneLabel = styled.div<{ disabled: FileInputPropsType["disabled"] }>`
   text-overflow: ellipsis;
   -webkit-line-clamp: 3;
   text-align: center;
-  color: ${(props) => (props.disabled ? props.theme.disabledDropLabelFontColor : props.theme.dropLabelFontColor)};
-  font-family: ${(props) => props.theme.dropLabelFontFamily};
-  font-size: ${(props) => props.theme.dropLabelFontSize};
-  font-weight: ${(props) => props.theme.dropLabelFontWeight};
+  color: ${(props) => (props.disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-dark)")};
+  font-family: var(--typography-font-family);
+  font-size: var(--typography-helper-text-m);
+  font-weight: var(--typography-helper-text-regular);
 `;
 
 const FiledropLabel = styled.span<{ disabled: FileInputPropsType["disabled"] }>`
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  color: ${(props) => (props.disabled ? props.theme.disabledDropLabelFontColor : props.theme.dropLabelFontColor)};
-  font-family: ${(props) => props.theme.dropLabelFontFamily};
-  font-size: ${(props) => props.theme.dropLabelFontSize};
-  font-weight: ${(props) => props.theme.dropLabelFontWeight};
+  color: ${(props) => (props.disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-dark)")};
+  font-family: var(--typography-font-family);
+  font-size: var(--typography-helper-text-m);
+  font-weight: var(--typography-helper-text-regular);
 `;
 
 const ErrorMessage = styled.div`
-  color: ${(props) => props.theme.errorMessageFontColor};
-  font-family: ${(props) => props.theme.errorMessageFontFamily};
-  font-size: ${(props) => props.theme.errorMessageFontSize};
-  font-weight: ${(props) => props.theme.errorMessageFontWeight};
-  line-height: ${(props) => props.theme.errorMessageLineHeight};
+  overflow: hidden;
+  color: var(--color-fg-error-medium);
+  text-overflow: ellipsis;
+  font-family: var(--typography-font-family);
+  font-size: var(--typography-helper-text-s);
+  font-weight: var(--typography-helper-text-regular);
   margin-top: 0.25rem;
 `;
 
