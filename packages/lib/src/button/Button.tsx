@@ -57,6 +57,7 @@ const IconContainer = styled.div<{
   font-size: var(${({ size }) => (size?.height === "large" ? "--height-s" : "--height-xxs")});
   svg {
     height: var(${({ size }) => (size?.height === "large" ? "--height-s" : "--height-xxs")});
+    width: ${({ size }) => (size?.height === "large" ? "24" : "16")}px;
   }
 `;
 
