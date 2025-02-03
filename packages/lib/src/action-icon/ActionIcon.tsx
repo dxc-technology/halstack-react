@@ -35,6 +35,7 @@ const ActionIcon = styled.button`
   font-size: var(--height-xxs);
   > svg {
     height: var(--height-xxs);
+    width: 24px;
   }
 `;
 
