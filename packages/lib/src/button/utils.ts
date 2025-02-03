@@ -14,10 +14,8 @@ export const getButtonStyles = (
   const commonStyles = `
     font-family: var(--typography-font-family);
     font-size: var(${size?.height === "large" ? "--typography-label-l" : "--typography-label-m"});
-    font-style: normal;
     font-weight: var(--typography-label-semibold);
-    line-height: normal;
-    border: 0px none transparent;
+    border: var(--border-width-none) var(--border-style-default) transparent;
     border-radius: var(--border-radius-s);
 
     &:focus:enabled {
