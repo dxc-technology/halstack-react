@@ -50,7 +50,7 @@ const TitleContainer = styled.div<{ mode: AlertPropsType["mode"]; semantic: Aler
 
 const typographyStyles = css`
   font-family: var(--typography-font-family);
-  font-style: var(--font-style-normal);
+  font-style: normal;
   color: var(--color-fg-neutral-dark);
   font-weight: var(--typography-helper-text-regular);
 `;

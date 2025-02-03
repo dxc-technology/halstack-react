@@ -12,9 +12,7 @@ const ActionIcon = styled.button`
   flex-shrink: 0;
   border-radius: var(--border-radius-xs);
   height: var(--height-s);
-  border: var(--border-width-m) var(--border-style-default) transparent;
   ${(props) => (props.disabled ? `cursor: not-allowed;` : `cursor: pointer;`)}
-  background-color: transparent;
   color: ${(props) => (props.disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-dark)")};
 
   ${(props) =>
@@ -22,9 +20,8 @@ const ActionIcon = styled.button`
     `
       &:focus,
       &:focus-visible {
-        outline: none;
-        border: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
-        color: var(--color-fg-neutral-dark);
+        outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
+        color: var(--color-fg-neutral-dark);        
       }
       &:hover {
         background-color: var(--color-bg-alpha-light);
