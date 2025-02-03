@@ -6,6 +6,84 @@ import BulletedListPropsType, { BulletedListItemPropsType } from "./types";
 import DxcIcon from "../icon/Icon";
 import HalstackContext from "../HalstackContext";
 
+const ListContainer = styled.div`
+  ul,
+  ol {
+    margin: 0;
+    padding: 0;
+  }
+`;
+
+const Bullet = styled.div`
+  align-items: center;
+  align-self: center;
+  display: flex;
+`;
+
+const GeneralContent = styled.div`
+  align-items: center;
+  display: grid;
+  gap: var(--spacing-gap-s);
+  grid-template-columns: auto 1fr;
+`;
+
+const Icon = styled.div`
+  align-content: center;
+  font-size: var(--height-xxs);
+  height: var(--height-xxs);
+  width: 16px;
+  svg {
+    /* PENDING TOKEN */
+    /* height: ${(props) => props.theme.bulletHeight};
+    width: ${(props) => props.theme.bulletWidth}; */
+  }
+`;
+
+const Number = styled.div`
+  align-self: flex-start;
+  box-sizing: border-box;
+  display: flex;
+  min-width: 0;
+  user-select: none;
+`;
+
+const Square = styled.div`
+  background-color: var(--color-fg-neutral-dark);
+  /* PENDING TOKEN */
+  /* height: ${(props) => props.theme.bulletHeight};
+  width: ${(props) => props.theme.bulletWidth}; */
+`;
+
+const Circle = styled.div`
+  border-color: var(--color-fg-neutral-dark);
+  border-radius: 50%;
+  border: 1px solid;
+  /* PENDING TOKEN */
+  /* height: ${(props) => props.theme.bulletHeight};
+  width: ${(props) => props.theme.bulletWidth}; */
+`;
+
+const Disc = styled.div`
+  background-color: var(--color-fg-neutral-dark);
+  border-radius: 50%;
+  /* PENDING TOKEN */
+  /* height: ${(props) => props.theme.bulletHeight};
+  width: ${(props) => props.theme.bulletWidth}; */
+`;
+
+const ListItem = styled.li`
+  color: var(--color-fg-neutral-dark);
+  display: flex;
+  font-family: var(--typography-font-family);
+  font-size: var(--typography-body-m);
+  font-style: normal;
+  font-weight: var(--typography-body-regular);
+  line-height: normal;
+  list-style: none;
+  margin: 0px;
+  padding: var(--spacing-padding-none);
+`;
+
 const BulletedListItem = ({ children }: BulletedListItemPropsType): JSX.Element => <>{children}</>;
 
 const DxcBulletedList = ({ children, type = "disc", icon = "" }: BulletedListPropsType): JSX.Element => {
@@ -50,81 +128,5 @@ const DxcBulletedList = ({ children, type = "disc", icon = "" }: BulletedListPro
 };
 
 DxcBulletedList.Item = BulletedListItem;
-
-const ListContainer = styled.div`
-  ul,
-  ol {
-    padding: 0;
-    margin: 0;
-  }
-`;
-
-const Bullet = styled.div`
-  display: flex;
-  align-self: flex-start;
-  align-items: center;
-  height: 1.5rem;
-`;
-
-const GeneralContent = styled.div`
-  display: grid;
-  grid-template-columns: auto 1fr;
-  align-items: center;
-`;
-
-const Icon = styled.div`
-  height: 1.5rem;
-  width: auto;
-  margin-right: ${(props) => props.theme.bulletMarginRight};
-  align-content: center;
-  color: ${(props) => props.theme.fontColor};
-
-  font-size: ${(props) => props.theme.bulletIconHeight};
-  svg {
-    height: ${(props) => props.theme.bulletIconHeight};
-    width: ${(props) => props.theme.bulletIconWidth};
-  }
-`;
-
-const Number = styled.div`
-  user-select: none;
-  margin-right: ${(props) => props.theme.bulletMarginRight};
-  display: flex;
-  box-sizing: border-box;
-  align-self: flex-start;
-  min-width: 0;
-`;
-
-const Square = styled.div`
-  background-color: ${(props) => props.theme.fontColor};
-  height: ${(props) => props.theme.bulletHeight};
-  width: ${(props) => props.theme.bulletWidth};
-  margin-right: ${(props) => props.theme.bulletMarginRight};
-`;
-
-const Circle = styled.div`
-  height: ${(props) => props.theme.bulletHeight};
-  width: ${(props) => props.theme.bulletWidth};
-  border-radius: 50%;
-  border: 1px solid;
-  border-color: ${(props) => props.theme.fontColor};
-  margin-right: ${(props) => props.theme.bulletMarginRight};
-`;
-
-const Disc = styled.div`
-  background-color: ${(props) => props.theme.fontColor};
-  height: ${(props) => props.theme.bulletHeight};
-  width: ${(props) => props.theme.bulletWidth};
-  border-radius: 50%;
-  margin-right: ${(props) => props.theme.bulletMarginRight};
-`;
-
-const ListItem = styled.li`
-  display: flex;
-  margin: 0px;
-  padding: 0px;
-  list-style: none;
-  font-size: 1em;
-`;
 
 export default DxcBulletedList;
