@@ -1,5 +1,5 @@
 import { useCallback, useContext, useEffect, useId, useState, forwardRef, DragEvent, ChangeEvent } from "react";
-import styled, { ThemeProvider } from "styled-components";
+import styled from "styled-components";
 import DxcButton from "../button/Button";
 import { spaces } from "../common/variables";
 import FileItem from "./FileItem";
@@ -248,121 +248,119 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
     }, [value]);
 
     return (
-      <ThemeProvider theme={colorsTheme.fileInput}>
-        <FileInputContainer margin={margin} ref={ref}>
-          <Label htmlFor={fileInputId} disabled={disabled}>
-            {label}
-          </Label>
-          <HelperText disabled={disabled}>{helperText}</HelperText>
-          {mode === "file" ? (
-            <FileContainer singleFileMode={!multiple && files.length === 1}>
-              <ValueInput
-                id={fileInputId}
-                type="file"
-                accept={accept}
-                multiple={multiple}
-                onChange={selectFiles}
-                disabled={disabled}
-                readOnly
-              />
+      <FileInputContainer margin={margin} ref={ref}>
+        <Label htmlFor={fileInputId} disabled={disabled}>
+          {label}
+        </Label>
+        <HelperText disabled={disabled}>{helperText}</HelperText>
+        {mode === "file" ? (
+          <FileContainer singleFileMode={!multiple && files.length === 1}>
+            <ValueInput
+              id={fileInputId}
+              type="file"
+              accept={accept}
+              multiple={multiple}
+              onChange={selectFiles}
+              disabled={disabled}
+              readOnly
+            />
+            <DxcButton
+              mode="secondary"
+              label={
+                buttonLabel ??
+                (multiple
+                  ? translatedLabels.fileInput.multipleButtonLabelDefault
+                  : translatedLabels.fileInput.singleButtonLabelDefault)
+              }
+              onClick={handleClick}
+              disabled={disabled}
+              size={{ width: "fitContent" }}
+              tabIndex={tabIndex}
+            />
+            {files.length > 0 && (
+              <FileItemListContainer role="list">
+                {files.map((file, index) => (
+                  <FileItem
+                    fileName={file.file.name}
+                    error={file.error}
+                    singleFileMode={!multiple && files.length === 1}
+                    showPreview={mode === "file" && !multiple ? false : showPreview}
+                    preview={file.preview ?? ""}
+                    type={file.file.type}
+                    onDelete={onDelete}
+                    tabIndex={tabIndex}
+                    key={`file-${index}`}
+                  />
+                ))}
+              </FileItemListContainer>
+            )}
+          </FileContainer>
+        ) : (
+          <Container>
+            <ValueInput
+              id={fileInputId}
+              type="file"
+              accept={accept}
+              multiple={multiple}
+              onChange={selectFiles}
+              disabled={disabled}
+              readOnly
+            />
+            <DragDropArea
+              isDragging={isDragging}
+              disabled={disabled}
+              mode={mode}
+              onDrop={handleDrop}
+              onDragEnter={handleDragIn}
+              onDragOver={handleDrag}
+              onDragLeave={handleDragOut}
+            >
               <DxcButton
                 mode="secondary"
-                label={
-                  buttonLabel ??
-                  (multiple
-                    ? translatedLabels.fileInput.multipleButtonLabelDefault
-                    : translatedLabels.fileInput.singleButtonLabelDefault)
-                }
+                label={buttonLabel ?? translatedLabels.fileInput.dropAreaButtonLabelDefault}
                 onClick={handleClick}
                 disabled={disabled}
                 size={{ width: "fitContent" }}
-                tabIndex={tabIndex}
               />
-              {files.length > 0 && (
-                <FileItemListContainer role="list">
-                  {files.map((file, index) => (
-                    <FileItem
-                      fileName={file.file.name}
-                      error={file.error}
-                      singleFileMode={!multiple && files.length === 1}
-                      showPreview={mode === "file" && !multiple ? false : showPreview}
-                      preview={file.preview ?? ""}
-                      type={file.file.type}
-                      onDelete={onDelete}
-                      tabIndex={tabIndex}
-                      key={`file-${index}`}
-                    />
-                  ))}
-                </FileItemListContainer>
+              {mode === "dropzone" ? (
+                <DropzoneLabel disabled={disabled}>
+                  {dropAreaLabel ??
+                    (multiple
+                      ? translatedLabels.fileInput.multipleDropAreaLabelDefault
+                      : translatedLabels.fileInput.singleDropAreaLabelDefault)}
+                </DropzoneLabel>
+              ) : (
+                <FiledropLabel disabled={disabled}>
+                  {dropAreaLabel ??
+                    (multiple
+                      ? translatedLabels.fileInput.multipleDropAreaLabelDefault
+                      : translatedLabels.fileInput.singleDropAreaLabelDefault)}
+                </FiledropLabel>
               )}
-            </FileContainer>
-          ) : (
-            <Container>
-              <ValueInput
-                id={fileInputId}
-                type="file"
-                accept={accept}
-                multiple={multiple}
-                onChange={selectFiles}
-                disabled={disabled}
-                readOnly
-              />
-              <DragDropArea
-                isDragging={isDragging}
-                disabled={disabled}
-                mode={mode}
-                onDrop={handleDrop}
-                onDragEnter={handleDragIn}
-                onDragOver={handleDrag}
-                onDragLeave={handleDragOut}
-              >
-                <DxcButton
-                  mode="secondary"
-                  label={buttonLabel ?? translatedLabels.fileInput.dropAreaButtonLabelDefault}
-                  onClick={handleClick}
-                  disabled={disabled}
-                  size={{ width: "fitContent" }}
-                />
-                {mode === "dropzone" ? (
-                  <DropzoneLabel disabled={disabled}>
-                    {dropAreaLabel ??
-                      (multiple
-                        ? translatedLabels.fileInput.multipleDropAreaLabelDefault
-                        : translatedLabels.fileInput.singleDropAreaLabelDefault)}
-                  </DropzoneLabel>
-                ) : (
-                  <FiledropLabel disabled={disabled}>
-                    {dropAreaLabel ??
-                      (multiple
-                        ? translatedLabels.fileInput.multipleDropAreaLabelDefault
-                        : translatedLabels.fileInput.singleDropAreaLabelDefault)}
-                  </FiledropLabel>
-                )}
-              </DragDropArea>
-              {files.length > 0 && (
-                <FileItemListContainer role="list">
-                  {files.map((file, index) => (
-                    <FileItem
-                      fileName={file.file.name}
-                      error={file.error}
-                      singleFileMode={false}
-                      showPreview={showPreview}
-                      preview={file.preview ?? ""}
-                      type={file.file.type}
-                      onDelete={onDelete}
-                      tabIndex={tabIndex}
-                      key={`file-${index}`}
-                    />
-                  ))}
-                </FileItemListContainer>
-              )}
-            </Container>
-          )}
-          {mode === "file" && !multiple && files.length === 1 && files[0]?.error && (
-            <ErrorMessage>{files[0].error}</ErrorMessage>
-          )}
-        </FileInputContainer>
-      </ThemeProvider>
+            </DragDropArea>
+            {files.length > 0 && (
+              <FileItemListContainer role="list">
+                {files.map((file, index) => (
+                  <FileItem
+                    fileName={file.file.name}
+                    error={file.error}
+                    singleFileMode={false}
+                    showPreview={showPreview}
+                    preview={file.preview ?? ""}
+                    type={file.file.type}
+                    onDelete={onDelete}
+                    tabIndex={tabIndex}
+                    key={`file-${index}`}
+                  />
+                ))}
+              </FileItemListContainer>
+            )}
+          </Container>
+        )}
+        {mode === "file" && !multiple && files.length === 1 && files[0]?.error && (
+          <ErrorMessage>{files[0].error}</ErrorMessage>
+        )}
+      </FileInputContainer>
     );
   }
 );
