@@ -1,13 +1,212 @@
 import { useContext, useState, useRef, useId, forwardRef, KeyboardEvent } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import { AdvancedTheme, spaces } from "../common/variables";
 import { getMargin } from "../common/utils";
 import HalstackContext, { HalstackLanguageContext } from "../HalstackContext";
 import CheckboxPropsType, { RefType } from "./types";
 
+const sizes = {
+  small: "120px",
+  medium: "240px",
+  large: "480px",
+  fillParent: "100%",
+  fitContent: "fit-content",
+};
+
+const spaces = {
+  xxsmall: "var(--spacing-padding-xxs)",
+  xsmall: "var(--spacing-padding-xs)",
+  small: "var(--spacing-padding-s)",
+  medium: "var(--spacing-padding-m)",
+  large: "var(--spacing-padding-l)",
+  xlarge: "var(--spacing-padding-xl)",
+  xxlarge: "var(--spacing-padding-xxl)",
+};
+
+const calculateWidth = (margin: CheckboxPropsType["margin"], size: CheckboxPropsType["size"]) =>
+  size === "fillParent"
+    ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
+    : size && sizes[size];
+
+const getDisabledColor = (element: string) => {
+  switch (element) {
+    case "check":
+      return "var(--color-fg-neutral-bright)";
+    case "background":
+      return "var(--color-fg-neutral-medium)";
+    case "border":
+      return "var(--border-color-neutral-medium)";
+    case "label":
+      return "var(--color-fg-neutral-medium)";
+    default:
+      return undefined;
+  }
+};
+
+const getReadOnlyColor = (element: string) => {
+  switch (element) {
+    case "check":
+      return "var(--color-fg-neutral-bright)";
+    case "background":
+      return "var(--color-fg-neutral-medium)";
+    case "hoverBackground":
+      return "var(--color-bg-neutral-stronger)";
+    case "border":
+      return "var(--border-color-neutral-strong)";
+    case "hoverBorder":
+      return "var(--border-color-neutral-stronger)";
+    case "activeBorder":
+      return "var(--border-color-neutral-strongest)";
+    case "activeBackground":
+      return "var(--color-bg-neutral-strongest)";
+    default:
+      return undefined;
+  }
+};
+
+const getEnabledColor = (element: string) => {
+  switch (element) {
+    case "check":
+      return "var(--color-fg-neutral-bright)";
+    case "background":
+      return "var(--color-bg-secondary-strong)";
+    case "hoverBackground":
+      return "var(--color-bg-secondary-stronger)";
+    case "border":
+      return "var(--border-color-secondary-strong)";
+    case "hoverBorder":
+      return "var(--border-color-secondary-stronger)";
+    case "label":
+      return "var(--color-fg-neutral-dark)";
+    case "activeBorder":
+      return "var(--border-color-secondary-strongest)";
+    case "activeBackground":
+      return "var(--color-bg-secondary-strongest)";
+    default:
+      return undefined;
+  }
+};
+
+const LabelContainer = styled.span<{
+  disabled: CheckboxPropsType["disabled"];
+  labelPosition: CheckboxPropsType["labelPosition"];
+}>`
+  order: ${(props) => (props.labelPosition === "before" ? 0 : 1)};
+  color: ${(props) => (props.disabled ? getDisabledColor("label") : getEnabledColor("label"))};
+  font-family: var(--typography-font-family);
+  font-size: var(--typography-label-m);
+  font-weight: var(--typography-label-regular);
+`;
+
+const ValueInput = styled.input`
+  display: none;
+`;
+
+const CheckboxContainer = styled.span`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 24px;
+  width: var(--height-s);
+`;
+
+const Checkbox = styled.span<{
+  checked: CheckboxPropsType["checked"];
+  disabled: CheckboxPropsType["disabled"];
+  readOnly: CheckboxPropsType["readOnly"];
+}>`
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 18px; // This does not have an apropiate alias
+  width: 18px; // This does not have an apropiate alias
+  border: var(--border-width-m) solid
+    ${(props) =>
+      props.disabled
+        ? getDisabledColor("border")
+        : props.readOnly
+          ? getReadOnlyColor("border")
+          : getEnabledColor("border")};
+  border-radius: 2px;
+  background-color: ${(props) =>
+    props.checked
+      ? props.disabled
+        ? getDisabledColor("check")
+        : props.readOnly
+          ? getReadOnlyColor("check")
+          : getEnabledColor("check")
+      : "transparent"};
+  color: ${(props) =>
+    props.disabled
+      ? getDisabledColor("background")
+      : props.readOnly
+        ? getReadOnlyColor("background")
+        : getEnabledColor("background")};
+
+  &:focus {
+    outline: var(--border-width-m) solid var(--border-color-secondary-medium);
+    outline-offset: 1px; // This does not have an apropiate alias
+  }
+  svg {
+    position: absolute;
+    width: 24px;
+    height: var(--height-s);
+  }
+  ${(props) => props.disabled && "pointer-events: none;"}
+`;
+
+const MainContainer = styled.div<{
+  margin: CheckboxPropsType["margin"];
+  size: CheckboxPropsType["size"];
+  disabled: CheckboxPropsType["disabled"];
+  readOnly: CheckboxPropsType["readOnly"];
+  checked: CheckboxPropsType["checked"];
+}>`
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-gap-s);
+  width: ${(props) => calculateWidth(props.margin, props.size)};
+  margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
+  margin-top: ${(props) =>
+    props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
+  margin-right: ${(props) =>
+    props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
+  margin-bottom: ${(props) =>
+    props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
+  margin-left: ${(props) =>
+    props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
+  cursor: ${(props) => (props.disabled ? "not-allowed" : props.readOnly ? "default" : "pointer")};
+
+  &:hover ${Checkbox} {
+    border: var(--border-width-m) solid
+      ${(props) => {
+        if (!props.disabled) return props.readOnly ? getReadOnlyColor("hoverBorder") : getEnabledColor("hoverBorder");
+      }};
+    color: ${(props) => {
+      if (!props.disabled)
+        return props.readOnly ? getReadOnlyColor("hoverBackground") : getEnabledColor("hoverBackground");
+    }};
+  }
+
+  &:active ${Checkbox} {
+    border: var(--border-width-m) solid
+      ${(props) => {
+        if (!props.disabled) return props.readOnly ? getReadOnlyColor("activeBorder") : getEnabledColor("activeBorder");
+      }};
+    color: ${(props) => {
+      if (!props.disabled)
+        return props.readOnly ? getReadOnlyColor("activeBackground") : getEnabledColor("activeBackground");
+    }};
+  }
+`;
+
 const checkedIcon = (
-  <svg fill="currentColor" focusable="false" viewBox="0 0 24 24">
-    <path d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"></path>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+    <path
+      d="M19 3H5C3.89 3 3 3.9 3 5V19C3 20.1 3.89 21 5 21H19C20.11 21 21 20.1 21 19V5C21 3.9 20.11 3 19 3ZM10 17L5 12L6.41 10.59L10 14.17L17.59 6.58L19 8L10 17Z"
+      fill="currentColor"
+    />
   </svg>
 );
 
@@ -109,179 +308,5 @@ const DxcCheckbox = forwardRef<RefType, CheckboxPropsType>(
     );
   }
 );
-
-const sizes = {
-  small: "120px",
-  medium: "240px",
-  large: "480px",
-  fillParent: "100%",
-  fitContent: "fit-content",
-};
-
-const calculateWidth = (margin: CheckboxPropsType["margin"], size: CheckboxPropsType["size"]) =>
-  size === "fillParent"
-    ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
-    : size && sizes[size];
-
-const getDisabledColor = (theme: AdvancedTheme["checkbox"], element: string) => {
-  switch (element) {
-    case "check":
-      return theme.disabledCheckColor;
-    case "background":
-      return theme.disabledBackgroundColorChecked;
-    case "border":
-      return theme.disabledBorderColor;
-    case "label":
-      return theme.disabledFontColor;
-    default:
-      return undefined;
-  }
-};
-
-const getReadOnlyColor = (theme: AdvancedTheme["checkbox"], element: string) => {
-  switch (element) {
-    case "check":
-      return theme.readOnlyCheckColor;
-    case "background":
-      return theme.readOnlyBackgroundColorChecked;
-    case "hoverBackground":
-      return theme.hoverReadOnlyBackgroundColorChecked;
-    case "border":
-      return theme.readOnlyBorderColor;
-    case "hoverBorder":
-      return theme.hoverReadOnlyBorderColor;
-    default:
-      return undefined;
-  }
-};
-
-const getEnabledColor = (theme: AdvancedTheme["checkbox"], element: string) => {
-  switch (element) {
-    case "check":
-      return theme.checkColor;
-    case "background":
-      return theme.backgroundColorChecked;
-    case "hoverBackground":
-      return theme.hoverBackgroundColorChecked;
-    case "border":
-      return theme.borderColor;
-    case "hoverBorder":
-      return theme.hoverBorderColor;
-    case "label":
-      return theme.fontColor;
-    default:
-      return undefined;
-  }
-};
-
-const LabelContainer = styled.span<{
-  disabled: CheckboxPropsType["disabled"];
-  labelPosition: CheckboxPropsType["labelPosition"];
-}>`
-  order: ${(props) => (props.labelPosition === "before" ? 0 : 1)};
-  color: ${(props) =>
-    props.disabled ? getDisabledColor(props.theme, "label") : getEnabledColor(props.theme, "label")};
-  font-family: ${(props) => props.theme.fontFamily};
-  font-size: ${(props) => props.theme.fontSize};
-  font-weight: ${(props) => props.theme.fontWeight};
-`;
-
-const ValueInput = styled.input`
-  display: none;
-`;
-
-const CheckboxContainer = styled.span`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 24px;
-  width: 24px;
-`;
-
-const Checkbox = styled.span<{
-  checked: CheckboxPropsType["checked"];
-  disabled: CheckboxPropsType["disabled"];
-  readOnly: CheckboxPropsType["readOnly"];
-}>`
-  position: relative;
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 18px;
-  width: 18px;
-  border: 2px solid
-    ${(props) =>
-      props.disabled
-        ? getDisabledColor(props.theme, "border")
-        : props.readOnly
-          ? getReadOnlyColor(props.theme, "border")
-          : getEnabledColor(props.theme, "border")};
-  border-radius: 2px;
-  background-color: ${(props) =>
-    props.checked
-      ? props.disabled
-        ? getDisabledColor(props.theme, "check")
-        : props.readOnly
-          ? getReadOnlyColor(props.theme, "check")
-          : getEnabledColor(props.theme, "check")
-      : "transparent"};
-  color: ${(props) =>
-    props.disabled
-      ? getDisabledColor(props.theme, "background")
-      : props.readOnly
-        ? getReadOnlyColor(props.theme, "background")
-        : getEnabledColor(props.theme, "background")};
-
-  &:focus {
-    outline: 2px solid ${(props) => props.theme.focusColor};
-    outline-offset: 2px;
-  }
-  svg {
-    position: absolute;
-    width: 22px;
-    height: 22px;
-  }
-  ${(props) => props.disabled && "pointer-events: none;"}
-`;
-
-const MainContainer = styled.div<{
-  margin: CheckboxPropsType["margin"];
-  size: CheckboxPropsType["size"];
-  disabled: CheckboxPropsType["disabled"];
-  readOnly: CheckboxPropsType["readOnly"];
-  checked: CheckboxPropsType["checked"];
-}>`
-  display: inline-flex;
-  align-items: center;
-  gap: ${(props) => props.theme.checkLabelSpacing};
-  width: ${(props) => calculateWidth(props.margin, props.size)};
-  margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
-  margin-top: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
-  margin-right: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
-  margin-bottom: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
-  margin-left: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
-  cursor: ${(props) => (props.disabled ? "not-allowed" : props.readOnly ? "default" : "pointer")};
-
-  &:hover ${Checkbox} {
-    border: 2px solid
-      ${(props) => {
-        if (!props.disabled)
-          return props.readOnly
-            ? getReadOnlyColor(props.theme, "hoverBorder")
-            : getEnabledColor(props.theme, "hoverBorder");
-      }};
-    color: ${(props) => {
-      if (!props.disabled)
-        return props.readOnly
-          ? getReadOnlyColor(props.theme, "hoverBackground")
-          : getEnabledColor(props.theme, "hoverBackground");
-    }};
-  }
-`;
 
 export default DxcCheckbox;
