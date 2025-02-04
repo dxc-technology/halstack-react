@@ -12,6 +12,7 @@ const ActionIcon = styled.button`
   flex-shrink: 0;
   border-radius: var(--border-radius-xs);
   height: var(--height-s);
+  width: 24px;
   ${(props) => (props.disabled ? `cursor: not-allowed;` : `cursor: pointer;`)}
   color: ${(props) => (props.disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-dark)")};
 
@@ -35,7 +36,7 @@ const ActionIcon = styled.button`
   font-size: var(--height-xxs);
   > svg {
     height: var(--height-xxs);
-    width: 24px;
+    width: 16px;
   }
 `;
 
