@@ -45,10 +45,10 @@ const IconPreview = styled.span<{ error: FileItemProps["error"] }>`
   padding: 15px;
   border-radius: 2px;
   color: ${(props) => (props.error ? `var(--color-fg-error-medium)` : `var(--color-fg-neutral-strong) `)};
-  font-size: 18px;
+  font-size: var(--height-xs);
   svg {
-    height: 18px;
-    width: 18px;
+    width: 20px;
+    height: var(--height-xs);
   }
 `;
 
@@ -76,9 +76,9 @@ const ErrorIcon = styled.span`
   flex-wrap: wrap;
   align-content: center;
   padding: 3px;
-  height: 18px;
-  width: 18px;
-  font-size: 18px;
+  width: 20px;
+  height: var(--height-xs);
+  font-size: var(--height-xs);
   color: var(--color-fg-error-medium);
 `;
 
