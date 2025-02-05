@@ -40,10 +40,10 @@ const TitleContainer = styled.div<{ mode: AlertPropsType["mode"]; semantic: Aler
   align-items: center;
   gap: var(--spacing-gap-s);
   color: ${(props) =>
-    (props.semantic === "info" && "var(--color-bg-secondary-strong)") ||
-    (props.semantic === "success" && "var(--color-bg-success-strong)") ||
-    (props.semantic === "warning" && "var(--color-bg-warning-strong)") ||
-    (props.semantic === "error" && "var(--color-bg-error-strong)")};
+    (props.semantic === "info" && "var(--color-fg-secondary-medium)") ||
+    (props.semantic === "success" && "var(--color-fg-success-medium)") ||
+    (props.semantic === "warning" && "var(--color-fg-warning-medium)") ||
+    (props.semantic === "error" && "var(--color-fg-error-medium)")};
   font-size: var(--height-s);
   overflow: hidden;
 `;

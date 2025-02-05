@@ -29,7 +29,7 @@ const ActionIcon = styled.button`
         color: var(--color-fg-neutral-dark);
       }
       &:active {
-        background-color: var(--color-bg-alpha-light);
+        outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
         color: var(--color-fg-neutral-dark);
       }
     `}
