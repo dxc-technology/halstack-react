@@ -33,9 +33,8 @@ const Icon = styled.div`
   height: var(--height-xxs);
   width: 16px;
   svg {
-    /* PENDING TOKEN */
-    /* height: ${(props) => props.theme.bulletHeight};
-    width: ${(props) => props.theme.bulletWidth}; */
+    height: 4px;
+    width: 4px;
   }
 `;
 
@@ -49,26 +48,23 @@ const Number = styled.div`
 
 const Square = styled.div`
   background-color: var(--color-fg-neutral-dark);
-  /* PENDING TOKEN */
-  /* height: ${(props) => props.theme.bulletHeight};
-  width: ${(props) => props.theme.bulletWidth}; */
+  height: 4px;
+  width: 4px;
 `;
 
 const Circle = styled.div`
   border-color: var(--color-fg-neutral-dark);
   border-radius: 50%;
   border: 1px solid;
-  /* PENDING TOKEN */
-  /* height: ${(props) => props.theme.bulletHeight};
-  width: ${(props) => props.theme.bulletWidth}; */
+  height: 4px;
+  width: 4px;
 `;
 
 const Disc = styled.div`
   background-color: var(--color-fg-neutral-dark);
   border-radius: 50%;
-  /* PENDING TOKEN */
-  /* height: ${(props) => props.theme.bulletHeight};
-  width: ${(props) => props.theme.bulletWidth}; */
+  height: 4px;
+  width: 4px;
 `;
 
 const ListItem = styled.li`
