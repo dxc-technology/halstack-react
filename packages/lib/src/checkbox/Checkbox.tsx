@@ -30,7 +30,7 @@ const calculateWidth = (margin: CheckboxPropsType["margin"], size: CheckboxProps
 const getDisabledColor = (element: string) => {
   switch (element) {
     case "check":
-      return "var(--color-fg-neutral-bright)";
+      return "transparent";
     case "background":
       return "var(--color-fg-neutral-medium)";
     case "border":
@@ -45,7 +45,7 @@ const getDisabledColor = (element: string) => {
 const getReadOnlyColor = (element: string) => {
   switch (element) {
     case "check":
-      return "var(--color-fg-neutral-bright)";
+      return "transparent";
     case "background":
       return "var(--color-fg-neutral-medium)";
     case "hoverBackground":
@@ -66,7 +66,7 @@ const getReadOnlyColor = (element: string) => {
 const getEnabledColor = (element: string) => {
   switch (element) {
     case "check":
-      return "var(--color-fg-neutral-bright)";
+      return "transparent";
     case "background":
       return "var(--color-bg-secondary-strong)";
     case "hoverBackground":
