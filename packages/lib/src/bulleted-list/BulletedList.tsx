@@ -16,7 +16,7 @@ const ListContainer = styled.div`
 
 const Bullet = styled.div`
   align-items: center;
-  align-self: center;
+  align-self: flex-start;
   display: flex;
 `;
 
@@ -30,11 +30,11 @@ const GeneralContent = styled.div`
 const Icon = styled.div`
   align-content: center;
   font-size: var(--height-xxs);
-  height: var(--height-xxs);
-  width: 16px;
+  height: var(--height-s);
+  width: auto;
   svg {
-    height: 4px;
-    width: 4px;
+    height: var(--height-xxs);
+    width: 16px;
   }
 `;
 
