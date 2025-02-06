@@ -6,7 +6,7 @@ import Title from "../../.storybook/components/Title";
 import preview from "../../.storybook/preview";
 import { disabledRules } from "../../test/accessibility/rules/specific/select/disabledRules";
 import DxcFlex from "../flex/Flex";
-import HalstackContext, { HalstackProvider } from "../HalstackContext";
+import HalstackContext from "../HalstackContext";
 import Listbox from "./Listbox";
 import DxcSelect from "./Select";
 import { Meta, StoryObj } from "@storybook/react";
@@ -219,17 +219,18 @@ const optionsWithEllipsis = [
   { label: "Option 03111111111111111111111111111122222222", value: "3" },
 ];
 
-const opinionatedTheme = {
-  select: {
-    selectedOptionBackgroundColor: "#fabada",
-    fontColor: "#333",
-    optionFontColor: "#a46ede",
-    hoverBorderColor: "#0095ff",
-  },
-};
-
 const Select = () => (
   <>
+    <ExampleContainer>
+      <Title title="Simple select" theme="light" level={2} />
+      <DxcSelect
+        label="Simple select"
+        helperText="Simple simple"
+        optional
+        options={single_options}
+        placeholder="Very simple"
+      />
+    </ExampleContainer>
     <Title title="States" theme="light" level={2} />
     <ExampleContainer pseudoState="pseudo-hover">
       <Title title="Hovered" theme="light" level={4} />
@@ -357,36 +358,6 @@ const Select = () => (
         options={optionsWithEllipsis}
         margin={{ top: "xxlarge" }}
       />
-    </ExampleContainer>
-  </>
-);
-
-const Opinionated = () => (
-  <>
-    <Title title="Opinionated theme" theme="light" level={2} />
-    <ExampleContainer pseudoState="pseudo-hover">
-      <Title title="Default" theme="light" level={4} />
-      <HalstackProvider theme={opinionatedTheme}>
-        <DxcSelect label="Hovered" helperText="Helper text" placeholder="Placeholder" options={single_options} />
-      </HalstackProvider>
-    </ExampleContainer>
-    <ExampleContainer pseudoState="pseudo-hover">
-      <Title title="Hovered" theme="light" level={4} />
-      <HalstackProvider theme={opinionatedTheme}>
-        <DxcSelect
-          label="Hovered"
-          helperText="Helper text"
-          options={single_options}
-          multiple
-          defaultValue={["1", "2"]}
-        />
-      </HalstackProvider>
-    </ExampleContainer>
-    <ExampleContainer pseudoState="pseudo-hover" expanded>
-      <Title title="List opened" theme="light" level={4} />
-      <HalstackProvider theme={opinionatedTheme}>
-        <DxcSelect label="Hovered" helperText="Helper text" options={icon_options_grouped_material} defaultValue="1" />
-      </HalstackProvider>
     </ExampleContainer>
   </>
 );
@@ -602,9 +573,7 @@ const DefaultGroupedOptionsSelect = () => (
 const DefaultGroupedOptionsSelectOpinionated = () => (
   <ExampleContainer expanded>
     <Title title="Grouped options simple select" theme="light" level={4} />
-    <HalstackProvider theme={opinionatedTheme}>
-      <DxcSelect label="Label" options={group_options} defaultValue="9" placeholder="Choose an option" />
-    </HalstackProvider>
+    <DxcSelect label="Label" options={group_options} defaultValue="9" placeholder="Choose an option" />
   </ExampleContainer>
 );
 
@@ -685,15 +654,6 @@ export const Chromatic: Story = {
   },
 };
 
-export const OpinionatedTheme: Story = {
-  render: Opinionated,
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    const combobox = canvas.getAllByRole("combobox")[2];
-    combobox && await userEvent.click(combobox);
-  },
-};
-
 export const ListboxStates: Story = {
   render: SelectListbox,
   play: async ({ canvasElement }) => {
@@ -724,7 +684,7 @@ export const MultipleSearchableWithValue: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const combobox = canvas.getAllByRole("combobox")[0];
-    combobox && await userEvent.click(combobox);
+    combobox && (await userEvent.click(combobox));
   },
 };
 
@@ -751,7 +711,7 @@ export const MultipleOptionsDisplayed: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const combobox = canvas.getAllByRole("combobox")[0];
-    combobox && await userEvent.click(combobox);
+    combobox && (await userEvent.click(combobox));
   },
 };
 

@@ -1,9 +1,22 @@
-import { ListOptionType, ListOptionGroupType } from "./types";
+import SelectPropsType, { ListOptionType, ListOptionGroupType } from "./types";
+import { getMargin } from "../common/utils";
+
+const sizes = {
+  small: "240px",
+  medium: "360px",
+  large: "480px",
+  fillParent: "100%",
+};
+
+export const calculateWidth = (margin: SelectPropsType["margin"], size: SelectPropsType["size"]) =>
+  size === "fillParent"
+    ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
+    : size && sizes[size];
 
 /**
  * Check if the value is not optional and is empty.
  */
-const notOptionalCheck = (value: string | string[], multiple: boolean, optional: boolean) =>
+export const notOptionalCheck = (value: string | string[], multiple: boolean, optional: boolean) =>
   !optional && (multiple ? value.length === 0 : value === "");
 
 /**
@@ -15,25 +28,25 @@ const isOptionGroup = (option: ListOptionType | ListOptionGroupType): option is 
 /**
  * Checks if the options are an array of groups.
  */
-const isArrayOfOptionGroups = (options: ListOptionType[] | ListOptionGroupType[]): options is ListOptionGroupType[] =>
+export const isArrayOfOptionGroups = (options: ListOptionType[] | ListOptionGroupType[]): options is ListOptionGroupType[] =>
   options[0] != null && isOptionGroup(options[0]);
 
 /**
  * Checks if the groups have options.
  */
-const groupsHaveOptions = (options: ListOptionType[] | ListOptionGroupType[]) =>
+export const groupsHaveOptions = (options: ListOptionType[] | ListOptionGroupType[]) =>
   isArrayOfOptionGroups(options) ? options.some((groupOption) => groupOption.options.length > 0) : true;
 
 /**
  * Checks if the listbox can be opened.
  */
-const canOpenListbox = (options: ListOptionType[] | ListOptionGroupType[], disabled: boolean) =>
+export const canOpenListbox = (options: ListOptionType[] | ListOptionGroupType[], disabled: boolean) =>
   !disabled && options.length > 0 && groupsHaveOptions(options);
 
 /**
  * Filters the options by the search value.
  */
-const filterOptionsBySearchValue = (
+export const filterOptionsBySearchValue = (
   options: ListOptionType[] | ListOptionGroupType[],
   searchValue: string
 ): ListOptionType[] | ListOptionGroupType[] => {
@@ -57,7 +70,7 @@ const filterOptionsBySearchValue = (
 /**
  * Returns the index of the last option, depending on several conditions.
  */
-const getLastOptionIndex = (
+export const getLastOptionIndex = (
   options: ListOptionType[] | ListOptionGroupType[],
   filteredOptions: ListOptionType[] | ListOptionGroupType[],
   searchable: boolean,
@@ -87,7 +100,7 @@ const getLastOptionIndex = (
 /**
  * Return the current selection.
  */
-const getSelectedOption = (
+export const getSelectedOption = (
   value: string | string[],
   options: ListOptionType[] | ListOptionGroupType[],
   multiple: boolean,
@@ -145,21 +158,9 @@ const getSelectedOption = (
 /**
  * Return the label or labels of the selected option(s), separated by commas.
  */
-const getSelectedOptionLabel = (placeholder: string, selectedOption: ListOptionType | ListOptionType[]) =>
+export const getSelectedOptionLabel = (placeholder: string, selectedOption: ListOptionType | ListOptionType[]) =>
   Array.isArray(selectedOption)
     ? selectedOption.length === 0
       ? placeholder
       : selectedOption.map((option) => option.label).join(", ")
     : (selectedOption.label ?? placeholder);
-
-export {
-  isOptionGroup,
-  isArrayOfOptionGroups,
-  notOptionalCheck,
-  groupsHaveOptions,
-  canOpenListbox as canOpenOptions,
-  filterOptionsBySearchValue,
-  getLastOptionIndex,
-  getSelectedOption,
-  getSelectedOptionLabel,
-};

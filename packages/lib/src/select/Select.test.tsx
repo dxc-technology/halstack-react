@@ -87,7 +87,6 @@ describe("Select component tests", () => {
     await userEvent.click(label);
     expect(document.activeElement).toEqual(select);
   });
-
   test("Renders with correct aria attributes when is in error state", () => {
     const { getByText, getByRole } = render(
       <DxcSelect label="Error label" error="Error message." options={singleOptions} />
@@ -100,7 +99,6 @@ describe("Select component tests", () => {
     expect(select.getAttribute("aria-invalid")).toBe("true");
     expect(errorMessage.getAttribute("aria-live")).toBe("assertive");
   });
-
   test("Renders with correct aria attributes", async () => {
     const { getByText, getByRole } = render(
       <DxcSelect label="test-select-label" placeholder="Example" options={singleOptions} />
@@ -120,7 +118,6 @@ describe("Select component tests", () => {
     expect(select.getAttribute("aria-controls")).toBe(list.id);
     expect(list.getAttribute("aria-multiselectable")).toBe("false");
   });
-
   test("Renders with correct error aria label", () => {
     const { getByRole } = render(
       <DxcSelect ariaLabel="Example aria label" placeholder="Example" options={singleOptions} />
@@ -128,7 +125,6 @@ describe("Select component tests", () => {
     const select = getByRole("combobox");
     expect(select.getAttribute("aria-label")).toBe("Example aria label");
   });
-
   test("Single selection: Renders with correct default value", async () => {
     const { getByText, getByRole, getAllByRole, queryByRole, container } = render(
       <DxcSelect label="test-select-label" name="test" defaultValue="4" options={singleOptions} />
@@ -145,7 +141,6 @@ describe("Select component tests", () => {
     expect(getByText("Option 08")).toBeTruthy();
     expect(submitInput?.value).toBe("8");
   });
-
   test("Multiple selection: Renders with correct default value", async () => {
     const { getByText, getByRole, getAllByRole, queryByRole, container } = render(
       <DxcSelect
@@ -167,7 +162,6 @@ describe("Select component tests", () => {
     expect(getByText("Option 02, Option 03, Option 04, Option 06")).toBeTruthy();
     expect(submitInput?.value).toBe("4,2,6,3");
   });
-
   test("Sends its value when submitted", async () => {
     const handlerOnSubmit = jest.fn((e) => {
       e.preventDefault();
@@ -194,7 +188,6 @@ describe("Select component tests", () => {
     options[2] && (await userEvent.click(options[2]));
     await userEvent.click(submit);
   });
-
   test("Searching for a value with an empty list of options passed doesn't open the listbox", async () => {
     const { container, getByRole, queryByRole } = render(
       <DxcSelect label="test-select-label" options={[]} searchable />
@@ -208,7 +201,6 @@ describe("Select component tests", () => {
     expect(queryByRole("listbox")).toBeFalsy();
     expect(select.getAttribute("aria-expanded")).toBe("false");
   });
-
   test("Disabled select - Cannot gain focus or open the listbox via click", async () => {
     const { getByRole, queryByRole } = render(
       <DxcSelect label="test-select-label" value={["1", "2"]} options={singleOptions} multiple disabled />
@@ -219,7 +211,6 @@ describe("Select component tests", () => {
     expect(queryByRole("listbox")).toBeFalsy();
     expect(document.activeElement === select).toBeFalsy();
   });
-
   test("Disabled select - Clear all options action must be shown but not clickable", async () => {
     const { getByRole, getByText } = render(
       <DxcSelect label="test-select-label" value={["1", "2"]} options={singleOptions} disabled searchable multiple />
@@ -227,7 +218,6 @@ describe("Select component tests", () => {
     await userEvent.click(getByRole("button"));
     expect(getByText("Option 01, Option 02")).toBeTruthy();
   });
-
   test("Disabled select - Does not call onBlur event", async () => {
     const onBlur = jest.fn();
     const { getByRole } = render(
@@ -238,7 +228,6 @@ describe("Select component tests", () => {
     fireEvent.keyDown(getByRole("combobox"), { key: "Tab", code: "Tab", keyCode: 9, charCode: 9 });
     expect(onBlur).not.toHaveBeenCalled();
   });
-
   test("Disabled select - When the component gains the focus, the listbox does not open", () => {
     const { getByRole, queryByRole } = render(
       <DxcSelect label="test-select-label" value={["1", "2"]} options={singleOptions} disabled searchable multiple />
@@ -248,7 +237,6 @@ describe("Select component tests", () => {
     expect(queryByRole("listbox")).toBeFalsy();
     expect(document.activeElement === select).toBeFalsy();
   });
-
   test("Disabled select - Doesn't send its value when submitted", async () => {
     const handlerOnSubmit = jest.fn((e) => {
       e.preventDefault();
@@ -265,7 +253,6 @@ describe("Select component tests", () => {
     const submit = getByText("Submit");
     await userEvent.click(submit);
   });
-
   test("Controlled - Single selection - Not optional constraint", async () => {
     const onChange = jest.fn();
     const onBlur = jest.fn();
@@ -287,7 +274,6 @@ describe("Select component tests", () => {
     expect(onBlur).toHaveBeenCalled();
     expect(onBlur).toHaveBeenCalledWith({ value: "1" });
   });
-
   test("Controlled - Multiple selection - Not optional constraint", async () => {
     const onChange = jest.fn();
     const onBlur = jest.fn();
@@ -319,7 +305,6 @@ describe("Select component tests", () => {
     expect(onBlur).toHaveBeenCalled();
     expect(onBlur).toHaveBeenCalledWith({ value: [], error: "This field is required. Please, enter a value." });
   });
-
   test("Controlled - Optional constraint", () => {
     const onChange = jest.fn();
     const onBlur = jest.fn();
@@ -334,7 +319,6 @@ describe("Select component tests", () => {
     expect(onBlur).toHaveBeenCalledWith({ value: "" });
     expect(select.getAttribute("aria-invalid")).toBe("false");
   });
-
   test("Non-Grouped Options - Opens listbox and renders correctly or closes it with a click on select", async () => {
     const { getByText, getByRole, getAllByRole, queryByRole } = render(
       <DxcSelect label="test-select-label" options={singleOptions} />
@@ -352,7 +336,6 @@ describe("Select component tests", () => {
     expect(queryByRole("listbox")).toBeFalsy();
     expect(select.getAttribute("aria-expanded")).toBe("false");
   });
-
   test("Non-Grouped Options - If an empty list of options is passed, the select is rendered but doesn't open the listbox", async () => {
     const { getByRole, queryByRole } = render(<DxcSelect label="test-select-label" options={[]} />);
     const select = getByRole("combobox");
@@ -360,7 +343,6 @@ describe("Select component tests", () => {
     expect(queryByRole("listbox")).toBeFalsy();
     expect(select.getAttribute("aria-expanded")).toBe("false");
   });
-
   test("Non-Grouped Options - Click in an option selects it and closes the listbox", async () => {
     const onChange = jest.fn();
     const { getByText, getByRole, getAllByRole, queryByRole, container } = render(
@@ -379,7 +361,6 @@ describe("Select component tests", () => {
     expect(options[2]?.getAttribute("aria-selected")).toBe("true");
     expect(submitInput?.value).toBe("3");
   });
-
   test("Non-Grouped Options - Optional renders an empty first option (selected by default) with the placeholder as its label", async () => {
     const onChange = jest.fn();
     const { getByRole, getAllByRole, getAllByText } = render(
@@ -407,7 +388,6 @@ describe("Select component tests", () => {
     fireEvent.keyDown(select, { key: "ArrowUp", code: "ArrowUp", keyCode: 38, charCode: 38 });
     expect(select.getAttribute("aria-activedescendant")).toBe("option-0");
   });
-
   test("Non-Grouped Options - Filtering options never affects the optional item until there are no coincidences", async () => {
     const { getAllByRole, getByText, queryByText, container } = render(
       <DxcSelect
@@ -430,7 +410,6 @@ describe("Select component tests", () => {
     expect(queryByText("Placeholder example")).toBeFalsy();
     expect(getByText("No matches found")).toBeTruthy();
   });
-
   test("Non-Grouped Options: Arrow up key - Opens the listbox and visually focus the last option", () => {
     const { getByRole, queryByRole } = render(<DxcSelect label="test-select-label" options={singleOptions} />);
     const select = getByRole("combobox");
@@ -438,7 +417,6 @@ describe("Select component tests", () => {
     expect(queryByRole("listbox")).toBeTruthy();
     expect(select.getAttribute("aria-activedescendant")).toBe("option-19");
   });
-
   test("Non-Grouped Options: Arrow up key - Puts the focus in last option when the first one is visually focused", () => {
     const { getByRole, queryByRole } = render(<DxcSelect label="test-select-label" options={singleOptions} />);
     const select = getByRole("combobox");
@@ -447,7 +425,6 @@ describe("Select component tests", () => {
     expect(queryByRole("listbox")).toBeTruthy();
     expect(select.getAttribute("aria-activedescendant")).toBe("option-19");
   });
-
   test("Non-Grouped Options: Arrow down key - Opens the listbox and visually focus the first option", () => {
     const { getByRole, queryByRole } = render(<DxcSelect label="test-select-label" options={singleOptions} />);
     const select = getByRole("combobox");
@@ -455,7 +432,6 @@ describe("Select component tests", () => {
     expect(queryByRole("listbox")).toBeTruthy();
     expect(select.getAttribute("aria-activedescendant")).toBe("option-0");
   });
-
   test("Non-Grouped Options: Arrow down key - Puts the focus in the first option when the last one is visually focused", () => {
     const { getByRole, queryByRole } = render(<DxcSelect label="test-select-label" options={singleOptions} />);
     const select = getByRole("combobox");
@@ -464,7 +440,6 @@ describe("Select component tests", () => {
     expect(queryByRole("listbox")).toBeTruthy();
     expect(select.getAttribute("aria-activedescendant")).toBe("option-0");
   });
-
   test("Non-Grouped Options: Enter key - Selects the visually focused option and closes the listbox", async () => {
     const onChange = jest.fn();
     const { getByText, getByRole, getAllByRole, queryByRole } = render(
@@ -483,7 +458,6 @@ describe("Select component tests", () => {
     const options = getAllByRole("option");
     expect(options[20]?.getAttribute("aria-selected")).toBe("true");
   });
-
   test("Non-Grouped Options: Searchable - Displays an input for filtering the list of options", async () => {
     const onChange = jest.fn();
     const { container, getByText, getByRole, getAllByRole, queryByRole } = render(
@@ -503,7 +477,6 @@ describe("Select component tests", () => {
     const options = getAllByRole("option");
     expect(options[7]?.getAttribute("aria-selected")).toBe("true");
   });
-
   test("Non-Grouped Options: Searchable - Displays 'No matches found' when there are no filtering results", async () => {
     const onChange = jest.fn();
     const { container, getByText, getByRole } = render(
@@ -516,7 +489,6 @@ describe("Select component tests", () => {
     searchInput && (await userEvent.type(searchInput, "abc"));
     expect(getByText("No matches found")).toBeTruthy();
   });
-
   test("Non-Grouped Options: Searchable - Clicking the select, when the list is open, clears the search value", async () => {
     const onChange = jest.fn();
     const { container, getByText, getByRole, getAllByRole } = render(
@@ -537,7 +509,6 @@ describe("Select component tests", () => {
     });
     expect(searchInput?.value).toBe("");
   });
-
   test("Non-Grouped Options: Searchable - Writing displays the listbox, if it was not open", async () => {
     const onChange = jest.fn();
     const { container, getByRole, queryByRole } = render(
@@ -551,7 +522,6 @@ describe("Select component tests", () => {
     searchInput && (await userEvent.type(searchInput, "2"));
     expect(getByRole("listbox")).toBeTruthy();
   });
-
   test("Non-Grouped Options: Searchable - Key Esc cleans the search value and closes the options", async () => {
     const onChange = jest.fn();
     const { container, getByRole, queryByRole } = render(
@@ -564,7 +534,6 @@ describe("Select component tests", () => {
     expect(searchInput?.value).toBe("");
     expect(queryByRole("listbox")).toBeFalsy();
   });
-
   test("Non-Grouped Options: Searchable - While user types, a clear action is displayed for cleaning the search value", async () => {
     const onChange = jest.fn();
     const { container, getByRole, getAllByRole, queryByRole } = render(
@@ -580,7 +549,6 @@ describe("Select component tests", () => {
     expect(getAllByRole("option").length).toBe(20);
     expect(queryByRole("button")).toBeFalsy();
   });
-
   test("Non-Grouped Options: Multiple selection - Displays a checkbox per option and enables the multi-selection", async () => {
     const onChange = jest.fn();
     const { getByText, getAllByText, getByRole, getAllByRole, queryByRole, container } = render(
@@ -603,7 +571,6 @@ describe("Select component tests", () => {
     expect(getByText("Option 11, Option 19")).toBeTruthy();
     expect(submitInput?.value).toBe("11,19");
   });
-
   test("Non-Grouped Options: Multiple selection - Clear action and selection indicator", async () => {
     const onChange = jest.fn();
     const { getByText, queryByText, getByRole, getAllByRole, queryByRole } = render(
@@ -628,7 +595,6 @@ describe("Select component tests", () => {
     expect(queryByText("3")).toBeFalsy();
     expect(queryByRole("button")).toBeFalsy();
   });
-
   test("Non-Grouped Options: Multiple selection - Optional option should not be added when the select is marked as multiple", async () => {
     const onChange = jest.fn();
     const { getByText, getAllByText, getByRole, getAllByRole } = render(
@@ -650,7 +616,6 @@ describe("Select component tests", () => {
     expect(onChange).toHaveBeenCalledWith({ value: ["1"] });
     expect(getAllByText("Option 01").length).toBe(2);
   });
-
   test("Non-Grouped Options - If an options was previously selected when its opened (by key press), the visual focus appears always in the selected option", async () => {
     const { getByText, getByRole, getAllByRole } = render(
       <DxcSelect label="test-select-label" options={singleOptions} />
@@ -672,7 +637,6 @@ describe("Select component tests", () => {
     fireEvent.keyDown(select, { key: "Enter", code: "Enter", keyCode: 13, charCode: 13 });
     expect(getByText("Option 06")).toBeTruthy();
   });
-
   test("Non-Grouped Options - If an options was previously selected when its opened (by click and key press), the visual focus appears always in the selected option", async () => {
     const { getByText, getByRole, getAllByRole, queryByRole } = render(
       <DxcSelect label="test-select-label" options={singleOptions} />
@@ -697,7 +661,6 @@ describe("Select component tests", () => {
     fireEvent.keyDown(select, { key: "Enter", code: "Enter", keyCode: 13, charCode: 13 });
     expect(getByText("Option 17")).toBeTruthy();
   });
-
   test("Grouped Options - Opens listbox and renders it correctly or closes it with a click on select", async () => {
     const { getByText, getByRole, getAllByRole, queryByRole } = render(
       <DxcSelect label="test-select-label" options={groupOptions} />
@@ -723,7 +686,6 @@ describe("Select component tests", () => {
     expect(queryByRole("list")).toBeFalsy();
     expect(select.getAttribute("aria-expanded")).toBe("false");
   });
-
   test("Grouped Options - If an empty list of options in a group is passed, the select is rendered but doesn't open the listbox", async () => {
     const { getByRole, queryByRole } = render(
       <DxcSelect
@@ -741,7 +703,6 @@ describe("Select component tests", () => {
     expect(queryByRole("list")).toBeFalsy();
     expect(select.getAttribute("aria-expanded")).toBe("false");
   });
-
   test("Grouped Options - Click in an option selects it and closes the listbox", async () => {
     const onChange = jest.fn();
     const { getByText, getByRole, getAllByRole, queryByRole, container } = render(
@@ -760,7 +721,6 @@ describe("Select component tests", () => {
     expect(options[8]?.getAttribute("aria-selected")).toBe("true");
     expect(submitInput?.value).toBe("oviedo");
   });
-
   test("Grouped Options - Optional renders an empty first option (out of any group) with the placeholder as its label", async () => {
     const onChange = jest.fn();
     const { getByRole, getAllByRole, getAllByText } = render(
@@ -788,7 +748,6 @@ describe("Select component tests", () => {
     fireEvent.keyDown(select, { key: "ArrowUp", code: "ArrowUp", keyCode: 38, charCode: 38 });
     expect(select.getAttribute("aria-activedescendant")).toBe("option-0");
   });
-
   test("Grouped Options - Filtering options never affects the optional item until there are no coincidence", async () => {
     const { getByRole, getAllByRole, getByText, queryByText, container } = render(
       <DxcSelect
@@ -809,7 +768,6 @@ describe("Select component tests", () => {
     expect(queryByText("Placeholder example")).toBeFalsy();
     expect(getByText("No matches found")).toBeTruthy();
   });
-
   test("Grouped Options: Arrow up key - Opens the listbox and visually focus the last option", () => {
     const { getByRole, queryByRole } = render(<DxcSelect label="test-select-label" options={groupOptions} />);
     const select = getByRole("combobox");
@@ -817,7 +775,6 @@ describe("Select component tests", () => {
     expect(queryByRole("list")).toBeTruthy();
     expect(select.getAttribute("aria-activedescendant")).toBe("option-17");
   });
-
   test("Grouped Options: Arrow up key - Puts the focus in last option when the first one is visually focused", () => {
     const { getByRole, queryByRole } = render(<DxcSelect label="test-select-label" options={groupOptions} />);
     const select = getByRole("combobox");
@@ -826,7 +783,6 @@ describe("Select component tests", () => {
     expect(queryByRole("list")).toBeTruthy();
     expect(select.getAttribute("aria-activedescendant")).toBe("option-17");
   });
-
   test("Grouped Options: Arrow down key - Opens the listbox and visually focus the first option", () => {
     const { getByRole, queryByRole } = render(<DxcSelect label="test-select-label" options={groupOptions} />);
     const select = getByRole("combobox");
@@ -834,7 +790,6 @@ describe("Select component tests", () => {
     expect(queryByRole("list")).toBeTruthy();
     expect(select.getAttribute("aria-activedescendant")).toBe("option-0");
   });
-
   test("Grouped Options: Arrow down key - Puts the focus in the first option when the last one is visually focused", () => {
     const { getByRole, queryByRole } = render(<DxcSelect label="test-select-label" options={groupOptions} />);
     const select = getByRole("combobox");
@@ -843,7 +798,6 @@ describe("Select component tests", () => {
     expect(queryByRole("list")).toBeTruthy();
     expect(select.getAttribute("aria-activedescendant")).toBe("option-0");
   });
-
   test("Grouped Options: Enter key - Selects the visually focused option and closes the listbox", async () => {
     const onChange = jest.fn();
     const { getByText, getByRole, getAllByRole, queryByRole } = render(
@@ -862,7 +816,6 @@ describe("Select component tests", () => {
     const options = getAllByRole("option");
     expect(options[18]?.getAttribute("aria-selected")).toBe("true");
   });
-
   test("Grouped Options: Searchable - Displays an input for filtering the list of options", async () => {
     const onChange = jest.fn();
     const { container, getByText, getByRole, getAllByRole, queryByRole } = render(
@@ -887,7 +840,6 @@ describe("Select component tests", () => {
     options = getAllByRole("option");
     expect(options[17]?.getAttribute("aria-selected")).toBe("true");
   });
-
   test("Grouped Options: Searchable - Displays 'No matches found' when there are no filtering results", async () => {
     const onChange = jest.fn();
     const { container, getByText, getByRole } = render(
@@ -900,7 +852,6 @@ describe("Select component tests", () => {
     searchInput && (await userEvent.type(searchInput, "very long string"));
     expect(getByText("No matches found")).toBeTruthy();
   });
-
   test("Grouped Options: Multiple selection - Displays a checkbox per option and enables the multi-selection", async () => {
     const onChange = jest.fn();
     const { getByText, getAllByText, getByRole, getAllByRole, queryByRole, container } = render(
@@ -922,7 +873,6 @@ describe("Select component tests", () => {
     expect(getByText("Bilbao, Guadalquivir")).toBeTruthy();
     expect(submitInput?.value).toBe("bilbao,guadalquivir");
   });
-
   test("Grouped Options: Multiple selection - Clear action and selection indicator", async () => {
     const onChange = jest.fn();
     const { getByText, queryByText, getByRole, getAllByRole, queryByRole } = render(
@@ -947,7 +897,6 @@ describe("Select component tests", () => {
     expect(queryByText("4")).toBeFalsy();
     expect(queryByRole("button")).toBeFalsy();
   });
-
   test("Grouped Options: Multiple selection - Optional option should not be added when the select is marked as multiple", async () => {
     const onChange = jest.fn();
     const { getByText, getAllByText, getByRole, getAllByRole } = render(
@@ -969,7 +918,6 @@ describe("Select component tests", () => {
     expect(onChange).toHaveBeenCalledWith({ value: ["azul"] });
     expect(getAllByText("Azul").length).toBe(2);
   });
-
   test("Grouped Options - If an options was previously selected when its opened (by key press), the visual focus appears always in the selected option", async () => {
     const { getByText, getByRole, getAllByRole } = render(
       <DxcSelect label="test-select-label" options={groupOptions} />
@@ -991,7 +939,6 @@ describe("Select component tests", () => {
     fireEvent.keyDown(select, { key: "Enter", code: "Enter", keyCode: 13, charCode: 13 });
     expect(getByText("Verde")).toBeTruthy();
   });
-
   test("Grouped Options - If an options was previously selected when its opened (by click and key press), the visual focus appears always in the selected option", async () => {
     const { getByText, getByRole, getAllByRole } = render(
       <DxcSelect label="test-select-label" options={groupOptions} />
@@ -1014,7 +961,6 @@ describe("Select component tests", () => {
     fireEvent.keyDown(select, { key: "Enter", code: "Enter", keyCode: 13, charCode: 13 });
     expect(getByText("Azul")).toBeTruthy();
   });
-
   test("Multiple selection and optional - Clear action cleans every selected option but does not display an error", async () => {
     const onChange = jest.fn();
     const { getByRole, getAllByRole } = render(
