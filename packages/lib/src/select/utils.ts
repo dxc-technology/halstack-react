@@ -20,25 +20,29 @@ export const notOptionalCheck = (value: string | string[], multiple: boolean, op
   !optional && (multiple ? value.length === 0 : value === "");
 
 /**
- * Checks if the option is a group.
+ * Checks if the option is a group (contains other options).
  */
 const isOptionGroup = (option: ListOptionType | ListOptionGroupType): option is ListOptionGroupType =>
   "options" in option && option.options != null;
 
 /**
- * Checks if the options are an array of groups.
+ * Checks if the options are grouped options (groups and single options can't be mixed)
  */
-export const isArrayOfOptionGroups = (options: ListOptionType[] | ListOptionGroupType[]): options is ListOptionGroupType[] =>
+export const isArrayOfGroupedOptions = (options: ListOptionType[] | ListOptionGroupType[]): options is ListOptionGroupType[] =>
   options[0] != null && isOptionGroup(options[0]);
 
 /**
- * Checks if the groups have options.
+ * Checks if the groups have options. If the options parameter is not an array of grouped options,
+ * it will return true and not check nothing else.
  */
 export const groupsHaveOptions = (options: ListOptionType[] | ListOptionGroupType[]) =>
-  isArrayOfOptionGroups(options) ? options.some((groupOption) => groupOption.options.length > 0) : true;
+  isArrayOfGroupedOptions(options) ? options.some((groupOption) => groupOption.options.length > 0) : true;
 
 /**
- * Checks if the listbox can be opened.
+ * Checks if the listbox can be opened. A listbox can be opened in three scenarios:
+ * - The listbox is not disabled.
+ * - The listbox has more than one single option.
+ * - The listbox has more than one group with options contained.
  */
 export const canOpenListbox = (options: ListOptionType[] | ListOptionGroupType[], disabled: boolean) =>
   !disabled && options.length > 0 && groupsHaveOptions(options);
@@ -49,23 +53,20 @@ export const canOpenListbox = (options: ListOptionType[] | ListOptionGroupType[]
 export const filterOptionsBySearchValue = (
   options: ListOptionType[] | ListOptionGroupType[],
   searchValue: string
-): ListOptionType[] | ListOptionGroupType[] => {
-  if (options.length > 0) {
-    if (isArrayOfOptionGroups(options))
-      return options.map((optionGroup) => {
-        const group = {
-          label: optionGroup.label,
-          options: optionGroup.options.filter((option) =>
-            option.label.toUpperCase().includes(searchValue.toUpperCase())
-          ),
-        };
-        return group;
-      });
-    else return options.filter((option) => option.label.toUpperCase().includes(searchValue.toUpperCase()));
-  } else {
-    return [];
-  }
-};
+): ListOptionType[] | ListOptionGroupType[] =>
+  options.length > 0
+    ? isArrayOfGroupedOptions(options)
+      ? options.map((optionGroup) => {
+          const group = {
+            label: optionGroup.label,
+            options: optionGroup.options.filter((option) =>
+              option.label.toUpperCase().includes(searchValue.toUpperCase())
+            ),
+          };
+          return group;
+        })
+      : options.filter((option) => option.label.toUpperCase().includes(searchValue.toUpperCase()))
+    : [];
 
 /**
  * Returns the index of the last option, depending on several conditions.
@@ -81,13 +82,13 @@ export const getLastOptionIndex = (
   const reducer = (acc: number, current: ListOptionGroupType) => acc + (current.options.length ?? 0);
 
   if (searchable && filteredOptions.length > 0) {
-    if (isArrayOfOptionGroups(filteredOptions)) {
+    if (isArrayOfGroupedOptions(filteredOptions)) {
       last = filteredOptions.reduce(reducer, 0) - 1;
     } else {
       last = filteredOptions.length - 1;
     }
   } else if (options.length > 0) {
-    if (isArrayOfOptionGroups(options)) {
+    if (isArrayOfGroupedOptions(options)) {
       last = options.reduce(reducer, 0) - 1;
     } else {
       last = options.length - 1;

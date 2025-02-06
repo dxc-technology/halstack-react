@@ -27,7 +27,7 @@ import {
   getSelectedOption,
   getSelectedOptionLabel,
   groupsHaveOptions,
-  isArrayOfOptionGroups,
+  isArrayOfGroupedOptions,
   notOptionalCheck,
 } from "./utils";
 import SelectPropsType, { ListOptionType, RefType } from "./types";
@@ -188,9 +188,9 @@ const SelectedOption = styled.span<{
   font-size: var(--typography-label-m);
   font-weight: var(--typography-label-regular);
   user-select: none;
-  white-space: pre;
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: pre;
 `;
 
 const SearchInput = styled.input`
@@ -392,7 +392,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
               if (filteredOptions.length > 0) {
                 if (optional && !multiple && visualFocusIndex === 0 && groupsHaveOptions(filteredOptions)) {
                   handleOnChangeValue(optionalItem);
-                } else if (isArrayOfOptionGroups(filteredOptions)) {
+                } else if (isArrayOfGroupedOptions(filteredOptions)) {
                   if (groupsHaveOptions(filteredOptions)) {
                     filteredOptions.some((groupOption) => {
                       const groupLength = accLength + groupOption.options.length;
@@ -409,7 +409,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
               }
             } else if (optional && !multiple && visualFocusIndex === 0) {
               handleOnChangeValue(optionalItem);
-            } else if (isArrayOfOptionGroups(options)) {
+            } else if (isArrayOfGroupedOptions(options)) {
               options.some((groupOption) => {
                 const groupLength = accLength + groupOption.options.length;
                 if (groupLength > visualFocusIndex) {
