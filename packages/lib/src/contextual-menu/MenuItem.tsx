@@ -4,6 +4,11 @@ import GroupItem from "./GroupItem";
 import SingleItem from "./SingleItem";
 import { MenuItemProps } from "./types";
 
+const StyledMenuItem = styled.li`
+  display: grid;
+  gap: var(--spacing-gap-xs);
+`;
+
 const MenuItem = ({ item, depthLevel = 0 }: MenuItemProps) => (
   <StyledMenuItem role="menuitem">
     {"items" in item ? (
@@ -13,10 +18,5 @@ const MenuItem = ({ item, depthLevel = 0 }: MenuItemProps) => (
     )}
   </StyledMenuItem>
 );
-
-const StyledMenuItem = styled.li`
-  display: grid;
-  gap: ${CoreTokens.spacing_4};
-`;
 
 export default MenuItem;
