@@ -69,7 +69,7 @@ const Listbox = ({
       return (
         option.options.length > 0 && (
           <li key={groupId}>
-            <ul role="listbox" aria-labelledby={groupId} style={{ padding: 0 }}>
+            <ul role="group" aria-labelledby={groupId} style={{ padding: 0 }}>
               <GroupLabel role="presentation" id={groupId}>
                 {option.label}
               </GroupLabel>

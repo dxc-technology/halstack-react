@@ -223,34 +223,35 @@ const Error = styled.span`
 const DxcSelect = forwardRef<RefType, SelectPropsType>(
   (
     {
-      label,
-      name = "",
+      ariaLabel = "Select",
       defaultValue,
-      value,
-      options,
-      helperText,
-      placeholder = "",
       disabled = false,
-      multiple = false,
-      optional = false,
-      searchable = false,
-      onChange,
-      onBlur,
       error,
+      helperText,
+      label,
       margin,
+      multiple = false,
+      name,
+      onBlur,
+      onChange,
+      optional = false,
+      options,
+      placeholder = "",
+      searchable = false,
       size = "medium",
       tabIndex = 0,
-      ariaLabel = "Select",
+      value,
     },
     ref
   ): JSX.Element => {
     const id = `select-${useId()}`;
 
+    const [hasTooltip, setHasTooltip] = useState(false);
     const [innerValue, setInnerValue] = useState(defaultValue ?? (multiple ? [] : ""));
+    const [isOpen, changeIsOpen] = useState(false);
     const [searchValue, setSearchValue] = useState("");
     const [visualFocusIndex, changeVisualFocusIndex] = useState(-1);
-    const [isOpen, changeIsOpen] = useState(false);
-    const [hasTooltip, setHasTooltip] = useState(false);
+    
     const selectRef = useRef<HTMLDivElement | null>(null);
     const selectSearchInputRef = useRef<HTMLInputElement | null>(null);
 
@@ -457,7 +458,8 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
       }
     };
 
-    const handleClearSearchActionOnClick = () => {
+    const handleClearSearchActionOnClick = (event: MouseEvent<HTMLButtonElement>) => {
+      event.stopPropagation();
       setSearchValue("");
     };
 

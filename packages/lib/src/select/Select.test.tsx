@@ -93,7 +93,6 @@ describe("Select component tests", () => {
     );
     const select = getByRole("combobox");
     const errorMessage = getByText("Error message.");
-
     expect(errorMessage).toBeTruthy();
     expect(select.getAttribute("aria-errormessage")).toBe(errorMessage.id);
     expect(select.getAttribute("aria-invalid")).toBe("true");
@@ -675,7 +674,7 @@ describe("Select component tests", () => {
     expect(getByText("Negro")).toBeTruthy();
     expect(getByText("Ciudades españolas")).toBeTruthy();
     expect(getByText("Madrid")).toBeTruthy();
-    const groups = getAllByRole("listbox");
+    const groups = getAllByRole("group");
     expect(groups.length).toBe(3);
     const groupLabels = getAllByRole("presentation");
     expect(groups[0]?.getAttribute("aria-labelledby")).toBe(groupLabels[0]?.id);
