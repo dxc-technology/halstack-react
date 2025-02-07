@@ -15,7 +15,6 @@ const ListboxContainer = styled.ul`
   background-color: var(--color-absolutes-white);
   border: var(--border-width-s) var(--border-style-default) var(--border-color-neutral-medium);
   border-radius: var(--border-radius-s);
-
   box-shadow: var(--shadow-mid-x-position, 0px) var(--shadow-mid-y-position, 12px) var(--shadow-mid-blur, 12px)
     var(--shadow-mid-spread, 0px) var(--shadow-light, rgba(209, 209, 209, 0.3));
   color: var(--color-fg-neutral-dark);
@@ -133,6 +132,7 @@ const Listbox = ({
 
   return (
     <ListboxContainer
+      aria-multiselectable={multiple}
       id={id}
       onClick={(event) => {
         event.stopPropagation();
@@ -141,9 +141,8 @@ const Listbox = ({
         event.preventDefault();
       }}
       ref={listboxRef}
-      aria-multiselectable={multiple}
-      style={styles}
       role="listbox"
+      style={styles}
     >
       {searchable && (options.length === 0 || !groupsHaveOptions(options)) ? (
         <OptionsSystemMessage>

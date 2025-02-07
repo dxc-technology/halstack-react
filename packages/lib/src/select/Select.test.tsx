@@ -667,7 +667,7 @@ describe("Select component tests", () => {
     );
     const select = getByRole("combobox");
     await userEvent.click(select);
-    const listbox = getByRole("list");
+    const listbox = getByRole("listbox");
     expect(listbox).toBeTruthy();
     expect(select.getAttribute("aria-expanded")).toBe("true");
     expect(getByText("Colores")).toBeTruthy();
@@ -683,7 +683,7 @@ describe("Select component tests", () => {
     expect(groups[2]?.getAttribute("aria-labelledby")).toBe(groupLabels[2]?.id);
     expect(getAllByRole("option").length).toBe(18);
     await userEvent.click(select);
-    expect(queryByRole("list")).toBeFalsy();
+    expect(queryByRole("listbox")).toBeFalsy();
     expect(select.getAttribute("aria-expanded")).toBe("false");
   });
   test("Grouped Options - If an empty list of options in a group is passed, the select is rendered but doesn't open the listbox", async () => {
@@ -700,7 +700,7 @@ describe("Select component tests", () => {
     );
     const select = getByRole("combobox");
     await userEvent.click(select);
-    expect(queryByRole("list")).toBeFalsy();
+    expect(queryByRole("listbox")).toBeFalsy();
     expect(select.getAttribute("aria-expanded")).toBe("false");
   });
   test("Grouped Options - Click in an option selects it and closes the listbox", async () => {
@@ -714,7 +714,7 @@ describe("Select component tests", () => {
     let options = getAllByRole("option");
     options[8] && (await userEvent.click(options[8]));
     expect(onChange).toHaveBeenCalledWith({ value: "oviedo" });
-    expect(queryByRole("list")).toBeFalsy();
+    expect(queryByRole("listbox")).toBeFalsy();
     expect(getByText("Oviedo")).toBeTruthy();
     await userEvent.click(select);
     options = getAllByRole("option");
@@ -772,7 +772,7 @@ describe("Select component tests", () => {
     const { getByRole, queryByRole } = render(<DxcSelect label="test-select-label" options={groupOptions} />);
     const select = getByRole("combobox");
     fireEvent.keyDown(select, { key: "ArrowUp", code: "ArrowUp", keyCode: 38, charCode: 38 });
-    expect(queryByRole("list")).toBeTruthy();
+    expect(queryByRole("listbox")).toBeTruthy();
     expect(select.getAttribute("aria-activedescendant")).toBe("option-17");
   });
   test("Grouped Options: Arrow up key - Puts the focus in last option when the first one is visually focused", () => {
@@ -780,14 +780,14 @@ describe("Select component tests", () => {
     const select = getByRole("combobox");
     fireEvent.keyDown(select, { key: "ArrowDown", code: "ArrowDown", keyCode: 40, charCode: 40 });
     fireEvent.keyDown(select, { key: "ArrowUp", code: "ArrowUp", keyCode: 38, charCode: 38 });
-    expect(queryByRole("list")).toBeTruthy();
+    expect(queryByRole("listbox")).toBeTruthy();
     expect(select.getAttribute("aria-activedescendant")).toBe("option-17");
   });
   test("Grouped Options: Arrow down key - Opens the listbox and visually focus the first option", () => {
     const { getByRole, queryByRole } = render(<DxcSelect label="test-select-label" options={groupOptions} />);
     const select = getByRole("combobox");
     fireEvent.keyDown(select, { key: "ArrowDown", code: "ArrowDown", keyCode: 40, charCode: 40 });
-    expect(queryByRole("list")).toBeTruthy();
+    expect(queryByRole("listbox")).toBeTruthy();
     expect(select.getAttribute("aria-activedescendant")).toBe("option-0");
   });
   test("Grouped Options: Arrow down key - Puts the focus in the first option when the last one is visually focused", () => {
@@ -795,7 +795,7 @@ describe("Select component tests", () => {
     const select = getByRole("combobox");
     fireEvent.keyDown(select, { key: "ArrowUp", code: "ArrowUp", keyCode: 38, charCode: 38 });
     fireEvent.keyDown(select, { key: "ArrowDown", code: "ArrowDown", keyCode: 40, charCode: 40 });
-    expect(queryByRole("list")).toBeTruthy();
+    expect(queryByRole("listbox")).toBeTruthy();
     expect(select.getAttribute("aria-activedescendant")).toBe("option-0");
   });
   test("Grouped Options: Enter key - Selects the visually focused option and closes the listbox", async () => {
@@ -810,7 +810,7 @@ describe("Select component tests", () => {
     fireEvent.keyDown(select, { key: "ArrowDown", code: "ArrowDown", keyCode: 40, charCode: 40 });
     fireEvent.keyDown(select, { key: "Enter", code: "Enter", keyCode: 13, charCode: 13 });
     expect(onChange).toHaveBeenCalledWith({ value: "ebro" });
-    expect(queryByRole("list")).toBeFalsy();
+    expect(queryByRole("listbox")).toBeFalsy();
     expect(getByText("Ebro")).toBeTruthy();
     await userEvent.click(select);
     const options = getAllByRole("option");
@@ -824,7 +824,7 @@ describe("Select component tests", () => {
     const select = getByRole("combobox");
     const searchInput = container.querySelectorAll("input")[1];
     await userEvent.click(select);
-    expect(getByRole("list")).toBeTruthy();
+    expect(getByRole("listbox")).toBeTruthy();
     searchInput && (await userEvent.type(searchInput, "ro"));
     expect(getAllByRole("presentation").length).toBe(2);
     expect(getAllByRole("option").length).toBe(5);
@@ -833,7 +833,7 @@ describe("Select component tests", () => {
     let options = getAllByRole("option");
     options[4] && (await userEvent.click(options[4]));
     expect(onChange).toHaveBeenCalledWith({ value: "ebro" });
-    expect(queryByRole("list")).toBeFalsy();
+    expect(queryByRole("listbox")).toBeFalsy();
     expect(getByText("Ebro")).toBeTruthy();
     expect(searchInput?.value).toBe("");
     await userEvent.click(select);
@@ -848,7 +848,7 @@ describe("Select component tests", () => {
     const select = getByRole("combobox");
     const searchInput = container.querySelectorAll("input")[1];
     await userEvent.click(select);
-    expect(getByRole("list")).toBeTruthy();
+    expect(getByRole("listbox")).toBeTruthy();
     searchInput && (await userEvent.type(searchInput, "very long string"));
     expect(getByText("No matches found")).toBeTruthy();
   });
@@ -863,13 +863,13 @@ describe("Select component tests", () => {
     const options = getAllByRole("option");
     options[10] && (await userEvent.click(options[10]));
     expect(onChange).toHaveBeenCalledWith({ value: ["bilbao"] });
-    expect(queryByRole("list")).toBeTruthy();
+    expect(queryByRole("listbox")).toBeTruthy();
     expect(getAllByText("Bilbao").length).toBe(2);
     fireEvent.keyDown(select, { key: "ArrowUp", code: "ArrowUp", keyCode: 38, charCode: 38 });
     fireEvent.keyDown(select, { key: "ArrowUp", code: "ArrowUp", keyCode: 38, charCode: 38 });
     fireEvent.keyDown(select, { key: "Enter", code: "Enter", keyCode: 13, charCode: 13 });
     expect(onChange).toHaveBeenCalledWith({ value: ["bilbao", "guadalquivir"] });
-    expect(queryByRole("list")).toBeTruthy();
+    expect(queryByRole("listbox")).toBeTruthy();
     expect(getByText("Bilbao, Guadalquivir")).toBeTruthy();
     expect(submitInput?.value).toBe("bilbao,guadalquivir");
   });
@@ -886,13 +886,13 @@ describe("Select component tests", () => {
     options[13] && (await userEvent.click(options[13]));
     options[17] && (await userEvent.click(options[17]));
     expect(onChange).toHaveBeenCalledWith({ value: ["blanco", "oviedo", "duero", "ebro"] });
-    expect(queryByRole("list")).toBeTruthy();
+    expect(queryByRole("listbox")).toBeTruthy();
     expect(getByText("Blanco, Oviedo, Duero, Ebro")).toBeTruthy();
     expect(getByText("4", { exact: true })).toBeTruthy();
     const clearSelectionButton = getByRole("button");
     expect(clearSelectionButton.getAttribute("aria-label")).toBe("Clear selection");
     await userEvent.click(clearSelectionButton);
-    expect(queryByRole("list")).toBeTruthy();
+    expect(queryByRole("listbox")).toBeTruthy();
     expect(queryByText("Blanco, Oviedo, Duero, Ebro")).toBeFalsy();
     expect(queryByText("4")).toBeFalsy();
     expect(queryByRole("button")).toBeFalsy();
