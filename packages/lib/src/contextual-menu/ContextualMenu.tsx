@@ -19,9 +19,10 @@ const ContextualMenu = styled.div`
   border: 1px solid var(--color-grey-200);
   border-radius: var(--border-radius-s);
   padding: var(--spacing-padding-m) var(--spacing-padding-xs);
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: var(--spacing-gap-xs);
-  min-width: 248px;
+  min-width: 240px;
   max-height: 100%;
   background-color: var(--color-bg-neutral-lightest);
   overflow-y: auto;

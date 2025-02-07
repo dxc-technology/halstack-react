@@ -13,13 +13,20 @@ const Title = styled.h2`
   font-size: var(--typography-label-l);
   font-style: normal;
   font-weight: var(--typography-label-semibold);
+  padding: var(--spacing-padding-xxs);
+`;
+
+const Sect = styled.section`
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-gap-xs);
 `;
 
 const Section = ({ section, index, length }: SectionProps) => {
   const id = `section-${useId()}`;
 
   return (
-    <section aria-label={section.title ?? id} aria-labelledby={id}>
+    <Sect aria-label={section.title ?? id} aria-labelledby={id}>
       {section.title && <Title id={id}>{section.title}</Title>}
       <SubMenu>
         {section.items.map((item, index) => (
@@ -31,7 +38,7 @@ const Section = ({ section, index, length }: SectionProps) => {
           <DxcDivider color="lightGrey" />
         </DxcInset>
       )}
-    </section>
+    </Sect>
   );
 };
 

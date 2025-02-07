@@ -5,7 +5,8 @@ import SingleItem from "./SingleItem";
 import { MenuItemProps } from "./types";
 
 const StyledMenuItem = styled.li`
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: var(--spacing-gap-xs);
 `;
 
