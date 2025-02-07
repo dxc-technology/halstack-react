@@ -6,17 +6,16 @@ import ListOption from "./ListOption";
 import { groupsHaveOptions } from "./utils";
 import { ListboxProps, ListOptionGroupType, ListOptionType } from "./types";
 
-const ListboxContainer = styled.ul`
+const ListboxContainer = styled.div`
   box-sizing: border-box;
   max-height: 304px;
   overflow-y: auto;
-  margin: 0;
   padding: var(--spacing-padding-xxs) var(--spacing-padding-none);
   background-color: var(--color-absolutes-white);
   border: var(--border-width-s) var(--border-style-default) var(--border-color-neutral-medium);
   border-radius: var(--border-radius-s);
-  box-shadow: var(--shadow-mid-x-position, 0px) var(--shadow-mid-y-position, 12px) var(--shadow-mid-blur, 12px)
-    var(--shadow-mid-spread, 0px) var(--shadow-light, rgba(209, 209, 209, 0.3));
+  box-shadow: var(--shadow-mid-x-position) var(--shadow-mid-y-position) var(--shadow-mid-blur) var(--shadow-mid-spread)
+    var(--shadow-light);
   color: var(--color-fg-neutral-dark);
   font-family: var(--typography-font-family);
   font-size: var(--typography-label-m);
@@ -59,7 +58,7 @@ const Listbox = ({
   styles,
 }: ListboxProps): JSX.Element => {
   const translatedLabels = useContext(HalstackLanguageContext);
-  const listboxRef = useRef<HTMLUListElement | null>(null);
+  const listboxRef = useRef<HTMLDivElement>(null);
 
   let globalIndex = optional && !multiple ? 0 : -1;
 
@@ -68,31 +67,29 @@ const Listbox = ({
     if ("options" in option) {
       return (
         option.options.length > 0 && (
-          <li key={groupId}>
-            <ul role="group" aria-labelledby={groupId} style={{ padding: 0 }}>
-              <GroupLabel role="presentation" id={groupId}>
-                {option.label}
-              </GroupLabel>
-              {option.options.map((singleOption) => {
-                globalIndex++;
-                return (
-                  <ListOption
-                    key={`${id}-option-${singleOption.value}`}
-                    id={`${id}-option-${globalIndex}`}
-                    option={singleOption}
-                    onClick={handleOptionOnClick}
-                    multiple={multiple}
-                    visualFocused={visualFocusIndex === globalIndex}
-                    isGroupedOption
-                    isLastOption={lastOptionIndex === globalIndex}
-                    isSelected={
-                      multiple ? currentValue.includes(singleOption.value) : currentValue === singleOption.value
-                    }
-                  />
-                );
-              })}
-            </ul>
-          </li>
+          <ul role="group" aria-labelledby={groupId} style={{ padding: 0 }}>
+            <GroupLabel role="presentation" id={groupId}>
+              {option.label}
+            </GroupLabel>
+            {option.options.map((singleOption) => {
+              globalIndex++;
+              return (
+                <ListOption
+                  key={`${id}-option-${singleOption.value}`}
+                  id={`${id}-option-${globalIndex}`}
+                  option={singleOption}
+                  onClick={handleOptionOnClick}
+                  multiple={multiple}
+                  visualFocused={visualFocusIndex === globalIndex}
+                  isGroupedOption
+                  isLastOption={lastOptionIndex === globalIndex}
+                  isSelected={
+                    multiple ? currentValue.includes(singleOption.value) : currentValue === singleOption.value
+                  }
+                />
+              );
+            })}
+          </ul>
         )
       );
     } else {

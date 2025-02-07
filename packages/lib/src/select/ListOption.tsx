@@ -102,6 +102,7 @@ const ListOption = ({
     <TooltipWrapper condition={hasTooltip} label={option.label}>
       <OptionItem
         aria-selected={!multiple ? isSelected : undefined}
+        as={isGroupedOption ? "li" : "div"}
         id={id}
         onClick={() => {
           onClick(option);
