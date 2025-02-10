@@ -2,6 +2,7 @@
   "accordion": {
     "accentColor": "color",
     "titleFontColor": "color",
+    "subLabelFontColor": "color",
     "assistiveTextFontColor": "color"
   },
   "button": {
