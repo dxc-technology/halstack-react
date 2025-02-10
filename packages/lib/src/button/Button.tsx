@@ -17,7 +17,7 @@ const Button = styled.button<{
   align-items: center;
   justify-content: center;
   flex-direction: ${({ iconPosition }) => (iconPosition === "after" ? "row" : "row-reverse")};
-  gap: var(${({ size }) => (size.height === "large" ? "--spacing-gap-s" : "--spacing-gap-xs")});
+  gap: ${({ size }) => (size.height === "large" ? "var(--spacing-gap-s)" : "var(--spacing-gap-xs)")};
   height: ${({ size }) => getHeight(size.height)};
   width: ${(props) => calculateWidth(props.margin, props.size)};
   cursor: pointer;
@@ -54,9 +54,9 @@ const IconContainer = styled.div<{
   size: Size;
 }>`
   display: flex;
-  font-size: var(${({ size }) => (size?.height === "large" ? "--height-s" : "--height-xxs")});
+  font-size: ${({ size }) => (size?.height === "large" ? "var(--height-s)" : "var(--height-xxs)")};
   svg {
-    height: var(${({ size }) => (size?.height === "large" ? "--height-s" : "--height-xxs")});
+    height: ${({ size }) => (size?.height === "large" ? "var(--height-s)" : "var(--height-xxs)")};
     width: ${({ size }) => (size?.height === "large" ? "24" : "16")}px;
   }
 `;
