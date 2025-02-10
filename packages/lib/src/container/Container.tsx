@@ -1,11 +1,10 @@
 import styled from "styled-components";
-import { getCoreColorToken } from "../common/coreTokens";
 import ContainerPropsType, { BorderProperties, StyledProps } from "./types";
 import { spaces } from "../common/variables";
 
 const getBorderStyles = (direction: "top" | "bottom" | "left" | "right", borderProperties: BorderProperties) =>
   `border-${direction}: ${borderProperties.width ?? ""} ${borderProperties.style ?? ""} ${
-    borderProperties.color ? getCoreColorToken(borderProperties.color) : ""
+    borderProperties.color ?? ""
   };`;
 
 const Container = styled.div<StyledProps>`
@@ -27,7 +26,7 @@ const Container = styled.div<StyledProps>`
   box-shadow: ${({ boxShadow }) => boxShadow};
   background-attachment: ${({ background }) => background?.attachment};
   background-clip: ${({ background }) => background?.clip};
-  background-color: ${({ background }) => (background?.color ? getCoreColorToken(background?.color) : "")};
+  background-color: ${({ background }) => background?.color ?? ""};
   background-image: ${({ background }) => background?.image};
   background-origin: ${({ background }) => background?.origin};
   background-position: ${({ background }) => background?.position};
@@ -36,8 +35,7 @@ const Container = styled.div<StyledProps>`
   border-radius: ${({ borderRadius }) => borderRadius};
   border-width: ${({ border }) => (border && "width" in border ? `${border?.width}` : "")};
   border-style: ${({ border }) => (border && "style" in border ? `${border?.style}` : "")};
-  border-color: ${({ border }) =>
-    border && "color" in border && border?.color ? `${getCoreColorToken(border?.color)}` : ""};
+  border-color: ${({ border }) => (border && "color" in border ? `${border?.color}` : "")};
   ${({ border }) => {
     let styles = "";
     if (border != null) {
@@ -59,8 +57,7 @@ const Container = styled.div<StyledProps>`
   margin-right: ${({ margin }) => (typeof margin === "object" && margin.right ? spaces[margin.right] : "")};
   margin-bottom: ${({ margin }) => (typeof margin === "object" && margin.bottom ? spaces[margin.bottom] : "")};
   margin-left: ${({ margin }) => (typeof margin === "object" && margin.left ? spaces[margin.left] : "")};
-  outline: ${({ outline }) =>
-    `${outline?.width ?? ""} ${outline?.style ?? ""} ${outline?.color ? getCoreColorToken(outline?.color) : ""}`};
+  outline: ${({ outline }) => `${outline?.width ?? ""} ${outline?.style ?? ""} ${outline?.color ?? ""}`};
   outline-offset: ${({ outline }) => outline?.offset};
   overflow: ${({ $overflow }) => (typeof $overflow === "string" ? $overflow : "")};
   overflow-x: ${({ $overflow }) => (typeof $overflow === "object" ? `${$overflow?.x}` : "")};
