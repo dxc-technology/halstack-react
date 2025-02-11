@@ -10,30 +10,46 @@ import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
-import variants from "./examples/variants";
 import icons from "./examples/iconUsage";
+import semantics from "./examples/semantics";
+import variants from "./examples/variants";
 import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
 import Code from "@/common/Code";
 import Image from "@/common/Image";
-import semanticButtons from "./images/semantic_buttons.png";
+import anatomy from "./images/button_anatomy.png";
 
 const sections = [
   {
-    title: "Usage",
+    title: "Introduction",
     content: (
-      <DxcBulletedList>
-        <DxcBulletedList.Item>
-          In instances where buttons are vertically stacked, buttons should be the same length.
-        </DxcBulletedList.Item>
-        <DxcBulletedList.Item>
-          Horizontally displayed buttons are dependent on the amount of text, so button lengths may vary, always
-          considering the minimum and maximum established sizes.
-        </DxcBulletedList.Item>
-        <DxcBulletedList.Item>Text or icon on a button should always be centered.</DxcBulletedList.Item>
-        <DxcBulletedList.Item>
-          There must be 8 pixels of space between horizontally displayed buttons.
-        </DxcBulletedList.Item>
-      </DxcBulletedList>
+      <DxcParagraph>
+        The Halstack Button component is a versatile and accessible UI element designed to trigger user actions across
+        applications. It supports multiple variants, including primary, secondary, and text buttons, ensuring
+        flexibility in different use cases. The button's appearance suggests the user takes an action that leads to
+        different scenarios. These elements that reinforce to the user the necessity to interact are called CTA (Call to
+        Action) components, which basically are designed to capture user attention and improve the user experience
+        within the application.
+      </DxcParagraph>
+    ),
+  },
+  {
+    title: "Anatomy",
+    content: (
+      <>
+        <Image src={anatomy} alt="Button anatomy" />
+        <DxcBulletedList type="number">
+          <DxcBulletedList.Item>
+            <strong>Container:</strong> the interactive/clickable area of the button.
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            <strong>Icon:</strong> a visual element that complements the label, providing additional meaning or
+            enhancing recognition.
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            <strong>Label:</strong> displays the textual action that the button is going to carry out.
+          </DxcBulletedList.Item>
+        </DxcBulletedList>
+      </>
     ),
   },
   {
@@ -192,7 +208,7 @@ const sections = [
             </tr>
           </tbody>
         </DxcTable>
-        <Image src={semanticButtons} alt="Semantic buttons based on their purpose" />
+        <Example example={semantics} />
       </>
     ),
   },
@@ -415,15 +431,13 @@ const sections = [
   },
 ];
 
-const ButtonUsagePage = () => {
-  return (
-    <DxcFlex direction="column" gap="4rem">
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
-      </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/button/usage/ButtonUsagePage.tsx" />
-    </DxcFlex>
-  );
-};
+const ButtonOverviewPage = () => (
+  <DxcFlex direction="column" gap="4rem">
+    <QuickNavContainerLayout>
+      <QuickNavContainer sections={sections} startHeadingLevel={2} />
+    </QuickNavContainerLayout>
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/button/overview/ButtonOverviewPage.tsx" />
+  </DxcFlex>
+);
 
-export default ButtonUsagePage;
+export default ButtonOverviewPage;

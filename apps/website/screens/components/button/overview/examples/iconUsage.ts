@@ -1,7 +1,6 @@
 import { DxcButton, DxcFlex, DxcInset } from "@dxc-technology/halstack-react";
 
 const code = `() => {
-
   return (
     <DxcInset space="2rem">
       <DxcFlex direction="column" gap="1.5rem">
