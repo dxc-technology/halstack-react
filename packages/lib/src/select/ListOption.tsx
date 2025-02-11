@@ -9,17 +9,16 @@ const OptionItem = styled.li<{
   visualFocused: OptionProps["visualFocused"];
   selected: OptionProps["isSelected"];
 }>`
-  ${({ selected }) => selected && "background-color: var(--color-bg-secondary-lighter);"};
   padding: var(--spacing-padding-none) var(--spacing-padding-xs);
   cursor: pointer;
-
+  ${({ selected }) => selected && "background-color: var(--color-bg-secondary-lighter);"};
   &:hover {
-    background-color: var(
-      ${({ selected }) => (selected ? "--color-bg-secondary-lighter" : "--color-bg-neutral-light")}
-    );
+    background-color: ${({ selected }) =>
+      selected ? "var(--color-bg-secondary-medium)" : "var(--color-bg-neutral-light)"};
   }
   &:active {
-    background-color: var(${({ selected }) => (selected ? "--color-bg-secondary-medium" : "--color-bg-neutral-light")});
+    background-color: ${({ selected }) =>
+      selected ? "var(--color-bg-secondary-medium)" : "var(--color-bg-neutral-light)"};
   }
   ${({ visualFocused }) =>
     visualFocused &&
@@ -37,7 +36,7 @@ const StyledOption = styled.span<{
   align-items: center;
   gap: var(--spacing-gap-s);
   height: var(--height-m);
-  ${({ grouped }) => grouped && "padding-left: var(--spacing-padding-xs);"}
+  ${({ grouped }) => grouped && "padding-left: var(--spacing-padding-s);"}
   ${(props) =>
     `border-bottom: var(--border-width-s) var(--border-style-default) 
     ${props.last || props.visualFocused || props.selected ? "transparent" : "var(--border-color-neutral-lighter)"};`};

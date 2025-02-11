@@ -5,13 +5,13 @@ import { HalstackLanguageContext } from "../HalstackContext";
 import ListOption from "./ListOption";
 import { groupsHaveOptions } from "./utils";
 import { ListboxProps, ListOptionGroupType, ListOptionType } from "./types";
+import { scrollbarStyles } from "../styles/scroll";
 
 const ListboxContainer = styled.div`
   box-sizing: border-box;
   max-height: 304px;
-  overflow-y: auto;
   padding: var(--spacing-padding-xxs) var(--spacing-padding-none);
-  background-color: var(--color-absolutes-white);
+  background-color: var(--color-bg-neutral-lightest);
   border: var(--border-width-s) var(--border-style-default) var(--border-color-neutral-medium);
   border-radius: var(--border-radius-s);
   box-shadow: var(--shadow-mid-x-position) var(--shadow-mid-y-position) var(--shadow-mid-blur) var(--shadow-mid-spread)
@@ -20,6 +20,8 @@ const ListboxContainer = styled.div`
   font-family: var(--typography-font-family);
   font-size: var(--typography-label-m);
   font-weight: var(--typography-label-regular);
+  overflow-y: auto;
+  ${scrollbarStyles}
 `;
 
 const OptionsSystemMessage = styled.span`
@@ -68,7 +70,7 @@ const Listbox = ({
     if ("options" in option) {
       return (
         option.options.length > 0 && (
-          <ul key={groupId} aria-labelledby={groupId} role="group" style={{ padding: 0 }}>
+          <ul key={groupId} aria-labelledby={groupId} role="group" style={{ padding: 0, margin: 0 }}>
             <GroupLabel id={groupId} role="presentation">
               {option.label}
             </GroupLabel>
