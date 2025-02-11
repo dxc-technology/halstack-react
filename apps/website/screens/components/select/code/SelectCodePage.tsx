@@ -123,6 +123,8 @@ const sections = [
                   <b>options</b>: List of <Code>Option</Code> instances.
                 </li>
               </ul>
+              <br />
+              <strong>You can't mix regular options and grouped options in the same array.</strong>
             </td>
             <td>-</td>
           </tr>
