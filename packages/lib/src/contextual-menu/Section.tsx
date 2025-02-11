@@ -1,17 +1,32 @@
 import styled from "styled-components";
 import { DxcInset } from "..";
-import CoreTokens from "../common/coreTokens";
 import DxcDivider from "../divider/Divider";
 import { SubMenu } from "./ContextualMenu";
 import MenuItem from "./MenuItem";
 import { SectionProps } from "./types";
 import { useId } from "react";
 
+const Title = styled.h2`
+  all: unset;
+  color: var(--color-grey-900);
+  font-family: var(--typography-font-family);
+  font-size: var(--typography-label-l);
+  font-style: normal;
+  font-weight: var(--typography-label-semibold);
+  padding: var(--spacing-padding-xxs);
+`;
+
+const Sect = styled.section`
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-gap-xs);
+`;
+
 const Section = ({ section, index, length }: SectionProps) => {
   const id = `section-${useId()}`;
 
   return (
-    <section aria-label={section.title ?? id} aria-labelledby={id}>
+    <Sect aria-label={section.title ?? id} aria-labelledby={id}>
       {section.title && <Title id={id}>{section.title}</Title>}
       <SubMenu>
         {section.items.map((item, index) => (
@@ -23,19 +38,8 @@ const Section = ({ section, index, length }: SectionProps) => {
           <DxcDivider color="lightGrey" />
         </DxcInset>
       )}
-    </section>
+    </Sect>
   );
 };
-
-const Title = styled.h2`
-  margin: 0 0 ${CoreTokens.spacing_4} 0;
-  padding: ${CoreTokens.spacing_4};
-  color: ${({ theme }) => theme.sectionTitleFontColor};
-  font-family: ${({ theme }) => theme.fontFamily};
-  font-size: ${({ theme }) => theme.sectionTitleFontSize};
-  font-style: ${({ theme }) => theme.sectionTitleFontStyle};
-  font-weight: ${({ theme }) => theme.sectionTitleFontWeight};
-  line-height: ${({ theme }) => theme.sectionTitleLineHeight};
-`;
 
 export default Section;
