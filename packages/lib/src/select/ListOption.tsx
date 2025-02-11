@@ -85,7 +85,7 @@ const ListOption = ({
   onClick,
   option,
   visualFocused,
-}: OptionProps): JSX.Element => {
+}: OptionProps) => {
   const [hasTooltip, setHasTooltip] = useState(false);
   const checkboxRef = useRef<HTMLDivElement>(null);
 

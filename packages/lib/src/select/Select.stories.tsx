@@ -1,12 +1,9 @@
-import { useContext } from "react";
 import { userEvent, within } from "@storybook/test";
-import { ThemeProvider } from "styled-components";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import preview from "../../.storybook/preview";
 import { disabledRules } from "../../test/accessibility/rules/specific/select/disabledRules";
 import DxcFlex from "../flex/Flex";
-import HalstackContext from "../HalstackContext";
 import Listbox from "./Listbox";
 import DxcSelect from "./Select";
 import { Meta, StoryObj } from "@storybook/react";
@@ -363,10 +360,8 @@ const Select = () => (
 );
 
 const SelectListbox = () => {
-  const colorsTheme = useContext(HalstackContext);
-
   return (
-    <ThemeProvider theme={colorsTheme.select}>
+    <>
       <Title title="Listbox" theme="light" level={2} />
       <ExampleContainer>
         <Title
@@ -397,7 +392,9 @@ const SelectListbox = () => {
       <Title title="Listbox option states" theme="light" level={3} />
       <ExampleContainer pseudoState="pseudo-hover">
         <Title title="Hovered option" theme="light" level={4} />
+        <label id="x8-label">Choose an option</label>
         <Listbox
+          ariaLabelledBy="x8-label"
           id="x8"
           currentValue=""
           options={one_option}
@@ -413,7 +410,9 @@ const SelectListbox = () => {
       </ExampleContainer>
       <ExampleContainer pseudoState="pseudo-active">
         <Title title="Active option" theme="light" level={4} />
+        <label id="x9-label">Choose an option</label>
         <Listbox
+          ariaLabelledBy="x9-label"
           id="x9"
           currentValue=""
           options={one_option}
@@ -429,7 +428,9 @@ const SelectListbox = () => {
       </ExampleContainer>
       <ExampleContainer>
         <Title title="Focused option" theme="light" level={4} />
+        <label id="x10-label">Choose an option</label>
         <Listbox
+          ariaLabelledBy="x10-label"
           id="x10"
           currentValue=""
           options={one_option}
@@ -445,7 +446,9 @@ const SelectListbox = () => {
       </ExampleContainer>
       <ExampleContainer pseudoState="pseudo-hover">
         <Title title="Hovered selected option" theme="light" level={4} />
+        <label id="x11-label">Choose an option</label>
         <Listbox
+          ariaLabelledBy="x11-label"
           id="x11"
           currentValue="1"
           options={single_options}
@@ -461,7 +464,9 @@ const SelectListbox = () => {
       </ExampleContainer>
       <ExampleContainer pseudoState="pseudo-active">
         <Title title="Active selected option" theme="light" level={4} />
+        <label id="x12-label">Choose an option</label>
         <Listbox
+          ariaLabelledBy="x12-label"
           id="x12"
           currentValue="2"
           options={single_options}
@@ -478,7 +483,9 @@ const SelectListbox = () => {
       <Title title="Listbox with icons" theme="light" level={3} />
       <ExampleContainer>
         <Title title="Icons (SVGs)" theme="light" level={4} />
+        <label id="x13-label">Choose an option</label>
         <Listbox
+          ariaLabelledBy="x13-label"
           id="x13"
           currentValue="3"
           options={icon_options}
@@ -494,7 +501,9 @@ const SelectListbox = () => {
       </ExampleContainer>
       <ExampleContainer>
         <Title title="Grouped icons (Material Symbols)" theme="light" level={4} />
+        <label id="x14-label">Choose an option</label>
         <Listbox
+          ariaLabelledBy="x14-label"
           id="x14"
           currentValue={"4"}
           options={icon_options_grouped_material}
@@ -510,7 +519,9 @@ const SelectListbox = () => {
       </ExampleContainer>
       <ExampleContainer>
         <Title title="Grouped icons (Material)" theme="light" level={4} />
+        <label id="x15-label">Choose an option</label>
         <Listbox
+          ariaLabelledBy="x15-label"
           id="x15"
           currentValue={["car", "motorcycle", "train"]}
           options={options_material}
@@ -524,7 +535,7 @@ const SelectListbox = () => {
           styles={{ width: 360 }}
         />
       </ExampleContainer>
-    </ThemeProvider>
+    </>
   );
 };
 
@@ -612,27 +623,25 @@ const TooltipValue = () => (
 );
 
 const TooltipOption = () => {
-  const colorsTheme = useContext(HalstackContext);
-
   return (
-    <ThemeProvider theme={colorsTheme.select}>
-      <ExampleContainer expanded>
-        <Title title="List option has tooltip when it overflows" theme="light" level={4} />
-        <Listbox
-          id="x8"
-          currentValue="1"
-          options={optionsWithEllipsis}
-          visualFocusIndex={-1}
-          lastOptionIndex={2}
-          multiple={false}
-          optional={false}
-          optionalItem={{ label: "Empty", value: "" }}
-          searchable={false}
-          handleOptionOnClick={() => {}}
-          styles={{ width: 360 }}
-        />
-      </ExampleContainer>
-    </ThemeProvider>
+    <ExampleContainer expanded>
+      <Title title="List option has tooltip when it overflows" theme="light" level={4} />
+      <label id="x1-label">Choose an option</label>
+      <Listbox
+        ariaLabelledBy="x1-label"
+        id="x1"
+        currentValue="1"
+        options={optionsWithEllipsis}
+        visualFocusIndex={-1}
+        lastOptionIndex={2}
+        multiple={false}
+        optional={false}
+        optionalItem={{ label: "Empty", value: "" }}
+        searchable={false}
+        handleOptionOnClick={() => {}}
+        styles={{ width: 360 }}
+      />
+    </ExampleContainer>
   );
 };
 

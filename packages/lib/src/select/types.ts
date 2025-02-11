@@ -181,6 +181,7 @@ export type OptionProps = {
  * Listbox from the select component.
  */
 export type ListboxProps = {
+  ariaLabelledBy: string;
   id: string;
   currentValue: string | string[];
   options: ListOptionType[] | ListOptionGroupType[];

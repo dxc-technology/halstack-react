@@ -45,18 +45,19 @@ const GroupLabel = styled.li`
 `;
 
 const Listbox = ({
-  id,
+  ariaLabelledBy,
   currentValue,
-  options,
-  visualFocusIndex,
+  handleOptionOnClick,
+  id,
   lastOptionIndex,
   multiple,
   optional,
   optionalItem,
+  options,
   searchable,
-  handleOptionOnClick,
   styles,
-}: ListboxProps): JSX.Element => {
+  visualFocusIndex,
+}: ListboxProps) => {
   const translatedLabels = useContext(HalstackLanguageContext);
   const listboxRef = useRef<HTMLDivElement>(null);
 
@@ -67,25 +68,26 @@ const Listbox = ({
     if ("options" in option) {
       return (
         option.options.length > 0 && (
-          <ul role="group" aria-labelledby={groupId} style={{ padding: 0 }}>
-            <GroupLabel role="presentation" id={groupId}>
+          <ul key={groupId} aria-labelledby={groupId} role="group" style={{ padding: 0 }}>
+            <GroupLabel id={groupId} role="presentation">
               {option.label}
             </GroupLabel>
             {option.options.map((singleOption) => {
               globalIndex++;
+              const optionId = `${id}-option-${globalIndex}`;
               return (
                 <ListOption
-                  key={`${id}-option-${singleOption.value}`}
-                  id={`${id}-option-${globalIndex}`}
-                  option={singleOption}
-                  onClick={handleOptionOnClick}
-                  multiple={multiple}
-                  visualFocused={visualFocusIndex === globalIndex}
+                  id={optionId}
                   isGroupedOption
                   isLastOption={lastOptionIndex === globalIndex}
                   isSelected={
                     multiple ? currentValue.includes(singleOption.value) : currentValue === singleOption.value
                   }
+                  key={optionId}
+                  multiple={multiple}
+                  onClick={handleOptionOnClick}
+                  option={singleOption}
+                  visualFocused={visualFocusIndex === globalIndex}
                 />
               );
             })}
@@ -94,16 +96,17 @@ const Listbox = ({
       );
     } else {
       globalIndex++;
+      const optionId = `${id}-option-${globalIndex}`;
       return (
         <ListOption
-          key={`${id}-option-${option.value}`}
-          id={`${id}-option-${globalIndex}`}
-          option={option}
-          onClick={handleOptionOnClick}
-          multiple={multiple}
-          visualFocused={visualFocusIndex === globalIndex}
+          id={optionId}
           isLastOption={lastOptionIndex === globalIndex}
           isSelected={multiple ? currentValue.includes(option.value) : currentValue === option.value}
+          key={optionId}
+          multiple={multiple}
+          onClick={handleOptionOnClick}
+          option={option}
+          visualFocused={visualFocusIndex === globalIndex}
         />
       );
     }
@@ -129,6 +132,7 @@ const Listbox = ({
 
   return (
     <ListboxContainer
+      aria-labelledby={ariaLabelledBy}
       aria-multiselectable={multiple}
       id={id}
       onClick={(event) => {
@@ -150,14 +154,14 @@ const Listbox = ({
         optional &&
         !multiple && (
           <ListOption
-            key={`${id}-option-${optionalItem.value}`}
             id={`${id}-option-${0}`}
-            option={optionalItem}
-            onClick={handleOptionOnClick}
-            multiple={multiple}
-            visualFocused={visualFocusIndex === 0}
             isLastOption={lastOptionIndex === 0}
             isSelected={multiple ? currentValue.includes(optionalItem.value) : currentValue === optionalItem.value}
+            key={`${id}-option-${optionalItem.value}`}
+            multiple={multiple}
+            onClick={handleOptionOnClick}
+            option={optionalItem}
+            visualFocused={visualFocusIndex === 0}
           />
         )
       )}

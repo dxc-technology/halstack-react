@@ -73,7 +73,7 @@ const Label = styled.label<{
 const HelperText = styled.span<{ disabled: SelectPropsType["disabled"] }>`
   color: var(--color-fg-neutral-stronger);
   font-size: var(--typography-helper-text-s);
-  font-weight: var(--typography-helper-text-regular);
+  /* font-weight: var(--typography-helper-text-regular); */
   margin-bottom: var(--spacing-gap-xs);
 `;
 
@@ -243,8 +243,12 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
       value,
     },
     ref
-  ): JSX.Element => {
+  ) => {
     const id = `select-${useId()}`;
+    const errorId = `error-${id}`;
+    const labelId = `label-${id}`;
+    const listboxId = `${id}-listbox`;
+    const selectInputId = `select-input-${id}`;
 
     const [hasTooltip, setHasTooltip] = useState(false);
     const [innerValue, setInnerValue] = useState(defaultValue ?? (multiple ? [] : ""));
@@ -478,7 +482,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
       <SelectContainer margin={margin} size={size} ref={ref}>
         {label && (
           <Label
-            id={`label-${id}`}
+            id={labelId}
             disabled={disabled}
             onClick={() => {
               selectRef?.current?.focus();
@@ -492,26 +496,26 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
         <Popover.Root open={isOpen}>
           <Popover.Trigger asChild type={undefined}>
             <Select
-              id={id}
+              aria-activedescendant={visualFocusIndex >= 0 ? `option-${visualFocusIndex}` : undefined}
+              aria-controls={isOpen ? listboxId : undefined}
+              aria-disabled={disabled}
+              aria-errormessage={error ? errorId : undefined}
+              aria-expanded={isOpen}
+              aria-haspopup="listbox"
+              aria-invalid={!!error}
+              aria-label={label ? undefined : ariaLabel}
+              aria-labelledby={label ? labelId : undefined}
+              aria-required={!disabled && !optional}
               disabled={disabled}
               error={error}
+              id={selectInputId}
               onBlur={handleOnBlur}
               onClick={handleOnClick}
               onFocus={handleOnFocus}
               onKeyDown={handleOnKeyDown}
               ref={selectRef}
-              tabIndex={disabled ? -1 : tabIndex}
               role="combobox"
-              aria-controls={isOpen ? `${id}-listbox` : undefined}
-              aria-disabled={disabled}
-              aria-expanded={isOpen}
-              aria-haspopup="listbox"
-              aria-labelledby={label ? `label-${id}` : undefined}
-              aria-activedescendant={visualFocusIndex >= 0 ? `option-${visualFocusIndex}` : undefined}
-              aria-invalid={!!error}
-              aria-errormessage={error ? `error-${id}` : undefined}
-              aria-required={!disabled && !optional}
-              aria-label={label ? undefined : ariaLabel}
+              tabIndex={disabled ? -1 : tabIndex}
             >
               {multiple && Array.isArray(selectedOption) && selectedOption.length > 0 && (
                 <SelectionIndicator disabled={disabled}>
@@ -553,7 +557,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
                       autoComplete="nope"
                       autoCorrect="nope"
                       size={1}
-                      aria-labelledby={label ? `label-${id}` : undefined}
+                      aria-labelledby={label ? labelId : undefined}
                     />
                   )}
                   {(!searchable || searchValue === "") && (
@@ -599,7 +603,8 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
               }}
             >
               <Listbox
-                id={`${id}-listbox`}
+                ariaLabelledBy={labelId}
+                id={listboxId}
                 currentValue={value ?? innerValue}
                 options={searchable ? filteredOptions : options}
                 visualFocusIndex={visualFocusIndex}
@@ -615,7 +620,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
           </Popover.Portal>
         </Popover.Root>
         {!disabled && typeof error === "string" && (
-          <Error id={`error-${id}`} role="alert" aria-live={error ? "assertive" : "off"}>
+          <Error id={errorId} role="alert" aria-live={error ? "assertive" : "off"}>
             {error && <DxcIcon icon="filled_error" />}
             {error}
           </Error>
