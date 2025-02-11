@@ -18,13 +18,13 @@ const MainContainer = styled.div<{
   width: ${(props) => (props.singleFileMode ? "230px" : "320px")};
   padding: ${(props) =>
     props.showPreview
-      ? `calc(8px - ${props.theme.fileItemBorderThickness})`
-      : `calc(8px - ${props.theme.fileItemBorderThickness}) calc(8px - ${props.theme.fileItemBorderThickness}) calc(8px - ${props.theme.fileItemBorderThickness}) 16px`};
-  ${(props) => (props.error ? `background-color: ${props.theme.errorFileItemBackgroundColor};` : "")};
-  border-color: ${(props) => (props.error ? props.theme.errorFileItemBorderColor : props.theme.fileItemBorderColor)};
-  border-width: ${(props) => props.theme.fileItemBorderThickness};
-  border-style: ${(props) => props.theme.fileItemBorderStyle};
-  border-radius: ${(props) => props.theme.fileItemBorderRadius};
+      ? `calc(var(--spacing-padding-xs) - var(--border-width-s))`
+      : `calc(var(--spacing-padding-xs) - var(--border-width-s)) calc(var(--spacing-padding-xs) - var(--border-width-s)) calc(var(--spacing-padding-xs) - var(--border-width-s)) 16px`};
+  ${(props) => props.error && `background-color: var(--color-bg-error-lightest)`};
+  border-color: ${(props) => (props.error ? `var(--border-color-error-medium)` : `var(--border-color-neutral-light)`)};
+  border-width: var(--border-width-s);
+  border-style: var(--border-style-default);
+  border-radius: var(--border-radius-s);
 `;
 
 const ImagePreview = styled.img`
@@ -39,17 +39,16 @@ const IconPreview = styled.span<{ error: FileItemProps["error"] }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: ${(props) =>
-    props.error ? props.theme.errorFilePreviewBackgroundColor : props.theme.filePreviewBackgroundColor};
+  background-color: ${(props) => (props.error ? `var(--color-bg-error-light) ` : `var(--color-bg-neutral-light)`)};
   width: 48px;
   height: 48px;
   padding: 15px;
   border-radius: 2px;
-  color: ${(props) => (props.error ? props.theme.errorFilePreviewIconColor : props.theme.filePreviewIconColor)};
-  font-size: 18px;
+  color: ${(props) => (props.error ? `var(--color-fg-error-medium)` : `var(--color-fg-neutral-strong) `)};
+  font-size: var(--height-xs);
   svg {
-    height: 18px;
-    width: 18px;
+    width: 20px;
+    height: var(--height-xs);
   }
 `;
 
@@ -63,11 +62,10 @@ const FileItemContent = styled.div`
 
 const FileName = styled.span`
   align-self: center;
-  color: ${(props) => props.theme.fileNameFontColor};
-  font-family: ${(props) => props.theme.fileItemFontFamily};
-  font-size: ${(props) => props.theme.fileItemFontSize};
-  font-weight: ${(props) => props.theme.fileItemFontWeight};
-  line-height: ${(props) => props.theme.fileItemLineHeight};
+  color: var(--color-fg-neutral-dark);
+  font-family: var(--typography-font-family);
+  font-size: var(--typography-helper-text-m);
+  font-weight: var(--typography-helper-text-regular);
   white-space: pre;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -78,18 +76,17 @@ const ErrorIcon = styled.span`
   flex-wrap: wrap;
   align-content: center;
   padding: 3px;
-  height: 18px;
-  width: 18px;
-  font-size: 18px;
-  color: #d0011b;
+  width: 20px;
+  height: var(--height-xs);
+  font-size: var(--height-xs);
+  color: var(--color-fg-error-medium);
 `;
 
 const ErrorMessage = styled.span`
-  color: ${(props) => props.theme.errorMessageFontColor};
-  font-family: ${(props) => props.theme.errorMessageFontFamily};
-  font-size: ${(props) => props.theme.errorMessageFontSize};
-  font-weight: ${(props) => props.theme.errorMessageFontWeight};
-  line-height: ${(props) => props.theme.errorMessageLineHeight};
+  color: var(--color-fg-error-medium);
+  font-family: var(--typography-font-family);
+  font-size: var(--typography-helper-text-s);
+  font-weight: var(--typography-helper-text-regular);
 `;
 
 const FileItem = ({

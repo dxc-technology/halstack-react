@@ -1,5 +1,6 @@
 import type { Preview } from "@storybook/react";
 import { disabledRules } from "../test/accessibility/rules/common/disabledRules";
+import "../src/styles/variables.css";
 
 const preview: Preview = {
   parameters: {
