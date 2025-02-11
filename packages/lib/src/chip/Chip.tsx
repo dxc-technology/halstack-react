@@ -6,6 +6,71 @@ import DxcIcon from "../icon/Icon";
 import HalstackContext from "../HalstackContext";
 import ChipPropsType from "./types";
 
+const calculateWidth = (margin: ChipPropsType["margin"]) =>
+  `calc(100% - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`;
+
+const Chip = styled.div<{ margin: ChipPropsType["margin"]; disabled: ChipPropsType["disabled"] }>`
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-gap-s);
+  min-height: var(--height-xl);
+  max-width: ${(props) => calculateWidth(props.margin)};
+  background-color: var(--color-bg-neutral-light);
+  border-radius: var(--border-radius-xl);
+
+  padding: var(--spacing-padding-none) var(--spacing-padding-m);
+  margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
+  margin-top: ${(props) =>
+    props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
+  margin-right: ${(props) =>
+    props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
+  margin-bottom: ${(props) =>
+    props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
+  margin-left: ${(props) =>
+    props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
+  cursor: ${({ disabled }) => disabled && "not-allowed"};
+`;
+
+const LabelContainer = styled.span<{ disabled: ChipPropsType["disabled"] }>`
+  font-size: var(--typography-label-l);
+  font-family: var(--typography-font-family);
+  font-weight: var(--typography-label-regular);
+  font-style: var(--font-style-normal);
+  color: ${(props) => (props.disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-dark)")};
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+`;
+
+const IconContainer = styled.div<{
+  disabled: ChipPropsType["disabled"];
+  interactive: boolean;
+}>`
+  display: flex;
+  border-radius: var(--border-radius-xs);
+  color: ${(props) => (props.disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-dark)")};
+  ${({ interactive }) => interactive && "cursor: pointer;"}
+
+  ${(props) =>
+    props.interactive &&
+    `
+      &:hover, &:active{
+        background-color: var(--color-bg-alpha-light);
+      }
+      &:focus,
+      &:focus-visible {
+        outline: var(--border-width-m, 2px) solid var(--border-color-secondary-medium);
+      }
+    `}
+
+  font-size: var(--height-s);
+  svg {
+    width: 24px;
+    height: var(--height-s);
+  }
+`;
+
 const DxcChip = ({
   label,
   suffixIcon,
@@ -50,80 +115,5 @@ const DxcChip = ({
     </ThemeProvider>
   );
 };
-
-const calculateWidth = (margin: ChipPropsType["margin"]) =>
-  `calc(100% - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`;
-
-const Chip = styled.div<{ margin: ChipPropsType["margin"]; disabled: ChipPropsType["disabled"] }>`
-  box-sizing: border-box;
-  display: inline-flex;
-  align-items: center;
-  gap: ${(props) => props.theme.iconSpacing};
-  min-height: 40px;
-  max-width: ${(props) => calculateWidth(props.margin)};
-  background-color: ${(props) =>
-    (props.disabled && props.theme.disabledBackgroundColor) || props.theme.backgroundColor};
-  border-radius: ${(props) => props.theme.borderRadius};
-  border-width: ${(props) => props.theme.borderThickness};
-  border-style: ${(props) => props.theme.borderStyle};
-  border-color: ${(props) => props.theme.borderColor};
-
-  padding-top: ${(props) => props.theme.contentPaddingTop};
-  padding-bottom: ${(props) => props.theme.contentPaddingBottom};
-  padding-left: ${(props) => props.theme.contentPaddingLeft};
-  padding-right: ${(props) => props.theme.contentPaddingRight};
-  margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
-  margin-top: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
-  margin-right: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
-  margin-bottom: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
-  margin-left: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
-  cursor: ${({ disabled }) => disabled && "not-allowed"};
-`;
-
-const LabelContainer = styled.span<{ disabled: ChipPropsType["disabled"] }>`
-  font-size: ${(props) => props.theme.fontSize};
-  font-family: ${(props) => props.theme.fontFamily};
-  font-weight: ${(props) => props.theme.fontWeight};
-  font-style: ${(props) => props.theme.fontStyle};
-  color: ${(props) => (props.disabled ? props.theme.disabledFontColor : props.theme.fontColor)};
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-`;
-
-const IconContainer = styled.div<{
-  disabled: ChipPropsType["disabled"];
-  interactive: boolean;
-}>`
-  display: flex;
-  border-radius: 0.25rem;
-  color: ${(props) => (props.disabled ? props.theme.disabledIconColor : props.theme.iconColor)};
-  ${({ interactive }) => interactive && "cursor: pointer;"}
-
-  ${(props) =>
-    props.interactive &&
-    `
-      &:hover {
-        color: ${props.theme.hoverIconColor};
-      }
-      &:focus,
-      &:focus-visible {
-        outline: ${props.theme.focusBorderThickness} ${props.theme.focusBorderStyle} ${props.theme.focusColor};
-      }
-      &:active {
-        color: ${props.theme.activeIconColor};
-      }
-    `}
-
-  font-size: ${(props) => props.theme.iconSize};
-  svg {
-    width: ${(props) => props.theme.iconSize};
-    height: ${(props) => props.theme.iconSize};
-  }
-`;
 
 export default DxcChip;
