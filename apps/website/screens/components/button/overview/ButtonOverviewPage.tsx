@@ -23,7 +23,7 @@ const sections = [
     title: "Introduction",
     content: (
       <DxcParagraph>
-        The Halstack Button component is a versatile and accessible UI element designed to trigger user actions across
+        The Halstack button component is a versatile and accessible UI element designed to trigger user actions across
         applications. It supports multiple variants, including primary, secondary, and text buttons, ensuring
         flexibility in different use cases. The button's appearance suggests the user takes an action that leads to
         different scenarios. These elements that reinforce to the user the necessity to interact are called CTA (Call to
@@ -36,7 +36,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image src={anatomy} alt="Button anatomy" />
+        <Image src={anatomy} alt="Button's anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
             <strong>Container:</strong> the interactive/clickable area of the button.
