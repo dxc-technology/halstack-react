@@ -53,7 +53,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton label="Primary" size={{ height: "small" }} />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton label="Primary" size={{ height: "small" }} />
             </ExampleContainer>
             <ExampleContainer>
@@ -70,7 +70,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton label="Primary" icon="home" size={{ height: "small" }} />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton label="Primary" icon="home" size={{ height: "small" }} />
             </ExampleContainer>
             <ExampleContainer>
@@ -87,7 +87,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton label="Primary" icon="home" iconPosition="after" size={{ height: "small" }} />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton label="Primary" icon="home" iconPosition="after" size={{ height: "small" }} />
             </ExampleContainer>
             <ExampleContainer>
@@ -104,7 +104,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton icon="home" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton icon="home" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer>
@@ -174,7 +174,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="secondary" label="Secondary" size={{ height: "small" }} />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="secondary" label="Secondary" size={{ height: "small" }} />
             </ExampleContainer>
             <ExampleContainer>
@@ -191,7 +191,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="secondary" label="Secondary" icon="home" size={{ height: "small" }} />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="secondary" label="Secondary" icon="home" size={{ height: "small" }} />
             </ExampleContainer>
             <ExampleContainer>
@@ -226,7 +226,7 @@ const Button = () => (
                 size={{ height: "small" }}
               />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton
                 mode="secondary"
                 label="Secondary"
@@ -256,7 +256,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="secondary" icon="home" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="secondary" icon="home" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer>
@@ -276,7 +276,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="tertiary" label="Tertiary" size={{ height: "small" }} />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="tertiary" label="Tertiary" size={{ height: "small" }} />
             </ExampleContainer>
             <ExampleContainer>
@@ -293,7 +293,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="tertiary" label="Tertiary" icon="home" size={{ height: "small" }} />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="tertiary" label="Tertiary" icon="home" size={{ height: "small" }} />
             </ExampleContainer>
             <ExampleContainer>
@@ -310,7 +310,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="tertiary" label="Tertiary" icon="home" iconPosition="after" size={{ height: "small" }} />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="tertiary" label="Tertiary" icon="home" iconPosition="after" size={{ height: "small" }} />
             </ExampleContainer>
             <ExampleContainer>
@@ -334,7 +334,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="tertiary" icon="home" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="tertiary" icon="home" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer>
@@ -357,7 +357,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton label="Primary" size={{ height: "medium" }} />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton label="Primary" size={{ height: "medium" }} />
             </ExampleContainer>
             <ExampleContainer>
@@ -374,7 +374,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton label="Primary" icon="home" size={{ height: "medium" }} />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton label="Primary" icon="home" size={{ height: "medium" }} />
             </ExampleContainer>
             <ExampleContainer>
@@ -391,7 +391,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton label="Primary" icon="home" iconPosition="after" size={{ height: "medium" }} />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton label="Primary" icon="home" iconPosition="after" size={{ height: "medium" }} />
             </ExampleContainer>
             <ExampleContainer>
@@ -408,7 +408,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton icon="home" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton icon="home" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer>
@@ -478,7 +478,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="secondary" label="Secondary" size={{ height: "medium" }} />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="secondary" label="Secondary" size={{ height: "medium" }} />
             </ExampleContainer>
             <ExampleContainer>
@@ -495,7 +495,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="secondary" label="Secondary" icon="home" size={{ height: "medium" }} />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="secondary" label="Secondary" icon="home" size={{ height: "medium" }} />
             </ExampleContainer>
             <ExampleContainer>
@@ -530,7 +530,7 @@ const Button = () => (
                 size={{ height: "medium" }}
               />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton
                 mode="secondary"
                 label="Secondary"
@@ -560,7 +560,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="secondary" icon="home" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="secondary" icon="home" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer>
@@ -580,7 +580,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="tertiary" label="Tertiary" size={{ height: "medium" }} />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="tertiary" label="Tertiary" size={{ height: "medium" }} />
             </ExampleContainer>
             <ExampleContainer>
@@ -597,7 +597,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="tertiary" label="Tertiary" icon="home" size={{ height: "medium" }} />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="tertiary" label="Tertiary" icon="home" size={{ height: "medium" }} />
             </ExampleContainer>
             <ExampleContainer>
@@ -632,7 +632,7 @@ const Button = () => (
                 size={{ height: "medium" }}
               />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton
                 mode="tertiary"
                 label="Tertiary"
@@ -662,7 +662,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="tertiary" icon="home" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="tertiary" icon="home" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer>
@@ -685,7 +685,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton label="Primary" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton label="Primary" />
             </ExampleContainer>
             <ExampleContainer>
@@ -702,7 +702,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton label="Primary" icon="home" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton label="Primary" icon="home" />
             </ExampleContainer>
             <ExampleContainer>
@@ -719,7 +719,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton label="Primary" icon="home" iconPosition="after" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton label="Primary" icon="home" iconPosition="after" />
             </ExampleContainer>
             <ExampleContainer>
@@ -736,7 +736,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton icon="home" title="Home" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton icon="home" title="Home" />
             </ExampleContainer>
             <ExampleContainer>
@@ -806,7 +806,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="secondary" label="Secondary" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="secondary" label="Secondary" />
             </ExampleContainer>
             <ExampleContainer>
@@ -823,7 +823,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="secondary" label="Secondary" icon="home" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="secondary" label="Secondary" icon="home" />
             </ExampleContainer>
             <ExampleContainer>
@@ -840,7 +840,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="secondary" label="Secondary" icon="home" iconPosition="after" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="secondary" label="Secondary" icon="home" iconPosition="after" />
             </ExampleContainer>
             <ExampleContainer>
@@ -857,7 +857,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="secondary" icon="home" title="Home" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="secondary" icon="home" title="Home" />
             </ExampleContainer>
             <ExampleContainer>
@@ -877,7 +877,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="tertiary" label="Tertiary" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="tertiary" label="Tertiary" />
             </ExampleContainer>
             <ExampleContainer>
@@ -894,7 +894,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="tertiary" label="Tertiary" icon="home" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="tertiary" label="Tertiary" icon="home" />
             </ExampleContainer>
             <ExampleContainer>
@@ -911,7 +911,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="tertiary" label="Tertiary" icon="home" iconPosition="after" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="tertiary" label="Tertiary" icon="home" iconPosition="after" />
             </ExampleContainer>
             <ExampleContainer>
@@ -928,7 +928,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="tertiary" icon="home" title="Home" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="tertiary" icon="home" title="Home" />
             </ExampleContainer>
             <ExampleContainer>
@@ -954,7 +954,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton label="Primary" semantic="error" size={{ height: "small" }} />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton label="Primary" semantic="error" size={{ height: "small" }} />
             </ExampleContainer>
             <ExampleContainer>
@@ -971,7 +971,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton label="Primary" semantic="error" icon="home" size={{ height: "small" }} />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton label="Primary" semantic="error" icon="home" size={{ height: "small" }} />
             </ExampleContainer>
             <ExampleContainer>
@@ -988,7 +988,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton label="Primary" semantic="error" icon="home" iconPosition="after" size={{ height: "small" }} />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton label="Primary" semantic="error" icon="home" iconPosition="after" size={{ height: "small" }} />
             </ExampleContainer>
             <ExampleContainer>
@@ -1012,7 +1012,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton icon="home" semantic="error" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton icon="home" semantic="error" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer>
@@ -1059,7 +1059,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="secondary" semantic="error" label="Secondary" size={{ height: "small" }} />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="secondary" semantic="error" label="Secondary" size={{ height: "small" }} />
             </ExampleContainer>
             <ExampleContainer>
@@ -1076,7 +1076,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="secondary" semantic="error" label="Secondary" icon="home" size={{ height: "small" }} />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="secondary" semantic="error" label="Secondary" icon="home" size={{ height: "small" }} />
             </ExampleContainer>
             <ExampleContainer>
@@ -1121,7 +1121,7 @@ const Button = () => (
                 size={{ height: "small" }}
               />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton
                 mode="secondary"
                 semantic="error"
@@ -1153,7 +1153,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="secondary" semantic="error" icon="home" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="secondary" semantic="error" icon="home" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer>
@@ -1180,7 +1180,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="tertiary" semantic="error" label="Tertiary" size={{ height: "small" }} />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="tertiary" semantic="error" label="Tertiary" size={{ height: "small" }} />
             </ExampleContainer>
             <ExampleContainer>
@@ -1197,7 +1197,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="tertiary" semantic="error" label="Tertiary" icon="home" size={{ height: "small" }} />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="tertiary" semantic="error" label="Tertiary" icon="home" size={{ height: "small" }} />
             </ExampleContainer>
             <ExampleContainer>
@@ -1242,7 +1242,7 @@ const Button = () => (
                 size={{ height: "small" }}
               />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton
                 mode="tertiary"
                 semantic="error"
@@ -1274,7 +1274,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="tertiary" semantic="error" icon="home" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="tertiary" semantic="error" icon="home" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer>
@@ -1304,7 +1304,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton label="Primary" semantic="error" size={{ height: "medium" }} />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton label="Primary" semantic="error" size={{ height: "medium" }} />
             </ExampleContainer>
             <ExampleContainer>
@@ -1321,7 +1321,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton label="Primary" semantic="error" icon="home" size={{ height: "medium" }} />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton label="Primary" semantic="error" icon="home" size={{ height: "medium" }} />
             </ExampleContainer>
             <ExampleContainer>
@@ -1356,7 +1356,7 @@ const Button = () => (
                 size={{ height: "medium" }}
               />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton
                 label="Primary"
                 semantic="error"
@@ -1386,7 +1386,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton icon="home" semantic="error" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton icon="home" semantic="error" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer>
@@ -1433,7 +1433,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="secondary" semantic="error" label="Secondary" size={{ height: "medium" }} />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="secondary" semantic="error" label="Secondary" size={{ height: "medium" }} />
             </ExampleContainer>
             <ExampleContainer>
@@ -1450,7 +1450,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="secondary" semantic="error" label="Secondary" icon="home" size={{ height: "medium" }} />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="secondary" semantic="error" label="Secondary" icon="home" size={{ height: "medium" }} />
             </ExampleContainer>
             <ExampleContainer>
@@ -1495,7 +1495,7 @@ const Button = () => (
                 size={{ height: "medium" }}
               />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton
                 mode="secondary"
                 semantic="error"
@@ -1527,7 +1527,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="secondary" semantic="error" icon="home" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="secondary" semantic="error" icon="home" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer>
@@ -1554,7 +1554,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="tertiary" semantic="error" label="Tertiary" size={{ height: "medium" }} />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="tertiary" semantic="error" label="Tertiary" size={{ height: "medium" }} />
             </ExampleContainer>
             <ExampleContainer>
@@ -1571,7 +1571,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="tertiary" semantic="error" label="Tertiary" icon="home" size={{ height: "medium" }} />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="tertiary" semantic="error" label="Tertiary" icon="home" size={{ height: "medium" }} />
             </ExampleContainer>
             <ExampleContainer>
@@ -1616,7 +1616,7 @@ const Button = () => (
                 size={{ height: "medium" }}
               />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton
                 mode="tertiary"
                 semantic="error"
@@ -1648,7 +1648,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="tertiary" semantic="error" icon="home" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="tertiary" semantic="error" icon="home" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer>
@@ -1678,7 +1678,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton label="Primary" semantic="error" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton label="Primary" semantic="error" />
             </ExampleContainer>
             <ExampleContainer>
@@ -1695,7 +1695,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton label="Primary" semantic="error" icon="home" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton label="Primary" semantic="error" icon="home" />
             </ExampleContainer>
             <ExampleContainer>
@@ -1712,7 +1712,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton label="Primary" semantic="error" icon="home" iconPosition="after" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton label="Primary" semantic="error" icon="home" iconPosition="after" />
             </ExampleContainer>
             <ExampleContainer>
@@ -1729,7 +1729,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton icon="home" semantic="error" title="Home" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton icon="home" semantic="error" title="Home" />
             </ExampleContainer>
             <ExampleContainer>
@@ -1776,7 +1776,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="secondary" semantic="error" label="Secondary" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="secondary" semantic="error" label="Secondary" />
             </ExampleContainer>
             <ExampleContainer>
@@ -1793,7 +1793,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="secondary" semantic="error" label="Secondary" icon="home" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="secondary" semantic="error" label="Secondary" icon="home" />
             </ExampleContainer>
             <ExampleContainer>
@@ -1810,7 +1810,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="secondary" semantic="error" label="Secondary" icon="home" iconPosition="after" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="secondary" semantic="error" label="Secondary" icon="home" iconPosition="after" />
             </ExampleContainer>
             <ExampleContainer>
@@ -1834,7 +1834,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="secondary" semantic="error" icon="home" title="Home" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="secondary" semantic="error" icon="home" title="Home" />
             </ExampleContainer>
             <ExampleContainer>
@@ -1854,7 +1854,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="tertiary" semantic="error" label="Tertiary" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="tertiary" semantic="error" label="Tertiary" />
             </ExampleContainer>
             <ExampleContainer>
@@ -1871,7 +1871,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="tertiary" semantic="error" label="Tertiary" icon="home" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="tertiary" semantic="error" label="Tertiary" icon="home" />
             </ExampleContainer>
             <ExampleContainer>
@@ -1888,7 +1888,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="tertiary" semantic="error" label="Tertiary" icon="home" iconPosition="after" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="tertiary" semantic="error" label="Tertiary" icon="home" iconPosition="after" />
             </ExampleContainer>
             <ExampleContainer>
@@ -1905,7 +1905,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="tertiary" semantic="error" icon="home" title="Home" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="tertiary" semantic="error" icon="home" title="Home" />
             </ExampleContainer>
             <ExampleContainer>
@@ -1931,7 +1931,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton label="Primary" semantic="warning" size={{ height: "small" }} />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton label="Primary" semantic="warning" size={{ height: "small" }} />
             </ExampleContainer>
             <ExampleContainer>
@@ -1948,7 +1948,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton label="Primary" semantic="warning" icon="home" size={{ height: "small" }} />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton label="Primary" semantic="warning" icon="home" size={{ height: "small" }} />
             </ExampleContainer>
             <ExampleContainer>
@@ -1983,7 +1983,7 @@ const Button = () => (
                 size={{ height: "small" }}
               />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton
                 label="Primary"
                 semantic="warning"
@@ -2013,7 +2013,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton icon="home" semantic="warning" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton icon="home" semantic="warning" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer>
@@ -2060,7 +2060,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="secondary" semantic="warning" label="Secondary" size={{ height: "small" }} />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="secondary" semantic="warning" label="Secondary" size={{ height: "small" }} />
             </ExampleContainer>
             <ExampleContainer>
@@ -2077,7 +2077,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="secondary" semantic="warning" label="Secondary" icon="home" size={{ height: "small" }} />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="secondary" semantic="warning" label="Secondary" icon="home" size={{ height: "small" }} />
             </ExampleContainer>
             <ExampleContainer>
@@ -2122,7 +2122,7 @@ const Button = () => (
                 size={{ height: "small" }}
               />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton
                 mode="secondary"
                 semantic="warning"
@@ -2154,7 +2154,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="secondary" semantic="warning" icon="home" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="secondary" semantic="warning" icon="home" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer>
@@ -2181,7 +2181,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="tertiary" semantic="warning" label="Tertiary" size={{ height: "small" }} />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="tertiary" semantic="warning" label="Tertiary" size={{ height: "small" }} />
             </ExampleContainer>
             <ExampleContainer>
@@ -2198,7 +2198,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="tertiary" semantic="warning" label="Tertiary" icon="home" size={{ height: "small" }} />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="tertiary" semantic="warning" label="Tertiary" icon="home" size={{ height: "small" }} />
             </ExampleContainer>
             <ExampleContainer>
@@ -2243,7 +2243,7 @@ const Button = () => (
                 size={{ height: "small" }}
               />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton
                 mode="tertiary"
                 semantic="warning"
@@ -2275,7 +2275,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="tertiary" semantic="warning" icon="home" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="tertiary" semantic="warning" icon="home" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer>
@@ -2305,7 +2305,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton label="Primary" semantic="warning" size={{ height: "medium" }} />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton label="Primary" semantic="warning" size={{ height: "medium" }} />
             </ExampleContainer>
             <ExampleContainer>
@@ -2322,7 +2322,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton label="Primary" semantic="warning" icon="home" size={{ height: "medium" }} />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton label="Primary" semantic="warning" icon="home" size={{ height: "medium" }} />
             </ExampleContainer>
             <ExampleContainer>
@@ -2357,7 +2357,7 @@ const Button = () => (
                 size={{ height: "medium" }}
               />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton
                 label="Primary"
                 semantic="warning"
@@ -2387,7 +2387,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton icon="home" semantic="warning" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton icon="home" semantic="warning" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer>
@@ -2434,7 +2434,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="secondary" semantic="warning" label="Secondary" size={{ height: "medium" }} />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="secondary" semantic="warning" label="Secondary" size={{ height: "medium" }} />
             </ExampleContainer>
             <ExampleContainer>
@@ -2469,7 +2469,7 @@ const Button = () => (
                 size={{ height: "medium" }}
               />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton
                 mode="secondary"
                 semantic="warning"
@@ -2520,7 +2520,7 @@ const Button = () => (
                 size={{ height: "medium" }}
               />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton
                 mode="secondary"
                 semantic="warning"
@@ -2552,7 +2552,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="secondary" semantic="warning" icon="home" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="secondary" semantic="warning" icon="home" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer>
@@ -2579,7 +2579,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="tertiary" semantic="warning" label="Tertiary" size={{ height: "medium" }} />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="tertiary" semantic="warning" label="Tertiary" size={{ height: "medium" }} />
             </ExampleContainer>
             <ExampleContainer>
@@ -2596,7 +2596,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="tertiary" semantic="warning" label="Tertiary" icon="home" size={{ height: "medium" }} />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="tertiary" semantic="warning" label="Tertiary" icon="home" size={{ height: "medium" }} />
             </ExampleContainer>
             <ExampleContainer>
@@ -2641,7 +2641,7 @@ const Button = () => (
                 size={{ height: "medium" }}
               />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton
                 mode="tertiary"
                 semantic="warning"
@@ -2673,7 +2673,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="tertiary" semantic="warning" icon="home" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="tertiary" semantic="warning" icon="home" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer>
@@ -2703,7 +2703,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton label="Primary" semantic="warning" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton label="Primary" semantic="warning" />
             </ExampleContainer>
             <ExampleContainer>
@@ -2720,7 +2720,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton label="Primary" semantic="warning" icon="home" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton label="Primary" semantic="warning" icon="home" />
             </ExampleContainer>
             <ExampleContainer>
@@ -2737,7 +2737,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton label="Primary" semantic="warning" icon="home" iconPosition="after" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton label="Primary" semantic="warning" icon="home" iconPosition="after" />
             </ExampleContainer>
             <ExampleContainer>
@@ -2754,7 +2754,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton icon="home" semantic="warning" title="Home" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton icon="home" semantic="warning" title="Home" />
             </ExampleContainer>
             <ExampleContainer>
@@ -2801,7 +2801,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="secondary" semantic="warning" label="Secondary" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="secondary" semantic="warning" label="Secondary" />
             </ExampleContainer>
             <ExampleContainer>
@@ -2818,7 +2818,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="secondary" semantic="warning" label="Secondary" icon="home" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="secondary" semantic="warning" label="Secondary" icon="home" />
             </ExampleContainer>
             <ExampleContainer>
@@ -2835,7 +2835,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="secondary" semantic="warning" label="Secondary" icon="home" iconPosition="after" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="secondary" semantic="warning" label="Secondary" icon="home" iconPosition="after" />
             </ExampleContainer>
             <ExampleContainer>
@@ -2859,7 +2859,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="secondary" semantic="warning" icon="home" title="Home" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="secondary" semantic="warning" icon="home" title="Home" />
             </ExampleContainer>
             <ExampleContainer>
@@ -2879,7 +2879,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="tertiary" semantic="warning" label="Tertiary" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="tertiary" semantic="warning" label="Tertiary" />
             </ExampleContainer>
             <ExampleContainer>
@@ -2896,7 +2896,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="tertiary" semantic="warning" label="Tertiary" icon="home" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="tertiary" semantic="warning" label="Tertiary" icon="home" />
             </ExampleContainer>
             <ExampleContainer>
@@ -2913,7 +2913,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="tertiary" semantic="warning" label="Tertiary" icon="home" iconPosition="after" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="tertiary" semantic="warning" label="Tertiary" icon="home" iconPosition="after" />
             </ExampleContainer>
             <ExampleContainer>
@@ -2937,7 +2937,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="tertiary" semantic="warning" icon="home" title="Home" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="tertiary" semantic="warning" icon="home" title="Home" />
             </ExampleContainer>
             <ExampleContainer>
@@ -2963,7 +2963,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton label="Primary" semantic="success" size={{ height: "small" }} />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton label="Primary" semantic="success" size={{ height: "small" }} />
             </ExampleContainer>
             <ExampleContainer>
@@ -2980,7 +2980,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton label="Primary" semantic="success" icon="home" size={{ height: "small" }} />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton label="Primary" semantic="success" icon="home" size={{ height: "small" }} />
             </ExampleContainer>
             <ExampleContainer>
@@ -3015,7 +3015,7 @@ const Button = () => (
                 size={{ height: "small" }}
               />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton
                 label="Primary"
                 semantic="success"
@@ -3045,7 +3045,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton icon="home" semantic="success" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton icon="home" semantic="success" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer>
@@ -3092,7 +3092,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="secondary" semantic="success" label="Secondary" size={{ height: "small" }} />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="secondary" semantic="success" label="Secondary" size={{ height: "small" }} />
             </ExampleContainer>
             <ExampleContainer>
@@ -3109,7 +3109,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="secondary" semantic="success" label="Secondary" icon="home" size={{ height: "small" }} />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="secondary" semantic="success" label="Secondary" icon="home" size={{ height: "small" }} />
             </ExampleContainer>
             <ExampleContainer>
@@ -3154,7 +3154,7 @@ const Button = () => (
                 size={{ height: "small" }}
               />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton
                 mode="secondary"
                 semantic="success"
@@ -3186,7 +3186,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="secondary" semantic="success" icon="home" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="secondary" semantic="success" icon="home" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer>
@@ -3213,7 +3213,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="tertiary" semantic="success" label="Tertiary" size={{ height: "small" }} />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="tertiary" semantic="success" label="Tertiary" size={{ height: "small" }} />
             </ExampleContainer>
             <ExampleContainer>
@@ -3230,7 +3230,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="tertiary" semantic="success" label="Tertiary" icon="home" size={{ height: "small" }} />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="tertiary" semantic="success" label="Tertiary" icon="home" size={{ height: "small" }} />
             </ExampleContainer>
             <ExampleContainer>
@@ -3275,7 +3275,7 @@ const Button = () => (
                 size={{ height: "small" }}
               />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton
                 mode="tertiary"
                 semantic="success"
@@ -3307,7 +3307,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="tertiary" semantic="success" icon="home" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="tertiary" semantic="success" icon="home" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer>
@@ -3337,7 +3337,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton label="Primary" semantic="success" size={{ height: "medium" }} />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton label="Primary" semantic="success" size={{ height: "medium" }} />
             </ExampleContainer>
             <ExampleContainer>
@@ -3354,7 +3354,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton label="Primary" semantic="success" icon="home" size={{ height: "medium" }} />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton label="Primary" semantic="success" icon="home" size={{ height: "medium" }} />
             </ExampleContainer>
             <ExampleContainer>
@@ -3389,7 +3389,7 @@ const Button = () => (
                 size={{ height: "medium" }}
               />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton
                 label="Primary"
                 semantic="success"
@@ -3419,7 +3419,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton icon="home" semantic="success" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton icon="home" semantic="success" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer>
@@ -3466,7 +3466,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="secondary" semantic="success" label="Secondary" size={{ height: "medium" }} />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="secondary" semantic="success" label="Secondary" size={{ height: "medium" }} />
             </ExampleContainer>
             <ExampleContainer>
@@ -3501,7 +3501,7 @@ const Button = () => (
                 size={{ height: "medium" }}
               />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton
                 mode="secondary"
                 semantic="success"
@@ -3552,7 +3552,7 @@ const Button = () => (
                 size={{ height: "medium" }}
               />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton
                 mode="secondary"
                 semantic="success"
@@ -3584,7 +3584,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="secondary" semantic="success" icon="home" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="secondary" semantic="success" icon="home" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer>
@@ -3611,7 +3611,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="tertiary" semantic="success" label="Tertiary" size={{ height: "medium" }} />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="tertiary" semantic="success" label="Tertiary" size={{ height: "medium" }} />
             </ExampleContainer>
             <ExampleContainer>
@@ -3628,7 +3628,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="tertiary" semantic="success" label="Tertiary" icon="home" size={{ height: "medium" }} />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="tertiary" semantic="success" label="Tertiary" icon="home" size={{ height: "medium" }} />
             </ExampleContainer>
             <ExampleContainer>
@@ -3673,7 +3673,7 @@ const Button = () => (
                 size={{ height: "medium" }}
               />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton
                 mode="tertiary"
                 semantic="success"
@@ -3705,7 +3705,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="tertiary" semantic="success" icon="home" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="tertiary" semantic="success" icon="home" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer>
@@ -3735,7 +3735,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton label="Primary" semantic="success" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton label="Primary" semantic="success" />
             </ExampleContainer>
             <ExampleContainer>
@@ -3752,7 +3752,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton label="Primary" semantic="success" icon="home" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton label="Primary" semantic="success" icon="home" />
             </ExampleContainer>
             <ExampleContainer>
@@ -3769,7 +3769,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton label="Primary" semantic="success" icon="home" iconPosition="after" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton label="Primary" semantic="success" icon="home" iconPosition="after" />
             </ExampleContainer>
             <ExampleContainer>
@@ -3786,7 +3786,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton icon="home" semantic="success" title="Home" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton icon="home" semantic="success" title="Home" />
             </ExampleContainer>
             <ExampleContainer>
@@ -3833,7 +3833,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="secondary" semantic="success" label="Secondary" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="secondary" semantic="success" label="Secondary" />
             </ExampleContainer>
             <ExampleContainer>
@@ -3850,7 +3850,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="secondary" semantic="success" label="Secondary" icon="home" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="secondary" semantic="success" label="Secondary" icon="home" />
             </ExampleContainer>
             <ExampleContainer>
@@ -3867,7 +3867,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="secondary" semantic="success" label="Secondary" icon="home" iconPosition="after" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="secondary" semantic="success" label="Secondary" icon="home" iconPosition="after" />
             </ExampleContainer>
             <ExampleContainer>
@@ -3891,7 +3891,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="secondary" semantic="success" icon="home" title="Home" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="secondary" semantic="success" icon="home" title="Home" />
             </ExampleContainer>
             <ExampleContainer>
@@ -3911,7 +3911,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="tertiary" semantic="success" label="Tertiary" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="tertiary" semantic="success" label="Tertiary" />
             </ExampleContainer>
             <ExampleContainer>
@@ -3928,7 +3928,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="tertiary" semantic="success" label="Tertiary" icon="home" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="tertiary" semantic="success" label="Tertiary" icon="home" />
             </ExampleContainer>
             <ExampleContainer>
@@ -3945,7 +3945,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="tertiary" semantic="success" label="Tertiary" icon="home" iconPosition="after" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="tertiary" semantic="success" label="Tertiary" icon="home" iconPosition="after" />
             </ExampleContainer>
             <ExampleContainer>
@@ -3969,7 +3969,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="tertiary" semantic="success" icon="home" title="Home" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="tertiary" semantic="success" icon="home" title="Home" />
             </ExampleContainer>
             <ExampleContainer>
@@ -3995,7 +3995,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton label="Primary" semantic="info" size={{ height: "small" }} />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton label="Primary" semantic="info" size={{ height: "small" }} />
             </ExampleContainer>
             <ExampleContainer>
@@ -4012,7 +4012,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton label="Primary" semantic="info" icon="home" size={{ height: "small" }} />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton label="Primary" semantic="info" icon="home" size={{ height: "small" }} />
             </ExampleContainer>
             <ExampleContainer>
@@ -4029,7 +4029,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton label="Primary" semantic="info" icon="home" iconPosition="after" size={{ height: "small" }} />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton label="Primary" semantic="info" icon="home" iconPosition="after" size={{ height: "small" }} />
             </ExampleContainer>
             <ExampleContainer>
@@ -4053,7 +4053,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton icon="home" semantic="info" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton icon="home" semantic="info" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer>
@@ -4100,7 +4100,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="secondary" semantic="info" label="Secondary" size={{ height: "small" }} />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="secondary" semantic="info" label="Secondary" size={{ height: "small" }} />
             </ExampleContainer>
             <ExampleContainer>
@@ -4117,7 +4117,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="secondary" semantic="info" label="Secondary" icon="home" size={{ height: "small" }} />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="secondary" semantic="info" label="Secondary" icon="home" size={{ height: "small" }} />
             </ExampleContainer>
             <ExampleContainer>
@@ -4162,7 +4162,7 @@ const Button = () => (
                 size={{ height: "small" }}
               />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton
                 mode="secondary"
                 semantic="info"
@@ -4194,7 +4194,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="secondary" semantic="info" icon="home" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="secondary" semantic="info" icon="home" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer>
@@ -4221,7 +4221,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="tertiary" semantic="info" label="Tertiary" size={{ height: "small" }} />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="tertiary" semantic="info" label="Tertiary" size={{ height: "small" }} />
             </ExampleContainer>
             <ExampleContainer>
@@ -4238,7 +4238,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="tertiary" semantic="info" label="Tertiary" icon="home" size={{ height: "small" }} />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="tertiary" semantic="info" label="Tertiary" icon="home" size={{ height: "small" }} />
             </ExampleContainer>
             <ExampleContainer>
@@ -4283,7 +4283,7 @@ const Button = () => (
                 size={{ height: "small" }}
               />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton
                 mode="tertiary"
                 semantic="info"
@@ -4315,7 +4315,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="tertiary" semantic="info" icon="home" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="tertiary" semantic="info" icon="home" size={{ height: "small" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer>
@@ -4338,7 +4338,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton label="Primary" semantic="info" size={{ height: "medium" }} />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton label="Primary" semantic="info" size={{ height: "medium" }} />
             </ExampleContainer>
             <ExampleContainer>
@@ -4355,7 +4355,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton label="Primary" semantic="info" icon="home" size={{ height: "medium" }} />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton label="Primary" semantic="info" icon="home" size={{ height: "medium" }} />
             </ExampleContainer>
             <ExampleContainer>
@@ -4372,7 +4372,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton label="Primary" semantic="info" icon="home" iconPosition="after" size={{ height: "medium" }} />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton label="Primary" semantic="info" icon="home" iconPosition="after" size={{ height: "medium" }} />
             </ExampleContainer>
             <ExampleContainer>
@@ -4396,7 +4396,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton icon="home" semantic="info" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton icon="home" semantic="info" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer>
@@ -4443,7 +4443,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="secondary" semantic="info" label="Secondary" size={{ height: "medium" }} />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="secondary" semantic="info" label="Secondary" size={{ height: "medium" }} />
             </ExampleContainer>
             <ExampleContainer>
@@ -4460,7 +4460,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="secondary" semantic="info" label="Secondary" icon="home" size={{ height: "medium" }} />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="secondary" semantic="info" label="Secondary" icon="home" size={{ height: "medium" }} />
             </ExampleContainer>
             <ExampleContainer>
@@ -4505,7 +4505,7 @@ const Button = () => (
                 size={{ height: "medium" }}
               />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton
                 mode="secondary"
                 semantic="info"
@@ -4537,7 +4537,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="secondary" semantic="info" icon="home" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="secondary" semantic="info" icon="home" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer>
@@ -4564,7 +4564,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="tertiary" semantic="info" label="Tertiary" size={{ height: "medium" }} />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="tertiary" semantic="info" label="Tertiary" size={{ height: "medium" }} />
             </ExampleContainer>
             <ExampleContainer>
@@ -4581,7 +4581,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="tertiary" semantic="info" label="Tertiary" icon="home" size={{ height: "medium" }} />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="tertiary" semantic="info" label="Tertiary" icon="home" size={{ height: "medium" }} />
             </ExampleContainer>
             <ExampleContainer>
@@ -4626,7 +4626,7 @@ const Button = () => (
                 size={{ height: "medium" }}
               />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton
                 mode="tertiary"
                 semantic="info"
@@ -4658,7 +4658,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="tertiary" semantic="info" icon="home" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="tertiary" semantic="info" icon="home" size={{ height: "medium" }} title="Home" />
             </ExampleContainer>
             <ExampleContainer>
@@ -4688,7 +4688,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton label="Primary" semantic="info" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton label="Primary" semantic="info" />
             </ExampleContainer>
             <ExampleContainer>
@@ -4705,7 +4705,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton label="Primary" semantic="info" icon="home" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton label="Primary" semantic="info" icon="home" />
             </ExampleContainer>
             <ExampleContainer>
@@ -4722,7 +4722,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton label="Primary" semantic="info" icon="home" iconPosition="after" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton label="Primary" semantic="info" icon="home" iconPosition="after" />
             </ExampleContainer>
             <ExampleContainer>
@@ -4739,7 +4739,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton icon="home" semantic="info" title="Home" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton icon="home" semantic="info" title="Home" />
             </ExampleContainer>
             <ExampleContainer>
@@ -4786,7 +4786,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="secondary" semantic="info" label="Secondary" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="secondary" semantic="info" label="Secondary" />
             </ExampleContainer>
             <ExampleContainer>
@@ -4803,7 +4803,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="secondary" semantic="info" label="Secondary" icon="home" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="secondary" semantic="info" label="Secondary" icon="home" />
             </ExampleContainer>
             <ExampleContainer>
@@ -4820,7 +4820,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="secondary" semantic="info" label="Secondary" icon="home" iconPosition="after" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="secondary" semantic="info" label="Secondary" icon="home" iconPosition="after" />
             </ExampleContainer>
             <ExampleContainer>
@@ -4837,7 +4837,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="secondary" semantic="info" icon="home" title="Home" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="secondary" semantic="info" icon="home" title="Home" />
             </ExampleContainer>
             <ExampleContainer>
@@ -4857,7 +4857,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="tertiary" semantic="info" label="Tertiary" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="tertiary" semantic="info" label="Tertiary" />
             </ExampleContainer>
             <ExampleContainer>
@@ -4874,7 +4874,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="tertiary" semantic="info" label="Tertiary" icon="home" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="tertiary" semantic="info" label="Tertiary" icon="home" />
             </ExampleContainer>
             <ExampleContainer>
@@ -4891,7 +4891,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="tertiary" semantic="info" label="Tertiary" icon="home" iconPosition="after" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="tertiary" semantic="info" label="Tertiary" icon="home" iconPosition="after" />
             </ExampleContainer>
             <ExampleContainer>
@@ -4908,7 +4908,7 @@ const Button = () => (
             <ExampleContainer pseudoState="pseudo-focus">
               <DxcButton mode="tertiary" semantic="info" icon="home" title="Home" />
             </ExampleContainer>
-            <ExampleContainer pseudoState="pseudo-active">
+            <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
               <DxcButton mode="tertiary" semantic="info" icon="home" title="Home" />
             </ExampleContainer>
             <ExampleContainer>

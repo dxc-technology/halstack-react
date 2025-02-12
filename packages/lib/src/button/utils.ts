@@ -13,7 +13,7 @@ export const getButtonStyles = (
 
   const commonStyles = `
     font-family: var(--typography-font-family);
-    font-size: var(${size?.height === "large" ? "--typography-label-l" : "--typography-label-m"});
+    font-size: var(${["medium", "small"].includes(size?.height ?? "") ? "--typography-label-m" : "--typography-label-l"});
     font-weight: var(--typography-label-semibold);
     border: var(--border-width-none) var(--border-style-default) transparent;
     border-radius: var(--border-radius-s);

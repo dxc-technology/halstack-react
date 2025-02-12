@@ -17,7 +17,8 @@ const Button = styled.button<{
   align-items: center;
   justify-content: center;
   flex-direction: ${({ iconPosition }) => (iconPosition === "after" ? "row" : "row-reverse")};
-  gap: ${({ size }) => (size.height === "large" ? "var(--spacing-gap-s)" : "var(--spacing-gap-xs)")};
+  gap: ${({ size }) =>
+    ["medium", "small"].includes(size?.height ?? "") ? "var(--spacing-gap-xs)" : "var(--spacing-gap-s)"};
   height: ${({ size }) => getHeight(size.height)};
   width: ${(props) => calculateWidth(props.margin, props.size)};
   cursor: pointer;
@@ -37,6 +38,8 @@ const Button = styled.button<{
         return "padding: var(--spacing-padding-none) var(--spacing-padding-xs)";
       case "large":
         return `padding: var(--spacing-padding-none) var(${iconOnly ? "--spacing-padding-xs" : "--spacing-padding-m"});`;
+      default:
+        return `padding: var(--spacing-padding-none) var(${iconOnly ? "--spacing-padding-xs" : "--spacing-padding-m"});`;
     }
   }};
 
@@ -54,10 +57,12 @@ const IconContainer = styled.div<{
   size: Size;
 }>`
   display: flex;
-  font-size: ${({ size }) => (size?.height === "large" ? "var(--height-s)" : "var(--height-xxs)")};
+  font-size: ${({ size }) =>
+    ["medium", "small"].includes(size?.height ?? "") ? "var(--height-xxs)" : "var(--height-s)"};
   svg {
-    height: ${({ size }) => (size?.height === "large" ? "var(--height-s)" : "var(--height-xxs)")};
-    width: ${({ size }) => (size?.height === "large" ? "24" : "16")}px;
+    height: ${({ size }) =>
+      ["medium", "small"].includes(size?.height ?? "") ? "var(--height-xxs)" : "var(--height-s)"};
+    width: ${({ size }) => (["medium", "small"].includes(size?.height ?? "") ? "16" : "24")}px;
   }
 `;
 
