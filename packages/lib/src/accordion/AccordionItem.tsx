@@ -117,16 +117,19 @@ const AccordionTrigger = styled.button`
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
   :focus {
     background-color: ${(props) => `${props.theme.focusBackgroundColor}`};
-    outline: ${(props) =>
-      `${props.theme.focusBorderColor} ${props.theme.focusBorderStyle} ${props.theme.focusBorderThickness}`};
+    box-shadow: inset 0 0 0 ${(props) => props.theme.focusBorderThickness} ${(props) => props.theme.focusBorderColor};
   }
-  :hover:enabled {
-    background-color: ${(props) => `${props.theme.hoverBackgroundColor}`};
+  :focus-visible {
+    background-color: ${(props) => `${props.theme.focusBackgroundColor}`};
+    box-shadow: inset 0 0 0 ${(props) => props.theme.focusBorderThickness} ${(props) => props.theme.focusBorderColor};
+    outline: none;
   }
   :active:enabled {
     background-color: ${(props) => `${props.theme.activeBackgroundColor}`};
-    outline: ${(props) =>
-      `${props.theme.focusBorderColor} ${props.theme.focusBorderStyle} ${props.theme.focusBorderThickness}`};
+    box-shadow: inset 0 0 0 ${(props) => props.theme.focusBorderThickness} ${(props) => props.theme.focusBorderColor};
+  }
+  :hover:enabled {
+    background-color: ${(props) => `${props.theme.hoverBackgroundColor}`};
   }
 `;
 
