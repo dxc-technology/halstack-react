@@ -4,6 +4,101 @@ import styled from "styled-components";
 import { CalendarPropsType, DateType } from "./types";
 import { HalstackLanguageContext } from "../HalstackContext";
 
+const CalendarContainer = styled.div`
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0px 8px 8px 8px;
+  width: 292px;
+  font-family: ${(props) => props.theme.dateInput.pickerFontFamily};
+  font-size: ${(props) => props.theme.dateInput.pickerFontSize};
+  color: ${(props) => props.theme.dateInput.pickerFontColor};
+  font-weight: ${(props) => props.theme.dateInput.pickerFontWeight};
+`;
+
+const CalendarHeaderRow = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const WeekHeaderCell = styled.span`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+`;
+
+const MonthContainer = styled.div`
+  box-sizing: border-box;
+  display: flex;
+  gap: 4px;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+
+const WeekContainer = styled.div`
+  box-sizing: border-box;
+  display: flex;
+  gap: 4px;
+  justify-content: space-between;
+`;
+
+const DayCellButton = styled.button<{
+  selected: boolean;
+  actualMonth: boolean;
+  isCurrentDay: boolean;
+}>`
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  font-family: ${(props) => props.theme.dateInput.pickerFontFamily};
+  font-size: ${(props) => props.theme.dateInput.pickerFontSize};
+  color: ${(props) => props.theme.dateInput.pickerFontColor};
+  font-weight: ${(props) => props.theme.dateInput.pickerFontWeight};
+
+  &:focus {
+    outline: ${(props) => props.theme.dateInput.pickerFocusColor} solid 2px;
+  }
+  &:hover {
+    background-color: ${(props) =>
+      props.selected
+        ? props.theme.dateInput.pickerSelectedBackgroundColor
+        : props.theme.dateInput.pickerHoverBackgroundColor};
+    color: ${(props) =>
+      props.selected ? props.theme.dateInput.pickerSelectedFontColor : props.theme.dateInput.pickerHoverFontColor};
+  }
+  &:active {
+    background-color: ${(props) => props.theme.dateInput.pickerActiveBackgroundColor};
+    color: ${(props) => props.theme.dateInput.pickerActiveFontColor};
+  }
+
+  ${(props) =>
+    props.isCurrentDay &&
+    !props.selected &&
+    `border: ${props.theme.dateInput.pickerCurrentDateBorderWidth} solid ${props.theme.dateInput.pickerCurrentDateBorderColor};`}
+  background-color: ${(props) =>
+    props.selected ? props.theme.dateInput.pickerSelectedBackgroundColor : "transparent"};
+  color: ${(props) =>
+    props.selected
+      ? props.theme.dateInput.pickerSelectedFontColor
+      : props.isCurrentDay
+        ? props.theme.dateInput.pickerCurrentDateFontColor
+        : !props.actualMonth
+          ? props.theme.dateInput.pickerNonCurrentMonthFontColor
+          : props.theme.dateInput.pickerFontColor};
+`;
+
 const getDays = (innerDate: Dayjs) => {
   const monthDayCells: DateType[] = [];
   const lastMonthNumberOfDays = innerDate.set("month", innerDate.get("month") - 1).endOf("month");
@@ -206,100 +301,5 @@ const Calendar = ({
     </CalendarContainer>
   );
 };
-
-const CalendarContainer = styled.div`
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 0px 8px 8px 8px;
-  width: 292px;
-  font-family: ${(props) => props.theme.dateInput.pickerFontFamily};
-  font-size: ${(props) => props.theme.dateInput.pickerFontSize};
-  color: ${(props) => props.theme.dateInput.pickerFontColor};
-  font-weight: ${(props) => props.theme.dateInput.pickerFontWeight};
-`;
-
-const CalendarHeaderRow = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-const WeekHeaderCell = styled.span`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-`;
-
-const MonthContainer = styled.div`
-  box-sizing: border-box;
-  display: flex;
-  gap: 4px;
-  flex-direction: column;
-  justify-content: space-between;
-`;
-
-const WeekContainer = styled.div`
-  box-sizing: border-box;
-  display: flex;
-  gap: 4px;
-  justify-content: space-between;
-`;
-
-const DayCellButton = styled.button<{
-  selected: boolean;
-  actualMonth: boolean;
-  isCurrentDay: boolean;
-}>`
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  width: 36px;
-  height: 36px;
-  padding: 0;
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  font-family: ${(props) => props.theme.dateInput.pickerFontFamily};
-  font-size: ${(props) => props.theme.dateInput.pickerFontSize};
-  color: ${(props) => props.theme.dateInput.pickerFontColor};
-  font-weight: ${(props) => props.theme.dateInput.pickerFontWeight};
-
-  &:focus {
-    outline: ${(props) => props.theme.dateInput.pickerFocusColor} solid 2px;
-  }
-  &:hover {
-    background-color: ${(props) =>
-      props.selected
-        ? props.theme.dateInput.pickerSelectedBackgroundColor
-        : props.theme.dateInput.pickerHoverBackgroundColor};
-    color: ${(props) =>
-      props.selected ? props.theme.dateInput.pickerSelectedFontColor : props.theme.dateInput.pickerHoverFontColor};
-  }
-  &:active {
-    background-color: ${(props) => props.theme.dateInput.pickerActiveBackgroundColor};
-    color: ${(props) => props.theme.dateInput.pickerActiveFontColor};
-  }
-
-  ${(props) =>
-    props.isCurrentDay &&
-    !props.selected &&
-    `border: ${props.theme.dateInput.pickerCurrentDateBorderWidth} solid ${props.theme.dateInput.pickerCurrentDateBorderColor};`}
-  background-color: ${(props) =>
-    props.selected ? props.theme.dateInput.pickerSelectedBackgroundColor : "transparent"};
-  color: ${(props) =>
-    props.selected
-      ? props.theme.dateInput.pickerSelectedFontColor
-      : props.isCurrentDay
-        ? props.theme.dateInput.pickerCurrentDateFontColor
-        : !props.actualMonth
-          ? props.theme.dateInput.pickerNonCurrentMonthFontColor
-          : props.theme.dateInput.pickerFontColor};
-`;
 
 export default memo(Calendar);

@@ -3,62 +3,6 @@ import { useEffect, useId, useState, memo, KeyboardEvent } from "react";
 import styled from "styled-components";
 import { YearPickerPropsType } from "./types";
 
-const getYearsArray = () => {
-  const yearList = [];
-  for (let i = 1899; i <= 2100; i++) {
-    yearList.push(i);
-  }
-  return yearList;
-};
-const yearList = getYearsArray();
-
-const YearPicker = ({ onYearSelect, selectedDate, today }: YearPickerPropsType): JSX.Element => {
-  const id = useId();
-  const [yearToFocus, setYearToFocus] = useState(selectedDate ? selectedDate.get("year") : dayjs().get("year"));
-
-  useEffect(() => {
-    const yearToFocusEl = document.getElementById(`${id}_year_${yearToFocus}`);
-    yearToFocusEl?.scrollIntoView?.({ block: "nearest", inline: "start" });
-    yearToFocusEl?.focus();
-  }, [yearToFocus]);
-
-  const handleDayKeyboardEvent = (event: KeyboardEvent<HTMLButtonElement>) => {
-    switch (event.key) {
-      case "ArrowUp":
-        setYearToFocus((prev) => (prev > 1899 ? prev - 1 : prev));
-        break;
-      case "ArrowDown":
-        setYearToFocus((prev) => (prev < 2100 ? prev + 1 : prev));
-        break;
-      default:
-        break;
-    }
-  };
-
-  return (
-    <YearPickerContainer role="listbox" aria-label="Year Picker">
-      {yearList.map((year) => (
-        <YearPickerButton
-          aria-label={year.toString()}
-          key={year}
-          selected={selectedDate?.get("year") === year}
-          aria-selected={selectedDate?.get("year") === year}
-          tabIndex={yearToFocus === year ? 0 : -1}
-          isCurrentYear={today.get("year") === year}
-          onKeyDown={(event) => handleDayKeyboardEvent(event)}
-          id={`${id}_year_${year}`}
-          onClick={() => {
-            onYearSelect(year);
-          }}
-          role="option"
-        >
-          {year}
-        </YearPickerButton>
-      ))}
-    </YearPickerContainer>
-  );
-};
-
 const YearPickerContainer = styled.div`
   box-sizing: border-box;
   display: flex;
@@ -119,5 +63,62 @@ const YearPickerButton = styled.button<{
     background-color: ${(props) => props.theme.dateInput.pickerActiveBackgroundColor} !important;
   }
 `;
+
+const getYearsArray = () => {
+  const yearList = [];
+  for (let i = 1899; i <= 2100; i++) {
+    yearList.push(i);
+  }
+  return yearList;
+};
+
+const yearList = getYearsArray();
+
+const YearPicker = ({ onYearSelect, selectedDate, today }: YearPickerPropsType): JSX.Element => {
+  const id = useId();
+  const [yearToFocus, setYearToFocus] = useState(selectedDate ? selectedDate.get("year") : dayjs().get("year"));
+
+  useEffect(() => {
+    const yearToFocusEl = document.getElementById(`${id}_year_${yearToFocus}`);
+    yearToFocusEl?.scrollIntoView?.({ block: "nearest", inline: "start" });
+    yearToFocusEl?.focus();
+  }, [yearToFocus]);
+
+  const handleDayKeyboardEvent = (event: KeyboardEvent<HTMLButtonElement>) => {
+    switch (event.key) {
+      case "ArrowUp":
+        setYearToFocus((prev) => (prev > 1899 ? prev - 1 : prev));
+        break;
+      case "ArrowDown":
+        setYearToFocus((prev) => (prev < 2100 ? prev + 1 : prev));
+        break;
+      default:
+        break;
+    }
+  };
+
+  return (
+    <YearPickerContainer role="listbox" aria-label="Year Picker">
+      {yearList.map((year) => (
+        <YearPickerButton
+          aria-label={year.toString()}
+          key={year}
+          selected={selectedDate?.get("year") === year}
+          aria-selected={selectedDate?.get("year") === year}
+          tabIndex={yearToFocus === year ? 0 : -1}
+          isCurrentYear={today.get("year") === year}
+          onKeyDown={(event) => handleDayKeyboardEvent(event)}
+          id={`${id}_year_${year}`}
+          onClick={() => {
+            onYearSelect(year);
+          }}
+          role="option"
+        >
+          {year}
+        </YearPickerButton>
+      ))}
+    </YearPickerContainer>
+  );
+};
 
 export default memo(YearPicker);
