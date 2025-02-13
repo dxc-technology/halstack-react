@@ -5,9 +5,6 @@ import { DropdownMenuProps } from "./types";
 import { scrollbarStyles } from "../styles/scroll";
 
 const DropdownMenuContainer = styled.ul`
-  display: inline-flex;
-  flex-direction: column;
-  align-items: flex-start;
   box-sizing: border-box;
   max-height: 230px;
   min-width: min-content;
