@@ -1,21 +1,17 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
 import ButtonPageLayout from "screens/components/button/ButtonPageLayout";
-import ButtonCodePage from "screens/components/button/code/ButtonCodePage";
+import ButtonOverviewPage from "screens/components/button/overview/ButtonOverviewPage";
 
-const Index = () => {
-  return (
-    <>
-      <Head>
-        <title>Button — Halstack Design System</title>
-      </Head>
-      <ButtonCodePage></ButtonCodePage>
-    </>
-  );
-};
+const Index = () => (
+  <>
+    <Head>
+      <title>Button — Halstack Design System</title>
+    </Head>
+    <ButtonOverviewPage />
+  </>
+);
 
-Index.getLayout = function getLayout(page: ReactElement) {
-  return <ButtonPageLayout>{page}</ButtonPageLayout>;
-};
+Index.getLayout = (page: ReactElement) => <ButtonPageLayout>{page}</ButtonPageLayout>;
 
 export default Index;
