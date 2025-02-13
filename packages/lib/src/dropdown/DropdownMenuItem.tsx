@@ -3,6 +3,48 @@ import styled from "styled-components";
 import { DropdownMenuItemProps } from "./types";
 import DxcIcon from "../icon/Icon";
 
+const DropdownMenuItemContainer = styled.li<{ visuallyFocused: DropdownMenuItemProps["visuallyFocused"] }>`
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-gap-xs);
+  min-height: 36px;
+  padding: 0px var(--spacing-padding-xs);
+  cursor: pointer;
+
+  ${(props) =>
+    props.visuallyFocused &&
+    `
+  outline: var(--border-width-m) solid var(--border-color-secondary-medium); 
+  outline-offset: calc(-1 * var(--border-width-m));
+`}
+  &:hover {
+    background-color: var(--color-bg-neutral-light);
+  }
+  &:active {
+    background-color: var(--color-bg-neutral-light);
+  }
+`;
+
+const DropdownMenuItemLabel = styled.span`
+  font-family: var(--typography-font-family);
+  font-size: var(--typography-label-l);
+  font-weight: var(--typography-label-regular);
+  color: var(--color-fg-neutral-dark);
+  white-space: nowrap;
+`;
+
+const DropdownMenuItemIcon = styled.div`
+  display: flex;
+  color: var(--color-fg-neutral-dark);
+  font-size: var(--typography-label-xl);
+
+  svg {
+    width: 20px;
+    height: var(--height-xs);
+  }
+`;
+
 const DropdownMenuItem = ({
   id,
   visuallyFocused,
@@ -28,47 +70,5 @@ const DropdownMenuItem = ({
     {iconPosition === "before" && <DropdownMenuItemLabel>{option.label}</DropdownMenuItemLabel>}
   </DropdownMenuItemContainer>
 );
-
-const DropdownMenuItemContainer = styled.li<{ visuallyFocused: DropdownMenuItemProps["visuallyFocused"] }>`
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  gap: ${(props) => props.theme.optionIconSpacing};
-  min-height: 36px;
-  padding-top: ${(props) => props.theme.optionPaddingTop};
-  padding-bottom: ${(props) => props.theme.optionPaddingBottom};
-  padding-left: ${(props) => props.theme.optionPaddingLeft};
-  padding-right: ${(props) => props.theme.optionPaddingRight};
-  cursor: pointer;
-
-  ${(props) => props.visuallyFocused && `outline: ${props.theme.focusColor} solid 2px; outline-offset: -2px;`}
-  &:hover {
-    background-color: ${(props) => props.theme.hoverOptionBackgroundColor};
-  }
-  &:active {
-    background-color: ${(props) => props.theme.activeOptionBackgroundColor};
-  }
-`;
-
-const DropdownMenuItemLabel = styled.span`
-  font-family: ${(props) => props.theme.optionFontFamily};
-  font-size: ${(props) => props.theme.optionFontSize};
-  font-style: ${(props) => props.theme.optionFontStyle};
-  font-weight: ${(props) => props.theme.optionFontWeight};
-  line-height: 1.5rem;
-  color: ${(props) => props.theme.optionFontColor};
-  white-space: nowrap;
-`;
-
-const DropdownMenuItemIcon = styled.div`
-  display: flex;
-  color: ${(props) => props.theme.optionIconColor};
-  font-size: ${(props) => props.theme.optionIconSize};
-
-  svg {
-    width: ${(props) => props.theme.optionIconSize};
-    height: ${(props) => props.theme.optionIconSize};
-  }
-`;
 
 export default memo(DropdownMenuItem);

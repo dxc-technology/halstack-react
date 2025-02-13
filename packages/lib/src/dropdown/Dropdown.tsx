@@ -10,6 +10,113 @@ import DropdownMenu from "./DropdownMenu";
 import DropdownPropsType from "./types";
 import { Tooltip } from "../tooltip/Tooltip";
 
+const sizes = {
+  small: "60px",
+  medium: "240px",
+  large: "480px",
+  fillParent: "100%",
+  fitContent: "fit-content",
+};
+
+const calculateWidth = (margin: DropdownPropsType["margin"], size: DropdownPropsType["size"]) =>
+  size != null &&
+  (size === "fillParent"
+    ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
+    : sizes[size]);
+
+const DropdownContainer = styled.div<{
+  margin: DropdownPropsType["margin"];
+  size: DropdownPropsType["size"];
+}>`
+  width: ${(props) => calculateWidth(props.margin, props.size)};
+  margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
+  margin-top: ${(props) =>
+    props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
+  margin-right: ${(props) =>
+    props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
+  margin-bottom: ${(props) =>
+    props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
+  margin-left: ${(props) =>
+    props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
+`;
+
+const DropdownTrigger = styled.button<{
+  label: DropdownPropsType["label"];
+  margin: DropdownPropsType["margin"];
+  size: DropdownPropsType["size"];
+}>`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-gap-s);
+  width: 100%;
+  height: var(--height-m);
+  min-width: ${(props) => (props.label === "" ? "0px" : calculateWidth(props.margin, props.size))};
+  border: 0;
+  border-radius: var(--border-radius-s);
+  background-color: ${(props) =>
+    props.disabled ? "var(--color-bg-neutral-lightest);" : "var(--color-bg-neutral-light);"};
+  color: ${(props) => (props.disabled ? "var(--color-fg-neutral-medium);" : "var(--color-fg-neutral-dark);")};
+  cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
+
+  ${(props) =>
+    !props.disabled &&
+    `
+      &:focus {
+        outline: 2px solid var(--border-color-secondary-medium);
+      }
+      &:hover {
+        background-color: var(--color-bg-neutral-light);
+      }
+      &:active {
+        background-color: var(--color-bg-neutral-light);
+      }
+  `};
+`;
+
+const DropdownTriggerContent = styled.span`
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-gap-s);
+  margin-left: 0px;
+  margin-right: 0px;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+`;
+
+const DropdownTriggerLabel = styled.span`
+  font-family: var(--typography-font-family);
+  font-size: var(--typography-label-l);
+  font-weight: var(--typography-label-regular);
+  text-overflow: ellipsis;
+  overflow: hidden;
+`;
+
+const DropdownTriggerIcon = styled.span<{
+  disabled: DropdownPropsType["disabled"];
+}>`
+  display: flex;
+  color: var(--color-fg-neutral-dark);
+  font-size: var(--typography-label-xl);
+
+  svg {
+    width: 20px;
+    height: var(--height-xs);
+  }
+`;
+
+const CaretIcon = styled.span<{ disabled: DropdownPropsType["disabled"] }>`
+  display: flex;
+  color: ${(props) => (props.disabled ? "var(--color-fg-neutral-medium);" : "var(--color-fg-neutral-dark);")};
+  font-size: var(--typography-label-l);
+
+  svg {
+    width: 16px;
+    height: var(--height-xxs);
+  }
+`;
+
 const DxcDropdown = ({
   options,
   optionsIconPosition = "before",
@@ -219,119 +326,5 @@ const DxcDropdown = ({
     </ThemeProvider>
   );
 };
-
-const sizes = {
-  small: "60px",
-  medium: "240px",
-  large: "480px",
-  fillParent: "100%",
-  fitContent: "fit-content",
-};
-
-const calculateWidth = (margin: DropdownPropsType["margin"], size: DropdownPropsType["size"]) =>
-  size != null &&
-  (size === "fillParent"
-    ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
-    : sizes[size]);
-
-const DropdownContainer = styled.div<{
-  margin: DropdownPropsType["margin"];
-  size: DropdownPropsType["size"];
-}>`
-  width: ${(props) => calculateWidth(props.margin, props.size)};
-  margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
-  margin-top: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
-  margin-right: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
-  margin-bottom: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
-  margin-left: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
-`;
-
-const DropdownTrigger = styled.button<{
-  label: DropdownPropsType["label"];
-  margin: DropdownPropsType["margin"];
-  size: DropdownPropsType["size"];
-}>`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: ${(props) => props.theme.caretIconSpacing};
-  width: 100%;
-  height: ${(props) => props.theme.buttonHeight};
-  min-width: ${(props) => (props.label === "" ? "0px" : calculateWidth(props.margin, props.size))};
-  border-radius: ${(props) => props.theme.buttonBorderRadius};
-  border-width: ${(props) => props.theme.buttonBorderThickness};
-  border-style: ${(props) => props.theme.buttonBorderStyle};
-  border-color: ${(props) => (props.disabled ? props.theme.disabledButtonBorderColor : props.theme.buttonBorderColor)};
-  padding-top: ${(props) => props.theme.buttonPaddingTop};
-  padding-bottom: ${(props) => props.theme.buttonPaddingBottom};
-  padding-left: ${(props) => props.theme.buttonPaddingLeft};
-  padding-right: ${(props) => props.theme.buttonPaddingRight};
-  background-color: ${(props) =>
-    props.disabled ? props.theme.disabledButtonBackgroundColor : props.theme.buttonBackgroundColor};
-  color: ${(props) => (props.disabled ? props.theme.disabledColor : props.theme.buttonFontColor)};
-  cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
-
-  ${(props) =>
-    !props.disabled &&
-    `
-      &:focus {
-        outline: 2px solid ${props.theme.focusColor};
-      }
-      &:hover {
-        background-color: ${props.theme.hoverButtonBackgroundColor};
-      }
-      &:active {
-        background-color: ${props.theme.activeButtonBackgroundColor};
-      }
-  `};
-`;
-
-const DropdownTriggerContent = styled.span`
-  display: flex;
-  align-items: center;
-  gap: ${(props) => props.theme.buttonIconSpacing};
-  margin-left: 0px;
-  margin-right: 0px;
-  width: 100%;
-  overflow: hidden;
-  white-space: nowrap;
-`;
-
-const DropdownTriggerLabel = styled.span`
-  font-family: ${(props) => props.theme.buttonFontFamily};
-  font-size: ${(props) => props.theme.buttonFontSize};
-  font-style: ${(props) => props.theme.buttonFontStyle};
-  font-weight: ${(props) => props.theme.buttonFontWeight};
-  text-overflow: ellipsis;
-  overflow: hidden;
-`;
-
-const DropdownTriggerIcon = styled.span<{
-  disabled: DropdownPropsType["disabled"];
-}>`
-  display: flex;
-  color: ${(props) => (props.disabled ? props.theme.disabledColor : props.theme.buttonIconColor)};
-  font-size: ${(props) => props.theme.buttonIconSize};
-
-  svg {
-    width: ${(props) => props.theme.buttonIconSize};
-    height: ${(props) => props.theme.buttonIconSize};
-  }
-`;
-
-const CaretIcon = styled.span<{ disabled: DropdownPropsType["disabled"] }>`
-  display: flex;
-  color: ${(props) => (props.disabled ? props.theme.disabledColor : props.theme.caretIconColor)};
-  font-size: ${(props) => props.theme.caretIconSize};
-
-  svg {
-    width: ${(props) => props.theme.caretIconSize};
-    height: ${(props) => props.theme.caretIconSize};
-  }
-`;
 
 export default DxcDropdown;
