@@ -18,7 +18,7 @@ const Button = styled.button<{
   justify-content: center;
   flex-direction: ${({ iconPosition }) => (iconPosition === "after" ? "row" : "row-reverse")};
   gap: ${({ size }) =>
-    ["medium", "small"].includes(size?.height ?? "") ? "var(--spacing-gap-xs)" : "var(--spacing-gap-s)"};
+    size.height === "medium" || size.height === "small" ? "var(--spacing-gap-xs)" : "var(--spacing-gap-s)"};
   height: ${({ size }) => getHeight(size.height)};
   width: ${(props) => calculateWidth(props.margin, props.size)};
   cursor: pointer;
@@ -58,11 +58,11 @@ const IconContainer = styled.div<{
 }>`
   display: flex;
   font-size: ${({ size }) =>
-    ["medium", "small"].includes(size?.height ?? "") ? "var(--height-xxs)" : "var(--height-s)"};
+    size.height === "medium" || size.height === "small" ? "var(--height-xxs)" : "var(--height-s)"};
   svg {
     height: ${({ size }) =>
-      ["medium", "small"].includes(size?.height ?? "") ? "var(--height-xxs)" : "var(--height-s)"};
-    width: ${({ size }) => (["medium", "small"].includes(size?.height ?? "") ? "16" : "24")}px;
+      size.height === "medium" || size.height === "small" ? "var(--height-xxs)" : "var(--height-s)"};
+    width: ${({ size }) => (size.height === "medium" || size.height === "small" ? "16" : "24")}px;
   }
 `;
 

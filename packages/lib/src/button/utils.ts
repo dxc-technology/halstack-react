@@ -13,7 +13,7 @@ export const getButtonStyles = (
 
   const commonStyles = `
     font-family: var(--typography-font-family);
-    font-size: var(${["medium", "small"].includes(size?.height ?? "") ? "--typography-label-m" : "--typography-label-l"});
+    font-size: var(${size.height === "medium" || size.height === "small" ? "--typography-label-m" : "--typography-label-l"});
     font-weight: var(--typography-label-semibold);
     border: var(--border-width-none) var(--border-style-default) transparent;
     border-radius: var(--border-radius-s);
@@ -41,7 +41,7 @@ export const getButtonStyles = (
           color: var(--color-fg-error-light);`;
           break;
         case "warning":
-          enabled = `background-color:var(--color-bg-warning-strong);`;
+          enabled = `background-color: var(--color-bg-warning-strong);`;
           hover = `background-color: var(--color-bg-warning-stronger);`;
           active = `background-color: var(--color-bg-warning-strongest);`;
           disabled = `background-color: var(--color-bg-warning-lightest);
