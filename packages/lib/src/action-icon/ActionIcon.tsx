@@ -22,15 +22,9 @@ const ActionIcon = styled.button`
       &:focus,
       &:focus-visible {
         outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
-        color: var(--color-fg-neutral-dark);        
       }
       &:hover {
         background-color: var(--color-bg-alpha-light);
-        color: var(--color-fg-neutral-dark);
-      }
-      &:active {
-        outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
-        color: var(--color-fg-neutral-dark);
       }
     `}
   font-size: var(--height-xxs);
