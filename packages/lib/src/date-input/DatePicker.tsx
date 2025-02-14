@@ -51,7 +51,7 @@ const HeaderButton = styled.button`
   }
   &:active {
     color: var(--color-bg-neutral-lightest);
-    background-color: var(--color-bg-neutral-lightest);
+    background-color: var(--color-bg-primary-stronger);
   }
 
   span::before {

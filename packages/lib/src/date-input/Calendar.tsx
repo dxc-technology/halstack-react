@@ -9,12 +9,11 @@ const CalendarContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 0px 8px 8px 8px;
   width: 292px;
-  font-family: ${(props) => props.theme.dateInput.pickerFontFamily};
-  font-size: ${(props) => props.theme.dateInput.pickerFontSize};
-  color: ${(props) => props.theme.dateInput.pickerFontColor};
-  font-weight: ${(props) => props.theme.dateInput.pickerFontWeight};
+  font-family: var(--typography-font-family);
+  font-size: var(--typography-label-m);
+  color: var(--color-fg-neutral-dark);
+  font-weight: var(--typography-label-regular);
 `;
 
 const CalendarHeaderRow = styled.div`
@@ -29,14 +28,14 @@ const WeekHeaderCell = styled.span`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
+  width: 32px;
+  height: var(--height-m);
 `;
 
 const MonthContainer = styled.div`
   box-sizing: border-box;
   display: flex;
-  gap: 4px;
+  gap: var(--spacing-gap-xs);
   flex-direction: column;
   justify-content: space-between;
 `;
@@ -44,7 +43,7 @@ const MonthContainer = styled.div`
 const WeekContainer = styled.div`
   box-sizing: border-box;
   display: flex;
-  gap: 4px;
+  gap: var(--spacing-gap-xs);
   justify-content: space-between;
 `;
 
@@ -56,47 +55,35 @@ const DayCellButton = styled.button<{
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  width: 36px;
-  height: 36px;
+  width: 32px;
+  height: var(--height-m);
   padding: 0;
   border: none;
-  border-radius: 50%;
+  border-radius: var(--border-radius-xl);
   cursor: pointer;
-  font-family: ${(props) => props.theme.dateInput.pickerFontFamily};
-  font-size: ${(props) => props.theme.dateInput.pickerFontSize};
-  color: ${(props) => props.theme.dateInput.pickerFontColor};
-  font-weight: ${(props) => props.theme.dateInput.pickerFontWeight};
-
+  font-family: var(--typography-font-family);
+  font-size: var(--typography-label-m);
+  color: var(--color-fg-neutral-dark);
+  font-weight: var(--typography-label-regular, 400);
+  background-color: ${(props) => (props.selected ? "var(--color-bg-primary-strong);" : "transparent")};
+  color: ${(props) =>
+    props.selected
+      ? "var(--color-fg-neutral-bright);"
+      : !props.actualMonth
+        ? "var(--color-fg-neutral-medium);"
+        : "var(--color-fg-neutral-dark);"};
   &:focus {
-    outline: ${(props) => props.theme.dateInput.pickerFocusColor} solid 2px;
+    outline: var(--border-width-m) solid var(--border-color-secondary-medium);
   }
   &:hover {
     background-color: ${(props) =>
-      props.selected
-        ? props.theme.dateInput.pickerSelectedBackgroundColor
-        : props.theme.dateInput.pickerHoverBackgroundColor};
-    color: ${(props) =>
-      props.selected ? props.theme.dateInput.pickerSelectedFontColor : props.theme.dateInput.pickerHoverFontColor};
+      props.selected ? "var(--color-bg-primary-strong);" : "var(--color-bg-primary-lighter);"};
+    color: ${(props) => (props.selected ? "var(--color-fg-neutral-bright);" : "var(--color-fg-neutral-dark);")};
   }
   &:active {
-    background-color: ${(props) => props.theme.dateInput.pickerActiveBackgroundColor};
-    color: ${(props) => props.theme.dateInput.pickerActiveFontColor};
+    background-color: var(--color-bg-primary-stronger);
+    color: var(--color-fg-neutral-bright);
   }
-
-  ${(props) =>
-    props.isCurrentDay &&
-    !props.selected &&
-    `border: ${props.theme.dateInput.pickerCurrentDateBorderWidth} solid ${props.theme.dateInput.pickerCurrentDateBorderColor};`}
-  background-color: ${(props) =>
-    props.selected ? props.theme.dateInput.pickerSelectedBackgroundColor : "transparent"};
-  color: ${(props) =>
-    props.selected
-      ? props.theme.dateInput.pickerSelectedFontColor
-      : props.isCurrentDay
-        ? props.theme.dateInput.pickerCurrentDateFontColor
-        : !props.actualMonth
-          ? props.theme.dateInput.pickerNonCurrentMonthFontColor
-          : props.theme.dateInput.pickerFontColor};
 `;
 
 const getDays = (innerDate: Dayjs) => {
