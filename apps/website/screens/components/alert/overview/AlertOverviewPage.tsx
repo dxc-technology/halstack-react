@@ -21,7 +21,7 @@ import Example from "@/common/example/Example";
 
 const sections = [
   {
-    title: "Overview",
+    title: "Introduction",
     content: (
       <>
         <DxcParagraph>
