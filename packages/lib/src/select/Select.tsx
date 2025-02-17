@@ -449,16 +449,18 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
 
     const handleClearOptionsActionOnClick = (event: MouseEvent<HTMLButtonElement>) => {
       event.stopPropagation();
+
+      const empty: string[] = [];
       if (value == null) {
-        setInnerValue([]);
+        setInnerValue(empty);
       }
       if (!optional) {
         onChange?.({
-          value: [] as string[] as string & string[],
+          value: empty as string & string[],
           error: translatedLabels.formFields.requiredValueErrorMessage,
         });
       } else {
-        onChange?.({ value: [] as string[] as string & string[] });
+        onChange?.({ value: empty as string & string[] });
       }
     };
 
