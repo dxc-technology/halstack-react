@@ -114,39 +114,6 @@ const sections = [
     ],
   },
   {
-    title: "Variants",
-    content: (
-      <DxcParagraph>
-        The Badge component has two distinct variants, each serving specific purposes within our interface.
-      </DxcParagraph>
-    ),
-    subSections: [
-      {
-        title: "Notification badge",
-        content: (
-          <>
-            <DxcParagraph>
-              The notification badge is a non-interactive component that serves as an informative indicator, typically
-              used to display counts or alerts, such as the number of unread messages or missed notifications.
-            </DxcParagraph>
-            {/* INSERT CODE */}
-            {/* <Figure caption="Notification badge variants">
-              <Image src={notificationVariants} alt="Notification badge variants" />
-            </Figure> */}
-            <DxcParagraph>
-              This notification badge allows label, though it is not not mandatory to use it. You may want to use the
-              label to display the number of notifications missed, or just the empty badge to show that some changes
-              have been made to a certain section of the interface.
-            </DxcParagraph>
-            <DxcParagraph>
-              Only one color is allowed for this badge, which is red, and cannot be changed by any means.
-            </DxcParagraph>
-          </>
-        ),
-      },
-    ],
-  },
-  {
     title: "Best practices",
     content: (
       <>
