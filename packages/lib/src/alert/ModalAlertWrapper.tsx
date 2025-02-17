@@ -24,7 +24,7 @@ const Overlay = styled.div`
   position: fixed;
   inset: 0;
   height: 100%;
-  background-color: ${(props) => props.theme.overlayColor};
+  background-color: var(--color-bg-alpha-medium);
 `;
 
 const ModalAlertContainer = styled.div`

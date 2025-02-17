@@ -12,11 +12,12 @@ import DocFooter from "@/common/DocFooter";
 import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
 import Image from "@/common/Image";
 import anatomy from "./images/alert_anatomy.png";
-import banner from "./images/alert_banner.png";
-import dialog from "./images/alert_dialog.png";
-import inline from "./images/alert_inline.png";
+import banner from "./examples/banner";
+import dialog from "./examples/dialog";
+import inline from "./examples/inline";
 import Link from "next/link";
 import Code from "@/common/Code";
+import Example from "@/common/example/Example";
 
 const sections = [
   {
@@ -218,7 +219,7 @@ const sections = [
                 providing options to retry the payment or update billing information.
               </DxcBulletedList.Item>
             </DxcBulletedList>
-            <Image src={banner} alt="Alert banner" />
+            <Example example={banner} />
           </>
         ),
       },
@@ -254,7 +255,7 @@ const sections = [
                 privacy policy, requiring them to acknowledge the update before continuing.
               </DxcBulletedList.Item>
             </DxcBulletedList>
-            <Image src={dialog} alt="Alert dialog" />
+            <Example example={dialog} />
           </>
         ),
       },
@@ -290,7 +291,7 @@ const sections = [
                 documents are missing, with actions to upload the documents or get assistance.
               </DxcBulletedList.Item>
             </DxcBulletedList>
-            <Image src={inline} alt="Inline alert" />
+            <Example example={inline} />
           </>
         ),
       },
