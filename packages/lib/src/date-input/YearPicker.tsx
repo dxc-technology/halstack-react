@@ -14,13 +14,13 @@ const YearPickerContainer = styled.div`
   height: 312px;
   box-shadow: var(--shadow-mid-x-position) var(--shadow-mid-y-position) var(--shadow-mid-blur) var(--shadow-mid-spread)
     var(--shadow-light);
+  padding-top: var(--spacing-padding-xxxs); // This is required for outline to not overlap top header, please review
 `;
 
 const YearPickerButton = styled.button<{
   selected: boolean;
   isCurrentYear: boolean;
 }>`
-  box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -36,7 +36,7 @@ const YearPickerButton = styled.button<{
   color: var(--color-fg-neutral-dark);
   font-weight: var(--typography-label-regular);
 
-${(props) =>
+  ${(props) =>
     props.selected
       ? `font-size: var(--typography-label-xl);
          color: var(--color-fg-neutral-bright) !important;
