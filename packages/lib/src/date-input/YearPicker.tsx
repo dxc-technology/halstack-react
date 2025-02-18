@@ -14,7 +14,7 @@ const YearPickerContainer = styled.div`
   height: 312px;
   box-shadow: var(--shadow-mid-x-position) var(--shadow-mid-y-position) var(--shadow-mid-blur) var(--shadow-mid-spread)
     var(--shadow-light);
-  padding-top: var(--spacing-padding-xxxs); // This is required for outline to not overlap top header, please review
+  padding-top: var(--spacing-padding-xxxs);
 `;
 
 const YearPickerButton = styled.button<{
