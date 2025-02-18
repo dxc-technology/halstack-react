@@ -4,7 +4,7 @@ import TabsPageHeading from "@/common/TabsPageLayout";
 import ComponentHeading from "@/common/ComponentHeading";
 import { ReactNode } from "react";
 
-const BleedHeading = ({ children }: { children: ReactNode }) => {
+const BleedPageHeading = ({ children }: { children: ReactNode }) => {
   const tabs = [
     { label: "Overview", path: "/components/bleed" },
     { label: "Code", path: "/components/bleed/code" },
@@ -24,4 +24,4 @@ const BleedHeading = ({ children }: { children: ReactNode }) => {
   );
 };
 
-export default BleedHeading;
+export default BleedPageHeading;
