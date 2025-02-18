@@ -36,7 +36,7 @@ const contextualColorMap = {
 
 const notificationColor = {
   background: "var(--color-bg-error-strong)",
-  text: "var(--color-fg-neutral-lightest)",
+  text: "var(--color-fg-neutral-bright)",
 };
 
 const sizeMap = {
