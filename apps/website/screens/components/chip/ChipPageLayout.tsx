@@ -4,7 +4,7 @@ import TabsPageHeading from "@/common/TabsPageLayout";
 import ComponentHeading from "@/common/ComponentHeading";
 import { ReactNode } from "react";
 
-const ChipHeading = ({ children }: { children: ReactNode }) => {
+const ChipPageHeading = ({ children }: { children: ReactNode }) => {
   const tabs = [
     { label: "Overview", path: "/components/chip" },
     { label: "Code", path: "/components/chip/code" },
@@ -26,4 +26,4 @@ const ChipHeading = ({ children }: { children: ReactNode }) => {
   );
 };
 
-export default ChipHeading;
+export default ChipPageHeading;
