@@ -5,7 +5,6 @@ import DxcSelect from "../select/Select";
 import HalstackContext from "../HalstackContext";
 import PaginatorPropsType from "./types";
 import { HalstackLanguageContext } from "../HalstackContext";
-import DxcFlex from "../flex/Flex";
 
 const DxcPaginator = ({
   currentPage = 1,
