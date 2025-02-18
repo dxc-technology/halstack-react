@@ -18,6 +18,15 @@ const DropdownMenuItemContainer = styled.li<{ visuallyFocused: DropdownMenuItemP
   outline: var(--border-width-m) solid var(--border-color-secondary-medium); 
   outline-offset: calc(-1 * var(--border-width-m));
 `}
+  &:first-child {
+    border-top-left-radius: var(--border-radius-s);
+    border-top-right-radius: var(--border-radius-s);
+  }
+
+  &:last-child {
+    border-bottom-left-radius: var(--border-radius-s);
+    border-bottom-right-radius: var(--border-radius-s);
+  }
   &:hover {
     background-color: var(--color-bg-neutral-light);
   }
