@@ -20,6 +20,7 @@ const YearPickerButton = styled.button<{
   selected: boolean;
   isCurrentYear: boolean;
 }>`
+  box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -35,14 +36,14 @@ const YearPickerButton = styled.button<{
   color: var(--color-fg-neutral-dark);
   font-weight: var(--typography-label-regular);
 
-  ${(props) =>
+${(props) =>
     props.selected
       ? `font-size: var(--typography-label-xl);
          color: var(--color-fg-neutral-bright) !important;
          background-color: var(--color-bg-primary-strong) !important;`
       : props.isCurrentYear
-        ? `outline: var(--border-width-m) solid var(--border-color-secondary-medium); 
-         color: var(--color-bg-primary-stronger);`
+        ? `outline: var(--border-width-s) solid var(--border-color-primary-lighter); 
+         color: var(--color-fg-primary-strong);`
         : ``}
 
   &:hover, &:focus, &:active {
@@ -50,6 +51,7 @@ const YearPickerButton = styled.button<{
   }
   &:hover {
     background-color: var(--color-bg-primary-light);
+    color: var(--color-fg-neutral-dark);
   }
   &:focus {
     outline: var(--border-width-m) solid var(--border-color-secondary-medium);

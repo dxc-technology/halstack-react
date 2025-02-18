@@ -295,7 +295,10 @@ const DxcDateInput = forwardRef<RefType, DateInputPropsType>(
               disabled={disabled}
               hasHelperText={!!helperText}
             >
-              {label} {optional && <OptionalLabel>{translatedLabels.formFields.optionalLabel}</OptionalLabel>}
+              {label}{" "}
+              {optional && (
+                <OptionalLabel disabled={disabled}>{translatedLabels.formFields.optionalLabel}</OptionalLabel>
+              )}
             </Label>
           )}
           {helperText && <HelperText disabled={disabled}>{helperText}</HelperText>}
