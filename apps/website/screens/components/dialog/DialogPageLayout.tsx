@@ -6,9 +6,8 @@ import { ReactNode } from "react";
 
 const DialogPageHeading = ({ children }: { children: ReactNode }) => {
   const tabs = [
-    { label: "Code", path: "/components/dialog" },
-    { label: "Usage", path: "/components/dialog/usage" },
-    { label: "Specifications", path: "/components/dialog/specifications" },
+    { label: "Overview", path: "/components/dialog" },
+    { label: "Code", path: "/components/dialog/code" },
   ];
 
   return (
@@ -21,7 +20,7 @@ const DialogPageHeading = ({ children }: { children: ReactNode }) => {
             parent window. These boxes appear on top of the open parent window that is currently displayed on the
             screen.
           </DxcParagraph>
-          <TabsPageHeading tabs={tabs}></TabsPageHeading>
+          <TabsPageHeading tabs={tabs} />
         </DxcFlex>
       </PageHeading>
       {children}
