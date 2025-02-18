@@ -20,59 +20,11 @@ const sections = [
           <th>Default</th>
         </tr>
         <tr>
-          <td>space</td>
-          <td>
-            <TableCode>string</TableCode>
-          </td>
-          <td>Applies the spacing scale to all sides.</td>
-          <td>-</td>
-        </tr>
-        <tr>
-          <td>horizontal</td>
-          <td>
-            <TableCode>string</TableCode>
-          </td>
-          <td>Applies the spacing scale to the left and right sides.</td>
-          <td>-</td>
-        </tr>
-        <tr>
-          <td>vertical</td>
-          <td>
-            <TableCode>string</TableCode>
-          </td>
-          <td>Applies the spacing scale to the top and bottom sides.</td>
-          <td>-</td>
-        </tr>
-        <tr>
-          <td>top</td>
-          <td>
-            <TableCode>string</TableCode>
-          </td>
-          <td>Applies the spacing scale to the top side.</td>
-          <td>-</td>
-        </tr>
-        <tr>
-          <td>right</td>
-          <td>
-            <TableCode>string</TableCode>
-          </td>
-          <td>Applies the spacing scale to the right side.</td>
-          <td>-</td>
-        </tr>
-        <tr>
           <td>bottom</td>
           <td>
             <TableCode>string</TableCode>
           </td>
           <td>Applies the spacing scale to the bottom side.</td>
-          <td>-</td>
-        </tr>
-        <tr>
-          <td>left</td>
-          <td>
-            <TableCode>string</TableCode>
-          </td>
-          <td>Applies the spacing scale to the left side.</td>
           <td>-</td>
         </tr>
         <tr>
@@ -86,6 +38,54 @@ const sections = [
             <TableCode>React.ReactNode</TableCode>
           </td>
           <td>Custom content inside the bleed.</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>horizontal</td>
+          <td>
+            <TableCode>string</TableCode>
+          </td>
+          <td>Applies the spacing scale to the left and right sides.</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>left</td>
+          <td>
+            <TableCode>string</TableCode>
+          </td>
+          <td>Applies the spacing scale to the left side.</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>right</td>
+          <td>
+            <TableCode>string</TableCode>
+          </td>
+          <td>Applies the spacing scale to the right side.</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>space</td>
+          <td>
+            <TableCode>string</TableCode>
+          </td>
+          <td>Applies the spacing scale to all sides.</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>top</td>
+          <td>
+            <TableCode>string</TableCode>
+          </td>
+          <td>Applies the spacing scale to the top side.</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>vertical</td>
+          <td>
+            <TableCode>string</TableCode>
+          </td>
+          <td>Applies the spacing scale to the top and bottom sides.</td>
           <td>-</td>
         </tr>
       </DxcTable>
@@ -106,15 +106,15 @@ const sections = [
   },
 ];
 
-const BleedTableCodePage = () => {
+const BleedCodePage = () => {
   return (
     <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/bleed/TableCode/BleedTableCodePage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/bleed/code/BleedCodePage.tsx" />
     </DxcFlex>
   );
 };
 
-export default BleedTableCodePage;
+export default BleedCodePage;
