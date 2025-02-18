@@ -5,7 +5,7 @@ import DocFooter from "@/common/DocFooter";
 
 const sections = [
   {
-    title: "Usage",
+    title: "Introduction",
     content: (
       <DxcBulletedList>
         <DxcBulletedList.Item>
@@ -18,15 +18,15 @@ const sections = [
   },
 ];
 
-const ChipUsagePage = () => {
+const ChipOverviewPage = () => {
   return (
     <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/chip/usage/ChipUsagePage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/chip/overview/ChipOverviewPage.tsx" />
     </DxcFlex>
   );
 };
 
-export default ChipUsagePage;
+export default ChipOverviewPage;

@@ -4,11 +4,10 @@ import TabsPageHeading from "@/common/TabsPageLayout";
 import ComponentHeading from "@/common/ComponentHeading";
 import { ReactNode } from "react";
 
-const ChipPageHeading = ({ children }: { children: ReactNode }) => {
+const ChipHeading = ({ children }: { children: ReactNode }) => {
   const tabs = [
-    { label: "Code", path: "/components/chip" },
-    { label: "Usage", path: "/components/chip/usage" },
-    { label: "Specifications", path: "/components/chip/specifications" },
+    { label: "Overview", path: "/components/chip" },
+    { label: "Code", path: "/components/chip/code" },
   ];
 
   return (
@@ -19,7 +18,7 @@ const ChipPageHeading = ({ children }: { children: ReactNode }) => {
           <DxcParagraph>
             Chips are elements that represent status, complementary information, or association between elements.
           </DxcParagraph>
-          <TabsPageHeading tabs={tabs}></TabsPageHeading>
+          <TabsPageHeading tabs={tabs} />
         </DxcFlex>
       </PageHeading>
       {children}
@@ -27,4 +26,4 @@ const ChipPageHeading = ({ children }: { children: ReactNode }) => {
   );
 };
 
-export default ChipPageHeading;
+export default ChipHeading;
