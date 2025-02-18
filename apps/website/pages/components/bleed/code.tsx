@@ -3,17 +3,17 @@ import type { ReactElement } from "react";
 import BleedPageLayout from "screens/components/bleed/BleedPageLayout";
 import BleedCodePage from "screens/components/bleed/code/BleedCodePage";
 
-const Index = () => {
+const Code = () => {
   return (
     <>
       <Head>
-        <title>Bleed — Halstack Design System</title>
+        <title>Bleed Code — Halstack Design System</title>
       </Head>
-      <BleedCodePage></BleedCodePage>
+      <BleedCodePage />
     </>
   );
 };
 
-Index.getLayout = (page: ReactElement) => <BleedPageLayout>{page}</BleedPageLayout>;
+Code.getLayout = (page: ReactElement) => <BleedPageLayout>{page}</BleedPageLayout>;
 
-export default Index;
+export default Code;

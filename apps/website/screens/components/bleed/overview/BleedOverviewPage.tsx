@@ -6,7 +6,7 @@ import Code from "@/common/Code";
 
 const sections = [
   {
-    title: "Usage",
+    title: "Introduction",
     content: (
       <>
         <DxcParagraph>
@@ -24,15 +24,15 @@ const sections = [
   },
 ];
 
-const BleedUsagePage = () => {
+const BleedOverviewPage = () => {
   return (
     <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
+        <QuickNavContainer sections={sections} startHeadingLevel={2} />
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/bleed/usage/BleedUsagePage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/bleed/overview/BleedOverviewPage.tsx" />
     </DxcFlex>
   );
 };
 
-export default BleedUsagePage;
+export default BleedOverviewPage;
