@@ -171,7 +171,7 @@ const DxcSlider = forwardRef<RefType, SliderPropsType>(
   (
     {
       ariaLabel = "Slider",
-      defaultValue,
+      defaultValue = 0,
       disabled,
       helperText,
       label,
@@ -192,34 +192,32 @@ const DxcSlider = forwardRef<RefType, SliderPropsType>(
     ref
   ): JSX.Element => {
     const labelId = `label-${useId()}`;
-    const [dragging, setDragging] = useState(false);
     const [innerValue, setInnerValue] = useState(defaultValue ?? 0);
     const minLabel = useMemo(() => labelFormatCallback?.(minValue) ?? minValue, [labelFormatCallback, minValue]);
     const maxLabel = useMemo(() => labelFormatCallback?.(maxValue) ?? maxValue, [labelFormatCallback, maxValue]);
 
     const handleOnChange = (event: ChangeEvent<HTMLInputElement>) => {
-      const intValue = parseInt(event.target.value, 10);
-      if (intValue !== value || intValue !== innerValue) setInnerValue(intValue);
-      onChange?.(intValue);
-    };
-
-    const handleOnMouseDown = () => {
-      setDragging(true);
+      const sliderIntegerValue = parseInt(event.target.value, 10);
+      if (value == null) setInnerValue(sliderIntegerValue);
+      onChange?.(sliderIntegerValue);
     };
 
     const handleOnMouseUp = (event: MouseEvent<HTMLInputElement>) => {
-      const intValue = parseInt((event.target as HTMLInputElement).value, 10);
-      if (dragging) {
-        setDragging(false);
-        onDragEnd?.(intValue);
-      }
+      const sliderIntegerValue = parseInt((event.target as HTMLInputElement).value, 10);
+      onDragEnd?.(sliderIntegerValue);
     };
 
-    const handlerTextInputOnChange = ({ value }: { value: string; error?: string }) => {
-      const intValue = parseInt(value, 10);
-      if (!Number.isNaN(intValue)) {
-        if (value == null) setInnerValue(intValue > maxValue ? maxValue : intValue);
-        onChange?.(intValue > maxValue ? maxValue : intValue);
+    const handlerTextInputOnChange = (event: { value: string; error?: string }) => {
+      const textInputIntegerValue = parseInt(event.value, 10);
+      if (!Number.isNaN(textInputIntegerValue)) {
+        const validatedInputValue =
+          textInputIntegerValue > maxValue
+            ? maxValue
+            : textInputIntegerValue < minValue
+              ? minValue
+              : textInputIntegerValue;
+        if (value == null) setInnerValue(validatedInputValue);
+        onChange?.(validatedInputValue);
       }
     };
 
@@ -241,17 +239,16 @@ const DxcSlider = forwardRef<RefType, SliderPropsType>(
                 aria-orientation="horizontal"
                 aria-valuemax={maxValue}
                 aria-valuemin={minValue}
-                aria-valuenow={value != null && value >= 0 ? value : innerValue}
+                aria-valuenow={value ?? innerValue}
                 disabled={disabled}
                 max={maxValue}
                 min={minValue}
                 onChange={handleOnChange}
                 onMouseUp={handleOnMouseUp}
-                onMouseDown={handleOnMouseDown}
                 role="slider"
                 step={step}
                 type="range"
-                value={value != null && value >= 0 ? value : innerValue}
+                value={value ?? innerValue}
               />
               {marks && (
                 <TicksContainer>
@@ -274,7 +271,7 @@ const DxcSlider = forwardRef<RefType, SliderPropsType>(
               name={name}
               onChange={handlerTextInputOnChange}
               size="fillParent"
-              value={value != null && value >= 0 ? value.toString() : innerValue.toString()}
+              value={(value ?? innerValue).toString()}
             />
           )}
         </MainContainer>

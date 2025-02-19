@@ -29,7 +29,9 @@ const sections = [
               <TableCode>number</TableCode>
             </td>
             <td>Initial value of the slider, only when it is uncontrolled.</td>
-            <td>-</td>
+            <td>
+              <TableCode>0</TableCode>
+            </td>
           </tr>
           <tr>
             <td>value</td>

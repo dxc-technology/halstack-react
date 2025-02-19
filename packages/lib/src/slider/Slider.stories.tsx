@@ -12,10 +12,6 @@ const labelFormat = (value: number) => `${value}E100000000000000000000000`;
 
 const Slider = () => (
   <>
-    <ExampleContainer>
-      <Title title="Default" theme="light" level={4} />
-      <DxcSlider label="Slider" helperText="Help message" marks step={10} showLimitsValues />
-    </ExampleContainer>
     <Title title="Thumb states" theme="light" level={2} />
     <ExampleContainer pseudoState="pseudo-hover">
       <Title title="Hovered" theme="light" level={4} />
