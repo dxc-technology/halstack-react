@@ -144,6 +144,7 @@ export default function DxcAlert({
   const handlePrevOnClick = useCallback(() => {
     setCurrentIndex((prevIndex) => (prevIndex > 0 ? prevIndex - 1 : prevIndex));
   }, []);
+
   const handleOnClose = () => {
     messages[currentIndex]?.onClose?.();
     if (mode !== "modal") {
@@ -154,6 +155,21 @@ export default function DxcAlert({
   useEffect(() => {
     if (currentIndex === messages.length) handlePrevOnClick();
   }, [currentIndex, messages, handlePrevOnClick]);
+
+  useEffect(() => {
+    if (mode === "modal") {
+      const handleModalAlertKeydown = (event: KeyboardEvent) => {
+        if (event.key === "Escape") {
+          event.preventDefault();
+          handleOnClose();
+        }
+      };
+      document.addEventListener("keydown", handleModalAlertKeydown);
+      return () => {
+        document.removeEventListener("keydown", handleModalAlertKeydown);
+      };
+    }
+  }, [mode, handleOnClose]);
 
   return (
     <ModalAlertWrapper condition={mode === "modal"} onClose={handleOnClose}>
