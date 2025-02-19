@@ -6,7 +6,7 @@ import Code from "@/common/Code";
 
 const sections = [
   {
-    title: "Usage",
+    title: "Introduction",
     content: (
       <DxcBulletedList>
         <DxcBulletedList.Item>
@@ -47,15 +47,15 @@ const sections = [
   },
 ];
 
-const DateInputUsagePage = () => {
+const DateInputOverviewPage = () => {
   return (
     <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/date-input/usage/DateInputUsagePage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/date-input/overview/DateInputOverviewPage.tsx" />
     </DxcFlex>
   );
 };
 
-export default DateInputUsagePage;
+export default DateInputOverviewPage;
