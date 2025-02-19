@@ -57,14 +57,14 @@ const Slider = () => (
       <Title title="Discrete slider with input" theme="light" level={4} />
       <DxcSlider
         defaultValue={20}
-        minValue={0}
+        minValue={10}
         maxValue={50}
         label="Slider"
         helperText="Help message"
         showLimitsValues
         showInput
         marks
-        step={10}
+        step={20}
       />
     </ExampleContainer>
     <Title title="Margins" theme="light" level={2} />
@@ -118,6 +118,10 @@ const Slider = () => (
         labelFormatCallback={labelFormat}
         size="large"
       />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Rounded up slider" theme="light" level={4} />
+      <DxcSlider label="Slider" helperText="Help message" showLimitsValues showInput value={15} step={10} marks />
     </ExampleContainer>
   </>
 );

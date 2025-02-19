@@ -80,6 +80,27 @@ const SliderInputContainer = styled.div`
   height: var(--height-xxxs);
 `;
 
+/**
+ * @param target
+ * @param step
+ * @param min
+ * @param max
+ * @returns the closest tick value to the target value
+ */
+const roundUpPercentage = (target: number, step: number, min: number, max: number) => {
+  if (target < min) return min;
+  if (target > max) return max;
+
+  let percentage = 0;
+  let acc = target - min;
+  for (let tick = min; tick <= max; tick += step) {
+    if (Math.abs(target - tick) <= Math.abs(acc)) {
+      acc = target - tick;
+      percentage = tick;
+    } else break;
+  }
+  return percentage;
+};
 const thumbStyles = (disabled: SliderPropsType["disabled"]) => css`
   -webkit-appearance: none;
   width: 12px;
@@ -107,6 +128,7 @@ const SliderInput = styled.input<{
   disabled: SliderPropsType["disabled"];
   min: SliderPropsType["minValue"];
   max: SliderPropsType["maxValue"];
+  step: SliderPropsType["step"];
   value: SliderPropsType["value"];
 }>`
   -webkit-appearance: none;
@@ -120,12 +142,14 @@ const SliderInput = styled.input<{
       ? "linear-gradient(var(--color-fg-neutral-medium), var(--color-fg-neutral-medium))"
       : "linear-gradient(var(--color-fg-secondary-medium), var(--color-fg-secondary-medium))"};
   background-repeat: no-repeat;
-  background-size: ${(props) =>
-    props.value != null &&
-    props.min != null &&
-    props.max != null &&
-    `${((props.value - props.min) * 100) / (props.max - props.min)}% 100%`};
-  border-radius: 5px;
+  ${(props) => {
+    if (props.value != null && props.min != null && props.max != null && props.step != null) {
+      const base10 =
+        (roundUpPercentage(props.value, props.step, props.min, props.max) - props.min) / (props.max - props.min) * 100;
+      return `background-size: ${base10}% 100%;`;
+    }
+  }}
+  border-radius: var(--border-radius-m);
   cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
 
   &::-webkit-slider-thumb {
@@ -156,15 +180,14 @@ const TicksContainer = styled.div`
 
 const Tick = styled.span<{
   disabled: SliderPropsType["disabled"];
-  stepPosition: number;
-  stepValue: SliderPropsType["value"];
+  currentTick: boolean;
 }>`
   background-color: ${({ disabled }) =>
     disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-secondary-medium)"};
   border-radius: 50%;
   height: 6px;
   width: 6px;
-  z-index: ${(props) => props.stepValue != null && (props.stepPosition <= props.stepValue ? "-1" : "0")};
+  ${({ currentTick }) => currentTick && "visibility: hidden;"};
 `;
 
 const DxcSlider = forwardRef<RefType, SliderPropsType>(
@@ -208,16 +231,10 @@ const DxcSlider = forwardRef<RefType, SliderPropsType>(
     };
 
     const handlerTextInputOnChange = (event: { value: string; error?: string }) => {
-      const textInputIntegerValue = parseInt(event.value, 10);
+      const textInputIntegerValue = Number(event.value ?? 0);
       if (!Number.isNaN(textInputIntegerValue)) {
-        const validatedInputValue =
-          textInputIntegerValue > maxValue
-            ? maxValue
-            : textInputIntegerValue < minValue
-              ? minValue
-              : textInputIntegerValue;
-        if (value == null) setInnerValue(validatedInputValue);
-        onChange?.(validatedInputValue);
+        if (value == null) setInnerValue(textInputIntegerValue);
+        onChange?.(textInputIntegerValue);
       }
     };
 
@@ -254,10 +271,11 @@ const DxcSlider = forwardRef<RefType, SliderPropsType>(
                 <TicksContainer>
                   {Array.from({ length: Math.floor((maxValue - minValue) / step) + 1 }, (_, index) => (
                     <Tick
+                      currentTick={
+                        roundUpPercentage(value ?? innerValue, step, minValue, maxValue) === minValue + index * step
+                      }
                       disabled={disabled}
                       key={`tickmark-${index}`}
-                      stepPosition={(step * index) / (maxValue - minValue)}
-                      stepValue={(value ?? innerValue) / maxValue}
                     />
                   ))}
                 </TicksContainer>
