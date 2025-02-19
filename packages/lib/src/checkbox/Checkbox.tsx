@@ -119,8 +119,8 @@ const Checkbox = styled.span<{
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 18px; // This does not have an apropiate alias
-  width: 18px; // This does not have an apropiate alias
+  height: 18px;
+  width: 18px;
   border: var(--border-width-m) solid
     ${(props) =>
       props.disabled
@@ -146,7 +146,7 @@ const Checkbox = styled.span<{
 
   &:focus {
     outline: var(--border-width-m) solid var(--border-color-secondary-medium);
-    outline-offset: 1px; // This does not have an apropiate alias
+    outline-offset: 1px;
   }
   svg {
     position: absolute;
