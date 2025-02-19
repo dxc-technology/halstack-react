@@ -6,8 +6,8 @@ import { ReactNode } from "react";
 
 const ContainerPageHeading = ({ children }: { children: ReactNode }) => {
   const tabs = [
-    { label: "Code", path: "/components/container" },
-    { label: "Usage", path: "/components/container/usage" },
+    { label: "Overview", path: "/components/container" },
+    { label: "Code", path: "/components/container/code" },
   ];
 
   return (
@@ -20,7 +20,7 @@ const ContainerPageHeading = ({ children }: { children: ReactNode }) => {
             container that allows for controlled use of our design tokens. Being generic in nature can be "over-used",
             so it's important to consider situations where more specific and expressive components could be used.
           </DxcParagraph>
-          <TabsPageHeading tabs={tabs}></TabsPageHeading>
+          <TabsPageHeading tabs={tabs} />
         </DxcFlex>
       </PageHeading>
       {children}
