@@ -10,7 +10,7 @@ const code = `() => {
   return (
     <DxcInset space="2rem">
       <DxcAccordion indexActive={indexAccordion}
-        onActiveChange={onActiveChange}>
+        onActiveChange={onActiveChange} independent={true}>
         <DxcAccordion.AccordionItem
           label="How to edit your profile?"
         >

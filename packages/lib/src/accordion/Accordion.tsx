@@ -7,66 +7,45 @@ import AccordionContext from "./AccordionContext";
 import HalstackContext from "../HalstackContext";
 import AccordionItem from "./AccordionItem";
 
-const DxcAccordion = ({
-  independent = false,
-  defaultIndexActive,
-  indexActive,
-  onActiveChange,
-  margin,
-  children,
-}: AccordionPropsType): JSX.Element => {
+const DxcAccordion = (props: AccordionPropsType): JSX.Element => {
+  const { children, margin, onActiveChange } = props;
   const colorsTheme = useContext(HalstackContext);
 
   const [innerIndexActive, setInnerIndexActive] = useState(
-    independent
-      ? (defaultIndexActive ?? -1)
-      : Array.isArray(defaultIndexActive)
-        ? defaultIndexActive.filter((i) => i !== undefined)
-        : defaultIndexActive !== undefined
-          ? [defaultIndexActive]
-          : []
+    props.independent
+      ? (props.defaultIndexActive ?? -1)
+      : Array.isArray(props.defaultIndexActive)
+        ? props.defaultIndexActive.filter((i) => i !== undefined)
+        : []
   );
 
   const handlerActiveChange = useCallback(
     (index: number | number[]) => {
-      if (indexActive == null) {
+      if (props.indexActive == null) {
         setInnerIndexActive((prev) => {
-          if (independent) {
-            return typeof index === "number" ? (index === prev ? -1 : index) : prev;
-          } else {
+          if (props.independent) return typeof index === "number" ? (index === prev ? -1 : index) : prev;
+          else {
             const prevArray = Array.isArray(prev) ? prev : [];
-            if (Array.isArray(index)) {
-              return index;
-            } else {
-              return prevArray.includes(index) ? prevArray.filter((i) => i !== index) : [...prevArray, index];
-            }
+            return Array.isArray(index)
+              ? index
+              : prevArray.includes(index)
+                ? prevArray.filter((i) => i !== index)
+                : [...prevArray, index];
           }
         });
       }
-
-      if (independent && typeof index === "number") {
-        (onActiveChange as (index: number) => void)?.(index);
-      } else if (!independent && Array.isArray(index)) {
-        (onActiveChange as (index: number[]) => void)?.(index);
-      }
+      onActiveChange?.(index as number & number[]);
     },
-    [indexActive, onActiveChange, independent, innerIndexActive]
+    [props.indexActive, props.independent, onActiveChange, innerIndexActive]
   );
 
   const contextValue = useMemo(
     () => ({
-      activeIndex:
-        indexActive != null
-          ? independent
-            ? indexActive
-            : Array.isArray(indexActive)
-              ? indexActive
-              : [indexActive]
-          : innerIndexActive,
+      activeIndex: props.indexActive ?? innerIndexActive,
       handlerActiveChange,
-      independent,
+      independent: props.independent,
     }),
-    [indexActive, innerIndexActive, handlerActiveChange, independent]
+    [props.indexActive, innerIndexActive, handlerActiveChange, props.independent]
   );
 
   return (
