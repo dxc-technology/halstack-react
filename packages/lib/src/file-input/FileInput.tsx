@@ -41,8 +41,10 @@ const HelperText = styled.span<{ disabled: FileInputPropsType["disabled"] }>`
 const FileContainer = styled.div<{ singleFileMode: boolean }>`
   display: flex;
   ${(props) =>
-    props.singleFileMode ? "flex-direction: row; column-gap: 0.25rem;" : "flex-direction: column; row-gap: 0.25rem;"}
-  margin-top: 0.25rem;
+    props.singleFileMode
+      ? "flex-direction: row; column-gap: var(--spacing-gap-xs);"
+      : "flex-direction: column; row-gap: var(--spacing-gap-xs);"}
+  margin-top: var(--spacing-gap-xs);
 `;
 
 const ValueInput = styled.input`
@@ -52,14 +54,14 @@ const ValueInput = styled.input`
 const FileItemListContainer = styled.div`
   display: flex;
   flex-direction: column;
-  row-gap: 0.25rem;
+  row-gap: var(--spacing-gap-xs);
 `;
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  row-gap: 0.25rem;
-  margin-top: 0.25rem;
+  row-gap: var(--spacing-gap-xs);
+  margin-top: var(--spacing-gap-xs);
 `;
 
 const DragDropArea = styled.div<{
