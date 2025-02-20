@@ -95,10 +95,9 @@ const thumbFocusStyles = css`
 `;
 const SliderInput = styled.input<{
   disabled: SliderPropsType["disabled"];
-  min: SliderPropsType["minValue"];
-  max: SliderPropsType["maxValue"];
-  step: SliderPropsType["step"];
-  value: SliderPropsType["value"];
+  min: Required<SliderPropsType>["minValue"];
+  max: Required<SliderPropsType>["maxValue"];
+  roundedUpValue: number;
 }>`
   -webkit-appearance: none;
   margin: 0;
@@ -111,11 +110,9 @@ const SliderInput = styled.input<{
       ? "linear-gradient(var(--color-fg-neutral-medium), var(--color-fg-neutral-medium))"
       : "linear-gradient(var(--color-fg-secondary-medium), var(--color-fg-secondary-medium))"};
   background-repeat: no-repeat;
-  ${({ value, step, min, max }) => {
-    if (value != null && min != null && max != null && step != null) {
-      const base10 = ((roundUp(value, step, min, max) - min) / (max - min)) * 100;
-      return `background-size: ${base10}% 100%;`;
-    }
+  ${({ min, max, roundedUpValue }) => {
+    const base10 = ((roundedUpValue - min) / (max - min)) * 100;
+    return `background-size: ${base10}% 100%;`;
   }}
   border-radius: var(--border-radius-m);
   cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
@@ -183,7 +180,11 @@ const DxcSlider = forwardRef<RefType, SliderPropsType>(
     ref
   ): JSX.Element => {
     const labelId = `label-${useId()}`;
-    const [innerValue, setInnerValue] = useState(defaultValue ?? 0);
+    const [innerValue, setInnerValue] = useState(defaultValue);
+    const roundedUpValue = useMemo(
+      () => roundUp(value ?? innerValue, step, minValue, maxValue),
+      [innerValue, maxValue, minValue, step, value]
+    );
     const minLabel = useMemo(() => labelFormatCallback?.(minValue) ?? minValue, [labelFormatCallback, minValue]);
     const maxLabel = useMemo(() => labelFormatCallback?.(maxValue) ?? maxValue, [labelFormatCallback, maxValue]);
 
@@ -231,6 +232,7 @@ const DxcSlider = forwardRef<RefType, SliderPropsType>(
                 onChange={handleOnChange}
                 onMouseUp={handleOnMouseUp}
                 role="slider"
+                roundedUpValue={roundedUpValue}
                 step={step}
                 type="range"
                 value={value ?? innerValue}
@@ -239,7 +241,7 @@ const DxcSlider = forwardRef<RefType, SliderPropsType>(
                 <TicksContainer>
                   {Array.from({ length: Math.floor((maxValue - minValue) / step) + 1 }, (_, index) => (
                     <Tick
-                      currentTick={roundUp(value ?? innerValue, step, minValue, maxValue) === minValue + index * step}
+                      currentTick={roundedUpValue === minValue + index * step}
                       disabled={disabled}
                       key={`tickmark-${index}`}
                     />

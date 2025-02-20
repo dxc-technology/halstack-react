@@ -24,6 +24,7 @@ export const calculateWidth = (margin: SliderPropsType["margin"], size: SliderPr
 export const roundUp = (target: number, step: number, min: number, max: number) => {
   if (target < min) return min;
   else if (target > max) return max;
+  else if (step === 1) return target;
 
   let percentage = 0;
   let acc = target - min;
