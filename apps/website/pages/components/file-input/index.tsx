@@ -1,21 +1,21 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import FileInputCodePage from "screens/components/file-input/code/FileInputCodePage";
 import FileInputPageLayout from "screens/components/file-input/FileInputPageLayout";
+import FileInputOverviewPage from "screens/components/file-input/overview/FileInputOverviewPage";
 
-const Usage = () => {
+const Index = () => {
   return (
     <>
       <Head>
         <title>File Input — Halstack Design System</title>
       </Head>
-      <FileInputCodePage></FileInputCodePage>
+      <FileInputOverviewPage></FileInputOverviewPage>
     </>
   );
 };
 
-Usage.getLayout = function getLayout(page: ReactElement) {
+Index.getLayout = (page: ReactElement) => {
   return <FileInputPageLayout>{page}</FileInputPageLayout>;
 };
 
-export default Usage;
+export default Index;

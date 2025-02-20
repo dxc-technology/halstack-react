@@ -6,8 +6,8 @@ import { ReactNode } from "react";
 
 const FileInputPageHeading = ({ children }: { children: ReactNode }) => {
   const tabs = [
-    { label: "Code", path: "/components/file-input" },
-    { label: "Usage", path: "/components/file-input/usage" },
+    { label: "Overview", path: "/components/file-input" },
+    { label: "Code", path: "/components/file-input/code" },
     {
       label: "Specifications",
       path: "/components/file-input/specifications",
@@ -24,7 +24,7 @@ const FileInputPageHeading = ({ children }: { children: ReactNode }) => {
             files to the server where the application is hosted. It is a common procedure in applications where files
             are required, like documents, images, or other information in digital formats.
           </DxcParagraph>
-          <TabsPageHeading tabs={tabs}></TabsPageHeading>
+          <TabsPageHeading tabs={tabs} />
         </DxcFlex>
       </PageHeading>
       {children}
