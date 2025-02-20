@@ -1,23 +1,12 @@
 import { Meta, StoryObj } from "@storybook/react";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
-import { HalstackProvider } from "../HalstackContext";
 import DxcSpinner from "./Spinner";
 
 export default {
   title: "Spinner",
   component: DxcSpinner,
 } as Meta<typeof DxcSpinner>;
-
-const opinionatedTheme = {
-  spinner: {
-    accentColor: "#5f249f",
-    baseColor: "#ffffff",
-    fontColor: "#000000",
-    overlayColor: "#a46ede",
-    overlayFontColor: "#ffffff",
-  },
-};
 
 const Spinner = () => (
   <>
@@ -74,13 +63,6 @@ const Spinner = () => (
       <Title title="Xxlarge margin" theme="light" level={4} />
       <DxcSpinner margin="xxlarge" mode="small" value={75}></DxcSpinner>
     </ExampleContainer>
-    <Title title="Opinionated theme" theme="light" level={2} />
-    <ExampleContainer>
-      <Title title="With label and value label" theme="light" level={4} />
-      <HalstackProvider theme={opinionatedTheme}>
-        <DxcSpinner label="Label" value={50} showValue></DxcSpinner>
-      </HalstackProvider>
-    </ExampleContainer>
   </>
 );
 
@@ -119,21 +101,11 @@ const SpinnerOverlayValueAndLabel = () => (
   </ExampleContainer>
 );
 
-const SpinnerOverlayValueAndLabelOpinionated = () => (
-  <ExampleContainer>
-    <HalstackProvider theme={opinionatedTheme}>
-      <Title title="Mode overlay" theme="light" level={4} />
-      <DxcSpinner mode="overlay" label="Label" value={50} showValue></DxcSpinner>
-    </HalstackProvider>
-  </ExampleContainer>
-);
-
 type Story = StoryObj<typeof DxcSpinner>;
 
 export const Chromatic: Story = {
   render: Spinner,
 };
-
 export const SpinnerOverlay: Story = {
   render: SpinnerWithOverlay,
 };
@@ -143,13 +115,9 @@ export const SpinnerOverlayWith100: Story = {
 export const SpinnerOverlayWithLabel: Story = {
   render: SpinnerOverlayLabel,
 };
-
 export const SpinnerOverlayWithValue: Story = {
   render: SpinnerOverlayValue,
 };
 export const SpinnerOverlayWithValueAndLabel: Story = {
   render: SpinnerOverlayValueAndLabel,
-};
-export const SpinnerOverlayWithValueAndLabelOpinionated: Story = {
-  render: SpinnerOverlayValueAndLabelOpinionated,
 };
