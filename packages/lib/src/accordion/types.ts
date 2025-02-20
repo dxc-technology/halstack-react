@@ -1,45 +1,6 @@
 import { ReactNode, ReactElement } from "react";
 import { Margin, SVG, Space } from "../common/utils";
 
-type AssistiveTextProps = {
-  assistiveText: string;
-  statusLight?: never;
-  badge?: {
-    position: "before";
-    element: ReactNode;
-  };
-};
-
-type IconProps = {
-  icon: string | SVG;
-  badge?: never;
-  assistiveText?: never;
-  statusLight?: ReactNode;
-};
-
-type BadgeBeforeProps = {
-  badge: { position: "before"; element: ReactNode };
-  assistiveText?: string;
-  statusLight?: ReactNode;
-  icon?: never;
-};
-
-type BadgeAfterProps = {
-  badge: { position: "after"; element: ReactNode };
-  assistiveText?: never;
-  statusLight?: never;
-  icon?: never;
-};
-
-type NoBadgeProps = {
-  badge?: never;
-  assistiveText?: never;
-  statusLight?: ReactNode;
-  icon?: string | SVG;
-};
-
-type ValidCombinations = BadgeBeforeProps | BadgeAfterProps | NoBadgeProps | AssistiveTextProps | IconProps;
-
 export type AccordionItemProps = {
   /**
    * The panel label.
@@ -84,7 +45,7 @@ export type AccordionItemProps = {
    * Value of the tabindex attribute.
    */
   tabIndex?: number;
-} & ValidCombinations;
+};
 
 type CommonProps = {
   /**
@@ -106,7 +67,7 @@ type IndependentProps = CommonProps & {
   /**
    * When true, limits the user to single-open section at a time. When false, multiple sections can be opened simultaneously.
    */
-  independent?: true;
+  independent: true;
   /**
    * Initially active accordion, only when it is uncontrolled.
    * If the accordion is not independent, several accordions can be actived

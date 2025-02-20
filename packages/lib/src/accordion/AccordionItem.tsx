@@ -1,4 +1,4 @@
-import { ReactElement, useContext, useId } from "react";
+import { ReactElement, useContext, useId, cloneElement, useMemo } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import HalstackContext from "../HalstackContext";
 import { AccordionItemProps } from "./types";
@@ -22,9 +22,11 @@ const AccordionItem = ({
   const id = useId();
   const colorsTheme = useContext(HalstackContext);
   const { activeIndex, handlerActiveChange, index, independent } = useContext(AccordionContext) ?? {};
-  const isItemExpanded = independent
-    ? activeIndex === index
-    : Array.isArray(activeIndex) && index !== undefined && activeIndex.includes(index);
+  const isItemExpanded = useMemo(() => {
+    return independent
+      ? activeIndex === index
+      : Array.isArray(activeIndex) && index !== undefined && activeIndex.includes(index);
+  }, [independent, activeIndex, index]);
 
   const handleAccordionState = () => {
     if (index !== undefined) handlerActiveChange?.(index);
@@ -52,7 +54,7 @@ const AccordionItem = ({
                   )}
                   {badge?.position === "before" && !icon && (
                     <StatusContainer subLabel={subLabel}>
-                      {disabled ? React.cloneElement(badge.element as ReactElement, { color: "grey" }) : badge.element}
+                      {disabled ? cloneElement(badge.element as ReactElement, { color: "grey" }) : badge.element}
                     </StatusContainer>
                   )}
                   <LabelsContainer>

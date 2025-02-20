@@ -102,139 +102,137 @@ const sections = [
         </tbody>
       </DxcTable>
     ),
+  },
+  {
+    title: "DxcAccordion.AccordionItem",
+    content: <DxcParagraph>Accordion item, that composes the accordion component.</DxcParagraph>,
     subSections: [
       {
-        title: "DxcAccordion.AccordionItem",
-        content: <DxcParagraph>Accordion item, that composes the accordion component.</DxcParagraph>,
-        subSections: [
-          {
-            title: "Props",
-            content: (
-              <DxcTable>
-                <thead>
-                  <tr>
-                    <th>Name</th>
-                    <th>Type</th>
-                    <th>Description</th>
-                    <th>Default</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>
-                      <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                        <StatusBadge status="required" />
-                        label
-                      </DxcFlex>
-                    </td>
-                    <td>
-                      <TableCode>string</TableCode>
-                    </td>
-                    <td>The panel label.</td>
-                    <td>-</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                        <StatusBadge status="new" />
-                        subLabel
-                      </DxcFlex>
-                    </td>
-                    <td>
-                      <TableCode>string</TableCode>
-                    </td>
-                    <td>Additional info label positioned under the label.</td>
-                    <td>-</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                        <StatusBadge status="new" />
-                        badge
-                      </DxcFlex>
-                    </td>
-                    <td>
-                      <TableCode>{"{ position: 'before' | 'after'; element: ReactNode }"}</TableCode>
-                    </td>
-                    <td>Badge component to add extra value to the accordion.</td>
-                    <td>-</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                        <StatusBadge status="new" />
-                        statusLight
-                      </DxcFlex>
-                    </td>
-                    <td>
-                      <TableCode>ReactNode</TableCode>
-                    </td>
-                    <td>Status light component to add extra value to the accordion.</td>
-                    <td>-</td>
-                  </tr>
-                  <tr>
-                    <td>icon</td>
-                    <td>
-                      <TableCode>string | {"(React.ReactNode & React.SVGProps <SVGSVGElement>)"}</TableCode>
-                    </td>
-                    <td>
-                      <DxcLink newWindow href="https://fonts.google.com/icons">
-                        Material Symbol
-                      </DxcLink>{" "}
-                      name or SVG element as the icon that will be placed next to the panel label. When using Material
-                      Symbols, replace spaces with underscores. By default they are outlined if you want it to be filled
-                      prefix the symbol name with <TableCode>"filled_"</TableCode>.
-                    </td>
-                    <td>-</td>
-                  </tr>
-                  <tr>
-                    <td>assistiveText</td>
-                    <td>
-                      <TableCode>string</TableCode>
-                    </td>
-                    <td>Assistive text to be placed on the right side of the panel.</td>
-                    <td>-</td>
-                  </tr>
-                  <tr>
-                    <td>disabled</td>
-                    <td>
-                      <TableCode>boolean</TableCode>
-                    </td>
-                    <td>If true, the component will be disabled.</td>
-                    <td>
-                      <TableCode>false</TableCode>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                        <StatusBadge status="required" />
-                        children
-                      </DxcFlex>
-                    </td>
-                    <td>
-                      <TableCode>ReactNode</TableCode>
-                    </td>
-                    <td>The expanded panel of the accordion. This area can be used to render custom content.</td>
-                    <td>-</td>
-                  </tr>
-                  <tr>
-                    <td>tabIndex</td>
-                    <td>
-                      <TableCode>number</TableCode>
-                    </td>
-                    <td>
-                      Value of the <Code>tabindex</Code> attribute.
-                    </td>
-                    <td>
-                      <TableCode>0</TableCode>
-                    </td>
-                  </tr>
-                </tbody>
-              </DxcTable>
-            ),
-          },
-        ],
+        title: "Props",
+        content: (
+          <DxcTable>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Description</th>
+                <th>Default</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                    <StatusBadge status="required" />
+                    label
+                  </DxcFlex>
+                </td>
+                <td>
+                  <TableCode>string</TableCode>
+                </td>
+                <td>The panel label.</td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td>
+                  <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                    <StatusBadge status="new" />
+                    subLabel
+                  </DxcFlex>
+                </td>
+                <td>
+                  <TableCode>string</TableCode>
+                </td>
+                <td>Additional info label positioned under the label.</td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td>
+                  <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                    <StatusBadge status="new" />
+                    badge
+                  </DxcFlex>
+                </td>
+                <td>
+                  <TableCode>{"{ position: 'before' | 'after'; element: ReactNode }"}</TableCode>
+                </td>
+                <td>Badge component to add extra value to the accordion.</td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td>
+                  <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                    <StatusBadge status="new" />
+                    statusLight
+                  </DxcFlex>
+                </td>
+                <td>
+                  <TableCode>React.ReactNode</TableCode>
+                </td>
+                <td>Status light component to add extra value to the accordion.</td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td>icon</td>
+                <td>
+                  <TableCode>string | {"(React.ReactNode & React.SVGProps <SVGSVGElement>)"}</TableCode>
+                </td>
+                <td>
+                  <DxcLink newWindow href="https://fonts.google.com/icons">
+                    Material Symbol
+                  </DxcLink>{" "}
+                  name or SVG element as the icon that will be placed next to the panel label. When using Material
+                  Symbols, replace spaces with underscores. By default they are outlined if you want it to be filled
+                  prefix the symbol name with <TableCode>"filled_"</TableCode>.
+                </td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td>assistiveText</td>
+                <td>
+                  <TableCode>string</TableCode>
+                </td>
+                <td>Assistive text to be placed on the right side of the panel.</td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td>disabled</td>
+                <td>
+                  <TableCode>boolean</TableCode>
+                </td>
+                <td>If true, the component will be disabled.</td>
+                <td>
+                  <TableCode>false</TableCode>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                    <StatusBadge status="required" />
+                    children
+                  </DxcFlex>
+                </td>
+                <td>
+                  <TableCode>React.ReactNode</TableCode>
+                </td>
+                <td>The expanded panel of the accordion. This area can be used to render custom content.</td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td>tabIndex</td>
+                <td>
+                  <TableCode>number</TableCode>
+                </td>
+                <td>
+                  Value of the <Code>tabindex</Code> attribute.
+                </td>
+                <td>
+                  <TableCode>0</TableCode>
+                </td>
+              </tr>
+            </tbody>
+          </DxcTable>
+        ),
       },
     ],
   },

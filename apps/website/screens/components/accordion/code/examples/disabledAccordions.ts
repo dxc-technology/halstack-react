@@ -19,7 +19,6 @@ const code = `() => {
         <DxcAccordion.AccordionItem
           label="Create a person"
           assistiveText="Provide all required info"
-          disabled
           badge={{ position: "before", element: <DxcBadge label="POST" color="blue" /> }}
           defaultIsExpanded
         >
@@ -41,7 +40,6 @@ const code = `() => {
         <DxcAccordion.AccordionItem
           label="Delete a person"
           assistiveText="Deletion will be permanent"
-          disabled
           icon="delete"
           badge={{ position: "before", element: <DxcBadge label="DELETE" /> }}
         >

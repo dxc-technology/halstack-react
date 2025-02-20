@@ -4,7 +4,7 @@ import DxcAccordion from "./Accordion";
 describe("Accordion component tests", () => {
   test("Renders with correct aria accessibility attributes", () => {
     const { getByRole } = render(
-      <DxcAccordion defaultIndexActive={0}>
+      <DxcAccordion defaultIndexActive={0} independent={true}>
         <DxcAccordion.AccordionItem label="Accordion">
           <div>test-expanded</div>
         </DxcAccordion.AccordionItem>
@@ -51,7 +51,7 @@ describe("Accordion component tests", () => {
   test("Controlled accordion", () => {
     const onChange = jest.fn();
     const { getByText, getByRole, rerender } = render(
-      <DxcAccordion onActiveChange={onChange} indexActive={0}>
+      <DxcAccordion onActiveChange={onChange} indexActive={0} independent={true}>
         <DxcAccordion.AccordionItem label="Accordion">
           <div>test-expanded</div>
         </DxcAccordion.AccordionItem>
@@ -60,7 +60,7 @@ describe("Accordion component tests", () => {
     expect(getByRole("button").getAttribute("aria-expanded")).toBe("true");
     fireEvent.click(getByText("Accordion"));
     rerender(
-      <DxcAccordion onActiveChange={onChange} indexActive={-1}>
+      <DxcAccordion onActiveChange={onChange} indexActive={-1} independent={true}>
         <DxcAccordion.AccordionItem label="Accordion">
           <div>test-expanded</div>
         </DxcAccordion.AccordionItem>
@@ -69,7 +69,7 @@ describe("Accordion component tests", () => {
     expect(getByRole("button").getAttribute("aria-expanded")).toBe("false");
     fireEvent.click(getByText("Accordion"));
     rerender(
-      <DxcAccordion onActiveChange={onChange} indexActive={0}>
+      <DxcAccordion onActiveChange={onChange} indexActive={0} independent={true}>
         <DxcAccordion.AccordionItem label="Accordion">
           <div>test-expanded</div>
         </DxcAccordion.AccordionItem>
@@ -108,7 +108,7 @@ describe("Accordion component tests", () => {
   });
   test("Accordion item is disabled", () => {
     const { getByText, getByRole } = render(
-      <DxcAccordion defaultIndexActive={0}>
+      <DxcAccordion defaultIndexActive={0} independent={true}>
         <DxcAccordion.AccordionItem label="Accordion" disabled>
           <div>test-expanded</div>
         </DxcAccordion.AccordionItem>
