@@ -1,12 +1,11 @@
-import { useContext, useId, useMemo } from "react";
-import styled, { ThemeProvider } from "styled-components";
+import { useId, useMemo } from "react";
+import styled from "styled-components";
 import { spaces } from "../common/variables";
-import HalstackContext from "../HalstackContext";
 import SpinnerPropsType from "./types";
 
 const SpinnerContainer = styled.div<{
-  mode: SpinnerPropsType["mode"];
   margin: SpinnerPropsType["margin"];
+  mode: SpinnerPropsType["mode"];
 }>`
   ${({ mode }) =>
     mode === "overlay" &&
@@ -100,18 +99,13 @@ const Overlay = styled.div`
   background-color: var(--color-bg-alpha-medium);
 `;
 
-const BackgroundSpinner = styled.div`
-  height: inherit;
-  width: inherit;
+const SVGTotalTrack = styled.svg`
   position: absolute;
-`;
-
-const SVGBackground = styled.svg`
   height: inherit;
   width: inherit;
 `;
 
-const CircleBackground = styled.circle<{ mode: SpinnerPropsType["mode"] }>`
+const TotalTrack = styled.circle<{ mode: SpinnerPropsType["mode"] }>`
   animation: none;
   fill: transparent;
   stroke: var(--color-bg-neutral-lightest);
@@ -143,8 +137,8 @@ const determinateValue = (value: SpinnerPropsType["value"], strokeDashArray: num
   value != null && value >= 0 && value <= 100 ? strokeDashArray * (1 - value / 100) : 0;
 
 const CircleSpinner = styled.circle<{
-  value: SpinnerPropsType["value"];
   determined: boolean;
+  value: SpinnerPropsType["value"];
 }>`
   fill: transparent;
   stroke-linecap: initial;
@@ -185,41 +179,38 @@ const Labels = styled.div<{ mode: SpinnerPropsType["mode"] }>`
 
 const DxcSpinner = ({ ariaLabel = "Spinner", label, margin, mode = "large", showValue, value }: SpinnerPropsType) => {
   const labelId = useId();
-  const colorsTheme = useContext(HalstackContext);
   const determined = useMemo(() => value != null && value >= 0 && value <= 100, [value]);
 
   return (
     <SpinnerContainer margin={margin} mode={mode}>
       <MainContainer mode={mode}>
         {mode === "overlay" && <Overlay />}
-        <BackgroundSpinner>
-          {mode === "small" ? (
-            <SVGBackground viewBox="0 0 16 16">
-              <CircleBackground cx="8" cy="8" r="6" mode={mode} />
-            </SVGBackground>
-          ) : (
-            <SVGBackground viewBox="0 0 140 140">
-              <CircleBackground cx="70" cy="70" r="65" mode={mode} />
-            </SVGBackground>
-          )}
-        </BackgroundSpinner>
+        <SVGTotalTrack viewBox={mode === "small" ? "0 0 16 16" : "0 0 140 140"}>
+          <TotalTrack
+            cx={mode === "small" ? "8" : "70"}
+            cy={mode === "small" ? "8" : "70"}
+            mode={mode}
+            r={mode === "small" ? "6" : "65"}
+          />
+        </SVGTotalTrack>
         <Spinner
+          aria-label={!label || mode === "small" ? ariaLabel : undefined}
+          aria-labelledby={label && mode !== "small" ? labelId : undefined}
           aria-valuenow={determined && showValue ? value : undefined}
           aria-valuemin={determined ? 0 : undefined}
           aria-valuemax={determined ? 100 : undefined}
-          aria-labelledby={label && mode !== "small" ? labelId : undefined}
-          aria-label={!label ? ariaLabel : mode === "small" ? ariaLabel : undefined}
-          role="progressbar"
+          role={determined ? "progressbar" : "status"}
         >
-          {mode === "small" ? (
-            <SVGSpinner viewBox="0 0 16 16" determined={determined}>
-              <CircleSpinner cx="8" cy="8" r="6" mode={mode} determined={determined} value={value} />
-            </SVGSpinner>
-          ) : (
-            <SVGSpinner viewBox="0 0 140 140" determined={determined}>
-              <CircleSpinner cx="70" cy="70" r="65" mode={mode} determined={determined} value={value} />
-            </SVGSpinner>
-          )}
+          <SVGSpinner viewBox={mode === "small" ? "0 0 16 16" : "0 0 140 140"} determined={determined}>
+            <CircleSpinner
+              determined={determined}
+              cx={mode === "small" ? "8" : "70"}
+              cy={mode === "small" ? "8" : "70"}
+              mode={mode}
+              r={mode === "small" ? "6" : "65"}
+              value={value}
+            />
+          </SVGSpinner>
         </Spinner>
         {mode !== "small" && (
           <Labels mode={mode}>
