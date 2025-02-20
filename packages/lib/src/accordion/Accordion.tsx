@@ -43,7 +43,12 @@ const DxcAccordion = ({
           }
         });
       }
-      onActiveChange?.(index);
+
+      if (independent && typeof index === "number") {
+        (onActiveChange as (index: number) => void)?.(index);
+      } else if (!independent && Array.isArray(index)) {
+        (onActiveChange as (index: number[]) => void)?.(index);
+      }
     },
     [indexActive, onActiveChange, independent, innerIndexActive]
   );

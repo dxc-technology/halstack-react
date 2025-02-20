@@ -49,10 +49,6 @@ export type AccordionItemProps = {
 
 type CommonProps = {
   /**
-   * This function will be called when the user clicks on an accordion. The index of the clicked accordion will be passed as a parameter.
-   */
-  onActiveChange?: (index: number | number[]) => void;
-  /**
    * Size of the margin to be applied to the component ('xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge').
    * You can pass an object with 'top', 'bottom', 'left' and 'right' properties in order to specify different margin sizes.
    */
@@ -80,6 +76,10 @@ type IndependentProps = CommonProps & {
    * If the accordion is not independent, several accordions can be actived.
    */
   indexActive?: number;
+  /**
+   * This function will be called when the user clicks on an accordion. The index of the clicked accordion will be passed as a parameter.
+   */
+  onActiveChange?: (index: number) => void;
 };
 
 type NonIndependentProps = CommonProps & {
@@ -99,6 +99,10 @@ type NonIndependentProps = CommonProps & {
    * If the accordion is not independent, several accordions can be actived.
    */
   indexActive?: number[];
+  /**
+   * This function will be called when the user clicks on an accordion. The index of the clicked accordion will be passed as a parameter.
+   */
+  onActiveChange?: (index: number[]) => void;
 };
 
 type Props = IndependentProps | NonIndependentProps;

@@ -48,7 +48,7 @@ const sections = [
             </td>
             <td>
               Initially active accordion, only when it is uncontrolled. If the accordion is not independent, several
-              accordions can be actived by default.
+              accordions can be activated by default.
             </td>
             <td>-</td>
           </tr>
@@ -60,7 +60,8 @@ const sections = [
             <td>
               The index of the active accordion. If undefined, the component will be uncontrolled and the active
               accordion will be managed internally by the component. If null, the component will be controlled and all
-              accordions will be closed. If the accordion is not independent, several accordions can be actived.
+              accordions will be closed. If the accordion is not independent, several accordions can be activated by
+              default.
             </td>
             <td>-</td>
           </tr>

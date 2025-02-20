@@ -39,7 +39,7 @@ describe("Accordion component tests", () => {
   test("Calls correct function on click", () => {
     const onChange = jest.fn();
     const { getByText } = render(
-      <DxcAccordion onActiveChange={onChange}>
+      <DxcAccordion onActiveChange={onChange} independent={true}>
         <DxcAccordion.AccordionItem label="Accordion">
           <div>test-expanded</div>
         </DxcAccordion.AccordionItem>
