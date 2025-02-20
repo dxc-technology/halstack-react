@@ -1,5 +1,4 @@
 import { act, fireEvent, render, waitFor } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 import DxcSlider from "./Slider";
 
 // Mocking DOMRect for Radix Primitive Popover

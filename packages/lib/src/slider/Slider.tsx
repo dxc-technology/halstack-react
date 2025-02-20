@@ -3,18 +3,7 @@ import styled, { css } from "styled-components";
 import DxcTextInput from "../text-input/TextInput";
 import { spaces } from "../common/variables";
 import SliderPropsType, { RefType } from "./types";
-import { getMargin } from "../common/utils";
-
-const sizes = {
-  medium: "360px",
-  large: "480px",
-  fillParent: "100%",
-};
-
-const calculateWidth = (margin: SliderPropsType["margin"], size: SliderPropsType["size"]) =>
-  size === "fillParent"
-    ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
-    : size && sizes[size];
+import { calculateWidth, roundUp } from "./utils";
 
 const SliderContainer = styled.div<{
   margin: SliderPropsType["margin"];
@@ -80,32 +69,12 @@ const SliderInputContainer = styled.div`
   height: var(--height-xxxs);
 `;
 
-/**
- * @param target
- * @param step
- * @param min
- * @param max
- * @returns the closest tick value to the target value
- */
-const roundUpPercentage = (target: number, step: number, min: number, max: number) => {
-  if (target < min) return min;
-  if (target > max) return max;
-
-  let percentage = 0;
-  let acc = target - min;
-  for (let tick = min; tick <= max; tick += step) {
-    if (Math.abs(target - tick) <= Math.abs(acc)) {
-      acc = target - tick;
-      percentage = tick;
-    } else break;
-  }
-  return percentage;
-};
 const thumbStyles = (disabled: SliderPropsType["disabled"]) => css`
   -webkit-appearance: none;
   width: 12px;
   height: var(--height-xxxs);
   background: ${disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-secondary-medium)"};
+  border: none;
   border-radius: 50%;
   transition:
     width 0.2s ease,
@@ -142,10 +111,9 @@ const SliderInput = styled.input<{
       ? "linear-gradient(var(--color-fg-neutral-medium), var(--color-fg-neutral-medium))"
       : "linear-gradient(var(--color-fg-secondary-medium), var(--color-fg-secondary-medium))"};
   background-repeat: no-repeat;
-  ${(props) => {
-    if (props.value != null && props.min != null && props.max != null && props.step != null) {
-      const base10 =
-        (roundUpPercentage(props.value, props.step, props.min, props.max) - props.min) / (props.max - props.min) * 100;
+  ${({ value, step, min, max }) => {
+    if (value != null && min != null && max != null && step != null) {
+      const base10 = ((roundUp(value, step, min, max) - min) / (max - min)) * 100;
       return `background-size: ${base10}% 100%;`;
     }
   }}
@@ -220,13 +188,13 @@ const DxcSlider = forwardRef<RefType, SliderPropsType>(
     const maxLabel = useMemo(() => labelFormatCallback?.(maxValue) ?? maxValue, [labelFormatCallback, maxValue]);
 
     const handleOnChange = (event: ChangeEvent<HTMLInputElement>) => {
-      const sliderIntegerValue = parseInt(event.target.value, 10);
+      const sliderIntegerValue = Number(event.target.value);
       if (value == null) setInnerValue(sliderIntegerValue);
       onChange?.(sliderIntegerValue);
     };
 
     const handleOnMouseUp = (event: MouseEvent<HTMLInputElement>) => {
-      const sliderIntegerValue = parseInt((event.target as HTMLInputElement).value, 10);
+      const sliderIntegerValue = Number((event.target as HTMLInputElement).value);
       onDragEnd?.(sliderIntegerValue);
     };
 
@@ -271,9 +239,7 @@ const DxcSlider = forwardRef<RefType, SliderPropsType>(
                 <TicksContainer>
                   {Array.from({ length: Math.floor((maxValue - minValue) / step) + 1 }, (_, index) => (
                     <Tick
-                      currentTick={
-                        roundUpPercentage(value ?? innerValue, step, minValue, maxValue) === minValue + index * step
-                      }
+                      currentTick={roundUp(value ?? innerValue, step, minValue, maxValue) === minValue + index * step}
                       disabled={disabled}
                       key={`tickmark-${index}`}
                     />

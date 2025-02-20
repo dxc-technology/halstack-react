@@ -223,7 +223,9 @@ const sections = [
             <td>
               Specifies a string to be used as the name for the slider element when no <Code>label</Code> is provided.
             </td>
-            <td>'Slider'</td>
+            <td>
+              <TableCode>'Slider'</TableCode>
+            </td>
           </tr>
         </tbody>
       </DxcTable>
