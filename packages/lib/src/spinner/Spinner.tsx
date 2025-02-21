@@ -163,15 +163,17 @@ const Labels = styled.div<{ mode: SpinnerPropsType["mode"] }>`
   gap: var(--spacing-gap-none, 0px);
   place-items: center;
   width: 116px;
-
   color: ${({ mode }) => (mode === "overlay" ? "var(--color-absolutes-white)" : "var(--color-fg-neutral-dark)")};
   font-family: var(--typography-font-family);
   font-size: var(--typography-helper-text-m);
   font-weight: var(--typography-helper-text-regular);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 
+  > span {
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
   > strong {
     font-weight: var(--typography-helper-text-semibold);
   }
