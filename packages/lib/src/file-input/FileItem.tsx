@@ -13,16 +13,17 @@ const MainContainer = styled.div<{
 }>`
   box-sizing: border-box;
   display: flex;
-  justify-content: center;
+  align-items: center;
   gap: 0.75rem;
   width: ${(props) => (props.singleFileMode ? "230px" : "320px")};
+  height: ${(props) => (props.singleFileMode || !props.showPreview) && "var(--height-m)"};
   padding: ${(props) =>
-    props.showPreview
-      ? `calc(var(--spacing-padding-xs) - var(--border-width-s))`
-      : `calc(var(--spacing-padding-xs) - var(--border-width-s)) calc(var(--spacing-padding-xs) - var(--border-width-s)) calc(var(--spacing-padding-xs) - var(--border-width-s)) 16px`};
+    props.showPreview && !props.singleFileMode
+      ? `var(--spacing-padding-xs) var(--spacing-padding-s)`
+      : `0px var(--spacing-padding-s)`};
   ${(props) => props.error && `background-color: var(--color-bg-error-lightest)`};
   border-color: ${(props) => (props.error ? `var(--border-color-error-medium)` : `var(--border-color-neutral-light)`)};
-  border-width: var(--border-width-s);
+  border-width: ${(props) => (props.error ? `var(--border-width-m)` : `var(--border-width-s)`)};
   border-style: var(--border-style-default);
   border-radius: var(--border-radius-s);
 `;
@@ -71,22 +72,29 @@ const FileName = styled.span`
   text-overflow: ellipsis;
 `;
 
+const ErrorMessageContainer = styled.div<{ singleFileMode: FileItemProps["singleFileMode"] }>`
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-gap-xs);
+  color: var(--color-fg-error-medium);
+  max-width: ${(props) => (props.singleFileMode ? "230px" : "320px")};
+`;
 const ErrorIcon = styled.span`
   display: flex;
   flex-wrap: wrap;
   align-content: center;
-  padding: 3px;
-  width: 20px;
-  height: var(--height-xs);
   font-size: var(--height-xs);
-  color: var(--color-fg-error-medium);
 `;
 
-const ErrorMessage = styled.span`
+const ErrorMessage = styled.div`
+  display: block;
   color: var(--color-fg-error-medium);
   font-family: var(--typography-font-family);
   font-size: var(--typography-helper-text-s);
   font-weight: var(--typography-helper-text-regular);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 const FileItem = ({
@@ -103,37 +111,37 @@ const FileItem = ({
   const fileNameId = useId();
 
   return (
-    <MainContainer error={error} role="listitem" singleFileMode={singleFileMode} showPreview={showPreview}>
-      {showPreview &&
-        (type.includes("image") ? (
-          <ImagePreview src={preview} alt={fileName} />
-        ) : (
-          <IconPreview aria-labelledby={fileNameId} error={error} role="img">
-            <DxcIcon icon={preview} />
-          </IconPreview>
-        ))}
-      <FileItemContent>
-        <FileName id={fileNameId}>{fileName}</FileName>
-        <DxcFlex gap="0.25rem">
-          {error && (
-            <ErrorIcon>
-              <DxcIcon icon="filled_error" />
-            </ErrorIcon>
-          )}
-          <DxcActionIcon
-            onClick={() => onDelete(fileName)}
-            icon="close"
-            tabIndex={tabIndex}
-            title={translatedLabels.fileInput.deleteFileActionTitle}
-          />
-        </DxcFlex>
-        {error && !singleFileMode && (
-          <ErrorMessage role="alert" aria-live="assertive">
-            {error}
-          </ErrorMessage>
-        )}
-      </FileItemContent>
-    </MainContainer>
+    <>
+      <MainContainer error={error} role="listitem" singleFileMode={singleFileMode} showPreview={showPreview}>
+        {showPreview &&
+          (type.includes("image") ? (
+            <ImagePreview src={preview} alt={fileName} />
+          ) : (
+            <IconPreview aria-labelledby={fileNameId} error={error} role="img">
+              <DxcIcon icon={preview} />
+            </IconPreview>
+          ))}
+        <FileItemContent>
+          <FileName id={fileNameId}>{fileName}</FileName>
+          <DxcFlex gap="0.25rem">
+            <DxcActionIcon
+              onClick={() => onDelete(fileName)}
+              icon="close"
+              tabIndex={tabIndex}
+              title={translatedLabels.fileInput.deleteFileActionTitle}
+            />
+          </DxcFlex>
+        </FileItemContent>
+      </MainContainer>
+      {error && (
+        <ErrorMessageContainer role="alert" aria-live="assertive" singleFileMode={singleFileMode}>
+          <ErrorIcon>
+            <DxcIcon icon="filled_error" />
+          </ErrorIcon>
+          <ErrorMessage>{error}</ErrorMessage>
+        </ErrorMessageContainer>
+      )}
+    </>
   );
 };
 

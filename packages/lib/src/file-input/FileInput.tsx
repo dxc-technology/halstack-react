@@ -4,7 +4,7 @@ import DxcButton from "../button/Button";
 import { spaces } from "../common/variables";
 import FileItem from "./FileItem";
 import FileInputPropsType, { FileData, RefType } from "./types";
-import HalstackContext, { HalstackLanguageContext } from "../HalstackContext";
+import { HalstackLanguageContext } from "../HalstackContext";
 import { getFilePreview, isFileIncluded } from "./utils";
 
 const FileInputContainer = styled.div<{ margin: FileInputPropsType["margin"] }>`
@@ -73,7 +73,7 @@ const DragDropArea = styled.div<{
   display: flex;
   ${(props) =>
     props.mode === "filedrop"
-      ? "flex-direction: row; column-gap: 0.75rem; height: 48px;"
+      ? "flex-direction: row; column-gap: 0.75rem;"
       : "justify-content: center; flex-direction: column; row-gap: 0.5rem; height: 160px;"}
   align-items: center;
   width: 320px;
@@ -115,16 +115,6 @@ const FiledropLabel = styled.span<{ disabled: FileInputPropsType["disabled"] }>`
   font-weight: var(--typography-helper-text-regular);
 `;
 
-const ErrorMessage = styled.div`
-  overflow: hidden;
-  color: var(--color-fg-error-medium);
-  text-overflow: ellipsis;
-  font-family: var(--typography-font-family);
-  font-size: var(--typography-helper-text-s);
-  font-weight: var(--typography-helper-text-regular);
-  margin-top: 0.25rem;
-`;
-
 const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
   (
     {
@@ -149,7 +139,6 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
     const [isDragging, setIsDragging] = useState(false);
     const [files, setFiles] = useState<FileData[]>([]);
     const fileInputId = `file-input-${useId()}`;
-    const colorsTheme = useContext(HalstackContext);
     const translatedLabels = useContext(HalstackLanguageContext);
 
     const checkFileSize = (file: File) => {
@@ -276,7 +265,7 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
               }
               onClick={handleClick}
               disabled={disabled}
-              size={{ width: "fitContent" }}
+              size={{ width: "fitContent", height: "medium" }}
               tabIndex={tabIndex}
             />
             {files.length > 0 && (
@@ -322,7 +311,7 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
                 label={buttonLabel ?? translatedLabels.fileInput.dropAreaButtonLabelDefault}
                 onClick={handleClick}
                 disabled={disabled}
-                size={{ width: "fitContent" }}
+                size={{ width: "fitContent", height: "medium" }}
               />
               {mode === "dropzone" ? (
                 <DropzoneLabel disabled={disabled}>
@@ -358,9 +347,6 @@ const DxcFileInput = forwardRef<RefType, FileInputPropsType>(
               </FileItemListContainer>
             )}
           </Container>
-        )}
-        {mode === "file" && !multiple && files.length === 1 && files[0]?.error && (
-          <ErrorMessage>{files[0].error}</ErrorMessage>
         )}
       </FileInputContainer>
     );
