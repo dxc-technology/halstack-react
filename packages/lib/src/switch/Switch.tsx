@@ -1,4 +1,4 @@
-import { forwardRef, KeyboardEvent, useContext, useId, useRef, useState } from "react";
+import { forwardRef, KeyboardEvent, useContext, useState } from "react";
 import styled from "styled-components";
 import { spaces } from "../common/variables";
 import { getMargin } from "../common/utils";
@@ -34,9 +34,9 @@ const getTrackColor = (checked: SwitchPropsType["checked"], disabled: SwitchProp
 };
 
 const SwitchContainer = styled.div<{
+  disabled: SwitchPropsType["disabled"];
   margin: SwitchPropsType["margin"];
   size: SwitchPropsType["size"];
-  disabled: SwitchPropsType["disabled"];
 }>`
   display: inline-flex;
   align-items: center;
@@ -53,6 +53,15 @@ const SwitchContainer = styled.div<{
   margin-left: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
   cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
+
+  /* Thumb focus */
+  &:focus:not([aria-disabled="true"]) {
+    outline: none;
+    > span::before {
+      outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
+      outline-offset: 4px;
+    }
+  }
 `;
 
 const Label = styled.span<{
@@ -72,9 +81,9 @@ const Label = styled.span<{
 const Switch = styled.span<{ checked: SwitchPropsType["checked"]; disabled: SwitchPropsType["disabled"] }>`
   position: relative;
   margin: var(--spacing-padding-none) var(--spacing-padding-s);
-  width: 36px;
+  min-width: 36px;
   height: var(--height-xxxs);
-  border-radius: var(--border-radius-xl, 24px);
+  border-radius: var(--border-radius-xl);
   background-color: ${({ checked, disabled }) => getTrackColor(checked, disabled)};
   transition: background-color 0.2s ease-in-out; /* Background color transition */
 
@@ -88,21 +97,10 @@ const Switch = styled.span<{ checked: SwitchPropsType["checked"]; disabled: Swit
     height: var(--height-s);
     background-color: var(--color-fg-neutral-bright);
     border-radius: 50%;
-    box-shadow:
-      0px 2px 1px -1px rgb(0 0 0 / 20%),
-      0px 1px 1px 0px rgb(0 0 0 / 14%),
-      0px 1px 3px 0px rgb(0 0 0 / 12%);
+    box-shadow: var(--shadow-low-x-position) var(--shadow-low-y-position) var(--shadow-low-blur)
+      var(--shadow-low-spread) var(--shadow-dark);
+    transform: ${({ checked }) => checked && "translateX(20px)"};
     transition: transform 0.2s ease-in-out; /* Thumb transform transition */
-  }
-  &:focus {
-    outline: none;
-    ::before {
-      outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
-      outline-offset: 4px;
-    }
-  }
-  &[aria-checked="true"]::before {
-    transform: translateX(20px);
   }
 `;
 
@@ -124,11 +122,8 @@ const DxcSwitch = forwardRef<RefType, SwitchPropsType>(
       value,
     },
     ref
-  ): JSX.Element => {
-    const switchId = `switch-${useId()}`;
-    const labelId = `label-${switchId}`;
+  ) => {
     const [innerChecked, setInnerChecked] = useState(defaultChecked);
-    const refTrack = useRef<HTMLSpanElement>(null);
     const translatedLabels = useContext(HalstackLanguageContext);
 
     const handlerOnChange = () => {
@@ -141,7 +136,6 @@ const DxcSwitch = forwardRef<RefType, SwitchPropsType>(
         case "Enter":
         case " ":
           event.preventDefault();
-          refTrack.current?.focus();
           setInnerChecked(!(checked ?? innerChecked));
           onChange?.(!(checked ?? innerChecked));
           break;
@@ -152,18 +146,24 @@ const DxcSwitch = forwardRef<RefType, SwitchPropsType>(
 
     return (
       <SwitchContainer
-        margin={margin}
-        size={size}
-        onKeyDown={handleOnKeyDown}
+        aria-checked={checked ?? innerChecked}
+        aria-disabled={disabled}
+        aria-label={label ? undefined : ariaLabel}
         disabled={disabled}
+        margin={margin}
         onClick={!disabled ? handlerOnChange : undefined}
+        onKeyDown={!disabled ? handleOnKeyDown : undefined}
         ref={ref}
+        role="switch"
+        size={size}
+        tabIndex={disabled ? -1 : tabIndex}
       >
         {label && (
-          <Label disabled={disabled} id={labelId} labelPosition={labelPosition}>
+          <Label disabled={disabled} labelPosition={labelPosition}>
             {label} {optional && <>{translatedLabels.formFields.optionalLabel}</>}
           </Label>
         )}
+        <Switch checked={checked ?? innerChecked} disabled={disabled} />
         <input
           aria-hidden
           checked={checked ?? innerChecked}
@@ -172,18 +172,8 @@ const DxcSwitch = forwardRef<RefType, SwitchPropsType>(
           readOnly
           style={{ display: "none" }}
           type="checkbox"
-          value={value}
-        />
-        <Switch
-          aria-checked={checked ?? innerChecked}
-          aria-disabled={disabled}
-          aria-label={label ? undefined : ariaLabel}
-          aria-labelledby={labelId}
-          checked={checked ?? innerChecked}
-          disabled={disabled}
-          ref={refTrack}
           role="switch"
-          tabIndex={disabled ? -1 : tabIndex}
+          value={value}
         />
       </SwitchContainer>
     );
