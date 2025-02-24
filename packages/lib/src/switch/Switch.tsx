@@ -54,12 +54,14 @@ const SwitchContainer = styled.div<{
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
   cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
 
-  /* Thumb focus */
-  &:focus:not([aria-disabled="true"]) {
+  &:focus {
     outline: none;
-    > span::before {
-      outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
-      outline-offset: 4px;
+    /* Thumb focus */
+    &:not([aria-disabled="true"]) {
+      > span::before {
+        outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
+        outline-offset: 2px;
+      }
     }
   }
 `;
@@ -76,6 +78,11 @@ const Label = styled.span<{
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+
+  > span {
+    color: ${({ disabled }) => (disabled ? "var(--color-fg-neutral-medium);" : "var(--color-fg-neutral-stronger)")};
+    font-size: var(--typography-label-m);
+  }
 `;
 
 const Switch = styled.span<{ checked: SwitchPropsType["checked"]; disabled: SwitchPropsType["disabled"] }>`
@@ -160,7 +167,7 @@ const DxcSwitch = forwardRef<RefType, SwitchPropsType>(
       >
         {label && (
           <Label disabled={disabled} labelPosition={labelPosition}>
-            {label} {optional && <>{translatedLabels.formFields.optionalLabel}</>}
+            {label} <span>{optional && <>{translatedLabels.formFields.optionalLabel}</>}</span>
           </Label>
         )}
         <Switch checked={checked ?? innerChecked} disabled={disabled} />
