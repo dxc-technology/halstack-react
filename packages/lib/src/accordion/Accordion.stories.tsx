@@ -280,12 +280,32 @@ const Accordion = () => (
       </DxcAccordion>
     </ExampleContainer>
     <ExampleContainer>
-      <Title title="Large label, large sublabel and large assistive text" theme="light" level={4} />
+      <Title title="Long badge, long label, long sublabel and long assistive text" theme="light" level={4} />
       <DxcAccordion>
         <DxcAccordion.AccordionItem
           label="Assure Claims Assure Claims Assure Claims Assure Claims Assure Claims Assure Claims Assure Claims Assure Claims Assure Claims Assure Claims Assure Claims Assure Claims Assure Claims Assure ClaimsAssure Claims"
-          subLabel="Jan, 09 2025 ahwdñuaehf ñaiugfiuweg fñuigwfñiugeq fñuigwfñiugeq fñuian, 09 2025  gwfñiugeq ug auñhwd qfuwuefiuegfue giugfuan, 09 2025 gfñeuiwg qiuwgfifgew iwqgfulyqf iugqwydyg wdhdhd uwgdhgd yd ydyd yd yddy afdkawlywdg lyugwaluyd "
+          subLabel="Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025"
           assistiveText="Assistive text Assistive text Assistive text Assistive text Assistive text Assistive text Assistive text Assistive text Assistive text Assistive text Assistive text Assistive text Assistive text "
+          badge={{
+            position: "before",
+            element: (
+              <DxcBadge label="Long long long long long long long long long longlong long long long long long long longlong long long long long long long long text" />
+            ),
+          }}
+        >
+          <DxcInset space="1.5rem">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
+            leo lobortis eget.
+          </DxcInset>
+        </DxcAccordion.AccordionItem>
+      </DxcAccordion>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Long label, long sublabel" theme="light" level={4} />
+      <DxcAccordion>
+        <DxcAccordion.AccordionItem
+          label="Assure Claims Assure Claims Assure Assure Claims Assure Claims Assure Claims Assure Claims Assure Claims Assure Claims Assure Claims Assure Claims Assure Claims Assure Claims Assure Claims "
+          subLabel="Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025"
           icon="heart_plus"
         >
           <DxcInset space="1.5rem">
@@ -296,12 +316,28 @@ const Accordion = () => (
       </DxcAccordion>
     </ExampleContainer>
     <ExampleContainer>
-      <Title title="Large label, large sublabel and large assistive text" theme="light" level={4} />
+      <Title title="Long label, long sublabel and short assistive text" theme="light" level={4} />
       <DxcAccordion>
         <DxcAccordion.AccordionItem
-          label="Assure Claims Assure Claims Assure Assure Claims Assure Claims "
+          label="Assure Claims Assure Claims Assure Assure Claims Assure Claims Assure Claims Assure Claims Assure Claims Assure Claims Assure Claims Assure Claims Assure Claims Assure Claims Assure Claims "
+          subLabel="Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025"
+          assistiveText="Assistive text Assistive text"
+          icon="heart_plus"
+        >
+          <DxcInset space="1.5rem">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
+            leo lobortis eget.
+          </DxcInset>
+        </DxcAccordion.AccordionItem>
+      </DxcAccordion>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Short label, long sublabel and long assistive text" theme="light" level={4} />
+      <DxcAccordion>
+        <DxcAccordion.AccordionItem
+          label="Assure Claim"
           subLabel="Jan, 09 2025"
-          assistiveText="Assistive text Assistive text Assistive text "
+          assistiveText="Assistive text Assistive text Assistive text Assistive text Assistive text Assistive text Assistive text Assistive text Assistive text Assistive text Assistive text Assistive text Assistive text Assistive text"
           icon="heart_plus"
         >
           <DxcInset space="1.5rem">

@@ -47,16 +47,18 @@ const AccordionItem = ({
             <DxcFlex gap="1.5rem">
               <LeftSideContainer>
                 <DxcFlex gap="0.75rem">
-                  {icon && (
-                    <IconContainer disabled={disabled}>
-                      {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
-                    </IconContainer>
-                  )}
-                  {badge?.position === "before" && !icon && (
-                    <StatusContainer subLabel={subLabel}>
-                      {disabled ? cloneElement(badge.element as ReactElement, { color: "grey" }) : badge.element}
-                    </StatusContainer>
-                  )}
+                  <OptionalElement>
+                    {icon && (
+                      <IconContainer disabled={disabled}>
+                        {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
+                      </IconContainer>
+                    )}
+                    {badge?.position === "before" && !icon && (
+                      <StatusContainer subLabel={subLabel}>
+                        {disabled ? cloneElement(badge.element as ReactElement, { color: "grey" }) : badge.element}
+                      </StatusContainer>
+                    )}
+                  </OptionalElement>
                   <LabelsContainer>
                     <AccordionLabel disabled={disabled}>{label}</AccordionLabel>
                     {subLabel && <SubLabel disabled={disabled}>{subLabel}</SubLabel>}
@@ -134,7 +136,6 @@ const AccordionTrigger = styled.button`
     background-color: ${(props) => `${props.theme.hoverBackgroundColor}`};
   }
 `;
-
 const LeftSideContainer = styled.div`
   flex: 1;
   overflow: hidden;
@@ -142,10 +143,16 @@ const LeftSideContainer = styled.div`
 
 const RightSideContainer = styled.div`
   display: flex;
-  flex: 1;
   overflow: hidden;
   justify-content: flex-end;
   gap: 0.5rem;
+  max-width: 30%;
+  flex-shrink: 0;
+`;
+
+const OptionalElement = styled.div`
+  max-width: 30%;
+  overflow: hidden;
 `;
 
 const LabelsContainer = styled.div`
