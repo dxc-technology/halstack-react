@@ -1,6 +1,6 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import CardCodePage from "screens/components/card/overview/CardOverviewPage";
+import CardCodePage from "screens/components/card/code/CardCodePage";
 import CardPageLayout from "screens/components/card/CardPageLayout";
 
 const Code = () => {
