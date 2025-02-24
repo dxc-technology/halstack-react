@@ -67,13 +67,14 @@ const SliderInputContainer = styled.div`
   display: flex;
   align-items: center;
   height: var(--height-xxxs);
+  min-width: 184px;
 `;
 
 const thumbStyles = (disabled: SliderPropsType["disabled"]) => css`
   -webkit-appearance: none;
   width: 12px;
   height: var(--height-xxxs);
-  background: ${disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-secondary-medium)"};
+  background-color: ${disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-secondary-medium)"};
   border: none;
   border-radius: 50%;
   transition:
@@ -84,9 +85,9 @@ const thumbStyles = (disabled: SliderPropsType["disabled"]) => css`
   }
   &:hover {
     ${!disabled &&
-    `height: var(--height-xxs);
-     width: 16px;
-     background-color: var(--color-fg-secondary-strong);`}
+    `background-color: var(--color-fg-secondary-strong);
+     height: var(--height-xxs);
+     width: 16px;`}
   }
 `;
 const thumbFocusStyles = css`
@@ -150,8 +151,8 @@ const Tick = styled.span<{
   background-color: ${({ disabled }) =>
     disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-secondary-medium)"};
   border-radius: 50%;
-  height: 6px;
-  width: 6px;
+  height: 4px;
+  width: 4px;
   ${({ currentTick }) => currentTick && "visibility: hidden;"};
 `;
 
