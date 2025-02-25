@@ -1,6 +1,6 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import ContextualMenuCodePage from "screens/components/contextual-menu/code/ContextualMenuCodePage";
+import ContextualMenuOverviewPage from "screens/components/contextual-menu/overview/ContextualMenuOverviewPage";
 import ContextualMenuPageLayout from "screens/components/contextual-menu/ContextualMenuPageLayout";
 
 const Usage = () => {
@@ -9,13 +9,11 @@ const Usage = () => {
       <Head>
         <title>Contextual Menu — Halstack Design System</title>
       </Head>
-      <ContextualMenuCodePage></ContextualMenuCodePage>
+      <ContextualMenuOverviewPage />
     </>
   );
 };
 
-Usage.getLayout = function getLayout(page: ReactElement) {
-  return <ContextualMenuPageLayout>{page}</ContextualMenuPageLayout>;
-};
+Usage.getLayout = (page: ReactElement) => <ContextualMenuPageLayout>{page}</ContextualMenuPageLayout>;
 
 export default Usage;
