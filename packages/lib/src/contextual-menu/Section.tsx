@@ -8,7 +8,7 @@ import { useId } from "react";
 
 const Title = styled.h2`
   all: unset;
-  color: var(--color-grey-900);
+  color: var(--color-fg-neutral-dark);
   font-family: var(--typography-font-family);
   font-size: var(--typography-label-l);
   font-style: normal;

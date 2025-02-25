@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import CoreTokens from "../common/coreTokens";
 import GroupItem from "./GroupItem";
 import SingleItem from "./SingleItem";
 import { MenuItemProps } from "./types";

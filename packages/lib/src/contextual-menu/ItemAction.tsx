@@ -1,6 +1,5 @@
 import { cloneElement, MouseEvent, useState } from "react";
 import styled from "styled-components";
-import CoreTokens from "../common/coreTokens";
 import { ItemActionProps } from "./types";
 import DxcIcon from "../icon/Icon";
 import { TooltipWrapper } from "../tooltip/Tooltip";

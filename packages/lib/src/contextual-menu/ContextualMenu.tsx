@@ -16,7 +16,7 @@ import ContextualMenuContext from "./ContextualMenuContext";
 const ContextualMenu = styled.div`
   box-sizing: border-box;
   margin: 0;
-  border: 1px solid var(--color-grey-200);
+  border: var(--border-width-s) solid var(--border-color-neutral-lighter);
   border-radius: var(--border-radius-s);
   padding: var(--spacing-padding-m) var(--spacing-padding-xs);
   display: flex;
