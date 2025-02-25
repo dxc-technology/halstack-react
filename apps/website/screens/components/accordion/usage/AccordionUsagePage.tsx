@@ -224,7 +224,7 @@ const sections = [
             ),
             subSections: [
               {
-                title: "Allow Multiple Sections Open",
+                title: "Allow multiple sections open",
                 content: (
                   <>
                     <DxcParagraph>
@@ -247,7 +247,7 @@ const sections = [
                 ),
               },
               {
-                title: "Single-Open Behavior",
+                title: "Single-open behavior",
                 content: (
                   <>
                     <DxcParagraph>

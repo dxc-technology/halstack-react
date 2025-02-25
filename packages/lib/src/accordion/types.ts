@@ -65,15 +65,14 @@ type IndependentProps = CommonProps & {
    */
   independent: true;
   /**
-   * Initially active accordion, only when it is uncontrolled.
-   * If the accordion is not independent, several accordions can be actived
-   * by default.
+   * Initially active accordion, only when it is uncontrolled.If the accordion is not independent,
+   * several accordions can be activated by default.
    */
   defaultIndexActive?: number;
   /**
-   * The index of the active accordion. If undefined, the component will be uncontrolled and
-   * the active accordion will be managed internally by the component. If null, the component will be controlled and all accordions will be closed.
-   * If the accordion is not independent, several accordions can be actived.
+   * The index of the active accordion. If undefined, the component will be uncontrolled and the active
+   * accordion will be managed internally by the component. If null, the component will be controlled and all
+   * accordions will be closed. If the accordion is not independent, several accordions can be activated.
    */
   indexActive?: number;
   /**
@@ -88,15 +87,14 @@ type NonIndependentProps = CommonProps & {
    */
   independent?: false;
   /**
-   * Initially active accordion, only when it is uncontrolled.
-   * If the accordion is not independent, several accordions can be actived
-   * by default.
+   * Initially active accordion, only when it is uncontrolled. If the accordion is not independent,
+   * several accordions can be activated by default.
    */
   defaultIndexActive?: number[];
   /**
-   * The index of the active accordion. If undefined, the component will be uncontrolled and
-   * the active accordion will be managed internally by the component. If null, the component will be controlled and all accordions will be closed.
-   * If the accordion is not independent, several accordions can be actived.
+   * The index of the active accordion. If undefined, the component will be uncontrolled and the active
+   * accordion will be managed internally by the component. If null, the component will be controlled and all
+   * accordions will be closed. If the accordion is not independent, several accordions can be activated.
    */
   indexActive?: number[];
   /**

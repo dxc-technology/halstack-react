@@ -2,7 +2,6 @@ import { DxcAccordion, DxcFlex, DxcInset } from "@dxc-technology/halstack-react"
 import { useState } from "react";
 
 const code = `() => {
-
   return (
     <DxcInset space="2rem">
       <DxcAccordion>

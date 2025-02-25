@@ -9,7 +9,6 @@ import controlled from "./examples/controlled";
 import uncontrolled from "./examples/uncontrolled";
 import icons from "./examples/icons";
 import accordions from "./examples/accordions";
-import disabledAccordions from "./examples/disabledAccordions";
 import TableCode from "@/common/TableCode";
 import StatusBadge from "@/common/StatusBadge";
 import Code from "@/common/Code";
@@ -60,15 +59,14 @@ const sections = [
             <td>
               The index of the active accordion. If undefined, the component will be uncontrolled and the active
               accordion will be managed internally by the component. If null, the component will be controlled and all
-              accordions will be closed. If the accordion is not independent, several accordions can be activated by
-              default.
+              accordions will be closed. If the accordion is not independent, several accordions can be activated.
             </td>
             <td>-</td>
           </tr>
           <tr>
             <td>onActiveChange</td>
             <td>
-              <TableCode>{`(indexActive: number | number[]) => void`}</TableCode>
+              <TableCode>{`(index: number | number[]) => void`}</TableCode>
             </td>
             <td>
               This function will be called when the user clicks on an accordion. The index of the clicked accordion will
@@ -184,7 +182,7 @@ const sections = [
                   </DxcLink>{" "}
                   name or SVG element as the icon that will be placed next to the panel label. When using Material
                   Symbols, replace spaces with underscores. By default they are outlined if you want it to be filled
-                  prefix the symbol name with <TableCode>"filled_"</TableCode>.
+                  prefix the symbol name with <Code>"filled_"</Code>.
                 </td>
                 <td>-</td>
               </tr>
@@ -263,10 +261,6 @@ const sections = [
       {
         title: "Group of accordions",
         content: <Example example={accordions} defaultIsVisible />,
-      },
-      {
-        title: "Disabled accordions",
-        content: <Example example={disabledAccordions} defaultIsVisible />,
       },
     ],
   },

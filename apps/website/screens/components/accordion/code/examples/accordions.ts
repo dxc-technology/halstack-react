@@ -2,7 +2,6 @@ import { DxcAccordion, DxcInset, DxcBadge, DxcStatusLight } from "@dxc-technolog
 import { useState } from "react";
 
 const code = `() => {
-
   return (
     <DxcInset space="2rem">
       <DxcAccordion independent={false} defaultIndexActive={[0, 2]}>
