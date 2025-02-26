@@ -10,7 +10,7 @@ const DxcPaginator = ({
   currentPage = 1,
   itemsPerPage = 5,
   itemsPerPageOptions,
-  totalItems = 1,
+  totalItems = 10,
   showGoToPage,
   onPageChange,
   itemsPerPageFunction,
@@ -28,7 +28,7 @@ const DxcPaginator = ({
   const colorsTheme = useContext(HalstackContext);
   const translatedLabels = useContext(HalstackLanguageContext);
 
-  return (
+  return totalItems > itemsPerPage ? (
     <ThemeProvider theme={colorsTheme.paginator}>
       <DxcPaginatorContainer>
         <LabelsContainer>
@@ -126,6 +126,8 @@ const DxcPaginator = ({
         </LabelsContainer>
       </DxcPaginatorContainer>
     </ThemeProvider>
+  ) : (
+    <></>
   );
 };
 
