@@ -43,6 +43,7 @@ const sections = [
             Left secondary element <em>(Optional)</em>
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>Title</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Sublabel</DxcBulletedList.Item>
           <DxcBulletedList.Item>
             Right secondary element <em>(Optional)</em>
           </DxcBulletedList.Item>

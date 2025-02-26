@@ -140,10 +140,7 @@ const sections = [
                 </DxcParagraph>
                 <Image src={accordionContent} alt="Accordion content" />
                 <DxcParagraph>
-                  <strong>Left</strong>. Nesting is allowed.
-                </DxcParagraph>
-                <DxcParagraph>
-                  <strong>Right</strong>. Icons can be used as a complement to the header label.
+                  Nesting is allowed and icons can be used as a complement to the header label.
                 </DxcParagraph>
               </>
             ),
