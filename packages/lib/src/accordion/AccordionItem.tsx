@@ -47,21 +47,19 @@ const AccordionItem = ({
             <DxcFlex gap="1.5rem">
               <LeftSideContainer>
                 <DxcFlex gap="0.75rem">
-                  {icon ||
-                    (badge && (
-                      <OptionalElement>
-                        {icon && (
-                          <IconContainer disabled={disabled}>
-                            {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
-                          </IconContainer>
-                        )}
-                        {badge && badge?.position === "before" && !icon && (
-                          <StatusContainer subLabel={subLabel}>
-                            {disabled ? cloneElement(badge.element as ReactElement, { color: "grey" }) : badge.element}
-                          </StatusContainer>
-                        )}
-                      </OptionalElement>
-                    ))}
+                  {(icon || badge?.position === "before") && (
+                    <OptionalElement>
+                      {icon ? (
+                        <IconContainer disabled={disabled}>
+                          {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
+                        </IconContainer>
+                      ) : (
+                        <StatusContainer subLabel={subLabel}>
+                          {disabled ? cloneElement(badge?.element as ReactElement, { color: "grey" }) : badge?.element}
+                        </StatusContainer>
+                      )}
+                    </OptionalElement>
+                  )}
                   <LabelsContainer>
                     <AccordionLabel disabled={disabled}>{label}</AccordionLabel>
                     {subLabel && <SubLabel disabled={disabled}>{subLabel}</SubLabel>}
