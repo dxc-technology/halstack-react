@@ -722,6 +722,17 @@ const DataGrid = () => {
         </DxcContainer>
       </ExampleContainer>
       <ExampleContainer>
+        <Title title="Empty Data Grid" theme="light" level={4} />
+        <DxcDataGrid
+          columns={columns}
+          rows={[]}
+          uniqueRowId="id"
+          selectable
+          selectedRows={selectedChildRows}
+          onSelectRows={setSelectedChildRows}
+        />
+      </ExampleContainer>
+      <ExampleContainer>
         <Title title="Controlled Rows" theme="light" level={4} />
         <DxcDataGrid
           columns={columns}
