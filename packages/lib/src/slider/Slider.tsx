@@ -182,7 +182,7 @@ const DxcSlider = forwardRef<RefType, SliderPropsType>(
   ): JSX.Element => {
     const labelId = `label-${useId()}`;
     const [innerValue, setInnerValue] = useState(defaultValue);
-    const [inputValue, setInputValue] = useState(defaultValue.toString());
+    const [inputValue, setInputValue] = useState((value ?? defaultValue).toString());
     const roundedUpValue = useMemo(
       () => roundUp(value ?? innerValue, step, minValue, maxValue),
       [innerValue, maxValue, minValue, step, value]
@@ -190,11 +190,15 @@ const DxcSlider = forwardRef<RefType, SliderPropsType>(
     const minLabel = useMemo(() => labelFormatCallback?.(minValue) ?? minValue, [labelFormatCallback, minValue]);
     const maxLabel = useMemo(() => labelFormatCallback?.(maxValue) ?? maxValue, [labelFormatCallback, maxValue]);
 
+    const changeValue = (newValue: string) => {
+      if (showInput) setInputValue(newValue);
+      const numberValue = Number(newValue);
+      if (value == null) setInnerValue(numberValue);
+      onChange?.(numberValue);
+    };
+
     const handleOnChange = (event: ChangeEvent<HTMLInputElement>) => {
-      const sliderIntegerValue = Number(event.target.value);
-      if (value == null) setInnerValue(sliderIntegerValue);
-      setInputValue(sliderIntegerValue.toString());
-      onChange?.(sliderIntegerValue);
+      changeValue(event.target.value);
     };
 
     const handleOnMouseUp = (event: MouseEvent<HTMLInputElement>) => {
@@ -203,12 +207,14 @@ const DxcSlider = forwardRef<RefType, SliderPropsType>(
     };
 
     const handlerNumberInputOnChange = (event: { value: string; error?: string }) => {
-      setInputValue(event.value);
+      changeValue(event.value);
+    };
+
+    const handlerNumberInputOnBlur = (event: { value: string; error?: string }) => {
       const textInputIntegerValue = Number(event.value);
-      if (!Number.isNaN(textInputIntegerValue)) {
-        if (value == null) setInnerValue(textInputIntegerValue);
-        onChange?.(textInputIntegerValue);
-      }
+      if (textInputIntegerValue < minValue) changeValue(minValue.toString());
+      else if (textInputIntegerValue > maxValue) changeValue(maxValue.toString());
+      else changeValue(roundUp(textInputIntegerValue, step, minValue, maxValue).toString());
     };
 
     return (
@@ -261,6 +267,7 @@ const DxcSlider = forwardRef<RefType, SliderPropsType>(
             <DxcNumberInput
               disabled={disabled}
               name={name}
+              onBlur={handlerNumberInputOnBlur}
               onChange={handlerNumberInputOnChange}
               showControls={false}
               size="fillParent"

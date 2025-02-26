@@ -38,8 +38,8 @@ export const stepPrecision = (target: number, step: number) => {
  */
 export const roundUp = (target: number, step: number, min: number, max: number): number => {
   if (target === 0) return 0;
-  else if (target < min) return min;
-  else if (target > max) return max;
+  else if (target <= min) return min;
+  else if (target >= max) return max;
   else if (step === 1) return Math.round(target);
 
   const ticks = Array.from({ length: Math.floor((max - min) / step) + 1 }, (_, index) => stepPrecision(min + index * step, step));
