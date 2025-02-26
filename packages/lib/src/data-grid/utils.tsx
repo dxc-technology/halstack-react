@@ -244,7 +244,7 @@ export const renderHeaderCheckbox = (
 ) => (
   <HalstackProvider advancedTheme={overwriteTheme(colorsTheme)}>
     <DxcCheckbox
-      checked={!rows.some((row) => !selectedRows.has(rowKeyGetter(row, uniqueRowId)))}
+      checked={rows.length > 0 && !rows.some((row) => !selectedRows.has(rowKeyGetter(row, uniqueRowId)))}
       onChange={(checked) => {
         const updatedSelection = new Set(selectedRows);
 
@@ -601,7 +601,7 @@ export const getPaginatedNodes = (
  * @param {string} key - The key to check if it exists in the row object.
  * @param {T} obj - The row object to check the key against.
  * @returns {boolean} - Returns `true` if `key` is a valid key of `obj`, otherwise `false`.
- * 
+ *
  */
 export const isKeyOfRow = <T extends GridRow>(key: string, obj: T): key is Extract<keyof T, string> => {
   return key in obj;
