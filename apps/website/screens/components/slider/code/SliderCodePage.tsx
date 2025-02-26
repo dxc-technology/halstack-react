@@ -8,6 +8,7 @@ import controlled from "./examples/controlled";
 import uncontrolled from "./examples/uncontrolled";
 import formatLabel from "./examples/formatLabel";
 import TableCode from "@/common/TableCode";
+import complex from "./examples/complex";
 
 const sections = [
   {
@@ -245,6 +246,10 @@ const sections = [
       {
         title: "Format label",
         content: <Example example={formatLabel} defaultIsVisible />,
+      },
+      {
+        title: "Decimals and negatives",
+        content: <Example example={complex} defaultIsVisible />,
       },
     ],
   },

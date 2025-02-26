@@ -1,9 +1,9 @@
 import { ChangeEvent, forwardRef, MouseEvent, useId, useMemo, useState } from "react";
 import styled, { css } from "styled-components";
-import DxcTextInput from "../text-input/TextInput";
 import { spaces } from "../common/variables";
 import SliderPropsType, { RefType } from "./types";
-import { calculateWidth, roundUp } from "./utils";
+import { calculateWidth, roundUp, stepPrecision } from "./utils";
+import DxcNumberInput from "../number-input/NumberInput";
 
 const SliderContainer = styled.div<{
   margin: SliderPropsType["margin"];
@@ -96,9 +96,9 @@ const thumbFocusStyles = css`
 `;
 const SliderInput = styled.input<{
   disabled: SliderPropsType["disabled"];
-  min: Required<SliderPropsType>["minValue"];
   max: Required<SliderPropsType>["maxValue"];
-  roundedUpValue: number;
+  min: Required<SliderPropsType>["minValue"];
+  value: Required<SliderPropsType>["value"];
 }>`
   -webkit-appearance: none;
   margin: 0;
@@ -111,8 +111,8 @@ const SliderInput = styled.input<{
       ? "linear-gradient(var(--color-fg-neutral-medium), var(--color-fg-neutral-medium))"
       : "linear-gradient(var(--color-fg-secondary-medium), var(--color-fg-secondary-medium))"};
   background-repeat: no-repeat;
-  ${({ min, max, roundedUpValue }) => {
-    const base10 = ((roundedUpValue - min) / (max - min)) * 100;
+  ${({ max, min, value }) => {
+    const base10 = ((value - min) / (max - min)) * 100;
     return `background-size: ${base10}% 100%;`;
   }}
   border-radius: var(--border-radius-m);
@@ -182,6 +182,7 @@ const DxcSlider = forwardRef<RefType, SliderPropsType>(
   ): JSX.Element => {
     const labelId = `label-${useId()}`;
     const [innerValue, setInnerValue] = useState(defaultValue);
+    const [inputValue, setInputValue] = useState(defaultValue.toString());
     const roundedUpValue = useMemo(
       () => roundUp(value ?? innerValue, step, minValue, maxValue),
       [innerValue, maxValue, minValue, step, value]
@@ -192,6 +193,7 @@ const DxcSlider = forwardRef<RefType, SliderPropsType>(
     const handleOnChange = (event: ChangeEvent<HTMLInputElement>) => {
       const sliderIntegerValue = Number(event.target.value);
       if (value == null) setInnerValue(sliderIntegerValue);
+      setInputValue(sliderIntegerValue.toString());
       onChange?.(sliderIntegerValue);
     };
 
@@ -200,8 +202,9 @@ const DxcSlider = forwardRef<RefType, SliderPropsType>(
       onDragEnd?.(sliderIntegerValue);
     };
 
-    const handlerTextInputOnChange = (event: { value: string; error?: string }) => {
-      const textInputIntegerValue = Number(event.value ?? 0);
+    const handlerNumberInputOnChange = (event: { value: string; error?: string }) => {
+      setInputValue(event.value);
+      const textInputIntegerValue = Number(event.value);
       if (!Number.isNaN(textInputIntegerValue)) {
         if (value == null) setInnerValue(textInputIntegerValue);
         onChange?.(textInputIntegerValue);
@@ -233,32 +236,36 @@ const DxcSlider = forwardRef<RefType, SliderPropsType>(
                 onChange={handleOnChange}
                 onMouseUp={handleOnMouseUp}
                 role="slider"
-                roundedUpValue={roundedUpValue}
                 step={step}
                 type="range"
-                value={value ?? innerValue}
+                value={roundedUpValue}
               />
               {marks && (
                 <TicksContainer>
-                  {Array.from({ length: Math.floor((maxValue - minValue) / step) + 1 }, (_, index) => (
-                    <Tick
-                      currentTick={roundedUpValue === minValue + index * step}
-                      disabled={disabled}
-                      key={`tickmark-${index}`}
-                    />
-                  ))}
+                  {Array.from({ length: Math.floor((maxValue - minValue) / step) + 1 }, (_, index) => {
+                    const tick = minValue + index * step;
+                    return (
+                      <Tick
+                        currentTick={roundedUpValue === stepPrecision(tick, step)}
+                        disabled={disabled}
+                        key={`tickmark-${index}`}
+                      />
+                    );
+                  })}
                 </TicksContainer>
               )}
             </SliderInputContainer>
             {showLimitsValues && <LimitLabel disabled={disabled}>{maxLabel}</LimitLabel>}
           </LimitsValueGrid>
           {showInput && (
-            <DxcTextInput
+            <DxcNumberInput
               disabled={disabled}
               name={name}
-              onChange={handlerTextInputOnChange}
+              onChange={handlerNumberInputOnChange}
+              showControls={false}
               size="fillParent"
-              value={(value ?? innerValue).toString()}
+              step={step}
+              value={inputValue}
             />
           )}
         </MainContainer>
