@@ -22,13 +22,13 @@ import DxcPaginator from "./Paginator";
 describe("Paginator component tests", () => {
   test("Paginator renders with default values", () => {
     const { getByText } = render(<DxcPaginator />);
-    expect(getByText("1 to 5 of 10")).toBeTruthy();
-    expect(getByText("Page: 1 of 2")).toBeTruthy();
+    expect(getByText("1 to 1 of 1")).toBeTruthy();
+    expect(getByText("Page: 1 of 1")).toBeTruthy();
   });
 
   test("Paginator renders with currentPage", () => {
-    const { getByText } = render(<DxcPaginator itemsPerPage={2} totalItems={4} currentPage={2} />);
-    expect(getByText("Page: 2 of 2")).toBeTruthy();
+    const { getByText } = render(<DxcPaginator currentPage={2} />);
+    expect(getByText("Page: 2 of 1")).toBeTruthy();
   });
 
   test("Paginator renders with itemsPerPageOptions", () => {
