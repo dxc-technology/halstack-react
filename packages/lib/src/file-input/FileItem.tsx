@@ -6,6 +6,13 @@ import DxcIcon from "../icon/Icon";
 import DxcActionIcon from "../action-icon/ActionIcon";
 import { HalstackLanguageContext } from "../HalstackContext";
 
+const ListItem = styled.li`
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-gap-xs);
+`;
+
 const MainContainer = styled.div<{
   error: FileItemProps["error"];
   singleFileMode: FileItemProps["singleFileMode"];
@@ -111,11 +118,11 @@ const FileItem = ({
   const fileNameId = useId();
 
   return (
-    <>
-      <MainContainer error={error} role="listitem" singleFileMode={singleFileMode} showPreview={showPreview}>
+    <ListItem>
+      <MainContainer error={error} singleFileMode={singleFileMode} showPreview={showPreview}>
         {showPreview &&
           (type.includes("image") ? (
-            <ImagePreview src={preview} alt={fileName} />
+            <ImagePreview src={preview} alt={`Preview of ${fileName}`} />
           ) : (
             <IconPreview aria-labelledby={fileNameId} error={error} role="img">
               <DxcIcon icon={preview} />
@@ -141,7 +148,7 @@ const FileItem = ({
           <ErrorMessage>{error}</ErrorMessage>
         </ErrorMessageContainer>
       )}
-    </>
+    </ListItem>
   );
 };
 
