@@ -81,10 +81,13 @@ const sections = [
               <TableCode>string</TableCode>
             </td>
             <td>
-              Specifies a string to be used as the name for the spinner element when no `label` is provided or the
-              `mode` is set to small.
+              Specifies a string to be used as the accessible name for the component when no <Code>label</Code> is
+              provided or the
+              <Code>mode</Code> is set to small.
             </td>
-            <td>'Spinner'</td>
+            <td>
+              <TableCode>'Spinner'</TableCode>
+            </td>
           </tr>
         </tbody>
       </DxcTable>
