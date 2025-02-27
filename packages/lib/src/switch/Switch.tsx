@@ -40,7 +40,8 @@ const SwitchContainer = styled.div<{
   size: SwitchPropsType["size"];
 }>`
   display: inline-grid;
-  grid-template-columns: ${(props) => (props.labelPosition === "after" ? "52px minmax(0, max-content)" : "minmax(0, max-content) 52px")};
+  grid-template-columns: ${(props) =>
+    props.labelPosition === "after" ? "52px minmax(0, max-content)" : "minmax(0, max-content) 52px"};
   place-items: center;
   gap: var(--spacing-gap-m);
   width: ${(props) => calculateWidth(props.margin, props.size)};
@@ -73,11 +74,10 @@ const LabelContainer = styled.span<{
   labelPosition: SwitchPropsType["labelPosition"];
 }>`
   display: flex;
-  align-items: baseline;
   gap: var(--spacing-gap-xs);
-  color: ${({ disabled }) => (disabled ? "var(--color-fg-neutral-medium);" : "var(--color-fg-neutral-dark)")};
+  color: ${({ disabled }) => (disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-dark)")};
   font-family: var(--typography-font-family);
-  font-size: var(--typography-label-l);
+  font-size: var(--typography-label-m);
   font-weight: var(--typography-label-regular);
   max-width: 100%;
   order: ${({ labelPosition }) => (labelPosition === "before" ? 0 : 1)};
@@ -90,8 +90,7 @@ const Label = styled.span`
 `;
 
 const OptionalLabel = styled.span<{ disabled: SwitchPropsType["disabled"] }>`
-  color: ${({ disabled }) => (disabled ? "var(--color-fg-neutral-medium);" : "var(--color-fg-neutral-stronger)")};
-  font-size: var(--typography-label-m);
+  ${({ disabled }) => !disabled && "color: var(--color-fg-neutral-stronger);"}
 `;
 
 const Switch = styled.span<{ checked: SwitchPropsType["checked"]; disabled: SwitchPropsType["disabled"] }>`
