@@ -6,7 +6,7 @@ describe("StatusLight component tests", () => {
     const { getByText } = render(<DxcStatusLight label="Status Light Test" />);
     expect(getByText("Status Light Test")).toBeTruthy();
   });
-  test("StatusLight renders with correct 'status' role", () => {
+  test("StatusLight renders with role 'status'", () => {
     const { getByRole } = render(<DxcStatusLight label="Status Light Test" />);
     expect(getByRole("status")).toBeTruthy();
   });
