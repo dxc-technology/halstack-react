@@ -89,15 +89,16 @@ const Switch = () => (
       <DxcSwitch label="Small" size="small" />
     </ExampleContainer>
     <ExampleContainer>
-      <Title title="Medium size (with large label)" theme="light" level={4} />
+      <Title title="Medium size (with long label)" theme="light" level={4} />
       <DxcSwitch label="Very very very large label or even huge" size="medium" />
     </ExampleContainer>
     <ExampleContainer>
-      <Title title="Medium size (with long label)" theme="light" level={4} />
+      <Title title="Medium size (with long label + optional label)" theme="light" level={4} />
       <DxcSwitch
         label="Large texttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt"
         labelPosition="after"
         size="medium"
+        optional
       />
     </ExampleContainer>
     <ExampleContainer>

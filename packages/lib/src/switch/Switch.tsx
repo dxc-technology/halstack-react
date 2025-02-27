@@ -35,14 +35,16 @@ const getTrackColor = (checked: SwitchPropsType["checked"], disabled: SwitchProp
 
 const SwitchContainer = styled.div<{
   disabled: SwitchPropsType["disabled"];
+  labelPosition: SwitchPropsType["labelPosition"];
   margin: SwitchPropsType["margin"];
   size: SwitchPropsType["size"];
 }>`
-  display: inline-flex;
-  align-items: center;
-  gap: var(--spacing-gap-s);
+  display: inline-grid;
+  grid-template-columns: ${(props) => (props.labelPosition === "after" ? "52px minmax(0, max-content)" : "minmax(0, max-content) 52px")};
+  place-items: center;
+  gap: var(--spacing-gap-m);
   width: ${(props) => calculateWidth(props.margin, props.size)};
-  height: var(--height-xl);
+  height: var(--height-m);
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
@@ -66,29 +68,35 @@ const SwitchContainer = styled.div<{
   }
 `;
 
-const Label = styled.span<{
+const LabelContainer = styled.span<{
   disabled: SwitchPropsType["disabled"];
   labelPosition: SwitchPropsType["labelPosition"];
 }>`
+  display: flex;
+  align-items: baseline;
+  gap: var(--spacing-gap-xs);
   color: ${({ disabled }) => (disabled ? "var(--color-fg-neutral-medium);" : "var(--color-fg-neutral-dark)")};
   font-family: var(--typography-font-family);
   font-size: var(--typography-label-l);
   font-weight: var(--typography-label-regular);
+  max-width: 100%;
   order: ${({ labelPosition }) => (labelPosition === "before" ? 0 : 1)};
+`;
+
+const Label = styled.span`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+`;
 
-  > span {
-    color: ${({ disabled }) => (disabled ? "var(--color-fg-neutral-medium);" : "var(--color-fg-neutral-stronger)")};
-    font-size: var(--typography-label-m);
-  }
+const OptionalLabel = styled.span<{ disabled: SwitchPropsType["disabled"] }>`
+  color: ${({ disabled }) => (disabled ? "var(--color-fg-neutral-medium);" : "var(--color-fg-neutral-stronger)")};
+  font-size: var(--typography-label-m);
 `;
 
 const Switch = styled.span<{ checked: SwitchPropsType["checked"]; disabled: SwitchPropsType["disabled"] }>`
   position: relative;
-  margin: var(--spacing-padding-none) var(--spacing-padding-s);
-  min-width: 36px;
+  width: 36px;
   height: var(--height-xxxs);
   border-radius: var(--border-radius-xl);
   background-color: ${({ checked, disabled }) => getTrackColor(checked, disabled)};
@@ -157,6 +165,7 @@ const DxcSwitch = forwardRef<RefType, SwitchPropsType>(
         aria-disabled={disabled}
         aria-label={label ? undefined : ariaLabel}
         disabled={disabled}
+        labelPosition={labelPosition}
         margin={margin}
         onClick={!disabled ? handlerOnChange : undefined}
         onKeyDown={!disabled ? handleOnKeyDown : undefined}
@@ -166,9 +175,10 @@ const DxcSwitch = forwardRef<RefType, SwitchPropsType>(
         tabIndex={disabled ? -1 : tabIndex}
       >
         {label && (
-          <Label disabled={disabled} labelPosition={labelPosition}>
-            {label} <span>{optional && <>{translatedLabels.formFields.optionalLabel}</>}</span>
-          </Label>
+          <LabelContainer disabled={disabled} labelPosition={labelPosition}>
+            <Label>{label}</Label>
+            {optional && <OptionalLabel disabled={disabled}>{translatedLabels.formFields.optionalLabel}</OptionalLabel>}
+          </LabelContainer>
         )}
         <Switch checked={checked ?? innerChecked} disabled={disabled} />
         <input
