@@ -2,10 +2,12 @@ import { HalstackProvider, DxcTextInput, DxcInset, DxcAccordion } from "@dxc-tec
 
 const code = `() => {
   const customTheme = {
-    accordion: {
-      accentColor: "#1b75bb",
-      fontColor: "#666666",
-    },
+    "accordion": {
+      "accentColor": "#fabada",
+      "titleFontColor": "#333333",
+      "subLabelFontColor": "#666666",
+      "assistiveTextFontColor": "#999999"
+  },
     textInput: {
       fontColor: "#f80808",
     },
@@ -14,10 +16,12 @@ const code = `() => {
   return (
     <HalstackProvider theme={customTheme}>
       <DxcInset space="2rem">
-        <DxcAccordion isExpanded label="Accordion">
-          <DxcInset space="2rem">
-            <DxcTextInput label="Enter your surname" defaultValue="Harris" />
-          </DxcInset>
+        <DxcAccordion>
+          <DxcAccordion.AccordionItem isExpanded label="Assure Claims" subLabel="Jan, 09 2025" assistiveText="Ref - 123456">
+            <DxcInset space="2rem">
+              <DxcTextInput label="Enter your surname" defaultValue="Harris" />
+            </DxcInset>
+          </DxcAccordion.AccordionItem>
         </DxcAccordion>
       </DxcInset>
     </HalstackProvider>
