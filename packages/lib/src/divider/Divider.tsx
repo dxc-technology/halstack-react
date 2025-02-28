@@ -26,7 +26,7 @@ const DxcDivider = ({
   weight = "regular",
   color = "mediumGrey",
   decorative = true,
-}: DividerPropsType): JSX.Element => (
+}: DividerPropsType) => (
   <StyledDivider
     orientation={orientation}
     weight={weight}
