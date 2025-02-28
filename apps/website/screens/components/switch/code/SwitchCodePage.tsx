@@ -157,8 +157,12 @@ const sections = [
             <td>
               <TableCode>{"string"}</TableCode>
             </td>
-            <td>Specifies a string to be used as the name for the switch element when no `label` is provided.</td>
-            <td>'Switch'</td>
+            <td>
+              Specifies a string to be used as the name for the switch element when no <Code>label</Code> is provided.
+            </td>
+            <td>
+              <TableCode>'Switch'</TableCode>
+            </td>
           </tr>
         </tbody>
       </DxcTable>
