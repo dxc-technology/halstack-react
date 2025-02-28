@@ -260,7 +260,7 @@ const DxcDataGrid = ({
           summaryRowHeight={colorsTheme.dataGrid.summaryRowHeight}
           className="fill-grid"
         />
-        {showPaginator && (
+        {showPaginator && (totalItems ?? rows.length) > itemsPerPage && (
           <DxcPaginator
             totalItems={totalItems ?? rows.length}
             itemsPerPage={itemsPerPage}
