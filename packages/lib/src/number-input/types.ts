@@ -115,13 +115,18 @@ type Props = {
    * Specifies a string to be used as the name for the number input element when no `label` is provided.
    */
   ariaLabel?: string;
+  /**
+   * Decides whether the number input has actions to increase or decrease the value, following the defined step.
+   */
+  showControls?: boolean;
 };
 
 export type NumberInputContextProps = {
+  maxNumber: Props["max"];
+  minNumber: Props["min"];
+  showControls: Props["showControls"];
+  stepNumber: Props["step"];
   typeNumber?: string;
-  minNumber?: number;
-  maxNumber?: number;
-  stepNumber?: number;
 };
 
 /**

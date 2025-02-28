@@ -40,16 +40,17 @@ const sections = [
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>Header</DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            Custom icon <em>(Optional)</em>
+            Left secondary element <em>(Optional)</em>
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>Title</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Sublabel</DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            Helper text <em>(Optional)</em>
+            Right secondary element <em>(Optional)</em>
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
             Caret icon <em>(Expand/collapse)</em>
           </DxcBulletedList.Item>
-          <DxcBulletedList.Item>Expanded panel</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Content area</DxcBulletedList.Item>
         </DxcBulletedList>
       </>
     ),
@@ -72,23 +73,41 @@ const sections = [
             <tbody>
               <tr>
                 <td>
-                  <Code>titleLabelFontColor</Code>
+                  <Code>accordionSeparatorBorderColor</Code>
                 </td>
-                <td>Title</td>
+                <td>Separator</td>
                 <td>
-                  <Code>color-black</Code>
+                  <Code>color-grey-200</Code>
                 </td>
-                <td>#000000</td>
+                <td>#e6e6e6</td>
               </tr>
               <tr>
                 <td>
-                  <Code>disabledTitleLabelFontColor</Code>
+                  <Code>accordionSeparatorBorderThickness</Code>
                 </td>
-                <td>Title:disabled</td>
+                <td>Separator</td>
+                <td>-</td>
+                <td>1px</td>
+              </tr>
+              <tr>
                 <td>
-                  <Code>color-grey-500</Code>
+                  <Code>accordionSeparatorBorderStyle</Code>
                 </td>
-                <td>#999999</td>
+                <td>Separator</td>
+                <td>
+                  <Code>border-style-solid</Code>
+                </td>
+                <td>solid</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>activeBackgroundColor</Code>
+                </td>
+                <td>Header background:active</td>
+                <td>
+                  <Code>color-purple-100</Code>
+                </td>
+                <td>#f2eafa</td>
               </tr>
               <tr>
                 <td>
@@ -102,73 +121,13 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <Code>disabledArrowColor</Code>
-                </td>
-                <td>Title:disabled</td>
-                <td>
-                  <Code>color-grey-500</Code>
-                </td>
-                <td>#999999</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>iconColor</Code>
-                </td>
-                <td>Custom icon</td>
-                <td>
-                  <Code>color-purple-700</Code>
-                </td>
-                <td>#5f249f</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>disabledIconColor</Code>
-                </td>
-                <td>Custom icon:disabled</td>
-                <td>
-                  <Code>color-grey-500</Code>
-                </td>
-                <td>#999999</td>
-              </tr>
-              <tr>
-                <td>
                   <Code>assistiveTextFontColor</Code>
                 </td>
-                <td>Helper text</td>
+                <td>Assistive text</td>
                 <td>
                   <Code>color-grey-700</Code>
                 </td>
                 <td>#666666</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>disabledAssistiveTextFontColor</Code>
-                </td>
-                <td>Helper text:disabled</td>
-                <td>
-                  <Code>color-grey-500</Code>
-                </td>
-                <td>#999999</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>hoverBackgroundColor</Code>
-                </td>
-                <td>Header background:hover</td>
-                <td>
-                  <Code>color-purple-100</Code>
-                </td>
-                <td>#f2eafa</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>focusBorderColor</Code>
-                </td>
-                <td>Header outline:focus</td>
-                <td>
-                  <Code>color-blue-600</Code>
-                </td>
-                <td>#0095ff</td>
               </tr>
               <tr>
                 <td>
@@ -182,18 +141,123 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <Code>boxShadowColor</Code>
+                  <Code>disabledArrowColor</Code>
                 </td>
-                <td>Container shadow</td>
-                <td>-</td>
-                <td>#0000001a</td>
+                <td>Caret icon:disabled</td>
+                <td>
+                  <Code>color-grey-500</Code>
+                </td>
+                <td>#999999</td>
               </tr>
               <tr>
                 <td>
-                  <Code>accordionGroupSeparatorBorderColor</Code>
+                  <Code>disabledAssistiveTextFontColor</Code>
                 </td>
-                <td>Separator</td>
-                <td>-</td>
+                <td>Assistive text:disabled</td>
+                <td>
+                  <Code>color-grey-500</Code>
+                </td>
+                <td>#999999</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>disabledIconColor</Code>
+                </td>
+                <td>Custom icon:disabled</td>
+                <td>
+                  <Code>color-grey-500</Code>
+                </td>
+                <td>#999999</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>disabledSubLabelFontColor</Code>
+                </td>
+                <td>Sublabel:disabled</td>
+                <td>
+                  <Code>color-grey-700</Code>
+                </td>
+                <td>#999999</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>disabledTitleLabelFontColor</Code>
+                </td>
+                <td>Title:disabled</td>
+                <td>
+                  <Code>color-grey-500</Code>
+                </td>
+                <td>#999999</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>focusBackgroundColor</Code>
+                </td>
+                <td>Header background:focus</td>
+                <td>
+                  <Code>color-transparent</Code>
+                </td>
+                <td>transparent</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>focusBorderColor</Code>
+                </td>
+                <td>Header outline:focus</td>
+                <td>
+                  <Code>color-blue-600</Code>
+                </td>
+                <td>#0095ff</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>hoverBackgroundColor</Code>
+                </td>
+                <td>Header background:hover</td>
+                <td>
+                  <Code>color-purple-100</Code>
+                </td>
+                <td>#f2eafa</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>iconColor</Code>
+                </td>
+                <td>Custom icon</td>
+                <td>
+                  <Code>color-purple-700</Code>
+                </td>
+                <td>#5f249f</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>subLabelFontColor</Code>
+                </td>
+                <td>Sublabel</td>
+                <td>
+                  <Code>color-grey-500</Code>
+                </td>
+                <td>#999999</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>titleLabelFontColor</Code>
+                </td>
+                <td>Title</td>
+                <td>
+                  <Code>color-grey-900</Code>
+                </td>
+                <td>#333333</td>
+              </tr>
+
+              <tr>
+                <td>
+                  <Code>boxShadowColor</Code>
+                </td>
+                <td>Container shadow</td>
+                <td>
+                  <Code>color-grey-200-a</Code>
+                </td>
                 <td>#0000001a</td>
               </tr>
             </tbody>
@@ -215,6 +279,86 @@ const sections = [
             <tbody>
               <tr>
                 <td>
+                  <Code>assistiveTextFontFamily</Code>
+                </td>
+                <td>Assistive text</td>
+                <td>
+                  <Code>font-family-sans</Code>
+                </td>
+                <td>&#39;Open Sans&#39;, sans-serif;</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>assistiveTextFontSize</Code>
+                </td>
+                <td>Assistive text</td>
+                <td>
+                  <Code>font-scale-01</Code>
+                </td>
+                <td>0.75rem / 12px</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>assistiveTextFontStyle</Code>
+                </td>
+                <td>Assistive text</td>
+                <td>
+                  <Code>font-style-normal</Code>
+                </td>
+                <td>normal</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>assistiveTextFontWeight</Code>
+                </td>
+                <td>Assistive text</td>
+                <td>
+                  <Code>font-weight-light</Code>
+                </td>
+                <td>400</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>subLabelFontFamily</Code>
+                </td>
+                <td>Sublabel</td>
+                <td>
+                  <Code>font-family-sans</Code>
+                </td>
+                <td>&#39;Open Sans&#39;, sans-serif</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>subLabelFontSize</Code>
+                </td>
+                <td>Sublabel</td>
+                <td>
+                  <Code>font-scale-01</Code>
+                </td>
+                <td>0.75rem / 12px</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>subLabelFontStyle</Code>
+                </td>
+                <td>Sublabel</td>
+                <td>
+                  <Code>font-style-normal</Code>
+                </td>
+                <td>normal</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>subLabelFontWeight</Code>
+                </td>
+                <td>Sublabel</td>
+                <td>
+                  <Code>font-weight-normal</Code>
+                </td>
+                <td>400</td>
+              </tr>
+              <tr>
+                <td>
                   <Code>titleLabelFontFamily</Code>
                 </td>
                 <td>Title</td>
@@ -231,17 +375,7 @@ const sections = [
                 <td>
                   <Code>font-scale-03</Code>
                 </td>
-                <td>16px</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>titleLabelFontWeight</Code>
-                </td>
-                <td>Title</td>
-                <td>
-                  <Code>font-regular</Code>
-                </td>
-                <td>400</td>
+                <td>1rem / 16px</td>
               </tr>
               <tr>
                 <td>
@@ -249,59 +383,19 @@ const sections = [
                 </td>
                 <td>Title</td>
                 <td>
-                  <Code>font-normal</Code>
+                  <Code>font-style-normal</Code>
                 </td>
                 <td>normal</td>
               </tr>
               <tr>
                 <td>
-                  <Code>assistiveTextFontFamily</Code>
+                  <Code>titleLabelFontWeight</Code>
                 </td>
-                <td>Helper text</td>
+                <td>Title</td>
                 <td>
-                  <Code>font-sans</Code>
+                  <Code>font-weight-regular</Code>
                 </td>
-                <td>&#39;Open Sans&#39;, sans-serif;</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>assistiveTextFontSize</Code>
-                </td>
-                <td>Helper text</td>
-                <td>
-                  <Code>font-scale-03</Code>
-                </td>
-                <td>16px</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>assistiveTextFontWeight</Code>
-                </td>
-                <td>Helper text</td>
-                <td>
-                  <Code>font-light</Code>
-                </td>
-                <td>300</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>assistiveTextFontStyle</Code>
-                </td>
-                <td>Helper text</td>
-                <td>
-                  <Code>font-regular</Code>
-                </td>
-                <td>italic</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>assistiveTextLetterSpacing</Code>
-                </td>
-                <td>Helper text</td>
-                <td>
-                  <Code>font-tracking-wide-01</Code>
-                </td>
-                <td>0.025em</td>
+                <td>400</td>
               </tr>
             </tbody>
           </DxcTable>
@@ -347,6 +441,16 @@ const sections = [
             <tbody>
               <tr>
                 <td>
+                  <Code>borderRadius</Code>
+                </td>
+                <td>Accordion container</td>
+                <td>
+                  <Code>border-radius-medium</Code>
+                </td>
+                <td>0.25rem / 4px</td>
+              </tr>
+              <tr>
+                <td>
                   <Code>focusBorderStyle</Code>
                 </td>
                 <td>Header:focus border</td>
@@ -365,172 +469,8 @@ const sections = [
                 </td>
                 <td>2px</td>
               </tr>
-              <tr>
-                <td>
-                  <Code>borderRadius</Code>
-                </td>
-                <td>Accordion container</td>
-                <td>
-                  <Code>border-radius-medium</Code>
-                </td>
-                <td>0.25rem / 4px</td>
-              </tr>
             </tbody>
           </DxcTable>
-        ),
-      },
-      {
-        title: "Size",
-        content: (
-          <DxcTable>
-            <thead>
-              <tr>
-                <th>Property</th>
-                <th>Element</th>
-                <th>Core token</th>
-                <th>Value</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <Code>height</Code>
-                </td>
-                <td>Header</td>
-                <td>-</td>
-                <td>48px</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>min-width</Code>
-                </td>
-                <td>Accordion container</td>
-                <td>-</td>
-                <td>280px</td>
-              </tr>
-            </tbody>
-          </DxcTable>
-        ),
-      },
-      {
-        title: "Spacing",
-        content: (
-          <>
-            <DxcTable>
-              <thead>
-                <tr>
-                  <th>Component token</th>
-                  <th>Element</th>
-                  <th>Core token</th>
-                  <th>Value</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <Code>titleLabelPaddingRight</Code>
-                  </td>
-                  <td>Title</td>
-                  <td>
-                    <Code>spacing-16</Code>
-                  </td>
-                  <td>1rem / 16px</td>
-                </tr>
-                <tr>
-                  <td>
-                    <Code>titleLabelPaddingLeft</Code>
-                  </td>
-                  <td>Title</td>
-                  <td>
-                    <Code>spacing-0 </Code>
-                  </td>
-                  <td>0rem / 0px</td>
-                </tr>
-                <tr>
-                  <td>
-                    <Code>titleLabelPaddingTop</Code>
-                  </td>
-                  <td>Title</td>
-                  <td>
-                    <Code>spacing-0 </Code>
-                  </td>
-                  <td>0rem / 0px</td>
-                </tr>
-                <tr>
-                  <td>
-                    <Code>titleLabelPaddingBottom</Code>
-                  </td>
-                  <td>Title</td>
-                  <td>
-                    <Code>spacing-0 </Code>
-                  </td>
-                  <td>0rem / 0px</td>
-                </tr>
-              </tbody>
-            </DxcTable>
-            <DxcTable>
-              <thead>
-                <tr>
-                  <th>Property</th>
-                  <th>Element</th>
-                  <th>Core token</th>
-                  <th>Value</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <Code>padding-left</Code>
-                  </td>
-                  <td>Header</td>
-                  <td>
-                    <Code>spacing-16</Code>
-                  </td>
-                  <td>16px</td>
-                </tr>
-                <tr>
-                  <td>
-                    <Code>padding-right</Code>
-                  </td>
-                  <td>Header</td>
-                  <td>
-                    <Code>spacing-16</Code>
-                  </td>
-                  <td>16px</td>
-                </tr>
-                <tr>
-                  <td>
-                    <Code>padding-right</Code>
-                  </td>
-                  <td>Helper text</td>
-                  <td>
-                    <Code>spacing-24</Code>
-                  </td>
-                  <td>24px</td>
-                </tr>
-                <tr>
-                  <td>
-                    <Code>padding</Code>
-                  </td>
-                  <td>Caret icon</td>
-                  <td>
-                    <Code>spacing-12</Code>
-                  </td>
-                  <td>12px</td>
-                </tr>
-                <tr>
-                  <td>
-                    <Code>margin-right</Code>
-                  </td>
-                  <td>Custom icon</td>
-                  <td>
-                    <Code>spacing-12</Code>
-                  </td>
-                  <td>12px</td>
-                </tr>
-              </tbody>
-            </DxcTable>
-          </>
         ),
       },
       {
@@ -553,43 +493,43 @@ const sections = [
                   <td>
                     <Code>xxsmall</Code>
                   </td>
-                  <td>6px</td>
+                  <td>4px</td>
                 </tr>
                 <tr>
                   <td>
                     <Code>xsmall</Code>
                   </td>
-                  <td>16px</td>
+                  <td>8px</td>
                 </tr>
                 <tr>
                   <td>
                     <Code>small</Code>
                   </td>
-                  <td>24px</td>
+                  <td>12px</td>
                 </tr>
                 <tr>
                   <td>
                     <Code>medium</Code>
                   </td>
-                  <td>36px</td>
+                  <td>16px</td>
                 </tr>
                 <tr>
                   <td>
                     <Code>large</Code>
                   </td>
-                  <td>48px</td>
+                  <td>24px</td>
                 </tr>
                 <tr>
                   <td>
                     <Code>xlarge</Code>
                   </td>
-                  <td>64px</td>
+                  <td>32px</td>
                 </tr>
                 <tr>
                   <td>
                     <Code>xxlarge</Code>
                   </td>
-                  <td>100px</td>
+                  <td>48px</td>
                 </tr>
               </tbody>
             </DxcTable>
