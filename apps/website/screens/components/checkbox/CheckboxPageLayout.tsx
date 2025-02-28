@@ -6,9 +6,8 @@ import { ReactNode } from "react";
 
 const CheckboxPageHeading = ({ children }: { children: ReactNode }) => {
   const tabs = [
-    { label: "Code", path: "/components/checkbox" },
-    { label: "Usage", path: "/components/checkbox/usage" },
-    { label: "Specifications", path: "/components/checkbox/specifications" },
+    { label: "Overview", path: "/components/checkbox" },
+    { label: "Code", path: "/components/checkbox/code" },
   ];
 
   return (
@@ -17,10 +16,9 @@ const CheckboxPageHeading = ({ children }: { children: ReactNode }) => {
         <DxcFlex direction="column" gap="2rem">
           <ComponentHeading name="Checkbox" />
           <DxcParagraph>
-            Checkboxes are inputs that offer to the user the possibility to select one or more options from a range of
-            attributes.
+            Checkboxes are inputs that allow the user to select one or more options from a range of attributes.
           </DxcParagraph>
-          <TabsPageHeading tabs={tabs}></TabsPageHeading>
+          <TabsPageHeading tabs={tabs} />
         </DxcFlex>
       </PageHeading>
       {children}
