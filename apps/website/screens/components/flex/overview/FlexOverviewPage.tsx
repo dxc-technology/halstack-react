@@ -20,8 +20,8 @@ const sections = [
         </DxcParagraph>
         <DxcParagraph>
           In the sections that follow, we'll explore the core concepts and best practices for using the Flex component.
-          By understanding these principles, you can optimize the layout of your application, enhance the user experience,
-          and create more engaging and visually appealing interfaces.
+          By understanding these principles, you can optimize the layout of your application, enhance the user
+          experience, and create more engaging and visually appealing interfaces.
         </DxcParagraph>
       </>
     ),
@@ -90,15 +90,15 @@ const sections = [
   },
 ];
 
-const FlexUsagePage = () => {
+const FlexOverviewPage = () => {
   return (
     <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/flex/usage/FlexUsagePage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/flex/overview/FlexOverviewPage.tsx" />
     </DxcFlex>
   );
 };
 
-export default FlexUsagePage;
+export default FlexOverviewPage;

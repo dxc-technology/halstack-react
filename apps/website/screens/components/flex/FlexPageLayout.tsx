@@ -6,9 +6,8 @@ import { ReactNode } from "react";
 
 const FlexPageHeading = ({ children }: { children: ReactNode }) => {
   const tabs = [
-    { label: "Code", path: "/components/flex" },
-    { label: "Usage", path: "/components/flex/usage" },
-    { label: "Specifications", path: "/components/flex/specifications" },
+    { label: "Overview", path: "/components/flex" },
+    { label: "Code", path: "/components/flex/code" },
   ];
 
   return (
@@ -27,7 +26,7 @@ const FlexPageHeading = ({ children }: { children: ReactNode }) => {
             based layouts. It serves as a technical component that abstracts users from working directly with CSS
             Flexbox and helps them write more semantic layouts.
           </DxcParagraph>
-          <TabsPageHeading tabs={tabs}></TabsPageHeading>
+          <TabsPageHeading tabs={tabs} />
         </DxcFlex>
       </PageHeading>
       {children}
