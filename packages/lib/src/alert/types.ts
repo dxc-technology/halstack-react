@@ -1,4 +1,4 @@
-import { KeyboardEvent, ReactNode } from "react";
+import { ReactNode } from "react";
 import { SVG } from "../common/utils";
 
 type Action = {
