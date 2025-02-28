@@ -36,10 +36,10 @@ const getSizeValues = (size: Required<StatusLightPropsType>["size"]) => {
   }
 };
 
-const StatusLightContainer = styled.div`
+const StatusLightContainer = styled.div<{ size: Required<StatusLightPropsType>["size"] }>`
   display: inline-flex;
   align-items: center;
-  gap: var(--spacing-gap-s);
+  gap: ${({ size }) => (size === "small" ? "var(--spacing-gap-xs)" : "var(--spacing-gap-s)")};
   max-width: 100%;
 `;
 
@@ -59,9 +59,9 @@ const Label = styled.span<{
   size: Required<StatusLightPropsType>["size"];
 }>`
   color: ${({ mode }) => getModeColor(mode)};
-  font-family: var(--typography-font-family, "Open Sans");
+  font-family: var(--typography-font-family);
   font-size: ${({ size }) => getSizeValues(size).fontSize};
-  font-weight: var(--typography-label-semibold, 600);
+  font-weight: var(--typography-label-semibold);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -69,7 +69,7 @@ const Label = styled.span<{
 
 export default function DxcStatusLight({ label, mode = "default", size = "medium" }: StatusLightPropsType) {
   return (
-    <StatusLightContainer role="status">
+    <StatusLightContainer role="status" size={size}>
       <Dot mode={mode} size={size} aria-hidden="true" />
       <Label mode={mode} size={size}>
         {label}
