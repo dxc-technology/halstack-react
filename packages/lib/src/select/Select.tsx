@@ -52,7 +52,6 @@ const SelectContainer = styled.div<{
     props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
   margin-left: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
-  font-family: var(--typography-font-family);
 `;
 
 const Label = styled.label<{
@@ -60,10 +59,12 @@ const Label = styled.label<{
   helperText: SelectPropsType["helperText"];
 }>`
   color: var(${({ disabled }) => (disabled ? "--color-fg-neutral-medium" : "--color-fg-neutral-dark")});
+  font-family: var(--typography-font-family);
   font-size: var(--typography-label-m);
   font-weight: var(--typography-label-semibold);
   ${({ helperText }) => !helperText && "margin-bottom: var(--spacing-gap-xs);"}
 
+  /* Optional text */
   > span {
     color: var(--color-fg-neutral-stronger);
     font-weight: var(--typography-label-regular);
@@ -71,10 +72,11 @@ const Label = styled.label<{
 `;
 
 const HelperText = styled.span<{ disabled: SelectPropsType["disabled"] }>`
-  color: var(--color-fg-neutral-stronger);
-  font-size: var(--typography-helper-text-s);
-  /* font-weight: var(--typography-helper-text-regular); */
   margin-bottom: var(--spacing-gap-xs);
+  color: ${({ disabled }) => (disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-stronger)")};
+  font-family: var(--typography-font-family);
+  font-size: var(--typography-helper-text-s);
+  font-weight: var(--typography-helper-text-regular);
 `;
 
 const Select = styled.div<{
@@ -89,17 +91,15 @@ const Select = styled.div<{
   padding: var(--spacing-padding-none) var(--spacing-padding-xs);
   border-radius: var(--border-radius-s);
   border: var(--border-width-s) var(--border-style-default) var(--border-color-neutral-dark);
-  ${(props) =>
-    props.error &&
-    !props.disabled &&
-    "border: var(--border-width-m) var(--border-style-default) var(--border-color-error-medium);"}
+  ${({ disabled, error }) =>
+    error && !disabled && "border: var(--border-width-m) var(--border-style-default) var(--border-color-error-medium);"}
 
-  ${(props) =>
-    !props.disabled
+  ${({ disabled, error }) =>
+    !disabled
       ? `
       cursor: pointer;
       &:hover {
-        border-color: var(${props.error ? "--border-color-error-strong;" : "--border-color-primary-strong"});
+        border-color: var(${error ? "--border-color-error-strong;" : "--border-color-primary-strong"});
       }
       &:focus-within {
         outline-offset: -2px;
@@ -110,20 +110,19 @@ const Select = styled.div<{
 
   /* Collapse indicator */
   > span[role="img"] {
-    color: var(${({ disabled }) => (disabled ? "--color-fg-neutral-medium" : "--color-fg-neutral-dark")});
+    color: ${({ disabled }) => (disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-dark)")};
     font-size: var(--height-xxs);
   }
 `;
 
 const SelectionIndicator = styled.div<{ disabled: SelectPropsType["disabled"] }>`
-  box-sizing: border-box;
   display: grid;
   grid-template-columns: 1fr 1fr;
   min-width: 48px;
   min-height: var(--height-s);
   border-radius: var(--border-radius-xs);
   border: var(--border-width-s) var(--border-style-default)
-    var(${({ disabled }) => (disabled ? "--border-color-neutral-strong" : "--border-color-neutral-light")});
+    ${({ disabled }) => (disabled ? "var(--border-color-neutral-strong)" : "var(--border-color-neutral-light)")};
 `;
 
 const SelectionNumber = styled.span<{ disabled: SelectPropsType["disabled"] }>`
@@ -131,13 +130,13 @@ const SelectionNumber = styled.span<{ disabled: SelectPropsType["disabled"] }>`
   place-items: center;
   background-color: ${({ disabled }) => (disabled ? "transparent" : "var(--color-bg-neutral-lighter)")};
   border-right: var(--border-width-s) var(--border-style-default)
-    var(${({ disabled }) => (disabled ? "--border-color-neutral-medium" : "--border-color-neutral-light")});
-  color: var(${(props) => (props.disabled ? "--color-fg-neutral-medium" : "--color-fg-neutral-dark")});
+    ${({ disabled }) => (disabled ? "var(--border-color-neutral-medium)" : "var(--border-color-neutral-light)")};
+  color: ${({ disabled }) => (disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-dark)")};
   font-size: var(--typography-label-s);
   font-weight: var(--typography-label-regular);
   text-align: center;
   user-select: none;
-  ${(props) => (props.disabled ? `cursor: not-allowed;` : `cursor: default;`)}
+  ${({ disabled }) => (disabled ? "cursor: not-allowed;" : "cursor: default;")}
 `;
 
 const ClearOptionsAction = styled.button`
@@ -149,11 +148,11 @@ const ClearOptionsAction = styled.button`
   width: 100%;
   font-size: var(--height-xxxs);
 
-  &:focus-visible {
+  &:focus {
     outline: none;
   }
-  ${(props) =>
-    !props.disabled
+  ${({ disabled }) =>
+    !disabled
       ? `
       color: var(--color-fg-neutral-dark);
       cursor: pointer;
@@ -255,7 +254,7 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
     const [isOpen, changeIsOpen] = useState(false);
     const [searchValue, setSearchValue] = useState("");
     const [visualFocusIndex, changeVisualFocusIndex] = useState(-1);
-    
+
     const selectRef = useRef<HTMLDivElement | null>(null);
     const selectSearchInputRef = useRef<HTMLInputElement | null>(null);
 
