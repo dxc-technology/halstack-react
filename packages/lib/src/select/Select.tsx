@@ -58,7 +58,7 @@ const Label = styled.label<{
   disabled: SelectPropsType["disabled"];
   helperText: SelectPropsType["helperText"];
 }>`
-  color: var(${({ disabled }) => (disabled ? "--color-fg-neutral-medium" : "--color-fg-neutral-dark")});
+  color: ${({ disabled }) => (disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-dark)")};
   font-family: var(--typography-font-family);
   font-size: var(--typography-label-m);
   font-weight: var(--typography-label-semibold);
@@ -66,7 +66,7 @@ const Label = styled.label<{
 
   /* Optional text */
   > span {
-    color: var(--color-fg-neutral-stronger);
+    color: ${({ disabled }) => (disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-stronger)")};
     font-weight: var(--typography-label-regular);
   }
 `;
@@ -99,7 +99,7 @@ const Select = styled.div<{
       ? `
       cursor: pointer;
       &:hover {
-        border-color: var(${error ? "--border-color-error-strong;" : "--border-color-primary-strong"});
+        border-color: ${error ? "var(--border-color-error-strong)" : "var(--border-color-primary-strong)"};
       }
       &:focus-within {
         outline-offset: -2px;

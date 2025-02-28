@@ -218,17 +218,11 @@ const optionsWithEllipsis = [
 
 const Select = () => (
   <>
-    <ExampleContainer>
-      <Title title="Simple select" theme="light" level={2} />
-      <DxcSelect
-        label="Simple select"
-        helperText="Simple simple"
-        optional
-        options={single_options}
-        placeholder="Very simple"
-      />
-    </ExampleContainer>
     <Title title="States" theme="light" level={2} />
+    <ExampleContainer>
+      <Title title="Default" theme="light" level={4} />
+      <DxcSelect options={single_options} />
+    </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-hover">
       <Title title="Hovered" theme="light" level={4} />
       <DxcSelect label="Hovered" options={single_options} />
@@ -239,11 +233,18 @@ const Select = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Disabled" theme="light" level={4} />
-      <DxcSelect label="Disabled" placeholder="Placeholder" disabled options={single_options} />
+      <DxcSelect
+        label="Label"
+        placeholder="Placeholder"
+        helperText="Helper text"
+        optional
+        disabled
+        options={single_options}
+      />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Disabled with value" theme="light" level={4} />
-      <DxcSelect label="Disabled with value" disabled options={single_options} defaultValue="1" />
+      <DxcSelect label="Label" disabled helperText="Helper text" optional options={single_options} defaultValue="1" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Error" theme="light" level={4} />
@@ -268,7 +269,7 @@ const Select = () => (
     <Title title="Anatomy" theme="light" level={2} />
     <ExampleContainer>
       <Title title="Label, placeholder and helper text" theme="light" level={4} />
-      <DxcSelect label="Label" options={single_options} helperText="Helper text" placeholder="Placeholder" />
+      <DxcSelect label="Label" options={single_options} helperText="Helper text" placeholder="Placeholder" optional />
     </ExampleContainer>
     <Title title="Variants" theme="light" level={2} />
     <ExampleContainer>

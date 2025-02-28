@@ -6,9 +6,8 @@ import { ReactNode } from "react";
 
 const SelectPageHeading = ({ children }: { children: ReactNode }) => {
   const tabs = [
-    { label: "Code", path: "/components/select" },
-    { label: "Usage", path: "/components/select/usage" },
-    { label: "Specifications", path: "/components/select/specifications" },
+    { label: "Overview", path: "/components/select" },
+    { label: "Code", path: "/components/select/code" },
   ];
 
   return (
