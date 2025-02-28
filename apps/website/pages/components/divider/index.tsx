@@ -1,6 +1,6 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import DividerCodePage from "screens/components/divider/code/DividerCodePage";
+import DividerOverviewPage from "screens/components/divider/overview/DividerOverviewPage";
 import DividerPageLayout from "screens/components/divider/DividerPageLayout";
 
 const Index = () => {
@@ -9,13 +9,11 @@ const Index = () => {
       <Head>
         <title>Divider — Halstack Design System</title>
       </Head>
-      <DividerCodePage></DividerCodePage>
+      <DividerOverviewPage/>
     </>
   );
 };
 
-Index.getLayout = function getLayout(page: ReactElement) {
-  return <DividerPageLayout>{page}</DividerPageLayout>;
-};
+Index.getLayout = (page: ReactElement) => <DividerPageLayout>{page}</DividerPageLayout>;
 
 export default Index;

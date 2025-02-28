@@ -22,26 +22,6 @@ const sections = [
         </thead>
         <tbody>
           <tr>
-            <td>orientation</td>
-            <td>
-              <TableCode>'horizontal' | 'vertical'</TableCode>
-            </td>
-            <td>The divider can be showed in horizontal or vertical.</td>
-            <td>
-              <TableCode>'horizontal'</TableCode>
-            </td>
-          </tr>
-          <tr>
-            <td>weight</td>
-            <td>
-              <TableCode>'regular' | 'strong'</TableCode>
-            </td>
-            <td>Modifies the thickness of the divider.</td>
-            <td>
-              <TableCode>'regular'</TableCode>
-            </td>
-          </tr>
-          <tr>
             <td>color</td>
             <td>
               <TableCode>'lightGrey' | 'mediumGrey' | 'darkGrey'</TableCode>
@@ -62,6 +42,26 @@ const sections = [
             </td>
             <td>
               <TableCode>true</TableCode>
+            </td>
+          </tr>
+          <tr>
+            <td>orientation</td>
+            <td>
+              <TableCode>'horizontal' | 'vertical'</TableCode>
+            </td>
+            <td>The divider can be showed in horizontal or vertical.</td>
+            <td>
+              <TableCode>'horizontal'</TableCode>
+            </td>
+          </tr>
+          <tr>
+            <td>weight</td>
+            <td>
+              <TableCode>'regular' | 'strong'</TableCode>
+            </td>
+            <td>Modifies the thickness of the divider.</td>
+            <td>
+              <TableCode>'regular'</TableCode>
             </td>
           </tr>
         </tbody>
@@ -87,7 +87,7 @@ const DividerCodePage = () => {
   return (
     <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
+        <QuickNavContainer sections={sections} startHeadingLevel={2} />
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/divider/code/DividerCodePage.tsx" />
     </DxcFlex>
