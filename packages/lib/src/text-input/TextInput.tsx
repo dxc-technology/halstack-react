@@ -538,7 +538,7 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
           numberInputContext.typeNumber,
           numberInputContext.minNumber,
           numberInputContext.maxNumber,
-          numberInputContext.stepNumber
+          numberInputContext.stepNumber,
         );
       }
       return undefined;
@@ -658,7 +658,7 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
                     title={translatedLabels.textInput.clearFieldActionTitle}
                   />
                 )}
-                {numberInputContext?.typeNumber === "number" && (
+                {numberInputContext?.typeNumber === "number" && numberInputContext?.showControls && (
                   <>
                     <DxcActionIcon
                       onClick={!readOnly ? handleDecrementActionOnClick : undefined}
