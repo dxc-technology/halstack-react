@@ -197,26 +197,30 @@ const DxcDataGrid = ({
   const sortedRows = useMemo((): readonly GridRow[] | HierarchyGridRow[] | ExpandableGridRow[] => {
     const sortFunctions = getCustomSortFn(columns);
     if (!onSort) {
-      if (expandable && sortColumns.length > 0) {
-        const innerSortedRows = sortRows(
-          rowsToRender.filter((row) => !row.isExpandedChildContent),
-          sortColumns,
-          sortFunctions
-        );
-        rowsToRender
-          .filter((row) => row.isExpandedChildContent)
-          .map((expandedRow) =>
-            addRow(
-              innerSortedRows,
-              innerSortedRows.findIndex((trigger) => rowKeyGetter(trigger, uniqueRowId) === expandedRow.triggerRowKey) +
-                1,
-              expandedRow
-            )
+      if (sortColumns.length > 0 && uniqueRowId) {
+        if (expandable) {
+          const innerSortedRows = sortRows(
+            rowsToRender.filter((row) => !row.isExpandedChildContent),
+            sortColumns,
+            sortFunctions
           );
-        return innerSortedRows;
-      }
-      if (!expandable && sortColumns.length > 0 && uniqueRowId) {
-        return sortHierarchyRows(rowsToRender, sortColumns, sortFunctions, uniqueRowId);
+          if (innerSortedRows.some((row) => uniqueRowId in row)) {
+            rowsToRender
+              .filter((row) => row.isExpandedChildContent)
+              .map((expandedRow) =>
+                addRow(
+                  innerSortedRows,
+                  innerSortedRows.findIndex(
+                    (trigger) => rowKeyGetter(trigger, uniqueRowId) === expandedRow.triggerRowKey
+                  ) + 1,
+                  expandedRow
+                )
+              );
+            return innerSortedRows;
+          }
+        } else {
+          return sortHierarchyRows(rowsToRender, sortColumns, sortFunctions, uniqueRowId);
+        }
       }
     }
     return rowsToRender;
