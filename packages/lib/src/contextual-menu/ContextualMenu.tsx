@@ -12,6 +12,7 @@ import ContextualMenuPropsType, {
 } from "./types";
 import Section from "./Section";
 import ContextualMenuContext from "./ContextualMenuContext";
+import { scrollbarStyles } from "../styles/scroll";
 
 const ContextualMenu = styled.div`
   box-sizing: border-box;
@@ -27,18 +28,7 @@ const ContextualMenu = styled.div`
   background-color: var(--color-bg-neutral-lightest);
   overflow-y: auto;
   overflow-x: hidden;
-  &::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-  }
-  &::-webkit-scrollbar-thumb {
-    background-color: var(--color-fg-neutral-strong);
-    border-radius: var(--border-radius-s);
-  }
-  &::-webkit-scrollbar-track {
-    background-color: var(--color-bg-neutral-light);
-    border-radius: 0 var(--border-radius-s) var(--border-radius-s) 0;
-  }
+  ${scrollbarStyles}
 `;
 
 const StyledSubMenu = styled.ul`
