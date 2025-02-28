@@ -36,7 +36,6 @@ const LabelContainer = styled.span<{ disabled: ChipPropsType["disabled"] }>`
   font-size: var(--typography-label-l);
   font-family: var(--typography-font-family);
   font-weight: var(--typography-label-regular);
-  font-style: var(--font-style-normal);
   color: ${(props) => (props.disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-dark)")};
   text-overflow: ellipsis;
   white-space: nowrap;
