@@ -83,13 +83,19 @@ const Container = () => (
     <Title title="Background image" level={4} />
     <ExampleContainer>
       <DxcContainer
+        borderRadius="0.25rem"
         background={{
           image:
             "url(https://dxc.com/content/dam/dxc/projects/dxc-com/common/images/landscape-1050x650/logos/we_are_dxc-1050x650.jpg)",
-          size: "500px 500px",
+          color: "color_purple_100",
+          size: "cover",
+          attachment: "fixed",
+          repeat: "no-repeat",
         }}
-        width="500px"
-        height="500px"
+        minWidth="100vw"
+        height="100vh"
+        maxHeight="100vh"
+        width="100vw"
       >
         <p>Example text</p>
       </DxcContainer>
