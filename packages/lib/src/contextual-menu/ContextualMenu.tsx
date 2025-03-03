@@ -1,6 +1,5 @@
-import { useContext, useLayoutEffect, useMemo, useRef, useState } from "react";
-import styled, { ThemeProvider } from "styled-components";
-import CoreTokens from "../common/coreTokens";
+import { useLayoutEffect, useMemo, useRef, useState } from "react";
+import styled from "styled-components";
 import MenuItem from "./MenuItem";
 import ContextualMenuPropsType, {
   GroupItem,
@@ -13,40 +12,30 @@ import ContextualMenuPropsType, {
 } from "./types";
 import Section from "./Section";
 import ContextualMenuContext from "./ContextualMenuContext";
-import HalstackContext from "../HalstackContext";
+import { scrollbarStyles } from "../styles/scroll";
 
 const ContextualMenu = styled.div`
   box-sizing: border-box;
   margin: 0;
-  border: 1px solid ${({ theme }) => theme.borderColor};
-  border-radius: 0.25rem;
-  padding: ${CoreTokens.spacing_16} ${CoreTokens.spacing_8};
-  display: grid;
-  gap: ${CoreTokens.spacing_4};
-  min-width: 248px;
+  border: var(--border-width-s) solid var(--border-color-neutral-lighter);
+  border-radius: var(--border-radius-s);
+  padding: var(--spacing-padding-m) var(--spacing-padding-xs);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-gap-xs);
+  min-width: 240px;
   max-height: 100%;
-  background-color: ${({ theme }) => theme.backgroundColor};
+  background-color: var(--color-bg-neutral-lightest);
   overflow-y: auto;
   overflow-x: hidden;
-  &::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-  }
-  &::-webkit-scrollbar-thumb {
-    background-color: ${CoreTokens.color_grey_700};
-    border-radius: 0.25rem;
-  }
-  &::-webkit-scrollbar-track {
-    background-color: ${CoreTokens.color_grey_300};
-    border-radius: 0.25rem;
-  }
+  ${scrollbarStyles}
 `;
 
 const StyledSubMenu = styled.ul`
   margin: 0;
   padding: 0;
   display: grid;
-  gap: ${CoreTokens.spacing_4};
+  gap: var(--spacing-gap-xs);
   list-style: none;
 `;
 
@@ -79,7 +68,6 @@ export default function DxcContextualMenu({ items }: ContextualMenuPropsType) {
   const contextualMenuRef = useRef<HTMLDivElement | null>(null);
   const itemsWithId = useMemo(() => addIdToItems(items), [items]);
   const contextValue = useMemo(() => ({ selectedItemId, setSelectedItemId }), [selectedItemId, setSelectedItemId]);
-  const colorsTheme = useContext(HalstackContext);
 
   const [firstUpdate, setFirstUpdate] = useState(true);
   useLayoutEffect(() => {
@@ -94,22 +82,20 @@ export default function DxcContextualMenu({ items }: ContextualMenuPropsType) {
   }, [firstUpdate, selectedItemId]);
 
   return (
-    <ThemeProvider theme={colorsTheme.contextualMenu}>
-      <ContextualMenu ref={contextualMenuRef}>
-        <ContextualMenuContext.Provider value={contextValue}>
-          {itemsWithId[0] && isSection(itemsWithId[0]) ? (
-            (itemsWithId as SectionWithId[]).map((item, index) => (
-              <Section key={`section-${index}`} section={item} index={index} length={itemsWithId.length} />
-            ))
-          ) : (
-            <SubMenu>
-              {(itemsWithId as (GroupItemWithId | ItemWithId)[]).map((item, index) => (
-                <MenuItem item={item} key={`${item.label}-${index}`} />
-              ))}
-            </SubMenu>
-          )}
-        </ContextualMenuContext.Provider>
-      </ContextualMenu>
-    </ThemeProvider>
+    <ContextualMenu ref={contextualMenuRef}>
+      <ContextualMenuContext.Provider value={contextValue}>
+        {itemsWithId[0] && isSection(itemsWithId[0]) ? (
+          (itemsWithId as SectionWithId[]).map((item, index) => (
+            <Section key={`section-${index}`} section={item} index={index} length={itemsWithId.length} />
+          ))
+        ) : (
+          <SubMenu>
+            {(itemsWithId as (GroupItemWithId | ItemWithId)[]).map((item, index) => (
+              <MenuItem item={item} key={`${item.label}-${index}`} />
+            ))}
+          </SubMenu>
+        )}
+      </ContextualMenuContext.Provider>
+    </ContextualMenu>
   );
 }
