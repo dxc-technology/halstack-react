@@ -12,12 +12,6 @@ const code = `() => {
     <DxcInset space="2rem">
       <DxcFlex direction="column" gap="2rem" alignItems="center">
         <DxcSelect
-          label="Single selection"
-          helperText="Select an option"
-          defaultValue="1"
-          options={options}
-        />
-        <DxcSelect
           label="Multiple selection"
           helperText="Select one or more options"
           defaultValue={["1", "2"]}
