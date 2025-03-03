@@ -67,7 +67,12 @@ const sections = [
             <td>
               <TableCode>string</TableCode>
             </td>
-            <td>Handles the error message and appearance of the select component.</td>
+            <td>
+              If it is a defined value and also a truthy string, the component will change its appearance, showing the
+              error below the select component. If the defined value is an empty string, it will reserve a space below
+              the component for a future error, but it would not change its look. In case of being undefined or null,
+              both the appearance and the space for the error message would not be modified.
+            </td>
             <td>-</td>
           </tr>
           <tr>
@@ -91,7 +96,10 @@ const sections = [
             <td>
               <TableCode>'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge' | Margin</TableCode>
             </td>
-            <td>Size of the margin to be applied to the component.</td>
+            <td>
+              Size of the margin to be applied to the component. You can pass an object with 'top', 'bottom', 'left' and
+              'right' properties in order to specify different margin sizes.
+            </td>
             <td>-</td>
           </tr>
           <tr>
@@ -99,7 +107,10 @@ const sections = [
             <td>
               <TableCode>boolean</TableCode>
             </td>
-            <td>If true, the select supports multiple selected options.</td>
+            <td>
+              If true, the select component will support multiple selected options. In that case, value will be an array
+              of strings with each selected option value.
+            </td>
             <td>
               <TableCode>false</TableCode>
             </td>
@@ -109,7 +120,12 @@ const sections = [
             <td>
               <TableCode>string</TableCode>
             </td>
-            <td>Name attribute of the input element.</td>
+            <td>
+              Name attribute of the input element. This attribute will allow users to find the component's value during
+              the submit event. In this event, the component's value will always be a regular string, for both single
+              and multiple selection modes, being a single option value in the first case and more than one value when
+              multiple selection is available, separated by commas.
+            </td>
             <td>-</td>
           </tr>
           <tr>
@@ -117,7 +133,11 @@ const sections = [
             <td>
               <TableCode>{"(val: { value: string | string[]; error?: string }) => void"}</TableCode>
             </td>
-            <td>Called when the select loses focus.</td>
+            <td>
+              This function will be called when the select loses the focus. An object including the value (or values)
+              and the error (if the value selected is not valid) will be passed to this function. If there is no error,{" "}
+              <Code>error</Code> will not be defined.
+            </td>
             <td>-</td>
           </tr>
           <tr>
@@ -125,7 +145,11 @@ const sections = [
             <td>
               <TableCode>{"(val: { value: string | string[]; error?: string }) => void"}</TableCode>
             </td>
-            <td>Called when the user selects an option.</td>
+            <td>
+              This function will be called when the user selects an option. An object including the new value (or
+              values) and the error (if the value selected is not valid) will be passed to this function. If there is no
+              error, <Code>error</Code> will not be defined.
+            </td>
             <td>-</td>
           </tr>
           <tr>
@@ -133,7 +157,12 @@ const sections = [
             <td>
               <TableCode>boolean</TableCode>
             </td>
-            <td>If true, the select will be optional, adding a default empty option.</td>
+            <td>
+              If true, the select will be optional, showing '(Optional)' next to the label and adding a default first
+              option with an empty string as value and the placeholder (if defined) as its label. Otherwise, the field
+              will be considered required and an error will be passed as a parameter to the <Code>onBlur</Code> and{" "}
+              <Code>onChange</Code> functions if an option wasn't selected.
+            </td>
             <td>
               <TableCode>false</TableCode>
             </td>
@@ -147,8 +176,51 @@ const sections = [
             </td>
             <td>
               <TableCode>{"Option[] | ({ label: string, options: Option[] })[]"}</TableCode>
+              <p>
+                being <Code>Option</Code> the following type:
+              </p>
+              <ExtendedTableCode>{optionsType}</ExtendedTableCode>
+              <p>
+                and <Code>Icon</Code>:
+              </p>
+              <TableCode>{`React.ReactNode & React.SVGProps<SVGSVGElement>`}</TableCode>
             </td>
-            <td>Array of objects representing the selectable options.</td>
+            <td>
+              An array of objects representing the selectable options. Each object has the following properties
+              depending on whether it is a regular option or a group: <br />
+              <br />
+              <strong>Option</strong>
+              <ul>
+                <li>
+                  <b>label</b>: Label of the option to be shown in the select's listbox.
+                </li>
+                <li>
+                  <b>value</b>: Value of the option. It should be unique and not an empty string, which is reserved to
+                  the empty option added by <Code>optional</Code> prop.
+                </li>
+                <li>
+                  <b>icon</b>:{" "}
+                  <DxcLink newWindow href="https://fonts.google.com/icons">
+                    Material Symbol
+                  </DxcLink>{" "}
+                  name or SVG element used as the icon for the option. When using Material Symbols, replace spaces with
+                  underscores. By default they are outlined if you want it to be filled prefix the symbol name with{" "}
+                  <Code>"filled_"</Code>.
+                </li>
+              </ul>
+              <strong>Grouped options</strong>
+              <br />
+              <ul>
+                <li>
+                  <b>label</b>: Label of the group to be shown in the select's listbox.
+                </li>
+                <li>
+                  <b>options</b>: List of <Code>Option</Code> instances.
+                </li>
+              </ul>
+              <br />
+              <strong>You can't mix single and grouped options in the same array.</strong>
+            </td>
             <td>-</td>
           </tr>
           <tr>
@@ -157,14 +229,6 @@ const sections = [
               <TableCode>string</TableCode>
             </td>
             <td>Text to be put as placeholder of the select.</td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td>ref</td>
-            <td>
-              <TableCode>{"React.Ref<HTMLDivElement>"}</TableCode>
-            </td>
-            <td>Reference to the component.</td>
             <td>-</td>
           </tr>
           <tr>
@@ -200,11 +264,22 @@ const sections = [
             </td>
           </tr>
           <tr>
+            <td>ref</td>
+            <td>
+              <TableCode>{"React.Ref<HTMLDivElement>"}</TableCode>
+            </td>
+            <td>Reference to the component.</td>
+            <td>-</td>
+          </tr>
+          <tr>
             <td>value</td>
             <td>
               <TableCode>string | string[]</TableCode>
             </td>
-            <td>Value of the select, or undefined if uncontrolled.</td>
+            <td>
+              Value of the select. If undefined, the component will be uncontrolled and the value will be managed
+              internally by the component.
+            </td>
             <td>-</td>
           </tr>
         </tbody>
