@@ -56,6 +56,7 @@ const ModalAlertWrapper = ({ condition, onClose, children }: ModalAlertWrapperPr
       };
     }
   }, [condition, onClose]);
+
   return condition ? (
     <>
       <BodyStyle />
