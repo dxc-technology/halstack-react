@@ -8,13 +8,17 @@ const Action = styled.button<{
   depthLevel: ItemActionProps["depthLevel"];
   selected: ItemActionProps["selected"];
 }>`
+  box-sizing: content-box;
   border: none;
   border-radius: var(--border-radius-s);
-  padding: var(--spacing-padding-xxs) var(--spacing-padding-xxs) var(--spacing-padding-xxs) var(--spacing-padding-xs);
+  padding: var(--spacing-padding-xxs) var(--spacing-padding-xxs) var(--spacing-padding-xxs)
+    ${({ depthLevel }) => `calc(var(--spacing-padding-xs) + ${depthLevel} * var(--spacing-padding-l))`};
   display: flex;
   align-items: center;
+  gap: var(--spacing-gap-m);
   justify-content: space-between;
   background-color: ${({ selected }) => (selected ? "var(--color-bg-primary-lighter)" : "transparent")};
+  height: var(--height-s);
   cursor: pointer;
   overflow: hidden;
 
@@ -22,28 +26,13 @@ const Action = styled.button<{
     background-color: ${({ selected }) =>
       selected ? "var(--color-bg-primary-medium)" : "var(--color-bg-neutral-light)"};
   }
-  &:active,
-  &:focus {
-    outline: var(--border-width-m) solid var(--border-color-secondary-medium);
-    outline-offset: -1px;
-  }
   &:active {
     background-color: ${({ selected }) =>
       selected ? "var(--color-bg-primary-medium)" : "var(--color-bg-neutral-light)"};
   }
   &:focus {
-    ${({ selected }) => selected && `background-color: var(--color-bg-primary-lighter);`};
-  }
-`;
-
-const Icon = styled.span`
-  display: flex;
-  font-size: var(--height-xxs);
-  color: var(--color-fg-neutral-dark);
-
-  svg {
-    height: var(--height-xxs);
-    width: 16px;
+    outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
+    outline-offset: -2px;
   }
 `;
 
@@ -54,18 +43,27 @@ const Label = styled.span`
   overflow: hidden;
 `;
 
+const Icon = styled.span`
+  display: flex;
+  color: var(--color-fg-neutral-dark);
+  font-size: var(--height-xxs);
+  svg {
+    height: var(--height-xxs);
+    width: 16px;
+  }
+`;
+
 const Text = styled.span<{ selected: ItemActionProps["selected"] }>`
   color: var(--color-fg-neutral-dark);
   font-family: var(--typography-font-family);
   font-size: var(--typography-label-m);
-  font-style: normal;
   font-weight: ${({ selected }) => (selected ? "var(--typography-label-semibold)" : "var(--typography-label-regular)")};
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
 `;
 
-const ItemAction = ({ badge, collapseIcon, icon, label, depthLevel, ...props }: ItemActionProps) => {
+export default function ItemAction({ badge, collapseIcon, depthLevel, icon, label, ...props }: ItemActionProps) {
   const [hasTooltip, setHasTooltip] = useState(false);
   const modifiedBadge = badge && cloneElement(badge, { size: "small" });
 
@@ -89,6 +87,4 @@ const ItemAction = ({ badge, collapseIcon, icon, label, depthLevel, ...props }: 
       </Action>
     </TooltipWrapper>
   );
-};
-
-export default ItemAction;
+}

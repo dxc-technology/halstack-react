@@ -10,11 +10,11 @@ const sections = [
     title: "Introduction",
     content: (
       <DxcParagraph>
-        This powerful component improves user experience by allowing users to navigate through page-level content or
-        choose from a list of actions while complementing the general disposition of the main content within the
-        interface. It also allows a wide range of possibilities when it comes to placing content cohesively and
-        comprehensively. To achieve this, it's important to understand how the items in our Contextual menu behave and
-        interact with each other.
+        This powerful component improves user experience by allowing users to{" "}
+        <strong>navigate through page-level content</strong> or choose from a list of actions while complementing the
+        general disposition of the main content within the interface. It also allows a wide range of possibilities when
+        it comes to placing content cohesively and comprehensively. To achieve this, it's important to understand how
+        the items in our contextual menu behave and interact with each other.
       </DxcParagraph>
     ),
   },
@@ -73,15 +73,16 @@ const sections = [
     content: (
       <>
         <DxcParagraph>
-          Although visually similar, the Sidenav component and the Contextual menu differ significantly in
+          Although visually similar, the Sidenav component and the contextual menu differ significantly in
           functionality. Our Sidenav is designed to provide a consistent and persistent navigation structure throughout
           the application, allowing users to easily switch between different sections or pages within the app.
         </DxcParagraph>
         <DxcParagraph>
-          On the other hand, the Contextual menu is more context-sensitive, and appears in response to specific user
-          actions, offering a set of relevant options or actions that can be performed on the current page. This means
-          that it operates on a page level, so the component may appear or not depending on the specific needs and
-          requirements for each screen or interaction.
+          On the other hand, the contextual menu is more{" "}
+          <strong>context-sensitive, and appears in response to specific user actions</strong>, offering a set of
+          relevant options or actions that can be performed on the current page. This means that it{" "}
+          <strong>operates on a page level</strong>, so the component may appear or not depending on the specific needs
+          and requirements for each screen or interaction.
         </DxcParagraph>
       </>
     ),
@@ -96,7 +97,7 @@ const sections = [
             and intuitive navigation.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Align properly:</strong> position the Contextual Menu to the left or right, avoiding placement in
+            <strong>Align properly:</strong> position the contextual menu to the left or right, avoiding placement in
             the center to prevent obstruction of main content.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
@@ -129,15 +130,13 @@ const sections = [
   },
 ];
 
-const ContextualMenuOverviewPage = () => {
-  return (
-    <DxcFlex direction="column" gap="4rem">
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2} />
-      </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/contextual-menu/overview/ContextualMenuOverviewPage.tsx" />
-    </DxcFlex>
-  );
-};
+const ContextualMenuOverviewPage = () => (
+  <DxcFlex direction="column" gap="4rem">
+    <QuickNavContainerLayout>
+      <QuickNavContainer sections={sections} startHeadingLevel={2} />
+    </QuickNavContainerLayout>
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/contextual-menu/overview/ContextualMenuOverviewPage.tsx" />
+  </DxcFlex>
+);
 
 export default ContextualMenuOverviewPage;

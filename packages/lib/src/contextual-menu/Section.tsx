@@ -1,32 +1,30 @@
 import styled from "styled-components";
 import { DxcInset } from "..";
 import DxcDivider from "../divider/Divider";
-import { SubMenu } from "./ContextualMenu";
+import SubMenu from "./SubMenu";
 import MenuItem from "./MenuItem";
 import { SectionProps } from "./types";
 import { useId } from "react";
+
+const SectionContainer = styled.section`
+  display: grid;
+  gap: var(--spacing-gap-xs);
+`;
 
 const Title = styled.h2`
   all: unset;
   color: var(--color-fg-neutral-dark);
   font-family: var(--typography-font-family);
   font-size: var(--typography-label-l);
-  font-style: normal;
   font-weight: var(--typography-label-semibold);
   padding: var(--spacing-padding-xxs);
 `;
 
-const Sect = styled.section`
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-gap-xs);
-`;
-
-const Section = ({ section, index, length }: SectionProps) => {
+export default function Section({ index, length, section }: SectionProps) {
   const id = `section-${useId()}`;
 
   return (
-    <Sect aria-label={section.title ?? id} aria-labelledby={id}>
+    <SectionContainer aria-label={section.title ?? id} aria-labelledby={id}>
       {section.title && <Title id={id}>{section.title}</Title>}
       <SubMenu>
         {section.items.map((item, index) => (
@@ -38,8 +36,6 @@ const Section = ({ section, index, length }: SectionProps) => {
           <DxcDivider color="lightGrey" />
         </DxcInset>
       )}
-    </Sect>
+    </SectionContainer>
   );
-};
-
-export default Section;
+}
