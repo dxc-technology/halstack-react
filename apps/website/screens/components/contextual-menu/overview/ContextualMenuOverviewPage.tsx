@@ -18,7 +18,6 @@ const sections = [
       </DxcParagraph>
     ),
   },
-
   {
     title: "Anatomy",
     content: (
