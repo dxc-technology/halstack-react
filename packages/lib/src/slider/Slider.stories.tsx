@@ -1,7 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
-import { HalstackProvider } from "../HalstackContext";
 import DxcSlider from "./Slider";
 
 export default {
@@ -11,17 +10,9 @@ export default {
 
 const labelFormat = (value: number) => `${value}E100000000000000000000000`;
 
-const opinionatedTheme = {
-  slider: {
-    baseColor: "#0067b3",
-    fontColor: "#000000",
-    totalLineColor: "#e6e6e6",
-  },
-};
-
 const Slider = () => (
   <>
-    <Title title="States" theme="light" level={2} />
+    <Title title="Thumb states" theme="light" level={2} />
     <ExampleContainer pseudoState="pseudo-hover">
       <Title title="Hovered" theme="light" level={4} />
       <DxcSlider label="Slider" helperText="Help message" showLimitsValues />
@@ -66,14 +57,14 @@ const Slider = () => (
       <Title title="Discrete slider with input" theme="light" level={4} />
       <DxcSlider
         defaultValue={20}
-        minValue={0}
+        minValue={10}
         maxValue={50}
         label="Slider"
         helperText="Help message"
         showLimitsValues
         showInput
         marks
-        step={10}
+        step={20}
       />
     </ExampleContainer>
     <Title title="Margins" theme="light" level={2} />
@@ -128,53 +119,9 @@ const Slider = () => (
         size="large"
       />
     </ExampleContainer>
-    <Title title="Opinionated theme" theme="light" level={2} />
-    <ExampleContainer pseudoState="pseudo-hover">
-      <Title title="Hovered" theme="light" level={4} />
-      <HalstackProvider theme={opinionatedTheme}>
-        <DxcSlider label="Slider" helperText="Help message" showLimitsValues />
-      </HalstackProvider>
-    </ExampleContainer>
-    <ExampleContainer pseudoState="pseudo-active">
-      <Title title="Active" theme="light" level={4} />
-      <HalstackProvider theme={opinionatedTheme}>
-        <DxcSlider label="Slider" helperText="Help message" showLimitsValues />
-      </HalstackProvider>
-    </ExampleContainer>
-    <ExampleContainer pseudoState="pseudo-focus">
-      <Title title="Focused" theme="light" level={4} />
-      <HalstackProvider theme={opinionatedTheme}>
-        <DxcSlider label="Slider" helperText="Help message" showLimitsValues />
-      </HalstackProvider>
-    </ExampleContainer>
     <ExampleContainer>
-      <Title title="Disabled discrete slider with input" theme="light" level={4} />{" "}
-      <HalstackProvider theme={opinionatedTheme}>
-        <DxcSlider
-          label="Slider"
-          helperText="Help message"
-          disabled
-          defaultValue={40}
-          minValue={0}
-          maxValue={50}
-          showLimitsValues
-          showInput
-          marks
-          step={10}
-        />
-      </HalstackProvider>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Continuous slider" theme="light" level={4} />
-      <HalstackProvider theme={opinionatedTheme}>
-        <DxcSlider defaultValue={65} label="Slider" helperText="Help message" showLimitsValues />
-      </HalstackProvider>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Discrete slider" theme="light" level={4} />
-      <HalstackProvider theme={opinionatedTheme}>
-        <DxcSlider defaultValue={20} label="Slider" helperText="Help message" showLimitsValues marks step={5} />
-      </HalstackProvider>
+      <Title title="Rounded up slider" theme="light" level={4} />
+      <DxcSlider label="Slider" helperText="Help message" showLimitsValues showInput value={15} step={10} marks />
     </ExampleContainer>
   </>
 );
