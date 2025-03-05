@@ -122,6 +122,7 @@ export const renderExpandableTrigger = (
         });
       }
     }}
+    disabled={!rows.some((row) => uniqueRowId in row)}
   />
 );
 
@@ -143,6 +144,7 @@ export const renderHierarchyTrigger = (
 ) => (
   <button
     type="button"
+    disabled={!rows.some((row) => uniqueRowId in row)}
     onClick={() => {
       let newRowsToRender = [...rows];
       if (!triggerRow.visibleChildren) {
@@ -205,26 +207,29 @@ export const renderCheckbox = (
   uniqueRowId: string,
   selectedRows: Set<string | number>,
   onSelectRows: (_selected: Set<string | number>) => void
-) => (
-  <DxcCheckbox
-    checked={selectedRows.has(rowKeyGetter(row, uniqueRowId))}
-    onChange={(checked) => {
-      const selected = new Set(selectedRows);
-      if (checked) {
-        selected.add(rowKeyGetter(row, uniqueRowId));
-      } else {
-        selected.delete(rowKeyGetter(row, uniqueRowId));
-      }
-      if (row.childRows && Array.isArray(row.childRows)) {
-        getChildrenSelection(row.childRows, uniqueRowId, selected, checked);
-      }
-      if (row.parentKey) {
-        getParentSelectedState(rows, row.parentKey, uniqueRowId, selected, checked);
-      }
-      onSelectRows(selected);
-    }}
-  />
-);
+) => {
+  return (
+    <DxcCheckbox
+      checked={selectedRows.has(rowKeyGetter(row, uniqueRowId))}
+      onChange={(checked) => {
+        const selected = new Set(selectedRows);
+        if (checked) {
+          selected.add(rowKeyGetter(row, uniqueRowId));
+        } else {
+          selected.delete(rowKeyGetter(row, uniqueRowId));
+        }
+        if (row.childRows && Array.isArray(row.childRows)) {
+          getChildrenSelection(row.childRows, uniqueRowId, selected, checked);
+        }
+        if (row.parentKey) {
+          getParentSelectedState(rows, row.parentKey, uniqueRowId, selected, checked);
+        }
+        onSelectRows(selected);
+      }}
+      disabled={!rows.some((row) => uniqueRowId in row)}
+    />
+  );
+};
 
 /**
  * Renders a header checkbox that controls the selection of all rows.
@@ -244,7 +249,7 @@ export const renderHeaderCheckbox = (
 ) => (
   <HalstackProvider advancedTheme={overwriteTheme(colorsTheme)}>
     <DxcCheckbox
-      checked={!rows.some((row) => !selectedRows.has(rowKeyGetter(row, uniqueRowId)))}
+      checked={rows.length > 0 && !rows.some((row) => !selectedRows.has(rowKeyGetter(row, uniqueRowId)))}
       onChange={(checked) => {
         const updatedSelection = new Set(selectedRows);
 
@@ -266,6 +271,7 @@ export const renderHeaderCheckbox = (
 
         onSelectRows(updatedSelection);
       }}
+      disabled={rows.length === 0 || !rows.some((row) => uniqueRowId in row)}
     />
   </HalstackProvider>
 );
@@ -384,7 +390,7 @@ export const sortHierarchyRows = (
   );
   // add children directly under the parent if it is available
   while (sortedChildren.length) {
-    if (uniqueRowId) {
+    if (uniqueRowId && sortedChildren.some((row) => uniqueRowId in row)) {
       sortedChildren = sortedChildren.reduce(
         (
           remainingChilds: GridRow[] | HierarchyGridRow[] | ExpandableGridRow[],
@@ -498,6 +504,9 @@ export const getParentSelectedState = (
   selectedRows: Set<ReactNode>,
   checkedStateToMatch: boolean
 ) => {
+  if (!rowList.some((row) => uniqueRowId in row)) {
+    return;
+  }
   const parentRow = rowFinderBasedOnId(rowList, uniqueRowId, parentKeyValue) as HierarchyGridRow;
 
   if (!parentRow) {
@@ -601,7 +610,7 @@ export const getPaginatedNodes = (
  * @param {string} key - The key to check if it exists in the row object.
  * @param {T} obj - The row object to check the key against.
  * @returns {boolean} - Returns `true` if `key` is a valid key of `obj`, otherwise `false`.
- * 
+ *
  */
 export const isKeyOfRow = <T extends GridRow>(key: string, obj: T): key is Extract<keyof T, string> => {
   return key in obj;
