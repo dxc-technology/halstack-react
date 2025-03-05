@@ -409,7 +409,7 @@ export const AscendentSorting: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const idHeader = canvas.getAllByRole("button")[0];
-    const idHeader2 = canvas.getAllByRole("button")[6];
+    const idHeader2 = canvas.getAllByRole("button")[2];
     idHeader && (await userEvent.click(idHeader));
     idHeader2 && (await userEvent.click(idHeader2));
   },
@@ -420,7 +420,7 @@ export const DescendantSorting: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const nameHeader = canvas.getAllByRole("button")[1];
-    const nameHeader2 = canvas.getAllByRole("button")[7];
+    const nameHeader2 = canvas.getAllByRole("button")[3];
     nameHeader && (await userEvent.click(nameHeader));
     nameHeader && (await userEvent.click(nameHeader));
     nameHeader2 && (await userEvent.click(nameHeader2));
