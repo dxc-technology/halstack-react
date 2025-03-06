@@ -18,13 +18,12 @@ type TabCommonProps = {
 };
 
 export type TabsContextProps = {
-  iconPosition: "top" | "left";
-  tabIndex: number;
-  focusedLabel: string;
-  isControlled: boolean;
   activeLabel: string;
-  hasLabelAndIcon: boolean;
+  focusedLabel: string;
+  iconPosition?: "top" | "left";
+  isControlled: boolean;
   setActiveLabel: (_tab: string) => void;
+  tabIndex: number;
 };
 
 export type TabLabelProps = TabCommonProps & {

@@ -42,21 +42,19 @@ const Tab = styled.button<{
   border: 0;
   min-width: 90px;
   max-width: 360px;
-  ${({ hasLabelAndIcon, iconPosition }) =>
-    !hasLabelAndIcon || (hasLabelAndIcon && iconPosition !== "top")
-      ? "padding: var(--spacing-gap-m) var(--spacing-padding-m); height: var(--height-xxl); min-height: var(--height-xxl);"
-      : "padding: var(--spacing-padding-xs) var(--spacing-padding-m); height: 72px; min-height: 72px;"}
+  ${({ iconPosition }) =>
+    iconPosition === "top"
+      ? "padding: var(--spacing-padding-xs) var(--spacing-padding-m); height: 72px;"
+      : "padding: var(--spacing-gap-s) var(--spacing-padding-m); height: var(--height-xxl);"}
   overflow: hidden;
   ${sharedTabStyles}
 `;
 
 const LabelIconContainer = styled.div<{
-  hasLabelAndIcon: boolean;
   iconPosition: TabsContextProps["iconPosition"];
 }>`
   display: flex;
-  flex-direction: ${({ hasLabelAndIcon, iconPosition }) =>
-    hasLabelAndIcon && iconPosition === "top" ? "column" : "row"};
+  flex-direction: ${({ iconPosition }) => (iconPosition === "top" ? "column" : "row")};
   align-items: center;
   gap: var(--spacing-gap-m);
 `;
@@ -81,10 +79,8 @@ const BadgeContainer = styled.div<{
   iconPosition: TabsContextProps["iconPosition"];
 }>`
   display: flex;
-  flex-direction: column;
   align-items: ${({ hasLabelAndIcon, iconPosition }) =>
     hasLabelAndIcon && iconPosition === "top" ? "flex-start" : "center"};
-  justify-content: flex-start;
   height: 100%;
 `;
 
@@ -106,8 +102,7 @@ const DxcTab = forwardRef(
     const {
       activeLabel,
       focusedLabel,
-      hasLabelAndIcon = false,
-      iconPosition = "top",
+      iconPosition,
       isControlled,
       setActiveLabel,
       tabIndex = 0,
@@ -139,7 +134,7 @@ const DxcTab = forwardRef(
         <Tab
           aria-selected={activeLabel === label}
           disabled={disabled}
-          hasLabelAndIcon={hasLabelAndIcon}
+          hasLabelAndIcon={Boolean(icon && label)}
           iconPosition={iconPosition}
           onClick={() => {
             if (!isControlled) setActiveLabel?.(label);
@@ -149,11 +144,9 @@ const DxcTab = forwardRef(
           onMouseEnter={() => onHover?.()}
           ref={(anchorRef) => {
             tabRef.current = anchorRef;
-
             if (ref) {
-              if (typeof ref === "function") {
-                ref(anchorRef);
-              } else {
+              if (typeof ref === "function") ref(anchorRef);
+              else {
                 const currentRef = ref as MutableRefObject<HTMLButtonElement | null>;
                 currentRef.current = anchorRef;
               }
@@ -163,12 +156,12 @@ const DxcTab = forwardRef(
           tabIndex={activeLabel === label && !disabled ? tabIndex : -1}
           type="button"
         >
-          <LabelIconContainer hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
+          <LabelIconContainer iconPosition={iconPosition}>
             {icon && <IconContainer>{typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}</IconContainer>}
             <Label>{label}</Label>
           </LabelIconContainer>
           {!disabled && notificationNumber && (
-            <BadgeContainer hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
+            <BadgeContainer hasLabelAndIcon={Boolean(icon && label)} iconPosition={iconPosition}>
               <DxcBadge
                 label={typeof notificationNumber === "number" ? notificationNumber : undefined}
                 mode="notification"

@@ -61,20 +61,6 @@ const disabledTabs = (
   </DxcTabs>
 );
 
-const disabledTabsFirstActive = (
-  <DxcTabs>
-    <DxcTabs.Tab label="Tab 1" active disabled>
-      <></>
-    </DxcTabs.Tab>
-    <DxcTabs.Tab label="Tab 2" disabled>
-      <></>
-    </DxcTabs.Tab>
-    <DxcTabs.Tab label="Tab 3" disabled>
-      <></>
-    </DxcTabs.Tab>
-  </DxcTabs>
-);
-
 const firstDisabledTabs = (
   <DxcTabs>
     <DxcTabs.Tab label="Tab 1" disabled>
@@ -126,7 +112,7 @@ const tabsIcon = (iconPosition?: "top" | "left") => (
     <DxcTabs.Tab label="Tab 3" icon={iconSVG} disabled>
       <></>
     </DxcTabs.Tab>
-    <DxcTabs.Tab label="Tab 4" icon={iconSVG}>
+    <DxcTabs.Tab label="Tab 4">
       <></>
     </DxcTabs.Tab>
     <DxcTabs.Tab label="Tab 5" icon="mail">
@@ -199,11 +185,11 @@ const Tabs = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With icon position top" theme="light" level={4} />
-      {tabsIcon()}
+      {tabsIcon("top")}
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With icon position left" theme="light" level={4} />
-      {tabsIcon("left")}
+      {tabsIcon()}
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With icon and notification number" theme="light" level={4} />
@@ -211,7 +197,7 @@ const Tabs = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With icon on the left and notification number" theme="light" level={4} />
-      {tabsNotificationIcon("left")}
+      {tabsNotificationIcon()}
     </ExampleContainer>
     <Title title="Margins" theme="light" level={2} />
     <ExampleContainer>

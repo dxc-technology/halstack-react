@@ -41,15 +41,8 @@ const Underline = styled.div`
   background-color: var(--border-color-neutral-medium);
 `;
 
-const Tabs = styled.div<{
-  hasLabelAndIcon: boolean;
-  iconPosition: TabsPropsType["iconPosition"];
-}>`
+const Tabs = styled.div`
   display: flex;
-  ${(props) =>
-    !props.hasLabelAndIcon || (props.hasLabelAndIcon && props.iconPosition !== "top")
-      ? "min-height: var(--height-xxl); height: var(--height-xxl);"
-      : "min-height: 72px; height: 72px;"}
   background-color: var(--color-bg-neutral-lightest);
   overflow: hidden;
 `;
@@ -100,7 +93,7 @@ const DxcTabs = ({
   activeTabIndex,
   children,
   defaultActiveTabIndex,
-  iconPosition = "top",
+  iconPosition,
   margin,
   onTabClick,
   onTabHover,
@@ -110,10 +103,6 @@ const DxcTabs = ({
   const childrenArray: ReactElement<TabProps>[] = useMemo(
     () => Children.toArray(children) as ReactElement<TabProps>[],
     [children]
-  );
-  const hasLabelAndIcon = useMemo(
-    () => childrenArray.some((child) => isValidElement(child) && child.props.icon && child.props.label),
-    [childrenArray]
   );
 
   const [activeTabLabel, setActiveTabLabel] = useState(() => {
@@ -148,15 +137,14 @@ const DxcTabs = ({
   const contextValue = useMemo(() => {
     const focusedChild = innerFocusIndex != null ? childrenArray[innerFocusIndex] : null;
     return {
-      iconPosition,
-      tabIndex,
-      focusedLabel: isValidElement(focusedChild) ? focusedChild.props.label : "",
-      isControlled: childrenArray.some((child) => isValidElement(child) && typeof child.props.active !== "undefined"),
       activeLabel: activeTabLabel,
-      hasLabelAndIcon,
+      focusedLabel: isValidElement(focusedChild) ? focusedChild.props.label : "",
+      iconPosition,
+      isControlled: childrenArray.some((child) => isValidElement(child) && typeof child.props.active !== "undefined"),
       setActiveLabel: setActiveTabLabel,
+      tabIndex,
     };
-  }, [iconPosition, tabIndex, innerFocusIndex, activeTabLabel, childrenArray, hasLabelAndIcon]);
+  }, [iconPosition, tabIndex, innerFocusIndex, activeTabLabel, childrenArray]);
 
   const scrollLeft = () => {
     const scrollWidth = (refTabList?.current?.offsetHeight ?? 0) * 0.75;
@@ -218,7 +206,7 @@ const DxcTabs = ({
     <>
       <TabsContainer margin={margin}>
         <Underline />
-        <Tabs hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
+        <Tabs>
           {enabledScrollIndicators && (
             <ScrollIndicator
               onClick={scrollLeft}
