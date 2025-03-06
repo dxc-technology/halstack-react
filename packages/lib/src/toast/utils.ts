@@ -6,7 +6,7 @@ export const getSemantic = (semantic: ToastPropsType["semantic"]) => {
       return {
         primaryColor: "var(--border-color-primary-stronger)",
         secondaryColor: "var(--color-bg-primary-lighter)",
-        icon: "" 
+        icon: "",
       };
     case "info":
       return {
