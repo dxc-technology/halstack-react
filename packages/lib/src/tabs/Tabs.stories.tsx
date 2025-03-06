@@ -1,7 +1,6 @@
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
-import { HalstackProvider } from "../HalstackContext";
 import DxcTabs from "./Tabs";
 import type { Space } from "../common/utils";
 import { Meta, StoryObj } from "@storybook/react/*";
@@ -168,12 +167,6 @@ const tabsNotificationIcon = (iconPosition?: "top" | "left") => (
   </DxcTabs>
 );
 
-const opinionatedTheme = {
-  tabs: {
-    baseColor: "#5f249f",
-  },
-};
-
 const Tabs = () => (
   <>
     <ExampleContainer>
@@ -248,27 +241,6 @@ const Tabs = () => (
     <ExampleContainer>
       <Title title="Xxlarge margin" theme="light" level={4} />
       {tabs("xxlarge")}
-    </ExampleContainer>
-    <Title title="Opinionated theme" theme="light" level={2} />
-    <ExampleContainer>
-      <Title title="With icon and notification" theme="light" level={4} />
-      <HalstackProvider theme={opinionatedTheme}>{tabsNotificationIcon()}</HalstackProvider>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Disabled" theme="light" level={4} />
-      <HalstackProvider theme={opinionatedTheme}>{disabledTabsFirstActive}</HalstackProvider>
-    </ExampleContainer>
-    <ExampleContainer pseudoState="pseudo-hover">
-      <Title title="Hovered" theme="light" level={4} />
-      <HalstackProvider theme={opinionatedTheme}>{tabs()}</HalstackProvider>
-    </ExampleContainer>
-    <ExampleContainer pseudoState="pseudo-focus">
-      <Title title="Focused" theme="light" level={4} />
-      <HalstackProvider theme={opinionatedTheme}>{tabs()}</HalstackProvider>
-    </ExampleContainer>
-    <ExampleContainer pseudoState="pseudo-active">
-      <Title title="Actived" theme="light" level={4} />
-      <HalstackProvider theme={opinionatedTheme}>{tabs()}</HalstackProvider>
     </ExampleContainer>
   </>
 );

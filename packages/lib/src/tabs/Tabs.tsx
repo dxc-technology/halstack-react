@@ -2,68 +2,110 @@ import {
   Children,
   isValidElement,
   KeyboardEvent,
-  MutableRefObject,
   ReactElement,
-  useCallback,
   useContext,
   useEffect,
   useMemo,
   useRef,
   useState,
 } from "react";
-import styled, { ThemeProvider } from "styled-components";
+import styled from "styled-components";
 import TabsContext from "./TabsContext";
-import DxcTab from "./Tab";
+import DxcTab, { sharedTabStyles } from "./Tab";
 import TabsPropsType, { TabProps } from "./types";
 import DxcTabsLegacy from "./TabsLegacy";
 import { spaces } from "../common/variables";
-import HalstackContext, { HalstackLanguageContext } from "../HalstackContext";
+import { HalstackLanguageContext } from "../HalstackContext";
 import DxcIcon from "../icon/Icon";
+import { useResize, getPreviousTabIndex, getNextTabIndex } from "./utils";
 
-const useResize = (refTabList: MutableRefObject<HTMLDivElement | null>) => {
-  const [viewWidth, setViewWidth] = useState(0);
+const TabsContainer = styled.div<{ margin: TabsPropsType["margin"] }>`
+  position: relative;
+  margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
+  margin-top: ${(props) =>
+    props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
+  margin-right: ${(props) =>
+    props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
+  margin-bottom: ${(props) =>
+    props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
+  margin-left: ${(props) =>
+    props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
+`;
 
-  const handleWindowSizeChange = useCallback(() => {
-    setViewWidth(refTabList?.current?.offsetWidth ?? 0);
-  }, [refTabList]);
+const Underline = styled.div`
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: var(--border-width-s);
+  background-color: var(--border-color-neutral-medium);
+`;
 
-  useEffect(() => {
-    handleWindowSizeChange();
-    window.addEventListener("resize", handleWindowSizeChange);
-    return () => {
-      window.removeEventListener("resize", handleWindowSizeChange);
-    };
-  }, [handleWindowSizeChange]);
+const Tabs = styled.div<{
+  hasLabelAndIcon: boolean;
+  iconPosition: TabsPropsType["iconPosition"];
+}>`
+  display: flex;
+  ${(props) =>
+    !props.hasLabelAndIcon || (props.hasLabelAndIcon && props.iconPosition !== "top")
+      ? "min-height: var(--height-xxl); height: var(--height-xxl);"
+      : "min-height: 72px; height: 72px;"}
+  background-color: var(--color-bg-neutral-lightest);
+  overflow: hidden;
+`;
 
-  return viewWidth;
-};
+const ScrollIndicator = styled.button`
+  display: grid;
+  place-items: center;
+  min-width: var(--height-xxl);
+  height: 100%;
+  padding: 0;
+  background: var(--color-bg-neutral-lightest);
+  border: 0;
+  ${sharedTabStyles}
 
-const getPreviousTabIndex = (array: ReactElement<TabProps>[], initialIndex: number): number => {
-  let index = initialIndex === 0 ? array.length - 1 : initialIndex - 1;
-  while (array[index]?.props.disabled) {
-    index = index === 0 ? array.length - 1 : index - 1;
+  /* Scroll indicator arrow icon */
+  > span {
+    display: flex;
+    font-size: var(--height-s);
+    svg {
+      height: var(--height-s);
+      width: 24px;
+    }
   }
-  return index;
-};
+`;
 
-const getNextTabIndex = (array: ReactElement<TabProps>[], initialIndex: number): number => {
-  let index = initialIndex === array.length - 1 ? 0 : initialIndex + 1;
-  while (array[index]?.props.disabled) {
-    index = index === array.length - 1 ? 0 : index + 1;
+const TabsContent = styled.div`
+  flex: 1 1 auto;
+  display: inline-block;
+  position: relative;
+  white-space: nowrap;
+  overflow-x: scroll;
+  ::-webkit-scrollbar {
+    display: none;
   }
-  return index;
-};
+`;
+
+const ScrollableTabsList = styled.div<{
+  translateScroll: number;
+  enabled: boolean;
+}>`
+  display: flex;
+  ${({ enabled, translateScroll }) =>
+    enabled ? `transform: translateX(${translateScroll}px)` : "transform: translateX(0px)"};
+  transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+`;
 
 const DxcTabs = ({
-  defaultActiveTabIndex,
   activeTabIndex,
-  tabs,
+  children,
+  defaultActiveTabIndex,
+  iconPosition = "top",
+  margin,
   onTabClick,
   onTabHover,
-  margin,
-  iconPosition = "top",
   tabIndex = 0,
-  children,
+  tabs,
 }: TabsPropsType) => {
   const childrenArray: ReactElement<TabProps>[] = useMemo(
     () => Children.toArray(children) as ReactElement<TabProps>[],
@@ -87,24 +129,19 @@ const DxcTabs = ({
     return isValidElement(initialActiveTab) ? initialActiveTab.props.label : "";
   });
   const [innerFocusIndex, setInnerFocusIndex] = useState<number | null>(null);
-  const [activeIndicatorWidth, setActiveIndicatorWidth] = useState(0);
-  const [activeIndicatorLeft, setActiveIndicatorLeft] = useState(0);
   const [countClick, setCountClick] = useState(0);
   const [totalTabsWidth, setTotalTabsWidth] = useState(0);
   const [translateScroll, setTranslateScroll] = useState(0);
   const [scrollRightEnabled, setScrollRightEnabled] = useState(true);
   const [scrollLeftEnabled, setScrollLeftEnabled] = useState(false);
-  const [minHeightTabs, setMinHeightTabs] = useState(0);
   const refTabList = useRef<HTMLDivElement | null>(null);
-  const colorsTheme = useContext(HalstackContext);
   const viewWidth = useResize(refTabList);
   const translatedLabels = useContext(HalstackLanguageContext);
-  const enabledIndicator = useMemo(() => viewWidth < totalTabsWidth, [viewWidth]);
+  const enabledScrollIndicators = useMemo(() => viewWidth < totalTabsWidth, [viewWidth]);
 
   useEffect(() => {
     if (refTabList.current) {
       setTotalTabsWidth((refTabList.current.firstElementChild as HTMLElement)?.offsetWidth);
-      setMinHeightTabs(refTabList.current.offsetHeight + 1);
     }
   }, []);
 
@@ -118,8 +155,6 @@ const DxcTabs = ({
       activeLabel: activeTabLabel,
       hasLabelAndIcon,
       setActiveLabel: setActiveTabLabel,
-      setActiveIndicatorWidth,
-      setActiveIndicatorLeft,
     };
   }, [iconPosition, tabIndex, innerFocusIndex, activeTabLabel, childrenArray, hasLabelAndIcon]);
 
@@ -181,53 +216,45 @@ const DxcTabs = ({
 
   return children ? (
     <>
-      <ThemeProvider theme={colorsTheme.tabs}>
-        <TabsContainer margin={margin}>
-          <Underline />
-          <Tabs hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
+      <TabsContainer margin={margin}>
+        <Underline />
+        <Tabs hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
+          {enabledScrollIndicators && (
             <ScrollIndicator
               onClick={scrollLeft}
-              enabled={enabledIndicator}
               disabled={!scrollLeftEnabled}
               aria-label={translatedLabels.tabs.scrollLeft}
               tabIndex={scrollLeftEnabled ? tabIndex : -1}
-              minHeightTabs={minHeightTabs}
             >
               <DxcIcon icon="keyboard_arrow_left" />
             </ScrollIndicator>
-            <TabsContent>
-              <TabsContentScroll translateScroll={translateScroll} ref={refTabList} enabled={enabledIndicator}>
-                <TabList role="tablist" onKeyDown={handleOnKeyDown} minHeightTabs={minHeightTabs}>
-                  <TabsContext.Provider value={contextValue}>{children}</TabsContext.Provider>
-                </TabList>
-                <ActiveIndicator
-                  tabWidth={activeIndicatorWidth}
-                  tabLeft={activeIndicatorLeft}
-                  aria-disabled={childrenArray.some(
-                    (child) => isValidElement(child) && activeTabLabel === child.props.label && child.props.disabled
-                  )}
-                />
-              </TabsContentScroll>
-            </TabsContent>
+          )}
+          <TabsContent>
+            <ScrollableTabsList
+              role="tablist"
+              translateScroll={translateScroll}
+              ref={refTabList}
+              enabled={enabledScrollIndicators}
+              onKeyDown={handleOnKeyDown}
+            >
+              <TabsContext.Provider value={contextValue}>{children}</TabsContext.Provider>
+            </ScrollableTabsList>
+          </TabsContent>
+          {enabledScrollIndicators && (
             <ScrollIndicator
               onClick={scrollRight}
-              enabled={enabledIndicator}
               disabled={!scrollRightEnabled}
               aria-label={translatedLabels.tabs.scrollRight}
               tabIndex={scrollRightEnabled ? tabIndex : -1}
-              minHeightTabs={minHeightTabs}
             >
               <DxcIcon icon="keyboard_arrow_right" />
             </ScrollIndicator>
-          </Tabs>
-        </TabsContainer>
-      </ThemeProvider>
-      {Children.map(children, (child) => {
-        if (isValidElement(child) && child.props.label === activeTabLabel) {
-          return child.props.children;
-        }
-        return null;
-      })}
+          )}
+        </Tabs>
+      </TabsContainer>
+      {Children.map(children, (child) =>
+        isValidElement(child) && child.props.label === activeTabLabel ? child.props.children : null
+      )}
     </>
   ) : (
     tabs != null && (
@@ -245,129 +272,6 @@ const DxcTabs = ({
   );
 };
 
-const Underline = styled.div`
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: ${(props) => props.theme.dividerThickness};
-  background-color: ${(props) => props.theme.dividerColor};
-`;
-
-const TabsContainer = styled.div<{ margin: TabsPropsType["margin"] }>`
-  position: relative;
-  margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
-  margin-top: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
-  margin-right: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
-  margin-bottom: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
-  margin-left: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
-`;
-
-const Tabs = styled.div<{
-  hasLabelAndIcon: boolean;
-  iconPosition: TabsPropsType["iconPosition"];
-}>`
-  min-height: ${(props) =>
-    ((!props.hasLabelAndIcon || (props.hasLabelAndIcon && props.iconPosition !== "top")) && "48px") || "72px"};
-  height: ${(props) =>
-    ((!props.hasLabelAndIcon || (props.hasLabelAndIcon && props.iconPosition !== "top")) && "48px") || "72px"};
-  display: flex;
-  overflow: hidden;
-  background-color: ${(props) => props.theme.unselectedBackgroundColor};
-`;
-
-const ScrollIndicator = styled.button<{
-  enabled: boolean;
-  minHeightTabs: number;
-}>`
-  box-sizing: border-box;
-  display: ${(props) => (props.enabled ? "flex" : "none")};
-  justify-content: center;
-  min-width: ${(props) => props.theme.scrollButtonsWidth};
-  height: ${(props) => props.minHeightTabs - 1}px;
-  padding: 0;
-  border: none;
-  background-color: #ffffff;
-  font-size: 1.25rem;
-  cursor: pointer;
-
-  &:hover {
-    background-color: ${(props) => `${props.theme.hoverBackgroundColor} !important`};
-  }
-  &:focus {
-    outline: ${(props) => props.theme.focusOutline} solid 1px;
-    outline-offset: -1px;
-  }
-  &:active {
-    background-color: ${(props) => `${props.theme.pressedBackgroundColor} !important`};
-  }
-  &:disabled {
-    cursor: default;
-    display: none;
-    svg {
-      visibility: hidden;
-    }
-    &:focus {
-      outline: none;
-    }
-    &:hover,
-    &:active {
-      background-color: transparent !important;
-    }
-  }
-
-  span {
-    align-self: center;
-    height: 20px;
-    width: 20px;
-  }
-
-  span::before {
-    color: ${(props) => props.theme.unselectedFontColor};
-  }
-`;
-
-const ActiveIndicator = styled.span<{ tabLeft: number; tabWidth: number }>`
-  position: absolute;
-  bottom: 0;
-  left: ${(props) => `${props.tabLeft}px`};
-  width: ${(props) => `${props.tabWidth}px`};
-  height: ${(props) => props.theme.selectedUnderlineThickness};
-  background-color: ${(props) => props.theme.selectedUnderlineColor};
-  &[aria-disabled="true"] {
-    background-color: ${(props) => props.theme.disabledFontColor};
-    display: none;
-  }
-`;
-
-const TabsContent = styled.div`
-  flex: 1 1 auto;
-  display: inline-block;
-  position: relative;
-  white-space: nowrap;
-  overflow-x: scroll;
-  ::-webkit-scrollbar {
-    display: none;
-  }
-`;
-
-const TabList = styled.div<{ minHeightTabs: number }>`
-  display: flex;
-  min-height: ${(props) => props.minHeightTabs}px;
-`;
-
-const TabsContentScroll = styled.div<{
-  translateScroll: number;
-  enabled: boolean;
-}>`
-  display: flex;
-  ${(props) => (props.enabled ? `transform: translateX(${props.translateScroll}px)` : `transform: translateX(0px)`)};
-  transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-`;
-
 DxcTabs.Tab = DxcTab;
+
 export default DxcTabs;

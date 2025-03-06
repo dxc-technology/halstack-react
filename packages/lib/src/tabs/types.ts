@@ -25,8 +25,6 @@ export type TabsContextProps = {
   activeLabel: string;
   hasLabelAndIcon: boolean;
   setActiveLabel: (_tab: string) => void;
-  setActiveIndicatorWidth: (_width: number) => void;
-  setActiveIndicatorLeft: (_left: number) => void;
 };
 
 export type TabLabelProps = TabCommonProps & {
