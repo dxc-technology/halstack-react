@@ -2,35 +2,41 @@ import { Margin, SVG, Space } from "../common/utils";
 
 type OptionIcon = {
   /**
-   * String with the option display value.
-   */
-  label?: never;
-  /**
    * Material Symbols icon or SVG element. Icon and label can't be used at same time.
    */
   icon: string | SVG;
+  /**
+   * String with the option display value.
+   */
+  label?: never;
   /**
    * Value for the HTML properties title and aria-label.
    * When a label is defined, this prop can not be use.
    */
   title: string;
 };
-export type OptionLabel = {
-  /**
-   * String with the option display value.
-   */
-  label: string;
+
+type OptionLabel = {
   /**
    * Material Symbols icon or SVG element. Icon and label can't be used at same time.
    */
   icon?: string | SVG;
+  /**
+   * String with the option display value.
+   */
+  label: string;
   /**
    * Value for the HTML properties title and aria-label.
    * When a label is defined, this prop can not be use.
    */
   title?: never;
 };
+
 type Option = {
+  /**
+   * If true, the option will be disabled.
+   */
+  disabled?: boolean;
   /**
    * Number with the option inner value.
    */
@@ -46,10 +52,6 @@ type CommonProps = {
    * Helper text to be placed above the component.
    */
   helperText?: string;
-  /**
-   * If true, the component will be disabled.
-   */
-  disabled?: boolean;
   /**
    * An array of objects representing the selectable options.
    */
@@ -85,6 +87,7 @@ type SingleSelectionToggleGroup = CommonProps & {
    */
   onChange?: (optionIndex: number) => void;
 };
+
 type MultipleSelectionToggleGroup = CommonProps & {
   /**
    * If true, the toggle group will support multiple selection. In that case, value must be an array of numbers with the keys of the selected values.
@@ -105,6 +108,7 @@ type MultipleSelectionToggleGroup = CommonProps & {
    */
   onChange?: (optionIndex: number[]) => void;
 };
+
 type Props = SingleSelectionToggleGroup | MultipleSelectionToggleGroup;
 
 export default Props;

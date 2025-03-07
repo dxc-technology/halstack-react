@@ -9,7 +9,7 @@ import Code from "@/common/Code";
 
 const sections = [
   {
-    title: "Usage",
+    title: "Introduction",
     content: (
       <>
         <DxcParagraph>Toggles should be used in place of radio buttons whenever the options are:</DxcParagraph>
@@ -68,15 +68,13 @@ const sections = [
   },
 ];
 
-const ToggleGroupUsagePage = () => {
-  return (
-    <DxcFlex direction="column" gap="4rem">
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
-      </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/toggle-group/usage/ToggleGroupUsagePage.tsx" />
-    </DxcFlex>
-  );
-};
+const ToggleGroupOverviewPage = () => (
+  <DxcFlex direction="column" gap="4rem">
+    <QuickNavContainerLayout>
+      <QuickNavContainer sections={sections} startHeadingLevel={2} />
+    </QuickNavContainerLayout>
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/toggle-group/overview/ToggleGroupOverviewPage.tsx" />
+  </DxcFlex>
+);
 
-export default ToggleGroupUsagePage;
+export default ToggleGroupOverviewPage;

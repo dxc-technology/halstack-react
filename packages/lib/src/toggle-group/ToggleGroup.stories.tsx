@@ -1,7 +1,5 @@
-import { userEvent, within } from "@storybook/test";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
-import { HalstackProvider } from "../HalstackContext";
 import DxcToggleGroup from "./ToggleGroup";
 import { Meta, StoryObj } from "@storybook/react";
 
@@ -49,6 +47,21 @@ const options = [
     label: "Linkedin",
   },
 ];
+const disabledOptions = [
+  {
+    value: 1,
+    label: "Facebook",
+  },
+  {
+    value: 2,
+    label: "X",
+    disabled: true,
+  },
+  {
+    value: 3,
+    label: "Linkedin",
+  },
+];
 const optionsWithIcon = [
   {
     value: 1,
@@ -83,54 +96,58 @@ const optionsWithIconAndLabel = [
     icon: gMobileSVG,
   },
 ];
-const twoOptions = [
+const oneOption = [
   {
     value: 1,
     label: "Facebook",
   },
-  {
-    value: 2,
-    label: "X",
-  },
 ];
-
-const opinionatedTheme = {
-  toggleGroup: {
-    selectedBaseColor: "#5f249f",
-    selectedFontColor: "#ffffff",
-    unselectedBaseColor: "#e6e6e6",
-    unselectedFontColor: "#000000",
-  },
-};
-
 const ToggleGroup = () => (
   <>
+    <Title title="Unselected" theme="light" level={3} />
+    <ExampleContainer pseudoState="pseudo-hover">
+      <Title title="Hover" theme="light" level={4} />
+      <DxcToggleGroup label="Hover" options={oneOption} />
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-active">
+      <Title title="Active" theme="light" level={4} />
+      <DxcToggleGroup label="Active" options={oneOption} />
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-focus">
+      <Title title="Focus" theme="light" level={4} />
+      <DxcToggleGroup label="Focus" options={oneOption} />
+    </ExampleContainer>
+    <Title title="Selected" theme="light" level={3} />
+    <ExampleContainer pseudoState="pseudo-hover">
+      <Title title="Hover" theme="light" level={4} />
+      <DxcToggleGroup label="Hover" options={oneOption} defaultValue={1} />
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-active">
+      <Title title="Active" theme="light" level={4} />
+      <DxcToggleGroup label="Active" options={oneOption} defaultValue={1} />
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-focus">
+      <Title title="Focus" theme="light" level={4} />
+      <DxcToggleGroup label="Focus" options={oneOption} defaultValue={1} />
+    </ExampleContainer>
     <ExampleContainer>
-      <Title title="Basic toggle group" theme="light" level={4} />
+      <Title title="Labelled options" theme="light" level={4} />
       <DxcToggleGroup label="Toggle group" helperText="HelperText" options={options} />
     </ExampleContainer>
     <ExampleContainer>
-      <Title title="Selected" theme="light" level={4} />
-      <DxcToggleGroup label="Selected" helperText="HelperText" defaultValue={2} options={options} />
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Icons toggle group" theme="light" level={4} />
+      <Title title="Icons only" theme="light" level={4} />
       <DxcToggleGroup label="Icons group" options={optionsWithIcon} />
     </ExampleContainer>
     <ExampleContainer>
-      <Title title="Icons & label toggle group" theme="light" level={4} />
+      <Title title="Icons & label" theme="light" level={4} />
       <DxcToggleGroup label="Icons & label" options={optionsWithIconAndLabel} />
     </ExampleContainer>
     <ExampleContainer>
-      <Title title="Disabled" theme="light" level={4} />
-      <DxcToggleGroup label="Disabled" defaultValue={2} options={options} disabled />
-    </ExampleContainer>
-    <ExampleContainer pseudoState="pseudo-hover">
-      <Title title="Hovered" theme="light" level={4} />
-      <DxcToggleGroup label="Hovered" options={twoOptions} defaultValue={2} />
+      <Title title="Disabled option" theme="light" level={4} />
+      <DxcToggleGroup label="Disabled" defaultValue={2} options={disabledOptions} />
     </ExampleContainer>
     <ExampleContainer>
-      <Title title="Multiple toggleGroup" theme="light" level={4} />
+      <Title title="Multiple options selected" theme="light" level={4} />
       <DxcToggleGroup
         label="Toggle group"
         helperText="Please select one or more"
@@ -168,63 +185,11 @@ const ToggleGroup = () => (
       <Title title="xxLarge" theme="light" level={4} />
       <DxcToggleGroup label="xxLarge margin" options={options} margin="xxlarge" />
     </ExampleContainer>
-    <Title title="Opinionated theme" theme="light" level={2} />
-    <ExampleContainer>
-      <HalstackProvider theme={opinionatedTheme}>
-        <Title title="Selected" theme="light" level={4} />
-        <DxcToggleGroup label="Selected" helperText="HelperText" defaultValue={2} options={options} />
-      </HalstackProvider>
-    </ExampleContainer>
-    <ExampleContainer>
-      <HalstackProvider theme={opinionatedTheme}>
-        <Title title="Icons & label toggle group" theme="light" level={4} />
-        <DxcToggleGroup label="Icons & label" options={optionsWithIconAndLabel} />
-      </HalstackProvider>
-    </ExampleContainer>
-    <ExampleContainer>
-      <HalstackProvider theme={opinionatedTheme}>
-        <Title title="Disabled" theme="light" level={4} />
-        <DxcToggleGroup label="Disabled" defaultValue={2} options={options} disabled />
-      </HalstackProvider>
-    </ExampleContainer>
-    <ExampleContainer pseudoState="pseudo-hover">
-      <Title title="Hovered" theme="light" level={4} />
-      <HalstackProvider theme={opinionatedTheme}>
-        <DxcToggleGroup label="Hovered" options={twoOptions} defaultValue={2} />
-      </HalstackProvider>
-    </ExampleContainer>
-    <ExampleContainer pseudoState="pseudo-active">
-      <Title title="Actived" theme="light" level={4} />
-      <HalstackProvider theme={opinionatedTheme}>
-        <DxcToggleGroup label="Actived" options={twoOptions} defaultValue={2} />
-      </HalstackProvider>
-    </ExampleContainer>
   </>
 );
-
-const OptionSelected = () => <DxcToggleGroup label="Toggle group" helperText="HelperText" options={options} />;
 
 type Story = StoryObj<typeof DxcToggleGroup>;
 
 export const Chromatic: Story = {
   render: ToggleGroup,
-};
-
-export const ToggleGroupSelectedActived: Story = {
-  render: OptionSelected,
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    const option = canvas.getByText("Linkedin");
-    await userEvent.click(option);
-  },
-};
-
-export const ToggleGroupUnselectedActived: Story = {
-  render: OptionSelected,
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    const option = canvas.getByText("X");
-    await userEvent.click(option);
-    userEvent.tab();
-  },
 };

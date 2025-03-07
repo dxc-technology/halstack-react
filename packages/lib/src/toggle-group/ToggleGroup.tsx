@@ -1,30 +1,116 @@
-import { KeyboardEvent, useContext, useId, useState } from "react";
-import styled, { ThemeProvider } from "styled-components";
+import { KeyboardEvent, useId, useState } from "react";
+import styled from "styled-components";
 import { spaces } from "../common/variables";
-import DxcFlex from "../flex/Flex";
 import DxcIcon from "../icon/Icon";
 import { Tooltip } from "../tooltip/Tooltip";
-import HalstackContext from "../HalstackContext";
-import ToggleGroupPropsType, { OptionLabel } from "./types";
+import ToggleGroupPropsType from "./types";
+import DxcGrid from "../grid/Grid";
 
-const DxcToggleGroup = ({
-  label,
-  helperText,
+const ToggleGroupContainer = styled.div<{ margin: ToggleGroupPropsType["margin"] }>`
+  display: grid;
+  gap: var(--spacing-gap-xs);
+  margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
+  margin-top: ${(props) =>
+    props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
+  margin-right: ${(props) =>
+    props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
+  margin-bottom: ${(props) =>
+    props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
+  margin-left: ${(props) =>
+    props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
+`;
+
+const Label = styled.label`
+  color: var(--color-fg-neutral-dark);
+  font-family: var(--typography-font-family);
+  font-size: var(--typography-label-m);
+  font-weight: var(--typography-label-semibold);
+`;
+
+const HelperText = styled.span`
+  color: var(--color-fg-neutral-dark);
+  font-family: var(--typography-font-family);
+  font-size: var(--typography-helper-text-s);
+  font-weight: var(--typography-helper-text-regular);
+`;
+
+const ToggleGroup = styled.div`
+  display: flex;
+  width: fit-content;
+  padding: var(--spacing-padding-xxs);
+  gap: var(--spacing-gap-xs);
+  border-radius: var(--border-radius-m);
+  border: var(--border-width-s) var(--border-style-default) var(--border-color-neutral-strong);
+`;
+
+const ToggleButton = styled.button<{
+  selected: boolean;
+  onlyIcon: boolean;
+}>`
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-gap-s);
+  height: var(--height-xl);
+  padding: ${({ onlyIcon }) =>
+    onlyIcon ? "var(--spacing-padding-xs)" : "var(--spacing-padding-none) var(--spacing-padding-m)"};
+  border: none;
+  border-radius: var(--border-radius-s);
+  background-color: ${({ selected }) =>
+    selected ? "var(--color-bg-primary-strong);" : "var(--color-bg-neutral-medium)"};
+  color: ${({ selected }) => (selected ? "var(--color-fg-neutral-bright)" : "var(--color-fg-neutral-dark)")};
+  cursor: pointer;
+
+  &:hover:enabled {
+    background-color: ${({ selected }) =>
+      selected ? "var(--color-bg-neutral-medium)" : "var(--color-bg-neutral-strong)"};
+    ${({ selected }) => selected && "color: var(--color-fg-neutral-dark);"}
+  }
+  &:active:enabled {
+    background-color: ${({ selected }) =>
+      selected ? "var(--color-bg-primary-strongest);" : "var(--color-bg-primary-strong);"};
+    color: var(--color-fg-neutral-bright);
+  }
+  &:focus:enabled {
+    outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
+    outline-offset: -2px;
+  }
+  &:disabled {
+    background-color: var(--color-bg-neutral-light);
+    color: var(--color-fg-neutral-medium);
+    cursor: not-allowed;
+  }
+`;
+
+const ToggleButtonLabel = styled.span`
+  font-family: var(--typography-font-family);
+  font-size: var(--typography-label-l);
+  font-weight: var(--typography-label-regular);
+`;
+
+const IconContainer = styled.div`
+  display: flex;
+  font-size: var(--height-s);
+  svg {
+    width: 24px;
+    height: var(--height-s);
+  }
+`;
+
+export default function DxcToggleGroup({
   defaultValue,
-  value,
-  onChange,
-  disabled = false,
-  options,
+  helperText,
+  label,
   margin,
-  multiple = false,
+  multiple,
+  onChange,
+  options,
   tabIndex = 0,
-}: ToggleGroupPropsType): JSX.Element => {
+  value,
+}: ToggleGroupPropsType) {
   const toggleGroupLabelId = `label-toggle-group-${useId()}`;
   const [selectedValue, setSelectedValue] = useState(defaultValue ?? (multiple ? [] : -1));
 
-  const colorsTheme = useContext(HalstackContext);
-
-  const handleToggleChange = (selectedOption: number) => {
+  const handleOnChange = (selectedOption: number) => {
     let newSelectedOptions: number[] = [];
 
     if (value == null) {
@@ -58,7 +144,7 @@ const DxcToggleGroup = ({
       case "Enter":
       case " ":
         event.preventDefault();
-        handleToggleChange(optionValue);
+        handleOnChange(optionValue);
         break;
       default:
         break;
@@ -66,171 +152,54 @@ const DxcToggleGroup = ({
   };
 
   return (
-    <ThemeProvider theme={colorsTheme.toggleGroup}>
-      <ToggleGroup margin={margin}>
-        <Label id={toggleGroupLabelId} disabled={disabled}>
-          {label}
-        </Label>
-        <HelperText disabled={disabled}>{helperText}</HelperText>
-        <OptionsContainer aria-labelledby={toggleGroupLabelId}>
-          {options.map((option, i) => (
-            <Tooltip label={option.title} key={`toggle-${i}-${option.label}`}>
-              <ToggleButton
-                aria-label={option.title}
-                aria-pressed={
-                  multiple
-                    ? value
-                      ? Array.isArray(value) && value.includes(option.value)
-                      : Array.isArray(selectedValue) && selectedValue.includes(option.value)
-                    : value
-                      ? option.value === value
-                      : option.value === selectedValue
-                }
-                disabled={disabled}
-                onClick={() => {
-                  handleToggleChange(option.value);
-                }}
-                onKeyDown={(event) => {
-                  handleOnKeyDown(event, option.value);
-                }}
-                tabIndex={!disabled ? tabIndex : -1}
-                hasIcon={option.icon}
-                optionLabel={option.label ?? ""}
-                selected={
-                  multiple
-                    ? value
-                      ? Array.isArray(value) && value.includes(option.value)
-                      : Array.isArray(selectedValue) && selectedValue.includes(option.value)
-                    : value
-                      ? option.value === value
-                      : option.value === selectedValue
-                }
-              >
-                <DxcFlex alignItems="center">
-                  {option.icon && (
-                    <IconContainer optionLabel={option.label ?? ""}>
-                      {typeof option.icon === "string" ? <DxcIcon icon={option.icon} /> : option.icon}
-                    </IconContainer>
-                  )}
-                  {option.label && <LabelContainer>{option.label}</LabelContainer>}
-                </DxcFlex>
-              </ToggleButton>
-            </Tooltip>
-          ))}
-        </OptionsContainer>
+    <ToggleGroupContainer margin={margin}>
+      <DxcGrid>
+        <Label id={toggleGroupLabelId}>{label}</Label>
+        <HelperText>{helperText}</HelperText>
+      </DxcGrid>
+      <ToggleGroup aria-labelledby={toggleGroupLabelId}>
+        {options.map((option, i) => (
+          <Tooltip label={option.title} key={`toggle-${i}-${option.label}`}>
+            <ToggleButton
+              aria-label={option.title}
+              aria-pressed={
+                multiple
+                  ? value
+                    ? Array.isArray(value) && value.includes(option.value)
+                    : Array.isArray(selectedValue) && selectedValue.includes(option.value)
+                  : value
+                    ? option.value === value
+                    : option.value === selectedValue
+              }
+              disabled={option.disabled}
+              onClick={() => {
+                handleOnChange(option.value);
+              }}
+              onKeyDown={(event) => {
+                handleOnKeyDown(event, option.value);
+              }}
+              onlyIcon={!option.label && !!option.icon}
+              selected={
+                multiple
+                  ? value
+                    ? Array.isArray(value) && value.includes(option.value)
+                    : Array.isArray(selectedValue) && selectedValue.includes(option.value)
+                  : value
+                    ? option.value === value
+                    : option.value === selectedValue
+              }
+              tabIndex={!option.disabled ? tabIndex : -1}
+            >
+              {option.icon && (
+                <IconContainer>
+                  {typeof option.icon === "string" ? <DxcIcon icon={option.icon} /> : option.icon}
+                </IconContainer>
+              )}
+              {option.label && <ToggleButtonLabel>{option.label}</ToggleButtonLabel>}
+            </ToggleButton>
+          </Tooltip>
+        ))}
       </ToggleGroup>
-    </ThemeProvider>
+    </ToggleGroupContainer>
   );
-};
-
-const ToggleGroup = styled.div<{ margin: ToggleGroupPropsType["margin"] }>`
-  display: inline-flex;
-  flex-direction: column;
-  margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
-  margin-top: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
-  margin-right: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
-  margin-bottom: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
-  margin-left: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
-`;
-
-const Label = styled.label<{ disabled: ToggleGroupPropsType["disabled"] }>`
-  color: ${(props) => (props.disabled ? props.theme.disabledLabelFontColor : props.theme.labelFontColor)};
-  font-family: ${(props) => props.theme.labelFontFamily};
-  font-size: ${(props) => props.theme.labelFontSize};
-  font-style: ${(props) => props.theme.labelFontStyle};
-  font-weight: ${(props) => props.theme.labelFontWeight};
-  line-height: ${(props) => props.theme.labelLineHeight};
-`;
-
-const HelperText = styled.span<{ disabled: ToggleGroupPropsType["disabled"] }>`
-  color: ${(props) => (props.disabled ? props.theme.disabledHelperTextFontColor : props.theme.helperTextFontColor)};
-  font-family: ${(props) => props.theme.helperTextFontFamily};
-  font-size: ${(props) => props.theme.helperTextFontSize};
-  font-style: ${(props) => props.theme.helperTextFontStyle};
-  font-weight: ${(props) => props.theme.helperTextFontWeight};
-  line-height: ${(props) => props.theme.helperTextLineHeight};
-`;
-
-const OptionsContainer = styled.div`
-  display: flex;
-  gap: 0.25rem;
-  width: max-content;
-  height: calc(48px - 4px - 4px);
-  padding: 0.25rem;
-  border-width: ${(props) => props.theme.containerBorderThickness};
-  border-style: ${(props) => props.theme.containerBorderStyle};
-  border-radius: ${(props) => props.theme.containerBorderRadius};
-  border-color: ${(props) => props.theme.containerBorderColor};
-  margin-top: ${(props) => props.theme.containerMarginTop};
-  background-color: ${(props) => props.theme.containerBackgroundColor};
-`;
-
-const ToggleButton = styled.button<{
-  selected: boolean;
-  hasIcon: OptionLabel["icon"];
-  optionLabel: OptionLabel["label"];
-}>`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding-left: ${(props) =>
-    (props.optionLabel && props.hasIcon) || (props.optionLabel && !props.hasIcon)
-      ? props.theme.labelPaddingLeft
-      : props.theme.iconPaddingLeft};
-  padding-right: ${(props) =>
-    (props.optionLabel && props.hasIcon) || (props.optionLabel && !props.hasIcon)
-      ? props.theme.labelPaddingRight
-      : props.theme.iconPaddingRight};
-  border-width: ${(props) => props.theme.optionBorderThickness};
-  border-style: ${(props) => props.theme.optionBorderStyle};
-  border-radius: ${(props) => props.theme.optionBorderRadius};
-  background-color: ${(props) =>
-    props.selected ? props.theme.selectedBackgroundColor : props.theme.unselectedBackgroundColor};
-  color: ${(props) => (props.selected ? props.theme.selectedFontColor : props.theme.unselectedFontColor)};
-  cursor: pointer;
-
-  &:hover {
-    background-color: ${(props) =>
-      props.selected ? props.theme.selectedHoverBackgroundColor : props.theme.unselectedHoverBackgroundColor};
-  }
-  &:active {
-    background-color: ${(props) =>
-      props.selected ? props.theme.selectedActiveBackgroundColor : props.theme.unselectedActiveBackgroundColor};
-    color: #ffffff;
-  }
-  &:focus {
-    outline: none;
-    box-shadow: ${(props) => `0 0 0 ${props.theme.optionFocusBorderThickness} ${props.theme.focusColor}`};
-  }
-  &:disabled {
-    background-color: ${(props) =>
-      props.selected ? props.theme.selectedDisabledBackgroundColor : props.theme.unselectedDisabledBackgroundColor};
-    color: ${(props) =>
-      props.selected ? props.theme.selectedDisabledFontColor : props.theme.unselectedDisabledFontColor};
-    cursor: not-allowed;
-  }
-`;
-
-const LabelContainer = styled.span`
-  font-family: ${(props) => props.theme.optionLabelFontFamily};
-  font-size: ${(props) => props.theme.optionLabelFontSize};
-  font-style: ${(props) => props.theme.optionLabelFontStyle};
-  font-weight: ${(props) => props.theme.optionLabelFontWeight};
-`;
-
-const IconContainer = styled.div<{ optionLabel: OptionLabel["label"] }>`
-  display: flex;
-  margin-right: ${(props) => props.optionLabel && props.theme.iconMarginRight};
-  overflow: hidden;
-  font-size: 24px;
-  svg {
-    height: 24px;
-    width: 24px;
-  }
-`;
-
-export default DxcToggleGroup;
+}
