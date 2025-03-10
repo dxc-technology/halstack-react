@@ -93,7 +93,7 @@ const DropdownTriggerIcon = styled.span<{
   disabled: DropdownPropsType["disabled"];
 }>`
   display: flex;
-  font-size: var(--typography-label-xl);
+  font-size: var(--height-xs);
 
   svg {
     width: 20px;
@@ -293,7 +293,7 @@ const DxcDropdown = ({
               </DropdownTriggerContent>
               {!caretHidden && (
                 <CaretIcon disabled={disabled}>
-                  <DxcIcon icon={isOpen ? "arrow_drop_up" : "arrow_drop_down"} />{" "}
+                  <DxcIcon icon={isOpen ? "keyboard_arrow_up" : "keyboard_arrow_down"} />
                 </CaretIcon>
               )}
             </DropdownTrigger>
