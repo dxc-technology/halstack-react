@@ -13,11 +13,10 @@ const sections = [
     title: "Introduction",
     content: (
       <DxcParagraph>
-        Halstack's Alert component is designed to provide clear and accessible feedback to users, ensuring important
-        messages stand out within an interface. It supports different variants—info, success, warning, and
-        error—allowing teams to communicate various levels of urgency effectively. With options for dismissibility and
-        customizable content, it adapts to different use cases while maintaining consistency. Its structured design
-        enhances readability and ensures a non-intrusive yet noticeable presence.
+        Being a non-clickable UI element, the badge serves the purpose of highlighting status, categories or key
+        information within an interface. Designed for clarity and flexibility, the badge seamlessly integrates with
+        different layouts while maintaining consistency. It supports various styles to adapt to diverse use cases
+        without overwhelming the interface and it can be found in combination with other components, such as navtabs.
       </DxcParagraph>
     ),
   },
