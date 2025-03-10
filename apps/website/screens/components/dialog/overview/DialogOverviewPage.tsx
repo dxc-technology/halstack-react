@@ -13,10 +13,10 @@ const sections = [
     title: "Introduction",
     content: (
       <DxcParagraph>
-        The dialog component is a modal window that captures user attention for critical interactions, such as
-        confirmations, alerts, or form inputs. It appears above the main content and requires user action before
-        continuing. To maintain usability, dialogs should be concise, focused on a single task, and provide clear
-        actions like confirmation or dismissal.
+        The <strong>dialog</strong> component is a modal window that{" "}
+        <strong>captures user attention for critical interactions</strong>, such as confirmations, alerts, or form
+        inputs. It appears above the main content and requires user action before continuing. To maintain usability,
+        dialogs should be concise, focused on a single task, and provide clear actions like confirmation or dismissal.
       </DxcParagraph>
     ),
   },
@@ -27,29 +27,32 @@ const sections = [
         <Image src={anatomy} alt="Dialog's anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
-            The dialog always should have a title to introduce the actions or information that will get displayed on the
-            screen.
+            <strong>Title:</strong> displays the main heading of the dialog, providing users with a clear and immediate
+            understanding of its purpose
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            Can contain a descriptive text or a phrase related to the action that triggered the dialog.
+            <strong>Container:</strong> the structural wrapper that holds all dialog elements, ensuring proper
+            alignment, spacing, and responsiveness.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            Can have some combinations of actions, like buttons to accept/cancel the action. There can be one, two or
-            more buttons.
+            <strong>Close action:</strong> an optional button, usually represented by an “X” icon, allowing users to
+            dismiss the dialog without completing an action.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            If the dialog is not including a cancel action, provide a way to close it.
+            <strong>Content:</strong> the main area where relevant information, messages, or interactive elements (e.g.,
+            forms) are displayed.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            Modal dialog boxes should overlay only a portion of the underlying page to keep the user oriented within the
-            workflow.
-          </DxcBulletedList.Item>
-          <DxcBulletedList.Item>
-            In a dialog, the focus should remain within the modal box until the user completes the required action (if
-            any) or closes it. In addition, and as a general rule, the focus should appear on the first focusable child
-            when the dialog is opened.
+            <strong>Actions:</strong> a set of buttons at the bottom of the dialog that guide users toward completing or
+            canceling the intended action.
           </DxcBulletedList.Item>
         </DxcBulletedList>
+        <DxcParagraph>
+          <em>
+            * Please note that while these elements are not included by default in the component's configuration, they
+            are the expected components in a dialog.
+          </em>
+        </DxcParagraph>
       </>
     ),
   },
@@ -85,10 +88,11 @@ const sections = [
     content: (
       <>
         <DxcParagraph>
-          The overlay element helps focus the user's attention on the dialog by creating a semi-transparent layer
-          between the main application and the modal content. This visual separation reduces distractions, ensures the
-          dialog stands out, and reinforces the need for user action before returning to the underlying interface.
-          Additionally, it enhances accessibility by preventing unintended interactions with background elements.
+          The <strong>overlay</strong> element helps focus the user's attention on the dialog by creating a
+          semi-transparent layer between the main application and the modal content. This visual separation reduces
+          distractions, ensures the dialog stands out, and reinforces the need for user action before returning to the
+          underlying interface. Additionally, it enhances accessibility by preventing unintended interactions with
+          background elements.
         </DxcParagraph>
         <Figure caption="Example of the overlay usage in a dialog">
           <Image src={overlay} alt="Example of the overlay usage in a dialog" />
