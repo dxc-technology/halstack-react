@@ -207,29 +207,27 @@ export const renderCheckbox = (
   uniqueRowId: string,
   selectedRows: Set<string | number>,
   onSelectRows: (_selected: Set<string | number>) => void
-) => {
-  return (
-    <DxcCheckbox
-      checked={selectedRows.has(rowKeyGetter(row, uniqueRowId))}
-      onChange={(checked) => {
-        const selected = new Set(selectedRows);
-        if (checked) {
-          selected.add(rowKeyGetter(row, uniqueRowId));
-        } else {
-          selected.delete(rowKeyGetter(row, uniqueRowId));
-        }
-        if (row.childRows && Array.isArray(row.childRows)) {
-          getChildrenSelection(row.childRows, uniqueRowId, selected, checked);
-        }
-        if (row.parentKey) {
-          getParentSelectedState(rows, row.parentKey, uniqueRowId, selected, checked);
-        }
-        onSelectRows(selected);
-      }}
-      disabled={!rows.some((row) => uniqueRowId in row)}
-    />
-  );
-};
+) => (
+  <DxcCheckbox
+    checked={selectedRows.has(rowKeyGetter(row, uniqueRowId))}
+    onChange={(checked) => {
+      const selected = new Set(selectedRows);
+      if (checked) {
+        selected.add(rowKeyGetter(row, uniqueRowId));
+      } else {
+        selected.delete(rowKeyGetter(row, uniqueRowId));
+      }
+      if (row.childRows && Array.isArray(row.childRows)) {
+        getChildrenSelection(row.childRows, uniqueRowId, selected, checked);
+      }
+      if (row.parentKey) {
+        getParentSelectedState(rows, row.parentKey, uniqueRowId, selected, checked);
+      }
+      onSelectRows(selected);
+    }}
+    disabled={!rows.some((row) => uniqueRowId in row)}
+  />
+);
 
 /**
  * Renders a header checkbox that controls the selection of all rows.
