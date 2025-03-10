@@ -6,12 +6,8 @@ import { ReactNode } from "react";
 
 const TooltipPageHeading = ({ children }: { children: ReactNode }) => {
   const tabs = [
-    { label: "Code", path: "/components/tooltip" },
-    { label: "Usage", path: "/components/tooltip/usage" },
-    {
-      label: "Specifications",
-      path: "/components/tooltip/specifications",
-    },
+    { label: "Overview", path: "/components/tooltip" },
+    { label: "Code", path: "/components/tooltip/code" },
   ];
 
   return (
@@ -24,7 +20,7 @@ const TooltipPageHeading = ({ children }: { children: ReactNode }) => {
             over. They are typically employed to enhance user experience by offering brief and helpful descriptions,
             instructions or tips without cluttering the interface.
           </DxcParagraph>
-          <TabsPageHeading tabs={tabs}></TabsPageHeading>
+          <TabsPageHeading tabs={tabs} />
         </DxcFlex>
       </PageHeading>
       {children}

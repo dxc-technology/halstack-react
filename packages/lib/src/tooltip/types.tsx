@@ -2,22 +2,22 @@ import { ReactNode } from "react";
 
 type Props = {
   /**
-   * Preferred position for displaying the tooltip. It may adjust automatically based on available space.
+   * Content in which the Tooltip will be displayed.
    */
-  position?: "bottom" | "top" | "left" | "right";
+  children: ReactNode;
   /**
    * Text to be displayed inside the tooltip.
    */
   label?: string;
   /**
-   * Content in which the Tooltip will be displayed.
+   * Preferred position for displaying the tooltip. It may adjust automatically based on available space.
    */
-  children: ReactNode;
+  position?: "bottom" | "top" | "left" | "right";
 };
 
 export type TooltipWrapperProps = {
-  condition?: boolean;
   children: ReactNode;
+  condition?: boolean;
   label?: string;
 };
 
