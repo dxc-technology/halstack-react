@@ -80,6 +80,14 @@ const sections = [
               </td>
             </tr>
             <tr>
+              <td>label</td>
+              <td>
+                <TableCode>string</TableCode>
+              </td>
+              <td>Text to be placed within the dropdown.</td>
+              <td>-</td>
+            </tr>
+            <tr>
               <td>margin</td>
               <td>
                 <TableCode>
@@ -90,14 +98,6 @@ const sections = [
                 Size of the margin to be applied to the component. You can pass an object with 'top', 'bottom', 'left'
                 and 'right' properties in order to specify different margin sizes.
               </td>
-              <td>-</td>
-            </tr>
-            <tr>
-              <td>label</td>
-              <td>
-                <TableCode>string</TableCode>
-              </td>
-              <td>Text to be placed within the dropdown.</td>
               <td>-</td>
             </tr>
             <tr>

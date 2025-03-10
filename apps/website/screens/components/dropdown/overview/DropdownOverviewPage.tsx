@@ -13,7 +13,7 @@ const sections = [
     content: (
       <>
         <DxcParagraph>
-          The Dropdown enhances usability by displaying a list of choices in a collapsible menu, optimizing space while
+          The dropdown enhances usability by displaying a list of choices in a collapsible menu, optimizing space while
           keeping options easily accessible. It supports icons, sections, and different selection behaviors to adapt to
           various use cases. Designed for efficiency, it ensures keyboard navigation, accessibility, and proper contrast
           for readability.

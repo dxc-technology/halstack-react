@@ -63,12 +63,10 @@ const DropdownTrigger = styled.button<{
     !props.disabled &&
     `
       &:focus {
-        outline: 2px solid var(--border-color-secondary-medium);
+        outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
+        outline-offset: -2px;
       }
-      &:hover {
-        background-color: var(--color-bg-neutral-light);
-      }
-      &:active {
+      &:hover, &:active {
         background-color: var(--color-bg-neutral-light);
       }
   `};
@@ -78,11 +76,8 @@ const DropdownTriggerContent = styled.span`
   display: flex;
   align-items: center;
   gap: var(--spacing-gap-s);
-  margin-left: 0px;
-  margin-right: 0px;
   width: 100%;
   overflow: hidden;
-  white-space: nowrap;
 `;
 
 const DropdownTriggerLabel = styled.span`
@@ -91,13 +86,13 @@ const DropdownTriggerLabel = styled.span`
   font-weight: var(--typography-label-regular);
   text-overflow: ellipsis;
   overflow: hidden;
+  white-space: nowrap;
 `;
 
 const DropdownTriggerIcon = styled.span<{
   disabled: DropdownPropsType["disabled"];
 }>`
   display: flex;
-  color: var(--color-fg-neutral-dark);
   font-size: var(--typography-label-xl);
 
   svg {
@@ -108,7 +103,6 @@ const DropdownTriggerIcon = styled.span<{
 
 const CaretIcon = styled.span<{ disabled: DropdownPropsType["disabled"] }>`
   display: flex;
-  color: ${(props) => (props.disabled ? "var(--color-fg-neutral-medium);" : "var(--color-fg-neutral-dark);")};
   font-size: var(--typography-label-l);
 
   svg {
@@ -131,7 +125,7 @@ const DxcDropdown = ({
   size = "fitContent",
   tabIndex = 0,
   title,
-}: DropdownPropsType): JSX.Element => {
+}: DropdownPropsType) => {
   const id = useId();
   const triggerId = `trigger-${id}`;
   const menuId = `menu-${id}`;
@@ -256,74 +250,72 @@ const DxcDropdown = ({
   }, [visualFocusIndex]);
 
   return (
-    <ThemeProvider theme={colorsTheme.dropdown}>
-      <DropdownContainer
-        onMouseEnter={!disabled && expandOnHover ? handleOnOpenMenu : undefined}
-        onMouseLeave={!disabled && expandOnHover ? handleOnCloseMenu : undefined}
-        onBlur={!disabled ? handleOnBlur : undefined}
-        margin={margin}
-        size={size}
-      >
-        <Popover.Root open={isOpen}>
-          <Tooltip label={title}>
-            <Popover.Trigger asChild type={undefined}>
-              <DropdownTrigger
-                onClick={handleTriggerOnClick}
-                onKeyDown={handleTriggerOnKeyDown}
-                onBlur={(event) => {
-                  event.stopPropagation();
-                }}
-                disabled={disabled}
-                label={label}
-                margin={margin}
-                size={size}
-                id={triggerId}
-                aria-haspopup="true"
-                aria-controls={isOpen ? menuId : undefined}
-                aria-expanded={isOpen ? true : undefined}
-                aria-label="Show options"
-                tabIndex={tabIndex}
-                ref={triggerRef}
-              >
-                <DropdownTriggerContent>
-                  {label && iconPosition === "after" && <DropdownTriggerLabel>{label}</DropdownTriggerLabel>}
-                  {icon && (
-                    <DropdownTriggerIcon
-                      disabled={disabled}
-                      role={typeof icon === "string" ? undefined : "img"}
-                      aria-hidden
-                    >
-                      {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
-                    </DropdownTriggerIcon>
-                  )}
-                  {label && iconPosition === "before" && <DropdownTriggerLabel>{label}</DropdownTriggerLabel>}
-                </DropdownTriggerContent>
-                {!caretHidden && (
-                  <CaretIcon disabled={disabled}>
-                    <DxcIcon icon={isOpen ? "arrow_drop_up" : "arrow_drop_down"} />{" "}
-                  </CaretIcon>
+    <DropdownContainer
+      onMouseEnter={!disabled && expandOnHover ? handleOnOpenMenu : undefined}
+      onMouseLeave={!disabled && expandOnHover ? handleOnCloseMenu : undefined}
+      onBlur={!disabled ? handleOnBlur : undefined}
+      margin={margin}
+      size={size}
+    >
+      <Popover.Root open={isOpen}>
+        <Tooltip label={title}>
+          <Popover.Trigger asChild type={undefined}>
+            <DropdownTrigger
+              onClick={handleTriggerOnClick}
+              onKeyDown={handleTriggerOnKeyDown}
+              onBlur={(event) => {
+                event.stopPropagation();
+              }}
+              disabled={disabled}
+              label={label}
+              margin={margin}
+              size={size}
+              id={triggerId}
+              aria-haspopup="true"
+              aria-controls={isOpen ? menuId : undefined}
+              aria-expanded={isOpen ? true : undefined}
+              aria-label="Show options"
+              tabIndex={tabIndex}
+              ref={triggerRef}
+            >
+              <DropdownTriggerContent>
+                {label && iconPosition === "after" && <DropdownTriggerLabel>{label}</DropdownTriggerLabel>}
+                {icon && (
+                  <DropdownTriggerIcon
+                    disabled={disabled}
+                    role={typeof icon === "string" ? undefined : "img"}
+                    aria-hidden
+                  >
+                    {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
+                  </DropdownTriggerIcon>
                 )}
-              </DropdownTrigger>
-            </Popover.Trigger>
-          </Tooltip>
-          <Popover.Portal>
-            <Popover.Content asChild sideOffset={1}>
-              <DropdownMenu
-                id={menuId}
-                dropdownTriggerId={triggerId}
-                options={options}
-                iconsPosition={optionsIconPosition}
-                visualFocusIndex={visualFocusIndex}
-                menuItemOnClick={handleMenuItemOnClick}
-                onKeyDown={handleMenuOnKeyDown}
-                styles={{ width, zIndex: "2147483647" }}
-                ref={menuRef}
-              />
-            </Popover.Content>
-          </Popover.Portal>
-        </Popover.Root>
-      </DropdownContainer>
-    </ThemeProvider>
+                {label && iconPosition === "before" && <DropdownTriggerLabel>{label}</DropdownTriggerLabel>}
+              </DropdownTriggerContent>
+              {!caretHidden && (
+                <CaretIcon disabled={disabled}>
+                  <DxcIcon icon={isOpen ? "arrow_drop_up" : "arrow_drop_down"} />{" "}
+                </CaretIcon>
+              )}
+            </DropdownTrigger>
+          </Popover.Trigger>
+        </Tooltip>
+        <Popover.Portal>
+          <Popover.Content asChild sideOffset={1}>
+            <DropdownMenu
+              id={menuId}
+              dropdownTriggerId={triggerId}
+              options={options}
+              iconsPosition={optionsIconPosition}
+              visualFocusIndex={visualFocusIndex}
+              menuItemOnClick={handleMenuItemOnClick}
+              onKeyDown={handleMenuOnKeyDown}
+              styles={{ width, zIndex: "2147483647" }}
+              ref={menuRef}
+            />
+          </Popover.Content>
+        </Popover.Portal>
+      </Popover.Root>
+    </DropdownContainer>
   );
 };
 
