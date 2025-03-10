@@ -38,7 +38,7 @@ const Dialog = styled.div<{ closable: DialogPropsType["closable"] }>`
   border-radius: 4px;
   background-color: var(--color-bg-neutral-lightest);
   ${(props) => props.closable && "min-height: 72px;"}
-  box-shadow:var(--shadow-low-x-position) var(--shadow-low-y-position) var(--shadow-low-blur) var(--shadow-low-spread) var(--shadow-dark);
+  box-shadow: var(--shadow-low-x-position) var(--shadow-low-y-position) var(--shadow-low-blur) var(--shadow-low-spread) var(--shadow-dark);
   z-index: 2147483647;
 
   @media (max-width: ${responsiveSizes.medium}rem) {

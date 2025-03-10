@@ -57,7 +57,7 @@ const sections = [
               <TableCode>{"() => void"}</TableCode>
             </td>
             <td>
-              This function will be called when the on the background of the modal. The responsibility of hiding the
+              This function will be called when the user clicks on the background of the modal. The responsibility of hiding the
               dialog lies with the user.
             </td>
             <td>-</td>
@@ -83,7 +83,6 @@ const sections = [
               <TableCode>true</TableCode>
             </td>
           </tr>
-
           <tr>
             <td>tabIndex</td>
             <td>
