@@ -1,90 +1,8 @@
 import { useContext, useState, useRef, useId, forwardRef, KeyboardEvent } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import { getMargin } from "../common/utils";
 import HalstackContext, { HalstackLanguageContext } from "../HalstackContext";
 import CheckboxPropsType, { RefType } from "./types";
-
-const sizes = {
-  small: "120px",
-  medium: "240px",
-  large: "480px",
-  fillParent: "100%",
-  fitContent: "fit-content",
-};
-
-const spaces = {
-  xxsmall: "var(--spacing-padding-xxs)",
-  xsmall: "var(--spacing-padding-xs)",
-  small: "var(--spacing-padding-s)",
-  medium: "var(--spacing-padding-m)",
-  large: "var(--spacing-padding-l)",
-  xlarge: "var(--spacing-padding-xl)",
-  xxlarge: "var(--spacing-padding-xxl)",
-};
-
-const calculateWidth = (margin: CheckboxPropsType["margin"], size: CheckboxPropsType["size"]) =>
-  size === "fillParent"
-    ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
-    : size && sizes[size];
-
-const getDisabledColor = (element: string) => {
-  switch (element) {
-    case "check":
-      return "transparent";
-    case "background":
-      return "var(--color-fg-neutral-medium)";
-    case "border":
-      return "var(--border-color-neutral-medium)";
-    case "label":
-      return "var(--color-fg-neutral-medium)";
-    default:
-      return undefined;
-  }
-};
-
-const getReadOnlyColor = (element: string) => {
-  switch (element) {
-    case "check":
-      return "transparent";
-    case "background":
-      return "var(--color-fg-neutral-medium)";
-    case "hoverBackground":
-      return "var(--color-bg-neutral-stronger)";
-    case "border":
-      return "var(--border-color-neutral-strong)";
-    case "hoverBorder":
-      return "var(--border-color-neutral-stronger)";
-    case "activeBorder":
-      return "var(--border-color-neutral-strongest)";
-    case "activeBackground":
-      return "var(--color-bg-neutral-strongest)";
-    default:
-      return undefined;
-  }
-};
-
-const getEnabledColor = (element: string) => {
-  switch (element) {
-    case "check":
-      return "transparent";
-    case "background":
-      return "var(--color-bg-secondary-strong)";
-    case "hoverBackground":
-      return "var(--color-bg-secondary-stronger)";
-    case "border":
-      return "var(--border-color-secondary-strong)";
-    case "hoverBorder":
-      return "var(--border-color-secondary-stronger)";
-    case "label":
-      return "var(--color-fg-neutral-dark)";
-    case "activeBorder":
-      return "var(--border-color-secondary-strongest)";
-    case "activeBackground":
-      return "var(--color-bg-secondary-strongest)";
-    default:
-      return undefined;
-  }
-};
+import { calculateWidth, getDisabledColor, getEnabledColor, getReadOnlyColor, spaces } from "./utils";
 
 const LabelContainer = styled.span<{
   disabled: CheckboxPropsType["disabled"];
@@ -105,8 +23,8 @@ const CheckboxContainer = styled.span`
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 24px;
-  width: var(--height-s);
+  height: var(--height-s);
+  width: 24px;
 `;
 
 const Checkbox = styled.span<{
@@ -128,7 +46,7 @@ const Checkbox = styled.span<{
         : props.readOnly
           ? getReadOnlyColor("border")
           : getEnabledColor("border")};
-  border-radius: 2px;
+  border-radius: var(--border-radius-xs);
   background-color: ${(props) =>
     props.checked
       ? props.disabled
@@ -179,7 +97,7 @@ const MainContainer = styled.div<{
   cursor: ${(props) => (props.disabled ? "not-allowed" : props.readOnly ? "default" : "pointer")};
 
   &:hover ${Checkbox} {
-    border: var(--border-width-m) solid
+    border: var(--border-width-m) var(--border-style-default)
       ${(props) => {
         if (!props.disabled) return props.readOnly ? getReadOnlyColor("hoverBorder") : getEnabledColor("hoverBorder");
       }};
@@ -190,7 +108,7 @@ const MainContainer = styled.div<{
   }
 
   &:active ${Checkbox} {
-    border: var(--border-width-m) solid
+    border: var(--border-width-m) var(--border-style-default)
       ${(props) => {
         if (!props.disabled) return props.readOnly ? getReadOnlyColor("activeBorder") : getEnabledColor("activeBorder");
       }};
@@ -229,7 +147,7 @@ const DxcCheckbox = forwardRef<RefType, CheckboxPropsType>(
       ariaLabel = "Checkbox",
     },
     ref
-  ): JSX.Element => {
+  ) => {
     const labelId = `label-checkbox-${useId()}`;
     const [innerChecked, setInnerChecked] = useState(defaultChecked);
     const checkboxRef = useRef<HTMLSpanElement | null>(null);
