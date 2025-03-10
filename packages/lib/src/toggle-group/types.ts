@@ -45,70 +45,62 @@ type Option = {
 
 type CommonProps = {
   /**
-   * Text to be placed above the component.
-   */
-  label?: string;
-  /**
-   * Helper text to be placed above the component.
-   */
-  helperText?: string;
-  /**
-   * An array of objects representing the selectable options.
-   */
-  options: Option[];
-  /**
    * Size of the margin to be applied to the component ('xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge').
    * You can pass an object with 'top', 'bottom', 'left' and 'right' properties in order to specify different margin sizes.
    */
   margin?: Space | Margin;
+  /**
+   * An array of objects representing the selectable options.
+   */
+  options: Option[];
   /**
    * Value of the tabindex.
    */
   tabIndex?: number;
 };
 
-type SingleSelectionToggleGroup = CommonProps & {
-  /**
-   * If true, the toggle group will support multiple selection. In that case, value must be an array of numbers with the keys of the selected values.
-   */
-  multiple?: false;
-  /**
-   * The key of the initially selected value.
-   */
-  defaultValue?: number;
-  /**
-   * The key of the selected value. If the component allows multiple selection, value must be an array.
-   * If undefined, the component will be uncontrolled and the value will be managed internally by the component.
-   */
-  value?: number;
-  /**
-   * This function will be called every time the selection changes. The number with the key of the selected
-   * value will be passed as a parameter to this function.
-   */
-  onChange?: (optionIndex: number) => void;
-};
-
 type MultipleSelectionToggleGroup = CommonProps & {
-  /**
-   * If true, the toggle group will support multiple selection. In that case, value must be an array of numbers with the keys of the selected values.
-   */
-  multiple: true;
   /**
    * The array of keys with the initially selected values.
    */
   defaultValue?: number[];
   /**
-   * An array with the keys of the selected values.
-   * If undefined, the component will be uncontrolled and the value will be managed internally by the component.
+   * If true, the toggle group will support multiple selection. In that case, value must be an array of numbers with the keys of the selected values.
    */
-  value?: number[];
+  multiple: true;
   /**
    * This function will be called every time the selection changes. An array with the key of
    * the selected values will be passed as a parameter to this function.
    */
   onChange?: (optionIndex: number[]) => void;
+  /**
+   * An array with the keys of the selected values.
+   * If undefined, the component will be uncontrolled and the value will be managed internally by the component.
+   */
+  value?: number[];
 };
 
-type Props = SingleSelectionToggleGroup | MultipleSelectionToggleGroup;
+type SingleSelectionToggleGroup = CommonProps & {
+  /**
+   * The key of the initially selected value.
+   */
+  defaultValue?: number;
+  /**
+   * If true, the toggle group will support multiple selection. In that case, value must be an array of numbers with the keys of the selected values.
+   */
+  multiple?: false;
+  /**
+   * This function will be called every time the selection changes. The number with the key of the selected
+   * value will be passed as a parameter to this function.
+   */
+  onChange?: (optionIndex: number) => void;
+  /**
+   * The key of the selected value. If the component allows multiple selection, value must be an array.
+   * If undefined, the component will be uncontrolled and the value will be managed internally by the component.
+   */
+  value?: number;
+};
+
+type Props = MultipleSelectionToggleGroup | SingleSelectionToggleGroup;
 
 export default Props;

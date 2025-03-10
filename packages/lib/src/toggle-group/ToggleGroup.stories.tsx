@@ -107,83 +107,77 @@ const ToggleGroup = () => (
     <Title title="Unselected" theme="light" level={3} />
     <ExampleContainer pseudoState="pseudo-hover">
       <Title title="Hover" theme="light" level={4} />
-      <DxcToggleGroup label="Hover" options={oneOption} />
+      <DxcToggleGroup options={oneOption} />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-active">
       <Title title="Active" theme="light" level={4} />
-      <DxcToggleGroup label="Active" options={oneOption} />
+      <DxcToggleGroup options={oneOption} />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-focus">
       <Title title="Focus" theme="light" level={4} />
-      <DxcToggleGroup label="Focus" options={oneOption} />
+      <DxcToggleGroup options={oneOption} />
     </ExampleContainer>
     <Title title="Selected" theme="light" level={3} />
     <ExampleContainer pseudoState="pseudo-hover">
       <Title title="Hover" theme="light" level={4} />
-      <DxcToggleGroup label="Hover" options={oneOption} defaultValue={1} />
+      <DxcToggleGroup options={oneOption} defaultValue={1} />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-active">
       <Title title="Active" theme="light" level={4} />
-      <DxcToggleGroup label="Active" options={oneOption} defaultValue={1} />
+      <DxcToggleGroup options={oneOption} defaultValue={1} />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-focus">
       <Title title="Focus" theme="light" level={4} />
-      <DxcToggleGroup label="Focus" options={oneOption} defaultValue={1} />
+      <DxcToggleGroup options={oneOption} defaultValue={1} />
     </ExampleContainer>
     <ExampleContainer>
-      <Title title="Labelled options" theme="light" level={4} />
-      <DxcToggleGroup label="Toggle group" helperText="HelperText" options={options} />
+      <Title title="Label only" theme="light" level={4} />
+      <DxcToggleGroup options={options} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Icons only" theme="light" level={4} />
-      <DxcToggleGroup label="Icons group" options={optionsWithIcon} />
+      <DxcToggleGroup options={optionsWithIcon} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Icons & label" theme="light" level={4} />
-      <DxcToggleGroup label="Icons & label" options={optionsWithIconAndLabel} />
+      <DxcToggleGroup options={optionsWithIconAndLabel} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Disabled option" theme="light" level={4} />
-      <DxcToggleGroup label="Disabled" defaultValue={2} options={disabledOptions} />
+      <DxcToggleGroup defaultValue={2} options={disabledOptions} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Multiple options selected" theme="light" level={4} />
-      <DxcToggleGroup
-        label="Toggle group"
-        helperText="Please select one or more"
-        options={options}
-        defaultValue={[1, 3]}
-        multiple
-      ></DxcToggleGroup>
+      <DxcToggleGroup options={options} defaultValue={[1, 3]} multiple></DxcToggleGroup>
     </ExampleContainer>
     <Title title="Margins" theme="light" level={2} />
     <ExampleContainer>
       <Title title="xxSmall" theme="light" level={4} />
-      <DxcToggleGroup label="xxSmall margin" options={options} margin="xxsmall" />
+      <DxcToggleGroup options={options} margin="xxsmall" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="xSmall" theme="light" level={4} />
-      <DxcToggleGroup label="xSmall margin" options={options} margin="xsmall" />
+      <DxcToggleGroup options={options} margin="xsmall" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Small" theme="light" level={4} />
-      <DxcToggleGroup label="Small margin" options={options} margin="small" />
+      <DxcToggleGroup options={options} margin="small" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Medium" theme="light" level={4} />
-      <DxcToggleGroup label="Medium margin" options={options} margin="medium" />
+      <DxcToggleGroup options={options} margin="medium" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Large" theme="light" level={4} />
-      <DxcToggleGroup label="Large margin" options={options} margin="large" />
+      <DxcToggleGroup options={options} margin="large" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="xLarge" theme="light" level={4} />
-      <DxcToggleGroup label="xLarge margin" options={options} margin="xlarge" />
+      <DxcToggleGroup options={options} margin="xlarge" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="xxLarge" theme="light" level={4} />
-      <DxcToggleGroup label="xxLarge margin" options={options} margin="xxlarge" />
+      <DxcToggleGroup options={options} margin="xxlarge" />
     </ExampleContainer>
   </>
 );

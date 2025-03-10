@@ -22,11 +22,7 @@ const options = [
 
 describe("Toggle group component tests", () => {
   test("Toggle group renders with correct labels", () => {
-    const { getByText } = render(
-      <DxcToggleGroup label="Toggle group label" helperText="Toggle group helper text" options={options} />
-    );
-    expect(getByText("Toggle group label")).toBeTruthy();
-    expect(getByText("Toggle group helper text")).toBeTruthy();
+    const { getByText } = render(<DxcToggleGroup options={options} />);
     expect(getByText("Amazon")).toBeTruthy();
     expect(getByText("Ebay")).toBeTruthy();
     expect(getByText("Apple")).toBeTruthy();
@@ -35,8 +31,6 @@ describe("Toggle group component tests", () => {
   test("Toggle group renders with correct aria-label in only-icon scenario", () => {
     const { getByRole } = render(
       <DxcToggleGroup
-        label="Toggle group label"
-        helperText="Toggle group helper text"
         options={[
           { value: 1, icon: "https://cdn.icon-icons.com/icons2/2645/PNG/512/mic_mute_icon_159965.png", title: "Mute" },
         ]}

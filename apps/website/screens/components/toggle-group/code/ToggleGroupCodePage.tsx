@@ -41,22 +41,6 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
-            <td>helperText</td>
-            <td>
-              <TableCode>string</TableCode>
-            </td>
-            <td>Helper text to be placed above the component.</td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td>label</td>
-            <td>
-              <TableCode>string</TableCode>
-            </td>
-            <td>Text to be placed above the component.</td>
-            <td>-</td>
-          </tr>
-          <tr>
             <td>margin</td>
             <td>
               <TableCode>'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge' | Margin</TableCode>
