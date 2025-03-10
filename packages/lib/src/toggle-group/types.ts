@@ -54,12 +54,16 @@ type CommonProps = {
    */
   options: Option[];
   /**
+   * The orientation of the toggle group.
+   */
+  orientation?: "horizontal" | "vertical";
+  /**
    * Value of the tabindex.
    */
   tabIndex?: number;
 };
 
-type MultipleSelectionToggleGroup = CommonProps & {
+type MultipleSelectionToggleGroup = {
   /**
    * The array of keys with the initially selected values.
    */
@@ -80,7 +84,7 @@ type MultipleSelectionToggleGroup = CommonProps & {
   value?: number[];
 };
 
-type SingleSelectionToggleGroup = CommonProps & {
+type SingleSelectionToggleGroup = {
   /**
    * The key of the initially selected value.
    */
@@ -101,6 +105,6 @@ type SingleSelectionToggleGroup = CommonProps & {
   value?: number;
 };
 
-type Props = MultipleSelectionToggleGroup | SingleSelectionToggleGroup;
+type Props = CommonProps & (MultipleSelectionToggleGroup | SingleSelectionToggleGroup);
 
 export default Props;

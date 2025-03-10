@@ -23,7 +23,7 @@ const code = `() => {
     },
     {
       value: 3,
-      label: "Option 02",
+      label: "Option 03",
     },
   ];
 

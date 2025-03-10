@@ -4,30 +4,46 @@ const code = `() => {
   const onChange = (newValue) => {
     console.log(newValue);
   };
-  const options = [
+  const optionsWithIcon = [
     {
       value: 1,
-      label: "Facebook",
-      icon: "filled_thumb_up"
+      icon: "format_bold",
+      title: "Bold",
     },
     {
       value: 2,
-      label: "X",
-      icon: "filled_raven"
+      icon: "format_italic",
+      title: "Italic",
     },
     {
       value: 3,
-      label: "Linkedin",
-      icon: "filled_work"
+      icon: "format_underlined",
+      title: "Underlined",
+    },
+    {
+      value: 4,
+      icon: "format_align_left",
+      title: "Align left",
+    },
+    {
+      value: 5,
+      icon: "format_align_center",
+      title: "Align center",
+    },
+    {
+      value: 6,
+      icon: "format_align_right",
+      title: "Align right",
     },
   ];
 
   return (
     <DxcInset space="2rem">
       <DxcToggleGroup
-        defaultValue={2}
-        options={options}
+        defaultValue={3}
         onChange={onChange}
+        options={options}
+        orientation="vertical"
       />
     </DxcInset>
   );

@@ -9,23 +9,23 @@ const code = `() => {
   const options = [
     {
       value: 1,
-      label: "Facebook",
+      label: "Web",
     },
     {
       value: 2,
-      label: "X",
+      label: "Android",
     },
     {
       value: 3,
-      label: "Linkedin",
+      label: "iOS",
     },
   ];
 
   return (
     <DxcInset space="2rem">
       <DxcToggleGroup
-        options={options}
         onChange={onChange}
+        options={options}
         value={value}
       />
     </DxcInset>

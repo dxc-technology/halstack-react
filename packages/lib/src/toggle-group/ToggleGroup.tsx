@@ -1,4 +1,4 @@
-import { KeyboardEvent, useId, useState } from "react";
+import { KeyboardEvent, useState } from "react";
 import styled from "styled-components";
 import { spaces } from "../common/variables";
 import DxcIcon from "../icon/Icon";
@@ -7,6 +7,9 @@ import ToggleGroupPropsType from "./types";
 
 const ToggleGroup = styled.div<{ margin: ToggleGroupPropsType["margin"] }>`
   display: flex;
+  &[aria-orientation="vertical"] {
+    flex-direction: column;
+  }
   width: fit-content;
   padding: var(--spacing-padding-xxs);
   gap: var(--spacing-gap-xs);
@@ -26,6 +29,7 @@ const ToggleButton = styled.button<{
 }>`
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: var(--spacing-gap-s);
   height: var(--height-xl);
   padding: ${({ onlyIcon }) =>
@@ -80,6 +84,7 @@ export default function DxcToggleGroup({
   options,
   tabIndex = 0,
   value,
+  orientation = "horizontal",
 }: ToggleGroupPropsType) {
   const [selectedValue, setSelectedValue] = useState(defaultValue ?? (multiple ? [] : -1));
 
@@ -125,7 +130,7 @@ export default function DxcToggleGroup({
   };
 
   return (
-    <ToggleGroup margin={margin}>
+    <ToggleGroup margin={margin} role="group" aria-orientation={orientation}>
       {options.map((option, i) => (
         <Tooltip label={option.title} key={`toggle-${i}-${option.label}`}>
           <ToggleButton

@@ -65,20 +65,35 @@ const disabledOptions = [
 const optionsWithIcon = [
   {
     value: 1,
-    icon: "wifi",
-    title: "WiFi connection",
+    label: "Bold",
   },
   {
     value: 2,
-    icon: "filled_lan",
-    title: "Ethernet connection",
+    icon: "format_italic",
+    title: "Italic",
   },
   {
     value: 3,
-    icon: "5g",
-    title: "3G Mobile data connection",
+    icon: "format_underlined",
+    title: "Underlined",
+  },
+  {
+    value: 4,
+    icon: "format_align_left",
+    title: "Align left",
+  },
+  {
+    value: 5,
+    icon: "format_align_center",
+    title: "Align center",
+  },
+  {
+    value: 6,
+    icon: "format_align_right",
+    title: "Align right",
   },
 ];
+
 const optionsWithIconAndLabel = [
   {
     value: 1,
@@ -96,12 +111,14 @@ const optionsWithIconAndLabel = [
     icon: gMobileSVG,
   },
 ];
+
 const oneOption = [
   {
     value: 1,
     label: "Facebook",
   },
 ];
+
 const ToggleGroup = () => (
   <>
     <Title title="Unselected" theme="light" level={3} />
@@ -148,7 +165,11 @@ const ToggleGroup = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Multiple options selected" theme="light" level={4} />
-      <DxcToggleGroup options={options} defaultValue={[1, 3]} multiple></DxcToggleGroup>
+      <DxcToggleGroup options={optionsWithIcon} defaultValue={[1, 3]} multiple />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Vertically stacked" theme="light" level={4} />
+      <DxcToggleGroup defaultValue={3} options={optionsWithIcon} orientation="vertical" />
     </ExampleContainer>
     <Title title="Margins" theme="light" level={2} />
     <ExampleContainer>

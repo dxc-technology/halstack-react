@@ -94,6 +94,16 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
+            <td>orientation</td>
+            <td>
+              <TableCode>'horizontal' | 'vertical'</TableCode>
+            </td>
+            <td>The orientation of the toggle group.</td>
+            <td>
+              <TableCode>'horizontal'</TableCode>
+            </td>
+          </tr>
+          <tr>
             <td>tabIndex</td>
             <td>
               <TableCode>number</TableCode>
