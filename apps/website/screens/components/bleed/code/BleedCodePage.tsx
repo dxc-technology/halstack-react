@@ -106,15 +106,13 @@ const sections = [
   },
 ];
 
-const BleedCodePage = () => {
-  return (
-    <DxcFlex direction="column" gap="4rem">
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
-      </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/bleed/code/BleedCodePage.tsx" />
-    </DxcFlex>
-  );
-};
+const BleedCodePage = () => (
+  <DxcFlex direction="column" gap="4rem">
+    <QuickNavContainerLayout>
+      <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
+    </QuickNavContainerLayout>
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/bleed/code/BleedCodePage.tsx" />
+  </DxcFlex>
+);
 
 export default BleedCodePage;
