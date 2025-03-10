@@ -31,14 +31,10 @@ const code = `() => {
     <DxcInset space="2rem">
       <DxcFlex gap="2rem">
         <DxcToggleGroup
-          label="Single selection"
-          helperText="Mutually exclusive options"
           defaultValue={1}
           options={options1}
         />
         <DxcToggleGroup
-          label="Multiple selection"
-          helperText="Mutually inclusive options"
           options={options2}
           defaultValue={[1, 2]}
           multiple

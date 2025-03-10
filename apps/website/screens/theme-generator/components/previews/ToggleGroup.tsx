@@ -44,7 +44,7 @@ const ToggleGroup = () => (
       <DxcToggleGroup options={options} />
     </Mode>
     <Mode text="Disabled">
-      <DxcToggleGroup disabled options={options} />
+      <DxcToggleGroup options={options} />
     </Mode>
     <Mode text="Multiple with icons">
       <DxcToggleGroup options={optionsWithIcons} multiple />

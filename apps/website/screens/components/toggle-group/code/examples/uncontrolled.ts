@@ -25,7 +25,6 @@ const code = `() => {
   return (
     <DxcInset space="2rem">
       <DxcToggleGroup
-        label="Choose a social network"
         defaultValue={2}
         options={options}
         onChange={onChange}

@@ -69,12 +69,10 @@ const code = `() => {
     <DxcInset space="2rem">
       <DxcFlex gap="2rem">
         <DxcToggleGroup
-          label="Choose an Internet connection"
           options={options1}
           defaultValue={1}
         />
         <DxcToggleGroup
-          label="Choose an Internet connection"
           options={options2}
           defaultValue={1}
         />
