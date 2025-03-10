@@ -6,8 +6,13 @@ import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import Example from "@/common/example/Example";
 import directionAlignment from "./examples/directionAlignment";
 import gapOrderGrow from "./examples/gapOrderGrow";
-import TableCode from "@/common/TableCode";
+import TableCode, { ExtendedTableCode } from "@/common/TableCode";
 import StatusBadge from "@/common/StatusBadge";
+
+const gapTypeString = `{
+  rowGap: string; 
+  columnGap: string
+}`;
 
 const sections = [
   {
@@ -136,14 +141,7 @@ const sections = [
               MDN
             </DxcLink>{" "}
             for further information. It can be either a value or an object with the following properties:
-            <ul>
-              <li>
-                <b>rowGap</b>: gutter between rows.
-              </li>
-              <li>
-                <b>columnGap</b>: gutter between columns.
-              </li>
-            </ul>
+            <ExtendedTableCode>{gapTypeString}</ExtendedTableCode>
           </td>
           <td>-</td>
         </tr>

@@ -9,7 +9,7 @@ const Index = () => {
       <Head>
         <title>Flex — Halstack Design System</title>
       </Head>
-      <FlexOverviewPage></FlexOverviewPage>
+      <FlexOverviewPage />
     </>
   );
 };

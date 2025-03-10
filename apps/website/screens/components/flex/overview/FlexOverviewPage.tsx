@@ -6,7 +6,7 @@ import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 
 const sections = [
   {
-    title: "Overview",
+    title: "Introduction",
     content: (
       <>
         <DxcParagraph>
@@ -94,7 +94,7 @@ const FlexOverviewPage = () => {
   return (
     <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
+        <QuickNavContainer sections={sections} startHeadingLevel={2} />
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/flex/overview/FlexOverviewPage.tsx" />
     </DxcFlex>
