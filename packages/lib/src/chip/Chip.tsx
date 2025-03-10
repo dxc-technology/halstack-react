@@ -19,7 +19,6 @@ const Chip = styled.div<{ margin: ChipPropsType["margin"]; disabled: ChipPropsTy
   max-width: ${(props) => calculateWidth(props.margin)};
   background-color: var(--color-bg-neutral-light);
   border-radius: var(--border-radius-xl);
-
   padding: var(--spacing-padding-none) var(--spacing-padding-m);
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
@@ -65,7 +64,7 @@ const DxcChip = ({
   disabled,
   margin,
   tabIndex = 0,
-}: ChipPropsType): JSX.Element => {
+}: ChipPropsType) => {
   const colorsTheme = useContext(HalstackContext);
 
   return (
