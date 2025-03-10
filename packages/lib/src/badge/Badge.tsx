@@ -47,8 +47,8 @@ const sizeMap = {
     borderRadius: "var(--border-radius-l)",
     iconSize: "var(--height-xxxs)",
     padding: {
-      contextual: "var(--spacing-padding-none) var(--spacing-padding-xxs)",
-      notification: "var(--spacing-padding-xxs)",
+      contextual: "var(--spacing-padding-xxs)",
+      notification: "var(--spacing-padding-none)",
       notificationLabelled: "var(--spacing-padding-none) var(--spacing-padding-xxs)",
     },
   },
@@ -60,7 +60,7 @@ const sizeMap = {
     iconSize: "var(--height-xxs)",
     padding: {
       contextual: "var(--spacing-padding-xxs) var(--spacing-padding-xs)",
-      notification: "var(--spacing-padding-xxs)",
+      notification: "var(--spacing-padding-none)",
       notificationLabelled: "var(--spacing-padding-none) var(--spacing-padding-xxs)",
     },
   },
@@ -72,7 +72,7 @@ const sizeMap = {
     iconSize: "var(--height-s)",
     padding: {
       contextual: "var(--spacing-padding-xxs) var(--spacing-padding-xs)",
-      notification: "var(--spacing-padding-xxs) var(--spacing-padding-s)",
+      notification: "var(--spacing-padding-none)",
       notificationLabelled: "var(--spacing-padding-none) var(--spacing-padding-s)",
     },
   },
