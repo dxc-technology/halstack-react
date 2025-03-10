@@ -14,9 +14,9 @@ const sections = [
       <>
         <DxcParagraph>
           Checkboxes support different states, including checked, unchecked, and indeterminate, providing clear visual
-          feedback. Checkboxes should be used when multiple selections are needed, unlike radio buttons, which are for
-          single-choice scenarios. Proper spacing and alignment help maintain clarity, and labels should be concise and
-          descriptive to enhance usability.
+          feedback. Checkboxes <strong>should be used when multiple selections are needed</strong>, unlike radio
+          buttons, which are for single-choice scenarios. Proper spacing and alignment help maintain clarity, and labels
+          should be concise and descriptive to enhance usability.
         </DxcParagraph>
       </>
     ),
@@ -114,15 +114,13 @@ const sections = [
   },
 ];
 
-const CheckboxInputOverviewPage = () => {
-  return (
-    <DxcFlex direction="column" gap="4rem">
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2} />
-      </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/checkbox/overview/CheckboxOverviewPage.tsx" />
-    </DxcFlex>
-  );
-};
+const CheckboxInputOverviewPage = () => (
+  <DxcFlex direction="column" gap="4rem">
+    <QuickNavContainerLayout>
+      <QuickNavContainer sections={sections} startHeadingLevel={2} />
+    </QuickNavContainerLayout>
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/checkbox/overview/CheckboxOverviewPage.tsx" />
+  </DxcFlex>
+);
 
 export default CheckboxInputOverviewPage;

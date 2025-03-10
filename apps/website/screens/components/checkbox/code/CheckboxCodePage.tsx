@@ -30,7 +30,9 @@ const sections = [
             <td>
               Specifies a string to be used as the name for the checkbox element when no <Code>label</Code> is provided.
             </td>
-            <td>'Checkbox'</td>
+            <td>
+              <TableCode>'Checkbox'</TableCode>
+            </td>
           </tr>
           <tr>
             <td>checked</td>
@@ -191,15 +193,13 @@ const sections = [
   },
 ];
 
-const CheckboxCodePage = () => {
-  return (
-    <DxcFlex direction="column" gap="4rem">
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2} />
-      </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/checkbox/code/CheckboxCodePage.tsx" />
-    </DxcFlex>
-  );
-};
+const CheckboxCodePage = () => (
+  <DxcFlex direction="column" gap="4rem">
+    <QuickNavContainerLayout>
+      <QuickNavContainer sections={sections} startHeadingLevel={2} />
+    </QuickNavContainerLayout>
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/checkbox/code/CheckboxCodePage.tsx" />
+  </DxcFlex>
+);
 
 export default CheckboxCodePage;
