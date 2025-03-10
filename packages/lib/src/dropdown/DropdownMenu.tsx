@@ -5,7 +5,6 @@ import { DropdownMenuProps } from "./types";
 import { scrollbarStyles } from "../styles/scroll";
 
 const DropdownMenuContainer = styled.ul`
-  box-sizing: border-box;
   max-height: 230px;
   min-width: min-content;
   padding: 0;
@@ -23,7 +22,7 @@ const DropdownMenu = forwardRef<HTMLUListElement, DropdownMenuProps>(
   (
     { id, dropdownTriggerId, iconsPosition, visualFocusIndex, menuItemOnClick, onKeyDown, options, styles },
     ref
-  ): JSX.Element => (
+  ) => (
     <DropdownMenuContainer
       onMouseDown={(event) => {
         // Prevent the onBlur event from closing menu when clicking on the menu since

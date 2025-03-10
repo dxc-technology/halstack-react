@@ -5,31 +5,29 @@ import DxcIcon from "../icon/Icon";
 
 const DropdownMenuItemContainer = styled.li<{ visuallyFocused: DropdownMenuItemProps["visuallyFocused"] }>`
   box-sizing: border-box;
+  color: var(--color-fg-neutral-dark);
   display: flex;
   align-items: center;
   gap: var(--spacing-gap-xs);
-  min-height: 36px;
-  padding: 0px var(--spacing-padding-xs);
+  height: var(--height-m);
+  padding: var(--spacing-padding-none) var(--spacing-padding-xs);
   cursor: pointer;
 
   ${(props) =>
     props.visuallyFocused &&
     `
-  outline: var(--border-width-m) solid var(--border-color-secondary-medium); 
+  outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium); 
   outline-offset: calc(-1 * var(--border-width-m));
 `}
   &:first-child {
     border-top-left-radius: var(--border-radius-s);
     border-top-right-radius: var(--border-radius-s);
   }
-
   &:last-child {
     border-bottom-left-radius: var(--border-radius-s);
     border-bottom-right-radius: var(--border-radius-s);
   }
-  &:hover {
-    background-color: var(--color-bg-neutral-light);
-  }
+  &:hover,
   &:active {
     background-color: var(--color-bg-neutral-light);
   }
@@ -39,14 +37,11 @@ const DropdownMenuItemLabel = styled.span`
   font-family: var(--typography-font-family);
   font-size: var(--typography-label-l);
   font-weight: var(--typography-label-regular);
-  color: var(--color-fg-neutral-dark);
-  white-space: nowrap;
 `;
 
 const DropdownMenuItemIcon = styled.div`
   display: flex;
-  color: var(--color-fg-neutral-dark);
-  font-size: var(--typography-label-xl);
+  font-size: var(--height-xs);
 
   svg {
     width: 20px;
@@ -54,13 +49,7 @@ const DropdownMenuItemIcon = styled.div`
   }
 `;
 
-const DropdownMenuItem = ({
-  id,
-  visuallyFocused,
-  iconPosition,
-  onClick,
-  option,
-}: DropdownMenuItemProps): JSX.Element => (
+const DropdownMenuItem = ({ id, visuallyFocused, iconPosition, onClick, option }: DropdownMenuItemProps) => (
   <DropdownMenuItemContainer
     visuallyFocused={visuallyFocused}
     onClick={() => {
