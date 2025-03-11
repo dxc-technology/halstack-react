@@ -130,7 +130,7 @@ export default function DxcToggleGroup({
   };
 
   return (
-    <ToggleGroup margin={margin} role="group" aria-orientation={orientation}>
+    <ToggleGroup margin={margin} role="group">
       {options.map((option, i) => (
         <Tooltip label={option.title} key={`toggle-${i}-${option.label}`}>
           <ToggleButton
