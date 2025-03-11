@@ -6,9 +6,8 @@ import { ReactNode } from "react";
 
 const WizardPageHeading = ({ children }: { children: ReactNode }) => {
   const tabs = [
-    { label: "Code", path: "/components/wizard" },
-    { label: "Usage", path: "/components/wizard/usage" },
-    { label: "Specifications", path: "/components/wizard/specifications" },
+    { label: "Overview", path: "/components/wizard" },
+    { label: "Code", path: "/components/wizard/code" },
   ];
 
   return (

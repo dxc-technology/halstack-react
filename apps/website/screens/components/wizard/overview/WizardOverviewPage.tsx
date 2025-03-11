@@ -10,7 +10,7 @@ import description from "./examples/description";
 
 const sections = [
   {
-    title: "Usage",
+    title: "Introduction",
     content: (
       <DxcBulletedList>
         <DxcBulletedList.Item>
@@ -75,15 +75,13 @@ const sections = [
   },
 ];
 
-const WizardUsagePage = () => {
-  return (
-    <DxcFlex direction="column" gap="4rem">
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
-      </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/wizard/usage/WizardUsagePage.tsx" />
-    </DxcFlex>
-  );
-};
+const WizardOverviewPage = () => (
+  <DxcFlex direction="column" gap="4rem">
+    <QuickNavContainerLayout>
+      <QuickNavContainer sections={sections} startHeadingLevel={2} />
+    </QuickNavContainerLayout>
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/wizard/overview/WizardOverviewPage.tsx" />
+  </DxcFlex>
+);
 
-export default WizardUsagePage;
+export default WizardOverviewPage;

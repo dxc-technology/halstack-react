@@ -25,6 +25,17 @@ const sections = [
         </thead>
         <tbody>
           <tr>
+            <td>currentStep</td>
+            <td>
+              <TableCode>number</TableCode>
+            </td>
+            <td>
+              Defines which step is marked as the current. The numeration starts at 0. If undefined, the component will
+              be uncontrolled and the step will be managed internally by the component.
+            </td>
+            <td>-</td>
+          </tr>
+          <tr>
             <td>defaultCurrentStep</td>
             <td>
               <TableCode>number</TableCode>
@@ -35,13 +46,13 @@ const sections = [
             </td>
           </tr>
           <tr>
-            <td>currentStep</td>
+            <td>margin</td>
             <td>
-              <TableCode>number</TableCode>
+              <TableCode>'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge' | Margin</TableCode>
             </td>
             <td>
-              Defines which step is marked as the current. The numeration starts at 0. If undefined, the component will
-              be uncontrolled and the step will be managed internally by the component.
+              Size of the margin to be applied to the component. You can pass an object with 'top', 'bottom', 'left' and
+              'right' properties in order to specify different margin sizes.
             </td>
             <td>-</td>
           </tr>
@@ -54,6 +65,16 @@ const sections = [
             <td>
               <TableCode>'horizontal'</TableCode>
             </td>
+          </tr>
+          <tr>
+            <td>onStepClick</td>
+            <td>
+              <TableCode>{"(currentStep: number) => void"}</TableCode>
+            </td>
+            <td>
+              This function will be called when the user clicks a step. The step number will be passed as a parameter.
+            </td>
+            <td>-</td>
           </tr>
           <tr>
             <td>
@@ -92,27 +113,6 @@ const sections = [
                   <b>valid</b>: Whether the step is valid or not.
                 </li>
               </ul>
-            </td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td>onStepClick</td>
-            <td>
-              <TableCode>{"(currentStep: number) => void"}</TableCode>
-            </td>
-            <td>
-              This function will be called when the user clicks a step. The step number will be passed as a parameter.
-            </td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td>margin</td>
-            <td>
-              <TableCode>'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge' | Margin</TableCode>
-            </td>
-            <td>
-              Size of the margin to be applied to the component. You can pass an object with 'top', 'bottom', 'left' and
-              'right' properties in order to specify different margin sizes.
             </td>
             <td>-</td>
           </tr>
