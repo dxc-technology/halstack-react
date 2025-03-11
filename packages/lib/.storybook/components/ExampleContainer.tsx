@@ -13,17 +13,20 @@ type PseudoStates =
 
 type Props = {
   children?: ReactNode;
-  pseudoState?: PseudoStates;
+  pseudoState?: PseudoStates | PseudoStates[];
   expanded?: boolean;
 };
 
-const ExampleContainer = ({ children, pseudoState, expanded = false }: Props): JSX.Element => (
-  <DivContainer className={`${pseudoState}-all`} expanded={expanded}>
+const ExampleContainer = ({ children, expanded, pseudoState }: Props): JSX.Element => (
+  <DivContainer
+    className={Array.isArray(pseudoState) ? pseudoState.map((state) => `${state}-all`).join(" ") : `${pseudoState}-all`}
+    expanded={expanded}
+  >
     {children}
   </DivContainer>
 );
 
-const DivContainer = styled.div<{ expanded: boolean }>`
+const DivContainer = styled.div<{ expanded: Props["expanded"] }>`
   margin: 15px;
   ${(props) => props.expanded && "height: 100vh;"}
 `;

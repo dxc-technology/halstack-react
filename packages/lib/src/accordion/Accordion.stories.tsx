@@ -1,8 +1,10 @@
 import DxcAccordion from "./Accordion";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
-import { HalstackProvider } from "../HalstackContext";
 import { Meta, StoryObj } from "@storybook/react";
+import DxcBadge from "../badge/Badge";
+import DxcStatusLight from "../status-light/StatusLight";
+import DxcInset from "../inset/Inset";
 
 export default {
   title: "Accordion",
@@ -38,204 +40,515 @@ const facebookIcon = (
   </svg>
 );
 
-const opinionatedTheme = {
-  accordion: {
-    accentColor: "#5f249f",
-    titleFontColor: "#000000",
-    assistiveTextFontColor: "#666666",
-  },
-};
-
 const Accordion = () => (
   <>
-    <Title title="Component anatomy" theme="light" level={2} />
+    <Title title="Accordion anatomy" theme="light" level={2} />
     <ExampleContainer>
-      <Title title="With label" theme="light" level={4} />
-      <DxcAccordion label="Accordion 1">
-        <div>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo
-          lobortis eget.
-        </div>
+      <Title title="Label" theme="light" level={4} />
+      <DxcAccordion>
+        <DxcAccordion.AccordionItem label="Assure Claims">
+          <DxcInset space="1.5rem">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
+            leo lobortis eget.
+          </DxcInset>
+        </DxcAccordion.AccordionItem>
       </DxcAccordion>
     </ExampleContainer>
     <ExampleContainer>
-      <Title title="With assistive text" theme="light" level={4} />
-      <DxcAccordion label="Accordion 2" assistiveText="Assistive text">
-        <div>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo
-          lobortis eget.
-        </div>
+      <Title title="Label and sublabel" theme="light" level={4} />
+      <DxcAccordion>
+        <DxcAccordion.AccordionItem label="Assure Claims" subLabel="Jan, 09 2025">
+          <DxcInset space="1.5rem">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
+            leo lobortis eget.
+          </DxcInset>
+        </DxcAccordion.AccordionItem>
       </DxcAccordion>
     </ExampleContainer>
     <ExampleContainer>
-      <Title title="With icon" theme="light" level={4} />
-      <DxcAccordion label="Accordion 3" assistiveText="Assistive text" icon="folder">
-        <div>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo
-          lobortis eget.
-        </div>
+      <Title title="Label and assistive text" theme="light" level={4} />
+      <DxcAccordion>
+        <DxcAccordion.AccordionItem label="Assure Claims" assistiveText="Ref - 1236554546">
+          <div>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
+            leo lobortis eget.
+          </div>
+        </DxcAccordion.AccordionItem>
       </DxcAccordion>
     </ExampleContainer>
     <ExampleContainer>
-      <Title title="With smaller icon" theme="light" level={4} />
-      <DxcAccordion label="Accordion 4" assistiveText="Assistive text" icon={smallIcon}>
-        <div>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo
-          lobortis eget.
-        </div>
+      <Title title="Label, subLabel and assistive text" theme="light" level={4} />
+      <DxcAccordion>
+        <DxcAccordion.AccordionItem label="Assure Claims" subLabel="Jan, 09 2025" assistiveText="Ref - 1236554546">
+          <DxcInset space="1.5rem">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
+            leo lobortis eget.
+          </DxcInset>
+        </DxcAccordion.AccordionItem>
       </DxcAccordion>
     </ExampleContainer>
     <ExampleContainer>
-      <Title title="With bigger icon (SVG)" theme="light" level={4} />
-      <DxcAccordion label="Accordion Test" assistiveText="Assistive text" icon={facebookIcon}>
-        <div>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo
-          lobortis eget.
-        </div>
+      <Title title="Icon and label" theme="light" level={4} />
+      <DxcAccordion>
+        <DxcAccordion.AccordionItem label="Assure Claims" icon="heart_plus">
+          <DxcInset space="1.5rem">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
+            leo lobortis eget.
+          </DxcInset>
+        </DxcAccordion.AccordionItem>
+      </DxcAccordion>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Icon, label and sublabel" theme="light" level={4} />
+      <DxcAccordion>
+        <DxcAccordion.AccordionItem label="Assure Claims" subLabel="Jan, 09 2025" icon="heart_plus">
+          <DxcInset space="1.5rem">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
+            leo lobortis eget.
+          </DxcInset>
+        </DxcAccordion.AccordionItem>
+      </DxcAccordion>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Icon, label, sublabel and assistive text" theme="light" level={4} />
+      <DxcAccordion>
+        <DxcAccordion.AccordionItem
+          label="Assure Claims"
+          subLabel="Jan, 09 2025"
+          assistiveText="Ref - 1236554546"
+          icon="heart_plus"
+        >
+          <DxcInset space="1.5rem">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
+            leo lobortis eget.
+          </DxcInset>
+        </DxcAccordion.AccordionItem>
+      </DxcAccordion>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Label, sublabel, assistive text and badge (before)" theme="light" level={4} />
+      <DxcAccordion>
+        <DxcAccordion.AccordionItem
+          label="Assure Claims"
+          subLabel="Jan, 09 2025"
+          assistiveText="Ref - 1236554546"
+          badge={{ position: "before", element: <DxcBadge label="Enterprise" icon="home" /> }}
+        >
+          <DxcInset space="1.5rem">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
+            leo lobortis eget.
+          </DxcInset>
+        </DxcAccordion.AccordionItem>
+      </DxcAccordion>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Label, sublabel and badge (after)" theme="light" level={4} />
+      <DxcAccordion>
+        <DxcAccordion.AccordionItem
+          label="Assure Claims"
+          subLabel="Jan, 09 2025"
+          badge={{ position: "after", element: <DxcBadge label="Enterprise" /> }}
+        >
+          <DxcInset space="1.5rem">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
+            leo lobortis eget.
+          </DxcInset>
+        </DxcAccordion.AccordionItem>
+      </DxcAccordion>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Icon, label, sublabel and status light" theme="light" level={4} />
+      <DxcAccordion>
+        <DxcAccordion.AccordionItem
+          label="Assure Claims"
+          subLabel="Jan, 09 2025"
+          icon="heart_plus"
+          statusLight={<DxcStatusLight label="Active" />}
+        >
+          <DxcInset space="1.5rem">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
+            leo lobortis eget.
+          </DxcInset>
+        </DxcAccordion.AccordionItem>
+      </DxcAccordion>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Label, sublabel, badge (before) and status light" theme="light" level={4} />
+      <DxcAccordion>
+        <DxcAccordion.AccordionItem
+          label="Assure Claims"
+          subLabel="Jan, 09 2025"
+          badge={{ position: "before", element: <DxcBadge label="Enterprise" /> }}
+          statusLight={<DxcStatusLight label="Active" />}
+        >
+          <DxcInset space="1.5rem">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
+            leo lobortis eget.
+          </DxcInset>
+        </DxcAccordion.AccordionItem>
+      </DxcAccordion>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Smaller icon" theme="light" level={4} />
+      <DxcAccordion>
+        <DxcAccordion.AccordionItem label="Assure Claims" assistiveText="Ref - 1236554546" icon={smallIcon}>
+          <DxcInset space="1.5rem">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
+            leo lobortis eget.
+          </DxcInset>
+        </DxcAccordion.AccordionItem>
+      </DxcAccordion>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Bigger icon (SVG)" theme="light" level={4} />
+      <DxcAccordion>
+        <DxcAccordion.AccordionItem label="Assure Claims" assistiveText="Ref - 1236554546" icon={facebookIcon}>
+          <DxcInset space="1.5rem">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
+            leo lobortis eget.
+          </DxcInset>
+        </DxcAccordion.AccordionItem>
+      </DxcAccordion>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Group of accordions (independent false)" theme="light" level={4} />
+      <DxcAccordion defaultIndexActive={[0, 2]}>
+        <DxcAccordion.AccordionItem label="Accordion1" assistiveText="Assistive text">
+          <DxcInset space="2rem">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
+            leo lobortis eget.
+          </DxcInset>
+        </DxcAccordion.AccordionItem>
+        <DxcAccordion.AccordionItem label="Accordion2" assistiveText="Assistive text">
+          <DxcInset space="2rem">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
+            leo lobortis eget.
+          </DxcInset>
+        </DxcAccordion.AccordionItem>
+        <DxcAccordion.AccordionItem label="Accordion3" assistiveText="Assistive text">
+          <DxcInset space="2rem">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
+            leo lobortis eget.
+          </DxcInset>
+        </DxcAccordion.AccordionItem>
+      </DxcAccordion>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Group of accordions (independent true)" theme="light" level={4} />
+      <DxcAccordion independent defaultIndexActive={0}>
+        <DxcAccordion.AccordionItem
+          label="Find a person"
+          badge={{ position: "before", element: <DxcBadge label="GET" color="green" /> }}
+          statusLight={<DxcStatusLight label="Active" mode="success" />}
+        >
+          <DxcInset space="1.5rem">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
+            leo lobortis eget.
+          </DxcInset>
+        </DxcAccordion.AccordionItem>
+        <DxcAccordion.AccordionItem
+          label="Create a person"
+          assistiveText="Provide all required info"
+          badge={{ position: "before", element: <DxcBadge label="POST" color="blue" /> }}
+        >
+          <DxcInset space="1.5rem">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
+            leo lobortis eget.
+          </DxcInset>
+        </DxcAccordion.AccordionItem>
+        <DxcAccordion.AccordionItem
+          label="Find interactions"
+          badge={{ position: "before", element: <DxcBadge label="OPTIONS" color="yellow" /> }}
+          statusLight={<DxcStatusLight label="Active" mode="warning" />}
+        >
+          <DxcInset space="1.5rem">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
+            leo lobortis eget.
+          </DxcInset>
+        </DxcAccordion.AccordionItem>
+        <DxcAccordion.AccordionItem
+          label="Delete a person"
+          assistiveText="Deletion will be permanent"
+          icon="delete"
+          badge={{ position: "before", element: <DxcBadge label="DELETE" /> }}
+        >
+          <DxcInset space="1.5rem">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
+            leo lobortis eget.
+          </DxcInset>
+        </DxcAccordion.AccordionItem>
+      </DxcAccordion>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Long badge, long label, long sublabel and long assistive text" theme="light" level={4} />
+      <DxcAccordion>
+        <DxcAccordion.AccordionItem
+          label="Assure Claims Assure Claims Assure Claims Assure Claims Assure Claims Assure Claims Assure Claims Assure Claims Assure Claims Assure Claims Assure Claims Assure Claims Assure Claims Assure ClaimsAssure Claims"
+          subLabel="Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025"
+          assistiveText="Assistive text Assistive text Assistive text Assistive text Assistive text Assistive text Assistive text Assistive text Assistive text Assistive text Assistive text Assistive text Assistive text "
+          badge={{
+            position: "before",
+            element: (
+              <DxcBadge label="Long long long long long long long long long longlong long long long long long long longlong long long long long long long long text" />
+            ),
+          }}
+        >
+          <DxcInset space="1.5rem">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
+            leo lobortis eget.
+          </DxcInset>
+        </DxcAccordion.AccordionItem>
+      </DxcAccordion>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Long label, long sublabel" theme="light" level={4} />
+      <DxcAccordion>
+        <DxcAccordion.AccordionItem
+          label="Assure Claims Assure Claims Assure Assure Claims Assure Claims Assure Claims Assure Claims Assure Claims Assure Claims Assure Claims Assure Claims Assure Claims Assure Claims Assure Claims "
+          subLabel="Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025"
+          icon="heart_plus"
+        >
+          <DxcInset space="1.5rem">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
+            leo lobortis eget.
+          </DxcInset>
+        </DxcAccordion.AccordionItem>
+      </DxcAccordion>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Long label, long sublabel and short assistive text" theme="light" level={4} />
+      <DxcAccordion>
+        <DxcAccordion.AccordionItem
+          label="Assure Claims Assure Claims Assure Assure Claims Assure Claims Assure Claims Assure Claims Assure Claims Assure Claims Assure Claims Assure Claims Assure Claims Assure Claims Assure Claims "
+          subLabel="Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025"
+          assistiveText="Assistive text Assistive text"
+          icon="heart_plus"
+        >
+          <DxcInset space="1.5rem">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
+            leo lobortis eget.
+          </DxcInset>
+        </DxcAccordion.AccordionItem>
+      </DxcAccordion>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Short label, long sublabel and long assistive text" theme="light" level={4} />
+      <DxcAccordion>
+        <DxcAccordion.AccordionItem
+          label="Assure Claim"
+          subLabel="Jan, 09 2025"
+          assistiveText="Assistive text Assistive text Assistive text Assistive text Assistive text Assistive text Assistive text Assistive text Assistive text Assistive text Assistive text Assistive text Assistive text Assistive text"
+          icon="heart_plus"
+        >
+          <DxcInset space="1.5rem">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
+            leo lobortis eget.
+          </DxcInset>
+        </DxcAccordion.AccordionItem>
       </DxcAccordion>
     </ExampleContainer>
     <Title title="States" theme="light" level={2} />
     <ExampleContainer pseudoState="pseudo-focus">
       <Title title="Focused" theme="light" level={4} />
-      <DxcAccordion label="Focused">
-        <div>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo
-          lobortis eget.
-        </div>
+      <DxcAccordion>
+        <DxcAccordion.AccordionItem label="Assure Claims" subLabel="Jan, 09 2025" assistiveText="Ref - 1236554546">
+          <DxcInset space="1.5rem">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
+            leo lobortis eget.
+          </DxcInset>
+        </DxcAccordion.AccordionItem>
       </DxcAccordion>
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-hover">
       <Title title="Hovered" theme="light" level={4} />
-      <DxcAccordion label="Hovered">
-        <div>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo
-          lobortis eget.
-        </div>
+      <DxcAccordion>
+        <DxcAccordion.AccordionItem label="Assure Claims" subLabel="Jan, 09 2025" assistiveText="Ref - 1236554546">
+          <DxcInset space="1.5rem">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
+            leo lobortis eget.
+          </DxcInset>
+        </DxcAccordion.AccordionItem>
       </DxcAccordion>
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-active">
       <Title title="Active" theme="light" level={4} />
-      <DxcAccordion label="Active">
-        <div>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo
-          lobortis eget.
-        </div>
+      <DxcAccordion>
+        <DxcAccordion.AccordionItem label="Assure Claims" subLabel="Jan, 09 2025" assistiveText="Ref - 1236554546">
+          <DxcInset space="1.5rem">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
+            leo lobortis eget.
+          </DxcInset>
+        </DxcAccordion.AccordionItem>
       </DxcAccordion>
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Disabled" theme="light" level={4} />
-      <DxcAccordion label="Disabled" assistiveText="Assistive text" icon="folder" disabled>
-        <div>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo
-          lobortis eget.
-        </div>
+      <DxcAccordion>
+        <DxcAccordion.AccordionItem
+          label="Assure Claims"
+          subLabel="Jan, 09 2025"
+          assistiveText="Ref - 1236554546"
+          icon="heart_plus"
+          disabled
+        >
+          <DxcInset space="1.5rem">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
+            leo lobortis eget.
+          </DxcInset>
+        </DxcAccordion.AccordionItem>
+      </DxcAccordion>
+      <DxcAccordion>
+        <DxcAccordion.AccordionItem
+          label="Assure Claims"
+          subLabel="Jan, 09 2025"
+          disabled
+          badge={{ position: "before", element: <DxcBadge label="Enterprise" color="green" /> }}
+          statusLight={<DxcStatusLight label="Active" mode="success" />}
+        >
+          <DxcInset space="1.5rem">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
+            leo lobortis eget.
+          </DxcInset>
+        </DxcAccordion.AccordionItem>
+      </DxcAccordion>
+      <DxcAccordion>
+        <DxcAccordion.AccordionItem
+          label="Assure Claims"
+          subLabel="Jan, 09 2025"
+          icon="heart_plus"
+          disabled
+          badge={{ position: "after", element: <DxcBadge label="Enterprise" color="green" /> }}
+        >
+          <DxcInset space="1.5rem">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
+            leo lobortis eget.
+          </DxcInset>
+        </DxcAccordion.AccordionItem>
+      </DxcAccordion>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Group of accordions" theme="light" level={4} />
+      <DxcAccordion>
+        <DxcAccordion.AccordionItem
+          label="Find a person"
+          badge={{ position: "before", element: <DxcBadge label="GET" color="green" /> }}
+          statusLight={<DxcStatusLight label="Active" mode="success" />}
+        >
+          <DxcInset space="1.5rem">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
+            leo lobortis eget.
+          </DxcInset>
+        </DxcAccordion.AccordionItem>
+        <DxcAccordion.AccordionItem
+          label="Create a person"
+          assistiveText="Provide all required info"
+          badge={{ position: "before", element: <DxcBadge label="POST" color="blue" /> }}
+        >
+          <DxcInset space="1.5rem">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
+            leo lobortis eget.
+          </DxcInset>
+        </DxcAccordion.AccordionItem>
+        <DxcAccordion.AccordionItem
+          label="Find interactions"
+          badge={{ position: "before", element: <DxcBadge label="OPTIONS" color="yellow" /> }}
+          statusLight={<DxcStatusLight label="Active" mode="warning" />}
+        >
+          <DxcInset space="1.5rem">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
+            leo lobortis eget.
+          </DxcInset>
+        </DxcAccordion.AccordionItem>
+        <DxcAccordion.AccordionItem
+          label="Delete a person"
+          assistiveText="Deletion will be permanent"
+          icon="delete"
+          badge={{ position: "before", element: <DxcBadge label="DELETE" /> }}
+        >
+          <DxcInset space="1.5rem">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
+            leo lobortis eget.
+          </DxcInset>
+        </DxcAccordion.AccordionItem>
       </DxcAccordion>
     </ExampleContainer>
     <Title title="Margins" theme="light" level={2} />
     <ExampleContainer>
       <Title title="Xxsmall margin" theme="light" level={4} />
-      <DxcAccordion label="Xxsmall margin" margin="xxsmall">
-        <div>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo
-          lobortis eget.
-        </div>
+      <DxcAccordion margin="xxsmall">
+        <DxcAccordion.AccordionItem label="Assure Claims">
+          <DxcInset space="1.5rem">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
+            leo lobortis eget.
+          </DxcInset>
+        </DxcAccordion.AccordionItem>
       </DxcAccordion>
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Xsmall margin" theme="light" level={4} />
-      <DxcAccordion label="Xsmall margin" margin="xsmall">
-        <div>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo
-          lobortis eget.
-        </div>
+      <DxcAccordion margin="xsmall">
+        <DxcAccordion.AccordionItem label="Assure Claims">
+          <DxcInset space="1.5rem">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
+            leo lobortis eget.
+          </DxcInset>
+        </DxcAccordion.AccordionItem>
       </DxcAccordion>
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Small margin" theme="light" level={4} />
-      <DxcAccordion label="Small margin" margin="small">
-        <div>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo
-          lobortis eget.
-        </div>
+      <DxcAccordion margin="small">
+        <DxcAccordion.AccordionItem label="Assure Claims">
+          <DxcInset space="1.5rem">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
+            leo lobortis eget.
+          </DxcInset>
+        </DxcAccordion.AccordionItem>
       </DxcAccordion>
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Medium margin" theme="light" level={4} />
-      <DxcAccordion label="Medium margin" margin="medium">
-        <div>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo
-          lobortis eget.
-        </div>
+      <DxcAccordion margin="medium">
+        <DxcAccordion.AccordionItem label="Assure Claims">
+          <DxcInset space="1.5rem">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
+            leo lobortis eget.
+          </DxcInset>
+        </DxcAccordion.AccordionItem>
       </DxcAccordion>
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Large margin" theme="light" level={4} />
-      <DxcAccordion label="Large margin" margin="large">
-        <div>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo
-          lobortis eget.
-        </div>
+      <DxcAccordion margin="large">
+        <DxcAccordion.AccordionItem label="Assure Claims">
+          <DxcInset space="1.5rem">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
+            leo lobortis eget.
+          </DxcInset>
+        </DxcAccordion.AccordionItem>
       </DxcAccordion>
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Xlarge margin" theme="light" level={4} />
-      <DxcAccordion label="Xlarge margin" margin="xlarge">
-        <div>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo
-          lobortis eget.
-        </div>
+      <DxcAccordion margin="xlarge">
+        <DxcAccordion.AccordionItem label="Assure Claims">
+          <DxcInset space="1.5rem">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
+            leo lobortis eget.
+          </DxcInset>
+        </DxcAccordion.AccordionItem>
       </DxcAccordion>
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Xxlarge margin" theme="light" level={4} />
-      <DxcAccordion label="Xxlarge margin" margin="xxlarge">
-        <div>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo
-          lobortis eget.
-        </div>
+      <DxcAccordion margin="xxlarge">
+        <DxcAccordion.AccordionItem label="Assure Claims">
+          <DxcInset space="1.5rem">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
+            leo lobortis eget.
+          </DxcInset>
+        </DxcAccordion.AccordionItem>
       </DxcAccordion>
-    </ExampleContainer>
-    <Title title="Opinionated theme" theme="light" level={2} />
-    <ExampleContainer>
-      <Title title="With assistive text and icon" theme="light" level={4} />
-      <HalstackProvider theme={opinionatedTheme}>
-        <DxcAccordion label="Accordion" assistiveText="Assistive text" icon="folder">
-          Content
-        </DxcAccordion>
-      </HalstackProvider>
-    </ExampleContainer>
-    <ExampleContainer pseudoState="pseudo-hover">
-      <Title title="Hovered" theme="light" level={4} />
-      <HalstackProvider theme={opinionatedTheme}>
-        <DxcAccordion label="Hovered">
-          <div>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
-            leo lobortis eget.
-          </div>
-        </DxcAccordion>
-      </HalstackProvider>
-    </ExampleContainer>
-    <ExampleContainer pseudoState="pseudo-active">
-      <Title title="Active" theme="light" level={4} />
-      <HalstackProvider theme={opinionatedTheme}>
-        <DxcAccordion label="Active">
-          <div>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
-            leo lobortis eget.
-          </div>
-        </DxcAccordion>
-      </HalstackProvider>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Disabled" theme="light" level={4} />
-      <HalstackProvider theme={opinionatedTheme}>
-        <DxcAccordion label="Disabled" assistiveText="Assistive text" icon="folder" disabled>
-          <div>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
-            leo lobortis eget.
-          </div>
-        </DxcAccordion>
-      </HalstackProvider>
     </ExampleContainer>
   </>
 );
