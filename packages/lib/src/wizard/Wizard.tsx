@@ -92,7 +92,7 @@ const Step = styled.button<{
       : "var(--spacing-padding-l) var(--spacing-padding-none)"};
   cursor: pointer;
 
-  &[aria-current="true"] {
+  &[aria-current="step"] {
     ${IconContainer} {
       background-color: var(--color-bg-primary-strong);
       border: none;
@@ -138,23 +138,15 @@ const ValidityIconContainer = styled.div<{ disabled?: boolean; valid: boolean }>
   bottom: 0;
   right: 0;
   display: flex;
-  background-color: ${({ disabled, valid }) =>
-    disabled
-      ? valid
-        ? "var(--color-bg-success-lightest)"
-        : "var(--color-bg-error-lightest)"
-      : valid
-        ? "var(--color-bg-success-lighter)"
-        : "var(--color-bg-error-lighter)"};
   border-radius: 50%;
-  color: ${({ disabled, valid }) =>
+  ${({ disabled, valid }) =>
     disabled
       ? valid
-        ? "var(--color-fg-success-lighter)"
-        : "var(--color-fg-error-lighter)"
+        ? "background-color: var(--color-bg-success-lightest); color: var(--color-fg-success-lighter);"
+        : "background-color: var(--color-bg-error-lightest); color: var(--color-fg-error-lighter);"
       : valid
-        ? "var(--color-fg-success-stronger)"
-        : "var(--color-fg-error-stronger)"};
+        ? "background-color: var(--color-bg-success-lighter); color: var(--color-fg-success-stronger);"
+        : "background-color: var(--color-bg-error-lighter); color: var(--color-fg-error-stronger);"}
   svg {
     width: 16px;
     height: var(--height-xxs);
@@ -182,7 +174,7 @@ export default function DxcWizard({
       {steps.map((step, i) => (
         <StepContainer key={`step${i}`} lastStep={i === steps.length - 1} mode={mode}>
           <Step
-            aria-current={(currentStep ?? innerCurrent) === i}
+            aria-current={(currentStep ?? innerCurrent) === i ? "step" : false}
             disabled={step.disabled}
             mode={mode}
             onClick={() => {
