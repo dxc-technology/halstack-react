@@ -5,7 +5,7 @@ import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import basicUsage from "./examples/basicUsage";
 import overlay from "./examples/overlay";
-import TableCode from "@/common/TableCode";
+import { TableCode } from "@/common/Code";
 import Code from "@/common/Code";
 
 const sections = [

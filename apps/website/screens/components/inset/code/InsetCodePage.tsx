@@ -5,7 +5,7 @@ import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import Example from "@/common/example/Example";
 import basicUsage from "./examples/basicUsage";
 import customSides from "./examples/customSides";
-import TableCode from "@/common/TableCode";
+import { TableCode } from "@/common/Code";
 import StatusBadge from "@/common/StatusBadge";
 
 const coreSpacingTokensTypeString = `'0rem' | '0.125rem' | '0.25rem' | '0.5rem' | '0.75rem' | '1rem' | '1.5rem' | '2rem' | '2.5rem' | '3rem' | '3.5rem' | '4rem' | '5rem' | '6rem' | '7rem'`;

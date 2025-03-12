@@ -3,8 +3,8 @@ import Head from "next/head";
 import ReleasesPage from "screens/overview/releases/ReleasesPage";
 
 type Release = {
-  name: string;
   body: string;
+  name: string;
   published_at: string;
 };
 
@@ -16,15 +16,13 @@ export const getStaticProps: GetStaticProps<{
   return { props: { releases } };
 };
 
-const Releases = ({ releases }: InferGetStaticPropsType<typeof getStaticProps>) => {
-  return (
-    <>
-      <Head>
-        <title>Releases — Halstack Design System</title>
-      </Head>
-      <ReleasesPage releases={releases}></ReleasesPage>
-    </>
-  );
-};
+const Releases = ({ releases }: InferGetStaticPropsType<typeof getStaticProps>) => (
+  <>
+    <Head>
+      <title>Releases — Halstack Design System</title>
+    </Head>
+    <ReleasesPage releases={releases} />
+  </>
+);
 
 export default Releases;

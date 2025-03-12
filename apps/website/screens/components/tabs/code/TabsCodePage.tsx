@@ -2,12 +2,11 @@ import { DxcFlex, DxcLink, DxcParagraph, DxcTable } from "@dxc-technology/halsta
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
-import Code from "@/common/Code";
 import Example from "@/common/example/Example";
 import controlledLegacy from "./examples-old/controlled";
 import uncontrolledLegacy from "./examples-old/uncontrolled";
 import iconsLegacy from "./examples-old/icons";
-import TableCode from "@/common/TableCode";
+import Code, { TableCode } from "@/common/Code";
 import StatusBadge from "@/common/StatusBadge";
 import controlled from "./examples-new/controlled";
 import uncontrolled from "./examples-new/uncontrolled";
