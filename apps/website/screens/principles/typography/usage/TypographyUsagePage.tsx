@@ -55,15 +55,13 @@ const sections = [
     ),
   },
 ];
-const TypographyUsagePage = () => {
-  return (
-    <DxcFlex direction="column" gap="4rem">
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
-      </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/principles/typography/usage/TypographyUsagePage.tsx" />
-    </DxcFlex>
-  );
-};
+const TypographyUsagePage = () => (
+  <DxcFlex direction="column" gap="4rem">
+    <QuickNavContainerLayout>
+      <QuickNavContainer sections={sections} startHeadingLevel={2} />
+    </QuickNavContainerLayout>
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/principles/typography/usage/TypographyUsagePage.tsx" />
+  </DxcFlex>
+);
 
 export default TypographyUsagePage;

@@ -1534,20 +1534,18 @@ const sections = [
   },
 ];
 
-const Themes = () => {
-  return (
-    <DxcFlex direction="column" gap="4rem">
-      <PageHeading>
-        <DxcFlex direction="column" gap="2rem">
-          <DxcHeading level={1} text="Themes" weight="bold"></DxcHeading>
-        </DxcFlex>
-      </PageHeading>
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
-      </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/principles/themes/ThemesPage.tsx" />
-    </DxcFlex>
-  );
-};
+const Themes = () => (
+  <DxcFlex direction="column" gap="4rem">
+    <PageHeading>
+      <DxcFlex direction="column" gap="2rem">
+        <DxcHeading level={1} text="Themes" weight="bold" />
+      </DxcFlex>
+    </PageHeading>
+    <QuickNavContainerLayout>
+      <QuickNavContainer sections={sections} startHeadingLevel={2} />
+    </QuickNavContainerLayout>
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/principles/themes/ThemesPage.tsx" />
+  </DxcFlex>
+);
 
 export default Themes;

@@ -72,8 +72,8 @@ const sections = [
     content: (
       <>
         <DxcParagraph>
-          Although visually similar, the Sidenav component and the contextual menu differ significantly in
-          functionality. Our Sidenav is designed to provide a consistent and persistent navigation structure throughout
+          Although visually similar, the sidenav component and the contextual menu differ significantly in
+          functionality. Our sidenav is designed to provide a consistent and persistent navigation structure throughout
           the application, allowing users to easily switch between different sections or pages within the app.
         </DxcParagraph>
         <DxcParagraph>

@@ -5,7 +5,7 @@ import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import quickNav from "./examples/quickNav";
 import withContent from "./examples/withContent";
-import TableCode from "@/common/TableCode";
+import { TableCode } from "@/common/Code";
 import StatusBadge from "@/common/StatusBadge";
 
 const sections = [

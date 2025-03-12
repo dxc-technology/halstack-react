@@ -3,10 +3,9 @@ import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
-import Code from "@/common/Code";
 import basicUsage from "./examples/basicUsage";
 import icons from "./examples/icons";
-import TableCode from "@/common/TableCode";
+import Code, { TableCode } from "@/common/Code";
 
 const sections = [
   {

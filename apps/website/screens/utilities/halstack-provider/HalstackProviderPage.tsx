@@ -1,4 +1,3 @@
-import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import QuickNavContainer from "@/common/QuickNavContainer";
@@ -18,7 +17,7 @@ import {
 } from "@dxc-technology/halstack-react";
 import Link from "next/link";
 import PageHeading from "@/common/PageHeading";
-import TableCode from "@/common/TableCode";
+import Code, { TableCode } from "@/common/Code";
 
 const sections = [
   {
@@ -175,24 +174,22 @@ const sections = [
   },
 ];
 
-const HalstackProvider = () => {
-  return (
-    <DxcFlex direction="column" gap="4rem">
-      <PageHeading>
-        <DxcFlex direction="column" gap="2rem">
-          <DxcHeading level={1} text="Halstack Provider" weight="bold"></DxcHeading>
-          <DxcParagraph>
-            Halstack Provider is the context provider used for a whole application or an isolated group of components,
-            which defines the custom theme and/or translation labels.
-          </DxcParagraph>
-        </DxcFlex>
-      </PageHeading>
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
-      </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/utilities/halstack-provider/HalstackProviderPage.tsx" />
-    </DxcFlex>
-  );
-};
+const HalstackProvider = () => (
+  <DxcFlex direction="column" gap="4rem">
+    <PageHeading>
+      <DxcFlex direction="column" gap="2rem">
+        <DxcHeading level={1} text="Halstack Provider" weight="bold" />
+        <DxcParagraph>
+          Halstack Provider is the context provider used for a whole application or an isolated group of components,
+          which defines the custom theme and/or translation labels.
+        </DxcParagraph>
+      </DxcFlex>
+    </PageHeading>
+    <QuickNavContainerLayout>
+      <QuickNavContainer sections={sections} startHeadingLevel={2} />
+    </QuickNavContainerLayout>
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/utilities/halstack-provider/HalstackProviderPage.tsx" />
+  </DxcFlex>
+);
 
 export default HalstackProvider;
