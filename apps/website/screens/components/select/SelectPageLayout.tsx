@@ -18,7 +18,7 @@ const SelectPageHeading = ({ children }: { children: ReactNode }) => {
           <DxcParagraph>
             The select component allows users to make single or multiple selections from a pre-defined list of options.
           </DxcParagraph>
-          <TabsPageHeading tabs={tabs}></TabsPageHeading>
+          <TabsPageHeading tabs={tabs} />
         </DxcFlex>
       </PageHeading>
       {children}
