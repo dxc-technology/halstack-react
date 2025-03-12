@@ -582,13 +582,6 @@ const DefaultGroupedOptionsSelect = () => (
   </ExampleContainer>
 );
 
-const DefaultGroupedOptionsSelectOpinionated = () => (
-  <ExampleContainer expanded>
-    <Title title="Grouped options simple select" theme="light" level={4} />
-    <DxcSelect label="Label" options={group_options} defaultValue="9" placeholder="Choose an option" />
-  </ExampleContainer>
-);
-
 const MultipleGroupedOptionsSelect = () => (
   <ExampleContainer expanded>
     <Title title="Grouped options multiple select" theme="light" level={4} />
@@ -700,15 +693,6 @@ export const MultipleSearchableWithValue: Story = {
 
 export const GroupOptionsDisplayed: Story = {
   render: DefaultGroupedOptionsSelect,
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    const select = canvas.getByRole("combobox");
-    await userEvent.click(select);
-  },
-};
-
-export const GroupOptionsDisplayedOpinionated: Story = {
-  render: DefaultGroupedOptionsSelectOpinionated,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const select = canvas.getByRole("combobox");

@@ -6,7 +6,7 @@ import SelectCodePage from "screens/components/select/code/SelectCodePage";
 const Code = () => (
   <>
     <Head>
-      <title>Select Code — Halstack Design System</title>
+      <title>Select code — Halstack Design System</title>
     </Head>
     <SelectCodePage />
   </>

@@ -313,15 +313,13 @@ const sections = [
   },
 ];
 
-const SelectCodePage = () => {
-  return (
-    <DxcFlex direction="column" gap="4rem">
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
-      </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/select/code/SelectCodePage.tsx" />
-    </DxcFlex>
-  );
-};
+const SelectCodePage = () => (
+  <DxcFlex direction="column" gap="4rem">
+    <QuickNavContainerLayout>
+      <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
+    </QuickNavContainerLayout>
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/select/code/SelectCodePage.tsx" />
+  </DxcFlex>
+);
 
 export default SelectCodePage;
