@@ -45,31 +45,33 @@ const options = [
   },
 ];
 
+const disabledOption = [
+  {
+    value: 1,
+    icon: wifiSVG,
+    title: "WiFi connection",
+    disabled: true,
+  },
+  {
+    value: 2,
+    icon: ethernetSVG,
+    title: "Ethernet connection",
+  },
+  {
+    value: 3,
+    icon: gMobileSVG,
+    title: "3G Mobile data connection",
+  },
+];
+
 describe("Toggle group component accessibility tests", () => {
   it("Should not have basic accessibility issues", async () => {
-    const { container } = render(
-      <DxcToggleGroup
-        label="Toggle group label"
-        helperText="Toggle group helper text"
-        options={options}
-        margin="medium"
-        defaultValue={[2]}
-        multiple
-      />
-    );
+    const { container } = render(<DxcToggleGroup options={options} margin="medium" defaultValue={[2]} multiple />);
     const results = await axe(container);
     expect(results).toHaveNoViolations();
   });
   it("Should not have basic accessibility issues for disabled mode", async () => {
-    const { container } = render(
-      <DxcToggleGroup
-        label="Toggle group label"
-        helperText="Toggle group helper text"
-        options={options}
-        margin="medium"
-        disabled
-      />
-    );
+    const { container } = render(<DxcToggleGroup options={disabledOption} margin="medium" />);
     const results = await axe(container);
     expect(results).toHaveNoViolations();
   });
