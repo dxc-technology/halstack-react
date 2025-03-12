@@ -1,9 +1,7 @@
-import { useContext } from "react";
-import styled, { ThemeProvider } from "styled-components";
+import styled from "styled-components";
 import { getMargin } from "../common/utils";
 import { spaces } from "../common/variables";
 import DxcIcon from "../icon/Icon";
-import HalstackContext from "../HalstackContext";
 import ChipPropsType from "./types";
 import ActionIcon from "../action-icon/ActionIcon";
 
@@ -64,44 +62,38 @@ const DxcChip = ({
   disabled,
   margin,
   tabIndex = 0,
-}: ChipPropsType) => {
-  const colorsTheme = useContext(HalstackContext);
-
-  return (
-    <ThemeProvider theme={colorsTheme.chip}>
-      <Chip disabled={disabled} margin={margin}>
-        {prefixIcon &&
-          (typeof onClickPrefix === "function" ? (
-            <ActionIcon
-              disabled={disabled}
-              icon={prefixIcon}
-              onClick={onClickPrefix}
-              tabIndex={tabIndex}
-              title="Prefix Action"
-            />
-          ) : (
-            <IconContainer disabled={disabled}>
-              {typeof prefixIcon === "string" ? <DxcIcon icon={prefixIcon} /> : prefixIcon}
-            </IconContainer>
-          ))}
-        {label && <LabelContainer disabled={disabled}>{label}</LabelContainer>}
-        {suffixIcon &&
-          (typeof onClickSuffix ? (
-            <ActionIcon
-              disabled={disabled}
-              icon={suffixIcon}
-              onClick={onClickSuffix}
-              tabIndex={tabIndex}
-              title="Suffix Action"
-            />
-          ) : (
-            <IconContainer disabled={disabled}>
-              {typeof suffixIcon === "string" ? <DxcIcon icon={suffixIcon} /> : suffixIcon}
-            </IconContainer>
-          ))}
-      </Chip>
-    </ThemeProvider>
-  );
-};
+}: ChipPropsType) => (
+  <Chip disabled={disabled} margin={margin}>
+    {prefixIcon &&
+      (typeof onClickPrefix === "function" ? (
+        <ActionIcon
+          disabled={disabled}
+          icon={prefixIcon}
+          onClick={onClickPrefix}
+          tabIndex={tabIndex}
+          title="Prefix Action"
+        />
+      ) : (
+        <IconContainer disabled={disabled}>
+          {typeof prefixIcon === "string" ? <DxcIcon icon={prefixIcon} /> : prefixIcon}
+        </IconContainer>
+      ))}
+    {label && <LabelContainer disabled={disabled}>{label}</LabelContainer>}
+    {suffixIcon &&
+      (typeof onClickSuffix ? (
+        <ActionIcon
+          disabled={disabled}
+          icon={suffixIcon}
+          onClick={onClickSuffix}
+          tabIndex={tabIndex}
+          title="Suffix Action"
+        />
+      ) : (
+        <IconContainer disabled={disabled}>
+          {typeof suffixIcon === "string" ? <DxcIcon icon={suffixIcon} /> : suffixIcon}
+        </IconContainer>
+      ))}
+  </Chip>
+);
 
 export default DxcChip;
