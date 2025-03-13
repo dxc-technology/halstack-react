@@ -2,12 +2,12 @@ import { DxcBulletedList, DxcFlex, DxcParagraph, DxcTable } from "@dxc-technolog
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import DocFooter from "@/common/DocFooter";
-import Image from "@/common/Image";
 import anatomy from "./images/chip-anatomy.png";
 import Example from "@/common/example/Example";
 import categorization from "./examples/categorization";
 import filter from "./examples/filter";
 import spacing from "./images/chip-spacing.png";
+import Image from "@/common/Image";
 
 const sections = [
   {
@@ -64,9 +64,10 @@ const sections = [
         content: (
           <>
             <DxcParagraph>
-              Chips can function as filter facets, enabling users to refine search results by selecting or removing
-              specific attributes. In this use case, chips help users include or exclude preferences from their search
-              queries. When used for faceted filtering, chip should be dismissible to allow for easy adjustments.
+              When used alongside the select component, chips serve as effective filter facets, allowing users to refine
+              search results by choosing and removing specific attributes. This combination enables users to include or
+              exclude preferences directly from their queries. For faceted filtering, chips should be dismissible,
+              ensuring effortless adjustments and a more intuitive selection experience.
             </DxcParagraph>
             <Example example={filter} />
           </>
