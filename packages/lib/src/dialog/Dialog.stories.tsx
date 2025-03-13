@@ -32,14 +32,6 @@ const customViewports = {
   },
 };
 
-const opinionatedTheme = {
-  dialog: {
-    baseColor: "#ffffff",
-    closeIconColor: "#000000",
-    overlayColor: "#000000b3",
-  },
-};
-
 const Dialog = () => (
   <ExampleContainer expanded={true}>
     <Title title="Default dialog" theme="light" level={4} />
@@ -322,10 +314,6 @@ type Story = StoryObj<typeof DxcDialog>;
 
 export const DefaultDialog: Story = {
   render: Dialog,
-};
-
-export const DefaultDialogOpinionated: Story = {
-  render: DialogOpinionated,
 };
 
 export const DialogWithInputs: Story = {
