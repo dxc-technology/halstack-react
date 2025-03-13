@@ -139,15 +139,13 @@ const sections = [
   },
 ];
 
-const DialogOverviewPage = () => {
-  return (
-    <DxcFlex direction="column" gap="4rem">
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2} />
-      </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/dialog/overview/DialogOverviewPage.tsx" />
-    </DxcFlex>
-  );
-};
+const DialogOverviewPage = () => (
+  <DxcFlex direction="column" gap="4rem">
+    <QuickNavContainerLayout>
+      <QuickNavContainer sections={sections} startHeadingLevel={2} />
+    </QuickNavContainerLayout>
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/dialog/overview/DialogOverviewPage.tsx" />
+  </DxcFlex>
+);
 
 export default DialogOverviewPage;
