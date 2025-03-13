@@ -80,7 +80,7 @@ const DxcChip = ({
       ))}
     {label && <LabelContainer disabled={disabled}>{label}</LabelContainer>}
     {suffixIcon &&
-      (typeof onClickSuffix ? (
+      (typeof onClickSuffix === "function" ? (
         <ActionIcon
           disabled={disabled}
           icon={suffixIcon}
