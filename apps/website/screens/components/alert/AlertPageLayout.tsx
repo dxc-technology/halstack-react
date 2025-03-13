@@ -6,9 +6,8 @@ import { ReactNode } from "react";
 
 const AlertPageHeading = ({ children }: { children: ReactNode }) => {
   const tabs = [
-    { label: "Code", path: "/components/alert" },
-    { label: "Usage", path: "/components/alert/usage" },
-    { label: "Specifications", path: "/components/alert/specifications" },
+    { label: "Overview", path: "/components/alert" },
+    { label: "Code", path: "/components/alert/code" },
   ];
 
   return (
@@ -17,11 +16,9 @@ const AlertPageHeading = ({ children }: { children: ReactNode }) => {
         <DxcFlex direction="column" gap="2rem">
           <ComponentHeading name="Alert" />
           <DxcParagraph>
-            Alert messages are meant to provide contextual feedback about important changes in the interface. They are
-            used to convey essential information to the user, ensuring that critical updates or warnings are immediately
-            noticeable.
+            Alert messages are meant to provide contextual feedback about important changes in the interface.
           </DxcParagraph>
-          <TabsPageHeading tabs={tabs}></TabsPageHeading>
+          <TabsPageHeading tabs={tabs} />
         </DxcFlex>
       </PageHeading>
       {children}
