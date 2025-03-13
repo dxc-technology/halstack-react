@@ -1,9 +1,5 @@
 import { ReactNode } from "react";
 
-type QuickNavContainerLayoutProps = {
-  children: ReactNode;
-};
-
-const QuickNavContainerLayout = ({ children }: QuickNavContainerLayoutProps) => <>{children}</>;
+const QuickNavContainerLayout = ({ children }: { children: ReactNode }) => <>{children}</>;
 
 export default QuickNavContainerLayout;

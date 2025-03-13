@@ -1,8 +1,7 @@
 import { useRouter } from "next/router";
-import { DxcTypography, DxcLink, DxcFlex } from "@dxc-technology/halstack-react";
+import { DxcTypography, DxcLink, DxcFlex, DxcDivider } from "@dxc-technology/halstack-react";
 import Link from "next/link";
 import { getNavigationLinks } from "./pagesList";
-import styled from "styled-components";
 
 const arrowForward = (
   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
@@ -40,12 +39,12 @@ const editIcon = (
   </svg>
 );
 
-const DocFooter = ({ githubLink }: { githubLink: string }) => {
+export default function DocFooter({ githubLink }: { githubLink: string }) {
   const { pathname } = useRouter();
   const { previousLink, nextLink } = getNavigationLinks(pathname);
 
   return (
-    <DocFooterContainer>
+    <div style={{ maxWidth: "800px" }}>
       <DxcFlex direction="column" gap="2rem">
         <DxcFlex gap="2rem">
           <DxcLink icon={editIcon} href={githubLink} newWindow>
@@ -59,7 +58,7 @@ const DocFooter = ({ githubLink }: { githubLink: string }) => {
             Report an issue on GitHub
           </DxcLink>
         </DxcFlex>
-        <Separator />
+        <DxcDivider color="darkGrey" />
         <DxcFlex justifyContent="space-between">
           <DxcFlex direction="column" gap="1rem">
             {previousLink && (
@@ -85,17 +84,6 @@ const DocFooter = ({ githubLink }: { githubLink: string }) => {
           </DxcFlex>
         </DxcFlex>
       </DxcFlex>
-    </DocFooterContainer>
+    </div>
   );
-};
-
-const DocFooterContainer = styled.div`
-  max-width: 800px;
-`;
-
-const Separator = styled.div`
-  height: 1px;
-  background-color: #999999;
-`;
-
-export default DocFooter;
+}

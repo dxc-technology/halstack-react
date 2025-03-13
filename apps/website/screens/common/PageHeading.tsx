@@ -1,12 +1,5 @@
 import { ReactNode } from "react";
-import styled from "styled-components";
 
-const PageHeading = ({ children }: { children: ReactNode }) => {
-  return <PageHeadingContainer>{children}</PageHeadingContainer>;
-};
-
-const PageHeadingContainer = styled.div`
-  max-width: 800px;
-`;
+const PageHeading = ({ children }: { children: ReactNode }) => <div style={{ maxWidth: "800px" }}>{children}</div>;
 
 export default PageHeading;
