@@ -4,9 +4,9 @@ const code = `() => {
   return (
     <DxcInset space="2rem">
       <DxcFlex gap="0.5rem" justifyContent="center">
-        <DxcChip label="GPDR Compliant" suffixIcon="open_in_new" />
-        <DxcChip label="ISO 27001 Certified" suffixIcon="open_in_new" />
-        <DxcChip label="HIPAA Pending" suffixIcon="open_in_new" />
+        <DxcChip label="GPDR Compliant" suffixIcon="open_in_new" onClickSuffix={() => {}} />
+        <DxcChip label="ISO 27001 Certified" suffixIcon="open_in_new" onClickSuffix={() => {}} />
+        <DxcChip label="HIPAA Pending" suffixIcon="open_in_new" onClickSuffix={() => {}} />
       </DxcFlex>
     </DxcInset>
   );

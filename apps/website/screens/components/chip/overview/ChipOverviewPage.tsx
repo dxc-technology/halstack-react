@@ -1,4 +1,4 @@
-import { DxcBulletedList, DxcFlex, DxcParagraph, DxcTable } from "@dxc-technology/halstack-react";
+import { DxcBulletedList, DxcFlex, DxcLink, DxcParagraph, DxcTable } from "@dxc-technology/halstack-react";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import DocFooter from "@/common/DocFooter";
@@ -8,6 +8,7 @@ import categorization from "./examples/categorization";
 import filter from "./examples/filter";
 import spacing from "./images/chip-spacing.png";
 import Image from "@/common/Image";
+import Link from "next/link";
 
 const sections = [
   {
@@ -28,15 +29,15 @@ const sections = [
         <Image src={anatomy} alt="Chip's anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
-            <strong>Prefix</strong> <em>(Optional)</em>: The prefix can be an icon or an action icon that provides
+            <strong>Prefix</strong> <em>(Optional)</em>: the prefix can be an icon or an action icon that provides
             additional context or functionality.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Label:</strong> The primary text that conveys the chip's meaning, such as a tag name or a selected
+            <strong>Label:</strong> the primary text that conveys the chip's meaning, such as a tag name or a selected
             option. It should be concise, clear, and relevant to the chip's function.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Suffix</strong> <em>(Optional)</em>: The suffix can be an icon or an action icon that enhances
+            <strong>Suffix</strong> <em>(Optional)</em>: the suffix can be an icon or an action icon that enhances
             interactivity.
           </DxcBulletedList.Item>
         </DxcBulletedList>
@@ -78,7 +79,11 @@ const sections = [
         content: (
           <>
             <DxcParagraph>
-              While badges and chips share a similar visual style, they serve different purposes in a user interface:
+              While{" "}
+              <Link href="/components/badge" passHref legacyBehavior>
+                <DxcLink>badges</DxcLink>
+              </Link>{" "}
+              and chips share a similar visual style, they serve different purposes in a user interface:{" "}
               <strong>chips are interactive</strong>, while <strong>badges are static indicators</strong>.
             </DxcParagraph>
             <DxcTable>
@@ -198,15 +203,12 @@ const sections = [
   },
 ];
 
-const ChipOverviewPage = () => {
-  return (
-    <DxcFlex direction="column" gap="4rem">
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
-      </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/chip/overview/ChipOverviewPage.tsx" />
-    </DxcFlex>
-  );
-};
-
+const ChipOverviewPage = () => (
+  <DxcFlex direction="column" gap="4rem">
+    <QuickNavContainerLayout>
+      <QuickNavContainer sections={sections} startHeadingLevel={2} />
+    </QuickNavContainerLayout>
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/chip/overview/ChipOverviewPage.tsx" />
+  </DxcFlex>
+);
 export default ChipOverviewPage;
