@@ -73,7 +73,7 @@ const sizeMap = {
     padding: {
       contextual: "var(--spacing-padding-xxs) var(--spacing-padding-xs)",
       notification: "var(--spacing-padding-none)",
-      notificationLabelled: "var(--spacing-padding-none) var(--spacing-padding-s)",
+      notificationLabelled: "var(--spacing-padding-none) var(--spacing-padding-xs)",
     },
   },
 };
