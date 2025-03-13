@@ -149,6 +149,13 @@ const sections = [
                         </td>
                       </tr>
                       <tr>
+                        <td>Sublabel font color</td>
+                        <td>
+                          <br />
+                          <Code>subLabelFontColor</Code>
+                        </td>
+                      </tr>
+                      <tr>
                         <td>Assistive text font color</td>
                         <td>
                           <Code>assistiveTextFontColor</Code>
