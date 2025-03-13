@@ -1,78 +1,136 @@
 import styled from "styled-components";
 import BadgePropsType from "./types";
-import CoreTokens from "../common/coreTokens";
 import DxcIcon from "../icon/Icon";
 import { Tooltip } from "../tooltip/Tooltip";
 
 const contextualColorMap = {
   grey: {
-    background: CoreTokens.color_grey_200,
-    text: CoreTokens.color_grey_900,
+    background: "var(--color-bg-neutral-light)",
+    text: "var(--color-fg-neutral-strongest)",
   },
   blue: {
-    background: CoreTokens.color_blue_200,
-    text: CoreTokens.color_blue_900,
+    background: "var(--color-bg-secondary-lighter)",
+    text: "var(--color-fg-secondary-stronger)",
   },
   green: {
-    background: CoreTokens.color_green_200,
-    text: CoreTokens.color_green_900,
+    background: "var(--color-bg-success-lighter)",
+    text: "var(--color-fg-success-stronger)",
   },
   orange: {
-    background: CoreTokens.color_orange_200,
-    text: CoreTokens.color_orange_900,
+    background: "var(--color-bg-warning-lighter)",
+    text: "var(--color-fg-warning-stronger)",
   },
   red: {
-    background: CoreTokens.color_red_200,
-    text: CoreTokens.color_red_900,
+    background: "var(--color-bg-error-lighter)",
+    text: "var(--color-fg-error-stronger)",
   },
   yellow: {
-    background: CoreTokens.color_yellow_200,
-    text: CoreTokens.color_yellow_900,
+    background: "var(--color-bg-yellow-light)",
+    text: "var(--color-fg-neutral-yellow-dark)",
   },
   purple: {
-    background: CoreTokens.color_purple_200,
-    text: CoreTokens.color_purple_900,
+    background: "var(--color-bg-primary-lighter)",
+    text: "var(--color-fg-primary-stronger)",
   },
+};
+
+const notificationColor = {
+  background: "var(--color-bg-error-strong)",
+  text: "var(--color-fg-neutral-bright)",
 };
 
 const sizeMap = {
   small: {
-    height: "20px",
-    width: "20px",
+    height: "var(--height-xs)",
     minWidth: "20px",
-    fontSize: CoreTokens.type_scale_01,
-    borderRadius: CoreTokens.spacing_12,
-    iconSize: "14px",
+    fontSize: "var(--typography-label-s)",
+    borderRadius: "var(--border-radius-l)",
+    iconSize: "var(--height-xxxs)",
     padding: {
-      contextual: `${CoreTokens.spacing_4}`,
-      notification: `${CoreTokens.spacing_0} ${CoreTokens.spacing_4}`,
+      contextual: "var(--spacing-padding-xxs)",
+      notification: "var(--spacing-padding-none)",
+      notificationLabelled: "var(--spacing-padding-none) var(--spacing-padding-xxs)",
     },
   },
   medium: {
-    height: "24px",
-    width: "24px",
+    height: "var(--height-s)",
     minWidth: "24px",
-    fontSize: CoreTokens.type_scale_02,
-    borderRadius: CoreTokens.spacing_12,
-    iconSize: "16px",
+    fontSize: "var(--typography-label-m)",
+    borderRadius: "var(--border-radius-l)",
+    iconSize: "var(--height-xxs)",
     padding: {
-      contextual: `${CoreTokens.spacing_4} ${CoreTokens.spacing_8}`,
-      notification: `${CoreTokens.spacing_0} ${CoreTokens.spacing_4}`,
+      contextual: "var(--spacing-padding-xxs) var(--spacing-padding-xs)",
+      notification: "var(--spacing-padding-none)",
+      notificationLabelled: "var(--spacing-padding-none) var(--spacing-padding-xxs)",
     },
   },
   large: {
-    height: "32px",
-    width: "32px",
+    height: "var(--height-m)",
     minWidth: "32px",
-    fontSize: CoreTokens.type_scale_04,
-    borderRadius: CoreTokens.spacing_24,
-    iconSize: "24px",
+    fontSize: "var(--typography-label-xl)",
+    borderRadius: "var(--border-radius-xl)",
+    iconSize: "var(--height-s)",
     padding: {
-      contextual: `${CoreTokens.spacing_4} ${CoreTokens.spacing_8}`,
-      notification: `${CoreTokens.spacing_0} ${CoreTokens.spacing_8}`,
+      contextual: "var(--spacing-padding-xxs) var(--spacing-padding-xs)",
+      notification: "var(--spacing-padding-none)",
+      notificationLabelled: "var(--spacing-padding-none) var(--spacing-padding-xs)",
     },
   },
 };
+
+const getColor = (mode: BadgePropsType["mode"], color: BadgePropsType["color"]) =>
+  mode === "contextual" && color ? contextualColorMap[color].text : notificationColor.text;
+
+const getBackgroundColor = (mode: BadgePropsType["mode"], color: BadgePropsType["color"]) =>
+  mode === "contextual" && color ? contextualColorMap[color].background : notificationColor.background;
+
+const getPadding = (mode: BadgePropsType["mode"], size: BadgePropsType["size"], label: BadgePropsType["label"]) =>
+  size &&
+  (mode === "contextual"
+    ? sizeMap[size].padding.contextual
+    : label
+      ? sizeMap[size].padding.notificationLabelled
+      : sizeMap[size].padding.notification);
+
+const BadgeContainer = styled.div<{
+  label: BadgePropsType["label"];
+  mode: BadgePropsType["mode"];
+  color: BadgePropsType["color"];
+  size: BadgePropsType["size"];
+}>`
+  box-sizing: border-box;
+  border-radius: ${(props) => props.size && sizeMap[props.size].borderRadius};
+  padding: ${(props) => (props.label ? getPadding(props.mode, props.size, props.label) : "")};
+  width: ${(props) =>
+    !props.label && props.mode === "notification" ? props.size && sizeMap[props.size].minWidth : "fit-content"};
+  min-width: ${(props) => props.mode === "notification" && props.size && sizeMap[props.size].minWidth};
+  height: ${(props) => props.size && sizeMap[props.size].height};
+  display: flex;
+  align-items: center;
+  ${(props) => props.mode === "contextual" && "gap: var(--spacing-gap-xxs)"};
+  justify-content: center;
+  background-color: ${(props) => getBackgroundColor(props.mode, props.color)};
+  color: ${(props) => getColor(props.mode, props.color)};
+`;
+
+const IconContainer = styled.div<{ size: BadgePropsType["size"] }>`
+  display: flex;
+  font-size: ${(props) => props.size && sizeMap[props.size].iconSize};
+
+  svg {
+    height: ${(props) => props.size && sizeMap[props.size].iconSize};
+    width: ${(props) => props.size && sizeMap[props.size].iconSize};
+  }
+`;
+
+const Label = styled.span<{ size: BadgePropsType["size"] }>`
+  font-family: var(--typography-font-family);
+  font-size: ${(props) => props.size && sizeMap[props.size].fontSize};
+  font-style: normal;
+  font-weight: var(--typography-label-semibold);
+  white-space: nowrap;
+  line-height: normal;
+`;
 
 const DxcBadge = ({
   label,
@@ -102,52 +160,5 @@ const DxcBadge = ({
     </BadgeContainer>
   </Tooltip>
 );
-
-const getColor = (mode: BadgePropsType["mode"], color: BadgePropsType["color"]) =>
-  mode === "contextual" && color ? contextualColorMap[color].text : CoreTokens.color_white;
-
-const getBackgroundColor = (mode: BadgePropsType["mode"], color: BadgePropsType["color"]) =>
-  mode === "contextual" && color ? contextualColorMap[color].background : CoreTokens.color_red_700;
-
-const getPadding = (mode: BadgePropsType["mode"], size: BadgePropsType["size"]) =>
-  size && (mode === "contextual" ? sizeMap[size].padding.contextual : sizeMap[size].padding.notification);
-
-const BadgeContainer = styled.div<{
-  label: BadgePropsType["label"];
-  mode: BadgePropsType["mode"];
-  color: BadgePropsType["color"];
-  size: BadgePropsType["size"];
-}>`
-  box-sizing: border-box;
-  border-radius: ${(props) => props.size && sizeMap[props.size].borderRadius};
-  padding: ${(props) => (props.label ? getPadding(props.mode, props.size) : "")};
-  width: ${(props) =>
-    !props.label && props.mode === "notification" ? props.size && sizeMap[props.size].width : "fit-content"};
-  min-width: ${(props) => props.mode === "notification" && props.size && sizeMap[props.size].minWidth};
-  height: ${(props) => props.size && sizeMap[props.size].height};
-  display: flex;
-  align-items: center;
-  gap: ${CoreTokens.spacing_2};
-  justify-content: center;
-  background-color: ${(props) => getBackgroundColor(props.mode, props.color)};
-  color: ${(props) => getColor(props.mode, props.color)};
-`;
-
-const IconContainer = styled.div<{ size: BadgePropsType["size"] }>`
-  display: flex;
-  font-size: ${(props) => props.size && sizeMap[props.size].iconSize};
-
-  svg {
-    height: ${(props) => props.size && sizeMap[props.size].iconSize};
-    width: ${(props) => props.size && sizeMap[props.size].iconSize};
-  }
-`;
-
-const Label = styled.span<{ size: BadgePropsType["size"] }>`
-  font-family: ${CoreTokens.type_sans};
-  font-size: ${(props) => props.size && sizeMap[props.size].fontSize};
-  font-weight: ${CoreTokens.type_semibold};
-  white-space: nowrap;
-`;
 
 export default DxcBadge;
