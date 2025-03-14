@@ -29,6 +29,7 @@ const DxcNumberInput = forwardRef<RefType, NumberInputPropsType>(
       size,
       tabIndex,
       ariaLabel = "Number input",
+      showControls = true,
     },
     ref
   ) => {
@@ -36,12 +37,13 @@ const DxcNumberInput = forwardRef<RefType, NumberInputPropsType>(
 
     const contextValue = useMemo(
       () => ({
-        typeNumber: "number",
-        minNumber: min,
         maxNumber: max,
+        minNumber: min,
+        showControls,
         stepNumber: step,
+        typeNumber: "number",
       }),
-      [min, max, step]
+      [max, min, showControls, step]
     );
 
     useEffect(() => {
