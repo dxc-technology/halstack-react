@@ -1,6 +1,6 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import CardCodePage from "screens/components/card/code/CardCodePage";
+import CardOverviewPage from "screens/components/card/overview/CardOverviewPage";
 import CardPageLayout from "screens/components/card/CardPageLayout";
 
 const Usage = () => {
@@ -9,13 +9,11 @@ const Usage = () => {
       <Head>
         <title>Card — Halstack Design System</title>
       </Head>
-      <CardCodePage></CardCodePage>
+      <CardOverviewPage/>
     </>
   );
 };
 
-Usage.getLayout = function getLayout(page: ReactElement) {
-  return <CardPageLayout>{page}</CardPageLayout>;
-};
+Usage.getLayout = (page: ReactElement) => <CardPageLayout>{page}</CardPageLayout>;
 
 export default Usage;

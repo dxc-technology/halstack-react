@@ -5,7 +5,7 @@ import DocFooter from "@/common/DocFooter";
 
 const sections = [
   {
-    title: "Usage",
+    title: "Introduction",
     content: (
       <DxcBulletedList>
         <DxcBulletedList.Item>
@@ -20,15 +20,15 @@ const sections = [
   },
 ];
 
-const CardUsagePage = () => {
+const CardOverviewPage = () => {
   return (
     <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
+        <QuickNavContainer sections={sections} startHeadingLevel={2} />
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/card/usage/CardUsagePage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/card/usage/CardOverviewPage.tsx" />
     </DxcFlex>
   );
 };
 
-export default CardUsagePage;
+export default CardOverviewPage;
