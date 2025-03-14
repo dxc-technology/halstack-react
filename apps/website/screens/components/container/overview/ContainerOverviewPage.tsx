@@ -5,7 +5,7 @@ import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 
 const sections = [
   {
-    title: "Usage",
+    title: "Introduction",
     content: (
       <DxcParagraph>
         The primary function of a container is to structure and group other components or contents that are related to
@@ -121,15 +121,15 @@ const sections = [
   },
 ];
 
-const ContainerUsagePage = () => {
+const ContainerOverviewPage = () => {
   return (
     <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/container/usage/ContainerUsagePage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/container/overview/ContainerOverviewPage.tsx" />
     </DxcFlex>
   );
 };
 
-export default ContainerUsagePage;
+export default ContainerOverviewPage;
