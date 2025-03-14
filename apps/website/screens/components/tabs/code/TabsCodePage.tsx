@@ -122,7 +122,7 @@ const sections = [
             </td>
             <td>Whether the icon should appear above or to the left of the label.</td>
             <td>
-              <TableCode>'top'</TableCode>
+              <TableCode>'left'</TableCode>
             </td>
           </tr>
           <tr>

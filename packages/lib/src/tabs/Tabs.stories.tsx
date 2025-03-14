@@ -1,7 +1,6 @@
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
-import { HalstackProvider } from "../HalstackContext";
 import DxcTabs from "./Tabs";
 import type { Space } from "../common/utils";
 import { Meta, StoryObj } from "@storybook/react/*";
@@ -51,20 +50,6 @@ const tabs = (margin?: Space) => (
 const disabledTabs = (
   <DxcTabs>
     <DxcTabs.Tab label="Tab 1" disabled>
-      <></>
-    </DxcTabs.Tab>
-    <DxcTabs.Tab label="Tab 2" disabled>
-      <></>
-    </DxcTabs.Tab>
-    <DxcTabs.Tab label="Tab 3" disabled>
-      <></>
-    </DxcTabs.Tab>
-  </DxcTabs>
-);
-
-const disabledTabsFirstActive = (
-  <DxcTabs>
-    <DxcTabs.Tab label="Tab 1" active disabled>
       <></>
     </DxcTabs.Tab>
     <DxcTabs.Tab label="Tab 2" disabled>
@@ -127,7 +112,7 @@ const tabsIcon = (iconPosition?: "top" | "left") => (
     <DxcTabs.Tab label="Tab 3" icon={iconSVG} disabled>
       <></>
     </DxcTabs.Tab>
-    <DxcTabs.Tab label="Tab 4" icon={iconSVG}>
+    <DxcTabs.Tab label="Tab 4">
       <></>
     </DxcTabs.Tab>
     <DxcTabs.Tab label="Tab 5" icon="mail">
@@ -168,12 +153,6 @@ const tabsNotificationIcon = (iconPosition?: "top" | "left") => (
   </DxcTabs>
 );
 
-const opinionatedTheme = {
-  tabs: {
-    baseColor: "#5f249f",
-  },
-};
-
 const Tabs = () => (
   <>
     <ExampleContainer>
@@ -206,11 +185,11 @@ const Tabs = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With icon position top" theme="light" level={4} />
-      {tabsIcon()}
+      {tabsIcon("top")}
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With icon position left" theme="light" level={4} />
-      {tabsIcon("left")}
+      {tabsIcon()}
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With icon and notification number" theme="light" level={4} />
@@ -218,7 +197,7 @@ const Tabs = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With icon on the left and notification number" theme="light" level={4} />
-      {tabsNotificationIcon("left")}
+      {tabsNotificationIcon()}
     </ExampleContainer>
     <Title title="Margins" theme="light" level={2} />
     <ExampleContainer>
@@ -248,27 +227,6 @@ const Tabs = () => (
     <ExampleContainer>
       <Title title="Xxlarge margin" theme="light" level={4} />
       {tabs("xxlarge")}
-    </ExampleContainer>
-    <Title title="Opinionated theme" theme="light" level={2} />
-    <ExampleContainer>
-      <Title title="With icon and notification" theme="light" level={4} />
-      <HalstackProvider theme={opinionatedTheme}>{tabsNotificationIcon()}</HalstackProvider>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Disabled" theme="light" level={4} />
-      <HalstackProvider theme={opinionatedTheme}>{disabledTabsFirstActive}</HalstackProvider>
-    </ExampleContainer>
-    <ExampleContainer pseudoState="pseudo-hover">
-      <Title title="Hovered" theme="light" level={4} />
-      <HalstackProvider theme={opinionatedTheme}>{tabs()}</HalstackProvider>
-    </ExampleContainer>
-    <ExampleContainer pseudoState="pseudo-focus">
-      <Title title="Focused" theme="light" level={4} />
-      <HalstackProvider theme={opinionatedTheme}>{tabs()}</HalstackProvider>
-    </ExampleContainer>
-    <ExampleContainer pseudoState="pseudo-active">
-      <Title title="Actived" theme="light" level={4} />
-      <HalstackProvider theme={opinionatedTheme}>{tabs()}</HalstackProvider>
     </ExampleContainer>
   </>
 );
