@@ -7,7 +7,7 @@ import Example from "@/common/example/Example";
 
 const sections = [
   {
-    title: "Usage",
+    title: "Overview",
     content: <DxcParagraph>Considerations for the file input component use:</DxcParagraph>,
     subSections: [
       {
@@ -81,15 +81,15 @@ const sections = [
   },
 ];
 
-const FileInputUsagePage = () => {
+const FileInputOverviewPage = () => {
   return (
     <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/file-input/usage/FileInputUsagePage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/file-input/overview/FileInputOverviewPage.tsx" />
     </DxcFlex>
   );
 };
 
-export default FileInputUsagePage;
+export default FileInputOverviewPage;
