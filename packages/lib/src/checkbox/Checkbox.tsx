@@ -72,6 +72,7 @@ const MainContainer = styled.div<{
   size: CheckboxPropsType["size"];
   disabled: CheckboxPropsType["disabled"];
   readOnly: CheckboxPropsType["readOnly"];
+  checked: CheckboxPropsType["checked"];
 }>`
   display: flex;
   align-items: center;
@@ -196,6 +197,7 @@ const DxcCheckbox = forwardRef<RefType, CheckboxPropsType>(
           )}
           <ValueInput
             type="checkbox"
+            checked={checked ?? innerChecked}
             name={name}
             value={value}
             disabled={disabled}
