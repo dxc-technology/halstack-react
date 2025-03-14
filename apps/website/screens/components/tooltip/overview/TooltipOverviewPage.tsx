@@ -8,7 +8,7 @@ import Image from "@/common/Image";
 
 const sections = [
   {
-    title: "Usage",
+    title: "Introduction",
     subSections: [
       {
         title: "Do's",
@@ -68,15 +68,13 @@ const sections = [
   },
 ];
 
-const TooltipUsagePage = () => {
-  return (
-    <DxcFlex direction="column" gap="4rem">
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
-      </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/tooltip/usage/TooltipUsagePage.tsx" />
-    </DxcFlex>
-  );
-};
+const TooltipOverviewPage = () => (
+  <DxcFlex direction="column" gap="4rem">
+    <QuickNavContainerLayout>
+      <QuickNavContainer sections={sections} startHeadingLevel={2} />
+    </QuickNavContainerLayout>
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/tooltip/overview/TooltipOverviewPage.tsx" />
+  </DxcFlex>
+);
 
-export default TooltipUsagePage;
+export default TooltipOverviewPage;
