@@ -1,7 +1,6 @@
 import { userEvent, within } from "@storybook/test";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
-import { HalstackProvider } from "../HalstackContext";
 import DxcWizard from "./Wizard";
 import { Meta, StoryObj } from "@storybook/react";
 
@@ -63,17 +62,17 @@ const stepWithLongDescription = [
   {
     label: "First step",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
   },
   {
     label: "Second step",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
   },
   {
     label: "Third step",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
   },
 ];
 
@@ -148,111 +147,68 @@ const stepMaterialSymbols = [
   },
 ];
 
-const opinionatedTheme = {
-  wizard: {
-    baseColor: "#5f249f",
-    fontColor: "#000000",
-    selectedStepFontColor: "#ffffff",
-  },
-};
-
 const Wizard = () => (
   <>
     <ExampleContainer>
       <Title title="Current step in the third step, labels and description" theme="light" level={4} />
-      <DxcWizard defaultCurrentStep={2} steps={stepWithLabelDescription}></DxcWizard>
+      <DxcWizard defaultCurrentStep={2} steps={stepWithLabelDescription} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With long description in horizontal" theme="light" level={4} />
-      <DxcWizard steps={stepWithLongDescription}></DxcWizard>
+      <DxcWizard steps={stepWithLongDescription} />
     </ExampleContainer>
-    <ExampleContainer>
+    <ExampleContainer expanded>
       <Title title="With long description in vertical" theme="light" level={4} />
-      <DxcWizard mode="vertical" steps={stepWithLongDescription}></DxcWizard>
+      <DxcWizard mode="vertical" steps={stepWithLongDescription} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Disabled steps" theme="light" level={4} />
-      <DxcWizard steps={stepDisabled}></DxcWizard>
+      <DxcWizard steps={stepDisabled} />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-focus">
       <Title title="Focused steps" theme="light" level={4} />
-      <DxcWizard steps={stepIcons}></DxcWizard>
+      <DxcWizard steps={stepIcons} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With icons" theme="light" level={4} />
-      <DxcWizard steps={stepIcons}></DxcWizard>
+      <DxcWizard steps={stepIcons} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With large icons" theme="light" level={4} />
-      <DxcWizard steps={stepLargeIcons}></DxcWizard>
+      <DxcWizard steps={stepLargeIcons} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With Material Symbols" theme="light" level={4} />
-      <DxcWizard steps={stepMaterialSymbols}></DxcWizard>
+      <DxcWizard steps={stepMaterialSymbols} />
     </ExampleContainer>
     <Title title="Margins horizontal" theme="light" level={2} />
     <ExampleContainer>
       <Title title="Xxsmall margin" theme="light" level={4} />
-      <DxcWizard margin="xxsmall" steps={stepWithLabel}></DxcWizard>
+      <DxcWizard margin="xxsmall" steps={stepWithLabel} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Xsmall margin" theme="light" level={4} />
-      <DxcWizard margin="xsmall" steps={stepWithLabel}></DxcWizard>
+      <DxcWizard margin="xsmall" steps={stepWithLabel} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Small margin" theme="light" level={4} />
-      <DxcWizard margin="small" steps={stepWithLabel}></DxcWizard>
+      <DxcWizard margin="small" steps={stepWithLabel} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Medium margin" theme="light" level={4} />
-      <DxcWizard margin="medium" steps={stepWithLabel}></DxcWizard>
+      <DxcWizard margin="medium" steps={stepWithLabel} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Large margin" theme="light" level={4} />
-      <DxcWizard margin="large" steps={stepWithLabel}></DxcWizard>
+      <DxcWizard margin="large" steps={stepWithLabel} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Xlarge margin" theme="light" level={4} />
-      <DxcWizard margin="xlarge" steps={stepWithLabel}></DxcWizard>
+      <DxcWizard margin="xlarge" steps={stepWithLabel} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Xxlarge margin" theme="light" level={4} />
-      <DxcWizard margin="xxlarge" steps={stepWithLabel}></DxcWizard>
-    </ExampleContainer>
-    <Title title="Margins vertical" theme="light" level={2} />
-    <ExampleContainer>
-      <Title title="Xxsmall margin" theme="light" level={4} />
-      <DxcWizard mode="vertical" margin="xxsmall" steps={stepWithLabelDescription}></DxcWizard>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Xsmall margin" theme="light" level={4} />
-      <DxcWizard mode="vertical" margin="xsmall" steps={stepWithLabel}></DxcWizard>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Small margin" theme="light" level={4} />
-      <DxcWizard mode="vertical" margin="small" steps={stepWithLabel}></DxcWizard>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Medium margin" theme="light" level={4} />
-      <DxcWizard mode="vertical" margin="medium" steps={stepWithLabel}></DxcWizard>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Large margin" theme="light" level={4} />
-      <DxcWizard mode="vertical" margin="large" steps={stepWithLabel}></DxcWizard>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Xlarge margin" theme="light" level={4} />
-      <DxcWizard mode="vertical" margin="xlarge" steps={stepWithLabel}></DxcWizard>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Xxlarge margin" theme="light" level={4} />
-      <DxcWizard mode="vertical" margin="xxlarge" steps={stepWithLabel}></DxcWizard>
-    </ExampleContainer>
-    <Title title="Opinionated theme" theme="light" level={2} />
-    <ExampleContainer>
-      <HalstackProvider theme={opinionatedTheme}>
-        <DxcWizard defaultCurrentStep={2} steps={stepWithLabelDescription}></DxcWizard>
-      </HalstackProvider>
+      <DxcWizard margin="xxlarge" steps={stepWithLabel} />
     </ExampleContainer>
   </>
 );
@@ -260,7 +216,7 @@ const Wizard = () => (
 const WizardSelected = () => (
   <ExampleContainer>
     <Title title="Clicked step" theme="light" level={4} />
-    <DxcWizard steps={stepWithLabel} mode="vertical"></DxcWizard>
+    <DxcWizard steps={stepWithLabel} mode="vertical" />
   </ExampleContainer>
 );
 

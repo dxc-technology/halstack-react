@@ -19,7 +19,7 @@ const code = `() => {
           },
           {
             label: "Policy",
-            valid: true,
+            valid: false,
           },
           {
             label: "Payment",
