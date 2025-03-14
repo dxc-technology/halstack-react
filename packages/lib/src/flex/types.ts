@@ -1,10 +1,6 @@
 import { ReactNode } from "react";
-import { CoreSpacingTokensType } from "../common/coreTokens";
 
-type Gap =
-  | { rowGap: CoreSpacingTokensType; columnGap?: CoreSpacingTokensType }
-  | { rowGap?: CoreSpacingTokensType; columnGap: CoreSpacingTokensType }
-  | CoreSpacingTokensType;
+type Gap = { rowGap: string; columnGap?: string } | { rowGap?: string; columnGap: string } | string;
 
 type CommonProps = {
   /**
@@ -120,7 +116,7 @@ type Props = CommonProps & {
 export type StyledProps = CommonProps & {
   $direction?: "row" | "row-reverse" | "column" | "column-reverse";
   $wrap?: "nowrap" | "wrap" | "wrap-reverse";
-  $gap?: CoreSpacingTokensType | Gap;
+  $gap?: Gap;
   $order?: number;
   $grow?: number;
   $shrink?: number;
