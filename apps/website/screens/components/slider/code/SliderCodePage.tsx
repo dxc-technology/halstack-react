@@ -8,6 +8,7 @@ import controlled from "./examples/controlled";
 import uncontrolled from "./examples/uncontrolled";
 import formatLabel from "./examples/formatLabel";
 import TableCode from "@/common/TableCode";
+import complex from "./examples/complex";
 
 const sections = [
   {
@@ -29,7 +30,9 @@ const sections = [
               <TableCode>number</TableCode>
             </td>
             <td>Initial value of the slider, only when it is uncontrolled.</td>
-            <td>-</td>
+            <td>
+              <TableCode>0</TableCode>
+            </td>
           </tr>
           <tr>
             <td>value</td>
@@ -221,7 +224,9 @@ const sections = [
             <td>
               Specifies a string to be used as the name for the slider element when no <Code>label</Code> is provided.
             </td>
-            <td>'Slider'</td>
+            <td>
+              <TableCode>'Slider'</TableCode>
+            </td>
           </tr>
         </tbody>
       </DxcTable>
@@ -241,6 +246,10 @@ const sections = [
       {
         title: "Format label",
         content: <Example example={formatLabel} defaultIsVisible />,
+      },
+      {
+        title: "Decimals and negatives",
+        content: <Example example={complex} defaultIsVisible />,
       },
     ],
   },
