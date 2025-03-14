@@ -3,7 +3,10 @@ import styled from "styled-components";
 import { DropdownMenuItemProps } from "./types";
 import DxcIcon from "../icon/Icon";
 
-const DropdownMenuItemContainer = styled.li<{ visuallyFocused: DropdownMenuItemProps["visuallyFocused"] }>`
+const DropdownMenuItemContainer = styled.li<{
+  visuallyFocused: DropdownMenuItemProps["visuallyFocused"];
+  iconPosition: DropdownMenuItemProps["iconPosition"];
+}>`
   box-sizing: border-box;
   color: var(--color-fg-neutral-dark);
   display: flex;
@@ -12,6 +15,8 @@ const DropdownMenuItemContainer = styled.li<{ visuallyFocused: DropdownMenuItemP
   height: var(--height-m);
   padding: var(--spacing-padding-none) var(--spacing-padding-xs);
   cursor: pointer;
+
+  ${({ iconPosition }) => (iconPosition === "after" ? "flex-direction: row-reverse;" : "flex-direction: row;")}
 
   ${(props) =>
     props.visuallyFocused &&
@@ -51,6 +56,7 @@ const DropdownMenuItemIcon = styled.div`
 
 const DropdownMenuItem = ({ id, visuallyFocused, iconPosition, onClick, option }: DropdownMenuItemProps) => (
   <DropdownMenuItemContainer
+    iconPosition={iconPosition}
     visuallyFocused={visuallyFocused}
     onClick={() => {
       onClick(option.value);
@@ -59,13 +65,12 @@ const DropdownMenuItem = ({ id, visuallyFocused, iconPosition, onClick, option }
     role="menuitem"
     tabIndex={-1}
   >
-    {iconPosition === "after" && <DropdownMenuItemLabel>{option.label}</DropdownMenuItemLabel>}
     {option.icon && (
       <DropdownMenuItemIcon role={typeof option.icon === "string" ? undefined : "img"} aria-hidden>
         {typeof option.icon === "string" ? <DxcIcon icon={option.icon} /> : option.icon}
       </DropdownMenuItemIcon>
     )}
-    {iconPosition === "before" && <DropdownMenuItemLabel>{option.label}</DropdownMenuItemLabel>}
+    <DropdownMenuItemLabel>{option.label}</DropdownMenuItemLabel>
   </DropdownMenuItemContainer>
 );
 

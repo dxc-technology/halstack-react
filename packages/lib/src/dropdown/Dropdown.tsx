@@ -71,10 +71,11 @@ const DropdownTrigger = styled.button<{
   `};
 `;
 
-const DropdownTriggerContent = styled.span`
+const DropdownTriggerContent = styled.span<{ iconPosition: DropdownPropsType["iconPosition"] }>`
   display: flex;
+  ${({ iconPosition }) => (iconPosition === "after" ? "flex-direction: row-reverse;" : "flex-direction: row;")}
   align-items: center;
-  gap: var(--spacing-gap-s);
+  gap: var(--spacing-gap-xs);
   width: 100%;
   overflow: hidden;
 `;
@@ -277,8 +278,7 @@ const DxcDropdown = ({
               tabIndex={tabIndex}
               ref={triggerRef}
             >
-              <DropdownTriggerContent>
-                {label && iconPosition === "after" && <DropdownTriggerLabel>{label}</DropdownTriggerLabel>}
+              <DropdownTriggerContent iconPosition={iconPosition}>
                 {icon && (
                   <DropdownTriggerIcon
                     disabled={disabled}
@@ -288,7 +288,7 @@ const DxcDropdown = ({
                     {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
                   </DropdownTriggerIcon>
                 )}
-                {label && iconPosition === "before" && <DropdownTriggerLabel>{label}</DropdownTriggerLabel>}
+                {label && <DropdownTriggerLabel>{label}</DropdownTriggerLabel>}
               </DropdownTriggerContent>
               {!caretHidden && (
                 <CaretIcon disabled={disabled}>
