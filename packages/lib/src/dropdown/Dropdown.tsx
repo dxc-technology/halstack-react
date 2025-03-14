@@ -54,8 +54,7 @@ const DropdownTrigger = styled.button<{
   min-width: ${(props) => (props.label === "" ? "0px" : calculateWidth(props.margin, props.size))};
   border: 0;
   border-radius: var(--border-radius-s);
-  background-color: ${(props) =>
-    props.disabled ? "var(--color-bg-neutral-light);" : "var(--color-bg-neutral-lightest);"};
+  background-color: var(--color-bg-neutral-lightest);
   color: ${(props) => (props.disabled ? "var(--color-fg-neutral-medium);" : "var(--color-fg-neutral-dark);")};
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
 

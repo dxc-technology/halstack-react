@@ -83,19 +83,22 @@ const sections = [
         </DxcParagraph>
       </>
     ),
-  },
-  {
-    title: "Icon usage",
-    content: (
-      <>
-        <DxcParagraph>
-          Icons can be used within the dropdown component in various configurations. They can be placed before or after
-          the label or serve as the sole content of the dropdown placeholder and options. This maintains consistency
-          with other components in our Design System, such as buttons and selects, which follow the same behavior.
-        </DxcParagraph>
-        <Example example={iconUsage}></Example>
-      </>
-    ),
+    subSections: [
+      {
+        title: "Icon usage",
+        content: (
+          <>
+            <DxcParagraph>
+              Icons can be used within the dropdown component in various configurations. They can be placed before or
+              after the label or serve as the sole content of the dropdown placeholder and options. This maintains
+              consistency with other components in our Design System, such as buttons and selects, which follow the same
+              behavior.
+            </DxcParagraph>
+            <Example example={iconUsage}></Example>
+          </>
+        ),
+      },
+    ],
   },
   {
     title: "Best practices",
