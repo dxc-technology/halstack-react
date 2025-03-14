@@ -51,6 +51,7 @@ const DropdownTrigger = styled.button<{
   gap: var(--spacing-gap-s);
   width: 100%;
   height: var(--height-m);
+  padding: var(--spacing-padding-none) var(--spacing-padding-xs);
   min-width: ${(props) => (props.label === "" ? "0px" : calculateWidth(props.margin, props.size))};
   border: 0;
   border-radius: var(--border-radius-s);

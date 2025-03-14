@@ -42,6 +42,7 @@ const DropdownMenuItemLabel = styled.span`
   font-family: var(--typography-font-family);
   font-size: var(--typography-label-l);
   font-weight: var(--typography-label-regular);
+  white-space: nowrap;
 `;
 
 const DropdownMenuItemIcon = styled.div`
