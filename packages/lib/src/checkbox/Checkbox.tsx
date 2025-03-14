@@ -28,7 +28,6 @@ const CheckboxContainer = styled.span`
 `;
 
 const Checkbox = styled.span<{
-  checked: CheckboxPropsType["checked"];
   disabled: CheckboxPropsType["disabled"];
   readOnly: CheckboxPropsType["readOnly"];
 }>`
@@ -48,13 +47,7 @@ const Checkbox = styled.span<{
           : getEnabledColor("border")};
   border-radius: var(--border-radius-xs);
   background-color: ${(props) =>
-    props.checked
-      ? props.disabled
-        ? getDisabledColor("check")
-        : props.readOnly
-          ? getReadOnlyColor("check")
-          : getEnabledColor("check")
-      : "transparent"};
+    props.disabled ? getDisabledColor("check") : props.readOnly ? getReadOnlyColor("check") : getEnabledColor("check")};
   color: ${(props) =>
     props.disabled
       ? getDisabledColor("background")
@@ -79,7 +72,6 @@ const MainContainer = styled.div<{
   size: CheckboxPropsType["size"];
   disabled: CheckboxPropsType["disabled"];
   readOnly: CheckboxPropsType["readOnly"];
-  checked: CheckboxPropsType["checked"];
 }>`
   display: flex;
   align-items: center;
@@ -123,6 +115,15 @@ const checkedIcon = (
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
     <path
       d="M19 3H5C3.89 3 3 3.9 3 5V19C3 20.1 3.89 21 5 21H19C20.11 21 21 20.1 21 19V5C21 3.9 20.11 3 19 3ZM10 17L5 12L6.41 10.59L10 14.17L17.59 6.58L19 8L10 17Z"
+      fill="currentColor"
+    />
+  </svg>
+);
+
+const unCheckedIcon = (
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+    <path
+      d="M19 5V19H5V5H19ZM19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3Z"
       fill="currentColor"
     />
   </svg>
@@ -185,7 +186,6 @@ const DxcCheckbox = forwardRef<RefType, CheckboxPropsType>(
           onClick={handleCheckboxChange}
           margin={margin}
           size={size}
-          checked={checked ?? innerChecked}
           ref={ref}
         >
           {label && (
@@ -196,7 +196,6 @@ const DxcCheckbox = forwardRef<RefType, CheckboxPropsType>(
           )}
           <ValueInput
             type="checkbox"
-            checked={checked ?? innerChecked}
             name={name}
             value={value}
             disabled={disabled}
@@ -213,12 +212,11 @@ const DxcCheckbox = forwardRef<RefType, CheckboxPropsType>(
               aria-required={!disabled && !optional}
               aria-labelledby={label ? labelId : undefined}
               aria-label={label ? undefined : ariaLabel}
-              checked={checked ?? innerChecked}
               disabled={disabled}
               readOnly={readOnly}
               ref={checkboxRef}
             >
-              {(checked ?? innerChecked) && checkedIcon}
+              {(checked ?? innerChecked) ? checkedIcon : unCheckedIcon}
             </Checkbox>
           </CheckboxContainer>
         </MainContainer>
