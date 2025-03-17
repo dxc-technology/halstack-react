@@ -64,7 +64,6 @@ const DayCellButton = styled.button<{
   cursor: pointer;
   font-family: var(--typography-font-family);
   font-size: var(--typography-label-m);
-  color: var(--color-fg-neutral-dark);
   font-weight: var(--typography-label-regular, 400);
   background-color: ${(props) => (props.selected ? "var(--color-bg-primary-strong);" : "transparent")};
   color: ${(props) =>
@@ -73,8 +72,14 @@ const DayCellButton = styled.button<{
       : !props.actualMonth
         ? "var(--color-fg-neutral-medium);"
         : "var(--color-fg-neutral-dark);"};
+
+  ${(props) =>
+    props.isCurrentDay &&
+    !props.selected &&
+    `border: var(--border-width-s) var(--border-style-default) var(--border-color-primary-lighter);`}
+
   &:focus {
-    outline: var(--border-width-m) solid var(--border-color-secondary-medium);
+    outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
   }
   &:hover {
     background-color: ${(props) =>

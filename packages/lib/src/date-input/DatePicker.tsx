@@ -13,7 +13,7 @@ const DatePickerContainer = styled.div`
   background-color: var(--color-bg-neutral-lightest);
   box-shadow: var(--shadow-mid-x-position) var(--shadow-mid-y-position) var(--shadow-mid-blur) var(--shadow-mid-spread)
     var(--shadow-light);
-  border: var(--border-width-s) solid var(--border-color-neutral-medium);
+  border: var(--border-width-s) var(--border-style-default) var(--border-color-neutral-medium);
   border-radius: var(--border-radius-s);
   width: fit-content;
   font-family: var(--typography-font-family);
@@ -47,15 +47,15 @@ const HeaderButton = styled.button`
     background-color: var(--color-bg-primary-light);
   }
   &:focus {
-    outline: var(--border-width-m) solid var(--border-color-secondary-medium);
+    outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
   }
   &:active {
-    color: var(--color-bg-neutral-lightest);
+    color: var(--color-fg-neutral-bright);
     background-color: var(--color-bg-primary-stronger);
   }
 
   span::before {
-    font-size: 24px;
+    font-size: var(--height-s);
   }
 `;
 
@@ -64,7 +64,6 @@ const HeaderYearTrigger = styled(HeaderButton)`
   padding: 0px var(--spacing-padding-xs) 0px var(--spacing-padding-m);
   height: var(--height-m);
   width: 172px;
-  font-size: var(--height-xxs);
   span::before {
     font-size: var(--height-xxs);
   }

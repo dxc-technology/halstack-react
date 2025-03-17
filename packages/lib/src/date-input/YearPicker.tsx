@@ -14,7 +14,7 @@ const YearPickerContainer = styled.div`
   height: 312px;
   box-shadow: var(--shadow-mid-x-position) var(--shadow-mid-y-position) var(--shadow-mid-blur) var(--shadow-mid-spread)
     var(--shadow-light);
-  padding-top: var(--spacing-padding-xxxs);
+  padding-top: var(--spacing-gap-xxs);
 `;
 
 const YearPickerButton = styled.button<{
@@ -27,7 +27,7 @@ const YearPickerButton = styled.button<{
   width: 80px;
   min-height: var(--height-m);
   height: var(--height-m);
-  background-color: var(--color-bg-neutral-lightest);
+  background-color: transparent;
   border: none;
   border-radius: var(--border-radius-xl);
   cursor: pointer;
@@ -42,7 +42,7 @@ const YearPickerButton = styled.button<{
          color: var(--color-fg-neutral-bright) !important;
          background-color: var(--color-bg-primary-strong) !important;`
       : props.isCurrentYear
-        ? `outline: var(--border-width-s) solid var(--border-color-primary-lighter); 
+        ? `border: var(--border-width-s) var(--border-style-default) var(--border-color-primary-lighter); 
          color: var(--color-fg-primary-strong);`
         : ``}
 
@@ -54,7 +54,7 @@ const YearPickerButton = styled.button<{
     color: var(--color-fg-neutral-dark);
   }
   &:focus {
-    outline: var(--border-width-m) solid var(--border-color-secondary-medium);
+    outline: var(--border-width-m) var(--border-style-default)  var(--border-color-secondary-medium);
   }
   &:active {
     color: var(--color-fg-neutral-bright);
