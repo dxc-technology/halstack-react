@@ -20,8 +20,7 @@ const MainContainer = styled.div<{
 }>`
   box-sizing: border-box;
   display: flex;
-  align-items: center;
-  gap: 0.75rem;
+  gap: var(--spacing-gap-m);
   width: ${(props) => (props.singleFileMode ? "230px" : "320px")};
   height: ${(props) => (props.singleFileMode || !props.showPreview) && "var(--height-m)"};
   padding: ${(props) =>
@@ -65,7 +64,7 @@ const FileItemContent = styled.div`
   display: grid;
   grid-template-columns: auto min-content;
   grid-template-rows: min-content auto;
-  column-gap: 0.25rem;
+  column-gap: var(--spacing-gap-s);
 `;
 
 const FileName = styled.span`
@@ -130,7 +129,7 @@ const FileItem = ({
           ))}
         <FileItemContent>
           <FileName id={fileNameId}>{fileName}</FileName>
-          <DxcFlex gap="0.25rem">
+          <DxcFlex>
             <DxcActionIcon
               onClick={() => onDelete(fileName)}
               icon="close"

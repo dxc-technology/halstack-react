@@ -9,13 +9,11 @@ const Index = () => {
       <Head>
         <title>File Input — Halstack Design System</title>
       </Head>
-      <FileInputOverviewPage></FileInputOverviewPage>
+      <FileInputOverviewPage />
     </>
   );
 };
 
-Index.getLayout = (page: ReactElement) => {
-  return <FileInputPageLayout>{page}</FileInputPageLayout>;
-};
+Index.getLayout = (page: ReactElement) => <FileInputPageLayout>{page}</FileInputPageLayout>;
 
 export default Index;

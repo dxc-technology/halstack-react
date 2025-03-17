@@ -9,13 +9,11 @@ const Code = () => {
       <Head>
         <title>File Input Code — Halstack Design System</title>
       </Head>
-      <FileInputCodePage></FileInputCodePage>
+      <FileInputCodePage />
     </>
   );
 };
 
-Code.getLayout = function getLayout(page: ReactElement) {
-  return <FileInputPageLayout>{page}</FileInputPageLayout>;
-};
+Code.getLayout = (page: ReactElement) => <FileInputPageLayout>{page}</FileInputPageLayout>;
 
 export default Code;

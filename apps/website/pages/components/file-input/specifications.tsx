@@ -9,13 +9,11 @@ const Specifications = () => {
       <Head>
         <title>File Input Specs — Halstack Design System</title>
       </Head>
-      <FileInputSpecsPage></FileInputSpecsPage>
+      <FileInputSpecsPage />
     </>
   );
 };
 
-Specifications.getLayout = function getLayout(page: ReactElement) {
-  return <FileInputPageLayout>{page}</FileInputPageLayout>;
-};
+Specifications.getLayout = (page: ReactElement) => <FileInputPageLayout>{page}</FileInputPageLayout>;
 
 export default Specifications;
