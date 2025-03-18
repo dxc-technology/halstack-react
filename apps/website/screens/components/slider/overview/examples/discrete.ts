@@ -19,6 +19,7 @@ const code = `() => {
         step={10}
         value={value}
       />
+      <span>Current value: {value}</span>
     </DxcInset>
   );
 }`;

@@ -158,9 +158,9 @@ const sections = [
               Lets users <strong>select any value</strong> within the range, without fixed steps.
             </DxcParagraph>
             <DxcBulletedList>
-              <DxcBulletedList.Item>Each step is marked, and the thumb "snaps" to these values.</DxcBulletedList.Item>
+              <DxcBulletedList.Item>Offers smooth, fine-grained control over the selection.</DxcBulletedList.Item>
               <DxcBulletedList.Item>
-                Best for <strong>limited, meaningful choices</strong> where precision matters.
+                Best for <strong>gradual adjustments</strong> where any value is valid.
               </DxcBulletedList.Item>
             </DxcBulletedList>
             <Example example={continuous} />
@@ -177,8 +177,8 @@ const sections = [
         content: (
           <DxcBulletedList>
             <DxcBulletedList.Item>
-              Use a <strong>descriptive label</strong> that explains what the slider controls (i.d., instead of "Adjust
-              value," use "Select your coverage amount.").
+              Use a <strong>descriptive label</strong> that explains what the slider controls (i.e., instead of "Adjust
+              value", use "Select your coverage amount.").
             </DxcBulletedList.Item>
             <DxcBulletedList.Item>
               Add <strong>helper text</strong> if additional guidance is needed.

@@ -6,7 +6,7 @@ import SliderCodePage from "screens/components/slider/code/SliderCodePage";
 const Code = () => (
   <>
     <Head>
-      <title>Slider — Halstack Design System</title>
+      <title>Slider code — Halstack Design System</title>
     </Head>
     <SliderCodePage />
   </>
