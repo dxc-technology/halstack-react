@@ -137,15 +137,13 @@ const sections = [
   },
 ];
 
-const DropdownOverviewPage = () => {
-  return (
-    <DxcFlex direction="column" gap="4rem">
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
-      </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/dropdown/overview/DropdownOverviewPage.tsx" />
-    </DxcFlex>
-  );
-};
+const DropdownOverviewPage = () => (
+  <DxcFlex direction="column" gap="4rem">
+    <QuickNavContainerLayout>
+      <QuickNavContainer sections={sections} startHeadingLevel={2} />
+    </QuickNavContainerLayout>
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/dropdown/overview/DropdownOverviewPage.tsx" />
+  </DxcFlex>
+);
 
 export default DropdownOverviewPage;
