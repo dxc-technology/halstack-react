@@ -89,42 +89,40 @@ const sections = [
   {
     title: "Best practices",
     content: (
-      <>
-        <DxcBulletedList type="number">
-          <DxcBulletedList.Item>
-            <strong>Use meaningful icons:</strong> Select icons that accurately represent menu items, ensuring clarity
-            and intuitive navigation.
-          </DxcBulletedList.Item>
-          <DxcBulletedList.Item>
-            <strong>Align properly:</strong> position the contextual menu to the left or right, avoiding placement in
-            the center to prevent obstruction of main content.
-          </DxcBulletedList.Item>
-          <DxcBulletedList.Item>
-            <strong>Enhance navigation with hierarchy:</strong> structure menu items using different levels to maintain
-            logical organization.
-          </DxcBulletedList.Item>
-          <DxcBulletedList.Item>
-            <strong>Use badges for status indication:</strong> incorporate a Badge component to display status updates,
-            counts or categories for navigable sections.
-          </DxcBulletedList.Item>
-          <DxcBulletedList.Item>
-            <strong>Default selection:</strong> when pre-selecting an option, try to limit it to the first menu item to
-            maintain intuitive user interactions.
-          </DxcBulletedList.Item>
-          <DxcBulletedList.Item>
-            <strong>Avoid deep hierarchies:</strong> limit navigation depth to a maximum of three levels to prevent
-            excessive indentation and complexity.
-          </DxcBulletedList.Item>
-          <DxcBulletedList.Item>
-            <strong>Restrict icon usage:</strong> use icons only at the first navigation level to maintain readability
-            and avoid visual clutter.
-          </DxcBulletedList.Item>
-          <DxcBulletedList.Item>
-            <strong>Don't overload with icons:</strong> too many icons can create confusion rather than improve
-            usability. Keep them purposeful and minimal.
-          </DxcBulletedList.Item>
-        </DxcBulletedList>
-      </>
+      <DxcBulletedList>
+        <DxcBulletedList.Item>
+          <strong>Use meaningful icons:</strong> Select icons that accurately represent menu items, ensuring clarity and
+          intuitive navigation.
+        </DxcBulletedList.Item>
+        <DxcBulletedList.Item>
+          <strong>Align properly:</strong> position the contextual menu to the left or right, avoiding placement in the
+          center to prevent obstruction of main content.
+        </DxcBulletedList.Item>
+        <DxcBulletedList.Item>
+          <strong>Enhance navigation with hierarchy:</strong> structure menu items using different levels to maintain
+          logical organization.
+        </DxcBulletedList.Item>
+        <DxcBulletedList.Item>
+          <strong>Use badges for status indication:</strong> incorporate a Badge component to display status updates,
+          counts or categories for navigable sections.
+        </DxcBulletedList.Item>
+        <DxcBulletedList.Item>
+          <strong>Default selection:</strong> when pre-selecting an option, try to limit it to the first menu item to
+          maintain intuitive user interactions.
+        </DxcBulletedList.Item>
+        <DxcBulletedList.Item>
+          <strong>Avoid deep hierarchies:</strong> limit navigation depth to a maximum of three levels to prevent
+          excessive indentation and complexity.
+        </DxcBulletedList.Item>
+        <DxcBulletedList.Item>
+          <strong>Restrict icon usage:</strong> use icons only at the first navigation level to maintain readability and
+          avoid visual clutter.
+        </DxcBulletedList.Item>
+        <DxcBulletedList.Item>
+          <strong>Don't overload with icons:</strong> too many icons can create confusion rather than improve usability.
+          Keep them purposeful and minimal.
+        </DxcBulletedList.Item>
+      </DxcBulletedList>
     ),
   },
 ];
