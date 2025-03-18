@@ -166,7 +166,7 @@ const DxcResultsetTable = ({
             ))}
           </tbody>
         </DxcTable>
-        {!hidePaginator && (
+        {!hidePaginator && rows.length > itemsPerPage && (
           <DxcPaginator
             totalItems={rows.length}
             itemsPerPage={itemsPerPage}
