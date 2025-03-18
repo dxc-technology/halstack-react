@@ -1,8 +1,7 @@
 import "./styles/fonts.css";
-// import "./styles/variables.css";
+import "./styles/variables.css";
 
 export { default as DxcAccordion } from "./accordion/Accordion";
-export { default as DxcAccordionGroup } from "./accordion-group/AccordionGroup";
 export { default as DxcAlert } from "./alert/Alert";
 export { default as DxcApplicationLayout } from "./layout/ApplicationLayout";
 export { default as DxcBadge } from "./badge/Badge";
