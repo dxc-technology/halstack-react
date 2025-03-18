@@ -179,7 +179,7 @@ const DxcSlider = forwardRef<RefType, SliderPropsType>(
       value,
     },
     ref
-  ): JSX.Element => {
+  ) => {
     const labelId = `label-${useId()}`;
     const [innerValue, setInnerValue] = useState(defaultValue);
     const [inputValue, setInputValue] = useState((value ?? defaultValue).toString());
