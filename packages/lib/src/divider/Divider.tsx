@@ -1,30 +1,14 @@
 import styled from "styled-components";
-import CoreTokens from "../common/coreTokens";
 import DividerPropsType from "./types";
-
-const DxcDivider = ({
-  orientation = "horizontal",
-  weight = "regular",
-  color = "mediumGrey",
-  decorative = true,
-}: DividerPropsType): JSX.Element => (
-  <StyledDivider
-    orientation={orientation}
-    weight={weight}
-    color={color}
-    aria-orientation={orientation}
-    aria-hidden={decorative}
-  />
-);
 
 const StyledDivider = styled.hr<DividerPropsType>`
   ${({ orientation, weight, color }) => `
     border-color: ${
       color === "lightGrey"
-        ? CoreTokens.color_grey_200
+        ? "var(--border-color-neutral-lighter)"
         : color === "mediumGrey"
-          ? CoreTokens.color_grey_400
-          : CoreTokens.color_grey_700
+          ? "var(--border-color-neutral-medium)"
+          : "var(--border-color-neutral-strongest)"
     };
     ${orientation === "horizontal" ? "width" : "min-height"}: 100%;
     ${orientation === "horizontal" ? "height" : "width"}: 0px;
@@ -36,5 +20,20 @@ const StyledDivider = styled.hr<DividerPropsType>`
     margin: 0px;
   `}
 `;
+
+const DxcDivider = ({
+  orientation = "horizontal",
+  weight = "regular",
+  color = "mediumGrey",
+  decorative = true,
+}: DividerPropsType) => (
+  <StyledDivider
+    orientation={orientation}
+    weight={weight}
+    color={color}
+    aria-orientation={orientation}
+    aria-hidden={decorative}
+  />
+);
 
 export default DxcDivider;
