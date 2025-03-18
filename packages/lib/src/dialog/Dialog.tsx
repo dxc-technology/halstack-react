@@ -3,7 +3,7 @@ import { createPortal } from "react-dom";
 import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
 import { responsiveSizes } from "../common/variables";
 import DxcActionIcon from "../action-icon/ActionIcon";
-import HalstackContext, { HalstackLanguageContext } from "../HalstackContext";
+import { HalstackLanguageContext } from "../HalstackContext";
 import FocusLock from "../utils/FocusLock";
 import DialogPropsType from "./types";
 
@@ -27,7 +27,7 @@ const Overlay = styled.div`
   position: fixed;
   inset: 0;
   height: 100%;
-  background-color: ${(props) => props.theme.overlayColor};
+  background-color: var(--color-bg-alpha-medium);
 `;
 
 const Dialog = styled.div<{ closable: DialogPropsType["closable"] }>`
@@ -36,10 +36,9 @@ const Dialog = styled.div<{ closable: DialogPropsType["closable"] }>`
   max-width: 80%;
   min-width: 696px;
   border-radius: 4px;
-  background-color: ${(props) => props.theme.backgroundColor};
+  background-color: var(--color-bg-neutral-lightest);
   ${(props) => props.closable && "min-height: 72px;"}
-  box-shadow: ${(props) =>
-    `${props.theme.boxShadowOffsetX} ${props.theme.boxShadowOffsetY} ${props.theme.boxShadowBlur} ${props.theme.boxShadowColor}`};
+  box-shadow: var(--shadow-low-x-position) var(--shadow-low-y-position) var(--shadow-low-blur) var(--shadow-low-spread) var(--shadow-dark);
   z-index: 2147483647;
 
   @media (max-width: ${responsiveSizes.medium}rem) {
@@ -62,7 +61,6 @@ const DxcDialog = ({
   overlay = true,
   tabIndex = 0,
 }: DialogPropsType): JSX.Element => {
-  const colorsTheme = useContext(HalstackContext);
   const translatedLabels = useContext(HalstackLanguageContext);
 
   useEffect(() => {
@@ -80,7 +78,7 @@ const DxcDialog = ({
   }, [onCloseClick]);
 
   return (
-    <ThemeProvider theme={colorsTheme.dialog}>
+    <>
       <BodyStyle />
       {createPortal(
         <DialogContainer>
@@ -89,28 +87,21 @@ const DxcDialog = ({
             <FocusLock>
               {children}
               {closable && (
-                <ThemeProvider
-                  theme={{
-                    actionBackgroundColor: colorsTheme.dialog.closeIconBackgroundColor,
-                    actionIconColor: colorsTheme.dialog.closeIconColor,
-                  }}
-                >
-                  <CloseIconActionContainer>
-                    <DxcActionIcon
-                      icon="close"
-                      onClick={onCloseClick}
-                      tabIndex={tabIndex}
-                      title={translatedLabels.dialog.closeIconAriaLabel}
-                    />
-                  </CloseIconActionContainer>
-                </ThemeProvider>
+                <CloseIconActionContainer>
+                  <DxcActionIcon
+                    icon="close"
+                    onClick={onCloseClick}
+                    tabIndex={tabIndex}
+                    title={translatedLabels.dialog.closeIconAriaLabel}
+                  />
+                </CloseIconActionContainer>
               )}
             </FocusLock>
           </Dialog>
         </DialogContainer>,
         document.body
       )}
-    </ThemeProvider>
+    </>
   );
 };
 
