@@ -1,80 +1,51 @@
 import { useContext, useState, useRef, useId, forwardRef, KeyboardEvent } from "react";
-import styled, { ThemeProvider } from "styled-components";
-import HalstackContext, { HalstackLanguageContext } from "../HalstackContext";
+import styled from "styled-components";
+import { HalstackLanguageContext } from "../HalstackContext";
 import CheckboxPropsType, { RefType } from "./types";
-import { calculateWidth, getDisabledColor, getEnabledColor, getReadOnlyColor, spaces } from "./utils";
+import { calculateWidth, icons, spaces } from "./utils";
 
-const LabelContainer = styled.span<{
+const Label = styled.span<{
   disabled: CheckboxPropsType["disabled"];
-  labelPosition: CheckboxPropsType["labelPosition"];
 }>`
-  order: ${(props) => (props.labelPosition === "before" ? 0 : 1)};
-  color: ${(props) => (props.disabled ? getDisabledColor("label") : getEnabledColor("label"))};
+  color: ${({ disabled }) => (disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-dark)")};
   font-family: var(--typography-font-family);
   font-size: var(--typography-label-m);
   font-weight: var(--typography-label-regular);
-`;
-
-const ValueInput = styled.input`
-  display: none;
-`;
-
-const CheckboxContainer = styled.span`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: var(--height-s);
-  width: 24px;
+  span {
+    color: ${({ disabled }) => (disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-stronger)")};
+  }
 `;
 
 const Checkbox = styled.span<{
   disabled: CheckboxPropsType["disabled"];
   readOnly: CheckboxPropsType["readOnly"];
 }>`
-  position: relative;
-  box-sizing: border-box;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 18px;
-  width: 18px;
-  border: var(--border-width-m) solid
-    ${(props) =>
-      props.disabled
-        ? getDisabledColor("border")
-        : props.readOnly
-          ? getReadOnlyColor("border")
-          : getEnabledColor("border")};
-  border-radius: var(--border-radius-xs);
-  background-color: ${(props) =>
-    props.disabled ? getDisabledColor("check") : props.readOnly ? getReadOnlyColor("check") : getEnabledColor("check")};
-  color: ${(props) =>
-    props.disabled
-      ? getDisabledColor("background")
-      : props.readOnly
-        ? getReadOnlyColor("background")
-        : getEnabledColor("background")};
+  border-radius: var(--border-radius-s);
+  color: ${({ disabled, readOnly }) =>
+    disabled || readOnly ? "var(--color-fg-neutral-medium)" : "var(--color-fg-secondary-medium)"};
+  ${({ disabled }) => disabled && "pointer-events: none;"}
 
   &:focus {
-    outline: var(--border-width-m) solid var(--border-color-secondary-medium);
-    outline-offset: 1px;
+    outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
+    outline-offset: -2px;
   }
   svg {
-    position: absolute;
     width: 24px;
     height: var(--height-s);
   }
-  ${(props) => props.disabled && "pointer-events: none;"}
 `;
 
-const MainContainer = styled.div<{
-  margin: CheckboxPropsType["margin"];
-  size: CheckboxPropsType["size"];
+const CheckboxContainer = styled.div<{
   disabled: CheckboxPropsType["disabled"];
+  labelPosition: CheckboxPropsType["labelPosition"];
+  margin: CheckboxPropsType["margin"];
   readOnly: CheckboxPropsType["readOnly"];
+  size: CheckboxPropsType["size"];
 }>`
   display: flex;
   align-items: center;
+  flex-direction: ${({ labelPosition }) => (labelPosition === "before" ? "row" : "row-reverse")};
   gap: var(--spacing-gap-s);
   width: ${(props) => calculateWidth(props.margin, props.size)};
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
@@ -86,92 +57,56 @@ const MainContainer = styled.div<{
     props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
   margin-left: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
-  cursor: ${(props) => (props.disabled ? "not-allowed" : props.readOnly ? "default" : "pointer")};
+  cursor: ${({ disabled, readOnly }) => (disabled ? "not-allowed" : readOnly ? "default" : "pointer")};
 
   &:hover ${Checkbox} {
-    border: var(--border-width-m) var(--border-style-default)
-      ${(props) => {
-        if (!props.disabled) return props.readOnly ? getReadOnlyColor("hoverBorder") : getEnabledColor("hoverBorder");
-      }};
-    color: ${(props) => {
-      if (!props.disabled)
-        return props.readOnly ? getReadOnlyColor("hoverBackground") : getEnabledColor("hoverBackground");
-    }};
+    ${({ disabled, readOnly }) =>
+      !disabled && `color: ${readOnly ? "var(--color-fg-neutral-strong)" : "var(--color-fg-secondary-strong)"}`};
   }
-
   &:active ${Checkbox} {
-    border: var(--border-width-m) var(--border-style-default)
-      ${(props) => {
-        if (!props.disabled) return props.readOnly ? getReadOnlyColor("activeBorder") : getEnabledColor("activeBorder");
-      }};
-    color: ${(props) => {
-      if (!props.disabled)
-        return props.readOnly ? getReadOnlyColor("activeBackground") : getEnabledColor("activeBackground");
-    }};
+    ${({ disabled, readOnly }) =>
+      !disabled && `color: ${readOnly ? "var(--color-fg-neutral-strong)" : "var(--color-fg-secondary-strong)"}`};
   }
 `;
-
-const checkedIcon = (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-    <path
-      d="M19 3H5C3.89 3 3 3.9 3 5V19C3 20.1 3.89 21 5 21H19C20.11 21 21 20.1 21 19V5C21 3.9 20.11 3 19 3ZM10 17L5 12L6.41 10.59L10 14.17L17.59 6.58L19 8L10 17Z"
-      fill="currentColor"
-    />
-  </svg>
-);
-
-const unCheckedIcon = (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-    <path
-      d="M19 5V19H5V5H19ZM19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3Z"
-      fill="currentColor"
-    />
-  </svg>
-);
 
 const DxcCheckbox = forwardRef<RefType, CheckboxPropsType>(
   (
     {
+      ariaLabel = "Checkbox",
       checked,
       defaultChecked = false,
-      value,
+      disabled = false,
       label = "",
       labelPosition = "before",
+      margin,
       name = "",
-      disabled = false,
+      onChange,
       optional = false,
       readOnly = false,
-      onChange,
-      margin,
       size = "fitContent",
       tabIndex = 0,
-      ariaLabel = "Checkbox",
+      value,
     },
     ref
   ) => {
     const labelId = `label-checkbox-${useId()}`;
     const [innerChecked, setInnerChecked] = useState(defaultChecked);
     const checkboxRef = useRef<HTMLSpanElement | null>(null);
-    const colorsTheme = useContext(HalstackContext);
     const translatedLabels = useContext(HalstackLanguageContext);
 
-    const handleCheckboxChange = () => {
+    const handleOnChange = () => {
       if (!disabled && !readOnly) {
-        if (document.activeElement !== checkboxRef.current) {
-          checkboxRef.current?.focus();
-        }
-        if (checked == null) {
-          setInnerChecked((innerCurrentlyChecked) => !innerCurrentlyChecked);
-        }
+        if (document.activeElement !== checkboxRef.current) checkboxRef.current?.focus();
+        if (checked == null) setInnerChecked((innerCurrentlyChecked) => !innerCurrentlyChecked);
         onChange?.(!(checked ?? innerChecked));
       }
     };
 
-    const handleKeyboard = (event: KeyboardEvent<HTMLSpanElement>) => {
+    const handleOnKeyDown = (event: KeyboardEvent<HTMLSpanElement>) => {
       switch (event.key) {
         case " ":
           event.preventDefault();
-          handleCheckboxChange();
+          handleOnChange();
           break;
         default:
           break;
@@ -179,49 +114,46 @@ const DxcCheckbox = forwardRef<RefType, CheckboxPropsType>(
     };
 
     return (
-      <ThemeProvider theme={colorsTheme.checkbox}>
-        <MainContainer
+      <CheckboxContainer
+        disabled={disabled}
+        labelPosition={labelPosition}
+        margin={margin}
+        onClick={handleOnChange}
+        readOnly={readOnly}
+        ref={ref}
+        size={size}
+      >
+        {label && (
+          <Label aria-label={label} disabled={disabled} id={labelId}>
+            {label} {optional && <span>{translatedLabels.formFields.optionalLabel}</span>}
+          </Label>
+        )}
+        <Checkbox
+          aria-checked={checked ?? innerChecked}
+          aria-disabled={disabled}
+          aria-label={label ? undefined : ariaLabel}
+          aria-labelledby={label ? labelId : undefined}
+          aria-readonly={readOnly}
+          aria-required={!disabled && !optional}
           disabled={disabled}
+          onKeyDown={handleOnKeyDown}
           readOnly={readOnly}
-          onClick={handleCheckboxChange}
-          margin={margin}
-          size={size}
-          ref={ref}
+          role="checkbox"
+          ref={checkboxRef}
+          tabIndex={disabled ? -1 : tabIndex}
         >
-          {label && (
-            <LabelContainer id={labelId} disabled={disabled} labelPosition={labelPosition} aria-label={label}>
-              {label}
-              {optional && ` ${translatedLabels.formFields.optionalLabel}`}
-            </LabelContainer>
-          )}
-          <ValueInput
-            type="checkbox"
-            checked={checked ?? innerChecked}
-            name={name}
-            value={value}
-            disabled={disabled}
-            readOnly
-          />
-          <CheckboxContainer>
-            <Checkbox
-              onKeyDown={handleKeyboard}
-              role="checkbox"
-              tabIndex={disabled ? -1 : tabIndex}
-              aria-checked={checked ?? innerChecked}
-              aria-disabled={disabled}
-              aria-readonly={readOnly}
-              aria-required={!disabled && !optional}
-              aria-labelledby={label ? labelId : undefined}
-              aria-label={label ? undefined : ariaLabel}
-              disabled={disabled}
-              readOnly={readOnly}
-              ref={checkboxRef}
-            >
-              {(checked ?? innerChecked) ? checkedIcon : unCheckedIcon}
-            </Checkbox>
-          </CheckboxContainer>
-        </MainContainer>
-      </ThemeProvider>
+          {(checked ?? innerChecked) ? icons.checked : icons.unchecked}
+        </Checkbox>
+        <input
+          checked={checked ?? innerChecked}
+          disabled={disabled}
+          name={name}
+          readOnly
+          style={{ display: "none" }}
+          type="checkbox"
+          value={value}
+        />
+      </CheckboxContainer>
     );
   }
 );
