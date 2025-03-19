@@ -7,7 +7,7 @@ const Code = () => {
   return (
     <>
       <Head>
-        <title>Checkbox Code — Halstack Design System</title>
+        <title>Checkbox code — Halstack Design System</title>
       </Head>
       <CheckboxCodePage />
     </>

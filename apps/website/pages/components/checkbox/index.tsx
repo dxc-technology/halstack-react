@@ -3,7 +3,7 @@ import type { ReactElement } from "react";
 import CheckboxOverviewPage from "screens/components/checkbox/overview/CheckboxOverviewPage";
 import CheckboxPageLayout from "screens/components/checkbox/CheckboxPageLayout";
 
-const Usage = () => {
+const Index = () => {
   return (
     <>
       <Head>
@@ -14,6 +14,6 @@ const Usage = () => {
   );
 };
 
-Usage.getLayout = (page: ReactElement) => <CheckboxPageLayout>{page}</CheckboxPageLayout>;
+Index.getLayout = (page: ReactElement) => <CheckboxPageLayout>{page}</CheckboxPageLayout>;
 
-export default Usage;
+export default Index;
