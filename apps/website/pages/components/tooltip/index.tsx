@@ -9,7 +9,7 @@ const Index = () => {
       <Head>
         <title>Tooltip — Halstack Design System</title>
       </Head>
-      <TooltipCodePage></TooltipCodePage>
+      <TooltipOverviewPage />
     </>
   );
 };

@@ -6,7 +6,7 @@ import TooltipCodePage from "screens/components/tooltip/code/TooltipCodePage";
 const Code = () => (
   <>
     <Head>
-      <title>Tooltip Code — Halstack Design System</title>
+      <title>Tooltip code — Halstack Design System</title>
     </Head>
     <TooltipCodePage />
   </>
