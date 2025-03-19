@@ -8,42 +8,12 @@ const sections = [
     title: "Introduction",
     content: (
       <DxcParagraph>
-        The primary function of a container is to structure and group other components or contents that are related to
-        each other, allowing certain styles of customization to obtain more cohesive and consistent interfaces.
+        The container component represents the box model inside the Halstack Design System. It is a general-purpose
+        container that allows users to build their own components, UI elements, and layouts. Being generic in nature, it
+        can be "over-used", so it's important to consider situations where more specific and expressive components could
+        be used.
       </DxcParagraph>
     ),
-    subSections: [
-      {
-        title: "Do's",
-        content: (
-          <DxcBulletedList>
-            <DxcBulletedList.Item>
-              Use a container to group and organize related content within a specific section of a page or layout.
-            </DxcBulletedList.Item>
-            <DxcBulletedList.Item>
-              Set size, spacing, and margins that are consistent by applying the box model properties.
-            </DxcBulletedList.Item>
-            <DxcBulletedList.Item>
-              Control the depth of the different elements of your UI by customizing the container's box shadow.
-            </DxcBulletedList.Item>
-            <DxcBulletedList.Item>
-              Change and custom border styles of the container to match the rest of your interface design.
-            </DxcBulletedList.Item>
-          </DxcBulletedList>
-        ),
-      },
-      {
-        title: "Don'ts",
-        content: (
-          <DxcBulletedList>
-            <DxcBulletedList.Item>
-              Use the container to build components without first making sure that there is no other, more semantic,
-              component in Halstack that you can use instead.
-            </DxcBulletedList.Item>
-          </DxcBulletedList>
-        ),
-      },
-    ],
   },
   {
     title: "The Box Model",
@@ -119,17 +89,40 @@ const sections = [
       </>
     ),
   },
+  {
+    title: "Best practices",
+    content: (
+      <DxcBulletedList>
+        <DxcBulletedList.Item>
+          Use a container to group and organize related content within a specific section of a page or layout.
+        </DxcBulletedList.Item>
+        <DxcBulletedList.Item>
+          Set size, spacing, and margins that are consistent by applying the box model properties.
+        </DxcBulletedList.Item>
+        <DxcBulletedList.Item>
+          Control the depth of the different elements of your UI by customizing the container's box shadow.
+        </DxcBulletedList.Item>
+        <DxcBulletedList.Item>
+          Change and custom border styles of the container to match the rest of your interface design.
+        </DxcBulletedList.Item>
+        <DxcBulletedList.Item>
+          <strong>
+            Don't use the container to build components without first making sure that there is no other, more specific,
+            Halstack component that could be used instead.
+          </strong>
+        </DxcBulletedList.Item>
+      </DxcBulletedList>
+    ),
+  },
 ];
 
-const ContainerOverviewPage = () => {
-  return (
-    <DxcFlex direction="column" gap="4rem">
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
-      </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/container/overview/ContainerOverviewPage.tsx" />
-    </DxcFlex>
-  );
-};
+const ContainerOverviewPage = () => (
+  <DxcFlex direction="column" gap="4rem">
+    <QuickNavContainerLayout>
+      <QuickNavContainer sections={sections} startHeadingLevel={2} />
+    </QuickNavContainerLayout>
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/container/overview/ContainerOverviewPage.tsx" />
+  </DxcFlex>
+);
 
 export default ContainerOverviewPage;
