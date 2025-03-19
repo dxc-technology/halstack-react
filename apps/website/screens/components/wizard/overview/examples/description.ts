@@ -4,23 +4,24 @@ const code = `() => {
   return (
     <DxcInset space="2rem">
       <DxcWizard
-        defaultCurrentStep={1}
         steps={[
           {
-            label: "Step label",
-            description: "Description for the step",
+            label: "Personal information",
+            description: "Enter your personal details to begin your insurance application",
+            icon: "person",
           },
           {
-            label: "Step label",
-            description: "Description for the step",
+            label: "Billing information",
+            description: "Fill in all the necessary information to attach to your monthly bills",
+            icon: "account_balance_wallet",
           },
           {
-            label: "Step label",
-            description: "Description for the step",
-            disabled: true,
+            label: "Payment method",
+            description: "Choose your preferred payment method",
+            icon: "payments",
           },
         ]}
-      ></DxcWizard>
+      />
     </DxcInset>
   );
 }`;

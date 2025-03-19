@@ -4,19 +4,12 @@ const code = `() => {
   return (
     <DxcInset space="2rem">
       <DxcWizard
+        mode="vertical"
         steps={[
-          {
-            label: "Select policy type",
-            valid: true,
-          },
-          {
-            label: "Property details",
-            valid: false,
-          },
-          {
-            label: "Review & submit",
-            valid: false,
-          },
+          { label: "Current proposal" },
+          { label: "Family history" },
+          { label: "Application questionnaire" },
+          { label: "Documents" },
         ]}
       />
     </DxcInset>

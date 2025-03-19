@@ -6,10 +6,11 @@ import DxcIcon from "../icon/Icon";
 import WizardPropsType, { StepProps } from "./types";
 import DxcFlex from "../flex/Flex";
 import icons from "./Icons";
+import { DxcInset } from "..";
 
 const Wizard = styled.div<{
-  mode: WizardPropsType["mode"];
   margin: WizardPropsType["margin"];
+  mode: WizardPropsType["mode"];
 }>`
   display: flex;
   flex-direction: ${({ mode }) => (mode === "vertical" ? "column" : "row")};
@@ -24,13 +25,12 @@ const Wizard = styled.div<{
 `;
 
 const StepContainer = styled.div<{
-  mode: WizardPropsType["mode"];
   lastStep: boolean;
+  mode: WizardPropsType["mode"];
 }>`
   flex-grow: ${({ lastStep }) => (lastStep ? "0" : "1")};
   display: grid;
   ${({ mode }) => (mode === "horizontal" ? "grid-template-columns: auto 1fr;" : "grid-template-rows: auto 1fr;")}
-  place-items: center;
 `;
 
 const IconContainer = styled.div<{
@@ -85,11 +85,12 @@ const Step = styled.button<{
   background-color: transparent;
   border: none;
   border-radius: var(--border-radius-s);
-  padding: var(--spacing-padding-none);
   margin: ${({ mode }) =>
     mode === "horizontal"
       ? "var(--spacing-padding-none) var(--spacing-padding-l)"
       : "var(--spacing-padding-l) var(--spacing-padding-none)"};
+  padding: var(--spacing-padding-none);
+  width: fit-content;
   cursor: pointer;
 
   &[aria-current="step"] {
@@ -153,6 +154,12 @@ const ValidityIconContainer = styled.div<{ disabled?: boolean; valid: boolean }>
   }
 `;
 
+const DividerContainer = styled.div<{ mode: WizardPropsType["mode"] }>`
+  display: grid;
+  place-items: center;
+  ${({ mode }) => mode === "vertical" && "width: 32px"};
+`;
+
 export default function DxcWizard({
   currentStep,
   defaultCurrentStep = 0,
@@ -212,7 +219,11 @@ export default function DxcWizard({
               </DxcFlex>
             )}
           </Step>
-          {i !== steps.length - 1 && <DxcDivider color="darkGrey" orientation={mode} />}
+          {i !== steps.length - 1 && (
+            <DividerContainer mode={mode}>
+              <DxcDivider color="darkGrey" orientation={mode} />
+            </DividerContainer>
+          )}
         </StepContainer>
       ))}
     </Wizard>

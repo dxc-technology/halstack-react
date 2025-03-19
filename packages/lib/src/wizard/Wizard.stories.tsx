@@ -3,6 +3,7 @@ import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcWizard from "./Wizard";
 import { Meta, StoryObj } from "@storybook/react";
+import DxcContainer from "../container/Container";
 
 export default {
   title: "Wizard",
@@ -147,11 +148,32 @@ const stepMaterialSymbols = [
   },
 ];
 
+const stepsDifferentLabelLengths = [
+  {
+    label: "Billing information",
+  },
+  {
+    label: "Payment",
+  },
+  {
+    label: "Confirm details",
+  },
+  {
+    label: "Review & submit",
+  },
+];
+
 const Wizard = () => (
   <>
     <ExampleContainer>
       <Title title="Current step in the third step, labels and description" theme="light" level={4} />
       <DxcWizard defaultCurrentStep={2} steps={stepWithLabelDescription} />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Vertical" theme="light" level={4} />
+      <DxcContainer height="500px">
+        <DxcWizard steps={stepsDifferentLabelLengths} mode="vertical" />
+      </DxcContainer>
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With long description in horizontal" theme="light" level={4} />
@@ -181,7 +203,7 @@ const Wizard = () => (
       <Title title="With Material Symbols" theme="light" level={4} />
       <DxcWizard steps={stepMaterialSymbols} />
     </ExampleContainer>
-    <Title title="Margins horizontal" theme="light" level={2} />
+    <Title title="Margins" theme="light" level={2} />
     <ExampleContainer>
       <Title title="Xxsmall margin" theme="light" level={4} />
       <DxcWizard margin="xxsmall" steps={stepWithLabel} />
@@ -213,24 +235,8 @@ const Wizard = () => (
   </>
 );
 
-const WizardSelected = () => (
-  <ExampleContainer>
-    <Title title="Clicked step" theme="light" level={4} />
-    <DxcWizard steps={stepWithLabel} mode="vertical" />
-  </ExampleContainer>
-);
-
 type Story = StoryObj<typeof DxcWizard>;
 
 export const Chromatic: Story = {
   render: Wizard,
-};
-
-export const WizardStepActived: Story = {
-  render: WizardSelected,
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    const option = canvas.getByText("Third step");
-    await userEvent.click(option);
-  },
 };

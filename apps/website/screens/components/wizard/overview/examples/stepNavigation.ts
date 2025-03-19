@@ -5,17 +5,14 @@ const code = `() => {
     <DxcInset space="2rem">
       <DxcWizard
         steps={[
-          {
-            label: "Select policy type",
-            valid: true,
+          { label: "Personal information" },
+          { 
+            label: "Coverage selection",
+            disabled: true,
           },
-          {
-            label: "Property details",
-            valid: false,
-          },
-          {
+          { 
             label: "Review & submit",
-            valid: false,
+            disabled: true,
           },
         ]}
       />

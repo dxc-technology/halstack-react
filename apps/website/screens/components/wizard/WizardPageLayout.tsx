@@ -20,7 +20,7 @@ const WizardPageHeading = ({ children }: { children: ReactNode }) => {
             with several bullet points where the user need to interact with the content of each step during the
             workflow.
           </DxcParagraph>
-          <TabsPageHeading tabs={tabs}></TabsPageHeading>
+          <TabsPageHeading tabs={tabs} />
         </DxcFlex>
       </PageHeading>
       {children}

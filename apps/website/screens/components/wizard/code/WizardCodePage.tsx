@@ -7,8 +7,18 @@ import Example from "@/common/example/Example";
 import controlled from "./examples/controlled";
 import uncontrolled from "./examples/uncontrolled";
 import icons from "./examples/icons";
-import TableCode from "@/common/TableCode";
+import TableCode, { ExtendedTableCode } from "@/common/TableCode";
 import StatusBadge from "@/common/StatusBadge";
+
+const stepsType = `{ 
+  label: string;
+  description?: string;
+  disabled?: boolean;
+  icon?: string |
+    (React.ReactNode & 
+    React.SVGProps<SVGSVGElement>);
+  valid?: boolean; 
+}[]`;
 
 const sections = [
   {
@@ -84,11 +94,7 @@ const sections = [
               </DxcFlex>
             </td>
             <td>
-              <TableCode>
-                {
-                  "{ label: string; description?: string; icon?: string | (React.ReactNode & React.SVGProps <SVGSVGElement>); disabled?: boolean; valid?: boolean; }[]"
-                }
-              </TableCode>
+              <ExtendedTableCode>{stepsType}</ExtendedTableCode>
             </td>
             <td>
               An array of objects representing the steps. Each of them has the following properties:
@@ -151,15 +157,13 @@ const sections = [
   },
 ];
 
-const WizardCodePage = () => {
-  return (
-    <DxcFlex direction="column" gap="4rem">
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
-      </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/wizard/code/WizardCodePage.tsx" />
-    </DxcFlex>
-  );
-};
+const WizardCodePage = () => (
+  <DxcFlex direction="column" gap="4rem">
+    <QuickNavContainerLayout>
+      <QuickNavContainer sections={sections} startHeadingLevel={2} />
+    </QuickNavContainerLayout>
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/wizard/code/WizardCodePage.tsx" />
+  </DxcFlex>
+);
 
 export default WizardCodePage;
