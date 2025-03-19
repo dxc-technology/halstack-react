@@ -4,7 +4,7 @@ import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
-import variants from "./example/variants";
+import variants from "./examples/variants";
 import anatomy from "./images/status_light_anatomy.png";
 import Image from "@/common/Image";
 
