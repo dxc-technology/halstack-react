@@ -17,8 +17,7 @@ const TooltipPageHeading = ({ children }: { children: ReactNode }) => {
           <ComponentHeading name="Tooltip" />
           <DxcParagraph>
             A tooltip is a descriptive or supplementary element that is displayed when an object is focused or hovered
-            over. They are typically employed to enhance user experience by offering brief and helpful descriptions,
-            instructions or tips without cluttering the interface.
+            over.
           </DxcParagraph>
           <TabsPageHeading tabs={tabs} />
         </DxcFlex>

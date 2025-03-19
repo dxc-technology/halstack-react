@@ -22,6 +22,7 @@ const sections = [
         </thead>
         <tbody>
           <tr>
+<<<<<<< Updated upstream
             <td>
               <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
                 <StatusBadge status="required" />
@@ -32,6 +33,13 @@ const sections = [
               <TableCode>React.ReactNode</TableCode>
             </td>
             <td>Custom content inside the container.</td>
+=======
+            <td>children</td>
+            <td>
+              <TableCode>React.ReactNode</TableCode>
+            </td>
+            <td>Content in which the Tooltip will be displayed.</td>
+>>>>>>> Stashed changes
             <td>-</td>
           </tr>
           <tr>
