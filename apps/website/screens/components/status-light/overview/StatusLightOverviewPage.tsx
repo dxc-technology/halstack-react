@@ -4,7 +4,7 @@ import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
-import variants from "./example/variants";
+import variants from "./examples/variants";
 import anatomy from "./images/status_light_anatomy.png";
 import Image from "@/common/Image";
 
@@ -29,7 +29,7 @@ const sections = [
         <Image src={anatomy} alt="Status light's anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
-            <strong>Status light:</strong> the core visual element of a status light, designed as dot for clarity and
+            <strong>Status light:</strong> the core visual element of a status light, designed as a dot for clarity and
             easy recognition.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>

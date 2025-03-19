@@ -118,40 +118,40 @@ const sections = [
       <>
         <DxcBulletedList>
           <DxcBulletedList.Item>
-            <strong>Use badges to convey key information:</strong> Notification badges are ideal for displaying counts,
+            <strong>Use badges to convey key information:</strong> notification badges are ideal for displaying counts,
             such as unread messages or missed notifications, while contextual badges help indicate task statuses or
             progress.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Leverage color for clarity:</strong> Contextual badge colors can improve recognition and enhance the
+            <strong>Leverage color for clarity:</strong> contextual badge colors can improve recognition and enhance the
             user experience, especially in data-heavy interfaces with high cognitive load.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Keep labels short and meaningful:</strong> Badge labels should be concise, ideally no more than
+            <strong>Keep labels short and meaningful:</strong> badge labels should be concise, ideally no more than
             three words, to ensure quick comprehension.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Use badges to categorize content:</strong> Contextual badges can help group-related elements, such
+            <strong>Use badges to categorize content:</strong> contextual badges can help group-related elements, such
             as team names, repositories, or file types, providing additional context.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Ensure consistent placement:</strong> Establish clear guidelines for where badges appear in the
+            <strong>Ensure consistent placement:</strong> establish clear guidelines for where badges appear in the
             interface to maintain visual coherence and usability.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Avoid overuse:</strong> Excessive badges can clutter the interface and reduce their effectiveness in
+            <strong>Avoid overuse:</strong> excessive badges can clutter the interface and reduce their effectiveness in
             communicating key information.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Ensure clarity in data visualization:</strong> Avoid mixing semantic and non-semantic contextual
+            <strong>Ensure clarity in data visualization:</strong> avoid mixing semantic and non-semantic contextual
             badges within the same format to prevent confusion.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Avoid obstructing key content:</strong> Badges should be placed thoughtfully to ensure they do not
+            <strong>Avoid obstructing key content:</strong> badges should be placed thoughtfully to ensure they do not
             interfere with essential information or interactions.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Use positive or neutral indicators:</strong> Notification badges should typically display counts or
+            <strong>Use positive or neutral indicators:</strong> notification badges should typically display counts or
             statuses without negative symbols to ensure clarity.
           </DxcBulletedList.Item>
         </DxcBulletedList>
