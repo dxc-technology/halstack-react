@@ -3,7 +3,6 @@ import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
 import positions from "./images/tooltip_positions.png";
-import Figure from "@/common/Figure";
 import Image from "@/common/Image";
 import anatomy from "./images/tooltip_anatomy.png";
 
