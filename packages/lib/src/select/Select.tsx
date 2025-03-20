@@ -72,11 +72,11 @@ const Label = styled.label<{
 `;
 
 const HelperText = styled.span<{ disabled: SelectPropsType["disabled"] }>`
-  margin-bottom: var(--spacing-gap-xs);
   color: ${({ disabled }) => (disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-stronger)")};
   font-family: var(--typography-font-family);
   font-size: var(--typography-helper-text-s);
   font-weight: var(--typography-helper-text-regular);
+  margin-bottom: var(--spacing-gap-xs);
 `;
 
 const Select = styled.div<{
@@ -102,6 +102,7 @@ const Select = styled.div<{
         border-color: ${error ? "var(--border-color-error-strong)" : "var(--border-color-primary-strong)"};
       }
       &:focus-within {
+        border-color: transparent;
         outline-offset: -2px;
         outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
       }
@@ -204,13 +205,13 @@ const SearchInput = styled.input`
   font-weight: var(--typography-label-regular);
 `;
 
-const Error = styled.span`
+const ErrorMessage = styled.span`
   display: flex;
   align-items: center;
   gap: var(--spacing-gap-xs);
   color: var(--color-fg-error-medium);
   font-size: var(--typography-helper-text-s);
-  font-weight: var(--typography-helper-text-regular, 400);
+  font-weight: var(--typography-helper-text-regular);
   margin-top: var(--spacing-gap-xs);
 
   /* Error icon */
@@ -621,10 +622,10 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
           </Popover.Portal>
         </Popover.Root>
         {!disabled && typeof error === "string" && (
-          <Error id={errorId} role="alert" aria-live={error ? "assertive" : "off"}>
+          <ErrorMessage id={errorId} role="alert" aria-live={error ? "assertive" : "off"}>
             {error && <DxcIcon icon="filled_error" />}
             {error}
-          </Error>
+          </ErrorMessage>
         )}
       </SelectContainer>
     );

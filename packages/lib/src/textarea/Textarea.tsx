@@ -1,158 +1,11 @@
 import { ChangeEvent, FocusEvent, forwardRef, useContext, useEffect, useId, useRef, useState } from "react";
-import styled, { ThemeProvider } from "styled-components";
+import styled from "styled-components";
 import { getMargin } from "../common/utils";
 import { spaces } from "../common/variables";
-import HalstackContext, { HalstackLanguageContext } from "../HalstackContext";
+import { HalstackLanguageContext } from "../HalstackContext";
 import TextareaPropsType, { RefType } from "./types";
-
-const patternMatch = (pattern: string, value: string) => new RegExp(pattern).test(value);
-
-const DxcTextarea = forwardRef<RefType, TextareaPropsType>(
-  (
-    {
-      label,
-      name = "",
-      defaultValue = "",
-      value,
-      helperText,
-      placeholder = "",
-      disabled = false,
-      readOnly = false,
-      optional = false,
-      verticalGrow = "auto",
-      rows = 4,
-      onChange,
-      onBlur,
-      error,
-      pattern,
-      minLength,
-      maxLength,
-      autocomplete = "off",
-      margin,
-      size = "medium",
-      tabIndex = 0,
-      ariaLabel = "Text area",
-    },
-    ref
-  ) => {
-    const [innerValue, setInnerValue] = useState(defaultValue);
-    const textareaId = `textarea-${useId()}`;
-
-    const colorsTheme = useContext(HalstackContext);
-    const translatedLabels = useContext(HalstackLanguageContext);
-
-    const textareaRef = useRef<HTMLTextAreaElement | null>(null);
-    const prevValueRef = useRef<string | null>(null);
-    const errorId = `error-${textareaId}`;
-
-    const isNotOptional = (value: string) => value === "" && !optional;
-
-    const isLengthIncorrect = (value: string) =>
-      value !== "" && minLength && maxLength && (value.length < minLength || value.length > maxLength);
-
-    const changeValue = (newValue: string) => {
-      if (value == null) {
-        setInnerValue(newValue);
-      }
-
-      if (isNotOptional(newValue)) {
-        onChange?.({
-          value: newValue,
-          error: translatedLabels.formFields.requiredValueErrorMessage,
-        });
-      } else if (isLengthIncorrect(newValue)) {
-        onChange?.({
-          value: newValue,
-          error: translatedLabels.formFields.lengthErrorMessage?.(minLength, maxLength),
-        });
-      } else if (newValue && pattern && !patternMatch(pattern, newValue)) {
-        onChange?.({
-          value: newValue,
-          error: translatedLabels.formFields.formatRequestedErrorMessage,
-        });
-      } else {
-        onChange?.({ value: newValue });
-      }
-    };
-
-    const handleOnBlur = (event: FocusEvent<HTMLTextAreaElement>) => {
-      if (isNotOptional(event.target.value)) {
-        onBlur?.({
-          value: event.target.value,
-          error: translatedLabels.formFields.requiredValueErrorMessage,
-        });
-      } else if (isLengthIncorrect(event.target.value)) {
-        onBlur?.({
-          value: event.target.value,
-          error: translatedLabels.formFields.lengthErrorMessage?.(minLength, maxLength),
-        });
-      } else if (event.target.value && pattern && !patternMatch(pattern, event.target.value)) {
-        onBlur?.({
-          value: event.target.value,
-          error: translatedLabels.formFields.formatRequestedErrorMessage,
-        });
-      } else {
-        onBlur?.({ value: event.target.value });
-      }
-    };
-
-    const handleOnChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
-      changeValue(event.target.value);
-    };
-
-    useEffect(() => {
-      if (verticalGrow === "auto" && prevValueRef.current !== (value ?? innerValue) && textareaRef.current) {
-        const computedStyle = window.getComputedStyle(textareaRef.current);
-        const textareaLineHeight = parseInt(computedStyle.lineHeight || "0", 10);
-        const textareaPaddingTopBottom = parseInt(computedStyle.paddingTop || "0", 10) * 2;
-        textareaRef.current.style.height = `${textareaLineHeight * rows}px`;
-        const newHeight = (textareaRef.current.scrollHeight ?? 0) - textareaPaddingTopBottom;
-        textareaRef.current.style.height = `${newHeight}px`;
-        prevValueRef.current = value ?? innerValue;
-      }
-    }, [verticalGrow, value, innerValue, rows]);
-
-    return (
-      <ThemeProvider theme={colorsTheme.textarea}>
-        <TextareaContainer margin={margin} size={size} ref={ref}>
-          {label && (
-            <Label htmlFor={textareaId} disabled={disabled} helperText={helperText}>
-              {label} {optional && <OptionalLabel>{translatedLabels.formFields.optionalLabel}</OptionalLabel>}
-            </Label>
-          )}
-          {helperText && <HelperText disabled={disabled}>{helperText}</HelperText>}
-          <Textarea
-            id={textareaId}
-            name={name}
-            value={value ?? innerValue}
-            placeholder={placeholder}
-            verticalGrow={verticalGrow}
-            rows={rows}
-            onChange={handleOnChange}
-            onBlur={handleOnBlur}
-            disabled={disabled}
-            readOnly={readOnly}
-            error={error}
-            minLength={minLength}
-            maxLength={maxLength}
-            autoComplete={autocomplete}
-            ref={textareaRef}
-            tabIndex={tabIndex}
-            aria-invalid={!!error}
-            aria-errormessage={error ? errorId : undefined}
-            aria-required={!disabled && !optional}
-            aria-label={label ? undefined : ariaLabel}
-          />
-          {!disabled && typeof error === "string" && (
-            <ErrorMessageContainer id={errorId} role="alert" aria-live={error ? "assertive" : "off"}>
-              {error}
-            </ErrorMessageContainer>
-          )}
-        </TextareaContainer>
-      </ThemeProvider>
-    );
-  }
-);
+import { scrollbarStyles } from "../styles/scroll";
+import DxcIcon from "../icon/Icon";
 
 const sizes = {
   small: "240px",
@@ -172,50 +25,43 @@ const TextareaContainer = styled.div<{
 }>`
   display: flex;
   flex-direction: column;
-  width: ${(props) => calculateWidth(props.margin, props.size)};
-  margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
-  margin-top: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
-  margin-right: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
-  margin-bottom: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
-  margin-left: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
+  width: ${({ margin, size }) => calculateWidth(margin, size)};
+  margin: ${({ margin }) => (margin && typeof margin !== "object" ? spaces[margin] : "0px")};
+  margin-top: ${({ margin }) => (margin && typeof margin === "object" && margin.top ? spaces[margin.top] : "")};
+  margin-right: ${({ margin }) => (margin && typeof margin === "object" && margin.right ? spaces[margin.right] : "")};
+  margin-bottom: ${({ margin }) =>
+    margin && typeof margin === "object" && margin.bottom ? spaces[margin.bottom] : ""};
+  margin-left: ${({ margin }) => (margin && typeof margin === "object" && margin.left ? spaces[margin.left] : "")};
 `;
 
 const Label = styled.label<{
   disabled: TextareaPropsType["disabled"];
   helperText: TextareaPropsType["helperText"];
 }>`
-  color: ${(props) => (props.disabled ? props.theme.disabledLabelFontColor : props.theme.labelFontColor)};
+  color: ${({ disabled }) => (disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-dark)")};
+  font-family: var(--typography-font-family);
+  font-size: var(--typography-label-m);
+  font-weight: var(--typography-label-semibold);
+  ${({ helperText }) => !helperText && "margin-bottom: var(--spacing-gap-xs);"}
 
-  font-family: ${(props) => props.theme.fontFamily};
-  font-size: ${(props) => props.theme.labelFontSize};
-  font-style: ${(props) => props.theme.labelFontStyle};
-  font-weight: ${(props) => props.theme.labelFontWeight};
-  line-height: ${(props) => props.theme.labelLineHeight};
-  ${(props) => !props.helperText && `margin-bottom: 0.25rem`}
-`;
-
-const OptionalLabel = styled.span`
-  font-weight: ${(props) => props.theme.optionalLabelFontWeight};
+  /* Optional text */
+  > span {
+    color: ${({ disabled }) => (disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-stronger)")};
+    font-weight: var(--typography-label-regular);
+  }
 `;
 
 const HelperText = styled.span<{ disabled: TextareaPropsType["disabled"] }>`
-  color: ${(props) => (props.disabled ? props.theme.disabledHelperTextFontColor : props.theme.helperTextFontColor)};
-
-  font-family: ${(props) => props.theme.fontFamily};
-  font-size: ${(props) => props.theme.helperTextFontSize};
-  font-style: ${(props) => props.theme.helperTextFontStyle};
-  font-weight: ${(props) => props.theme.helperTextFontWeight};
-  line-height: ${(props) => props.theme.helperTextLineHeight};
-  margin-bottom: 0.25rem;
+  color: ${({ disabled }) => (disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-stronger)")};
+  font-family: var(--typography-font-family);
+  font-size: var(--typography-helper-text-s);
+  font-weight: var(--typography-helper-text-regular);
+  margin-bottom: var(--spacing-gap-xs);
 `;
 
 const Textarea = styled.textarea<{
-  verticalGrow: TextareaPropsType["verticalGrow"];
   error: TextareaPropsType["error"];
+  verticalGrow: TextareaPropsType["verticalGrow"];
 }>`
   ${({ verticalGrow }) => {
     if (verticalGrow === "none") return "resize: none;";
@@ -223,66 +69,196 @@ const Textarea = styled.textarea<{
     else if (verticalGrow === "manual") return "resize: vertical;";
     else return `resize: none;`;
   }};
-
-  ${(props) =>
-    props.disabled ? `background-color: ${props.theme.disabledContainerFillColor};` : `background-color: transparent;`}
-
-  padding: 0.5rem 1rem;
-  box-shadow: 0 0 0 2px transparent;
-  border-radius: 0.25rem;
-  border: 1px solid
+  ${scrollbarStyles}
+  padding: var(--spacing-padding-xs) var(--spacing-padding-xs) var(--spacing-padding-xxxs) var(--spacing-padding-xs);
+  background-color: ${({ disabled }) => (disabled ? `var(--color-bg-neutral-lighter)` : `transparent`)};
+  border-radius: var(--border-radius-s);
+  border: ${({ disabled, error }) => (!disabled && error ? "var(--border-width-m)" : "var(--border-width-s)")}
+    var(--border-style-default)
     ${(props) => {
-      if (props.disabled) return props.theme.disabledBorderColor;
-      else if (props.error) return "transparent";
-      else if (props.readOnly) return props.theme.readOnlyBorderColor;
-      else return props.theme.enabledBorderColor;
+      if (props.disabled) return "var(--border-color-neutral-strong)";
+      else if (props.error) return "var(--border-color-error-medium)";
+      else if (props.readOnly) return "var(--border-color-neutral-strong)";
+      else return "var(--border-color-neutral-dark)";
     }};
-
-  ${(props) =>
-    props.error &&
-    !props.disabled &&
-    `box-shadow: 0 0 0 2px ${props.theme.errorBorderColor};
-  `}
 
   ${(props) =>
     !props.disabled
       ? `&:hover {
         border-color: ${
           props.error
-            ? "transparent"
+            ? "var(--border-color-error-strong)"
             : props.readOnly
-              ? props.theme.hoverReadOnlyBorderColor
-              : props.theme.hoverBorderColor
+              ? "var(--border-color-neutral-stronger)"
+              : "var(--border-color-primary-strong)"
         };
-        ${props.error && `box-shadow: 0 0 0 2px ${props.theme.hoverErrorBorderColor};`}
       }
       &:focus, &:focus-within {
-        outline: none;
         border-color: transparent;
-        box-shadow: 0 0 0 2px ${props.theme.focusBorderColor};
+        outline-offset: -2px;
+        outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
       }`
       : "cursor: not-allowed;"};
 
-  color: ${(props) => (props.disabled ? props.theme.disabledValueFontColor : props.theme.valueFontColor)};
-  font-family: ${(props) => props.theme.fontFamily};
-  font-size: ${(props) => props.theme.valueFontSize};
-  font-style: ${(props) => props.theme.valueFontStyle};
-  font-weight: ${(props) => props.theme.valueFontWeight};
-  line-height: 1.5em;
-
+  color: ${({ disabled }) => (disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-dark)")};
+  font-family: var(--typography-font-family);
+  font-size: var(--typography-label-m);
+  font-weight: var(--typography-label-regular);
   ::placeholder {
-    color: ${(props) => (props.disabled ? props.theme.disabledPlaceholderFontColor : props.theme.placeholderFontColor)};
+    color: ${({ disabled }) => (disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-strong)")};
   }
 `;
 
-const ErrorMessageContainer = styled.span`
-  color: ${(props) => props.theme.errorMessageColor};
-  font-family: ${(props) => props.theme.fontFamily};
-  font-size: 0.75rem;
-  font-weight: 400;
-  min-height: 1.5em;
-  line-height: 1.5em;
-  margin-top: 0.25rem;
+const ErrorMessage = styled.span`
+  display: flex;
+  align-items: center;
+  color: var(--color-fg-error-medium);
+  font-family: var(--typography-font-family);
+  font-size: var(--typography-helper-text-s);
+  font-weight: var(--typography-helper-text-regular);
+  margin-top: var(--spacing-gap-xs);
+
+  /* Error icon */
+  > span[role="img"] {
+    font-size: var(--height-xxs);
+  }
 `;
+
+const patternMatch = (pattern: string, value: string) => new RegExp(pattern).test(value);
+
+const isLengthOutOfRange = (value: string, minLength?: number, maxLength?: number) =>
+  value !== "" && minLength && maxLength && (value.length < minLength || value.length > maxLength);
+
+const DxcTextarea = forwardRef<RefType, TextareaPropsType>(
+  (
+    {
+      ariaLabel = "Text area",
+      autocomplete = "off",
+      defaultValue = "",
+      disabled = false,
+      error,
+      helperText,
+      label,
+      margin,
+      maxLength,
+      minLength,
+      name,
+      onBlur,
+      onChange,
+      optional = false,
+      pattern,
+      placeholder,
+      readOnly = false,
+      rows = 4,
+      size = "medium",
+      tabIndex = 0,
+      value,
+      verticalGrow = "auto",
+    },
+    ref
+  ) => {
+    const [innerValue, setInnerValue] = useState(defaultValue);
+    const textareaId = `textarea-${useId()}`;
+    const errorId = `error-${textareaId}`;
+    const translatedLabels = useContext(HalstackLanguageContext);
+    const textareaRef = useRef<HTMLTextAreaElement | null>(null);
+    const prevValueRef = useRef<string | null>(null);
+
+    const changeValue = (newValue: string) => {
+      if (value == null) setInnerValue(newValue);
+
+      if (newValue === "" && !optional) {
+        onChange?.({
+          value: newValue,
+          error: translatedLabels.formFields.requiredValueErrorMessage,
+        });
+      } else if (isLengthOutOfRange(newValue)) {
+        onChange?.({
+          value: newValue,
+          error: translatedLabels.formFields.lengthErrorMessage?.(minLength, maxLength),
+        });
+      } else if (newValue && pattern && !patternMatch(pattern, newValue)) {
+        onChange?.({
+          value: newValue,
+          error: translatedLabels.formFields.formatRequestedErrorMessage,
+        });
+      } else onChange?.({ value: newValue });
+    };
+
+    const handleOnBlur = (event: FocusEvent<HTMLTextAreaElement>) => {
+      if (event.target.value === "" && !optional) {
+        onBlur?.({
+          value: event.target.value,
+          error: translatedLabels.formFields.requiredValueErrorMessage,
+        });
+      } else if (isLengthOutOfRange(event.target.value)) {
+        onBlur?.({
+          value: event.target.value,
+          error: translatedLabels.formFields.lengthErrorMessage?.(minLength, maxLength),
+        });
+      } else if (event.target.value && pattern && !patternMatch(pattern, event.target.value)) {
+        onBlur?.({
+          value: event.target.value,
+          error: translatedLabels.formFields.formatRequestedErrorMessage,
+        });
+      } else onBlur?.({ value: event.target.value });
+    };
+
+    const handleOnChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
+      changeValue(event.target.value);
+    };
+
+    useEffect(() => {
+      if (verticalGrow === "auto" && prevValueRef.current !== (value ?? innerValue) && textareaRef.current) {
+        const computedStyle = window.getComputedStyle(textareaRef.current);
+        const textareaLineHeight = parseInt(computedStyle.lineHeight ?? "0", 10);
+        const textareaPaddingTopBottom = parseInt(computedStyle.paddingTop ?? "0", 10) * 2;
+        textareaRef.current.style.height = `${textareaLineHeight * rows}px`;
+        const newHeight = (textareaRef.current.scrollHeight ?? 0) - textareaPaddingTopBottom;
+        textareaRef.current.style.height = `${newHeight}px`;
+        prevValueRef.current = value ?? innerValue;
+      }
+    }, [innerValue, rows, value, verticalGrow]);
+
+    return (
+      <TextareaContainer margin={margin} size={size} ref={ref}>
+        {label && (
+          <Label htmlFor={textareaId} disabled={disabled} helperText={helperText}>
+            {label} {optional && <span>{translatedLabels.formFields.optionalLabel}</span>}
+          </Label>
+        )}
+        {helperText && <HelperText disabled={disabled}>{helperText}</HelperText>}
+        <Textarea
+          id={textareaId}
+          name={name}
+          value={value ?? innerValue}
+          placeholder={placeholder}
+          verticalGrow={verticalGrow}
+          rows={rows}
+          onChange={handleOnChange}
+          onBlur={handleOnBlur}
+          disabled={disabled}
+          readOnly={readOnly}
+          error={error}
+          minLength={minLength}
+          maxLength={maxLength}
+          autoComplete={autocomplete}
+          ref={textareaRef}
+          tabIndex={tabIndex}
+          aria-invalid={!!error}
+          aria-errormessage={error ? errorId : undefined}
+          aria-required={!disabled && !optional}
+          aria-label={label ? undefined : ariaLabel}
+        />
+        {!disabled && typeof error === "string" && (
+          <ErrorMessage id={errorId} role="alert" aria-live={error ? "assertive" : "off"}>
+            {error && <DxcIcon icon="filled_error" />}
+            {error}
+          </ErrorMessage>
+        )}
+      </TextareaContainer>
+    );
+  }
+);
 
 export default DxcTextarea;

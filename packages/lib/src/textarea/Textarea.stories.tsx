@@ -1,20 +1,12 @@
 import { Meta, StoryObj } from "@storybook/react";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
-import { HalstackProvider } from "../HalstackContext";
 import DxcTextarea from "./Textarea";
 
 export default {
   title: "Textarea",
   component: DxcTextarea,
 } as Meta<typeof DxcTextarea>;
-
-const opinionatedTheme = {
-  textarea: {
-    fontColor: "#000000",
-    hoverBorderColor: "#a46ede",
-  },
-};
 
 const TextArea = () => (
   <>
@@ -69,11 +61,11 @@ const TextArea = () => (
       <DxcTextarea label="With resizer" helperText="Helper text" verticalGrow="manual" />
     </ExampleContainer>
     <ExampleContainer>
-      <Title title="Grow manual" theme="light" level={4} />
+      <Title title="With scroll" theme="light" level={4} />
       <DxcTextarea
         label="Manual vertical grow"
         verticalGrow="manual"
-        defaultValue="Long textttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt"
+        defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
       />
     </ExampleContainer>
     <Title title="Sizes" theme="light" level={2} />
@@ -117,58 +109,6 @@ const TextArea = () => (
     <ExampleContainer>
       <Title title="Xxlarge margin" theme="light" level={4} />
       <DxcTextarea label="Xxlarge" margin="xxlarge" />
-    </ExampleContainer>
-    <Title title="Opinionated theme" theme="light" level={2} />
-    <ExampleContainer pseudoState="pseudo-hover">
-      <Title title="Hovered" theme="light" level={4} />
-      <HalstackProvider theme={opinionatedTheme}>
-        <DxcTextarea label="Hovered" helperText="Sample text" placeholder="Placeholder" />
-      </HalstackProvider>
-    </ExampleContainer>
-    <ExampleContainer pseudoState="pseudo-focus">
-      <Title title="Focused" theme="light" level={4} />
-      <HalstackProvider theme={opinionatedTheme}>
-        <DxcTextarea label="Focused" helperText="Sample text" />
-      </HalstackProvider>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Disabled" theme="light" level={4} />
-      <HalstackProvider theme={opinionatedTheme}>
-        <DxcTextarea
-          label="Disabled"
-          optional
-          helperText="Sample text"
-          placeholder="Enter your text here..."
-          disabled
-        />
-      </HalstackProvider>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Disabled with value" theme="light" level={4} />
-      <HalstackProvider theme={opinionatedTheme}>
-        <DxcTextarea label="Disabled" helperText="Sample text" defaultValue="Example text" disabled />
-      </HalstackProvider>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="With error" theme="light" level={4} />
-      <HalstackProvider theme={opinionatedTheme}>
-        <DxcTextarea
-          label="Textarea with error"
-          helperText="Helper text"
-          placeholder="Enter your text here..."
-          error="Error message."
-        />
-      </HalstackProvider>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Grow manual" theme="light" level={4} />{" "}
-      <HalstackProvider theme={opinionatedTheme}>
-        <DxcTextarea
-          label="Manual vertical grow"
-          verticalGrow="manual"
-          defaultValue="Long textttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt"
-        />
-      </HalstackProvider>
     </ExampleContainer>
   </>
 );
