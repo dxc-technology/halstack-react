@@ -18,15 +18,12 @@ type TabCommonProps = {
 };
 
 export type TabsContextProps = {
-  iconPosition: "top" | "left";
-  tabIndex: number;
-  focusedLabel: string;
-  isControlled: boolean;
   activeLabel: string;
-  hasLabelAndIcon: boolean;
+  focusedLabel: string;
+  iconPosition?: "top" | "left";
+  isControlled: boolean;
   setActiveLabel: (_tab: string) => void;
-  setActiveIndicatorWidth: (_width: number) => void;
-  setActiveIndicatorLeft: (_left: number) => void;
+  tabIndex: number;
 };
 
 export type TabLabelProps = TabCommonProps & {
@@ -77,41 +74,46 @@ export type TabProps = {
 
 type LegacyProps = {
   /**
-   * Initially active tab, only when it is uncontrolled.
-   */
-  defaultActiveTabIndex?: number;
-  /**
+   * @deprecated This prop is deprecated and will be removed in future versions. Use the children prop instead.
    * The index of the active tab. If undefined, the component will be
    * uncontrolled and the active tab will be managed internally by the component.
    */
   activeTabIndex?: number;
   /**
-   * An array of objects representing the tabs.
+   * @deprecated This prop is deprecated and will be removed in future versions.
+   * Initially active tab, only when it is uncontrolled.
    */
-  tabs?: (TabLabelProps | TabIconProps)[];
+  defaultActiveTabIndex?: number;
   /**
    * Whether the icon should appear above or to the left of the label.
    */
   iconPosition?: "top" | "left";
-  /**
-   * This function will be called when the user clicks on a tab. The index of the
-   * clicked tab will be passed as a parameter.
-   */
-  onTabClick?: (index: number) => void;
-  /**
-   * This function will be called when the user hovers a tab.The index of the
-   * hovered tab will be passed as a parameter.
-   */
-  onTabHover?: (index: number | null) => void;
   /**
    * Size of the margin to be applied to the component ('xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge').
    * You can pass an object with 'top', 'bottom', 'left' and 'right' properties in order to specify different margin sizes.
    */
   margin?: Space | Margin;
   /**
+   * @deprecated This prop is deprecated and will be removed in future versions.
+   * This function will be called when the user clicks on a tab. The index of the
+   * clicked tab will be passed as a parameter.
+   */
+  onTabClick?: (index: number) => void;
+  /**
+   * @deprecated This prop is deprecated and will be removed in future versions.
+   * This function will be called when the user hovers a tab.The index of the
+   * hovered tab will be passed as a parameter.
+   */
+  onTabHover?: (index: number | null) => void;
+  /**
    * Value of the tabindex attribute applied to each tab.
    */
   tabIndex?: number;
+  /**
+   * @deprecated This prop is deprecated and will be removed in future versions.
+   * An array of objects representing the tabs.
+   */
+  tabs?: (TabLabelProps | TabIconProps)[];
 };
 
 type NewProps = {
@@ -131,7 +133,6 @@ type NewProps = {
   /**
    * Contains one or more DxcTabs.Tab.
    */
-  // children?: React.ReactElement<TabProps>[];
   children?: ReactNode;
 };
 

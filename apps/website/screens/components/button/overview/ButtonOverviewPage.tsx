@@ -153,7 +153,7 @@ const sections = [
           <tbody>
             <tr>
               <td>
-                <DxcTypography color="#5f249f" fontWeight="600">
+                <DxcTypography color="var(--color-bg-primary-strong)" fontWeight="600">
                   Default
                 </DxcTypography>
               </td>
@@ -164,7 +164,7 @@ const sections = [
             </tr>
             <tr>
               <td>
-                <DxcTypography color="#d0011b" fontWeight="600">
+                <DxcTypography color="var(--color-bg-error-strong)" fontWeight="600">
                   Error
                 </DxcTypography>
               </td>
@@ -175,7 +175,7 @@ const sections = [
             </tr>
             <tr>
               <td>
-                <DxcTypography color="#0086e6" fontWeight="600">
+                <DxcTypography color="var(--color-bg-secondary-strong)" fontWeight="600">
                   Info
                 </DxcTypography>
               </td>
@@ -186,7 +186,7 @@ const sections = [
             </tr>
             <tr>
               <td>
-                <DxcTypography color="#24a148" fontWeight="600">
+                <DxcTypography color="var(--color-bg-success-strong)" fontWeight="600">
                   Success
                 </DxcTypography>
               </td>
@@ -197,7 +197,7 @@ const sections = [
             </tr>
             <tr>
               <td>
-                <DxcTypography color="#c26c0a" fontWeight="600">
+                <DxcTypography color="var(--color-bg-warning-strong)" fontWeight="600">
                   Warning
                 </DxcTypography>
               </td>
@@ -257,7 +257,7 @@ const sections = [
                   </DxcBulletedList.Item>
                   <DxcBulletedList.Item>
                     <strong>Secondary actions:</strong> They can be used for less prominent actions that are not the
-                    primary focus of the user’s interaction.
+                    primary focus of the user's interaction.
                   </DxcBulletedList.Item>
                 </DxcBulletedList>
               </>
@@ -338,7 +338,7 @@ const sections = [
         content: (
           <DxcBulletedList>
             <DxcBulletedList.Item>
-              <strong>Avoid ambiguity:</strong> Make sure the button’s purpose is immediately clear. Avoid vague labels
+              <strong>Avoid ambiguity:</strong> Make sure the button's purpose is immediately clear. Avoid vague labels
               like "Click here" or "Go".
             </DxcBulletedList.Item>
             <DxcBulletedList.Item>
@@ -368,7 +368,7 @@ const sections = [
         content: (
           <DxcBulletedList>
             <DxcBulletedList.Item>
-              <strong>User-centric language:</strong> Write from the user’s perspective. For actions that the user
+              <strong>User-centric language:</strong> Write from the user's perspective. For actions that the user
               performs, consider using first-person pronouns (e.g., "My profile").
             </DxcBulletedList.Item>
             <DxcBulletedList.Item>
