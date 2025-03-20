@@ -4,9 +4,9 @@ import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
 import Code from "@/common/Code";
 import Example from "@/common/example/Example";
-import controlledLegacy from "./examples-old/controlled";
-import uncontrolledLegacy from "./examples-old/uncontrolled";
-import iconsLegacy from "./examples-old/icons";
+import controlledDeprecated from "./examples-old/controlled";
+import uncontrolledDeprecated from "./examples-old/uncontrolled";
+import iconsDeprecated from "./examples-old/icons";
 import TableCode from "@/common/TableCode";
 import StatusBadge from "@/common/StatusBadge";
 import controlled from "./examples-new/controlled";
@@ -30,7 +30,7 @@ const sections = [
           <tr>
             <td>
               <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                <StatusBadge status="legacy" />
+                <StatusBadge status="deprecated" />
                 activeTabIndex
               </DxcFlex>
             </td>
@@ -62,7 +62,7 @@ const sections = [
           <tr>
             <td>
               <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                <StatusBadge status="legacy" />
+                <StatusBadge status="deprecated" />
                 defaultActiveTabIndex
               </DxcFlex>
             </td>
@@ -96,7 +96,7 @@ const sections = [
           <tr>
             <td>
               <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                <StatusBadge status="legacy" />
+                <StatusBadge status="deprecated" />
                 onTabClick
               </DxcFlex>
             </td>
@@ -112,7 +112,7 @@ const sections = [
           <tr>
             <td>
               <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                <StatusBadge status="legacy" />
+                <StatusBadge status="deprecated" />
                 onTabHover
               </DxcFlex>
             </td>
@@ -140,7 +140,7 @@ const sections = [
           <tr>
             <td>
               <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                <StatusBadge status="legacy" />
+                <StatusBadge status="deprecated" />
                 tabs
               </DxcFlex>
             </td>
@@ -338,19 +338,19 @@ const sections = [
     ],
   },
   {
-    title: "Examples (Legacy)",
+    title: "Examples (deprecated)",
     subSections: [
       {
         title: "Controlled",
-        content: <Example example={controlledLegacy} defaultIsVisible />,
+        content: <Example example={controlledDeprecated} defaultIsVisible />,
       },
       {
         title: "Uncontrolled",
-        content: <Example example={uncontrolledLegacy} defaultIsVisible />,
+        content: <Example example={uncontrolledDeprecated} defaultIsVisible />,
       },
       {
         title: "Icons and notifications",
-        content: <Example example={iconsLegacy} defaultIsVisible />,
+        content: <Example example={iconsDeprecated} defaultIsVisible />,
       },
     ],
   },

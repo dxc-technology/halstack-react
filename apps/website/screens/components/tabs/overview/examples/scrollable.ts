@@ -1,10 +1,10 @@
-import { DxcTabs, DxcInset, DxcFlex } from "@dxc-technology/halstack-react";
+import { DxcContainer, DxcTabs, DxcInset, DxcFlex } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   return (
     <DxcInset space="2rem">
       <DxcFlex justifyContent="center">
-        <div style={{ width: "400px" }}>
+        <DxcContainer width="350px">
           <DxcTabs>
             <DxcTabs.Tab label="Mail" active>
               <></>
@@ -19,13 +19,14 @@ const code = `() => {
               <></>
             </DxcTabs.Tab>
           </DxcTabs>
-        </div>
+        </DxcContainer>
       </DxcFlex>
     </DxcInset>
   );
 }`;
 
 const scope = {
+  DxcContainer,
   DxcTabs,
   DxcInset,
   DxcFlex,

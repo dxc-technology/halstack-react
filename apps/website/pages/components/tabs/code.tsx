@@ -1,6 +1,6 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import TabsCodePage from "screens/components/tabs/overview/TabsOverviewPage";
+import TabsCodePage from "screens/components/tabs/code/TabsCodePage";
 import TabsPageLayout from "screens/components/tabs/TabsPageLayout";
 
 const Code = () => (
