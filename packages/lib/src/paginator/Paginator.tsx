@@ -113,6 +113,7 @@ const DxcPaginator = ({
                   onPageChange(1);
                 }}
                 title="First results"
+                size={{ height: "medium" }}
               />
 
               <DxcButton
@@ -124,6 +125,7 @@ const DxcPaginator = ({
                   onPageChange(currentPage - 1);
                 }}
                 title="Previous results"
+                size={{ height: "medium" }}
               />
             </ButtonsContainer>
           )}
@@ -159,6 +161,7 @@ const DxcPaginator = ({
                   onPageChange(currentPage + 1);
                 }}
                 title="Next results"
+                size={{ height: "medium" }}
               />
               <DxcButton
                 mode="secondary"
@@ -169,6 +172,7 @@ const DxcPaginator = ({
                   onPageChange(totalPages);
                 }}
                 title="Last results"
+                size={{ height: "medium" }}
               />
             </ButtonsContainer>
           )}
