@@ -126,9 +126,6 @@ const ErrorMessage = styled.span`
 
 const patternMatch = (pattern: string, value: string) => new RegExp(pattern).test(value);
 
-const isLengthOutOfRange = (value: string, minLength?: number, maxLength?: number) =>
-  value !== "" && minLength && maxLength && (value.length < minLength || value.length > maxLength);
-
 const DxcTextarea = forwardRef<RefType, TextareaPropsType>(
   (
     {
@@ -163,6 +160,9 @@ const DxcTextarea = forwardRef<RefType, TextareaPropsType>(
     const translatedLabels = useContext(HalstackLanguageContext);
     const textareaRef = useRef<HTMLTextAreaElement | null>(null);
     const prevValueRef = useRef<string | null>(null);
+
+    const isLengthOutOfRange = (value: string) =>
+      value !== "" && minLength && maxLength && (value.length < minLength || value.length > maxLength);
 
     const changeValue = (newValue: string) => {
       if (value == null) setInnerValue(newValue);
