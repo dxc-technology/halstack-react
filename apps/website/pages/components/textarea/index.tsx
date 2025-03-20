@@ -1,21 +1,17 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import TextareaCodePage from "screens/components/textarea/code/TextareaCodePage";
+import TextareaOverviewPage from "screens/components/textarea/overview/TextareaOverviewPage";
 import TextareaPageLayout from "screens/components/textarea/TextareaPageLayout";
 
-const Index = () => {
-  return (
-    <>
-      <Head>
-        <title>Textarea — Halstack Design System</title>
-      </Head>
-      <TextareaCodePage></TextareaCodePage>
-    </>
-  );
-};
+const Index = () => (
+  <>
+    <Head>
+      <title>Textarea — Halstack Design System</title>
+    </Head>
+    <TextareaOverviewPage />
+  </>
+);
 
-Index.getLayout = function getLayout(page: ReactElement) {
-  return <TextareaPageLayout>{page}</TextareaPageLayout>;
-};
+Index.getLayout = (page: ReactElement) => <TextareaPageLayout>{page}</TextareaPageLayout>;
 
 export default Index;
