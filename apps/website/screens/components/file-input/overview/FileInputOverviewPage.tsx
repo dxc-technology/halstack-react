@@ -7,7 +7,7 @@ import Example from "@/common/example/Example";
 
 const sections = [
   {
-    title: "Overview",
+    title: "Introduction",
     content: <DxcParagraph>Considerations for the file input component use:</DxcParagraph>,
     subSections: [
       {

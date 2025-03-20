@@ -8,10 +8,6 @@ const FileInputPageHeading = ({ children }: { children: ReactNode }) => {
   const tabs = [
     { label: "Overview", path: "/components/file-input" },
     { label: "Code", path: "/components/file-input/code" },
-    {
-      label: "Specifications",
-      path: "/components/file-input/specifications",
-    },
   ];
 
   return (

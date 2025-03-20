@@ -73,8 +73,8 @@ const DragDropArea = styled.div<{
   display: flex;
   ${(props) =>
     props.mode === "filedrop"
-      ? "flex-direction: row; column-gap: 0.75rem;"
-      : "justify-content: center; flex-direction: column; row-gap: 0.5rem; height: 160px;"}
+      ? "flex-direction: row; column-gap: var(--spacing-gap-s);"
+      : "justify-content: center; flex-direction: column; row-gap: var(--spacing-gap-s); height: 160px;"}
   align-items: center;
   width: 320px;
   padding: ${(props) => (props.mode === "filedrop" ? `var(--spacing-gap-xs)` : "var(--spacing-padding-m)")};
