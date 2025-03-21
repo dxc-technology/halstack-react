@@ -6,9 +6,8 @@ import { ReactNode } from "react";
 
 const CardPageHeading = ({ children }: { children: ReactNode }) => {
   const tabs = [
-    { label: "Code", path: "/components/card" },
-    { label: "Usage", path: "/components/card/usage" },
-    { label: "Specifications", path: "/components/card/specifications" },
+    { label: "Overview", path: "/components/card" },
+    { label: "Code", path: "/components/card/code" },
   ];
 
   return (
@@ -23,7 +22,7 @@ const CardPageHeading = ({ children }: { children: ReactNode }) => {
             optional to be displayed but the overall element should make a cohesive design, even if it includes text,
             images or other elements.
           </DxcParagraph>
-          <TabsPageHeading tabs={tabs}></TabsPageHeading>
+          <TabsPageHeading tabs={tabs} />
         </DxcFlex>
       </PageHeading>
       {children}
