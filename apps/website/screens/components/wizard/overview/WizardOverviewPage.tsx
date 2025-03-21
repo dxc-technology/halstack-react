@@ -59,8 +59,8 @@ const sections = [
     title: "Key interactions and features",
     content: (
       <DxcParagraph>
-        To better understand the wizard component, and its possible use cases when working with a form, it's important
-        to review its key characteristics and interactions.
+        To better understand the wizard component and its possible use cases when working with a form, it's important to
+        review its key characteristics and interactions.
       </DxcParagraph>
     ),
     subSections: [
@@ -121,8 +121,7 @@ const sections = [
     title: "Variants",
     content: (
       <DxcParagraph>
-        The wizard component has two variants depending on its orientation: <strong>horizontal</strong> and{" "}
-        <strong>vertical</strong>.
+        The wizard component has two variants depending on its orientation: horizontal and vertical.
       </DxcParagraph>
     ),
     subSections: [
@@ -131,9 +130,9 @@ const sections = [
         content: (
           <>
             <DxcParagraph>
-              The horizontal variant of the wizard is suitable for workflows where space is available horizontally,
-              making it ideal for tasks like multi-step forms and progress tracking. For example, setting up a user
-              account with several steps.
+              The <strong>horizontal variant</strong> of the wizard is suitable for workflows where space is available
+              horizontally, making it ideal for tasks like multi-step forms and progress tracking. For example, setting
+              up a user account with several steps.
             </DxcParagraph>
             <Example example={horizontal} />
           </>
@@ -144,9 +143,9 @@ const sections = [
         content: (
           <>
             <DxcParagraph>
-              The vertical variant works well when horizontal space is limited, often used in scenarios like long forms
-              or detailed steps in a process. An example could be an onboarding process with in-depth configuration
-              options.
+              The <strong>vertical variant</strong> works well when horizontal space is limited, often used in scenarios
+              like long forms or detailed steps in a process. An example could be an onboarding process with in-depth
+              configuration options.
             </DxcParagraph>
             <Example example={vertical} />
           </>

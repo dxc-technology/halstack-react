@@ -6,7 +6,6 @@ import DxcIcon from "../icon/Icon";
 import WizardPropsType, { StepProps } from "./types";
 import DxcFlex from "../flex/Flex";
 import icons from "./Icons";
-import { DxcInset } from "..";
 
 const Wizard = styled.div<{
   margin: WizardPropsType["margin"];
@@ -16,7 +15,7 @@ const Wizard = styled.div<{
   flex-direction: ${({ mode }) => (mode === "vertical" ? "column" : "row")};
   justify-content: center;
   ${({ mode }) => mode === "vertical" && "height: 100%; width: fit-content;"};
-  margin: ${({ margin }) => (margin && typeof margin !== "object" ? spaces[margin] : "0px")};
+  margin: ${({ margin }) => (margin && typeof margin !== "object" ? spaces[margin] : "")};
   margin-top: ${({ margin }) => (margin && typeof margin === "object" && margin.top ? spaces[margin.top] : "")};
   margin-right: ${({ margin }) => (margin && typeof margin === "object" && margin.right ? spaces[margin.right] : "")};
   margin-bottom: ${({ margin }) =>
@@ -43,7 +42,7 @@ const IconContainer = styled.div<{
   place-items: center;
   border-radius: 50%;
   border: var(--border-width-m) var(--border-style-default) var(--border-color-neutral-dark);
-  height: 32px;
+  height: var(--height-m);
   width: 32px;
   font-size: var(--height-xxs);
   svg {
