@@ -1,14 +1,13 @@
 import { DxcFlex, DxcTable, DxcLink } from "@dxc-technology/halstack-react";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import QuickNavContainer from "@/common/QuickNavContainer";
-import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import basicUsage from "./examples/basicUsage";
 import errorHandling from "./examples/errorHandling";
 import formFileInput from "./examples/formFileInput";
 import StatusBadge from "@/common/StatusBadge";
-import TableCode from "@/common/TableCode";
+import Code, { TableCode } from "@/common/Code";
 
 const sections = [
   {

@@ -2,7 +2,7 @@ import { DxcFlex, DxcTable } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
-import TableCode from "@/common/TableCode";
+import { TableCode } from "@/common/Code";
 import Example from "@/common/example/Example";
 import basicUsage from "./examples/basicUsage";
 import StatusBadge from "@/common/StatusBadge";

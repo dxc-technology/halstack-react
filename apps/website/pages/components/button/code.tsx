@@ -6,7 +6,7 @@ import ButtonCodePage from "screens/components/button/code/ButtonCodePage";
 const Code = () => (
   <>
     <Head>
-      <title>Button Code — Halstack Design System</title>
+      <title>Button code — Halstack Design System</title>
     </Head>
     <ButtonCodePage />
   </>

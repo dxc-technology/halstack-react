@@ -3,9 +3,8 @@ import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import Link from "next/link";
-import TableCode from "@/common/TableCode";
+import Code, { TableCode } from "@/common/Code";
 import StatusBadge from "@/common/StatusBadge";
-import Code from "@/common/Code";
 
 const ApplicationLayoutPropsTable = () => (
   <DxcTable>
