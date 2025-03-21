@@ -4,23 +4,21 @@ const code = `() => {
   return (
     <DxcInset space="2rem">
       <DxcWizard
-        defaultCurrentStep={1}
         steps={[
           {
-            label: "Step label",
-            description: "Description for the step",
+            label: "Select policy type",
+            valid: true,
           },
           {
-            label: "Step label",
-            description: "Description for the step",
+            label: "Property details",
+            valid: false,
           },
           {
-            label: "Step label",
-            description: "Description for the step",
-            disabled: true,
+            label: "Review & submit",
+            valid: false,
           },
         ]}
-      ></DxcWizard>
+      />
     </DxcInset>
   );
 }`;
