@@ -6,10 +6,13 @@ import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import Example from "@/common/example/Example";
 import directionAlignment from "./examples/directionAlignment";
 import gapOrderGrow from "./examples/gapOrderGrow";
-import TableCode from "@/common/TableCode";
+import TableCode, { ExtendedTableCode } from "@/common/TableCode";
 import StatusBadge from "@/common/StatusBadge";
 
-const coreSpacingTokensTypeString = `'0rem' | '0.125rem' | '0.25rem' | '0.5rem' | '0.75rem' | '1rem' | '1.5rem' | '2rem' | '2.5rem' | '3rem' | '3.5rem' | '4rem' | '5rem' | '6rem' | '7rem'`;
+const gapTypeString = `{
+  rowGap: string; 
+  columnGap: string
+}`;
 
 const sections = [
   {
@@ -130,22 +133,15 @@ const sections = [
         <tr>
           <td>gap</td>
           <td>
-            <TableCode>{coreSpacingTokensTypeString} | Gap</TableCode>
+            <TableCode>string | Gap</TableCode>
           </td>
           <td>
             Sets <Code>gap</Code> CSS property. See{" "}
             <DxcLink newWindow href="https://developer.mozilla.org/en-US/docs/Web/CSS/gap">
               MDN
             </DxcLink>{" "}
-            for further information. It can be either a value from the range or an object with the following properties:
-            <ul>
-              <li>
-                <b>rowGap</b>: gutter between rows.
-              </li>
-              <li>
-                <b>columnGap</b>: gutter between columns.
-              </li>
-            </ul>
+            for further information. It can be either a value or an object with the following properties:
+            <ExtendedTableCode>{gapTypeString}</ExtendedTableCode>
           </td>
           <td>-</td>
         </tr>
