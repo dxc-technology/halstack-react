@@ -2,6 +2,7 @@ import { Meta, StoryObj } from "@storybook/react";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcSpinner from "./Spinner";
+import { userEvent, within } from "@storybook/test";
 
 export default {
   title: "Spinner",
@@ -19,12 +20,12 @@ const Spinner = () => (
       <DxcSpinner value={50} showValue />
     </ExampleContainer>
     <ExampleContainer>
-      <Title title="With value and label with ellipsis" theme="light" level={4} />
+      <Title title="With value and label with ellipsis (triggers tooltip)" theme="light" level={4} />
       <DxcSpinner value={50} showValue label="Loading a full screen..." />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With label and value label" theme="light" level={4} />
-      <DxcSpinner label="Label" value={50} showValue />{" "}
+      <DxcSpinner label="Label" value={50} showValue />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With 100%" theme="light" level={4} />
@@ -118,6 +119,11 @@ type Story = StoryObj<typeof DxcSpinner>;
 
 export const Chromatic: Story = {
   render: Spinner,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const label = canvas.getByText("Loading a full screen...");
+    await userEvent.hover(label);
+  },
 };
 export const SpinnerOverlay: Story = {
   render: SpinnerWithOverlay,

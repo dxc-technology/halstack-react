@@ -38,11 +38,11 @@ const sections = [
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
             <strong>Track circle:</strong> the dynamic element that visually indicates progress by filling up according
-            to the percentage of completion
+            to the percentage of completion.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Percentage</strong> <em>(Optional)</em>: the dynamic element that visually indicates progress by
-            filling up according to the percentage of completion
+            <strong>Percentage</strong> <em>(Optional)</em>: displays a numerical value, typically in the center of the
+            spinner, showing the exact progress of the loading process.
           </DxcBulletedList.Item>
         </DxcBulletedList>
       </>
@@ -61,11 +61,11 @@ const sections = [
         title: "Default",
         content: (
           <DxcParagraph>
-            The <strong>default variant</strong> of the spinner is the <strong>standard option</strong>, offering a
-            clear visual indication that a process is in progress. It is designed to be noticeable, making it ideal for
-            situations where users must wait for content or system responses. As well as the overlay variant, the
-            default version of our spinner can be <strong>determinate</strong> (it shows the percentage related to the
-            progress of the process) or <strong>indeterminate</strong>.
+            The default variant of the spinner is the <strong>standard option</strong>, offering a clear visual
+            indication that a process is in progress. It is designed to be noticeable, making it ideal for situations
+            where users must wait for content or system responses. As well as the overlay variant, the default version
+            of our spinner can be <strong>determinate</strong> (it shows the percentage related to the progress of the
+            process) or <strong>indeterminate</strong>.
           </DxcParagraph>
         ),
         subSections: [
@@ -96,11 +96,11 @@ const sections = [
         title: "Overlay",
         content: (
           <DxcParagraph>
-            The <strong>overlay variant</strong> of the spinner is designed for scenarios where the entire interface is
-            temporarily blocked while a process is running. It appears centered on the screen with a semi-transparent
-            background, <strong>preventing user interactions until the task is completed</strong>. This variant ensures
-            users are aware that the system is actively processing their requests and helps prevent unintended actions
-            during critical operations.
+            The overlay variant of the spinner is designed for scenarios where the entire interface is temporarily
+            blocked while a process is running. It appears centered on the screen with a semi-transparent background,{" "}
+            <strong>preventing user interactions until the task is completed</strong>. This variant ensures users are
+            aware that the system is actively processing their requests and helps prevent unintended actions during
+            critical operations.
           </DxcParagraph>
         ),
         subSections: [
@@ -207,7 +207,7 @@ const sections = [
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
             <strong>Combine with descriptive labels when necessary:</strong> if the loading state might be unclear,
-            include a short label (e.g., “Loading data…” or “Processing request…”) to provide context.
+            include a short label (e.g., "Loading data…" or "Processing request…") to provide context.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
             <strong>Optimize performance:</strong> if an operation takes longer than expected, consider showing an
@@ -224,7 +224,7 @@ const SpinnerOverviewPage = () => (
     <QuickNavContainerLayout>
       <QuickNavContainer sections={sections} startHeadingLevel={2} />
     </QuickNavContainerLayout>
-    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/spinner/usage/SpinnerUsagePage.tsx" />
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/spinner/overview/SpinnerOverviewPage.tsx" />
   </DxcFlex>
 );
 

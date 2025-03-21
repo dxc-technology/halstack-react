@@ -1,7 +1,8 @@
-import { useId, useMemo } from "react";
+import { MouseEvent, useId, useMemo, useState } from "react";
 import styled from "styled-components";
 import { spaces } from "../common/variables";
 import SpinnerPropsType from "./types";
+import { TooltipWrapper } from "../tooltip/Tooltip";
 
 const SpinnerContainer = styled.div<{
   margin: SpinnerPropsType["margin"];
@@ -163,7 +164,7 @@ const Labels = styled.div<{ mode: SpinnerPropsType["mode"] }>`
   gap: var(--spacing-gap-none, 0px);
   place-items: center;
   width: 116px;
-  color: ${({ mode }) => (mode === "overlay" ? "var(--color-absolutes-white)" : "var(--color-fg-neutral-dark)")};
+  color: ${({ mode }) => (mode === "overlay" ? "var(--color-fg-neutral-bright)" : "var(--color-fg-neutral-dark)")};
   font-family: var(--typography-font-family);
   font-size: var(--typography-helper-text-m);
   font-weight: var(--typography-helper-text-regular);
@@ -182,6 +183,12 @@ const Labels = styled.div<{ mode: SpinnerPropsType["mode"] }>`
 const DxcSpinner = ({ ariaLabel = "Spinner", label, margin, mode = "large", showValue, value }: SpinnerPropsType) => {
   const labelId = useId();
   const determined = useMemo(() => value != null && value >= 0 && value <= 100, [value]);
+  const [hasTooltip, setHasTooltip] = useState(false);
+
+  const handleLabelOnMouseEnter = (event: MouseEvent<HTMLSpanElement>) => {
+    const text = event.currentTarget;
+    setHasTooltip(text.scrollWidth > text.clientWidth);
+  };
 
   return (
     <SpinnerContainer margin={margin} mode={mode}>
@@ -198,16 +205,16 @@ const DxcSpinner = ({ ariaLabel = "Spinner", label, margin, mode = "large", show
         <Spinner
           aria-label={!label || mode === "small" ? ariaLabel : undefined}
           aria-labelledby={label && mode !== "small" ? labelId : undefined}
-          aria-valuenow={determined && showValue ? value : undefined}
-          aria-valuemin={determined ? 0 : undefined}
           aria-valuemax={determined ? 100 : undefined}
+          aria-valuemin={determined ? 0 : undefined}
+          aria-valuenow={determined && showValue ? value : undefined}
           role={determined ? "progressbar" : "status"}
         >
-          <SVGSpinner viewBox={mode === "small" ? "0 0 16 16" : "0 0 140 140"} determined={determined}>
+          <SVGSpinner determined={determined} viewBox={mode === "small" ? "0 0 16 16" : "0 0 140 140"}>
             <CircleSpinner
-              determined={determined}
               cx={mode === "small" ? "8" : "70"}
               cy={mode === "small" ? "8" : "70"}
+              determined={determined}
               mode={mode}
               r={mode === "small" ? "6" : "65"}
               value={value}
@@ -215,10 +222,16 @@ const DxcSpinner = ({ ariaLabel = "Spinner", label, margin, mode = "large", show
           </SVGSpinner>
         </Spinner>
         {mode !== "small" && (
-          <Labels mode={mode}>
-            {label && <span id={labelId}>{label}</span>}
-            {(value || value === 0) && showValue && <strong>{value}%</strong>}
-          </Labels>
+          <TooltipWrapper condition={hasTooltip} label={label}>
+            <Labels mode={mode}>
+              {label && (
+                <span id={labelId} onMouseEnter={handleLabelOnMouseEnter}>
+                  {label}
+                </span>
+              )}
+              {(value || value === 0) && showValue && <strong>{value}%</strong>}
+            </Labels>
+          </TooltipWrapper>
         )}
       </MainContainer>
     </SpinnerContainer>
