@@ -40,21 +40,18 @@ const SwitchContainer = styled.div<{
   size: SwitchPropsType["size"];
 }>`
   display: inline-grid;
-  grid-template-columns: ${(props) =>
-    props.labelPosition === "after" ? "52px minmax(0, max-content)" : "minmax(0, max-content) 52px"};
+  grid-template-columns: ${({ labelPosition }) =>
+    labelPosition === "after" ? "52px minmax(0, max-content)" : "minmax(0, max-content) 52px"};
   place-items: center;
   gap: var(--spacing-gap-m);
-  width: ${(props) => calculateWidth(props.margin, props.size)};
+  width: ${({ margin, size }) => calculateWidth(margin, size)};
   height: var(--height-m);
-  margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
-  margin-top: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
-  margin-right: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
-  margin-bottom: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
-  margin-left: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
+  margin: ${({ margin }) => (margin && typeof margin !== "object" ? spaces[margin] : "")};
+  margin-top: ${({ margin }) => (margin && typeof margin === "object" && margin.top ? spaces[margin.top] : "")};
+  margin-right: ${({ margin }) => (margin && typeof margin === "object" && margin.right ? spaces[margin.right] : "")};
+  margin-bottom: ${({ margin }) =>
+    margin && typeof margin === "object" && margin.bottom ? spaces[margin.bottom] : ""};
+  margin-left: ${({ margin }) => (margin && typeof margin === "object" && margin.left ? spaces[margin.left] : "")};
   cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
 
   &:focus {
@@ -63,7 +60,7 @@ const SwitchContainer = styled.div<{
     &:not([aria-disabled="true"]) {
       > span::before {
         outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
-        outline-offset: 2px;
+        outline-offset: var(--spacing-padding-xxxs);
       }
     }
   }
@@ -81,16 +78,15 @@ const LabelContainer = styled.span<{
   font-weight: var(--typography-label-regular);
   max-width: 100%;
   order: ${({ labelPosition }) => (labelPosition === "before" ? 0 : 1)};
-`;
 
-const Label = styled.span`
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-`;
-
-const OptionalLabel = styled.span<{ disabled: SwitchPropsType["disabled"] }>`
-  ${({ disabled }) => !disabled && "color: var(--color-fg-neutral-stronger);"}
+  &:first-child {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  &:last-child {
+    ${({ disabled }) => !disabled && "color: var(--color-fg-neutral-stronger);"}
+  }
 `;
 
 const Switch = styled.span<{ checked: SwitchPropsType["checked"]; disabled: SwitchPropsType["disabled"] }>`
@@ -140,7 +136,7 @@ const DxcSwitch = forwardRef<RefType, SwitchPropsType>(
     const [innerChecked, setInnerChecked] = useState(defaultChecked);
     const translatedLabels = useContext(HalstackLanguageContext);
 
-    const handlerOnChange = () => {
+    const handleOnChange = () => {
       if (checked == null) setInnerChecked((currentInnerChecked) => !currentInnerChecked);
       onChange?.(!(checked ?? innerChecked));
     };
@@ -166,7 +162,7 @@ const DxcSwitch = forwardRef<RefType, SwitchPropsType>(
         disabled={disabled}
         labelPosition={labelPosition}
         margin={margin}
-        onClick={!disabled ? handlerOnChange : undefined}
+        onClick={!disabled ? handleOnChange : undefined}
         onKeyDown={!disabled ? handleOnKeyDown : undefined}
         ref={ref}
         role="switch"
@@ -175,8 +171,8 @@ const DxcSwitch = forwardRef<RefType, SwitchPropsType>(
       >
         {label && (
           <LabelContainer disabled={disabled} labelPosition={labelPosition}>
-            <Label>{label}</Label>
-            {optional && <OptionalLabel disabled={disabled}>{translatedLabels.formFields.optionalLabel}</OptionalLabel>}
+            <span>{label}</span>
+            {optional && <span>{translatedLabels.formFields.optionalLabel}</span>}
           </LabelContainer>
         )}
         <Switch checked={checked ?? innerChecked} disabled={disabled} />
