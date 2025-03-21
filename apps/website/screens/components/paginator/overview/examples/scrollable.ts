@@ -39,7 +39,7 @@ const code = `() => {
     }
   ];
 
-const expandableRows = [
+  const expandableRows = [
     {
         id: 1,
         task: "Task 1",

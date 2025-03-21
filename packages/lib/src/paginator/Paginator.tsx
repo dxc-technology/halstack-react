@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import styled, { ThemeProvider } from "styled-components";
+import styled from "styled-components";
 import DxcButton from "../button/Button";
 import DxcSelect from "../select/Select";
 import HalstackContext from "../HalstackContext";
@@ -25,7 +25,6 @@ const DxcPaginator = ({
   const maxItemsPerPage =
     minItemsPerPage - 1 + itemsPerPage > totalItems ? totalItems : minItemsPerPage - 1 + itemsPerPage;
 
-  const colorsTheme = useContext(HalstackContext);
   const translatedLabels = useContext(HalstackLanguageContext);
 
   const DxcPaginatorContainer = styled.div`
@@ -77,108 +76,106 @@ const DxcPaginator = ({
   `;
 
   return (
-    <ThemeProvider theme={colorsTheme.paginator}>
-      <DxcPaginatorContainer>
-        {itemsPerPageOptions && (
-          <ItemsPerPageContainer>
-            <span>{translatedLabels.paginator.itemsPerPageText}</span>
+    <DxcPaginatorContainer>
+      {itemsPerPageOptions && (
+        <ItemsPerPageContainer>
+          <span>{translatedLabels.paginator.itemsPerPageText}</span>
+          <SelectContainer>
+            <DxcSelect
+              options={itemsPerPageOptions.map((num) => ({
+                label: num.toString(),
+                value: num.toString(),
+              }))}
+              onChange={(newValue) => {
+                itemsPerPageFunction?.(Number(newValue.value));
+              }}
+              value={itemsPerPage.toString()}
+              size="fillParent"
+              tabIndex={tabIndex}
+            />
+          </SelectContainer>
+        </ItemsPerPageContainer>
+      )}
+      <TotalItemsContainer>
+        {translatedLabels.paginator.minToMaxOfText(minItemsPerPage, maxItemsPerPage, totalItems)}
+      </TotalItemsContainer>
+      <GoToPageContainer>
+        {onPageChange && (
+          <ButtonsContainer>
+            <DxcButton
+              mode="secondary"
+              disabled={currentPageInternal === 1 || currentPageInternal === 0}
+              icon="first_page"
+              tabIndex={tabIndex}
+              onClick={() => {
+                onPageChange(1);
+              }}
+              title="First results"
+              size={{ height: "medium" }}
+            />
+
+            <DxcButton
+              mode="secondary"
+              disabled={currentPageInternal === 1 || currentPageInternal === 0}
+              icon="navigate_before"
+              tabIndex={tabIndex}
+              onClick={() => {
+                onPageChange(currentPage - 1);
+              }}
+              title="Previous results"
+              size={{ height: "medium" }}
+            />
+          </ButtonsContainer>
+        )}
+        {showGoToPage ? (
+          <PageToSelectContainer>
+            <span>{translatedLabels.paginator.goToPageText} </span>
             <SelectContainer>
               <DxcSelect
-                options={itemsPerPageOptions.map((num) => ({
-                  label: num.toString(),
-                  value: num.toString(),
+                options={Array.from(Array(totalPages), (e, num) => ({
+                  label: (num + 1).toString(),
+                  value: (num + 1).toString(),
                 }))}
                 onChange={(newValue) => {
-                  itemsPerPageFunction?.(Number(newValue.value));
+                  onPageChange?.(Number(newValue.value));
                 }}
-                value={itemsPerPage.toString()}
+                value={currentPage.toString()}
                 size="fillParent"
                 tabIndex={tabIndex}
               />
             </SelectContainer>
-          </ItemsPerPageContainer>
+          </PageToSelectContainer>
+        ) : (
+          <span>{translatedLabels.paginator.pageOfText(currentPageInternal, totalPages)}</span>
         )}
-        <TotalItemsContainer>
-          {translatedLabels.paginator.minToMaxOfText(minItemsPerPage, maxItemsPerPage, totalItems)}
-        </TotalItemsContainer>
-        <GoToPageContainer>
-          {onPageChange && (
-            <ButtonsContainer>
-              <DxcButton
-                mode="secondary"
-                disabled={currentPageInternal === 1 || currentPageInternal === 0}
-                icon="first_page"
-                tabIndex={tabIndex}
-                onClick={() => {
-                  onPageChange(1);
-                }}
-                title="First results"
-                size={{ height: "medium" }}
-              />
-
-              <DxcButton
-                mode="secondary"
-                disabled={currentPageInternal === 1 || currentPageInternal === 0}
-                icon="navigate_before"
-                tabIndex={tabIndex}
-                onClick={() => {
-                  onPageChange(currentPage - 1);
-                }}
-                title="Previous results"
-                size={{ height: "medium" }}
-              />
-            </ButtonsContainer>
-          )}
-          {showGoToPage ? (
-            <PageToSelectContainer>
-              <span>{translatedLabels.paginator.goToPageText} </span>
-              <SelectContainer>
-                <DxcSelect
-                  options={Array.from(Array(totalPages), (e, num) => ({
-                    label: (num + 1).toString(),
-                    value: (num + 1).toString(),
-                  }))}
-                  onChange={(newValue) => {
-                    onPageChange?.(Number(newValue.value));
-                  }}
-                  value={currentPage.toString()}
-                  size="fillParent"
-                  tabIndex={tabIndex}
-                />
-              </SelectContainer>
-            </PageToSelectContainer>
-          ) : (
-            <span>{translatedLabels.paginator.pageOfText(currentPageInternal, totalPages)}</span>
-          )}
-          {onPageChange && (
-            <ButtonsContainer>
-              <DxcButton
-                mode="secondary"
-                disabled={currentPageInternal === totalPages}
-                icon="navigate_next"
-                tabIndex={tabIndex}
-                onClick={() => {
-                  onPageChange(currentPage + 1);
-                }}
-                title="Next results"
-                size={{ height: "medium" }}
-              />
-              <DxcButton
-                mode="secondary"
-                disabled={currentPageInternal === totalPages}
-                icon="last_page"
-                tabIndex={tabIndex}
-                onClick={() => {
-                  onPageChange(totalPages);
-                }}
-                title="Last results"
-                size={{ height: "medium" }}
-              />
-            </ButtonsContainer>
-          )}
-        </GoToPageContainer>
-      </DxcPaginatorContainer>
-    </ThemeProvider>
+        {onPageChange && (
+          <ButtonsContainer>
+            <DxcButton
+              mode="secondary"
+              disabled={currentPageInternal === totalPages}
+              icon="navigate_next"
+              tabIndex={tabIndex}
+              onClick={() => {
+                onPageChange(currentPage + 1);
+              }}
+              title="Next results"
+              size={{ height: "medium" }}
+            />
+            <DxcButton
+              mode="secondary"
+              disabled={currentPageInternal === totalPages}
+              icon="last_page"
+              tabIndex={tabIndex}
+              onClick={() => {
+                onPageChange(totalPages);
+              }}
+              title="Last results"
+              size={{ height: "medium" }}
+            />
+          </ButtonsContainer>
+        )}
+      </GoToPageContainer>
+    </DxcPaginatorContainer>
   );
 };
 

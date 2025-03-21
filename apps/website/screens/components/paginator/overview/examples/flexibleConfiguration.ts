@@ -9,10 +9,28 @@ const code = `() => {
         <DxcPaginator/>
         <DxcPaginator itemsPerPageOptions={[5, 10, 15]} />
         <DxcPaginator showGoToPage />
-        <DxcPaginator showGoToPage currentPage={1} itemsPerPage={10} totalItems={27} onPageChange={() => {}} />
-        <DxcPaginator showGoToPage currentPage={2} itemsPerPage={10} totalItems={27} onPageChange={() => {}} />
-        <DxcPaginator showGoToPage itemsPerPageOptions={[5, 10, 15]} currentPage={2} itemsPerPage={10} 
-        totalItems={27} onPageChange={() => {}} />
+        <DxcPaginator 
+          showGoToPage 
+          currentPage={1} 
+          itemsPerPage={10} 
+          totalItems={27} 
+          onPageChange={() => {}} 
+        />
+        <DxcPaginator 
+          showGoToPage 
+          currentPage={2} 
+          itemsPerPage={10} 
+          totalItems={27} 
+          onPageChange={() => {}} 
+        />
+        <DxcPaginator 
+          showGoToPage 
+          itemsPerPageOptions={[5, 10, 15]} 
+          currentPage={2} 
+          itemsPerPage={10} 
+          totalItems={27} 
+          onPageChange={() => {}} 
+        />
       </DxcFlex>
     </DxcInset>
   );

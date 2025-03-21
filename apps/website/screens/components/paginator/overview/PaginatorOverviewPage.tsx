@@ -1,9 +1,7 @@
 import { DxcBulletedList, DxcFlex, DxcParagraph, DxcTable } from "@dxc-technology/halstack-react";
 import Image from "@/common/Image";
-import Figure from "@/common/Figure";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
-import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
 import paginatorAnatomy from "./images/paginator_anatomy.png";
 import Example from "@/common/example/Example";
@@ -106,7 +104,7 @@ const sections = [
           <strong>Use pagination when necessary</strong>
           <DxcParagraph>
             Implement a paginator when the number of elements affects system performance or when displaying all content
-            at once would significantly impact usability, specially on larger screens.
+            at once would significantly impact usability, especially on larger screens.
           </DxcParagraph>
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>
@@ -149,15 +147,13 @@ const sections = [
   },
 ];
 
-const PaginatorOverviewPage = () => {
-  return (
-    <DxcFlex direction="column" gap="4rem">
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
-      </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/paginator/overview/PaginatorOverviewPage.tsx" />
-    </DxcFlex>
-  );
-};
+const PaginatorOverviewPage = () => (
+  <DxcFlex direction="column" gap="4rem">
+    <QuickNavContainerLayout>
+      <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
+    </QuickNavContainerLayout>
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/paginator/overview/PaginatorOverviewPage.tsx" />
+  </DxcFlex>
+);
 
 export default PaginatorOverviewPage;
