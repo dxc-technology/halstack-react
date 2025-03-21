@@ -92,7 +92,7 @@ const sections = [
       <>
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
-            <strong>Use meaningful icons:</strong> Select icons that accurately represent menu items, ensuring clarity
+            <strong>Use meaningful icons:</strong> select icons that accurately represent menu items, ensuring clarity
             and intuitive navigation.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
