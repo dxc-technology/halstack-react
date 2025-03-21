@@ -1,6 +1,5 @@
 {
   "name": "@dxc-technology/halstack-react",
-  "type": "commonjs",
   "version": "0.0.0",
   "repository": {
     "type": "git",
