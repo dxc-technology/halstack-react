@@ -41,8 +41,8 @@ const sections = [
               <TableCode>boolean</TableCode>
             </td>
             <td>
-              If true, the color is inherited from the closest parent that has a color defined. This allows users to
-              adapt the spinner to the semantic color of the use case in which it is used.
+              If true, the color is inherited from the closest parent with a defined color. This allows users to adapt
+              the spinner to the semantic color of the use case in which it is used.
             </td>
             <td>
               <TableCode>false</TableCode>
