@@ -1,14 +1,8 @@
 import { memo } from "react";
-import { DxcSpinner, HalstackProvider } from "..";
+import { DxcSpinner } from "..";
 import DxcIcon from "../icon/Icon";
 import ToastPropsType from "./types";
 import { getSemantic } from "./utils";
-
-const spinnerTheme = {
-  spinner: {
-    accentColor: getSemantic("info").primaryColor,
-  },
-};
 
 const ToastIcon = memo(
   ({
@@ -18,12 +12,7 @@ const ToastIcon = memo(
     semantic,
   }: Pick<ToastPropsType, "icon" | "hideSemanticIcon" | "loading" | "semantic">) => {
     if (semantic === "default") return typeof icon === "string" ? <DxcIcon icon={icon} /> : icon;
-    else if (semantic === "info" && loading)
-      return (
-        <HalstackProvider theme={spinnerTheme}>
-          <DxcSpinner mode="small" />
-        </HalstackProvider>
-      );
+    else if (semantic === "info" && loading) return <DxcSpinner inheritColor mode="small" />;
     else return !hideSemanticIcon && <DxcIcon icon={getSemantic(semantic).icon} />;
   }
 );
