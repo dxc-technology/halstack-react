@@ -40,7 +40,7 @@ const Tab = styled.button<{
   justify-content: center;
   gap: var(--spacing-gap-m);
   border: 0;
-  min-width: 90px;
+  min-width: max-content;
   max-width: 360px;
   ${({ iconPosition }) =>
     iconPosition === "top"

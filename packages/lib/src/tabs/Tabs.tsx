@@ -17,7 +17,8 @@ import DxcTabsLegacy from "./TabsLegacy";
 import { spaces } from "../common/variables";
 import { HalstackLanguageContext } from "../HalstackContext";
 import DxcIcon from "../icon/Icon";
-import { useResize, getPreviousTabIndex, getNextTabIndex } from "./utils";
+import { getPreviousTabIndex, getNextTabIndex } from "./utils";
+import useWidth from "../utils/useWidth";
 
 const TabsContainer = styled.div<{ margin: TabsPropsType["margin"] }>`
   position: relative;
@@ -78,8 +79,8 @@ const TabsContent = styled.div`
 `;
 
 const ScrollableTabsList = styled.div<{
-  translateScroll: number;
   enabled: boolean;
+  translateScroll: number;
 }>`
   display: flex;
   ${({ enabled, translateScroll }) =>
@@ -91,7 +92,7 @@ const DxcTabs = ({
   activeTabIndex,
   children,
   defaultActiveTabIndex,
-  iconPosition,
+  iconPosition = "left",
   margin,
   onTabClick,
   onTabHover,
@@ -122,7 +123,7 @@ const DxcTabs = ({
   const [totalTabsWidth, setTotalTabsWidth] = useState(0);
   const refTabList = useRef<HTMLDivElement | null>(null);
   const translatedLabels = useContext(HalstackLanguageContext);
-  const viewWidth = useResize(refTabList);
+  const viewWidth = useWidth(refTabList.current);
   const contextValue = useMemo(() => {
     const focusedChild = innerFocusIndex != null ? childrenArray[innerFocusIndex] : null;
     return {
@@ -191,9 +192,7 @@ const DxcTabs = ({
   };
 
   useEffect(() => {
-    if (refTabList.current) {
-      setTotalTabsWidth(refTabList.current?.scrollWidth);
-    }
+    if (refTabList.current) setTotalTabsWidth(refTabList.current?.getBoundingClientRect().width);
   }, []);
 
   return children ? (

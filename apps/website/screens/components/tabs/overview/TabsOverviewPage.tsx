@@ -26,7 +26,7 @@ const sections = [
     content: (
       <>
         <Image src={anatomy} alt="Tabs anatomy" />
-        <DxcBulletedList>
+        <DxcBulletedList type="number">
           <DxcBulletedList.Item>
             <strong>Container:</strong> the wrapper that holds all the tabs together in a row.
           </DxcBulletedList.Item>
@@ -108,7 +108,7 @@ const sections = [
         title: "Tabs vs. Nav tabs",
         content: (
           <>
-            <Image src={anatomy} alt="Tabs vs Nav tabs" />
+            <Image src={anatomy} alt="Tabs vs nav tabs" />
             <DxcParagraph>
               Both tabs and{" "}
               <Link href="/components/nav-tabs" passHref legacyBehavior>
@@ -142,7 +142,7 @@ const sections = [
                     an application.
                   </DxcBulletedList.Item>
                   <DxcBulletedList.Item>
-                    Clicking on a navigation tab may trigger a full page reload or route change.
+                    Clicking on a nav tab may trigger a full page reload or route change.
                   </DxcBulletedList.Item>
                 </DxcBulletedList>
                 <DxcParagraph>
@@ -176,7 +176,7 @@ const sections = [
         ),
       },
       {
-        title: "Keep tab babels short & clear",
+        title: "Keep tab labels short & clear",
         content: (
           <DxcBulletedList>
             <DxcBulletedList.Item>
