@@ -36,13 +36,13 @@ const Suggestion = ({ highlighted, id, isLast, onClick, suggestion, value, visua
 
   return (
     <SuggestionContainer
+      aria-selected={visuallyFocused ? true : undefined}
       id={id}
       onClick={() => {
         onClick(suggestion);
       }}
-      visuallyFocused={visuallyFocused}
       role="option"
-      aria-selected={visuallyFocused ? true : undefined}
+      visuallyFocused={visuallyFocused}
     >
       <DxcFlex alignItems="center" grow={1}>
         <StyledSuggestion>

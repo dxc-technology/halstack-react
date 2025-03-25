@@ -261,7 +261,7 @@ const AutosuggestListbox = () => (
       </ExampleContainer>
       <Title title="Listbox suggestion states" theme="light" level={3} />
       <ExampleContainer pseudoState="pseudo-hover">
-        <Title title="Hovered suggestion" theme="light" level={4} />
+        <Title title="Hovered" theme="light" level={4} />
         <Suggestions
           id="x1"
           value=""
@@ -275,7 +275,7 @@ const AutosuggestListbox = () => (
         />
       </ExampleContainer>
       <ExampleContainer pseudoState="pseudo-active">
-        <Title title="Active suggestion" theme="light" level={4} />
+        <Title title="Active" theme="light" level={4} />
         <Suggestions
           id="x2"
           value=""
@@ -289,7 +289,7 @@ const AutosuggestListbox = () => (
         />
       </ExampleContainer>
       <ExampleContainer>
-        <Title title="Focused suggestion" theme="light" level={4} />
+        <Title title="Focused" theme="light" level={4} />
         <Suggestions
           id="x3"
           value=""
@@ -303,7 +303,7 @@ const AutosuggestListbox = () => (
         />
       </ExampleContainer>
       <ExampleContainer>
-        <Title title="Highlighted suggestion" theme="light" level={4} />
+        <Title title="Highlighted" theme="light" level={4} />
         <Suggestions
           id="x4"
           value="Afgh"
@@ -316,34 +316,34 @@ const AutosuggestListbox = () => (
           styles={{ width: 350 }}
         />
       </ExampleContainer>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Autosuggest Error" theme="light" level={3} />
-      <Suggestions
-        id="x5"
-        value=""
-        suggestions={country}
-        visualFocusIndex={-1}
-        highlightedSuggestions={false}
-        searchHasErrors={true}
-        isSearching={false}
-        suggestionOnClick={() => {}}
-        styles={{ width: 350 }}
-      />
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Autosuggest Searching message" theme="light" level={3} />
-      <Suggestions
-        id="x6"
-        value=""
-        suggestions={country}
-        visualFocusIndex={-1}
-        highlightedSuggestions={false}
-        searchHasErrors={false}
-        isSearching={true}
-        suggestionOnClick={() => {}}
-        styles={{ width: 350 }}
-      />
+      <ExampleContainer>
+        <Title title="Error" theme="light" level={4} />
+        <Suggestions
+          id="x5"
+          value=""
+          suggestions={country}
+          visualFocusIndex={-1}
+          highlightedSuggestions={false}
+          searchHasErrors={true}
+          isSearching={false}
+          suggestionOnClick={() => {}}
+          styles={{ width: 350 }}
+        />
+      </ExampleContainer>
+      <ExampleContainer>
+        <Title title="Searching" theme="light" level={4} />
+        <Suggestions
+          id="x6"
+          value=""
+          suggestions={country}
+          visualFocusIndex={-1}
+          highlightedSuggestions={false}
+          searchHasErrors={false}
+          isSearching={true}
+          suggestionOnClick={() => {}}
+          styles={{ width: 350 }}
+        />
+      </ExampleContainer>
     </ExampleContainer>
   </>
 );

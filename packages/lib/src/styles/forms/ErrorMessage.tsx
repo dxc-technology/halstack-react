@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import DxcIcon from "../../icon/Icon";
 
-const ErrorMessageContainer = styled.span`
+const ErrorMessageContainer = styled.div`
   display: flex;
   align-items: center;
   gap: var(--spacing-gap-xs);

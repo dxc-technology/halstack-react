@@ -6,16 +6,15 @@ import { SuggestionsProps } from "./types";
 import DxcIcon from "../icon/Icon";
 import { scrollbarStyles } from "../styles/scroll";
 
-const SuggestionsContainer = styled.ul<{ error: boolean }>`
-  box-sizing: border-box;
-  margin: 0;
-  max-height: 304px;
-  padding: var(--spacing-padding-xxs) var(--spacing-padding-none);
+const SuggestionsContainer = styled.div`
   background-color: var(--color-bg-neutral-lightest);
   border: var(--border-width-s) var(--border-style-default) var(--border-color-neutral-medium);
   border-radius: var(--border-radius-s);
   box-shadow: var(--shadow-mid-x-position) var(--shadow-mid-y-position) var(--shadow-mid-blur) var(--shadow-mid-spread)
     var(--shadow-light);
+  box-sizing: border-box;
+  max-height: 304px;
+  padding: var(--spacing-padding-xxs) var(--spacing-padding-none);
   color: var(--color-fg-neutral-dark);
   font-family: var(--typography-font-family);
   font-size: var(--typography-label-m);
@@ -32,7 +31,7 @@ const SuggestionsSystemMessage = styled.span`
   padding: var(--spacing-padding-none) var(--spacing-padding-xs);
 `;
 
-const SuggestionsErrorMessage = styled.span`
+const SuggestionsErrorMessage = styled.div`
   display: flex;
   align-items: center;
   gap: var(--spacing-gap-s);
@@ -46,15 +45,15 @@ const SuggestionsErrorMessage = styled.span`
 `;
 
 const Suggestions = ({
-  id,
-  value,
-  suggestions,
-  visualFocusIndex,
   highlightedSuggestions,
-  searchHasErrors,
+  id,
   isSearching,
-  suggestionOnClick,
+  searchHasErrors,
   styles,
+  suggestionOnClick,
+  suggestions,
+  value,
+  visualFocusIndex,
 }: SuggestionsProps) => {
   const translatedLabels = useContext(HalstackLanguageContext);
   const listboxRef = useRef<HTMLUListElement | null>(null);
@@ -68,46 +67,38 @@ const Suggestions = ({
   }, [visualFocusIndex]);
 
   return (
-    <SuggestionsContainer
-      id={id}
-      error={!!searchHasErrors}
-      onMouseDown={(event) => {
-        event.preventDefault();
-      }}
-      ref={listboxRef}
-      role="listbox"
-      style={styles}
-      aria-label="Suggestions"
-    >
-      {!isSearching &&
-        !searchHasErrors &&
-        suggestions.length > 0 &&
-        suggestions.map((suggestion, index) => (
-          <Suggestion
-            key={`${id}-suggestion-${index}`}
-            id={`${id}-suggestion-${index}`}
-            value={value}
-            onClick={suggestionOnClick}
-            suggestion={suggestion}
-            isLast={index === suggestions.length - 1}
-            visuallyFocused={visualFocusIndex === index}
-            highlighted={highlightedSuggestions}
-          />
-        ))}
-      {isSearching && (
-        <li role="option">
-          <SuggestionsSystemMessage>
-            {translatedLabels.textInput.searchingMessage}
-          </SuggestionsSystemMessage>
-        </li>
-      )}
-      {searchHasErrors && (
-        <li role="option">
-          <SuggestionsErrorMessage role="alert" aria-live="assertive">
-            <DxcIcon icon="filled_error" />
-            {translatedLabels.textInput.fetchingDataErrorMessage}
-          </SuggestionsErrorMessage>
-        </li>
+    <SuggestionsContainer style={styles}>
+      {isSearching ? (
+        <SuggestionsSystemMessage aria-live="polite">{translatedLabels.textInput.searchingMessage}</SuggestionsSystemMessage>
+      ) : searchHasErrors ? (
+        <SuggestionsErrorMessage aria-live="assertive" role="alert">
+          <DxcIcon icon="filled_error" />
+          {translatedLabels.textInput.fetchingDataErrorMessage}
+        </SuggestionsErrorMessage>
+      ) : (
+        <ul
+          aria-label="Suggestions"
+          id={id}
+          onMouseDown={(event) => {
+            event.preventDefault();
+          }}
+          ref={listboxRef}
+          role="listbox"
+          style={{ margin: 0, padding: 0 }}
+        >
+          {suggestions.map((suggestion, index) => (
+            <Suggestion
+              highlighted={highlightedSuggestions}
+              id={`${id}-suggestion-${index}`}
+              isLast={index === suggestions.length - 1}
+              key={`${id}-suggestion-${index}`}
+              onClick={suggestionOnClick}
+              suggestion={suggestion}
+              value={value}
+              visuallyFocused={visualFocusIndex === index}
+            />
+          ))}
+        </ul>
       )}
     </SuggestionsContainer>
   );
