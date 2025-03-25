@@ -1,6 +1,6 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import ChipCodePage from "screens/components/chip/code/ChipCodePage";
+import ChipOverviewPage from "screens/components/chip/overview/ChipOverviewPage";
 import ChipPageLayout from "screens/components/chip/ChipPageLayout";
 
 const Index = () => {
@@ -9,13 +9,11 @@ const Index = () => {
       <Head>
         <title>Chip — Halstack Design System</title>
       </Head>
-      <ChipCodePage></ChipCodePage>
+      <ChipOverviewPage />
     </>
   );
 };
 
-Index.getLayout = function getLayout(page: ReactElement) {
-  return <ChipPageLayout>{page}</ChipPageLayout>;
-};
+Index.getLayout = (page: ReactElement) => <ChipPageLayout>{page}</ChipPageLayout>;
 
 export default Index;

@@ -2,6 +2,7 @@ import { Meta, StoryObj } from "@storybook/react";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcStatusLight from "./StatusLight";
+import DxcContainer from "../container/Container";
 
 export default {
   title: "Status Light",
@@ -69,6 +70,12 @@ const StatusLight = () => (
     <ExampleContainer>
       <Title title="Error lights large" theme="light" level={4} />
       <DxcStatusLight label="StatusLight" mode="error" size="large" />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Long label ellipsis" theme="light" level={4} />
+      <DxcContainer width="200px">
+        <DxcStatusLight label="Very long label to try to force ellipsis" />
+      </DxcContainer>
     </ExampleContainer>
   </>
 );

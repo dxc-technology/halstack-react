@@ -16,6 +16,10 @@ const NumberInput = () => (
       <DxcNumberInput />
     </ExampleContainer>
     <ExampleContainer>
+      <Title title="Without controls" theme="light" level={4} />
+      <DxcNumberInput showControls={false} />
+    </ExampleContainer>
+    <ExampleContainer>
       <Title title="With label and placeholder" theme="light" level={4} />
       <DxcNumberInput label="Number input" placeholder="Placeholder" />
     </ExampleContainer>
