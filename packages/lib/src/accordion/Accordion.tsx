@@ -70,7 +70,7 @@ const AccordionContainer = styled.div<{
   margin: AccordionPropsType["margin"];
 }>`
   width: ${(props) => calculateWidth(props.margin)};
-  margin: ${({ margin }) => (margin && typeof margin !== "object" ? spaces[margin] : "0px")};
+  margin: ${({ margin }) => (margin && typeof margin !== "object" ? spaces[margin] : "var(--spacing-padding-none)")};
   margin-top: ${({ margin }) => (margin && typeof margin === "object" && margin.top ? spaces[margin.top] : "")};
   margin-right: ${({ margin }) => (margin && typeof margin === "object" && margin.right ? spaces[margin.right] : "")};
   margin-bottom: ${({ margin }) =>
@@ -78,68 +78,61 @@ const AccordionContainer = styled.div<{
   margin-left: ${({ margin }) => (margin && typeof margin === "object" && margin.left ? spaces[margin.left] : "")};
   cursor: "pointer";
 
-  // first and middle accordions (separator)
-  > div:not(:last-of-type):not(:only-of-type) {
-    border-bottom: ${(props) =>
-      `${props.theme.accordionSeparatorBorderThickness} ${props.theme.accordionSeparatorBorderStyle}`};
-    border-color: ${(props) => props.theme.accordionSeparatorBorderColor};
-  }
-
   // first accordion
   > div:first-of-type:not(:only-of-type) {
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-    border-top-left-radius: ${(props) => props.theme.borderRadius};
-    border-top-right-radius: ${(props) => props.theme.borderRadius};
+    border-bottom-left-radius: var(--border-radius-none);
+    border-bottom-right-radius: var(--border-radius-none);
+    border-top-left-radius: var(--border-radius-s);
+    border-top-right-radius: var(--border-radius-s);
   }
 
   // first accordion: hover, focus and active
   > div:first-of-type:not(:only-of-type) button:hover,
   div:first-of-type:not(:only-of-type) button:focus,
   div:first-of-type:not(:only-of-type) button:active {
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
+    border-bottom-left-radius: var(--border-radius-none);
+    border-bottom-right-radius: var(--border-radius-none);
   }
 
   // middle accordions
   > div:not(:first-of-type):not(:last-of-type):not(:only-of-type) {
-    border-radius: 0;
+    border-radius: var(--border-radius-none);
   }
 
   // middle accordions: hover, focus and active
   > div:not(:first-of-type):not(:last-of-type):not(:only-of-type) button:hover,
   div:not(:first-of-type):not(:last-of-type):not(:only-of-type) button:focus,
   div:not(:first-of-type):not(:last-of-type):not(:only-of-type) button:active {
-    border-radius: 0;
+    border-radius: var(--border-radius-none);
   }
 
   // last accordion
   > div:last-of-type:not(:only-of-type) {
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-    border-bottom-left-radius: ${(props) => props.theme.borderRadius};
-    border-bottom-right-radius: ${(props) => props.theme.borderRadius};
+    border-top-left-radius: var(--border-radius-none);
+    border-top-right-radius: var(--border-radius-none);
+    border-bottom-left-radius: var(--border-radius-s);
+    border-bottom-right-radius: var(--border-radius-s);
   }
 
   // last accordion: hover, focus and active
   > div:last-of-type:not(:only-of-type) button:hover,
   div:last-of-type:not(:only-of-type) button:focus,
   div:last-of-type:not(:only-of-type) button:active {
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-    border-bottom-left-radius: ${(props) => props.theme.borderRadius};
-    border-bottom-right-radius: ${(props) => props.theme.borderRadius};
+    border-top-left-radius: var(--border-radius-none);
+    border-top-right-radius: var(--border-radius-none);
+    border-bottom-left-radius: var(--border-radius-s);
+    border-bottom-right-radius: var(--border-radius-s);
   }
 
   // last expanded accordion
   > div:last-of-type:not(:only-of-type) > button[aria-expanded="true"] {
-    border-radius: 0;
+    border-radius: var(--border-radius-none);
   }
   // last expanded accordion: hover, focus and active
   > div:last-of-type:not(:only-of-type) > button[aria-expanded="true"]:hover,
   div:last-of-type:not(:only-of-type) > button[aria-expanded="true"]:focus,
   div:last-of-type:not(:only-of-type) > button[aria-expanded="true"]:active {
-    border-radius: 0;
+    border-radius: var(--border-radius-none);
   }
 `;
 
