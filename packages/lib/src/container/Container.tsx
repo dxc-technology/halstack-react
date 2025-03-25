@@ -26,16 +26,27 @@ const Container = styled.div<StyledProps>`
   box-shadow: ${({ boxShadow }) => boxShadow};
   background-attachment: ${({ background }) => background?.attachment};
   background-clip: ${({ background }) => background?.clip};
-  background-color: ${({ background }) => background?.color ?? ""};
+  background-color: ${({ background }) => background?.color};
   background-image: ${({ background }) => background?.image};
   background-origin: ${({ background }) => background?.origin};
   background-position: ${({ background }) => background?.position};
   background-repeat: ${({ background }) => background?.repeat};
   background-size: ${({ background }) => background?.size};
   border-radius: ${({ borderRadius }) => borderRadius};
-  border-width: ${({ border }) => (border && "width" in border ? `${border?.width}` : "")};
-  border-style: ${({ border }) => (border && "style" in border ? `${border?.style}` : "")};
-  border-color: ${({ border }) => (border && "color" in border ? `${border?.color}` : "")};
+  ${({ border }) => {
+    let styles = "";
+    if (border != null) {
+      switch (true) {
+        case "width" in border:
+          styles += border.width ? `border-width: ${border.width};` : "";
+        case "style" in border:
+          styles += border.style ? `border-style: ${border.style};` : "";
+        case "color" in border:
+          styles += border.color ? `border-color: ${border.color};` : "";
+      }
+    }
+    return styles;
+  }};
   ${({ border }) => {
     let styles = "";
     if (border != null) {
