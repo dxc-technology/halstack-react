@@ -20,6 +20,7 @@ const MainContainer = styled.div<{
 }>`
   box-sizing: border-box;
   display: flex;
+  align-items: center;
   gap: var(--spacing-gap-m);
   width: ${(props) => (props.singleFileMode ? "230px" : "320px")};
   height: ${(props) => (props.singleFileMode || !props.showPreview) && "var(--height-m)"};
