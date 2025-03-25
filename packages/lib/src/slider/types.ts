@@ -2,63 +2,25 @@ import { Margin, Space } from "../common/utils";
 
 type Props = {
   /**
-   * Text to be placed above the slider.
+   * Specifies a string to be used as the name for the slider element when no `label` is provided.
    */
-  label?: string;
-  /**
-   * Name attribute of the input element.
-   */
-  name?: string;
+  ariaLabel?: string;
   /**
    * Initial value of the slider, only when it is uncontrolled.
    */
   defaultValue?: number;
   /**
-   * The selected value. If undefined, the component will be uncontrolled and the value will be managed internally by the component.
+   * If true, the component will be disabled.
    */
-  value?: number;
+  disabled?: boolean;
   /**
    * Helper text to be placed above the slider.
    */
   helperText?: string;
   /**
-   * The minimum value available for selection.
+   * Text to be placed above the slider.
    */
-  minValue?: number;
-  /**
-   * The maximum value available for selection.
-   */
-  maxValue?: number;
-  /**
-   * The step interval between values available for selection.
-   */
-  step?: number;
-  /**
-   * Whether the min/max value labels should be displayed next to the slider
-   */
-  showLimitsValues?: boolean;
-  /**
-   * Whether the input element for displaying/controlling the slider value should be displayed next to the slider.
-   */
-  showInput?: boolean;
-  /**
-   * If true, the component will be disabled.
-   */
-  disabled?: boolean;
-  /**
-   * Whether the marks between each step should be shown or not.
-   */
-  marks?: boolean;
-  /**
-   * This function will be called when the slider changes its value, as it's being dragged.
-   * The new value will be passed as a parameter when this function is executed.
-   */
-  onChange?: (value: number) => void;
-  /**
-   * This function will be called when the slider changes its value, but only when the thumb is released.
-   * The new value will be passed as a parameter when this function is executed.
-   */
-  onDragEnd?: (value: number) => void;
+  label?: string;
   /**
    * This function will be used to format the labels displayed next to the slider.
    * The value will be passed as parameter and the function must return the formatted value.
@@ -70,13 +32,51 @@ type Props = {
    */
   margin?: Space | Margin;
   /**
+   * Whether the marks between each step should be shown or not.
+   */
+  marks?: boolean;
+  /**
+   * The maximum value available for selection.
+   */
+  maxValue?: number;
+  /**
+   * The minimum value available for selection.
+   */
+  minValue?: number;
+  /**
+   * Name attribute of the input element.
+   */
+  name?: string;
+  /**
+   * This function will be called when the slider changes its value, as it's being dragged.
+   * The new value will be passed as a parameter when this function is executed.
+   */
+  onChange?: (value: number) => void;
+  /**
+   * This function will be called when the slider changes its value, but only when the thumb is released.
+   * The new value will be passed as a parameter when this function is executed.
+   */
+  onDragEnd?: (value: number) => void;
+  /**
+   * Whether the input element for displaying/controlling the slider value should be displayed next to the slider.
+   */
+  showInput?: boolean;
+  /**
+   * Whether the min/max value labels should be displayed next to the slider
+   */
+  showLimitsValues?: boolean;
+  /**
    * Size of the component.
    */
   size?: "medium" | "large" | "fillParent";
   /**
-   * Specifies a string to be used as the name for the slider element when no `label` is provided.
+   * The step interval between values available for selection.
    */
-  ariaLabel?: string;
+  step?: number;
+  /**
+   * The selected value. If undefined, the component will be uncontrolled and the value will be managed internally by the component.
+   */
+  value?: number;
 };
 
 /**

@@ -6,9 +6,8 @@ import { ReactNode } from "react";
 
 const ButtonPageHeading = ({ children }: { children: ReactNode }) => {
   const tabs = [
-    { label: "Code", path: "/components/button" },
-    { label: "Usage", path: "/components/button/usage" },
-    { label: "Specifications", path: "/components/button/specifications" },
+    { label: "Overview", path: "/components/button" },
+    { label: "Code", path: "/components/button/code" },
   ];
 
   return (
@@ -18,12 +17,9 @@ const ButtonPageHeading = ({ children }: { children: ReactNode }) => {
           <ComponentHeading name="Button" />
           <DxcParagraph>
             Buttons are basic interface elements that initialize an action or function when the user interacts with
-            them. The appearance of the button should suggest the user takes an action that leads to different
-            scenarios. These elements that reinforce to the user the necessity to interact are called CTA (Call to
-            Action) components, which basically are designed to capture user attention and improve the user experience
-            within the application.
+            them.
           </DxcParagraph>
-          <TabsPageHeading tabs={tabs}></TabsPageHeading>
+          <TabsPageHeading tabs={tabs} />
         </DxcFlex>
       </PageHeading>
       {children}

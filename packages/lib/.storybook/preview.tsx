@@ -1,5 +1,6 @@
 import type { Preview } from "@storybook/react";
 import { disabledRules } from "../test/accessibility/rules/common/disabledRules";
+import "../src/styles/variables.css";
 
 const preview: Preview = {
   parameters: {
@@ -8,9 +9,6 @@ const preview: Preview = {
         color: /(background|color)$/i,
         date: /Date$/i,
       },
-    },
-    viewport: {
-      defaultViewport: "reset",
     },
     a11y: {
       config: {
