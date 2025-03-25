@@ -29,7 +29,7 @@ type Background = {
 
 export type BorderProperties = {
   width?: string;
-  style?: "none" | "dotted" | "dashed" | "solid" | "double" | "groove" | "ridge" | "inset" | "outset";
+  style?: string;
   color?: string;
 };
 type Border =
