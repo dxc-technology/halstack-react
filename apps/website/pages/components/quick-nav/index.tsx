@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
 import QuickNavPageLayout from "screens/components/quick-nav/QuickNavPageLayout";
-import QuickNavCodePage from "screens/components/quick-nav/code/QuickNavCodePage";
+import QuickNavOverviewPage from "screens/components/quick-nav/overview/QuickNavOverviewsPage";
 
 const Index = () => {
   return (
@@ -9,7 +9,7 @@ const Index = () => {
       <Head>
         <title>Quick Nav — Halstack Design System</title>
       </Head>
-      <QuickNavCodePage></QuickNavCodePage>
+      <QuickNavOverviewPage />
     </>
   );
 };
