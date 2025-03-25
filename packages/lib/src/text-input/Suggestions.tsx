@@ -4,51 +4,45 @@ import { HalstackLanguageContext } from "../HalstackContext";
 import Suggestion from "./Suggestion";
 import { SuggestionsProps } from "./types";
 import DxcIcon from "../icon/Icon";
+import { scrollbarStyles } from "../styles/scroll";
 
 const SuggestionsContainer = styled.ul<{ error: boolean }>`
   box-sizing: border-box;
-  max-height: 304px;
-  overflow-y: auto;
   margin: 0;
-  padding: 0.25rem 0;
-  background-color: ${(props) =>
-    props.error ? props.theme.errorListDialogBackgroundColor : props.theme.listDialogBackgroundColor};
-  border: 1px solid
-    ${(props) => (props.error ? props.theme.errorListDialogBorderColor : props.theme.listDialogBorderColor)};
-
-  border-radius: 0.25rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  color: ${(props) => props.theme.listOptionFontColor};
-  font-family: ${(props) => props.theme.fontFamily};
-  font-size: ${(props) => props.theme.listOptionFontSize};
-  font-style: ${(props) => props.theme.listOptionFontStyle};
-  font-weight: ${(props) => props.theme.listOptionFontWeight};
+  max-height: 304px;
+  padding: var(--spacing-padding-xxs) var(--spacing-padding-none);
+  background-color: var(--color-bg-neutral-lightest);
+  border: var(--border-width-s) var(--border-style-default) var(--border-color-neutral-medium);
+  border-radius: var(--border-radius-s);
+  box-shadow: var(--shadow-mid-x-position) var(--shadow-mid-y-position) var(--shadow-mid-blur) var(--shadow-mid-spread)
+    var(--shadow-light);
+  color: var(--color-fg-neutral-dark);
+  font-family: var(--typography-font-family);
+  font-size: var(--typography-label-m);
+  font-weight: var(--typography-label-regular);
+  overflow: auto;
+  ${scrollbarStyles}
 `;
 
 const SuggestionsSystemMessage = styled.span`
   display: flex;
-  padding: 0.25rem 1rem;
-  color: ${(props) => props.theme.systemMessageFontColor};
-  line-height: 1.715em;
-`;
-
-const SuggestionsErrorIcon = styled.span`
-  display: flex;
-  flex-wrap: wrap;
-  align-content: center;
-  margin-right: 0.5rem;
-  height: 18px;
-  width: 18px;
-  font-size: 18px;
-  color: ${(props) => props.theme.errorIconColor};
-`;
-
-const SuggestionsError = styled.span`
-  display: flex;
-  padding: 0.25rem 1rem;
   align-items: center;
-  line-height: 1.715em;
-  color: ${(props) => props.theme.errorListDialogFontColor};
+  color: var(--color-fg-neutral-strong);
+  height: var(--height-m);
+  padding: var(--spacing-padding-none) var(--spacing-padding-xs);
+`;
+
+const SuggestionsErrorMessage = styled.span`
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-gap-s);
+  color: var(--color-fg-error-medium);
+  height: var(--height-m);
+  padding: var(--spacing-padding-none) var(--spacing-padding-xs);
+  /* Error icon */
+  > span[role="img"] {
+    font-size: var(--height-xxs);
+  }
 `;
 
 const Suggestions = ({
@@ -61,7 +55,7 @@ const Suggestions = ({
   isSearching,
   suggestionOnClick,
   styles,
-}: SuggestionsProps): JSX.Element => {
+}: SuggestionsProps) => {
   const translatedLabels = useContext(HalstackLanguageContext);
   const listboxRef = useRef<HTMLUListElement | null>(null);
 
@@ -101,17 +95,19 @@ const Suggestions = ({
           />
         ))}
       {isSearching && (
-        <SuggestionsSystemMessage role="option">{translatedLabels.textInput.searchingMessage}</SuggestionsSystemMessage>
+        <li role="option">
+          <SuggestionsSystemMessage>
+            {translatedLabels.textInput.searchingMessage}
+          </SuggestionsSystemMessage>
+        </li>
       )}
       {searchHasErrors && (
-        <span role="option">
-          <SuggestionsError role="alert" aria-live="assertive">
-            <SuggestionsErrorIcon>
-              <DxcIcon icon="filled_error" />
-            </SuggestionsErrorIcon>
+        <li role="option">
+          <SuggestionsErrorMessage role="alert" aria-live="assertive">
+            <DxcIcon icon="filled_error" />
             {translatedLabels.textInput.fetchingDataErrorMessage}
-          </SuggestionsError>
-        </span>
+          </SuggestionsErrorMessage>
+        </li>
       )}
     </SuggestionsContainer>
   );
