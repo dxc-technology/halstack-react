@@ -7,62 +7,6 @@ import AccordionContext from "./AccordionContext";
 import HalstackContext from "../HalstackContext";
 import AccordionItem from "./AccordionItem";
 
-const DxcAccordion = (props: AccordionPropsType): JSX.Element => {
-  const { children, margin, onActiveChange } = props;
-  const colorsTheme = useContext(HalstackContext);
-
-  const [innerIndexActive, setInnerIndexActive] = useState(
-    props.independent
-      ? (props.defaultIndexActive ?? -1)
-      : Array.isArray(props.defaultIndexActive)
-        ? props.defaultIndexActive.filter((i) => i !== undefined)
-        : []
-  );
-
-  const handlerActiveChange = useCallback(
-    (index: number | number[]) => {
-      if (props.indexActive == null) {
-        setInnerIndexActive((prev) => {
-          if (props.independent) return typeof index === "number" ? (index === prev ? -1 : index) : prev;
-          else {
-            const prevArray = Array.isArray(prev) ? prev : [];
-            return Array.isArray(index)
-              ? index
-              : prevArray.includes(index)
-                ? prevArray.filter((i) => i !== index)
-                : [...prevArray, index];
-          }
-        });
-      }
-      onActiveChange?.(index as number & number[]);
-    },
-    [props.indexActive, props.independent, onActiveChange, innerIndexActive]
-  );
-
-  const contextValue = useMemo(
-    () => ({
-      activeIndex: props.indexActive ?? innerIndexActive,
-      handlerActiveChange,
-      independent: props.independent,
-    }),
-    [props.indexActive, innerIndexActive, handlerActiveChange, props.independent]
-  );
-
-  return (
-    <ThemeProvider theme={colorsTheme.accordion}>
-      <AccordionContainer margin={margin}>
-        {Children.map(children, (accordion, index) => (
-          <AccordionContext.Provider key={`accordion-${index}`} value={{ index, ...contextValue }}>
-            {accordion}
-          </AccordionContext.Provider>
-        ))}
-      </AccordionContainer>
-    </ThemeProvider>
-  );
-};
-
-DxcAccordion.AccordionItem = AccordionItem;
-
 const calculateWidth = (margin: AccordionPropsType["margin"]) =>
   `calc(100% - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`;
 
@@ -135,5 +79,61 @@ const AccordionContainer = styled.div<{
     border-radius: var(--border-radius-none);
   }
 `;
+
+const DxcAccordion = (props: AccordionPropsType): JSX.Element => {
+  const { children, margin, onActiveChange } = props;
+  const colorsTheme = useContext(HalstackContext);
+
+  const [innerIndexActive, setInnerIndexActive] = useState(
+    props.independent
+      ? (props.defaultIndexActive ?? -1)
+      : Array.isArray(props.defaultIndexActive)
+        ? props.defaultIndexActive.filter((i) => i !== undefined)
+        : []
+  );
+
+  const handlerActiveChange = useCallback(
+    (index: number | number[]) => {
+      if (props.indexActive == null) {
+        setInnerIndexActive((prev) => {
+          if (props.independent) return typeof index === "number" ? (index === prev ? -1 : index) : prev;
+          else {
+            const prevArray = Array.isArray(prev) ? prev : [];
+            return Array.isArray(index)
+              ? index
+              : prevArray.includes(index)
+                ? prevArray.filter((i) => i !== index)
+                : [...prevArray, index];
+          }
+        });
+      }
+      onActiveChange?.(index as number & number[]);
+    },
+    [props.indexActive, props.independent, onActiveChange, innerIndexActive]
+  );
+
+  const contextValue = useMemo(
+    () => ({
+      activeIndex: props.indexActive ?? innerIndexActive,
+      handlerActiveChange,
+      independent: props.independent,
+    }),
+    [props.indexActive, innerIndexActive, handlerActiveChange, props.independent]
+  );
+
+  return (
+    <ThemeProvider theme={colorsTheme.accordion}>
+      <AccordionContainer margin={margin}>
+        {Children.map(children, (accordion, index) => (
+          <AccordionContext.Provider key={`accordion-${index}`} value={{ index, ...contextValue }}>
+            {accordion}
+          </AccordionContext.Provider>
+        ))}
+      </AccordionContainer>
+    </ThemeProvider>
+  );
+};
+
+DxcAccordion.AccordionItem = AccordionItem;
 
 export default DxcAccordion;
