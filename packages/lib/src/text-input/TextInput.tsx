@@ -437,11 +437,11 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
     return (
       <TextInputContainer margin={margin} ref={ref} size={size}>
         {label && (
-          <Label disabled={disabled} hasHelperText={!!helperText} htmlFor={inputId}>
+          <Label disabled={disabled} hasMargin={!helperText} htmlFor={inputId}>
             {label} {optional && <span>{translatedLabels.formFields.optionalLabel}</span>}
           </Label>
         )}
-        {helperText && <HelperText disabled={disabled}>{helperText}</HelperText>}
+        {helperText && <HelperText disabled={disabled} hasMargin={false}>{helperText}</HelperText>}
         <AutosuggestWrapper
           condition={hasSuggestions(suggestions)}
           wrapper={(children) => (

@@ -423,15 +423,15 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
         }
         setSearchValue("");
       },
-      [handleOnChangeValue, closeListbox, multiple]
+      [closeListbox, handleOnChangeValue, multiple]
     );
 
     return (
-      <SelectContainer margin={margin} size={size} ref={ref}>
+      <SelectContainer margin={margin} ref={ref} size={size}>
         {label && (
           <Label
             disabled={disabled}
-            hasHelperText={!!helperText}
+            hasMargin={!helperText}
             id={labelId}
             onClick={() => {
               selectRef?.current?.focus();
@@ -440,7 +440,11 @@ const DxcSelect = forwardRef<RefType, SelectPropsType>(
             {label} {optional && <span>{translatedLabels.formFields.optionalLabel}</span>}
           </Label>
         )}
-        {helperText && <HelperText disabled={disabled}>{helperText}</HelperText>}
+        {helperText && (
+          <HelperText disabled={disabled} hasMargin>
+            {helperText}
+          </HelperText>
+        )}
         <Popover.Root open={isOpen}>
           <Popover.Trigger asChild type={undefined}>
             <Select

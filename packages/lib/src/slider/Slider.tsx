@@ -4,6 +4,8 @@ import { spaces } from "../common/variables";
 import SliderPropsType, { RefType } from "./types";
 import { calculateWidth, roundUp, stepPrecision } from "./utils";
 import DxcNumberInput from "../number-input/NumberInput";
+import HelperText from "../styles/forms/HelperText";
+import Label from "../styles/forms/Label";
 
 const SliderContainer = styled.div<{
   margin: SliderPropsType["margin"];
@@ -21,20 +23,6 @@ const SliderContainer = styled.div<{
   margin-left: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
   width: ${(props) => calculateWidth(props.margin, props.size)};
-`;
-
-const Label = styled.label<{ disabled: SliderPropsType["disabled"] }>`
-  color: ${({ disabled }) => (disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-dark)")};
-  font-family: var(--typography-font-family);
-  font-size: var(--typography-label-m);
-  font-weight: var(--typography-label-semibold);
-`;
-
-const HelperText = styled.span<{ disabled: SliderPropsType["disabled"] }>`
-  color: ${({ disabled }) => (disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-stronger)")};
-  font-family: var(--typography-font-family);
-  font-size: var(--typography-helper-text-s);
-  font-weight: var(--typography-helper-text-regular);
 `;
 
 const MainContainer = styled.div<{ showInput: SliderPropsType["showInput"] }>`
@@ -135,7 +123,7 @@ const SliderInput = styled.input<{
   }
 `;
 
-const TicksContainer = styled.div`
+const TicksContainer = styled.datalist`
   position: absolute;
   display: flex;
   align-items: center;
@@ -144,10 +132,11 @@ const TicksContainer = styled.div`
   pointer-events: none;
 `;
 
-const Tick = styled.span<{
+const Tick = styled.option<{
   disabled: SliderPropsType["disabled"];
   currentTick: boolean;
 }>`
+  all: unset;
   background-color: ${({ disabled }) =>
     disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-secondary-medium)"};
   border-radius: 50%;
@@ -161,7 +150,7 @@ const DxcSlider = forwardRef<RefType, SliderPropsType>(
     {
       ariaLabel = "Slider",
       defaultValue = 0,
-      disabled,
+      disabled = false,
       helperText,
       label,
       labelFormatCallback,
@@ -224,7 +213,11 @@ const DxcSlider = forwardRef<RefType, SliderPropsType>(
             {label}
           </Label>
         )}
-        {helperText && <HelperText disabled={disabled}>{helperText}</HelperText>}
+        {helperText && (
+          <HelperText disabled={disabled}>
+            {helperText}
+          </HelperText>
+        )}
         <MainContainer showInput={showInput}>
           <LimitsValueGrid showLimitsValues={showLimitsValues}>
             {showLimitsValues && <LimitLabel disabled={disabled}>{minLabel}</LimitLabel>}
@@ -255,6 +248,7 @@ const DxcSlider = forwardRef<RefType, SliderPropsType>(
                         currentTick={roundedUpValue === stepPrecision(tick, step)}
                         disabled={disabled}
                         key={`tickmark-${index}`}
+                        value={tick.toString()}
                       />
                     );
                   })}
