@@ -9,13 +9,14 @@ const sections = [
     content: (
       <>
         <DxcParagraph>
-          The flex component is designed to provide a more efficient way to organize, align, and distribute space among
-          items within a container, even when their size is unknown or dynamic (hence the term 'flex').
+          The flex component simplifies the creation of flexible and responsive layouts by abstracting the complexity of
+          CSS flexbox. Instead of manually handling flex properties, developers can use this component to build
+          structured and adaptable designs with improved readability and maintainability.
         </DxcParagraph>
         <DxcParagraph>
-          By leveraging the capabilities of the flex component, developers can create more flexible and responsive
-          layouts that adapt to different screen sizes and device types. This powerful tool enables the creation of
-          complex structures that can be easily adjusted to accommodate various content types and user interactions.
+          By leveraging flex, layouts can automatically adjust to different screen sizes and content variations,
+          ensuring a more seamless user experience. This documentation covers its functionality, best practices, and key
+          concepts to help you use it effectively.
         </DxcParagraph>
       </>
     ),
@@ -30,8 +31,8 @@ const sections = [
           when their size is unknown or dynamic.
         </DxcParagraph>
         <DxcParagraph>
-          Below, we share a series of essential links to help you understand and use the container component correctly.
-          If you are not acquainted with these concepts, we strongly recommend taking a moment to review them:
+          Below, we share a series of essential links to help you understand and use the flex component correctly. If
+          you are not acquainted with these concepts, we strongly recommend taking a moment to review them:
         </DxcParagraph>
         <DxcBulletedList>
           <DxcBulletedList.Item>
