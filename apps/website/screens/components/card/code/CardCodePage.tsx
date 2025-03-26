@@ -22,6 +22,14 @@ const sections = [
         </thead>
         <tbody>
           <tr>
+            <td>children</td>
+            <td>
+              <TableCode>React.ReactNode</TableCode>
+            </td>
+            <td>Custom content that will be placed inside the component.</td>
+            <td>-</td>
+          </tr>
+          <tr>
             <td>imageSrc</td>
             <td>
               <TableCode>string</TableCode>
@@ -40,6 +48,16 @@ const sections = [
             <td>Color of the background image.</td>
             <td>
               <TableCode>'black'</TableCode>
+            </td>
+          </tr>
+          <tr>
+            <td>imageCover</td>
+            <td>
+              <TableCode>boolean</TableCode>
+            </td>
+            <td>Whether the image must cover the its whole area of the card.</td>
+            <td>
+              <TableCode>false</TableCode>
             </td>
           </tr>
           <tr>
@@ -77,6 +95,17 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
+            <td>margin</td>
+            <td>
+              <TableCode>'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge' | Margin</TableCode>
+            </td>
+            <td>
+              Size of the margin to be applied to the component. You can pass an object with 'top', 'bottom', 'left' and
+              'right' properties in order to specify different margin sizes.
+            </td>
+            <td>-</td>
+          </tr>
+          <tr>
             <td>onClick</td>
             <td>
               <TableCode>{"() => void"}</TableCode>
@@ -88,17 +117,6 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
-            <td>imageCover</td>
-            <td>
-              <TableCode>boolean</TableCode>
-            </td>
-            <td>Whether the image must cover the its whole area of the card.</td>
-            <td>
-              <TableCode>false</TableCode>
-            </td>
-          </tr>
-
-          <tr>
             <td>outlined</td>
             <td>
               <TableCode>boolean</TableCode>
@@ -107,25 +125,6 @@ const sections = [
             <td>
               <TableCode>true</TableCode>
             </td>
-          </tr>
-          <tr>
-            <td>children</td>
-            <td>
-              <TableCode>React.ReactNode</TableCode>
-            </td>
-            <td>Custom content that will be placed inside the component.</td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td>margin</td>
-            <td>
-              <TableCode>'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge' | Margin</TableCode>
-            </td>
-            <td>
-              Size of the margin to be applied to the component. You can pass an object with 'top', 'bottom', 'left' and
-              'right' properties in order to specify different margin sizes.
-            </td>
-            <td>-</td>
           </tr>
           <tr>
             <td>tabIndex</td>
@@ -154,15 +153,13 @@ const sections = [
   },
 ];
 
-const CardCodePage = () => {
-  return (
-    <DxcFlex direction="column" gap="4rem">
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2} />
-      </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/card/code/CardCodePage.tsx" />
-    </DxcFlex>
-  );
-};
+const CardCodePage = () => (
+  <DxcFlex direction="column" gap="4rem">
+    <QuickNavContainerLayout>
+      <QuickNavContainer sections={sections} startHeadingLevel={2} />
+    </QuickNavContainerLayout>
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/card/code/CardCodePage.tsx" />
+  </DxcFlex>
+);
 
 export default CardCodePage;

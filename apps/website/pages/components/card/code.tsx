@@ -3,16 +3,14 @@ import type { ReactElement } from "react";
 import CardCodePage from "screens/components/card/code/CardCodePage";
 import CardPageLayout from "screens/components/card/CardPageLayout";
 
-const Code = () => {
-  return (
-    <>
-      <Head>
-        <title>Card Code — Halstack Design System</title>
-      </Head>
-      <CardCodePage />
-    </>
-  );
-};
+const Code = () => (
+  <>
+    <Head>
+      <title>Card code — Halstack Design System</title>
+    </Head>
+    <CardCodePage />
+  </>
+);
 
 Code.getLayout = (page: ReactElement) => <CardPageLayout>{page}</CardPageLayout>;
 
