@@ -68,7 +68,6 @@ const ProgressBarProgress = styled.div<{
   font-family: var(--typography-font-family);
   font-size: var(--typography-helper-text-s);
   font-weight: var(--typography-helper-text-regular);
-  /* text-transform: ${(props) => props.theme.valueFontTextTransform}; */
 `;
 
 const HelperText = styled.span<{ overlay: ProgressBarPropsType["overlay"] }>`
@@ -156,7 +155,7 @@ const DxcProgressBar = ({
   return (
     <Overlay overlay={overlay}>
       <MainContainer overlay={overlay} margin={margin}>
-        <DxcFlex justifyContent="space-between" gap="0.5rem">
+        <DxcFlex justifyContent="space-between">
           {label && (
             <ProgressBarLabel id={labelId} overlay={overlay}>
               {label}
