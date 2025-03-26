@@ -30,9 +30,8 @@ const sections = [
           when their size is unknown or dynamic.
         </DxcParagraph>
         <DxcParagraph>
-          Below, we share a series of links that we consider essential to understand and use the flexbox model
-          correctly. If you are not acquainted with these concepts, we strongly recommend taking a moment to review
-          them:
+          Below, we share a series of essential links to help you understand and use the container component correctly.
+          If you are not acquainted with these concepts, we strongly recommend taking a moment to review them:
         </DxcParagraph>
         <DxcBulletedList>
           <DxcBulletedList.Item>
