@@ -3,15 +3,15 @@ import type { ReactElement } from "react";
 import FlexPageLayout from "screens/components/flex/FlexPageLayout";
 import FlexCodePage from "screens/components/flex/code/FlexCodePage";
 
-const Usage = () => (
+const Code = () => (
   <>
     <Head>
-      <title>Flex Code — Halstack Design System</title>
+      <title>Flex code — Halstack Design System</title>
     </Head>
     <FlexCodePage />
   </>
 );
 
-Usage.getLayout = (page: ReactElement) => <FlexPageLayout>{page}</FlexPageLayout>;
+Code.getLayout = (page: ReactElement) => <FlexPageLayout>{page}</FlexPageLayout>;
 
-export default Usage;
+export default Code;
