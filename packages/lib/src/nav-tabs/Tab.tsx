@@ -6,6 +6,80 @@ import NavTabsPropsType, { TabProps } from "./types";
 import NavTabsContext from "./NavTabsContext";
 import DxcIcon from "../icon/Icon";
 
+const TabContainer = styled.div<{ active: TabProps["active"] }>`
+  align-items: stretch;
+  border-bottom: var(--border-width-s) var(--border-style-default)
+    ${(props) => (props.active ? "var(--border-color-primary-stronger)" : "transparent")};
+  padding: var(--spacing-padding-xs);
+`;
+
+const Tab = styled.a<{
+  disabled: TabProps["disabled"];
+  hasIcon: boolean;
+  iconPosition: NavTabsPropsType["iconPosition"];
+}>`
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: ${(props) => (props.hasIcon && props.iconPosition === "top" ? "column" : "row")};
+  justify-content: center;
+  align-items: center;
+  gap: ${(props) =>
+    props.hasIcon && props.iconPosition === "top" ? "var(--spacing-gap-xs)" : "var(--spacing-gap-xs)"};
+  height: ${(props) => (props.hasIcon && props.iconPosition === "top" ? "78px" : "100%")};
+  min-width: 176px;
+  min-height: 48px;
+  padding: 0px var(--spacing-padding-xs);
+  border-radius: var(--border-radius-s);
+  background: var(--color-bg-neutral-lightest);
+  text-decoration-color: transparent;
+  text-decoration-line: none;
+  cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
+
+  ${(props) =>
+    !props.disabled &&
+    `
+      :hover {
+        background: var(--color-bg-primary-lighter);
+      }
+      :focus {
+        outline: var(--border-width-s) var(--border-style-default) var(--border-color-secondary-medium;
+      }
+      :active {
+        background: var(--color-bg-primary-lighter);
+      }
+  `}
+`;
+
+const Label = styled.span<{
+  disabled: TabProps["disabled"];
+  active: TabProps["active"];
+}>`
+  display: inline;
+  color: ${(props) => (props.disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-stronger)")};
+  font-family: var(--typography-font-family);
+  font-size: var(--typography-label-l);
+  font-weight: var(--typography-label-semibold);
+  text-align: center;
+  text-decoration: none;
+  text-overflow: unset;
+  white-space: normal;
+  margin: 0;
+`;
+
+const TabIconContainer = styled.div<{
+  iconPosition: NavTabsPropsType["iconPosition"];
+  active: TabProps["active"];
+  disabled: TabProps["disabled"];
+}>`
+  display: flex;
+  font-size: 24px;
+  color: ${(props) => (props.disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-stronger)")};
+  svg {
+    height: 24px;
+    width: 24px;
+  }
+`;
+
 const DxcTab = forwardRef(
   (
     { href, active = false, icon, disabled = false, notificationNumber = false, children, ...otherProps }: TabProps,
@@ -39,7 +113,6 @@ const DxcTab = forwardRef(
         <Tab
           href={!disabled ? href : undefined}
           disabled={disabled}
-          active={active}
           iconPosition={iconPosition}
           hasIcon={icon != null}
           ref={(anchorRef: HTMLAnchorElement) => {
@@ -82,93 +155,5 @@ const DxcTab = forwardRef(
     );
   }
 );
-
-const TabContainer = styled.div<{ active: TabProps["active"] }>`
-  align-items: stretch;
-  border-bottom: 2px solid ${(props) => (props.active ? props.theme.selectedUnderlineColor : "transparent")};
-  padding: 0.5rem;
-`;
-
-const Tab = styled.a<{
-  disabled: TabProps["disabled"];
-  active: TabProps["active"];
-  hasIcon: boolean;
-  iconPosition: NavTabsPropsType["iconPosition"];
-}>`
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: ${(props) => (props.hasIcon && props.iconPosition === "top" ? "column" : "row")};
-  justify-content: center;
-  align-items: center;
-  gap: ${(props) => (props.hasIcon && props.iconPosition === "top" ? "0.375rem" : "0.625rem")};
-  height: ${(props) => (props.hasIcon && props.iconPosition === "top" ? "78px" : "100%")};
-  min-width: 176px;
-  min-height: 44px;
-  padding: 0.375rem;
-  border-radius: 4px;
-  background: ${(props) =>
-    props.active ? props.theme.selectedBackgroundColor : props.theme.unselectedBackgroundColor};
-  text-decoration-color: transparent;
-  text-decoration-line: none;
-  cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
-
-  ${(props) =>
-    !props.disabled &&
-    `
-      :hover {
-        background: ${props.theme.hoverBackgroundColor};
-      }
-      :focus {
-        outline: 2px solid ${props.theme.focusOutline};
-      }
-      :active {
-        background: ${props.theme.pressedBackgroundColor};
-        outline: 2px solid #33aaff};
-      }
-  `}
-`;
-
-const Label = styled.span<{
-  disabled: TabProps["disabled"];
-  active: TabProps["active"];
-}>`
-  display: inline;
-  color: ${(props) =>
-    props.disabled
-      ? props.theme.disabledFontColor
-      : props.active
-        ? props.theme.selectedFontColor
-        : props.theme.unselectedFontColor};
-  font-family: ${(props) => props.theme.fontFamily};
-  font-size: ${(props) => props.theme.fontSize};
-  font-style: ${(props) => props.theme.fontStyle};
-  font-weight: ${(props) => props.theme.fontWeight};
-  text-align: center;
-  letter-spacing: 0.025em;
-  line-height: 1.715em;
-  text-decoration: none;
-  text-overflow: unset;
-  white-space: normal;
-  margin: 0;
-`;
-
-const TabIconContainer = styled.div<{
-  iconPosition: NavTabsPropsType["iconPosition"];
-  active: TabProps["active"];
-  disabled: TabProps["disabled"];
-}>`
-  display: flex;
-  font-size: 24px;
-  color: ${(props) =>
-    props.active
-      ? props.theme.selectedIconColor
-      : props.disabled
-        ? props.theme.disabledIconColor
-        : props.theme.unselectedIconColor};
-  svg {
-    height: 24px;
-    width: 24px;
-  }
-`;
 
 export default DxcTab;

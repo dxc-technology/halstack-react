@@ -6,9 +6,8 @@ import { ReactNode } from "react";
 
 const NumberInputPageHeading = ({ children }: { children: ReactNode }) => {
   const tabs = [
-    { label: "Code", path: "/components/nav-tabs" },
-    { label: "Usage", path: "/components/nav-tabs/usage" },
-    { label: "Specifications", path: "/components/nav-tabs/specifications" },
+    { label: "Overview", path: "/components/nav-tabs" },
+    { label: "Code", path: "/components/nav-tabs/code" },
   ];
 
   return (
