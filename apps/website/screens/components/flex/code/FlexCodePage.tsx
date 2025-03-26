@@ -25,7 +25,7 @@ const sections = [
           <th>Description</th>
           <th>Default</th>
         </tr>
-        <tr>
+        <tbody>
           <tr>
             <td>alignContent</td>
             <td>
@@ -119,122 +119,124 @@ const sections = [
             <td>Custom content inside the flex container.</td>
             <td>-</td>
           </tr>
-          <td>direction</td>
-          <td>
-            <TableCode>'row' | 'row-reverse' | 'column' | 'column-reverse'</TableCode>
-          </td>
-          <td>
-            Sets <Code>flex-direction</Code> CSS property. See{" "}
-            <DxcLink newWindow href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-direction">
-              MDN
-            </DxcLink>{" "}
-            for further information.
-          </td>
-          <td>
-            <TableCode>'row'</TableCode>
-          </td>
-        </tr>
-        <tr>
-          <td>gap</td>
-          <td>
-            <TableCode>string | Gap</TableCode>
-            <p>
-              being <Code>Gap</Code> an object with the following properties:
-            </p>
-            <ExtendedTableCode>{gapTypeString}</ExtendedTableCode>
-          </td>
-          <td>
-            Sets <Code>gap</Code> CSS property. See{" "}
-            <DxcLink newWindow href="https://developer.mozilla.org/en-US/docs/Web/CSS/gap">
-              MDN
-            </DxcLink>{" "}
-            for further information.
-          </td>
-          <td>-</td>
-        </tr>
-        <tr>
-          <td>grow</td>
-          <td>
-            <TableCode>number</TableCode>
-          </td>
-          <td>
-            Sets <Code>flex-grow</Code> CSS property. See{" "}
-            <DxcLink newWindow href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-grow">
-              MDN
-            </DxcLink>{" "}
-            for further information.
-          </td>
-          <td>
-            <TableCode>0</TableCode>
-          </td>
-        </tr>
-        <tr>
-          <td>justifyContent</td>
-          <td>
-            <TableCode>
-              'flex-start' | 'flex-end' | 'start' | 'end' | 'left' | 'normal' | 'right' | 'center' | 'space-between' |
-              'space-around' | 'space-evenly'
-            </TableCode>
-          </td>
-          <td>
-            Sets <Code>justify-content</Code> CSS property. See{" "}
-            <DxcLink newWindow href="https://developer.mozilla.org/en-US/docs/Web/CSS/justify-content">
-              MDN
-            </DxcLink>{" "}
-            for further information.
-          </td>
-          <td>
-            <TableCode>'normal'</TableCode>
-          </td>
-        </tr>
-        <tr>
-          <td>order</td>
-          <td>
-            <TableCode>number</TableCode>
-          </td>
-          <td>
-            Sets <Code>order</Code> CSS property. See{" "}
-            <DxcLink newWindow href="https://developer.mozilla.org/en-US/docs/Web/CSS/order">
-              MDN
-            </DxcLink>{" "}
-            for further information.
-          </td>
-          <td>
-            <TableCode>0</TableCode>
-          </td>
-        </tr>
-        <tr>
-          <td>shrink</td>
-          <td>
-            <TableCode>number</TableCode>
-          </td>
-          <td>
-            Sets <Code>flex-shrink</Code> CSS property. See{" "}
-            <DxcLink newWindow href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-shrink">
-              MDN
-            </DxcLink>{" "}
-            for further information.
-          </td>
-          <td>
-            <TableCode>1</TableCode>
-          </td>
-        </tr>
-        <tr>
-          <td>wrap</td>
-          <td>
-            <TableCode>'nowrap' | 'wrap' | 'wrap-reverse'</TableCode>
-          </td>
-          <td>
-            Sets <Code>flex-wrap</Code> CSS property. See{" "}
-            <DxcLink newWindow href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-wrap">
-              MDN
-            </DxcLink>{" "}
-            for further information.
-          </td>
-          <td>
-            <TableCode>'nowrap'</TableCode>
-          </td>
-        </tr>
+          <tr>
+            <td>direction</td>
+            <td>
+              <TableCode>'row' | 'row-reverse' | 'column' | 'column-reverse'</TableCode>
+            </td>
+            <td>
+              Sets <Code>flex-direction</Code> CSS property. See{" "}
+              <DxcLink newWindow href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-direction">
+                MDN
+              </DxcLink>{" "}
+              for further information.
+            </td>
+            <td>
+              <TableCode>'row'</TableCode>
+            </td>
+          </tr>
+          <tr>
+            <td>gap</td>
+            <td>
+              <TableCode>string | Gap</TableCode>
+              <p>
+                being <Code>Gap</Code> an object with the following properties:
+              </p>
+              <ExtendedTableCode>{gapTypeString}</ExtendedTableCode>
+            </td>
+            <td>
+              Sets <Code>gap</Code> CSS property. See{" "}
+              <DxcLink newWindow href="https://developer.mozilla.org/en-US/docs/Web/CSS/gap">
+                MDN
+              </DxcLink>{" "}
+              for further information.
+            </td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>grow</td>
+            <td>
+              <TableCode>number</TableCode>
+            </td>
+            <td>
+              Sets <Code>flex-grow</Code> CSS property. See{" "}
+              <DxcLink newWindow href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-grow">
+                MDN
+              </DxcLink>{" "}
+              for further information.
+            </td>
+            <td>
+              <TableCode>0</TableCode>
+            </td>
+          </tr>
+          <tr>
+            <td>justifyContent</td>
+            <td>
+              <TableCode>
+                'flex-start' | 'flex-end' | 'start' | 'end' | 'left' | 'normal' | 'right' | 'center' | 'space-between' |
+                'space-around' | 'space-evenly'
+              </TableCode>
+            </td>
+            <td>
+              Sets <Code>justify-content</Code> CSS property. See{" "}
+              <DxcLink newWindow href="https://developer.mozilla.org/en-US/docs/Web/CSS/justify-content">
+                MDN
+              </DxcLink>{" "}
+              for further information.
+            </td>
+            <td>
+              <TableCode>'normal'</TableCode>
+            </td>
+          </tr>
+          <tr>
+            <td>order</td>
+            <td>
+              <TableCode>number</TableCode>
+            </td>
+            <td>
+              Sets <Code>order</Code> CSS property. See{" "}
+              <DxcLink newWindow href="https://developer.mozilla.org/en-US/docs/Web/CSS/order">
+                MDN
+              </DxcLink>{" "}
+              for further information.
+            </td>
+            <td>
+              <TableCode>0</TableCode>
+            </td>
+          </tr>
+          <tr>
+            <td>shrink</td>
+            <td>
+              <TableCode>number</TableCode>
+            </td>
+            <td>
+              Sets <Code>flex-shrink</Code> CSS property. See{" "}
+              <DxcLink newWindow href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-shrink">
+                MDN
+              </DxcLink>{" "}
+              for further information.
+            </td>
+            <td>
+              <TableCode>1</TableCode>
+            </td>
+          </tr>
+          <tr>
+            <td>wrap</td>
+            <td>
+              <TableCode>'nowrap' | 'wrap' | 'wrap-reverse'</TableCode>
+            </td>
+            <td>
+              Sets <Code>flex-wrap</Code> CSS property. See{" "}
+              <DxcLink newWindow href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-wrap">
+                MDN
+              </DxcLink>{" "}
+              for further information.
+            </td>
+            <td>
+              <TableCode>'nowrap'</TableCode>
+            </td>
+          </tr>
+        </tbody>
       </DxcTable>
     ),
   },
