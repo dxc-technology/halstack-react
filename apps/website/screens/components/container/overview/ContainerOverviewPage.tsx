@@ -15,7 +15,7 @@ const sections = [
           consistency across the UI.
         </DxcParagraph>
         <DxcParagraph>
-          Being generic in nature can be "over-used", so it's important to consider situations where more specific and
+          Being generic in nature, it can be overused, so it's important to consider situations where more specific and
           expressive components could be used.
         </DxcParagraph>
       </>
@@ -30,9 +30,8 @@ const sections = [
           layouts for your application.
         </DxcParagraph>
         <DxcParagraph>
-          Below, we share a series of links that we consider essential to understand and use the container component
-          correctly. If you are not acquainted with these concepts, we strongly recommend taking a moment to review
-          them:
+          Below, we share a series of essential links to help you understand and use the container component correctly.
+          If you are not acquainted with these concepts, we strongly recommend taking a moment to review them:
         </DxcParagraph>
         <DxcBulletedList>
           <DxcBulletedList.Item>
@@ -96,17 +95,17 @@ const sections = [
           Control the depth of the different elements of your UI by customizing the container's box shadow.
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>
-          Change and custom border styles of the container to match the rest of your interface design.
+          Customize border styles of the container to match the rest of your interface design.
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>
           <strong>
-            Don't use the container to build components without first making sure that there is no other, more specific
-            and semantic, Halstack component that could be used instead.
+            Don't use the container to build components without first ensuring that there isn't a more specific,
+            semantic Halstack component that could be used instead.
           </strong>
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>
           <strong>
-            Don't use the container to create complex layouts when more expressive components are available.
+            Don't use the container to create complex layouts when more suitable components are available.
           </strong>{" "}
           Use the{" "}
           <Link href="/components/flex" passHref legacyBehavior>
@@ -119,8 +118,8 @@ const sections = [
           components to create those layouts.
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>
-          If possible and although the component allows any value, <strong>try to use the design tokens</strong>{" "}
-          provided by the Halstack Design System.
+          Whenever possible, <strong>try to use the design tokens</strong> provided by the Halstack Design System, even
+          though the component allows any value.
         </DxcBulletedList.Item>
       </DxcBulletedList>
     ),
