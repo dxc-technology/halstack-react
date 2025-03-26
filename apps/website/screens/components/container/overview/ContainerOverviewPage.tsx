@@ -1,22 +1,28 @@
-import { DxcParagraph, DxcFlex, DxcBulletedList, DxcLink } from "@dxc-technology/halstack-react";
+import { DxcParagraph, DxcFlex, DxcBulletedList, DxcLink, DxcInset } from "@dxc-technology/halstack-react";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
+import Link from "next/link";
 
 const sections = [
   {
     title: "Introduction",
     content: (
-      <DxcParagraph>
-        The container component represents the box model inside the Halstack Design System. It is a general-purpose
-        container that allows users to build their own components, UI elements, and layouts. Being generic in nature, it
-        can be "over-used", so it's important to consider situations where more specific and expressive components could
-        be used.
-      </DxcParagraph>
+      <>
+        <DxcParagraph>
+          The Halstack's container component provides a structured way to manage layout and spacing within the Halstack
+          Design System. It allows for controlled use of design tokens such as spacing, borders, and shadows, ensuring
+          consistency across the UI.
+        </DxcParagraph>
+        <DxcParagraph>
+          Being generic in nature can be "over-used", so it's important to consider situations where more specific and
+          expressive components could be used.
+        </DxcParagraph>
+      </>
     ),
   },
   {
-    title: "The Box Model",
+    title: "The box model",
     content: (
       <>
         <DxcParagraph>
@@ -24,65 +30,52 @@ const sections = [
           layouts for your application.
         </DxcParagraph>
         <DxcParagraph>
-          Below, we share a series of links that we consider essential to understand and use the Container component
+          Below, we share a series of links that we consider essential to understand and use the container component
           correctly. If you are not acquainted with these concepts, we strongly recommend taking a moment to review
           them:
         </DxcParagraph>
         <DxcBulletedList>
           <DxcBulletedList.Item>
-            The CSS Box Model
-            <DxcBulletedList type="circle">
-              <DxcBulletedList.Item>
-                <DxcLink
-                  href="https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/The_box_model"
-                  newWindow
-                >
-                  MDN
-                </DxcLink>
-              </DxcBulletedList.Item>
-              <DxcBulletedList.Item>
-                <DxcLink href="https://web.dev/learn/css/box-model" newWindow>
-                  web.dev
-                </DxcLink>
-                , by Google.
-              </DxcBulletedList.Item>
-            </DxcBulletedList>
-          </DxcBulletedList.Item>
-          <DxcBulletedList.Item>
-            <DxcLink
-              href="https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Backgrounds_and_borders"
-              newWindow
-            >
-              Backgrounds and borders
+            <DxcLink href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_box_model" newWindow>
+              MDN web docs: CSS box model
             </DxcLink>
+            <DxcInset top="0.5rem" bottom="0.5rem">
+              <DxcBulletedList type="circle">
+                <DxcBulletedList.Item>
+                  <DxcLink
+                    href="https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Backgrounds_and_borders"
+                    newWindow
+                  >
+                    Backgrounds and borders
+                  </DxcLink>
+                </DxcBulletedList.Item>
+                <DxcBulletedList.Item>
+                  <DxcLink
+                    href="https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Overflowing_content"
+                    newWindow
+                  >
+                    Overflowing content
+                  </DxcLink>
+                </DxcBulletedList.Item>
+                <DxcBulletedList.Item>
+                  <DxcLink
+                    href="https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Sizing_items_in_CSS"
+                    newWindow
+                  >
+                    Sizing items in CSS
+                  </DxcLink>
+                </DxcBulletedList.Item>
+                <DxcBulletedList.Item>
+                  <DxcLink href="https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Positioning" newWindow>
+                    Positioning
+                  </DxcLink>
+                </DxcBulletedList.Item>
+              </DxcBulletedList>
+            </DxcInset>
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <DxcLink
-              href="https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Overflowing_content"
-              newWindow
-            >
-              Overflowing content
-            </DxcLink>
-          </DxcBulletedList.Item>
-          <DxcBulletedList.Item>
-            <DxcLink
-              href="https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Sizing_items_in_CSS"
-              newWindow
-            >
-              Sizing items in CSS
-            </DxcLink>
-          </DxcBulletedList.Item>
-          <DxcBulletedList.Item>
-            <DxcLink
-              href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Box_Model/Mastering_margin_collapsing"
-              newWindow
-            >
-              Mastering margin collapsing
-            </DxcLink>
-          </DxcBulletedList.Item>
-          <DxcBulletedList.Item>
-            <DxcLink href="https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Positioning" newWindow>
-              Positioning
+            <DxcLink href="https://web.dev/learn/css/box-model" newWindow>
+              Google web.dev: Box model
             </DxcLink>
           </DxcBulletedList.Item>
         </DxcBulletedList>
@@ -107,9 +100,27 @@ const sections = [
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>
           <strong>
-            Don't use the container to build components without first making sure that there is no other, more specific,
-            Halstack component that could be used instead.
+            Don't use the container to build components without first making sure that there is no other, more specific
+            and semantic, Halstack component that could be used instead.
           </strong>
+        </DxcBulletedList.Item>
+        <DxcBulletedList.Item>
+          <strong>
+            Don't use the container to create complex layouts when more expressive components are available.
+          </strong>{" "}
+          Use the{" "}
+          <Link href="/components/flex" passHref legacyBehavior>
+            <DxcLink>flex</DxcLink>
+          </Link>{" "}
+          and{" "}
+          <Link href="/components/grid" passHref legacyBehavior>
+            <DxcLink>grid</DxcLink>
+          </Link>{" "}
+          components to create those layouts.
+        </DxcBulletedList.Item>
+        <DxcBulletedList.Item>
+          If possible and although the component allows any value, <strong>try to use the design tokens</strong>{" "}
+          provided by the Halstack Design System.
         </DxcBulletedList.Item>
       </DxcBulletedList>
     ),
