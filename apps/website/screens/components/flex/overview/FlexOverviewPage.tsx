@@ -2,6 +2,8 @@ import { DxcFlex, DxcParagraph, DxcBulletedList, DxcLink } from "@dxc-technology
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
+import Code from "@/common/Code";
+import Link from "next/link";
 
 const sections = [
   {
@@ -47,6 +49,45 @@ const sections = [
           </DxcBulletedList.Item>
         </DxcBulletedList>
       </>
+    ),
+  },
+  {
+    title: "Best practices",
+    content: (
+      <DxcBulletedList>
+        <DxcBulletedList.Item>
+          <strong>Use flex for responsive layouts:</strong> use the flex component to create layouts that adapt to
+          different screen sizes and content variations.
+        </DxcBulletedList.Item>
+        <DxcBulletedList.Item>
+          <strong>Prioritize fluidity over fixed sizes:</strong> avoid using fixed widths or heights when possible, as
+          they can lead to layout issues on different devices. Instead, leverage flex properties like <Code>grow</Code>,
+          <Code>shrink</Code>, and <Code>basis</Code> to create scalable designs.
+        </DxcBulletedList.Item>
+        <DxcBulletedList.Item>
+          <strong>Ensure consistency with design tokens:</strong> whenever possible, use the design tokens provided by
+          the Halstack Design System to maintain visual and functional consistency across applications, even though the
+          component allows custom values.
+        </DxcBulletedList.Item>
+        <DxcBulletedList.Item>
+          <strong>Leverage alignment and justification:</strong> use <Code>justifyContent</Code> and{" "}
+          <Code>alignItems</Code> strategically to control content positioning within the flex container, ensuring a
+          well-structured and visually balanced layout.
+        </DxcBulletedList.Item>
+        <DxcBulletedList.Item>
+          <strong>Optimize nested flex containers:</strong> while nesting flex containers is sometimes necessary,
+          excessive nesting can reduce readability and maintainability. Consider alternative layout strategies when
+          appropriate.
+        </DxcBulletedList.Item>
+        <DxcBulletedList.Item>
+          <strong>Combine with other layout techniques:</strong> flexbox is powerful but not always the best tool for
+          every scenario. Consider using the{" "}
+          <Link href="/components/grid" passHref legacyBehavior>
+            <DxcLink>grid</DxcLink>
+          </Link>{" "}
+          component for complex two-dimensional layouts or stacked components for simpler structures.
+        </DxcBulletedList.Item>
+      </DxcBulletedList>
     ),
   },
 ];
