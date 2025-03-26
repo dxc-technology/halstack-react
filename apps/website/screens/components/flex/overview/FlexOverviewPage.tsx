@@ -17,7 +17,7 @@ const sections = [
         </DxcParagraph>
         <DxcParagraph>
           By leveraging flex, layouts can automatically adjust to different screen sizes and content variations,
-          ensuring a more seamless user experience. This documentation covers its functionality, best practices, and key
+          ensuring a seamless user experience. This documentation covers its functionality, best practices, and key
           concepts to help you use it effectively.
         </DxcParagraph>
       </>
