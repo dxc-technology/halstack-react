@@ -6,9 +6,8 @@ import { ReactNode } from "react";
 
 const DividerPageHeading = ({ children }: { children: ReactNode }) => {
   const tabs = [
-    { label: "Code", path: "/components/divider" },
-    { label: "Usage", path: "/components/divider/usage" },
-    { label: "Specifications", path: "/components/divider/specifications" },
+    { label: "Overview", path: "/components/divider" },
+    { label: "Code", path: "/components/divider/code" },
   ];
 
   return (
@@ -19,7 +18,7 @@ const DividerPageHeading = ({ children }: { children: ReactNode }) => {
           <DxcParagraph>
             A divider is a thin line that visually separates groups of content within a specific area of an application.
           </DxcParagraph>
-          <TabsPageHeading tabs={tabs}></TabsPageHeading>
+          <TabsPageHeading tabs={tabs} />
         </DxcFlex>
       </PageHeading>
       {children}

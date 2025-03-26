@@ -3,7 +3,7 @@ import ItemAction from "./ItemAction";
 import { SingleItemProps } from "./types";
 import ContextualMenuContext from "./ContextualMenuContext";
 
-const SingleItem = ({ id, onSelect, selectedByDefault = false, ...props }: SingleItemProps) => {
+export default function SingleItem({ id, onSelect, selectedByDefault = false, ...props }: SingleItemProps) {
   const { selectedItemId, setSelectedItemId } = useContext(ContextualMenuContext) ?? {};
 
   const handleClick = () => {
@@ -25,6 +25,4 @@ const SingleItem = ({ id, onSelect, selectedByDefault = false, ...props }: Singl
       {...props}
     />
   );
-};
-
-export default SingleItem;
+}

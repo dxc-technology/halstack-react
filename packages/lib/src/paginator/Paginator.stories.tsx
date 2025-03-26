@@ -1,20 +1,12 @@
 import { Meta, StoryObj } from "@storybook/react";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
-import { HalstackProvider } from "../HalstackContext";
 import DxcPaginator from "./Paginator";
 
 export default {
   title: "Paginator",
   component: DxcPaginator,
 } as Meta<typeof DxcPaginator>;
-
-const opinionatedTheme = {
-  paginator: {
-    baseColor: "#f2f2f2",
-    fontColor: "#000000",
-  },
-};
 
 const Paginator = () => (
   <>
@@ -66,22 +58,6 @@ const Paginator = () => (
         itemsPerPageOptions={[5, 10, 15]}
         showGoToPage
       />
-    </ExampleContainer>
-    <Title title="Opinionated theme" theme="light" level={2} />
-    <ExampleContainer>
-      <HalstackProvider theme={opinionatedTheme}>
-        <ExampleContainer>
-          <Title title="Page change and items per page options" theme="light" level={4} />
-          <DxcPaginator
-            currentPage={1}
-            itemsPerPage={10}
-            totalItems={27}
-            onPageChange={() => {}}
-            itemsPerPageOptions={[5, 10, 15]}
-            showGoToPage
-          />
-        </ExampleContainer>
-      </HalstackProvider>
     </ExampleContainer>
   </>
 );

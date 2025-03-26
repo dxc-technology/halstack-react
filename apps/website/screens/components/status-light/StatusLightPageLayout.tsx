@@ -6,21 +6,21 @@ import { ReactNode } from "react";
 
 const StatusLightPageHeading = ({ children }: { children: ReactNode }) => {
   const tabs = [
-    { label: "Code", path: "/components/status-light" },
-    { label: "Usage", path: "/components/status-light/usage" },
-    { label: "Specifications", path: "/components/status-light/specifications" },
+    { label: "Overview", path: "/components/status-light" },
+    { label: "Code", path: "/components/status-light/code" },
   ];
 
   return (
     <DxcFlex direction="column" gap="3rem">
       <PageHeading>
         <DxcFlex direction="column" gap="2rem">
-          <ComponentHeading name="Status Light" />
+          <ComponentHeading name="Status light" />
           <DxcParagraph>
-            Status lights, as semantic elements, allow the user to display the completion status of tasks, processes and
-            more.
+            Status light is a small, color-coded visual indicator used to represent the state or condition of a system,
+            process, or component. It provides at-a-glance feedback, helping users quickly assess statuses without
+            needing detailed explanations.
           </DxcParagraph>
-          <TabsPageHeading tabs={tabs}></TabsPageHeading>
+          <TabsPageHeading tabs={tabs} />
         </DxcFlex>
       </PageHeading>
       {children}

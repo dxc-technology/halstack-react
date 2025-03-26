@@ -1,7 +1,8 @@
 {
   "accordion": {
     "accentColor": "#5f249f",
-    "titleFontColor": "#000000",
+    "titleFontColor": "#333333",
+    "subLabelFontColor": "#666666",
     "assistiveTextFontColor": "#666666"
   },
   "button": {

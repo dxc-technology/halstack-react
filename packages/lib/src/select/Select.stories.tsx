@@ -1,12 +1,9 @@
-import { useContext } from "react";
 import { userEvent, within } from "@storybook/test";
-import { ThemeProvider } from "styled-components";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import preview from "../../.storybook/preview";
 import { disabledRules } from "../../test/accessibility/rules/specific/select/disabledRules";
 import DxcFlex from "../flex/Flex";
-import HalstackContext, { HalstackProvider } from "../HalstackContext";
 import Listbox from "./Listbox";
 import DxcSelect from "./Select";
 import { Meta, StoryObj } from "@storybook/react";
@@ -219,18 +216,13 @@ const optionsWithEllipsis = [
   { label: "Option 03111111111111111111111111111122222222", value: "3" },
 ];
 
-const opinionatedTheme = {
-  select: {
-    selectedOptionBackgroundColor: "#fabada",
-    fontColor: "#333",
-    optionFontColor: "#a46ede",
-    hoverBorderColor: "#0095ff",
-  },
-};
-
 const Select = () => (
   <>
     <Title title="States" theme="light" level={2} />
+    <ExampleContainer>
+      <Title title="Default" theme="light" level={4} />
+      <DxcSelect options={single_options} />
+    </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-hover">
       <Title title="Hovered" theme="light" level={4} />
       <DxcSelect label="Hovered" options={single_options} />
@@ -241,11 +233,18 @@ const Select = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Disabled" theme="light" level={4} />
-      <DxcSelect label="Disabled" placeholder="Placeholder" disabled options={single_options} />
+      <DxcSelect
+        label="Label"
+        placeholder="Placeholder"
+        helperText="Helper text"
+        optional
+        disabled
+        options={single_options}
+      />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Disabled with value" theme="light" level={4} />
-      <DxcSelect label="Disabled with value" disabled options={single_options} defaultValue="1" />
+      <DxcSelect label="Label" disabled helperText="Helper text" optional options={single_options} defaultValue="1" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Error" theme="light" level={4} />
@@ -270,7 +269,7 @@ const Select = () => (
     <Title title="Anatomy" theme="light" level={2} />
     <ExampleContainer>
       <Title title="Label, placeholder and helper text" theme="light" level={4} />
-      <DxcSelect label="Label" options={single_options} helperText="Helper text" placeholder="Placeholder" />
+      <DxcSelect label="Label" options={single_options} helperText="Helper text" placeholder="Placeholder" optional />
     </ExampleContainer>
     <Title title="Variants" theme="light" level={2} />
     <ExampleContainer>
@@ -361,41 +360,9 @@ const Select = () => (
   </>
 );
 
-const Opinionated = () => (
-  <>
-    <Title title="Opinionated theme" theme="light" level={2} />
-    <ExampleContainer pseudoState="pseudo-hover">
-      <Title title="Default" theme="light" level={4} />
-      <HalstackProvider theme={opinionatedTheme}>
-        <DxcSelect label="Hovered" helperText="Helper text" placeholder="Placeholder" options={single_options} />
-      </HalstackProvider>
-    </ExampleContainer>
-    <ExampleContainer pseudoState="pseudo-hover">
-      <Title title="Hovered" theme="light" level={4} />
-      <HalstackProvider theme={opinionatedTheme}>
-        <DxcSelect
-          label="Hovered"
-          helperText="Helper text"
-          options={single_options}
-          multiple
-          defaultValue={["1", "2"]}
-        />
-      </HalstackProvider>
-    </ExampleContainer>
-    <ExampleContainer pseudoState="pseudo-hover" expanded>
-      <Title title="List opened" theme="light" level={4} />
-      <HalstackProvider theme={opinionatedTheme}>
-        <DxcSelect label="Hovered" helperText="Helper text" options={icon_options_grouped_material} defaultValue="1" />
-      </HalstackProvider>
-    </ExampleContainer>
-  </>
-);
-
 const SelectListbox = () => {
-  const colorsTheme = useContext(HalstackContext);
-
   return (
-    <ThemeProvider theme={colorsTheme.select}>
+    <>
       <Title title="Listbox" theme="light" level={2} />
       <ExampleContainer>
         <Title
@@ -426,7 +393,9 @@ const SelectListbox = () => {
       <Title title="Listbox option states" theme="light" level={3} />
       <ExampleContainer pseudoState="pseudo-hover">
         <Title title="Hovered option" theme="light" level={4} />
+        <label id="x8-label">Choose an option</label>
         <Listbox
+          ariaLabelledBy="x8-label"
           id="x8"
           currentValue=""
           options={one_option}
@@ -442,7 +411,9 @@ const SelectListbox = () => {
       </ExampleContainer>
       <ExampleContainer pseudoState="pseudo-active">
         <Title title="Active option" theme="light" level={4} />
+        <label id="x9-label">Choose an option</label>
         <Listbox
+          ariaLabelledBy="x9-label"
           id="x9"
           currentValue=""
           options={one_option}
@@ -458,7 +429,9 @@ const SelectListbox = () => {
       </ExampleContainer>
       <ExampleContainer>
         <Title title="Focused option" theme="light" level={4} />
+        <label id="x10-label">Choose an option</label>
         <Listbox
+          ariaLabelledBy="x10-label"
           id="x10"
           currentValue=""
           options={one_option}
@@ -474,7 +447,9 @@ const SelectListbox = () => {
       </ExampleContainer>
       <ExampleContainer pseudoState="pseudo-hover">
         <Title title="Hovered selected option" theme="light" level={4} />
+        <label id="x11-label">Choose an option</label>
         <Listbox
+          ariaLabelledBy="x11-label"
           id="x11"
           currentValue="1"
           options={single_options}
@@ -490,7 +465,9 @@ const SelectListbox = () => {
       </ExampleContainer>
       <ExampleContainer pseudoState="pseudo-active">
         <Title title="Active selected option" theme="light" level={4} />
+        <label id="x12-label">Choose an option</label>
         <Listbox
+          ariaLabelledBy="x12-label"
           id="x12"
           currentValue="2"
           options={single_options}
@@ -507,7 +484,9 @@ const SelectListbox = () => {
       <Title title="Listbox with icons" theme="light" level={3} />
       <ExampleContainer>
         <Title title="Icons (SVGs)" theme="light" level={4} />
+        <label id="x13-label">Choose an option</label>
         <Listbox
+          ariaLabelledBy="x13-label"
           id="x13"
           currentValue="3"
           options={icon_options}
@@ -523,7 +502,9 @@ const SelectListbox = () => {
       </ExampleContainer>
       <ExampleContainer>
         <Title title="Grouped icons (Material Symbols)" theme="light" level={4} />
+        <label id="x14-label">Choose an option</label>
         <Listbox
+          ariaLabelledBy="x14-label"
           id="x14"
           currentValue={"4"}
           options={icon_options_grouped_material}
@@ -539,7 +520,9 @@ const SelectListbox = () => {
       </ExampleContainer>
       <ExampleContainer>
         <Title title="Grouped icons (Material)" theme="light" level={4} />
+        <label id="x15-label">Choose an option</label>
         <Listbox
+          ariaLabelledBy="x15-label"
           id="x15"
           currentValue={["car", "motorcycle", "train"]}
           options={options_material}
@@ -553,7 +536,7 @@ const SelectListbox = () => {
           styles={{ width: 360 }}
         />
       </ExampleContainer>
-    </ThemeProvider>
+    </>
   );
 };
 
@@ -599,15 +582,6 @@ const DefaultGroupedOptionsSelect = () => (
   </ExampleContainer>
 );
 
-const DefaultGroupedOptionsSelectOpinionated = () => (
-  <ExampleContainer expanded>
-    <Title title="Grouped options simple select" theme="light" level={4} />
-    <HalstackProvider theme={opinionatedTheme}>
-      <DxcSelect label="Label" options={group_options} defaultValue="9" placeholder="Choose an option" />
-    </HalstackProvider>
-  </ExampleContainer>
-);
-
 const MultipleGroupedOptionsSelect = () => (
   <ExampleContainer expanded>
     <Title title="Grouped options multiple select" theme="light" level={4} />
@@ -643,27 +617,25 @@ const TooltipValue = () => (
 );
 
 const TooltipOption = () => {
-  const colorsTheme = useContext(HalstackContext);
-
   return (
-    <ThemeProvider theme={colorsTheme.select}>
-      <ExampleContainer expanded>
-        <Title title="List option has tooltip when it overflows" theme="light" level={4} />
-        <Listbox
-          id="x8"
-          currentValue="1"
-          options={optionsWithEllipsis}
-          visualFocusIndex={-1}
-          lastOptionIndex={2}
-          multiple={false}
-          optional={false}
-          optionalItem={{ label: "Empty", value: "" }}
-          searchable={false}
-          handleOptionOnClick={() => {}}
-          styles={{ width: 360 }}
-        />
-      </ExampleContainer>
-    </ThemeProvider>
+    <ExampleContainer expanded>
+      <Title title="List option has tooltip when it overflows" theme="light" level={4} />
+      <label id="x1-label">Choose an option</label>
+      <Listbox
+        ariaLabelledBy="x1-label"
+        id="x1"
+        currentValue="1"
+        options={optionsWithEllipsis}
+        visualFocusIndex={-1}
+        lastOptionIndex={2}
+        multiple={false}
+        optional={false}
+        optionalItem={{ label: "Empty", value: "" }}
+        searchable={false}
+        handleOptionOnClick={() => {}}
+        styles={{ width: 360 }}
+      />
+    </ExampleContainer>
   );
 };
 
@@ -682,15 +654,6 @@ export const Chromatic: Story = {
     const canvas = within(canvasElement);
     const combobox = canvas.getAllByRole("combobox")[24];
     combobox && (await userEvent.click(combobox));
-  },
-};
-
-export const OpinionatedTheme: Story = {
-  render: Opinionated,
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    const combobox = canvas.getAllByRole("combobox")[2];
-    combobox && await userEvent.click(combobox);
   },
 };
 
@@ -724,7 +687,7 @@ export const MultipleSearchableWithValue: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const combobox = canvas.getAllByRole("combobox")[0];
-    combobox && await userEvent.click(combobox);
+    combobox && (await userEvent.click(combobox));
   },
 };
 
@@ -737,21 +700,12 @@ export const GroupOptionsDisplayed: Story = {
   },
 };
 
-export const GroupOptionsDisplayedOpinionated: Story = {
-  render: DefaultGroupedOptionsSelectOpinionated,
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    const select = canvas.getByRole("combobox");
-    await userEvent.click(select);
-  },
-};
-
 export const MultipleOptionsDisplayed: Story = {
   render: MultipleSelect,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const combobox = canvas.getAllByRole("combobox")[0];
-    combobox && await userEvent.click(combobox);
+    combobox && (await userEvent.click(combobox));
   },
 };
 
