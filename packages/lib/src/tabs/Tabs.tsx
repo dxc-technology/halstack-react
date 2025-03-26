@@ -4,7 +4,7 @@ import {
   KeyboardEvent,
   ReactElement,
   useContext,
-  useEffect,
+  useLayoutEffect,
   useMemo,
   useRef,
   useState,
@@ -191,8 +191,15 @@ const DxcTabs = ({
     }
   };
 
-  useEffect(() => {
-    if (refTabList.current) setTotalTabsWidth(refTabList.current?.getBoundingClientRect().width);
+  useLayoutEffect(() => {
+    if (refTabList.current)
+      setTotalTabsWidth(() => {
+        let total = 0;
+        refTabList.current?.querySelectorAll('[role="tab"]').forEach((tab) => {
+          total += (tab as HTMLElement).offsetWidth;
+        });
+        return total;
+      });
   }, []);
 
   return children ? (
