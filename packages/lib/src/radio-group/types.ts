@@ -103,9 +103,9 @@ type RadioGroupProps = {
 export type RefType = HTMLDivElement;
 
 /**
- * Single radio prop types.
+ * Radio input prop types.
  */
-export type RadioProps = {
+export type RadioInputProps = {
   checked: boolean;
   disabled: boolean;
   error?: string;

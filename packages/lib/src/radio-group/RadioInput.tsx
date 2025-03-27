@@ -1,9 +1,9 @@
 import { memo, useEffect, useId, useRef, useState } from "react";
 import styled from "styled-components";
-import { RadioProps } from "./types";
+import { RadioInputProps } from "./types";
 import { icons, getRadioInputStyles } from "./utils";
 
-const Label = styled.span<{ disabled: RadioProps["disabled"] }>`
+const Label = styled.span<{ disabled: RadioInputProps["disabled"] }>`
   color: ${({ disabled }) => (disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-dark)")};
   font-family: var(--typography-font-family);
   font-size: var(--typography-label-m);
@@ -11,9 +11,9 @@ const Label = styled.span<{ disabled: RadioProps["disabled"] }>`
 `;
 
 type CommonStylingProps = {
-  disabled: RadioProps["disabled"];
+  disabled: RadioInputProps["disabled"];
   error: boolean;
-  readOnly: RadioProps["readOnly"];
+  readOnly: RadioInputProps["readOnly"];
 };
 
 const RadioButton = styled.span<CommonStylingProps>`
@@ -45,7 +45,7 @@ const RadioInputContainer = styled.span<CommonStylingProps>`
   }
 `;
 
-const RadioInput = ({ checked, disabled, error, focused, label, onClick, readOnly, tabIndex }: RadioProps) => {
+const RadioInput = ({ checked, disabled, error, focused, label, onClick, readOnly, tabIndex }: RadioInputProps) => {
   const radioLabelId = `radio-${useId()}`;
   const ref = useRef<HTMLSpanElement>(null);
   const [firstUpdate, setFirstUpdate] = useState(true);

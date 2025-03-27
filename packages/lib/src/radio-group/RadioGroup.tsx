@@ -1,7 +1,7 @@
 import { FocusEvent, forwardRef, KeyboardEvent, useCallback, useContext, useId, useMemo, useState } from "react";
 import styled from "styled-components";
 import { HalstackLanguageContext } from "../HalstackContext";
-import RadioInput from "./Radio";
+import RadioInput from "./RadioInput";
 import RadioGroupPropsType, { RefType } from "./types";
 import Label from "../styles/forms/Label";
 import HelperText from "../styles/forms/HelperText";
