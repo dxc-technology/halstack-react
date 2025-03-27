@@ -1,46 +1,52 @@
 import { FocusEvent, forwardRef, KeyboardEvent, useCallback, useContext, useId, useMemo, useState } from "react";
-import styled, { ThemeProvider } from "styled-components";
-import HalstackContext, { HalstackLanguageContext } from "../HalstackContext";
-import DxcRadio from "./Radio";
-import RadioGroupPropsType, { RadioOption, RefType } from "./types";
+import styled from "styled-components";
+import { HalstackLanguageContext } from "../HalstackContext";
+import RadioInput from "./Radio";
+import RadioGroupPropsType, { RefType } from "./types";
+import Label from "../styles/forms/Label";
+import HelperText from "../styles/forms/HelperText";
+import ErrorMessage from "../styles/forms/ErrorMessage";
 
-const getInitialFocusIndex = (innerOptions: RadioOption[], value?: string) => {
-  const initialSelectedOptionIndex = innerOptions.findIndex((option) => option.value === value);
-  return initialSelectedOptionIndex !== -1 ? initialSelectedOptionIndex : 0;
-};
+const RadioGroupContainer = styled.div`
+  box-sizing: border-box;
+  display: inline-flex;
+  flex-direction: column;
+`;
+
+const RadioGroup = styled.div<{ stacking: RadioGroupPropsType["stacking"] }>`
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: ${({ stacking }) => stacking};
+  column-gap: var(--spacing-gap-l);
+  row-gap: var(--spacing-gap-xs);
+`;
 
 const DxcRadioGroup = forwardRef<RefType, RadioGroupPropsType>(
   (
     {
+      ariaLabel = "Radio group",
+      defaultValue,
+      disabled = false,
+      error,
+      helperText,
       label,
       name,
-      helperText,
-      options,
-      disabled = false,
+      onBlur,
+      onChange,
       optional = false,
       optionalItemLabel,
+      options,
       readOnly = false,
       stacking = "column",
-      defaultValue,
-      value,
-      onChange,
-      onBlur,
-      error,
       tabIndex = 0,
-      ariaLabel = "Radio group",
+      value,
     },
     ref
-  ): JSX.Element => {
-    const radioGroupId = `radio-group-${useId()}`;
-    const radioGroupLabelId = `label-${radioGroupId}`;
-    const errorId = `error-${radioGroupId}`;
-
-    const [innerValue, setInnerValue] = useState(defaultValue);
-    const [firstTimeFocus, setFirstTimeFocus] = useState(true);
-
-    const colorsTheme = useContext(HalstackContext);
+  ) => {
+    const id = `radio-group-${useId()}`;
+    const labelId = `label-${id}`;
+    const errorId = `error-${id}`;
     const translatedLabels = useContext(HalstackLanguageContext);
-
     const innerOptions = useMemo(
       () =>
         optional
@@ -53,42 +59,40 @@ const DxcRadioGroup = forwardRef<RefType, RadioGroupPropsType>(
               },
             ]
           : options,
-      [optional, options, optionalItemLabel, translatedLabels]
+      [optional, optionalItemLabel, options, translatedLabels]
     );
-
-    const [currentFocusIndex, setCurrentFocusIndex] = useState(getInitialFocusIndex(innerOptions, value ?? innerValue));
+    const [innerValue, setInnerValue] = useState(defaultValue);
+    const [currentFocusIndex, setCurrentFocusIndex] = useState(() => {
+      const initialSelectedOptionIndex = innerOptions.findIndex((option) => option.value === (value ?? innerValue));
+      return initialSelectedOptionIndex !== -1 ? initialSelectedOptionIndex : 0;
+    });
+    const [firstTimeFocus, setFirstTimeFocus] = useState(true);
 
     const handleOnChange = useCallback(
       (newValue: string) => {
         const currentValue = value ?? innerValue;
         if (newValue !== currentValue && !readOnly) {
-          if (value == null) {
-            setInnerValue(newValue);
-          }
+          if (value == null) setInnerValue(newValue);
           onChange?.(newValue);
         }
       },
-      [value, innerValue, onChange]
+      [innerValue, onChange, value]
     );
+
     const handleOnBlur = (event: FocusEvent<HTMLDivElement>) => {
       // If the radio group loses the focus to an element not contained inside it...
       if (!event.currentTarget.contains(event.relatedTarget as Node)) {
         setFirstTimeFocus(true);
         const currentValue = value ?? innerValue;
-        if (!optional && !currentValue) {
-          onBlur?.({
-            value: currentValue,
-            error: translatedLabels.formFields.requiredSelectionErrorMessage,
-          });
-        } else {
-          onBlur?.({ value: currentValue });
-        }
+        onBlur?.({
+          value: currentValue,
+          error: !optional && !currentValue ? translatedLabels.formFields.requiredSelectionErrorMessage : undefined,
+        });
       }
     };
+
     const handleOnFocus = () => {
-      if (firstTimeFocus) {
-        setFirstTimeFocus(false);
-      }
+      if (firstTimeFocus) setFirstTimeFocus(false);
     };
 
     const setPreviousRadioChecked = () => {
@@ -98,12 +102,11 @@ const DxcRadioGroup = forwardRef<RefType, RadioGroupPropsType>(
           index = index === 0 ? innerOptions.length - 1 : index - 1;
         }
         const option = innerOptions[index];
-        if (option != null) {
-          handleOnChange(option.value);
-        }
+        if (option != null) handleOnChange(option.value);
         return index;
       });
     };
+
     const setNextRadioChecked = () => {
       setCurrentFocusIndex((currentFocusIndexValue) => {
         let index = currentFocusIndexValue === innerOptions.length - 1 ? 0 : currentFocusIndexValue + 1;
@@ -111,12 +114,11 @@ const DxcRadioGroup = forwardRef<RefType, RadioGroupPropsType>(
           index = index === innerOptions.length - 1 ? 0 : index + 1;
         }
         const option = innerOptions[index];
-        if (option != null) {
-          handleOnChange(option.value);
-        }
+        if (option != null) handleOnChange(option.value);
         return index;
       });
     };
+
     const handleOnKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
       switch (event.key) {
         case "Left":
@@ -135,9 +137,7 @@ const DxcRadioGroup = forwardRef<RefType, RadioGroupPropsType>(
           break;
         case " ":
           event.preventDefault();
-          if (innerOptions[currentFocusIndex] != null) {
-            handleOnChange(innerOptions[currentFocusIndex].value);
-          }
+          if (innerOptions[currentFocusIndex] != null) handleOnChange(innerOptions[currentFocusIndex].value);
           break;
         default:
           break;
@@ -145,112 +145,55 @@ const DxcRadioGroup = forwardRef<RefType, RadioGroupPropsType>(
     };
 
     return (
-      <ThemeProvider theme={colorsTheme.radioGroup}>
-        <RadioGroupContainer ref={ref}>
-          {label && (
-            <Label id={radioGroupLabelId} helperText={helperText} disabled={disabled}>
-              {label}
-              {optional && <OptionalLabel>{` ${translatedLabels.formFields.optionalLabel}`}</OptionalLabel>}
-            </Label>
-          )}
-          {helperText && <HelperText disabled={disabled}>{helperText}</HelperText>}
-          <RadioGroup
-            onBlur={handleOnBlur}
-            onFocus={handleOnFocus}
-            onKeyDown={handleOnKeyDown}
-            stacking={stacking}
-            role="radiogroup"
-            aria-disabled={disabled}
-            aria-labelledby={label ? radioGroupLabelId : undefined}
-            aria-invalid={!!error}
-            aria-errormessage={error ? errorId : undefined}
-            aria-required={!disabled && !readOnly && !optional}
-            aria-readonly={readOnly}
-            aria-orientation={stacking === "column" ? "vertical" : "horizontal"}
-            aria-label={label ? undefined : ariaLabel}
-          >
-            <ValueInput name={name} disabled={disabled} value={value ?? innerValue ?? ""} readOnly />
-            {innerOptions.map((option, index) => (
-              <DxcRadio
-                key={`radio-${index}`}
-                label={option.label ?? ""}
-                checked={(value ?? innerValue) === option.value}
-                onClick={() => {
-                  handleOnChange(option.value);
-                  setCurrentFocusIndex(index);
-                }}
-                error={error}
-                disabled={option.disabled || disabled}
-                focused={currentFocusIndex === index}
-                readOnly={readOnly}
-                tabIndex={tabIndex}
-              />
-            ))}
-          </RadioGroup>
-          {!disabled && typeof error === "string" && (
-            <ErrorMessageContainer id={errorId} role="alert" aria-live={error ? "assertive" : "off"}>
-              {error}
-            </ErrorMessageContainer>
-          )}
-        </RadioGroupContainer>
-      </ThemeProvider>
+      <RadioGroupContainer ref={ref}>
+        {label && (
+          <Label disabled={disabled} hasMargin={!helperText} id={labelId}>
+            {label}
+            {optional && <span>{` ${translatedLabels.formFields.optionalLabel}`}</span>}
+          </Label>
+        )}
+        {helperText && (
+          <HelperText disabled={disabled} hasMargin>
+            {helperText}
+          </HelperText>
+        )}
+        <RadioGroup
+          aria-disabled={disabled}
+          aria-errormessage={error ? errorId : undefined}
+          aria-invalid={!!error}
+          aria-labelledby={label ? labelId : undefined}
+          aria-orientation={stacking === "column" ? "vertical" : "horizontal"}
+          aria-readonly={readOnly}
+          aria-required={!disabled && !readOnly && !optional}
+          aria-label={label ? undefined : ariaLabel}
+          onBlur={handleOnBlur}
+          onFocus={handleOnFocus}
+          onKeyDown={handleOnKeyDown}
+          role="radiogroup"
+          stacking={stacking}
+        >
+          <input disabled={disabled} name={name} readOnly type="hidden" value={value ?? innerValue ?? ""} />
+          {innerOptions.map((option, index) => (
+            <RadioInput
+              checked={(value ?? innerValue) === option.value}
+              disabled={option.disabled || disabled}
+              error={error}
+              focused={currentFocusIndex === index}
+              key={`radio-${index}`}
+              label={option.label ?? ""}
+              onClick={() => {
+                handleOnChange(option.value);
+                setCurrentFocusIndex(index);
+              }}
+              readOnly={readOnly}
+              tabIndex={tabIndex}
+            />
+          ))}
+        </RadioGroup>
+        {!disabled && typeof error === "string" && <ErrorMessage error={error} id={errorId} />}
+      </RadioGroupContainer>
     );
   }
 );
-
-const RadioGroupContainer = styled.div`
-  box-sizing: border-box;
-  display: inline-flex;
-  flex-direction: column;
-`;
-
-const Label = styled.span<{
-  helperText: RadioGroupPropsType["helperText"];
-  disabled: RadioGroupPropsType["disabled"];
-}>`
-  color: ${(props) => (props.disabled ? props.theme.disabledLabelFontColor : props.theme.labelFontColor)};
-  font-family: ${(props) => props.theme.fontFamily};
-  font-size: ${(props) => props.theme.labelFontSize};
-  font-style: ${(props) => props.theme.labelFontStyle};
-  font-weight: ${(props) => props.theme.labelFontWeight};
-  line-height: ${(props) => props.theme.labelLineHeight};
-  ${(props) => !props.helperText && `margin-bottom: ${props.theme.groupLabelMargin}`}
-`;
-
-const OptionalLabel = styled.span`
-  font-weight: ${(props) => props.theme.optionalLabelFontWeight};
-`;
-
-const HelperText = styled.span<{ disabled: RadioGroupPropsType["disabled"] }>`
-  color: ${(props) => (props.disabled ? props.theme.disabledHelperTextFontColor : props.theme.helperTextFontColor)};
-  font-family: ${(props) => props.theme.fontFamily};
-  font-size: ${(props) => props.theme.helperTextFontSize};
-  font-style: ${(props) => props.theme.helperTextFontStyle};
-  font-weight: ${(props) => props.theme.helperTextFontWeight};
-  line-height: ${(props) => props.theme.helperTextLineHeight};
-  margin-bottom: ${(props) => props.theme.groupLabelMargin};
-`;
-
-const RadioGroup = styled.div<{ stacking: RadioGroupPropsType["stacking"] }>`
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: ${(props) => props.stacking};
-  row-gap: ${(props) => props.theme.groupVerticalGutter};
-  column-gap: ${(props) => props.theme.groupHorizontalGutter};
-`;
-
-const ValueInput = styled.input`
-  display: none;
-`;
-
-const ErrorMessageContainer = styled.span`
-  min-height: 1.5em;
-  color: ${(props) => props.theme.errorMessageColor};
-  font-family: ${(props) => props.theme.fontFamily};
-  font-size: 0.75rem;
-  font-weight: 400;
-  line-height: 1.5em;
-  margin-top: 0.5rem;
-`;
 
 export default DxcRadioGroup;

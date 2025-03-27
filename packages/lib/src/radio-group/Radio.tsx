@@ -1,30 +1,55 @@
-import { memo, useContext, useEffect, useId, useRef, useState } from "react";
-import styled, { ThemeProvider } from "styled-components";
-import { AdvancedTheme } from "../common/variables";
-import DxcFlex from "../flex/Flex";
-import HalstackContext from "../HalstackContext";
+import { memo, useEffect, useId, useRef, useState } from "react";
+import styled from "styled-components";
 import { RadioProps } from "./types";
+import { icons, getRadioInputStyles } from "./utils";
 
-const DxcRadio = ({
-  label,
-  checked,
-  onClick,
-  error,
-  disabled,
-  focused,
-  readOnly,
-  tabIndex,
-}: RadioProps): JSX.Element => {
+const Label = styled.span<{ disabled: RadioProps["disabled"] }>`
+  color: ${({ disabled }) => (disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-dark)")};
+  font-family: var(--typography-font-family);
+  font-size: var(--typography-label-m);
+  font-weight: var(--typography-label-regular);
+`;
+
+type CommonStylingProps = {
+  disabled: RadioProps["disabled"];
+  error: boolean;
+  readOnly: RadioProps["readOnly"];
+};
+
+const RadioButton = styled.span<CommonStylingProps>`
+  display: grid;
+  place-items: center;
+  height: var(--height-s);
+  width: 24px;
+  border-radius: 50%;
+  ${({ disabled }) => disabled && "pointer-events: none;"}
+
+  &:focus {
+    outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
+    outline-offset: -2px;
+  }
+`;
+
+const RadioInputContainer = styled.span<CommonStylingProps>`
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-gap-s);
+  color: ${({ disabled, error, readOnly }) => getRadioInputStyles(disabled, error, readOnly, "default")};
+  cursor: ${({ disabled, readOnly }) => (disabled ? "not-allowed" : readOnly ? "default" : "pointer")};
+
+  &:hover ${RadioButton} {
+    color: ${({ disabled, error, readOnly }) => getRadioInputStyles(disabled, error, readOnly, "hover")};
+  }
+  &:active ${RadioButton} {
+    color: ${({ disabled, error, readOnly }) => getRadioInputStyles(disabled, error, readOnly, "active")};
+  }
+`;
+
+const RadioInput = ({ checked, disabled, error, focused, label, onClick, readOnly, tabIndex }: RadioProps) => {
   const radioLabelId = `radio-${useId()}`;
   const ref = useRef<HTMLSpanElement>(null);
-  const colorsTheme = useContext(HalstackContext);
-
-  const handleOnClick = () => {
-    onClick();
-    document.activeElement !== ref.current && ref.current?.focus();
-  };
-
   const [firstUpdate, setFirstUpdate] = useState(true);
+
   useEffect(() => {
     // Don't apply in the first render
     if (firstUpdate) {
@@ -34,138 +59,36 @@ const DxcRadio = ({
     focused && ref.current?.focus();
   }, [focused]);
 
+  const handleOnClick = () => {
+    onClick();
+    document.activeElement !== ref.current && ref.current?.focus();
+  };
+
   return (
-    <ThemeProvider theme={colorsTheme.radioGroup}>
-      <DxcFlex>
-        <RadioContainer
-          error={error}
-          disabled={disabled}
-          readOnly={readOnly}
-          onClick={disabled ? undefined : handleOnClick}
-        >
-          <RadioInputContainer>
-            <RadioInput
-              error={error}
-              disabled={disabled}
-              readOnly={readOnly}
-              role="radio"
-              aria-checked={checked}
-              aria-disabled={disabled}
-              aria-labelledby={radioLabelId}
-              tabIndex={disabled ? -1 : focused ? tabIndex : -1}
-              ref={ref}
-            >
-              {checked && <Dot disabled={disabled} readOnly={readOnly} error={error} />}
-            </RadioInput>
-          </RadioInputContainer>
-          <Label id={radioLabelId} disabled={disabled}>
-            {label}
-          </Label>
-        </RadioContainer>
-      </DxcFlex>
-    </ThemeProvider>
+    <RadioInputContainer
+      disabled={disabled}
+      error={!!error}
+      onClick={disabled ? undefined : handleOnClick}
+      readOnly={readOnly}
+    >
+      <RadioButton
+        aria-checked={checked}
+        aria-disabled={disabled}
+        aria-labelledby={radioLabelId}
+        disabled={disabled}
+        error={!!error}
+        readOnly={readOnly}
+        ref={ref}
+        role="radio"
+        tabIndex={disabled ? -1 : focused ? tabIndex : -1}
+      >
+        {checked ? icons.checked : icons.unchecked}
+      </RadioButton>
+      <Label disabled={disabled} id={radioLabelId}>
+        {label}
+      </Label>
+    </RadioInputContainer>
   );
 };
 
-type CommonStylingProps = {
-  error: RadioProps["error"];
-  disabled: RadioProps["disabled"];
-  readOnly: RadioProps["readOnly"];
-};
-const getRadioInputStateColor = (
-  props: CommonStylingProps & { theme: AdvancedTheme["radioGroup"] },
-  state: "enabled" | "hover" | "active"
-) => {
-  switch (state) {
-    case "enabled":
-      return props.disabled
-        ? props.theme.disabledRadioInputColor
-        : props.error
-          ? props.theme.errorRadioInputColor
-          : props.readOnly
-            ? props.theme.readOnlyRadioInputColor
-            : props.theme.radioInputColor;
-    case "hover":
-      return props.error
-        ? props.theme.hoverErrorRadioInputColor
-        : props.readOnly
-          ? props.theme.hoverReadOnlyRadioInputColor
-          : props.theme.hoverRadioInputColor;
-    case "active":
-      return props.error
-        ? props.theme.activeErrorRadioInputColor
-        : props.readOnly
-          ? props.theme.activeReadOnlyRadioInputColor
-          : props.theme.activeRadioInputColor;
-  }
-};
-
-const RadioInputContainer = styled.span`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 24px;
-  width: 24px;
-`;
-
-const RadioInput = styled.span<CommonStylingProps>`
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 18px;
-  height: 18px;
-  border: 2px solid ${(props) => getRadioInputStateColor(props, "enabled")};
-  border-radius: 50%;
-
-  &:focus {
-    outline: 2px solid ${(props) => props.theme.focusBorderColor};
-    outline-offset: 1px;
-  }
-  ${(props) => props.disabled && "pointer-events: none;"}
-`;
-
-const Dot = styled.span<CommonStylingProps>`
-  height: 10px;
-  width: 10px;
-  border-radius: 50%;
-  background-color: ${(props) => getRadioInputStateColor(props, "enabled")};
-`;
-
-const Label = styled.span<{ disabled: RadioProps["disabled"] }>`
-  margin-left: ${(props) => props.theme.radioInputLabelMargin};
-  font-family: ${(props) => props.theme.fontFamily};
-  font-size: ${(props) => props.theme.radioInputLabelFontSize};
-  font-style: ${(props) => props.theme.radioInputLabelFontStyle};
-  font-weight: ${(props) => props.theme.radioInputLabelFontWeight};
-  line-height: ${(props) => props.theme.radioInputLabelLineHeight};
-  ${(props) =>
-    props.disabled
-      ? `color: ${props.theme.disabledRadioInputLabelFontColor};`
-      : `color: ${props.theme.radioInputLabelFontColor}`}
-`;
-
-const RadioContainer = styled.span<CommonStylingProps>`
-  display: inline-flex;
-  align-items: center;
-  cursor: ${(props) => (props.disabled ? "not-allowed" : props.readOnly ? "default" : "pointer")};
-
-  &:hover {
-    ${RadioInput} {
-      border-color: ${(props) => !props.disabled && getRadioInputStateColor(props, "hover")};
-    }
-    ${Dot} {
-      background-color: ${(props) => !props.disabled && getRadioInputStateColor(props, "hover")};
-    }
-  }
-  &:active {
-    ${RadioInput} {
-      border-color: ${(props) => !props.disabled && getRadioInputStateColor(props, "active")};
-    }
-    ${Dot} {
-      background-color: ${(props) => !props.disabled && getRadioInputStateColor(props, "active")};
-    }
-  }
-`;
-
-export default memo(DxcRadio);
+export default memo(RadioInput);

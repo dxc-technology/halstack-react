@@ -1,4 +1,4 @@
-export type RadioOption = {
+type Option = {
   /**
    * Label of the option placed next to the radio input.
    */
@@ -17,6 +17,31 @@ export type RadioOption = {
 
 type RadioGroupProps = {
   /**
+   * Specifies a string to be used as the name for the radio group when no `label` is provided.
+   */
+  ariaLabel?: string;
+  /**
+   * Initial value of the radio group, only when it is uncontrolled.
+   */
+  defaultValue?: string;
+  /**
+   * If true, the component will be disabled.
+   */
+  disabled?: boolean;
+  /**
+   * If it is a defined value and also a truthy string, the component will
+   * change its appearance, showing the error below the radio group. If the
+   * defined value is an empty string, it will reserve a space below the
+   * component for a future error, but it would not change its look. In
+   * case of being undefined or null, both the appearance and the space for
+   * the error message would not be modified.
+   */
+  error?: string;
+  /**
+   * Helper text to be placed above the radio group.
+   */
+  helperText?: string;
+  /**
    * Text to be placed above the radio group.
    */
   label?: string;
@@ -25,18 +50,6 @@ type RadioGroupProps = {
    * to find the component's value during the submit event.
    */
   name?: string;
-  /**
-   * Helper text to be placed above the radio group.
-   */
-  helperText?: string;
-  /**
-   * An array of objects representing the selectable options.
-   */
-  options: RadioOption[];
-  /**
-   * If true, the component will be disabled.
-   */
-  disabled?: boolean;
   /**
    * If true, the radio group will be optional, showing
    * (Optional) next to the label and adding a default last
@@ -50,6 +63,21 @@ type RadioGroupProps = {
    */
   optionalItemLabel?: string;
   /**
+   * An array of objects representing the selectable options.
+   */
+  options: Option[];
+  /**
+   * This function will be called when the radio group loses the focus. An
+   * object including the value and the error will be passed to this
+   * function. If there is no error, error will not be defined.
+   */
+  onBlur?: (val: { value?: string; error?: string }) => void;
+  /**
+   * This function will be called when the user chooses an option. The new
+   * value will be passed to this function.
+   */
+  onChange?: (value: string) => void;
+  /**
    * If true, the component will not be mutable, meaning the user can not edit the control.
    */
   readOnly?: boolean;
@@ -58,43 +86,15 @@ type RadioGroupProps = {
    */
   stacking?: "row" | "column";
   /**
-   * Initial value of the radio group, only when it is uncontrolled.
+   * Value of the tabindex attribute.
    */
-  defaultValue?: string;
+  tabIndex?: number;
   /**
    * Value of the radio group. If undefined, the component will be
    * uncontrolled and the value will be managed internally by the
    * component.
    */
   value?: string;
-  /**
-   * This function will be called when the user chooses an option. The new
-   * value will be passed to this function.
-   */
-  onChange?: (value: string) => void;
-  /**
-   * This function will be called when the radio group loses the focus. An
-   * object including the value and the error will be passed to this
-   * function. If there is no error, error will not be defined.
-   */
-  onBlur?: (val: { value?: string; error?: string }) => void;
-  /**
-   * If it is a defined value and also a truthy string, the component will
-   * change its appearance, showing the error below the radio group. If the
-   * defined value is an empty string, it will reserve a space below the
-   * component for a future error, but it would not change its look. In
-   * case of being undefined or null, both the appearance and the space for
-   * the error message would not be modified.
-   */
-  error?: string;
-  /**
-   * Value of the tabindex attribute.
-   */
-  tabIndex?: number;
-  /**
-   * Specifies a string to be used as the name for the radio group when no `label` is provided.
-   */
-  ariaLabel?: string;
 };
 
 /**
@@ -106,12 +106,12 @@ export type RefType = HTMLDivElement;
  * Single radio prop types.
  */
 export type RadioProps = {
-  label: string;
   checked: boolean;
-  onClick: () => void;
-  error?: string;
   disabled: boolean;
+  error?: string;
   focused: boolean;
+  label: string;
+  onClick: () => void;
   readOnly: boolean;
   tabIndex: number;
 };
