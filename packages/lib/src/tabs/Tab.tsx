@@ -6,6 +6,14 @@ import { Tooltip } from "../tooltip/Tooltip";
 import TabsContext from "./TabsContext";
 import { TabProps, TabsContextProps } from "./types";
 
+const TabContainer = styled.div<{
+  iconPosition: TabsContextProps["iconPosition"];
+}>`
+  display: grid;
+  grid-template-rows: 1fr auto;
+  ${({ iconPosition }) => (iconPosition === "top" ? "height: 72px;" : "height: var(--height-xxl);")}
+`;
+
 export const sharedTabStyles = `
   background-color: var(--color-bg-neutral-lightest);
   color: var(--color-fg-neutral-stronger);
@@ -21,8 +29,8 @@ export const sharedTabStyles = `
     background: var(--color-bg-primary-lighter);
   }
   &:focus:enabled {
-    outline: var(--border-width-s) var(--border-style-default) var(--border-color-primary-stronger);
-    outline-offset: -1px;
+    outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
+    outline-offset: -2px;
   }
   &:disabled {
     color: var(--color-fg-neutral-medium);
@@ -31,10 +39,8 @@ export const sharedTabStyles = `
 `;
 
 const Tab = styled.button<{
-  hasLabelAndIcon: boolean;
   iconPosition: TabsContextProps["iconPosition"];
 }>`
-  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -42,11 +48,9 @@ const Tab = styled.button<{
   border: var(--border-width-none);
   min-width: max-content;
   max-width: 360px;
-  ${({ iconPosition }) =>
-    iconPosition === "top"
-      ? "padding: var(--spacing-padding-xs) var(--spacing-padding-m); height: 72px;"
-      : "padding: var(--spacing-gap-s) var(--spacing-padding-m); height: var(--height-xxl);"}
   overflow: hidden;
+  padding: ${({ iconPosition }) => (iconPosition === "top" ? "var(--spacing-padding-xs)" : "var(--spacing-gap-s)")}
+    var(--spacing-padding-l);
   ${sharedTabStyles}
 `;
 
@@ -85,9 +89,6 @@ const BadgeContainer = styled.div<{
 `;
 
 const Underline = styled.span<{ active: boolean }>`
-  position: absolute;
-  bottom: 0;
-  left: 0;
   width: 100%;
   height: ${({ active }) => (active ? "var(--border-width-m)" : "var(--border-width-s)")};
   background-color: ${({ active }) =>
@@ -131,46 +132,47 @@ const DxcTab = forwardRef(
 
     return (
       <Tooltip label={title}>
-        <Tab
-          aria-selected={activeLabel === label}
-          disabled={disabled}
-          hasLabelAndIcon={Boolean(icon && label)}
-          iconPosition={iconPosition}
-          onClick={() => {
-            if (!isControlled) setActiveLabel?.(label);
-            onClick?.();
-          }}
-          onKeyDown={handleOnKeyDown}
-          onMouseEnter={() => onHover?.()}
-          ref={(anchorRef) => {
-            tabRef.current = anchorRef;
-            if (ref) {
-              if (typeof ref === "function") ref(anchorRef);
-              else {
-                const currentRef = ref as MutableRefObject<HTMLButtonElement | null>;
-                currentRef.current = anchorRef;
+        <TabContainer iconPosition={iconPosition}>
+          <Tab
+            aria-selected={activeLabel === label}
+            disabled={disabled}
+            iconPosition={iconPosition}
+            onClick={() => {
+              if (!isControlled) setActiveLabel?.(label);
+              onClick?.();
+            }}
+            onKeyDown={handleOnKeyDown}
+            onMouseEnter={() => onHover?.()}
+            ref={(anchorRef) => {
+              tabRef.current = anchorRef;
+              if (ref) {
+                if (typeof ref === "function") ref(anchorRef);
+                else {
+                  const currentRef = ref as MutableRefObject<HTMLButtonElement | null>;
+                  currentRef.current = anchorRef;
+                }
               }
-            }
-          }}
-          role="tab"
-          tabIndex={activeLabel === label && !disabled ? tabIndex : -1}
-          type="button"
-        >
-          <LabelIconContainer iconPosition={iconPosition}>
-            {icon && <IconContainer>{typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}</IconContainer>}
-            <Label>{label}</Label>
-          </LabelIconContainer>
-          {!disabled && notificationNumber && (
-            <BadgeContainer hasLabelAndIcon={Boolean(icon && label)} iconPosition={iconPosition}>
-              <DxcBadge
-                label={typeof notificationNumber === "number" ? notificationNumber : undefined}
-                mode="notification"
-                size="small"
-              />
-            </BadgeContainer>
-          )}
+            }}
+            role="tab"
+            tabIndex={activeLabel === label && !disabled ? tabIndex : -1}
+            type="button"
+          >
+            <LabelIconContainer iconPosition={iconPosition}>
+              {icon && <IconContainer>{typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}</IconContainer>}
+              <Label>{label}</Label>
+            </LabelIconContainer>
+            {!disabled && notificationNumber && (
+              <BadgeContainer hasLabelAndIcon={Boolean(icon && label)} iconPosition={iconPosition}>
+                <DxcBadge
+                  label={typeof notificationNumber === "number" ? notificationNumber : undefined}
+                  mode="notification"
+                  size="small"
+                />
+              </BadgeContainer>
+            )}
+          </Tab>
           <Underline active={activeLabel === label} />
-        </Tab>
+        </TabContainer>
       </Tooltip>
     );
   }

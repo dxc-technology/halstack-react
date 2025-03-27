@@ -2,8 +2,9 @@ import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcTabs from "./Tabs";
-import type { Space } from "../common/utils";
+import type { Margin, Space } from "../common/utils";
 import { Meta, StoryObj } from "@storybook/react/*";
+import { userEvent, within } from "@storybook/test";
 
 export default {
   title: "Tabs",
@@ -21,7 +22,7 @@ const iconSVG = (
   </svg>
 );
 
-const tabs = (margin?: Space) => (
+const tabs = (margin?: Space | Margin) => (
   <DxcTabs margin={margin}>
     <DxcTabs.Tab label="Tab 1" title="test tooltip">
       <></>
@@ -156,48 +157,48 @@ const tabsNotificationIcon = (iconPosition?: "top" | "left") => (
 const Tabs = () => (
   <>
     <ExampleContainer>
-      <Title title="Only label" theme="light" level={4} />
-      {tabs()}
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Disabled tabs" theme="light" level={4} />
-      {disabledTabs}
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="First two tabs disabled" theme="light" level={4} />
-      {firstDisabledTabs}
+      <Title title="Default" theme="light" level={4} />
+      {tabs({ bottom: "xxlarge" })}
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-hover">
-      <Title title="Hovered tabs" theme="light" level={4} />
+      <Title title="Hovered" theme="light" level={4} />
       {tabs()}
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-focus">
-      <Title title="Focused tabs" theme="light" level={4} />
+      <Title title="Focused" theme="light" level={4} />
       {tabs()}
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-active">
-      <Title title="Actived tabs" theme="light" level={4} />
+      <Title title="Active" theme="light" level={4} />
       {tabs()}
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Disabled" theme="light" level={4} />
+      {firstDisabledTabs}
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="All tabs disabled" theme="light" level={4} />
+      {disabledTabs}
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With notification number" theme="light" level={4} />
       {tabsNotification()}
     </ExampleContainer>
     <ExampleContainer>
-      <Title title="With icon position top" theme="light" level={4} />
-      {tabsIcon("top")}
-    </ExampleContainer>
-    <ExampleContainer>
       <Title title="With icon position left" theme="light" level={4} />
       {tabsIcon()}
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="With icon position top" theme="light" level={4} />
+      {tabsIcon("top")}
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With icon and notification number" theme="light" level={4} />
       {tabsNotificationIcon()}
     </ExampleContainer>
     <ExampleContainer>
-      <Title title="With icon on the left and notification number" theme="light" level={4} />
-      {tabsNotificationIcon()}
+      <Title title="With icon on top and notification number" theme="light" level={4} />
+      {tabsNotificationIcon("top")}
     </ExampleContainer>
     <Title title="Margins" theme="light" level={2} />
     <ExampleContainer>
@@ -256,6 +257,14 @@ type Story = StoryObj<typeof DxcTabs>;
 
 export const Chromatic: Story = {
   render: Tabs,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const tabs = canvas.getAllByRole("tab");
+    console.log(tabs[0]);
+    if (tabs[0]) {
+      await userEvent.hover(tabs[0]);
+    }
+  },
 };
 
 export const ScrollableTabs: Story = {
