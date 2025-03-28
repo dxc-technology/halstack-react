@@ -6,9 +6,8 @@ import { ReactNode } from "react";
 
 const QuickNavPageHeading = ({ children }: { children: ReactNode }) => {
   const tabs = [
-    { label: "Code", path: "/components/quick-nav" },
-    { label: "Usage", path: "/components/quick-nav/usage" },
-    { label: "Specifications", path: "/components/quick-nav/specifications" },
+    { label: "Overview", path: "/components/quick-nav" },
+    { label: "Code", path: "/components/quick-nav/code" },
   ];
 
   return (
@@ -21,7 +20,7 @@ const QuickNavPageHeading = ({ children }: { children: ReactNode }) => {
             the content in order to navigate to each section. The navigation is done using the link label or the link
             label plus sublink label when it is a sublink. If there is any space, it will be replaced by '-'.
           </DxcParagraph>
-          <TabsPageHeading tabs={tabs}></TabsPageHeading>
+          <TabsPageHeading tabs={tabs} />
         </DxcFlex>
       </PageHeading>
       {children}

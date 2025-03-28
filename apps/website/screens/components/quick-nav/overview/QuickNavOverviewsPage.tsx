@@ -10,7 +10,7 @@ import anatomyImage from "./images/quickNav_anatomy.png";
 
 const sections = [
   {
-    title: "Specifications",
+    title: "Introduction",
     content: (
       <Figure caption="Quick nav design specifications">
         <Image src={specsImage} alt="Quicknav design specifications" />
@@ -259,15 +259,15 @@ const sections = [
   },
 ];
 
-const QuickNavSpecsPage = () => {
+const QuickNavOverviewPage = () => {
   return (
     <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/quick-nav/specs/QuickNavSpecsPage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/quick-nav/overview/QuickNavOverviewPage.tsx" />
     </DxcFlex>
   );
 };
 
-export default QuickNavSpecsPage;
+export default QuickNavOverviewPage;
