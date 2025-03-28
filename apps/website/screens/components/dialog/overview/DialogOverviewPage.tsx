@@ -44,7 +44,7 @@ const sections = [
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
             <strong>Actions:</strong> a set of buttons at the bottom of the dialog that guide users toward completing or
-            canceling the intended action.
+            cancelling the intended action.
           </DxcBulletedList.Item>
         </DxcBulletedList>
         <DxcParagraph>
