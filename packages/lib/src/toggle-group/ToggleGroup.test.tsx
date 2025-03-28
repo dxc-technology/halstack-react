@@ -22,11 +22,13 @@ const options = [
 
 describe("Toggle group component tests", () => {
   test("Toggle group renders with correct labels", () => {
-    const { getByText } = render(<DxcToggleGroup options={options} />);
+    const { getByText, getByRole } = render(<DxcToggleGroup options={options} />);
+    const toggleGroup = getByRole("toolbar");
     expect(getByText("Amazon")).toBeTruthy();
     expect(getByText("Ebay")).toBeTruthy();
     expect(getByText("Apple")).toBeTruthy();
     expect(getByText("Google")).toBeTruthy();
+    expect(toggleGroup.getAttribute("aria-orientation")).toBe("horizontal");
   });
   test("Toggle group renders with correct aria-label in only-icon scenario", () => {
     const { getByRole } = render(
@@ -85,5 +87,10 @@ describe("Toggle group component tests", () => {
     const toggleOptions = getAllByRole("button");
     expect(toggleOptions[1]?.getAttribute("aria-pressed")).toBe("true");
     expect(toggleOptions[3]?.getAttribute("aria-pressed")).toBe("true");
+  });
+  test("Aria orientation is set correctly", () => {
+    const { getByRole } = render(<DxcToggleGroup options={options} orientation="vertical" />);
+    const toggleGroup = getByRole("toolbar");
+    expect(toggleGroup.getAttribute("aria-orientation")).toBe("vertical");
   });
 });

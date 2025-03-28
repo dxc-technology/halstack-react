@@ -128,7 +128,7 @@ export default function DxcToggleGroup({
   };
 
   return (
-    <ToggleGroup aria-orientation={orientation} margin={margin} role="group">
+    <ToggleGroup aria-orientation={orientation} margin={margin} role="toolbar">
       {options.map((option, i) => {
         const selected = isToggleButtonSelected(multiple, option.value, value ?? selectedValue);
         return (
