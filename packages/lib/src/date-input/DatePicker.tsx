@@ -20,6 +20,9 @@ const DatePickerContainer = styled.div`
   font-size: var(--typography-label-m);
   color: var(--color-fg-neutral-dark);
   font-weight: var(--typography-label-regular);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-gap-xxs);
 `;
 
 const PickerHeader = styled.div`

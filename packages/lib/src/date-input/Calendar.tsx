@@ -14,7 +14,6 @@ const CalendarContainer = styled.div`
   font-size: var(--typography-label-m);
   color: var(--color-fg-neutral-dark);
   font-weight: var(--typography-label-regular);
-  padding-top: var(--spacing-padding-xxxs);
 `;
 
 const CalendarHeaderRow = styled.div`

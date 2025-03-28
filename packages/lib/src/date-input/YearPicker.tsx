@@ -14,7 +14,6 @@ const YearPickerContainer = styled.div`
   height: 312px;
   box-shadow: var(--shadow-mid-x-position) var(--shadow-mid-y-position) var(--shadow-mid-blur) var(--shadow-mid-spread)
     var(--shadow-light);
-  padding-top: var(--spacing-gap-xxs);
 `;
 
 const YearPickerButton = styled.button<{
