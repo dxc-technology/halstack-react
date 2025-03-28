@@ -50,10 +50,11 @@ const Tabs = styled.div`
 const ScrollIndicatorButton = styled.button`
   display: grid;
   place-items: center;
-  min-width: var(--height-xxl);
-  padding: 0;
   background: var(--color-bg-neutral-lightest);
   border: 0;
+  min-width: 47px;
+  height: 47px;
+  padding: 0;
   ${sharedTabStyles}
 
   /* Scroll indicator arrow icon */
@@ -72,20 +73,19 @@ const TabsContent = styled.div`
   display: inline-block;
   position: relative;
   white-space: nowrap;
-  overflow-x: auto;
-  ::-webkit-scrollbar {
-    display: none;
-  }
+  overflow-x: hidden;
 `;
 
 const ScrollableTabsList = styled.div<{
   enabled: boolean;
+  iconPosition: TabsPropsType["iconPosition"];
   translateScroll: number;
 }>`
   display: flex;
   ${({ enabled, translateScroll }) =>
     enabled ? `transform: translateX(${translateScroll}px)` : "transform: translateX(0px)"};
   transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  height: ${({ iconPosition }) => (iconPosition === "top" ? "72px" : "var(--height-xxl)")};
 `;
 
 const DxcTabs = ({
@@ -220,6 +220,7 @@ const DxcTabs = ({
           <TabsContent>
             <ScrollableTabsList
               enabled={viewWidth < totalTabsWidth}
+              iconPosition={iconPosition}
               onKeyDown={handleOnKeyDown}
               ref={refTabList}
               role="tablist"

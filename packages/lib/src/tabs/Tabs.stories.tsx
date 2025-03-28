@@ -260,10 +260,7 @@ export const Chromatic: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const tabs = canvas.getAllByRole("tab");
-    console.log(tabs[0]);
-    if (tabs[0]) {
-      await userEvent.hover(tabs[0]);
-    }
+    if (tabs[0]) await userEvent.hover(tabs[0]);
   },
 };
 
