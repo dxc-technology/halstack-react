@@ -22,16 +22,6 @@ const sections = [
         </thead>
         <tbody>
           <tr>
-            <td>mode</td>
-            <td>
-              <TableCode>'default' | 'info' | 'success' | 'warning' | 'error'</TableCode>
-            </td>
-            <td>It will define the color of the light based on its semantic meaning.</td>
-            <td>
-              <TableCode>'default'</TableCode>
-            </td>
-          </tr>
-          <tr>
             <td>
               <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
                 <StatusBadge status="required" />
@@ -41,8 +31,18 @@ const sections = [
             <td>
               <TableCode>string</TableCode>
             </td>
-            <td>An auxiliar text that will add some context to the status.</td>
+            <td>An auxiliary text that will add some context to the status.</td>
             <td>-</td>
+          </tr>
+          <tr>
+            <td>mode</td>
+            <td>
+              <TableCode>'default' | 'info' | 'success' | 'warning' | 'error'</TableCode>
+            </td>
+            <td>It will define the color of the light based on its semantic meaning.</td>
+            <td>
+              <TableCode>'default'</TableCode>
+            </td>
           </tr>
           <tr>
             <td>size</td>
@@ -69,15 +69,13 @@ const sections = [
   },
 ];
 
-const StatusLightCodePage = () => {
-  return (
-    <DxcFlex direction="column" gap="4rem">
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
-      </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/status-light/code/StatusLightCodePage.tsx" />
-    </DxcFlex>
-  );
-};
+const StatusLightCodePage = () => (
+  <DxcFlex direction="column" gap="4rem">
+    <QuickNavContainerLayout>
+      <QuickNavContainer sections={sections} startHeadingLevel={2} />
+    </QuickNavContainerLayout>
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/status-light/code/StatusLightCodePage.tsx" />
+  </DxcFlex>
+);
 
 export default StatusLightCodePage;
