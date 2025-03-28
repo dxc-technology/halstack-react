@@ -73,7 +73,10 @@ const TabsContent = styled.div`
   display: inline-block;
   position: relative;
   white-space: nowrap;
-  overflow-x: hidden;
+  overflow-x: auto;
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const ScrollableTabsList = styled.div<{
