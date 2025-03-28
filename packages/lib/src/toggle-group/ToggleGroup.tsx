@@ -24,8 +24,8 @@ const ToggleGroup = styled.div<{ margin: ToggleGroupPropsType["margin"] }>`
 `;
 
 const ToggleButton = styled.button<{
-  selected: boolean;
   onlyIcon: boolean;
+  selected: boolean;
 }>`
   display: flex;
   align-items: center;
@@ -61,7 +61,7 @@ const ToggleButton = styled.button<{
   }
 `;
 
-const ToggleButtonLabel = styled.span`
+const Label = styled.span`
   font-family: var(--typography-font-family);
   font-size: var(--typography-label-l);
   font-weight: var(--typography-label-regular);
@@ -75,6 +75,12 @@ const IconContainer = styled.div`
     height: var(--height-s);
   }
 `;
+
+const isToggleButtonSelected = (
+  multiple: ToggleGroupPropsType["multiple"],
+  optionValue: number,
+  value: ToggleGroupPropsType["value"]
+) => (multiple ? Array.isArray(value) && value.includes(optionValue) : optionValue === value);
 
 export default function DxcToggleGroup({
   defaultValue,
@@ -90,30 +96,22 @@ export default function DxcToggleGroup({
 
   const handleOnChange = (selectedOption: number) => {
     let newSelectedOptions: number[] = [];
-
     if (value == null) {
       if (multiple && Array.isArray(selectedValue)) {
         newSelectedOptions = selectedValue.map((singleValue) => singleValue);
         if (newSelectedOptions.includes(selectedOption)) {
           const index = newSelectedOptions.indexOf(selectedOption);
           newSelectedOptions.splice(index, 1);
-        } else {
-          newSelectedOptions.push(selectedOption);
-        }
+        } else newSelectedOptions.push(selectedOption);
         setSelectedValue(newSelectedOptions);
-      } else {
-        setSelectedValue(selectedOption === selectedValue ? -1 : selectedOption);
-      }
+      } else setSelectedValue(selectedOption === selectedValue ? -1 : selectedOption);
     } else if (multiple) {
       newSelectedOptions = Array.isArray(value) ? value.map((v) => v) : [value];
       if (newSelectedOptions.includes(selectedOption)) {
         const index = newSelectedOptions.indexOf(selectedOption);
         newSelectedOptions.splice(index, 1);
-      } else {
-        newSelectedOptions.push(selectedOption);
-      }
+      } else newSelectedOptions.push(selectedOption);
     }
-
     onChange?.((multiple ? newSelectedOptions : selectedOption) as number & number[]);
   };
 
@@ -130,48 +128,35 @@ export default function DxcToggleGroup({
   };
 
   return (
-    <ToggleGroup margin={margin} role="group">
-      {options.map((option, i) => (
-        <Tooltip label={option.title} key={`toggle-${i}-${option.label}`}>
-          <ToggleButton
-            aria-label={option.title}
-            aria-pressed={
-              multiple
-                ? value
-                  ? Array.isArray(value) && value.includes(option.value)
-                  : Array.isArray(selectedValue) && selectedValue.includes(option.value)
-                : value
-                  ? option.value === value
-                  : option.value === selectedValue
-            }
-            disabled={option.disabled}
-            onClick={() => {
-              handleOnChange(option.value);
-            }}
-            onKeyDown={(event) => {
-              handleOnKeyDown(event, option.value);
-            }}
-            onlyIcon={!option.label && !!option.icon}
-            selected={
-              multiple
-                ? value
-                  ? Array.isArray(value) && value.includes(option.value)
-                  : Array.isArray(selectedValue) && selectedValue.includes(option.value)
-                : value
-                  ? option.value === value
-                  : option.value === selectedValue
-            }
-            tabIndex={!option.disabled ? tabIndex : -1}
-          >
-            {option.icon && (
-              <IconContainer>
-                {typeof option.icon === "string" ? <DxcIcon icon={option.icon} /> : option.icon}
-              </IconContainer>
-            )}
-            {option.label && <ToggleButtonLabel>{option.label}</ToggleButtonLabel>}
-          </ToggleButton>
-        </Tooltip>
-      ))}
+    <ToggleGroup aria-orientation={orientation} margin={margin} role="group">
+      {options.map((option, i) => {
+        const selected = isToggleButtonSelected(multiple, option.value, value ?? selectedValue);
+        return (
+          <Tooltip label={option.title} key={`toggle-${i}-${option.label}`}>
+            <ToggleButton
+              aria-label={option.title}
+              aria-pressed={selected}
+              disabled={option.disabled}
+              onClick={() => {
+                handleOnChange(option.value);
+              }}
+              onKeyDown={(event) => {
+                handleOnKeyDown(event, option.value);
+              }}
+              onlyIcon={!option.label && !!option.icon}
+              selected={selected}
+              tabIndex={!option.disabled ? tabIndex : -1}
+            >
+              {option.icon && (
+                <IconContainer>
+                  {typeof option.icon === "string" ? <DxcIcon icon={option.icon} /> : option.icon}
+                </IconContainer>
+              )}
+              {option.label && <Label>{option.label}</Label>}
+            </ToggleButton>
+          </Tooltip>
+        );
+      })}
     </ToggleGroup>
   );
 }
