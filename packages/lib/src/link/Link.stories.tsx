@@ -20,12 +20,6 @@ const icon = (
   </svg>
 );
 
-const opinionatedTheme = {
-  link: {
-    baseColor: "#fabada",
-  },
-};
-
 const Link = () => (
   <>
     <Title title="With anchor" theme="light" level={2} />
@@ -199,12 +193,6 @@ const Link = () => (
       </DxcLink>
     </ExampleContainer>
     <Title title="Opinionated theme" theme="light" level={2} />
-    <ExampleContainer pseudoState="pseudo-visited">
-      <HalstackProvider theme={opinionatedTheme}>
-        <Title title="With link visited" theme="light" level={4} />
-        <DxcLink href="https://www.google.com">Test</DxcLink>
-      </HalstackProvider>
-    </ExampleContainer>
   </>
 );
 
