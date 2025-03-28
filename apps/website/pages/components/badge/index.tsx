@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
 import BadgePageLayout from "screens/components/badge/BadgePageLayout";
-import BadgeCodePage from "screens/components/badge/code/BadgeCodePage";
+import BadgeOverviewPage from "screens/components/badge/overview/BadgeOverviewPage";
 
 const Index = () => {
   return (
@@ -9,13 +9,11 @@ const Index = () => {
       <Head>
         <title>Badge — Halstack Design System</title>
       </Head>
-      <BadgeCodePage></BadgeCodePage>
+      <BadgeOverviewPage />
     </>
   );
 };
 
-Index.getLayout = function getLayout(page: ReactElement) {
-  return <BadgePageLayout>{page}</BadgePageLayout>;
-};
+Index.getLayout = (page: ReactElement) => <BadgePageLayout>{page}</BadgePageLayout>;
 
 export default Index;

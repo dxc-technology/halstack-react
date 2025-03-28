@@ -1,6 +1,5 @@
 import { ReactNode } from "react";
-import { CoreColorTokensType } from "../common/coreTokens";
-import { Space as SpacingValues } from "../common/utils"
+import { Space as SpacingValues } from "../common/utils";
 type Space =
   | SpacingValues
   | {
@@ -20,7 +19,7 @@ type Inset = {
 type Background = {
   attachment?: string;
   clip?: string;
-  color?: CoreColorTokensType;
+  color?: string;
   image?: string;
   origin?: string;
   position?: string;
@@ -30,8 +29,8 @@ type Background = {
 
 export type BorderProperties = {
   width?: string;
-  style?: "none" | "dotted" | "dashed" | "solid" | "double" | "groove" | "ridge" | "inset" | "outset";
-  color?: CoreColorTokensType;
+  style?: string;
+  color?: string;
 };
 type Border =
   | BorderProperties

@@ -3,6 +3,7 @@ import styled, { createGlobalStyle } from "styled-components";
 import { responsiveSizes } from "../common/variables";
 import FocusLock from "../utils/FocusLock";
 import { ModalAlertWrapperProps } from "./types";
+import { useEffect } from "react";
 
 const BodyStyle = createGlobalStyle`
   body {
@@ -24,7 +25,7 @@ const Overlay = styled.div`
   position: fixed;
   inset: 0;
   height: 100%;
-  background-color: ${(props) => props.theme.overlayColor};
+  background-color: var(--color-bg-alpha-medium);
 `;
 
 const ModalAlertContainer = styled.div`
@@ -40,8 +41,23 @@ const ModalAlertContainer = styled.div`
   }
 `;
 
-const ModalAlertWrapper = ({ condition, onClose, children }: ModalAlertWrapperProps) =>
-  condition ? (
+const ModalAlertWrapper = ({ condition, onClose, children }: ModalAlertWrapperProps) => {
+  useEffect(() => {
+    if (condition) {
+      const handleModalAlertKeydown = (event: KeyboardEvent) => {
+        if (event.key === "Escape") {
+          event.preventDefault();
+          onClose?.();
+        }
+      };
+      document.addEventListener("keydown", handleModalAlertKeydown);
+      return () => {
+        document.removeEventListener("keydown", handleModalAlertKeydown);
+      };
+    }
+  }, [condition, onClose]);
+
+  return condition ? (
     <>
       <BodyStyle />
       {createPortal(
@@ -57,5 +73,6 @@ const ModalAlertWrapper = ({ condition, onClose, children }: ModalAlertWrapperPr
   ) : (
     children
   );
+};
 
 export default ModalAlertWrapper;

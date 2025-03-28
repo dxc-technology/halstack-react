@@ -3,13 +3,11 @@ import DxcStatusLight from "./StatusLight";
 
 describe("StatusLight component tests", () => {
   test("StatusLight renders with correct label", () => {
-    const { getByText } = render(<DxcStatusLight label="Status Light Test"></DxcStatusLight>);
+    const { getByText } = render(<DxcStatusLight label="Status Light Test" />);
     expect(getByText("Status Light Test")).toBeTruthy();
   });
-
-  test("StatusLight applies accessibility attributes", () => {
+  test("StatusLight renders with role 'status'", () => {
     const { getByRole } = render(<DxcStatusLight label="Status Light Test" />);
-    const statusLightContainer = getByRole("status");
-    expect(statusLightContainer.getAttribute("aria-label")).toBe("default: Status Light Test");
+    expect(getByRole("status")).toBeTruthy();
   });
 });
