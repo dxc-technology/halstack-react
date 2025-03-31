@@ -7,7 +7,7 @@ const code = `() => {
       <DxcGrid
         gap={{ rowGap: "var(--spacing-gap-s)", columnGap: "var(--spacing-gap-ml)" }}
         templateColumns={["repeat(4, 1fr)"]}
-        templateRows={["40px", "200px", "60px"]}
+        templateRows={["var(--height-xl)", "200px", "var(--height-xxxl)"]}
         templateAreas={[
           "header header header header",
           "sidenav main main main",

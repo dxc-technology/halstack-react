@@ -92,7 +92,7 @@ const sections = [
           <Link href="/components/flex" passHref legacyBehavior>
             <DxcLink>flex</DxcLink>
           </Link>{" "}
-          component for one-dimensional layouts or stacked components with simpler structures.
+          component instead for one-dimensional layouts or stacked components with simpler structures.
         </DxcBulletedList.Item>
       </DxcBulletedList>
     ),
