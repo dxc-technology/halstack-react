@@ -4,6 +4,7 @@ import { spaces } from "../common/variables";
 import DxcIcon from "../icon/Icon";
 import { Tooltip } from "../tooltip/Tooltip";
 import ToggleGroupPropsType from "./types";
+import { getButtonStyles, getHeight } from "../button/utils";
 
 const ToggleGroup = styled.div<{ margin: ToggleGroupPropsType["margin"] }>`
   display: flex;
@@ -27,44 +28,16 @@ const ToggleButton = styled.button<{
   onlyIcon: boolean;
   selected: boolean;
 }>`
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: var(--spacing-gap-s);
-  height: var(--height-xl);
-  padding: ${({ onlyIcon }) =>
-    onlyIcon ? "var(--spacing-padding-xs)" : "var(--spacing-padding-none) var(--spacing-padding-m)"};
-  border: none;
-  border-radius: var(--border-radius-s);
-  background-color: ${({ selected }) =>
-    selected ? "var(--color-bg-primary-strong);" : "var(--color-bg-neutral-medium)"};
-  color: ${({ selected }) => (selected ? "var(--color-fg-neutral-bright)" : "var(--color-fg-neutral-dark)")};
+  height: ${getHeight("large")};
+  padding: var(--spacing-padding-none)
+    ${({ onlyIcon }) => (onlyIcon ? "var(--spacing-padding-xs)" : "var(--spacing-padding-m)")};
   cursor: pointer;
-
-  &:hover:enabled {
-    background-color: ${({ selected }) =>
-      selected ? "var(--color-bg-primary-stronger)" : "var(--color-bg-neutral-strong)"};
-  }
-  &:active:enabled {
-    background-color: ${({ selected }) =>
-      selected ? "var(--color-bg-primary-strongest);" : "var(--color-bg-primary-strong);"};
-    color: var(--color-fg-neutral-bright);
-  }
-  &:focus:enabled {
-    outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
-    outline-offset: -2px;
-  }
-  &:disabled {
-    background-color: var(--color-bg-neutral-light);
-    color: var(--color-fg-neutral-medium);
-    cursor: not-allowed;
-  }
-`;
-
-const Label = styled.span`
-  font-family: var(--typography-font-family);
-  font-size: var(--typography-label-l);
-  font-weight: var(--typography-label-regular);
+  ${({ selected }) =>
+    getButtonStyles("primary", selected ? "selected" : "unselected", { height: "large", width: "fitContent" })};
 `;
 
 const IconContainer = styled.div`
@@ -88,9 +61,9 @@ export default function DxcToggleGroup({
   multiple,
   onChange,
   options,
+  orientation = "horizontal",
   tabIndex = 0,
   value,
-  orientation = "horizontal",
 }: ToggleGroupPropsType) {
   const [selectedValue, setSelectedValue] = useState(defaultValue ?? (multiple ? [] : -1));
 
@@ -130,7 +103,7 @@ export default function DxcToggleGroup({
   return (
     <ToggleGroup aria-orientation={orientation} margin={margin} role="toolbar">
       {options.map((option, i) => {
-        const selected = isToggleButtonSelected(multiple, option.value, value ?? selectedValue);
+        const selected = !option.disabled && isToggleButtonSelected(multiple, option.value, value ?? selectedValue);
         return (
           <Tooltip label={option.title} key={`toggle-${i}-${option.label}`}>
             <ToggleButton
@@ -152,7 +125,7 @@ export default function DxcToggleGroup({
                   {typeof option.icon === "string" ? <DxcIcon icon={option.icon} /> : option.icon}
                 </IconContainer>
               )}
-              {option.label && <Label>{option.label}</Label>}
+              {option.label && <span>{option.label}</span>}
             </ToggleButton>
           </Tooltip>
         );
