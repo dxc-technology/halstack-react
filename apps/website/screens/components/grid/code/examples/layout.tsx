@@ -5,7 +5,7 @@ const code = `() => {
   return (
     <DxcInset space="2rem">
       <DxcGrid
-        gap={{ rowGap: "0.5rem", columnGap: "1rem" }}
+        gap={{ rowGap: "var(--spacing-gap-s)", columnGap: "var(--spacing-gap-ml)" }}
         templateColumns={["repeat(4, 1fr)"]}
         templateRows={["40px", "200px", "60px"]}
         templateAreas={[
@@ -17,7 +17,7 @@ const code = `() => {
         <DxcGrid.Item areaName="header" as="header">
           <Placeholder height="100%" />
         </DxcGrid.Item>
-        <DxcGrid templateColumns={["repeat(4, 1fr)"]} gap="0.25rem" areaName="main" as="main">
+        <DxcGrid templateColumns={["repeat(4, 1fr)"]} gap="var(--spacing-gap-xs)" areaName="main" as="main">
           <Placeholder />
           <Placeholder />
           <Placeholder />
