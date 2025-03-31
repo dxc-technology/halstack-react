@@ -24,7 +24,7 @@ const sections = [
     ),
   },
   {
-    title: "The flexible box layout module",
+    title: "The flexible box layout",
     content: (
       <>
         <DxcParagraph>
