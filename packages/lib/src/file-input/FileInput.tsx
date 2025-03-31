@@ -77,7 +77,7 @@ const DragDropArea = styled.div<{
       : "justify-content: center; flex-direction: column; row-gap: var(--spacing-gap-s); height: 160px;"}
   align-items: center;
   width: 320px;
-  padding: ${(props) => (props.mode === "filedrop" ? `var(--spacing-gap-xs)` : "var(--spacing-padding-m)")};
+  padding: ${(props) => (props.mode === "filedrop" ? `var(--spacing-padding-xxs)` : "var(--spacing-padding-m)")};
   overflow: hidden;
   border-radius: var(--border-radius-m);
   border-width: var(--border-width-s);
