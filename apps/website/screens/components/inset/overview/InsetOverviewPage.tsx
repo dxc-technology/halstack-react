@@ -6,7 +6,7 @@ import Code from "@/common/Code";
 
 const sections = [
   {
-    title: "Usage",
+    title: "Introduction",
     content: (
       <>
         <DxcParagraph>
@@ -24,15 +24,15 @@ const sections = [
   },
 ];
 
-const InsetUsagePage = () => {
+const InsetOverviewPage = () => {
   return (
     <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/inset/usage/InsetUsagePage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/inset/overview/InsetOverviewPage.tsx" />
     </DxcFlex>
   );
 };
 
-export default InsetUsagePage;
+export default InsetOverviewPage;

@@ -1,27 +1,19 @@
-import styled from "styled-components";
 import InsetPropsType from "./types";
+import DxcContainer from "../container/Container";
 
-const retrieveSpacingValue = (spacingName?: string) => spacingName ?? "0rem";
-
-const Inset = styled.div<InsetPropsType>`
-  ${({ space, horizontal, vertical, top, right, bottom, left }) => `
-  padding: ${retrieveSpacingValue(top || vertical || space)} ${retrieveSpacingValue(right || horizontal || space)}
-    ${retrieveSpacingValue(bottom || vertical || space)} ${retrieveSpacingValue(left || horizontal || space)};
-`}
-`;
-
-export default function DxcInset({ space, horizontal, vertical, top, right, bottom, left, children }: InsetPropsType) {
+export default function DxcInset({ bottom, children, horizontal, left, right, space, top, vertical }: InsetPropsType) {
   return (
-    <Inset
-      space={space}
-      horizontal={horizontal}
-      vertical={vertical}
-      top={top}
-      right={right}
-      bottom={bottom}
-      left={left}
+    <DxcContainer
+      padding={
+        space || {
+          bottom: (bottom || vertical) ?? "0rem",
+          left: (left || horizontal) ?? "0rem",
+          right: (right || horizontal) ?? "0rem",
+          top: (top || vertical) ?? "0rem",
+        }
+      }
     >
       {children}
-    </Inset>
+    </DxcContainer>
   );
 }

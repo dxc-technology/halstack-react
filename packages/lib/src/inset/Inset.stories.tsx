@@ -1,26 +1,34 @@
-import styled from "styled-components";
 import Title from "../../.storybook/components/Title";
 import DxcFlex from "./../flex/Flex";
 import DxcInset from "./Inset";
 import { Meta, StoryObj } from "@storybook/react";
+import DxcContainer from "../container/Container";
+import { ReactNode } from "react";
 
 export default {
   title: "Inset",
   component: DxcInset,
 } as Meta<typeof DxcInset>;
 
-const Container = styled.div`
-  background: #f2eafa;
-  margin: 2.5rem;
-`;
+const Container = ({ children }: { children: ReactNode }) => (
+  <DxcContainer background={{ color: "var(--color-bg-primary-lighter)" }} margin="var(--spacing-padding-xxl)">
+    {children}
+  </DxcContainer>
+);
 
-const Placeholder = styled.div`
-  min-height: 40px;
-  min-width: 120px;
-  border: 1px solid #a46ede;
-  border-radius: 0.5rem;
-  background-color: #e5d5f6;
-`;
+const Placeholder = () => (
+  <DxcContainer
+    background={{ color: "var(--color-bg-primary-lighter)" }}
+    border={{
+      color: "var(--border-color-primary-medium)",
+      style: "var(--border-style-default)",
+      width: "var(--border-width-s)",
+    }}
+    borderRadius="var(--border-radius-m)"
+    minHeight="var(--height-xl)"
+    minWidth="120px"
+  />
+);
 
 const Inset = () => (
   <>

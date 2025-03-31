@@ -1,12 +1,12 @@
 import { ReactNode } from "react";
-import { Space as SpacingValues } from "../common/utils";
+
 type Space =
-  | SpacingValues
+  | string
   | {
-      top?: SpacingValues;
-      right?: SpacingValues;
-      bottom?: SpacingValues;
-      left?: SpacingValues;
+      top?: string;
+      right?: string;
+      bottom?: string;
+      left?: string;
     };
 
 type Inset = {
@@ -80,7 +80,7 @@ type Props = {
   /**
    * Custom content inside the container.
    */
-  children: ReactNode;
+  children?: ReactNode;
   /**
    * Sets the display CSS property.
    * The set of values is limited to the ones related to the outer display type.
@@ -114,29 +114,29 @@ type Props = {
    */
   margin?: Space;
   /**
-   * Sets the max-height CSS property.
-   *
-   * See MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/max-height
-   */
-  maxWidth?: string;
-  /**
    * Sets the max-width CSS property.
    *
    * See MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/max-width
    */
   maxHeight?: string;
   /**
-   * Sets the min-height CSS property.
+   * Sets the max-height CSS property.
    *
-   * See MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/min-height
+   * See MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/max-height
    */
-  minWidth?: string;
+  maxWidth?: string;
   /**
    * Sets the min-width CSS property.
    *
    * See MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/min-width
    */
   minHeight?: string;
+  /**
+   * Sets the min-height CSS property.
+   *
+   * See MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/min-height
+   */
+  minWidth?: string;
   /**
    * Based on the CSS property outline allows configuring all properties related
    * to the outline of a container.
@@ -176,9 +176,9 @@ type Props = {
 
 export type StyledProps = Omit<Props, "display" | "width" | "height" | "opacity" | "overflow"> & {
   $display?: "block" | "inline-block" | "inline" | "none";
-  $width?: string;
   $height?: string;
   $overflow?: Overflow;
+  $width?: string;
 };
 
 export default Props;
