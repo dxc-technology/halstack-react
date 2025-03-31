@@ -1,303 +1,230 @@
-import { useContext, useMemo, useState } from "react";
-import styled, { ThemeProvider } from "styled-components";
+import { useState } from "react";
+import styled from "styled-components";
 import { spaces } from "../common/variables";
+import DxcDivider from "../divider/Divider";
 import DxcIcon from "../icon/Icon";
-import HalstackContext from "../HalstackContext";
 import WizardPropsType, { StepProps } from "./types";
+import DxcFlex from "../flex/Flex";
 import icons from "./Icons";
 
-const StepsContainer = styled.div<{
-  mode: WizardPropsType["mode"];
+const Wizard = styled.div<{
   margin: WizardPropsType["margin"];
+  mode: WizardPropsType["mode"];
 }>`
   display: flex;
-  flex-direction: ${(props) => (props.mode === "vertical" ? "column" : "row")};
+  flex-direction: ${({ mode }) => (mode === "vertical" ? "column" : "row")};
   justify-content: center;
-  ${(props) => props.mode === "vertical" && "height: 500px"};
-  font-family: ${(props) => props.theme.fontFamily};
-  margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
-  margin-top: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
-  margin-right: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
-  margin-bottom: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
-  margin-left: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
+  ${({ mode }) => mode === "vertical" && "height: 100%; width: fit-content;"};
+  margin: ${({ margin }) => (margin && typeof margin !== "object" ? spaces[margin] : "")};
+  margin-top: ${({ margin }) => (margin && typeof margin === "object" && margin.top ? spaces[margin.top] : "")};
+  margin-right: ${({ margin }) => (margin && typeof margin === "object" && margin.right ? spaces[margin.right] : "")};
+  margin-bottom: ${({ margin }) =>
+    margin && typeof margin === "object" && margin.bottom ? spaces[margin.bottom] : ""};
+  margin-left: ${({ margin }) => (margin && typeof margin === "object" && margin.left ? spaces[margin.left] : "")};
 `;
 
 const StepContainer = styled.div<{
-  mode: WizardPropsType["mode"];
   lastStep: boolean;
-}>`
-  display: inline-flex;
-  ${(props) => props.mode !== "vertical" && "align-items: center;"}
-  flex-grow: ${(props) => (props.lastStep ? "0" : "1")};
-  flex-direction: ${(props) => (props.mode === "vertical" ? "column" : "row")};
-  ${(props) => props.mode === "vertical" && "width: fit-content;"}
-`;
-
-const Step = styled.button<{
   mode: WizardPropsType["mode"];
-  disabled: StepProps["disabled"];
-  first: boolean;
-  last: boolean;
 }>`
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 0.75rem;
-  border: none;
-  border-radius: 0.25rem;
-  background: inherit;
-  margin: ${(props) =>
-    props.first
-      ? props.mode === "vertical"
-        ? "0 0 24px 0"
-        : "0 24px 0 0"
-      : props.last
-        ? props.mode === "vertical"
-          ? "24px 0 0 0"
-          : "0 0 0 24px"
-        : props.mode === "vertical"
-          ? "24px 0"
-          : "0 24px"};
-
-  padding: 0px;
-  ${(props) => (props.disabled ? "cursor: not-allowed" : "")};
-
-  &:hover {
-    ${(props) => (props.disabled ? "" : "cursor: pointer")};
-  }
-  &:focus {
-    outline: 2px solid ${(props) => props.theme.focusColor};
-  }
-`;
-
-const StepHeader = styled.div<{ validityIcon: boolean }>`
-  position: relative;
-  display: inline-flex;
-  ${(props) => props.validityIcon && "padding-bottom: 4px;"}
+  flex-grow: ${({ lastStep }) => (lastStep ? "0" : "1")};
+  display: grid;
+  ${({ mode }) => (mode === "horizontal" ? "grid-template-columns: auto 1fr;" : "grid-template-rows: auto 1fr;")}
 `;
 
 const IconContainer = styled.div<{
   current: boolean;
-  visited: boolean;
   disabled: StepProps["disabled"];
+  visited: boolean;
 }>`
-  width: ${(props) =>
-    props.disabled
-      ? props.theme.disabledStepWidth
-      : props.current
-        ? props.theme.selectedStepWidth
-        : props.theme.stepWidth};
-  height: ${(props) =>
-    props.disabled
-      ? props.theme.disabledStepHeight
-      : props.current
-        ? props.theme.selectedStepHeight
-        : props.theme.stepHeight};
-
-  ${(props) => `
-    ${
-      props.disabled
-        ? `border: ${props.theme.disabledStepBorderThickness} ${props.theme.disabledStepBorderStyle} ${props.theme.disabledStepBorderColor};`
-        : props.current
-          ? `border: ${props.theme.selectedStepBorderThickness} ${props.theme.selectedStepBorderStyle} ${props.theme.selectedStepBorderColor};`
-          : props.visited
-            ? `border: ${props.theme.stepBorderThickness} ${props.theme.stepBorderStyle} ${props.theme.visitedStepBorderColor};`
-            : `border: ${props.theme.stepBorderThickness} ${props.theme.stepBorderStyle} ${props.theme.unvisitedStepBorderColor};`
-    }
-    background: ${
-      props.disabled
-        ? `${props.theme.disabledStepBackgroundColor}`
-        : props.current
-          ? `${props.theme.selectedStepBackgroundColor}`
-          : !props.visited
-            ? `${props.theme.unvisitedStepBackgroundColor}`
-            : `${props.theme.visitedStepBackgroundColor}`
-    };
-  `}
-  ${(props) =>
-    props.disabled
-      ? `color: ${props.theme.disabledStepFontColor};`
-      : `color: ${
-          props.current
-            ? props.theme.selectedStepFontColor
-            : !props.visited
-              ? props.theme.unvisitedStepFontColor
-              : props.theme.visitedStepFontColor
-        };`};
-
-  border-radius: ${(props) =>
-    !props.current && !props.disabled
-      ? props.theme.stepBorderRadius
-      : props.current
-        ? props.theme.selectedStepBorderRadius
-        : props.disabled
-          ? props.theme.disabledStepBorderRadius
-          : ""};
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  font-size: ${(props) => props.theme.stepIconSize};
+  box-sizing: border-box;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: var(--border-width-m) var(--border-style-default) var(--border-color-neutral-dark);
+  height: var(--height-m);
+  width: 32px;
+  font-size: var(--height-xxs);
   svg {
-    width: ${(props) => props.theme.stepIconSize};
-    height: ${(props) => props.theme.stepIconSize};
+    height: var(--height-xxs);
+    width: 16px;
   }
 `;
 
-const Number = styled.p`
-  font-size: ${(props) => props.theme.stepFontSize};
-  font-family: ${(props) => props.theme.stepFontFamily};
-  font-style: ${(props) => props.theme.stepFontStyle};
-  font-weight: ${(props) => props.theme.stepFontWeight};
-  letter-spacing: ${(props) => props.theme.stepFontTracking};
-  opacity: 1;
-  margin: 0px 0px 0px 1px;
+const Number = styled.span`
+  color: var(--color-fg-neutral-dark);
+  font-family: var(--typography-font-family);
+  font-size: var(--typography-label-l);
+  font-weight: var(--typography-label-regular);
 `;
 
-const ValidityIconContainer = styled.div`
-  width: 18px;
-  height: 18px;
+const Label = styled.span`
+  color: var(--color-fg-neutral-dark);
+  font-family: var(--typography-font-family);
+  font-size: var(--typography-label-l);
+  font-weight: var(--typography-label-regular);
+  white-space: nowrap;
+`;
+
+const Description = styled.span`
+  color: var(--color-fg-neutral-dark);
+  font-family: var(--typography-font-family);
+  font-size: var(--typography-helper-text-m);
+  font-weight: var(--typography-helper-text-regular);
+  text-align: left;
+`;
+
+const Step = styled.button<{
+  mode: WizardPropsType["mode"];
+  unvisited: boolean;
+}>`
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-gap-s);
+  background-color: transparent;
+  border: none;
+  border-radius: var(--border-radius-s);
+  margin: ${({ mode }) =>
+    mode === "horizontal"
+      ? "var(--spacing-padding-none) var(--spacing-padding-l)"
+      : "var(--spacing-padding-l) var(--spacing-padding-none)"};
+  padding: var(--spacing-padding-none);
+  width: fit-content;
+  cursor: pointer;
+
+  &[aria-current="step"] {
+    ${IconContainer} {
+      background-color: var(--color-bg-primary-strong);
+      border: none;
+    }
+    ${IconContainer}, ${Number} {
+      color: var(--color-fg-neutral-bright);
+    }
+  }
+  ${({ unvisited }) =>
+    unvisited &&
+    `${IconContainer} {
+      border-color: var(--border-color-neutral-strongest);
+    }
+    ${IconContainer}, ${Number}, ${Label}, ${Description} {
+      color: var(--color-fg-neutral-stronger);
+    }
+  `}
+  &:focus:enabled {
+    outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
+  }
+  &:disabled {
+    cursor: not-allowed;
+    ${IconContainer} {
+      background-color: var(--color-bg-neutral-light);
+      border: none;
+    }
+    ${IconContainer}, ${Number}, ${Label}, ${Description} {
+      color: var(--color-fg-neutral-medium);
+    }
+  }
+`;
+
+const StepIndicator = styled.div<{
+  hasValidityIcon: boolean;
+}>`
+  position: relative;
+  height: ${({ hasValidityIcon }) => (hasValidityIcon ? "var(--height-l)" : "var(--height-m)")};
+  width: ${({ hasValidityIcon }) => (hasValidityIcon ? "36px" : "32px")};
+`;
+
+const ValidityIconContainer = styled.div<{ disabled?: boolean; valid: boolean }>`
   position: absolute;
-  top: 22.5px;
-  left: 22.5px;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  border-radius: 50%;
+  ${({ disabled, valid }) =>
+    disabled
+      ? valid
+        ? "background-color: var(--color-bg-success-lightest); color: var(--color-fg-success-lighter);"
+        : "background-color: var(--color-bg-error-lightest); color: var(--color-fg-error-lighter);"
+      : valid
+        ? "background-color: var(--color-bg-success-lighter); color: var(--color-fg-success-stronger);"
+        : "background-color: var(--color-bg-error-lighter); color: var(--color-fg-error-stronger);"}
+  svg {
+    width: 16px;
+    height: var(--height-xxs);
+  }
 `;
 
-const Label = styled.p<{
-  current: boolean;
-  visited: boolean;
-  disabled: StepProps["disabled"];
-}>`
-  text-align: ${(props) => props.theme.labelTextAlign};
-  font-family: ${(props) => props.theme.labelFontFamily};
-  font-size: ${(props) => props.theme.labelFontSize};
-  font-style: ${(props) => props.theme.labelFontStyle};
-  font-weight: ${(props) => props.theme.labelFontWeight};
-  letter-spacing: ${(props) => props.theme.labelFontTracking};
-  ${(props) =>
-    props.disabled
-      ? `color: ${props.theme.disabledLabelFontColor};`
-      : `color: ${
-          !props.visited
-            ? props.theme.unvisitedLabelFontColor
-            : props.current
-              ? props.theme.selectedLabelFontColor
-              : props.theme.visitedLabelFontColor
-        };`};
-  text-transform: ${(props) => props.theme.labelFontTextTransform};
-  margin: 0;
+const DividerContainer = styled.div<{ mode: WizardPropsType["mode"] }>`
+  display: grid;
+  place-items: center;
+  ${({ mode }) => mode === "vertical" && "width: 32px"};
 `;
 
-const Description = styled.p<{
-  current: boolean;
-  visited: boolean;
-  disabled: StepProps["disabled"];
-}>`
-  text-align: ${(props) => props.theme.helperTextTextAlign};
-  font-family: ${(props) => props.theme.helperTextFontFamily};
-  font-size: ${(props) => props.theme.helperTextFontSize};
-  font-style: ${(props) => props.theme.helperTextFontStyle};
-  font-weight: ${(props) => props.theme.helperTextFontWeight};
-  letter-spacing: ${(props) => props.theme.helperTextFontTracking};
-  text-transform: ${(props) => props.theme.helperTextFontTextTransform};
-  ${(props) =>
-    props.disabled
-      ? `color: ${props.theme.disabledHelperTextFontColor};`
-      : `color: ${
-          !props.visited
-            ? props.theme.unvisitedHelperTextFontColor
-            : props.current
-              ? props.theme.selectedHelperTextFontColor
-              : props.theme.visitedHelperTextFontColor
-        };`};
-  margin: 0;
-`;
-
-const StepSeparator = styled.div<{ mode: WizardPropsType["mode"] }>`
-  ${(props) => (props.mode === "horizontal" ? "height: 0;" : "width: 0;")};
-  ${(props) => props.mode === "vertical" && "margin: 0 18px;"}
-  border: ${(props) =>
-    `${props.theme.separatorBorderStyle} ${props.theme.separatorBorderThickness} ${props.theme.separatorColor}`};
-  opacity: 1;
-  flex-grow: 1;
-`;
-
-const DxcWizard = ({
-  mode = "horizontal",
-  defaultCurrentStep = 0,
+export default function DxcWizard({
   currentStep,
+  defaultCurrentStep = 0,
+  margin,
+  mode = "horizontal",
   onStepClick,
   steps,
-  margin,
   tabIndex = 0,
-}: WizardPropsType): JSX.Element => {
-  const colorsTheme = useContext(HalstackContext);
+}: WizardPropsType) {
   const [innerCurrent, setInnerCurrentStep] = useState(defaultCurrentStep);
 
-  const renderedCurrent = useMemo(() => currentStep ?? innerCurrent, [currentStep, innerCurrent]);
-
-  const handleStepClick = (newValue: number) => {
+  const handleStepOnClick = (newValue: number) => {
     setInnerCurrentStep(newValue);
     onStepClick?.(newValue);
   };
 
   return (
-    <ThemeProvider theme={colorsTheme.wizard}>
-      <StepsContainer mode={mode} margin={margin} role="group">
-        {steps.map((step, i) => (
-          <StepContainer key={`step${i}`} mode={mode} lastStep={i === steps.length - 1}>
-            <Step
-              onClick={() => {
-                handleStepClick(i);
-              }}
-              disabled={step.disabled}
-              mode={mode}
-              first={i === 0}
-              last={i === steps.length - 1}
-              aria-current={renderedCurrent === i ? "step" : "false"}
-              tabIndex={tabIndex}
-            >
-              <StepHeader validityIcon={step.valid != null}>
-                <IconContainer current={i === renderedCurrent} visited={i < renderedCurrent} disabled={step.disabled}>
-                  {step.icon ? (
-                    typeof step.icon === "string" ? (
-                      <DxcIcon icon={step.icon} />
-                    ) : (
-                      step.icon
-                    )
+    <Wizard margin={margin} mode={mode} role="group">
+      {steps.map((step, i) => (
+        <StepContainer key={`step${i}`} lastStep={i === steps.length - 1} mode={mode}>
+          <Step
+            aria-current={(currentStep ?? innerCurrent) === i ? "step" : false}
+            disabled={step.disabled}
+            mode={mode}
+            onClick={() => {
+              handleStepOnClick(i);
+            }}
+            tabIndex={tabIndex}
+            unvisited={i > (currentStep ?? innerCurrent)}
+          >
+            <StepIndicator hasValidityIcon={step.valid != null}>
+              <IconContainer
+                current={i === (currentStep ?? innerCurrent)}
+                disabled={step.disabled}
+                visited={i < (currentStep ?? innerCurrent)}
+              >
+                {step.icon ? (
+                  typeof step.icon === "string" ? (
+                    <DxcIcon icon={step.icon} />
                   ) : (
-                    <Number>{i + 1}</Number>
-                  )}
-                </IconContainer>
-                {step.valid != null && (
-                  <ValidityIconContainer>{step.valid ? icons.valid : icons.invalid}</ValidityIconContainer>
+                    step.icon
+                  )
+                ) : (
+                  <Number>{i + 1}</Number>
                 )}
-              </StepHeader>
-              {(step.label || step.description) && (
-                <div>
-                  {step.label && (
-                    <Label current={i === renderedCurrent} disabled={step.disabled} visited={i <= innerCurrent}>
-                      {step.label}
-                    </Label>
-                  )}
-                  {step.description && (
-                    <Description current={i === renderedCurrent} disabled={step.disabled} visited={i <= innerCurrent}>
-                      {step.description}
-                    </Description>
-                  )}
-                </div>
+              </IconContainer>
+              {step.valid != null && (
+                <ValidityIconContainer disabled={step.disabled} valid={step.valid}>
+                  {step.valid ? icons.valid : icons.invalid}
+                </ValidityIconContainer>
               )}
-            </Step>
-            {i === steps.length - 1 ? "" : <StepSeparator mode={mode} />}
-          </StepContainer>
-        ))}
-      </StepsContainer>
-    </ThemeProvider>
+            </StepIndicator>
+            {(step.label || step.description) && (
+              <DxcFlex direction="column" alignItems="flex-start">
+                {step.label && <Label>{step.label}</Label>}
+                {step.description && <Description>{step.description}</Description>}
+              </DxcFlex>
+            )}
+          </Step>
+          {i !== steps.length - 1 && (
+            <DividerContainer mode={mode}>
+              <DxcDivider color="darkGrey" orientation={mode} />
+            </DividerContainer>
+          )}
+        </StepContainer>
+      ))}
+    </Wizard>
   );
-};
-
-export default DxcWizard;
+}

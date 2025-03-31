@@ -1,21 +1,17 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import ContainerCodePage from "screens/components/container/code/ContainerCodePage";
+import ContainerOverviewPage from "screens/components/container/overview/ContainerOverviewPage";
 import ContainerPageLayout from "screens/components/container/ContainerPageLayout";
 
-const Usage = () => {
-  return (
-    <>
-      <Head>
-        <title>Container — Halstack Design System</title>
-      </Head>
-      <ContainerCodePage></ContainerCodePage>
-    </>
-  );
-};
+const Index = () => (
+  <>
+    <Head>
+      <title>Container — Halstack Design System</title>
+    </Head>
+    <ContainerOverviewPage />
+  </>
+);
 
-Usage.getLayout = function getLayout(page: ReactElement) {
-  return <ContainerPageLayout>{page}</ContainerPageLayout>;
-};
+Index.getLayout = (page: ReactElement) => <ContainerPageLayout>{page}</ContainerPageLayout>;
 
-export default Usage;
+export default Index;
