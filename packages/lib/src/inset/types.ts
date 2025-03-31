@@ -2,13 +2,13 @@ import { ReactNode } from "react";
 
 type Props = {
   /**
-   * Custom content inside the inset.
-   */
-  children: ReactNode;
-  /**
    * Applies the spacing scale to the bottom side.
    */
   bottom?: string;
+  /**
+   * Custom content inside the inset.
+   */
+  children: ReactNode;
   /**
    * Applies the spacing scale to the left and right sides.
    */
