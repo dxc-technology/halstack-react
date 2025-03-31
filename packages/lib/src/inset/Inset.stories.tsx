@@ -24,206 +24,54 @@ const Placeholder = styled.div`
 
 const Inset = () => (
   <>
-    <Title title="Default" level={4} />
+    <Title title="No space (default)" level={4} />
     <Container>
       <DxcInset>
-        <Placeholder></Placeholder>
+        <Placeholder />
       </DxcInset>
     </Container>
-    <Title title="space = none" level={4} />
+    <Title title="space = xxLarge" level={4} />
     <Container>
-      <DxcInset space="0rem">
-        <Placeholder></Placeholder>
-      </DxcInset>
-    </Container>
-    <Title title="space = xxxsmall" level={4} />
-    <Container>
-      <DxcInset space="0.125rem">
-        <Placeholder></Placeholder>
-      </DxcInset>
-    </Container>
-    <Title title="space = xxsmall" level={4} />
-    <Container>
-      <DxcInset space="0.25rem">
-        <Placeholder></Placeholder>
-      </DxcInset>
-    </Container>
-    <Title title="space = xsmall" level={4} />
-    <Container>
-      <DxcInset space="0.5rem">
-        <Placeholder></Placeholder>
-      </DxcInset>
-    </Container>
-    <Title title="space = small" level={4} />
-    <Container>
-      <DxcInset space="1rem">
-        <Placeholder></Placeholder>
-      </DxcInset>
-    </Container>
-    <Title title="space = medium" level={4} />
-    <Container>
-      <DxcInset space="1.5rem">
-        <Placeholder></Placeholder>
-      </DxcInset>
-    </Container>
-    <Title title="space = large" level={4} />
-    <Container>
-      <DxcInset space="2rem">
-        <Placeholder></Placeholder>
-      </DxcInset>
-    </Container>
-    <Title title="space = xlarge" level={4} />
-    <Container>
-      <DxcInset space="3rem">
-        <Placeholder></Placeholder>
-      </DxcInset>
-    </Container>
-    <Title title="space = xxlarge" level={4} />
-    <Container>
-      <DxcInset space="4rem">
-        <Placeholder></Placeholder>
-      </DxcInset>
-    </Container>
-    <Title title="space = xxxlarge" level={4} />
-    <Container>
-      <DxcInset space="5rem">
-        <Placeholder></Placeholder>
-      </DxcInset>
-    </Container>
-    <Title title="horizontal = none" level={4} />
-    <Container>
-      <DxcInset horizontal="0rem">
-        <Placeholder></Placeholder>
-      </DxcInset>
-    </Container>
-    <Title title="horizontal = xxxsmall" level={4} />
-    <Container>
-      <DxcInset horizontal="0.125rem">
-        <Placeholder></Placeholder>
-      </DxcInset>
-    </Container>
-    <Title title="horizontal = xxsmall" level={4} />
-    <Container>
-      <DxcInset horizontal="0.25rem">
-        <Placeholder></Placeholder>
-      </DxcInset>
-    </Container>
-    <Title title="horizontal = xsmall" level={4} />
-    <Container>
-      <DxcInset horizontal="0.5rem">
-        <Placeholder></Placeholder>
+      <DxcInset space="var(--spacing-padding-xxl)">
+        <Placeholder />
       </DxcInset>
     </Container>
     <Title title="horizontal = small" level={4} />
     <Container>
-      <DxcInset horizontal="1rem">
-        <Placeholder></Placeholder>
-      </DxcInset>
-    </Container>
-    <Title title="horizontal = medium" level={4} />
-    <Container>
-      <DxcInset horizontal="1.5rem">
-        <Placeholder></Placeholder>
-      </DxcInset>
-    </Container>
-    <Title title="horizontal = large" level={4} />
-    <Container>
-      <DxcInset horizontal="2rem">
-        <Placeholder></Placeholder>
-      </DxcInset>
-    </Container>
-    <Title title="horizontal = xlarge" level={4} />
-    <Container>
-      <DxcInset horizontal="3rem">
-        <Placeholder></Placeholder>
-      </DxcInset>
-    </Container>
-    <Title title="horizontal = xxlarge" level={4} />
-    <Container>
-      <DxcInset horizontal="4rem">
-        <Placeholder></Placeholder>
-      </DxcInset>
-    </Container>
-    <Title title="horizontal = xxxlarge" level={4} />
-    <Container>
-      <DxcInset horizontal="5rem">
-        <Placeholder></Placeholder>
-      </DxcInset>
-    </Container>
-    <Title title="vertical = none" level={4} />
-    <Container>
-      <DxcInset vertical="0rem">
-        <Placeholder></Placeholder>
-      </DxcInset>
-    </Container>
-    <Title title="vertical = xxxsmall" level={4} />
-    <Container>
-      <DxcInset vertical="0.125rem">
-        <Placeholder></Placeholder>
-      </DxcInset>
-    </Container>
-    <Title title="vertical = xxsmall" level={4} />
-    <Container>
-      <DxcInset vertical="0.25rem">
-        <Placeholder></Placeholder>
-      </DxcInset>
-    </Container>
-    <Title title="vertical = xsmall" level={4} />
-    <Container>
-      <DxcInset vertical="0.5rem">
-        <Placeholder></Placeholder>
-      </DxcInset>
-    </Container>
-    <Title title="vertical = small" level={4} />
-    <Container>
-      <DxcInset vertical="1rem">
-        <Placeholder></Placeholder>
-      </DxcInset>
-    </Container>
-    <Title title="vertical = medium" level={4} />
-    <Container>
-      <DxcInset vertical="1.5rem">
-        <Placeholder></Placeholder>
+      <DxcInset horizontal="var(--spacing-padding-s)">
+        <Placeholder />
       </DxcInset>
     </Container>
     <Title title="vertical = large" level={4} />
     <Container>
-      <DxcInset vertical="2rem">
-        <Placeholder></Placeholder>
-      </DxcInset>
-    </Container>
-    <Title title="vertical = xlarge" level={4} />
-    <Container>
-      <DxcInset vertical="3rem">
-        <Placeholder></Placeholder>
-      </DxcInset>
-    </Container>
-    <Title title="vertical = xxlarge" level={4} />
-    <Container>
-      <DxcInset vertical="4rem">
-        <Placeholder></Placeholder>
-      </DxcInset>
-    </Container>
-    <Title title="vertical = xxxlarge" level={4} />
-    <Container>
-      <DxcInset vertical="5rem">
-        <Placeholder></Placeholder>
+      <DxcInset vertical="var(--spacing-padding-l)">
+        <Placeholder />
       </DxcInset>
     </Container>
     <Title title="top = xxsmall, right= medium, bottom = large and left = xxlarge" level={4} />
     <Container>
-      <DxcInset top="0.25rem" right="1.5rem" bottom="2rem" left="4rem">
-        <Placeholder></Placeholder>
+      <DxcInset
+        top="var(--spacing-padding-xxs)"
+        right="var(--spacing-padding-m)"
+        bottom="var(--spacing-padding-l)"
+        left="var(--spacing-padding-xl)"
+      >
+        <Placeholder />
       </DxcInset>
     </Container>
     <Title title="Inside a flex column" level={4} />
     <Container>
       <DxcFlex direction="column" gap="1rem">
-        <Placeholder></Placeholder>
-        <DxcInset top="0.25rem" right="1.5rem" bottom="2rem" left="4rem">
-          <Placeholder></Placeholder>
+        <Placeholder />
+        <DxcInset
+          top="var(--spacing-padding-xxs)"
+          right="var(--spacing-padding-l)"
+          bottom="var(--spacing-padding-xl)"
+          left="var(--spacing-padding-xxl)"
+        >
+          <Placeholder />
         </DxcInset>
-        <Placeholder></Placeholder>
+        <Placeholder />
       </DxcFlex>
     </Container>
   </>
