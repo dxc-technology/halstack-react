@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { spaces } from "../common/variables";
 import ProgressBarPropsType from "./types";
 import DxcFlex from "../flex/Flex";
+import { getAuxTextStyle, getLabelTextStyle, getTextColor } from "./utils";
 
 const Overlay = styled.div<{
   overlay: ProgressBarPropsType["overlay"];
@@ -50,10 +51,8 @@ const MainContainer = styled.div<{
 const ProgressBarLabel = styled.div<{
   overlay: ProgressBarPropsType["overlay"];
 }>`
-  font-family: var(--typography-font-family);
-  font-size: var(--typography-label-m);
-  font-weight: var(--typography-label-semibold);
-  color: var(--color-fg-neutral-dark);
+  ${getLabelTextStyle()};
+  ${(props) => getTextColor(props.overlay)};
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -63,31 +62,29 @@ const ProgressBarLabel = styled.div<{
 const ProgressBarProgress = styled.div<{
   overlay: ProgressBarPropsType["overlay"];
 }>`
+  ${getAuxTextStyle()};
+  ${(props) => getTextColor(props.overlay)};
   flex-shrink: 0;
-  color: var(--color-fg-neutral-dark);
-  font-family: var(--typography-font-family);
-  font-size: var(--typography-helper-text-s);
-  font-weight: var(--typography-helper-text-regular);
 `;
 
 const HelperText = styled.span<{ overlay: ProgressBarPropsType["overlay"] }>`
-  color: var(--color-fg-neutral-dark);
-  font-family: var(--typography-font-family);
-  font-size: var(--typography-helper-text-s);
-  font-weight: var(--typography-helper-text-regular, 400);
+  ${(props) => getTextColor(props.overlay)};
+  ${getAuxTextStyle()};
 `;
 
 const LinearProgress = styled.div<{
   helperText: ProgressBarPropsType["helperText"];
+  overlay: ProgressBarPropsType["overlay"];
 }>`
   position: relative;
   border-radius: var(--border-radius-m);
   height: 8px;
-  background-color: var(--color-bg-neutral-light);
+  background-color: ${(props) => (props.overlay ? "var(--color-bg-neutral-lighter)" : "var(--color-bg-neutral-light)")};
   overflow: hidden;
 `;
 
 const LinearProgressBar = styled.span<{
+  overlay: ProgressBarPropsType["overlay"];
   variant: "determinate" | "indeterminate";
   value: ProgressBarPropsType["value"];
 }>`
@@ -99,7 +96,7 @@ const LinearProgressBar = styled.span<{
   transform: ${(props) => `translateX(-${props.variant === "determinate" ? 100 - (props.value ?? 0) : 0}%)`};
   transition: ${(props) => (props.variant === "determinate" ? "transform .4s linear" : "transform 0.2s linear")};
   transform-origin: left;
-  background-color: var(--color-fg-primary-strong);
+  background-color: ${(props) => (props.overlay ? "var(--color-fg-primary-medium)" : "var(--color-fg-primary-strong)")};
   ${(props) =>
     props.variant === "indeterminate"
       ? "animation: keyframes-indeterminate-first 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite;"
@@ -166,15 +163,20 @@ const DxcProgressBar = ({
           )}
         </DxcFlex>
         <LinearProgress
-          role="progressbar"
-          helperText={helperText}
           aria-label={label ? undefined : ariaLabel}
           aria-labelledby={label ? labelId : undefined}
           aria-valuenow={innerValue}
           aria-valuemin={0}
           aria-valuemax={100}
+          helperText={helperText}
+          role="progressbar"
+          overlay={overlay}
         >
-          <LinearProgressBar variant={innerValue == null ? "indeterminate" : "determinate"} value={innerValue} />
+          <LinearProgressBar
+            overlay={overlay}
+            variant={innerValue == null ? "indeterminate" : "determinate"}
+            value={innerValue}
+          />
         </LinearProgress>
         {helperText && <HelperText overlay={overlay}>{helperText}</HelperText>}
       </MainContainer>
