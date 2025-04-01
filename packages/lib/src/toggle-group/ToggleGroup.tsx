@@ -11,11 +11,11 @@ const ToggleGroup = styled.div<{ margin: ToggleGroupPropsType["margin"] }>`
   &[aria-orientation="vertical"] {
     flex-direction: column;
   }
-  width: fit-content;
-  padding: var(--spacing-padding-xxs);
   gap: var(--spacing-gap-xs);
-  border-radius: var(--border-radius-m);
+  padding: var(--spacing-padding-xxs);
+  width: fit-content;
   border: var(--border-width-s) var(--border-style-default) var(--border-color-neutral-strong);
+  border-radius: var(--border-radius-m);
   margin: ${({ margin }) => (margin && typeof margin !== "object" ? spaces[margin] : "0px")};
   margin-top: ${({ margin }) => (margin && typeof margin === "object" && margin.top ? spaces[margin.top] : "")};
   margin-right: ${({ margin }) => (margin && typeof margin === "object" && margin.right ? spaces[margin.right] : "")};

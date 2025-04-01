@@ -55,6 +55,7 @@ const disabledOptions = [
   {
     value: 2,
     label: "X",
+    icon: "raven",
     disabled: true,
   },
   {
@@ -65,7 +66,8 @@ const disabledOptions = [
 const optionsWithIcon = [
   {
     value: 1,
-    label: "Bold",
+    icon: "format_bold",
+    title: "Bold",
   },
   {
     value: 2,
