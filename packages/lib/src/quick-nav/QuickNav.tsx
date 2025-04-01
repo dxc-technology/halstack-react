@@ -15,7 +15,7 @@ const DxcQuickNav = ({ title, links }: QuickNavTypes): JSX.Element => {
   return (
     <ThemeProvider theme={colorsTheme.quickNav}>
       <QuickNavContainer>
-        <DxcFlex direction="column" gap="var(--spacing-padding-xs)">
+        <DxcFlex direction="column" gap="var(--spacing-gap-s)">
           <DxcHeading level={4} text={title || translatedLabels.quickNav.contentTitle} />
           <ListColumn>
             {links.map((link) => (
