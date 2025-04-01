@@ -243,7 +243,7 @@ const DxcDataGrid = ({
 
   return (
     <ThemeProvider theme={colorsTheme.dataGrid}>
-      <DataGridContainer>
+      <DataGridContainer paginatorRendered={showPaginator && (totalItems ?? rows.length) > itemsPerPage}>
         <DataGrid
           columns={reorderedColumns}
           rows={filteredRows}
@@ -264,7 +264,7 @@ const DxcDataGrid = ({
           summaryRowHeight={colorsTheme.dataGrid.summaryRowHeight}
           className="fill-grid"
         />
-        {showPaginator && (
+        {showPaginator && (totalItems ?? rows.length) > itemsPerPage && (
           <DxcPaginator
             totalItems={totalItems ?? rows.length}
             itemsPerPage={itemsPerPage}
@@ -311,9 +311,11 @@ const HierarchyContainer = styled.div<{
   }
 `;
 
-const DataGridContainer = styled.div`
+const DataGridContainer = styled.div<{
+  paginatorRendered: boolean;
+}>`
   width: 100%;
-  height: 100%;
+  height: ${(props) => (props.paginatorRendered ? `calc(100% - 50px)` : `100%`)};
   .rdg {
     border-radius: 4px;
     height: 100%;

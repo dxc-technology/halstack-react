@@ -1,96 +1,24 @@
-import { useContext, useId, useMemo } from "react";
-import styled, { ThemeProvider } from "styled-components";
+import { MouseEvent, useId, useMemo, useState } from "react";
+import styled from "styled-components";
 import { spaces } from "../common/variables";
-import HalstackContext from "../HalstackContext";
 import SpinnerPropsType from "./types";
+import { TooltipWrapper } from "../tooltip/Tooltip";
 
-const DxcSpinner = ({
-  label,
-  value,
-  showValue = false,
-  mode = "large",
-  margin,
-  ariaLabel = "Spinner",
-}: SpinnerPropsType): JSX.Element => {
-  const labelId = useId();
-  const colorsTheme = useContext(HalstackContext);
-  const determinated = useMemo(() => value != null && value >= 0 && value <= 100, [value]);
-
-  return (
-    <ThemeProvider theme={colorsTheme.spinner}>
-      <DXCSpinner margin={margin} mode={mode}>
-        <SpinnerContainer mode={mode}>
-          {mode === "overlay" && <BackOverlay />}
-          <BackgroundSpinner>
-            {mode === "small" ? (
-              <SVGBackground viewBox="0 0 16 16">
-                <CircleBackground cx="8" cy="8" r="6" mode={mode} />
-              </SVGBackground>
-            ) : (
-              <SVGBackground viewBox="0 0 140 140">
-                <CircleBackground cx="70" cy="70" r="65" mode={mode} />
-              </SVGBackground>
-            )}
-          </BackgroundSpinner>
-          <Spinner
-            role="progressbar"
-            aria-valuenow={determinated && showValue ? value : undefined}
-            aria-valuemin={determinated ? 0 : undefined}
-            aria-valuemax={determinated ? 100 : undefined}
-            aria-labelledby={label && mode !== "small" ? labelId : undefined}
-            aria-label={!label ? ariaLabel : mode === "small" ? ariaLabel : undefined}
-          >
-            {mode === "small" ? (
-              <SVGSpinner viewBox="0 0 16 16" determinated={determinated}>
-                <CircleSpinner cx="8" cy="8" r="6" mode={mode} determinated={determinated} value={value} />
-              </SVGSpinner>
-            ) : (
-              <SVGSpinner viewBox="0 0 140 140" determinated={determinated}>
-                <CircleSpinner cx="70" cy="70" r="65" mode={mode} determinated={determinated} value={value} />
-              </SVGSpinner>
-            )}
-          </Spinner>
-          {mode !== "small" && (
-            <LabelsContainer>
-              {label && (
-                <SpinnerLabel id={labelId} mode={mode}>
-                  {label}
-                </SpinnerLabel>
-              )}
-              {(value || value === 0) && showValue && (
-                <SpinnerProgress value={value} mode={mode} showValue={showValue}>
-                  {value}%
-                </SpinnerProgress>
-              )}
-            </LabelsContainer>
-          )}
-        </SpinnerContainer>
-      </DXCSpinner>
-    </ThemeProvider>
-  );
-};
-
-const determinateValue = (value: SpinnerPropsType["value"], strokeDashArray: number) => {
-  let val = 0;
-  if (value != null && value >= 0 && value <= 100) {
-    val = strokeDashArray * (1 - value / 100);
-  }
-  return val;
-};
-
-const DXCSpinner = styled.div<{
-  mode: SpinnerPropsType["mode"];
+const SpinnerContainer = styled.div<{
   margin: SpinnerPropsType["margin"];
+  mode: SpinnerPropsType["mode"];
 }>`
-  height: ${(props) => (props.mode === "overlay" ? "100vh" : "")};
-  width: ${(props) => (props.mode === "overlay" ? "100vw" : "")};
-  display: ${(props) => (props.mode === "overlay" ? "flex" : "")};
-  position: ${(props) => (props.mode === "overlay" ? "fixed" : "")};
-  top: ${(props) => (props.mode === "overlay" ? 0 : "")};
-  left: ${(props) => (props.mode === "overlay" ? 0 : "")};
-  justify-content: ${(props) => (props.mode === "overlay" ? "center" : "")};
-  align-items: ${(props) => (props.mode === "overlay" ? "center" : "")};
-  z-index: ${(props) => (props.mode === "overlay" ? 1300 : "")};
+  ${({ mode }) =>
+    mode === "overlay" &&
+    `
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      z-index: 2147483647;
+    `};
 
   margin: ${(props) =>
     props.mode !== "overlay" ? (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px") : ""};
@@ -120,14 +48,12 @@ const DXCSpinner = styled.div<{
       : ""};
 `;
 
-const SpinnerContainer = styled.div<{ mode: SpinnerPropsType["mode"] }>`
-  align-items: center;
-  display: flex;
-  height: ${(props) => (props.mode === "small" ? "16px" : "140px")};
-  width: ${(props) => (props.mode === "small" ? "16px" : "140px")};
-  justify-content: center;
+const MainContainer = styled.div<{ mode: SpinnerPropsType["mode"] }>`
   position: relative;
-  background-color: transparent;
+  display: grid;
+  place-items: center;
+  height: ${({ mode }) => (mode === "small" ? "16px" : "140px")};
+  width: ${({ mode }) => (mode === "small" ? "16px" : "140px")};
 
   @keyframes spinner-svg {
     0% {
@@ -142,12 +68,10 @@ const SpinnerContainer = styled.div<{ mode: SpinnerPropsType["mode"] }>`
       stroke-dashoffset: 400;
       transform: rotate(0);
     }
-
     50% {
       stroke-dashoffset: 75;
       transform: rotate(45deg);
     }
-
     100% {
       stroke-dashoffset: 400;
       transform: rotate(360deg);
@@ -158,12 +82,10 @@ const SpinnerContainer = styled.div<{ mode: SpinnerPropsType["mode"] }>`
       stroke-dashoffset: 35;
       transform: rotate(0);
     }
-
     50% {
       stroke-dashoffset: 8;
       transform: rotate(45deg);
     }
-
     100% {
       stroke-dashoffset: 35;
       transform: rotate(360deg);
@@ -171,33 +93,23 @@ const SpinnerContainer = styled.div<{ mode: SpinnerPropsType["mode"] }>`
   }
 `;
 
-const BackOverlay = styled.div`
-  width: 100vw;
-  height: 100vh;
-  opacity: 1;
-  transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+const Overlay = styled.div`
   position: fixed;
-  top: 0;
-  left: 0;
-  background-color: ${(props) => `${props.theme.overlayBackgroundColor}`};
-  opacity: ${(props) => `${props.theme.overlayOpacity}`};
+  inset: 0;
+  height: 100%;
+  background-color: var(--color-bg-alpha-medium);
 `;
 
-const BackgroundSpinner = styled.div`
-  height: inherit;
-  width: inherit;
+const SVGTotalTrack = styled.svg`
   position: absolute;
-`;
-
-const SVGBackground = styled.svg`
   height: inherit;
   width: inherit;
 `;
 
-const CircleBackground = styled.circle<{ mode: SpinnerPropsType["mode"] }>`
+const TotalTrack = styled.circle<{ mode: SpinnerPropsType["mode"] }>`
   animation: none;
   fill: transparent;
-  stroke: ${(props) => `${props.theme.totalCircleColor}`};
+  stroke: var(--color-bg-neutral-lightest);
   stroke-dasharray: ${(props) => (props.mode !== "small" ? "409" : "38")};
   stroke-linecap: initial;
   stroke-width: ${(props) => (props.mode !== "small" ? "8.5px" : "2px")};
@@ -206,12 +118,12 @@ const CircleBackground = styled.circle<{ mode: SpinnerPropsType["mode"] }>`
 `;
 
 const Spinner = styled.div`
+  position: relative;
   height: inherit;
   width: inherit;
-  position: relative;
 `;
 
-const SVGSpinner = styled.svg<{ determinated: boolean }>`
+const SVGSpinner = styled.svg<{ determined: boolean }>`
   height: inherit;
   width: inherit;
   transform: rotate(-90deg);
@@ -219,84 +131,111 @@ const SVGSpinner = styled.svg<{ determinated: boolean }>`
   left: 0;
   transform-origin: center;
   overflow: visible;
-  animation: ${(props) => (!props.determinated ? "1.4s linear infinite both spinner-svg" : "")};
+  animation: ${({ determined }) => !determined && "1.4s linear infinite both spinner-svg"};
 `;
 
+const determinateValue = (value: SpinnerPropsType["value"], strokeDashArray: number) =>
+  value != null && value >= 0 && value <= 100 ? strokeDashArray * (1 - value / 100) : 0;
+
 const CircleSpinner = styled.circle<{
+  determined: boolean;
   value: SpinnerPropsType["value"];
-  determinated: boolean;
 }>`
   fill: transparent;
   stroke-linecap: initial;
   vector-effect: non-scaling-stroke;
   animation: ${(props) =>
-    props.determinated
+    props.determined
       ? "none"
       : props.mode !== "small"
         ? "1.4s ease-in-out infinite both svg-circle-large"
         : "1.4s ease-in-out infinite both svg-circle-small"};
-  stroke: ${(props) => (props.mode === "overlay" ? props.theme.trackCircleColorOverlay : props.theme.trackCircleColor)};
-  transform-origin: ${(props) => (!props.determinated ? "50% 50%" : "")};
-  stroke-dasharray: ${(props) => (props.mode !== "small" ? "409" : "38")};
-  stroke-width: ${(props) => (props.mode !== "small" ? "8.5px" : "2px")};
-  stroke-dashoffset: ${(props) =>
-    props.determinated
-      ? props.mode !== "small"
-        ? determinateValue(props.value, 409)
-        : determinateValue(props.value, 38)
-      : ""};
+  stroke: ${({ mode }) => (mode === "overlay" ? "var(--color-fg-primary-medium)" : "var(--color-fg-primary-strong)")};
+  transform-origin: ${({ determined }) => (!determined ? "50% 50%" : "")};
+  stroke-dasharray: ${({ mode }) => (mode !== "small" ? "409" : "38")};
+  stroke-width: ${({ mode }) => (mode !== "small" ? "8.5px" : "2px")};
+  stroke-dashoffset: ${({ determined, mode, value }) =>
+    determined ? (mode !== "small" ? determinateValue(value, 409) : determinateValue(value, 38)) : ""};
 `;
 
-const LabelsContainer = styled.div`
+const Labels = styled.div<{ mode: SpinnerPropsType["mode"] }>`
   position: absolute;
-  margin: 0 auto;
-  width: 110px;
-  text-align: center;
+  display: grid;
+  gap: var(--spacing-gap-none, 0px);
+  place-items: center;
+  width: 116px;
+  color: ${({ mode }) => (mode === "overlay" ? "var(--color-fg-neutral-bright)" : "var(--color-fg-neutral-dark)")};
+  font-family: var(--typography-font-family);
+  font-size: var(--typography-helper-text-m);
+  font-weight: var(--typography-helper-text-regular);
+
+  > span {
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  > strong {
+    font-weight: var(--typography-helper-text-semibold);
+  }
 `;
 
-const SpinnerLabel = styled.p<{ mode: SpinnerPropsType["mode"] }>`
-  margin: 0;
-  width: 100%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  font-family: ${(props) =>
-    props.mode === "overlay" ? props.theme.overlayLabelFontFamily : props.theme.labelFontFamily};
-  font-weight: ${(props) =>
-    props.mode === "overlay" ? props.theme.overlayLabelFontWeight : props.theme.labelFontWeight};
-  font-size: ${(props) => (props.mode === "overlay" ? props.theme.overlayLabelFontSize : props.theme.labelFontSize)};
-  font-style: ${(props) => (props.mode === "overlay" ? props.theme.overlayLabelFontStyle : props.theme.labelFontStyle)};
-  color: ${(props) => (props.mode === "overlay" ? props.theme.overlayLabelFontColor : props.theme.labelFontColor)};
-  text-align: ${(props) => (props.mode === "overlay" ? props.theme.overlayLabelTextAlign : props.theme.labelTextAlign)};
-  letter-spacing: ${(props) =>
-    props.mode === "overlay" ? props.theme.overlayLabelLetterSpacing : props.theme.labelLetterSpacing};
-`;
+const DxcSpinner = ({ ariaLabel = "Spinner", label, margin, mode = "large", showValue, value }: SpinnerPropsType) => {
+  const labelId = useId();
+  const determined = useMemo(() => value != null && value >= 0 && value <= 100, [value]);
+  const [hasTooltip, setHasTooltip] = useState(false);
 
-const SpinnerProgress = styled.p<{
-  value: SpinnerPropsType["value"];
-  showValue: SpinnerPropsType["showValue"];
-  mode: SpinnerPropsType["mode"];
-}>`
-  margin: 0;
-  width: 100%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: ${(props) => (props.value && props.showValue === true && "block") || "none"};
-  font-family: ${(props) =>
-    props.mode === "overlay" ? props.theme.overlayProgressValueFontFamily : props.theme.progressValueFontFamily};
-  font-weight: ${(props) =>
-    props.mode === "overlay" ? props.theme.overlayProgressValueFontWeight : props.theme.progressValueFontWeight};
-  font-size: ${(props) =>
-    props.mode === "overlay" ? props.theme.overlayProgressValueFontSize : props.theme.progressValueFontSize};
-  font-style: ${(props) =>
-    props.mode === "overlay" ? props.theme.overlayProgressValueFontStyle : props.theme.progressValueFontStyle};
-  color: ${(props) =>
-    props.mode === "overlay" ? props.theme.overlayProgressValueFontColor : props.theme.progressValueFontColor};
-  text-align: ${(props) =>
-    props.mode === "overlay" ? props.theme.overlayProgressValueTextAlign : props.theme.progressValueTextAlign};
-  letter-spacing: ${(props) =>
-    props.mode === "overlay" ? props.theme.overlayProgressValueLetterSpacing : props.theme.progressValueLetterSpacing};
-`;
+  const handleLabelOnMouseEnter = (event: MouseEvent<HTMLSpanElement>) => {
+    const text = event.currentTarget;
+    setHasTooltip(text.scrollWidth > text.clientWidth);
+  };
+
+  return (
+    <SpinnerContainer margin={margin} mode={mode}>
+      <MainContainer mode={mode}>
+        {mode === "overlay" && <Overlay />}
+        <SVGTotalTrack viewBox={mode === "small" ? "0 0 16 16" : "0 0 140 140"}>
+          <TotalTrack
+            cx={mode === "small" ? "8" : "70"}
+            cy={mode === "small" ? "8" : "70"}
+            mode={mode}
+            r={mode === "small" ? "6" : "65"}
+          />
+        </SVGTotalTrack>
+        <Spinner
+          aria-label={!label || mode === "small" ? ariaLabel : undefined}
+          aria-labelledby={label && mode !== "small" ? labelId : undefined}
+          aria-valuemax={determined ? 100 : undefined}
+          aria-valuemin={determined ? 0 : undefined}
+          aria-valuenow={determined && showValue ? value : undefined}
+          role={determined ? "progressbar" : "status"}
+        >
+          <SVGSpinner determined={determined} viewBox={mode === "small" ? "0 0 16 16" : "0 0 140 140"}>
+            <CircleSpinner
+              cx={mode === "small" ? "8" : "70"}
+              cy={mode === "small" ? "8" : "70"}
+              determined={determined}
+              mode={mode}
+              r={mode === "small" ? "6" : "65"}
+              value={value}
+            />
+          </SVGSpinner>
+        </Spinner>
+        {mode !== "small" && (
+          <TooltipWrapper condition={hasTooltip} label={label}>
+            <Labels mode={mode}>
+              {label && (
+                <span id={labelId} onMouseEnter={handleLabelOnMouseEnter}>
+                  {label}
+                </span>
+              )}
+              {(value || value === 0) && showValue && <strong>{value}%</strong>}
+            </Labels>
+          </TooltipWrapper>
+        )}
+      </MainContainer>
+    </SpinnerContainer>
+  );
+};
 
 export default DxcSpinner;
