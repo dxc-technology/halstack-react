@@ -87,42 +87,97 @@ const sections = [
   },
   {
     title: "Best practices",
-    content: (
-      <DxcBulletedList>
-        <DxcBulletedList.Item>
-          <strong>Use a consistent layout:</strong> When displaying a collection of cards, maintain the same layout and
-          style across all instances. Avoid mixing card variants within the same set.
-        </DxcBulletedList.Item>
-        <DxcBulletedList.Item>
-          <strong>Support scanning:</strong> Structure content so users can quickly identify what the card is about—use
-          visual hierarchy, spacing, and clear typography.
-        </DxcBulletedList.Item>
-        <DxcBulletedList.Item>
-          <strong>Use cards as independent units:</strong> Each card should contain all the relevant information and
-          actions within it. It should make sense on its own, even if removed from the rest of the collection.
-        </DxcBulletedList.Item>
-        <DxcBulletedList.Item>
-          <strong>Minimize interaction complexity:</strong> Don't overload the card with too many clickable areas.
-          Define clear action zones, and prioritize the most important interactions.
-        </DxcBulletedList.Item>
-        <DxcBulletedList.Item>
-          <strong>Respect spacing:</strong> Ensure consistent padding and margins within and between cards to maintain
-          visual rhythm in the layout.
-        </DxcBulletedList.Item>
-        <DxcBulletedList.Item>
-          <strong>Use of white space:</strong> Avoid cramming content. White space improves readability and prevents
-          cards from feeling cluttered.
-        </DxcBulletedList.Item>
-        <DxcBulletedList.Item>
-          <strong>Avoid over-design:</strong> Too many effects, decorations, or inconsistent imagery can reduce clarity
-          and hurt the overall user experience.
-        </DxcBulletedList.Item>
-        <DxcBulletedList.Item>
-          <strong>Responsiveness:</strong> Cards should adapt gracefully to different screen sizes and grid layouts,
-          maintaining structure and readability.
-        </DxcBulletedList.Item>
-      </DxcBulletedList>
-    ),
+    subSections: [
+      {
+        title: "Use a consistent layout",
+        content: (
+          <DxcBulletedList>
+            <DxcBulletedList.Item>
+              When displaying a collection of cards, maintain the same layout and style across all instances.
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>Avoid mixing card variants within the same set.</DxcBulletedList.Item>
+          </DxcBulletedList>
+        ),
+      },
+      {
+        title: "Support scanning",
+        content: (
+          <DxcBulletedList>
+            <DxcBulletedList.Item>
+              Structure content so users can quickly identify what the card is about —use visual hierarchy, spacing, and
+              clear typography.
+            </DxcBulletedList.Item>
+          </DxcBulletedList>
+        ),
+      },
+      {
+        title: "Use cards as independent units",
+        content: (
+          <DxcBulletedList>
+            <DxcBulletedList.Item>
+              Each card should contain all the relevant information and actions within it.
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
+              It should make sense on its own, even if removed from the rest of the collection.
+            </DxcBulletedList.Item>
+          </DxcBulletedList>
+        ),
+      },
+      {
+        title: "Minimize interaction complexity",
+        content: (
+          <DxcBulletedList>
+            <DxcBulletedList.Item>Don't overload the card with too many clickable areas.</DxcBulletedList.Item>
+            <DxcBulletedList.Item>
+              Define clear action zones, and prioritize the most important interactions.
+            </DxcBulletedList.Item>
+          </DxcBulletedList>
+        ),
+      },
+      {
+        title: "Respect spacing",
+        content: (
+          <DxcBulletedList>
+            <DxcBulletedList.Item>
+              Ensure consistent padding and margins within and between cards to maintain visual rhythm in the layout.
+            </DxcBulletedList.Item>
+          </DxcBulletedList>
+        ),
+      },
+      {
+        title: "Use of white space",
+        content: (
+          <DxcBulletedList>
+            <DxcBulletedList.Item>Avoid cramming content.</DxcBulletedList.Item>
+            <DxcBulletedList.Item>
+              White space improves readability and prevents cards from feeling cluttered.
+            </DxcBulletedList.Item>
+          </DxcBulletedList>
+        ),
+      },
+      {
+        title: "Avoid over-design",
+        content: (
+          <DxcBulletedList>
+            <DxcBulletedList.Item>
+              Too many effects, decorations, or inconsistent imagery can reduce clarity and hurt the overall user
+              experience.
+            </DxcBulletedList.Item>
+          </DxcBulletedList>
+        ),
+      },
+      {
+        title: "Responsiveness",
+        content: (
+          <DxcBulletedList>
+            <DxcBulletedList.Item>
+              Cards should adapt gracefully to different screen sizes and grid layouts, maintaining structure and
+              readability.
+            </DxcBulletedList.Item>
+          </DxcBulletedList>
+        ),
+      },
+    ],
   },
 ];
 
