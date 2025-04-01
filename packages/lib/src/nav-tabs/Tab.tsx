@@ -28,7 +28,7 @@ const Tab = styled.a<{
   height: ${(props) => (props.hasIcon && props.iconPosition === "top" ? "78px" : "100%")};
   min-width: 176px;
   min-height: 48px;
-  padding: 0px var(--spacing-padding-xs);
+  padding: var(--spacing-padding-none) var(--spacing-padding-xs);
   border-radius: var(--border-radius-s);
   background: var(--color-bg-neutral-lightest);
   text-decoration-color: transparent;
@@ -42,7 +42,7 @@ const Tab = styled.a<{
         background: var(--color-bg-primary-lighter);
       }
       :focus {
-        outline: var(--border-width-s) var(--border-style-default) var(--border-color-secondary-medium;
+        outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
       }
       :active {
         background: var(--color-bg-primary-lighter);
@@ -63,7 +63,6 @@ const Label = styled.span<{
   text-decoration: none;
   text-overflow: unset;
   white-space: normal;
-  margin: 0;
 `;
 
 const TabIconContainer = styled.div<{
@@ -72,10 +71,10 @@ const TabIconContainer = styled.div<{
   disabled: TabProps["disabled"];
 }>`
   display: flex;
-  font-size: 24px;
+  font-size: var(--height-s);
   color: ${(props) => (props.disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-stronger)")};
   svg {
-    height: 24px;
+    height: var(--height-s);
     width: 24px;
   }
 `;
