@@ -53,6 +53,13 @@ const overflowTypeString = `OverflowValues |
     y?: OverflowValues;
 }`;
 
+const spaceTypeString = `{
+    top?: string;
+    right?: string;
+    bottom?: string;
+    left?: string;
+}`;
+
 const sections = [
   {
     title: "Props",
@@ -225,12 +232,13 @@ const sections = [
           <tr>
             <td>margin</td>
             <td>
-              <TableCode>'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge' | Space</TableCode>
+              <TableCode>string | Space</TableCode>
+              <p>
+                being <Code>Space</Code> an object with the following properties:
+              </p>
+              <ExtendedTableCode>{spaceTypeString}</ExtendedTableCode>
             </td>
-            <td>
-              Size of the margin to be applied to the component. You can pass an object with 'top', 'bottom', 'left' and
-              'right' properties in order to specify different margin sizes.
-            </td>
+            <td>Size of the margin to be applied to the container.</td>
             <td>-</td>
           </tr>
           <tr>
@@ -331,12 +339,13 @@ const sections = [
           <tr>
             <td>padding</td>
             <td>
-              <TableCode>'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge' | Space</TableCode>
+              <TableCode>string | Space</TableCode>
+              <p>
+                being <Code>Space</Code> an object with the following properties:
+              </p>
+              <ExtendedTableCode>{spaceTypeString}</ExtendedTableCode>
             </td>
-            <td>
-              Size of the margin to be applied to the component. You can pass an object with 'top', 'bottom', 'left' and
-              'right' properties in order to specify different margin sizes.
-            </td>
+            <td>Size of the padding to be applied to the container.</td>
             <td>-</td>
           </tr>
           <tr>

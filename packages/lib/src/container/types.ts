@@ -1,13 +1,11 @@
 import { ReactNode } from "react";
 
-type Space =
-  | string
-  | {
-      top?: string;
-      right?: string;
-      bottom?: string;
-      left?: string;
-    };
+type Space = {
+  top?: string;
+  right?: string;
+  bottom?: string;
+  left?: string;
+};
 
 type Inset = {
   top?: string;
@@ -35,11 +33,11 @@ export type BorderProperties = {
 type Border =
   | BorderProperties
   | {
-      top?: BorderProperties;
-      right?: BorderProperties;
-      bottom?: BorderProperties;
-      left?: BorderProperties;
-    };
+    top?: BorderProperties;
+    right?: BorderProperties;
+    bottom?: BorderProperties;
+    left?: BorderProperties;
+  };
 
 type Outline = BorderProperties & {
   offset?: string;
@@ -108,11 +106,9 @@ type Props = {
    */
   inset?: Inset;
   /**
-   * Size of the margin to be applied to the component.
-   * You can pass an object with 'top', 'bottom', 'left' and 'right' properties
-   * in order to specify different margin sizes.
+   * Size of the margin to be applied to the container.
    */
-  margin?: Space;
+  margin?: string | Space;
   /**
    * Sets the max-width CSS property.
    *
@@ -149,11 +145,9 @@ type Props = {
    */
   overflow?: Overflow;
   /**
-   * Size of the margin to be applied to the component.
-   * You can pass an object with 'top', 'bottom', 'left' and 'right' properties
-   * in order to specify different margin sizes.
+   * Size of the padding to be applied to the container.
    */
-  padding?: Space;
+  padding?: string | Space;
   /**
    * Sets the position CSS property.
    *

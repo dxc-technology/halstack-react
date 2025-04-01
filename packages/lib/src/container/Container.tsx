@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import ContainerPropsType, { BorderProperties, StyledProps } from "./types";
-import { spaces } from "../common/variables";
 
 const getBorderStyles = (direction: "top" | "bottom" | "left" | "right", borderProperties: BorderProperties) =>
   `border-${direction}: ${borderProperties.width ?? ""} ${borderProperties.style ?? ""} ${

@@ -28,8 +28,8 @@ const code = `() => {
                   ? { 
                       bottom: { 
                         color: "var(--border-color-neutral-lighter)",
-                        style: "var(--border-style-default)"
-                        width: "var(--border-width-s)",
+                        style: "var(--border-style-default)",
+                        width: "var(--border-width-s)"
                       } 
                     }
                   : undefined
