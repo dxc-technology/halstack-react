@@ -2,7 +2,6 @@ import { DxcBulletedList, DxcFlex, DxcLink, DxcParagraph } from "@dxc-technology
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import DocFooter from "@/common/DocFooter";
-import Code from "@/common/Code";
 import Link from "next/link";
 
 const sections = [
@@ -11,12 +10,9 @@ const sections = [
     content: (
       <>
         <DxcParagraph>
-          The inset component is a container that provides spacing around its content. It can be used to create visual
-          separation between elements in a layout.
-        </DxcParagraph>
-        <DxcParagraph>
-          The inset component can be customized with different spacing options, allowing for flexible design choices. It
-          is typically used in conjunction with other components to create a cohesive layout.
+          The inset component is a container that adds spacing around its content, enhancing visual separation between
+          elements in a layout. It offers customizable spacing options, allowing for greater design flexibility.
+          Typically, it is used alongside other components to create a cohesive and well-structured layout.
         </DxcParagraph>
       </>
     ),
@@ -26,16 +22,24 @@ const sections = [
     content: (
       <DxcBulletedList>
         <DxcBulletedList.Item>
-          Use the inset component to create visual separation between elements in a layout.
+          <strong>Enhance visual hierarchy:</strong> use the inset component to create clear separation between elements
+          in a layout.
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>
-          Choose appropriate spacing values to ensure a balanced and visually appealing design.
+          <strong>Maintain balance and aesthetics:</strong> choose appropriate spacing values to ensure a
+          well-proportioned and visually appealing design.
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>
-          Avoid excessive use of the inset component, as it may lead to a cluttered layout.
+          <strong>Avoid unnecessary clutter:</strong> excessive use of the Inset component may lead to a fragmented or
+          overcrowded layout.
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>
-          Use this component in conjunction with other layout components like{" "}
+          <strong>Ensure consistency with design tokens:</strong> whenever possible, use the design tokens provided by
+          the Halstack Design System, to maintain visual and functional consistency across applications, even though the
+          component allows custom values.
+        </DxcBulletedList.Item>
+        <DxcBulletedList.Item>
+          <strong>Combine with other layout techniques:</strong> use this component alongside{" "}
           <Link href="/components/flex" passHref legacyBehavior>
             <DxcLink>flex</DxcLink>
           </Link>{" "}
@@ -44,10 +48,6 @@ const sections = [
             <DxcLink>grid</DxcLink>
           </Link>{" "}
           components to create consistent and semantic layouts.
-        </DxcBulletedList.Item>
-        <DxcBulletedList.Item>
-          Whenever possible, <strong>try to use the design tokens</strong> provided by the Halstack Design System, even
-          though the component allows any value.
         </DxcBulletedList.Item>
       </DxcBulletedList>
     ),

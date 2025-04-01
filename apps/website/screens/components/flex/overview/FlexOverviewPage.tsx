@@ -65,11 +65,6 @@ const sections = [
           <Code>shrink</Code>, and <Code>basis</Code> to create scalable designs.
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>
-          <strong>Ensure consistency with design tokens:</strong> whenever possible, use the design tokens provided by
-          the Halstack Design System to maintain visual and functional consistency across applications, even though the
-          component allows custom values.
-        </DxcBulletedList.Item>
-        <DxcBulletedList.Item>
           <strong>Leverage alignment and justification:</strong> use <Code>justifyContent</Code> and{" "}
           <Code>alignItems</Code> strategically to control content positioning within the flex container, ensuring a
           well-structured and visually balanced layout.
@@ -78,6 +73,11 @@ const sections = [
           <strong>Optimize nested flex containers:</strong> while nesting flex containers is sometimes necessary,
           excessive nesting can reduce readability and maintainability. Consider alternative layout strategies when
           appropriate.
+        </DxcBulletedList.Item>
+        <DxcBulletedList.Item>
+          <strong>Ensure consistency with design tokens:</strong> whenever possible, use the design tokens provided by
+          the Halstack Design System to maintain visual and functional consistency across applications, even though the
+          component allows custom values.
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>
           <strong>Combine with other layout techniques:</strong> flexbox is powerful but not always the best tool for
