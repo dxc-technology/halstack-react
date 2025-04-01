@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import slugify from "slugify";
-import styled, { ThemeProvider } from "styled-components";
+import styled from "styled-components";
 import DxcHeading from "../heading/Heading";
 import DxcTypography from "../typography/Typography";
 import { HalstackLanguageContext } from "../HalstackContext";
@@ -31,7 +31,7 @@ const DxcQuickNav = ({ title, links }: QuickNavTypes): JSX.Element => {
     flex-direction: column;
     gap: var(--spacing-gap-xs);
     margin-top: var(--spacing-gap-xs);
-    padding: 0px var(--spacing-padding-xs);
+    padding: var(--spacing-padding-none) var(--spacing-padding-xs);
     list-style-type: none;
   `;
 
