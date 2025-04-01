@@ -12,7 +12,7 @@ import accordionPlacement from "./images/accordion_placement.png";
 
 const sections = [
   {
-    title: "Usage",
+    title: "Introduction",
     content: (
       <DxcParagraph>
         The accordion component is designed to present large amounts of content in a small space by leveraging
@@ -35,7 +35,8 @@ const sections = [
                 summary of the content, allowing users to decide if they want to interact with it.{" "}
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
-                <strong>Content area</strong>: The expanded section where detailed information or functionality resides.{" "}
+                <strong>Content area</strong>: The expanded section where detailed information or functionality
+                resides.{" "}
               </DxcBulletedList.Item>
             </DxcBulletedList>
           </>
@@ -378,15 +379,15 @@ const sections = [
   },
 ];
 
-const AccordionUsagePage = () => {
+const AccordionOverviewPage = () => {
   return (
     <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/accordion/usage/AccordionUsagePage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/accordion/overview/AccordionOverviewPage.tsx" />
     </DxcFlex>
   );
 };
 
-export default AccordionUsagePage;
+export default AccordionOverviewPage;
