@@ -2,13 +2,10 @@ import { DxcBulletedList, DxcFlex, DxcParagraph } from "@dxc-technology/halstack
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
-import Figure from "@/common/Figure";
 import Image from "@/common/Image";
-import accordionMainParts from "./images/accordion_main_parts.png";
-import accordionElements from "./images/accordion_elements.png";
-import accordionExamples from "./images/accordion_examples.png";
-import accordionContent from "./images/accordion_content.png";
-import accordionPlacement from "./images/accordion_placement.png";
+import anatomy from "./images/accordion_anatomy.png";
+import Example from "@/common/example/Example";
+import basicExample from "./examples/basicExample";
 
 const sections = [
   {
@@ -20,357 +17,284 @@ const sections = [
         sections, allowing users to focus only on what they need.
       </DxcParagraph>
     ),
-    subSections: [
-      {
-        title: "Main parts",
-        content: (
-          <>
-            <DxcParagraph>Each accordion section consists of two main parts:</DxcParagraph>
-            <Figure caption="Main parts">
-              <Image src={accordionMainParts} alt="Main parts" />
-            </Figure>
-            <DxcBulletedList type="number">
+  },
+  {
+    title: "Anatomy",
+    content: (
+      <>
+        <Image src={anatomy} alt="Accordion's anatomy" />
+        <DxcBulletedList type="number">
+          <DxcBulletedList.Item>
+            <strong>Header:</strong> serves as the trigger for expanding or collapsing the section. It acts as a summary
+            of the content, allowing users to decide if they want to interact with it.
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            <strong>Content area:</strong> the expanded section where detailed information or functionality resides.
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            <strong>Title:</strong> a concise and descriptive label that summarizes the content of the accordion
+            section. It helps users understand what type of information they can expect to find inside.
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            <strong>Caret icon</strong> <em>(Expand/collapse)</em>: A visual indicator of the accordion's current state
+            (expanded or collapsed). It provides an affordance for interaction and ensures users can toggle the
+            accordion intuitively.
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            <strong>Left secondary element</strong> <em>(Optional)</em>: Provides additional context or enhances the
+            user experience. Only <strong>one</strong> of the following can be used per accordion section to avoid
+            visual clutter:
+            <DxcBulletedList>
               <DxcBulletedList.Item>
-                <strong>Header</strong>: Serves as the trigger for expanding or collapsing the section. It acts as a
-                summary of the content, allowing users to decide if they want to interact with it.{" "}
+                <strong>Icon:</strong> Adds visual context or aids recognition by representing the content type or
+                purpose of the section.
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
-                <strong>Content area</strong>: The expanded section where detailed information or functionality
-                resides.{" "}
+                <strong>Badge:</strong> Displays supplemental information, such as a notification count or status, to
+                give users a quick overview of the section.
               </DxcBulletedList.Item>
             </DxcBulletedList>
-          </>
-        ),
-        subSections: [
-          {
-            title: "Header layout, primary and secondary elements",
-            content: (
-              <>
-                <DxcParagraph>
-                  The accordion header is divided into two sections: left and right, each of which can contain different
-                  UI elements. These elements are categorised as primary or secondary, based on their importance and
-                  role within the accordion's functionality.
-                </DxcParagraph>
-                <Image src={accordionElements} alt="Accordion elements" />
-              </>
-            ),
-            subSections: [
-              {
-                title: "Primary Elements",
-                content: (
-                  <>
-                    <DxcParagraph>
-                      The primary elements are <strong>mandatory</strong> and provide the basic functionality of the
-                      accordion. These ensure the component is functional and intuitive for users:
-                    </DxcParagraph>
-                    <DxcBulletedList>
-                      <DxcBulletedList.Item>
-                        <strong>Title</strong>: A concise and descriptive label that summarises the content of the
-                        accordion section. It helps users understand what type of information they can expect to find
-                        inside.
-                      </DxcBulletedList.Item>
-                      <DxcBulletedList.Item>
-                        <strong>Chevron Icon</strong>: A visual indicator of the accordion’s current state (expanded or
-                        collapsed). It provides an affordance for interaction and ensures users can toggle the accordion
-                        intuitively.
-                      </DxcBulletedList.Item>
-                    </DxcBulletedList>
-                    <DxcParagraph>
-                      Without these elements, the accordion cannot effectively communicate its purpose or provide a
-                      clear interaction model.
-                    </DxcParagraph>
-                  </>
-                ),
-              },
-              {
-                title: "Secondary Elements",
-                content: (
-                  <>
-                    <DxcParagraph>
-                      The secondary elements are <strong>optional</strong> and provide additional context or enhance the
-                      user experience. While not essential for the accordion's functionality, they add useful details or
-                      visual hierarchy.
-                    </DxcParagraph>
-                    <DxcBulletedList type="number">
-                      <DxcBulletedList.Item>
-                        Left secondary elements:
-                        <DxcBulletedList type="circle">
-                          <DxcBulletedList.Item>
-                            <strong>Icon</strong>: Adds visual context or aids recognition by representing the content
-                            type or purpose of the section.
-                          </DxcBulletedList.Item>
-                          <DxcBulletedList.Item>
-                            <strong>Badge</strong>: Displays supplemental information, such as a notification count or
-                            status, to give users a quick overview of the section.
-                          </DxcBulletedList.Item>
-                        </DxcBulletedList>
-                      </DxcBulletedList.Item>
-                      <DxcBulletedList.Item>
-                        Right secondary elements:
-                        <DxcBulletedList type="circle">
-                          <DxcBulletedList.Item>
-                            <strong>Helper text</strong>: Provides additional context, such as brief instructions or a
-                            summary of the content within the section.
-                          </DxcBulletedList.Item>
-                          <DxcBulletedList.Item>
-                            <strong>Status light</strong>: Displays a visual indicator of the section’s status (e.g.,
-                            completed, in progress, or error).
-                          </DxcBulletedList.Item>
-                          <DxcBulletedList.Item>
-                            <strong>Badge</strong>: Similar to the left-side badge, but placed on the right for better
-                            alignment in specific layouts.
-                          </DxcBulletedList.Item>
-                        </DxcBulletedList>
-                      </DxcBulletedList.Item>
-                    </DxcBulletedList>
-                    <Figure caption="Accordion examples">
-                      <Image src={accordionExamples} alt="Accordion examples" />
-                    </Figure>
-                  </>
-                ),
-              },
-            ],
-          },
-          {
-            title: "Content area",
-            content: (
-              <>
-                <DxcParagraph>
-                  The content area can contain other components, images, tables, and every custom feature that can be
-                  supported inside the element container.
-                </DxcParagraph>
-                <Image src={accordionContent} alt="Accordion content" />
-                <DxcParagraph>
-                  Nesting is allowed and icons can be used as a complement to the header label.
-                </DxcParagraph>
-              </>
-            ),
-          },
-        ],
-      },
-      {
-        title: "Placement and alignment",
-        subSections: [
-          {
-            title: "Placement",
-            content: (
-              <>
-                <DxcParagraph>
-                  Accordions can be placed with main page content or placed inside of a container such as a side panel
-                  or tile.
-                </DxcParagraph>
-                <Figure caption="Accordion placement">
-                  <Image src={accordionPlacement} alt="Accordion placement" />
-                </Figure>
-              </>
-            ),
-          },
-          {
-            title: "Alignment",
-            content: (
-              <DxcParagraph>
-                By default the chevron icon is placed on the end side of the header. This allows for the title on the
-                start side to align with other type elements in the layout.
-              </DxcParagraph>
-            ),
-          },
-        ],
-      },
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            <strong>Sublabel</strong> <em>(Optional)</em>: Offers additional context or instruction.
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            <strong>Right secondary element</strong> <em>(Optional)</em>: Also limited to <strong>one</strong> element
+            per section. May include:
+            <DxcBulletedList>
+              <DxcBulletedList.Item>
+                <strong>Helper text:</strong> Offers supporting guidance or content summary.
+              </DxcBulletedList.Item>
+              <DxcBulletedList.Item>
+                <strong>Status light:</strong> A visual status indicator (e.g., completed, in progress, error).
+              </DxcBulletedList.Item>
+              <DxcBulletedList.Item>
+                <strong>Badge:</strong> Similar to the left badge, positioned right for layout flexibility.
+              </DxcBulletedList.Item>
+            </DxcBulletedList>
+          </DxcBulletedList.Item>
+        </DxcBulletedList>
+        <Example example={basicExample} />
+      </>
+    ),
+  },
+  {
+    title: "Using accordions",
+    subSections: [
       {
         title: "Behavior and interaction",
         content: (
+          <DxcParagraph>
+            The accordion component has two main states: collapsed and expanded. The chevron icon at the end of the
+            accordion indicates which state the accordion is in. Accordions begin by default in the collapsed state with
+            all content panels closed. Starting in a collapsed state gives the user a high level overview of the
+            available information.
+          </DxcParagraph>
+        ),
+      },
+      {
+        title: "Content area",
+        content: (
           <>
             <DxcParagraph>
-              The accordion component has two main states: collapsed and expanded. The chevron icon at the end of the
-              accordion indicates which state the accordion is in. Accordions begin by default in the collapsed state
-              with all content panels closed. Starting in a collapsed state gives the user a high level overview of the
-              available information.
+              The content area can contain other components, images, tables, and every custom feature that can be
+              supported inside the element container.
+            </DxcParagraph>
+            EXAMPLE!!!
+          </>
+        ),
+      },
+      {
+        title: "Allowing multiple sections open vs single-open behavior",
+        content: (
+          <>
+            <DxcParagraph>
+              The accordion component can be configured to allow either <strong>multiple sections</strong> to be open
+              simultaneously or limit the user to a <strong>single-open</strong> section at a time. Each approach has
+              specific use cases, but it's important to prioritise user needs and content hierarchy when deciding which
+              behavior to implement.
             </DxcParagraph>
             <DxcBulletedList>
               <DxcBulletedList.Item>
-                Trigger collapsed and expanded states when clicking on either the header or icon.
-              </DxcBulletedList.Item>
-              <DxcBulletedList.Item>
-                Use icons and animation to easily reflect collapsed and expanded states.
-              </DxcBulletedList.Item>
-              <DxcFlex direction="column" gap="0.5rem">
-                <DxcBulletedList.Item>
-                  Use a chevron icon to indicate the expand/collapse behavior.
-                </DxcBulletedList.Item>
-                <DxcBulletedList type="circle">
+                <strong>Allow multiple sections open</strong>
+                <DxcParagraph>
+                  This approach gives users full control over the visibility of content, allowing them to open or
+                  collapse multiple sections at the same time. It's particularly useful when:
+                </DxcParagraph>
+                <DxcBulletedList>
                   <DxcBulletedList.Item>
-                    When the panel expands, the chevron icon rotates 180 degrees counterclockwise.
+                    Users need to compare or reference information across different sections simultaneously.
                   </DxcBulletedList.Item>
                   <DxcBulletedList.Item>
-                    When the panel collapses, the chevron icon rotates 180 degrees clockwise.
+                    The content in each section is independent and doesn't require strict linear navigation.
+                  </DxcBulletedList.Item>
+                  <DxcBulletedList.Item>
+                    There is enough vertical space to accommodate multiple expanded sections without overwhelming the
+                    layout.
                   </DxcBulletedList.Item>
                 </DxcBulletedList>
-              </DxcFlex>
+              </DxcBulletedList.Item>
+              <DxcBulletedList.Item>
+                <strong>Single-open behavior</strong>
+                <DxcParagraph>
+                  Some implementations restrict the accordion to allow only one section to be open at a time. When a
+                  user expands a new section, the previously expanded section collapses automatically. This pattern is
+                  suitable when:
+                </DxcParagraph>
+                <DxcBulletedList>
+                  <DxcBulletedList.Item>
+                    The content is closely related or mutually exclusive, making it logical to view only one section at
+                    a time.
+                  </DxcBulletedList.Item>
+                  <DxcBulletedList.Item>
+                    Vertical space is limited, and having multiple sections open could cause usability or layout issues.
+                  </DxcBulletedList.Item>
+                  <DxcBulletedList.Item>
+                    A simplified and more guided user experience is desired, such as in wizards or step-by-step
+                    processes.
+                  </DxcBulletedList.Item>
+                </DxcBulletedList>
+              </DxcBulletedList.Item>
             </DxcBulletedList>
           </>
         ),
-        subSections: [
-          {
-            title: "Allowing multiple sections open vs single-open behavior",
-            content: (
-              <DxcParagraph>
-                The accordion component can be configured to allow either <strong>multiple sections</strong> to be open
-                simultaneously or limit the user to a <strong>single-open</strong> section at a time. Each approach has
-                specific use cases, but it’s important to prioritise user needs and content hierarchy when deciding
-                which behavior to implement.
-              </DxcParagraph>
-            ),
-            subSections: [
-              {
-                title: "Allow multiple sections open",
-                content: (
-                  <>
-                    <DxcParagraph>
-                      This approach gives users full control over the visibility of content, allowing them to open or
-                      collapse multiple sections at the same time. It’s particularly useful when:
-                    </DxcParagraph>
-                    <DxcBulletedList>
-                      <DxcBulletedList.Item>
-                        Users need to compare or reference information across different sections simultaneously.
-                      </DxcBulletedList.Item>
-                      <DxcBulletedList.Item>
-                        The content in each section is independent and doesn’t require strict linear navigation.
-                      </DxcBulletedList.Item>
-                      <DxcBulletedList.Item>
-                        There is enough vertical space to accommodate multiple expanded sections without overwhelming
-                        the layout.
-                      </DxcBulletedList.Item>
-                    </DxcBulletedList>
-                  </>
-                ),
-              },
-              {
-                title: "Single-open behavior",
-                content: (
-                  <>
-                    <DxcParagraph>
-                      Some implementations restrict the accordion to allow only <strong>one section</strong> to be open
-                      at a time. When a user expands a new section, the previously expanded section collapses
-                      automatically. This pattern is suitable when:
-                    </DxcParagraph>
-                    <DxcBulletedList>
-                      <DxcBulletedList.Item>
-                        The content is closely related or mutually exclusive, making it logical to view only one section
-                        at a time.
-                      </DxcBulletedList.Item>
-                      <DxcBulletedList.Item>
-                        Vertical space is limited, and having multiple sections open could cause usability or layout
-                        issues.
-                      </DxcBulletedList.Item>
-                      <DxcBulletedList.Item>
-                        A simplified and more guided user experience is desired, such as in wizards or step-by-step
-                        processes.
-                      </DxcBulletedList.Item>
-                    </DxcBulletedList>
-                  </>
-                ),
-              },
-            ],
-          },
-        ],
+      },
+      {
+        title: "Placement and alignment",
+        content: (
+          <>
+            <DxcParagraph>
+              Accordions can be placed with main page content or placed inside of a container such as a side panel or
+              tile.
+            </DxcParagraph>
+            EXAMPLE!!!
+          </>
+        ),
+      },
+      {
+        title: "Mobile",
+        content: (
+          <>
+            <DxcParagraph>
+              In small devices, extremely long pages are detrimental to the user experience. Collapsing information
+              minimises excessive scrolling and gives an overview of the structure and content available on the page.
+            </DxcParagraph>
+            <DxcBulletedList>
+              <DxcBulletedList.Item>In mobile use 100% of the available screen width</DxcBulletedList.Item>
+            </DxcBulletedList>
+          </>
+        ),
       },
       {
         title: "Best practices",
         content: (
-          <>
-            <DxcBulletedList>
-              <DxcBulletedList.Item>
-                <strong>One element per side</strong>: Each side of the header (<strong>left</strong> and{" "}
-                <strong>right</strong>) should only include <strong>one</strong> secondary element to maintain a clean
-                and organised visual hierarchy.
-              </DxcBulletedList.Item>
-              <DxcBulletedList.Item>
-                <strong>No duplicates</strong>: Avoid including multiple instances of the same type of element in the
-                header (e.g., two badges or two status lights), as this can create visual clutter and confuse users.
-              </DxcBulletedList.Item>
-              <DxcBulletedList.Item>
-                <strong>Semantic colors</strong>: If both a <strong>badge</strong> and a <strong>status light</strong>{" "}
-                are included, avoid using semantic colors (e.g., red, green) for the badge to prevent it from competing
-                visually with the status light.
-              </DxcBulletedList.Item>
-              <DxcBulletedList.Item>
-                <strong>Growth priority</strong>: Mandatory and descriptive elements, such as the title, are prioritised
-                over optional elements to ensure that essential information is always visible and accessible.
-              </DxcBulletedList.Item>
-            </DxcBulletedList>
-          </>
+          <DxcParagraph>
+            To ensure a clean, efficient, and user-friendly experience, follow these best practices when designing and
+            implementing accordion components:
+          </DxcParagraph>
         ),
         subSections: [
           {
-            title: "Mobile",
+            title: "Use accordions to manage space and structure",
             content: (
-              <>
-                <DxcParagraph>
-                  In small devices, extremely long pages are detrimental to the user experience. Collapsing information
-                  minimises excessive scrolling and gives an overview of the structure and content available on the
-                  page.
-                </DxcParagraph>
-                <DxcBulletedList>
-                  <DxcBulletedList.Item>In mobile use 100% of the available screen width.</DxcBulletedList.Item>
-                </DxcBulletedList>
-              </>
+              <DxcBulletedList>
+                <DxcBulletedList.Item>
+                  Apply accordions when you need to organize large or secondary content into collapsible sections.
+                </DxcBulletedList.Item>
+                <DxcBulletedList.Item>
+                  They are particularly useful for FAQs, optional content, or detailed information nested under
+                  high-level summaries.
+                </DxcBulletedList.Item>
+                <DxcBulletedList.Item>
+                  Collapsing content helps reduce scrolling and offers users control over what they choose to engage
+                  with.
+                </DxcBulletedList.Item>
+              </DxcBulletedList>
             ),
           },
           {
-            title: "Do's",
+            title: "Keep headers simple and informative",
             content: (
-              <>
-                <DxcParagraph>Use an accordion when:</DxcParagraph>
-                <DxcBulletedList>
-                  <DxcBulletedList.Item>
-                    <strong>Displaying and grouping additional information</strong> that is related or supplemental to
-                    the primary content.
-                  </DxcBulletedList.Item>
-                  <DxcBulletedList.Item>
-                    <strong>Shortening pages</strong> and reducing scrolling, especially for optional or non-critical
-                    content.
-                  </DxcBulletedList.Item>
-                  <DxcBulletedList.Item>
-                    <strong>Providing users with granular control</strong> over the visibility of information, helping
-                    them interact with the page in a way that meets their specific needs.
-                  </DxcBulletedList.Item>
-                  <DxcBulletedList.Item>
-                    <strong>Organising FAQs or similar repeated structures</strong>, where content can be logically
-                    divided into expandable sections.
-                  </DxcBulletedList.Item>
-                  <DxcBulletedList.Item>
-                    Enhancing content <strong>hierarchy</strong> by nesting detailed or secondary content under a more
-                    general overview.
-                  </DxcBulletedList.Item>
-                </DxcBulletedList>
-              </>
+              <DxcBulletedList>
+                <DxcBulletedList.Item>
+                  Each accordion header must include a clear, concise title that describes the content inside.
+                </DxcBulletedList.Item>
+                <DxcBulletedList.Item>
+                  Use a sublabel only when additional context is necessary —it should not overpower the title.
+                </DxcBulletedList.Item>
+                <DxcBulletedList.Item>
+                  Avoid hiding essential or primary information inside an accordion panel.
+                </DxcBulletedList.Item>
+              </DxcBulletedList>
             ),
           },
           {
-            title: "Don'ts",
+            title: "Limit secondary elements for clarity",
             content: (
-              <>
-                <DxcParagraph>Don’t use an accordion if:</DxcParagraph>
-                <DxcBulletedList>
-                  <DxcBulletedList.Item>
-                    <strong>The majority of the content on the page is crucial</strong> for the user to see upfront, as
-                    hiding it may increase friction or confusion.
-                  </DxcBulletedList.Item>
-                  <DxcBulletedList.Item>
-                    You need to <strong>display a list of selectable options</strong> (e.g., navigation menus or
-                    filters)—a dropdown or other list pattern is more appropriate.
-                  </DxcBulletedList.Item>
-                  <DxcBulletedList.Item>
-                    <strong>Critical system information or actions</strong> (like alerts, confirmations, or primary
-                    buttons) need to be visible—these should remain prominent and accessible without requiring user
-                    interaction.
-                  </DxcBulletedList.Item>
-                  <DxcBulletedList.Item>
-                    The interaction of expanding and collapsing creates{" "}
-                    <strong>unnecessary complexity or extra clicks</strong> for the user.
-                  </DxcBulletedList.Item>
-                </DxcBulletedList>
-              </>
+              <DxcBulletedList>
+                <DxcBulletedList.Item>
+                  Use <strong>only one secondary element per side</strong> of the header (left and right) to avoid
+                  clutter.
+                </DxcBulletedList.Item>
+                <DxcBulletedList.Item>
+                  Choose either an icon or a badge for the left side, and a helper text, badge, or status light for the
+                  right side —never more than one per side.
+                </DxcBulletedList.Item>
+                <DxcBulletedList.Item>
+                  Avoid placing two elements of the same type in one header (e.g., two badges), as this reduces
+                  scannability and can confuse users.
+                </DxcBulletedList.Item>
+              </DxcBulletedList>
+            ),
+          },
+          {
+            title: "Respect visual hierarchy and semantic meaning",
+            content: (
+              <DxcBulletedList>
+                <DxcBulletedList.Item>
+                  Always prioritize the visibility of mandatory elements like the title over optional elements.
+                </DxcBulletedList.Item>
+                <DxcBulletedList.Item>
+                  If both a badge and a status light are present, avoid applying semantic colors (e.g., red, green) to
+                  the badge to prevent visual conflict with the status indicator.
+                </DxcBulletedList.Item>
+                <DxcBulletedList.Item>
+                  Maintain consistency in layout and alignment to support content scanning, especially when multiple
+                  accordion sections are used together.
+                </DxcBulletedList.Item>
+              </DxcBulletedList>
+            ),
+          },
+          {
+            title: "Choose the appropriate expand behavior",
+            content: (
+              <DxcBulletedList>
+                <DxcBulletedList.Item>
+                  Use <strong>single-open behavior</strong> when content is interdependent, linear, or when space is
+                  limited.
+                </DxcBulletedList.Item>
+                <DxcBulletedList.Item>
+                  Use <strong>multi-open behavior</strong> when content is independent or when users may need to view
+                  multiple sections at once.
+                </DxcBulletedList.Item>
+                <DxcBulletedList.Item>
+                  Consider the context of use and user goals when deciding which interaction pattern is most
+                  appropriate.
+                </DxcBulletedList.Item>
+              </DxcBulletedList>
+            ),
+          },
+          {
+            title: "Design for mobile and accessibility",
+            content: (
+              <DxcBulletedList>
+                <DxcBulletedList.Item>
+                  Accordions should span the full width of the screen on smaller devices for easier interaction.
+                </DxcBulletedList.Item>
+                <DxcBulletedList.Item>
+                  Ensure all interactive elements are large enough to be tapped comfortably on touchscreens.
+                </DxcBulletedList.Item>
+              </DxcBulletedList>
             ),
           },
         ],
