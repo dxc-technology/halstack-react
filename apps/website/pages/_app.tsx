@@ -30,10 +30,8 @@ const ApplicationLayoutWrapper = ({ condition, wrapper, children }: ApplicationL
 const App = ({ Component, pageProps }: AppPropsWithLayout) => {
   const getLayout = Component.getLayout || ((page) => page);
   const componentWithLayout = getLayout(<Component {...pageProps} />);
-
   const [filter, setFilter] = useState("");
   const { asPath: currentPath } = useRouter();
-
   const filteredLinks = useMemo(() => {
     const filtered: LinksSectionDetails[] = [];
     LinksSections.map((section) => {
@@ -47,17 +45,10 @@ const App = ({ Component, pageProps }: AppPropsWithLayout) => {
     return filtered;
   }, [filter]);
 
-  const onFilterInputChange = ({ value }: { value: string }) => {
-    setFilter(value);
-  };
-
   const matchPaths = (linkPath: string) => {
+    const desiredPaths = [linkPath, `${linkPath}/code`];
     const pathToBeMatched = currentPath?.split("#")[0]?.slice(0, -1);
-    const desiredPaths = [linkPath, `${linkPath}/specifications`, `${linkPath}/usage`];
-    if (pathToBeMatched) {
-      return desiredPaths.includes(pathToBeMatched);
-    }
-    return false;
+    return pathToBeMatched ? desiredPaths.includes(pathToBeMatched) : false;
   };
 
   return (
@@ -77,7 +68,9 @@ const App = ({ Component, pageProps }: AppPropsWithLayout) => {
                     <DxcTextInput
                       placeholder="Search docs"
                       value={filter}
-                      onChange={onFilterInputChange}
+                      onChange={({ value }: { value: string }) => {
+                        setFilter(value);
+                      }}
                       size="fillParent"
                       clearable
                       margin={{
