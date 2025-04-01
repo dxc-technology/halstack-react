@@ -1,10 +1,9 @@
-import { Children, useCallback, useContext, useMemo, useState } from "react";
-import styled, { ThemeProvider } from "styled-components";
+import { Children, useCallback, useMemo, useState } from "react";
+import styled from "styled-components";
 import { getMargin } from "../common/utils";
 import { spaces } from "../common/variables";
 import AccordionPropsType from "./types";
 import AccordionContext from "./AccordionContext";
-import HalstackContext from "../HalstackContext";
 import AccordionItem from "./AccordionItem";
 
 const calculateWidth = (margin: AccordionPropsType["margin"]) =>
@@ -31,37 +30,20 @@ const AccordionContainer = styled.div<{
   }
 
   // first accordion: hover, focus and active
-  > div:first-of-type:not(:only-of-type) button:hover,
-  div:first-of-type:not(:only-of-type) button:focus,
-  div:first-of-type:not(:only-of-type) button:active {
+  > div:first-of-type:not(:only-of-type) button:is(:hover, :focus, :active) {
     border-bottom-left-radius: var(--border-radius-none);
     border-bottom-right-radius: var(--border-radius-none);
   }
 
   // middle accordions
-  > div:not(:first-of-type):not(:last-of-type):not(:only-of-type) {
-    border-radius: var(--border-radius-none);
-  }
-
-  // middle accordions: hover, focus and active
-  > div:not(:first-of-type):not(:last-of-type):not(:only-of-type) button:hover,
-  div:not(:first-of-type):not(:last-of-type):not(:only-of-type) button:focus,
-  div:not(:first-of-type):not(:last-of-type):not(:only-of-type) button:active {
+  > div:first-of-type:not(:only-of-type),
+  div:first-of-type:not(:only-of-type) button:is(:hover, :focus, :active) {
     border-radius: var(--border-radius-none);
   }
 
   // last accordion
-  > div:last-of-type:not(:only-of-type) {
-    border-top-left-radius: var(--border-radius-none);
-    border-top-right-radius: var(--border-radius-none);
-    border-bottom-left-radius: var(--border-radius-s);
-    border-bottom-right-radius: var(--border-radius-s);
-  }
-
-  // last accordion: hover, focus and active
-  > div:last-of-type:not(:only-of-type) button:hover,
-  div:last-of-type:not(:only-of-type) button:focus,
-  div:last-of-type:not(:only-of-type) button:active {
+  > div:last-of-type:not(:only-of-type),
+  div:last-of-type:not(:only-of-type) button:is(:hover, :focus, :active) {
     border-top-left-radius: var(--border-radius-none);
     border-top-right-radius: var(--border-radius-none);
     border-bottom-left-radius: var(--border-radius-s);
@@ -69,20 +51,14 @@ const AccordionContainer = styled.div<{
   }
 
   // last expanded accordion
-  > div:last-of-type:not(:only-of-type) > button[aria-expanded="true"] {
-    border-radius: var(--border-radius-none);
-  }
-  // last expanded accordion: hover, focus and active
-  > div:last-of-type:not(:only-of-type) > button[aria-expanded="true"]:hover,
-  div:last-of-type:not(:only-of-type) > button[aria-expanded="true"]:focus,
-  div:last-of-type:not(:only-of-type) > button[aria-expanded="true"]:active {
+  > div:last-of-type:not(:only-of-type) > button[aria-expanded="true"],
+  div:last-of-type:not(:only-of-type) > button[aria-expanded="true"]:is(:hover, :focus, :active) {
     border-radius: var(--border-radius-none);
   }
 `;
 
 const DxcAccordion = (props: AccordionPropsType): JSX.Element => {
   const { children, margin, onActiveChange } = props;
-  const colorsTheme = useContext(HalstackContext);
 
   const [innerIndexActive, setInnerIndexActive] = useState(
     props.independent
@@ -122,15 +98,13 @@ const DxcAccordion = (props: AccordionPropsType): JSX.Element => {
   );
 
   return (
-    <ThemeProvider theme={colorsTheme.accordion}>
-      <AccordionContainer margin={margin}>
-        {Children.map(children, (accordion, index) => (
-          <AccordionContext.Provider key={`accordion-${index}`} value={{ index, ...contextValue }}>
-            {accordion}
-          </AccordionContext.Provider>
-        ))}
-      </AccordionContainer>
-    </ThemeProvider>
+    <AccordionContainer margin={margin}>
+      {Children.map(children, (accordion, index) => (
+        <AccordionContext.Provider key={`accordion-${index}`} value={{ index, ...contextValue }}>
+          {accordion}
+        </AccordionContext.Provider>
+      ))}
+    </AccordionContainer>
   );
 };
 

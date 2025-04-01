@@ -22,25 +22,27 @@ const AccordionContainer = styled.div`
 const AccordionTrigger = styled.button`
   display: flex;
   justify-content: space-between;
-  gap: var(--spacing-gap-l);
   width: 100%;
   background-color: transparent;
   border: none;
-  border-radius: var(--border-radius-s);
   padding: var(--spacing-padding-xs) var(--spacing-padding-m);
+  border-radius: var(--border-radius-s);
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
-  :focus {
-    outline: var(--border-width-m) solid var(--border-color-secondary-medium);
-  }
+  :focus,
   :focus-visible {
-    outline: var(--border-width-m) solid var(--border-color-secondary-medium);
+    outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
   }
+  :hover:enabled,
   :active:enabled {
     background-color: var(--color-bg-primary-lighter);
-    outline: var(--border-width-m) solid var(--border-color-secondary-medium);
   }
-  :hover:enabled {
-    background-color: var(--color-bg-neutral-lightest);
+  :active:enabled {
+    outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
+  }
+
+  &[aria-expanded="true"] {
+  border-bottom-left-radius: var(--border-radius-none);
+  border-bottom-right-radius: var(--border-radius-none);
   }
 `;
 
@@ -179,7 +181,7 @@ const AccordionItem = ({
         aria-controls={`accordion-panel-${id}`}
       >
         <DxcContainer width="100%" height="100%">
-          <DxcFlex>
+          <DxcFlex gap="var(--spacing-gap-l)">
             <LeftSideContainer>
               {(icon || badge?.position === "before") && (
                 <OptionalElement>
