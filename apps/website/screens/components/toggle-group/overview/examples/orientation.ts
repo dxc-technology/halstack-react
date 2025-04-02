@@ -1,52 +1,43 @@
-import { DxcInset, DxcToggleGroup } from "@dxc-technology/halstack-react";
+import { DxcFlex, DxcInset, DxcToggleGroup } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   const options = [
     {
       value: 1,
-      icon: "format_bold",
-      title: "Bold",
+      icon: "wifi",
+      label: "Wifi",
     },
     {
       value: 2,
-      icon: "format_italic",
-      title: "Italic",
+      label: "Ethernet",
     },
     {
       value: 3,
-      icon: "format_underlined",
-      title: "Underlined",
-    },
-    {
-      value: 4,
-      icon: "format_align_left",
-      title: "Align left",
-    },
-    {
-      value: 5,
-      icon: "format_align_center",
-      title: "Align center",
-    },
-    {
-      value: 6,
-      icon: "format_align_right",
-      title: "Align right",
+      icon: "5g",
+      label: "5G", 
     },
   ];
 
   return (
     <DxcInset space="2rem">
-      <DxcToggleGroup
-        defaultValue={[3, 4]}
-        multiple
-        options={options}
-        orientation="vertical"
-      />
+      <DxcFlex gap="var(--spacing-gap-l)">
+        <DxcToggleGroup
+          defaultValue={2}
+          options={options}
+          orientation="vertical"
+        />
+        <DxcToggleGroup
+          defaultValue={2}
+          options={options}
+          orientation="horizontal"
+        />
+      </DxcFlex>
     </DxcInset>
   );
 }`;
 
 const scope = {
+  DxcFlex,
   DxcInset,
   DxcToggleGroup,
 };

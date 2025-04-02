@@ -13,6 +13,7 @@ const ToggleGroup = styled.div<{ margin: ToggleGroupPropsType["margin"] }>`
   }
   gap: var(--spacing-gap-xs);
   padding: var(--spacing-padding-xxs);
+  height: fit-content;
   width: fit-content;
   border: var(--border-width-s) var(--border-style-default) var(--border-color-neutral-strong);
   border-radius: var(--border-radius-m);
