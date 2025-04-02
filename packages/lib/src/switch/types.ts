@@ -11,13 +11,13 @@ type Props = {
    */
   checked?: boolean;
   /**
-   * If true, the component will be disabled.
-   */
-  disabled?: boolean;
-  /**
    * Initial state of the switch, only when it is uncontrolled.
    */
   defaultChecked?: boolean;
+  /**
+   * If true, the component will be disabled.
+   */
+  disabled?: boolean;
   /**
    * Text to be placed next to the switch.
    */

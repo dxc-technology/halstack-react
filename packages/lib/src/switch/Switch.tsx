@@ -78,15 +78,18 @@ const LabelContainer = styled.span<{
   font-weight: var(--typography-label-regular);
   max-width: 100%;
   order: ${({ labelPosition }) => (labelPosition === "before" ? 0 : 1)};
+`;
 
-  &:first-child {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-  &:last-child {
-    ${({ disabled }) => !disabled && "color: var(--color-fg-neutral-stronger);"}
-  }
+const Label = styled.span`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+`;
+
+const OptionalLabel = styled.span<{
+  disabled: SwitchPropsType["disabled"];
+}>`
+  ${({ disabled }) => !disabled && "color: var(--color-fg-neutral-stronger);"}
 `;
 
 const Switch = styled.span<{ checked: SwitchPropsType["checked"]; disabled: SwitchPropsType["disabled"] }>`
@@ -171,8 +174,8 @@ const DxcSwitch = forwardRef<RefType, SwitchPropsType>(
       >
         {label && (
           <LabelContainer disabled={disabled} labelPosition={labelPosition}>
-            <span>{label}</span>
-            {optional && <span>{translatedLabels.formFields.optionalLabel}</span>}
+            <Label>{label}</Label>
+            {optional && <OptionalLabel disabled={disabled}>{translatedLabels.formFields.optionalLabel}</OptionalLabel>}
           </LabelContainer>
         )}
         <Switch checked={checked ?? innerChecked} disabled={disabled} />
@@ -182,9 +185,9 @@ const DxcSwitch = forwardRef<RefType, SwitchPropsType>(
           disabled={disabled}
           name={name}
           readOnly
+          role="switch"
           style={{ display: "none" }}
           type="checkbox"
-          role="switch"
           value={value}
         />
       </SwitchContainer>

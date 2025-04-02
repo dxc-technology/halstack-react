@@ -30,7 +30,7 @@ const Switch = () => (
       <Title title="Without label" theme="light" level={4} />
       <DxcSwitch />
     </ExampleContainer>
-    <ExampleContainer pseudoState="pseudo-focus-visible">
+    <ExampleContainer pseudoState="pseudo-focus">
       <Title title="Focused" theme="light" level={4} />
       <DxcSwitch label="Switch" labelPosition="after" />
     </ExampleContainer>
