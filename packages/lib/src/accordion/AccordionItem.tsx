@@ -41,8 +41,8 @@ const AccordionTrigger = styled.button`
   }
 
   &[aria-expanded="true"] {
-  border-bottom-left-radius: var(--border-radius-none);
-  border-bottom-right-radius: var(--border-radius-none);
+    border-bottom-left-radius: var(--border-radius-none);
+    border-bottom-right-radius: var(--border-radius-none);
   }
 `;
 
@@ -76,8 +76,6 @@ const LabelsContainer = styled.div`
 const StatusContainer = styled.div<{ subLabel: AccordionItemProps["subLabel"] }>`
   display: flex;
   align-items: ${(props) => (props.subLabel ? "flex-start" : "center")};
-  /* TODO: Check why this was used */
-  /* margin-top: ${(props) => props.subLabel && "4px"}; */
 `;
 
 const IconContainer = styled.span<{ disabled: AccordionItemProps["disabled"] }>`
@@ -98,10 +96,11 @@ const AccordionLabel = styled.span<{ disabled: AccordionItemProps["disabled"] }>
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  text-align: left;
 `;
 
 const SubLabel = styled.span<{ disabled: AccordionItemProps["disabled"] }>`
-  height: 22px; /* TODO: Ask designers if this is correct */
+  height: 22px;
   color: ${(props) => (props.disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-stronger)")};
   font-family: var(--typography-font-family);
   font-size: var(--typography-helper-text-s);
@@ -124,8 +123,6 @@ const AssistiveText = styled.span<{
   overflow: hidden;
   text-overflow: ellipsis;
   align-content: ${(props) => !props.subLabel && "center"};
-  /* TODO: Check why this was used */
-  /* margin-top: ${(props) => props.subLabel && "4px"}; */
 `;
 
 const CollapseIndicator = styled.span<{

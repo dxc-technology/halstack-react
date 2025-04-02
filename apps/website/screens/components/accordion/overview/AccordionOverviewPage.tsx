@@ -6,6 +6,8 @@ import Image from "@/common/Image";
 import anatomy from "./images/accordion_anatomy.png";
 import Example from "@/common/example/Example";
 import basicExample from "./examples/basicExample";
+import nestedExample from "./examples/nestedExample";
+import placement from "./images/accordion_placement.png";
 
 const sections = [
   {
@@ -100,7 +102,7 @@ const sections = [
               The content area can contain other components, images, tables, and every custom feature that can be
               supported inside the element container.
             </DxcParagraph>
-            EXAMPLE!!!
+            <Example example={nestedExample} />
           </>
         ),
       },
@@ -167,7 +169,7 @@ const sections = [
               Accordions can be placed with main page content or placed inside of a container such as a side panel or
               tile.
             </DxcParagraph>
-            EXAMPLE!!!
+            <Image src={placement} alt="Accordion's placement" />
           </>
         ),
       },
