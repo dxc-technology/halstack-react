@@ -1,12 +1,17 @@
-export const getTextColor = (overlay?: boolean) =>
-  `color: ${overlay ? "var(--color-fg-neutral-bright)" : "var(--color-fg-neutral-dark)"}`;
+import { css } from "styled-components";
 
-export const getLabelTextStyle = () =>
-  `font-family: var(--typography-font-family);
+export const textColorStyles = (overlay = false) => css`
+  color: ${overlay ? "var(--color-fg-neutral-bright)" : "var(--color-fg-neutral-dark)"};
+`;
+
+export const labelTextStyles = css`
+  font-family: var(--typography-font-family);
   font-size: var(--typography-label-m);
-  font-weight: var(--typography-label-semibold);`;
+  font-weight: var(--typography-label-semibold);
+`;
 
-export const getAuxTextStyle = () =>
-  `font-family: var(--typography-font-family);
+export const auxTextStyles = css`
+  font-family: var(--typography-font-family);
   font-size: var(--typography-helper-text-s);
-  font-weight: var(--typography-helper-text-regular);`;
+  font-weight: var(--typography-helper-text-regular);
+`;

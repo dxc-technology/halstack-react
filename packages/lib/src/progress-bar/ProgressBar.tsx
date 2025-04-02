@@ -3,29 +3,20 @@ import styled from "styled-components";
 import { spaces } from "../common/variables";
 import ProgressBarPropsType from "./types";
 import DxcFlex from "../flex/Flex";
-import { getAuxTextStyle, getLabelTextStyle, getTextColor } from "./utils";
+import { auxTextStyles, labelTextStyles, textColorStyles } from "./utils";
 
-const Overlay = styled.div<{
-  overlay: ProgressBarPropsType["overlay"];
-}>`
-  ${({ overlay }) =>
-    overlay
-      ? `background-color: var(--color-bg-alpha-medium);
-      justify-content: center;
-      height: 100vh;
-      align-items: center;
-      max-width: 100%;
-      position: fixed;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      z-index: 1300;`
-      : `background-color: transparent;`}
+const ProgressBarContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   min-width: 100px;
   width: 100%;
+`;
+
+const Overlay = styled.div`
+  background-color: var(--color-bg-alpha-medium);
+  height: 100%;
+  inset: 0;
+  position: fixed;
 `;
 
 const MainContainer = styled.div<{
@@ -51,8 +42,8 @@ const MainContainer = styled.div<{
 const ProgressBarLabel = styled.div<{
   overlay: ProgressBarPropsType["overlay"];
 }>`
-  ${getLabelTextStyle()};
-  ${(props) => getTextColor(props.overlay)};
+  ${labelTextStyles};
+  ${(props) => textColorStyles(props.overlay)};
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -62,14 +53,14 @@ const ProgressBarLabel = styled.div<{
 const ProgressBarProgress = styled.div<{
   overlay: ProgressBarPropsType["overlay"];
 }>`
-  ${getAuxTextStyle()};
-  ${(props) => getTextColor(props.overlay)};
+  ${auxTextStyles};
+  ${(props) => textColorStyles(props.overlay)};
   flex-shrink: 0;
 `;
 
 const HelperText = styled.span<{ overlay: ProgressBarPropsType["overlay"] }>`
-  ${(props) => getTextColor(props.overlay)};
-  ${getAuxTextStyle()};
+  ${(props) => textColorStyles(props.overlay)};
+  ${auxTextStyles};
 `;
 
 const LinearProgress = styled.div<{
@@ -150,7 +141,8 @@ const DxcProgressBar = ({
   }, [value]);
 
   return (
-    <Overlay overlay={overlay}>
+    <ProgressBarContainer>
+      {overlay && <Overlay />}
       <MainContainer overlay={overlay} margin={margin}>
         <DxcFlex justifyContent="space-between">
           {label && (
@@ -180,7 +172,7 @@ const DxcProgressBar = ({
         </LinearProgress>
         {helperText && <HelperText overlay={overlay}>{helperText}</HelperText>}
       </MainContainer>
-    </Overlay>
+    </ProgressBarContainer>
   );
 };
 
