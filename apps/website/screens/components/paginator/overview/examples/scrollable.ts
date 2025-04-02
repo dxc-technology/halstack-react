@@ -46,7 +46,7 @@ const code = `() => {
         complete: 46,
         priority: "High",
         issueType: "Bug",
-        expandedContent: <DxcContainer> Custom content 1</DxcContainer>,
+        expandedContent: <DxcContainer>Custom content 1</DxcContainer>,
         expandedContentHeight: 470
     },
     {
@@ -55,7 +55,7 @@ const code = `() => {
         complete: 51,
         priority: "High",
         issueType: "Epic",
-        expandedContent: <DxcContainer> Custom content 1</DxcContainer>
+        expandedContent: <DxcContainer>Custom content 1</DxcContainer>
     },
     {
         id: 3,
@@ -63,7 +63,7 @@ const code = `() => {
         complete: 40,
         priority: "High",
         issueType: "Improvement",
-        expandedContent: <DxcContainer> Custom content 1</DxcContainer>
+        expandedContent: <DxcContainer>Custom content 1</DxcContainer>
     },
     {
         id: 4,
@@ -71,7 +71,7 @@ const code = `() => {
         complete: 10,
         priority: "High",
         issueType: "Improvement",
-        expandedContent: <DxcContainer> Custom content 1</DxcContainer>
+        expandedContent: <DxcContainer>Custom content 1</DxcContainer>
     },
     {
         id: 5,
@@ -87,7 +87,7 @@ const code = `() => {
         complete: 37,
         priority: "High",
         issueType: "Improvement",
-        expandedContent: <DxcContainer> Custom content 1</DxcContainer>
+        expandedContent: <DxcContainer>Custom content 1</DxcContainer>
     },
     {
         id: 7,
@@ -95,7 +95,7 @@ const code = `() => {
         complete: 73,
         priority: "Medium",
         issueType: "Story",
-        expandedContent: <DxcContainer> Custom content 1</DxcContainer>
+        expandedContent: <DxcContainer>Custom content 1</DxcContainer>
     },
     {
         id: 8,
@@ -103,7 +103,7 @@ const code = `() => {
         complete: 27,
         priority: "Medium",
         issueType: "Story",
-        expandedContent: <DxcContainer> Custom content 1</DxcContainer>
+        expandedContent: <DxcContainer>Custom content 1</DxcContainer>
     },
     {
         id: 9,
@@ -111,15 +111,15 @@ const code = `() => {
         complete: 36,
         priority: "Critical",
         issueType: "Epic",
-        expandedContent: <DxcContainer> Custom content 1</DxcContainer>
+        expandedContent: <DxcContainer>Custom content 1</DxcContainer>
     },
   ];
 
   return (
     <DxcInset space="1rem">
       <DxcContainer height="200px">
-          <DxcDataGrid showPaginator columns={columns} rows={expandableRows} uniqueRowId="id" />
-        </DxcContainer>
+        <DxcDataGrid showPaginator columns={columns} rows={expandableRows} uniqueRowId="id" />
+      </DxcContainer>
     </DxcInset>
   );
 }`;
