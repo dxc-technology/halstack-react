@@ -7,7 +7,7 @@ import ToastPropsType from "./types";
 import useTimeout from "../utils/useTimeout";
 import { HalstackLanguageContext } from "../HalstackContext";
 import { responsiveSizes } from "../common/variables";
-import { getSemantic } from "./utils";
+import getSemantic from "./utils";
 import ToastIcon from "./ToastIcon";
 
 const fadeInUp = keyframes`
@@ -104,12 +104,12 @@ const DxcToast = ({
   );
 
   return (
-    <Toast semantic={semantic} isClosing={isClosing} role="status">
+    <Toast isClosing={isClosing} role="status" semantic={semantic}>
       <ContentContainer loading={loading} semantic={semantic}>
         <ToastIcon hideSemanticIcon={hideSemanticIcon} icon={icon} loading={loading} semantic={semantic} />
         <Message>{message}</Message>
       </ContentContainer>
-      <DxcFlex alignItems="center" gap="0.25rem">
+      <DxcFlex alignItems="center" gap="var(--spacing-gap-s)">
         {action && (
           <DxcButton
             icon={action.icon}

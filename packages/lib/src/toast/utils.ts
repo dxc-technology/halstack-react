@@ -1,6 +1,6 @@
-import ToastPropsType from "./types";
+import ToastPropsType, { QueuedToast } from "./types";
 
-export const getSemantic = (semantic: ToastPropsType["semantic"]) => {
+export default function getSemantic(semantic: ToastPropsType["semantic"]) {
   switch (semantic) {
     case "default":
       return {
@@ -27,4 +27,14 @@ export const getSemantic = (semantic: ToastPropsType["semantic"]) => {
         icon: "filled_warning",
       };
   }
+}
+
+export function generateUniqueToastId(toasts: QueuedToast[]) {
+  let id = "";
+  let exists = true;
+  while (exists) {
+    id = `${performance.now()}-${Math.random().toString(36).slice(2, 9)}`;
+    exists = toasts.some((toast) => toast.id === id);
+  }
+  return id;
 };

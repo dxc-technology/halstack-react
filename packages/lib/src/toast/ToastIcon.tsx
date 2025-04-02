@@ -2,7 +2,7 @@ import { memo } from "react";
 import { DxcSpinner } from "..";
 import DxcIcon from "../icon/Icon";
 import ToastPropsType from "./types";
-import { getSemantic } from "./utils";
+import getSemantic from "./utils";
 
 const ToastIcon = memo(
   ({
