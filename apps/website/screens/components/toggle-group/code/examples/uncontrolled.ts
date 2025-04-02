@@ -3,6 +3,7 @@ import { useRef } from "react";
 
 const code = `() => {
   const refText = useRef(null);
+
   const onChange = (selectedValue) => {
     if (refText.current) {
       refText.current.style.fontWeight = "normal";
@@ -35,6 +36,7 @@ const code = `() => {
       });
     }
   }
+
   const options = [
     {
       value: 1,
@@ -77,8 +79,20 @@ const code = `() => {
           options={options}
           orientation="vertical"
         />
-        <DxcContainer width="100%">
-          <p ref={refText}>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <DxcContainer 
+          width="100%" 
+          background={{ color: "var(--border-color-neutral-brighter)" }}
+          border={{ 
+            color: "var(--border-color-neutral-strong)",
+            style: "var(--border-style-default)",
+            width: "var(--border-width-s)"
+          }}
+          borderRadius="var(--border-radius-m)"
+          padding="var(--spacing-padding-m)"
+        >
+          <p ref={refText} style={{ margin: 0 }}>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          </p>
         </DxcContainer>
       </DxcFlex>
     </DxcInset>
