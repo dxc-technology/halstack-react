@@ -36,8 +36,8 @@ const Dialog = () => (
   <ExampleContainer expanded={true}>
     <Title title="Default dialog" theme="light" level={4} />
     <DxcDialog>
-      <DxcInset space="1.5rem">
-        <DxcFlex direction="column" gap="1rem">
+      <DxcInset space="var(--spacing-padding-l)">
+        <DxcFlex direction="column" gap="var(--spacing-padding-m)">
           <DxcHeading level={4} text="Example title" />
           <DxcParagraph>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi egestas luctus porttitor. Donec massa magna,
@@ -60,10 +60,10 @@ const DialogInput = () => (
   <ExampleContainer expanded={true}>
     <Title title="Dialog with inputs" theme="light" level={4} />
     <DxcDialog>
-      <DxcInset space="1.5rem">
-        <DxcFlex gap="2rem" direction="column">
+      <DxcInset space="var(--spacing-padding-l)">
+        <DxcFlex gap="var(--spacing-padding-xl)" direction="column">
           <DxcHeading level={4} text="Example form" />
-          <DxcFlex gap="1rem" direction="column">
+          <DxcFlex gap="var(--spacing-padding-m)" direction="column">
             <DxcTextInput size="fillParent" label="Name" />
             <DxcTextInput size="fillParent" label="Surname" />
           </DxcFlex>
@@ -74,7 +74,7 @@ const DialogInput = () => (
               text: "User: arn:aws:xxx::xxxxxxxxxxxx:assumed-role/assure-sandbox-xxxx-xxxxxxxxxxxxxxxxxxxxxxxxxx/sandbox-xxxx-xxxxxxxxxxxxxxxxxx is not authorized to perform: lambda:xxxxxxxxxxxxxx on resource: arn:aws:lambda:us-east-1:xxxxxxxxxxxx:function:sandbox-xxxx-xx-xxxxxxx-xxxxxxx-lambda because no identity-based policy allows the lambda:xxxxxxxxxxxxxx action",
             }}
           />
-          <DxcFlex justifyContent="flex-end" gap="0.5rem">
+          <DxcFlex justifyContent="flex-end" gap="var(--spacing-padding-xs)">
             <DxcButton label="Cancel" mode="tertiary" />
             <DxcButton label="Save" />
           </DxcFlex>
@@ -88,8 +88,8 @@ const DialogNoOverlay = () => (
   <ExampleContainer expanded={true}>
     <Title title="Dialog Without Overlay" theme="light" level={4} />
     <DxcDialog overlay={false}>
-      <DxcInset space="1.5rem">
-        <DxcFlex direction="column" gap="1rem">
+      <DxcInset space="var(--spacing-padding-l)">
+        <DxcFlex direction="column" gap="var(--spacing-padding-m)">
           <DxcHeading level={4} text="Example title" />
           <DxcParagraph>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi egestas luctus porttitor. Donec massa magna,
@@ -112,7 +112,7 @@ const DialogCloseNoVisible = () => (
   <ExampleContainer expanded={true}>
     <Title title="Dialog Close Visible" theme="dark" level={4} />
     <DxcDialog closable={false}>
-      <DxcInset space="1.5rem">
+      <DxcInset space="var(--spacing-padding-l)">
         <DxcParagraph>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi egestas luctus porttitor. Donec massa magna,
           placerat sit amet felis eget, venenatis fringilla ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing
@@ -133,14 +133,14 @@ const RespDialog = () => (
   <ExampleContainer expanded={true}>
     <Title title="Responsive dialog" theme="light" level={4} />
     <DxcDialog>
-      <DxcInset space="1.5rem">
-        <DxcFlex gap="2rem" direction="column">
+      <DxcInset space="var(--spacing-padding-l)">
+        <DxcFlex gap="var(--spacing-padding-xl)" direction="column">
           <DxcHeading level={4} text="Example form" />
-          <DxcFlex gap="1rem" direction="column">
+          <DxcFlex gap="var(--spacing-padding-m)" direction="column">
             <DxcTextInput size="fillParent" label="Name" />
             <DxcTextInput size="fillParent" label="Surname" />
           </DxcFlex>
-          <DxcFlex justifyContent="flex-end" gap="0.5rem">
+          <DxcFlex justifyContent="flex-end" gap="var(--spacing-padding-xs)">
             <DxcButton label="Cancel" mode="tertiary" />
             <DxcButton label="Save" />
           </DxcFlex>
@@ -289,8 +289,8 @@ const ScrollingDialog = () => (
       </DxcParagraph>
     </>
     <DxcDialog>
-      <DxcInset space="1.5rem">
-        <DxcFlex direction="column" gap="1rem">
+      <DxcInset space="var(--spacing-padding-l)">
+        <DxcFlex direction="column" gap="var(--spacing-padding-m)">
           <DxcHeading level={4} text="Example title" />
           <DxcParagraph>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi egestas luctus porttitor. Donec massa magna,
