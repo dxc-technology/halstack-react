@@ -152,7 +152,7 @@ const Grid = () => (
       </DxcGrid>
     </ExampleContainer>
     <Title title="Overlapping" level={4} />
-    <DxcInset bottom="2rem">
+    <DxcInset bottom="var(--spacing-padding-xl)">
       <ExampleContainer>
         <DxcGrid templateRows={["50px", "50px"]}>
           <ColoredContainer color="yellow" height="100px">

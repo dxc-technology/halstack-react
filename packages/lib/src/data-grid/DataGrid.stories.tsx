@@ -151,7 +151,7 @@ const expandableRows = [
     complete: 46,
     priority: "High",
     issueType: "Bug",
-    expandedContent: <DxcContainer> Custom content 1</DxcContainer>,
+    expandedContent: <DxcContainer>Custom content 1</DxcContainer>,
     expandedContentHeight: 470,
     actions: <DxcDataGrid.ActionsCell actions={actions} />,
   },
@@ -161,7 +161,7 @@ const expandableRows = [
     complete: 51,
     priority: "High",
     issueType: "Epic",
-    expandedContent: <DxcContainer> Custom content 1</DxcContainer>,
+    expandedContent: <DxcContainer>Custom content 1</DxcContainer>,
     actions: <DxcDataGrid.ActionsCell actions={actions} />,
   },
   {
@@ -170,7 +170,7 @@ const expandableRows = [
     complete: 40,
     priority: "High",
     issueType: "Improvement",
-    expandedContent: <DxcContainer> Custom content 1</DxcContainer>,
+    expandedContent: <DxcContainer>Custom content 1</DxcContainer>,
     actions: <DxcDataGrid.ActionsCell actions={actions} />,
   },
   {
@@ -179,7 +179,7 @@ const expandableRows = [
     complete: 10,
     priority: "High",
     issueType: "Improvement",
-    expandedContent: <DxcContainer> Custom content 1</DxcContainer>,
+    expandedContent: <DxcContainer>Custom content 1</DxcContainer>,
     actions: <DxcDataGrid.ActionsCell actions={actions} />,
   },
   {
@@ -188,7 +188,7 @@ const expandableRows = [
     complete: 68,
     priority: "High",
     issueType: "Improvement",
-    expandedContent: <DxcContainer> Custom content 1</DxcContainer>,
+    expandedContent: <DxcContainer>Custom content 1</DxcContainer>,
     actions: <DxcDataGrid.ActionsCell actions={actions} />,
   },
   {
@@ -197,7 +197,7 @@ const expandableRows = [
     complete: 37,
     priority: "High",
     issueType: "Improvement",
-    expandedContent: <DxcContainer> Custom content 1</DxcContainer>,
+    expandedContent: <DxcContainer>Custom content 1</DxcContainer>,
     actions: <DxcDataGrid.ActionsCell actions={actions} />,
   },
   {
@@ -206,7 +206,7 @@ const expandableRows = [
     complete: 73,
     priority: "Medium",
     issueType: "Story",
-    expandedContent: <DxcContainer> Custom content 1</DxcContainer>,
+    expandedContent: <DxcContainer>Custom content 1</DxcContainer>,
     actions: <DxcDataGrid.ActionsCell actions={actions} />,
   },
   {
@@ -215,7 +215,7 @@ const expandableRows = [
     complete: 27,
     priority: "Medium",
     issueType: "Story",
-    expandedContent: <DxcContainer> Custom content 1</DxcContainer>,
+    expandedContent: <DxcContainer>Custom content 1</DxcContainer>,
     actions: <DxcDataGrid.ActionsCell actions={actions} />,
   },
   {
@@ -224,7 +224,7 @@ const expandableRows = [
     complete: 36,
     priority: "Critical",
     issueType: "Epic",
-    expandedContent: <DxcContainer> Custom content 1</DxcContainer>,
+    expandedContent: <DxcContainer>Custom content 1</DxcContainer>,
     actions: <DxcDataGrid.ActionsCell actions={actions} />,
   },
 ];
@@ -236,7 +236,7 @@ const expandableRowsPaginated = [
     complete: 46,
     priority: "High",
     issueType: "Bug",
-    expandedContent: <DxcContainer> Custom content 1</DxcContainer>,
+    expandedContent: <DxcContainer>Custom content 1</DxcContainer>,
     expandedContentHeight: 470,
   },
   {
@@ -245,7 +245,7 @@ const expandableRowsPaginated = [
     complete: 51,
     priority: "High",
     issueType: "Epic",
-    expandedContent: <DxcContainer> Custom content 1</DxcContainer>,
+    expandedContent: <DxcContainer>Custom content 1</DxcContainer>,
   },
   {
     id: 33,
@@ -253,7 +253,7 @@ const expandableRowsPaginated = [
     complete: 40,
     priority: "High",
     issueType: "Improvement",
-    expandedContent: <DxcContainer> Custom content 1</DxcContainer>,
+    expandedContent: <DxcContainer>Custom content 1</DxcContainer>,
   },
   {
     id: 44,
@@ -261,7 +261,7 @@ const expandableRowsPaginated = [
     complete: 10,
     priority: "High",
     issueType: "Improvement",
-    expandedContent: <DxcContainer> Custom content 1</DxcContainer>,
+    expandedContent: <DxcContainer>Custom content 1</DxcContainer>,
   },
   {
     id: 55,
@@ -269,7 +269,7 @@ const expandableRowsPaginated = [
     complete: 68,
     priority: "High",
     issueType: "Improvement",
-    expandedContent: <DxcContainer> Custom content 1</DxcContainer>,
+    expandedContent: <DxcContainer>Custom content 1</DxcContainer>,
   },
   {
     id: 66,
@@ -277,7 +277,7 @@ const expandableRowsPaginated = [
     complete: 37,
     priority: "High",
     issueType: "Improvement",
-    expandedContent: <DxcContainer> Custom content 1</DxcContainer>,
+    expandedContent: <DxcContainer>Custom content 1</DxcContainer>,
   },
   {
     id: 77,
@@ -285,7 +285,7 @@ const expandableRowsPaginated = [
     complete: 73,
     priority: "Medium",
     issueType: "Story",
-    expandedContent: <DxcContainer> Custom content 1</DxcContainer>,
+    expandedContent: <DxcContainer>Custom content 1</DxcContainer>,
   },
   {
     id: 88,
@@ -293,7 +293,7 @@ const expandableRowsPaginated = [
     complete: 27,
     priority: "Medium",
     issueType: "Story",
-    expandedContent: <DxcContainer> Custom content 1</DxcContainer>,
+    expandedContent: <DxcContainer>Custom content 1</DxcContainer>,
   },
   {
     id: 99,
@@ -301,7 +301,7 @@ const expandableRowsPaginated = [
     complete: 36,
     priority: "Critical",
     issueType: "Epic",
-    expandedContent: <DxcContainer> Custom content 1</DxcContainer>,
+    expandedContent: <DxcContainer>Custom content 1</DxcContainer>,
   },
 ];
 

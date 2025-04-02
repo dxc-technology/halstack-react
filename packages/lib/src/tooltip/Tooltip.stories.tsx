@@ -16,7 +16,7 @@ const Tooltip = () => (
   <>
     <Title title="Default tooltip" theme="light" level={4} />
     <ExampleContainer>
-      <DxcInset bottom="3rem">
+      <DxcInset bottom="var(--spacing-padding-xxl)">
         <DxcTooltip label="Tooltip Test">
           <DxcButton label="Hoverable button" />
         </DxcTooltip>
@@ -29,7 +29,7 @@ const LargeTextWithinTooltip = () => (
   <>
     <Title title="Multiple line tooltip" theme="light" level={4} />
     <ExampleContainer>
-      <DxcInset bottom="5rem" left="1rem">
+      <DxcInset bottom="var(--spacing-padding-xxl)" left="var(--spacing-padding-m)">
         <DxcTooltip label="Tooltip Test with a large text to display in the container while hovering the component">
           <DxcButton label="Hoverable button" />
         </DxcTooltip>
@@ -42,7 +42,7 @@ const TopTooltip = () => (
   <>
     <Title title="Top tooltip" theme="light" level={4} />
     <ExampleContainer>
-      <DxcInset top="3rem">
+      <DxcInset top="var(--spacing-padding-xxl)">
         <DxcTooltip label="Tooltip Test" position="top">
           <DxcButton label="Hoverable button" />
         </DxcTooltip>

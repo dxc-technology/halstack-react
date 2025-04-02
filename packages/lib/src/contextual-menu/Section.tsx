@@ -32,7 +32,7 @@ export default function Section({ index, length, section }: SectionProps) {
         ))}
       </SubMenu>
       {index !== length - 1 && (
-        <DxcInset top="0.25rem" bottom="0.25rem">
+        <DxcInset top="var(--spacing-padding-xxs)" bottom="var(--spacing-padding-xxs)">
           <DxcDivider color="lightGrey" />
         </DxcInset>
       )}

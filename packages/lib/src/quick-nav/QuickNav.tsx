@@ -15,18 +15,18 @@ const DxcQuickNav = ({ title, links }: QuickNavTypes): JSX.Element => {
   return (
     <ThemeProvider theme={colorsTheme.quickNav}>
       <QuickNavContainer>
-        <DxcFlex direction="column" gap="0.5rem">
+        <DxcFlex direction="column" gap="var(--spacing-gap-s)">
           <DxcHeading level={4} text={title || translatedLabels.quickNav.contentTitle} />
           <ListColumn>
             {links.map((link) => (
               <li key={link.label}>
-                <DxcInset space="0.25rem">
+                <DxcInset space="var(--spacing-padding-xxs)">
                   <DxcTypography>
                     <Link href={`#${slugify(link.label, { lower: true })}`}>{link.label}</Link>
                     <ListSecondColumn>
                       {link.links?.map((sublink) => (
                         <li key={sublink.label}>
-                          <DxcInset horizontal="0.5rem">
+                          <DxcInset horizontal="var(--spacing-padding-xs)">
                             <DxcTypography>
                               <Link
                                 href={`#${slugify(link?.label, { lower: true })}-${slugify(sublink?.label, {

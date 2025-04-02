@@ -47,7 +47,7 @@ const Accordion = () => (
       <Title title="Label" theme="light" level={4} />
       <DxcAccordion>
         <DxcAccordion.AccordionItem label="Assure Claims">
-          <DxcInset space="1.5rem">
+          <DxcInset space="var(--spacing-padding-l)">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
             leo lobortis eget.
           </DxcInset>
@@ -58,7 +58,7 @@ const Accordion = () => (
       <Title title="Label and sublabel" theme="light" level={4} />
       <DxcAccordion>
         <DxcAccordion.AccordionItem label="Assure Claims" subLabel="Jan, 09 2025">
-          <DxcInset space="1.5rem">
+          <DxcInset space="var(--spacing-padding-l)">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
             leo lobortis eget.
           </DxcInset>
@@ -80,7 +80,7 @@ const Accordion = () => (
       <Title title="Label, subLabel and assistive text" theme="light" level={4} />
       <DxcAccordion>
         <DxcAccordion.AccordionItem label="Assure Claims" subLabel="Jan, 09 2025" assistiveText="Ref - 1236554546">
-          <DxcInset space="1.5rem">
+          <DxcInset space="var(--spacing-padding-l)">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
             leo lobortis eget.
           </DxcInset>
@@ -91,7 +91,7 @@ const Accordion = () => (
       <Title title="Icon and label" theme="light" level={4} />
       <DxcAccordion>
         <DxcAccordion.AccordionItem label="Assure Claims" icon="heart_plus">
-          <DxcInset space="1.5rem">
+          <DxcInset space="var(--spacing-padding-l)">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
             leo lobortis eget.
           </DxcInset>
@@ -102,7 +102,7 @@ const Accordion = () => (
       <Title title="Icon, label and sublabel" theme="light" level={4} />
       <DxcAccordion>
         <DxcAccordion.AccordionItem label="Assure Claims" subLabel="Jan, 09 2025" icon="heart_plus">
-          <DxcInset space="1.5rem">
+          <DxcInset space="var(--spacing-padding-l)">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
             leo lobortis eget.
           </DxcInset>
@@ -118,7 +118,7 @@ const Accordion = () => (
           assistiveText="Ref - 1236554546"
           icon="heart_plus"
         >
-          <DxcInset space="1.5rem">
+          <DxcInset space="var(--spacing-padding-l)">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
             leo lobortis eget.
           </DxcInset>
@@ -134,7 +134,7 @@ const Accordion = () => (
           assistiveText="Ref - 1236554546"
           badge={{ position: "before", element: <DxcBadge label="Enterprise" icon="home" /> }}
         >
-          <DxcInset space="1.5rem">
+          <DxcInset space="var(--spacing-padding-l)">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
             leo lobortis eget.
           </DxcInset>
@@ -149,7 +149,7 @@ const Accordion = () => (
           subLabel="Jan, 09 2025"
           badge={{ position: "after", element: <DxcBadge label="Enterprise" /> }}
         >
-          <DxcInset space="1.5rem">
+          <DxcInset space="var(--spacing-padding-l)">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
             leo lobortis eget.
           </DxcInset>
@@ -165,7 +165,7 @@ const Accordion = () => (
           icon="heart_plus"
           statusLight={<DxcStatusLight label="Active" />}
         >
-          <DxcInset space="1.5rem">
+          <DxcInset space="var(--spacing-padding-l)">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
             leo lobortis eget.
           </DxcInset>
@@ -181,7 +181,7 @@ const Accordion = () => (
           badge={{ position: "before", element: <DxcBadge label="Enterprise" /> }}
           statusLight={<DxcStatusLight label="Active" />}
         >
-          <DxcInset space="1.5rem">
+          <DxcInset space="var(--spacing-padding-l)">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
             leo lobortis eget.
           </DxcInset>
@@ -192,7 +192,7 @@ const Accordion = () => (
       <Title title="Smaller icon" theme="light" level={4} />
       <DxcAccordion>
         <DxcAccordion.AccordionItem label="Assure Claims" assistiveText="Ref - 1236554546" icon={smallIcon}>
-          <DxcInset space="1.5rem">
+          <DxcInset space="var(--spacing-padding-l)">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
             leo lobortis eget.
           </DxcInset>
@@ -203,7 +203,7 @@ const Accordion = () => (
       <Title title="Bigger icon (SVG)" theme="light" level={4} />
       <DxcAccordion>
         <DxcAccordion.AccordionItem label="Assure Claims" assistiveText="Ref - 1236554546" icon={facebookIcon}>
-          <DxcInset space="1.5rem">
+          <DxcInset space="var(--spacing-padding-l)">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
             leo lobortis eget.
           </DxcInset>
@@ -214,19 +214,19 @@ const Accordion = () => (
       <Title title="Group of accordions (independent false)" theme="light" level={4} />
       <DxcAccordion defaultIndexActive={[0, 2]}>
         <DxcAccordion.AccordionItem label="Accordion1" assistiveText="Assistive text">
-          <DxcInset space="2rem">
+          <DxcInset space="var(--spacing-padding-xl)">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
             leo lobortis eget.
           </DxcInset>
         </DxcAccordion.AccordionItem>
         <DxcAccordion.AccordionItem label="Accordion2" assistiveText="Assistive text">
-          <DxcInset space="2rem">
+          <DxcInset space="var(--spacing-padding-xl)">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
             leo lobortis eget.
           </DxcInset>
         </DxcAccordion.AccordionItem>
         <DxcAccordion.AccordionItem label="Accordion3" assistiveText="Assistive text">
-          <DxcInset space="2rem">
+          <DxcInset space="var(--spacing-padding-xl)">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
             leo lobortis eget.
           </DxcInset>
@@ -241,7 +241,7 @@ const Accordion = () => (
           badge={{ position: "before", element: <DxcBadge label="GET" color="green" /> }}
           statusLight={<DxcStatusLight label="Active" mode="success" />}
         >
-          <DxcInset space="1.5rem">
+          <DxcInset space="var(--spacing-padding-l)">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
             leo lobortis eget.
           </DxcInset>
@@ -251,7 +251,7 @@ const Accordion = () => (
           assistiveText="Provide all required info"
           badge={{ position: "before", element: <DxcBadge label="POST" color="blue" /> }}
         >
-          <DxcInset space="1.5rem">
+          <DxcInset space="var(--spacing-padding-l)">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
             leo lobortis eget.
           </DxcInset>
@@ -261,7 +261,7 @@ const Accordion = () => (
           badge={{ position: "before", element: <DxcBadge label="OPTIONS" color="yellow" /> }}
           statusLight={<DxcStatusLight label="Active" mode="warning" />}
         >
-          <DxcInset space="1.5rem">
+          <DxcInset space="var(--spacing-padding-l)">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
             leo lobortis eget.
           </DxcInset>
@@ -272,7 +272,7 @@ const Accordion = () => (
           icon="delete"
           badge={{ position: "before", element: <DxcBadge label="DELETE" /> }}
         >
-          <DxcInset space="1.5rem">
+          <DxcInset space="var(--spacing-padding-l)">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
             leo lobortis eget.
           </DxcInset>
@@ -293,7 +293,7 @@ const Accordion = () => (
             ),
           }}
         >
-          <DxcInset space="1.5rem">
+          <DxcInset space="var(--spacing-padding-l)">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
             leo lobortis eget.
           </DxcInset>
@@ -308,7 +308,7 @@ const Accordion = () => (
           subLabel="Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025 Jan, 09 2025"
           icon="heart_plus"
         >
-          <DxcInset space="1.5rem">
+          <DxcInset space="var(--spacing-padding-l)">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
             leo lobortis eget.
           </DxcInset>
@@ -324,7 +324,7 @@ const Accordion = () => (
           assistiveText="Assistive text Assistive text"
           icon="heart_plus"
         >
-          <DxcInset space="1.5rem">
+          <DxcInset space="var(--spacing-padding-l)">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
             leo lobortis eget.
           </DxcInset>
@@ -340,7 +340,7 @@ const Accordion = () => (
           assistiveText="Assistive text Assistive text Assistive text Assistive text Assistive text Assistive text Assistive text Assistive text Assistive text Assistive text Assistive text Assistive text Assistive text Assistive text"
           icon="heart_plus"
         >
-          <DxcInset space="1.5rem">
+          <DxcInset space="var(--spacing-padding-l)">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
             leo lobortis eget.
           </DxcInset>
@@ -352,7 +352,7 @@ const Accordion = () => (
       <Title title="Focused" theme="light" level={4} />
       <DxcAccordion>
         <DxcAccordion.AccordionItem label="Assure Claims" subLabel="Jan, 09 2025" assistiveText="Ref - 1236554546">
-          <DxcInset space="1.5rem">
+          <DxcInset space="var(--spacing-padding-l)">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
             leo lobortis eget.
           </DxcInset>
@@ -363,7 +363,7 @@ const Accordion = () => (
       <Title title="Hovered" theme="light" level={4} />
       <DxcAccordion>
         <DxcAccordion.AccordionItem label="Assure Claims" subLabel="Jan, 09 2025" assistiveText="Ref - 1236554546">
-          <DxcInset space="1.5rem">
+          <DxcInset space="var(--spacing-padding-l)">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
             leo lobortis eget.
           </DxcInset>
@@ -374,7 +374,7 @@ const Accordion = () => (
       <Title title="Active" theme="light" level={4} />
       <DxcAccordion>
         <DxcAccordion.AccordionItem label="Assure Claims" subLabel="Jan, 09 2025" assistiveText="Ref - 1236554546">
-          <DxcInset space="1.5rem">
+          <DxcInset space="var(--spacing-padding-l)">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
             leo lobortis eget.
           </DxcInset>
@@ -391,7 +391,7 @@ const Accordion = () => (
           icon="heart_plus"
           disabled
         >
-          <DxcInset space="1.5rem">
+          <DxcInset space="var(--spacing-padding-l)">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
             leo lobortis eget.
           </DxcInset>
@@ -405,7 +405,7 @@ const Accordion = () => (
           badge={{ position: "before", element: <DxcBadge label="Enterprise" color="green" /> }}
           statusLight={<DxcStatusLight label="Active" mode="success" />}
         >
-          <DxcInset space="1.5rem">
+          <DxcInset space="var(--spacing-padding-l)">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
             leo lobortis eget.
           </DxcInset>
@@ -419,7 +419,7 @@ const Accordion = () => (
           disabled
           badge={{ position: "after", element: <DxcBadge label="Enterprise" color="green" /> }}
         >
-          <DxcInset space="1.5rem">
+          <DxcInset space="var(--spacing-padding-l)">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
             leo lobortis eget.
           </DxcInset>
@@ -434,7 +434,7 @@ const Accordion = () => (
           badge={{ position: "before", element: <DxcBadge label="GET" color="green" /> }}
           statusLight={<DxcStatusLight label="Active" mode="success" />}
         >
-          <DxcInset space="1.5rem">
+          <DxcInset space="var(--spacing-padding-l)">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
             leo lobortis eget.
           </DxcInset>
@@ -444,7 +444,7 @@ const Accordion = () => (
           assistiveText="Provide all required info"
           badge={{ position: "before", element: <DxcBadge label="POST" color="blue" /> }}
         >
-          <DxcInset space="1.5rem">
+          <DxcInset space="var(--spacing-padding-l)">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
             leo lobortis eget.
           </DxcInset>
@@ -454,7 +454,7 @@ const Accordion = () => (
           badge={{ position: "before", element: <DxcBadge label="OPTIONS" color="yellow" /> }}
           statusLight={<DxcStatusLight label="Active" mode="warning" />}
         >
-          <DxcInset space="1.5rem">
+          <DxcInset space="var(--spacing-padding-l)">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
             leo lobortis eget.
           </DxcInset>
@@ -465,7 +465,7 @@ const Accordion = () => (
           icon="delete"
           badge={{ position: "before", element: <DxcBadge label="DELETE" /> }}
         >
-          <DxcInset space="1.5rem">
+          <DxcInset space="var(--spacing-padding-l)">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
             leo lobortis eget.
           </DxcInset>
@@ -477,7 +477,7 @@ const Accordion = () => (
       <Title title="Xxsmall margin" theme="light" level={4} />
       <DxcAccordion margin="xxsmall">
         <DxcAccordion.AccordionItem label="Assure Claims">
-          <DxcInset space="1.5rem">
+          <DxcInset space="var(--spacing-padding-l)">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
             leo lobortis eget.
           </DxcInset>
@@ -488,7 +488,7 @@ const Accordion = () => (
       <Title title="Xsmall margin" theme="light" level={4} />
       <DxcAccordion margin="xsmall">
         <DxcAccordion.AccordionItem label="Assure Claims">
-          <DxcInset space="1.5rem">
+          <DxcInset space="var(--spacing-padding-l)">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
             leo lobortis eget.
           </DxcInset>
@@ -499,7 +499,7 @@ const Accordion = () => (
       <Title title="Small margin" theme="light" level={4} />
       <DxcAccordion margin="small">
         <DxcAccordion.AccordionItem label="Assure Claims">
-          <DxcInset space="1.5rem">
+          <DxcInset space="var(--spacing-padding-l)">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
             leo lobortis eget.
           </DxcInset>
@@ -510,7 +510,7 @@ const Accordion = () => (
       <Title title="Medium margin" theme="light" level={4} />
       <DxcAccordion margin="medium">
         <DxcAccordion.AccordionItem label="Assure Claims">
-          <DxcInset space="1.5rem">
+          <DxcInset space="var(--spacing-padding-l)">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
             leo lobortis eget.
           </DxcInset>
@@ -521,7 +521,7 @@ const Accordion = () => (
       <Title title="Large margin" theme="light" level={4} />
       <DxcAccordion margin="large">
         <DxcAccordion.AccordionItem label="Assure Claims">
-          <DxcInset space="1.5rem">
+          <DxcInset space="var(--spacing-padding-l)">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
             leo lobortis eget.
           </DxcInset>
@@ -532,7 +532,7 @@ const Accordion = () => (
       <Title title="Xlarge margin" theme="light" level={4} />
       <DxcAccordion margin="xlarge">
         <DxcAccordion.AccordionItem label="Assure Claims">
-          <DxcInset space="1.5rem">
+          <DxcInset space="var(--spacing-padding-l)">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
             leo lobortis eget.
           </DxcInset>
@@ -543,7 +543,7 @@ const Accordion = () => (
       <Title title="Xxlarge margin" theme="light" level={4} />
       <DxcAccordion margin="xxlarge">
         <DxcAccordion.AccordionItem label="Assure Claims">
-          <DxcInset space="1.5rem">
+          <DxcInset space="var(--spacing-padding-l)">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
             leo lobortis eget.
           </DxcInset>
