@@ -32,7 +32,6 @@ const ColoredContainer = styled.div<{ color?: string; width?: string; height?: s
   font-size: 1.5rem;
   font-weight: bold;
   color: #a46ede;
-
   ${({ width }) => width && `width: ${width}`};
   ${({ height }) => height && `height: ${height}`};
 `;
@@ -101,7 +100,7 @@ const Grid = () => (
         templateColumns={["repeat(4, 1fr)"]}
         templateRows={["40px", "200px", "60px"]}
         templateAreas={["header header header header", "sidenav main main main", "sidenav footer footer footer"]}
-        gap={{ rowGap: "0.5rem", columnGap: "1rem" }}
+        gap={{ rowGap: "var(--spacing-gap-s)", columnGap: "var(--spacing-gap-ml)" }}
       >
         <DxcGrid.Item areaName="header" as="header">
           <ColoredContainer height="100%" />
@@ -119,7 +118,7 @@ const Grid = () => (
     </ExampleContainer>
     <Title title="Template rows and columns with flexible sizes" level={4} />
     <ExampleContainer>
-      <DxcGrid templateColumns={["1fr", "1fr", "1fr"]} templateRows={["1fr", "3fr", "1fr"]} gap="0.5rem">
+      <DxcGrid templateColumns={["1fr", "1fr", "1fr"]} templateRows={["1fr", "3fr", "1fr"]} gap="var(--spacing-gap-s)">
         <DxcGrid.Item column={{ start: 1, end: -1 }}>
           <ColoredContainer color="yellow" height="100%">
             Header
@@ -134,7 +133,7 @@ const Grid = () => (
           column={{ start: 2, end: -1 }}
           templateRows={["repeat(4, 1fr)"]}
           templateColumns={["repeat(2, 1fr)"]}
-          gap="1rem"
+          gap="var(--spacing-gap-ml)"
         >
           <ColoredContainer />
           <ColoredContainer />
