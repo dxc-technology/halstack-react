@@ -197,26 +197,30 @@ const DxcDataGrid = ({
   const sortedRows = useMemo((): readonly GridRow[] | HierarchyGridRow[] | ExpandableGridRow[] => {
     const sortFunctions = getCustomSortFn(columns);
     if (!onSort) {
-      if (expandable && sortColumns.length > 0) {
-        const innerSortedRows = sortRows(
-          rowsToRender.filter((row) => !row.isExpandedChildContent),
-          sortColumns,
-          sortFunctions
-        );
-        rowsToRender
-          .filter((row) => row.isExpandedChildContent)
-          .map((expandedRow) =>
-            addRow(
-              innerSortedRows,
-              innerSortedRows.findIndex((trigger) => rowKeyGetter(trigger, uniqueRowId) === expandedRow.triggerRowKey) +
-                1,
-              expandedRow
-            )
+      if (sortColumns.length > 0 && uniqueRowId) {
+        if (expandable) {
+          const innerSortedRows = sortRows(
+            rowsToRender.filter((row) => !row.isExpandedChildContent),
+            sortColumns,
+            sortFunctions
           );
-        return innerSortedRows;
-      }
-      if (!expandable && sortColumns.length > 0 && uniqueRowId) {
-        return sortHierarchyRows(rowsToRender, sortColumns, sortFunctions, uniqueRowId);
+          if (innerSortedRows.some((row) => uniqueRowId in row)) {
+            rowsToRender
+              .filter((row) => row.isExpandedChildContent)
+              .map((expandedRow) =>
+                addRow(
+                  innerSortedRows,
+                  innerSortedRows.findIndex(
+                    (trigger) => rowKeyGetter(trigger, uniqueRowId) === expandedRow.triggerRowKey
+                  ) + 1,
+                  expandedRow
+                )
+              );
+            return innerSortedRows;
+          }
+        } else {
+          return sortHierarchyRows(rowsToRender, sortColumns, sortFunctions, uniqueRowId);
+        }
       }
     }
     return rowsToRender;
@@ -239,7 +243,7 @@ const DxcDataGrid = ({
 
   return (
     <ThemeProvider theme={colorsTheme.dataGrid}>
-      <DataGridContainer>
+      <DataGridContainer paginatorRendered={showPaginator && (totalItems ?? rows.length) > itemsPerPage}>
         <DataGrid
           columns={reorderedColumns}
           rows={filteredRows}
@@ -260,7 +264,7 @@ const DxcDataGrid = ({
           summaryRowHeight={colorsTheme.dataGrid.summaryRowHeight}
           className="fill-grid"
         />
-        {showPaginator && (
+        {showPaginator && (totalItems ?? rows.length) > itemsPerPage && (
           <DxcPaginator
             totalItems={totalItems ?? rows.length}
             itemsPerPage={itemsPerPage}
@@ -307,9 +311,11 @@ const HierarchyContainer = styled.div<{
   }
 `;
 
-const DataGridContainer = styled.div`
+const DataGridContainer = styled.div<{
+  paginatorRendered: boolean;
+}>`
   width: 100%;
-  height: 100%;
+  height: ${(props) => (props.paginatorRendered ? `calc(100% - 50px)` : `100%`)};
   .rdg {
     border-radius: 4px;
     height: 100%;

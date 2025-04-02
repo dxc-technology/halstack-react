@@ -17,9 +17,10 @@ const AccordionPageHeading = ({ children }: { children: ReactNode }) => {
         <DxcFlex direction="column" gap="2rem">
           <ComponentHeading name="Accordion" />
           <DxcParagraph>
-            Accordions are used to group similar content and hide or show it depending on user needs or preferences.
-            Accordions give users more granular control over the interface and help digest content in stages, rather
-            than all at once.
+            The accordion component is a vertical stack of interactive headers used to group related content into
+            collapsible sections, allowing users to expand or hide content based on their needs or preferences. It
+            enhances the user experience by organizing information into smaller, digestible chunks, helping reduce
+            cognitive load and save screen space.
           </DxcParagraph>
           <TabsPageHeading tabs={tabs}></TabsPageHeading>
         </DxcFlex>

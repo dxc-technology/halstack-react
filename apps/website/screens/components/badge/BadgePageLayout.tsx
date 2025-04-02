@@ -6,9 +6,8 @@ import { ReactNode } from "react";
 
 const BadgePageHeading = ({ children }: { children: ReactNode }) => {
   const tabs = [
-    { label: "Code", path: "/components/badge" },
-    { label: "Usage", path: "/components/badge/usage" },
-    { label: "Specifications", path: "/components/badge/specifications" },
+    { label: "Overview", path: "/components/badge" },
+    { label: "Code", path: "/components/badge/code" },
   ];
 
   return (
@@ -21,7 +20,7 @@ const BadgePageHeading = ({ children }: { children: ReactNode }) => {
             It offers a quick overview of a category or status and is frequently used to display numerical or status
             data.
           </DxcParagraph>
-          <TabsPageHeading tabs={tabs}></TabsPageHeading>
+          <TabsPageHeading tabs={tabs} />
         </DxcFlex>
       </PageHeading>
       {children}

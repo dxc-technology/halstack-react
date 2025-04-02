@@ -8,6 +8,7 @@ import controlled from "./examples/controlled";
 import uncontrolled from "./examples/uncontrolled";
 import errorUsage from "./examples/errorHandling";
 import TableCode from "@/common/TableCode";
+import StatusBadge from "@/common/StatusBadge";
 
 const sections = [
   {
@@ -266,7 +267,27 @@ const sections = [
               Specifies a string to be used as the name for the number input element when no <Code>label</Code> is
               provided.
             </td>
-            <td>'Number input'</td>
+            <td>
+              <TableCode>'Number input'</TableCode>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                <StatusBadge status="new" />
+                showControls
+              </DxcFlex>
+            </td>
+            <td>
+              <TableCode>boolean</TableCode>
+            </td>
+            <td>
+              Decides whether the number input has actions to increase or decrease the value, following the defined
+              step.
+            </td>
+            <td>
+              <TableCode>true</TableCode>
+            </td>
           </tr>
         </tbody>
       </DxcTable>

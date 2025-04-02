@@ -29,9 +29,9 @@ const getSubSectionsLinks = (sections: SectionType[]) => {
   return linksList;
 };
 
-const DxcQuickNavContainer = ({ title, sections, startHeadingLevel = 1 }: QuickNavContainerTypes): JSX.Element => (
+const DxcQuickNavContainer = ({ title = "On this page", sections, startHeadingLevel = 1 }: QuickNavContainerTypes): JSX.Element => (
   <MainContainer>
-    <DxcGrid gap="3rem" templateColumns={["minmax(0, 1fr)"]}>
+    <DxcGrid gap="var(--spacing-gap-xl)" templateColumns={["minmax(0, 1fr)"]}>
       {sections.map((section) => (
         <Section
           key={`section-${section.title}`}
