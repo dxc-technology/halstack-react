@@ -153,6 +153,7 @@ const expandableRows = [
     issueType: "Bug",
     expandedContent: <DxcContainer> Custom content 1</DxcContainer>,
     expandedContentHeight: 470,
+    contentIsExpanded: true,
     actions: <DxcDataGrid.ActionsCell actions={actions} />,
   },
   {
@@ -662,9 +663,9 @@ const DataGrid = () => {
     <>
       <ExampleContainer>
         <Title title="Default" theme="light" level={4} />
-        <DxcDataGrid columns={columns} rows={expandableRows} uniqueRowId="id" />
+        <DxcDataGrid columns={columns} rows={expandableRows} uniqueRowId="id" expandable />
       </ExampleContainer>
-      <ExampleContainer>
+      {/* <ExampleContainer>
         <Title title="Expandable" theme="light" level={4} />
         <DxcDataGrid columns={columns} rows={expandableRows} uniqueRowId="id" expandable />
       </ExampleContainer>
@@ -782,7 +783,7 @@ const DataGrid = () => {
           }}
           totalItems={expandableRows.length}
         />
-      </ExampleContainer>
+      </ExampleContainer> */}
     </>
   );
 };
