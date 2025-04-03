@@ -24,8 +24,8 @@ const sections = [
     content: (
       <DxcBulletedList>
         <DxcBulletedList.Item>
-          <strong>Enhance visual flow:</strong> use the bleed component to create smooth transitions between sections, removing
-          unwanted spacing restrictions.
+          <strong>Enhance visual flow:</strong> use the bleed component to create smooth transitions between sections,
+          removing unwanted spacing restrictions.
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>
           <strong>Maintain balance and aesthetics:</strong> choose appropriate spacing values to ensure a
