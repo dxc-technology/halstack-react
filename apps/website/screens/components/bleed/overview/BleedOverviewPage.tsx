@@ -3,7 +3,6 @@ import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import DocFooter from "@/common/DocFooter";
 import Link from "next/link";
-import Code from "@/common/Code";
 
 const sections = [
   {
@@ -11,7 +10,7 @@ const sections = [
     content: (
       <>
         <DxcParagraph>
-          The Bleed component is a container that applies negative margins around its content, allowing elements to
+          The bleed component is a container that applies negative margins around its content, allowing elements to
           extend beyond their usual boundaries. This can be useful for aligning content seamlessly and creating dynamic,
           edge-to-edge layouts. It provides customizable spacing options, offering greater design flexibility while
           maintaining visual coherence.
