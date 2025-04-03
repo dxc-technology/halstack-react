@@ -100,7 +100,6 @@ const AccordionLabel = styled.span<{ disabled: AccordionItemProps["disabled"] }>
 `;
 
 const SubLabel = styled.span<{ disabled: AccordionItemProps["disabled"] }>`
-  height: 22px;
   color: ${(props) => (props.disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-stronger)")};
   font-family: var(--typography-font-family);
   font-size: var(--typography-helper-text-s);
