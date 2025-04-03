@@ -8,7 +8,7 @@ const Label = styled.label<{
   font-family: var(--typography-font-family);
   font-size: var(--typography-label-m);
   font-weight: var(--typography-label-semibold);
-  ${({ hasMargin = false }) => hasMargin && "margin-bottom: var(--spacing-gap-xs);"}
+  ${({ hasMargin = false }) => hasMargin && "margin-bottom: var(--spacing-padding-xxs);"}
 
   /* Optional text */
   > span {

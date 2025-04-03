@@ -5,7 +5,7 @@ const HelperText = styled.span<{ disabled: boolean, hasMargin?: boolean }>`
   font-family: var(--typography-font-family);
   font-size: var(--typography-helper-text-s);
   font-weight: var(--typography-helper-text-regular);
-  ${({ hasMargin = false }) => hasMargin && "margin-bottom: var(--spacing-gap-xs);"}
+  ${({ hasMargin = false }) => hasMargin && "margin-bottom: var(--spacing-padding-xxs);"}
 `;
 
 export default HelperText;
