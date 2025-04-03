@@ -1,35 +1,34 @@
 import { ReactNode } from "react";
-import { CoreSpacingTokensType } from "../common/coreTokens";
 
 type Props = {
   /**
    * Applies the spacing scale to all sides.
    */
-  space?: CoreSpacingTokensType;
+  space?: string;
   /**
    * Applies the spacing scale to the left and right sides.
    */
-  horizontal?: CoreSpacingTokensType;
+  horizontal?: string;
   /**
    * Applies the spacing scale to the top and bottom sides.
    */
-  vertical?: CoreSpacingTokensType;
+  vertical?: string;
   /**
    * Applies the spacing scale to the top side.
    */
-  top?: CoreSpacingTokensType;
+  top?: string;
   /**
    * Applies the spacing scale to the right side.
    */
-  right?: CoreSpacingTokensType;
+  right?: string;
   /**
    * Applies the spacing scale to the bottom side.
    */
-  bottom?: CoreSpacingTokensType;
+  bottom?: string;
   /**
    * Applies the spacing scale to the left side.
    */
-  left?: CoreSpacingTokensType;
+  left?: string;
   /**
    * Custom content inside the bleed.
    */
