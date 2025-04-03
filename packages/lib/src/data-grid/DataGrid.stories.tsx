@@ -665,7 +665,7 @@ const DataGrid = () => {
         <Title title="Default" theme="light" level={4} />
         <DxcDataGrid columns={columns} rows={expandableRows} uniqueRowId="id" expandable />
       </ExampleContainer>
-      {/* <ExampleContainer>
+      <ExampleContainer>
         <Title title="Expandable" theme="light" level={4} />
         <DxcDataGrid columns={columns} rows={expandableRows} uniqueRowId="id" expandable />
       </ExampleContainer>
@@ -783,7 +783,7 @@ const DataGrid = () => {
           }}
           totalItems={expandableRows.length}
         />
-      </ExampleContainer> */}
+      </ExampleContainer>
     </>
   );
 };
