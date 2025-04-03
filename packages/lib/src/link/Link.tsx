@@ -23,11 +23,11 @@ const StyledLink = styled.a<{
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
   background: none;
   border: none;
-  border-radius: 4px;
+  border-radius: var(--spacing-gap-xs);
   width: fit-content;
-  font-family: var(--font-family-sans);
-  font-size: var(--font-size-14);
-  font-weight: var(--font-weight-regular);
+  font-family: var(--typography-font-family);
+  font-size: var(--typography-link-m);
+  font-weight: var(--typography-link-regular);
   text-decoration: none;
   color: ${(props) =>
     props.inheritColor
@@ -39,10 +39,7 @@ const StyledLink = styled.a<{
   ${(props) => (props.disabled ? "pointer-events: none;" : "")}
 
   &:visited {
-    color: ${(props) => (!props.inheritColor && !props.disabled ? "var(--color-fg-neutral-medium)" : "")};
-    & > span:hover {
-      ${(props) => `color: ${props.theme.visitedFontColor};`}
-    }
+    color: ${(props) => (!props.inheritColor && !props.disabled ? "var(--color-fg-primary-strong)" : "")};
   }
   &:focus {
     outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
@@ -55,7 +52,6 @@ const LinkContainer = styled.span<{
   iconPosition: LinkProps["iconPosition"];
   inheritColor: LinkProps["inheritColor"];
 }>`
-  border-bottom: transparent;
   display: inline-flex;
   align-items: center;
   ${(props) => (props.iconPosition === "before" ? "flex-direction: row-reverse;" : "")}
