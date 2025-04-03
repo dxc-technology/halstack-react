@@ -23,6 +23,149 @@ import DxcPaginator from "../paginator/Paginator";
 import { DxcActionsCell } from "../table/Table";
 import HalstackContext from "../HalstackContext";
 
+const ActionContainer = styled.div`
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  width: 100%;
+`;
+
+const HierarchyContainer = styled.div<{
+  level: number;
+}>`
+  padding-left: ${(props) => `calc(${props.theme.dataPaddingLeft} * ${props.level})`};
+  button {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0px;
+    border: 0px;
+    width: 100%;
+    height: ${(props) => props.theme.dataRowHeight}px;
+    background: transparent;
+    text-align: left;
+    font-size: ${(props) => props.theme.dataFontSize};
+    font-family: inherit;
+    color: inherit;
+    cursor: pointer;
+  }
+`;
+
+const DataGridContainer = styled.div<{
+  paginatorRendered: boolean;
+}>`
+  width: 100%;
+  height: ${(props) => (props.paginatorRendered ? `calc(100% - 50px)` : `100%`)};
+  .rdg {
+    border-radius: 4px;
+    height: 100%;
+    border: 0px;
+    &::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: ${(props) => props.theme.scrollBarThumbColor};
+      border-radius: 6px;
+    }
+    &::-webkit-scrollbar-track {
+      background-color: ${(props) => props.theme.scrollBarTrackColor};
+      border-radius: 6px;
+    }
+  }
+  .rdg-cell:has(> #action) {
+    padding: 0px;
+  }
+  .rdg-cell {
+    display: grid;
+    align-items: center;
+    width: 100%;
+    padding: 0px ${(props) => props.theme.dataPaddingRight} 0 ${(props) => props.theme.dataPaddingLeft};
+    font-family: ${(props) => props.theme.dataFontFamily};
+    font-size: ${(props) => props.theme.dataFontSize};
+    font-style: ${(props) => props.theme.dataFontStyle};
+    font-weight: ${(props) => props.theme.dataFontWeight};
+    color: ${(props) => props.theme.dataFontColor};
+    text-transform: ${(props) => props.theme.dataFontTextTransform};
+    line-height: ${(props) => props.theme.dataTextLineHeight};
+    border-bottom: ${(props) =>
+      `${props.theme.rowSeparatorThickness} ${props.theme.rowSeparatorStyle} ${props.theme.rowSeparatorColor}`};
+    border-right: ${(props) =>
+      `${props.theme.rowSeparatorThickness} ${props.theme.rowSeparatorStyle} ${props.theme.rowSeparatorColor}`};
+    background-color: ${(props) => props.theme.dataBackgroundColor};
+    outline-color: ${(props) => props.theme.focusColor} !important;
+    .rdg-text-editor:focus {
+      border-color: transparent;
+    }
+  }
+  .rdg-header-row {
+    border-top-left-radius: ${(props) => props.theme.headerBorderRadius};
+    border-top-right-radius: ${(props) => props.theme.headerBorderRadius};
+    .rdg-cell {
+      font-family: ${(props) => props.theme.headerFontFamily};
+      font-size: ${(props) => props.theme.headerFontSize};
+      font-style: ${(props) => props.theme.headerFontStyle};
+      font-weight: ${(props) => props.theme.headerFontWeight};
+      color: ${(props) => props.theme.headerFontColor};
+      text-transform: ${(props) => props.theme.headerFontTextTransform};
+      padding: 0px ${(props) => props.theme.headerPaddingRight} 0 ${(props) => props.theme.headerPaddingLeft};
+      line-height: ${(props) => props.theme.headerTextLineHeight};
+      background-color: ${(props) => props.theme.headerBackgroundColor};
+      .sortIconContainer {
+        margin-left: 0.5rem;
+        display: flex;
+        height: 100%;
+        align-items: center;
+      }
+    }
+  }
+  .rdg-row {
+    .rdg-cell:last-child {
+      border-right: 0px;
+    }
+  }
+  .rdg-summary-row {
+    background-color: #fafafa;
+    .rdg-cell {
+      border: 0px;
+      font-weight: 600;
+    }
+  }
+  .ellipsis-cell {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+  .align-left {
+    text-align: left;
+    justify-content: flex-start;
+  }
+  .align-center {
+    text-align: center;
+    justify-content: center;
+  }
+  .align-right {
+    text-align: right;
+    justify-content: flex-end;
+  }
+  .header-align-left {
+    text-align: left;
+  }
+  .header-align-center {
+    text-align: center;
+  }
+  .header-align-right {
+    text-align: right;
+  }
+`;
+
 const DxcDataGrid = ({
   columns,
   rows,
@@ -156,7 +299,24 @@ const DxcDataGrid = ({
   }, [columnsToRender.length]);
 
   useEffect(() => {
-    setRowsToRender(rows);
+    const finalRows = [...rows];
+    if (expandable) {
+      rows.forEach((row, index) => {
+        if (
+          row.contentIsExpanded &&
+          !rows.some((row) => row[uniqueRowId] === `${rowKeyGetter(row, uniqueRowId)}_expanded`)
+        ) {
+          addRow(finalRows, index + 1, {
+            isExpandedChildContent: row.contentIsExpanded,
+            [uniqueRowId]: `${rowKeyGetter(row, uniqueRowId)}_expanded`,
+            expandedChildContent: row.expandedContent,
+            triggerRowKey: rowKeyGetter(row, uniqueRowId),
+            expandedContentHeight: row.expandedContentHeight,
+          });
+        }
+      });
+    }
+    setRowsToRender(finalRows);
   }, [rows]);
 
   const reorderedColumns = useMemo(
@@ -243,7 +403,7 @@ const DxcDataGrid = ({
 
   return (
     <ThemeProvider theme={colorsTheme.dataGrid}>
-      <DataGridContainer>
+      <DataGridContainer paginatorRendered={showPaginator && (totalItems ?? rows.length) > itemsPerPage}>
         <DataGrid
           columns={reorderedColumns}
           rows={filteredRows}
@@ -264,7 +424,7 @@ const DxcDataGrid = ({
           summaryRowHeight={colorsTheme.dataGrid.summaryRowHeight}
           className="fill-grid"
         />
-        {showPaginator && (
+        {showPaginator && (totalItems ?? rows.length) > itemsPerPage && (
           <DxcPaginator
             totalItems={totalItems ?? rows.length}
             itemsPerPage={itemsPerPage}
@@ -279,147 +439,6 @@ const DxcDataGrid = ({
     </ThemeProvider>
   );
 };
-
-const ActionContainer = styled.div`
-  display: flex;
-  height: 100%;
-  align-items: center;
-  justify-content: center;
-  font-size: 14px;
-  width: 100%;
-`;
-
-const HierarchyContainer = styled.div<{
-  level: number;
-}>`
-  padding-left: ${(props) => `calc(${props.theme.dataPaddingLeft} * ${props.level})`};
-  button {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0px;
-    border: 0px;
-    width: 100%;
-    height: ${(props) => props.theme.dataRowHeight}px;
-    background: transparent;
-    text-align: left;
-    font-size: ${(props) => props.theme.dataFontSize};
-    font-family: inherit;
-    color: inherit;
-    cursor: pointer;
-  }
-`;
-
-const DataGridContainer = styled.div`
-  width: 100%;
-  height: 100%;
-  .rdg {
-    border-radius: 4px;
-    height: 100%;
-    border: 0px;
-    &::-webkit-scrollbar {
-      width: 8px;
-      height: 8px;
-    }
-    &::-webkit-scrollbar-thumb {
-      background-color: ${(props) => props.theme.scrollBarThumbColor};
-      border-radius: 6px;
-    }
-    &::-webkit-scrollbar-track {
-      background-color: ${(props) => props.theme.scrollBarTrackColor};
-      border-radius: 6px;
-    }
-  }
-  .rdg-cell:has(> #action) {
-    padding: 0px;
-  }
-  .rdg-cell {
-    display: grid;
-    align-items: center;
-    width: 100%;
-    padding: 0px ${(props) => props.theme.dataPaddingRight} 0 ${(props) => props.theme.dataPaddingLeft};
-    font-family: ${(props) => props.theme.dataFontFamily};
-    font-size: ${(props) => props.theme.dataFontSize};
-    font-style: ${(props) => props.theme.dataFontStyle};
-    font-weight: ${(props) => props.theme.dataFontWeight};
-    color: ${(props) => props.theme.dataFontColor};
-    text-transform: ${(props) => props.theme.dataFontTextTransform};
-    line-height: ${(props) => props.theme.dataTextLineHeight};
-    border-bottom: ${(props) =>
-      `${props.theme.rowSeparatorThickness} ${props.theme.rowSeparatorStyle} ${props.theme.rowSeparatorColor}`};
-    border-right: ${(props) =>
-      `${props.theme.rowSeparatorThickness} ${props.theme.rowSeparatorStyle} ${props.theme.rowSeparatorColor}`};
-    background-color: ${(props) => props.theme.dataBackgroundColor};
-    outline-color: ${(props) => props.theme.focusColor} !important;
-    .rdg-text-editor:focus {
-      border-color: transparent;
-    }
-  }
-  .rdg-header-row {
-    border-top-left-radius: ${(props) => props.theme.headerBorderRadius};
-    border-top-right-radius: ${(props) => props.theme.headerBorderRadius};
-    .rdg-cell {
-      font-family: ${(props) => props.theme.headerFontFamily};
-      font-size: ${(props) => props.theme.headerFontSize};
-      font-style: ${(props) => props.theme.headerFontStyle};
-      font-weight: ${(props) => props.theme.headerFontWeight};
-      color: ${(props) => props.theme.headerFontColor};
-      text-transform: ${(props) => props.theme.headerFontTextTransform};
-      padding: 0px ${(props) => props.theme.headerPaddingRight} 0 ${(props) => props.theme.headerPaddingLeft};
-      line-height: ${(props) => props.theme.headerTextLineHeight};
-      background-color: ${(props) => props.theme.headerBackgroundColor};
-      .sortIconContainer {
-        margin-left: 0.5rem;
-        display: flex;
-        height: 100%;
-        align-items: center;
-      }
-    }
-  }
-  .rdg-row {
-    .rdg-cell:last-child {
-      border-right: 0px;
-    }
-  }
-  .rdg-summary-row {
-    background-color: #fafafa;
-    .rdg-cell {
-      border: 0px;
-      font-weight: 600;
-    }
-  }
-  .ellipsis-cell {
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-  }
-  .align-left {
-    text-align: left;
-    justify-content: flex-start;
-  }
-  .align-center {
-    text-align: center;
-    justify-content: center;
-  }
-  .align-right {
-    text-align: right;
-    justify-content: flex-end;
-  }
-  .header-align-left {
-    text-align: left;
-  }
-  .header-align-center {
-    text-align: center;
-  }
-  .header-align-right {
-    text-align: right;
-  }
-`;
 
 DxcDataGrid.ActionsCell = DxcActionsCell;
 
