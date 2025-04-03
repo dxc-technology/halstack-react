@@ -1,7 +1,7 @@
 import BleedPropsType from "./types";
 import DxcContainer from "../container/Container";
 
-const getNegativeValue = (value?: string) => (value ? `-${value}` : null);
+const getNegativeValue = (value?: string) => (value ? `calc(${value} * -1)` : null);
 
 export default function DxcBleed({ space, horizontal, vertical, top, right, bottom, left, children }: BleedPropsType) {
   return (
