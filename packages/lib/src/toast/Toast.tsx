@@ -109,7 +109,7 @@ const DxcToast = ({
         <ToastIcon hideSemanticIcon={hideSemanticIcon} icon={icon} loading={loading} semantic={semantic} />
         <Message>{message}</Message>
       </ContentContainer>
-      <DxcFlex alignItems="center" gap="var(--spacing-gap-s)">
+      <DxcFlex alignItems="center" gap="var(--spacing-gap-xs)">
         {action && (
           <DxcButton
             icon={action.icon}
