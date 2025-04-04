@@ -1,8 +1,5 @@
 import { DxcToggleGroup } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
-import facebookIcon from "../../images/FacebookIcon";
-import linkedinIcon from "../../images/LinkedinIcon";
-import xIcon from "../../images/XIcon";
 import PreviewContainer from "./PreviewContainer";
 
 const options = [
@@ -20,21 +17,37 @@ const options = [
   },
 ];
 
-const optionsWithIcons = [
+const disabledOptions = [
   {
     value: 1,
-    label: "Facebook",
-    icon: facebookIcon,
+    label: "Wi-fi",
   },
   {
     value: 2,
-    label: "Linkedin",
-    icon: linkedinIcon,
+    label: "Ethernet",
+    disabled: true,
   },
   {
     value: 3,
-    label: "X",
-    icon: xIcon,
+    label: "5G",
+  },
+];
+
+const optionsWithIcons = [
+  {
+    value: 1,
+    icon: "format_bold",
+    title: "Bold",
+  },
+  {
+    value: 2,
+    icon: "format_italic",
+    title: "Italic",
+  },
+  {
+    value: 3,
+    icon: "format_underlined",
+    title: "Underlined",
   },
 ];
 
@@ -43,11 +56,11 @@ const ToggleGroup = () => (
     <Mode text="Default">
       <DxcToggleGroup options={options} />
     </Mode>
-    <Mode text="Disabled">
-      <DxcToggleGroup options={options} />
+    <Mode text="Disabled option">
+      <DxcToggleGroup options={disabledOptions} />
     </Mode>
-    <Mode text="Multiple with icons">
-      <DxcToggleGroup options={optionsWithIcons} multiple />
+    <Mode text="With icons">
+      <DxcToggleGroup defaultValue={[1, 3]} options={optionsWithIcons} multiple />
     </Mode>
   </PreviewContainer>
 );
