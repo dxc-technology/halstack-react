@@ -13,6 +13,7 @@ const ListItem = styled.li<{ isCurrentPage?: ItemPropsType["isCurrentPage"] }>`
 `;
 
 const CurrentPage = styled.span`
+  padding: var(--spacing-padding-none) var(--spacing-padding-xxs);
   font-weight: var(--typography-label-semibold);
   overflow: hidden;
   text-overflow: ellipsis;
@@ -37,6 +38,7 @@ const Link = styled.a`
 
 const Text = styled.span`
   border: var(--border-width-s) var(--border-style-default) transparent;
+  
   &:hover {
     border-bottom-color: var(--color-fg-neutral-dark);
   }

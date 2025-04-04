@@ -13,7 +13,7 @@ const OrderedList = styled.ol`
   gap: var(--spacing-gap-m);
   list-style-type: none;
   margin: 0;
-  padding-left: 0;
+  padding: 0;
 
   > li:not(:first-child) {
     > a,
@@ -23,7 +23,7 @@ const OrderedList = styled.ol`
     &::before {
       border-right: var(--border-width-s) var(--border-style-default) var(--border-color-neutral-strong);
       content: "";
-      height: var(--height-s);
+      height: var(--height-xxs);
       margin: var(--spacing-padding-none) var(--spacing-padding-xxs);
       transform: rotate(15deg);
     }
