@@ -20,7 +20,7 @@ const code = `() => {
     },
     {
       value: 5,
-      label: "Awaiting for approval",
+      label: "Awaiting approval",
     },
   ];
 

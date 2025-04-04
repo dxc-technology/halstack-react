@@ -15,11 +15,12 @@ const sections = [
     title: "Introduction",
     content: (
       <DxcParagraph>
-        The toggle group component provides a flexible way to present related options or actions within a single
-        interface. It consists of multiple toggle buttons, allowing users to make either single or multiple selections
-        depending on the configuration. This component is particularly useful for settings, filtering options, or mode
-        switching, where users need to quickly toggle between states. By grouping these actions together, it enhances
-        usability and keeps the interface organized, ensuring a seamless interaction experience.
+        The toggle group component provides a flexible way to present <strong>related options or actions</strong> within
+        a single interface. It consists of multiple toggle buttons, allowing users to make either single or multiple
+        selections depending on the configuration. This component is particularly useful for settings, filtering
+        options, or mode switching, where users need to quickly <strong>toggle between states</strong>. By grouping
+        these actions together, it enhances usability and keeps the interface organized, ensuring a seamless interaction
+        experience.
       </DxcParagraph>
     ),
   },
@@ -27,7 +28,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image src={anatomy} alt="Button's anatomy" />
+        <Image src={anatomy} alt="Toggle group anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
             <strong>Container:</strong> the structural wrapper that holds all toggle buttons together.
@@ -151,7 +152,7 @@ const sections = [
   {
     title: "Best practices",
     content: (
-      <DxcBulletedList type="number">
+      <DxcBulletedList>
         <DxcBulletedList.Item>
           <strong>Choose the right selection mode:</strong> use <strong>single selection</strong> when only one option
           can be active at a time (e.g., selecting a payment method). Use <strong>multiple selection</strong> when users
