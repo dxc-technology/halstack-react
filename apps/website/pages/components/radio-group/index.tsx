@@ -1,21 +1,17 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
 import RadioGroupPageLayout from "screens/components/radio-group/RadioGroupPageLayout";
-import RadioGroupCodePage from "screens/components/radio-group/code/RadioGroupCodePage";
+import RadioGroupOverviewPage from "screens/components/radio-group/overview/RadioGroupOverviewPage";
 
-const Index = () => {
-  return (
-    <>
-      <Head>
-        <title>Radio Group — Halstack Design System</title>
-      </Head>
-      <RadioGroupCodePage></RadioGroupCodePage>
-    </>
-  );
-};
+const Index = () => (
+  <>
+    <Head>
+      <title>Radio group — Halstack Design System</title>
+    </Head>
+    <RadioGroupOverviewPage />
+  </>
+);
 
-Index.getLayout = function getLayout(page: ReactElement) {
-  return <RadioGroupPageLayout>{page}</RadioGroupPageLayout>;
-};
+Index.getLayout = (page: ReactElement) => <RadioGroupPageLayout>{page}</RadioGroupPageLayout>;
 
 export default Index;
