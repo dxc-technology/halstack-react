@@ -23,8 +23,7 @@ const Tab = styled.a<{
   flex-direction: ${(props) => (props.hasIcon && props.iconPosition === "top" ? "column" : "row")};
   justify-content: center;
   align-items: center;
-  gap: ${(props) =>
-    props.hasIcon && props.iconPosition === "top" ? "var(--spacing-gap-xs)" : "var(--spacing-gap-xs)"};
+  gap: var(--spacing-gap-xs);
   height: ${(props) => (props.hasIcon && props.iconPosition === "top" ? "78px" : "100%")};
   min-width: 176px;
   min-height: 48px;
@@ -43,6 +42,7 @@ const Tab = styled.a<{
       }
       :focus {
         outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
+        outline-offset: var(--border-width-m);
       }
       :active {
         background: var(--color-bg-primary-lighter);
@@ -137,7 +137,7 @@ const DxcTab = forwardRef(
               {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
             </TabIconContainer>
           )}
-          <DxcFlex alignItems="center" gap="0.5rem">
+          <DxcFlex alignItems="center" gap="var(--spacing-gap-s)">
             <Label active={active} disabled={disabled}>
               {children}
             </Label>
