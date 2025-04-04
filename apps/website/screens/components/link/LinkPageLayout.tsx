@@ -6,9 +6,8 @@ import { ReactNode } from "react";
 
 const LinkPageHeading = ({ children }: { children: ReactNode }) => {
   const tabs = [
-    { label: "Code", path: "/components/link" },
-    { label: "Usage", path: "/components/link/usage" },
-    { label: "Specifications", path: "/components/link/specifications" },
+    { label: "Overview", path: "/components/link" },
+    { label: "Code", path: "/components/link/code" },
   ];
 
   return (
@@ -17,8 +16,9 @@ const LinkPageHeading = ({ children }: { children: ReactNode }) => {
         <DxcFlex direction="column" gap="2rem">
           <ComponentHeading name="Link" />
           <DxcParagraph>
-            Links are used as navigational elements. They may appear isolated, inside a sentence or paragraph or
-            following the content.
+            Links serve as navigational elements, allowing users to move between pages or access related content. They
+            can appear independently, be embedded within text, or follow a section to provide additional information or
+            actions.
           </DxcParagraph>
           <TabsPageHeading tabs={tabs}></TabsPageHeading>
         </DxcFlex>

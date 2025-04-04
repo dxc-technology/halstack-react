@@ -1,21 +1,17 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
 import LinkPageLayout from "screens/components/link/LinkPageLayout";
-import LinkCodePage from "screens/components/link/code/LinkCodePage";
+import LinkOverviewPage from "screens/components/link/overview/LinkOverviewPage";
 
-const Index = () => {
-  return (
-    <>
-      <Head>
-        <title>Link — Halstack Design System</title>
-      </Head>
-      <LinkCodePage></LinkCodePage>
-    </>
-  );
-};
+const Index = () => (
+  <>
+    <Head>
+      <title>Link — Halstack Design System</title>
+    </Head>
+    <LinkOverviewPage />
+  </>
+);
 
-Index.getLayout = function getLayout(page: ReactElement) {
-  return <LinkPageLayout>{page}</LinkPageLayout>;
-};
+Index.getLayout = (page: ReactElement) => <LinkPageLayout>{page}</LinkPageLayout>;
 
 export default Index;
