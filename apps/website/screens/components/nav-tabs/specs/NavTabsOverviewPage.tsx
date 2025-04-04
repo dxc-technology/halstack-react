@@ -11,7 +11,7 @@ import navTabsStates from "./images/navTabs_states.png";
 
 const sections = [
   {
-    title: "Specifications",
+    title: "Introduction",
     content: (
       <Figure caption="Nav tabs design specifications">
         <Image src={navTabsSpecs} alt="Nav tabs design specifications" />
@@ -257,15 +257,15 @@ const sections = [
   },
 ];
 
-const NavTabsSpecsPage = () => {
+const NavTabsOverviewPage = () => {
   return (
     <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/nav-tabs/specs/NavTabsSpecsPage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/nav-tabs/overview/NavTabsOverviewPage.tsx" />
     </DxcFlex>
   );
 };
 
-export default NavTabsSpecsPage;
+export default NavTabsOverviewPage;

@@ -1,6 +1,5 @@
-import { Children, KeyboardEvent, ReactElement, ReactNode, useContext, useEffect, useMemo, useRef, useState } from "react";
-import styled, { ThemeProvider } from "styled-components";
-import HalstackContext from "../HalstackContext";
+import { Children, KeyboardEvent, ReactElement, ReactNode, useEffect, useMemo, useRef, useState } from "react";
+import styled from "styled-components";
 import NavTabsPropsType from "./types";
 import DxcTab from "./Tab";
 import NavTabsContext from "./NavTabsContext";
@@ -45,11 +44,27 @@ const getNextTabIndex = (array: ReactElement[], initialIndex: number): number =>
   return index;
 };
 
+const Underline = styled.div<{ underlineWidth: number }>`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: var(--border-width-m);
+  background-color: var(--border-color-neutral-medium);
+  z-index: -1;
+  width: ${(props) => props.underlineWidth}px;
+`;
+
+const NavTabsContainer = styled.div`
+  display: flex;
+  position: relative;
+  overflow: auto;
+  z-index: 0;
+`;
+
 const DxcNavTabs = ({ iconPosition = "top", tabIndex = 0, children }: NavTabsPropsType): JSX.Element => {
   const [innerFocusIndex, setInnerFocusIndex] = useState<number | null>(null);
   const [underlineWidth, setUnderlineWidth] = useState<number | null>(null);
   const refNavTabList = useRef<HTMLDivElement | null>(null);
-  const colorsTheme = useContext(HalstackContext);
 
   const childArray = Children.toArray(children).filter(
     (child) => typeof child === "object" && "props" in child
@@ -88,32 +103,13 @@ const DxcNavTabs = ({ iconPosition = "top", tabIndex = 0, children }: NavTabsPro
   };
 
   return (
-    <ThemeProvider theme={colorsTheme.navTabs}>
-      <NavTabsContainer onKeyDown={handleOnKeyDown} ref={refNavTabList} role="tablist" aria-label="Navigation tabs">
-        <NavTabsContext.Provider value={contextValue}>{children}</NavTabsContext.Provider>
-        <Underline underlineWidth={underlineWidth ?? 0} />
-      </NavTabsContainer>
-    </ThemeProvider>
+    <NavTabsContainer onKeyDown={handleOnKeyDown} ref={refNavTabList} role="tablist" aria-label="Navigation tabs">
+      <NavTabsContext.Provider value={contextValue}>{children}</NavTabsContext.Provider>
+      <Underline underlineWidth={underlineWidth ?? 0} />
+    </NavTabsContainer>
   );
 };
 
-const Underline = styled.div<{ underlineWidth: number }>`
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  height: 2px;
-  background-color: ${(props) => props.theme.dividerColor};
-  z-index: -1;
-  width: ${(props) => props.underlineWidth}px;
-`;
-
 DxcNavTabs.Tab = DxcTab;
-
-const NavTabsContainer = styled.div`
-  display: flex;
-  position: relative;
-  overflow: auto;
-  z-index: 0;
-`;
 
 export default DxcNavTabs;
