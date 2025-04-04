@@ -15,7 +15,7 @@ const sections = [
     title: "Introduction",
     content: (
       <DxcParagraph>
-        The Toast component provides <strong>brief, non-intrusive notifications</strong> to users, appearing{" "}
+        The toast component provides <strong>brief, non-intrusive notifications</strong> to users, appearing{" "}
         <strong>temporarily</strong> on the screen without disrupting their workflow. Typically used for system
         messages, confirmations, or alerts, toasts help communicate important feedback in response to user actions. They
         automatically disappear after a set duration but can also include manual dismissal options. By maintaining
