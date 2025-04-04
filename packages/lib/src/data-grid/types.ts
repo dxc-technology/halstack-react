@@ -54,6 +54,7 @@ export type HierarchyGridRow = GridRow & {
 export type ExpandableGridRow = GridRow & {
   expandedContent?: ReactNode;
   expandedContentHeight?: number;
+  contentIsExpanded?: boolean;
 };
 
 export type ExpandableRows = {

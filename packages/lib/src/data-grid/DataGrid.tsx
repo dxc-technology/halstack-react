@@ -23,259 +23,6 @@ import DxcPaginator from "../paginator/Paginator";
 import { DxcActionsCell } from "../table/Table";
 import HalstackContext from "../HalstackContext";
 
-const DxcDataGrid = ({
-  columns,
-  rows,
-  selectable,
-  expandable,
-  onSelectRows,
-  selectedRows,
-  uniqueRowId,
-  summaryRow,
-  onGridRowsChange,
-  showPaginator = false,
-  showGoToPage = true,
-  itemsPerPage = 5,
-  itemsPerPageOptions,
-  itemsPerPageFunction,
-  onSort,
-  onPageChange,
-  totalItems,
-}: DataGridPropsType): JSX.Element => {
-  const [rowsToRender, setRowsToRender] = useState<GridRow[] | HierarchyGridRow[] | ExpandableGridRow[]>(rows);
-  const colorsTheme = useContext(HalstackContext);
-  const [page, changePage] = useState(1);
-
-  const goToPage = (newPage: number) => {
-    if (onPageChange) {
-      onPageChange(newPage);
-    }
-    changePage(newPage);
-  };
-
-  const handleSortChange = (newSortColumns: SortColumn[]) => {
-    if (onSort) {
-      if (newSortColumns[0]) {
-        const { columnKey, direction } = newSortColumns[0];
-        onSort({ columnKey, direction });
-      } else {
-        onSort();
-      }
-    }
-    setSortColumns(newSortColumns);
-  };
-
-  // Process columns prop into usable columns based on other props
-  const columnsToRender = useMemo(() => {
-    let expectedColumns = columns.map((column) => convertToRDGColumns(column, summaryRow));
-    if (expandable) {
-      expectedColumns = [
-        {
-          key: "expanded",
-          name: "",
-          maxWidth: 36,
-          width: 36,
-          minWidth: 36,
-          colSpan(args) {
-            return args.type === "ROW" && args.row.isExpandedChildContent ? columns.length + 1 : undefined;
-          },
-          renderCell({ row }) {
-            if (row.isExpandedChildContent) {
-              // if it is expanded content
-              return row.expandedChildContent || null;
-            }
-            // if row has expandable content
-            return (
-              <ActionContainer id="action">
-                {row.expandedContent && renderExpandableTrigger(row, rowsToRender, uniqueRowId, setRowsToRender)}
-              </ActionContainer>
-            );
-          },
-        },
-        ...expectedColumns,
-      ];
-    }
-    if (!expandable && rows.some((row) => Array.isArray(row.childRows) && row.childRows.length > 0) && uniqueRowId) {
-      // only the first column will be clickable and will expand the rows
-      const firstColumnKey = expectedColumns[0]?.key;
-      if (firstColumnKey) {
-        expectedColumns[0] = {
-          ...expectedColumns[0]!,
-          renderCell({ row }) {
-            if ((row as HierarchyGridRow).childRows?.length) {
-              return (
-                <HierarchyContainer level={typeof row.rowLevel === "number" ? row.rowLevel : 0}>
-                  {renderHierarchyTrigger(rowsToRender, row, uniqueRowId, firstColumnKey, setRowsToRender)}
-                </HierarchyContainer>
-              );
-            }
-            return (
-              <HierarchyContainer level={typeof row.rowLevel === "number" ? row.rowLevel : 0} className="ellipsis-cell">
-                {row[firstColumnKey]}
-              </HierarchyContainer>
-            );
-          },
-        };
-      }
-    }
-    if (selectable) {
-      expectedColumns = [
-        {
-          key: "selected",
-          name: "",
-          maxWidth: 36,
-          width: 36,
-          minWidth: 36,
-          renderCell({ row }) {
-            if (!row.isExpandedChildContent) {
-              return (
-                <ActionContainer id="action">
-                  {renderCheckbox(rows, row, uniqueRowId, selectedRows, onSelectRows)}
-                </ActionContainer>
-              );
-            }
-            return null;
-          },
-          renderHeaderCell: () => (
-            <ActionContainer id="action">
-              {renderHeaderCheckbox(rows, uniqueRowId, selectedRows, colorsTheme, onSelectRows)}
-            </ActionContainer>
-          ),
-        },
-        ...expectedColumns,
-      ];
-    }
-    return expectedColumns;
-  }, [selectable, expandable, columns, rowsToRender, onSelectRows, rows, summaryRow, uniqueRowId, selectedRows]);
-  // array with the order of the columns
-  const [columnsOrder, setColumnsOrder] = useState((): number[] => columnsToRender.map((_, index) => index));
-  const [sortColumns, setSortColumns] = useState<readonly SortColumn[]>([]);
-
-  useEffect(() => {
-    setColumnsOrder(Array.from({ length: columnsToRender.length }, (_, index) => index));
-  }, [columnsToRender.length]);
-
-  useEffect(() => {
-    setRowsToRender(rows);
-  }, [rows]);
-
-  const reorderedColumns = useMemo(
-    () =>
-      // Array ordered by columnsOrder
-      columnsOrder.map((index) => columnsToRender[index]!),
-    [columnsOrder, columnsToRender]
-  );
-
-  const onColumnsReorder = (sourceKey: string, targetKey: string) => {
-    setColumnsOrder((currentColumnsOrder) => {
-      const sourceColumnOrderIndex = currentColumnsOrder.findIndex(
-        (index) => columnsToRender[index]?.key === sourceKey
-      );
-      const targetColumnOrderIndex = currentColumnsOrder.findIndex(
-        (index) => columnsToRender[index]?.key === targetKey
-      );
-      const newColumnsOrder = currentColumnsOrder.slice();
-      if (sourceColumnOrderIndex === -1 || targetColumnOrderIndex === -1) {
-        return currentColumnsOrder; // Return the current order if an error is found
-      }
-      const itemToMove = currentColumnsOrder[sourceColumnOrderIndex];
-      if (itemToMove != null) {
-        newColumnsOrder.splice(sourceColumnOrderIndex, 1);
-        newColumnsOrder.splice(targetColumnOrderIndex, 0, itemToMove);
-      }
-      return newColumnsOrder;
-    });
-  };
-
-  const onRowsChange = (newRows: GridRow[] | HierarchyGridRow[] | ExpandableGridRow[]) => {
-    // call function to change rows, like when they have been edited
-    if (typeof onGridRowsChange === "function") {
-      onGridRowsChange(newRows);
-    }
-  };
-
-  const sortedRows = useMemo((): readonly GridRow[] | HierarchyGridRow[] | ExpandableGridRow[] => {
-    const sortFunctions = getCustomSortFn(columns);
-    if (!onSort) {
-      if (expandable && sortColumns.length > 0) {
-        const innerSortedRows = sortRows(
-          rowsToRender.filter((row) => !row.isExpandedChildContent),
-          sortColumns,
-          sortFunctions
-        );
-        rowsToRender
-          .filter((row) => row.isExpandedChildContent)
-          .map((expandedRow) =>
-            addRow(
-              innerSortedRows,
-              innerSortedRows.findIndex((trigger) => rowKeyGetter(trigger, uniqueRowId) === expandedRow.triggerRowKey) +
-                1,
-              expandedRow
-            )
-          );
-        return innerSortedRows;
-      }
-      if (!expandable && sortColumns.length > 0 && uniqueRowId) {
-        return sortHierarchyRows(rowsToRender, sortColumns, sortFunctions, uniqueRowId);
-      }
-    }
-    return rowsToRender;
-  }, [expandable, rowsToRender, sortColumns, uniqueRowId]);
-
-  const minItemsPerPageIndex = useMemo(() => getMinItemsPerPageIndex(page, itemsPerPage, page), [itemsPerPage, page]);
-  const maxItemsPerPageIndex = useMemo(
-    () => getMaxItemsPerPageIndex(minItemsPerPageIndex, itemsPerPage, rows, page),
-    [itemsPerPage, minItemsPerPageIndex, page, rows]
-  );
-
-  const filteredRows = useMemo(() => {
-    if (onSort && sortColumns?.length > 0) {
-      onSort?.(sortColumns?.[0]);
-    }
-    return !showPaginator || onPageChange
-      ? sortedRows
-      : getPaginatedNodes(sortedRows, uniqueRowId, minItemsPerPageIndex, maxItemsPerPageIndex + 1);
-  }, [sortedRows, minItemsPerPageIndex, maxItemsPerPageIndex]);
-
-  return (
-    <ThemeProvider theme={colorsTheme.dataGrid}>
-      <DataGridContainer paginatorRendered={showPaginator && (totalItems ?? rows.length) > itemsPerPage}>
-        <DataGrid
-          columns={reorderedColumns}
-          rows={filteredRows}
-          onColumnsReorder={onColumnsReorder}
-          onRowsChange={onRowsChange}
-          renderers={{ renderSortStatus }}
-          sortColumns={sortColumns}
-          onSortColumnsChange={handleSortChange}
-          rowKeyGetter={(row) => (uniqueRowId ? rowKeyGetter(row, uniqueRowId) : "")}
-          rowHeight={(row) =>
-            row.isExpandedChildContent && typeof row.expandedContentHeight === "number" && row.expandedContentHeight > 0
-              ? row.expandedContentHeight
-              : (colorsTheme.dataGrid?.dataRowHeight ?? 0)
-          }
-          selectedRows={selectedRows}
-          bottomSummaryRows={summaryRow ? [summaryRow] : undefined}
-          headerRowHeight={colorsTheme.dataGrid.headerRowHeight}
-          summaryRowHeight={colorsTheme.dataGrid.summaryRowHeight}
-          className="fill-grid"
-        />
-        {showPaginator && (totalItems ?? rows.length) > itemsPerPage && (
-          <DxcPaginator
-            totalItems={totalItems ?? rows.length}
-            itemsPerPage={itemsPerPage}
-            itemsPerPageOptions={itemsPerPageOptions}
-            itemsPerPageFunction={itemsPerPageFunction}
-            currentPage={page}
-            showGoToPage={showGoToPage}
-            onPageChange={goToPage}
-          />
-        )}
-      </DataGridContainer>
-    </ThemeProvider>
-  );
-};
-
 const ActionContainer = styled.div`
   display: flex;
   height: 100%;
@@ -418,6 +165,280 @@ const DataGridContainer = styled.div<{
     text-align: right;
   }
 `;
+
+const DxcDataGrid = ({
+  columns,
+  rows,
+  selectable,
+  expandable,
+  onSelectRows,
+  selectedRows,
+  uniqueRowId,
+  summaryRow,
+  onGridRowsChange,
+  showPaginator = false,
+  showGoToPage = true,
+  itemsPerPage = 5,
+  itemsPerPageOptions,
+  itemsPerPageFunction,
+  onSort,
+  onPageChange,
+  totalItems,
+}: DataGridPropsType): JSX.Element => {
+  const [rowsToRender, setRowsToRender] = useState<GridRow[] | HierarchyGridRow[] | ExpandableGridRow[]>(rows);
+  const colorsTheme = useContext(HalstackContext);
+  const [page, changePage] = useState(1);
+
+  const goToPage = (newPage: number) => {
+    if (onPageChange) {
+      onPageChange(newPage);
+    }
+    changePage(newPage);
+  };
+
+  const handleSortChange = (newSortColumns: SortColumn[]) => {
+    if (onSort) {
+      if (newSortColumns[0]) {
+        const { columnKey, direction } = newSortColumns[0];
+        onSort({ columnKey, direction });
+      } else {
+        onSort();
+      }
+    }
+    setSortColumns(newSortColumns);
+  };
+
+  // Process columns prop into usable columns based on other props
+  const columnsToRender = useMemo(() => {
+    let expectedColumns = columns.map((column) => convertToRDGColumns(column, summaryRow));
+    if (expandable) {
+      expectedColumns = [
+        {
+          key: "expanded",
+          name: "",
+          maxWidth: 36,
+          width: 36,
+          minWidth: 36,
+          colSpan(args) {
+            return args.type === "ROW" && args.row.isExpandedChildContent ? columns.length + 1 : undefined;
+          },
+          renderCell({ row }) {
+            if (row.isExpandedChildContent) {
+              // if it is expanded content
+              return row.expandedChildContent || null;
+            }
+            // if row has expandable content
+            return (
+              <ActionContainer id="action">
+                {row.expandedContent && renderExpandableTrigger(row, rowsToRender, uniqueRowId, setRowsToRender)}
+              </ActionContainer>
+            );
+          },
+        },
+        ...expectedColumns,
+      ];
+    }
+    if (!expandable && rows.some((row) => Array.isArray(row.childRows) && row.childRows.length > 0) && uniqueRowId) {
+      // only the first column will be clickable and will expand the rows
+      const firstColumnKey = expectedColumns[0]?.key;
+      if (firstColumnKey) {
+        expectedColumns[0] = {
+          ...expectedColumns[0]!,
+          renderCell({ row }) {
+            if ((row as HierarchyGridRow).childRows?.length) {
+              return (
+                <HierarchyContainer level={typeof row.rowLevel === "number" ? row.rowLevel : 0}>
+                  {renderHierarchyTrigger(rowsToRender, row, uniqueRowId, firstColumnKey, setRowsToRender)}
+                </HierarchyContainer>
+              );
+            }
+            return (
+              <HierarchyContainer level={typeof row.rowLevel === "number" ? row.rowLevel : 0} className="ellipsis-cell">
+                {row[firstColumnKey]}
+              </HierarchyContainer>
+            );
+          },
+        };
+      }
+    }
+    if (selectable) {
+      expectedColumns = [
+        {
+          key: "selected",
+          name: "",
+          maxWidth: 36,
+          width: 36,
+          minWidth: 36,
+          renderCell({ row }) {
+            if (!row.isExpandedChildContent) {
+              return (
+                <ActionContainer id="action">
+                  {renderCheckbox(rows, row, uniqueRowId, selectedRows, onSelectRows)}
+                </ActionContainer>
+              );
+            }
+            return null;
+          },
+          renderHeaderCell: () => (
+            <ActionContainer id="action">
+              {renderHeaderCheckbox(rows, uniqueRowId, selectedRows, colorsTheme, onSelectRows)}
+            </ActionContainer>
+          ),
+        },
+        ...expectedColumns,
+      ];
+    }
+    return expectedColumns;
+  }, [selectable, expandable, columns, rowsToRender, onSelectRows, rows, summaryRow, uniqueRowId, selectedRows]);
+  // array with the order of the columns
+  const [columnsOrder, setColumnsOrder] = useState((): number[] => columnsToRender.map((_, index) => index));
+  const [sortColumns, setSortColumns] = useState<readonly SortColumn[]>([]);
+
+  useEffect(() => {
+    setColumnsOrder(Array.from({ length: columnsToRender.length }, (_, index) => index));
+  }, [columnsToRender.length]);
+
+  useEffect(() => {
+    const finalRows = [...rows];
+    if (expandable) {
+      rows.forEach((row, index) => {
+        if (
+          row.contentIsExpanded &&
+          !rows.some((row) => row[uniqueRowId] === `${rowKeyGetter(row, uniqueRowId)}_expanded`)
+        ) {
+          addRow(finalRows, index + 1, {
+            isExpandedChildContent: row.contentIsExpanded,
+            [uniqueRowId]: `${rowKeyGetter(row, uniqueRowId)}_expanded`,
+            expandedChildContent: row.expandedContent,
+            triggerRowKey: rowKeyGetter(row, uniqueRowId),
+            expandedContentHeight: row.expandedContentHeight,
+          });
+        }
+      });
+    }
+    setRowsToRender(finalRows);
+  }, [rows]);
+
+  const reorderedColumns = useMemo(
+    () =>
+      // Array ordered by columnsOrder
+      columnsOrder.map((index) => columnsToRender[index]!),
+    [columnsOrder, columnsToRender]
+  );
+
+  const onColumnsReorder = (sourceKey: string, targetKey: string) => {
+    setColumnsOrder((currentColumnsOrder) => {
+      const sourceColumnOrderIndex = currentColumnsOrder.findIndex(
+        (index) => columnsToRender[index]?.key === sourceKey
+      );
+      const targetColumnOrderIndex = currentColumnsOrder.findIndex(
+        (index) => columnsToRender[index]?.key === targetKey
+      );
+      const newColumnsOrder = currentColumnsOrder.slice();
+      if (sourceColumnOrderIndex === -1 || targetColumnOrderIndex === -1) {
+        return currentColumnsOrder; // Return the current order if an error is found
+      }
+      const itemToMove = currentColumnsOrder[sourceColumnOrderIndex];
+      if (itemToMove != null) {
+        newColumnsOrder.splice(sourceColumnOrderIndex, 1);
+        newColumnsOrder.splice(targetColumnOrderIndex, 0, itemToMove);
+      }
+      return newColumnsOrder;
+    });
+  };
+
+  const onRowsChange = (newRows: GridRow[] | HierarchyGridRow[] | ExpandableGridRow[]) => {
+    // call function to change rows, like when they have been edited
+    if (typeof onGridRowsChange === "function") {
+      onGridRowsChange(newRows);
+    }
+  };
+
+  const sortedRows = useMemo((): readonly GridRow[] | HierarchyGridRow[] | ExpandableGridRow[] => {
+    const sortFunctions = getCustomSortFn(columns);
+    if (!onSort) {
+      if (sortColumns.length > 0 && uniqueRowId) {
+        if (expandable) {
+          const innerSortedRows = sortRows(
+            rowsToRender.filter((row) => !row.isExpandedChildContent),
+            sortColumns,
+            sortFunctions
+          );
+          if (innerSortedRows.some((row) => uniqueRowId in row)) {
+            rowsToRender
+              .filter((row) => row.isExpandedChildContent)
+              .map((expandedRow) =>
+                addRow(
+                  innerSortedRows,
+                  innerSortedRows.findIndex(
+                    (trigger) => rowKeyGetter(trigger, uniqueRowId) === expandedRow.triggerRowKey
+                  ) + 1,
+                  expandedRow
+                )
+              );
+            return innerSortedRows;
+          }
+        } else {
+          return sortHierarchyRows(rowsToRender, sortColumns, sortFunctions, uniqueRowId);
+        }
+      }
+    }
+    return rowsToRender;
+  }, [expandable, rowsToRender, sortColumns, uniqueRowId]);
+
+  const minItemsPerPageIndex = useMemo(() => getMinItemsPerPageIndex(page, itemsPerPage, page), [itemsPerPage, page]);
+  const maxItemsPerPageIndex = useMemo(
+    () => getMaxItemsPerPageIndex(minItemsPerPageIndex, itemsPerPage, rows, page),
+    [itemsPerPage, minItemsPerPageIndex, page, rows]
+  );
+
+  const filteredRows = useMemo(() => {
+    if (onSort && sortColumns?.length > 0) {
+      onSort?.(sortColumns?.[0]);
+    }
+    return !showPaginator || onPageChange
+      ? sortedRows
+      : getPaginatedNodes(sortedRows, uniqueRowId, minItemsPerPageIndex, maxItemsPerPageIndex + 1);
+  }, [sortedRows, minItemsPerPageIndex, maxItemsPerPageIndex]);
+
+  return (
+    <ThemeProvider theme={colorsTheme.dataGrid}>
+      <DataGridContainer paginatorRendered={showPaginator && (totalItems ?? rows.length) > itemsPerPage}>
+        <DataGrid
+          columns={reorderedColumns}
+          rows={filteredRows}
+          onColumnsReorder={onColumnsReorder}
+          onRowsChange={onRowsChange}
+          renderers={{ renderSortStatus }}
+          sortColumns={sortColumns}
+          onSortColumnsChange={handleSortChange}
+          rowKeyGetter={(row) => (uniqueRowId ? rowKeyGetter(row, uniqueRowId) : "")}
+          rowHeight={(row) =>
+            row.isExpandedChildContent && typeof row.expandedContentHeight === "number" && row.expandedContentHeight > 0
+              ? row.expandedContentHeight
+              : (colorsTheme.dataGrid?.dataRowHeight ?? 0)
+          }
+          selectedRows={selectedRows}
+          bottomSummaryRows={summaryRow ? [summaryRow] : undefined}
+          headerRowHeight={colorsTheme.dataGrid.headerRowHeight}
+          summaryRowHeight={colorsTheme.dataGrid.summaryRowHeight}
+          className="fill-grid"
+        />
+        {showPaginator && (totalItems ?? rows.length) > itemsPerPage && (
+          <DxcPaginator
+            totalItems={totalItems ?? rows.length}
+            itemsPerPage={itemsPerPage}
+            itemsPerPageOptions={itemsPerPageOptions}
+            itemsPerPageFunction={itemsPerPageFunction}
+            currentPage={page}
+            showGoToPage={showGoToPage}
+            onPageChange={goToPage}
+          />
+        )}
+      </DataGridContainer>
+    </ThemeProvider>
+  );
+};
 
 DxcDataGrid.ActionsCell = DxcActionsCell;
 
