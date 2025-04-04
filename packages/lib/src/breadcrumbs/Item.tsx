@@ -1,24 +1,60 @@
 import { useRef, MouseEvent } from "react";
 import styled from "styled-components";
-import CoreTokens from "../common/coreTokens";
 import { ItemPropsType } from "./types";
+
+const ListItem = styled.li<{ isCurrentPage?: ItemPropsType["isCurrentPage"] }>`
+  display: flex;
+  align-items: center;
+  color: var(--color-fg-neutral-dark);
+  font-family: var(--typography-font-family);
+  font-size: var(--typography-label-m);
+  font-weight: var(--typography-label-regular);
+  ${({ isCurrentPage }) => isCurrentPage && "overflow: hidden;"}
+`;
+
+const CurrentPage = styled.span`
+  font-weight: var(--typography-label-semibold);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+`;
+
+const Link = styled.a`
+  border-radius: var(--border-radius-s);
+  padding: var(--spacing-padding-none) var(--spacing-padding-xxs);
+  display: inline-flex;
+  align-items: center;
+  height: var(--height-s);
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:focus {
+    outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
+    outline-offset: -2px;
+  }
+`;
+
+const Text = styled.span`
+  border: var(--border-width-s) var(--border-style-default) transparent;
+  &:hover {
+    border-bottom-color: var(--color-fg-neutral-dark);
+  }
+`;
 
 const Item = ({ isCurrentPage = false, href, label, onClick }: ItemPropsType) => {
   const currentItemRef = useRef<HTMLSpanElement | null>(null);
 
+  const handleOnClick = (event: MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+    if (href) onClick?.(href);
+  };
+
   const handleOnMouseEnter = (event: MouseEvent<HTMLAnchorElement>) => {
     const labelContainer = event.currentTarget;
     const optionElement = currentItemRef.current;
-    if (optionElement?.title === "" && labelContainer.scrollWidth > labelContainer.clientWidth) {
+    if (optionElement?.title === "" && labelContainer.scrollWidth > labelContainer.clientWidth)
       optionElement.title = label;
-    }
-  };
-
-  const handleOnClick = (event: MouseEvent<HTMLAnchorElement>) => {
-    event.preventDefault();
-    if (href) {
-      onClick?.(href);
-    }
   };
 
   return (
@@ -35,44 +71,5 @@ const Item = ({ isCurrentPage = false, href, label, onClick }: ItemPropsType) =>
     </ListItem>
   );
 };
-
-const ListItem = styled.li<{ isCurrentPage?: ItemPropsType["isCurrentPage"] }>`
-  display: flex;
-  align-items: center;
-  font-family: ${CoreTokens.type_sans};
-  font-size: ${CoreTokens.type_scale_02};
-  color: ${CoreTokens.color_black};
-  ${({ isCurrentPage }) => isCurrentPage && "overflow: hidden;"}
-`;
-
-const CurrentPage = styled.span`
-  font-weight: ${CoreTokens.type_semibold};
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  cursor: default;
-`;
-
-const Link = styled.a`
-  border-radius: ${CoreTokens.border_radius_small};
-  padding: ${CoreTokens.spacing_0} ${CoreTokens.spacing_2};
-  display: inline-flex;
-  align-items: center;
-  height: 24px;
-  color: ${CoreTokens.color_black};
-  text-decoration: ${CoreTokens.type_no_line};
-  cursor: pointer;
-
-  &:focus {
-    outline: ${CoreTokens.border_width_2} solid ${CoreTokens.color_blue_600};
-  }
-`;
-
-const Text = styled.span`
-  border: ${CoreTokens.border_width_1} solid ${CoreTokens.color_transparent};
-  &:hover {
-    border-bottom-color: ${CoreTokens.color_black};
-  }
-`;
 
 export default Item;
