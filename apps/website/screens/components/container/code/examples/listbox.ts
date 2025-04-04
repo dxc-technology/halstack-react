@@ -9,8 +9,8 @@ const code = `() => {
         background={{ color: "var(--border-color-neutral-brighter)" }}
         border={{ 
           color: "var(--border-color-neutral-medium)",
-          width: "var(--border-width-s)",
-          style: "var(--border-style-default)"
+          style: "var(--border-style-default)",
+          width: "var(--border-width-s)"
         }}
         borderRadius="var(--border-radius-s)"
         boxShadow="var(--shadow-mid-x-position) var(--shadow-mid-y-position) var(--shadow-mid-blur) var(--shadow-mid-spread) var(--shadow-light)"
