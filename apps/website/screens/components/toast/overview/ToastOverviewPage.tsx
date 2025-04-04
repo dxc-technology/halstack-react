@@ -28,7 +28,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image src={anatomy} alt="Button's anatomy" />
+        <Image src={anatomy} alt="Toast's anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
             <strong>Container:</strong> the structural wrapper that holds all elements of the toast, defining its size,
@@ -60,11 +60,11 @@ const sections = [
         content: (
           <>
             <DxcParagraph>
-              A loading toast provides users with real-time feedback during an ongoing process. Instead of a static
-              icon, a spinner is displayed to visually indicate that the process is still in progress. This toast
-              remains visible until the process is complete, ensuring users are aware that the system is working. Once
-              the task is finished, the loading toast will automatically disappear, and a follow-up toast will appear in
-              the queue to confirm the outcome of the process.
+              A loading toast provides users with <strong>real-time feedback during an ongoing process</strong>. Instead
+              of a static icon, a spinner is displayed to visually indicate that the process is still in progress. This
+              toast remains visible until the process is complete, ensuring users are aware that the system is working.
+              Once the task is finished, the loading toast will automatically disappear, and a follow-up toast will
+              appear in the queue to confirm the outcome of the process.
             </DxcParagraph>
             <Figure caption="Common loading process represented with toasts">
               <Image src={loadingToast} alt="Common loading process represented with toasts" />
@@ -160,42 +160,42 @@ const sections = [
           <tbody>
             <tr>
               <td>
-                <DxcTypography color="#5f249f" fontWeight="600">
+                <DxcTypography color="var(--color-fg-primary-strong)" fontWeight="600">
                   Default
                 </DxcTypography>
               </td>
-              <td>Used for neutral messages or general notifications. (ie. Settings have been updated.)</td>
+              <td>Used for neutral messages or general notifications. (i.e.. Settings have been updated.)</td>
             </tr>
             <tr>
               <td>
-                <DxcTypography color="#0086e6" fontWeight="600">
+                <DxcTypography color="var(--color-fg-secondary-medium)" fontWeight="600">
                   Info
                 </DxcTypography>
               </td>
               <td>
-                Displays general information or updates. (ie. New message received. Check inbox. - New update available.
-                Download now.)
+                Displays general information or updates. (i.e. New message received. Check inbox. - New update
+                available. Download now.)
               </td>
             </tr>
             <tr>
               <td>
-                <DxcTypography color="#c26c0a" fontWeight="600">
-                  Warning
+                <DxcTypography color="var(--color-fg-success-medium)" fontWeight="600">
+                  Success
                 </DxcTypography>
               </td>
               <td>
-                Indicates successful completion of an action. (ie. Operation successful. Changes saved. - Profile
+                Indicates successful completion of an action. (i.e. Operation successful. Changes saved. - Profile
                 updated successfully.)
               </td>
             </tr>
             <tr>
               <td>
-                <DxcTypography color="#24a148" fontWeight="600">
-                  Success
+                <DxcTypography color="var(--color-fg-warning-medium)" fontWeight="600">
+                  Warning
                 </DxcTypography>
               </td>
               <td>
-                Provides cautionary advice without blocking actions. (ie. Unstable connection. Proceed with caution.)
+                Provides cautionary advice without blocking actions. (i.e. Unstable connection. Proceed with caution.)
               </td>
             </tr>
           </tbody>
