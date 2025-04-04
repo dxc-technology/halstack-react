@@ -139,6 +139,7 @@ const determinateValue = (value: SpinnerPropsType["value"], strokeDashArray: num
 
 const CircleSpinner = styled.circle<{
   determined: boolean;
+  inheritColor: SpinnerPropsType["inheritColor"];
   value: SpinnerPropsType["value"];
 }>`
   fill: transparent;
@@ -150,7 +151,12 @@ const CircleSpinner = styled.circle<{
       : props.mode !== "small"
         ? "1.4s ease-in-out infinite both svg-circle-large"
         : "1.4s ease-in-out infinite both svg-circle-small"};
-  stroke: ${({ mode }) => (mode === "overlay" ? "var(--color-fg-primary-medium)" : "var(--color-fg-primary-strong)")};
+  stroke: ${({ inheritColor, mode }) =>
+    inheritColor
+      ? "currentColor"
+      : mode === "overlay"
+        ? "var(--color-fg-primary-medium)"
+        : "var(--color-fg-primary-strong)"};
   transform-origin: ${({ determined }) => (!determined ? "50% 50%" : "")};
   stroke-dasharray: ${({ mode }) => (mode !== "small" ? "409" : "38")};
   stroke-width: ${({ mode }) => (mode !== "small" ? "8.5px" : "2px")};
@@ -180,7 +186,15 @@ const Labels = styled.div<{ mode: SpinnerPropsType["mode"] }>`
   }
 `;
 
-const DxcSpinner = ({ ariaLabel = "Spinner", label, margin, mode = "large", showValue, value }: SpinnerPropsType) => {
+const DxcSpinner = ({
+  ariaLabel = "Spinner",
+  inheritColor = false,
+  label,
+  margin,
+  mode = "large",
+  showValue,
+  value,
+}: SpinnerPropsType) => {
   const labelId = useId();
   const determined = useMemo(() => value != null && value >= 0 && value <= 100, [value]);
   const [hasTooltip, setHasTooltip] = useState(false);
@@ -215,6 +229,7 @@ const DxcSpinner = ({ ariaLabel = "Spinner", label, margin, mode = "large", show
               cx={mode === "small" ? "8" : "70"}
               cy={mode === "small" ? "8" : "70"}
               determined={determined}
+              inheritColor={inheritColor}
               mode={mode}
               r={mode === "small" ? "6" : "65"}
               value={value}

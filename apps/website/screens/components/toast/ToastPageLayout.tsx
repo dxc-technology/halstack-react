@@ -6,9 +6,8 @@ import { ReactNode } from "react";
 
 const ToastPageHeading = ({ children }: { children: ReactNode }) => {
   const tabs = [
-    { label: "Code", path: "/components/toast" },
-    { label: "Usage", path: "/components/toast/usage" },
-    { label: "Specifications", path: "/components/toast/specifications" },
+    { label: "Overview", path: "/components/toast" },
+    { label: "Code", path: "/components/toast/code" },
   ];
 
   return (
@@ -21,7 +20,7 @@ const ToastPageHeading = ({ children }: { children: ReactNode }) => {
             updates to the user. It is commonly used to communicate non-critical information, such as success messages,
             warning alerts, or brief updates.
           </DxcParagraph>
-          <TabsPageHeading tabs={tabs}></TabsPageHeading>
+          <TabsPageHeading tabs={tabs} />
         </DxcFlex>
       </PageHeading>
       {children}

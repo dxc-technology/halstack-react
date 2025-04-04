@@ -2,7 +2,7 @@ import { useContext, useMemo } from "react";
 import ToastContext from "./ToastContext";
 import { DefaultToast, SemanticToast, LoadingToast } from "./types";
 
-const useToast = () => {
+export default function useToast() {
   const add = useContext(ToastContext);
 
   const toast = useMemo(
@@ -15,8 +15,6 @@ const useToast = () => {
     }),
     [add]
   );
-
+  
   return toast;
-};
-
-export default useToast;
+}

@@ -25,6 +25,7 @@ const ToastPage = () => {
     />
   );
 };
+
 const TestExample = () => (
   <DxcToastsQueue>
     <ToastPage />

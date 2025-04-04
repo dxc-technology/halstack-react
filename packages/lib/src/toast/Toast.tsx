@@ -1,16 +1,14 @@
 import { memo, useContext, useState } from "react";
 import styled, { keyframes } from "styled-components";
-import CoreTokens from "../common/coreTokens";
 import DxcActionIcon from "../action-icon/ActionIcon";
 import DxcButton from "../button/Button";
 import DxcFlex from "../flex/Flex";
-import DxcIcon from "../icon/Icon";
-import DxcSpinner from "../spinner/Spinner";
-import { HalstackProvider } from "../HalstackContext";
 import ToastPropsType from "./types";
 import useTimeout from "../utils/useTimeout";
 import { HalstackLanguageContext } from "../HalstackContext";
 import { responsiveSizes } from "../common/variables";
+import getSemantic from "./utils";
+import ToastIcon from "./ToastIcon";
 
 const fadeInUp = keyframes`
   0% {
@@ -34,43 +32,19 @@ const fadeOutDown = keyframes`
   }
 `;
 
-const getSemantic = (semantic: ToastPropsType["semantic"]) => {
-  switch (semantic) {
-    case "info":
-      return {
-        primaryColor: CoreTokens.color_blue_700,
-        secondaryColor: CoreTokens.color_blue_100,
-        icon: "filled_info",
-      };
-    case "success":
-      return {
-        primaryColor: CoreTokens.color_green_700,
-        secondaryColor: CoreTokens.color_green_100,
-        icon: "filled_check_circle",
-      };
-    case "warning":
-      return {
-        primaryColor: CoreTokens.color_orange_700,
-        secondaryColor: CoreTokens.color_orange_100,
-        icon: "filled_warning",
-      };
-    default:
-      return { primaryColor: CoreTokens.color_purple_700, secondaryColor: CoreTokens.color_purple_100, icon: "" };
-  }
-};
-
 const Toast = styled.output<{ semantic: ToastPropsType["semantic"]; isClosing: boolean }>`
   box-sizing: border-box;
   min-width: 200px;
   max-width: 600px;
   width: fit-content;
-  border-radius: ${CoreTokens.border_radius_medium};
-  border-left: ${CoreTokens.border_width_2} solid ${({ semantic }) => getSemantic(semantic).primaryColor};
-  box-shadow: 0px 2px 2px 0px rgba(181, 181, 181, 0.4);
+  border-left: var(--border-width-m) var(--border-style-default) ${({ semantic }) => getSemantic(semantic).primaryColor};
+  border-radius: var(--border-radius-s);
+  box-shadow: var(--shadow-low-x-position) var(--shadow-low-y-position) var(--shadow-low-blur) var(--shadow-low-spread)
+    var(--shadow-dark);
   display: inline-flex;
+  gap: var(--spacing-gap-l);
   justify-content: space-between;
-  gap: ${CoreTokens.spacing_24};
-  padding: ${CoreTokens.spacing_8} ${CoreTokens.spacing_12};
+  padding: var(--spacing-padding-xs) var(--spacing-padding-s);
   background-color: ${({ semantic }) => getSemantic(semantic).secondaryColor};
   animation: ${({ isClosing }) => (isClosing ? fadeOutDown : fadeInUp)} 0.3s ease forwards;
 
@@ -82,50 +56,25 @@ const Toast = styled.output<{ semantic: ToastPropsType["semantic"]; isClosing: b
 const ContentContainer = styled.div<{ loading: ToastPropsType["loading"]; semantic: ToastPropsType["semantic"] }>`
   display: flex;
   align-items: center;
-  gap: ${CoreTokens.spacing_8};
-  overflow: hidden;
+  gap: var(--spacing-gap-s);
   color: ${({ semantic }) => getSemantic(semantic).primaryColor};
-
-  ${({ loading }) => !loading && `font-size: ${CoreTokens.type_scale_05}`};
+  overflow: hidden;
+  ${({ loading }) => !loading && `font-size: var(--height-s);`}
   > svg {
+    height: var(--height-s);
     width: 24px;
-    height: 24px;
   }
 `;
 
 const Message = styled.span`
-  color: ${CoreTokens.color_grey_900};
-  font-family: ${CoreTokens.type_sans};
-  font-size: ${CoreTokens.type_scale_02};
-  font-weight: ${CoreTokens.type_semibold};
+  color: var(--color-fg-neutral-dark);
+  font-family: var(--typography-font-family);
+  font-size: var(--typography-label-m);
+  font-weight: var(--typography-label-semibold);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 `;
-
-const spinnerTheme = {
-  spinner: {
-    accentColor: getSemantic("info").primaryColor,
-  },
-};
-
-const ToastIcon = memo(
-  ({
-    icon,
-    hideSemanticIcon,
-    loading,
-    semantic,
-  }: Pick<ToastPropsType, "icon" | "hideSemanticIcon" | "loading" | "semantic">) => {
-    if (semantic === "default") return typeof icon === "string" ? <DxcIcon icon={icon} /> : icon;
-    else if (semantic === "info" && loading)
-      return (
-        <HalstackProvider theme={spinnerTheme}>
-          <DxcSpinner mode="small" />
-        </HalstackProvider>
-      );
-    else return !hideSemanticIcon && <DxcIcon icon={getSemantic(semantic).icon} />;
-  }
-);
 
 const DxcToast = ({
   action,
@@ -155,12 +104,12 @@ const DxcToast = ({
   );
 
   return (
-    <Toast semantic={semantic} isClosing={isClosing} role="status">
+    <Toast isClosing={isClosing} role="status" semantic={semantic}>
       <ContentContainer loading={loading} semantic={semantic}>
         <ToastIcon hideSemanticIcon={hideSemanticIcon} icon={icon} loading={loading} semantic={semantic} />
         <Message>{message}</Message>
       </ContentContainer>
-      <DxcFlex alignItems="center" gap="0.25rem">
+      <DxcFlex alignItems="center" gap="var(--spacing-gap-xs)">
         {action && (
           <DxcButton
             icon={action.icon}
