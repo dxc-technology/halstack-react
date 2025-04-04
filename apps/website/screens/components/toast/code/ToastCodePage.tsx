@@ -37,7 +37,12 @@ const sections = [
             </thead>
             <tbody>
               <tr>
-                <td>children</td>
+                <td>
+                  <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                    <StatusBadge status="required" />
+                    children
+                  </DxcFlex>
+                </td>
                 <td>
                   <TableCode>ReactNode</TableCode>
                 </td>
