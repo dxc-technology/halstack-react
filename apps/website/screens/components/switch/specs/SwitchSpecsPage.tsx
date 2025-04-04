@@ -531,7 +531,7 @@ const sections = [
               </tbody>
             </DxcTable>
             <DxcParagraph>
-              <em>*Depending on the position of the label</em>
+              <em>* Depending on the position of the label</em>
             </DxcParagraph>
           </>
         ),
