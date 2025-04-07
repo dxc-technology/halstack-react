@@ -7,7 +7,7 @@ import Figure from "@/common/Figure";
 import Image from "@/common/Image";
 import semanticToasts from "./images/semantic_toasts.png";
 import loadingToast from "./images/loading_toast.png";
-import toastsPositioning from "./images/toasts_positioning.png";
+import toastsPositioning from "./images/toasts_stacking.png";
 import anatomy from "./images/toast_anatomy.png";
 
 const sections = [
