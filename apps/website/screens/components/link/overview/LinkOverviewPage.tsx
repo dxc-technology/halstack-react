@@ -11,11 +11,11 @@ const sections = [
     title: "Introduction",
     content: (
       <DxcParagraph>
-        Links are essential interactive elements that enable users to navigate between pages, access external resources,
-        or explore related content. They can be placed within text, used as standalone elements, or positioned after
-        sections to provide additional actions or information. Links enhance usability by clearly indicating their
-        purpose and destination, ensuring a seamless and intuitive browsing experience. Proper usage of links helps
-        maintain accessibility and improves content discoverability across digital products.
+        Links are essential interactive elements that enable users to <strong>navigate</strong> between pages, access
+        external resources, or explore related content. They can be placed within text, used as standalone elements, or
+        positioned after sections to provide additional actions or information. Links enhance usability by clearly
+        indicating their purpose and destination, ensuring a seamless and intuitive browsing experience. Proper usage of
+        links helps maintain accessibility and improves content discoverability across digital products.
       </DxcParagraph>
     ),
   },
@@ -44,20 +44,15 @@ const sections = [
         <DxcBulletedList>
           <DxcBulletedList.Item>
             <strong>Use clear and descriptive labels:</strong> link labels should clearly indicate what users can expect
-            when they click. Avoid generic labels like "click here".
+            when they click. Avoid generic labels like <em>"click here"</em>.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
             <strong>Indicate external links appropriately:</strong> If a link directs users to an external site or opens
-            a new tab, provide an appropiate icon to set expectations.
+            a new tab, provide an appropriate icon to set expectations.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
             <strong>Avoid excessive linking:</strong> too many links within a paragraph can overwhelm users and make
             content harder to read. Use links strategically.
-          </DxcBulletedList.Item>
-          <DxcBulletedList.Item>
-            <strong>Prioritize vertical stacking:</strong> for better readability and usability, stack checkboxes
-            vertically, especially when dealing with multiple options. Horizontal stacking should be reserved for short
-            lists with clear, non-wrapping labels.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
             <strong>Use appropriate link placement:</strong> position links logically within content, either integrated
