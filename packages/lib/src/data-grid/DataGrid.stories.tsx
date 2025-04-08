@@ -834,6 +834,7 @@ const DataGridPaginator = () => {
           selectable
           selectedRows={selectedRows}
           onSelectRows={setSelectedRows}
+          defaultPage={2}
           showPaginator
         />
       </ExampleContainer>
@@ -852,6 +853,7 @@ const DataGridPaginator = () => {
           onSelectRows={setSelectedChildRows}
           showPaginator
           itemsPerPage={2}
+          defaultPage={2}
         />
       </ExampleContainer>
       <ExampleContainer>
