@@ -1,4 +1,4 @@
-import { DxcParagraph, DxcBulletedList, DxcFlex, DxcTable } from "@dxc-technology/halstack-react";
+import { DxcParagraph, DxcBulletedList, DxcFlex, DxcTable, DxcLink } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
@@ -9,6 +9,7 @@ import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
 import Image from "@/common/Image";
 import anatomy from "./images/switch_anatomy.png";
 import content from "screens/components/wizard/usage/examples/content";
+import Link from "next/link";
 
 const sections = [
   {
@@ -121,8 +122,15 @@ const sections = [
     content: (
       <>
         <DxcParagraph>
-          While switches, radio group and checkboxes, may all appear as selection controls, they serve distinct purposes
-          in a user interface:
+          Although switches,{" "}
+          <Link href="/components/radio-group" passHref legacyBehavior>
+            <DxcLink>radio groups</DxcLink>
+          </Link>
+          , and{" "}
+          <Link href="/components/checkbox" passHref legacyBehavior>
+            <DxcLink>checkboxes</DxcLink>
+          </Link>{" "}
+          may appear as selection controls, they serve distinct purposes in a user interface:
         </DxcParagraph>
         <DxcTable>
           <thead>
@@ -137,8 +145,8 @@ const sections = [
                 <strong>Switch</strong>
               </td>
               <td>
-                Use for a single, immediate toggle between two states, like on/off or enabled/disabled. Switches should
-                act instantly and are best for system or UI-level settings.
+                Use for a <strong>single, immediate toggle</strong> between two states, like on/off or enabled/disabled.
+                Switches should act instantly and are best for system or UI-level settings.
               </td>
             </tr>
             <tr>
@@ -146,8 +154,9 @@ const sections = [
                 <strong>Radio group</strong>
               </td>
               <td>
-                Use when the user must select only one option from a list of predefined, mutually exclusive choices.
-                Ideal for short, static lists where all options should be visible at once to support decision-making.
+                Use when the user must select <strong>only one option</strong> from a list of predefined, mutually
+                exclusive choices. Ideal for short, static lists where all options should be visible at once to support
+                decision-making.
               </td>
             </tr>
             <tr>
@@ -155,9 +164,9 @@ const sections = [
                 <strong>Checkbox</strong>
               </td>
               <td>
-                Use when users can select multiple options independently. Each checkbox represents an on/off decision,
-                making them suitable for filters, preference settings, or multi-select tasks. A group may allow none,
-                some, or all options to be selected.
+                Use when users can select <strong>multiple options</strong> independently. Each checkbox represents an
+                on/off decision, making them suitable for filters, preference settings, or multi-select tasks. A group
+                may allow none, some, or all options to be selected.
               </td>
             </tr>
           </tbody>
