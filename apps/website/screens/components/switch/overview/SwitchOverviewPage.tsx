@@ -8,7 +8,6 @@ import stacking from "./examples/stacking";
 import Image from "@/common/Image";
 import anatomy from "./images/switch_anatomy.png";
 import Link from "next/link";
-import content from "screens/components/wizard/usage/examples/content";
 
 const sections = [
   {
