@@ -16,7 +16,7 @@ const RadioGroupPageHeading = ({ children }: { children: ReactNode }) => {
         <DxcFlex direction="column" gap="2rem">
           <ComponentHeading name="Radio group" />
           <DxcParagraph>
-            A radio group let the user make a mutually exclusive selection from a group of options.
+            A radio group allows users to select one option from a set of related, mutually exclusive choices.
           </DxcParagraph>
           <TabsPageHeading tabs={tabs} />
         </DxcFlex>
