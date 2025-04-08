@@ -1,17 +1,11 @@
-import { DxcSwitch, DxcInset, DxcFlex, DxcHeading } from "@dxc-technology/halstack-react";
+import { DxcSwitch, DxcInset, DxcFlex } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   return (
     <DxcInset space="2rem">
-      <DxcFlex justifyContent="center" gap="3rem">
-        <DxcFlex direction="column">
-          <DxcHeading level={5} text="Before" />
-          <DxcSwitch label="Show all" />
-        </DxcFlex>
-        <DxcFlex direction="column">
-          <DxcHeading level={5} text="After" />
-          <DxcSwitch label="Off" labelPosition="after" />
-        </DxcFlex>
+      <DxcFlex justifyContent="center" gap="var(--spacing-gap-xl)">
+        <DxcSwitch defaultChecked label="Show all" />
+        <DxcSwitch label="Off" labelPosition="after" />
       </DxcFlex>
     </DxcInset>
   );
@@ -21,7 +15,6 @@ const scope = {
   DxcSwitch,
   DxcInset,
   DxcFlex,
-  DxcHeading,
 };
 
 export default { code, scope };

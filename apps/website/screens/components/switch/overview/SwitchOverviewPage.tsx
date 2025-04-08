@@ -5,11 +5,10 @@ import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import labelPosition from "./examples/labelPosition";
 import stacking from "./examples/stacking";
-import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
 import Image from "@/common/Image";
 import anatomy from "./images/switch_anatomy.png";
-import content from "screens/components/wizard/usage/examples/content";
 import Link from "next/link";
+import content from "screens/components/wizard/usage/examples/content";
 
 const sections = [
   {
@@ -47,19 +46,25 @@ const sections = [
   {
     title: "Stacking switches",
     content: (
-      <DxcParagraph>
-        Switches can be arranged vertically or horizontally depending on context, user needs, and available screen
-        space.
-      </DxcParagraph>
+      <>
+        <DxcParagraph>
+          Switches can be arranged vertically or horizontally depending on context, user needs, and available screen
+          space.
+        </DxcParagraph>
+        <Example example={stacking} />
+      </>
     ),
     subSections: [
       {
         title: "Vertical stacking",
         content: (
-          <DxcParagraph>
-            The preferred layout for lists of switches. It <strong>enhances readability</strong> and ensures each toggle
-            is clearly associated with its label. Ideal for settings or control panels with multiple toggles.
-          </DxcParagraph>
+          <>
+            <DxcParagraph>
+              The preferred layout for lists of switches. It <strong>enhances readability</strong> and ensures each
+              toggle is clearly associated with its label. Ideal for settings or control panels with multiple toggles.
+            </DxcParagraph>
+            <DxcParagraph>Leave minimum 4px of spacing between vertically stacked switches.</DxcParagraph>
+          </>
         ),
       },
       {
@@ -70,7 +75,7 @@ const sections = [
               Used when space is constrained or when only a few switches are present. This layout can save space but
               should be avoided for long labels or more than two options.
             </DxcParagraph>
-            <Example example={stacking} />
+            <DxcParagraph>Horizontally stacked switches maintain a separation of, minimum, 24px.</DxcParagraph>
           </>
         ),
       },
@@ -96,7 +101,7 @@ const sections = [
           <thead>
             <tr>
               <th>Position</th>
-              <HeaderDescriptionCell>Description</HeaderDescriptionCell>
+              <th>Description</th>
             </tr>
           </thead>
           <tbody>
@@ -136,7 +141,7 @@ const sections = [
           <thead>
             <tr>
               <th>Component</th>
-              <HeaderDescriptionCell>Use case</HeaderDescriptionCell>
+              <th>Use case</th>
             </tr>
           </thead>
           <tbody>
@@ -176,68 +181,32 @@ const sections = [
   },
   {
     title: "Best practices",
-    subSections: [
-      {
-        title: "Use for binary, opposing states",
-        content: (
-          <DxcBulletedList>
-            <DxcBulletedList.Item>
-              Switches are ideal when users need to turn a setting <strong>on</strong> or <strong>off</strong>, such as
-              enabling notifications or dark mode.
-            </DxcBulletedList.Item>
-            <DxcBulletedList.Item>
-              Avoid using switches for choices that are not immediately clear opposites (use radio buttons instead).
-            </DxcBulletedList.Item>
-          </DxcBulletedList>
-        ),
-      },
-      {
-        title: "Trigger immediate changes",
-        content: (
-          <DxcBulletedList>
-            <DxcBulletedList.Item>
-              Switches should take effect <strong>immediately</strong> without requiring form submission.
-            </DxcBulletedList.Item>
-            <DxcBulletedList.Item>
-              Do not pair switches with a submit button or use them for decisions that need confirmation.
-            </DxcBulletedList.Item>
-          </DxcBulletedList>
-        ),
-      },
-      {
-        title: "Use clear, descriptive labels",
-        content: (
-          <DxcBulletedList>
-            <DxcBulletedList.Item>Labels should clarify the effect of toggling the switch.</DxcBulletedList.Item>
-            <DxcBulletedList.Item>
-              Use positive, action-oriented phrasing when possible (e.g., “Enable sound”).
-            </DxcBulletedList.Item>
-          </DxcBulletedList>
-        ),
-      },
-      {
-        title: "Stack vertically for better scannability",
-        content: (
-          <DxcBulletedList>
-            <DxcBulletedList.Item>
-              When multiple switches are used together, stack them vertically to maintain clarity and reduce visual
-              clutter.
-            </DxcBulletedList.Item>
-          </DxcBulletedList>
-        ),
-      },
-      {
-        title: "Don't overuse switches",
-        content: (
-          <DxcBulletedList>
-            <DxcBulletedList.Item>
-              Too many toggles on one screen can overwhelm users. Group related settings and consider alternatives like
-              grouped checkboxes or forms when appropriate.
-            </DxcBulletedList.Item>
-          </DxcBulletedList>
-        ),
-      },
-    ],
+    content: (
+      <DxcBulletedList>
+        <DxcBulletedList.Item>
+          <strong>Use for binary, opposing states:</strong> Switches are ideal when users need to turn a setting{" "}
+          <strong>on</strong> or <strong>off</strong>, such as enabling notifications or dark mode. Avoid using switches
+          for choices that are not immediately clear opposites (use radio buttons instead).
+        </DxcBulletedList.Item>
+        <DxcBulletedList.Item>
+          <strong>Trigger immediate changes:</strong> Switches should take effect <strong>immediately</strong> without
+          requiring form submission. Do not pair switches with a submit button or use them for decisions that need
+          confirmation.
+        </DxcBulletedList.Item>
+        <DxcBulletedList.Item>
+          <strong>Use clear, descriptive labels:</strong> Labels should clarify the effect of toggling the switch. Use
+          positive, action-oriented phrasing when possible (e.g., “Enable sound”).
+        </DxcBulletedList.Item>
+        <DxcBulletedList.Item>
+          <strong>Stack vertically for better scannability:</strong> When multiple switches are used together, stack
+          them vertically to maintain clarity and reduce visual clutter.
+        </DxcBulletedList.Item>
+        <DxcBulletedList.Item>
+          <strong>Don't overuse switches:</strong> Too many toggles on one screen can overwhelm users. Group related
+          settings and consider alternatives like grouped checkboxes or forms when appropriate.
+        </DxcBulletedList.Item>
+      </DxcBulletedList>
+    ),
   },
 ];
 

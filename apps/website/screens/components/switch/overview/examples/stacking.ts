@@ -1,18 +1,30 @@
-import { DxcSwitch, DxcInset, DxcFlex, DxcHeading } from "@dxc-technology/halstack-react";
+import { DxcSwitch, DxcInset, DxcFlex, DxcTypography } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   return (
     <DxcInset space="2rem">
-      <DxcFlex gap="2rem" justifyContent="center">
-        <DxcFlex direction="column" gap="0.125rem">
-          <DxcHeading level={5} text="Vertical" />
+      <DxcFlex gap="var(--spacing-gap-xl)" justifyContent="center">
+        <DxcFlex direction="column" gap="var(--spacing-gap-xs)">
+          <DxcTypography
+            color="var(--color-fg-neutral-dark)"
+            fontSize="var(--typography-label-m)"
+            fontWeight="var(--typography-label-semibold)"
+          >
+            Vertical
+          </DxcTypography>
           <DxcSwitch label="Option 01" />
           <DxcSwitch label="Option 02" />
           <DxcSwitch label="Option 03" />
         </DxcFlex>
-        <DxcFlex direction="column" gap="0.125rem">
-          <DxcHeading level={5} text="Horizontal" />
-          <DxcFlex gap="1.5rem">
+        <DxcFlex direction="column" gap="var(--spacing-gap-xs)">
+          <DxcTypography
+            color="var(--color-fg-neutral-dark)"
+            fontSize="var(--typography-label-m)"
+            fontWeight="var(--typography-label-semibold)"
+          >
+            Horizontal
+          </DxcTypography>
+          <DxcFlex gap="var(--spacing-gap-l)">
             <DxcSwitch label="Option 01" />
             <DxcSwitch label="Option 02" />
             <DxcSwitch label="Option 03" />
@@ -27,7 +39,7 @@ const scope = {
   DxcSwitch,
   DxcInset,
   DxcFlex,
-  DxcHeading,
+  DxcTypography,
 };
 
 export default { code, scope };
