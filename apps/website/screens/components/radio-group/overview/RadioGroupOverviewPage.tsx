@@ -55,10 +55,13 @@ const sections = [
   {
     title: "Stacking radio buttons",
     content: (
-      <DxcParagraph>
-        Radio buttons can be arranged vertically or horizontally depending on the context, layout constraints, and user
-        experience considerations.
-      </DxcParagraph>
+      <>
+        <DxcParagraph>
+          Radio buttons can be arranged vertically or horizontally depending on the context, layout constraints, and
+          user experience considerations.
+        </DxcParagraph>
+        <Example example={stacking} defaultIsVisible={false} />
+      </>
     ),
     subSections: [
       {
@@ -74,15 +77,12 @@ const sections = [
       {
         title: "Horizontal stacking",
         content: (
-          <>
-            <DxcParagraph>
-              Horizontal stacking is suitable when screen space is limited or when options are short and easily
-              distinguishable. This layout <strong>can reduce vertical scroll</strong> but should only be used when it
-              doesn't compromise readability. Always maintain visual grouping and alignment, and ensure that labels
-              remain clear and unambiguous.
-            </DxcParagraph>
-            <Example example={stacking} defaultIsVisible={false} />
-          </>
+          <DxcParagraph>
+            Horizontal stacking is suitable when screen space is limited or when options are short and easily
+            distinguishable. This layout <strong>can reduce vertical scroll</strong> but should only be used when it
+            doesn't compromise readability. Always maintain visual grouping and alignment, and ensure that labels remain
+            clear and unambiguous.
+          </DxcParagraph>
         ),
       },
     ],
@@ -146,76 +146,34 @@ const sections = [
   },
   {
     title: "Best practices",
-    subSections: [
-      {
-        title: "Use for mutually exclusive choices",
-        content: (
-          <DxcBulletedList>
-            <DxcBulletedList.Item>
-              Radio Groups are best suited when users need to select <strong>only one option</strong> from a predefined
-              list.
-            </DxcBulletedList.Item>
-            <DxcBulletedList.Item>
-              Avoid using them for multiple selections — checkboxes are more appropriate in that case.
-            </DxcBulletedList.Item>
-          </DxcBulletedList>
-        ),
-      },
-      {
-        title: "Keep option labels short and clear",
-        content: (
-          <DxcBulletedList>
-            <DxcBulletedList.Item>
-              Use concise, descriptive labels so users can quickly understand each choice.
-            </DxcBulletedList.Item>
-            <DxcBulletedList.Item>
-              Avoid using long sentences or technical jargon, which can overwhelm the layout and slow down
-              decision-making.
-            </DxcBulletedList.Item>
-          </DxcBulletedList>
-        ),
-      },
-      {
-        title: "Default to vertical layout for clarity",
-        content: (
-          <DxcBulletedList>
-            <DxcBulletedList.Item>
-              Stacking options vertically improves readability and makes scanning easier, especially when there are more
-              than two options.
-            </DxcBulletedList.Item>
-            <DxcBulletedList.Item>
-              Use horizontal layout only when space is limited or options are very short and simple.
-            </DxcBulletedList.Item>
-          </DxcBulletedList>
-        ),
-      },
-      {
-        title: "Group related options together",
-        content: (
-          <DxcBulletedList>
-            <DxcBulletedList.Item>
-              Ensure all radio buttons in a group are logically related and fall under the same question or decision
-              point.
-            </DxcBulletedList.Item>
-            <DxcBulletedList.Item>
-              Never separate radio buttons from their group label or helper text — they should feel like a cohesive
-              unit.
-            </DxcBulletedList.Item>
-          </DxcBulletedList>
-        ),
-      },
-      {
-        title: "Handle errors gracefully",
-        content: (
-          <DxcBulletedList>
-            <DxcBulletedList.Item>
-              Use validation to prevent submission without a selection if required, and display clear, specific error
-              messages.
-            </DxcBulletedList.Item>
-          </DxcBulletedList>
-        ),
-      },
-    ],
+    content: (
+      <DxcBulletedList>
+        <DxcBulletedList.Item>
+          <strong>Use for mutually exclusive choices:</strong> radio groups are best suited when users need to select{" "}
+          <strong>only one option</strong> from a predefined list. Avoid using them for multiple selections — checkboxes
+          are more appropriate in that case.
+        </DxcBulletedList.Item>
+        <DxcBulletedList.Item>
+          <strong>Keep option labels short and clear:</strong> use concise, descriptive labels so users can quickly
+          understand each choice. Avoid using long sentences or technical jargon, which can overwhelm the layout and
+          slow down decision-making.
+        </DxcBulletedList.Item>
+        <DxcBulletedList.Item>
+          <strong>Default to vertical layout for clarity:</strong> stacking options vertically improves readability and
+          makes scanning easier, especially when there are more than two options. Use horizontal layout only when space
+          is limited or options are very short and simple.
+        </DxcBulletedList.Item>
+        <DxcBulletedList.Item>
+          <strong>Group related options together:</strong> ensure all radio buttons in a group are logically related and
+          fall under the same question or decision point. Never separate radio buttons from their group label or helper
+          text — they should feel like a cohesive unit.
+        </DxcBulletedList.Item>
+        <DxcBulletedList.Item>
+          <strong>Handle errors gracefully:</strong> use validation to prevent submission without a selection if
+          required, and display clear, specific error messages.
+        </DxcBulletedList.Item>
+      </DxcBulletedList>
+    ),
   },
 ];
 
