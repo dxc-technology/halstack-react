@@ -23,13 +23,15 @@ const sections = [
         </thead>
         <tbody>
           <tr>
-            <td>defaultChecked</td>
+            <td>ariaLabel</td>
             <td>
-              <TableCode>boolean</TableCode>
+              <TableCode>{"string"}</TableCode>
             </td>
-            <td>Initial state of the switch, only when it is uncontrolled.</td>
             <td>
-              <TableCode>false</TableCode>
+              Specifies a string to be used as the name for the switch element when no <Code>label</Code> is provided.
+            </td>
+            <td>
+              <TableCode>'Switch'</TableCode>
             </td>
           </tr>
           <tr>
@@ -44,15 +46,24 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
-            <td>value</td>
+            <td>defaultChecked</td>
             <td>
-              <TableCode>string</TableCode>
+              <TableCode>boolean</TableCode>
             </td>
+            <td>Initial state of the switch, only when it is uncontrolled.</td>
             <td>
-              Will be passed to the <Code>value</Code> attribute of the HTML input element. When inside a form, this
-              value will be only submitted if the switch is checked.
+              <TableCode>false</TableCode>
             </td>
-            <td>-</td>
+          </tr>
+          <tr>
+            <td>disabled</td>
+            <td>
+              <TableCode>boolean</TableCode>
+            </td>
+            <td>If true, the component will be disabled.</td>
+            <td>
+              <TableCode>false</TableCode>
+            </td>
           </tr>
           <tr>
             <td>label</td>
@@ -73,32 +84,23 @@ const sections = [
             </td>
           </tr>
           <tr>
+            <td>margin</td>
+            <td>
+              <TableCode>'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge' | Margin</TableCode>
+            </td>
+            <td>
+              Size of the margin to be applied to the component. You can pass an object with 'top', 'bottom', 'left' and
+              'right' properties in order to specify different margin sizes.
+            </td>
+            <td>-</td>
+          </tr>
+          <tr>
             <td>name</td>
             <td>
               <TableCode>string</TableCode>
             </td>
             <td>Name attribute of the input element.</td>
             <td>-</td>
-          </tr>
-          <tr>
-            <td>disabled</td>
-            <td>
-              <TableCode>boolean</TableCode>
-            </td>
-            <td>If true, the component will be disabled.</td>
-            <td>
-              <TableCode>false</TableCode>
-            </td>
-          </tr>
-          <tr>
-            <td>optional</td>
-            <td>
-              <TableCode>boolean</TableCode>
-            </td>
-            <td>If true, the component will display '(Optional)' next to the label.</td>
-            <td>
-              <TableCode>false</TableCode>
-            </td>
           </tr>
           <tr>
             <td>onChange</td>
@@ -112,14 +114,21 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
-            <td>margin</td>
+            <td>optional</td>
             <td>
-              <TableCode>'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge' | Margin</TableCode>
+              <TableCode>boolean</TableCode>
             </td>
+            <td>If true, the component will display '(Optional)' next to the label.</td>
             <td>
-              Size of the margin to be applied to the component. You can pass an object with 'top', 'bottom', 'left' and
-              'right' properties in order to specify different margin sizes.
+              <TableCode>false</TableCode>
             </td>
+          </tr>
+          <tr>
+            <td>ref</td>
+            <td>
+              <TableCode>{"React.Ref<HTMLDivElement>"}</TableCode>
+            </td>
+            <td>Reference to the component.</td>
             <td>-</td>
           </tr>
           <tr>
@@ -145,24 +154,15 @@ const sections = [
             </td>
           </tr>
           <tr>
-            <td>ref</td>
+            <td>value</td>
             <td>
-              <TableCode>{"React.Ref<HTMLDivElement>"}</TableCode>
+              <TableCode>string</TableCode>
             </td>
-            <td>Reference to the component.</td>
+            <td>
+              Will be passed to the <Code>value</Code> attribute of the HTML input element. When inside a form, this
+              value will be only submitted if the switch is checked.
+            </td>
             <td>-</td>
-          </tr>
-          <tr>
-            <td>ariaLabel</td>
-            <td>
-              <TableCode>{"string"}</TableCode>
-            </td>
-            <td>
-              Specifies a string to be used as the name for the switch element when no <Code>label</Code> is provided.
-            </td>
-            <td>
-              <TableCode>'Switch'</TableCode>
-            </td>
           </tr>
         </tbody>
       </DxcTable>
@@ -183,15 +183,13 @@ const sections = [
   },
 ];
 
-const SwitchCodePage = () => {
-  return (
-    <DxcFlex direction="column" gap="4rem">
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
-      </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/switch/code/SwitchCodePage.tsx" />
-    </DxcFlex>
-  );
-};
+const SwitchCodePage = () => (
+  <DxcFlex direction="column" gap="4rem">
+    <QuickNavContainerLayout>
+      <QuickNavContainer sections={sections} startHeadingLevel={2} />
+    </QuickNavContainerLayout>
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/switch/code/SwitchCodePage.tsx" />
+  </DxcFlex>
+);
 
 export default SwitchCodePage;

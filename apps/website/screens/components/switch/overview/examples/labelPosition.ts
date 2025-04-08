@@ -5,11 +5,11 @@ const code = `() => {
     <DxcInset space="2rem">
       <DxcFlex justifyContent="center" gap="3rem">
         <DxcFlex direction="column">
-          <DxcHeading level={4} text="Before"></DxcHeading>
+          <DxcHeading level={5} text="Before" />
           <DxcSwitch label="Show all" />
         </DxcFlex>
         <DxcFlex direction="column">
-          <DxcHeading level={4} text="After"></DxcHeading>
+          <DxcHeading level={5} text="After" />
           <DxcSwitch label="Off" labelPosition="after" />
         </DxcFlex>
       </DxcFlex>
