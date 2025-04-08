@@ -184,10 +184,11 @@ const DxcDataGrid = ({
   onSort,
   onPageChange,
   totalItems,
+  defaultPage = 1,
 }: DataGridPropsType): JSX.Element => {
   const [rowsToRender, setRowsToRender] = useState<GridRow[] | HierarchyGridRow[] | ExpandableGridRow[]>(rows);
   const colorsTheme = useContext(HalstackContext);
-  const [page, changePage] = useState(1);
+  const [page, changePage] = useState(defaultPage);
 
   const goToPage = (newPage: number) => {
     if (onPageChange) {
