@@ -5,7 +5,7 @@ import DocFooter from "@/common/DocFooter";
 
 const sections = [
   {
-    title: "Usage",
+    title: "Introduction",
     content: (
       <>
         <DxcParagraph>Considerations for the use of the number input component:</DxcParagraph>
@@ -21,15 +21,13 @@ const sections = [
   },
 ];
 
-const NumberInputUsagePage = () => {
-  return (
-    <DxcFlex direction="column" gap="4rem">
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
-      </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/number-input/usage/NumberInputUsagePage.tsx" />
-    </DxcFlex>
-  );
-};
+const NumberInputOverviewPage = () => (
+  <DxcFlex direction="column" gap="4rem">
+    <QuickNavContainerLayout>
+      <QuickNavContainer sections={sections} startHeadingLevel={2} />
+    </QuickNavContainerLayout>
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/number-input/overview/NumberInputOverviewPage.tsx" />
+  </DxcFlex>
+);
 
-export default NumberInputUsagePage;
+export default NumberInputOverviewPage;
