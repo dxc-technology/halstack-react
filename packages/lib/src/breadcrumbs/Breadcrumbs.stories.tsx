@@ -93,7 +93,7 @@ const Breadcrumbs = () => (
       <DxcBreadcrumbs items={items} />
     </ExampleContainer>
     <Title title="Active state" theme="light" level={3} />
-    <ExampleContainer pseudoState="pseudo-active">
+    <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
       <DxcBreadcrumbs items={items} />
     </ExampleContainer>
     <Title title="Truncation and text ellipsis with tooltip (only when collapsed)" theme="light" level={3} />
