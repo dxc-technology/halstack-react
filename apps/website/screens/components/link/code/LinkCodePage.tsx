@@ -27,6 +27,19 @@ const sections = [
         </thead>
         <tbody>
           <tr>
+            <td>
+              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                <StatusBadge status="required" />
+                children
+              </DxcFlex>
+            </td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
+            <td>Text of the link.</td>
+            <td>-</td>
+          </tr>
+          <tr>
             <td>disabled</td>
             <td>
               <TableCode>boolean</TableCode>
@@ -37,14 +50,12 @@ const sections = [
             </td>
           </tr>
           <tr>
-            <td>inheritColor</td>
+            <td>href</td>
             <td>
-              <TableCode>boolean</TableCode>
+              <TableCode>string</TableCode>
             </td>
-            <td>If true, the color is inherited from parent.</td>
-            <td>
-              <TableCode>false</TableCode>
-            </td>
+            <td>Page to be opened when the user clicks on the link.</td>
+            <td>-</td>
           </tr>
           <tr>
             <td>icon</td>
@@ -59,7 +70,6 @@ const sections = [
               replace spaces with underscores. By default they are outlined if you want it to be filled prefix the
               symbol name with <TableCode>"filled_"</TableCode>.
             </td>
-
             <td>-</td>
           </tr>
           <tr>
@@ -73,11 +83,24 @@ const sections = [
             </td>
           </tr>
           <tr>
-            <td>href</td>
+            <td>inheritColor</td>
             <td>
-              <TableCode>string</TableCode>
+              <TableCode>boolean</TableCode>
             </td>
-            <td>Page to be opened when the user clicks on the link.</td>
+            <td>If true, the color is inherited from parent.</td>
+            <td>
+              <TableCode>false</TableCode>
+            </td>
+          </tr>
+          <tr>
+            <td>margin</td>
+            <td>
+              <TableCode>'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge' | Margin</TableCode>
+            </td>
+            <td>
+              Size of the margin to be applied to the component. You can pass an object with 'top', 'bottom', 'left' and
+              'right' properties in order to specify different margin sizes.
+            </td>
             <td>-</td>
           </tr>
           <tr>
@@ -98,30 +121,6 @@ const sections = [
             <td>
               If defined, the link will be displayed as a button. This function will be called when the user clicks the
               link.
-            </td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td>
-              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                <StatusBadge status="required" />
-                children
-              </DxcFlex>
-            </td>
-            <td>
-              <TableCode>string</TableCode>
-            </td>
-            <td>Text of the link.</td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td>margin</td>
-            <td>
-              <TableCode>'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge' | Margin</TableCode>
-            </td>
-            <td>
-              Size of the margin to be applied to the component. You can pass an object with 'top', 'bottom', 'left' and
-              'right' properties in order to specify different margin sizes.
             </td>
             <td>-</td>
           </tr>
