@@ -7,6 +7,7 @@ import stacking from "./examples/stacking";
 import Image from "@/common/Image";
 import anatomy from "./images/checkbox_anatomy.png";
 import Link from "next/link";
+import labelPosition from "./examples/labelPosition";
 
 const sections = [
   {
@@ -55,8 +56,9 @@ const sections = [
         content: (
           <>
             <DxcParagraph>
-              To <strong>improve readability and scalability</strong>, checkboxes can be stacked vertically, especially in forms or
-              settings panels, allowing users to process options more efficiently without excessive eye movement.
+              To <strong>improve readability and scalability</strong>, checkboxes can be stacked vertically, especially
+              in forms or settings panels, allowing users to process options more efficiently without excessive eye
+              movement.
             </DxcParagraph>
             <DxcParagraph>Leave minimum 4px of spacing between vertically stacked checkboxes.</DxcParagraph>
           </>
@@ -77,6 +79,23 @@ const sections = [
         ),
       },
     ],
+  },
+  {
+    title: "Label position",
+    content: (
+      <>
+        <DxcParagraph>
+          By default, the label is placed <strong>to the left of the checkbox</strong>, but it can also be positioned{" "}
+          <strong>to the right</strong> when needed. Choose the label position that best fits your layout and ensures
+          clear readability and alignment with surrounding elements.
+        </DxcParagraph>
+        <DxcParagraph>
+          We recommend selecting a label placement that maintains a strong visual connection between the checkbox and
+          its description, without disrupting the overall flow of the interface.
+        </DxcParagraph>
+        <Example example={labelPosition} />
+      </>
+    ),
   },
   {
     title: "Checkbox vs. radio group vs. switch",
