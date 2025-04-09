@@ -153,6 +153,7 @@ const expandableRows = [
     issueType: "Bug",
     expandedContent: <DxcContainer>Custom content 1</DxcContainer>,
     expandedContentHeight: 470,
+    contentIsExpanded: true,
     actions: <DxcDataGrid.ActionsCell actions={actions} />,
   },
   {

@@ -39,6 +39,7 @@ const HierarchyGridRowTypeString = `GridRow & {
 const ExpandableGridRowTypeString = `GridRow & {
   expandedContent?: React.ReactNode;
   expandedContentHeight?: number;
+  contentIsExpanded?: boolean;
 }`;
 
 const actionsType = `{

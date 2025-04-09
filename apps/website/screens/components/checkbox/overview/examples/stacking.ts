@@ -1,21 +1,33 @@
-import { DxcCheckbox, DxcInset, DxcFlex, DxcHeading } from "@dxc-technology/halstack-react";
+import { DxcCheckbox, DxcInset, DxcFlex, DxcTypography } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   return (
     <DxcInset space="2rem">
-      <DxcFlex gap="5rem" justifyContent="center">
-        <DxcFlex direction="column" gap="0.5rem">
-          <DxcHeading level={4} text="Vertical" />
-          <DxcCheckbox label="Option" labelPosition="after" />
-          <DxcCheckbox label="Option" labelPosition="after" />
-          <DxcCheckbox label="Option" labelPosition="after" />
+      <DxcFlex gap="var(--spacing-gap-xl)" justifyContent="center">
+        <DxcFlex direction="column" gap="var(--spacing-gap-xs)">
+          <DxcTypography
+            color="var(--color-fg-neutral-dark)"
+            fontSize="var(--typography-label-m)"
+            fontWeight="var(--typography-label-semibold)"
+          >
+            Vertical
+          </DxcTypography>
+          <DxcCheckbox label="Option 01" labelPosition="after" />
+          <DxcCheckbox label="Option 02" labelPosition="after" />
+          <DxcCheckbox label="Option 03" labelPosition="after" />
         </DxcFlex>
-        <DxcFlex direction="column" gap="0.5rem">
-          <DxcHeading level={4} text="Horizontal" />
-          <DxcFlex gap="1.5rem">
-            <DxcCheckbox label="Option" labelPosition="after" />
-            <DxcCheckbox label="Option" labelPosition="after" />
-            <DxcCheckbox label="Option" labelPosition="after" />
+        <DxcFlex direction="column" gap="var(--spacing-gap-xs)">
+          <DxcTypography
+            color="var(--color-fg-neutral-dark)"
+            fontSize="var(--typography-label-m)"
+            fontWeight="var(--typography-label-semibold)"
+          >
+            Horizontal
+          </DxcTypography>
+          <DxcFlex gap="var(--spacing-gap-l)">
+            <DxcCheckbox label="Option 01" labelPosition="after" />
+            <DxcCheckbox label="Option 02" labelPosition="after" />
+            <DxcCheckbox label="Option 03" labelPosition="after" />
           </DxcFlex>
         </DxcFlex>
       </DxcFlex>
@@ -27,7 +39,7 @@ const scope = {
   DxcCheckbox,
   DxcInset,
   DxcFlex,
-  DxcHeading,
+  DxcTypography,
 };
 
 export default { code, scope };
