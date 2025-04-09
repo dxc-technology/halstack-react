@@ -1145,4 +1145,9 @@ export const DataGridSortedExpanded: Story = {
 
 export const UnknownUniqueId: Story = {
   render: DataGridUnknownUniqueRowId,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const editorCell = canvas.getAllByText("Task 1")[0];
+    editorCell && (await userEvent.dblClick(editorCell));
+  },
 };
