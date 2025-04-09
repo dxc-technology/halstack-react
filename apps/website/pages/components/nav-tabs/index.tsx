@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
 import NavTabsPageLayout from "screens/components/nav-tabs/NavTabsPageLayout";
-import NavTabsOverviewPage from "screens/components/nav-tabs/specs/NavTabsOverviewPage";
+import NavTabsOverviewPage from "screens/components/nav-tabs/overview/NavTabsOverviewPage";
 
 const Index = () => (
   <>
