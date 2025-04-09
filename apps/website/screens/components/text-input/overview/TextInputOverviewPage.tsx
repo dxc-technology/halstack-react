@@ -14,45 +14,13 @@ import autosuggest from "./examples/autosuggest";
 
 const sections = [
   {
-    title: "Usage",
+    title: "Introduction",
     content: (
       <DxcParagraph>
         Use text inputs in forms to help people enter, select and search for text. Common text input types include:
         usernames, descriptions, URLs, phone numbers, credit cards, emails, addresses or plain text searches.
       </DxcParagraph>
     ),
-    subSections: [
-      {
-        title: "Do's",
-        content: (
-          <DxcBulletedList>
-            <DxcBulletedList.Item>
-              Do use fixed-width inputs for content that has a specific, known length (e.g. postcode, phone number).
-            </DxcBulletedList.Item>
-            <DxcBulletedList.Item>
-              Do use sentence for any input text case with standard, local grammar and punctuation rules.
-            </DxcBulletedList.Item>
-            <DxcBulletedList.Item>
-              Do use helpful and clear text for labels, error messages and helper texts.
-            </DxcBulletedList.Item>
-          </DxcBulletedList>
-        ),
-      },
-      {
-        title: "Don'ts",
-        content: (
-          <DxcBulletedList>
-            <DxcBulletedList.Item>
-              Do not use text input for text longer than a single line (e.g. name, phone number). Use the textarea
-              instead.
-            </DxcBulletedList.Item>
-            <DxcBulletedList.Item>Do not disable copy and paste.</DxcBulletedList.Item>
-            <DxcBulletedList.Item>Do not display a pop-up error message after validating.</DxcBulletedList.Item>
-            <DxcBulletedList.Item>Avoid masking label, keep it always visible.</DxcBulletedList.Item>
-          </DxcBulletedList>
-        ),
-      },
-    ],
   },
   {
     title: "Content",
@@ -145,36 +113,32 @@ const sections = [
       {
         title: "Usage",
         content: (
-          <>
-            <DxcBulletedList>
-              <DxcBulletedList.Item>
-                Use the suggestions to help users select from a list of standard responses when needed.
-              </DxcBulletedList.Item>
-              <DxcBulletedList.Item>
-                If the value for the textbox must be chosen from a predefined set of allowed values, use the{" "}
-                <Link href="/components/select" passHref legacyBehavior>
-                  <DxcLink>select</DxcLink>
-                </Link>{" "}
-                component instead.
-              </DxcBulletedList.Item>
-              <DxcBulletedList.Item>Keep suggestions simple and avoid scroll.</DxcBulletedList.Item>
-            </DxcBulletedList>
-          </>
+          <DxcBulletedList>
+            <DxcBulletedList.Item>
+              Use the suggestions to help users select from a list of standard responses when needed.
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
+              If the value for the textbox must be chosen from a predefined set of allowed values, use the{" "}
+              <Link href="/components/select" passHref legacyBehavior>
+                <DxcLink>select</DxcLink>
+              </Link>{" "}
+              component instead.
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>Keep suggestions simple and avoid scroll.</DxcBulletedList.Item>
+          </DxcBulletedList>
         ),
       },
     ],
   },
 ];
 
-const TextInputUsagePage = () => {
-  return (
-    <DxcFlex direction="column" gap="4rem">
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
-      </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/text-input/usage/TextInputUsagePage.tsx" />
-    </DxcFlex>
-  );
-};
+const TextInputOverviewPage = () => (
+  <DxcFlex direction="column" gap="4rem">
+    <QuickNavContainerLayout>
+      <QuickNavContainer sections={sections} startHeadingLevel={2} />
+    </QuickNavContainerLayout>
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/text-input/overview/TextInputOverviewPage.tsx" />
+  </DxcFlex>
+);
 
-export default TextInputUsagePage;
+export default TextInputOverviewPage;
