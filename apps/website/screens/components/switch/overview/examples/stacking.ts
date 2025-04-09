@@ -1,4 +1,4 @@
-import { DxcCheckbox, DxcInset, DxcFlex, DxcTypography } from "@dxc-technology/halstack-react";
+import { DxcSwitch, DxcInset, DxcFlex, DxcTypography } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   return (
@@ -12,9 +12,9 @@ const code = `() => {
           >
             Vertical
           </DxcTypography>
-          <DxcCheckbox label="Option 01" labelPosition="after" />
-          <DxcCheckbox label="Option 02" labelPosition="after" />
-          <DxcCheckbox label="Option 03" labelPosition="after" />
+          <DxcSwitch label="Option 01" />
+          <DxcSwitch label="Option 02" />
+          <DxcSwitch label="Option 03" />
         </DxcFlex>
         <DxcFlex direction="column" gap="var(--spacing-gap-xs)">
           <DxcTypography
@@ -25,9 +25,9 @@ const code = `() => {
             Horizontal
           </DxcTypography>
           <DxcFlex gap="var(--spacing-gap-l)">
-            <DxcCheckbox label="Option 01" labelPosition="after" />
-            <DxcCheckbox label="Option 02" labelPosition="after" />
-            <DxcCheckbox label="Option 03" labelPosition="after" />
+            <DxcSwitch label="Option 01" />
+            <DxcSwitch label="Option 02" />
+            <DxcSwitch label="Option 03" />
           </DxcFlex>
         </DxcFlex>
       </DxcFlex>
@@ -36,7 +36,7 @@ const code = `() => {
 }`;
 
 const scope = {
-  DxcCheckbox,
+  DxcSwitch,
   DxcInset,
   DxcFlex,
   DxcTypography,
