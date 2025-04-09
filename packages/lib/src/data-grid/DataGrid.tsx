@@ -99,6 +99,7 @@ const DataGridContainer = styled.div<{
     outline-color: ${(props) => props.theme.focusColor} !important;
     .rdg-text-editor:focus {
       border-color: transparent;
+      background-color: transparent;
     }
   }
   .rdg-header-row {
