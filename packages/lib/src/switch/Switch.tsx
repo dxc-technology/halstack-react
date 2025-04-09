@@ -17,21 +17,15 @@ const calculateWidth = (margin: SwitchPropsType["margin"], size: SwitchPropsType
   size === "fillParent"
     ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
     : size && sizes[size];
-
-const getTrackColor = (checked: SwitchPropsType["checked"], disabled: SwitchPropsType["disabled"]): string => {
-  switch (true) {
-    case checked && disabled:
-      return "var(--color-bg-primary-lighter)";
-    case !checked && disabled:
-      return "var(--color-bg-neutral-light)";
-    case checked && !disabled:
-      return "var(--color-bg-primary-strong)";
-    case !checked && !disabled:
-      return "var(--color-bg-neutral-strong)";
-    default:
-      return "";
-  }
-};
+    
+const getTrackColor = (checked: SwitchPropsType["checked"], disabled: SwitchPropsType["disabled"]) =>
+  disabled
+    ? checked
+      ? "var(--color-bg-primary-lighter)"
+      : "var(--color-bg-neutral-light)"
+    : checked
+      ? "var(--color-bg-primary-strong)"
+      : "var(--color-bg-neutral-strong)";
 
 const SwitchContainer = styled.div<{
   disabled: SwitchPropsType["disabled"];

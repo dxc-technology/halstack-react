@@ -71,8 +71,8 @@ const sections = [
         content: (
           <>
             <DxcParagraph>
-              Used when space is constrained or when only a few switches are present. This layout can save space but
-              should be avoided for long labels or more than two options.
+              Used when space is constrained or when only a few switches are present. This layout can{" "}
+              <strong>save space</strong> but should be avoided for long labels or more than two options.
             </DxcParagraph>
             <DxcParagraph>Horizontally stacked switches maintain a separation of, minimum, 24px.</DxcParagraph>
           </>
@@ -87,8 +87,8 @@ const sections = [
         <DxcParagraph>
           By default, the label is placed <strong>before the switch</strong>, as this position clearly communicates what
           the control is for and improves accessibility. However, it's also possible to position the label{" "}
-          <strong>after the switch</strong> in specific cases—particularly when you want to emphasize the{" "}
-          <strong>current state</strong> of the control (e.g., “On”, “Off”).
+          <strong>after the switch</strong> in specific cases — particularly when you want to emphasize the{" "}
+          <strong>current state</strong> of the control (e.g., "On", "Off").
         </DxcParagraph>
         <DxcParagraph>
           We recommend changing the default label position{" "}
@@ -108,13 +108,13 @@ const sections = [
               <td>
                 <strong>Label before</strong>
               </td>
-              <td>Labels before the switch indicate what the switch is for</td>
+              <td>Improves clarity by describing the setting being controlled. This is the default and recommended position.</td>
             </tr>
             <tr>
               <td>
                 <strong>Label after</strong>
               </td>
-              <td>Labels after the switch indicate the state of the switch</td>
+              <td>Useful in minimalist interfaces or when the switch’s current state needs to be highlighted. Recommended only for specific use cases.</td>
             </tr>
           </tbody>
         </DxcTable>
@@ -183,25 +183,25 @@ const sections = [
     content: (
       <DxcBulletedList>
         <DxcBulletedList.Item>
-          <strong>Use for binary, opposing states:</strong> Switches are ideal when users need to turn a setting{" "}
+          <strong>Use for binary, opposing states:</strong> switches are ideal when users need to turn a setting{" "}
           <strong>on</strong> or <strong>off</strong>, such as enabling notifications or dark mode. Avoid using switches
           for choices that are not immediately clear opposites (use radio buttons instead).
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>
-          <strong>Trigger immediate changes:</strong> Switches should take effect <strong>immediately</strong> without
+          <strong>Trigger immediate changes:</strong> switches should take effect <strong>immediately</strong> without
           requiring form submission. Do not pair switches with a submit button or use them for decisions that need
           confirmation.
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>
-          <strong>Use clear, descriptive labels:</strong> Labels should clarify the effect of toggling the switch. Use
+          <strong>Use clear, descriptive labels:</strong> labels should clarify the effect of toggling the switch. Use
           positive, action-oriented phrasing when possible (e.g., “Enable sound”).
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>
-          <strong>Stack vertically for better scannability:</strong> When multiple switches are used together, stack
+          <strong>Stack vertically for better scannability:</strong> when multiple switches are used together, stack
           them vertically to maintain clarity and reduce visual clutter.
         </DxcBulletedList.Item>
         <DxcBulletedList.Item>
-          <strong>Don't overuse switches:</strong> Too many toggles on one screen can overwhelm users. Group related
+          <strong>Don't overuse switches:</strong> too many toggles on one screen can overwhelm users. Group related
           settings and consider alternatives like grouped checkboxes or forms when appropriate.
         </DxcBulletedList.Item>
       </DxcBulletedList>
