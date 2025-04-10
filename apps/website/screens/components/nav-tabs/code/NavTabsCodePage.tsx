@@ -27,16 +27,6 @@ const sections = [
         </thead>
         <tbody>
           <tr>
-            <td>iconPosition</td>
-            <td>
-              <TableCode>'top' | 'left'</TableCode>
-            </td>
-            <td>Whether the icon should appear above or to the left of the label.</td>
-            <td>
-              <TableCode>'top'</TableCode>
-            </td>
-          </tr>
-          <tr>
             <td>
               <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
                 <StatusBadge status="required" />
@@ -50,6 +40,16 @@ const sections = [
               Contains one or more <Code>DxcNavTabs.Tab</Code>.
             </td>
             <td>-</td>
+          </tr>
+          <tr>
+            <td>iconPosition</td>
+            <td>
+              <TableCode>'top' | 'left'</TableCode>
+            </td>
+            <td>Whether the icon should appear above or to the left of the label.</td>
+            <td>
+              <TableCode>'top'</TableCode>
+            </td>
           </tr>
           <tr>
             <td>tabIndex</td>
@@ -93,6 +93,19 @@ const sections = [
                 <td>
                   <TableCode>false</TableCode>
                 </td>
+              </tr>
+              <tr>
+                <td>
+                  <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                    <StatusBadge status="required" />
+                    children
+                  </DxcFlex>
+                </td>
+                <td>
+                  <TableCode>string</TableCode>
+                </td>
+                <td>Tab label text.</td>
+                <td>-</td>
               </tr>
               <tr>
                 <td>disabled</td>
@@ -140,19 +153,6 @@ const sections = [
                 <td>
                   <TableCode>false</TableCode>
                 </td>
-              </tr>
-              <tr>
-                <td>
-                  <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                    <StatusBadge status="required" />
-                    children
-                  </DxcFlex>
-                </td>
-                <td>
-                  <TableCode>string</TableCode>
-                </td>
-                <td>Tab label text.</td>
-                <td>-</td>
               </tr>
             </tbody>
           </DxcTable>
