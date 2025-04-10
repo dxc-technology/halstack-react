@@ -43,8 +43,10 @@ const sections = [
         </DxcBulletedList>
         <DxcParagraph>
           <em>
-            * While cards support optional elements like images and actions, it's essential that the overall composition
-            remains visually balanced and aligned with the design system's structure.
+            ** Please note that while these elements are not included by default in the component's configuration, they
+            are the common components in a card. While cards support optional elements like images and actions, it's
+            essential that the overall composition remains visually balanced and aligned with the design system's
+            structure.
           </em>
         </DxcParagraph>
       </>
