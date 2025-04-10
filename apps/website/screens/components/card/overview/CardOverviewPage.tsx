@@ -25,11 +25,11 @@ const sections = [
         <Image src={anatomy} alt="Card's anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
-            <strong>Container:</strong> The main structural wrapper that ensures padding, spacing, and alignment across
+            <strong>Container:</strong> the main structural wrapper that ensures padding, spacing, and alignment across
             all card elements.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Custom content area:</strong> Flexible space where text, icons, buttons, and other UI elements can
+            <strong>Custom content area:</strong> flexible space where text, icons, buttons, and other UI elements can
             be placed. It adapts to different use cases while maintaining visual consistency.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
@@ -63,7 +63,7 @@ const sections = [
         </DxcParagraph>
         <DxcBulletedList>
           <DxcBulletedList.Item>
-            <strong>Image placement:</strong> Cards support placing the image either on the left or the right side of
+            <strong>Image placement:</strong> cards support placing the image either on the left or the right side of
             the layout. The image should maintain a fixed ratio and size for visual harmony. By default, the component
             provides layout options where the image can appear on the left or right side of the content. However,
             alternative layouts —such as vertical image placements— can be achieved by placing the image directly within
@@ -71,15 +71,15 @@ const sections = [
             guidelines.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Text content:</strong> Titles, descriptions, metadata, or status labels are typically placed in the
+            <strong>Text content:</strong> titles, descriptions, metadata, or status labels are typically placed in the
             content area with a clear hierarchy—starting with a bold title, followed by supporting text.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Interactive elements:</strong> Place buttons, links, or icons in the lower section of the content
+            <strong>Interactive elements:</strong> place buttons, links, or icons in the lower section of the content
             area or aligned to the end of the card to support related user actions.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Avoid overloading:</strong> Keep the content concise to prevent visual clutter. A well-structured
+            <strong>Avoid overloading:</strong> keep the content concise to prevent visual clutter. A well-structured
             card should be easy to scan and act upon.
           </DxcBulletedList.Item>
         </DxcBulletedList>
@@ -89,97 +89,44 @@ const sections = [
   },
   {
     title: "Best practices",
-    subSections: [
-      {
-        title: "Use a consistent layout",
-        content: (
-          <DxcBulletedList>
-            <DxcBulletedList.Item>
-              When displaying a collection of cards, maintain the same layout and style across all instances.
-            </DxcBulletedList.Item>
-            <DxcBulletedList.Item>Avoid mixing card variants within the same set.</DxcBulletedList.Item>
-          </DxcBulletedList>
-        ),
-      },
-      {
-        title: "Support scanning",
-        content: (
-          <DxcBulletedList>
-            <DxcBulletedList.Item>
-              Structure content so users can quickly identify what the card is about —use visual hierarchy, spacing, and
-              clear typography.
-            </DxcBulletedList.Item>
-          </DxcBulletedList>
-        ),
-      },
-      {
-        title: "Use cards as independent units",
-        content: (
-          <DxcBulletedList>
-            <DxcBulletedList.Item>
-              Each card should contain all the relevant information and actions within it.
-            </DxcBulletedList.Item>
-            <DxcBulletedList.Item>
-              It should make sense on its own, even if removed from the rest of the collection.
-            </DxcBulletedList.Item>
-          </DxcBulletedList>
-        ),
-      },
-      {
-        title: "Minimize interaction complexity",
-        content: (
-          <DxcBulletedList>
-            <DxcBulletedList.Item>Don't overload the card with too many clickable areas.</DxcBulletedList.Item>
-            <DxcBulletedList.Item>
-              Define clear action zones, and prioritize the most important interactions.
-            </DxcBulletedList.Item>
-          </DxcBulletedList>
-        ),
-      },
-      {
-        title: "Respect spacing",
-        content: (
-          <DxcBulletedList>
-            <DxcBulletedList.Item>
-              Ensure consistent padding and margins within and between cards to maintain visual rhythm in the layout.
-            </DxcBulletedList.Item>
-          </DxcBulletedList>
-        ),
-      },
-      {
-        title: "Use of white space",
-        content: (
-          <DxcBulletedList>
-            <DxcBulletedList.Item>Avoid cramming content.</DxcBulletedList.Item>
-            <DxcBulletedList.Item>
-              White space improves readability and prevents cards from feeling cluttered.
-            </DxcBulletedList.Item>
-          </DxcBulletedList>
-        ),
-      },
-      {
-        title: "Avoid over-design",
-        content: (
-          <DxcBulletedList>
-            <DxcBulletedList.Item>
-              Too many effects, decorations, or inconsistent imagery can reduce clarity and hurt the overall user
-              experience.
-            </DxcBulletedList.Item>
-          </DxcBulletedList>
-        ),
-      },
-      {
-        title: "Responsiveness",
-        content: (
-          <DxcBulletedList>
-            <DxcBulletedList.Item>
-              Cards should adapt gracefully to different screen sizes and grid layouts, maintaining structure and
-              readability.
-            </DxcBulletedList.Item>
-          </DxcBulletedList>
-        ),
-      },
-    ],
+    content: (
+      <>
+        <DxcBulletedList>
+          <DxcBulletedList.Item>
+            <strong>Use a consistent layout:</strong> when displaying a collection of cards, maintain the same layout
+            and style across all instances. Avoid mixing card variants within the same set.
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            <strong>Support scanning:</strong> structure content so users can quickly identify what the card is about —
+            use visual hierarchy, spacing, and clear typography.
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            <strong>Use cards as independent units:</strong> each card should contain all the relevant information and
+            actions within it. It should make sense on its own, even if removed from the rest of the collection.
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            <strong>Minimize interaction complexity:</strong> don't overload the card with too many clickable areas.
+            Define clear action zones, and prioritize the most important interactions.
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            <strong>Respect spacing:</strong> ensure consistent padding and margins within and between cards to maintain
+            visual rhythm in the layout.
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            <strong>Use of white space:</strong> avoid cramming content. White space improves readability and prevents
+            cards from feeling cluttered.
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            <strong>Avoid over-design:</strong> too many effects, decorations, or inconsistent imagery can reduce
+            clarity and hurt the overall user experience.
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            <strong>Responsiveness:</strong> cards should adapt gracefully to different screen sizes and grid layouts,
+            maintaining structure and readability.
+          </DxcBulletedList.Item>
+        </DxcBulletedList>
+      </>
+    ),
   },
 ];
 

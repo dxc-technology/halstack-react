@@ -30,17 +30,6 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
-            <td>imageSrc</td>
-            <td>
-              <TableCode>string</TableCode>
-            </td>
-            <td>
-              URL of the image that will be placed in the card component. In case of omission, the image container will
-              not appear and the content will occupy its space.
-            </td>
-            <td>-</td>
-          </tr>
-          <tr>
             <td>imageBgColor</td>
             <td>
               <TableCode>string</TableCode>
@@ -82,6 +71,17 @@ const sections = [
             <td>
               <TableCode>'before'</TableCode>
             </td>
+          </tr>
+          <tr>
+            <td>imageSrc</td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
+            <td>
+              URL of the image that will be placed in the card component. In case of omission, the image container will
+              not appear and the content will occupy its space.
+            </td>
+            <td>-</td>
           </tr>
           <tr>
             <td>linkHref</td>
