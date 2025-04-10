@@ -1,8 +1,10 @@
-import { DxcImage, DxcParagraph, DxcFlex, DxcBulletedList } from "@dxc-technology/halstack-react";
+import { DxcParagraph, DxcFlex, DxcBulletedList } from "@dxc-technology/halstack-react";
 import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
+import Image from "@/common/Image";
+import anatomy from "./images/image_anatomy.png";
 
 const sections = [
   {
@@ -27,6 +29,26 @@ const sections = [
           These insights will help you optimize performance, enhance accessibility, and create a more engaging visual
           experience for your users across different devices and contexts.
         </DxcParagraph>
+      </>
+    ),
+  },
+  {
+    title: "Anatomy",
+    content: (
+      <>
+        <Image src={anatomy} alt="Image's anatomy" />
+        <DxcBulletedList type="number">
+          <DxcBulletedList.Item>
+            <strong>Image:</strong> a visual element used to illustrate content, provide context, or support
+            storytelling. It should be relevant and meaningful, helping users better understand the subject or message
+            being conveyed.
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            <strong>Caption</strong> <em>(Optional)</em>: a short piece of descriptive text placed below the image. It
+            provides context, credits, or additional explanation for the image, improving accessibility and user
+            comprehension.
+          </DxcBulletedList.Item>
+        </DxcBulletedList>
       </>
     ),
   },

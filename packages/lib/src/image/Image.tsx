@@ -5,7 +5,7 @@ import ImagePropsType from "./types";
 const Figure = styled.figure`
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-gap-ml);
+  gap: var(--spacing-gap-s);
   width: fit-content;
   margin: 0;
   padding: 0;
@@ -14,10 +14,8 @@ const Figure = styled.figure`
 const CaptionContainer = styled.figcaption`
   color: var(--color-fg-neutral-dark);
   font-family: var(--typography-font-family);
-  font-size: var(--typography-label-m);
-  font-style: normal;
+  font-size: var(--typography-label-s);
   font-weight: var(--typography-label-regular);
-  line-height: normal;
 `;
 
 const CaptionWrapper = ({ caption, children }: { caption: ImagePropsType["caption"]; children: ReactNode }) =>
