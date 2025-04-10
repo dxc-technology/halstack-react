@@ -1,8 +1,7 @@
-import { useContext, useState } from "react";
-import styled, { ThemeProvider } from "styled-components";
+import { useState } from "react";
+import styled from "styled-components";
 import { spaces } from "../common/variables";
 import CardPropsType from "./types";
-import HalstackContext from "../HalstackContext";
 
 const Card = styled.div<{
   hasAction: boolean;
@@ -10,7 +9,7 @@ const Card = styled.div<{
   shadowDepth: 0 | 1 | 2;
 }>`
   display: flex;
-  cursor: ${({ hasAction }) => (hasAction && "pointer") || "unset"};
+  cursor: ${({ hasAction }) => (hasAction ? "pointer" : "unset")};
   outline: ${({ hasAction }) => !hasAction && "none"};
   margin: ${({ margin }) => (margin && typeof margin !== "object" ? spaces[margin] : "0px")};
   margin-top: ${({ margin }) => (margin && typeof margin === "object" && margin.top ? spaces[margin.top] : "")};
@@ -22,9 +21,9 @@ const Card = styled.div<{
   ${({ hasAction }) =>
     hasAction &&
     `:focus {
-      border-radius: var(--border-radius-s);
-      outline: var(--border-width-m) solid var(--border-color-secondary-medium);
+      outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
     }`}
+  border-radius: var(--border-radius-s);
   box-shadow: ${({ shadowDepth }) =>
     shadowDepth === 1
       ? "var(--shadow-low-x-position) var(--shadow-low-y-position) var(--shadow-low-blur) var(--shadow-low-spread) var(--shadow-dark)"
@@ -38,7 +37,7 @@ const CardContainer = styled.div<{
   imagePosition: CardPropsType["imagePosition"] | "none";
 }>`
   display: flex;
-  flex-direction: ${(props) => (props.imagePosition === "after" ? "row-reverse" : "row")};
+  flex-direction: ${({ imagePosition }) => (imagePosition === "after" ? "row-reverse" : "row")};
   height: 220px;
   width: 400px;
   &:hover {
@@ -60,7 +59,7 @@ const TagImage = styled.img<{ imagePadding: CardPropsType["imagePadding"]; image
 
 const ImageContainer = styled.div<{ imageBgColor: CardPropsType["imageBgColor"] }>`
   align-items: center;
-  background-color: ${({ imageBgColor }) => imageBgColor};
+  background-color: ${({ imageBgColor }) => imageBgColor ?? "transparent"};
   display: flex;
   flex-shrink: 0;
   height: 100%;
@@ -74,14 +73,14 @@ const CardContent = styled.div`
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
-  gap: var(--spacing-gap-ml, 16px);
+  gap: var(--spacing-gap-ml);
   overflow: hidden;
   padding: var(--spacing-padding-l);
 `;
 
 const DxcCard = ({
   imageSrc,
-  imageBgColor = "black",
+  imageBgColor,
   imagePadding,
   imagePosition = "before",
   linkHref,
@@ -91,33 +90,30 @@ const DxcCard = ({
   tabIndex = 0,
   outlined = true,
   children,
-}: CardPropsType): JSX.Element => {
-  const colorsTheme = useContext(HalstackContext);
+}: CardPropsType) => {
   const [isHovered, changeIsHovered] = useState(false);
 
   return (
-    <ThemeProvider theme={colorsTheme.card}>
-      <Card
-        hasAction={onClick || linkHref ? true : false}
-        margin={margin}
-        onMouseEnter={() => changeIsHovered(true)}
-        onMouseLeave={() => changeIsHovered(false)}
-        onClick={onClick}
-        tabIndex={onClick || linkHref ? tabIndex : -1}
-        as={linkHref && "a"}
-        href={linkHref}
-        shadowDepth={!outlined ? 0 : isHovered && (onClick || linkHref) ? 2 : 1}
-      >
-        <CardContainer hasAction={onClick || linkHref ? true : false} imagePosition={imageSrc ? imagePosition : "none"}>
-          {imageSrc && (
-            <ImageContainer imageBgColor={imageBgColor}>
-              <TagImage imagePadding={imagePadding} imageCover={imageCover} src={imageSrc} alt="Card image" />
-            </ImageContainer>
-          )}
-          <CardContent>{children}</CardContent>
-        </CardContainer>
-      </Card>
-    </ThemeProvider>
+    <Card
+      hasAction={!!(onClick || linkHref)}
+      margin={margin}
+      onMouseEnter={() => changeIsHovered(true)}
+      onMouseLeave={() => changeIsHovered(false)}
+      onClick={onClick}
+      tabIndex={onClick || linkHref ? tabIndex : -1}
+      as={linkHref && "a"}
+      href={linkHref}
+      shadowDepth={!outlined ? 0 : isHovered && (onClick || linkHref) ? 2 : 1}
+    >
+      <CardContainer hasAction={onClick || linkHref ? true : false} imagePosition={imageSrc ? imagePosition : "none"}>
+        {imageSrc && (
+          <ImageContainer imageBgColor={imageBgColor}>
+            <TagImage imagePadding={imagePadding} imageCover={imageCover} src={imageSrc} alt="Card image" />
+          </ImageContainer>
+        )}
+        <CardContent>{children}</CardContent>
+      </CardContainer>
+    </Card>
   );
 };
 
