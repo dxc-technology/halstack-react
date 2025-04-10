@@ -66,10 +66,4 @@ type Props = {
   onError?: ReactEventHandler<HTMLImageElement>;
 };
 
-export type CaptionWrapperProps = {
-  condition: boolean;
-  wrapper: (children: ReactNode) => JSX.Element;
-  children: ReactNode;
-};
-
 export default Props;
