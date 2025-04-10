@@ -148,14 +148,6 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
-            <td>summaryRow</td>
-            <td>
-              <TableCode>GridRow</TableCode>
-            </td>
-            <td>Extra row that will be always visible.</td>
-            <td>-</td>
-          </tr>
-          <tr>
             <td>selectable</td>
             <td>
               <TableCode>boolean</TableCode>
@@ -186,18 +178,6 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
-            <td>uniqueRowId</td>
-            <td>
-              <TableCode>string</TableCode>
-            </td>
-            <td>
-              This prop indicates the unique key that can be used to identify each row. The value of that key can be
-              either a number or a string. This prop is mandatory if <Code>selectable</Code> is set to true,{" "}
-              <Code>expandable</Code> is set to true or <Code>rows</Code> is of type <Code>HierarchyGridRow[]</Code>.
-            </td>
-            <td>-</td>
-          </tr>
-          <tr>
             <td>onGridRowsChange</td>
             <td>
               <TableCode>{`(rows: GridRow[] | HierarchyGridRow[] | ExpandableGridRow[]) => void`}</TableCode>
@@ -217,11 +197,23 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
-            <td>onPageChange</td>
+            <td>uniqueRowId</td>
             <td>
-              <TableCode>{`(page: number) => void`}</TableCode>
+              <TableCode>string</TableCode>
             </td>
-            <td>Function called whenever the current page is changed.</td>
+            <td>
+              This prop indicates the unique key that can be used to identify each row. The value of that key can be
+              either a number or a string. This prop is mandatory if <Code>selectable</Code> is set to true,{" "}
+              <Code>expandable</Code> is set to true or <Code>rows</Code> is of type <Code>HierarchyGridRow[]</Code>.
+            </td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>summaryRow</td>
+            <td>
+              <TableCode>GridRow</TableCode>
+            </td>
+            <td>Extra row that will be always visible.</td>
             <td>-</td>
           </tr>
           <tr>
@@ -233,20 +225,12 @@ const sections = [
             <td>false</td>
           </tr>
           <tr>
-            <td>totalItems</td>
+            <td>defaultPage</td>
             <td>
               <TableCode>number</TableCode>
             </td>
-            <td>Number of total items.</td>
+            <td>Default page in which the datagrid is rendered.</td>
             <td>-</td>
-          </tr>
-          <tr>
-            <td>showGoToPage</td>
-            <td>
-              <TableCode>boolean</TableCode>
-            </td>
-            <td>If true, a select component for navigation between pages will be displayed.</td>
-            <td>true</td>
           </tr>
           <tr>
             <td>itemsPerPage</td>
@@ -273,6 +257,30 @@ const sections = [
               This function will be called when the user selects an item per page option. The value selected will be
               passed as a parameter.
             </td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>onPageChange</td>
+            <td>
+              <TableCode>{`(page: number) => void`}</TableCode>
+            </td>
+            <td>Function called whenever the current page is changed.</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>showGoToPage</td>
+            <td>
+              <TableCode>boolean</TableCode>
+            </td>
+            <td>If true, a select component for navigation between pages will be displayed.</td>
+            <td>true</td>
+          </tr>
+          <tr>
+            <td>totalItems</td>
+            <td>
+              <TableCode>number</TableCode>
+            </td>
+            <td>Number of total items.</td>
             <td>-</td>
           </tr>
         </tbody>
