@@ -5,11 +5,24 @@ import ProgressBarPropsType from "./types";
 import DxcFlex from "../flex/Flex";
 import { auxTextStyles, labelTextStyles, textColorStyles } from "./utils";
 
-const ProgressBarContainer = styled.div`
+const ProgressBarContainer = styled.div<{
+  overlay: ProgressBarPropsType["overlay"];
+}>`
   display: flex;
   flex-wrap: wrap;
   min-width: 100px;
   width: 100%;
+  ${({ overlay }) =>
+    overlay &&
+    `
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      z-index: 1300;
+    `}
 `;
 
 const Overlay = styled.div`
@@ -141,7 +154,7 @@ const DxcProgressBar = ({
   }, [value]);
 
   return (
-    <ProgressBarContainer>
+    <ProgressBarContainer overlay={overlay}>
       {overlay && <Overlay />}
       <MainContainer overlay={overlay} margin={margin}>
         <DxcFlex justifyContent="space-between">
