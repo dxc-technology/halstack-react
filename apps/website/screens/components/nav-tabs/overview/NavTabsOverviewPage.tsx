@@ -62,7 +62,7 @@ const sections = [
     ),
   },
   {
-    title: "Using navtabs",
+    title: "Using nav tabs",
     subSections: [
       {
         title: "Icon position",
@@ -140,7 +140,7 @@ const sections = [
             </DxcBulletedList>
             <DxcParagraph>
               Both components improve usability, but Tabs are best for grouping related content within a page, while
-              NavTabs help users move across different sections or pages of an application.
+              <strong>nav tabs</strong> help users move across different sections or pages of an application.
             </DxcParagraph>
           </>
         ),
