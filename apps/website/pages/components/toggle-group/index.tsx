@@ -1,21 +1,17 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
 import ToggleGroupPageLayout from "screens/components/toggle-group/ToggleGroupPageLayout";
-import ToggleGroupCodePage from "screens/components/toggle-group/code/ToggleGroupCodePage";
+import ToggleGroupOverviewPage from "screens/components/toggle-group/overview/ToggleGroupOverviewPage";
 
-const Index = () => {
-  return (
-    <>
-      <Head>
-        <title>Toggle Group — Halstack Design System</title>
-      </Head>
-      <ToggleGroupCodePage></ToggleGroupCodePage>
-    </>
-  );
-};
+const Index = () => (
+  <>
+    <Head>
+      <title>Toggle Group — Halstack Design System</title>
+    </Head>
+    <ToggleGroupOverviewPage />
+  </>
+);
 
-Index.getLayout = function getLayout(page: ReactElement) {
-  return <ToggleGroupPageLayout>{page}</ToggleGroupPageLayout>;
-};
+Index.getLayout = (page: ReactElement) => <ToggleGroupPageLayout>{page}</ToggleGroupPageLayout>;
 
 export default Index;

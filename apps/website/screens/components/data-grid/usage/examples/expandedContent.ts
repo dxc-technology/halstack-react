@@ -22,7 +22,7 @@ const code = `() => {
     {
       id: "Row 2",
       complete: 51,
-      expandedContent: <DxcContainer overflow="auto" height="200px" padding="medium">
+      expandedContent: <DxcContainer overflow="auto" height="200px" padding="var(--spacing-padding-m)">
                           <DxcParagraph> 
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras laoreet vulputate augue, non cursus justo eleifend non. 
                             Nam ante erat, finibus at tincidunt ut, convallis sed tortor. Proin commodo vestibulum sagittis. 
