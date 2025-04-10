@@ -31,7 +31,9 @@ const sections = [
               Specifies a string to be used as the name for the progress bar element when no <Code>label</Code> is
               provided.
             </td>
-            <td>'Progress bar'</td>
+            <td>
+              <TableCode>'Progress bar'</TableCode>
+            </td>
           </tr>
           <tr>
             <td>helperText</td>

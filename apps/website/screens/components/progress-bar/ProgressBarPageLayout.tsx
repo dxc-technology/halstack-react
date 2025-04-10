@@ -14,7 +14,7 @@ const ProgressBarPageHeading = ({ children }: { children: ReactNode }) => {
     <DxcFlex direction="column" gap="3rem">
       <PageHeading>
         <DxcFlex direction="column" gap="2rem">
-          <ComponentHeading name="Progress Bar" />
+          <ComponentHeading name="Progress bar" />
           <DxcParagraph>A progress bar visually indicates the completion status of a task or process.</DxcParagraph>
           <TabsPageHeading tabs={tabs} />
         </DxcFlex>

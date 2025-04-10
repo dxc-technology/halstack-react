@@ -104,7 +104,7 @@ const sections = [
             include a label or percentage to indicate how much of the task is completed.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Avoid overuse:</strong> Don't show a progress bar for tasks shorter than 1 second — use a spinner or
+            <strong>Avoid overuse:</strong> don't show a progress bar for tasks shorter than 1 second — use a spinner or
             no feedback instead. Don't use a progress bar just for decoration; it should always reflect a real process.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>

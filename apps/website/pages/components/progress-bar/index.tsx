@@ -6,7 +6,7 @@ import ProgressBarPageLayout from "screens/components/progress-bar/ProgressBarPa
 const Index = () => (
   <>
     <Head>
-      <title>Progress Bar — Halstack Design System</title>
+      <title>Progress bar — Halstack Design System</title>
     </Head>
     <ProgressBarOverviewPage />
   </>
