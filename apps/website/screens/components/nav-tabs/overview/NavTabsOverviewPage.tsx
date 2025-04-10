@@ -139,7 +139,8 @@ const sections = [
               </DxcBulletedList.Item>
             </DxcBulletedList>
             <DxcParagraph>
-              Both components improve usability, but Tabs are best for grouping related content within a page, while
+              Both components improve usability, but <strong>tabs</strong> are best for grouping related content within
+              a page, while
               <strong>nav tabs</strong> help users move across different sections or pages of an application.
             </DxcParagraph>
           </>
@@ -161,7 +162,7 @@ const sections = [
             especially on smaller viewports.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            Ensure that tabs <strong>follow a logical order</strong>—based on frequency of use, workflow, or user
+            Ensure that tabs <strong>follow a logical order</strong> — based on frequency of use, workflow, or user
             priority.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
