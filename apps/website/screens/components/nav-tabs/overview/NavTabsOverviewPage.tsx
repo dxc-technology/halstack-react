@@ -9,7 +9,6 @@ import Example from "@/common/example/Example";
 import icons_top from "./examples/icons_top";
 import icons_left from "./examples/icons_left";
 import badges from "./examples/badges";
-import external from "./examples/external";
 
 const sections = [
   {
@@ -40,9 +39,8 @@ const sections = [
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
             <strong>Notification badge </strong>
-            <em>(Optional)</em>
-            <strong>: </strong>an optional visual indicator that displays the number of pending actions, alerts or
-            updates related to a specific tab.
+            <em>(Optional)</em>: a visual indicator that displays the number of pending actions, alerts or updates
+            related to a specific tab.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
             <strong>Selected tab: </strong>the active tab currently in focus, representing the visible content section.
@@ -50,15 +48,14 @@ const sections = [
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
             <strong>Icon</strong>
-            <em>(Optional)</em>
-            <strong>: </strong>an optional graphical element placed before the label to visually reinforce the tab's
+            <em>(Optional)</em>: an optional graphical element placed before the label to visually reinforce the tab's
             meaning or category.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
             <strong>Selected tab indicator: </strong>a horizontal bar that visually marks the currently active tab.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Unselected tab indicator: </strong>a horizontal bar that visually marks the currently unactive tab.
+            <strong>Unselected tab indicator: </strong>a horizontal bar that visually marks the currently inactive tab.
           </DxcBulletedList.Item>
         </DxcBulletedList>
       </>
@@ -72,19 +69,20 @@ const sections = [
         content: (
           <>
             <DxcParagraph>
-              Icons in nav tabs can be placed wither above or to the left of the label, depending on the layout and
-              density of the interface.
+              Icons in nav tabs can be placed either <strong>above or to the left</strong> of the label, depending on
+              the layout and density of the interface.
             </DxcParagraph>
             <DxcBulletedList>
               <DxcBulletedList.Item>
-                Use the top position when the tabs are displayed in a horizontal layout and you want to emphasize the
-                icon as a key visual cue—ideal for dashboards or mobile-first interfaces where vertical stacking feels
-                more natural.
+                Use the <strong>top position</strong> when the tabs are displayed in a horizontal layout and you want to
+                emphasize the icon as a key visual cue—ideal for dashboards or mobile - first interfaces where vertical
+                stacking feels more natural.
                 <Example example={icons_top} defaultIsVisible={false} />
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
-                Place the icon to the left of the label in more compact environments, especially when space is limited.
-                This configuration maintains readability while preserving a clean, organized structure.
+                Place the icon <strong>to the left</strong> of the label in more compact environments, especially when
+                space is limited. This configuration maintains readability while preserving a clean, organized
+                structure.
                 <Example example={icons_left} defaultIsVisible={false} />
               </DxcBulletedList.Item>
             </DxcBulletedList>
@@ -99,28 +97,14 @@ const sections = [
         content: (
           <>
             <DxcParagraph>
-              Nav tabs can optionally include a notification badge to indicate new activity, alerts, or content updates
-              related to that tab. These badges are typically displayed as small counters and serve as a visual prompt
-              to draw the user's attention to something that requires their interaction or awareness. Use notification
-              badges sparingly and only when there is a clear need to highlight important changes—such as unread
-              messages, pending actions or system alerts—to avoid visual noise and ensure they retain their impact.
+              Nav tabs can optionally include a <strong>notification badge</strong> to indicate new activity, alerts, or
+              content updates related to that tab. These badges are typically displayed as small counters and serve as a
+              visual prompt to <strong>draw the user's attention</strong> to something that requires their interaction
+              or awareness. Use notification badges sparingly and only when there is a clear need to highlight important
+              changes—such as unread messages, pending actions or system alerts—to avoid visual noise and ensure they
+              retain their impact.
             </DxcParagraph>
             <Example example={badges} defaultIsVisible={false} />
-          </>
-        ),
-      },
-      {
-        title: "External links",
-        content: (
-          <>
-            <DxcParagraph>
-              Nav tabs are not limited to internal navigation—they can also be used to direct users to external
-              resources or tools. When using tabs as external links, ensure that it's clear the user will be taken out
-              of the current context. This can be done with a visual indicator (such as an icon) or through a tooltip.
-              Consider external nav tabs when your application integrates with third-party platforms or provides
-              documentation, support pages or dashboards that live outside of your main product.
-            </DxcParagraph>
-            <Example example={external} defaultIsVisible={false} />
           </>
         ),
       },
@@ -138,10 +122,11 @@ const sections = [
             <DxcHeading level={4} text="Nav tabs" />
             <DxcBulletedList>
               <DxcBulletedList.Item>
-                Act as primary navigation elements, often leading to different pages or sections of an application.
+                Act as primary navigation elements, often leading to <strong>different pages</strong> or sections of an
+                application.
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
-                Clicking on a nav tab may trigger a full page reload or route change.
+                Clicking on a <strong>nav tab</strong> may trigger a full page reload or route change.
               </DxcBulletedList.Item>
             </DxcBulletedList>
             <DxcHeading level={4} text="Tabs" />
@@ -150,7 +135,7 @@ const sections = [
                 Used to switch between different content sections within the same page or container.
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
-                Typically do not trigger a full page reload but update content dynamically.
+                Typically do <strong>not</strong> trigger a full page reload but update content dynamically.
               </DxcBulletedList.Item>
             </DxcBulletedList>
             <DxcParagraph>
@@ -184,13 +169,9 @@ const sections = [
             overloading multiple tabs with badges at once.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            When linking to external content, provide a clear indication (e.g., an icon or tooltip) so users are aware
-            they will be redirected outside the current environment.
-          </DxcBulletedList.Item>
-          <DxcBulletedList.Item>
             Choose icon placement (left or top) based on the available space and the importance of the icon in the
-            context of the label. Left is preferred for horizontal layouts; top works best in vertical or
-            space-constrained scenarios.
+            context of the label. Left is preferred for horizontal layouts; top works best in vertical or space -
+            constrained scenarios.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
             Avoid mixing navigation tabs and action buttons within the same group, as this can create confusion around
