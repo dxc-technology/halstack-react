@@ -26,6 +26,11 @@ const StyledSuggestion = styled.span`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+
+  /* Highlighted text */
+  > span {
+    font-weight: var(--typography-label-semibold);
+  }
 `;
 
 const Suggestion = ({ highlighted, id, isLast, onClick, suggestion, value, visuallyFocused }: SuggestionProps) => {
@@ -48,7 +53,7 @@ const Suggestion = ({ highlighted, id, isLast, onClick, suggestion, value, visua
         <StyledSuggestion>
           {highlighted ? (
             <>
-              <strong>{matchedSuggestion.matchedWords}</strong>
+              <span>{matchedSuggestion.matchedWords}</span>
               {matchedSuggestion.noMatchedWords}
             </>
           ) : (

@@ -2,17 +2,34 @@ import { DxcTextInput, DxcInset } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 
 const code = `() => {
+  const [value, setValue] = useState("");
+  const onChange = ({ value }) => {
+    setValue(value);
+  };
   const actionIcon = {
-    onClick: () => {
-      console.log("Copied.");
-    },
     icon: "Content_Copy",
-    title: "Copy",
+    onClick: () => {
+      navigator.clipboard
+        .writeText(value)
+        .then(() => {
+          alert("Code copied!");
+        })
+        .catch(() => {
+          alert("Failed attempt to copy the text.");
+        });
+    },
+    title: "Copy the text",
   };
 
   return (
     <DxcInset space="2rem">
-      <DxcTextInput label="Enter your name" action={actionIcon} clearable />
+      <DxcTextInput 
+        action={actionIcon}
+        clearable
+        label="Enter your name"
+        onChange={onChange}
+        value={value}
+      />
     </DxcInset>
   );
 }`;
