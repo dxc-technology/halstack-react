@@ -1,4 +1,4 @@
-import { ReactEventHandler, ReactNode } from "react";
+import { ReactEventHandler } from "react";
 
 type Props = {
   /**
@@ -14,36 +14,14 @@ type Props = {
    */
   caption?: string;
   /**
+   * Sets the rendered height of the image.
+   */
+  height?: string;
+  /**
    * If true, the image will be loaded only when it is visible on the screen (lazy loading).
    * Otherwise and by default, the image will be loaded as soon as the component is mounted (eager loading).
    */
   lazyLoading?: boolean;
-  /**
-   * URL of the image. This prop is required and must be valid.
-   */
-  src: string;
-  /**
-   * List of one or more strings separated by commas indicating a set of possible images for the user agent to use.
-   *
-   * See MDN: https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/srcset
-   */
-  srcSet?: string;
-  /**
-   * One or more strings separated by commas, indicating a set of source sizes.
-   * If the srcSet attribute is absent or contains no values with a width descriptor,
-   * then this attribute has no effect.
-   *
-   * See MDN: https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/sizes
-   */
-  sizes?: string;
-  /**
-   * Sets the rendered width of the image.
-   */
-  width?: string;
-  /**
-   * Sets the rendered height of the image.
-   */
-  height?: string;
   /**
    * Sets the object-fit CSS property.
    *
@@ -57,13 +35,35 @@ type Props = {
    */
   objectPosition?: string;
   /**
+   * This function will be called when the image fails to load.
+   */
+  onError?: ReactEventHandler<HTMLImageElement>;
+  /**
    * This function will be called when the image is loaded.
    */
   onLoad?: ReactEventHandler<HTMLImageElement>;
   /**
-   * This function will be called when the image fails to load.
+   * One or more strings separated by commas, indicating a set of source sizes.
+   * If the srcSet attribute is absent or contains no values with a width descriptor,
+   * then this attribute has no effect.
+   *
+   * See MDN: https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/sizes
    */
-  onError?: ReactEventHandler<HTMLImageElement>;
+  sizes?: string;
+  /**
+   * URL of the image. This prop is required and must be valid.
+   */
+  src: string;
+  /**
+   * List of one or more strings separated by commas indicating a set of possible images for the user agent to use.
+   *
+   * See MDN: https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/srcset
+   */
+  srcSet?: string;
+  /**
+   * Sets the rendered width of the image.
+   */
+  width?: string;
 };
 
 export default Props;
