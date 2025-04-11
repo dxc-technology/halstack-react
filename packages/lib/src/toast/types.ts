@@ -65,16 +65,16 @@ type ToastPropsType = {
   hideSemanticIcon?: boolean;
 };
 
-type ToastsQueuePropsType = { 
+type ToastsQueuePropsType = {
+  /**
+   * Tree of components from which the useToast hook can be triggered.
+   */
+  children: ReactNode;
   /**
    * Duration in milliseconds before a toast automatically hides itself. 
    * The range goes from 3000ms to 5000ms, any other value will not be taken into consideration.
    */
   duration?: number;
-  /**
-   * Tree of components from which the useToast hook can be triggered.
-   */
-  children: ReactNode;
 };
 
 export default ToastPropsType;

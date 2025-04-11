@@ -1,21 +1,17 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import BreadcrumbsCodePage from "screens/components/breadcrumbs/code/BreadcrumbsCodePage";
 import BreadcrumbsPageLayout from "screens/components/breadcrumbs/BreadcrumbsPageLayout";
+import BreadcrumbsOverviewPage from "screens/components/breadcrumbs/overview/BreadcrumbsOverviewPage";
 
-const Usage = () => {
-  return (
-    <>
-      <Head>
-        <title>Breadcrumbs — Halstack Design System</title>
-      </Head>
-      <BreadcrumbsCodePage></BreadcrumbsCodePage>
-    </>
-  );
-};
+const Index = () => (
+  <>
+    <Head>
+      <title>Breadcrumbs — Halstack Design System</title>
+    </Head>
+    <BreadcrumbsOverviewPage />
+  </>
+);
 
-Usage.getLayout = function getLayout(page: ReactElement) {
-  return <BreadcrumbsPageLayout>{page}</BreadcrumbsPageLayout>;
-};
+Index.getLayout = (page: ReactElement) => <BreadcrumbsPageLayout>{page}</BreadcrumbsPageLayout>;
 
-export default Usage;
+export default Index;

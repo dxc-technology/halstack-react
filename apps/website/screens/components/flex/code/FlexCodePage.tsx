@@ -10,8 +10,8 @@ import TableCode, { ExtendedTableCode } from "@/common/TableCode";
 import StatusBadge from "@/common/StatusBadge";
 
 const gapTypeString = `{
-  rowGap: string; 
-  columnGap: string
+  columnGap: string;
+  rowGap: string;
 }`;
 
 const sections = [
@@ -19,12 +19,14 @@ const sections = [
     title: "Props",
     content: (
       <DxcTable>
-        <tr>
-          <th>Name</th>
-          <th>Type</th>
-          <th>Description</th>
-          <th>Default</th>
-        </tr>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Default</th>
+          </tr>
+        </thead>
         <tbody>
           <tr>
             <td>alignContent</td>

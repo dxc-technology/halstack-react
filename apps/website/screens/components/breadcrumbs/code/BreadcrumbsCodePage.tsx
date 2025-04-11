@@ -124,15 +124,13 @@ const sections = [
   },
 ];
 
-const BreadcrumbsCodePage = () => {
-  return (
-    <DxcFlex direction="column" gap="4rem">
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
-      </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/breadcrumbs/code/BreadcrumbsCodePage.tsx" />
-    </DxcFlex>
-  );
-};
+const BreadcrumbsCodePage = () => (
+  <DxcFlex direction="column" gap="4rem">
+    <QuickNavContainerLayout>
+      <QuickNavContainer sections={sections} startHeadingLevel={2} />
+    </QuickNavContainerLayout>
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/breadcrumbs/code/BreadcrumbsCodePage.tsx" />
+  </DxcFlex>
+);
 
 export default BreadcrumbsCodePage;

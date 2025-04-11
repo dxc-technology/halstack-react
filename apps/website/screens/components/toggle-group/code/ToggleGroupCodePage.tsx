@@ -1,4 +1,4 @@
-import { DxcFlex, DxcLink, DxcTable } from "@dxc-technology/halstack-react";
+import { DxcFlex, DxcTable } from "@dxc-technology/halstack-react";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import Code from "@/common/Code";
@@ -7,7 +7,16 @@ import Example from "@/common/example/Example";
 import controlled from "./examples/controlled";
 import uncontrolled from "./examples/uncontrolled";
 import StatusBadge from "@/common/StatusBadge";
-import TableCode from "@/common/TableCode";
+import TableCode, { ExtendedTableCode } from "@/common/TableCode";
+
+const optionTypeString = `{
+  disabled?: boolean;
+  icon?: string | 
+    (React.ReactNode 
+      & React.SVGProps<SVGSVGElement>);
+  label?: string;
+  value: string;
+}`;
 
 const sections = [
   {
@@ -32,80 +41,15 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
-            <td>value</td>
+            <td>margin</td>
             <td>
-              <TableCode>number | number[]</TableCode>
+              <TableCode>'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge' | Margin</TableCode>
             </td>
             <td>
-              The key(s) of the selected value(s). If the toggle group component doesn't allow multiple selection, it
-              must be one unique value. If the component allows multiple selection, value must be an array. If
-              undefined, the component will be uncontrolled and the value will be managed internally by the component.
-            </td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td>label</td>
-            <td>
-              <TableCode>string</TableCode>
-            </td>
-            <td>Text to be placed above the component.</td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td>helperText</td>
-            <td>
-              <TableCode>string</TableCode>
-            </td>
-            <td>Helper text to be placed above the component.</td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td>
-              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
-                <StatusBadge status="required" />
-                options
-              </DxcFlex>
-            </td>
-            <td>
-              <TableCode>
-                {
-                  "{ label?: string; icon: string | (React.ReactNode & React.SVGProps <SVGSVGElement>); value: string; title?: string; }[]"
-                }
-              </TableCode>
-            </td>
-            <td>
-              An array of objects representing the selectable options. Each object has the following properties:
-              <ul>
-                <li>
-                  <b>label</b>: String with the option display value.
-                </li>
-                <li>
-                  <b>icon</b>:{" "}
-                  <DxcLink newWindow href="https://fonts.google.com/icons">
-                    Material Symbol
-                  </DxcLink>{" "}
-                  name or SVG element used as the icon of an option.
-                </li>
-                <li>
-                  <b>value</b>: Number with the option inner value.
-                </li>
-                <li>
-                  <b>title</b>: Text representing advisory information related to an option. Under the hood, it also
-                  serves as an accessible label for the icon.
-                </li>
-              </ul>
+              Size of the margin to be applied to the component. You can pass an object with 'top', 'bottom', 'left' and
+              'right' properties in order to specify different margin sizes.
             </td>
             <td>-</td>
-          </tr>
-          <tr>
-            <td>disabled</td>
-            <td>
-              <TableCode>boolean</TableCode>
-            </td>
-            <td>If true, the component will be disabled.</td>
-            <td>
-              <TableCode>false</TableCode>
-            </td>
           </tr>
           <tr>
             <td>multiple</td>
@@ -133,15 +77,31 @@ const sections = [
             <td>-</td>
           </tr>
           <tr>
-            <td>margin</td>
             <td>
-              <TableCode>'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge' | Margin</TableCode>
+              <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                <StatusBadge status="required" />
+                options
+              </DxcFlex>
             </td>
             <td>
-              Size of the margin to be applied to the component. You can pass an object with 'top', 'bottom', 'left' and
-              'right' properties in order to specify different margin sizes.
+              <TableCode>Option[]</TableCode>
+              <p>
+                being <Code>Option</Code> an object with the following properties:
+              </p>
+              <ExtendedTableCode>{optionTypeString}</ExtendedTableCode>
             </td>
+            <td>An array of objects representing the selectable options.</td>
             <td>-</td>
+          </tr>
+          <tr>
+            <td>orientation</td>
+            <td>
+              <TableCode>'horizontal' | 'vertical'</TableCode>
+            </td>
+            <td>The orientation of the toggle group.</td>
+            <td>
+              <TableCode>'horizontal'</TableCode>
+            </td>
           </tr>
           <tr>
             <td>tabIndex</td>
@@ -154,6 +114,18 @@ const sections = [
             <td>
               <TableCode>0</TableCode>
             </td>
+          </tr>
+          <tr>
+            <td>value</td>
+            <td>
+              <TableCode>number | number[]</TableCode>
+            </td>
+            <td>
+              The key(s) of the selected value(s). If the toggle group component doesn't allow multiple selection, it
+              must be one unique value. If the component allows multiple selection, value must be an array. If
+              undefined, the component will be uncontrolled and the value will be managed internally by the component.
+            </td>
+            <td>-</td>
           </tr>
         </tbody>
       </DxcTable>
@@ -174,15 +146,13 @@ const sections = [
   },
 ];
 
-const ToggleGroupCodePage = () => {
-  return (
-    <DxcFlex direction="column" gap="4rem">
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
-      </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/toggle-group/code/ToggleGroupCodePage.tsx" />
-    </DxcFlex>
-  );
-};
+const ToggleGroupCodePage = () => (
+  <DxcFlex direction="column" gap="4rem">
+    <QuickNavContainerLayout>
+      <QuickNavContainer sections={sections} startHeadingLevel={2} />
+    </QuickNavContainerLayout>
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/toggle-group/code/ToggleGroupCodePage.tsx" />
+  </DxcFlex>
+);
 
 export default ToggleGroupCodePage;
