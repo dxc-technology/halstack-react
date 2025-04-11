@@ -8,7 +8,7 @@ import DxcIcon from "../icon/Icon";
 
 const TabContainer = styled.div<{ active: TabProps["active"] }>`
   align-items: stretch;
-  border-bottom: var(--border-width-s) var(--border-style-default)
+  border-bottom: var(--border-width-m) var(--border-style-default)
     ${(props) => (props.active ? "var(--border-color-primary-stronger)" : "transparent")};
   padding: var(--spacing-padding-xs);
 `;
@@ -52,7 +52,6 @@ const Tab = styled.a<{
 
 const Label = styled.span<{
   disabled: TabProps["disabled"];
-  active: TabProps["active"];
 }>`
   display: inline;
   color: ${(props) => (props.disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-stronger)")};
@@ -66,8 +65,6 @@ const Label = styled.span<{
 `;
 
 const TabIconContainer = styled.div<{
-  iconPosition: NavTabsPropsType["iconPosition"];
-  active: TabProps["active"];
   disabled: TabProps["disabled"];
 }>`
   display: flex;
@@ -133,14 +130,12 @@ const DxcTab = forwardRef(
           {...otherProps}
         >
           {icon && (
-            <TabIconContainer iconPosition={iconPosition} active={active} disabled={disabled}>
+            <TabIconContainer disabled={disabled}>
               {typeof icon === "string" ? <DxcIcon icon={icon} /> : icon}
             </TabIconContainer>
           )}
           <DxcFlex alignItems="center" gap="var(--spacing-gap-s)">
-            <Label active={active} disabled={disabled}>
-              {children}
-            </Label>
+            <Label disabled={disabled}>{children}</Label>
             {notificationNumber && !disabled && (
               <DxcBadge
                 mode="notification"
