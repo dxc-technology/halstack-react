@@ -28,7 +28,7 @@ const TabLink = styled.a<{
   min-height: 48px;
   padding: var(--spacing-padding-none) var(--spacing-padding-xs);
   border-radius: var(--border-radius-s);
-  background: var(--color-bg-neutral-lightest);
+  background-color: var(--color-bg-neutral-lightest);
   text-decoration-color: transparent;
   text-decoration-line: none;
   cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
@@ -37,14 +37,14 @@ const TabLink = styled.a<{
     !props.disabled &&
     `
       :hover {
-        background: var(--color-bg-primary-lighter);
+        background-color: var(--color-bg-primary-lighter);
       }
       :focus {
         outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
         outline-offset: calc(var(--border-width-m) * -1);
       }
       :active {
-        background: var(--color-bg-primary-lighter);
+        background-color: var(--color-bg-primary-lighter);
       }
   `}
 `;
