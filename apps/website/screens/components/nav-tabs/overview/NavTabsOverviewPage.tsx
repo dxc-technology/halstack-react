@@ -170,6 +170,11 @@ const sections = [
             overloading multiple tabs with badges at once.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
+            While the component is flexible enough to support a mix of label-only and label-with-icon tabs, it's best to
+            choose one style per set. Mixing both can reduce scannability and create visual imbalance, impacting the
+            overall usability.
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
             Choose icon placement (left or top) based on the available space and the importance of the icon in the
             context of the label. Left is preferred for horizontal layouts; top works best in vertical or space -
             constrained scenarios.
@@ -184,15 +189,13 @@ const sections = [
   },
 ];
 
-const NavTabsOverviewPage = () => {
-  return (
-    <DxcFlex direction="column" gap="4rem">
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2} />
-      </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/nav-tabs/overview/NavTabsOverviewPage.tsx" />
-    </DxcFlex>
-  );
-};
+const NavTabsOverviewPage = () => (
+  <DxcFlex direction="column" gap="4rem">
+    <QuickNavContainerLayout>
+      <QuickNavContainer sections={sections} startHeadingLevel={2} />
+    </QuickNavContainerLayout>
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/nav-tabs/overview/NavTabsOverviewPage.tsx" />
+  </DxcFlex>
+);
 
 export default NavTabsOverviewPage;

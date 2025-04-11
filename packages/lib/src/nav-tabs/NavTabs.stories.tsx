@@ -93,7 +93,7 @@ const NavTabs = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With icon position top" theme="light" level={4} />
-      <DxcNavTabs>
+      <DxcNavTabs iconPosition="top">
         <DxcNavTabs.Tab href="#" active icon={iconSVG}>
           Tab 1
         </DxcNavTabs.Tab>
@@ -110,7 +110,7 @@ const NavTabs = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With icon position left" theme="light" level={4} />
-      <DxcNavTabs iconPosition="left">
+      <DxcNavTabs>
         <DxcNavTabs.Tab href="#" active icon={pinIcon}>
           Tab 1
         </DxcNavTabs.Tab>
@@ -126,8 +126,8 @@ const NavTabs = () => (
       </DxcNavTabs>
     </ExampleContainer>
     <ExampleContainer>
-      <Title title="With icon and notification number" theme="light" level={4} />
-      <DxcNavTabs>
+      <Title title="With icon position top and notification number" theme="light" level={4} />
+      <DxcNavTabs iconPosition="top">
         <DxcNavTabs.Tab href="#" active icon={pinIcon} notificationNumber>
           Tab 1
         </DxcNavTabs.Tab>
@@ -143,8 +143,8 @@ const NavTabs = () => (
       </DxcNavTabs>
     </ExampleContainer>
     <ExampleContainer>
-      <Title title="With icon on the left and notification number" theme="light" level={4} />
-      <DxcNavTabs iconPosition="left">
+      <Title title="With icon position left and notification number" theme="light" level={4} />
+      <DxcNavTabs>
         <DxcNavTabs.Tab href="#" active icon={favoriteIcon} notificationNumber>
           Tab 1
         </DxcNavTabs.Tab>
@@ -160,8 +160,8 @@ const NavTabs = () => (
       </DxcNavTabs>
     </ExampleContainer>
     <ExampleContainer>
-      <Title title="With long label" theme="light" level={4} />
-      <DxcNavTabs>
+      <Title title="With long label and icon position top" theme="light" level={4} />
+      <DxcNavTabs iconPosition="top">
         <DxcNavTabs.Tab href="#" active>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit
         </DxcNavTabs.Tab>
@@ -175,7 +175,7 @@ const NavTabs = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With long label and left icon alignment" theme="light" level={4} />
-      <DxcNavTabs iconPosition="left">
+      <DxcNavTabs>
         <DxcNavTabs.Tab href="#" active>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit
         </DxcNavTabs.Tab>
@@ -187,9 +187,8 @@ const NavTabs = () => (
         </DxcNavTabs.Tab>
       </DxcNavTabs>
     </ExampleContainer>
-    <Title title="Opinionated theme" theme="light" level={2} />
     <ExampleContainer>
-      <Title title="NavTabs in a limited space container" theme="light" level={4} />
+      <Title title="With limited space" theme="light" level={4} />
       <DxcContainer width="500px">
         <DxcNavTabs>
           <DxcNavTabs.Tab href="#" active>

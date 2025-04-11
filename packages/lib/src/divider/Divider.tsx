@@ -14,10 +14,10 @@ const StyledDivider = styled.hr<DividerPropsType>`
     ${orientation === "horizontal" ? "height" : "width"}: 0px;
     ${
       orientation === "horizontal"
-        ? "border-width: " + (weight === "regular" ? "1px 0 0 0" : "2px 0 0 0")
-        : "border-width: " + (weight === "regular" ? "0 0 0 1px" : "0 0 0 2px")
+        ? "border-width: " + (weight === "regular" ? "var(--border-width-s) 0 0 0" : "var(--border-width-m) 0 0 0")
+        : "border-width: " + (weight === "regular" ? "0 0 0 var(--border-width-s)" : "0 0 0 var(--border-width-m)")
     };
-    margin: 0px;
+    margin: 0;
   `}
 `;
 
