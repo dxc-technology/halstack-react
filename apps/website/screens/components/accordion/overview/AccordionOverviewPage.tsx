@@ -38,7 +38,7 @@ const sections = [
             section. It helps users understand what type of information they can expect to find inside.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Chevron</strong> <em>(Expand/collapse)</em>: A visual indicator of the accordion's current state
+            <strong>Chevron icon</strong> <em>(Expand/collapse)</em>: A visual indicator of the accordion's current state
             (expanded or collapsed). It provides an affordance for interaction and ensures users can toggle the
             accordion intuitively.
           </DxcBulletedList.Item>
