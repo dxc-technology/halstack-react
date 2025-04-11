@@ -30,32 +30,30 @@ const sections = [
         <Image src={navTabsAnatomy} alt="Nav tabs anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
-            <strong>Container: </strong>the outer wrapper that holds and organizes all tab items. It defines the overall
+            <strong>Container:</strong> the outer wrapper that holds and organizes all tab items. It defines the overall
             structure and layout of the navigation tabs, ensuring proper alignment and spacing across the component.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Label: </strong>the text displayed within each tab that indicates the section or category it leads
+            <strong>Label:</strong> the text displayed within each tab that indicates the section or category it leads
             to.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Notification badge </strong>
-            <em>(Optional)</em>: a visual indicator that displays the number of pending actions, alerts or updates
-            related to a specific tab.
+            <strong>Notification badge</strong> <em>(Optional)</em>: a visual indicator that displays the number of
+            pending actions, alerts or updates related to a specific tab.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Selected tab: </strong>the active tab currently in focus, representing the visible content section.
+            <strong>Selected tab:</strong> the active tab currently in focus, representing the visible content section.
             It is visually distinguished from unselected tabs using different color, weight or indicator styling.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Icon</strong>
-            <em>(Optional)</em>: an optional graphical element placed before the label to visually reinforce the tab's
-            meaning or category.
+            <strong>Icon</strong> <em>(Optional)</em>: an optional graphical element placed before the label to visually
+            reinforce the tab's meaning or category.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Selected tab indicator: </strong>a horizontal bar that visually marks the currently active tab.
+            <strong>Selected tab indicator:</strong> a horizontal bar that visually marks the currently active tab.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Unselected tab indicator: </strong>a horizontal bar that visually marks the currently inactive tab.
+            <strong>Unselected tab indicator:</strong> a horizontal bar that visually marks the currently inactive tab.
           </DxcBulletedList.Item>
         </DxcBulletedList>
       </>
