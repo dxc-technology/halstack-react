@@ -42,7 +42,7 @@ const Tab = styled.a<{
       }
       :focus {
         outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
-        outline-offset: var(--border-width-m);
+        outline-offset: calc(var(--border-width-m) * -1);
       }
       :active {
         background: var(--color-bg-primary-lighter);
