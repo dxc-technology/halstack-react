@@ -66,13 +66,13 @@ const sections = [
             <strong>Image placement:</strong> cards support placing the image either on the left or the right side of
             the layout. The image should maintain a fixed ratio and size for visual harmony. By default, the component
             provides layout options where the image can appear on the left or right side of the content. However,
-            alternative layouts —such as vertical image placements— can be achieved by placing the image directly within
+            alternative layouts —such as vertical image placements — can be achieved by placing the image directly within
             the custom content area. This allows for more flexibility while still adhering to spacing and alignment
             guidelines.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
             <strong>Text content:</strong> titles, descriptions, metadata, or status labels are typically placed in the
-            content area with a clear hierarchy—starting with a bold title, followed by supporting text.
+            content area with a clear hierarchy — starting with a bold title, followed by supporting text.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
             <strong>Interactive elements:</strong> place buttons, links, or icons in the lower section of the content
