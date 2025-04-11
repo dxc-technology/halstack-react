@@ -38,7 +38,7 @@ const sections = [
             section. It helps users understand what type of information they can expect to find inside.
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            <strong>Caret icon</strong> <em>(Expand/collapse)</em>: A visual indicator of the accordion's current state
+            <strong>Chevron</strong> <em>(Expand/collapse)</em>: A visual indicator of the accordion's current state
             (expanded or collapsed). It provides an affordance for interaction and ensures users can toggle the
             accordion intuitively.
           </DxcBulletedList.Item>
@@ -123,7 +123,7 @@ const sections = [
                   This approach gives users full control over the visibility of content, allowing them to open or
                   collapse multiple sections at the same time. It's particularly useful when:
                 </DxcParagraph>
-                <DxcBulletedList>
+                <DxcBulletedList type="circle">
                   <DxcBulletedList.Item>
                     Users need to compare or reference information across different sections simultaneously.
                   </DxcBulletedList.Item>
@@ -143,7 +143,7 @@ const sections = [
                   user expands a new section, the previously expanded section collapses automatically. This pattern is
                   suitable when:
                 </DxcParagraph>
-                <DxcBulletedList>
+                <DxcBulletedList type="circle">
                   <DxcBulletedList.Item>
                     The content is closely related or mutually exclusive, making it logical to view only one section at
                     a time.
