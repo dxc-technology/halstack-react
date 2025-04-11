@@ -1,20 +1,19 @@
-import { DxcTable, DxcBulletedList, DxcFlex } from "@dxc-technology/halstack-react";
+import { DxcBulletedList, DxcFlex, DxcParagraph } from "@dxc-technology/halstack-react";
 import Image from "@/common/Image";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
-import Figure from "@/common/Figure";
-import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
-import specsImage from "./images/quickNav_specs.png";
 import anatomyImage from "./images/quickNav_anatomy.png";
 
 const sections = [
   {
     title: "Introduction",
     content: (
-      <Figure caption="Quick nav design specifications">
-        <Image src={specsImage} alt="Quicknav design specifications" />
-      </Figure>
+      <DxcParagraph>
+        Quick Nav is used to improve in-page navigation by listing content sections and subsections based on the heading
+        hierarchy. This helps users understand the page structure at a glance and jump directly to the content they’re
+        interested in. It's especially useful on documentation pages, dashboards and long-form content.
+      </DxcParagraph>
     ),
   },
   {
@@ -24,250 +23,65 @@ const sections = [
         <Image src={anatomyImage} alt="Quick nav anatomy" />
         <DxcBulletedList type="number">
           <DxcBulletedList.Item>
-            Title <em>(Optional)</em>
+            <strong>Provide a clear title:</strong> Use a meaningful title like “On this page” to help users understand
+            the context of the links.
           </DxcBulletedList.Item>
-          <DxcBulletedList.Item>Links</DxcBulletedList.Item>
           <DxcBulletedList.Item>
-            Sublinks <em>(Optional)</em>
+            <strong>Show structure clearly:</strong> Use Quick Nav to mirror the hierarchy of your content, making it
+            easier to follow and navigate. Keep headings descriptive and consistent so link labels are meaningful when
+            rendered.
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            <strong>Avoid clutter:</strong> Avoid rendering Quick Nav on pages with very little content; it can feel
+            redundant.
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            <strong>Maintain visual separation from main content:</strong> Always allow sufficient spacing between the
+            Quick Nav and the main content area. This helps users visually distinguish navigation from content and
+            avoids overwhelming the layout. Use padding or margins to ensure the Quick Nav doesn’t feel cramped or
+            interfere with readability, especially on larger screens or dense layouts.
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            <strong>Pair with other navigational tools:</strong> Combine Quick Nav with tabs or breadcrumbs for a
+            comprehensive navigation experience across and within pages.
           </DxcBulletedList.Item>
         </DxcBulletedList>
       </>
     ),
   },
   {
-    title: "Design tokens",
-    subSections: [
-      {
-        title: "Color",
-        content: (
-          <DxcTable>
-            <thead>
-              <tr>
-                <th>Component token</th>
-                <th>Element</th>
-                <th>Core token</th>
-                <th>Value</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <Code>fontColor</Code>
-                </td>
-                <td>Link</td>
-                <td>
-                  <Code>color-grey-700</Code>
-                </td>
-                <td>#666666</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>hoverFontColor</Code>
-                </td>
-                <td>Link</td>
-                <td>
-                  <Code>color-purple-600</Code>
-                </td>
-                <td>#7d2fd0</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>dividerBorderColor</Code>
-                </td>
-                <td>Divider</td>
-                <td>
-                  <Code>color-grey-400</Code>
-                </td>
-                <td>#bfbfbf</td>
-              </tr>
-            </tbody>
-          </DxcTable>
-        ),
-      },
-      {
-        title: "Typography",
-        content: (
-          <DxcTable>
-            <thead>
-              <tr>
-                <th>Property</th>
-                <th>Element</th>
-                <th>Core token</th>
-                <th>Value</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <Code>fontFamily</Code>
-                </td>
-                <td>Link</td>
-                <td>
-                  <Code>font-family-sans</Code>
-                </td>
-                <td>Open Sans, sans-serif</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>fontSize</Code>
-                </td>
-                <td>Link</td>
-                <td>
-                  <Code>font-scale-02</Code>
-                </td>
-                <td>0.875rem</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>fontStyle</Code>
-                </td>
-                <td>Link</td>
-                <td>
-                  <Code>font-normal</Code>
-                </td>
-                <td>normal</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>fontWeight</Code>
-                </td>
-                <td>Link</td>
-                <td>
-                  <Code>font-regular</Code>
-                </td>
-                <td>400</td>
-              </tr>
-            </tbody>
-          </DxcTable>
-        ),
-      },
-      {
-        title: "Spacing",
-        content: (
-          <DxcTable>
-            <thead>
-              <tr>
-                <th>Property</th>
-                <th>Element</th>
-                <th>Core token</th>
-                <th>Value</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <Code>paddingTop</Code>
-                </td>
-                <td>Content</td>
-                <td>
-                  <Code>spacing-3</Code>
-                </td>
-                <td>0.5rem / 8px</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>paddingBottom</Code>
-                </td>
-                <td>Content</td>
-                <td>
-                  <Code>spacing-3</Code>
-                </td>
-                <td>0.5rem / 8px</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>paddingLeft</Code>
-                </td>
-                <td>Content</td>
-                <td>
-                  <Code>spacing-5</Code>
-                </td>
-                <td>1rem / 16px</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>paddingRight</Code>
-                </td>
-                <td>Content</td>
-                <td>
-                  <Code>spacing-5</Code>
-                </td>
-                <td>1rem / 16px</td>
-              </tr>
-            </tbody>
-          </DxcTable>
-        ),
-      },
-      {
-        title: "Border",
-        content: (
-          <DxcTable>
-            <thead>
-              <tr>
-                <th>Property</th>
-                <th>Element</th>
-                <th>Core token</th>
-                <th>Value</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <Code>focusBorderColor</Code>
-                </td>
-                <td>Link</td>
-                <td>
-                  <Code>color-blue-600</Code>
-                </td>
-                <td>#0095ff</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>focusBorderStyle</Code>
-                </td>
-                <td>Link</td>
-                <td>
-                  <Code>border-style-solid</Code>
-                </td>
-                <td>solid</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>focusBorderThickness</Code>
-                </td>
-                <td>Link</td>
-                <td>
-                  <Code>border-radius-small</Code>
-                </td>
-                <td>0.125rem / 2px</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>focusBorderRadius</Code>
-                </td>
-                <td>Link</td>
-                <td>
-                  <Code>border-radius-small</Code>
-                </td>
-                <td>0.125rem / 2px</td>
-              </tr>
-            </tbody>
-          </DxcTable>
-        ),
-      },
-    ],
+    title: "Best practices",
+    content: (
+      <DxcBulletedList>
+        <DxcBulletedList.Item>
+          <strong>Divider:</strong> A thin vertical line that visually separates the Quick Nav from the main content
+          area. Its purpose is to create a clear boundary between navigation and content, improving readability and
+          layout organization.
+        </DxcBulletedList.Item>
+        <DxcBulletedList.Item>
+          <strong>Title</strong> <em>(Optional)</em>: A short descriptive title such as “Contents” or “On this page”
+          that provides context for the navigation list.
+        </DxcBulletedList.Item>
+        <DxcBulletedList.Item>
+          <strong>Links:</strong> The main navigation items, each representing a primary section on the page. These are
+          generated from top-level headings and are clickable.
+        </DxcBulletedList.Item>
+        <DxcBulletedList.Item>
+          <strong>Sublinks</strong> <em>(Optional)</em>: Secondary navigation items, generated from subheadings nested
+          under the main sections. These allow finer-grain navigation within a specific topic.
+        </DxcBulletedList.Item>
+      </DxcBulletedList>
+    ),
   },
 ];
 
-const QuickNavOverviewPage = () => {
-  return (
-    <DxcFlex direction="column" gap="4rem">
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2} />
-      </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/quick-nav/overview/QuickNavOverviewPage.tsx" />
-    </DxcFlex>
-  );
-};
+const QuickNavOverviewPage = () => (
+  <DxcFlex direction="column" gap="4rem">
+    <QuickNavContainerLayout>
+      <QuickNavContainer sections={sections} startHeadingLevel={2} />
+    </QuickNavContainerLayout>
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/quick-nav/overview/QuickNavOverviewPage.tsx" />
+  </DxcFlex>
+);
 
 export default QuickNavOverviewPage;
