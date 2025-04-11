@@ -8,6 +8,77 @@ import DxcIcon from "../icon/Icon";
 import { Tooltip } from "../tooltip/Tooltip";
 import { HalstackLanguageContext } from "../HalstackContext";
 
+const DatePickerContainer = styled.div`
+  padding: var(--spacing-padding-m) var(--spacing-padding-xs) var(--spacing-padding-xs) var(--spacing-padding-xs);
+  background-color: var(--color-bg-neutral-lightest);
+  box-shadow: var(--shadow-mid-x-position) var(--shadow-mid-y-position) var(--shadow-mid-blur) var(--shadow-mid-spread)
+    var(--shadow-light);
+  border: var(--border-width-s) var(--border-style-default) var(--border-color-neutral-medium);
+  border-radius: var(--border-radius-s);
+  width: fit-content;
+  font-family: var(--typography-font-family);
+  font-size: var(--typography-label-m);
+  color: var(--color-fg-neutral-dark);
+  font-weight: var(--typography-label-regular);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-gap-xxs);
+`;
+
+const PickerHeader = styled.div`
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--height-m);
+`;
+
+const HeaderButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: var(--height-s);
+  padding: 0px;
+  color: var(--color-fg-neutral-dark);
+  background-color: var(--color-bg-neutral-lightest);
+  border-radius: var(--border-radius-s);
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--color-bg-primary-light);
+  }
+  &:focus {
+    outline: var(--border-width-m) var(--border-style-default) var(--border-color-secondary-medium);
+  }
+  &:active {
+    color: var(--color-fg-neutral-bright);
+    background-color: var(--color-bg-primary-stronger);
+  }
+
+  span::before {
+    font-size: var(--height-s);
+  }
+`;
+
+const HeaderYearTrigger = styled(HeaderButton)`
+  gap: var(--spacing-gap-s);
+  padding: 0px var(--spacing-padding-xs) 0px var(--spacing-padding-m);
+  height: var(--height-m);
+  width: 172px;
+  span::before {
+    font-size: var(--height-xxs);
+  }
+`;
+
+const HeaderYearTriggerLabel = styled.span`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--typography-label-m);
+`;
+
 const today = dayjs();
 
 const DatePicker = ({ date, onDateSelect, id }: DatePickerPropsType): JSX.Element => {
@@ -74,77 +145,5 @@ const DatePicker = ({ date, onDateSelect, id }: DatePickerPropsType): JSX.Elemen
     </DatePickerContainer>
   );
 };
-
-const DatePickerContainer = styled.div`
-  padding-top: 16px;
-  background-color: ${(props) => props.theme.dateInput.pickerBackgroundColor};
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  border: ${(props) => `${props.theme.dateInput.pickerBorderWidth} ${props.theme.dateInput.pickerBorderStyle}
-      ${props.theme.dateInput.pickerBorderColor}`};
-  border-radius: 4px;
-  width: fit-content;
-  font-family: ${(props) => props.theme.dateInput.pickerFontFamily};
-  font-size: ${(props) => props.theme.dateInput.pickerFontSize};
-  color: ${(props) => props.theme.dateInput.pickerFontColor};
-  font-weight: ${(props) => props.theme.dateInput.pickerFontWeight};
-`;
-
-const PickerHeader = styled.div`
-  box-sizing: border-box;
-  display: flex;
-  gap: 8px;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0px 16px;
-`;
-
-const HeaderButton = styled.button`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 24px;
-  height: 24px;
-  padding: 0px;
-  color: ${(props) => props.theme.dateInput.pickerHeaderFontColor};
-  background-color: ${(props) => props.theme.dateInput.pickerHeaderBackgroundColor};
-  border-radius: 4px;
-  border: none;
-  cursor: pointer;
-
-  &:hover {
-    color: ${(props) => props.theme.dateInput.pickerHeaderHoverFontColor};
-    background-color: ${(props) => props.theme.dateInput.pickerHeaderHoverBackgroundColor};
-  }
-  &:focus {
-    outline: ${(props) => `${props.theme.dateInput.pickerFocusColor} solid
-      ${props.theme.dateInput.pickerFocusWidth}`};
-  }
-  &:active {
-    color: ${(props) => props.theme.dateInput.pickerHeaderActiveFontColor};
-    background-color: ${(props) => props.theme.dateInput.pickerHeaderActiveBackgroundColor};
-  }
-
-  span::before {
-    font-size: 24px;
-  }
-`;
-
-const HeaderYearTrigger = styled(HeaderButton)`
-  gap: 8px;
-  height: 40px;
-  width: 172px;
-  font-size: 24px;
-  span::before {
-    font-size: 24px;
-  }
-`;
-
-const HeaderYearTriggerLabel = styled.span`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: ${(props) => props.theme.dateInput.pickerFontFamily};
-  font-size: ${(props) => props.theme.dateInput.pickerHeaderFontSize};
-`;
 
 export default memo(DatePicker);
