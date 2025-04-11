@@ -2,7 +2,6 @@ import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DxcBreadcrumbs from "./Breadcrumbs";
 import DxcContainer from "../container/Container";
-import { HalstackProvider } from "../HalstackContext";
 import { userEvent, within } from "@storybook/test";
 import { disabledRules } from "../../test/accessibility/rules/specific/breadcrumbs/disabledRules";
 import preview from "../../.storybook/preview";
@@ -94,7 +93,7 @@ const Breadcrumbs = () => (
       <DxcBreadcrumbs items={items} />
     </ExampleContainer>
     <Title title="Active state" theme="light" level={3} />
-    <ExampleContainer pseudoState="pseudo-active">
+    <ExampleContainer pseudoState={["pseudo-active", "pseudo-focus"]}>
       <DxcBreadcrumbs items={items} />
     </ExampleContainer>
     <Title title="Truncation and text ellipsis with tooltip (only when collapsed)" theme="light" level={3} />
@@ -150,39 +149,6 @@ const Breadcrumbs = () => (
         />
       </DxcContainer>
     </ExampleContainer>
-    <Title title="Dropdown theming doesn't affect the collapsed trigger" theme="light" level={3} />
-    <ExampleContainer>
-      <Title title="Opinionated theming" theme="light" level={4} />
-      <ExampleContainer>
-        <HalstackProvider
-          theme={{
-            dropdown: {
-              baseColor: "#fabada",
-              fontColor: "#999",
-              optionFontColor: "#4d4d4d",
-            },
-          }}
-        >
-          <DxcBreadcrumbs items={items} itemsBeforeCollapse={3} />
-        </HalstackProvider>
-      </ExampleContainer>
-      <Title title="Advanced theming" theme="light" level={4} />
-      <ExampleContainer>
-        <HalstackProvider
-          advancedTheme={{
-            dropdown: {
-              buttonBackgroundColor: "#fabada",
-              buttonHeight: "100px",
-              buttonBorderThickness: "2px",
-              buttonBorderStyle: "solid",
-              buttonBorderColor: "#000",
-            },
-          }}
-        >
-          <DxcBreadcrumbs items={items} itemsBeforeCollapse={3} />
-        </HalstackProvider>
-      </ExampleContainer>
-    </ExampleContainer>
   </>
 );
 
@@ -193,6 +159,6 @@ export const Chromatic: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const dropdowns = canvas.getAllByRole("button");
-    dropdowns[2] != null && await userEvent.click(dropdowns[2]);
+    dropdowns[2] != null && (await userEvent.click(dropdowns[2]));
   },
 };

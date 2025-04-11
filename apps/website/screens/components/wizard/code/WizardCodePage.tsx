@@ -6,8 +6,18 @@ import Example from "@/common/example/Example";
 import controlled from "./examples/controlled";
 import uncontrolled from "./examples/uncontrolled";
 import icons from "./examples/icons";
-import Code, { TableCode } from "@/common/Code";
+import Code, { ExtendedTableCode, TableCode } from "@/common/Code";
 import StatusBadge from "@/common/StatusBadge";
+
+const stepsType = `{ 
+  label: string;
+  description?: string;
+  disabled?: boolean;
+  icon?: string |
+    (React.ReactNode & 
+    React.SVGProps<SVGSVGElement>);
+  valid?: boolean; 
+}[]`;
 
 const sections = [
   {
@@ -24,6 +34,17 @@ const sections = [
         </thead>
         <tbody>
           <tr>
+            <td>currentStep</td>
+            <td>
+              <TableCode>number</TableCode>
+            </td>
+            <td>
+              Defines which step is marked as the current. The numeration starts at 0. If undefined, the component will
+              be uncontrolled and the step will be managed internally by the component.
+            </td>
+            <td>-</td>
+          </tr>
+          <tr>
             <td>defaultCurrentStep</td>
             <td>
               <TableCode>number</TableCode>
@@ -34,13 +55,13 @@ const sections = [
             </td>
           </tr>
           <tr>
-            <td>currentStep</td>
+            <td>margin</td>
             <td>
-              <TableCode>number</TableCode>
+              <TableCode>'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge' | Margin</TableCode>
             </td>
             <td>
-              Defines which step is marked as the current. The numeration starts at 0. If undefined, the component will
-              be uncontrolled and the step will be managed internally by the component.
+              Size of the margin to be applied to the component. You can pass an object with 'top', 'bottom', 'left' and
+              'right' properties in order to specify different margin sizes.
             </td>
             <td>-</td>
           </tr>
@@ -55,6 +76,16 @@ const sections = [
             </td>
           </tr>
           <tr>
+            <td>onStepClick</td>
+            <td>
+              <TableCode>{"(currentStep: number) => void"}</TableCode>
+            </td>
+            <td>
+              This function will be called when the user clicks a step. The step number will be passed as a parameter.
+            </td>
+            <td>-</td>
+          </tr>
+          <tr>
             <td>
               <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
                 <StatusBadge status="required" />
@@ -62,11 +93,7 @@ const sections = [
               </DxcFlex>
             </td>
             <td>
-              <TableCode>
-                {
-                  "{ label: string; description?: string; icon?: string | (React.ReactNode & React.SVGProps <SVGSVGElement>); disabled?: boolean; valid?: boolean; }[]"
-                }
-              </TableCode>
+              <ExtendedTableCode>{stepsType}</ExtendedTableCode>
             </td>
             <td>
               An array of objects representing the steps. Each of them has the following properties:
@@ -91,27 +118,6 @@ const sections = [
                   <b>valid</b>: Whether the step is valid or not.
                 </li>
               </ul>
-            </td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td>onStepClick</td>
-            <td>
-              <TableCode>{"(currentStep: number) => void"}</TableCode>
-            </td>
-            <td>
-              This function will be called when the user clicks a step. The step number will be passed as a parameter.
-            </td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td>margin</td>
-            <td>
-              <TableCode>'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge' | Margin</TableCode>
-            </td>
-            <td>
-              Size of the margin to be applied to the component. You can pass an object with 'top', 'bottom', 'left' and
-              'right' properties in order to specify different margin sizes.
             </td>
             <td>-</td>
           </tr>
@@ -150,15 +156,13 @@ const sections = [
   },
 ];
 
-const WizardCodePage = () => {
-  return (
-    <DxcFlex direction="column" gap="4rem">
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
-      </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/wizard/code/WizardCodePage.tsx" />
-    </DxcFlex>
-  );
-};
+const WizardCodePage = () => (
+  <DxcFlex direction="column" gap="4rem">
+    <QuickNavContainerLayout>
+      <QuickNavContainer sections={sections} startHeadingLevel={2} />
+    </QuickNavContainerLayout>
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/wizard/code/WizardCodePage.tsx" />
+  </DxcFlex>
+);
 
 export default WizardCodePage;

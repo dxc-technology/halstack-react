@@ -6,28 +6,38 @@ const code = `() => {
   return (
     <DxcInset space="2rem">
       <DxcContainer
+        background={{ color: "var(--border-color-neutral-brighter)" }}
+        border={{ 
+          color: "var(--border-color-neutral-medium)",
+          style: "var(--border-style-default)",
+          width: "var(--border-width-s)"
+        }}
+        borderRadius="var(--border-radius-s)"
+        boxShadow="var(--shadow-mid-x-position) var(--shadow-mid-y-position) var(--shadow-mid-blur) var(--shadow-mid-spread) var(--shadow-light)"
         boxSizing="border-box"
-        boxShadow="0 4px 6px -1px rgba(0, 0, 0, 0.1)"
-        border={{ width: "1px", style: "solid", color: "color_grey_400" }}
-        borderRadius="0.25rem"
-        background={{ color: "color_white" }}
-        padding={{ top: "xxsmall", bottom: "xxsmall" }}
         maxHeight="304px"
-        width="250px"
         overflow={{ x: "hidden", y: "auto" }}
+        padding={{ bottom: "var(--spacing-padding-xxs)", top: "var(--spacing-padding-xxs)" }}
+        width="250px"
       >
         {suggestions.map((suggestion, index) => (
-          <DxcContainer padding={{ left: "xsmall", right: "xsmall" }}>
+          <DxcContainer padding={{ left: "var(--spacing-padding-xs)", right: "var(--spacing-padding-xs)" }}>
             <DxcContainer
               border={
                 index !== suggestions.length - 1
-                  ? { bottom: { width: "1px", style: "solid", color: "color_grey_200" } }
+                  ? { 
+                      bottom: { 
+                        color: "var(--border-color-neutral-lighter)",
+                        style: "var(--border-style-default)",
+                        width: "var(--border-width-s)"
+                      } 
+                    }
                   : undefined
               }
-              padding="xxsmall"
               overflow="hidden"
+              padding="var(--spacing-padding-xxs)"
             >
-              <DxcTypography whiteSpace="nowrap" textOverflow="ellipsis" lineHeight="1.715em">
+              <DxcTypography lineHeight="1.715em" textOverflow="ellipsis" whiteSpace="nowrap">
                 {suggestion}
               </DxcTypography>
             </DxcContainer>

@@ -23,6 +23,32 @@ const sections = [
         </thead>
         <tbody>
           <tr>
+            <td>ariaLabel</td>
+            <td>
+              <TableCode>string</TableCode>
+            </td>
+            <td>
+              Specifies a string to be used as the accessible name for the component when no <Code>label</Code> is
+              provided or the <Code>mode</Code> is set to small.
+            </td>
+            <td>
+              <TableCode>'Spinner'</TableCode>
+            </td>
+          </tr>
+          <tr>
+            <td>inheritColor</td>
+            <td>
+              <TableCode>boolean</TableCode>
+            </td>
+            <td>
+              If true, the color is inherited from the closest parent with a defined color. This allows users to adapt
+              the spinner to the semantic color of the use case in which it is used.
+            </td>
+            <td>
+              <TableCode>false</TableCode>
+            </td>
+          </tr>
+          <tr>
             <td>label</td>
             <td>
               <TableCode>string</TableCode>
@@ -30,6 +56,17 @@ const sections = [
             <td>
               Text to be placed inside the spinner. When the component is in small mode, this label acts as an{" "}
               <Code>aria-label</Code> value.
+            </td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>margin</td>
+            <td>
+              <TableCode>'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge' | Margin</TableCode>
+            </td>
+            <td>
+              Size of the margin to be applied to the component. You can pass an object with 'top', 'bottom', 'left' and
+              'right' properties in order to specify different margin sizes.
             </td>
             <td>-</td>
           </tr>
@@ -44,17 +81,6 @@ const sections = [
             </td>
           </tr>
           <tr>
-            <td>value</td>
-            <td>
-              <TableCode>number</TableCode>
-            </td>
-            <td>
-              The value of the progress indicator. If it's received the component is determinate, otherwise is
-              indeterminate.
-            </td>
-            <td>-</td>
-          </tr>
-          <tr>
             <td>showValue</td>
             <td>
               <TableCode>boolean</TableCode>
@@ -65,26 +91,15 @@ const sections = [
             </td>
           </tr>
           <tr>
-            <td>margin</td>
+            <td>value</td>
             <td>
-              <TableCode>'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge' | Margin</TableCode>
+              <TableCode>number</TableCode>
             </td>
             <td>
-              Size of the margin to be applied to the component. You can pass an object with 'top', 'bottom', 'left' and
-              'right' properties in order to specify different margin sizes.
+              The value of the progress indicator. If it's received the component is determinate, otherwise is
+              indeterminate.
             </td>
             <td>-</td>
-          </tr>
-          <tr>
-            <td>ariaLabel</td>
-            <td>
-              <TableCode>string</TableCode>
-            </td>
-            <td>
-              Specifies a string to be used as the name for the spinner element when no `label` is provided or the
-              `mode` is set to small.
-            </td>
-            <td>'Spinner'</td>
           </tr>
         </tbody>
       </DxcTable>
@@ -105,15 +120,13 @@ const sections = [
   },
 ];
 
-const SpinnerUsagePage = () => {
-  return (
-    <DxcFlex direction="column" gap="4rem">
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
-      </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/spinner/code/SpinnerCodePage.tsx" />
-    </DxcFlex>
-  );
-};
+const SpinnerCodePage = () => (
+  <DxcFlex direction="column" gap="4rem">
+    <QuickNavContainerLayout>
+      <QuickNavContainer sections={sections} startHeadingLevel={2} />
+    </QuickNavContainerLayout>
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/spinner/code/SpinnerCodePage.tsx" />
+  </DxcFlex>
+);
 
-export default SpinnerUsagePage;
+export default SpinnerCodePage;

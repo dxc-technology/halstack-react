@@ -36,6 +36,21 @@ const sections = [
             </thead>
             <tbody>
               <tr>
+                <td>
+                  <DxcFlex direction="column" gap="0.25rem" alignItems="baseline">
+                    <StatusBadge status="required" />
+                    children
+                  </DxcFlex>
+                </td>
+                <td>
+                  <TableCode>ReactNode</TableCode>
+                </td>
+                <td>
+                  Tree of components from which the <Code>useToast</Code> hook can be triggered.
+                </td>
+                <td>-</td>
+              </tr>
+              <tr>
                 <td>duration</td>
                 <td>
                   <TableCode>number</TableCode>
@@ -47,14 +62,6 @@ const sections = [
                 <td>
                   <TableCode>3000</TableCode>
                 </td>
-              </tr>
-              <tr>
-                <td>children</td>
-                <td>
-                  <TableCode>ReactNode</TableCode>
-                </td>
-                <td>Tree of components from which the <Code>useToast</Code> hook can be triggered.</td>
-                <td>-</td>
               </tr>
             </tbody>
           </DxcTable>
@@ -295,15 +302,13 @@ const sections = [
   },
 ];
 
-const ToastCodePage = () => {
-  return (
-    <DxcFlex direction="column" gap="4rem">
-      <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
-      </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/toast/code/ToastCodePage.tsx" />
-    </DxcFlex>
-  );
-};
+const ToastCodePage = () => (
+  <DxcFlex direction="column" gap="4rem">
+    <QuickNavContainerLayout>
+      <QuickNavContainer sections={sections} startHeadingLevel={2} />
+    </QuickNavContainerLayout>
+    <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/apps/website/screens/components/toast/code/ToastCodePage.tsx" />
+  </DxcFlex>
+);
 
 export default ToastCodePage;

@@ -3,7 +3,7 @@ import ButtonPropsType, { Mode, Semantic, Size } from "./types";
 
 export const getButtonStyles = (
   mode: Mode,
-  semantic: Semantic,
+  semantic: Semantic | "unselected" | "selected",
   size: Size,
 ) => {
   let enabled = "";
@@ -26,6 +26,16 @@ export const getButtonStyles = (
   switch (mode) {
     case "primary":
       switch (semantic) {
+        case "unselected":
+          enabled = `background-color: var(--color-bg-neutral-medium);
+          color: var(--color-fg-neutral-dark);`;
+          hover = `background-color: var(--color-bg-neutral-strong);`;
+          active = `background-color: var(--color-bg-primary-strong);
+          color: var(--color-fg-neutral-bright);`;
+          disabled = `background-color: var(--color-bg-neutral-light);
+          color: var(--color-fg-neutral-medium);`;
+          break;
+        case "selected":
         case "default":
           enabled = `background-color: var(--color-bg-primary-strong);`;
           hover = `background-color: var(--color-bg-primary-stronger);`;

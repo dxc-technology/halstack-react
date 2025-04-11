@@ -4,9 +4,9 @@ import Section, { SectionType } from "./Section";
 import { responsiveSizes } from "../common/variables";
 
 type QuickNavContainerTypes = {
-  title?: string;
   sections: SectionType[];
   startHeadingLevel?: 1 | 2 | 3 | 4 | 5;
+  title?: string;
 };
 
 type LinkType = {
@@ -28,7 +28,6 @@ const getSubSectionsLinks = (sections: SectionType[]) => {
   });
   return linksList;
 };
-
 
 const MainContainer = styled.div`
   display: grid;
@@ -58,7 +57,7 @@ const QuickNavContainer = styled.div`
   }
 `;
 
-const DxcQuickNavContainer = ({ title = "On this page", sections, startHeadingLevel = 1 }: QuickNavContainerTypes) => (
+const DxcQuickNavContainer = ({ sections, startHeadingLevel = 1, title = "On this page" }: QuickNavContainerTypes) => (
   <MainContainer>
     <DxcGrid gap="3rem" templateColumns={["minmax(0, 1fr)"]}>
       {sections.map((section) => (

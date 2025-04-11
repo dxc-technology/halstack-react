@@ -12,13 +12,12 @@ import {
   useState,
   WheelEvent,
 } from "react";
-import styled, { ThemeProvider } from "styled-components";
+import styled from "styled-components";
 import DxcActionIcon from "../action-icon/ActionIcon";
 import { spaces } from "../common/variables";
 import DxcFlex from "../flex/Flex";
-import DxcIcon from "../icon/Icon";
 import NumberInputContext from "../number-input/NumberInputContext";
-import HalstackContext, { HalstackLanguageContext } from "../HalstackContext";
+import { HalstackLanguageContext } from "../HalstackContext";
 import useWidth from "../utils/useWidth";
 import Suggestions from "./Suggestions";
 import TextInputPropsType, { AutosuggestWrapperProps, RefType } from "./types";
@@ -31,6 +30,10 @@ import {
   makeCancelable,
   patternMismatch,
 } from "./utils";
+import HelperText from "../styles/forms/HelperText";
+import Label from "../styles/forms/Label";
+import ErrorMessage from "../styles/forms/ErrorMessage";
+import { inputStylesByState } from "../styles/forms/inputStylesByState";
 
 const TextInputContainer = styled.div<{
   margin: TextInputPropsType["margin"];
@@ -39,160 +42,60 @@ const TextInputContainer = styled.div<{
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  width: ${(props) => calculateWidth(props.margin, props.size)};
-  ${(props) => props.size !== "fillParent" && `min-width:${calculateWidth(props.margin, props.size)}`};
-  margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
-  margin-top: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
-  margin-right: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
-  margin-bottom: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
-  margin-left: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
-  font-family: ${(props) => props.theme.fontFamily};
+  width: ${({ margin, size }) => calculateWidth(margin, size)};
+  ${({ margin, size }) => size !== "fillParent" && `min-width:${calculateWidth(margin, size)}`};
+  margin: ${({ margin }) => (margin && typeof margin !== "object" ? spaces[margin] : "0px")};
+  margin-top: ${({ margin }) => (margin && typeof margin === "object" && margin.top ? spaces[margin.top] : "")};
+  margin-right: ${({ margin }) => (margin && typeof margin === "object" && margin.right ? spaces[margin.right] : "")};
+  margin-bottom: ${({ margin }) =>
+    margin && typeof margin === "object" && margin.bottom ? spaces[margin.bottom] : ""};
+  margin-left: ${({ margin }) => (margin && typeof margin === "object" && margin.left ? spaces[margin.left] : "")};
 `;
 
-const Label = styled.label<{
-  disabled: TextInputPropsType["disabled"];
-  hasHelperText: boolean;
-}>`
-  color: ${(props) => (props.disabled ? props.theme.disabledLabelFontColor : props.theme.labelFontColor)};
-  font-size: ${(props) => props.theme.labelFontSize};
-  font-style: ${(props) => props.theme.labelFontStyle};
-  font-weight: ${(props) => props.theme.labelFontWeight};
-  line-height: ${(props) => props.theme.labelLineHeight};
-  ${(props) => !props.hasHelperText && `margin-bottom: 0.25rem`}
-`;
-
-const OptionalLabel = styled.span`
-  font-weight: ${(props) => props.theme.optionalLabelFontWeight};
-`;
-
-const HelperText = styled.span<{ disabled: TextInputPropsType["disabled"] }>`
-  color: ${(props) => (props.disabled ? props.theme.disabledHelperTextFontColor : props.theme.helperTextFontColor)};
-  font-size: ${(props) => props.theme.helperTextFontSize};
-  font-style: ${(props) => props.theme.helperTextFontStyle};
-  font-weight: ${(props) => props.theme.helperTextFontWeight};
-  line-height: ${(props) => props.theme.helperTextLineHeight};
-  margin-bottom: 0.25rem;
-`;
-
-const InputContainer = styled.div<{
-  disabled: TextInputPropsType["disabled"];
-  readOnly: TextInputPropsType["readOnly"];
+const TextInput = styled.div<{
+  disabled: Required<TextInputPropsType>["disabled"];
   error: boolean;
+  readOnly: Required<TextInputPropsType>["readOnly"];
 }>`
   position: relative;
   display: flex;
   align-items: center;
-  height: calc(2.5rem - 2px);
-  padding: 0 0.5rem;
-
-  ${(props) => props.disabled && `background-color: ${props.theme.disabledContainerFillColor};`}
-  box-shadow: 0 0 0 2px transparent;
-  border-radius: 4px;
-  border: 1px solid
-    ${(props) =>
-      props.disabled
-        ? props.theme.disabledBorderColor
-        : props.readOnly
-          ? props.theme.readOnlyBorderColor
-          : props.theme.enabledBorderColor};
-  ${(props) =>
-    props.error &&
-    !props.disabled &&
-    `border-color: transparent;
-     box-shadow: 0 0 0 2px ${props.theme.errorBorderColor};
-  `}
-  ${(props) =>
-    !props.disabled
-      ? `
-      &:hover {
-        border-color: ${
-          props.error
-            ? "transparent"
-            : props.readOnly
-              ? props.theme.hoverReadOnlyBorderColor
-              : props.theme.hoverBorderColor
-        };
-        ${props.error ? `box-shadow: 0 0 0 2px ${props.theme.hoverErrorBorderColor};` : ""}
-      }
-      &:focus-within {
-        border-color: transparent;
-        box-shadow: 0 0 0 2px ${props.theme.focusBorderColor};
-      }
-    `
-      : "cursor: not-allowed;"};
+  gap: var(--spacing-gap-s);
+  height: var(--height-m);
+  padding: var(--spacing-padding-none) var(--spacing-padding-xs);
+  ${({ disabled, error, readOnly }) => inputStylesByState(disabled, error, readOnly)}
 `;
 
 const Input = styled.input`
-  height: calc(2.5rem - 2px);
-  width: 100%;
   background: none;
   border: none;
   outline: none;
-  padding: 0 0.5rem;
+  padding: 0;
+  flex-grow: 1;
+  color: ${({ disabled }) => (disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-dark)")};
+  font-family: var(--typography-font-family);
+  font-size: var(--typography-label-m);
+  font-weight: var(--typography-label-regular);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  color: ${(props) => (props.disabled ? props.theme.disabledValueFontColor : props.theme.valueFontColor)};
-  font-family: ${(props) => props.theme.fontFamily};
-  font-size: ${(props) => props.theme.valueFontSize};
-  font-style: ${(props) => props.theme.valueFontStyle};
-  font-weight: ${(props) => props.theme.valueFontWeight};
-  line-height: 1.5em;
-  ${(props) => props.disabled && `cursor: not-allowed;`}
 
   ::placeholder {
-    color: ${(props) => (props.disabled ? props.theme.disabledPlaceholderFontColor : props.theme.placeholderFontColor)};
+    color: ${({ disabled }) => (disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-strong)")};
   }
+  ${({ disabled }) => disabled && "cursor: not-allowed;"}
 `;
 
-const Prefix = styled.span<{ disabled: TextInputPropsType["disabled"] }>`
-  height: 1.5rem;
-  margin-left: 0.25rem;
-  padding-right: ${(props) => props.theme.prefixDividerPaddingRight};
-  ${(props) => {
-    const color = props.disabled ? props.theme.disabledPrefixColor : props.theme.prefixColor;
-    return `color: ${color}; border-right: ${props.theme.prefixDividerBorderWidth} ${props.theme.prefixDividerBorderStyle} ${color};`;
+const Addon = styled.span<{ disabled: TextInputPropsType["disabled"]; type: "prefix" | "suffix" }>`
+  ${({ disabled, type }) => {
+    const color = disabled ? "var(--color-fg-neutral-medium)" : "var(--color-fg-neutral-stronger)";
+    return `color: ${color}; border-${type === "prefix" ? "right" : "left"}: var(--border-width-s) var(--border-style-default) ${color};`;
   }};
-  font-size: 1rem;
-  line-height: 1.5rem;
+  font-family: var(--typography-font-family);
+  font-size: var(--typography-label-m);
+  font-weight: var(--typography-label-regular);
+  ${({ type }) => `padding-${type === "prefix" ? "right" : "left"}: var(--spacing-padding-xs);`}
   pointer-events: none;
-`;
-
-const Suffix = styled.span<{ disabled: TextInputPropsType["disabled"] }>`
-  height: 1.5rem;
-  margin: 0 0.25rem;
-  padding-left: ${(props) => props.theme.suffixDividerPaddingLeft};
-  ${(props) => {
-    const color = props.disabled ? props.theme.disabledSuffixColor : props.theme.suffixColor;
-    return `color: ${color}; border-left: ${props.theme.suffixDividerBorderWidth} ${props.theme.suffixDividerBorderStyle} ${color};`;
-  }};
-  font-size: 1rem;
-  line-height: 1.5rem;
-  pointer-events: none;
-`;
-
-const ErrorIcon = styled.span`
-  display: flex;
-  flex-wrap: wrap;
-  align-content: center;
-  padding: 3px;
-  height: 18px;
-  width: 18px;
-  font-size: 18px;
-  color: ${(props) => props.theme.errorIconColor};
-`;
-
-const ErrorMessageContainer = styled.span`
-  min-height: 1.5em;
-  color: ${(props) => props.theme.errorMessageColor};
-  font-size: 0.75rem;
-  font-weight: 400;
-  line-height: 1.5em;
-  margin-top: 0.25rem;
 `;
 
 const AutosuggestWrapper = ({ condition, wrapper, children }: AutosuggestWrapperProps): JSX.Element => (
@@ -202,53 +105,48 @@ const AutosuggestWrapper = ({ condition, wrapper, children }: AutosuggestWrapper
 const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
   (
     {
-      label,
-      name = "",
-      defaultValue = "",
-      value,
-      helperText,
-      placeholder = "",
       action,
-      clearable = false,
-      disabled = false,
-      readOnly = false,
-      optional = false,
-      prefix = "",
-      suffix = "",
-      onChange,
-      onBlur,
-      error,
-      suggestions,
-      pattern,
-      minLength,
-      maxLength,
-      autocomplete = "off",
-      margin,
-      size = "medium",
-      tabIndex = 0,
       ariaLabel = "Text input",
+      autocomplete = "off",
+      clearable = false,
+      defaultValue = "",
+      disabled = false,
+      error,
+      helperText,
+      label,
+      margin,
+      maxLength,
+      minLength,
+      name = "",
+      optional = false,
+      placeholder = "",
+      prefix = "",
+      readOnly = false,
+      suffix = "",
+      onBlur,
+      onChange,
+      pattern,
+      size = "medium",
+      suggestions,
+      tabIndex = 0,
+      value,
     },
     ref
-  ): JSX.Element => {
+  ) => {
     const inputId = `input-${useId()}`;
     const autosuggestId = `suggestions-${inputId}`;
     const errorId = `error-${inputId}`;
-
-    const colorsTheme = useContext(HalstackContext);
     const translatedLabels = useContext(HalstackLanguageContext);
     const numberInputContext = useContext(NumberInputContext);
-
     const inputRef = useRef<HTMLInputElement | null>(null);
     const inputContainerRef = useRef<HTMLDivElement | null>(null);
     const actionRef = useRef<HTMLButtonElement | null>(null);
-
     const [innerValue, setInnerValue] = useState(defaultValue);
     const [isOpen, changeIsOpen] = useState(false);
     const [isSearching, changeIsSearching] = useState(false);
     const [isAutosuggestError, changeIsAutosuggestError] = useState(false);
     const [filteredSuggestions, changeFilteredSuggestions] = useState<string[]>([]);
     const [visualFocusIndex, changeVisualFocusIndex] = useState(-1);
-
     const width = useWidth(inputContainerRef.current);
 
     const getNumberErrorMessage = (checkedValue: number) =>
@@ -489,18 +387,10 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
     };
 
     const setNumberProps = (type?: string, min?: number, max?: number, step?: number) => {
-      if (min != null) {
-        inputRef.current?.setAttribute("min", min.toString());
-      }
-      if (max != null) {
-        inputRef.current?.setAttribute("max", max.toString());
-      }
-      if (step != null) {
-        inputRef.current?.setAttribute("step", step.toString());
-      }
-      if (type != null) {
-        inputRef.current?.setAttribute("type", type);
-      }
+      if (min != null) inputRef.current?.setAttribute("min", min.toString());
+      if (max != null) inputRef.current?.setAttribute("max", max.toString());
+      if (step != null) inputRef.current?.setAttribute("step", step.toString());
+      if (type != null) inputRef.current?.setAttribute("type", type);
     };
 
     useEffect(() => {
@@ -538,167 +428,164 @@ const DxcTextInput = forwardRef<RefType, TextInputPropsType>(
           numberInputContext.typeNumber,
           numberInputContext.minNumber,
           numberInputContext.maxNumber,
-          numberInputContext.stepNumber,
+          numberInputContext.stepNumber
         );
       }
       return undefined;
     }, [value, innerValue, suggestions, numberInputContext]);
 
     return (
-      <ThemeProvider theme={colorsTheme.textInput}>
-        <TextInputContainer margin={margin} size={size} ref={ref}>
-          {label && (
-            <Label htmlFor={inputId} disabled={disabled} hasHelperText={!!helperText}>
-              {label} {optional && <OptionalLabel>{translatedLabels.formFields.optionalLabel}</OptionalLabel>}
-            </Label>
-          )}
-          {helperText && <HelperText disabled={disabled}>{helperText}</HelperText>}
-          <AutosuggestWrapper
-            condition={hasSuggestions(suggestions)}
-            wrapper={(children) => (
-              <Popover.Root open={isOpen && (filteredSuggestions.length > 0 || isSearching || isAutosuggestError)}>
-                <Popover.Trigger
-                  asChild
-                  type={undefined}
-                  aria-controls={undefined}
-                  aria-haspopup={undefined}
-                  aria-expanded={undefined}
-                >
-                  {children}
-                </Popover.Trigger>
-                <Popover.Portal>
-                  <Popover.Content
-                    sideOffset={5}
-                    style={{ zIndex: "2147483647" }}
-                    onOpenAutoFocus={(event) => {
-                      // Avoid select to lose focus when the list is opened
-                      event.preventDefault();
-                    }}
-                    onCloseAutoFocus={(event) => {
-                      // Avoid select to lose focus when the list is closed
-                      event.preventDefault();
-                    }}
-                  >
-                    <Suggestions
-                      id={autosuggestId}
-                      value={value ?? innerValue}
-                      suggestions={filteredSuggestions}
-                      visualFocusIndex={visualFocusIndex}
-                      highlightedSuggestions={typeof suggestions !== "function"}
-                      searchHasErrors={isAutosuggestError}
-                      isSearching={isSearching}
-                      suggestionOnClick={(suggestion) => {
-                        changeValue(suggestion);
-                        closeSuggestions();
-                      }}
-                      styles={{ width }}
-                    />
-                  </Popover.Content>
-                </Popover.Portal>
-              </Popover.Root>
-            )}
-          >
-            <InputContainer
-              error={!!error}
-              disabled={disabled}
-              readOnly={readOnly}
-              onClick={handleInputContainerOnClick}
-              onMouseDown={handleInputContainerOnMouseDown}
-              ref={inputContainerRef}
-            >
-              {prefix && <Prefix disabled={disabled}>{prefix}</Prefix>}
-              <DxcFlex gap="0.25rem" alignItems="center" grow={1}>
-                <Input
-                  id={inputId}
-                  name={name}
-                  value={value ?? innerValue}
-                  placeholder={placeholder}
-                  onBlur={handleInputOnBlur}
-                  onChange={handleInputOnChange}
-                  onFocus={!readOnly ? openSuggestions : undefined}
-                  onKeyDown={!readOnly ? handleInputOnKeyDown : undefined}
-                  onMouseDown={(event) => {
-                    event.stopPropagation();
+      <TextInputContainer margin={margin} ref={ref} size={size}>
+        {label && (
+          <Label disabled={disabled} hasMargin={!helperText} htmlFor={inputId}>
+            {label} {optional && <span>{translatedLabels.formFields.optionalLabel}</span>}
+          </Label>
+        )}
+        {helperText && <HelperText disabled={disabled} hasMargin={false}>{helperText}</HelperText>}
+        <AutosuggestWrapper
+          condition={hasSuggestions(suggestions)}
+          wrapper={(children) => (
+            <Popover.Root open={isOpen && (filteredSuggestions.length > 0 || isSearching || isAutosuggestError)}>
+              <Popover.Trigger
+                aria-controls={undefined}
+                aria-expanded={undefined}
+                aria-haspopup={undefined}
+                asChild
+                type={undefined}
+              >
+                {children}
+              </Popover.Trigger>
+              <Popover.Portal>
+                <Popover.Content
+                  onCloseAutoFocus={(event) => {
+                    // Avoid select to lose focus when the list is closed
+                    event.preventDefault();
                   }}
-                  onWheel={numberInputContext?.typeNumber === "number" ? handleNumberInputWheel : undefined}
-                  disabled={disabled}
-                  readOnly={readOnly}
-                  ref={inputRef}
-                  pattern={pattern}
-                  minLength={minLength}
-                  maxLength={maxLength}
-                  autoComplete={autocomplete === "off" ? "nope" : autocomplete}
-                  tabIndex={tabIndex}
-                  type="text"
-                  role={hasSuggestions(suggestions) ? "combobox" : undefined}
-                  aria-autocomplete={hasSuggestions(suggestions) ? "list" : undefined}
-                  aria-controls={hasSuggestions(suggestions) ? autosuggestId : undefined}
-                  aria-expanded={hasSuggestions(suggestions) ? isOpen : undefined}
-                  aria-haspopup={hasSuggestions(suggestions) ? "listbox" : undefined}
-                  aria-activedescendant={
-                    hasSuggestions(suggestions) && isOpen && visualFocusIndex !== -1
-                      ? `suggestion-${visualFocusIndex}`
-                      : undefined
-                  }
-                  aria-invalid={!!error}
-                  aria-errormessage={error ? errorId : undefined}
-                  aria-required={!disabled && !optional}
-                  aria-label={label ? undefined : ariaLabel}
-                />
-                {!disabled && error && (
-                  <ErrorIcon aria-hidden="true">
-                    <DxcIcon icon="filled_error" />
-                  </ErrorIcon>
-                )}
-                {!disabled && !readOnly && clearable && (value ?? innerValue).length > 0 && (
-                  <DxcActionIcon
-                    onClick={handleClearActionOnClick}
-                    icon="close"
-                    tabIndex={tabIndex}
-                    title={translatedLabels.textInput.clearFieldActionTitle}
+                  onOpenAutoFocus={(event) => {
+                    // Avoid select to lose focus when the list is opened
+                    event.preventDefault();
+                  }}
+                  sideOffset={4}
+                  style={{ zIndex: "2147483647" }}
+                >
+                  <Suggestions
+                    highlightedSuggestions={typeof suggestions !== "function"}
+                    id={autosuggestId}
+                    isSearching={isSearching}
+                    searchHasErrors={isAutosuggestError}
+                    suggestionOnClick={(suggestion) => {
+                      changeValue(suggestion);
+                      closeSuggestions();
+                    }}
+                    suggestions={filteredSuggestions}
+                    styles={{ width }}
+                    value={value ?? innerValue}
+                    visualFocusIndex={visualFocusIndex}
                   />
-                )}
-                {numberInputContext?.typeNumber === "number" && numberInputContext?.showControls && (
-                  <>
-                    <DxcActionIcon
-                      onClick={!readOnly ? handleDecrementActionOnClick : undefined}
-                      icon="remove"
-                      tabIndex={tabIndex}
-                      ref={actionRef}
-                      title={translatedLabels.numberInput.decrementValueTitle}
-                      disabled={disabled}
-                    />
-                    <DxcActionIcon
-                      onClick={!readOnly ? handleIncrementActionOnClick : undefined}
-                      icon="add"
-                      tabIndex={tabIndex}
-                      ref={actionRef}
-                      title={translatedLabels.numberInput.incrementValueTitle}
-                      disabled={disabled}
-                    />
-                  </>
-                )}
-                {action && (
-                  <DxcActionIcon
-                    onClick={!readOnly ? action.onClick : undefined}
-                    icon={action.icon}
-                    tabIndex={tabIndex}
-                    ref={actionRef}
-                    title={action.title ?? ""}
-                    disabled={disabled}
-                  />
-                )}
-              </DxcFlex>
-              {suffix && <Suffix disabled={disabled}>{suffix}</Suffix>}
-            </InputContainer>
-          </AutosuggestWrapper>
-          {!disabled && typeof error === "string" && (
-            <ErrorMessageContainer id={errorId} role="alert" aria-live={error ? "assertive" : "off"}>
-              {error}
-            </ErrorMessageContainer>
+                </Popover.Content>
+              </Popover.Portal>
+            </Popover.Root>
           )}
-        </TextInputContainer>
-      </ThemeProvider>
+        >
+          <TextInput
+            disabled={disabled}
+            error={!!error}
+            onClick={handleInputContainerOnClick}
+            onMouseDown={handleInputContainerOnMouseDown}
+            readOnly={readOnly}
+            ref={inputContainerRef}
+          >
+            {prefix && (
+              <Addon disabled={disabled} type="prefix">
+                {prefix}
+              </Addon>
+            )}
+            <Input
+              aria-activedescendant={
+                hasSuggestions(suggestions) && isOpen && visualFocusIndex !== -1
+                  ? `suggestion-${visualFocusIndex}`
+                  : undefined
+              }
+              aria-autocomplete={hasSuggestions(suggestions) ? "list" : undefined}
+              aria-controls={hasSuggestions(suggestions) ? autosuggestId : undefined}
+              aria-errormessage={error ? errorId : undefined}
+              aria-expanded={hasSuggestions(suggestions) ? isOpen : undefined}
+              aria-haspopup={hasSuggestions(suggestions) ? "listbox" : undefined}
+              aria-invalid={!!error}
+              aria-label={label ? undefined : ariaLabel}
+              aria-required={!disabled && !optional}
+              autoComplete={autocomplete === "off" ? "nope" : autocomplete}
+              disabled={disabled}
+              id={inputId}
+              name={name}
+              onBlur={handleInputOnBlur}
+              onChange={handleInputOnChange}
+              onFocus={!readOnly ? openSuggestions : undefined}
+              onKeyDown={!readOnly ? handleInputOnKeyDown : undefined}
+              onMouseDown={(event) => {
+                event.stopPropagation();
+              }}
+              onWheel={numberInputContext?.typeNumber === "number" ? handleNumberInputWheel : undefined}
+              placeholder={placeholder}
+              pattern={pattern}
+              readOnly={readOnly}
+              ref={inputRef}
+              role={hasSuggestions(suggestions) ? "combobox" : undefined}
+              maxLength={maxLength}
+              minLength={minLength}
+              tabIndex={tabIndex}
+              type="text"
+              value={value ?? innerValue}
+            />
+            <DxcFlex>
+              {!disabled && !readOnly && clearable && (value ?? innerValue).length > 0 && (
+                <DxcActionIcon
+                  icon="close"
+                  onClick={handleClearActionOnClick}
+                  tabIndex={tabIndex}
+                  title={translatedLabels.textInput.clearFieldActionTitle}
+                />
+              )}
+              {numberInputContext?.typeNumber === "number" && numberInputContext?.showControls && (
+                <>
+                  <DxcActionIcon
+                    disabled={disabled}
+                    icon="remove"
+                    onClick={!readOnly ? handleDecrementActionOnClick : undefined}
+                    ref={actionRef}
+                    tabIndex={tabIndex}
+                    title={translatedLabels.numberInput.decrementValueTitle}
+                  />
+                  <DxcActionIcon
+                    disabled={disabled}
+                    icon="add"
+                    onClick={!readOnly ? handleIncrementActionOnClick : undefined}
+                    ref={actionRef}
+                    tabIndex={tabIndex}
+                    title={translatedLabels.numberInput.incrementValueTitle}
+                  />
+                </>
+              )}
+              {action && (
+                <DxcActionIcon
+                  disabled={disabled}
+                  icon={action.icon}
+                  onClick={!readOnly ? action.onClick : undefined}
+                  ref={actionRef}
+                  tabIndex={tabIndex}
+                  title={action.title ?? ""}
+                />
+              )}
+            </DxcFlex>
+            {suffix && (
+              <Addon disabled={disabled} type="suffix">
+                {suffix}
+              </Addon>
+            )}
+          </TextInput>
+        </AutosuggestWrapper>
+        {!disabled && typeof error === "string" && <ErrorMessage error={error} id={errorId} />}
+      </TextInputContainer>
     );
   }
 );
